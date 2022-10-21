@@ -59,6 +59,16 @@ public class Description {
     }
 
     /**
+     * Searches description for if the input query exists.
+     * @param query input query
+     * @return true if query exists exactly in description, false otherwise.
+     */
+    public boolean isWordInDescription(String query) {
+        requireNonNull(query);
+        return description.contains(query);
+    }
+
+    /**
      * Compares this description and the input description to decide alphabetical order.
      * @param other input description.
      * @return 1 if this description is alphabetically first, -1 otherwise.

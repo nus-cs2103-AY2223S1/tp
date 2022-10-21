@@ -58,4 +58,13 @@ public class Name {
         return fullName.hashCode();
     }
 
+    /**
+     * Searches the fullName for a query.
+     * @param query input query.
+     * @return true if the query exists exactly in fullName, false otherwise.
+     */
+    public boolean isWordInName(String query) {
+        requireNonNull(query);
+        return fullName.contains(query);
+    }
 }

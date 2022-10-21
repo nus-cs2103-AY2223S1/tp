@@ -1,5 +1,7 @@
 package taskbook.model.task;
 
+import static java.util.Objects.requireNonNull;
+
 import java.util.Objects;
 
 import taskbook.commons.util.CollectionUtil;
@@ -119,6 +121,16 @@ public abstract class Task {
                 .append(getDescription());
 
         return builder.toString();
+    }
+
+    /**
+     * Searches this task to find if input query exists anywhere in the description or name.
+     * @param query input word.
+     * @return true if the query exists exactly in this task, false otherwise.
+     */
+    public boolean isWordInTask(String query) {
+        requireNonNull(query);
+        return getName().isWordInName(query) || getDescription().isWordInDescription(query);
     }
 
     /**
