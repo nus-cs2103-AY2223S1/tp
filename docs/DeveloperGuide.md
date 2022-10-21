@@ -289,7 +289,7 @@ an `FindCommand` that is executed by the `LogicManager`.
 This feature allows the user to find a specific user by field, or generally search for occurrences of keywords in all fields.
 The feature also supports fuzzy search based on `Soundex` when searching by names.
 
-**Below is a sample usage and how the edit sequence behaves at each step.**
+**Below is a sample usage and how the find sequence behaves at each step.**
 
 1. User chooses the Customer he/ she wants to find and enters the command `find Aschcroft`
 2. The `LogicManager` redirects this command to `AddressBookParser`, which parses the command via `FindCommandParser` and
