@@ -113,7 +113,7 @@ public class AddCommandTest {
         }
 
         @Override
-        public void setAliasSettings(AliasSettings AliasSettings) {
+        public void setAliasSettings(AliasSettings aliasSettings) {
             throw new AssertionError("This method should not be called.");
         }
 
