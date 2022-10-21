@@ -62,6 +62,7 @@ public class DistinctModuleList implements Iterable<Module> {
      * @param tasks the list of tasks to check with the module.
      */
     public void updateTotalNumOfTasks(Module module, DistinctTaskList tasks) {
+        requireAllNonNull(module, tasks);
         int totalNumOfTasks = tasks.getTotalNumOfTasks(module);
 
         int index = moduleList.indexOf(module);
@@ -82,6 +83,7 @@ public class DistinctModuleList implements Iterable<Module> {
      * @param tasks the list of tasks to check with the module.
      */
     public void updateNumOfCompletedTasks(Module module, DistinctTaskList tasks) {
+        requireAllNonNull(module, tasks);
         int numOfCompletedTasks = tasks.getNumOfTasksCompleted(module);
 
         int index = moduleList.indexOf(module);

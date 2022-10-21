@@ -79,7 +79,7 @@ public class DistinctTaskList implements Iterable<Task> {
         }
 
         boolean isDuplicateTask = contains(editedTask) && !editedTask.isSameTask(target);
-        if (!isSameTask && contains(editedTask) && isDuplicateTask) {
+        if (!isSameTask && isDuplicateTask) {
             throw new DuplicateTaskException();
         }
 
