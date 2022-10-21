@@ -15,6 +15,7 @@ import modtrekt.logic.commands.AddCommand;
 import modtrekt.logic.commands.AddTaskCommand;
 import modtrekt.logic.commands.CdModuleCommand;
 import modtrekt.logic.commands.Command;
+import modtrekt.logic.commands.EditTaskCommand;
 import modtrekt.logic.commands.ExitCommand;
 import modtrekt.logic.commands.HelpCommand;
 import modtrekt.logic.commands.RemoveCommand;
@@ -50,8 +51,9 @@ public class ModtrektParser {
         // devs: Instantiate your commands here by passing it to addCommand() -
         //       you don't need any CommandParser classes anymore.
         JCommander jcommander = JCommander.newBuilder()
-                    .addCommand(PrioritizeTaskCommand.COMMAND_WORD, new PrioritizeTaskCommand())
-                    .build();
+                .addCommand(PrioritizeTaskCommand.COMMAND_WORD, new PrioritizeTaskCommand())
+                .addCommand(EditTaskCommand.COMMAND_WORD, new EditTaskCommand())
+                .build();
         try {
             // This takes care of invalid commands, as well as missing or invalid arguments
             // via the ParameterException.
