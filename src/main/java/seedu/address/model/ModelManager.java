@@ -186,10 +186,12 @@ public class ModelManager implements Model {
         }
         this.getFilteredPersonList().forEach(person -> {
             if (!person.getSessionList().sessionList.isEmpty()) {
-                Session currSession = person.getSessionList().sessionList.get(0);
-                if (nowSession.compareTo(currSession) <= 0) {
-                    compareList.add(currSession);
-                    sessionPersonHashMap.put(currSession, person);
+                for (int i = 0; i < person.getSessionList().sessionList.size(); i++) {
+                    Session currSession = person.getSessionList().sessionList.get(i);
+                    if (nowSession.compareTo(currSession) <= 0) {
+                        compareList.add(currSession);
+                        sessionPersonHashMap.put(currSession, person);
+                    }
                 }
             }
         });
