@@ -2,13 +2,11 @@ package seedu.address.model.appointment;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import java.time.format.DateTimeParseException;
 
 /**
  * Represents an upcoming appointment for a patient.
  */
 public class UpcomingAppointment extends Appointment {
-    public static final String MESSAGE_CONSTRAINTS = "Date string should be of the format dd-MM-yyyy.";
     public final String value;
     /**
      * Constructs an {@code UpcomingAppointment} for a {@code Patient}.
@@ -42,6 +40,7 @@ public class UpcomingAppointment extends Appointment {
         }
         return true;
     }
+    
     @Override
     public String toString() {
         return "Upcoming Appointment Date: " + (value == null ? "None" : value);

@@ -234,6 +234,61 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 _{more aspects and alternatives to be added}_
 
+### Appointments feature
+
+![AppointmentClassDiagram](images/AppointmentClassDiagram.png)
+
+The class diagram above visualises the `Appointment` package. The members of the `Medication` class have been hidden.
+
+**Implementation**
+
+The appointment creation mechanism is facilitated by its own `Appointment` component under the `Model` component. There
+are 2 types of appointments, namely, `PastAppointment` and `UpcomingAppointment`.
+
+- Both of these extend the abstract `Appointment` class, which implements the `Appointment#getDate()` operation.
+- The static method `Appointment#isValidDate()` helps check against invalid date inputs for appointment creation.
+
+#### `PastAppointment`
+
+`PastAppointment`s represent a completed appointment for a patient. They are guaranteed to be immutable as they
+constitute of sensitive patient data. Apart from `date`, `PastAppointment`s also require the following:
+
+* `diagnosis`
+  * Stored as a string, and is compulsory for the creation of a `PastAppointment`. Represents the doctor's analysis of
+    the patient's state in the appointment, and is input using the `diag/` prefix.
+  * Exposed using the `PastAppointment#getDiagnosis()` method for use in `JsonAdaptedPastAppointment`.
+* `medication`
+  * Stored as a set of medication tags, a `PastAppointment` may contain 0 or more medicine tags. Each medicine tag is
+    input separately with a `m/` prefix.
+  * Exposed using the `PastApointment#getMedication()` method for use in `JsonAdaptedPastAppointment`.
+
+#### `UpcomingAppointment`
+
+`UpcomingAppointment`s represent an upcoming appointment for a patient. They only contain the `date` of the upcoming
+appointment. A patient can only have  a **maximum of 1** `UpcomingAppointment` at any given time.
+
+Given below is an example usage scenario and how the appointment mechanism behaves at each step.
+
+Context: Patient `John Davis` had a past appointment on `12-06-2022` where they were diagnosed with a `headache` and
+prescribed `paracetamol` medication as a painkiller. They are scheduled for a follow-up appointment on `16-06-2022`.
+
+Step 1. The medical assistant opens the application and executes `get /n John Davis` to find the target patient. The
+assistant notices John is at index 2. John Davis currently has 0 `PastAppointment`s and no `UpcomingAppointment`.
+
+![AppointmentObjectDiagramBefore](images/AppointmentObjectDiagramBefore.png)
+
+The values of John's default details have been hidden in the above diagram.
+
+Step 2. The medical assistant creates a `PastAppointment` for John by executing `appt 2 on/12-06-2022 diag/headache
+m/paracetamol`. The `PastAppointment` count is now at `1`.
+
+![AppointmentObjectDiagramWithPastAppt](images/AppointmentObjectDiagramWithPastAppt.png)
+
+Step 3. The medical assistant creates an `UpcomingAppointment` for John by executing `edit upcoming/16-06-2022`. John
+now has an `UpcomingAppointment` associated with him.
+
+![AppointmentObjectDiagramWithBothAppt](images/AppointmentObjectDiagramWithBothAppt.png)
+
 ### \[Proposed\] Data archiving
 
 _{Explain here how the data archiving feature will be implemented}_
@@ -271,18 +326,18 @@ _{Explain here how the data archiving feature will be implemented}_
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                | I want to …​                                      | So that I can…​                                                        |
-| -------- | ---------------------- | ------------------------------------------------- | ---------------------------------------------------------------------- |
-| `* * *`  | doctor                 | search for patients by name                       | view medication patient is currently taking and prescribe new medication based on that info |
-| `* * *`  | doctor                 | retrieve patient contact info and next-of-kin data| quickly and efficiently contact the patient or someone near them                                                                     |
-| `* * *`  | hospital administrator | check the total number of patients in my hospital | know when my hospital is oversubscribed
-| `* * *`  | hospital staff         | retrieve patients by ward number                  | attend to them quickly |
-| `* * *`  | hospital staff         | retrieve patients by floor number                 | attend to them quickly |
-| `* * *`  | hospital staff         | retrieve patients by hospital wings               | attend to them quickly |
-| `* * *`  | hospital staff         | check if patient is inpatient or for daily checkup| knows where to direct them  |
-| `* * *`  | hospital staff         | create patient profiles                           | store new patients into the system                          |
-| `* * *`  |nurse                   | retrieve patients by medication                   | find out a list of patients under each medication             |
-| `* * *`  | hospital staff         | remove patients from the database                 | remove redundant entries that are no longer necessary                |
+| Priority | As a …​                | I want to …​                                       | So that I can…​                                                                             |
+|----------|------------------------|----------------------------------------------------|---------------------------------------------------------------------------------------------|
+| `* * *`  | doctor                 | search for patients by name                        | view medication patient is currently taking and prescribe new medication based on that info |
+| `* * *`  | doctor                 | retrieve patient contact info and next-of-kin data | quickly and efficiently contact the patient or someone near them                            |
+| `* * *`  | hospital administrator | check the total number of patients in my hospital  | know when my hospital is oversubscribed                                                     |
+| `* * *`  | hospital staff         | retrieve patients by ward number                   | attend to them quickly                                                                      |
+| `* * *`  | hospital staff         | retrieve patients by floor number                  | attend to them quickly                                                                      |
+| `* * *`  | hospital staff         | retrieve patients by hospital wings                | attend to them quickly                                                                      |
+| `* * *`  | hospital staff         | check if patient is inpatient or for daily checkup | knows where to direct them                                                                  |
+| `* * *`  | hospital staff         | create patient profiles                            | store new patients into the system                                                          |
+| `* * *`  | nurse                  | retrieve patients by medication                    | find out a list of patients under each medication                                           |
+| `* * *`  | hospital staff         | remove patients from the database                  | remove redundant entries that are no longer necessary                                       |
 
 *{More to be added}*
 
