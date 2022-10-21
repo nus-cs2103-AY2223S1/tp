@@ -5,17 +5,19 @@ import java.nio.file.Path;
 import java.util.logging.Logger;
 
 import javafx.collections.ObservableList;
-import seedu.address.commons.core.GuiSettings;
-import seedu.address.commons.core.LogsCenter;
-import seedu.address.logic.commands.Command;
-import seedu.address.logic.commands.CommandResult;
-import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.logic.parser.AddressBookParser;
-import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.Model;
-import seedu.address.model.ReadOnlyAddressBook;
-import seedu.address.model.person.Person;
-import seedu.address.storage.Storage;
+import swift.commons.core.GuiSettings;
+import swift.commons.core.LogsCenter;
+import swift.logic.commands.Command;
+import swift.logic.commands.CommandResult;
+import swift.logic.commands.exceptions.CommandException;
+import swift.logic.parser.AddressBookParser;
+import swift.logic.parser.exceptions.ParseException;
+import swift.model.Model;
+import swift.model.ReadOnlyAddressBook;
+import swift.model.person.Person;
+import swift.model.task.Task;
+import swift.storage.Storage;
+
 
 /**
  * The main LogicManager of the app.
@@ -62,6 +64,11 @@ public class LogicManager implements Logic {
     @Override
     public ObservableList<Person> getFilteredPersonList() {
         return model.getFilteredPersonList();
+    }
+
+    @Override
+    public ObservableList<Task> getFilteredTaskList() {
+        return model.getFilteredTaskList();
     }
 
     @Override
