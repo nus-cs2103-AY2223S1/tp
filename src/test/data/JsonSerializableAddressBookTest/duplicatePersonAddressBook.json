@@ -6,6 +6,8 @@
     "address": "123, Jurong West Ave 6, #08-111",
     "remark" : "",
     "netWorth" : "$54400",
+    "meetingTime" : "10-08-2022 15:00",
+    "filePath" : "src/test/data/TestPDFs/Test_PDF.pdf",
     "tagged": [ "friends" ]
   }, {
     "name": "Alice Pauline",
@@ -13,6 +15,8 @@
     "email": "pauline@example.com",
     "address": "4th street",
     "remark" : "",
-    "netWorth" : "$54400"
+    "netWorth" : "$54400",
+    "meetingTime" : "10-08-2022 15:00",
+    "filePath" : "src/test/data/TestPDFs/Test_PDF.pdf"
   } ]
 }

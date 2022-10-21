@@ -7,6 +7,7 @@ import java.util.stream.Stream;
 import seedu.address.logic.commands.UpdateCommand.EditPersonDescriptor;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
+import seedu.address.model.person.MeetingTime;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.NetWorth;
 import seedu.address.model.person.Person;
@@ -38,6 +39,7 @@ public class EditPersonDescriptorBuilder {
         descriptor.setEmail(person.getEmail());
         descriptor.setAddress(person.getAddress());
         descriptor.setNetWorth(person.getNetWorth());
+        descriptor.setMeetingTime(person.getMeetingTime());
         descriptor.setTags(person.getTags());
     }
 
@@ -78,6 +80,14 @@ public class EditPersonDescriptorBuilder {
      */
     public EditPersonDescriptorBuilder withNetWorth(String networth) {
         descriptor.setNetWorth(new NetWorth(networth));
+        return this;
+    }
+
+    /**
+     * Sets the {@code MeetingTime} of the {@code EditPersonDescriptor} that we are building.
+     */
+    public EditPersonDescriptorBuilder withMeetingTime(String meetingTime) {
+        descriptor.setMeetingTime(new MeetingTime(meetingTime));
         return this;
     }
 

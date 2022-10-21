@@ -3,6 +3,7 @@ package seedu.address.logic.commands;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_MEETING_TIME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NETWORTH;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
@@ -15,7 +16,7 @@ import seedu.address.model.person.Person;
 /**
  * Adds a person to the address book.
  */
-public class CreateCommand extends Command {
+public class CreateCommand extends UndoableCommand {
 
     public static final String COMMAND_WORD = "create";
 
@@ -34,11 +35,14 @@ public class CreateCommand extends Command {
             + PREFIX_EMAIL + "johnd@example.com "
             + PREFIX_ADDRESS + "311, Clementi Ave 2, #02-25 "
             + PREFIX_NETWORTH + "$1423 "
+            + PREFIX_MEETING_TIME + "15-12-2022 19:00"
             + PREFIX_TAG + "friends "
             + PREFIX_TAG + "owesMoney";
 
     public static final String MESSAGE_SUCCESS = "New person added: %1$s";
     public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the address book";
+    public static final String MESSAGE_UNDO = "Person removed: %1$s";
+    public static final String MESSAGE_REDO = "Person added back: %1$s";
 
     private final Person toAdd;
 
@@ -60,6 +64,18 @@ public class CreateCommand extends Command {
 
         model.addPerson(toAdd);
         return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
+    }
+
+    @Override
+    public CommandResult undo(Model model) {
+        model.deletePerson(toAdd);
+        return new CommandResult(String.format(MESSAGE_UNDO, toAdd));
+    }
+
+    @Override
+    public CommandResult redo(Model model) {
+        model.addPerson(toAdd);
+        return new CommandResult(String.format(MESSAGE_REDO, toAdd));
     }
 
     @Override

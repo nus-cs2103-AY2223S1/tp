@@ -11,6 +11,8 @@ import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
+import seedu.address.model.person.FilePath;
+import seedu.address.model.person.MeetingTime;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.NetWorth;
 import seedu.address.model.person.Phone;
@@ -112,7 +114,7 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String tag} into a {@code NetWorth}.
+     * Parses a {@code String netWorth} into a {@code NetWorth}.
      * Leading and trailing whitespaces will be trimmed.
      *
      * @throws ParseException if the given {@code NetWorth} is invalid.
@@ -124,6 +126,37 @@ public class ParserUtil {
             throw new ParseException(NetWorth.MESSAGE_CONSTRAINTS);
         }
         return new NetWorth(trimmedNetWorth);
+    }
+
+    /**
+     * Parses a {@code String meetingTime} into a {@code MeetingTime}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code MeetingTime} is invalid.
+     */
+    public static MeetingTime parseMeetingTime(String meetingTime) throws ParseException {
+        requireNonNull(meetingTime);
+        String trimmedMeetingTime = meetingTime.trim();
+        if (!MeetingTime.isValidMeetingTime(trimmedMeetingTime)) {
+            throw new ParseException(MeetingTime.MESSAGE_CONSTRAINTS);
+        }
+        return new MeetingTime(trimmedMeetingTime);
+    }
+
+    /**
+     * Parses a {@code String filePath} into a {@code FilePath}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code FilePath} is invalid.
+     */
+    public static FilePath parseFilePath(String filePath) throws ParseException {
+        requireNonNull(filePath);
+        String trimmedFilePath = filePath.trim();
+        if (!FilePath.isValidPdfFilePath(trimmedFilePath) && !FilePath.isEmptyPdfFilePath(trimmedFilePath)) {
+            throw new ParseException(FilePath.MESSAGE_CONSTRAINTS);
+        }
+        return new FilePath(trimmedFilePath);
+
     }
 
     /**

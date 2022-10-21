@@ -1,10 +1,12 @@
 package seedu.address.logic.commands;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.DESC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_NETWORTH_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
@@ -56,10 +58,10 @@ public class UpdateCommandTest {
 
         PersonBuilder personInList = new PersonBuilder(lastPerson);
         Person editedPerson = personInList.withName(VALID_NAME_BOB).withPhone(VALID_PHONE_BOB)
-                .withTags(VALID_TAG_HUSBAND).build();
+                .withNetWorth(VALID_NETWORTH_BOB).withTags(VALID_TAG_HUSBAND).build();
 
         EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder().withName(VALID_NAME_BOB)
-                .withPhone(VALID_PHONE_BOB).withTags(VALID_TAG_HUSBAND).build();
+                .withPhone(VALID_PHONE_BOB).withNetWorth(VALID_NETWORTH_BOB).withTags(VALID_TAG_HUSBAND).build();
         UpdateCommand updateCommand = new UpdateCommand(indexLastPerson, descriptor);
 
         String expectedMessage = String.format(UpdateCommand.MESSAGE_EDIT_PERSON_SUCCESS, editedPerson);
@@ -144,6 +146,39 @@ public class UpdateCommandTest {
                 new EditPersonDescriptorBuilder().withName(VALID_NAME_BOB).build());
 
         assertCommandFailure(updateCommand, model, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+    }
+
+    @Test
+    public void undo_commandExecuted_undoSuccessful() throws Exception {
+        Person uneditedPerson = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
+        Person editedPerson = new PersonBuilder().build();
+        EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder(editedPerson).build();
+        UpdateCommand updateCommand = new UpdateCommand(INDEX_FIRST_PERSON, descriptor);
+
+        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
+
+        updateCommand.execute(model);
+        CommandResult commandResult = updateCommand.undo(model);
+
+        assertEquals(String.format(UpdateCommand.MESSAGE_UNDO, uneditedPerson), commandResult.getFeedbackToUser());
+        assertEquals(expectedModel, model);
+    }
+
+    @Test
+    public void redo_commandUndone_redoSuccessful() throws Exception {
+        Person editedPerson = new PersonBuilder().build();
+        EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder(editedPerson).build();
+        UpdateCommand updateCommand = new UpdateCommand(INDEX_FIRST_PERSON, descriptor);
+
+        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
+        expectedModel.setPerson(model.getFilteredPersonList().get(0), editedPerson);
+
+        updateCommand.execute(model);
+        updateCommand.undo(model);
+        CommandResult commandResult = updateCommand.redo(model);
+
+        assertEquals(String.format(UpdateCommand.MESSAGE_REDO, editedPerson), commandResult.getFeedbackToUser());
+        assertEquals(expectedModel, model);
     }
 
     @Test
