@@ -237,9 +237,7 @@ public class ParserUtil {
      * @throws ParseException if the given {@code interviewDate} is invalid.
      */
     public static InterviewDate parseInterviewDate(String interviewDate) throws ParseException {
-        if (interviewDate.isBlank()) {
-            return new InterviewDate(null);
-        }
+        requireNonNull(interviewDate);
         String trimmedInterviewDate = interviewDate.trim();
         if (!InterviewDate.isValidDatetimeStr(trimmedInterviewDate)) {
             throw new ParseException(InterviewDate.MESSAGE_CONSTRAINTS);
