@@ -19,11 +19,11 @@ import seedu.address.model.tag.Tag;
 public class Person {
 
     // Identity fields
-    private final Name name;
     private final Email email;
     private final Job job;
 
     // Data fields
+    private final Name name;
     private final Phone phone;
     private final Address address;
     private final Gender gender;
