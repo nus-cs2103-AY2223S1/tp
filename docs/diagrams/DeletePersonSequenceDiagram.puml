@@ -53,19 +53,25 @@ destroy AddressBookParser
 LogicManager -> DeleteCommand : execute()
 activate DeleteCommand
 
-DeleteCommand -> Model : deletePerson(personToDelete)
+DeleteCommand -> Model : getPersonUsingName(Amy)
 activate Model
 
-Model -> AddressBook : removePerson(personToDelete)
+Model --> DeleteCommand : p
+deactivate Model
+
+DeleteCommand -> Model : deletePerson(p)
+activate Model
+
+Model -> AddressBook : removePerson(p)
 activate AddressBook
 
-AddressBook -> UniqueModuleList : removePersonFromModules(personToDelete)
+AddressBook -> UniqueModuleList : removePersonFromModules(p)
 activate UniqueModuleList
 
 UniqueModuleList --> AddressBook
 deactivate UniqueModuleList
 
-AddressBook -> UniquePersonList : remove(personToDelete)
+AddressBook -> UniquePersonList : remove(p)
 activate UniquePersonList
 
 UniquePersonList --> AddressBook
