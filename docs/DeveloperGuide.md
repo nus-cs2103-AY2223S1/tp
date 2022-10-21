@@ -258,6 +258,7 @@ person command text entered by user; the `setPerson(P1, P2)` method replaces per
 in the model. The specific `UniquePersonList` operations are not shown in the diagram for simplicity.
 </div>
 
+
 The following activity diagram shows what happens when a user executes a new edit command:
 
 ![EditPersonActivityDiagram](images/EditPersonActivityDiagram.png)
