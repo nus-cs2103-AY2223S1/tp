@@ -18,8 +18,6 @@ import seedu.address.model.person.Person;
 public class PersonCard extends UiPart<Region> {
 
     private static final String FXML = "PersonListCard.fxml";
-    private static final String DOT = ". ";
-    private static final String COMMA = ", ";
 
     /**
      * Note: Certain keywords such as "location" and "resources" are reserved keywords in JavaFX.
@@ -28,6 +26,8 @@ public class PersonCard extends UiPart<Region> {
      *
      * @see <a href="https://github.com/se-edu/addressbook-level4/issues/336">The issue on AddressBook level 4</a>
      */
+
+    private static final String TRANSPARENT_BACKGROUND = "-fx-background-color: transparent;";
 
     public final Person person;
 
@@ -66,7 +66,7 @@ public class PersonCard extends UiPart<Region> {
         address.setText(person.getAddress().value);
         email.setText(person.getEmail().value);
         addTagLabels(person);
-        appointments.setStyle("-fx-background-color: transparent;");
+        appointments.setStyle(TRANSPARENT_BACKGROUND);
         appointments.setItems(person.getAppointments().getObservableList());
         appointments.setCellFactory(listView -> new AppointmentListViewCell());
     }
@@ -82,10 +82,10 @@ public class PersonCard extends UiPart<Region> {
                 setGraphic(null);
                 setText(null);
                 setPrefWidth(0);
-                setStyle("-fx-background-color: transparent;");
+                setStyle(TRANSPARENT_BACKGROUND);
             } else {
                 setGraphic(new AppointmentFlowPane(getIndex() + 1, appointment));
-                setStyle("-fx-background-color: transparent;");
+                setStyle(TRANSPARENT_BACKGROUND);
             }
         }
     }
