@@ -7,6 +7,7 @@ import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
+import seedu.address.model.person.subject.Subject;
 import seedu.address.model.person.subject.SubjectHandler;
 import seedu.address.model.tag.Tag;
 
@@ -35,7 +36,7 @@ public class Person {
      */
     public Person(Name name, Phone phone, Email email, Address address, StudentClass studentClass,
                   Set<Remark> remarksList,
-                  SubjectHandler subjectsTaken, Set<Tag> tags) {
+                  Set<Subject> subjectsTaken, Set<Tag> tags) {
         requireAllNonNull(name, phone, email, address, studentClass, remarksList, subjectsTaken, tags);
         this.name = name;
         this.phone = phone;
@@ -46,7 +47,7 @@ public class Person {
         // Added in v1.2
         this.studentClass = studentClass;
         this.remarksList = remarksList;
-        this.subjectHandler = subjectsTaken;
+        this.subjectHandler = new SubjectHandler(subjectsTaken);
     }
 
     public Name getName() {
@@ -75,6 +76,10 @@ public class Person {
 
     public SubjectHandler getSubjectHandler() {
         return subjectHandler;
+    }
+
+    public Set<Subject> getSubjectsTaken() {
+        return subjectHandler.getSubjectsTaken();
     }
 
     /**

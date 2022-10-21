@@ -91,7 +91,7 @@ The `LoginWindow` is a separate window that is displayed when the user first sta
 The `LoginWindow` is responsible for authenticating the user and retrieving the user's data from the `Storage` component.
 The `LoginWindow` will then pass the user's data to the `MainWindow` so that the `MainWindow` can display the user's data.
 
-`LoginWindow` inherits from the abstract `UiPart` class, just like the `MainWindow`. 
+`LoginWindow` inherits from the abstract `UiPart` class, just like the `MainWindow`.
 As of 20/10/2022, it consists of 2 `TextBox` FXML components and a "submit" `Button` FXML component.
 
 We plan to add a new UI component in our implementation: the `ImportCSVButton`.

@@ -142,6 +142,18 @@ public class ParserUtil {
     }
 
     /**
+     * Parses {@code Collection<String> remarks} into a {@code Set<Remark>}.
+     */
+    public static Set<Subject> parseSubjects(Collection<String> subjects) throws ParseException {
+        requireNonNull(subjects);
+        final Set<Subject> subjectSet = new HashSet<>();
+        for (String subject : subjects) {
+            subjectSet.add(parseSubject(subject));
+        }
+        return subjectSet;
+    }
+
+    /**
      * Parses a {@code String subject} into an {@code Subject}.
      * Leading and trailing whitespaces will be trimmed.
      *
