@@ -26,7 +26,8 @@ public class GetPastAppointmentCommand extends GetCommand {
             + PAST_APPOINTMENT_PREFIX
             + " 3";
 
-    public static final String MESSAGE_OBTAIN_PAST_APPOINTMENTS_SUCCESS = "Obtained Past Appointments of Patient: %1$s";
+    public static final String MESSAGE_OBTAIN_PAST_APPOINTMENTS_SUCCESS =
+            "Obtained Past Appointments of Patient:\n%1$s";
 
     private final Index targetIndex;
 
@@ -51,7 +52,7 @@ public class GetPastAppointmentCommand extends GetCommand {
             output.append(appointment.toString()).append("\n");
         }
 
-        return new CommandResult(output.toString());
-        //return new CommandResult(String.format(MESSAGE_OBTAIN_PAST_APPOINTMENTS_SUCCESS, output));
+        //return new CommandResult(output.toString());
+        return new CommandResult(String.format(MESSAGE_OBTAIN_PAST_APPOINTMENTS_SUCCESS, output));
     }
 }

@@ -2,6 +2,7 @@ package seedu.address.model.person;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.time.LocalDate;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
@@ -61,7 +62,21 @@ public class Person {
      * @param appt the {@code PastAppointment} to be added
      */
     public void addPastAppointment(PastAppointment appt) {
-        pastAppointments.add(appt);
+        // TODO optimise
+        int length = pastAppointments.size();
+        LocalDate apptDate = appt.getDate();
+
+        for (int i = 0; i < length; i++) {
+            LocalDate currentApptDate = pastAppointments.get(i).getDate();
+            if (apptDate.compareTo(currentApptDate) > 0) { //apptDate is more recent than currentApptDate
+                pastAppointments.add(i, appt);
+                break;
+            }
+        }
+
+        if (pastAppointments.size() == length) { //an appointment has not been added
+            pastAppointments.add(appt);
+        }
     }
 
     public Name getName() {

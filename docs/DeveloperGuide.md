@@ -238,11 +238,27 @@ _{more aspects and alternatives to be added}_
 
 _{Explain here how the data archiving feature will be implemented}_
 
-### Get inpatients and outpatients feature (get /inp & get /outp)
+### Get inpatients and outpatients feature (`get /inp` & `get /outp`)
 
 #### Current implementation
 
-The current implementation of get /inp and get /outp is similar to how other commands are executed 
+The current implementation of `get /inp` and `get /outp` is similar to how other commands are executed. 
+
+When `get /inp` or `get /outp` is inputted, the `AddressBookParser` object creates a `GetCommandParser` that parses the 
+prefix of the `get` command inputted. If additional parameters are inputted (e.g. `get /inp hello world`), the extra
+parameters will be ignored, similar to how `help`, `list`, `exit` and `clear` are executed. 
+
+The `GetCommandParser` object will then create the corresponding `GetInpatientCommand` or `GetOutpatientCommand` to be 
+returned. When executing the `Command`, the model is updated such that the *filtered* list only displays inpatients or
+outpatients.
+
+![GetInpatientSequenceDiagram](images/GetInpatientSequenceDiagram.png)
+
+### \[Proposed\] Getting the past appointments of a patient (`get /appt INDEX`)
+
+#### Proposed implementation
+
+
 
 --------------------------------------------------------------------------------------------------------------------
 
