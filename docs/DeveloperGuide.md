@@ -193,7 +193,7 @@ compared lexicographically.
 When the command `:sort` is entered, the `Ui` sends the command to `Logic`. `Logic` parses and identifies the `:sort` command that was entered, and creates
 an instance of it. `Logic` then executes the command. `Model` will have the displayed list sorted and the sorted list will be displayed by `Ui`.
 
-####Example Usage
+#### Example Usage
 
 Given below is an example usage scenario and how the sorting mechanism behaves at each step.
 
@@ -208,7 +208,7 @@ The following sequence diagram shows how the sort command is executed.
 
 <img src="images/SortSequenceDiagram.png" width="1000" />
 
-####Design considerations:
+#### Design considerations:
 
 **Aspect: Displayed List structure**
 * **Current choice**: `displayedList` is a duplicated copy of the list of exercises in `internalUnmodifiableList` of type
@@ -245,7 +245,7 @@ The number of `Generator` objects created is equal to the number of unique exerc
 
 ![GetSuggestionSequenceDiagram](images/GetSuggestionSequenceDiagram.png)
 
-####Design considerations:
+#### Design considerations:
 
 **Aspect: Type of arguments to accept:**
 * **Alternative 1 (current choice)**: Accept index as arguments.
