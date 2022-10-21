@@ -16,7 +16,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[github](https://github.com/ferusel)]
 [[portfolio](team/ferusel.md)]
 
-- Role: Team Lead
+* Role: Team Lead
 
 ### Bryan Lim Jing Xiang
 
@@ -25,7 +25,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[github](https://github.com/bryanljx)]
 [[portfolio](team/bryanljx.md)]
 
-- Role: Tech Lead
+* Role: Tech Lead
 
 ### Richard Dominick
 
@@ -34,7 +34,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[github](https://github.com/RichDom2185)]
 [[portfolio](team/richdom2185.md)]
 
-- Role: Tech Lead
+* Role: Tech Lead
 
 ### Tan Wei Lie Eugene
 
@@ -43,7 +43,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[github](https://github.com/eugenetanwl3881)]
 [[portfolio](team/eugenetanwl3881.md)]
 
-- Role: Documentation
+* Role: Documentation
 
 ### Tan Yi Xian
 
@@ -52,4 +52,4 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[github](https://github.com/yixiann)]
 [[portfolio](team/yixiann.md)]
 
-- Role: Secretary
+* Role: Secretary
