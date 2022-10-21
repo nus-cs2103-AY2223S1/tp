@@ -36,6 +36,8 @@ public class FindCommandPredicate implements Predicate<Person> {
      * @return A boolean for if keyword(s) is contained in sentence.
      */
     private boolean stringContainsWord(String sentence, String keywords) {
+        assert sentence != null : "Sentence cannot be null";
+        assert keywords != null : "Keywords cannot be null";
         String[] keywordArr = keywords.split(" ");
         for (String keyword: keywordArr) {
             if (StringUtil.containsWordIgnoreCase(sentence, keyword)) {
