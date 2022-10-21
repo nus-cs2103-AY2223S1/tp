@@ -7,7 +7,7 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  * Represents an Applicant's application status in TrackAScholar.
  * Guarantees: immutable; is valid as declared in {@link #isValidApplicationStatus(String)}
  */
-public class ApplicationStatus {
+public class ApplicationStatus implements Comparable<ApplicationStatus> {
 
     public static final String MESSAGE_CONSTRAINTS =
             "ApplicationStatus can only be 3 values (PENDING, ACCEPTED or REJECTED), and it should not be blank";
@@ -71,5 +71,16 @@ public class ApplicationStatus {
     @Override
     public int hashCode() {
         return applicationStatus.hashCode();
+    }
+
+    @Override
+    public int compareTo(ApplicationStatus other) {
+        if (this.equals(other)) {
+            return 0;
+        } else if (this.applicationStatus.equals(PENDING) || other.applicationStatus.equals(REJECTED)) {
+            return -1;
+        } else {
+            return 1;
+        }
     }
 }

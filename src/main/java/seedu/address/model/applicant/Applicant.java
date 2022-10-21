@@ -122,6 +122,26 @@ public class Applicant {
     }
 
     /**
+     * Returns a comparator that sorts applicants by application status. Pending applicants are
+     * displayed at the top of the list, followed by accepted applicants, and lastly rejected applicants.
+     * If both applicants have the same application status, tiebreak by name.
+     */
+
+    public static Comparator<Applicant> sortByStatus() {
+        return (a1, a2) -> {
+            ApplicationStatus as1 = a1.getApplicationStatus();
+            ApplicationStatus as2 = a2.getApplicationStatus();
+            int result = as1.compareTo(as2);
+            if (result == 0) {
+                Name n1 = a1.getName();
+                Name n2 = a2.getName();
+                return n1.compareTo(n2);
+            }
+            return result;
+        };
+    }
+
+    /**
      * Returns true if both applicants have the same identity and data fields.
      * This defines a stronger notion of equality between two applicants.
      */
