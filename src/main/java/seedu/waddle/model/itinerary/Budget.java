@@ -5,9 +5,8 @@ import static seedu.waddle.commons.util.AppUtil.checkArgument;
 
 public class Budget {
     public static final String MESSAGE_CONSTRAINTS =
-            "Budget should only contain numbers";
-    public static final String VALIDATION_REGEX = "\\d+";
-
+            "Budget should only contain numbers.";
+    public static final String VALIDATION_REGEX = "\\d+([.][0-9]+)?$";
     private final float budget;
 
     /**
@@ -18,7 +17,7 @@ public class Budget {
     public Budget(String budgetStr) {
         requireNonNull(budgetStr);
         checkArgument(isValidBudget(budgetStr), MESSAGE_CONSTRAINTS);
-        this.budget = Float.valueOf(budgetStr);
+        this.budget = Float.parseFloat(budgetStr);
     }
 
     /**

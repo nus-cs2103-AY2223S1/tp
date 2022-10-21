@@ -100,7 +100,7 @@ public class ParserUtil {
     public static Budget parseBudget(String budget) throws ParseException {
         requireNonNull(budget);
         String trimmedBudget = budget.trim();
-        if (!People.isValidPeople(trimmedBudget)) {
+        if (!Budget.isValidBudget(trimmedBudget)) {
             throw new ParseException(Budget.MESSAGE_CONSTRAINTS);
         }
         return new Budget(trimmedBudget);
