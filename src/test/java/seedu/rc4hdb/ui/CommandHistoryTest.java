@@ -28,10 +28,8 @@ public class CommandHistoryTest {
         assertEquals(LIST_COMMAND, commandText);
     }
 
-
     @Test
     public void multipleCommandPreserveTraverseOrder() {
-        this.commandHistoryParser.parse(LIST_COMMAND);
         this.commandHistoryParser.parse(FIND_COMMAND);
         this.commandHistoryParser.parse(ADD_COMMAND);
 
@@ -51,30 +49,22 @@ public class CommandHistoryTest {
         assertEquals(LIST_COMMAND, commandHistoryParser.parse(KeyCode.UP).execute());
         assertEquals(FIND_COMMAND, commandHistoryParser.parse(KeyCode.DOWN).execute());
         assertEquals(ADD_COMMAND, commandHistoryParser.parse(KeyCode.DOWN).execute());
+
+
     }
 
     @Test
     public void traverseToOldestAndRecentCommand() {
-        commandHistoryParser.parse(LIST_COMMAND);
-        commandHistoryParser.parse(FIND_COMMAND);
-
+        commandHistoryParser.parse(KeyCode.UP).execute(); // hits add command
         commandHistoryParser.parse(KeyCode.UP).execute(); // hits find command
         assertEquals(LIST_COMMAND, commandHistoryParser.parse(KeyCode.UP).execute()); // hits the oldest command
         assertEquals(LIST_COMMAND, commandHistoryParser.parse(KeyCode.UP).execute()); // text remains the oldest command
 
-        commandHistoryParser.parse(KeyCode.DOWN).execute(); // hits "most recent" find command
+        commandHistoryParser.parse(KeyCode.DOWN).execute();
+        commandHistoryParser.parse(KeyCode.DOWN).execute();
         assertEquals(EMPTY_TEXT, commandHistoryParser.parse(KeyCode.DOWN).execute()); // hits empty text
         assertEquals(EMPTY_TEXT, commandHistoryParser.parse(KeyCode.DOWN).execute()); // hits empty text
     }
-
-    @Test
-    public void noHistory() {
-        assertEquals(EMPTY_TEXT, commandHistoryParser.parse(KeyCode.UP).execute()); // hits the oldest command
-        assertEquals(EMPTY_TEXT, commandHistoryParser.parse(KeyCode.DOWN).execute()); // hits empty text
-    }
-
-
-
 
 
 }
