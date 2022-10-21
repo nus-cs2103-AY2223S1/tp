@@ -10,6 +10,7 @@ title: Developer Guide
     * [Implementation details](#implementation-details)
     * [Design Considerations](#design-considerations)
   * [Statistics Display Feature](#statistics-display-feature)
+  * [Schedule List Feature](#schedule-list-feature)
   * [[Proposed] Sort-by](#proposed-sort-by-feature)
 * [Appendix](#appendix-requirements)
   * [Target User Profile](#target-user-profile)
@@ -258,6 +259,30 @@ How the individual operations work:
         2. More optimised solution as `ObservableList<Person>` needs to be iterated only once. 
     * Cons: Violates Single Responsibility Principle (SRP) as the function would have multiple responsibilities.
 
+### Schedule List Feature
+This feature allows the user to be able to view a schedule on the right hand side of the panel.
+
+#### Implementation Details
+`MainWindow.fxml` is modified to update the UI from the original single-panel view to include an additional right panel.
+
+Since there is a need for the schedule list to be a constant panel, which is separate from the `PersonListPanel`,
+a `ScheduleListPanel` under `UI` had to be created along with a `ScheduleListCard` class also under `UI`. The
+`ScheduleListCard` will contain a selective set of information related to a schedule compared to `PersonCard`. 
+
+Correspondingly, `PersonListCard.fxml` and `PersonListPanel.fxml` had to be created too.
+
+Since the `UI` depends on the `Model`, there was a need to update the model to now include a `UniqueScheduleList`.
+This `UniqueScheduleList` would store the filtered version of the original `AddressBook`, based on the current date.
+
+#### Design Considerations
+#### Aspect: Determining how to design ScheduleList:
+* Alternative 1: Reusing `UniquePersonList` to store the `ScheduleList` under `AddressBook`
+  * Pros: Minimise code duplication since class is reused
+  * Cons: UniquePersonList insufficient in design to support the needs of holding untouched state and filtered state
+* Alternative 2: Creating a dedicated `UniqueScheduleList` 
+  * Pros: Achieved our purpose of a `ScheduleList`
+  * Cons: Code duplication
+
 ### [Proposed] Sort-by feature
 
 This feature allows the user (teacher) to sort the students from Teacher's Pet by one of the specified keywords.
@@ -276,6 +301,9 @@ The following diagram illustrates how the operation works:
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `SortByCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 
 </div>
+<<<<<<< HEAD
+--------------------------------------------------------------------------------------------------------------------
+=======
 
 ### [Proposed] Find-by feature
 
@@ -310,6 +338,7 @@ Below is an example of the general flow of a find by address command.
 The Sequence Diagram below shows how the components interact with each other when the user issues a find command:
 
 ![FindByAddressSequenceDiagram](images/DG-images/FindByAddressSequenceDiagram.png)
+>>>>>>> 3edb1f6263bbc24dff50228e6030932fe15223be
 
 ## Appendix: Requirements
 
