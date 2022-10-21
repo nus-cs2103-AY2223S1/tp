@@ -21,7 +21,7 @@ public class UnAssignMemberCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": removes a person from the team. "
             + "Parameters: "
-            + PREFIX_MEMBER_INDEX + "MEMBER INDEX "
+            + PREFIX_MEMBER_INDEX + "MEMBER INDEX (Global person index) "
             + PREFIX_TEAM_INDEX + "TEAM INDEX \n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_MEMBER_INDEX + "1 "
