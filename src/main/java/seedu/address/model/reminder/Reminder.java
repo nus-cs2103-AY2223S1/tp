@@ -16,6 +16,7 @@ public class Reminder {
     //Data fields
     private final ReminderDeadline deadline;
     private final ReminderDescription details;
+    private ReminderStatus isDone;
 
     /**
      * Every field must be present and not null.
@@ -25,6 +26,22 @@ public class Reminder {
         this.name = name;
         this.deadline = deadline;
         this.details = details;
+        this.isDone = new ReminderStatus(false);
+    }
+
+    /**
+     * Every field must be present and not null.
+     */
+    public Reminder(ReminderName name, ReminderDeadline deadline, ReminderDescription details, ReminderStatus status) {
+        requireAllNonNull(name, deadline, details);
+        this.name = name;
+        this.deadline = deadline;
+        this.details = details;
+        this.isDone = status;
+    }
+
+    public void setStatus(boolean status) {
+        isDone.mark(status);
     }
 
     public ReminderName getName() {
@@ -37,6 +54,10 @@ public class Reminder {
 
     public ReminderDescription getDescription() {
         return details;
+    }
+
+    public boolean getStatus() {
+        return isDone.getStatus();
     }
 
     /**

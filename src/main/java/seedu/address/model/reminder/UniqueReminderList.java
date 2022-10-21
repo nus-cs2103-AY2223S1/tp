@@ -109,4 +109,30 @@ public class UniqueReminderList implements Iterable<Reminder> {
         }
         return true;
     }
+
+    /**
+     * Marks the equivalent reminder in the list as done.
+     * The reminder must exist in the list.
+     */
+    public void mark(Reminder target) {
+        int index = internalList.indexOf(target);
+        if (index == -1) {
+            throw new ReminderNotFoundException();
+        }
+        target.setStatus(true);
+        internalList.set(index, target);
+    }
+
+    /**
+     * Unarks the equivalent reminder in the list as undone.
+     * The reminder must exist in the list.
+     */
+    public void unmark(Reminder target) {
+        int index = internalList.indexOf(target);
+        if (index == -1) {
+            throw new ReminderNotFoundException();
+        }
+        target.setStatus(false);
+        internalList.set(index, target);
+    }
 }

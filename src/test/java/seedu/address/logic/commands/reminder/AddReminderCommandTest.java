@@ -244,6 +244,21 @@ public class AddReminderCommandTest {
         public void updateFilteredConsultationList(Predicate<Consultation> predicate) {
             throw new AssertionError("This method should not be called.");
         }
+
+        @Override
+        public void markReminder(Reminder reminderToMark) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public boolean reminderIsMarked(Reminder reminderToMark) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void unmarkReminder(Reminder reminderToUnmark) {
+            throw new AssertionError("This method should not be called.");
+        }
     }
 
     /**
