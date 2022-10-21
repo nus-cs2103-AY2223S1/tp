@@ -2,7 +2,7 @@ package tracko.storage;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
-//import static tracko.testutil.TypicalOrders.getTrackOWithTypicalOrders;
+import static tracko.testutil.TypicalOrders.getTrackOWithTypicalOrders;
 
 import java.nio.file.Path;
 
@@ -11,8 +11,8 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 
 import tracko.commons.core.GuiSettings;
-//import tracko.model.ReadOnlyTrackO;
-//import tracko.model.TrackO;
+import tracko.model.ReadOnlyTrackO;
+import tracko.model.TrackO;
 import tracko.model.UserPrefs;
 
 public class StorageManagerTest {
@@ -47,18 +47,18 @@ public class StorageManagerTest {
         assertEquals(original, retrieved);
     }
 
-    //    @Test
-    //    public void trackOSave() throws Exception {
-    //        /*
-    //         * Note: This is an integration test that verifies the StorageManager is properly wired to the
-    //         * {@link JsonTrackOStorage} class.
-    //         * More extensive testing of UserPref saving/reading is done in {@link JsonTrackOStorageTest} class.
-    //         */
-    //        TrackO original = getTrackOWithTypicalOrders();
-    //        storageManager.saveTrackO(original);
-    //        ReadOnlyTrackO retrieved = storageManager.readTrackO().get();
-    //        assertEquals(original, new TrackO(retrieved));
-    //    }
+    @Test
+    public void trackOSave() throws Exception {
+        /*
+         * Note: This is an integration test that verifies the StorageManager is properly wired to the
+         * {@link JsonTrackOStorage} class.
+         * More extensive testing of UserPref saving/reading is done in {@link JsonTrackOStorageTest} class.
+         */
+        TrackO original = getTrackOWithTypicalOrders();
+        storageManager.saveTrackO(original);
+        ReadOnlyTrackO retrieved = storageManager.readTrackO().get();
+        assertEquals(original, new TrackO(retrieved));
+    }
 
     @Test
     public void getTrackOFilePath() {

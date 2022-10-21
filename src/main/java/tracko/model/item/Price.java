@@ -31,10 +31,10 @@ public class Price {
      * @boolean Representing if the input is a valid price.
      */
     public static boolean isValidPrice(Double test) {
-        BigDecimal bigDecimalTest = new BigDecimal(test);
-        boolean isPositive = !(bigDecimalTest.compareTo(BigDecimal.ZERO) < 0);
+        // BigDecimal bigDecimalTest = new BigDecimal(test);
+        boolean isPositive = !(BigDecimal.valueOf(test).compareTo(BigDecimal.ZERO) < 0);
         boolean isRoundedTo2dp = (BigDecimal.valueOf(test).scale() <= 2);
-        return isPositive;
+        return isPositive && isRoundedTo2dp;
     }
 
     public Double getPrice() {
@@ -54,7 +54,7 @@ public class Price {
 
     @Override
     public String toString() {
-        return String.valueOf(price);
+        return String.format("%.2f", price);
     }
 
     @Override
