@@ -250,8 +250,19 @@ The following activity diagram summarizes the flow of when a user enters an edit
 
 
 ### \[Insert Numbering\] Delete feature
+The Delete feature is facilitated by `LogicManager`. The `DeleteCommandParser` parses the command arguments, and returns
+a `DeleteCommand` that is executed by the `LogicManager` and returns a `CommandResult` as feedback to the user.
 
-The delete feature enables the user to remove a customer from bobaBot. The user's input is first retrieved by the `MainWindow` class. It is then passed to the `LogicManager` through the `execute` method. `LogicManager` will call the `parseCommand` method of `AddressBookParser` which upon parsing the input, creates a temporary `DeleteCommandParser` object. The `DeleteCommandParser` object then further parses the user's input and returns a `DeleteCommand`.  The command is executed in the `LogicManager`, returning a `CommandResult` object which will then be returned as feedback to the user.
+This feature enables the user to remove a customer from bobaBot via either the `PHONE` or `EMAIL` identifier.
+
+**Below is a sample usage and how the delete sequence behaves at each step.**
+
+1. User chooses the Customer he/she wants to delete and enters the command `delete p/12345678`
+2. The `MainWindow` class retrieves the user's input and passes it on to the `LogicManager` through the `execute` method
+3. The `LogicManager` redirects this command to `AddressBookParser` via the `parseCommand` method and creates a temporary `DeleteCommandParser` object 
+4. The `DeleteCommandParser` object parses the command and returns the `DeleteCommand` containing the details of the Customer to delete
+5. The `LogicManager` executes the `DeleteCommand`, removing the Customer from bobaBot and returning a `CommandResult` object
+6. The `CommandResult` reflects the removal of this Customer
 
 The sequence diagram below shows how the `delete` feature parsing an input `p/12345678` behaves at each step.
 
