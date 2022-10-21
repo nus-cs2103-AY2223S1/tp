@@ -7,6 +7,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import seedu.address.logic.commands.GetCommand;
+import seedu.address.logic.commands.getcommands.GetAppointmentByDateCommand;
 import seedu.address.logic.commands.getcommands.GetFloorNumberCommand;
 import seedu.address.logic.commands.getcommands.GetHospitalWingCommand;
 import seedu.address.logic.commands.getcommands.GetInpatientCommand;
@@ -16,6 +17,7 @@ import seedu.address.logic.commands.getcommands.GetNextOfKinCommand;
 import seedu.address.logic.commands.getcommands.GetOutpatientCommand;
 import seedu.address.logic.commands.getcommands.GetWardNumberCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.logic.parser.getparsers.GetAppointmentByDateCommandParser;
 import seedu.address.logic.parser.getparsers.GetFloorNumberCommandParser;
 import seedu.address.logic.parser.getparsers.GetHospitalWingCommandParser;
 import seedu.address.logic.parser.getparsers.GetMedicationCommandParser;
@@ -63,6 +65,9 @@ public class GetCommandParser implements Parser<GetCommand> {
 
             case GetMedicationCommand.MEDICATION_PREFIX:
                 return new GetMedicationCommandParser().parse(arguments);
+
+            case GetAppointmentByDateCommand.APPOINTMENT_BY_DATE_PREFIX:
+                return new GetAppointmentByDateCommandParser().parse(arguments);
 
             default:
                 throw new ParseException(String.format(MESSAGE_INVALID_GET_PREFIX,
