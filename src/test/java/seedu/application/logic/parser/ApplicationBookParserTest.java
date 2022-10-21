@@ -4,6 +4,8 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.application.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.application.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
+import static seedu.application.logic.parser.CliSyntax.PREFIX_ORDER;
+import static seedu.application.logic.parser.CliSyntax.PREFIX_REVERSE;
 import static seedu.application.testutil.Assert.assertThrows;
 import static seedu.application.testutil.TypicalIndexes.INDEX_FIRST_APPLICATION;
 
@@ -21,6 +23,10 @@ import seedu.application.logic.commands.ExitCommand;
 import seedu.application.logic.commands.FindCommand;
 import seedu.application.logic.commands.HelpCommand;
 import seedu.application.logic.commands.ListCommand;
+import seedu.application.logic.commands.RedoCommand;
+import seedu.application.logic.commands.SortByPositionCommand;
+import seedu.application.logic.commands.SortCommand;
+import seedu.application.logic.commands.UndoCommand;
 import seedu.application.logic.parser.exceptions.ParseException;
 import seedu.application.model.application.Application;
 import seedu.application.model.application.CompanyContainsKeywordsPredicate;
@@ -79,6 +85,13 @@ public class ApplicationBookParserTest {
     }
 
     @Test
+    public void parseCommand_sort() throws Exception {
+        SortCommand command = (SortCommand) parser.parseCommand(
+                SortCommand.COMMAND_WORD + " " + PREFIX_ORDER + "position " + PREFIX_REVERSE);
+        assertEquals(new SortByPositionCommand(true), command);
+    }
+
+    @Test
     public void parseCommand_help() throws Exception {
         assertTrue(parser.parseCommand(HelpCommand.COMMAND_WORD) instanceof HelpCommand);
         assertTrue(parser.parseCommand(HelpCommand.COMMAND_WORD + " 3") instanceof HelpCommand);
@@ -88,6 +101,18 @@ public class ApplicationBookParserTest {
     public void parseCommand_list() throws Exception {
         assertTrue(parser.parseCommand(ListCommand.COMMAND_WORD) instanceof ListCommand);
         assertTrue(parser.parseCommand(ListCommand.COMMAND_WORD + " 3") instanceof ListCommand);
+    }
+
+    @Test
+    public void parseCommand_undo() throws Exception {
+        assertTrue(parser.parseCommand(UndoCommand.COMMAND_WORD) instanceof UndoCommand);
+        assertTrue(parser.parseCommand(UndoCommand.COMMAND_WORD + " 3") instanceof UndoCommand);
+    }
+
+    @Test
+    public void parseCommand_redo() throws Exception {
+        assertTrue(parser.parseCommand(RedoCommand.COMMAND_WORD) instanceof RedoCommand);
+        assertTrue(parser.parseCommand(RedoCommand.COMMAND_WORD + " 3") instanceof RedoCommand);
     }
 
     @Test

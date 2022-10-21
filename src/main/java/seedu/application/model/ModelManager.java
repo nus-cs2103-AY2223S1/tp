@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.application.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
+import java.util.Comparator;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 import java.util.stream.Collectors;
@@ -11,6 +12,7 @@ import java.util.stream.Collectors;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
+import javafx.collections.transformation.SortedList;
 import seedu.application.commons.core.GuiSettings;
 import seedu.application.commons.core.LogsCenter;
 import seedu.application.model.application.Application;
@@ -23,22 +25,24 @@ import seedu.application.model.application.interview.InterviewComparator;
 public class ModelManager implements Model {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
 
-    private final ApplicationBook applicationBook;
+    private final VersionedApplicationBook versionedApplicationBook;
     private final UserPrefs userPrefs;
     private final FilteredList<Application> filteredApplications;
+    private final SortedList<Application> sortedFilteredApplications;
     private final ObservableList<Application> applicationsWithInterview;
 
     /**
-     * Initializes a ModelManager with the given applicationBook and userPrefs.
+     * Initializes a ModelManager with the given versionedApplicationBook and userPrefs.
      */
     public ModelManager(ReadOnlyApplicationBook applicationBook, ReadOnlyUserPrefs userPrefs) {
         requireAllNonNull(applicationBook, userPrefs);
 
         logger.fine("Initializing with application book: " + applicationBook + " and user prefs " + userPrefs);
 
-        this.applicationBook = new ApplicationBook(applicationBook);
+        versionedApplicationBook = new VersionedApplicationBook(applicationBook);
         this.userPrefs = new UserPrefs(userPrefs);
-        filteredApplications = new FilteredList<>(this.applicationBook.getApplicationList());
+        filteredApplications = new FilteredList<>(versionedApplicationBook.getApplicationList());
+        sortedFilteredApplications = new SortedList<>(filteredApplications);
         applicationsWithInterview = filterApplicationsWithInterview();
     }
 
@@ -48,7 +52,7 @@ public class ModelManager implements Model {
 
     private ObservableList<Application> filterApplicationsWithInterview() {
         ObservableList<Application> applicationsWithInterview = FXCollections.observableList(
-                this.applicationBook
+            versionedApplicationBook
                         .getApplicationList()
                         .stream()
                         .filter(application -> application.getInterview().isPresent())
@@ -96,57 +100,61 @@ public class ModelManager implements Model {
 
     @Override
     public void setApplicationBook(ReadOnlyApplicationBook applicationBook) {
-        this.applicationBook.resetData(applicationBook);
+        versionedApplicationBook.resetData(applicationBook);
+        commitApplicationBook();
     }
 
     @Override
     public ReadOnlyApplicationBook getApplicationBook() {
-        return applicationBook;
+        return versionedApplicationBook;
     }
 
     @Override
     public boolean hasApplication(Application application) {
         requireNonNull(application);
-        return applicationBook.hasApplication(application);
+        return versionedApplicationBook.hasApplication(application);
     }
 
     @Override
     public boolean hasSameInterviewTime(Application application) {
         requireNonNull(application);
-        return applicationBook.hasSameInterviewTime(application);
+        return versionedApplicationBook.hasSameInterviewTime(application);
     }
 
     @Override
     public boolean hasSameInterviewTime(Interview interview) {
         requireNonNull(interview);
-        return applicationBook.hasSameInterviewTime(interview);
+        return versionedApplicationBook.hasSameInterviewTime(interview);
     }
 
     @Override
     public boolean hasSameInterviewTimeExcludeSelf(Interview interview, Application application) {
         requireNonNull(interview);
-        return applicationBook.hasSameInterviewTimeExcludeSelf(interview, application);
+        return versionedApplicationBook.hasSameInterviewTimeExcludeSelf(interview, application);
     }
 
     @Override
     public void deleteApplication(Application target) {
-        applicationBook.removeApplication(target);
+        versionedApplicationBook.removeApplication(target);
+        commitApplicationBook();
     }
 
     @Override
     public void addApplication(Application application) {
-        applicationBook.addApplication(application);
+        versionedApplicationBook.addApplication(application);
         updateFilteredApplicationList(PREDICATE_SHOW_ALL_APPLICATIONS);
+        commitApplicationBook();
     }
 
     @Override
     public void setApplication(Application target, Application editedApplication) {
         requireAllNonNull(target, editedApplication);
 
-        applicationBook.setApplication(target, editedApplication);
+        versionedApplicationBook.setApplication(target, editedApplication);
+        commitApplicationBook();
     }
 
-    //=========== Filtered Application List Accessors =============================================================
+    //=========== Sorted, Filtered Application List Accessors ======================================================
 
     /**
      * Returns an unmodifiable view of the list of {@code Application} backed by the internal list of
@@ -154,7 +162,7 @@ public class ModelManager implements Model {
      */
     @Override
     public ObservableList<Application> getFilteredApplicationList() {
-        return filteredApplications;
+        return sortedFilteredApplications;
     }
 
     @Override
@@ -168,12 +176,66 @@ public class ModelManager implements Model {
         filteredApplications.setPredicate(predicate);
     }
 
+    //=========== Undo & Redo =====================================================================================
+
+    @Override
+    public void commitApplicationBook() {
+        versionedApplicationBook.commit();
+    }
+
+    @Override
+    public boolean canUndoApplicationBook() {
+        return versionedApplicationBook.canUndo();
+    }
+
+    @Override
+    public boolean canRedoApplicationBook() {
+        return versionedApplicationBook.canRedo();
+    }
+
+    @Override
+    public void undoApplicationBook() {
+        versionedApplicationBook.undo();
+    }
+
+    @Override
+    public void redoApplicationBook() {
+        versionedApplicationBook.redo();
+    }
+
     @Override
     public void updateApplicationListWithInterview() {
         applicationsWithInterview.clear();
-        applicationsWithInterview.addAll(applicationBook.getApplicationList());
+        applicationsWithInterview.addAll(versionedApplicationBook.getApplicationList());
         applicationsWithInterview.removeIf(application -> application.getInterview().isEmpty());
         applicationsWithInterview.sort(new InterviewComparator());
+    }
+
+    @Override
+    public void sortApplicationListByCompany(boolean shouldReverse) {
+        Comparator<Application> comparator = Comparator.comparing(Application::getCompany);
+        if (shouldReverse) {
+            comparator = comparator.reversed();
+        }
+        sortedFilteredApplications.setComparator(comparator);
+    }
+
+    @Override
+    public void sortApplicationListByPosition(boolean shouldReverse) {
+        Comparator<Application> comparator = Comparator.comparing(Application::getPosition);
+        if (shouldReverse) {
+            comparator = comparator.reversed();
+        }
+        sortedFilteredApplications.setComparator(comparator);
+    }
+
+    @Override
+    public void sortApplicationListByDate(boolean shouldReverse) {
+        Comparator<Application> comparator = Comparator.comparing(Application::getDate);
+        if (shouldReverse) {
+            comparator = comparator.reversed();
+        }
+        sortedFilteredApplications.setComparator(comparator);
     }
 
     @Override
@@ -190,9 +252,9 @@ public class ModelManager implements Model {
 
         // state check
         ModelManager other = (ModelManager) obj;
-        return applicationBook.equals(other.applicationBook)
+        return versionedApplicationBook.equals(other.versionedApplicationBook)
                 && userPrefs.equals(other.userPrefs)
-                && filteredApplications.equals(other.filteredApplications);
+                && sortedFilteredApplications.equals(other.sortedFilteredApplications);
     }
 
 }

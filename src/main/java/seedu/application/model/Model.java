@@ -111,8 +111,57 @@ public interface Model {
     void updateFilteredApplicationList(Predicate<Application> predicate);
 
     /**
+     * Saves the current {@code ApplicationBook} state in the history.
+     */
+    void commitApplicationBook();
+
+    /**
+     * Returns true if the model has previous {@code ApplicationBook} states to restore.
+     */
+    boolean canUndoApplicationBook();
+
+    /**
+     * Returns true if the model has previously undone {@code ApplicationBook} states to redo.
+     */
+    boolean canRedoApplicationBook();
+
+    /**
+     * Restores the model's previous {@code ApplicationBook} state from the history.
+     */
+    void undoApplicationBook();
+
+    /**
+     * Restores the model's previously undone {@code ApplicationBook} state from the history.
+     */
+    void redoApplicationBook();
+
+    /**
      * Updates the application list with interview when a new interview is added.
      */
     void updateApplicationListWithInterview();
 
+
+    /**
+     * Sorts the application list by company.
+     * If the {@code shouldReverse} argument is true, the list is sorted in the reversed order.
+     *
+     * @param shouldReverse Whether to sort in the reversed order.
+     */
+    void sortApplicationListByCompany(boolean shouldReverse);
+
+    /**
+     * Sorts the application list by position.
+     * If the {@code shouldReverse} argument is true, the list is sorted in the reversed order.
+     *
+     * @param shouldReverse Whether to sort in the reversed order.
+     */
+    void sortApplicationListByPosition(boolean shouldReverse);
+
+    /**
+     * Sorts the application list by date.
+     * If the {@code shouldReverse} argument is true, the list is sorted in the reversed order.
+     *
+     * @param shouldReverse Whether to sort in the reversed order.
+     */
+    void sortApplicationListByDate(boolean shouldReverse);
 }

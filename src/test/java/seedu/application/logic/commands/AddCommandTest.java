@@ -172,7 +172,46 @@ public class AddCommandTest {
         }
 
         @Override
+        public void commitApplicationBook() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public boolean canUndoApplicationBook() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public boolean canRedoApplicationBook() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void undoApplicationBook() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void redoApplicationBook() {
+            throw new AssertionError("This method should not be called.");
+        }
+
         public void updateApplicationListWithInterview() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void sortApplicationListByCompany(boolean shouldReverse) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void sortApplicationListByPosition(boolean shouldReverse) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void sortApplicationListByDate(boolean shouldReverse) {
             throw new AssertionError("This method should not be called.");
         }
     }

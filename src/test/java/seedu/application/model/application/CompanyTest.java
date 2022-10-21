@@ -1,5 +1,6 @@
 package seedu.application.model.application;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.application.testutil.Assert.assertThrows;
@@ -36,5 +37,22 @@ public class CompanyTest {
         assertTrue(Company.isValidCompany("tik tok v2")); // alphanumeric characters
         assertTrue(Company.isValidCompany("Jane Street")); // with capital letters
         assertTrue(Company.isValidCompany("International Consolidated Airlines Group SA")); // long company name
+    }
+
+    @Test
+    public void compareTo() {
+        Company alphabetCompany = new Company("Alphabet Inc");
+        Company foodpandaCompany = new Company("foodpanda");
+        Company foodDeliveryCompany = new Company("food delivery");
+        Company ninetyNineCoCompany = new Company("99co");
+        Company uppercaseACompany = new Company("A");
+        Company lowercaseACompany = new Company("a");
+
+        assertEquals(0, alphabetCompany.compareTo(new Company("Alphabet Inc"))); // Same company name
+        assertTrue(alphabetCompany.compareTo(foodpandaCompany) < 0); // Different company names
+        assertTrue(ninetyNineCoCompany.compareTo(alphabetCompany) < 0); // Numbers compare less than alphabets
+        assertTrue(foodpandaCompany.compareTo(foodDeliveryCompany) > 0); // Spaces compare less than other characters
+        assertEquals(0, uppercaseACompany.compareTo(lowercaseACompany)); // Comparison is case-insensitive
+        assertTrue(lowercaseACompany.compareTo(alphabetCompany) < 0); // One name is prefix of the other
     }
 }
