@@ -4,7 +4,6 @@ import java.util.List;
 
 import static java.util.Objects.requireNonNull;
 import seedu.rc4hdb.logic.commands.CommandResult;
-import seedu.rc4hdb.logic.commands.exceptions.CommandException;
 import seedu.rc4hdb.model.Model;
 import static seedu.rc4hdb.model.Model.PREDICATE_SHOW_ALL_RESIDENTS;
 
@@ -17,7 +16,8 @@ public class ShowCommand implements ModelCommand {
             + "Parameters: FIELD [MORE_FIELDS]...\n"
             + "Example: " + COMMAND_WORD + " name phone email";
 
-    public static final String MESSAGE_SUCCESS = "Hidden some columns from the table view.";
+    public static final String MESSAGE_SUCCESS = "Showing only the specified columns. "
+            + "Use the list command to restore all columns.";
 
     public final List<String> fieldsToHide;
 

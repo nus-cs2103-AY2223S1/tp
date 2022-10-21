@@ -16,7 +16,8 @@ public class HideCommand implements ModelCommand {
             + "Parameters: FIELD [MORE_FIELDS]...\n"
             + "Example: " + COMMAND_WORD + " room gender matric";
 
-    public static final String MESSAGE_SUCCESS = "Showing only the specified columns";
+    public static final String MESSAGE_SUCCESS = "Hidden some columns from the table view. "
+            + "Use the list command to restore all columns.";
 
     private final List<String> fieldsToShow;
 
