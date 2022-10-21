@@ -319,12 +319,13 @@ public class Task {
         TaskName copyName = new TaskName(this.name.toString());
         TaskCategory copyCat = new TaskCategory(this.category.getLevel(), this.category.getTaskCategoryType());
         Description copyDescription = new Description(this.description.toString());
-        Priority copyPrioirty = new Priority(this.getPriority().getPriority());
+        Priority copyPriority = new Priority(this.getPriority().getPriority());
         TaskDeadline copyDeadline = new TaskDeadline(this.deadline.getDeadline());
         Email copyEmail = new Email(this.personEmailAddress.toString());
         Boolean copyIsDone = this.isDone;
-        Task copy = new Task(copyName, copyDescription, copyPrioirty, copyCat, copyDeadline, copyEmail, copyIsDone);
+        Task copy = new Task(copyName, copyDescription, copyPriority, copyCat, copyDeadline, copyEmail, copyIsDone);
         return copy;
+    }
 
     public static String convertIsDoneFromBooleanToString(boolean isDone) {
         return isDone ? IS_DONE_TRUE_STRING : IS_DONE_FALSE_STRING;
@@ -336,18 +337,5 @@ public class Task {
      * @param isDone in String form.
      * @return isDone in Boolean form.
      */
-    public static Boolean covertIsDoneFromStringToBoolean(String isDone) {
-        return isDone.equals(IS_DONE_TRUE_STRING);
-    }
 
-    /**
-     * Returns true if test String is a valid isDone.
-     *
-     * @param test String to test.
-     * @return Whether the String is a valid isDone value.
-     */
-    public static boolean isValidIsDone(String test) {
-        return test.equals(IS_DONE_TRUE_STRING) || test.equals(IS_DONE_FALSE_STRING);
-
-    }
 }
