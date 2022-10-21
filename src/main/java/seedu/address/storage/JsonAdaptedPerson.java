@@ -16,6 +16,7 @@ import seedu.address.model.person.Name;
 import seedu.address.model.person.Occupation;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
+import seedu.address.model.social.Social;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -30,6 +31,7 @@ class JsonAdaptedPerson {
     private final String phone;
     private final String email;
     private final String address;
+    private final String social;
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
 
     /**
@@ -45,6 +47,7 @@ class JsonAdaptedPerson {
         this.phone = phone;
         this.email = email;
         this.address = address;
+        this.social = new Social().toString();
         if (tagged != null) {
             this.tagged.addAll(tagged);
         }
@@ -54,6 +57,7 @@ class JsonAdaptedPerson {
      * Converts a given {@code Person} into this class for Jackson use.
      */
     public JsonAdaptedPerson(Person source) {
+        social = source.getSocial().toString();
         occupation = source.getOccupation().toString();
         name = source.getName().fullName;
         phone = source.getPhone().value;
@@ -115,6 +119,13 @@ class JsonAdaptedPerson {
             throw new IllegalValueException(Address.MESSAGE_CONSTRAINTS);
         }
         final Address modelAddress = new Address(address);
+
+        if (social == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Social.class.getSimpleName()));
+        }
+        if (!Social.isValidSocial(social)) {
+            throw new IllegalValueException(Social.MESSAGE_CONSTRAINTS);
+        }
 
         final Set<Tag> modelTags = new HashSet<>(personTags);
         return new Person(modelOccupation, modelName, modelPhone, modelEmail, modelAddress, modelTags);
