@@ -141,9 +141,9 @@ public class ExerciseListTest {
         assertEquals(expectedExerciseList, this.exerciseList);
     }
 
-//    @Test
-//    public void asUnmodifiableObservableList_modifyList_throwsUnsupportedOperationException() {
-//        assertThrows(UnsupportedOperationException.class, () -> exerciseList.asDisplayedList()
-//                .remove(0));
-//    }
+    //    @Test
+    //    public void asUnmodifiableObservableList_modifyList_throwsUnsupportedOperationException() {
+    //        assertThrows(UnsupportedOperationException.class, () -> exerciseList.asDisplayedList()
+    //                .remove(0));
+    //    }
 }

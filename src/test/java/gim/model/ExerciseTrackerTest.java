@@ -64,10 +64,10 @@ public class ExerciseTrackerTest {
         assertTrue(exerciseTracker.hasExercise(editedAlice));
     }
 
-//    @Test
-//    public void getExerciseList_modifyList_throwsUnsupportedOperationException() {
-//        assertThrows(UnsupportedOperationException.class, () -> exerciseTracker.getExerciseList().remove(0));
-//    }
+    //    @Test
+    //    public void getExerciseList_modifyList_throwsUnsupportedOperationException() {
+    //        assertThrows(UnsupportedOperationException.class, () -> exerciseTracker.getExerciseList().remove(0));
+    //    }
 
     /**
      * A stub ReadOnlyExerciseTracker whose exercises list can violate interface constraints.

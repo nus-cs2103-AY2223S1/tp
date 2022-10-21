@@ -90,7 +90,8 @@
 //        showExerciseAtIndex(model, INDEX_FIRST_EXERCISE);
 //
 //        Exercise exerciseInFilteredList = model.getFilteredExerciseList().get(INDEX_FIRST_EXERCISE.getZeroBased());
-//        Exercise editedExercise = new ExerciseBuilder(exerciseInFilteredList).withName(VALID_NAME_BENCH_PRESS).build();
+//        Exercise editedExercise = new ExerciseBuilder(exerciseInFilteredList)
+//        .withName(VALID_NAME_BENCH_PRESS).build();
 //        EditCommand editCommand = new EditCommand(INDEX_FIRST_EXERCISE,
 //                new EditExerciseDescriptorBuilder().withName(VALID_NAME_BENCH_PRESS).build());
 //
