@@ -1,5 +1,11 @@
 package seedu.address.storage;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
+
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonValue;
@@ -7,12 +13,6 @@ import com.fasterxml.jackson.annotation.JsonValue;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.person.Person;
 import seedu.address.model.team.Task;
-
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.stream.Collectors;
 
 /**
  * Jackson-friendly version of {@link Task}.
@@ -49,7 +49,7 @@ class JsonAdaptedTask {
                 .map(JsonAdaptedPerson::new)
                 .collect(Collectors.toList()));
         isComplete = source.isComplete();
-        deadline = source.deadlineStorage();
+        deadline = source.getDeadlineStorage();
     }
 
     @JsonValue

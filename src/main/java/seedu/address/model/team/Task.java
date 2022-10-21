@@ -5,7 +5,6 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
 import java.util.List;
 
 import seedu.address.model.person.Person;
@@ -105,7 +104,7 @@ public class Task {
         }
     }
 
-    public String deadlineStorage() {
+    public String getDeadlineStorage() {
         if (deadline == null) {
             return "";
         } else {

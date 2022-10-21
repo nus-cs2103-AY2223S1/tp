@@ -1,8 +1,8 @@
 package seedu.address.testutil;
 
-import seedu.address.model.team.Task;
-
 import java.util.List;
+
+import seedu.address.model.team.Task;
 
 /**
  * A utility class containing a list of {@code Task} objects to be used in tests.
