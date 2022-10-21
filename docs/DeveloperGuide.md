@@ -76,6 +76,7 @@ The `UI` component uses the JavaFx UI framework. The layout of these UI parts ar
 The `UI` component,
 
 - executes user commands using the `Logic` component.
+- prompts users with command suggestions and allows them to auto-complete them using the `Logic` component.
 - listens for changes to `Model` data so that the UI can be updated with the modified data.
 - keeps a reference to the `Logic` component, because the `UI` relies on the `Logic` to execute commands.
 - depends on some classes in the `Model` component, as it displays `Person` object residing in the `Model`.
@@ -262,6 +263,14 @@ The implementation of finding the contacts/tasks from our model is facilitated b
 `ContactNameContainsKeywordsPredicate` and `TaskNameContainsKeywordsPredicate` implement the interface `Predicate` and test if a contact/task's name contains the given keywords.
 
 The predicates are passed into `Model#updateFilteredContactList` and `Model#updateFilteredTaskList` respectively, which then uses the predicates to filter contacts/tasks containing the given keywords.
+
+### Command Suggestions and Command Auto-Completion
+
+The implementation of Command Suggestions and Command Auto-Completion is facilitated by `CommandSuggestor` in the `Logic` Component. The `CommandBox` UI component listens for changes in the command box textField and calls methods from `CommandSuggestor` to reflect command suggestions and allow autocompletion.
+
+`CommandSuggestor` mainly implements the following operations:
+- `CommandSuggestor#suggestCommand` - Suggests a command with the corresponding syntax based on the user's current input 
+- `CommandSuggestor#autocompleteCommand` - Completes the current user input according to the shown command suggestion
 
 ## **Documentation, logging, testing, configuration, dev-ops**
 
