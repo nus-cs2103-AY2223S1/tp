@@ -163,7 +163,9 @@ public class ParserUtil {
      * @throws ParseException if the given {@code Company} is invalid.
      */
     public static Company parseCompany(String company) throws ParseException {
-        requireNonNull(company);
+        if (company == null || company.isBlank()) {
+            return new Company(null);
+        }
         String trimmedCompany = company.trim();
         if (!Company.isValidName(trimmedCompany)) {
             throw new ParseException(Company.MESSAGE_CONSTRAINTS);

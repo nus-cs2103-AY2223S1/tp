@@ -75,6 +75,9 @@ public class Person {
     }
 
     public Company getCompany() {
+        if (company == null) {
+            return new Company(null);
+        }
         return company;
     }
 
