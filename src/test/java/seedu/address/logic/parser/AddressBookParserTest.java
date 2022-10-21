@@ -117,7 +117,7 @@ public class AddressBookParserTest {
     @Test
     public void parseCommand_addTask() throws Exception {
         assertTrue(parser.parseCommand(AddTaskCommand.COMMAND_WORD + " d/"
-                + "Buy fish dl/2020-12-12 t/food") instanceof AddTaskCommand);
+                + "Buy fish dl/2029-12-12 t/food") instanceof AddTaskCommand);
     }
 
     @Test
@@ -127,7 +127,7 @@ public class AddressBookParserTest {
 
     @Test
     public void parseCommand_updateTask() throws Exception {
-        assertTrue(parser.parseCommand(UpdateTaskCommand.COMMAND_WORD + " 1 d/Purchase oil dl/2022-10-10"
+        assertTrue(parser.parseCommand(UpdateTaskCommand.COMMAND_WORD + " 1 d/Purchase oil dl/2029-10-10"
                 + " t/Important t/Urgent") instanceof UpdateTaskCommand);
     }
 }
