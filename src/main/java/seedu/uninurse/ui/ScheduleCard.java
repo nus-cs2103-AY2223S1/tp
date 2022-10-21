@@ -21,7 +21,7 @@ import java.util.Comparator;
 public class ScheduleCard extends UiPart<Region> {
 
     @FXML
-    private StackPane taskListCardPlaceholder;
+    private StackPane taskListCardContainer;
     @FXML
     private Label name;
     @FXML
@@ -29,7 +29,7 @@ public class ScheduleCard extends UiPart<Region> {
 
     public ScheduleCard(Patient patient, Task task) {
         super(FXML);
-        taskListCardPlaceholder.getChildren().add((new TaskListCard(task, 1)).getRoot());
+        taskListCardContainer.getChildren().add((new TaskListCard(task, 1)).getRoot());
         name.setText(patient.getName().fullName);
         patient.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))

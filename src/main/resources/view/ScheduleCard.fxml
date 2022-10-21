@@ -11,7 +11,7 @@
 
 <HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="188.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <StackPane fx:id="taskListPanelPlaceholder" prefHeight="188.0" prefWidth="298.0" />
+      <StackPane fx:id="taskListPanelContainer" prefHeight="188.0" prefWidth="298.0" />
       <Separator orientation="VERTICAL" prefHeight="188.0" prefWidth="99.0" />
       <VBox alignment="CENTER_LEFT" minHeight="105" minWidth="-Infinity" prefHeight="188.0" prefWidth="259.0">
          <padding>

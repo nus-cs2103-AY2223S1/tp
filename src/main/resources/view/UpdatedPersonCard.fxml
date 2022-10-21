@@ -29,7 +29,7 @@
                   <HBox id="cardPane" maxHeight="152.0" minHeight="129.0" prefHeight="129.0" prefWidth="576.0">
                      <stylesheets>
                         <URL value="@Fonts.css" />
-                        <URL value="@DarkTheme.css" />
+                        <URL value="@Theme.css" />
                         <URL value="@Extensions.css" />
                      </stylesheets>
                      <opaqueInsets>

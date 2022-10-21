@@ -13,7 +13,7 @@ public class OutputPanel extends UiPart<Region> {
     private static final String FXML = "OutputPanel.fxml";
 
     @FXML
-    private StackPane output;
+    private StackPane outputView;
 
     /**
      * Creates a {@code OutputPanel} with the given {@code OutputPanel} to display.
@@ -24,43 +24,43 @@ public class OutputPanel extends UiPart<Region> {
     }
 
     public void clear() {
-        output.getChildren().clear();
+        outputView.getChildren().clear();
     }
 
     /**
-     * Updates the output panel accordingly if commandResult is task related.
+     * Updates the outputView panel accordingly if commandResult is task related.
      * @param patient patient of interest.
      */
     public void handleTask(Patient patient) {
-        output.getChildren().clear();
-        output.getChildren().add(new TaskListPanel(patient).getRoot());
+        outputView.getChildren().clear();
+        outputView.getChildren().add(new TaskListPanel(patient).getRoot());
     }
 
     /**
-     * Updates the output panel accordingly if executed command is AddPatient.
+     * Updates the outputView panel accordingly if executed command is AddPatient.
      * @param patient patient of interest.
      */
     public void handleAddPatient(Patient patient) {
-        output.getChildren().clear();
-        output.getChildren().add(new UpdatedPersonCard(patient, "Added Patient:").getRoot());
+        outputView.getChildren().clear();
+        outputView.getChildren().add(new UpdatedPersonCard(patient, "Added Patient:").getRoot());
     }
 
     /**
-     * Updates the output panel accordingly if executed command is EditPatient.
+     * Updates the outputView panel accordingly if executed command is EditPatient.
      * @param patient patient of interest.
      */
     public void handleEditPatient(Patient patient) {
-        output.getChildren().clear();
-        output.getChildren().add(new UpdatedPersonCard(patient, "Edited Patient:").getRoot());
+        outputView.getChildren().clear();
+        outputView.getChildren().add(new UpdatedPersonCard(patient, "Edited Patient:").getRoot());
     }
 
     /**
-     * Updates the output panel accordingly if executed command is DeletePatient.
+     * Updates the outputView panel accordingly if executed command is DeletePatient.
      * @param patient patient of interest.
      */
     public void handleDeletePatient(Patient patient) {
-        output.getChildren().clear();
-        output.getChildren().add(new UpdatedPersonCard(patient, "Deleted Patient:").getRoot());
+        outputView.getChildren().clear();
+        outputView.getChildren().add(new UpdatedPersonCard(patient, "Deleted Patient:").getRoot());
     }
 
 
