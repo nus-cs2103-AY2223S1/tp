@@ -21,7 +21,9 @@ import seedu.address.logic.commands.student.StudentEditCommand;
 import seedu.address.logic.commands.student.StudentEnrollCommand;
 import seedu.address.logic.commands.student.StudentListCommand;
 import seedu.address.logic.commands.task.TaskAddCommand;
+import seedu.address.logic.commands.task.TaskDeleteCommand;
 import seedu.address.logic.commands.task.TaskEditCommand;
+import seedu.address.logic.commands.task.TaskListCommand;
 import seedu.address.logic.commands.tutorialgroup.TutorialGroupAddCommand;
 import seedu.address.logic.commands.tutorialgroup.TutorialGroupDeleteCommand;
 import seedu.address.logic.commands.tutorialgroup.TutorialGroupFilterCommand;
@@ -32,6 +34,7 @@ import seedu.address.logic.parser.student.StudentDeleteCommandParser;
 import seedu.address.logic.parser.student.StudentEditCommandParser;
 import seedu.address.logic.parser.student.StudentEnrollCommandParser;
 import seedu.address.logic.parser.task.TaskAddCommandParser;
+import seedu.address.logic.parser.task.TaskDeleteCommandParser;
 import seedu.address.logic.parser.task.TaskEditCommandParser;
 import seedu.address.logic.parser.tutorialgroup.TutorialGroupAddCommandParser;
 import seedu.address.logic.parser.tutorialgroup.TutorialGroupDeleteCommandParser;
@@ -123,6 +126,12 @@ public class AddressBookParser {
 
         case TaskEditCommand.COMMAND_WORD:
             return new TaskEditCommandParser().parse(arguments);
+
+        case TaskDeleteCommand.COMMAND_WORD:
+            return new TaskDeleteCommandParser().parse(arguments);
+
+        case TaskListCommand.COMMAND_WORD:
+            return new TaskListCommand();
 
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);

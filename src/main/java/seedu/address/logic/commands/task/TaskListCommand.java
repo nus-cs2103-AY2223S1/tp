@@ -17,7 +17,7 @@ import seedu.address.model.task.Task;
  */
 public class TaskListCommand extends Command {
 
-    public static final String COMMAND_WORD = "task list";
+    public static final String COMMAND_WORD = "taskList";
 
     public static final String MESSAGE_SUCCESS = "Listed all tasks";
 

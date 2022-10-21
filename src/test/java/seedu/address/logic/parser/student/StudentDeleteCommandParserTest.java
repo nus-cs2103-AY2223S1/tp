@@ -7,6 +7,7 @@ import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.student.StudentDeleteCommand;
 
 public class StudentDeleteCommandParserTest {
@@ -14,7 +15,7 @@ public class StudentDeleteCommandParserTest {
 
     @Test
     public void parse_validArgs_returnsDeleteCommand() {
-        assertParseSuccess(parser, "1", new StudentDeleteCommand(INDEX_FIRST_PERSON));
+        assertParseSuccess(parser, "1", new StudentDeleteCommand(new Index[] {INDEX_FIRST_PERSON}));
     }
 
     @Test

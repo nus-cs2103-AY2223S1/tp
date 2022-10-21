@@ -39,6 +39,20 @@ public class ParserUtil {
         return Index.fromOneBased(Integer.parseInt(trimmedIndex));
     }
 
+    /**
+     * Parses {@code Collection<String> indexes} into a {@code Index[]}. Leading and trailing whitespaces will be
+     * trimmed.
+     * @throws ParseException if any of the specified indexes are invalid (not non-zero unsigned integer).
+     */
+    public static Index[] parseIndexes(String arguments) throws ParseException {
+        String[] indexes = arguments.trim().split("\\s+");
+        Index[] indexArray = new Index[indexes.length];
+        for (int i = 0; i < indexes.length; i++) {
+            indexArray[i] = parseIndex(indexes[i]);
+        }
+        return indexArray;
+    }
+
     //Student Parser Util
 
     /**

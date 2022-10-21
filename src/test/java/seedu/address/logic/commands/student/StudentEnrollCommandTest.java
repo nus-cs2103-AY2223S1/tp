@@ -73,7 +73,7 @@ public class StudentEnrollCommandTest {
                 .build();
         StudentEnrollCommand editCommand = new StudentEnrollCommand(outOfBoundIndex, descriptor);
 
-        assertCommandFailure(editCommand, model, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+        assertCommandFailure(editCommand, model, Messages.MESSAGE_INVALID_STUDENT_DISPLAYED_INDEX);
     }
 
     /**
@@ -90,7 +90,7 @@ public class StudentEnrollCommandTest {
         StudentEnrollCommand enrollCommand = new StudentEnrollCommand(outOfBoundIndex,
                 new EnrollStudentDescriptorBuilder().withTutorialGroup(VALID_TUTORIAL_GROUP_BOB).build());
 
-        assertCommandFailure(enrollCommand, model, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+        assertCommandFailure(enrollCommand, model, Messages.MESSAGE_INVALID_STUDENT_DISPLAYED_INDEX);
     }
 
     @Test
