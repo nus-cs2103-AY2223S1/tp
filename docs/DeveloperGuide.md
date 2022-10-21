@@ -507,3 +507,33 @@ testers are expected to do more *exploratory* testing.
    1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
 
 1. _{ more test cases …​ }_
+
+--------------------------------------------------------------------------------------------------------------------
+
+## **Appendix: Automated GUI Testing**
+
+The application makes use of the [TestFX](https://github.com/TestFX/TestFX) library to carry out automated tests for
+the GUI. Below are common issues when trying to carry out GUI tests.
+
+#### **Problem: Keyboard and Mouse movements are not simulated in macOS systems, resulting in GUI tests failure**
+
+* Reason: From macOS Mojave onwards, applications that do not have `Accessibility` permissions cannot simulate
+such keyboard and mouse movements. Therefore, the GUI tests that require simulation of keyboard and mouse movements
+to test the GUI cannot function properly and fail.
+* Solution: Open `System Preferences`, click `Security and Privacy`, then `Privacy`, and then `Accessibility`.
+Then check the box beside `IntelliJ IDEA`. The figure below shows `Accessibility` permission being granted to
+`IntelliJ IDEA`.
+
+<img src="images/TroubleshootingGUiTestMacos.png" width="500px">
+
+#### **Problem: GitHub Actions Ubuntu environment cannot run GUI tests, resulting in Continuous Integration tests failure**
+
+* Reason: The automated GUI tests require tools on different Linux distributions to run properly as they need to
+display a GUI. The environment that GitHub Actions provides does not have these. Therefore, the GUI tests are
+getting stuck and taking very long to build with no success and this is causing Continuous Integration checks to
+fail.
+* Solution: Update the [`gradle.yml`](../.github/workflows/gradle.yml) file to make use of an additional [action](https://github.com/marketplace/actions/gabrielbb-xvfb-action)
+on GitHub actions that installs [XVFB](http://elementalselenium.com/tips/38-headless) and runs headless tests with
+it. The figure below shows the new actions used to enable the CI environment to run the GUI tests properly.
+
+<img src="images/GitHubActionsCIFixGUI.png" width="500px">
