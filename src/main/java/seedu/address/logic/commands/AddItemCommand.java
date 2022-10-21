@@ -69,7 +69,7 @@ public class AddItemCommand extends Command {
 
 
         Person supplier = model.getFilteredPersonList().get(targetIndex.getZeroBased());
-        SupplyItem toAdd = new SupplyItem(supplier.getItem().toString(), 
+        SupplyItem toAdd = new SupplyItem(supplier.getItem().toString(),
         currentStock, minimumStock, supplier, getTagSet("Item"));
 
         if (model.hasSupplyItem(toAdd)) {
