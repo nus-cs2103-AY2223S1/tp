@@ -189,7 +189,30 @@ This section describes some noteworthy details on how certain features are imple
 
 #### 4.2.4 Find command
 
-*To be updated*
+`FindCommand`, which extends `Command`, filters the current list of students based on a `Predicate<Student>` 
+that is generated using the user input. This depends on `FilteredStudents#updateFilteredStudentList(Predicate<Student>)`
+which is exposed in the `Model` interface as `Model#updateFilteredStudentList(Predicate<Student>)`.
+
+Given below is an example usage scenario of `FindCommand`.
+
+Step 1. The user launches the application and sees a list of students. 
+
+Step 2. The user executes `find nm/Alex` to locate students with "Alex" in their name. 
+This command performs a search using the names of the students. Since the prefix `nm/` was used, a `NameContainsKeywordsPredicate`
+object, which extends `Predicate<Student>` will be created.
+
+:information_source: **Note:** Find command is case-insensitive, and the command `find nm/alex` will return the same results.
+
+Step 3. Classify returns a filtered list of students whose names contain `Alex`. All the details recorded will also be shown.
+
+The following activity diagram summarizes what happens when a user executes the find command. 
+
+<Insert activity diagram>
+
+Design considerations:
+1. `ArgumentTokenizer#tokenize()` used to identify the prefix, to generate the corresponding `Predicate<Student>`.
+
+*to be further updated*
 
 #### 4.2.5 ViewAll command
 
