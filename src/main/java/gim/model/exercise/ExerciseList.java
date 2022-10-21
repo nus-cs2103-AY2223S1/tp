@@ -90,8 +90,6 @@ public class ExerciseList implements Iterable<Exercise> {
      * Returns the backing list as an unmodifiable {@code ObservableList}.
      */
     public ObservableList<Exercise> asDisplayedList() {
-        //edited to displayedList for testing (Main original: unmodifiable)
-//        this.displayedList = FXCollections.observableArrayList(internalList);
         return displayedList;
     }
 
