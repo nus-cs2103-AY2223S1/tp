@@ -41,11 +41,20 @@
             <HBox prefHeight="100.0" prefWidth="84.0" styleClass="pane-with-border" VBox.vgrow="ALWAYS">
                <children>
              <StackPane fx:id="exerciseListPanelPlaceholder" alignment="CENTER_LEFT" prefHeight="131.0" prefWidth="168.0" HBox.hgrow="ALWAYS" />
-                                <StackPane fx:id="resultDisplayPlaceholder" alignment="CENTER_RIGHT" prefHeight="131.0" prefWidth="168.0" styleClass="pane-with-border" HBox.hgrow="ALWAYS">
-                <padding>
-                  <Insets bottom="5" left="10" right="10" top="5" />
-                </padding>
-              </StackPane>
+                  <VBox prefHeight="131.0" prefWidth="168.0" HBox.hgrow="ALWAYS">
+                     <children>
+                         <StackPane fx:id="resultDisplayPlaceholder" alignment="CENTER_RIGHT" prefHeight="131.0" prefWidth="168.0" styleClass="pane-with-border" VBox.vgrow="ALWAYS">
+                      <padding>
+                        <Insets bottom="5" left="10" right="10" top="5" />
+                      </padding>
+                    </StackPane>
+                        <StackPane fx:id="savedExerciseListPlaceholder" alignment="CENTER_RIGHT" prefHeight="131.0" prefWidth="168.0" styleClass="pane-with-border" VBox.vgrow="ALWAYS">
+                           <padding>
+                              <Insets bottom="5" left="10" right="10" top="5" />
+                           </padding>
+                        </StackPane>
+                     </children>
+                  </VBox>
                </children>
             </HBox>
         <StackPane fx:id="statusbarPlaceholder" VBox.vgrow="NEVER" />
