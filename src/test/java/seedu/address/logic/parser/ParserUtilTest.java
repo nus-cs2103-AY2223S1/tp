@@ -53,7 +53,7 @@ public class ParserUtilTest {
     private static final String LENGTH_LIMIT_EXCEEDED_ADDRESS = "Jean Baptiste Point du Sable Lake Shore Drive"
             + "Taumatawhakatangihangakoauauotamateaturipukakapikimaungahoronukupokaiwhenuakitanatahu"
             + "Llanfairpwllgwyngyllgogerychwyrndrobwllllantysiliogogogoch";
-    private static final String LENGTH_LIMIT_EXCEEDED_EMAIL = "rachel_aguilera_wakanda_forever@u.nus.edu";
+    private static final String LENGTH_LIMIT_EXCEEDED_EMAIL = "rachel_wakanda_forever_avengers_assemble@u.nus.edu.sg";
     private static final String LENGTH_LIMIT_EXCEEDED_TAG = "Applied -> HR Interview -> Assessment -> Final Interview";
     private static final String LENGTH_LIMIT_EXCEEDED_UNIVERSITY = "National University of Singapore X"
             + "National Technological University, and Singapore Management University";
