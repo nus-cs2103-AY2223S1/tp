@@ -26,6 +26,10 @@ public interface ReadOnlyAddressBook {
      */
     ObservableList<Task> getTaskList();
 
+    /**
+     * Returns an unmodifiable view of the exam list.
+     * This list will not contain any duplicate exams.
+     */
     ObservableList<Exam> getExamList();
 
 }
