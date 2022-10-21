@@ -48,8 +48,8 @@ public class PersonCard extends UiPart<Region> {
         name.setText(person.getName().fullName);
         particulars.setText(person.getParticulars());
         person.getTags().stream()
-                .sorted(Comparator.comparing(tag -> tag.tagName))
-                .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
+                .sorted(Comparator.comparing(tag -> tag.getTagName()))
+                .forEach(tag -> tags.getChildren().add(new Label(tag.getTagName())));
     }
 
     @Override

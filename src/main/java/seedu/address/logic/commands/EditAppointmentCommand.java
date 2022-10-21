@@ -6,8 +6,11 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_RECURRING_PERIOD;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.CollectionUtil;
@@ -15,6 +18,7 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.person.Appointment;
 import seedu.address.model.person.Person;
+import seedu.address.model.tag.Tag;
 
 
 /**
@@ -66,6 +70,7 @@ public class EditAppointmentCommand extends SelectAppointmentCommand {
         int index = currentAppts.indexOf(targetAppointment);
 
         Appointment editedAppointment = createEditedAppointment(targetAppointment, editAppointmentDescriptor);
+
         if (hasSameTime(currentAppts, targetAppointment, editedAppointment)) {
             throw new CommandException(MESSAGE_DUPLICATE_APPOINTMENT);
         }
@@ -77,14 +82,14 @@ public class EditAppointmentCommand extends SelectAppointmentCommand {
     }
 
     private static Appointment createEditedAppointment(Appointment appointmentToEdit,
-                                                       EditAppointmentDescriptor editAppointmentDescriptor) {
+            EditAppointmentDescriptor editAppointmentDescriptor) {
         assert appointmentToEdit != null;
 
         String reason = editAppointmentDescriptor.getReason().orElse(appointmentToEdit.getReason());
         LocalDateTime dateTime = editAppointmentDescriptor.getDateTime().orElse(appointmentToEdit.getDateTime());
         List<Integer> period = editAppointmentDescriptor.getTimePeriod().orElse(appointmentToEdit.getTimePeriod());
-
-        Appointment editedAppointment = new Appointment(reason, dateTime, period,
+        Set<Tag> tags = editAppointmentDescriptor.getTags().orElse(appointmentToEdit.getTags());
+        Appointment editedAppointment = new Appointment(reason, dateTime, period, tags,
                 appointmentToEdit.isMarked());
         editedAppointment.setPatient(appointmentToEdit.getPatient());
         return editedAppointment;
@@ -122,7 +127,7 @@ public class EditAppointmentCommand extends SelectAppointmentCommand {
         private String reason;
         private LocalDateTime dateTime;
         private List<Integer> timePeriod;
-
+        private Set<Tag> tags = new HashSet<>();
         public EditAppointmentDescriptor() {}
 
         /**
@@ -134,10 +139,11 @@ public class EditAppointmentCommand extends SelectAppointmentCommand {
             setReason(toCopy.reason);
             setDateTime(toCopy.dateTime);
             setTimePeriod(toCopy.timePeriod);
+            setTags(toCopy.tags);
         }
 
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(reason, dateTime, timePeriod);
+            return CollectionUtil.isAnyNonNull(reason, dateTime, timePeriod) || !tags.isEmpty();
         }
 
         public void setReason(String reason) {
@@ -158,6 +164,23 @@ public class EditAppointmentCommand extends SelectAppointmentCommand {
 
         public void setTimePeriod(List<Integer> timePeriod) {
             this.timePeriod = timePeriod;
+        }
+
+        /**
+         * Sets {@code tags} to this object's {@code tags}.
+         * A defensive copy of {@code tags} is used internally.
+         */
+        public void setTags(Set<Tag> tags) {
+            this.tags = (tags != null) ? new HashSet<>(tags) : null;
+        }
+
+        /**
+         * Returns an unmodifiable tag set, which throws {@code UnsupportedOperationException}
+         * if modification is attempted.
+         * Returns {@code Optional#empty()} if {@code tags} is null.
+         */
+        public Optional<Set<Tag>> getTags() {
+            return (tags != null) ? Optional.of(Collections.unmodifiableSet(tags)) : Optional.empty();
         }
 
         public Optional<List<Integer>> getTimePeriod() {

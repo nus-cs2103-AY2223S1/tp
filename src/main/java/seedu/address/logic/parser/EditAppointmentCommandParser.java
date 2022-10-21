@@ -5,14 +5,20 @@ import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_REASON;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_RECURRING_PERIOD;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
 import java.time.LocalDateTime;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.Optional;
+import java.util.Set;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.EditAppointmentCommand;
 import seedu.address.logic.commands.EditAppointmentCommand.EditAppointmentDescriptor;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Appointment;
+import seedu.address.model.tag.Tag;
 
 /**
  *  Parses input arguments and creates a new EditAppointmentCommand object.
@@ -23,7 +29,7 @@ public class EditAppointmentCommandParser implements Parser<EditAppointmentComma
     public EditAppointmentCommand parse(String args) throws ParseException {
         requireNonNull(args);
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_REASON, PREFIX_DATE,
-                PREFIX_RECURRING_PERIOD);
+                PREFIX_RECURRING_PERIOD, PREFIX_TAG);
         Index appointmentIndex;
         try {
             appointmentIndex = ParserUtil.parseIndex(argMultimap.getPreamble());
@@ -36,6 +42,7 @@ public class EditAppointmentCommandParser implements Parser<EditAppointmentComma
         addReason(editAppointmentDescriptor, argMultimap);
         addDate(editAppointmentDescriptor, argMultimap);
         addTimePeriod(editAppointmentDescriptor, argMultimap);
+        parseTagsForEdit(argMultimap.getAllValues(PREFIX_TAG)).ifPresent(editAppointmentDescriptor::setTags);
 
         if (!editAppointmentDescriptor.isAnyFieldEdited()) {
             throw new ParseException(EditAppointmentCommand.MESSAGE_NOT_EDITED);
@@ -83,5 +90,30 @@ public class EditAppointmentCommandParser implements Parser<EditAppointmentComma
         } else {
             throw new ParseException(Appointment.TIME_PERIOD_MESSAGE_CONSTRAINTS);
         }
+    }
+
+    private void addTags(EditAppointmentDescriptor descriptor, ArgumentMultimap argMultimap)
+            throws ParseException {
+        if (argMultimap.getValue(PREFIX_TAG).isEmpty()) {
+            return;
+        }
+
+        parseTagsForEdit(argMultimap.getAllValues(PREFIX_TAG)).ifPresent(descriptor::setTags);
+
+    }
+
+    /**
+     * Parses {@code Collection<String> tags} into a {@code Set<Tag>} if {@code tags} is non-empty.
+     * If {@code tags} contain only one element which is an empty string, it will be parsed into a
+     * {@code Set<Tag>} containing zero tags.
+     */
+    private Optional<Set<Tag>> parseTagsForEdit(Collection<String> tags) throws ParseException {
+        assert tags != null;
+
+        if (tags.isEmpty()) {
+            return Optional.empty();
+        }
+        Collection<String> tagSet = tags.size() == 1 && tags.contains("") ? Collections.emptySet() : tags;
+        return Optional.of(ParserUtil.parseTags(tagSet));
     }
 }
