@@ -3,7 +3,7 @@ package seedu.address.model.person;
 import static java.util.Objects.requireNonNull;
 
 /**
- * Represents a Person's GradeProgress in the address book.
+ * Represents a Person's Grade Progress in the address book.
  * Guarantees: immutable; is valid
  */
 public class GradeProgress {

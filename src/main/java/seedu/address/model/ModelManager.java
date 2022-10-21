@@ -4,14 +4,19 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
+import java.util.ArrayList;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.person.Person;
+import seedu.address.model.person.Session;
+import seedu.address.model.person.SessionList;
+import seedu.address.model.person.TimeSlot;
 
 /**
  * Represents the in-memory model of the address book data.
@@ -23,7 +28,9 @@ public class ModelManager implements Model {
     private final UserPrefs userPrefs;
     private final FilteredList<Person> filteredPersons;
 
-    private boolean fullView;
+    private ObservableList<TimeSlot> timeSlots;
+    private boolean isDayView;
+    private boolean isFullView;
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
@@ -36,7 +43,10 @@ public class ModelManager implements Model {
         this.addressBook = new AddressBook(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
-        fullView = false;
+        timeSlots = FXCollections.observableArrayList(new ArrayList<>());
+        timeSlots.clear();
+        isFullView = false;
+        isDayView = false;
     }
 
     public ModelManager() {
@@ -116,18 +126,52 @@ public class ModelManager implements Model {
 
     @Override
     public void setFullView() {
-        fullView = true;
+        isFullView = true;
+        isDayView = false;
     }
 
     @Override
     public void setListView() {
-        fullView = false;
+        isFullView = false;
+        isDayView = false;
         addressBook.setAllToListView();
     }
 
     @Override
     public boolean isFullView() {
-        return fullView;
+        return isFullView;
+    }
+
+    @Override
+    public void updateTimeSlots(String day) {
+        timeSlots.clear();
+        for (int i = 0; i < filteredPersons.size(); i++) {
+            Person person = filteredPersons.get(i);
+            SessionList sessions = person.getSessionList();
+            for (int j = 0; j < sessions.sessionList.size(); j++) {
+                Session session = sessions.sessionList.get(j);
+                if (session.day.equalsIgnoreCase(day)) {
+                    timeSlots.add(new TimeSlot(session, person));
+                }
+            }
+        }
+        timeSlots.sort(TimeSlot::compareTo);
+    }
+
+    @Override
+    public ObservableList<TimeSlot> getTimeSlotList() {
+        return timeSlots;
+    }
+
+    @Override
+    public void setDayView() {
+        isDayView = true;
+        isFullView = false;
+    }
+
+    @Override
+    public boolean isDayView() {
+        return isDayView;
     }
 
     //=========== Filtered Person List Accessors =============================================================
