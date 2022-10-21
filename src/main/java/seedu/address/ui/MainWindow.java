@@ -1,13 +1,10 @@
 package seedu.address.ui;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Set;
 import java.util.logging.Logger;
 import java.util.stream.Collectors;
 
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.MenuItem;
@@ -22,12 +19,6 @@ import seedu.address.logic.Logic;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.meeting.Meeting;
-import seedu.address.model.person.Address;
-import seedu.address.model.person.Email;
-import seedu.address.model.person.Name;
-import seedu.address.model.person.Person;
-import seedu.address.model.person.Phone;
 import seedu.address.model.tag.Tag;
 
 /**
