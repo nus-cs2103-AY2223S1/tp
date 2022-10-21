@@ -15,8 +15,8 @@ import seedu.address.model.person.Person;
 import seedu.address.model.person.PersonIsInModulePredicate;
 
 /**
- * Go to the exact module in address book whose module code is the argument keywords.
- * Keyword matching is case insensitive.
+ * Go to the exact module in Plannit whose module code is the argument keywords.
+ * Keyword matching is case-insensitive.
  */
 public class GoToCommand extends Command {
 
@@ -42,6 +42,7 @@ public class GoToCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
+
         try {
             Module moduleToGoTo = model.getModuleUsingModuleCode(moduleCode, false);
             Predicate<Person> moduleContainsPersonPredicate = new PersonIsInModulePredicate(moduleToGoTo);
@@ -50,6 +51,7 @@ public class GoToCommand extends Command {
 
             assert(model.getFilteredModuleList().size() == 1); // GoTo should display maximally one module.
             model.updateFilteredPersonList(moduleContainsPersonPredicate);
+            model.setHomeStatus(false);
 
             return new CommandResult(Messages.MESSAGE_MODULE_LISTED);
         } catch (ModuleNotFoundException e) {

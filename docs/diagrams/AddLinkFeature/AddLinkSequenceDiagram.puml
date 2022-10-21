@@ -1,0 +1,82 @@
+@startuml
+!include ../style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
+participant ":AddLinkCommandParser" as AddLinkCommandParser LOGIC_COLOR
+participant ":Link" as Link LOGIC_COLOR
+participant ":AddLinkCommand" as AddLinkCommand LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+participant "CS1231:Module" as CS1231 MODEL_COLOR
+end box
+
+[-> LogicManager : execute("add-link m/CS1231 l/...")
+activate LogicManager
+
+LogicManager -> AddressBookParser : parseCommand("add-link m/CS1231 l/...")
+activate AddressBookParser
+
+create AddLinkCommandParser
+AddressBookParser -> AddLinkCommandParser : AddLinkCommandParser("m/CS1231 l/...")
+activate AddLinkCommandParser
+
+create Link
+AddLinkCommandParser -> Link
+activate Link
+
+Link --> AddLinkCommandParser
+deactivate Link
+
+create AddLinkCommand
+AddLinkCommandParser -> AddLinkCommand : ("CS1231", ...)
+activate AddLinkCommand
+
+AddLinkCommand --> AddLinkCommandParser
+deactivate AddLinkCommand
+
+AddLinkCommandParser --> AddressBookParser
+deactivate AddLinkCommandParser
+destroy AddLinkCommandParser
+
+AddressBookParser --> LogicManager
+deactivate AddressBookParser
+
+LogicManager -> AddLinkCommand : execute()
+activate AddLinkCommand
+
+AddLinkCommand -> Model : getModuleUsingModuleCode("CS1231")
+activate Model
+
+Model --> AddLinkCommand
+deactivate Model
+
+AddLinkCommand -> AddLinkCommand :createModuleWithNewLinks()
+activate AddLinkCommand
+
+create CS1231
+AddLinkCommand -> CS1231
+activate CS1231
+
+CS1231 --> AddLinkCommand
+deactivate CS1231
+
+AddLinkCommand --> AddLinkCommand
+deactivate AddLinkCommand
+
+AddLinkCommand -> Model : setModule("CS1231")
+activate Model
+
+Model --> AddLinkCommand
+deactivate Model
+
+AddLinkCommand --> LogicManager : commandResult
+deactivate AddLinkCommand
+destroy AddLinkCommand
+
+[<--LogicManager : commandResult
+deactivate LogicManager
+@enduml

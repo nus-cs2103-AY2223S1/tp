@@ -1,10 +1,10 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.core.Messages.MESSAGE_NO_SUCH_MODULE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MODULE_CODE;
 
 import javafx.collections.ObservableList;
-import seedu.address.commons.core.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.module.Module;
@@ -41,7 +41,7 @@ public class DeleteModuleCommand extends Command {
             moduleToDelete =
                     model.getModuleUsingModuleCode(targetModuleCode, true);
         } catch (ModuleNotFoundException e) {
-            throw new CommandException(Messages.MESSAGE_NO_SUCH_MODULE);
+            throw new CommandException(MESSAGE_NO_SUCH_MODULE);
         }
         assert moduleToDelete != null;
         model.deleteModule(moduleToDelete);

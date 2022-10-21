@@ -1,5 +1,6 @@
 package seedu.address.logic.commands;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_CS2106_MODULE_CODE;
@@ -29,7 +30,7 @@ public class DeleteModuleCommandTest {
     private Model model = new ModelManager(getTypicalAddressBookWithOnlyModules(), new UserPrefs());
 
     @Test
-    public void execute_validModuleUnfilteredList_success() {
+    public void execute_validModuleAtHome_success() {
         Module moduleToDelete = model.getFilteredModuleList().get(INDEX_FIRST_PERSON.getZeroBased());
         DeleteModuleCommand deleteCommand = new DeleteModuleCommand(moduleToDelete.getModuleCode());
 
@@ -37,6 +38,25 @@ public class DeleteModuleCommandTest {
                 moduleToDelete);
 
         ModelManager expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
+        expectedModel.deleteModule(moduleToDelete);
+
+        assertCommandSuccess(deleteCommand, model, expectedMessage, expectedModel);
+    }
+
+    @Test
+    public void execute_validModuleNotAtHome_success() {
+        Module moduleToDelete = model.getFilteredModuleList().get(INDEX_FIRST_PERSON.getZeroBased());
+        moduleToDelete = new ModuleBuilder(moduleToDelete).withModuleCode(
+                moduleToDelete.getModuleCodeAsUpperCaseString().toLowerCase()).build();
+        DeleteModuleCommand deleteCommand = new DeleteModuleCommand(moduleToDelete.getModuleCode());
+
+        String expectedMessage = String.format(DeleteModuleCommand.MESSAGE_DELETE_MODULE_SUCCESS,
+                moduleToDelete);
+
+        ModelManager expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
+
+        expectedModel.setHomeStatus(false);
+
         expectedModel.deleteModule(moduleToDelete);
 
         assertCommandSuccess(deleteCommand, model, expectedMessage, expectedModel);
@@ -53,17 +73,25 @@ public class DeleteModuleCommandTest {
                 moduleToDelete);
 
         ModelManager expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
+
         expectedModel.deleteModule(moduleToDelete);
 
         assertCommandSuccess(deleteCommand, model, expectedMessage, expectedModel);
     }
 
     @Test
-    public void execute_nonexistentModuleUnfilteredList_throwsCommandException() {
+    public void execute_nonexistentModule_throwsCommandException() {
         ModuleCode nonExistentModule = new ModuleCode(NON_EXISTENT_MODULE_CODE);
         DeleteModuleCommand deleteCommand = new DeleteModuleCommand(nonExistentModule);
 
+        // At Home Page
         assertCommandFailure(deleteCommand, model, Messages.MESSAGE_NO_SUCH_MODULE);
+        assertEquals(model.getHomeStatus(), true);
+
+        // Not At Home Page
+        model.setHomeStatus(false);
+        assertCommandFailure(deleteCommand, model, Messages.MESSAGE_NO_SUCH_MODULE);
+        assertEquals(model.getHomeStatus(), false);
     }
 
     @Test

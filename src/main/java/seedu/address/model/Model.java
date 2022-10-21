@@ -169,4 +169,16 @@ public interface Model {
      */
     Module getModuleUsingModuleCode(ModuleCode moduleCodeOfModuleToGet,
                                     boolean isFiltered) throws ModuleNotFoundException;
+
+    //// navigation-related methods
+    /**
+     * Returns true if Plannit is at the home page, false otherwise.
+     */
+    boolean getHomeStatus();
+
+    /**
+     * Replaces home status with {@code isHome}.
+     * @param isHome The current status of Plannit
+     */
+    void setHomeStatus(boolean isHome);
 }

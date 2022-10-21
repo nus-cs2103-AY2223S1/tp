@@ -1,5 +1,6 @@
 package seedu.address.logic.commands;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.logic.commands.CommandTestUtil.showModuleAtIndex;
 import static seedu.address.logic.commands.CommandTestUtil.showPersonAtIndex;
@@ -21,24 +22,14 @@ public class HomeCommandTest {
     @BeforeEach
     public void setUp() {
         model = new ModelManager(TypicalAddressBook.getTypicalAddressBook(), new UserPrefs());
+        model.setHomeStatus(false);
         expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
     }
 
     @Test
     public void execute_listIsNotFiltered_showsSameList() {
         assertCommandSuccess(new HomeCommand(), model, HomeCommand.MESSAGE_SUCCESS, expectedModel);
-    }
-
-    @Test
-    public void execute_moduleListIsFiltered_showsEverything() {
-        showModuleAtIndex(model, INDEX_FIRST_MODULE);
-        assertCommandSuccess(new HomeCommand(), model, HomeCommand.MESSAGE_SUCCESS, expectedModel);
-    }
-
-    @Test
-    public void execute_personListIsFiltered_showsEverything() {
-        showPersonAtIndex(model, INDEX_FIRST_PERSON);
-        assertCommandSuccess(new HomeCommand(), model, HomeCommand.MESSAGE_SUCCESS, expectedModel);
+        assertEquals(expectedModel.getHomeStatus(), model.getHomeStatus());
     }
 
     @Test
@@ -46,5 +37,6 @@ public class HomeCommandTest {
         showPersonAtIndex(model, INDEX_FIRST_PERSON);
         showModuleAtIndex(model, INDEX_FIRST_MODULE);
         assertCommandSuccess(new HomeCommand(), model, HomeCommand.MESSAGE_SUCCESS, expectedModel);
+        assertEquals(expectedModel.getHomeStatus(), model.getHomeStatus());
     }
 }

@@ -24,6 +24,7 @@ import seedu.address.model.person.exceptions.PersonNotFoundException;
 public class ModelManager implements Model {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
 
+    private boolean isHome = true;
     private final AddressBook addressBook;
     private final UserPrefs userPrefs;
     private final FilteredList<Person> filteredPersons;
@@ -157,11 +158,14 @@ public class ModelManager implements Model {
     @Override
     public void deleteModule(Module target) {
         addressBook.removeModule(target);
+        this.isHome = true;
+        updateFilteredModuleList(PREDICATE_SHOW_ALL_MODULES);
     }
 
     @Override
     public void addModule(Module module) {
         addressBook.addModule(module);
+        this.isHome = true;
         updateFilteredModuleList(PREDICATE_SHOW_ALL_MODULES);
     }
 
@@ -239,9 +243,22 @@ public class ModelManager implements Model {
 
         // state check
         ModelManager other = (ModelManager) obj;
-        return addressBook.equals(other.addressBook)
+        return isHome == other.isHome
+                && addressBook.equals(other.addressBook)
                 && userPrefs.equals(other.userPrefs)
                 && filteredPersons.equals(other.filteredPersons)
                 && filteredModules.equals(other.filteredModules);
+    }
+
+    //// navigation-related methods
+
+    @Override
+    public boolean getHomeStatus() {
+        return isHome;
+    }
+
+    @Override
+    public void setHomeStatus(boolean isHome) {
+        this.isHome = isHome;
     }
 }
