@@ -2,8 +2,9 @@ package seedu.waddle.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.waddle.logic.parser.CliSyntax.PREFIX_BUDGET;
 import static seedu.waddle.logic.parser.CliSyntax.PREFIX_COUNTRY;
-import static seedu.waddle.logic.parser.CliSyntax.PREFIX_END_DATE;
+import static seedu.waddle.logic.parser.CliSyntax.PREFIX_ITINERARY_DURATION;
 import static seedu.waddle.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.waddle.logic.parser.CliSyntax.PREFIX_PEOPLE;
 import static seedu.waddle.logic.parser.CliSyntax.PREFIX_START_DATE;
@@ -28,39 +29,56 @@ public class CommandTestUtil {
     public static final String VALID_NAME_SUMMER = "Summer Trip";
     public static final String VALID_NAME_WINTER = "Winter Trip";
     public static final String VALID_NAME_TEST = "Test Name";
+
     public static final String VALID_COUNTRY_SUMMER = "Sweden";
     public static final String VALID_COUNTRY_WINTER = "Japan";
     public static final String VALID_COUNTRY_TEST = "Test Country";
+
     public static final String VALID_START_DATE_SUMMER = "2022-08-01";
     public static final String VALID_START_DATE_WINTER = "2023-01-01";
     public static final String VALID_START_DATE_TEST = "2011-11-11";
-    public static final String VALID_END_DATE_SUMMER = "2022-08-26";
-    public static final String VALID_END_DATE_WINTER = "2023-01-31";
-    public static final String VALID_END_DATE_TEST = "2012-12-12";
+    public static final String VALID_DURATION_SUMMER = "26";
+    public static final String VALID_DURATION_WINTER = "31";
+    public static final String VALID_DURATION_TEST = "3";
+
     public static final String VALID_PEOPLE_SUMMER = "5";
     public static final String VALID_PEOPLE_WINTER = "10";
     public static final String VALID_PEOPLE_TEST = "69";
+
+    public static final String VALID_BUDGET_SUMMER = "5000";
+    public static final String VALID_BUDGET_WINTER = "200";
+    public static final String VALID_BUDGET_TEST = "970.00";
+
     public static final String NAME_DESC_SUMMER = " " + PREFIX_NAME + VALID_NAME_SUMMER;
     public static final String NAME_DESC_WINTER = " " + PREFIX_NAME + VALID_NAME_WINTER;
     public static final String NAME_DESC_TEST = " " + PREFIX_NAME + VALID_NAME_TEST;
+
     public static final String COUNTRY_DESC_SUMMER = " " + PREFIX_COUNTRY + VALID_COUNTRY_SUMMER;
     public static final String COUNTRY_DESC_WINTER = " " + PREFIX_COUNTRY + VALID_COUNTRY_WINTER;
     public static final String COUNTRY_DESC_TEST = " " + PREFIX_COUNTRY + VALID_COUNTRY_TEST;
+
     public static final String START_DATE_DESC_SUMMER = " " + PREFIX_START_DATE + VALID_START_DATE_SUMMER;
     public static final String START_DATE_DESC_WINTER = " " + PREFIX_START_DATE + VALID_START_DATE_WINTER;
     public static final String START_DATE_DESC_TEST = " " + PREFIX_START_DATE + VALID_START_DATE_TEST;
-    public static final String END_DATE_DESC_SUMMER = " " + PREFIX_END_DATE + VALID_END_DATE_SUMMER;
-    public static final String END_DATE_DESC_WINTER = " " + PREFIX_END_DATE + VALID_END_DATE_WINTER;
-    public static final String END_DATE_DESC_TEST = " " + PREFIX_END_DATE + VALID_END_DATE_TEST;
+    public static final String DURATION_DESC_SUMMER = " " + PREFIX_ITINERARY_DURATION + VALID_DURATION_SUMMER;
+    public static final String DURATION_DESC_WINTER = " " + PREFIX_ITINERARY_DURATION + VALID_DURATION_WINTER;
+    public static final String DURATION_DESC_TEST = " " + PREFIX_ITINERARY_DURATION + VALID_DURATION_TEST;
+
     public static final String PEOPLE_DESC_SUMMER = " " + PREFIX_PEOPLE + VALID_PEOPLE_SUMMER;
     public static final String PEOPLE_DESC_WINTER = " " + PREFIX_PEOPLE + VALID_PEOPLE_WINTER;
     public static final String PEOPLE_DESC_TEST = " " + PREFIX_PEOPLE + VALID_PEOPLE_TEST;
 
+    public static final String BUDGET_DESC_SUMMER = " " + PREFIX_BUDGET + VALID_BUDGET_SUMMER;
+    public static final String BUDGET_DESC_WINTER = " " + PREFIX_BUDGET + VALID_BUDGET_WINTER;
+    public static final String BUDGET_DESC_TEST = " " + PREFIX_BUDGET + VALID_BUDGET_TEST;
+
     public static final String INVALID_NAME_DESC = " " + PREFIX_NAME + "Family Trip&"; // '&' not allowed in names
     public static final String INVALID_COUNTRY_DESC = " " + PREFIX_COUNTRY + "Germany("; // '(' not allowed in country
     public static final String INVALID_START_DATE_DESC = " " + PREFIX_START_DATE + "Jan 01"; // wrong format
-    public static final String INVALID_END_DATE_DESC = " " + PREFIX_END_DATE; // empty string not allowed for dates
+    // only numbers allowed for duration
+    public static final String INVALID_DURATION_DESC = " " + PREFIX_ITINERARY_DURATION + "3 days";
     public static final String INVALID_PEOPLE_DESC = " " + PREFIX_PEOPLE + "five"; // only numbers allowed for people
+    public static final String INVALID_BUDGET_DESC = " " + PREFIX_BUDGET + "$100"; // only numbers allowed for budget
 
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
@@ -71,12 +89,14 @@ public class CommandTestUtil {
     static {
         DESC_SUMMER = new EditItineraryDescriptorBuilder().withName(VALID_NAME_SUMMER)
                 .withCountry(VALID_COUNTRY_SUMMER).withStartDate(VALID_START_DATE_SUMMER)
-                .withEndDate(VALID_END_DATE_SUMMER)
-                .withPeople(VALID_PEOPLE_SUMMER).build();
+                .withDuration(VALID_DURATION_SUMMER)
+                .withPeople(VALID_PEOPLE_SUMMER)
+                .withBudget(VALID_BUDGET_SUMMER).build();
         DESC_WINTER = new EditItineraryDescriptorBuilder().withName(VALID_NAME_WINTER)
                 .withCountry(VALID_COUNTRY_WINTER).withStartDate(VALID_START_DATE_WINTER)
-                .withEndDate(VALID_END_DATE_WINTER)
-                .withPeople(VALID_PEOPLE_WINTER).build();
+                .withDuration(VALID_DURATION_WINTER)
+                .withPeople(VALID_PEOPLE_WINTER)
+                .withBudget(VALID_BUDGET_WINTER).build();
     }
 
     /**

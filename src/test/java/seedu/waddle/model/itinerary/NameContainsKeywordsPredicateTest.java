@@ -71,6 +71,6 @@ public class NameContainsKeywordsPredicateTest {
         // Keywords match phone, email and address, but does not match name
         predicate = new NameContainsKeywordsPredicate(Arrays.asList("Singapore", "2022-06-30", "2022-07-30", "5"));
         assertFalse(predicate.test(new ItineraryBuilder().withName("Summer").withCountry("Singapore")
-                .withStartDate("2022-06-30").withEndDate("2022-07-30").withPeople("5").build()));
+                .withStartDate("2022-06-30").withDuration("20").withPeople("5").build()));
     }
 }

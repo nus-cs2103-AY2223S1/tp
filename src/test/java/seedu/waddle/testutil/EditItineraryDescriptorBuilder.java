@@ -1,9 +1,11 @@
 package seedu.waddle.testutil;
 
 import seedu.waddle.logic.commands.EditCommand.EditItineraryDescriptor;
+import seedu.waddle.model.itinerary.Budget;
 import seedu.waddle.model.itinerary.Country;
 import seedu.waddle.model.itinerary.Date;
 import seedu.waddle.model.itinerary.Itinerary;
+import seedu.waddle.model.itinerary.ItineraryDuration;
 import seedu.waddle.model.itinerary.Name;
 import seedu.waddle.model.itinerary.People;
 
@@ -30,8 +32,9 @@ public class EditItineraryDescriptorBuilder {
         descriptor.setName(itinerary.getName());
         descriptor.setCountry(itinerary.getCountry());
         descriptor.setStartDate(itinerary.getStartDate());
-        descriptor.setEndDate(itinerary.getEndDate());
+        descriptor.setDuration(itinerary.getDuration());
         descriptor.setPeople(itinerary.getPeople());
+        descriptor.setBudget(itinerary.getBudget());
     }
 
     /**
@@ -59,10 +62,10 @@ public class EditItineraryDescriptorBuilder {
     }
 
     /**
-     * Sets the {@code End Date} of the {@code EditItineraryDescriptor} that we are building.
+     * Sets the {@code Duration} of the {@code EditItineraryDescriptor} that we are building.
      */
-    public EditItineraryDescriptorBuilder withEndDate(String endDate) {
-        descriptor.setEndDate(new Date(endDate));
+    public EditItineraryDescriptorBuilder withDuration(String duration) {
+        descriptor.setDuration(new ItineraryDuration(duration));
         return this;
     }
 
@@ -71,6 +74,14 @@ public class EditItineraryDescriptorBuilder {
      */
     public EditItineraryDescriptorBuilder withPeople(String people) {
         descriptor.setPeople(new People(people));
+        return this;
+    }
+
+    /**
+     * Sets the {@code Budget} of the {@code EditItineraryDescriptor} that we are building.
+     */
+    public EditItineraryDescriptorBuilder withBudget(String budget) {
+        descriptor.setBudget(new Budget(budget));
         return this;
     }
 

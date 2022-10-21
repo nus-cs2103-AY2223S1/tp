@@ -34,7 +34,7 @@ public class ItineraryCard extends UiPart<Region> {
     @FXML
     private Label startDate;
     @FXML
-    private Label endDate;
+    private Label duration;
     @FXML
     private Label people;
 
@@ -49,7 +49,7 @@ public class ItineraryCard extends UiPart<Region> {
         name.setText(itinerary.getName().fullName);
         country.setText(itinerary.getCountry().country);
         startDate.setText(itinerary.getStartDate().date);
-        endDate.setText(itinerary.getEndDate().date);
+        duration.setText(itinerary.getDuration().toString());
         people.setText(itinerary.getPeople().numOfPeople);
     }
 

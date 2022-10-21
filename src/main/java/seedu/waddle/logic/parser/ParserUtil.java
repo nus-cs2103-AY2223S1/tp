@@ -8,8 +8,10 @@ import seedu.waddle.logic.parser.exceptions.ParseException;
 import seedu.waddle.model.item.Cost;
 import seedu.waddle.model.item.Duration;
 import seedu.waddle.model.item.Priority;
+import seedu.waddle.model.itinerary.Budget;
 import seedu.waddle.model.itinerary.Country;
 import seedu.waddle.model.itinerary.Date;
+import seedu.waddle.model.itinerary.ItineraryDuration;
 import seedu.waddle.model.itinerary.Name;
 import seedu.waddle.model.itinerary.People;
 
@@ -80,6 +82,21 @@ public class ParserUtil {
     }
 
     /**
+     * Parses a {@code String duration} into an {@code ItineraryDuration}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code duration} is invalid.
+     */
+    public static ItineraryDuration parseItineraryDuration(String duration) throws ParseException {
+        requireNonNull(duration);
+        String trimmedDuration = duration.trim();
+        if (!ItineraryDuration.isValidDuration(trimmedDuration)) {
+            throw new ParseException(ItineraryDuration.MESSAGE_CONSTRAINTS);
+        }
+        return new ItineraryDuration(trimmedDuration);
+    }
+
+    /**
      * Parses a {@code String people} into an {@code People}.
      * Leading and trailing whitespaces will be trimmed.
      *
@@ -92,6 +109,21 @@ public class ParserUtil {
             throw new ParseException(People.MESSAGE_CONSTRAINTS);
         }
         return new People(trimmedPeople);
+    }
+
+    /**
+     * Parses a {@code String budget} into an {@code Budget}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code budget} is invalid.
+     */
+    public static Budget parseBudget(String budget) throws ParseException {
+        requireNonNull(budget);
+        String trimmedBudget = budget.trim();
+        if (!Budget.isValidBudget(trimmedBudget)) {
+            throw new ParseException(Budget.MESSAGE_CONSTRAINTS);
+        }
+        return new Budget(trimmedBudget);
     }
 
     /**
