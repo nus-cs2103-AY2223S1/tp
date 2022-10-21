@@ -34,6 +34,8 @@ public class PhoneTest {
         assertFalse(Phone.isValidPhone("13121534")); // not starting with 6, 8 or 9
         assertFalse(Phone.isValidPhone("73121534")); // not starting with 6, 8 or 9
         assertFalse(Phone.isValidPhone("9312153哈")); // non-alphabetic characters
+        assertFalse(Phone.isValidPhone("“Wingardium Leviosa!” he shouted, waving his long arms like a windmill.\n"
+                + "“You’re saying it wrong,” Harry heard Hermione snap. “It’s Wing-gar-dium Levi-o-sa")); // long string
 
         // valid phone numbers
         assertTrue(Phone.isValidPhone("92222222"));

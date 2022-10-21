@@ -170,8 +170,7 @@ public class PersonBuilder {
      * @return Person object.
      */
     public Person build() {
-        return new
-                Person(name, phone, nokPhone, email, address, aClass, moneyOwed, moneyPaid, ratesPerClass,
+        return new Person(name, phone, nokPhone, email, address, aClass, moneyOwed, moneyPaid, ratesPerClass,
                 additionalNotes, tags);
     }
 }
