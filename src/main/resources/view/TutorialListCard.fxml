@@ -9,6 +9,7 @@
 <?import javafx.scene.layout.Region?>
 <?import javafx.scene.layout.VBox?>
 
+<?import javafx.scene.control.CheckBox?>
 <HBox id="cardPane" fx:id="cardPane" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
     <GridPane HBox.hgrow="ALWAYS">
         <columnConstraints>
@@ -30,7 +31,7 @@
             <FlowPane fx:id="tags" />
             <Label fx:id="content" styleClass="cell_small_label" text="\$content" />
             <Label fx:id="time" styleClass="cell_small_label" text="\$time" />
-            <Label fx:id="status" styleClass="cell_small_label" text="\$status" />
+            <CheckBox fx:id="status" styleClass="cell_small_label" text="\$status" />
         </VBox>
     </GridPane>
 </HBox>
