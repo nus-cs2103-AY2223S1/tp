@@ -4,6 +4,8 @@
 box Logic LOGIC_COLOR_T1
 participant ":LogicManager" as LogicManager LOGIC_COLOR
 participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
+participant ":FindCommandParser" as FindParser LOGIC_COLOR
+participant "FindableCategoryParser" as CategoryParser LOGIC_COLOR
 participant "f:FindCommand" as FindCommand LOGIC_COLOR
 end box
 
@@ -11,25 +13,44 @@ box Model MODEL_COLOR_T1
 participant "p:ContainsKeywordPredicate" as Predicate MODEL_COLOR
 participant ":Model" as Model MODEL_COLOR
 end box
-[-> LogicManager : execute(find c/n Shop)
+[-> LogicManager : execute("find c/n Shop")
 activate LogicManager
 
-LogicManager -> AddressBookParser : parseCommand(find c/n Shop)
+LogicManager -> AddressBookParser : parseCommand("find c/n Shop")
 activate AddressBookParser
 
+create FindParser
+AddressBookParser -> FindParser
+activate FindParser
+
+FindParser -> AddressBookParser
+deactivate FindParser
+
+AddressBookParser -> FindParser : parse("find c/n Shop")
+activate FindParser
+
+FindParser -> CategoryParser : parse("n")
+activate CategoryParser
+
+CategoryParser -> FindParser
+deactivate CategoryParser
+
 create Predicate
-AddressBookParser -> Predicate
+FindParser -> Predicate
 activate Predicate
 
-Predicate -> AddressBookParser : p
+Predicate -> FindParser : p
 deactivate Predicate
 
 create FindCommand
-AddressBookParser -> FindCommand
+FindParser -> FindCommand
 activate FindCommand
 
-FindCommand -> AddressBookParser
+FindCommand -> FindParser
 deactivate FindCommand
+
+FindParser -> AddressBookParser : f
+deactivate FindParser
 
 AddressBookParser --> LogicManager : f
 deactivate AddressBookParser
