@@ -641,4 +641,5 @@
     -fx-background-radius: 20;
     -fx-font-size: 14;
     -fx-font-family: "Poppins";
+    -fx-wrap-text: true;
 }

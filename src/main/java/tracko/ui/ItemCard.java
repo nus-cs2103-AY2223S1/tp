@@ -46,7 +46,7 @@ public class ItemCard extends UiPart<Region> {
     @FXML
     private Label costPrice;
     @FXML
-    private FlowPane tags;
+    private HBox tags;
 
     /**
      * Creates a {@code ItemCode} with the given {@code Item} and index to display.
@@ -81,8 +81,15 @@ public class ItemCard extends UiPart<Region> {
 
         item.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
-                .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
+                .forEach(tag -> tags.getChildren().add(constructTags(tag.tagName)));
         tags.setPadding(new Insets(0, 10, 5, 0));
+    }
+
+    public Label constructTags(String tagName) {
+        Label tagLabel = new Label();
+        tagLabel.setText(tagName);
+        tagLabel.setWrapText(true);
+        return tagLabel;
     }
 
     @Override

@@ -11,7 +11,7 @@
 
 
 <HBox id="cardPane" fx:id="cardPane" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
-    <GridPane HBox.hgrow="ALWAYS">
+    <GridPane HBox.hgrow="ALWAYS" prefWidth="175">
         <columnConstraints>
             <ColumnConstraints hgrow="SOMETIMES" minWidth="10" prefWidth="150" />
         </columnConstraints>
@@ -48,7 +48,7 @@
                     <VBox id="descriptionBox">
                         <Label fx:id="description" styleClass="cell_small_label_item" text="\$description" />
                     </VBox>
-                    <FlowPane fx:id="tags"/>
+                    <HBox fx:id="tags" spacing="5.0"/>
                 </VBox>
             </HBox>
         </VBox>
