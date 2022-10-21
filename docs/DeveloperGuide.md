@@ -389,7 +389,8 @@ Guarantees: Gim will exit.
 
 ### Glossary
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
-* **Exercise**: Activity requiring physical effort, carried out to sustain or improve health and fitness
+* **Vim**: A Unix text editor, known for being lightweight, fast and efficient. It can be controlled entirely with the keyboard with no need for menus or a mouse.
+* **Exercise**: Physical activity done in a regular gym that is structured and repetitive, usually involving some weights.
 * **Reps**: Number of times you perform a specific exercise
 * **Sets**: Number of cycles of reps that you complete
 * **Weight**: Total weight (include barbell if applicable, exclude body weight)
