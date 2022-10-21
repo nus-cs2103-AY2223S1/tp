@@ -5,6 +5,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_SUBJECT;
 
 import java.util.stream.Stream;
+
 import seedu.address.logic.commands.PredictionCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Name;
@@ -30,7 +31,7 @@ public class PredictionCommandParser implements Parser<PredictionCommand> {
 
         if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_SUBJECT)
             || !argMultimap.getPreamble().isEmpty()) {
-          throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, PredictionCommand.MESSAGE_USAGE));
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, PredictionCommand.MESSAGE_USAGE));
         }
 
         Name name = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());

@@ -150,6 +150,12 @@ public class MainWindow extends UiPart<Stage> {
         }
     }
 
+    /**
+     * Opens the prediction window or focuses on it if it's already opened.
+     * Displays the predicted grade for the next assessment the student would take
+     * for the queried subject.
+     * @param predictedGrade the predicted grade to show
+     */
     @FXML
     public void handlePrediction(double predictedGrade) {
         if (!predictionWindow.isShowing()) {
@@ -158,7 +164,6 @@ public class MainWindow extends UiPart<Stage> {
             predictionWindow.focus();
         }
     }
-
 
     void show() {
         primaryStage.show();
