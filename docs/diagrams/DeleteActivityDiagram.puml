@@ -1,0 +1,32 @@
+@startuml
+start
+:User executes delete command;
+
+'Since the beta syntax does not support placing the condition outside the
+'diamond we place it as the true branch instead.
+
+if () then ([index is valid])
+    :Delete person at
+    specified index;
+    :Update UI to display
+    updated contact list;
+elseif () then ([name prefix is present])
+        if () then ([name occurs once])
+            :Delete person with
+            specified name;
+            :Update UI to display
+            updated contact list;
+        elseif () then ([name occurs more than once])
+            :Show error message
+            saying name occurs
+            more than once;
+        else ([name does not occur])
+            :Show error message
+            saying name is invalid;
+        endif;
+    else ([else])
+        :Show error message
+        saying index is invalid;
+    endif
+stop
+@enduml

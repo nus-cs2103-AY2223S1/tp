@@ -19,7 +19,9 @@
             <HBox spacing="5" alignment="CENTER_LEFT">
                 <Label fx:id="name" text="\$first" styleClass="cell_big_label" />
             </HBox>
-            <Label fx:id="birthday" styleClass="cell_small_label" text="\$birthday" />
+<!--            <Label fx:id="birthday" styleClass="cell_small_label" text="\$birthday" />-->
+            <Label fx:id="reminderTask" styleClass="cell_small_label" text="\$reminderTask" />
+            <Label fx:id="reminderDate" styleClass="cell_small_label" text="\$reminderDate" />
         </VBox>
     </GridPane>
 </HBox>
