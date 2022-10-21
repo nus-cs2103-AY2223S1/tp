@@ -15,7 +15,6 @@ import modtrekt.logic.commands.AddCommand;
 import modtrekt.logic.commands.AddTaskCommand;
 import modtrekt.logic.commands.CdModuleCommand;
 import modtrekt.logic.commands.Command;
-import modtrekt.logic.commands.EditTaskCommand;
 import modtrekt.logic.commands.ExitCommand;
 import modtrekt.logic.commands.HelpCommand;
 import modtrekt.logic.commands.RemoveCommand;
@@ -105,8 +104,6 @@ public class ModtrektParser {
             return new HelpCommand();
         case CdModuleCommand.COMMAND_WORD:
             return new CdCommandParser().parse(arguments);
-        case EditTaskCommand.COMMAND_WORD:
-            return new EditTaskCommandParser().parse(arguments);
         default:
             return null;
         }
