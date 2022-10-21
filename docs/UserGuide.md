@@ -64,20 +64,28 @@ HobbyList is a **desktop app for managing hobby activities, optimized for use vi
 * If a parameter is expected only once in the command, but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>
   e.g. if you specify `d/NUS Run d/NUS Biathlon`, only `d/NUS Biathlon` will be taken.
 
+* The date format for `[date/DATE]` should be `yyyy-mm-dd`. e.g. `date/2022-12-25`.
+
 * Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
 
 </div>
 
-### Adding a hobby activity: `add`
+### Getting help : `help`
+
+Shows a message explaining how to access the help page.
+
+Format: `help`.
+
+### Adding a hobby activity : `add`
 
 Adds a hobby activity to HobbyList.
 
-Format: `add n/NAME d/DESCRIPTION [t/TAG] [date/yyyy-mm-dd]`
+Format: `add n/NAME d/DESCRIPTION [t/TAG]... [date/DATE]`
 
 Examples:
-* `add n/42km run d/NUS Run event [t/sport]`
-* `add n/Badminton d/play badminton [t/sport] [date/2022-09-09] `
+* `add n/42km run d/NUS Run event t/sport`
+* `add n/Badminton d/play badminton t/sport date/2022-10-19`
 
 ### Listing all hobby activities : `list`
 
@@ -99,7 +107,7 @@ Example:
 
 ### Finding a command with keywords: `find`
 
-Shows a list of all hobby activities whose names contain any of the specified keywords.
+Shows a list of all hobby activities whose names or descriptions contain any of the specified keywords.
 
 Format: `find KEYWORD`
 
@@ -107,6 +115,36 @@ Format: `find KEYWORD`
 
 Example:
 * `find run`
+* `find mystery novel`
+
+### Finding activities by tags : `filter`
+
+Shows a list of all hobby activities whose tags match the one specified in the command.
+
+Format: `filter KEYWORD`
+
+* The keywords are case-insensitive.
+
+Example:
+* `filter book`
+* `filter anime`
+
+### Editing an activity : `edit`
+
+Edits a specified activity from HobbyList.
+
+Format: `edit INDEX [n/NAME] [d/DESCRIPTION] [t/TAGS]... [date/DATE]`
+
+* Edits the person at the specified INDEX. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …
+* At least one of the optional fields must be provided.
+* Existing values will be updated to the input values.
+* When editing tags, the existing tags of the activity will be removed i.e. adding of tags is not cumulative.
+* You can remove all the activity's tags by typing `t/` without specifying any tags after it.
+
+Examples:
+
+* `edit 1 n/A Clash of Kings d/Epic fantasy novel by George R. R. Martin.` Edits the name and description of the 1st activity to be `A Clash of Kings` and `Epic fantasy novel by George R. R. Martin.` respectively.
+* `edit 2 date/2022-10-21 t/` Removes the tags of the second activity and sets the date to `2022-10-21`.
 
 ### Deleting an activity : `delete`
 
@@ -122,7 +160,7 @@ Example:
 
 * `delete 1`
 
-### Deleting all activities: clear
+### Deleting all activities: `clear`
 
 Deletes all activities from HobbyList
 
@@ -142,6 +180,10 @@ Example:
 
 * `exit`
 
+### Renaming the commands
+
+If you do not like the names of the command, you can select `preferences` in the menu bar and `edit aliases` to rename any of the commands.
+
 ### Saving the data
 
 HobbyList data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
@@ -158,23 +200,21 @@ If your changes to the data file makes its format invalid, HobbyList will discar
 
 ## FAQ
 
-**Q**: How do I transfer my data to another Computer?<br>
+**Q**: How do I transfer my data to another computer?<br>
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous HobbyList home folder.
 
 --------------------------------------------------------------------------------------------------------------------
 
 ## Command summary
 
-
-| Action                    | Format                                      |
-|---------------------------|---------------------------------------------|
-| **Add an activity**       | `add n/NAME d/DESCRIPTION [t/TAG] [d/DATE]` |
-| **Find an activity**      | `find KEYWORD`                              | 
-| **Edit**                  | `edit n/NAME` `edit INDEX d/DESCRIPTION`    | 
-|                           | `edit INDEX t/TAG` `edit INDEX date/DATE`   | 
-| **Delete an activity**    | `delete INDEX`                              |
-| **List all activities**   | `list`                                      |
-| **Delete all activities** | `clear`                                     |
-| **Exit**                  | `exit`                                      |
-
-
+| Action     | Format                                                                                                                                             |
+|------------|----------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Add**    | `add n/NAME d/DESCRIPTION [t/TAG]... [date/DATE]` <br/>e.g., `add n/poutine d/at some place t/food date/2022-09-25`                                | 
+| **Clear**  | `clear`                                                                                                                                            |
+| **Delete** | `delete INDEX`                                                                                                                                     |
+| **Edit**   | `edit INDEX [n/NAME] [d/DESCRIPTION] [t/TAGS]... [date/DATE]`<br/>e.g., `edit 1 n/Bukit Timah Nature Reserve d/3 hour hike t/hike date/2022-08-17` |
+| **Exit**   | `exit`                                                                                                                                             |
+| **Find**   | `find KEYWORDS`                                                                                                                                    |
+| **Filter** | `filter KEYWORD`                                                                                                                                   |
+| **List**   | `list`                                                                                                                                             |
+| **Help**   | `help`                                                                                                                                             |
