@@ -283,7 +283,7 @@ The activity diagram below illustrates how the `delete` operation works.
 
 
 ### \[Insert Numbering\] Find feature
-The Edit feature is facilitated by `LogicManager`. The `FindCommandParser` parses the command arguments, and returns
+The Find feature is facilitated by `LogicManager`. The `FindCommandParser` parses the command arguments, and returns
 an `FindCommand` that is executed by the `LogicManager`.
 
 This feature allows the user to find a specific user by field, or generally search for occurrences of keywords in all fields.
@@ -291,17 +291,17 @@ The feature also supports fuzzy search based on `Soundex` when searching by name
 
 **Below is a sample usage and how the edit sequence behaves at each step.**
 
-1. User chooses the Customer he/ she wants to edit and enters the command `find Aschcroft`
+1. User chooses the Customer he/ she wants to find and enters the command `find Aschcroft`
 2. The `LogicManager` redirects this command to `AddressBookParser`, which parses the command via `FindCommandParser` and
    returns the `FindCommand` containing the predicate
 3. The `LogicManager` executes the `FindCommand` and update the filtered list with matching `Person`
 4. The `CommandResult` reflects the number of persons listed
 
-The following sequence diagram shows how the edit feature works, following the flow of entering the command `find Aschcroft`:
+The following sequence diagram shows how the find feature works, following the flow of entering the command `find Aschcroft`:
 
 ![FindSequenceDiagram](images/FindSequenceDiagram.png)
 
-The following activity diagram summarizes the flow of when a user enters an edit command:
+The following activity diagram summarizes the flow of when a user enters a find command:
 
 ![FindActivityDiagram](images/FindCommandActivityDiagram.png)
 
@@ -312,7 +312,7 @@ or just search for occurrence of keywords (including name) vaguely.
   | Pros/Cons | Description                                                                     | Examples                                                                                    |
       |---------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------|
   | Pros      | User can find the desired entry easily with a short command                     | For searching a customer with phone number `88888888`, the command `find 88888888` will do. |
-  | Pros      | User can also search for a specific entry when needed.                          | For searching the specific customer with phone number, use `find p/88888888`.               |
+  | Pros      | User can also search for a specific entry when needed.                          | For searching the specific customer with email address, use `find e/address@example.com`.   |
   | Cons      | User can exploit the software and get access to irrelevant customer information | User can list out all customers with digit `8` in their phone number by `find 8`.           |
 
 
