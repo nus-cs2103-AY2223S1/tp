@@ -157,23 +157,18 @@ This section describes some noteworthy details on how certain features are imple
 ### View Feature
 <ins>Implementation</ins>
 
-Similar to the `help` command, the `view` command involves operations within the UI to display/hide the tutor details 
-panel. The communication between the logic and UI classes is facilitated by the `CommandResult` class, where the 
-following field has been added:
+Similar to the `help` command, the `view` command involves operations within the UI to display/hide the tutor details panel. The communication between the logic and UI classes is facilitated by the `CommandResult` class, where the following field has been added:
 - `CommandResult#isView` - Indicates if the current command is a `view` command.
 
-Given below is an example usage scenario when the user enters a `view` command in the command box and how the view 
-mechanism behaves at each step (omitting the parsing details).
+Given below is an example usage scenario when the user enters a `view` command in the command box and how the view mechanism behaves at each step (omitting the parsing details).
 
 Step 1: The user enters the command `view 1`.
 
 Step 2: Upon parsing, a new `ViewCommand` based on the valid index.
 
-Step 3: When the `ViewCommand` is executed, a new `CommandResult` with `isView` set to `true` is created and 
-`ModelManager#tutorToView` is updated with the selected tutor.
+Step 3: When the `ViewCommand` is executed, a new `CommandResult` with `isView` set to `true` is created and `ModelManager#tutorToView` is updated with the selected tutor.
 
-Step 4: Upon recognising the `CommandResult` is of `isView` type, `MainWindow` calls `logic#getTutorToView()` to get the 
-tutor to be displayed, which is passed into `MainWindow#handleView(Tutor tutor)`.
+Step 4: Upon recognising the `CommandResult` is of `isView` type, `MainWindow` calls `logic#getTutorToView()` to get the tutor to be displayed, which is passed into `MainWindow#handleView(Tutor tutor)`.
 
 Step 5: This causes the `TutorDetailsPanel` of the `tutor` to be set as visible, resulting in the side panel being displayed.
 
