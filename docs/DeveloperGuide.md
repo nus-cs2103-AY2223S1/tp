@@ -172,11 +172,11 @@ The following class diagram shows how the `SortField` class integrates with the 
 ![SortFieldClassDiagram](images/SortFieldClassDiagram.png)
 
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** Sorting is performed directly on the underlying `UniquePersonList` object, which means the sorted result is **permanent**. i.e. Not a temporary result for the `listPersons` command. For example, if `listPersons s/n` and `listPersons` are executed back-to-back, the result of the second `listPersons` command will still display the sorted results from the first `listPersons s/n` command because the sorted result is permanent.<br><br>
+<div markdown="span" class="alert alert-info">:information_source: **Note:** Sorting is performed directly on the underlying `UniquePersonList` object, which means the sorted result is **permanent**. For example, if `listPersons s/n` and `listPersons` are executed back-to-back, the result of the second `listPersons` command will display the sorted results from the first `listPersons s/n` command because the sorted result is permanent.<br><br>
 
    Ideally, sorting should be a "view" level operation that doesn't change the underlying persons list. However, the way the UI is designed makes it difficult to implement sorting as such. The issue is that the UI is **hardcoded** to only display persons from the `UniquePersonList` object. As such, any changes to the persons list must be made directly to the `UniquePersonList` object. i.e. A modified copy of the persons list cannot be passed to the UI during runtime since the UI is hardcoded to show only the `UniquePersonList` object.<br><br>
 
-   Therefore given the constraints of the UI, we have to implement sorting as a **permanent operation**.
+   Therefore, given the constraints of the UI, sorting is implemented as a **permanent operation**.
 </div>
 
 
