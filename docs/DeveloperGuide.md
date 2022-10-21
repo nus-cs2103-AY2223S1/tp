@@ -8,8 +8,8 @@ title: Developer Guide
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Acknowledgements**
-
 * {list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the original source as well}
+- This project uses the [PrettyTime NLP library](https://www.ocpsoft.org/prettytime/nlp/) to enable simple parsing and computer understanding of natural language in terms of dates.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -182,6 +182,38 @@ The `delete` feature is implemented by acting on the current filtered`TaskPanel`
 4. The `Task` to be deleted is fetched from the `TaskPanel` using the specified `Index`, using its zero-based form.
 5. The `Task` is deleted from the `Model`.
 6. The `GUI` is updated to show the new `TaskPanel` with the `Task` deleted.
+
+### List Tasks feature
+
+#### Implementation
+
+The list tasks feature filters the tasks in the task panel according to the user input. For example, users can choose to view only tasks containing a certain keyword, e.g. 'fix'.
+
+Other filter parameters are also available, which can filter tasks by their completion status, due date and assigned contacts.
+
+The following sequence diagram shows how the operation works:
+
+![ListTasksSequenceDiagram](images/ListTasksSequenceDiagram.png)
+
+As observed above, the execution flow for this command is quite straightforward.
+
+1. The user enters a list tasks command
+2. The `LogicManager` detects that this is a `TaskCommand`, and therefore passes the user input to the `TaskPanelParser`
+2. The `TaskPanelParser` detects the `ListTaskCommand.COMMAND_WORD`, and therefore parses the command arguments via a `ListTaskCommandParser`
+3. The relevant parameters are used to create an instance of a `ListTaskCommandd`, which is then returned to the `TaskPanelParser`
+4. The `LogicManager` executes the command
+5. The command generates the appropriate predicate based on its parameters, and filters the `Model`'s task list.
+
+Most of the work is done in the parsing step by the `ListTaskCommandParser`, and the execution step to generate the right predicate.
+
+The `ListTaskCommandParser` relies on the `ArgumentMultimap` abstraction, which helps to tokenize the user input by pre-specified prefixes. For example, the `before` prefix denotes that the user wishes to filter tasks that are before a certain deadline. Other prefixes include `-a` and `-c`, which function as flags to specify if all tasks should be shown (including completed ones), or to show completed or incomplete tasks only.
+
+:information_source: **Note:** If both the `-a` and `-c` flags are specified, the `-c` flag takes precedence. This is because the `ListTasksCommand` combines multiple predicates with a logical `AND`. Therefore, the `-a` flag becomes redundant if another more specific flag is also included i.e. `-c`.
+
+The `ListTaskCommandParser` also relies on the `PrettyTime NLP` open-source library to parse dates described in plain English. This is relevant for the `before` and `after` prefixes.
+
+Lastly, upon execution, the `ListTaskCommand` builds a single predicate to be used to filter the `Model`'s task list. As mentioned above, multiple filters are combined with the logical `AND`. For example, `task list fix before tomorrow -c` shows all tasks that are completed, contain the keyowrd 'fix', **and** has a due date that is before tomorrow.
+
 
 ### \[Proposed\] Undo/redo feature
 

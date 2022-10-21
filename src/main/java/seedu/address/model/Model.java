@@ -21,6 +21,12 @@ public interface Model {
     /** {@code Predicate} that always evaluate to false */
     Predicate<Task> PREDICATE_HIDE_ALL_TASKS = unused -> false;
 
+    /** {@code Predicate} that filters out incomplete tasks */
+    Predicate<Task> PREDICATE_COMPLETED_TASKS = Task::getCompleted;
+
+    /** {@code Predicate} that filters out completed tasks */
+    Predicate<Task> PREDICATE_INCOMPLETE_TASKS = task -> !task.getCompleted();
+
     /**
      * Replaces user prefs data with the data in {@code userPrefs}.
      */
