@@ -32,7 +32,7 @@ public class EditTaskCommandParser implements Parser<EditTaskCommand> {
     public Command parse(String args) throws ParseException {
         ParsedCommand command = new CommandParserBuilder()
                 .requiredPrefixes(PREFIX_TASK)
-                .usageMessage(EditTaskCommand.MESSAGE_USAGE)
+                .usageMessage("hi")
                 .optionalPrefixes(PREFIX_DEADLINE, PREFIX_MOD_CODE, PREFIX_TASK_DESCRIPTION)
                 .build()
                 .parse(args);
