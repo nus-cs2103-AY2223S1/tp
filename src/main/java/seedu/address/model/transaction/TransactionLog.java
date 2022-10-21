@@ -71,4 +71,31 @@ public class TransactionLog {
         return FXCollections.unmodifiableObservableList(internalList);
     }
 
+    /**
+     * Creates an observable list of transactions to be used by MainWindow.
+     * @return an unmodifiableObservableList of sell transactions.
+     */
+    public ObservableList<Transaction> getSellTransactionList() {
+        ObservableList<Transaction> internalList = FXCollections.observableArrayList();
+        for (Transaction transaction : transactionList) {
+            if (transaction instanceof SellTransaction) {
+                internalList.add(transaction);
+            }
+        }
+        return FXCollections.unmodifiableObservableList(internalList);
+    }
+
+    /**
+     * Creates an observable list of transactions to be used by MainWindow.
+     * @return an unmodifiableObservableList of buy transactions.
+     */
+    public ObservableList<Transaction> getBuyTransactionList() {
+        ObservableList<Transaction> internalList = FXCollections.observableArrayList();
+        for (Transaction transaction : transactionList) {
+            if (transaction instanceof BuyTransaction) {
+                internalList.add(transaction);
+            }
+        }
+        return FXCollections.unmodifiableObservableList(internalList);
+    }
 }
