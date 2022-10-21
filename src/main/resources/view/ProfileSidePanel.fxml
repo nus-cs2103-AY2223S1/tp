@@ -44,11 +44,6 @@
             </VBox>
          </children>
       </HBox>
-      <HBox alignment="CENTER" prefHeight="50.0" prefWidth="131.0" style="-fx-border-color: transparent; -fx-padding: 0;">
-         <children>
-            <Label fx:id="inspirationalQuote1" alignment="CENTER" contentDisplay="CENTER" prefHeight="47.0" prefWidth="120.0" styleClass="cap" text="CAP: -" textFill="WHITE" wrapText="true" HBox.hgrow="ALWAYS" />
-         </children>
-      </HBox>
     </children>
    <padding>
       <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
