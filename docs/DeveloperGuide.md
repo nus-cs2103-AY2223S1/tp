@@ -288,6 +288,32 @@ The following activity diagram summarizes what happens when a user executes the 
     * Cons: User would have to manually select each client and filter the transactions.
 
 _{more aspects and alternatives to be added}_
+
+--------------------------------------------------------------------------------------------------------------
+### Editing feature for transactions
+#### Implementation
+The edit transaction mechanism is facilitated by EditTransactionCommand which extends from `EditCommand` (which extends from `Command`) and
+`EditCommandParser` which extends from `Parser`. To invoke the edit command, `EditCommandParser` will parse the arguments from user input with
+`EditCommandParser#parse()` and returns the edit command if the arguments are valid.
+
+`EditTransactionCommand` implements the `EditTransactionCommand#execute()` operation which executes the command and returns the result
+message in a `CommandResult` object. 
+
+The operation is exposed in the `Logic` interface as `Logic#execute()`.
+
+Give below is the usage scenario and how the edit mechanism behaves at each step.
+
+Step 1. The user launches the application. The `UiManager` will call on the `MainWindow` to invoke the UI which displays the clients.
+
+Step 2. The user executes `view 1` command to focus on the client at index 1 and see the client's list of transactions.
+
+Step 3. The user executes `edit 2 m/transaction q/10` command to edit the information of transaction at index 2 in the focused client's transaction list.
+This is done by accessing the `TransactionLog` of the focused client, and executing `TransactionLog#setTransaction(index, editedTransaction)`
+
+The following sequence diagram shows how the edit operation works in Logic Manager:
+
+![EditTransactionSequenceDiagram](images/EditTransactionSequenceDiagram.png)
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Documentation, logging, testing, configuration, dev-ops**
