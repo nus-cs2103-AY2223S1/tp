@@ -10,7 +10,6 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_FLAG;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
-import java.util.function.Predicate;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.task.ListTasksCommand;
@@ -19,9 +18,7 @@ import seedu.address.logic.parser.ArgumentTokenizer;
 import seedu.address.logic.parser.Parser;
 import seedu.address.logic.parser.TaskParserUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.Model;
 import seedu.address.model.task.Deadline;
-import seedu.address.model.task.Task;
 
 /**
  * Parses input arguments and creates a new ListTasksCommand object
