@@ -4,11 +4,13 @@ import static java.util.Objects.requireNonNull;
 import static tracko.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
+import java.util.Comparator;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
+import javafx.collections.transformation.SortedList;
 import tracko.commons.core.GuiSettings;
 import tracko.commons.core.LogsCenter;
 import tracko.model.item.Item;
@@ -24,6 +26,7 @@ public class ModelManager implements Model {
     private final UserPrefs userPrefs;
     private final FilteredList<Order> filteredOrders;
     private final FilteredList<Item> filteredItems;
+    private final SortedList<Order> sortedOrders;
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
@@ -37,6 +40,7 @@ public class ModelManager implements Model {
         this.userPrefs = new UserPrefs(userPrefs);
         this.trackO = new TrackO(trackO);
         this.filteredOrders = new FilteredList<>(this.trackO.getOrderList());
+        this.sortedOrders = new SortedList<>(filteredOrders);
         this.filteredItems = new FilteredList<>(this.trackO.getInventoryList());
     }
 
@@ -123,6 +127,19 @@ public class ModelManager implements Model {
     public void updateFilteredOrderList(Predicate<Order> predicate) {
         requireNonNull(predicate);
         filteredOrders.setPredicate(predicate);
+    }
+
+    //=========== Sorted Order List Accessors =============================================================
+
+    @Override
+    public ObservableList<Order> getSortedOrderList() {
+        return sortedOrders;
+    }
+
+    @Override
+    public void updateSortedOrderList(Comparator<Order> comparator) {
+        requireNonNull(comparator);
+        sortedOrders.setComparator(comparator);
     }
 
     // ITEM METHODS ==========================================================================================
