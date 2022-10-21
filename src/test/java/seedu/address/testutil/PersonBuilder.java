@@ -3,6 +3,7 @@ package seedu.address.testutil;
 import java.util.HashSet;
 import java.util.Set;
 
+import javafx.util.Pair;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Birthday;
 import seedu.address.model.person.CriticalIllnessInsurance;
@@ -32,7 +33,6 @@ public class PersonBuilder {
     public static final boolean DEFAULT_DISABILITY_INSURANCE = false;
     public static final boolean DEFAULT_CRITICAL_ILLNESS_INSURANCE = false;
     public static final boolean DEFAULT_LIFE_INSURANCE = false;
-    public static final String DEFAULT_REMINDER_TASK = "default reminder";
 
     private Name name;
     private Phone phone;
@@ -44,7 +44,7 @@ public class PersonBuilder {
     private Insurance criticalIllnessInsurance;
     private Insurance lifeInsurance;
     private Set<Tag> tags;
-    private Reminder reminders;
+    private Set<Reminder> reminders;
 
     /**
      * Creates a {@code PersonBuilder} with the default details.
@@ -60,7 +60,7 @@ public class PersonBuilder {
         criticalIllnessInsurance = new CriticalIllnessInsurance(DEFAULT_CRITICAL_ILLNESS_INSURANCE);
         lifeInsurance = new LifeInsurance(DEFAULT_LIFE_INSURANCE);
         tags = new HashSet<>();
-        reminders = new Reminder(DEFAULT_REMINDER_TASK);
+        reminders = new HashSet<>();
     }
 
     /**
@@ -77,7 +77,7 @@ public class PersonBuilder {
         criticalIllnessInsurance = personToCopy.getCriticalIllnessInsurance();
         lifeInsurance = personToCopy.getLifeInsurance();
         tags = new HashSet<>(personToCopy.getTags());
-        reminders = personToCopy.getReminders();
+        reminders = new HashSet<>(personToCopy.getReminders());
     }
 
     /**
@@ -163,8 +163,9 @@ public class PersonBuilder {
     /**
      * Sets the {@code Reminder} of the {@code Person} that we are building.
      */
-    public PersonBuilder withReminders(String task) {
-        this.reminders = new Reminder(task);
+    @SafeVarargs
+    public final PersonBuilder withReminders(Pair<String, String>... reminders) {
+        this.reminders = SampleDataUtil.getReminderSet(reminders);
         return this;
     }
     /**

@@ -141,9 +141,11 @@ public class ParserUtil {
      *
      * @throws ParseException if the given {@code email} is invalid.
      */
-    public static Reminder parseReminders(String reminder) throws ParseException {
+    public static Set<Reminder> parseReminders(String reminder, String date) throws ParseException {
         requireNonNull(reminder);
         String trimmedReminder = reminder.trim();
-        return new Reminder(trimmedReminder);
+        Set<Reminder> reminderArrayList = new HashSet<>();
+        reminderArrayList.add(new Reminder(trimmedReminder, date));
+        return reminderArrayList;
     }
 }
