@@ -4,6 +4,11 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.time.format.ResolverStyle;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
@@ -12,6 +17,7 @@ import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.person.Person;
+import seedu.address.model.person.Session;
 
 /**
  * Represents the in-memory model of the address book data.
@@ -164,6 +170,33 @@ public class ModelManager implements Model {
         return addressBook.equals(other.addressBook)
                 && userPrefs.equals(other.userPrefs)
                 && filteredPersons.equals(other.filteredPersons);
+    }
+
+    public String getNextSession() {
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("uuuu-MM-dd EEE HH:mm")
+                .withResolverStyle(ResolverStyle.STRICT);
+        String timeNow = LocalDateTime.now().format(dtf).substring(11);
+        Session nowSession = new Session(timeNow);
+        System.out.println(timeNow);
+        HashMap<Session, Person> sessionPersonHashMap = new HashMap<>();
+        ArrayList<Session> compareList = new ArrayList<>();
+        this.updateFilteredPersonList(Model.PREDICATE_SHOW_ALL_PERSONS);
+        this.getFilteredPersonList().forEach(person -> {
+            if (!person.getSessionList().sessionList.isEmpty()) {
+                Session currSession = person.getSessionList().sessionList.get(0);
+                if (currSession.compareTo(nowSession) < 0) {
+                    compareList.add(currSession);
+                    sessionPersonHashMap.put(currSession, person);
+                }
+            }
+        });
+        if (compareList.isEmpty()) {
+            return "Don't worry, no next session for you!";
+        }
+        compareList.sort(Session::compareTo);
+        String res = "Next Session: " + sessionPersonHashMap.get(compareList.get(0)).getName()
+                + " " + compareList.get(0).toString();
+        return res;
     }
 
 }

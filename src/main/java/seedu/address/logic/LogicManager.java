@@ -65,6 +65,10 @@ public class LogicManager implements Logic {
     }
 
     @Override
+    public String getNextSession() {
+        return model.getNextSession();
+    }
+    @Override
     public Path getAddressBookFilePath() {
         return model.getAddressBookFilePath();
     }
