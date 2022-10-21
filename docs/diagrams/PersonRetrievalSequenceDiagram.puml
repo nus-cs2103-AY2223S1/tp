@@ -13,7 +13,7 @@ activate JsonAddressBookStorage
 JsonAddressBookStorage -> JsonSerializableAddressBook : toModelType()
 activate JsonSerializableAddressBook
 
-loop all JsonAdaptedPerson in persons
+loop until all JsonAdaptedPerson has been iterated through
     JsonSerializableAddressBook -> JsonAdaptedPerson : toModelType()
     activate JsonAdaptedPerson
     JsonAdaptedPerson --> JsonSerializableAddressBook : Person
