@@ -48,6 +48,9 @@ public class LogicManager implements Logic {
 
         try {
             storage.saveUninurseBook(model.getUninurseBook());
+            if (command.isUndoable()) {
+                model.makeSnapshot(commandResult);
+            }
         } catch (IOException ioe) {
             throw new CommandException(FILE_OPS_ERROR_MESSAGE + ioe, ioe);
         }
