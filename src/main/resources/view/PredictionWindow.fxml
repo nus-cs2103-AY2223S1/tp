@@ -21,7 +21,7 @@
 
             <HBox alignment="CENTER" fx:id="helpMessageContainer">
                 <children>
-                    <Label fx:id="helpMessage" text="Label">
+                    <Label fx:id="prediction" text="Label">
                         <HBox.margin>
                             <Insets right="5.0"/>
                         </HBox.margin>

@@ -34,6 +34,7 @@ public class MainWindow extends UiPart<Stage> {
     private PersonListPanel personListPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
+    private PredictionWindow predictionWindow;
 
     @FXML
     private StackPane commandBoxPlaceholder;
@@ -66,6 +67,7 @@ public class MainWindow extends UiPart<Stage> {
         setAccelerators();
 
         helpWindow = new HelpWindow();
+        predictionWindow = new PredictionWindow();
     }
 
     public Stage getPrimaryStage() {
@@ -148,6 +150,16 @@ public class MainWindow extends UiPart<Stage> {
         }
     }
 
+    @FXML
+    public void handlePrediction() {
+        if (!predictionWindow.isShowing()) {
+            predictionWindow.show();
+        } else {
+            predictionWindow.focus();
+        }
+    }
+
+
     void show() {
         primaryStage.show();
     }
@@ -181,6 +193,10 @@ public class MainWindow extends UiPart<Stage> {
 
             if (commandResult.isShowHelp()) {
                 handleHelp();
+            }
+
+            if (commandResult.isShowPrediction()) {
+                handlePrediction();
             }
 
             if (commandResult.isExit()) {

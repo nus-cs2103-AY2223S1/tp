@@ -24,7 +24,7 @@ public class PredictionWindow extends UiPart<Stage> {
     private Button copyButton;
 
     @FXML
-    private Label helpMessage;
+    private Label prediction;
 
     /**
      * Creates a new HelpWindow.
@@ -33,7 +33,6 @@ public class PredictionWindow extends UiPart<Stage> {
      */
     public PredictionWindow(Stage root) {
         super(FXML, root);
-        helpMessage.setText(HELP_MESSAGE);
     }
 
     /**
@@ -63,6 +62,7 @@ public class PredictionWindow extends UiPart<Stage> {
      */
     public void show() {
         logger.fine("Showing help page about the application.");
+        prediction.setText("hello");
         getRoot().show();
         getRoot().centerOnScreen();
     }

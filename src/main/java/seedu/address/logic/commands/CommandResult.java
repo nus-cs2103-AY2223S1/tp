@@ -2,6 +2,7 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 
+import java.security.PublicKey;
 import java.util.Objects;
 
 /**
@@ -57,6 +58,10 @@ public class CommandResult {
 
     public boolean isShowHelp() {
         return showHelp;
+    }
+
+    public boolean isShowPrediction() {
+        return showPrediction;
     }
 
     public boolean isExit() {

@@ -29,7 +29,7 @@ public class PredictionCommand extends Command {
     private final Subject subject;
 
     /**
-     *
+     * Creates a PredictionCommand to get the predicted score for a given student's next assessment
      */
     public PredictionCommand(Name name, Subject subject) {
         this.name = name;
@@ -38,6 +38,6 @@ public class PredictionCommand extends Command {
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
-        return new CommandResult(SHOWING_PREDICTION_MESSAGE, true, false);
+        return new CommandResult(SHOWING_PREDICTION_MESSAGE, false, false, true);
     }
 }
