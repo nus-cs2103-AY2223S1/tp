@@ -311,6 +311,10 @@ When calling the `parse` method of the `SortCommandParser`, the argument provide
 
 Later, when `LogicManager` `executes` the `SortCommand` created, the `SortCommand` will call one of the `sortApplicationList` methods provided by the `Model` interface for sorting the application list. Internally, the `Model` wraps its `ObservableList` of `Applications` inside a `SortedList`, so all it has to do is set an appropriate comparator on the `SortedList` to attain the desired sort order.
 
+#### Constraints of Sort Feature
+
+The user can only sort based on one field at a time. The sort also only persists for the current session, meaning the order of applications will be reset if the app is closed and reopened.
+
 #### Design Considerations
 
 Aspect: What method(s) to add to the `Model` interface:
