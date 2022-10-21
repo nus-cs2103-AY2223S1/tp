@@ -7,48 +7,55 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  * Represents a Tag in the address book.
  * Guarantees: immutable; name is valid as declared in {@link #isValidTagName(String)}
  */
-public class Tag {
+public enum Tag {
+    EAR("Ear"), NOSE("Nose"), THROAT("Throat");
 
-    public static final String MESSAGE_CONSTRAINTS = "Tags names should be alphanumeric";
-    public static final String VALIDATION_REGEX = "\\p{Alnum}+";
+    public static final String MESSAGE_CONSTRAINTS = "Tag names should be ear, nose or throat (not case sensitive).";
+    private String tagName;
 
-    public final String tagName;
-
-    /**
-     * Constructs a {@code Tag}.
-     *
-     * @param tagName A valid tag name.
-     */
-    public Tag(String tagName) {
+    Tag(String tagName) {
         requireNonNull(tagName);
         checkArgument(isValidTagName(tagName), MESSAGE_CONSTRAINTS);
         this.tagName = tagName;
     }
 
+    public String getTagName() {
+        return tagName;
+    }
+
+    @Override
+    public String toString() {
+        return tagName;
+    }
+
     /**
-     * Returns true if a given string is a valid tag name.
+     * Checks whether the given input is in the restricted list of possible names.
+     *
+     * @param test The given input.
+     * @return True if valid.
      */
     public static boolean isValidTagName(String test) {
-        return test.matches(VALIDATION_REGEX);
-    }
-
-    @Override
-    public boolean equals(Object other) {
-        return other == this // short circuit if same object
-                || (other instanceof Tag // instanceof handles nulls
-                && tagName.equals(((Tag) other).tagName)); // state check
-    }
-
-    @Override
-    public int hashCode() {
-        return tagName.hashCode();
+        return test.equalsIgnoreCase("ear")
+                || test.equalsIgnoreCase("nose")
+                || test.equalsIgnoreCase("throat");
     }
 
     /**
-     * Format state as text for viewing.
+     * Converts the given input to {@code Tag} if possible.
+     *
+     * @param tagName The given input.
+     * @return The resulting {@code Tag}.
      */
-    public String toString() {
-        return '[' + tagName + ']';
+    public static Tag convertToTag(String tagName) {
+        requireNonNull(tagName);
+        if (tagName.equalsIgnoreCase("ear")) {
+            return Tag.EAR;
+        } else if (tagName.equalsIgnoreCase("nose")) {
+            return Tag.NOSE;
+        } else if (tagName.equalsIgnoreCase("throat")) {
+            return Tag.THROAT;
+        } else {
+            throw new IllegalArgumentException(MESSAGE_CONSTRAINTS);
+        }
     }
-
 }
