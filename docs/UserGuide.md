@@ -41,28 +41,11 @@ RC4HDB is a **desktop app for managing RC4 housing related information, optimize
 * [Authors]()
 * [Command Summary]()
 
-* [Quick Start](#quick-start)
-* [Features](#features)
-    * [Viewing help : help](ug-pages/help/help.md#viewing-help--help)
-    * [Adding a resident : add](#adding-a-resident--add)
-    * [Listing all residents : list](#listing-all-residents--list)
-    * [Editing an existing resident : edit](#editing-an-existing-resident--edit)
-    * [Locating residents by names : find](#locating-residents-by-name--find)
-    * [Filtering residents by field : filter](#filtering-residents-by-field--filter)
-    * [Deleting a resident : delete](#deleting-a-resident--delete)
-    * [Clearing all entries : clear](#clearing-all-entries--clear)
-    * [Exiting the program : exit](#exiting-the-program--exit)
-    * [Saving the data](#saving-the-data)
-    * [Editing the data file](#editing-the-data-file)
-    * [Importing from csv file : import](#importing-from-csv-file--import)
-    * [Exporting to csv file : export](#exporting-to-csv-file--export)
-    * [CSV file format](#csv-file-format)
-    * [Format for resident fields](#format-for-resident-fields)
-    * [File commands](FileCommands.html)
-* [Keyboard Shortcuts](#keyboard-shortcuts)
-* [Frequently Asked Questions](#faq)
-* [Command Summary](#command-summary)
-
+<details open>
+<summary> test </summary>
+<br>
+Test
+</details>
 --------------------------------------------------------------------------------------------------------------------
 
 ## Quick start
