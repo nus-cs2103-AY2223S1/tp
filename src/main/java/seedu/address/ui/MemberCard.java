@@ -39,6 +39,7 @@ public class MemberCard extends UiPart<Region> {
         this.member = member;
         id.setText(displayedIndex + ". ");
         memberName.setText(member.getName().fullName);
+        memberName.setWrapText(true);
     }
 
     @Override
