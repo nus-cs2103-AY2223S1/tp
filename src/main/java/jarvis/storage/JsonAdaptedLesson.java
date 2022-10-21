@@ -73,6 +73,10 @@ public abstract class JsonAdaptedLesson {
         return notes;
     }
 
+    protected boolean isCompleted() {
+        return isCompleted;
+    }
+
     /**
      * Converts this Jackson-friendly adapted lesson object into the model's {@code Lesson} object.
      *

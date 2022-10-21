@@ -81,7 +81,7 @@ public class MainApp extends Application {
     }
 
     /**
-     * Returns a {@code ModelManager} with the data from {@code storage}'s student, task and lesson book and
+     * Returns a {@code ModelManager} with the data from {@code storage}'s student, task and lesson books and
      * {@code userPrefs}. <br> The data from the sample student, task or lesson book will be used instead if
      * {@code storage}'s student, task or lesson book is not found, or an empty student, task or lesson book will
      * be used instead if errors occur when reading {@code storage}'s student, task or lesson book.

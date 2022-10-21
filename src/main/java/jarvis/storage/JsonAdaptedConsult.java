@@ -60,8 +60,13 @@ public class JsonAdaptedConsult extends JsonAdaptedLesson {
                     LessonNotes.class.getSimpleName()));
         }
 
-        return new Consult(modelLessonDesc, this.getTimePeriod().toModelType(),
+        Consult consult = new Consult(modelLessonDesc, this.getTimePeriod().toModelType(),
                 new LessonAttendance(List.of(SampleStudentUtil.getSampleStudents())),
                 new LessonNotes(List.of(SampleStudentUtil.getSampleStudents())));
+
+        if (this.isCompleted()) {
+            consult.markAsCompleted();
+        }
+        return consult;
     }
 }

@@ -70,8 +70,12 @@ public class JsonAdaptedStudio extends JsonAdaptedLesson {
                     StudioParticipation.class.getSimpleName()));
         }
 
-        return new Studio(modelLessonDesc, this.getTimePeriod().toModelType(),
+        Studio studio = new Studio(modelLessonDesc, this.getTimePeriod().toModelType(),
                 new LessonAttendance(List.of(SampleStudentUtil.getSampleStudents())), studioParticipation,
                 new LessonNotes(List.of(SampleStudentUtil.getSampleStudents())));
+        if (this.isCompleted()) {
+            studio.markAsCompleted();
+        }
+        return studio;
     }
 }

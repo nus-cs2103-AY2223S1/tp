@@ -59,8 +59,12 @@ public class JsonAdaptedMasteryCheck extends JsonAdaptedLesson {
                     LessonNotes.class.getSimpleName()));
         }
 
-        return new MasteryCheck(modelLessonDesc, this.getTimePeriod().toModelType(),
+        MasteryCheck masteryCheck = new MasteryCheck(modelLessonDesc, this.getTimePeriod().toModelType(),
                 new LessonAttendance(List.of(SampleStudentUtil.getSampleStudents())),
                 new LessonNotes(List.of(SampleStudentUtil.getSampleStudents())));
+        if (this.isCompleted()) {
+            masteryCheck.markAsCompleted();
+        }
+        return masteryCheck;
     }
 }
