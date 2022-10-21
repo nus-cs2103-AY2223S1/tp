@@ -5,8 +5,8 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.phu.model.Model.PREDICATE_SHOW_ALL_INTERNSHIPS;
 import static seedu.phu.testutil.Assert.assertThrows;
-import static seedu.phu.testutil.TypicalInternships.ALICE;
-import static seedu.phu.testutil.TypicalInternships.BENSON;
+import static seedu.phu.testutil.TypicalInternships.AMAZON;
+import static seedu.phu.testutil.TypicalInternships.BYTEDANCE;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -85,13 +85,13 @@ public class ModelManagerTest {
 
     @Test
     public void hasInternship_internshipNotInInternshipBook_returnsFalse() {
-        assertFalse(modelManager.hasInternship(ALICE));
+        assertFalse(modelManager.hasInternship(AMAZON));
     }
 
     @Test
     public void hasInternship_internshipInInternshipBook_returnsTrue() {
-        modelManager.addInternship(ALICE);
-        assertTrue(modelManager.hasInternship(ALICE));
+        modelManager.addInternship(AMAZON);
+        assertTrue(modelManager.hasInternship(AMAZON));
     }
 
     @Test
@@ -106,17 +106,17 @@ public class ModelManagerTest {
 
     @Test
     public void canUndo_internshipBookIsUndoable_returnsTrue() {
-        modelManager.addInternship(ALICE);
+        modelManager.addInternship(AMAZON);
         modelManager.commitInternshipBookChange();
         assertTrue(modelManager.canUndoInternshipBook());
     }
 
     @Test
     public void undo_internshipBookIsUndoable_success() {
-        modelManager.addInternship(ALICE);
+        modelManager.addInternship(AMAZON);
         modelManager.commitInternshipBookChange();
         modelManager.undoInternshipBook();
-        assertFalse(modelManager.hasInternship(ALICE));
+        assertFalse(modelManager.hasInternship(AMAZON));
     }
 
     @Test
@@ -126,7 +126,7 @@ public class ModelManagerTest {
 
     @Test
     public void canRedo_internshipBookIsRedoable_returnsTrue() {
-        modelManager.addInternship(ALICE);
+        modelManager.addInternship(AMAZON);
         modelManager.commitInternshipBookChange();
         modelManager.undoInternshipBook();
         assertTrue(modelManager.canRedoInternshipBook());
@@ -134,17 +134,17 @@ public class ModelManagerTest {
 
     @Test
     public void redo_internshipBookIsRedoable_success() {
-        modelManager.addInternship(ALICE);
+        modelManager.addInternship(AMAZON);
         modelManager.commitInternshipBookChange();
         modelManager.undoInternshipBook();
         modelManager.redoInternshipBook();
-        assertTrue(modelManager.hasInternship(ALICE));
+        assertTrue(modelManager.hasInternship(AMAZON));
     }
 
     @Test
     public void equals() {
-        InternshipBook internshipBook = new InternshipBookBuilder().withInternship(ALICE)
-                .withInternship(BENSON).build();
+        InternshipBook internshipBook = new InternshipBookBuilder().withInternship(AMAZON)
+                .withInternship(BYTEDANCE).build();
         InternshipBook differentInternshipBook = new InternshipBook();
         UserPrefs userPrefs = new UserPrefs();
 
@@ -166,7 +166,7 @@ public class ModelManagerTest {
         assertFalse(modelManager.equals(new ModelManager(differentInternshipBook, userPrefs)));
 
         // different filteredList -> returns false
-        String[] keywords = ALICE.getName().fullName.split("\\s+");
+        String[] keywords = AMAZON.getName().fullName.split("\\s+");
         modelManager.updateFilteredInternshipList(new NameContainsKeywordsPredicate(Arrays.asList(keywords)));
         assertFalse(modelManager.equals(new ModelManager(internshipBook, userPrefs)));
 

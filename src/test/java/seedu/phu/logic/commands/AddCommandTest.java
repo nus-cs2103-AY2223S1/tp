@@ -57,26 +57,26 @@ public class AddCommandTest {
 
     @Test
     public void equals() {
-        Internship alice = new InternshipBuilder().withName("Alice").build();
-        Internship bob = new InternshipBuilder().withName("Bob").build();
-        AddCommand addAliceCommand = new AddCommand(alice);
-        AddCommand addBobCommand = new AddCommand(bob);
+        Internship amazon = new InternshipBuilder().withName("Amazon").build();
+        Internship blackrock = new InternshipBuilder().withName("Blackrock").build();
+        AddCommand addAmazonCommand = new AddCommand(amazon);
+        AddCommand addBlackrockCommand = new AddCommand(blackrock);
 
         // same object -> returns true
-        assertTrue(addAliceCommand.equals(addAliceCommand));
+        assertTrue(addAmazonCommand.equals(addAmazonCommand));
 
         // same values -> returns true
-        AddCommand addAliceCommandCopy = new AddCommand(alice);
-        assertTrue(addAliceCommand.equals(addAliceCommandCopy));
+        AddCommand addAmazonCommandCopy = new AddCommand(amazon);
+        assertTrue(addAmazonCommand.equals(addAmazonCommandCopy));
 
         // different types -> returns false
-        assertFalse(addAliceCommand.equals(1));
+        assertFalse(addAmazonCommand.equals(1));
 
         // null -> returns false
-        assertFalse(addAliceCommand.equals(null));
+        assertFalse(addAmazonCommand.equals(null));
 
         // different internship -> returns false
-        assertFalse(addAliceCommand.equals(addBobCommand));
+        assertFalse(addAmazonCommand.equals(addBlackrockCommand));
     }
 
     /**

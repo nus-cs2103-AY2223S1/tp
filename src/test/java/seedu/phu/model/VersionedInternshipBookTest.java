@@ -5,9 +5,9 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.phu.testutil.Assert.assertThrows;
-import static seedu.phu.testutil.TypicalInternships.ALICE;
-import static seedu.phu.testutil.TypicalInternships.BENSON;
-import static seedu.phu.testutil.TypicalInternships.CARL;
+import static seedu.phu.testutil.TypicalInternships.AMAZON;
+import static seedu.phu.testutil.TypicalInternships.BYTEDANCE;
+import static seedu.phu.testutil.TypicalInternships.CITADEL;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -25,14 +25,14 @@ import seedu.phu.testutil.InternshipBookBuilder;
  */
 public class VersionedInternshipBookTest {
     private final ReadOnlyInternshipBook emptyInternshipBook = new InternshipBookBuilder().build();
-    private final ReadOnlyInternshipBook internshipBookWithAlice = new InternshipBookBuilder()
-            .withInternship(ALICE).build();
-    private final ReadOnlyInternshipBook internshipBookWithBenson = new InternshipBookBuilder()
-            .withInternship(BENSON).build();
-    private final ReadOnlyInternshipBook internshipBookWithCarl = new InternshipBookBuilder()
-            .withInternship(CARL).build();
+    private final ReadOnlyInternshipBook internshipBookWithAmazon = new InternshipBookBuilder()
+            .withInternship(AMAZON).build();
+    private final ReadOnlyInternshipBook internshipBookWithBytedance = new InternshipBookBuilder()
+            .withInternship(BYTEDANCE).build();
+    private final ReadOnlyInternshipBook internshipBookWithCitadel = new InternshipBookBuilder()
+            .withInternship(CITADEL).build();
     private final ReadOnlyInternshipBook internshipBookWithMultipleValues = new InternshipBookBuilder()
-            .withInternship(ALICE).withInternship(BENSON).withInternship(CARL).build();
+            .withInternship(AMAZON).withInternship(BYTEDANCE).withInternship(CITADEL).build();
 
     @Test
     public void commit_singleInternshipBook_noStatesRemovedCurrentStateSaved() {
@@ -48,19 +48,19 @@ public class VersionedInternshipBookTest {
     @Test
     public void commit_multipleInternshipBookPointerAtEndOfStateList_noStatesRemovedCurrentStateSaved() {
         VersionedInternshipBook versionedInternshipBook = prepareInternshipBookList(
-                emptyInternshipBook, internshipBookWithAlice, internshipBookWithBenson);
+                emptyInternshipBook, internshipBookWithAmazon, internshipBookWithBytedance);
 
         versionedInternshipBook.commitChange();
         assertInternshipBookListStatus(versionedInternshipBook,
-                Arrays.asList(emptyInternshipBook, internshipBookWithAlice, internshipBookWithBenson),
-                internshipBookWithBenson,
+                Arrays.asList(emptyInternshipBook, internshipBookWithAmazon, internshipBookWithBytedance),
+                internshipBookWithBytedance,
                 Collections.emptyList());
     }
 
     @Test
     public void commit_multipleInternshipBookPointerNotAtEndOfStateList_statesAfterPointerRemovedCurrentStateSaved() {
         VersionedInternshipBook versionedInternshipBook = prepareInternshipBookList(
-                emptyInternshipBook, internshipBookWithAlice, internshipBookWithBenson);
+                emptyInternshipBook, internshipBookWithAmazon, internshipBookWithBytedance);
         shiftCurrentStatePointerLeftwards(versionedInternshipBook, 2);
 
         versionedInternshipBook.commitChange();
@@ -73,7 +73,7 @@ public class VersionedInternshipBookTest {
     @Test
     public void canUndo_multipleInternshipBookPointerAtEndOfStateList_returnsTrue() {
         VersionedInternshipBook versionedInternshipBook = prepareInternshipBookList(
-                emptyInternshipBook, internshipBookWithAlice, internshipBookWithBenson);
+                emptyInternshipBook, internshipBookWithAmazon, internshipBookWithBytedance);
 
         assertTrue(versionedInternshipBook.canUndo());
     }
@@ -81,7 +81,7 @@ public class VersionedInternshipBookTest {
     @Test
     public void canUndo_multipleInternshipBookPointerAtStartOfStateList_returnsTrue() {
         VersionedInternshipBook versionedInternshipBook = prepareInternshipBookList(
-                emptyInternshipBook, internshipBookWithAlice, internshipBookWithBenson);
+                emptyInternshipBook, internshipBookWithAmazon, internshipBookWithBytedance);
         shiftCurrentStatePointerLeftwards(versionedInternshipBook, 1);
 
         assertTrue(versionedInternshipBook.canUndo());
@@ -97,7 +97,7 @@ public class VersionedInternshipBookTest {
     @Test
     public void canUndo_multipleInternshipBookPointerAtStartOfStateList_returnsFalse() {
         VersionedInternshipBook versionedInternshipBook = prepareInternshipBookList(
-                emptyInternshipBook, internshipBookWithAlice, internshipBookWithBenson);
+                emptyInternshipBook, internshipBookWithAmazon, internshipBookWithBytedance);
         shiftCurrentStatePointerLeftwards(versionedInternshipBook, 2);
 
         assertFalse(versionedInternshipBook.canUndo());
@@ -106,7 +106,7 @@ public class VersionedInternshipBookTest {
     @Test
     public void canRedo_multipleInternshipBookPointerNotAtEndOfStateList_returnsTrue() {
         VersionedInternshipBook versionedInternshipBook = prepareInternshipBookList(
-                emptyInternshipBook, internshipBookWithAlice, internshipBookWithBenson);
+                emptyInternshipBook, internshipBookWithAmazon, internshipBookWithBytedance);
         shiftCurrentStatePointerLeftwards(versionedInternshipBook, 1);
 
         assertTrue(versionedInternshipBook.canRedo());
@@ -115,7 +115,7 @@ public class VersionedInternshipBookTest {
     @Test
     public void canRedo_multipleInternshipBookPointerAtStartOfStateList_returnsTrue() {
         VersionedInternshipBook versionedInternshipBook = prepareInternshipBookList(
-                emptyInternshipBook, internshipBookWithAlice, internshipBookWithBenson);
+                emptyInternshipBook, internshipBookWithAmazon, internshipBookWithBytedance);
         shiftCurrentStatePointerLeftwards(versionedInternshipBook, 2);
 
         assertTrue(versionedInternshipBook.canRedo());
@@ -131,7 +131,7 @@ public class VersionedInternshipBookTest {
     @Test
     public void canRedo_multipleInternshipBookPointerAtEndOfStateList_returnsFalse() {
         VersionedInternshipBook versionedInternshipBook = prepareInternshipBookList(
-                emptyInternshipBook, internshipBookWithAlice, internshipBookWithBenson);
+                emptyInternshipBook, internshipBookWithAmazon, internshipBookWithBytedance);
 
         assertFalse(versionedInternshipBook.canRedo());
     }
@@ -139,26 +139,26 @@ public class VersionedInternshipBookTest {
     @Test
     public void undo_multipleInternshipBookPointerAtEndOfStateList_success() {
         VersionedInternshipBook versionedInternshipBook = prepareInternshipBookList(
-                emptyInternshipBook, internshipBookWithAlice, internshipBookWithBenson);
+                emptyInternshipBook, internshipBookWithAmazon, internshipBookWithBytedance);
 
         versionedInternshipBook.undo();
         assertInternshipBookListStatus(versionedInternshipBook,
                 Collections.singletonList(emptyInternshipBook),
-                internshipBookWithAlice,
-                Collections.singletonList(internshipBookWithBenson));
+                internshipBookWithAmazon,
+                Collections.singletonList(internshipBookWithBytedance));
     }
 
     @Test
     public void undo_multipleInternshipBookPointerNotAtStartOfStateList_success() {
         VersionedInternshipBook versionedInternshipBook = prepareInternshipBookList(
-                emptyInternshipBook, internshipBookWithAlice, internshipBookWithBenson);
+                emptyInternshipBook, internshipBookWithAmazon, internshipBookWithBytedance);
         shiftCurrentStatePointerLeftwards(versionedInternshipBook, 1);
 
         versionedInternshipBook.undo();
         assertInternshipBookListStatus(versionedInternshipBook,
                 Collections.emptyList(),
                 emptyInternshipBook,
-                Arrays.asList(internshipBookWithAlice, internshipBookWithBenson));
+                Arrays.asList(internshipBookWithAmazon, internshipBookWithBytedance));
     }
 
     @Test
@@ -171,7 +171,7 @@ public class VersionedInternshipBookTest {
     @Test
     public void undo_multipleInternshipBookPointerAtStartOfStateList_throwsNoUndoableStateException() {
         VersionedInternshipBook versionedInternshipBook = prepareInternshipBookList(
-                emptyInternshipBook, internshipBookWithAlice, internshipBookWithBenson);
+                emptyInternshipBook, internshipBookWithAmazon, internshipBookWithBytedance);
         shiftCurrentStatePointerLeftwards(versionedInternshipBook, 2);
 
         assertThrows(VersionedInternshipBook.NoUndoableStateException.class, versionedInternshipBook::undo);
@@ -180,27 +180,27 @@ public class VersionedInternshipBookTest {
     @Test
     public void redo_multipleInternshipBookPointerNotAtEndOfStateList_success() {
         VersionedInternshipBook versionedInternshipBook = prepareInternshipBookList(
-                emptyInternshipBook, internshipBookWithAlice, internshipBookWithBenson);
+                emptyInternshipBook, internshipBookWithAmazon, internshipBookWithBytedance);
         shiftCurrentStatePointerLeftwards(versionedInternshipBook, 1);
 
         versionedInternshipBook.redo();
         assertInternshipBookListStatus(versionedInternshipBook,
-                Arrays.asList(emptyInternshipBook, internshipBookWithAlice),
-                internshipBookWithBenson,
+                Arrays.asList(emptyInternshipBook, internshipBookWithAmazon),
+                internshipBookWithBytedance,
                 Collections.emptyList());
     }
 
     @Test
     public void redo_multipleInternshipBookPointerAtStartOfStateList_success() {
         VersionedInternshipBook versionedInternshipBook = prepareInternshipBookList(
-                emptyInternshipBook, internshipBookWithAlice, internshipBookWithBenson);
+                emptyInternshipBook, internshipBookWithAmazon, internshipBookWithBytedance);
         shiftCurrentStatePointerLeftwards(versionedInternshipBook, 2);
 
         versionedInternshipBook.redo();
         assertInternshipBookListStatus(versionedInternshipBook,
                 Collections.singletonList(emptyInternshipBook),
-                internshipBookWithAlice,
-                Collections.singletonList(internshipBookWithBenson));
+                internshipBookWithAmazon,
+                Collections.singletonList(internshipBookWithBytedance));
     }
 
     @Test
@@ -213,7 +213,7 @@ public class VersionedInternshipBookTest {
     @Test
     public void redo_multipleInternshipBookPointerAtEndOfStateList_throwsNoRedoableStateException() {
         VersionedInternshipBook versionedInternshipBook = prepareInternshipBookList(
-                emptyInternshipBook, internshipBookWithAlice, internshipBookWithBenson);
+                emptyInternshipBook, internshipBookWithAmazon, internshipBookWithBytedance);
 
         assertThrows(VersionedInternshipBook.NoRedoableStateException.class, versionedInternshipBook::redo);
     }
@@ -222,7 +222,7 @@ public class VersionedInternshipBookTest {
     public void reverse_singleInternshipBook_success() {
         VersionedInternshipBook versionedInternshipBook = prepareInternshipBookList(internshipBookWithMultipleValues);
         ReadOnlyInternshipBook expectedInternshipBookAfterReversal = new InternshipBookBuilder()
-                .withInternship(CARL).withInternship(BENSON).withInternship(ALICE).build();
+                .withInternship(CITADEL).withInternship(BYTEDANCE).withInternship(AMAZON).build();
 
         versionedInternshipBook.reverseList();
         versionedInternshipBook.commitChange();
@@ -235,14 +235,14 @@ public class VersionedInternshipBookTest {
     @Test
     public void reverse_multipleInternshipBookStates_success() {
         VersionedInternshipBook versionedInternshipBook = prepareInternshipBookList(emptyInternshipBook,
-                internshipBookWithAlice, internshipBookWithMultipleValues);
+                internshipBookWithAmazon, internshipBookWithMultipleValues);
         ReadOnlyInternshipBook expectedInternshipBookAfterReversal = new InternshipBookBuilder()
-                .withInternship(CARL).withInternship(BENSON).withInternship(ALICE).build();
+                .withInternship(CITADEL).withInternship(BYTEDANCE).withInternship(AMAZON).build();
 
         versionedInternshipBook.reverseList();
         versionedInternshipBook.commitChange();
         assertInternshipBookListStatus(versionedInternshipBook,
-                Arrays.asList(emptyInternshipBook, internshipBookWithAlice),
+                Arrays.asList(emptyInternshipBook, internshipBookWithAmazon),
                 expectedInternshipBookAfterReversal,
                 Collections.singletonList(expectedInternshipBookAfterReversal));
     }
@@ -251,8 +251,8 @@ public class VersionedInternshipBookTest {
     public void sort_singleInternshipBook_success() {
         VersionedInternshipBook versionedInternshipBook = prepareInternshipBookList(internshipBookWithMultipleValues);
         ReadOnlyInternshipBook expectedInternshipBookAfterSortByPosition = new InternshipBookBuilder()
-                .withInternship(ALICE).withInternship(CARL).withInternship(BENSON).build();
-        // ALICE -> Backend Intern, CARL -> backend engineer, BENSON -> software engineer
+                .withInternship(AMAZON).withInternship(CITADEL).withInternship(BYTEDANCE).build();
+        // AMAZON -> Backend Intern, CITADEL -> backend engineer, BYTEDANCE -> software engineer
 
         versionedInternshipBook.sortInternshipList((x, y) -> x.compareTo(y, ComparableCategory.POSITION));
         versionedInternshipBook.commitChange();
@@ -265,15 +265,15 @@ public class VersionedInternshipBookTest {
     @Test
     public void sort_multipleInternshipBookStates_success() {
         VersionedInternshipBook versionedInternshipBook = prepareInternshipBookList(emptyInternshipBook,
-                internshipBookWithAlice, internshipBookWithMultipleValues);
+                internshipBookWithAmazon, internshipBookWithMultipleValues);
         ReadOnlyInternshipBook expectedInternshipBookAfterSortByPosition = new InternshipBookBuilder()
-                .withInternship(ALICE).withInternship(CARL).withInternship(BENSON).build();
-        // ALICE -> Backend Intern, CARL -> backend engineer, BENSON -> software engineer
+                .withInternship(AMAZON).withInternship(CITADEL).withInternship(BYTEDANCE).build();
+        // AMAZON -> Backend Intern, CITADEL -> backend engineer, BYTEDANCE -> software engineer
 
         versionedInternshipBook.sortInternshipList((x, y) -> x.compareTo(y, ComparableCategory.POSITION));
         versionedInternshipBook.commitChange();
         assertInternshipBookListStatus(versionedInternshipBook,
-                Arrays.asList(emptyInternshipBook, internshipBookWithAlice),
+                Arrays.asList(emptyInternshipBook, internshipBookWithAmazon),
                 expectedInternshipBookAfterSortByPosition,
                 Collections.singletonList(expectedInternshipBookAfterSortByPosition));
     }
@@ -281,10 +281,10 @@ public class VersionedInternshipBookTest {
     @Test
     public void equals() {
         VersionedInternshipBook versionedInternshipBook = prepareInternshipBookList(
-                internshipBookWithAlice, internshipBookWithBenson);
+                internshipBookWithAmazon, internshipBookWithBytedance);
 
         // same values -> returns true
-        VersionedInternshipBook copy = prepareInternshipBookList(internshipBookWithAlice, internshipBookWithBenson);
+        VersionedInternshipBook copy = prepareInternshipBookList(internshipBookWithAmazon, internshipBookWithBytedance);
         assertTrue(versionedInternshipBook.equals(copy));
 
         // same object -> returns true
@@ -298,12 +298,12 @@ public class VersionedInternshipBookTest {
 
         // different state list -> returns false
         VersionedInternshipBook differentInternshipBookList = prepareInternshipBookList(
-                internshipBookWithBenson, internshipBookWithCarl);
+                internshipBookWithBytedance, internshipBookWithCitadel);
         assertFalse(versionedInternshipBook.equals(differentInternshipBookList));
 
         // different current pointer index -> returns false
         VersionedInternshipBook differentCurrentStatePointer = prepareInternshipBookList(
-                internshipBookWithAlice, internshipBookWithBenson);
+                internshipBookWithAmazon, internshipBookWithBytedance);
         shiftCurrentStatePointerLeftwards(versionedInternshipBook, 1);
         assertFalse(versionedInternshipBook.equals(differentCurrentStatePointer));
     }

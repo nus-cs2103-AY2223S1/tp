@@ -3,7 +3,7 @@ package seedu.phu.storage;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static seedu.phu.storage.JsonAdaptedInternship.MISSING_FIELD_MESSAGE_FORMAT;
 import static seedu.phu.testutil.Assert.assertThrows;
-import static seedu.phu.testutil.TypicalInternships.BENSON;
+import static seedu.phu.testutil.TypicalInternships.BYTEDANCE;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -22,28 +22,28 @@ public class JsonAdaptedInternshipTest {
     private static final String INVALID_PHONE = "+651234";
     private static final String INVALID_INTERNSHIP = " ";
     private static final String INVALID_EMAIL = "example.com";
-    private static final String INVALID_TAG = "#friend";
+    private static final String INVALID_TAG = "#stock";
     private static final String INVALID_POSITION = "intern @Google";
     private static final String INVALID_DATE = "12/12/12";
     private static final String INVALID_APPLICATION_PROCESS = "application";
     private static final String INVALID_WEBSITE = "www.invalid.com";
 
-    private static final String VALID_NAME = BENSON.getName().toString();
-    private static final String VALID_PHONE = BENSON.getPhone().toString();
-    private static final String VALID_EMAIL = BENSON.getEmail().toString();
-    private static final String VALID_INTERNSHIP = BENSON.getRemark().toString();
-    private static final String VALID_POSITION = BENSON.getPosition().toString();
-    private static final String VALID_DATE = BENSON.getDate().toString();
-    private static final String VALID_APPLICATION_PROCESS = BENSON.getApplicationProcess().toString();
-    private static final String VALID_WEBSITE = BENSON.getWebsite().toString();
-    private static final List<JsonAdaptedTag> VALID_TAGS = BENSON.getTags().stream()
+    private static final String VALID_NAME = BYTEDANCE.getName().toString();
+    private static final String VALID_PHONE = BYTEDANCE.getPhone().toString();
+    private static final String VALID_EMAIL = BYTEDANCE.getEmail().toString();
+    private static final String VALID_INTERNSHIP = BYTEDANCE.getRemark().toString();
+    private static final String VALID_POSITION = BYTEDANCE.getPosition().toString();
+    private static final String VALID_DATE = BYTEDANCE.getDate().toString();
+    private static final String VALID_APPLICATION_PROCESS = BYTEDANCE.getApplicationProcess().toString();
+    private static final String VALID_WEBSITE = BYTEDANCE.getWebsite().toString();
+    private static final List<JsonAdaptedTag> VALID_TAGS = BYTEDANCE.getTags().stream()
             .map(JsonAdaptedTag::new)
             .collect(Collectors.toList());
 
     @Test
     public void toModelType_validInternshipDetails_returnsInternship() throws Exception {
-        JsonAdaptedInternship internship = new JsonAdaptedInternship(BENSON);
-        assertEquals(BENSON, internship.toModelType());
+        JsonAdaptedInternship internship = new JsonAdaptedInternship(BYTEDANCE);
+        assertEquals(BYTEDANCE, internship.toModelType());
     }
 
     @Test

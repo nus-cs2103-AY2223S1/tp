@@ -3,7 +3,7 @@ package seedu.phu.storage;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static seedu.phu.testutil.Assert.assertThrows;
-import static seedu.phu.testutil.TypicalInternships.ALICE;
+import static seedu.phu.testutil.TypicalInternships.AMAZON;
 import static seedu.phu.testutil.TypicalInternships.HOON;
 import static seedu.phu.testutil.TypicalInternships.IDA;
 import static seedu.phu.testutil.TypicalInternships.getTypicalInternshipBook;
@@ -77,7 +77,7 @@ public class JsonInternshipBookStorageTest {
 
         // Modify data, overwrite exiting file, and read back
         original.addInternship(HOON);
-        original.removeInternship(ALICE);
+        original.removeInternship(AMAZON);
         jsonInternshipBookStorage.saveInternshipBook(original, filePath);
         readBack = jsonInternshipBookStorage.readInternshipBook(filePath).get();
         assertEquals(original, new InternshipBook(readBack));

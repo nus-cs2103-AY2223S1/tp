@@ -3,11 +3,11 @@ package seedu.phu.model.internship;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.phu.logic.commands.CommandTestUtil.VALID_REMARK_BOB;
-import static seedu.phu.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
+import static seedu.phu.logic.commands.CommandTestUtil.VALID_REMARK_BLACKROCK;
+import static seedu.phu.logic.commands.CommandTestUtil.VALID_TAG_TRANSPORT;
 import static seedu.phu.testutil.Assert.assertThrows;
-import static seedu.phu.testutil.TypicalInternships.ALICE;
-import static seedu.phu.testutil.TypicalInternships.BOB;
+import static seedu.phu.testutil.TypicalInternships.AMAZON;
+import static seedu.phu.testutil.TypicalInternships.BLACKROCK;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -30,22 +30,22 @@ public class UniqueInternshipListTest {
 
     @Test
     public void contains_internshipNotInList_returnsFalse() {
-        assertFalse(uniqueInternshipList.contains(ALICE));
+        assertFalse(uniqueInternshipList.contains(AMAZON));
     }
 
     @Test
     public void contains_internshipInList_returnsTrue() {
-        uniqueInternshipList.add(ALICE);
-        assertTrue(uniqueInternshipList.contains(ALICE));
+        uniqueInternshipList.add(AMAZON);
+        assertTrue(uniqueInternshipList.contains(AMAZON));
     }
 
     @Test
     public void contains_internshipWithSameIdentityFieldsInList_returnsTrue() {
-        uniqueInternshipList.add(ALICE);
-        Internship editedAlice = new InternshipBuilder(ALICE).withRemark(VALID_REMARK_BOB)
-                .withTags(VALID_TAG_HUSBAND)
+        uniqueInternshipList.add(AMAZON);
+        Internship editedAmazon = new InternshipBuilder(AMAZON).withRemark(VALID_REMARK_BLACKROCK)
+                .withTags(VALID_TAG_TRANSPORT)
                 .build();
-        assertTrue(uniqueInternshipList.contains(editedAlice));
+        assertTrue(uniqueInternshipList.contains(editedAmazon));
     }
 
     @Test
@@ -55,60 +55,60 @@ public class UniqueInternshipListTest {
 
     @Test
     public void add_duplicateInternship_throwsDuplicateInternshipException() {
-        uniqueInternshipList.add(ALICE);
-        assertThrows(DuplicateInternshipException.class, () -> uniqueInternshipList.add(ALICE));
+        uniqueInternshipList.add(AMAZON);
+        assertThrows(DuplicateInternshipException.class, () -> uniqueInternshipList.add(AMAZON));
     }
 
     @Test
     public void setInternship_nullTargetInternship_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> uniqueInternshipList.setInternship(null, ALICE));
+        assertThrows(NullPointerException.class, () -> uniqueInternshipList.setInternship(null, AMAZON));
     }
 
     @Test
     public void setInternship_nullEditedInternship_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> uniqueInternshipList.setInternship(ALICE, null));
+        assertThrows(NullPointerException.class, () -> uniqueInternshipList.setInternship(AMAZON, null));
     }
 
     @Test
     public void setInternship_targetInternshipNotInList_throwsInternshipNotFoundException() {
-        assertThrows(InternshipNotFoundException.class, () -> uniqueInternshipList.setInternship(ALICE, ALICE));
+        assertThrows(InternshipNotFoundException.class, () -> uniqueInternshipList.setInternship(AMAZON, AMAZON));
     }
 
     @Test
     public void setInternship_editedInternshipIsSameInternship_success() {
-        uniqueInternshipList.add(ALICE);
-        uniqueInternshipList.setInternship(ALICE, ALICE);
+        uniqueInternshipList.add(AMAZON);
+        uniqueInternshipList.setInternship(AMAZON, AMAZON);
         UniqueInternshipList expectedUniqueInternshipList = new UniqueInternshipList();
-        expectedUniqueInternshipList.add(ALICE);
+        expectedUniqueInternshipList.add(AMAZON);
         assertEquals(expectedUniqueInternshipList, uniqueInternshipList);
     }
 
     @Test
     public void setInternship_editedInternshipHasSameIdentity_success() {
-        uniqueInternshipList.add(ALICE);
-        Internship editedAlice = new InternshipBuilder(ALICE).withRemark(VALID_REMARK_BOB)
-                .withTags(VALID_TAG_HUSBAND)
+        uniqueInternshipList.add(AMAZON);
+        Internship editedAmazon = new InternshipBuilder(AMAZON).withRemark(VALID_REMARK_BLACKROCK)
+                .withTags(VALID_TAG_TRANSPORT)
                 .build();
-        uniqueInternshipList.setInternship(ALICE, editedAlice);
+        uniqueInternshipList.setInternship(AMAZON, editedAmazon);
         UniqueInternshipList expectedUniqueInternshipList = new UniqueInternshipList();
-        expectedUniqueInternshipList.add(editedAlice);
+        expectedUniqueInternshipList.add(editedAmazon);
         assertEquals(expectedUniqueInternshipList, uniqueInternshipList);
     }
 
     @Test
     public void setInternship_editedInternshipHasDifferentIdentity_success() {
-        uniqueInternshipList.add(ALICE);
-        uniqueInternshipList.setInternship(ALICE, BOB);
+        uniqueInternshipList.add(AMAZON);
+        uniqueInternshipList.setInternship(AMAZON, BLACKROCK);
         UniqueInternshipList expectedUniqueInternshipList = new UniqueInternshipList();
-        expectedUniqueInternshipList.add(BOB);
+        expectedUniqueInternshipList.add(BLACKROCK);
         assertEquals(expectedUniqueInternshipList, uniqueInternshipList);
     }
 
     @Test
     public void setInternship_editedInternshipHasNonUniqueIdentity_throwsDuplicateInternshipException() {
-        uniqueInternshipList.add(ALICE);
-        uniqueInternshipList.add(BOB);
-        assertThrows(DuplicateInternshipException.class, () -> uniqueInternshipList.setInternship(ALICE, BOB));
+        uniqueInternshipList.add(AMAZON);
+        uniqueInternshipList.add(BLACKROCK);
+        assertThrows(DuplicateInternshipException.class, () -> uniqueInternshipList.setInternship(AMAZON, BLACKROCK));
     }
 
     @Test
@@ -118,13 +118,13 @@ public class UniqueInternshipListTest {
 
     @Test
     public void remove_internshipDoesNotExist_throwsInternshipNotFoundException() {
-        assertThrows(InternshipNotFoundException.class, () -> uniqueInternshipList.remove(ALICE));
+        assertThrows(InternshipNotFoundException.class, () -> uniqueInternshipList.remove(AMAZON));
     }
 
     @Test
     public void remove_existingInternship_removesInternship() {
-        uniqueInternshipList.add(ALICE);
-        uniqueInternshipList.remove(ALICE);
+        uniqueInternshipList.add(AMAZON);
+        uniqueInternshipList.remove(AMAZON);
         UniqueInternshipList expectedUniqueInternshipList = new UniqueInternshipList();
         assertEquals(expectedUniqueInternshipList, uniqueInternshipList);
     }
@@ -137,9 +137,9 @@ public class UniqueInternshipListTest {
 
     @Test
     public void setInternships_uniqueInternshipList_replacesOwnListWithProvidedUniqueInternshipList() {
-        uniqueInternshipList.add(ALICE);
+        uniqueInternshipList.add(AMAZON);
         UniqueInternshipList expectedUniqueInternshipList = new UniqueInternshipList();
-        expectedUniqueInternshipList.add(BOB);
+        expectedUniqueInternshipList.add(BLACKROCK);
         uniqueInternshipList.setInternships(expectedUniqueInternshipList);
         assertEquals(expectedUniqueInternshipList, uniqueInternshipList);
     }
@@ -151,17 +151,17 @@ public class UniqueInternshipListTest {
 
     @Test
     public void setInternships_list_replacesOwnListWithProvidedList() {
-        uniqueInternshipList.add(ALICE);
-        List<Internship> internshipList = Collections.singletonList(BOB);
+        uniqueInternshipList.add(AMAZON);
+        List<Internship> internshipList = Collections.singletonList(BLACKROCK);
         uniqueInternshipList.setInternships(internshipList);
         UniqueInternshipList expectedUniqueInternshipList = new UniqueInternshipList();
-        expectedUniqueInternshipList.add(BOB);
+        expectedUniqueInternshipList.add(BLACKROCK);
         assertEquals(expectedUniqueInternshipList, uniqueInternshipList);
     }
 
     @Test
     public void setInternships_listWithDuplicateInternships_throwsDuplicateInternshipException() {
-        List<Internship> listWithDuplicateInternships = Arrays.asList(ALICE, ALICE);
+        List<Internship> listWithDuplicateInternships = Arrays.asList(AMAZON, AMAZON);
         assertThrows(DuplicateInternshipException.class, ()
                 -> uniqueInternshipList.setInternships(listWithDuplicateInternships));
     }

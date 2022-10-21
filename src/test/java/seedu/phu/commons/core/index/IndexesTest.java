@@ -4,7 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assertions.fail;
 import static seedu.phu.testutil.Assert.assertThrows;
-import static seedu.phu.testutil.TypicalInternships.BENSON;
+import static seedu.phu.testutil.TypicalInternships.BYTEDANCE;
 import static seedu.phu.testutil.TypicalInternships.getTypicalInternships;
 
 import java.util.List;
@@ -45,7 +45,7 @@ public class IndexesTest {
 
             UniqueInternshipList returnedInternshipList = validIndexes.getAllInternshipsFromIndexes(internshipList);
             UniqueInternshipList expectedInternshipList = new UniqueInternshipList();
-            expectedInternshipList.add(BENSON);
+            expectedInternshipList.add(BYTEDANCE);
 
             assertTrue(returnedInternshipList.equals(expectedInternshipList));
         } catch (IllegalIndexException error) {

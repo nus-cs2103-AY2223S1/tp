@@ -36,6 +36,7 @@ public class MainWindow extends UiPart<Stage> {
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
     private StackedBarPanel stackedBarPanel;
+    private ReminderBarFooter reminderBarFooter;
 
     @FXML
     private StackPane commandBoxPlaceholder;
@@ -51,6 +52,9 @@ public class MainWindow extends UiPart<Stage> {
 
     @FXML
     private StackPane statusbarPlaceholder;
+
+    @FXML
+    private StackPane reminderbarPlaceholder;
 
     @FXML
     private StackPane viewCommandPanelPlaceholder;
@@ -127,6 +131,9 @@ public class MainWindow extends UiPart<Stage> {
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
 
+        reminderBarFooter = new ReminderBarFooter(logic.getInternshipBook());
+        reminderbarPlaceholder.getChildren().add(reminderBarFooter.getRoot());
+
         StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getInternshipBookFilePath());
         statusbarPlaceholder.getChildren().add(statusBarFooter.getRoot());
 
@@ -183,7 +190,7 @@ public class MainWindow extends UiPart<Stage> {
     /**
      * Executes the command and returns the result.
      *
-     * @see seedu.phu.logic.Logic#execute(String)
+     * @see Logic#execute(String)
      */
     private CommandResult executeCommand(String commandText) throws CommandException, ParseException {
         try {
@@ -191,6 +198,8 @@ public class MainWindow extends UiPart<Stage> {
             logger.info("Result: " + commandResult.getFeedbackToUser());
 
             resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
+            reminderBarFooter.setReminderText(logic.getInternshipBook());
+
             if (commandResult.isShowHelp()) {
                 handleHelp();
             }

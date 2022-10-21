@@ -23,7 +23,7 @@ public class FindCommandParserTest {
 
     @Test
     public void parse_validArgs_returnsFindCommand() {
-        KeywordList keywords1 = prepareKeywords("Alice", "Bob");
+        KeywordList keywords1 = prepareKeywords("Amazon", "Blackrock");
         KeywordList keywords2 = prepareKeywords("02-02-2022", "10-12-2022");
 
 
@@ -32,10 +32,10 @@ public class FindCommandParserTest {
                 new FindCommand(new ContainsKeywordsPredicate(
                         keywords1, FindableCategory.COMPANY_NAME));
 
-        assertParseSuccess(parser, "Alice Bob", expectedFindCommand);
+        assertParseSuccess(parser, "Amazon Blackrock", expectedFindCommand);
 
         // multiple whitespaces between keywords
-        assertParseSuccess(parser, " \n Alice \n \t Bob  \t", expectedFindCommand);
+        assertParseSuccess(parser, " \n Amazon \n \t Blackrock  \t", expectedFindCommand);
 
         // Tests all possible categories
         FindableCategory[] categories = FindableCategory.values();

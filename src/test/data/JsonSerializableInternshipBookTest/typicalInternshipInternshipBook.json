@@ -1,27 +1,27 @@
 {
   "_comment": "InternshipBook save file which contains the same Internship values as in TypicalInternships#getTypicalInternshipBook()",
   "internships" : [ {
-    "name" : "Alice Pauline",
+    "name" : "Amazon",
     "phone" : "94351253",
-    "email" : "alice@example.com",
-    "remark" : "123, Jurong West Ave 6, #08-111",
-    "tagged" : [ "friends" ],
+    "email" : "amazon@example.com",
+    "remark" : "1 George St, Singapore 049145",
+    "tagged" : [ "stocks" ],
     "position" : "Backend Intern",
-    "website" : "https://careers.google.com/jobs",
+    "website" : "https://www.amazon.jobs",
     "date" : "11-12-2022",
     "applicationProcess" : "APPLY"
   }, {
-    "name" : "Benson Meier",
+    "name" : "Bytedance",
     "phone" : "98765432",
     "email" : "johnd@example.com",
     "remark" : "311, Clementi Ave 2, #02-25",
-    "tagged" : [ "owesMoney", "friends" ],
+    "tagged" : [ "owesMoney", "stocks" ],
     "position" : "software engineer",
-    "website" : "https://www.grab.com/sg/about",
+    "website" : "https://jobs.bytedance.com/en/",
     "date" : "24-09-2022",
     "applicationProcess" : "ASSESSMENT"
   }, {
-    "name" : "Carl Kurz",
+    "name" : "Citadel",
     "phone" : "95352563",
     "email" : "heinz@example.com",
     "remark" : "wall street",
@@ -31,17 +31,17 @@
     "date" : "24-09-2022",
     "applicationProcess" : "APPLY"
   }, {
-    "name" : "Daniel Meier",
+    "name" : "DSTA",
     "phone" : "87652533",
     "email" : "cornelia@example.com",
     "remark" : "10th street",
-    "tagged" : [ "friends" ],
+    "tagged" : [ "stocks" ],
     "position" : "frontend engineer",
     "website" : "NA",
     "date" : "14-09-2022",
     "applicationProcess" : "INTERVIEW"
   } , {
-    "name" : "Elle Meyer",
+    "name" : "Ebay",
     "phone" : "9482224",
     "email" : "werner@example.com",
     "remark" : "michegan ave",
@@ -51,7 +51,7 @@
     "date" : "24-09-2022",
     "applicationProcess" : "APPLY"
   }, {
-    "name" : "Fiona Kunz",
+    "name" : "Fastly",
     "phone" : "9482427",
     "email" : "lydia@example.com",
     "remark" : "little tokyo",
@@ -61,7 +61,7 @@
     "date" : "24-09-2022",
     "applicationProcess" : "APPLY"
   }, {
-    "name" : "George Best",
+    "name" : "Google",
     "phone" : "9482442",
     "email" : "anna@example.com",
     "remark" : "4th street",

@@ -1,23 +1,23 @@
 package seedu.phu.testutil;
 
-import static seedu.phu.logic.commands.CommandTestUtil.VALID_APPLICATION_PROCESS_AMY;
-import static seedu.phu.logic.commands.CommandTestUtil.VALID_APPLICATION_PROCESS_BOB;
-import static seedu.phu.logic.commands.CommandTestUtil.VALID_DATE_AMY;
-import static seedu.phu.logic.commands.CommandTestUtil.VALID_DATE_BOB;
-import static seedu.phu.logic.commands.CommandTestUtil.VALID_EMAIL_AMY;
-import static seedu.phu.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
-import static seedu.phu.logic.commands.CommandTestUtil.VALID_NAME_AMY;
-import static seedu.phu.logic.commands.CommandTestUtil.VALID_NAME_BOB;
-import static seedu.phu.logic.commands.CommandTestUtil.VALID_PHONE_AMY;
-import static seedu.phu.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
-import static seedu.phu.logic.commands.CommandTestUtil.VALID_POSITION_AMY;
-import static seedu.phu.logic.commands.CommandTestUtil.VALID_POSITION_BOB;
-import static seedu.phu.logic.commands.CommandTestUtil.VALID_REMARK_AMY;
-import static seedu.phu.logic.commands.CommandTestUtil.VALID_REMARK_BOB;
-import static seedu.phu.logic.commands.CommandTestUtil.VALID_TAG_FRIEND;
-import static seedu.phu.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
-import static seedu.phu.logic.commands.CommandTestUtil.VALID_WEBSITE_AMY;
-import static seedu.phu.logic.commands.CommandTestUtil.VALID_WEBSITE_BOB;
+import static seedu.phu.logic.commands.CommandTestUtil.VALID_APPLICATION_PROCESS_APPLE;
+import static seedu.phu.logic.commands.CommandTestUtil.VALID_APPLICATION_PROCESS_BLACKROCK;
+import static seedu.phu.logic.commands.CommandTestUtil.VALID_DATE_APPLE;
+import static seedu.phu.logic.commands.CommandTestUtil.VALID_DATE_BLACKROCK;
+import static seedu.phu.logic.commands.CommandTestUtil.VALID_EMAIL_APPLE;
+import static seedu.phu.logic.commands.CommandTestUtil.VALID_EMAIL_BLACKROCK;
+import static seedu.phu.logic.commands.CommandTestUtil.VALID_NAME_APPLE;
+import static seedu.phu.logic.commands.CommandTestUtil.VALID_NAME_BLACKROCK;
+import static seedu.phu.logic.commands.CommandTestUtil.VALID_PHONE_APPLE;
+import static seedu.phu.logic.commands.CommandTestUtil.VALID_PHONE_BLACKROCK;
+import static seedu.phu.logic.commands.CommandTestUtil.VALID_POSITION_APPLE;
+import static seedu.phu.logic.commands.CommandTestUtil.VALID_POSITION_BLACKROCK;
+import static seedu.phu.logic.commands.CommandTestUtil.VALID_REMARK_APPLE;
+import static seedu.phu.logic.commands.CommandTestUtil.VALID_REMARK_BLACKROCK;
+import static seedu.phu.logic.commands.CommandTestUtil.VALID_TAG_STOCK;
+import static seedu.phu.logic.commands.CommandTestUtil.VALID_TAG_TRANSPORT;
+import static seedu.phu.logic.commands.CommandTestUtil.VALID_WEBSITE_APPLE;
+import static seedu.phu.logic.commands.CommandTestUtil.VALID_WEBSITE_BLACKROCK;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -31,31 +31,31 @@ import seedu.phu.model.internship.Internship;
  */
 public class TypicalInternships {
 
-    public static final Internship ALICE = new InternshipBuilder().withName("Alice Pauline")
-            .withRemark("123, Jurong West Ave 6, #08-111").withEmail("alice@example.com")
+    public static final Internship AMAZON = new InternshipBuilder().withName("Amazon")
+            .withRemark("1 George St, Singapore 049145").withEmail("amazon@example.com")
             .withPhone("94351253")
-            .withTags("friends").withPosition("Backend Intern").withApplicationProcess("APPLY")
-            .withDate("11-12-2022").withWebsite("https://careers.google.com/jobs").build();
-    public static final Internship BENSON = new InternshipBuilder().withName("Benson Meier")
+            .withTags("stocks").withPosition("Backend Intern").withApplicationProcess("APPLY")
+            .withDate("11-12-2022").withWebsite("https://www.amazon.jobs").build();
+    public static final Internship BYTEDANCE = new InternshipBuilder().withName("Bytedance")
             .withRemark("311, Clementi Ave 2, #02-25")
             .withEmail("johnd@example.com").withPhone("98765432")
-            .withTags("owesMoney", "friends").withPosition("software engineer").withApplicationProcess("ASSESSMENT")
-            .withDate("24-09-2022").withWebsite("https://www.grab.com/sg/about").build();
-    public static final Internship CARL = new InternshipBuilder().withName("Carl Kurz").withPhone("95352563")
+            .withTags("owesMoney", "stocks").withPosition("software engineer").withApplicationProcess("ASSESSMENT")
+            .withDate("24-09-2022").withWebsite("https://jobs.bytedance.com/en/").build();
+    public static final Internship CITADEL = new InternshipBuilder().withName("Citadel").withPhone("95352563")
             .withEmail("heinz@example.com").withRemark("wall street").withPosition("backend engineer")
             .withApplicationProcess("APPLY").withDate("24-09-2022").withWebsite("NA").build();
-    public static final Internship DANIEL = new InternshipBuilder().withName("Daniel Meier").withPhone("87652533")
-            .withEmail("cornelia@example.com").withRemark("10th street").withTags("friends")
+    public static final Internship DSTA = new InternshipBuilder().withName("DSTA").withPhone("87652533")
+            .withEmail("cornelia@example.com").withRemark("10th street").withTags("stocks")
             .withPosition("frontend engineer").withApplicationProcess("INTERVIEW")
             .withDate("14-09-2022").withWebsite("NA").build();
-    public static final Internship ELLE = new InternshipBuilder().withName("Elle Meyer").withPhone("9482224")
+    public static final Internship EBAY = new InternshipBuilder().withName("Ebay").withPhone("9482224")
             .withEmail("werner@example.com").withRemark("michegan ave").withPosition("data engineer")
             .withApplicationProcess("APPLY").withDate("24-09-2022").withWebsite("NA").build();
-    public static final Internship FIONA = new InternshipBuilder().withName("Fiona Kunz").withPhone("9482427")
+    public static final Internship FASTLY = new InternshipBuilder().withName("Fastly").withPhone("9482427")
             .withEmail("lydia@example.com").withRemark("little tokyo").withPosition("AI engineer")
             .withApplicationProcess("APPLY").withApplicationProcess("APPLY").withDate("24-09-2022")
             .withWebsite("NA").build();
-    public static final Internship GEORGE = new InternshipBuilder().withName("George Best").withPhone("9482442")
+    public static final Internship GOOGLE = new InternshipBuilder().withName("Google").withPhone("9482442")
             .withEmail("anna@example.com").withRemark("4th street").withPosition("Data analyst")
             .withApplicationProcess("APPLY").withApplicationProcess("APPLY").withDate("24-09-2022")
             .withWebsite("NA").build();
@@ -63,18 +63,20 @@ public class TypicalInternships {
     // Manually added
     public static final Internship HOON = new InternshipBuilder().withName("Hoon Meier").withPhone("8482424")
             .withEmail("stefan@example.com").withRemark("little india").build();
-    public static final Internship IDA = new InternshipBuilder().withName("Ida Mueller").withPhone("8482131")
+    public static final Internship IDA = new InternshipBuilder().withName("Ida Muebayr").withPhone("8482131")
             .withEmail("hans@example.com").withRemark("chicago ave").build();
 
     // Manually added - Internship's details found in {@code CommandTestUtil}
-    public static final Internship AMY = new InternshipBuilder().withName(VALID_NAME_AMY).withPhone(VALID_PHONE_AMY)
-            .withEmail(VALID_EMAIL_AMY).withRemark(VALID_REMARK_AMY).withTags(VALID_TAG_FRIEND)
-            .withPosition(VALID_POSITION_AMY).withApplicationProcess(VALID_APPLICATION_PROCESS_AMY)
-            .withDate(VALID_DATE_AMY).withWebsite(VALID_WEBSITE_AMY).build();
-    public static final Internship BOB = new InternshipBuilder().withName(VALID_NAME_BOB).withPhone(VALID_PHONE_BOB)
-            .withEmail(VALID_EMAIL_BOB).withRemark(VALID_REMARK_BOB).withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND)
-            .withPosition(VALID_POSITION_BOB).withApplicationProcess(VALID_APPLICATION_PROCESS_BOB)
-            .withDate(VALID_DATE_BOB).withWebsite(VALID_WEBSITE_BOB).build();
+    public static final Internship APPLE = new InternshipBuilder().withName(VALID_NAME_APPLE)
+            .withPhone(VALID_PHONE_APPLE).withEmail(VALID_EMAIL_APPLE)
+            .withRemark(VALID_REMARK_APPLE).withTags(VALID_TAG_STOCK)
+            .withPosition(VALID_POSITION_APPLE).withApplicationProcess(VALID_APPLICATION_PROCESS_APPLE)
+            .withDate(VALID_DATE_APPLE).withWebsite(VALID_WEBSITE_APPLE).build();
+    public static final Internship BLACKROCK = new InternshipBuilder().withName(VALID_NAME_BLACKROCK)
+            .withPhone(VALID_PHONE_BLACKROCK).withEmail(VALID_EMAIL_BLACKROCK)
+            .withRemark(VALID_REMARK_BLACKROCK).withTags(VALID_TAG_TRANSPORT, VALID_TAG_STOCK)
+            .withPosition(VALID_POSITION_BLACKROCK).withApplicationProcess(VALID_APPLICATION_PROCESS_BLACKROCK)
+            .withDate(VALID_DATE_BLACKROCK).withWebsite(VALID_WEBSITE_BLACKROCK).build();
 
     public static final String KEYWORD_MATCHING_MEIER = "Meier"; // A keyword that matches MEIER
 
@@ -92,6 +94,6 @@ public class TypicalInternships {
     }
 
     public static List<Internship> getTypicalInternships() {
-        return new ArrayList<>(Arrays.asList(ALICE, BENSON, CARL, DANIEL, ELLE, FIONA, GEORGE));
+        return new ArrayList<>(Arrays.asList(AMAZON, BYTEDANCE, CITADEL, DSTA, EBAY, FASTLY, GOOGLE));
     }
 }

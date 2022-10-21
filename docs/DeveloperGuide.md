@@ -121,12 +121,12 @@ How the parsing works:
 
 The `Model` component,
 
-* stores the address book data i.e., all `Person` objects (which are contained in a `UniquePersonList` object).
-* stores the currently 'selected' `Person` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Person>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
+* stores the address book data i.e., all `Internship` objects (which are contained in a `UniqueInternshipList` object).
+* stores the currently 'selected' `Internship` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Internship>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
 * stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
 * does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `AddressBook`, which `Person` references. This allows `AddressBook` to only require one `Tag` object per unique tag, instead of each `Person` needing their own `Tag` objects.<br>
+<div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `InternshipBook`, which `Internship` references. This allows `InternshipBook` to only require one `Tag` object per unique tag, instead of each `Internship` needing their own `Tag` objects.<br>
 
 <img src="images/BetterModelClassDiagram.png" width="450" />
 
@@ -153,6 +153,56 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 ## **Implementation**
 
 This section describes some noteworthy details on how certain features are implemented.
+
+### List feature
+
+#### Proposed Implementation
+The proposed list mechanism is implemented mainly using the help of `ListCommandParser` and `ComparableCategoryParser` 
+classes. The `ListCommand` class extends the `Command` class and implements `ListCommand#execute`. The `list` command 
+can be used to show all existing internships stored in the system and have the option to sort the internships by the 
+specified category.
+
+The following sequence diagram shows how the find command works.
+
+![ListSequenceDiagram](images/ListSequenceDiagram.png)
+
+Given below is an example usage scenario and how the list mechanism behaves at each step
+
+Step 1. The user launches the application for the first time. There are some example internships initialised.
+
+Step 2. The user input the command `list c/n true`. The `LogicManager#execute` method is called to execute the command.
+
+Step 3. The `LogicManager#execute` method calls the `InternshipBookParser#parseCommand` method which matches the input
+to `list` as the command and `c\n true` as the arguments.
+
+Step 4. `InternshipBookParser#parseCommand` method initialise a `ListCommandParser` class and calls the
+`ListCommandParser#parse` method, passing the arguments along.
+
+Step 5. `ListCommandParser#parse` method initialise a `ComparableCategoryParser` class and calls
+`ComparableCategoryParser#parse` method, passing the `CATEGORY` to be parsed.
+
+Step 6. The `ComparableCategoryParser#parse` method returns the `CATEGORY` the `list` command is to be sorted by, 
+the `ListCommandParser#parse` method returns the `ListCommand` to be executed.
+
+Step 7. The `ListCommand` is returned to the `LogicManager` class where `ListCommand#execute` is called.
+`ListCommand` calls the `Model#sortList` method to sort the internship list by the `COMPANY_NAME` category.
+
+Step 8. The `ListCommand` initialise a `CommandResult` and returns to the `LogicManager`.
+
+
+#### Design Considerations
+**Parameters for list command**:
+* **Alternative 1 (current choice)**: `CATEGORY` and `DESCENDING` parameter is optional 
+    * Pros: Improved flexibility
+    * Cons: Need to have conditional checks in Parser class
+
+* **Alternative 2** Users have to input all parameters
+    * Pros: Easier to implement
+    * Cons: Command is longer and more cumbersome to type
+    
+    
+
+    
 
 ### Find feature
 
@@ -299,50 +349,41 @@ _{Explain here how the data archiving feature will be implemented}_
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​            | I want to …​                                                              | So that I can…​                                 |
-|----------|--------------------|---------------------------------------------------------------------------|-------------------------------------------------|
-| `* * *`  | Basic user         | Add an internship                                                         |                                                 |
-| `* * *`  | Basic user         | Delete an internship                                                      |                                                 |
-| `* * *`  | Basic user         | View an internship details                                                |                                                 |
-| `* * *`  | Basic user         | Update the internship details                                             |                                                 |
-| `* * *`  | Basic user         | Keep track of the list of internships I applied to                        |                                                 |
-| `* * *`  | Basic user         | Add tag to internship                                                     | Find the relevant information easily            |
-| `* * *`  | Basic user         | Filter the internship based on current application process, tagging, etc. | Track my progress                               |
-| `* * *`  | Basic user         | View my interview dates                                                   | Track my interview timings                      |
-| `* * *`  | Basic user         | Know the contact of the HR                                                | Discuss the next step needed to be done         |
-| `* * *`  | Basic user         | Sort my internship list by date                                           | View the upcoming internship matters to prepare |
-| `* *  `  | First-time user    | Have a link to the demo video                                             | Learn how to use the app                        |
-| `* *  `  | First-time user    | See a help message explaining which features I should try first           | Learn the basic features of the application     |
-| `* * *`  | First-time user    | See some sample internships when I open the app                           | Understand how the app works                    |
-| `*   `   | Forgetful user     | Get reminder                                                              |                                                 |
-| `*   `   | Advanced user      | Use a shortcut to do commands                                             | Work more efficiently                           |
-| `*   `   | Advanced user      | Copy internship details easily                                            | Quickly share information to other apps         |
-| `*   `   | Advanced user      | Visit internship website fast                                             |                                                 |
-| `* * *`  | Advanced user      | Delete many internships                                                   |                                                 |
-| `* *  `  | Visual user        | View my internship application process tag with color                     | I can easily identify which stage I have reached|
-| `*   `   | Visual user        | View the count of internships application at each stages                  | See the success rate of my applications         |
+| Priority | As a …​         | I want to …​                                                              | So that I can…​                                  |
+|----------|-----------------|---------------------------------------------------------------------------|--------------------------------------------------|
+| `* * *`  | Basic user      | Add an internship                                                         |                                                  |
+| `* * *`  | Basic user      | Delete an internship                                                      |                                                  |
+| `* * *`  | Basic user      | View an internship details                                                |                                                  |
+| `* * *`  | Basic user      | Update the internship details                                             |                                                  |
+| `* * *`  | Basic user      | Keep track of the list of internships I applied to                        |                                                  |
+| `* * *`  | Basic user      | Add tag to internship                                                     | Find the relevant information easily             |
+| `* * *`  | Basic user      | Filter the internship based on current application process, tagging, etc. | Track my progress                                |
+| `* * *`  | Basic user      | View my interview dates                                                   | Track my interview timings                       |
+| `* * *`  | Basic user      | Know the contact of the HR                                                | Discuss the next step needed to be done          |
+| `* * *`  | Basic user      | Sort my internship list by date                                           | View the upcoming internship matters to prepare  |
+| `* *  `  | First-time user | Have a link to the demo video                                             | Learn how to use the app                         |
+| `* *  `  | First-time user | See a help message explaining which features I should try first           | Learn the basic features of the application      |
+| `* * *`  | First-time user | See some sample internships when I open the app                           | Understand how the app works                     |
+| `*  `    | Forgetful user  | Get reminder                                                              |                                                  |
+| `*   `   | Advanced user   | Use a shortcut to do commands                                             | Work more efficiently                            |
+| `*   `   | Advanced user   | Copy internship details easily                                            | Quickly share information to other apps          |
+| `*   `   | Advanced user   | Visit internship website fast                                             |                                                  |
+| `* * *`  | Advanced user   | Delete many internships                                                   |                                                  |
+| `* *  `  | Visual user     | View my internship application process tag with color                     | I can easily identify which stage I have reached |
+| `*   `   | Visual user     | View the count of internships application at each stages                  | See the success rate of my applications          |
 *{More to be added}*
 
 ### Use cases
 
-(For all use cases below, the **System** is the `InternshipBook` and the **Actor** is the `user`, unless specified otherwise)
-
-**Use case: List internship(s)**
-
-**MSS**
-
-1. User requests to list internships
-2. PleaseHireUs shows a list of internships
-
-   Use case ends.
+(For all use cases below, the **System** is `PleaseHireUs` and the **Actor** is the `user`, unless specified otherwise)
 
 **Use case: Add internship**
 
 **MSS**
 
-1.  User request to add an internship application
-2.  System adds the internship application
-3.  System displays the success message
+1.  User request to add an internship application.
+2.  System adds the internship application.
+3.  System displays the success message.
 
     Use case ends.
 
@@ -360,6 +401,28 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
   Use case ends.
 
+**Use case: List internship(s)**
+
+**MSS**
+
+1. User requests to list internships
+2. System shows a list of internships
+
+   Use case ends.
+
+**Extensions**
+* 1a. No category is given
+
+    * 1a1. System shows the full list of internships
+
+  Use case ends.
+
+* 1b. The given parameters is invalid.
+
+    * 1b1. System shows an error message.
+
+  Use case ends.
+* 
 **Use case: Delete internship(s)**
 
 **MSS**
@@ -381,11 +444,13 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **MSS**
 
 1. User wants to view more details of an internship application.
-2. System displays more details of the internship application.
+2. System displays more details of the internship application in a separate UI box from the main window.
 3. Use case ends.
 
 **Extensions**
-*{More to be added}*
+* 1a. The given index is invalid.
+
+    * 1a1. PleaseHireUs shows an error message.
 
 **Use case: Filter internship(s)**
 
@@ -449,6 +514,15 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
   
   Use case ends.
 
+**Use case: View help message**
+
+**MSS**
+
+1.  User request to view help message
+2.  System displays command summary and link to user guide
+
+    Use case ends.
+
 *{More to be added}*
 
 ### Non-Functional Requirements
@@ -462,7 +536,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 ### Glossary
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
-* **Private contact detail**: A contact detail that is not meant to be shared with others
+
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -491,6 +565,21 @@ testers are expected to do more *exploratory* testing.
        Expected: The most recent window size and location is retained.
 
 1. _{ more test cases …​ }_
+
+### List internship(s)
+
+1. Listing of internship(s)
+
+    1. Prerequisites: There are existing internship(s) stored in the application
+   
+    2. Test case: `list`<br>
+       Expected: Shows the full list of internships
+   
+    3. Test case: `list c/n`<br>
+       Expected: Shows the full list of internships sorted by the company name in lexicographically order
+   
+    4. Test case: `list c/d true`<br>
+      Expected: Shows the full list of internships sorted by the company name in descending order
 
 ### Deleting internship(s)
 
@@ -567,6 +656,28 @@ testers are expected to do more *exploratory* testing.
 
     3. Test case: `edit 0 n/Citadel Securities`<br>
         Expected: No internship is edited. Error details shown in the status message.
+
+### View internship
+
+1. Viewing internship(s) while all internships are being shown
+
+    1. Prerequisites: List all internships using the `list` command. The list is non-empty.
+
+    2. Test case: `view 1`<br>
+       Expected: More details for the first internship is viewed from the list. Details of the viewed internship shown in the view window.
+
+    3. Test case: `view 0`<br>
+       Expected: No internship is viewed. Error details shown in the status message.
+
+2. Viewing internship(s) while only the selected internships are being shown
+
+    1. Prerequisites: List specific internships using the `find` command. The list is non-empty.
+
+    2. Test case: `view 2`<br>
+       Expected: If there is less than 2 internships in the list, no internship details is shown and error details will be shown in the status message. Else if there are at least two internships on the list, details of the second internship will be shown in the view window.
+
+    3. Test case: `view 0`<br>
+       Expected: No internship is viewed. Error details shown in the status message.
 
 ### Saving data
 
