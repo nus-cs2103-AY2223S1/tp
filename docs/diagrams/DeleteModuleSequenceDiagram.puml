@@ -1,0 +1,70 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
+participant ":DeleteModuleCommandParser" as DeleteModuleCommandParser LOGIC_COLOR
+participant "d:DeleteModuleCommand" as DeleteModuleCommand LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+
+[-> LogicManager : execute("deletem 1")
+activate LogicManager
+
+LogicManager -> AddressBookParser : parseCommand("deletem 1")
+activate AddressBookParser
+
+create DeleteModuleCommandParser
+AddressBookParser -> DeleteModuleCommandParser
+activate DeleteModuleCommandParser
+
+DeleteModuleCommandParser --> AddressBookParser
+deactivate DeleteModuleCommandParser
+
+AddressBookParser -> DeleteModuleCommandParser : parse("1")
+activate DeleteModuleCommandParser
+
+create DeleteModuleCommand
+DeleteModuleCommandParser -> DeleteModuleCommand
+activate DeleteModuleCommand
+
+DeleteModuleCommand --> DeleteModuleCommandParser : d
+deactivate DeleteModuleCommand
+
+DeleteModuleCommandParser --> AddressBookParser : d
+deactivate DeleteModuleCommandParser
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+DeleteModuleCommandParser -[hidden]-> AddressBookParser
+destroy DeleteModuleCommandParser
+
+AddressBookParser --> LogicManager : d
+deactivate AddressBookParser
+
+LogicManager -> DeleteModuleCommand : execute(model)
+activate DeleteModuleCommand
+
+DeleteModuleCommand -> Model : deleteModule(1)
+activate Model
+
+Model --> DeleteModuleCommand
+deactivate Model
+
+create CommandResult
+DeleteModuleCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> DeleteModuleCommand
+deactivate CommandResult
+
+DeleteModuleCommand --> LogicManager : result
+deactivate DeleteModuleCommand
+
+[<--LogicManager
+deactivate LogicManager
+
+@enduml
