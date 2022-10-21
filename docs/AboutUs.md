@@ -26,7 +26,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[github](https://github.com/sltsheryl)] [[portfolio](team/sltsheryl.md)]
 
 * Role: Developer
-* Responsibilities: to be added soon
+* Responsibilities: UI, Student Information
 
 ### Zheng Jiarui
 
