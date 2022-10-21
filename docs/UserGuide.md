@@ -177,6 +177,14 @@ View all the tasks currently in the user’s team in the form of a list.
 Format:
 * `list_tasks` will list all the tasks of the current team.
 
+### View summary of task assignments in team: `summary`
+
+View the number of tasks assigned to each user in the team.
+
+Format:
+* `summary`
+
+
 ### Clearing all entries : `clear`
 
 Deletes all the people from the application.
