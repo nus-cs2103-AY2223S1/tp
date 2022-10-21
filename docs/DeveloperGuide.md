@@ -160,7 +160,7 @@ The Add Gender feature allows users to add a gender field (Male / Female) to a p
  of `addPersonCommand#execute()`.
 
 These operations are exposed in the `Model` interface as the method `Model#addPerson()`, which calls
-`AddressBook#addPerson()` which calls `UniquePersonList#add` to add a new person in the person list
+`AddressBook#addPerson()` which calls `UniquePersonList#add()` to add a new person in the person list
 stored in AddressBook. 
 
 The following sequence diagram shows the methods calls related to add person operation:
