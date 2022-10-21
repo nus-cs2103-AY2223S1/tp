@@ -1,0 +1,20 @@
+@startuml
+start
+:User enters Add command;
+
+if () then ([Invalid argument parameters])
+    : TrackAScholar shows an\nerror message indicating\nthat user input is invalid;
+
+else ([Valid argument parameters])
+
+    if () then ([Applicant already exist in TrackAScholar])
+        :TrackAScholar shows an\nerror message indicating\nthat Applicant already exist;
+    else ([else])
+        :Add new Applicant \ninto TrackAScholar;
+
+        :TrackAScholar updates\nto display new applicant\nat end of the list;
+    endif
+
+endif
+stop
+@enduml

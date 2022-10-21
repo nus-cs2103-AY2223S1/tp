@@ -1,0 +1,88 @@
+@startuml
+!include style.puml
+
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":TrackAScholarParser" as TrackAScholarParser LOGIC_COLOR
+participant ":FilterCommandParser" as FilterCommandParser LOGIC_COLOR
+
+participant ":FilterCommand" as FilterCommand LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+participant "predicate:ApplicationStatusPredicate" as ApplicationStatusPredicate MODEL_COLOR
+end box
+
+[-> LogicManager : execute(filter pending)
+activate LogicManager
+
+LogicManager -> TrackAScholarParser : parseCommand(args)
+activate TrackAScholarParser
+
+create FilterCommandParser
+TrackAScholarParser -> FilterCommandParser : FilterCommandParser()
+activate FilterCommandParser
+
+FilterCommandParser --> TrackAScholarParser
+deactivate FilterCommandParser
+
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+FilterCommandParser -[hidden]-> TrackAScholarParser: BUFFER_MESSAGE
+
+TrackAScholarParser -> FilterCommandParser : parse(pending)
+activate FilterCommandParser
+
+create ApplicationStatusPredicate
+FilterCommandParser -> ApplicationStatusPredicate:ApplicationStatusPredicate()
+activate ApplicationStatusPredicate
+
+ApplicationStatusPredicate --> FilterCommandParser
+deactivate ApplicationStatusPredicate
+
+create FilterCommand
+FilterCommandParser -> FilterCommand : FilterCommand(predicate)
+activate FilterCommand
+
+FilterCommand --> FilterCommandParser
+deactivate
+
+FilterCommandParser --> TrackAScholarParser
+deactivate
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+FilterCommandParser -[hidden]-> TrackAScholarParser
+destroy FilterCommandParser
+
+TrackAScholarParser --> LogicManager
+deactivate TrackAScholarParser
+
+LogicManager -> FilterCommand : execute()
+activate FilterCommand
+
+FilterCommand -> Model : updateFilteredApplicantList(predicate)
+activate Model
+
+Model --> FilterCommand
+deactivate
+
+FilterCommand -> Model : getFilteredApplicantList()
+activate Model
+
+Model --> FilterCommand
+deactivate
+
+create CommandResult
+FilterCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> FilterCommand
+deactivate CommandResult
+
+FilterCommand --> LogicManager : result
+deactivate FilterCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml

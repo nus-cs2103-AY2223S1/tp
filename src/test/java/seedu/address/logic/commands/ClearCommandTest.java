@@ -16,7 +16,7 @@ public class ClearCommandTest {
         ClearCommand clearCommand = new ClearCommand();
         Model model = new ModelManager(getTypicalTrackAScholar(), new UserPrefs());
         CommandResult commandResult = clearCommand.confirmClear(model);
-        CommandResult successResult = new CommandResult(ClearCommand.MESSAGE_SUCCESS);
+        CommandResult successResult = new CommandResult(ClearCommand.MESSAGE_CLEAR_SUCCESS);
         assertEquals(commandResult, successResult);
 
     }
@@ -26,7 +26,7 @@ public class ClearCommandTest {
         ClearCommand clearCommand = new ClearCommand();
         Model model = new ModelManager();
         CommandResult commandResult = clearCommand.confirmClear(model);
-        CommandResult successResult = new CommandResult(ClearCommand.MESSAGE_SUCCESS);
+        CommandResult successResult = new CommandResult(ClearCommand.MESSAGE_CLEAR_SUCCESS);
         assertEquals(commandResult, successResult);
 
     }
@@ -35,7 +35,7 @@ public class ClearCommandTest {
     public void cancelClear_trackAScholar_success() {
         ClearCommand clearCommand = new ClearCommand();
         CommandResult commandResult = clearCommand.cancelClear();
-        CommandResult terminationResult = new CommandResult(ClearCommand.MESSAGE_TERMINATION);
+        CommandResult terminationResult = new CommandResult(ClearCommand.MESSAGE_CLEAR_TERMINATION);
         assertEquals(commandResult, terminationResult);
 
     }
