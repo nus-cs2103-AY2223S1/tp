@@ -47,7 +47,7 @@ public class EditCommand extends Command {
 
     public static final String MESSAGE_EDIT_PROJECT_SUCCESS = "Edited Project: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
-    public static final String MESSAGE_DUPLICATE_PROJECT = "This project already exists in the address book.";
+    public static final String MESSAGE_DUPLICATE_PROJECT = "This project already exists in HR Pro Max++.";
 
     private final Index index;
     private final EditProjectDescriptor editProjectDescriptor;

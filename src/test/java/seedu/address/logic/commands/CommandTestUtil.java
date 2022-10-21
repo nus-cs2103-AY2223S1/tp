@@ -29,6 +29,7 @@ import seedu.address.model.project.ProjectNameContainsKeywordsPredicate;
 import seedu.address.model.task.Task;
 import seedu.address.model.task.TaskDescriptionContainsKeywordsPredicate;
 import seedu.address.testutil.EditProjectDescriptorBuilder;
+import seedu.address.testutil.EditStaffDescriptorBuilder;
 
 /**
  * Contains helper methods for testing commands.
@@ -119,6 +120,9 @@ public class CommandTestUtil {
     public static final EditCommand.EditProjectDescriptor DESC_AMY;
     public static final EditCommand.EditProjectDescriptor DESC_BOB;
 
+    public static final EditStaffCommand.EditStaffDescriptor STAFF_DESC_ANDY;
+
+    public static final EditStaffCommand.EditStaffDescriptor STAFF_DESC_JAY;
     static {
         DESC_AMY = new EditProjectDescriptorBuilder().withName(VALID_NAME_AMY)
                 .withBudget(VALID_BUDGET_AMY).withDeadline(VALID_DEADLINE_AMY)
@@ -126,6 +130,14 @@ public class CommandTestUtil {
         DESC_BOB = new EditProjectDescriptorBuilder().withName(VALID_NAME_BOB)
                 .withBudget(VALID_BUDGET_BOB).withDeadline(VALID_DEADLINE_BOB)
                 .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).build();
+        STAFF_DESC_ANDY = new EditStaffDescriptorBuilder().withName(VALID_STAFFNAME_ANDY)
+                .withContact(VALID_STAFFCONTACT_ANDY).withDepartment(VALID_STAFFDEPARTMENT_ANDY)
+                .withTitle(VALID_STAFFTITLE_ANDY).withLeave(VALID_STAFFLEAVE_ANDY)
+                .withTags(VALID_TAG_FRIEND).build();
+        STAFF_DESC_JAY = new EditStaffDescriptorBuilder().withName(VALID_STAFFNAME_JAY)
+                .withContact(VALID_STAFFCONTACT_JAY).withDepartment(VALID_STAFFDEPARTMENT_JAY)
+                .withTitle(VALID_STAFFTITLE_JAY).withLeave(VALID_STAFFLEAVE_JAY)
+                .withTags(VALID_TAG_HUSBAND).build();
     }
 
     /**
