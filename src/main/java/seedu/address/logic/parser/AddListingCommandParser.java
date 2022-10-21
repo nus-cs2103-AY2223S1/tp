@@ -5,6 +5,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ASKING_PRICE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 
+
 import java.util.stream.Stream;
 
 import seedu.address.logic.commands.AddListingCommand;
@@ -27,9 +28,9 @@ public class AddListingCommandParser implements Parser<AddListingCommand> {
      */
     public AddListingCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_ADDRESS, PREFIX_NAME, PREFIX_ASKING_PRICE);
+                ArgumentTokenizer.tokenize(args, PREFIX_ID, PREFIX_ADDRESS, PREFIX_NAME, PREFIX_ASKING_PRICE);
 
-        if (!arePrefixesPresent(argMultimap, PREFIX_ADDRESS, PREFIX_NAME, PREFIX_ASKING_PRICE)
+        if (!arePrefixesPresent(argMultimap, PREFIX_ID, PREFIX_ADDRESS, PREFIX_NAME, PREFIX_ASKING_PRICE)
                 || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddListingCommand.MESSAGE_USAGE));
         }
