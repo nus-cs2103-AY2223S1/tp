@@ -40,6 +40,9 @@ public class Company {
 
     @Override
     public String toString() {
+        if (fullName == null) {
+            return "No Company";
+        }
         return fullName;
     }
 

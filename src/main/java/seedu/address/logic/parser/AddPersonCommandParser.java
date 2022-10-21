@@ -58,10 +58,7 @@ public class AddPersonCommandParser implements Parser<AddPersonCommand> {
             linkIndex = ParserUtil.parseIndex(linkIndexStr);
         }
         String companyStr = argMultimap.getValue(PREFIX_COMPANY).orElse(null);
-        Company company = null;
-        if (companyStr != null) {
-            company = ParserUtil.parseCompany(companyStr);
-        }
+        Company company = ParserUtil.parseCompany(companyStr);
 
         return new AddPersonCommand(name, email, phone, tagList, linkIndex, company);
     }
