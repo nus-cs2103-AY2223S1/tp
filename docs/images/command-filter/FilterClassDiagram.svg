@@ -1,15 +1,82 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" contentStyleType="text/css" height="332px" preserveAspectRatio="none" style="width:513px;height:332px;background:#FFFFFF;" version="1.1" viewBox="0 0 513 332" width="513px" zoomAndPan="magnify"><defs/><g><g id="cluster_##2"><rect fill="none" height="200.5" rx="2.5" ry="2.5" style="stroke:#000000;stroke-width:1.5;" width="194" x="7" y="39.5"/></g><g id="cluster_##6"><rect fill="none" height="233" rx="2.5" ry="2.5" style="stroke:#000000;stroke-width:1.5;" width="282" x="225" y="7"/></g><!--MD5=[df418b781e2478cd2876deb274752a1a]
-class FilterCommand--><g id="elem_FilterCommand"><rect codeLine="9" fill="#3333C4" height="50.1973" id="FilterCommand" rx="2.5" ry="2.5" style="stroke:#FFFFFF;stroke-width:1.0;" width="117" x="56.5" y="55.5"/><text fill="#FFFFFF" font-family="Arial" font-size="14" lengthAdjust="spacing" textLength="96" x="67" y="73.6318">FilterCommand</text><line style="stroke:#FFFFFF;stroke-width:1.0;" x1="57.5" x2="172.5" y1="81.5986" y2="81.5986"/><text fill="#FFFFFF" font-family="Arial" font-size="14" lengthAdjust="spacing" textLength="105" x="62.5" y="98.7305">+exceute(Model)</text></g><!--MD5=[1d984b62bd2b718c1be8f5a58f9b19ef]
-class FilterCommandPredicate--><g id="elem_FilterCommandPredicate"><rect codeLine="13" fill="#3333C4" height="26.0986" id="FilterCommandPredicate" rx="2.5" ry="2.5" style="stroke:#FFFFFF;stroke-width:1.0;" width="162" x="23" y="198"/><text fill="#FFFFFF" font-family="Arial" font-size="14" lengthAdjust="spacing" textLength="156" x="26" y="216.1318">FilterCommandPredicate</text></g><!--MD5=[7e20e022571e30ec1001cf6eabd7f3e2]
-class Model--><g id="elem_Model"><rect codeLine="16" fill="#9D0012" height="114.5918" id="Model" rx="2.5" ry="2.5" style="stroke:#FFFFFF;stroke-width:1.0;" width="249" x="241.5" y="23"/><text fill="#FFFFFF" font-family="Arial" font-size="14" lengthAdjust="spacing" textLength="87" x="322.5" y="41.1318">&lt;&lt;interface&gt;&gt;</text><text fill="#FFFFFF" font-family="Arial" font-size="14" lengthAdjust="spacing" textLength="38" x="347" y="57.2305">Model</text><line style="stroke:#FFFFFF;stroke-width:1.0;" x1="242.5" x2="489.5" y1="65.1973" y2="65.1973"/><text fill="#FFFFFF" font-family="Arial" font-size="14" lengthAdjust="spacing" textLength="198" x="247.5" y="82.3291">addFilterToFilteredPersonList()</text><text fill="#FFFFFF" font-family="Arial" font-size="14" lengthAdjust="spacing" textLength="237" x="247.5" y="98.4277">removeFilterFromFilteredPersonList()</text><text fill="#FFFFFF" font-family="Arial" font-size="14" lengthAdjust="spacing" textLength="105" x="247.5" y="114.5264">getNameFilters()</text><text fill="#FFFFFF" font-family="Arial" font-size="14" lengthAdjust="spacing" textLength="94" x="247.5" y="130.625">getTagFilters()</text></g><!--MD5=[0d23c233efb60477cf7e578633a93a45]
-class ModelManager--><g id="elem_ModelManager"><rect codeLine="22" fill="#9D0012" height="26.0986" id="ModelManager" rx="2.5" ry="2.5" style="stroke:#FFFFFF;stroke-width:1.0;" width="100" x="278" y="198"/><text fill="#FFFFFF" font-family="Arial" font-size="14" lengthAdjust="spacing" textLength="94" x="281" y="216.1318">ModelManager</text></g><!--MD5=[e6dc55dd324d6a8c189f3ada02b144fc]
-class Predicate--><g id="elem_Predicate"><rect codeLine="25" fill="#F97181" height="42.1973" id="Predicate" rx="2.5" ry="2.5" style="stroke:#FFFFFF;stroke-width:1.0;" width="93" x="281.5" y="284"/><text fill="#FFFFFF" font-family="Arial" font-size="14" lengthAdjust="spacing" textLength="87" x="284.5" y="302.1318">&lt;&lt;interface&gt;&gt;</text><text fill="#FFFFFF" font-family="Arial" font-size="14" lengthAdjust="spacing" textLength="60" x="298" y="318.2305">Predicate</text></g><!--MD5=[b88a9fc704bcaab99a71844113667eb4]
-reverse link Model to ModelManager--><g id="link_Model_ModelManager"><path codeLine="27" d="M343.49,157.64 C338.84,173.36 334.48,188.09 331.58,197.9 " fill="none" id="Model-backto-ModelManager" style="stroke:#9D0012;stroke-width:1.1;stroke-dasharray:7.0,7.0;"/><polygon fill="none" points="336.84,155.43,349.22,138.24,350.26,159.4,336.84,155.43" style="stroke:#9D0012;stroke-width:1.1;"/></g><!--MD5=[402f40fcb9e4584d6bc1e4cf40b09134]
-reverse link FilterCommandPredicate to ModelManager--><g id="link_FilterCommandPredicate_ModelManager"><path codeLine="28" d="M190.43,211 C219.57,211 248.72,211 277.86,211 " fill="none" id="FilterCommandPredicate-backto-ModelManager" style="stroke:#9D0012;stroke-width:1.1;stroke-dasharray:7.0,7.0;"/><polygon fill="#9D0012" points="185.38,211,194.3914,214.9743,190.38,210.9857,194.3685,206.9743,185.38,211" style="stroke:#9D0012;stroke-width:1.1;"/></g><!--MD5=[fee0925412b5513ab4e0742031603a6a]
-link ModelManager to Predicate--><g id="link_ModelManager_Predicate"><path codeLine="29" d="M319.06,224.03 C315.09,237.8 314.22,260.75 316.45,278.54 " fill="none" id="ModelManager-to-Predicate" style="stroke:#9D0012;stroke-width:1.1;"/><polygon fill="#9D0012" points="317.25,283.88,319.8948,274.3929,316.5209,278.9334,311.9803,275.5595,317.25,283.88" style="stroke:#9D0012;stroke-width:1.1;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="75" x="228.6797" y="273.2068">* namePreds</text></g><!--MD5=[fee0925412b5513ab4e0742031603a6a]
-link ModelManager to Predicate--><g id="link_ModelManager_Predicate"><path codeLine="30" d="M337.46,224.03 C341.67,237.8 342.59,260.75 340.22,278.54 " fill="none" id="ModelManager-to-Predicate-1" style="stroke:#9D0012;stroke-width:1.1;"/><polygon fill="#9D0012" points="339.39,283.88,344.73,275.6045,340.161,278.9398,336.8257,274.3708,339.39,283.88" style="stroke:#9D0012;stroke-width:1.1;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="61" x="351.1716" y="273.2068">* tagPreds</text></g><!--MD5=[fcb20446d865eb3b9670b3d50480f5a2]
-link FilterCommand to Model--><g id="link_FilterCommand_Model"><path codeLine="32" d="M173.83,80.5 C194.68,80.5 215.53,80.5 236.37,80.5 " fill="none" id="FilterCommand-to-Model" style="stroke:#9D0012;stroke-width:1.1;stroke-dasharray:7.0,7.0;"/><polygon fill="#9D0012" points="241.39,80.5,232.39,76.5,236.39,80.5,232.39,84.5,241.39,80.5" style="stroke:#9D0012;stroke-width:1.1;"/></g><!--MD5=[43a6604ad58f3b90631a820749c4037d]
-link FilterCommand to FilterCommandPredicate--><g id="link_FilterCommand_FilterCommandPredicate"><path codeLine="33" d="M111.9018,117.6259 C111.9018,117.6259 107.76,166.13 106.15,184.92 " fill="none" id="FilterCommand-FilterCommandPredicate" style="stroke:#9D0012;stroke-width:1.1;"/><polygon fill="#9D0012" points="105.03,197.95,109.7778,189.3211,105.4534,192.968,101.8065,188.6436,105.03,197.95" style="stroke:#9D0012;stroke-width:1.1;"/><line style="stroke:#9D0012;stroke-width:1.1;" x1="105.4534" x2="106.14" y1="192.968" y2="184.995"/><polygon fill="#9D0012" points="112.93,105.67,108.4306,111.3052,111.9018,117.6259,116.4012,111.9907,112.93,105.67" style="stroke:#9D0012;stroke-width:1.1;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="7" x="97.0574" y="187.2065">1</text></g><!--MD5=[854c0c012bbeedbf46d7ed867846e3d8]
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" contentStyleType="text/css" height="332px" preserveAspectRatio="none" style="width:513px;height:332px;background:#FFFFFF;" version="1.1" viewBox="0 0 513 332" width="513px" zoomAndPan="magnify">
+    <defs />
+    <g>
+        <g id="cluster_##2">
+            <rect fill="none" height="200.5" rx="2.5" ry="2.5" style="stroke:#000000;stroke-width:1.5;" width="194" x="7" y="39.5" />
+        </g>
+        <g id="cluster_##6">
+            <rect fill="none" height="233" rx="2.5" ry="2.5" style="stroke:#000000;stroke-width:1.5;" width="282" x="225" y="7" />
+        </g> <!--MD5=[df418b781e2478cd2876deb274752a1a]
+class FilterCommand-->
+        <g id="elem_FilterCommand">
+            <rect codeLine="9" fill="#3333C4" height="50.1973" id="FilterCommand" rx="2.5" ry="2.5" style="stroke:#FFFFFF;stroke-width:1.0;" width="117" x="56.5" y="55.5" />
+            <text fill="#FFFFFF" font-family="Arial" font-size="14" lengthAdjust="spacing" textLength="96" x="67" y="73.6318">FilterCommand</text>
+            <line style="stroke:#FFFFFF;stroke-width:1.0;" x1="57.5" x2="172.5" y1="81.5986" y2="81.5986" />
+            <text fill="#FFFFFF" font-family="Arial" font-size="14" lengthAdjust="spacing" textLength="105" x="62.5" y="98.7305">+exceute(Model)</text>
+        </g> <!--MD5=[1d984b62bd2b718c1be8f5a58f9b19ef]
+class FilterCommandPredicate-->
+        <g id="elem_FilterCommandPredicate">
+            <rect codeLine="13" fill="#3333C4" height="26.0986" id="FilterCommandPredicate" rx="2.5" ry="2.5" style="stroke:#FFFFFF;stroke-width:1.0;" width="162" x="23" y="198" />
+            <text fill="#FFFFFF" font-family="Arial" font-size="14" lengthAdjust="spacing" textLength="156" x="26" y="216.1318">FilterCommandPredicate</text>
+        </g> <!--MD5=[7e20e022571e30ec1001cf6eabd7f3e2]
+class Model-->
+        <g id="elem_Model">
+            <rect codeLine="16" fill="#9D0012" height="114.5918" id="Model" rx="2.5" ry="2.5" style="stroke:#FFFFFF;stroke-width:1.0;" width="249" x="241.5" y="23" />
+            <text fill="#FFFFFF" font-family="Arial" font-size="14" lengthAdjust="spacing" textLength="87" x="322.5" y="41.1318">&lt;&lt;interface&gt;&gt;</text>
+            <text fill="#FFFFFF" font-family="Arial" font-size="14" lengthAdjust="spacing" textLength="38" x="347" y="57.2305">Model</text>
+            <line style="stroke:#FFFFFF;stroke-width:1.0;" x1="242.5" x2="489.5" y1="65.1973" y2="65.1973" />
+            <text fill="#FFFFFF" font-family="Arial" font-size="14" lengthAdjust="spacing" textLength="198" x="247.5" y="82.3291">addFilterToFilteredPersonList()</text>
+            <text fill="#FFFFFF" font-family="Arial" font-size="14" lengthAdjust="spacing" textLength="237" x="247.5" y="98.4277">removeFilterFromFilteredPersonList()</text>
+            <text fill="#FFFFFF" font-family="Arial" font-size="14" lengthAdjust="spacing" textLength="105" x="247.5" y="114.5264">getNameFilters()</text>
+            <text fill="#FFFFFF" font-family="Arial" font-size="14" lengthAdjust="spacing" textLength="94" x="247.5" y="130.625">getTagFilters()</text>
+        </g> <!--MD5=[0d23c233efb60477cf7e578633a93a45]
+class ModelManager-->
+        <g id="elem_ModelManager">
+            <rect codeLine="22" fill="#9D0012" height="26.0986" id="ModelManager" rx="2.5" ry="2.5" style="stroke:#FFFFFF;stroke-width:1.0;" width="100" x="278" y="198" />
+            <text fill="#FFFFFF" font-family="Arial" font-size="14" lengthAdjust="spacing" textLength="94" x="281" y="216.1318">ModelManager</text>
+        </g> <!--MD5=[e6dc55dd324d6a8c189f3ada02b144fc]
+class Predicate-->
+        <g id="elem_Predicate">
+            <rect codeLine="25" fill="#F97181" height="42.1973" id="Predicate" rx="2.5" ry="2.5" style="stroke:#FFFFFF;stroke-width:1.0;" width="93" x="281.5" y="284" />
+            <text fill="#FFFFFF" font-family="Arial" font-size="14" lengthAdjust="spacing" textLength="87" x="284.5" y="302.1318">&lt;&lt;interface&gt;&gt;</text>
+            <text fill="#FFFFFF" font-family="Arial" font-size="14" lengthAdjust="spacing" textLength="60" x="298" y="318.2305">Predicate</text>
+        </g> <!--MD5=[b88a9fc704bcaab99a71844113667eb4]
+reverse link Model to ModelManager-->
+        <g id="link_Model_ModelManager">
+            <path codeLine="27" d="M343.49,157.64 C338.84,173.36 334.48,188.09 331.58,197.9 " fill="none" id="Model-backto-ModelManager" style="stroke:#9D0012;stroke-width:1.1;stroke-dasharray:7.0,7.0;" />
+            <polygon fill="none" points="336.84,155.43,349.22,138.24,350.26,159.4,336.84,155.43" style="stroke:#9D0012;stroke-width:1.1;" />
+        </g> <!--MD5=[402f40fcb9e4584d6bc1e4cf40b09134]
+reverse link FilterCommandPredicate to ModelManager-->
+        <g id="link_FilterCommandPredicate_ModelManager">
+            <path codeLine="28" d="M190.43,211 C219.57,211 248.72,211 277.86,211 " fill="none" id="FilterCommandPredicate-backto-ModelManager" style="stroke:#9D0012;stroke-width:1.1;stroke-dasharray:7.0,7.0;" />
+            <polygon fill="#9D0012" points="185.38,211,194.3914,214.9743,190.38,210.9857,194.3685,206.9743,185.38,211" style="stroke:#9D0012;stroke-width:1.1;" />
+        </g> <!--MD5=[fee0925412b5513ab4e0742031603a6a]
+link ModelManager to Predicate-->
+        <g id="link_ModelManager_Predicate">
+            <path codeLine="29" d="M319.06,224.03 C315.09,237.8 314.22,260.75 316.45,278.54 " fill="none" id="ModelManager-to-Predicate" style="stroke:#9D0012;stroke-width:1.1;" />
+            <polygon fill="#9D0012" points="317.25,283.88,319.8948,274.3929,316.5209,278.9334,311.9803,275.5595,317.25,283.88" style="stroke:#9D0012;stroke-width:1.1;" />
+            <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="75" x="228.6797" y="273.2068">* namePreds</text>
+        </g> <!--MD5=[fee0925412b5513ab4e0742031603a6a]
+link ModelManager to Predicate-->
+        <g id="link_ModelManager_Predicate">
+            <path codeLine="30" d="M337.46,224.03 C341.67,237.8 342.59,260.75 340.22,278.54 " fill="none" id="ModelManager-to-Predicate-1" style="stroke:#9D0012;stroke-width:1.1;" />
+            <polygon fill="#9D0012" points="339.39,283.88,344.73,275.6045,340.161,278.9398,336.8257,274.3708,339.39,283.88" style="stroke:#9D0012;stroke-width:1.1;" />
+            <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="61" x="351.1716" y="273.2068">* tagPreds</text>
+        </g> <!--MD5=[fcb20446d865eb3b9670b3d50480f5a2]
+link FilterCommand to Model-->
+        <g id="link_FilterCommand_Model">
+            <path codeLine="32" d="M173.83,80.5 C194.68,80.5 215.53,80.5 236.37,80.5 " fill="none" id="FilterCommand-to-Model" style="stroke:#9D0012;stroke-width:1.1;stroke-dasharray:7.0,7.0;" />
+            <polygon fill="#9D0012" points="241.39,80.5,232.39,76.5,236.39,80.5,232.39,84.5,241.39,80.5" style="stroke:#9D0012;stroke-width:1.1;" />
+        </g> <!--MD5=[43a6604ad58f3b90631a820749c4037d]
+link FilterCommand to FilterCommandPredicate-->
+        <g id="link_FilterCommand_FilterCommandPredicate">
+            <path codeLine="33" d="M111.9018,117.6259 C111.9018,117.6259 107.76,166.13 106.15,184.92 " fill="none" id="FilterCommand-FilterCommandPredicate" style="stroke:#9D0012;stroke-width:1.1;" />
+            <polygon fill="#9D0012" points="105.03,197.95,109.7778,189.3211,105.4534,192.968,101.8065,188.6436,105.03,197.95" style="stroke:#9D0012;stroke-width:1.1;" />
+            <line style="stroke:#9D0012;stroke-width:1.1;" x1="105.4534" x2="106.14" y1="192.968" y2="184.995" />
+            <polygon fill="#9D0012" points="112.93,105.67,108.4306,111.3052,111.9018,117.6259,116.4012,111.9907,112.93,105.67" style="stroke:#9D0012;stroke-width:1.1;" />
+            <text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="7" x="97.0574" y="187.2065">1</text>
+        </g> <!--MD5=[854c0c012bbeedbf46d7ed867846e3d8]
 @startuml filter-class
 !include style.puml
 skinparam classAttributeIconSize 0
@@ -144,4 +211,6 @@ JVM: Java HotSpot(TM) 64-Bit Server VM
 Default Encoding: Cp1252
 Language: en
 Country: US
---></g></svg>
+-->
+    </g>
+</svg>
