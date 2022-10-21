@@ -10,23 +10,21 @@ Class Commission
 Class Company
 Class Coverage
 Class Title
+Class AddressBook
+Class ModelManager
 
-Class OtherHiddenOutside #FFFFFF
-OtherHiddenOutside ..> "~* filtered" Policy
+ModelManager --> "1" AddressBook
+AddressBook *-right-> "1" UniquePolicyList
 
-Class HiddenOutside #FFFFFF
-HiddenOutside ..> UniquePolicyList
+ModelManager -down-> "~* filtered" Policy
+UniquePolicyList -right-> "~* all" Policy
 
-UniquePolicyList --> "~* all" Policy
 Policy *--> "1..*" Coverage
 Policy *--> Company
 Policy *--> Commission
 Policy *--> Title
 
-
 Commission -[hidden]right-> Company
 Commission -[hidden]right-> Coverage
-HiddenOutside -[hidden]right-> Policy
-OtherHiddenOutside -[hidden]-> HiddenOutside
 
 @enduml
