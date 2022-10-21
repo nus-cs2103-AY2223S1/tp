@@ -135,16 +135,6 @@ public class AddressBookTest {
         }
 
         @Override
-        public ObservableList<Project> getSortedProjectList() {
-            return projects;
-        }
-
-        @Override
-        public ObservableList<Issue> getSortedIssueList() {
-            return issues;
-        }
-
-        @Override
         public Project getProjectById(int id) {
             return null;
         }
