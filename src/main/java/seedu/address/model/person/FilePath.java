@@ -27,7 +27,7 @@ public class FilePath {
     /**
      * Constructs a {@code FilePath}.
      *
-     * @param filePath A valid file path.
+     * @param filePath A valid file path or empty file path.
      */
     public FilePath(String filePath) {
         requireNonNull(filePath);
@@ -37,7 +37,6 @@ public class FilePath {
             checkArgument(isValidPdfFilePath(filePath), MESSAGE_CONSTRAINTS);
             this.value = filePath;
         }
-
     }
 
     /**

@@ -10,6 +10,7 @@ title: Developer Guide
 ## **Acknowledgements**
 
 * The feature Undo and Redo was reused with minimal changes from a Tutorial called [Implementing Undo and Redo With The Command Design Pattern by ArjanCode](https://youtu.be/FM71_a3txTo).
+* The feature open and add PDF file was reused with minimal changes from a code from stackoverflow [Open PDF file on the fly](https://stackoverflow.com/questions/2546968/open-pdf-file-on-the-fly-from-a-java-application)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -224,15 +225,32 @@ The following activity diagram summarizes what happens when a user executes a ne
 * **Alternative 2:** Saves the entire address book.
   * Pros: Easy to implement.
   * Cons: May have performance issues in terms of memory usage.
+  
+### Opening of Person specific PDF files
 
+### Implementation
 
+The opening mechanism is facilitated by `OpenPersonFileCommand` and `FileUtil`.
 
-_{more aspects and alternatives to be added}_
+`OpenPersonFileCommand` extends from `Command` and implements its own execute method.
 
-### \[Proposed\] Data archiving
+`OpenPersonFileCommand` stores the target index of the list of persons, whose PDF will be opened.
 
-_{Explain here how the data archiving feature will be implemented}_
+`FileUtil` implements `FileUtil#openPdfFile(String)` — If PDF file in from the String exists, 
+the PDF will be opened.
+It's exposed in the `OpenPersonFileCommand` as `OpenPersonFileCommand#execute(Model)`
 
+Given below is an example usage scenario and how the open file mechanism behaves at each step.
+
+Step 1. The user launches the application for the first time. 
+
+Step 2. The user executes `file 2` command to open the file of the 2nd person in the address book.
+
+Step 3. The parser will parse the input command `file` and target index `2` and store the target index in the
+newly created `OpenPersonFileCommand`.
+
+Step 4. `OpenPersonFileCommand#execute(Model)` is called by the Logic Manager while in turn calls 
+`FileUtil#openPdfFile(String)` and the PDF file stored in the file path will be opened on the Users default PDF viewer.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -368,7 +386,29 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case ends.
 
-**Use case: UC05 - Finding a client by name**
+**Use case: UC05 - Adding description to a client**
+
+**MSS**
+1. User requests to add a description of any form to a specific client
+
+2. FABook adds the description
+
+3. FABook informs user the description has been added
+
+**Extensions**
+* 1a. The client is not found.
+
+  * 1a1. FABook shows an error message with command explanation.
+  
+    Use case ends.
+
+* 1b. No description was given.
+
+  * 1b1. FABook shows an error message with suggested format
+
+    Use case ends.
+
+**Use case: UC06 - Finding a client by name**
 
 **MSS**
 1. User requests to find a specific client by name
@@ -392,7 +432,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case ends.
 
-**Use case: UC06 - Finding a client by phone number**
+**Use case: UC07 - Finding a client by phone number**
 
 **MSS**
 1. User requests to find a specific client by phone number
@@ -422,7 +462,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case ends.
 
-**Use case: UC07 - Finding a client by address**
+**Use case: UC08 - Finding a client by address**
 
 **MSS**
 1. User requests to find a specific client by address
@@ -446,7 +486,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case ends.
     
-**Use case: UC08 - Delete a person**
+**Use case: UC09 - Delete a person**
 
 **MSS**
 1. User requests to <u>find a client by name(UC05)</u>
@@ -457,7 +497,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     Use case ends.
 
-**Use case: UC09 - Clearing all entries**
+**Use case: UC10 - Clearing all entries**
 
 **MSS**
 1. User requests to clear all entries
@@ -468,7 +508,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     Use case ends.
 
-**Use case: UC10 - Exiting FABook**
+**Use case: UC11 - Exiting FABook**
 
 **MSS**
 1. User requests to exit

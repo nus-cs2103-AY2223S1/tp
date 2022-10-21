@@ -23,23 +23,24 @@ public class Person {
     // Data fields
     private final Address address;
     private final Remark remark;
-    private final NetWorth netWorth;
+    private NetWorth netWorth;
+    private final MeetingTime meetingTime;
     private final FilePath filePath;
-
     private final Set<Tag> tags = new HashSet<>();
 
     /**
      * Every field must be present and not null.
      */
     public Person(Name name, Phone phone, Email email, Address address, Remark remark,
-                  NetWorth netWorth, FilePath filePath, Set<Tag> tags) {
-        requireAllNonNull(name, phone, email, address, netWorth, filePath, tags);
+                  NetWorth netWorth, MeetingTime meetingTime, FilePath filePath, Set<Tag> tags) {
+        requireAllNonNull(name, phone, email, address, netWorth, meetingTime, filePath, tags);
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
         this.remark = remark;
         this.netWorth = netWorth;
+        this.meetingTime = meetingTime;
         this.filePath = filePath;
         this.tags.addAll(tags);
     }
@@ -48,23 +49,24 @@ public class Person {
      * Constructor with no remark, for CreateCommand only.
      */
     public Person(Name name, Phone phone, Email email, Address address,
-                  NetWorth netWorth, FilePath filepath, Set<Tag> tags) {
-        requireAllNonNull(name, phone, email, address, netWorth, filepath, tags);
+                  NetWorth netWorth, MeetingTime meetingTime, FilePath filepath, Set<Tag> tags) {
+        requireAllNonNull(name, phone, email, address, netWorth, meetingTime, filepath, tags);
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
         this.remark = new Remark("");
         this.netWorth = netWorth;
+        this.meetingTime = meetingTime;
         this.filePath = filepath;
         this.tags.addAll(tags);
     }
 
     /**
-     * Constructor with no remark, for CreateCommand only.
+     * Constructor with no remark and no filepath, for CreateCommand only.
      */
     public Person(Name name, Phone phone, Email email, Address address,
-                  NetWorth netWorth, Set<Tag> tags) {
+                  NetWorth netWorth, MeetingTime meetingTime, Set<Tag> tags) {
         requireAllNonNull(name, phone, email, address, netWorth, tags);
         this.name = name;
         this.phone = phone;
@@ -72,6 +74,7 @@ public class Person {
         this.address = address;
         this.remark = new Remark("");
         this.netWorth = netWorth;
+        this.meetingTime = meetingTime;
         this.filePath = new FilePath("");
         this.tags.addAll(tags);
     }
@@ -99,6 +102,10 @@ public class Person {
 
     public NetWorth getNetWorth() {
         return netWorth;
+    }
+
+    public MeetingTime getMeetingTime() {
+        return meetingTime;
     }
 
     public FilePath getFilePath() {
@@ -156,13 +163,14 @@ public class Person {
                 && otherPerson.getTags().equals(getTags())
                 && otherPerson.getRemark().equals(getRemark())
                 && otherPerson.getNetWorth().equals(getNetWorth())
+                && otherPerson.getMeetingTime().equals(getMeetingTime())
                 && otherPerson.getFilePath().equals(getFilePath());
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, address, tags, remark, netWorth, filePath);
+        return Objects.hash(name, phone, email, address, tags, remark, netWorth, meetingTime, filePath);
     }
 
     @Override
@@ -179,6 +187,8 @@ public class Person {
                 .append(getRemark())
                 .append(" Net Worth: ")
                 .append(getNetWorth())
+                .append(" Meeting time: ")
+                .append(getMeetingTime())
                 .append(" File Path: ")
                 .append(getFilePath())
                 .append(" Tags: ");

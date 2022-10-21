@@ -25,6 +25,8 @@ Given below are my contributions to the project.
 
 * **Enhancements to existing features**:
     * added input shortcuts for CreateCommand, FindCommand and EditCommand
+    * added MeetingTime as an attribute for the client
+    * updated UpdateCommand to include MeetingTime
 
 * **Documentation**:
     * User Guide:
