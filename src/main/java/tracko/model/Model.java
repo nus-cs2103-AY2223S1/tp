@@ -1,6 +1,7 @@
 package tracko.model;
 
 import java.nio.file.Path;
+import java.util.Comparator;
 import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
@@ -134,6 +135,19 @@ public interface Model {
      * Returns the number of items in the filtered item list.
      */
     int getFilteredItemListSize();
+
+    /**
+     * Returns an unmodifiable view of the sorted item list.
+     */
+    ObservableList<Order> getSortedOrderList();
+
+    /**
+     * Updates the comparator of the sorted item list to sort by the given {@code comparator}.
+     *
+     * @param comparator The comparator given to sort the items in the item list.
+     * @throws NullPointerException if {@code comparator} is null.
+     */
+    void updateSortedOrderList(Comparator<Order> comparator);
 
     /**
      * Returns the item list.

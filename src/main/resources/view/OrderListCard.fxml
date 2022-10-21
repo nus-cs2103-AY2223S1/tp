@@ -33,6 +33,10 @@
       </HBox>
       <VBox>
         <HBox alignment="CENTER_LEFT" spacing="10.0">
+          <Region styleClass="icon-button" id="timeCreatedIcon"/>
+          <Label fx:id="timeCreated" styleClass="cell_small_label_order" text="\$timeCreated" />
+        </HBox>
+        <HBox alignment="CENTER_LEFT" spacing="10.0">
           <Region styleClass="icon-button" id="phoneIcon"/>
           <Label fx:id="phone" styleClass="cell_small_label_order" text="\$phone" />
         </HBox>
