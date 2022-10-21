@@ -1,5 +1,7 @@
 package seedu.address.logic.commands;
 
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.logic.commands.SortCommand.ALPHA_SORT_SUCCESS;
 import static seedu.address.logic.commands.SortCommand.DEFAULT_SORT_SUCCESS;
@@ -233,5 +235,22 @@ public class SortCommandTest {
         SortCommand sortCommand = new SortCommand(SortCommand.SortBy.DEFAULT);
         assertCommandSuccess(sortCommand, tuitionClassModel,
                 String.format(SortCommand.MESSAGE_SUCCESS, DEFAULT_SORT_SUCCESS), expectedTuitionClassModel);
+    }
+
+    @Test
+    public void equals() {
+        SortCommand sortCommand = new SortCommand(SortCommand.SortBy.ALPHA);
+
+        // same object -> returns true
+        assertTrue(sortCommand.equals(sortCommand));
+
+        // same method and message -> returns true
+        assertTrue(sortCommand.equals(new SortCommand(SortCommand.SortBy.ALPHA)));
+
+        // different class -> returns false
+        assertFalse(sortCommand.equals(0));
+
+        // different method and message -> returns false
+        assertFalse(sortCommand.equals(new SortCommand(SortCommand.SortBy.DEFAULT)));
     }
 }
