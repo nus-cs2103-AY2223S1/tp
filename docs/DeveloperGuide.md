@@ -169,14 +169,14 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 ### \[Insert Numbering\] Add feature
-The Edit feature is facilitated by `LogicManager`. The `AddCommandParser` parses the command arguments, and returns
+The Add feature is facilitated by `LogicManager`. The `AddCommandParser` parses the command arguments, and returns
 an `AddCommand` that is executed by the `LogicManager`.
 
 This feature allows the user to add a new Customer.
 
 **Below is a sample usage and how the add sequence behaves at each step.**
 
-1. User chooses the Customer he/ she wants to add and enters the command `add n/Bob p/12345678 e/johnd@example.com r/5000 t/GOLD t/MEMBER`
+1. User chooses the Customer he/she wants to add and enters the command `add n/Bob p/12345678 e/johnd@example.com r/5000 t/GOLD t/MEMBER`
 2. The `LogicManager` redirects this command to `AddressBookParser`, which parses the command via `AddCommandParser` and
    returns the `AddCommand` containing the Customer with all the required fields
 3. The `LogicManager` executes the `AddCommand` and Customer is added to database
