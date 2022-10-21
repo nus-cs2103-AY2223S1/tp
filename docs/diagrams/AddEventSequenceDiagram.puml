@@ -61,8 +61,8 @@ deactivate ModelManager
 
 AddEventCommand --> LogicManager : CommandResult
 deactivate AddEventCommand
-destroy AddEventCommand
 
 <--LogicManager
 deactivate LogicManager
+destroy AddEventCommand
 @enduml
