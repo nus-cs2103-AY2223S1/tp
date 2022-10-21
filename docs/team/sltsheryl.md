@@ -10,7 +10,7 @@ Given below are my contributions to the project.
 
 ####New Enhancement: User Interface
 
-I was in charge of building the application's UI interface and handling the interaction between the model and the ui components.
+I was in charge of building the application's UI interface and handling the interaction between the ```model``` and ```ui``` components.
 1. Implemented a UI overhaul, with its new design inspired by Outlook. 
 2. Created module panel to display the modules taken by selected student. 
 3. Handled live updates to UI when for commands such as ```mod add```, ```mod mark``` and ```addInt```.
@@ -32,13 +32,12 @@ The ```DarkTheme.css``` file was extensively refactored to update the UI interfa
 
 ####New Feature: Add Interest
 
-I also worked on the add interest feature and updated ```Person``` with new fields. 
+I also worked on the add interest feature. The ```add int``` command gives users a hassle-free way of adding new interests to a student.
 
-The ```add int``` command gives users a hassle-free way of adding an interest to a student.
+```AddInterestCommandTest``` and ```AddInterestParserCommandTest``` were also created to include testing coverage for ```AddInterestCommand``` and ```AddInterestParserCommand``` classes. 
 
-```AddInterestCommandTest``` and ```AddInterestParserCommandTest``` were also created to include testing overage on the Add Interest feature. 
-
-
+####Other Modifications: Align Person with Application Purpose
+Modifications to the ```Person``` fields were made so it is tailored to the function of Mass Linkers, such as the removal of ```Address``` and addition of new fields like ```Telegram```and ```GitHub```. 
 ####Code contributed
 
 [RepoSense link](https://nus-cs2103-ay2223s1.github.io/tp-dashboard/?search=sltsheryl&breakdown=true)
