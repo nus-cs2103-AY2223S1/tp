@@ -48,7 +48,7 @@ public class ParserUtilTest {
     private static final String INVALID_MAJOR = "C0MPUT3R $C13NC3";
     private static final String INVALID_ID = "J9021-1";
     private static final String INVALID_TITLE = "Intern | Software Engineer";
-    private static final String INVALID_FILE_PATH = "src|a";
+    private static final String INVALID_FILE_PATH = "src*a";
 
     private static final String VALID_NAME = "Rachel Walker";
     private static final String VALID_PHONE = "123456";
