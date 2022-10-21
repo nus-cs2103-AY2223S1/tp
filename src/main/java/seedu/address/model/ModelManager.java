@@ -134,8 +134,7 @@ public class ModelManager implements Model {
     public void setPerson(Person target, Person editedPerson) {
         requireAllNonNull(target, editedPerson);
         addressBook.setPerson(target, editedPerson);
-        reminderList.updateRemindersWithNewNameAndPhone(target.getName(), target.getPhone(),
-                editedPerson.getName(), editedPerson.getPhone());
+        updateReminderLists(target, editedPerson);
 
         if (isTargetPerson(target)) {
             setTargetPerson(editedPerson);
@@ -349,5 +348,12 @@ public class ModelManager implements Model {
         } else {
             reminderList.clear();
         }
+    }
+
+    private void updateReminderLists(Person target, Person editedPerson) {
+        reminderList.updateRemindersWithNewNameAndPhone(target.getName(), target.getPhone(),
+                editedPerson.getName(), editedPerson.getPhone());
+        targetPersonReminderList.updateRemindersWithNewNameAndPhone(target.getName(), target.getPhone(),
+                editedPerson.getName(), editedPerson.getPhone());
     }
 }

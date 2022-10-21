@@ -115,6 +115,7 @@ public class ReminderList implements ReadOnlyReminderList {
                 reminder.setNameAndPhone(newName, newPhone);
             }
         }
+        internalList.setAll(sortedList);
     }
 
     /**
