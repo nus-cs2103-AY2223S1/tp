@@ -23,7 +23,7 @@ public class BuyCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Creates a transaction and links to the client. "
             + "Parameters: "
-            + "Index (must be a positive integer) "
+            + "INDEX (must be a positive integer) "
             + PREFIX_QUANTITY + "QUANTITY "
             + PREFIX_GOODS + "GOODS "
             + PREFIX_PRICE + "PRICE "

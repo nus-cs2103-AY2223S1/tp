@@ -1,12 +1,15 @@
 package seedu.address.model.transaction;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalTransaction.BUY_BOOKS;
+import static seedu.address.testutil.TypicalTransaction.BUY_BURGERS;
 import static seedu.address.testutil.TypicalTransaction.BUY_ORANGE;
 import static seedu.address.testutil.TypicalTransaction.BUY_SHELVES;
 import static seedu.address.testutil.TypicalTransaction.SELL_CLOTHES;
+import static seedu.address.testutil.TypicalTransaction.SELL_PAPAYA;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -100,5 +103,42 @@ class TransactionLogTest {
 
         transactionLog.addTransaction(BUY_SHELVES);
         assertEquals(transactionLog.size(), 2);
+    }
+
+    public void getSellTransactionList() {
+        TransactionLog log = new TransactionLog();
+        log.addTransaction(BUY_BURGERS);
+        log.addTransaction(SELL_PAPAYA);
+
+        ObservableList<Transaction> internalList = FXCollections.observableArrayList();
+        internalList.add(SELL_PAPAYA);
+        assertEquals(log.getSellTransactionList(), internalList);
+
+        ObservableList<Transaction> list2 = FXCollections.observableArrayList();
+        list2.add(BUY_ORANGE);
+        assertNotEquals(log.getSellTransactionList(), list2);
+
+        ObservableList<Transaction> list3 = FXCollections.observableArrayList();
+        list3.add(BUY_BURGERS);
+        assertNotEquals(log.getSellTransactionList(), list3);
+    }
+
+    @Test
+    public void getBuyTransactionList() {
+        TransactionLog log = new TransactionLog();
+        log.addTransaction(BUY_BURGERS);
+        log.addTransaction(SELL_PAPAYA);
+
+        ObservableList<Transaction> internalList = FXCollections.observableArrayList();
+        internalList.add(BUY_BURGERS);
+        assertEquals(log.getBuyTransactionList(), internalList);
+
+        ObservableList<Transaction> list2 = FXCollections.observableArrayList();
+        list2.add(BUY_ORANGE);
+        assertNotEquals(log.getBuyTransactionList(), list2);
+
+        ObservableList<Transaction> list3 = FXCollections.observableArrayList();
+        list3.add(SELL_PAPAYA);
+        assertNotEquals(log.getBuyTransactionList(), list3);
     }
 }

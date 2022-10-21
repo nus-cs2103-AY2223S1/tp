@@ -1,5 +1,6 @@
 package seedu.address.ui;
 
+import java.util.Iterator;
 import java.util.logging.Logger;
 
 import javafx.collections.FXCollections;
@@ -213,6 +214,30 @@ public class MainWindow extends UiPart<Stage> {
     }
 
     /**
+     * Handles changes to the UI whenever the filtered command is executed.
+     */
+    private void handleFilterTransaction(CommandResult result) {
+        ObservableList<Client> clientList = logic.getFilteredClientList();
+        companyListPanel.setCompanyList(FXCollections.observableArrayList());
+        ObservableList<Transaction> transactions = FXCollections.observableArrayList();
+        Iterator<Client> itr = clientList.listIterator();
+        while (itr.hasNext()) {
+            Client client = itr.next();
+            if (isBuyFilter(result)) {
+                transactions.addAll(client.getBuyTransactionList());
+            } else {
+                transactions.addAll(client.getSellTransactionList());
+            }
+        }
+        transactionListPanel.setTransactionList(transactions);
+    }
+
+    private boolean isBuyFilter(CommandResult result) {
+        String output = result.toString();
+        return (output.contains("buy"));
+    }
+
+    /**
      * Executes the command and returns the result.
      *
      * @see seedu.address.logic.Logic#execute(String)
@@ -231,7 +256,11 @@ public class MainWindow extends UiPart<Stage> {
                 handleExit();
             }
 
-            handleClientDetailsUpdate(commandResult);
+            if (commandResult.isFilterTransactions()) {
+                handleFilterTransaction(commandResult);
+            } else {
+                handleClientDetailsUpdate(commandResult);
+            }
 
             return commandResult;
         } catch (CommandException | ParseException e) {
@@ -240,4 +269,5 @@ public class MainWindow extends UiPart<Stage> {
             throw e;
         }
     }
+
 }

@@ -14,16 +14,22 @@ import static seedu.address.testutil.TypicalClients.BOB;
 import static seedu.address.testutil.TypicalCompany.AMY;
 import static seedu.address.testutil.TypicalCompany.BENSON;
 import static seedu.address.testutil.TypicalCompany.ELLE;
+import static seedu.address.testutil.TypicalTransaction.BUY_BURGERS;
+import static seedu.address.testutil.TypicalTransaction.BUY_ORANGE;
+import static seedu.address.testutil.TypicalTransaction.SELL_PANTS;
 
 import java.util.HashSet;
 import java.util.Set;
 
 import org.junit.jupiter.api.Test;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import seedu.address.logic.commands.CreateCommand;
 import seedu.address.model.company.Company;
 import seedu.address.model.company.UniqueCompanyList;
 import seedu.address.model.tag.Tag;
+import seedu.address.model.transaction.Transaction;
 import seedu.address.model.transaction.TransactionLog;
 import seedu.address.testutil.ClientBuilder;
 import seedu.address.testutil.CompanyBuilder;
@@ -107,6 +113,37 @@ public class ClientTest {
 
         // Invalid Company
         assertFalse(client.hasCompany(AMY));
+    }
+
+    @Test
+    public void getSellTransactionList() {
+        Client alice = new ClientBuilder().build();
+        alice.addTransaction(SELL_PANTS);
+        alice.addTransaction(BUY_BURGERS);
+
+        ObservableList<Transaction> internalList = FXCollections.observableArrayList();
+        internalList.add(SELL_PANTS);
+        assertTrue(alice.getSellTransactionList().equals(internalList));
+
+        ObservableList<Transaction> list2 = FXCollections.observableArrayList();
+        list2.add(BUY_BURGERS);
+        assertFalse(alice.getSellTransactionList().equals(list2));
+
+    }
+
+    @Test
+    public void getBuyTransactionList() {
+        Client alice = new ClientBuilder().build();
+        alice.addTransaction(SELL_PANTS);
+        alice.addTransaction(BUY_BURGERS);
+
+        ObservableList<Transaction> internalList = FXCollections.observableArrayList();
+        internalList.add(BUY_BURGERS);
+        assertTrue(alice.getBuyTransactionList().equals(internalList));
+
+        ObservableList<Transaction> list2 = FXCollections.observableArrayList();
+        list2.add(BUY_ORANGE);
+        assertFalse(alice.getBuyTransactionList().equals(list2));
     }
 
     @Test
