@@ -19,6 +19,10 @@ public interface Model {
     Predicate<Person> PREDICATE_SHOW_ALL_PERSONS = unused -> true;
     Predicate<Module> PREDICATE_SHOW_ALL_MODULES = unused -> true;
 
+    /** {@code Predicate} that always evaluate to false */
+    Predicate<Person> PREDICATE_SHOW_ZERO_PERSON = unused -> false;
+    Predicate<Module> PREDICATE_SHOW_ZERO_MODULE = unused -> false;
+
     //// person-related methods
 
     /**
