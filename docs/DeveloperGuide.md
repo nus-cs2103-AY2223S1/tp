@@ -418,19 +418,24 @@ We help NUS CS Students to have a collection of fellow NUS CS Students to find p
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                    | I want to …​                                     | So that I can…​                                                                         |
-|--------| ------------------------------------------ |--------------------------------------------------|-----------------------------------------------------------------------------------------|
-| `* * *` | new user                                   | see usage instructions                           | refer to instructions when I forget how to use the App                                  |
-| `* * *` | user                                       | save a new contact                               | contact them if i wish to collaborate with them                                         |
-| `* * *` | user                                       | delete a person                                  | remove entries that I no longer need                                                    |
-| `* * *` | user                                       | list out all my friend's contact/ info           | look through all my contacts at once                                                    |
-| `* * *` | user                                       | keep track of the modules I have taken           | plan my modules easily                                                                  |
-| `* * *` | user                                       | keep track of my friend's current modules        | so that i know which modules i can collaborate with them for                            |
-| `* * *` | user                                       | keep track of my friend's previous modules       | consult my friends on those modules, if i am currently taking them                      |
-| `* * *` | user                                       | see what modules my friends are planning to take | plan my modules together with them                                                      |
-| `* *`  | user                                       | edit my friends' contact information             | change and update the contacts in my friend's list to make sure it is always up to date |
-| `*`    | user                                       | view my own exam schedule                        | be clear on which exams are coming up  <br/>                                            |
-| `*`    | user                                       | view my timetable                                | be clear on what classes are coming up                                                  |
+| Priority | As a …​                                   | I want to …​                                     | So that I can…​                                                                         |
+|----------|-------------------------------------------|--------------------------------------------------|-----------------------------------------------------------------------------------------|
+| `* * *`  | new user                                  | see usage instructions                           | refer to instructions when I forget how to use the App                                  |
+| `* * *`  | user                                      | save my own profile                              | keep track of my own information                                                        |
+| `* * *`  | user                                      | edit my own profile                              | update my own information when there are changes                                        |
+| `* * *`  | user                                      | delete my own profile                            | remove my information in case of any data breach                                        |
+| `* * *`  | user                                      | save a new contact                               | contact them if i wish to collaborate with them                                         |
+| `* * *`  | user                                      | edit my friends' contact information             | change and update the contacts in my friend's list to make sure it is always up to date |
+| `* * *`  | user                                      | delete a person                                  | remove entries that I no longer need                                                    |
+| `* * *`  | user                                      | list out all my friend's contact/ info           | look through all my contacts at once                                                    |
+| `* * *`  | user                                      | keep track of the modules I have taken           | plan my modules easily                                                                  |
+| `* * *`  | user                                      | keep track of my friend's current modules        | so that i know which modules i can collaborate with them for                            |
+| `* * *`  | user                                      | keep track of my friend's previous modules       | consult my friends on those modules, if i am currently taking them                      |
+| `* * *`  | user                                      | see what modules my friends are planning to take | plan my modules together with them                                                      |
+| `* *`    | user                                      | view my timetable                                | be clear on what classes are coming up                                                  |
+| `* *`    | user                                      | check what core modules I have left to clear     | plan my following semesters better to accommodate these modules                         |
+| `*`      | user                                      | view my own exam schedule                        | be clear on which exams are coming up  <br/>                                            |
+
 
 
 *{More to be added}*
@@ -452,7 +457,88 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **System: ConnectNUS**
 
-**Use case: UC2 - Save a new contact**
+**Use case: UC2 - Save my user profile**
+
+**Actor: CS Students**
+
+**MSS**
+
+1. CS Student chooses to save their own profile.
+2. ConnectNUS requests for details of their profile to be saved.
+3. CS Student enters the requested details.
+4. ConnectNUS saves the user profile and updates the data file.
+5. Use case ends.
+
+**Extensions**
+
+* 1a. ConnectNUS detects another user profile that has already been saved
+
+  * 1a1. ConnectNUS informs the user that there already is a user profile saved.
+  * Use case ends.
+
+* 3a. ConnectNUS detects an error in the entered data
+
+    * 3a1. ConnectNUS requests for the correct data.
+    * 3a2. CS Student enters new data.
+    * Steps 3a-3b are repeated until the data entered are correct.
+      Use case resumes at step 4.
+
+**System: ConnectNUS**
+
+**Use case: UC3 - Edit user profile**
+
+**Actor: CS Students**
+
+**MSS**
+
+1. CS Student chooses to edit their own profile.
+2. ConnectNUS requests for details of their profile to be edited.
+3. CS Student enters the requested details.
+4. ConnectNUS saves the edited user profile and updates the data file.
+5. Use case ends.
+
+**Extensions**
+
+* 1a. ConnectNUS does not detect any user profile to edit
+
+    * 1a1. ConnectNUS informs user that there is no user profile to edit.
+    * Use case ends.
+
+* 3a. ConnectNUS detects an error in the entered data
+
+    * 3a1. ConnectNUS requests for the correct data.
+    * 3a2. CS Student enters new data.
+    * Steps 3a-3b are repeated until the data entered are correct.
+      Use case resumes at step 4.
+
+**System: ConnectNUS**
+
+**Use case: UC4 - Delete user profile**
+
+**Actor: CS Students**
+
+**MSS**
+
+1. CS Student chooses to delete their own profile.
+2. ConnectNUS deletes the user profile and updates the data file.
+3. Use case ends.
+
+**Extensions**
+
+* 1a. ConnectNUS does not detect any user profile to delete
+
+    * 1a1. ConnectNUS informs user that there is no user profile to delete.
+    * Use case ends.
+
+* 1b. ConnectNUS detects an error in the command format.
+    * 1b1. ConnectNUS requests for the correct format.
+    * User enters a new command in the correct format.
+      Steps 1a1-1a2 are repeated until the data entered are correct.
+      Use case resumes at step 2.
+
+**System: ConnectNUS**
+
+**Use case: UC5 - Save a new contact**
 
 **Actor: CS Students**
 
@@ -473,9 +559,36 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * Steps 3a-3b are repeated until the data entered are correct.
     Use case resumes at step 4.
 
+**Use case: UC6 - Edit a contact**
+
+**Actor: CS Students**
+
+**MSS**
+
+1. CS Student chooses to edit a specific index of contact.
+2. ConnectNUS requests for details of the contact to be edited.
+3. CS Student enters the requested details.
+4. ConnectNUS saves the edited contact and updates the data file.
+5. Use case ends.
+
+**Extensions**
+
+* 1a. ConnectNUS detects an error in the command format or invalid index.
+    * 1a1. ConnectNUS requests for the correct format or index.
+    * User enters a new command in the correct format or index.
+      Steps 1a1-1a2 are repeated until the data entered are correct.
+      Use case resumes at step 2.
+
+* 3a. ConnectNUS detects an error in the entered data
+
+    * 3a1. ConnectNUS requests for the correct data.
+    * 3a2. CS Student enters new data.
+    * Steps 3a-3b are repeated until the data entered are correct.
+      Use case resumes at step 4.
+
 **System: ConnectNUS**
 
-**Use case: UC3 - Delete a person**
+**Use case: UC7 - Delete a contact**
 
 **Actor: CS Students**
 
@@ -495,7 +608,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **System: ConnectNUS**
 
-**Use case: UC4 - List out all my friend’s contact/information**
+**Use case: UC8 - List out all my friend’s contact/information**
 
 **Actor: CS Students**
 
@@ -512,7 +625,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **System: ConnectNUS**
 
-**Use case: UC5 - Keep track of modules taken by user**
+**Use case: UC9 - Keep track of modules taken by user**
 
 **Actor: CS Students**
 
@@ -529,7 +642,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **System: ConnectNUS**
 
-**Use case: UC6 - Keep track of friend’s current modules**
+**Use case: UC10 - Keep track of friend’s current modules**
 
 **Actor: CS Students**
 
@@ -553,7 +666,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **System: ConnectNUS**
 
-**Use case: UC7 - Keep track of friend’s previous modules**
+**Use case: UC11 - Keep track of friend’s previous modules**
 
 **Actor: CS Students**
 
@@ -576,7 +689,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **System: ConnectNUS**
 
-**Use case: UC8 - Keep track of friend’s module plan**
+**Use case: UC12 - Keep track of friend’s module plan**
 
 **Actor: CS Students**
 
@@ -599,14 +712,14 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **System: ConnectNUS**
 
-**Use case: UC9 - Show User's Timetable**
+**Use case: UC13 - Show User's Timetable**
 
 **Actor: CS Students**
 
 **MSS**
 
 1. CS Student requests to show own Timetable.
-2. ConnectNUS the Timetable of CS Student's current modules.
+2. ConnectNUS shows the Timetable of CS Student's current modules.
 3. Use case ends.
 
 **Extensions**
@@ -623,14 +736,14 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **System: ConnectNUS**
 
-**Use case: UC10 - Show contact's Timetable**
+**Use case: UC14 - Show contact's Timetable**
 
 **Actor: CS Students**
 
 **MSS**
 
 1. CS Student requests to show contact's Timetable.
-2. ConnectNUS the Timetable of CS Student's contact's current modules.
+2. ConnectNUS shows the Timetable of CS Student's contact's current modules.
 3. Use case ends.
 
 **Extensions**
@@ -644,6 +757,31 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * 1b. No current modules for contact, or no lessons for current modules.
     * 1b1. ConnectNUS informs user of missing data.
     * Use case ends.
+
+**System: ConnectNUS**
+
+**Use case: UC15 - Check core modules left that user must take**
+
+**Actor: CS Students**
+
+**MSS**
+
+1. CS Student requests to check modules left.
+2. ConnectNUS shows what core modules the user has yet to take.
+3. Use case ends.
+
+**Extensions**
+
+* 1a. ConnectNUS detects an error in the command format.
+    * 1a1. ConnectNUS requests for the correct format.
+    * User enters a new command in the correct format.
+      Steps 1a1-1a2 are repeated until the data entered are correct.
+      Use case resumes at step 2.
+
+* 1b. No user, or no current and previous modules for user.
+    * 1b1. ConnectNUS informs user of missing data.
+    * Use case ends.
+
 
 *{More to be added}*
 
