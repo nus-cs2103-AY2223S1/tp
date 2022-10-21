@@ -16,7 +16,6 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.testutil.Assert.assertThrows;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 import seedu.address.commons.core.index.Index;
@@ -188,7 +187,11 @@ public class CommandTestUtil {
 
         Appointment appointment = model.getFilteredAppointmentList().get(targetIndex.getZeroBased());
         final String[] splitName = appointment.getName().fullName.split("\\s+");
-        model.updateFilteredAppointmentList(new NameContainsKeywordsPredicateAppointment(Arrays.asList(splitName[0])));
+        String predicateName = splitName[0];
+        for (int i = 1; i < splitName.length; i++) {
+            predicateName += " " + splitName[i];
+        }
+        model.updateFilteredAppointmentList(new NameContainsKeywordsPredicateAppointment(predicateName));
 
         assertEquals(1, model.getFilteredAppointmentList().size());
     }
