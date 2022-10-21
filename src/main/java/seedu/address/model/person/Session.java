@@ -90,20 +90,15 @@ public class Session implements Comparable<Session> {
     public int compareTo(Session other) {
         LocalDateTime thisTime = this.time;
         LocalDateTime otherTime = other.time;
-        if (this.time.getDayOfWeek().compareTo(other.time.getDayOfWeek()) < 0) {
-            return -1;
-        } else if (this.time.getDayOfWeek().compareTo(other.time.getDayOfWeek()) == 0) {
-            int comp = thisTime.getHour() - otherTime.getHour();
-            if (comp < 0) {
-                return -1;
-            }
-            if (comp == 0) {
-                return thisTime.getMinute() - otherTime.getMinute();
-            }
-            return 1;
-        } else {
-            return 1;
+        int dayCompareTo = this.time.getDayOfWeek().compareTo(other.time.getDayOfWeek());
+        if (dayCompareTo != 0) {
+            return dayCompareTo;
         }
+        int hourCompareTo = thisTime.getHour() - otherTime.getHour();
+        if (hourCompareTo != 0) {
+            return hourCompareTo;
+        }
+        return thisTime.getMinute() - otherTime.getMinute();
     }
 
     @Override
