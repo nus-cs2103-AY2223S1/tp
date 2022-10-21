@@ -43,7 +43,7 @@ public class EditOrderCommandParser implements Parser<EditOrderCommand> {
         }
 
         EditOrderDescriptor editOrderDescriptor = new EditOrderDescriptor();
-        parseContacts(editOrderDescriptor, argMultimap);
+        parseCustomerDetails(editOrderDescriptor, argMultimap);
         parseItemQuantity(editOrderDescriptor, argMultimap);
 
         if (!editOrderDescriptor.isAnyFieldEdited()) {
@@ -65,7 +65,7 @@ public class EditOrderCommandParser implements Parser<EditOrderCommand> {
      * @param argMultimap The map that stores the prefixes inputted by the user.
      * @throws ParseException Exception that is thrown when the user inputs the wrong prefixes.
      */
-    public void parseContacts(EditOrderDescriptor editOrderDescriptor, ArgumentMultimap argMultimap)
+    public void parseCustomerDetails(EditOrderDescriptor editOrderDescriptor, ArgumentMultimap argMultimap)
             throws ParseException {
         if (arePrefixesPresent(argMultimap, CliSyntax.PREFIX_NAME)) {
             editOrderDescriptor.setName(ParserUtil.parseName(argMultimap.getValue(CliSyntax.PREFIX_NAME).get()));
