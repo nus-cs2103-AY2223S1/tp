@@ -121,8 +121,11 @@ How the parsing works:
 
 The `Model` component,
 
-* stores the address book data i.e., all `Person` objects (which are contained in a `UniquePersonList` object).
-* stores the currently 'selected' `Person` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Person>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
+* stores the address book data. This address book data consists of:
+  * all `Person` objects (which are contained in a `UniquePersonList` object),
+  * all `Team` objects (which are contained in a `UniqueTeamList` object),
+  * and all 'Task' objects (which are contained in a `UniqueTaskList` object).
+* stores the currently 'selected' `Person`, `Team`, and `Task` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Person>`, `ObservableList<Team>`, and `ObservableList<Task>` respectively, that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
 * stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
 * does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
 
@@ -329,6 +332,23 @@ The `createTeam` command will call `Model#addTeam` to add the team into EZLead.
 The following sequence diagram show how the create team operation works:
 ![CreateTeamSequenceDiagram](images/CreateTeamSequenceDiagram.png)
 
+### Delete Team Feature
+
+#### Implementation
+
+The Delete Team Feature allows the user to delete a team in EZLead. After deletion, the team will no longer be reflected in the Graphical User Interface.
+
+Given below is an example usage scenario
+
+Step 1. The user created a team using the `createteam` command.
+
+Step 2. The user assigns some members into the newly created team using the `assign` command.
+
+Step 3. The user realises that the team has completed their work and is no longer needed, and proceeds to delete the team using the `deleteteam t/1` command (Given that the team created in Step 1 is the team in index 1).
+
+The following sequence diagram shows how the delete team operation works:
+![DeleteTeamSequenceDaigram](images/DeleteTeamSequenceDiagram.png)
+
 ### Edit Team Feature
 
 #### Implementation
@@ -367,7 +387,6 @@ Step 1. The user executes `unassign m/1 (global person index) t/1` to unAssign t
 
 Step 2. The `unassignMember` command is created by the parser using the given member's index (global person index) and 
 team's index. It calls `Model#removePersonFromTeam` to remove the person from given team.
-
 
 _{more aspects and alternatives to be added}
 

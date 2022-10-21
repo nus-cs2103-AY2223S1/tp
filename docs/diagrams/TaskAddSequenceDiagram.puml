@@ -11,6 +11,7 @@ end box
 
 box Model MODEL_COLOR_T1
 participant ":Model" as Model MODEL_COLOR
+participant "task:Task" as Task MODEL_COLOR
 end box
 
 [-> LogicManager : execute("taskadd t/1 n/Create Feature A d/12-12-2022")
@@ -29,8 +30,15 @@ deactivate TaskAddCommandParser
 AddressBookParser -> TaskAddCommandParser : parse("taskadd t/1 n/Create Feature A d/12-12-2022")
 activate TaskAddCommandParser
 
+create Task
+TaskAddCommandParser -> Task
+activate Task
+
+Task --> TaskAddCommandParser : task
+deactivate Task
+
 create TaskAddCommand
-TaskAddCommandParser -> TaskAddCommand
+TaskAddCommandParser -> TaskAddCommand : (1, task)
 activate TaskAddCommand
 
 TaskAddCommand --> TaskAddCommandParser : m
@@ -48,7 +56,7 @@ deactivate AddressBookParser
 LogicManager -> TaskAddCommand : execute()
 activate TaskAddCommand
 
-TaskAddCommand -> Model : addTask(1, "Create Feature A", "12-12-2022")
+TaskAddCommand -> Model : addTask(1, task)
 activate Model
 
 Model --> TaskAddCommand
@@ -58,7 +66,7 @@ create CommandResult
 TaskAddCommand -> CommandResult
 activate CommandResult
 
-CommandResult --> TaskAddCommand
+CommandResult --> TaskAddCommand : result
 deactivate CommandResult
 
 TaskAddCommand --> LogicManager : result
