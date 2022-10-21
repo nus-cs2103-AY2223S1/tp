@@ -239,6 +239,58 @@ _{more aspects and alternatives to be added}_
 _{Explain here how the data archiving feature will be implemented}_
 
 
+### export Feature
+
+The `export` feature allows the user to export the displayed list in InternConnect to a JSON file.
+
+#### Implementation
+
+`exportCommand` class is used in the execution of `export` command. 
+`Storage#saveDisplayedList()` is called to save the JSON file in `data/export/` folder.
+
+Given below is an example success scenario and how the `export` mechanism behaves at each step.
+
+1. The user executes `export`.
+1. `LogicManager` calls `AddressBookParser#parseCommand()`.
+1. `AddressBookParser#parseCommand()` calls `ExportCommand#execute()`.
+1. `ExportCommand` gets current DateTime and use it for the output JSON file path.
+1. `ExportCommand` retrieves the `displayedList` from `model` by calling `Model#getFilteredPersonList()`.
+1. `ExportCommand` calls `Storage#saveDisplayedList()`
+1. The displayedList is stored as a JSON file in `data/export/<currentDateTime>.json`.
+
+The following sequence diagram shows how the `export` command works:
+
+![ExportSequenceDiagram](images/ExportSequenceDiagram.png)
+   
+#### Design Considerations
+
+**Aspect: Where to save the exported JSON file**
+* **Alternative 1 (current implementation)**: We save the files in the `data/export/` folder and 
+  use `<currentDateTime>.json` as the file name.
+    * Pros:
+        * Location for all exported JSON files is in a single folder.
+        * Naming format for all exported JSON files is fixed.
+    * Cons:
+        * Users will not be able to save the files where they like.
+        * Users will be able to name the JSON file as they wish.
+* **Alternative 2**: User specifies where to save the JSON file and what to name the file.
+    * Pros:
+        * Users will be able to save the JSON file where they like.
+        * Users will be able to name the JSON file as they wish.
+    * Cons:
+        * Harder to implement since there will be a lot of cases to cover, e.g. if the specified path is not 
+          in JSON format or not a valid file path or file already exists etc.
+        * Quite messy since the users can specify a completely different file path/directory everytime they 
+          execute `export` command.
+* **Alternative 3**: We save the files in the `data/export/` folder and user specifies only the file name.
+    * Pros:
+        * Location for all exported JSON files is in a single folder.
+        * Users will be able to name the JSON file as they wish.
+    * Cons:
+        * Harder to implement since there will be a lot of cases to cover, e.g. if the specified file name is not
+          in JSON format or file already exists etc.
+        * Users will not be able to save the files where they like.
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Documentation, logging, testing, configuration, dev-ops**
