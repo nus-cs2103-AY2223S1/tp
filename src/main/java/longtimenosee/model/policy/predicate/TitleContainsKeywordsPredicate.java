@@ -13,6 +13,7 @@ public class TitleContainsKeywordsPredicate implements Predicate<Policy> {
     private final List<String> keywords;
 
     public TitleContainsKeywordsPredicate(List<String> keywords) {
+        assert !keywords.isEmpty();
         this.keywords = keywords;
     }
 
@@ -24,5 +25,18 @@ public class TitleContainsKeywordsPredicate implements Predicate<Policy> {
             }
         }
         return false;
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        if (other == this) {
+            return true;
+        } else {
+            if (other instanceof TitleContainsKeywordsPredicate) {
+                return keywords.equals(((TitleContainsKeywordsPredicate) other).keywords);
+            } else {
+                return false;
+            }
+        }
     }
 }

@@ -50,9 +50,13 @@ public class FindPolicyCommandParser implements Parser<FindPolicyCommand> {
             predicates.add(new CompanyMatchesInputPredicate(company));
         }
 
-        if (argMultimap.getValue(PREFIX_COVERAGES).isPresent()) {
-            String coverage = ParserUtil.parseCoverage(argMultimap.getValue(PREFIX_COVERAGES).get()).coverageType;
-            predicates.add(new CoverageMatchesInputPredicate(coverage));
+        if (!(argMultimap.getAllValues(PREFIX_COVERAGES).isEmpty())) {
+            List<String> coverageKeywords = argMultimap.getAllValues(PREFIX_COVERAGES);
+            List<String> parsedKeywords = new ArrayList<String>();
+            for (String coverageKeyword : coverageKeywords) {
+                parsedKeywords.add(ParserUtil.parseCoverage(coverageKeyword).coverageType.trim());
+            }
+            predicates.add(new CoverageMatchesInputPredicate(parsedKeywords));
         }
 
         return new FindPolicyCommand(predicates);

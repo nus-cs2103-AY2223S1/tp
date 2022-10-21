@@ -1,7 +1,9 @@
 package longtimenosee.model.policy.predicate;
 
+import java.util.List;
 import java.util.function.Predicate;
 
+import longtimenosee.commons.util.StringUtil;
 import longtimenosee.model.policy.Coverage;
 import longtimenosee.model.policy.Policy;
 
@@ -9,20 +11,36 @@ import longtimenosee.model.policy.Policy;
  * Tests that a {@code Policy}'s {@code Coverage} matches the input.
  */
 public class CoverageMatchesInputPredicate implements Predicate<Policy> {
-    private final String input;
+    private final List<String> keywords;
 
-    public CoverageMatchesInputPredicate(String input) {
-        this.input = input;
+    public CoverageMatchesInputPredicate(List<String> keywords) {
+        assert !keywords.isEmpty();
+        this.keywords = keywords;
     }
 
     @Override
     public boolean test(Policy policy) {
-        for (Coverage coverage : policy.getCoverages()) {
-            if (coverage.coverageType.equals(input)) {
-                return true;
+        for (String keyword : keywords) {
+            for (Coverage coverage : policy.getCoverages()) {
+                if (StringUtil.containsWordIgnoreCase(coverage.coverageType, keyword)) {
+                    return true;
+                }
             }
         }
         return false;
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        if (other == this) {
+            return true;
+        } else {
+            if (other instanceof CoverageMatchesInputPredicate) {
+                return keywords.equals(((CoverageMatchesInputPredicate) other).keywords);
+            } else {
+                return false;
+            }
+        }
     }
 }
 

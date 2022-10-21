@@ -11,12 +11,26 @@ public class CompanyMatchesInputPredicate implements Predicate<Policy> {
     private final String input;
 
     public CompanyMatchesInputPredicate(String input) {
+        assert input.length() != 0;
         this.input = input;
     }
 
     @Override
     public boolean test(Policy policy) {
         return policy.getCompany().value.equals(input);
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        if (other == this) {
+            return true;
+        } else {
+            if (other instanceof CompanyMatchesInputPredicate) {
+                return input.equals(((CompanyMatchesInputPredicate) other).input);
+            } else {
+                return false;
+            }
+        }
     }
 }
 
