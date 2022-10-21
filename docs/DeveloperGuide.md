@@ -191,6 +191,34 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
+### Filter feature
+
+#### Current Implementation
+
+The 'filter' feature is implemented by the 'FilterCommand' class which extends its parent 'Command' class. The structure
+of the 'filter' feature can be summarized via the sequence diagram shown below.
+
+![Filter Sequence Diagram](images/FilterCommandSequenceDiagram.png)
+
+This method is implemented to support the feature of filtering students by the tags that is assigned to them.
+
+The 'FilterCommand' supports one operation:
+
+- 'FilterCommand#execute()' - Overrides the 'execute()' method of its parents 'Command' class and is the default
+  operation to be executed. This will update the filtered list in the dashboard shown to the user based on the tag set
+  by the user
+
+The flow for 'FilterCommand#execute' is as such:
+
+Step 1: The tag to be used for filtering is retrieved from the user input
+
+Step 2: The tag input will then be parsed into the filter parser which will then return a new Filter Command
+
+Step 3: The filter command will then be immediately executed to filter the current list of students via their assigned
+tags
+
+Step 4: The result list of students will then be shown back to the user via the dashboard
+
 ### Addtag feature
 
 #### Current Implementation
