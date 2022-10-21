@@ -1,7 +1,6 @@
 package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.commons.util.DateUtil.dateIsEqualAndAfterToday;
 import static seedu.address.commons.util.DateUtil.getLocalDate;
 import static seedu.address.commons.util.DateUtil.isGenericLocalDateString;
 import static seedu.address.commons.util.DateUtil.isLocalDateString;
@@ -48,10 +47,6 @@ public class AddTaskCommandParser implements Parser<AddTaskCommand> {
         }
 
         LocalDate deadline = getLocalDate(argMultimap.getValue(PREFIX_DEADLINE).get());
-
-        if (!dateIsEqualAndAfterToday(deadline)) {
-            throw new ParseException("Please choose a deadline that is today or in the future !");
-        }
 
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
 

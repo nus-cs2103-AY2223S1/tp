@@ -59,7 +59,7 @@ public class DateUtil {
     }
 
     /**
-     * Checks if the given {@code dateToCheck} is after today's date.
+     * Checks if the given {@code dateToCheck} is before today's date.
      */
     public static boolean dateIsBeforeToday(LocalDate dateToCheck) {
         requireNonNull(dateToCheck);

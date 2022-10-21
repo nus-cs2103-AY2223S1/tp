@@ -2,7 +2,6 @@ package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.commons.util.DateUtil.dateIsEqualAndAfterToday;
 import static seedu.address.commons.util.DateUtil.getLocalDate;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DEADLINE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
@@ -59,11 +58,6 @@ public class UpdateTaskCommandParser implements Parser<UpdateTaskCommand> {
             }
 
             LocalDate deadline = getLocalDate(deadlineValue);
-
-            if (!dateIsEqualAndAfterToday(deadline)) {
-                throw new ParseException("Please choose a deadline that is today or in the future !");
-            }
-
             updateTaskDescriptor.setDeadline(deadline);
         }
         parseTagsForEdit(argMultimap.getAllValues(PREFIX_TAG)).ifPresent(updateTaskDescriptor::setTags);

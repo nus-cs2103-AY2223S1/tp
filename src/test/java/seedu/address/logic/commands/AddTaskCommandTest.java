@@ -7,6 +7,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
 
 import java.nio.file.Path;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Optional;
@@ -46,6 +47,19 @@ public class AddTaskCommandTest {
         assertEquals(String.format(AddTaskCommand.MESSAGE_ADD_TASK_SUCCESS, validTask),
                 commandResult.getFeedbackToUser());
         assertEquals(Arrays.asList(validTask), modelStub.tasksAdded);
+    }
+
+    @Test
+    public void execute_taskAcceptedByModelHasDeadlinePastToday_addSuccessfulShowsWarning() throws CommandException {
+        AddTaskCommandTest.ModelStubAcceptingTaskAdded modelStub = new AddTaskCommandTest.ModelStubAcceptingTaskAdded();
+        Task validTaskWithDeadlinePastToday = new TaskBuilder()
+                .withDeadline(LocalDate.of(2020, 10, 10)).build();
+
+        CommandResult commandResult = new AddTaskCommand(validTaskWithDeadlinePastToday).execute(modelStub);
+
+        assertEquals(String.format(AddTaskCommand.MESSAGE_ADD_TASK_WARNING, validTaskWithDeadlinePastToday),
+                commandResult.getFeedbackToUser());
+        assertEquals(Arrays.asList(validTaskWithDeadlinePastToday), modelStub.tasksAdded);
     }
 
     @Test

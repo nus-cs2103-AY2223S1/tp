@@ -49,6 +49,7 @@ public class CommandTestUtil {
     public static final String VALID_TITLE_OIL = "Stock up on oil";
     public static final String VALID_DEADLINE = "2029-11-12";
     public static final String VALID_DEADLINE2 = "2029-12-25";
+    public static final String OVERDUE_DEADLINE = "2020-12-12";
     public static final boolean VALID_STATUS_FALSE = false;
 
     public static final String DEADLINE_DESC = " " + PREFIX_DEADLINE + VALID_DEADLINE;
