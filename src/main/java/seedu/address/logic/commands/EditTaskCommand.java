@@ -84,12 +84,12 @@ public class EditTaskCommand extends Command {
         Description updatedDescription = editTaskDescriptor.getDescription().orElse(taskToEdit.getDescription());
         Priority updatedPriority = editTaskDescriptor.getPriority().orElse(taskToEdit.getPriority());
         TaskDeadline updatedDeadline = editTaskDescriptor.getDeadline().orElse(taskToEdit.getDeadline());
-        Email updatedPersonEmailAddress = editTaskDescriptor.getPersonEmailAddress()
-                .orElse(taskToEdit.getPersonEmailAddress());
+        Person updatedPerson = editTaskDescriptor.getPerson()
+                .orElse(taskToEdit.getPerson());
         Boolean updatedIsDone = editTaskDescriptor.getIsDone().orElse(taskToEdit.isDone());
 
         return new Task(updatedName, updatedDescription, updatedPriority, updatedCategory, updatedDeadline,
-                updatedPersonEmailAddress, updatedIsDone);
+                updatedPerson, updatedIsDone);
     }
 
     @Override
@@ -107,15 +107,10 @@ public class EditTaskCommand extends Command {
         if (!taskToEdit.isSameTask(editedTask) && model.hasTask(editedTask)) {
             throw new CommandException(MESSAGE_DUPLICATE_TASK);
         }
-        Name name = NO_PERSON_ASSIGNED;
-        for (Person person: model.getFilteredPersonList()) {
-            if (person.getEmail().equals(editedTask.getPersonEmailAddress())) {
-                name = person.getName();
-            }
-        }
-        editedTask.setPersonName(name);
+
         model.setTask(taskToEdit, editedTask);
         model.updateFilteredTaskList(PREDICATE_SHOW_ALL_TASKS);
+        model.update();
         return new CommandResult(String.format(MESSAGE_EDIT_TASK_SUCCESS, editedTask));
     }
 
@@ -150,7 +145,7 @@ public class EditTaskCommand extends Command {
         // Data fields
         private Priority priority;
         private TaskDeadline deadline;
-        private Email personEmailAddress;
+        private Person person;
         private boolean isDone;
 
         private Name personName;
@@ -168,7 +163,7 @@ public class EditTaskCommand extends Command {
             setDescription(toCopy.description);
             setPriority(toCopy.priority);
             setDeadline(toCopy.deadline);
-            setPersonEmailAddress(toCopy.personEmailAddress);
+            setPerson(toCopy.person);
             setDone(toCopy.isDone);
             setPersonName(toCopy.personName);
         }
@@ -178,7 +173,7 @@ public class EditTaskCommand extends Command {
          */
         public boolean isAnyFieldEdited() {
             return CollectionUtil.isAnyNonNull(name, category, description, priority,
-                    deadline, personEmailAddress, isDone);
+                    deadline, person, isDone);
         }
 
         public Optional<TaskName> getName() {
@@ -220,12 +215,12 @@ public class EditTaskCommand extends Command {
         public void setDeadline(TaskDeadline deadline) {
             this.deadline = deadline;
         }
-        public void setPersonEmailAddress(Email personEmailAddress) {
-            this.personEmailAddress = personEmailAddress;
+        public void setPerson(Person person) {
+            this.person = person;
         }
 
-        public Optional<Email> getPersonEmailAddress() {
-            return ofNullable(personEmailAddress);
+        public Optional<Person> getPerson() {
+            return ofNullable(person);
         }
 
         public void setDone(boolean isDone) {
@@ -265,7 +260,7 @@ public class EditTaskCommand extends Command {
                     && getDescription().equals(e.getDescription())
                     && getPriority().equals(e.getPriority())
                     && getDeadline().equals(e.getDeadline())
-                    && getPersonEmailAddress().equals(e.getPersonEmailAddress())
+                    && getPerson().equals(e.getPerson())
                     && getIsDone().equals(e.getIsDone());
         }
     }

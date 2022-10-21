@@ -2,12 +2,15 @@ package seedu.address.model.person;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Objects;
 import java.util.Set;
 
 import seedu.address.model.tag.Tag;
+import seedu.address.model.task.Task;
 
 /**
  * Represents a Person in the address book.
@@ -24,16 +27,19 @@ public class Person {
     private final Address address;
     private final Set<Tag> tags = new HashSet<>();
 
+    private final List<Task> tasks = new ArrayList<>();
+
     /**
      * Every field must be present and not null.
      */
-    public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags) {
+    public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags,List<Task> tasks) {
         requireAllNonNull(name, phone, email, address, tags);
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
         this.tags.addAll(tags);
+        this.tasks.addAll(tasks);
     }
 
     public Name getName() {
@@ -58,6 +64,30 @@ public class Person {
      */
     public Set<Tag> getTags() {
         return Collections.unmodifiableSet(tags);
+    }
+
+    /**
+     * Returns the list of Tasks that have been assigned to this person
+     * @return list of Tasks
+     */
+    public List<Task> getTasks() {
+        return Collections.unmodifiableList(tasks);
+    }
+
+    /**
+     * Assigns a new task to the person
+     * @param task task to be added
+     */
+    public void addTask(Task task) {
+        this.tasks.add(task);
+    }
+
+    /**
+     * Removes a new task to the person
+     * @param taskToDelete task to be deleted
+     */
+    public void removeTask(Task taskToDelete) {
+        this.tasks.remove(taskToDelete);
     }
 
     /**
@@ -92,13 +122,14 @@ public class Person {
                 && otherPerson.getPhone().equals(getPhone())
                 && otherPerson.getEmail().equals(getEmail())
                 && otherPerson.getAddress().equals(getAddress())
-                && otherPerson.getTags().equals(getTags());
+                && otherPerson.getTags().equals(getTags())
+                && otherPerson.getTasks().equals(getTasks());
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, address, tags);
+        return Objects.hash(name, phone, email, address, tags,tasks);
     }
 
     @Override
@@ -119,5 +150,7 @@ public class Person {
         }
         return builder.toString();
     }
+
+
 
 }

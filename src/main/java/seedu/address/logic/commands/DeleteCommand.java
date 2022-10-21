@@ -3,14 +3,21 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 
+import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
+import seedu.address.model.person.Address;
+import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
+import seedu.address.model.person.Phone;
+import seedu.address.model.tag.Tag;
 import seedu.address.model.task.Task;
 
 
@@ -49,15 +56,13 @@ public class DeleteCommand extends Command {
         Person personToDelete = lastShownList.get(targetIndex.getZeroBased());
 
         for (Task task : lastShownTaskList) {
-            if (task.getPersonEmailAddress().equals(personToDelete.getEmail())) {
-                Task editedTask = task.copy();
-                editedTask.setPersonName(new Name("The person assigned to this task has been deleted"));
-                model.deleteTask(task);
-                model.addTask(editedTask);
+            if (task.getPerson().equals(personToDelete)) {
+                task.setPerson(new deletedPerson());
             }
         }
 
         model.deletePerson(personToDelete);
+        model.update();
         return new CommandResult(String.format(MESSAGE_DELETE_PERSON_SUCCESS, personToDelete));
     }
 
@@ -67,4 +72,18 @@ public class DeleteCommand extends Command {
                 || (other instanceof DeleteCommand // instanceof handles nulls
                 && targetIndex.equals(((DeleteCommand) other).targetIndex)); // state check
     }
+
+    private static class deletedPerson extends Person {
+        private static final Name name = new Name("This person has been deleted");
+        private static final Address address = new Address("Deleted address");
+        private static final Email email = new Email("dummyEmail@dummy.com");
+
+        private static final Phone phone = new Phone("00000000");
+        private static final Set<Tag> tags = new HashSet<>();
+        private static final List<Task> tasks = new ArrayList<>();
+        public deletedPerson() {
+            super(name, phone, email, address, tags, tasks);
+        }
+    }
+
 }

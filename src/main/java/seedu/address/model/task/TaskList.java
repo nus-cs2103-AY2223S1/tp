@@ -9,7 +9,7 @@ import java.util.function.Predicate;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import seedu.address.model.person.Email;
+import seedu.address.model.person.Person;
 import seedu.address.model.task.exceptions.DuplicateTaskException;
 import seedu.address.model.task.exceptions.TaskNotFoundException;
 
@@ -181,9 +181,9 @@ public class TaskList implements Iterable<Task> {
      *
      * @param toFilter Person to filter the task list by
      */
-    public void filter(Email toFilter) {
+    public void filter(Person toFilter) {
         requireNonNull(toFilter);
-        Predicate<Task> filterer = i -> (i.getPersonEmailAddress().equals(toFilter));
+        Predicate<Task> filterer = i -> (i.getPerson().equals(toFilter));
         internalList.filtered(filterer);
     }
 
@@ -193,7 +193,6 @@ public class TaskList implements Iterable<Task> {
      * @param toFilter Status to filter the task list by
      */
     public void filter(boolean toFilter) {
-
         Predicate<Task> filterer = i -> (i.isDone() == toFilter);
         internalList.filtered(filterer);
     }
@@ -267,4 +266,6 @@ public class TaskList implements Iterable<Task> {
         }
         return str.toString();
     }
+
+
 }

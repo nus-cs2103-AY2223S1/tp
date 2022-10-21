@@ -87,7 +87,7 @@ public class CommandTestUtil {
     private static final Priority testPriority = new Priority(PriorityEnum.MEDIUM);
     private static final TaskDeadline testDeadline = new TaskDeadline(LocalDate.now());
     private static final Person testPerson = new Person(new Name("test"), new Phone("99999999"),
-            new Email("test@gmail.com"), new Address("test"), new HashSet());
+            new Email("test@gmail.com"), new Address("test"), new HashSet(),new ArrayList<>());
 
     static {
         DESC_AMY = new EditPersonDescriptorBuilder().withName(VALID_NAME_AMY)
@@ -98,7 +98,7 @@ public class CommandTestUtil {
                 .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).build();
 
         Task a = new Task(new TaskName("A"), testDisc, testPriority, testCat, testDeadline,
-                testPerson.getEmail(), false);
+                testPerson, false);
 
         DESC_ONE = new EditTaskDescriptorBuilder(a).withName("A").build();
         DESC_TWO = new EditTaskDescriptorBuilder(a).withName("B").build();

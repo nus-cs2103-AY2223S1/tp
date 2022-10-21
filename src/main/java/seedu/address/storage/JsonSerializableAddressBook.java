@@ -62,12 +62,14 @@ class JsonSerializableAddressBook {
         }
 
         for (JsonAdaptedTask jsonAdaptedTask : tasks) {
-            Task task = jsonAdaptedTask.toModelType();
+            Task task = jsonAdaptedTask.toModelType(addressBook.getPersonList());
             if (addressBook.hasTask(task)) {
                 throw new IllegalValueException(MESSAGE_DUPLICATE_TASK);
             }
             addressBook.addTask(task);
         }
+
+        addressBook.updatePersonTasks();
         return addressBook;
     }
 

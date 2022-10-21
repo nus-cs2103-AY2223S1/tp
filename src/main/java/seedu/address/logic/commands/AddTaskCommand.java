@@ -60,19 +60,20 @@ public class AddTaskCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
 
-        toAdd.setPersonEmailAddress(personEmailAddress);
-
         if (model.hasTask(toAdd)) {
             throw new CommandException(MESSAGE_DUPLICATE_TASK);
         }
-        Name name = NO_PERSON_ASSIGNED;
+
+        toAdd.setPerson(new CommandUtil.notFoundPerson(personEmailAddress));
         for (Person person : model.getFilteredPersonList()) {
             if (person.getEmail().equals(personEmailAddress)) {
-                name = person.getName();
+                toAdd.setPerson(person);
+                person.addTask(toAdd);
             }
         }
-        toAdd.setPersonName(name);
+
         model.addTask(toAdd);
+        model.update();
         return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
     }
 

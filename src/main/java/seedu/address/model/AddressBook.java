@@ -167,4 +167,14 @@ public class AddressBook implements ReadOnlyAddressBook {
     public int hashCode() {
         return persons.hashCode();
     }
+
+    public void updatePersonTasks() {
+        for(Person person : persons) {
+            for(Task task : tasks) {
+                if(person.equals(task.getPerson())){
+                    person.addTask(task);
+                }
+            }
+        }
+    }
 }
