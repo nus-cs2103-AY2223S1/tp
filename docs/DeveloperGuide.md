@@ -3,7 +3,7 @@ layout: page
 title: Developer Guide
 ---
 * Table of Contents
-{:toc}
+  {:toc}
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -224,13 +224,13 @@ The following activity diagram summarizes what happens when a user executes a ne
 **Aspect: How undo & redo executes:**
 
 * **Alternative 1 (current choice):** Saves the entire description book.
-  * Pros: Easy to implement.
-  * Cons: May have performance issues in terms of memory usage.
+    * Pros: Easy to implement.
+    * Cons: May have performance issues in terms of memory usage.
 
 * **Alternative 2:** Individual command knows how to undo/redo by
   itself.
-  * Pros: Will use less memory (e.g. for `delete`, just save the activity being deleted).
-  * Cons: We must ensure that the implementation of each individual command are correct.
+    * Pros: Will use less memory (e.g. for `delete`, just save the activity being deleted).
+    * Cons: We must ensure that the implementation of each individual command are correct.
 
 _{more aspects and alternatives to be added}_
 
@@ -259,14 +259,15 @@ _{Explain here how the data archiving feature will be implemented}_
 
 * need to store all the past activities that are done
 * keep track of ongoing and future activities
+* keep record of time of certain event
 * organize all the activities for better look up
 * prefer desktop apps over other types
 * can type fast
 * prefers typing to mouse interactions
 * is reasonably comfortable using CLI apps
 
-**Value proposition**: Provide a place for our users to store all the activities that are done, 
-ongoing or todo and organises it for them so it will be easier to trace back using specific activities. 
+**Value proposition**: Provide a place for our users to store all the activities that are done,
+ongoing or todo and organises it for them so it will be easier to trace back using specific activities.
 Mainly CLI with many shortcuts to benefit people who type fast.
 
 
@@ -274,22 +275,24 @@ Mainly CLI with many shortcuts to benefit people who type fast.
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …          | I want to …                       | So that I can…                          |
-|----------|-----------------|-----------------------------------|-----------------------------------------|
-| `* * *`  | user            | add activity                      | track my activities                     |
-| `* * *`  | user            | delete activity                   | make mistakes                           |
-| `* * *`  | user            | view activities                   | look at what I have done                |
-| `* *`    | busy CS student | quickly write commands            | save time adding entries                |
-| `* *`    | new user        | type "help" for help              | try the commands and use the app        |
-| `* *`    | new user        | clear all activities              | quickly clear the sample data           |
-| `* *`    | new user        | see sample data                   | get to know how the app works           |
-| `* *`    | user            | tag an activity with a type       | know what type of activity it is        |
-| `* *`    | user            | add an activity description       | know what the activity is about         | 
-| `*`      | long time user  | use shortcuts for commands        | enter commands faster                   |
-| `*`      | food enthusiast | review restaurants                | note down my opinions of the restaurant |
-| `*`      | food enthusiast | rate restaurants                  | note down my opinions of the restaurant |
-| `*`      | gym user        | keep track of dates of activities | record when I did the activity          |
-| `*`      | long time user  | search activities with keywords   | quickly find certain activity           |
+| Priority | As a …          | I want to …                       | So that I can…                              |
+|----------|-----------------|-----------------------------------|---------------------------------------------|
+| `* * *`  | user            | add activity                      | track my activities                         |
+| `* * *`  | user            | delete activity                   | make mistakes                               |
+| `* * *`  | user            | view activities                   | look at what I have done                    |
+| `* *`    | busy CS student | quickly write commands            | save time adding entries                    |
+| `* *`    | busy CS student | add date to an activity           | keep the timeline of events in life clear   |
+| `* *`    | new user        | type "help" for help              | try the commands and use the app            |
+| `* *`    | new user        | clear all activities              | quickly clear the sample data               |
+| `* *`    | new user        | see sample data                   | get to know how the app works               |
+| `* *`    | user            | tag an activity with a type       | know what type of activity it is            |
+| `* *`    | user            | change the appearance of the app  | have better experience when looking through |
+| `* *`    | user            | add an activity description       | know what the activity is about             | 
+| `*`      | long time user  | use shortcuts for commands        | enter commands faster                       |
+| `*`      | food enthusiast | review restaurants                | note down my opinions of the restaurant     |
+| `*`      | food enthusiast | rate restaurants                  | note down my opinions of the restaurant     |
+| `*`      | gym user        | keep track of dates of activities | record when I did the activity              |
+| `*`      | long time user  | search activities with keywords   | quickly find certain activity               |
 
 *{More to be added}*
 
@@ -304,7 +307,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 1. User requests to add an activity to the list
 2. HobbyList adds that activity to the list and shows a confirmed message
 
-    Use case ends.
+   Use case ends.
 
 **Extensions**
 
@@ -326,9 +329,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **Extensions**
 
 * 2a. The list is empty.
-  * 2a1. HobbyList shows a message to announce the user.
+    * 2a1. HobbyList shows a message to announce the user.
 
-    Use case ends.
+      Use case ends.
 
 **Use case: Delete an activity**
 
@@ -353,7 +356,22 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 2.
 
-*{More to be added}*
+**Use case: Add an activity with a date**
+
+**MSS**
+
+1.  User add an activity with date
+2.  HobbyList show the date in the activity card
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The date format is wrong
+    * 2a1. HobbyList shows a message about the right format.
+
+      Use case ends.
+
 
 ### Non-Functional Requirements
 
@@ -365,13 +383,13 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Glossary
 
-| Word | Meaning                                                                                             |
-| --- |-----------------------------------------------------------------------------------------------------|
+| Word          | Meaning                                                                                             |
+|---------------|-----------------------------------------------------------------------------------------------------|
 | Mainstream OS | Windows, Linux, Unix, OS-X                                                                          |
-| GUI | A graphical user interface, which is the visual display you see when using HobbyList                |
-| Index | A number that you can use to refer to a particular activity                                         |
-| Tag | A word (eg. `Entertainment`, `Sport`) that you can attach to the activities to easily identify them |
-
+| GUI           | A graphical user interface, which is the visual display you see when using HobbyList                |
+| Index         | A number that you can use to refer to a particular activity                                         |
+| Tag           | A word (eg. `Entertainment`, `Sport`) that you can attach to the activities to easily identify them |
+| Date          | A yyyy-mm-dd format date (eg. `2002-02-19`) that you can attach to the activities for matching date |
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Appendix: Instructions for manual testing**
@@ -387,15 +405,15 @@ testers are expected to do more *exploratory* testing.
 
 1. Initial launch
 
-   1. Download the jar file and copy into an empty folder
+    1. Download the jar file and copy into an empty folder
 
-   1. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
+    1. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
 
 1. Saving window preferences
 
-   1. Resize the window to an optimum size. Move the window to a different location. Close the window.
+    1. Resize the window to an optimum size. Move the window to a different location. Close the window.
 
-   1. Re-launch the app by double-clicking the jar file.<br>
+    1. Re-launch the app by double-clicking the jar file.<br>
        Expected: The most recent window size and location is retained.
 
 1. _{ more test cases …​ }_
@@ -404,16 +422,16 @@ testers are expected to do more *exploratory* testing.
 
 1. Deleting a activity while all activities are being shown
 
-   1. Prerequisites: List all activities using the `list` command. Multiple activities in the list.
+    1. Prerequisites: List all activities using the `list` command. Multiple activities in the list.
 
-   1. Test case: `delete 1`<br>
-      Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
+    1. Test case: `delete 1`<br>
+       Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
 
-   1. Test case: `delete 0`<br>
-      Expected: No activity is deleted. Error details shown in the status message. Status bar remains the same.
+    1. Test case: `delete 0`<br>
+       Expected: No activity is deleted. Error details shown in the status message. Status bar remains the same.
 
-   1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
-      Expected: Similar to previous.
+    1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
+       Expected: Similar to previous.
 
 1. _{ more test cases …​ }_
 
@@ -421,6 +439,6 @@ testers are expected to do more *exploratory* testing.
 
 1. Dealing with missing/corrupted data files
 
-   1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
+    1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
 
 1. _{ more test cases …​ }_
