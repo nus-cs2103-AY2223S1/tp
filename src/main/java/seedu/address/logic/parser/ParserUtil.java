@@ -99,7 +99,7 @@ public class ParserUtil {
      * @throws ParseException if the given {@code phone} is invalid.
      */
     public static Phone parsePhone(String phone) throws ParseException {
-        if (phone.isBlank()) {
+        if (phone == null) {
             return new Phone(null);
         }
         String trimmedPhone = phone.trim();

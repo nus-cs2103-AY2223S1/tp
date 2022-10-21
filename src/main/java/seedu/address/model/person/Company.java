@@ -1,5 +1,6 @@
 package seedu.address.model.person;
 
+import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
 /**
@@ -24,12 +25,9 @@ public class Company {
      * @param name A valid company name.
      */
     public Company(String name) {
-        if (name != null) {
-            checkArgument(isValidName(name), MESSAGE_CONSTRAINTS);
-            fullName = name;
-        } else {
-            fullName = null;
-        }
+        requireNonNull(name);
+        checkArgument(isValidName(name), MESSAGE_CONSTRAINTS);
+        fullName = name;
     }
 
     public static boolean isValidName(String test) {

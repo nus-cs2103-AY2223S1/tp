@@ -9,6 +9,11 @@ import org.junit.jupiter.api.Test;
 public class CompanyTest {
 
     @Test
+    public void constructor_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> new Name(null));
+    }
+
+    @Test
     public void constructor_invalidName_throwsIllegalArgumentException() {
         String invalidName = "";
         assertThrows(IllegalArgumentException.class, () -> new Company(invalidName));
