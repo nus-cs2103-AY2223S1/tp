@@ -102,10 +102,10 @@ public class DistinctExamList implements Iterable<Exam> {
         for (Exam exam : examList) {
             if (task.getExam() != null && exam.isSameExam(task.getExam())) {
                 exam.linkExam(task);
+                return;
             }
             assert task.getExam() == null
-                    || (task.getExam() != null
-                    && !exam.isSameExam(task.getExam()))
+                    || (task.getExam() != null && !exam.isSameExam(task.getExam()))
                     : "The task should not have no exam linked to it or "
                     + "the task is not linked to current exam";
         }
