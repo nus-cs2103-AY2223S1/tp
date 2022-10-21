@@ -18,6 +18,12 @@ public class FilterPetCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Filters all pets with attributes: "
             + "the specified keywords (case-insensitive) and displays them as a list with index numbers.\n"
             + "Parameters: PREFIX/[KEYWORDS] PREFIX/[KEYWORDS] ...\n"
+            + "There are five possible attributes to filter: Color, Name, Price, Species, Vaccination status \n"
+            + "For Color, use the prefix 'c' \n"
+            + "For Name, use the prefix 'n' \n"
+            + "For Price, use the prefix 'p' \n"
+            + "For Species, use the prefix 's' \n"
+            + "For Vaccination Status, use the prefix 'v' \n"
             + "Example: " + COMMAND_WORD + " n/Ashy s/Cat";
 
     private final Predicate<Pet> colorPredicate;
