@@ -9,8 +9,8 @@
   <children>
     <HBox alignment="CENTER" styleClass="result-display" HBox.hgrow="ALWAYS">
       <children>
-        <ImageView fx:id="avatarDisplay" fitHeight="160.0" fitWidth="160.0" pickOnBounds="true" preserveRatio="true" scaleX="0.8" scaleY="0.8" />
-        <TextArea fx:id="resultDisplay" editable="false" maxWidth="1.7976931348623157E308" prefWidth="700.0" styleClass="text-area" wrapText="true" HBox.hgrow="ALWAYS">
+        <ImageView fx:id="avatarDisplay" fitHeight="80.0" fitWidth="80.0" pickOnBounds="true" preserveRatio="true" scaleX="0.9" scaleY="0.9" />
+        <TextArea fx:id="resultDisplay" editable="false" maxWidth="1.7976931348623157E308" styleClass="text-area" wrapText="true" HBox.hgrow="ALWAYS">
           <HBox.margin>
             <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
           </HBox.margin>
