@@ -1,4 +1,4 @@
-package seedu.address.ui.CommandWindows;
+package seedu.address.ui.command.window;
 
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;

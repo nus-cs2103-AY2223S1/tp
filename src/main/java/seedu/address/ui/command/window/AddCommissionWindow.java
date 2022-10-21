@@ -1,4 +1,4 @@
-package seedu.address.ui.CommandWindows;
+package seedu.address.ui.command.window;
 
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DEADLINE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
@@ -105,7 +105,10 @@ public class AddCommissionWindow extends UiPart<Stage> {
         addCommissionCommand += " " + PREFIX_FEE + fee.getText();
         addCommissionCommand += " " + PREFIX_DEADLINE + deadline.getText();
         addCommissionCommand += " " + PREFIX_STATUS + completed.getText();
-        addCommissionCommand += " " + PREFIX_DESCRIPTION + description.getText();
+
+        if (!description.getText().isBlank()) {
+            addCommissionCommand += " " + PREFIX_DESCRIPTION + description.getText();
+        }
 
         HashSet<String> uniqueTags = tagsHandler.getTags();
         for (String tagString : uniqueTags) {

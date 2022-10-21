@@ -1,4 +1,4 @@
-package seedu.address.ui.CommandWindows;
+package seedu.address.ui.command.window;
 
 import java.util.HashSet;
 
