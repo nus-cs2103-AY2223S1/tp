@@ -402,6 +402,24 @@ testers are expected to do more *exploratory* testing.
 
 1. _{ more test cases …​ }_
 
+### Adding a Listing
+
+1. Adding a listings
+
+    1. Prerequisites: The owner of the Listing must already be added as a Person. 
+
+    2. Test case: `listing id/001 a/100 Charming Avenue n/Alex Yeoh ap/100000`<br>
+       Expected: First a new Listing is created. Its id will be the contents after the 'id/' prefix.
+                 Its Address will be the contents after the 'a/' prefix. Its owner's name
+                 will be the contents after the 'n/' prefix. And the asking price of the Listing
+                 will be the contents after the 'ap/' prefix. 
+                 Details of the new listing will be shown in the status message. 
+    
+    3. Other incorrect delete commands to try: `listing id/... ap/.. n.. a/..`, `listing`, `...` <br>
+        Expected: Error message to warn incorrect input format.
+
+2. _{ more test cases …​ }_
+
 ### Deleting a person
 
 1. Deleting a person while all persons are being shown
