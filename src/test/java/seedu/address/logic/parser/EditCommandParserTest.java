@@ -159,7 +159,7 @@ public class EditCommandParserTest {
         EditPersonDescriptor descriptor;
         try {
             descriptor = new EditPersonDescriptorBuilder().withName(VALID_NAME_AMY)
-                    .withPhone(VALID_PHONE_AMY).withNokPhone(VALID_NOK_PHONE_AMY)
+                    .withPhone(VALID_PHONE_BOB).withNokPhone(VALID_NOK_PHONE_BOB)
                     .withEmail(VALID_EMAIL_AMY).withAddress(VALID_ADDRESS_AMY).withClass(VALID_CLASS_AMY)
                     .withMoneyOwed(VALID_MONEY_OWED_BOB).withMoneyPaid(VALID_MONEY_PAID_BOB)
                     .withRatesPerClass(VALID_RATES_PER_CLASS_AMY)
@@ -269,8 +269,8 @@ public class EditCommandParserTest {
         // other valid values specified
         userInput = targetIndex.getOneBased() + EMAIL_DESC_BOB + INVALID_PHONE_DESC + NOK_PHONE_DESC_BOB
                 + ADDRESS_DESC_BOB + PHONE_DESC_BOB;
-        descriptor = new EditPersonDescriptorBuilder().withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB)
-                .withAddress(VALID_ADDRESS_BOB).build();
+        descriptor = new EditPersonDescriptorBuilder().withPhone(VALID_PHONE_BOB).withNokPhone(VALID_NOK_PHONE_BOB)
+                .withEmail(VALID_EMAIL_BOB).withAddress(VALID_ADDRESS_BOB).build();
         expectedCommand = new EditCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
     }
