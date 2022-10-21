@@ -299,6 +299,18 @@ The sequence diagram below shows how the process works:
 
 ![ViewSequenceDiagram](images/ViewSequenceDiagram.png)
 
+### `CloneCommand` feature
+
+This feature allows the user to clone all details of an existing surveyee with updated attribute. It is accomplished mainly using the `CloneCommandParser` and `CloneCommand` classes.
+
+In the `CloneCommandParser` class, we parse the arguments using `ArgumentMultimap` class and check which attributes are present in the arguments. We will then create a `ClonePersonDescriptor` object to store these attributes.
+
+In the `CloneCommand` class, we will retrieve the person we want to clone by `getFilteredPersonList` method, then call `createClonedPerson` method to compare the person we retrieved with the `ClonePersonDescriptor` object, get the updated attributes and return a new person. Then call `addPerson` method in `ModelManager` to add this newly created person in.
+
+Note that if the new person we cloned is already in the address book, it will trigger a duplicate cloned person exception.
+
+![ViewSequenceDiagram](images/CloneSequenceDiagram.png)
+
 ## **Documentation, logging, testing, configuration, dev-ops**
 
 -   [Documentation guide](Documentation.md)
@@ -328,15 +340,14 @@ The sequence diagram below shows how the process works:
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
 | Priority | As a …​ | I want to …​                                                               | So that I can…​                                                              |
-| -------- | ------- | -------------------------------------------------------------------------- | ---------------------------------------------------------------------------- |
+| -------- | ------- |----------------------------------------------------------------------------| ---------------------------------------------------------------------------- |
 | `* * *`  | user    | use 'add' in the command line                                              | I can add a new surveyee quickly                                             |
 | `* * *`  | user    | use 'edit' in the command line                                             | I can edit a surveyee quickly                                                |
 | `* * *`  | user    | use 'delete' in the command line                                           | I can delete a surveyee quickly                                              |
 | `* * *`  | user    | use 'view' in the command line                                             | I can view my surveyees' information quickly                                 |
-| `* *`    | user    | use 'duplicate' in the command line                                        | I can use an existing surveyee as a template for a new surveyee to save time |
+| `* *`    | user    | use 'clone' in the command line                                            | I can use an existing surveyee as a template for a new surveyee to save time |
 | `* *`    | user    | use 'view <attribute>' to view only surveyees of specific attribute        | I can save time when looking for surveyees with a specific attribute         |
 | `* *`    | user    | use 'delete <attribute>' to delete all surveyees with a specific attribute | I can save time when deleting surveyees with a specific attribute            |
-
 _{More to be added}_
 
 ### Use cases
