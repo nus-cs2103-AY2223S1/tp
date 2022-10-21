@@ -17,8 +17,12 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Birthday;
+import seedu.address.model.person.CriticalIllnessInsurance;
+import seedu.address.model.person.DisabilityInsurance;
 import seedu.address.model.person.Email;
+import seedu.address.model.person.HealthInsurance;
 import seedu.address.model.person.Insurance;
+import seedu.address.model.person.LifeInsurance;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
@@ -93,13 +97,13 @@ public class InsuranceCommand extends Command {
         Birthday birthday = personToEdit.getBirthday();
         Reminder reminders = personToEdit.getReminders();
         Insurance updatedHealthInsurance = editInsuranceDescriptor
-                .getHealthInsurance().orElse(personToEdit.getHealthInsurance());
+                .getHealthInsurance().orElse(new HealthInsurance(false));
         Insurance updatedDisabilityInsurance = editInsuranceDescriptor.getDisabilityInsurance()
-                .orElse(personToEdit.getDisabilityInsurance());
+                .orElse(new DisabilityInsurance(false));
         Insurance updatedCriticalIllnessInsurance = editInsuranceDescriptor.getCriticalIllnessInsurance()
-                .orElse(personToEdit.getCriticalIllnessInsurance());
+                .orElse(new CriticalIllnessInsurance(false));
         Insurance updatedLifeInsurance = editInsuranceDescriptor.getLifeInsurance()
-                .orElse(personToEdit.getLifeInsurance());
+                .orElse(new LifeInsurance(false));
         Set<Tag> tags = personToEdit.getTags();
 
         return new Person(name, phone, email, address, birthday,

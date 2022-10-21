@@ -32,27 +32,6 @@ public class InsuranceCommandTest {
     private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
 
     @Test
-    public void execute_someFieldsSpecifiedUnfilteredList_success() {
-        Index indexLastPerson = Index.fromOneBased(model.getFilteredPersonList().size());
-        Person lastPerson = model.getFilteredPersonList().get(indexLastPerson.getZeroBased());
-
-        PersonBuilder personInList = new PersonBuilder(lastPerson);
-        Person editedPerson = personInList.withCriticalIllnessInsurance(true)
-                .withDisabilityInsurance(true).build();
-
-        InsuranceCommand.EditInsuranceDescriptor descriptor = new EditInsuranceDescriptorBuilder()
-                .withCriticalIllnessInsurance(true).withDisabilityInsurance(true).build();
-        InsuranceCommand insuranceCommand = new InsuranceCommand(indexLastPerson, descriptor);
-
-        String expectedMessage = String.format(InsuranceCommand.MESSAGE_EDIT_PERSON_SUCCESS, editedPerson);
-
-        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
-        expectedModel.setPerson(lastPerson, editedPerson);
-
-        assertCommandSuccess(insuranceCommand, model, expectedMessage, expectedModel);
-    }
-
-    @Test
     public void execute_noFieldSpecifiedUnfilteredList_success() {
         InsuranceCommand insuranceCommand = new InsuranceCommand(INDEX_FIRST_PERSON,
                 new InsuranceCommand.EditInsuranceDescriptor());
