@@ -7,8 +7,8 @@ import static seedu.rc4hdb.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import static seedu.rc4hdb.logic.commands.modelcommands.ModelCommandTestUtil.NAME_DESC_AMY;
 import static seedu.rc4hdb.logic.commands.modelcommands.ModelCommandTestUtil.VALID_ALL_SPECIFIER_DESC;
 import static seedu.rc4hdb.logic.commands.modelcommands.ModelCommandTestUtil.VALID_ANY_SPECIFIER_DESC;
-import static seedu.rc4hdb.logic.commands.storagecommands.StorageCommandTestUtil.VALID_FILE_NAME_PATH;
 import static seedu.rc4hdb.logic.commands.storagecommands.StorageCommandTestUtil.VALID_FILE_NAME_STRING;
+import static seedu.rc4hdb.logic.parser.commandparsers.FileCommandParser.DATA_DIR_PATH;
 import static seedu.rc4hdb.testutil.Assert.assertThrows;
 import static seedu.rc4hdb.testutil.TypicalIndexes.INDEX_FIRST_RESIDENT;
 import static seedu.rc4hdb.testutil.TypicalSpecifiers.ALL_SPECIFIER;
@@ -32,7 +32,7 @@ import seedu.rc4hdb.logic.commands.modelcommands.HideCommand;
 import seedu.rc4hdb.logic.commands.modelcommands.ListCommand;
 import seedu.rc4hdb.logic.commands.modelcommands.ShowCommand;
 import seedu.rc4hdb.logic.commands.storagecommands.filecommands.FileCommand;
-import seedu.rc4hdb.logic.commands.storagecommands.filecommands.FileCreateCommand;
+import seedu.rc4hdb.logic.commands.storagecommands.filecommands.jsonfilecommands.FileCreateCommand;
 import seedu.rc4hdb.logic.parser.commandparsers.HideCommandParser;
 import seedu.rc4hdb.logic.parser.commandparsers.ListCommandParser;
 import seedu.rc4hdb.logic.parser.commandparsers.ShowCommandParser;
@@ -141,7 +141,7 @@ public class ResidentBookParserTest {
                 + VALID_FILE_NAME_STRING) instanceof FileCommand);
         FileCommand fileCommand = (FileCommand) parser.parseCommand(FileCommand.COMMAND_WORD
                 + " " + FileCreateCommand.COMMAND_WORD + " " + VALID_FILE_NAME_STRING);
-        assertEquals(new FileCreateCommand(VALID_FILE_NAME_PATH), fileCommand);
+        assertEquals(new FileCreateCommand(DATA_DIR_PATH, VALID_FILE_NAME_STRING), fileCommand);
     }
 
     @Test
