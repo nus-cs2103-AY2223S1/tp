@@ -1,21 +1,21 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.core.Messages.MESSAGE_NO_MODULE_IN_FILTERED_LIST;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_MODULE_CODE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MODULE_LINK;
 
 import java.util.List;
 import java.util.Set;
 
-import javafx.collections.ObservableList;
-import seedu.address.commons.core.Messages;
-import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.link.Link;
 import seedu.address.model.module.Module;
 import seedu.address.model.module.ModuleCode;
 import seedu.address.model.module.ModuleTitle;
+import seedu.address.model.module.exceptions.ModuleNotFoundException;
 import seedu.address.model.module.task.Task;
 
 /**
@@ -27,44 +27,50 @@ public class AddLinkCommand extends Command {
 
     public static final String MESSAGE_ARGUMENTS = "Index: %1$d, Link: %2$s";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a link to the module identified "
-            + "by the index number used in the displayed module list. "
-            + "Parameters: INDEX (must be a positive integer) "
-            + "The 'l/' flag should be appended to the front of each link"
-            + "Example: " + COMMAND_WORD + " 1 "
+    public static final String MESSAGE_USAGE = "[" + COMMAND_WORD + "]: Add link/s to a the module "
+            + "using its module code. ("
+            + "A 'm/' flag should be appended to the front the module code; "
+            + "A 'l/' flag should be appended to the front of each link)\n"
+            + "Example: " + COMMAND_WORD + " " + PREFIX_MODULE_CODE + "GEA1000 "
             + PREFIX_MODULE_LINK + "coursemology.org";
 
     public static final String MESSAGE_ADD_LINK_SUCCESS = "Added link to module: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one link must be added.";
-    public static final String MESSAGE_DUPLICATE_LINK = "The link/s already exists in the module index [";
+    public static final String MESSAGE_DUPLICATE_LINK = "The link/s already exists"
+            + " in the module with module code [";
 
-    private final Index index;
+    private final ModuleCode moduleCode;
     private final Set<Link> links;
 
     /**
      * Creates an AddLinkCommand for the addition of links to a module
-     * @param index index of the module based on the filtered module list
-     * @param links links to add to the module
+     * @param moduleCode module code of the module in which links will be added
+     * @param links links to add to the specified module
      */
-    public AddLinkCommand(Index index, Set<Link> links) {
-        requireAllNonNull(index, links);
-        this.index = index;
+    public AddLinkCommand(ModuleCode moduleCode, Set<Link> links) {
+        requireAllNonNull(moduleCode, links);
+        this.moduleCode = moduleCode;
         this.links = links;
     }
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        ObservableList<Module> lastShownList = model.getFilteredModuleList();
-        if (index.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_MODULE_DISPLAYED_INDEX);
-        }
 
-        Module moduleToEdit = lastShownList.get(index.getZeroBased());
+        Module moduleToEdit = null;
+        try {
+            moduleToEdit =
+                    model.getModuleUsingModuleCode(moduleCode, true);
+        } catch (ModuleNotFoundException e) {
+            throw new CommandException(String.format(MESSAGE_NO_MODULE_IN_FILTERED_LIST,
+                    moduleCode.getModuleCodeAsUpperCaseString()));
+        }
+        assert moduleToEdit != null;
         Module editedModule = createEditedModule(moduleToEdit, links);
 
         if (moduleToEdit.getLinks().equals(editedModule.getLinks())) {
-            throw new CommandException(MESSAGE_DUPLICATE_LINK + index.getOneBased() + "]");
+            throw new CommandException(MESSAGE_DUPLICATE_LINK +
+                    moduleCode.getModuleCodeAsUpperCaseString() + "]");
         }
 
         model.setModule(moduleToEdit, editedModule);
@@ -100,6 +106,6 @@ public class AddLinkCommand extends Command {
 
         // state check
         AddLinkCommand c = (AddLinkCommand) other;
-        return index.equals(c.index) && links.equals(c.links);
+        return moduleCode.equals(c.moduleCode) && links.equals(c.links);
     }
 }

@@ -2,16 +2,17 @@ package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_MODULE_CODE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MODULE_LINK;
 
 import java.util.Collection;
 import java.util.Optional;
 import java.util.Set;
 
-import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.AddLinkCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.link.Link;
+import seedu.address.model.module.ModuleCode;
 
 /**
  * Parses input arguments and creates a new {@code AddLinkCommand} object
@@ -24,19 +25,18 @@ public class AddLinkCommandParser implements Parser<AddLinkCommand> {
      */
     public AddLinkCommand parse(String args) throws ParseException {
         requireNonNull(args);
-        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_MODULE_LINK);
+        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args,
+                PREFIX_MODULE_LINK, PREFIX_MODULE_CODE);
 
-        Index index;
-        try {
-            index = ParserUtil.parseIndex(argMultimap.getPreamble());
-        } catch (ParseException pe) {
-            throw new ParseException(
-                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddLinkCommand.MESSAGE_USAGE), pe);
-        }
+        String moduleCodeStringToEdit = argMultimap.getValue(PREFIX_MODULE_CODE)
+                .orElseThrow(() -> new ParseException(
+                        String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddLinkCommand.MESSAGE_USAGE)));
 
+        //Throws ParseException if module code or link/s is invalid
+        ModuleCode moduleCodeToEdit = ParserUtil.parseModuleCode(moduleCodeStringToEdit);
         Optional<Set<Link>> links = parseLinksToAdd(argMultimap.getAllValues(PREFIX_MODULE_LINK));
 
-        return new AddLinkCommand(index,
+        return new AddLinkCommand(moduleCodeToEdit,
                 links.orElseThrow(() -> new ParseException(AddLinkCommand.MESSAGE_NOT_EDITED)));
     }
 

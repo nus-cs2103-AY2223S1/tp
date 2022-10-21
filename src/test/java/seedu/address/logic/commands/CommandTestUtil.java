@@ -47,9 +47,12 @@ public class CommandTestUtil {
     public static final String VALID_ADDRESS_BOB = "Block 123, Bobby Street 3";
     public static final String VALID_TAG_HUSBAND = "husband";
     public static final String VALID_TAG_FRIEND = "friend";
+
+    //Module
     public static final String VALID_CS2106_MODULE_CODE = "CS2106";
     public static final String VALID_CS2106_MODULE_TITLE = "Introduction to Operating Systems";
     public static final String VALID_CS9999_MODULE_CODE_NOT_IN_TYPICAL_ADDRESS_BOOK = "CS9999";
+    public static final String VALID_GE3238_MODULE_CODE = "GE3238";
     public static final String VALID_MA2001_MODULE_CODE = "MA2001";
     public static final String VALID_MA2001_MODULE_TITLE = "Linear Algebra I";
     public static final String VALID_MODULE_CODE = CS2103T.getModuleCode().toString();
@@ -57,13 +60,11 @@ public class CommandTestUtil {
     public static final String VALID_TASK_A = "Complete assignment for week 8";
     public static final String VALID_TASK_B = "Submit the quiz@LumiNUS";
     public static final String VALID_TASK_C = "Pay $5 to Ann for project costs";
-
     public static final String VALID_MODULE_LINK = "https://nus-cs2103-ay2223s1.github.io/website/";
     public static final String VALID_MODULE_LINK_2 = "https://nusmods.com/timetable/sem-1";
-
     // Module code cannot have brackets
     public static final String INVALID_MODULE_CODE = "(CS2103T)";
-
+    public static final String MODULE_LINK_CS2103T = " " + PREFIX_MODULE_LINK + VALID_MODULE_LINK;
     public static final String NAME_DESC_AMY = " " + PREFIX_NAME + VALID_NAME_AMY;
     public static final String NAME_DESC_BOB = " " + PREFIX_NAME + VALID_NAME_BOB;
     public static final String PHONE_DESC_AMY = " " + PREFIX_PHONE + VALID_PHONE_AMY;
@@ -84,9 +85,7 @@ public class CommandTestUtil {
     public static final String MODULE_TASKLIST_DESC_NUMBER_THREE =
             " " + PREFIX_TASK_NUMBER + "3";
 
-
-    public static final String MODULE_LINK_CS2103T = " " + PREFIX_MODULE_LINK + VALID_MODULE_LINK;
-
+    //Person
     public static final String INVALID_NAME_DESC = " " + PREFIX_NAME + "James&"; // '&' not allowed in names
     public static final String INVALID_PHONE_DESC = " " + PREFIX_PHONE + "911a"; // 'a' not allowed in phones
     public static final String INVALID_EMAIL_DESC = " " + PREFIX_EMAIL + "bob!yahoo"; // missing '@' symbol
