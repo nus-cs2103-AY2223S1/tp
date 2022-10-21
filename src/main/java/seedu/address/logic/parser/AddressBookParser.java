@@ -23,9 +23,11 @@ import seedu.address.logic.commands.EditStuCommand;
 import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.HelpCommand;
+import seedu.address.logic.commands.HelpStuCommand;
 import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.commands.MarkQCommand;
 import seedu.address.logic.commands.MarkTutorialCommand;
+import seedu.address.logic.commands.UnhelpStuCommand;
 import seedu.address.logic.commands.UnmarkQCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
@@ -115,6 +117,12 @@ public class AddressBookParser {
 
         case AddResponseCommand.COMMAND_WORD:
             return new AddResponseCommandParser().parse(arguments);
+
+        case HelpStuCommand.COMMAND_WORD:
+            return new HelpStuCommandParser().parse(arguments);
+
+        case UnhelpStuCommand.COMMAND_WORD:
+            return new UnhelpStuCommandParser().parse(arguments);
 
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
