@@ -1,6 +1,5 @@
 package seedu.rc4hdb.logic.parser.commandparsers;
 
-import static java.util.Objects.requireNonNull;
 import static seedu.rc4hdb.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.rc4hdb.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.rc4hdb.logic.parser.CliSyntax.PREFIX_FILTER_ALL;
