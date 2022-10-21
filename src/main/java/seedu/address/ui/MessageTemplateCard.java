@@ -3,15 +3,17 @@ package seedu.address.ui;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import static seedu.address.model.message.Message.NAME_PLACEHOLDER;
 
-
 import javafx.fxml.FXML;
 import javafx.scene.layout.Region;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextFlow;
 import seedu.address.model.message.Message;
 
+/**
+ * An UI component that displays a single {@code Message} template.
+ */
 public class MessageTemplateCard extends UiPart<Region> {
-    
+
     private static final String FXML = "MessageTemplateCard.fxml";
     private static final String NAME_PLACEHOLDER_STYLE_CLASS = "message-name-placeholder";
     private static final String NAME_PLACEHOLDER_REGEX = NAME_PLACEHOLDER
@@ -32,7 +34,7 @@ public class MessageTemplateCard extends UiPart<Region> {
         this.message = message;
         messageText.getChildren().add(new Text(Integer.toString(index) + ". "));
 
-        // Italise all instances of "{name}" 
+        // Italise all instances of "{name}"
         String[] messageParts = message.getMessage().split(NAME_PLACEHOLDER_REGEX);
         for (String part : messageParts) {
             messageText.getChildren().add(new Text(part));
@@ -42,7 +44,7 @@ public class MessageTemplateCard extends UiPart<Region> {
                 messageText.getChildren().add(namePlaceholderText);
             }
         }
-        
+
     }
 
     @Override

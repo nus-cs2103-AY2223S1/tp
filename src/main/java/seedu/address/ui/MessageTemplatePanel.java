@@ -17,6 +17,10 @@ public class MessageTemplatePanel extends UiPart<Region> {
     @FXML
     private ListView<Message> messageTemplateView;
 
+    /**
+     * Creates a {@code MessageTemplatePanel} with the given {@code ObservableList} of messages.
+     * @param messageList
+     */
     public MessageTemplatePanel(ObservableList<Message> messageList) {
         super(FXML);
         messageTemplateView.setItems(messageList);

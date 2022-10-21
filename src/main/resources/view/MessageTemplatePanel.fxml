@@ -5,9 +5,9 @@
 <?import javafx.scene.control.Label?>
 
 
-<VBox styleClass="secondary-pane" maxHeight="Infinity" maxWidth="Infinity" minHeight="-Infinity" minWidth="340" prefWidth="340" xmlns="http://javafx.com/javafx/11" xmlns:fx="http://javafx.com/fxml/1">
+<VBox styleClass="secondary-pane" maxHeight="Infinity" maxWidth="Infinity" minHeight="-Infinity" minWidth="200" prefWidth="340" xmlns="http://javafx.com/javafx/11" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <Label fx:id="messageTemplateHeader" styleClass="pane-header" text="Displaying message templates" wrapText="true"/>
+      <Label fx:id="messageTemplateHeader" styleClass="pane-header" text="Message templates" wrapText="true"/>
       <ListView styleClass="msg-template-view" fx:id="messageTemplateView" VBox.vgrow="ALWAYS" minHeight="-Infinity" />
    </children>
 </VBox>
