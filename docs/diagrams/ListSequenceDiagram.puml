@@ -1,0 +1,63 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":PrimaryParser" as PrimaryParser LOGIC_COLOR
+participant ":ListCommandParser" as ListCommandParser LOGIC_COLOR
+participant ":ListUsersCommand" as ListUsersCommand LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+
+[-> LogicManager : execute("list users")
+activate LogicManager
+
+LogicManager -> PrimaryParser : parse("list users")
+activate PrimaryParser
+
+create ListCommandParser
+PrimaryParser -> ListCommandParser
+activate ListCommandParser
+
+create ListUsersCommand
+ListCommandParser --> ListUsersCommand
+activate ListUsersCommand
+
+ListUsersCommand --> ListCommandParser
+deactivate ListUsersCommand
+
+ListCommandParser --> PrimaryParser
+deactivate ListCommandParser
+
+PrimaryParser --> LogicManager : l
+deactivate PrimaryParser
+
+LogicManager -> ListUsersCommand : execute()
+activate ListUsersCommand
+
+ListUsersCommand -> Model : updateFilteredPersonList()
+activate Model
+
+Model --> ListUsersCommand
+deactivate Model
+
+create CommandResult
+ListUsersCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> ListUsersCommand
+deactivate CommandResult
+
+ListUsersCommand --> LogicManager : result
+deactivate ListUsersCommand
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+ListUsersCommand -[hidden]-> PrimaryParser
+destroy ListUsersCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml
