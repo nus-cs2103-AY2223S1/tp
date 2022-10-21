@@ -107,9 +107,10 @@ public class Meeting implements Comparable<Meeting> {
      */
     public static boolean checkDuplicates(String[] names) {
         Set<String> set = new HashSet<String>();
-        for (String i : names)
-        {
-            if (set.contains(i.strip())) return true;
+        for (String i : names) {
+            if (set.contains(i.strip())) {
+                return true;
+            }
             set.add(i.strip());
         }
         return false;
