@@ -104,8 +104,8 @@ public class ModelManagerTest {
         UserPrefs userPrefs = new UserPrefs();
         modelManager = new ModelManager(addressBook, userPrefs);
         assertTrue((modelManager.getNextSession()
-                .equals(("Next Session: " + testPerson.getName() + " " +
-                        testPerson.getSessionList().sessionList.get(0))))
+                .equals(("Next Session: " + testPerson.getName() + " "
+                        + testPerson.getSessionList().sessionList.get(0))))
                         || modelManager.getNextSession().equals(ModelManager.MESSAGE_NO_NEXT_SESSION_FOUND));
         AddressBook emptyAddressBook = new AddressBook();
         modelManager = new ModelManager(emptyAddressBook, userPrefs);
