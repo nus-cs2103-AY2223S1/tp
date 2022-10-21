@@ -204,6 +204,8 @@ Given below is an example usage scenario and how the attendance machanism behave
 Step 1. The user launches the application for the first time. The `UniqueStudentList` will be initialized with the 
 initial Json data stored.
 
+![UndoRedoState0](images/AttendanceState0.png)
+
 Step 2. The user executes `attendance 1` command to increment the attendance of the 1st student in the one-indexed 
 `UniqueStudentList`. The `attendance` command calls `AttendanceCommandParser#parse()`).
 
@@ -217,7 +219,8 @@ Step 3. `AttendanceCommandParser` returns and `AttendanceCommand` with the newly
 Step 4. `AttendanceCommand` calls `Model#setStudent` and `Model#updateFilteredStudentList` to edit the attendance
 attribute of the `Student`.
 
-Step 5. After successfully editing the attendance attribute, `AttendanceCommand` will return thr `CommandResult` to the `Ui`.
+Step 5. After successfully editing the attendance attribute, `AttendanceCommand` will return thr `CommandResult` to the 
+`Ui`.
 
 The following sequence diagram shows how the attendance feature is executed.
 
