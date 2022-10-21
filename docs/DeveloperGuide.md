@@ -302,7 +302,7 @@ get a list of autocomplete entries. The `AutocompleteManager` will process the c
 autocomplete entries.
 
 Step 3. The `AutocompleteManager#getSearchCommandArguments(String userInput)` will check if the command is a valid
-search command and returns the valid search command arguments, otherwise an invalid argument and `AutocompleteManager`
+search command and return the valid search command arguments, otherwise an invalid argument and `AutocompleteManager`
 will return an empty list to `CommandBox`. Hence, for user input `search n/John a/N`, the valid search command
 arguments is ` n/John p/12345678 a/N`.
 
@@ -335,7 +335,7 @@ search n/John p/12345678 a/NUS
 search n/John p/12345678 a/NTU
 ```
 
-:information_source:**Note:** The example, `Person1 - {n/John Loh, p/12345678, a/NUS}` used above means the
+:information_source:**Note:** The example, `Person1 - {n/John Loh, p/12345678, a/NUS}`, used above means the
 `UniquePersonList` has a `Person` with information `n/John Loh`, `p/12345678` and `a/NUS`. 
 
 Step 7. The `CommandBox#autocompleteAction` will pass the list of autocomplete entries to
@@ -350,18 +350,16 @@ The following activity diagram summarizes what happens when a user types a comma
 
 **Aspect: How to generate autocomplete entries:**
 
-* **Alternative 1 (current choice):** Use the streams feature in Java to filter the `UniquePersonList` and gets the
+* **Alternative 1 (current choice):** Use the streams feature in Java to filter the `UniquePersonList` and get the
 autocomplete entries.
     * Pros: Easy to implement, many useful operations available.
     * Cons: Less efficient as more time to compare the strings.
 
 
-* **Alternative 2:** Implement a trie data structure to store the information and obtain the autocomplete entries from
+* **Alternative 2:** Implement a trie data structure to store information and obtain the autocomplete entries from
 the trie data structure.
     * Pros: More efficient way to searching a string.
-    * Cons:
-      1. More memory to store the strings.
-      2. Have to refactor and modify the existing class and methods.
+    * Cons: 1. More memory to store the strings. 2. Have to refactor and modify the existing class and methods.
 
 
 _{more aspects and alternatives to be added}_
