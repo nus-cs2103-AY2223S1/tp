@@ -13,9 +13,9 @@ public class OrderStatusTest {
         String expectedNegotiating = "Negotiating";
         String expectedDelivering = "Delivering";
 
-        assertEquals(OrderStatus.PENDING, expectedPending);
-        assertEquals(OrderStatus.NEGOTIATING, expectedNegotiating);
-        assertEquals(OrderStatus.DELIVERING, expectedDelivering);
+        assertEquals(OrderStatus.PENDING.getStatus(), expectedPending);
+        assertEquals(OrderStatus.NEGOTIATING.getStatus(), expectedNegotiating);
+        assertEquals(OrderStatus.DELIVERING.getStatus(), expectedDelivering);
     }
 
     @Test
