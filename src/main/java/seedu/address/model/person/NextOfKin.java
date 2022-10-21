@@ -39,6 +39,18 @@ public class NextOfKin {
         return "Next of Kin: " + value;
     }
 
+    public String getNextOfKinName() {
+        return value.split(",",3)[0].trim();
+    }
+
+    public String getNextOfKinRelationship() {
+        return value.split(",",3)[1].trim();
+    }
+
+    public String getNextOfKinContact() {
+        return value.split(",",3)[2].trim();
+    }
+
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
