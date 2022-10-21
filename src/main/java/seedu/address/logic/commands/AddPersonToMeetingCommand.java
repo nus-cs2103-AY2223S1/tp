@@ -54,7 +54,7 @@ public class AddPersonToMeetingCommand extends Command {
             Meeting meetingToUpdate = model.getFilteredMeetingList().get(meetingIndex);
             meetingToUpdate.addPersons(arrayOfPeopleToMeet);
             model.deleteMeeting(meetingToUpdate);
-            model.addMeeting(meetingToUpdate);
+            model.addMeeting(meetingToUpdate, meetingIndex);
         } catch (PersonNotFoundException e) {
             throw new CommandException(CreateMeetingCommand.PERSON_NOT_FOUND);
         } catch (DuplicatePersonException e) {

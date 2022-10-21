@@ -9,6 +9,8 @@ import static seedu.address.testutil.TypicalMeetings.getTypicalMeetingList;
 import static seedu.address.testutil.TypicalPersons.ALICE;
 import static seedu.address.testutil.TypicalPersons.BENSON;
 import static seedu.address.testutil.TypicalPersons.CARL;
+import static seedu.address.testutil.TypicalPersons.DANIEL;
+import static seedu.address.testutil.TypicalPersons.ELLE;
 import static seedu.address.testutil.TypicalPersons.FIONA;
 import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 
@@ -51,19 +53,17 @@ public class AddPersonToMeetingCommandTest {
         String expectedMessage = AddPersonToMeetingCommand.MESSAGE_ADD_PEOPLE_TO_MEETING_SUCCESS;
         AddPersonToMeetingCommand command = new AddPersonToMeetingCommand("0; Benson");
         assertCommandSuccess(command, model, expectedMessage);
-        assertEquals(Arrays.asList(ALICE, CARL, BENSON),
-                model.getMeetingList().getMeetingList().get(model.getMeetingList().getMeetingList().size() - 1)
+        assertEquals(Arrays.asList(ALICE, CARL, BENSON), model.getMeetingList().getMeetingList().get(0)
                         .getArrayListPersonToMeet());
     }
 
     @Test
     public void execute_add_twoPersons() {
         String expectedMessage = AddPersonToMeetingCommand.MESSAGE_ADD_PEOPLE_TO_MEETING_SUCCESS;
-        AddPersonToMeetingCommand command = new AddPersonToMeetingCommand("0; Benson, FIONA");
+        AddPersonToMeetingCommand command = new AddPersonToMeetingCommand("1; Benson, Daniel");
         assertCommandSuccess(command, model, expectedMessage);
-        assertEquals(Arrays.asList(ALICE, CARL, BENSON, FIONA),
-                model.getMeetingList().getMeetingList().get(model.getMeetingList().getMeetingList().size() - 1)
-                        .getArrayListPersonToMeet());
+        assertEquals(Arrays.asList(ALICE, ELLE, FIONA, BENSON, DANIEL),
+                model.getMeetingList().getMeetingList().get(1).getArrayListPersonToMeet());
     }
 
     @Test

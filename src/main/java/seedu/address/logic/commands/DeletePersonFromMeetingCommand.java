@@ -10,6 +10,7 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.meeting.Meeting;
 import seedu.address.model.person.Person;
+import seedu.address.model.person.exceptions.DuplicatePersonException;
 import seedu.address.model.person.exceptions.PersonNotFoundException;
 
 /**
@@ -56,9 +57,11 @@ public class DeletePersonFromMeetingCommand extends Command {
             }
             meetingToUpdate.deletePersons(arrayOfPeopleToDelete);
             model.deleteMeeting(meetingToUpdate);
-            model.addMeeting(meetingToUpdate);
+            model.addMeeting(meetingToUpdate, meetingIndex);
         } catch (PersonNotFoundException e) {
             throw new CommandException(CreateMeetingCommand.PERSON_NOT_FOUND);
+        } catch (DuplicatePersonException e) {
+            throw new CommandException(Messages.MESSAGE_INVALID_DUPLICATE_NAMES);
         }
 
         return new CommandResult(String.format(MESSAGE_DELETE_PEOPLE_TO_MEETING_SUCCESS));

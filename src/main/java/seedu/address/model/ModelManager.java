@@ -219,6 +219,12 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public void addMeeting(Meeting newMeeting, int idx) {
+        meetingList.addMeeting(newMeeting, idx);
+        updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+    }
+
+    @Override
     public void updateFilteredMeetingList(Predicate<Meeting> predicate) {
         requireAllNonNull(predicate);
         filteredMeetings.setPredicate(predicate);

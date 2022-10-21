@@ -118,12 +118,13 @@ public class CommandTestUtil {
         AddressBook expectedAddressBook = new AddressBook(actualModel.getAddressBook());
         List<Person> expectedFilteredList = new ArrayList<>(actualModel.getFilteredPersonList());
         MeetingList expectedMeetingList = new MeetingList(actualModel.getMeetingList());
-        List<Meeting> exoectedFilteredMeetingList = new ArrayList<>(actualModel.getFilteredMeetingList());
+        List<Meeting> expectedFilteredMeetingList = new ArrayList<>(actualModel.getFilteredMeetingList());
 
         assertThrows(CommandException.class, expectedMessage, () -> command.execute(actualModel));
         assertEquals(expectedAddressBook, actualModel.getAddressBook());
         assertEquals(expectedMeetingList, actualModel.getMeetingList());
         assertEquals(expectedFilteredList, actualModel.getFilteredPersonList());
+        assertEquals(expectedFilteredMeetingList, actualModel.getFilteredMeetingList());
     }
     /**
      * Updates {@code model}'s filtered list to show only the person at the given {@code targetIndex} in the

@@ -6,8 +6,10 @@ import java.time.format.DateTimeFormatter;
 import java.time.format.ResolverStyle;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashSet;
 import java.util.Locale;
 import java.util.Objects;
+import java.util.Set;
 
 import javafx.collections.ObservableList;
 import seedu.address.logic.commands.CreateMeetingCommand;
@@ -16,6 +18,7 @@ import seedu.address.model.Model;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.UniquePersonList;
+import seedu.address.model.person.exceptions.DuplicatePersonException;
 import seedu.address.model.person.exceptions.PersonNotFoundException;
 import seedu.address.model.util.DateTimeProcessor;
 
@@ -60,10 +63,14 @@ public class Meeting {
      * @param peopleToMeet the array of people names
      */
     public static ArrayList<Person> convertNameToPerson(Model model, String[] peopleToMeet)
-            throws PersonNotFoundException {
+            throws PersonNotFoundException, DuplicatePersonException {
 
         if (Objects.equals(peopleToMeet[0], "")) {
             throw new PersonNotFoundException();
+        }
+
+        if (checkDuplicates(peopleToMeet)) {
+            throw new DuplicatePersonException();
         }
 
         ArrayList<Person> output = new ArrayList<>();
@@ -88,6 +95,21 @@ public class Meeting {
             model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
         }
         return output;
+    }
+
+    /**
+     * checks for duplicate names in array
+     *
+     * @param names list of people
+     */
+    public static boolean checkDuplicates(String[] names) {
+        Set<String> set = new HashSet<String>();
+        for (String i : names)
+        {
+            if (set.contains(i.strip())) return true;
+            set.add(i.strip());
+        }
+        return false;
     }
 
     /**

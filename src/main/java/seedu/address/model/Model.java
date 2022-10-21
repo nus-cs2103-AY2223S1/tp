@@ -131,6 +131,13 @@ public interface Model {
     void addMeeting(Meeting newMeeting);
 
     /**
+     * Adds a new meeting to the address book to the specified index.
+     *
+     * @param newMeeting the new meeting to add to address book
+     */
+    void addMeeting(Meeting newMeeting, int idx);
+
+    /**
      * Updates the filter of the filtered meeting list to filter by implementation.
      *
      * @throws NullPointerException if {@param predicate} is null.

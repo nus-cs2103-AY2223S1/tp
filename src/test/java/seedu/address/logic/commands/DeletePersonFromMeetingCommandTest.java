@@ -49,9 +49,7 @@ public class DeletePersonFromMeetingCommandTest {
         String expectedMessage = DeletePersonFromMeetingCommand.MESSAGE_DELETE_PEOPLE_TO_MEETING_SUCCESS;
         DeletePersonFromMeetingCommand command = new DeletePersonFromMeetingCommand("0; Carl");
         assertCommandSuccess(command, model, expectedMessage);
-        assertEquals(Arrays.asList(ALICE),
-                model.getMeetingList().getMeetingList().get(model.getMeetingList().getMeetingList().size() - 1)
-                        .getArrayListPersonToMeet());
+        assertEquals(Arrays.asList(ALICE), model.getMeetingList().getMeetingList().get(0).getArrayListPersonToMeet());
     }
 
     @Test
@@ -59,16 +57,14 @@ public class DeletePersonFromMeetingCommandTest {
         String expectedMessage = DeletePersonFromMeetingCommand.MESSAGE_DELETE_PEOPLE_TO_MEETING_SUCCESS;
         DeletePersonFromMeetingCommand command = new DeletePersonFromMeetingCommand("1; Alice, Elle");
         assertCommandSuccess(command, model, expectedMessage);
-        assertEquals(Arrays.asList(FIONA),
-                model.getMeetingList().getMeetingList().get(model.getMeetingList().getMeetingList().size() - 1)
-                        .getArrayListPersonToMeet());
+        assertEquals(Arrays.asList(FIONA), model.getMeetingList().getMeetingList().get(1).getArrayListPersonToMeet());
     }
 
     @Test
     public void execute_delete_nonExistentPerson() {
         String expectedMessage = CreateMeetingCommand.PERSON_NOT_FOUND;
         DeletePersonFromMeetingCommand command = new DeletePersonFromMeetingCommand("0; test");
-        assertCommandSuccess(command, model, expectedMessage);
+        assertCommandFailure(command, model, expectedMessage);
     }
 
     @Test
@@ -80,7 +76,7 @@ public class DeletePersonFromMeetingCommandTest {
 
     @Test
     public void execute_delete_samePerson() {
-        String expectedMessage = CreateMeetingCommand.PERSON_NOT_FOUND;
+        String expectedMessage = Messages.MESSAGE_INVALID_DUPLICATE_NAMES;
         DeletePersonFromMeetingCommand command = new DeletePersonFromMeetingCommand("1; Alice, Alice");
         assertCommandFailure(command, model, expectedMessage);
     }
