@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<?import javafx.scene.control.Label?>
+<VBox maxHeight="Infinity" HBox.hgrow="ALWAYS" maxWidth="Infinity" id="cardPane" fx:id="cardPane" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+    <GridPane fx:id="stackedBar" VBox.vgrow="ALWAYS" style="-fx-border-radius: 25px;" alignment="CENTER" maxHeight="Infinity" maxWidth="Infinity">
+        <VBox alignment="CENTER" GridPane.columnIndex="0" VBox.vgrow="ALWAYS" style="-fx-background-color: #7ED957" minHeight="50">
+            <Label fx:id="appliedLabel"/>
+        </VBox>
+        <VBox alignment="CENTER" GridPane.columnIndex="1" VBox.vgrow="ALWAYS" style="-fx-background-color: #004AAD">
+            <Label fx:id="assessmentLabel" />
+        </VBox>
+        <VBox alignment="CENTER" GridPane.columnIndex="2" VBox.vgrow="ALWAYS" style="-fx-background-color: #FF66C4">
+            <Label fx:id="interviewLabel" />
+        </VBox>
+        <VBox alignment="CENTER" GridPane.columnIndex="3" VBox.vgrow="ALWAYS" style="-fx-background-color: #FF914D">
+            <Label fx:id="offerLabel" />
+        </VBox>
+        <VBox alignment="CENTER" GridPane.columnIndex="4" VBox.vgrow="ALWAYS" style="-fx-background-color: #008037">
+            <Label fx:id="acceptedLabel" />
+        </VBox>
+        <VBox alignment="CENTER" GridPane.columnIndex="5" VBox.vgrow="ALWAYS" style="-fx-background-color: #FF1616">
+            <Label fx:id="rejectedLabel" />
+        </VBox>
+        <VBox alignment="CENTER" GridPane.columnIndex="6" VBox.vgrow="ALWAYS" style="-fx-background-color: gray">
+            <Label fx:id="noDataLabel" />
+        </VBox>
+
+        <columnConstraints>
+            <ColumnConstraints fx:id="appliedConstraint" maxWidth="Infinity" hgrow="ALWAYS"/>
+            <ColumnConstraints fx:id="assessmentConstraint" maxWidth="Infinity" hgrow="ALWAYS"/>
+            <ColumnConstraints fx:id="interviewConstraint" maxWidth="Infinity" hgrow="ALWAYS"/>
+            <ColumnConstraints fx:id="offerConstraint" maxWidth="Infinity" hgrow="ALWAYS"/>
+            <ColumnConstraints fx:id="acceptedConstraint" maxWidth="Infinity" hgrow="ALWAYS"/>
+            <ColumnConstraints fx:id="rejectedConstraint" maxWidth="Infinity" hgrow="ALWAYS"/>
+            <ColumnConstraints fx:id="noDataConstraint" maxWidth="Infinity" hgrow="ALWAYS"/>
+        </columnConstraints>
+    </GridPane>
+</VBox>
