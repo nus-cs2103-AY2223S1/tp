@@ -24,18 +24,18 @@ public class AddItemCommand extends Command {
 
     public static final String COMMAND_WORD = "addItem";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a supplyItem which is identified by index" 
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a supplyItem which is identified by index"
             + "of supplier in supplier list to inventory. "
-            + "Parameters: " 
+            + "Parameters: "
             + "INDEX (must be a positive integer)"
             + PREFIX_CURRENTSTOCK + "CurrentStock: "
             + PREFIX_MINIMUMSTOCK + "MinimumStock: "
             + "Example: " + COMMAND_WORD + " 1 c/5 m/2";
 
     public static final String MESSAGE_SUCCESS = "New supplyItem added: %1$s";
-    public static final String MESSAGE_DUPLICATE_SUPPLYITEM = "This supplyItem from different 
+    public static final String MESSAGE_DUPLICATE_SUPPLYITEM = "This supplyItem from different
     + supplier already exists in inventory";
-    public static final String MESSAGE_DUPLICATE_SUPPLIER = "This supplyItem from same 
+    public static final String MESSAGE_DUPLICATE_SUPPLIER = "This supplyItem from same
     + supplier already exists in inventory";
 
 
