@@ -146,11 +146,9 @@ The `Model` component,
 
 <div markdown="span" class="alert alert-info">
 :information_source: **Note:** An alternative and perhaps more OOP model is given below.<br>
-It has a `Class` list in the `StudentRecord`, which `Student` references.
-<ul>
-  <li>This allows `StudentRecord` to only require one `Class` object per unique class the teacher teaches, instead of each `Student` needing their own `Class` objects.</li>
-  <li>This also potentially opens up to a more OOP solution where the `Class` encapsulates `Student`, modelling the relationship in which a teacher teaches a class with some students.</li>
-</ul>
+It has a `Class` list in the `StudentRecord`, which `Student` references.<br>
+- This allows `StudentRecord` to only require one `Class` object per unique class the teacher teaches, instead of each `Student` needing their own `Class` objects.<br>
+- This also potentially opens up to a more OOP solution where the `Class` encapsulates `Student`, modelling the relationship in which a teacher teaches a class with some students.
 <img src="images/BetterModelClassDiagram.png" width="450" />
 </div>
 
