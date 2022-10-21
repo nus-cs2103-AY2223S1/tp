@@ -60,7 +60,6 @@ public class AddressBookParser {
             return new DeleteCommandParser().parse(arguments);
 
         case DeleteCommand.COMMAND_SHORTCUT:
-            assert false;
             return new DeleteCommandParser().parse(arguments);
 
         case ClearCommand.COMMAND_WORD:
