@@ -1,6 +1,14 @@
+* {
+  -fx-bg-color: #000000;
+  -fx-contrast-color: #F2D492;
+  -fx-highlight-color: #B8B08D;
+  -fx-shadow-color: #2C3333;
+  -fx-midtone-color: #1F2933;
+}
+
 .background {
-    -fx-background-color: derive(#1d1d1d, 20%);
-    background-color: #383838; /* Used in the default.html file */
+    -fx-background-color: -fx-bg-color;
+    background-color: -fx-bg-color; /* Used in the default.html file */
 }
 
 .label {
@@ -18,14 +26,15 @@
 }
 
 .label-header {
-    -fx-font-size: 32pt;
-    -fx-font-family: "Segoe UI Light";
+    -fx-font-size: 21pt;
+    -fx-font-family: "Segoe UI Bold";
     -fx-text-fill: white;
     -fx-opacity: 1;
 }
 
 .text-field {
     -fx-font-size: 12pt;
+    -fx-background-color: -fx-bg-color;
     -fx-font-family: "Segoe UI Semibold";
 }
 
@@ -40,9 +49,9 @@
 }
 
 .table-view {
-    -fx-base: #1d1d1d;
-    -fx-control-inner-background: #1d1d1d;
-    -fx-background-color: #1d1d1d;
+    -fx-base: -fx-bg-color;
+    -fx-control-inner-background: -fx-bg-color;
+    -fx-background-color: -fx-bg-color;
     -fx-table-cell-border-color: transparent;
     -fx-table-header-border-color: transparent;
     -fx-padding: 5;
@@ -77,34 +86,39 @@
 }
 
 .split-pane:horizontal .split-pane-divider {
-    -fx-background-color: derive(#1d1d1d, 20%);
+    -fx-background-color: derive(-fx-bg-color, 20%);
     -fx-border-color: transparent transparent transparent #4d4d4d;
 }
 
 .split-pane {
     -fx-border-radius: 1;
     -fx-border-width: 1;
-    -fx-background-color: derive(#1d1d1d, 20%);
+    -fx-background-color: derive(-fx-bg-color, 20%);
+}
+
+.notes-VBox {
+    -fx-background-color: derive(-fx-shadow-color, 10%);
+    -fx-background-radius: 20;
+    -fx-padding: 5, 5, 5, 5;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.3), 10, 0.5, -5.0, 0.0);
 }
 
 .list-view {
     -fx-background-insets: 0;
     -fx-padding: 0;
-    -fx-background-color: derive(#1d1d1d, 20%);
+    -fx-background-color: transparent;
 }
 
 .list-cell {
     -fx-label-padding: 0 0 0 0;
     -fx-graphic-text-gap : 0;
-    -fx-padding: 0 0 0 0;
+    -fx-padding: 4;
+    -fx-background-radius: 20;
 }
 
-.list-cell:filled:even {
-    -fx-background-color: #3c3e3f;
-}
-
-.list-cell:filled:odd {
-    -fx-background-color: #515658;
+.list-cell:filled {
+    -fx-background-color: -fx-shadow-color;
+    -fx-background-insets: 4px ;
 }
 
 .list-cell:filled:selected {
@@ -122,13 +136,13 @@
 
 .cell_big_label {
     -fx-font-family: "Segoe UI Semibold";
-    -fx-font-size: 16px;
+    -fx-font-size: 13px;
     -fx-text-fill: #010504;
 }
 
 .cell_small_label {
     -fx-font-family: "Segoe UI";
-    -fx-font-size: 13px;
+    -fx-font-size: 10px;
     -fx-text-fill: #010504;
 }
 
@@ -137,13 +151,13 @@
 }
 
 .pane-with-border {
-     -fx-background-color: derive(#1d1d1d, 20%);
-     -fx-border-color: derive(#1d1d1d, 10%);
+     -fx-background-color: derive(-fx-bg-color, 20%);
+     /*-fx-border-color: derive(-fx-bg-color, 10%);*/
      -fx-border-top-width: 1px;
 }
 
 .status-bar {
-    -fx-background-color: derive(#1d1d1d, 30%);
+    -fx-background-color: derive(-fx-bg-color, 30%);
 }
 
 .result-display {
@@ -282,12 +296,23 @@
 }
 
 .scroll-bar {
-    -fx-background-color: derive(#1d1d1d, 20%);
+    -fx-background-color: derive(-fx-shadow-color, 20%);
+    -fx-background-radius: 20;
+    -fx-padding: 1;
+}
+
+.scroll-bar:horizontal {
+    -fx-pref-height: 13.5;
+}
+
+.scroll-bar:vertical {
+    -fx-pref-width: 13.5;
 }
 
 .scroll-bar .thumb {
     -fx-background-color: derive(#1d1d1d, 50%);
     -fx-background-insets: 3;
+    -fx-background-radius: 20;
 }
 
 .scroll-bar .increment-button, .scroll-bar .decrement-button {
