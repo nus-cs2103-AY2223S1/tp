@@ -190,8 +190,7 @@ Command: `<Names of people to meet (from address book, split names by }} )> ;;; 
 Example:
 `meet Alex Yeoh }} Bernice Yu ;;; Study Session ;;; 06-10-2022 2015 ;;; UTown`
 
-// TODO
-Primarily there are ??? main cases for this command:
+Primarily there are 6 main cases for this command:
 - The name(s) input by the user match existing Person(s) in the `AddressBook` 
 and the date and time of the meeting in the user input is in the correct format
 -- this is the intended usage of the command and a new Meeting object is created
@@ -209,13 +208,13 @@ and the date and time of the meeting in the user input is in the correct format
   -- Throws a `DuplicateMeetingException` and an error message will be displayed
 
 
-The diagram below should sufficiently explain the main cases for the command.
+The diagrams below should sufficiently explain the main cases for the command.
 
 ![FilterMeetingsActivityDiagram](images/CreateMeetingSequenceDiagram.png)
+#### Sequence Diagram for Creating New Meetings
 
-#### Sequence Diagram for Filter Meetings between Dates
 ![FilterMeetingsSequenceDiagram](images/CreateMeetingActivityDiagram.png)
-
+#### Activity Diagram for Creating New Meetings
 
 ### [Implemented] Storage for meetings
 #### Implementation
