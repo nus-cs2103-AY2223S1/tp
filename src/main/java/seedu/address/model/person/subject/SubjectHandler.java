@@ -2,6 +2,7 @@ package seedu.address.model.person.subject;
 
 import java.util.HashMap;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 /**
  * Handles a Student's subjects in the application.
@@ -42,7 +43,8 @@ public class SubjectHandler {
     }
 
     public Set<Subject> getSubjectsTaken() {
-        return (Set<Subject>) subjectsTaken.values();
+        return subjectsTaken.keySet().stream().map(subjectsTaken::get).collect(
+            Collectors.toSet());
     }
 
     @Override
