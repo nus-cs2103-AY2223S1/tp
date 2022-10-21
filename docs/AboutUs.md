@@ -16,8 +16,8 @@ You can reach us at the email `jason.qiu@u.nus.edu`
 [[github](https://github.com/jasonqiu212)]
 [[portfolio](team/jasonqiu212.md)]
 
-* Role: Team lead
-* Responsibilities: UI
+- Role: Team lead
+- Responsibilities: UI
 
 ### Pontakorn Prasertsuk
 
@@ -26,8 +26,8 @@ You can reach us at the email `jason.qiu@u.nus.edu`
 [[github](http://github.com/peppapighs)]
 [[portfolio](team/peppapighs.md)]
 
-* Role: Code Quality
-* Responsibilities: UI
+- Role: Code Quality
+- Responsibilities: UI
 
 ### Shenyi Cui
 
@@ -35,8 +35,8 @@ You can reach us at the email `jason.qiu@u.nus.edu`
 
 [[github](http://github.com/shenyicui)] [[portfolio](team/shenyicui.md)]
 
-* Role: Deliverables
-* Responsibilities: Issues
+- Role: Deliverables
+- Responsibilities: Issues
 
 ### Muthukrishnan Santosh
 
@@ -45,8 +45,8 @@ You can reach us at the email `jason.qiu@u.nus.edu`
 [[github](http://github.com/santosh3007)]
 [[portfolio](team/santosh3007.md)]
 
-* Role: Documentation
-* Responsibilities: Manage Non-Functional Requirements
+- Role: Documentation
+- Responsibilities: Manage Non-Functional Requirements
 
 ### Chin Yun Ru
 
@@ -55,5 +55,5 @@ You can reach us at the email `jason.qiu@u.nus.edu`
 [[github](http://github.com/yunruu)]
 [[portfolio](team/yunruu.md)]
 
-* Role: Integration
-* Responsibilities: Glossary
+- Role: Integration
+- Responsibilities: Glossary

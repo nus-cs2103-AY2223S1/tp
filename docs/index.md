@@ -9,10 +9,10 @@ title: Swift+
 
 Swift+ is a **desktop application to track your daily events with contacts.** Combined with an aesthetic GUI, all user interactions happen using swift text-based commands.
 
-* If you are interested in using Swift+, head over to the [_Quick Start_ section of the **User Guide**](UserGuide.html#quick-start).
-* If you are interested about developing Swift+, the [**Developer Guide**](DeveloperGuide.html) is a good place to start.
+- If you are interested in using Swift+, head over to the [_Quick Start_ section of the **User Guide**](UserGuide.html#quick-start).
+- If you are interested about developing Swift+, the [**Developer Guide**](DeveloperGuide.html) is a good place to start.
 
 **Acknowledgements**
 
-* This project is based on the AddressBook-Level3 project created by the [SE-EDU initiative](https://se-education.org).
-* Libraries used: [JavaFX](https://openjfx.io/), [Jackson](https://github.com/FasterXML/jackson), [JUnit5](https://github.com/junit-team/junit5)
+- This project is based on the AddressBook-Level3 project created by the [SE-EDU initiative](https://se-education.org).
+- Libraries used: [JavaFX](https://openjfx.io/), [Jackson](https://github.com/FasterXML/jackson), [JUnit5](https://github.com/junit-team/junit5)
