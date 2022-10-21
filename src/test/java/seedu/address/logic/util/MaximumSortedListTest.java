@@ -6,6 +6,8 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assertions.fail;
 import static seedu.address.testutil.Assert.assertThrows;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -84,6 +86,20 @@ public class MaximumSortedListTest {
         assertTrue(stubMaximumSortedList.contains(comparableStubOne));
     }
 
+    @Test
+    public void getObservableList_returns_observableList() {
+        // empty observable List
+        ObservableList<ComparableStub> observableList = FXCollections.observableArrayList();
+        assertTrue(stubMaximumSortedList.getObservableList().equals(observableList));
+
+        // non-empty observable list
+        stubMaximumSortedList.add(comparableStubOne);
+        stubMaximumSortedList.add(comparableStubTwo);
+
+        observableList.add(comparableStubOne);
+        observableList.add(comparableStubTwo);
+        assertTrue(stubMaximumSortedList.getObservableList().equals(observableList));
+    }
     @Test
     public void add_null_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> stubMaximumSortedList.add(null));
