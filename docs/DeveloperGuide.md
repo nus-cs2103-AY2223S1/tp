@@ -154,6 +154,26 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
+### Add `Internship` feature
+
+#### Implementation
+
+- An `AddCommandParser` class is created, which parses the user input by splitting the input by its prefixes, then returns the relevant `AddCommand`.
+- `AddCommand` takes in an `Internship`.
+- `Internship` holds the details of the `Internship` that the user wants to add.
+
+When `execute` of `AddCommand` is run, the `Internship` is passed into the model to be added to the Internship list.
+
+#### Design Considerations
+
+- **Adding of internships with same company name:**
+  - **Alternative 1:** Do not allow internships with same company name.
+    - Pros: Only need to check for duplicate company names.
+    - Cons: Do not allow multiple internships with the same company, even if the applications are for different roles.
+  - **Alternative 2 (current choice):** Allow internships with same company name if they have different tags.
+    - Pros: Allow multiple internships with the same company.
+    - Cons: Need to check for both duplicate company names and duplicate tags.
+
 ### Find `Internships` from `Company`
 
 #### Implementation
@@ -345,6 +365,10 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * 2a. User enters the details in the wrong format.
   * 2a1. FindMyIntern shows an error message.
   
+    Use case ends.
+* 2b. Details entered match an existing internship.
+  * 2b1. FindMyIntern shows an error message.
+
     Use case ends.
 
 <br />
