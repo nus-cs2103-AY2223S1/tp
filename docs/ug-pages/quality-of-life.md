@@ -2,11 +2,12 @@
 layout: page
 title: Quality-Of-Life
 ---
+As a CLI-optimized application, RC4HDB may not be the most intuitive for someone that is used to using the mouse. As
+such, we have provided several simple *Quality-of-life* features that we hope can improve your experience of using RC4HDB.
 
 ## Keyboard shortcuts
 
-Inline with our optimization for use via a **Command Line Interface (CLI)**. Here are several keyboard shortcuts that
-you may find useful for your use:
+To encourage keyboard usage, here are several keyboard shortcuts that you may find useful for your use:
 
 Key | Functionality
 ----|------------------
@@ -14,6 +15,8 @@ Key | Functionality
 `F1` | Opens the Help Window if it's not open
 `F2` | Highlights the first row of the displayed list
 `F3` | Quick-access to the command input box
+
+This feature is especially useful if you want to refer to our Help Window which contains a summary of our commands.
 
 ### Accessing command history
 
