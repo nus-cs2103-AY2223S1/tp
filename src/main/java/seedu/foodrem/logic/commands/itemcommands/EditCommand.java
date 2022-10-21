@@ -21,6 +21,7 @@ import seedu.foodrem.model.item.ItemExpiryDate;
 import seedu.foodrem.model.item.ItemName;
 import seedu.foodrem.model.item.ItemPrice;
 import seedu.foodrem.model.item.ItemQuantity;
+import seedu.foodrem.model.item.ItemRemark;
 import seedu.foodrem.model.item.ItemUnit;
 import seedu.foodrem.model.tag.Tag;
 
@@ -63,6 +64,7 @@ public class EditCommand extends Command {
         ItemBoughtDate updatedBoughtDate = editItemDescriptor.getItemBoughtDate().orElse(itemToEdit.getBoughtDate());
         ItemExpiryDate updatedExpiryDate = editItemDescriptor.getItemExpiryDate().orElse(itemToEdit.getExpiryDate());
         ItemPrice updatedPrice = editItemDescriptor.getItemPrice().orElse(itemToEdit.getPrice());
+        ItemRemark updatedRemarks = editItemDescriptor.getItemRemarks().orElse(itemToEdit.getRemarks());
         Set<Tag> tagSet = itemToEdit.getTagSet();
 
         return new Item(updatedName,
@@ -71,6 +73,7 @@ public class EditCommand extends Command {
                 updatedBoughtDate,
                 updatedExpiryDate,
                 updatedPrice,
+                updatedRemarks,
                 tagSet);
     }
 
@@ -128,6 +131,7 @@ public class EditCommand extends Command {
         private ItemBoughtDate boughtDate;
         private ItemExpiryDate expiryDate;
         private ItemPrice price;
+        private ItemRemark remarks;
 
         public EditItemDescriptor() {
         }
@@ -143,13 +147,14 @@ public class EditCommand extends Command {
             setItemBoughtDate(toCopy.boughtDate);
             setItemExpiryDate(toCopy.expiryDate);
             setItemPrice(toCopy.price);
+            setItemRemarks(toCopy.remarks);
         }
 
         /**
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, quantity, unit, boughtDate, expiryDate, price);
+            return CollectionUtil.isAnyNonNull(name, quantity, unit, boughtDate, expiryDate, price, remarks);
         }
 
         public Optional<ItemName> getItemName() {
@@ -200,6 +205,14 @@ public class EditCommand extends Command {
             this.price = price;
         }
 
+        public Optional<ItemRemark> getItemRemarks() {
+            return Optional.ofNullable(remarks);
+        }
+
+        public void setItemRemarks(ItemRemark remarks) {
+            this.remarks = remarks;
+        }
+
         @Override
         public boolean equals(Object other) {
             // short circuit if same object
@@ -220,7 +233,8 @@ public class EditCommand extends Command {
                     && getItemUnit().equals(e.getItemUnit())
                     && getItemBoughtDate().equals(e.getItemBoughtDate())
                     && getItemExpiryDate().equals(e.getItemExpiryDate())
-                    && getItemPrice().equals(e.getItemPrice());
+                    && getItemPrice().equals(e.getItemPrice())
+                    && getItemRemarks().equals(e.getItemRemarks());
         }
     }
 }

@@ -37,7 +37,7 @@ public class DecrementCommand extends Command {
     }
 
     /**
-     * Creates and returns a {@code Item} with the quantity of {@code itemToEdit}
+     * Creates and returns an {@code Item} with the quantity of {@code itemToEdit}
      * decremented by {@code editItemDescriptor}.
      */
     private static Item createDecrementedItem(Item itemToDecrement, ItemQuantity quantity) {
@@ -56,7 +56,8 @@ public class DecrementCommand extends Command {
                 itemToDecrement.getUnit(),
                 itemToDecrement.getBoughtDate(),
                 itemToDecrement.getExpiryDate(),
-                itemToDecrement.getPrice());
+                itemToDecrement.getPrice(),
+                itemToDecrement.getRemarks());
     }
 
     @Override

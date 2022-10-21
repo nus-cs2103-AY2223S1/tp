@@ -8,6 +8,7 @@
       "boughtDate": "11-11-2022",
       "expiryDate": "11-11-2022",
       "price" : "10.30",
+      "remarks" : "For Mashed Potatoes",
       "tags": ["vegetables"]
     },
     {
@@ -17,6 +18,7 @@
       "boughtDate": "12-12-2022",
       "expiryDate": "12-12-2022",
       "price" : "8",
+      "remarks" : "For Salad",
       "tags": ["vegetables"]
     }
   ],
