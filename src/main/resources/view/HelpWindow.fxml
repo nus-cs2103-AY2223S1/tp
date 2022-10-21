@@ -29,18 +29,32 @@
             <columnConstraints>
               <ColumnConstraints hgrow="SOMETIMES" maxWidth="600.0" minWidth="-Infinity" />
             </columnConstraints>
+            <Label fx:id="userGuideTitle">
+              <GridPane.margin>
+                <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+              </GridPane.margin>
+            </Label>
+            <HBox alignment="CENTER_LEFT" spacing="15.0" GridPane.rowIndex="1">
+              <children>
+                <Label fx:id="helpMessage" wrapText="true" />
+                <Button fx:id="copyButton" alignment="CENTER_RIGHT" mnemonicParsing="false" onAction="#copyUrl" text="Copy URL" />
+              </children>
+              <GridPane.margin>
+                <Insets left="5.0" right="5.0" />
+              </GridPane.margin>
+            </HBox>
             <children>
-              <Label fx:id="title">
-                <GridPane.margin>
-                  <Insets bottom="5.0" left="5.0" right="5.0" />
-                </GridPane.margin>
-              </Label>
-              <Label fx:id="copyTitle" GridPane.rowIndex="1">
+              <Label fx:id="title" GridPane.rowIndex="2">
                 <GridPane.margin>
                   <Insets bottom="5.0" left="5.0" right="5.0" top="20.0" />
                 </GridPane.margin>
               </Label>
-              <ImageView fitHeight="400.0" fitWidth="400.0" pickOnBounds="true" preserveRatio="true" GridPane.rowIndex="2">
+              <Label fx:id="copyTitle" GridPane.rowIndex="3">
+                <GridPane.margin>
+                  <Insets bottom="5.0" left="5.0" right="5.0" />
+                </GridPane.margin>
+              </Label>
+              <ImageView fitHeight="400.0" fitWidth="400.0" pickOnBounds="true" preserveRatio="true" GridPane.rowIndex="4">
                 <image>
                   <Image url="@/images/clipboard.png" />
                 </image>
@@ -48,25 +62,11 @@
                   <Insets bottom="10.0" top="5.0" />
                 </GridPane.margin>
               </ImageView>
-              <Label fx:id="copyContent" minHeight="30.0" wrapText="true" GridPane.rowIndex="3">
+              <Label fx:id="copyContent" minHeight="30.0" wrapText="true" GridPane.rowIndex="5">
                 <GridPane.margin>
                   <Insets bottom="5.0" left="5.0" right="5.0" />
                 </GridPane.margin>
               </Label>
-              <Label fx:id="userGuideTitle" GridPane.rowIndex="4">
-                <GridPane.margin>
-                  <Insets bottom="5.0" left="5.0" right="5.0" top="20.0" />
-                </GridPane.margin>
-              </Label>
-              <HBox alignment="CENTER_LEFT" spacing="15.0" GridPane.rowIndex="5">
-                <children>
-                  <Label fx:id="helpMessage" wrapText="true" />
-                  <Button fx:id="copyButton" alignment="CENTER_RIGHT" mnemonicParsing="false" onAction="#copyUrl" text="Copy URL" />
-                </children>
-                <GridPane.margin>
-                  <Insets left="5.0" right="5.0" />
-                </GridPane.margin>
-              </HBox>
             </children>
             <rowConstraints>
               <RowConstraints minHeight="-Infinity" valignment="TOP" vgrow="SOMETIMES" />
