@@ -1,12 +1,7 @@
 package seedu.waddle.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.waddle.logic.parser.CliSyntax.PREFIX_COUNTRY;
-import static seedu.waddle.logic.parser.CliSyntax.PREFIX_END_DATE;
-import static seedu.waddle.logic.parser.CliSyntax.PREFIX_NAME;
-import static seedu.waddle.logic.parser.CliSyntax.PREFIX_PEOPLE;
-import static seedu.waddle.logic.parser.CliSyntax.PREFIX_BUDGET;
-import static seedu.waddle.logic.parser.CliSyntax.PREFIX_START_DATE;
+import static seedu.waddle.logic.parser.CliSyntax.*;
 
 import seedu.waddle.logic.commands.exceptions.CommandException;
 import seedu.waddle.model.Model;
@@ -24,14 +19,14 @@ public class AddCommand extends Command {
             + "[" + PREFIX_NAME + "NAME] "
             + "[" + PREFIX_COUNTRY + "COUNTRY] "
             + "[" + PREFIX_START_DATE + "START DATE] "
-            + "[" + PREFIX_END_DATE + "END DATE] "
+            + "[" + PREFIX_ITINERARY_DURATION + "DURATION] "
             + "[" + PREFIX_PEOPLE + "PEOPLE] "
             + "[" + PREFIX_BUDGET + "BUDGET]...\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_NAME + "Summer Trip "
             + PREFIX_COUNTRY + "India "
             + PREFIX_START_DATE + "2022-10-28 "
-            + PREFIX_END_DATE + "2022-11-03 "
+            + PREFIX_ITINERARY_DURATION + "15 "
             + PREFIX_PEOPLE + "4 "
             + PREFIX_BUDGET + "1000 ";
 

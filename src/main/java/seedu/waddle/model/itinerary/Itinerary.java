@@ -17,7 +17,7 @@ public class Itinerary {
     private final Name name;
     private final Country country;
     private final Date startDate;
-    private final Date endDate;
+    private final ItineraryDuration duration;
     private final People people;
     private final Budget budget;
 
@@ -29,12 +29,12 @@ public class Itinerary {
 
     // TODO
     // Have to ensure startDate is < endDate.
-    public Itinerary(Name name, Country country, Date startDate, Date endDate, People people, Budget budget) {
-        requireAllNonNull(name, country, startDate, endDate, people, budget);
+    public Itinerary(Name name, Country country, Date startDate, ItineraryDuration duration, People people, Budget budget) {
+        requireAllNonNull(name, startDate, duration);
         this.name = name;
         this.country = country;
         this.startDate = startDate;
-        this.endDate = endDate;
+        this.duration = duration;
         this.people = people;
         this.budget = budget;
         this.uniqueItemList = new UniqueItemList();
@@ -52,9 +52,15 @@ public class Itinerary {
         return startDate;
     }
 
-    public Date getEndDate() {
-        return endDate;
+    public ItineraryDuration getDuration() {
+        return this.duration;
     }
+
+    /* TODO: implement method
+    public Date getEndDate() {
+        return duration.getEndFromStart(startDate);
+    }
+     */
 
     public People getPeople() {
         return people;
@@ -119,7 +125,7 @@ public class Itinerary {
         return otherItinerary.getName().equals(getName())
                 && otherItinerary.getCountry().equals(getCountry())
                 && otherItinerary.getStartDate().equals(getStartDate())
-                && otherItinerary.getEndDate().equals(getEndDate())
+                && otherItinerary.getDuration().equals(getDuration())
                 && otherItinerary.getPeople().equals(getPeople())
                 && otherItinerary.getBudget().equals(getBudget());
     }
@@ -127,7 +133,7 @@ public class Itinerary {
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, country, startDate, endDate, people, budget);
+        return Objects.hash(name, country, startDate, duration, people, budget);
     }
 
     @Override
@@ -138,8 +144,8 @@ public class Itinerary {
                 .append(getCountry())
                 .append("; Start Date: ")
                 .append(getStartDate())
-                .append("; End Date: ")
-                .append(getEndDate())
+                .append("; Duration: ")
+                .append(getDuration())
                 .append("; Number of people: ")
                 .append(getPeople())
                 .append("; Budget: ")

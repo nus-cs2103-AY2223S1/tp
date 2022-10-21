@@ -28,7 +28,7 @@ public class EditCommand extends Command {
             + "[" + PREFIX_NAME + "NAME] "
             + "[" + PREFIX_COUNTRY + "COUNTRY] "
             + "[" + PREFIX_START_DATE + "START DATE] "
-            + "[" + PREFIX_END_DATE + "END DATE] "
+            + "[" + PREFIX_ITINERARY_DURATION + "DURATION] "
             + "[" + PREFIX_PEOPLE + "PEOPLE] "
             + "[" + PREFIX_BUDGET + "BUDGET]...\n"
             + "Example: " + COMMAND_WORD + " 1 "
@@ -65,11 +65,11 @@ public class EditCommand extends Command {
         Name updatedName = editItineraryDescriptor.getName().orElse(itineraryToEdit.getName());
         Country updatedCountry = editItineraryDescriptor.getCountry().orElse(itineraryToEdit.getCountry());
         Date updatedStartDate = editItineraryDescriptor.getStartDate().orElse(itineraryToEdit.getStartDate());
-        Date updatedEndDate = editItineraryDescriptor.getEndDate().orElse(itineraryToEdit.getEndDate());
+        ItineraryDuration updatedDuration = editItineraryDescriptor.getDuration().orElse(itineraryToEdit.getDuration());
         People updatedPeople = editItineraryDescriptor.getPeople().orElse(itineraryToEdit.getPeople());
         Budget updatedBudget = editItineraryDescriptor.getBudget().orElse(itineraryToEdit.getBudget());
 
-        return new Itinerary(updatedName, updatedCountry, updatedStartDate, updatedEndDate, updatedPeople, updatedBudget);
+        return new Itinerary(updatedName, updatedCountry, updatedStartDate, updatedDuration, updatedPeople, updatedBudget);
     }
 
     @Override
@@ -119,7 +119,7 @@ public class EditCommand extends Command {
         private Name name;
         private Country country;
         private Date startDate;
-        private Date endDate;
+        private ItineraryDuration duration;
         private People people;
         private Budget budget;
 
@@ -134,7 +134,7 @@ public class EditCommand extends Command {
             setName(toCopy.name);
             setCountry(toCopy.country);
             setStartDate(toCopy.startDate);
-            setEndDate(toCopy.endDate);
+            setDuration(toCopy.duration);
             setPeople(toCopy.people);
             setBudget(toCopy.budget);
         }
@@ -143,7 +143,7 @@ public class EditCommand extends Command {
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, country, startDate, endDate, people);
+            return CollectionUtil.isAnyNonNull(name, country, startDate, duration, people, budget);
         }
 
         public Optional<Name> getName() {
@@ -170,12 +170,12 @@ public class EditCommand extends Command {
             this.startDate = startDate;
         }
 
-        public Optional<Date> getEndDate() {
-            return Optional.ofNullable(endDate);
+        public Optional<ItineraryDuration> getDuration() {
+            return Optional.ofNullable(duration);
         }
 
-        public void setEndDate(Date endDate) {
-            this.endDate = endDate;
+        public void setDuration(ItineraryDuration duration) {
+            this.duration = duration;
         }
 
         public Optional<People> getPeople() {
@@ -212,7 +212,7 @@ public class EditCommand extends Command {
             return getName().equals(e.getName())
                     && getCountry().equals(e.getCountry())
                     && getStartDate().equals(e.getStartDate())
-                    && getEndDate().equals(e.getEndDate())
+                    && getDuration().equals(e.getDuration())
                     && getPeople().equals(e.getPeople())
                     && getBudget().equals(e.getBudget());
         }

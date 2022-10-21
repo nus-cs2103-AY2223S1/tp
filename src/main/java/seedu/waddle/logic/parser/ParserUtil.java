@@ -77,6 +77,21 @@ public class ParserUtil {
     }
 
     /**
+     * Parses a {@code String duration} into an {@code ItineraryDuration}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code duration} is invalid.
+     */
+    public static ItineraryDuration parseItineraryDuration(String duration) throws ParseException {
+        requireNonNull(duration);
+        String trimmedDuration = duration.trim();
+        if (!ItineraryDuration.isValidDuration(trimmedDuration)) {
+            throw new ParseException(Date.MESSAGE_CONSTRAINTS);
+        }
+        return new ItineraryDuration(trimmedDuration);
+    }
+
+    /**
      * Parses a {@code String people} into an {@code People}.
      * Leading and trailing whitespaces will be trimmed.
      *

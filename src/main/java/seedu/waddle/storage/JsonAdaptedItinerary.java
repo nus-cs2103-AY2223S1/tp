@@ -21,7 +21,7 @@ class JsonAdaptedItinerary {
     private final String name;
     private final String country;
     private final String startDate;
-    private final String endDate;
+    private final String duration;
     private final String people;
     private final String budget;
 
@@ -33,14 +33,14 @@ class JsonAdaptedItinerary {
      */
     @JsonCreator
     public JsonAdaptedItinerary(@JsonProperty("name") String name, @JsonProperty("country") String country,
-                                @JsonProperty("startDate") String startDate, @JsonProperty("endDate") String endDate,
+                                @JsonProperty("startDate") String startDate, @JsonProperty("duration") String duration,
                                 @JsonProperty("people") String people,
                                 @JsonProperty("budget") String budget,
                                 @JsonProperty("items") List<JsonAdaptedItem> items) {
         this.name = name;
         this.country = country;
         this.startDate = startDate;
-        this.endDate = endDate;
+        this.duration = duration;
         this.people = people;
         this.budget = budget;
         this.items.addAll(items);
@@ -53,7 +53,7 @@ class JsonAdaptedItinerary {
         name = source.getName().fullName;
         country = source.getCountry().country;
         startDate = source.getStartDate().date;
-        endDate = source.getEndDate().date;
+        duration = source.getDuration().toString();
         people = source.getPeople().numOfPeople;
         budget = source.getBudget().toString();
         for (Item item : source.getItemList()) {
@@ -92,13 +92,13 @@ class JsonAdaptedItinerary {
         }
         final Date modelStartDate = new Date(startDate);
 
-        if (endDate == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Date.class.getSimpleName()));
+        if (duration == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, ItineraryDuration.class.getSimpleName()));
         }
-        if (!Date.isValidDate(endDate)) {
+        if (!ItineraryDuration.isValidDuration(duration)) {
             throw new IllegalValueException(Date.MESSAGE_CONSTRAINTS);
         }
-        final Date modelEndDate = new Date(endDate);
+        final ItineraryDuration modelDuration = new ItineraryDuration(duration);
 
         if (people == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, People.class.getSimpleName()));
@@ -116,7 +116,7 @@ class JsonAdaptedItinerary {
         }
         final Budget modelBudget = new Budget(budget);
 
-        Itinerary itinerary = new Itinerary(modelName, modelCountry, modelStartDate, modelEndDate, modelPeople, modelBudget);
+        Itinerary itinerary = new Itinerary(modelName, modelCountry, modelStartDate, modelDuration, modelPeople, modelBudget);
         for (JsonAdaptedItem jsonAdaptedItem : items) {
             Item item = jsonAdaptedItem.toModelType();
             if (itinerary.hasItem(item)) {
