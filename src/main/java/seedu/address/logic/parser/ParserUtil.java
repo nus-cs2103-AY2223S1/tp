@@ -16,6 +16,7 @@ import seedu.address.model.person.Appointment;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
+import seedu.address.model.person.exceptions.InvalidTagQuantityException;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -150,7 +151,8 @@ public class ParserUtil {
      *
      * @throws ParseException if the given {@code reason} or {@code dateTime} is invalid.
      */
-    public static Appointment parseAppointment(String reason, String dateTime, String period) throws ParseException {
+    public static Appointment parseAppointment(String reason, String dateTime, String period, Set<Tag> tags)
+            throws ParseException {
         requireNonNull(dateTime);
         requireNonNull(reason);
         String trimmedReason = reason.trim();
@@ -167,7 +169,12 @@ public class ParserUtil {
         if (!period.isEmpty() && !Appointment.isValidTimePeriod(trimmedPeriod)) {
             throw new ParseException(Appointment.TIME_PERIOD_MESSAGE_CONSTRAINTS);
         }
-        return new Appointment(trimmedReason, trimmedDateTime, trimmedPeriod, false);
+
+        if (tags.size() > 1) {
+            throw new ParseException(Appointment.TAG_QUANTITY_CONSTRAINTS);
+        }
+
+        return new Appointment(trimmedReason, trimmedDateTime, trimmedPeriod, tags, false);
     }
 
     /**

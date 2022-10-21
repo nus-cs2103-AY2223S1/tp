@@ -8,7 +8,7 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  * Guarantees: immutable; name is valid as declared in {@link #isValidTagName(String)}
  */
 public enum Tag {
-    EAR("Ear"), NOSE("Nose"), THROAT("Throat"), EMPTY("");
+    EAR("Ear"), NOSE("Nose"), THROAT("Throat");
 
     public String tagName;
     public static final String MESSAGE_CONSTRAINTS = "Tag names should be ear, nose or throat (not case sensitive).";
@@ -27,8 +27,7 @@ public enum Tag {
     public static boolean isValidTagName(String test) {
         return test.equalsIgnoreCase("ear")
                 || test.equalsIgnoreCase("nose")
-                || test.equalsIgnoreCase("throat")
-                || test.equals("");
+                || test.equalsIgnoreCase("throat");
     }
 
     public static Tag convertToTag(String tagName) {
@@ -39,8 +38,6 @@ public enum Tag {
             return Tag.NOSE;
         } else if (tagName.equalsIgnoreCase("throat")) {
             return Tag.THROAT;
-        }  else if (tagName.equals("")) {
-            return Tag.EMPTY;
         } else {
             throw new IllegalArgumentException(MESSAGE_CONSTRAINTS);
         }
