@@ -7,7 +7,7 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  * Represents an Internship's unique id in the address book.
  * Guarantees: immutable; is valid as declared in {@link #isValidId(String)}
  */
-public class InternshipId {
+public class InternshipId implements Comparable<InternshipId> {
     public static final String MESSAGE_CONSTRAINTS =
             "Internship Id must be a non-negative number, and it should not be blank";
 
@@ -66,5 +66,10 @@ public class InternshipId {
     @Override
     public int hashCode() {
         return id.hashCode();
+    }
+
+    @Override
+    public int compareTo(InternshipId other) {
+        return -other.id.toString().compareToIgnoreCase(this.id.toString());
     }
 }

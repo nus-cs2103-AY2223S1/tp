@@ -66,6 +66,9 @@ public class Internship {
     }
 
     public InterviewDate getInterviewDate() {
+        if (interviewDate == null) {
+            return new InterviewDate(null);
+        }
         return interviewDate;
     }
 

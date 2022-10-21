@@ -98,14 +98,14 @@ public class ParserUtil {
      * @throws ParseException if the given {@code phone} is invalid.
      */
     public static Phone parsePhone(String phone) throws ParseException {
-        if (phone != null) {
-            String trimmedPhone = phone.trim();
-            if (!Phone.isValidPhone(trimmedPhone)) {
-                throw new ParseException(Phone.MESSAGE_CONSTRAINTS);
-            }
-            return new Phone(trimmedPhone);
+        if (phone == null || phone.isBlank()) {
+            return new Phone(null);
         }
-        return new Phone(null);
+        String trimmedPhone = phone.trim();
+        if (!Phone.isValidPhone(trimmedPhone)) {
+            throw new ParseException(Phone.MESSAGE_CONSTRAINTS);
+        }
+        return new Phone(trimmedPhone);
     }
 
 
@@ -116,7 +116,9 @@ public class ParserUtil {
      * @throws ParseException if the given {@code email} is invalid.
      */
     public static Email parseEmail(String email) throws ParseException {
-        requireNonNull(email);
+        if (email == null || email.isBlank()) {
+            return new Email(null);
+        }
         String trimmedEmail = email.trim();
         if (!Email.isValidEmail(trimmedEmail)) {
             throw new ParseException(Email.MESSAGE_CONSTRAINTS);
@@ -131,7 +133,9 @@ public class ParserUtil {
      * @throws ParseException if the given {@code tag} is invalid.
      */
     public static Tag parseTag(String tag) throws ParseException {
-        requireNonNull(tag);
+        if (tag == null || tag.isBlank()) {
+            return null;
+        }
         String trimmedTag = tag.trim();
         if (!Tag.isValidTagName(trimmedTag)) {
             throw new ParseException(Tag.MESSAGE_CONSTRAINTS);
@@ -143,10 +147,11 @@ public class ParserUtil {
      * Parses {@code Collection<String> tags} into a {@code Set<Tag>}.
      */
     public static Set<Tag> parseTags(Collection<String> tags) throws ParseException {
-        requireNonNull(tags);
         final Set<Tag> tagSet = new HashSet<>();
         for (String tagName : tags) {
-            tagSet.add(parseTag(tagName));
+            if (tagName != null && !tagName.isBlank()) {
+                tagSet.add(parseTag(tagName));
+            }
         }
         return tagSet;
     }
@@ -159,7 +164,7 @@ public class ParserUtil {
      * @throws ParseException if the given {@code internshipId} is invalid.
      */
     public static InternshipId parseInternshipId(String internshipId) throws ParseException {
-        if (internshipId == null) {
+        if (internshipId.isBlank()) {
             return null;
         }
         String trimmedInternshipId = internshipId.trim();
@@ -221,7 +226,9 @@ public class ParserUtil {
      * @throws ParseException if the given {@code interviewDate} is invalid.
      */
     public static InterviewDate parseInterviewDate(String interviewDate) throws ParseException {
-        requireNonNull(interviewDate);
+        if (interviewDate == null || interviewDate.isBlank()) {
+            return new InterviewDate(null);
+        }
         String trimmedInterviewDate = interviewDate.trim();
         if (!InterviewDate.isValidDatetimeStr(trimmedInterviewDate)) {
             throw new ParseException(InterviewDate.MESSAGE_CONSTRAINTS);

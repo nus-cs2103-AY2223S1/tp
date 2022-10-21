@@ -78,7 +78,6 @@ public class AddPersonCommandParserTest {
         Person expectedPersonPhone = new PersonBuilder(AMY).withPhone(null).withTags().build();
         assertParseSuccess(parser, NAME_DESC_AMY + EMAIL_DESC_AMY,
                 new AddPersonCommand(expectedPersonPhone));
-
         // zero email
         Person expectedPersonEmail = new PersonBuilder(AMY).withEmail(null).withTags().build();
         assertParseSuccess(parser, NAME_DESC_AMY + PHONE_DESC_AMY,
