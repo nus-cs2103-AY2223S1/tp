@@ -3,8 +3,11 @@ package swift.ui;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.Region;
 import swift.logic.commands.CommandResult;
+import swift.logic.commands.CommandSuggestor;
 import swift.logic.commands.exceptions.CommandException;
 import swift.logic.parser.exceptions.ParseException;
 
@@ -21,6 +24,11 @@ public class CommandBox extends UiPart<Region> {
     @FXML
     private TextField commandTextField;
 
+    @FXML
+    private TextField commandSuggestionTextField;
+
+    private CommandSuggestor commandSuggestor;
+
     /**
      * Creates a {@code CommandBox} with the given {@code CommandExecutor}.
      */
@@ -28,7 +36,16 @@ public class CommandBox extends UiPart<Region> {
         super(FXML);
         this.commandExecutor = commandExecutor;
         // calls #setStyleToDefault() whenever there is a change to the text of the command box.
-        commandTextField.textProperty().addListener((unused1, unused2, unused3) -> setStyleToDefault());
+        commandTextField.textProperty()
+                .addListener((unused1, unused2, unused3) -> setStyleToDefault());
+        commandTextField.textProperty()
+                .addListener((observable, oldValue, newValue) -> updateCommandSuggestion(newValue));
+        commandTextField.addEventFilter(KeyEvent.KEY_PRESSED, event -> handleKeyPressed(event));
+
+        commandSuggestionTextField.setEditable(false);
+        commandSuggestionTextField.setFocusTraversable(false);
+        commandSuggestionTextField.setMouseTransparent(true);
+        commandSuggestor = new CommandSuggestor();
     }
 
     /**
@@ -80,6 +97,32 @@ public class CommandBox extends UiPart<Region> {
          * @see swift.logic.Logic#execute(String)
          */
         CommandResult execute(String commandText) throws CommandException, ParseException;
+    }
+
+    public void handleKeyPressed(KeyEvent e) {
+        if (e.getCode() == KeyCode.TAB) {
+            commandTextField.setText(commandSuggestor.autocompleteCommand(commandTextField.getText(),
+                commandSuggestionTextField.getText()));
+            updateCommandSuggestion(commandTextField.getText());
+            commandTextField.positionCaret(commandTextField.getText().length());
+            e.consume();
+        }
+    }
+
+    /**
+     * Updates the command suggestion text field.
+     */
+    private void updateCommandSuggestion(String commandText) {
+        if (commandText.equals("")) {
+            commandSuggestionTextField.setText("");
+            return;
+        }
+        try {
+            commandSuggestionTextField.setText(commandSuggestor.suggestCommand(commandText));
+        } catch (CommandException e) {
+            commandSuggestionTextField.setText(commandText);
+            setStyleToIndicateCommandFailure();
+        }
     }
 
 }
