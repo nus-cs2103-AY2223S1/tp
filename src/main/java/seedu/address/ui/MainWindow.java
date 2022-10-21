@@ -43,6 +43,7 @@ public class MainWindow extends UiPart<Stage> {
     private ModuleInfoPanel moduleInfoPanel;
     private ModulePanel modulePanel;
     private ScheduleListPanel scheduleListPanel;
+    private ScheduleGridPanel scheduleGridPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
 
@@ -258,6 +259,17 @@ public class MainWindow extends UiPart<Stage> {
         resultDisplay.setFeedbackToUser("Show all schedules!");
     }
 
+    /**
+     * Switch to Schedules page with timetable shown.
+     */
+    @FXML
+    public void handleShowTabScheduleGrid() {
+        scheduleGridPanel = new ScheduleGridPanel(logic.getAllScheduleList());
+        scheduleGridPanel.construct();
+        scheduleListPanelPlaceholder.getChildren().add(scheduleGridPanel.getRoot());
+        tabPane.getSelectionModel().select(SCHEDULE);
+    }
+
     void show() {
         primaryStage.show();
     }
@@ -310,7 +322,7 @@ public class MainWindow extends UiPart<Stage> {
             }
 
             if (commandResult.isShowScheduleList()) {
-                handleShowTabSchedule();
+                handleShowTabScheduleGrid();
             }
 
             return commandResult;

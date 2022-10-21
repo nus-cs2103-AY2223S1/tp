@@ -1,0 +1,47 @@
+package seedu.address.ui;
+
+import javafx.fxml.FXML;
+import javafx.scene.control.Label;
+import seedu.address.model.module.schedule.Schedule;
+
+/**
+ * Creates a slot with orange color
+ */
+public class ScheduleSlotGreen extends SlotContainer {
+    private static final String FXML = "ScheduleSlotGreen.fxml";
+
+    protected String moduleCode;
+    protected String duration;
+    protected String classType;
+    protected String venue;
+
+    @javafx.fxml.FXML
+    private Label module;
+
+    @javafx.fxml.FXML
+    private Label time;
+    @FXML
+    private Label type;
+    @FXML
+    private Label venueName;
+
+    /**
+     * Creates a schedule slot to be added to the timetable with relevant information.
+     */
+    public ScheduleSlotGreen(Schedule schedule) {
+        super(FXML);
+        this.moduleCode = schedule.getModule();
+        this.duration = schedule.getPeriod();
+        this.classType = schedule.getClassType().toString();
+        this.venue = schedule.getVenue().toString();
+        setText();
+    }
+
+    private void setText() {
+        module.setText(moduleCode);
+        time.setText(duration);
+        type.setText(classType);
+        venueName.setText(venue);
+    }
+}
+
