@@ -85,7 +85,7 @@ in [`Ui.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main
 
 ![Structure of the UI Component](images/UiClassDiagram.png)
 
-The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `PersonListPanel`
+The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `EntryListPanel`
 , `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures
 the commonalities between classes that represent parts of the visible GUI.
 
@@ -100,7 +100,7 @@ The `UI` component,
 * executes user commands using the `Logic` component.
 * listens for changes to `Model` data so that the UI can be updated with the modified data.
 * keeps a reference to the `Logic` component, because the `UI` relies on the `Logic` to execute commands.
-* depends on some classes in the `Model` component, as it displays `Person` object residing in the `Model`.
+* depends on some classes in the `Model` component, as it displays `Entry` object residing in the `Model`.
 
 ### Logic component
 
@@ -113,10 +113,10 @@ Here's a (partial) class diagram of the `Logic` component:
 
 How the `Logic` component works:
 
-1. When `Logic` is called upon to execute a command, it uses the `AddressBookParser` class to parse the user command.
+1. When `Logic` is called upon to execute a command, it uses the `PennyWiseParser` class to parse the user command.
 1. This results in a `Command` object (more precisely, an object of one of its subclasses e.g., `AddCommand`) which is
    executed by the `LogicManager`.
-1. The command can communicate with the `Model` when it is executed (e.g. to add a person).
+1. The command can communicate with the `Model` when it is executed (e.g. to add a entry).
 1. The result of the command execution is encapsulated as a `CommandResult` object which is returned back from `Logic`.
 
 The Sequence Diagram below illustrates the interactions within the `Logic` component for the `execute("delete 1")` API
@@ -133,9 +133,9 @@ Here are the other classes in `Logic` (omitted from the class diagram above) tha
 
 How the parsing works:
 
-* When called upon to parse a user command, the `AddressBookParser` class creates an `XYZCommandParser` (`XYZ` is a
+* When called upon to parse a user command, the `PennyWiseParser` class creates an `XYZCommandParser` (`XYZ` is a
   placeholder for the specific command name e.g., `AddCommandParser`) which uses the other classes shown above to parse
-  the user command and create a `XYZCommand` object (e.g., `AddCommand`) which the `AddressBookParser` returns back as
+  the user command and create a `XYZCommand` object (e.g., `AddCommand`) which the `PennyWiseParser` returns back as
   a `Command` object.
 * All `XYZCommandParser` classes (e.g., `AddCommandParser`, `DeleteCommandParser`, ...) inherit from the `Parser`
   interface so that they can be treated similarly where possible e.g, during testing.
@@ -150,20 +150,14 @@ API** : [`Model.java`](https://github.com/se-edu/addressbook-level3/tree/master/
 
 The `Model` component,
 
-* stores the address book data i.e., all `Person` objects (which are contained in a `UniquePersonList` object).
-* stores the currently 'selected' `Person` objects (e.g., results of a search query) as a separate _filtered_ list which
-  is exposed to outsiders as an unmodifiable `ObservableList<Person>` that can be 'observed' e.g. the UI can be bound to
+* stores the application data i.e., all `Entry` objects (which are contained in a `UniqueEntryList` object).
+* stores the currently 'selected' `Entry` objects (e.g., results of a search query) as a separate _filtered_ list which
+  is exposed to outsiders as an unmodifiable `ObservableList<Entry>` that can be 'observed' e.g. the UI can be bound to
   this list so that the UI automatically updates when the data in the list change.
 * stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as
   a `ReadOnlyUserPref` objects.
 * does not depend on any of the other three components (as the `Model` represents data entities of the domain, they
   should make sense on their own without depending on other components)
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `AddressBook`, which `Person` references. This allows `AddressBook` to only require one `Tag` object per unique tag, instead of each `Person` needing their own `Tag` objects.<br>
-
-<img src="images/BetterModelClassDiagram.png" width="450" />
-
-</div>
 
 ### Storage component
 
@@ -174,9 +168,9 @@ API** : [`Storage.java`](https://github.com/se-edu/addressbook-level3/tree/maste
 
 The `Storage` component,
 
-* can save both address book data and user preference data in json format, and read them back into corresponding
+* can save both application data and user preference data in json format, and read them back into corresponding
   objects.
-* inherits from both `AddressBookStorage` and `UserPrefStorage`, which means it can be treated as either one (if only
+* inherits from both `PennyWiseStorage` and `UserPrefStorage`, which means it can be treated as either one (if only
   the functionality of only one is needed).
 * depends on some classes in the `Model` component (because the `Storage` component's job is to save/retrieve objects
   that belong to the `Model`)
@@ -191,51 +185,91 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
+### Add feature
+
+The `add` command is implemented by the `AddCommandParser` and `AddCommand` classes.
+
+`AddCommandParser` class is responsible for parsing the parameter received from the user.
+
+`AddCommand` class is responsible for adding a new entry to the specified list.
+
+Below is a sequence diagram and explanation of how the AddCommand is executed.
+![Interactions Inside the Logic Component for the `add t/e d/Lunch a/7.20 da/04-10-2022 c/Food` Command](images/AddSequenceDiagram.png)
+
+Step 1. The user enters `add t/e d/Lunch a/7.20 da/04-10-2022 c/Food` command in the main window.
+
+Step 2. The command is handled by `LogicManager#execute` method, which then calls the `PennyWiseParser#parseCommand`method.
+
+Step 3. The `PennyWiseParser` matches the entry details in the string and extracts the argument string `t/e d/Lunch a/7.20 da/04-10-2022 c/Food`.
+
+Step 4. The `PennyWiseParser` then calls `AddCommandParser#parse` method and the argument string is converted to a List.
+
+Step 5. The `AddCommandParser` then creates a new instances of arguments needed for an Entry: `EntryType`, `Description`, `Amount`, `Date`, `Category`.
+
+Step 6. The `AddCommandParser` uses the new instances to create a new instance of `Entry`, depending on the `EntryType` specified.
+
+Step 7. The `AddCommandParser` creates a new `AddCommand` instance with the new `Entry` instance and returns it to `PennyWiseParser`, which in turns returns to `LogicManager`.
+
+Step 8. The `LogicManager` calls the `AddCommand#execute` method.
+
+Step 9. The `AddCommand` calls the `Model#addExpenditure` or `Model#addIncome` method and adds the new entry to the specified list.
+
+Step 10. The `AddCommand` then creates a `CommandResult` instance and returns it to `LogicManager`.
+
+#### Design Considerations
+* **Alternative 1 (current choice):** Only allow users to create an Entry with 1 type of category
+  * Pros: Users are able to distinctly sort their entries into specific pre-determined categories.
+  * Cons: Users would not be able to specify entries under their own categories.
+
+* **Alternative 2:** Allow users to specify their own categories.
+  * Pros: Users can be more flexible in grouping their spending/incomes.
+  * Cons: Possible dilution of categories, which would make the PieChart diagram not as useful.
+
 ### \[Proposed\] Undo/redo feature
 
 #### Proposed Implementation
 
-The proposed undo/redo mechanism is facilitated by `VersionedAddressBook`. It extends `AddressBook` with an undo/redo
-history, stored internally as an `addressBookStateList` and `currentStatePointer`. Additionally, it implements the
+The proposed undo/redo mechanism is facilitated by `VersionedPennyWise`. It extends `PennyWise` with an undo/redo
+history, stored internally as an `pennyWiseStateList` and `currentStatePointer`. Additionally, it implements the
 following operations:
 
-* `VersionedAddressBook#commit()` — Saves the current address book state in its history.
-* `VersionedAddressBook#undo()` — Restores the previous address book state from its history.
-* `VersionedAddressBook#redo()` — Restores a previously undone address book state from its history.
+* `VersionedPennyWise#commit()` — Saves the current PennyWise state in its history.
+* `VersionedPennyWise#undo()` — Restores the previous PennyWise state from its history.
+* `VersionedPennyWise#redo()` — Restores a previously undone PennyWise state from its history.
 
-These operations are exposed in the `Model` interface as `Model#commitAddressBook()`, `Model#undoAddressBook()`
-and `Model#redoAddressBook()` respectively.
+These operations are exposed in the `Model` interface as `Model#commitPennyWise()`, `Model#undoPennyWise()`
+and `Model#redoPennyWise()` respectively.
 
 Given below is an example usage scenario and how the undo/redo mechanism behaves at each step.
 
-Step 1. The user launches the application for the first time. The `VersionedAddressBook` will be initialized with the
-initial address book state, and the `currentStatePointer` pointing to that single address book state.
+Step 1. The user launches the application for the first time. The `VersionedPennyWise` will be initialized with the
+initial PennyWise state, and the `currentStatePointer` pointing to that single PennyWise state.
 
 ![UndoRedoState0](images/UndoRedoState0.png)
 
-Step 2. The user executes `delete 5` command to delete the 5th person in the address book. The `delete` command
-calls `Model#commitAddressBook()`, causing the modified state of the address book after the `delete 5` command executes
-to be saved in the `addressBookStateList`, and the `currentStatePointer` is shifted to the newly inserted address book
+Step 2. The user executes `delete 5` command to delete the 5th entry in the application. The `delete` command
+calls `Model#commitPennyWise()`, causing the modified state of the application after the `delete 5` command executes
+to be saved in the `pennyWiseStateList`, and the `currentStatePointer` is shifted to the newly inserted PennyWise
 state.
 
 ![UndoRedoState1](images/UndoRedoState1.png)
 
-Step 3. The user executes `add n/David …​` to add a new person. The `add` command also calls `Model#commitAddressBook()`
-, causing another modified address book state to be saved into the `addressBookStateList`.
+Step 3. The user executes `add t/e …​` to add a new entry. The `add` command also calls `Model#commitPennyWise()`
+, causing another modified PennyWise state to be saved into the `pennyWiseStateList`.
 
 ![UndoRedoState2](images/UndoRedoState2.png)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If a command fails its execution, it will not call `Model#commitAddressBook()`, so the address book state will not be saved into the `addressBookStateList`.
+<div markdown="span" class="alert alert-info">:information_source: **Note:** If a command fails its execution, it will not call `Model#commitPennyWise()`, so the application state will not be saved into the `pennyWiseStateList`.
 
 </div>
 
-Step 4. The user now decides that adding the person was a mistake, and decides to undo that action by executing
-the `undo` command. The `undo` command will call `Model#undoAddressBook()`, which will shift the `currentStatePointer`
-once to the left, pointing it to the previous address book state, and restores the address book to that state.
+Step 4. The user now decides that adding the entry was a mistake, and decides to undo that action by executing
+the `undo` command. The `undo` command will call `Model#undoPennyWise()`, which will shift the `currentStatePointer`
+once to the left, pointing it to the previous application state, and restores the application to that state.
 
 ![UndoRedoState3](images/UndoRedoState3.png)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index 0, pointing to the initial AddressBook state, then there are no previous AddressBook states to restore. The `undo` command uses `Model#canUndoAddressBook()` to check if this is the case. If so, it will return an error to the user rather
+<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index 0, pointing to the initial PennyWise state, then there are no previous PennyWise states to restore. The `undo` command uses `Model#canUndoPennyWise()` to check if this is the case. If so, it will return an error to the user rather
 than attempting to perform the undo.
 
 </div>
@@ -248,22 +282,18 @@ The following sequence diagram shows how the undo operation works:
 
 </div>
 
-The `redo` command does the opposite — it calls `Model#redoAddressBook()`, which shifts the `currentStatePointer` once
-to the right, pointing to the previously undone state, and restores the address book to that state.
+The `redo` command does the opposite — it calls `Model#redoPennyWise()`, which shifts the `currentStatePointer` once
+to the right, pointing to the previously undone state, and restores the application to that state.
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index `addressBookStateList.size() - 1`, pointing to the latest address book state, then there are no undone AddressBook states to restore. The `redo` command uses `Model#canRedoAddressBook()` to check if this is the case. If so, it will return an error to the user rather than attempting to perform the redo.
+<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index `pennyWiseStateList.size() - 1`, pointing to the latest PennyWise state, then there are no undone PennyWise states to restore. The `redo` command uses `Model#canRedoPennyWise()` to check if this is the case. If so, it will return an error to the user rather than attempting to perform the redo.
 
 </div>
 
-Step 5. The user then decides to execute the command `list`. Commands that do not modify the address book, such
-as `list`, will usually not call `Model#commitAddressBook()`, `Model#undoAddressBook()` or `Model#redoAddressBook()`.
-Thus, the `addressBookStateList` remains unchanged.
-
 ![UndoRedoState4](images/UndoRedoState4.png)
 
-Step 6. The user executes `clear`, which calls `Model#commitAddressBook()`. Since the `currentStatePointer` is not
-pointing at the end of the `addressBookStateList`, all address book states after the `currentStatePointer` will be
-purged. Reason: It no longer makes sense to redo the `add n/David …​` command. This is the behavior that most modern
+Step 5. The user executes `clear`, which calls `Model#commitPennyWise()`. Since the `currentStatePointer` is not
+pointing at the end of the `pennyWiseStateList`, all application states after the `currentStatePointer` will be
+purged. Reason: It no longer makes sense to redo the `add t/e …​` command. This is the behavior that most modern
 desktop applications follow.
 
 ![UndoRedoState5](images/UndoRedoState5.png)
@@ -276,12 +306,12 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 **Aspect: How undo & redo executes:**
 
-* **Alternative 1 (current choice):** Saves the entire address book.
+* **Alternative 1 (current choice):** Saves the entire penny wise.
     * Pros: Easy to implement.
     * Cons: May have performance issues in terms of memory usage.
 
 * **Alternative 2:** Individual command knows how to undo/redo by itself.
-    * Pros: Will use less memory (e.g. for `delete`, just save the person being deleted).
+    * Pros: Will use less memory (e.g. for `delete`, just save the entry being deleted).
     * Cons: We must ensure that the implementation of each individual command are correct.
 
 _{more aspects and alternatives to be added}_
@@ -309,7 +339,7 @@ _{Explain here how the data archiving feature will be implemented}_
 
 **Target user profile**:
 
-* has a need to manage a significant number of contacts
+* has a need to manage a significant number of expenditures or income streams
 * prefer desktop apps over other types
 * can type fast
 * prefers typing to mouse interactions
@@ -342,17 +372,36 @@ Priorities: High (must have) - `HIGH`, Medium (nice to have) - `MEDIUM`, Low (un
 
 ### Use cases
 
-(For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified
-otherwise)
+(For all use cases below, the **System** is the `PennyWise` and the **Actor** is the `User`, unless specified
+otherwise, for all **Entries**, they can only be of type `expenditure` or `income`.)
 
-**Use case: Delete a person**
+**Use case: UC1 - Add an entry**
 
 **MSS**
 
-1. User requests to list persons
-2. AddressBook shows a list of persons
-3. User requests to delete a specific person in the list
-4. AddressBook deletes the person
+1. User requests to add an entry
+2. PennyWise adds the entry to the specified list
+3. PennyWise shows updated list with new entry added
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. The given command has an invalid syntax.
+
+    * 1a1. PennyWise shows an error message.
+
+      Use case resumes at step 1.
+
+**Use case: UC2 - Delete an entry**
+
+**MSS**
+
+1. User requests to list entries
+2. PennyWise shows requested list of entries
+3. User requests to delete a specific entry in the list
+4. PennyWise deletes the entry
+5. PennyWise shows updated list
 
    Use case ends.
 
@@ -362,18 +411,107 @@ otherwise)
 
   Use case ends.
 
-* 3a. The given index is invalid.
+* 3a. The given command has an invalid syntax.
 
-    * 3a1. AddressBook shows an error message.
+    * 3a1. PennyWise shows an error message.
 
-      Use case resumes at step 2.
+      Use case resumes at step 1.
+
+**Use case: UC3 - Edit an entry**
+
+**MSS**
+
+1. User requests to list entries
+2. PennyWise shows requested list of entries
+3. User requests to edit a specific entry in the list
+4. PennyWise edits the entry
+5. PennyWise shows updated list
+
+   Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty.
+
+  Use case ends.
+
+* 3a. The given command has an invalid syntax.
+
+    * 3a1. PennyWise shows an error message.
+
+      Use case resumes at step 1.
+
+**Use case: UC4 - Viewing a list**
+
+**MSS**
+
+1. User requests to list entries
+2. PennyWise shows requested list of entries
+3. PennyWise shows graphical overview of entries
+
+   Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty.
+
+  Use case ends.
+
+* 3a. The given command has an invalid syntax.
+
+    * 3a1. PennyWise shows an error message.
+
+      Use case resumes at step 1.
+
+**Use case: UC5 - Summarizing statistics**
+
+**MSS**
+
+1. User requests to view summary
+2. PennyWise shows calculated summary of entries
+3. PennyWise shows graphical summary of entries
+
+   Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty.
+
+  Use case ends.
+
+**Use case: UC6 - Clearing the application**
+
+**MSS**
+
+1. User requests to clear entries in PennyWise
+2. PennyWise clears all entries from both lists
+
+   Use case ends.
+
+**Use case: UC7 - Exiting the application**
+
+**MSS**
+
+1. User requests to exit the application
+2. PennyWise exits
+
+   Use case ends.
+
+**Use case: UC8 - View help**
+
+**MSS**
+
+1. User requests to view help
+2. PennyWise displays a pop-up window with a link to the user guide
+
+   Use case ends.
 
 *{More to be added}*
 
 ### Non-Functional Requirements
 
 1. **Technical requirements**: The system should work on any _mainstream OS_ as long as it has Java `11` or above installed.
-2. **Performance requirements**: The system should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
+2. **Performance requirements**: The system should be able to hold up to 1000 entries without a noticeable sluggishness in performance for typical usage.
 3. **Performance requirements**: The system should respond within two seconds.
 4. **Quality requirements**: A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be
    able to accomplish most of the tasks faster using commands than using the mouse.
@@ -418,20 +556,55 @@ testers are expected to do more *exploratory* testing.
 
 1. _{ more test cases …​ }_
 
-### Deleting a person
+### Adding an entry
 
-1. Deleting a person while all persons are being shown
+1. Adding an entry while all entries are being shown
 
-    1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
+    1. Prerequisites: None
 
-    1. Test case: `delete 1`<br>
+    1. Test case: `add t/e d/Lunch a/7.20 da/04-10-2022 c/Food`<br>
+       Expected: Entry is added to the expenditure list. Details of the added entry shown in the status message.
+
+    1. Test case: ``add t/e d/Lunch a/$7.20 da/04-10-2022 c/Food ... ``<br>
+       Expected: No entry is added. Error details shown in the status message on amount formatted to 2 decimal places.
+
+    1. Test case: `add d/Lunch a/7.20 da/04-10-2022 c/Food`<br>
+       Expected: No entry is added. Error details shown in the status message.
+
+    1. Other incorrect delete commands to try: `add`, `add da/15-Feb-2022`, `add x`, `...` (where x a string that does not follow the command format) <br>
+       Expected: Similar to previous.
+
+### Deleting an entry
+
+1. Deleting an entry while all entries are being shown
+
+    1. Prerequisites: At least 1 entry in the specified list.
+
+    1. Test case: `delete 1 t/e`<br>
        Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message.
        Timestamp in the status bar is updated.
 
-    1. Test case: `delete 0`<br>
-       Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
+    1. Test case: `delete 0 t/e`<br>
+       Expected: No entry is deleted. Error details shown in the status message. Status bar remains the same.
 
-    1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
+    1. Other incorrect delete commands to try: `delete`, `delete x t/e`, `...` (where x is larger than the list size),
+       `delete 1 y` (where y is a string that does not follow the command format) <br>
+       Expected: Similar to previous.
+
+### Editing an entry
+
+1. Editing an entry while all entries are being shown
+
+    1. Prerequisites: At least 1 entry in the specified list.
+
+    1. Test case: `edit 1 t/e d/Edited Description`<br>
+       Expected: First contact is edit from the list. Details of the edited contact shown in the status message.
+
+    1. Test case: `edit 0 t/e d/Edited Description`<br>
+       Expected: No entry is edited. Error details shown in the status message.
+
+    1. Other incorrect delete commands to try: `edit`, `edit x t/e`, `...` (where x is larger than the list size),
+    `edit 1 y` (where y is a string that does not follow the command format)<br>
        Expected: Similar to previous.
 
 1. _{ more test cases …​ }_

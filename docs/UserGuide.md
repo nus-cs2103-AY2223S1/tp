@@ -160,14 +160,14 @@ Expected: `An income of 30.00 on 12 Sep 2022 has been deleted.`
 
 1. Summarise all financial records
     * Examples: `summary`
-    * Expected: A summary of all financials: 
+    * Expected: A summary of all financials:
 2. Summarise financial records for a specific month
     * Examples: `summary 08-2022`
     * Expected: A summary of all financials for August 2022
 
 * Summarise all income / expenditure recorded by the user in a month. The month refers to the month that is displayed to the user.
 * The `MONTH` field is optional, if no month is specified, the application summarises all records.
-* 
+
 ### Clearing all entries : `clear`
 
 Clears all entries in PennyWise.
