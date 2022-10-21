@@ -68,11 +68,11 @@ public class StudentCard extends UiPart<Region> {
         student.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
-        ra1.setText(student.getGradesList().gradesMap.get("RA1").score);
-        ra2.setText(student.getGradesList().gradesMap.get("RA2").score);
-        pa.setText(student.getGradesList().gradesMap.get("Practical").score);
-        mt.setText(student.getGradesList().gradesMap.get("Mid-Term").score);
-        ft.setText(student.getGradesList().gradesMap.get("Finals").score);
+        ra1.setText(student.getGradesList().getGrade("RA1").score + " %");
+        ra2.setText(student.getGradesList().getGrade("RA2").score + " %");
+        pa.setText(student.getGradesList().getGrade("Practical").score + " %");
+        mt.setText(student.getGradesList().getGrade("Mid-Term").score + " %");
+        ft.setText(student.getGradesList().getGrade("Finals").score + " %");
     }
 
     @Override
