@@ -36,7 +36,7 @@
             <Label fx:id="phone" styleClass="cell_small_label" text="\$phone" />
           </HBox>
 
-          <Region minHeight="5" />
+          <Region minHeight="3" />
 
           <HBox fx:id="emailBox" alignment="CENTER_LEFT">
             <Label fx:id="email" styleClass="cell_small_label" text="\$email" />
@@ -54,13 +54,13 @@
               <Label fx:id="room" styleClass="cell_small_label" text="\$room" />
             </HBox>
 
-            <Region minHeight="5" />
+            <Region minHeight="3" />
 
             <HBox fx:id="dateRangeBox" alignment="CENTER_LEFT">
               <Label fx:id="dateRange" styleClass="cell_small_label" text="\$dateRange" />
             </HBox>
 
-            <Region minHeight="5" />
+            <Region minHeight="3" />
 
             <HBox fx:id="numberOfGuestsBox" alignment="CENTER_LEFT">
               <Label fx:id="numberOfGuests" styleClass="cell_small_label" text="\$numberOfGuests" />
@@ -81,13 +81,13 @@
               <Label fx:id="isRoomCleanStatus" styleClass="cell_small_label" text="\$isRoomCleanStatus" />
             </HBox>
 
-            <Region minHeight="5" />
+            <Region minHeight="3" />
 
             <HBox fx:id="billBox" alignment="CENTER_LEFT">
               <Label fx:id="bill" styleClass="cell_small_label" text="\$bill" />
             </HBox>
 
-            <Region minHeight="5" />
+            <Region minHeight="3" />
 
             <HBox fx:id="requestBox" alignment="CENTER_LEFT" >
               <Label fx:id="request" styleClass="cell_small_label" text="\$request" />
