@@ -5,7 +5,7 @@ package seedu.address.model.person;
  * Guarantees: immutable; is always valid
  */
 public abstract class Insurance {
-    public final boolean hasInsurance;
+    private final boolean hasInsurance;
 
     /**
      * Constructor for Insurance object.
@@ -31,5 +31,14 @@ public abstract class Insurance {
     @Override
     public String toString() {
         return Boolean.toString(hasInsurance);
+    }
+
+    /**
+     * Getter method to return hasInsurance field of Insurance instance
+     *
+     * @return hasInsurance
+     */
+    public boolean getHasInsurance() {
+        return this.hasInsurance;
     }
 }

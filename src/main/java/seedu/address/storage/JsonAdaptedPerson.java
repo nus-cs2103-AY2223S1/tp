@@ -80,10 +80,10 @@ class JsonAdaptedPerson {
         email = source.getEmail().value;
         address = source.getAddress().value;
         birthday = source.getBirthday().value;
-        healthInsurance = Boolean.toString(source.getHealthInsurance().hasInsurance);
-        disabilityInsurance = Boolean.toString(source.getDisabilityInsurance().hasInsurance);
-        criticalIllnessInsurance = Boolean.toString(source.getCriticalIllnessInsurance().hasInsurance);
-        lifeInsurance = Boolean.toString(source.getLifeInsurance().hasInsurance);
+        healthInsurance = Boolean.toString(source.getHealthInsurance().getHasInsurance());
+        disabilityInsurance = Boolean.toString(source.getDisabilityInsurance().getHasInsurance());
+        criticalIllnessInsurance = Boolean.toString(source.getCriticalIllnessInsurance().getHasInsurance());
+        lifeInsurance = Boolean.toString(source.getLifeInsurance().getHasInsurance());
         reminders = source.getReminders().task;
         tagged.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
