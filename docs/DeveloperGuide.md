@@ -154,6 +154,47 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
+### Sort Persons
+
+The sort persons feature allows the user to sort persons by their name, date of birth or gender.
+
+The field to sort persons by is encapsulated within the `SortField` class. `SortField` stores the sort field enumeration (`SortFieldType`) as well as the `Comparator` object that defines the sorting logic.
+
+The following class diagram shows how the `SortField` class integrates with the other components:
+
+![SortFieldClassDiagram](images/SortFieldClassDiagram.png)
+<br><br>
+
+Sorting is performed as part of `listPersonsCommand#execute()`. The sorting operation is exposed in the `Model` interface as `Model#sortPersons()` which calls `AddressBook#sortPersons()` which in turn calls `UniquePersonList#sort()` to sort the underlying `ObservableList<Person>`.
+
+The following sequence diagram illustrates the relevant sorting method calls for the command `listPersons s/n` with a `SortField` object `s`:
+
+![SortPersonsSequenceDiagram](images/SortPersonsSequenceDiagram.png)
+
+
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** Sorting is performed directly on the underlying `UniquePersonList` object, which means the sorted result is **permanent**. For example, if `listPersons s/n` and `listPersons` are executed back-to-back, the result of the second `listPersons` command will display the sorted results from the first `listPersons s/n` command because the sorted result is permanent.
+</div>
+
+
+#### Design Considerations:
+
+**Aspect: How sorting is performed:**
+
+Ideally, sorting should be a "view" level operation that doesn't change the underlying persons list. However, the way the UI is designed makes it difficult to implement sorting as such. The issue is that the UI is **hardcoded** to only display persons from the `UniquePersonList` object. As such, any changes to the persons list must be made directly to the `UniquePersonList` object. i.e. A modified copy of the persons list cannot be passed to the UI during runtime since the UI is hardcoded to show only the `UniquePersonList` object.
+
+Therefore, given the constraints of the UI, sorting is implemented as a **permanent operation**.
+
+
+* **Alternative 1 (current choice):** Sort the underlying persons list directly.
+  * Pros: User can directly use the index numbers of the sorted list to interact with the persons using other commands such as `editPerson` or `deletePerson`.
+  * Cons: Sorted result is permanent, instead of being a "view" level operation.
+
+* **Alternative 2:** Sort the persons list at the UI level.
+   * Pros: Sorted result is not permanent. So sorting won't interfere with the underlying persons list.
+   * Cons: Requires redesigning a significant part of the `UI`, `Logic` and `Model` classes.
+
+
 ### Add Gender
 
 The Add Gender feature allows users to add a gender field (Male / Female) to a person in the contact list. It is performed as a part
