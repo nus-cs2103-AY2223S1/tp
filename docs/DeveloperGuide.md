@@ -82,7 +82,7 @@ The `UI` component,
 * executes user commands using the `Logic` component.
 * listens for changes to `Model` data so that the UI can be updated with the modified data.
 * keeps a reference to the `Logic` component, because the `UI` relies on the `Logic` to execute commands.
-* depends on some classes in the `Model` component, as it displays `Person` object residing in the `Model`.
+* depends on some classes in the `Model` component, as it displays `Person` object and `Meeting` object residing in the `Model`.
 
 ### Logic component
 
@@ -140,8 +140,8 @@ The `Model` component,
 <img src="images/StorageClassDiagram.png" width="550" />
 
 The `Storage` component,
-* can save both address book data and user preference data in json format, and read them back into corresponding objects.
-* inherits from both `AddressBookStorage` and `UserPrefStorage`, which means it can be treated as either one (if only the functionality of only one is needed).
+* can save both address book data, meeting list data and user preference data in json format, and read them back into corresponding objects.
+* inherits from both `AddressBookStorage`, `MeetingListStorage` and `UserPrefStorage`, which means it can be treated as either one (if only the functionality of only one is needed).
 * depends on some classes in the `Model` component (because the `Storage` component's job is to save/retrieve objects that belong to the `Model`)
 
 ### Common classes
@@ -153,7 +153,35 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 ## **Implementation**
 
 This section describes some noteworthy details on how certain features are implemented.
+### [Implemented] Storage for meetings
+#### Implementation
+<img src="images/ModifiedStorageClassDiagram.png" width="550" />
+The implementation of the storage for meetings closely follows the way address book was implemented. There were many classes 
+that had to be copied, and they included
+- `MeetingList`
+- `ReadOnlyMeetingList`
+- `JsonMeetingListStorage`
+- `JsonAdaptedMeeting`
+- `JsonSerializableMeetingList`
+- `MeetingListStorage`
 
+The following classes had to be extended in order to support meeting list
+- `MainApp`
+- `UserPrefs`
+- `ReadOnlyUserPrefs`
+- `SampleDataUtil`
+- `Storage`
+- `StorageManager`
+- `Model`
+- `ModelManager`
+- `Logic`
+- `LogicManager`
+- `AddressBookParser`
+
+The app maintained its own internal list of meetings in the `ModelManager` and the 
+`LogicManager` would save the current model whenever the execute function to the `meetinglist.json`. As such, there
+was no need of having to create additional classes to support the model or logic classes
+<img src="images/ModifiedModelClassDiagram.png" width="450" />
 ### [Implemented] Filter Meetings between Dates
 #### Implementation
 
