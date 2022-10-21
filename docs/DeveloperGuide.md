@@ -208,6 +208,22 @@ The activity diagram below details the behaviour of PayMeLah when a user request
     * Pros: More consistent behaviour: every `ListDebtorsCommand` will have an associated `DebtGreaterEqualAmountPredicate`.
     * Cons: May not work properly with possible future extensions (e.g. Debts extended to be able to take negative values to indicate user owing the person money)
 
+### Mark debts as paid/unpaid feature
+
+#### Implementation
+
+This feature is facilitated by `MarkCommand`/`UnmarkCommand`, and `MarkCommandParser`/`UnmarkCommandParser` in the `Logic` component. It also utilises `Debt` and `DebtList` in the `Model` component. The command parser and the command itself work similarly to the others, and will not be explained in detail here. Please refer to the Logic component above for more details.
+
+When given a valid user index, the `MarkCommandParser`/`UnmarkCommandParser` will create a new `Debt` object marked as paid/unpaid in the `DebtList` of the specified `Person`.
+
+An example of the internal state when a valid `mark` command is provided by the user is given by the object diagram below.
+
+**(Insert object diagram here)**
+
+The activity diagram below details all the possible behaviour of PayMeLah when a user inputs a valid `mark` command.
+
+**(Insert activity diagram here)**
+
 ### \[Proposed\] Undo/redo feature
 
 #### Proposed Implementation
@@ -334,6 +350,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *`  | user    | remove debts                                                       | I do not mistakenly think I have not yet been paid                  |
 | `* * *`  | user    | see how much I am owed in total                                    | I know how much I expect to be paid                                 |
 | `* * *`  | user    | split a debt fairly among several people                           | I do not need to manually divide the amount that each person owes   |
+| `* * *`  | user    | mark debts as paid/unpaid                                       | I know whether the debts has been paid or not                       |
 | `* * *`  | user    | close the application                                              |                                                                     |
 | `* *`    | user    | see an overview of all the debts owed                              | I am in better control of my overall financial situation            |
 | `* *`    | user    | search for a person’s contact                                      | I can easily access his contact details                             |
@@ -412,8 +429,30 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 2.
 
+**UC04: Mark debts as paid**
 
-**UC04: Delete a person**
+**MSS**
+
+1.  User requests to list persons
+1.  PayMeLah shows a list of persons
+1.  User requests to mark specific debts from a specific person in the list as paid.
+1.  PayMeLah marks the debts as paid.
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty.
+
+  Use case ends.
+
+* 3a. The given indexes are invalid.
+
+    * 3a1. PayMeLah shows an error message.
+
+      Use case resumes at step 2.
+
+**UC05: Delete a person**
 
 **MSS**
 
@@ -436,7 +475,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 2.
 
-**UC03: Delete debts**
+**UC06: Delete debts**
 
 **MSS**
 
@@ -459,7 +498,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 2.
 
-**UC05: Clear debts**
+**UC07: Clear debts**
 
 **MSS**
 
@@ -477,7 +516,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 3.
 
-**UC06: List persons with debts**
+**UC08: List persons with debts**
 
 **MSS**
 
@@ -492,7 +531,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
   Use case ends.
 
-**UC07: Find a person by name**
+**UC09: Find a person by name**
 
 **MSS**
 
@@ -508,7 +547,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     Use case ends.
 
-**UC08: Find a person by debt description**
+**UC10: Find a person by debt description**
 
 **MSS**
 
@@ -524,7 +563,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case ends.
 
-**UC09: Get debt overview**
+**UC11: Get debt overview**
 
 **MSS**
 
