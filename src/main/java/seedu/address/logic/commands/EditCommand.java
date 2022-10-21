@@ -179,6 +179,7 @@ public class EditCommand extends Command {
             setTags(toCopy.tags);
             setServers(toCopy.servers);
             setTimeZone(toCopy.timeZone);
+            setGameTypes(toCopy.gameTypes);
         }
 
         /**
@@ -186,7 +187,7 @@ public class EditCommand extends Command {
          */
         public boolean isAnyFieldEdited() {
             return CollectionUtil.isAnyNonNull(name, minecraftName, phone, email, address,
-                    socials, tags, servers, timeZone);
+                    socials, tags, servers, timeZone, gameTypes);
         }
 
         public void setName(Name name) {
@@ -313,7 +314,8 @@ public class EditCommand extends Command {
                     && getSocials().equals(e.getSocials())
                     && getTags().equals(e.getTags())
                     && getServers().equals(e.getServers())
-                    && getTimeZone().equals(e.getTimeZone());
+                    && getTimeZone().equals(e.getTimeZone())
+                    && getGameTypes().equals(e.getGameTypes());
         }
     }
 }

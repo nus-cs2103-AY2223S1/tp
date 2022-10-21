@@ -201,6 +201,29 @@ as they have been explained under [logic](#logic-component).
 
 <img src="images/SuggestFriendSequenceDiagram.png" width="550" />
 
+### Autocomplete Commands
+
+#### Description
+
+The "autocomplete" feature matches the current text to all the commands for the user when the user types in the command box.
+
+#### Implementation
+
+The autocomplete feature is facilitated through the `TextFields` class under the ControlsFX library.
+The `TextFields` class provides a static method `bindAutoCompletion` that will create a new auto-completion binding between
+the given TextField using the given auto-complete suggestions.
+
+Everytime the user modifies the input, a `AutoCompletePopup` object, which is a `PopupWindow`, will appear below the CommandBox.
+The object will display a list of suggestions that matches the current text in the text field.
+
+Alternative implementations of coming up with our own classes were considered aside from using the ControlsFX library. 
+However, coming up with the solution requires a great amount of effort for the same amount of functionality. 
+Hence, the decision was made to use the ControlsFX library.
+
+The following activity diagram shows the workflow for the autocomplete feature.
+
+<img src="images/AutoCompleteActivityDiagram.png" width="750" />
+
 ### \[Proposed\] Undo/redo feature
 
 #### Proposed Implementation
@@ -284,6 +307,41 @@ _{more aspects and alternatives to be added}_
 ### \[Proposed\] Data archiving
 
 _{Explain here how the data archiving feature will be implemented}_
+
+### \[Proposed\] Amending Representation of Various Servers
+
+The proposed representation of various Minecraft servers is in the format 
+of `server name@IP address`. Each server can have duplicate names but each 
+server will have a unique IP address.
+
+#### Reason for Implementation
+The current representation of Minecraft servers is in the format of solely 
+an IP address e.g. `111.111.111.111`
+
+This is much less user-friendly as compared to the proposed representation 
+where users are able to remember various servers by their server names, 
+and distinguish servers with the same names by their IP addresses 
+e.g. `Mineplex @ 111.111.111.111`
+
+
+#### Proposed Implementation
+
+The server class currently only allows the server to be documented in the 
+format of an IP address.
+
+With the input `ms/ 111.111.111.111`, <br>
+1) The `Parse` method in `AddCommandParser` will recognize the `prefix_minecraft_server`.<br>
+2) The method will then call `parseServers` method of `ParserUtil`. <br>
+3) `parseServers` method of `ParserUtil` will examine the validity of the 
+server name by calling the `parseServer` method of `ParserUtil`. <br>
+4) If it is a valid server name, a new server class will be created and 
+added into the set of Server. <br>
+5) The set of Server will then be an attribute of the new `Person` created.
+
+![MSRepSeqDiagram](images/MSRepSeqDiagram.png)
+
+Substantial changes will be made to the server class with constraints such as
+validation regex being amended.
 
 
 --------------------------------------------------------------------------------------------------------------------

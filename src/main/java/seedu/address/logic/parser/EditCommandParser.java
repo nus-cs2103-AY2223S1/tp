@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_GAME_TYPE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MINECRAFT_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MINECRAFT_SERVER;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
@@ -21,6 +22,7 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.person.GameType;
 import seedu.address.model.person.Social;
 import seedu.address.model.server.Server;
 import seedu.address.model.tag.Tag;
@@ -41,7 +43,8 @@ public class EditCommandParser implements Parser<EditCommand> {
 
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_MINECRAFT_NAME, PREFIX_PHONE, PREFIX_EMAIL,
-                        PREFIX_ADDRESS, PREFIX_SOCIAL, PREFIX_TAG, PREFIX_MINECRAFT_SERVER, PREFIX_TIMEZONE);
+                        PREFIX_ADDRESS, PREFIX_SOCIAL, PREFIX_TAG, PREFIX_MINECRAFT_SERVER, PREFIX_TIMEZONE,
+                        PREFIX_GAME_TYPE);
 
         Index index;
 
@@ -81,6 +84,9 @@ public class EditCommandParser implements Parser<EditCommand> {
                 .ifPresent(editPersonDescriptor::setSocials);
         parseMinecraftServersForEdit(argMultimap.getAllValues(PREFIX_MINECRAFT_SERVER))
                 .ifPresent(editPersonDescriptor::setServers);
+        parseGameTypesForEdit(argMultimap.getAllValues(PREFIX_GAME_TYPE))
+                .ifPresent(editPersonDescriptor::setGameTypes);
+
         if (!editPersonDescriptor.isAnyFieldEdited()) {
             throw new ParseException(EditCommand.MESSAGE_NOT_EDITED);
         }
@@ -121,6 +127,17 @@ public class EditCommandParser implements Parser<EditCommand> {
         }
         Collection<String> serverSet = servers.size() == 1 && servers.contains("") ? Collections.emptySet() : servers;
         return Optional.of(ParserUtil.parseServers(serverSet));
+    }
+
+    private Optional<Set<GameType>> parseGameTypesForEdit(Collection<String> gameTypes) throws ParseException {
+        assert gameTypes != null;
+
+        if (gameTypes.isEmpty()) {
+            return Optional.empty();
+        }
+        Collection<String> gameTypesSet =
+                gameTypes.size() == 1 && gameTypes.contains("") ? Collections.emptySet() : gameTypes;
+        return Optional.of(ParserUtil.parseGameType(gameTypesSet));
     }
 
 }

@@ -164,11 +164,10 @@ public class Person {
         builder.append("Phone: ").append(getFieldOrElse(getPhone().toString())).append("\n");
         builder.append("Email: ").append(getFieldOrElse(getEmail().toString())).append("\n");
         builder.append("Address: ").append(getFieldOrElse(getAddress().toString())).append("\n");
-        builder.append("Timezone: ").append(getFieldOrElse(getTimeZone().toString())).append("\n");
         builder.append("Servers: ").append(getFieldOrElse(getServers())).append("\n");
-        builder.append("Timezone: ").append(getFieldOrElse(getTimeZone().toString()));
-        builder.append("Preferred Game Types: ").append(getFieldOrElse(getGameType().toString()));
-        builder.append("Socials: ").append(getFieldOrElse(getSocials()));
+        builder.append("Timezone: ").append(getFieldOrElse(getTimeZone().toString())).append("\n");
+        builder.append("Preferred Game Types: ").append(getFieldOrElse(getGameType().toString())).append("\n");
+        builder.append("Socials: ").append(getFieldOrElse(getSocials())).append("\n");
 
         return builder.toString();
     }
@@ -185,7 +184,8 @@ public class Person {
                 + getAddress() + "\n"
                 + getTimeZone() + "\n"
                 + getServers() + "\n"
-                + getSocials();
+                + getSocials() + "\n"
+                + getGameType();
     }
 
     private String getFieldOrElse(String s) {

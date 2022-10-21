@@ -39,7 +39,11 @@ public class GameType {
     }
 
     public String toString() {
-        return this.preferredGameType;
+        return preferredGameType;
+    }
+
+    public String getGameTypeName() {
+        return preferredGameType;
     }
 
     public static String getMessageConstraints() {
