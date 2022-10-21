@@ -8,6 +8,7 @@ import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.module.Module;
 import seedu.address.model.module.ModuleCode;
 import seedu.address.model.module.exceptions.ModuleNotFoundException;
+import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 
 /**
@@ -17,9 +18,6 @@ public interface Model {
     /** {@code Predicate} that always evaluate to true */
     Predicate<Person> PREDICATE_SHOW_ALL_PERSONS = unused -> true;
     Predicate<Module> PREDICATE_SHOW_ALL_MODULES = unused -> true;
-
-    /** {@code Predicate} that always evaluate to false */
-    Predicate<Person> PREDICATE_SHOW_ZERO_PERSON = unused -> false;
 
     //// person-related methods
 
@@ -94,6 +92,26 @@ public interface Model {
      */
     void updateFilteredPersonList(Predicate<Person> predicate);
 
+    /**
+     * Returns true if a person with the same identity as {@code person}
+     * exists in the filtered list of persons being displayed to the user.
+     */
+    boolean hasPersonInFilteredList(Person person);
+
+    /**
+     * Searches for and retrieves a person currently present in the address
+     * book using the name. Depending on the {@code isFiltered}
+     * parameter, we can choose to search in the full list of persons in the
+     * address book or only search from the current filtered list of persons
+     * being displayed to the user.
+     * @param nameOfPersonToGet {@code Name} of the person we would
+     *                                like to search for and retrieve.
+     * @param isFiltered {@boolean} value of whether the search should be
+     *                   conducted in the full list or filtered list.
+     * @return {@code Person} with the specified {@code Name} that is in the address book.
+     */
+    Person getPersonUsingName(Name nameOfPersonToGet, boolean isFiltered) throws ModuleNotFoundException;
+
     //// module-related methods
 
     /**
@@ -143,7 +161,7 @@ public interface Model {
      *                                like to search for and retrieve.
      * @param isFiltered {@boolean} value of whether the search should be
      *                   conducted in the full list or filtered list.
-     * @return {@code Module} with the specified {@code ModuleCode}
+     * @return {@code Module} with the specified {@code ModuleCode} that is in the address book.
      */
     Module getModuleUsingModuleCode(ModuleCode moduleCodeOfModuleToGet,
                                     boolean isFiltered) throws ModuleNotFoundException;

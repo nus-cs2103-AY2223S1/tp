@@ -14,7 +14,9 @@ import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.module.Module;
 import seedu.address.model.module.ModuleCode;
 import seedu.address.model.module.exceptions.ModuleNotFoundException;
+import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
+import seedu.address.model.person.exceptions.PersonNotFoundException;
 
 /**
  * Represents the in-memory model of the address book data.
@@ -99,6 +101,12 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public boolean hasPersonInFilteredList(Person person) {
+        requireNonNull(person);
+        return filteredPersons.stream().anyMatch(person::isSamePerson);
+    }
+
+    @Override
     public void deletePerson(Person target) {
         addressBook.removePerson(target);
     }
@@ -114,6 +122,24 @@ public class ModelManager implements Model {
         requireAllNonNull(target, editedPerson);
 
         addressBook.setPerson(target, editedPerson);
+    }
+
+    @Override
+    public Person getPersonUsingName(Name nameOfPersonToGet,
+                                     boolean isFiltered) {
+        requireAllNonNull(nameOfPersonToGet, isFiltered);
+        Person personToGet = new Person(nameOfPersonToGet);
+        if (isFiltered && hasPersonInFilteredList(personToGet)) {
+            // There should only be one person in the filtered person list with the same name.
+            assert filteredPersons.stream().filter(personToGet::isSamePerson).count() == 1;
+            return filteredPersons.stream()
+                    .filter(personToGet::isSamePerson)
+                    .findFirst().get();
+        } else if (!isFiltered && hasPerson(personToGet)) {
+            return addressBook.getPerson(personToGet);
+        } else {
+            throw new PersonNotFoundException();
+        }
     }
 
     @Override
@@ -152,8 +178,6 @@ public class ModelManager implements Model {
         requireAllNonNull(moduleCodeOfModuleToGet, isFiltered);
         Module moduleToGet = new Module(moduleCodeOfModuleToGet);
         if (isFiltered && hasModuleInFilteredList(moduleToGet)) {
-            ObservableList<Module> unmodifiableListOfModules =
-                    this.getFilteredModuleList();
             // There should only be one module in the filtered module list with
             // the same module code.
             assert filteredModules.stream().filter(moduleToGet::isSameModule).count() == 1;

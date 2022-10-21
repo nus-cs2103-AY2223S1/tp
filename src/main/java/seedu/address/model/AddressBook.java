@@ -10,6 +10,7 @@ import seedu.address.model.module.UniqueModuleList;
 import seedu.address.model.module.exceptions.ModuleNotFoundException;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.UniquePersonList;
+import seedu.address.model.person.exceptions.PersonNotFoundException;
 
 /**
  * Wraps all data at the address-book level
@@ -97,6 +98,17 @@ public class AddressBook implements ReadOnlyAddressBook {
         requireNonNull(editedPerson);
 
         persons.setPerson(target, editedPerson);
+    }
+
+    /**
+     * Returns the {@code Person} in {@code persons} with the matching name as the given {@code person}.
+     *
+     * @param person Person with the name which we would like to search for.
+     * @return {@code Person} with the same name as the given {@code person} argument.
+     */
+    public Person getPerson(Person person) throws PersonNotFoundException {
+        requireNonNull(person);
+        return persons.getPerson(person);
     }
 
     /**
