@@ -24,9 +24,10 @@ public class ScheduleGridPanel extends UiPart<Region> {
     private static final int SCALE_FACTOR = 2;
     private static final int ROW_SPAN = 1;
     private static final double COLUMNS_WIDTH = 95;
-    private static final int NUM_OF_COLUMNS = 29;
     private static final int START_HOUR = 8;
     private static final int END_HOUR = 22;
+
+    private static final int NUM_OF_COLUMNS = SCALE_FACTOR * (END_HOUR - START_HOUR) + ROW_SPAN;
     private final Logger logger = LogsCenter.getLogger(ScheduleGridPanel.class);
     private final ObservableList<Schedule> schedules;
     @javafx.fxml.FXML
@@ -56,11 +57,11 @@ public class ScheduleGridPanel extends UiPart<Region> {
     }
 
     private int getColIndex(double hour) {
-        return (int) (hour - START_HOUR) * SCALE_FACTOR + 1;
+        return (int) ((hour - START_HOUR) * SCALE_FACTOR + 1);
     }
 
     private int getColumnSpan(double duration) {
-        return (int) duration * SCALE_FACTOR;
+        return (int) (duration * SCALE_FACTOR);
     }
 
     private int getRowIndex(Weekdays weekday) {

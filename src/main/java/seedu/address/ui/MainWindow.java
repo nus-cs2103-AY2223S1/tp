@@ -337,8 +337,10 @@ public class MainWindow extends UiPart<Stage> {
             }
 
             if (commandResult.isShowScheduleList()) {
-                // handleShowTabScheduleGrid();
                 handleShowTabSchedule();
+            }
+            if (commandResult.isShowTimeTable()) {
+                handleShowTabScheduleGrid();
             }
 
             return commandResult;
