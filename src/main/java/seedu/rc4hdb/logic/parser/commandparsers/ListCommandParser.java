@@ -9,7 +9,7 @@ import java.util.stream.Collectors;
 import seedu.rc4hdb.logic.commands.modelcommands.ListCommand;
 import seedu.rc4hdb.logic.parser.Parser;
 import seedu.rc4hdb.logic.parser.exceptions.ParseException;
-import seedu.rc4hdb.model.resident.fields.ResidentFields;
+import seedu.rc4hdb.model.resident.fields.ResidentField;
 
 /**
  * Parses input arguments and creates a new ListCommand object
@@ -32,7 +32,7 @@ public class ListCommandParser implements Parser<ListCommand> {
         }
 
         // Process global list of fields into lowercase list first
-        List<String> allFields = ResidentFields.FIELDS.stream().map(String::toLowerCase).collect(Collectors.toList());
+        List<String> allFields = ResidentField.FIELDS.stream().map(String::toLowerCase).collect(Collectors.toList());
 
         // Create one list for each specifier
         List<String> fieldsToIncludeFromHiding = new ArrayList<>(allFields);
