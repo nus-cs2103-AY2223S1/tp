@@ -39,7 +39,7 @@ public interface Logic {
     ObservableList<Book> getFilteredBookList();
 
     /**
-     * Returns the user prefs' address book file path.
+     * Returns the user prefs' BookFace file path.
      */
     Path getBookFaceFilePath();
 
