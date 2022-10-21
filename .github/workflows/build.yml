@@ -12,7 +12,7 @@ jobs:
   jarfile:
     runs-on: ubuntu-20.04
     steps:
-      - name: Checkout repositoru
+      - name: Checkout repository
         uses: actions/checkout@main
         with:
           ref: master
@@ -25,15 +25,18 @@ jobs:
           java-package: jdk+fx
       - name: Create JAR file
         run: ./gradlew shadowJar
+      - name: Generate tag name from time
+        id: time
+        run: echo ::set-output name=NOW::$(echo ${{ github.event.repository.pushed_at }} | sed -e 's/-//g' -e 's/T/-/g' -e 's/.\{4\}$/Z/' -e 's/://g')
       - name: Create release on GitHub
         id: create_release # We need the id to refer to it in the next step
         uses: actions/create-release@v1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          tag_name: ${{ github.ref }}
-          release_name: ${{ github.ref }}
-          body: Auto-created release from ${{ github.ref }}
+          tag_name: ${{ steps.time.outputs.NOW }}
+          release_name: Auto-release ${{ github.event.repository.pushed_at }}
+          body: 'Auto-created release from branch "${{ github.ref_name }}"'
       - name: Upload JAR file to GitHub releases
         uses: actions/upload-release-asset@v1
         env:
