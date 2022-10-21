@@ -1,5 +1,6 @@
 package seedu.address.ui;
 
+import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.DateUtil.dateIsBeforeToday;
 import static seedu.address.commons.util.DateUtil.dateIsEqualAndAfterToday;
 import static seedu.address.commons.util.StockUtil.StockLevel.HIGH;
@@ -8,6 +9,8 @@ import static seedu.address.commons.util.StockUtil.StockLevel.MEDIUM;
 import static seedu.address.commons.util.StockUtil.determineStockHealth;
 
 import java.util.Comparator;
+import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 import javafx.collections.ObservableList;
@@ -48,9 +51,16 @@ public class StatsCard extends UiPart<Region> {
         this.itemsHighInStock.setText(String.format("%s", stockStatus[2]));
         this.imcompleteTasks.setText(String.format("No. of incomplete task(s): %s", countNotCompleteTasks(taskList)));
         this.overdueTasks.setText(String.format("No. of Overdue task(s): %s", countOverdueTasks(taskList)));
-        Task nearestIncompleteTask = findNearestIncompleteTask(taskList);
-        this.upcomingTask.setText(String.format("Task due soon on %s: %s",
-                nearestIncompleteTask.getDeadline(), nearestIncompleteTask.getTitle()));
+
+        Optional<Task> task = findNearestIncompleteTask(taskList);
+
+        if (task.isPresent()) {
+            Task incompleteTask = task.get();
+            this.upcomingTask.setText(String.format("Task due soon on %s: %s",
+                    incompleteTask.getDeadline(), incompleteTask.getTitle()));
+        } else {
+            this.upcomingTask.setText(String.format("No Tasks due soon"));
+        }
     }
 
     /**
@@ -78,10 +88,18 @@ public class StatsCard extends UiPart<Region> {
     /**
      * Finds the upcoming incomplete task nearest to deadline. Deadline must fall on today or after today's date.
      */
-    private static Task findNearestIncompleteTask(ObservableList<Task> taskList) {
-        return taskList.stream().sorted(Comparator.comparing(Task::getDeadline))
+    private static Optional<Task> findNearestIncompleteTask(ObservableList<Task> taskList) {
+        requireNonNull(taskList);
+
+        List<Task> result = taskList.stream().sorted(Comparator.comparing(Task::getDeadline))
                 .filter(task -> task.getStatus() == false && dateIsEqualAndAfterToday(task.getDeadline()))
-                .collect(Collectors.toList()).get(0);
+                .collect(Collectors.toList());
+
+        if (result.size() == 0) {
+            return Optional.empty();
+        }
+
+        return Optional.ofNullable(result.get(0));
     }
 
     /**
