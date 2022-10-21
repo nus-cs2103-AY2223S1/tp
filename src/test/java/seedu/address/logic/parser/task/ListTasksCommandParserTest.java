@@ -12,8 +12,6 @@ import java.util.Optional;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.logic.commands.task.ListTasksCommand;
-
 public class ListTasksCommandParserTest {
 
     private ListTasksCommandParser parser = new ListTasksCommandParser();

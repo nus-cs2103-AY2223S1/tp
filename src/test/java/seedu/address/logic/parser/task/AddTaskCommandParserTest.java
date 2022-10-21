@@ -8,7 +8,8 @@ import seedu.address.model.task.Task;
 import seedu.address.testutil.TaskBuilder;
 
 public class AddTaskCommandParserTest {
-    private AddTaskCommandParser parser = new AddTaskCommandParser();
+
+    private final AddTaskCommandParser parser = new AddTaskCommandParser();
 
     @Test
     public void parse_allFieldsPresent_success() {

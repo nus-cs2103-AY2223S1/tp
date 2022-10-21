@@ -9,6 +9,9 @@ import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.util.Date;
+import java.util.List;
+
+import org.ocpsoft.prettytime.nlp.PrettyTimeParser;
 
 import seedu.address.logic.parser.exceptions.ParseException;
 
@@ -16,15 +19,18 @@ import seedu.address.logic.parser.exceptions.ParseException;
  * Represents a deadline for a task.
  */
 public class Deadline {
-    public static final Deadline UNSPECIFIED = new Deadline((LocalDate) LocalDate.ofEpochDay(0));
-    public static final String UNSPECIFIED_DEADLINE_IDENTIFIER = "UNSPECIFIED";
 
-    public static final String MESSAGE_CONSTRAINTS = "Deadline should be in DD-MM-YYYY format";
+    public static final Deadline UNSPECIFIED = new Deadline(LocalDate.ofEpochDay(0));
+
+    public static final String UNSPECIFIED_DEADLINE_IDENTIFIER = "UNSPECIFIED";
+    public static final String MESSAGE_CONSTRAINTS = "Deadline should only contain letters or numbers";
     public static final DateTimeFormatter READABLE_FORMATTER_WITH_YEAR =
             DateTimeFormatter.ofPattern("EEE, dd MMM yyyy");
     public static final DateTimeFormatter READABLE_FORMATTER_WITHOUT_YEAR =
             DateTimeFormatter.ofPattern("EEE, dd MMM");
     private static final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+    private static final String VALIDATION_REGEX = "^[a-zA-Z0-9 ]+$";
+
     private final LocalDate date;
 
     private Deadline(LocalDate date) {
@@ -37,6 +43,7 @@ public class Deadline {
      */
     private Deadline(String date) throws ParseException {
         requireNonNull(date);
+
         try {
             this.date = LocalDate.parse(date, formatter);
         } catch (DateTimeParseException pe) {
@@ -44,7 +51,20 @@ public class Deadline {
         }
     }
 
+    /**
+     * Creates a Deadline with a given date object.
+     *
+     * @param date the string to be converted into a deadline
+     */
     public static Deadline of(String date) throws ParseException {
+        List<Date> parseResult = new PrettyTimeParser().parse(date);
+
+        if (!parseResult.isEmpty()) {
+            return Deadline.of(parseResult.get(0));
+        } else if (date.trim().equals("?")) {
+            return Deadline.UNSPECIFIED;
+        }
+
         return new Deadline(date);
     }
 
@@ -60,8 +80,12 @@ public class Deadline {
 
         return new Deadline(localDate);
     }
-    public static Deadline of(LocalDate date) {
-        return new Deadline(date);
+
+    /**
+     * Returns true if a given string is a valid deadline.
+     */
+    public static boolean isValidDeadline(String test) {
+        return test.matches(VALIDATION_REGEX);
     }
 
     @Override
@@ -85,6 +109,7 @@ public class Deadline {
 
     /**
      * Formats the Deadline into a more readable format.
+     * //TODO: Update
      * @return
      */
     public String formatForUi() {

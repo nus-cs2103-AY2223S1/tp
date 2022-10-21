@@ -9,6 +9,8 @@ import java.util.Set;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.task.Contact;
+import seedu.address.model.task.Deadline;
 import seedu.address.model.task.Title;
 
 /**
@@ -19,7 +21,7 @@ public class TaskParserUtil {
     public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero unsigned integer.";
 
     /**
-     * Parses a {@code String title} into a {@code title}.
+     * Parses a {@code String title} into a {@code Title}.
      * Leading and trailing whitespaces will be trimmed.
      *
      * @throws ParseException if the given {@code title} is invalid.
@@ -31,6 +33,21 @@ public class TaskParserUtil {
             throw new ParseException(Title.MESSAGE_CONSTRAINTS);
         }
         return new Title(trimmedTitle);
+    }
+
+    /**
+     * Parses a {@code String deadline} into a {@code Deadline}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code deadline} is invalid.
+    */
+    public static Deadline parseDeadline(String deadline) throws ParseException {
+        requireNonNull(deadline);
+        String trimmedDeadline = deadline.trim();
+        if (!Deadline.isValidDeadline(trimmedDeadline)) {
+            throw new ParseException(Deadline.MESSAGE_CONSTRAINTS);
+        }
+        return Deadline.of(trimmedDeadline);
     }
 
     /**
@@ -60,6 +77,19 @@ public class TaskParserUtil {
             indexSet.add(Index.fromOneBased(Integer.parseInt(trimmedIndex)));
         }
         return indexSet;
+    }
+
+    /**
+     * Parses {@code Collection<String> contacts} into a {@code Set<Contact>}.
+     */
+    public static Set<Contact> parseContacts(Collection<String> contacts) throws ParseException {
+        requireNonNull(contacts);
+        final Set<Contact> contactSet = new HashSet<>();
+        for (String contactName : contacts) {
+            //TODO: Update
+            contactSet.add(new Contact(contactName));
+        }
+        return contactSet;
     }
 
 }

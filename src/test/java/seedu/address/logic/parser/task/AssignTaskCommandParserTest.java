@@ -12,8 +12,6 @@ import java.util.HashSet;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.logic.commands.task.AssignTaskCommand;
-
 public class AssignTaskCommandParserTest {
 
     private AssignTaskCommandParser parser = new AssignTaskCommandParser();

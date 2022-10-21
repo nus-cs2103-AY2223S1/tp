@@ -9,7 +9,6 @@ import java.time.LocalDate;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.logic.commands.task.DeadlineTaskCommand;
 import seedu.address.model.task.Deadline;
 
 public class DeadlineTaskCommandParserTest {

@@ -1,6 +1,5 @@
 package seedu.address.testutil;
 
-import seedu.address.logic.commands.task.EditTaskCommand;
 import seedu.address.model.task.Task;
 
 /**
