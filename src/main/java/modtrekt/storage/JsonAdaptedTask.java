@@ -9,7 +9,6 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import modtrekt.commons.exceptions.IllegalValueException;
-import modtrekt.logic.parser.converters.PriorityConverter;
 import modtrekt.model.module.ModCode;
 import modtrekt.model.task.Deadline;
 import modtrekt.model.task.Description;
@@ -24,7 +23,6 @@ public class JsonAdaptedTask {
     private final String description;
     private final String modCode;
     private final String dueDate;
-    private final String priority;
     private final boolean isArchived;
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
 
@@ -33,13 +31,10 @@ public class JsonAdaptedTask {
      */
     @JsonCreator
     public JsonAdaptedTask(@JsonProperty("description") String name, @JsonProperty("module code") String modCode,
-                           @JsonProperty("dueDate") String dueDate,
-                           @JsonProperty("priority") String priority,
-                           @JsonProperty("isArchived") boolean isArchived) {
+                           @JsonProperty("dueDate") String dueDate, @JsonProperty("isArchived") boolean isArchived) {
         this.description = name;
         this.modCode = modCode;
         this.dueDate = dueDate;
-        this.priority = priority;
         this.isArchived = isArchived;
     }
 
@@ -54,7 +49,6 @@ public class JsonAdaptedTask {
         } else {
             dueDate = null;
         }
-        this.priority = task.getPriority().toString();
         this.isArchived = task.isArchived();
     }
 
@@ -78,12 +72,11 @@ public class JsonAdaptedTask {
         final Description modelDescription = new Description(description);
         final ModCode modCode = new ModCode(this.modCode);
 
-        Task.Priority modelPriority = new PriorityConverter().convert(priority);
         if (dueDate == null) {
-            return new Task(modelDescription, modCode, isArchived, modelPriority);
+            return new Task(modelDescription, modCode, isArchived);
         }
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-M-d");
         LocalDate dueDateObj = LocalDate.parse(dueDate, formatter);
-        return new Deadline(modelDescription, modCode, dueDateObj, isArchived, modelPriority);
+        return new Deadline(modelDescription, modCode, dueDateObj, isArchived);
     }
 }

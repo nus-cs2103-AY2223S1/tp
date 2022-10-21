@@ -5,9 +5,7 @@ import static modtrekt.commons.util.AppUtil.checkArgument;
 
 import java.io.PrintWriter;
 import java.io.StringWriter;
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
 
 /**
  * Helper functions for handling strings.
@@ -98,45 +96,5 @@ public class StringUtil {
         requireNonNull(singular);
         requireNonNull(plural);
         return String.format("%d %s", count, count == 1 ? singular : plural);
-    }
-
-    /**
-     * Python's shlex for Java.
-     * Source: https://stackoverflow.com/questions/1082953/shlex-alternative-for-java
-     */
-    public static String[] shellSplit(CharSequence string) {
-        requireNonNull(string);
-        List<String> tokens = new ArrayList<>();
-        boolean escaping = false;
-        char quoteChar = ' ';
-        boolean quoting = false;
-        int lastCloseQuoteIndex = Integer.MIN_VALUE;
-        StringBuilder current = new StringBuilder();
-        for (int i = 0; i < string.length(); i++) {
-            char c = string.charAt(i);
-            if (escaping) {
-                current.append(c);
-                escaping = false;
-            } else if (c == '\\' && !(quoting && quoteChar == '\'')) {
-                escaping = true;
-            } else if (quoting && c == quoteChar) {
-                quoting = false;
-                lastCloseQuoteIndex = i;
-            } else if (!quoting && (c == '\'' || c == '"')) {
-                quoting = true;
-                quoteChar = c;
-            } else if (!quoting && Character.isWhitespace(c)) {
-                if (current.length() > 0 || lastCloseQuoteIndex == (i - 1)) {
-                    tokens.add(current.toString());
-                    current = new StringBuilder();
-                }
-            } else {
-                current.append(c);
-            }
-        }
-        if (current.length() > 0 || lastCloseQuoteIndex == (string.length() - 1)) {
-            tokens.add(current.toString());
-        }
-        return tokens.toArray(new String[0]);
     }
 }

@@ -232,7 +232,7 @@ This section describes some noteworthy details on how certain features are imple
 In this section, the functionality of `add` module feature, expected execution path, and the interactions between
 `AddCommand`, `AddCommandParser`, and other objects will be discussed.
 
-### What is the add module feature
+#### What is the add module feature
 
 The `add` module features allows users to add a module that they have taken or are currently taking into the
 `ModuleList`.
@@ -247,7 +247,7 @@ These tags are:
 - `-c <module_code>`
 - `-cr <module_credit>`
 
-### Design considerations
+#### Design considerations
 
 **Aspect 1: How many modules are added:**
 
@@ -274,7 +274,7 @@ reduce the compulsory AddCommand parameters.
 
 We decided to go implement both alternatives as we wanted to give users greater flexibility.
 
-### Current implementation
+#### Current implementation
 
 The diagram below showcases the path execution for when adding a module
 
@@ -295,14 +295,14 @@ the module details from NUSMods and return a `Module`. The module would be used 
 In this section, the functionality of `remove` module feature, expected execution path, and the interactions between the
 `RemoveCommand`, `RemoveCommandParser`, and other objects will be discussed.
 
-### What is the remove module feature
+#### What is the remove module feature
 
 The `remove` module features allows users to remove a module that they have taken or mistakenly inputted into
 `ModuleList`.
 
 Removal of a `Module` would remove all `Task` and `Deadline` associated with it.
 
-### Design considerations
+#### Design considerations
 
 **Aspect: How are modules removed:**
 
@@ -319,7 +319,7 @@ We decided to go with the alternative 1 as it would be faster for users to type 
 unlikely that users will take so many modules such that the GUI is unable to display all the modules. We also have an
 archive feature that would remove previously taken modules so that it would not clutter up the GUI.
 
-### Current implementation
+#### Current implementation
 
 The diagram below showcases the path execution for when removing a module
 
@@ -383,7 +383,160 @@ In the diagram, the predicates `modulePredicate` and `taskPredicate` are the cus
 
 ### Tasks
 
-#### Task archival
+### Task/Deadline Features
+
+### Add task
+
+In this section, the functionality of `add` task feature, expected execution path, and the interactions between
+`AddTaskCommand`, `AddDeadlineCommand`, `AddTaskCommandParser`, and other objects will be discussed.
+Deadlines are an extension of tasks, and have a due date. For the most part, their implementations are
+similar, and areas where they differ will be highlighted. As such, please consider deadline to be synonymous
+with task, unless explicitly stated.
+
+#### What is the add task feature
+
+The `add` task features allows users to add a task or a deadline that they have taken or are currently taking into the
+`TaskList`.
+
+In order to add tasks or deadlines related to the module, a module would have to be created.
+
+Additionally, the modules to which these tasks belong need to be specified within
+the command. If the user is CD-ed into the module, the module code will not
+be required in the command.
+
+Information regarding tasks/deadlines can be recognised in the CLI using tags.
+
+These tags are:
+
+- `-t <task name/description>`
+- `-d <YYYY-MM-DD>` (this is only required for adding deadlines)
+- `-c <module_code>`
+
+
+#### Design considerations
+
+**Aspect 1: How many tasks are added:**
+
+* **Alternative 1 (current choice):** Add 1 task added per AddTaskCommand.
+  * Pros: Easy to implement.
+  * Cons: May have to type more to add multiple tasks.
+
+* **Alternative 2:** Add multiple tasks per AddTaskCommand.
+  * Pros: Convenient for user.
+  * Cons: More complicated, may require much more parsing.
+
+We decided to go with the alternative 1 to keep the logic simple and easier to work with. To tackle the cons we tried to
+reduce the compulsory AddTaskCommand parameters.
+
+**Aspect 2: What parameters do we need:**
+
+* **Alternative 1:** Add task by specifying module index instead of code.
+  * Pros: Less verbosity in the command, user can go off of the displayed index.
+  * Cons: Slightly more complicated as more errors need to be handled (invalid index etc.). Users
+    may also be more prone to adding the task to the wrong module.
+
+* **Alternative 2:** Require the user to specify the module code.
+  * Pros: Reduces the chance of error by the user, users will not need to remember the module index.
+  * Cons: User has to type more information in the command.
+
+We decided to implement alternative 2 in order to reduce the chance of user error and reduce the
+potential for bugs.
+
+#### Current implementation
+
+The diagram below showcases the path execution for adding a task, when a user is **NOT** CD-ed
+into a module. For ease of understanding, we will be adding a task instead of a deadline. Note that
+the flow is exactly the same for both tasks and deadlines.
+
+<img src="images/TaskPUMLs/AddTask/TaskAddPathExecution.png" width="800" />
+
+The diagram below shows how the add command work with input `add -m -c CS2103T`
+
+<img src="images/TaskPUMLs/AddTask/TaskAddSequenceDiagram.png" width="1200" />
+
+The arguments are first parsed through `ModtrektParser` to identify the command word. The command word will help
+identify the type of `Parser` needed to parse the rest of the arguments. In this case it is `AddTaskCommandParser`. After
+parsing the arguments, a deadline or a task object is created, depending on the presence of a deadline flag. The task
+would be used to instantiate an `AddTaskCommand`. When the `AddTaskCommand` is executed, the `Model` would add the task
+to the `TaskList`. After adding the task, the `Model` invokes its own method to update the task count of the module
+whose code is associated with the task.
+
+### Remove Task
+
+In this section, the functionality of `remove` task feature, expected execution path, and the interactions between the
+`RemoveTaskCommand`, `RemoveTaskCommandParser`, and other objects will be discussed.
+
+#### What is the remove task feature
+
+The `remove` task features allows users to remove a task/deadline that they have taken or mistakenly inputted into
+`TaskList`.
+
+Removal of a `Task` would result in the reduction of the task count of the `Module` with the module code the task
+is associated with.
+
+#### Current implementation
+
+The diagram below showcases the path execution for when removing a task
+
+<img src="images/TaskPUMLs/RemoveTask/TaskRemovePathExecution.png" width="800" />
+
+The diagram below shows how the remove command work with input `remove -t 1`
+
+<img src="images/TaskPUMLs/RemoveTask/TaskRemoveSequenceDiagram.png" width="1200" />
+
+The arguments are first parsed through `ModtrektParser` to identify the command word. The command word will help
+identify the type of `Parser` needed to parse the rest of the arguments. In this case it is `RemoveTaskCommandParser`. After
+obtaining the index, it would be used to instantiate a `RemoveTaskCommand`. When the `RemoveTaskCommand` is executed, it would
+first obtain the `Task` using the index. Then it would remove the `Task` from the `TaskList`. Using the saved
+`Task` it would then reduce the task count of the `Module` whose code is equal to that of the removed `Task`.
+
+### Edit Task
+
+In this section, the functionality of `edit` task feature, expected execution path, and the interactions between the
+`EditTaskCommand`, `EditTaskCommandParser`, and other objects will be discussed.
+
+#### What is the edit task feature
+
+The `edit` task features allows users to edit a task/deadline that they have erroneously added.
+This allows them to update details of the task, such as the due date, description and module code.
+
+Editing a task has no effect on the task count of a module, as it is a replacement of an existing task.
+
+#### Design considerations
+
+**Aspect 1: Whether editing tasks should be allowed:**
+
+* **Alternative 1 (current choice):** Allow editing of tasks.
+  * Pros: Allows users to change partial details in the event of a small error.
+  * Cons: Have to parse a varying amount of optional arguments.
+
+* **Alternative 2:** No edit command, user would have to delete and re-add their task.
+  * Pros: Convenient for development, less bug-prone.
+  * Cons: Inconvenient and troublesome for the user.
+
+We decided to go with the alternative 1 to give our users the best experience possible.
+
+#### Current implementation
+
+The diagram below showcases the path execution for when edit a task
+
+<img src="images/TaskPUMLs/EditTask/TaskEditPathExecution.png" width="800" />
+
+The diagram below shows how the remove command work with input `edit -t 1 -c CS2103T -ds Assignmet 2`
+
+Note that the sequence diagram has been kept simple, as the logic flow for `addTask(t)` and
+`removeTask(t)` have been covered in greater detail in the earlier diagrams.
+
+<img src="images/TaskPUMLs/EditTask/TaskEditSequenceDiagram.png" width="1200" />
+
+The arguments are first parsed through `ModtrektParser` to identify the command word. The command word will help
+identify the type of `Parser` needed to parse the rest of the arguments. In this case it is `EditTaskCommandParser`. After
+obtaining the index, it would be used to instantiate a `EditTaskCommand`. When the `EditTaskCommand` is executed, it would
+first obtain the `Task` using the index. Then it would remove the `Task` from the `TaskList`. It would also create a new Task
+with the information specified by the user.  The `TaskList` is subsequently updated and the user can now see the updated
+task details in the list.
+
+### Task archival
 
 Task archival allows users to selectively hide tasks that they have completed.
 
@@ -397,7 +550,7 @@ The relevant commands for this section are:
 * **`archive -t <task index>`**  archives the task visible in the UI with the specified index.
 * **`unarchive -t <task index>`** unarchives the task visible in the UI with the specified index.
 
-##### Design considerations
+#### Design considerations
 
 There was an alternative we considered for users to select the task to archive:
 
@@ -415,7 +568,7 @@ There was an alternative we considered for users to select the task to archive:
 Seeing as we prioritize a CLI, we chose the second option as it would be simpler for users,
 even though the `cd` and `ls` commands add a bit of overhead.
 
-##### Current implementation
+#### Current implementation
 
 Archival state is handled in the `Task` class via a boolean flag `isArchived`.
 Because `Task` is immutable, the methods `Task::archive` and `Task::unarchive` return a new `Task`
@@ -443,7 +596,7 @@ For brevity, we omit the diagrams and explanations for task unarchival—it is t
 such that the control flow is exactly the same: just replace "archive" and its derivatives
 with "unarchive", and vice versa.
 
-#### Task listing
+### Task listing
 
 Task listing allows users to view the tasks they have created which belong to a module.
 
@@ -452,7 +605,7 @@ The relevant commands for this section are:
 * **`ls`** displays only the unarchived tasks for the current module in the UI.
 * **`ls -a`** displays all the tasks for the current module, including the ones archived, in the UI.
 
-##### Current implementation
+#### Current implementation
 
 We check for the presence of the `-a` flag to decide whether to display archived tasks.
 

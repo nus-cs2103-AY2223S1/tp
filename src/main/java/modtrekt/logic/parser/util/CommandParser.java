@@ -25,9 +25,7 @@ import modtrekt.logic.parser.exceptions.ParseException;
  * along with a list of the missing prefixes.
  * <br>
  * Use CommandParserBuilder to create a CommandParser with a fluent API.
- * @deprecated Use JCommander instead.
  */
-@Deprecated
 public class CommandParser {
     private final String usageMessage;
     private final Prefix[] requiredPrefixes;

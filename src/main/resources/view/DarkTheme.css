@@ -382,6 +382,7 @@ CommandBox
     -fx-border-style: solid;
     -fx-border-color: transparent;
     -fx-background-radius: 20;
+    -fx-effect: dropshadow(gaussian, #1d1d1d, 20, 0.2, 0, 10);
     -fx-padding: 16px;
     -fx-min-width:300px;
     -fx-max-width: 300px !important;
@@ -439,7 +440,7 @@ CommandBox
 .result-display .text-area {
     -fx-background-color: transparent;
     -fx-border-color: transparent;
-    -fx-font-size: 20px;
+    -fx-font-size: 14px;
     -fx-text-fill: white;
 }
 

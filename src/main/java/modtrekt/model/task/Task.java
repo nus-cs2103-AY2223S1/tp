@@ -1,39 +1,40 @@
 package modtrekt.model.task;
 
-import java.util.Comparator;
-
 import modtrekt.model.module.ModCode;
 
 /**
  * Represents a basic immutable task in the task list.
  * Ensures that necessary details are valid, present and non-null.
  */
-public class Task implements Comparable<Task> {
-    public static final Comparator<Task> PRIORITY_COMPARATOR = Comparator.comparingInt(t -> t.getPriority().ordinal());
-    public static final Comparator<Task> ARCHIVAL_COMPARATOR = Comparator.comparing(Task::isArchived);
-    public static final Comparator<Task> DESCRIPTION_COMPARATOR = Comparator.comparing(Task::getDescription);
-
+public class Task {
     /**
      * String representing description of task
      */
     public final ModCode module;
     private final Description description;
-    private final Priority priority;
     private final boolean isArchived;
 
     /**
-     * Constructor for an instance of Task with a priority.
+     * Constructor for an instance of Task.
      *
      * @param description description of task
-     * @param module      module code of note's module
-     * @param isArchived  true if task is completed/archived
-     * @param priority    priority of task
      */
-    public Task(Description description, ModCode module, boolean isArchived, Priority priority) {
-        this.module = module;
+    public Task(Description description, ModCode module, boolean isArchived) {
         this.description = description;
+        this.module = module;
         this.isArchived = isArchived;
-        this.priority = priority;
+    }
+
+    /**
+     * Constructor for an instance of Task, with a default unarchived state.
+     *
+     * @param description description of task
+     * @param module module code of task
+     */
+    public Task(Description description, ModCode module) {
+        this.description = description;
+        this.module = module;
+        this.isArchived = false;
     }
 
     public Description getDescription() {
@@ -44,24 +45,16 @@ public class Task implements Comparable<Task> {
         return this.module;
     }
 
-    public Priority getPriority() {
-        return priority;
-    }
-
     public boolean isArchived() {
         return this.isArchived;
     }
 
-    public Task setPriority(Priority priority) {
-        return new Task(description, module, isArchived, priority);
-    }
-
     public Task archive() {
-        return new Task(this.description, this.module, true, priority);
+        return new Task(this.description, this.module, true);
     }
 
     public Task unarchive() {
-        return new Task(this.description, this.module, false, priority);
+        return new Task(this.description, this.module, false);
     }
 
     /**
@@ -72,8 +65,10 @@ public class Task implements Comparable<Task> {
             return true;
         }
 
-        return o != null && o.description.equals(this.description) && o.module.equals(this.module)
-                && o.isArchived() == this.isArchived() && o.priority == this.priority;
+        return o != null
+                && o.getDescription().equals(this.getDescription())
+                && o.getModule().equals(this.getModule())
+                && o.isArchived() == this.isArchived();
     }
 
     @Override
@@ -86,20 +81,10 @@ public class Task implements Comparable<Task> {
 
     @Override
     public String toString() {
-        return String.format("%s %s %s %s", description, module, priority, isArchived ? "(ARCHIVED)" : "");
-    }
-
-    @Override
-    public int compareTo(Task that) {
-        return ARCHIVAL_COMPARATOR.thenComparing(PRIORITY_COMPARATOR.reversed())
-                .thenComparing(DESCRIPTION_COMPARATOR)
-                .compare(this, that);
-    }
-
-    /**
-     * The different priority levels for tasks.
-     */
-    public enum Priority {
-        NONE, LOW, MEDIUM, HIGH
+        return String.format("%s %s%s",
+                description,
+                module,
+                isArchived ? "(ARCHIVED)" : ""
+        );
     }
 }

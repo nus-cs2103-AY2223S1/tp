@@ -213,7 +213,7 @@ public class ModelManager implements Model {
      */
     @Override
     public ObservableList<Task> getFilteredTaskList() {
-        return filteredTasks.sorted();
+        return filteredTasks;
     }
 
     @Override
