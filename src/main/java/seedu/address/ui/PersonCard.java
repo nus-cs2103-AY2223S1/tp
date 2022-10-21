@@ -65,10 +65,10 @@ public class PersonCard extends UiPart<Region> {
         // replace birthday and insurance once implemented.
         // insurance.setText("\uD83D\uDCC4\t" + "something something");
         healthInsurance.setText("\uD83D\uDCDE\t" + (person.getHealthInsurance().getHasInsurance() ? "yes" : "no"));
-        disabilityInsurance.setText("\uD83D\uDCDE\t" +
-                (person.getDisabilityInsurance().getHasInsurance() ? "yes" : "no"));
-        criticalIllnessInsurance.setText("\uD83D\uDCDE\t" +
-                (person.getCriticalIllnessInsurance().getHasInsurance() ? "yes" : "no"));
+        disabilityInsurance.setText("\uD83D\uDCDE\t"
+                + (person.getDisabilityInsurance().getHasInsurance() ? "yes" : "no"));
+        criticalIllnessInsurance.setText("\uD83D\uDCDE\t"
+                + (person.getCriticalIllnessInsurance().getHasInsurance() ? "yes" : "no"));
         lifeInsurance.setText("\uD83D\uDCDE\t" + (person.getLifeInsurance().getHasInsurance() ? "yes" : "no"));
         birthday.setText("\uD83C\uDF82\t" + person.getBirthday().value);
         person.getTags().stream()
