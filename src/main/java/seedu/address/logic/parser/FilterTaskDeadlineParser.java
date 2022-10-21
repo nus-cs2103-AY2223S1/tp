@@ -8,7 +8,7 @@ import java.util.stream.Stream;
 import seedu.address.logic.commands.FilterTaskDeadlineCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.task.TaskDeadline;
-import seedu.address.model.task.TaskDeadlineContainsDatePredicate;
+import seedu.address.model.task.TaskDeadlineBeforeDatePredicate;
 
 /**
  * Parses input arguments and creates a new FilterTaskDeadlineCommand object
@@ -32,7 +32,7 @@ public class FilterTaskDeadlineParser implements Parser<FilterTaskDeadlineComman
 
         TaskDeadline date = ParserUtil.parseTaskDeadline(argMultimap.getValue(PREFIX_DEADLINE).get());
 
-        return new FilterTaskDeadlineCommand(new TaskDeadlineContainsDatePredicate(date));
+        return new FilterTaskDeadlineCommand(new TaskDeadlineBeforeDatePredicate(date));
     }
 
     /**

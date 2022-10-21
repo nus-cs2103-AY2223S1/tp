@@ -7,8 +7,6 @@ import java.time.format.DateTimeParseException;
 
 import seedu.address.model.task.exceptions.DatePastException;
 
-
-
 /**
  * Represents the deadline of a task
  */
@@ -70,6 +68,24 @@ public class TaskDeadline {
         return other == this // short circuit if same object
                 || (other instanceof TaskDeadline // instanceof handles nulls
                 && ((TaskDeadline) other).deadline.equals(this.deadline));
+    }
+
+    /**
+     * Checks if this {@code deadline} is before the {@code deadline} of another TaskDeadline.
+     * @param other the other TaskDeadline to compare {@code deadline} to
+     * @return true if this {@code deadline} is before the {@code deadline} of the other TaskDeadline
+     */
+    public boolean isBefore(TaskDeadline other) {
+        return deadline.isBefore(other.getDeadline());
+    }
+
+    /**
+     * Checks if this {@code deadline} is after the {@code deadline} of another TaskDeadline.
+     * @param other the other TaskDeadline to compare {@code deadline} to
+     * @return true if this {@code deadline} is after the {@code deadline} of the other TaskDeadline
+     */
+    public boolean isAfter(TaskDeadline other) {
+        return deadline.isAfter(other.getDeadline());
     }
 
     /**

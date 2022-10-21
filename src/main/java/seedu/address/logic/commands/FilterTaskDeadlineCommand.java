@@ -5,7 +5,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_DEADLINE;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.model.Model;
-import seedu.address.model.task.TaskDeadlineContainsDatePredicate;
+import seedu.address.model.task.TaskDeadlineBeforeDatePredicate;
 
 /**
  * Filters and lists all tasks in address book with deadline that matches the argument date.
@@ -19,9 +19,9 @@ public class FilterTaskDeadlineCommand extends Command {
             + "Parameters: [" + PREFIX_DEADLINE + "DATE (YYYY-MM-DD)]\n"
             + "Example: " + COMMAND_WORD + " " + PREFIX_DEADLINE + "2022-12-12";
 
-    private final TaskDeadlineContainsDatePredicate date;
+    private final TaskDeadlineBeforeDatePredicate date;
 
-    public FilterTaskDeadlineCommand(TaskDeadlineContainsDatePredicate date) {
+    public FilterTaskDeadlineCommand(TaskDeadlineBeforeDatePredicate date) {
         this.date = date;
     }
 
@@ -40,16 +40,3 @@ public class FilterTaskDeadlineCommand extends Command {
                 && date.equals(((FilterTaskDeadlineCommand) other).date)); // state check
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
