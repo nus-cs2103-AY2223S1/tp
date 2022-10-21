@@ -103,6 +103,9 @@ public class CommandBox extends UiPart<Region> {
         CommandResult execute(String commandText) throws CommandException, ParseException;
     }
 
+    /**
+     * Auto-completes user input when the user presses the Tab key.
+     */
     public void handleKeyPressed(KeyEvent e) {
         if (e.getCode() == KeyCode.TAB) {
             commandTextField.setText(commandSuggestor.autocompleteCommand(commandTextField.getText(),

@@ -8,10 +8,16 @@ import swift.logic.parser.ArgumentMultimap;
 import swift.logic.parser.ArgumentTokenizer;
 import swift.logic.parser.Prefix;
 
+/**
+ * Suggests a command based on the user input.
+ */
 public class CommandSuggestor {
     private ArrayList<String> commandList;
     private ArrayList<HashMap<Prefix, String>> argPromptList;
 
+    /**
+     * Constructs a {@code CommandSuggestor} with predefined commands and argument prompts.
+     */
     public CommandSuggestor() {
         commandList = new ArrayList<>();
         argPromptList = new ArrayList<>();
@@ -43,6 +49,13 @@ public class CommandSuggestor {
         argPromptList.add(ListTaskCommand.ARGUMENT_PROMPTS);
     }
 
+    /**
+     * Suggests a command based on the user input.
+     *
+     * @param userInput User input.
+     * @return Suggested command.
+     * @throws CommandException If the user input is invalid.
+     */
     public String suggestCommand(String userInput) throws CommandException {
         assert userInput != null && !userInput.isEmpty();
         String[] userInputArray = userInput.split(" ");
@@ -67,6 +80,13 @@ public class CommandSuggestor {
         }
     }
 
+    /**
+     * Returns the new user input when user auto-completes the command.
+     *
+     * @param userInput Current User Input.
+     * @param commandSuggestion Current Command Suggestion
+     * @return New User Input.
+     */
     public String autocompleteCommand(String userInput, String commandSuggestion) {
         // Command suggested but not yet entered by user
         String suggestedCommand = commandSuggestion.substring(userInput.length());
@@ -77,6 +97,14 @@ public class CommandSuggestor {
         return userInput;
     }
 
+    /**
+     * Suggests prompts for arguments based on the user input.
+     *
+     * @param argPrompt Argument prompts for specified command.
+     * @param userInput Current user input.
+     * @return Suggested arguments.
+     * @throws CommandException If the user input is invalid.
+     */
     public String suggestArguments(HashMap<Prefix, String> argPrompt, String userInput) throws CommandException {
         ArgumentMultimap argumentMultimap = ArgumentTokenizer.tokenize(userInput, argPrompt.keySet()
             .toArray(new Prefix[] {}));
