@@ -127,7 +127,7 @@ Recall from the User Guide that the `edit` command has the format: `edit INDEX [
         try {
             //We can deduce that the previous line of code modifies model in some way
             // since it's being stored here.
-            storage.saveAddressBook(model.getAddressBook());
+            storage.saveFypManager(model.getFypManager());
         } catch (IOException ioe) {
             throw new CommandException(FILE_OPS_ERROR_MESSAGE + ioe, ioe);
         }
@@ -141,7 +141,7 @@ Recall from the User Guide that the `edit` command has the format: `edit INDEX [
 1. _Step over_ the logging code since it is of no interest to us now.
    ![StepOver](../images/tracing/StepOver.png)
 
-1. _Step into_ the line where user input in parsed from a String to a Command, which should bring you to the `AddressBookParser#parseCommand()` method (partial code given below):
+1. _Step into_ the line where user input in parsed from a String to a Command, which should bring you to the `FypManagerParser#parseCommand()` method (partial code given below):
    ``` java
    public Command parseCommand(String userInput) throws ParseException {
        ...
@@ -217,20 +217,20 @@ Recall from the User Guide that the `edit` command has the format: `edit INDEX [
 
 1. Similar to before, you can step over/into statements in the `LogicManager#execute()` method to examine how the control is transferred to the `Storage` component and what happens inside that component.
 
-   <div markdown="span" class="alert alert-primary">:bulb: **Intellij Tip:** When trying to step into a statement such as `storage.saveAddressBook(model.getAddressBook())` which contains multiple method calls, Intellij will let you choose (by clicking) which one you want to step into.
+   <div markdown="span" class="alert alert-primary">:bulb: **Intellij Tip:** When trying to step into a statement such as `storage.saveFypManager(model.getFypManager())` which contains multiple method calls, Intellij will let you choose (by clicking) which one you want to step into.
    </div>
 
-1.  As you step through the code inside the `Storage` component, you will eventually arrive at the `JsonAddressBook#saveAddressBook()` method which calls the `JsonSerializableAddressBook` constructor, to create an object that can be _serialized_ (i.e., stored in storage medium) in JSON format. That constructor is given below (with added line breaks for easier readability):
+1.  As you step through the code inside the `Storage` component, you will eventually arrive at the `JsonFypManager#saveFypManager()` method which calls the `JsonSerializableFypManager` constructor, to create an object that can be _serialized_ (i.e., stored in storage medium) in JSON format. That constructor is given below (with added line breaks for easier readability):
 
-    **`JsonSerializableAddressBook` constructor:**
+    **`JsonSerializableFypManager` constructor:**
     ``` java
     /**
-     * Converts a given {@code ReadOnlyAddressBook} into this class for Jackson use.
+     * Converts a given {@code ReadOnlyFypManager} into this class for Jackson use.
      *
      * @param source future changes to this will not affect the created
-     * {@code JsonSerializableAddressBook}.
+     * {@code JsonSerializableFypManager}.
      */
-    public JsonSerializableAddressBook(ReadOnlyAddressBook source) {
+    public JsonSerializableFypManager(ReadOnlyFypManager source) {
         students.addAll(
             source.getPersonList()
                   .stream()
@@ -239,7 +239,7 @@ Recall from the User Guide that the `edit` command has the format: `edit INDEX [
     }
     ```
 
-1. It appears that a `JsonAdaptedPerson` is created for each `Person` and then added to the `JsonSerializableAddressBook`.
+1. It appears that a `JsonAdaptedPerson` is created for each `Person` and then added to the `JsonSerializableFypManager`.
    This is because regular Java objects need to go through an _adaptation_ for them to be suitable to be saved in JSON format.
 
 1. While you are stepping through the classes in the `Storage` component, here is the component's class diagram to help you understand how those classes fit into the structure of the component.<br>
@@ -292,10 +292,10 @@ Here are some quick questions you can try to answer based on your execution path
 
     2.  Allow `delete` to remove more than one index at a time
 
-    3.  Save the address book in the CSV format instead
+    3.  Save the FYP manager in the CSV format instead
 
     4.  Add a new command
 
     5.  Add a new field to `Person`
 
-    6.  Add a new entity to the address book
+    6.  Add a new entity to the FYP manager

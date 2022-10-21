@@ -1,5 +1,5 @@
 {
-  "_comment": "FypManager save file which contains the same Student values as in TypicalStudents#getTypicalAddressBook()",
+  "_comment": "FypManager save file which contains the same Student values as in TypicalStudents#getTypicalFypManager()",
   "students" : [ {
     "name" : "Alice Pauline",
     "studentId": "A1351253P",
