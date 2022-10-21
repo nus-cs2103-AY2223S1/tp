@@ -144,30 +144,31 @@ Examples:
 - `link pi/2 ii/3` will link person at index **2** to internship at index **3**
 
 
-### Locating persons by name : `findp`
+### Locating persons by name : `find -p`
 
-Finds persons whose names contain any of the given keywords.
+Finds persons whose fields contain any of the given keywords.
 
-Format: `findp KEYWORD`
+Format: `find -p [n/ NAME_KEYWORD [MORE_KEYWORDS]...] [p/ PHONE_KEYWORD [MORE_KEYWORDS]...] [e/ EMAIL_KEYWORD [MORE_KEYWORDS]...] [t/ TAG_KEYWORD [MORE_KEYWORDS]...]`
 - The search is case-insensitive. e.g **hans** will match **Hans**
 - The order of the keywords does not matter. e.g. **Hans Bo** will match **Bo Hans**
-- Only the person name is searched.
-- Only full words will be matched e.g. **Han** will not match **Hans**
+- Only the fields corresponding to the specified prefixes will be searched,
+  and all the specified fields must contain at least one of the specified keywords to be considered in the search result.
+- Partial words will be matched. e.g. **Han** will match **Hans**
 
 Examples:
-- `findp John` returns **john** and **John Doe**
+- `find -p n/John` returns **john**, **John Doe** and **Johnny**
 
 
-### Locating internships by name : `findi`
+### Locating internships by name : `find -i`
 
-Finds internships whose company names contain any of the given keywords.
+Finds internships whose fields contain any of the given keywords.
 
-Format: `findi KEYWORD`
+Format: `find -i [c/ COMPANY_NAME_KEYWORD [MORE_KEYWORDS]...] [r/ INTERNSHIP_ROLE_KEYWORD [MORE_KEYWORDS]...] [s/ INTERNSHIP_STATUS_KEYWORD [MORE_KEYWORDS]...] [d/ INTERVIEW_DATE_KEYWORD [MORE_KEYWORDS]...]`
 - The search is case-insensitive. e.g **abc pte ltd** will match **ABC Pte Ltd**.
-- Only the company name is searched.
 - The order of the keywords does not matter. e.g. **Ltd ABC Pte Constructions** will match **ABC Constructions Pte Ltd**.
-- Partial names will be matched if the name contains the word perfectly e.g. **ltd** will match **XYZ Ltd**, but **lt** will not match **XYZ Ltd**.
-- This search returns all internships with company names that has words that perfectly match at least 1 of the keywords.
+- Only the fields corresponding to the specified prefixes will be searched, 
+  and all the specified fields must contain at least one of the specified keywords to be considered in the search result.
+- Partial words will be matched e.g. **app** will match **Apple** and **applications**.
 
 Example of usage:
 The app contains the following company names in the internship list.
@@ -178,9 +179,9 @@ The app contains the following company names in the internship list.
 - ABC Pte Ltd
 
 Then,
-- `findi Transit` returns **SBS Transit Ltd** and **Tower Transit Singapore**
-- `findi Buses Trains` returns **SMRT Buses** and **SMRT Trains Ltd**
-- `findi ABC Pte Ltd` returns **SBS Transit Ltd**, **SMRT Trains Ltd** and **ABC Pte Ltd**
+- `find -i c/Transit` returns **SBS Transit Ltd** and **Tower Transit Singapore**
+- `find -i c/Buses Trains` returns **SMRT Buses** and **SMRT Trains Ltd**
+- `find -i c/ABC Pte Ltd` returns **SBS Transit Ltd**, **SMRT Trains Ltd** and **ABC Pte Ltd**
 
 
 ### Deleting a person by index : `deletep`

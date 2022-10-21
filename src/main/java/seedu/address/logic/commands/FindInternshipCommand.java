@@ -1,28 +1,37 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_COMPANY_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_INTERNSHIP_ROLE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_INTERNSHIP_STATUS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_INTERVIEW_DATE;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.model.Model;
-import seedu.address.model.internship.NameContainsKeywordsPredicate;
+import seedu.address.model.internship.InternshipContainsKeywordsPredicate;
 
 /**
- * Finds and lists all internships in address book whose name contains any of the argument keywords.
- * Keyword matching is case insensitive, and only the company name is checked.
+ * Finds and lists all internships in address book whose fields contain any of the argument keywords.
+ * Keyword matching is case-insensitive, and only the fields corresponding the specified prefixes will be checked.
  */
 public class FindInternshipCommand extends Command {
 
-    public static final String COMMAND_WORD = "findi";
+    public static final String COMMAND_WORD = "find -i";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all internships which company names "
+    public static final String MESSAGE_USAGE = COMMAND_WORD
+            + ": Finds all internships whose specified fields "
             + "contains any of the specified keywords (case-insensitive) and displays them as a list with "
             + "index numbers.\n"
-            + "Parameters: KEYWORD [MORE_KEYWORDS]...\n"
-            + "Example: " + COMMAND_WORD + " abc pte ltd";
+            + "Parameters: "
+            + "[" + PREFIX_COMPANY_NAME + " COMPANY_NAME_KEYWORD [MORE_KEYWORDS]...] "
+            + "[" + PREFIX_INTERNSHIP_ROLE + " INTERNSHIP_ROLE_KEYWORD [MORE_KEYWORDS]...] "
+            + "[" + PREFIX_INTERNSHIP_STATUS + " INTERNSHIP_STATUS_KEYWORD [MORE_KEYWORDS]...] "
+            + "[" + PREFIX_INTERVIEW_DATE + " INTERVIEW_DATE_KEYWORD [MORE_KEYWORDS]...]\n"
+            + "Example: " + COMMAND_WORD + " " + PREFIX_COMPANY_NAME + "abc pte ltd";
 
-    private final NameContainsKeywordsPredicate predicate;
+    private final InternshipContainsKeywordsPredicate predicate;
 
-    public FindInternshipCommand(NameContainsKeywordsPredicate predicate) {
+    public FindInternshipCommand(InternshipContainsKeywordsPredicate predicate) {
         this.predicate = predicate;
     }
 

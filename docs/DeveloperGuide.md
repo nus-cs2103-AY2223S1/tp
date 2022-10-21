@@ -171,6 +171,26 @@ This section describes some noteworthy details on how certain features are imple
 The sequence diagram is given below.
 ![SortPersonSequence](images/SortPersonSequence.png)
 
+### Find Person
+
+#### Implementation
+
+1. When the user attempts to find a person or internship, the command goes through the `LogicManager`, which will then go through the `AddressBookParser`.
+2. The `AddressBookParser` will then create the corresponding parser for the command, `FindPersonCommandParser`.
+3. After which, it will pass the argument (the full command excluding the command word) to this parser.
+4. The command parser will then create a `FindPersonCommand` by constructing and storing a `Predicate` that checks, 
+   for each field of the `Person`, whether it contains any of the specified keywords.
+   The determining of which keyword is for which field is done via parsing of prefixes in the command,
+   and these prefixes are consistent with the ones used in other commands such as the `Add` command.
+5. The method returns a `Command` to the `LogicManager` which is stored as a variable called `command`.
+6. This `command` is executed by calling its `execute()` method.
+7. This will invoke the `updateFilteredPersonList` method of the `model` with the `predicate` that was constructed earlier.
+8. The `predicate` will then be passed to the `filteredPersonList` of the `model` and used to filter the list via `setPredicate`.
+9. Afterwards, `FindPersonCommand` creates a `CommandResult` to denote that the operation is completed, and returns this `CommandResult` back to `LogicManager`.
+
+The sequence diagram is given below.
+![FindPersonSequence](images/FindPersonSequence.png)
+
 #### Design considerations
 
 The sorting mechanism is designed in a way to keep all operations to the `SortPersonCommand` object itself, which will them prompt the `Model` to set the comparator of the person list. This is consistent with the other commands, as they will go through the same process, since each command has their own class and parser (if needed).
