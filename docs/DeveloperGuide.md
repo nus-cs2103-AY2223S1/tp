@@ -319,7 +319,7 @@ Step 5. After looking through all the tasks that are related to backend, the use
 #### Proposed Implementation
 
 The proposed filter mechanism allows A `Task` to be filtered based on its `TaskDeadline`. 
-The command is executed using the `FilterTaskDeadlineCommand` class which extends the `Command` class and the deadline is determined from the `FilterTaskDeadlineParser` class which parses the user input. The `TaskList` class will filter the existing task list based on the keyword parsed from the `FilterTaskDeadlineParser` class, and the filtered tasklist will be displayed on the application.
+The command is executed using the `FilterTaskDeadlineCommand` class which extends the `Command` class and the deadline is determined from the `FilterTaskDeadlineParser` class which parses the user input. The `TaskDeadlineContainsDatePredicate` class will filter the existing task list based on the date parsed from the `FilterTaskDeadlineParser` class and return the filtered tasklist, which will be displayed on the application.
 
 Given below is an example usage scenario and how the filter mechanism behaves at each step.
 
