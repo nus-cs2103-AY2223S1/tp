@@ -93,6 +93,13 @@ public class MeetingList implements ReadOnlyMeetingList {
         meetings.remove(key);
     }
 
+    /**
+     * calls meetings.sortByDate()
+     * @param isInAscending sorts in ascending if true, descending otherwise
+     */
+    public void sortByDate(boolean isInAscending) {
+        meetings.sortByDate(isInAscending);
+    }
     // util methods
     //    @Override
     //    public String toString() {
@@ -117,4 +124,6 @@ public class MeetingList implements ReadOnlyMeetingList {
     public int hashCode() {
         return meetings.hashCode();
     }
+
+
 }

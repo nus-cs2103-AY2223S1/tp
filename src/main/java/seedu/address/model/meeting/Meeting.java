@@ -1,7 +1,9 @@
 package seedu.address.model.meeting;
 
+import static java.util.Objects.requireNonNull;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
+import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.ResolverStyle;
 import java.util.ArrayList;
@@ -20,12 +22,13 @@ import seedu.address.model.person.Person;
 import seedu.address.model.person.UniquePersonList;
 import seedu.address.model.person.exceptions.DuplicatePersonException;
 import seedu.address.model.person.exceptions.PersonNotFoundException;
+import seedu.address.model.util.DateTimeConverter;
 import seedu.address.model.util.DateTimeProcessor;
 
 /**
  * Class for a new Meeting
  */
-public class Meeting {
+public class Meeting implements Comparable<Meeting> {
 
     private final ArrayList<Person> peopleToMeetArray;
     private final UniquePersonList peopleToMeetList = new UniquePersonList();
@@ -121,25 +124,6 @@ public class Meeting {
         this.meetingLocation = location;
     }
 
-    /**
-     * modifies the description of the meeting
-     *
-     * @param description of the meeting
-     */
-    public void editMeetingDescription(String description) {
-        this.meetingDescription = description;
-    }
-
-    // might want to check for parseException earlier tho
-    /**
-     * modifies the date and time of the meeting
-     *
-     * @param dateAndTime of the meeting
-     * @throws ParseException when the dateAndTime is in the wrong format
-     */
-    public void editMeetingDateAndTime(String dateAndTime) throws ParseException, java.text.ParseException {
-        this.meetingDateAndTime = validator.processDateTime(dateAndTime);
-    }
 
     /**
      * Adds the array of persons to the unique persons list
@@ -177,6 +161,10 @@ public class Meeting {
 
     public String getDateAndTime() {
         return this.meetingDateAndTime;
+    }
+
+    public String getNonProcessedDateAndTime() {
+        return DateTimeConverter.processFullDateToLocalDatetime(this.meetingDateAndTime);
     }
 
     public String getDescription() {
@@ -239,4 +227,25 @@ public class Meeting {
             + "At: " + this.meetingLocation + "\n";
     }
 
+    /**
+     * Compares this object with the specified object for order.  Returns a
+     * negative integer, zero, or a positive integer as this object is less
+     * than, equal to, or greater than the specified object.
+     *
+     * @param m the object to be compared.
+     * @return a negative integer, zero, or a positive integer as this object
+     *     is less than, equal to, or greater than the specified object.
+     * @throws NullPointerException if the specified object is null
+     * @throws ClassCastException   if the specified object's type prevents it
+     *                              from being compared to this object.
+     */
+    @Override
+    public int compareTo(Meeting m) {
+        requireNonNull(m);
+        LocalDateTime currObj = DateTimeConverter
+            .processedStringToLocalDatetime(this.meetingDateAndTime);
+        LocalDateTime compObj = DateTimeConverter
+            .processedStringToLocalDatetime(m.getDateAndTime());
+        return currObj.compareTo(compObj);
+    }
 }

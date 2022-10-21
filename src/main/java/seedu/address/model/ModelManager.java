@@ -182,10 +182,22 @@ public class ModelManager implements Model {
     }
 
     //=========== Meetings ================================================================================
-
     @Override
     public void setMeetingList(ReadOnlyMeetingList meetingList) {
         this.meetingList.resetData(meetingList);
+    }
+
+    @Override
+    public void setMeeting(Meeting target, Meeting editedMeeting) {
+        requireNonNull(editedMeeting);
+
+        meetingList.setMeeting(target, editedMeeting);
+    }
+
+    @Override
+    public boolean hasMeeting(Meeting meeting) {
+        requireNonNull(meeting);
+        return meetingList.hasMeeting(meeting);
     }
 
     @Override
@@ -204,12 +216,6 @@ public class ModelManager implements Model {
                                     String meetingDateAndTime, String meetingLocation)
             throws ParseException, java.text.ParseException {
         return new Meeting(peopleToMeet, meetingTitle, meetingDateAndTime, meetingLocation);
-    }
-
-    @Override
-    public boolean hasMeeting(Meeting meeting) {
-        requireNonNull(meeting);
-        return meetingList.hasMeeting(meeting);
     }
 
     @Override
@@ -237,6 +243,15 @@ public class ModelManager implements Model {
     @Override
     public ObservableList<Meeting> getFilteredMeetingList() {
         return filteredMeetings;
+    }
+
+    /**
+     * sorts the model's meeting list
+     * @param isInAscending if true the list is set to ascending order, else descending
+     */
+    @Override
+    public void sortMeetingListByDate(boolean isInAscending) {
+        this.meetingList.sortByDate(isInAscending);
     }
 
     //=========== Others ================================================================================

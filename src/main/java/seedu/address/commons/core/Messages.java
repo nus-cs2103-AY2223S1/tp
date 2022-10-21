@@ -13,5 +13,6 @@ public class Messages {
     public static final String MESSAGE_INVALID_DUPLICATE_NAMES = "There are duplicates in your input";
     public static final String MESSAGE_PERSONS_LISTED_OVERVIEW = "%1$d persons listed!";
     public static final String MESSAGE_MEETINGS_LISTED_OVERVIEW = "%1$d meetings listed!";
+    public static final String MESSAGE_MEETINGS_SORTED = "Sorted all meetings!";
 
 }

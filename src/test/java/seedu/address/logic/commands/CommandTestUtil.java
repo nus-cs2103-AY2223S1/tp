@@ -15,6 +15,7 @@ import java.util.List;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.AddressBook;
 import seedu.address.model.MeetingList;
 import seedu.address.model.Model;
@@ -82,8 +83,8 @@ public class CommandTestUtil {
             CommandResult result = command.execute(actualModel);
             assertEquals(expectedCommandResult, result);
             assertEquals(expectedModel, actualModel);
-        } catch (CommandException ce) {
-            throw new AssertionError("Execution of command should not fail.", ce);
+        } catch (CommandException | ParseException | java.text.ParseException e) {
+            throw new AssertionError("Execution of command should not fail.", e);
         }
     }
 

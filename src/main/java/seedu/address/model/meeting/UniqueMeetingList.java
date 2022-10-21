@@ -140,6 +140,17 @@ public class UniqueMeetingList implements Iterable<Meeting> {
     }
 
     /**
+     * Utilizes Meeting's compareTo() function provide a comparator for ObservableList<>.sort
+     * @param isInAscending sorts by ascending if true, descending otherwise
+     */
+    public void sortByDate(boolean isInAscending) {
+        //Ternary operator checks if isInAscending is true and negates the results if it is false
+        internalList.sort((Meeting m1, Meeting m2) -> isInAscending
+                ? m1.compareTo(m2)
+                : -m1.compareTo(m2));
+    }
+
+    /**
      * Returns true if {@code persons} contains only unique persons.
      */
     private boolean meetingsAreUnique(List<Meeting> meetings) {

@@ -162,6 +162,11 @@ public class AddCommandTest {
         }
 
         @Override
+        public void setMeeting(Meeting meeting, Meeting editedMeeting) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public void addMeeting(Meeting newMeeting) {
             throw new AssertionError("This method should not be called.");
         }
@@ -193,6 +198,11 @@ public class AddCommandTest {
 
         @Override
         public void setMeetingListFilePath(Path meetingListFilePath) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void sortMeetingListByDate(boolean isInAscending) {
             throw new AssertionError("This method should not be called.");
         }
 
