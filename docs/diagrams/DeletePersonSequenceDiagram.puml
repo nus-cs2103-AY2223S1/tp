@@ -47,6 +47,8 @@ destroy DeleteCommandParser
 
 AddressBookParser --> LogicManager : d
 deactivate AddressBookParser
+AddressBookParser -[hidden]-> LogicManager
+destroy AddressBookParser
 
 LogicManager -> DeleteCommand : execute()
 activate DeleteCommand
@@ -81,9 +83,13 @@ activate CommandResult
 
 CommandResult --> DeleteCommand
 deactivate CommandResult
+CommandResult -[hidden]-> DeleteCommand
+destroy CommandResult
 
 DeleteCommand --> LogicManager : result
 deactivate DeleteCommand
+DeleteCommand -[hidden]-> LogicManager
+destroy DeleteCommand
 
 [<--LogicManager
 deactivate LogicManager
