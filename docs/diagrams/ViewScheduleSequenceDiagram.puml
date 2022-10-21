@@ -1,0 +1,70 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
+participant ":ViewScheduleCommandParser" as ViewScheduleCommandParser LOGIC_COLOR
+participant "v:ViewScheduleCommand" as ViewScheduleCommand LOGIC_COLOR
+participant "CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+
+[-> LogicManager : execute("view m/CS2103T w/Friday")
+activate LogicManager
+
+LogicManager -> AddressBookParser : parseCommand("view m/CS2103T w/Friday")
+activate AddressBookParser
+
+create ViewScheduleCommandParser
+AddressBookParser -> ViewScheduleCommandParser
+activate ViewScheduleCommandParser
+
+ViewScheduleCommandParser --> AddressBookParser
+deactivate ViewScheduleCommandParser
+
+AddressBookParser -> ViewScheduleCommandParser : parse("m/CS2103T w/Friday")
+activate ViewScheduleCommandParser
+
+create ViewScheduleCommand
+ViewScheduleCommandParser -> ViewScheduleCommand
+activate ViewScheduleCommand
+
+ViewScheduleCommand --> ViewScheduleCommandParser : v
+deactivate ViewScheduleCommand
+
+ViewScheduleCommandParser --> AddressBookParser
+deactivate ViewScheduleCommandParser
+
+AddressBookParser --> LogicManager : v
+destroy ViewScheduleCommandParser
+deactivate AddressBookParser
+
+LogicManager -> ViewScheduleCommand : execute()
+activate ViewScheduleCommand
+
+ViewScheduleCommand -> Model : updateFilteredScheduleList(predicate)
+activate Model
+
+Model --> ViewScheduleCommand
+deactivate Model
+
+create CommandResult
+ViewScheduleCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> ViewScheduleCommand
+deactivate CommandResult
+
+ViewScheduleCommand --> LogicManager : result
+deactivate ViewScheduleCommand
+
+ViewScheduleCommand -[hidden]-> LogicManager : result
+destroy ViewScheduleCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml
