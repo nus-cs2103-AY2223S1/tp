@@ -38,4 +38,9 @@ public class TagMatchesQueryPredicate implements Predicate<Person> {
     public int hashCode() {
         return tag.hashCode();
     }
+
+    @Override
+    public String toString() {
+        return tag.toString();
+    }
 }

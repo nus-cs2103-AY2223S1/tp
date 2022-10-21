@@ -5,6 +5,9 @@ import static seedu.address.commons.util.CollectionUtil.isAnyNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 import seedu.address.commons.core.Messages;
 import seedu.address.model.Model;
 
@@ -44,8 +47,7 @@ public class FilterCommand extends Command {
         requireNonNull(model);
         requireNonNull(predicate);
         applySpecifiedFilters(model);
-        return new CommandResult(
-                String.format(Messages.MESSAGE_PERSONS_LISTED_OVERVIEW, model.getFilteredPersonList().size()));
+        return new CommandResult(getListOverviewAsString(model) + "\n" + getFiltersAppliedAsString(model));
     }
 
     private void applySpecifiedFilters(Model model) {
@@ -53,10 +55,22 @@ public class FilterCommand extends Command {
         model.addNewFilterToFilteredPersonList(predicate);
     }
 
+    protected String getListOverviewAsString(Model model) {
+        return String.format(Messages.MESSAGE_PERSONS_LISTED_OVERVIEW, model.getFilteredPersonList().size());
+    }
+
+    protected String getFiltersAppliedAsString(Model model) {
+        List<String> names = model.getNameFilters().stream().map(pred -> pred.toString()).collect(Collectors.toList());
+        List<String> tags = model.getTagFilters().stream().map(pred -> pred.toString()).collect(Collectors.toList());
+        String namesString = names.size() > 0 ? "Name filters: " + String.join(", ", names) + "\n" : "";
+        String tagsString = tags.size() > 0 ? "Tag filters: " + String.join(", ", tags) : "";
+        return namesString + tagsString;
+    }
+
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof FilterCommand // instanceof handles nulls
-                && predicate.equals(((FilterCommand) other).predicate)); // state check
+                        && predicate.equals(((FilterCommand) other).predicate)); // state check
     }
 }

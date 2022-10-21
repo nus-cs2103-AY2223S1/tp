@@ -80,7 +80,8 @@ public class FilterCommandTest {
 
     @Test
     public void execute_zeroKeywords_noPersonFound() {
-        String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 0);
+        String expectedMessage =
+                String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 0) + "\nName filters: [bbbxyz]\n";
 
         Set<NameContainsKeywordsPredicate> namePredicate = prepareNamePredicate("bbbxyz");
         FilterCommandPredicate predicate = new FilterCommandPredicate(namePredicate, null);
@@ -97,9 +98,8 @@ public class FilterCommandTest {
 
         FilterCommandPredicate predicate1 = new FilterCommandPredicate(namePredicates, null);
         FilterCommand command1 = new FilterCommand(predicate1);
-        String expectedMessage1 = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 3);
         expectedModel.addNewFilterToFilteredPersonList(predicate1);
-        assertCommandSuccess(command1, model, expectedMessage1, expectedModel);
+        assertCommandSuccess(command1, model, expectedModel);
         assertEquals(Arrays.asList(ALICE, ELLE, FIONA), model.getFilteredPersonList());
 
         expectedModel.clearFiltersInFilteredPersonList();
@@ -107,9 +107,8 @@ public class FilterCommandTest {
 
         FilterCommandPredicate predicate2 = new FilterCommandPredicate(null, tagPredicates);
         FilterCommand command2 = new FilterCommand(predicate2);
-        String expectedMessage2 = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 3);
         expectedModel.addNewFilterToFilteredPersonList(predicate2);
-        assertCommandSuccess(command2, model, expectedMessage2, expectedModel);
+        assertCommandSuccess(command2, model, expectedModel);
         assertEquals(Arrays.asList(ALICE, BENSON, DANIEL), model.getFilteredPersonList());
 
         expectedModel.clearFiltersInFilteredPersonList();
@@ -117,9 +116,8 @@ public class FilterCommandTest {
 
         FilterCommandPredicate predicate3 = new FilterCommandPredicate(namePredicates, tagPredicates);
         FilterCommand command3 = new FilterCommand(predicate3);
-        String expectedMessage3 = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 1);
         expectedModel.addNewFilterToFilteredPersonList(predicate3);
-        assertCommandSuccess(command3, model, expectedMessage3, expectedModel);
+        assertCommandSuccess(command3, model, expectedModel);
         assertEquals(Arrays.asList(ALICE), model.getFilteredPersonList());
     }
 

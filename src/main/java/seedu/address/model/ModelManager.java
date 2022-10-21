@@ -237,6 +237,16 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public Set<Predicate<Person>> getTagFilters() {
+        return Set.copyOf(this.tagPredicates);
+    }
+
+    @Override
+    public Set<Predicate<Person>> getNameFilters() {
+        return Set.copyOf(this.namePredicates);
+    }
+
+    @Override
     public boolean equals(Object obj) {
         // short circuit if same object
         if (obj == this) {
@@ -262,7 +272,7 @@ public class ModelManager implements Model {
 
     @Override
     public void setTargetPerson(Person person) {
-        assert(person != null) : "Target person cannot be null";
+        assert (person != null) : "Target person cannot be null";
         targetPerson.set(person);
     }
 

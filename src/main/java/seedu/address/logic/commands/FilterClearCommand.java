@@ -4,7 +4,6 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
-import seedu.address.commons.core.Messages;
 import seedu.address.model.Model;
 
 /**
@@ -33,8 +32,7 @@ public class FilterClearCommand extends FilterCommand {
     public CommandResult execute(Model model) {
         requireNonNull(model);
         clearSpecifiedFilters(model);
-        return new CommandResult(
-                String.format(Messages.MESSAGE_PERSONS_LISTED_OVERVIEW, model.getFilteredPersonList().size()));
+        return new CommandResult(getListOverviewAsString(model) + "\n" + getFiltersAppliedAsString(model));
     }
 
     /**

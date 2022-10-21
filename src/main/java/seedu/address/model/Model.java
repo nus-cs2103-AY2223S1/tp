@@ -142,6 +142,12 @@ public interface Model {
      */
     void removeFilterFromFilteredPersonList(FilterCommandPredicate predicate);
 
+    /** Returns the list of tag filters applied. */
+    Set<Predicate<Person>> getTagFilters();
+
+    /** Returns the list of name filters applied. */
+    Set<Predicate<Person>> getNameFilters();
+
     /** Returns an unmodifiable view of the list of target person */
     ObservableList<Person> getTargetPersonAsObservableList();
 
