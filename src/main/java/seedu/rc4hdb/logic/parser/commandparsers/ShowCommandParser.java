@@ -15,6 +15,9 @@ public class ShowCommandParser implements Parser<ShowCommand> {
     public static final String INTENDED_USAGE = "Please (only) enter some fields after the show command\n"
             + "Example: show name phone email";
 
+    public static final String ERROR_MESSAGE = "Please only specify fields that correspond to resident data, "
+            + "or check if you have made a typo.";
+
     @Override
     public ShowCommand parse(String args) throws ParseException {
         requireNonNull(args);
@@ -31,7 +34,7 @@ public class ShowCommandParser implements Parser<ShowCommand> {
 
         String[] specifiedFields = getSpecifiedFields(args);
 
-        populateFieldLists(specifiedFields, fieldsToExclude);
+        populateFieldLists(specifiedFields, fieldsToExclude, allFields);
 
         return new ShowCommand(fieldsToExclude);
     }
@@ -40,8 +43,13 @@ public class ShowCommandParser implements Parser<ShowCommand> {
         return args.trim().toLowerCase().split(" ");
     }
 
-    private void populateFieldLists(String[] specifiedFields, List<String> fieldsToExclude) {
+    private void populateFieldLists(String[] specifiedFields,
+                                    List<String> fieldsToExclude,
+                                    List<String> allFields) throws ParseException {
         for (String field : specifiedFields) {
+            if (!allFields.contains(field)) {
+                throw new ParseException(ERROR_MESSAGE);
+            }
             fieldsToExclude.remove(field);
         }
     }
