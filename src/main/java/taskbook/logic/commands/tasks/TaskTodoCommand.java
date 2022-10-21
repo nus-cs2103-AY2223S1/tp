@@ -31,7 +31,7 @@ public class TaskTodoCommand extends TaskAddCommand {
 
     /**
      * Creates a TaskTodoCommand to add a task with the specified
-     * {@code Name name}, {@code Description description} and {@code Task.Assignment assignment}
+     * {@code Name name}, {@code Description description} and {@code Task.Assignment assignment}.
      *
      * @param name Name of the Person in the task book.
      * @param description The description for the new to-do.

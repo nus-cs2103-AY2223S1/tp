@@ -19,7 +19,7 @@ import taskbook.model.task.EditTaskDescriptor;
 import taskbook.model.task.enums.Assignment;
 
 /**
- * Parses input arguments and creates a new TaskEditCommand object
+ * Parses input arguments and creates a new TaskEditCommand object.
  */
 public class TaskEditCommandParser implements Parser<TaskEditCommand> {
 
