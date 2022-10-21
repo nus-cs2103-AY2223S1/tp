@@ -238,6 +238,63 @@ _{more aspects and alternatives to be added}_
 
 _{Explain here how the data archiving feature will be implemented}_
 
+### \[Proposed\] Branch feature
+
+#### Proposed Implementation
+
+The proposed branching mechanism is facilitated by `BranchStorage`. It extends `Storage` with a branch history,
+stored internally as an `branchList` and `currentBranchPointer`. Additionally, it implements the following operations:
+
+* `BranchStorage#create()` — Creates a new branch in its branch list.
+* `BranchStorage#checkout()` — Sets a branch as the current branch.
+* `BranchStorage#reset()` — Sets the default branch as the current branch.
+
+These operations are exposed in the `Model` interface as `Model#createBranch()`, `Model#checkoutBranch()` and
+`Model#resetBranch()` respectively.
+
+Given below is an example usage scenario and how the branching mechanism behaves at each step.
+
+Step 1. The user launches the application for the first time. The `BranchStorage` will be initialized with the
+default branch, and the `currentBranchPointer` pointing to that single branch.
+
+![BranchState0](images/BranchState0.png)
+
+Step 2. The user executes `checkout june-2022` command to load the JSON `june-2022.json` to the storage.
+The `checkout` command calls `Model#checkoutBranch()`, which checks if the branch exists, which in turn calls
+`Model#createBranch()` if it does not exist. The non-existent branch `june-2022` will then be created.
+The call then returns to `Model#checkoutBranch()` and the `currentBranchPointer` is shifted to the newly created branch.
+
+![BranchState1](images/BranchState1.png)
+
+Step 3. The user executes `checkout master` command to load the default JSON `addressbook.json` to the storage.
+The `checkout` command calls `Model#checkoutBranch()` and the `currentBranchPointer` is shifted to the default branch.
+
+![BranchState2](images/BranchState2.png)
+
+The following sequence diagram shows how the branch operation works:
+
+![BranchSequenceDiagram](images/deeyonn.png)
+
+The following activity diagram summarizes what happens when a user executes a checkout command:
+
+![BranchActivityDiagram](images/deeyonn.png)
+
+#### Design considerations
+
+**Aspect: How checkout executes:**
+
+* **Alternative 1 (preferred choice):** Tell the Storage instance to load the specified json branch.
+    * Pros: Will use less memory (e.g. for each branch, just reuse the current instance of Storage to load the json).
+    * Cons: We must ensure that the application reloads properly after we set the designated json to be loaded.
+
+* **Alternative 2 (current choice):** Create a new Storage instance that loads the specified json branch
+  and set it to be used by the application.
+    * Pros: Faster to switch between branches since they are already loaded into memory.
+    * Cons: May have performance issues in terms of memory usage because a new instance of Storage is created for every
+      new branch.
+
+_{more aspects and alternatives to be added}_
+
 ### View Feature
 
 #### Implementation
