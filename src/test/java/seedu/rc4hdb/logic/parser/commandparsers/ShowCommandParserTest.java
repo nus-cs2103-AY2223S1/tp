@@ -1,6 +1,5 @@
 package seedu.rc4hdb.logic.parser.commandparsers;
 
-import seedu.rc4hdb.logic.commands.modelcommands.ShowCommand;
 import static seedu.rc4hdb.logic.parser.commandparsers.CommandParserTestUtil.assertParseFailure;
 import static seedu.rc4hdb.logic.parser.commandparsers.CommandParserTestUtil.assertParseSuccess;
 
@@ -9,6 +8,8 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import org.junit.jupiter.api.Test;
+
+import seedu.rc4hdb.logic.commands.modelcommands.ShowCommand;
 import seedu.rc4hdb.model.resident.fields.ResidentFields;
 
 public class ShowCommandParserTest {

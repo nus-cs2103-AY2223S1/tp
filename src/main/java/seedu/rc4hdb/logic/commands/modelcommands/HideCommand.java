@@ -1,12 +1,15 @@
 package seedu.rc4hdb.logic.commands.modelcommands;
 
+import static java.util.Objects.requireNonNull;
+
 import java.util.List;
 
-import static java.util.Objects.requireNonNull;
 import seedu.rc4hdb.logic.commands.CommandResult;
 import seedu.rc4hdb.model.Model;
-import static seedu.rc4hdb.model.Model.PREDICATE_SHOW_ALL_RESIDENTS;
 
+/**
+ * Updates the table view by hiding the columns specified by the user.
+ */
 public class HideCommand implements ModelCommand {
 
     public static final String COMMAND_WORD = "hide";
@@ -19,22 +22,40 @@ public class HideCommand implements ModelCommand {
     public static final String MESSAGE_SUCCESS = "Hidden some columns from the table view. "
             + "Use the list command to restore all columns.";
 
-    private final List<String> fieldsToShow;
+    /**
+     * The list of fields to pass to the TableView for hiding.
+     */
+    private final List<String> fieldsToHide;
 
-    public HideCommand(List<String> fieldsToShow) {
-        requireNonNull(fieldsToShow);
-        this.fieldsToShow = fieldsToShow;
+    /**
+     * Constructor for a HideCommand instance.
+     * @param fieldsToHide The list of fields to hide in the table
+     */
+    public HideCommand(List<String> fieldsToHide) {
+        requireNonNull(fieldsToHide);
+        this.fieldsToHide = fieldsToHide;
     }
 
+    /**
+     * Implements the execute method in the ModelCommand interface.
+     * The model field list is updated with the internal field list.
+     * @param model {@code Model} which the command should operate on.
+     * @return A CommandResult if the execution was successful.
+     */
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);
-        model.updateFilteredResidentList(PREDICATE_SHOW_ALL_RESIDENTS);
-        model.setObservableFields(fieldsToShow);
+        model.setObservableFields(fieldsToHide);
 
         return new CommandResult(MESSAGE_SUCCESS);
     }
 
+    /**
+     * Overrides the equals method in the Object class.
+     * Checks if the field lists have the same content.
+     * @param other The object to check for equality
+     * @return True if the object is equals to this instance
+     */
     @Override
     public boolean equals(Object other) {
         if (other == this) {
@@ -42,8 +63,8 @@ public class HideCommand implements ModelCommand {
         }
         if (other instanceof HideCommand) {
             HideCommand otherCommand = (HideCommand) other;
-            return this.fieldsToShow.containsAll(otherCommand.fieldsToShow)
-                    && otherCommand.fieldsToShow.containsAll(this.fieldsToShow);
+            return this.fieldsToHide.containsAll(otherCommand.fieldsToHide)
+                    && otherCommand.fieldsToHide.containsAll(this.fieldsToHide);
         }
         return false;
     }

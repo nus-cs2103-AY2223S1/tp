@@ -1,15 +1,16 @@
 package seedu.rc4hdb.logic.commands.modelcommands;
 
 import static seedu.rc4hdb.logic.commands.modelcommands.ModelCommandTestUtil.assertCommandSuccess;
+import static seedu.rc4hdb.testutil.TypicalResidents.getTypicalResidentBook;
 
 import java.util.List;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+
 import seedu.rc4hdb.model.Model;
 import seedu.rc4hdb.model.ModelManager;
 import seedu.rc4hdb.model.UserPrefs;
-import static seedu.rc4hdb.testutil.TypicalResidents.getTypicalResidentBook;
 
 public class ShowCommandTest {
     private Model model;
@@ -24,7 +25,8 @@ public class ShowCommandTest {
     @Test
     public void execute_showCommandWithNonEmptyList_showsNonEmptyListInModel() {
         expectedModel.setObservableFields(List.of("name", "phone"));
-        assertCommandSuccess(new ShowCommand(List.of("name", "phone")), model, ShowCommand.MESSAGE_SUCCESS, expectedModel);
+        assertCommandSuccess(new ShowCommand(List.of("name", "phone")), model,
+                ShowCommand.MESSAGE_SUCCESS, expectedModel);
     }
 
     @Test
@@ -44,6 +46,7 @@ public class ShowCommandTest {
 
         expectedModel.setObservableFields(List.of("name", "phone"));
 
-        assertCommandSuccess(new ShowCommand(List.of("name", "phone")), model, ShowCommand.MESSAGE_SUCCESS, expectedModel);
+        assertCommandSuccess(new ShowCommand(List.of("name", "phone")), model,
+                ShowCommand.MESSAGE_SUCCESS, expectedModel);
     }
 }

@@ -3,16 +3,31 @@ package seedu.rc4hdb.logic.parser;
 import static seedu.rc4hdb.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.rc4hdb.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 
-import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import seedu.rc4hdb.logic.commands.Command;
 import seedu.rc4hdb.logic.commands.misccommands.ExitCommand;
 import seedu.rc4hdb.logic.commands.misccommands.HelpCommand;
-import seedu.rc4hdb.logic.commands.modelcommands.*;
+import seedu.rc4hdb.logic.commands.modelcommands.AddCommand;
+import seedu.rc4hdb.logic.commands.modelcommands.ClearCommand;
+import seedu.rc4hdb.logic.commands.modelcommands.DeleteCommand;
+import seedu.rc4hdb.logic.commands.modelcommands.EditCommand;
+import seedu.rc4hdb.logic.commands.modelcommands.FilterCommand;
+import seedu.rc4hdb.logic.commands.modelcommands.FindCommand;
+import seedu.rc4hdb.logic.commands.modelcommands.HideCommand;
+import seedu.rc4hdb.logic.commands.modelcommands.ListCommand;
+import seedu.rc4hdb.logic.commands.modelcommands.ShowCommand;
 import seedu.rc4hdb.logic.commands.storagecommands.filecommands.FileCommand;
-import seedu.rc4hdb.logic.parser.commandparsers.*;
+import seedu.rc4hdb.logic.parser.commandparsers.AddCommandParser;
+import seedu.rc4hdb.logic.parser.commandparsers.DeleteCommandParser;
+import seedu.rc4hdb.logic.parser.commandparsers.EditCommandParser;
+import seedu.rc4hdb.logic.parser.commandparsers.FileCommandParser;
+import seedu.rc4hdb.logic.parser.commandparsers.FilterCommandParser;
+import seedu.rc4hdb.logic.parser.commandparsers.FindCommandParser;
+import seedu.rc4hdb.logic.parser.commandparsers.HideCommandParser;
+import seedu.rc4hdb.logic.parser.commandparsers.ListCommandParser;
+import seedu.rc4hdb.logic.parser.commandparsers.ShowCommandParser;
 import seedu.rc4hdb.logic.parser.exceptions.ParseException;
 
 /**

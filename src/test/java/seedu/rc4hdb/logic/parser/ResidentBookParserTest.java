@@ -1,14 +1,12 @@
 package seedu.rc4hdb.logic.parser;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.rc4hdb.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.rc4hdb.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
-import seedu.rc4hdb.logic.commands.modelcommands.*;
 import static seedu.rc4hdb.logic.commands.modelcommands.ModelCommandTestUtil.NAME_DESC_AMY;
 import static seedu.rc4hdb.logic.commands.storagecommands.StorageCommandTestUtil.VALID_FILE_NAME_PATH;
 import static seedu.rc4hdb.logic.commands.storagecommands.StorageCommandTestUtil.VALID_FILE_NAME_STRING;
-import seedu.rc4hdb.logic.parser.commandparsers.HideCommandParser;
-import seedu.rc4hdb.logic.parser.commandparsers.ShowCommandParser;
 import static seedu.rc4hdb.testutil.Assert.assertThrows;
 import static seedu.rc4hdb.testutil.TypicalIndexes.INDEX_FIRST_RESIDENT;
 
@@ -20,9 +18,20 @@ import org.junit.jupiter.api.Test;
 
 import seedu.rc4hdb.logic.commands.misccommands.ExitCommand;
 import seedu.rc4hdb.logic.commands.misccommands.HelpCommand;
+import seedu.rc4hdb.logic.commands.modelcommands.AddCommand;
+import seedu.rc4hdb.logic.commands.modelcommands.ClearCommand;
+import seedu.rc4hdb.logic.commands.modelcommands.DeleteCommand;
+import seedu.rc4hdb.logic.commands.modelcommands.EditCommand;
+import seedu.rc4hdb.logic.commands.modelcommands.FilterCommand;
+import seedu.rc4hdb.logic.commands.modelcommands.FindCommand;
+import seedu.rc4hdb.logic.commands.modelcommands.HideCommand;
+import seedu.rc4hdb.logic.commands.modelcommands.ListCommand;
+import seedu.rc4hdb.logic.commands.modelcommands.ShowCommand;
 import seedu.rc4hdb.logic.commands.storagecommands.filecommands.FileCommand;
 import seedu.rc4hdb.logic.commands.storagecommands.filecommands.FileCreateCommand;
+import seedu.rc4hdb.logic.parser.commandparsers.HideCommandParser;
 import seedu.rc4hdb.logic.parser.commandparsers.ListCommandParser;
+import seedu.rc4hdb.logic.parser.commandparsers.ShowCommandParser;
 import seedu.rc4hdb.logic.parser.exceptions.ParseException;
 import seedu.rc4hdb.model.resident.Resident;
 import seedu.rc4hdb.model.resident.ResidentDescriptor;

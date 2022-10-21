@@ -1,14 +1,16 @@
 package seedu.rc4hdb.logic.commands.modelcommands;
 
+import static seedu.rc4hdb.logic.commands.modelcommands.ModelCommandTestUtil.assertCommandSuccess;
+import static seedu.rc4hdb.testutil.TypicalResidents.getTypicalResidentBook;
+
 import java.util.List;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import static seedu.rc4hdb.logic.commands.modelcommands.ModelCommandTestUtil.assertCommandSuccess;
+
 import seedu.rc4hdb.model.Model;
 import seedu.rc4hdb.model.ModelManager;
 import seedu.rc4hdb.model.UserPrefs;
-import static seedu.rc4hdb.testutil.TypicalResidents.getTypicalResidentBook;
 
 public class HideCommandTest {
 
@@ -24,7 +26,8 @@ public class HideCommandTest {
     @Test
     public void execute_hideCommandWithNonEmptyList_hideNonEmptyListInModel() {
         expectedModel.setObservableFields(List.of("room", "gender"));
-        assertCommandSuccess(new HideCommand(List.of("room", "gender")), model, HideCommand.MESSAGE_SUCCESS, expectedModel);
+        assertCommandSuccess(new HideCommand(List.of("room", "gender")), model,
+                HideCommand.MESSAGE_SUCCESS, expectedModel);
     }
 
     @Test
@@ -44,7 +47,8 @@ public class HideCommandTest {
 
         expectedModel.setObservableFields(List.of("room", "gender"));
 
-        assertCommandSuccess(new HideCommand(List.of("room", "gender")), model, HideCommand.MESSAGE_SUCCESS, expectedModel);
+        assertCommandSuccess(new HideCommand(List.of("room", "gender")), model,
+                HideCommand.MESSAGE_SUCCESS, expectedModel);
     }
 
 }
