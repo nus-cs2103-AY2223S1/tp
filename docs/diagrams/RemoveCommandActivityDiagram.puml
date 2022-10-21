@@ -1,0 +1,20 @@
+@startuml
+start
+:User enters Remove command;
+
+if () then ([Is invalid parameter])
+    : TrackAScholar displays \nerror message indicating\ninvalid user input;
+
+else ([is valid and completed application status])
+
+    if () then ([confirm remove])
+        :TrackAScholar removes all \napplicants matching target \napplication status;
+
+        :TrackAScholar updates \nto display new list \nwithout removed applicants;
+    else ([cancel remove])
+        :TrackAScholar displays \nmessage indicating \nremove command \nis cancelled;
+    endif
+
+endif
+stop
+@enduml
