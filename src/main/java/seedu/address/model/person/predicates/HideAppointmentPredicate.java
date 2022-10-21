@@ -1,10 +1,11 @@
-package seedu.address.model.person;
+package seedu.address.model.person.predicates;
 
 import java.util.Arrays;
 import java.util.List;
 import java.util.Set;
 import java.util.function.Predicate;
 
+import seedu.address.model.person.Appointment;
 import seedu.address.model.tag.Tag;
 
 /**

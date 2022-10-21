@@ -7,7 +7,7 @@ import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSucces
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.HideAppointmentsCommand;
-import seedu.address.model.person.HideAppointmentPredicate;
+import seedu.address.model.person.predicates.HideAppointmentPredicate;
 
 public class HideAppointmentsCommandParserTest {
 

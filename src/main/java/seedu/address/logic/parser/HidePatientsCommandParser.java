@@ -7,7 +7,7 @@ import java.util.Arrays;
 
 import seedu.address.logic.commands.HidePatientsCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.person.TagContainsKeywordsPredicate;
+import seedu.address.model.person.predicates.TagContainsKeywordsPredicate;
 import seedu.address.model.person.predicates.NameContainsKeywordsPredicate;
 
 /**
@@ -23,7 +23,6 @@ public class HidePatientsCommandParser implements Parser<HidePatientsCommand> {
     public HidePatientsCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_TAG);
         if (argMultimap.getValue(PREFIX_TAG).isPresent()) {
-            System.out.println(argMultimap.getValue(PREFIX_TAG));
             return new HidePatientsCommand(
                     new TagContainsKeywordsPredicate(argMultimap.getValue(PREFIX_TAG).orElse("")));
         }

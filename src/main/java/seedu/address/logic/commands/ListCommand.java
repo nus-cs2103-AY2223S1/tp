@@ -5,7 +5,7 @@ import static seedu.address.model.Model.PREDICATE_SHOW_ALL_APPOINTMENTS;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
 import seedu.address.model.Model;
-import seedu.address.model.person.HiddenPredicateSingleton;
+import seedu.address.model.person.predicates.HiddenPredicateSingleton;
 
 /**
  * Lists all persons in the address book to the user.
