@@ -38,18 +38,18 @@ public class AddTaskCommandParser implements Parser<AddTaskCommand> {
                     AddTaskCommand.MESSAGE_USAGE));
         }
 
-        AddTaskToModuleDescriptor addTaskToPersonDescriptor =
+        AddTaskToModuleDescriptor addTaskToModuleDescriptor =
                 new AddTaskToModuleDescriptor();
         String moduleCodeOfModuleToAddTaskToAsString =
                 argMultimap.getValue(PREFIX_MODULE_CODE).get();
         ModuleCode moduleCodeOfModuleToAddTaskTo =
                 ParserUtil.parseModuleCode(moduleCodeOfModuleToAddTaskToAsString);
-        addTaskToPersonDescriptor.setModuleCodeOfModuleToAddTaskTo(moduleCodeOfModuleToAddTaskTo);
+        addTaskToModuleDescriptor.setModuleCodeOfModuleToAddTaskTo(moduleCodeOfModuleToAddTaskTo);
         String taskDescriptionOfNewTaskToAdd =
                 argMultimap.getValue(PREFIX_TASK_DESCRIPTION).get();
         Task newTaskToAdd =
                 ParserUtil.parseNewTaskDescription(taskDescriptionOfNewTaskToAdd);
-        addTaskToPersonDescriptor.setNewTask(newTaskToAdd);
-        return new AddTaskCommand(addTaskToPersonDescriptor);
+        addTaskToModuleDescriptor.setNewTask(newTaskToAdd);
+        return new AddTaskCommand(addTaskToModuleDescriptor);
     }
 }
