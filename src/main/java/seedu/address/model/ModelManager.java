@@ -23,6 +23,7 @@ import seedu.address.model.person.Session;
  * Represents the in-memory model of the address book data.
  */
 public class ModelManager implements Model {
+    public static final String MESSAGE_NO_NEXT_SESSION_FOUND = "Don't worry, no next session for you!";
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
 
     private final AddressBook addressBook;
@@ -180,17 +181,20 @@ public class ModelManager implements Model {
         HashMap<Session, Person> sessionPersonHashMap = new HashMap<>();
         ArrayList<Session> compareList = new ArrayList<>();
         this.updateFilteredPersonList(Model.PREDICATE_SHOW_ALL_PERSONS);
+        if (getFilteredPersonList().isEmpty()) {
+            return MESSAGE_NO_NEXT_SESSION_FOUND;
+        }
         this.getFilteredPersonList().forEach(person -> {
             if (!person.getSessionList().sessionList.isEmpty()) {
                 Session currSession = person.getSessionList().sessionList.get(0);
-                if (currSession.compareTo(nowSession) <= 0) {
+                if (nowSession.compareTo(currSession) <= 0) {
                     compareList.add(currSession);
                     sessionPersonHashMap.put(currSession, person);
                 }
             }
         });
         if (compareList.isEmpty()) {
-            return "Don't worry, no next session for you!";
+            return MESSAGE_NO_NEXT_SESSION_FOUND;
         }
         compareList.sort(Session::compareTo);
         String res = "Next Session: " + sessionPersonHashMap.get(compareList.get(0)).getName()
