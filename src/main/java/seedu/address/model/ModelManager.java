@@ -250,6 +250,7 @@ public class ModelManager implements Model {
 
     @Override
     public void setTargetPerson(Person person) {
+        requireNonNull(person);
         targetPerson.set(person);
     }
 

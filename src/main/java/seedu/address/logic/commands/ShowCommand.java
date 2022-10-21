@@ -9,6 +9,7 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.person.Person;
+import seedu.address.ui.SecondaryPaneState;
 
 /**
  * Shows a person identified using it's displayed index from the address book.
@@ -41,8 +42,10 @@ public class ShowCommand extends Command {
         }
 
         Person personToShow = lastShownList.get(targetIndex.getZeroBased());
+        requireNonNull(personToShow);
         model.setTargetPerson(personToShow);
-        return new CommandResult(String.format(MESSAGE_SHOW_PERSON_SUCCESS, personToShow));
+        return new CommandResult(
+                String.format(MESSAGE_SHOW_PERSON_SUCCESS, personToShow), SecondaryPaneState.TARGET_PERSON);
     }
 
     @Override

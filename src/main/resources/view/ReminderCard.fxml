@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.control.Label?>
+
+<VBox xmlns="http://javafx.com/javafx/11" xmlns:fx="http://javafx.com/fxml/1" styleClass="reminder-card  ">
+   <children>
+      <Label styleClass="reminder-description" fx:id="description" text="Text" wrapText="true" />
+      <Label styleClass="reminder-with" fx:id="with" text="with Lorem Ipsum" wrapText="true" />
+      <Label styleClass="reminder-date" fx:id="dateText" text="Text" wrapText="true" />
+   </children>
+</VBox>

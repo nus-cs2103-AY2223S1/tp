@@ -1,11 +1,17 @@
 package seedu.address.ui;
 
+import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
+
 import java.util.logging.Logger;
 
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.input.KeyCombination;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.layout.GridPane;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 import seedu.address.commons.core.GuiSettings;
@@ -34,6 +40,7 @@ public class MainWindow extends UiPart<Stage> {
     private TargetPersonPanel targetPersonPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
+    private WelcomePanel welcomePanel;
 
     @FXML
     private StackPane commandBoxPlaceholder;
@@ -45,13 +52,13 @@ public class MainWindow extends UiPart<Stage> {
     private StackPane personListPanelPlaceholder;
 
     @FXML
-    private StackPane targetPersonPanelPlaceholder;
-
-    @FXML
     private StackPane resultDisplayPlaceholder;
 
     @FXML
     private StackPane statusbarPlaceholder;
+
+    @FXML
+    private GridPane mainPane;
 
     /**
      * Creates a {@code MainWindow} with the given {@code Stage} and {@code Logic}.
@@ -66,6 +73,8 @@ public class MainWindow extends UiPart<Stage> {
         // Configure the UI
         setWindowDefaultSize(logic.getGuiSettings());
         setHelpShortcut();
+        welcomePanel = new WelcomePanel();
+        mainPane.addColumn(1, welcomePanel.getRoot());
 
         helpWindow = new HelpWindow();
     }
@@ -94,7 +103,6 @@ public class MainWindow extends UiPart<Stage> {
         personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
 
         targetPersonPanel = new TargetPersonPanel(logic.getTargetPersonList());
-        targetPersonPanelPlaceholder.getChildren().add(targetPersonPanel.getRoot());
 
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
@@ -159,6 +167,52 @@ public class MainWindow extends UiPart<Stage> {
     }
 
     /**
+     * Sets the welcome message within welcomePanel.
+     * @param message
+     */
+    public void setWelcomeMessage(String message) {
+        requireAllNonNull(welcomePanel, message);
+        welcomePanel.setWelcomeMessage(message);
+    }
+
+    /**
+     * Sets the secondary pane to specified pane.
+     * @param secondaryPaneState
+     */
+    public void setSecondaryPaneState(SecondaryPaneState secondaryPaneState) {
+        requireNonNull(mainPane);
+        resetSecondaryPane();
+        switch(secondaryPaneState) {
+        case WELCOME:
+            mainPane.addColumn(1, welcomePanel.getRoot());
+            break;
+        case HELP:
+        case TARGET_PERSON:
+            mainPane.addColumn(1, targetPersonPanel.getRoot());
+            break;
+        case MESSAGE_TEMPLATES:
+        default:
+            break;
+        }
+    }
+
+    /**
+     * Removes the secondary pane from UI.
+     */
+    private void resetSecondaryPane() {
+        requireNonNull(mainPane);
+        ObservableList<Node> childrens = mainPane.getChildren();
+        // gosh it took me more than an hour to find out how to do this
+        for (Node node : childrens) {
+            if (node.getStyleClass().contains("secondary-pane")) {
+                logger.info("Removing secondary pane");
+                mainPane.getChildren().remove(node);
+                break;
+            }
+        }
+    }
+
+    /**
      * Executes the command and returns the result.
      *
      * @see seedu.address.logic.Logic#execute(String)
@@ -171,6 +225,10 @@ public class MainWindow extends UiPart<Stage> {
 
             if (commandResult.isShowHelp()) {
                 handleHelp();
+            }
+
+            if (commandResult.getSecondaryPaneState() != null) {
+                setSecondaryPaneState(commandResult.getSecondaryPaneState());
             }
 
             if (commandResult.isExit()) {

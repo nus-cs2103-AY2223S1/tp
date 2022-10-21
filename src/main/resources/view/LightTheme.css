@@ -286,11 +286,14 @@
 }
 
 .scroll-bar {
-    -fx-background-color: #fff;
+    -fx-border-width: 1;
+    -fx-border-radius: 6;
+    -fx-border-color: #d8d8d8;
+    -fx-background-color: #f6f6f6;
 }
 
 .scroll-bar .thumb {
-    -fx-background-color: #fff;
+    -fx-background-color: #e4e4e4;
     -fx-background-insets: 3;
 }
 
@@ -354,4 +357,92 @@
     -fx-border-radius: 3;
     -fx-background-radius: 3;
     -fx-font-size: 11;
+}
+
+.welcome-panel {
+    -fx-background-color: #fff;
+    -fx-padding: 10 5;
+}
+
+.reminder-card {
+    -fx-padding: 10 6;
+}
+
+.reminder-description {
+    -fx-font-size: 18px;
+    -fx-text-fill: #333 !important;
+    -fx-font-family: "Roboto";
+    -fx-font-weight: 200;
+}
+
+.reminder-with {
+    -fx-font-size: 12px;
+    -fx-text-fill: rgb(108, 53, 122) !important;
+    -fx-font-style: italic;
+    -fx-font-family: "Roboto";
+    -fx-font-weight: lighter;
+}
+
+.reminder-date {
+    -fx-font-size: 12px;
+    -fx-text-fill: #4e4e4e !important;
+    -fx-font-family: "Roboto";
+    -fx-font-weight: lighter;
+}
+
+.welcome-message {
+    -fx-font-size: 20px;
+    -fx-font-weight: 200;
+    -fx-padding: 10 0;
+}
+
+.reminders-header {
+    -fx-font-size: 18px;
+    -fx-font-weight: 300;
+    -fx-padding: 0 0 6 0;
+}
+
+.target-person-header {
+    -fx-font-family: "Roboto";
+    -fx-font-weight: 700;
+    -fx-font-size: 36px;
+    -fx-padding: 10 0;
+}
+
+.target-person-header-2 {
+    -fx-font-family: "Roboto";
+    -fx-font-weight: 400;
+    -fx-font-size: 24px;
+    -fx-padding: 10 0;
+}
+
+.target-person-name {
+    -fx-font-family: "Roboto";
+    -fx-font-weight: 400;
+    -fx-text-fill: #010504;
+    -fx-font-size: 24px;
+    -fx-padding: 8 0;
+}
+
+.target-person-tag-container {
+    -fx-padding: 8 0;
+}
+
+.target-person-tag {
+    -fx-font-family: "Roboto";
+    -fx-font-weight: 300;
+    -fx-text-fill: #010504;
+    -fx-font-size: 14px;
+}
+
+.target-person-icon-container {
+    -fx-padding: 0 8 0 0;
+}
+
+.target-person-details {
+    -fx-padding: 8 0;
+    -fx-font-family: "Roboto";
+    -fx-font-weight: 300;
+    -fx-text-fill: #010504;
+    -fx-font-size: 16px;
 }
