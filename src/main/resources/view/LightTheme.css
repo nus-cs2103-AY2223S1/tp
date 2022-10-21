@@ -89,7 +89,9 @@
 .list-view {
     -fx-background-insets: 0;
     -fx-padding: 0;
-    -fx-background-color: derive(#fff, 20%);
+    -fx-background-color: #f8f8f8;
+    -fx-border-width: 1;
+    -fx-border-color: #e0e0e0;
 }
 
 .list-cell {
@@ -359,7 +361,7 @@
     -fx-font-size: 11;
 }
 
-.welcome-panel {
+.secondary-pane {
     -fx-background-color: #fff;
     -fx-padding: 10 5;
 }
@@ -392,7 +394,7 @@
 
 .welcome-message {
     -fx-font-size: 20px;
-    -fx-font-weight: 200;
+    -fx-font-weight: bold;
     -fx-padding: 10 0;
 }
 
@@ -402,18 +404,22 @@
     -fx-padding: 0 0 6 0;
 }
 
-.target-person-header {
+.pane-header {
     -fx-font-family: "Roboto";
     -fx-font-weight: 700;
     -fx-font-size: 36px;
     -fx-padding: 10 0;
 }
 
-.target-person-header-2 {
+.pane-header-2 {
     -fx-font-family: "Roboto";
     -fx-font-weight: 400;
     -fx-font-size: 24px;
     -fx-padding: 10 0;
+}
+
+.target-person-card {
+    -fx-background-color: #f8f8f8 !important;
 }
 
 .target-person-name {
@@ -445,4 +451,18 @@
     -fx-font-weight: 300;
     -fx-text-fill: #010504;
     -fx-font-size: 16px;
+}
+
+.message-template-card {
+    -fx-padding: 10 6;
+}
+
+.message-template-text {
+    -fx-font-family: "Roboto";
+    -fx-font-size: 14px;
+}
+
+.message-name-placeholder {
+    -fx-font-style: italic;
+    -fx-fill: #0009a6;
 }
