@@ -25,6 +25,7 @@ import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.ReadOnlyTeachersPet;
+import seedu.address.model.StatisticsCalculator;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.person.Person;
 import seedu.address.storage.JsonTeachersPetStorage;
@@ -96,6 +97,12 @@ public class LogicManagerTest {
     @Test
     public void getFilteredScheduleList_modifyList_throwsUnsupportedOperationException() {
         assertThrows(UnsupportedOperationException.class, () -> logic.getFilteredScheduleList().remove(0));
+    }
+
+    @Test
+    public void getStatisticsCalculator_returnsValidStatisticsCalculator() {
+        StatisticsCalculator expectedCalculator = new StatisticsCalculator(model.getTeachersPet());
+        assertEquals(logic.getStatisticsCalculator(), expectedCalculator);
     }
 
     /**

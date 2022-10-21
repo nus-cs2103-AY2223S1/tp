@@ -33,6 +33,7 @@ public class PhoneTest {
         assertFalse(Phone.isValidPhone("9312 1534")); // spaces within digits
         assertFalse(Phone.isValidPhone("13121534")); // not starting with 6, 8 or 9
         assertFalse(Phone.isValidPhone("73121534")); // not starting with 6, 8 or 9
+        assertFalse(Phone.isValidPhone("9312153哈")); // non-alphabetic characters
 
         // valid phone numbers
         assertTrue(Phone.isValidPhone("92222222"));
