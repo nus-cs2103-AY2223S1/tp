@@ -1,4 +1,4 @@
-package seedu.address.ui;
+package seedu.address.ui.CommandWindows;
 
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
@@ -10,6 +10,8 @@ import java.util.function.Consumer;
 
 import javafx.stage.Stage;
 import seedu.address.logic.commands.AddCustomerCommand;
+import seedu.address.ui.CommandBox;
+import seedu.address.ui.UiPart;
 
 /**
  * Controller for to add a Customer by the GUI.

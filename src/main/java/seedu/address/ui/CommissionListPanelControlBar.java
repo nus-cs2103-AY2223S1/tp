@@ -4,6 +4,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.layout.Region;
 import javafx.stage.Stage;
+import seedu.address.ui.CommandWindows.AddCommissionWindow;
 
 /**
  * Represents the controls of the {@code CommissionListPanel}.

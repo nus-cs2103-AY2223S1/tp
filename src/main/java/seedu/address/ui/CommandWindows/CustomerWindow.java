@@ -1,4 +1,4 @@
-package seedu.address.ui;
+package seedu.address.ui.CommandWindows;
 
 import java.util.HashSet;
 import java.util.function.Consumer;
@@ -13,6 +13,8 @@ import javafx.stage.Stage;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.ui.CommandBox;
+import seedu.address.ui.UiPart;
 
 /**
  * Controller for to add or edit a Customer by the GUI.
