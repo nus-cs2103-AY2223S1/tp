@@ -234,6 +234,28 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 _{more aspects and alternatives to be added}_
 
+### Appointments feature
+
+**Implementation**
+
+The appointment creation mechanism is facilitated by its own `Appointment` component under the `Model` component. There
+are 2 types of appointments, namely, `PastAppointment` and `UpcomingAppointment`. Both of these extend the abstract
+`Appointment` class, which implements the `Appointment#getDate()` operation.
+
+#### `PastAppointment`
+
+`PastAppointment`s represent a completed appointment for a patient. They are guaranteed to be immutable as they
+constitute of sensitive patient data. Apart from `date`, `PastAppointment`s also require the following:
+
+* `diagnosis`
+  * Stored as a string, and is compulsory for the creation of a `PastAppointment`. Represents the doctor's analysis of the
+    patient's state in the appointment, and is input using the `diag/` prefix.
+  * Exposed using the `PastAppointment#getDiagnosis()` method for use in `JsonAdaptedPastAppointment`.
+* `medication`
+  * Stored as a set of medication tags, a `PastAppointment` may contain 0 or more medicine tags. Each medicine tag is 
+    input separately with a `m/` prefix.
+  * Exposed using the `PastApointment#getMedication()` method for use in `JsonAdaptedPastAppointment`.
+
 ### \[Proposed\] Data archiving
 
 _{Explain here how the data archiving feature will be implemented}_
