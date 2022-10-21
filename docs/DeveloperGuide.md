@@ -191,6 +191,61 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
+### Add Student feature
+
+The Add Student feature allows CS2103T TAs to add a new `Student` object to the student list. When successfully added, 
+the student will be added on the Graphical User Interface.
+
+#### Implementation
+
+The Add Student mechanism is facilitated by `AddressBook`. 
+It implements the following operations:
+* `AddressBook#hasStudent(Student s)` - Returns true if a student with the same identity as Student s exists in the address book.
+* `AddressBook#addStudent(Student student)` - Adds a student to the address book.
+
+These operations are exposed in the Model interface as `Model#hasStudent(Student student)` 
+and `Model#addStudent(Student student)` respectively.
+
+Given below is an example usage scenario and how the `addstu` mechanism behaves at each step.
+
+Step 1. The user launches the application for the first time. The `AddressBook` will be initialised with the initial 
+json data stored.
+
+Step 2. The user execute `addstu n/John Doe...` command to add student called John Doe to the address book.
+The `addstu` command calls `AddStuCommandParser#parse()` which parses the string keyed into the command line of the GUI.
+
+Step 3. `AddStuCommandParser#parse()` invokes the creation of an `AddStuCommand` object. 
+
+**Note:** If a command fails its execution due to incorrect command format, it will not create a `AddStuCommand` object,
+User will retype their command.
+
+Step 4. Upon creation of `AddStuCommand` object, `Model#hasStudent(Student student)` and `Model#addStudent(Student student)`
+methods are called.
+
+**Note:** If upon invoking `Model#hasStudent(Student s)` method and return value is `true`, it will not call `Model#addStudent(Student student)`,
+so the student will not be added into the student list as student already exist in the list.
+
+Step 5. After successfully adding student to the student list, a `CommandResult` object will be created to tell the user 
+that the student has been successfully added.
+
+The following sequence diagram shows how the add student operation works:
+![AddStuSequenceDiagram](images/AddStuSequenceDiagram.png)
+
+The following activity diagram summarizes what happens when a user executes a new `addstu` command.
+
+<img src="images/AddStuActivityDiagram.png" width="250" />
+
+#### Design Considerations
+
+**Aspect: How AddStu executes::**
+
+- **Alternative 1: Require user to key in response and attendance number in when adding student**
+  - Pros: More details of a student can be viewed right after adding a student
+  - Cons: Troublesome for CS2103T TAs to add a student quickly as many details have to be keyed in if what they want is to just keep track of the students name and contact name.
+- **Alternative 2: Only name, telegram handle and email needs to be keyed in when adding student**
+  - Pros: Faster to add a student
+  - Cons: CS2103T TA has to use another command to change the response and attendance number of the student.
+=======
 ### Add Response feature 
 
 The `AddResponse` feature allows users to edit the response count of a `Student` object. When successfully edited,
@@ -241,8 +296,6 @@ The following activity diagram summarizes what happens when a user executes a ne
   - Pros: More comprehensive, users can check the quality of responses to award participation marks correspondingly
   - Cons: More memory consumed, takes quite long to implement on top of other features to be implemented in 4 weeks 
 before feature freeze.
-
-  
 
 ### \[Proposed\] Undo/redo feature
 

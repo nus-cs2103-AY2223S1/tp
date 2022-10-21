@@ -1,0 +1,17 @@
+@startuml
+'https://plantuml.com/activity-diagram-beta
+
+start
+:User executes addstu command;
+if () then ([student already exist])
+  :student retype addstu command;
+  :student added to student list;
+else ([else])
+    :student added to student list;
+endif
+
+:Updated student list saved to SETA;
+
+stop
+
+@enduml

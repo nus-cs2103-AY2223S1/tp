@@ -308,8 +308,7 @@ the data of your previous SETA home folder.
 | **Add**        | `addstu`, `addq`, `addtut`          |
 | **Attendance** | `attendance`                        |
 | **Delete**     | `deletestu`, `deleteq`, `deletetut` |
-| **Edit**       | `editstu`                           |
-| **List**       | `liststu`, `listq`, `listtut`       |
+| **Edit**       | `editstu`                           |    
 | **Mark**       | `markq`, `unmarkq`, `marktut`       |
 | **Tag**        | `helpstu`                           |
 | **Exit**       | `exit`                              |
