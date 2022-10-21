@@ -36,7 +36,6 @@ public class PersonListPanel extends UiPart<Region> {
         @Override
         protected void updateItem(Person person, boolean empty) {
             super.updateItem(person, empty);
-            System.out.println("update person card" + person);
 
             if (empty || person == null) {
                 setGraphic(null);
