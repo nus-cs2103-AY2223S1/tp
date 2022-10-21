@@ -1,0 +1,35 @@
+@startuml
+start
+skinparam activityBorderThickness 1.5
+skinparam activity {
+    BorderColor #7F5539
+    BackgroundColor #EDE0D4
+    arrowColor #7F5539
+}
+:User executes FindCommand;
+:AddressBookParser parses the command;
+:FindCommandParser parses the arguments provided;
+if () then ([command is valid])
+    if () then ([Prefixes for email/phone is present])
+
+        if () then ([invalid])
+            : Throw an Exception;
+        else ([else])
+            : Create FindCommand with findPersonDescriptor;
+        endif
+    else ([else])
+        : Create FindCommand with MultiSearchPredicate;
+    endif
+    if () then ([FindCommand has predicate])
+        : MultiSearchPredicate search the argument;
+        : NameSoundsSimilarToPredicate applies does fuzzy search one name ;
+        : AllInfoContainsKeywordsPredicate search for occurence of the argument in all attributes;
+    else ([else])
+        : Search with the findPersonDescriptor;
+    endif
+else ([else])
+    : Throws an error message;
+endif
+: Display feedback to user on GUI ;
+stop
+@enduml
