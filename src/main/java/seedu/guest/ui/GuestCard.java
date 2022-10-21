@@ -17,8 +17,8 @@ public class GuestCard extends UiPart<Region> {
     private static final String FXML = "GuestListCard.fxml";
     private static final double IMAGE_WIDTH = 16;
     private static final double IMAGE_HEIGHT = 16;
-    private static final double IS_ROOM_CLEAN_WIDTH = 18;
-    private static final double IS_ROOM_CLEAN_HEIGHT = 18;
+    private static final double IS_ROOM_CLEAN_STATUS_WIDTH = 18;
+    private static final double IS_ROOM_CLEAN_STATUS_HEIGHT = 18;
     private static final double TEXT_GRAPHIC_GAP = 7;
     private static final String NAME_TOOLTIP = "Name";
     private static final String PHONE_TOOLTIP = "Phone Number";
@@ -107,14 +107,14 @@ public class GuestCard extends UiPart<Region> {
         if (guest.getIsRoomClean().value.equals("yes")) {
             Image isRoomCleanStatusImage = new Image(getClass().getResourceAsStream("/images/roomClean.png"));
             ImageView setIsRoomCleanStatusImage = new ImageView(isRoomCleanStatusImage);
-            setIsRoomCleanStatusImage.setFitWidth(IS_ROOM_CLEAN_WIDTH);
-            setIsRoomCleanStatusImage.setFitHeight(IS_ROOM_CLEAN_HEIGHT);
+            setIsRoomCleanStatusImage.setFitWidth(IS_ROOM_CLEAN_STATUS_WIDTH);
+            setIsRoomCleanStatusImage.setFitHeight(IS_ROOM_CLEAN_STATUS_HEIGHT);
             isRoomCleanStatus.setGraphic(setIsRoomCleanStatusImage);
         } else {
             Image image = new Image(getClass().getResourceAsStream("/images/roomUnclean.png"));
             ImageView setImage = new ImageView(image);
-            setImage.setFitWidth(IS_ROOM_CLEAN_WIDTH);
-            setImage.setFitHeight(IS_ROOM_CLEAN_HEIGHT);
+            setImage.setFitWidth(IS_ROOM_CLEAN_STATUS_WIDTH);
+            setImage.setFitHeight(IS_ROOM_CLEAN_STATUS_HEIGHT);
             isRoomCleanStatus.setGraphic(setImage);
         }
 
