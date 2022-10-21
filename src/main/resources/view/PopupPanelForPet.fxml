@@ -78,7 +78,7 @@
                   <Insets left="20.0" />
                </HBox.margin>
             </Button>
-            <Button mnemonicParsing="false" text="Upload vaccination prrof">
+            <Button mnemonicParsing="false" text="Upload vaccination proof">
                <HBox.margin>
                   <Insets left="20.0" />
                </HBox.margin>

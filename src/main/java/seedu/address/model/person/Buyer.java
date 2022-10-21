@@ -73,7 +73,7 @@ public class Buyer extends Person {
      *
      * @param orders The collection of orders to be added.
      */
-    public void addOrder(Collection<UniqueId> orders) {
+    public void addOrders(Collection<UniqueId> orders) {
         if (orders != null) {
             this.orders.addAll(orders);
         }

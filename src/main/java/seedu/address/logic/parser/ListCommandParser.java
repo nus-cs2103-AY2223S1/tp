@@ -16,17 +16,17 @@ public class ListCommandParser implements Parser<ListCommand> {
         }
         userInput = userInput.trim().toUpperCase();
         switch (userInput) {
-        case "BUYER":
+        case ListCommand.LIST_BUYER:
             return new ListCommand(ListCommand.LIST_BUYER);
-        case "SUPPLIER":
+        case ListCommand.LIST_SUPPLIER:
             return new ListCommand(ListCommand.LIST_SUPPLIER);
-        case "DELIVERER":
+        case ListCommand.LIST_DELIVERER:
             return new ListCommand(ListCommand.LIST_DELIVERER);
-        case "ORDER":
+        case ListCommand.LIST_ORDER:
             return new ListCommand(ListCommand.LIST_ORDER);
-        case "PET":
+        case ListCommand.LIST_PET:
             return new ListCommand(ListCommand.LIST_PET);
-        case "ALL":
+        case ListCommand.LIST_ALL:
             return new ListCommand(ListCommand.LIST_ALL);
         default:
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, ListCommand.MESSAGE_USAGE));

@@ -6,6 +6,7 @@ import java.io.IOException;
 import java.net.URL;
 
 import javafx.fxml.FXMLLoader;
+import javafx.scene.control.Control;
 import javafx.scene.control.TextInputControl;
 import javafx.scene.input.KeyCode;
 import seedu.address.MainApp;
@@ -87,7 +88,7 @@ public abstract class UiPart<T> {
         return requireNonNull(fxmlFileUrl);
     }
 
-    private void goToNextFieldWithEnter(TextInputControl currentField, TextInputControl nextField) {
+    private void goToNextFieldWithEnter(Control currentField, Control nextField) {
         // Solution below adapted from http://www.shorturl.at/aHLX7
         currentField.setOnKeyPressed(event ->{
             if(event.getCode().equals(KeyCode.ENTER)){
@@ -96,9 +97,9 @@ public abstract class UiPart<T> {
         });
     }
 
-    public void generateInputSequence(TextInputControl... textInputFields) {
-        TextInputControl currentField = null;
-        for (TextInputControl nextField : textInputFields) {
+    public void generateInputSequence(Control... fields) {
+        Control currentField = null;
+        for (Control nextField : fields) {
             if (currentField != null) {
                 goToNextFieldWithEnter(currentField, nextField);
             }
@@ -106,9 +107,10 @@ public abstract class UiPart<T> {
         }
     }
 
-    public boolean givenFieldsAllFilled(TextInputControl... textInputFields) {
+    public boolean checkGivenFieldsAllFilled(TextInputControl... textInputFields) {
         for (TextInputControl textInputField : textInputFields) {
             if (textInputField.getText().equals("")) {
+                textInputField.requestFocus();
                 return false;
             }
         }
