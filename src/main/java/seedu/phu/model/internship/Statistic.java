@@ -40,7 +40,6 @@ public class Statistic {
 
         for (ApplicationProcess.ApplicationProcessState s : states) {
             double width = (double) statesNum.get(s) / totalNum * 100;
-            System.out.println(width);
             statesWidth.put(s, width);
         }
 

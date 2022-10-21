@@ -137,6 +137,7 @@ public class StackedBarPanel extends UiPart<Node> {
 
         for (ApplicationProcess.ApplicationProcessState s : states) {
             constraints.get(s).setPercentWidth(0);
+            labels.get(s).setText("");
         }
 
         noDataConstraint.setPercentWidth(100);
@@ -151,6 +152,10 @@ public class StackedBarPanel extends UiPart<Node> {
 
         for (ApplicationProcess.ApplicationProcessState s : states) {
             int amount = num.get(s);
+            if (amount == 0) {
+                labels.get(s).setText("");
+                continue;
+            }
             labels.get(s).setText(String.valueOf(amount));
         }
     }
