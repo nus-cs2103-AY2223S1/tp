@@ -36,6 +36,7 @@ jobs:
           java-package: jdk+fx
 
       - name: Build and check with Gradle
+        uses: GabrielBB/xvfb-action@v1.6
         run: ./gradlew check coverage
 
       - uses: codecov/codecov-action@v2
