@@ -9,6 +9,7 @@ import java.util.Comparator;
 import seedu.studmap.logic.commands.SortCommand;
 import seedu.studmap.logic.parser.exceptions.ParseException;
 import seedu.studmap.model.attribute.Attribute;
+import seedu.studmap.model.attribute.AttributeType;
 import seedu.studmap.model.order.Order;
 import seedu.studmap.model.student.Student;
 
@@ -41,7 +42,7 @@ public class SortCommandParser implements Parser<SortCommand> {
                 throw new ParseException("Caused by: No attribute specified\n");
             }
             if (Attribute.isValidAttributeType(attributeType)) {
-                comparator = Attribute.getAttributeComparator(attributeType);
+                comparator = Attribute.getAttributeComparator(AttributeType.valueOf(attributeType));
             } else {
                 throw new ParseException("Caused by: Invalid attribute\n");
             }
