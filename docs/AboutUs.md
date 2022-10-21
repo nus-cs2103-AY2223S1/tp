@@ -5,55 +5,55 @@ title: About Us
 
 We are a team based in the [School of Computing, National University of Singapore](http://www.comp.nus.edu.sg).
 
-You can reach us at the email `seer[at]comp.nus.edu.sg`
+You can reach us at the email `jason.qiu@u.nus.edu`
 
 ## Project team
 
-### John Doe
+### Jason Qiu
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/jasonqiu212.png" width="200px">
 
-[[homepage](http://www.comp.nus.edu.sg/~damithch)]
-[[github](https://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](https://github.com/jasonqiu212)]
+[[portfolio](team/jasonqiu212.md)]
 
-* Role: Project Advisor
+- Role: Team lead
+- Responsibilities: UI
 
-### Jane Doe
+### Pontakorn Prasertsuk
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/peppapighs.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/peppapighs)]
+[[portfolio](team/peppapighs.md)]
 
-* Role: Team Lead
-* Responsibilities: UI
+- Role: Code Quality
+- Responsibilities: UI
 
-### Johnny Doe
+### Shenyi Cui
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/shenyicui.png" width="200px">
 
-[[github](http://github.com/johndoe)] [[portfolio](team/johndoe.md)]
+[[github](http://github.com/shenyicui)] [[portfolio](team/shenyicui.md)]
 
-* Role: Developer
-* Responsibilities: Data
+- Role: Deliverables
+- Responsibilities: Issues
 
-### Jean Doe
+### Muthukrishnan Santosh
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/santosh3007.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/santosh3007)]
+[[portfolio](team/santosh3007.md)]
 
-* Role: Developer
-* Responsibilities: Dev Ops + Threading
+- Role: Documentation
+- Responsibilities: Manage Non-Functional Requirements
 
-### James Doe
+### Chin Yun Ru
 
-<img src="images/johndoe.png" width="200px">
+<img src="images/yunruu.png" width="200px">
 
-[[github](http://github.com/johndoe)]
-[[portfolio](team/johndoe.md)]
+[[github](http://github.com/yunruu)]
+[[portfolio](team/yunruu.md)]
 
-* Role: Developer
-* Responsibilities: UI
+- Role: Integration
+- Responsibilities: Glossary
