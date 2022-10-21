@@ -1,7 +1,9 @@
 package seedu.rc4hdb.ui;
 
+import java.nio.file.Path;
 import java.util.logging.Logger;
 
+import javafx.beans.value.ChangeListener;
 import javafx.collections.ListChangeListener;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -37,6 +39,7 @@ public class MainWindow extends UiPart<Stage> {
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
     private CommandBox commandBoxRegion;
+    private CurrentWorkingFileFooter statusBarFooter;
 
     @FXML
     private StackPane commandBoxPlaceholder;
@@ -66,6 +69,7 @@ public class MainWindow extends UiPart<Stage> {
         this.primaryStage = primaryStage;
         this.logic = logic;
         this.logic.getObservableFields().addListener(getListChangeListener());
+        this.logic.getObservableResidentBookFilePath().addListener(getFileChangeListener());
 
         // Configure the UI
         setWindowDefaultSize(logic.getGuiSettings());
@@ -124,7 +128,7 @@ public class MainWindow extends UiPart<Stage> {
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
 
-        StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getResidentBookFilePath());
+        statusBarFooter = new CurrentWorkingFileFooter(logic.getObservableResidentBookFilePath());
         statusbarPlaceholder.getChildren().add(statusBarFooter.getRoot());
 
         CommandBox commandBox = new CommandBox(this::executeCommand);
@@ -214,4 +218,10 @@ public class MainWindow extends UiPart<Stage> {
         // Update the observable field list within the logic attribute
         return c -> residentTableView.setObservableFields(logic.getObservableFields());
     }
+
+    private ChangeListener<Path> getFileChangeListener() {
+        return (observableValue, oldValue, newValue) ->
+                statusBarFooter.updateFilePath(newValue);
+    }
+
 }

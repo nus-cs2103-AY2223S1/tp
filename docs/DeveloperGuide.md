@@ -267,6 +267,11 @@ Currently, the commands for showing and hiding columns are extensions of the `li
 
 <br>
 
+### Filter feature to filter residents according to fields
+
+A ```FilterCommand``` class and a ```FilterCommandParser``` class was implemented to follow the structure of the
+```Logic``` component of the application. The filter command uses a 
+
 ### \[Proposed\] Undo/redo feature
 
 #### Proposed Implementation

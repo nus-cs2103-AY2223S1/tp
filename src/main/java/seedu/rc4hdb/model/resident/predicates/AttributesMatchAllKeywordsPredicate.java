@@ -21,6 +21,7 @@ public class AttributesMatchAllKeywordsPredicate implements Predicate<Resident> 
 
     @Override
     public boolean test(Resident resident) {
+        assert resident != null: "Resident object is null";
         return descriptor.getName().map(name -> resident.getName().contains(name)).orElse(true)
                 && descriptor.getPhone().map(phone -> resident.getPhone().contains(phone)).orElse(true)
                 && descriptor.getEmail().map(email -> resident.getEmail().contains(email)).orElse(true)
