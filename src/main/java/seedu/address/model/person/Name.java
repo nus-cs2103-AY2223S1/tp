@@ -38,6 +38,16 @@ public class Name {
         return test.matches(VALIDATION_REGEX);
     }
 
+    /**
+     * Returns -1 if this name appears before the other name, and
+     * returns 0 if this name has the same order as the other name, and
+     * returns 1 if this name appears after the other name.
+     *
+     * @param name The other name to compare with.
+     */
+    public int compareTo(Name name) {
+        return this.fullName.compareTo(name.fullName);
+    }
 
     @Override
     public String toString() {

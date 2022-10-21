@@ -10,6 +10,7 @@ import java.util.logging.Logger;
 
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
+import javafx.collections.transformation.SortedList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.person.Appointment;
@@ -25,7 +26,6 @@ public class ModelManager implements Model {
     private final UserPrefs userPrefs;
     private final FilteredList<Person> filteredPersons;
     private final FilteredList<Appointment> filteredAppointments;
-
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
      */
@@ -141,12 +141,13 @@ public class ModelManager implements Model {
     //=========== Filtered Person List Accessors =============================================================
 
     /**
-     * Returns an unmodifiable view of the list of {@code Person} backed by the internal list of
+     * Returns an unmodifiable view of the list of {@code Person}
+     * in ascending order by name backed by the internal list of
      * {@code versionedAddressBook}
      */
     @Override
     public ObservableList<Person> getFilteredPersonList() {
-        return filteredPersons;
+        return new SortedList<>(filteredPersons, (p1,p2) -> p1.compareTo(p2));
     }
 
     @Override
@@ -158,12 +159,13 @@ public class ModelManager implements Model {
     //=========== Filtered Appointment List Accessors =============================================================
 
     /**
-     * Returns an unmodifiable view of the list of {@code Appointment} backed by the internal list of
+     * Returns an unmodifiable view of the list of {@code Appointment}
+     * in ascending order by datetime backed by the internal list of
      * {@code versionedAddressBook}
      */
     @Override
     public ObservableList<Appointment> getFilteredAppointmentList() {
-        return filteredAppointments;
+        return new SortedList<>(filteredAppointments, (a1,a2) -> a1.compareTo(a2));
     }
 
     @Override

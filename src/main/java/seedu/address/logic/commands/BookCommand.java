@@ -29,7 +29,7 @@ public class BookCommand extends Command {
             + PREFIX_RECURRING_PERIOD + "PERIOD "
             + "Example: " + COMMAND_WORD + " 3 "
             + PREFIX_REASON + "Sore Throat "
-            + PREFIX_DATE + "2022-10-12 16:30"
+            + PREFIX_DATE + "2022-10-12 16:30 "
             + PREFIX_RECURRING_PERIOD + "1Y2M3D";
 
     public static final String MESSAGE_BOOK_APPOINTMENT_SUCCESS = "Booked Appointment for Person: %1$s";

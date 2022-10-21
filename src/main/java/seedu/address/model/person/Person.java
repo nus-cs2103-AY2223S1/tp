@@ -121,6 +121,21 @@ public class Person {
     }
 
     /**
+     * Returns -1 if this person appears before the other person, and
+     * returns 0 if this person has the same order as the other person, and
+     * returns 1 if this person appears after the other person.
+     *
+     * @param person The other person to compare with.
+     */
+    public int compareTo(Person person) {
+        int value = this.getName().compareTo(person.getName());
+        if (value == 0) {
+            return this.getPhone().compareTo(person.getPhone());
+        }
+        return value;
+    }
+
+    /**
      * Returns true if both persons have the same identity and data fields.
      * This defines a stronger notion of equality between two persons.
      */

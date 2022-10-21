@@ -256,6 +256,17 @@ public class Appointment {
         return recurring;
     }
 
+    /**
+     * Returns -1 if this appointment appears before the other appointment, and
+     * returns 0 if this appointment has the same order as the other appointment, and
+     * returns 1 if this appointment appears after the other appointment.
+     *
+     * @param appointment The other appointment to compare with.
+     */
+    public int compareTo(Appointment appointment) {
+        return this.dateTime.compareTo(appointment.dateTime);
+    }
+
     @Override
     public boolean equals(Object other) {
         if (other == this) {

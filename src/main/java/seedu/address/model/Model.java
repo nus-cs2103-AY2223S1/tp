@@ -1,6 +1,7 @@
 package seedu.address.model;
 
 import java.nio.file.Path;
+import java.util.Comparator;
 import java.util.List;
 import java.util.function.Predicate;
 
@@ -13,6 +14,12 @@ import seedu.address.model.person.Person;
  * The API of the Model component.
  */
 public interface Model {
+    /** {@code Comparator} that compares two persons */
+    Comparator<Person> COMPARATOR_SORT_ALL_PERSONS = (p1, p2) -> p1.compareTo(p2);
+
+    /** {@code Comparator} that compares two appointments */
+    Comparator<Appointment> COMPARATOR_SORT_ALL_APPOINTMENTS = (a1, a2) -> a1.compareTo(a2);
+
     /** {@code Predicate} that always evaluate to true */
     Predicate<Person> PREDICATE_SHOW_ALL_PERSONS = unused -> true;
 
@@ -74,9 +81,25 @@ public interface Model {
      */
     void addPerson(Person person);
 
+    /**
+     * Adds the given appointment.
+     * {@code appointment} must not already exist in the address book.
+     */
     void addAppointment(Appointment appointment);
+    /**
+     * Deletes the given appointment.
+     * {@code target} must already exist in the address book.
+     */
     void deleteAppointment(Appointment target);
+    /**
+     * Deletes the given appointment list.
+     * {@code appointments} must already exist in the address book.
+     */
     void deleteAppointments(List<Appointment> appointments);
+    /**
+     * Updates the given appointment.
+     * {@code target} must already exist in the address book.
+     */
     void setAppointment(Appointment target, Appointment editedAppointment);
 
     /**
@@ -95,6 +118,14 @@ public interface Model {
      */
     void updateFilteredPersonList(Predicate<Person> predicate);
 
+    /**
+     * Returns an unmodifiable view of the filtered appointment list.
+     */
     ObservableList<Appointment> getFilteredAppointmentList();
+
+    /**
+     * Updates the filter of the filtered appointment list to filter by the given {@code predicate}.
+     * @throws NullPointerException if {@code predicate} is null.
+     */
     void updateFilteredAppointmentList(Predicate<Appointment> predicate);
 }
