@@ -70,7 +70,7 @@ public class TutorListCard extends UiPart<Region> {
      * Handles the tutor list card pressed event.
      */
     @FXML
-    private void handleClick() {
+    private void handleViewDetails() {
         int indexToView = displayedIndex + 1;
         String commandText = "view " + indexToView;
         try {
