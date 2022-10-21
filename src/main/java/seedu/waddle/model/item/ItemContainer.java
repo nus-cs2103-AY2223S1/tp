@@ -2,28 +2,34 @@ package seedu.waddle.model.item;
 
 import java.util.Comparator;
 
+/**
+ * Represents an ItemContainer in an Itinerary.
+ */
 public class ItemContainer {
 
     private UniqueItemList unscheduledItemList;
     private UniqueItemList scheduledItemList;
 
-    private Comparator<Item> PriorityComparator = new Comparator<Item>() {
+    private Comparator<Item> priorityComparator = new Comparator<Item>() {
         @Override
         public int compare(Item item1, Item item2) {
             return item1.getPriority().compareTo(item2.getPriority());
         }
     };
 
-    private Comparator<Item> TimeComparator = new Comparator<Item>() {
+    private Comparator<Item> timeComparator = new Comparator<Item>() {
         @Override
         public int compare(Item o1, Item o2) {
             return 0;
         }
-//        public int compare(Item item1, Item item2) {
-//            return item1.getTime().compareTo(item2.getTime());
-//        }
+        /*public int compare(Item item1, Item item2) {
+            return item1.getDay().compareTo(item2.getDay());
+        }*/
     };
 
+    /**
+     * Constructor  for an ItemContainer.
+     */
     public ItemContainer() {
         this.unscheduledItemList = new UniqueItemList();
         this.scheduledItemList = new UniqueItemList();
@@ -37,13 +43,17 @@ public class ItemContainer {
         return this.scheduledItemList;
     }
     private void sortUnscheduledItemList() {
-        this.unscheduledItemList.sort(PriorityComparator);
+        this.unscheduledItemList.sort(priorityComparator);
     }
 
     private void sortScheduledItemList() {
-        this.unscheduledItemList.sort(TimeComparator);
+        this.unscheduledItemList.sort(timeComparator);
     }
 
+    /**
+     * Schedule an Item.
+     * @param index Position of item.
+     */
     public void scheduleItem(int index) {
         Item item = this.unscheduledItemList.remove(index);
         sortUnscheduledItemList();
@@ -51,6 +61,10 @@ public class ItemContainer {
         sortScheduledItemList();
     }
 
+    /**
+     * Unschedule an Item.
+     * @param index Position of item.
+     */
     public void unscheduleItem(int index) {
         Item item = this.scheduledItemList.remove(index);
         sortScheduledItemList();
