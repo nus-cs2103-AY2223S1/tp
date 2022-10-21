@@ -41,7 +41,10 @@ public class CommissionListPanel extends UiPart<Region> {
         super(FXML);
         commissionPanelControlsPlaceholder.getChildren()
                 .add(new CommissionListPanelControlBar(addChildWindow, commandExecutor).getRoot());
-        this.updateUI(observableCommissionList.getValue().getValue());
+
+        if (observableCommissionList.getValue() != null) {
+            this.updateUI(observableCommissionList.getValue().getValue());
+        }
         this.selectCommission = selectCommission;
 
         observableCommissionList.addListener((observable, oldValue, newValue) -> this.updateUI(newValue.getValue()));

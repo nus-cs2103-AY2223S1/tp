@@ -122,7 +122,8 @@ How the parsing works:
 The `Model` component,
 
 * stores the art buddy data i.e., all `Customer` objects (which are contained in a `UniqueCustomerList` object).
-* stores all `Commission` objects within the active `Customer` (which are contained in a `UniqueCommissionList` object).
+* stores all `Commission` objects within their respective `Customer` object (which are contained in a `UniqueCommissionList` object).
+* stores all `Iteration` objects within their respective `Commission` object (which are contained in a `UniqueIterationList` object).
 * stores the currently 'selected' `Customer` as an `ObservableObject<Customer>` which lets us listen to changes to the selected customer for performing UI updates.
 * stores the current 'filtered' `Customer` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Customer>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
 * stores the current list of `Commission` objects belonging to the selected `Customer` (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Commission>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list changes.
@@ -156,6 +157,88 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 ## **Implementation**
 
 This section describes some noteworthy details on how certain features are implemented.
+
+### Commissions
+The class diagram below shows our current implementation of the `Commission` class.
+
+<img src="images/Commission.png" width="450" />
+
+Each commission in `ArtBuddy` contains...
+- a `Title`
+- a `Fee`
+- a `Deadline`
+- a `Completion Status`
+- a `Set<Tags>` with any number of `Tag`s
+- an *optional* `Description`
+- a reference to its `Customer` object
+- a `UniqueIterationList` containing its `Iteration`s
+
+Commissions are currently stored in the individual `Customer`'s `UniqueCommissionList`.
+
+#### Design Considerations:
+
+**Aspect 1: Location to store the commission objects**
+
+* **Alternative 1 (current choice):** Store all commission objects within their individual customer objects.
+  * Pros:
+    * Easy to implement.
+    * Commands requiring commissions of a specific customer becomes more efficient.
+  * Cons:
+    * Commands requiring commissions from all customers are less efficient.
+* **Alternative 2:** Store all commission objects in `AddressBook`.
+  * Pros:
+    * Commands requiring commissions from all customers can be more efficient.
+  * Cons: 
+    * More difficult to implement, since a deleted customer's commissions has to be individually deleted from this master list of commissions.
+    * Less efficient for commands for an individual customer's commissions.
+
+**Aspect 2: How to store the commission objects in `Customer`**
+
+* **Alternative 1 (current choice):**  create a `UniqueCommissionList` class
+  * Pros:
+    * Supports indexing of commissions already, which is convenient for most of our commands.
+  * Cons:
+    * Another class is necessary.
+* **Alternative 2:** Use `Set<Commissions>`
+  * Pros:
+    * Individual customers' data does not require "ordering". Sets thus provide more efficient add/delete/find operations.
+  * Cons:
+    * Does not support indexing. Would still need another data structure in `ModelManager` when commands request commissions by index.
+    * Edit becomes tedious to implement as it requires a combination of create and delete.
+
+<!-- TODO Deleting a Commission (`delcom`) -->
+
+### Iterations
+Iterations help users keep track of the progress of their commissions. Each commission iteration
+essentially represents a version of the commissioned artwork.
+
+Iterations contain a `Date`, `IterationDescription`, `ImagePath`, and `Feedback`. Since
+an iteration must be tied to a commission, this composition is captured by storing the
+iterations in a `UniqueIterationList` inside the associated commission object.
+
+<!-- TODO insert iteration class diagram here -->
+
+#### Adding an Iteration (`additer`)
+Creates an iteration based on the user input, and adds the iteration to the active commission.
+<!-- TODO Users may either add an iteration via the command line or the GUI as described in the activity
+diagram below. -->
+
+<!-- TODO insert addIteration activity diagram here -->
+
+##### Implementation
+Support for the add iteration command is integrated with the `AddIterationParser`,
+which enables ArtBuddy to parse user input into an `AddIterationCommand`. The
+`AddIterationCommand` stores the iteration created from the user inputs. This
+iteration is added to the active commission's `UniqueIterationList` when the
+`AddIterationCommand` is executed by the `LogicManager`.
+
+Note that if there is no presently active commission, the iteration will not be added.
+
+The sequence diagram below shows the interactions within the Logic component when
+the user inputs `additer d/2022-10-10 n/Changed the colour scheme. p//Users/john/Downloads/Draft 1.png
+f/Updated colour scheme is much better`;
+
+<!-- TODO insert addIteration sequence diagram here -->
 
 ### \[Proposed\] Undo/redo feature
 
