@@ -191,8 +191,9 @@ The following sequence diagram shows how the list operation works
 
 ![ListSequenceDiagram](images/ListSequenceDiagram.png)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `ListUsersCommand` should 
-end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.</div>
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `ListUsersCommand` 
+and `ListUsersCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches 
+the end of diagram.</div>
 
 The following activity diagram summarizes what happens when a user executes a list command:
 
