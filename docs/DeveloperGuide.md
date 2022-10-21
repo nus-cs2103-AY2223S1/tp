@@ -170,6 +170,24 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
+### The Resident Class
+`RC4HDB` seeks to serve as a housing management database, and as such, one of the first tasks at hand was to modify the 
+existing `AddressBook` application to one that makes use of the `Resident` class, which contains much more useful 
+information as compared to the current fields that are supported by `Person`. `Person` contained the fields `Name`, 
+`Phone`, `Email`, `Address` and `Tags`. We decided to keep all of the above fields except `Address`. In addition,
+we added the additional fields `Room`, `House`, `Gender`, `MatricNumber`, all of which are crucial information for the 
+housing management staff.
+
+<br>
+
+#### Refactoring of Classes
+Refactoring of classes to make use of `Resident` related fields and information was a priority for us in the intiial 
+stages of development. With `Resident` not yet implemented, it was difficult for us to progress to other features that 
+required the fields of said class. After this refactoring was done, all packages now fall under `seedu.rc4hdb`, the
+`Person` class was no longer needed, and `Resident` was able to replace it in all existing commands.  The example below 
+shows the updated Sequence diagram for the executing of our `delete` command.
+<img src="images/DeleteSequenceDiagram2.png" />
+
 ### TableView
 
 #### Changes in Data Representation
