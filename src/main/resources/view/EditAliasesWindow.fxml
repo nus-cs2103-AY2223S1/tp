@@ -36,6 +36,7 @@
                         <RowConstraints minHeight="10.0" prefHeight="30.0" />
                         <RowConstraints minHeight="10.0" prefHeight="30.0" />
                         <RowConstraints minHeight="10.0" prefHeight="30.0" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" />
                     </rowConstraints>
                     <columnConstraints>
                         <ColumnConstraints maxWidth="92.66668701171875" minWidth="10.0" prefWidth="58.66668701171875" />
@@ -51,6 +52,7 @@
                         <Label text="Find" GridPane.rowIndex="6" />
                         <Label text="List" GridPane.rowIndex="7" />
                         <Label text="Help" GridPane.rowIndex="8" />
+                  <Label text="Rate" GridPane.rowIndex="9" />
                         <TextField fx:id="add" onAction="#handleSave" styleClass="textField" GridPane.columnIndex="1" />
                         <TextField fx:id="clear" onAction="#handleSave" styleClass="textField" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                         <TextField fx:id="delete" onAction="#handleSave" styleClass="textField" GridPane.columnIndex="1" GridPane.rowIndex="2" />
@@ -60,6 +62,7 @@
                         <TextField fx:id="find" onAction="#handleSave" styleClass="textField" GridPane.columnIndex="1" GridPane.rowIndex="6" />
                         <TextField fx:id="list" onAction="#handleSave" styleClass="textField" GridPane.columnIndex="1" GridPane.rowIndex="7" />
                         <TextField fx:id="help" onAction="#handleSave" styleClass="textField" GridPane.columnIndex="1" GridPane.rowIndex="8" />
+                  <TextField fx:id="rate" onAction="#handleSave" styleClass="textField" GridPane.columnIndex="1" GridPane.rowIndex="9" />
                     </children>
                     <padding>
                         <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />

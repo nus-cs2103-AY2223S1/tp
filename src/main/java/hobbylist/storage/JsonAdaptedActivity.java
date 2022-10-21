@@ -27,7 +27,7 @@ class JsonAdaptedActivity {
     private final String description;
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
     private final List<JsonAdaptedDate> date = new ArrayList<>();
-
+    private final int rating;
 
     /**
      * Constructs a {@code JsonAdaptedActivity} with the given activity details.
@@ -35,7 +35,8 @@ class JsonAdaptedActivity {
     @JsonCreator
     public JsonAdaptedActivity(@JsonProperty("name") String name, @JsonProperty("description") String description,
                                @JsonProperty("tagged") List<JsonAdaptedTag> tagged,
-                               @JsonProperty("date") List<JsonAdaptedDate> date) {
+                               @JsonProperty("date") List<JsonAdaptedDate> date,
+                               @JsonProperty("rating") int rating) {
         this.name = name;
         this.description = description;
         if (tagged != null) {
@@ -44,6 +45,7 @@ class JsonAdaptedActivity {
         if (date != null) {
             this.date.addAll(date);
         }
+        this.rating = rating;
     }
 
     /**
@@ -55,6 +57,7 @@ class JsonAdaptedActivity {
         tagged.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
+        rating = source.getRating();
         //JsonAdaptedDate d = new JsonAdaptedDate("2003-03-03");
         //date.add(d);
         if (!source.getDate().isEmpty()) {
@@ -95,7 +98,7 @@ class JsonAdaptedActivity {
         final Description modelDescription = new Description(description);
 
         final Set<Tag> modelTags = new HashSet<>(activityTags);
-        return new Activity(modelName, modelDescription, modelTags, activityDate);
+        return new Activity(modelName, modelDescription, modelTags, activityDate, rating);
     }
 
 }

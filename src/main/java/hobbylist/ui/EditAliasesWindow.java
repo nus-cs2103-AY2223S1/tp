@@ -47,6 +47,9 @@ public class EditAliasesWindow extends UiPart<Stage> {
     @FXML
     private TextField help;
 
+    @FXML
+    private TextField rate;
+
     /**
      * Creates a new EditAliasesWindow.
      *
@@ -120,7 +123,7 @@ public class EditAliasesWindow extends UiPart<Stage> {
             return;
         }
         AliasSettings newSettings = new AliasSettings(add.getText(), clear.getText(), delete.getText(), edit.getText(),
-                exit.getText(), filter.getText(), find.getText(), list.getText(), help.getText());
+                exit.getText(), filter.getText(), find.getText(), list.getText(), help.getText(), rate.getText());
         logic.setAliasSettings(newSettings);
         this.hide();
     }
@@ -136,11 +139,12 @@ public class EditAliasesWindow extends UiPart<Stage> {
         find.setText(settings.getFind());
         list.setText(settings.getList());
         help.setText(settings.getHelp());
+        rate.setText(settings.getRate());
     }
 
     private boolean isValidAliases() {
         String[] arr = {add.getText(), clear.getText(), delete.getText(), edit.getText(),
-                exit.getText(), filter.getText(), find.getText(), list.getText(), help.getText()};
+                exit.getText(), filter.getText(), find.getText(), list.getText(), help.getText(), rate.getText()};
         for (int i = 0; i < arr.length; i++) {
             if (arr[i].equals("")) {
                 return false;

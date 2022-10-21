@@ -38,6 +38,7 @@ public class EditCommand extends Command {
             + "[" + CliSyntax.PREFIX_NAME + "NAME] "
             + "[" + CliSyntax.PREFIX_DESCRIPTION + "DESCRIPTION] "
             + "[" + CliSyntax.PREFIX_TAG + "TAG]...\n"
+            + "[" + CliSyntax.PREFIX_DATE + "DATE]...\n"
             + "Example: " + commandWord + " 1 "
             + CliSyntax.PREFIX_DESCRIPTION + "Exercised for 2 hours";
 
@@ -154,7 +155,7 @@ public class EditCommand extends Command {
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, description, tags);
+            return CollectionUtil.isAnyNonNull(name, description, tags, date);
         }
 
         public void setName(Name name) {

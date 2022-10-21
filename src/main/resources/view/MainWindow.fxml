@@ -10,17 +10,18 @@
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.stage.Stage?>
+<?import javafx.scene.image.ImageView?>
 
-<fx:root minHeight="600" minWidth="450" onCloseRequest="#handleExit" title="HobbyList" type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<fx:root type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1"
+         title="HobbyList" minWidth="450" minHeight="600" onCloseRequest="#handleExit">
   <icons>
     <Image url="@/images/address_book_32.png" />
   </icons>
+
   <scene>
+
     <Scene>
-      <stylesheets>
-        <URL value="@DarkTheme.css" />
-        <URL value="@Extensions.css" />
-      </stylesheets>
+      <VBox styleClass="pic">
 
       <VBox>
         <MenuBar fx:id="menuBar" VBox.vgrow="NEVER">
@@ -34,6 +35,12 @@
                </Menu>
           <Menu mnemonicParsing="false" text="Help">
             <MenuItem fx:id="helpMenuItem" mnemonicParsing="false" onAction="#handleHelp" text="Help" />
+          </Menu>
+          <Menu mnemonicParsing="false" text="Theme">
+            <MenuItem mnemonicParsing="false" onAction="#handleDark" text="Dark"/>
+            <MenuItem mnemonicParsing="false" onAction="#handleStar" text="Star" />
+            <MenuItem mnemonicParsing="false" onAction="#handleSky" text="Sky" />
+            <MenuItem mnemonicParsing="false" onAction="#handleLight" text="Light" />
           </Menu>
         </MenuBar>
 
@@ -58,6 +65,9 @@
 
         <StackPane fx:id="statusbarPlaceholder" VBox.vgrow="NEVER" />
       </VBox>
+      </VBox>
     </Scene>
+
   </scene>
+
 </fx:root>

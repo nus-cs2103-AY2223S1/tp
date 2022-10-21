@@ -17,6 +17,7 @@ public class AliasSettings implements Serializable {
     private static final String DEFAULT_FIND = "find";
     private static final String DEFAULT_LIST = "list";
     private static final String DEFAULT_HELP = "help";
+    private static final String DEFAULT_RATE = "rate";
 
     private String add;
     private String clear;
@@ -27,6 +28,7 @@ public class AliasSettings implements Serializable {
     private String find;
     private String list;
     private String help;
+    private String rate;
 
     /**
      * Constructs a {@code AliasSettings} with the default command words.
@@ -41,13 +43,14 @@ public class AliasSettings implements Serializable {
         find = DEFAULT_FIND;
         list = DEFAULT_LIST;
         help = DEFAULT_HELP;
+        rate = DEFAULT_RATE;
     }
 
     /**
      * Constructs a {@code AliasSettings} with the specified command words.
      */
     public AliasSettings(String add, String clear, String delete, String edit, String exit, String filter,
-                         String find, String list, String help) {
+                         String find, String list, String help, String rate) {
         this.add = add;
         this.clear = clear;
         this.delete = delete;
@@ -57,6 +60,7 @@ public class AliasSettings implements Serializable {
         this.find = find;
         this.list = list;
         this.help = help;
+        this.rate = rate;
     }
 
     public String getAdd() {
@@ -95,6 +99,10 @@ public class AliasSettings implements Serializable {
         return help;
     }
 
+    public String getRate() {
+        return rate;
+    }
+
     @Override
     public boolean equals(Object other) {
         if (other == this) {
@@ -114,12 +122,13 @@ public class AliasSettings implements Serializable {
                 && filter.equals(o.filter)
                 && find.equals(o.find)
                 && list.equals(o.list)
-                && help.equals(o.help);
+                && help.equals(o.help)
+                && rate.equals(o.rate);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(add, clear, delete, edit, exit, filter, find, list, help);
+        return Objects.hash(add, clear, delete, edit, exit, filter, find, list, help, rate);
     }
 
     @Override
@@ -133,7 +142,8 @@ public class AliasSettings implements Serializable {
         sb.append("filter : " + filter + "\n");
         sb.append("find : " + find + "\n");
         sb.append("list : " + list + "\n");
-        sb.append("help : " + help);
+        sb.append("help : " + help + "\n");
+        sb.append("rate : " + rate);
         return sb.toString();
     }
 }
