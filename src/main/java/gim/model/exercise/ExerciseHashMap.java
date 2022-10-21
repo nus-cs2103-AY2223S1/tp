@@ -74,7 +74,6 @@ public class ExerciseHashMap {
         }
         toAdd = new Exercise(toStoreName, toAdd.getWeight(), toAdd.getSets(), toAdd.getReps(), toAdd.getDate());
         exerciseHashMap.get(toStoreName).add(toAdd); // add Exercise to arraylist
-        System.out.println(observerArrayList.size());
         this.notifyObservers();
         return toAdd;
     }
