@@ -43,7 +43,7 @@ public class DeleteProjectCommand extends ProjectCommand {
         List<Project> lastShownList = model.getFilteredProjectList();
 
         for (Project p : lastShownList) {
-            if (p.getProjectId().getIdInt() == targetIndex.getOneBased()) {
+            if (p.getProjectIdInInt() == targetIndex.getOneBased()) {
                 List<Issue> listOfIssuesToDelete = p.getIssueList();
                 for (Issue i : listOfIssuesToDelete) {
                     model.deleteIssue(i);
@@ -52,7 +52,7 @@ public class DeleteProjectCommand extends ProjectCommand {
                 if (!projectClient.isEmpty()) {
                     projectClient.removeProject(p);
                     if (projectClient.getProjectListSize() == 0) {
-                        model.getAddressBook().getClientList().remove(projectClient);
+                        model.deleteClient(projectClient);
                     }
                 }
                 model.deleteProject(p);

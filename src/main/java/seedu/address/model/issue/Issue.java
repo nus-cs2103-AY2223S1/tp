@@ -81,6 +81,10 @@ public class Issue implements ComparableByName<Issue>, HasIntegerIdentifier<Issu
         return this.issueId;
     }
 
+    public int getIssueIdInInt() {
+        return getIssueId().getIdInt();
+    }
+
     public Description getDescription() {
         return this.description;
     }
@@ -95,6 +99,10 @@ public class Issue implements ComparableByName<Issue>, HasIntegerIdentifier<Issu
 
     public Project getProject() {
         return this.project;
+    }
+
+    public void deleteProjectIssue(Issue i) {
+        getProject().removeIssue(i);
     }
 
     /**
@@ -155,7 +163,7 @@ public class Issue implements ComparableByName<Issue>, HasIntegerIdentifier<Issu
     public static boolean isValidDeadlineSortKey(String num) {
         try {
             int number = Integer.parseInt(num);
-            return number == 0 | number == 1;
+            return number == 0 || number == 1;
         } catch (NumberFormatException e) {
             return false;
         }
@@ -172,7 +180,7 @@ public class Issue implements ComparableByName<Issue>, HasIntegerIdentifier<Issu
     public static boolean isValidPrioritySortKey(String num) {
         try {
             int number = Integer.parseInt(num);
-            return number == 0 | number == 1;
+            return number == 0 || number == 1;
         } catch (NumberFormatException e) {
             return false;
         }

@@ -52,7 +52,7 @@ public class SortIssueCommand extends IssueCommand {
 
         if (sortKey.equals(PREFIX_DEADLINE)) {
             model.sortIssuesByDeadline(sortOrder);
-            sortKeyString = "deadline";
+            sortKeyString = "deadline.";
         }
 
         if (sortKey.equals(PREFIX_PRIORITY)) {

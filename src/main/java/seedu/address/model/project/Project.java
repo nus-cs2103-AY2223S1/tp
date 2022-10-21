@@ -96,6 +96,10 @@ public class Project implements ComparableByName<Project>, HasIntegerIdentifier<
         return projectId;
     }
 
+    public int getProjectIdInInt() {
+        return getProjectId().getIdInt();
+    }
+
     public Name getProjectName() {
         return name;
     }
@@ -132,6 +136,11 @@ public class Project implements ComparableByName<Project>, HasIntegerIdentifier<
         this.client = Client.EmptyClient.EMPTY_CLIENT;
     }
 
+    public void removeIssue(Issue i) {
+        getIssueList().remove(i);
+    }
+
+
     /**
      * Checks if input is a valid deadline sort key.
      *
@@ -143,7 +152,7 @@ public class Project implements ComparableByName<Project>, HasIntegerIdentifier<
     public static boolean isValidDeadlineSortKey(String num) {
         try {
             int number = Integer.parseInt(num);
-            return number == 0 | number == 1;
+            return number == 0 || number == 1;
         } catch (NumberFormatException e) {
             return false;
         }
@@ -160,7 +169,7 @@ public class Project implements ComparableByName<Project>, HasIntegerIdentifier<
     public static boolean isValidIssueCountSortKey(String num) {
         try {
             int number = Integer.parseInt(num);
-            return number == 0 | number == 1;
+            return number == 0 || number == 1;
         } catch (NumberFormatException e) {
             return false;
         }
@@ -177,7 +186,7 @@ public class Project implements ComparableByName<Project>, HasIntegerIdentifier<
     public static boolean isValidNameSortKey(String num) {
         try {
             int number = Integer.parseInt(num);
-            return number == 0 | number == 1;
+            return number == 0 || number == 1;
         } catch (NumberFormatException e) {
             return false;
         }

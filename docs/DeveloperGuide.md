@@ -235,15 +235,15 @@ should end at destroy marker (X) but due to a limitation of PlantUML, the lifeli
 
 **Aspect: Add command access to the model: **
 
-**Alternative 1: ** Refactor `ProjectCommandParser:parseAddProjectCommand`, `IssueCommandParser:parseAddIssueCommand` and `ClientCommandParser:parseAddClientCommand` to have access to the Model.
+**Alternative 1: (current choice)** Only `AddProjectCommand:execute`, `IssueCommandParser:execute` and `ClientCommandParser:execute` have access to the Model.
+* Pros: No coupling between Parser class and Model class.
+* Cons: Mappings could not be performed within the parser.
+* 
+**Alternative 2: ** Refactor `ProjectCommandParser:parseAddProjectCommand`, `IssueCommandParser:parseAddIssueCommand` and `ClientCommandParser:parseAddClientCommand` to have access to the Model.
  * Pros: Mappings could be performed within the parser which fitted its responsibility.
  * Cons: May result in extra coupling between Parser class and Model class.
-
-**Alternative 2: (current choice)** Only `AddProjectCommand:execute`, `IssueCommandParser:execute` and `ClientCommandParser:execute` have access to the Model.
- * Pros: No coupling between Parser class and Model class.
- * Cons: Mappings could not be performed within the parser.
-
-Taking into consideration the extra coupling involved, the second option was chosen.
+ 
+Taking into consideration the extra coupling involved, Alternative 1 was chosen as the current design for add command access to the model.
 
 --------------------------------------------------------------------------------------------------------------------
 
