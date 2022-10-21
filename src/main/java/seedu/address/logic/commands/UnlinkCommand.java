@@ -122,7 +122,8 @@ public class UnlinkCommand extends Command {
                 personToUnlink.getEmail(),
                 personToUnlink.getPhone(),
                 null,
-                personToUnlink.getTags()
+                personToUnlink.getTags(),
+                personToUnlink.getCompany()
         );
 
         Internship unlinkedInternship = new Internship(
