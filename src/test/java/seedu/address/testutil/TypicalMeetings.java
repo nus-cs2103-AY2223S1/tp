@@ -42,6 +42,21 @@ public class TypicalMeetings {
     }
 
     public static List<Meeting> getTypicalMeetings() {
-        return new ArrayList<>(Arrays.asList(MEETING_TYPICAL_1, MEETING_TYPICAL_2, MEETING_TYPICAL_3));
+        return new ArrayList<>(Arrays.asList(createMeeting1(), createMeeting2(), createMeeting3()));
+    }
+
+    private static Meeting createMeeting1() {
+        return new MeetingBuilder().withPersons(ALICE, CARL).withDescription("CS1101S")
+                .withDateAndTime("12-01-2022").withLocation("DECK").build();
+    }
+
+    private static Meeting createMeeting2() {
+        return new MeetingBuilder().withPersons(ALICE, ELLE, FIONA).withDescription("CS2040S")
+                .withDateAndTime("05-12-2022").withLocation("UTOWN").build();
+    }
+
+    private static Meeting createMeeting3() {
+        return new MeetingBuilder().withPersons(BENSON, DANIEL, GEORGE).withDescription("CS2103")
+                .withDateAndTime("06-02-2022").withLocation("COM1").build();
     }
 }
