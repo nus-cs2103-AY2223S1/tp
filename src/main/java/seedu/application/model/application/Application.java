@@ -24,6 +24,7 @@ public class Application {
     private final Email email;
     private final Position position;
     private final Date date;
+    private final boolean isArchived;
     private final Optional<Interview> interview;
 
     // Data fields
@@ -47,6 +48,20 @@ public class Application {
         this.date = date;
         this.tags.addAll(tags);
         this.interview = Optional.empty();
+        this.isArchived = false;
+    }
+
+    //Private constructor for set application to archive application or retrieve application.
+    private Application(Application application, boolean isArchived) {
+        requireAllNonNull(application);
+        this.company = application.getCompany();
+        this.contact = application.getContact();
+        this.email = application.getEmail();
+        this.position = application.getPosition();
+        this.date = application.getDate();
+        this.tags.addAll(application.getTags());
+        this.isArchived = isArchived;
+        this.interview = application.getInterview();
     }
 
     /**
@@ -63,6 +78,7 @@ public class Application {
         this.date = application.getDate();
         this.tags.addAll(application.getTags());
         this.interview = Optional.empty();
+        this.isArchived = application.isArchived();
     }
 
     /**
@@ -81,6 +97,7 @@ public class Application {
         this.tags.addAll(application.getTags());
         interviewIsAfterApplication(interview, application);
         this.interview = Optional.of(interview);
+        this.isArchived = application.isArchived();
     }
 
     public Company getCompany() {
@@ -104,6 +121,10 @@ public class Application {
     }
     public Optional<Interview> getInterview() {
         return interview;
+    }
+
+    public boolean isArchived() {
+        return isArchived;
     }
 
     /**
@@ -132,6 +153,20 @@ public class Application {
         if (interview.getInterviewDate().value.isBefore(application.getDate().value)) {
             throw new InvalidInterviewException();
         }
+    }
+
+    /**
+     * Returns a new Application object with its archive status set to true and other attributes remain the same.
+     */
+    public Application setToArchive() {
+        return new Application(this, true);
+    }
+
+    /**
+     * Returns a new Application object with its archive status set to false and other attributes remain the same.
+     */
+    public Application retrieveFromArchive() {
+        return new Application(this, false);
     }
 
     /**

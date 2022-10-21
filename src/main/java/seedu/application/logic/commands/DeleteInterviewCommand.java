@@ -1,7 +1,6 @@
 package seedu.application.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.application.model.Model.PREDICATE_SHOW_ALL_APPLICATIONS;
 
 import java.util.List;
 
@@ -45,7 +44,8 @@ public class DeleteInterviewCommand extends Command {
         Application editedApplication = new Application(applicationToRemoveInterview);
         model.setApplication(applicationToRemoveInterview, editedApplication);
         model.updateApplicationListWithInterview();
-        model.updateFilteredApplicationList(PREDICATE_SHOW_ALL_APPLICATIONS);
+
+        assert applicationToRemoveInterview.getInterview().isEmpty();
         Interview removedInterview = applicationToRemoveInterview.getInterview().get();
         return new CommandResult(String.format(MESSAGE_DELETE_APPLICATION_SUCCESS, removedInterview));
     }

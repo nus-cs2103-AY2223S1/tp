@@ -104,6 +104,22 @@ public class ApplicationBook implements ReadOnlyApplicationBook {
     }
 
     /**
+     * Sets an application archive status to true.
+     * The application must not be archived.
+     */
+    public void setArchive(Application p) {
+        applications.setApplication(p, p.setToArchive());
+    }
+
+    /**
+     * Sets an application archive status to false.
+     * The application must be archived.
+     */
+    public void retrieveApplication(Application p) {
+        applications.setApplication(p, p.retrieveFromArchive());
+    }
+
+    /**
      * Replaces the given application {@code target} in the list with {@code editedApplication}.
      * {@code target} must exist in the application book.
      * The application identity of {@code editedApplication} must not be the same as
