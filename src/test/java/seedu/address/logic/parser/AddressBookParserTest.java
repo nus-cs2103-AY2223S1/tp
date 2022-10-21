@@ -95,7 +95,7 @@ public class AddressBookParserTest {
 
     @Test
     public void parseCommand_addMember() throws Exception {
-        String name = "name";
+        String name = "Firstname Lastname";
         AddMemberCommand command = (AddMemberCommand) parser.parseCommand(
             AddMemberCommand.COMMAND_WORD + " " + name);
         assertEquals(new AddMemberCommand(new Name(name)), command);
