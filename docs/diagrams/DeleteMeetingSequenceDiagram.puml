@@ -26,13 +26,13 @@ create DeleteMeetingCommand
 DeleteMeetingCommandParser -> DeleteMeetingCommand
 activate DeleteMeetingCommand
 
-DeleteMeetingCommand -> DeleteMeetingCommandParser
+DeleteMeetingCommand -> DeleteMeetingCommandParser : Command d
 deactivate DeleteMeetingCommand
 
-DeleteMeetingCommandParser --> MyInsuRecParser
+DeleteMeetingCommandParser --> MyInsuRecParser : Command d
 deactivate DeleteMeetingCommandParser
 
-MyInsuRecParser --> LogicManager
+MyInsuRecParser --> LogicManager : Command d
 deactivate MyInsuRecParser
 
 LogicManager -> DeleteMeetingCommand : execute(model)
@@ -50,11 +50,10 @@ create CommandResult
 DeleteMeetingCommand -> CommandResult
 activate CommandResult
 
-CommandResult -> DeleteMeetingCommand
+CommandResult -> DeleteMeetingCommand : CommandResult r
 deactivate CommandResult
 
-DeleteMeetingCommand -> LogicManager
-
+DeleteMeetingCommand -> LogicManager : CommandResult r
 
 [<--LogicManager
 deactivate LogicManager
