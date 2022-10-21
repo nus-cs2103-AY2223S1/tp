@@ -163,6 +163,17 @@ The following methods in `Tutub` manage the addition of tutors:
 * `Tuthub#AddCommand(Tutor tutor)` - Adds the provided tutor to the list of tutors created
 * `Tuthub#AddCommandParser(String args)` - Parses the command `add` and determines the attributes of the `Tutor` object created based on the given prefixes
 
+Given below are the different steps taken when the user adds tutors.
+
+Step 1: The user enters the command word add, followed by the prefixes and information that they want to store. Example: `add n/John Doe p/98765432 e/johnd@example.com m/CS2100 y/3 s/A0123456X tn/1 r/5.0 t/senior`.
+
+Step 2: The program makes use of `TuthubParser` to make sense of the keyword and determine which parser to use to parse the arguments. In this case, the `AddCommandParser` is used.
+
+Step 3: The `AddCommandParser` makes sense of the arguments through the use of the prefixes, with the help of `ParserUtil`, and creates an `AddCommand` object with the provided information in the form a `Tutor` object.
+
+Step 4: The `AddCommand` object is executed. The `Tutor` object created in step 3 is added to the list of tutors captured in the `ModelManager` class, which then utilises the `UI` class to display the created `Tutor` object.
+
+Step 5: The execution ends and returns a `CommandResult` object contained the success message to be displayed to the GUI to the user.
 
 ### \[Proposed\] Undo/redo feature
 
