@@ -2,17 +2,17 @@
 start
 :User enters Add command;
 
-if () then ([Invalid argument parameters])
-    : TrackAScholar shows an\nerror message indicating\nthat user input is invalid;
+if () then ([Is invalid parameter])
+    : TrackAScholar displays \nerror message indicating \ninvalid user input;
 
-else ([Valid argument parameters])
+else ([Is valid parameters])
 
     if () then ([Applicant already exist in TrackAScholar])
-        :TrackAScholar shows an\nerror message indicating\nthat Applicant already exist;
+        :TrackAScholar displays \nerror message indicating \nthat Applicant already exist;
     else ([else])
         :Add new Applicant \ninto TrackAScholar;
 
-        :TrackAScholar updates\nto display new applicant\nat end of the list;
+        :TrackAScholar updates \nto display new applicant\nat end of the list;
     endif
 
 endif
