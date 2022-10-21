@@ -157,7 +157,7 @@ This section describes some noteworthy details on how certain features are imple
 ### Add Gender
 
 The Add Gender feature allows users to add a gender field (Male / Female) to a person in the contact list. It is performed as a part
- of `addCommand#execute()`.
+ of `addPersonCommand#execute()`.
 
 These operations are exposed in the `Model` interface as the method `Model#addPerson()`, which calls
 `AddressBook#addPerson()` which calls `UniquePersonList#add` to add a new person in the person list
