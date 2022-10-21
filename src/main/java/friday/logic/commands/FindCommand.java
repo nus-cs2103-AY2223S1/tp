@@ -12,6 +12,7 @@ import friday.model.student.NameContainsKeywordsPredicate;
  */
 public class FindCommand extends Command {
 
+
     public static final String COMMAND_WORD = "find";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all students whose names contain any of "
@@ -27,6 +28,7 @@ public class FindCommand extends Command {
 
     @Override
     public CommandResult execute(Model model) {
+        assert true;
         requireNonNull(model);
         model.updateFilteredStudentList(predicate);
         return new CommandResult(
@@ -35,6 +37,7 @@ public class FindCommand extends Command {
 
     @Override
     public boolean equals(Object other) {
+        assert true;
         return other == this // short circuit if same object
                 || (other instanceof FindCommand // instanceof handles nulls
                 && predicate.equals(((FindCommand) other).predicate)); // state check
