@@ -6,6 +6,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
+import javafx.scene.layout.Background;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
@@ -66,6 +67,7 @@ public class PersonCard extends UiPart<Region> {
         address.setText(person.getAddress().value);
         email.setText(person.getEmail().value);
         addTagLabels(person);
+        appointments.setStyle("-fx-background-color: transparent;");
         appointments.setItems(person.getAppointments().getObservableList());
         appointments.setCellFactory(listView -> new AppointmentListViewCell());
     }
@@ -80,22 +82,14 @@ public class PersonCard extends UiPart<Region> {
             if (empty || appointment == null) {
                 setGraphic(null);
                 setText(null);
+                setPrefWidth(0);
+                setStyle("-fx-background-color: transparent;");
             } else {
-                setGraphic(new AppointmentCard(appointment, getIndex() + 1).getRoot());
+                setGraphic(new AppointmentFlowPane( getIndex() + 1, appointment));
+                setStyle("-fx-background-color: transparent;");
             }
         }
     }
-
-    //    private void addAppointmentLabels(Person person) {
-    //        List<Appointment> appointmentList = person.getAppointments().stream()
-    //                .sorted(Comparator.comparing(appointment -> appointment.getDateTime()))
-    //                .collect(Collectors.toList());
-    //        int listSize = appointmentList.size();
-    //        for (int i = 0; i < listSize; i++) {
-    //            appointments.getChildren().add(new Label(i + 1 + DOT + appointmentList.get(i).toString()
-    //                    + "                                                                                 "));
-    //        }
-    //    }
 
     private void addTagLabels(Person person) {
         person.getSpecialTags().stream()

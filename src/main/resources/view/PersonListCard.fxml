@@ -97,7 +97,7 @@
                   <Insets bottom="10.0" />
                </padding>
             </HBox>
-           <ListView fx:id="appointments" prefHeight="76.0" prefWidth="129.0" />
+           <ListView fx:id="appointments" prefHeight="143.0" prefWidth="39.0" />
          </children>
          <padding>
             <Insets bottom="5.0" left="15.0" right="5.0" top="5.0" />
