@@ -230,6 +230,61 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 <img src="images/CommitActivityDiagram.png" width="250" />
 
+### \[Proposed\] Timetable feature
+
+#### Proposed Implementation
+
+The proposed timetable feature is an extension of `CurrentModule` to allow users to see upcoming classes with the common 
+class types in School of Computing such as lab, lecture, recitation and tutorial.
+
+
+In NUS School of Computing, every module generally has lab, lecture, recitation and tutorial slots which sometimes makes 
+it difficult for students to keep track of especially when students take several “CS” coded modules in a semester. With 
+this feature, users will be able to collate all different class types as well as the lesson timings.
+The user will also be able to keep track of his/her friend’s timetable to know when they will be free in situations 
+where they would need to decide on a timing to meet up to do group projects, such as in CS2103/T.
+
+As such, the user can conveniently view his/her upcoming classes as well as his/her friends to easily keep track of 
+schedules
+
+Additionally, the following classes and methods are implemented to support adding Lessons:
+
+We implemented an abstract `Lesson` class and the classes `Lab`, `Lecture`, `Recitation` and `Tutorial` that inherits from it. 
+Each of the class types have the class fields, `type`, `module`, `day`, `startTime`, and `endTime`.
+
+The following class diagram illustrates the class diagram of the `Lesson` class and subclasses.
+
+![LessonClassDiagram](images/LessonClassDiagram-0.png)
+
+The command has the prefix `lesson` and has the parameters 
+`user / INDEX (must be a positive integer) [l/TYPE] [m/MODULE] [d/DAY] [start/START TIME] [end/END TIME]`
+
+Given below are some examples of a user command to add a `Lesson`
+1. Example 1 : Command to add a `Tutorial` for the module CS2103T that starts at 12pm and ends at 1pm every Thursday to the `User`
+- `lesson user l/tut m/CS2103T d/4 start/12:00 end/13:00`
+
+2. Example 2 : Command to add a `Lab` for the module CS2100 that starts at 4pm and ends at 5pm every Wednesday to the first contact.
+- `lesson 1 l/lab m/cs2100 d/3 start/16:00 end/17:00`
+
+3. Example 3 : Command to add a `Lecture` for the module CS2109S that starts at 10am and ends at 12pm every Friday to the fifth contact
+- `lesson 5 l/lec m/cs2109s d/5 start/10:00 end/12:00`
+
+Given below is a sequence diagram to illustrate how the timetable mechanism behaves after the user attempts to add a tutorial.
+
+![Timetable](images/AddTutorialSequenceDiagram-0.png)
+
+Given below is an activity diagram to illustrate the behaviour of adding a Lesson
+![LessonActivityDiagram](images/LessonActivityDiagram-0.png)
+
+Possible Extensions:
+
+1. Adding a `Link` field to allow Users to keep track of important links such as Coursemology, Microsoft Teams, Zoom 
+lecture and project documents (ie. Google Docs) for each module to increase accessibility and convenience since there 
+are many links to keep track off.
+
+2. Allow User to sort his/her classes from all modules in chronological order or by modules depending on the User's
+preference to view his/her timetable
+
 Given below are the proposed Classes to implement:
 
 * `VersionedAddressBook`
@@ -303,6 +358,7 @@ Step 4. The changes will be reflected in the PersonCard and UserProfile Uis.
 
 The following activity diagram summarizes what happens when a user executes a shift command:
 
+
 #### Design considerations:
 
 **Aspect: How undo & redo executes:**
@@ -315,6 +371,17 @@ The following activity diagram summarizes what happens when a user executes a sh
   itself.
   * Pros: Will use less memory (e.g. for `delete`, just save the person being deleted).
   * Cons: We must ensure that the implementation of each individual command are correct.
+
+**Aspect: How to implement the timetable feature:**
+
+* **Alternative 1 (current choice):** Displaying in the main window.
+    * Pros: User does not have to run a command to see his/her and his/her contact's timetable.
+    * Cons: User may have to scroll if there is insufficient space to see the full timetable.
+
+* **Alternative 2:** User runs a command to display his/her and his/her contact's timetable.
+    * Pros: User will have a larger space to see the timetable.
+    * Cons: We must ensure the implementation of the additional commands are correct and the UI displays correctly.
+
 
 _{more aspects and alternatives to be added}_
 
@@ -351,18 +418,20 @@ We help NUS CS Students to have a collection of fellow NUS CS Students to find p
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                    | I want to …​                                     | So that I can…​                                                        |
-|--------| ------------------------------------------ |--------------------------------------------------| ---------------------------------------------------------------------- |
-| `* * *` | new user                                   | see usage instructions                           | refer to instructions when I forget how to use the App                 |
-| `* * *` | user                                       | save a new contact                               | contact them if i wish to collaborate with them                                                                       |
-| `* * *` | user                                       | delete a person                                  | remove entries that I no longer need                                   |
-| `* * *` | user                                       | list out all my friend's contact/ info           | look through all my contacts at once |
-| `* * *` | user                                       | keep track of the modules I have taken           | plan my modules easily                |
-| `* * *` | user                                       | keep track of my friend's current modules        | so that i know which modules i can collaborate with them for                |
-| `* * *` | user                                       | keep track of my friend's previous modules       | consult my friends on those modules, if i am currently taking them                |
-| `* * *` | user                                       | see what modules my friends are planning to take | plan my modules together with them                |
-| `* *`  | user                                       | edit my friends' contact information             | change and update the contacts in my friend's list to make sure it is always up to date                |
-| `*`    | user                                       | view my own exam schedule                        | be clear on which exams are coming up                |
+| Priority | As a …​                                    | I want to …​                                     | So that I can…​                                                                         |
+|--------| ------------------------------------------ |--------------------------------------------------|-----------------------------------------------------------------------------------------|
+| `* * *` | new user                                   | see usage instructions                           | refer to instructions when I forget how to use the App                                  |
+| `* * *` | user                                       | save a new contact                               | contact them if i wish to collaborate with them                                         |
+| `* * *` | user                                       | delete a person                                  | remove entries that I no longer need                                                    |
+| `* * *` | user                                       | list out all my friend's contact/ info           | look through all my contacts at once                                                    |
+| `* * *` | user                                       | keep track of the modules I have taken           | plan my modules easily                                                                  |
+| `* * *` | user                                       | keep track of my friend's current modules        | so that i know which modules i can collaborate with them for                            |
+| `* * *` | user                                       | keep track of my friend's previous modules       | consult my friends on those modules, if i am currently taking them                      |
+| `* * *` | user                                       | see what modules my friends are planning to take | plan my modules together with them                                                      |
+| `* *`  | user                                       | edit my friends' contact information             | change and update the contacts in my friend's list to make sure it is always up to date |
+| `*`    | user                                       | view my own exam schedule                        | be clear on which exams are coming up  <br/>                                            |
+| `*`    | user                                       | view my timetable                                | be clear on what classes are coming up                                                  |
+
 
 *{More to be added}*
 
