@@ -191,13 +191,10 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
-### \[Implemented\] addq feature
+
+### Add Question feature
 
 #### Implementation
-
-### \[Proposed\] Add Question feature
-
-#### Proposed Implementation
 
 The proposed add question mechanism is facilitated by `AddressBook`.
 It implements the following operations:
