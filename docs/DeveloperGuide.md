@@ -154,6 +154,68 @@ Classes used by multiple components are in the `gimbook.commons` package.
 
 This section describes some noteworthy details on how certain features are implemented.
 
+### **Exercise Components**
+* Added Classes into the model Component to encapsulate an Exercise
+
+#### **Implementation**
+<img src="images/ModelClassDiagram.png" width="450" />
+
+An `Exercise`,
+- is stored in `ExerciseList` and `ExerciseHashmap` of the Model
+
+An `Exercise` contains the following attributes,
+1. a `Name`, which represents the name of the Exercise
+2. a `Weight`, which represents the total weight used for a certain Exercise
+3. a `Reps`, which represents the number of times a specific exercise was performed
+4. a `Sets`, which represents the number of cycles of reps that was completed
+5. a `Date`, which represent the date an exercise was performed as specified in `DD/MM/YYYY` format
+
+### **Sorting Exercise List**
+
+#### **Sorting Implementation**
+
+The sorting of exercise list is facilitated by `ModelManager` which implements `Model`. `ModelManager` contains a `filteredExercises`
+list which is the list of exercises in a `FilteredList` 'wrapper' from `javafc.collections.transformation`. `filteredExercises`
+gets the list of exercises to be displayed from method `getExerciseList()` in `ExerciseTracker`.
+
+`ExerciseTracker` has method `sortDisplayedList()` which calls `sortDisplayedList()` in `ExerciseList`.
+
+`ExerciseList` contains a `displayedList` of type `ObservableList<Exercise>` and is the list that will be displayed by the `Ui`.
+It is a duplicated copy of the `internalUnmodifiableList` of type `unmodifiableObservableList`. `ExerciseList` has method
+`sortDisplayedList()` which sorts the `displayedList` using the `sort()` method in `java.util.Collections`.
+
+`Exercise` implements `Comparable<Exercise>` and has overridden the method `compareTo` which compares two
+exercises primarily by their respective `Date`. Should the two exercises have the same `Date`, they will then be
+compared lexicographically.
+
+####Sorting Execution
+
+When the command `:sort` is entered, the `Ui` sends the command to `Logic`. `Logic` parses and identifies the `:sort` command that was entered, and creates
+an instance of it. `Logic` then executes the command. `Model` will have the displayed list sorted and the sorted list will be displayed by `Ui`.
+
+####Example Usage
+
+Given below is an example usage scenario and how the sorting mechanism behaves at each step.
+
+Step 1: The user launches the application which loads the set of exercises previously keyed. `displayedList` will be initialised
+to be the same as the `internalUnmodifiableList` in `ExerciseList` where the exercises are sorted by the date of input.
+
+Step 2: The user executes `:sort` command to sort the exercises based on date of exercises done. The `ExerciseTrackerParser`
+identifies that the command is a `SortCommand`. The command calls `Model` to `sortDisplayedList` and the `Ui` displays the
+`displayedList` which has the exercises sorted by their respective dates.
+
+The following sequence diagram shows how the sort command is executed.
+
+<img src="images/SortSequenceDiagram.png" width="1000" />
+
+####Design considerations:
+
+**Aspect: Displayed List structure**
+* **Current choice**: `displayedList` is a duplicated copy of the list of exercises in `internalUnmodifiableList` of type
+  `UnmodifiableObservableList`in `ExerciseList` class
+    * Rationale: The sort command will sort the `diplayedList`, not affecting the `internalUnmodifiableList`. This allows
+      users to view the sorted list of exercises while maintaining a defensive copy of exercises keyed by user.
+
 ### \[Proposed\] Generating a suggested workout routine
 
 #### Proposed Implementation
@@ -196,6 +258,7 @@ The number of `Generator` objects created is equal to the number of unique exerc
 **Aspect: Number of `Generator` objects:**
 * **Current choice**: Pairing each unique exercise to one `Generator`.
     * Rationale: Allow generating suggestions of different difficulty level for different exercises, possibly in the future.
+
 ### \[Proposed\] Undo/redo feature
 
 #### Proposed Implementation
@@ -276,10 +339,89 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 _{more aspects and alternatives to be added}_
 
+### Listing of unique stored Exercises in a graphical UI
+
+#### Implementation 
+
+The display window is located in the bottom right of the application. The display mechanism has been implemented with the Observer pattern in mind.
+
+It is primarily driven by `SavedExerciseListWindow` (which holds the UI for the display). The logic is 
+handled by `ExerciseKeys` and `ExerciseHashMap`.
+
+##### General class diagram
+The `SavedExerciseListWindow` class implements the `Observer` interface as it is the observer. The 
+`ExerciseHashMap` class maintains an internal ArrayList of type `Observer`, which can be modified through the 
+addUI function. As the UI elements are usually initialized later than the data, the `SavedExerciseListWindow`
+UI object is only added as an observer after its constructor is called. This guards against any nullpointer exceptions 
+which may occur when preloading data from a hashmap in storage.
+
+![ObserverPatternClass](images/ObserverPattern.png)
+
+##### Subscribing to updates
+Once the `SavedExerciseListWindow` object has been added to the arraylist of `Observer` in the  `ExerciseHashMap`
+, it 'subscribes' to notifications whenever the ExerciseHashMap changes. Based on the functionality of the Hashmap as 
+well as the application, this can be generalised into two distinct scenarios.
+
+* **Adding an exercise** - Whenever a new exercise has been added, there is a possibility of a new key being added.
+* **Removing an exercise** - Whenever a new exercise has been removed, there is a possibility of a key being removed permanently.
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The current implementation subscribes to notification for any form of addition or deletion, regardless if the exercise is unique or already exists in the list.
+</div>
+
+##### Updating
+Whenever there is a state changing operation, the `ExerciseHashMap` object will notify all observers through the notifyObservers
+method. All Observers in the list will run the update method that is individually specified in their class. As `SavedExerciseListWindow`
+keeps a copy of `ExerciseHashmap`, it is required to do its calculations and formatting to display the text. The logic behind the calculations
+and formatting of the display message is handled by the `ExerciseKeys` class.
+
+Let us use `SavedExerciseListWindow` update function as an example of how the system is updated. A notification would notify
+`SavedExerciseListWindow` that it needs to relook at the `ExerciseHashMap` it stores and regenerate the input. It calls
+the update function which first gives the `ExerciseKeys` object an ArrayList of Strings which are the key names, arranged in 
+natural alphabetical order, as defined in Collections.Sort .
+
+```
+    public String getDisplay() {
+            if (keyArrayList.size() == 0) {
+                return "You have no stored exercises in the system!";
+            }
+            StringBuilder sb = new StringBuilder("Stored exercises:\n");
+            for (int i = 1; i < keyArrayList.size() + 1; i++) {
+                sb.append(i);
+                sb.append(". ");
+                sb.append(keyArrayList.get(i - 1));
+                sb.append("\n");
+            }
+            return sb.toString();
+    }
+```
+
+It then calls the getDisplay function in  `ExerciseKeys` takes the size of the ArrayList to decide the output to be generated. It returns the output as a string
+which `SavedExerciseListWindow` can use to set the textarea of the UI to the most updated version.
+
+### Design considerations
+
+##### Polymorphism
+The immediately apparent benefit of this design would be the Polymorphism that it capitalises on. In particular, the
+notifyObservers function in `ExerciseHashMap`.
+
+```
+    public void notifyObservers() {
+        for (Observer o: observerArrayList) {
+            o.update();
+        }
+    }
+```
+Notice that `ExerciseHashMap` does not know the nature of the observers and how they interact with it. 
+`ExerciseHashMap` only stores a list of the objects observing it. It does not have to define what they should do to update,
+instead, the responsibility of deciding what to do is passed on to the Observers themselves.
+
+This allows for flexibility in having different types of objects having different forms of updating. This keeps the code
+in `ExerciseHashMap` short and hides the implementation of the Observers behind the `Observer` interface which acts as an
+intermediary to help the UI communicate with `ExerciseHashMap`.
+
 ### \[Proposed\] Data archiving
 
 _{Explain here how the data archiving feature will be implemented}_
-
 
 --------------------------------------------------------------------------------------------------------------------
 
