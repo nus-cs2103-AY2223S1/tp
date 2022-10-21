@@ -76,11 +76,9 @@ public class CommandTestUtil {
 
         CLIENT_DESC_AMY = new EditClientDescriptorBuilder().withName(CLIENT_VALID_NAME_AMY)
             .withAddress(CLIENT_VALID_ADDRESS_AMY)
-            .withPrice(VALID_PRICE_AMY)
             .withTags(CLIENT_VALID_TAG_FRIEND).build();
         CLIENT_DESC_BOB = new EditClientDescriptorBuilder().withName(CLIENT_VALID_NAME_BOB)
             .withAddress(CLIENT_VALID_ADDRESS_BOB)
-            .withPrice(VALID_PRICE_BOB)
             .withTags(CLIENT_VALID_TAG_HUSBAND, CLIENT_VALID_TAG_FRIEND).build();
         PROPERTY_DESC_SCOTTS = new EditPropertyDescriptorBuilder().withName(PROPERTY_VALID_NAME_SCOTTS)
                 .withAddress(PROPERTY_VALID_ADDRESS_SCOTTS)

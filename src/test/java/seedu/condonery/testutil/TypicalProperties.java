@@ -4,10 +4,10 @@ import static seedu.condonery.logic.commands.CommandTestUtil.CLIENT_VALID_ADDRES
 import static seedu.condonery.logic.commands.CommandTestUtil.CLIENT_VALID_ADDRESS_BOB;
 import static seedu.condonery.logic.commands.CommandTestUtil.CLIENT_VALID_NAME_AMY;
 import static seedu.condonery.logic.commands.CommandTestUtil.CLIENT_VALID_NAME_BOB;
-import static seedu.condonery.logic.commands.CommandTestUtil.VALID_PRICE_AMY;
-import static seedu.condonery.logic.commands.CommandTestUtil.VALID_PRICE_BOB;
 import static seedu.condonery.logic.commands.CommandTestUtil.CLIENT_VALID_TAG_FRIEND;
 import static seedu.condonery.logic.commands.CommandTestUtil.CLIENT_VALID_TAG_HUSBAND;
+import static seedu.condonery.logic.commands.CommandTestUtil.VALID_PRICE_AMY;
+import static seedu.condonery.logic.commands.CommandTestUtil.VALID_PRICE_BOB;
 
 import java.util.ArrayList;
 import java.util.Arrays;

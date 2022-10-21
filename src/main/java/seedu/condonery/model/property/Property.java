@@ -48,6 +48,7 @@ public class Property {
 
     public Price getPrice() {
         return price;
+    }
 
     public Path getImagePath() {
         if (imageDirectoryPath == null) {

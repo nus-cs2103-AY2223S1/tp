@@ -36,7 +36,8 @@ public class AddPropertyCommandParser implements Parser<Command> {
      */
     public Command parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_ADDRESS, PREFIX_PRICE, PREFIX_TAG, PREFIX_IMAGE_UPLOAD);
+                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_ADDRESS, PREFIX_PRICE, PREFIX_TAG,
+                        PREFIX_IMAGE_UPLOAD);
 
         if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_ADDRESS, PREFIX_PRICE)
                 || !argMultimap.getPreamble().isEmpty()) {

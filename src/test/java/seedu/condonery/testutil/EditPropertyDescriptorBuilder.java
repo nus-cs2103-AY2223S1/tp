@@ -55,7 +55,6 @@ public class EditPropertyDescriptorBuilder {
     }
 
     /**
-
      * Sets the {@code Address} of the {@code EditPersonDescriptor} that we are building.
      */
     public EditPropertyDescriptorBuilder withPrice(String price) {

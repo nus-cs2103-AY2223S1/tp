@@ -217,6 +217,7 @@ public class EditClientCommand extends Command {
                     + ", tags=" + tags
                     + '}';
         }
+
     }
 
 }

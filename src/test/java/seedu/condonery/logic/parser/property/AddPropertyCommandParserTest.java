@@ -18,13 +18,7 @@ import static seedu.condonery.logic.commands.CommandTestUtil.PRICE_DESC_AMY;
 import static seedu.condonery.logic.commands.CommandTestUtil.PRICE_DESC_BOB;
 import static seedu.condonery.logic.commands.CommandTestUtil.TAG_DESC_FRIEND;
 import static seedu.condonery.logic.commands.CommandTestUtil.TAG_DESC_HUSBAND;
-
-import static seedu.condonery.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
-import static seedu.condonery.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static seedu.condonery.logic.commands.CommandTestUtil.VALID_PRICE_BOB;
-import static seedu.condonery.logic.commands.CommandTestUtil.VALID_TAG_FRIEND;
-import static seedu.condonery.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
-
 import static seedu.condonery.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.condonery.logic.parser.CommandParserTestUtil.assertParseSuccess;
 import static seedu.condonery.testutil.TypicalProperties.AMY;
@@ -78,11 +72,11 @@ public class AddPropertyCommandParserTest {
         String expectedMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddPropertyCommand.MESSAGE_USAGE);
 
         // missing name prefix
-        assertParseFailure(parser, CLIENT_VALID_NAME_BOB + ADDRESS_DESC_BOB + PRICE_DESC_BOB,,
+        assertParseFailure(parser, CLIENT_VALID_NAME_BOB + ADDRESS_DESC_BOB + PRICE_DESC_BOB,
             expectedMessage);
 
         // missing address prefix
-        assertParseFailure(parser, NAME_DESC_BOB + CLIENT_VALID_ADDRESS_BOB + PRICE_DESC_BOB,,
+        assertParseFailure(parser, NAME_DESC_BOB + CLIENT_VALID_ADDRESS_BOB + PRICE_DESC_BOB,
             expectedMessage);
 
         // missing price prefix
