@@ -16,7 +16,6 @@ import taskbook.model.person.Name;
 import taskbook.model.task.Description;
 import taskbook.model.task.Task;
 import taskbook.model.task.enums.Assignment;
-import taskbook.model.task.exceptions.DuplicateTaskException;
 
 /**
  * Adds an event to the task book.
@@ -59,12 +58,11 @@ public class TaskEventCommand extends TaskAddCommand {
         checkPersonNameExist(model);
 
         Task newTask = createEvent(date);
-
-        try {
-            model.addTask(newTask);
-        } catch (DuplicateTaskException dte) {
+        if (model.hasTask(newTask)) {
             throw new CommandException(MESSAGE_DUPLICATE_TASK_FAILURE);
         }
+
+        model.addTask(newTask);
 
         return new CommandResult(String.format(MESSAGE_SUCCESS, newTask));
     }

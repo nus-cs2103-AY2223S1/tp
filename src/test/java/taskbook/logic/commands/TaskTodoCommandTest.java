@@ -15,9 +15,6 @@ import taskbook.logic.commands.modelstubs.ModelStubAcceptingTaskAdded;
 import taskbook.logic.commands.modelstubs.ModelStubWithPerson;
 import taskbook.logic.commands.tasks.TaskAddCommand;
 import taskbook.logic.commands.tasks.TaskTodoCommand;
-import taskbook.model.Model;
-import taskbook.model.ModelManager;
-import taskbook.model.UserPrefs;
 import taskbook.model.person.Name;
 import taskbook.model.person.Person;
 import taskbook.model.task.Description;
@@ -25,7 +22,6 @@ import taskbook.model.task.Todo;
 import taskbook.model.task.enums.Assignment;
 import taskbook.testutil.PersonBuilder;
 import taskbook.testutil.TodoBuilder;
-import taskbook.testutil.TypicalTaskBook;
 
 
 public class TaskTodoCommandTest {
@@ -76,15 +72,17 @@ public class TaskTodoCommandTest {
     }
 
     @Test
-    public void execute_duplicateTodo_throwsCommandException() {
-        Model model = new ModelManager(TypicalTaskBook.getTypicalTaskBook(), new UserPrefs());
-        Todo task = TypicalTaskBook.SLEEPING;
+    public void execute_duplicateTodo_throwsCommandException() throws CommandException {
+        Person validPerson = new PersonBuilder().withName(String.valueOf(NAME_BOB)).build();
+        ModelStubAcceptingTaskAdded modelStub = new ModelStubAcceptingTaskAdded(validPerson);
 
-        TaskTodoCommand taskTodoCommand =
-                new TaskTodoCommand(task.getName(), task.getDescription(), task.getAssignment());
+        Todo validTask = new TodoBuilder().withPersonName(validPerson).build();
+        TaskTodoCommand taskTodoCommand = new TaskTodoCommand(validTask.getName(), validTask.getDescription(),
+                validTask.getAssignment());
+        taskTodoCommand.execute(modelStub);
 
         assertThrows(CommandException.class,
-                TaskAddCommand.MESSAGE_DUPLICATE_TASK_FAILURE, () -> taskTodoCommand.execute(model));
+                TaskAddCommand.MESSAGE_DUPLICATE_TASK_FAILURE, () -> taskTodoCommand.execute(modelStub));
     }
 
     @Test

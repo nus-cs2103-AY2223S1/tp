@@ -16,9 +16,6 @@ import taskbook.logic.commands.modelstubs.ModelStubAcceptingTaskAdded;
 import taskbook.logic.commands.modelstubs.ModelStubWithPerson;
 import taskbook.logic.commands.tasks.TaskAddCommand;
 import taskbook.logic.commands.tasks.TaskDeadlineCommand;
-import taskbook.model.Model;
-import taskbook.model.ModelManager;
-import taskbook.model.UserPrefs;
 import taskbook.model.person.Name;
 import taskbook.model.person.Person;
 import taskbook.model.task.Deadline;
@@ -26,7 +23,6 @@ import taskbook.model.task.Description;
 import taskbook.model.task.enums.Assignment;
 import taskbook.testutil.DeadlineBuilder;
 import taskbook.testutil.PersonBuilder;
-import taskbook.testutil.TypicalTaskBook;
 
 public class TaskDeadlineCommandTest {
 
@@ -88,15 +84,20 @@ public class TaskDeadlineCommandTest {
     }
 
     @Test
-    public void execute_duplicateDeadline_throwsCommandException() {
-        Model model = new ModelManager(TypicalTaskBook.getTypicalTaskBook(), new UserPrefs());
-        Deadline task = TypicalTaskBook.EATING;
+    public void execute_duplicateDeadline_throwsCommandException() throws CommandException {
+        Person validPerson = new PersonBuilder().withName(String.valueOf(NAME_BOB)).build();
+        ModelStubAcceptingTaskAdded modelStub = new ModelStubAcceptingTaskAdded(validPerson);
 
-        TaskDeadlineCommand taskDeadlineCommand =
-                new TaskDeadlineCommand(task.getName(), task.getDescription(), task.getAssignment(), task.getDate());
+        Deadline validTask = new DeadlineBuilder().withPersonName(validPerson).withDeadlineDate(DATE_ONE).build();
+        TaskDeadlineCommand taskDeadlineCommand = new TaskDeadlineCommand(
+                validTask.getName(),
+                validTask.getDescription(),
+                validTask.getAssignment(),
+                validTask.getDate());
+        taskDeadlineCommand.execute(modelStub);
 
         assertThrows(CommandException.class,
-                TaskAddCommand.MESSAGE_DUPLICATE_TASK_FAILURE, () -> taskDeadlineCommand.execute(model));
+                TaskAddCommand.MESSAGE_DUPLICATE_TASK_FAILURE, () -> taskDeadlineCommand.execute(modelStub));
     }
 
     @Test
