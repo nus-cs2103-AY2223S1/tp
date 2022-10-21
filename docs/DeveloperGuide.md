@@ -162,7 +162,7 @@ This section describes some noteworthy details on how certain features are imple
 Iterations help users keep track of the progress of their commissions. Each commission iteration
 essentially represents a version of the commissioned artwork.
 
-Iterations contain a `Date`, `IterationDescription`, `ImagePath `, and `Feedback`. Since
+Iterations contain a `Date`, `IterationDescription`, `ImagePath`, and `Feedback`. Since
 an iteration must be tied to a commission, this composition is captured by storing the
 iterations in a `UniqueIterationList` inside the associated commission object.
 
