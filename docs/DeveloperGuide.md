@@ -227,9 +227,13 @@ The following sequence diagram shows the reference sequence diagram for creating
 
 **Aspect: How Attendance executes:**
 
-- **Alternative 1** Only the attendance value recorded
+- **Alternative 1 (current choice):** Increment attendance of student by 1.
   - Pros: Easy to implement
-  - Cons: No check on 
+  - Cons: We are unable to decrement attendance. The workaround to this is by the `editstu` command to change the 
+  attendance to a value input by user.
+- **Alternative 2:** Increment or decrement attendance of student by taking in a sign and a value.
+  - Pros: Attendance can be modified easily.
+  - Cons: Implementation is relatively complicated and require more exception handling.
 
 ### \[Proposed\] Undo/redo feature
 
