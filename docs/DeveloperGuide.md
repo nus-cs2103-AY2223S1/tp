@@ -242,22 +242,24 @@ For the five classes,
 
 #### Implementation
 
-The DeleteModule commands extends `Command`, and takes in an `Index` to be deleted. Additionally, it implements the
-following operation:
 
-* `DeleteModuleCommand#execute()`— Deletes the corresponding item in the given model according to the given index.
+The DeleteModule commands extends `Command`, and takes in an `Index` to be deleted. Additionally, it implements the following operation:
+
+* `DeleteModuleCommand#execute()` — Deletes the corresponding item in the given model according to the given index.
+
 
 This operation is exposed in the `Model` interface as `Model#deleteModule()`.
 
 Given below is an example usage scenario, and an object diagram to show the objects created during this command.
 
-Step 1. The user launches the application. The `ReadOnlyAddressBook` will be initialized with the initial address book
-state.
 
-Step 2. The user executes `deletem 1` command to delete the 1st module in the address book. The `deletem` command
-calls `AddressBookParser#parseCommand()`, which creates a `DeleteModuleCommandParser`. The `DeleteModuleCommandParser`
-gets the `Index` to be deleted, which is 1 in this case, and creates a `DeleteModuleCommand`, which
-calls `Model#deleteModule()`, and deletes the module from the model object corresponding to the number parsed.
+Step 1. The user launches the application. The `ReadOnlyAddressBook` will be initialized with the initial address book state.
+
+Step 2. The user executes `deletem 1` command to delete the 1st module in the address book.
+* The `deletem` command calls `AddressBookParser#parseCommand()`, which creates a `DeleteModuleCommandParser`.
+* The `DeleteModuleCommandParser` gets the `Index` to be deleted, which is 1 in this case, and creates a `DeleteModuleCommand`.
+* `DeleteModuleCommand` then calls `Model#deleteModule()`, and deletes the module from the model object corresponding to the number parsed.
+
 
 The following object diagram illustrates the above example:
 
@@ -267,6 +269,40 @@ The following sequence diagram shows how the DeleteModule operation works:
 
 ![DeleteModuleSequenceDiagram](images/DeleteModuleSequenceDiagram.png)
 
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteModuleCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+
+</div>
+
+### Find Module feature
+
+#### Implementation
+
+#### Implemented by: Xu Daofu
+
+The FindModule command extends `Command`, and takes in an `ModuleCodeContainsKeywordsPredicate` to filter the module list by. Additionally, it implements the following operation:
+* `FindModuleCommand#execute()`
+
+This operation is exposed in the `Model` interface as `Model#updateFilteredModuleList()`.
+
+Given below is an example usage scenario.
+
+Step 1. The user launches the application. The `ReadOnlyAddressBook` will be initialized with the initial address book state.
+
+Step 2. The user executes `findm CS2100` command to filter the module list by `CS2100`.
+* The `findm CS2100` command calls `AddressBookParser#parseCommand()`, which creates a `FindModuleCommandParser`.
+* The `FindModuleCommandParser` instantiates a `ModuleCodeContainsKeywordsPredicate` with the given keyword `CS2100`.
+* The `FindModuleCommandParser` then creates a `FindModuleCommand` with the keyword.
+* The `FindModuleCommand` then calls `Model#updateFilteredModuleList()` and filter the list to contain only Modules with the given keyword in their module code.
+
+The following sequence diagram shows how the FindModule operation works:
+
+![FindModuleSequenceDiagram](images/FindModuleSequenceDiagram.png)
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `FindModuleCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+
+</div>
+=======
 ### Add Module feature
 
 #### Implementation
@@ -302,6 +338,7 @@ The following object diagram illustrates the above example:
 The following sequence diagram shows how the AddModule operation works:
 (to be added)
 [//]: # (![AddModuleSequenceDiagram]&#40;images/AddModuleSequenceDiagram.png&#41;)
+
 
 ### \[Proposed\] Undo/redo feature
 
@@ -402,10 +439,6 @@ _{more aspects and alternatives to be added}_
 ### \[Proposed\] Data archiving
 
 _{Explain here how the data archiving feature will be implemented}_
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteModuleCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
-
-</div>
 
 --------------------------------------------------------------------------------------------------------------------
 
