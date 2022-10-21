@@ -216,6 +216,33 @@ The following activity diagram summarizes what happens when a user executes a fi
 * The model already supports filtering for a certain predicate, therefore it is only intuitive that `FilterCommand` would make use of this functionality, just like how `FindCommand` would.
 * This implementation would allow easy extension should there be more `ApplicationStatus` added, since parsing of user input is done by `ApplicationStatus`.
 
+### Mark `Internship` feature
+
+#### Implementation
+
+`MarkCommand` was implemented similar to how `EditCommand` was implemented.
+* A `MarkCommandParser` object is created, which parses the user input by splitting the input by `PREFIX_APPLICATION_STATUS`, then returns the relevant `MarkCommand`.
+* `MarkCommand` takes in an `index` and `applicationStatus`.
+  
+When `execute` of `MarkCommand` is run, a new `Internship` object with the updated `applicationStatus` is created, with all other fields unchanged. 
+* The new `Internship` is passed into the model to be updated.
+
+The following activity diagram summarizes what happens when a user executes a mark command.
+
+<img src="images/MarkCommandActivityDiagram.png" width="350" />
+
+
+#### Design Considerations
+- The new `applicationStatus` must be different from the existing one for it to be updated.
+- **Types of `applicationStatus`:**
+  - **Alternative 1:** Allow any user input as `applicationStatus`
+    * Pros: Variation of `applicationStatus` is not limited. 
+    * Cons: Impossible to implement filter by `ApplicationStatus`
+    feature. 
+  - **Alternative 2 (current choice)**: Have a fixed set of `applicationStatus` that can be passed in. 
+    - Pros: Allow easy filtering by `ApplicationStatus`
+    - Cons: Fixed variation of `applicationStatus`
+
 ### \[Proposed\] Undo/redo feature
 
 #### Proposed Implementation
@@ -336,7 +363,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | Priority | As a …​      | I want to …​                                                                   | So that I can…​                                      |
 | ------ |--------------|--------------------------------------------------------------------------------|------------------------------------------------------|
 | `* * *` | new user     | utilise the help function                                                      | see the instructions on how to use the app           |
-| `* * *` | student      | mark the internship as rejected, interviewing, accepted or no reply            | know the status of the internship application        |
+| `* * *` | student      | mark the internship as rejected, interviewed, applied or rejected              | know the status of the internship application        |
 | `* * *` | user         | automatically save any edits made                                              | save edits even if I accidentally close the app      |
 | `* * *` | busy student | add internship applications quickly using CLI                                  | have more time for other things                      |
 | `* *`  | lazy student | search for a specific internship using keywords                                | get matching results more quickly                    |
@@ -373,10 +400,10 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 <br />
 
-**Use Case: UC2 - Update status of internship application**
+**Use Case: UC2 - Mark status of internship application**
 
 **MSS**:
-1. User requests to update the status of a specific internship application in the tracker.
+1. User requests to mark the status of a specific internship application in the tracker.
 2. FindMyIntern updates the internship application to the status.
    Use case ends.
 
