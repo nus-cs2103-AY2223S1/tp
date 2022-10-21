@@ -356,7 +356,7 @@ Additionally, the modules to which these tasks belong need to be specified withi
 the command. If the user is CD-ed into the module, the module code will not
 be required in the command.
 
-Information regarding tasks/deadlines can be recognised in the CLI using tags
+Information regarding tasks/deadlines can be recognised in the CLI using tags.
 
 These tags are:
 
@@ -396,7 +396,7 @@ potential for bugs.
 
 ### Current implementation
 
-The diagram below showcases the path execution for when adding a task, when a user is **NOT** CD-ed
+The diagram below showcases the path execution for adding a task, when a user is **NOT** CD-ed
 into a module. For ease of understanding, we will be adding a task instead of a deadline. Note that
 the flow is exactly the same for both tasks and deadlines.
 
@@ -477,7 +477,7 @@ The diagram below showcases the path execution for when edit a task
 The diagram below shows how the remove command work with input `edit -t 1 -c CS2103T -ds Assignmet 2`
 
 Note that the sequence diagram has been kept simple, as the logic flow for `addTask(t)` and
-`removeTask(t)`have been covered in greater detail in the earlier diagrams. 
+`removeTask(t)` have been covered in greater detail in the earlier diagrams. 
 
 <img src="images/TaskPUMLs/EditTask/TaskEditSequenceDiagram.png" width="1200" />
 
@@ -487,6 +487,7 @@ obtaining the index, it would be used to instantiate a `EditTaskCommand`. When t
 first obtain the `Task` using the index. Then it would remove the `Task` from the `TaskList`. It would also create a new Task
 with the information specified by the user.  The `TaskList` is subsequently updated and the user can now see the updated
 task details in the list.
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Documentation, logging, testing, configuration, dev-ops**
