@@ -10,9 +10,10 @@
 <?import javafx.scene.layout.Region?>
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
-<HBox id="cardPane" fx:id="cardPane" prefHeight="90.0" prefWidth="560.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
-   <Pane prefHeight="200.0" prefWidth="20.0" />
+<HBox id="cardPane" fx:id="cardPane" maxWidth="820.0" minWidth="820.0" prefHeight="110.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
+   <Pane prefHeight="200.0" prefWidth="10.0" />
    <Pane prefHeight="200.0" prefWidth="1.0">
 <!--      <children>-->
 <!--         <Circle layoutY="36.0" radius="3.0" styleClass="task_cell_deco_circle"/>-->
@@ -23,7 +24,7 @@
         <columnConstraints>
             <ColumnConstraints hgrow="SOMETIMES" minWidth="10" prefWidth="150" />
         </columnConstraints>
-        <VBox alignment="CENTER_LEFT" minHeight="90.0" prefHeight="90.0" GridPane.columnIndex="0">
+        <VBox alignment="CENTER_LEFT" maxWidth="900.0" minHeight="90.0" minWidth="650.0" prefHeight="90.0" prefWidth="789.0" GridPane.columnIndex="0">
             <padding>
                 <Insets bottom="5" left="15" right="5" top="5" />
             </padding>
@@ -34,13 +35,16 @@
                         <Region fx:constant="USE_PREF_SIZE" />
                     </minWidth>
                 </Label>
-                <Label fx:id="taskName" prefHeight="17.0" prefWidth="529.0" styleClass="cell_big_label" text="\$first">
+                <Label fx:id="taskName" minWidth="630.0" prefHeight="17.0" styleClass="cell_big_label" text="\$first">
                     <padding>
-                        <Insets right="10.0" />
+                        <Insets bottom="5.0" right="10.0" top="5.0" />
                     </padding></Label>
-            <Label fx:id="dueDate" alignment="CENTER_RIGHT" contentDisplay="RIGHT" prefHeight="17.0" prefWidth="130.0" styleClass="due_date_label" textAlignment="RIGHT">
+            <Label fx:id="dueDate" alignment="CENTER_RIGHT" contentDisplay="RIGHT" maxWidth="160.0" prefHeight="17.0" styleClass="due_date_label" textAlignment="RIGHT" HBox.hgrow="ALWAYS">
+               <font>
+                  <Font name="Bodoni 72 Book" size="13.0" />
+               </font>
                <padding>
-                  <Insets right="15.0" />
+                  <Insets right="10.0" />
                </padding></Label>
             </HBox>
             <HBox prefHeight="18.0" prefWidth="130.0">
@@ -52,6 +56,9 @@
                    </FlowPane>
                 </children>
             </HBox>
+         <GridPane.margin>
+            <Insets top="5.0" />
+         </GridPane.margin>
         </VBox>
         <rowConstraints>
             <RowConstraints />

@@ -122,7 +122,7 @@
 }
 
 .cell_big_label {
-    -fx-font-family: 'Candara';
+    -fx-font-family: 'Baramond';
     -fx-font-weight: bold;
     -fx-font-size: 16px;
     -fx-text-fill: #333333;
@@ -157,7 +157,7 @@
 .task_cell_deco_circle {
     -fx-fill: #A1A1AA;
     -fx-stroke: #A1A1AA;
-    -fx-stroke-type: "inside";
+    -fx-stroke-type: inside;
 }
 
 .task_cell_deco_circle:selected {
@@ -169,9 +169,10 @@
 }
 
 .due_date_label {
+    -fx-font-family: "Tahoma";
     -fx-background-color: transparent;
-    -fx-font-size: 12;
-    -fx-font-family: 'Tahoma';
+    -fx-font-size: 13;
+    -fx-text-fill: #A1A1AA;
 }
 
 .tags_pane .label {

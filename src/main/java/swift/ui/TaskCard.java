@@ -7,7 +7,6 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
-import javafx.scene.text.Font;
 import swift.model.person.Address;
 import swift.model.person.Email;
 import swift.model.person.Name;
@@ -67,8 +66,6 @@ public class TaskCard extends UiPart<Region> {
         String due = "31 Oct 2022";
         dueDate.setText("Due " + due);
 
-        Font.getFamilies().forEach(x -> System.out.println(x));
-
         //task.getContacts().stream()
         //        .sorted(Comparator.comparing(contact -> contact.fullName))
         //        .forEach(contact -> contacts.getChildren().add(new Label(contact.fullName)));
@@ -76,10 +73,10 @@ public class TaskCard extends UiPart<Region> {
 
     private void setStyle(Label... labels) {
         for (Label label: labels) {
-            label.setStyle("-fx-background-color:derive(#4d7b93, 10%); -fx-text-fill: #FFFFFF;"
+            label.setStyle("-fx-background-color:derive(#6D28D9, 50%); -fx-text-fill: #FFFFFF;"
                     + "-fx-font-family: Inter; -fx-font-size: 12; -fx-font-weight: bold;"
-                    + "-fx-border-insets: 2; -fx-border-radius: 4px; -fx-border-width: 1px;"
-                    + "-fx-border-color: derive(#4d7b93, 20%); -fx-background-insets: 3; -fx-label-padding: 2;");
+                    + "-fx-border-insets: 3; -fx-border-radius: 4px; -fx-border-width: 2px;"
+                    + "-fx-border-color: derive(#6D28D9, 50%); -fx-background-insets: 4; -fx-label-padding: 3;");
         }
     }
 
