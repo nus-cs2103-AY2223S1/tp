@@ -9,6 +9,7 @@ title: Developer Guide
   * [Edit Class Feature](#edit-class-feature)
     * [Implementation details](#implementation-details)
     * [Design Considerations](#design-considerations)
+  * [Statistics Display Feature](#statistics-display-feature)
   * [[Proposed] Sort-by](#proposed-sort-by-feature)
 * [Appendix](#appendix-requirements)
   * [Target User Profile](#target-user-profile)
@@ -74,7 +75,7 @@ The **API** of this component is specified in [`Ui.java`](https://github.com/AY2
 
 ![Structure of the UI Component](images/DG-images/UiClassDiagram.png)
 
-The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `PersonListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
+The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `PersonListPanel`, `StatusBarFooter`, `StatisticsDisplay`, `ScheduleListPanel` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
 
 The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/resources/view/MainWindow.fxml)
 
@@ -156,7 +157,9 @@ This section describes some noteworthy details on how certain features are imple
 The features covered in this guide are:
 
 * [Edit Class Feature](#edit-class-feature)
-* [[Proposed] Sort-by](#proposed-sort-by-feature)
+* [Statistics Display Feature](#statistics-display-feature)
+* [[Proposed] Sort-by feature](#proposed-sort-by-feature)
+* [[Proposed] Find-by feature](#proposed-find-by-feature)
 
 ### Edit Class Feature
 
@@ -188,11 +191,11 @@ save both the new class and student.
 
 The following sequence diagram shows how the edit class operation works:
 
-![EditClassSequenceDiagram](images/EditClassSequenceDiagram.png)
+![EditClassSequenceDiagram](images/DG-images/EditClassSequenceDiagram.png)
 
 The following activity diagram summarizes what happens when a teacher executes an edit class command:
 
-![EditClassActivityDiagram](images/EditClassActivityDiagram.png)
+![EditClassActivityDiagram](images/DG-images/EditClassActivityDiagram.png)
 
 #### Design Considerations:
 ##### Aspect: Input format for edit class:
@@ -206,7 +209,54 @@ The following activity diagram summarizes what happens when a teacher executes a
   * Cons:
     1. Harder to implement.
     2. Only can set the class to a date at most 1 week away.
+  
+### Statistics Display Feature
 
+This feature allows the teacher to get an overall view of his/her teaching statistics, which includes the number of students, total money owed and total money paid by the current list of students.
+
+#### Implementation Details
+
+`MainWindow.fxml` is modified to update the `UI` from the original single-panel view to include an additional top right statistics panel.
+The calculation of the statistics is facilitated by `StatisticsCalculator`, which stores `ReadOnlyTeachersPet` internally that keeps track of the list of students.
+
+Additionally, it implements the following operations:
+- `StatisticsCalculator#getSize()` — Gets the current number of students in the list.
+- `StatisticsCalculator#getAmountOwed()` — Calculates the total amount owed by students in the list.
+- `StatisticsCalculator#getAmountPaid()` — Calculates the total amount paid by students in the list.
+
+When a user command gets executed, the 3 operations are performed once to display the updated statistics.
+
+How the individual operations work:
+- `StatisticsCalculator#getSize()`
+  1. When `StatisticsCalculator#getSize()` is called by `StatisticDisplay`, `StatisticsCalculator` attains the updated list of students from `ReadOnlyTeachersPet`.
+  2. After getting the list of students in the form of `ObservableList<Person>`, StatisticsCalculator returns the `size` of the `ObservableList<Person>`.
+  
+  ![StatisticsCalculatorGetSizeSequenceDiagram](images/DG-images/StatisticsCalculatorGetSizeSequenceDiagram.png)
+
+- `StatisticsCalculator#getAmountOwed()`
+  1. When `StatisticsCalculator#getAmountOwed()` is called by `StatisticDisplay`, `StatisticsCalculator` attains the updated list of students from `ReadOnlyTeachersPet`.
+  2. After getting the list of students in the form of `ObservableList<Person>`, StatisticsCalculator iterates across all students in the list and sums the total amount owed.
+
+  ![StatisticsCalculatorGetAmountOwedSequenceDiagram](images/DG-images/StatisticsCalculatorGetAmountOwedSequenceDiagram.png)
+
+- `StatisticsCalculator#getAmountPaid()`
+  1. When `StatisticsCalculator#getAmountPaid()` is called by `StatisticDisplay`, `StatisticsCalculator` attains the updated list of students from `ReadOnlyTeachersPet`.
+  2. After getting the list of students in the form of `ObservableList<Person>`, StatisticsCalculator iterates across all students in the list and sums the total amount paid.
+  
+  ![StatisticsCalculatorGetAmountPaidSequenceDiagram](images/DG-images/StatisticsCalculatorGetAmountPaidSequenceDiagram.png)
+
+#### Design Considerations:
+##### Aspect: Implementing the statistics function:
+
+* **Alternative 1 (current choice)**: Call three different statistics functions (getSize(), getAmountOwed(), getAmountPaid()) 
+    * Pros: Each function obeys Single Responsibility Principle (SRP).
+    * Cons: More code must be typed.
+
+* **Alternative 2**: Call a single statistics function which returns an array of statistical values
+    * Pros: 
+        1. Fewer repetition of code.
+        2. More optimised solution as `ObservableList<Person>` needs to be iterated only once. 
+    * Cons: Violates Single Responsibility Principle (SRP) as the function would have multiple responsibilities.
 
 ### [Proposed] Sort-by feature
 

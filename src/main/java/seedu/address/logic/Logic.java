@@ -8,6 +8,7 @@ import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.ReadOnlyTeachersPet;
+import seedu.address.model.StatisticsCalculator;
 import seedu.address.model.person.Person;
 
 /**
@@ -45,6 +46,11 @@ public interface Logic {
      * Returns the user prefs' GUI settings.
      */
     GuiSettings getGuiSettings();
+
+    /**
+     * Returns the Statistics Calculator to calculate statistics.
+     */
+    StatisticsCalculator getStatisticsCalculator();
 
     /**
      * Set the user prefs' GUI settings.

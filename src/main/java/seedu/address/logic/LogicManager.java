@@ -14,6 +14,7 @@ import seedu.address.logic.parser.TeachersPetParser;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyTeachersPet;
+import seedu.address.model.StatisticsCalculator;
 import seedu.address.model.person.Person;
 import seedu.address.storage.Storage;
 
@@ -27,6 +28,7 @@ public class LogicManager implements Logic {
     private final Model model;
     private final Storage storage;
     private final TeachersPetParser teachersPetParser;
+    private final StatisticsCalculator statisticsCalculator;
 
     /**
      * Constructs a {@code LogicManager} with the given {@code Model} and {@code Storage}.
@@ -35,6 +37,7 @@ public class LogicManager implements Logic {
         this.model = model;
         this.storage = storage;
         teachersPetParser = new TeachersPetParser();
+        statisticsCalculator = new StatisticsCalculator(model.getTeachersPet());
     }
 
     @Override
@@ -82,5 +85,10 @@ public class LogicManager implements Logic {
     @Override
     public void setGuiSettings(GuiSettings guiSettings) {
         model.setGuiSettings(guiSettings);
+    }
+
+    @Override
+    public StatisticsCalculator getStatisticsCalculator() {
+        return statisticsCalculator;
     }
 }
