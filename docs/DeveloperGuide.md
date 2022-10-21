@@ -433,7 +433,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *`  | user                                      | keep track of my friend's previous modules       | consult my friends on those modules, if i am currently taking them                      |
 | `* * *`  | user                                      | see what modules my friends are planning to take | plan my modules together with them                                                      |
 | `* *`    | user                                      | view my timetable                                | be clear on what classes are coming up                                                  |
+| `* *`    | user                                      | check what core modules I have left to clear     | plan my following semesters better to accommodate these modules                         |
 | `*`      | user                                      | view my own exam schedule                        | be clear on which exams are coming up  <br/>                                            |
+
 
 
 *{More to be added}*
@@ -471,9 +473,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 1a. ConnectNUS detects another user profile that has already been saved
 
-  * 1a1. ConnectNUS requests to delete the currently saved user profile.
-  * 1a2. CS Student deletes the saved user profile.
-  * Step 1 is repeated. Use case resumes at step 2.
+  * 1a1. ConnectNUS informs the user that there already is a user profile saved.
+  * Use case ends.
 
 * 3a. ConnectNUS detects an error in the entered data
 
@@ -528,6 +529,12 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     * 1a1. ConnectNUS informs user that there is no user profile to delete.
     * Use case ends.
+
+* 1b. ConnectNUS detects an error in the command format.
+    * 1b1. ConnectNUS requests for the correct format.
+    * User enters a new command in the correct format.
+      Steps 1a1-1a2 are repeated until the data entered are correct.
+      Use case resumes at step 2.
 
 **System: ConnectNUS**
 
@@ -712,7 +719,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **MSS**
 
 1. CS Student requests to show own Timetable.
-2. ConnectNUS the Timetable of CS Student's current modules.
+2. ConnectNUS shows the Timetable of CS Student's current modules.
 3. Use case ends.
 
 **Extensions**
@@ -736,7 +743,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **MSS**
 
 1. CS Student requests to show contact's Timetable.
-2. ConnectNUS the Timetable of CS Student's contact's current modules.
+2. ConnectNUS shows the Timetable of CS Student's contact's current modules.
 3. Use case ends.
 
 **Extensions**
@@ -750,6 +757,31 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * 1b. No current modules for contact, or no lessons for current modules.
     * 1b1. ConnectNUS informs user of missing data.
     * Use case ends.
+
+**System: ConnectNUS**
+
+**Use case: UC15 - Check core modules left that user must take**
+
+**Actor: CS Students**
+
+**MSS**
+
+1. CS Student requests to check modules left.
+2. ConnectNUS shows what core modules the user has yet to take.
+3. Use case ends.
+
+**Extensions**
+
+* 1a. ConnectNUS detects an error in the command format.
+    * 1a1. ConnectNUS requests for the correct format.
+    * User enters a new command in the correct format.
+      Steps 1a1-1a2 are repeated until the data entered are correct.
+      Use case resumes at step 2.
+
+* 1b. No user, or no current and previous modules for user.
+    * 1b1. ConnectNUS informs user of missing data.
+    * Use case ends.
+
 
 *{More to be added}*
 
