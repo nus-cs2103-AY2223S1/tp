@@ -1,35 +1,28 @@
 @startuml
-'https://plantuml.com/activity-diagram-beta
+title AddResponseCommand
 
 start
-:ClickServlet.handleRequest();
-:new page;
-if (Page.onSecurityCheck) then (true)
-  :Page.onInit();
-  if (isForward?) then (no)
-    :Process controls;
-    if (continue processing?) then (no)
-      stop
-    endif
+:User executes "addresponse 1 m/7' command;
+note left
+    Arguments should
+    contain non-zero positive
+    index and prefix m/ followed
+    by a integer
+end note
 
-    if (isPost?) then (yes)
-      :Page.onPost();
-    else (no)
-      :Page.onGet();
-    endif
-    :Page.onRender();
-  endif
-else (false)
-endif
+if (command is valid) then (yes)
 
-if (do redirect?) then (yes)
-  :redirect process;
-else
-  if (do forward?) then (yes)
-    :Forward request;
-  else (no)
-    :Render page template;
-  endif
+    :Parse arguments into an ""AddResponseCommand"" object;
+
+    :Execute ""AddResponseCommand"";
+
+    :Edit ""Response"" in Student;
+
+    :show success message to  the user;
+else (no)
+    :Throw ""ParseException"";
+
+    :show error message to user;
 endif
 
 stop
