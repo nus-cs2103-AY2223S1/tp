@@ -4,6 +4,8 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NEW_PASSWORD;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_OLD_PASSWORD;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TestUtil.getFilePathInSandboxFolder;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
@@ -27,6 +29,7 @@ import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ImportCommand;
 import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.commands.LockCommand;
+import seedu.address.logic.commands.PasswordCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.person.Person;
@@ -121,5 +124,12 @@ public class AddressBookParserTest {
     public void parseCommand_lock() throws Exception {
         assertTrue(parser.parseCommand(LockCommand.COMMAND_WORD) instanceof LockCommand);
         assertTrue(parser.parseCommand(LockCommand.COMMAND_WORD + " 3") instanceof LockCommand);
+    }
+
+    @Test
+    public void parseCommand_password() throws Exception {
+        PasswordCommand command = (PasswordCommand) parser.parseCommand(PasswordCommand.COMMAND_WORD + " "
+                + PREFIX_OLD_PASSWORD + "foobar" + " " + PREFIX_NEW_PASSWORD + "barfoo");
+        assertEquals(new PasswordCommand("foobar", "barfoo"), command);
     }
 }
