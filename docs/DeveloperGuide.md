@@ -204,6 +204,50 @@ The following activity diagram shows the workflow for the autocomplete feature.
 
 <img src="images/AutoCompleteActivityDiagram.png" width="750" />
 
+### Display Friend Preferences and Socials as Tags
+
+#### Description
+
+Whenever the user enters or modifies the in-game preferences or social handles of a friend, it is displayed as 
+various coloured tags under the friend's profile.
+
+#### Implementation
+
+The display feature is facilitated through the `PersonCard`, `PersonListPanel`, `PersonListViewCell` and `UIPart` class, 
+and configured using the `DarkTheme.css` **FXML** file.
+
+The `PersonCard` class inherits from the `UIPart` class, representing the panel that displays each friend's profile.
+Its information is set by the `setGraphic()` method in the nested `PersonListViewCell` class in the `PersonListPanel` class. 
+
+Inside the `PersonCard` class, there are multiple `FlowPane` fields, each representing a type of user preference.
+Each `FlowPane` field is tagged with the **@FXML** notation, for use by **FXML** markup.
+
+Everytime the user updates a friend's in-game preferences or social handles, a new `PersonCard` object is created. The object 
+will retrieve the corresponding user information and add them as individual labelled tags under the friend's profile.
+
+Each type of user preference is then tagged with a different colour, specified in the `DarkTheme.css` file, for 
+easy differentiation of information.
+
+The following class diagram shows the relationship between the classes in the UI system:
+
+<img src="images/TagClassDiagram-0.png" width="550" />
+
+#### Design Considerations:
+
+#### 1. Which user information should be shown as tags?
+
+* **Alternative 1 (current choice):** Only in-game preferences (such as preferred game types and Minecraft servers) and social handles. 
+  * Pros:
+    * Strategic display of only the more important user details.
+    * Less cluttered, cleaner user interface.
+  * Cons: 
+    * We have to decide which user details are of higher priority to Minecraft users, which may differ from user to user.
+* Alternative 2: Show all user information as tags.
+  * Pros:
+    * Easy to implement as the format is consistent for all information.
+  * Cons:
+    * Too many tags displayed can make it harder to users to find the information they need at one glance.
+
 ### \[Proposed\] Undo/redo feature
 
 #### Proposed Implementation
