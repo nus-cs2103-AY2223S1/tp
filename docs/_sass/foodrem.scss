@@ -207,6 +207,16 @@ html {
   }
 }
 
-article.post a {
-  color: #00769a;
+article.post {
+  a {
+    color: #00769a;
+  }
+
+  li p {
+    margin-bottom: 0;
+  }
+
+  .lower-alpha {
+    list-style-type: lower-alpha;
+  }
 }

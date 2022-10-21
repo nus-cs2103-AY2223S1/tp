@@ -223,8 +223,7 @@ Step 4. The user now decides that adding the item was a mistake, and decides to 
 
 ![UndoRedoState3](images/UndoRedoState3.png)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index 0, pointing to the initial FoodRem state, then there are no previous FoodRem states to restore. The `undo` command uses `Model#canUndoFoodRem()` to check if this is the case. If so, it will return an error to the user rather
-than attempting to perform the undo.
+<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index 0, pointing to the initial FoodRem state, then there are no previous FoodRem states to restore. The `undo` command uses `Model#canUndoFoodRem()` to check if this is the case. If so, it will return an error to the user rather than attempting to perform the undo.
 
 </div>
 
@@ -290,11 +289,9 @@ _{Explain here how the data archiving feature will be implemented}_
 
 ### Product scope
 
-**Target user profile**:
-Purchasing managers who are proficient with typing for small F&B businesses
+**Target user profile**: Purchasing managers who are proficient with typing for small F&B businesses
 
-**Value proposition**:
-This application will help small businesses to manage perishable goods within a single inventory
+**Value proposition**: This application will help small businesses to manage perishable goods within a single inventory
 (no support for multiple inventories).
 
 ### User stories
@@ -319,8 +316,7 @@ This application will help small businesses to manage perishable goods within a 
 
 Given below are instructions to test the app manually.
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** These instructions only provide a starting point for testers to work on;
-testers are expected to do more *exploratory* testing.
+<div markdown="span" class="alert alert-info">:information_source: **Note:** These instructions only provide a starting point for testers to work on; testers are expected to do more *exploratory* testing.
 
 </div>
 

@@ -54,16 +54,19 @@ There is a `SortedList` obtained from an immutable item list. When the `SortComm
 Notably, the `SortedList` wraps around a `FilteredList`, which wraps around an immutable `ObservableList`.
 
 #### Receiving help for a command
+
 The `help` feature provides a user with instructions of how to use certain commands.
 
 #### How the `help` command works
+
 1. The user specifies a specific command that they need help with. This is done using the word needed to execute a particular command in FoodRem.
 1. If this is not provided, a general help message will be shown.
 1. The provided command is cross-referenced with all available commands in FoodRem. If the command that the user needs help with does not exist, an error would be thrown. This informs the user that the command does not exist. A general help is also shown to the user.
 1. The help is shown in a new window that will open upon successful execution of the command.
 
 #### Why it is implemented this way
-When the `HelpCommand` is executed we want users to receive help immediately instead of searching for it the user guide.
+
+When the `HelpCommand` is executed we want users to receive help immediately instead of searching for it the User Guide.
 
 ![HelpSequenceDiagram](images/HelpSequenceDiagram.png)
 
