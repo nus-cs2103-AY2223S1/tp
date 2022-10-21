@@ -196,8 +196,8 @@ The user flow can be illustrated in the Activity Diagram as shown below.
 
 This feature allows an existing group with its members to be displayed, using the `addgroupmember` command. This is facilitated by the `AddGroupMemberCommand` and `AddGroupMemberCommandParser` classes.
 
-The `AddGroupMemberCommandParser` class parses the input entered by the user, which consists of the person's name and the group's name
-. The person with the given name will then be added to the group with the given name. 
+The `AddGroupMemberCommandParser` class parses the input entered by the user, which consists of the person's name and the group's name.
+The person with the given name will then be added to the group with the given name. 
 
 The validity of the group name and person name input by the user will be checked with the help of an ObservableList for each field.
 
@@ -216,14 +216,13 @@ Step 2. The  `AddGroupMemberCommandParser` class parses the group name input and
 Step 3. The `AddGroupMemberCommand` object is executed. The person and group
 can be obtained by calling the `ObservableList#get()` method on each field should they exist.
 
-Step 4. If an existing person in TABS has a name which matches exactly the name given by the 
-user, then TABS will check for the group's existence.
+Step 4. If an existing person in TABS has a name which matches exactly the name given by the user
+, then TABS will check for the group's existence.
 
-Step 5. If an existing group in TABS has a name which matches exactly the name given by the
-user, then TABS will check if the person already exists in the group. 
+Step 5. If an existing group in TABS has a name which matches exactly the name given by the user, then TABS will check if the person already exists in the group. 
 
 Step 6. If the person does not yet exist in the group,
-then the person will be added to the specified group. 
+then the person will be added to the specified group.
 
 Step 7. CommandResult is then returned, which provides a feedback to user that the specified person has been successfully
 added to the specified group.
