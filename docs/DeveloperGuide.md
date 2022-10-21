@@ -157,6 +157,47 @@ Classes used by multiple components are in the `bookface.commons` package.
 
 This section describes some noteworthy details on how certain features are implemented.
 
+### List feature
+
+#### Implementation
+
+The list mechanism is facilitated by `LogicManager`. During its process of parsing the command by `PrimaryParser`,
+a new `ListCommandParser` will be created to internally parse the argument of the command
+through `ListSubcommand`.
+
+Currently, there are 2 possible `Command` classes that can be returned from `ListSubcommand`, and 
+they are created in respect to the subcommand that is parsed:
+* `ListBooksCommand` for `Book` upon the command `list books`
+* `ListUsersCommand` for `Person` upon the command `list users`
+
+Given below is an example usage scenario and how the list mechanism behaves
+at each step.
+
+Step 1. The librarian has executed a `FindUserCommand`, which filtered certain user records to display in BookFace. The librarian 
+then wants to return the display state to show all user records by entering the `list users` command, which attempts to list all users
+in BookFace.
+
+Step 2. `LogicManager` executes the command.
+
+Step 3. `PrimaryParser` then creates a new `ListCommandParser` object, which internally creates a `ListSubcommand` object 
+to parse the second part of the command (which is `users`).
+
+Step 4. `ListSubcommand` parses the subcommand as an argument and creates a new `ListUsersCommand`.
+
+Step 5. `LogicManager` executes `ListUsersCommand`, which then calls `Model#updateFilteredPersonList()` with a predicate to show all users.
+
+The following sequence diagram shows how the list operation works
+(following the steps mentioned above):
+
+![ListSequenceDiagram](images/ListSequenceDiagram.png)
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `ListUsersCommand` should 
+end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.</div>
+
+The following activity diagram summarizes what happens when a user executes a list command:
+
+![ListActivityDiagram](images/ListActivityDiagram.png)
+
 ### Loan feature
 
 #### Implementation
@@ -189,7 +230,8 @@ The following sequence diagram shows how the loan operation works:
 
 ![LoanSequenceDiagram](images/LoanSequenceDiagram.png)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `LoanCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `LoanCommandParser` 
+should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.</div>
 
 The following activity diagram summarizes what happens when the librarian executes a loan command:
 
@@ -242,7 +284,8 @@ The following sequence diagram shows how the return operation works:
 
 ![ReturnSequenceDiagram](images/ReturnSequenceDiagram.png)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `ReturnCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `ReturnCommandParser` 
+should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.</div>
 
 The following activity diagram summarizes what happens when a user executes a return command:
 
