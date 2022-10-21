@@ -73,7 +73,7 @@ RC4HDB provides these main features:
 * Book venues available in RC4.
 * Export a filtered list of residents.
 
-<div markdown="block" class="alert alert-info">
+<div markdown="span" class="alert alert-info">
 RC4HDB is optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User
 Interface (GUI). If you can type fast, RC4HDB can be a convenient and intuitive way to facilitate your day-to-day
 workflow as a RC4 housing management staff.
@@ -93,7 +93,7 @@ If you are an **experienced user**, a [Command Summary](ug-pages/command-summary
 
 Before exploring the user guide, you should familiarise yourself with the following symbols.
 
-<div markdown="block" class="a;ert alert-info">:information_source: **Note:** Used to highlight information you should
+<div markdown="span" class="alert alert-info">:information_source: **Note:** Used to highlight information you should
 pay attention to. </div>
 
 <br>
