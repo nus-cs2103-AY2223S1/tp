@@ -92,6 +92,22 @@ Examples:
 * `findo keychain` returns `banana keychain` and `keychain`
 * `findo apple keychain` returns `apple painting`, `banana keychain`<br>
 
+### Sorting orders by time created: `sorto`
+
+Sorts the displayed list of orders by the time at which they were created.
+
+Format: `sorto new` or `sorto old`
+
+* The keyword `new` and `old` are case-insensitive.
+* `sorto new` sorts the order list such that newest orders are at the top
+* `sorto old` sorts the order list such that oldest orders are at the top
+
+Examples:
+* `listo` followed by `sorto old` sorts all orders such that oldest orders are at the top
+* `findo Chair` followed by `sorto new` sorts all orders found using `findo Chair` such that newest orders are at the 
+top
+
+
 ### Deleting an order: `deleteo`
 
 Deletes an order from the list of tracked orders.
@@ -105,6 +121,7 @@ Format: `deleteo INDEX`
 Examples:
 * `listo` followed by `deleteo 2` deletes the 2nd order from the order list.
 * `findo Paper` followed by `deleteo 1` deletes the 1st item in the results of the `findo` command.
+* `sorto new` followed by `deleteo 1` deletes the most recently created order
 
 ### Editing details of an order: `edito`
 
@@ -188,7 +205,7 @@ Examples:
 
 Edits an existing item in the inventory list.
 
-Format: `editi INDEX [i/ITEM_NAME] [q/QUANTITY] [d/DESCRIPTION] [t/TAG]…​`
+Format: `edit INDEX [i/ITEM_NAME] [q/QUANTITY] [d/DESCRIPTION] [t/TAG]…​ [sp/SELL_PRICE] [cp/COST_PRICE]`
 
 * Edits the item at the specified `INDEX`.
 * The index refers to the index number shown in the displayed inventory list.
@@ -216,11 +233,12 @@ Format: `exit`
 | **List All Orders**          | `listo`                                                                                                                                                                                                                   |
 | **Find Order(s)**            | `findo KEYWORD [MORE_KEYWORDS]`                                                                                                                                                                                           |
 | **Delete An Order**          | `deleteo INDEX` <br> e.g., `deleteo 2`                                                                                                                                                                                    |
-| **Edit An Order**            | `edito INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [i/ITEM_NAME] [q/QUANTITY]` <br> e.g., `edito 2 n/Peter p/98765432 e/peter@email.com a/123 Apartment Unit, #05-11`                                                  |
-| **Add An Inventory Item**    | `addi n/NAME q/QUANTITY d/DESCRIPTION [t/TAG]…​ sp/SELL_PRICE cp/COST_PRICE` <br> e.g., `addi n/Chair q/20 d/Swedish Wooden chair t/Furniture sp/79.99 cp/50.00`                                                          |
-| **Delete An Inventory Item** | `deletei INDEX`<br> e.g., `deletei 3`                                                                                                                                                                                     |
-| **Tag An Inventory Item**    | `tagi INDEX [t/TAG]…​` <br> e.g, `tagi 1 t/Perishable t/Premium`                                                                                                                                                          |
+| **Edit An Order**            | `edito INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [i/ITEM_NAME] [q/QUANTITY]` <br> e.g., `edito 2 n/Peter p/98765432 e/peter@email.com a/123 Apartment Unit, #05-11`                                                  |                                                                                                                                                                              
+| **Sort Orders**              | `sorto new` or `sorto old`                                                                                                                                                                                                |
+| **Add An Inventory Item**    | `addi n/NAME q/QUANTITY d/DESCRIPTION [t/TAG]…​ sp/SELL_PRICE cp/COST_PRICE` <br> e.g., `addi n/Chair q/20 d/Swedish Wooden chair t/Furniture sp/79/99 cp/50.00`                                                          |
+| **Delete An Inventory Item** | `deletei INDEX`<br> e.g., `deletei 3`                                                                                                                                                                                     |                                                                                                                                                        
 | **List All Inventory Items** | `listi`                                                                                                                                                                                                                   |
 | **Find Inventory Item(s)**   | `findi KEYWORD [MORE_KEYWORDS]` <br/> e.g., `findi blue shirt`                                                                                                                                                            |
-| **Edit An Inventory Item**   | `editi INDEX [i/ITEM_NAME] [q/QUANTITY] [d/DESCRIPTION] [t/TAG]…​`<br> e.g., `editi 2 i/Table q/200 d/Metal Table t/Fragile`                                                                                              |
+| **Edit An Inventory Item**   | `editi INDEX [i/ITEM_NAME] [q/QUANTITY] [d/DESCRIPTION] [t/TAG]…​ [sp/SELL_PRICE] [cp/COST_PRICE]`<br> e.g., `editi 2 i/Table q/200 d/Metal Table t/Fragile`                                                              |
+| **Tag An Inventory Item**    | `tagi INDEX [t/TAG]…​` <br> e.g, `tagi 1 t/Perishable t/Premium`                                                                                                                                                          |
 | **Exit**                     | `exit`                                                                                                                                                                                                                    |
