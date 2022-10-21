@@ -234,11 +234,11 @@ This feature allows the user (teacher) to find a list of students from Teacher's
 #### Proposed Implementation
 
 The proposed `find` mechanism is facilitated within [TeachersPet.java](https://github.com/AY2223S1-CS2103T-T09-4/tp/tree/master/src/main/java/seedu/address/model/TeachersPet.java).
-There are 4 different variations of `find` :
-1. Find by name: Find all matching student(s) using any matching full keyword(s) from name of student using `find n/[KEYWORDS]`
-2. Find by email: Find all matching student(s) with any matching full keyword(s) from email of student using `find e/[KEYWORDS]`
-3. Find by address: Find all matching student(s) using any matching full keyword(s) from address of using `find a/[KEYWORDS]`
-4. Find by tag: Find all matching student(s) with exact matching full keyword(s) from tag(s) of student using `find t/[TAG]`
+There are 4 different variations of `find`:
+1. Find by name: Find all matching student(s) using any matching full keyword(s) from name of student using `find n/[KEYWORDS]`.
+2. Find by email: Find all matching student(s) with any matching full keyword(s) from email of student using `find e/[KEYWORDS]`.
+3. Find by address: Find all matching student(s) using any matching full keyword(s) from address of using `find a/[KEYWORDS]`.
+4. Find by tag: Find all matching student(s) with exact matching full keyword(s) from tag(s) of student using `find t/[TAG]`.
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The 4 variations cannot be mixed with one another.</div>
 
