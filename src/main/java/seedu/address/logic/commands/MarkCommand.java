@@ -38,7 +38,7 @@ public class MarkCommand extends Command {
     private final ApplicationStatus applicationStatus;
 
     /**
-     * @param index of the internship in the filtered internship list to edit
+     * @param index of the internship in the filtered internship list to mark
      * @param applicationStatus status of the internship
      */
     public MarkCommand(Index index, ApplicationStatus applicationStatus) {
