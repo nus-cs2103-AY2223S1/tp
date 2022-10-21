@@ -243,7 +243,7 @@ thrown if the person to add already exists in the contact list. Error message is
 ### Edit Gender
 
 The Edit Gender feature allows users to edit a gender field (Male / Female) of a person in the contact list.
-It is performed as a part of `editCommand#execute()`.
+It is performed as a part of `editPersonCommand#execute()`.
 
 These operations are exposed in the `Model` interface as the method `Model#setPerson()`, which calls
 `AddressBook#setPerson()` which calls `UniquePersonList#setPerson` to replace an existing person with a new person
