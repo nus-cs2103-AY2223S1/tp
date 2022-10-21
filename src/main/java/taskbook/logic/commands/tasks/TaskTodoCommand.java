@@ -49,6 +49,7 @@ public class TaskTodoCommand extends TaskAddCommand {
 
         Task newTask = createTodo();
         model.addTask(newTask);
+        model.commitTaskBook();
         return new CommandResult(String.format(MESSAGE_SUCCESS, newTask));
     }
 
