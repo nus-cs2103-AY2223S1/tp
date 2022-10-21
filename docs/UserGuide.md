@@ -101,7 +101,8 @@ __Additional Parameter 1: Gender__
 
 Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS g/GENDER`
 
-- Adds gender to a person in the contact list. The genders accepted by the contact list are: `M`/`m` for male,  `F`/`f` for female.
+- Adds gender to a person in the contact list. The genders accepted by the contact list are: `M`/`m`/`Male`/`male`
+for male, `F`/`f`/`Female`/`female` for female.
 - NAME can contain more than 1 word.
 
 Examples:
