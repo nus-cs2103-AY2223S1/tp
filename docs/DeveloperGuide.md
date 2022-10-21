@@ -313,6 +313,7 @@ Project team leaders with many projects, members and tasks to assign.
 | `* * *`   | beginner user     | create a group                                                                 |                                                                                        |
 | `* * *`   | beginner user     | add members to a group                                                         |                                                                                        |
 | `* *`     | intermediate user | locate a particular contact                                                    | quickly find a member                                                                  |
+| `* *`     | intermediate user | have a quick overview of all my groups with their existing members                                                   |                                                                  |
 | `* * *`   | intermediate user | assign tasks to members                                                        |                                                                                        |
 | `* *`     | intermediate user | have a quick overview of tasks assigned to members in the group                |                                                                                        |
 | `* *`     | intermediate user | create a tag specific to the group project                                     | quickly assign tags to members                                                         |
