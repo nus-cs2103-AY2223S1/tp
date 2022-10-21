@@ -11,7 +11,7 @@ import java.util.Map;
 public class GradesList {
 
     // Names of assessments and exams
-    public static final String[] EXAMS = {"RA1", "Mid-Term", "RA2", "Practical", "Finals"};
+    public static final String[] EXAMS = {"RA1", "RA2", "Mid-Term", "Practical", "Finals"};
 
     public final Map<String, Grade> gradesMap;
 

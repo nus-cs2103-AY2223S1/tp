@@ -72,7 +72,7 @@ public class GradeCommand extends Command {
         Student editedStudent = new Student(studentToEdit.getName(), studentToEdit.getTelegramHandle(),
                 studentToEdit.getConsultation(), studentToEdit.getMasteryCheck(), studentToEdit.getRemark(),
                 studentToEdit.getTags(), editedGradesList);
-
+        System.out.println(editedStudent);
         model.setStudent(studentToEdit, editedStudent);
         model.updateFilteredStudentList(PREDICATE_SHOW_ALL_STUDENTS);
 
@@ -156,7 +156,7 @@ public class GradeCommand extends Command {
             return Optional.ofNullable(ra1);
         }
 
-        public void setRa2(Grade ra1) {
+        public void setRa2(Grade ra2) {
             this.ra2 = ra2;
         }
 

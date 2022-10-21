@@ -10,6 +10,7 @@ import static java.util.Objects.requireNonNull;
 import friday.commons.core.Messages;
 import friday.commons.core.index.Index;
 import friday.commons.exceptions.IllegalValueException;
+import friday.logic.commands.EditCommand;
 import friday.logic.commands.GradeCommand;
 import friday.logic.parser.exceptions.ParseException;
 
@@ -41,6 +42,7 @@ public class GradeCommandParser {
             editGradeDescriptor.setRa1(ParserUtil.parseGrade("RA1", argMultimap.getValue(PREFIX_RA1).get()));
         }
         if (argMultimap.getValue(PREFIX_RA2).isPresent()) {
+            System.out.println();
             editGradeDescriptor.setRa2(ParserUtil.parseGrade("RA2", argMultimap.getValue(PREFIX_RA2).get()));
         }
         if (argMultimap.getValue(PREFIX_PRACTICAL).isPresent()) {
@@ -54,6 +56,10 @@ public class GradeCommandParser {
         if (argMultimap.getValue(PREFIX_FINALS).isPresent()) {
             editGradeDescriptor.setFt(ParserUtil.parseGrade("Finals",
                     argMultimap.getValue(PREFIX_FINALS).get()));
+        }
+
+        if (!editGradeDescriptor.isAnyFieldEdited()) {
+            throw new ParseException(EditCommand.MESSAGE_NOT_EDITED);
         }
 
         return new GradeCommand(index, editGradeDescriptor);
