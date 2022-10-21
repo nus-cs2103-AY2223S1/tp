@@ -17,7 +17,7 @@ import java.util.stream.Stream;
 import tuthub.logic.commands.AddCommand;
 import tuthub.logic.parser.exceptions.ParseException;
 import tuthub.model.tag.Tag;
-import tuthub.model.tutor.CommentList;
+import tuthub.model.tutor.Comment;
 import tuthub.model.tutor.Email;
 import tuthub.model.tutor.Module;
 import tuthub.model.tutor.Name;
@@ -59,10 +59,10 @@ public class AddCommandParser implements Parser<AddCommand> {
                 ParserUtil.parseTeachingNomination(argMultimap.getValue(PREFIX_TEACHINGNOMINATION).get());
         Rating rating =
                 ParserUtil.parseRating(argMultimap.getValue(PREFIX_RATING).get());
-        CommentList comments = new CommentList();
+        Comment comment = new Comment("");
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
 
-        Tutor tutor = new Tutor(name, phone, email, moduleList, year, studentId, comments, teachingNomination, rating,
+        Tutor tutor = new Tutor(name, phone, email, moduleList, year, studentId, comment, teachingNomination, rating,
                 tagList);
 
         return new AddCommand(tutor);

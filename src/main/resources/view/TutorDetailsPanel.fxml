@@ -34,9 +34,9 @@
         <Label styleClass="cell_header_label" text="REVIEW" />
         <Label fx:id="rating" styleClass="cell_small_label" text="\$rating" />
         <Label fx:id="teachingNomination" styleClass="cell_small_label" text="\$teachingNomination" />
-        <Label fx:id="feedback" styleClass="cell_small_label" text="Additional comments:" />
+        <Label fx:id="feedback" styleClass="cell_small_label" text="Additional feedback:" />
         <children>
-            <TextFlow fx:id="comments" styleClass="cell_small_label"/>
+            <TextFlow fx:id="comment" styleClass="cell_small_label"/>
         </children>
     </VBox>
 </ScrollPane>

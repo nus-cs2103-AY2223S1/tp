@@ -45,7 +45,7 @@ public class TutorDetailsPanel extends UiPart<Region> {
     @FXML
     private Label rating;
     @FXML
-    private TextFlow comments;
+    private TextFlow comment;
     @FXML
     private FlowPane tags;
 
@@ -66,9 +66,9 @@ public class TutorDetailsPanel extends UiPart<Region> {
         rating.setText("Student Feedback Points: " + tutor.getRating().value);
         teachingNomination.setText("Teaching Nominations: " + tutor.getTeachingNomination().value);
 
-        Text tutorComments = new Text(tutor.getComments().toStringForTutorCard());
-        tutorComments.setFill(Color.DIMGRAY);
-        comments.getChildren().add(tutorComments);
+        Text tutorComment = new Text("- " + tutor.getComment().value);
+        tutorComment.setFill(Color.DIMGRAY);
+        comment.getChildren().add(tutorComment);
 
         tutor.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
