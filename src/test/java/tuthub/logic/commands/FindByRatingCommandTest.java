@@ -6,7 +6,10 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static tuthub.commons.core.Messages.MESSAGE_TUTORS_LISTED_OVERVIEW;
 import static tuthub.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static tuthub.testutil.TypicalTutors.ALICE;
+import static tuthub.testutil.TypicalTutors.BENSON;
 import static tuthub.testutil.TypicalTutors.CARL;
+import static tuthub.testutil.TypicalTutors.DANIEL;
+import static tuthub.testutil.TypicalTutors.FIONA;
 import static tuthub.testutil.TypicalTutors.getTypicalTuthub;
 
 import java.util.Arrays;
@@ -71,6 +74,16 @@ public class FindByRatingCommandTest {
         expectedModel.updateFilteredTutorList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
         assertEquals(Arrays.asList(ALICE, CARL), model.getFilteredTutorList());
+    }
+
+    @Test
+    public void execute_multiplePartialKeywords_multipleTutorsFound() {
+        String expectedMessage = String.format(MESSAGE_TUTORS_LISTED_OVERVIEW, 3);
+        RatingContainsKeywordsPredicate predicate = preparePredicate("2. 1.");
+        FindByRatingCommand command = new FindByRatingCommand(predicate);
+        expectedModel.updateFilteredTutorList(predicate);
+        assertCommandSuccess(command, model, expectedMessage, expectedModel);
+        assertEquals(Arrays.asList(BENSON, DANIEL, FIONA), model.getFilteredTutorList());
     }
 
     /**

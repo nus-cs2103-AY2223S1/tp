@@ -15,14 +15,16 @@ import tuthub.logic.commands.FindByPhoneCommand;
 import tuthub.logic.commands.FindByPrefixCommand;
 import tuthub.logic.commands.FindByRatingCommand;
 import tuthub.logic.commands.FindByStudentIdCommand;
+import tuthub.logic.commands.FindByTagCommand;
 import tuthub.logic.commands.FindByTeachingNominationCommand;
 import tuthub.logic.commands.FindByYearCommand;
 import tuthub.model.tutor.EmailContainsKeywordsPredicate;
-import tuthub.model.tutor.ModuleContainsKeywordPredicate;
+import tuthub.model.tutor.ModuleContainsKeywordsPredicate;
 import tuthub.model.tutor.NameContainsKeywordsPredicate;
 import tuthub.model.tutor.PhoneContainsKeywordsPredicate;
 import tuthub.model.tutor.RatingContainsKeywordsPredicate;
 import tuthub.model.tutor.StudentIdContainsKeywordsPredicate;
+import tuthub.model.tutor.TagContainsKeywordsPredicate;
 import tuthub.model.tutor.TeachingNominationContainKeywordsPredicate;
 import tuthub.model.tutor.YearContainsKeywordsPredicate;
 
@@ -68,7 +70,7 @@ public class FindByPrefixParserCommandTest {
     }
 
     @Test
-    public void parse_validEmailArgs_returnsFindByNameCommand() {
+    public void parse_validEmailArgs_returnsFindByEmailCommand() {
         FindByEmailCommand expectedFindByEmailCommand =
                 new FindByEmailCommand(new EmailContainsKeywordsPredicate(
                         Arrays.asList("alice@example.com", "benson@example.com")));
@@ -82,9 +84,9 @@ public class FindByPrefixParserCommandTest {
     }
 
     @Test
-    public void parse_validModuleArgs_returnsFindByNameCommand() {
+    public void parse_validModuleArgs_returnsFindByModuleCommand() {
         FindByModuleCommand expectedFindByModuleCommand =
-                new FindByModuleCommand(new ModuleContainsKeywordPredicate(Arrays.asList("cs2100", "cs2105")));
+                new FindByModuleCommand(new ModuleContainsKeywordsPredicate(Arrays.asList("cs2100", "cs2105")));
         assertParseSuccess(parser, " m/cs2100 cs2105", expectedFindByModuleCommand);
     }
 
@@ -95,7 +97,7 @@ public class FindByPrefixParserCommandTest {
     }
 
     @Test
-    public void parse_validYearArgs_returnsFindByNameCommand() {
+    public void parse_validYearArgs_returnsFindByYearCommand() {
         FindByYearCommand expectedFindByYearCommand =
                 new FindByYearCommand(new YearContainsKeywordsPredicate(Arrays.asList("2", "3")));
         assertParseSuccess(parser, " y/2 3", expectedFindByYearCommand);
@@ -108,7 +110,7 @@ public class FindByPrefixParserCommandTest {
     }
 
     @Test
-    public void parse_validStudentIdArgs_returnsFindByNameCommand() {
+    public void parse_validStudentIdArgs_returnsFindByStudentIdCommand() {
         FindByStudentIdCommand expectedFindByStudentIdCommand =
                 new FindByStudentIdCommand(new StudentIdContainsKeywordsPredicate(
                         Arrays.asList("A0123456X", "A0123456Y")));
@@ -122,7 +124,7 @@ public class FindByPrefixParserCommandTest {
     }
 
     @Test
-    public void parse_validTeachingNominationArgs_returnsFindByNameCommand() {
+    public void parse_validTeachingNominationArgs_returnsFindByTeachingNominationCommand() {
         FindByTeachingNominationCommand expectedFindByTeachingNominationCommand =
                 new FindByTeachingNominationCommand(new TeachingNominationContainKeywordsPredicate(
                         Arrays.asList("1", "2")));
@@ -136,9 +138,22 @@ public class FindByPrefixParserCommandTest {
     }
 
     @Test
-    public void parse_validRatingArgs_returnsFindByNameCommand() {
+    public void parse_validRatingArgs_returnsFindByRatingCommand() {
         FindByRatingCommand expectedFindByRatingCommand =
                 new FindByRatingCommand(new RatingContainsKeywordsPredicate(Arrays.asList("2.5", "3.5")));
         assertParseSuccess(parser, " r/2.5 3.5", expectedFindByRatingCommand);
+    }
+
+    @Test
+    public void parse_invalidTagArgs_throwsParseException() {
+        assertParseFailure(parser, " t/",
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindByTagCommand.MESSAGE_USAGE));
+    }
+
+    @Test
+    public void parse_validTagArgs_returnsFindByTagCommand() {
+        FindByTagCommand expectedFindByTagCommand =
+                new FindByTagCommand(new TagContainsKeywordsPredicate(Arrays.asList("friends", "senior")));
+        assertParseSuccess(parser, " t/friends senior", expectedFindByTagCommand);
     }
 }

@@ -45,6 +45,10 @@ public class PhoneContainsKeywordsPredicateTest {
         PhoneContainsKeywordsPredicate predicate =
                 new PhoneContainsKeywordsPredicate(Collections.singletonList("98765432"));
         assertTrue(predicate.test(new TutorBuilder().withPhone("98765432").build()));
+
+        // Partial keywords
+        predicate = new PhoneContainsKeywordsPredicate(Collections.singletonList("987"));
+        assertTrue(predicate.test(new TutorBuilder().withPhone("98765432").build()));
     }
 
     @Test

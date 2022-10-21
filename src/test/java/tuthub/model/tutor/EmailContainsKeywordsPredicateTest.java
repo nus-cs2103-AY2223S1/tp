@@ -49,6 +49,10 @@ public class EmailContainsKeywordsPredicateTest {
         // Mixed case keywords
         predicate = new EmailContainsKeywordsPredicate(Collections.singletonList("jOhn@eXample.cOm"));
         assertTrue(predicate.test(new TutorBuilder().withEmail("john@example.com").build()));
+
+        // Partial keyword
+        predicate = new EmailContainsKeywordsPredicate(Collections.singletonList("jOhn"));
+        assertTrue(predicate.test(new TutorBuilder().withEmail("john@example.com").build()));
     }
 
     @Test

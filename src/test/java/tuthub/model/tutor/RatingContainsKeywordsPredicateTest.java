@@ -47,6 +47,10 @@ public class RatingContainsKeywordsPredicateTest {
         RatingContainsKeywordsPredicate predicate =
                 new RatingContainsKeywordsPredicate(Collections.singletonList("2.5"));
         assertTrue(predicate.test(new TutorBuilder().withRating("2.5").build()));
+
+        // Partial keyword
+        predicate = new RatingContainsKeywordsPredicate(Collections.singletonList("2."));
+        assertTrue(predicate.test(new TutorBuilder().withRating("2.5").build()));
     }
 
     @Test
