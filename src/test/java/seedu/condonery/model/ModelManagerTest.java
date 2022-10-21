@@ -26,7 +26,13 @@ public class ModelManagerTest {
     public void constructor() {
         assertEquals(new UserPrefs(), modelManager.getUserPrefs());
         assertEquals(new GuiSettings(), modelManager.getGuiSettings());
-        assertEquals(new PropertyDirectory(), new PropertyDirectory(modelManager.getPropertyDirectory()));
+        assertEquals(
+            new PropertyDirectory(),
+            new PropertyDirectory(
+                modelManager.getPropertyDirectory(),
+                modelManager.getUserPrefs().getUserImageDirectoryPath()
+            )
+        );
     }
 
     @Test

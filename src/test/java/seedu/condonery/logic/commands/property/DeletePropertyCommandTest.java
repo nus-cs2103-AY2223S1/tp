@@ -3,8 +3,8 @@ package seedu.condonery.logic.commands.property;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.condonery.testutil.TypicalClients.getTypicalClientDirectory;
-import static seedu.condonery.testutil.TypicalIndexes.INDEX_FIRST_PROPERTY;
-import static seedu.condonery.testutil.TypicalIndexes.INDEX_SECOND_PROPERTY;
+import static seedu.condonery.testutil.TypicalIndexes.INDEX_FIRST;
+import static seedu.condonery.testutil.TypicalIndexes.INDEX_SECOND;
 import static seedu.condonery.testutil.TypicalProperties.getTypicalPropertyDirectory;
 
 import org.junit.jupiter.api.Test;
@@ -29,8 +29,8 @@ public class DeletePropertyCommandTest {
 
     @Test
     public void execute_validIndexUnfilteredList_success() {
-        Property propertyToDelete = model.getFilteredPropertyList().get(INDEX_FIRST_PROPERTY.getZeroBased());
-        DeleteCommand deleteCommand = new DeleteCommand(INDEX_FIRST_PROPERTY);
+        Property propertyToDelete = model.getFilteredPropertyList().get(INDEX_FIRST.getZeroBased());
+        DeleteCommand deleteCommand = new DeleteCommand(INDEX_FIRST);
 
         String expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_PROPERTY_SUCCESS, propertyToDelete);
 
@@ -51,10 +51,10 @@ public class DeletePropertyCommandTest {
 
     @Test
     public void execute_validIndexFilteredList_success() {
-        CommandTestUtil.showPropertyAtIndex(model, INDEX_FIRST_PROPERTY);
+        CommandTestUtil.showPropertyAtIndex(model, INDEX_FIRST);
 
-        Property propertyToDelete = model.getFilteredPropertyList().get(INDEX_FIRST_PROPERTY.getZeroBased());
-        DeleteCommand deleteCommand = new DeleteCommand(INDEX_FIRST_PROPERTY);
+        Property propertyToDelete = model.getFilteredPropertyList().get(INDEX_FIRST.getZeroBased());
+        DeleteCommand deleteCommand = new DeleteCommand(INDEX_FIRST);
 
         String expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_PROPERTY_SUCCESS, propertyToDelete);
 
@@ -68,9 +68,9 @@ public class DeletePropertyCommandTest {
 
     @Test
     public void execute_invalidIndexFilteredList_throwsCommandException() {
-        CommandTestUtil.showPropertyAtIndex(model, INDEX_FIRST_PROPERTY);
+        CommandTestUtil.showPropertyAtIndex(model, INDEX_FIRST);
 
-        Index outOfBoundIndex = INDEX_SECOND_PROPERTY;
+        Index outOfBoundIndex = INDEX_SECOND;
         // ensures that outOfBoundIndex is still in bounds of address book list
         assertTrue(outOfBoundIndex.getZeroBased() < model.getPropertyDirectory().getPropertyList().size());
 
@@ -81,14 +81,14 @@ public class DeletePropertyCommandTest {
 
     @Test
     public void equals() {
-        DeleteCommand deleteFirstCommand = new DeleteCommand(INDEX_FIRST_PROPERTY);
-        DeleteCommand deleteSecondCommand = new DeleteCommand(INDEX_SECOND_PROPERTY);
+        DeleteCommand deleteFirstCommand = new DeleteCommand(INDEX_FIRST);
+        DeleteCommand deleteSecondCommand = new DeleteCommand(INDEX_SECOND);
 
         // same object -> returns true
         assertTrue(deleteFirstCommand.equals(deleteFirstCommand));
 
         // same values -> returns true
-        DeleteCommand deleteFirstCommandCopy = new DeleteCommand(INDEX_FIRST_PROPERTY);
+        DeleteCommand deleteFirstCommandCopy = new DeleteCommand(INDEX_FIRST);
         assertTrue(deleteFirstCommand.equals(deleteFirstCommandCopy));
 
         // different types -> returns false

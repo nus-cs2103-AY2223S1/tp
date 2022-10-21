@@ -53,6 +53,7 @@ public class EditPropertyCommand extends Command {
     /**
      * Creates a EditPropertyCommand to edit the specific {@code Property} at the specified index
      * @param targetIndex of the property to edit
+     * @param editPropertyDescriptor details to edit the property
      */
     public EditPropertyCommand(Index targetIndex, EditPropertyDescriptor editPropertyDescriptor) {
         requireNonNull(targetIndex);

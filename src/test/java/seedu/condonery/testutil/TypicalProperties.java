@@ -1,13 +1,13 @@
 package seedu.condonery.testutil;
 
-import static seedu.condonery.logic.commands.CommandTestUtil.VALID_ADDRESS_AMY;
-import static seedu.condonery.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
-import static seedu.condonery.logic.commands.CommandTestUtil.VALID_NAME_AMY;
-import static seedu.condonery.logic.commands.CommandTestUtil.VALID_NAME_BOB;
+import static seedu.condonery.logic.commands.CommandTestUtil.CLIENT_VALID_ADDRESS_AMY;
+import static seedu.condonery.logic.commands.CommandTestUtil.CLIENT_VALID_ADDRESS_BOB;
+import static seedu.condonery.logic.commands.CommandTestUtil.CLIENT_VALID_NAME_AMY;
+import static seedu.condonery.logic.commands.CommandTestUtil.CLIENT_VALID_NAME_BOB;
 import static seedu.condonery.logic.commands.CommandTestUtil.VALID_PRICE_AMY;
 import static seedu.condonery.logic.commands.CommandTestUtil.VALID_PRICE_BOB;
-import static seedu.condonery.logic.commands.CommandTestUtil.VALID_TAG_FRIEND;
-import static seedu.condonery.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
+import static seedu.condonery.logic.commands.CommandTestUtil.CLIENT_VALID_TAG_FRIEND;
+import static seedu.condonery.logic.commands.CommandTestUtil.CLIENT_VALID_TAG_HUSBAND;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -53,11 +53,12 @@ public class TypicalProperties {
             .withAddress("chicago ave").withPrice("1000000").build();
 
     // Manually added - Person's details found in {@code CommandTestUtil}
-    public static final Property AMY = new PropertyBuilder().withName(VALID_NAME_AMY)
-            .withAddress(VALID_ADDRESS_AMY).withPrice(VALID_PRICE_AMY).withTags(VALID_TAG_FRIEND).build();
-    public static final Property BOB = new PropertyBuilder().withName(VALID_NAME_BOB)
-            .withAddress(VALID_ADDRESS_BOB).withPrice(VALID_PRICE_BOB).withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND)
-            .build();
+    public static final Property AMY = new PropertyBuilder().withName(CLIENT_VALID_NAME_AMY)
+            .withAddress(CLIENT_VALID_ADDRESS_AMY).withPrice(VALID_PRICE_AMY)
+            .withTags(CLIENT_VALID_TAG_FRIEND).build();
+    public static final Property BOB = new PropertyBuilder().withName(CLIENT_VALID_NAME_BOB)
+            .withAddress(CLIENT_VALID_ADDRESS_BOB).withPrice(VALID_PRICE_BOB)
+            .withTags(CLIENT_VALID_TAG_HUSBAND, CLIENT_VALID_TAG_FRIEND).build();
 
     public static final String KEYWORD_MATCHING_MEIER = "Meier"; // A keyword that matches MEIER
 

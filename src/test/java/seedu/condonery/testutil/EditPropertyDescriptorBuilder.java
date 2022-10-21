@@ -13,7 +13,7 @@ import seedu.condonery.model.property.Property;
 import seedu.condonery.model.tag.Tag;
 
 /**
- * A utility class to help with building EditPersonDescriptor objects.
+ * A utility class to help with building EditPropertyDescriptor objects.
  */
 public class EditPropertyDescriptorBuilder {
 
@@ -28,7 +28,7 @@ public class EditPropertyDescriptorBuilder {
     }
 
     /**
-     * Returns an {@code EditPersonDescriptor} with fields containing {@code person}'s details
+     * Returns an {@code EditPropertyDescriptor} with fields containing {@code property}'s details
      */
     public EditPropertyDescriptorBuilder(Property property) {
         descriptor = new EditPropertyDescriptor();
@@ -39,7 +39,7 @@ public class EditPropertyDescriptorBuilder {
     }
 
     /**
-     * Sets the {@code Name} of the {@code EditPersonDescriptor} that we are building.
+     * Sets the {@code Name} of the {@code EditPropertyDescriptor} that we are building.
      */
     public EditPropertyDescriptorBuilder withName(String name) {
         descriptor.setName(new Name(name));
@@ -47,7 +47,7 @@ public class EditPropertyDescriptorBuilder {
     }
 
     /**
-     * Sets the {@code Address} of the {@code EditPersonDescriptor} that we are building.
+     * Sets the {@code Address} of the {@code EditPropertyDescriptor} that we are building.
      */
     public EditPropertyDescriptorBuilder withAddress(String address) {
         descriptor.setAddress(new Address(address));
@@ -55,6 +55,7 @@ public class EditPropertyDescriptorBuilder {
     }
 
     /**
+
      * Sets the {@code Address} of the {@code EditPersonDescriptor} that we are building.
      */
     public EditPropertyDescriptorBuilder withPrice(String price) {

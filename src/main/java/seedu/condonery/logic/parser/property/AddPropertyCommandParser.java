@@ -2,6 +2,7 @@ package seedu.condonery.logic.parser.property;
 
 import static seedu.condonery.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.condonery.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static seedu.condonery.logic.parser.CliSyntax.PREFIX_IMAGE_UPLOAD;
 import static seedu.condonery.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.condonery.logic.parser.CliSyntax.PREFIX_PRICE;
 import static seedu.condonery.logic.parser.CliSyntax.PREFIX_TAG;
@@ -35,7 +36,7 @@ public class AddPropertyCommandParser implements Parser<Command> {
      */
     public Command parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_ADDRESS, PREFIX_PRICE, PREFIX_TAG);
+                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_ADDRESS, PREFIX_PRICE, PREFIX_TAG, PREFIX_IMAGE_UPLOAD);
 
         if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_ADDRESS, PREFIX_PRICE)
                 || !argMultimap.getPreamble().isEmpty()) {
@@ -48,6 +49,11 @@ public class AddPropertyCommandParser implements Parser<Command> {
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
 
         Property property = new Property(name, address, price, tagList);
+
+        if (argMultimap.getValue(PREFIX_IMAGE_UPLOAD).isPresent()) {
+            return new AddPropertyCommand(property, true);
+        }
+
 
         return new AddPropertyCommand(property);
     }
