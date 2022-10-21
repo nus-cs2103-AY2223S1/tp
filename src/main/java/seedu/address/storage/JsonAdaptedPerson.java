@@ -79,7 +79,7 @@ class JsonAdaptedPerson {
         tagged.addAll(source.getTags().stream()
                             .map(JsonAdaptedTag::new)
                             .collect(Collectors.toList()));
-        subjects.addAll(source.getSubjectHandler().getSubjectsTaken().stream()
+        subjects.addAll(source.getSubjectsTaken().stream()
                               .map(JsonAdaptedSubject::new)
                               .collect(Collectors.toList()));
     }

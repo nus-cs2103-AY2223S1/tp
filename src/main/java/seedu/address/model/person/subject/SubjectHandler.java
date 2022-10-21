@@ -19,10 +19,6 @@ public class SubjectHandler {
         subjectsTaken = new HashMap<>();
     }
 
-    public HashMap<String, Subject> getSubjectsTaken() {
-        return subjectsTaken;
-    }
-
     /**
      * Constructs a {@code SubjectHandler} with a specified Set of Subjects.
      */
