@@ -24,6 +24,9 @@ public class Project implements ComparableByName<Project>, HasIntegerIdentifier<
     private ProjectId projectId;
     private List<Issue> issueList;
 
+
+
+
     /**
      * Name field must be present and not null and other fields may be optional.
      */
@@ -132,6 +135,33 @@ public class Project implements ComparableByName<Project>, HasIntegerIdentifier<
         return false;
     }
 
+    /**
+     * Counts number of completed issues in Project Issue List
+     * @return number of completed issues
+     */
+    public int getCompletedIssueCount() {
+        int count = 0;
+        for (Issue i: issueList) {
+            if (i.getStatus().getStatus() == true) {
+                count += 1;
+            }
+        }
+        return count;
+    }
+
+    /**
+     * Counts number of incomplete issues in Project Issue List
+     * @return number of incomplete issues;
+     */
+    public int getIncompleteIssueCount() {
+        int count = 0;
+        for (Issue i: issueList) {
+            if (i.getStatus().getStatus() == false) {
+                count += 1;
+            }
+        }
+        return count;
+    }
     /**
      * Returns true if both projects have the same identity and data fields.
      * This defines a stronger notion of equality between two projects.

@@ -24,7 +24,9 @@ public class EditIssueCommand extends IssueCommand {
 
     public static final String COMMAND_FLAG = "-e";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits an issue in the address book. "
+    public static final String MESSAGE_USAGE = COMMAND_WORD
+            + " " + COMMAND_FLAG
+             + ": Edits an issue in the address book. "
             + "Parameters: "
             + PREFIX_ISSUE_ID + "ISSUE_ID "
             + PREFIX_DESCRIPTION + "DESCRIPTION "

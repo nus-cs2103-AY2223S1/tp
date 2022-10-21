@@ -14,5 +14,6 @@ public class Messages {
     public static final String MESSAGE_INVALID_PROJECT_DISPLAYED_INDEX = "The project index provided is invalid";
     public static final String MESSAGE_INVALID_ISSUE_DISPLAYED_ID = "The issue id provided is invalid";
     public static final String MESSAGE_MISSING_ARGUMENTS = "Missing some arguments! \n%1$s";
+    public static final String MESSAGE_ISSUE_NOT_FOUND = "This issue id does not exist in the address book";
 
 }

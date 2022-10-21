@@ -91,6 +91,10 @@ public class Issue implements ComparableByName<Issue>, HasIntegerIdentifier<Issu
         return this.project;
     }
 
+    public Status getStatus() {
+        return this.status;
+    }
+
     /**
      * Returns true if both issues have the same description.
      * This defines a weaker notion of equality between two issues.
@@ -100,9 +104,7 @@ public class Issue implements ComparableByName<Issue>, HasIntegerIdentifier<Issu
         return otherIssue.description == this.description;
     }
 
-    public Status getStatus() {
-        return this.status;
-    }
+
 
     public void setDescription(Description description) {
         this.description = description;
