@@ -93,9 +93,9 @@ Here's a (partial) class diagram of the `Logic` component:
 <img src="images/LogicClassDiagram.png" width="550"/>
 
 How the `Logic` component works:
-1. When `Logic` is called upon to execute a command, it uses the `AddressBookParser` class to parse the user command.
+1. When `Logic` is called upon to execute a command, it uses the `TuthubParser` class to parse the user command.
 1. This results in a `Command` object (more precisely, an object of one of its subclasses e.g., `AddCommand`) which is executed by the `LogicManager`.
-1. The command can communicate with the `Model` when it is executed (e.g. to add a person).
+1. The command can communicate with the `Model` when it is executed (e.g. to add a tutor).
 1. The result of the command execution is encapsulated as a `CommandResult` object which is returned back from `Logic`.
 
 The Sequence Diagram below illustrates the interactions within the `Logic` component for the `execute("delete 1")` API call.
@@ -110,7 +110,7 @@ Here are the other classes in `Logic` (omitted from the class diagram above) tha
 <img src="images/ParserClasses.png" width="600"/>
 
 How the parsing works:
-* When called upon to parse a user command, the `AddressBookParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddCommand`) which the `AddressBookParser` returns back as a `Command` object.
+* When called upon to parse a user command, the `TuthubParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddCommand`) which the `TuthubParser` returns back as a `Command` object.
 * All `XYZCommandParser` classes (e.g., `AddCommandParser`, `DeleteCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
 
 ### Model component
@@ -121,12 +121,12 @@ How the parsing works:
 
 The `Model` component,
 
-* stores the address book data i.e., all `Person` objects (which are contained in a `UniquePersonList` object).
-* stores the currently 'selected' `Person` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Person>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
+* stores tuthub data i.e., all `Tutor` objects (which are contained in a `UniqueTutorList` object).
+* stores the currently 'selected' `Tutor` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Tutor>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
 * stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
 * does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `Tuthub`, which `Person` references. This allows `Tuthub` to only require one `Tag` object per unique tag, instead of each `Person` needing their own `Tag` objects.<br>
+<div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `Tuthub`, which `Tutor` references. This allows `Tuthub` to only require one `Tag` object per unique tag, instead of each `Tutor` needing their own `Tag` objects.<br>
 
 <img src="images/BetterModelClassDiagram.png" width="450" />
 
@@ -140,8 +140,8 @@ The `Model` component,
 <img src="images/StorageClassDiagram.png" width="550" />
 
 The `Storage` component,
-* can save both address book data and user preference data in json format, and read them back into corresponding objects.
-* inherits from both `AddressBookStorage` and `UserPrefStorage`, which means it can be treated as either one (if only the functionality of only one is needed).
+* can save both tuthub data and user preference data in json format, and read them back into corresponding objects.
+* inherits from both `TuthubStorage` and `UserPrefStorage`, which means it can be treated as either one (if only the functionality of only one is needed).
 * depends on some classes in the `Model` component (because the `Storage` component's job is to save/retrieve objects that belong to the `Model`)
 
 ### Common classes
@@ -233,10 +233,10 @@ The following sequence diagram demonstrates the above operations (excluding the 
 
 **Value proposition**:
 * _Problem_: Multiple entries of the same tutor information as they have to repeatedly enter the same information when applying for different jobs
-* _Solution_: Our address book detects duplicate tutor profiles and merges the additional information into the existing profile.
+* _Solution_: Our tuthub detects duplicate tutor profiles and merges the additional information into the existing profile.
   <br/><br/>
 * _Problem_: Too many tutors with no specific way to organise them systematically.
-* _Solution_: Our address book can categorise the tutors based on different criteria and provides features to search for profiles easily.
+* _Solution_: Our tuthub can categorise the tutors based on different criteria and provides features to search for profiles easily.
 
 ### User stories
 
@@ -266,8 +266,8 @@ Guarantees: All stored user profiles to be shown. (if any)
 
 **MSS**
 
-1.  User requests to list persons.
-2.  Tuthub shows a list of persons.
+1.  User requests to list tutors.
+2.  Tuthub shows a list of tutors.
 
     Use case ends.
 
@@ -277,7 +277,7 @@ Guarantees: All stored user profiles to be shown. (if any)
 
   Use case ends.
 
-**Use case: UC2 - Add a person**
+**Use case: UC2 - Add a tutor**
 
 System: TutHub <br>
 Use case: UC2 - Add tutor profile <br>
@@ -301,7 +301,7 @@ Guarantees: Tutor profile will be stored when user correctly inputs details.
 
     Use case ends.
 
-**Use case: UC3 - Delete a person**
+**Use case: UC3 - Delete a tutor**
 
 System: TutHub <br>
 Use case: UC3 - Deleting a tutor profile <br>
@@ -310,10 +310,10 @@ Guarantees: Tutor profile will be deleted.
 
 **MSS**
 
-1.  User requests to list persons.
-2.  Tuthub shows a list of persons.
-3.  User requests to delete a specific person in the list.
-4.  Tuthub deletes the person.
+1.  User requests to list tutors.
+2.  Tuthub shows a list of tutors.
+3.  User requests to delete a specific tutor in the list.
+4.  Tuthub deletes the tutor.
 
     Use case ends.
 
@@ -348,7 +348,7 @@ Guarantees: TutHub application will close.
 ### Non-Functional Requirements
 
 1. Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
-2. Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
+2. Should be able to hold up to 1000 tutors without a noticeable sluggishness in performance for typical usage.
 3. Should work without internet connection.
 4. A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
 5. Performance requirement: The system should respond within a second.
@@ -394,17 +394,17 @@ testers are expected to do more *exploratory* testing.
 
 1. _{ more test cases …​ }_
 
-### Deleting a person
+### Deleting a tutor
 
-1. Deleting a person while all persons are being shown
+1. Deleting a tutor while all tutors are being shown
 
-   1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
+   1. Prerequisites: List all tutors using the `list` command. Multiple tutors in the list.
 
    1. Test case: `delete 1`<br>
       Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
 
    1. Test case: `delete 0`<br>
-      Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
+      Expected: No tutor is deleted. Error details shown in the status message. Status bar remains the same.
 
    1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
       Expected: Similar to previous.
