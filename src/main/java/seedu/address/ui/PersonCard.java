@@ -3,11 +3,9 @@ package seedu.address.ui;
 import java.util.Comparator;
 
 import javafx.fxml.FXML;
-import javafx.geometry.Pos;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
-import javafx.scene.layout.Background;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
@@ -86,7 +84,7 @@ public class PersonCard extends UiPart<Region> {
                 setPrefWidth(0);
                 setStyle("-fx-background-color: transparent;");
             } else {
-                setGraphic(new AppointmentFlowPane( getIndex() + 1, appointment));
+                setGraphic(new AppointmentFlowPane(getIndex() + 1, appointment));
                 setStyle("-fx-background-color: transparent;");
             }
         }

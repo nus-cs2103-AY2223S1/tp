@@ -5,8 +5,6 @@ import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.FlowPane;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.Pane;
 import seedu.address.MainApp;
 import seedu.address.model.person.Appointment;
 
@@ -14,8 +12,11 @@ import seedu.address.model.person.Appointment;
  * An UI component that displays information of an {@code Appointment}.
  */
 public class AppointmentFlowPane extends FlowPane {
-    private static final String INDEX_STYLE = "-fx-padding: 0 10 0 0; -fx-font-size: 20px; -fx-font-weight: bold; -fx-text-fill: #FFC600;";
-    private static final String INDEX_FIRST_STYLE = "-fx-padding: 0 13 0 0; -fx-font-size: 20px; -fx-font-weight: bold; -fx-text-fill: #FFC600;";
+    private static final String INDEX_STYLE = "-fx-padding: 0 10 0 0; -fx-font-size: 20px; "
+            + "-fx-font-weight: bold; -fx-text-fill: #FFC600;";
+    private static final String INDEX_FIRST_STYLE = "-fx-padding: 0 13 0 0; -fx-font-size: 20px; "
+            + "-fx-font-weight: bold; -fx-text-fill: #FFC600;";
+
     private static final String DATE_PADDING = "-fx-padding: 0 10 0 10";
     private static final String TIME_PADDING = "-fx-padding: 0 10 0 10";
     private static final String FLOWPANE_PADDING = "-fx-padding: 0 0 5 0";
