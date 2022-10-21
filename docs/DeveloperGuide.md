@@ -271,9 +271,9 @@ The sort mechanism is facilitated by `PersonContainsKeywordsPredicate`. It imple
 
 Step 1. The user enters with findC command with one or more of the contact's fields as parameters (e.g. name, address, phone, email)
 
-Step 2. The `FindCommandParser` class parses the user input and creates a `PersonContainsKeywordsPredicate` object with the given parameters. 
+Step 2. The `FindCommandParser` class parses the user input and creates a `PersonContainsKeywordsPredicate` object with the given parameters.
 
-Step 3. The `FindCommand` class then calls the `Model#updateFilteredPersonList()` method with the predicate object as the parameter. 
+Step 3. The `FindCommand` class then calls the `Model#updateFilteredPersonList()` method with the predicate object as the parameter.
 
 Step 4. The `Model` class then updates the filtered list of contacts in the `AddressBook` class.
 
@@ -380,7 +380,6 @@ Step 4. The user now decides that the initial order of the task list looks much 
 * **Alternative 2:** Don't save the sorting status and just sort once
   * Pros: Easy to implement.
   * Cons: Need to type a sort command each time the list is changed to preserve sorting order.
-  
 
 --------------------------------------------------------------------------------------------------------------------
 
