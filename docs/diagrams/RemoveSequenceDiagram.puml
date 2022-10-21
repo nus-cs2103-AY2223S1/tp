@@ -1,11 +1,93 @@
 @startuml
-'https://plantuml.com/sequence-diagram
+!include style.puml
 
-autonumber
 
-Alice -> Bob: Authentication Request
-Bob --> Alice: Authentication Response
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":TrackAScholarParser" as TrackAScholarParser LOGIC_COLOR
+participant ":RemoveCommandParser" as RemoveCommandParser LOGIC_COLOR
 
-Alice -> Bob: Another authentication Request
-Alice <-- Bob: another authentication Response
+participant ":RemoveCommand" as RemoveCommand LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+participant "ApplicationStatus" as ApplicationStatus MODEL_COLOR
+end box
+
+[-> LogicManager : execute(remove accepted)
+activate LogicManager
+
+LogicManager -> TrackAScholarParser : parseCommand(args)
+activate TrackAScholarParser
+
+create RemoveCommandParser
+TrackAScholarParser -> RemoveCommandParser : RemoveCommandParser()
+activate RemoveCommandParser
+
+RemoveCommandParser --> TrackAScholarParser
+deactivate RemoveCommandParser
+
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+RemoveCommandParser -[hidden]-> TrackAScholarParser: BUFFER_MESSAGE
+
+TrackAScholarParser -> RemoveCommandParser : parse(accepted)
+activate RemoveCommandParser
+
+create ApplicationStatus
+RemoveCommandParser -> ApplicationStatus:ApplicationStatus()
+activate ApplicationStatus
+
+ApplicationStatus --> RemoveCommandParser
+deactivate ApplicationStatus
+
+create RemoveCommand
+RemoveCommandParser -> RemoveCommand : RemoveCommand(targetStatus)
+activate RemoveCommand
+
+RemoveCommand --> RemoveCommandParser
+deactivate RemoveCommand
+
+RemoveCommandParser --> TrackAScholarParser
+deactivate RemoveCommandParser
+
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+RemoveCommandParser -[hidden]-> TrackAScholarParser
+destroy RemoveCommandParser
+
+TrackAScholarParser --> LogicManager
+deactivate TrackAScholarParser
+
+LogicManager -> RemoveCommand : execute()
+activate RemoveCommand
+
+RemoveCommand -> RemoveCommand : promptUserConfirmation()
+activate RemoveCommand
+
+RemoveCommand --> RemoveCommand
+deactivate RemoveCommand
+
+RemoveCommand -> RemoveCommand : confirmRemove()
+activate RemoveCommand
+
+RemoveCommand -> Model : removeApplicant()
+activate Model
+
+Model --> RemoveCommand
+deactivate Model
+deactivate RemoveCommand
+
+create CommandResult
+RemoveCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> RemoveCommand
+deactivate CommandResult
+
+RemoveCommand --> LogicManager : result
+deactivate RemoveCommand
+
+[<--LogicManager
+deactivate LogicManager
 @enduml

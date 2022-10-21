@@ -47,10 +47,10 @@ FilterCommandParser -> FilterCommand : FilterCommand(predicate)
 activate FilterCommand
 
 FilterCommand --> FilterCommandParser
-deactivate
+deactivate FilterCommand
 
 FilterCommandParser --> TrackAScholarParser
-deactivate
+deactivate FilterCommandParser
 'Hidden arrow to position the destroy marker below the end of the activation bar.
 FilterCommandParser -[hidden]-> TrackAScholarParser
 destroy FilterCommandParser
@@ -65,13 +65,13 @@ FilterCommand -> Model : updateFilteredApplicantList(predicate)
 activate Model
 
 Model --> FilterCommand
-deactivate
+deactivate Model
 
 FilterCommand -> Model : getFilteredApplicantList()
 activate Model
 
 Model --> FilterCommand
-deactivate
+deactivate Model
 
 create CommandResult
 FilterCommand -> CommandResult

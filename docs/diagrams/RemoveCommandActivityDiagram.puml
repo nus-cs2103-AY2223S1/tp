@@ -1,37 +1,20 @@
 @startuml
-'https://plantuml.com/activity-diagram-beta
-
 start
-:ClickServlet.handleRequest();
-:new page;
-if (Page.onSecurityCheck) then (true)
-  :Page.onInit();
-  if (isForward?) then (no)
-    :Process controls;
-    if (continue processing?) then (no)
-      stop
+:User enters Remove command;
+
+if () then ([Is invalid parameter])
+    : TrackAScholar displays \nerror message indicating\ninvalid user input;
+
+else ([is valid and completed application status])
+
+    if () then ([confirm remove])
+        :TrackAScholar removes all \napplicants matching target \napplication status;
+
+        :TrackAScholar updates \nto display new list \nwithout removed applicants;
+    else ([cancel remove])
+        :TrackAScholar displays \nmessage indicating \nremove command \nis cancelled;
     endif
 
-    if (isPost?) then (yes)
-      :Page.onPost();
-    else (no)
-      :Page.onGet();
-    endif
-    :Page.onRender();
-  endif
-else (false)
 endif
-
-if (do redirect?) then (yes)
-  :redirect process;
-else
-  if (do forward?) then (yes)
-    :Forward request;
-  else (no)
-    :Render page template;
-  endif
-endif
-
 stop
-
 @enduml

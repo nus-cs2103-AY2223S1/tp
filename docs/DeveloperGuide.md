@@ -195,7 +195,7 @@ Given below is an example usage scenario and how the add operation is handled by
    duplicate of any applicant already stored in TrackAScholar. When the check has concluded and no duplicate was found, `Model#addApplicant()`
    is called to add the new `Applicant` into TrackAScholar.
 
-6. `AddCommand#execute()` finishes with returning a `CommandResult` containing details of the new applicant to the user.
+6. `AddCommand#execute()` finishes with returning a `CommandResult` containing details about the applicant's successful addition to TrackAScholar.
 
 The following sequence diagram shows how the add operation works:
 
@@ -205,6 +205,7 @@ The following activity diagram summarizes what happens when a user executes an a
 
 ![Add command activity diagram](images/AddCommandActivityDiagram.png)
 
+--------------------------------------------------------------------------------------------------------------------
 
 ### Filter application status feature
 
@@ -214,30 +215,67 @@ The filter operation is facilitated by `FilterCommand`. It extends `Command` and
 
 Given below is an example usage scenario and how the filter operation is handled by TrackAScholar:
 
-1. The user enters `filter pending`, for example, to filter out applicants with pending scholarship status.
+1. The user enters `filter pending`, for example, to filter out applicants with pending scholarship application status.
    This invokes `LogicManager#execute()`, which calls `TrackAScholarParser#parseCommand()` to separate the command word `filter` and
    the argument `pending`.
 
 2. `TrackAScholarParser` identifies the `filter` command and `FilterCommandParser` will be instantiated which calls `FilterCommandParser#parse()`
    which checks that the argument is a valid application status by calling `ApplicationStatus#isValidApplicationStatus()`.
 
-3. `FilterCommandParser#parse()` creates a new `ApplicationStatusPredicate` with the argument before finally initializing and returning an `FilterCommand`
+3. After passing the check, `FilterCommandParser#parse()` creates a new `ApplicationStatusPredicate` with the argument before finally initializing and returning a `FilterCommand`
    with the new `ApplicationStatusPredicate` as an argument.
 
-4. `LogicManager#execute()` now calls `FilterCommand#execute()`, which invokes `Model#updateFilteredApplicantList()` to filter out the list of applicants with the matching application status. When the operation has concluded, `Model#getFilteredApplicantList()`
+4. `LogicManager#execute()` now calls `FilterCommand#execute()`, which invokes `Model#updateFilteredApplicantList()` to filter out the list of 
+   applicants with the matching application status. When the operation has concluded, `Model#getFilteredApplicantList()`
    is called to retrieve the filtered list, such that TrackAScholar can count the total number of applicants in that particular list.
 
-5. `AddCommand#execute()` finishes with returning a `CommandResult` containing list of all applicants with the matching scholarship status.
+5. `FilterCommand#execute()` finishes with returning a `CommandResult` containing details of how many applicants were found with a matching scholarship application status.
 
 The following sequence diagram shows how the filter operation works:
 
 ![Interactions Inside the Logic Component for the `filter` Command example](images/FilterSequenceDiagram.png)
 
-The following activity diagram summarizes what happens when a user executes an filter command:
+The following activity diagram summarizes what happens when a user executes a filter command:
 
-![Add command activity diagram](images/FilterCommandActivityDiagram.png)
+![Filter command activity diagram](images/FilterCommandActivityDiagram.png)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The alternative paths should all end at the merge note but due to limitations of PlantUML, arrows extending
+--------------------------------------------------------------------------------------------------------------------
+
+### Remove applicants by application status feature
+
+#### Implementation
+
+The remove operation is facilitated by `RemoveCommand`. It extends `Command` and implements the `Command#execute` operation.
+
+Given below is an example usage scenario and how the remove operation is handled by TrackAScholar:
+
+1. The user enters `remove accepted`, for example, to remove all applicants with accepted scholarship application status.
+   This invokes `LogicManager#execute()`, which calls `TrackAScholarParser#parseCommand()` to separate the command word `remove` and
+   the argument `accepted`.
+
+2. `TrackAScholarParser` identifies the `remove` command and `RemoveCommandParser` will be instantiated which calls `RemoveCommandParser#parse()`.
+
+3. `RemoveCommandParser#parse()` now parses the argument and creates a new `ApplicationStatus` before finally initializing and returning a `RemoveCommand`
+   with the new `ApplicationStatus` as an argument.
+
+4. `LogicManager#execute()` now calls `RemoveCommand#execute()`, which invokes `RemoveCommand#promptUserConfirmation()`. TrackAScholar now displays
+   a window asking for the user's confirmation to remove the applicants. After the use confirms, `RemoveCommand#confirmRemove()` is called which
+   in turn calls `Model#removeApplicant()` to remove all applicants from the list matching the targeted `ApplicationStatus`.  
+   
+5. `FilterCommand#execute()` finishes with returning a `CommandResult` containing information of the successful removal.
+
+The following sequence diagram shows how the remove operation works:
+
+![Interactions Inside the Logic Component for the `remove` Command example](images/RemoveSequenceDiagram.png)
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The GUI interactions when `RemoveCommand#execute()` calls `RemoveCommand#promptUserConfirmation()`
+is abstracted out as this sequence diagram aims only to demonstrate the interactions inside Logic Component for the `remove` command.
+
+</div>
+
+The following activity diagram summarizes what happens when a user executes a remove command:
+
+![Remove command activity diagram](images/RemoveCommandActivityDiagram.png)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -267,18 +305,18 @@ Streamline the scholarship application process by organizing the scholarship app
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                         | I want to …​                                       | So that I can…​                                                                |
-|---------|-------------------------------------------------|----------------------------------------------------|--------------------------------------------------------------------------------|
-| `* * *` | new user                                        | see usage instructions easily                      | discover functionalities provided by the application                           |
-| `* * *` | new user                                        | operate with clear and concise commands            | learn easily and grow proficiency with time                                    |
-| `* * *` | user                                            | retrieve previously stored application data        | access stored database                                                         |
-| `* * *` | user                                            | save fresh data easily                             | avoid losing all my data                                                       |
-| `* * *` | administrator                                   | add a scholar to my database                       | keep track of the application status of the scholar                            |
-| `* * *` | administrator                                   | delete a scholar from my database                  | remove data of accepted or rejected applications that is no longer needed      |
-| `* * *` | administrator managing <br/>multiple applicants | list all applicants in my database                 | view all scholarship applicants on the list of applications                    |
-| `* *`   | administrator                                   | edit the details of a scholar in my database       | have easy access to their most updated details                                 |
+| Priority | As a …​                                         | I want to …​                                       | So that I can…​                                                                    |
+|---------|-------------------------------------------------|----------------------------------------------------|------------------------------------------------------------------------------------|
+| `* * *` | new user                                        | see usage instructions easily                      | discover functionalities provided by the application                               |
+| `* * *` | new user                                        | operate with clear and concise commands            | learn easily and grow proficiency with time                                        |
+| `* * *` | user                                            | retrieve previously stored application data        | access stored database                                                             |
+| `* * *` | user                                            | save fresh data easily                             | avoid losing all my data                                                           |
+| `* * *` | administrator                                   | add a scholar to my database                       | keep track of the application status of the scholar                                |
+| `* * *` | administrator                                   | delete a scholar from my database                  | remove data of applications that is no longer needed                               |
+| `* * *` | administrator managing <br/>multiple applicants | list all applicants in my database                 | view all scholarship applicants on the list of applications                        |
+| `* *`   | administrator                                   | edit the details of a scholar in my database       | have easy access to their most updated details                                     |
 | `* *`   | administrator managing <br/>multiple applicants | find applicants using keywords                     | retrieve details of their application without having to go through the entire list |
-| `*`     | advanced user                                   | run the application on different operating systems | access the same database/storage on different operating systems                |
+| `*`     | advanced user                                   | run the application on different operating systems | access the same database/storage on different operating systems                    |
 
 
 
