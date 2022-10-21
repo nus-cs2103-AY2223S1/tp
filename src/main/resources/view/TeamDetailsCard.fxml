@@ -23,7 +23,7 @@
                     <Insets left="10" right="10"/>
                 </padding>
             </VBox>
-            <VBox>
+            <VBox HBox.hgrow="ALWAYS">
                 <padding>
                     <Insets left="10" right="10"/>
                 </padding>

@@ -27,9 +27,9 @@ public class TaskCard extends UiPart<Region> {
     @javafx.fxml.FXML
     private HBox cardPane;
     @FXML
-    private Label taskName = new Label();
+    private Label taskName;
     @FXML
-    private Label id = new Label();
+    private Label id;
 
     /**
      * Creates a {@code TaskCard} with the given {@code Task} and index to display.
@@ -39,6 +39,7 @@ public class TaskCard extends UiPart<Region> {
         this.task = task;
         id.setText(displayedIndex + ". ");
         taskName.setText(task.getName());
+        taskName.setWrapText(true);
     }
 
     @Override

@@ -14,10 +14,10 @@
         <columnConstraints>
             <ColumnConstraints hgrow="ALWAYS" minWidth="10" prefWidth="150" />
         </columnConstraints>
-        <VBox alignment="CENTER_LEFT" minHeight="105" GridPane.columnIndex="0">
-            <padding>
-                <Insets top="5" right="5" bottom="5" left="15" />
-            </padding>
+        <VBox alignment="CENTER_LEFT" minHeight="50" GridPane.columnIndex="0">
+<!--            <padding>-->
+<!--                <Insets top="5" right="5" bottom="5" left="15" />-->
+<!--            </padding>-->
             <HBox spacing="5" alignment="CENTER_LEFT">
                 <Label fx:id="id" styleClass="cell_big_label">
                     <minWidth>
@@ -25,7 +25,7 @@
                         <Region fx:constant="USE_PREF_SIZE" />
                     </minWidth>
                 </Label>
-                <Label fx:id="taskName" text="\$taskName" styleClass="label-bright-padding" />
+                <Label fx:id="taskName" text="\$taskName" styleClass="label-bright" />
             </HBox>
         </VBox>
     </GridPane>
