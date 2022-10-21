@@ -1,4 +1,5 @@
----
+
+=]---
 layout: page
 title: User Guide
 ---
@@ -142,6 +143,16 @@ Examples:
 * `list` followed by `delete 2` deletes the 2nd person in the address book.
 * `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
 
+### Adding an offer: `addoffer`
+
+Adds an offer to the address book.
+
+Format: `addoffer l/LISTING_ID n/NAME o/OFFER_PRICE`
+
+
+Examples:
+* `addoffer l/30_SERGARDENS_LOR23_0718 n/Bob o/600000`
+
 ### Clearing all entries : `clear`
 
 Clears all entries from the address book.
@@ -183,7 +194,8 @@ _Details coming soon ..._
 
 Action | Format, Examples
 --------|------------------
-**Add** | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`
+**Add Client** | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`
+**Add offer** | `addoffer l/LISTING_ID n/NAME o/OFFER_PRICE` <br> e.g., `addoffer l/30_SERGARDENS_LOR23_0718 n/Bob o/600000`
 **Clear** | `clear`
 **Delete** | `delete INDEX`<br> e.g., `delete 3`
 **Edit** | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`

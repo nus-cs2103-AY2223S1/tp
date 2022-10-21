@@ -11,7 +11,8 @@ import com.fasterxml.jackson.annotation.JsonRootName;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.AddressBook;
 import seedu.address.model.ReadOnlyAddressBook;
-import seedu.address.model.person.Person;
+import seedu.address.model.offer.Offer;
+import seedu.address.model.person.Client;
 
 /**
  * An Immutable AddressBook that is serializable to JSON format.
@@ -19,16 +20,24 @@ import seedu.address.model.person.Person;
 @JsonRootName(value = "addressbook")
 class JsonSerializableAddressBook {
 
+
+    public static final String MESSAGE_DUPLICATE_CLIENT = "Clients list contains duplicate client(s).";
     public static final String MESSAGE_DUPLICATE_PERSON = "Persons list contains duplicate person(s).";
+    public static final String MESSAGE_DUPLICATE_OFFER = "Offers list contains duplicate offer(s)";
+    public static final String MESSAGE_DUPLICATE_LISTING = "Listings list contains duplicate listing(s).";
 
     private final List<JsonAdaptedPerson> persons = new ArrayList<>();
+    private final List<JsonAdaptedClient> clients = new ArrayList<>();
+    private final List<JsonAdaptedOffer> offers = new ArrayList<>();
 
     /**
-     * Constructs a {@code JsonSerializableAddressBook} with the given persons.
+     * Constructs a {@code JsonSerializableAddressBook} with the given clients and offers.
      */
     @JsonCreator
-    public JsonSerializableAddressBook(@JsonProperty("persons") List<JsonAdaptedPerson> persons) {
-        this.persons.addAll(persons);
+    public JsonSerializableAddressBook(@JsonProperty("clients") List<JsonAdaptedClient> clients,
+                                       @JsonProperty("offers") List<JsonAdaptedOffer> offers) {
+        this.clients.addAll(clients);
+        this.offers.addAll(offers);
     }
 
     /**
@@ -37,7 +46,8 @@ class JsonSerializableAddressBook {
      * @param source future changes to this will not affect the created {@code JsonSerializableAddressBook}.
      */
     public JsonSerializableAddressBook(ReadOnlyAddressBook source) {
-        persons.addAll(source.getPersonList().stream().map(JsonAdaptedPerson::new).collect(Collectors.toList()));
+        clients.addAll(source.getClientList().stream().map(JsonAdaptedClient::new).collect(Collectors.toList()));
+        offers.addAll(source.getOfferList().stream().map(JsonAdaptedOffer::new).collect(Collectors.toList()));
     }
 
     /**
@@ -47,12 +57,20 @@ class JsonSerializableAddressBook {
      */
     public AddressBook toModelType() throws IllegalValueException {
         AddressBook addressBook = new AddressBook();
-        for (JsonAdaptedPerson jsonAdaptedPerson : persons) {
-            Person person = jsonAdaptedPerson.toModelType();
-            if (addressBook.hasPerson(person)) {
-                throw new IllegalValueException(MESSAGE_DUPLICATE_PERSON);
+        for (JsonAdaptedClient jsonAdaptedClient : clients) {
+            Client client = jsonAdaptedClient.toModelType();
+            if (addressBook.hasClient(client)) {
+                throw new IllegalValueException(MESSAGE_DUPLICATE_CLIENT);
             }
-            addressBook.addPerson(person);
+            addressBook.addClient(client);
+        }
+
+        for (JsonAdaptedOffer jsonAdaptedOffer : offers) {
+            Offer offer = jsonAdaptedOffer.toModelType();
+            if (addressBook.hasOffer(offer)) {
+                throw new IllegalValueException(MESSAGE_DUPLICATE_OFFER);
+            }
+            addressBook.addOffer(offer);
         }
         return addressBook;
     }

@@ -1,7 +1,7 @@
 package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_LISTING_ID;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_OFFER;
 
@@ -9,8 +9,9 @@ import java.util.stream.Stream;
 
 import seedu.address.logic.commands.AddOfferCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.listing.ListingID;
 import seedu.address.model.offer.Offer;
-import seedu.address.model.person.Address;
+import seedu.address.model.offer.Price;
 import seedu.address.model.person.Name;
 
 /**
@@ -26,19 +27,18 @@ public class AddOfferCommandParser implements Parser<AddOfferCommand> {
      */
     public AddOfferCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_ADDRESS, PREFIX_NAME, PREFIX_OFFER);
+                ArgumentTokenizer.tokenize(args, PREFIX_LISTING_ID, PREFIX_NAME, PREFIX_OFFER);
 
-        if (!arePrefixesPresent(argMultimap, PREFIX_ADDRESS, PREFIX_NAME, PREFIX_OFFER)
+        if (!arePrefixesPresent(argMultimap, PREFIX_LISTING_ID, PREFIX_NAME, PREFIX_OFFER)
                 || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddOfferCommand.MESSAGE_USAGE));
         }
 
-        Address address = ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get());
+        ListingID listing = ParserUtil.parseListingID(argMultimap.getValue(PREFIX_LISTING_ID).get());
         Name name = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());
-        Integer offerPrice = ParserUtil.parseOfferPrice(Integer.parseInt(argMultimap
-                .getValue(PREFIX_OFFER).get()));
+        Price offerPrice = ParserUtil.parsePrice(argMultimap.getValue(PREFIX_OFFER).get());
 
-        Offer offer = new Offer(name, address, offerPrice);
+        Offer offer = new Offer(name, listing, offerPrice);
 
         return new AddOfferCommand(offer);
     }

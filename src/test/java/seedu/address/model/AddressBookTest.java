@@ -18,6 +18,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.address.model.listing.Listing;
 import seedu.address.model.offer.Offer;
+import seedu.address.model.person.Client;
 import seedu.address.model.person.Person;
 import seedu.address.testutil.PersonBuilder;
 
@@ -41,6 +42,31 @@ public class AddressBookTest {
         addressBook.resetData(newData);
         assertEquals(newData, addressBook);
     }
+
+    /*@Test
+    public void resetData_withDuplicatePersons_throwsDuplicatePersonException() {
+        // Two persons with the same identity fields
+        Person editedAlice = new PersonBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
+                .build();
+        List<Person> newPersons = Arrays.asList(ALICE, editedAlice);
+        List<Listing> newListings = Arrays.asList();
+        List<Offer> newOffers = Arrays.asList();
+        AddressBookStub newData = new AddressBookStub(newPersons, newListings, newOffers);
+
+        assertThrows(DuplicatePersonException.class, () -> addressBook.resetData(newData));
+    }
+
+    @Test
+    public void resetData_withDuplicateListings_throwsDuplicateListingException() {
+        // Two Listings with the same identity fields
+        Listing editedHouse = new ListingBuilder().build();
+        List<Person> newPersons = Arrays.asList(ALICE);
+        List<Listing> newListings = Arrays.asList(editedHouse, editedHouse);
+        List<Offer> newOffers = Arrays.asList();
+        AddressBookStub newData = new AddressBookStub(newPersons, newListings, newOffers);
+
+        assertThrows(DuplicateListingException.class, () -> addressBook.resetData(newData));
+    }*/
 
     @Test
     public void hasPerson_nullPerson_throwsNullPointerException() {
@@ -79,13 +105,20 @@ public class AddressBookTest {
         private final ObservableList<Listing> listings = FXCollections.observableArrayList();
         private final ObservableList<Offer> offers = FXCollections.observableArrayList();
 
-        AddressBookStub(Collection<Person> persons) {
+        AddressBookStub(Collection<Person> persons, Collection<Listing> listings, Collection<Offer> offers) {
             this.persons.setAll(persons);
+            this.listings.setAll(listings);
+            this.offers.setAll(offers);
         }
 
         @Override
         public ObservableList<Person> getPersonList() {
             return persons;
+        }
+
+        @Override
+        public ObservableList<Client> getClientList() {
+            return null;
         }
 
         @Override
@@ -98,5 +131,4 @@ public class AddressBookTest {
             return offers;
         }
     }
-
 }

@@ -9,6 +9,8 @@ import java.util.Set;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.listing.ListingID;
+import seedu.address.model.offer.Price;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
@@ -125,22 +127,24 @@ public class ParserUtil {
     /**
      * Parses {@code int askingPrice} into a {@code Integer}.
      */
-    public static Integer parseAskingPrice(int askingPrice) throws ParseException {
-        requireNonNull(askingPrice);
-        if (askingPrice < 0) {
-            throw new ParseException("Asking Price can't be negative");
+    public static Price parsePrice(String offerPrice) throws ParseException {
+        requireNonNull(offerPrice);
+        String trimmedPrice = offerPrice.trim();
+        if (!Price.isValidPrice(offerPrice)) {
+            throw new ParseException(Price.MESSAGE_CONSTRAINTS);
         }
-        return askingPrice;
+        return new Price(offerPrice);
     }
 
     /**
-     * Parses {@code int askingPrice} into a {@code Integer}.
+     * Parses {@code int id} into a {@code ListingID}.
      */
-    public static Integer parseOfferPrice(int offerPrice) throws ParseException {
-        requireNonNull(offerPrice);
-        if (offerPrice < 0) {
-            throw new ParseException("Offer Price can't be negative");
+    public static ListingID parseListingID(String id) throws ParseException {
+        requireNonNull(id);
+        String trimmedListingID = id.trim();
+        if (!ListingID.isValidListingID(trimmedListingID)) {
+            throw new ParseException(Name.MESSAGE_CONSTRAINTS);
         }
-        return offerPrice;
+        return new ListingID(trimmedListingID);
     }
 }
