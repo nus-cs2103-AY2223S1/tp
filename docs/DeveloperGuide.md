@@ -168,7 +168,7 @@ The following (partial) class diagram shows how the different classes involved i
 
 The following activity diagram summarises what happens when a student enters a `mod mark` command, assuming the command is valid and no error occurs:
 
-![ModMarkWithLoopActivityDiagram](images/ModMarkWithLoopActivityDiagram.png)
+![ModMarkWithLoopActivityDiagram](images/ModMarkActivityDiagram.png)
 
 #### Design considerations:
 
