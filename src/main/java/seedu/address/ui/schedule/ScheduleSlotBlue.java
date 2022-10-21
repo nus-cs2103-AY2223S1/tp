@@ -38,7 +38,7 @@ public class ScheduleSlotBlue extends SlotContainer {
     }
 
     private void setText() {
-        module.setText(moduleCode);
+        module.setText(moduleCode.toUpperCase());
         time.setText(duration);
         type.setText(classType);
         venueName.setText(venue);
