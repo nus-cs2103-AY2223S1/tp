@@ -26,6 +26,7 @@ Refer to the guide [_Setting up and getting started_](SettingUp.md).
 :bulb: **Tip:** The `.puml` files used to create diagrams in this document can be found in the [diagrams](https://github.com/se-edu/addressbook-level3/tree/master/docs/diagrams/) folder. Refer to the [_PlantUML Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create and edit diagrams.
 </div>
 
+
 ### Architecture
 
 <img src="images/ArchitectureDiagram.png" width="280" />
@@ -271,16 +272,18 @@ _{Explain here how the data archiving feature will be implemented}_
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                    | I want to …​                                                           | So that I can…​                                                                           |
-|----------|--------------------------------------------|------------------------------------------------------------------------|-------------------------------------------------------------------------------------------|
-| `* * *`  | financial advisor                          | add new client                                                         | keep track of the client's profile                                                        |
-| `* * *`  | financial advisor                          | delete a client                                                        | remove entries that are no longer needed                                                  |
-| `* * *`  | financial advisor                          | edit a client's profile                                                | update relevant and up-to-date information of the client                               |
-| `* * *`  | financial advisor                          | search clients by name                                                 | retrieve information of clients without having to go through the entire list              |
-| `* * *`  | financial advisor                          | sort clients by alphabetical order                                     | have an organised list of contacts                                                        |
-| `* * *`  | financial advisor                          | store important information of clients                                 | make pivotal decisions on how to better suit the clients' needs based on their information |
-| `* * `   | financial advisor                        | view the list of clients that are scheduled for meeting on a given day | be reminded and keep track of the scheduled meetings                                      |
-| `* *`    | financial advisor | have an image of my client                                             | remember and recognise the clients during the meetings                                    |
+| Priority | As a …​           | I want to …​                                                           | So that I can…​                                                                    |
+|----------|-------------------|------------------------------------------------------------------------|------------------------------------------------------------------------------------|
+| `* * *`  | financial advisor | add new client                                                         | keep track of the client's profile                                                 |
+| `* * *`  | financial advisor | delete a client                                                        | remove entries that are no longer needed                                           |
+| `* * *`  | financial advisor | edit a client's profile                                                | update relevant and up-to-date information of the client                           |
+| `* * *`  | financial advisor | search clients by name                                                 | retrieve information of clients without having to go through the entire list       |
+| `* * *`  | financial advisor | sort clients by alphabetical order                                     | have an organised list of contacts                                                 |
+| `* * *`  | financial advisor | store important information of clients                                 | make pivotal decisions on how to better suit the clients' needs based on their information |
+| `* * *`  | financial advisor | store upcoming appointments for each client                            | keep track of all my upcoming appointments                                         |
+| `* * `   | financial advisor | view the list of clients that are scheduled for meeting on a given day | be reminded and keep track of the scheduled meetings                               |
+| `* *`    | financial advisor | have an image of my client                                             | remember and recognise the clients during the meetings                             |
+| `* *`    | fast-typist       | navigate through the calendar with my keyboard                         | view all my appointments in the calendar quickly                                   |
 
 *{More to be added}*
 
@@ -371,11 +374,54 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1.  User requests to find clients containing input keyword(s)
-2.  Financial Advisor Planner shows a list of clients with the matching keyword(s)
+1. User requests to find clients containing input keyword(s)
+2. Financial Advisor Planner shows a list of clients with the matching keyword(s)
 
     Use case ends.
-*{More to be added}*
+
+**Use case: Add an appointment**
+
+**MSS**
+
+1. User inputs add appointment command with the appointment details for a specific client 
+2. Financial Advisor Planner adds the appointment to the list of appointments for the specified client
+
+    Use case ends.
+
+   **Extensions**
+
+* 1a. User did not input any arguments.
+
+    * 1a1. Financial Advisor Planner shows an error message.
+
+      Use case ends. 
+
+* 1b. The given index is invalid.
+
+    * 1b1. Financial Advisor Planner shows an error message.
+
+      Use case ends. 
+     
+* 1c. The given date and time has an incorrect format.
+
+    * 1c1. Financial Advisor Planner shows an error message.
+
+      Use case ends.
+     
+* 1d. The input appointment already exists for the specified client 
+
+    * 1d1. Financial Advisor Planner shows an error message.
+
+      Use case ends.
+     
+* 1e. The specified client already has the maximum number of appointments
+
+    * 1e1. Financial Advisor Planner shows an error message.
+
+      Use case ends.
+  
+
+      *{More to be added}*
 
 ### Non-Functional Requirements
 
