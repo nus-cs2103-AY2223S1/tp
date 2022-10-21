@@ -1,0 +1,70 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":ApplicationBookParser" as ApplicationBookParser LOGIC_COLOR
+participant ":SortCommandParser" as SortCommandParser LOGIC_COLOR
+participant "command:SortByDateCommand" as SortByDateCommand LOGIC_COLOR
+participant "r:CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+
+end box
+[-> LogicManager : execute()
+activate LogicManager
+
+LogicManager -> ApplicationBookParser : parseCommand("sort o/date r/")
+activate ApplicationBookParser
+
+create SortCommandParser
+ApplicationBookParser -> SortCommandParser : SortCommandParser()
+activate SortCommandParser
+
+SortCommandParser --> ApplicationBookParser
+deactivate SortCommandParser
+
+ApplicationBookParser -> SortCommandParser : parse(" o/date r/")
+activate SortCommandParser
+
+create SortByDateCommand
+SortCommandParser -> SortByDateCommand : SortByDateCommand(true)
+activate SortByDateCommand
+
+SortByDateCommand --> SortCommandParser
+deactivate SortByDateCommand
+
+SortCommandParser --> ApplicationBookParser : command
+deactivate
+
+ApplicationBookParser --> LogicManager : command
+deactivate ApplicationBookParser
+
+LogicManager -> SortByDateCommand : execute()
+activate SortByDateCommand
+
+SortByDateCommand -> Model : sortApplicationListByDate(true)
+activate Model
+
+Model --> SortByDateCommand
+deactivate Model
+
+create CommandResult
+SortByDateCommand -> CommandResult : CommandResult("...")
+activate CommandResult
+
+CommandResult --> SortByDateCommand
+deactivate CommandResult
+
+SortByDateCommand --> LogicManager : r
+deactivate SortByDateCommand
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+SortByDateCommand -[hidden]-> LogicManager : r
+destroy SortByDateCommand
+destroy SortCommandParser
+
+[<--LogicManager : r
+deactivate LogicManager
+@enduml

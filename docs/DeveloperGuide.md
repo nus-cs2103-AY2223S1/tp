@@ -292,6 +292,51 @@ Aspect: What fields should the `find` command search through?
   - Pros: Easy to implement, with minimal modification to existing tests.
   - Cons: Limited breadth of search, does not align with definition of unique application. 
 
+### Sort Feature
+
+#### Implementation
+
+The sort feature allows the user to sort the application list using company names, positions, application dates or interview dates. Each of these orders can also be reversed.
+
+The class diagram below shows the classes in the Logic component relevant for sorting:
+
+![Sort Class Diagram](images/SortClassDiagram.png)
+
+There is an abstract `SortCommand` class that inherits from the abstract `Command` class. Then, there is a concrete `SortCommand` subclass for each possible order of sort. Meanwhile, there is a single `SortCommandParser` class. When it parses the arguments supplied to a `sort` command, it decides which of the `SortCommand` subclasses to instantiate.
+
+The following sequence diagram shows the operation of the command `sort o/date r/`:
+![Sort Sequence Diagram](images/SortSequenceDiagram.png)
+
+When calling the `parse` method of the `SortCommandParser`, the argument provided for the `o/` prefix determines which subclass of `SortCommand` will get created. In the event that the prefix is not provided, a `SortByDateCommand` is returned by default.
+
+Later, when `LogicManager` `executes` the `SortCommand` created, the `SortCommand` will call one of the `sortApplicationList` methods provided by the `Model` interface for sorting the application list. Internally, the `Model` wraps its `ObservableList` of `Applications` inside a `SortedList`, so all it has to do is set an appropriate comparator on the `SortedList` to attain the desired sort order.
+
+#### Design Considerations
+
+Aspect: What method(s) to add to the `Model` interface:
+
+* Alternative 1: Add a single `sortApplicationList` method that takes in a boolean `shouldReverse` and an enum value `order` that specifies what order to use for sorting.
+    * Pros: Only one method is required. Potentially prevents duplication of similar code.
+    * Cons: Implementation of the method can become long and complex if many more possible sort orders are added in the future, especially if each sort order's implementation turn out not to be similar.
+
+* Alternative 2 (current choice): Add separate methods for every sort order, each only taking a boolean `shouldReverse` as argument
+    * Pros: Avoids the need for switch statements to control the behaviour. Implementation of forward and reversed orders likely similar, so code can be shared.
+    * Cons: `Model` interface may have many sort methods if many possible orders are added later.
+
+* Alternative 3: Have 2 methods for each order, one for forward order and one for reverse order.
+    * Pros: Removes the need for any flag argument.
+    * Cons: Leads to a lot of code duplication since implementing a reversed sort is likely very similar to implementing the original sort in most if not all cases. Also creates a lot more methods.
+
+Aspect: How to allow the `SortCommand` to sort using different possible orders when executed:
+
+* Alternative 1 (current choice): Create separate subclasses of `SortCommand` each for sorting based on a different order.
+    * Pros: Better follows the Open-Closed Principle since none of the current `SortCommand` subclasses need to be edited when a new sort order is implemented.
+    * Cons: Multiple classes associated with a single command word.
+
+* Alternative 2: Store an enum value inside each `SortCommand` instance indicating what order to use for sorting. Then, in the `execute` method, use a switch statement to make the appropriate function calls on the `Model`.
+    * Pros: Will avoid the need for creating multiple classes.
+    * Cons: Seems redundant to use another switch statement for controlling the `SortCommand` behaviour after already using one in `SortCommandParser` for determining the order to use.
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Documentation, logging, testing, configuration, dev-ops**
