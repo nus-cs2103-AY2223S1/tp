@@ -304,7 +304,7 @@ Step 9: `ReminderCommand` then returns a new `CommandResult` with the result of 
 
 ![Sequence diagram for the Remind Command](images/ReminderSequenceDiagram.png)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `ReminderCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
 
 --------------------------------------------------------------------------------------------------------------------
