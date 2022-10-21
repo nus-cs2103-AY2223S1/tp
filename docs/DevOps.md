@@ -4,7 +4,7 @@ title: DevOps guide
 ---
 
 - Table of Contents
-  {:toc}
+{:toc}
 
 ---
 

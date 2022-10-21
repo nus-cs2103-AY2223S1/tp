@@ -8,7 +8,7 @@ contacts using a swift Command Line Interface** (CLI). If you have fast fingers,
 more quickly than a traditional GUI app.
 
 - Table of Contents
-  {:toc}
+{:toc}
 
 ---
 

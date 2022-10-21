@@ -4,7 +4,7 @@ title: Setting up and getting started
 ---
 
 - Table of Contents
-  {:toc}
+{:toc}
 
 ---
 

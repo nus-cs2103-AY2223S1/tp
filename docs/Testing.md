@@ -4,7 +4,7 @@ title: Testing guide
 ---
 
 - Table of Contents
-  {:toc}
+{:toc}
 
 ---
 
