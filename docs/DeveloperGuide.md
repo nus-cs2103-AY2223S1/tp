@@ -252,7 +252,7 @@ Step 8: The execution ends and returns a `CommandResult` object containing the s
 to the user. 
 
 ### Viewing session-wise grades of a student in a class
-<img src="images/GradeCommandSequenceDiagram.png" width="700" />
+<img src="images/ViewCommandSequenceDiagram.png" width="700" />
 
 Viewing session-wise grades of a student is only possible when a `ModuleClass` is in focus. It requires going through
 the list of `StudentModuleData` of the `Student` object and finding the data for the matching focused class. After retrieving it, 
