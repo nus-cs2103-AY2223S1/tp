@@ -100,7 +100,7 @@ public class CombinedPersonPredicate implements Predicate<Person> {
                             tagList.stream().map(String::toUpperCase).collect(Collectors.toList());
                     List<String> personTagsInUpperCase =
                             person.getTags().stream().map(
-                                    tag -> tag.tagName.toUpperCase()).collect(Collectors.toList());
+                                    tag -> tag.getTagName().toUpperCase()).collect(Collectors.toList());
 
                     return personTagsInUpperCase.containsAll(tagsToSearchInUpperCase);
                 };

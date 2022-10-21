@@ -12,15 +12,15 @@ import static seedu.address.logic.commands.CommandTestUtil.NAME_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.PHONE_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.PREAMBLE_WHITESPACE;
 import static seedu.address.logic.commands.CommandTestUtil.REASON_DESC_AMY;
-import static seedu.address.logic.commands.CommandTestUtil.TAG_DESC_COUGH;
-import static seedu.address.logic.commands.CommandTestUtil.TAG_DESC_SINUS;
+import static seedu.address.logic.commands.CommandTestUtil.TAG_DESC_EAR;
+import static seedu.address.logic.commands.CommandTestUtil.TAG_DESC_THROAT;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_REASON_AMY;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_COUGH;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_SINUS;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_EAR;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_THROAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE_TIME_END;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE_TIME_START;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
@@ -57,7 +57,7 @@ public class FindCommandParserTest {
     @Test
     public void parse_validArgsAllFieldsProvided_returnsFindCommand() {
         CombinedPersonPredicate expectedPersonPredicate = generateCombinedPersonPredicate(
-                VALID_NAME_AMY, VALID_PHONE_AMY, VALID_EMAIL_AMY, VALID_ADDRESS_AMY, VALID_TAG_COUGH);
+                VALID_NAME_AMY, VALID_PHONE_AMY, VALID_EMAIL_AMY, VALID_ADDRESS_AMY, VALID_TAG_THROAT);
         CombinedAppointmentPredicate expectedAppointmentPredicate =
                 generateCombinedAppointmentPredicate(VALID_REASON_AMY, validDateTimeStart, validDateTimeEnd);
         boolean isAnyAppointmentFieldSpecified = true;
@@ -66,14 +66,14 @@ public class FindCommandParserTest {
         FindCommand expectedFindCommand =
                 new FindCommand(expectedPersonPredicate, expectedAppointmentPredicate, isAnyAppointmentFieldSpecified);
         assertParseSuccess(parser, NAME_DESC_AMY + PHONE_DESC_AMY + EMAIL_DESC_AMY + ADDRESS_DESC_AMY
-                        + TAG_DESC_COUGH + REASON_DESC_AMY + dateTimeStartDesc + dateTimeEndDesc, expectedFindCommand);
+                        + TAG_DESC_THROAT + REASON_DESC_AMY + dateTimeStartDesc + dateTimeEndDesc, expectedFindCommand);
 
         // multiple whitespaces between keywords
         assertParseSuccess(parser, PREAMBLE_WHITESPACE + NAME_DESC_AMY + PREAMBLE_WHITESPACE
                 + PREAMBLE_WHITESPACE + PHONE_DESC_AMY + PREAMBLE_WHITESPACE
                 + PREAMBLE_WHITESPACE + EMAIL_DESC_AMY + PREAMBLE_WHITESPACE
                 + PREAMBLE_WHITESPACE + ADDRESS_DESC_AMY + PREAMBLE_WHITESPACE
-                + PREAMBLE_WHITESPACE + TAG_DESC_COUGH + PREAMBLE_WHITESPACE
+                + PREAMBLE_WHITESPACE + TAG_DESC_THROAT + PREAMBLE_WHITESPACE
                 + PREAMBLE_WHITESPACE + REASON_DESC_AMY + PREAMBLE_WHITESPACE
                 + PREAMBLE_WHITESPACE + dateTimeStartDesc + PREAMBLE_WHITESPACE
                 + PREAMBLE_WHITESPACE + dateTimeEndDesc + PREAMBLE_WHITESPACE, expectedFindCommand);
@@ -82,14 +82,14 @@ public class FindCommandParserTest {
     @Test
     public void parse_noAppointmentFieldsProvided_returnsFindCommandWithFalseBoolean() {
         CombinedPersonPredicate expectedPersonPredicate = generateCombinedPersonPredicate(
-                VALID_NAME_AMY, VALID_PHONE_AMY, VALID_EMAIL_AMY, VALID_ADDRESS_AMY, VALID_TAG_COUGH);
+                VALID_NAME_AMY, VALID_PHONE_AMY, VALID_EMAIL_AMY, VALID_ADDRESS_AMY, VALID_TAG_THROAT);
         CombinedAppointmentPredicate expectedAppointmentPredicate = generateEmptyCombinedAppointmentPredicate();
         boolean isAnyAppointmentFieldSpecified = false;
 
         FindCommand expectedFindCommand =
                 new FindCommand(expectedPersonPredicate, expectedAppointmentPredicate, isAnyAppointmentFieldSpecified);
         assertParseSuccess(parser, NAME_DESC_AMY + PHONE_DESC_AMY + EMAIL_DESC_AMY + ADDRESS_DESC_AMY
-                + TAG_DESC_COUGH, expectedFindCommand);
+                + TAG_DESC_THROAT, expectedFindCommand);
     }
 
     @Test
@@ -113,14 +113,14 @@ public class FindCommandParserTest {
         assertParseSuccess(parser, EMAIL_DESC_AMY + ADDRESS_DESC_AMY, expectedFindCommand);
 
         // Only tags provided
-        expectedPersonPredicate = generateCombinedPersonPredicateWithOnlyTags(VALID_TAG_COUGH);
+        expectedPersonPredicate = generateCombinedPersonPredicateWithOnlyTags(VALID_TAG_THROAT);
         expectedFindCommand = new FindCommand(expectedPersonPredicate, expectedAppointmentPredicate, hasApptFields);
-        assertParseSuccess(parser, TAG_DESC_COUGH, expectedFindCommand);
+        assertParseSuccess(parser, TAG_DESC_THROAT, expectedFindCommand);
 
         // Multiple tags provided
-        expectedPersonPredicate = generateCombinedPersonPredicateWithOnlyTags(VALID_TAG_COUGH, VALID_TAG_SINUS);
+        expectedPersonPredicate = generateCombinedPersonPredicateWithOnlyTags(VALID_TAG_THROAT, VALID_TAG_EAR);
         expectedFindCommand = new FindCommand(expectedPersonPredicate, expectedAppointmentPredicate, hasApptFields);
-        assertParseSuccess(parser, TAG_DESC_COUGH + TAG_DESC_SINUS, expectedFindCommand);
+        assertParseSuccess(parser, TAG_DESC_THROAT + TAG_DESC_EAR, expectedFindCommand);
     }
 
     @Test
