@@ -65,14 +65,18 @@ public class Task {
 
     @Override
     public String toString() {
-        return name + getAssignees() + getDeadline();
+        return name + getAssigneesAsString() + getDeadlineAsString();
     }
 
     public String getName() {
         return name;
     }
 
-    public String getAssignees() {
+    public List<Person> getAssignees() {
+        return assignees;
+    }
+
+    public String getAssigneesAsString() {
         if (assignees.isEmpty()) {
             return " (Not assigned to any member yet)";
         } else {
@@ -86,7 +90,7 @@ public class Task {
         }
     }
 
-    public String getDeadline() {
+    public String getDeadlineAsString() {
         if (deadline == null) {
             return "";
         } else {
@@ -106,7 +110,7 @@ public class Task {
             || (other instanceof Task // instanceof handles nulls
             && name.equals(((Task) other).name))
                 && assignees.equals(((Task) other).assignees)
-                && this.getDeadline().equals(((Task) other).getDeadline()); // state check
+                && this.getDeadlineAsString().equals(((Task) other).getDeadlineAsString()); // state check
     }
 
     @Override

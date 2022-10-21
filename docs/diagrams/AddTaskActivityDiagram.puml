@@ -5,8 +5,8 @@ start
 if () then ([else])
     :Create a new task;
     if () then ([else])
-        :Adds task to team's task list;
-        :Displays success message to user;
+        :Add task to team's task list;
+        :Display success message to user;
     else ([task already exists in task list])
         :Throw CommandException;
     endif
