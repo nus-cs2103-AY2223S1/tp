@@ -195,10 +195,84 @@ Therefore, given the constraints of the UI, sorting is implemented as a **perman
    * Cons: Requires redesigning a significant part of the `UI`, `Logic` and `Model` classes.
 
 
+### Add Gender
 
+The Add Gender feature allows users to add a gender field (Male / Female) to a person in the contact list. It is performed as a part
+ of `addPersonCommand#execute()`.
+
+These operations are exposed in the `Model` interface as the method `Model#addPerson()`, which calls
+`AddressBook#addPerson()` which calls `UniquePersonList#add()` to add a new person in the person list
+stored in AddressBook.
+
+The following sequence diagram shows the methods calls related to add person operation:
+
+![AddPersonSequenceDiagram](images/AddPersonSequenceDiagram.png)
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** `cmd` in the diagram represents the add
+person command text entered by user. The specific `UniquePersonList` operations are not shown in the diagram
+for simplicity.
+</div>
+
+The following activity diagram shows what happens when a user executes a new add command:
+
+![AddPersonActivityDiagram](images/AddPersonActivityDiagram.png)
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** Only the
+activities related to gender field are considered and shown in this activity diagram.
+</div>
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:**Parser exceptions are thrown and caught if
+gender field is not provided in the command, or the gender is not of valid format; Duplicated person exception is
+thrown if the person to add already exists in the contact list. Error message is displayed on the GUI subsequently.
+</div>
+
+#### Design considerations:
+
+**Aspect: Whether gender field should be optional for a person:**
+
+* **Alternative 1 (current choice):** Compulsory gender field:
+    * Pros: It is a more logical implementation because gender is a common attribute for all persons,
+  similar to name, address, etc, which are also compulsory field for persons in contact list.
+    * Cons: It is less flexible, since only female and male genders are accepted.
+
+* **Alternative 2:** Optional gender field:
+    * Pros: It is a more flexible implementation, since user has the choice to set gender to male or female,
+  as well as hide gender.
+    * Cons: It is less logical since gender is usually a required binary field in most applications.
+
+### Edit Gender
+
+The Edit Gender feature allows users to edit a gender field (Male / Female) of a person in the contact list.
+It is performed as a part of `editPersonCommand#execute()`.
+
+These operations are exposed in the `Model` interface as the method `Model#setPerson()`, which calls
+`AddressBook#setPerson()` which calls `UniquePersonList#setPerson()` to replace an existing person with a new person
+object with edited fields in the person list stored in AddressBook.
+
+The following sequence diagram shows the methods calls related to edit person operation:
+
+![EditPersonSequenceDiagram](images/EditPersonSequenceDiagram.png)
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** `cmd` in the diagram represents the edit
+person command text entered by user; the `setPerson(P1, P2)` method replaces person P1 with person P2 in the person list
+in the model. The specific `UniquePersonList` operations are not shown in the diagram for simplicity.
+</div>
+
+The following activity diagram shows what happens when a user executes a new edit command:
+
+![EditPersonActivityDiagram](images/EditPersonActivityDiagram.png)
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** Only the
+activities related to gender field are considered and shown in this activity diagram. All fields are considered optional
+in edit person command, therefore, it is not compulsory that gender field must be provided.
+</div>
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:**Parser exceptions are thrown and caught if
+the gender is not of valid format; Invalid person exception is thrown if the person to edit doesn't exist in the
+contact list. Error message is displayed on the GUI subsequently.
+</div>
 
 ### \[Proposed\] Undo/redo feature
-
 #### Proposed Implementation
 
 The proposed undo/redo mechanism is facilitated by `VersionedAddressBook`. It extends `AddressBook` with an undo/redo history, stored internally as an `addressBookStateList` and `currentStatePointer`. Additionally, it implements the following operations:
