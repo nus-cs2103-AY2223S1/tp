@@ -69,7 +69,7 @@ For example, the `Logic` component defines its API in the `Logic.java` interface
 
 The sections below give more details of each component.
 
-### UI component
+### UI component {TODO - Modify upon implementation}
 
 The **API** of this component is specified in [`Ui.java`](https://github.com/AY2223S1-CS2103T-T12-1/tp/blob/master/src/main/java/seedu/taassist/ui/Ui.java)
 
@@ -327,6 +327,41 @@ creates a `Session` named "Lab1" and adds it inside the focused class.
 
 :information_source: **Note:** The above diagram assumes that `Model` is currently in focus mode and 
 the focused class doesn't contain a session named `Lab1` as of current.
+
+### [Proposed] UI Implementation
+**Home Screen**
+
+{Show a screenshot after completion, box the components and label class name beside it}
+
+The main screen consists of components:
+* `ResultDisplay`, showing the classes the user has added; 
+* `ResultDisplay` consists of `ClassListPanel`, each row representing a class, and `StudentListPanel`, each row representing a student;
+* `CommandBox`, the Command Line Interface (CLI) for user to key in command and
+* `HelpWindow` shown with a help button, redirect users to our User Guide to facilitate their usage;
+
+It was designed with the following considerations:
+* Users have class-oriented focus while using this application. Their actions such as grading/assigning students to a class or initiating sessions revolve around a particular class, therefore we find it suitable to put the classes users have added within the `MainWindow`.
+* Operations on students can be performed conveniently by showing the list of all students on the main window, such as deleting, adding and finding students whenever required.
+* As we are targeting users with higher preference on CLI than GUI, putting the command input box at the bottom of the window may be more instinctive for their usage, due to the high similarity with the implementation of command terminals from various operating systems.
+
+**Focus Mode**
+
+{Show a screenshot after completion, box the components and label class name beside it}
+
+The screen upon entering the focus mode consists of components:
+* `ResultDisplay`, showing the sessions and students the user has added to the class;
+* `ResultDisplay` consists of `SessionListPanel`, each row representing a session,sorted based on the time it was added with the most recently added at the top, and `StudentListPanel`, each row representing a student, with their grades related to a particular session (given by user input) shown as well;
+* `CommandBox`, the Command Line Interface (CLI) for user to key in command and
+* `HelpWindow` shown with a help button, redirect users to our User Guide to facilitate their usage;
+
+Whenever users call `session s/SESSION_NAME`, the grade pertaining to that particular session appear, with ungraded students highlighted to the users.
+
+{another screenshot}
+
+It was designed with the following consideration:
+* As sessions are usually time-sensitive, with those added later often being the more relevant sessions, sorting the sessions with the newest session at the front facilitate users in finding the sessions they are concerned with recently.
+
+
 
 --------------------------------------------------------------------------------------------------------------------
 
