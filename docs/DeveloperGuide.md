@@ -241,7 +241,7 @@ The person model now contains a `Net Worth` field.
 `MESSAGE_CONSTRAINTS` and `final static string` `VALIDATION_REGEX`.
 
 #### Design Considerations
-- Net Worth accepts a Net Worth object that has an immutable value. This follows ____ principle
+- Net Worth accepts a Net Worth object that has an immutable value.
 - Net Worth is a compulsory field. A user will only engage with a client if they know their net worth.
 - Net Worth `VALIDATION_REGEX` ensures that clients of more than 1000 dollars is engaged and the currency is 
   standardise to be in dollars
