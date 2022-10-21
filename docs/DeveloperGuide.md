@@ -161,7 +161,7 @@ to form the backbone of the application, allowing for efficient and reliable tra
 
 #### Overview
 
-As per the Model diagram given [above](<ENSURE DIAGRAM CONSISTENCY HERE>), the application keeps track of one `OrderList`
+As per the Model diagram given [above]()(**_Ensure diagram consistency here_**), the application keeps track of one `OrderList`
 at any point in time. This `OrderList` instance represents the container that keeps track of all order data in the system.
 
 Currently, the application features 5 main operations that interact directly with the `OrderList`. They are represented by
@@ -198,15 +198,19 @@ Step 1. The user enters the following input into the UI's command box:
 `addo n/John Doe p/98765432 e/johnd@example.com a/311, Clementi Ave 2, #02-25`. This instantiates an `AddOrderCommand`, that references
 a new `Order` which encapsulates the input customer data. This then sets the system to await and prompt for further input from the user.
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** Upon any invalid inputs (i.e, invalid/missing prefixes or values), the UI will notify the user and provide a prompt for the correct input format) 
+<div markdown="span" class="alert alert-info">:information_source: **Note:** Upon any invalid inputs (invalid/missing prefixes or values), the UI will notify the user and provide a prompt for the correct input format) 
 </div>
+
+**_Object diagram to be added here_**
 
 Step 2a. The user then enters `i/Pen q/3`, representing that the order requires 3 units (quantities) of 'Pens' to fulfill.
 The system updates the instantiated command, by first having the `AddOrderCommand` stages the input item name and quantity for validation, 
 using the `AddOrderCommand#stageForValidation()` method.
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** Upon any invalid inputs (i.e, invalid/missing prefixes or values), the UI will notify the user and provide a prompt for the correct input format) 
+<div markdown="span" class="alert alert-info">:information_source: **Note:** Upon any invalid inputs (invalid/missing prefixes or values), the UI will notify the user and provide a prompt for the correct input format) 
 </div>
+
+**_Object diagram to be added here_**
 
 Step 2b. The system searches the inventory items for an item that has a matching name. In this scenario,
 we assume that the user has already added an `Item` with its `ItemName` value to be `Pen`, to the system's list of tracked items.
@@ -216,8 +220,12 @@ references the found item to the list of items ordered in the instantiated `Orde
 <div markdown="span" class="alert alert-info">:information_source: **Note:** If the user has entered an item name that cannot be matched to the system's inventory, the state will remain unchanged and the UI will notify the user and provide a prompt to re-enter inputs) 
 </div>
 
+**_Object diagram to be added here_**
+
 
 Step 3. The user repeats Step 2 multiple times to fill up the instantiated `Order`'s list of ordered items.
+
+**_Object diagram to be added here_**
 
 Step 4. The user then enters `done` after inputting all the required order details. The system finally executes the command, adding the
 built up `Order` to the `OrderList`. The system also no longer waits for additional input as the previously 'in progress' `AddOrderCommand`
@@ -226,7 +234,11 @@ is now completed.
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The user can also choose to abort the command at any point after instantiating the command (Step 2 to 4), by entering 'cancel'
 </div>
 
+**_Object diagram to be added here_**
+
 The following sequence diagram shows how the add order operation works:
+
+_**Sequence diagram to be added here**_
 
 The following activity diagram below illustrates the general flow of the user's experience in adding an order.
 ![AddOrderActivityDiagram](images/developer-guide/AddOrderActivityDiagram.png)
@@ -241,7 +253,7 @@ Aspect: How add order command executes:
   * Pros: Easier to implement.
   * Cons: Users have to type out a very long command, and multiple times if they were to mistype certain details and have to re-enter data.
 
-
+**_More design considerations_**
 
 ### \[Proposed\] Undo/redo feature
 
