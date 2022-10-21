@@ -32,8 +32,12 @@ public class OutputPanel extends UiPart<Region> {
      * @param patient patient of interest.
      */
     public void handleTask(Patient patient) {
+        TaskListPanel taskListPanel = new TaskListPanel(patient);
+        taskListPanel.getRoot().prefWidthProperty().bind(this.getRoot().widthProperty());
+        taskListPanel.getRoot().prefHeightProperty().bind(this.getRoot().heightProperty());
+
         outputView.getChildren().clear();
-        outputView.getChildren().add(new TaskListPanel(patient).getRoot());
+        outputView.getChildren().add(taskListPanel.getRoot());
     }
 
     /**

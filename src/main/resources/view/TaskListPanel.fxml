@@ -9,31 +9,39 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-
-<VBox alignment="CENTER_LEFT" minHeight="105" minWidth="-Infinity" prefHeight="152.0" prefWidth="636.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
-   <padding>
-      <Insets left="5.0" />
-   </padding>
+<VBox alignment="CENTER_LEFT" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <HBox alignment="CENTER_LEFT" spacing="5">
+      <HBox alignment="CENTER_LEFT">
          <opaqueInsets>
             <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
          </opaqueInsets>
          <children>
-            <Label fx:id="name" styleClass="cell_big_label" text="\$first" />
+            <Label fx:id="name" styleClass="cell_big_label" text="\$first" wrapText="true" />
          </children>
+         <VBox.margin>
+            <Insets left="5.0" right="5.0" />
+         </VBox.margin>
       </HBox>
-      <FlowPane fx:id="tags" />
-      <Separator prefWidth="200.0">
+      <FlowPane fx:id="tags" prefWrapLength="200.0">
+         <VBox.margin>
+            <Insets left="5.0" right="5.0" />
+         </VBox.margin></FlowPane>
+      <Separator>
          <padding>
-            <Insets top="5.0" />
+            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
          </padding>
       </Separator>
-      <Label fx:id="label" text="\$label">
+      <Label fx:id="header" text="\$header">
          <font>
             <Font size="19.0" />
          </font>
+         <VBox.margin>
+            <Insets left="5.0" right="5.0" />
+         </VBox.margin>
       </Label>
-     <ListView fx:id="taskListView" VBox.vgrow="ALWAYS" />
+     <ListView fx:id="taskListView" minWidth="100.0" VBox.vgrow="ALWAYS">
+         <VBox.margin>
+            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+         </VBox.margin></ListView>
    </children>
 </VBox>

@@ -32,7 +32,7 @@ public class TaskListCard extends UiPart<Region> {
         cardPane.setSpacing(1);
         cardPane.setStyle("-fx-padding: 1;" + "-fx-border-style: dashed inside;"
                 + "-fx-border-width: 1;" + "-fx-border-insets: 1;"
-                + "-fx-border-radius: 2;" + "-fx-border-color: black;");
+                + "-fx-border-radius: 5;" + "-fx-border-color: black;");
         this.task = task;
         id.setText(displayedIndex + ". ");
         taskname.setText(task.toString());

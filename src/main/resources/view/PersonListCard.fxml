@@ -26,9 +26,9 @@
    <Label fx:id="phone" styleClass="cell_small_label" text="\$phone" />
    <Label fx:id="address" styleClass="cell_small_label" text="\$address" />
    <Label fx:id="email" styleClass="cell_small_label" text="\$email" />
-      <padding>
-         <Insets left="15.0" />
-      </padding>
+      <HBox.margin>
+         <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+      </HBox.margin>
  </VBox>
    <stylesheets>
       <URL value="@Fonts.css" />

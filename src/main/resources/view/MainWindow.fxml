@@ -28,7 +28,7 @@
             <URL value="@Fonts.css" />
       </stylesheets>
 
-            <VBox fx:id="mainWindowContainer" prefWidth="600.0">
+            <VBox prefWidth="600.0">
         <MenuBar fx:id="menuBar" VBox.vgrow="NEVER">
           <Menu mnemonicParsing="false" text="File">
             <MenuItem mnemonicParsing="false" onAction="#handleExit" text="Exit" />

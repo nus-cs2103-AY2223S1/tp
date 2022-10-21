@@ -25,7 +25,7 @@ public class TaskListPanel extends UiPart<Region> {
     @FXML
     private FlowPane tags;
     @FXML
-    private Label label;
+    private Label header;
 
     /**
      * Creates a {@code TaskListPanel} with the given {@code Patient}.
@@ -34,8 +34,10 @@ public class TaskListPanel extends UiPart<Region> {
         super(FXML);
         taskListView.setItems(FXCollections.observableList(patient.getTasks().getTasks()));
         taskListView.setCellFactory(listview -> new TaskListViewCell());
-        label.setText("Tasks:");
-        this.name.setText(patient.getName().toString());
+        taskListView.prefWidthProperty().bind(this.getRoot().widthProperty());
+
+        header.setText("Tasks:");
+        name.setText(patient.getName().toString());
         patient.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
@@ -45,9 +47,10 @@ public class TaskListPanel extends UiPart<Region> {
      * Custom {@code ListCell} that displays the graphics of a {@code Task} using a {@code TaskListCard}.
      */
     class TaskListViewCell extends ListCell<Task> {
-
         TaskListViewCell() {
             super();
+            setStyle("-fx-padding: 0px");
+            prefWidthProperty().bind(taskListView.widthProperty());
         }
 
         @Override
@@ -62,7 +65,5 @@ public class TaskListPanel extends UiPart<Region> {
             }
 
         }
-
     }
-
 }
