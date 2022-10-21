@@ -11,7 +11,7 @@ title: Developer Guide
 
 We'd like to thank:
 
-* [SE-Edu's AddressBook-Level3](https://github.com/se-edu/addressbook-level3) for being the foundation of this brownfield project. 
+* [SE-Edu's AddressBook-Level3](https://github.com/se-edu/addressbook-level3) for being the foundation of this brownfield project.
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Setting up, getting started**
@@ -183,7 +183,7 @@ Design considerations:
   * Cons: More complex implementation of `add` needed due to requirement for both adding to model and storage.
 * Alternative 2: Add the tutor directly to the `Storage` class as a JSON object
   * Pros: Less memory needed to store an extra list, especially when there would be a large number of tutors
-  * Cons: The `Storage` class would be handling both storing of the Tuthub file and providing of the list to the UI, which would violate OOP principles. 
+  * Cons: The `Storage` class would be handling both storing of the Tuthub file and providing of the list to the UI, which would violate OOP principles.
 
 
 ### View Feature
@@ -212,11 +212,11 @@ The following sequence diagram demonstrates the above operations (excluding the 
 
 **Aspect: Method to pass a `Tutor` to UI**
 - **Alternative 1:** Store the tutor to be viewed as a field in `Model` **(chosen)**.
-  - Pros: Better OOP practice since `Model` handles all the data related to tutors. 
+  - Pros: Better OOP practice since `Model` handles all the data related to tutors.
   - Cons: The `tutorToView` may be null if there are no tutors in the list to be displayed, so more checks may be needed.
 
 - **Alternative 2:** Store the tutor in `CommandResult`.
-  - Pros: Easier to implement and fewer methods may be needed in `Logic` and `Model` as the tutor can be passed to 
+  - Pros: Easier to implement and fewer methods may be needed in `Logic` and `Model` as the tutor can be passed to
   the `MainWindow` directly through `CommandResult`.
   - Cons: Poor OOP practice as it does not make sense for `CommandResult` to store a `Tutor`, and other commands do not 
   require a `Tutor` object to be stored.
@@ -302,9 +302,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 2a. The input index is invalid.
     * Tuthub displays an error message.
-
-      Use case resumes from step 2.  
-    
+  
+      Use case resumes from step 2.
 
 **Use case: UC3 - Add a tutor**
 
