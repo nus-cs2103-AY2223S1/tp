@@ -165,7 +165,7 @@ This section describes some noteworthy details on how certain features are imple
 
 The [`Module`](https://github.com/AY2223S1-CS2103T-W12-1/tp/tree/master/src/main/java/seedu/address/model/module) Class facilitates the storing of various information related to a student's module that he/she is currently taking. 
 
-A `Module` Class contains 
+A `Module` Class contains
 
 * A `ModuleCode`
 * `TutorialDetails`
@@ -180,7 +180,7 @@ All the commands associated with the `Module` Class would have the keyword "Modu
 
 All the `Module` objects are contained in a `UniqueModuleList` object which ensures that no duplicate `Module` objects can exist in the `UniqueModuleList` object, where the `UniqueModuleList` was implemented by Ying Ming. This is because in NUS, there are no two modules with the same module code. Thus, the notion of equality is defined by default to be two `Module` objects containing the same `ModuleCode` object.
 
-All the classes contained within the `Module` Class all have a regex that checks for whether the user input for the specific field is valid. 
+All the classes contained within the `Module` Class all have a regex that checks for whether the user input for the specific field is valid.
 
 For the five classes,
 
@@ -274,6 +274,33 @@ _{more aspects and alternatives to be added}_
 
 _{Explain here how the data archiving feature will be implemented}_
 
+### Delete Module feature
+
+#### Implementation
+
+The DeleteModule commands extends `Command`, and takes in an `Index` to be deleted. Additionally, it implements the following operation:
+
+* `DeleteModuleCommand#execute()` — Deletes the corresponding item in the given model according to the given index.
+
+This operation is exposed in the `Model` interface as `Model#deleteModule()`.
+
+Given below is an example usage scenario, and an object diagram to show the objects created during this command.
+
+Step 1. The user launches the application. The `ReadOnlyAddressBook` will be initialized with the initial address book state.
+
+Step 2. The user executes `deletem 1` command to delete the 1st module in the address book. The `deletem` command calls `AddressBookParser#parseCommand()`, which creates a `DeleteModuleCommandParser`. The `DeleteModuleCommandParser` gets the `Index` to be deleted, which is 1 in this case, and creates a `DeleteModuleCommand`, which calls `Model#deleteModule()`, and deletes the module from the model object corresponding to the number parsed.
+
+The following object diagram illustrates the above example:
+
+![DeleteModuleObjectDiagram](images/DeleteModuleObjectDiagram.png)
+
+The following sequence diagram shows how the DeleteModule operation works:
+
+![DeleteModuleSequenceDiagram](images/DeleteModuleSequenceDiagram.png)
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteModuleCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+
+</div>
 
 --------------------------------------------------------------------------------------------------------------------
 
