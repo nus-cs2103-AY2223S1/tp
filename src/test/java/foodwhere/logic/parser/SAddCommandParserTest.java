@@ -65,19 +65,20 @@ public class SAddCommandParserTest {
     }
 
     @Test
-    public void parse_compulsoryFieldMissing_failure() {
-        String expectedMessage = String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT, SAddCommand.MESSAGE_USAGE);
+    public void parse_nameFieldMissing_failure() {
+        String expectedMessage = String.format(Messages.MESSAGE_MISSING_NAME, SAddCommand.MESSAGE_USAGE);
 
         // missing name prefix
         assertParseFailure(parser, VALID_NAME_BOB + ADDRESS_DESC_BOB,
                 expectedMessage);
+    }
+
+    @Test
+    public void parse_addressFieldMissing_failure() {
+        String expectedMessage = String.format(Messages.MESSAGE_MISSING_ADDRESS, SAddCommand.MESSAGE_USAGE);
 
         // missing address prefix
         assertParseFailure(parser, NAME_DESC_BOB + VALID_ADDRESS_BOB,
-                expectedMessage);
-
-        // all prefixes missing
-        assertParseFailure(parser, VALID_NAME_BOB + VALID_ADDRESS_BOB,
                 expectedMessage);
     }
 

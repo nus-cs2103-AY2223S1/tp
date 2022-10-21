@@ -95,10 +95,10 @@ class JsonAdaptedReview {
             throw new IllegalValueException(String.format(JsonAdaptedReview.MISSING_FIELD_MESSAGE_FORMAT,
                     Rating.class.getSimpleName()));
         }
-        if (!Rating.isValidRating(rating)) {
+        if (!Rating.isValidRating(String.valueOf(rating))) {
             throw new IllegalValueException(Rating.MESSAGE_CONSTRAINTS);
         }
-        final Rating modelRating = new Rating(rating);
+        final Rating modelRating = new Rating(String.valueOf(rating));
 
         final Set<Tag> modelTags = new HashSet<>(reviewTags);
 
