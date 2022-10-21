@@ -1,14 +1,11 @@
 package tracko.testutil;
 
-import java.util.List;
-
+import javafx.util.Pair;
 import tracko.logic.commands.order.EditOrderCommand.EditOrderDescriptor;
-import tracko.model.order.Address;
-import tracko.model.order.Email;
-import tracko.model.order.ItemQuantityPair;
-import tracko.model.order.Name;
-import tracko.model.order.Order;
-import tracko.model.order.Phone;
+import tracko.model.order.*;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * A utility class to help with building EditOrderDescriptor objects.
@@ -72,8 +69,32 @@ public class EditOrderDescriptorBuilder {
     /**
      * Sets the {@code List<ItemQuantityPair>} of the {@code EditOrderDescriptor} that we are building.
      */
-    public EditOrderDescriptorBuilder withItemList(List<ItemQuantityPair> itemList) {
-        descriptor.setItemList(itemList);
+    public EditOrderDescriptorBuilder withItemList() {
+        List<ItemQuantityPair> defaultPairList = new ArrayList<>();
+        defaultPairList.add(new ItemQuantityPairBuilder().build());
+        defaultPairList.add(new ItemQuantityPairBuilder().withItem(TypicalItems.ITEM_2).withQuantity(10).build());
+        descriptor.setItemList(defaultPairList);
+        return this;
+    }
+
+    /**
+     * Sets the {@code List<ItemQuantityPair>} of the {@code EditOrderDescriptor} that we are building.
+     */
+    public EditOrderDescriptorBuilder withSecondItemList() {
+        List<ItemQuantityPair> defaultPairList = new ArrayList<>();
+        defaultPairList.add(new ItemQuantityPairBuilder().withItem(TypicalItems.ITEM_5).withQuantity(25).build());
+        defaultPairList.add(new ItemQuantityPairBuilder().withItem(TypicalItems.ITEM_4).withQuantity(20).build());
+        descriptor.setItemList(defaultPairList);
+        return this;
+    }
+
+    public EditOrderDescriptorBuilder withItemList(List<ItemQuantityPair> customList) {
+        descriptor.setItemList(customList);
+        return this;
+    }
+
+    public EditOrderDescriptorBuilder withUnlinkedPair(Pair<String, Integer> rawItemQuantityPair) {
+        descriptor.setUnlinkedItemToEdit(rawItemQuantityPair);
         return this;
     }
 

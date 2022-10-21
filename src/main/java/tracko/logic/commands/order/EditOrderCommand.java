@@ -236,7 +236,7 @@ public class EditOrderCommand extends Command {
                 ItemQuantityPair itemInList = orderedItems.get(i);
 
                 // Check whether the item is in the customer's order list.
-                boolean isItemInList = itemInList.getItemName().equalsIgnoreCase(itemToEdit.getItemName());
+                boolean isItemInList = itemInList.getItem().isSameItem(itemToEdit.getItem());
                 boolean isUpdatedQuantityZero = itemToEdit.getQuantityValue() == 0;
                 boolean shouldQuantityBeUpdated = itemInList.getQuantityValue() != itemToEdit.getQuantityValue();
                 boolean doesOrderedListContainOneItem = orderedItems.size() == 1;

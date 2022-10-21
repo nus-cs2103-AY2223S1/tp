@@ -16,12 +16,17 @@ import java.util.List;
 
 import tracko.commons.core.index.Index;
 import tracko.logic.commands.exceptions.CommandException;
+import tracko.logic.commands.order.EditOrderCommand;
 import tracko.model.Model;
 import tracko.model.TrackO;
 import tracko.model.item.Item;
 import tracko.model.item.ItemContainsKeywordsPredicate;
+import tracko.model.order.ItemQuantityPair;
 import tracko.model.order.Order;
 import tracko.model.order.OrderContainsKeywordsPredicate;
+import tracko.testutil.EditOrderDescriptorBuilder;
+import tracko.testutil.ItemQuantityPairBuilder;
+import tracko.testutil.TypicalItems;
 
 /**
  * Contains helper methods for testing commands.
@@ -65,17 +70,17 @@ public class CommandTestUtil {
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
 
-    // public static final EditOrderCommand.EditPersonDescriptor DESC_AMY;
-    // public static final EditOrderCommand.EditPersonDescriptor DESC_BOB;
+     public static final EditOrderCommand.EditOrderDescriptor DESC_AMY;
+     public static final EditOrderCommand.EditOrderDescriptor DESC_BOB;
 
-    // static {
-    //    DESC_AMY = new EditPersonDescriptorBuilder().withName(VALID_NAME_AMY)
-    //            .withPhone(VALID_PHONE_AMY).withEmail(VALID_EMAIL_AMY).withAddress(VALID_ADDRESS_AMY)
-    //            .withTags(VALID_TAG_FRIEND).build();
-    //    DESC_BOB = new EditPersonDescriptorBuilder().withName(VALID_NAME_BOB)
-    //            .withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB).withAddress(VALID_ADDRESS_BOB)
-    //            .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).build();
-    // }
+     static {
+        DESC_AMY = new EditOrderDescriptorBuilder().withName(VALID_NAME_AMY)
+                .withPhone(VALID_PHONE_AMY).withEmail(VALID_EMAIL_AMY).withAddress(VALID_ADDRESS_AMY)
+                .withItemList().build();
+        DESC_BOB = new EditOrderDescriptorBuilder().withName(VALID_NAME_BOB)
+                .withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB).withAddress(VALID_ADDRESS_BOB)
+                .withItemList().build();
+     }
 
     /**
      * Executes the given {@code command}, confirms that <br>
