@@ -34,6 +34,7 @@ class JsonAdaptedStudent {
     private final LocalDate consultation;
     private final String remark;
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
+    private final List<JsonAdaptedGrade> gradesList = new ArrayList<>();
 
     /**
      * Constructs a {@code JsonAdaptedStudent} with the given student details.
@@ -43,10 +44,9 @@ class JsonAdaptedStudent {
     public JsonAdaptedStudent(@JsonProperty("name") String name, @JsonProperty("telegramHandle") String telegramHandle,
                              @JsonProperty("consultation") LocalDate consultation,
                              @JsonProperty("masteryCheck") LocalDate masteryCheck,
-
                              @JsonProperty("masteryCheckIsDone") boolean masteryCheckIsDone,
-                             @JsonProperty("remark") String remark,
-                             @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
+                             @JsonProperty("remark") String remark, @JsonProperty("tagged") List<JsonAdaptedTag> tagged,
+                             @JsonProperty("gradesList") List<JsonAdaptedGrade> gradesList) {
 
         this.name = name;
         this.telegramHandle = telegramHandle;
@@ -56,6 +56,9 @@ class JsonAdaptedStudent {
         this.remark = remark;
         if (tagged != null) {
             this.tagged.addAll(tagged);
+        }
+        if (gradesList != null) {
+            this.gradesList.addAll(gradesList);
         }
     }
 
@@ -71,6 +74,11 @@ class JsonAdaptedStudent {
         remark = source.getRemark().value;
         tagged.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
+                .collect(Collectors.toList()));
+        gradesList.addAll(source.getGradesList()
+                .getGradesArrayList()
+                .stream()
+                .map(JsonAdaptedGrade::new)
                 .collect(Collectors.toList()));
     }
 
@@ -142,8 +150,21 @@ class JsonAdaptedStudent {
         final Remark modelRemark = new Remark(remark);
 
         final Set<Tag> modelTags = new HashSet<>(studentTags);
+
+        final GradesList modelGradesList = new GradesList();
+
+        if (gradesList == null || gradesList.size() != 5) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    GradesList.class.getSimpleName()));
+        }
+
+        for (int i = 0; i < 5; i++) {
+            JsonAdaptedGrade grade = gradesList.get(i);
+            GradesList.editGrade(modelGradesList, grade.toModelType(i));
+        }
+
         return new Student(modelName, modelTelegramHandle, modelConsultation, modelMasteryCheck, modelRemark,
-                modelTags, new GradesList());
+                modelTags, modelGradesList);
     }
 
 }

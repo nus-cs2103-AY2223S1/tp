@@ -1,6 +1,8 @@
 package friday.model.grades;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -41,6 +43,21 @@ public class GradesList {
     public static void editGrade(GradesList gradesList, Grade newGrade) {
         String key = newGrade.examName;
         gradesList.gradesMap.put(key, newGrade);
+    }
+
+    /**
+     * Creates and returns an ordered List of {@code Grade}.
+     *
+     * @return a list of grades
+     */
+    public List<Grade> getGradesArrayList() {
+        List<Grade> gradesList = new ArrayList<>();
+        gradesList.add(gradesMap.get("RA1"));
+        gradesList.add(gradesMap.get("RA2"));
+        gradesList.add(gradesMap.get("Mid-Term"));
+        gradesList.add(gradesMap.get("Practical"));
+        gradesList.add(gradesMap.get("Finals"));
+        return gradesList;
     }
 
     @Override
