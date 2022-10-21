@@ -304,7 +304,7 @@ The class diagram below shows the classes in the Logic component relevant for so
 
 There is an abstract `SortCommand` class that inherits from the abstract `Command` class. Then, there is a concrete `SortCommand` subclass for each possible order of sort. Meanwhile, there is a single `SortCommandParser` class. When it parses the arguments supplied to a `sort` command, it decides which of the `SortCommand` subclasses to instantiate.
 
-The following sequence diagram shows the operation of the command `sort o/date r/`:
+The following sequence diagram shows the operation of a sort featuring just two of the possible orders - by company and by date:
 ![Sort Sequence Diagram](images/SortSequenceDiagram.png)
 
 When calling the `parse` method of the `SortCommandParser`, the argument provided for the `o/` prefix determines which subclass of `SortCommand` will get created. In the event that the prefix is not provided, a `SortByDateCommand` is returned by default.

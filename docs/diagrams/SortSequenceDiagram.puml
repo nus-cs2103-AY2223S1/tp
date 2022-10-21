@@ -5,6 +5,7 @@ box Logic LOGIC_COLOR_T1
 participant ":LogicManager" as LogicManager LOGIC_COLOR
 participant ":ApplicationBookParser" as ApplicationBookParser LOGIC_COLOR
 participant ":SortCommandParser" as SortCommandParser LOGIC_COLOR
+participant "command:SortByCompanyCommand" as SortByCompanyCommand LOGIC_COLOR
 participant "command:SortByDateCommand" as SortByDateCommand LOGIC_COLOR
 participant "r:CommandResult" as CommandResult LOGIC_COLOR
 end box
@@ -16,43 +17,84 @@ end box
 [-> LogicManager : execute()
 activate LogicManager
 
-LogicManager -> ApplicationBookParser : parseCommand("sort o/date r/")
+LogicManager -> ApplicationBookParser : parseCommand()
 activate ApplicationBookParser
 
 create SortCommandParser
-ApplicationBookParser -> SortCommandParser : SortCommandParser()
+ApplicationBookParser -> SortCommandParser
 activate SortCommandParser
 
 SortCommandParser --> ApplicationBookParser
 deactivate SortCommandParser
 
-ApplicationBookParser -> SortCommandParser : parse(" o/date r/")
+ApplicationBookParser -> SortCommandParser : parse()
 activate SortCommandParser
 
-create SortByDateCommand
-SortCommandParser -> SortByDateCommand : SortByDateCommand(true)
-activate SortByDateCommand
+alt sort by company
 
-SortByDateCommand --> SortCommandParser
-deactivate SortByDateCommand
+    create SortByCompanyCommand
+    SortCommandParser -> SortByCompanyCommand
+    activate SortByCompanyCommand
+
+    SortByCompanyCommand --> SortCommandParser
+    deactivate SortByCompanyCommand
+
+else sort by date
+
+    create SortByDateCommand
+    SortCommandParser -> SortByDateCommand
+    activate SortByDateCommand
+
+    SortByDateCommand --> SortCommandParser
+    deactivate SortByDateCommand
+
+end
 
 SortCommandParser --> ApplicationBookParser : command
 deactivate
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+SortCommandParser -[hidden]-> ApplicationBookParser
+destroy SortCommandParser
 
 ApplicationBookParser --> LogicManager : command
 deactivate ApplicationBookParser
 
+alt sort by company
+LogicManager -> SortByCompanyCommand : execute()
+activate SortByCompanyCommand
+
+SortByCompanyCommand -> Model : sortApplicationListByCompany()
+activate Model
+
+Model --> SortByCompanyCommand
+deactivate Model
+
+create CommandResult
+SortByCompanyCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> SortByCompanyCommand
+deactivate CommandResult
+
+SortByCompanyCommand --> LogicManager : r
+deactivate SortByCompanyCommand
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+SortByCompanyCommand -[hidden]-> LogicManager : r
+destroy SortByCompanyCommand
+
+else sort by date
+
 LogicManager -> SortByDateCommand : execute()
 activate SortByDateCommand
 
-SortByDateCommand -> Model : sortApplicationListByDate(true)
+SortByDateCommand -> Model : sortApplicationListByDate()
 activate Model
 
 Model --> SortByDateCommand
 deactivate Model
 
 create CommandResult
-SortByDateCommand -> CommandResult : CommandResult("...")
+SortByDateCommand -> CommandResult
 activate CommandResult
 
 CommandResult --> SortByDateCommand
@@ -63,7 +105,8 @@ deactivate SortByDateCommand
 'Hidden arrow to position the destroy marker below the end of the activation bar.
 SortByDateCommand -[hidden]-> LogicManager : r
 destroy SortByDateCommand
-destroy SortCommandParser
+
+end
 
 [<--LogicManager : r
 deactivate LogicManager
