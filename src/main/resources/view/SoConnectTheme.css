@@ -376,7 +376,7 @@
     -fx-vgap: 3;
 }
 
-/* Handle style of Person List Card */
+/* Handles style of Person List Card */
 .people-heading {
     -fx-font-size: 28pt;
     -fx-font-family: "Karla";
@@ -398,4 +398,39 @@
     -fx-font-size: 18px;
     -fx-font-weight: 600;
     -fx-text-fill: #C3E0FF;
+}
+
+/* Handles style of Todo List Card */
+.todo-heading {
+    -fx-font-size: 28pt;
+    -fx-font-family: "Karla";
+    -fx-text-fill: #FFDFF6;
+    -fx-font-weight: 900;
+    -fx-opacity: 1;
+    -fx-padding: 2px;
+}
+
+.cell_big_label_todo {
+    -fx-font-family: "Karla";
+    -fx-font-size: 22px;
+    -fx-font-weight: 700;
+    -fx-text-fill: #FFDFEA;
+}
+
+.cell_small_label_todo {
+    -fx-font-family: "Karla";
+    -fx-font-size: 18px;
+    -fx-font-weight: 600;
+    -fx-text-fill: #FFDFEA;
+}
+
+/* Handles style of icons */
+.icon-button {
+    -icon-paint: #D9DCFF;
+    -fx-background-color: -icon-paint;
+    -size: 18;
+    -fx-min-width: -size;
+    -fx-min-height: -size;
+    -fx-max-width: -size;
+    -fx-max-height: -size;
 }
