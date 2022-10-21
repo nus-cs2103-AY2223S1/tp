@@ -278,22 +278,28 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 | Priority | As a …​                                    | I want to …​                                      | So that I can…​                                        |
 |----------|--------------------------------------------|---------------------------------------------------|--------------------------------------------------------|
-| `* * *`  | teaching assistant                                  | add student into my module                        | track the list of students in my module                |
-| `* * `   | teaching assistant                                  | edit a student's information                      | change student's information                           |
-| `* * *`  | teaching assistant                                  | remove a student from my module                   | remove students who decide to drop the module          |
-| `* * *`  | teaching assistant                                  | add reminders for myself                          | keep track of any tasks I have                         |
-| `* * *`  | teaching assistant                                  | edit reminders for myself                         | change the description of my task                      |
+| `* * *`  | teaching assistant                                  | add student into my classes                       | track the list of students in my classes               |
+| `* * `   | teaching assistant                                  | edit a student's information                      | update any changes to a student's information          |
+| `* * *`  | teaching assistant                                  | find a student by their name                      | get a student information quickly                      |
+| `* * *`  | teaching assistant                                  | find a student by their student ID                | get their name quickly while grading their assignments |
+| `* * *`  | teaching assistant                                  | remove a student from my classes                  | remove students who decide to drop the module          |
+| `* * *`  | teaching assistant                                  | clear all students in my classes                  | clear all students at once after a semester            |
+| `* * *`  | teaching assistant                                  | add a new reminder                                | keep track of any tasks I have                         |
+| `* * *`  | teaching assistant                                  | edit a reminder                                   | change the description of my task                      |
+| `* * *`  | teaching assistant                                  | delete a reminder                                 | delete any reminders that are not needed anymore       |
+| `* * *`  | teaching assistant                                  | clear all reminders                               | clear all reminder slots at once after a semester      |
+| `* * *`  | teaching assistant                                  | mark a reminder as done                           | keep track which tasks are done                        |
+| `* * *`  | teaching assistant                                  | unmark a reminder as not done                     | reverse any task I accidentally marked as done         |
 | `* * *`  | teaching assistant                                  | add a new consult slot                            | keep track of all my consults                          |
-| `* * *`  | teaching assistant                                  | delete a consult slot                             | remove consults that are cancelled                     |
 | `* * *`  | teaching assistant                                  | edit a consult slot                               | change an added consults quickly                       |
-| `* * *`  | teaching assistant                                  | clear a consult slot                              | clear all consultation slot at once after a semester   |
+| `* * *`  | teaching assistant                                  | delete a consult slot                             | remove consults that are cancelled                     |
+| `* * *`  | teaching assistant                                  | clear all consult slots                           | clear all consultation slot at once after a semester   |
 | `* * *`  | teaching assistant                                  | add a new tutorial slot                           | keep track of all my tutorials                         |
 | `* * `   | teaching assistant                                  | edit a tutorial slot                              | change the details of my tutorial                      |
 | `* * *`  | teaching assistant                                  | delete a tutorial slot                            | remove unwanted tutorials                              |
-| `* * *`  | teaching assistant                                  | clear a tutorial slot                             | clear all tutorial at once after a semester            |
-| `* * *`  | teaching assistant                                  | see a pie chart summarizing my students' grade | keep track of my studets' performance                  |
-| `* * *`  | teaching assistant                                  | find a student by their name                      | get a student information quickly                      |
-| `* * *`  | teaching assistant                                  | find a student by their student ID                | get their name quickly while grading their assignments |
+| `* * *`  | teaching assistant                                  | clear all tutorial slots                          | clear all tutorial at once after a semester            |
+| `* * *`  | teaching assistant                                  | see a pie chart summarizing my students' grades   | keep track of my students' performances                |
+
 *{More to be added}*
 
 ### Use cases
@@ -324,14 +330,14 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
         Use case ends.
 
-**Use case: Delete a module**
+**Use case: Delete a tutorial slot**
 
 **MSS**
 
-1. User requests the list of modules
-2. System shows the list of modules
-3. User requests to delete a certain module
-4. System deletes the specific module
+1. User requests the list of tutorial slot
+2. System shows the list of tutorial slot
+3. User requests to delete a certain tutorial slot
+4. System deletes the specified tutorial slot 
 5. System displays the success message
 
     Use case ends.
@@ -363,7 +369,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 ### Glossary
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
-* **TA**: A teaching assistant
+* **TA**: Teaching Assistant
 
 --------------------------------------------------------------------------------------------------------------------
 
