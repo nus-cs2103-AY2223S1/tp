@@ -35,14 +35,14 @@ public class AddTaskCommandParser implements Parser<AddTaskCommand> {
             Description description = ParserUtil.parseDescription(argMultimap.getValue(CliSyntax.PREFIX_TASK).get());
             LocalDate dueDate = ParserUtil.parseDueDate(argMultimap.getValue(CliSyntax.PREFIX_DEADLINE).get());
             ModCode code = ParserUtil.parseCode(argMultimap.getValue(CliSyntax.PREFIX_MOD_CODE).get());
-            Task t = new Deadline(description, code, dueDate);
+            Task t = new Deadline(description, code, dueDate, false, Task.Priority.NONE);
             return new AddDeadlineCommand(t);
         } else if (arePrefixesPresent(argMultimap, CliSyntax.PREFIX_TASK, CliSyntax.PREFIX_MOD_CODE)) {
             // Add task
             Description description = ParserUtil.parseDescription(argMultimap.getValue(CliSyntax.PREFIX_TASK).get());
             ModCode code = ParserUtil.parseCode(argMultimap.getValue(CliSyntax.PREFIX_MOD_CODE).get());
 
-            Task t = new Task(description, code);
+            Task t = new Task(description, code, false, Task.Priority.NONE);
             return new AddTaskCommand(t);
         }
 
