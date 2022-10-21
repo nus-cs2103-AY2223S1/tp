@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.net.URL?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Separator?>
@@ -8,86 +7,90 @@
 <?import javafx.scene.layout.FlowPane?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.Region?>
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 
-<GridPane prefHeight="223.0" prefWidth="621.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
+<GridPane xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
    <columnConstraints>
       <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
    </columnConstraints>
    <rowConstraints>
-      <RowConstraints maxHeight="91.0" minHeight="24.0" prefHeight="36.0" />
-      <RowConstraints maxHeight="190.0" minHeight="10.0" prefHeight="190.0" vgrow="SOMETIMES" />
+      <RowConstraints maxHeight="30.0" minHeight="30.0" prefHeight="30.0" />
+      <RowConstraints minHeight="200.0" vgrow="SOMETIMES" />
    </rowConstraints>
    <children>
-      <Label fx:id="header" text="\$header" wrapText="true" />
-      <HBox fx:id="cardPane" fillHeight="false" prefHeight="149.0" prefWidth="621.0" GridPane.rowIndex="1">
+      <Label fx:id="header" text="\$header" wrapText="true">
+         <GridPane.margin>
+            <Insets left="10.0" />
+         </GridPane.margin></Label>
+      <VBox fx:id="cardPane" GridPane.rowIndex="1">
          <children>
-            <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="192.0" prefWidth="621.0">
+            <GridPane>
+               <columnConstraints>
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="200.0" minWidth="100.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="10.0" minWidth="10.0" prefWidth="10.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="50.0" prefWidth="100.0" />
+               </columnConstraints>
+               <rowConstraints>
+                  <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+               </rowConstraints>
                <children>
-                  <HBox id="cardPane" maxHeight="152.0" minHeight="129.0" prefHeight="129.0" prefWidth="576.0">
-                     <stylesheets>
-                        <URL value="@Fonts.css" />
-                        <URL value="@Theme.css" />
-                        <URL value="@Extensions.css" />
-                     </stylesheets>
-                     <opaqueInsets>
-                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-                     </opaqueInsets>
+                  <VBox fx:id="personDetails" minWidth="100.0" prefWidth="200.0">
                      <children>
-                        <VBox fx:id="personDetails" alignment="CENTER_LEFT" minHeight="105" minWidth="-Infinity" prefHeight="135.0" prefWidth="312.0">
-                           <padding>
-                              <Insets left="15.0" />
-                           </padding>
-                           <children>
-                              <HBox alignment="CENTER_LEFT" spacing="5">
-                                 <opaqueInsets>
-                                    <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-                                 </opaqueInsets>
-                                 <children>
-                                    <Label fx:id="id" styleClass="cell_big_label">
-                                       <minWidth>
-                                          <Region fx:constant="USE_PREF_SIZE" />
-                                       </minWidth>
-                                    </Label>
-                                    <Label fx:id="name" styleClass="cell_big_label" text="\$first" />
-                                 </children>
-                              </HBox>
-                              <FlowPane fx:id="tags" />
-                              <Label fx:id="phone" styleClass="cell_small_label" text="\$phone" />
-                              <Label fx:id="address" styleClass="cell_small_label" text="\$address" />
-                              <Label fx:id="email" styleClass="cell_small_label" text="\$email" />
-                           </children>
-                        </VBox>
-                        <HBox prefHeight="152.0" prefWidth="242.0">
-                           <children>
-                              <Separator orientation="VERTICAL" />
-                           </children>
-                        </HBox>
-                        <VBox fx:id="rightBox" alignment="CENTER_LEFT" minHeight="102.0" minWidth="-Infinity" prefHeight="129.0" prefWidth="299.0">
-                           <padding>
-                              <Insets left="15.0" />
-                           </padding>
+                        <HBox alignment="CENTER_LEFT" spacing="5">
                            <opaqueInsets>
-                              <Insets />
+                              <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                            </opaqueInsets>
                            <children>
-                              <Label fx:id="conditions" styleClass="cell_small_label" text="\$conditions" />
-                              <Label fx:id="medications" styleClass="cell_small_label" text="\$medications" />
+                              <Label fx:id="name" styleClass="cell_big_label" text="\$first" wrapText="true" />
                            </children>
-                        </VBox>
+                        </HBox>
+                        <FlowPane fx:id="tags" />
+                        <Label fx:id="phone" styleClass="cell_small_label" text="\$phone" wrapText="true" />
+                        <Label fx:id="address" styleClass="cell_small_label" text="\$address" wrapText="true" />
+                        <Label fx:id="email" styleClass="cell_small_label" text="\$email" wrapText="true" />
                      </children>
-                     <padding>
-                        <Insets top="5.0" />
-                     </padding>
+                     <GridPane.margin>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                     </GridPane.margin>
+                  </VBox>
+                  <HBox alignment="CENTER" GridPane.columnIndex="1">
+                     <children>
+                        <Separator orientation="VERTICAL" />
+                     </children>
+                     <GridPane.margin>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                     </GridPane.margin>
                   </HBox>
-                  <Separator />
-                  <Label fx:id="taskheader" styleClass="cell_small_label" text="\$taskheader" />
-                  <Label fx:id="tasklist" styleClass="cell_small_label" text="\$tasklist" />
+                  <VBox fx:id="rightBox" GridPane.columnIndex="2">
+                     <opaqueInsets>
+                        <Insets />
+                     </opaqueInsets>
+                     <children>
+                        <Label fx:id="conditions" styleClass="cell_small_label" text="\$conditions" wrapText="true" />
+                        <Label fx:id="medications" styleClass="cell_small_label" text="\$medications" wrapText="true" />
+                     </children>
+                     <GridPane.margin>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                     </GridPane.margin>
+                  </VBox>
                </children>
+            </GridPane>
+            <Separator>
+               <padding>
+                  <Insets left="5.0" right="5.0" />
+               </padding>
+            </Separator>
+            <VBox spacing="5.0">
+               <children>
+                  <Label fx:id="taskheader" styleClass="cell_small_label" text="\$taskheader" wrapText="true" />
+                  <Label fx:id="tasklist" styleClass="cell_small_label" text="\$tasklist" wrapText="true" />
+               </children>
+               <VBox.margin>
+                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+               </VBox.margin>
             </VBox>
          </children>
-      </HBox>
+      </VBox>
    </children>
 </GridPane>

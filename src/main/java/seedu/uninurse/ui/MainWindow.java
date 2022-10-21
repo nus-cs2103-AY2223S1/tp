@@ -1,6 +1,5 @@
 package seedu.uninurse.ui;
 
-import java.beans.PersistenceDelegate;
 import java.util.logging.Logger;
 
 import javafx.event.ActionEvent;
@@ -11,7 +10,6 @@ import javafx.scene.control.TextInputControl;
 import javafx.scene.input.KeyCombination;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.StackPane;
-import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import seedu.uninurse.commons.core.GuiSettings;
 import seedu.uninurse.commons.core.LogsCenter;
@@ -128,6 +126,9 @@ public class MainWindow extends UiPart<Stage> {
         personListPanelContainer.prefHeightProperty().bind(this.getRoot().heightProperty());
 
         outputPanel = new OutputPanel();
+        outputPanel.getRoot().prefWidthProperty().bind(outputPanelContainer.widthProperty());
+        outputPanel.getRoot().prefHeightProperty().bind(outputPanelContainer.heightProperty());
+
         outputPanelContainer.getChildren().add(outputPanel.getRoot());
         outputPanelContainer.prefHeightProperty().bind(this.getRoot().heightProperty());
 

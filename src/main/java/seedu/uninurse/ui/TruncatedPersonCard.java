@@ -62,9 +62,6 @@ public class TruncatedPersonCard extends UiPart<Region> {
         return id.getText().equals(card.id.getText())
                 && patient.equals(card.patient);
     }
-
-
-
 }
 
 

@@ -41,8 +41,7 @@ public class OutputPanel extends UiPart<Region> {
      * @param patient patient of interest.
      */
     public void handleAddPatient(Patient patient) {
-        outputView.getChildren().clear();
-        outputView.getChildren().add(new UpdatedPersonCard(patient, "Added Patient:").getRoot());
+        handlePatient(patient, "Added Patient:");
     }
 
     /**
@@ -50,8 +49,7 @@ public class OutputPanel extends UiPart<Region> {
      * @param patient patient of interest.
      */
     public void handleEditPatient(Patient patient) {
-        outputView.getChildren().clear();
-        outputView.getChildren().add(new UpdatedPersonCard(patient, "Edited Patient:").getRoot());
+        handlePatient(patient, "Edited Patient:");
     }
 
     /**
@@ -59,11 +57,20 @@ public class OutputPanel extends UiPart<Region> {
      * @param patient patient of interest.
      */
     public void handleDeletePatient(Patient patient) {
-        outputView.getChildren().clear();
-        outputView.getChildren().add(new UpdatedPersonCard(patient, "Deleted Patient:").getRoot());
+        handlePatient(patient, "Deleted Patient:");
     }
 
+    /**
+     * Private method that updates the outputView panel accordingly if executed command is patient related.
+     * @param patient patient of interest.
+     * @param headerString string of type of patient related command.
+     */
+    private void handlePatient(Patient patient, String headerString) {
+        UpdatedPersonCard updatedPersonCard = new UpdatedPersonCard(patient, headerString);
+        updatedPersonCard.getRoot().prefWidthProperty().bind(this.getRoot().widthProperty());
+        updatedPersonCard.getRoot().prefHeightProperty().bind(this.getRoot().heightProperty());
 
-
-
+        outputView.getChildren().clear();
+        outputView.getChildren().add(updatedPersonCard.getRoot());
+    }
 }

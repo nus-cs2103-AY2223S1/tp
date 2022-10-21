@@ -85,16 +85,20 @@
                   </VBox>
                   <Label fx:id="patientHeader" text="\$patientHeader">
                      <padding>
-                        <Insets left="15.0" />
+                        <Insets left="10.0" />
                      </padding>
                      <font>
-                        <Font size="21.0" />
+                        <Font size="20.0" />
                      </font>
                   </Label>
                   <Label fx:id="outputHeader" text="\$outputHeader" GridPane.columnIndex="1">
                      <padding>
                         <Insets left="10.0" />
-                     </padding></Label>
+                     </padding>
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                  </Label>
                </children>
             </GridPane>
                                 <StackPane fx:id="resultDisplayContainer" minHeight="140.0" prefHeight="140.0" styleClass="pane-with-border">
