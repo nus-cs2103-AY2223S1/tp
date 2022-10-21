@@ -122,7 +122,7 @@ public class UniqueApplicationList implements Iterable<Application> {
             throw new ApplicationNotFoundException();
         }
         //boolean to bypass duplicate interview checking
-        boolean haveSameArchiveStatus = (target.isArchived() && editedApplication.isArchived())
+        boolean hasSameArchiveStatus = (target.isArchived() && editedApplication.isArchived())
                 || (!target.isArchived() && !editedApplication.isArchived());
         if (!target.isSameApplication(editedApplication) && contains(editedApplication)) {
             // check if applications other than target are equivalent to editedApplication

@@ -237,11 +237,11 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 The purpose of this enhancement is to allow user to archive applications that are not applicable in the current time (applications that are rejected/offered/no-response )
 * Data archiving of `Application` is done with adding a boolean attribute to the Application class as the record of its archive status.
-* `HideArchiveFromListPredicate` and `ShowArchiveOnlyPredicate` classes are added to utilise in Model to adjust its FilterList shown to the user.
+* Two predicates in Model to adjust its FilterList shown to the user.
 * By applying predicates to the `FilterList` in `ModelManager`, the archived `Application` can be hidden from the user.
 * The list showing to user in the UI is either showing the unarchived applications or the archived application using `ListCommand` and `ListArchiveCommand` respectively.
 
-The feature of the new and modified command are summarized as follows:
+The features of the new and modified commands are summarized as follows:
 * `ArchiveCommand`: Set specified application archive status to `true` by utilising `ModelManager#archiveApplication`.
 * `RetriveCommand`: Set specified application archive status to `false` by utilising `ModelManager#retrieveApplication`.
 * `ListArchiveCommand`: Show user the archived applications in CinternS.
@@ -250,7 +250,7 @@ The feature of the new and modified command are summarized as follows:
 The following sequence diagram shows how the ModelManager works when archive command is executed to update the list shown in UI:
 ![ModelManagerUsingArchiveSequenceDiagram](images/ModelManagerUsingArchiveSequenceDiagram.png)
 
-`Model#hideArchiveInFilteredApplicationList` will apply the `HideArchiveFromListPredicate` to the FilterList in Model and the archived application will be hidden from the list shown in UI.
+After`ApplicationBook#setArchive` is called the `Model#archiveApplication` will apply the predicate that hides the archive application to the FilterList in Model and the archived application will be hidden from the updated list shown in UI.
 
 #### Constraints of Data archiving:
 Archived applications cannot be archived again. Doing so will cause `CommandException` to be thrown. The same reasoning applies to retrieve command.
@@ -260,17 +260,17 @@ Archived applications cannot be archived again. Doing so will cause `CommandExce
 Aspect: How should data archiving be implemented?
 
 - Alternative 1 (current choice): Add a boolean attribute to Application class.
-    - Pros: Concise implementation as only predicates and a few new commands are added to make it works.
+    - Pros: Concise implementation as only predicates and a few new commands are added to make it work.
     - Cons: Current tests need to be modified.
 - Alternative 2: Adding archived application to a list similar to UniqueApplicationList as record.
-    - Pros: Lesser effort to maintain the previous test case as this implementation makes only minor modification on previous classes.
+    - Pros: Less effort to maintain the previous test case as this implementation makes only minor modification on previous classes.
     - Cons: Too much duplication and maintenance of actual code (Another copy of UniqueList need to be created and maintained).
 
 Aspect: Should user allowed to edit archived application directly?
 
 - Alternative 1 (current choice): User are allowed to edit archived application
     - Pros: A more convenient usage for user.
-    - Cons: Lesser "hidden" nature of archiving data.
+    - Cons: Less "hidden" nature of archiving data.
 - Alternative 2: User are not allow to edit archived application
     - Pros: Usage of archive is more intuitive as archive applications are only used for future references.
     - Cons: Inconvenient usage as user need to retrieve archived application before editing it.

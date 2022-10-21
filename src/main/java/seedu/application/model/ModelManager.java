@@ -50,11 +50,9 @@ public class ModelManager implements Model {
     }
 
 
-    private static FilteredList<Application> initialiseFilterList(VersionedApplicationBook versionedApplicationBook) {
-        HideArchiveFromListPredicate hideArchiveFromListPredicate =
-                new HideArchiveFromListPredicate();
+    private static FilteredList<Application> initialiseFilteredList(VersionedApplicationBook versionedApplicationBook) {
         FilteredList<Application> initialList = new FilteredList<>(versionedApplicationBook.getApplicationList());
-        initialList.setPredicate(hideArchiveFromListPredicate);
+        initialList.setPredicate(HIDE_ARCHIVE_IN_LIST);
         return initialList;
     }
 
@@ -63,7 +61,7 @@ public class ModelManager implements Model {
             versionedApplicationBook
                         .getApplicationList()
                         .stream()
-                        .filter(application -> application.getInterview().isPresent())
+                        .filter(application -> application.getInterview().isPresent() && !application.isArchived())
                         .collect(Collectors.toList()));
         applicationsWithInterview.sort(new InterviewComparator());
         return applicationsWithInterview;
@@ -150,21 +148,21 @@ public class ModelManager implements Model {
     @Override
     public void addApplication(Application application) {
         versionedApplicationBook.addApplication(application);
-        hideArchiveInFilteredApplicationList();
+        filteredApplications.setPredicate(HIDE_ARCHIVE_IN_LIST);
         commitApplicationBook();
     }
 
     @Override
     public void archiveApplication(Application target) {
         versionedApplicationBook.setArchive(target);
-        hideArchiveInFilteredApplicationList();
+        filteredApplications.setPredicate(HIDE_ARCHIVE_IN_LIST);
         commitApplicationBook();
     }
 
     @Override
     public void retrieveApplication(Application target) {
         versionedApplicationBook.retrieveApplication(target);
-        showArchiveInFilteredApplicationList();
+        filteredApplications.setPredicate(SHOW_ARCHIVE_ONLY);
         commitApplicationBook();
     }
 
@@ -223,18 +221,6 @@ public class ModelManager implements Model {
     @Override
     public void redoApplicationBook() {
         versionedApplicationBook.redo();
-    }
-
-    @Override
-    public void hideArchiveInFilteredApplicationList() {
-        Predicate<Application> predicate = new HideArchiveFromListPredicate();
-        filteredApplications.setPredicate(predicate);
-    }
-
-    @Override
-    public void showArchiveInFilteredApplicationList() {
-        Predicate<Application> predicate = new ShowArchiveOnlyPredicate();
-        filteredApplications.setPredicate(predicate);
     }
 
     /**

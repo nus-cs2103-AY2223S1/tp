@@ -182,17 +182,7 @@ public class AddCommandTest {
         }
 
         @Override
-        public void hideArchiveInFilteredApplicationList() {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
         public void commitApplicationBook() {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public void showArchiveInFilteredApplicationList() {
             throw new AssertionError("This method should not be called.");
         }
 

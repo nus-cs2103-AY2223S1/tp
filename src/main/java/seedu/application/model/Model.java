@@ -12,7 +12,8 @@ import seedu.application.model.application.interview.Interview;
  * The API of the Model component.
  */
 public interface Model {
-
+    Predicate<Application> HIDE_ARCHIVE_IN_LIST = app -> !app.isArchived();
+    Predicate<Application> SHOW_ARCHIVE_ONLY = app -> app.isArchived();
     /**
      * Replaces user prefs data with the data in {@code userPrefs}.
      */
@@ -117,16 +118,6 @@ public interface Model {
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredApplicationList(Predicate<Application> predicate);
-
-    /**
-     * Updates the filter of the filtered application list to filter by {@code HideArchiveFromListPredicate}.
-     */
-    void hideArchiveInFilteredApplicationList();
-
-    /**
-     * Updates the filter of the filtered application list to filter by {@code ShowArchiveOnlyPredicate}.
-     */
-    void showArchiveInFilteredApplicationList();
 
     /**
      * Updates the application list with interview when a new interview is added.

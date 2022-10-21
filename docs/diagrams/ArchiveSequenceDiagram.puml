@@ -16,7 +16,7 @@ activate ApplicationBook
 ApplicationBook --> Model
 deactivate ApplicationBook
 
-Model -> Model: hideArchiveInFilteredApplicationList( )
+Model -> Model: commitApplication()
 activate Model
 deactivate Model
 
