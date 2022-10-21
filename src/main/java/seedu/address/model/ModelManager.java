@@ -272,7 +272,7 @@ public class ModelManager implements Model {
 
     @Override
     public void setTargetPerson(Person person) {
-        assert (person != null) : "Target person cannot be null";
+        requireNonNull(person);
         targetPerson.set(person);
     }
 

@@ -1,5 +1,8 @@
 package seedu.address.ui;
 
+import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
+
 import java.util.logging.Logger;
 
 import javafx.collections.ObservableList;
@@ -168,8 +171,7 @@ public class MainWindow extends UiPart<Stage> {
      * @param message
      */
     public void setWelcomeMessage(String message) {
-        assert message != null : "Message cannot be null";
-        assert welcomePanel != null : "Welcome panel is not initialized yet.";
+        requireAllNonNull(welcomePanel, message);
         welcomePanel.setWelcomeMessage(message);
     }
 
@@ -178,7 +180,7 @@ public class MainWindow extends UiPart<Stage> {
      * @param secondaryPaneState
      */
     public void setSecondaryPaneState(SecondaryPaneState secondaryPaneState) {
-        assert(mainPane != null) : "Main pane is not initialized yet.";
+        requireNonNull(mainPane);
         resetSecondaryPane();
         switch(secondaryPaneState) {
         case WELCOME:
@@ -198,7 +200,7 @@ public class MainWindow extends UiPart<Stage> {
      * Removes the secondary pane from UI.
      */
     private void resetSecondaryPane() {
-        assert(mainPane != null) : "Main pane is not initialized yet.";
+        requireNonNull(mainPane);
         ObservableList<Node> childrens = mainPane.getChildren();
         // gosh it took me more than an hour to find out how to do this
         for (Node node : childrens) {
