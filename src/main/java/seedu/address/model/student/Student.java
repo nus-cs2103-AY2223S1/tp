@@ -111,7 +111,8 @@ public class Student {
         }
 
         return otherStudent != null
-                && otherStudent.getName().equals(getName());
+                && otherStudent.getId().equals(getId()) && otherStudent.getTutorialName().equals(getTutorialName())
+                && otherStudent.getTutorialModule().equals(getTutorialModule());
     }
 
     /**
