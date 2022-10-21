@@ -8,7 +8,7 @@ import seedu.address.model.Model;
 import seedu.address.model.task.TaskContainsCategoryPredicate;
 
 /**
- * Filters and lists all tasks in address book with deadline that matches the argument date.
+ * Filters and lists all tasks in address book with category that matches the argument category.
  */
 public class FilterTaskCategoryCommand extends Command {
 

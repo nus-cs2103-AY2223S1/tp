@@ -11,15 +11,15 @@ import seedu.address.model.task.TaskCategory;
 import seedu.address.model.task.TaskContainsCategoryPredicate;
 
 /**
- * Parses input arguments and creates a new FilterTaskDeadlineCommand object
+ * Parses input arguments and creates a new FilterTaskCategory object
  */
 public class FilterTaskCategoryParser implements Parser<FilterTaskCategoryCommand> {
 
     /**
-     * Parses the given {@code String} of arguments in the context of the FilterTaskDeadlineCommand
-     * and return a FilterTaskDeadline object for execution.
+     * Parses the given {@code String} of arguments in the context of the FilterTaskCategory
+     * and return a FilterTaskCategoryCommand object for execution.
      * @param args String of arguments to be parsed
-     * @return a FilterTaskDeadline object for execution
+     * @return a FilterTaskCategoryCommand object for execution
      * @throws ParseException if the user input does not conform the expected format
      */
     public FilterTaskCategoryCommand parse(String args) throws ParseException {
