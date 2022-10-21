@@ -87,10 +87,10 @@ Format: `help`
 
 Adds a contact to the application.
 
-Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [g/GENDER] [d/DOB] [t/TAG]`
+Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [g/GENDER] d/DOB [t/TAG]`
 
-- The compulsory parameters are: name (`n`), phone number (`p`), email (`e`), address (`a`)
-- The parameters in [ ] are optional parameters, including gender (`g`), date of birth (`d`), purchase history (`ph`), tag (`t`).
+- The compulsory parameters are: name (`n`), phone number (`p`), email (`e`), address (`a`), date of birth(`d`).
+- The parameters in [ ] are optional parameters, including gender (`g`), purchase history (`ph`), tag (`t`).
 - A person in the contact list can have more than 1 tag.
 
 Examples:
@@ -109,19 +109,9 @@ Examples:
 * `add n/John p/92781123 e/john@example.com a/Donald street, block 248, #02-04 g/m`
 * `add n/Charlotte p/81286623 e/charlotte@example.com a/Charity street, block 101, #10-82  g/F`
 
-__Optional Parameter 2: Date of Birth__
-
-Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [d/DOB]`
+__Additional Parameter 2: Date of Birth__
 
 - Adds date of birth to a person in the contact list. Date format accepted is: dd/mm/yyyy.
-- NAME can contain more than 1 word.
-
-
-Examples:
-* `add n/John Wang p/98765432 e/johnwang@example.com a/John street, block 123, #01-01 d/20/03/2000`
-* `add n/John p/92781123 e/john@example.com a/Donald street, block 248, #02-04 d/24/09/2000`
-* `add n/Charlotte p/81286623 e/charlotte@example.com a/Charity street, block 101, #10-82 d/2/1/2000`
-
 
 ### Listing all persons : `list`
 
