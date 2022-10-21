@@ -1,8 +1,8 @@
 package seedu.guest.ui;
 
 import javafx.fxml.FXML;
-import javafx.scene.control.ContentDisplay;
 import javafx.scene.control.Label;
+import javafx.scene.control.Tooltip;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
@@ -45,6 +45,8 @@ public class GuestCard extends UiPart<Region> {
     @FXML
     private Label isRoomClean;
     @FXML
+    private Label isRoomCleanStatus;
+    @FXML
     private Label bill;
     @FXML
     private Label request;
@@ -58,44 +60,104 @@ public class GuestCard extends UiPart<Region> {
         id.setText(displayedIndex + ". ");
         name.setText(guest.getName().fullName);
         name.setWrapText(true);
+        Tooltip nameTT = new Tooltip("Name");
+        name.setTooltip(nameTT);
 
         phone.setText(guest.getPhone().value);
+        Image phoneImage = new Image(getClass().getResourceAsStream("/images/phone.png"));
+        ImageView setPhoneImage = new ImageView(phoneImage);
+        setPhoneImage.setFitWidth(16);
+        setPhoneImage.setFitHeight(16);
+        phone.setGraphic(setPhoneImage);
         phone.setWrapText(true);
+        Tooltip phoneTT = new Tooltip("Phone Number");
+        phone.setTooltip(phoneTT);
 
         email.setText(guest.getEmail().value);
+        Image emailImage = new Image(getClass().getResourceAsStream("/images/email.png"));
+        ImageView setEmailImage = new ImageView(emailImage);
+        setEmailImage.setFitWidth(16);
+        setEmailImage.setFitHeight(16);
+        email.setGraphic(setEmailImage);
         email.setWrapText(true);
+        Tooltip emailTT = new Tooltip("Email");
+        email.setTooltip(emailTT);
 
         room.setText(guest.getRoom().value);
+        Image roomImage = new Image(getClass().getResourceAsStream("/images/room.png"));
+        ImageView setRoomImage = new ImageView(roomImage);
+        setRoomImage.setFitWidth(16);
+        setRoomImage.setFitHeight(16);
+        room.setGraphic(setRoomImage);
         room.setWrapText(true);
+        Tooltip roomTT = new Tooltip("Room Number");
+        room.setTooltip(roomTT);
 
         dateRange.setText(guest.getDateRange().value);
+        Image dateRangeImage = new Image(getClass().getResourceAsStream("/images/dateRange.png"));
+        ImageView setDateRangeImage = new ImageView(dateRangeImage);
+        setDateRangeImage.setFitWidth(16);
+        setDateRangeImage.setFitHeight(16);
+        dateRange.setGraphic(setDateRangeImage);
         dateRange.setWrapText(true);
+        Tooltip dateRangeTT = new Tooltip("Date of Stay");
+        dateRange.setTooltip(dateRangeTT);
 
-        numberOfGuests.setText("No. of Guests: " + guest.getNumberOfGuests().value);
+        numberOfGuests.setText(guest.getNumberOfGuests().value);
+        Image numberOfGuestsImage = new Image(getClass().getResourceAsStream("/images/group.png"));
+        ImageView setNumberOfGuestsImage = new ImageView(numberOfGuestsImage);
+        setNumberOfGuestsImage.setFitWidth(16);
+        setNumberOfGuestsImage.setFitHeight(16);
+        numberOfGuests.setGraphic(setNumberOfGuestsImage);
+        Tooltip numberOfGuestsTT = new Tooltip("Number of Guests");
+        numberOfGuests.setTooltip(numberOfGuestsTT);
 
-        isRoomClean.setText("Room Cleaned: ");
+        isRoomClean.setText("");
+        isRoomCleanStatus.setText("");
+        Image isRoomCleanImage = new Image(getClass().getResourceAsStream("/images/isRoomClean.png"));
+        ImageView setIsRoomCleanImage = new ImageView(isRoomCleanImage);
+        setIsRoomCleanImage.setFitWidth(16);
+        setIsRoomCleanImage.setFitHeight(16);
+        isRoomClean.setGraphic(setIsRoomCleanImage);
 
         // Set graphic based on status of isRoomClean
         if (guest.getIsRoomClean().value.equals("yes")) {
-            Image image = new Image(getClass().getResourceAsStream("/images/roomClean.png"));
-            ImageView setImage = new ImageView(image);
-            setImage.setFitWidth(18);
-            setImage.setFitHeight(18);
-            isRoomClean.setGraphic(setImage);
+            Image isRoomCleanStatusImage = new Image(getClass().getResourceAsStream("/images/roomClean.png"));
+            ImageView setIsRoomCleanStatusImage = new ImageView(isRoomCleanStatusImage);
+            setIsRoomCleanStatusImage.setFitWidth(18);
+            setIsRoomCleanStatusImage.setFitHeight(18);
+            isRoomCleanStatus.setGraphic(setIsRoomCleanStatusImage);
         } else {
             Image image = new Image(getClass().getResourceAsStream("/images/roomNotClean.png"));
             ImageView setImage = new ImageView(image);
             setImage.setFitWidth(18);
             setImage.setFitHeight(18);
-            isRoomClean.setGraphic(setImage);
+            isRoomCleanStatus.setGraphic(setImage);
         }
 
-        isRoomClean.setContentDisplay(ContentDisplay.RIGHT);
+        Tooltip isRoomCleanTT = new Tooltip("Room Cleaned");
+        isRoomClean.setTooltip(isRoomCleanTT);
+        isRoomCleanStatus.setTooltip(isRoomCleanTT);
 
-        bill.setText("Bill: " + guest.getBill().value);
+        bill.setText(guest.getBill().value);
+        Image billImage = new Image(getClass().getResourceAsStream("/images/bill.png"));
+        ImageView setBillImage = new ImageView(billImage);
+        setBillImage.setFitWidth(16);
+        setBillImage.setFitHeight(16);
+        bill.setGraphic(setBillImage);
         bill.setWrapText(true);
-        request.setText("Request: " + guest.getRequest().value);
+        Tooltip billTT = new Tooltip("Bill");
+        bill.setTooltip(billTT);
+
+        request.setText(guest.getRequest().value);
+        Image requestImage = new Image(getClass().getResourceAsStream("/images/request.png"));
+        ImageView setRequestImage = new ImageView(requestImage);
+        setRequestImage.setFitWidth(16);
+        setRequestImage.setFitHeight(16);
+        request.setGraphic(setRequestImage);
         request.setWrapText(true);
+        Tooltip requestTT = new Tooltip("Request");
+        request.setTooltip(requestTT);
     }
 
     @Override
