@@ -236,6 +236,8 @@ _{more aspects and alternatives to be added}_
 
 ### Appointments feature
 
+![AppointmentClassDiagram](images/AppointmentClassDiagram.png)
+
 **Implementation**
 
 The appointment creation mechanism is facilitated by its own `Appointment` component under the `Model` component. There
@@ -255,6 +257,11 @@ constitute of sensitive patient data. Apart from `date`, `PastAppointment`s also
   * Stored as a set of medication tags, a `PastAppointment` may contain 0 or more medicine tags. Each medicine tag is 
     input separately with a `m/` prefix.
   * Exposed using the `PastApointment#getMedication()` method for use in `JsonAdaptedPastAppointment`.
+
+#### `UpcomingAppointment`
+
+`UpcomingAppointment`s represent an upcoming appointment for a patient. They only contain the `date` of the upcoming
+appointment. 
 
 ### \[Proposed\] Data archiving
 
