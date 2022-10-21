@@ -150,7 +150,7 @@ public class AddCommandTest {
 
         @Override
         public void sortApplicants(Comparator<Applicant> comparator) {
-            throw new AssertionError("This method should not be called.");
+            throw new AssertionError(MESSAGE_RESTRICTED_METHOD);
         }
 
         @Override
