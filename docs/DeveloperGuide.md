@@ -154,6 +154,44 @@ Classes used by multiple components are in the `tracko.commons` package.
 
 This section describes some noteworthy details on how certain features are implemented.
 
+### Find Orders feature
+
+#### Implementation 
+
+The find order command is executed by `FindOrderCommand`. It extends `Command`. 
+
+Given below is an example usage scenario and how the find order mechanism behaves at each step.
+
+Step 1. The user launches the application for the first time. `TrackO` will be initialised with the initial TrackO
+state, and the `OrdersList` will contain sample data. 
+
+Step 2. The user executes `findo keychain apple` command to find the orders containing items with the keywords 
+keychain or apple. The `findo` command calls `FindOrderCommandParser` which checks for the correct command 
+syntax and separates the keywords, utilising each space as a delimiter. The keywords are then passed as a `List` 
+into a constructor for `OrderContainsKeywordsPredicate`, which extends `Predicate<Order>`, to construct a predicate
+that will filter the items according to the keywords. The predicate is passed into a new instance of 
+`FindOrderCommand`. `FindOrderCommand` then calls `Model#updateFilteredOrderList()` to filter `Model#filteredOrders`
+according to the previously constructed `OrderContainsKeywordsPredicate`.
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** If the command syntax is incorrect, 
+`FindOrderCommandParser` will throw a `ParseException`.
+
+</div>
+
+The following sequence diagram shows how the find order operation works:
+_{insert sequence diagram}_
+
+The following activity diagram summarizes what happens when a user executes a new command:
+_{insert activity diagram}_
+
+#### Design considerations:
+
+**Aspect: How find order executes:**
+
+_{add design considerations}_
+
+_{more aspects and alternatives to be added}_
+
 ### \[Proposed\] Undo/redo feature
 
 #### Proposed Implementation
