@@ -164,6 +164,16 @@ public class AddCommandTest {
         }
 
         @Override
+        public boolean canRedoWorkBook() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void redoWorkBook() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public void commitWorkBook() {
             throw new AssertionError("This method should not be called.");
         }

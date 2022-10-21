@@ -126,9 +126,20 @@ public class ModelManager implements Model {
     public boolean canUndoWorkBook() {
         return versionedWorkBook.canUndo();
     }
+
+    @Override
+    public boolean canRedoWorkBook() {
+        return versionedWorkBook.canRedo();
+    }
+
     @Override
     public void undoWorkBook() {
         versionedWorkBook.undo();
+    }
+
+    @Override
+    public void redoWorkBook() {
+        versionedWorkBook.redo();
     }
 
     @Override
