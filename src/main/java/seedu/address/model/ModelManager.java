@@ -177,14 +177,13 @@ public class ModelManager implements Model {
                 .withResolverStyle(ResolverStyle.STRICT);
         String timeNow = LocalDateTime.now().format(dtf).substring(11);
         Session nowSession = new Session(timeNow);
-        System.out.println(timeNow);
         HashMap<Session, Person> sessionPersonHashMap = new HashMap<>();
         ArrayList<Session> compareList = new ArrayList<>();
         this.updateFilteredPersonList(Model.PREDICATE_SHOW_ALL_PERSONS);
         this.getFilteredPersonList().forEach(person -> {
             if (!person.getSessionList().sessionList.isEmpty()) {
                 Session currSession = person.getSessionList().sessionList.get(0);
-                if (currSession.compareTo(nowSession) < 0) {
+                if (currSession.compareTo(nowSession) <= 0) {
                     compareList.add(currSession);
                     sessionPersonHashMap.put(currSession, person);
                 }
