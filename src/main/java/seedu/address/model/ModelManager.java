@@ -353,6 +353,7 @@ public class ModelManager implements Model {
 
     /**
      * Returns true if person is a member in the given team
+     *
      * @param p index of person
      * @param t index of team
      * @return true if team has member

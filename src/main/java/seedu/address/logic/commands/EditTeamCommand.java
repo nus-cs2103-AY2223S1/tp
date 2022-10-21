@@ -26,7 +26,9 @@ public class EditTeamCommand extends Command {
             + "Parameters: "
             + PREFIX_TEAM_INDEX + "TEAM INDEX "
             + PREFIX_TEAM_NAME + "TEAM NAME \n"
-            + "Example: " + COMMAND_WORD + " t/1 n/TeamNew";
+            + "Example: " + COMMAND_WORD + " "
+            + PREFIX_TEAM_INDEX + "1 "
+            + PREFIX_TEAM_NAME + "TeamNew ";
 
     public static final String MESSAGE_EDIT_TEAM_SUCCESS = "Edited Team: %1$s";
 
