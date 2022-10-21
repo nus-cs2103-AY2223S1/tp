@@ -1,0 +1,16 @@
+@startuml
+start
+:User enters a ReturnCommand;
+:ReturnCommandParser parses for valid format;
+'Since the beta syntax does not support placing the condition outside the
+'diamond we place it as the true branch instead.
+
+if () then ([return command is valid])
+    :Create new return command which is executed by LogicManager;
+    :UI updates that book is available;
+    :UI deletes the book from the books that are loaned by loanee;
+else ([else])
+    :Show error message;
+endif
+stop
+@enduml

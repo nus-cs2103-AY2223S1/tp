@@ -14,11 +14,14 @@ Class UserPrefs
 
 Class UniquePersonList
 Class Person
-Class Address
 Class Email
 Class Name
 Class Phone
 Class Tag
+Class BookList
+Class Book
+Class Title
+Class Author
 
 }
 
@@ -35,16 +38,18 @@ ModelManager -right-> "1" UserPrefs
 UserPrefs .up.|> ReadOnlyUserPrefs
 
 BookFace *--> "1" UniquePersonList
-UniquePersonList --> "~* all" Person
+BookFace *--> "1" BookList
+UniquePersonList ---> "~* all" Person
+BookList ---> "~* all" Book
 Person *--> Name
 Person *--> Phone
 Person *--> Email
-Person *--> Address
 Person *--> "*" Tag
-
+Book *--> Title
+Book *--> Author
 Name -[hidden]right-> Phone
-Phone -[hidden]right-> Address
-Address -[hidden]right-> Email
+Phone -[hidden]right-> Email
 
-ModelManager -->"~* filtered" Person
+ModelManager --> "~* filtered" Person
+ModelManager --> "~* filtered" Book
 @enduml
