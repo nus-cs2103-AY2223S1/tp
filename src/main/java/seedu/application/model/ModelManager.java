@@ -40,7 +40,7 @@ public class ModelManager implements Model {
 
         versionedApplicationBook = new VersionedApplicationBook(applicationBook);
         this.userPrefs = new UserPrefs(userPrefs);
-        filteredApplications = initialiseFilterList(this.versionedApplicationBook);
+        filteredApplications = initialiseFilteredList(this.versionedApplicationBook);
         sortedFilteredApplications = new SortedList<>(filteredApplications);
         applicationsWithInterview = filterApplicationsWithInterview();
     }
