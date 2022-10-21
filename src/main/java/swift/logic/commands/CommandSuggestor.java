@@ -21,30 +21,43 @@ public class CommandSuggestor {
     public CommandSuggestor() {
         commandList = new ArrayList<>();
         argPromptList = new ArrayList<>();
+
         commandList.add(AddContactCommand.COMMAND_WORD);
         argPromptList.add(AddContactCommand.ARGUMENT_PROMPTS);
+
         commandList.add(AddTaskCommand.COMMAND_WORD);
         argPromptList.add(AddTaskCommand.ARGUMENT_PROMPTS);
+
         commandList.add(ClearCommand.COMMAND_WORD);
         argPromptList.add(ClearCommand.ARGUMENT_PROMPTS);
+
         commandList.add(DeleteCommand.COMMAND_WORD);
         argPromptList.add(DeleteCommand.ARGUMENT_PROMPTS);
+
         commandList.add(DeleteTaskCommand.COMMAND_WORD);
         argPromptList.add(DeleteTaskCommand.ARGUMENT_PROMPTS);
+
         commandList.add(EditContactCommand.COMMAND_WORD);
         argPromptList.add(EditContactCommand.ARGUMENT_PROMPTS);
+
         commandList.add(EditTaskCommand.COMMAND_WORD);
         argPromptList.add(EditTaskCommand.ARGUMENT_PROMPTS);
+
         commandList.add(ExitCommand.COMMAND_WORD);
         argPromptList.add(ExitCommand.ARGUMENT_PROMPTS);
+
         commandList.add(FindContactCommand.COMMAND_WORD);
         argPromptList.add(FindContactCommand.ARGUMENT_PROMPTS);
+
         commandList.add(FindTaskCommand.COMMAND_WORD);
         argPromptList.add(FindTaskCommand.ARGUMENT_PROMPTS);
+
         commandList.add(HelpCommand.COMMAND_WORD);
         argPromptList.add(HelpCommand.ARGUMENT_PROMPTS);
+
         commandList.add(ListContactCommand.COMMAND_WORD);
         argPromptList.add(ListContactCommand.ARGUMENT_PROMPTS);
+
         commandList.add(ListTaskCommand.COMMAND_WORD);
         argPromptList.add(ListTaskCommand.ARGUMENT_PROMPTS);
     }
