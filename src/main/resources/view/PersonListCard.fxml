@@ -56,10 +56,20 @@
       <HBox alignment="CENTER_LEFT" spacing="10">
         <Label styleClass="title_name" text="Email:" />
         <Label fx:id="email" styleClass="cell_small_label" text="\$email" />
+        <ImageView>
+          <image>
+            <Image url="@../images/mail.png" />
+          </image>
+        </ImageView>
       </HBox>
       <HBox alignment="CENTER_LEFT" spacing="10">
         <Label styleClass="title_name" text="Phone Number:" />
         <Label fx:id="phone" styleClass="cell_small_label" text="\$phone" />
+        <ImageView>
+          <image>
+            <Image url="@../images/phone.png" />
+          </image>
+        </ImageView>
       </HBox>
     </VBox>
       <rowConstraints>
