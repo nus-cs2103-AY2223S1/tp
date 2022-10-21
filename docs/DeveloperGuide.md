@@ -173,7 +173,7 @@ Given below is an example usage scenario and how the add patient mechanism behav
 Step 1. The user executes `Add c/P n/Lily g/F p/91103813 a/ABC STREET 111 e/lily@gmail.com t/heartDisease dt/2022-10-10T15:20` command to add a new patient that requires nurse's home-visit. 
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The `c/P` is needed to indicate that the person added is a patient.`Name`, `Gender`, `Phone`, `Address`, `Email` is compulsory but `Tag` and `DateTime` has been made optional. The `n/`, `g/`, `p/` ... are the prefixes used to extract different details' field of the patient.
-
+   
 </div>
 
 Step 2. The `AddressBookParser` will parse the user command to return an `AddCommandParser` with the patient's details.
@@ -216,7 +216,7 @@ The following activity diagram summarizes what happens when a user executes an a
     * Pros: More flexible in the home visit date and time that a patient can choose.
     * Cons: It is hard to determine/check time crashes when assigning a home-visit `DateTime` to a nurse.
 
-  * **Alternative 2:** The `DateTime` input will be in the format of `YYYY-MM-DD` and slot. The slot will have fixed starting time and fixed duration.
+* **Alternative 2:** The `DateTime` input will be in the format of `YYYY-MM-DD` and slot. The slot will have fixed starting time and fixed duration.
     * Pros: It is easy to determine/check time crashes when assigning a home-visit `DateTime` slot to a nurse.
     * Cons: Less flexible in the home visit date and time that a patient can choose.
 
