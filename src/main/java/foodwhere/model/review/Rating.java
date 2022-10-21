@@ -5,7 +5,7 @@ import static java.util.Objects.requireNonNull;
 
 /**
  * Represents a Review's rating in the address book.
- * Guarantees: immutable; is valid as declared in {@link #isValidRating(Integer)}
+ * Guarantees: immutable; is valid as declared in {@link #isValidRating(String)}
  */
 public class Rating {
 
@@ -23,17 +23,28 @@ public class Rating {
      *
      * @param rating A valid rating.
      */
-    public Rating(Integer rating) {
+    public Rating(String rating) {
         requireNonNull(rating);
         checkArgument(isValidRating(rating), MESSAGE_CONSTRAINTS);
-        value = rating;
+
+        value = Integer.valueOf(rating);
     }
 
     /**
      * Returns true if a given number is a valid rating.
      */
-    public static boolean isValidRating(Integer test) {
-        return test >= MIN_RATING && test <= MAX_RATING;
+    public static boolean isValidRating(String test) {
+        if (test == null) {
+            throw new NullPointerException("Rating is null");
+        }
+
+        Integer value;
+        try {
+            value = Integer.valueOf(test);
+        } catch (NumberFormatException exception) {
+            return false;
+        }
+        return value >= MIN_RATING && value <= MAX_RATING;
     }
 
     @Override
