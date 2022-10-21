@@ -132,6 +132,36 @@
     -fx-text-fill: #010504;
 }
 
+.cell_pending_label {
+    -fx-background-color: #0B4CF8;
+    -fx-padding: 2 4 2 4;
+    -fx-font-size: 11;
+    -fx-font-family: "Segoe UI";
+    -fx-border-radius: 10 10 0 0;
+    -fx-background-radius: 10 10 0 0;
+
+}
+
+.cell_accepted_label {
+    -fx-background-color: #228B22;
+    -fx-padding: 2 4 2 4;
+    -fx-font-size: 11;
+    -fx-font-family: "Segoe UI";
+    -fx-border-radius: 10 10 0 0;
+    -fx-background-radius: 10 10 0 0;
+
+}
+
+.cell_rejected_label {
+    -fx-background-color: #F83434;
+    -fx-padding: 2 4 2 4;
+    -fx-font-size: 11;
+    -fx-font-family: "Segoe UI";
+    -fx-border-radius: 10 10 0 0;
+    -fx-background-radius: 10 10 0 0;
+
+}
+
 .stack-pane {
      -fx-background-color: derive(#1d1d1d, 20%);
 }

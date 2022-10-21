@@ -12,11 +12,10 @@ import seedu.address.ui.AlertWindow;
 public class ClearCommand extends Command {
 
     public static final String COMMAND_WORD = "clear";
-    public static final String MESSAGE_SUCCESS = "TrackAScholar has been cleared!";
 
-    public static final String MESSAGE_TERMINATION = "Clearing of all data is cancelled!";
-
-    public static final String MESSAGE_CONFIRMATION =
+    public static final String MESSAGE_CLEAR_SUCCESS = "TrackAScholar has been cleared!";
+    public static final String MESSAGE_CLEAR_TERMINATION = "Clearing of all data is cancelled!";
+    public static final String MESSAGE_CLEAR_CONFIRMATION =
             "Are you sure that you want to terminate all data from TrackAScholar?";
 
     private boolean hasConfirmed;
@@ -25,26 +24,27 @@ public class ClearCommand extends Command {
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);
-        promptUserConfirmation(MESSAGE_CONFIRMATION);
+        promptUserConfirmation(MESSAGE_CLEAR_CONFIRMATION);
         if (hasConfirmed) {
             return confirmClear(model);
         } else {
             return cancelClear();
         }
     }
+
     /**
      * After confirmation from user, all data from TrackAScholar is purged.
      */
     public CommandResult confirmClear(Model model) {
         model.setTrackAScholar(new TrackAScholar());
-        return new CommandResult(MESSAGE_SUCCESS);
+        return new CommandResult(MESSAGE_CLEAR_SUCCESS);
     }
 
     /**
      * After cancellation from user, all data from TrackAScholar remains intact.
      */
     public CommandResult cancelClear() {
-        return new CommandResult(MESSAGE_TERMINATION);
+        return new CommandResult(MESSAGE_CLEAR_TERMINATION);
     }
 
     /**
