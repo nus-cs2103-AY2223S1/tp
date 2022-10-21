@@ -29,7 +29,11 @@ public class AddMemberCommand extends Command {
 
     private final Name targetPersonName;
 
+    /**
+     * Creates an AddMemberCommand to add the {@code Person} with the specified {@code Name} to the current team
+     */
     public AddMemberCommand(Name targetPersonName) {
+        requireNonNull(targetPersonName);
         this.targetPersonName = targetPersonName;
     }
 
@@ -44,6 +48,8 @@ public class AddMemberCommand extends Command {
         }
 
         // Filtered persons list will always have either size 0 or 1, as names are unique
+        assert matchingPersons.size() == 1;
+
         Person toAdd = matchingPersons.get(0);
         Team team = model.getTeam();
         if (team.hasMember(toAdd)) {

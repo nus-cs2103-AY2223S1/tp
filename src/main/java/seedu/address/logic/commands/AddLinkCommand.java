@@ -15,13 +15,13 @@ public class AddLinkCommand extends Command {
     public static final String COMMAND_WORD = "add_link";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Adds a new link \n"
-            + "Parameters: "
-            + "-" + FLAG_NAME_STR + " NAME "
-            + "-" + FLAG_URL_STR + " PHONE \n"
-            + "Example: " + COMMAND_WORD + " "
-            + "-" + FLAG_NAME_STR + " \"Google\" "
-            + "-" + FLAG_URL_STR + " https://google.com ";
+        + ": Adds a new link \n"
+        + "Parameters: "
+        + "-" + FLAG_NAME_STR + " NAME "
+        + "-" + FLAG_URL_STR + " PHONE \n"
+        + "Example: " + COMMAND_WORD + " "
+        + "-" + FLAG_NAME_STR + " \"Google\" "
+        + "-" + FLAG_URL_STR + " https://google.com ";
 
     public static final String MESSAGE_SUCCESS = "New link added: %1$s";
 
@@ -30,7 +30,7 @@ public class AddLinkCommand extends Command {
     private final Link toAdd;
 
     /**
-     * Creates an AddLinkCommand to add the specified {@Link}.
+     * Creates an AddLinkCommand to add the specified {@code Link}.
      */
     public AddLinkCommand(Link link) {
         requireNonNull(link);
@@ -50,7 +50,7 @@ public class AddLinkCommand extends Command {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof AddLinkCommand // instanceof handles nulls
-                && toAdd.equals(((AddLinkCommand) other).toAdd));
+            || (other instanceof AddLinkCommand // instanceof handles nulls
+            && toAdd.equals(((AddLinkCommand) other).toAdd));
     }
 }
