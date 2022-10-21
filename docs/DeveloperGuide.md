@@ -305,10 +305,38 @@ The following sequence diagram show how the create team operation works:
 
 The Edit Team Feature allows the user to edit the name of a pre-existing team in EZLead.
 
-Step 1. The user wishes to change the name of first team to Team1. The user executes `create t/1 n/Team1`.
+Given below is an example usage scenario and how the Edit Team mechanism behaves at each step.
 
-Step 2. The parser will create a `editTeam` command using the given team index and new name.
-The `editTeam` command will call `Model#setTeamName` to change the name of the required team.
+Step 1. The user executes `editteam t/1 n/Team1` to change the name of first team to Team1.
+
+Step 2. The `editTeam` command is created by the parser using the given team index and new name. It calls
+`Model#setTeamName`to change the name of the required team.
+
+### Assign Member Feature
+
+#### Implementation
+
+The Assign Member Feature allows the user to assign a person to a pre-existing team in EZLead.
+
+Given below is an example usage scenario and how the Assign Member mechanism behaves at each step.
+
+Step 1. The user executes `assign m/1 t/1` to assign the first person as a member in the first team.
+
+Step 2. The `assignMember` command is created by the parser using the given member's index (global person index) and 
+team's index. It calls `Model#addPersonToTeam` to add the person to given team.
+
+### unAssign Member Feature
+
+#### Implementation
+
+The unAssign Member Feature allows the user to assign a person to a pre-existing team in EZLead.
+
+Given below is an example usage scenario and how the unAssign Member mechanism behaves at each step.
+
+Step 1. The user executes `unassign m/1 t/1` to unAssign the first person as a member from the first team.
+
+Step 2. The `unassignMember` command is created by the parser using the given member's index (global person index) and 
+team's index. It calls `Model#removePersonFromTeam` to remove the person from given team.
 
 
 _{more aspects and alternatives to be added}
