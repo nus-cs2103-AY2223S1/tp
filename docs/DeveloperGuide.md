@@ -293,6 +293,20 @@ now has an `UpcomingAppointment` associated with him.
 
 _{Explain here how the data archiving feature will be implemented}_
 
+### New Add Command 
+The new `Add` Command incorporates support for the necessary fields for a patient, namely they are the: `NextOfKin`, 
+`PatientType`,`HospitalWing`, `FloorNumber`, `WardNumber` and `Medications` fields. The new command still follows the 
+flow of the old command, as illustrated in the Activity Diagram below.
+
+![AddCommandSequenceDiagram](images/AddCommandSequenceDiagram.png)
+![AddCommandParseArgsSequenceDiagram](images/AddCommandParseArgsSequenceDiagram.png)
+
+As the Add Command now includes more fields for the patients, the Person class has also been updated to store these 
+fields, as shown in the class diagram below.
+
+![PersonClassDiagram](images/PersonClassDiagram.png)
+
+The usage of the Add Command remains the same as before.
 
 --------------------------------------------------------------------------------------------------------------------
 
