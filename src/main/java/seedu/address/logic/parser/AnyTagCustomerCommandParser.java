@@ -1,11 +1,17 @@
 package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
+import java.util.Set;
 
+import seedu.address.logic.commands.AllTagCustomerCommand;
 import seedu.address.logic.commands.AnyTagCustomerCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.customer.CustomerContainsAllTagPredicate;
 import seedu.address.model.customer.CustomerContainsAnyTagPredicate;
 import seedu.address.model.tag.Tag;
 
@@ -21,23 +27,20 @@ public class AnyTagCustomerCommandParser implements Parser<AnyTagCustomerCommand
      * @throws ParseException if the user input does not conform the expected format
      */
     public AnyTagCustomerCommand parse(String args) throws ParseException {
-        String trimmedArgs = args.trim();
-        if (trimmedArgs.isEmpty()) {
+        ArgumentMultimap argMultimap =
+                ArgumentTokenizer.tokenize(args, PREFIX_TAG);
+
+        Set<Tag> tagSet = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
+        if (tagSet.isEmpty()) {
             throw new ParseException(
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, AnyTagCustomerCommand.MESSAGE_USAGE));
         }
 
-        trimmedArgs = trimmedArgs
-                .replaceAll("\\s+", " ")
-                .replaceAll("\\s+\\|", "\\|")
-                .replaceAll("\\|\\s+", "\\|");
-        String[] tagsAsString = trimmedArgs.split("\\|");
-
-        Tag[] tags = new Tag[tagsAsString.length];
-        for (int i = 0; i < tags.length; i++) {
-            tags[i] = new Tag(tagsAsString[i]);
+        List<Tag> tags = new ArrayList<>();
+        for (Tag tag : tagSet) {
+            tags.add(tag);
         }
-        return new AnyTagCustomerCommand(new CustomerContainsAnyTagPredicate(Arrays.asList(tags)));
+        return new AnyTagCustomerCommand(new CustomerContainsAnyTagPredicate(tags));
     }
 
 }

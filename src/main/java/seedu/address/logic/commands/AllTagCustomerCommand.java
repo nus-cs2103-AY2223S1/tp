@@ -19,7 +19,7 @@ public class AllTagCustomerCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all customers who includes "
             + "all the tags.\n"
             + "Parameters: TAG [MORE_TAGS]...\n"
-            + "Example: " + COMMAND_WORD + " tag1|tag2|tag3";
+            + "Example: " + COMMAND_WORD + " t/tag1 t/tag2 t/tag3";
 
     private final CustomerContainsAllTagPredicate predicate;
 
