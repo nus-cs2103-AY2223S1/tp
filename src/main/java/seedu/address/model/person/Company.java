@@ -25,9 +25,12 @@ public class Company {
      * @param name A valid company name.
      */
     public Company(String name) {
-        requireNonNull(name);
-        checkArgument(isValidName(name), MESSAGE_CONSTRAINTS);
-        fullName = name;
+        if (name != null) {
+            checkArgument(isValidName(name), MESSAGE_CONSTRAINTS);
+            fullName = name;
+        } else {
+            fullName = null;
+        }
     }
 
     public static boolean isValidName(String test) {
