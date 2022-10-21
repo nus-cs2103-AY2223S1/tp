@@ -14,7 +14,6 @@ import java.util.Optional;
 import java.util.Set;
 
 import seedu.address.commons.core.index.Index;
-import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.student.StudentEditCommand;
 import seedu.address.logic.commands.student.StudentEditCommand.EditStudentDescriptor;
 import seedu.address.logic.parser.ArgumentMultimap;
@@ -23,9 +22,6 @@ import seedu.address.logic.parser.Parser;
 import seedu.address.logic.parser.ParserUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.tag.Tag;
-
-
-
 
 /**
  * Parses input arguments and creates a new EditCommand object
@@ -49,7 +45,8 @@ public class StudentEditCommandParser implements Parser<StudentEditCommand> {
         try {
             index = ParserUtil.parseIndex(argMultimap.getPreamble());
         } catch (ParseException pe) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditCommand.MESSAGE_USAGE), pe);
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                    StudentEditCommand.MESSAGE_USAGE), pe);
         }
 
         EditStudentDescriptor editStudentDescriptor = new EditStudentDescriptor();
@@ -70,7 +67,7 @@ public class StudentEditCommandParser implements Parser<StudentEditCommand> {
         parseTagsForEdit(argMultimap.getAllValues(PREFIX_TAG)).ifPresent(editStudentDescriptor::setTags);
 
         if (!editStudentDescriptor.isAnyFieldEdited()) {
-            throw new ParseException(EditCommand.MESSAGE_NOT_EDITED);
+            throw new ParseException(StudentEditCommand.MESSAGE_NOT_EDITED);
         }
 
         return new StudentEditCommand(index, editStudentDescriptor);

@@ -1,15 +1,9 @@
 package seedu.address.logic.commands.student;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TUTORIAL_GROUP;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
-import java.util.Collections;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
@@ -28,34 +22,23 @@ import seedu.address.model.student.Student;
 import seedu.address.model.student.TutorialGroup;
 import seedu.address.model.tag.Tag;
 
-
-
-
-
 /**
  * Edits the details of an existing person in the address book.
  */
-public class StudentEditCommand extends Command {
+public class StudentEnrollCommand extends Command {
 
-    public static final String COMMAND_WORD = "studentEdit";
+    public static final String COMMAND_WORD = "studentEnroll";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the student identified "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Enroll the student identified to the given tutorial "
             + "by the index number used in the displayed student list. "
             + "Existing values will be overwritten by the input values.\n"
             + "Parameters: INDEX (must be a positive integer) "
-            + "[" + PREFIX_TUTORIAL_GROUP + "TUTORIAL GROUP] "
-            + "[" + PREFIX_NAME + "NAME] "
-            + "[" + PREFIX_PHONE + "PHONE] "
-            + "[" + PREFIX_EMAIL + "EMAIL] "
-            + "[" + PREFIX_TAG + "TAG]...\n"
-            + "Example: " + COMMAND_WORD + " 1 "
-            + PREFIX_PHONE + "91234567 "
-            + PREFIX_EMAIL + "johndoe@example.com";
+            + PREFIX_TUTORIAL_GROUP + "TUTORIAL GROUP ";
 
-    public static final String MESSAGE_EDIT_PERSON_SUCCESS = "Edited Student: %1$s";
-    public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
+    public static final String MESSAGE_ENROLL_PERSON_SUCCESS = "Enrolled Student to: %1$s ";
     public static final String MESSAGE_DUPLICATE_PERSON = "This student already exists in the address book.";
     public static final String MESSAGE_TUTORIAL_GROUP_NOT_FOUND = "This tutorial group is not found.";
+    public static final String MESSAGE_NOT_EDITED = "Tutorial group not edited.";
 
     private final Index index;
     private final EditStudentDescriptor editStudentDescriptor;
@@ -64,11 +47,12 @@ public class StudentEditCommand extends Command {
      * @param index of the person in the filtered person list to edit
      * @param editStudentDescriptor details to edit the person with
      */
-    public StudentEditCommand(Index index, EditStudentDescriptor editStudentDescriptor) {
+    public StudentEnrollCommand(Index index, EditStudentDescriptor editStudentDescriptor) {
         requireNonNull(index);
         requireNonNull(editStudentDescriptor);
 
         this.index = index;
+
         this.editStudentDescriptor = new EditStudentDescriptor(editStudentDescriptor);
     }
 
@@ -88,9 +72,14 @@ public class StudentEditCommand extends Command {
             throw new CommandException(MESSAGE_DUPLICATE_PERSON);
         }
 
+        if (studentToEdit.belongsTo(editedStudent.getTutorialGroup())
+                && !model.hasTutorialGroup(editedStudent.getTutorialGroup())) {
+            throw new CommandException(MESSAGE_TUTORIAL_GROUP_NOT_FOUND);
+        }
+
         model.setStudent(studentToEdit, editedStudent);
         model.updateFilteredStudentList(PREDICATE_SHOW_ALL_PERSONS);
-        return new CommandResult(String.format(MESSAGE_EDIT_PERSON_SUCCESS, editedStudent));
+        return new CommandResult(String.format(MESSAGE_ENROLL_PERSON_SUCCESS, editedStudent));
     }
 
     /**
@@ -100,10 +89,10 @@ public class StudentEditCommand extends Command {
     private static Student createEditedStudent(Student studentToEdit, EditStudentDescriptor editStudentDescriptor) {
         assert studentToEdit != null;
 
-        Name updatedName = editStudentDescriptor.getName().orElse(studentToEdit.getName());
-        Phone updatedPhone = editStudentDescriptor.getPhone().orElse(studentToEdit.getPhone());
-        Email updatedEmail = editStudentDescriptor.getEmail().orElse(studentToEdit.getEmail());
-        Set<Tag> updatedTags = editStudentDescriptor.getTags().orElse(studentToEdit.getTags());
+        Name updatedName = studentToEdit.getName();
+        Phone updatedPhone = studentToEdit.getPhone();
+        Email updatedEmail = studentToEdit.getEmail();
+        Set<Tag> updatedTags = studentToEdit.getTags();
         TutorialGroup updatedTutorialGroup = editStudentDescriptor.getTutorialGroup()
                 .orElse(studentToEdit.getTutorialGroup());
         return new Student(updatedName, updatedPhone, updatedEmail, updatedTags, updatedTutorialGroup);
@@ -117,12 +106,12 @@ public class StudentEditCommand extends Command {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof StudentEditCommand)) {
+        if (!(other instanceof StudentEnrollCommand)) {
             return false;
         }
 
         // state check
-        StudentEditCommand e = (StudentEditCommand) other;
+        StudentEnrollCommand e = (StudentEnrollCommand) other;
         return index.equals(e.index)
                 && editStudentDescriptor.equals(e.editStudentDescriptor);
     }
@@ -132,11 +121,10 @@ public class StudentEditCommand extends Command {
      * corresponding field value of the person.
      */
     public static class EditStudentDescriptor {
+        private TutorialGroup tutorialGroup;
         private Name name;
         private Phone phone;
         private Email email;
-        private TutorialGroup tutorialGroup;
-        private Set<Tag> tags;
 
         public EditStudentDescriptor() {}
 
@@ -145,18 +133,23 @@ public class StudentEditCommand extends Command {
          * A defensive copy of {@code tags} is used internally.
          */
         public EditStudentDescriptor(EditStudentDescriptor toCopy) {
-            setName(toCopy.name);
-            setPhone(toCopy.phone);
-            setEmail(toCopy.email);
             setTutorialGroup(toCopy.tutorialGroup);
-            setTags(toCopy.tags);
         }
 
         /**
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, phone, email, tags, tutorialGroup);
+            return CollectionUtil.isAnyNonNull(tutorialGroup);
+        }
+
+
+        public void setTutorialGroup(TutorialGroup tutorialGroup) {
+            this.tutorialGroup = tutorialGroup;
+        }
+
+        public Optional<TutorialGroup> getTutorialGroup() {
+            return Optional.ofNullable(tutorialGroup);
         }
 
         public void setName(Name name) {
@@ -183,30 +176,7 @@ public class StudentEditCommand extends Command {
             return Optional.ofNullable(email);
         }
 
-        public void setTutorialGroup(TutorialGroup tutorialGroup) {
-            this.tutorialGroup = tutorialGroup;
-        }
 
-        public Optional<TutorialGroup> getTutorialGroup() {
-            return Optional.ofNullable(tutorialGroup);
-        }
-
-        /**
-         * Sets {@code tags} to this object's {@code tags}.
-         * A defensive copy of {@code tags} is used internally.
-         */
-        public void setTags(Set<Tag> tags) {
-            this.tags = (tags != null) ? new HashSet<>(tags) : null;
-        }
-
-        /**
-         * Returns an unmodifiable tag set, which throws {@code UnsupportedOperationException}
-         * if modification is attempted.
-         * Returns {@code Optional#empty()} if {@code tags} is null.
-         */
-        public Optional<Set<Tag>> getTags() {
-            return (tags != null) ? Optional.of(Collections.unmodifiableSet(tags)) : Optional.empty();
-        }
 
         @Override
         public boolean equals(Object other) {
@@ -223,10 +193,7 @@ public class StudentEditCommand extends Command {
             // state check
             EditStudentDescriptor e = (EditStudentDescriptor) other;
 
-            return getName().equals(e.getName())
-                    && getPhone().equals(e.getPhone())
-                    && getEmail().equals(e.getEmail())
-                    && getTags().equals(e.getTags());
+            return getTutorialGroup().equals(e.getTutorialGroup());
         }
     }
 }

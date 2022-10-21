@@ -17,6 +17,7 @@ import java.util.List;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.commands.student.StudentEditCommand;
+import seedu.address.logic.commands.student.StudentEnrollCommand;
 import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.student.NameContainsKeywordsPredicate;
@@ -25,6 +26,7 @@ import seedu.address.model.student.TutorialGroup;
 import seedu.address.model.student.TutorialNameContainsKeywordsPredicate;
 import seedu.address.testutil.EditDescriptorBuilder;
 import seedu.address.testutil.EditStudentDescriptorBuilder;
+import seedu.address.testutil.EnrollStudentDescriptorBuilder;
 
 /**
  * Contains helper methods for testing commands.
@@ -87,6 +89,9 @@ public class CommandTestUtil {
     public static final StudentEditCommand.EditStudentDescriptor DESC_STUDENT_AMY;
     public static final StudentEditCommand.EditStudentDescriptor DESC_STUDENT_BOB;
 
+    public static final StudentEnrollCommand.EditStudentDescriptor DESC_STUDENT_AMY_WITH_TUTORIAL;
+    public static final StudentEnrollCommand.EditStudentDescriptor DESC_STUDENT_BOB_WITH_TUTORIAL;
+
     static {
         DESC_AMY = new EditDescriptorBuilder().withName(VALID_NAME_AMY)
                 .withPhone(VALID_PHONE_AMY).withEmail(VALID_EMAIL_AMY).withTags(VALID_TAG_FRIEND).build();
@@ -99,6 +104,12 @@ public class CommandTestUtil {
         DESC_STUDENT_BOB = new EditStudentDescriptorBuilder().withName(VALID_NAME_BOB)
                 .withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB).withTutorialGroup(VALID_TUTORIAL_GROUP_BOB)
                 .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).build();
+        DESC_STUDENT_BOB_WITH_TUTORIAL = new EnrollStudentDescriptorBuilder()
+                .withTutorialGroup(VALID_TUTORIAL_GROUP_BOB)
+                .build();
+        DESC_STUDENT_AMY_WITH_TUTORIAL = new EnrollStudentDescriptorBuilder()
+                .withTutorialGroup(VALID_TUTORIAL_GROUP_AMY)
+                .build();
     }
 
     /**
