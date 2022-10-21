@@ -72,9 +72,10 @@ public class DateTimeTest {
         assertTrue(DateTime.isValidFormat("999/099/2000")); // out of bounds dates
         assertTrue(DateTime.isValidFormat("1/1/2000 9999")); // out of bounds time
         assertTrue(DateTime.isValidFormat("1/1/2000 999999")); // out of bounds time
+        assertTrue(DateTime.isValidFormat("01-1-2000 18000000"));
+        assertTrue(DateTime.isValidFormat("01-1-2000 1800:00:00"));
 
         assertFalse(DateTime.isValidFormat("01-1-2000 18:00:00:00")); // with more than 2 sets of colons
-        assertFalse(DateTime.isValidFormat("01-1-2000 18000000"));
     }
 
 }

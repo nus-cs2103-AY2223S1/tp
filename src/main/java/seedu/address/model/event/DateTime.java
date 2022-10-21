@@ -17,11 +17,12 @@ import java.util.regex.Pattern;
  */
 public class DateTime {
 
-    public static final String RECOMMENDED_FORMAT = "dd/MM/yyyy";
+    public static final String RECOMMENDED_DATE_FORMAT = "dd/MM/yyyy";
+    public static final String RECOMMENDED_TIME_FORMAT = "HH:mm";
     public static final String MESSAGE_CONSTRAINTS =
-            "Dates should follow a valid format. Try " + RECOMMENDED_FORMAT;
+            "Dates should follow a valid format. Try " + RECOMMENDED_TIME_FORMAT + " " + RECOMMENDED_TIME_FORMAT;
     public static final String MESSAGE_INVALID_DATETIME =
-            "The values for date and time are invalid! Try " + RECOMMENDED_FORMAT;
+            "The values for date and time are invalid! Try " + RECOMMENDED_TIME_FORMAT + " " + RECOMMENDED_TIME_FORMAT;
 
     public static final String REGEX_YEAR = "(?<yearGroup>[0-9]{4})";
     public static final String REGEX_MONTH_DIGITS = "(((0)?[0-9])|((1)[0-2]))";
@@ -41,9 +42,9 @@ public class DateTime {
     public static final String REGEX_RELAXED_YEAR = "([0-9]+)";
     public static final String REGEX_RELAXED_MONTH = "([0-9]+|[a-zA-z]{3})";
     public static final String REGEX_RELAXED_DAY = "([0-9]+)";
-    public static final String REGEX_RELAXED_HOUR = "(\\d{1,2})";
-    public static final String REGEX_RELAXED_MINUTE = "(\\d{2})";
-    public static final String REGEX_RELAXED_SECOND = "(\\d{2})";
+    public static final String REGEX_RELAXED_HOUR = "(\\d+)";
+    public static final String REGEX_RELAXED_MINUTE = "(\\d+)";
+    public static final String REGEX_RELAXED_SECOND = "(\\d+)";
     public static final String REGEX_RELAXED_TIME =
             REGEX_RELAXED_HOUR + "(:?)" + REGEX_RELAXED_MINUTE + "(:?" + REGEX_RELAXED_SECOND + ")?";
 
@@ -200,7 +201,7 @@ public class DateTime {
 
     @Override
     public String toString() {
-        return date.format(DateTimeFormatter.ofPattern(RECOMMENDED_FORMAT))
+        return date.format(DateTimeFormatter.ofPattern(RECOMMENDED_DATE_FORMAT))
                 + time.map(t -> " " + t).orElse("");
     }
 
