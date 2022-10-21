@@ -3,11 +3,13 @@ package seedu.address.model.task;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.util.Comparator;
 import java.util.Iterator;
 import java.util.List;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import seedu.address.model.commons.Criteria;
 import seedu.address.model.module.Module;
 import seedu.address.model.task.exceptions.DuplicateTaskException;
 import seedu.address.model.task.exceptions.TaskNotFoundException;
@@ -97,7 +99,6 @@ public class DistinctTaskList implements Iterable<Task> {
         }
     }
 
-
     public int getNumOfTasksCompleted(Module module) {
         requireNonNull(module);
         return (int) taskList.stream().filter(Task::isComplete).map(Task::getModule)
@@ -107,6 +108,52 @@ public class DistinctTaskList implements Iterable<Task> {
     public int getTotalNumOfTasks(Module module) {
         requireNonNull(module);
         return (int) taskList.stream().map(Task::getModule).filter(module::isSameModule).count();
+    }
+
+    /**
+     * Sorts the tasks stored in the task list.
+     *
+     * @param criteria The criteria used for sorting.
+     */
+    public void sortTasks(Criteria criteria) {
+
+        //@@author dlimyy-reused
+        //Reused from https://stackoverflow.com/questions/51186174/
+        //with slight modifications
+        switch (criteria.getCriteria().toLowerCase()) {
+        case "priority":
+            FXCollections.sort(taskList, Comparator.comparing(Task::getPriorityTag,
+                    Comparator.nullsLast(Comparator.naturalOrder())));
+            break;
+        case "deadline":
+            FXCollections.sort(taskList, Comparator.comparing(Task::getDeadlineTag,
+                    Comparator.nullsLast(Comparator.naturalOrder())));
+            break;
+        case "module":
+            FXCollections.sort(taskList, Comparator.comparing(Task::getModule,
+                    Comparator.naturalOrder()));
+            break;
+        case "description":
+            FXCollections.sort(taskList, Comparator.comparing(Task::getDescription,
+                    Comparator.naturalOrder()));
+            break;
+        default:
+            break;
+        }
+        //@@author
+    }
+
+    /**
+     * Checks whether the criteria given by the user is valid.
+     *
+     * @param criteria The criteria that is being checked for validity.
+     * @return true if the criteria is valid; else return false.
+     */
+    public static boolean isValidCriteria(String criteria) {
+        return criteria.equalsIgnoreCase("priority")
+                || criteria.equalsIgnoreCase("deadline")
+                || criteria.equalsIgnoreCase("module")
+                || criteria.equalsIgnoreCase("description");
     }
 
     @Override

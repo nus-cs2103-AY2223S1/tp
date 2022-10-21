@@ -8,7 +8,7 @@ import seedu.address.logic.commands.EditModuleCommand;
 /**
  * Module class represents a Module being taken.
  */
-public class Module {
+public class Module implements Comparable<Module> {
 
     private static final String MESSAGE_NO_TASKS_FOR_MODULE = "You have no tasks for this module";
 
@@ -119,4 +119,8 @@ public class Module {
         return getModuleCode().toString();
     }
 
+    @Override
+    public int compareTo(Module mod) {
+        return this.getModuleCode().moduleCode.compareTo(mod.getModuleCode().moduleCode);
+    }
 }
