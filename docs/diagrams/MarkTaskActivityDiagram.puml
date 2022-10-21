@@ -1,0 +1,20 @@
+@startuml
+start
+:User executes the mark command;
+switch ()
+case ( [invalid command] )
+  :Display error message
+  regarding invalid command;
+case ( [task already marked] )
+  :Display error message
+  stating task is already marked;
+case ( [else] )
+  :Create a copy of the task
+  at the specified index,
+  but marked as complete;
+  :Replace the task at the
+  specified index with
+  this task;
+endswitch
+stop
+@enduml

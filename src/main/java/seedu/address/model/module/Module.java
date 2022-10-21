@@ -1,14 +1,20 @@
 package seedu.address.model.module;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import seedu.address.logic.commands.EditModuleCommand;
 
 /**
  * Module class represents a Module being taken.
  */
-public class Module {
+public class Module implements Comparable<Module> {
+
+    private static final String MESSAGE_NO_TASKS_FOR_MODULE = "You have no tasks for this module";
+
     private final ModuleCode moduleCode;
+    private int totalNumOfTasks;
+    private int numOfCompletedTasks;
 
     /**
      * Constructor of the Module class.
@@ -19,6 +25,23 @@ public class Module {
     public Module(ModuleCode moduleCode) {
         requireNonNull(moduleCode);
         this.moduleCode = moduleCode;
+        this.numOfCompletedTasks = 0;
+        this.totalNumOfTasks = 0;
+    }
+
+    /**
+     * Constructor of the Module class.
+     * Module code, number of completed tasks and total number of tasks must be specified.
+     *
+     * @param moduleCode The module code of the module.
+     * @param numOfCompletedTasks The number of completed tasks the module has.
+     * @param totalNumOfTasks The total number of tasks the module has.
+     */
+    public Module(ModuleCode moduleCode, int numOfCompletedTasks, int totalNumOfTasks) {
+        requireAllNonNull(moduleCode, numOfCompletedTasks, totalNumOfTasks);
+        this.moduleCode = moduleCode;
+        this.numOfCompletedTasks = numOfCompletedTasks;
+        this.totalNumOfTasks = totalNumOfTasks;
     }
 
     public ModuleCode getModuleCode() {
@@ -47,6 +70,36 @@ public class Module {
         return new Module(updatedModuleCode);
     }
 
+    public Module setTotalNumOfTasks(Integer numOfTasks) {
+        return new Module(this.moduleCode, this.numOfCompletedTasks, numOfTasks);
+    }
+
+    public Module setNumOfCompletedTasks(Integer numOfCompletedTasks) {
+        return new Module(this.moduleCode, numOfCompletedTasks, this.totalNumOfTasks);
+    }
+
+    /**
+     * Returns the percentage of tasks completed for the module.
+     */
+    public double getPercentageCompleted() {
+        return (double) numOfCompletedTasks / (double) totalNumOfTasks;
+    }
+
+    /**
+     * Returns a string representation of the number of completed tasks and number of total tasks.
+     */
+    public String generateProgressMessage() {
+        if (totalNumOfTasks == 0) {
+            return MESSAGE_NO_TASKS_FOR_MODULE;
+        } else {
+            return numOfCompletedTasks + " / " + totalNumOfTasks + " task(s) completed";
+        }
+    }
+
+    public boolean hasTasks() {
+        return totalNumOfTasks > 0;
+    }
+
     @Override
     public boolean equals(Object other) {
         if (other == this) {
@@ -66,4 +119,8 @@ public class Module {
         return getModuleCode().toString();
     }
 
+    @Override
+    public int compareTo(Module mod) {
+        return this.getModuleCode().moduleCode.compareTo(mod.getModuleCode().moduleCode);
+    }
 }

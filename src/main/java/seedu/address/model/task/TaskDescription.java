@@ -6,7 +6,7 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 /**
  * TaskDescription class represents the description of the task.
  */
-public class TaskDescription {
+public class TaskDescription implements Comparable<TaskDescription> {
     public static final String DESCRIPTION_CONSTRAINTS =
             "The description of the task should not be empty";
 
@@ -42,6 +42,11 @@ public class TaskDescription {
     @Override
     public String toString() {
         return description;
+    }
+
+    @Override
+    public int compareTo(TaskDescription otherDescription) {
+        return this.description.compareTo(otherDescription.description);
     }
 }
 

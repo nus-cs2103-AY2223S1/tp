@@ -11,6 +11,7 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.model.commons.Criteria;
 import seedu.address.model.exam.Exam;
 import seedu.address.model.module.Module;
 import seedu.address.model.person.Person;
@@ -251,7 +252,6 @@ public class ModelManager implements Model {
         addressBook.replaceModule(target, editedModule);
     }
 
-
     //================================Task Commands=====================================
     @Override
     public ObservableList<Task> getFilteredTaskList() {
@@ -262,6 +262,12 @@ public class ModelManager implements Model {
     public void updateFilteredTaskList(Predicate<Task> predicate) {
         requireNonNull(predicate);
         taskFilteredList.setPredicate(predicate);
+    }
+
+    @Override
+    public void sortTaskList(Criteria criteria) {
+        requireNonNull(criteria);
+        addressBook.sortTaskList(criteria);
     }
 
 
@@ -276,6 +282,5 @@ public class ModelManager implements Model {
         requireNonNull(predicate);
         examFilteredList.setPredicate(predicate);
     }
-
 
 }
