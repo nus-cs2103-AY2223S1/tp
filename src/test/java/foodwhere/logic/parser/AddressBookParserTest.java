@@ -24,11 +24,11 @@ import foodwhere.logic.commands.SFindCommand;
 import foodwhere.logic.commands.SListCommand;
 import foodwhere.logic.parser.exceptions.ParseException;
 import foodwhere.model.review.Review;
+import foodwhere.model.review.ReviewBuilder;
 import foodwhere.model.stall.NameContainsKeywordsPredicate;
 import foodwhere.model.stall.Stall;
 import foodwhere.model.stall.StallBuilder;
 import foodwhere.testutil.EditStallDescriptorBuilder;
-import foodwhere.testutil.ReviewBuilder;
 import foodwhere.testutil.StallUtil;
 import foodwhere.testutil.TypicalIndexes;
 

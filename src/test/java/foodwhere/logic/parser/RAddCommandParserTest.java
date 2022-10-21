@@ -28,7 +28,7 @@ import foodwhere.logic.commands.RAddCommand;
 import foodwhere.model.commons.Tag;
 import foodwhere.model.review.Date;
 import foodwhere.model.review.Review;
-import foodwhere.testutil.ReviewBuilder;
+import foodwhere.model.review.ReviewBuilder;
 import foodwhere.testutil.TypicalReviews;
 
 public class RAddCommandParserTest {

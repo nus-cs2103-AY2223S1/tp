@@ -8,6 +8,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 import foodwhere.commons.core.Messages;
 import foodwhere.commons.core.index.Index;
@@ -18,6 +19,7 @@ import foodwhere.model.Model;
 import foodwhere.model.commons.Name;
 import foodwhere.model.commons.Tag;
 import foodwhere.model.review.Review;
+import foodwhere.model.review.ReviewBuilder;
 import foodwhere.model.stall.Address;
 import foodwhere.model.stall.Stall;
 
@@ -87,7 +89,11 @@ public class SEditCommand extends Command {
         Name updatedName = editStallDescriptor.getName().orElse(stallToEdit.getName());
         Address updatedAddress = editStallDescriptor.getAddress().orElse(stallToEdit.getAddress());
         Set<Tag> updatedTags = editStallDescriptor.getTags().orElse(stallToEdit.getTags());
-        Set<Review> updatedReviews = editStallDescriptor.getReviews().orElse(stallToEdit.getReviews());
+        Set<Review> updatedReviews = editStallDescriptor.getReviews()
+                .orElse(stallToEdit.getReviews())
+                .stream()
+                .map(review -> new ReviewBuilder(review).withName(updatedName.fullName).build())
+                .collect(Collectors.toSet());
         return new Stall(updatedName, updatedAddress, updatedTags, updatedReviews);
     }
 

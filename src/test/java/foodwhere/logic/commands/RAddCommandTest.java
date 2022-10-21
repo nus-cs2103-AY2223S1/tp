@@ -13,8 +13,8 @@ import foodwhere.model.Model;
 import foodwhere.model.ModelManager;
 import foodwhere.model.UserPrefs;
 import foodwhere.model.review.Review;
+import foodwhere.model.review.ReviewBuilder;
 import foodwhere.model.stall.Stall;
-import foodwhere.testutil.ReviewBuilder;
 import foodwhere.testutil.TypicalIndexes;
 import foodwhere.testutil.TypicalStalls;
 
