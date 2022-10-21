@@ -6,6 +6,7 @@ import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.reminder.ReminderDeadline;
 import seedu.address.model.reminder.ReminderDescription;
 import seedu.address.model.reminder.ReminderName;
+import seedu.address.model.reminder.ReminderPriority;
 
 /**
  * Contains utility methods used for parsing Reminder and related subclasses.
@@ -49,4 +50,14 @@ public class ReminderParserUtil {
         String trimmedDescription = description.trim();
         return new ReminderDescription(trimmedDescription);
     }
+    
+    /**
+     * Parses a {@code String priority} into a {@code ReminderPriority}.
+     * Leading and trailing whitespaces will be trimmed.
+     */
+    public static ReminderPriority parseReminderPriority(String priority) {
+        String trimmedPriority = priority.trim();
+        return new ReminderPriority(trimmedPriority);
+    }
+    
 }
