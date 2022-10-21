@@ -34,9 +34,10 @@ public class AddItemCommand extends Command {
 
     public static final String MESSAGE_SUCCESS = "New supplyItem added: %1$s";
     public static final String MESSAGE_DUPLICATE_SUPPLYITEM = "This supplyItem from different"
-    + "supplier already exists in inventory";
+            + "supplier already exists in inventory";
     public static final String MESSAGE_DUPLICATE_SUPPLIER = "This supplyItem from same"
-    + "supplier already exists in inventory";
+            + "supplier already exists in inventory";
+
 
 
     private final Index targetIndex;
@@ -68,7 +69,7 @@ public class AddItemCommand extends Command {
 
         Person supplier = model.getFilteredPersonList().get(targetIndex.getZeroBased());
         SupplyItem toAdd = new SupplyItem(supplier.getItem().toString(),
-        currentStock, minimumStock, supplier, getTagSet("Item"));
+                currentStock, minimumStock, supplier, getTagSet("Item"));
 
         if (model.hasSupplyItem(toAdd)) {
             throw new CommandException(MESSAGE_DUPLICATE_SUPPLIER);
