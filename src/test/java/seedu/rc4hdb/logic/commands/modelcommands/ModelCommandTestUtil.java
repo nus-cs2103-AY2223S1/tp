@@ -27,7 +27,7 @@ import seedu.rc4hdb.model.resident.predicates.NameContainsKeywordsPredicate;
 import seedu.rc4hdb.testutil.ResidentDescriptorBuilder;
 
 /**
- * Contains helper methods for testing commands.
+ * Contains helper methods for testing model commands.
  */
 public class ModelCommandTestUtil {
 
@@ -79,6 +79,9 @@ public class ModelCommandTestUtil {
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
 
+    public static final String VALID_ANY_SPECIFIER_DESC = " " + "/any";
+    public static final String VALID_ALL_SPECIFIER_DESC = " " + "/all";
+
     public static final ResidentDescriptor DESC_AMY;
     public static final ResidentDescriptor DESC_BOB;
 
@@ -123,7 +126,7 @@ public class ModelCommandTestUtil {
      * Executes the given {@code command}, confirms that <br>
      * - a {@code CommandException} is thrown <br>
      * - the CommandException message matches {@code expectedMessage} <br>
-     * - the address book, filtered resident list and selected resident in {@code actualModel} remain unchanged
+     * - the resident book, filtered resident list and selected resident in {@code actualModel} remain unchanged
      */
     public static void assertCommandFailure(ModelCommand command, Model actualModel, String expectedMessage) {
         // we are unable to defensively copy the model for comparison later, so we can
@@ -135,6 +138,7 @@ public class ModelCommandTestUtil {
         assertEquals(expectedResidentBook, actualModel.getResidentBook());
         assertEquals(expectedFilteredList, actualModel.getFilteredResidentList());
     }
+
     /**
      * Updates {@code model}'s filtered list to show only the resident at the given {@code targetIndex} in the
      * {@code model}'s resident book.
