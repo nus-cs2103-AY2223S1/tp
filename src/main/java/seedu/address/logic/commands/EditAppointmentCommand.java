@@ -5,7 +5,12 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_REASON;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_RECURRING_PERIOD;
 
 import java.time.LocalDateTime;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Optional;
+import java.util.Set;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.exceptions.IllegalValueException;
@@ -65,7 +70,7 @@ public class EditAppointmentCommand extends SelectAppointmentCommand {
         List<Appointment> currentAppts = person.getAppointments();
         int index = currentAppts.indexOf(targetAppointment);
 
-        Appointment editedAppointment = null;
+        Appointment editedAppointment;
         try {
             editedAppointment = createEditedAppointment(targetAppointment, editAppointmentDescriptor);
         } catch (IllegalValueException e) {
@@ -146,7 +151,7 @@ public class EditAppointmentCommand extends SelectAppointmentCommand {
         }
 
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(reason, dateTime, timePeriod, tags);
+            return CollectionUtil.isAnyNonNull(reason, dateTime, timePeriod) || !tags.isEmpty();
         }
 
         public void setReason(String reason) {

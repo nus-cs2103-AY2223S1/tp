@@ -16,7 +16,6 @@ import seedu.address.model.person.Appointment;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
-import seedu.address.model.person.exceptions.InvalidTagQuantityException;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -141,7 +140,6 @@ public class ParserUtil {
         if (!Tag.isValidTagName(trimmedTag)) {
             throw new ParseException(Tag.MESSAGE_CONSTRAINTS);
         }
-//        return new Tag(trimmedTag);
         return Tag.convertToTag(trimmedTag);
     }
 

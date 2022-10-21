@@ -43,6 +43,7 @@ public class EditAppointmentCommandParser implements Parser<EditAppointmentComma
         addDate(editAppointmentDescriptor, argMultimap);
         addTimePeriod(editAppointmentDescriptor, argMultimap);
         parseTagsForEdit(argMultimap.getAllValues(PREFIX_TAG)).ifPresent(editAppointmentDescriptor::setTags);
+
         if (!editAppointmentDescriptor.isAnyFieldEdited()) {
             throw new ParseException(EditAppointmentCommand.MESSAGE_NOT_EDITED);
         }

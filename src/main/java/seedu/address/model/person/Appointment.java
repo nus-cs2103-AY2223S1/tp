@@ -21,7 +21,6 @@ import java.util.stream.Stream;
 import javafx.beans.Observable;
 import javafx.beans.property.SimpleBooleanProperty;
 import javafx.beans.property.SimpleObjectProperty;
-import seedu.address.model.person.exceptions.InvalidTagQuantityException;
 import seedu.address.model.tag.Tag;
 
 /**
