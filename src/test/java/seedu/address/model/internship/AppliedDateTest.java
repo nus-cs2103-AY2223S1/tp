@@ -1,7 +1,7 @@
 package seedu.address.model.internship;
 
-// import static org.junit.jupiter.api.Assertions.assertFalse;
-// import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
 
 import org.junit.jupiter.api.Test;
@@ -13,32 +13,26 @@ public class AppliedDateTest {
         assertThrows(NullPointerException.class, () -> new AppliedDate(null));
     }
 
-    /*
-    // Removed for now as there are no constraints on the inputs
     @Test
-    public void constructor_invalidAddress_throwsIllegalArgumentException() {
-        String invalidAddress = "";
-        assertThrows(IllegalArgumentException.class, () -> new AppliedDate(invalidAddress));
+    public void constructor_invalidAppliedDate_throwsIllegalArgumentException() {
+        String invalidAppliedDate = "03 Oct 22";
+        assertThrows(IllegalArgumentException.class, () -> new AppliedDate(invalidAppliedDate));
     }
-    */
 
 
-    /*
-    // Removed for now as there are no constraints on the inputs
     @Test
-    public void isValidAddress() {
-        // null address
+    public void isValidAppliedDate() {
+        // null applied date
         assertThrows(NullPointerException.class, () -> AppliedDate.isValidAppliedDate(null));
 
-        // invalid addresses
-        assertFalse(AppliedDate.isValidAppliedDate("")); // empty string
-        assertFalse(AppliedDate.isValidAppliedDate(" ")); // spaces only
+        // invalid applied dates
+        assertFalse(AppliedDate.isValidAppliedDate("23 October 2022")); // only MMM or M
+        assertFalse(AppliedDate.isValidAppliedDate("23 Oct 22")); // only yyyy
 
-        // valid addresses
-        assertTrue(AppliedDate.isValidAppliedDate("Blk 456, Den Road, #01-355"));
-        assertTrue(AppliedDate.isValidAppliedDate("-")); // one character
-        assertTrue(AppliedDate.isValidAppliedDate(
-                "Leng Inc; 1234 Market St; San Francisco CA 2349879; USA")); // long address
+        // valid applied dates
+        assertTrue(AppliedDate.isValidAppliedDate("23 Oct 2022")); // d MMM yyyy
+        assertTrue(AppliedDate.isValidAppliedDate("23 Oct")); // d MMM
+        assertTrue(AppliedDate.isValidAppliedDate("23/10/2022")); // d/M/yyyy
+        assertTrue(AppliedDate.isValidAppliedDate("23/10")); // d/M
     }
-    */
 }

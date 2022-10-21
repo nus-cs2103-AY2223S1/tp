@@ -22,10 +22,10 @@ import seedu.address.model.internship.Link;
 import seedu.address.model.tag.Tag;
 
 public class ParserUtilTest {
-    private static final String INVALID_NAME = "A@libaba";
-    private static final String INVALID_LINK = "+651234";
-    private static final String INVALID_APPLIED_DATE = " ";
-    private static final String INVALID_DESCRIPTION = " ";
+    private static final String INVALID_COMPANY = "";
+    private static final String INVALID_LINK = "www.exampl e.";
+    private static final String INVALID_APPLIED_DATE = "03 Oct 22";
+    private static final String INVALID_DESCRIPTION = "";
     private static final String INVALID_TAG = "#Frontend";
     private static final String INVALID_APPLICATION_STATUS = "waiting";
     private static final String VALID_COMPANY = "Alibaba";
@@ -62,13 +62,10 @@ public class ParserUtilTest {
         assertThrows(NullPointerException.class, () -> ParserUtil.parseCompany((String) null));
     }
 
-    /*
-    // Removed for now as there are no constraints on the inputs
     @Test
     public void parseCompany_invalidValue_throwsParseException() {
-        assertThrows(ParseException.class, () -> ParserUtil.parseCompany(INVALID_NAME));
+        assertThrows(ParseException.class, () -> ParserUtil.parseCompany(INVALID_COMPANY));
     }
-    */
 
     @Test
     public void parseCompany_validValueWithoutWhitespace_returnsCompany() throws Exception {
@@ -88,13 +85,10 @@ public class ParserUtilTest {
         assertThrows(NullPointerException.class, () -> ParserUtil.parseLink((String) null));
     }
 
-    /*
-    // Removed for now as there are no constraints on the inputs
     @Test
     public void parseLink_invalidValue_throwsParseException() {
-        assertThrows(ParseException.class, () -> ParserUtil.parseLink(INVALID_PHONE));
+        assertThrows(ParseException.class, () -> ParserUtil.parseLink(INVALID_LINK));
     }
-    */
 
     @Test
     public void parseLink_validValueWithoutWhitespace_returnsLink() throws Exception {
@@ -114,13 +108,10 @@ public class ParserUtilTest {
         assertThrows(NullPointerException.class, () -> ParserUtil.parseAppliedDate((String) null));
     }
 
-    /*
-    // Removed for now as there are no constraints on the inputs
     @Test
     public void parseAppliedDate_invalidValue_throwsParseException() {
-        assertThrows(ParseException.class, () -> ParserUtil.parseAppliedDate(INVALID_ADDRESS));
+        assertThrows(ParseException.class, () -> ParserUtil.parseAppliedDate(INVALID_APPLIED_DATE));
     }
-    */
 
     @Test
     public void parseAppliedDate_validValueWithoutWhitespace_returnsAppliedDate() throws Exception {
@@ -140,13 +131,10 @@ public class ParserUtilTest {
         assertThrows(NullPointerException.class, () -> ParserUtil.parseDescription((String) null));
     }
 
-    /*
-    // Removed for now as there are no constraints on the inputs
     @Test
     public void parseDescription_invalidValue_throwsParseException() {
-        assertThrows(ParseException.class, () -> ParserUtil.parseDescription(INVALID_EMAIL));
+        assertThrows(ParseException.class, () -> ParserUtil.parseDescription(INVALID_DESCRIPTION));
     }
-    */
     @Test
     public void parseDescription_validValueWithoutWhitespace_returnsDescription() throws Exception {
         Description expectedDescription = new Description(VALID_DESCRIPTION);
