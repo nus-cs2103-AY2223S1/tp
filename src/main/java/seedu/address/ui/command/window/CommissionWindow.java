@@ -73,7 +73,7 @@ public abstract class CommissionWindow extends UiPart<Stage> {
     }
 
     /**
-     * Returns true if the AddCommissionWindow window is currently being shown.
+     * Returns true if the CommissionWindow window is currently being shown.
      */
     public boolean isShowing() {
         return getRoot().isShowing();
@@ -87,7 +87,7 @@ public abstract class CommissionWindow extends UiPart<Stage> {
     }
 
     /**
-     * Focuses on the add commission window.
+     * Focuses on the commission window.
      */
     public void focus() {
         getRoot().requestFocus();

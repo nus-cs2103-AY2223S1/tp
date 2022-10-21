@@ -12,6 +12,8 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.shape.Circle?>
 
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.control.Button?>
 <HBox id="detailsPane" fx:id="detailsPane"
       xmlns="http://javafx.com/javafx/11" xmlns:fx="http://javafx.com/fxml/1" styleClass="edge-to-edge">
     <AnchorPane minHeight="0.0" minWidth="340.0" HBox.hgrow="ALWAYS">
@@ -113,14 +115,21 @@
                         </minHeight>
                     </Label>
                     <VBox.margin>
-                        <Insets bottom="8" />
+                        <Insets bottom="24" />
                     </VBox.margin>
                 </HBox>
-                <Label styleClass="cell_h2_label" text="Iterations">
+                <BorderPane>
+                    <left>
+                        <Label styleClass="cell_h2_label" text="Iterations"/>
+                    </left>
+                    <right>
+                        <Button fx:id="addIterationButton" mnemonicParsing="false"
+                                text="+   Add Iteration" styleClass="addButton" onAction="#showAddIterationWindow"/>
+                    </right>
                     <VBox.margin>
-                        <Insets top="16" bottom="8" />
+                        <Insets bottom="8"/>
                     </VBox.margin>
-                </Label>
+                </BorderPane>
                 <ListView id="iterationListView" fx:id="iterationListView" VBox.vgrow="ALWAYS" minHeight="300">
                     <placeholder>
                         <HBox alignment="TOP_CENTER">

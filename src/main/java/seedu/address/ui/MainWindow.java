@@ -150,7 +150,8 @@ public class MainWindow extends UiPart<Stage> {
                 logic::selectCommission, logic.getSelectedCommission(), this::addChildWindow, this::executeCommand);
         commissionListPanelPlaceholder.getChildren().add(commissionListPanel.getRoot());
 
-        commissionDetailsPane = new CommissionDetailsPane(logic.getSelectedCommission());
+        commissionDetailsPane = new CommissionDetailsPane(logic.getSelectedCommission(),
+                this::addChildWindow, this::executeCommand);
         commissionDetailsPanePlaceholder.getChildren().add(commissionDetailsPane.getRoot());
     }
 

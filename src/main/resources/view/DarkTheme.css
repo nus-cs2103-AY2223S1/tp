@@ -374,6 +374,10 @@
     -fx-background-color: #949AA4, #383D48;
 }
 
+.addIterationButton {
+    -fx-font-size: 13px;
+}
+
 .addCommissionWindowButton, .addCommissionWindowButton:armed, .addCommissionWindowButton:pressed,
 .addCommissionWindowButton:selected, .addCommissionWindowButton:hover,
 .addCommissionWindowButton:focused {
