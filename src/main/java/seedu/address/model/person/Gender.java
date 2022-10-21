@@ -14,10 +14,10 @@ import java.util.Set;
 public class Gender implements Comparable<Gender> {
 
     public static final String MESSAGE_CONSTRAINTS = "Gender is an optional field, it should be one of the following"
-        + " format: m or M for male, f or F for female.";
+        + " format: m / M / male / Male for male, f / F / female / Female for female.";
 
     private static final Set<String> VALID_GENDERS = new HashSet<>(Arrays.asList("m", "M",
-            "f", "F")); //NA is removed from the valid gender list
+            "f", "F", "male", "Male", "female", "Female")); //NA is removed from the valid gender list
     public final GenderType value;
 
 
