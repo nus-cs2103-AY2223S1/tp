@@ -43,10 +43,6 @@ public class DeleteGroupCommand extends Command {
         //todo remove assignments from members when group is deleted
         requireNonNull(model);
 
-//        if (!model.hasGroup(targetGroup)) {
-//            throw new CommandException(MESSAGE_UNKNOWN_GROUP);
-//        }
-
         //find out which group to delete from
         ObservableList<Group> groupList = model.getGroupWithName(targetGroup.getName());
 
