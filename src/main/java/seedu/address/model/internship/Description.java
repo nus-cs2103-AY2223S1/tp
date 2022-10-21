@@ -9,7 +9,7 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  */
 public class Description {
 
-    public static final String MESSAGE_CONSTRAINTS = "To be added";
+    public static final String MESSAGE_CONSTRAINTS = "Description should not be empty.";
 
     public final String value;
 
@@ -28,7 +28,7 @@ public class Description {
      * Returns if a given string is a valid description.
      */
     public static boolean isValidDescription(String test) {
-        return true;
+        return test.length() > 0;
     }
 
     @Override

@@ -64,11 +64,11 @@ public class TypicalInternships {
     // Manually added
     public static final Internship HUAWEI = new InternshipBuilder().withCompany("Huawei")
             .withLink("https://careers.Huawei.com/positionDetail")
-            .withDescription("").withAppliedDate("15 Oct 2022")
+            .withDescription("Software Engineer Intern").withAppliedDate("15 Oct 2022")
             .withApplicationStatus(ApplicationStatus.Applied).build();
     public static final Internship INDEED = new InternshipBuilder().withCompany("Indeed")
             .withLink("https://careers.Indeed.com/positionDetail")
-            .withDescription("").withAppliedDate("29 Sep 2022")
+            .withDescription("Software Developer Intern").withAppliedDate("29 Sep 2022")
             .withApplicationStatus(ApplicationStatus.Applied).build();
 
     // Manually added - Internship's details found in {@code CommandTestUtil}

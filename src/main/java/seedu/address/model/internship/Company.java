@@ -9,9 +9,7 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  */
 public class Company {
 
-    public static final String MESSAGE_CONSTRAINTS = "To be added";
-
-    //public static final String VALIDATION_REGEX = "[\\p{Alnum}][\\p{Alnum} ]*";
+    public static final String MESSAGE_CONSTRAINTS = "Company name should not be empty.";
 
     public final String value;
 
@@ -30,7 +28,7 @@ public class Company {
      * Returns true if a given string is a valid company.
      */
     public static boolean isValidCompany(String test) {
-        return true;
+        return test.length() > 0;
     }
 
 

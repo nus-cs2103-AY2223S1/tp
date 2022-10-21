@@ -23,7 +23,7 @@ public class SampleDataUtil {
             new Internship(new Company("Google"), new Link("https://careers.google.com/students"),
                 new Description("Software Engineering Intern"), ApplicationStatus.Applied,
                 new AppliedDate("03/09/2022"), getTagSet("Backend")),
-            new Internship(new Company("Tiktok"), new Link("careers@tiktok.com"),
+            new Internship(new Company("Tiktok"), new Link("https://careers.tiktok.com"),
                 new Description("Software Engineering Intern"), ApplicationStatus.Applied,
                 new AppliedDate("11/12/2022"), getTagSet("Frontend")),
             new Internship(new Company("Stripe"), new Link("https://stripe.com/en-sg/jobs/university"),

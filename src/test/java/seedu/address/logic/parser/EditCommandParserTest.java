@@ -6,11 +6,11 @@ import static seedu.address.logic.commands.CommandTestUtil.APPLIED_DATE_DESC_TIK
 import static seedu.address.logic.commands.CommandTestUtil.COMPANY_DESC_GOOGLE;
 import static seedu.address.logic.commands.CommandTestUtil.DESCRIPTION_DESC_GOOGLE;
 import static seedu.address.logic.commands.CommandTestUtil.DESCRIPTION_DESC_TIKTOK;
-// import static seedu.address.logic.commands.CommandTestUtil.INVALID_APPLIED_DATE_DESC;
-// import static seedu.address.logic.commands.CommandTestUtil.INVALID_DESCRIPTION_DESC;
-// import static seedu.address.logic.commands.CommandTestUtil.INVALID_COMPANY_DESC;
+import static seedu.address.logic.commands.CommandTestUtil.INVALID_APPLIED_DATE_DESC;
+import static seedu.address.logic.commands.CommandTestUtil.INVALID_COMPANY_DESC;
+import static seedu.address.logic.commands.CommandTestUtil.INVALID_DESCRIPTION_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_LINK_DESC;
-// import static seedu.address.logic.commands.CommandTestUtil.INVALID_TAG_DESC;
+import static seedu.address.logic.commands.CommandTestUtil.INVALID_TAG_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.LINK_DESC_GOOGLE;
 import static seedu.address.logic.commands.CommandTestUtil.LINK_DESC_TIKTOK;
 import static seedu.address.logic.commands.CommandTestUtil.TAG_DESC_BACKEND;
@@ -36,11 +36,11 @@ import org.junit.jupiter.api.Test;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.EditCommand.EditInternshipDescriptor;
-// import seedu.address.model.internship.AppliedDate;
-// import seedu.address.model.internship.Company;
-// import seedu.address.model.internship.Description;
-// import seedu.address.model.internship.Link;
-// import seedu.address.model.tag.Tag;
+import seedu.address.model.internship.AppliedDate;
+import seedu.address.model.internship.Company;
+import seedu.address.model.internship.Description;
+import seedu.address.model.internship.Link;
+import seedu.address.model.tag.Tag;
 import seedu.address.testutil.EditInternshipDescriptorBuilder;
 
 public class EditCommandParserTest {
@@ -79,13 +79,11 @@ public class EditCommandParserTest {
         assertParseFailure(parser, "1 i/ string", MESSAGE_INVALID_FORMAT);
     }
 
-    /*
-    // Removed for now as there are no constraints on inputs
     @Test
     public void parse_invalidValue_failure() {
         assertParseFailure(parser, "1" + INVALID_COMPANY_DESC, Company.MESSAGE_CONSTRAINTS); // invalid name
         assertParseFailure(parser, "1" + INVALID_LINK_DESC, Link.MESSAGE_CONSTRAINTS); // invalid phone
-        assertParseFailure(parser, "1" + INVALID_EMAIL_DESC, Description.MESSAGE_CONSTRAINTS); // invalid email
+        assertParseFailure(parser, "1" + INVALID_DESCRIPTION_DESC, Description.MESSAGE_CONSTRAINTS); // invalid email
         assertParseFailure(parser, "1" + INVALID_APPLIED_DATE_DESC, AppliedDate.MESSAGE_CONSTRAINTS); // invalid address
         assertParseFailure(parser, "1" + INVALID_TAG_DESC, Tag.MESSAGE_CONSTRAINTS); // invalid tag
 
@@ -107,7 +105,6 @@ public class EditCommandParserTest {
                         + INVALID_DESCRIPTION_DESC + VALID_APPLIED_DATE_GOOGLE + VALID_LINK_GOOGLE,
                         Company.MESSAGE_CONSTRAINTS);
     }
-    */
 
     @Test
     public void parse_allFieldsSpecified_success() {

@@ -9,9 +9,11 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  */
 public class Link {
 
-
-    public static final String MESSAGE_CONSTRAINTS = "To be added";
-    //public static final String VALIDATION_REGEX = "\\d{3,}";
+    public static final String MESSAGE_CONSTRAINTS = "Link is of an incorrect format.";
+    private static final String OPTIONAL_PROTOCOL = "\\b(?:(https?|http)://|www\\.)?";
+    private static final String HOSTNAME = "[-a-zA-Z0-9+&#/%?=~_|$!:,.;]*[a-zA-Z0-9+&@#/%=~_|$]\\.";
+    private static final String PATH = "[-a-zA-Z0-9+&@#/%?=~_|$!:,.;]*[a-zA-Z0-9+&@#/%=~_|$]";
+    public static final String VALIDATION_REGEX = OPTIONAL_PROTOCOL + HOSTNAME + PATH;
     public final String value;
 
     /**
@@ -29,7 +31,7 @@ public class Link {
      * Returns true if a given string is a valid link.
      */
     public static boolean isValidLink(String test) {
-        return true;
+        return test.matches(VALIDATION_REGEX);
     }
 
     @Override

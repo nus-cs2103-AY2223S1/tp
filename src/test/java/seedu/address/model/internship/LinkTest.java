@@ -1,7 +1,7 @@
 package seedu.address.model.internship;
 
-// import static org.junit.jupiter.api.Assertions.assertFalse;
-// import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
 
 import org.junit.jupiter.api.Test;
@@ -13,34 +13,26 @@ public class LinkTest {
         assertThrows(NullPointerException.class, () -> new Link(null));
     }
 
-    /*
-    // Removed for now as there are no constraints on the inputs
     @Test
-    public void constructor_invalidPhone_throwsIllegalArgumentException() {
-        String invalidPhone = "";
-        assertThrows(IllegalArgumentException.class, () -> new Link(invalidPhone));
+    public void constructor_invalidLink_throwsIllegalArgumentException() {
+        String invalidLink = "google.";
+        assertThrows(IllegalArgumentException.class, () -> new Link(invalidLink));
     }
-    */
 
-    /*
-    // Removed for now as there are no constraints on the inputs
     @Test
-    public void isValidPhone() {
-        // null phone number
+    public void isValidLink() {
+        // null link
         assertThrows(NullPointerException.class, () -> Link.isValidLink(null));
 
-        // invalid phone numbers
+        // invalid links
         assertFalse(Link.isValidLink("")); // empty string
         assertFalse(Link.isValidLink(" ")); // spaces only
-        assertFalse(Link.isValidLink("91")); // less than 3 numbers
-        assertFalse(Link.isValidLink("phone")); // non-numeric
-        assertFalse(Link.isValidLink("9011p041")); // alphabets within digits
-        assertFalse(Link.isValidLink("9312 1534")); // spaces within digits
+        assertFalse(Link.isValidLink("google")); // no '.'
+        assertFalse(Link.isValidLink("https://www")); // missing domain
 
-        // valid phone numbers
-        assertTrue(Link.isValidLink("911")); // exactly 3 numbers
-        assertTrue(Link.isValidLink("93121534"));
-        assertTrue(Link.isValidLink("124293842033123")); // long phone numbers
+        // valid links
+        assertTrue(Link.isValidLink("google.com")); // without scheme
+        assertTrue(Link.isValidLink("https://www.google.com")); // with scheme
+        assertTrue(Link.isValidLink("https://www.google.com/careers")); // with path
     }
-    */
 }

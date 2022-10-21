@@ -1,6 +1,6 @@
 package seedu.address.storage;
 
-//import static org.junit.jupiter.api.Assertions.assertEquals;
+// import static org.junit.jupiter.api.Assertions.assertEquals;
 import static seedu.address.storage.JsonAdaptedInternship.MISSING_FIELD_MESSAGE_FORMAT;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalInternships.BINANCE;
@@ -18,10 +18,10 @@ import seedu.address.model.internship.Description;
 import seedu.address.model.internship.Link;
 
 public class JsonAdaptedInternshipTest {
-    private static final String INVALID_COMPANY = "R@chel";
-    private static final String INVALID_LINK = "+651234";
+    private static final String INVALID_COMPANY = "";
+    private static final String INVALID_LINK = "https://www.example.";
     private static final String INVALID_APPLIED_DATE = " ";
-    private static final String INVALID_DESCRIPTION = "example.com";
+    private static final String INVALID_DESCRIPTION = "";
     private static final String INVALID_TAG = "#friend";
 
     private static final String VALID_COMPANY = BINANCE.getCompany().toString();
@@ -39,19 +39,16 @@ public class JsonAdaptedInternshipTest {
         JsonAdaptedInternship internship = new JsonAdaptedInternship(BINANCE);
         assertEquals(BINANCE, internship.toModelType());
     }
-    */
+     */
 
-    /*
-    // Removed for now as there are no constraints on the inputs
     @Test
     public void toModelType_invalidCompany_throwsIllegalValueException() {
         JsonAdaptedInternship internship =
-                new JsonAdaptedInternship(INVALID_NAME, VALID_PHONE, VALID_EMAIL, VALID_APPLICATION_STATUS,
-                        VALID_ADDRESS, VALID_TAGS);
+                new JsonAdaptedInternship(INVALID_COMPANY, VALID_LINK, VALID_DESCRIPTION, VALID_APPLICATION_STATUS,
+                        VALID_APPLIED_DATE, VALID_TAGS);
         String expectedMessage = Company.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, internship::toModelType);
     }
-    */
 
     @Test
     public void toModelType_nullCompany_throwsIllegalValueException() {
@@ -61,17 +58,14 @@ public class JsonAdaptedInternshipTest {
         assertThrows(IllegalValueException.class, expectedMessage, internship::toModelType);
     }
 
-    /*
-    // Removed for now as there are no constraints on the inputs
     @Test
     public void toModelType_invalidPhone_throwsIllegalValueException() {
         JsonAdaptedInternship internship =
-                new JsonAdaptedInternship(VALID_NAME, INVALID_PHONE, VALID_EMAIL, VALID_APPLICATION_STATUS,
-                        VALID_ADDRESS, VALID_TAGS);
+                new JsonAdaptedInternship(VALID_COMPANY, INVALID_LINK, VALID_DESCRIPTION, VALID_APPLICATION_STATUS,
+                        VALID_APPLIED_DATE, VALID_TAGS);
         String expectedMessage = Link.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, internship::toModelType);
     }
-    */
 
     @Test
     public void toModelType_nullLink_throwsIllegalValueException() {
@@ -81,17 +75,14 @@ public class JsonAdaptedInternshipTest {
         assertThrows(IllegalValueException.class, expectedMessage, internship::toModelType);
     }
 
-    /*
-    // Removed for now as there are no constraints on the inputs
     @Test
     public void toModelType_invalidEmail_throwsIllegalValueException() {
         JsonAdaptedInternship internship =
-                new JsonAdaptedInternship(VALID_NAME, VALID_PHONE, INVALID_EMAIL,
-                        VALID_APPLICATION_STATUS, VALID_ADDRESS, VALID_TAGS);
+                new JsonAdaptedInternship(VALID_COMPANY, VALID_LINK, INVALID_DESCRIPTION,
+                        VALID_APPLICATION_STATUS, VALID_APPLIED_DATE, VALID_TAGS);
         String expectedMessage = Description.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, internship::toModelType);
     }
-    */
 
     @Test
     public void toModelType_nullDescription_throwsIllegalValueException() {
@@ -101,17 +92,14 @@ public class JsonAdaptedInternshipTest {
         assertThrows(IllegalValueException.class, expectedMessage, internship::toModelType);
     }
 
-    /*
-    // Removed for now as there are no constraints on the inputs
     @Test
     public void toModelType_invalidAddress_throwsIllegalValueException() {
         JsonAdaptedInternship internship =
-                new JsonAdaptedInternship(VALID_NAME, VALID_PHONE, VALID_EMAIL,
-                        VALID_APPLICATION_STATUS, INVALID_ADDRESS, VALID_TAGS);
+                new JsonAdaptedInternship(VALID_COMPANY, VALID_LINK, VALID_DESCRIPTION,
+                        VALID_APPLICATION_STATUS, INVALID_APPLIED_DATE, VALID_TAGS);
         String expectedMessage = AppliedDate.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, internship::toModelType);
     }
-    */
 
     @Test
     public void toModelType_nullAppliedDate_throwsIllegalValueException() {

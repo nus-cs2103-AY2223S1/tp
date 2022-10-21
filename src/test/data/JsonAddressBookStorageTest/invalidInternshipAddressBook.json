@@ -1,9 +1,9 @@
 {
   "internships": [ {
-    "company": "Internship with invalid company field: Ha!ns Mu@ster",
+    "company": "Internship with invalid appliedDate field",
     "link": "https://careers.alibaba.com/positionDetail",
     "description": "Software Engineering Intern",
     "applicationStatus" : "applied",
-    "appliedDate": "30 Oct 2022"
+    "appliedDate": "30 Oct 2"
   } ]
 }

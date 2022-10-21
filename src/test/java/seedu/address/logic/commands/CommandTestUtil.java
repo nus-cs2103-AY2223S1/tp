@@ -68,11 +68,10 @@ public class CommandTestUtil {
             + VALID_APPLICATION_STATUS_REJECTED;
     public static final String APPLICATION_STATUS_INVALID = " s/apply already";
 
-    // To change
-    public static final String INVALID_COMPANY_DESC = " " + PREFIX_COMPANY + "Meta&"; // '&' not allowed in names
-    public static final String INVALID_LINK_DESC = " " + PREFIX_LINK + "911a"; // 'a' not allowed in phones
-    public static final String INVALID_DESCRIPTION_DESC = " " + PREFIX_DESCRIPTION + "bob!yahoo"; // missing '@' symbol
-    public static final String INVALID_APPLIED_DATE_DESC = " " + PREFIX_APPLIED_DATE; // empty string not allowed
+    public static final String INVALID_COMPANY_DESC = " " + PREFIX_COMPANY + ""; // empty string not allowed
+    public static final String INVALID_LINK_DESC = " " + PREFIX_LINK + "abc.."; // invalid format
+    public static final String INVALID_DESCRIPTION_DESC = " " + PREFIX_DESCRIPTION + ""; // empty string not allowed
+    public static final String INVALID_APPLIED_DATE_DESC = " " + PREFIX_APPLIED_DATE + "03 Oct 22"; // invalid format
     public static final String INVALID_TAG_DESC = " " + PREFIX_TAG + "Frontend*"; // '*' not allowed in tags
 
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
