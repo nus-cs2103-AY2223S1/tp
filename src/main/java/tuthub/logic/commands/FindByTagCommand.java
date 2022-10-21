@@ -1,27 +1,27 @@
 package tuthub.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static tuthub.logic.parser.CliSyntax.PREFIX_MODULE;
+import static tuthub.logic.parser.CliSyntax.PREFIX_TAG;
 
 import tuthub.commons.core.Messages;
 import tuthub.model.Model;
-import tuthub.model.tutor.ModuleContainsKeywordsPredicate;
+import tuthub.model.tutor.TagContainsKeywordsPredicate;
 
 /**
- * Finds and list all TAs in TutHub who are teaching the module code being searched.
+ * Finds and list all TAs in TutHub who have tags matching the keywords searched.
  * Keyword matching is case insensitive.
  */
-public class FindByModuleCommand extends FindByPrefixCommand {
+public class FindByTagCommand extends FindByPrefixCommand {
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all tutors who are teaching "
-            + "the specified module code (case-insensitive) being searched"
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all tutors with tags matching "
+            + "the keywords (case-insensitive) being searched"
             + " and displays them as a list with index numbers.\n"
             + "Parameters: KEYWORD [MORE_KEYWORDS]...\n"
-            + "Example: " + COMMAND_WORD + " " + PREFIX_MODULE + " CS2040";
+            + "Example: " + COMMAND_WORD + " " + PREFIX_TAG + " friends";
 
-    private final ModuleContainsKeywordsPredicate predicate;
+    private final TagContainsKeywordsPredicate predicate;
 
-    public FindByModuleCommand(ModuleContainsKeywordsPredicate predicate) {
+    public FindByTagCommand(TagContainsKeywordsPredicate predicate) {
         this.predicate = predicate;
     }
 
@@ -37,7 +37,7 @@ public class FindByModuleCommand extends FindByPrefixCommand {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof FindByModuleCommand // instanceof handles nulls
-                && predicate.equals(((FindByModuleCommand) other).predicate)); // state check
+                || (other instanceof FindByTagCommand // instanceof handles nulls
+                && predicate.equals(((FindByTagCommand) other).predicate)); // state check
     }
 }

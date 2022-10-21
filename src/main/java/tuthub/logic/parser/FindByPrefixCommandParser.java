@@ -7,6 +7,7 @@ import static tuthub.logic.parser.CliSyntax.PREFIX_NAME;
 import static tuthub.logic.parser.CliSyntax.PREFIX_PHONE;
 import static tuthub.logic.parser.CliSyntax.PREFIX_RATING;
 import static tuthub.logic.parser.CliSyntax.PREFIX_STUDENTID;
+import static tuthub.logic.parser.CliSyntax.PREFIX_TAG;
 import static tuthub.logic.parser.CliSyntax.PREFIX_TEACHINGNOMINATION;
 import static tuthub.logic.parser.CliSyntax.PREFIX_YEAR;
 
@@ -19,15 +20,17 @@ import tuthub.logic.commands.FindByPhoneCommand;
 import tuthub.logic.commands.FindByPrefixCommand;
 import tuthub.logic.commands.FindByRatingCommand;
 import tuthub.logic.commands.FindByStudentIdCommand;
+import tuthub.logic.commands.FindByTagCommand;
 import tuthub.logic.commands.FindByTeachingNominationCommand;
 import tuthub.logic.commands.FindByYearCommand;
 import tuthub.logic.parser.exceptions.ParseException;
 import tuthub.model.tutor.EmailContainsKeywordsPredicate;
-import tuthub.model.tutor.ModuleContainsKeywordPredicate;
+import tuthub.model.tutor.ModuleContainsKeywordsPredicate;
 import tuthub.model.tutor.NameContainsKeywordsPredicate;
 import tuthub.model.tutor.PhoneContainsKeywordsPredicate;
 import tuthub.model.tutor.RatingContainsKeywordsPredicate;
 import tuthub.model.tutor.StudentIdContainsKeywordsPredicate;
+import tuthub.model.tutor.TagContainsKeywordsPredicate;
 import tuthub.model.tutor.TeachingNominationContainKeywordsPredicate;
 import tuthub.model.tutor.YearContainsKeywordsPredicate;
 
@@ -43,8 +46,8 @@ public class FindByPrefixCommandParser implements Parser<FindByPrefixCommand> {
      */
     public FindByPrefixCommand parse(String args) throws ParseException {
         ArgumentMultimap argumentMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL,
-                        PREFIX_MODULE, PREFIX_YEAR, PREFIX_STUDENTID, PREFIX_TEACHINGNOMINATION, PREFIX_RATING);
+                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_MODULE,
+                        PREFIX_YEAR, PREFIX_STUDENTID, PREFIX_TEACHINGNOMINATION, PREFIX_RATING, PREFIX_TAG);
 
         if (!argumentMultimap.getPreamble().isEmpty() || argumentMultimap.getArgMultimapSize() != 2) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindByPrefixCommand.MESSAGE_USAGE));
@@ -93,7 +96,7 @@ public class FindByPrefixCommandParser implements Parser<FindByPrefixCommand> {
 
             String[] moduleKeywords = trimmedKeywords.split("\\s+");
 
-            return new FindByModuleCommand(new ModuleContainsKeywordPredicate(Arrays.asList(moduleKeywords)));
+            return new FindByModuleCommand(new ModuleContainsKeywordsPredicate(Arrays.asList(moduleKeywords)));
         } else if (argumentMultimap.getValue(PREFIX_YEAR).isPresent()) {
             String keywords = argumentMultimap.getValue(PREFIX_YEAR).get();
             String trimmedKeywords = keywords.trim();
@@ -139,6 +142,17 @@ public class FindByPrefixCommandParser implements Parser<FindByPrefixCommand> {
             String[] moduleKeywords = trimmedKeywords.split("\\s+");
 
             return new FindByRatingCommand(new RatingContainsKeywordsPredicate(Arrays.asList(moduleKeywords)));
+        } else if (argumentMultimap.getValue(PREFIX_TAG).isPresent()) {
+            String keywords = argumentMultimap.getValue(PREFIX_TAG).get();
+            String trimmedKeywords = keywords.trim();
+            if (trimmedKeywords.isEmpty()) {
+                throw new ParseException(
+                        String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindByTagCommand.MESSAGE_USAGE));
+            }
+
+            String[] moduleKeywords = trimmedKeywords.split("\\s+");
+
+            return new FindByTagCommand(new TagContainsKeywordsPredicate(Arrays.asList(moduleKeywords)));
         } else {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindByPrefixCommand.MESSAGE_USAGE));
         }
