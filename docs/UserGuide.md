@@ -23,6 +23,7 @@ done faster and more securely than traditional GUI apps.
     * [Importing data: `import`](#importing-data--import)
     * [Exporting data: `export`](#exporting-data--export)
     * [Locking the application: `lock`](#locking-the-application--lock)
+    * [Setting or updating the password: `password`](#setting-or-updating-the-password--password)
 - [FAQ](#faq)
 - [Command Summary](#command-summary)
 
@@ -283,6 +284,23 @@ Locks the application. If a password has not been set, leave the password field 
 
 Format: `lock`
 
+---
+
+### Setting or updating the password : `password`
+
+Sets or updates the FinBook password
+
+Format: `password [old/OLDPASSWORD] new/NEWPASSWORD`
+
+* Sets or updates the password to the specified new password
+* No need to specify old password if setting the password for the first time
+* When updating the password, the specified old password must match the current password
+
+Examples:
+
+* `password new/foobar` sets the password to `foobar`, given that a password has not yet been set
+* `password old/foobar new/barfoo` updates the password to `barfoo`, given that the current password is `foobar`.
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## FAQ
@@ -305,3 +323,4 @@ the data of your previous FinBook home folder. Alternatively, you may use the `e
 | **Import**           | `import PATH`<br> e.g., `import ./data.json`                                                                                                                                                                                                                                              |
 | **Export**           | `export PATH`<br> e.g., `export ./data.csv`                                                                                                                                                                                                                                               |
 | **Lock application** | `lock`                                                                                                                                                                                                                                                                                    |
+| **Password**         | `password [old/OLDPASSWORD] new/NEWPASSWORD`<br> e.g.,`password old/foobar new/barfoo`                                                                                                                                                                                                    |
