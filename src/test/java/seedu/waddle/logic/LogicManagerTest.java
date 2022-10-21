@@ -3,8 +3,9 @@ package seedu.waddle.logic;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static seedu.waddle.commons.core.Messages.MESSAGE_INVALID_ITINERARY_DISPLAYED_INDEX;
 import static seedu.waddle.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
+import static seedu.waddle.logic.commands.CommandTestUtil.BUDGET_DESC_SUMMER;
 import static seedu.waddle.logic.commands.CommandTestUtil.COUNTRY_DESC_SUMMER;
-import static seedu.waddle.logic.commands.CommandTestUtil.END_DATE_DESC_SUMMER;
+import static seedu.waddle.logic.commands.CommandTestUtil.DURATION_DESC_SUMMER;
 import static seedu.waddle.logic.commands.CommandTestUtil.NAME_DESC_SUMMER;
 import static seedu.waddle.logic.commands.CommandTestUtil.PEOPLE_DESC_SUMMER;
 import static seedu.waddle.logic.commands.CommandTestUtil.START_DATE_DESC_SUMMER;
@@ -81,7 +82,7 @@ public class LogicManagerTest {
 
         // Execute add command
         String addCommand = AddCommand.COMMAND_WORD + NAME_DESC_SUMMER + COUNTRY_DESC_SUMMER + START_DATE_DESC_SUMMER
-                + END_DATE_DESC_SUMMER + PEOPLE_DESC_SUMMER;
+                + DURATION_DESC_SUMMER + PEOPLE_DESC_SUMMER + BUDGET_DESC_SUMMER;
         Itinerary expectedItinerary = new ItineraryBuilder(SUMMER).build();
         ModelManager expectedModel = new ModelManager();
         expectedModel.addItinerary(expectedItinerary);

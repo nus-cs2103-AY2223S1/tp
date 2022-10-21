@@ -1,26 +1,7 @@
 package seedu.waddle.logic.parser;
 
 import static seedu.waddle.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.waddle.logic.commands.CommandTestUtil.COUNTRY_DESC_SUMMER;
-import static seedu.waddle.logic.commands.CommandTestUtil.COUNTRY_DESC_WINTER;
-import static seedu.waddle.logic.commands.CommandTestUtil.END_DATE_DESC_SUMMER;
-import static seedu.waddle.logic.commands.CommandTestUtil.END_DATE_DESC_WINTER;
-import static seedu.waddle.logic.commands.CommandTestUtil.INVALID_COUNTRY_DESC;
-import static seedu.waddle.logic.commands.CommandTestUtil.INVALID_END_DATE_DESC;
-import static seedu.waddle.logic.commands.CommandTestUtil.INVALID_NAME_DESC;
-import static seedu.waddle.logic.commands.CommandTestUtil.INVALID_PEOPLE_DESC;
-import static seedu.waddle.logic.commands.CommandTestUtil.INVALID_START_DATE_DESC;
-import static seedu.waddle.logic.commands.CommandTestUtil.NAME_DESC_SUMMER;
-import static seedu.waddle.logic.commands.CommandTestUtil.NAME_DESC_WINTER;
-import static seedu.waddle.logic.commands.CommandTestUtil.PEOPLE_DESC_SUMMER;
-import static seedu.waddle.logic.commands.CommandTestUtil.PEOPLE_DESC_WINTER;
-import static seedu.waddle.logic.commands.CommandTestUtil.PREAMBLE_NON_EMPTY;
-import static seedu.waddle.logic.commands.CommandTestUtil.PREAMBLE_WHITESPACE;
-import static seedu.waddle.logic.commands.CommandTestUtil.START_DATE_DESC_WINTER;
-import static seedu.waddle.logic.commands.CommandTestUtil.VALID_COUNTRY_WINTER;
-import static seedu.waddle.logic.commands.CommandTestUtil.VALID_END_DATE_WINTER;
-import static seedu.waddle.logic.commands.CommandTestUtil.VALID_NAME_WINTER;
-import static seedu.waddle.logic.commands.CommandTestUtil.VALID_START_DATE_WINTER;
+import static seedu.waddle.logic.commands.CommandTestUtil.*;
 import static seedu.waddle.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.waddle.logic.parser.CommandParserTestUtil.assertParseSuccess;
 import static seedu.waddle.testutil.TypicalItineraries.WINTER;
@@ -44,34 +25,36 @@ public class AddCommandParserTest {
 
         // whitespace only preamble
         assertParseSuccess(parser, PREAMBLE_WHITESPACE + NAME_DESC_WINTER + COUNTRY_DESC_WINTER
-                        + START_DATE_DESC_WINTER + END_DATE_DESC_WINTER + PEOPLE_DESC_WINTER,
+                        + START_DATE_DESC_WINTER + DURATION_DESC_WINTER + PEOPLE_DESC_WINTER + BUDGET_DESC_WINTER,
                 new AddCommand(expectedItinerary));
 
         // multiple names - last name accepted
         assertParseSuccess(parser, NAME_DESC_SUMMER + NAME_DESC_WINTER + COUNTRY_DESC_WINTER
-                        + START_DATE_DESC_WINTER + END_DATE_DESC_WINTER + PEOPLE_DESC_WINTER,
+                        + START_DATE_DESC_WINTER + DURATION_DESC_WINTER + PEOPLE_DESC_WINTER + BUDGET_DESC_WINTER,
                 new AddCommand(expectedItinerary));
 
         // multiple country - last country accepted
         assertParseSuccess(parser, NAME_DESC_WINTER + COUNTRY_DESC_SUMMER + COUNTRY_DESC_WINTER
-                        + START_DATE_DESC_WINTER + END_DATE_DESC_WINTER + PEOPLE_DESC_WINTER,
+                        + START_DATE_DESC_WINTER + DURATION_DESC_WINTER + PEOPLE_DESC_WINTER + BUDGET_DESC_WINTER,
                 new AddCommand(expectedItinerary));
 
         // multiple people - last people accepted
         assertParseSuccess(parser, NAME_DESC_WINTER + PEOPLE_DESC_WINTER + COUNTRY_DESC_WINTER
-                        + START_DATE_DESC_WINTER + END_DATE_DESC_WINTER + PEOPLE_DESC_WINTER,
+                        + START_DATE_DESC_WINTER + DURATION_DESC_WINTER + PEOPLE_DESC_WINTER + BUDGET_DESC_WINTER,
                 new AddCommand(expectedItinerary));
 
-        // multiple end date - last address accepted
+        // multiple duration - last duration accepted
         assertParseSuccess(parser, NAME_DESC_WINTER + COUNTRY_DESC_WINTER + START_DATE_DESC_WINTER
-                        + END_DATE_DESC_SUMMER + END_DATE_DESC_WINTER + PEOPLE_DESC_WINTER,
+                        + DURATION_DESC_SUMMER + DURATION_DESC_WINTER + PEOPLE_DESC_WINTER + BUDGET_DESC_WINTER,
                 new AddCommand(expectedItinerary));
 
-        // multiple tags - all accepted
+        /* TODO: multiple budget
         Itinerary expectedItineraryMultipleTags = new ItineraryBuilder(WINTER).build();
         assertParseSuccess(parser, NAME_DESC_WINTER + COUNTRY_DESC_WINTER + START_DATE_DESC_WINTER
-                        + END_DATE_DESC_WINTER + PEOPLE_DESC_SUMMER + PEOPLE_DESC_WINTER,
+                        + DURATION_DESC_WINTER + PEOPLE_DESC_SUMMER + PEOPLE_DESC_WINTER,
                 new AddCommand(expectedItineraryMultipleTags));
+
+         */
     }
 
     @Test
@@ -80,54 +63,50 @@ public class AddCommandParserTest {
 
         // missing name prefix
         assertParseFailure(parser, VALID_NAME_WINTER + COUNTRY_DESC_WINTER + START_DATE_DESC_WINTER
-                + END_DATE_DESC_WINTER, expectedMessage);
+                + DURATION_DESC_WINTER, expectedMessage);
 
-        // missing phone prefix
-        assertParseFailure(parser, NAME_DESC_WINTER + VALID_COUNTRY_WINTER + START_DATE_DESC_WINTER
-                + END_DATE_DESC_WINTER, expectedMessage);
-
-        // missing email prefix
+        // missing start date prefix
         assertParseFailure(parser, NAME_DESC_WINTER + COUNTRY_DESC_WINTER + VALID_START_DATE_WINTER
-                + END_DATE_DESC_WINTER, expectedMessage);
+                + DURATION_DESC_WINTER, expectedMessage);
 
-        // missing address prefix
+        // missing duration prefix
         assertParseFailure(parser, NAME_DESC_WINTER + COUNTRY_DESC_WINTER + START_DATE_DESC_WINTER
-                + VALID_END_DATE_WINTER, expectedMessage);
+                + VALID_DURATION_WINTER, expectedMessage);
 
         // all prefixes missing
         assertParseFailure(parser, VALID_NAME_WINTER + VALID_COUNTRY_WINTER + VALID_START_DATE_WINTER
-                + VALID_END_DATE_WINTER, expectedMessage);
+                + VALID_DURATION_WINTER, expectedMessage);
     }
 
     @Test
     public void parse_invalidValue_failure() {
         // invalid name
         assertParseFailure(parser, INVALID_NAME_DESC + COUNTRY_DESC_WINTER + START_DATE_DESC_WINTER
-                + END_DATE_DESC_WINTER + PEOPLE_DESC_WINTER, Name.MESSAGE_CONSTRAINTS);
+                + DURATION_DESC_WINTER + PEOPLE_DESC_WINTER, Name.MESSAGE_CONSTRAINTS);
 
         // invalid phone
         assertParseFailure(parser, NAME_DESC_WINTER + INVALID_COUNTRY_DESC + START_DATE_DESC_WINTER
-                + END_DATE_DESC_WINTER + PEOPLE_DESC_WINTER, Country.MESSAGE_CONSTRAINTS);
+                + DURATION_DESC_WINTER + PEOPLE_DESC_WINTER, Country.MESSAGE_CONSTRAINTS);
 
         // invalid email
         assertParseFailure(parser, NAME_DESC_WINTER + COUNTRY_DESC_WINTER + INVALID_START_DATE_DESC
-                + END_DATE_DESC_WINTER + PEOPLE_DESC_WINTER, Date.MESSAGE_CONSTRAINTS);
+                + DURATION_DESC_WINTER + PEOPLE_DESC_WINTER, Date.MESSAGE_CONSTRAINTS);
 
         // invalid address
         assertParseFailure(parser, NAME_DESC_WINTER + COUNTRY_DESC_WINTER + START_DATE_DESC_WINTER
-                + INVALID_END_DATE_DESC + PEOPLE_DESC_WINTER, Date.MESSAGE_CONSTRAINTS);
+                + INVALID_DURATION_DESC + PEOPLE_DESC_WINTER, Date.MESSAGE_CONSTRAINTS);
 
         // invalid tag
         assertParseFailure(parser, NAME_DESC_WINTER + COUNTRY_DESC_WINTER + START_DATE_DESC_WINTER
-                + END_DATE_DESC_WINTER + INVALID_PEOPLE_DESC, People.MESSAGE_CONSTRAINTS);
+                + DURATION_DESC_WINTER + INVALID_PEOPLE_DESC, People.MESSAGE_CONSTRAINTS);
 
         // two invalid values, only first invalid value reported
         assertParseFailure(parser, INVALID_NAME_DESC + COUNTRY_DESC_WINTER + START_DATE_DESC_WINTER
-                + INVALID_END_DATE_DESC + PEOPLE_DESC_WINTER, Name.MESSAGE_CONSTRAINTS);
+                + INVALID_DURATION_DESC + PEOPLE_DESC_WINTER, Name.MESSAGE_CONSTRAINTS);
 
         // non-empty preamble
         assertParseFailure(parser, PREAMBLE_NON_EMPTY + NAME_DESC_WINTER + COUNTRY_DESC_WINTER
-                + START_DATE_DESC_WINTER + END_DATE_DESC_WINTER + PEOPLE_DESC_WINTER,
+                + START_DATE_DESC_WINTER + DURATION_DESC_WINTER + PEOPLE_DESC_WINTER,
                 String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
     }
 }

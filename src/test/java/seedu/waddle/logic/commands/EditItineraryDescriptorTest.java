@@ -5,7 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.waddle.logic.commands.CommandTestUtil.DESC_SUMMER;
 import static seedu.waddle.logic.commands.CommandTestUtil.DESC_WINTER;
 import static seedu.waddle.logic.commands.CommandTestUtil.VALID_COUNTRY_WINTER;
-import static seedu.waddle.logic.commands.CommandTestUtil.VALID_END_DATE_WINTER;
+import static seedu.waddle.logic.commands.CommandTestUtil.VALID_DURATION_WINTER;
 import static seedu.waddle.logic.commands.CommandTestUtil.VALID_NAME_WINTER;
 import static seedu.waddle.logic.commands.CommandTestUtil.VALID_PEOPLE_WINTER;
 import static seedu.waddle.logic.commands.CommandTestUtil.VALID_START_DATE_WINTER;
@@ -49,7 +49,7 @@ public class EditItineraryDescriptorTest {
         assertFalse(DESC_SUMMER.equals(editedSummer));
 
         // different end date -> returns false
-        editedSummer = new EditItineraryDescriptorBuilder(DESC_SUMMER).withEndDate(VALID_END_DATE_WINTER).build();
+        editedSummer = new EditItineraryDescriptorBuilder(DESC_SUMMER).withDuration(VALID_DURATION_WINTER).build();
         assertFalse(DESC_SUMMER.equals(editedSummer));
 
         // different people -> returns false
