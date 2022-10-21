@@ -8,10 +8,10 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.stage.Stage?>
 <?import javafx.scene.layout.VBox?>
-
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.FlowPane?>
+<?import javafx.scene.control.ScrollPane?>
 
 <fx:root type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/11" resizable="false"
          xmlns:fx="http://javafx.com/fxml/1" width="720" height="500" onCloseRequest="#handleCloseAddCommissionWindow">
@@ -53,7 +53,9 @@
                                 </HBox.margin>
                             </Label>
                             <VBox minWidth="500" maxWidth="500">
-                                <FlowPane fx:id="tags" styleClass="commissionTags" maxWidth="500"/>
+                                <ScrollPane maxWidth="500" maxHeight="200" fitToWidth="true" fitToHeight="true">
+                                    <FlowPane fx:id="tags" styleClass="commissionTags" />
+                                </ScrollPane>
                                 <TextField fx:id="tagField" promptText="To create a tag, key in the tag name and press enter"
                                            styleClass="addCommissionTextField" minWidth="500" maxWidth="500">
                                     <VBox.margin>

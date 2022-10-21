@@ -30,8 +30,6 @@ public class AddCommissionWindow extends UiPart<Stage> {
 
     private static final Logger logger = LogsCenter.getLogger(AddCommissionWindow.class);
     private static final String FXML = "AddCommissionWindow.fxml";
-    private static final int LIMIT_NUMBER_OF_TAGS = 10;
-    private static final String ERROR_LIMIT_NUMBER_OF_TAGS = "Number of tags should not exceed 10!";
     private static final String ERROR_BLANK_TAG_NAME = "Tag name should not be blank!";
     private static final String ERROR_DUPLICATED_TAG_NAME = "This tag has already been added!";
 
@@ -153,11 +151,6 @@ public class AddCommissionWindow extends UiPart<Stage> {
     }
 
     private void handleAddTag() {
-        if (uniqueTags.size() >= LIMIT_NUMBER_OF_TAGS) {
-            setErrorLabel(ERROR_LIMIT_NUMBER_OF_TAGS);
-            return;
-        }
-
         String tagName = tagField.getText().trim();
 
         if (tagName.isEmpty()) {
