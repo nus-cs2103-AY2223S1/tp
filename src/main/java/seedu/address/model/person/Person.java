@@ -16,6 +16,9 @@ import seedu.address.model.tag.Tag;
  */
 public class Person {
 
+
+    private static Social social = new Social();
+
     // Identity fields
     private final Occupation occupation;
     private final Name name;
@@ -25,7 +28,6 @@ public class Person {
     // Data fields
     private final Address address;
     private final Set<Tag> tags = new HashSet<>();
-    private static Social social = new Social();
 
     /**
      * Every field must be present and not null.
