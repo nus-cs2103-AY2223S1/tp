@@ -91,6 +91,8 @@ public class TaskEventCommandTest {
         Event validTask = new EventBuilder().withPersonName(validPerson).withEventDate(DATE_TWO).build();
         TaskEventCommand taskEventCommand = new TaskEventCommand(validTask.getName(), validTask.getDescription(),
                 validTask.getAssignment(), validTask.getDate());
+
+        // Adds the task into the modelStub.
         taskEventCommand.execute(modelStub);
 
         assertThrows(CommandException.class,

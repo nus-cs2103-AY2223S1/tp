@@ -94,6 +94,8 @@ public class TaskDeadlineCommandTest {
                 validTask.getDescription(),
                 validTask.getAssignment(),
                 validTask.getDate());
+
+        // Adds the task into the modelStub.
         taskDeadlineCommand.execute(modelStub);
 
         assertThrows(CommandException.class,

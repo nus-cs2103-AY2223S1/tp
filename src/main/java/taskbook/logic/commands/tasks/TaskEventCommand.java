@@ -32,7 +32,6 @@ public class TaskEventCommand extends TaskAddCommand {
                     + PREFIX_ASSIGN_TO + "NAME " + PREFIX_DESCRIPTION + "DESCRIPTION " + PREFIX_DATE + "DATE";
     public static final String MESSAGE_SUCCESS = "New event added: %1$s";
 
-
     private final LocalDate date;
 
     /**

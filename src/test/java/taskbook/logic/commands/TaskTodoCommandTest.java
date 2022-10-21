@@ -79,6 +79,8 @@ public class TaskTodoCommandTest {
         Todo validTask = new TodoBuilder().withPersonName(validPerson).build();
         TaskTodoCommand taskTodoCommand = new TaskTodoCommand(validTask.getName(), validTask.getDescription(),
                 validTask.getAssignment());
+
+        // Adds the task into the modelStub.
         taskTodoCommand.execute(modelStub);
 
         assertThrows(CommandException.class,
