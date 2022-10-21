@@ -97,7 +97,7 @@ Examples:
 * `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 g/m d/20/03/2002`
 * `add n/Betsy Crowe e/betsycrowe@example.com a/Newgate Prison p/1234567 t/friend t/criminal g/f d/14/12/1998`
 
-__Parameter: Gender__
+__Additional Parameter 1: Gender__
 
 Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS g/GENDER`
 
@@ -114,14 +114,6 @@ __Optional Parameter 2: Date of Birth__
 Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [d/DOB]`
 
 - Adds date of birth to a person in the contact list. Date format accepted is: dd/mm/yyyy.
-- NAME can contain more than 1 word.
-
-
-Examples:
-* `add n/John Wang p/98765432 e/johnwang@example.com a/John street, block 123, #01-01 d/20/03/2000`
-* `add n/John p/92781123 e/john@example.com a/Donald street, block 248, #02-04 d/24/09/2000`
-* `add n/Charlotte p/81286623 e/charlotte@example.com a/Charity street, block 101, #10-82 d/2/1/2000`
-
 
 ### Listing all persons : `list`
 
@@ -182,7 +174,7 @@ Format: `edit INDEX [g/GENDER]`
 Examples:
 * `edit 1 g/M`
 * `edit 2 g/f`
-* `edit 3 g/Female`
+* `edit 3 g/F`
 
 __Optional Parameter 2: Date of Birth__
 
