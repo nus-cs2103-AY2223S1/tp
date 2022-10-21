@@ -154,6 +154,18 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
+### Show grade feature
+
+#### Proposed Implementation
+
+The proposed show grade mechanism is implemented mainly using the help of `AddressBook#getGradeData`. It extends the `Command` class and implements `ShowGradeCommand#excute`. The `show grade` command can be used to show a student's grade pie chart and the value of each categorical data.
+
+The following sequence diagram shows how the show grade command works.
+
+![ShowGradeSequenceDiagram](images/ShowGradeSequenceDiagram.png)
+
+Given below is an example usage scenario and how the show grade mechanism behaves at each step.
+
 ### \[Proposed\] Undo/redo feature
 
 #### Proposed Implementation

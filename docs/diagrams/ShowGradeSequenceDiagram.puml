@@ -1,0 +1,52 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
+participant "s:ShowGradeCommand" as ShowGradeCommand LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":ModelManager" as ModelManager MODEL_COLOR
+participant ":AddressBook" as AddressBook MODEL_COLOR
+end box
+[-> LogicManager : execute(show grade)
+activate LogicManager
+
+LogicManager -> AddressBookParser : parseCommand(show grade))
+activate AddressBookParser
+
+create ShowGradeCommand
+AddressBookParser -> ShowGradeCommand
+activate ShowGradeCommand
+
+ShowGradeCommand --> AddressBookParser
+deactivate ShowGradeCommand
+
+AddressBookParser --> LogicManager : s
+deactivate AddressBookParser
+
+LogicManager -> ShowGradeCommand : execute()
+activate ShowGradeCommand
+
+ShowGradeCommand -> ModelManager : getStudentGradeChartData()
+activate ModelManager
+
+ModelManager -> AddressBook : getGradeData()
+activate AddressBook
+
+AddressBook --> ModelManager :
+deactivate AddressBook
+
+ModelManager --> ShowGradeCommand
+deactivate ModelManager
+
+ShowGradeCommand --> LogicManager : result
+deactivate ShowGradeCommand
+ShowGradeCommand -[hidden]-> LogicManager : result
+destroy ShowGradeCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml
