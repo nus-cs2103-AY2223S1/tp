@@ -59,7 +59,7 @@ public class FindCommandParserTest {
     }
 
     @Test
-    public void parse_invalidNameArgs_returnsFindCommand() {
+    public void parse_invalidNameArgs_throwsParseException() {
         // empty name input
         assertParseFailure(parser, " n/", Name.MESSAGE_CONSTRAINTS);
 
