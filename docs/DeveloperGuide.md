@@ -154,6 +154,29 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
+### \[Proposed\] Add Module with Semester Feature
+
+#### Proposed Implementation
+
+The proposed add command allows the user to add for a particular `UserModule` together with `SemesterData`. 
+It is facilitated by `AddCommand`.
+It extends the `Command` class.
+
+Users can add their `UserModule` with the Command:
+- `add <MODULE_CODE> <SEMESTER_CODE>`
+- e.g. `add CS1101S s1`
+
+#### Parsing of commands 
+`PositionalParameter` will handle the position of each data to be parsed. 
+`SemesterParameter` will check for valid semester code input.
+An exception will be thrown if semester code is invalid.
+
+#### Design Considerations:
+
+- Create a `SemesterParameter` class
+- Modify `AddCommand` class
+
+// Keep this part for future reference
 ### \[Proposed\] Undo/redo feature
 
 #### Proposed Implementation
