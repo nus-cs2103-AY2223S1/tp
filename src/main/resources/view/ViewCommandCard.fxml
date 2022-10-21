@@ -53,7 +53,7 @@
                 </Hyperlink>
             </HBox>
 
-            <Label fx:id="remark" styleClass="cell_small_label" text="\$remark" />
+            <Label fx:id="remark" styleClass="cell_small_label" text="\$remark" wrapText="true"/>
         </VBox>
     </GridPane>
 </HBox>
