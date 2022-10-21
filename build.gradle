@@ -6,6 +6,10 @@ plugins {
     id 'jacoco'
 }
 
+run {
+    enableAssertions = true
+}
+
 mainClassName = 'seedu.intrack.Main'
 
 sourceCompatibility = JavaVersion.VERSION_11
