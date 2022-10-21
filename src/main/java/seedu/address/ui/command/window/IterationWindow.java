@@ -1,5 +1,6 @@
 package seedu.address.ui.command.window;
 
+import java.io.File;
 import java.util.function.Consumer;
 import java.util.logging.Logger;
 
@@ -7,7 +8,10 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
+import javafx.scene.shape.Rectangle;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.logic.commands.exceptions.CommandException;
@@ -28,7 +32,6 @@ public abstract class IterationWindow extends UiPart<Stage> {
     private final ErrorDisplay errorDisplay;
 
     private String imagePath = "";
-    private Image image;
 
     @FXML
     private Label iterationWindowHeader;
@@ -38,6 +41,10 @@ public abstract class IterationWindow extends UiPart<Stage> {
     private TextField description;
     @FXML
     private TextField feedback;
+    @FXML
+    private Rectangle fileChooseArea;
+    @FXML
+    private ImageView imagePreview;
     @FXML
     private HBox errorMessagePlaceholder;
 
@@ -121,13 +128,27 @@ public abstract class IterationWindow extends UiPart<Stage> {
     abstract void handleIterationCommand();
 
     @FXML
+    private void chooseFile() {
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle("Choose iteration image");
+        fileChooser.getExtensionFilters().add(
+                new FileChooser.ExtensionFilter("Image Files", "*.png", "*.jpg", "*.gif")
+        );
+        File selectedFile = fileChooser.showOpenDialog(windowStage);
+        if (selectedFile != null) {
+            imagePath = selectedFile.toURI().toString();
+            Image imageSelected = new Image(imagePath);
+            imagePreview.setImage(imageSelected);
+        }
+    }
+
+    @FXML
     private void handleCloseIterationWindow() {
         date.clear();
         description.clear();
         feedback.clear();
         errorDisplay.clearError();
-        feedback = null;
-        image = null;
+        imagePreview.setImage(null);
         imagePath = "";
     }
 }

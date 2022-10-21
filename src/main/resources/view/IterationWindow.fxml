@@ -10,9 +10,10 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.ImageView?>
 
 <fx:root type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/11" resizable="false"
-         xmlns:fx="http://javafx.com/fxml/1" width="720" height="425"
+         xmlns:fx="http://javafx.com/fxml/1" width="720" height="500"
          onCloseRequest="#handleCloseIterationWindow">
     <scene>
         <Scene>
@@ -52,7 +53,7 @@
                                     <Insets right="70.0"/>
                                 </HBox.margin>
                             </Label>
-                            <TextField fx:id="feedback" styleClass="addCommissionTextField"/>
+                            <TextField fx:id="feedback" styleClass="addCommissionTextField" minWidth="500"/>
                         </HBox>
 
                         <HBox>
@@ -62,6 +63,12 @@
                                 </HBox.margin>
                             </Label>
                             <TextField fx:id="description" styleClass="addCommissionTextField" minWidth="500"/>
+                        </HBox>
+
+                        <HBox spacing="16">
+                            <Button text="+   Choose Image" styleClass="addButton"
+                                    onAction="#chooseFile" minHeight="189"/>
+                            <ImageView fitWidth="350" fitHeight="189" fx:id="imagePreview"/>
                         </HBox>
 
                         <BorderPane.margin>
