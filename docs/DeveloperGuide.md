@@ -326,6 +326,45 @@ _{more aspects and alternatives to be added}_
 
 _{Explain here how the data archiving feature will be implemented}_
 
+### Add Meeting Feature
+
+Syntax: `addMeeting i/INDEX d/DATE t/TIME dn/DESCRIPTION`
+Purpose: Adds a meeting with the given information to the internal model and storage
+
+#### Implementation
+
+In keeping with the command execution structure of the overall program, the command
+specific classes `AddMeetingCommandd` and `AddMeetingCommandParser` were added to the 
+commands and parser packages respectively. The main parser `MyInsuRecParser` was modified
+to accept the new command word, `addMeeting`.
+
+The following sequence diagram offers a high-level overview of how
+the command is executed.
+
+![AddMeetingSequenceDiagram](images/AddMeetingSequenceDiagram.png)
+
+#### Design Considerations
+
+**Aspect: What the addMeeting command accepts as a reference to a client:**
+
+- **Alternative 1 (current choice):** Accept the client's list index.
+  - Pros: Each valid index is guaranteed to refer to a unique client.
+  - Cons: It is less intuitive for the user compared to typing in a name.
+- **Alternative 2:** Accept the client's name.
+  - Pros: It is intuitive for the user to enter a name.
+  - Cons: Names have to be spelt exactly as stored, otherwise the name.
+could be referencing more than one client.
+
+**Aspect: The parameters that the AddMeetingCommand constructor should accept:**
+
+- **Alternative 1 (current choice):** Accept the parsed command arguments separately.
+  - Pros: The logic and operations on the model that are associated with 
+command execution are inside the AddMeetingCommand.
+  - Cons: The design of AddMeetingCommand is less intuitive.
+- **Alternative 2:** Accept a completed Meeting.
+  - Pros: The design of AddMeetingCommmand is simpler.
+  - Cons: The parser will need to have access to the model in order to 
+obtain the referenced client.
 
 --------------------------------------------------------------------------------------------------------------------
 
