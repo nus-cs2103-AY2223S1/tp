@@ -3,6 +3,7 @@ package swift.logic;
 import java.io.IOException;
 import java.nio.file.Path;
 import java.util.logging.Logger;
+
 import javafx.collections.ObservableList;
 import swift.commons.core.GuiSettings;
 import swift.commons.core.LogsCenter;
@@ -22,68 +23,66 @@ import swift.storage.Storage;
  */
 public class LogicManager implements Logic {
 
-  public static final String FILE_OPS_ERROR_MESSAGE =
-    "Could not save data to file: ";
-  private final Logger logger = LogsCenter.getLogger(LogicManager.class);
+    public static final String FILE_OPS_ERROR_MESSAGE = "Could not save data to file: ";
+    private final Logger logger = LogsCenter.getLogger(LogicManager.class);
 
-  private final Model model;
-  private final Storage storage;
-  private final AddressBookParser addressBookParser;
+    private final Model model;
+    private final Storage storage;
+    private final AddressBookParser addressBookParser;
 
-  /**
-   * Constructs a {@code LogicManager} with the given {@code Model} and {@code Storage}.
-   */
-  public LogicManager(Model model, Storage storage) {
-    this.model = model;
-    this.storage = storage;
-    addressBookParser = new AddressBookParser();
-  }
-
-  @Override
-  public CommandResult execute(String commandText)
-    throws CommandException, ParseException {
-    logger.info("----------------[USER COMMAND][" + commandText + "]");
-
-    CommandResult commandResult;
-    Command command = addressBookParser.parseCommand(commandText);
-    commandResult = command.execute(model);
-
-    try {
-      storage.saveAddressBook(model.getAddressBook());
-    } catch (IOException ioe) {
-      throw new CommandException(FILE_OPS_ERROR_MESSAGE + ioe, ioe);
+    /**
+     * Constructs a {@code LogicManager} with the given {@code Model} and {@code Storage}.
+     */
+    public LogicManager(Model model, Storage storage) {
+        this.model = model;
+        this.storage = storage;
+        addressBookParser = new AddressBookParser();
     }
 
-    return commandResult;
-  }
+    @Override
+    public CommandResult execute(String commandText) throws CommandException, ParseException {
+        logger.info("----------------[USER COMMAND][" + commandText + "]");
 
-  @Override
-  public ReadOnlyAddressBook getAddressBook() {
-    return model.getAddressBook();
-  }
+        CommandResult commandResult;
+        Command command = addressBookParser.parseCommand(commandText);
+        commandResult = command.execute(model);
 
-  @Override
-  public ObservableList<Person> getFilteredPersonList() {
-    return model.getFilteredPersonList();
-  }
+        try {
+            storage.saveAddressBook(model.getAddressBook());
+        } catch (IOException ioe) {
+            throw new CommandException(FILE_OPS_ERROR_MESSAGE + ioe, ioe);
+        }
 
-  @Override
-  public ObservableList<Task> getFilteredTaskList() {
-    return model.getFilteredTaskList();
-  }
+        return commandResult;
+    }
 
-  @Override
-  public Path getAddressBookFilePath() {
-    return model.getAddressBookFilePath();
-  }
+    @Override
+    public ReadOnlyAddressBook getAddressBook() {
+        return model.getAddressBook();
+    }
 
-  @Override
-  public GuiSettings getGuiSettings() {
-    return model.getGuiSettings();
-  }
+    @Override
+    public ObservableList<Person> getFilteredPersonList() {
+        return model.getFilteredPersonList();
+    }
 
-  @Override
-  public void setGuiSettings(GuiSettings guiSettings) {
-    model.setGuiSettings(guiSettings);
-  }
+    @Override
+    public ObservableList<Task> getFilteredTaskList() {
+        return model.getFilteredTaskList();
+    }
+
+    @Override
+    public Path getAddressBookFilePath() {
+        return model.getAddressBookFilePath();
+    }
+
+    @Override
+    public GuiSettings getGuiSettings() {
+        return model.getGuiSettings();
+    }
+
+    @Override
+    public void setGuiSettings(GuiSettings guiSettings) {
+        model.setGuiSettings(guiSettings);
+    }
 }
