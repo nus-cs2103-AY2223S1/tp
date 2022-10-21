@@ -2,12 +2,12 @@ package seedu.address.model.task;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.testutil.TypicalTasks.FIRST;
-import static seedu.address.testutil.TypicalTasks.SECOND;
+import static seedu.address.testutil.TypicalToDos.FIRST;
+import static seedu.address.testutil.TypicalToDos.SECOND;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.testutil.TaskBuilder;
+import seedu.address.testutil.ToDoBuilder;
 
 public class TaskTest {
 
@@ -23,7 +23,7 @@ public class TaskTest {
     @Test
     public void equals() {
         // same values -> returns true
-        Task firstCopy = new TaskBuilder(FIRST).build();
+        Task firstCopy = new ToDoBuilder(FIRST).build();
         assertTrue(FIRST.equals(firstCopy));
 
         // same object -> returns true
