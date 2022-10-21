@@ -8,8 +8,8 @@ import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Region;
-import seedu.phu.commons.util.StringUtil;
 import seedu.phu.model.ReadOnlyInternshipBook;
+import seedu.phu.model.internship.ApplicationProcess;
 import seedu.phu.model.internship.Internship;
 
 
@@ -21,8 +21,6 @@ public class ReminderBarFooter extends UiPart<Region> {
     private static final String FXML = "ReminderBarFooter.fxml";
     private static final String REMINDER_ICON_PATH = "/images/reminder_icon.png";
     private static final String DEFAULT_REMINDER_TEXT = "Upcoming (in the next 7 days):  ";
-    private static final String PROCESS_ASSESSMENT = "ASSESSMENT";
-    private static final String PROCESS_INTERVIEW = "INTERVIEW";
     private static final int UPCOMING_DAYS = 7;
 
     @FXML
@@ -41,19 +39,22 @@ public class ReminderBarFooter extends UiPart<Region> {
     }
 
     public void setReminderText(ReadOnlyInternshipBook book) {
-        String upcomingAssessments = getStatusCount(PROCESS_ASSESSMENT, book) + " " + PROCESS_ASSESSMENT + " ";
-        String upcomingInterviews = getStatusCount(PROCESS_INTERVIEW, book) + " " + PROCESS_INTERVIEW + " ";
-        reminderStatus.setText(DEFAULT_REMINDER_TEXT + upcomingAssessments + upcomingInterviews);
+        String upcomingAssessments = getStatusCount(ApplicationProcess.ApplicationProcessState.ASSESSMENT, book)
+                + " " + ApplicationProcess.ApplicationProcessState.ASSESSMENT + " ";
+        String upcomingInterviews = getStatusCount(ApplicationProcess.ApplicationProcessState.INTERVIEW, book)
+                + " " + ApplicationProcess.ApplicationProcessState.INTERVIEW + " ";
+        String pendingOffers = getStatusCount(ApplicationProcess.ApplicationProcessState.OFFER, book)
+                + " " + ApplicationProcess.ApplicationProcessState.OFFER + " ";
+        reminderStatus.setText(DEFAULT_REMINDER_TEXT + upcomingAssessments + upcomingInterviews + pendingOffers);
     }
 
-    private int getStatusCount(String ap, ReadOnlyInternshipBook book) {
+    private int getStatusCount(ApplicationProcess.ApplicationProcessState ap, ReadOnlyInternshipBook book) {
         return book.getInternshipList().filtered(new Predicate<Internship>() {
             @Override
             public boolean test(Internship internship) {
                 return LocalDate.now().plusDays(-1).isBefore(internship.getDate().value)
                         && internship.getDate().value.isBefore(LocalDate.now().plusDays(UPCOMING_DAYS))
-                        && StringUtil.containsWordIgnoreCase(
-                                String.valueOf(internship.getApplicationProcess().value), ap);
+                        && internship.getApplicationProcess().value.equals(ap);
             }
         }).size();
     }
