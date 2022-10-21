@@ -122,9 +122,8 @@
 }
 
 .cell_big_label {
-    -fx-font-family: 'Baramond';
-    -fx-font-weight: bold;
-    -fx-font-size: 16px;
+    -fx-font-family: "Georgia";
+    -fx-font-size: 18px;
     -fx-text-fill: #333333;
     -fx-background-color: transparent;
 }
@@ -137,14 +136,14 @@
 }
 
 .sub_heading {
-    -fx-font-family: "Segoe UI Semibold";
+    -fx-font-family: "Tahoma";
     -fx-font-size: 11px;
     -fx-text-fill: #A1A1AA;
     -fx-background-color: transparent;
 }
 
 .cell_small_flowPane .label {
-    -fx-font-family: "Segoe UI";
+    -fx-font-family: "Tahoma";
     -fx-font-size: 13px;
     -fx-text-fill: #AFB4FF;
     -fx-background-color: #AFB4FF;
@@ -169,7 +168,8 @@
 }
 
 .due_date_label {
-    -fx-font-family: "Tahoma";
+    -fx-font-family: 'Arial';
+    -fx-font-weight: bold;
     -fx-background-color: transparent;
     -fx-font-size: 13;
     -fx-text-fill: #A1A1AA;
@@ -249,10 +249,12 @@
 }
 
 .menu-bar .label {
-    -fx-font-size: 14pt;
-    -fx-font-family: "Segoe UI Light";
+    -fx-font-size: 12pt;
+    -fx-font-family: "Arial";
+    -fx-font-weight: bold;
     -fx-text-fill: #A1A1AA;
     -fx-opacity: 0.9;
+    -fx-background-color: transparent;
 }
 
 .menu .left-container {
@@ -374,7 +376,7 @@
     -fx-background-insets: 0;
     -fx-border-insets: 0;
     -fx-border-width: 1;
-    -fx-font-family: "Segoe UI Light";
+    -fx-font-family: "Georgia";
     -fx-font-size: 13pt;
     -fx-text-fill: #6a7a91;
 }

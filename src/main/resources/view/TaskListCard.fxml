@@ -12,7 +12,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<HBox id="cardPane" fx:id="cardPane" maxWidth="820.0" minWidth="820.0" prefHeight="110.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
+<HBox id="cardPane" fx:id="cardPane" maxWidth="800.0" minWidth="800.0" prefHeight="110.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
    <Pane prefHeight="200.0" prefWidth="10.0" />
    <Pane prefHeight="200.0" prefWidth="1.0">
 <!--      <children>-->
@@ -35,21 +35,24 @@
                         <Region fx:constant="USE_PREF_SIZE" />
                     </minWidth>
                 </Label>
-                <Label fx:id="taskName" minWidth="630.0" prefHeight="17.0" styleClass="cell_big_label" text="\$first">
+                <Label fx:id="taskName" minWidth="600.0" prefHeight="17.0" styleClass="cell_big_label" text="\$first">
                     <padding>
                         <Insets bottom="5.0" right="10.0" top="5.0" />
-                    </padding></Label>
-            <Label fx:id="dueDate" alignment="CENTER_RIGHT" contentDisplay="RIGHT" maxWidth="160.0" prefHeight="17.0" styleClass="due_date_label" textAlignment="RIGHT" HBox.hgrow="ALWAYS">
+                    </padding>
+               <font>
+                  <Font name="Trebuchet MS Bold" size="14.0" />
+               </font></Label>
+            <Label fx:id="dueDate" alignment="TOP_RIGHT" contentDisplay="RIGHT" maxWidth="160.0" prefHeight="17.0" styleClass="due_date_label" textAlignment="RIGHT" translateY="-5.0" HBox.hgrow="ALWAYS">
                <font>
                   <Font name="Bodoni 72 Book" size="13.0" />
                </font>
                <padding>
-                  <Insets right="10.0" />
+                  <Insets right="6.0" />
                </padding></Label>
             </HBox>
-            <HBox prefHeight="18.0" prefWidth="130.0">
+            <HBox prefHeight="18.0">
                 <children>
-                   <FlowPane fx:id="contacts" alignment="CENTER_LEFT" prefHeight="18.0" prefWidth="345.0" HBox.hgrow="ALWAYS">
+                   <FlowPane fx:id="contacts" alignment="CENTER_LEFT" prefHeight="18.0" translateX="20.0" HBox.hgrow="ALWAYS">
                        <padding>
                            <Insets right="10.0" />
                        </padding>
