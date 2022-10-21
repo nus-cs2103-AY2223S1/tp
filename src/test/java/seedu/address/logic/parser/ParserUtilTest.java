@@ -248,9 +248,9 @@ public class ParserUtilTest {
 
     @Test
     public void parseWardNumber_validValueWithWhitespace_returnsTrimmedAddress() throws Exception {
-        String WardNumberWithWhitespace = WHITESPACE + VALID_WARD_NUMBER + WHITESPACE;
+        String wardNumberWithWhitespace = WHITESPACE + VALID_WARD_NUMBER + WHITESPACE;
         WardNumber expectedWardNumber = new WardNumber(VALID_WARD_NUMBER);
-        assertEquals(expectedWardNumber, ParserUtil.parseWardNumber(WardNumberWithWhitespace));
+        assertEquals(expectedWardNumber, ParserUtil.parseWardNumber(wardNumberWithWhitespace));
     }
 
     @Test
@@ -271,9 +271,9 @@ public class ParserUtilTest {
 
     @Test
     public void parseMedications_validValueWithWhitespace_returnsTrimmedMedication() throws Exception {
-        String MedicationWithWhitespace = WHITESPACE + VALID_MEDICATION_1 + WHITESPACE;
+        String medicationWithWhitespace = WHITESPACE + VALID_MEDICATION_1 + WHITESPACE;
         Medication expectedMedication = new Medication(VALID_MEDICATION_1);
-        assertEquals(expectedMedication, ParserUtil.parseMedication(MedicationWithWhitespace));
+        assertEquals(expectedMedication, ParserUtil.parseMedication(medicationWithWhitespace));
     }
 
     @Test

@@ -10,16 +10,30 @@ import seedu.address.commons.util.StringUtil;
 public class HospitalWingContainsKeywordsPredicate implements Predicate<Person> {
     private final List<String> keywords;
 
+    /**
+     * Constructor for HospitalWingContainsKeywordsPredicate.
+     * @param keywords patients' hospital wings
+     */
     public HospitalWingContainsKeywordsPredicate(List<String> keywords) {
         this.keywords = keywords;
     }
 
+    /**
+     * Tests if the input argument matches the person's details
+     * @param person the input argument
+     * @return the test result
+     */
     @Override
     public boolean test(Person person) {
         return keywords.stream()
                 .anyMatch(keyword -> StringUtil.containsWordIgnoreCase(person.getHospitalWing().get().value, keyword));
     }
 
+    /**
+     * Tests the similarity of two objects
+     * @param other the object to be tested
+     * @return true if the objects are equal, otherwise false
+     */
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
