@@ -25,14 +25,16 @@ import seedu.address.model.UserPrefs;
  */
 public class ImportCommandTest {
 
-    private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
     private static final Path TEST_DATA_FOLDER = Paths.get("src", "test", "data", "ImportCommandTest");
+    private static final Path DUPLICATE_PERSON_FILE = TEST_DATA_FOLDER.resolve("duplicatePersonAddressBook.json");
+    private static final Path INVALID_PERSON_FILE = TEST_DATA_FOLDER.resolve("invalidPersonAddressBook.json");
     private static final Path NON_EXISTENT_FILE = TEST_DATA_FOLDER.resolve("nonExistentFile.json");
     private static final Path NOT_JSON_FORMAT_FILE = TEST_DATA_FOLDER.resolve("notJsonFormatAddressBook.json");
     private static final Path TYPICAL_PERSONS_FILE = TEST_DATA_FOLDER.resolve("typicalPersonsAddressBook.json");
-    private static final Path INVALID_PERSON_FILE = TEST_DATA_FOLDER.resolve("invalidPersonAddressBook.json");
-    private static final Path DUPLICATE_PERSON_FILE = TEST_DATA_FOLDER.resolve("duplicatePersonAddressBook.json");
-    private static final Path VALID_PERSON_FILE = TEST_DATA_FOLDER.resolve("validPersonAddressBook.json");
+
+    private static final Path VALID_PERSON_FILE = TEST_DATA_FOLDER.resolve("validPersonsAddressBook.json");
+
+    private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
 
     @Test
     public void constructor_nullPath_throwsNullPointerException() {
@@ -49,6 +51,13 @@ public class ImportCommandTest {
     public void execute_fileDoesNotExist_throwsCommandException() {
         assertThrows(CommandException.class,
                 ImportCommand.MESSAGE_FILE_DOES_NOT_EXIST, () -> new ImportCommand(NON_EXISTENT_FILE).execute(model));
+    }
+
+    @Test
+    public void execute_notJsonFormatFile_throwsCommandException() {
+        assertThrows(CommandException.class,
+                ImportCommand.MESSAGE_CONSTRAINTS_UNSATISFIED, () ->
+                        new ImportCommand(NOT_JSON_FORMAT_FILE).execute(model));
     }
 
     @Test
