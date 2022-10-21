@@ -154,6 +154,27 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
+### Sort Person list
+
+#### Implementation
+
+1. When the user sorts the person list, the command goes through the `LogicManager`, which will then go through the `AddressBookParser`.
+2. The `AddressBookParser` will then create the corresponding parser for the command, which is `SortPersonCommandParser`.
+3. After which, it will pass the argument (the full command excluding the command word) to this parser.
+4. The command parser will then create a `SortPersonCommand` with the corresponding internal variable (`n/` means sort by name, `c/` means sort by associated company name). This is facilitated by the `Criteria` enumeration.
+5. The method then returns all the way back to `LogicManager`, which is then stored as a variable called `command`.
+6. Then, the command is executed by calling the `execute()` method of `SortPersonCommand` (the command that was returned earlier) directly.
+7. Based on its internal variable, it will call `sortPersonlist()` in the `Model` class on the person list, and passes the sort criteria.
+8. The person list will then set the comparator based on the criteria that was passed earlier, and the list is sorted based on that comparator.
+9. Afterwards, `SortPersonCommand` creates a `CommandResult` to denote that the operation is completed, and returns this `CommandResult` back to `LogicManager`.
+
+The sequence diagram is given below.
+![SortPersonSequence](images/SortPersonSequence.png)
+
+#### Design considerations
+
+The sorting mechanism is designed in a way to keep all operations to the `SortPersonCommand` object itself, which will them prompt the `Model` to set the comparator of the person list. This is consistent with the other commands, as they will go through the same process, since each command has their own class and parser (if needed).
+
 ### \[Proposed\] Undo/redo feature
 
 #### Proposed Implementation
