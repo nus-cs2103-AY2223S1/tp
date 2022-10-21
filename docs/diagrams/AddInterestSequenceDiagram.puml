@@ -3,22 +3,22 @@
 
 skinparam SequenceReferenceBackgroundColor White
 box Logic LOGIC_COLOR_T1
-participant ":LogicManager" as LogicManager LOGIC_COLOR
-participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
-participant ":AddInterestCommandParser" as AddInterestCommandParser LOGIC_COLOR
-participant ":AddInterestCommand" as AddInterestCommand LOGIC_COLOR
+participant ":Logic\nManager" as LogicManager LOGIC_COLOR
+participant ":AddressBook\nParser" as AddressBookParser LOGIC_COLOR
+participant ":AddInterest\nCommandParser" as AddInterestCommandParser LOGIC_COLOR
+participant ":AddInterest\nCommand" as AddInterestCommand LOGIC_COLOR
 end box
 
 box Model MODEL_COLOR_T1
 participant ":Model" as Model MODEL_COLOR
-participant "interestList:Set<Interest>" as Interest MODEL_COLOR
+participant "interestList:\nSet<Interest>" as Interest MODEL_COLOR
 
 end box
 
-[-> LogicManager : execute()
+[-> LogicManager : execute\n("addInt 1 anime")
 activate LogicManager
 
-LogicManager -> AddressBookParser : parseCommand()
+LogicManager -> AddressBookParser : parseCommand\n("addInt 1 anime")
 activate AddressBookParser
 
 create AddInterestCommandParser
@@ -34,11 +34,11 @@ deactivate Interest
 AddInterestCommandParser --> AddressBookParser
 deactivate AddInterestCommandParser
 
-AddressBookParser -> AddInterestCommandParser : parse("1 anime")
+AddressBookParser -> AddInterestCommandParser : parse\n("1 anime")
 activate AddInterestCommandParser
 
 create AddInterestCommand
-AddInterestCommandParser -> AddInterestCommand: new(1, interestList)
+AddInterestCommandParser -> AddInterestCommand: new\n(1, interestList)
 activate AddInterestCommand
 
 AddInterestCommand --> AddInterestCommandParser
