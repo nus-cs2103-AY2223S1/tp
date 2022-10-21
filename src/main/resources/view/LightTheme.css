@@ -5,30 +5,25 @@
 
 .label {
     -fx-font-size: 11pt;
-    -fx-font-family: "Segoe UI Semibold";
     -fx-text-fill: #555555;
     -fx-opacity: 0.9;
 }
 
 .label-bright {
     -fx-font-size: 11pt;
-    -fx-font-family: "Segoe UI Semibold";
     -fx-text-fill: black;
     -fx-opacity: 1;
 }
 
 .label-bright-padding {
     -fx-font-size: 12pt;
-    -fx-font-family: "Segoe UI Semibold";
     -fx-text-fill: black;
-    -fx-font-weight: bold;
     -fx-opacity: 1;
     -fx-padding: 0 0 10 0;
 }
 
 .label-header {
     -fx-font-size: 32pt;
-    -fx-font-family: "Segoe UI Semibold";
     -fx-text-fill: black;
     -fx-opacity: 1;
 }
@@ -136,7 +131,6 @@
 }
 
 .cell_small_label {
-    -fx-font-family: "Segoe UI Semibold";
     -fx-font-size: 13px;
     -fx-text-fill: #010504;
 }
