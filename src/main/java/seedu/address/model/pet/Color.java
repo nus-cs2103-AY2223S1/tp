@@ -5,7 +5,7 @@ import java.util.Objects;
 /**
  * Abstracts the color of a pet.
  */
-public class Color {
+public class Color implements Comparable<Color> {
     private final String value;
 
     /**
@@ -41,5 +41,10 @@ public class Color {
      */
     public String getValue() {
         return value;
+    }
+
+    @Override
+    public int compareTo(Color o) {
+        return this.value.compareTo(o.getValue());
     }
 }

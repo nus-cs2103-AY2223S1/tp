@@ -3,7 +3,7 @@ package seedu.address.model.pet;
 /**
  * Represents the species (kind) of a pet.
  */
-public class Species {
+public class Species implements Comparable<Species> {
     private final String value;
 
     /**
@@ -38,5 +38,10 @@ public class Species {
 
     public String getValue() {
         return value;
+    }
+
+    @Override
+    public int compareTo(Species o) {
+        return this.value.compareTo(o.value);
     }
 }

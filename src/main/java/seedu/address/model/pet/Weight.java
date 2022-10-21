@@ -3,7 +3,7 @@ package seedu.address.model.pet;
 /**
  * A class the represents the weight of a pet.
  */
-public class Weight {
+public class Weight implements Comparable<Weight> {
 
     public static final String UNIT = "kg";
     public static final String MESSAGE_USAGE =
@@ -40,4 +40,8 @@ public class Weight {
         return value;
     }
 
+    @Override
+    public int compareTo(Weight o) {
+        return Double.compare(this.value, o.value);
+    }
 }
