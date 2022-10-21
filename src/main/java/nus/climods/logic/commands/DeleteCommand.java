@@ -4,7 +4,7 @@ import static java.util.Objects.requireNonNull;
 
 import nus.climods.logic.commands.exceptions.CommandException;
 import nus.climods.model.Model;
-import nus.climods.model.module.UserModule;
+import nus.climods.model.module.exceptions.UserModuleNotFoundException;
 
 
 /**
@@ -34,15 +34,15 @@ public class DeleteCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-
-        UserModule toDelete = new UserModule(model.getModule(targetCode));
-        if (!model.filteredListhasUserModule(toDelete)) {
-            return new CommandResult(String.format(MESSAGE_DELETE_MODULE_FAILED, targetCode),
+        try {
+            model.deleteUserModule(targetCode);
+        } catch (UserModuleNotFoundException e) {
+            return new CommandResult(String.format(MESSAGE_DELETE_MODULE_FAILED, targetCode.toUpperCase()),
                     COMMAND_WORD, model);
         }
 
-        model.deleteUserModule(toDelete);
-        return new CommandResult(String.format(MESSAGE_DELETE_MODULE_SUCCESS, targetCode), COMMAND_WORD, model);
+        return new CommandResult(String.format(MESSAGE_DELETE_MODULE_SUCCESS, targetCode.toUpperCase()),
+                COMMAND_WORD, model);
     }
 
     @Override

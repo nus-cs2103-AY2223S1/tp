@@ -42,7 +42,7 @@ public class AddCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
 
-        UserModule moduleToAdd = new UserModule(model.getModule(toAdd));
+        UserModule moduleToAdd = new UserModule(model.getModule(toAdd.toUpperCase()));
 
         if (model.hasUserModule(moduleToAdd)) {
             throw new CommandException(MESSAGE_DUPLICATE_MODULE);
@@ -50,7 +50,8 @@ public class AddCommand extends Command {
 
         model.addUserModule(moduleToAdd);
 
-        return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd), COMMAND_WORD, model);
+        return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd.toUpperCase()),
+                COMMAND_WORD, model);
     }
 
     @Override

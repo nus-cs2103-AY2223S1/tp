@@ -54,14 +54,8 @@ class ModelStub implements Model {
     public boolean hasUserModule(UserModule module) {
         return hasModule;
     }
-
     @Override
-    public boolean filteredListhasUserModule(UserModule module) {
-        return hasModule;
-    }
-
-    @Override
-    public void deleteUserModule(UserModule target) {
+    public void deleteUserModule(String target) {
     }
 
     @Override

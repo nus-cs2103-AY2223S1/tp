@@ -5,6 +5,7 @@ import static nus.climods.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Iterator;
 import java.util.List;
+import java.util.Optional;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -35,6 +36,7 @@ public class UniqueUserModuleList implements Iterable<UserModule> {
         requireNonNull(toCheck);
         return internalList.stream().anyMatch(toCheck::isSameUserModule);
     }
+
 
     /**
      * Adds a module to the list. The module must not already exist in the list.
@@ -70,10 +72,15 @@ public class UniqueUserModuleList implements Iterable<UserModule> {
     /**
      * Removes the equivalent module from the list. The module must exist in the list.
      */
-    public void remove(UserModule toRemove) {
+    public void remove(String toRemove) {
         requireNonNull(toRemove);
-        if (!internalList.remove(toRemove)) {
+        Optional<UserModule> deleteMod = internalList.stream()
+                .filter(mod -> mod.getUserModuleCode().equals(toRemove.toUpperCase()))
+                .findFirst();
+        if (deleteMod.isEmpty()) {
             throw new UserModuleNotFoundException();
+        } else {
+            internalList.remove(deleteMod.get());
         }
     }
 
