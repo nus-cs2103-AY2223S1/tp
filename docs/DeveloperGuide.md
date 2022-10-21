@@ -184,7 +184,7 @@ housing management staff.
 Refactoring of classes to make use of `Resident` related fields and information was a priority for us in the intiial
 stages of development. With `Resident` not yet implemented, it was difficult for us to progress to other features that
 required the fields of said class. After this refactoring was done, all packages now fall under `seedu.rc4hdb`, the
-`Person` class was no longer needed, and `Resident` was able to replace it in all existing commands.  The example below 
+`Person` class was no longer needed, and `Resident` was able to replace it in all existing commands.  The example below
 shows the updated Sequence diagram for the executing of our `delete` command.
 <img src="images/DeleteSequenceDiagram2.png" />
 
@@ -227,14 +227,14 @@ two different indices in the results of two different commands.
 
 #### Obtaining `Resident` fields
 
-From the [documentation](https://docs.oracle.com/javase/8/javafx/api/javafx/scene/control/TableColumn.html), a 
+From the [documentation](https://docs.oracle.com/javase/8/javafx/api/javafx/scene/control/TableColumn.html), a
 `TableView` is made up of a number of `TableColumn` instances. `TableColumn` provided us with a method to
 `setCellValueFactory` which allows us to iterate through the list of `Residents` and obtain the value dynamically.
 
-In using the `setCellValueFactory` method, we also used the `PropertyValueFactory` class. The implementation of 
+In using the `setCellValueFactory` method, we also used the `PropertyValueFactory` class. The implementation of
 `PropertyValueFactory` has enabled us to easily obtain fields due to its *method matching* [functionality](https://docs.oracle.com/javase/8/javafx/api/javafx/scene/control/cell/PropertyValueFactory.html).
 
-By constructing `nameCol.setCellValueFactory(new PropertyValueFactory<Resident, String>("name")`, the "name" string is 
+By constructing `nameCol.setCellValueFactory(new PropertyValueFactory<Resident, String>("name")`, the "name" string is
 used as a reference to an assumed `Resident::getName`. By fitting an appropriate parameter, we were able to get the
 fields with little effort.
 
@@ -242,14 +242,14 @@ fields with little effort.
 <br>
 
 #### Differences in Updating Data
-Another difference between `PersonListPanel` and `ResidentTableView` is the behavior in handling updates to a 
+Another difference between `PersonListPanel` and `ResidentTableView` is the behavior in handling updates to a
 `Resident`. In `ResidentTableView` modifications to any fields of a `Resident` would not require explicit
 invocation of a method to update the Ui. This design was possible as `TableView` automatically adds an observer
 to the returned value from `setCellValueFactory` which was used to obtain the `Resident` fields as mentioned in the
 [section above](#obtaining-resident-fields). As a result, any updates to `ObservableList<Resident>` would be reflected
 immediately in all cells of the Table.
 
-The caveat to this is that in the implementation of `Resident` fields, we have to ensure the presence of a 
+The caveat to this is that in the implementation of `Resident` fields, we have to ensure the presence of a
 `Resident::getXXX` to enable method matching between the `PropertyValueFactory` and the `Resident` class.
 
 <br>
@@ -268,7 +268,7 @@ To achieve this, we modified our UI to use a `TableView`, where using `setVisibl
 
 <br>
 
-**Challenges faced with linking components:** 
+**Challenges faced with linking components:**
 
 The next challenge was linking up the `Model` with the `ResidentTableView` class, such that the list of fields to hide could be updated based on user commands. There is no equivalent of React Context in Java, and references from parent to child classes are unidirectional, so I had to get creative with the implementation. There were two field lists, one in `ModelManager` and one in `ResidentViewTable`, which had to be synchronized somehow.
 
@@ -530,7 +530,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 3a1. RC4HDB shows an error message.
 
     Use case resumes at step 3.
-  
+
 <br>
 
 **Use case: UC3. Listing out information of all residents**
@@ -545,9 +545,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **Extensions**
 
 * 1a. The user wants to view only certain fields in the list.
-    
+
   * 1a1. The user specifies which fields he wants to see or hide.
-    
+
   Use case resumes at step 2.
 
 
@@ -572,7 +572,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 2a. There is no relevant category for that information.
   * 2a1. RC4HDB shows an error message.
-  
+
   Use case ends.
 
 
@@ -760,7 +760,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Glossary
 * **Command Line Interface (CLI)**: An area in the application interface for users to input commands
-* **Comma-Separated Values (CSV)**: A delimited text file that uses a comma to separate values and each line of the file is a data record 
+* **Comma-Separated Values (CSV)**: A delimited text file that uses a comma to separate values and each line of the file is a data record
 * **Display Window**: An area in the application interface for users to view the output of their commands
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
 * **NUS**: The National University of Singapore

@@ -274,7 +274,7 @@ _More details coming soon ..._
 
 ## Keyboard Shortcuts
 
-Inline with our optimization for use via a **Command Line Interface (CLI)**. Here are several keyboard shortcuts that 
+Inline with our optimization for use via a **Command Line Interface (CLI)**. Here are several keyboard shortcuts that
 you may find useful for your use:
 
 Key | Functionality
