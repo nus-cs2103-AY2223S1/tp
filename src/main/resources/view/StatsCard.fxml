@@ -35,6 +35,9 @@
             <Label fx:id="imcompleteTasks" text="\$imcompleteTasks" styleClass="stats_big_label"/>
         </HBox>
         <HBox alignment="CENTER_LEFT">
+            <Label fx:id="overdueTasks" text="\$overdueTasks" styleClass="stats_big_label"/>
+        </HBox>
+        <HBox alignment="CENTER_LEFT">
             <Label fx:id="upcomingTask" text="\$upcomingTask" styleClass="stats_big_label"/>
         </HBox>
 </VBox>

@@ -1,5 +1,7 @@
 package seedu.address.ui;
 
+import static seedu.address.commons.util.DateUtil.dateIsBeforeToday;
+import static seedu.address.commons.util.DateUtil.dateIsEqualAndAfterToday;
 import static seedu.address.commons.util.StockUtil.StockLevel.HIGH;
 import static seedu.address.commons.util.StockUtil.StockLevel.LOW;
 import static seedu.address.commons.util.StockUtil.StockLevel.MEDIUM;
@@ -31,6 +33,8 @@ public class StatsCard extends UiPart<Region> {
     @FXML
     private Label imcompleteTasks;
     @FXML
+    private Label overdueTasks;
+    @FXML
     private Label upcomingTask;
 
     /**
@@ -43,6 +47,7 @@ public class StatsCard extends UiPart<Region> {
         this.itemsMediumInStock.setText(String.format("%s", stockStatus[1]));
         this.itemsHighInStock.setText(String.format("%s", stockStatus[2]));
         this.imcompleteTasks.setText(String.format("No. of incomplete task(s): %s", countNotCompleteTasks(taskList)));
+        this.overdueTasks.setText(String.format("No. of Overdue task(s): %s", countOverdueTasks(taskList)));
         Task nearestIncompleteTask = findNearestIncompleteTask(taskList);
         this.upcomingTask.setText(String.format("Task due soon on %s: %s",
                 nearestIncompleteTask.getDeadline(), nearestIncompleteTask.getTitle()));
@@ -59,11 +64,23 @@ public class StatsCard extends UiPart<Region> {
     }
 
     /**
-     * Finds the upcoming incomplete task nearest to deadline.
+     * Finds the number of tasks in {@code taskList} that are overdue.
+     * Overdue means past the deadline.
+     */
+    private static String countOverdueTasks(ObservableList<Task> taskList) {
+        int count = taskList.stream()
+                .filter(task -> task.getStatus() == false && dateIsBeforeToday(task.getDeadline()))
+                .collect(Collectors.toList()).size();
+
+        return String.format("%s", count);
+    }
+
+    /**
+     * Finds the upcoming incomplete task nearest to deadline. Deadline must fall on today or after today's date.
      */
     private static Task findNearestIncompleteTask(ObservableList<Task> taskList) {
         return taskList.stream().sorted(Comparator.comparing(Task::getDeadline))
-                .filter(task -> task.getStatus() == false)
+                .filter(task -> task.getStatus() == false && dateIsEqualAndAfterToday(task.getDeadline()))
                 .collect(Collectors.toList()).get(0);
     }
 

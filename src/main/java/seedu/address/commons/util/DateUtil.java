@@ -50,9 +50,29 @@ public class DateUtil {
     }
 
     /**
+     * Checks if the given {@code dateToCheck} is equal to today's system date and after today.
+     */
+    public static boolean dateIsEqualAndAfterToday(LocalDate dateToCheck) {
+        requireNonNull(dateToCheck);
+
+        return LocalDate.now().isEqual(dateToCheck) || LocalDate.now().isBefore(dateToCheck);
+    }
+
+    /**
+     * Checks if the given {@code dateToCheck} is after today's date.
+     */
+    public static boolean dateIsBeforeToday(LocalDate dateToCheck) {
+        requireNonNull(dateToCheck);
+
+        return LocalDate.now().isAfter(dateToCheck);
+    }
+
+    /**
      * Returns a {@code LocalDate} object in {@code String} format.
      */
     public static String getLocalDateString(LocalDate date) {
+        requireNonNull(date);
+
         return date.toString();
     }
 }
