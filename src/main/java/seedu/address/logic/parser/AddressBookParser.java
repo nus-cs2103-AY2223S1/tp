@@ -15,8 +15,10 @@ import seedu.address.logic.commands.DeleteAppointmentCommand;
 import seedu.address.logic.commands.DeleteBillCommand;
 import seedu.address.logic.commands.DeletePatientCommand;
 import seedu.address.logic.commands.EditAppointmentCommand;
+import seedu.address.logic.commands.EditBillCommand;
 import seedu.address.logic.commands.EditPatientCommand;
 import seedu.address.logic.commands.ExitCommand;
+import seedu.address.logic.commands.FindAppointmentCommand;
 import seedu.address.logic.commands.FindPatientCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
@@ -70,6 +72,8 @@ public class AddressBookParser {
             return new EditAppointmentCommandParser().parse(arguments);
         } else if (EditPatientCommand.COMMAND_WORD.matches(commandWord)) {
             return new EditPatientCommandParser().parse(arguments);
+        } else if (EditBillCommand.COMMAND_WORD.matches(commandWord)) {
+            return new EditBillCommandParser().parse(arguments);
         } else if (DeleteAppointmentCommand.COMMAND_WORD.matches(commandWord)) {
             return new DeleteAppointmentCommandParser().parse(arguments);
         } else if (DeletePatientCommand.COMMAND_WORD.matches(commandWord)) {
@@ -80,6 +84,8 @@ public class AddressBookParser {
             return new ClearCommand();
         } else if (FindPatientCommand.COMMAND_WORD.matches(commandWord)) {
             return new FindPatientCommandParser().parse(arguments);
+        } else if (FindAppointmentCommand.COMMAND_WORD.matches(commandWord)) {
+            return new FindAppointmentCommandParser().parse(arguments);
         } else if (RemarkCommand.COMMAND_WORD.matches(commandWord)) {
             return new RemarkCommandParser().parse(arguments);
         } else if (ListCommand.COMMAND_WORD.matches(commandWord)) {

@@ -1,12 +1,12 @@
 .appointment-list {
-    -fx-background-color: derive(#1d1d1d, 20%);
+    -fx-background-color: derive(#4c97ed, 20%);
     -fx-border-color: derive(#1d1d1d, 10%);
     -fx-border-top-width: 1px;
     -fx-min-width: 650px;
 }
 
 .patient-list {
-    -fx-background-color: derive(#1d1d1d, 20%);
+    -fx-background-color: derive(#4c97ed, 20%);
     -fx-border-color: derive(#1d1d1d, 10%);
     -fx-border-top-width: 1px;
     -fx-min-width: 350px;

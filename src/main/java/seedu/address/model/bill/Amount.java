@@ -38,7 +38,7 @@ public class Amount {
 
     @Override
     public String toString() {
-        return String.valueOf(amount);
+        return String.format("%.2f", amount);
     }
 
     @Override
