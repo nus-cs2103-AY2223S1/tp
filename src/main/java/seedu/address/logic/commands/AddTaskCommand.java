@@ -7,6 +7,8 @@ import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Model;
 import seedu.address.model.team.Task;
 
+import java.util.List;
+
 
 /**
  * Adds a task to the current team.
@@ -31,7 +33,7 @@ public class AddTaskCommand extends Command {
      * @throws ParseException when the task name does not follow the format specified.
      */
     public AddTaskCommand(String taskName) {
-        this.task = new Task(taskName);
+        this.task = new Task(taskName, List.of());
     }
 
     @Override

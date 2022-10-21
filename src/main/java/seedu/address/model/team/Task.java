@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import seedu.address.model.person.Person;
+import seedu.address.model.person.UniquePersonList;
 
 /**
  * Tasks are used to track the progress of a team.
@@ -32,7 +33,7 @@ public class Task {
     /**
      * Team member(s) assigned to be in charge of this task.
      */
-    private List<Person> assignees;
+    private final UniquePersonList assignees = new UniquePersonList();
 
     /**
      * Deadline of the task.
@@ -49,11 +50,11 @@ public class Task {
      *
      * @param name A valid task name.
      */
-    public Task(String name) {
+    public Task(String name, List<Person> assignees) {
         requireNonNull(name);
         checkArgument(isValidName(name), MESSAGE_CONSTRAINTS);
         this.name = name;
-        assignees = new ArrayList<>();
+        this.assignees.setPersons(assignees);
         deadline = null;
     }
 
@@ -65,30 +66,34 @@ public class Task {
     }
 
     public boolean isValidIndex(int test) {
-        return test < assignees.size();
+        return test < getAssigneesList().size();
     }
 
     @Override
     public String toString() {
-        return getCompletionStatus() + name + getAssignees() + getDeadline();
+        return getCompletionStatus() + name + getAssigneesString() + getDeadline();
     }
 
     public String getName() {
         return name;
     }
 
-    public String getAssignees() {
-        if (assignees.isEmpty()) {
+    public String getAssigneesString() {
+        if (getAssigneesList().isEmpty()) {
             return " (Not assigned to any member yet)";
         } else {
             StringBuilder assigneeNames = new StringBuilder(" (Assigned to: ");
-            assigneeNames.append(assignees.get(0).getName());
-            for (int i = 1; i < assignees.size(); i++) {
-                assigneeNames.append(", ").append(assignees.get(i).getName());
+            assigneeNames.append(getAssigneesList().get(0).getName());
+            for (int i = 1; i < getAssigneesList().size(); i++) {
+                assigneeNames.append(", ").append(getAssigneesList().get(i).getName());
             }
             assigneeNames.append(")");
             return assigneeNames.toString();
         }
+    }
+
+    public List<Person> getAssigneesList() {
+        return this.assignees.asUnmodifiableObservableList();
     }
 
     public String getDeadline() {
