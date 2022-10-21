@@ -435,10 +435,6 @@ public class MainWindow extends UiPart<Stage> {
                 handleList();
             }
 
-            if (commandResult.isShow()) {
-                handleShow(commandResult.getIndex());
-            }
-
             if (commandResult.isUpdateListView()) {
                 updateListView();
             }

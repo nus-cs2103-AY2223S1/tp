@@ -143,10 +143,6 @@ public class CommandResult {
         return this.type == CommandType.LIST;
     }
 
-    public boolean isShow() {
-        return this.type == CommandType.SHOW;
-    }
-
     public boolean isUpdateListView() {
         return this.type == CommandType.ASSIGN;
     }

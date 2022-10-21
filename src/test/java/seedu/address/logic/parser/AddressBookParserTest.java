@@ -14,6 +14,7 @@ import java.util.stream.Collectors;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.AddCommand;
+import seedu.address.logic.commands.AssignCommand;
 import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.DeleteCommand;
 import seedu.address.logic.commands.EditCommand;
@@ -26,6 +27,7 @@ import seedu.address.logic.commands.ListStudentCommand;
 import seedu.address.logic.commands.ListTuitionClassCommand;
 import seedu.address.logic.commands.ListTutorCommand;
 import seedu.address.logic.commands.ShowCommand;
+import seedu.address.logic.commands.UnassignCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Model;
 import seedu.address.model.person.Person;
@@ -134,6 +136,18 @@ public class AddressBookParserTest {
                 parser.parseCommand(ListTuitionClassCommand.COMMAND_WORD, listType) instanceof ListTuitionClassCommand);
         assertTrue(parser.parseCommand(ListTuitionClassCommand.COMMAND_WORD + " 3", listType)
                 instanceof ListTuitionClassCommand);
+    }
+
+    @Test
+    public void parseCommand_assign() throws ParseException {
+        assertTrue(parser.parseCommand(
+                AssignCommand.COMMAND_WORD + "1" + "n/p1math", listType) instanceof AssignCommand);
+    }
+
+    @Test
+    public void parseCommand_unassign() throws ParseException {
+        assertTrue(parser.parseCommand(
+                UnassignCommand.COMMAND_WORD + "1" + "n/p1math", listType) instanceof AssignCommand);
     }
 
     @Test

@@ -49,12 +49,6 @@ public class CommandResultTest {
     }
 
     @Test
-    public void isShow_indexOfShownEntity_assertTrue() {
-        CommandResult commandResult = new CommandResult("feedback", SHOW, 0);
-        assertTrue(commandResult.isShow());
-    }
-
-    @Test
     public void isUpdateListView_assignUnassignCommandType_assertTrue() {
         CommandResult commandResult = new CommandResult("feedback", ASSIGN, 0);
         assertTrue(commandResult.isUpdateListView());
@@ -102,12 +96,6 @@ public class CommandResultTest {
     public void isList_notListCommandType_assertFalse() {
         CommandResult commandResult = new CommandResult("feedback", EXIT);
         assertFalse(commandResult.isList());
-    }
-
-    @Test
-    public void isShow_notShowCommandType_assertFalse() {
-        CommandResult commandResult = new CommandResult("feedback", EXIT);
-        assertFalse(commandResult.isShow());
     }
 
     @Test
@@ -171,37 +159,37 @@ public class CommandResultTest {
     }
 
     @Test
-    public void getModifiedStudent_modifiedStudent_equals() {
+    public void getDeletedStudent_modifiedStudent_equals() {
         CommandResult commandResult = new CommandResult("feedback", STUDENT1);
         assertEquals(STUDENT1, commandResult.getDeletedStudent());
     }
 
     @Test
-    public void getModifiedTutor_modifiedStudent_equals() {
+    public void getDeletedTutor_modifiedTutor_equals() {
         CommandResult commandResult = new CommandResult("feedback", TUTOR1);
         assertEquals(TUTOR1, commandResult.getDeletedTutor());
     }
 
     @Test
-    public void getModifiedClass_modifiedClass_equals() {
+    public void getDeletedClass_modifiedClass_equals() {
         CommandResult commandResult = new CommandResult("feedback", TUITIONCLASS1);
         assertEquals(TUITIONCLASS1, commandResult.getDeletedClass());
     }
 
     @Test
-    public void getModifiedStudent_modifiedClass_throwsAssertionError() {
+    public void getDeletedStudent_modifiedClass_throwsAssertionError() {
         CommandResult commandResult = new CommandResult("feedback", TUITIONCLASS1);
         assertThrows(AssertionError.class, () -> commandResult.getDeletedStudent());
     }
 
     @Test
-    public void getModifiedTutor_modifiedStudent_throwsAssertionError() {
+    public void getDeletedTutor_modifiedStudent_throwsAssertionError() {
         CommandResult commandResult = new CommandResult("feedback", STUDENT1);
         assertThrows(AssertionError.class, () -> commandResult.getDeletedTutor());
     }
 
     @Test
-    public void getModifiedClass_modifiedStudent_throwsAssertionError() {
+    public void getDeletedClass_modifiedStudent_throwsAssertionError() {
         CommandResult commandResult = new CommandResult("feedback", STUDENT1);
         assertThrows(AssertionError.class, () -> commandResult.getDeletedClass());
     }
@@ -263,10 +251,10 @@ public class CommandResultTest {
         assertFalse(commandResultWithStudent.equals(new CommandResult("different", STUDENT1)));
 
         // different feedback -> returns false
-        assertFalse(commandResultWithTutor.equals(new CommandResult("different", TUTOR2)));
+        assertFalse(commandResultWithTutor.equals(new CommandResult("different", TUTOR1)));
 
         // different feedback -> returns false
-        assertFalse(commandResultWithClass.equals(new CommandResult("different", TUITIONCLASS2)));
+        assertFalse(commandResultWithClass.equals(new CommandResult("different", TUITIONCLASS1)));
     }
 
     @Test
