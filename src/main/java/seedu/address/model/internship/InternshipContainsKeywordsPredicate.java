@@ -40,8 +40,8 @@ public class InternshipContainsKeywordsPredicate implements Predicate<Internship
                     keyword -> internship.getInternshipStatus().toString().toLowerCase().contains(
                             keyword.toLowerCase())))
                 && (interviewDateKeywords.isEmpty() || interviewDateKeywords.stream().anyMatch(
-                    keyword -> internship.getInterviewDate() == null
-                            || internship.getInterviewDate().toString().toLowerCase().contains(keyword.toLowerCase())));
+                    keyword -> internship.getInterviewDate() != null
+                            && internship.getInterviewDate().toString().toLowerCase().contains(keyword.toLowerCase())));
     }
 
     @Override

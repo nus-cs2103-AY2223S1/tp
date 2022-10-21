@@ -37,13 +37,13 @@ public class PersonContainsKeywordsPredicate implements Predicate<Person> {
         return (nameKeywords.isEmpty() || nameKeywords.stream().anyMatch(
                     keyword -> person.getName().fullName.toLowerCase().contains(keyword.toLowerCase())))
                 && (phoneKeywords.isEmpty() || phoneKeywords.stream().anyMatch(
-                    keyword -> person.getPhone() == null
-                            || person.getPhone().value.toLowerCase().contains(keyword.toLowerCase())))
+                    keyword -> person.getPhone() != null
+                            && person.getPhone().value.toLowerCase().contains(keyword.toLowerCase())))
                 && (emailKeywords.isEmpty() || emailKeywords.stream().anyMatch(
-                    keyword -> person.getEmail() == null
-                            || person.getEmail().value.toLowerCase().contains(keyword.toLowerCase())))
+                    keyword -> person.getEmail() != null
+                            && person.getEmail().value.toLowerCase().contains(keyword.toLowerCase())))
                 && (tagKeywords.isEmpty() || tagKeywords.stream().anyMatch(
-                        keyword -> person.getTags() == null || person.getTags().contains(new Tag(keyword))));
+                        keyword -> person.getTags() != null && person.getTags().contains(new Tag(keyword))));
     }
 
     @Override
