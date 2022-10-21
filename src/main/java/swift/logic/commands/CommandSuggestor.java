@@ -51,6 +51,7 @@ public class CommandSuggestor {
         for (String command : commandList) {
             if (command.startsWith(commandWord)) {
                 suggestedCommand = command;
+                break;
             }
         }
 
@@ -60,7 +61,7 @@ public class CommandSuggestor {
         HashMap<Prefix, String> argPrompt = argPromptList.get(commandList.indexOf(suggestedCommand));
 
         if (userInputArray.length > 1) {
-            return userInput + suggestArguments(argPrompt, userInput);
+            return userInput.stripTrailing() + suggestArguments(argPrompt, userInput);
         } else {
             return suggestedCommand + suggestArguments(argPrompt, userInput);
         }
@@ -72,7 +73,7 @@ public class CommandSuggestor {
         boolean isCommandComplete = userInput.contains(" ");
         int autocompleteUptoIndex = suggestedCommand.indexOf(isCommandComplete ? "/" : " ") + 1;
 
-        userInput += suggestedCommand.substring(0, autocompleteUptoIndex);
+        userInput = userInput + suggestedCommand.substring(0, autocompleteUptoIndex);
         return userInput;
     }
 
@@ -91,13 +92,11 @@ public class CommandSuggestor {
             if (argPrompt.get(currPrefix) == null) {
                 throw new CommandException("Invalid prefix");
             }
-        } else {
-            argumentSuggestion += " ";
         }
 
         for (Prefix key : argPrompt.keySet()) {
             if (!argumentMultimap.getValue(key).isPresent()) {
-                argumentSuggestion += key + argPrompt.get(key) + " ";
+                argumentSuggestion += " " + key + argPrompt.get(key);
             }
         }
         return argumentSuggestion;
