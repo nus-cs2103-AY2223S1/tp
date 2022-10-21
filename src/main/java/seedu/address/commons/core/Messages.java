@@ -12,5 +12,4 @@ public class Messages {
     public static final String MESSAGE_PERSON_FULL_VIEW = "Viewing %1$s in full view.";
     public static final String MESSAGE_INVALID_PERSON_NAME_VIEW = "Provided name is invalid";
     public static final String MESSAGE_PERSONS_LISTED_ACCORDING_TO_DAY = "Showing %1$d sessions on %2$s";
-    
 }
