@@ -22,7 +22,7 @@ public class FindPersonCommandParserTest {
     }
 
     @Test
-    public void parse_validArgs_returnsFindCommand() {
+    public void parse_validArgs_returnsFindPersonCommand() {
         // no leading and trailing whitespaces
         FindPersonCommand expectedFindPersonCommand =
                 new FindPersonCommand(new NameContainsKeywordsPredicate(Arrays.asList("Alice", "Bob")));
