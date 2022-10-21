@@ -8,22 +8,22 @@ import seedu.address.model.TaskBook;
 import seedu.address.model.task.Task;
 
 /**
- * A utility class containing a list of {@code Task} objects to be used in tests.
+ * A utility class containing a list of {@code ToDo} objects to be used in tests.
  */
-public class TypicalTasks {
+public class TypicalToDos {
 
-    public static final Task FIRST = new TaskBuilder().withTitle("Grade assignments")
+    public static final Task FIRST = new ToDoBuilder().withTitle("Grade assignments")
             .withDescription("Complete by tonight").build();
-    public static final Task SECOND = new TaskBuilder().withTitle("Prepare slides for studio")
+    public static final Task SECOND = new ToDoBuilder().withTitle("Prepare slides for studio")
             .withDescription("Topic Environment Model").build();
-    public static final Task THIRD = new TaskBuilder().withTitle("Review CS1101S topics with Adam")
+    public static final Task THIRD = new ToDoBuilder().withTitle("Review CS1101S topics with Adam")
             .withDescription("Essence of Recursion").build();
-    public static final Task FOURTH = new TaskBuilder().withTitle("Collect robot")
+    public static final Task FOURTH = new ToDoBuilder().withTitle("Collect robot")
             .withDescription("At MakersLab").build();
-    public static final Task FIFTH = new TaskBuilder().withTitle("Go through tutorial sheet")
+    public static final Task FIFTH = new ToDoBuilder().withTitle("Go through tutorial sheet")
             .withDescription("By this friday").build();
 
-    private TypicalTasks() {}
+    private TypicalToDos() {}
 
     /**
      * Returns a {@code TaskBook} with all the typical tasks.

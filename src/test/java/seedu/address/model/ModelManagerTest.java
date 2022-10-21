@@ -7,9 +7,9 @@ import static seedu.address.model.Model.PREDICATE_SHOW_ALL_STUDENTS;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalStudents.ALICE;
 import static seedu.address.testutil.TypicalStudents.BENSON;
-import static seedu.address.testutil.TypicalTasks.FIRST;
-import static seedu.address.testutil.TypicalTasks.SECOND;
-import static seedu.address.testutil.TypicalTasks.getTypicalTaskBook;
+import static seedu.address.testutil.TypicalToDos.FIRST;
+import static seedu.address.testutil.TypicalToDos.SECOND;
+import static seedu.address.testutil.TypicalToDos.getTypicalTaskBook;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;

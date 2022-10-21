@@ -1,5 +1,6 @@
 {
   "tasks" : [ {
+    "type" : "ToDo",
     "title" : "title%",
     "description" : "description&"
   } ]

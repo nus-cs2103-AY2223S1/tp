@@ -12,6 +12,7 @@ import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.ReadOnlyTaskBook;
 import seedu.address.model.TaskBook;
 import seedu.address.model.task.Task;
+import seedu.address.model.task.ToDo;
 
 /**
  * An Immutable TaskBook that is serializable to JSON format.
@@ -35,7 +36,10 @@ class JsonSerializableTaskBook {
      * @param source future changes to this will not affect the created {@code JsonSerializableTaskBook}.
      */
     public JsonSerializableTaskBook(ReadOnlyTaskBook source) {
-        tasks.addAll(source.getTaskList().stream().map(JsonAdaptedTask::new).collect(Collectors.toList()));
+        tasks.addAll(source.getTaskList().stream().map(x -> x.getClass().equals(ToDo.class)
+                                    ? new JsonAdaptedToDo(x)
+                                    : new JsonAdaptedDeadline(x))
+                .collect(Collectors.toList()));
     }
 
     /**

@@ -1,6 +1,7 @@
 package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DEADLINE_DATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TASK_DESCRIPTION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TASK_TITLE;
 
@@ -8,9 +9,12 @@ import java.util.stream.Stream;
 
 import seedu.address.logic.commands.TaskCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.task.Deadline;
+import seedu.address.model.task.FormatDate;
 import seedu.address.model.task.Task;
 import seedu.address.model.task.TaskDescription;
 import seedu.address.model.task.TaskTitle;
+import seedu.address.model.task.ToDo;
 
 /**
  * Parses input arguments and creates a new TaskCommand object.
@@ -24,17 +28,31 @@ public class TaskCommandParser implements Parser<TaskCommand> {
      */
     public TaskCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_TASK_TITLE, PREFIX_TASK_DESCRIPTION);
+                ArgumentTokenizer.tokenize(args, PREFIX_TASK_TITLE, PREFIX_TASK_DESCRIPTION, PREFIX_DEADLINE_DATE);
 
         if (!arePrefixesPresent(argMultimap, PREFIX_TASK_TITLE, PREFIX_TASK_DESCRIPTION)
                 || !argMultimap.getPreamble().isEmpty()) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, TaskCommand.MESSAGE_USAGE));
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                    TaskCommand.MESSAGE_USAGE));
         }
 
+        // if it's a deadline
+        if (arePrefixesPresent(argMultimap, PREFIX_DEADLINE_DATE)) {
+            TaskTitle title = ParserUtil.parseTitle(argMultimap.getValue(PREFIX_TASK_TITLE).get());
+            TaskDescription description = ParserUtil
+                    .parseDescription(argMultimap.getValue(PREFIX_TASK_DESCRIPTION).get());
+            FormatDate date = ParserUtil.parseDate(argMultimap.getValue(PREFIX_DEADLINE_DATE).get());
+
+            Task task = new Deadline(title, description, date);
+
+            return new TaskCommand(task);
+        }
+
+        // if it's a toDo
         TaskTitle title = ParserUtil.parseTitle(argMultimap.getValue(PREFIX_TASK_TITLE).get());
         TaskDescription description = ParserUtil.parseDescription(argMultimap.getValue(PREFIX_TASK_DESCRIPTION).get());
 
-        Task task = new Task(title, description);
+        Task task = new ToDo(title, description);
 
         return new TaskCommand(task);
     }

@@ -22,7 +22,7 @@ import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.TaskBook;
 import seedu.address.model.student.Student;
 import seedu.address.model.task.Task;
-import seedu.address.testutil.TaskBuilder;
+import seedu.address.testutil.ToDoBuilder;
 
 public class TaskCommandTest {
 
@@ -34,7 +34,7 @@ public class TaskCommandTest {
     @Test
     public void execute_taskAcceptedByModel_addSuccessful() throws Exception {
         ModelStubAcceptingTaskAdded modelStub = new ModelStubAcceptingTaskAdded();
-        Task validTask = new TaskBuilder().build();
+        Task validTask = new ToDoBuilder().build();
 
         CommandResult commandResult = new TaskCommand(validTask).execute(modelStub);
 
@@ -44,8 +44,8 @@ public class TaskCommandTest {
 
     @Test
     public void equals() {
-        Task firstTask = new TaskBuilder().withTitle("First").build();
-        Task secondTask = new TaskBuilder().withTitle("Second").build();
+        Task firstTask = new ToDoBuilder().withTitle("First").build();
+        Task secondTask = new ToDoBuilder().withTitle("Second").build();
         TaskCommand addFirstTaskCommand = new TaskCommand(firstTask);
         TaskCommand addSecondTaskCommand = new TaskCommand(secondTask);
 

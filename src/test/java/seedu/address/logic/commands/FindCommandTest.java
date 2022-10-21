@@ -9,7 +9,7 @@ import static seedu.address.testutil.TypicalStudents.CARL;
 import static seedu.address.testutil.TypicalStudents.ELLE;
 import static seedu.address.testutil.TypicalStudents.FIONA;
 import static seedu.address.testutil.TypicalStudents.getTypicalAddressBook;
-import static seedu.address.testutil.TypicalTasks.getTypicalTaskBook;
+import static seedu.address.testutil.TypicalToDos.getTypicalTaskBook;
 
 import java.util.Arrays;
 import java.util.Collections;

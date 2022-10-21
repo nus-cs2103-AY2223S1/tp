@@ -1,0 +1,17 @@
+{
+  "_comment": "TaskBook save file which contains the same Task values as in TypicalTasks#getTypicalTaskBook()",
+  "tasks" : [{
+  "type" : "ToDo",
+  "title" : "Review CS1101S topics with Adam",
+  "description" : "Essence of Recursion"
+  }, {
+  "type" : "ToDo",
+  "title" : "Collect robot",
+  "description" : "At MakersLab"
+  }, {
+  "type" : "Deadline",
+  "title" : "Go through tutorial sheet",
+  "description" : "By this friday",
+  "date" : "2020-12-12"
+  } ]
+}

@@ -35,7 +35,7 @@ import seedu.address.model.task.Task;
 import seedu.address.testutil.EditStudentDescriptorBuilder;
 import seedu.address.testutil.StudentBuilder;
 import seedu.address.testutil.StudentUtil;
-import seedu.address.testutil.TaskBuilder;
+import seedu.address.testutil.ToDoBuilder;
 
 public class AddressBookParserTest {
 
@@ -106,10 +106,10 @@ public class AddressBookParserTest {
 
     @Test
     public void parseCommand_addTask() throws Exception {
-        Task task = new TaskBuilder().build();
+        Task task = new ToDoBuilder().build();
         TaskCommand command = (TaskCommand) parser.parseCommand(TaskCommand.COMMAND_WORD + " "
-                + PREFIX_TASK_TITLE + TaskBuilder.DEFAULT_TITLE + " "
-                + PREFIX_TASK_DESCRIPTION + TaskBuilder.DEFAULT_DESCRIPTION);
+                + PREFIX_TASK_TITLE + ToDoBuilder.DEFAULT_TITLE + " "
+                + PREFIX_TASK_DESCRIPTION + ToDoBuilder.DEFAULT_DESCRIPTION);
         assertEquals(new TaskCommand(task), command);
     }
 

@@ -11,7 +11,7 @@ import org.junit.jupiter.api.Test;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.commons.util.JsonUtil;
 import seedu.address.model.TaskBook;
-import seedu.address.testutil.TypicalTasks;
+import seedu.address.testutil.TypicalToDos;
 
 public class JsonSerializableTaskBookTest {
 
@@ -24,7 +24,7 @@ public class JsonSerializableTaskBookTest {
         JsonSerializableTaskBook dataFromFile = JsonUtil.readJsonFile(TYPICAL_TASKS_FILE,
                 JsonSerializableTaskBook.class).get();
         TaskBook taskBookFromFile = dataFromFile.toModelType();
-        TaskBook typicalTaskBook = TypicalTasks.getTypicalTaskBook();
+        TaskBook typicalTaskBook = TypicalToDos.getTypicalTaskBook();
         assertEquals(taskBookFromFile, typicalTaskBook);
     }
 

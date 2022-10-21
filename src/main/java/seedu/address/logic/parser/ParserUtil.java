@@ -18,6 +18,7 @@ import seedu.address.model.student.Name;
 import seedu.address.model.student.Phone;
 import seedu.address.model.student.StudentId;
 import seedu.address.model.tag.Tag;
+import seedu.address.model.task.FormatDate;
 import seedu.address.model.task.TaskDescription;
 import seedu.address.model.task.TaskTitle;
 
@@ -25,7 +26,6 @@ import seedu.address.model.task.TaskTitle;
  * Contains utility methods used for parsing strings in the various *Parser classes.
  */
 public class ParserUtil {
-
     public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero unsigned integer.";
     public static final String INFO_NOT_AVAILABLE = "NA";
 
@@ -197,4 +197,16 @@ public class ParserUtil {
         return new TaskDescription(trimmedDescription);
     }
 
+    /**
+     * Parse a {@code String date} into a {@code Formatted Date}.
+     * Leading and trailing whitespaces will be trimmed.
+     */
+    public static FormatDate parseDate(String date) throws ParseException {
+        requireNonNull(date);
+        String trimmedDate = date.trim();
+        if (!FormatDate.isValidDate(trimmedDate)) {
+            throw new ParseException(FormatDate.MESSAGE_CONSTRAINTS);
+        }
+        return new FormatDate(trimmedDate);
+    }
 }
