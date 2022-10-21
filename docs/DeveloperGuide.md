@@ -255,7 +255,7 @@ we chose to make `Request` optional and default it as blank should it not be pro
 ### Edit Command
 
 #### Implementation:
-* The `edit` command takes in an INDEX indicating the index of the guest to edit in the current panel (starting from 1) and 8 optional fields (`Name`, `Phone`, `Email`, `Room`, `Date Range`, `Number of Guests`, `Room Clean` and `Request`) and is supported by the `EditCommandParser` that extracts out each of the fields from their respective prefixes.
+* The `edit` command takes in an INDEX indicating the index of the guest to edit in the current panel (starting from 1) and 8 optional fields (`Name`, `Phone`, `Email`, `Room`, `Date Range`, `Number of Guests`, `Is Room Clean` and `Request`) and is supported by the `EditCommandParser` that extracts out each of the fields from their respective prefixes.
 
 The following activity diagrams summarizes what happens when a user enters an `edit` command.
 
