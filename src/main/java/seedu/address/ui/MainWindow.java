@@ -130,27 +130,7 @@ public class MainWindow extends UiPart<Stage> {
         personListPanel = new PersonListPanel(logic.getFilteredPersonList());
         personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
 
-        ObservableList<Meeting> internalList = FXCollections.observableArrayList();
-        ObservableList<Meeting> internalUnmodifiableList =
-                FXCollections.unmodifiableObservableList(internalList);
-        ArrayList<Person> myArray = new ArrayList<>();
-
-        myArray.add(new Person(new Name("Alex Yeoh"), new Phone("87438807"), new Email("alexyeoh@example.com"),
-                new Address("Blk 30 Geylang Street 29, #06-40"),
-                getTagSet("friends")));
-
-        myArray.add(new Person(new Name("Bernice Yu"), new Phone("99272758"), new Email("berniceyu@example.com"),
-                new Address("Blk 30 Lorong 3 Serangoon Gardens, #07-18"),
-                getTagSet("colleagues", "friends")));
-
-        try {
-            internalList.add(new Meeting(myArray, "Study Session", "06-10-2022 2015", "UTown"));
-            internalList.add(new Meeting(myArray, "Ice Skating", "15-10-2022 2000", "Jurong East"));
-        } catch (Exception e) {
-            System.out.println("Exception: " + e);
-        }
-
-        meetingListPanel = new MeetingListPanel(internalUnmodifiableList);
+        meetingListPanel = new MeetingListPanel(logic.getFilteredMeetingList());
         meetingListPanelPlaceholder.getChildren().add(meetingListPanel.getRoot());
 
         resultDisplay = new ResultDisplay();
