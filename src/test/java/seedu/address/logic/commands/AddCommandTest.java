@@ -20,7 +20,9 @@ import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyUserPrefs;
+import seedu.address.model.person.Email;
 import seedu.address.model.person.Person;
+import seedu.address.model.person.Phone;
 import seedu.address.testutil.PersonBuilder;
 
 public class AddCommandTest {
@@ -47,13 +49,15 @@ public class AddCommandTest {
         AddCommand addCommand = new AddCommand(validPerson);
         ModelStub modelStub = new ModelStubWithPerson(validPerson);
 
-        assertThrows(CommandException.class, AddCommand.MESSAGE_DUPLICATE_PERSON, () -> addCommand.execute(modelStub));
+        assertThrows(CommandException.class,
+            AddCommand.MESSAGE_DUPLICATE_CUSTOMER, () -> addCommand.execute(modelStub));
     }
 
     @Test
     public void equals() {
         Person alice = new PersonBuilder().withName("Alice").build();
-        Person bob = new PersonBuilder().withName("Bob").build();
+        Person bob = new PersonBuilder().withName("Bob").withPhone("83838000").build();
+
         AddCommand addAliceCommand = new AddCommand(alice);
         AddCommand addBobCommand = new AddCommand(bob);
 
@@ -70,8 +74,13 @@ public class AddCommandTest {
         // null -> returns false
         assertFalse(addAliceCommand.equals(null));
 
-        // different person -> returns false
-        assertFalse(addAliceCommand.equals(addBobCommand));
+        // different name, same email, different phone -> returns true
+        assertTrue(addAliceCommand.equals(addBobCommand));
+
+        // different name, same phone, different email -> returns true
+        bob = new PersonBuilder().withName("Bob").withEmail("bob@example.com").build();
+        addBobCommand = new AddCommand(bob);
+        assertTrue(addAliceCommand.equals(addBobCommand));
     }
 
     /**
@@ -145,6 +154,16 @@ public class AddCommandTest {
 
         @Override
         public void updateFilteredPersonList(Predicate<Person> predicate) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public int findNum(Phone phone) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public int findEmail(Email email) {
             throw new AssertionError("This method should not be called.");
         }
     }

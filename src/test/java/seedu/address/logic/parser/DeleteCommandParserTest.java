@@ -3,11 +3,12 @@ package seedu.address.logic.parser;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
-import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.DeleteCommand;
+import seedu.address.model.person.Email;
+import seedu.address.model.person.Phone;
 
 /**
  * As we are only doing white-box testing, our test cases do not cover path variations
@@ -21,12 +22,58 @@ public class DeleteCommandParserTest {
     private DeleteCommandParser parser = new DeleteCommandParser();
 
     @Test
-    public void parse_validArgs_returnsDeleteCommand() {
-        assertParseSuccess(parser, "1", new DeleteCommand(INDEX_FIRST_PERSON));
+    public void parse_validPhoneArg_returnsDeleteCommand() {
+        DeleteCommand.DeletePersonDescriptor deletePersonDescriptor = new DeleteCommand.DeletePersonDescriptor();
+        deletePersonDescriptor.setPhone(new Phone("12345678"));
+        assertParseSuccess(parser, " p/12345678", new DeleteCommand(deletePersonDescriptor));
     }
 
     @Test
-    public void parse_invalidArgs_throwsParseException() {
-        assertParseFailure(parser, "a", String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteCommand.MESSAGE_USAGE));
+    public void parse_validEmailArg_returnsDeleteCommand() {
+        DeleteCommand.DeletePersonDescriptor deletePersonDescriptor = new DeleteCommand.DeletePersonDescriptor();
+        deletePersonDescriptor.setEmail(new Email("test@test.com"));
+        assertParseSuccess(parser, " e/test@test.com", new DeleteCommand(deletePersonDescriptor));
+    }
+
+    @Test
+    public void parse_emptyArg_throwsParseException() {
+        assertParseFailure(parser, "",
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteCommand.MESSAGE_USAGE));
+    }
+
+    @Test
+    public void parse_emptyPhoneArg_throwsParseException() {
+        assertParseFailure(parser, " p/",
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteCommand.MESSAGE_USAGE));
+    }
+
+    @Test
+    public void parse_emptyEmailArg_throwsParseException() {
+        assertParseFailure(parser, " e/",
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteCommand.MESSAGE_USAGE));
+    }
+
+    @Test
+    public void parse_invalidArg_throwsParseException() {
+        assertParseFailure(parser, "testing123",
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteCommand.MESSAGE_USAGE));
+    }
+
+    @Test
+    public void parse_bothArgs_throwsParseException() {
+        assertParseFailure(parser, " p/12345678 e/test@test.com",
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteCommand.MESSAGE_USAGE));
+    }
+
+    @Test
+    public void parse_multiplePhoneArgs_throwsParseException() {
+        assertParseFailure(parser, " p/12345678 p/87654321",
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteCommand.MESSAGE_USAGE));
+    }
+
+    @Test
+    public void parse_multipleEmailArgs_throwsParseException() {
+        assertParseFailure(parser, " e/test@test.com e/test123@test.com",
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteCommand.MESSAGE_USAGE));
     }
 }

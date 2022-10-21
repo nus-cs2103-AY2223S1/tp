@@ -98,9 +98,9 @@ How the `Logic` component works:
 1. The command can communicate with the `Model` when it is executed (e.g. to add a person).
 1. The result of the command execution is encapsulated as a `CommandResult` object which is returned back from `Logic`.
 
-The Sequence Diagram below illustrates the interactions within the `Logic` component for the `execute("delete 1")` API call.
+The Sequence Diagram below illustrates the interactions within the `Logic` component for the `execute("delete p/1234567")` API call.
 
-![Interactions Inside the Logic Component for the `delete 1` Command](images/DeleteSequenceDiagram.png)
+![Interactions Inside the Logic Component for the `delete p/1234567` Command](images/DeleteSequenceDiagram.png)
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
@@ -113,7 +113,22 @@ How the parsing works:
 * When called upon to parse a user command, the `AddressBookParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddCommand`) which the `AddressBookParser` returns back as a `Command` object.
 * All `XYZCommandParser` classes (e.g., `AddCommandParser`, `DeleteCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
 
-### Model component
+
+### Command Classes
+
+The class diagram below expands the details of Command and Parser part in the Logic component above, showing the details of how commands are parsed and created
+
+Simple commands without arguments including `clear` `list` `exit` `help` are created directly by `AddressBookParser`<br/>
+To parse complex commands with arguments, including `add` `find` `edit` `delete`, `AddressBookParser` will create customized parser corresponding to the command. <br/>
+The customized parser will parse the arguments and create the command
+
+The diagram also includes some new classes involved. For example, the `find` command depends on new predicates in the `Model` component to allow all-info and fuzzy search (more detail in the `find` command description)
+
+<img src="images/CommandClasses.png" width="1200"/>
+
+
+## Model component
+
 **API** : [`Model.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/model/Model.java)
 
 <img src="images/ModelClassDiagram.png" width="450" />
@@ -153,6 +168,78 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 ## **Implementation**
 
 This section describes some noteworthy details on how certain features are implemented.
+### \[Insert Numbering\] Edit feature
+The Edit feature is facilitated by `LogicManager`. The `EditCommandParser` parses the command arguments, and returns
+an `EditCommand` that is executed by the `LogicManager`.
+
+This feature allows the user to edit any fields of a Customer, and supports editing multiple fields at once.
+
+**Below is a sample usage and how the edit sequence behaves at each step.**
+
+1. User chooses the Customer he/ she wants to edit and enters the command `edit e/test@gmail/com n/Bob`
+2. The `LogicManager` redirects this command to `AddressBookParser`, which parses the command via `EditCommandParser` and
+returns the `EditCommand` containing the Customer with all the new fields that are supposed to be edited to
+3. The `LogicManager` executes the `EditCommand` and Customer to be edited is updated with the new fields
+4. The `CommandResult` reflects the changes made to this Customer
+
+The following sequence diagram shows how the edit feature works, following the flow of entering the command `edit e/test@gmail/com n/Bob`:
+
+![EditSequenceDiagram](images/EditSequenceDiagram.png)
+
+The following activity diagram summarizes the flow of when a user enters an edit command:
+
+![EditActivityDiagram](images/EditCommandActivityDiagram.png)
+
+**Aspect: How `edit` is executed**
+* **Alternative 1 (current choice):** User can edit a customer via either `PHONE_NUMBER` or `EMAIL`.
+
+  | Pros/Cons | Description                                                                          | Examples                                                                                                                                    |
+    |--------------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------|
+  | Pros      | Allows user more flexibility in choosing the inputs as identifiers for editing       | The user can edit any customer as long as they have details of either their `PHONE_NUMBER` or `EMAIL`.                                      |
+  | Pros      | The user does not need to know the specific position of the customer within the list | The user can use either identifier `PHONE_NUMBER` or `EMAIL` to edit customers without a need for their index/position.                     |
+  | Cons      | The length of the command is longer with the new identifiers                         | The user has to type `edit p/12345678 n/Bob` or `edit e/test@gmail.com n/Bob` to edit a user which is longer compared to editing via index. |
+
+* **Alternative 2:** User can edit a customer via `index`.
+
+  | Pros/Cons | Description                                                                                               | Examples                                                                                                                                                                                                                                            |
+    |-----------------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+  | Pros      | Short commands enable fast editing                                                                        | The user can edit any customer as long as they have details of the `index` of the customer, e.g. `edit 1`.                                                                                                                                          |
+  | Cons      | Identifying the customer via `index` might be slow especially when there are customers with similar names | The user has to find out the `index` of the customer to edit before typing the command. Supposed that we want to edit Bob and there exists an Bob and bob, identifying the correct customer takes time and thus delay the execution of the command. |
+
+* **Future Extension:** bobaBot can support multiple editing so user do not have to edit customers one by one.
+
+
+### \[Insert Numbering\] Delete feature
+
+The delete feature enables the user to remove a customer from bobaBot. The user's input is first retrieved by the `MainWindow` class. It is then passed to the `LogicManager` through the `execute` method. `LogicManager` will call the `parseCommand` method of `AddressBookParser` which upon parsing the input, creates a temporary `DeleteCommandParser` object. The `DeleteCommandParser` object then further parses the user's input and returns a `DeleteCommand`.  The command is executed in the `LogicManager`, returning a `CommandResult` object which will then be returned as feedback to the user.
+
+The sequence diagram below shows how the `delete` feature parsing an input `p/12345678` behaves at each step.
+
+<img src="images/DeleteSequenceDiagram.png" width="600" />
+
+The activity diagram below illustrates how the `delete` operation works.
+
+<img src="images/DeleteActivityDiagram.png" width="600" />
+
+#### \[Insert Numbering\] Design Considerations
+
+**Aspect: How `delete` is executed**
+* **Alternative 1 (current choice):** User can delete a customer via either `PHONE_NUMBER` or `EMAIL`.
+
+  | Pros/Cons | Description                                                                          | Examples                                                                                                                               |
+  |-----------|--------------------------------------------------------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------|
+  | Pros      | Allows user more flexibility in choosing the inputs as identifiers for deletion      | The user can delete any customer as long as they have details of either their `PHONE_NUMBER` or `EMAIL`.                               |
+  | Pros      | The user does not need to know the specific position of the customer within the list | The user can use either identifier `PHONE_NUMBER` or `EMAIL` to delete customers without a need for their index/position.              |
+  | Cons      | The length of the command is longer with the new identifiers                         | The user has to type `delete p/12345678` or `delete e/test@gmail.com` to delete a user which is longer compared to deleting via index. |
+
+* **Alternative 2:** User can delete a customer via `index`.
+
+  | Pros/Cons | Description                                                                                               | Examples                                                                                                                                                                                                                                                    |
+  |-----------|-----------------------------------------------------------------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+  | Pros      | Short commands enable fast deletion                                                                       | The user can delete any customer as long as they have details of the `index` of the customer, e.g. `delete 1`.                                                                                                                                              |
+  | Cons      | Identifying the customer via `index` might be slow especially when there are customers with similar names | The user has to find out the `index` of the customer to delete before typing the command. Supposed that we want to delete Alex and there exists an Alex and alex, identifying the correct customer takes time and thus delay the execution of the command.  |
+
+* **Future Extension:** bobaBot can support multiple deletions so user do not have to delete customers one by one.
 
 ### \[Proposed\] Undo/redo feature
 
@@ -257,64 +344,168 @@ _{Explain here how the data archiving feature will be implemented}_
 
 **Target user profile**:
 
-* has a need to manage a significant number of contacts
-* prefer desktop apps over other types
+* has a need to manage a significant number of customers
+* interacts with a lot of customers, especially during peak hours
 * can type fast
 * prefers typing to mouse interactions
-* is reasonably comfortable using CLI apps
+* never used CLI before
 
-**Value proposition**: manage contacts faster than a typical mouse/GUI driven app
+**Value proposition**: manage customers faster than a typical mouse/GUI driven app
 
 
 ### User stories
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                    | I want to …​                     | So that I can…​                                                        |
-| -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
-| `* * *`  | new user                                   | see usage instructions         | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user                                       | add a new person               |                                                                        |
-| `* * *`  | user                                       | delete a person                | remove entries that I no longer need                                   |
-| `* * *`  | user                                       | find a person by name          | locate details of persons without having to go through the entire list |
-| `* *`    | user                                       | hide private contact details   | minimize chance of someone else seeing them by accident                |
-| `*`      | user with many persons in the address book | sort persons by name           | locate a person easily                                                 |
+| Priority | As a …​ | I want to …​                                                                   | So that I can…​                                                                  |
+|----------|---------|--------------------------------------------------------------------------------|----------------------------------------------------------------------------------|
+| `* * *`  | cashier | quickly search for customers’ membership details within the system             | verify their rewards/points                                                      |
+| `* * *`  | cashier | search for customer details through various inputs (email, phone number, name) | retrieve their information flexibly                                              |
+| `* * *`  | cashier | edit customers' membership details (vouchers, points, rewards)                 | remove the voucher/points once they claim them                                   |
+| `* * *`  | cashier | add new members to my list                                                     | apply for membership for customers                                               |
+| `* * *`  | cashier | remove members from the list                                                   | make sure membership details are correct for customers who are no longer members |
 
 *{More to be added}*
 
 ### Use cases
 
-(For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is `bobaBot` and the **Actor** is the `user`, unless specified otherwise)
 
-**Use case: Delete a person**
+**Use case 1: Add a Customer**
+
+System: bobaBot <br>
+Use case: UC01 - Add a Customer <br>
+Actor: User <br>
+Guarantee: New Customer will be added into bobaBot.
 
 **MSS**
 
-1.  User requests to list persons
-2.  AddressBook shows a list of persons
-3.  User requests to delete a specific person in the list
-4.  AddressBook deletes the person
+1. User requests to add a Customer.
+2. bobaBot adds the Customer into the database.
 
     Use case ends.
 
 **Extensions**
 
-* 2a. The list is empty.
+* 1a. User enters the command wrongly.
+  * 1a1. bobaBot displays the error message.
 
-  Use case ends.
+    Use case ends.
 
-* 3a. The given index is invalid.
+**Use case 2: Delete a Customer**
 
-    * 3a1. AddressBook shows an error message.
+System: bobaBot <br>
+Use case: UC02 - Delete a Customer <br>
+Actor: User <br>
+Guarantee: Selected Customer will be deleted from bobaBot.
 
-      Use case resumes at step 2.
+**MSS**
+
+1. User requests to delete a Customer.
+2. bobaBot deletes the Customer from the database.
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. User enters the command wrongly.
+    * 1a1. bobaBot displays the error message.
+
+      Use case ends.
+    
+* 1b. User enters a Customer that does not exist in bobaBot's database.
+    * 1b1. bobaBot displays that the Customer does not exist.
+
+      Use case ends.
+
+**Use case 3: Find a Customer**
+
+System: bobaBot <br>
+Use case: UC03 - Find a Customer <br>
+Actor: User <br>
+Guarantee: Selected Customer's details will be displayed by bobaBot.
+
+**MSS**
+
+1. User requests to find a Customer.
+2. bobaBot displays the Customer's details from the database.
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. User enters the command wrongly.
+    * 1a1. bobaBot displays the error message.
+
+      Use case ends.
+    
+* 1b. User enters a Customer that does not exist in bobaBot's database.
+    * 1b1. bobaBot displays that the Customer does not exist.
+
+      Use case ends.
+
+**Use case 4: Edit a Customer's details**
+
+System: bobaBot <br>
+Use case: UC02 - Edit a Customer's details <br>
+Actor: User <br>
+Guarantee: Selected Customer's details will be edited by bobaBot.
+
+**MSS**
+
+1. User requests to edit a Customer's details.
+2. bobaBot edits the Customer's details in the database.
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. User enters the command wrongly.
+    * 1a1. bobaBot displays the error message.
+
+      Use case ends.
+    
+* 1b. User enters a Customer that does not exist in bobaBot's database.
+    * 1b1. bobaBot displays that the Customer does not exist.
+
+      Use case ends.
+    
+* 1c. bobaBot encounters a duplicate of the edited Customer in its database.
+    * 1c1. bobaBot displays a warning on potential the duplicate.
+    * 1c2. bobaBot provides the option to delete one of the duplicates (UC02)
+
+      Use case resumes from step 2.
+
+**Use case 5: Exit bobaBot**
+
+System: bobaBot <br>
+Use case: UC05 - Exit bobaBot <br>
+Actor: User <br>
+Guarantee: bobaBot will be exited.
+
+**MSS**
+
+1. User requests to exit bobaBot.
+2. bobaBot exits.
+
+   Use case ends.
 
 *{More to be added}*
 
 ### Non-Functional Requirements
 
 1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
-2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
+2.  Should be able to hold up to 1000 cashiers at bubble tea shops without a noticeable sluggishness in performance for typical usage.
 3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+4.  The system should respond fast within 0.5 second, so as to speed up the ordering at counters
+5.  bobaBot should be able to work on any computers, either 32-bit or 64-bit, slow or fast, as the computers at counters may be old and slow
+6.  The database should be able to handle frequent changes of data efficiently
+7.  bobaBot should be usable by workers who are not familiar with command lines, and easy to learn
+8.  The management of customers' data should follow PDPA
+9.  Should work when some data is missing or inaccurate
+10. The source code should be open source
+11. The source code and project management should follow the requirements and principles in CS2103T
+12. Should handle large amount of customers' data, like 10,000 customers
 
 *{More to be added}*
 
@@ -322,6 +513,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
 * **Private contact detail**: A contact detail that is not meant to be shared with others
+* **User**: The staff of the boba shop
+* **Customer**: The customer of the boba shop
+* **Customer's detail**: Any information in the system related to the customer
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -375,3 +569,4 @@ testers are expected to do more *exploratory* testing.
    1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
 
 1. _{ more test cases …​ }_
+

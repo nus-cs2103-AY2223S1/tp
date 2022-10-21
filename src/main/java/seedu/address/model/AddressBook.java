@@ -5,8 +5,11 @@ import static java.util.Objects.requireNonNull;
 import java.util.List;
 
 import javafx.collections.ObservableList;
+import seedu.address.model.person.Email;
 import seedu.address.model.person.Person;
+import seedu.address.model.person.Phone;
 import seedu.address.model.person.UniquePersonList;
+import seedu.address.model.person.exceptions.PersonNotFoundException;
 
 /**
  * Wraps all data at the address-book level
@@ -116,5 +119,27 @@ public class AddressBook implements ReadOnlyAddressBook {
     @Override
     public int hashCode() {
         return persons.hashCode();
+    }
+
+    /**
+     * Returns the index of the person with the same phone number.
+     *
+     * @param phone Phone number to search
+     * @return index of the person with the same phone number
+     * @throws PersonNotFoundException if no person with corresponding phone number found
+     */
+    public int findNum(Phone phone) throws PersonNotFoundException {
+        return persons.findNum(phone);
+    }
+
+    /**
+     * Returns the index of the person with the same email.
+     *
+     * @param email Email to search
+     * @return index of the person with the same email
+     * @throws PersonNotFoundException if no person with corresponding email found
+     */
+    public int findEmail(Email email) throws PersonNotFoundException {
+        return persons.findEmail(email);
     }
 }

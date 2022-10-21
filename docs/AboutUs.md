@@ -52,7 +52,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 <img src="images/wuhaohui1231.png" width="200px">
 
 [[github](https://github.com/WuHaohui1231)]
-[[portfolio](team/johndoe.md)]
+[[portfolio](team/wuhaohui1231.md)]
 
 * Role: Developer
 * Responsibilities: Backend

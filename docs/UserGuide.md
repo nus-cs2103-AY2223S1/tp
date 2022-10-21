@@ -3,10 +3,9 @@ layout: page
 title: User Guide
 ---
 
-AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, AB3 can get your contact management tasks done faster than traditional GUI apps.
-
+bobaBot is a **desktop application** for managing customers’ membership details. It is **optimized for Command Line Interface (CLI) while retaining some benefits of the Graphical User Interface (GUI)**. If you are a cashier working at a bubble tea shop and can type fast, bobaBot can help you easily find and manage your customers’ membership information as compared to other GUI applications.
 * Table of Contents
-{:toc}
+  {:toc}
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -14,9 +13,9 @@ AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized fo
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
-1. Download the latest `addressbook.jar` from [here](https://github.com/se-edu/addressbook-level3/releases).
+1. Download the latest `bobaBot.jar` from [here](https://github.com/AY2223S1-CS2103T-W09-1/tp/releases).
 
-1. Copy the file to the folder you want to use as the _home folder_ for your AddressBook.
+1. Copy the file to the folder you want to use as the _home folder_ for your bobaBot.
 
 1. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
    ![Ui](images/Ui.png)
@@ -24,15 +23,15 @@ AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized fo
 1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
 
-   * **`list`** : Lists all contacts.
+    * **`list`** : Lists all customers.
 
-   * **`add`**`n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a contact named `John Doe` to the Address Book.
+    * **`add`**`n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a customer named `John Doe` to bobaBot.
 
-   * **`delete`**`3` : Deletes the 3rd contact shown in the current list.
+    * **`delete`**`p/98765432` : Deletes the customer with the corresponding phone number (aka John Doe).
 
-   * **`clear`** : Deletes all contacts.
+    * **`clear`** : Deletes all customers.
 
-   * **`exit`** : Exits the app.
+    * **`exit`** : Exits the app.
 
 1. Refer to the [Features](#features) below for details of each command.
 
@@ -66,12 +65,11 @@ AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized fo
 
 ### Viewing help : `help`
 
-Shows a message explaning how to access the help page.
+Shows a message explaining how to access the help page.
 
 ![help message](images/helpMessage.png)
 
 Format: `help`
-
 
 ### Adding a Customer: `add`
 
@@ -79,7 +77,9 @@ Adds a Customer to bobaBot.
 
 Format: `add n/NAME p/PHONE_NUMBER e/EMAIL [r/REWARD] [t/TAG]…`
 
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+
+
+<div markdown="span" class="alert alert-primary">:bulb: Tip:
 A person can have any number of tags (including 0)
 </div>
 
@@ -87,64 +87,64 @@ Examples:
 * `add n/John Doe p/98765432 e/johnd@example.com r/0 t/new `
 * `add n/Betsy Crowe t/friend e/betsycrowe@example.com p/1234567 r/5000 t/gold`
 
-### Listing all persons : `list`
+### Editing a Customer’s details: `edit`
 
-Shows a list of all persons in the address book.
+Edits an existing Customer in bobaBot.
+
+Format: `edit p/PHONE_NUMBER OR edit e/EMAIL
+[n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [r/REWARD] [t/TAG]…​`
+
+<div markdown="span" class="alert alert-primary">:bulb: Tip:
+At least one of the optional fields must be provided
+</div>
+
+Examples:
+* `edit p/91234567 e/johndoe@example.com r/1000`
+* `edit e/peterparker@example.com r/420`
+
+### Listing all customers : `list`
+
+Shows a list of all Customers in bobaBot.
 
 Format: `list`
 
-### Editing a person : `edit`
-
-Edits an existing person in the address book.
-
-Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
-
-* Edits the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …​
-* At least one of the optional fields must be provided.
-* Existing values will be updated to the input values.
-* When editing tags, the existing tags of the person will be removed i.e adding of tags is not cumulative.
-* You can remove all the person’s tags by typing `t/` without
-    specifying any tags after it.
-
-Examples:
-*  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
-*  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
-
 ### Locating persons by name: `find`
 
-Finds persons whose names contain any of the given keywords.
+Finds Customers whose information (including name, phone, email, address) contain any of the given keywords.
 
 Format: `find KEYWORD [MORE_KEYWORDS]`
 
 * The search is case-insensitive. e.g `hans` will match `Hans`
 * The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
-* Only the name is searched.
-* Only full words will be matched e.g. `Han` will not match `Hans`
-* Persons matching at least one keyword will be returned (i.e. `OR` search).
+* Customers matching at least one keyword will be returned (i.e. `OR` search)
   e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
+* No need to type in the whole word. e.g `9927` will match `27859927`
 
 Examples:
 * `find John` returns `john` and `John Doe`
 * `find alex david` returns `Alex Yeoh`, `David Li`<br>
   ![result for 'find alex david'](images/findAlexDavidResult.png)
 
-### Deleting a person : `delete`
+### Deleting a Customer : `delete`
 
-Deletes the specified person from the address book.
+Removes a Customer from bobaBot.
 
-Format: `delete INDEX`
+Format:
 
-* Deletes the person at the specified `INDEX`.
-* The index refers to the index number shown in the displayed person list.
-* The index **must be a positive integer** 1, 2, 3, …​
+`delete p/PHONE_NUMBER` or
+
+`delete e/EMAIL`
+
+* Deletes the Customer with the following `PHONE_NUMBER` when `p/` specified.
+* Deletes the Customer with the following `EMAIL` when `e/` specified.
 
 Examples:
-* `list` followed by `delete 2` deletes the 2nd person in the address book.
-* `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
+* `delete p/87438807` removes the Customer with the phone number `87438807`.
+* `delete e/alexyeoh@example.com` removes the Customer with the email `alexyeoh@example.com`.
 
 ### Clearing all entries : `clear`
 
-Clears all entries from the address book.
+Clears all Customers from the bobaBot.
 
 Format: `clear`
 
@@ -156,14 +156,14 @@ Format: `exit`
 
 ### Saving the data
 
-AddressBook data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
+bobaBot data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
 
 ### Editing the data file
 
-AddressBook data are saved as a JSON file `[JAR file location]/data/addressbook.json`. Advanced users are welcome to update data directly by editing that data file.
+bobaBot data are saved as a JSON file `[JAR file location]/data/bobaBot.json`. Advanced users are welcome to update data directly by editing that data file.
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
-If your changes to the data file makes its format invalid, AddressBook will discard all data and start with an empty data file at the next run.
+If your changes to the data file makes its format invalid, bobaBot will discard all data and start with an empty data file at the next run.
 </div>
 
 ### Archiving data files `[coming in v2.0]`
