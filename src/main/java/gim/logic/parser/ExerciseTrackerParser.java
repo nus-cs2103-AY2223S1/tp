@@ -76,5 +76,4 @@ public class ExerciseTrackerParser {
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
         }
     }
-
 }
