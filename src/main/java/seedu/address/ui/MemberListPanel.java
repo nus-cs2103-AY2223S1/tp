@@ -33,7 +33,7 @@ public class MemberListPanel extends UiPart<Region> {
     /**
      * Custom {@code ListCell} that displays the graphics of a {@code Member} using a {@code MemberCard}.
      */
-    class MemberListViewCell extends ListCell<Person> {
+    private static class MemberListViewCell extends ListCell<Person> {
         @Override
         protected void updateItem(Person member, boolean empty) {
             super.updateItem(member, empty);
