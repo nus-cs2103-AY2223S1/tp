@@ -158,7 +158,7 @@ This section describes some noteworthy details on how certain features are imple
 
 `DeleteCommand` now accepts multiple inputs and allows multiple `Person` to be deleted from the `Model` in a single command.
 
-The sequence diagram below shows how a `DeleteCommand` with multiple inputs is executed. 
+The sequence diagram below shows how a `DeleteCommand` with multiple inputs is executed.
 
 <img src="images/DeleteMultipleSequenceDiagram.png" >
 
@@ -286,7 +286,7 @@ The following sequence diagram shows how the github feature works.
     * Cons: More complicated to implement, need to click or press tab + left arrow to get to CLI.
 
 * **Alternative:** Copies the template into the User's clipboard
-    * Pros: Easier to implement, can access CLI directly after pasting 
+    * Pros: Easier to implement, can access CLI directly after pasting
     * Cons: Less intuitive, less technically competent users may not understand what a clipboard is.
 
 ### Open Github Profile Page Feature
@@ -386,7 +386,42 @@ The following sequence diagram shows how the find contact feature works.
 
 * **Alternative 2:** Create a generic contact class through the fields provided and match with other contacts to filter.
     * Cons: Difficult to implement / bad runtime and memory usage when multiple values are provided for a single field. e.g. `find n/bob anne` will mean 2 contacts are created with names `bob` and `anne` respectively. Current contacts will then need to be compared with both of these.
-    
+
+### Sort List Feature
+
+#### Implementation
+
+The proposed sort mechanism is facilitated by `SortCommand`. It extends `Command` which alters the `UniquePersonList`
+stored within `AddressBook` to display the list on the UI in a sorted order according to the users specification. The
+`Order` class is used to specify the arrangement of the list in either `Order.ASCENDING` or `Order.DESCENDING`.
+
+Given below is an example usage scenario and how the sort command mechanism behaves at each step.
+
+Step 1. The user types `sort A-Z n/name` and presses enter.
+
+Step 2. The `sort A-Z n/name` will be parsed by `AddressBook#parseCommand()` which will return a `SortCommandParser` and a `SortPersonListDescriptor`
+
+Step 3. The `FindCommandParser` will parse `A-Z` and `n/name` using `parse()` and then create an `Order` based on `A-Z` and also set the `isSortByName` and
+`isSortByModuleCode` attributes of the `SortPersonListDescriptor`.
+
+Step 4. `SortCommandParser` then creates a `SortCommand` by passing the `Order` and `SortPersonListDescriptor` to its constructor.
+
+Step 5. The `SortCommand` will then be executed using `SortCommand#execute()`.
+
+Step 6. The `Model#sort(order, isSortByName, isSortByModuleCode);` method will be called and the list of persons will be sorted according to the `order`, `isSortByName` and `isSortByModuleCode`.
+
+Step 7. A `CommandResult` indicating successful completion of the command will be returned.
+
+Step 8. A list of contacts in a sorted order, if any, will be displayed to the user.
+
+The following sequence diagram shows how the sort feature works.
+
+![SortCommandSequenceDiagram](images/SortCommandSequenceDiagram.png)
+
+The following activity diagram summarizes what happens when a user executes a new sort command:
+
+![SortCommandActivityDiagram](images/SortCommandActivityDiagram.png)
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Documentation, logging, testing, configuration, dev-ops**
