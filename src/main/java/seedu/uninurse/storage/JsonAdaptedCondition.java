@@ -1,6 +1,8 @@
 package seedu.uninurse.storage;
 
 
+import static java.util.Objects.requireNonNull;
+
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 
@@ -16,10 +18,10 @@ public class JsonAdaptedCondition {
 
     /**
      * Constructs a {@code JsonAdaptedCondition} with the given {@code condition}.
-     * param
      */
     @JsonCreator
     public JsonAdaptedCondition(String condition) {
+        requireNonNull(condition);
         this.condition = condition;
     }
 
@@ -27,6 +29,7 @@ public class JsonAdaptedCondition {
      * Converts a given {@code Condition} into this class for Jackson use.
      */
     public JsonAdaptedCondition(Condition source) {
+        requireNonNull(source);
         condition = source.condition;
     }
 
