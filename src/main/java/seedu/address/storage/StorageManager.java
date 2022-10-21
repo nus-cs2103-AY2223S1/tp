@@ -2,6 +2,7 @@ package seedu.address.storage;
 
 import java.io.IOException;
 import java.nio.file.Path;
+import java.util.List;
 import java.util.Optional;
 import java.util.logging.Logger;
 
@@ -75,4 +76,19 @@ public class StorageManager implements Storage {
         addressBookStorage.saveAddressBook(addressBook, filePath);
     }
 
+    // ================ AddressBook methods ==============================
+    @Override
+    public Path getUserCommandHistoryPath() {
+        return null;
+    }
+
+    @Override
+    public Optional<List<String>> readCommandHistory() throws IOException {
+        return Optional.empty();
+    }
+
+    @Override
+    public void saveCommandHistory(List commandHistoryList) throws IOException {
+
+    }
 }
