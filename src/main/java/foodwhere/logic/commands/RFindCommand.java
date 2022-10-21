@@ -3,11 +3,12 @@ package foodwhere.logic.commands;
 import static java.util.Objects.requireNonNull;
 
 import foodwhere.commons.core.Messages;
+import foodwhere.logic.parser.CliSyntax;
 import foodwhere.model.Model;
-import foodwhere.model.review.NameContainsStallPredicate;
+import foodwhere.model.review.ReviewContainsKeywordsPredicate;
 
 /**
- * Finds and lists all stalls in address book whose name contains any of the argument keywords.
+ * Finds and lists all reviews in address book whose names or tags contains any of the argument keywords.
  * Keyword matching is case insensitive.
  */
 public class RFindCommand extends Command {
@@ -16,12 +17,16 @@ public class RFindCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all reviews whose names contain any of "
             + "the specified keywords (case-insensitive) and displays them as a list with index numbers.\n"
-            + "Parameters: KEYWORD [MORE_KEYWORDS]...\n"
-            + "Example: " + COMMAND_WORD + " John Doe Eatery";
+            + "Parameters: "
+            + CliSyntax.PREFIX_NAME + "NAME_KEYWORD [MORE_NAME_KEYWORDS]... "
+            + CliSyntax.PREFIX_TAG + "TAG_KEYWORD [MORE_TAG_KEYWORDS]... "
+            + "Example: "
+            + CliSyntax.PREFIX_NAME + "Chicken "
+            + CliSyntax.PREFIX_TAG + "opensDaily ";
 
-    private final NameContainsStallPredicate predicate;
+    private final ReviewContainsKeywordsPredicate predicate;
 
-    public RFindCommand(NameContainsStallPredicate predicate) {
+    public RFindCommand(ReviewContainsKeywordsPredicate predicate) {
         this.predicate = predicate;
     }
 

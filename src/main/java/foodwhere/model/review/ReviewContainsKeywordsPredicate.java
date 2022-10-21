@@ -1,4 +1,4 @@
-package foodwhere.model.stall;
+package foodwhere.model.review;
 
 import java.util.HashSet;
 import java.util.List;
@@ -10,36 +10,36 @@ import foodwhere.model.commons.Name;
 import foodwhere.model.commons.Tag;
 
 /**
- * Tests that a {@code Stall}'s {@code Name} or {@code Tag} matches any of the keywords given for each field.
+ * Tests that a {@code Review}'s {@code Name} or {@code Tag} matches any of the keywords given for each field.
  */
-public class StallContainsKeywordsPredicate implements Predicate<Stall> {
+public class ReviewContainsKeywordsPredicate implements Predicate<Review> {
     private final HashSet<Name> nameKeywords;
     private final HashSet<Tag> tagKeywords;
 
     /**
-     * Creates a StallContainsKeywordsPredicate where arguments are in List
+     * Creates a ReviewContainsKeywordsPredicate where arguments are in List
      * @param nameKeywords List of name keywords
      * @param tagKeywords List of tag keywords
      */
-    public StallContainsKeywordsPredicate(List<Name> nameKeywords, List<Tag> tagKeywords) {
+    public ReviewContainsKeywordsPredicate(List<Name> nameKeywords, List<Tag> tagKeywords) {
         this.nameKeywords = new HashSet<Name>(nameKeywords);
         this.tagKeywords = new HashSet<Tag>(tagKeywords);
     }
 
     /**
-     * Creates a StallContainsKeywordsPredicate where arguments are in Set
+     * Creates a ReviewContainsKeywordsPredicate where arguments are in Set
      * @param nameKeywords Set of name keywords
      * @param tagKeywords Set of tag keywords
      */
-    public StallContainsKeywordsPredicate(Set<Name> nameKeywords, Set<Tag> tagKeywords) {
+    public ReviewContainsKeywordsPredicate(Set<Name> nameKeywords, Set<Tag> tagKeywords) {
         this.nameKeywords = new HashSet<Name>(nameKeywords);
         this.tagKeywords = new HashSet<Tag>(tagKeywords);
     }
 
     @Override
-    public boolean test(Stall stall) {
+    public boolean test(Review review) {
         boolean hasTag = false;
-        for (Tag tag : stall.getTags()) {
+        for (Tag tag : review.getTags()) {
             if (tagKeywords.stream().anyMatch(keyword -> StringUtil.containsWordIgnoreCase(tag.tag, keyword.tag))) {
                 hasTag = true;
                 break;
@@ -47,7 +47,7 @@ public class StallContainsKeywordsPredicate implements Predicate<Stall> {
         }
 
         return nameKeywords.stream()
-                .anyMatch(keyword -> StringUtil.containsWordIgnoreCase(stall.getName().fullName, keyword.fullName))
+                .anyMatch(keyword -> StringUtil.containsWordIgnoreCase(review.getName().fullName, keyword.fullName))
                 || hasTag;
     }
 
@@ -55,9 +55,8 @@ public class StallContainsKeywordsPredicate implements Predicate<Stall> {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof StallContainsKeywordsPredicate // instanceof handles nulls
-                && nameKeywords.equals(((StallContainsKeywordsPredicate) other).nameKeywords))
-                && tagKeywords.equals(((StallContainsKeywordsPredicate) other).tagKeywords);
+                || (other instanceof ReviewContainsKeywordsPredicate // instanceof handles nulls
+                && nameKeywords.equals(((ReviewContainsKeywordsPredicate) other).nameKeywords))
+                && tagKeywords.equals(((ReviewContainsKeywordsPredicate) other).tagKeywords);
     }
-
 }

@@ -6,7 +6,6 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.Arrays;
 import java.util.List;
-import java.util.stream.Collectors;
 
 import org.junit.jupiter.api.Test;
 
@@ -26,9 +25,9 @@ import foodwhere.logic.commands.SListCommand;
 import foodwhere.logic.parser.exceptions.ParseException;
 import foodwhere.model.commons.Name;
 import foodwhere.model.commons.Tag;
-import foodwhere.model.review.NameContainsStallPredicate;
 import foodwhere.model.review.Review;
 import foodwhere.model.review.ReviewBuilder;
+import foodwhere.model.review.ReviewContainsKeywordsPredicate;
 import foodwhere.model.stall.Stall;
 import foodwhere.model.stall.StallBuilder;
 import foodwhere.model.stall.StallContainsKeywordsPredicate;
@@ -107,10 +106,11 @@ public class AddressBookParserTest {
 
     @Test
     public void parseCommand_rfind() throws Exception {
-        List<String> keywords = Arrays.asList("foo", "bar", "baz");
+        List<Name> nameKeywords = Arrays.asList(new Name("foo"));
+        List<Tag> tagKeywords = Arrays.asList(new Tag("bar"));
         RFindCommand command = (RFindCommand) parser.parseCommand(
-                RFindCommand.COMMAND_WORD + " " + keywords.stream().collect(Collectors.joining(" ")));
-        assertEquals(new RFindCommand(new NameContainsStallPredicate(keywords)), command);
+                RFindCommand.COMMAND_WORD + " " + "n/foo t/bar");
+        assertEquals(new RFindCommand(new ReviewContainsKeywordsPredicate(nameKeywords, tagKeywords)), command);
     }
 
     @Test
