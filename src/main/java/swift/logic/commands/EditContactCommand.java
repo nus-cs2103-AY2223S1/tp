@@ -1,5 +1,6 @@
 package swift.logic.commands;
 
+import static java.util.Map.entry;
 import static java.util.Objects.requireNonNull;
 import static swift.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static swift.logic.parser.CliSyntax.PREFIX_EMAIL;
@@ -9,8 +10,10 @@ import static swift.logic.parser.CliSyntax.PREFIX_TAG;
 import static swift.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 import java.util.Set;
 import java.util.UUID;
@@ -19,6 +22,7 @@ import swift.commons.core.Messages;
 import swift.commons.core.index.Index;
 import swift.commons.util.CollectionUtil;
 import swift.logic.commands.exceptions.CommandException;
+import swift.logic.parser.Prefix;
 import swift.model.Model;
 import swift.model.person.Address;
 import swift.model.person.Email;
@@ -33,6 +37,12 @@ import swift.model.tag.Tag;
 public class EditContactCommand extends Command {
 
     public static final String COMMAND_WORD = "edit_contact";
+    public static final HashMap<Prefix, String> ARGUMENT_PROMPTS = new HashMap<>(
+            Map.ofEntries(entry(PREFIX_NAME, "<name>"),
+                          entry(PREFIX_ADDRESS, "<address>"),
+                          entry(PREFIX_PHONE, "<phone>"),
+                          entry(PREFIX_EMAIL, "<email>"),
+                          entry(PREFIX_TAG, "<tag>")));
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the person identified "
             + "by the index number used in the displayed person list. "

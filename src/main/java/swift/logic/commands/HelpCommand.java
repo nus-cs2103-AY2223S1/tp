@@ -1,5 +1,8 @@
 package swift.logic.commands;
 
+import java.util.HashMap;
+
+import swift.logic.parser.Prefix;
 import swift.model.Model;
 
 /**
@@ -8,6 +11,7 @@ import swift.model.Model;
 public class HelpCommand extends Command {
 
     public static final String COMMAND_WORD = "help";
+    public static final HashMap<Prefix, String> ARGUMENT_PROMPTS = new HashMap<>();
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Shows program usage instructions.\n"
             + "Example: " + COMMAND_WORD;

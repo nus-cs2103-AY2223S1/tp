@@ -3,6 +3,9 @@ package swift.logic.commands;
 import static java.util.Objects.requireNonNull;
 import static swift.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
+import java.util.HashMap;
+
+import swift.logic.parser.Prefix;
 import swift.model.Model;
 
 /**
@@ -11,6 +14,7 @@ import swift.model.Model;
 public class ListContactCommand extends Command {
 
     public static final String COMMAND_WORD = "list_contact";
+    public static final HashMap<Prefix, String> ARGUMENT_PROMPTS = new HashMap<>();
 
     public static final String MESSAGE_SUCCESS = "Listed all persons";
 

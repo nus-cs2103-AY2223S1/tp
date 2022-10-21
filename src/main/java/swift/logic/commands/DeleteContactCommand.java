@@ -2,11 +2,13 @@ package swift.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 
+import java.util.HashMap;
 import java.util.List;
 
 import swift.commons.core.Messages;
 import swift.commons.core.index.Index;
 import swift.logic.commands.exceptions.CommandException;
+import swift.logic.parser.Prefix;
 import swift.model.Model;
 import swift.model.person.Person;
 
@@ -16,6 +18,7 @@ import swift.model.person.Person;
 public class DeleteContactCommand extends Command {
 
     public static final String COMMAND_WORD = "delete_contact";
+    public static final HashMap<Prefix, String> ARGUMENT_PROMPTS = new HashMap<>();
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Deletes the person identified by the index number used in the displayed person list.\n"
