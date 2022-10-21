@@ -300,6 +300,73 @@ Step 3. The user executes the 'editTagType Grade-Score grdt-scrt' to edit the ex
 
 Step 4. The user executes the `deleteTagType Score` to delete the Score Tag Type and all Tags of Score Tag Type for all person in CLInkedIn. The `deleteTagType` command calls the `UniqueTagTypeMap#removeExistingTagType()` to remove the scrt/ — Score key-value pair from the `prefixMap`. Furthermore, it also calls the `Model#deleteTagTypeForAllPerson()` to delete the Score Tag Type and the Tags assigned to the Score Tag TYpe for each person having Tags of Score Tag Type.
 
+### \[Implemented\] Status feature
+
+#### Implementation 
+
+The proposed `Status` feature is added as an attribute under the `Person` class. 
+
+A `Status` class is created, and is implemented via a `String`. The String can only take in alphanumeric inputs. 
+
+The `Status` attribute is mainly implemented by the following methods: 
+- `Status` can be added via the `AddCommand` 
+- `Status` can be edited via the `EditCommand`.
+
+It is also additionally facilitated by these methods:
+- `AddCommandParser#parse()` - Checks the input for the status prefix, only adds a candidate into CLInkedIn if the entry has a `Status` prefix and a valid `Status` input
+- `AddressBookParser#parseCommand()` - Checks the input for `AddCommand` or `EditCommand`
+
+Here is an example of what happens when the recruiter attempts to add a candidate to CLInkedIn:
+1. Recruiter enters the command `add n/John Doe p/999 e/john@mail/com a/singapore s/Application Received`
+2. The command is first parsed by `AddressBookParser#parseCommand()`, which identifies the command word of every command. 
+3. Since this is an `AddCommand`, the remaining arguments are passed into `AddCommandParser#parse()`
+4. Each of the different arguments of a candidate (name, phone, email, address, status) are parsed by `AddCommandParser#parse()`
+5. If any of the compulsory arguments of a candidate (name, phone, email, address, status) are not present, the command will fail its execution and `ParseException` will be thrown. 
+6. Next, the `AddCommand#execute()` is called, which triggers the `Model#addPerson(Person)` command and a `CommandResult` is returned 
+
+Here is an example of what happens when the recruiter attempts to edit a candidate's status  CLInkedIn:
+1. Recruiter enters the command `edit 1 s/OA In Progress`
+2. The command is first parsed by `AddressBookParser#parseCommand()`, which identifies the command word of every command.
+3. Since this is an `EditCommand`, the remaining arguments are passed into `EditCommandParser#parse()`
+4. Each of the different arguments to be edited are parsed by `EditCommandParser#parse()`.
+5. An `EditPersonDescriptor` is created and modified depending on the arguments to be edited.
+6. An `EditCommand` object is generated. 
+7. Next, the `EditCommand#execute()` is called, which triggers the `Model#setPerson(Person)` and `Model#updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS)` commands 
+8. A `CommandResult` is returned.
+
+#### Design Considerations 
+
+It is designed to be a mandatory feature, as every candidate under the recruiting process must be at an application stage.
+
+### \[Implementing\] Rating feature
+
+The proposed `Rating` feature is added as an attribute under the `Person` class.
+
+A `Rating` class is created, and is implemented via a `String`. The String can only take in integers from 1 to 10 inclusive.
+
+The `Rating` attribute is mainly implemented by the following methods:
+- `Rating` can be added via the `RateCommand`
+
+It is also additionally facilitated by these methods:
+- `RateCommandParser#parse()` - Checks the input for the rating prefix, only adds the rating to the candidate if the entry has a `Rating` prefix and a valid `Rating` input
+- `AddressBookParser#parseCommand()` - Checks the input for `RateCommand`.
+
+Here is an example of what happens when the recruiter attempts to add a rating to a candidate on CLInkedIn:
+1. Recruiter enters the command `rate 4 rate/8`
+2. The command is first parsed by `AddressBookParser#parseCommand()`, which identifies the command word of every command.
+3. Since this is a `RateCommand`, the remaining arguments are passed into `RateCommandParser#parse()`
+4. The different arguments (index, rating) are parsed by `RateCommandParser#parse()` and a `RateCommand` object is created.
+5. Next, the `RateCommand#execute()` is called, which triggers the `Model#setPerson(Person)` and `Model#updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS)` commands
+6. A `CommandResult` is returned.
+
+#### Design Considerations 
+
+#### Aspect: Compulsory vs Non-compulsory
+It is designed to be a non-compulsory feature, as the recruiter might not be able to rate every candidate at every stage of the recruiting process.
+
+#### Aspect: Argument type of the `Rating` constructor 
+It is designed to take in a String, as Commands are parsed as a String. However, the constructor will parse the String and the Rating is stored as an Integer. 
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Documentation, logging, testing, configuration, dev-ops**
