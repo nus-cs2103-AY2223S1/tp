@@ -13,11 +13,12 @@ import java.time.format.DateTimeParseException;
  */
 public class StartTime {
 
-    public static final String MESSAGE_CONSTRAINTS = "Start time must be in format: hh/mm/AM or hh/mm/PM";
+    public static final String MESSAGE_CONSTRAINTS = "Start time must be in format: hh/mm/AM, hh/mm/PM or hh:mm";
 
     //for checking if valid input date format
+    //The [HH:MM]
     private static final DateTimeFormatter checkFormatter = DateTimeFormatter
-            .ofPattern("[hh/mm/a][h/mm/a][hh/m/a][h/m/a]");
+            .ofPattern("[HH:MM][hh/mm/a][h/mm/a][hh/m/a][h/m/a]");
 
     //for changing to storage friendly format
     private static final DateTimeFormatter logFormatter = DateTimeFormatter.ofPattern("hh/mm/a");
