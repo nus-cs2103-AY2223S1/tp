@@ -16,14 +16,17 @@ Class "{abstract}\nAppointment" as Appointment {
 Class UpcomingAppointment
 
 Class PastAppointment {
-- medication: Set<Medication>
 - diagnosis: String
 + getMedication(): Set<Medication>
 + getDiagnosis(): String
 }
 }
 
+Class Medication {
+}
+
 UpcomingAppointment -up-|> Appointment
 PastAppointment -up-|> Appointment
+Medication "*\nmedication" -->  PastAppointment
 
 @enduml
