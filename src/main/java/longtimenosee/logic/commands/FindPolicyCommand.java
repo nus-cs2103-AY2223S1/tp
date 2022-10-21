@@ -50,7 +50,7 @@ public class FindPolicyCommand extends Command {
         model.updateFilteredPolicyList(finalPredicate);
         return new CommandResult(
                 String.format(Messages.MESSAGE_POLICIES_LISTED_OVERVIEW, model.getFilteredPolicyList().size()),
-                true, false);
+                true, false, false);
     }
 
     @Override
