@@ -227,8 +227,8 @@ _Details coming soon ..._
 | **Clear**            | `clear`                                                                                                                                                                             |
 | **Delete**           | `delete INDEX`<br> e.g., `delete 3`                                                                                                                                                 |
 | **Edit**             | `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [rm/ROOM] [dr/DATE_RANGE] [ng/NUMBER_OF_GUESTS] [rc/IS_ROOM_CLEAN]`<br> e.g.,`edit 2 e/jameslee@example.com dr/13/09/22 - 15/09/22 ng/5`   |
+| **Bill**             | `bill INDEX b/BILL`<br> e.g., `bill 2 b/99.99`      
 | **Find**             | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`                                                                                                                          |
 | **MarkRoomsUnclean** | `markRoomsUnclean`                                                                                                                                                                  |
 | **List**             | `list`                                                                                                                                                                              |
 | **Help**             | `help`                                                                                                                                                                              |
-
