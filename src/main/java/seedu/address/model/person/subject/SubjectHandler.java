@@ -2,6 +2,7 @@ package seedu.address.model.person.subject;
 
 import java.util.HashMap;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 import seedu.address.commons.util.StringUtil;
 
@@ -18,8 +19,14 @@ public class SubjectHandler {
         subjectsTaken = new HashMap<>();
     }
 
-    public HashMap<String, Subject> getSubjectsTaken() {
-        return subjectsTaken;
+    /**
+     * Constructs a {@code SubjectHandler} with a specified Set of Subjects.
+     */
+    public SubjectHandler(Set<Subject> subjects) {
+        subjectsTaken = new HashMap<>();
+        for (Subject subject : subjects) {
+            subjectsTaken.put(subject.getSubjectName(), subject);
+        }
     }
 
     /**
@@ -38,6 +45,11 @@ public class SubjectHandler {
      */
     public Subject getSubject(String subjectName) {
         return subjectsTaken.get(subjectName);
+    }
+
+    public Set<Subject> getSubjectsTaken() {
+        return subjectsTaken.keySet().stream().map(subjectsTaken::get).collect(
+            Collectors.toSet());
     }
 
     /**

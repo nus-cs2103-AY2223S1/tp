@@ -12,7 +12,7 @@ import seedu.address.model.person.Remark;
 import seedu.address.model.person.StudentClass;
 import seedu.address.model.person.subject.Attendance;
 import seedu.address.model.person.subject.Grades;
-import seedu.address.model.person.subject.SubjectHandler;
+import seedu.address.model.person.subject.Subject;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.util.SampleDataUtil;
 
@@ -40,7 +40,7 @@ public class PersonBuilder {
     private StudentClass studentClass;
     private Set<Remark> remarks;
     private Attendance attendance;
-    private SubjectHandler subjectHandler;
+    private Set<Subject> subjects;
     private Grades grades;
     private Set<Tag> tags;
 
@@ -54,7 +54,7 @@ public class PersonBuilder {
         address = new Address(DEFAULT_ADDRESS);
         studentClass = new StudentClass(DEFAULT_STUDENTCLASS);
         remarks = new HashSet<>();
-        subjectHandler = new SubjectHandler();
+        subjects = new HashSet<>();
         tags = new HashSet<>();
     }
 
@@ -68,7 +68,7 @@ public class PersonBuilder {
         address = personToCopy.getAddress();
         studentClass = personToCopy.getStudentClass();
         remarks = new HashSet<>(personToCopy.getRemarks());
-        subjectHandler = personToCopy.getSubjectHandler();
+        subjects = personToCopy.getSubjectsTaken();
         tags = new HashSet<>(personToCopy.getTags());
     }
 
@@ -133,6 +133,6 @@ public class PersonBuilder {
      */
     public Person build() {
         return new Person(name, phone, email, address, studentClass, remarks,
-                          subjectHandler, tags);
+                          subjects, tags);
     }
 }

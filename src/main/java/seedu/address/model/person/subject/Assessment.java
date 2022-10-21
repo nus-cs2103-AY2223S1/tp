@@ -19,6 +19,9 @@ public class Assessment {
     private double assessmentScore;
     private double assessmentTotalScore;
 
+    // Can create an arbitrary formula for this
+    private double assessmentDifficulty;
+
     /**
      * Constructs an {@code Assessment} object.
      * @param assessmentName the name of the assessment
@@ -27,12 +30,13 @@ public class Assessment {
      * @param assessmentTotalScore the total score of the assessment
      */
     public Assessment(String assessmentName, double assessmentWeightage, double assessmentScore,
-        double assessmentTotalScore) {
+        double assessmentTotalScore, double assessmentDifficulty) {
         checkArgument(isValidAssessment(assessmentName), MESSAGE_CONSTRAINTS);
         this.assessmentName = assessmentName;
         this.assessmentWeightage = assessmentWeightage;
         this.assessmentScore = assessmentScore;
         this.assessmentTotalScore = assessmentTotalScore;
+        this.assessmentDifficulty = assessmentDifficulty;
     }
 
     public static boolean isValidAssessment(String test) {
@@ -55,24 +59,12 @@ public class Assessment {
         return assessmentTotalScore;
     }
 
+    public double getAssessmentDifficulty() {
+        return assessmentDifficulty;
+    }
+
     public double[] getScoreArray() {
-        return new double[]{assessmentScore, assessmentWeightage};
-    }
-
-    public void setAssessmentName(String assessmentName) {
-        this.assessmentName = assessmentName;
-    }
-
-    public void setAssessmentWeightage(double assessmentWeightage) {
-        this.assessmentWeightage = assessmentWeightage;
-    }
-
-    public void setAssessmentScore(double assessmentScore) {
-        this.assessmentScore = assessmentScore;
-    }
-
-    public void setAssessmentTotalScore(double assessmentTotalScore) {
-        this.assessmentTotalScore = assessmentTotalScore;
+        return new double[]{assessmentScore, assessmentTotalScore, assessmentWeightage};
     }
 
     @Override

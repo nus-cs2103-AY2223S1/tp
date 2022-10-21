@@ -26,6 +26,7 @@ import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.Remark;
 import seedu.address.model.person.StudentClass;
+import seedu.address.model.person.subject.Subject;
 import seedu.address.model.person.subject.SubjectHandler;
 import seedu.address.model.tag.Tag;
 
@@ -82,10 +83,9 @@ public class EditCommand extends Command {
         StudentClass updatedStudentClass =
             editPersonDescriptor.getStudentClass().orElse(personToEdit.getStudentClass());
         Set<Remark> updatedRemarks = editPersonDescriptor.getRemarks().orElse(personToEdit.getRemarks());
-        // SubjectHandler updatedSubjects = editPersonDescriptor.getSubject().orElse(personToEdit.getSubjectsTaken());
-        // Temporary solution to edit subjects
-        SubjectHandler updatedSubjects = new SubjectHandler();
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
+
+        Set<Subject> updatedSubjects = editPersonDescriptor.getSubjects().orElse(personToEdit.getSubjectsTaken());
 
         return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedStudentClass,
                           updatedRemarks, updatedSubjects, updatedTags);
@@ -143,6 +143,7 @@ public class EditCommand extends Command {
         private Set<Remark> remarksList;
         private SubjectHandler subjectHandler;
         private Set<Tag> tags;
+        private Set<Subject> subjects;
 
         public EditPersonDescriptor() {
         }
@@ -160,6 +161,7 @@ public class EditCommand extends Command {
             setRemarks(toCopy.remarksList);
             setSubjectHandler(toCopy.subjectHandler);
             setTags(toCopy.tags);
+
         }
 
         /**
@@ -236,6 +238,19 @@ public class EditCommand extends Command {
          */
         public Optional<Set<Tag>> getTags() {
             return (tags != null) ? Optional.of(Collections.unmodifiableSet(tags)) : Optional.empty();
+        }
+
+        /**
+         * Returns an unmodifiable subject set, which throws {@code UnsupportedOperationException}
+         * if modification is attempted.
+         * Returns {@code Optional#empty()} if {@code subjects} is null.
+         */
+        public Optional<Set<Subject>> getSubjects() {
+            return (subjects != null) ? Optional.of(Collections.unmodifiableSet(subjects)) : Optional.empty();
+        }
+
+        public void setSubjects(Set<Subject> subjectList) {
+            this.subjects = (subjects != null) ? new HashSet<>(subjects) : null;
         }
 
         /**

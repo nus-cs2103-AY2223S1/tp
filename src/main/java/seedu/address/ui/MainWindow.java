@@ -34,6 +34,7 @@ public class MainWindow extends UiPart<Stage> {
     private PersonListPanel personListPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
+    private PredictionWindow predictionWindow;
 
     @FXML
     private StackPane commandBoxPlaceholder;
@@ -66,6 +67,7 @@ public class MainWindow extends UiPart<Stage> {
         setAccelerators();
 
         helpWindow = new HelpWindow();
+        predictionWindow = new PredictionWindow();
     }
 
     public Stage getPrimaryStage() {
@@ -148,6 +150,21 @@ public class MainWindow extends UiPart<Stage> {
         }
     }
 
+    /**
+     * Opens the prediction window or focuses on it if it's already opened.
+     * Displays the predicted grade for the next assessment the student would take
+     * for the queried subject.
+     * @param predictedGrade the predicted grade to show
+     */
+    @FXML
+    public void handlePrediction(double predictedGrade) {
+        if (!predictionWindow.isShowing()) {
+            predictionWindow.show(String.valueOf(predictedGrade));
+        } else {
+            predictionWindow.focus();
+        }
+    }
+
     void show() {
         primaryStage.show();
     }
@@ -181,6 +198,10 @@ public class MainWindow extends UiPart<Stage> {
 
             if (commandResult.isShowHelp()) {
                 handleHelp();
+            }
+
+            if (commandResult.isShowPrediction()) {
+                handlePrediction(commandResult.getGradePredicted());
             }
 
             if (commandResult.isExit()) {

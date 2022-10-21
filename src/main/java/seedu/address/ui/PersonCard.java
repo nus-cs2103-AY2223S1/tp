@@ -38,8 +38,8 @@ public class PersonCard extends UiPart<Region> {
     private Label address;
     @FXML
     private Label email;
-    //    @FXML
-    //    private Label clazz;
+    @FXML
+    private Label studentClass;
     //    @FXML
     //    private Label personality;
     //    @FXML
@@ -58,7 +58,7 @@ public class PersonCard extends UiPart<Region> {
         phone.setText(person.getPhone().value);
         address.setText(person.getAddress().value);
         email.setText(person.getEmail().value);
-        //        clazz.setText(person.getClazz().toString());
+        studentClass.setText("Class: " + person.getStudentClass().toString());
         //        personality.setText(person.getPersonality().toString());
         //        subject.setText(person.getSubjectHandler().toString());
         person.getTags().stream()

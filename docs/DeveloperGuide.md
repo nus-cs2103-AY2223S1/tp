@@ -91,7 +91,7 @@ The `LoginWindow` is a separate window that is displayed when the user first sta
 The `LoginWindow` is responsible for authenticating the user and retrieving the user's data from the `Storage` component.
 The `LoginWindow` will then pass the user's data to the `MainWindow` so that the `MainWindow` can display the user's data.
 
-`LoginWindow` inherits from the abstract `UiPart` class, just like the `MainWindow`. 
+`LoginWindow` inherits from the abstract `UiPart` class, just like the `MainWindow`.
 As of 20/10/2022, it consists of 2 `TextBox` FXML components and a "submit" `Button` FXML component.
 
 We plan to add a new UI component in our implementation: the `ImportCSVButton`.
@@ -395,14 +395,29 @@ testers are expected to do more *exploratory* testing.
 
     1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
 
-    1. Test case: `findSubject math`<br>
+    2. Test case: `findSubject math`<br>
        Expected: All persons that have the subject `math` in the list will be shown in a new list. Timestamp in the status bar is updated.
 
-    1. Test case: `findSubject engrish`<br>
+    3. Test case: `findSubject engrish`<br>
        Expected: No person will be shown in a new list. Status bar remains the same.
 
-    1. Other incorrect delete commands to try: `findSubject`, `findSubject x`, `...` (where x is a misspelled subject)<br>
+    4. Other incorrect delete commands to try: `findSubject`, `findSubject x`, `...` (where x is a misspelled subject)<br>
        Expected: Similar to previous.
+2. Finding persons that belongs in the same class.
+
+    1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
+
+    2. Test case 1: `find c/1A`<br>
+        Expected: All persons that are in class 1A will be shown in a new list. Timestamp in the status bar is updated.
+
+    3. Test case 2: `find c/1a`<br>
+       Expected: Same result as Test case 1. Keywords given by user after `c/` are not case sensitive.
+
+    4. Test case 3: `find c/2b`<br>
+       Expected: No person will be shown in a new list as no one is in class 2B. Status bar remains the same.
+
+    5. Other incorrect find commands to try: `find c/`, `find c/ `, `find c/x` (where x is a non-existent class)<br>
+       Expected: Similar to Test case 3.
 
 ### Deleting a person
 
