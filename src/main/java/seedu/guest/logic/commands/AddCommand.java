@@ -3,7 +3,6 @@ package seedu.guest.logic.commands;
 import static java.util.Objects.requireNonNull;
 import static seedu.guest.logic.parser.CliSyntax.PREFIX_DATE_RANGE;
 import static seedu.guest.logic.parser.CliSyntax.PREFIX_EMAIL;
-import static seedu.guest.logic.parser.CliSyntax.PREFIX_IS_ROOM_CLEAN;
 import static seedu.guest.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.guest.logic.parser.CliSyntax.PREFIX_NUMBER_OF_GUESTS;
 import static seedu.guest.logic.parser.CliSyntax.PREFIX_PHONE;
@@ -29,7 +28,6 @@ public class AddCommand extends Command {
             + PREFIX_ROOM + "ROOM "
             + PREFIX_DATE_RANGE + "DATE_RANGE "
             + PREFIX_NUMBER_OF_GUESTS + "NUMBER_OF_GUESTS "
-            + PREFIX_IS_ROOM_CLEAN + "IS_ROOM_CLEAN "
             + "[" + PREFIX_REQUEST + "REQUEST] "
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_NAME + "John Doe "
@@ -38,7 +36,6 @@ public class AddCommand extends Command {
             + PREFIX_ROOM + "05-73 "
             + PREFIX_DATE_RANGE + "13/09/22 - 15/09/22 "
             + PREFIX_NUMBER_OF_GUESTS + "1 "
-            + PREFIX_IS_ROOM_CLEAN + "yes "
             + PREFIX_REQUEST + "Apply for room service";
 
     public static final String MESSAGE_SUCCESS = "New guest added: %1$s";

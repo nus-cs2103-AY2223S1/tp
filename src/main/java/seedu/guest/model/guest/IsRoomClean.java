@@ -10,26 +10,50 @@ import static seedu.guest.commons.util.AppUtil.checkArgument;
 public class IsRoomClean {
 
     public static final String MESSAGE_CONSTRAINTS =
-            "Is Room Clean should only contain the strings \"yes\" or \"no\"";
-    public static final String VALIDATION_REGEX = "^yes$|^no$";
+            "IsRoomClean field should only contain any case-insensitive versions of the strings"
+                    + "\"yes\", \"no\", \"y\" or \"n\".";
+    public static final String VALIDATION_REGEX = "^yes$|^no$|^y$|^n$";
+    public static final String DEFAULT_IS_ROOM_CLEAN = "yes";
     public final String value;
 
     /**
      * Constructs a {@code IsRoomClean}.
      *
-     * @param isClean A valid is room clean.
+     * @param isRoomClean A valid isRoomClean.
      */
-    public IsRoomClean(String isClean) {
-        requireNonNull(isClean);
-        checkArgument(isValidIsRoomClean(isClean), MESSAGE_CONSTRAINTS);
-        value = isClean;
+    public IsRoomClean(String isRoomClean) {
+        requireNonNull(isRoomClean);
+        checkArgument(isValidIsRoomClean(isRoomClean), MESSAGE_CONSTRAINTS);
+        value = standardiseIsRoomClean(isRoomClean);
     }
 
     /**
-     * Returns true if a given string is a valid is room clean.
+     * Returns true if a given string is a valid isRoomClean.
      */
     public static boolean isValidIsRoomClean(String test) {
-        return test.matches(VALIDATION_REGEX);
+        String testToLower = test.toLowerCase();
+        return testToLower.matches(VALIDATION_REGEX);
+    }
+
+    /**
+     * Returns standardised notation of the isRoomClean field.
+     *
+     * @param status a valid isRoomClean.
+     */
+    private String standardiseIsRoomClean(String status) {
+        requireNonNull(status);
+        assert isValidIsRoomClean(status);
+        String statusToLower = status.toLowerCase();
+
+        String standardisedRoomUnclean = "no";
+        String standardisedRoomClean = "yes";
+        String abbreviatedRoomUnclean = "n";
+
+        if (statusToLower.equals(abbreviatedRoomUnclean) || statusToLower.equals(standardisedRoomUnclean)) {
+            return standardisedRoomUnclean;
+        } else {
+            return standardisedRoomClean;
+        }
     }
 
     @Override
