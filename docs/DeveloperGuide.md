@@ -21,9 +21,9 @@ Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
 ## **Design**
 
-RC4HDB aims to provide a complex set of features which are simple to use. Keeping this in mind, 
+RC4HDB aims to provide a complex set of features which are simple to use. Keeping this in mind,
 we are pursuing an iterative approach, adding new features and functionalities amidst the evolving requirements.
-This gives rise to the following main guiding principles for RC4HDB: 
+This gives rise to the following main guiding principles for RC4HDB:
 
 **Maintainability**
 

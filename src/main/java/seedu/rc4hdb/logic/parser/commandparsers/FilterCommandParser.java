@@ -1,7 +1,10 @@
 package seedu.rc4hdb.logic.parser.commandparsers;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.rc4hdb.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.rc4hdb.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.rc4hdb.logic.parser.CliSyntax.PREFIX_FILTER_ALL;
+import static seedu.rc4hdb.logic.parser.CliSyntax.PREFIX_FILTER_ANY;
 import static seedu.rc4hdb.logic.parser.CliSyntax.PREFIX_GENDER;
 import static seedu.rc4hdb.logic.parser.CliSyntax.PREFIX_HOUSE;
 import static seedu.rc4hdb.logic.parser.CliSyntax.PREFIX_MATRIC_NUMBER;
@@ -18,6 +21,7 @@ import java.util.Set;
 import seedu.rc4hdb.logic.commands.modelcommands.FilterCommand;
 import seedu.rc4hdb.logic.parser.ArgumentMultimap;
 import seedu.rc4hdb.logic.parser.ArgumentTokenizer;
+import seedu.rc4hdb.logic.parser.FilterSpecifier;
 import seedu.rc4hdb.logic.parser.Parser;
 import seedu.rc4hdb.logic.parser.ParserUtil;
 import seedu.rc4hdb.logic.parser.exceptions.ParseException;
@@ -29,6 +33,8 @@ import seedu.rc4hdb.model.tag.Tag;
  */
 public class FilterCommandParser implements Parser<FilterCommand> {
 
+    private FilterSpecifier specifier;
+
     /**
      * Parses the given {@code String} of arguments in the context of the FilterCommand
      * and returns a FilterCommand object for execution.
@@ -38,7 +44,20 @@ public class FilterCommandParser implements Parser<FilterCommand> {
         requireNonNull(args);
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ROOM, PREFIX_GENDER,
-                        PREFIX_HOUSE, PREFIX_MATRIC_NUMBER, PREFIX_TAG);
+                        PREFIX_HOUSE, PREFIX_MATRIC_NUMBER, PREFIX_TAG, PREFIX_FILTER_ALL, PREFIX_FILTER_ANY);
+
+        if (argMultimap.getValue(PREFIX_FILTER_ANY).isPresent()) {
+            specifier = new FilterSpecifier("any");
+        }
+        if (argMultimap.getValue(PREFIX_FILTER_ALL).isPresent()) {
+            specifier = new FilterSpecifier("all");
+        }
+
+        try {
+            specifier.getSpecifier();
+        } catch (NullPointerException e) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, FilterCommand.MESSAGE_USAGE));
+        }
 
         ResidentDescriptor filterResidentDescriptor = new ResidentDescriptor();
         if (argMultimap.getValue(PREFIX_NAME).isPresent()) {
@@ -69,7 +88,7 @@ public class FilterCommandParser implements Parser<FilterCommand> {
             throw new ParseException(FilterCommand.MESSAGE_NOT_FILTERED);
         }
 
-        return new FilterCommand(filterResidentDescriptor);
+        return new FilterCommand(filterResidentDescriptor, specifier);
     }
 
     private Optional<Set<Tag>> parseTagsForfilter(Collection<String> tags) throws ParseException {

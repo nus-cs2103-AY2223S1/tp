@@ -10,12 +10,17 @@ import static seedu.rc4hdb.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.rc4hdb.logic.parser.CliSyntax.PREFIX_ROOM;
 import static seedu.rc4hdb.logic.parser.CliSyntax.PREFIX_TAG;
 
+import java.util.function.Predicate;
+
 import seedu.rc4hdb.commons.core.Messages;
 import seedu.rc4hdb.logic.commands.CommandResult;
 import seedu.rc4hdb.logic.commands.exceptions.CommandException;
+import seedu.rc4hdb.logic.parser.FilterSpecifier;
 import seedu.rc4hdb.model.Model;
+import seedu.rc4hdb.model.resident.Resident;
 import seedu.rc4hdb.model.resident.ResidentDescriptor;
-import seedu.rc4hdb.model.resident.predicates.AttributesMatchKeywordsPredicate;
+import seedu.rc4hdb.model.resident.predicates.AttributesMatchAllKeywordsPredicate;
+import seedu.rc4hdb.model.resident.predicates.AttributesMatchAnyKeywordPredicate;
 
 /**
  * Filters and lists all residents in resident book whose attributes are equal to any of the argument keywords.
@@ -34,7 +39,7 @@ public class FilterCommand implements ModelCommand {
             + "[" + PREFIX_HOUSE + "HOUSE] "
             + "[" + PREFIX_MATRIC_NUMBER + "MATRIC_NUMBER] "
             + "[" + PREFIX_TAG + "TAG]...\n"
-            + "Example: " + COMMAND_WORD + " 1 "
+            + "Example: " + COMMAND_WORD
             + PREFIX_PHONE + "91234567 "
             + PREFIX_EMAIL + "johndoe@example.com";
 
@@ -42,21 +47,26 @@ public class FilterCommand implements ModelCommand {
 
     /** description to filter the resident with */
     private final ResidentDescriptor filterPersonDescriptor;
+    private final FilterSpecifier specifier;
 
     /**
      * @param filterPersonDescriptor description object to filter the resident with
      */
-    public FilterCommand(ResidentDescriptor filterPersonDescriptor) {
+    public FilterCommand(ResidentDescriptor filterPersonDescriptor, FilterSpecifier specifier) {
         requireNonNull(filterPersonDescriptor);
         this.filterPersonDescriptor = new ResidentDescriptor(filterPersonDescriptor);
+        this.specifier = specifier;
     }
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
-        //return new CommandResult("Command Still in progress");
         requireNonNull(model);
-        AttributesMatchKeywordsPredicate predicate =
-                new AttributesMatchKeywordsPredicate(filterPersonDescriptor);
+        Predicate<Resident> predicate;
+        if (specifier.getSpecifier() == "any") {
+            predicate = new AttributesMatchAnyKeywordPredicate(filterPersonDescriptor);
+        } else {
+            predicate = new AttributesMatchAllKeywordsPredicate(filterPersonDescriptor);
+        }
         model.updateFilteredResidentList(predicate);
         return new CommandResult(
                 String.format(Messages.MESSAGE_RESIDENTS_LISTED_OVERVIEW, model.getFilteredResidentList().size()));
