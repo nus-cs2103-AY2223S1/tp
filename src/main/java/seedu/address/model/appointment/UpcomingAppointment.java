@@ -38,21 +38,6 @@ public class UpcomingAppointment extends Appointment {
         return super.getDate();
     }
 
-    /**
-     * Returns true if a given string is a valid date.
-     */
-    public static boolean isValidDate(String test) {
-        if (test == null) {
-            return true;
-        }
-        try {
-            LocalDate.parse(test, DateTimeFormatter.ofPattern("dd-MM-yyyy"));
-        } catch (DateTimeParseException e) {
-            return false;
-        }
-        return true;
-    }
-
     @Override
     public String toString() {
         return "Upcoming Appointment Date: " + (value == null ? "None" : value);
