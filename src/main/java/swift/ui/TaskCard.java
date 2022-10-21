@@ -1,6 +1,5 @@
 package swift.ui;
 
-import java.util.Set;
 import java.util.UUID;
 
 import javafx.fxml.FXML;
@@ -14,7 +13,6 @@ import swift.model.person.Email;
 import swift.model.person.Name;
 import swift.model.person.Person;
 import swift.model.person.Phone;
-import swift.model.tag.Tag;
 import swift.model.task.Task;
 import swift.model.util.SampleDataUtil;
 
@@ -57,8 +55,7 @@ public class TaskCard extends UiPart<Region> {
         taskName.setText(task.getTaskName().fullName);
 
         // placeholder for task ui testing
-        String DEFAULT_UUID = "47005f2b-9c40-4051-8c95-69ca601cb58d";
-        UUID id1 = UUID.fromString(DEFAULT_UUID);
+        UUID id1 = UUID.fromString("47005f2b-9c40-4051-8c95-69ca601cb58d");
         Person john = new Person(id1, new Name("John Cena"), new Phone("91122668"),
                 new Email("john@gmail.com"), new Address("blk 123 st 28"),
                 SampleDataUtil.getTagSet("friends"));
@@ -72,21 +69,17 @@ public class TaskCard extends UiPart<Region> {
 
         Font.getFamilies().forEach(x -> System.out.println(x));
 
-//        task.getContacts().stream()
-//                .sorted(Comparator.comparing(contact -> contact.fullName))
-//                .forEach(contact -> contacts.getChildren().add(new Label(contact.fullName)));
+        //task.getContacts().stream()
+        //        .sorted(Comparator.comparing(contact -> contact.fullName))
+        //        .forEach(contact -> contacts.getChildren().add(new Label(contact.fullName)));
     }
 
     private void setStyle(Label... labels) {
         for (Label label: labels) {
-//            label.setStyle("-fx-background-color:derive(#4d7b93, 10%); -fx-text-fill: #FFFFFF; -fx-font-family: Inter;" +
-//                    "-fx-font-size: 11; -fx-font-weight: bold; -fx-border-insets: 2; -fx-label-padding: 2;" +
-//                    "-fx-border-radius: 4px; -fx-border-width: 1px; -fx-border-color: derive(#4d7b93, 20%); -fx-background-insets: 3;");
-
-            label.setStyle("-fx-background-color:transparent; -fx-text-fill: #7C3AED; -fx-font-family: Inter;" +
-                    "-fx-font-size: 12; -fx-font-weight: medium; -fx-border-insets: 2; -fx-label-padding: 5;" +
-                    "-fx-background-insets: 3; -fx-font-family: 'Tahoma'; -fx-font-style: italics");
-
+            label.setStyle("-fx-background-color:derive(#4d7b93, 10%); -fx-text-fill: #FFFFFF;"
+                    + "-fx-font-family: Inter; -fx-font-size: 12; -fx-font-weight: bold;"
+                    + "-fx-border-insets: 2; -fx-border-radius: 4px; -fx-border-width: 1px;"
+                    + "-fx-border-color: derive(#4d7b93, 20%); -fx-background-insets: 3; -fx-label-padding: 2;");
         }
     }
 

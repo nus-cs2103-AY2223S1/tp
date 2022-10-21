@@ -1,5 +1,7 @@
 package swift.ui;
 
+import java.util.logging.Logger;
+
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.ListCell;
@@ -7,8 +9,6 @@ import javafx.scene.control.ListView;
 import javafx.scene.layout.Region;
 import swift.commons.core.LogsCenter;
 import swift.model.task.Task;
-
-import java.util.logging.Logger;
 
 /**
  * Panel containing the list of tasks.

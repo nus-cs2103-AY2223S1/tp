@@ -157,7 +157,7 @@
 .task_cell_deco_circle {
     -fx-fill: #A1A1AA;
     -fx-stroke: #A1A1AA;
-    -fx-stroke-type: "INSIDE";
+    -fx-stroke-type: "inside";
 }
 
 .task_cell_deco_circle:selected {
