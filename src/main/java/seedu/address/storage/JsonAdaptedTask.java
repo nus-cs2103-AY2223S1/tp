@@ -51,7 +51,7 @@ class JsonAdaptedTask {
     public JsonAdaptedTask(Task source) {
         taskName = source.getTaskName().taskName;
         taskDescription = source.getTaskDescription().description;
-        taskDeadline = source.getTaskDeadline().deadline;
+        taskDeadline = source.getTaskDeadline().toString();
         students.addAll(source.getStudents().stream()
                 .map(JsonAdaptedStudent::new)
                 .collect(Collectors.toList()));
@@ -83,7 +83,10 @@ class JsonAdaptedTask {
                     MISSING_FIELD_MESSAGE_FORMAT, TaskDeadline.class.getSimpleName()
             ));
         }
-        if (!TaskDeadline.isValidDeadline(taskDeadline)) {
+        if (!TaskDeadline.isInDeadlineFormat(taskDeadline)) {
+            throw new IllegalValueException(TaskDeadline.MESSAGE_CONSTRAINTS);
+        }
+        if (!TaskDeadline.isValidDate(taskDeadline)) {
             throw new IllegalValueException(TaskDeadline.MESSAGE_CONSTRAINTS);
         }
         final TaskDeadline modelDeadline = new TaskDeadline(taskDeadline);

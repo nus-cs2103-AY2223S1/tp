@@ -100,7 +100,7 @@ public class Task {
                 .append(" Task Description: ")
                 .append(getTaskDescription())
                 .append(" Task Deadline: ")
-                .append(getTaskDeadline())
+                .append(getTaskDeadline().toString())
                 .append(" Students: ");
 
         Set<Student> students = getStudents();

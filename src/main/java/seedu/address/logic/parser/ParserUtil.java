@@ -184,8 +184,10 @@ public class ParserUtil {
     public static TaskDeadline parseTaskDeadline(String taskDeadline) throws ParseException {
         requireNonNull(taskDeadline);
         String trimmedTaskDeadline = taskDeadline.trim();
-        if (!TaskDeadline.isValidDeadline(trimmedTaskDeadline)) {
+        if (!TaskDeadline.isInDeadlineFormat(trimmedTaskDeadline)) {
             throw new ParseException(TaskDeadline.MESSAGE_CONSTRAINTS);
+        } else if (!TaskDeadline.isValidDate(trimmedTaskDeadline)) {
+            throw new ParseException(TaskDeadline.MESSAGE_INVALID_DATE);
         }
         return new TaskDeadline(trimmedTaskDeadline);
     }

@@ -3,6 +3,7 @@ package seedu.address.model.task;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.util.Comparator;
 import java.util.Iterator;
 import java.util.List;
 
@@ -46,6 +47,7 @@ public class UniqueTaskList implements Iterable<Task> {
             throw new DuplicateTaskException();
         }
         internalList.add(toAdd);
+        sortByDeadline();
     }
 
     /**
@@ -66,6 +68,7 @@ public class UniqueTaskList implements Iterable<Task> {
         }
 
         internalList.set(index, editedTask);
+        sortByDeadline();
     }
 
     /**
@@ -82,6 +85,7 @@ public class UniqueTaskList implements Iterable<Task> {
     public void setStudents(UniqueTaskList replacement) {
         requireNonNull(replacement);
         internalList.setAll(replacement.internalList);
+        sortByDeadline();
     }
 
     /**
@@ -93,8 +97,16 @@ public class UniqueTaskList implements Iterable<Task> {
         if (!tasksAreUnique(tasks)) {
             throw new DuplicateTaskException();
         }
-
         internalList.setAll(tasks);
+        sortByDeadline();
+    }
+
+    /**
+     * Sorts the tasks by its deadline.
+     */
+    public void sortByDeadline() {
+        internalList.sort(Comparator.comparing(task -> task.getTaskDeadline().deadline));
+        //FXCollections.sort(internalList, taskComparator);
     }
 
     /**
@@ -113,7 +125,7 @@ public class UniqueTaskList implements Iterable<Task> {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof UniqueTaskList // instanceof handles nulls
-                        && internalList.equals(((UniqueTaskList) other).internalList));
+                && internalList.equals(((UniqueTaskList) other).internalList));
     }
 
     @Override
