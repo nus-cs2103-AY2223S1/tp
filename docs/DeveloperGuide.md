@@ -227,27 +227,54 @@ Step 1: The user input is parsed similar to other commands and a `GradeCommand` 
 student index, session name, and grade. 
 
 Step 2: The `GradeCommand` object is executed. The given index is used to retrieve the `Student` object from the current
-curated list of students in `Model`. Then a new `Student` object is created from the old `Student` object by updating the session
+curated list of students in `Model` using the `ParserStudentIndexUtil#parseStudentFromIndex` method. 
+
+Step 3: Then a new `Student` object is created from the old `Student` object by updating the session
 grade with help of the `Student#getUpdatedStudent` method.  
 
-Step 3: The `Student#getUpdatedStudent` method creates a new `Student` object by copying all fields from the
+Step 4: The `Student#getUpdatedStudent` method creates a new `Student` object by copying all fields from the
 old `Student` object except the list of `StudentModuleData`. An updated list of `StudentModuleData` is created by calling the
 `StudentModuleData#getUpdatedModuleDataList` method. 
 
-Step 4: The `StudentModuleData#getUpdatedModuleDataList` method goes through all the `StudentModuleData` in the old list
+Step 5: The `StudentModuleData#getUpdatedModuleDataList` method goes through all the `StudentModuleData` in the old list
 and looks for a match with the current focused `ModuleClass`. It is guaranteed to exist since the program is in
 focus mode. Then it creates a new list by updating the list of `SessionData` stored inside the `StudentModuleData`.
 It is achieved using the method `SessionData#getUpdatedSessionDataList`. 
 
-Step 5: The `SessionData#getUpdatedSessionDataList` goes through the list of `SessionData` and creates a new list 
+Step 6: The `SessionData#getUpdatedSessionDataList` goes through the list of `SessionData` and creates a new list 
 removing any occurrence of the matching session the user is trying to grade. After that it adds a new `SessionData` to 
 the list with the given `Session` and the grade. 
 
-Step 6: After finishing steps 4-7, the `GradeCommand` will have an updated student. Then the `Model#setStudent` method
+Step 7: After finishing steps 4-7, the `GradeCommand` will have an updated student. Then the `Model#setStudent` method
 is used to replace the old `Student` object with the updated one in our model. 
 
-Step 7: The execution ends and returns a `CommandResult` object containing the success message to be displayed by the GUI
+Step 8: The execution ends and returns a `CommandResult` object containing the success message to be displayed by the GUI
 to the user. 
+
+### Viewing session-wise grades of a student in a class
+<img src="images/ViewCommandSequenceDiagram.png" width="700" />
+
+Viewing session-wise grades of a student is only possible when a `ModuleClass` is in focus. It requires going through
+the list of `StudentModuleData` of the `Student` object and finding the data for the matching focused class. After retrieving it, 
+the session-wise grade can be read from the list of `SessionData` stored inside the `StudentModuleData`.  
+
+Given bellow are the steps taken when the user wants to view a student's session-wise grades:
+
+Step 1: The user input is parsed similar to other commands and a `ViewCommand` object is created using the given student index. 
+
+Step 2: The `ViewCommand` object is executed. The given index is used to retrieve the correct `Student` object from the 
+curated list of students in `Model` using the `ParserStudentIndexUtil#parseStudentFromIndex` method.  
+
+Step 3: The `StudentModuleData` of the student that matches with the current focus class is retrieved using the 
+`Student#findStudentModuleData` method. This method achieves that by searching the `UniqueList` with a new `StudentModuleData`
+that has the identity of the current focus class. This `StudentModuleData` is guaranteed to exist, since the program is in
+focus mode. 
+
+Step 4: The list of `SessionData` is retrieved from the `StudentModuleData` using the `StudentModuleData#getSessionDataList` method.
+
+Step 5: A response message is constructed from the list of `SessionData`, containing all the session-wise grades of the student. 
+
+Step 6: The execution ends and returns a `CommandResult` object containing the constructed response to be displayed by GUI to the user. 
 
 ### Tracking the state of focus mode
 
