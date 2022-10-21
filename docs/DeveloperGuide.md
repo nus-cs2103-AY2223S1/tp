@@ -161,6 +161,38 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
+### Set Command
+
+The Set Command makes use of the following classes:
+
+* `SetCommand` — Updates the `Person` object in the model.
+* `SetCommandParser` — Parses the arguments supplied by the user.
+* `SetPersonDescriptor` — Contains the updated information from the user. 
+
+In particular, `SetPersonDescriptor` contains the following fields
+
+* `name`
+* `address`
+* `tags`
+* `role`
+* `timezone`
+* `user`
+* `contacts`
+
+As well as getters and setters for each.
+
+Given below is an example of a usage scenario and what each class does at each step.
+
+Step 1: The user enters the `ContactDetailPage` of a previously added `Person`.
+
+Step 2: The user executes `set name/Bob role/DevOps`. `SetCommandParser` parses the arguments and
+creates a `SetPersonDescriptor` containing the given values for phone and email, if they are valid inputs. A`SetCommand`
+instance containing that `SetPersonDescriptor` will then be created. When executed, the currently selected `Person`'s
+attributes will be updated.
+
+The sequence diagram below illustrates the process of the Set Command works.
+![SetSequenceDiagram](images/SetSequenceDiagram.png)
+
 ### \[Proposed\] Undo/redo feature
 
 #### Proposed Implementation

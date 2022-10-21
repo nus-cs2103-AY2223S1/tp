@@ -1,0 +1,101 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
+participant ":SetCommandParser" as SetCommandParser LOGIC_COLOR
+participant ":SetCommand" as SetCommand LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+participant ":SetPersonDescriptor" as SetPersonDescriptor LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+
+[-> LogicManager : execute("set name/Bob role/DevOps")
+activate LogicManager
+
+LogicManager -> AddressBookParser : parseCommand()
+activate AddressBookParser
+
+create SetCommandParser
+AddressBookParser -> SetCommandParser
+activate SetCommandParser
+
+SetCommandParser --> AddressBookParser
+deactivate SetCommandParser
+
+AddressBookParser -> SetCommandParser : parse()
+activate SetCommandParser
+
+create SetPersonDescriptor
+SetCommandParser -> SetPersonDescriptor
+activate SetPersonDescriptor
+
+SetPersonDescriptor --> SetCommandParser
+deactivate SetPersonDescriptor
+
+SetCommandParser -> SetPersonDescriptor : setName("Bob")
+activate SetPersonDescriptor
+SetPersonDescriptor --> SetCommandParser
+deactivate SetPersonDescriptor
+
+SetCommandParser -> SetPersonDescriptor : setRole("DevOps")
+activate SetPersonDescriptor
+SetPersonDescriptor --> SetCommandParser
+deactivate SetPersonDescriptor
+
+create SetCommand
+SetCommandParser -> SetCommand
+activate SetCommand
+
+SetCommand --> SetCommandParser
+deactivate SetCommand
+
+SetCommandParser --> AddressBookParser
+deactivate SetCommandParser
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+SetCommandParser -[hidden]-> AddressBookParser
+destroy SetCommandParser
+
+AddressBookParser --> LogicManager
+deactivate AddressBookParser
+
+LogicManager -> SetCommand : execute()
+activate SetCommand
+
+SetCommand -> SetPersonDescriptor : getRole()
+activate SetPersonDescriptor
+SetPersonDescriptor --> SetCommand
+deactivate SetPersonDescriptor
+
+SetCommand -> SetPersonDescriptor : getPhone()
+activate SetPersonDescriptor
+SetPersonDescriptor --> SetCommand
+deactivate SetPersonDescriptor
+
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+SetCommand -[hidden]-> SetPersonDescriptor
+destroy SetPersonDescriptor
+
+SetCommand -> Model : updatePerson()
+activate Model
+
+Model --> SetCommand
+deactivate Model
+
+create CommandResult
+SetCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> SetCommand
+deactivate CommandResult
+
+SetCommand --> LogicManager
+deactivate SetCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml
