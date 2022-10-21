@@ -3,6 +3,7 @@ package seedu.address.model.listing;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
 
@@ -46,11 +47,8 @@ public class UniqueListingList implements Iterable<Listing> {
         if (contains(toAdd)) {
             throw new DuplicateListingException();
         }
-        int index = 0;
-        while (toAdd.compareTo(internalList.get(index)) > 0) {
-            index += 1;
-        }
-        internalList.add(index, toAdd);
+        internalList.add(toAdd);
+        Collections.sort(internalList);
     }
 
     /**
