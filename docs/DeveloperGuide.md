@@ -9,8 +9,9 @@ title: Developer Guide
 
 ## **Acknowledgements**
 
-* {list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the original source as well}
+We'd like to thank:
 
+* [SE-Edu's AddressBook-Level3](https://github.com/se-edu/addressbook-level3) for being the foundation of this brownfield project.
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Setting up, getting started**
@@ -154,6 +155,37 @@ Classes used by multiple components are in the `tuthubbook.commons` package.
 
 This section describes some noteworthy details on how certain features are implemented.
 
+### Adding tutors
+
+<img src="images/AddSequenceDiagram.png">
+
+Tutor information is stored as `Tutor` objects, which captures all the information that the tutor represents. When the user adds a tutor, the program creates a new `Tutor` object with the given information and adds it to the `ObservableList` to be displayed in the program. The `Model` class handles the checking of uniqueness while the `Storage` class handles the conversion of the `Tutor` object to a [JSON](https://www.json.org/) format and updating of the storage file in `{source_root}/data/Tuthub.json`.
+
+The following methods in `Tutub` manage the addition of tutors:
+* `Tuthub#AddCommand(Tutor tutor)` - Adds the provided tutor to the list of tutors created
+* `Tuthub#AddCommandParser(String args)` - Parses the command `add` and determines the attributes of the `Tutor` object created based on the given prefixes
+
+Given below are the different steps taken when the user adds tutors.
+
+Step 1: The user enters the command word add, followed by the prefixes and information that they want to store. Example: `add n/John Doe p/98765432 e/johnd@example.com m/CS2100 y/3 s/A0123456X tn/1 r/5.0 t/senior`.
+
+Step 2: The program makes use of `TuthubParser` to make sense of the keyword and determine which parser to use to parse the arguments. In this case, the `AddCommandParser` is used.
+
+Step 3: The `AddCommandParser` makes sense of the arguments through the use of the prefixes, with the help of `ParserUtil`, and creates an `AddCommand` object with the provided information in the form a `Tutor` object.
+
+Step 4: The `AddCommand` object is executed. The `Tutor` object created in step 3 is added to the list of tutors captured in the `ModelManager` class, which then utilises the `UI` class to display the created `Tutor` object.
+
+Step 5: The execution ends and returns a `CommandResult` object contained the success message to be displayed to the GUI to the user.
+
+Design considerations:
+* Alternative 1 (current choice): Add the tutor to a list that is maintained by the `Model` class
+  * Pros: Tutor can be viewed in the GUI once added without requiring any additional reading from storage.
+  * Cons: More complex implementation of `add` needed due to requirement for both adding to model and storage.
+* Alternative 2: Add the tutor directly to the `Storage` class as a JSON object
+  * Pros: Less memory needed to store an extra list, especially when there would be a large number of tutors
+  * Cons: The `Storage` class would be handling both storing of the Tuthub file and providing of the list to the UI, which would violate OOP principles.
+
+
 ### View Feature
 <ins>Implementation</ins>
 
@@ -180,11 +212,11 @@ The following sequence diagram demonstrates the above operations (excluding the 
 
 **Aspect: Method to pass a `Tutor` to UI**
 - **Alternative 1:** Store the tutor to be viewed as a field in `Model` **(chosen)**.
-  - Pros: Better OOP practice since `Model` handles all the data related to tutors. 
+  - Pros: Better OOP practice since `Model` handles all the data related to tutors.
   - Cons: The `tutorToView` may be null if there are no tutors in the list to be displayed, so more checks may be needed.
 
 - **Alternative 2:** Store the tutor in `CommandResult`.
-  - Pros: Easier to implement and fewer methods may be needed in `Logic` and `Model` as the tutor can be passed to 
+  - Pros: Easier to implement and fewer methods may be needed in `Logic` and `Model` as the tutor can be passed to
   the `MainWindow` directly through `CommandResult`.
   - Cons: Poor OOP practice as it does not make sense for `CommandResult` to store a `Tutor`, and other commands do not 
   require a `Tutor` object to be stored.
@@ -319,9 +351,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 2a. The input index is invalid.
     * Tuthub displays an error message.
-
-      Use case resumes from step 2.  
-    
+  
+      Use case resumes from step 2.
 
 **Use case: UC3 - Add a tutor**
 

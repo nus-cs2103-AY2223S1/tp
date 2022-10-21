@@ -1,0 +1,90 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":TuthubParser" as TuthubParser LOGIC_COLOR
+participant ":AddCommandParser" as AddCommandParser LOGIC_COLOR
+participant ":AddCommand" as AddCommand LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant "tutor:Tutor" as Tutor MODEL_COLOR
+participant ":ModelManager" as ModelManager MODEL_COLOR
+participant ":Tuthub" as Tuthub MODEL_COLOR
+participant ":UniqueTutorList" as UniqueTutorList MODEL_COLOR
+end box
+
+[-> LogicManager: execute("add n/John Doe ...")
+activate LogicManager
+
+create TuthubParser
+LogicManager -> TuthubParser : parseCommand("add n/John Doe...")
+activate TuthubParser
+
+create AddCommandParser
+TuthubParser -> AddCommandParser: parse("add n/John Doe...")
+activate AddCommandParser
+
+create Tutor
+AddCommandParser -> Tutor: Tutor("John Doe"...)
+activate Tutor
+
+Tutor --> AddCommandParser
+deactivate Tutor
+
+create AddCommand
+AddCommandParser -> AddCommand:AddCommand(tutor)
+activate AddCommand
+
+AddCommand --> AddCommandParser
+deactivate AddCommand
+
+AddCommandParser --> TuthubParser
+deactivate AddCommandParser
+
+TuthubParser --> LogicManager
+deactivate TuthubParser
+
+LogicManager -> AddCommand : execute()
+activate AddCommand
+
+AddCommand -> ModelManager : addTutor(tutor)
+activate ModelManager
+
+ModelManager -> Tuthub : addTutor(tutor)
+activate Tuthub
+
+Tuthub -> UniqueTutorList: add(tutor)
+activate UniqueTutorList
+
+UniqueTutorList -> UniqueTutorList : add(tutor)
+activate UniqueTutorList
+
+UniqueTutorList --> UniqueTutorList
+deactivate UniqueTutorList
+
+UniqueTutorList --> Tuthub
+deactivate UniqueTutorList
+
+Tuthub --> ModelManager
+deactivate Tuthub
+
+ModelManager --> AddCommand
+deactivate ModelManager
+
+create CommandResult
+AddCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> AddCommand
+deactivate CommandResult
+
+AddCommand --> LogicManager
+deactivate AddCommand
+
+LogicManager -->[
+deactivate LogicManager
+
+@enduml

@@ -7,7 +7,7 @@ TutHub is a desktop app for tech-savvy tuition agents who want to keep track of 
 
 ## Summary of Contributions
 ### Code Contributed
-[RepoSense Link](https://nus-cs2103-ay2223s1.github.io/tp-dashboard/?search=fannyjian&breakdown=true) 
+[RepoSense Link](https://nus-cs2103-ay2223s1.github.io/tp-dashboard/?search=fannyjian&breakdown=true)
 
 ### Enhancements implemented
 _to be added soon_
