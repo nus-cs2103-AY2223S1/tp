@@ -2,7 +2,7 @@
 
 [![Java CI](https://github.com/AY2223S1-CS2103T-T12-3/tp/actions/workflows/gradle.yml/badge.svg)](https://github.com/AY2223S1-CS2103T-T12-3/tp/actions/workflows/gradle.yml)
 
-![Ui](docs/images/Ui.png)
+![Ui](docs/images/default_gui.jpg)
 
 ## About the project
 
