@@ -3,6 +3,9 @@ layout: page
 title: Viewing Residents
 ---
 
+Oftentimes, you may find yourself overloaded with information. These commands can help to include, and exclude
+fields from being seen, find specific residents, and search residents whose fields match a specific keyword.
+
 ### Listing all residents : `list`
 
 Shows a list of all residents in the RC4HDB database. Use the specifiers `/i` for include and `/e` for exclude, followed by the field names of the columns to show or hide. All field names entered are case-insensitive.

@@ -3,6 +3,8 @@ layout: page
 title: Modifying Residents
 ---
 
+In order to maintain the database, we have provided crucial commands such as `add`, `edit`, `delete` and `clear`.
+
 ### Adding a resident : `add`
 
 Adds a resident to the database. The format for resident fields can be found [here](#format-for-resident-fields).
