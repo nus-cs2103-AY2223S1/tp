@@ -359,7 +359,7 @@ autocomplete entries.
 * **Alternative 2:** Implement a trie data structure to store information and obtain the autocomplete entries from
 the trie data structure.
     * Pros: More efficient way to searching a string.
-    * Cons: 1. More memory to store the strings. 2. Have to refactor and modify the existing class and methods.
+    * Cons: More memory to store the strings. Have to refactor and modify the existing class and methods.
 
 
 _{more aspects and alternatives to be added}_
