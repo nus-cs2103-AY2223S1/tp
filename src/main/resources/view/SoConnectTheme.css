@@ -1,8 +1,8 @@
 @import url('https://fonts.googleapis.com/css2?family=Karla:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600&display=swap');
 
 .background {
-    -fx-background-color: derive(#1d1d1d, 20%);
-    background-color: #383838; /* Used in the default.html file */
+    -fx-background-color: derive(#3b2c72, 20%);
+    background-color: #3b2c72; /* Used in the default.html file */
 }
 
 .label {
@@ -110,7 +110,7 @@
 }
 
 .list-cell:filled:even {
-    -fx-background-color: #3c3e3f;
+    -fx-background-color: #047BAE;
 }
 
 .list-cell:filled:odd {
@@ -140,7 +140,7 @@
 
 .cell_small_label_person {
     -fx-font-family: "Karla";
-    -fx-font-size: 20px;
+    -fx-font-size: 18px;
     -fx-font-weight: 600;
     -fx-text-fill: #C3E0FF;
 }
@@ -167,7 +167,6 @@
 
 .pane-with-border {
     -fx-background-color: #3b2c72;
-    -fx-background-radius: 10px;
     -fx-border-radius: 10px;
     -fx-border-color: #3b2c72;
 }
@@ -177,8 +176,11 @@
 }
 
 .result-display {
-    -fx-background-color: transparent;
-    -fx-font-family: "Karla";
+    -fx-background-color: #853ffd;
+    -fx-background-radius: 10px;
+    -fx-border-color: #F0E9FB;
+    -fx-border-width: 2px;
+    -fx-border-radius: 10px;
     -fx-font-size: 13pt;
     -fx-text-fill: white;
 }
@@ -366,8 +368,8 @@
 }
 
 #resultDisplay .content {
-    -fx-background-color: transparent, #383838, transparent, #383838;
-    -fx-background-radius: 0;
+    -fx-background-color: #853ffd;
+    -fx-wrap-text: true;
 }
 
 #attributeA {
@@ -388,4 +390,13 @@
 #attributeD {
     -fx-hgap: 7;
     -fx-vgap: 3;
+}
+
+.people-heading {
+    -fx-font-size: 28pt;
+    -fx-font-family: "Karla";
+    -fx-text-fill: #CAEFFF;
+    -fx-font-weight: 900;
+    -fx-opacity: 1;
+    -fx-padding: 2px;
 }
