@@ -177,6 +177,18 @@ An exception will be thrown if semester code is invalid.
 - Modify `AddCommand` class
 
 // Keep this part for future reference
+
+### UserGuide - `help` command
+The `help` command displays our User Guide in a new window, using javafx WebViewer.  It acts as a browser, so we prevent
+the user from connecting to other websites that is not within our control.
+
+It is added this way because the user guide website is automatically built from our markdown file.
+This makes it easier to maintain changes in the user guide or developer guide.
+We do not control other websites, and we want the user to only view the user guide and other information on our website.
+
+We also considered just displaying the link with a `Copy URL` button.  However, the user has to copy the link into
+their web browser, making the user experience not smooth.  
+
 ### \[Proposed\] Undo/redo feature
 
 #### Proposed Implementation
