@@ -18,11 +18,12 @@ title: Developer Guide
     * [Use case: **Delete a student**](#use-case-delete-a-student)
     * [Use case: **Edit a student contact detail**](#use-case-edit-a-student-contact-detail)
     * [Use case: **Find student contact details**](#use-case-find-student-contact-details)
+    * [Use case: **Find student by address**](#use-case-find-student-by-address)
     * [Use case: **Mark student as present for class**](#use-case-mark-student-as-present-for-class)
     * [Use case: **Allocate a slot for future class**](#use-case-allocate-a-slot-for-future-class)
   * [Non-Functional Requirement](#non-functional-requirement)
   * [Glossary](#glossary)
-    
+
 --------------------------------------------------------------------------------------------------------------------
 ## Design
 ### Architecture
@@ -173,7 +174,7 @@ ClassStorage#removeExistingClass() — Removes class from storage to free up
 
 ClassStorage#hasConflict() — Checks if there is a conflict between the class timings.
 
-The `EditCommandParser` reads the input and passes it to `ParserUtil` which returns an `Index`. If the given index is not a positive integer, 
+The `EditCommandParser` reads the input and passes it to `ParserUtil` which returns an `Index`. If the given index is not a positive integer,
 a `ParseException` will be thrown.
 If the index is valid, `ParserUtil` will then check that both the date and time are valid before creating an `EditCommand`.
 
@@ -181,8 +182,8 @@ During the execution of `EditCommand`, if the given index is not within the rang
 Otherwise, the model will then obtain the student using getFilteredPersonList.
 
 Before assigning the class to the student, `ClassStorage` will check that there is no conflict between the timings of the new class
-and the existing classes. `ClassStorage` will also check if the student has a pre-existing class. If yes, the pre-existing class 
-will be removed in order to free up the time slot. If there is no time conflict, `ClassStorage` will proceed to 
+and the existing classes. `ClassStorage` will also check if the student has a pre-existing class. If yes, the pre-existing class
+will be removed in order to free up the time slot. If there is no time conflict, `ClassStorage` will proceed to
 save both the new class and student.
 
 The following sequence diagram shows how the edit class operation works:
@@ -202,14 +203,14 @@ The following activity diagram summarizes what happens when a teacher executes a
 
 * **Alternative 2**: dt/Day-of-Week 0000-2359 (case-insensitive)
   * Pros: More convenient and easier for the teacher to type.
-  * Cons: 
+  * Cons:
     1. Harder to implement.
     2. Only can set the class to a date at most 1 week away.
-  
+
 
 ### [Proposed] Sort-by feature
 
-This feature allows the user(teacher) to sort the students from Teacher's Pet by one of the specified keywords.
+This feature allows the user (teacher) to sort the students from Teacher's Pet by one of the specified keywords.
 
 #### Proposed Implementation
 
@@ -226,6 +227,39 @@ The following diagram illustrates how the operation works:
 
 </div>
 
+### [Proposed] Find-by feature
+
+This feature allows the user (teacher) to find a list of students from Teacher's Pet by one of the specified keywords.
+
+#### Proposed Implementation
+
+The proposed `find` mechanism is facilitated within [TeachersPet.java](https://github.com/AY2223S1-CS2103T-T09-4/tp/tree/master/src/main/java/seedu/address/model/TeachersPet.java).
+There are 4 different variations of `find`:
+1. Find by name: Find all matching student(s) using any matching full keyword(s) from name of student using `find n/[KEYWORDS]`.
+2. Find by email: Find all matching student(s) with any matching full keyword(s) from email of student using `find e/[KEYWORDS]`.
+3. Find by address: Find all matching student(s) using any matching full keyword(s) from address of using `find a/[KEYWORDS]`.
+4. Find by tag: Find all matching student(s) with exact matching full keyword(s) from tag(s) of student using `find t/[TAG]`.
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The 4 variations cannot be mixed with one another.</div>
+
+The following activity diagram summarizes what happens when a user executes a find command:
+
+![FindActivityDiagram](images/DG-images/FindActivityDiagram.png)
+
+Below is an example of the general flow of a find by address command.
+
+##### Find by address
+1. `FindCommandParser` will parse the keywords to `AddressContainsKeywordsPredicate`.
+2. `AddressContainsKeywordsPredicate` will be generated and a predicate value will be returned to `FindCommandParser`.
+3. `FindCommandParser` will send the predicate value to `FindCommand`.
+4. `FindCommand` will be generated and the command will be returned to the `FindCommandParser`.
+5. `FindCommand` will call the `execute(model)` function, and pass the predicate value into `Model` through `updateFilteredTaskList`.
+6. `filteredTasks` list will be updated accordingly in `ModelManager` and the list display in Teacher's Pet will be updated.
+7. `CommandResult` will eventually be returned and feedback will be given to the user.
+
+The Sequence Diagram below shows how the components interact with each other when the user issues a find command:
+
+![FindByAddressSequenceDiagram](images/DG-images/FindByAddressSequenceDiagram.png)
 
 ## Appendix: Requirements
 
@@ -280,7 +314,7 @@ Manage contacts and schedule of students faster than a typical mouse/GUI driven 
 
 ### Use Cases
 
-(For all use cases below, the **System** is the `Teacher's Pet` and the **Actor** is the `Teacher`, unless specified otherwise)
+(For all use cases below, the **System** is the `Teacher's Pet` and the **Actor** is the `teacher`, unless specified otherwise)
 
 #### Use case: **Delete a student**
 
@@ -344,6 +378,27 @@ Manage contacts and schedule of students faster than a typical mouse/GUI driven 
 
 - 1b. Multiple students share the same name in the system.
     - 1b1. Teacher’s Pet lists the details of multiple people.
+
+      Use case ends.
+
+#### Use case: **Find student by address**
+
+**MSS**
+
+1. Teacher requests to [find](#use-case-find-student-by-address) a student by address
+2. Teacher’s Pet shows a list of filtered students according to their provided query
+
+   Use case ends.
+
+**Extensions**
+
+- 1a. Teacher requests to find by address without providing any query.
+    - 1a1. Teacher’s Pet displays invalid command format message.
+
+      Use case ends.
+
+- 1b. Teacher's Pet detects multiple students share the same address in the system.
+    - 1b1. Teacher’s Pet lists the details of multiple students.
 
       Use case ends.
 
