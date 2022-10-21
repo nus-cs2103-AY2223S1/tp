@@ -45,4 +45,25 @@ public class ConsultationTest {
         // the empty instance
         assertTrue(Consultation.EMPTY_CONSULTATION.isEmpty());
     }
+
+
+    @Test
+    public void compareTo() {
+        // 2020 is smaller than 2025
+        assertTrue(new MasteryCheck(LocalDate.of(2021, 01, 01))
+                .compareTo(new MasteryCheck(LocalDate.of(2025, 01, 01))) < 0);
+
+        // September is not larger than October
+        assertFalse(new MasteryCheck(LocalDate.of(2021, 9, 01))
+                .compareTo(new MasteryCheck(LocalDate.of(2021, 10, 01))) > 0);
+
+
+        // 30 is not smaller than 20
+        assertFalse(new MasteryCheck(LocalDate.of(2021, 11, 30))
+                .compareTo(new MasteryCheck(LocalDate.of(2021, 11, 20))) < 0);
+
+        // Same date
+        assertTrue(new MasteryCheck(LocalDate.of(2020, 12, 31))
+                .compareTo(new MasteryCheck(LocalDate.of(2020, 12, 31))) == 0);
+    }
 }

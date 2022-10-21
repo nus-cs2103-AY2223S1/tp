@@ -4,10 +4,10 @@ import static friday.commons.util.AppUtil.checkArgument;
 import static java.util.Objects.requireNonNull;
 
 /**
- * Represents a Person's phone number in the address book.
+ * Represents a Student's phone number in the address book.
  * Guarantees: immutable; is valid as declared in {@link #isValidTelegramHandle(String)}
  */
-public class TelegramHandle {
+public class TelegramHandle implements Comparable<TelegramHandle> {
 
 
     public static final String MESSAGE_CONSTRAINTS =
@@ -47,9 +47,9 @@ public class TelegramHandle {
     /**
      * Returns true if the given string is a valid Telegram handle or empty.
      *
-     * Only to be used when converting JSON to Student in JsonAdaptedPerson.
+     * Only to be used when converting JSON to Student in JsonAdaptedStudent.
      */
-    public static boolean isValidOrEmpty(String test) {
+    public static boolean isValidOrEmptyJson(String test) {
         return test.matches(VALIDATION_REGEX) || test.equals("");
     }
 
@@ -76,6 +76,18 @@ public class TelegramHandle {
     @Override
     public int hashCode() {
         return value.hashCode();
+    }
+
+    @Override
+    public int compareTo(TelegramHandle telegramHandle) {
+        if (this.equals(telegramHandle)) {
+            return 0;
+        } else if (this.isEmpty()) {
+            return 1;
+        } else if (telegramHandle.isEmpty()) {
+            return -1;
+        }
+        return this.value.compareTo(telegramHandle.value);
     }
 
 }
