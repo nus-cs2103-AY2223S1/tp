@@ -9,7 +9,7 @@ package Logic {
     Class AddressBookParser
     Class XYZCommand
     Class TaskPanelParser
-    Class TaskCommand
+    Class "{abstract}\nTaskCommand" as TaskCommand
     Class CommandResult
     Class "{abstract}\nCommand" as Command
 
@@ -27,25 +27,28 @@ package Storage {}
 Class HiddenOutside #FFFFFF
 HiddenOutside ..> Logic
 
-LogicManager .right.|> Logic
-LogicManager -->"1" AddressBookParser
-LogicManager -->"1" TaskPanelParser
+LogicManager -->"0..1" AddressBookParser
+LogicManager -->"0..1" TaskPanelParser
 AddressBookParser ..> XYZCommand : creates >
 TaskPanelParser ..> TaskCommand : creates >
+AddressBookParser -[hidden]left-> TaskPanelParser
+LogicManager -[hidden]down-> TaskPanelParser
+LogicManager -[hidden]down-> AddressBookParser
+note right of TaskPanelParser: There must be exactly one \n AddressBookParser or TaskPanelParser
 
-XYZCommand -up-|> Command
+XYZCommand --|> Command
 TaskCommand ---|> Command
-LogicManager .left.> Command : executes >
+LogicManager ..> Command : executes >
 
 LogicManager --> Model
 LogicManager --> Storage
 Storage --[hidden] Model
-Command .[hidden]up.> Storage
-Command .right.> Model
+Command .[hidden].> Storage
+Command ..> Model
 note right of XYZCommand: XYZCommand = AddCommand, \nFindCommand, etc
 
 Logic ..> CommandResult
-LogicManager .down.> CommandResult
-Command .up.> CommandResult : produces >
+LogicManager ..> CommandResult
+Command ..> CommandResult : produces >
 
 @enduml
