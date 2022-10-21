@@ -2,17 +2,20 @@ package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_BIRTHDAY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PRODUCT;
 
+import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Stream;
 
 import seedu.address.logic.commands.AddClientCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.client.Address;
+import seedu.address.model.client.Birthday;
 import seedu.address.model.client.Client;
 import seedu.address.model.client.Email;
 import seedu.address.model.client.Name;
@@ -30,9 +33,10 @@ public class AddClientCommandParser implements Parser<AddClientCommand> {
      * @throws ParseException if the user input does not conform the expected format
      */
     public AddClientCommand parse(String args) throws ParseException {
+
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL,
-                        PREFIX_ADDRESS, PREFIX_PRODUCT);
+                        PREFIX_ADDRESS, PREFIX_BIRTHDAY, PREFIX_PRODUCT);
 
         if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_PHONE)
                 || !argMultimap.getPreamble().isEmpty()) {
@@ -47,9 +51,11 @@ public class AddClientCommandParser implements Parser<AddClientCommand> {
         Address address = argMultimap.getValue(PREFIX_ADDRESS).isPresent()
                 ? ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get())
                 : new Address("");
+        Optional<Birthday> birthday = argMultimap.getValue(PREFIX_BIRTHDAY).isPresent()
+                ? Optional.of(new Birthday(ParserUtil.parseDate(argMultimap.getValue(PREFIX_BIRTHDAY).get())))
+                : Optional.empty();
         Set<Product> product = ParserUtil.parseProducts(argMultimap.getAllValues(PREFIX_PRODUCT));
-
-        Client client = new Client(name, phone, email, address, product);
+        Client client = new Client(name, phone, email, address, birthday, product);
         return new AddClientCommand(client);
     }
 
@@ -60,5 +66,4 @@ public class AddClientCommandParser implements Parser<AddClientCommand> {
     private static boolean arePrefixesPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
         return Stream.of(prefixes).allMatch(prefix -> argumentMultimap.getValue(prefix).isPresent());
     }
-
 }

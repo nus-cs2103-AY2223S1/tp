@@ -1,5 +1,8 @@
 package seedu.address.ui;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.format.FormatStyle;
 import java.util.logging.Logger;
 
 import javafx.fxml.FXML;
@@ -42,7 +45,11 @@ public class MeetingDetailedView extends UiPart<Region> {
         this.meeting = meeting;
         clientName.setText(meeting.getClientName().toString());
         phoneNumber.setText(meeting.getClientPhone().toString());
-        date.setText(meeting.getMeetingDate().toString());
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("ddMMyyyy");
+        String dateUnformatted = meeting.getMeetingDate().toString();
+        LocalDate dateFormattable = LocalDate.parse(dateUnformatted, formatter);
+        String dateFormatted = dateFormattable.format(DateTimeFormatter.ofLocalizedDate(FormatStyle.MEDIUM));
+        date.setText(dateFormatted);
         time.setText(meeting.getMeetingTime().toString());
         description.setText(meeting.getDescription().toString());
     }

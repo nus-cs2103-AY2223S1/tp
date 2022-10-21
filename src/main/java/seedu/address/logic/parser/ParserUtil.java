@@ -102,14 +102,13 @@ public class ParserUtil {
     }
 
     /**
-     * Parses {@code String date} into a {@code MeetingDate}.
+     * Parses {@code String date} into a {@code LocalDate}.
      */
-    public static MeetingDate parseDate(String date) throws ParseException {
+    public static LocalDate parseDate(String date) throws ParseException {
         requireNonNull(date);
-
         try {
             LocalDate parsedDate = LocalDate.parse(date, DateTimeFormatter.ofPattern("ddMMyyyy"));
-            return new MeetingDate(parsedDate);
+            return parsedDate;
         } catch (DateTimeParseException e) {
             throw new ParseException(MeetingDate.MESSAGE_CONSTRAINTS);
         }

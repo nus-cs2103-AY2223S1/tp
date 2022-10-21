@@ -31,7 +31,7 @@ public class AddMeetingCommandParser implements Parser<AddMeetingCommand> {
         }
 
         Index clientIndex = ParserUtil.parseIndex(argMultimap.getValue(PREFIX_INDEX).get());
-        MeetingDate date = ParserUtil.parseDate(argMultimap.getValue(PREFIX_DATE).get());
+        MeetingDate date = new MeetingDate(ParserUtil.parseDate(argMultimap.getValue(PREFIX_DATE).get()));
         MeetingTime time = ParserUtil.parseTime(argMultimap.getValue(PREFIX_TIME).get());
         Description description = new Description(argMultimap.getValue(PREFIX_DESCRIPTION).get());
         return new AddMeetingCommand(clientIndex, date, time, description);

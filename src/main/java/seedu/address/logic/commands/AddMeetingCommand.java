@@ -53,6 +53,7 @@ public class AddMeetingCommand extends Command {
         if (linkedClientIndex.getZeroBased() > clientList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_CLIENT_DISPLAYED_INDEX);
         }
+
         Client clientToUpdate = clientList.get(linkedClientIndex.getZeroBased());
         Meeting meetingToAdd = new Meeting(clientToUpdate, description, meetingDate, meetingTime);
 

@@ -3,6 +3,7 @@ package seedu.address.storage;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -12,7 +13,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 import seedu.address.commons.exceptions.IllegalValueException;
+import seedu.address.logic.parser.ParserUtil;
 import seedu.address.model.client.Address;
+import seedu.address.model.client.Birthday;
 import seedu.address.model.client.Client;
 import seedu.address.model.client.Email;
 import seedu.address.model.client.Name;
@@ -32,7 +35,9 @@ class JsonAdaptedClient {
     private final String email;
     private final String address;
     private final List<JsonAdaptedMeeting> meetings = new ArrayList<>();
+    private final String birthday;
     private final List<JsonAdaptedProduct> products = new ArrayList<>();
+
 
     /**
      * Constructs a {@code JsonAdaptedClient} with the given client details.
@@ -40,6 +45,7 @@ class JsonAdaptedClient {
     @JsonCreator
     public JsonAdaptedClient(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
                              @JsonProperty("email") String email, @JsonProperty("address") String address,
+                             @JsonProperty("birthday") String birthday,
                              @JsonProperty("meetings") List<JsonAdaptedMeeting> meetings,
                              @JsonProperty("products") List<JsonAdaptedProduct> products) {
         if (meetings != null) {
@@ -49,6 +55,7 @@ class JsonAdaptedClient {
         this.phone = phone;
         this.email = email;
         this.address = address;
+        this.birthday = birthday;
         if (products != null) {
             this.products.addAll(products);
         }
@@ -62,6 +69,10 @@ class JsonAdaptedClient {
         phone = source.getPhone().value;
         email = source.getEmail().value;
         address = source.getAddress().value;
+        Optional<Birthday> sourceBirthday = source.getBirthday();
+        birthday = sourceBirthday.isEmpty()
+            ? ""
+            : sourceBirthday.get().toString();
         meetings.addAll(source.getMeetings().stream()
                 .map(meeting -> new JsonAdaptedMeeting(meeting, this))
                 .collect(Collectors.toList()));
@@ -79,6 +90,10 @@ class JsonAdaptedClient {
         phone = source.getPhone().value;
         email = source.getEmail().value;
         address = source.getAddress().value;
+        Optional<Birthday> sourceBirthday = source.getBirthday();
+        birthday = sourceBirthday.isEmpty()
+                ? ""
+                : sourceBirthday.toString();
         products.addAll(source.getProducts().stream()
                 .map(JsonAdaptedProduct::new)
                 .collect(Collectors.toList()));
@@ -128,8 +143,16 @@ class JsonAdaptedClient {
             throw new IllegalValueException(Address.MESSAGE_CONSTRAINTS);
         }
         final Address modelAddress = new Address(address);
+        final Optional<Birthday> modelBirthday;
 
-        Client client = new Client(modelName, modelPhone, modelEmail, modelAddress, modelProducts);
+        if (birthday == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    Birthday.class.getSimpleName()));
+        }
+        modelBirthday = birthday.equals("")
+                ? Optional.empty()
+                : Optional.of(new Birthday(ParserUtil.parseDate(birthday)));
+        Client client = new Client(modelName, modelPhone, modelEmail, modelAddress, modelBirthday, modelProducts);
 
         if (meetings.isEmpty()) {
             return client;

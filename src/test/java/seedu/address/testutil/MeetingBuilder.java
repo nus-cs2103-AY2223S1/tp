@@ -3,9 +3,11 @@ package seedu.address.testutil;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.HashSet;
+import java.util.Optional;
 import java.util.Set;
 
 import seedu.address.model.client.Address;
+import seedu.address.model.client.Birthday;
 import seedu.address.model.client.Client;
 import seedu.address.model.client.Email;
 import seedu.address.model.client.Name;
@@ -27,7 +29,7 @@ public class MeetingBuilder {
     public static final String DEFAULT_PHONE = "85355255";
     public static final String DEFAULT_EMAIL = "amy@gmail.com";
     public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
-    private static final Set<Product> DEFAULT_ProductS = new HashSet<>();
+    public static final Optional<Birthday> DEFAULT_BIRTHDAY = Optional.empty();
     private static final Set<Product> DEFAULT_PRODUCTS = new HashSet<>();
 
     private Description description;
@@ -43,7 +45,7 @@ public class MeetingBuilder {
         meetingDate = new MeetingDate(DEFAULT_MEETING_DATE);
         meetingTime = new MeetingTime(DEFAULT_MEETING_TIME);
         client = new Client(new Name(DEFAULT_NAME), new Phone(DEFAULT_PHONE),
-                new Email(DEFAULT_EMAIL), new Address(DEFAULT_ADDRESS), DEFAULT_PRODUCTS);
+                new Email(DEFAULT_EMAIL), new Address(DEFAULT_ADDRESS), DEFAULT_BIRTHDAY, DEFAULT_PRODUCTS);
     }
 
     /**
