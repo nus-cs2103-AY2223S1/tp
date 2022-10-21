@@ -239,6 +239,13 @@ _{more aspects and alternatives to be added}_
 _{Explain here how the data archiving feature will be implemented}_
 
 
+### Feature: Add/Edit/Delete patient feature for UI
+
+#### Current Implementation:
+The current implementation of adding/editing/deleting a patient would have the `UpdatedPersonCard` appear in the `OutputPanel` of the UI. This is made possible by adding the `patientOfInterest` attribute to the `ModelManager`, and can be accessed by the UI by calling the `getPatientOfInterest` method of `LogicManager`.
+Below is a sequence diagram shows how the operation of adding a patient works:
+
+<img src="images/AddPatientSequenceDiagram.png"  />
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Documentation, logging, testing, configuration, dev-ops**
