@@ -42,6 +42,16 @@ public class StudentCard extends UiPart<Region> {
     private Label remark;
     @FXML
     private FlowPane tags;
+    @FXML
+    private Label ra1;
+    @FXML
+    private Label ra2;
+    @FXML
+    private Label pa;
+    @FXML
+    private Label mt;
+    @FXML
+    private Label ft;
 
     /**
      * Creates a {@code StudentCode} with the given {@code Student} and index to display.
@@ -58,6 +68,11 @@ public class StudentCard extends UiPart<Region> {
         student.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
+        ra1.setText(student.getGradesList().gradesMap.get("RA1").score);
+        ra2.setText(student.getGradesList().gradesMap.get("RA2").score);
+        pa.setText(student.getGradesList().gradesMap.get("Practical").score);
+        mt.setText(student.getGradesList().gradesMap.get("Mid-Term").score);
+        ft.setText(student.getGradesList().gradesMap.get("Finals").score);
     }
 
     @Override
