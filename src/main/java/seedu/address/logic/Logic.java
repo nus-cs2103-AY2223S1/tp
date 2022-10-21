@@ -51,4 +51,9 @@ public interface Logic {
      * Set the user prefs' GUI settings.
      */
     void setGuiSettings(GuiSettings guiSettings);
+
+    /**
+     * Returns the history of the user recent commands.
+     */
+    CommandHistory getCommandHistory();
 }

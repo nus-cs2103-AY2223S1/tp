@@ -28,13 +28,15 @@ public class LogicManager implements Logic {
     private final Model model;
     private final Storage storage;
     private final AddressBookParser addressBookParser;
+    private final CommandHistory commandHistory;
 
     /**
      * Constructs a {@code LogicManager} with the given {@code Model} and {@code Storage}.
      */
-    public LogicManager(Model model, Storage storage) {
+    public LogicManager(Model model, Storage storage, CommandHistory commandHistory) {
         this.model = model;
         this.storage = storage;
+        this.commandHistory = commandHistory;
         addressBookParser = new AddressBookParser();
     }
 
@@ -45,9 +47,11 @@ public class LogicManager implements Logic {
         CommandResult commandResult;
         Command command = addressBookParser.parseCommand(commandText);
         commandResult = command.execute(model);
+        commandHistory.add(commandText);
 
         try {
             storage.saveAddressBook(model.getAddressBook());
+            storage.saveCommandHistory(commandHistory);
         } catch (IOException ioe) {
             throw new CommandException(FILE_OPS_ERROR_MESSAGE + ioe, ioe);
         }
@@ -83,5 +87,10 @@ public class LogicManager implements Logic {
     @Override
     public void setGuiSettings(GuiSettings guiSettings) {
         model.setGuiSettings(guiSettings);
+    }
+
+    @Override
+    public CommandHistory getCommandHistory() {
+        return commandHistory;
     }
 }
