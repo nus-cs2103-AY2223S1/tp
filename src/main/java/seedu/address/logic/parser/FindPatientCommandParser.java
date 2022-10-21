@@ -23,7 +23,7 @@ import seedu.address.model.patient.RemarkContainsKeywordsPredicate;
 import seedu.address.model.patient.TagContainsKeywordPredicate;
 
 /**
- * Parses input arguments and creates a new FilterCommand object
+ * Parses input arguments and creates a new FindPatientCommand object
  */
 public class FindPatientCommandParser implements Parser<FindPatientCommand> {
 
@@ -77,11 +77,11 @@ public class FindPatientCommandParser implements Parser<FindPatientCommand> {
                         String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindPatientCommand.MESSAGE_USAGE));
             }
 
-            String[] nameKeywords = trimmedArgs.split("\\s+");
+            String[] keywords = trimmedArgs.split("\\s+");
 
-            String predicateEmail = nameKeywords[0];
-            for (int i = 1; i < nameKeywords.length; i++) {
-                predicateEmail += " " + nameKeywords[i];
+            String predicateEmail = keywords[0];
+            for (int i = 1; i < keywords.length; i++) {
+                predicateEmail += " " + keywords[i];
             }
 
             this.predicate = new EmailContainsKeywordsPredicate(predicateEmail);
