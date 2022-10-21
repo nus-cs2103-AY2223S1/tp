@@ -22,6 +22,7 @@ public class DoneModuleCommand extends Command {
     private final ModCode moduleCode;
 
     public DoneModuleCommand(ModCode moduleCode) {
+        requireNonNull(moduleCode);
         this.moduleCode = moduleCode;
     }
 
