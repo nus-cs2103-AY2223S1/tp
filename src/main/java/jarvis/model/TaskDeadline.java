@@ -32,10 +32,17 @@ public class TaskDeadline {
 
     @Override
     public boolean equals(Object other) {
-        return other == this // short circuit if same object
-                || (other instanceof TaskDeadline // instanceof handles nulls
-                && deadline != null && ((TaskDeadline) other).deadline != null
-                && deadline.equals(((TaskDeadline) other).deadline)); // state check
+        if (other == this) { // short circuit if same object
+            return true;
+        }
+        if (!(other instanceof TaskDeadline)) { // instanceof handles nulls
+            return false;
+        }
+        TaskDeadline otherTaskDeadline = (TaskDeadline) other;
+        if (deadline == null || otherTaskDeadline.deadline == null) {
+            return deadline == null && otherTaskDeadline.deadline == null;
+        }
+        return deadline.equals(otherTaskDeadline.deadline);
     }
 
     @Override

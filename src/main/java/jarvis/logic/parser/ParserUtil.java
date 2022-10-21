@@ -203,7 +203,11 @@ public class ParserUtil {
     public static int parseParticipation(String participation) throws ParseException {
         String trimmedParticipation = participation.trim();
         try {
-            return Integer.parseInt(trimmedParticipation);
+            int participationValue = Integer.parseInt(trimmedParticipation);
+            if (participationValue < 0 || participationValue > 500) {
+                throw new ParseException(Messages.MESSAGE_INVALID_PARTICIPATION);
+            }
+            return participationValue;
         } catch (NumberFormatException nfe) {
             throw new ParseException(Messages.MESSAGE_INVALID_PARTICIPATION);
         }

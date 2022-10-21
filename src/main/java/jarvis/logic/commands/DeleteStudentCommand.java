@@ -26,7 +26,11 @@ public class DeleteStudentCommand extends Command {
 
     private final Index targetIndex;
 
+    /**
+     * Creates a DeleteStudentCommand to delete the student at the specified index.
+     */
     public DeleteStudentCommand(Index targetIndex) {
+        requireNonNull(targetIndex);
         this.targetIndex = targetIndex;
     }
 

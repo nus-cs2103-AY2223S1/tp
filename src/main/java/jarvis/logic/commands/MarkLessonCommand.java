@@ -31,7 +31,11 @@ public class MarkLessonCommand extends Command {
 
     private final Index lessonIndex;
 
+    /**
+     * Creates a MarkLessonCommand to mark the lesson at the specified index as completed.
+     */
     public MarkLessonCommand(Index lessonIndex) {
+        requireNonNull(lessonIndex);
         this.lessonIndex = lessonIndex;
     }
 
@@ -52,9 +56,16 @@ public class MarkLessonCommand extends Command {
 
     @Override
     public boolean equals(Object other) {
-        return other == this // short circuit if same object
-                || (other instanceof MarkLessonCommand // instanceof handles nulls
-                && lessonIndex.equals(((MarkLessonCommand) other).lessonIndex));
-        // state check
+        if (other == this) { // short circuit if same object
+            return true;
+        }
+
+        if (!(other instanceof MarkLessonCommand)) { // instanceof handles nulls
+            return false;
+        }
+
+        MarkLessonCommand otherMarkLesson = (MarkLessonCommand) other;
+
+        return lessonIndex.equals(otherMarkLesson.lessonIndex);
     }
 }

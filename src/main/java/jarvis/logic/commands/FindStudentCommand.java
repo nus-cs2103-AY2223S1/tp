@@ -21,7 +21,11 @@ public class FindStudentCommand extends Command {
 
     private final NameContainsKeywordsPredicate predicate;
 
+    /**
+     * Creates a FindStudentCommand to display a list of students satisfying the predicate.
+     */
     public FindStudentCommand(NameContainsKeywordsPredicate predicate) {
+        requireNonNull(predicate);
         this.predicate = predicate;
     }
 

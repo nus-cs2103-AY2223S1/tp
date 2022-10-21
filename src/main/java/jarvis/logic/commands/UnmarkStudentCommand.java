@@ -1,5 +1,6 @@
 package jarvis.logic.commands;
 
+import static jarvis.commons.util.CollectionUtil.requireAllNonNull;
 import static jarvis.logic.parser.CliSyntax.PREFIX_LESSON_INDEX;
 import static jarvis.logic.parser.CliSyntax.PREFIX_STUDENT_INDEX;
 import static jarvis.model.Model.PREDICATE_SHOW_ALL_LESSONS;
@@ -41,6 +42,7 @@ public class UnmarkStudentCommand extends Command {
      * as absent.
      */
     public UnmarkStudentCommand(Index lessonIndex, Index studentIndex) {
+        requireAllNonNull(lessonIndex, studentIndex);
         this.lessonIndex = lessonIndex;
         this.studentIndex = studentIndex;
     }
@@ -68,10 +70,17 @@ public class UnmarkStudentCommand extends Command {
 
     @Override
     public boolean equals(Object other) {
-        return other == this // short circuit if same object
-                || (other instanceof UnmarkStudentCommand // instanceof handles nulls
-                && lessonIndex.equals(((UnmarkStudentCommand) other).lessonIndex)
-                && studentIndex.equals(((UnmarkStudentCommand) other).studentIndex));
-        // state check
+        if (other == this) { // short circuit if same object
+            return true;
+        }
+
+        if (!(other instanceof UnmarkStudentCommand)) { // instanceof handles nulls
+            return false;
+        }
+
+        UnmarkStudentCommand otherUnmarkStudent = (UnmarkStudentCommand) other;
+
+        return lessonIndex.equals(otherUnmarkStudent.lessonIndex)
+                && studentIndex.equals(otherUnmarkStudent.studentIndex);
     }
 }

@@ -26,7 +26,11 @@ public class DeleteTaskCommand extends Command {
 
     private final Index targetIndex;
 
+    /**
+     * Creates a DeleteTaskCommand to delete the task at the specified index.
+     */
     public DeleteTaskCommand(Index targetIndex) {
+        requireNonNull(targetIndex);
         this.targetIndex = targetIndex;
     }
 

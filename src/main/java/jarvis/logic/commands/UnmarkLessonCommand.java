@@ -31,7 +31,11 @@ public class UnmarkLessonCommand extends Command {
 
     private final Index lessonIndex;
 
+    /**
+     * Creates a UnmarkLessonCommand to mark the lesson at the specified index as uncompleted.
+     */
     public UnmarkLessonCommand(Index lessonIndex) {
+        requireNonNull(lessonIndex);
         this.lessonIndex = lessonIndex;
     }
 
@@ -52,9 +56,16 @@ public class UnmarkLessonCommand extends Command {
 
     @Override
     public boolean equals(Object other) {
-        return other == this // short circuit if same object
-                || (other instanceof UnmarkLessonCommand // instanceof handles nulls
-                && lessonIndex.equals(((UnmarkLessonCommand) other).lessonIndex));
-        // state check
+        if (other == this) { // short circuit if same object
+            return true;
+        }
+
+        if (!(other instanceof UnmarkLessonCommand)) { // instanceof handles nulls
+            return false;
+        }
+
+        UnmarkLessonCommand otherUnmarkLesson = (UnmarkLessonCommand) other;
+
+        return lessonIndex.equals(otherUnmarkLesson.lessonIndex);
     }
 }

@@ -28,7 +28,11 @@ public class UnmarkTaskCommand extends Command {
 
     private final Index targetIndex;
 
+    /**
+     * Creates a UnmarkTaskCommand to mark the task at the specified index as undone.
+     */
     public UnmarkTaskCommand(Index targetIndex) {
+        requireNonNull(targetIndex);
         this.targetIndex = targetIndex;
     }
 

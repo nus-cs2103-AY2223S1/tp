@@ -1,5 +1,6 @@
 package jarvis.logic.commands;
 
+import static jarvis.commons.util.CollectionUtil.requireAllNonNull;
 import static jarvis.logic.parser.CliSyntax.PREFIX_MC_NUM;
 import static jarvis.logic.parser.CliSyntax.PREFIX_MC_RES;
 import static jarvis.model.Model.PREDICATE_SHOW_ALL_STUDENTS;
@@ -34,6 +35,7 @@ public class MasteryCheckCommand extends Command {
      * @param mcResult result of the student's mastery check
      */
     public MasteryCheckCommand(Index index, MasteryCheckResult mcResult) {
+        requireAllNonNull(index, mcResult);
         this.index = index;
         this.mcResult = mcResult;
     }

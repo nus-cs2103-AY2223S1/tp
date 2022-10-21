@@ -1,5 +1,6 @@
 package jarvis.logic.commands;
 
+import static jarvis.commons.util.CollectionUtil.requireAllNonNull;
 import static jarvis.logic.parser.CliSyntax.PREFIX_LESSON_INDEX;
 import static jarvis.logic.parser.CliSyntax.PREFIX_NOTES;
 import static jarvis.logic.parser.CliSyntax.PREFIX_STUDENT_INDEX;
@@ -47,6 +48,7 @@ public class AddNotesCommand extends Command {
      * Creates a AddNotesCommand to add notes to a lesson or to a specified student in the lesson.
      */
     public AddNotesCommand(Index lessonIndex, Index studentIndex, String notes) {
+        requireAllNonNull(lessonIndex, studentIndex, notes);
         this.lessonIndex = lessonIndex;
         this.studentIndex = studentIndex;
         this.notes = notes;
@@ -81,11 +83,21 @@ public class AddNotesCommand extends Command {
 
     @Override
     public boolean equals(Object other) {
-        return other == this // short circuit if same object
-                || (other instanceof AddNotesCommand // instanceof handles nulls
-                && lessonIndex.equals(((AddNotesCommand) other).lessonIndex)
-                && studentIndex != null && ((AddNotesCommand) other).studentIndex != null
-                && studentIndex.equals(((AddNotesCommand) other).studentIndex)
-                && notes.equals(((AddNotesCommand) other).notes));
+        if (other == this) { // short circuit if same object
+            return true;
+        }
+
+        if (!(other instanceof AddNotesCommand)) { // instanceof handles nulls
+            return false;
+        }
+
+        AddNotesCommand otherAddNotes = (AddNotesCommand) other;
+
+        if (studentIndex == null || otherAddNotes.studentIndex == null) {
+            return studentIndex == null && otherAddNotes.studentIndex == null;
+        }
+        return lessonIndex.equals(otherAddNotes.lessonIndex)
+                && studentIndex.equals(otherAddNotes.studentIndex)
+                && notes.equals(otherAddNotes.notes);
     }
 }

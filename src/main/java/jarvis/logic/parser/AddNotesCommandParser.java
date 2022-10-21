@@ -31,7 +31,7 @@ public class AddNotesCommandParser implements Parser<AddNotesCommand> {
 
         Index lessonIndex = ParserUtil.parseIndex(argMultimap.getValue(PREFIX_LESSON_INDEX).get());
         String studentPrefix = argMultimap.getValue(PREFIX_STUDENT_INDEX).orElse("-1");
-        Index studentIndex = studentPrefix == "-1" ? null : ParserUtil.parseIndex(studentPrefix);
+        Index studentIndex = studentPrefix.equals("-1") ? null : ParserUtil.parseIndex(studentPrefix);
         String notes = argMultimap.getValue(PREFIX_NOTES).get();
 
         return new AddNotesCommand(lessonIndex, studentIndex, notes);

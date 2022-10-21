@@ -26,7 +26,11 @@ public class DeleteLessonCommand extends Command {
 
     private final Index targetIndex;
 
+    /**
+     * Creates a DeleteLessonCommand to delete the lesson at the specified index.
+     */
     public DeleteLessonCommand(Index targetIndex) {
+        requireNonNull(targetIndex);
         this.targetIndex = targetIndex;
     }
 

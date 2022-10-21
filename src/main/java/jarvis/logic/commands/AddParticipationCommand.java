@@ -1,5 +1,6 @@
 package jarvis.logic.commands;
 
+import static jarvis.commons.util.CollectionUtil.requireAllNonNull;
 import static jarvis.logic.parser.CliSyntax.PREFIX_LESSON_INDEX;
 import static jarvis.logic.parser.CliSyntax.PREFIX_PARTICIPATION;
 import static jarvis.logic.parser.CliSyntax.PREFIX_STUDENT_INDEX;
@@ -46,6 +47,7 @@ public class AddParticipationCommand extends Command {
      * studio at lesson index.
      */
     public AddParticipationCommand(int participation, Index lessonIndex, Index studentIndex) {
+        requireAllNonNull(participation, lessonIndex, studentIndex);
         this.participation = participation;
         this.lessonIndex = lessonIndex;
         this.studentIndex = studentIndex;
@@ -79,11 +81,18 @@ public class AddParticipationCommand extends Command {
 
     @Override
     public boolean equals(Object other) {
-        return other == this // short circuit if same object
-                || (other instanceof AddParticipationCommand // instanceof handles nulls
-                && lessonIndex.equals(((AddParticipationCommand) other).lessonIndex)
-                && studentIndex.equals(((AddParticipationCommand) other).studentIndex)
-                && participation == ((AddParticipationCommand) other).participation);
-        // state check
+        if (other == this) { // short circuit if same object
+            return true;
+        }
+
+        if (!(other instanceof AddParticipationCommand)) { // instanceof handles nulls
+            return false;
+        }
+
+        AddParticipationCommand otherAddPart = (AddParticipationCommand) other;
+
+        return lessonIndex.equals(otherAddPart.lessonIndex)
+                && studentIndex.equals(otherAddPart.studentIndex)
+                && participation == (otherAddPart.participation);
     }
 }
