@@ -10,15 +10,28 @@ The user interacts with it using a CLI, and it has a GUI created with JavaFX. It
 
 Given below are my contributions to the project.
 
-* **New Feature**: To be added soon.
+* **New Feature**: Implemented `focus` and `unfocus` commands
+  * Allows the user to execute module-class-specific commands (e.g. view all students in a specific class).
 
 * **Code contributed**: [RepoSense Link](https://nus-cs2103-ay2223s1.github.io/tp-dashboard/?search=njxue&breakdown=true).
 
-* **Project management**: To be added soon.
+* **Project management**:
+  * Created organisation and set up project repository.
+  * Managed and created labels to organise issues and pull requests.
+  * Authored 44 issues, including User Stories.
+  * Reviewed 23 pull requests to ensure quality and consistency across the code base.
+  * Handled miscellaneous admin tasks including:
+    * Setting up project website.
+    * Enabling assertions in `build.gradle`.
+    * Trial jar file release.
 
 * **Enhancements to existing features**: To be added soon.
 
-* **Documentation**: To be added soon.
+* **Documentation**:
+  * Modified the pre-existing UML and sequence diagrams from AB3 to TA Assist.
+  * Added implementation details for focus mode.
+  * Extended the description for the Model component.
+  * Added sequence diagrams for `assign` and `focus` command
 
 * **Community**: To be added soon.
 
