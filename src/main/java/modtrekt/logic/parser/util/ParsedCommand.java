@@ -11,7 +11,9 @@ import modtrekt.logic.parser.exceptions.ParseException;
 
 /**
  * ParsedCommand is a wrapper for a command and its multi-map of prefixes to arguments.
+ * @deprecated Use JCommander instead.
  */
+@Deprecated
 public class ParsedCommand {
     private final ArgumentMultimap argMultimap;
 
