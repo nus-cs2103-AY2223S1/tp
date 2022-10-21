@@ -4,7 +4,7 @@ import static java.util.Objects.requireNonNull;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.model.Model;
-import seedu.address.model.internship.NameContainsKeywordsPredicate;
+import seedu.address.model.internship.InternshipContainsKeywordsPredicate;
 
 /**
  * Finds and lists all internships in address book whose name contains any of the argument keywords.
@@ -20,9 +20,9 @@ public class FindInternshipCommand extends Command {
             + "Parameters: KEYWORD [MORE_KEYWORDS]...\n"
             + "Example: " + COMMAND_WORD + " abc pte ltd";
 
-    private final NameContainsKeywordsPredicate predicate;
+    private final InternshipContainsKeywordsPredicate predicate;
 
-    public FindInternshipCommand(NameContainsKeywordsPredicate predicate) {
+    public FindInternshipCommand(InternshipContainsKeywordsPredicate predicate) {
         this.predicate = predicate;
     }
 
