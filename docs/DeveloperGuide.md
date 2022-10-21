@@ -307,9 +307,10 @@ task to the `List<Task>`.
    to complete the command execution. The GUI would also be updated with the new task added.
 
 The following sequence diagram shows how the `addtask` command works:
+![AddTaskSequenceDiagram](images/AddTaskSequenceDiagram.png)
 
 The following activity diagram shows what happens when a user executes a `addtask` command:
-
+![AddTaskActivityDiagram](images/AddTaskActivityDiagram.png)
 
 
 ### \[Proposed\] Undo/redo feature
