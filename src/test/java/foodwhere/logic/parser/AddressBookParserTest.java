@@ -16,6 +16,7 @@ import foodwhere.logic.commands.ExitCommand;
 import foodwhere.logic.commands.HelpCommand;
 import foodwhere.logic.commands.RAddCommand;
 import foodwhere.logic.commands.RDeleteCommand;
+import foodwhere.logic.commands.RFindCommand;
 import foodwhere.logic.commands.RListCommand;
 import foodwhere.logic.commands.SAddCommand;
 import foodwhere.logic.commands.SDeleteCommand;
@@ -23,6 +24,7 @@ import foodwhere.logic.commands.SEditCommand;
 import foodwhere.logic.commands.SFindCommand;
 import foodwhere.logic.commands.SListCommand;
 import foodwhere.logic.parser.exceptions.ParseException;
+import foodwhere.model.review.NameContainsStallPredicate;
 import foodwhere.model.review.Review;
 import foodwhere.model.review.ReviewBuilder;
 import foodwhere.model.stall.NameContainsKeywordsPredicate;
@@ -98,6 +100,14 @@ public class AddressBookParserTest {
         SFindCommand command = (SFindCommand) parser.parseCommand(
                 SFindCommand.COMMAND_WORD + " " + keywords.stream().collect(Collectors.joining(" ")));
         assertEquals(new SFindCommand(new NameContainsKeywordsPredicate(keywords)), command);
+    }
+
+    @Test
+    public void parseCommand_rfind() throws Exception {
+        List<String> keywords = Arrays.asList("foo", "bar", "baz");
+        RFindCommand command = (RFindCommand) parser.parseCommand(
+                RFindCommand.COMMAND_WORD + " " + keywords.stream().collect(Collectors.joining(" ")));
+        assertEquals(new RFindCommand(new NameContainsStallPredicate(keywords)), command);
     }
 
     @Test

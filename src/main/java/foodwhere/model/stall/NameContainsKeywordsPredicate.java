@@ -1,5 +1,6 @@
 package foodwhere.model.stall;
 
+import java.util.HashSet;
 import java.util.List;
 import java.util.function.Predicate;
 
@@ -9,10 +10,10 @@ import foodwhere.commons.util.StringUtil;
  * Tests that a {@code Stall}'s {@code Name} matches any of the keywords given.
  */
 public class NameContainsKeywordsPredicate implements Predicate<Stall> {
-    private final List<String> keywords;
+    private final HashSet<String> keywords;
 
     public NameContainsKeywordsPredicate(List<String> keywords) {
-        this.keywords = keywords;
+        this.keywords = new HashSet<>(keywords);
     }
 
     @Override
