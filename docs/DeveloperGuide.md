@@ -393,8 +393,23 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 1c1. WorkBook places such applications at the very bottom (after any applications that do not have a date and time field).
 
       Use case ends.
+  
+**Use case: UC05 - Undo a command**
 
-**Use case: UC05 - Clear list of internship applications**
+**Main Success Scenario (MSS)**
+
+1. User requests to undo the latest command they have executed.
+2. Workbook reverts any changes made by the command and displays the previous state of the list of the internship applications.
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. There is no previous command executed and the list is empty.
+
+      Use case ends.
+
+**Use case: UC06 - Clear list of internship applications**
 
 **Main Success Scenario (MSS)**
 
@@ -411,7 +426,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case ends.
 
-**Use case: UC06 - Display help message**
+**Use case: UC07 - Display help message**
 
 **Main Success Scenario (MSS)**
 
@@ -420,7 +435,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
    Use case ends.
 
-**Use case: UC07 - Exit application**
+**Use case: UC08 - Exit application**
 
 **Main Success Scenario (MSS)**
 
