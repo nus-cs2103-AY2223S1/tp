@@ -126,6 +126,11 @@ public class AddOrderCommandTest {
         }
 
         @Override
+        public void setOrder(Order orderToEdit, Order editedOrder) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public ObservableList<Order> getOrderList() {
             throw new AssertionError("This method should not be called.");
         }
@@ -187,6 +192,11 @@ public class AddOrderCommandTest {
 
         @Override
         public ObservableList<Order> getFilteredOrderList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void refreshData() {
             throw new AssertionError("This method should not be called.");
         }
 

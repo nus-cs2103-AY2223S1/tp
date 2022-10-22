@@ -112,7 +112,15 @@ public class ModelManager implements Model {
         return trackO.getOrderList();
     }
 
+    @Override
+    public void setOrder(Order orderToEdit, Order editedOrder) {
+        requireAllNonNull(orderToEdit, editedOrder);
+
+        trackO.setOrder(orderToEdit, editedOrder);
+    }
+
     // FILTERED ORDER LIST ACCESSORS ========================================================================
+
 
     /**
      * Returns an unmodifiable view of the list of {@code Order} backed by the internal list of
@@ -210,5 +218,13 @@ public class ModelManager implements Model {
         ModelManager other = (ModelManager) obj;
         return trackO.equals(other.trackO)
             && userPrefs.equals(other.userPrefs);
+    }
+
+    // UI DATA REFRESHER ======================================================================
+
+    @Override
+    public void refreshData() {
+        trackO.refreshInventoryData();
+        trackO.refreshOrderData();
     }
 }

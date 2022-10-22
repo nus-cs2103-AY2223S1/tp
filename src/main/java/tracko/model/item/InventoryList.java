@@ -97,6 +97,15 @@ public class InventoryList implements Iterable<Item> {
     }
 
     /**
+     * Refreshes the data to reflect the updated data in the GUI.
+     */
+    public void refreshData() {
+        for (int i = 0; i < internalList.size(); i++) {
+            internalList.set(i, internalList.get(i));
+        }
+    }
+
+    /**
      * Returns the backing list as an unmodifiable {@code ObservableList}.
      */
     public ObservableList<Item> asUnmodifiableObservableList() {

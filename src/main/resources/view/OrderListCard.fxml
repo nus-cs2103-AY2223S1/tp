@@ -19,37 +19,50 @@
         <Insets bottom="5" left="15" right="5" top="5" />
       </padding>
       <HBox alignment="CENTER_LEFT" spacing="5">
-        <Label fx:id="id" styleClass="cell_big_label_order">
-          <minWidth>
-            <!-- Ensures that the label text is never truncated -->
-            <Region fx:constant="USE_PREF_SIZE" />
-          </minWidth>
-        </Label>
-        <Label fx:id="name" styleClass="cell_big_label_order" text="\$first" />
+        <VBox style="-fx-padding:  0 20 0 10;" prefWidth="85" minWidth="85" maxWidth="85" alignment="CENTER">
+          <Label fx:id="id" styleClass="cell_big_label_order">
+            <minWidth>
+              <!-- Ensures that the label text is never truncated -->
+              <Region fx:constant="USE_PREF_SIZE" />
+            </minWidth>
+          </Label>
+        </VBox>
+        <HBox style="-fx-background-color: #FFEDEC">
+          <padding>
+            <Insets left="1"/>
+          </padding>
+        </HBox>
+        <VBox style="-fx-padding: 0 20 0 20;" spacing="2">
+          <VBox fx:id="items" spacing="2"/>
+          <HBox>
+            <Label fx:id="paidStatus" styleClass="status-labels"/>
+            <Label fx:id="deliveryStatus" styleClass="status-labels"/>
+          </HBox>
+          <HBox alignment="CENTER_LEFT" spacing="10.0">
+            <Region styleClass="icon-button" id="timeCreatedIcon"/>
+            <Label fx:id="timeCreated" styleClass="cell_small_label_order" text="\$timeCreated" />
+          </HBox>
+          <HBox alignment="CENTER_LEFT" spacing="10.0">
+            <Region styleClass="icon-button" id="personIcon"/>
+            <Label fx:id="name" styleClass="cell_small_label_order" text="\$first" />
+          </HBox>
+            <HBox alignment="CENTER_LEFT" spacing="10.0">
+              <Region styleClass="icon-button" id="phoneIcon"/>
+              <Label fx:id="phone" styleClass="cell_small_label_order" text="\$phone" />
+            </HBox>
+            <HBox alignment="CENTER_LEFT" spacing="10.0">
+              <Region styleClass="icon-button" id="addressIcon"/>
+              <Label fx:id="address" styleClass="cell_small_label_order" text="\$address" />
+            </HBox>
+            <HBox alignment="CENTER_LEFT" spacing="10.0">
+              <Region styleClass="icon-button" id="emailIcon"/>
+              <Label fx:id="email" styleClass="cell_small_label_order" text="\$email" />
+            </HBox>
+        </VBox>
       </HBox>
-      <HBox>
-        <Label fx:id="paidStatus" styleClass="status-labels"/>
-        <Label fx:id="deliveryStatus" styleClass="status-labels"/>
-      </HBox>
-      <VBox>
-        <HBox alignment="CENTER_LEFT" spacing="10.0">
-          <Region styleClass="icon-button" id="timeCreatedIcon"/>
-          <Label fx:id="timeCreated" styleClass="cell_small_label_order" text="\$timeCreated" />
-        </HBox>
-        <HBox alignment="CENTER_LEFT" spacing="10.0">
-          <Region styleClass="icon-button" id="phoneIcon"/>
-          <Label fx:id="phone" styleClass="cell_small_label_order" text="\$phone" />
-        </HBox>
-        <HBox alignment="CENTER_LEFT" spacing="10.0">
-          <Region styleClass="icon-button" id="addressIcon"/>
-        <Label fx:id="address" styleClass="cell_small_label_order" text="\$address" />
-        </HBox>
-        <HBox alignment="CENTER_LEFT" spacing="10.0">
-          <Region styleClass="icon-button" id="emailIcon"/>
-          <Label fx:id="email" styleClass="cell_small_label_order" text="\$email" />
-        </HBox>
-      </VBox>
-      <VBox fx:id="items" spacing="2"/>
+
+
+
     </VBox>
       <rowConstraints>
          <RowConstraints />

@@ -17,6 +17,7 @@ import tracko.logic.commands.item.FindItemCommand;
 import tracko.logic.commands.item.ListItemsCommand;
 import tracko.logic.commands.order.AddOrderCommand;
 import tracko.logic.commands.order.DeleteOrderCommand;
+import tracko.logic.commands.order.EditOrderCommand;
 import tracko.logic.commands.order.FindOrderCommand;
 import tracko.logic.commands.order.ListOrdersCommand;
 import tracko.logic.commands.order.SortOrderCommand;
@@ -27,6 +28,7 @@ import tracko.logic.parser.item.EditItemCommandParser;
 import tracko.logic.parser.item.FindItemCommandParser;
 import tracko.logic.parser.order.AddOrderCommandParser;
 import tracko.logic.parser.order.DeleteOrderCommandParser;
+import tracko.logic.parser.order.EditOrderCommandParser;
 import tracko.logic.parser.order.FindOrderCommandParser;
 import tracko.logic.parser.order.SortOrderCommandParser;
 
@@ -85,10 +87,10 @@ public class TrackOParser {
         // (commands kept for reference)
         // case AddCommand.COMMAND_WORD:
         //     return new AddCommandParser().parse(arguments);
-        //
-        // case EditCommand.COMMAND_WORD:
-        //     return new EditCommandParser().parse(arguments);
-        //
+
+        case EditOrderCommand.COMMAND_WORD:
+            return new EditOrderCommandParser().parse(arguments);
+
         case DeleteOrderCommand.COMMAND_WORD:
             return new DeleteOrderCommandParser().parse(arguments);
 
@@ -101,9 +103,9 @@ public class TrackOParser {
         //
         // case ListCommand.COMMAND_WORD:
         //     return new ListCommand();
-        //
-        // case HelpCommand.COMMAND_WORD:
-        //     return new HelpCommand();
+
+        case HelpCommand.COMMAND_WORD:
+            return new HelpCommand();
 
         case AddItemCommand.COMMAND_WORD:
             return new AddItemCommandParser().parse(arguments);
