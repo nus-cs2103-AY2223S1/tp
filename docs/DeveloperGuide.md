@@ -233,6 +233,16 @@ _{more aspects and alternatives to be added}_
 
 _{Explain here how the data archiving feature will be implemented}_
 
+### Mark/unmark feature
+
+#### Implementation
+
+The mark/unmark feature marks a task in the task list as done/not done respectively. Its mechanism is facilitated by `MarkCommand` and `UnmarkCommand`. They both extend `Command`, overriding the `execute` method.
+The implementation of `mark` and `unmark` is such that a task being marked or unmarked is effectively replaced by an identical task with a modified `isDone` field in the task list.
+
+Below is the sequence diagram for an execution of `mark <index>`, assuming `<index>` is not out of bounds.
+
+![Sequence diagram when command `mark 1` is executed](images/MarkSequenceDiagram.png)
 
 --------------------------------------------------------------------------------------------------------------------
 
