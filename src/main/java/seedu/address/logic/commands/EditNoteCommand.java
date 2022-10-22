@@ -16,7 +16,9 @@ import seedu.address.model.note.Content;
 import seedu.address.model.note.Note;
 import seedu.address.model.note.Title;
 
-
+/**
+ * Edits the details of an existing note in the address book.
+ */
 public class EditNoteCommand extends Command {
 
     public static final String COMMAND_WORD = "editNote";
@@ -63,7 +65,7 @@ public class EditNoteCommand extends Command {
         Note noteToEdit = lastShownList.get(index.getZeroBased());
         Note editedNote = createEditedNote(noteToEdit, editNoteDescriptor);
 
-        if(!noteToEdit.isSameNote(editedNote) && model.hasNote(editedNote)) {
+        if (!noteToEdit.isSameNote(editedNote) && model.hasNote(editedNote)) {
             throw new CommandException(MESSAGE_DUPLICATE_NOTE);
         }
 

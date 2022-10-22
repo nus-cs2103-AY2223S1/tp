@@ -10,6 +10,9 @@ import seedu.address.logic.commands.EditNoteCommand;
 import seedu.address.logic.commands.EditNoteCommand.EditNoteDescriptor;
 import seedu.address.logic.parser.exceptions.ParseException;
 
+/**
+ * Parses input arguments and creates a new EditNoteCommand object
+ */
 public class EditNoteCommandParser implements Parser<EditNoteCommand> {
 
     /**
