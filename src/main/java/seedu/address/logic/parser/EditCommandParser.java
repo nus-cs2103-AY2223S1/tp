@@ -16,7 +16,6 @@ import java.util.Collections;
 import java.util.Optional;
 import java.util.Set;
 
-import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
 import seedu.address.logic.parser.exceptions.ParseException;
@@ -38,12 +37,8 @@ public class EditCommandParser implements Parser<EditCommand> {
                 ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE, PREFIX_LESSON_PLAN,
                         PREFIX_HOMEWORK, PREFIX_GRADEPROGRESS, PREFIX_ATTENDANCE, PREFIX_SESSION, PREFIX_TAG);
 
-        Index index;
-
-        try {
-            index = ParserUtil.parseIndex(argMultimap.getPreamble());
-        } catch (ParseException pe) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditCommand.MESSAGE_USAGE), pe);
+        if (!argMultimap.getPreamble().isEmpty()) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditCommand.MESSAGE_USAGE));
         }
 
         EditPersonDescriptor editPersonDescriptor = new EditPersonDescriptor();
@@ -83,7 +78,7 @@ public class EditCommandParser implements Parser<EditCommand> {
             throw new ParseException(EditCommand.MESSAGE_NOT_EDITED);
         }
 
-        return new EditCommand(index, editPersonDescriptor);
+        return new EditCommand(editPersonDescriptor);
     }
 
     /**

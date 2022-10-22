@@ -64,23 +64,20 @@ public class EditCommand extends Command {
     public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the address book.";
     public static final String MESSAGE_NOT_VIEW_MODE = "You need to be in full view mode to edit a person.";
 
-    private final Index index;
     private final EditPersonDescriptor editPersonDescriptor;
 
     /**
-     * @param index of the person in the filtered person list to edit
      * @param editPersonDescriptor details to edit the person with
      */
-    public EditCommand(Index index, EditPersonDescriptor editPersonDescriptor) {
-        requireNonNull(index);
+    public EditCommand(EditPersonDescriptor editPersonDescriptor) {
         requireNonNull(editPersonDescriptor);
 
-        this.index = index;
         this.editPersonDescriptor = new EditPersonDescriptor(editPersonDescriptor);
     }
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
+        Index index = Index.fromOneBased(1);
         requireNonNull(model);
         if (!model.isFullView() || model.isDayView()) {
             throw new CommandException(MESSAGE_NOT_VIEW_MODE);
@@ -214,8 +211,7 @@ public class EditCommand extends Command {
 
         // state check
         EditCommand e = (EditCommand) other;
-        return index.equals(e.index)
-                && editPersonDescriptor.equals(e.editPersonDescriptor);
+        return editPersonDescriptor.equals(e.editPersonDescriptor);
     }
 
     /**
