@@ -192,7 +192,7 @@ public class EditCommand extends Command {
          */
         public boolean isAnyFieldEdited() {
             return CollectionUtil.isAnyNonNull(name, minecraftName, phone, email, address,
-                    socials, tags, servers, country, gameTypes);
+                    socials, tags, servers, country, gameTypes, timeIntervals);
         }
 
         public void setName(Name name) {

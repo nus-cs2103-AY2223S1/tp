@@ -14,7 +14,6 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_SOCIAL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TIME_INTERVAL;
 
-
 import java.util.Collection;
 import java.util.Collections;
 import java.util.Optional;
@@ -144,7 +143,8 @@ public class EditCommandParser implements Parser<EditCommand> {
         return Optional.of(ParserUtil.parseGameType(gameTypesSet));
     }
 
-    private Optional<Set<ITimesAvailable>> parseTimeIntervalsForEdit(Collection<String> timeIntervals) throws ParseException {
+    private Optional<Set<ITimesAvailable>> parseTimeIntervalsForEdit(Collection<String> timeIntervals)
+            throws ParseException {
         assert timeIntervals != null;
 
         if (timeIntervals.isEmpty()) {
