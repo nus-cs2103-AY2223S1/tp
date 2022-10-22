@@ -12,6 +12,9 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.event.Event;
 
+/**
+ * Deletes an event identified using it's displayed index from the address book.
+ */
 public class DeleteEventCommand extends EventCommand {
 
     public static final String COMMAND_OPTION = "d";
@@ -47,7 +50,7 @@ public class DeleteEventCommand extends EventCommand {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof  DeleteEventCommand // instanceof handles nulls
+                || (other instanceof DeleteEventCommand // instanceof handles nulls
                 && targetIndex.equals(((DeleteEventCommand) other).targetIndex)); // state check
     }
 }
