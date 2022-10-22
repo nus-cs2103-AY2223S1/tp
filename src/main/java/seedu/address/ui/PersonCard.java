@@ -62,8 +62,8 @@ public class PersonCard extends UiPart<Region> {
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
         person.getAssignments()
                 .forEach((key, value) -> {
-                    String assignment = key + " : " + value;
-                    assignments.getChildren().add(new Label(assignment));
+                    String assignmentString = key + " : " + value;
+                    assignments.getChildren().add(new Label(assignmentString));
                 });
         person.getPersonGroups().stream()
                 .sorted(Comparator.comparing(PersonGroup::getGroupName))
