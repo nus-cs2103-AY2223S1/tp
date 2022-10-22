@@ -326,30 +326,29 @@ Given below is an example usage scenario and how the find command operates in Tr
 2. `TrackAScholarParser` identifies the person and displays it to the user.
 
 --------------------------------------------------------------------------------------------------------------------
-### Edit application status feature
+### Edit applicant feature
 
 #### Implementation
 
 The edit operation is facilitated by `EditCommand`. It extends `Command` and implements the `Command#execute` operation.
-The edit operation is similar to `AddCommand`, instead of adding a new user, it edits the particulars of the Applicant.
 
 Given below is an example usage scenario and how the edit operation is handled by TrackAScholar:
 
-1. The user enters `edit 1 n/Sam p/98886767 e/sam@example.com s/NUS Merit Scholarship as/pending`, for example, to edit an existing applicant at index 1 in the list.
+1. The user enters `edit 1 n/Sam p/91234567 e/samnew@example.com s/NUS Sports Scholarship as/accepted`, for example, to edit an existing applicant at index 1 in the list.
    This invokes `LogicManager#execute()`, which calls `TrackAScholarParser#parseCommand()` to separate the command word `edit` and
-   the arguments `1 n/Sam p/98886767 e/sam@example.com s/NUS Merit Scholarship as/pending`.
+   the arguments `1 n/Sam p/91234567 e/samnew@example.com s/NUS Sports Scholarship as/accepted`.
 
 2. `TrackAScholarParser` identifies the `edit` command and `EditCommandParser` will be instantiated which calls `EditCommandParser#parse()`
    to map the various arguments via their prefixes (e.g. `Sam` is mapped using prefix `n/`).
 
 3. `EditCommandParser#parse()` will then call `Optional#isPresent()` to check if a prefix is present
-   in the user input, after which the new inputs after the prefix will be used to replace the current inputs in the prefix.
+   in the user input, to identify which inputs need to be changed.
 
 4. `EditCommandParser#parse()` creates an `EditApplicantDescriptor` object with the various attributes to be changed before 
-   finally initializing and returning an `EditCommand` with the `EditApplicantDescriptor` as an argument.
+   initializing and returning an `EditCommand` with the `EditApplicantDescriptor` as an argument.
 
 5. `EditCommandParser#parse()` throws a `ParseException` if index is not a positive integer and a `CommandException` if index 
-    is larger than the list size.
+   is larger than the list size.
 
 6. `LogicManager#execute()` now calls `EditCommand#execute()`, which creates a new `Applicant` object with the updated applicant fields.
     `Model#setApplicant` is used to update the current applicant with the new applicant. 
