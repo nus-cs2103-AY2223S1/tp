@@ -61,8 +61,7 @@ Here are some icons you may encounter in FoodRem and what they mean:
 * ❗ : warning
 
 
-If you are stuck, refer to [Troubleshooting](#troubleshooting) or [FAQ](#faq).
-You can refer to [Glossary](#glossary) that contains definitions of some commonly used words in FoodRem
+If you are stuck, refer to [Troubleshooting](#troubleshooting) or [FAQ](#faq). You can refer to [Glossary](#glossary) that contains definitions of some commonly used words in FoodRem
 
 
 ## Quick Start
