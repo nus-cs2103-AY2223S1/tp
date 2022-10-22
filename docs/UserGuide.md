@@ -85,10 +85,21 @@ You can refer to [Glossary](#glossary) that contains definitions of some commonl
 {% include_relative _ug/QuickStart.md %}
 
 ## Using FoodRem
+Here is an overview of what FoodRem consists of and how you can perform a command.
 
 {% include_relative _ug/ItemsTags.md %}
 
 ### Command Formats
+
+You will encounter FoodRem commands throughout this User Guide.
+Before you delve into the different commands in [Features](#features), let’s learn what a command consists of.
+
+Here is an example:
+![CommandExample](images/CommandExample.png)
+A command consists of:
+1. Command word to tell FoodRem what action you wish to do, These actions are covered in [Features](#features)
+2. [Flags](#flags) to distinguish parameters
+3. [Placeholders](#placeholders) that you can replace with your parameter inputs
 
 
 ### Flags
