@@ -83,7 +83,7 @@ public class FindCommandTest {
     public void execute_multiplePredicates_onePersonsFound() {
         String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 1);
         NameContainsKeywordsPredicate firstPredicate = prepareNamePredicate("Alice");
-        RiskAppetiteMatchesInputPredicate secondPredicate = prepareRiskAppetitePredicate("H");
+        RiskAppetiteMatchesInputPredicate secondPredicate = prepareRiskAppetitePredicate("M");
         FindCommand command = new FindCommand(List.of(firstPredicate, secondPredicate));
         Predicate<Person> predicate = firstPredicate.and(secondPredicate);
         expectedModel.updateFilteredPersonList(predicate);
