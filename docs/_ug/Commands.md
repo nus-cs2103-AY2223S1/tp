@@ -16,7 +16,7 @@ What you should expect to find:
 
 ### General Commands
 
-{% include_relative _ug/features/GeneralCommands.md %}
+{% include_relative _ug/commands/GeneralCommands.md %}
 
 ### Item Commands
 
