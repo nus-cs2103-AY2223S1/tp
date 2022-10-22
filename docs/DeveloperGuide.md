@@ -239,6 +239,12 @@ _{more aspects and alternatives to be added}_
 
 _{Explain here how the data archiving feature will be implemented}_
 
+#### Parameter hint feature
+
+The feature allows a user to view the correct prefixes and arguments of a command before entering the command.
+
+The parameter hints for the command will be shown in the ResultDisplay once the command word is typed out.
+
 ### Calendar features
 
 #### Calendar navigation
