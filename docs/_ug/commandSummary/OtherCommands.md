@@ -15,7 +15,7 @@
 <!-- ===== CREATE TABLE FORMATTING IN NORMAL+ MARKDOWN ===== -->
 <!-- WE USE :variable: FOR VALUES THAT ARE TO BE SUBSTITUTED -->
 {% capture TABLE %}
-| Action                                                | Format  |     Example    |
+| Action                                                | Format  |  Example       |
 |-------------------------------------------------------|---------|----------------|
 | Shows a help dialog with a list of available commands | :help:  | :helpexample:  |
 | Reset the application                                 | :reset: | :resetexample: |
