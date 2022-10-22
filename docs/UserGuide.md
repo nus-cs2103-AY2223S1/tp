@@ -290,9 +290,21 @@ Suppose the following patients were added.
 
 ### Clearing all entries: `clear`
 
-Clears all patient entries.
+Clears all patient entries in the displayed patient list.
 
 Format: `clear`
+
+### Undo last command: `undo`
+
+Undoes the last command which modifies the patient or task list, which includes `add`, `edit`, `delete`, and `clear` commands.
+
+Format: `undo`
+
+### Reverse undo command: `redo`
+
+Undoes the last `undo` command.
+
+Format: `redo`
 
 ### Exiting the program: `exit`
 
@@ -349,5 +361,7 @@ the data of your previous UniNurse home folder.
 | **List all tasks**              | `listTask`                                                                   |
 | **View all tasks of a patient** | `viewTask INDEX`                                                             |
 | **Clear all patients**          | `clear`                                                                      |
+| **Undo last command**           | `undo`                                                                       |
+| **Reverse undo command**        | `redo`                                                                       |
 | **Exit**                        | `exit`                                                                       |
 
