@@ -22,28 +22,26 @@ public class Internship {
     private final Position position;
     private final Phone phone;
     private final Email email;
-    private final Status status;
-    private final Remark remark;
 
     // Data fields
+    private final Status status;
     private final Address address;
-
     private final List<Task> tasks = new ArrayList<>();
     private final Set<Tag> tags = new HashSet<>();
+    private final Remark remark;
 
     /**
      * Every field must be present and not null.
      */
 
-    public Internship(Name name, Position position, Phone phone, Email email, Status status, Address address,
+    public Internship(Name name, Position position, Status status, Phone phone, Email email, Address address,
                       List<Task> tasks, Set<Tag> tags, Remark remark) {
         requireAllNonNull(name, position, phone, email, status, address, tasks, tags, remark);
-
         this.name = name;
         this.position = position;
+        this.status = status;
         this.phone = phone;
         this.email = email;
-        this.status = status;
         this.address = address;
         this.tasks.addAll(tasks);
         this.tags.addAll(tags);
@@ -58,6 +56,10 @@ public class Internship {
         return position;
     }
 
+    public Status getStatus() {
+        return status;
+    }
+
     public Phone getPhone() {
         return phone;
     }
@@ -70,16 +72,8 @@ public class Internship {
         return address;
     }
 
-    public Status getStatus() {
-        return status;
-    }
-
-    public Remark getRemark() {
-        return remark;
-    }
-
     /**
-     * Returns an immutable tag set, which throws {@code UnsupportedOperationException}
+     * Returns an immutable task list, which throws {@code UnsupportedOperationException}
      * if modification is attempted.
      */
     public List<Task> getTasks() {
@@ -92,6 +86,10 @@ public class Internship {
      */
     public Set<Tag> getTags() {
         return Collections.unmodifiableSet(tags);
+    }
+
+    public Remark getRemark() {
+        return remark;
     }
 
     /**
@@ -125,9 +123,9 @@ public class Internship {
         Internship otherInternship = (Internship) other;
         return otherInternship.getName().equals(getName())
                 && otherInternship.getPosition().equals(getPosition())
+                && otherInternship.getStatus().equals(getStatus())
                 && otherInternship.getPhone().equals(getPhone())
                 && otherInternship.getEmail().equals(getEmail())
-                && otherInternship.getStatus().equals(getStatus())
                 && otherInternship.getAddress().equals(getAddress())
                 && otherInternship.getTasks().equals(getTasks())
                 && otherInternship.getTags().equals(getTags());
@@ -136,7 +134,7 @@ public class Internship {
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, position, phone, email, status, address, tasks, tags);
+        return Objects.hash(name, position, phone, email, address, tags);
     }
 
     @Override
@@ -146,12 +144,12 @@ public class Internship {
                 .append(getName())
                 .append("; Position: ")
                 .append(getPosition())
+                .append("; Status: ")
+                .append(getStatus())
                 .append("; Phone: ")
                 .append(getPhone())
                 .append("; Email: ")
                 .append(getEmail())
-                .append("; Status: ")
-                .append(getStatus())
                 .append("; Address: ")
                 .append(getAddress());
 
@@ -160,6 +158,7 @@ public class Internship {
             builder.append("; Tasks: ");
             tasks.forEach(builder::append);
         }
+
         Set<Tag> tags = getTags();
         if (!tags.isEmpty()) {
             builder.append("; Tags: ");
@@ -167,6 +166,8 @@ public class Internship {
         }
         builder.append(" Remark: ")
                 .append(getRemark());
+
         return builder.toString();
     }
+
 }
