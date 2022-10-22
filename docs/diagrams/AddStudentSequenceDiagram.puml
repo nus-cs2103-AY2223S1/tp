@@ -1,0 +1,80 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":FypManagerParser" as FypManagerParser LOGIC_COLOR
+participant ":AddStudentCommandParser" as AddStudentCommandParser LOGIC_COLOR
+participant "a:AddStudentCommand" as AddStudentCommand LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+
+[-> LogicManager : execute("add-s id/A0123456X n/John Doe\nproj/Machine e/john@gmail.com")
+activate LogicManager
+
+LogicManager -> FypManagerParser : parseCommand("add-s id/A0123456X n/John Doe\nproj/Machine e/john@gmail.com")
+activate FypManagerParser
+
+create AddStudentCommandParser
+FypManagerParser -> AddStudentCommandParser
+activate AddStudentCommandParser
+
+AddStudentCommandParser --> FypManagerParser
+deactivate AddStudentCommandParser
+
+FypManagerParser -> AddStudentCommandParser : parse("id/A0123456X n/John Doe\nproj/Machine e/john@gmail.com")
+activate AddStudentCommandParser
+
+create AddStudentCommand
+AddStudentCommandParser -> AddStudentCommand
+activate AddStudentCommand
+
+AddStudentCommand --> AddStudentCommandParser : a
+deactivate AddStudentCommand
+
+AddStudentCommandParser --> FypManagerParser : a
+deactivate AddStudentCommandParser
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+AddStudentCommandParser -[hidden]-> FypManagerParser
+destroy AddStudentCommandParser
+
+FypManagerParser --> LogicManager : a
+deactivate FypManagerParser
+
+LogicManager -> AddStudentCommand : execute()
+activate AddStudentCommand
+
+AddStudentCommand -> Model : hasStudent(toAdd)
+activate Model
+
+alt is a duplicate student
+Model --> AddStudentCommand : CommandException
+deactivate Model
+else else
+Model --> AddStudentCommand : hasStudent
+deactivate Model
+
+AddStudentCommand -> Model : addStudent(toAdd)
+activate Model
+
+Model --> AddStudentCommand
+deactivate Model
+
+create CommandResult
+AddStudentCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> AddStudentCommand
+deactivate CommandResult
+end
+
+AddStudentCommand --> LogicManager : result
+deactivate AddStudentCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml

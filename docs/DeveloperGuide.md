@@ -154,6 +154,36 @@ Classes used by multiple components are in the `jeryl.fyp.commons` package.
 
 This section describes some noteworthy details on how certain features are implemented.
 
+### Adding a student to the FYP manager
+This feature allows professors as users to keep track of students that are supervised under, as well as the project each student is working on.
+
+#### Implementation details
+The add student feature is facilitated by `AddStudentCommandParser` and `AddStudentCommand`. The operation is exposed in the `Model` interface as `Model#addStudent()`.
+
+Given below is an example usage scenario and how the add student mechanism behaves at each step:
+1. The user enters the add student command and provides the name of the student, the student ID, the project name, and the student's email.
+2. `FypManagerParser` creates a new `AddStudentCommandParser` after preliminary processing of user input.
+3. `AddStudentCommandParser` then processes the input again and creates an `AddStudentCommand`.
+4. `LogicManager` executes the `AddStudentCommand` using the `LogicManager#execute()` method.
+5. `AddStudentCommand` checks if the student has existed before using `Model#hasStudent()`.
+6. If the student is not inside the student list yet, `AddStudentCommand` calls `Model#addStudent()` and passes the student as the parameter.
+7. Finally, `AddStudentCommand` creates a `CommandResult` and returns it to `LogicManager` to complete the command.
+
+The following sequence diagram shows how the add student command works:
+
+<img src="images/AddStudentSequenceDiagram.png" width="550" />
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `UndoCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+
+</div>
+
+The following activity diagram summarizes what happens when a user executes an add student command.
+
+<img src="images/AddStudentActivityDiagram.png" width="550" />
+
+#### Design considerations
+An add student command is designed to add a single student along with its detail particulars such as one's student ID, student name, project name, and email. These details are the important details every professor needs from a student so that the professor can understand the work of the student and is able to contact the student when needed.
+
 ### \[Proposed\] Undo/redo feature
 
 #### Proposed Implementation
