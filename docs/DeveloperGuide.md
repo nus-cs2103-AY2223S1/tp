@@ -295,6 +295,25 @@ If a `Task` has no `Student`s,
     * In the current design, the user only needs to click once on Task 2 to collapse Task 1 and expand Task 2.
     * This alternative design requires the user to click on the **Close** button on Task 1's dialog box, and then click again on Task 2.
 
+### \[In progress\] Grade feature
+
+#### Description
+
+In TAA, the user can specify whether they have graded a `Student`s `Task` or not.
+
+#### Implementation
+
+Every `Grade` contains:
+* the `Student` it is associated with
+* the `Task` it is associated with, and
+* the `GradeState`, the state of the graded (graded or not).
+
+#### Design Considerations
+
+* In the interest of future extensibility, the `Grade` was made modular through the `GradeState` class.
+    * While for now only two grade states are supported ("graded" or "not graded"), in the future, more states can easily be added.
+    * This wouldn't have been possible if `GradeState` was simply a `boolean` value.
+
 ### \[Proposed\] Undo/redo feature
 
 #### Proposed Implementation
