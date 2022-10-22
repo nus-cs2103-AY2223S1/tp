@@ -121,7 +121,7 @@ Placeholders are words in UPPER_CASE to show you what parameters you can supply 
 
 ## Troubleshooting
 
-TODO: Consider removing this section
+<!-- TODO: Consider removing this section -->
 {% include_relative _ug/Troubleshooting.md %}
 
 ## FAQ
