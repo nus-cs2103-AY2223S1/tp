@@ -15,7 +15,6 @@ import java.util.Set;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
-import seedu.address.commons.util.CollectionUtil;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.person.Attendance;
@@ -50,8 +49,8 @@ public class RemoveCommand extends Command {
             + "Example: PERSON_INDEX " + COMMAND_WORD + " " + PREFIX_HOMEWORK + " 1 ";
 
     public static final String MESSAGE_REMOVED_PERSON_SUCCESS = "Removed Person Detail: %1$s";
-    public static final String MESSAGE_NOT_VIEW_MODE
-            = "You need to be in full view mode to remove a person's details.";
+    public static final String MESSAGE_NOT_VIEW_MODE =
+            "You need to be in full view mode to remove a person's details.";
 
     private final Index index;
     private final RemovePersonDescriptor removePersonDescriptor;
@@ -160,6 +159,9 @@ public class RemoveCommand extends Command {
         return updatedGradeProgressList;
     }
 
+    /**
+     * Stores the details to edit the person with.
+     */
     public static class RemovePersonDescriptor {
         private Name name;
         private Phone phone;
