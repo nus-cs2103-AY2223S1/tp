@@ -150,7 +150,7 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void removeProduct(Product product) {
+    public void deleteProduct(Product product) {
         requireNonNull(product);
         myInsuRec.removeProduct(product);
     }
@@ -251,7 +251,9 @@ public class ModelManager implements Model {
         ModelManager other = (ModelManager) obj;
         return myInsuRec.equals(other.myInsuRec)
                 && userPrefs.equals(other.userPrefs)
-                && filteredClients.equals(other.filteredClients);
+                && filteredClients.equals(other.filteredClients)
+                && filteredMeetings.equals(other.filteredMeetings)
+                && filteredProducts.equals(other.filteredProducts);
     }
 
 }

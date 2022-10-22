@@ -42,7 +42,7 @@ public class DeleteProductCommand extends Command {
         }
 
         Product productToDelete = lastShownList.get(targetIndex.getZeroBased());
-        model.removeProduct(productToDelete);
+        model.deleteProduct(productToDelete);
         return new CommandResult(String.format(MESSAGE_DELETE_PRODUCT_SUCCESS, productToDelete));
     }
 

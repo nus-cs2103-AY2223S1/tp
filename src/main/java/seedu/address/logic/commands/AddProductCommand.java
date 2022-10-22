@@ -1,7 +1,7 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_PRODUCT;
 
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
@@ -16,9 +16,9 @@ public class AddProductCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a product to MyInsuRec. "
             + "Parameters: "
-            + PREFIX_NAME + "NAME \n"
+            + PREFIX_PRODUCT + "PRODUCT NAME \n"
             + "Example: " + COMMAND_WORD + " "
-            + PREFIX_NAME + "PrudenSure";
+            + PREFIX_PRODUCT + "PrudenSure";
 
     public static final String MESSAGE_SUCCESS = "New product added: %1$s";
     public static final String MESSAGE_DUPLICATE_PRODUCT = "This product already exists in MyInsuRec";

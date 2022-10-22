@@ -23,62 +23,64 @@ import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.client.Client;
 import seedu.address.model.meeting.Meeting;
 import seedu.address.model.product.Product;
-import seedu.address.testutil.ClientBuilder;
+import seedu.address.testutil.ProductBuilder;
 
-public class AddClientCommandTest {
+
+public class AddProductCommandTest {
 
     @Test
     public void constructor_nullClient_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> new AddClientCommand(null));
+        assertThrows(NullPointerException.class, () -> new AddProductCommand(null));
     }
 
     @Test
-    public void execute_clientAcceptedByModel_addSuccessful() throws Exception {
-        ModelStubAcceptingClientAdded modelStub = new ModelStubAcceptingClientAdded();
-        Client validClient = new ClientBuilder().build();
+    public void execute_productAcceptedByModel_addSuccessful() throws Exception {
+        ModelStubAcceptingProductAdded modelStub = new ModelStubAcceptingProductAdded();
+        Product validProduct = new ProductBuilder().build();
 
-        CommandResult commandResult = new AddClientCommand(validClient).execute(modelStub);
+        CommandResult commandResult = new AddProductCommand(validProduct).execute(modelStub);
 
-        assertEquals(String.format(AddClientCommand.MESSAGE_SUCCESS, validClient), commandResult.getFeedbackToUser());
-        assertEquals(Arrays.asList(validClient), modelStub.clientsAdded);
+        assertEquals(String.format(AddProductCommand.MESSAGE_SUCCESS, validProduct), commandResult.getFeedbackToUser());
+        assertEquals(CommandSpecific.PRODUCT, commandResult.getCommandSpecific());
+        assertEquals(Arrays.asList(validProduct), modelStub.productsAdded);
     }
 
     @Test
-    public void execute_duplicateClient_throwsCommandException() {
-        Client validClient = new ClientBuilder().build();
-        AddClientCommand addCommand = new AddClientCommand(validClient);
-        ModelStub modelStub = new ModelStubWithClient(validClient);
+    public void execute_duplicateProduct_throwsCommandException() {
+        Product validProduct = new ProductBuilder().build();
+        AddProductCommand addProductCommand = new AddProductCommand(validProduct);
+        ModelStub modelStub = new ModelStubWithClient(validProduct);
 
         assertThrows(CommandException.class,
-                AddClientCommand.MESSAGE_DUPLICATE_CLIENT, () -> addCommand.execute(modelStub));
+                AddProductCommand.MESSAGE_DUPLICATE_PRODUCT, () -> addProductCommand.execute(modelStub));
     }
 
     @Test
     public void equals() {
-        Client alice = new ClientBuilder().withName("Alice").build();
-        Client bob = new ClientBuilder().withName("Bob").build();
-        AddClientCommand addAliceCommand = new AddClientCommand(alice);
-        AddClientCommand addBobCommand = new AddClientCommand(bob);
+        Product product1 = new ProductBuilder().withProductName("Product1").build();
+        Product product2 = new ProductBuilder().withProductName("Product2").build();
+        AddProductCommand addProduct1Command = new AddProductCommand(product1);
+        AddProductCommand addProduct2Command = new AddProductCommand(product2);
 
         // same object -> returns true
-        assertTrue(addAliceCommand.equals(addAliceCommand));
+        assertTrue(product1.equals(product1));
 
         // same values -> returns true
-        AddClientCommand addAliceCommandCopy = new AddClientCommand(alice);
-        assertTrue(addAliceCommand.equals(addAliceCommandCopy));
+        AddProductCommand addProduct1CommandCopy = new AddProductCommand(product1);
+        assertTrue(addProduct1Command.equals(addProduct1CommandCopy));
 
         // different types -> returns false
-        assertFalse(addAliceCommand.equals(1));
+        assertFalse(addProduct1Command.equals(1));
 
         // null -> returns false
-        assertFalse(addAliceCommand.equals(null));
+        assertFalse(addProduct1Command.equals(null));
 
         // different Client -> returns false
-        assertFalse(addAliceCommand.equals(addBobCommand));
+        assertFalse(addProduct1Command.equals(addProduct2Command));
     }
 
     /**
-     * A default model stub that have all of the methods failing.
+     * A default model stub that have all the methods failing.
      */
     private class ModelStub implements Model {
         @Override
@@ -222,39 +224,39 @@ public class AddClientCommandTest {
     }
 
     /**
-     * A Model stub that contains a single Client.
+     * A Model stub that contains a single Product.
      */
     private class ModelStubWithClient extends ModelStub {
-        private final Client client;
+        private final Product product;
 
-        ModelStubWithClient(Client client) {
-            requireNonNull(client);
-            this.client = client;
+        ModelStubWithClient(Product product) {
+            requireNonNull(product);
+            this.product = product;
         }
 
         @Override
-        public boolean hasClient(Client client) {
-            requireNonNull(client);
-            return this.client.isSameClient(client);
+        public boolean hasProduct(Product product) {
+            requireNonNull(product);
+            return this.product.equals(product);
         }
     }
 
     /**
-     * A Model stub that always accept the Client being added.
+     * A Model stub that always accept the Product being added.
      */
-    private class ModelStubAcceptingClientAdded extends ModelStub {
-        final ArrayList<Client> clientsAdded = new ArrayList<>();
+    private class ModelStubAcceptingProductAdded extends ModelStub {
+        final ArrayList<Product> productsAdded = new ArrayList<>();
 
         @Override
-        public boolean hasClient(Client client) {
-            requireNonNull(client);
-            return clientsAdded.stream().anyMatch(client::isSameClient);
+        public boolean hasProduct(Product product) {
+            requireNonNull(product);
+            return productsAdded.stream().anyMatch(product::equals);
         }
 
         @Override
-        public void addClient(Client client) {
-            requireNonNull(client);
-            clientsAdded.add(client);
+        public void addProduct(Product product) {
+            requireNonNull(product);
+            productsAdded.add(product);
         }
 
         @Override

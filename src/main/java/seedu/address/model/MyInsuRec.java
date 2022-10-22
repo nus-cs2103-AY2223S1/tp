@@ -209,7 +209,9 @@ public class MyInsuRec implements ReadOnlyMyInsuRec {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof MyInsuRec // instanceof handles nulls
-                && clients.equals(((MyInsuRec) other).clients));
+                && clients.equals(((MyInsuRec) other).clients)
+                && meetings.equals(((MyInsuRec) other).meetings)
+                && products.equals(((MyInsuRec) other).products));
     }
 
     @Override

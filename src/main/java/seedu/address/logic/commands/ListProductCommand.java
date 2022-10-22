@@ -6,7 +6,7 @@ import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PRODUCTS;
 import seedu.address.model.Model;
 
 /**
- * Lists all meetings in the client book to the user.
+ * Lists all products in MyInsuRec to the user.
  */
 public class ListProductCommand extends Command {
 

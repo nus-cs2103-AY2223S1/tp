@@ -57,16 +57,16 @@ public class UniqueProductList implements Iterable<Product> {
 
 
     /**
-     * Replaces the contents of this list with {@code product}.
-     * {@code persons} must not contain duplicate clients.
+     * Replaces the contents of this list with {@code products}.
+     * {@code products} must not contain duplicate products.
      */
-    public void setProducts(List<Product> tags) {
-        requireAllNonNull(tags);
-        if (!productsAreUnique(tags)) {
+    public void setProducts(List<Product> products) {
+        requireAllNonNull(products);
+        if (!productsAreUnique(products)) {
             throw new DuplicateProductException();
         }
 
-        internalList.setAll(tags);
+        internalList.setAll(products);
     }
 
     /**

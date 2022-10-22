@@ -95,10 +95,10 @@ public interface Model {
     void addProduct(Product product);
 
     /**
-     * Removes product.
+     * Deletes the given product.
      * The meeting must exist in the product list in MyInsuRec.
      */
-    void removeProduct(Product product);
+    void deleteProduct(Product product);
 
     /**
      * Returns true if a product with the same name as {@code product} exists in the MyInsuRec.
