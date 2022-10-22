@@ -91,7 +91,7 @@ public class UserProfile extends UiPart<Region> {
             phone.setText(user.getPhone().value);
             address.setText(user.getAddress().value);
             email.setText(user.getEmail().value);
-            github.setText(user.getGithub().value);
+            github.setText("Github: " + user.getGithub().value);
             currModuleDescription.setText("Current Modules: ");
             prevModuleDescription.setText("Previous Modules: ");
             planModuleDescription.setText("Planned Modules: ");

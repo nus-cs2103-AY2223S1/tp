@@ -72,6 +72,16 @@ public class UserCommandParserTest {
     }
 
     @Test
+    public void parse_optionalFieldMissing_success() {
+
+        // missing github
+        User expectedUser = new UserBuilder(ZAC).withGithub("").build();
+        assertParseSuccess(parser, NAME_DESC_ZAC + PHONE_DESC_ZAC + EMAIL_DESC_ZAC + ADDRESS_DESC_ZAC,
+                new UserCommand(expectedUser));
+
+    }
+
+    @Test
     public void parse_compulsoryFieldMissing_failure() {
         String expectedMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, UserCommand.MESSAGE_USAGE);
 

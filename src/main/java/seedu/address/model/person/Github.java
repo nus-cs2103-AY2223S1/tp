@@ -36,6 +36,9 @@ public class Github {
      * Returns true if a given string is a valid username.
      */
     public static boolean isValidUsername(String test) {
+        if (test.equals("")) {
+            return true;
+        }
         return test.matches(VALIDATION_REGEX);
     }
 

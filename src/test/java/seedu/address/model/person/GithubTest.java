@@ -15,7 +15,7 @@ public class GithubTest {
 
     @Test
     public void constructor_invalidEmail_throwsIllegalArgumentException() {
-        String invalidGithub = "";
+        String invalidGithub = "_";
         assertThrows(IllegalArgumentException.class, () -> new Github(invalidGithub));
     }
 
@@ -25,7 +25,6 @@ public class GithubTest {
         assertThrows(NullPointerException.class, () -> Github.isValidUsername(null));
 
         // blank username
-        assertFalse(Github.isValidUsername("")); // empty string
         assertFalse(Github.isValidUsername(" ")); // spaces only
 
         // invalid parts
@@ -46,5 +45,6 @@ public class GithubTest {
         assertTrue(Github.isValidUsername("62353535")); // numbers only
         assertTrue(Github.isValidUsername("peter-j4ck")); // mixture of alphanumeric and hyphens
         assertTrue(Github.isValidUsername("peterjack-peterjack-peterjack-peterjack")); // username 39 characters
+        assertTrue(Github.isValidUsername("")); // empty username
     }
 }

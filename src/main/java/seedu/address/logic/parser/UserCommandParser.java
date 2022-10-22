@@ -41,7 +41,7 @@ public class UserCommandParser implements Parser<UserCommand> {
                 ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS,
                         PREFIX_GITHUB, PREFIX_CURRENTMOD, PREFIX_PREVIOUSMOD, PREFIX_PLANNEDMOD);
 
-        if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_ADDRESS, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_GITHUB)
+        if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_ADDRESS, PREFIX_PHONE, PREFIX_EMAIL)
                 || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, UserCommand.MESSAGE_USAGE));
         }
@@ -50,7 +50,10 @@ public class UserCommandParser implements Parser<UserCommand> {
         Phone phone = ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONE).get());
         Email email = ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get());
         Address address = ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get());
-        Github github = ParserUtil.parseGithub(argMultimap.getValue(PREFIX_GITHUB).get());
+        Github github = new Github("");
+        if (arePrefixesPresent(argMultimap, PREFIX_GITHUB)) {
+            github = ParserUtil.parseGithub(argMultimap.getValue(PREFIX_GITHUB).get());
+        }
         Set<CurrentModule> currList = ParserUtil.parseCurrentModules(argMultimap.getAllValues(PREFIX_CURRENTMOD));
         Set<PreviousModule> prevList = ParserUtil.parsePreviousModules(argMultimap.getAllValues(PREFIX_PREVIOUSMOD));
         Set<PlannedModule> plannedList = ParserUtil.parsePlannedModules(argMultimap.getAllValues(PREFIX_PLANNEDMOD));
