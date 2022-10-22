@@ -20,11 +20,22 @@ public class FilterCommandParserTest {
     }
 
     @Test
+    public void parse_invalidArgs_returnsFilterCommand() {
+        // wrong letter
+        assertParseFailure(parser, "Q", String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                FilterCommand.FILTER_COMMAND_CONSTRAINTS));
+        // extra letter
+        assertParseFailure(parser, "rr", String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                FilterCommand.FILTER_COMMAND_CONSTRAINTS));
+    }
+
+    @Test
     public void parse_validArgs_returnsFilterCommand() {
         FilterCommand expectedFilterCommand =
                 new FilterCommand(new StatusIsKeywordPredicate("Rejected"));
-        // Test for upper and lower case
+        // uppercase
         assertParseSuccess(parser, "R", expectedFilterCommand);
+        // lowercase
         assertParseSuccess(parser, "r", expectedFilterCommand);
     }
 
