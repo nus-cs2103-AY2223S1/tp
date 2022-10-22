@@ -307,8 +307,8 @@ _{Explain here how the data archiving feature will be implemented}_
 **Value proposition**:
 
 * Keep track of multiple company contacts and applications’ progress simultaneously (the reply rates from companies are very low)
-* Keep track of colleagues information post-internship
-* Keeping track of internship application windows of multiple companies
+* Keep track of colleagues' information post-internship
+* Keep track of internship application windows of multiple companies
 
 
 ### User stories
@@ -522,19 +522,35 @@ testers are expected to do more *exploratory* testing.
 
 1. _{ more test cases …​ }_
 
+### Editing a person
+
+1. Editing a person in a filtered list of persons.
+
+    1. Prerequisites: Find the person of interest using the `find -p [PREFIX/KEYWORD]` command. Assume  a list of at least 1 person is shown.
+
+    1. Test case: `edit -p 1 e/johndoe@gmail.com`<br>
+       Expected: First person in the list has his/her email updated. Details of the edited person shown in the status message.
+
+    1. Test case: `edit -p 0 p/98981234`<br>
+       Expected: No person is edited. Error details shown in the status message.
+
+    1. Other incorrect edit commands to try: `edit -p 1`, `edit -p x t/colleague`(where x is larger than the list size).<br>
+       Expected: Similar to previous.
+1. _{ more test cases …​ }_
+
 ### Deleting a person
 
 1. Deleting a person while all persons are being shown
 
-   1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
+   1. Prerequisites: List all persons using the `list -p` command. Multiple persons in the list.
 
-   1. Test case: `delete 1`<br>
-      Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
+   1. Test case: `delete -p 1`<br>
+      Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message.
 
-   1. Test case: `delete 0`<br>
+   1. Test case: `delete -p 0`<br>
       Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
 
-   1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
+   1. Other incorrect delete commands to try: `delete -p`, `delete -p x`, `...` (where x is larger than the list size).<br>
       Expected: Similar to previous.
 
 1. _{ more test cases …​ }_
