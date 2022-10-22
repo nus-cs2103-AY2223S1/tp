@@ -23,22 +23,22 @@ public class AssignTaskCommandParserTest {
         assertParseSuccess(parser, "1", new AssignTaskCommand(INDEX_FIRST_TASK, new HashSet<>(),
                 new HashSet<>(), new HashSet<>(), new HashSet<>()));
 
-        assertParseSuccess(parser, "1 ca/1 ca/2", new AssignTaskCommand(INDEX_FIRST_TASK,
+        assertParseSuccess(parser, "1 +@1 +@2", new AssignTaskCommand(INDEX_FIRST_TASK,
                 new HashSet<>(Arrays.asList(INDEX_FIRST_PERSON, INDEX_SECOND_PERSON)), new HashSet<>(), new HashSet<>(),
                 new HashSet<>()));
 
-        assertParseSuccess(parser, "1 ca/Alex ca/Bernice", new AssignTaskCommand(INDEX_FIRST_TASK,
+        assertParseSuccess(parser, "1 +@Alex +@Bernice", new AssignTaskCommand(INDEX_FIRST_TASK,
                 new HashSet<>(), new HashSet<>(Arrays.asList("Bernice", "Alex")), new HashSet<>(),
                 new HashSet<>()));
 
-        assertParseSuccess(parser, "1 cd/1 cd/2", new AssignTaskCommand(INDEX_FIRST_TASK,
+        assertParseSuccess(parser, "1 -@1 -@2", new AssignTaskCommand(INDEX_FIRST_TASK,
                 new HashSet<>(), new HashSet<>(), new HashSet<>(Arrays.asList(INDEX_FIRST_PERSON, INDEX_SECOND_PERSON)),
                 new HashSet<>()));
 
-        assertParseSuccess(parser, "1 cd/Alex cd/Bernice", new AssignTaskCommand(INDEX_FIRST_TASK,
+        assertParseSuccess(parser, "1 -@Alex -@Bernice", new AssignTaskCommand(INDEX_FIRST_TASK,
                 new HashSet<>(), new HashSet<>(), new HashSet<>(), new HashSet<>(Arrays.asList("Bernice", "Alex"))));
 
-        assertParseSuccess(parser, "1 ca/1 ca/Bernice cd/2 cd/John", new AssignTaskCommand(INDEX_FIRST_TASK,
+        assertParseSuccess(parser, "1 +@1 +@Bernice -@2 -@John", new AssignTaskCommand(INDEX_FIRST_TASK,
                 new HashSet<>(Arrays.asList(INDEX_FIRST_PERSON)), new HashSet<>(Arrays.asList("Bernice")),
                 new HashSet<>(Arrays.asList(INDEX_SECOND_PERSON)),
                 new HashSet<>(Arrays.asList("John"))));
@@ -63,11 +63,11 @@ public class AssignTaskCommandParserTest {
                 AssignTaskCommand.MESSAGE_USAGE));
 
         // invalid person add index
-        assertParseFailure(parser, "1 ca/0", String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+        assertParseFailure(parser, "1 +@0", String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                 AssignTaskCommand.MESSAGE_USAGE));
 
         // invalid person delete index
-        assertParseFailure(parser, "1 cd/0", String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+        assertParseFailure(parser, "1 -@0", String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                 AssignTaskCommand.MESSAGE_USAGE));
     }
 

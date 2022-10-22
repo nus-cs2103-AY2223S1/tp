@@ -3,7 +3,6 @@ package seedu.address.logic.commands.task;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADD_CONTACT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DELETE_CONTACT;
-import static seedu.address.model.Model.PREDICATE_SHOW_ALL_TASKS;
 
 import java.util.HashSet;
 import java.util.List;
@@ -115,7 +114,6 @@ public class AssignTaskCommand extends TaskCommand {
         );
 
         model.setTask(taskToModify, editedTask);
-        model.updateFilteredTaskList(PREDICATE_SHOW_ALL_TASKS);
 
         if (!invalidIndexes.isEmpty() || !invalidNames.isEmpty()
                 || !alreadyAddedContacts.isEmpty() || !notAddedContacts.isEmpty()) {
