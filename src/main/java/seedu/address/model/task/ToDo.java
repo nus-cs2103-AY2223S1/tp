@@ -21,10 +21,12 @@ public class ToDo implements Task {
         this.description = description;
     }
 
+    @Override
     public TaskTitle getTitle() {
         return title;
     }
 
+    @Override
     public TaskDescription getDescription() {
         return description;
     }

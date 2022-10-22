@@ -21,6 +21,7 @@ import seedu.address.model.student.Name;
 import seedu.address.model.student.Phone;
 import seedu.address.model.student.StudentId;
 import seedu.address.model.tag.Tag;
+import seedu.address.model.task.FormatDate;
 import seedu.address.model.task.TaskDescription;
 import seedu.address.model.task.TaskTitle;
 
@@ -33,6 +34,7 @@ public class ParserUtilTest {
     private static final String INVALID_MARK = "2A";
     private static final String INVALID_TITLE = "#title";
     private static final String INVALID_DESCRIPTION = "?description";
+    private static final String INVALID_FORMAT_DATE = "04-10-2021";
 
     private static final String VALID_NAME = "Rachel Walker";
     private static final String VALID_PHONE = "123456";
@@ -44,6 +46,7 @@ public class ParserUtilTest {
     private static final String VALID_MARK_2 = "1";
     private static final String VALID_TITLE = "valid title";
     private static final String VALID_DESCRIPTION = "valid description";
+    private static final String VALID_FORMAT_DATE = "2022-10-22";
 
     private static final String WHITESPACE = " \t\r\n";
 
@@ -279,5 +282,28 @@ public class ParserUtilTest {
         String descriptionWithWhitespace = WHITESPACE + VALID_DESCRIPTION + WHITESPACE;
         TaskDescription expectedDescription = new TaskDescription(VALID_DESCRIPTION);
         assertEquals(expectedDescription, ParserUtil.parseDescription(descriptionWithWhitespace));
+    }
+
+    @Test
+    public void parseDate_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseDate(null));
+    }
+
+    @Test
+    public void parseDate_invalidValue_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseDate(INVALID_FORMAT_DATE));
+    }
+
+    @Test
+    public void parseDate_validValueWithoutWhitespace_returnsFormatDate() throws Exception {
+        FormatDate expectedFormatDate = new FormatDate(VALID_FORMAT_DATE);
+        assertEquals(expectedFormatDate, ParserUtil.parseDate(VALID_FORMAT_DATE));
+    }
+
+    @Test
+    public void parseDate_validValueWithWhitespace_returnsTrimmedFormatDate() throws Exception {
+        String formatDateWithWhitespace = WHITESPACE + VALID_FORMAT_DATE + WHITESPACE;
+        FormatDate expectedFormatDate = new FormatDate(VALID_FORMAT_DATE);
+        assertEquals(expectedFormatDate, ParserUtil.parseDate(formatDateWithWhitespace));
     }
 }

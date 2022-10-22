@@ -17,5 +17,6 @@ public interface Task {
     String toString();
 
     TaskTitle getTitle();
+
     TaskDescription getDescription();
 }
