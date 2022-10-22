@@ -17,7 +17,7 @@ public class Money implements Comparable<Money> {
                     + "\nEnd with + to add GST to the amount, or ++ to add both GST and service charge.";
     public static final String VALIDATION_REGEX = "\\$?\\d+(\\.\\d{1,2})?\\s*(\\+{1,2})?";
     public static final int CENTS_PRECISION = 2;
-    public static final BigDecimal GST_MULTIPLER = new BigDecimal("1.07");
+    public static final BigDecimal GST_MULTIPLIER = new BigDecimal("1.07");
     public static final BigDecimal SERVICE_CHARGE_MULTIPLIER = new BigDecimal("1.10");
 
     private final BigDecimal value;
@@ -42,9 +42,9 @@ public class Money implements Comparable<Money> {
 
         BigDecimal value = new BigDecimal(money).setScale(CENTS_PRECISION);
         if (plusCount == 1) {
-            value = value.multiply(GST_MULTIPLER).setScale(CENTS_PRECISION, RoundingMode.CEILING);
+            value = value.multiply(GST_MULTIPLIER).setScale(CENTS_PRECISION, RoundingMode.CEILING);
         } else if (plusCount == 2) {
-            value = value.multiply(SERVICE_CHARGE_MULTIPLIER).multiply(GST_MULTIPLER)
+            value = value.multiply(SERVICE_CHARGE_MULTIPLIER).multiply(GST_MULTIPLIER)
                     .setScale(CENTS_PRECISION, RoundingMode.CEILING);
         } else if (plusCount != 0) {
             assert false : ">2 '+' not detected as invalid Money input.";
