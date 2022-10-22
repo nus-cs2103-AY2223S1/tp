@@ -8,6 +8,7 @@ import seedu.address.logic.commands.EditTaskDescriptor;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.task.Deadline;
 import seedu.address.model.task.Description;
+import seedu.address.model.task.Id;
 import seedu.address.model.task.Task;
 
 /**
@@ -33,6 +34,7 @@ public class EditTaskDescriptorBuilder {
         descriptor.setDeadline(task.getDeadline());
         descriptor.setIsDone(task.getStatus());
         descriptor.setTags(task.getTags());
+        descriptor.setId(task.getId());
     }
 
     /**
@@ -66,6 +68,14 @@ public class EditTaskDescriptorBuilder {
     public EditTaskDescriptorBuilder withTags(String... tags) {
         Set<Tag> tagSet = Stream.of(tags).map(Tag::new).collect(Collectors.toSet());
         descriptor.setTags(tagSet);
+        return this;
+    }
+
+    /**
+     * Sets the {@code Id} of the {@code EditTaskDescriptor} that we are building.
+     */
+    public EditTaskDescriptorBuilder withId(int id) {
+        descriptor.setId(new Id(id));
         return this;
     }
 
