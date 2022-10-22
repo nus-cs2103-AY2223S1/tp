@@ -345,6 +345,42 @@ fields, as shown in the class diagram below.
 
 The usage of the Add Command remains the same as before.
 
+### Get hospital wing feature (`get /hw`)
+When `get /hw` is inputted, the `AddressBookParser` object creates a `GetCommandParser` that parses the
+prefix of the `get` command inputted. If additional parameters are inputted (e.g. `get /hw south`), the extra
+parameters will be ignored, similar to how `help`, `list`, `exit` and `clear` are executed.
+
+The `GetCommandParser` object will then create the corresponding `GetHospitalWingCommand`  to be
+returned. When executing the `Command`, the model is updated such that the *filtered* list only displays 
+patients within the inputted hospital wing.
+
+![GetHospitalWingDiagram](images/GetHospitalWingSequenceDiagram.png)
+
+### Get next-of-kin data feature (`get /nok`)
+
+When `get /nok` is inputted, the `AddressBookParser` object creates a `GetCommandParser` that parses the
+prefix of the `get` command inputted. If additional parameters are inputted (e.g. `get /nok John`), the extra
+parameters will be ignored, similar to how `help`, `list`, `exit` and `clear` are executed.
+
+The `GetCommandParser` object will then create the corresponding `GetNextOfKinCommand`  to be
+returned. When executing the `Command`, the model is updated such that the *filtered* list only displays
+the next-of-kin details of the inputted patient.
+
+![GetNextOfKinSequenceDiagram](images/GetNextOfKinSequenceDiagram.png)
+
+### Get appointment by date feature (`get /appton`)
+
+When `get /appton` is inputted, the `AddressBookParser` object creates a `GetAppointmentByDateParser` that parses the
+prefix of the `get` command inputted. If additional parameters are inputted (e.g. `get .appton 12-12-1212`), the extra
+parameters will be ignored, similar to how `help`, `list`, `exit` and `clear` are executed.
+
+The `GetCommandParser` object will then create the corresponding `GetAppointmentByDateCommand`  to be
+returned. When executing the `Command`, the model is updated such that the *filtered* list only displays
+all the patients' appointment given a specific date.
+
+![GetAppointmentByDateSequenceDiagram](images/GetAppointmentByDateSequenceDiagram.png)
+
+#### Proposed implementation
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Documentation, logging, testing, configuration, dev-ops**
