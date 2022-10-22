@@ -1,6 +1,17 @@
 package longtimenosee.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static longtimenosee.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static longtimenosee.logic.parser.CliSyntax.PREFIX_BIRTHDAY;
+import static longtimenosee.logic.parser.CliSyntax.PREFIX_COMPANY;
+import static longtimenosee.logic.parser.CliSyntax.PREFIX_COVERAGES;
+import static longtimenosee.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static longtimenosee.logic.parser.CliSyntax.PREFIX_INCOME;
+import static longtimenosee.logic.parser.CliSyntax.PREFIX_NAME;
+import static longtimenosee.logic.parser.CliSyntax.PREFIX_PHONE;
+import static longtimenosee.logic.parser.CliSyntax.PREFIX_RISK_APPETITE;
+import static longtimenosee.logic.parser.CliSyntax.PREFIX_TAG;
+import static longtimenosee.logic.parser.CliSyntax.PREFIX_TITLE;
 
 import java.util.List;
 import java.util.function.Predicate;
@@ -18,7 +29,18 @@ public class FindCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all persons that match the given metrics and "
             + "and displays them as a list with index numbers.\n"
-            + "Parameters: (n/NAME)/(p/PHONE)/(e/EMAIL)/(a/ADDRESS)/(t/TAG)…\n"
+            + "Parameters: "
+            + "[" + PREFIX_NAME + "NAME] "
+            + "[" + PREFIX_PHONE + "PHONE] "
+            + "[" + PREFIX_EMAIL + "EMAIL] "
+            + "[" + PREFIX_ADDRESS + "ADDRESS] "
+            + "[" + PREFIX_TAG + "TAG]…"
+            + "[" + PREFIX_BIRTHDAY + "BIRTHDAY] "
+            + "[" + PREFIX_INCOME + "INCOME] "
+            + "[" + PREFIX_RISK_APPETITE + "RISK_APPETITE] "
+            + "[" + PREFIX_TITLE + "POLICY_TITLE] "
+            + "[" + PREFIX_COVERAGES + "POLICY_COVERAGE]… "
+            + "[" + PREFIX_COMPANY + "POLICY_COMPANY]\n"
             + "Example: " + COMMAND_WORD + " n/alice p/12341234";
 
     private final List<Predicate<Person>> predicates;
@@ -29,6 +51,7 @@ public class FindCommand extends Command {
      * @param predicates check if the specified metrics match any contact.
      */
     public FindCommand(List<Predicate<Person>> predicates) {
+        assert predicates.size() > 0;
         this.predicates = predicates;
     }
 
