@@ -48,11 +48,7 @@ public class FindMeetingCommand extends Command {
         requireNonNull(model);
         model.updateFilteredMeetingList(predicate);
 
-        StringBuilder str = new StringBuilder();
-        List<Meeting> list = model.getFilteredMeetingList().stream().collect(Collectors.toList());
-        list.forEach(str::append);
-
         return new CommandResult(String.format(Messages.MESSAGE_MEETINGS_LISTED_OVERVIEW,
-                model.getFilteredMeetingList().size()) + "\n" + str);
+                model.getFilteredMeetingList().size()));
     }
 }
