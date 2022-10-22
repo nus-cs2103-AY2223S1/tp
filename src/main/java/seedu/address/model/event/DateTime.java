@@ -20,9 +20,11 @@ public class DateTime {
     public static final String RECOMMENDED_DATE_FORMAT = "dd/MM/yyyy";
     public static final String RECOMMENDED_TIME_FORMAT = "HH:mm";
     public static final String MESSAGE_CONSTRAINTS =
-            "Dates should follow a valid format. Try " + RECOMMENDED_TIME_FORMAT + " " + RECOMMENDED_TIME_FORMAT;
+            String.format("Dates should follow a valid format. Try %s %s.",
+                    RECOMMENDED_DATE_FORMAT, RECOMMENDED_TIME_FORMAT);
     public static final String MESSAGE_INVALID_DATETIME =
-            "The values for date and time are invalid! Try " + RECOMMENDED_TIME_FORMAT + " " + RECOMMENDED_TIME_FORMAT;
+            String.format("The values for date and time are invalid! Try %s %s.",
+                    RECOMMENDED_DATE_FORMAT, RECOMMENDED_TIME_FORMAT);
 
     public static final String REGEX_YEAR = "(?<yearGroup>[0-9]{4})";
     public static final String REGEX_MONTH_DIGITS = "(((0)?[0-9])|((1)[0-2]))";
