@@ -17,6 +17,8 @@ import seedu.condonery.logic.commands.exceptions.CommandException;
 import seedu.condonery.logic.commands.property.EditPropertyCommand.EditPropertyDescriptor;
 import seedu.condonery.model.Model;
 import seedu.condonery.model.PropertyDirectory;
+import seedu.condonery.model.client.Client;
+import seedu.condonery.model.client.ClientNameContainsKeywordsPredicate;
 import seedu.condonery.model.property.Property;
 import seedu.condonery.model.property.PropertyNameContainsKeywordsPredicate;
 import seedu.condonery.testutil.EditClientDescriptorBuilder;
@@ -117,7 +119,7 @@ public class CommandTestUtil {
         // we are unable to defensively copy the model for comparison later, so we can
         // only do so by copying its components.
         PropertyDirectory expectedPropertyDirectory = new PropertyDirectory(actualModel.getPropertyDirectory(),
-                actualModel.getUserPrefs().getUserImageDirectoryPath());
+                actualModel.getPropertyDirectoryFilePath());
         List<Property> expectedFilteredList = new ArrayList<>(actualModel.getFilteredPropertyList());
 
         assertThrows(CommandException.class, expectedMessage, () -> command.execute(actualModel));
@@ -126,7 +128,7 @@ public class CommandTestUtil {
     }
 
     /**
-     * Updates {@code model}'s filtered list to show only the person at the given {@code targetIndex} in the
+     * Updates {@code model}'s filtered list to show only the {@code Property} at the given {@code targetIndex} in the
      * {@code model}'s address book.
      */
     public static void showPropertyAtIndex(Model model, Index targetIndex) {
@@ -137,6 +139,20 @@ public class CommandTestUtil {
         model.updateFilteredPropertyList(new PropertyNameContainsKeywordsPredicate(Arrays.asList(splitName[0])));
 
         assertEquals(1, model.getFilteredPropertyList().size());
+    }
+
+    /**
+     * Updates {@code model}'s filtered list to show only the {@code Client} at the given {@code targetIndex} in the
+     * {@code model}'s address book.
+     */
+    public static void showClientAtIndex(Model model, Index targetIndex) {
+        assertTrue(targetIndex.getZeroBased() < model.getFilteredClientList().size());
+
+        Client client = model.getFilteredClientList().get(targetIndex.getZeroBased());
+        final String[] splitName = client.getName().fullName.split("\\s+");
+        model.updateFilteredClientList(new ClientNameContainsKeywordsPredicate(Arrays.asList(splitName[0])));
+
+        assertEquals(1, model.getFilteredClientList().size());
     }
 
 }
