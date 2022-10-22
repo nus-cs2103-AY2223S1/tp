@@ -69,4 +69,13 @@ public class MarkOrderCommand extends Command {
 
         return new CommandResult(String.format(MESSAGE_MARK_ORDER_SUCCESS, orderToMark));
     }
+
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof MarkOrderCommand // instanceof handles nulls
+                && targetIndex.equals(((MarkOrderCommand) other).targetIndex)
+                && isPaid == ((MarkOrderCommand) other).isPaid
+                && isDelivered == ((MarkOrderCommand) other).isDelivered); // state check
+    }
 }

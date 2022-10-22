@@ -26,9 +26,9 @@ public class FlagTokenizer extends ArgumentToken {
     }
 
     /**
-     * Finds all zero-based prefix positions in the given arguments string.
+     * Finds all zero-based flag positions in the given arguments string.
      *
-     * @param argsString Arguments string of the form: {@code preamble <prefix>value <prefix>value ...}
+     * @param argsString Arguments string of the form: {@code preamble <flag> <flag> ...}
      * @param flags   Flags to find in the arguments string
      * @return           List of zero-based flag positions in the given arguments string
      */
@@ -39,15 +39,15 @@ public class FlagTokenizer extends ArgumentToken {
     }
 
     /**
-     * {@see findAllPrefixPositions}
+     * {@see findAllFlagPositions}
      */
     private static List<FlagPosition> findFlagPositions(String argsString, Flag flag) {
         List<FlagPosition> positions = new ArrayList<>();
 
         int flagPosition = findFlagPosition(argsString, flag.getFlag(), 0);
         while (flagPosition != -1) {
-            FlagPosition extendedPrefix = new FlagPosition(flag, flagPosition);
-            positions.add(extendedPrefix);
+            FlagPosition extendedFlag = new FlagPosition(flag, flagPosition);
+            positions.add(extendedFlag);
             flagPosition = findFlagPosition(argsString, flag.getFlag(), flagPosition);
         }
 
@@ -57,29 +57,30 @@ public class FlagTokenizer extends ArgumentToken {
     /**
      * Returns the index of the first occurrence of {@code flag} in
      * {@code argsString} starting from index {@code fromIndex}. An occurrence
-     * is valid if there is a whitespace before {@code flag}. Returns -1 if no
+     * is valid if there is a whitespace before {@code flag} and nothing after. Returns -1 if no
      * such occurrence can be found.
      *
-     * E.g if {@code argsString} = "e/hip/900", {@code flag} = "p/" and
+     * E.g if {@code argsString} = "e/hi-p900", {@code flag} = "-p" and
      * {@code fromIndex} = 0, this method returns -1 as there are no valid
-     * occurrences of "p/" with whitespace before it. However, if
-     * {@code argsString} = "e/hi p/900", {@code flag} = "p/" and
+     * occurrences of "-p" with whitespace before it and nothing after it. However, if
+     * {@code argsString} = "e/hi -p", {@code flag} = "-p" and
      * {@code fromIndex} = 0, this method returns 5.
      */
     private static int findFlagPosition(String argsString, String flag, int fromIndex) {
-        int prefixIndex = argsString.indexOf(" " + flag, fromIndex);
-        return prefixIndex == -1 ? -1
-                : prefixIndex + 1; // +1 as offset for whitespace
+        String leftPadArgsString = argsString + " ";
+        int flagIndex = leftPadArgsString.indexOf(" " + flag + " ", fromIndex);
+        return flagIndex == -1 ? -1
+                : flagIndex + 1; // +1 as offset for whitespace
     }
 
     /**
-     * Extracts prefixes and their argument values, and returns an {@code ArgumentMultimap} object that maps the
-     * extracted prefixes to their respective arguments. Prefixes are extracted based on their zero-based positions in
+     * Extracts flags, and returns an {@code ArgumentMultimap} object that maps the
+     * extracted flags to "true" as arguments. Flags are extracted based on their zero-based positions in
      * {@code argsString}.
      *
-     * @param argsString      Arguments string of the form: {@code preamble <prefix>value <prefix>value ...}
-     * @param flagPositions Zero-based positions of all prefixes in {@code argsString}
-     * @return                ArgumentMultimap object that maps prefixes to their arguments
+     * @param argsString      Arguments string of the form: {@code preamble <flag> <flag> ...}
+     * @param flagPositions Zero-based positions of all flags in {@code argsString}
+     * @return                ArgumentMultimap object that maps flags to "true" as arguments
      */
     private static ArgumentMultimap extractArguments(String argsString, List<FlagPosition> flagPositions) {
 
@@ -94,7 +95,7 @@ public class FlagTokenizer extends ArgumentToken {
         FlagPosition endPositionMarker = new FlagPosition(new Flag(""), argsString.length());
         flagPositions.add(endPositionMarker);
 
-        // Map prefixes to their argument values (if any)
+        // Map flags to argument values "true" (if any)
         ArgumentMultimap argMultimap = new ArgumentMultimap();
         for (int i = 0; i < flagPositions.size() - 1; i++) {
             // Extract and store prefixes and their arguments
@@ -107,7 +108,7 @@ public class FlagTokenizer extends ArgumentToken {
     }
 
     /**
-     * Returns the trimmed value of the argument in the arguments string specified by {@code currentFlagPosition}.
+     * Returns "true" as argument value as specified by {@code currentFlagPosition}.
      * The end position of the value is determined by {@code nextFlagPosition}.
      */
     private static String extractArgumentValue(String argsString,
