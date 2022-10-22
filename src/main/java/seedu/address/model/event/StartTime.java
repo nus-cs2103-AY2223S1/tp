@@ -11,7 +11,7 @@ import java.time.format.DateTimeParseException;
  * Represents an Event's starting time in the address book.
  * Guarantees: immutable; is valid as declared in {@link #isValidStartTime(String)}
  */
-public class StartTime {
+public class StartTime implements Comparable<StartTime> {
 
     public static final String MESSAGE_CONSTRAINTS = "Start time must be in format: hh/mm/AM or hh/mm/PM";
 
@@ -23,6 +23,7 @@ public class StartTime {
     private static final DateTimeFormatter outputFormatter = DateTimeFormatter.ofPattern("hh:mm a");
 
     public final LocalTime time;
+
 
     /**
      * Constructs a {@code StartTime}.
@@ -49,26 +50,10 @@ public class StartTime {
         return true;
     }
 
-    //TODO: To be re-implemented by Benjamin for Sort By Date
-    ///**
-    // * Returns 1 if the other object is a StartTime that is later,
-    // * -1 if the other object is a StartTime that is earlier,
-    // * and 0 if the other object is a StartTime that is of the same time.
-    // * @param other The object to compare with
-    // * @return int
-    // */
-    //public int compareTo(Object other) {
-    //    if (other == null) {
-    //        return -1;
-    //    }
-    //    if (!(other instanceof StartTime)) {
-    //        throw new IllegalArgumentException(MESSAGE_ARGUMENT_CONSTRAINTS);
-    //    }
-    //    if (this.isEmpty() & ((StartTime) other).isEmpty()) {
-    //        return 0;
-    //    }
-    //    return this.startTime.compareTo(((StartTime) other).startTime);
-    //}
+    @Override
+    public int compareTo(StartTime t) {
+        return this.time.compareTo(t.time);
+    }
 
     /**
      * Returns the String representation of the StartTime in format suitable for storage logging

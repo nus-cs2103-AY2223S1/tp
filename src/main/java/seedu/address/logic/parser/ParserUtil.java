@@ -9,6 +9,7 @@ import java.util.Set;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.event.EventSortField;
 import seedu.address.model.event.StartDate;
 import seedu.address.model.event.StartTime;
 import seedu.address.model.person.Address;
@@ -16,8 +17,8 @@ import seedu.address.model.person.DateOfBirth;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Gender;
 import seedu.address.model.person.Name;
+import seedu.address.model.person.PersonSortField;
 import seedu.address.model.person.Phone;
-import seedu.address.model.person.SortField;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -41,22 +42,41 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String sortFieldLetter} into a {@code SortField}.
+     * Parses {@code sortFieldLetter} into a {@code PersonSortField}.
      * Leading and trailing whitespaces will be trimmed.
      *
      * @param sortFieldLetter A valid sort field letter.
-     * @return {@code SortField} representing the sort field letter.
+     * @return {@code PersonSortField} representing the sort field letter.
      * @throws ParseException if the given {@code sortFieldLetter} is invalid.
      */
-    public static SortField parseSortField(String sortFieldLetter) throws ParseException {
+    public static PersonSortField parsePersonSortField(String sortFieldLetter) throws ParseException {
         requireNonNull(sortFieldLetter);
         String trimmedSortFieldLetter = sortFieldLetter.trim();
 
-        if (!SortField.isValidSortField(trimmedSortFieldLetter)) {
-            throw new ParseException(SortField.MESSAGE_CONSTRAINTS);
+        if (!PersonSortField.isValidSortField(trimmedSortFieldLetter)) {
+            throw new ParseException(PersonSortField.MESSAGE_CONSTRAINTS);
         }
 
-        return SortField.createSortField(trimmedSortFieldLetter);
+        return PersonSortField.createSortField(trimmedSortFieldLetter);
+    }
+
+    /**
+     * Parses {@code sortFieldLetter} into a {@code EventSortField}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @param sortFieldLetter A valid sort field letter.
+     * @return {@code EventSortField} representing the sort field letter.
+     * @throws ParseException if the given {@code sortFieldLetter} is invalid.
+     */
+    public static EventSortField parseEventSortField(String sortFieldLetter) throws ParseException {
+        requireNonNull(sortFieldLetter);
+        String trimmedSortFieldLetter = sortFieldLetter.trim();
+
+        if (!EventSortField.isValidSortField(trimmedSortFieldLetter)) {
+            throw new ParseException(EventSortField.MESSAGE_CONSTRAINTS);
+        }
+
+        return EventSortField.createSortField(trimmedSortFieldLetter);
     }
 
     /**

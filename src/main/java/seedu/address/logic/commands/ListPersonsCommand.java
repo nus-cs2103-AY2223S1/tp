@@ -5,7 +5,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_SORT;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
 import seedu.address.model.Model;
-import seedu.address.model.person.SortField;
+import seedu.address.model.person.PersonSortField;
 
 /**
  * Lists all persons in the address book to the user.
@@ -22,15 +22,15 @@ public class ListPersonsCommand extends Command {
     public static final String MESSAGE_SUCCESS = "Listed all persons sorted by %s";
 
 
-    private final SortField sortField;
+    private final PersonSortField sortField;
 
 
     /**
-     * Creates a ListCommand to list and sort all persons.
+     * Creates a {@code ListPersonsCommand} to list and sort all persons.
      *
-     * @param sortField Field to sort by.
+     * @param sortField field to sort by.
      */
-    public ListPersonsCommand(SortField sortField) {
+    public ListPersonsCommand(PersonSortField sortField) {
         requireNonNull(sortField);
         this.sortField = sortField;
     }

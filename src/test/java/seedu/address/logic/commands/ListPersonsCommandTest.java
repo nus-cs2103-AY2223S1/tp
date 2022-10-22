@@ -11,7 +11,7 @@ import org.junit.jupiter.api.Test;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
-import seedu.address.model.person.SortField;
+import seedu.address.model.person.PersonSortField;
 
 /**
  * Contains integration tests (interaction with the Model) and unit tests for ListCommand.
@@ -20,13 +20,13 @@ public class ListPersonsCommandTest {
 
     private Model model;
     private Model expectedModel;
-    private SortField dummySortField;
+    private PersonSortField dummySortField;
 
     @BeforeEach
     public void setUp() {
         model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
         expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
-        dummySortField = SortField.sortByNoField();
+        dummySortField = PersonSortField.sortByNoField();
     }
 
     @Test

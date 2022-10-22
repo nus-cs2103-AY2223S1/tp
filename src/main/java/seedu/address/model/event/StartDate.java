@@ -11,7 +11,7 @@ import java.time.format.DateTimeParseException;
  * Represents an Event's starting date in the address book.
  * Guarantees: immutable; is valid as declared in {@link #isValidStartDate(String)}
  */
-public class StartDate {
+public class StartDate implements Comparable<StartDate> {
 
     public static final String MESSAGE_CONSTRAINTS = "Start date must be in format: dd/MM/yyyy";
 
@@ -26,6 +26,7 @@ public class StartDate {
     private static final DateTimeFormatter outputFormatter = DateTimeFormatter.ofPattern("MMM d, yyyy");
 
     public final LocalDate date;
+
 
     /**
      * Constructs a {@code StartDate}.
@@ -52,26 +53,10 @@ public class StartDate {
         return true;
     }
 
-    //TODO: To be re-implemented by Benjamin for Sort By Date
-    ///**
-    // * Returns 1 if the other object is a StartDate that is later,
-    // * -1 if the other object is a StartDate that is earlier,
-    // * and 0 if the other object is a StartDate that is of the same date.
-    // * @param other The object to compare with
-    // * @return int
-    // */
-    //public int compareTo(Object other) {
-    //    if (other == null) {
-    //        return -1;
-    //    }
-    //    if (!(other instanceof StartDate)) {
-    //        throw new IllegalArgumentException(MESSAGE_ARGUMENT_CONSTRAINTS);
-    //    }
-    //    if (this.isEmpty() & ((StartDate) other).isEmpty()) {
-    //        return 0;
-    //    }
-    //    return this.date.compareTo(((StartDate) other).date);
-    //}
+    @Override
+    public int compareTo(StartDate d) {
+        return this.date.compareTo(d.date);
+    }
 
     /**
      * Returns the String representation of the StartDate in format suitable for storage logging

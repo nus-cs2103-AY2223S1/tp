@@ -91,6 +91,16 @@ public class UniqueEventList implements Iterable<Event> {
     }
 
     /**
+     * Sorts the list in-place using the specified {@code sortField}.
+     *
+     * @param sortField field to sort by.
+     */
+    public void sort(EventSortField sortField) {
+        requireNonNull(sortField);
+        internalList.sort(sortField.getComparator());
+    }
+
+    /**
      * Returns the internal list as an observableList object
      */
     public ObservableList<Event> asUnmodifiableObservableList() {

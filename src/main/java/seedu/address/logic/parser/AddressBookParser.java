@@ -72,7 +72,7 @@ public class AddressBookParser {
             return new HelpCommand();
 
         case ListEventsCommand.COMMAND_WORD:
-            return new ListEventsCommand();
+            return new ListEventsCommandParser().parse(arguments);
 
         case AddEventCommand.COMMAND_WORD:
             return new AddEventCommandParser().parse(arguments);

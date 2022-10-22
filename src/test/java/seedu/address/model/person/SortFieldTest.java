@@ -6,7 +6,7 @@ public class SortFieldTest {
 
     @Test
     public void viewObject() {
-        SortField s = SortField.createSortField("n");
+        PersonSortField s = PersonSortField.createSortField("n");
         System.out.println(s);
     }
 

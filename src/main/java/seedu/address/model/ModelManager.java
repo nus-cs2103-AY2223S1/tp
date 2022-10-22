@@ -12,8 +12,9 @@ import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.event.Event;
+import seedu.address.model.event.EventSortField;
 import seedu.address.model.person.Person;
-import seedu.address.model.person.SortField;
+import seedu.address.model.person.PersonSortField;
 
 /**
  * Represents the in-memory model of the address book data.
@@ -44,7 +45,7 @@ public class ModelManager implements Model {
         this(new AddressBook(), new UserPrefs());
     }
 
-    //=========== UserPrefs ==================================================================================
+    //=========== UserPrefs ===================================================================================
 
     @Override
     public void setUserPrefs(ReadOnlyUserPrefs userPrefs) {
@@ -79,7 +80,8 @@ public class ModelManager implements Model {
         userPrefs.setAddressBookFilePath(addressBookFilePath);
     }
 
-    //=========== AddressBook ================================================================================
+
+    //=========== AddressBook =================================================================================
 
     @Override
     public void setAddressBook(ReadOnlyAddressBook addressBook) {
@@ -90,6 +92,9 @@ public class ModelManager implements Model {
     public ReadOnlyAddressBook getAddressBook() {
         return addressBook;
     }
+
+
+    //=========== Person Methods ==============================================================================
 
     @Override
     public boolean hasPerson(Person person) {
@@ -116,6 +121,15 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public void sortPersons(PersonSortField sortField) {
+        requireNonNull(sortField);
+        addressBook.sortPersons(sortField);
+    }
+
+
+    //=========== Event Methods ===============================================================================
+
+    @Override
     public void addEvent(Event event) {
         requireNonNull(event);
         addressBook.addEvent(event);
@@ -127,7 +141,14 @@ public class ModelManager implements Model {
         addressBook.deleteEvent(event);
     }
 
-    //=========== Filtered Event List Accessor =================
+    @Override
+    public void sortEvents(EventSortField sortField) {
+        requireNonNull(sortField);
+        addressBook.sortEvents(sortField);
+    }
+
+
+    //=========== Filtered Event List Accessor ================================================================
     /**
      * Returns an unmodifiable view of the list of Events backed by the internal list present in the AddressBook
      */
@@ -136,14 +157,8 @@ public class ModelManager implements Model {
         return filteredEvents;
     }
 
-    @Override
-    public void sortPersons(SortField sortField) {
-        requireNonNull(sortField);
-        addressBook.sortPersons(sortField);
-    }
 
-    //=========== Filtered Person List Accessors =============================================================
-
+    //=========== Filtered Person List Accessors ==============================================================
     /**
      * Returns an unmodifiable view of the list of {@code Person} backed by the internal list of
      * {@code versionedAddressBook}
@@ -157,7 +172,6 @@ public class ModelManager implements Model {
      * Returns an unmodifiable view of the list of {@code Event} backed by the internal list of
      * {@code versionedAddressBook}
      */
-
     @Override
     public void updateFilteredPersonList(Predicate<Person> predicate) {
         requireNonNull(predicate);

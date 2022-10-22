@@ -11,7 +11,7 @@ import java.util.Objects;
  * Represents a field to sort Persons by.
  * Guarantees: immutable; is valid as declared in {@link #isValidSortField(String)}
  */
-public class SortField {
+public class PersonSortField {
 
     public static final String MESSAGE_CONSTRAINTS = "Sort field must either be n, N, d, D, g or G.";
 
@@ -26,17 +26,17 @@ public class SortField {
     private static final Comparator<Person> SORT_BY_NO_FIELD = (p1, p2) -> 0;
 
 
-    private final SortFieldType field;
+    private final PersonSortFieldType field;
     private final Comparator<Person> comp;
 
 
-    private SortField(SortFieldType type, Comparator<Person> c) {
+    private PersonSortField(PersonSortFieldType type, Comparator<Person> c) {
         requireAllNonNull(type, c);
         field = type;
         comp = c;
     }
 
-    public SortFieldType getField() {
+    public PersonSortFieldType getField() {
         return field;
     }
 
@@ -46,12 +46,12 @@ public class SortField {
 
 
     /**
-     * Constructs a {@code SortField}.
+     * Constructs a {@code PersonSortField}.
      *
      * @param sortFieldLetter A valid sort field letter.
-     * @return {@code SortField} representing the sort field letter.
+     * @return {@code PersonSortField} representing the sort field letter.
      */
-    public static SortField createSortField(String sortFieldLetter) {
+    public static PersonSortField createSortField(String sortFieldLetter) {
         requireNonNull(sortFieldLetter);
         checkArgument(isValidSortField(sortFieldLetter), MESSAGE_CONSTRAINTS);
         return mapLetterToSortField(sortFieldLetter);
@@ -59,12 +59,12 @@ public class SortField {
 
 
     /**
-     * Constructs a {@code SortField} that doesn't sort by any field.
+     * Constructs a {@code PersonSortField} that doesn't sort by any field.
      *
-     * @return {@code SortField} that doesn't sort by any field.
+     * @return {@code PersonSortField} that doesn't sort by any field.
      */
-    public static SortField sortByNoField() {
-        return new SortField(SortFieldType.NO_FIELD, SORT_BY_NO_FIELD);
+    public static PersonSortField sortByNoField() {
+        return new PersonSortField(PersonSortFieldType.NO_FIELD, SORT_BY_NO_FIELD);
     }
 
 
@@ -80,26 +80,26 @@ public class SortField {
 
 
     /**
-     * Map the given sort field letter to its corresponding {@code SortFieldType}.
+     * Map the given sort field letter to its corresponding {@code PersonSortFieldType}.
      *
-     * @param sortFieldLetter letter to map to {@code SortFieldType}
-     * @return {@code SortFieldType} of that letter
+     * @param sortFieldLetter letter to map to {@code PersonSortFieldType}.
+     * @return {@code PersonSortField} representing the sort field letter.
      */
-    private static SortField mapLetterToSortField(String sortFieldLetter) {
+    private static PersonSortField mapLetterToSortField(String sortFieldLetter) {
 
         switch(sortFieldLetter) {
 
         case "n":
         case "N":
-            return new SortField(SortFieldType.NAME, SORT_BY_NAME);
+            return new PersonSortField(PersonSortFieldType.NAME, SORT_BY_NAME);
 
         case "d":
         case "D":
-            return new SortField(SortFieldType.DATE_OF_BIRTH, SORT_BY_DATE_OF_BIRTH);
+            return new PersonSortField(PersonSortFieldType.DATE_OF_BIRTH, SORT_BY_DATE_OF_BIRTH);
 
         case "g":
         case "G":
-            return new SortField(SortFieldType.GENDER, SORT_BY_GENDER);
+            return new PersonSortField(PersonSortFieldType.GENDER, SORT_BY_GENDER);
 
         // Don't sort by any field by default
         default:
@@ -109,7 +109,7 @@ public class SortField {
 
     @Override
     public String toString() {
-        return String.format("Sort Field: %s\nComparator: %s", field.toString(), comp.toString());
+        return String.format("Person Sort Field: %s\nComparator: %s", field.toString(), comp.toString());
     }
 
     @Override
@@ -120,12 +120,12 @@ public class SortField {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof SortField)) {
+        if (!(other instanceof PersonSortField)) {
             return false;
         }
 
         // state check
-        SortField s = (SortField) other;
+        PersonSortField s = (PersonSortField) other;
 
         return this.getField().equals(s.getField())
             && this.getComparator().equals(s.getComparator());
@@ -135,5 +135,4 @@ public class SortField {
     public int hashCode() {
         return Objects.hash(field, comp);
     }
-
 }

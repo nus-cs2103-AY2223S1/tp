@@ -98,11 +98,11 @@ public class UniquePersonList implements Iterable<Person> {
     }
 
     /**
-     * Sorts the list in-place using the specified {@code SortField}.
+     * Sorts the list in-place using the specified {@code sortField}.
      *
      * @param sortField field to sort by.
      */
-    public void sort(SortField sortField) {
+    public void sort(PersonSortField sortField) {
         requireNonNull(sortField);
         internalList.sort(sortField.getComparator());
     }
