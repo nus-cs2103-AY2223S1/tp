@@ -87,7 +87,7 @@ List Box:
 ---
 
 #### Sort all items by an attribute: `sort`
-TODO:YX
+<!-- TODO: YX -->
 **Format:**: `sort [n/] [qty/] [type/] [bgt/] [exp/]`
 _NOTE: At least one of the sorting criteria must be provided._
 
