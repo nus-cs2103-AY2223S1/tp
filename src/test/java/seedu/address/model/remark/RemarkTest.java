@@ -19,8 +19,8 @@ public class RemarkTest {
 
     @Test
     public void asObservableList_modifyList_throwsUnsupportedOperationException() {
-        Remark company = new RemarkBuilder().build();
-        assertThrows(UnsupportedOperationException.class, () -> company.getTags().remove(0));
+        Remark remark = new RemarkBuilder().build();
+        assertThrows(UnsupportedOperationException.class, () -> remark.getTags().remove(0));
     }
 
     @Test
@@ -82,10 +82,10 @@ public class RemarkTest {
     }
 
     @Test
-    public void toString_company_returnsValueInRemark() {
-        Remark company = new RemarkBuilder().withName("Alice Pauline")
+    public void toString_remark_returnsValueInRemark() {
+        Remark remark = new RemarkBuilder().withName("Alice Pauline")
                 .withAddress("WCP Macs")
                 .withTags("friends").build();
-        assertEquals(company.toString(), "Alice Pauline; Address: WCP Macs; Tags: [friends]");
+        assertEquals(remark.toString(), "Alice Pauline; Address: WCP Macs; Tags: [friends]");
     }
 }

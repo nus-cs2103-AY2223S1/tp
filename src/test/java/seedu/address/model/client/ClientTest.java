@@ -40,22 +40,22 @@ public class ClientTest {
 
     @Test
     public void constructor_nullName_throwsNullPointerException() {
-        UniqueRemarkList companies = new UniqueRemarkList();
+        UniqueRemarkList remarks = new UniqueRemarkList();
         TransactionLog transactions = new TransactionLog();
         Set<Tag> tags = new HashSet<>();
         assertThrows(NullPointerException.class, () ->
                 new Client(null, new Address(VALID_ADDRESS_BOB), new ClientPhone(VALID_PHONE_BOB),
-                        new ClientEmail(VALID_EMAIL_BOB), tags, companies, transactions));
+                        new ClientEmail(VALID_EMAIL_BOB), tags, remarks, transactions));
     }
 
     @Test
     public void constructor_nullAddress_throwsNullPointerException() {
-        UniqueRemarkList companies = new UniqueRemarkList();
+        UniqueRemarkList remarks = new UniqueRemarkList();
         TransactionLog transactions = new TransactionLog();
         Set<Tag> tags = new HashSet<>();
         assertThrows(NullPointerException.class, () ->
                 new Client(new Name(VALID_NAME_BOB), null, new ClientPhone(VALID_PHONE_BOB),
-                        new ClientEmail(VALID_EMAIL_BOB), tags, companies, transactions));
+                        new ClientEmail(VALID_EMAIL_BOB), tags, remarks, transactions));
     }
 
     @Test
@@ -101,9 +101,9 @@ public class ClientTest {
         Client aliceCopy = new ClientBuilder(ALICE).build();
         Remark elleCopy = new RemarkBuilder(ELLE).build();
         aliceCopy.addRemark(elleCopy);
-        assertTrue(aliceCopy.getCompanies().contains(elleCopy));
+        assertTrue(aliceCopy.getRemarks().contains(elleCopy));
 
-        assertFalse(aliceCopy.getCompanies().contains(AMY));
+        assertFalse(aliceCopy.getRemarks().contains(AMY));
     }
 
     @Test
@@ -183,6 +183,6 @@ public class ClientTest {
 
         assertEquals(client.toString(), "Benson Meier; Address: 311, Clementi Ave 2, "
                 + "#02-25; Phone: 12112121; Email: ben@gmail.com; "
-                + "Tags: [owesMoney][friends]; Companies: Benson Meier; Total transactions: -$423.0");
+                + "Tags: [owesMoney][friends]; Remarks: Benson Meier; Total transactions: -$423.0");
     }
 }

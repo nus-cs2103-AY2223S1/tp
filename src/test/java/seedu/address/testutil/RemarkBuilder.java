@@ -30,12 +30,12 @@ public class RemarkBuilder {
     }
 
     /**
-     * Initializes the RemarkBuilder with the data of {@code companyToCopy}.
+     * Initializes the RemarkBuilder with the data of {@code remarkToCopy}.
      */
-    public RemarkBuilder(Remark companyToCopy) {
-        name = companyToCopy.getName();
-        address = companyToCopy.getAddress();
-        tags = new HashSet<>(companyToCopy.getTags());
+    public RemarkBuilder(Remark remarkToCopy) {
+        name = remarkToCopy.getName();
+        address = remarkToCopy.getAddress();
+        tags = new HashSet<>(remarkToCopy.getTags());
     }
 
     /**

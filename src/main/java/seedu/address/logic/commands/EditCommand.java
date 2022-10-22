@@ -98,11 +98,11 @@ public class EditCommand extends Command {
         ClientPhone updatedPhone = editClientDescriptor.getPhone().orElse(clientToEdit.getPhone());
         ClientEmail updatedEmail = editClientDescriptor.getEmail().orElse(clientToEdit.getEmail());
         Set<Tag> updatedTags = editClientDescriptor.getTags().orElse(clientToEdit.getTags());
-        UniqueRemarkList companies = editClientDescriptor.getUniqueRemarkList().orElse(clientToEdit.getCompanies());
+        UniqueRemarkList remarks = editClientDescriptor.getUniqueRemarkList().orElse(clientToEdit.getRemarks());
         TransactionLog transactions = editClientDescriptor.getTransactionLog().orElse(clientToEdit.getTransactions());
 
         return new Client(updatedName, updatedAddress, updatedPhone,
-                updatedEmail, updatedTags, companies, transactions);
+                updatedEmail, updatedTags, remarks, transactions);
     }
 
     @Override
@@ -133,7 +133,7 @@ public class EditCommand extends Command {
         private ClientPhone phone;
         private ClientEmail email;
         private Set<Tag> tags;
-        private UniqueRemarkList companies;
+        private UniqueRemarkList remarks;
         private TransactionLog transactions;
 
         public EditClientDescriptor() {}
@@ -148,7 +148,7 @@ public class EditCommand extends Command {
             setPhone(toCopy.phone);
             setEmail(toCopy.email);
             setTags(toCopy.tags);
-            setUniqueRemarkList(toCopy.companies);
+            setUniqueRemarkList(toCopy.remarks);
             setTransactionLog(toCopy.transactions);
         }
 
@@ -191,12 +191,12 @@ public class EditCommand extends Command {
             return Optional.ofNullable(address);
         }
 
-        public void setUniqueRemarkList(UniqueRemarkList companies) {
-            this.companies = companies;
+        public void setUniqueRemarkList(UniqueRemarkList remarks) {
+            this.remarks = remarks;
         }
 
         public Optional<UniqueRemarkList> getUniqueRemarkList() {
-            return Optional.ofNullable(companies);
+            return Optional.ofNullable(remarks);
         }
 
         public void setTransactionLog(TransactionLog transactions) {

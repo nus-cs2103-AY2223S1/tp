@@ -15,14 +15,14 @@ import seedu.address.model.client.Client;
 import seedu.address.model.remark.Remark;
 
 /**
- * Creates a new company to be added to the specified client.
+ * Creates a new remark to be added to the specified client.
  */
 public class CreateCommand extends Command {
 
     public static final String COMMAND_WORD = "create";
 
     //Update here
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Creates a company and links to Client. "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Creates a remark and links to Client. "
             + "Parameters: "
             + "INDEX (must be a positive integer) "
             + PREFIX_NAME + "NAME "
@@ -35,25 +35,25 @@ public class CreateCommand extends Command {
             + PREFIX_TAG + "owesMoney";
 
     public static final String MESSAGE_SUCCESS = "New Remark created: %1$s\nLinked to Client: %2$s";
-    public static final String MESSAGE_DUPLICATE_COMPANY = "This client already has %1$s as Remark";
-    public static final String MESSAGE_COMPANY_INVALID = "Remark cannot be created. Enter a valid Remark details:\n"
+    public static final String MESSAGE_DUPLICATE_REMARK = "This client already has %1$s as Remark";
+    public static final String MESSAGE_REMARK_INVALID = "Remark cannot be created. Enter a valid Remark details:\n"
             + "INDEX "
             + PREFIX_NAME + "NAME "
             + PREFIX_ADDRESS + "ADDRESS ";
 
     private final Index index;
-    private final Remark company;
+    private final Remark remark;
 
     /**
      * @param index of the client in the client list to add the Remark to
-     * @param company to be added
+     * @param remark to be added
      */
-    public CreateCommand(Index index, Remark company) {
+    public CreateCommand(Index index, Remark remark) {
         requireNonNull(index);
-        requireNonNull(company);
+        requireNonNull(remark);
 
         this.index = index;
-        this.company = company;
+        this.remark = remark;
 
     }
 
@@ -69,15 +69,15 @@ public class CreateCommand extends Command {
 
         Client clientToEdit = lastShownList.get(index.getZeroBased());
 
-        if (clientToEdit.hasRemark(company)) {
-            throw new CommandException(String.format(MESSAGE_DUPLICATE_COMPANY, company.getName()));
+        if (clientToEdit.hasRemark(remark)) {
+            throw new CommandException(String.format(MESSAGE_DUPLICATE_REMARK, remark.getName()));
         }
 
         Client editedClient = clientToEdit;
-        editedClient.addRemark(company);
+        editedClient.addRemark(remark);
         model.setClient(clientToEdit, editedClient);
 
-        return new CommandResult(String.format(MESSAGE_SUCCESS, company.getName(), editedClient));
+        return new CommandResult(String.format(MESSAGE_SUCCESS, remark.getName(), editedClient));
     }
 
     @Override
@@ -85,7 +85,7 @@ public class CreateCommand extends Command {
         return other == this // short circuit if same object
                 || (other instanceof CreateCommand // instanceof handles nulls
                 && index.equals(((CreateCommand) other).index)
-                && company.equals(((CreateCommand) other).company));
+                && remark.equals(((CreateCommand) other).remark));
     }
 
 }

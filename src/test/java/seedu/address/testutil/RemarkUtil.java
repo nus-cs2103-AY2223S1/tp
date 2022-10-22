@@ -14,20 +14,20 @@ import seedu.address.model.remark.Remark;
 public class RemarkUtil {
 
     /**
-     * Returns an add command string for adding the {@code company}.
+     * Returns an add command string for adding the {@code remark}.
      */
-    public static String getCreateCommand(Remark company, Index index) {
-        return CreateCommand.COMMAND_WORD + " " + index.getOneBased() + " " + getRemarkDetails(company);
+    public static String getCreateCommand(Remark remark, Index index) {
+        return CreateCommand.COMMAND_WORD + " " + index.getOneBased() + " " + getRemarkDetails(remark);
     }
 
     /**
-     * Returns the part of command string for the given {@code company}'s details.
+     * Returns the part of command string for the given {@code remark}'s details.
      */
-    public static String getRemarkDetails(Remark company) {
+    public static String getRemarkDetails(Remark remark) {
         StringBuilder sb = new StringBuilder();
-        sb.append(PREFIX_NAME + company.getName().fullName + " ");
-        sb.append(PREFIX_ADDRESS + company.getAddress().value + " ");
-        company.getTags().stream().forEach(
+        sb.append(PREFIX_NAME + remark.getName().fullName + " ");
+        sb.append(PREFIX_ADDRESS + remark.getAddress().value + " ");
+        remark.getTags().stream().forEach(
                 s -> sb.append(PREFIX_TAG + s.tagName + " ")
         );
         return sb.toString();

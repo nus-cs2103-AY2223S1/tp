@@ -30,7 +30,7 @@ public class ClientBuilder {
     private ClientPhone phone;
     private ClientEmail email;
     private Set<Tag> tags;
-    private UniqueRemarkList companies;
+    private UniqueRemarkList remarks;
     private TransactionLog transactions;
 
     /**
@@ -42,7 +42,7 @@ public class ClientBuilder {
         phone = new ClientPhone(DEFAULT_PHONE);
         email = new ClientEmail(DEFAULT_EMAIL);
         tags = new HashSet<>();
-        companies = new UniqueRemarkList();
+        remarks = new UniqueRemarkList();
         transactions = new TransactionLog();
     }
 
@@ -55,7 +55,7 @@ public class ClientBuilder {
         phone = clientToCopy.getPhone();
         email = clientToCopy.getEmail();
         tags = new HashSet<>(clientToCopy.getTags());
-        companies = clientToCopy.getCompanies();
+        remarks = clientToCopy.getRemarks();
         transactions = clientToCopy.getTransactions();
     }
 
@@ -102,8 +102,8 @@ public class ClientBuilder {
     /**
      * Sets the {@code UniqueRemarkList} of the {@code Client} that we are building.
      */
-    public ClientBuilder withUniqueRemarkList(UniqueRemarkList companies) {
-        this.companies = companies;
+    public ClientBuilder withUniqueRemarkList(UniqueRemarkList remarks) {
+        this.remarks = remarks;
         return this;
     }
 
@@ -116,10 +116,10 @@ public class ClientBuilder {
     }
 
     /**
-     * Adds company to the {@code UniqueRemarkList} of the {@code Client} that we are building.
+     * Adds remark to the {@code UniqueRemarkList} of the {@code Client} that we are building.
      */
-    public ClientBuilder withAddedRemark(Remark company) {
-        this.companies.add(company);
+    public ClientBuilder withAddedRemark(Remark remark) {
+        this.remarks.add(remark);
         return this;
     }
 
@@ -132,7 +132,7 @@ public class ClientBuilder {
     }
 
     public Client build() {
-        return new Client(name, address, phone, email, tags, companies, transactions);
+        return new Client(name, address, phone, email, tags, remarks, transactions);
     }
 
 }

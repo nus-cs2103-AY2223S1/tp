@@ -28,47 +28,47 @@ public class JsonAdaptedRemarkTest {
 
     @Test
     public void toModelType_validRemarkDetails_returnsRemark() throws Exception {
-        JsonAdaptedRemark company = new JsonAdaptedRemark(BENSON);
-        assertEquals(BENSON, company.toModelType());
+        JsonAdaptedRemark remark = new JsonAdaptedRemark(BENSON);
+        assertEquals(BENSON, remark.toModelType());
     }
 
     @Test
     public void toModelType_invalidName_throwsIllegalValueException() {
-        JsonAdaptedRemark company =
+        JsonAdaptedRemark remark =
                 new JsonAdaptedRemark(INVALID_NAME, VALID_ADDRESS, VALID_TAGS);
         String expectedMessage = RemarkName.MESSAGE_CONSTRAINTS;
-        assertThrows(IllegalValueException.class, expectedMessage, company::toModelType);
+        assertThrows(IllegalValueException.class, expectedMessage, remark::toModelType);
     }
 
     @Test
     public void toModelType_nullName_throwsIllegalValueException() {
-        JsonAdaptedRemark company = new JsonAdaptedRemark(null, VALID_ADDRESS, VALID_TAGS);
+        JsonAdaptedRemark remark = new JsonAdaptedRemark(null, VALID_ADDRESS, VALID_TAGS);
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, RemarkName.class.getSimpleName());
-        assertThrows(IllegalValueException.class, expectedMessage, company::toModelType);
+        assertThrows(IllegalValueException.class, expectedMessage, remark::toModelType);
     }
 
     @Test
     public void toModelType_invalidTags_throwsIllegalValueException() {
         List<JsonAdaptedTag> invalidTags = new ArrayList<>(VALID_TAGS);
         invalidTags.add(new JsonAdaptedTag(INVALID_TAG));
-        JsonAdaptedRemark company =
+        JsonAdaptedRemark remark =
                 new JsonAdaptedRemark(VALID_NAME, VALID_ADDRESS, invalidTags);
-        assertThrows(IllegalValueException.class, company::toModelType);
+        assertThrows(IllegalValueException.class, remark::toModelType);
     }
 
     @Test
     public void toModelType_invalidAddress_throwsIllegalValueException() {
-        JsonAdaptedRemark company =
+        JsonAdaptedRemark remark =
                 new JsonAdaptedRemark(VALID_NAME, INVALID_ADDRESS, VALID_TAGS);
         String expectedMessage = RemarkAddress.MESSAGE_CONSTRAINTS;
-        assertThrows(IllegalValueException.class, expectedMessage, company::toModelType);
+        assertThrows(IllegalValueException.class, expectedMessage, remark::toModelType);
     }
 
     @Test
     public void toModelType_nullAddress_throwsIllegalValueException() {
-        JsonAdaptedRemark company = new JsonAdaptedRemark(VALID_NAME, null, VALID_TAGS);
+        JsonAdaptedRemark remark = new JsonAdaptedRemark(VALID_NAME, null, VALID_TAGS);
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, RemarkAddress.class.getSimpleName());
-        assertThrows(IllegalValueException.class, expectedMessage, company::toModelType);
+        assertThrows(IllegalValueException.class, expectedMessage, remark::toModelType);
     }
 
 }

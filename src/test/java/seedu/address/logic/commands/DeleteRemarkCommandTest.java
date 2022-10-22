@@ -3,7 +3,7 @@ package seedu.address.logic.commands;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.logic.commands.DeleteRemarkCommand.MESSAGE_DELETE_COMPANY_SUCCESS;
+import static seedu.address.logic.commands.DeleteRemarkCommand.MESSAGE_DELETE_REMARK_SUCCESS;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalClients.ALICE;
 import static seedu.address.testutil.TypicalRemark.FIONA;
@@ -30,7 +30,7 @@ import seedu.address.testutil.ClientBuilder;
  * {@code DeleteRemarkCommand}.
  */
 public class DeleteRemarkCommandTest {
-    private static final Remark companyToAdd = FIONA;
+    private static final Remark remarkToAdd = FIONA;
 
     @Test
     public void execute_validIndex_success() throws Exception {
@@ -39,7 +39,7 @@ public class DeleteRemarkCommandTest {
         DeleteRemarkCommand command = new DeleteRemarkCommand(Index.fromOneBased(1));
         CommandResult result = command.execute(modelStub);
 
-        String expectedMessage = String.format(MESSAGE_DELETE_COMPANY_SUCCESS, companyToAdd);
+        String expectedMessage = String.format(MESSAGE_DELETE_REMARK_SUCCESS, remarkToAdd);
 
         assertEquals(result.getFeedbackToUser(), expectedMessage);
     }
@@ -89,7 +89,7 @@ public class DeleteRemarkCommandTest {
 
         public ModelStub(Client client) {
             this.client = client;
-            this.client.addRemark(companyToAdd);
+            this.client.addRemark(remarkToAdd);
             clientList.add(client);
         }
 

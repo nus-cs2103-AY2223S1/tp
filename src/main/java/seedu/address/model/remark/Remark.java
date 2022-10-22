@@ -50,8 +50,8 @@ public class Remark {
     }
 
     /**
-     * Returns true if both companies have the same name.
-     * This defines a weaker notion of equality between two companies.
+     * Returns true if both remarks have the same name.
+     * This defines a weaker notion of equality between two remarks.
      */
     public boolean isSameRemark(Remark otherRemark) {
         if (otherRemark == this) {
@@ -63,8 +63,8 @@ public class Remark {
     }
 
     /**
-     * Returns true if both companies have the same identity and data fields.
-     * This defines a stronger notion of equality between two companies.
+     * Returns true if both remarks have the same identity and data fields.
+     * This defines a stronger notion of equality between two remarks.
      */
     @Override
     public boolean equals(Object other) {

@@ -40,15 +40,15 @@ class CreateCommandParserTest {
     @Test
     public void parse_invalidRemarkFields_failure() {
         // name but no address
-        assertParseFailure(parser, "1" + INVALID_NAME_DESC, CreateCommand.MESSAGE_COMPANY_INVALID);
+        assertParseFailure(parser, "1" + INVALID_NAME_DESC, CreateCommand.MESSAGE_REMARK_INVALID);
         // address but no name
-        assertParseFailure(parser, "1" + INVALID_ADDRESS_DESC, CreateCommand.MESSAGE_COMPANY_INVALID);
+        assertParseFailure(parser, "1" + INVALID_ADDRESS_DESC, CreateCommand.MESSAGE_REMARK_INVALID);
         // only address
-        assertParseFailure(parser, "1 a/Bedok Mall", CreateCommand.MESSAGE_COMPANY_INVALID);
+        assertParseFailure(parser, "1 a/Bedok Mall", CreateCommand.MESSAGE_REMARK_INVALID);
         // only name
-        assertParseFailure(parser, "1 n/Alex", CreateCommand.MESSAGE_COMPANY_INVALID);
+        assertParseFailure(parser, "1 n/Alex", CreateCommand.MESSAGE_REMARK_INVALID);
         // invalid tag
-        assertParseFailure(parser, "1" + INVALID_TAG_DESC, CreateCommand.MESSAGE_COMPANY_INVALID);
+        assertParseFailure(parser, "1" + INVALID_TAG_DESC, CreateCommand.MESSAGE_REMARK_INVALID);
     }
 
     @Test

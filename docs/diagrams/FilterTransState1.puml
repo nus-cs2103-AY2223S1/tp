@@ -7,7 +7,7 @@ title Initial state
 
 package MainWindow {
     class State1 as "clients:ClientListPanel"
-    class State2 as "companies:RemarkListPanel"
+    class State2 as "remarks:RemarkListPanel"
     class State3 as "transactions:TransactionListPanel"
 }
 State1 -[hidden]right-> State2

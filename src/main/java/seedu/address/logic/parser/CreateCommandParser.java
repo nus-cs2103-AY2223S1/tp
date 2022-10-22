@@ -40,16 +40,16 @@ public class CreateCommandParser implements Parser<CreateCommand> {
         }
 
         if (argMultimap.getValue(PREFIX_NAME).isEmpty() || argMultimap.getValue(PREFIX_ADDRESS).isEmpty()) {
-            throw new ParseException(CreateCommand.MESSAGE_COMPANY_INVALID);
+            throw new ParseException(CreateCommand.MESSAGE_REMARK_INVALID);
         }
 
         RemarkName name = ParserUtil.parseRemarkName(argMultimap.getValue(PREFIX_NAME).get());
         RemarkAddress address = ParserUtil.parseRemarkAddress(argMultimap.getValue(PREFIX_ADDRESS).get());
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
 
-        Remark company = new Remark(name, address, tagList);
+        Remark remark = new Remark(name, address, tagList);
 
-        return new CreateCommand(index, company);
+        return new CreateCommand(index, remark);
     }
 
 }

@@ -31,7 +31,7 @@ public class Client implements ReadOnlyClient {
     private final ClientPhone phone;
     private final ClientEmail email;
     private final Set<Tag> tags = new HashSet<>();
-    private final UniqueRemarkList companies;
+    private final UniqueRemarkList remarks;
     private final TransactionLog transactions;
 
     /**
@@ -48,18 +48,18 @@ public class Client implements ReadOnlyClient {
      * @param phone number of client.
      * @param email email of client.
      * @param tags tags of client.
-     * @param companies list of unique companies.
+     * @param remarks list of unique remarks.
      * @param transactions list of transactions.
      */
     public Client(Name name, Address address, ClientPhone phone, ClientEmail email,
-                  Set<Tag> tags, UniqueRemarkList companies, TransactionLog transactions) {
-        requireAllNonNull(name, address, tags, companies);
+                  Set<Tag> tags, UniqueRemarkList remarks, TransactionLog transactions) {
+        requireAllNonNull(name, address, tags, remarks);
         this.name = name;
         this.address = address;
         this.phone = phone;
         this.email = email;
         this.tags.addAll(tags);
-        this.companies = companies;
+        this.remarks = remarks;
         this.transactions = transactions;
     }
 
@@ -87,8 +87,8 @@ public class Client implements ReadOnlyClient {
         return Collections.unmodifiableSet(tags);
     }
 
-    public UniqueRemarkList getCompanies() {
-        return companies;
+    public UniqueRemarkList getRemarks() {
+        return remarks;
     }
 
     public TransactionLog getTransactions() {
@@ -96,21 +96,21 @@ public class Client implements ReadOnlyClient {
     }
 
     /**
-     * Adds a company to the unique list in the client.
-     * @param company to be added to the list.
+     * Adds a remark to the unique list in the client.
+     * @param remark to be added to the list.
      */
-    public void addRemark(Remark company) {
-        this.companies.add(company);
+    public void addRemark(Remark remark) {
+        this.remarks.add(remark);
     }
 
     /**
-     * Returns true if company is in the list of companies
-     * @param company to be checked
+     * Returns true if remark is in the list of remarks
+     * @param remark to be checked
      * @return true if contains
      */
-    public boolean hasRemark(Remark company) {
-        requireNonNull(company);
-        return companies.contains(company);
+    public boolean hasRemark(Remark remark) {
+        requireNonNull(remark);
+        return remarks.contains(remark);
     }
 
     public double getTotalTransacted() {
@@ -183,15 +183,15 @@ public class Client implements ReadOnlyClient {
             tags.forEach(builder::append);
         }
 
-        UniqueRemarkList companies = getCompanies();
-        builder.append("; Companies: ");
-        Iterator<Remark> itr = companies.iterator();
+        UniqueRemarkList remarks = getRemarks();
+        builder.append("; Remarks: ");
+        Iterator<Remark> itr = remarks.iterator();
         String prefix = "";
         while (itr.hasNext()) {
-            Remark company = itr.next();
+            Remark remark = itr.next();
             builder.append(prefix);
             prefix = ", ";
-            builder.append(company.getName());
+            builder.append(remark.getName());
         }
 
         TransactionLog transactions = getTransactions();
@@ -210,7 +210,7 @@ public class Client implements ReadOnlyClient {
 
     @Override
     public ObservableList<Remark> getRemarkList() {
-        return companies.asUnmodifiableObservableList();
+        return remarks.asUnmodifiableObservableList();
     }
 
     @Override

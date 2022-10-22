@@ -13,14 +13,14 @@ import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.remark.Remark;
 
 /**
- * Panel containing the list of companies.
+ * Panel containing the list of remarks.
  */
 public class RemarkListPanel extends UiPart<Region> {
     private static final String FXML = "RemarkListPanel.fxml";
     private final Logger logger = LogsCenter.getLogger(RemarkListPanel.class);
 
     @FXML
-    private ListView<Remark> companyListView;
+    private ListView<Remark> remarkListView;
 
     /**
      * Creates a {@code RemarkListPanel} with an empty {@code ObservableList}.
@@ -30,13 +30,13 @@ public class RemarkListPanel extends UiPart<Region> {
     }
 
     /**
-     * Sets the {@code RemarkListPanel} with the companies from {@code ObservableList}.
+     * Sets the {@code RemarkListPanel} with the remarks from {@code ObservableList}.
      */
-    public void setRemarkList(ObservableList<Remark> companyList) {
-        requireNonNull(companyList);
+    public void setRemarkList(ObservableList<Remark> remarkList) {
+        requireNonNull(remarkList);
 
-        companyListView.setItems(companyList);
-        companyListView.setCellFactory(listView -> new RemarkListViewCell());
+        remarkListView.setItems(remarkList);
+        remarkListView.setCellFactory(listView -> new RemarkListViewCell());
     }
 
     /**
@@ -44,14 +44,14 @@ public class RemarkListPanel extends UiPart<Region> {
      */
     class RemarkListViewCell extends ListCell<Remark> {
         @Override
-        protected void updateItem(Remark company, boolean empty) {
-            super.updateItem(company, empty);
+        protected void updateItem(Remark remark, boolean empty) {
+            super.updateItem(remark, empty);
 
-            if (empty || company == null) {
+            if (empty || remark == null) {
                 setGraphic(null);
                 setText(null);
             } else {
-                setGraphic(new RemarkCard(company, getIndex() + 1).getRoot());
+                setGraphic(new RemarkCard(remark, getIndex() + 1).getRoot());
             }
         }
     }

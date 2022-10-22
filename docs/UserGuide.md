@@ -12,7 +12,7 @@ interactions recorded faster and simpler than traditional GUI applications.
 * [Features](#features)
   * [Adding a client: `add`](#adding-a-client-add)
   * [Clearing all entries: `clear`](#clearing-all-entries--clear)
-  * [Creating a company: `create`](#creating-a-company-create)
+  * [Creating a remark: `create`](#creating-a-remark-create)
   * [Deleting a client: `delete`](#deleting-a-client--delete)
   * [Editing a client: `edit`](#editing-a-client--edit)
   * [Exiting the program: `exit`](#exiting-the-program--exit)
@@ -48,11 +48,11 @@ interactions recorded faster and simpler than traditional GUI applications.
 
    * **`list`** : Lists all clients.
 
-   * **`create`**`create 2 n/James p/97814456 e/test@test.com t/MainRemark t/owesMoney` : Creates a company named `James` linked to the client at index 2.
+   * **`create`**`create 2 n/James p/97814456 e/test@test.com t/MainRemark t/owesMoney` : Creates a remark named `James` linked to the client at index 2.
 
    * **`delete`**`delete 1` : Deletes the client at the first index together with all their contacts and transactions in the current list.
 
-   * **`find`**`MacDonalds` : Finds MacDonalds in the list of clients, and displays all its details (company, transactions).
+   * **`find`**`MacDonalds` : Finds MacDonalds in the list of clients, and displays all its details (remark, transactions).
 
   * **`clear`** : Deletes all clients with all their contacts and transactions.
 
@@ -117,17 +117,17 @@ Example:
 
 ### Creating a Remark: `create`
 
-Creates a new company (company) for a specific client.
+Creates a new remark (remark) for a specific client.
 
 Format: `create INDEX n/NAME p/NUMBER e/EMAIL [t/TAG]`
 
 * Tags are optional.
-* Multiple tags can be tagged to the company.
+* Multiple tags can be tagged to the remark.
 * The index refers to the index number shown in the displayed client list.
 * The index **must be a positive integer** 1, 2, 3, …​
 
 Examples:
-* `create 1 n/James p/82692192 e/JamesSho@KFC.com` adds James as a company for the client at index 1.
+* `create 1 n/James p/82692192 e/JamesSho@KFC.com` adds James as a remark for the client at index 1.
 * `create 5 n/John p/95692192 e/John123@ColdStorage.com t/Manager t/MainRemark` tags can also be added.
 
 ### Deleting a client : `delete`
@@ -228,7 +228,7 @@ Examples:
 
 ### Viewing a client : `view`
 
-`view` displays the companies and transaction log of the specified client.
+`view` displays the remarks and transaction log of the specified client.
 
 Format: `view INDEX`
 

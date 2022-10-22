@@ -27,7 +27,7 @@ class JsonAdaptedRemark {
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
 
     /**
-     * Constructs a {@code JsonAdaptedRemark} with the given company details.
+     * Constructs a {@code JsonAdaptedRemark} with the given remark details.
      */
     @JsonCreator
     public JsonAdaptedRemark(@JsonProperty("name") String name, @JsonProperty("address") String address,
@@ -51,9 +51,9 @@ class JsonAdaptedRemark {
     }
 
     /**
-     * Converts this Jackson-friendly adapted company object into the model's {@code Remark} object.
+     * Converts this Jackson-friendly adapted remark object into the model's {@code Remark} object.
      *
-     * @throws IllegalValueException if there were any data constraints violated in the adapted company.
+     * @throws IllegalValueException if there were any data constraints violated in the adapted remark.
      */
     public Remark toModelType() throws IllegalValueException {
         final List<Tag> clientTags = new ArrayList<>();

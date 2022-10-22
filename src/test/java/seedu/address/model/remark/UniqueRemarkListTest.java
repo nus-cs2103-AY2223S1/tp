@@ -28,18 +28,18 @@ public class UniqueRemarkListTest {
     }
 
     @Test
-    public void contains_companyNotInList_returnsFalse() {
+    public void contains_remarkNotInList_returnsFalse() {
         assertFalse(uniqueRemarkList.contains(ALICE));
     }
 
     @Test
-    public void contains_companyInList_returnsTrue() {
+    public void contains_remarkInList_returnsTrue() {
         uniqueRemarkList.add(ALICE);
         assertTrue(uniqueRemarkList.contains(ALICE));
     }
 
     @Test
-    public void contains_companyWithSameIdentityFieldsInList_returnsTrue() {
+    public void contains_remarkWithSameIdentityFieldsInList_returnsTrue() {
         uniqueRemarkList.add(ALICE);
         Remark editedAlice = new RemarkBuilder(ALICE).withTags(VALID_TAG_HUSBAND)
                 .build();
@@ -114,7 +114,7 @@ public class UniqueRemarkListTest {
     }
 
     @Test
-    public void remove_companyDoesNotExist_throwsRemarkNotFoundException() {
+    public void remove_remarkDoesNotExist_throwsRemarkNotFoundException() {
         assertThrows(RemarkNotFoundException.class, () -> uniqueRemarkList.remove(ALICE));
     }
 
@@ -127,38 +127,38 @@ public class UniqueRemarkListTest {
     }
 
     @Test
-    public void setCompanies_nullUniqueRemarkList_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> uniqueRemarkList.setCompanies((UniqueRemarkList) null));
+    public void setRemarks_nullUniqueRemarkList_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> uniqueRemarkList.setRemarks((UniqueRemarkList) null));
     }
 
     @Test
-    public void setCompanies_uniqueRemarkList_replacesOwnListWithProvidedUniqueRemarkList() {
+    public void setRemarks_uniqueRemarkList_replacesOwnListWithProvidedUniqueRemarkList() {
         uniqueRemarkList.add(ALICE);
         UniqueRemarkList expectedUniqueRemarkList = new UniqueRemarkList();
         expectedUniqueRemarkList.add(BOB);
-        uniqueRemarkList.setCompanies(expectedUniqueRemarkList);
+        uniqueRemarkList.setRemarks(expectedUniqueRemarkList);
         assertEquals(expectedUniqueRemarkList, uniqueRemarkList);
     }
 
     @Test
-    public void setCompanies_nullList_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> uniqueRemarkList.setCompanies((List<Remark>) null));
+    public void setRemarks_nullList_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> uniqueRemarkList.setRemarks((List<Remark>) null));
     }
 
     @Test
-    public void setCompanies_list_replacesOwnListWithProvidedList() {
+    public void setRemarks_list_replacesOwnListWithProvidedList() {
         uniqueRemarkList.add(ALICE);
-        List<Remark> companyList = Collections.singletonList(BOB);
-        uniqueRemarkList.setCompanies(companyList);
+        List<Remark> remarkList = Collections.singletonList(BOB);
+        uniqueRemarkList.setRemarks(remarkList);
         UniqueRemarkList expectedUniqueRemarkList = new UniqueRemarkList();
         expectedUniqueRemarkList.add(BOB);
         assertEquals(expectedUniqueRemarkList, uniqueRemarkList);
     }
 
     @Test
-    public void setCompanies_listWithDuplicateCompanies_throwsDuplicateRemarkException() {
-        List<Remark> listWithDuplicateCompanies = Arrays.asList(ALICE, ALICE);
-        assertThrows(DuplicateRemarkException.class, () -> uniqueRemarkList.setCompanies(listWithDuplicateCompanies));
+    public void setRemarks_listWithDuplicateRemarks_throwsDuplicateRemarkException() {
+        List<Remark> listWithDuplicateRemarks = Arrays.asList(ALICE, ALICE);
+        assertThrows(DuplicateRemarkException.class, () -> uniqueRemarkList.setRemarks(listWithDuplicateRemarks));
     }
 
     @Test
@@ -168,36 +168,36 @@ public class UniqueRemarkListTest {
     }
 
     @Test
-    public void toString_companyList_returnsCorrectRepresentation() {
-        UniqueRemarkList companies = new UniqueRemarkList();
-        companies.add(ALICE);
-        companies.add(BOB);
+    public void toString_remarkList_returnsCorrectRepresentation() {
+        UniqueRemarkList remarks = new UniqueRemarkList();
+        remarks.add(ALICE);
+        remarks.add(BOB);
 
         RemarkName aliceName = ALICE.getName();
         RemarkName bobName = BOB.getName();
-        assertEquals(companies.toString(), "Companies: " + aliceName + ", " + bobName);
+        assertEquals(remarks.toString(), "Remarks: " + aliceName + ", " + bobName);
     }
 
     @Test
     public void removeByIndex_removesCorrectRemark_success() {
-        UniqueRemarkList companies = new UniqueRemarkList();
-        companies.add(ALICE);
-        companies.add(BOB);
+        UniqueRemarkList remarks = new UniqueRemarkList();
+        remarks.add(ALICE);
+        remarks.add(BOB);
 
         Remark expectedDeletedRemark = BOB;
-        Remark deletedRemark = companies.removeByIndex(1);
+        Remark deletedRemark = remarks.removeByIndex(1);
         assertEquals(deletedRemark, expectedDeletedRemark);
     }
 
     @Test
     public void size_returnsCorrectSize_success() {
-        UniqueRemarkList companies = new UniqueRemarkList();
-        assertEquals(companies.size(), 0);
+        UniqueRemarkList remarks = new UniqueRemarkList();
+        assertEquals(remarks.size(), 0);
 
-        companies.add(ALICE);
-        assertEquals(companies.size(), 1);
+        remarks.add(ALICE);
+        assertEquals(remarks.size(), 1);
 
-        companies.add(BOB);
-        assertEquals(companies.size(), 2);
+        remarks.add(BOB);
+        assertEquals(remarks.size(), 2);
     }
 }

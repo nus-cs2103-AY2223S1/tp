@@ -6,7 +6,7 @@
     "phone": "87654321",
     "email": "amybee@gmail.com",
     "tagged" : [ "friends" ],
-    "companies": [ ],
+    "remarks": [ ],
     "transactions": [ ]
   }, {
     "name" : "Benson Meier",
@@ -14,7 +14,7 @@
     "phone": "12112121",
     "email": "ben@gmail.com",
     "tagged" : [ "owesMoney", "friends" ],
-    "companies" : [ {
+    "remarks" : [ {
       "name" : "Benson Meier",
       "address" : "Bedok Mall",
       "tagged" : [ "owesMoney", "friends" ]
@@ -38,7 +38,7 @@
     "phone": "9818112",
     "email": "carl@gmail.com",
     "tagged" : [ ],
-    "companies": [ ],
+    "remarks": [ ],
     "transactions": [ ]
   }, {
     "name" : "Daniel Meier",
@@ -46,7 +46,7 @@
     "phone": "12121212",
     "email": "dan@gmail.com",
     "tagged" : [ "friends" ],
-    "companies": [ ],
+    "remarks": [ ],
     "transactions": [ ]
   }, {
     "name" : "Elle Meyer",
@@ -54,7 +54,7 @@
     "phone": "9228282",
     "email": "eellee@gmail.com",
     "tagged" : [ ],
-    "companies": [ ],
+    "remarks": [ ],
     "transactions": [ ]
   }, {
     "name" : "Fiona Kunz",
@@ -62,7 +62,7 @@
     "phone": "12121212",
     "email": "fiona@gmail.com",
     "tagged" : [ ],
-    "companies": [ ],
+    "remarks": [ ],
     "transactions": [ ]
   }, {
     "name" : "George Best",
@@ -70,7 +70,7 @@
     "phone": "9778282",
     "email": "george@gmail.com",
     "tagged" : [ ],
-    "companies": [ ],
+    "remarks": [ ],
     "transactions": [ ]
   } ]
 }

@@ -12,9 +12,9 @@ import seedu.address.model.remark.exceptions.DuplicateRemarkException;
 import seedu.address.model.remark.exceptions.RemarkNotFoundException;
 
 /**
- * A list of Companies that enforces uniqueness between its elements and does not allow nulls.
+ * A list of Remarks that enforces uniqueness between its elements and does not allow nulls.
  * A Remark is considered unique by comparing using {@code Remark#isSameRemark(Remark)}.
- * As such, adding and updating of Companies uses Remark#isSameRemark(Remark) for equality to ensure that the
+ * As such, adding and updating of Remarks uses Remark#isSameRemark(Remark) for equality to ensure that the
  * Remark being added or updated is unique in terms of identity in the UniqueRemarkList.
  * However, the removal of a Remark uses Remark#equals(Object) to ensure that the Remark with exactly
  * the same fields will be removed.
@@ -88,22 +88,22 @@ public class UniqueRemarkList implements Iterable<Remark> {
         return internalList.remove(index);
     }
 
-    public void setCompanies(UniqueRemarkList replacement) {
+    public void setRemarks(UniqueRemarkList replacement) {
         requireNonNull(replacement);
         internalList.setAll(replacement.internalList);
     }
 
     /**
-     * Replaces the contents of this list with {@code Companies}.
-     * {@code Companies} must not contain duplicate Companies.
+     * Replaces the contents of this list with {@code Remarks}.
+     * {@code Remarks} must not contain duplicate Remarks.
      */
-    public void setCompanies(List<Remark> companies) {
-        requireAllNonNull(companies);
-        if (!companiesAreUnique(companies)) {
+    public void setRemarks(List<Remark> remarks) {
+        requireAllNonNull(remarks);
+        if (!remarksAreUnique(remarks)) {
             throw new DuplicateRemarkException();
         }
 
-        internalList.setAll(companies);
+        internalList.setAll(remarks);
     }
 
     /**
@@ -131,12 +131,12 @@ public class UniqueRemarkList implements Iterable<Remark> {
     }
 
     /**
-     * Returns true if {@code Companies} contains only unique Companies.
+     * Returns true if {@code Remarks} contains only unique Remarks.
      */
-    private boolean companiesAreUnique(List<Remark> companies) {
-        for (int i = 0; i < companies.size() - 1; i++) {
-            for (int j = i + 1; j < companies.size(); j++) {
-                if (companies.get(i).isSameRemark(companies.get(j))) {
+    private boolean remarksAreUnique(List<Remark> remarks) {
+        for (int i = 0; i < remarks.size() - 1; i++) {
+            for (int j = i + 1; j < remarks.size(); j++) {
+                if (remarks.get(i).isSameRemark(remarks.get(j))) {
                     return false;
                 }
             }
@@ -148,16 +148,16 @@ public class UniqueRemarkList implements Iterable<Remark> {
     public String toString() {
         final StringBuilder builder = new StringBuilder();
 
-        builder.append("Companies: ");
+        builder.append("Remarks: ");
         Iterator<Remark> itr = this.iterator();
 
         String prefix = "";
         while (itr.hasNext()) {
-            Remark company = itr.next();
+            Remark remark = itr.next();
             builder.append(prefix);
             prefix = ", ";
 
-            builder.append(company.getName());
+            builder.append(remark.getName());
         }
 
         return builder.toString();

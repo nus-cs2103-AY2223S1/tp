@@ -25,14 +25,14 @@ import seedu.address.model.transaction.Transaction;
 class JsonAdaptedClient {
 
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "Client's %s field is missing!";
-    private static final String MESSAGE_DUPLICATE_COMPANY = "Client contains duplicate company(s).";
+    private static final String MESSAGE_DUPLICATE_REMARK = "Client contains duplicate remark(s).";
 
     private final String name;
     private final String address;
     private final String phone;
     private final String email;
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
-    private final List<JsonAdaptedRemark> companies = new ArrayList<>();
+    private final List<JsonAdaptedRemark> remarks = new ArrayList<>();
     private final List<JsonAdaptedTransaction> transactions = new ArrayList<>();
 
     /**
@@ -42,10 +42,10 @@ class JsonAdaptedClient {
     public JsonAdaptedClient(@JsonProperty("name") String name, @JsonProperty("address") String address,
                              @JsonProperty("phone") String phone, @JsonProperty("email") String email,
                              @JsonProperty("tagged") List<JsonAdaptedTag> tagged,
-                             @JsonProperty("companies") List<JsonAdaptedRemark> companies,
+                             @JsonProperty("remarks") List<JsonAdaptedRemark> remarks,
                              @JsonProperty("transactions") List<JsonAdaptedTransaction> transactions) {
         this.name = name;
-        this.companies.addAll(companies);
+        this.remarks.addAll(remarks);
         this.transactions.addAll(transactions);
         this.address = address;
         this.phone = phone;
@@ -63,7 +63,7 @@ class JsonAdaptedClient {
         address = source.getAddress().value;
         phone = source.getPhone().value;
         email = source.getEmail().value;
-        companies.addAll(source.getRemarkList().stream().map(JsonAdaptedRemark::new).collect(Collectors.toList()));
+        remarks.addAll(source.getRemarkList().stream().map(JsonAdaptedRemark::new).collect(Collectors.toList()));
         transactions.addAll(source.getTransactionList().stream()
                 .map(JsonAdaptedTransaction::new).collect(Collectors.toList()));
         tagged.addAll(source.getTags().stream()
@@ -120,12 +120,12 @@ class JsonAdaptedClient {
 
         Client client = new Client(modelName, modelAddress, modelPhone, modelEmail, modelTags);
 
-        for (JsonAdaptedRemark jsonAdaptedRemark : companies) {
-            Remark company = jsonAdaptedRemark.toModelType();
-            if (client.hasRemark(company)) {
-                throw new IllegalValueException(MESSAGE_DUPLICATE_COMPANY);
+        for (JsonAdaptedRemark jsonAdaptedRemark : remarks) {
+            Remark remark = jsonAdaptedRemark.toModelType();
+            if (client.hasRemark(remark)) {
+                throw new IllegalValueException(MESSAGE_DUPLICATE_REMARK);
             }
-            client.addRemark(company);
+            client.addRemark(remark);
         }
 
         for (JsonAdaptedTransaction jsonAdaptedTransaction : transactions) {

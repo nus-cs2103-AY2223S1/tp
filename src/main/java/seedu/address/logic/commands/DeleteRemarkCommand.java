@@ -14,13 +14,13 @@ import seedu.address.model.remark.Remark;
 import seedu.address.model.remark.UniqueRemarkList;
 
 /**
- * Deletes a company from a client.
+ * Deletes a remark from a client.
  */
 public class DeleteRemarkCommand extends DeleteCommand {
 
-    public static final String MESSAGE_DELETE_COMPANY_SUCCESS = "Deleted Remark: %1$s";
+    public static final String MESSAGE_DELETE_REMARK_SUCCESS = "Deleted Remark: %1$s";
 
-    public static final String MESSAGE_INVALID_USAGE = "Deletion of company can only happen when companies "
+    public static final String MESSAGE_INVALID_USAGE = "Deletion of remark can only happen when remarks "
             + "are visible in the application!\n"
             + "Use 'view' command to view a specific client before applying this command\n";
 
@@ -40,17 +40,17 @@ public class DeleteRemarkCommand extends DeleteCommand {
         }
 
         Client focusedClient = lastShownList.get(0);
-        UniqueRemarkList companyList = focusedClient.getCompanies();
+        UniqueRemarkList remarkList = focusedClient.getRemarks();
 
-        if (targetIndex.getZeroBased() >= companyList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_COMPANY_DISPLAYED_INDEX);
+        if (targetIndex.getZeroBased() >= remarkList.size()) {
+            throw new CommandException(Messages.MESSAGE_INVALID_REMARK_DISPLAYED_INDEX);
         }
 
-        Remark deletedRemark = companyList.removeByIndex(targetIndex.getZeroBased());
+        Remark deletedRemark = remarkList.removeByIndex(targetIndex.getZeroBased());
 
         model.updateFilteredClientList(new NameEqualsKeywordPredicate(focusedClient));
 
-        return new CommandResult(String.format(MESSAGE_DELETE_COMPANY_SUCCESS, deletedRemark));
+        return new CommandResult(String.format(MESSAGE_DELETE_REMARK_SUCCESS, deletedRemark));
     }
 
     @Override

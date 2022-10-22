@@ -18,7 +18,7 @@ Looking in the `logic.command` package, you will notice that each existing comma
 
 Let’s start by creating a new `RemarkCommand` class in the `src/main/java/seedu/address/logic/command` directory.
 
-For now, let’s keep `RemarkCommand` as simple as possible and print some output. We accomplish that by returning a `CommandResult` with an accompanying message.
+For now, let’s keep `RemarkCommand` as simple as possible and print some output. We accomplish that by returning a `CommandResult` with an acremarking message.
 
 **`RemarkCommand.java`:**
 

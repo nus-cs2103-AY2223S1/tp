@@ -35,7 +35,7 @@ public class DeleteCommandParserTest {
 
     @Test
     public void parse_validIndexAndRemarkMode_returnsDeleteRemarkCommand() {
-        assertParseSuccess(parser, "1 m/company", new DeleteRemarkCommand(INDEX_FIRST_CLIENT));
+        assertParseSuccess(parser, "1 m/remark", new DeleteRemarkCommand(INDEX_FIRST_CLIENT));
     }
 
     @Test

@@ -10,8 +10,8 @@ import seedu.address.model.transaction.Transaction;
 public interface ReadOnlyClient {
 
     /**
-     * Returns an unmodifiable view of the companies list.
-     * This list will not contain any duplicate companies.
+     * Returns an unmodifiable view of the remarks list.
+     * This list will not contain any duplicate remarks.
      */
     ObservableList<Remark> getRemarkList();
 

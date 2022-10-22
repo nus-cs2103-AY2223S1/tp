@@ -39,7 +39,7 @@ public class DeleteCommandParser implements Parser<DeleteCommand> {
             return new DeleteClientCommand(index);
         case "transaction":
             return new DeleteTransactionCommand(index);
-        case "company":
+        case "remark":
             return new DeleteRemarkCommand(index);
         default:
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteCommand.MESSAGE_USAGE));

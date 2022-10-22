@@ -24,10 +24,10 @@ public class RemarkCard extends UiPart<Region> {
      * @see <a href="https://github.com/se-edu/addressbook-level4/issues/336">The issue on JeeqTracker level 4</a>
      */
 
-    public final Remark company;
+    public final Remark remark;
 
     @FXML
-    private HBox companyCardPane;
+    private HBox remarkCardPane;
     @FXML
     private Label name;
     @FXML
@@ -40,13 +40,13 @@ public class RemarkCard extends UiPart<Region> {
     /**
      * Creates a {@code RemarkCode} with the given {@code Remark} and index to display
      */
-    public RemarkCard(Remark company, int displayedIndex) {
+    public RemarkCard(Remark remark, int displayedIndex) {
         super(FXML);
-        this.company = company;
+        this.remark = remark;
         id.setText(displayedIndex + ". ");
-        name.setText(company.getName().toString());
-        address.setText("Address: " + company.getAddress().toString());
-        company.getTags().stream()
+        name.setText(remark.getName().toString());
+        address.setText("Address: " + remark.getAddress().toString());
+        remark.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
     }
@@ -66,6 +66,6 @@ public class RemarkCard extends UiPart<Region> {
         // state check
         RemarkCard card = (RemarkCard) other;
         return id.getText().equals(card.id.getText())
-                && company.equals(card.company);
+                && remark.equals(card.remark);
     }
 }
