@@ -71,6 +71,10 @@
                     </image>
                 </ImageView>
             </HBox>
+            <HBox alignment="CENTER_LEFT" spacing="10">
+                <Label styleClass="title_name" text="Pin value:" />
+                <Label fx:id="pinStatus" styleClass="cell_small_label" text="\$pinStatus" />
+            </HBox>
         </VBox>
         <rowConstraints>
             <RowConstraints />

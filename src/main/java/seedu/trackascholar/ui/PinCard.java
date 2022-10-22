@@ -8,6 +8,7 @@ import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import seedu.trackascholar.model.applicant.Applicant;
+import seedu.trackascholar.model.applicant.Pin;
 
 /**
  * An UI component that displays information of a {@code Applicant}.
@@ -40,6 +41,9 @@ public class PinCard extends UiPart<Region> {
     private Label applicationStatus;
     @FXML
     private Label email;
+
+    @FXML
+    private Label pinStatus;
     @FXML
     private FlowPane tags;
 
@@ -55,6 +59,7 @@ public class PinCard extends UiPart<Region> {
         scholarship.setText(applicant.getScholarship().scholarship);
         applicationStatus.setText(applicant.getApplicationStatus().applicationStatus);
         setApplicationStatusStyling(applicant.getApplicationStatus().applicationStatus);
+        setPin(applicant.getPin());
         email.setText(applicant.getEmail().value);
         applicant.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
@@ -86,6 +91,14 @@ public class PinCard extends UiPart<Region> {
         } else if (status.equals("rejected")) {
             applicationStatus.getStyleClass().remove("cell_pending_label");
             applicationStatus.getStyleClass().add("cell_rejected_label");
+        }
+    }
+
+    public void setPin(Pin pin) {
+        if (pin.getHasPinned()) {
+            pinStatus.setText("true");
+        } else {
+            pinStatus.setText("false");
         }
     }
 }
