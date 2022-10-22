@@ -10,15 +10,15 @@ JARVIS is a student and task management desktop application for a CS1101S Teachi
 Given below are my contributions to the project.
 
 * **New Feature**: [to be added]
-* 
+
 * **Code contributed**: [RepoSense link](https://nus-cs2103-ay2223s1.github.io/tp-dashboard/?search=fongyj&breakdown=true)
 
-* **Project management**: 
+* **Project management**:
   * [to be added]
 
 * **Enhancements to existing features**:
   * [to be added]
-  * 
+
 * **Documentation**:
     * User Guide:
       * [to be added]

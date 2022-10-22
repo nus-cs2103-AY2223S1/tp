@@ -73,7 +73,7 @@ The **API** of this component is specified in [`Ui.java`](https://github.com/AY2
 
 ![Structure of the UI Component](images/UiClassDiagram.png)
 
-The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `PersonListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
+The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `TaskListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
 
 The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/AY2223S1-CS2103T-T11-3/tp/tree/master/src/main/java/jarvis/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/AY2223S1-CS2103T-T11-3/tp/tree/master/src/main/resources/view/MainWindow.fxml)
 
@@ -163,6 +163,53 @@ In order to mark a task as completed, the user keys in a valid command (e.g. `ma
 
 The implementation for marking a task as not done is similar.
 
+### Adding a Lesson
+
+In order to add a Lesson into JARVIS, the user keys in a valid command (e.g. `addmc l/mastery check 1 sd/2022-09-15T20:00 ed/2022-09-15T20:30 si/1 si/2`)
+Parsing of the user input is done and a `AddMasteryCheckCommand` is then generated. (See the sequence diagram for deleting a student in the [Logic component](#logic-component))
+
+The sequence diagram is similar apart from:
+1. the command executed and parsed (`addmc l/mastery check 1 sd/2022-09-15T20:00 ed/2022-09-15T20:30 si/1 si/2` instead of `deletestudent 2`)
+2. the different command class (`AddMasteryCheckCommandParser` and `AddMasteryCheckCommand` instead of `DeleteStudentCommandParser` and `DeleteStudentCommand`)
+3. function called in main (`addLesson` instead of `deleteStudent`)
+
+`MasteryCheckCommandParser` checks if:
+
+1. all prefixes are present
+2. lesson description is not empty
+3. start date time is before end date time
+4. student indexes are int
+
+Otherwise, `ParseException` will be thrown.
+
+The rationale behind this design is that for all `Lesson`, there must be a `LessonDesc` present.
+It is also illogical for a lesson to start after the end date time. A `Student` must also be assigned manually to a `MasteryCheck`
+as the purpose of `MasteryCheck` is to assess a student's capability.
+
+**Future Implementation**
+- Allow user to input duration of lesson(in hours) to replace end date time
+- JARVIS will calculate the end date time for user based on the given start date time and duration
+- Helps to shorten the command required to be typed as lessons are likely to end on the same day
+
+
+The following sequence diagram shows what happens when the `AddMasteryCheckCommand` is executed upon a successful command.
+
+<img src="images/AddMasteryCheckSequenceDiagram.png" width="550"/>
+
+- `AddMasteryCheckCommand` will get the students involved in the `MasteryCheck` via indexing of the `lastShownList`. If no `Student` are found based on the index, `CommandException` will be thrown, stating invalid student index.
+- After a `MasteryCheck` object is created, `Model` will check if there already exists a `MasteryCheck` in the current `LessonBook` with the same identity fields. If this is the case,`CommandException` will be thrown, stating duplicate Mastery Check.
+- `Model` will also check with existing `Lessons` if there will be a clash in `TimePeriod`. This serves as a reminder to the user that there is already another lesson at that time slot. `CommandException` will be thrown, stating clash in timeslot.
+
+
+The above explanation is also applicable to adding consultation and studio lessons.
+They are similar apart from:
+1. the different naming(`AddConsultCommandParser`, `AddStudioCommandParser` etc instead of `AddMasteryCheckParser`)
+2. for `Studio`, all `Student` currently in the `StudentBook` instead of `FilteredStudentList` will be used to create `LessonAttendance` and `LessonNotes`
+   1. Studio are tutorials and all students are expected to attend. 
+   2. As a result, adding a Studio command does not require user to input student indexes.
+
+
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Documentation, logging, testing, configuration, dev-ops**
@@ -184,6 +231,7 @@ The implementation for marking a task as not done is similar.
 * has to keep track of significant number of tasks
   * grade mission and quests
   * schedule mastery checks
+  * studio attendance and participation
 * prefer desktop apps over other types
 * can type fast
 * prefers typing to mouse interactions
@@ -214,7 +262,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* *`    | user ready to start using the app | clear all current data                                          | can get rid of the sample data used for exploring the app and input my own data            |
 | `*`      | user                              | assign different priorites to my tasks                          | can focus on the more important tasks                                                      |
 | `*`      | user ready to start using the app | import my timetable for the semester	                           | can plan my TA duties in sync with tasks from other modules                                |
-| `*`      | user                              | add in mastery check timeslots                                  | can keep track of when and who I have to see for mastery check and I can make preparations | 
+| `*`      | user                              | add in mastery check timeslots                                  | can keep track of when and who I have to see for mastery check and I can make preparations |
 | `*`      | user                              | detect if there any schedule conflicts in my upcoming tasks     | resolve those conflicts and complete all my tasks                                          |
 | `*`      | user                              | add in timeslots for consultations	                             | can keep track of details of consultation and students                                     |
 | `*`      | user                              | get the task with the next earliest deadline	                   | can plan my schedule accordingly                                                           |
@@ -296,17 +344,17 @@ Use case ends.
   * 1a1. JARVIS tells Avenger to make a request again.
 
     Use case resumes from step 1.
- 
+
 **Use case: UC5 - Delete a student**
 
-Preconditions:  There are existing students in JARVIS.  
+Preconditions:  There are existing students in JARVIS.
 
 **MSS**
 
 1. Avenger performs <ins>list students(UC3)</ins>.
 2. JARVIS displays list of students.
 3. Avenger requests to delete a student.
-4. JARVIS deletes the student.  
+4. JARVIS deletes the student.
 
 Use case ends.
 
@@ -319,7 +367,7 @@ Use case ends.
 
 **Use case: UC6 - Delete a task**
 
-Preconditions: There are existing tasks in JARVIS.  
+Preconditions: There are existing tasks in JARVIS.
 
 **MSS:**
 
@@ -336,7 +384,7 @@ Use case ends.
   * 3a1. JARVIS tells Avenger to make a request again.
 
     Use case resumes from step 2.
-    
+
 **Use case: UC7 - Clear all students and tasks**
 
 Preconditions: There are existing tasks and/or students in JARVIS.
@@ -443,10 +491,10 @@ Use case ends.
 2.  Should work without requiring an installer and be packaged in a single jar file
 3.  All data for the system should be stored locally in a human editable text file, and not be dependent on any remote server
 4.  GUI should not cause any resolution-related inconveniences for standard screen resolutions (1920 x 1080 and higher) and screen scales 100% and 125%
-5.  GUI should be usable (i.e. all functionality can be used, not necessarily optimally) for screen resolutions 1280 x 720 and higher, and for screen scales 150% 
+5.  GUI should be usable (i.e. all functionality can be used, not necessarily optimally) for screen resolutions 1280 x 720 and higher, and for screen scales 150%
 6.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands over other means of input.
 7.  The product is intended only for a single user (i.e. not a multi-user product)
-8.  The system is not required to handle the actual grading of student's works  
+8.  The system is not required to handle the actual grading of student's works
 
 *{More to be added}*
 

@@ -17,7 +17,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[portfolio](team/laxus2308.md)]
 
 * Role: Developer
-* Responsibilities: 
+* Responsibilities:
   * Team Lead, overall project coordination
   * Define, assign and track project tasks
   * Logic Component
@@ -66,6 +66,6 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 [[portfolio](team/fongyj.md)]
 
 * Role: Developer
-* Responsibilities: 
+* Responsibilities:
   * Deliverables and deadlines, Integration
   * Commons Component
