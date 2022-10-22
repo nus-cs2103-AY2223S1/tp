@@ -1,5 +1,12 @@
 package seedu.address.logic.parser;
 
+import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+
+import java.util.Comparator;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.SortBuyerCommand;
 import seedu.address.logic.commands.SortCommand;
@@ -11,20 +18,13 @@ import seedu.address.model.person.Deliverer;
 import seedu.address.model.person.Supplier;
 import seedu.address.model.pet.Pet;
 
-import java.util.Comparator;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-
-import static java.util.Objects.requireNonNull;
-import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-
 /**
  * Parses input arguments and creates a new SortCommand object.
  */
 public class SortCommandParser implements Parser<SortCommand> {
 
     private static final Pattern BASIC_COMMAND_FORMAT = Pattern.compile("(?<listType>.\\S*)(?<attributes>.*)");
-    private final Integer FIRST_ATTRIBUTE_POS = 0;
+    private final Integer firstAttributePos = 0;
 
     @Override
     public SortCommand parse(String userInput) throws ParseException {
@@ -87,66 +87,66 @@ public class SortCommandParser implements Parser<SortCommand> {
     }
 
     private Comparator<Buyer> getBuyerComparator(String attributes) throws ParseException {
-        String[] attributes_arr = attributes.split("\\s+");
-        assertAlphabets(attributes_arr[FIRST_ATTRIBUTE_POS]);
+        String[] attributesArr = attributes.split("\\s+");
+        assertAlphabets(attributesArr[firstAttributePos]);
         Comparator<Buyer> comparator = SortCommandParserUtil.parseToSelectedBuyerComparator(
-                attributes_arr[FIRST_ATTRIBUTE_POS]);
-        for (int i = 1; i < attributes_arr.length; i++) {
-            assertAlphabets(attributes_arr[i]);
+                attributesArr[firstAttributePos]);
+        for (int i = 1; i < attributesArr.length; i++) {
+            assertAlphabets(attributesArr[i]);
             comparator = comparator.thenComparing(
-                    SortCommandParserUtil.parseToSelectedBuyerComparator(attributes_arr[i]));
+                    SortCommandParserUtil.parseToSelectedBuyerComparator(attributesArr[i]));
         }
         return comparator;
     }
 
     private Comparator<Supplier> getSupplierComparator(String attributes) throws ParseException {
-        String[] attributes_arr = attributes.split("\\s+");
-        assertAlphabets(attributes_arr[FIRST_ATTRIBUTE_POS]);
+        String[] attributesArr = attributes.split("\\s+");
+        assertAlphabets(attributesArr[firstAttributePos]);
         Comparator<Supplier> comparator = SortCommandParserUtil.parseToSelectedSupplierComparator(
-                attributes_arr[FIRST_ATTRIBUTE_POS]);
-        for (int i = 1; i < attributes_arr.length; i++) {
-            assertAlphabets(attributes_arr[i]);
+                attributesArr[firstAttributePos]);
+        for (int i = 1; i < attributesArr.length; i++) {
+            assertAlphabets(attributesArr[i]);
             comparator = comparator.thenComparing(
-                    SortCommandParserUtil.parseToSelectedSupplierComparator(attributes_arr[i]));
+                    SortCommandParserUtil.parseToSelectedSupplierComparator(attributesArr[i]));
         }
         return comparator;
     }
 
     private Comparator<Deliverer> getDelivererComparator(String attributes) throws ParseException {
-        String[] attributes_arr = attributes.split("\\s+");
-        assertAlphabets(attributes_arr[FIRST_ATTRIBUTE_POS]);
+        String[] attributesArr = attributes.split("\\s+");
+        assertAlphabets(attributesArr[firstAttributePos]);
         Comparator<Deliverer> comparator = SortCommandParserUtil.parseToSelectedDelivererComparator(
-                attributes_arr[FIRST_ATTRIBUTE_POS]);
-        for (int i = 1; i < attributes_arr.length; i++) {
-            assertAlphabets(attributes_arr[i]);
+                attributesArr[firstAttributePos]);
+        for (int i = 1; i < attributesArr.length; i++) {
+            assertAlphabets(attributesArr[i]);
             comparator = comparator.thenComparing(
-                    SortCommandParserUtil.parseToSelectedDelivererComparator(attributes_arr[i]));
+                    SortCommandParserUtil.parseToSelectedDelivererComparator(attributesArr[i]));
         }
         return comparator;
     }
 
     private Comparator<Order> getOrderComparator(String attributes) throws ParseException {
-        String[] attributes_arr = attributes.split("\\s+");
-        assertAlphabets(attributes_arr[FIRST_ATTRIBUTE_POS]);
+        String[] attributesArr = attributes.split("\\s+");
+        assertAlphabets(attributesArr[firstAttributePos]);
         Comparator<Order> comparator = SortCommandParserUtil.parseToSelectedOrderComparator(
-                attributes_arr[FIRST_ATTRIBUTE_POS]);
-        for (int i = 1; i < attributes_arr.length; i++) {
-            assertAlphabets(attributes_arr[i]);
+                attributesArr[firstAttributePos]);
+        for (int i = 1; i < attributesArr.length; i++) {
+            assertAlphabets(attributesArr[i]);
             comparator = comparator.thenComparing(
-                    SortCommandParserUtil.parseToSelectedOrderComparator(attributes_arr[i]));
+                    SortCommandParserUtil.parseToSelectedOrderComparator(attributesArr[i]));
         }
         return comparator;
     }
 
     private Comparator<Pet> getPetComparator(String attributes) throws ParseException {
-        String[] attributes_arr = attributes.split("\\s+");
-        assertAlphabets(attributes_arr[FIRST_ATTRIBUTE_POS]);
+        String[] attributesArr = attributes.split("\\s+");
+        assertAlphabets(attributesArr[firstAttributePos]);
         Comparator<Pet> comparator = SortCommandParserUtil.parseToSelectedPetComparator(
-                attributes_arr[FIRST_ATTRIBUTE_POS]);
-        for (int i = 1; i < attributes_arr.length; i++) {
-            assertAlphabets(attributes_arr[i]);
+                attributesArr[firstAttributePos]);
+        for (int i = 1; i < attributesArr.length; i++) {
+            assertAlphabets(attributesArr[i]);
             comparator = comparator.thenComparing(
-                    SortCommandParserUtil.parseToSelectedPetComparator(attributes_arr[i]));
+                    SortCommandParserUtil.parseToSelectedPetComparator(attributesArr[i]));
         }
         return comparator;
     }

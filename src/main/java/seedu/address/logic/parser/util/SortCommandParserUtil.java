@@ -92,7 +92,7 @@ public class SortCommandParserUtil {
      * @param attribute The input string.
      * @return The comparator.
      * @throws ParseException Throws an exception when the input string species an attribute that is not supported
-     * for sorting.
+     *     for sorting.
      */
     public static Comparator<Buyer> parseToSelectedBuyerComparator(String attribute) throws ParseException {
         if (attribute.isEmpty() || SortCommand.isValidParameter(
@@ -118,7 +118,7 @@ public class SortCommandParserUtil {
      * @param attribute The input string.
      * @return The comparator.
      * @throws ParseException Throws an exception when the input string species an attribute that is not supported
-     * for sorting.
+     *     for sorting.
      */
     public static Comparator<Supplier> parseToSelectedSupplierComparator(String attribute) throws ParseException {
         if (attribute.isEmpty() || SortCommand.isValidParameter(
@@ -144,7 +144,7 @@ public class SortCommandParserUtil {
      * @param attribute The input string.
      * @return The comparator.
      * @throws ParseException Throws an exception when the input string species an attribute that is not supported
-     * for sorting.
+     *     for sorting.
      */
     public static Comparator<Deliverer> parseToSelectedDelivererComparator(String attribute) throws ParseException {
         if (attribute.isEmpty() || SortCommand.isValidParameter(
@@ -170,7 +170,7 @@ public class SortCommandParserUtil {
      * @param attribute The input string.
      * @return The comparator.
      * @throws ParseException Throws an exception when the input string species an attribute that is not supported
-     * for sorting.
+     *     for sorting.
      */
     public static Comparator<Order> parseToSelectedOrderComparator(String attribute) throws ParseException {
         if (attribute.isEmpty()) {
@@ -197,7 +197,7 @@ public class SortCommandParserUtil {
      * @param attribute The input string.
      * @return The comparator.
      * @throws ParseException Throws an exception when the input string species an attribute that is not supported
-     * for sorting.
+     *     for sorting.
      */
     public static Comparator<Pet> parseToSelectedPetComparator(String attribute) throws ParseException {
         if (attribute.isEmpty()) {
