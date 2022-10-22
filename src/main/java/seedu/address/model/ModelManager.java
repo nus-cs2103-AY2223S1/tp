@@ -243,6 +243,7 @@ public class ModelManager implements Model {
         return filteredClients;
     }
 
+
     @Override
     public void updateFilteredProjectList(Predicate<Project> predicate) {
         requireNonNull(predicate);
@@ -282,4 +283,33 @@ public class ModelManager implements Model {
                 && filteredClients.equals(other.filteredClients);
     }
 
+    @Override
+    public void sortProjectsByDeadline(int key) {
+        addressBook.sortProjectsByDeadline(key);
+        updateFilteredProjectList(PREDICATE_SHOW_ALL_PROJECTS);
+    }
+
+    @Override
+    public void sortProjectsByIssueCount(int key) {
+        addressBook.sortProjectsByIssueCount(key);
+        updateFilteredProjectList(PREDICATE_SHOW_ALL_PROJECTS);
+    }
+
+    @Override
+    public void sortProjectsByName(int key) {
+        addressBook.sortProjectsByName(key);
+        updateFilteredProjectList(PREDICATE_SHOW_ALL_PROJECTS);
+    }
+
+    @Override
+    public void sortIssuesByDeadline(int key) {
+        addressBook.sortIssuesByDeadline(key);
+        updateFilteredIssueList(PREDICATE_SHOW_ALL_ISSUES);
+    }
+
+    @Override
+    public void sortIssuesByPriority(int key) {
+        addressBook.sortIssuesByPriority(key);
+        updateFilteredIssueList(PREDICATE_SHOW_ALL_ISSUES);
+    }
 }

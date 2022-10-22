@@ -5,6 +5,7 @@ import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT
 import static seedu.address.commons.core.Messages.MESSAGE_MISSING_ARGUMENTS;
 import static seedu.address.logic.parser.ProjectCliSyntax.PREFIX_CLIENT_ID;
 import static seedu.address.logic.parser.ProjectCliSyntax.PREFIX_DEADLINE;
+import static seedu.address.logic.parser.ProjectCliSyntax.PREFIX_ISSUE_COUNT;
 import static seedu.address.logic.parser.ProjectCliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.ProjectCliSyntax.PREFIX_PROJECT_ID;
 import static seedu.address.logic.parser.ProjectCliSyntax.PREFIX_REPOSITORY;
@@ -20,6 +21,10 @@ import seedu.address.logic.commands.project.EditProjectCommand;
 import seedu.address.logic.commands.project.ListProjectCommand;
 import seedu.address.logic.commands.project.ProjectCommand;
 import seedu.address.logic.commands.project.SetProjectDefaultViewCommand;
+import seedu.address.logic.commands.project.SortProjectCommand;
+import seedu.address.logic.commands.project.find.FindProjectByNameCommand;
+import seedu.address.logic.commands.project.find.FindProjectByRepositoryCommand;
+import seedu.address.logic.commands.project.find.FindProjectCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Deadline;
 import seedu.address.model.Name;
@@ -28,6 +33,8 @@ import seedu.address.model.issue.Issue;
 import seedu.address.model.project.ProjectId;
 import seedu.address.model.project.ProjectWithoutModel;
 import seedu.address.model.project.Repository;
+import seedu.address.model.project.predicates.NameContainsKeywordsPredicate;
+import seedu.address.model.project.predicates.RepositoryContainsKeywordsPredicate;
 
 
 /**
@@ -51,10 +58,15 @@ public class ProjectCommandParser implements Parser<ProjectCommand> {
             return parseEditProjectCommand(arguments);
         case DeleteProjectCommand.COMMAND_FLAG:
             return parseDeleteProjectCommand(arguments);
+        case SortProjectCommand.COMMAND_FLAG:
+            return parseSortProjectCommand(arguments);
         case ListProjectCommand.COMMAND_FLAG:
             return parseListProjectCommand(arguments);
         case SetProjectDefaultViewCommand.COMMAND_FLAG:
             return parseSetProjectDefaultViewCommand(arguments);
+        case FindProjectCommand.COMMAND_FLAG:
+            return parseFindProjectCommand(arguments);
+
         default:
             throw new ParseException(FLAG_UNKNOWN_COMMAND);
         }
@@ -76,6 +88,17 @@ public class ProjectCommandParser implements Parser<ProjectCommand> {
      */
     private static boolean anyPrefixesPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
         return Stream.of(prefixes).anyMatch(prefix -> argumentMultimap.getValue(prefix).isPresent());
+    }
+
+    /**
+     * Verifies only one valid user input argument
+     * Length of a valid command for sort key for project by deadline, issue count and name e.g.d/1
+     *
+     * @param arguments user input for key for sort by deadline
+     * @return true if there is only one valid input
+     */
+    private boolean hasOneArgumentOfLengthThree(String arguments) {
+        return arguments.trim().length() == 3;
     }
 
     private AddProjectCommand parseAddProjectCommand(String arguments) throws ParseException {
@@ -168,6 +191,76 @@ public class ProjectCommandParser implements Parser<ProjectCommand> {
             throw new ParseException(
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteProjectCommand.MESSAGE_USAGE), pe);
         }
+    }
+
+    private SortProjectCommand parseSortProjectCommand(String arguments) throws ParseException {
+
+        Prefix sortPrefix = null;
+        int key = -1;
+
+        if (!hasOneArgumentOfLengthThree(arguments)) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                    SortProjectCommand.MESSAGE_USAGE));
+        }
+
+        ArgumentMultimap argMultimap =
+                ArgumentTokenizer.tokenize(arguments, PREFIX_DEADLINE, PREFIX_ISSUE_COUNT, PREFIX_NAME);
+
+        if (!anyPrefixesPresent(argMultimap, PREFIX_DEADLINE, PREFIX_ISSUE_COUNT, PREFIX_NAME)) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                    SortProjectCommand.MESSAGE_USAGE));
+        }
+
+        if (arePrefixesPresent(argMultimap, PREFIX_DEADLINE)) {
+            sortPrefix = PREFIX_DEADLINE;
+            key = ParserUtil.parseDeadlineSortForProject(argMultimap.getValue(PREFIX_DEADLINE).get());
+        }
+
+        if (arePrefixesPresent(argMultimap, PREFIX_ISSUE_COUNT)) {
+            sortPrefix = PREFIX_ISSUE_COUNT;
+            key = ParserUtil.parseIssueCountSort(argMultimap.getValue(PREFIX_ISSUE_COUNT).get());
+        }
+
+        if (arePrefixesPresent(argMultimap, PREFIX_NAME)) {
+            sortPrefix = PREFIX_NAME;
+            key = ParserUtil.parseNameSort(argMultimap.getValue(PREFIX_NAME).get());
+        }
+
+        return new SortProjectCommand(sortPrefix, key);
+    }
+
+    private FindProjectCommand parseFindProjectCommand(String arguments) throws ParseException {
+        try {
+
+            ArgumentMultimap argMultimap =
+                    ArgumentTokenizer.tokenize(arguments, PREFIX_NAME, PREFIX_REPOSITORY);
+
+            String trimmedArgs = arguments.trim();
+
+            if (trimmedArgs.isEmpty()) {
+                throw new ParseException(
+                        String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindProjectCommand.MESSAGE_FIND_PROJECT_USAGE));
+            }
+
+
+            if (arePrefixesPresent(argMultimap, PREFIX_NAME)) {
+                return new FindProjectByNameCommand(new NameContainsKeywordsPredicate(
+                        argMultimap.getAllValues(PREFIX_NAME)));
+            }
+
+            //implies rePrefixesPresent(argMultimap, PREFIX_REPOSITORY) is true
+            return new FindProjectByRepositoryCommand(new RepositoryContainsKeywordsPredicate(
+                    argMultimap.getAllValues(PREFIX_REPOSITORY)));
+
+        } catch (ParseException pe) {
+            throw new ParseException(
+                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindProjectCommand.MESSAGE_FIND_PROJECT_USAGE), pe);
+        }
+
+    }
+
+    private FindProjectCommand parseFindIssueCommand(String flag, String arguments) throws ParseException {
+        return parseFindProjectCommand(arguments);
     }
 
     private ListProjectCommand parseListProjectCommand(String arguments) {

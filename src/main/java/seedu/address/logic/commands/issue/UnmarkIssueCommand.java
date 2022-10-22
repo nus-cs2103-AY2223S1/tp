@@ -1,0 +1,52 @@
+package seedu.address.logic.commands.issue;
+
+import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
+import static seedu.address.model.Model.PREDICATE_SHOW_ALL_ISSUES;
+
+import seedu.address.logic.commands.CommandResult;
+import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.model.Model;
+import seedu.address.model.issue.Issue;
+import seedu.address.model.issue.IssueId;
+import seedu.address.model.issue.Status;
+import seedu.address.ui.Ui;
+
+/**
+ * Command to mark an issue as incomplete
+ */
+public class UnmarkIssueCommand extends IssueCommand {
+    public static final String COMMAND_FLAG = "-u";
+
+    public static final String MESSAGE_USAGE = COMMAND_WORD
+            + " " + COMMAND_FLAG
+            + ": Marks the issue identified by the issue id as incomplete \n"
+            + "Parameters: ISSUE_ID (must be a positive integer) "
+            + "Example: " + COMMAND_WORD + " "
+            + COMMAND_FLAG + " 1";
+
+
+    public static final String MESSAGE_SUCCESS = "Issue unmarked: %1$s";
+
+    private final Status newStatus;
+    private final IssueId issueId;
+
+    /**
+     * Creates an UnmarkIssueCommand to mark the specified {@code Issue} as incomplete
+     */
+    public UnmarkIssueCommand(Status newStatus, IssueId issueId) {
+        requireAllNonNull(newStatus, issueId);
+        this.newStatus = newStatus;
+        this.issueId = issueId;
+    }
+
+    @Override
+    public CommandResult execute(Model model, Ui ui) throws CommandException {
+        requireNonNull(model);
+        ui.showIssues();
+        Issue toMarkIssue = model.getIssueById(issueId.getIdInt());
+        toMarkIssue.setStatus(newStatus);
+        model.updateFilteredIssueList(PREDICATE_SHOW_ALL_ISSUES);
+        return new CommandResult(String.format(MESSAGE_SUCCESS, toMarkIssue));
+    }
+}

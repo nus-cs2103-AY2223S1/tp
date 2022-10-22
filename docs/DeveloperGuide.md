@@ -93,8 +93,10 @@ Here's a (partial) class diagram of the `Logic` component:
 <img src="images/LogicClassDiagram.png" width="550"/>
 
 How the `Logic` component works:
-1. When `Logic` is called upon to execute a command, it uses the `AddressBookParser` class to parse the user command.
-2. This results in a `Command` object (more precisely, an object of one of its subclasses e.g., `AddCommand`) which is executed by the `LogicManager`.
+1. When `Logic` is called upon to execute a command, it uses the `AddressBookParser` class to parse the user command to result in a `Command` object (more precisely, an object of one of its subclasses e.g., `AddClientCommand`). More specifically,
+   1. If the command is specific to an entity (e.g. `Project`, `Client` or `Issue`), this results in a `CommandParser` object (More specifically, an object of one of its subclasses e.g., `ClientCommandParser`)), which then yields a `Command` object.
+   2. Otherwise, it results in a `Command` Object directly.
+2. The resulting `Command` object is executed by the `LogicManager`.
 3. The command can communicate with the `Model` when it is executed (e.g. to add a person).
 4. The result of the command execution is encapsulated as a `CommandResult` object which is returned back from `Logic`.
 
@@ -110,8 +112,8 @@ Here are the other classes in `Logic` (omitted from the class diagram above) tha
 <img src="images/ParserClasses.png" width="600"/>
 
 How the parsing works:
-* When called upon to parse a user command, the `AddressBookParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddCommand`) which the `AddressBookParser` returns back as a `Command` object.
-* All `XYZCommandParser` classes (e.g., `AddCommandParser`, `DeleteCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
+* When called upon to parse a user command, the `AddressBookParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `ClientCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddClientCommand`) which the `AddressBookParser` returns back as a `Command` object.
+* All `XYZCommandParser` classes (e.g., `ClientCommandParser`, `IssueCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
 
 ### Model component
 **API** : [`Model.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/model/Model.java)
@@ -154,7 +156,7 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some details on how certain features are implemented.
 
-### List feature
+### List Feature
 
 The list mechanism is facilitated by `MainWindow`. It contains a `CommandBox` which listens for user command input and a JavaFX `StackPane` which holds the current entity list to be displayed. Upon the execution of either a `ListProjectCommand`, `ListClientCommand` or `ListIssueCommand`, the following operations are carried out:
 * `MainWindow#swapProjectListDisplay()` — Changes the current display to a list of projects.
@@ -195,13 +197,104 @@ The following activity diagram summarizes what happens when a user executes a li
 * **Alternative 2:** The children nodes of the `StackPane` are never cleared and holds a single list of entities (`Project`, `Client`, `Issue`) and the list is filtered for the desired instance type for each list `Command`.
   * Pros: Less duplication of code.
   * Cons: Leads to more `instanceof` checks. Not much common behaviour between the entity classes to be abstracted via polymorphism.
+  
+### Add Command Feature
 
-_{more aspects and alternatives to be added}_
+A key functionality of DevEnable is the ability to add projects, issues, and clients into the system. The command word for adding will be `project`, `issue`, or `client`, depending on which entity is being added.
+This is followed by the flag `-a`, representing an Add command. Next, it is followed by a series of prefixes-value pairs to initialise the entity, some of which are compulsory while others are optional.
+When a user enters a valid Add command in the interface, `AddressBookParser#parseCommand` will be called which processes the inputs, creates an instance of a command parser, and calls the `ProjectCommandParser#parse`,
+`IssueCommandParser#parse` or `ClientCommandParser#parse` method, depending on which entity is being added. Within this method, the flag `-a` will be detected, calling `ProjectCommandParser#parseAddProjectCommand`, 
+`IssueCommandParser#parseAddIssueCommand`, or `ClientCommandParser#parseAddClientCommand`, depending on which entity is added, which checks for input and prefix-value pair validity with methods in `ParserUtil`.
+Finally, the parsed arguments are passed into and returned in an instance of the Add Command entity and the `AddProjectCommand#execute`, `AddIssueCommand#execute`, or `AddClientCommand#execute` is called depending
+on which entity is added, which retrieves the respective entity list from the system, adds the entity into the list to update it, and have the UI display the updated filtered entity list.   
 
-### \[Proposed\] Data archiving
+#### Add Project Command
+Compulsory prefixes: n/<valid name>
+Optional prefixes: cid/<valid client id>, r/<valid repository>, d/<valid deadline>
+Example Use: `project -a n/John cid/1 r/JohnDoe/tp d/2022-03-05`
 
-_{Explain here how the data archiving feature will be implemented}_
+#### Add Issue Command
+Compulsory prefixes: pid/<valid project id>, desc/<valid description>
+Optional prefixes: d/<valid deadline> p/<valid priority>
+Example Use: `issue pid/1 desc/To create a person class which stores all relevant person data d/2022-12-10 p/0`
 
+#### Add Client Command
+Compulsory prefixes: n/<valid name>, pid/<valid project id>
+Optional prefixes: p/<valid phone>, e/<valid email>
+Example Use: `client -a n/John Doe p/98765432 e/johnd@example.com pid/1`
+
+#### The following sequence diagram shows how the add command operation works for adding a project entity:
+Example: `project -a n/John cid/1 r/JohnDoe/tp d/2022-03-05`
+
+![AddSequenceDiagram](images/AddSequenceDiagram.png)
+
+<div markdown="span" class="alert alert-info">
+:information_source: **Note:** The lifeline for `AddProjectCommand` 
+should end at destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+</div>
+
+#### Design considerations:
+
+**Aspect: Add command access to the model: **
+
+**Alternative 1: (current choice)** Only `AddProjectCommand:execute`, `IssueCommandParser:execute` and `ClientCommandParser:execute` have access to the Model.
+* Pros: No coupling between Parser class and Model class.
+* Cons: Mappings could not be performed within the parser.
+* 
+**Alternative 2: ** Refactor `ProjectCommandParser:parseAddProjectCommand`, `IssueCommandParser:parseAddIssueCommand` and `ClientCommandParser:parseAddClientCommand` to have access to the Model.
+ * Pros: Mappings could be performed within the parser which fitted its responsibility.
+ * Cons: May result in extra coupling between Parser class and Model class.
+ 
+Taking into consideration the extra coupling involved, Alternative 1 was chosen as the current design for add command access to the model.
+
+### Edit Command Feature
+
+A key functionality of DevEnable is the ability to edit projects, issues and clients currently in the system. The command word for editing will be `project`, `issue`, or `client`, depending on which entity it being edited.
+This is followed by the flag `-e`, representing an Edit command. Next, it is followed by a series of prefixes-value pairs, one compulsory pair for identifying the entity to be edited, and at least one pair indicating the fields to be edited.
+When a user enters a valid Edit command in the interface, `AddressBookParser#parseCommand` will be called which processes the inputs, creates an instance and calls the `ProjectCommandParser#parse`, 
+`IssueCommandParser#parse` or `ClientCommandParser#parse` method, depending on which entity is being edited. Within this method, the flag `-e` will be detected, calling `ProjectCommandParser#parseEditProjectCommand`, 
+`IssueCommandParser#parseEditIssueCommand`, or `ClientCommandParser#parseEditClientCommand`, depending on which entity is edited, which checks for input and prefix-pair validity with methods in `ParserUtil`.
+Finally, the parsed arguments are passed into and returned in an instance of the Edit Command entity and the `EditProjectCommand#execute`, `EditIssueCommand#execute`, or `EditClientCommand#execute` is called depending on
+which entity is edited, which retrieves the respective entity from its entity list in the system, edits the fields of the entity, updates it, and have the UI display the updated filtered entity list.
+
+#### Edit Project Command
+Compulsory prefix: pid/<valid project id>
+Optional prefixes (at least one to be included): n/<valid name>, cid/<valid client id>, r/<valid repository>, d/<valid deadline>
+Example Use: `project -e pid/1 n/Jeff cid/1 r/Jeffrey/tp d/2022-07-05`
+
+#### Edit Issue Command
+Compulsory prefix: iid/<valid issue id>
+Optional prefixes (at least one to be included): desc/<valid description>, d/<valid deadline>, p/<valid priority>
+Example Use: `issue -e iid/1 desc/To edit issue command d/2022-04-09 p/1`
+
+#### Edit Client Command
+Compulsory prefix: cid/<valid client id>
+Optional prefixes (at least one to be included): n/<valid name>, p/<valid phone number>, e/<valid email>, pid/<valid project id>
+Example Use: `client -e cid/1 n/BenTen p/12345678 e/Ben10@gmail.com pid/1`
+
+#### The following sequence diagram shows how the edit command operation works for editing an issue entity:
+Example: `issue -e iid/1 desc/To edit issue command d/2022-04-09 p/1`
+![AddSequenceDiagram](images/EditSequenceDiagram.png)
+
+#### Design considerations: 
+
+**Aspect: Editing of entity fields:**
+
+**Alternative 1: (current choice)** For each possible field to be edited, a new object of that field, with the parsed argument(if any) or null value, is created in `ProjectCommandParser#parseEditProjectCommand`, `IssueCommandParser#parseEditIssueCommand` or `ClientCommandParser#parseEditClientCommand`, then passed as arguments into `EditProjectCommand`, `EditIssueCommand` or `EditClientCommand`. 
+Within `EditProjectCommand#execute`, `EditIssueCommand#execute` and `EditClientCommand#execute`, set the fields to the new field objects.
+* Pros: Logic is handled within the parser and no creation of a new entity object.
+* Cons: Many new objects being created 
+
+**Alternative 2:** For each possible field to be edited, pass the parsed arguments into `EditProjectCommand`, `EditIssueCommand` or `EditClientCommand`. Within `EditProjectCommand#execute`, `EditIssueCommand#execute` and `EditClientCommand#execute`, access each of the fields and set the parsed arguments as the new parameters.
+* Pros: No new objects being created.
+* Cons: Requires many steps to access each field and set the value through a setter, logic is also then handled by the commands
+
+**Alternative 3:** For each possible field to be edited, a new object of that field, with the parsed argument(if any) or null value, is created in `ProjectCommandParser#parseEditProjectCommand`, `IssueCommandParser#parseEditIssueCommand` or `ClientCommandParser#parseEditClientCommand`, then passed as arguments into `EditProjectCommand`, `EditIssueCommand` or `EditClientCommand`.
+Within `EditProjectCommand#execute`, `EditIssueCommand#execute` and `EditClientCommand#execute`, retrieve the entity to be edited and create a new entity with the new field objects and the original fields not to be edited.
+* Pros: Logic is handled within the parser
+* Cons: Creation of a new entity object requiring modification of the entity list 
+
+As logic should be handled in the parser and to minimise modifications of the entity list (which could affect entity IDs), Alternative 1 was chosen as the current design for editing the fields of the entity.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -510,7 +603,132 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case ends.
 
-**Use case: UC11 - View list of commands**
+**Use case: UC11 - Add client**
+
+**MSS**
+
+1.  User requests to add a client.
+2.  DevEnable adds the client to the client list.
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. The user makes an error in writing the request.
+    * 1a1. DevEnable displays an error message with the correct usage.
+
+      Use case resumes at Step 1.
+* 1b. DevEnable detects that the client already exists in the list.
+    * 1b1. DevEnable displays an error message that the client already exists.
+
+      Use case ends.
+
+**Use case: UC12 - Delete client**
+
+**MSS**
+
+1. User views the list of clients.
+2. User requests to delete a specific client in the list.
+3. DevEnable deletes the client from the list.
+
+   Use case ends.
+
+**Extensions**
+
+* 2a. The user makes an error in writing the request.
+    * 2a1. DevEnable displays an error message with the correct usage.
+
+      Use case resumes at Step 2.
+* 2b. DevEnable detects that the client does not exist in the list.
+    * 2b1. DevEnable displays an error message that the client does not exist.
+
+      Use case ends.
+
+**Use case: UC13 - Edit client**
+
+**MSS**
+
+1. User views the list of clients.
+2. User requests to edit a specific client in the list.
+3. DevEnable edits the client in the list.
+
+   Use case ends.
+
+**Extensions**
+
+* 2a. The user makes an error in writing the request.
+    * 2a1. DevEnable displays an error message with the correct usage.
+
+      Use case resumes at Step 2.
+* 2b. DevEnable detects that the client does not exist in the list.
+    * 2b1. DevEnable displays an error message that the client does not exist.
+
+      Use case ends.
+
+**Use case: UC14 - Find projects**
+
+**MSS**
+
+1. User views <ins>views the list of projects (UC1).</ins>
+2. User requests to filter the list based on specific keywords.
+3. DevEnable finds matching projects in the list.
+
+   Use case ends.
+
+**Extensions**
+
+* 2a. The user makes an error in writing the request.
+    * 2a1. DevEnable displays an error message with the correct usage.
+
+      Use case resumes at Step 2.
+* 2b. DevEnable detects that such a project does not exist in the list.
+    * 2b1. DevEnable displays an error message that such a project does not exist.
+
+      Use case ends.
+
+**Use case: UC15 - Find clients**
+
+**MSS**
+
+1. User views the list of clients.
+2. User requests to filter the list based on specific keywords.
+3. DevEnable finds matching clients in the list.
+
+   Use case ends.
+
+**Extensions**
+
+* 2a. The user makes an error in writing the request.
+    * 2a1. DevEnable displays an error message with the correct usage.
+
+      Use case resumes at Step 2.
+* 2b. DevEnable detects that such a client does not exist in the list.
+    * 2b1. DevEnable displays an error message that such a client does not exist.
+
+      Use case ends.
+
+**Use case: UC16 - Find issues**
+
+**MSS**
+
+1. User views the list of issues.
+2. User requests to filter the list based on specific keywords.
+3. DevEnable finds matching issues in the list.
+
+   Use case ends.
+
+**Extensions**
+
+* 2a. The user makes an error in writing the request.
+    * 2a1. DevEnable displays an error message with the correct usage.
+
+      Use case resumes at Step 2.
+* 2b. DevEnable detects that such an issue does not exist in the list.
+    * 2b1. DevEnable displays an error message that such an issue does not exist.
+
+      Use case ends.
+
+**Use case: UC17 - View list of commands**
 
 **MSS**
 
@@ -520,6 +738,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     Use case ends.
 
 *{More to be added}*
+
+
 
 ### Non-Functional Requirements
 
