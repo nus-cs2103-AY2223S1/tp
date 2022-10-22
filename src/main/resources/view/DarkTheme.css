@@ -142,6 +142,11 @@
      -fx-border-top-width: 1px;
 }
 
+.pane-without-border {
+    -fx-background-color: derive(#1d1d1d, 20%);
+    -fx-border-width: 0px;
+}
+
 .status-bar {
     -fx-background-color: derive(#1d1d1d, 30%);
 }
@@ -197,7 +202,14 @@
 }
 
 .menu-bar .label {
-    -fx-font-size: 14pt;
+    -fx-font-size: 11pt;
+    -fx-font-family: "Segoe UI Light";
+    -fx-text-fill: white;
+    -fx-opacity: 0.9;
+}
+
+.menu-item .label {
+    -fx-font-size: 9pt;
     -fx-font-family: "Segoe UI Light";
     -fx-text-fill: white;
     -fx-opacity: 0.9;
@@ -281,13 +293,35 @@
     -fx-text-fill: white;
 }
 
+.corner {
+    -fx-background-color: transparent;
+}
+
 .scroll-bar {
-    -fx-background-color: derive(#1d1d1d, 20%);
+    -fx-background-color: transparent;
+    -fx-background-insets: 0;
 }
 
 .scroll-bar .thumb {
     -fx-background-color: derive(#1d1d1d, 50%);
     -fx-background-insets: 3;
+}
+
+.scroll-bar .thumb:hover {
+    -fx-background-color: derive(#1d1d1d, 40%);
+    -fx-background-insets: 3;
+}
+
+.scroll-bar:vertical {
+    -fx-border-radius: 100%;
+    -fx-pref-width: 16.5;
+    -fx-padding: 3;
+}
+
+.scroll-bar:horizontal {
+    -fx-border-radius: 100%;
+    -fx-pref-height: 16.5;
+    -fx-padding: 3;
 }
 
 .scroll-bar .increment-button, .scroll-bar .decrement-button {
@@ -296,15 +330,21 @@
 }
 
 .scroll-bar .increment-arrow, .scroll-bar .decrement-arrow {
-    -fx-shape: " ";
+    -fx-shape : " ";
+    -fx-padding :0.15em 0.0;
 }
 
 .scroll-bar:vertical .increment-arrow, .scroll-bar:vertical .decrement-arrow {
-    -fx-padding: 1 8 1 8;
+    -fx-padding: 0 8 0 8;
 }
 
 .scroll-bar:horizontal .increment-arrow, .scroll-bar:horizontal .decrement-arrow {
-    -fx-padding: 8 1 8 1;
+    -fx-padding: 8 0 8 0;
+}
+
+#menuBar {
+    -fx-border-width: 0 0 2px 0;
+    -fx-border-color: #333333;
 }
 
 #cardPane {
@@ -323,7 +363,7 @@
     -fx-border-color: #383838 #383838 #ffffff #383838;
     -fx-border-insets: 0;
     -fx-border-width: 1;
-    -fx-font-family: "Segoe UI Light";
+    -fx-font-family: "JetBrains Mono", "monospace";
     -fx-font-size: 13pt;
     -fx-text-fill: white;
 }
@@ -351,6 +391,13 @@
     -fx-font-size: 11;
 }
 
+/*
+ * Custom fonts
+ */
+
+@font-face {
+    src: url('../fonts/JetBrainsMono[wght].ttf');
+}
 
 /*
 CommandBox
@@ -364,11 +411,13 @@ CommandBox
 }
 
 .command-box {
-    -fx-background-color: #fff !important;
-    -fx-background-radius: 10;
-    -fx-font-size: 16px !important;
+    -fx-background-color: #EEEEEE !important;
+    -fx-background-radius: 4;
+    -fx-font-size: 14px !important;
     -fx-text-fill: #2a2a2a !important;
     -fx-border-color: transparent !important;
+    -fx-min-height: 2.5em;
+    -fx-font-family: "JetBrains Mono", monospace;
 }
 
 /*ProfilePanel*/
@@ -423,24 +472,23 @@ CommandBox
 
 /*Result Display*/
 .result-display-container {
-    -fx-max-height: 100px;
     -fx-pref-height: 100px;
     -fx-min-height: 100px;
 }
 
 .result-display {
     -fx-padding: 0px 12px;
-    -fx-background-color: #3a3a3a;
-    -fx-background-radius: 20;
+    -fx-background-color: #494949;
+    -fx-background-radius: 4;
     -fx-border-color: transparent;
-    -fx-effect: dropshadow(gaussian, #1d1d1d, 20, 0.2, 0, 10);
 }
 
 .result-display .text-area {
     -fx-background-color: transparent;
     -fx-border-color: transparent;
-    -fx-font-size: 20px;
-    -fx-text-fill: white;
+    -fx-font-size: 14px;
+    -fx-text-fill: #EEEEEE;
+    -fx-font-family: "JetBrains Mono", monospace;
 }
 
 .result-display .label {
@@ -448,8 +496,8 @@ CommandBox
 }
 
 #resultDisplay .content {
-    -fx-background-color: #3a3a3a;
-    -fx-background-radius:0;
+    -fx-background-color: #494949;
+    -fx-background-radius: 0;
     -fx-border-color: transparent;
     -fx-text-fill: white;
 }
