@@ -12,6 +12,8 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_PLANNEDMOD;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PREVIOUSMOD;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.testutil.Assert.assertThrows;
+import static seedu.address.testutil.TypicalPersons.XAVIER;
+import static seedu.address.testutil.TypicalPersons.ZEPHYR;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -83,6 +85,8 @@ public class CommandTestUtil {
 
     public static final EditCommand.EditPersonDescriptor DESC_AMY;
     public static final EditCommand.EditPersonDescriptor DESC_BOB;
+    public static final EditCommand.EditPersonDescriptor DESC_ZEPHYR;
+    public static final EditCommand.EditPersonDescriptor DESC_XAVIER;
 
     static {
         DESC_AMY = new EditPersonDescriptorBuilder().withName(VALID_NAME_AMY)
@@ -95,6 +99,8 @@ public class CommandTestUtil {
         DESC_BOB = new EditPersonDescriptorBuilder().withName(VALID_NAME_BOB)
                 .withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB).withAddress(VALID_ADDRESS_BOB)
                 .withGithub(VALID_GITHUB_BOB).withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).build();
+        DESC_ZEPHYR = new EditPersonDescriptorBuilder(ZEPHYR).build();
+        DESC_XAVIER = new EditPersonDescriptorBuilder(XAVIER).build();
     }
 
     /**

@@ -35,7 +35,7 @@ public class DeleteUserCommandTest {
     }
 
     @Test
-    public void execute_noUserToDelete_throwsCommandException() {
+    public void execute_emptyUser_throwsCommandException() {
         Model modelWithoutUser = model;
         modelWithoutUser.deleteUser();
         DeleteCommand deleteCommand = new DeleteUserCommand();

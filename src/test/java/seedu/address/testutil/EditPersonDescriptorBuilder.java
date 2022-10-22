@@ -14,6 +14,7 @@ import seedu.address.model.person.Github;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
+import seedu.address.model.person.user.User;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -45,6 +46,21 @@ public class EditPersonDescriptorBuilder {
         descriptor.setCurrModules(person.getCurrModules());
         descriptor.setPrevModules(person.getPrevModules());
         descriptor.setPlanModules(person.getPlanModules());
+    }
+
+    /**
+     * Returns an {@code EditPersonDescriptor} with fields containing {@code user}'s details
+     */
+    public EditPersonDescriptorBuilder(User user) {
+        descriptor = new EditPersonDescriptor();
+        descriptor.setName(user.getName());
+        descriptor.setPhone(user.getPhone());
+        descriptor.setEmail(user.getEmail());
+        descriptor.setAddress(user.getAddress());
+        descriptor.setGithub(user.getGithub());
+        descriptor.setCurrModules(user.getCurrModules());
+        descriptor.setPrevModules(user.getPrevModules());
+        descriptor.setPlanModules(user.getPlanModules());
     }
 
     /**
