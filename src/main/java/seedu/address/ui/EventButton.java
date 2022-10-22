@@ -5,10 +5,8 @@ import javafx.beans.value.ChangeListener;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.geometry.Point2D;
-import javafx.geometry.Rectangle2D;
 import javafx.scene.control.Button;
 import javafx.scene.layout.Region;
-import javafx.stage.Screen;
 import javafx.stage.Stage;
 import seedu.address.model.calendar.CalendarEvent;
 
