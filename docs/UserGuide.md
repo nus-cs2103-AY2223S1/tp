@@ -230,6 +230,17 @@ Format: ```cancel APPOINTMENT_INDEX```
 Examples:
 * `cancel 1`
 
+### View History/Cycling of Commands
+
+Shows the most recent 10 commands that was inputted.
+Allows cycling through those commands to reduce the need of retyping similar commands fully.
+
+Controls: 
+* `Up Arrow` : Cycle to next command
+* `Down Arrow`: Cycle to previous command
+* `Left Arrow`: Display History of commands
+* `Right Arrow`: Close History
+
 ### Clearing all entries : `clear`
 
 Clears all entries from idENTify.
