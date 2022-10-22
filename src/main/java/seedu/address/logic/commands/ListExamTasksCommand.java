@@ -30,7 +30,7 @@ public class ListExamTasksCommand extends Command {
     private final Index examIndex;
 
     /**
-     * Constructor of the ListExamTasks class which shows all tasks linked to a specific exam.
+     * Constructor of the ListExamTasksCommand class which shows all tasks linked to a specific exam.
      *
      * @param examIndex Index of exam to be checked if tasks are linked with.
      */
