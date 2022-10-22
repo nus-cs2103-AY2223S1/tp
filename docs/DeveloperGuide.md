@@ -135,11 +135,14 @@ Similar analogues exist for task and lesson data. The class diagram is similar a
 **API** : [`Storage.java`](https://github.com/AY2223S1-CS2103T-T11-3/tp/tree/master/src/main/java/jarvis/storage/Storage.java)
 
 <img src="images/StorageClassDiagram.png" width="550" />
-This diagram only shows the StudentBook Storage, but storage for Lessons and Tasks is done similarly. The only difference is the name of the classes (`JsonTaskBookStorage` instead of `JsonStudentBookStorage`, `JsonAdaptedTask` instead of `JsonAdaptedStudent` etc.)
+The above diagram only shows the UserPrefs and StudentBook Storage in full. TaskBook Storage is done similarly to StudentBook Storage. The only difference is the name of the classes (`JsonTaskBookStorage` instead of `JsonStudentBookStorage`, `JsonAdaptedTask` instead of `JsonAdaptedStudent` etc.)
+
+<img src="images/LessonStorageClassDiagram.png" width="550" />
+The LessonBook Storage is slightly different from the StudentBook and TaskBook Storages.
 
 The `Storage` component,
 * can save student, task and lesson data as well as user preference data in json format, and read them back into corresponding objects.
-* inherits from `StudentBookStorage`, `TaskBookStorage` and `UserPrefStorage`, which means it can be treated as any one of them (if only the functionality of only one is needed).
+* inherits from `StudentBookStorage`, `TaskBookStorage`, `LessonBookStorage` and `UserPrefStorage`, which means it can be treated as any one of them (if only the functionality of only one is needed).
 * depends on some classes in the `Model` component (because the `Storage` component's job is to save/retrieve objects that belong to the `Model`)
 
 ### Common classes
@@ -151,6 +154,15 @@ Classes used by multiple components are in the `jarvis.commons` package.
 ## **Implementation**
 
 This section describes some noteworthy details on how certain features are implemented.
+
+### List Students / Tasks
+To see the full list of students or tasks, the user keys in the valid command (`lists` or `listt`). Parsing of the user input is done and a `ListStudentCommand` is then generated. The following sequence diagram shows what happens when the `ListStudentCommand` is executed.
+
+<img src="images/ListStudentSequenceDiagram.png" width="550"/>
+
+1. The list of students in the model is updated to display all students.
+
+The implementation for listing tasks is similar.
 
 ### Mark Task as done / not done
 In order to mark a task as completed, the user keys in a valid command (e.g. `marktask 2`). Parsing of the user input is done (see the sequence diagram for deleting a student in the [Logic component](#logic-component) for a similar parsing sequence) and a `MarkTaskCommand` is then generated. The following sequence diagram shows what happens when the `MarkTaskCommand` is executed.
@@ -539,7 +551,7 @@ testers are expected to do more *exploratory* testing.
 
 1. Deleting a student while all persons are being shown
 
-   1. Prerequisites: List all student using the `liststudent` command. Multiple students in the list.
+   1. Prerequisites: List all student using the `lists` command. Multiple students in the list.
 
    1. Test case: `deletestudent 1`<br>
       Expected: First student is deleted from the list. Details of the deleted student shown in the status message. Timestamp in the status bar is updated.
