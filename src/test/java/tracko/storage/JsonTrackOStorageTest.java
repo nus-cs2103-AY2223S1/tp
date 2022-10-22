@@ -70,6 +70,7 @@ public class JsonTrackOStorageTest {
         // Save in new file and read back
         jsonTrackOStorage.saveTrackO(original, filePath);
         ReadOnlyTrackO readBack = jsonTrackOStorage.readTrackO(filePath).get();
+
         assertEquals(original, new TrackO(readBack));
 
         // Modify data, overwrite exiting file, and read back
@@ -79,8 +80,8 @@ public class JsonTrackOStorageTest {
         // re-add after implementation of remove order
         // original.removePerson(ORDER_1);
         jsonTrackOStorage.saveTrackO(original, filePath);
-
         readBack = jsonTrackOStorage.readTrackO(filePath).get();
+
         assertEquals(original, new TrackO(readBack));
 
         // Save and read without specifying file path
@@ -89,7 +90,6 @@ public class JsonTrackOStorageTest {
         jsonTrackOStorage.saveTrackO(original); // file path not specified
         readBack = jsonTrackOStorage.readTrackO().get(); // file path not specified
         assertEquals(original, new TrackO(readBack));
-
     }
 
     @Test

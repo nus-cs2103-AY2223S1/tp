@@ -3,7 +3,6 @@ package tracko.model.order;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-import java.math.BigDecimal;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashSet;
@@ -49,9 +48,9 @@ public class OrderContainsKeywordsPredicateTest {
     @Test
     public void test_nameContainsKeywords_returnsTrue() {
         Item appleKeychainItem = new Item(new ItemName("Apple Keychain"), new Description("test"),
-                new Quantity(300), new HashSet<>(), new Price(new BigDecimal(2)), new Price(new BigDecimal(5)));
+                new Quantity(300), new HashSet<>(), new Price(2.00), new Price(5.00));
         Item bananaKeychainItem = new Item(new ItemName("Banana Keychain"), new Description("test"),
-                new Quantity(300), new HashSet<>(), new Price(new BigDecimal(2)), new Price(new BigDecimal(5)));
+                new Quantity(300), new HashSet<>(), new Price(2.00), new Price(5.00));
 
         // One keyword
         OrderContainsKeywordsPredicate predicate =
@@ -78,9 +77,9 @@ public class OrderContainsKeywordsPredicateTest {
     @Test
     public void test_nameDoesNotContainKeywords_returnsFalse() {
         Item appleKeychainItem = new Item(new ItemName("Apple Keychain"), new Description("test"),
-            new Quantity(300), new HashSet<>(), new Price(new BigDecimal(2)), new Price(new BigDecimal(5)));
+            new Quantity(300), new HashSet<>(), new Price(2.00), new Price(5.00));
         Item bananaKeychainItem = new Item(new ItemName("Banana Keychain"), new Description("test"),
-            new Quantity(300), new HashSet<>(), new Price(new BigDecimal(2)), new Price(new BigDecimal(5)));
+            new Quantity(300), new HashSet<>(), new Price(1.99), new Price(4.85));
 
         // Zero keywords
         OrderContainsKeywordsPredicate predicate = new OrderContainsKeywordsPredicate(Collections.emptyList());

@@ -1,6 +1,5 @@
 package tracko.storage;
 
-import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -27,8 +26,8 @@ public class JsonAdaptedItem {
     private final String itemName;
     private final Integer quantity;
     private final String description;
-    private final BigDecimal sellPrice;
-    private final BigDecimal costPrice;
+    private final Double sellPrice;
+    private final Double costPrice;
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
 
     /**
@@ -37,8 +36,8 @@ public class JsonAdaptedItem {
     @JsonCreator
     public JsonAdaptedItem(@JsonProperty("itemName") String itemName, @JsonProperty("quantity") Integer quantity,
                            @JsonProperty("description") String description,
-                           @JsonProperty("sellPrice") BigDecimal sellPrice,
-                           @JsonProperty("costPrice") BigDecimal costPrice,
+                           @JsonProperty("sellPrice") Double sellPrice,
+                           @JsonProperty("costPrice") Double costPrice,
                            @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
         this.itemName = itemName;
         this.quantity = quantity;

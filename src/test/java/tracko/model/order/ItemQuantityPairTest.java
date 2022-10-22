@@ -6,7 +6,6 @@ import static org.junit.jupiter.api.Assertions.assertSame;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static tracko.testutil.Assert.assertThrows;
 
-import java.math.BigDecimal;
 import java.util.HashSet;
 
 import org.junit.jupiter.api.Test;
@@ -25,14 +24,14 @@ public class ItemQuantityPairTest {
         Integer validQuantity = 3;
         assertThrows(NullPointerException.class, () -> new ItemQuantityPair(null, new Quantity(validQuantity)));
         Item validItem = new Item(new ItemName("Valid Item Name"), new Description("Valid Item Description"),
-                new Quantity(10), new HashSet<>(), new Price(new BigDecimal(10)), new Price(new BigDecimal(20)));
+                new Quantity(10), new HashSet<>(), new Price(10.00), new Price(20.00));
         assertThrows(NullPointerException.class, () -> new ItemQuantityPair(validItem, null));
     }
 
     @Test
     public void getItem() {
         Item validItem = new Item(new ItemName("Valid Item Name"), new Description("Valid Item Description"),
-                new Quantity(10), new HashSet<>(), new Price(new BigDecimal(10)), new Price(new BigDecimal(20)));
+                new Quantity(10), new HashSet<>(), new Price(10.00), new Price(20.00));
         Quantity validQuantity = new Quantity(1);
         ItemQuantityPair validPair = new ItemQuantityPair(validItem, validQuantity);
 
@@ -42,7 +41,7 @@ public class ItemQuantityPairTest {
     @Test
     public void getQuantity() {
         Item validItem = new Item(new ItemName("Valid Item Name"), new Description("Valid Item Description"),
-                new Quantity(10), new HashSet<>(), new Price(new BigDecimal(10)), new Price(new BigDecimal(20)));
+                new Quantity(10), new HashSet<>(), new Price(9.99), new Price(19.99));
         Quantity validQuantity = new Quantity(1);
         ItemQuantityPair validPair = new ItemQuantityPair(validItem, validQuantity);
 
@@ -52,20 +51,20 @@ public class ItemQuantityPairTest {
     @Test
     public void toStringTest() {
         Item validItem = new Item(new ItemName("Valid Item Name"), new Description("Valid Item Description"),
-                new Quantity(10), new HashSet<>(), new Price(new BigDecimal(10)), new Price(new BigDecimal(20)));
+                new Quantity(10), new HashSet<>(), new Price(9.9), new Price(19.9));
         Quantity validQuantity = new Quantity(1);
         ItemQuantityPair validPair = new ItemQuantityPair(validItem, validQuantity);
 
         assertEquals(validPair.toString(), validQuantity + " * " + validItem.getItemName());
     }
 
-    @Test
+    @ Test
     public void equals() {
         Item validItemOne = new Item(new ItemName("Valid Item Name One"), new Description("Valid Item Description One"),
-                new Quantity(10), new HashSet<>(), new Price(new BigDecimal(10)), new Price(new BigDecimal(20)));
+                new Quantity(10), new HashSet<>(), new Price(10.00), new Price(20.00));
         Quantity validQuantityOne = new Quantity(1);
         Item validItemTwo = new Item(new ItemName("Valid Item Name Two"), new Description("Valid Item Description Two"),
-                new Quantity(10), new HashSet<>(), new Price(new BigDecimal(20)), new Price(new BigDecimal(40)));
+                new Quantity(10), new HashSet<>(), new Price(20.00), new Price(39.99));
         Quantity validQuantityTwo = new Quantity(2);
         ItemQuantityPair validPairOne = new ItemQuantityPair(validItemOne, validQuantityOne);
         ItemQuantityPair validPairTwo = new ItemQuantityPair(validItemTwo, validQuantityTwo);
