@@ -235,30 +235,28 @@ public class EditOrderCommand extends Command {
             for (int i = 0; i < orderedItems.size(); i++) {
                 ItemQuantityPair itemInList = orderedItems.get(i);
 
-                // Check whether the item is in the customer's order list.
-                boolean isItemInList = itemInList.getItem().isSameItem(itemToEdit.getItem());
-                boolean isUpdatedQuantityZero = itemToEdit.getQuantityValue() == 0;
-                boolean shouldQuantityBeUpdated = itemInList.getQuantityValue() != itemToEdit.getQuantityValue();
-                boolean doesOrderedListContainOneItem = orderedItems.size() == 1;
+                if (!itemInList.getItem().isSameItem(itemToEdit.getItem())) {
+                    continue;
+                }
 
-                if (isItemInList && isUpdatedQuantityZero) {
-                    if (doesOrderedListContainOneItem) {
+                if (itemToEdit.getQuantityValue() == 0) {
+                    if (orderedItems.size() == 1) {
                         throw new CommandException(MESSAGE_ONE_ORDERED_ITEM);
                     }
                     orderedItems.remove(i);
                     hasItemBeenUpdated = true;
-                } else if (isItemInList && shouldQuantityBeUpdated) {
+                    break;
+                } else if (itemInList.getQuantityValue() != itemToEdit.getQuantityValue()) {
                     ItemQuantityPair updatedItem = new ItemQuantityPair(itemInList.getItem(), itemToEdit.getQuantity());
                     orderedItems.set(i, updatedItem);
                     hasItemBeenUpdated = true;
+                    break;
                 }
             }
 
-            // if the item does not exist in the list and the value is not 0
             if (!hasItemBeenUpdated && itemToEdit.getQuantityValue() != 0) {
                 orderedItems.add(itemToEdit);
             }
-
             this.itemList = orderedItems;
         }
 

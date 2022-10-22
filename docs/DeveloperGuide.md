@@ -154,6 +154,215 @@ Classes used by multiple components are in the `tracko.commons` package.
 
 This section describes some noteworthy details on how certain features are implemented.
 
+### Add Items feature
+
+#### Implementation
+
+The add item command will be executed by `AddItemCommand`. Items added will be stored in `ItemsList`. 
+
+Given below is an example usage scenario and how the add item mechanism behaves at each step.
+
+Step 1. The user launches the application for the first time. The `TrackO` will be initialized with the initial TrackO state, and the `ItemsList` will contain sample data.
+
+Step 2. The user executes `addi i/keys q/10` command to add 10 keys to item list in TrackO. The `addi` command creates an `AddItemCommandParser` which checks the necessary input arguments for item name (prefixed by `i/`) and quantity (prefixed by `q/`) are present before parsing the arguments into an `AddItemCommand` object. The `AddItemCommand` calls `Model#addItem()` to add the item and its corresponding quantity into the items list.
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** If a command fails its execution, it will not call `Model#addItem()`, so the incomplete item will not be saved to `ItemsList`.
+
+</div>
+
+The following sequence diagram shows how the add item operation works:
+
+_{insert sequence diagram}_
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `AddItemCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+
+</div>
+
+The following activity diagram summarizes what happens when a user executes a new command:
+
+_{insert activity diagram}_
+
+#### Design considerations:
+
+**Aspect: How add item executes:**
+
+_{add design considerations}_
+
+_{more aspects and alternatives to be added}_
+
+### Edit Item Feature
+
+The edit item feature allows the user to edit an `Item` currently being tracked by the system.
+
+#### Implementation
+
+The edit item command `editi` is implemented through the `Logic`, `Model` and `Storage` components. The `Logic` 
+component parses the user input, the `Model` component then performs the edit on the target item, the `Storage` 
+component then saves the edited data into `data/trackO.json`.
+
+Step 1. The user inputs the command `editi 1 i/Chair q/20`. This calls `LogicCommand#execute()` which calls
+`TrackOParser#parseCommand`. This parses the command as an `EditItemCommand` and returns an `EditItemCommandParser`. 
+`EditItemCommandParser#parse()` parses the arguments and returns an `EditItemCommand` with the target index and the
+appropriate `EditItemDescriptor` as input. The `EditItemDescriptor` contains information which the newly edited `Item`
+should have and is used in the creation of the new `Item` object. In this case, the `EditItemDescriptor` contains a new
+`ItemName` and `Quantity` taken from the user input, while all other fields are copied from the existing item at the
+target index 1.
+
+Step 2. The `EditItemCommand` creates a new `Item` using `createEditedItem()` and the `EditItemDescriptor`. It then
+checks if this `Item` already exists in the inventory list by using `Model#has()`. If it already exists, a
+`CommandException` is thrown with `MESSAGE_DUPLICATE_ITEM`. An item already exists if there is another item in the
+inventory list with same `ItemName`. `Item#isSameItem` returns true when both `Item` have the same `ItemName`. This is
+because having 2 `Item` with the same `ItemName` can be confusing to the user and this safeguards the user from such a
+situation.
+
+Step 3. The `Item` at the target index is then replaced by the newly created `Item` using `Model#setItem()`,
+successfully executing the edit item command in the `Model`.
+
+Step 4. `LogicManager#execute()` then calls `Storage#saveTrackO()` which saves the new `Model` to the data file.
+
+The sequence diagram below illustrates this process.
+
+_**Sequence diagram to be added here**_
+
+### Order Management
+
+Order management is one of two core features of TrackO alongside inventory management. These two features work together
+to form the backbone of the application, allowing for efficient and reliable tracking of order and inventory data.
+
+#### Overview
+
+As per the Model diagram given [above]()(**_Ensure diagram consistency here_**), the application keeps track of one `OrderList`
+at any point in time. This `OrderList` instance represents the container that keeps track of all order data in the system.
+
+Currently, the application features 5 main operations that interact directly with the `OrderList`. They are represented by
+the following commands:
+* [`AddOrderCommand`](#Add-Order-Feature) - creates a new order to be added to the `OrderList`
+* `FindOrderCommand` - filters and display matching orders from the `OrderList` based on provided keywords
+* `ListOrderCommand` - display all order data from the `OrderList`
+* `EditOrderCommand` - edit the data of an order from the `OrderList`
+* `DeleteOrderCommand` - deletes an existing order from the `OrderList`
+
+The order management feature is supported by the `Order` class, represented by the class diagram below.
+![OrderClassDiagram](images/developer-guide/OrderClassDiagram.png)
+
+The `Order` class encapsulates order-related data packaged in the following classes/attributes:
+* `Name`, `Phone`, `Email`, `Address` - customer data related to the `Order`
+* `ItemQuantityPair` - represents an ordered `Item` in the `Order`, with an accompanying `Quantity` that represents the amount of units of said `Item` ordered by the customer
+* `LocalDateTime` - the time at which the order entry was created in the system
+* `isPaid`/`isDelivered` - represents the completion status of the order (an `Order` is considered complete if both fields are true)
+
+#### Add Order Feature
+
+The add order feature allows the user to add an `Order` to be tracked by the system.
+
+##### Implementation
+
+This feature is facilitated by the `AddOrderCommand`, which extends from the `MultiLevelCommand` class.
+The user will enter multiple rounds of input before an `Order` is successfully added to the system.
+
+Given below is an example usage scenario and how the add order mechanism behaves at each step. We assume that the user
+has already added some inventory items to be tracked by the system, such that our initial state before the add order command
+is initiated, is illustrated as such.
+
+Step 1. The user enters the following input into the UI's command box:
+`addo n/John Doe p/98765432 e/johnd@example.com a/311, Clementi Ave 2, #02-25`. This instantiates an `AddOrderCommand`, that references
+a new `Order` which encapsulates the input customer data. This then sets the system to await and prompt for further input from the user.
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** Upon any invalid inputs (invalid/missing prefixes or values), the UI will notify the user and provide a prompt for the correct input format)
+</div>
+
+**_Object diagram to be added here_**
+
+Step 2a. The user then enters `i/Pen q/3`, representing that the order requires 3 units (quantities) of 'Pens' to fulfill.
+The system updates the instantiated command, by first having the `AddOrderCommand` stages the input item name and quantity for validation,
+using the `AddOrderCommand#stageForValidation()` method.
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** Upon any invalid inputs (invalid/missing prefixes or values), the UI will notify the user and provide a prompt for the correct input format)
+</div>
+
+**_Object diagram to be added here_**
+
+Step 2b. The system searches the inventory items for an item that has a matching name. In this scenario,
+we assume that the user has already added an `Item` with its `ItemName` value to be `Pen`, to the system's list of tracked items.
+Hence, upon execution, a valid item was found based on the user's input item name, and the system adds a new `ItemQuantityPair` that
+references the found item to the list of items ordered in the instantiated `Order`.
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** If the user has entered an item name that cannot be matched to the system's inventory, the state will remain unchanged and the UI will notify the user and provide a prompt to re-enter inputs)
+</div>
+
+**_Object diagram to be added here_**
+
+
+Step 3. The user repeats Step 2 multiple times to fill up the instantiated `Order`'s list of ordered items.
+
+**_Object diagram to be added here_**
+
+Step 4. The user then enters `done` after inputting all the required order details. The system finally executes the command, adding the
+built up `Order` to the `OrderList`. The system also no longer waits for additional input as the previously 'in progress' `AddOrderCommand`
+is now completed.
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The user can also choose to abort the command at any point after instantiating the command (Step 2 to 4), by entering 'cancel'
+</div>
+
+**_Object diagram to be added here_**
+
+The following sequence diagram shows how the add order operation works:
+
+_**Sequence diagram to be added here**_
+
+The following activity diagram below illustrates the general flow of the user's experience in adding an order.
+![AddOrderActivityDiagram](images/developer-guide/AddOrderActivityDiagram.png)
+
+##### Design considerations
+
+Aspect: How add order command executes:
+* **Alternative 1 (current choice)**: Multi-level command, with user inputting information multiples times between customer data and then subsequently multiple item and quantity inputs.
+  * Pros: Better user experience. Users don't have to type out a very long command in one go to add an order.
+  * Cons: Harder to implement.
+* **Alternative 2**: Single level command, user inputs all required information in one long command.
+  * Pros: Easier to implement.
+  * Cons: Users have to type out a very long command, and multiple times if they were to mistype certain details and have to re-enter data.
+
+**_More design considerations_**
+
+### Find Orders feature
+
+#### Implementation
+
+The find order command is executed by `FindOrderCommand`. It extends `Command`.
+
+Given below is an example usage scenario and how the find order mechanism behaves at each step.
+
+Step 1. The user launches the application for the first time. `TrackO` will be initialised with the initial TrackO
+state, and the `OrdersList` will contain sample data.
+
+Step 2. The user executes `findo keychain apple` command to find the orders containing items with the keywords
+keychain or apple. The `findo` command calls `FindOrderCommandParser` which checks for the correct command
+syntax and separates the keywords, utilising each space as a delimiter. The keywords are then passed as a `List`
+into a constructor for `OrderContainsKeywordsPredicate`, which extends `Predicate<Order>`, to construct a predicate
+that will filter the items according to the keywords. The predicate is passed into a new instance of
+`FindOrderCommand`. `FindOrderCommand` then calls `Model#updateFilteredOrderList()` to filter `Model#filteredOrders`
+according to the previously constructed `OrderContainsKeywordsPredicate`.
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** If the command syntax is incorrect, 
+`FindOrderCommandParser` will throw a `ParseException`.
+
+</div>
+
+The following sequence diagram shows how the find order operation works:
+_{insert sequence diagram}_
+
+The following activity diagram summarizes what happens when a user executes a new command:
+_{insert activity diagram}_
+
+#### Design considerations:
+
+**Aspect: How find order executes:**
+
+_{add design considerations}_
+
+_{more aspects and alternatives to be added}_
+
 ### \[Proposed\] Undo/redo feature
 
 #### Proposed Implementation
@@ -465,7 +674,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     - 1a1. System informs user of the incomplete data.
 
       Use case resumes at 1.
-    
+
 ### Non-Functional Requirements
 
 1. Should work on any _mainstream OS_ as long as it has Java `11` or above installed.

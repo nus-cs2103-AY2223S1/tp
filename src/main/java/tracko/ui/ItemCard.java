@@ -6,7 +6,6 @@ import javafx.fxml.FXML;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Label;
-import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import javafx.scene.text.TextAlignment;
@@ -46,7 +45,7 @@ public class ItemCard extends UiPart<Region> {
     @FXML
     private Label costPrice;
     @FXML
-    private FlowPane tags;
+    private HBox tags;
 
     /**
      * Creates a {@code ItemCode} with the given {@code Item} and index to display.
@@ -71,18 +70,31 @@ public class ItemCard extends UiPart<Region> {
         description.setTextAlignment(TextAlignment.JUSTIFY);
         description.setPadding(new Insets(0, 10, 0, 0));
 
-        sellPrice.setText("$" + item.getSellPrice().price);
+        sellPrice.setText("$" + item.getSellPrice().toString());
         sellPrice.setWrapText(true);
         sellPrice.setPadding(new Insets(0, 10, 0, 0));
 
-        costPrice.setText("$" + item.getCostPrice().price);
+        costPrice.setText("$" + item.getCostPrice().toString());
         costPrice.setWrapText(true);
         costPrice.setPadding(new Insets(0, 10, 0, 0));
 
         item.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
-                .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
+                .forEach(tag -> tags.getChildren().add(constructTags(tag.tagName)));
         tags.setPadding(new Insets(0, 10, 5, 0));
+    }
+
+    /**
+     * Constructs a label for {@code tagName} with customized styles.
+     *
+     * @param tagName Name of the tag.
+     * @return The label containing the tag name.
+     */
+    public Label constructTags(String tagName) {
+        Label tagLabel = new Label();
+        tagLabel.setText(tagName);
+        tagLabel.setWrapText(true);
+        return tagLabel;
     }
 
     @Override

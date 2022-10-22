@@ -1,5 +1,6 @@
 package tracko.storage;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -27,6 +28,7 @@ public class JsonAdaptedOrder {
     private final String phone;
     private final String email;
     private final String address;
+    private final LocalDateTime timeCreated;
     private final List<JsonAdaptedItemQuantityPair> itemList = new ArrayList<>();
     private final boolean isPaid;
     private final boolean isDelivered;
@@ -37,12 +39,14 @@ public class JsonAdaptedOrder {
     @JsonCreator
     public JsonAdaptedOrder(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
                             @JsonProperty("email") String email, @JsonProperty("address") String address,
+                            @JsonProperty("timeCreated") LocalDateTime timeCreated,
                             @JsonProperty("itemList") List<JsonAdaptedItemQuantityPair> itemList,
                             @JsonProperty("isPaid") boolean isPaid, @JsonProperty("isDelivered") boolean isDelivered) {
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
+        this.timeCreated = timeCreated;
         if (itemList != null) {
             this.itemList.addAll(itemList);
         }
@@ -58,6 +62,7 @@ public class JsonAdaptedOrder {
         phone = source.getPhone().value;
         email = source.getEmail().value;
         address = source.getAddress().value;
+        timeCreated = source.getTimeCreated();
         source.getItemList().stream()
             .forEach(item -> itemList.add(new JsonAdaptedItemQuantityPair(item)));
         this.isPaid = source.getPaidStatus();
@@ -103,6 +108,11 @@ public class JsonAdaptedOrder {
         }
         final Address modelAddress = new Address(address);
 
+        if (timeCreated == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    LocalDateTime.class.getSimpleName()));
+        }
+
         if (itemList == null || itemList.isEmpty()) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, "Item List"));
         }
@@ -112,6 +122,7 @@ public class JsonAdaptedOrder {
             itemQuantityPairs.add(pair.toModelType(inventoryList));
         }
 
-        return new Order(modelName, modelPhone, modelEmail, modelAddress, itemQuantityPairs, isPaid, isDelivered);
+        return new Order(modelName, modelPhone, modelEmail, modelAddress, timeCreated, itemQuantityPairs,
+            isPaid, isDelivered);
     }
 }
