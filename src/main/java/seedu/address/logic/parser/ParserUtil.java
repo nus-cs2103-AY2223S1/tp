@@ -152,7 +152,7 @@ public class ParserUtil {
                 throw new ParseException(Cap.MESSAGE_CONSTRAINTS);
             }
             return new Cap(capValue, maximumCapValue);
-        } catch (NumberFormatException e) {
+        } catch (NumberFormatException | ArrayIndexOutOfBoundsException e) {
             throw new ParseException(Cap.MESSAGE_CONSTRAINTS);
         }
     }
