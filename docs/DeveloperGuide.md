@@ -160,7 +160,6 @@ The sequence diagram below shows how a `DeleteCommand` with multiple inputs is e
 1. `DeleteCommandParser` now returns a `Set<Index>` instead of just a single `Index` to be used as arguments for the `DeleteCommand`constructor.
 2. If any of the inputs are invalid (out of bounds indexes or non-integer characters) a `ParseException` will be thrown, even if other inputs are valid.
 
-<<<<<<< HEAD
 <div markdown="span" class="alert alert-info">
 :information_source: **Note:** The order of the inputs does not matter as the set is sorted in reverse order before creating the `DeleteCommand` object. This ensures that deletion of each entry in the `model` does not affect the deletion of the subsequent entries while the `for` loop is running.
 </div>
