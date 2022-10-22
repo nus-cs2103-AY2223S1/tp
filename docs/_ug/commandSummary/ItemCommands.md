@@ -9,24 +9,34 @@
 {% capture view %}{% include_relative _ug/commandSummary/itemCommands/view.md %}{% endcapture %}
 {% capture inc %}{% include_relative _ug/commandSummary/itemCommands/inc.md %}{% endcapture %}
 {% capture dec %}{% include_relative _ug/commandSummary/itemCommands/dec.md %}{% endcapture %}
-{% capture set %}{% include_relative _ug/commandSummary/itemCommands/set.md %}{% endcapture %}
+{% capture edit %}{% include_relative _ug/commandSummary/itemCommands/edit.md %}{% endcapture %}
 {% capture del %}{% include_relative _ug/commandSummary/itemCommands/del.md %}{% endcapture %}
+
+{% capture newexample %}{% include_relative _ug/commandSummary/itemCommandsExample/new.md %}{% endcapture %}
+{% capture listexample %}{% include_relative _ug/commandSummary/itemCommandsExample/list.md %}{% endcapture %}
+{% capture findexample %}{% include_relative _ug/commandSummary/itemCommandsExample/find.md %}{% endcapture %}
+{% capture sortexample %}{% include_relative _ug/commandSummary/itemCommandsExample/sort.md %}{% endcapture %}
+{% capture viewexample %}{% include_relative _ug/commandSummary/itemCommandsExample/view.md %}{% endcapture %}
+{% capture incexample %}{% include_relative _ug/commandSummary/itemCommandsExample/inc.md %}{% endcapture %}
+{% capture decexample %}{% include_relative _ug/commandSummary/itemCommandsExample/dec.md %}{% endcapture %}
+{% capture editexample %}{% include_relative _ug/commandSummary/itemCommandsExample/edit.md %}{% endcapture %}
+{% capture delexample %}{% include_relative _ug/commandSummary/itemCommandsExample/del.md %}{% endcapture %}
 <!-- markdownlint-restore -->
 
 <!-- ===== CREATE TABLE FORMATTING IN NORMAL+ MARKDOWN ===== -->
 <!-- WE USE :variable: FOR VALUES THAT ARE TO BE SUBSTITUTED -->
 {% capture TABLE %}
-| Action                                                            | Format |
-|-------------------------------------------------------------------|--------|
-| Create a new item                                                 | :new:  |
-| List all items                                                    | :list: |
-| Search for an item                                                | :find: |
-| Sort an item by name, quantity, type, bought date or expiry date. | :sort: |
-| View information about an item                                    | :view: |
-| Increase the quantity of an item                                  | :inc:  |
-| Decrease the quantity of an item                                  | :dec:  |
-| Update the information of an item                                 | :set:  |
-| Delete an item                                                    | :del:  |
+| Action                                                            | Format | Example       |
+|-------------------------------------------------------------------|--------|---------------|
+| Create a new item                                                 | :new:  | :newexample:  |
+| List all items                                                    | :list: | :listexample: |
+| Search for an item                                                | :find: | :findexample: |
+| Sort an item by name, quantity, type, bought date or expiry date. | :sort: | :sortexample: |
+| View information about an item                                    | :view: | :viewexample: |
+| Increase the quantity of an item                                  | :inc:  | :incexample:  |
+| Decrease the quantity of an item                                  | :dec:  | :decexample:  |
+| Update the information of an item                                 | :edit: | :editexample: |
+| Delete an item                                                    | :del:  | :delexample:  |
 {% endcapture %}
 
 <!-- ===== RENDER THE ACTUAL TABLE ===== -->
@@ -39,6 +49,16 @@
   | replace: ":view:", view
   | replace: ":inc:", inc
   | replace: ":dec:", dec
-  | replace: ":set:", set
+  | replace: ":edit:", edit
   | replace: ":del:", del
+  | replace: ":newexample:", newexample
+  | replace: ":listexample:", listexample
+  | replace: ":findexample:", findexample
+  | replace: ":sortexample:", sortexample
+  | replace: ":viewexample:", viewexample
+  | replace: ":incexample:", incexample
+  | replace: ":decexample:", decexample
+  | replace: ":editexample:", editexample
+  | replace: ":delexample:", delexample
 }}
+

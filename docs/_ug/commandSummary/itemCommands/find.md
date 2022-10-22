@@ -1,2 +1,3 @@
 <!-- markdownlint-disable-file first-line-h1 -->
-<b>find n/ITEM_NAME</b><br><br><u>Valid Example:</u><br>find n/Potato
+find ITEM_NAME [ITEM_NAME]
+Note: You can provide multiple keywords to find an item. For example, `find potato chips`. 
