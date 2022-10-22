@@ -14,6 +14,8 @@ public class Config {
 
     public static final int HISTORY_SIZE_LIMIT = 100;
 
+    public static final int UNDO_LIMIT = 100;
+
 
     // Config values customizable through config file
     private Level logLevel = Level.INFO;

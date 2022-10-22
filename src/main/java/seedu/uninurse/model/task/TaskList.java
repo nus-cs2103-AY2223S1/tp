@@ -105,14 +105,14 @@ public class TaskList implements GenericList<Task> {
     }
 
     /**
-     * returns a list of {@code Task}s that are due today.
+     * Returns a list of {@code Task}s that are due today.
      */
     public List<Task> getAllTasksToday() {
         return internalTaskList.stream().filter(Task::isTaskToday).collect(Collectors.toList());
     }
 
     /**
-     * returns whether there are tasks today.
+     * Returns true if there are tasks today.
      */
     public boolean containsTaskToday() {
         return !this.getAllTasksToday().isEmpty();
@@ -121,8 +121,8 @@ public class TaskList implements GenericList<Task> {
     @Override
     public String toString() {
         final StringBuilder builder = new StringBuilder();
-        internalTaskList.forEach(t -> {
-            int index = internalTaskList.indexOf(t);
+        for (int index = 0; index < internalTaskList.size(); index++) {
+            Task t = internalTaskList.get(index);
             if (index == 0) {
                 builder.append(index + 1)
                         .append(". ")
@@ -133,7 +133,7 @@ public class TaskList implements GenericList<Task> {
                         .append(". ")
                         .append(t);
             }
-        });
+        }
         return builder.toString();
     }
 
