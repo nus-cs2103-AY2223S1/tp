@@ -55,11 +55,11 @@ Person *-left-> "*" Tag
 Person <|-- Student
 Person <|-- Professor
 Person <|-- TeachingAssistant
-Student *--> Year
-Professor *--> Rating
-Professor *--> OfficeHour
-Professor *--> Specialisation
-TeachingAssistant *--> Rating
+Student *--> "0..1" Year
+Professor *--> "0..1" Rating
+Professor *--> "0..1" OfficeHour
+Professor *--> "0..1" Specialisation
+TeachingAssistant *--> "0..1" Rating
 Professor *--> ModuleCode
 Student *--> "1..*" ModuleCode
 TeachingAssistant *--> ModuleCode
