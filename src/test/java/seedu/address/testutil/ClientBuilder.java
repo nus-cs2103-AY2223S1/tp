@@ -1,5 +1,6 @@
 package seedu.address.testutil;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -25,11 +26,12 @@ public class ClientBuilder {
     public static final String DEFAULT_PHONE = "85355255";
     public static final String DEFAULT_EMAIL = "amy@gmail.com";
     public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
+    public static final LocalDate DEFAULT_BIRTHDAY = LocalDate.of(2000, 1, 1);
 
     private Name name;
     private Phone phone;
-    private Email email;
-    private Address address;
+    private Optional<Email> email;
+    private Optional<Address> address;
     private Optional<Birthday> birthday;
     private Set<Product> products;
     private List<Meeting> meetings;
@@ -40,9 +42,9 @@ public class ClientBuilder {
     public ClientBuilder() {
         name = new Name(DEFAULT_NAME);
         phone = new Phone(DEFAULT_PHONE);
-        email = new Email(DEFAULT_EMAIL);
-        address = new Address(DEFAULT_ADDRESS);
-        birthday = Optional.empty();
+        email = Optional.of(new Email(DEFAULT_EMAIL));
+        address = Optional.of(new Address(DEFAULT_ADDRESS));
+        birthday = Optional.of(new Birthday(DEFAULT_BIRTHDAY));
         meetings = new ArrayList<>();
         products = new HashSet<>();
     }
@@ -72,7 +74,7 @@ public class ClientBuilder {
      * Sets the {@code Address} of the {@code Client} that we are building.
      */
     public ClientBuilder withAddress(String address) {
-        this.address = new Address(address);
+        this.address = Optional.of(new Address(address));
         return this;
     }
 
@@ -88,7 +90,7 @@ public class ClientBuilder {
      * Sets the {@code Email} of the {@code Client} that we are building.
      */
     public ClientBuilder withEmail(String email) {
-        this.email = new Email(email);
+        this.email = Optional.of(new Email(email));
         return this;
     }
 

@@ -14,6 +14,7 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.client.Address;
+import seedu.address.model.client.Birthday;
 import seedu.address.model.client.Email;
 import seedu.address.model.client.Name;
 import seedu.address.model.client.Phone;
@@ -104,13 +105,16 @@ public class ParserUtil {
     /**
      * Parses {@code String date} into a {@code LocalDate}.
      */
-    public static LocalDate parseDate(String date) throws ParseException {
+    public static LocalDate parseDate(String date, String type) throws ParseException {
         requireNonNull(date);
         try {
-            LocalDate parsedDate = LocalDate.parse(date, DateTimeFormatter.ofPattern("ddMMyyyy"));
-            return parsedDate;
+            return LocalDate.parse(date, DateTimeFormatter.ofPattern("ddMMyyyy"));
         } catch (DateTimeParseException e) {
-            throw new ParseException(MeetingDate.MESSAGE_CONSTRAINTS);
+            if (type.equals("meeting")) {
+                throw new ParseException(MeetingDate.MESSAGE_CONSTRAINTS);
+            } else {
+                throw new ParseException(Birthday.MESSAGE_CONSTRAINTS);
+            }
         }
     }
 

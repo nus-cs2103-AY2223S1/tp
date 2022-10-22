@@ -67,12 +67,15 @@ class JsonAdaptedClient {
     public JsonAdaptedClient(Client source) {
         name = source.getName().fullName;
         phone = source.getPhone().value;
-        email = source.getEmail().value;
-        address = source.getAddress().value;
-        Optional<Birthday> sourceBirthday = source.getBirthday();
-        birthday = sourceBirthday.isEmpty()
+        email = source.getEmail().isEmpty()
             ? ""
-            : sourceBirthday.get().toString();
+            : source.getEmail().get().toString();
+        address = source.getAddress().isEmpty()
+            ? ""
+            : source.getAddress().toString();
+        birthday = source.getBirthday().isEmpty()
+            ? ""
+            : source.getBirthday().get().toString();
         meetings.addAll(source.getMeetings().stream()
                 .map(meeting -> new JsonAdaptedMeeting(meeting, this))
                 .collect(Collectors.toList()));
@@ -88,12 +91,15 @@ class JsonAdaptedClient {
         meetings.add(adaptedMeeting);
         name = source.getName().fullName;
         phone = source.getPhone().value;
-        email = source.getEmail().value;
-        address = source.getAddress().value;
-        Optional<Birthday> sourceBirthday = source.getBirthday();
-        birthday = sourceBirthday.isEmpty()
+        email = source.getEmail().isEmpty()
                 ? ""
-                : sourceBirthday.toString();
+                : source.getEmail().get().toString();
+        address = source.getAddress().isEmpty()
+                ? ""
+                : source.getAddress().toString();
+        birthday = source.getBirthday().isEmpty()
+                ? ""
+                : source.getBirthday().toString();
         products.addAll(source.getProducts().stream()
                 .map(JsonAdaptedProduct::new)
                 .collect(Collectors.toList()));
@@ -134,7 +140,9 @@ class JsonAdaptedClient {
         if (!Email.isValidEmail(email)) {
             throw new IllegalValueException(Email.MESSAGE_CONSTRAINTS);
         }
-        final Email modelEmail = new Email(email);
+        final Optional<Email> modelEmail = email.equals("")
+                ? Optional.empty()
+                : Optional.of(new Email(address));
 
         if (address == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Address.class.getSimpleName()));
@@ -142,16 +150,21 @@ class JsonAdaptedClient {
         if (!Address.isValidAddress(address)) {
             throw new IllegalValueException(Address.MESSAGE_CONSTRAINTS);
         }
-        final Address modelAddress = new Address(address);
-        final Optional<Birthday> modelBirthday;
+        final Optional<Address> modelAddress = address.equals("")
+                ? Optional.empty()
+                : Optional.of(new Address(address));
 
         if (birthday == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
                     Birthday.class.getSimpleName()));
         }
-        modelBirthday = birthday.equals("")
+        if (!Birthday.isValidBirthday(birthday)) {
+            throw new IllegalValueException(Birthday.MESSAGE_CONSTRAINTS);
+        }
+        final Optional<Birthday> modelBirthday = birthday.equals("")
                 ? Optional.empty()
-                : Optional.of(new Birthday(ParserUtil.parseDate(birthday)));
+                : Optional.of(new Birthday(ParserUtil.parseDate(birthday, "birthday")));
+
         Client client = new Client(modelName, modelPhone, modelEmail, modelAddress, modelBirthday, modelProducts);
 
         if (meetings.isEmpty()) {
