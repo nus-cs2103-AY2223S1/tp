@@ -220,6 +220,47 @@ The following activity diagram summarizes what happens when a user executes an a
     * Pros: It is easy to determine/check time crashes when assigning a home-visit `DateTime` slot to a nurse.
     * Cons: Less flexible in the home visit date and time that a patient can choose.
 
+### List feature
+
+#### Implementation for listing patients and nurses based on specified criteria
+
+The list user function is primarily facilitated by `ListCommandParser`,`ListCommand`. `Model` and `Person` are also involved.
+
+`ListCommandParser` takes in user input and extracts the specified criteria that the user wants.
+
+The criteria are then passed to `ListCommand` which will create a `Predicate` based on the given criteria.
+
+This `Predicate` is passed to `Model`, which will filter and display the enrolled users who match the given criteria.
+
+Given below is an example usage scenario and how the list function behaves at each step. It is illustrated with the following sequence diagram:
+
+![ListSequenceDiagram](images/ListSequenceDiagram.png)
+
+Step 1. The user executes `list c/n g/f` to list all female nurses.
+
+Step 2. `AddressBookParser` parses the user command to return a `ListCommandParser` with the given criteria.
+
+Step 3. The `ListCommandParser` parses the criteria using fixed prefixes and check their validity. Then, it returns an `ListCommand` with the criteria `category=N, gender=F`.
+
+Step 4. The `ListCommand` will be executed and a `Predicate` of `category=N, gender=F` is created and passed to `Model`.
+
+Step 5. `Model` applies the `Predicate` and filters the list of enrolled users, displaying all female nurses only.
+
+The following activity diagram summarizes what happens when a user executes the list command:
+
+![ListActivityDiagram](images/ListActivityDiagram.png)
+
+#### Design considerations:
+
+**Aspect: Dealing with one invalid input amoung multiple valid inputs:**
+
+* **Alternative 1:** Verify validity of all inputs. If an input is invalid, ignore it and list based on the other given inputs.
+    * Pros: It might be more convenient for the user in certain circumstances where exact criteria matching is not vital.
+    * Cons: The user might think that the returned list fits the given criteria exactly, which might lead to user errors.
+
+* **Alternative 2:** Verify validity of all inputs. If an input is invalid, do not process the command.
+    * Pros: If a list is returned then the user can be sure that all returned users match the given criteria exactly.
+    * Cons: Possibly inefficient if exact matching is not vital.
 
 ### \[Proposed\] Undo/redo feature
 
