@@ -5,8 +5,10 @@ import javafx.beans.value.ChangeListener;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.geometry.Point2D;
+import javafx.geometry.Rectangle2D;
 import javafx.scene.control.Button;
 import javafx.scene.layout.Region;
+import javafx.stage.Screen;
 import javafx.stage.Stage;
 import seedu.address.model.calendar.CalendarEvent;
 
@@ -46,8 +48,8 @@ public class EventButton extends UiPart<Region> {
         eventButton.setText(calendarEvent.getTimeFormat() + " " + calendarEvent.getName());
         eventButton.focusedProperty().addListener(this::handleFocusedEvent);
         ChangeListener<Number> stageSizeListener = (observable, oldValue, newValue) -> {
-            if (calendarPopup.isShowing()) {
-                calendarPopup.hide();
+            if (calendarPopup.getRoot().isShowing()) {
+                calendarPopup.getRoot().hide();
             }
         };
         primaryStage.heightProperty().addListener(stageSizeListener);
@@ -56,27 +58,27 @@ public class EventButton extends UiPart<Region> {
 
     @FXML
     private void handleOnAction(ActionEvent event) {
-        if (!calendarPopup.isShowing()) {
+        if (!calendarPopup.getRoot().isShowing()) {
             displayToolTip();
         }
     }
 
     @FXML
     private void handleFocusedEvent(Observable observable) {
-        if (!calendarPopup.isShowing() && eventButton.isFocused()) {
+        if (!calendarPopup.getRoot().isShowing() && eventButton.isFocused()) {
             eventButton.setStyle(EVENT_BUTTON_STYLE + ORANGE_BORDER);
             displayToolTip();
         }
         if (!eventButton.isFocused()) {
             eventButton.setStyle(EVENT_BUTTON_STYLE + GREY_BORDER);
-            calendarPopup.hide();
+            calendarPopup.getRoot().hide();
         }
     }
 
     private void displayToolTip() {
         Point2D p = eventButton.localToScene(ORIGIN, ORIGIN);
-        calendarPopup.show(eventButton, p.getX()
-                + eventButton.getScene().getX() + eventButton.getScene().getWindow().getX(), p.getY()
+        calendarPopup.getRoot().show(eventButton, p.getX()
+                - eventButton.getScene().getX() + eventButton.getScene().getWindow().getX(), p.getY()
                 + eventButton.getScene().getY() + eventButton.getScene().getWindow().getY() + TOOLTIP_OFFSET);
     }
 }

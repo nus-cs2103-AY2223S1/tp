@@ -33,12 +33,10 @@ public class CalendarEventListPanel extends UiPart<Region> {
     }
     public VBox getCalendarEventList(int currentDay) {
         Text tDate = getTextDate(currentDay);
-
         calendarEventList.getChildren().add(tDate);
         calendarDayEvents.stream()
                 .forEach(x -> calendarEventList.getChildren()
-                        .add(new EventButton(x, primaryStage).getButton()));
-
+                        .add(new EventButton(x, primaryStage).getRoot()));
         return calendarEventList;
     }
 
