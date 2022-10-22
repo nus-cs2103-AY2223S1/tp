@@ -1,6 +1,7 @@
 <!-- markdownlint-disable-file first-line-h1 -->
 #### Create a new item: `new`
 
+TODO:YX
 **Format**: `new n/ITEM_NAME [qty/QUANTITY] [type/TYPE] [bgt/BOUGHT_DATE] [exp/EXPIRY_DATE]`
 
 > Creates a new item with the provided item name. Other than the item name, all other fields are optional.
@@ -27,7 +28,7 @@ Item  “potato” successfully created
 ---
 
 #### List all items: `list`
-
+TODO:YX (add price, remarks to displayed items)
 **Format**: `list`
 
 > Lists all the items in the inventory.
@@ -56,7 +57,7 @@ List Box:
 ---
 
 #### Search for an item: `find`
-
+TODO:YX (ditto as list)
 **Format:** `find ITEM_NAME`
 
 > Finds an inventory item based on the given keywords
@@ -86,6 +87,7 @@ List Box:
 ---
 
 #### Sort all items by an attribute: `sort`
+TODO:YX
 **Format:**: `sort [n/] [qty/] [type/] [bgt/] [exp/]`
 _NOTE: At least one of the sorting criteria must be provided._
 
@@ -115,6 +117,7 @@ List Box:
 ---
 
 #### View the information of an item: `view`
+TODO:YX
 **Format:**: `view INDEX`
 > Displays information about the specified item.
 * Displayed information includes the name, quantity, bought date, expiry date, price, and tags of items.
@@ -183,7 +186,7 @@ Tags: {vegetables}
 ---
 
 #### Edit the information of an item: `edit`
-
+TODO:YX
 Command: `edit ITEM_INDEX [n/ITEM_NAME] [qty/QUANTITY] [u/UNIT] [bgt/BOUGHT_DATE] [exp/EXPIRY_DATE]`
 NOTE: _At least one field to edit must be provided._
 
