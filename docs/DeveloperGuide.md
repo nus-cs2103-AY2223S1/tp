@@ -15,6 +15,7 @@ Table of Contents
     * [Storage component](#storage-component)
     * [Common classes](#common-classes)
 - [Implementation](#implementation)
+    * [Import command](#import-command)
     * [\[Proposed\] Undo/redo feature](#proposed-undoredo-feature)
     * [\[Proposed\] Data archiving](#proposed-data-archiving)
 - [Documentation, logging, testing, configuration, dev-ops](#documentation-logging-testing-configuration-dev-ops)
