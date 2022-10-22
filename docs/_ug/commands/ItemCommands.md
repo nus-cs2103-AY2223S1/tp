@@ -10,7 +10,7 @@ TODO:YX
 * Format for Bought Date and Expiry Date should follow: "dd-mm-yyyy".
   * d: Day of the month, and the last day of the month depends on that month. For example, the 10th day would be "10".
   * m: Month of the year, ranging from 1 to 12. This represents the months from January to December. For example, January would be "01".
-  * y: Year of the era. For example, "2019" would represent the 2019th year of the Common Era (CE). 
+  * y: The current year. For example, "2019" would represent the year 2019.  
 
 **Example Input:**
 
