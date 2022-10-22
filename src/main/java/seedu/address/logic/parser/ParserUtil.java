@@ -14,11 +14,13 @@ import seedu.address.model.person.Country;
 import seedu.address.model.person.DayTimeInWeek;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.GameType;
+import seedu.address.model.person.ITimesAvailable;
 import seedu.address.model.person.Keyword;
 import seedu.address.model.person.MinecraftName;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.Social;
+import seedu.address.model.person.TimeInterval;
 import seedu.address.model.server.Server;
 import seedu.address.model.tag.Tag;
 
@@ -290,8 +292,8 @@ public class ParserUtil {
 
     /**
      * Parses a {@code String game type} into a {@code GameType object}.
-     * @param gameType the preferred game type
-     * @return the parsed game type
+     * @param gameType the preferred game type.
+     * @return the parsed game type.
      * @throws ParseException if the given {@code gameType} is invalid.
      */
 
@@ -319,5 +321,36 @@ public class ParserUtil {
             gameTypeSet.add(parseGameType(gameType));
         }
         return gameTypeSet;
+    }
+
+    /**
+     * Parses a {@code String time interval} into a {@code ITimesAvailable object}.
+     * @param timeInterval the time interval where the Person is online.
+     * @return the parsed time interval.
+     * @throws ParseException if the given {@code timeInterval} is invalid.
+     */
+    public static ITimesAvailable parseTimeInterval(String timeInterval) throws ParseException {
+        requireNonNull(timeInterval);
+        String trimmedTimeInterval = timeInterval.trim();
+        if (!TimeInterval.isValidTimeInterval(trimmedTimeInterval)) {
+            throw new ParseException(TimeInterval.getTimeIntervalConstraints());
+        }
+        return new TimeInterval(trimmedTimeInterval);
+    }
+
+    /**
+     * Parses {@code Collection<String> time interval} into a {@code Set<ITimesAvailable>}.
+     *
+     * @param timeIntervals Collection of time intervals to be parsed.
+     * @return Set of time intervals.
+     * @throws ParseException if any of the time intervals are invalid.
+     */
+    public static Set<ITimesAvailable> parseTimeIntervals(Collection<String> timeIntervals) throws ParseException {
+        requireNonNull(timeIntervals);
+        final Set<ITimesAvailable> timeIntervalSet = new HashSet<>();
+        for (String timeInterval: timeIntervals) {
+            timeIntervalSet.add(parseTimeInterval(timeInterval));
+        }
+        return timeIntervalSet;
     }
 }
