@@ -24,7 +24,7 @@ What you should expect to find:
 
 ### Tag Commands
 
-{% include_relative _ug/features/TagCommands.md %}
+{% include_relative _ug/commands/TagCommands.md %}
 
 ### Statistics Commands
 
