@@ -2,7 +2,9 @@
 
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.control.Label?>
 
 <VBox xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+  <Label text="People" styleClass="people-heading"></Label>
   <ListView fx:id="personListView" VBox.vgrow="ALWAYS"/>
 </VBox>

@@ -1,0 +1,418 @@
+@import url('https://fonts.googleapis.com/css2?family=Karla:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600&display=swap');
+
+.background {
+    -fx-background-color: derive(#3b2c72, 20%);
+    background-color: #3b2c72; /* Used in the default.html file */
+}
+
+.label {
+    -fx-font-size: 11pt;
+    -fx-font-family: "Karla";
+    -fx-text-fill: white;
+    -fx-opacity: 0.9;
+}
+
+.label-bright {
+    -fx-font-size: 11pt;
+    -fx-font-family: "Karla";
+    -fx-text-fill: white;
+    -fx-opacity: 1;
+}
+
+.label-header {
+    -fx-font-size: 32pt;
+    -fx-font-family: "Karla";
+    -fx-text-fill: white;
+    -fx-opacity: 1;
+}
+
+.text-field {
+    -fx-font-size: 12pt;
+    -fx-font-family: "Karla";
+}
+
+.tab-pane {
+    -fx-padding: 0 0 0 1;
+}
+
+.tab-pane .tab-header-area {
+    -fx-padding: 0 0 0 0;
+    -fx-min-height: 0;
+    -fx-max-height: 0;
+}
+
+.table-view {
+    -fx-base: transparent;
+    -fx-control-inner-background: transparent;
+    -fx-background-color: transparent;
+    -fx-table-cell-border-color: transparent;
+    -fx-table-header-border-color: transparent;
+    -fx-padding: 5;
+}
+
+.table-view .column-header-background {
+    -fx-background-color: transparent;
+}
+
+.table-view .column-header, .table-view .filler {
+    -fx-size: 35;
+    -fx-border-width: 0 0 0 0;
+    -fx-background-color: transparent;
+    -fx-border-color:
+        transparent
+        transparent
+        transparent
+        transparent;
+    -fx-border-insets: 0 10 1 0;
+}
+
+.table-view .column-header .label {
+    -fx-font-size: 20pt;
+    -fx-font-family: "Segoe UI Light";
+    -fx-text-fill: white;
+    -fx-alignment: center-left;
+    -fx-opacity: 1;
+}
+
+.table-view:focused .table-row-cell:filled:focused:selected {
+    -fx-background-color: -fx-focus-color;
+}
+
+.split-pane:horizontal .split-pane-divider {
+    -fx-background-color: derive(#3b2c72, 20%);
+    -fx-border-color: transparent transparent transparent transparent;
+}
+
+.split-pane {
+    -fx-border-radius: 1;
+    -fx-border-width: 1;
+    -fx-background-color: derive(#3b2c72, 20%);
+}
+
+.list-view {
+    -fx-background-insets: 0;
+    -fx-padding: 0;
+    -fx-background-color: #3b2c72;
+}
+
+.list-cell {
+    -fx-label-padding: 0 0 0 0;
+    -fx-graphic-text-gap : 0;
+    -fx-padding: 0 0 0 0;
+}
+
+.list-cell:filled:even #cardPane {
+    -fx-background-color: #341671;
+}
+
+.list-cell:filled:odd #cardPane {
+    -fx-background-color: #422680;
+}
+
+.list-cell:filled:selected #cardPane {
+    -fx-background-color: #853ffd;
+}
+
+.list-cell:filled:even #todoCardPane {
+    -fx-background-color: #161C71;
+}
+
+.list-cell:filled:odd #todoCardPane {
+    -fx-background-color: #264C80;
+}
+
+.list-cell:filled:selected #todoCardPane {
+    -fx-background-color: #3F8AFD;
+}
+
+.stack-pane {
+    -fx-background-color: #250081;
+    -fx-background-radius: 10px;
+    -fx-border-color: #94A6FF;
+    -fx-border-width: 2px;
+    -fx-border-radius: 10px;
+}
+
+.pane-with-border {
+    -fx-background-color: #060959;
+}
+
+.status-bar {
+    -fx-background-color: #3b2c72;
+}
+
+.result-display {
+    -fx-background-color: #000181;
+    -fx-background-radius: 10px;
+    -fx-border-color: #94A6FF;
+    -fx-border-width: 2px;
+    -fx-border-radius: 10px;
+    -fx-font-size: 13pt;
+    -fx-text-fill: white;
+}
+
+.result-display .label {
+    -fx-text-fill: #060959 !important;
+}
+
+.status-bar .label {
+    -fx-font-family: "Segoe UI Light";
+    -fx-text-fill: white;
+    -fx-padding: 4px;
+    -fx-pref-height: 30px;
+}
+
+.status-bar-with-border {
+    -fx-background-color: #853ffd;
+    -fx-border-color: transparent;
+    -fx-border-width: 0;
+}
+
+.status-bar-with-border .label {
+    -fx-text-fill: white;
+}
+
+.grid-pane {
+    -fx-background-color: derive(#3b2c72, 30%);
+    -fx-border-color: transparent;
+    -fx-border-width: 1px;
+}
+
+.grid-pane .stack-pane {
+    -fx-background-color: #000181;
+}
+
+.context-menu {
+    -fx-background-color: derive(#3b2c72, 50%);
+}
+
+.context-menu .label {
+    -fx-text-fill: white;
+}
+
+.menu-bar {
+    -fx-background-color: #3b2c72;
+    -fx-selection-bar:#707BE3;
+}
+
+.menu-bar .label {
+    -fx-font-size: 14pt;
+    -fx-font-family: "Karla";
+    -fx-text-fill: white;
+    -fx-opacity: 0.9;
+}
+
+.menu .left-container {
+    -fx-background-color: #FFF2E7;
+}
+
+/*
+ * Metro style Push Button
+ * Author: Pedro Duque Vieira
+ * http://pixelduke.wordpress.com/2012/10/23/jmetro-windows-8-controls-on-java/
+ */
+.button {
+    -fx-padding: 5 22 5 22;
+    -fx-border-color: #e2e2e2;
+    -fx-border-width: 2;
+    -fx-background-radius: 0;
+    -fx-background-color: #060959;
+    -fx-font-family: "Segoe UI", Helvetica, Arial, sans-serif;
+    -fx-font-size: 11pt;
+    -fx-text-fill: #d8d8d8;
+    -fx-background-insets: 0 0 0 0, 0, 1, 2;
+}
+
+.button:hover {
+    -fx-background-color: #3b2c72;
+}
+
+.button:pressed, .button:default:hover:pressed {
+  -fx-background-color: white;
+  -fx-text-fill: #060959;
+}
+
+.button:focused {
+    -fx-border-color: white, white;
+    -fx-border-width: 1, 1;
+    -fx-border-style: solid, segments(1, 1);
+    -fx-border-radius: 0, 0;
+    -fx-border-insets: 1 1 1 1, 0;
+}
+
+.button:disabled, .button:default:disabled {
+    -fx-opacity: 0.4;
+    -fx-background-color: #060959;
+    -fx-text-fill: white;
+}
+
+.button:default {
+    -fx-background-color: -fx-focus-color;
+    -fx-text-fill: #ffffff;
+}
+
+.button:default:hover {
+    -fx-background-color: derive(-fx-focus-color, 30%);
+}
+
+.dialog-pane {
+    -fx-background-color: #060959;
+}
+
+.dialog-pane > *.button-bar > *.container {
+    -fx-background-color: #060959;
+}
+
+.dialog-pane > *.label.content {
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+    -fx-text-fill: white;
+}
+
+.dialog-pane:header *.header-panel {
+    -fx-background-color: derive(#060959, 25%);
+}
+
+.dialog-pane:header *.header-panel *.label {
+    -fx-font-size: 18px;
+    -fx-font-style: italic;
+    -fx-fill: white;
+    -fx-text-fill: white;
+}
+
+.scroll-bar {
+    -fx-background-color: #060959;
+}
+
+.scroll-bar .thumb {
+    -fx-background-color: #3b2c72;
+    -fx-background-insets: 5px;
+}
+
+.scroll-bar .increment-button, .scroll-bar .decrement-button {
+    -fx-background-color: transparent;
+    -fx-padding: 0 0 0 0;
+}
+
+.scroll-bar .increment-arrow, .scroll-bar .decrement-arrow {
+    -fx-shape: " ";
+}
+
+.scroll-bar:vertical .increment-arrow, .scroll-bar:vertical .decrement-arrow {
+    -fx-padding: 1 8 1 8;
+}
+
+.scroll-bar:horizontal .increment-arrow, .scroll-bar:horizontal .decrement-arrow {
+    -fx-padding: 8 1 8 1;
+}
+
+#cardPane {
+    -fx-background-color: transparent;
+    -fx-border-width: 0;
+}
+
+#commandTypeLabel {
+    -fx-font-size: 11px;
+    -fx-text-fill: #F70D1A;
+}
+
+#commandTextField {
+    -fx-background-color: transparent;
+    -fx-background-insets: 0;
+    -fx-background-radius: 10px;
+    -fx-border-color: transparent;
+    -fx-border-insets: 0;
+    -fx-border-radius: 10px;
+    -fx-border-width: 1;
+    -fx-font-family: "Karla";
+    -fx-font-size: 13pt;
+    -fx-text-fill: white;
+}
+
+#filterField, #personListPanel, #personWebpage {
+    -fx-effect: innershadow(gaussian, #060959, 10, 0, 0, 0);
+}
+
+#resultDisplay .content {
+    -fx-background-color: #3519D3;
+    -fx-wrap-text: true;
+}
+
+#attributeA {
+    -fx-hgap: 7;
+    -fx-vgap: 3;
+}
+
+#attributeB {
+    -fx-hgap: 7;
+    -fx-vgap: 3;
+}
+
+#attributeC {
+    -fx-hgap: 7;
+    -fx-vgap: 3;
+}
+
+#attributeD {
+    -fx-hgap: 7;
+    -fx-vgap: 3;
+}
+
+/* Handles style of Person List Card */
+.people-heading {
+    -fx-font-size: 28pt;
+    -fx-font-family: "Karla";
+    -fx-text-fill: #FFDFF6;
+    -fx-font-weight: 900;
+    -fx-opacity: 1;
+    -fx-padding: 2px;
+}
+
+.cell_big_label_person {
+    -fx-font-family: "Karla";
+    -fx-font-size: 22px;
+    -fx-font-weight: 700;
+    -fx-text-fill: #FFDFEA;
+}
+
+.cell_small_label_person {
+    -fx-font-family: "Karla";
+    -fx-font-size: 18px;
+    -fx-font-weight: 600;
+    -fx-text-fill: #FFDFEA;
+}
+
+/* Handles style of Todo List Card */
+.todo-heading {
+    -fx-font-size: 28pt;
+    -fx-font-family: "Karla";
+    -fx-text-fill: #CAEFFF;
+    -fx-font-weight: 900;
+    -fx-opacity: 1;
+    -fx-padding: 2px;
+}
+
+.cell_big_label_todo {
+    -fx-font-family: "Karla";
+    -fx-font-size: 22px;
+    -fx-font-weight: 700;
+    -fx-text-fill: #C3E0FF;
+}
+
+.cell_small_label_todo {
+    -fx-font-family: "Karla";
+    -fx-font-size: 18px;
+    -fx-font-weight: 600;
+    -fx-text-fill: #C3E0FF;
+}
+
+/* Handles style of icons */
+.icon-button {
+    -icon-paint: #D9DCFF;
+    -fx-background-color: -icon-paint;
+    -size: 18;
+    -fx-min-width: -size;
+    -fx-min-height: -size;
+    -fx-max-width: -size;
+    -fx-max-height: -size;
+}
