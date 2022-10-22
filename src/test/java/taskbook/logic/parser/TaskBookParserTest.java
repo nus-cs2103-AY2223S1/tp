@@ -53,6 +53,12 @@ public class TaskBookParserTest {
     }
 
     @Test
+    public void parseCommand_contactShortcut_list() throws Exception {
+        assertTrue(parseContactCommandShortcut(ContactListCommand.COMMAND_WORD) instanceof ContactListCommand);
+        assertTrue(parseContactCommandShortcut(ContactListCommand.COMMAND_WORD + " 3") instanceof ContactListCommand);
+    }
+
+    @Test
     public void parseCommand_task_todo() throws Exception {
         TaskTodoCommand command = (TaskTodoCommand) parseTaskCommand("todo m/John d/Finish user guide");
         assertNotNull(command);
@@ -89,6 +95,12 @@ public class TaskBookParserTest {
     }
 
     @Test
+    public void parseCommand_taskShortcut_list() throws Exception {
+        assertTrue(parseTaskCommandShortcut(TaskListCommand.COMMAND_WORD) instanceof TaskListCommand);
+        assertTrue(parseTaskCommandShortcut(TaskListCommand.COMMAND_WORD + " 3") instanceof TaskListCommand);
+    }
+
+    @Test
     public void parseCommand_exit() throws Exception {
         assertTrue(parser.parseCommand(ExitCommand.COMMAND_WORD) instanceof ExitCommand);
         assertTrue(parser.parseCommand(ExitCommand.COMMAND_WORD + " 3") instanceof ExitCommand);
@@ -115,7 +127,15 @@ public class TaskBookParserTest {
         return parseCommandWithCategory(ContactCategoryParser.CATEGORY_WORD, command);
     }
 
+    private Command parseContactCommandShortcut(String command) throws ParseException {
+        return parseCommandWithCategory(ContactCategoryParser.CATEGORY_WORD_SHORTCUT, command);
+    }
+
     private Command parseTaskCommand(String command) throws ParseException {
         return parseCommandWithCategory(TaskCategoryParser.CATEGORY_WORD, command);
+    }
+
+    private Command parseTaskCommandShortcut(String command) throws ParseException {
+        return parseCommandWithCategory(TaskCategoryParser.CATEGORY_WORD_SHORTCUT, command);
     }
 }
