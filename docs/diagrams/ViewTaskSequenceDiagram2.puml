@@ -1,0 +1,61 @@
+@startuml
+!include style.puml
+
+box UI UI_COLOR_T1
+participant ":MainWindow" as MainWindow UI_COLOR
+participant ":ResultDisplay" as ResultDisplay UI_COLOR
+participant ":OutputPanel" as OutputPanel UI_COLOR
+participant ":TaskListPanel" as TaskListPanel UI_COLOR
+end box
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+
+[-> MainWindow
+activate MainWindow
+
+MainWindow -> LogicManager : execute("viewTask 1")
+activate LogicManager
+
+LogicManager --> MainWindow : result
+deactivate LogicManager
+
+MainWindow -> ResultDisplay : setFeedbackToUser()
+activate ResultDisplay
+
+ResultDisplay --> MainWindow
+deactivate ResultDisplay
+
+MainWindow -> LogicManager : getPatientOfInterest()
+activate LogicManager
+
+LogicManager -> Model : getPatientOfInterest()
+activate Model
+
+Model --> LogicManager : patient
+deactivate Model
+
+LogicManager --> MainWindow : patient
+deactivate LogicManager
+
+MainWindow -> OutputPanel : handleTask(patient)
+activate OutputPanel
+
+create TaskListPanel
+OutputPanel -> TaskListPanel
+activate TaskListPanel
+
+TaskListPanel --> OutputPanel
+deactivate TaskListPanel
+
+OutputPanel --> MainWindow
+deactivate OutputPanel
+
+[<--MainWindow
+deactivate MainWindow
+@enduml
