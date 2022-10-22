@@ -48,20 +48,6 @@ public class DistinctModuleList implements Iterable<Module> {
         moduleList.add(moduleAdded);
     }
 
-    public Module getModule(ModuleCode moduleCode) {
-        requireNonNull(moduleCode);
-        List<Module> moduleResultList = moduleList.stream()
-                .filter(module -> module.getModuleCode().equals(moduleCode))
-                .collect(Collectors.toList());
-        if (moduleResultList.isEmpty()) {
-            throw new ModuleNotFoundException();
-        }
-        if (moduleResultList.size() > 1) {
-            throw new DuplicateModuleException();
-        }
-        return moduleResultList.get(0);
-    }
-
     public void setModules(List<Module> modules) {
         requireAllNonNull(modules);
         moduleList.setAll(modules);
