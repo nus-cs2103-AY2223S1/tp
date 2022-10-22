@@ -1,6 +1,7 @@
 package modtrekt.logic.commands.tasks;
 
 import com.beust.jcommander.Parameter;
+import com.beust.jcommander.Parameters;
 
 import modtrekt.logic.commands.Command;
 import modtrekt.logic.commands.CommandResult;
@@ -8,8 +9,9 @@ import modtrekt.logic.commands.exceptions.CommandException;
 import modtrekt.model.Model;
 
 /**
- * Lists all tasks in the task book.
+ * Lists all tasks.
  */
+@Parameters(commandDescription = "List tasks in the task book.")
 public class ListTasksCommand extends Command {
     public static final String COMMAND_WORD = "ls";
 
