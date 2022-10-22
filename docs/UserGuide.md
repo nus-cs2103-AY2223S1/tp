@@ -39,7 +39,7 @@ FoodRem tracks data that helps you streamline your business decisions through **
 
 ## How to use the User Guide
 
-Thank you for choosing FoodRem! We are delighted to have you as a user and aim to serve you well
+Thank you for choosing FoodRem! We are delighted to have you as a user and aim to serve you well.
 
 We **highly recommend** that you read through the User Guide in a **sequential order** up until the section
 [Features](#features), where you can find all the information you need before using all commands.
