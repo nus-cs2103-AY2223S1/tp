@@ -8,13 +8,13 @@ import seedu.address.commons.util.CollectionUtil;
 public class DataPanelsTabPaneManager {
     private final TabPane tabPane;
     private final Tab personTabPage;
-    private final Tab groupTabPage;
+    private final Tab assignmentTabPage;
 
-    public DataPanelsTabPaneManager(TabPane pane, Tab personTabPage, Tab groupTabPage) {
-        CollectionUtil.requireAllNonNull(pane, personTabPage, groupTabPage);
+    public DataPanelsTabPaneManager(TabPane pane, Tab personTabPage, Tab assignmentTabPage) {
+        CollectionUtil.requireAllNonNull(pane, personTabPage, assignmentTabPage);
         tabPane = pane;
         this.personTabPage = personTabPage;
-        this.groupTabPage = groupTabPage;
+        this.assignmentTabPage = assignmentTabPage;
     }
 
     /**
@@ -30,6 +30,6 @@ public class DataPanelsTabPaneManager {
      */
     public void changeToOngoingVisitTab() {
         SingleSelectionModel<Tab> selectionModel = tabPane.getSelectionModel();
-        selectionModel.select(groupTabPage);
+        selectionModel.select(assignmentTabPage);
     }
 }
