@@ -12,26 +12,41 @@
 <HBox id="timeCardPane" fx:id="timeCardPane" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
     <GridPane HBox.hgrow="ALWAYS">
         <columnConstraints>
-            <ColumnConstraints hgrow="SOMETIMES" minWidth="10" prefWidth="150" percentWidth="50" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10" prefWidth="150" percentWidth="30" />
         </columnConstraints>
         <VBox alignment="CENTER_LEFT" minHeight="105" GridPane.columnIndex="0">
             <padding>
                 <Insets top="5" right="5" bottom="5" left="15" />
             </padding>
-                <HBox spacing="5" alignment="CENTER_LEFT">
-                    <Label fx:id="id" styleClass="cell_big_label">
-                        <minWidth>
-                            <!-- Ensures that the label text is never truncated -->
-                            <Region fx:constant="USE_PREF_SIZE" />
-                        </minWidth>
-                    </Label>
-                    <Label fx:id="sessionTime" text="\$first" styleClass="cell_big_label" wrapText="true"/>
-                </HBox>
-                <FlowPane fx:id="tags" />
-                <Label fx:id="name" styleClass="cell_medium_label" text="\$name" />
+            <HBox spacing="5" alignment="CENTER_LEFT">
+                <Region styleClass="icon-button" id="sessionIcon"/>
+                <Label fx:id="sessionTime" text="\$first" styleClass="cell_big_label" wrapText="true"/>
+            </HBox>
+            <Label fx:id="name" styleClass="cell_big_label" text="\$name" />
+            <HBox spacing="5" alignment="CENTER_LEFT">
+                <Region styleClass="icon-button" id="phoneIcon"/>
                 <Label fx:id="phone" styleClass="cell_medium_label" text="\$phone" />
-                <Label fx:id="lessonPlan" styleClass="cell_medium_label" text="\$lessonPlan" />
-                <Label fx:id="homework" styleClass="cell_medium_label" text="\$homework" />
+            </HBox>
+            <FlowPane fx:id="tags" />
+        </VBox>
+        <columnConstraints>
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10" prefWidth="150" percentWidth="70" />
+        </columnConstraints>
+        <VBox alignment="CENTER_LEFT" minHeight="105" GridPane.columnIndex="1">
+            <VBox spacing="5" style="-fx-background-color: #9dc28e; -fx-background-radius:20;" styleClass="field-pane-with-border">
+                <HBox spacing="5" alignment="CENTER_LEFT">
+                    <Region styleClass="icon-button" id="lessonPlanIcon"/>
+                    <Label fx:id="LessonPlanHeader" styleClass="cell_medium_label" text="Lesson Plan:"/>
+                </HBox>
+                <Label fx:id="lessonPlan" styleClass="cell_small_label" text="\$lessonPlan" wrapText="true"/>
+            </VBox>
+            <VBox spacing="5" style="-fx-background-color: #c2a78e; -fx-background-radius:20;" styleClass="field-pane-with-border">
+                <HBox spacing="5">
+                    <Region styleClass="icon-button" id="homeworkIcon"/>
+                    <Label fx:id="homeworkHeader" styleClass="cell_medium_label" text="Homework:"/>
+                </HBox>
+                <Label fx:id="homework" styleClass="cell_small_label" text="\$homework" wrapText="true"/>
+            </VBox>
         </VBox>
     </GridPane>
 </HBox>
