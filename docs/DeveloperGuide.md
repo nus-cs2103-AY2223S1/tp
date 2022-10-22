@@ -188,7 +188,7 @@ It is a duplicated copy of the `internalUnmodifiableList` of type `unmodifiableO
 exercises primarily by their respective `Date`. Should the two exercises have the same `Date`, they will then be
 compared lexicographically.
 
-####Sorting Execution
+#### Sorting Execution
 
 When the command `:sort` is entered, the `Ui` sends the command to `Logic`. `Logic` parses and identifies the `:sort` command that was entered, and creates
 an instance of it. `Logic` then executes the command. `Model` will have the displayed list sorted and the sorted list will be displayed by `Ui`.
@@ -212,7 +212,7 @@ The following sequence diagram shows how the sort command is executed.
 
 **Aspect: Displayed List structure**
 * **Current choice**: `displayedList` is a duplicated copy of the list of exercises in `internalUnmodifiableList` of type
-  `UnmodifiableObservableList`in `ExerciseList` class
+  `UnmodifiableObservableList` in `ExerciseList` class
     * Rationale: The sort command will sort the `diplayedList`, not affecting the `internalUnmodifiableList`. This allows
       users to view the sorted list of exercises while maintaining a defensive copy of exercises keyed by user.
 
@@ -242,7 +242,7 @@ and `endDate` (inclusive), then it will be retained in the list. Otherwise, it w
 Then, `rangeFilteredList` will be sorted in ascending order of `Date` using the method `sortDisplayedList()` 
 in `ExerciseList`.
 
-####Execution
+#### Execution
 
 When the command `:sort DD/MM/YYYY DD/MM/YYYY` is entered, the `Ui` sends the command to `Logic`. 
 Here, `DD/MM/YYYY` is the supported format for entering the start date and end date.
@@ -250,7 +250,7 @@ Here, `DD/MM/YYYY` is the supported format for entering the start date and end d
 `Logic` then executes the command.
 `Model` will have the displayed list sorted and the sorted list will be displayed by `Ui`.
 
-####Example Usage
+#### Example Usage
 
 Given below is an example usage scenario and how the date range view mechanism behaves at each step.
 
@@ -267,7 +267,7 @@ The following sequence diagram shows how the date range process (variant of sort
 
 <img src="images/DateRangeSequenceDiagram.png" width="1000" />
 
-####Design considerations:
+#### Design considerations:
 
 **Aspect: Algorithm design**
 * **Current choice**: The `rangeFilteredList` is obtained by filtering by the date range first, before the sorting is
