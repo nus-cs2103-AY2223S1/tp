@@ -121,8 +121,8 @@ Format: `listPersons [s/FIELD]`
 
 * Sorts the contacts by the specified field in **ascending** order. `FIELD` must take one the following values:
   * `n` or `N` sort by name ignoring case differences
-  * `d` or `D` Sort by date of birth
-  * `g` or `G` Sort by gender
+  * `d` or `D` sort by date of birth
+  * `g` or `G` sort by gender
 
 * It is optional to specify the field to sort by. If no field is specified, no sorting is performed.
 * At most one field can be specified. i.e. Cannot specify 2nd or 3rd criteria to sort by.
@@ -136,7 +136,7 @@ For example, if `listPersons s/n` and `listPersons` are executed back-to-back, t
 </div>
 
 Examples:
-* `listPersons` Lists all persons in the order they were inserted.
+* `listPersons` Lists all persons without performing any sorting.
 * `listPersons s/n` Lists all persons sorted by their names.
 
 
@@ -246,14 +246,31 @@ Examples:
 * `deleteEvent 2` after listing all events with `listEvents` deletes the event at index 2
 * `deleteEvent 7` after listing all events with `listEvents` deletes the event at index 7
 
-### Display all events: `listEvents`
 
-Shows a list of all existing events in the application.
+### Listing all events: `listEvents`
 
-Format: `listEvents`
+Shows a list of all events in the application.
+
+Format: `listEvents [s/FIELD]`
+
+* Sorts the contacts by the specified field in **ascending** order. `FIELD` must take one the following values:
+  * `n` or `N` sort by name ignoring case differences
+  * `d` or `D` sort by date
+
+* It is optional to specify the field to sort by. If no field is specified, no sorting is performed.
+* At most one field can be specified. i.e. Cannot specify 2nd or 3rd criteria to sort by.
+
+
+<div markdown="span" class="alert alert-info">
+:information_source: **Note:** The sorted result is permanent on the underlying events list.<br><br>
+
+For example, if `listEvents s/n` and `listEvents` are executed back-to-back, the result of the second `listEvents` command will display the sorted results from the first `listEvents s/n` command since the sorted result is permanent.
+</div>
 
 Examples:
-* `listEvents`
+* `listEvents` Lists all events without performing any sorting.
+* `listEvents s/n` Lists all events sorted by their names.
+
 
 ### Clearing all entries : `clear`
 
@@ -300,5 +317,5 @@ _Details coming soon ..._
 | **ListPersons**        | `listPersons  [s/FIELD]` <br> e.g., `listPersons s/n`                                                                                                                                                |
 | **AddEvent**    | `addEvent n/EVENT_TITLE d/DATE t/TIME p/PURPOSE`<br> e.g.,`addEvent n/Shoe Sale 30% d/30-05-2022 t/11:00 p/Discount on all shoes for up to 30%`                                        |
 | **DeleteEvent** | `deleteEvent INDEX`<br> e.g., `deleteEvent 2`                                                                                                                                          |
-| **ListEvents**  | `listEvents`                                                                                                                                                                           |
+| **ListEvents**  | `listEvents [s/FIELD]`<br> e.g., `listEvents s/n`                                                                                                                                                                           |
 | **Help**        | `help`                                                                                                                                                                                 |
