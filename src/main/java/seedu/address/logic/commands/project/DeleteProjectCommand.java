@@ -57,12 +57,11 @@ public class DeleteProjectCommand extends ProjectCommand {
                     }
                 }
                 model.deleteProject(p);
+                ui.showProjects();
+                model.updateFilteredProjectList(PREDICATE_SHOW_ALL_PROJECTS);
                 return new CommandResult(String.format(MESSAGE_DELETE_PROJECT_SUCCESS, p));
             }
         }
-
-        ui.showProjects();
-        model.updateFilteredProjectList(PREDICATE_SHOW_ALL_PROJECTS);
 
         throw new CommandException(Messages.MESSAGE_INVALID_PROJECT_DISPLAYED_ID);
 

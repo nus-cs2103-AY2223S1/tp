@@ -7,7 +7,6 @@ import javafx.collections.ObservableList;
 import seedu.address.commons.core.DefaultView;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.client.Client;
-import seedu.address.model.client.Person;
 import seedu.address.model.issue.Issue;
 import seedu.address.model.project.Project;
 
@@ -16,7 +15,6 @@ import seedu.address.model.project.Project;
  */
 public interface Model {
     /** {@code Predicate} that always evaluate to true */
-    Predicate<Person> PREDICATE_SHOW_ALL_PERSONS = unused -> true;
     Predicate<Client> PREDICATE_SHOW_ALL_CLIENTS = unused -> true;
     Predicate<Project> PREDICATE_SHOW_ALL_PROJECTS = unused -> true;
     Predicate<Issue> PREDICATE_SHOW_ALL_ISSUES = unused -> true;
@@ -61,11 +59,6 @@ public interface Model {
     /** Returns the AddressBook */
     ReadOnlyAddressBook getAddressBook();
 
-    /**
-     * Returns true if a client with the same identity as {@code client} exists in the address book.
-     */
-    boolean hasPerson(Person person);
-
     boolean hasProject(Project project);
 
     boolean hasIssue(Issue issue);
@@ -88,13 +81,6 @@ public interface Model {
     Issue getIssueById(int id);
     Client getClientById(int id);
 
-
-    /**
-     * Deletes the given client.
-     * The client must exist in the address book.
-     */
-    void deletePerson(Person target);
-
     void deleteProject(Project target);
 
     void deleteIssue(Issue target);
@@ -104,21 +90,18 @@ public interface Model {
      * Adds the given client.
      * {@code client} must not already exist in the address book.
      */
-    void addProject(Project person);
-
-    void addPerson(Person person);
+    void addProject(Project project);
     void addClient(Client client);
 
     void addIssue(Issue issue);
 
     /**
-     * Replaces the given client {@code target} with {@code editedPerson}.
+     * Replaces the given project {@code target} with {@code editedProject}.
      * {@code target} must exist in the address book.
-     * The client identity of {@code editedPerson} must not be the same as another existing client in the address book.
+     * The client identity of {@code editedProject} must not be the same as another existing project
+     * in the address book.
      */
     void setProject(Project target, Project editedProject);
-
-    void setPerson(Person target, Person editedPerson);
 
     void setIssue(Issue target, Issue editedIssue);
 
@@ -135,20 +118,11 @@ public interface Model {
 
     int generateProjectId();
 
-    /** Returns an unmodifiable view of the filtered client list */
-    ObservableList<Person> getFilteredPersonList();
-
     ObservableList<Project> getFilteredProjectList();
 
     ObservableList<Issue> getFilteredIssueList();
 
     ObservableList<Client> getFilteredClientList();
-
-    /**
-     * Updates the filter of the filtered client list to filter by the given {@code predicate}.
-     * @throws NullPointerException if {@code predicate} is null.
-     */
-    void updateFilteredPersonList(Predicate<Person> predicate);
 
     void updateFilteredProjectList(Predicate<Project> predicate);
 

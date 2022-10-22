@@ -1,0 +1,30 @@
+{
+  "projects" : [ {
+    "name" : "Individual Project",
+    "repository" : "johndoe/ip",
+    "deadline" : "2022-03-03",
+    "client" : {
+      "name" : "A!!",
+      "phone" : "7",
+      "email" : "alexcom",
+      "clientId" : "1",
+      "projects" : [ ]
+    },
+    "issues" : [ ],
+    "projectId" : "1"
+  }, {
+    "name" : "Team Project",
+    "repository" : "johndoe/tp",
+    "deadline" : "2023-01-02",
+    "client" : {
+      "name" : "Alex Yeoh",
+      "phone" : "87438807",
+      "email" : "alexyeoh@example.com",
+      "clientId" : "1",
+      "projects" : [ ]
+    },
+    "issues" : [ ],
+    "projectId" : "2"
+  } ],
+  "issues" : [ ]
+}
