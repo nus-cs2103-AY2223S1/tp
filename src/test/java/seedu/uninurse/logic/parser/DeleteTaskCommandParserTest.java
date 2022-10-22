@@ -24,13 +24,13 @@ class DeleteTaskCommandParserTest {
     }
 
     @Test
-    public void parse_validArgs_returnsDeleteTaskCommand() {
+    public void parse_validArgs_success() {
         assertParseSuccess(parser, "1 1", new DeleteTaskCommand(INDEX_FIRST_PERSON, INDEX_FIRST_TASK));
         assertParseSuccess(parser, " 1 1 ", new DeleteTaskCommand(INDEX_FIRST_PERSON, INDEX_FIRST_TASK));
     }
 
     @Test
-    public void parse_invalidPatientIndex_throwsParserException() {
+    public void parse_invalidPatientIndex_failure() {
         assertParseFailure(parser, "a 1",
                 String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteTaskCommand.MESSAGE_USAGE));
         assertParseFailure(parser, "0 1",
@@ -38,7 +38,7 @@ class DeleteTaskCommandParserTest {
     }
 
     @Test
-    public void parse_invalidTaskIndex_throwsParserException() {
+    public void parse_invalidTaskIndex_failure() {
         assertParseFailure(parser, "1 a",
                 String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteTaskCommand.MESSAGE_USAGE));
         assertParseFailure(parser, "1 0",

@@ -5,16 +5,13 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.uninurse.testutil.Assert.assertThrows;
+import static seedu.uninurse.testutil.TypicalConditions.CONDITION_DIABETES;
+import static seedu.uninurse.testutil.TypicalConditions.CONDITION_OSTEOPOROSIS;
+import static seedu.uninurse.testutil.TypicalConditions.TYPICAL_CONDITION_DIABETES;
 
 import org.junit.jupiter.api.Test;
 
 public class ConditionTest {
-    // may be moved to a utility class if sample conditions are needed in other tests
-    private final Condition diabetesCondition = new Condition("Type II Diabetes");
-    private final Condition osteoporosisCondition = new Condition("Osteoporosis");
-    private final String diabetesConditionName = "Type II Diabetes";
-
-
     @Test
     public void constructor_null_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> new Condition(null));
@@ -54,25 +51,25 @@ public class ConditionTest {
 
     @Test
     public void testToString() {
-        assertEquals(diabetesCondition.toString(), diabetesConditionName);
+        assertEquals(CONDITION_DIABETES.toString(), TYPICAL_CONDITION_DIABETES);
     }
 
     @Test
     public void equals() {
         // same object -> returns true
-        assertEquals(diabetesCondition, diabetesCondition);
+        assertEquals(CONDITION_DIABETES, CONDITION_DIABETES);
 
         // same values -> returns true
-        Condition diabetesConditionCopy = new Condition(diabetesConditionName);
-        assertEquals(diabetesCondition, diabetesConditionCopy);
+        Condition diabetesConditionCopy = new Condition(TYPICAL_CONDITION_DIABETES);
+        assertEquals(CONDITION_DIABETES, diabetesConditionCopy);
 
         // different types -> returns false
-        assertNotEquals(1, diabetesCondition);
+        assertNotEquals(1, CONDITION_DIABETES);
 
         // null -> returns false
-        assertNotEquals(null, diabetesCondition);
+        assertNotEquals(null, CONDITION_DIABETES);
 
         // different description -> returns false
-        assertNotEquals(diabetesCondition, osteoporosisCondition);
+        assertNotEquals(CONDITION_DIABETES, CONDITION_OSTEOPOROSIS);
     }
 }

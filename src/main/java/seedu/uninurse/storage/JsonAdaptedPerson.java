@@ -10,6 +10,8 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.uninurse.commons.exceptions.IllegalValueException;
+import seedu.uninurse.model.condition.Condition;
+import seedu.uninurse.model.condition.ConditionList;
 import seedu.uninurse.model.person.Address;
 import seedu.uninurse.model.person.Email;
 import seedu.uninurse.model.person.Name;
@@ -30,6 +32,7 @@ class JsonAdaptedPerson {
     private final String phone;
     private final String email;
     private final String address;
+    private final List<JsonAdaptedCondition> conditions = new ArrayList<>();
     private final List<JsonAdaptedTask> tasks = new ArrayList<>();
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
 
@@ -39,12 +42,18 @@ class JsonAdaptedPerson {
     @JsonCreator
     public JsonAdaptedPerson(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
             @JsonProperty("email") String email, @JsonProperty("address") String address,
+            @JsonProperty("conditions") List<JsonAdaptedCondition> conditions,
             @JsonProperty("tasks") List<JsonAdaptedTask> tasks,
             @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
+
+        if (conditions != null) {
+            this.conditions.addAll(conditions);
+        }
+
         if (tasks != null) {
             this.tasks.addAll(tasks);
         }
@@ -62,6 +71,9 @@ class JsonAdaptedPerson {
         phone = source.getPhone().value;
         email = source.getEmail().value;
         address = source.getAddress().value;
+        conditions.addAll(source.getConditions().getInternalList().stream()
+                .map(JsonAdaptedCondition::new)
+                .collect(Collectors.toList()));
         tasks.addAll(source.getTasks().getTasks().stream()
                 .map(JsonAdaptedTask::new)
                 .collect(Collectors.toList()));
@@ -76,6 +88,11 @@ class JsonAdaptedPerson {
      * @throws IllegalValueException if there were any data constraints violated in the adapted person.
      */
     public Patient toModelType() throws IllegalValueException {
+        final List<Condition> personConditions = new ArrayList<>();
+        for (JsonAdaptedCondition condition : conditions) {
+            personConditions.add(condition.toModelType());
+        }
+
         final ArrayList<Task> personTasks = new ArrayList<>();
         for (JsonAdaptedTask task : tasks) {
             personTasks.add(task.toModelType());
@@ -118,11 +135,13 @@ class JsonAdaptedPerson {
         }
         final Address modelAddress = new Address(address);
 
+        final ConditionList modelConditions = new ConditionList(personConditions);
+
         final TaskList modelTasks = new TaskList(personTasks);
 
         final Set<Tag> modelTags = new HashSet<>(personTags);
 
-        return new Patient(modelName, modelPhone, modelEmail, modelAddress, modelTasks, modelTags);
+        return new Patient(modelName, modelPhone, modelEmail, modelAddress, modelConditions, modelTasks, modelTags);
     }
 
 }

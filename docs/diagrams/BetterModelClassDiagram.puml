@@ -18,4 +18,8 @@ Person *--> Name
 Person *--> Phone
 Person *--> Email
 Person *--> Address
+Person *--> TaskList
+
+TaskList *--> "*" Tasks
+Tasks *--> "1" DateTime
 @enduml

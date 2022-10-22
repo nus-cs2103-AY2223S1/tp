@@ -10,6 +10,7 @@ import seedu.uninurse.commons.core.Messages;
 import seedu.uninurse.commons.core.index.Index;
 import seedu.uninurse.logic.commands.exceptions.CommandException;
 import seedu.uninurse.model.Model;
+import seedu.uninurse.model.condition.ConditionList;
 import seedu.uninurse.model.person.Address;
 import seedu.uninurse.model.person.Email;
 import seedu.uninurse.model.person.Name;
@@ -90,11 +91,12 @@ public class EditTaskCommand extends EditGenericCommand {
         Phone phone = patientToEdit.getPhone();
         Email email = patientToEdit.getEmail();
         Address address = patientToEdit.getAddress();
+        ConditionList conditions = patientToEdit.getConditions();
         Set<Tag> tags = patientToEdit.getTags();
 
         TaskList updatedTaskList = patientToEdit.getTasks().edit(indexOfTask.getZeroBased(), updatedTask);
 
-        return new Patient(name, phone, email, address, updatedTaskList, tags);
+        return new Patient(name, phone, email, address, conditions, updatedTaskList, tags);
     }
 
     @Override
