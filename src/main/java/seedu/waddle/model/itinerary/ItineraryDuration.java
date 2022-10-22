@@ -35,6 +35,10 @@ public class ItineraryDuration {
         return Integer.parseInt(test) >= 0;
     }
 
+    public int getValue() {
+        return this.duration;
+    }
+
     // TODO: implement with Date
     public Date getEndFromStart(Date date) {
         return date;

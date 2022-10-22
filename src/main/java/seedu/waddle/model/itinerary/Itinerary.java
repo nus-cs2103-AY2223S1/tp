@@ -2,8 +2,12 @@ package seedu.waddle.model.itinerary;
 
 import static seedu.waddle.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.List;
 import java.util.Objects;
 
+import seedu.waddle.model.item.Day;
 import seedu.waddle.model.item.Item;
 import seedu.waddle.model.item.UniqueItemList;
 
@@ -21,7 +25,23 @@ public class Itinerary {
     private final People people;
     private final Budget budget;
 
-    private UniqueItemList uniqueItemList;
+    private final UniqueItemList unscheduledItemList;
+    private final List<Day> days;
+    private final Comparator<Item> priorityComparator = new Comparator<Item>() {
+        @Override
+        public int compare(Item item1, Item item2) {
+            return item1.getPriority().compareTo(item2.getPriority());
+        }
+    };
+    private final Comparator<Item> timeComparator = new Comparator<Item>() {
+        @Override
+        public int compare(Item o1, Item o2) {
+            return 0;
+        }
+        /*public int compare(Item item1, Item item2) {
+            return item1.getDay().compareTo(item2.getDay());
+        }*/
+    };
 
     /**
      * Every field must be present and not null.
@@ -38,7 +58,11 @@ public class Itinerary {
         this.duration = duration;
         this.people = people;
         this.budget = budget;
-        this.uniqueItemList = new UniqueItemList();
+        this.unscheduledItemList = new UniqueItemList();
+        this.days = new ArrayList<>();
+        for (int i = 0; i < duration.getValue(); i++) {
+            this.days.add(new Day(i, this));
+        }
     }
 
     public Name getName() {
@@ -49,6 +73,12 @@ public class Itinerary {
         return country;
     }
 
+    /* TODO: implement method
+    public Date getEndDate() {
+        return duration.getEndFromStart(startDate);
+    }
+     */
+
     public Date getStartDate() {
         return startDate;
     }
@@ -56,12 +86,6 @@ public class Itinerary {
     public ItineraryDuration getDuration() {
         return this.duration;
     }
-
-    /* TODO: implement method
-    public Date getEndDate() {
-        return duration.getEndFromStart(startDate);
-    }
-     */
 
     public People getPeople() {
         return people;
@@ -72,7 +96,7 @@ public class Itinerary {
     }
 
     public UniqueItemList getItemList() {
-        return uniqueItemList;
+        return unscheduledItemList;
     }
 
     /**
@@ -89,23 +113,31 @@ public class Itinerary {
     }
 
     public boolean hasItem(Item item) {
-        return this.uniqueItemList.contains(item);
+        return this.unscheduledItemList.contains(item);
     }
 
     public void addItem(Item item) {
-        this.uniqueItemList.add(item);
+        this.unscheduledItemList.add(item);
     }
 
     public Item removeItem(int index) {
-        return this.uniqueItemList.remove(index);
+        return this.unscheduledItemList.remove(index);
     }
 
     public void setItem(Item target, Item editedItem) {
-        uniqueItemList.setItem(target, editedItem);
+        unscheduledItemList.setItem(target, editedItem);
     }
 
     public int getItemSize() {
-        return this.uniqueItemList.getSize();
+        return this.unscheduledItemList.getSize();
+    }
+
+    public UniqueItemList getUnscheduledItemList() {
+        return this.unscheduledItemList;
+    }
+
+    private void sortUnscheduledItemList() {
+        this.unscheduledItemList.sort(priorityComparator);
     }
 
     /**
