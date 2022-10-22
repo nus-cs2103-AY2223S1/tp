@@ -63,6 +63,7 @@ public class CommandTestUtil {
     public static final String VALID_CAP_AMY = VALID_CAP_VALUE_AMY + CAP_SEPARATOR + VALID_MAXIMUM_CAP_VALUE_AMY;
     public static final String VALID_CAP_BOB = VALID_CAP_VALUE_BOB + CAP_SEPARATOR + VALID_MAXIMUM_CAP_VALUE_BOB;
     public static final String VALID_PATH_JERRY = "src/folder/jerry.jpg";
+    public static final String VALID_PATH_JERRY_WITH_SPACE = "src/folder/jerry with space.jpg";
 
     public static final String NAME_DESC_AMY = " " + PREFIX_NAME + VALID_NAME_AMY;
     public static final String NAME_DESC_BOB = " " + PREFIX_NAME + VALID_NAME_BOB;
@@ -106,8 +107,7 @@ public class CommandTestUtil {
     public static final String INVALID_TAG_DESC = " " + PREFIX_TAG + "offered*"; // '*' not allowed in tags
     // CAP value should not exceed its maximum value
     public static final String INVALID_CAP_DESC = " " + PREFIX_CAP + "5.01/5";
-    public static final String INVALID_PATH_JERRY = "src/folder/*jerry.jpg";
-
+    public static final String INVALID_PATH_JERRY = "src/folder\0jerry.jpg";
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
 
