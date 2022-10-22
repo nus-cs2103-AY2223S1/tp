@@ -1,11 +1,11 @@
-package seedu.address.logic.commands.profile;
+package seedu.address.logic.commands.event;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.address.logic.commands.CommandTestUtil.showProfileAtIndex;
+import static seedu.address.logic.commands.CommandTestUtil.showEventAtIndex;
 import static seedu.address.testutil.TypicalAddressBook.getTypicalAddressBook;
-import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PROFILE;
+import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_EVENT;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -15,10 +15,9 @@ import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
 
 /**
- * Contains integration tests (interaction with the Model) and unit tests for ViewProfilesCommand.
+ * Contains integration tests (interaction with the Model) and unit tests for ViewEventsCommand.
  */
-public class ViewProfilesCommandTest {
-
+public class ViewEventsCommandTest {
     private Model model;
     private Model expectedModel;
 
@@ -30,31 +29,31 @@ public class ViewProfilesCommandTest {
 
     @Test
     public void execute_listIsNotFiltered_showsSameList() {
-        assertCommandSuccess(new ViewProfilesCommand(), model,
-                ViewProfilesCommand.MESSAGE_SUCCESS, expectedModel);
+        assertCommandSuccess(new ViewEventsCommand(), model,
+                ViewEventsCommand.MESSAGE_SUCCESS, expectedModel);
     }
 
     @Test
     public void execute_listIsFiltered_showsEverything() {
-        showProfileAtIndex(model, INDEX_FIRST_PROFILE);
-        assertCommandSuccess(new ViewProfilesCommand(), model,
-                ViewProfilesCommand.MESSAGE_SUCCESS, expectedModel);
+        showEventAtIndex(model, INDEX_FIRST_EVENT);
+        assertCommandSuccess(new ViewEventsCommand(), model,
+                ViewEventsCommand.MESSAGE_SUCCESS, expectedModel);
     }
 
     @Test
     public void equals() {
-        ViewProfilesCommand viewProfilesCommand = new ViewProfilesCommand();
+        ViewEventsCommand viewEventsCommand = new ViewEventsCommand();
 
         // same class -> returns true
-        assertTrue(viewProfilesCommand.equals(new ViewProfilesCommand()));
+        assertTrue(viewEventsCommand.equals(new ViewEventsCommand()));
 
         // same object -> returns true
-        assertTrue(viewProfilesCommand.equals(viewProfilesCommand));
+        assertTrue(viewEventsCommand.equals(viewEventsCommand));
 
         // null -> returns false
-        assertFalse(viewProfilesCommand.equals(null));
+        assertFalse(viewEventsCommand.equals(null));
 
         // different types -> returns false
-        assertFalse(viewProfilesCommand.equals(1));
+        assertFalse(viewEventsCommand.equals(1));
     }
 }
