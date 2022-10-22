@@ -19,7 +19,7 @@ import seedu.foodrem.model.item.ItemQuantity;
  * Increments the quantity of an item by a specified amount.
  */
 public class DecrementCommand extends Command {
-    private static final String MESSAGE_SUCCESS = "Decremented Item: %1$s";
+    private static final String MESSAGE_SUCCESS = "Decremented Item:\n%1$s";
 
     private final Index index;
     private final ItemQuantity quantity;

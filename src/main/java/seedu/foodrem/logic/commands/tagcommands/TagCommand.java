@@ -19,7 +19,7 @@ import seedu.foodrem.model.tag.Tag;
  */
 public class TagCommand extends Command {
     // TODO: Test this command
-    private static final String MESSAGE_SUCCESS = "Item tagged successfully";
+    private static final String MESSAGE_SUCCESS = "Item tagged successfully.\n%1$s";
     private static final String ERROR_DUPLICATE = "This item has already been tagged with this tag";
     private static final String ERROR_NOT_FOUND_TAG = "This tag does not exist";
     private static final String ERROR_NOT_FOUND_ITEM = "The item index does not exist";
@@ -79,7 +79,7 @@ public class TagCommand extends Command {
         model.setItem(itemToTag, newTagSetItem);
         model.updateFilteredItemList(Model.PREDICATE_SHOW_ALL_ITEMS);
 
-        return new CommandResult(MESSAGE_SUCCESS);
+        return new CommandResult(String.format(MESSAGE_SUCCESS, newTagSetItem));
     }
 
     public static String getUsage() {

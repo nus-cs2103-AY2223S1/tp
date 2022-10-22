@@ -1,7 +1,6 @@
 package seedu.foodrem.commons.enums;
 
 import static seedu.foodrem.logic.commands.generalcommands.HelpCommand.DEFAULT_HELP_MESSAGE;
-import static seedu.foodrem.logic.parser.CliSyntax.PREFIX_ID;
 import static seedu.foodrem.logic.parser.CliSyntax.PREFIX_ITEM_BOUGHT_DATE;
 import static seedu.foodrem.logic.parser.CliSyntax.PREFIX_ITEM_EXPIRY_DATE;
 import static seedu.foodrem.logic.parser.CliSyntax.PREFIX_ITEM_PRICE;
@@ -221,11 +220,11 @@ public enum CommandType {
                     + "\n"
                     + "Format:\n"
                     + getCommandWord() + " "
-                    + PREFIX_ID + "INDEX "
+                    + "INDEX "
                     + PREFIX_NAME + "TAG_NAME\n\n"
                     + "Example:\n"
                     + getCommandWord() + " "
-                    + PREFIX_ID + "1 "
+                    + "1 "
                     + PREFIX_NAME + "Condiments";
         }
     },
@@ -236,11 +235,11 @@ public enum CommandType {
                     + "\n"
                     + "Format:\n"
                     + getCommandWord() + " "
-                    + PREFIX_ID + "INDEX "
+                    + "INDEX "
                     + PREFIX_NAME + "TAG_NAME\n\n"
                     + "Example:\n"
                     + getCommandWord() + " "
-                    + PREFIX_ID + "1 "
+                    + "1 "
                     + PREFIX_NAME + "Condiments";
         }
     },
