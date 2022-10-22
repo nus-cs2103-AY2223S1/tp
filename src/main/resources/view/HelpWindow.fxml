@@ -11,7 +11,9 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.stage.Stage?>
 
-<fx:root minWidth="570.0" minHeight="600.0" title="Help" type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<fx:root resizable="false" title="Help" type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
   <icons>
     <Image url="@/images/help_icon.png" />
   </icons>
@@ -20,9 +22,11 @@
       <stylesheets>
         <URL value="@HelpWindow.css" />
       </stylesheets>
-      <VBox fx:id="helpMessageContainer">
-        <children>
-        <HBox fx:id="helpHeaderContainer" alignment="CENTER">
+      <GridPane fx:id="helpMessageContainer">
+        <columnConstraints>
+          <ColumnConstraints hgrow="ALWAYS"/>
+        </columnConstraints>
+        <HBox fx:id="helpHeaderContainer" alignment="CENTER" GridPane.columnIndex="0">
           <children>
             <Label fx:id="helpMessage" text="Label">
                 <HBox.margin>
@@ -43,14 +47,13 @@
               <Insets bottom="10.0" left="5.0" right="10.0" top="5.0" />
             </padding>
           </HBox>
-          <Label styleClass="help-label" text="General" />
-          <Accordion fx:id="generalAccordion" maxHeight="-Infinity" prefWidth="288.0" />
-          <Label styleClass="help-label" text="Profiles" />
-          <Accordion fx:id="profileAccordion" maxHeight="-Infinity" prefWidth="288.0" />
-          <Label styleClass="help-label" text="Events" />
-          <Accordion fx:id="eventAccordion" maxHeight="-Infinity" prefWidth="288.0" />
-        </children>
-      </VBox>
+          <Label styleClass="help-label" text="General" GridPane.rowIndex="1"/>
+          <Accordion fx:id="generalAccordion" maxHeight="-Infinity" prefWidth="288.0" GridPane.rowIndex="2"/>
+          <Label styleClass="help-label" text="Profiles" GridPane.rowIndex="3"/>
+          <Accordion fx:id="profileAccordion" maxHeight="-Infinity" prefWidth="288.0" GridPane.rowIndex="4"/>
+          <Label styleClass="help-label" text="Events" GridPane.rowIndex="5"/>
+          <Accordion fx:id="eventAccordion" maxHeight="-Infinity" prefWidth="288.0" GridPane.rowIndex="6"/>
+      </GridPane>
     </Scene>
   </scene>
 </fx:root>
