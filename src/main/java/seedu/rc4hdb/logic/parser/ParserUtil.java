@@ -2,6 +2,7 @@ package seedu.rc4hdb.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 
+import java.time.LocalTime;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
@@ -17,6 +18,8 @@ import seedu.rc4hdb.model.resident.fields.Name;
 import seedu.rc4hdb.model.resident.fields.Phone;
 import seedu.rc4hdb.model.resident.fields.Room;
 import seedu.rc4hdb.model.tag.Tag;
+import seedu.rc4hdb.model.venues.Day;
+import seedu.rc4hdb.model.venues.Time;
 import seedu.rc4hdb.model.venues.Venue;
 
 /**
@@ -173,6 +176,7 @@ public class ParserUtil {
 
     /**
      * Parses {@code String venue} into a {@code Venue}.
+     * currently only supports one venue: MEETING_ROOM
      */
     public static Venue parseVenue(String venue) throws ParseException {
         requireNonNull(venue);
@@ -181,5 +185,29 @@ public class ParserUtil {
             throw new ParseException(Venue.MESSAGE_CONSTRAINTS);
         }
         return Venue.MEETING_ROOM;
+    }
+
+    /**
+     * Parses {@code String time} into a {@code Time}.
+     */
+    public static Time parseTime(String time) throws ParseException {
+        requireNonNull(time);
+        String trimmedStartTime = time.trim();
+        if (!Time.isValidTime(trimmedStartTime)) {
+            throw new ParseException(Time.MESSAGE_CONSTRAINTS);
+        }
+        return new Time(time);
+    }
+
+    /**
+     * Parses {@code String day} into a {@code Day}.
+     */
+    public static Day parseDay(String day) throws ParseException {
+        requireNonNull(day);
+        String trimmedDay = day.trim();
+        if (!Day.isValidDay(trimmedDay)) {
+            throw new ParseException(Day.MESSAGE_CONSTRAINTS);
+        }
+        return new Day(day);
     }
 }

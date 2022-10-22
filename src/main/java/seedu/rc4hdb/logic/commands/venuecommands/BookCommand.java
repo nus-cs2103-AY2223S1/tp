@@ -2,14 +2,10 @@ package seedu.rc4hdb.logic.commands.venuecommands;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.rc4hdb.commons.util.CollectionUtil.requireAllNonNull;
-import static seedu.rc4hdb.logic.parser.CliSyntax.PREFIX_EMAIL;
-import static seedu.rc4hdb.logic.parser.CliSyntax.PREFIX_GENDER;
-import static seedu.rc4hdb.logic.parser.CliSyntax.PREFIX_HOUSE;
-import static seedu.rc4hdb.logic.parser.CliSyntax.PREFIX_MATRIC_NUMBER;
-import static seedu.rc4hdb.logic.parser.CliSyntax.PREFIX_NAME;
-import static seedu.rc4hdb.logic.parser.CliSyntax.PREFIX_PHONE;
-import static seedu.rc4hdb.logic.parser.CliSyntax.PREFIX_ROOM;
-import static seedu.rc4hdb.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.rc4hdb.logic.parser.CliSyntax.PREFIX_DAY;
+import static seedu.rc4hdb.logic.parser.CliSyntax.PREFIX_END_TIME;
+import static seedu.rc4hdb.logic.parser.CliSyntax.PREFIX_START_TIME;
+import static seedu.rc4hdb.logic.parser.CliSyntax.PREFIX_VENUE;
 
 import seedu.rc4hdb.commons.core.Messages;
 import seedu.rc4hdb.commons.core.index.Index;
@@ -35,23 +31,15 @@ public class BookCommand extends ModelCommand {
     //to change
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a booking to RC4HDB. "
             + "Parameters: "
-            + PREFIX_NAME + "NAME "
-            + PREFIX_PHONE + "PHONE "
-            + PREFIX_EMAIL + "EMAIL "
-            + PREFIX_ROOM + "ROOM "
-            + PREFIX_GENDER + "GENDER "
-            + PREFIX_HOUSE + "HOUSE "
-            + PREFIX_MATRIC_NUMBER + "MATRIC_NUMBER "
-            + "[" + PREFIX_TAG + "TAG]...\n"
+            + PREFIX_VENUE + "VENUE_NAME "
+            + PREFIX_START_TIME + "START_TIME "
+            + PREFIX_END_TIME + "END_TIME "
+            + PREFIX_DAY + "DAY "
             + "Example: " + COMMAND_WORD + " "
-            + PREFIX_NAME + "John Doe "
-            + PREFIX_PHONE + "98765432 "
-            + PREFIX_EMAIL + "johnd@example.com "
-            + PREFIX_ROOM + "03-08 "
-            + PREFIX_GENDER + "M "
-            + PREFIX_HOUSE + "D "
-            + PREFIX_MATRIC_NUMBER + "A0000000A "
-            + PREFIX_TAG + "BlockHead ";
+            + PREFIX_VENUE + "meeting "
+            + PREFIX_START_TIME + "10:00 "
+            + PREFIX_END_TIME + "15:00 "
+            + PREFIX_DAY + "2 ";
 
     //to change
     public static final String MESSAGE_SUCCESS = "New booking made: %1$s";
@@ -87,7 +75,10 @@ public class BookCommand extends ModelCommand {
             throw new CommandException(MESSAGE_CLASHING_BOOKING);
         }
 
+        //update internal field of Venue to include the booking that is just made
+        //will this change the Observable list automatically?
         toMake.getVenue().addBooking(toMake);
+
         return new CommandResult(String.format(MESSAGE_SUCCESS, toMake));
     }
 
@@ -97,12 +88,12 @@ public class BookCommand extends ModelCommand {
     private static Booking createNewBooking(BookingDescriptor bookingDescriptor) {
         assert bookingDescriptor != null;
 
-        Resident resident = bookingDescriptor.getResident().get();
-        LocalTime startTime = bookingDescriptor.getstartTime().get();
-        LocalTime endTime = bookingDescriptor.getEndTime().get();
-        DayOfWeek dayOfWeek = bookingDescriptor.getDayOfWeek().get();
-        LocalDate date = bookingDescriptor.getDate().get();
-        Venue venue = bookingDescriptor.getVenue().get();
+        Resident resident = bookingDescriptor.getResident().orElse(null);
+        LocalTime startTime = bookingDescriptor.getstartTime().orElse(null);
+        LocalTime endTime = bookingDescriptor.getEndTime().orElse(null);
+        DayOfWeek dayOfWeek = bookingDescriptor.getDayOfWeek().orElse(null);
+        LocalDate date = bookingDescriptor.getDate().orElse(null);
+        Venue venue = bookingDescriptor.getVenue().orElse(null);
         if (date == null) {
             return new RecurrentBooking(resident, dayOfWeek, startTime, endTime, venue);
         }

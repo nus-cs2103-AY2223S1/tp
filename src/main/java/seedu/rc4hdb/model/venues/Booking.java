@@ -38,6 +38,22 @@ public abstract class Booking {
         return this.venue;
     }
 
+    public Resident getResident() {
+        return this.resident;
+    }
+
+    public LocalTime getStartTime() {
+        return this.startTime;
+    }
+
+    public LocalTime getEndTime() {
+        return this.endTime;
+    }
+
+    public DayOfWeek getDayOfWeek() {
+        return this.dayOfWeek;
+    }
+
     protected void setDayOfWeek(DayOfWeek dayOfWeek) {
         this.dayOfWeek = dayOfWeek;
     }

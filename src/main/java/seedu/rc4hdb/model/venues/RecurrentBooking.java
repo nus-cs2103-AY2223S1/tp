@@ -2,8 +2,10 @@ package seedu.rc4hdb.model.venues;
 
 import java.time.DayOfWeek;
 import java.time.LocalTime;
+import java.util.Set;
 
 import seedu.rc4hdb.model.resident.Resident;
+import seedu.rc4hdb.model.tag.Tag;
 
 /**
  * Represents a recurrent booking for a venue.
@@ -53,5 +55,21 @@ public class RecurrentBooking extends Booking {
                 || booking.endTime.isAfter(this.startTime)
                 && booking.endTime.isBefore(this.endTime);
         return isOverlappingOrSubset || isOverlappingOrSuperset;
+    }
+
+    @Override
+    public String toString() {
+        final StringBuilder builder = new StringBuilder();
+        builder.append(getResident().getName())
+                .append("; Venue: ")
+                .append(getVenue())
+                .append("; Start Time: ")
+                .append(getStartTime())
+                .append("; End Time: ")
+                .append(getEndTime())
+                .append("; Day: ")
+                .append(getDayOfWeek());
+
+        return builder.toString();
     }
 }

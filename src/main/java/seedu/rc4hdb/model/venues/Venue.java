@@ -1,5 +1,6 @@
 package seedu.rc4hdb.model.venues;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 import java.util.stream.Collectors;
@@ -19,7 +20,7 @@ public class Venue {
     //IMPORTANT: Venue is a singleton with just one Venue, Meeting Room as of now
     public static final Venue MEETING_ROOM = new Venue("1", "Meeting Room");
 
-    private List<Booking> bookings = List.of();
+    private List<Booking> bookings = new ArrayList<>();
     private String venueName;
     private String venueIndex;
 
@@ -72,6 +73,11 @@ public class Venue {
     public List<Booking> getFilteredBookings() {
         clearExpiredBookings();
         return this.bookings;
+    }
+
+    @Override
+    public String toString() {
+        return this.venueName;
     }
 
     // Todo: Populate venue table with the venues specified in the .txt file and hook up class with storage
