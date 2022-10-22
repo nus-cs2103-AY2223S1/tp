@@ -8,7 +8,7 @@ import static seedu.waddle.logic.parser.CliSyntax.PREFIX_DURATION;
 import static seedu.waddle.logic.parser.CliSyntax.PREFIX_PRIORITY;
 import static seedu.waddle.logic.parser.CliSyntax.PREFIX_START_TIME;
 
-import seedu.waddle.commons.core.index.Index;
+import seedu.waddle.commons.core.index.MultiIndex;
 import seedu.waddle.logic.commands.EditItemCommand;
 import seedu.waddle.logic.parser.exceptions.ParseException;
 
@@ -28,10 +28,10 @@ public class EditItemCommandParser implements Parser<EditItemCommand> {
                 ArgumentTokenizer.tokenize(args, PREFIX_DESCRIPTION, PREFIX_PRIORITY,
                                            PREFIX_COST, PREFIX_DURATION, PREFIX_START_TIME);
 
-        Index index;
+        MultiIndex multiIndex;
 
         try {
-            index = ParserUtil.parseIndex(argMultimap.getPreamble());
+            multiIndex = ParserUtil.parseMultiIndex(argMultimap.getPreamble());
         } catch (ParseException pe) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                                                    EditItemCommand.MESSAGE_USAGE), pe);
@@ -59,6 +59,9 @@ public class EditItemCommandParser implements Parser<EditItemCommand> {
         }
 
         if (argMultimap.getValue(PREFIX_START_TIME).isPresent()) {
+            if (multiIndex.getDayIndex() == null) {
+                throw new ParseException(EditItemCommand.MESSAGE_EDIT_START_TIME);
+            }
             editItemDescriptor.setStartTime(
                     ParserUtil.parseStartTime(argMultimap.getValue(PREFIX_START_TIME).get()));
         }
@@ -67,7 +70,7 @@ public class EditItemCommandParser implements Parser<EditItemCommand> {
             throw new ParseException(EditItemCommand.MESSAGE_NOT_EDITED);
         }
 
-        return new EditItemCommand(index, editItemDescriptor);
+        return new EditItemCommand(multiIndex, editItemDescriptor);
     }
 
 }

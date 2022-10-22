@@ -97,6 +97,10 @@ public class Itinerary {
         return unscheduledItemList;
     }
 
+    public List<Day> getDays() {
+        return this.days;
+    }
+
     /**
      * Returns true if both itineraries have the same name.
      * This defines a weaker notion of equality between two itineraries.
@@ -118,12 +122,18 @@ public class Itinerary {
         this.unscheduledItemList.add(item);
     }
 
-    public Item removeItem(int index) {
-        return this.unscheduledItemList.remove(index);
-    }
-
-    public void setItem(Item target, Item editedItem) {
-        unscheduledItemList.setItem(target, editedItem);
+    /**
+     * Remove item from itinerary.
+     * @param index A MultiIndex specifying position of task.
+     * @return The item to be removed.
+     */
+    public Item removeItem(MultiIndex index) {
+        if (index.getDayIndex() == null) {
+            return this.unscheduledItemList.remove(index.getTaskIndex().getZeroBased());
+        } else {
+            Day day = this.days.get(index.getDayIndex().getZeroBased());
+            return day.removeItem(index.getTaskIndex());
+        }
     }
 
     public void setItem(Item target, Item editedItem, MultiIndex index) throws CommandException {
@@ -158,12 +168,13 @@ public class Itinerary {
      * Unplan an item.
      * @param index A multiIndex to locate the day and index of task within the day
      */
-    public void unplanItem(MultiIndex index) {
+    public Item unplanItem(MultiIndex index) {
         Day day = this.days.get(index.getDayIndex().getZeroBased());
         Item unplannedItem = day.removeItem(index.getTaskIndex());
         addItem(unplannedItem);
         sortUnscheduledItemList();
         this.budget.updateSpending(-unplannedItem.getCost().getValue());
+        return unplannedItem;
     }
 
     /**
@@ -237,6 +248,18 @@ public class Itinerary {
                 .append(getBudget().calculateLeftOverBudget());
 
         return builder.toString();
+    }
+
+    public void setDays(List<Day> days) {
+        for (int i = 0; i < getDuration().getValue(); i++) {
+            if (i < days.size()) {
+                this.days.add(i, days.get(i));
+            }
+        }
+    }
+
+    public void setSpending(Budget budget) {
+        this.budget.setSpending(budget.getSpending());
     }
 
 }

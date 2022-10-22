@@ -59,6 +59,14 @@ public class Budget {
         return this.initialBudget - this.spending;
     }
 
+    public float getSpending() {
+        return this.spending;
+    }
+
+    public void setSpending(float amt) {
+        this.spending = amt;
+    }
+
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
