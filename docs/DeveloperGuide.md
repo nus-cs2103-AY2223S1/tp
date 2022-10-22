@@ -254,7 +254,10 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
+
 ### Module Features
+
+Section by : [Ho Jun Hao](https://github.com/hojunhao2000)
 
 ### Add module
 
@@ -366,6 +369,8 @@ first obtain the `Module` using the index. Then it would remove the `Module` fro
 
 ### Navigation
 
+Section by : [David](https://github.com/vvidday)
+
 #### Change Current Module
 
 The `cd` command allows users to set a module as the **current module**, which accomplishes two things:
@@ -413,6 +418,8 @@ In the diagram, the predicates `modulePredicate` and `taskPredicate` are the cus
 ### Tasks
 
 ### Task/Deadline Features
+
+Section by : [Dominic](https://github.com/domoberzin)
 
 ### Add task
 
@@ -567,6 +574,8 @@ task details in the list.
 
 ### Task archival
 
+Section by : [Jonathan](https://github.com/jontmy)
+
 Task archival allows users to selectively hide tasks that they have completed.
 
 Every task in the task book will be in either the archived or unarchived state.
@@ -626,6 +635,8 @@ such that the control flow is exactly the same: just replace "archive" and its d
 with "unarchive", and vice versa.
 
 ### Task listing
+
+Section by : [Jonathan](https://github.com/jontmy)
 
 Task listing allows users to view the tasks they have created which belong to a module.
 
@@ -698,7 +709,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | Tasks / Deadline | `***`    | user                               | choose which modules to add my tasks and deadlines to                                     | organise my tasks and deadlines according to modules              |
 | Tasks / Deadline | `***`    | user                               | view my tasks and deadlines per module                                                    | see my tasks and deadlines in an organised manner                 |
 | Tasks / Deadline | `***`    | user                               | change the module of a specific task or deadline                                          | move my tasks and deadlines around if I make a mistake            |
-| Tasks / Deadline | `***`    | student who has many commitments   | track all of my tasks from the various commitments (modules, cca, etc.)                   | do not miss out on completing any tasks                           |
 | Tasks / Deadline | `***`    | clumsy user                        | delete tasks and deadlines                                                                | ensure my homepage is not cluttered with unused items             |
 | Tasks / Deadline | `**`     | novice user                        | archive tasks and deadlines that are completed                                            | refer to them in future                                           |
 | Tasks / Deadline | `***`    | novice user                        | change a deadline that I had created                                                      | adjust the due date accordingly in the event the deadline changes |
