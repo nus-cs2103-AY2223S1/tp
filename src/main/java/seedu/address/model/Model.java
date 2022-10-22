@@ -94,10 +94,13 @@ public interface Model {
     ObservableList<CalendarEvent> getFilteredCalendarEventList();
 
 
-    CommandHistory getCommandHistory();
+    ReadOnlyCommandHistory getCommandHistory();
 
     void addToCommandHistory(String commandInput);
 
-    String getPrevCommand();
-    String getNextCommand();
+    void resetCommandHistoryIndex();
+
+    String nextCommand();
+
+    String prevCommand();
 }

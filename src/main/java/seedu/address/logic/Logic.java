@@ -7,7 +7,6 @@ import seedu.address.commons.core.GuiSettings;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.CommandHistory;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyCommandHistory;
 import seedu.address.model.calendar.CalendarEvent;
@@ -54,5 +53,6 @@ public interface Logic {
      */
     void setGuiSettings(GuiSettings guiSettings);
 
-    CommandHistory getCommandHistory();
+    String getPrevInCommandHistory();
+    String getNextInCommandHistory();
 }

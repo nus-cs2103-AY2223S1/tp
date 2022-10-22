@@ -3,7 +3,7 @@ package seedu.address.model;
 import java.util.List;
 
 /**
- * Unmodifiable view of an command history
+ * Unmodifiable view of a command history
  */
 public interface ReadOnlyCommandHistory {
     /**

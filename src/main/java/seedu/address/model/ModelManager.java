@@ -153,7 +153,7 @@ public class ModelManager implements Model {
 
     //=========== Command History=============================================================
     @Override
-    public CommandHistory getCommandHistory() {
+    public ReadOnlyCommandHistory getCommandHistory() {
         return commandHistory;
     }
 
@@ -162,14 +162,18 @@ public class ModelManager implements Model {
         commandHistory.addToCommandHistory(validCommandInput);
     }
 
-    @Override
-    public String getPrevCommand() {
-        return commandHistory.getPrevCommand();
+    public void resetCommandHistoryIndex() {
+        commandHistory.resetCurrentIndexToLatest();
     }
 
     @Override
-    public String getNextCommand() {
+    public String nextCommand() {
         return commandHistory.getNextCommand();
+    }
+
+    @Override
+    public String prevCommand() {
+        return commandHistory.getPrevCommand();
     }
 
     //=========== equals method =============================================================

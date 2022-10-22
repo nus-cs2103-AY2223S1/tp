@@ -3,6 +3,7 @@ package seedu.address.model;
 import static java.util.Objects.requireNonNull;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -10,45 +11,37 @@ import java.util.List;
  */
 public class CommandHistory implements ReadOnlyCommandHistory {
     private List<String> commandHistoryList = new ArrayList<>();
-    private int currentIndex =  0;
+    private int currentIndex = 0;
     private static final int MAX_COMMAND_HISTORY_SIZE = 20;
 
-    public CommandHistory() {}
-
-    public CommandHistory(ReadOnlyCommandHistory commandHistory) {
-        this();
-        setCommandHistoryList(commandHistory.getCommandHistoryList());
-        currentIndex = commandHistoryList.size();
+    public CommandHistory() {
     }
 
     /**
-     * Replaces the contents of the person list with {@code persons}.
-     * {@code persons} must not contain duplicate persons.
+     * Creates a CommandHistory using the CommandHistoryList in the {@code toBeCopied}
+     */
+    public CommandHistory(ReadOnlyCommandHistory toBeCopied) {
+        this();
+        setCommandHistoryList(new ArrayList<>(toBeCopied.getCommandHistoryList()));
+        currentIndex = commandHistoryList.size();
+    }
+
+    //// list overwrite operations
+
+    /**
+     * Replaces the contents of the commandHistorylist with {@code commandHistoryList}.
      */
     public void setCommandHistoryList(List<String> commandHistoryList) {
         this.commandHistoryList = commandHistoryList;
     }
 
 
-    /**
-     * used for testing
-     * @return
-     */
-    @Override
-    public List<String> getCommandHistoryList() {
-        return commandHistoryList;
-    }
-
+    // command level operations
     public void addToCommandHistory(String commandInput) {
         if (commandHistoryList.size() >= MAX_COMMAND_HISTORY_SIZE) {
-           commandHistoryList.remove(0);
+            commandHistoryList.remove(0);
         }
         commandHistoryList.add(commandInput);
-    }
-
-    public void resetCurrentIndexToLatest() {
-        // reset to past max index
-        currentIndex = commandHistoryList.size();
     }
 
     public String getPrevCommand() {
@@ -72,5 +65,30 @@ public class CommandHistory implements ReadOnlyCommandHistory {
 
         currentIndex++;
         return commandHistoryList.get(currentIndex);
+    }
+
+    // util methods
+    public void resetCurrentIndexToLatest() {
+        // reset to max index + 1 to show empty
+        currentIndex = commandHistoryList.size();
+    }
+
+    @Override
+    public List<String> getCommandHistoryList() {
+        return Collections.unmodifiableList(commandHistoryList);
+    }
+
+
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof CommandHistory // instanceof handles nulls
+                && commandHistoryList.equals(((CommandHistory) other).commandHistoryList))
+                && currentIndex == (((CommandHistory) other).currentIndex);
+    }
+
+    @Override
+    public int hashCode() {
+        return commandHistoryList.hashCode();
     }
 }

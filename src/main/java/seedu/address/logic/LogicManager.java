@@ -5,9 +5,6 @@ import java.nio.file.Path;
 import java.util.logging.Logger;
 
 import javafx.collections.ObservableList;
-import javafx.scene.input.KeyCode;
-import javafx.scene.input.KeyCodeCombination;
-import javafx.scene.input.KeyCombination;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.logic.commands.Command;
@@ -15,7 +12,6 @@ import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.AddressBookParser;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.CommandHistory;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyCommandHistory;
@@ -53,7 +49,7 @@ public class LogicManager implements Logic {
 
         model.addToCommandHistory(commandText);
         storage.saveCommandHistory(model.getCommandHistory());
-        model.getCommandHistory().resetCurrentIndexToLatest();
+        model.resetCommandHistoryIndex();
 
 
         try {
@@ -65,9 +61,12 @@ public class LogicManager implements Logic {
         return commandResult;
     }
 
-    @Override
-    public CommandHistory getCommandHistory() {
-        return model.getCommandHistory();
+    public String getNextInCommandHistory() {
+       return model.nextCommand();
+    }
+
+    public String getPrevInCommandHistory() {
+        return model.prevCommand();
     }
 
     @Override

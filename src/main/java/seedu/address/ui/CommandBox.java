@@ -5,6 +5,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.Region;
+import seedu.address.logic.Logic;
 import seedu.address.logic.commands.AddAppointmentCommand;
 import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.commands.CommandResult;
@@ -35,18 +36,18 @@ public class CommandBox extends UiPart<Region> {
     /**
      * Creates a {@code CommandBox} with the given {@code CommandExecutor}.
      */
-    public CommandBox(CommandExecutor commandExecutor, ResultDisplay resultDisplay, CommandHistory commandHistory) {
+    public CommandBox(CommandExecutor commandExecutor, ResultDisplay resultDisplay, Logic logic) {
         super(FXML);
 
         commandTextField.addEventFilter(KeyEvent.KEY_PRESSED, event -> {
             switch (event.getCode()) {
             case UP:
-                String prevCommand = commandHistory.getPrevCommand();
+                String prevCommand = logic.getPrevInCommandHistory();
                 commandTextField.setText(prevCommand);
                 event.consume();
                 break;
             case DOWN:
-                String nextCommand = commandHistory.getNextCommand();
+                String nextCommand = logic.getNextInCommandHistory();
                 commandTextField.setText(nextCommand);
                 event.consume();
                 break;
