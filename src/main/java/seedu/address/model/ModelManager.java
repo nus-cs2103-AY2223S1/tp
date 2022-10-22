@@ -47,9 +47,6 @@ public class ModelManager implements Model {
     private Consumer<Person> toSortListAdder = new Consumer<Person>() {
         @Override
         public void accept(Person person) {
-            if (person.getSessionList().sessionList.isEmpty()) {
-                return;
-            }
             for (int i = 0; i < person.getSessionList().sessionList.size(); i++) {
                 Session currSession = person.getSessionList().sessionList.get(i);
                 if (timeNowSession.compareTo(currSession) <= 0) {
