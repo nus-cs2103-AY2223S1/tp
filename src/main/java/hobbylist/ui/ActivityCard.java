@@ -3,6 +3,7 @@ package hobbylist.ui;
 import java.util.Comparator;
 
 import hobbylist.model.activity.Activity;
+import hobbylist.model.activity.Status;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
@@ -61,6 +62,7 @@ public class ActivityCard extends UiPart<Region> {
             tagLabel.setStyle("-fx-background-color: " + intToHexColor(tagLabel.getText()));
         });
 
+
         if (activity.getRating() != 0) {
             Label ratingLabel = new Label(
                     new String(new char[activity.getRating()]).replace("\0", "★"));
@@ -68,13 +70,33 @@ public class ActivityCard extends UiPart<Region> {
             tags.getChildren().add(ratingLabel);
         }
 
-        status.setText("Status: " + activity.getStatus().toString());
-
+        setStatusLabel(status, activity.getStatus());
     }
 
     private String intToHexColor(String tag) {
         return String.format("#%06X", (0xFFFFFF & tag.hashCode()));
 
+    }
+
+    public void setStatusLabel(Label label, Status status) {
+        label.setText("Status: " + status.toString());
+
+        switch (status.toString()) {
+        case Status.STATUS_UPCOMING:
+            label.setStyle("-fx-background-color:cornflowerblue");
+            break;
+
+        case Status.STATUS_ONGOING:
+            label.setStyle("-fx-background-color:green");
+            break;
+
+        case Status.STATUS_COMPLETED:
+            label.setStyle("-fx-background-color:red");
+            break;
+
+        default:
+            break;
+        }
     }
 
     @Override
