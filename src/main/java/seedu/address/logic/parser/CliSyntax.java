@@ -22,5 +22,6 @@ public class CliSyntax {
     public static final Prefix PREFIX_CLASS_TIME = new Prefix("ct/");
     public static final Prefix PREFIX_CLASS_CATEGORY = new Prefix("cc/");
     public static final Prefix PREFIX_CLASS_VENUE = new Prefix("cv/");
+    public static final Prefix PREFIX_CLASS_GROUP = new Prefix("cg/");
 
 }

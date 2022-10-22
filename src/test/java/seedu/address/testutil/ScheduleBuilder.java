@@ -15,6 +15,7 @@ public class ScheduleBuilder {
     public static final Venue DEFAULT_VENUE = new Venue("COM2 02-17");
     public static final Weekdays DEFAULT_WEEKDAY = Weekdays.Friday;
     public static final ClassType DEFAULT_CLASS_TYPE = ClassType.Lecture;
+    public static final String DEFAULT_CLASS_GROUP = "L1";
 
     private String module;
     private Weekdays weekday;
@@ -22,6 +23,7 @@ public class ScheduleBuilder {
     private String endTime;
     private ClassType classType;
     private Venue venue;
+    private String classGroup;
 
     /**
      * Creates a {@code ScheduleBuilder} with the default details.
@@ -33,6 +35,7 @@ public class ScheduleBuilder {
         this.weekday = DEFAULT_WEEKDAY;
         this.venue = DEFAULT_VENUE;
         this.classType = DEFAULT_CLASS_TYPE;
+        this.classGroup = DEFAULT_CLASS_GROUP;
     }
 
     /**
@@ -45,6 +48,7 @@ public class ScheduleBuilder {
         this.venue = scheduleToCopy.getVenue();
         this.classType = scheduleToCopy.getClassType();
         this.weekday = scheduleToCopy.getWeekday();
+        this.classGroup = scheduleToCopy.getClassGroup();
     }
 
     /**
@@ -96,11 +100,19 @@ public class ScheduleBuilder {
     }
 
     /**
+     * Sets the {@code venue} of the {@code Schedule} that we are building.
+     */
+    public ScheduleBuilder withClassGroup(String classGroup) {
+        this.classGroup = classGroup;
+        return this;
+    }
+
+    /**
      * Builds a schedule for testing.
      *
      * @return a Schedule that we are building
      */
     public Schedule build() {
-        return new Schedule(module, venue, weekday, startTime, endTime, classType);
+        return new Schedule(module, venue, weekday, startTime, endTime, classType, classGroup);
     }
 }

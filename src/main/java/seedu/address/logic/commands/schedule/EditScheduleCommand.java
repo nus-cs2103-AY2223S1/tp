@@ -102,8 +102,9 @@ public class EditScheduleCommand extends Command {
         String startTime = scheduleDescriptor.getStartTime().orElse(scheduleToEdit.getStartTime());
         String endTime = scheduleDescriptor.getEndTime().orElse(scheduleToEdit.getEndTime());
         ClassType classType = scheduleDescriptor.getClassType().orElse(scheduleToEdit.getClassType());
+        String classGroup = scheduleDescriptor.getClassGroup().orElse(scheduleToEdit.getClassGroup());
 
-        return new Schedule(module, venue, weekday, startTime, endTime, classType);
+        return new Schedule(module, venue, weekday, startTime, endTime, classType, classGroup);
     }
 
     /**
@@ -117,6 +118,7 @@ public class EditScheduleCommand extends Command {
         private String startTime;
         private String endTime;
         private ClassType classType;
+        private String classGroup;
 
         public EditScheduleDescriptor() {}
         /**
@@ -130,6 +132,7 @@ public class EditScheduleCommand extends Command {
             setStartTime(toCopy.startTime);
             setEndTime(toCopy.endTime);
             setVenue(toCopy.venue);
+            setClassGroup(toCopy.classGroup);
         }
 
         public boolean isAnyFieldEdited() {
@@ -158,6 +161,9 @@ public class EditScheduleCommand extends Command {
         public void setModule(String module) {
             this.module = module;
         }
+        public void setClassGroup(String classGroup) {
+            this.classGroup = classGroup;
+        }
 
         public Optional<String> getModule() {
             return Optional.ofNullable(module);
@@ -182,6 +188,9 @@ public class EditScheduleCommand extends Command {
         public Optional<ClassType> getClassType() {
             return Optional.ofNullable(classType);
         }
+        public Optional<String> getClassGroup() {
+            return Optional.ofNullable(classGroup);
+        }
 
         @Override
         public boolean equals(Object o) {
@@ -197,12 +206,13 @@ public class EditScheduleCommand extends Command {
                     && weekday == that.weekday
                     && Objects.equals(startTime, that.startTime)
                     && Objects.equals(endTime, that.endTime)
-                    && classType == that.classType;
+                    && classType == that.classType
+                    && classGroup.equals(that.classGroup);
         }
 
         @Override
         public int hashCode() {
-            return Objects.hash(module, venue, weekday, startTime, endTime, classType);
+            return Objects.hash(module, venue, weekday, startTime, endTime, classType, classGroup);
         }
     }
 }
