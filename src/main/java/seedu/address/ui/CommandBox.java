@@ -3,7 +3,6 @@ package seedu.address.ui;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
-import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.Region;
 import seedu.address.logic.CommandHistory;
@@ -38,14 +37,27 @@ public class CommandBox extends UiPart<Region> {
     }
 
     private void displayHistory(KeyEvent e, ResultDisplay resultDisplay) {
-        if (e.getCode() == KeyCode.DOWN) {
+        switch (e.getCode()) {
+        case LEFT:
             if (!isHistoryDisplayed) {
                 resultDisplay.setFeedbackToUser(commandHistory.getHistoryString());
                 isHistoryDisplayed = true;
-            } else {
+            }
+            break;
+        case RIGHT:
+            if (isHistoryDisplayed) {
                 resultDisplay.setFeedbackToUser("");
                 isHistoryDisplayed = false;
             }
+            break;
+        case UP:
+            commandTextField.setText(commandHistory.getIncrementCommand());
+            break;
+        case DOWN:
+            commandTextField.setText(commandHistory.getDecrementCommand());
+            break;
+        default:
+            break;
         }
     }
 

@@ -11,6 +11,7 @@ import java.util.List;
  */
 public class CommandHistory {
     private final Integer maxCapacity = 10;
+    private Integer currentIndex = 0;
     private final List<String> history = new ArrayList<>(maxCapacity);
 
     /**
@@ -24,6 +25,23 @@ public class CommandHistory {
             history.remove(0);
         }
         history.add(command);
+        currentIndex = history.size();
+    }
+
+    public String getDecrementCommand() {
+        currentIndex -= 1;
+        if (currentIndex < 0) {
+            currentIndex = 0;
+        }
+        return history.isEmpty() ? "" : history.get(currentIndex);
+    }
+
+    public String getIncrementCommand() {
+        currentIndex += 1;
+        if (currentIndex >= history.size()) {
+            currentIndex = history.size() - 1;
+        }
+        return history.isEmpty() ? "" : history.get(currentIndex);
     }
 
     public String getHistoryString() {
