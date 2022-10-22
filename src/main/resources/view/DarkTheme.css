@@ -442,6 +442,15 @@
     -fx-padding: 8px;
 }
 
+.imagePreview {
+    -fx-background-color: #363A42;
+    -fx-background-radius: 4px;
+    -fx-border-width: 4px;
+    -fx-border-radius: 4px;
+    -fx-border-color: #1E2229;
+    -fx-border-style: dashed;
+}
+
 #cardPane {
     -fx-background-color: transparent;
     -fx-border-width: 0;

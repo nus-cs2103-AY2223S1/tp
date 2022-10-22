@@ -13,7 +13,7 @@
 <?import javafx.scene.image.ImageView?>
 
 <fx:root type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/11" resizable="false"
-         xmlns:fx="http://javafx.com/fxml/1" width="720" height="550"
+         xmlns:fx="http://javafx.com/fxml/1" width="720" height="580"
          onCloseRequest="#handleCloseIterationWindow">
     <scene>
         <Scene>
@@ -41,19 +41,10 @@
                         <HBox>
                             <Label text="Date" styleClass="addCommissionWindowLabel">
                                 <HBox.margin>
-                                    <Insets top ="10" right="68.0"/>
+                                    <Insets top ="10" right="85.0"/>
                                 </HBox.margin>
                             </Label>
                             <TextField fx:id="date" styleClass="addCommissionTextField" minWidth="500"/>
-                        </HBox>
-
-                        <HBox>
-                            <Label text="Feedback" styleClass="addCommissionWindowLabel">
-                                <HBox.margin>
-                                    <Insets right="70.0"/>
-                                </HBox.margin>
-                            </Label>
-                            <TextField fx:id="feedback" styleClass="addCommissionTextField" minWidth="500"/>
                         </HBox>
 
                         <HBox>
@@ -65,10 +56,25 @@
                             <TextField fx:id="description" styleClass="addCommissionTextField" minWidth="500"/>
                         </HBox>
 
-                        <HBox spacing="16">
+                        <HBox>
+                            <Label text="Feedback" styleClass="addCommissionWindowLabel">
+                                <HBox.margin>
+                                    <Insets right="48.0"/>
+                                </HBox.margin>
+                            </Label>
+                            <TextField fx:id="feedback" styleClass="addCommissionTextField" minWidth="500"/>
+                        </HBox>
+
+
+                        <HBox spacing="56">
                             <Button text="+   Choose Image" styleClass="addButton"
                                     onAction="#chooseFile" minHeight="189"/>
-                            <ImageView fitWidth="350" fitHeight="189" fx:id="imagePreview"/>
+                            <HBox fx:id="dragDropTarget" styleClass="imagePreview">
+                                <ImageView fitWidth="350" fitHeight="189" fx:id="imagePreview"/>
+                            </HBox>
+                            <VBox.margin>
+                                <Insets top="24"/>
+                            </VBox.margin>
                         </HBox>
 
                         <BorderPane.margin>

@@ -1,6 +1,9 @@
 package seedu.address.ui.command.window;
 
+import static seedu.address.logic.parser.ParserUtil.parseImagePath;
+
 import java.io.File;
+import java.util.List;
 import java.util.function.Consumer;
 import java.util.logging.Logger;
 
@@ -9,8 +12,8 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.Dragboard;
 import javafx.scene.layout.HBox;
-import javafx.scene.shape.Rectangle;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import seedu.address.commons.core.LogsCenter;
@@ -42,7 +45,7 @@ public abstract class IterationWindow extends UiPart<Stage> {
     @FXML
     private TextField feedback;
     @FXML
-    private Rectangle fileChooseArea;
+    private HBox dragDropTarget;
     @FXML
     private ImageView imagePreview;
     @FXML
@@ -60,6 +63,11 @@ public abstract class IterationWindow extends UiPart<Stage> {
         this.commandExecutor = commandExecutor;
 
         errorDisplay = new ErrorDisplay(errorMessagePlaceholder);
+        dragDropTarget.setOnDragOver(e -> {
+            if (e.getGestureSource() != dragDropTarget && e.getDragboard().hasFiles()) {
+                handleDragDropFile(e.getDragboard());
+            }
+        });
     }
 
     /**
@@ -119,6 +127,25 @@ public abstract class IterationWindow extends UiPart<Stage> {
         } catch (CommandException | ParseException e) {
             errorDisplay.setError(e.getMessage());
         }
+    }
+
+    /**
+     * Accepts the first valid image uploaded. If no valid images
+     * are uploaded, displays an error in the error display box.
+     */
+    private void handleDragDropFile(Dragboard dragboard) {
+        List<File> uploadedFiles = dragboard.getFiles();
+        for (File file : uploadedFiles) {
+            try {
+                parseImagePath(file.getAbsolutePath());
+                imagePath = file.getAbsolutePath();
+                imagePreview.setImage(new Image(file.toURI().toString()));
+                return;
+            } catch (ParseException e) {
+                // not a valid image
+            }
+        }
+        errorDisplay.setError("Please upload a valid PNG, JPEG, or GIF image.");
     }
 
     /**
