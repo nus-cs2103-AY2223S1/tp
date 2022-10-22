@@ -13,19 +13,19 @@ import seedu.address.model.person.Person;
 import seedu.address.storage.ClassStorage;
 
 /**
- * Deletes a person identified using it's displayed index from the address book.
+ * Deletes a person identified using its displayed index from the student list.
  */
 public class DeleteCommand extends Command {
 
     public static final String COMMAND_WORD = "delete";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Deletes the person identified by the index number used in the displayed person list.\n"
+            + ": Deletes the person identified by the index number used in the displayed student list.\n"
             + "Parameters: INDEX [OPTIONAL INDEXES] (must be positive integer(s))\n"
-            + "Example: " + COMMAND_WORD + " 1" + " 2";
+            + "Example: " + COMMAND_WORD + " 1";
 
     public static final String MESSAGE_DELETE_PERSON_SUCCESS = "Deletion successful!";
-    public static final String NO_PERSON_TO_DELETE_ERROR = "There is no student to delete.";
+    public static final String STUDENT_LIST_EMPTY_ERROR = "There is no student to delete.";
 
     private final List<Index> targetIndexes;
 
@@ -45,13 +45,13 @@ public class DeleteCommand extends Command {
         List<Person> lastShownList = model.getFilteredPersonList();
 
         if (model.getFilteredPersonList().size() == 0) {
-            throw new CommandException(NO_PERSON_TO_DELETE_ERROR);
+            throw new CommandException(STUDENT_LIST_EMPTY_ERROR);
         }
 
         for (int i = targetIndexes.size() - 1; i >= 0; i--) {
             Index targetIndex = targetIndexes.get(i);
             if (targetIndex.getZeroBased() >= lastShownList.size()) {
-                throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+                throw new CommandException(Messages.MESSAGE_INVALID_INDEXES);
             }
             Person personToDelete = lastShownList.get(targetIndex.getZeroBased());
             model.deletePerson(personToDelete);

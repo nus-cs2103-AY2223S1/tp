@@ -59,7 +59,7 @@ public class LogicManagerTest {
     @Test
     public void execute_commandExecutionError_throwsCommandException() {
         String deleteCommand = "delete 9";
-        assertCommandException(deleteCommand, DeleteCommand.NO_PERSON_TO_DELETE_ERROR);
+        assertCommandException(deleteCommand, DeleteCommand.STUDENT_LIST_EMPTY_ERROR);
     }
 
     @Test
