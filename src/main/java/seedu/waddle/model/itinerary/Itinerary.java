@@ -57,7 +57,7 @@ public class Itinerary {
         this.unscheduledItemList = new UniqueItemList();
         this.days = new ArrayList<>();
         for (int i = 0; i < duration.getValue(); i++) {
-            this.days.add(new Day(i, this));
+            this.days.add(new Day(i));
         }
     }
 

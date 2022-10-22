@@ -26,6 +26,10 @@ public class Duration {
         }
     }
 
+    public int getDuration() {
+        return this.duration;
+    }
+
     /**
      * Returns true if the given string is a positive integer or null.
      */
