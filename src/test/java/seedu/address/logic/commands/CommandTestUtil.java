@@ -3,14 +3,18 @@ package seedu.address.logic.commands;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DEADLINE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_FEE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ITERATION_DATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ITERATION_DESCRIPTION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ITERATION_FEEDBACK;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ITERATION_IMAGEPATH;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_STATUS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TITLE;
 import static seedu.address.testutil.Assert.assertThrows;
 
 import java.util.ArrayList;
@@ -21,8 +25,10 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
+import seedu.address.model.commission.Commission;
 import seedu.address.model.customer.Customer;
 import seedu.address.model.customer.NameContainsKeywordsPredicate;
+import seedu.address.testutil.EditCommissionDescriptorBuilder;
 import seedu.address.testutil.EditCustomerDescriptorBuilder;
 
 /**
@@ -65,7 +71,9 @@ public class CommandTestUtil {
     public static final String VALID_ITERATION_IMAGEPATH_FINALISE = System.getProperty("user.dir")
             + "/src/test/data/images/test_image_1.png";
     public static final String VALID_ITERATION_IMAGEPATH_COLOR = System.getProperty("user.dir")
-            + "/src/test/data/images/test_image_2.png";;
+            + "/src/test/data/images/test_image_2.png";
+
+    public static final String TITLE_DESC_CAT = " " + PREFIX_TITLE + VALID_TITLE_CAT;
 
     public static final String NAME_DESC_AMY = " " + PREFIX_NAME + VALID_NAME_AMY;
     public static final String NAME_DESC_BOB = " " + PREFIX_NAME + VALID_NAME_BOB;
@@ -78,11 +86,23 @@ public class CommandTestUtil {
     public static final String TAG_DESC_FRIEND = " " + PREFIX_TAG + VALID_TAG_FRIEND;
     public static final String TAG_DESC_HUSBAND = " " + PREFIX_TAG + VALID_TAG_HUSBAND;
 
+    public static final String TAG_DESC_ANIMAL = " " + PREFIX_TAG + VALID_TAG_ANIMAL;
+
+    public static final String TAG_DESC_FOOD = " " + PREFIX_TAG + VALID_TAG_FOOD;
+
     public static final String INVALID_NAME_DESC = " " + PREFIX_NAME + "James&"; // '&' not allowed in names
     public static final String INVALID_PHONE_DESC = " " + PREFIX_PHONE + "911a"; // 'a' not allowed in phones
     public static final String INVALID_EMAIL_DESC = " " + PREFIX_EMAIL + "bob!yahoo"; // missing '@' symbol
     public static final String INVALID_ADDRESS_DESC = " " + PREFIX_ADDRESS; // empty string not allowed for addresses
     public static final String INVALID_TAG_DESC = " " + PREFIX_TAG + "hubby*"; // '*' not allowed in tags
+
+    public static final String INVALID_TITLE_DESC = " " + PREFIX_TITLE + " ";
+
+    public static final String INVALID_DEADLINE_DESC = " " + PREFIX_DEADLINE + "next monday";
+
+    public static final String INVALID_STATUS_DESC = " " + PREFIX_STATUS + "troo :)";
+
+    public static final String INVALID_FEE_DESC = " " + PREFIX_FEE + "-1.2345678";
 
     public static final String ITERATION_DESCRIPTION_DESC_FINALISE = " " + PREFIX_ITERATION_DESCRIPTION
             + VALID_ITERATION_DESCRIPTION_FINALISE;
@@ -104,8 +124,11 @@ public class CommandTestUtil {
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
 
-    public static final EditCommand.EditCustomerDescriptor DESC_AMY;
-    public static final EditCommand.EditCustomerDescriptor DESC_BOB;
+    public static final EditCustomerCommand.EditCustomerDescriptor DESC_AMY;
+    public static final EditCustomerCommand.EditCustomerDescriptor DESC_BOB;
+
+    public static final EditCommissionCommand.EditCommissionDescriptor DESC_CAT;
+    public static final EditCommissionCommand.EditCommissionDescriptor DESC_DOG;
 
     static {
         DESC_AMY = new EditCustomerDescriptorBuilder().withName(VALID_NAME_AMY)
@@ -114,6 +137,10 @@ public class CommandTestUtil {
         DESC_BOB = new EditCustomerDescriptorBuilder().withName(VALID_NAME_BOB)
             .withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB).withAddress(VALID_ADDRESS_BOB)
             .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).build();
+        DESC_CAT = new EditCommissionDescriptorBuilder().withTitle(VALID_TITLE_CAT)
+                .withDescription(VALID_DESCRIPTION_CAT).withFee(50).build();
+        DESC_DOG = new EditCommissionDescriptorBuilder().withTitle(VALID_TITLE_DOG)
+                .withDescription(VALID_DESCRIPTION_DOG).withFee(60).build();
     }
 
     /**
@@ -171,6 +198,20 @@ public class CommandTestUtil {
         model.updateFilteredCustomerList(new NameContainsKeywordsPredicate(Collections.singletonList(splitName[0])));
 
         assertEquals(1, model.getSortedFilteredCustomerList().size());
+    }
+
+    /**
+     * Updates {@code model}'s filtered list to show only the commission at the given {@code targetIndex} in the
+     * {@code model}'s address book.
+     */
+    public static void showCommissionAtIndex(Model model, Index targetIndex) {
+        assertTrue(targetIndex.getZeroBased() < model.getSortedFilteredCustomerList().size());
+
+        Commission targetCommission = model.getFilteredCommissionList().get(targetIndex.getZeroBased());
+        model.updateFilteredCommissionList(commission -> commission.isSameCommission(targetCommission));
+
+        assertEquals(1, model.getFilteredCommissionList().size());
+
     }
 
 }

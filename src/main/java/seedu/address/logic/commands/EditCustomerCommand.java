@@ -32,9 +32,9 @@ import seedu.address.ui.GuiTab;
 /**
  * Edits the details of an existing customer in the address book.
  */
-public class EditCommand extends Command {
+public class EditCustomerCommand extends Command {
 
-    public static final String COMMAND_WORD = "edit";
+    public static final String COMMAND_WORD = "editcus";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the customer identified "
         + "by the index number used in the displayed customer list. "
@@ -51,7 +51,7 @@ public class EditCommand extends Command {
 
     public static final String MESSAGE_EDIT_CUSTOMER_SUCCESS = "Edited Customer: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
-    public static final String MESSAGE_DUPLICATE_CUSTOMER = "This customer already exists in the address book.";
+    public static final String MESSAGE_DUPLICATE_CUSTOMER = "This customer already exists in the art buddy.";
 
     private final Index index;
     private final EditCustomerDescriptor editCustomerDescriptor;
@@ -60,7 +60,7 @@ public class EditCommand extends Command {
      * @param index                  of the customer in the filtered customer list to edit
      * @param editCustomerDescriptor details to edit the customer with
      */
-    public EditCommand(Index index, EditCustomerDescriptor editCustomerDescriptor) {
+    public EditCustomerCommand(Index index, EditCustomerDescriptor editCustomerDescriptor) {
         requireNonNull(index);
         requireNonNull(editCustomerDescriptor);
 
@@ -107,8 +107,14 @@ public class EditCommand extends Command {
         }
 
         model.setCustomer(customerToEdit, editedCustomer);
+
+        if (model.getSelectedCustomer().getValue().isSameCustomer(customerToEdit)) {
+            model.selectCustomer(editedCustomer);
+        }
+
         model.updateFilteredCustomerList(PREDICATE_SHOW_ALL_CUSTOMERS);
         model.selectTab(GuiTab.CUSTOMER);
+        model.selectCustomer(editedCustomer);
         return new CommandResult(String.format(MESSAGE_EDIT_CUSTOMER_SUCCESS, editedCustomer));
     }
 
@@ -120,12 +126,12 @@ public class EditCommand extends Command {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof EditCommand)) {
+        if (!(other instanceof EditCustomerCommand)) {
             return false;
         }
 
         // state check
-        EditCommand e = (EditCommand) other;
+        EditCustomerCommand e = (EditCustomerCommand) other;
         return index.equals(e.index)
                 && editCustomerDescriptor.equals(e.editCustomerDescriptor);
     }
