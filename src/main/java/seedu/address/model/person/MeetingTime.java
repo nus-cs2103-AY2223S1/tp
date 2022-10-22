@@ -11,14 +11,15 @@ import java.time.format.DateTimeFormatter;
  */
 public class MeetingTime {
     public static final String MESSAGE_CONSTRAINTS =
-            "Meeting time should have the format 'DD-MM-YYYY HH:MM'!\n"
+            "Meeting time should have the format 'DD-MM-YYYY-HH:MM'!\n"
             + "DD: Range from 01-31\n"
             + "MM: Range from 01-12\n"
             + "YYYY: Any 4 digits\n"
             + "HH:MM: Range from 00:00-23:59\n";
     public static final String VALIDATION_REGEX =
-            "^([0][1-9]|([012][0-9])|(3[01]))\\-([0][1-9]|1[012])\\-\\d\\d\\d\\d\\s([0-1]?[0-9]|2?[0-3]):([0-5]\\d)$";
+            "^([0][1-9]|([012][0-9])|(3[01]))\\-([0][1-9]|1[012])\\-\\d\\d\\d\\d\\-([0-1]?[0-9]|2?[0-3]):([0-5]\\d)$";
     public final String value;
+    public final String displayValue;
 
     /**
      * Constructs a {@code MeetingTime}.
@@ -28,9 +29,14 @@ public class MeetingTime {
     public MeetingTime(String meetingTimeString) {
         requireNonNull(meetingTimeString);
         checkArgument(isValidMeetingTime(meetingTimeString), MESSAGE_CONSTRAINTS);
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm");
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy-HH:mm");
         LocalDateTime date = LocalDateTime.parse(meetingTimeString, formatter);
         value = meetingTimeString;
+        int day = date.getDayOfMonth();
+        String month = date.getMonth().toString();
+        int year = date.getYear();
+        String time = date.toLocalTime().toString();
+        displayValue = day + " " + month + " " + year + " " + time;
     }
 
     /**

@@ -54,7 +54,7 @@ public class UpdateCommand extends UndoableCommand {
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_PHONE + "91234567 "
-            + PREFIX_EMAIL + "johndoe@example.com " + PREFIX_MEETING_TIME + "18-06-2023 15:30 \n"
+            + PREFIX_EMAIL + "johndoe@example.com " + PREFIX_MEETING_TIME + "18-06-2023-15:30 \n"
             + "Or " + COMMAND_SHORTCUT + " 2 "
             + PREFIX_NETWORTH + "$1000";
 
@@ -129,13 +129,13 @@ public class UpdateCommand extends UndoableCommand {
         Email updatedEmail = editPersonDescriptor.getEmail().orElse(personToEdit.getEmail());
         Address updatedAddress = editPersonDescriptor.getAddress().orElse(personToEdit.getAddress());
         NetWorth updatedNetWorth = editPersonDescriptor.getNetWorth().orElse(personToEdit.getNetWorth());
-        MeetingTime updatedMeetingTime = editPersonDescriptor.getMeetingTime().orElse(personToEdit.getMeetingTime());
+        Set<MeetingTime> updatedMeetingTimes = editPersonDescriptor.getMeetingTimes().orElse(personToEdit.getMeetingTimes());
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
         FilePath updatedFilePath = personToEdit.getFilePath();
         Remark updatedRemark = personToEdit.getRemark(); // edit command does not allow editing remarks
 
         return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress,
-                updatedRemark, updatedNetWorth, updatedMeetingTime, updatedFilePath, updatedTags);
+                updatedRemark, updatedNetWorth, updatedMeetingTimes, updatedFilePath, updatedTags);
     }
 
     @Override
@@ -166,7 +166,7 @@ public class UpdateCommand extends UndoableCommand {
         private Email email;
         private Address address;
         private NetWorth netWorth;
-        private MeetingTime meetingTime;
+        private Set<MeetingTime> meetingTimes;
         private Set<Tag> tags;
 
         public EditPersonDescriptor() {}
@@ -181,7 +181,7 @@ public class UpdateCommand extends UndoableCommand {
             setEmail(toCopy.email);
             setAddress(toCopy.address);
             setNetWorth(toCopy.netWorth);
-            setMeetingTime(toCopy.meetingTime);
+            setMeetingTimes(toCopy.meetingTimes);
             setTags(toCopy.tags);
         }
 
@@ -189,7 +189,7 @@ public class UpdateCommand extends UndoableCommand {
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, phone, email, address, netWorth, meetingTime, tags);
+            return CollectionUtil.isAnyNonNull(name, phone, email, address, netWorth, meetingTimes, tags);
         }
 
         public void setName(Name name) {
@@ -232,12 +232,12 @@ public class UpdateCommand extends UndoableCommand {
             return Optional.ofNullable(netWorth);
         }
 
-        public void setMeetingTime(MeetingTime meetingTime) {
-            this.meetingTime = meetingTime;
+        public void setMeetingTimes(Set<MeetingTime> meetingTimes) {
+            this.meetingTimes = (meetingTimes != null) ? new HashSet<>(meetingTimes) : null;
         }
 
-        public Optional<MeetingTime> getMeetingTime() {
-            return Optional.ofNullable(meetingTime);
+        public Optional<Set<MeetingTime>> getMeetingTimes() {
+            return (meetingTimes != null) ? Optional.of(Collections.unmodifiableSet(meetingTimes)) : Optional.empty();
         }
 
         /**
@@ -277,7 +277,7 @@ public class UpdateCommand extends UndoableCommand {
                     && getEmail().equals(e.getEmail())
                     && getAddress().equals(e.getAddress())
                     && getNetWorth().equals(e.getNetWorth())
-                    && getMeetingTime().equals(e.getMeetingTime())
+                    && getMeetingTimes().equals(e.getMeetingTimes())
                     && getTags().equals(e.getTags());
         }
     }

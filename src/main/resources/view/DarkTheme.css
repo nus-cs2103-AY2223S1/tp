@@ -350,3 +350,17 @@
     -fx-background-radius: 2;
     -fx-font-size: 11;
 }
+
+#meetingTimes {
+    -fx-hgap: 7;
+    -fx-vgap: 3;
+}
+
+#meetingTimes .label {
+    -fx-text-fill: white;
+    -fx-background-color: #21cc3d;
+    -fx-padding: 1 3 1 3;
+    -fx-border-radius: 2;
+    -fx-background-radius: 2;
+    -fx-font-size: 11;
+}

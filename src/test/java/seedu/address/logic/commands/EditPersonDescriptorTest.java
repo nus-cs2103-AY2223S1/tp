@@ -53,7 +53,7 @@ public class EditPersonDescriptorTest {
         assertNotEquals(DESC_AMY, editedAmy);
 
         // different address -> returns false
-        editedAmy = new EditPersonDescriptorBuilder(DESC_AMY).withMeetingTime(VALID_MEETING_TIME_BOB).build();
+        editedAmy = new EditPersonDescriptorBuilder(DESC_AMY).withMeetingTimes(VALID_MEETING_TIME_BOB).build();
         assertNotEquals(DESC_AMY, editedAmy);
 
         // different tags -> returns false

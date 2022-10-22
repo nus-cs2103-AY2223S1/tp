@@ -29,27 +29,27 @@ public class SampleDataUtil {
         return new Person[] {
             new Person(new Name("Alex Yeoh"), new Phone("87438807"), new Email("alexyeoh@example.com"),
                     new Address("Blk 30 Geylang Street 29, #06-40"), EMPTY_REMARK, new NetWorth("$3000"),
-                    new MeetingTime("17-10-2022 14:00"), new FilePath(),
+                    getMeetingTimeSet("17-10-2022-14:00"), new FilePath(),
                     getTagSet("friends")),
             new Person(new Name("Bernice Yu"), new Phone("99272758"), new Email("berniceyu@example.com"),
                     new Address("Blk 30 Lorong 3 Serangoon Gardens, #07-18"), EMPTY_REMARK, new NetWorth("$5000"),
-                    new MeetingTime("18-10-2022 14:00"), new FilePath(),
+                    getMeetingTimeSet("18-10-2022-14:00"), new FilePath(),
                     getTagSet("colleagues", "friends")),
             new Person(new Name("Charlotte Oliveiro"), new Phone("93210283"), new Email("charlotte@example.com"),
                     new Address("Blk 11 Ang Mo Kio Street 74, #11-04"), EMPTY_REMARK, new NetWorth("$1000000"),
-                    new MeetingTime("19-10-2022 14:00"), new FilePath(),
+                    getMeetingTimeSet("19-10-2022-14:00"), new FilePath(),
                     getTagSet("neighbours")),
             new Person(new Name("David Li"), new Phone("91031282"), new Email("lidavid@example.com"),
                     new Address("Blk 436 Serangoon Gardens Street 26, #16-43"), EMPTY_REMARK, new NetWorth("$2000"),
-                    new MeetingTime("20-10-2022 14:00"), new FilePath(),
+                    getMeetingTimeSet("20-10-2022-14:00"), new FilePath(),
                     getTagSet("family")),
             new Person(new Name("Irfan Ibrahim"), new Phone("92492021"), new Email("irfan@example.com"),
                     new Address("Blk 47 Tampines Street 20, #17-35"), EMPTY_REMARK, new NetWorth("$1000"),
-                    new MeetingTime("21-10-2022 14:00"), new FilePath(),
+                    getMeetingTimeSet("21-10-2022-14:00"), new FilePath(),
                     getTagSet("classmates")),
             new Person(new Name("Roy Balakrishnan"), new Phone("92624417"), new Email("royb@example.com"),
                     new Address("Blk 45 Aljunied Street 85, #11-31"), EMPTY_REMARK, new NetWorth("$3500"),
-                    new MeetingTime("22-10-2022 14:00"), new FilePath(),
+                    getMeetingTimeSet("22-10-2022-14:00"), new FilePath(),
                     getTagSet("colleagues"))
         };
     }
@@ -59,6 +59,14 @@ public class SampleDataUtil {
             sampleAb.addPerson(samplePerson);
         }
         return sampleAb;
+    }
+    /**
+     * Returns a tag set containing the list of strings given.
+     */
+    public static Set<MeetingTime> getMeetingTimeSet(String... strings) {
+        return Arrays.stream(strings)
+                .map(MeetingTime::new)
+                .collect(Collectors.toSet());
     }
     /**
      * Returns a tag set containing the list of strings given.

@@ -24,7 +24,7 @@ public class Person {
     private final Address address;
     private final Remark remark;
     private NetWorth netWorth;
-    private final MeetingTime meetingTime;
+    private final Set<MeetingTime> meetingTimes = new HashSet<>();
     private final FilePath filePath;
     private final Set<Tag> tags = new HashSet<>();
 
@@ -32,15 +32,15 @@ public class Person {
      * Every field must be present and not null.
      */
     public Person(Name name, Phone phone, Email email, Address address, Remark remark,
-                  NetWorth netWorth, MeetingTime meetingTime, FilePath filePath, Set<Tag> tags) {
-        requireAllNonNull(name, phone, email, address, netWorth, meetingTime, filePath, tags);
+                  NetWorth netWorth, Set<MeetingTime> meetingTimes, FilePath filePath, Set<Tag> tags) {
+        requireAllNonNull(name, phone, email, address, netWorth, meetingTimes, filePath, tags);
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
         this.remark = remark;
         this.netWorth = netWorth;
-        this.meetingTime = meetingTime;
+        this.meetingTimes.addAll(meetingTimes);
         this.filePath = filePath;
         this.tags.addAll(tags);
     }
@@ -49,15 +49,15 @@ public class Person {
      * Constructor with no remark, for CreateCommand only.
      */
     public Person(Name name, Phone phone, Email email, Address address,
-                  NetWorth netWorth, MeetingTime meetingTime, FilePath filepath, Set<Tag> tags) {
-        requireAllNonNull(name, phone, email, address, netWorth, meetingTime, filepath, tags);
+                  NetWorth netWorth, Set<MeetingTime> meetingTimes, FilePath filepath, Set<Tag> tags) {
+        requireAllNonNull(name, phone, email, address, netWorth, meetingTimes, filepath, tags);
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
         this.remark = new Remark("");
         this.netWorth = netWorth;
-        this.meetingTime = meetingTime;
+        this.meetingTimes.addAll(meetingTimes);
         this.filePath = filepath;
         this.tags.addAll(tags);
     }
@@ -66,7 +66,7 @@ public class Person {
      * Constructor with no remark and no filepath, for CreateCommand only.
      */
     public Person(Name name, Phone phone, Email email, Address address,
-                  NetWorth netWorth, MeetingTime meetingTime, Set<Tag> tags) {
+                  NetWorth netWorth, Set<MeetingTime> meetingTimes, Set<Tag> tags) {
         requireAllNonNull(name, phone, email, address, netWorth, tags);
         this.name = name;
         this.phone = phone;
@@ -74,7 +74,7 @@ public class Person {
         this.address = address;
         this.remark = new Remark("");
         this.netWorth = netWorth;
-        this.meetingTime = meetingTime;
+        this.meetingTimes.addAll(meetingTimes);
         this.filePath = new FilePath("");
         this.tags.addAll(tags);
     }
@@ -104,8 +104,8 @@ public class Person {
         return netWorth;
     }
 
-    public MeetingTime getMeetingTime() {
-        return meetingTime;
+    public Set<MeetingTime> getMeetingTimes() {
+        return Collections.unmodifiableSet(meetingTimes);
     }
 
     public FilePath getFilePath() {
@@ -163,14 +163,14 @@ public class Person {
                 && otherPerson.getTags().equals(getTags())
                 && otherPerson.getRemark().equals(getRemark())
                 && otherPerson.getNetWorth().equals(getNetWorth())
-                && otherPerson.getMeetingTime().equals(getMeetingTime())
+                && otherPerson.getMeetingTimes().equals(getMeetingTimes())
                 && otherPerson.getFilePath().equals(getFilePath());
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, address, tags, remark, netWorth, meetingTime, filePath);
+        return Objects.hash(name, phone, email, address, tags, remark, netWorth, meetingTimes, filePath);
     }
 
     @Override
@@ -187,9 +187,10 @@ public class Person {
                 .append(getRemark())
                 .append(" Net Worth: ")
                 .append(getNetWorth())
-                .append(" Meeting time: ")
-                .append(getMeetingTime())
-                .append(" File Path: ")
+                .append(" Meeting time: ");
+        getMeetingTimes().forEach(builder::append);
+                //.append(getMeetingTimes())
+        builder.append(" File Path: ")
                 .append(getFilePath())
                 .append(" Tags: ");
         getTags().forEach(builder::append);

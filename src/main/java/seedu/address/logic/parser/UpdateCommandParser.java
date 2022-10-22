@@ -19,6 +19,7 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.UpdateCommand;
 import seedu.address.logic.commands.UpdateCommand.EditPersonDescriptor;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.person.MeetingTime;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -62,10 +63,9 @@ public class UpdateCommandParser implements Parser<UpdateCommand> {
         if (argMultimap.getValue(PREFIX_NETWORTH).isPresent()) {
             editPersonDescriptor.setNetWorth(ParserUtil.parseNetWorth(argMultimap.getValue(PREFIX_NETWORTH).get()));
         }
-        if (argMultimap.getValue(PREFIX_MEETING_TIME).isPresent()) {
-            editPersonDescriptor.setMeetingTime(ParserUtil.parseMeetingTime(argMultimap.getValue(PREFIX_MEETING_TIME)
-                    .get()));
-        }
+
+        parseMeetingTimesForEdit(argMultimap.getAllValues(PREFIX_MEETING_TIME)).ifPresent(editPersonDescriptor::setMeetingTimes);
+
         parseTagsForEdit(argMultimap.getAllValues(PREFIX_TAG)).ifPresent(editPersonDescriptor::setTags);
 
         if (!editPersonDescriptor.isAnyFieldEdited()) {
@@ -73,6 +73,21 @@ public class UpdateCommandParser implements Parser<UpdateCommand> {
         }
 
         return new UpdateCommand(index, editPersonDescriptor);
+    }
+
+    /**
+     * Parses {@code Collection<String> tags} into a {@code Set<Tag>} if {@code tags} is non-empty.
+     * If {@code tags} contain only one element which is an empty string, it will be parsed into a
+     * {@code Set<Tag>} containing zero tags.
+     */
+    private Optional<Set<MeetingTime>> parseMeetingTimesForEdit(Collection<String> meetingTimes) throws ParseException {
+        assert meetingTimes != null;
+
+        if (meetingTimes.isEmpty()) {
+            return Optional.empty();
+        }
+        Collection<String> meetingTimeSet = meetingTimes.size() == 1 && meetingTimes.contains("") ? Collections.emptySet() : meetingTimes;
+        return Optional.of(ParserUtil.parseMeetingTimes(meetingTimeSet));
     }
 
     /**
