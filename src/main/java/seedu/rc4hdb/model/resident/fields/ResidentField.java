@@ -21,7 +21,4 @@ public abstract class ResidentField extends Field {
         super(value);
     }
 
-    public static void main(String ... args) {
-        System.out.println(new Name("D").contains(new House("D")));
-    }
 }

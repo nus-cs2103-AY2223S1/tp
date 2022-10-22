@@ -18,9 +18,16 @@ public abstract class Field {
      * Returns true if given {@code Field}'s value is contained in this Field's value
      * @return true if the field value is a substring of this field's value.
      */
-    public boolean contains(Field field) {
-        return field.getClass() == this.getClass()
-                && this.value.toLowerCase().contains(field.value.toLowerCase());
+    public boolean containsIgnoreCase(Field field) {
+        return isSubclass(field) && this.value.toLowerCase().contains(field.value.toLowerCase());
+    }
+
+    /**
+     * Returns true if {@code other} is a subclass of {@code this} or if {@code this} is a subclass of {@code other}.
+     * @return true if the condition above is satisfied.
+     */
+    private boolean isSubclass(Field other) {
+        return other.getClass().equals(this.getClass());
     }
 
     @Override
@@ -38,13 +45,12 @@ public abstract class Field {
         if (other == this) {
             return true;
         }
-
-        if (other.getClass() != this.getClass()) {
+        if (!(other instanceof Field)) {
             return false;
         }
 
         Field otherField = (Field) other;
-        return otherField.value.equals(this.value);
+        return isSubclass(otherField) && otherField.value.equals(this.value);
     }
 
 }
