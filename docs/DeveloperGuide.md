@@ -9,8 +9,9 @@ title: Developer Guide
 
 ## **Acknowledgements**
 
-* {list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the original source as well}
+We'd like to thank:
 
+* [SE-Edu's AddressBook-Level3](https://github.com/se-edu/addressbook-level3) for being the foundation of this brownfield project.
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Setting up, getting started**
@@ -154,6 +155,36 @@ Classes used by multiple components are in the `tuthubbook.commons` package.
 
 This section describes some noteworthy details on how certain features are implemented.
 
+### Adding tutors
+
+<img src="images/AddSequenceDiagram.png">
+
+Tutor information is stored as `Tutor` objects, which captures all the information that the tutor represents. When the user adds a tutor, the program creates a new `Tutor` object with the given information and adds it to the `ObservableList` to be displayed in the program. The `Model` class handles the checking of uniqueness while the `Storage` class handles the conversion of the `Tutor` object to a [JSON](https://www.json.org/) format and updating of the storage file in `{source_root}/data/Tuthub.json`.
+
+The following methods in `Tutub` manage the addition of tutors:
+* `Tuthub#AddCommand(Tutor tutor)` - Adds the provided tutor to the list of tutors created
+* `Tuthub#AddCommandParser(String args)` - Parses the command `add` and determines the attributes of the `Tutor` object created based on the given prefixes
+
+Given below are the different steps taken when the user adds tutors.
+
+Step 1: The user enters the command word add, followed by the prefixes and information that they want to store. Example: `add n/John Doe p/98765432 e/johnd@example.com m/CS2100 y/3 s/A0123456X tn/1 r/5.0 t/senior`.
+
+Step 2: The program makes use of `TuthubParser` to make sense of the keyword and determine which parser to use to parse the arguments. In this case, the `AddCommandParser` is used.
+
+Step 3: The `AddCommandParser` makes sense of the arguments through the use of the prefixes, with the help of `ParserUtil`, and creates an `AddCommand` object with the provided information in the form a `Tutor` object.
+
+Step 4: The `AddCommand` object is executed. The `Tutor` object created in step 3 is added to the list of tutors captured in the `ModelManager` class, which then utilises the `UI` class to display the created `Tutor` object.
+
+Step 5: The execution ends and returns a `CommandResult` object contained the success message to be displayed to the GUI to the user.
+
+Design considerations:
+* Alternative 1 (current choice): Add the tutor to a list that is maintained by the `Model` class
+  * Pros: Tutor can be viewed in the GUI once added without requiring any additional reading from storage.
+  * Cons: More complex implementation of `add` needed due to requirement for both adding to model and storage.
+* Alternative 2: Add the tutor directly to the `Storage` class as a JSON object
+  * Pros: Less memory needed to store an extra list, especially when there would be a large number of tutors
+  * Cons: The `Storage` class would be handling both storing of the Tuthub file and providing of the list to the UI, which would violate OOP principles.
+
 ### Find Feature
 
 This feature filters TutHub's filtered list of tutors based on a predicate on whether a tutor's attribute contains the keywords
@@ -162,7 +193,7 @@ being searched. User are to specify which attribute of the tutor to search for b
 <ins>Implementation</ins>
 
 The `find` command involves the logic, model and UI components of Tuthub.
-Tutor information is stored in a `Tutor` object, where each piece of information is an object on its own. 
+Tutor information is stored in a `Tutor` object, where each piece of information is an object on its own.
 E.g. `Name`, `Phone`, `Email`. When the user wants to find a tutor, the user specifies the `Prefix` corresponding
 to the specific attribute of the tutor followed by the keywords to be searched. `Tutor` objects that are matched the
 keywords being searched are added to the `FilteredList` to be displayed in the program to the user.
@@ -222,14 +253,63 @@ The following sequence diagram demonstrates the above operations (excluding the 
 
 **Aspect: Method to pass a `Tutor` to UI**
 - **Alternative 1:** Store the tutor to be viewed as a field in `Model` **(chosen)**.
-  - Pros: Better OOP practice since `Model` handles all the data related to tutors. 
+  - Pros: Better OOP practice since `Model` handles all the data related to tutors.
   - Cons: The `tutorToView` may be null if there are no tutors in the list to be displayed, so more checks may be needed.
 
 - **Alternative 2:** Store the tutor in `CommandResult`.
-  - Pros: Easier to implement and fewer methods may be needed in `Logic` and `Model` as the tutor can be passed to 
+  - Pros: Easier to implement and fewer methods may be needed in `Logic` and `Model` as the tutor can be passed to
   the `MainWindow` directly through `CommandResult`.
   - Cons: Poor OOP practice as it does not make sense for `CommandResult` to store a `Tutor`, and other commands do not 
   require a `Tutor` object to be stored.
+
+### Sort Feature
+
+This command sorts `Tuthub`'s displayed list based on quantitative measures, such as teaching nominations and ratings. Users are allowed to choose to sort in ascending or descending order.
+
+<ins>Implementation</ins>
+
+The `sort` command involves the logic, model, and UI part of Tuthub. Most updates are made within the `ModelManager`, which are:
+- `ModelManager#sortedFilteredTutors` - A `javafx.collections.transformation.SortedList` that contains `ModelManager#filteredTutors`. 
+- `ModelManager#getFilteredTutorList()` - Now returns the `sortedFilteredTutors` list.
+- `ModelManager#updateSortedTutorList(Comparator<Tutor>)` - Similar to `ModelManager#updateFilteredTutorList`, but updates the Comparator instead of predicate.
+
+Given below is an example usage scenario when the user enters a `view` command in the command box and how the sort mechanism behaves at each step.
+
+Step 1: The user enters the command `sort a r/`.
+
+Step 2: The `TuthubParser` verifies the `SortCommand#COMMAND_WORD`, and requests `SortCommandParser` to parse. The `SortCommandParser` verifies the appropriateness of the user input (`order` and `prefix`) and creates the proper `Comparator` based on the user request.
+
+Step 3: Upon parsing, a new `SortCommand` is created based on the order, prefix, and comparator. 
+
+Step 4: In the `SortCommand` execution, the `model#updateSortedTutorList(Comparator<Tutor>)` is called upon with the proper `Comparator`. Then, a new `CommandResult` is created and stored in `LogicManager`.
+
+Step 5: Upon recognising the `CommandResult`, `MainWindow` calls `logic#getFilteredTutorList()` to get the tutor cards to be displayed, which is passed as a constructor variable into `TutorListPanel`.
+
+Step 6: Then, the `TutorListPanel` sets the items to view as the new and updated `sortedFilteredTutors` list. 
+
+The following sequence diagram demonstrates the above operations (excluding the parsing details):
+
+![SortSequenceDiagram](./images/SortSequenceDiagram.png)
+
+<ins>Design Considerations</ins>
+
+**Aspect: The scope of `sort` (should it be able to sort filtered tutors or not?)**
+- **Alternative 1:** Able to sort any `FilteredList` (i.e. the original tutor list or a tutor list after executing a `find` command) **(chosen)**.
+    - Pros: The `sort` feature achieves its primary purpose while also having a defensive implementation, as it does not directly access and affect `Tuthub#UniqueTutorList`
+    - Cons: Took more time to think of and implement.
+
+- **Alternative 2:** `sort` redefines the original `Tuthub#UniqueTutorList`.
+    - Pros: Easier to implement.
+    - Cons: Feature becomes limited and lacking of purpose. Direct changes to original `Tuthub#UniqueTutorList` is less defensive.
+
+**Aspect: Keeping track of sorting and filtering of the tutor list**
+- **Alternative 1:** Store the `FilteredList` in the `SortedList` **(chosen)**.
+    - Pros: Better OOP practice since the `FilteredList` and `SortedList` variables can be kept `final`.
+    - Cons: Implementation is easy, but may be confusing to understand why and how it works.
+
+- **Alternative 2:** Store two lists, one for `FilteredList` and one for `SortedList`.
+    - Pros: Idea is more simply understood. Serves the main purpose of `sort` if implemented correctly.
+    - Cons: Complicated to implement and possibility of many bugs. Poor OOP practice as it may require reassigning of the `FilteredList` and `SortedList` variables.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -312,9 +392,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 2a. The input index is invalid.
     * Tuthub displays an error message.
-
-      Use case resumes from step 2.  
-    
+  
+      Use case resumes from step 2.
 
 **Use case: UC3 - Add a tutor**
 
