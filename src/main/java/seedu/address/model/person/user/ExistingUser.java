@@ -95,6 +95,31 @@ public class ExistingUser extends User {
         return Collections.unmodifiableSet(planModules);
     }
 
+    /**
+     * Returns true if both users have the same identity and data fields.
+     * This defines a stronger notion of equality between two persons.
+     */
+    @Override
+    public boolean equals(Object other) {
+        if (other == this) {
+            return true;
+        }
+
+        if (!(other instanceof ExistingUser)) {
+            return false;
+        }
+
+        ExistingUser otherUser = (ExistingUser) other;
+        return otherUser.getName().equals(getName())
+                && otherUser.getPhone().equals(getPhone())
+                && otherUser.getEmail().equals(getEmail())
+                && otherUser.getAddress().equals(getAddress())
+                && otherUser.getGithub().equals(getGithub())
+                && otherUser.getCurrModules().equals(getCurrModules())
+                && otherUser.getPrevModules().equals(getPrevModules())
+                && otherUser.getPlanModules().equals(getPlanModules());
+    }
+
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own

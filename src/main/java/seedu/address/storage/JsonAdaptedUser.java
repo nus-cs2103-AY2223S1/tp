@@ -38,6 +38,7 @@ class JsonAdaptedUser {
     private final List<JsonAdaptedCurrentModule> currModules = new ArrayList<>();
     private final List<JsonAdaptedPreviousModule> prevModules = new ArrayList<>();
     private final List<JsonAdaptedPlannedModule> planModules = new ArrayList<>();
+    private final boolean isEmpty;
 
     /**
      * Constructs a {@code JsonAdaptedUser} with the given person details.
@@ -48,7 +49,8 @@ class JsonAdaptedUser {
                              @JsonProperty("github") String github,
                              @JsonProperty("currModules") List<JsonAdaptedCurrentModule> currModules,
                              @JsonProperty("prevModules") List<JsonAdaptedPreviousModule> prevModules,
-                             @JsonProperty("planModules") List<JsonAdaptedPlannedModule> planModules) {
+                             @JsonProperty("planModules") List<JsonAdaptedPlannedModule> planModules,
+                             @JsonProperty("isEmpty") boolean isEmpty) {
         this.name = name;
         this.phone = phone;
         this.email = email;
@@ -63,6 +65,7 @@ class JsonAdaptedUser {
         if (planModules != null) {
             this.planModules.addAll(planModules);
         }
+        this.isEmpty = isEmpty;
     }
 
     /**
@@ -71,10 +74,11 @@ class JsonAdaptedUser {
     public JsonAdaptedUser(User source) {
         if (source.equals(emptyUser)) {
             name = "";
-            phone = "empty";
+            phone = "";
             email = "";
             address = "";
             github = "";
+            isEmpty = true;
         } else {
             assert source instanceof ExistingUser : "User cannot be any other type";
             ExistingUser user = (ExistingUser) source;
@@ -92,6 +96,7 @@ class JsonAdaptedUser {
             planModules.addAll(user.getPlanModules().stream()
                     .map(JsonAdaptedPlannedModule::new)
                     .collect(Collectors.toList()));
+            isEmpty = false;
         }
     }
 
@@ -102,7 +107,7 @@ class JsonAdaptedUser {
      */
     public User toModelType() throws IllegalValueException {
 
-        if (phone.equals("empty")) {
+        if (isEmpty) {
             return new EmptyUser();
         }
 

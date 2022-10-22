@@ -12,12 +12,13 @@
   } ],
   "jsonAdaptedUser" : {
     "name" : "",
-    "phone" : "empty",
+    "phone" : "",
     "email" : "",
     "address" : "",
     "currModules" : [ ],
     "prevModules" : [ ],
     "planModules" : [ ],
+    "isEmpty" : false,
     "emptyUser" : { }
   }
 }

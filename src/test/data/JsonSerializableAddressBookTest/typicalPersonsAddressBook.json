@@ -57,14 +57,15 @@
     "tagged" : [ ]
   } ],
   "jsonAdaptedUser" : {
-    "name" : "",
-    "phone" : "empty",
-    "email" : "",
-    "address" : "",
-    "github" : "",
-    "currModules" : [ ],
-    "prevModules" : [ ],
-    "planModules" : [ ],
+    "name" : "Zephyr Yosef",
+    "phone" : "90123456",
+    "email" : "zephYosef@example.com",
+    "address" : "333, Yishun St 33, #03-33",
+    "github" : "ZephYosef",
+    "currModules" : [ "CS2103T" ],
+    "prevModules" : [ "CS2040S" ],
+    "planModules" : [ "CS2109S" ],
+    "isEmpty" : false,
     "emptyUser" : { }
   }
 }

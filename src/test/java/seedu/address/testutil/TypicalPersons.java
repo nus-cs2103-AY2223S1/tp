@@ -19,11 +19,34 @@ import java.util.List;
 
 import seedu.address.model.AddressBook;
 import seedu.address.model.person.Person;
+import seedu.address.model.person.user.User;
 
 /**
  * A utility class containing a list of {@code Person} objects to be used in tests.
  */
 public class TypicalPersons {
+
+    public static final User ZEPHYR = new UserBuilder()
+            .withName("Zephyr Yosef")
+            .withAddress("333, Yishun St 33, #03-33")
+            .withPhone("90123456")
+            .withEmail("zephYosef@example.com")
+            .withGithub("ZephYosef")
+            .withCurrentModules("CS2103T")
+            .withPreviousModules("CS2040S")
+            .withPlannedModules("CS2109S")
+            .build();
+
+    public static final User XAVIER = new UserBuilder()
+            .withName("Xavier Williams")
+            .withAddress("555, Ang Mo Kio St 55, #05-55")
+            .withPhone("96543210")
+            .withEmail("xavWilliams@example.com")
+            .withGithub("Xavier-Williams")
+            .withCurrentModules("CS2103T")
+            .withPreviousModules("CS2040S")
+            .withPlannedModules("CS2109S")
+            .build();
 
     public static final Person ALICE = new PersonBuilder().withName("Alice Pauline")
             .withAddress("123, Jurong West Ave 6, #08-111")
@@ -118,6 +141,7 @@ public class TypicalPersons {
      */
     public static AddressBook getTypicalAddressBook() {
         AddressBook ab = new AddressBook();
+        ab.addUser(ZEPHYR);
         for (Person person : getTypicalPersons()) {
             ab.addPerson(person);
         }
