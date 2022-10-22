@@ -35,7 +35,7 @@ public class CalendarEventListPanel extends VBox {
         calendarEventList.getChildren().add(tDate);
         calendarDayEvents.stream()
                 .forEach(x -> calendarEventList.getChildren()
-                        .add(new EventButton(x, primaryStage)));
+                        .add(new EventButton(x, primaryStage).eventButton));
 
         return calendarEventList;
     }

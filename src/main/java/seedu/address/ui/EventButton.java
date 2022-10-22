@@ -6,36 +6,35 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.geometry.Point2D;
 import javafx.scene.control.Button;
+import javafx.scene.layout.Region;
 import javafx.stage.Stage;
 import seedu.address.model.calendar.CalendarEvent;
 
-/**
- * Button that contains a CalendarEvent.
- */
-public class EventButton extends Button {
-    private static final String EVENT_BUTTON_STYLE = "-fx-font-size: 8pt; -fx-border-color: grey; "
-            + "-fx-border-radius: 5;";
-    private static final String ENGAGED_EVENT_BUTTON_STYLE = "-fx-font-size: 8pt; -fx-border-color: orange;"
-            + "-fx-border-radius: 5;";
+public class EventButton extends UiPart<Region> {
+    private static final String FXML = "EventButton.fxml";
+    private static final String EVENT_BUTTON_STYLE = "-fx-font-size: 8pt; -fx-border-radius: 5;";
+    private static final String GREY_BORDER = "-fx-border-color: grey;";
+    private static final String ORANGE_BORDER = "-fx-border-color: orange;";
     private static final double ORIGIN = 0.0;
     private static final int TOOLTIP_OFFSET = 15;
     private Stage primaryStage;
+    private CalendarEvent calendarEvent;
+    @FXML
+    public Button eventButton;
+    @FXML
     private CalendarPopup calendarPopup;
 
-    /**
-     * Creates a {@code EventButton} with the given Appointment details.
-     */
     public EventButton(CalendarEvent calendarEvent, Stage primaryStage) {
-        super(calendarEvent.getTimeFormat() + " " + calendarEvent.getName());
+        super(FXML);
+        this.calendarEvent = calendarEvent;
         this.primaryStage = primaryStage;
-        this.calendarPopup = new CalendarPopup(calendarEvent, this);
+        this.calendarPopup = new CalendarPopup(calendarEvent, eventButton);
         initialiseEventButton();
     }
 
     private void initialiseEventButton() {
-        this.setStyle(EVENT_BUTTON_STYLE);
-        this.setOnAction(this::handleOnPressed);
-        this.focusedProperty().addListener(this::handleFocusedEvent);
+        eventButton.setText(calendarEvent.getTimeFormat() + " " + calendarEvent.getName());
+        eventButton.focusedProperty().addListener(this::handleFocusedEvent);
         ChangeListener<Number> stageSizeListener = (observable, oldValue, newValue) -> {
             if (calendarPopup.isShowing()) {
                 calendarPopup.hide();
@@ -46,7 +45,7 @@ public class EventButton extends Button {
     }
 
     @FXML
-    private void handleOnPressed(ActionEvent event) {
+    private void handleOnAction(ActionEvent event) {
         if (!calendarPopup.isShowing()) {
             displayToolTip();
         }
@@ -54,20 +53,20 @@ public class EventButton extends Button {
 
     @FXML
     private void handleFocusedEvent(Observable observable) {
-        if (!calendarPopup.isShowing() && isFocused()) {
-            setStyle(ENGAGED_EVENT_BUTTON_STYLE);
+        if (!calendarPopup.isShowing() && eventButton.isFocused()) {
+            eventButton.setStyle(EVENT_BUTTON_STYLE + ORANGE_BORDER);
             displayToolTip();
         }
-        if (!isFocused()) {
-            setStyle(EVENT_BUTTON_STYLE);
+        if (!eventButton.isFocused()) {
+            eventButton.setStyle(EVENT_BUTTON_STYLE + GREY_BORDER);
             calendarPopup.hide();
         }
     }
 
     private void displayToolTip() {
-        Point2D p = localToScene(ORIGIN, ORIGIN);
-        calendarPopup.show(this, p.getX()
-                + this.getScene().getX() + this.getScene().getWindow().getX(), p.getY()
-                + this.getScene().getY() + this.getScene().getWindow().getY() + TOOLTIP_OFFSET);
+        Point2D p = eventButton.localToScene(ORIGIN, ORIGIN);
+        calendarPopup.show(eventButton, p.getX()
+                + eventButton.getScene().getX() + eventButton.getScene().getWindow().getX(), p.getY()
+                + eventButton.getScene().getY() + eventButton.getScene().getWindow().getY() + TOOLTIP_OFFSET);
     }
 }
