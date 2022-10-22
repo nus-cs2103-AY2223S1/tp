@@ -1,18 +1,27 @@
 package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 
+import java.time.LocalTime;
+import java.time.format.DateTimeParseException;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
+import seedu.address.logic.commands.LessonCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.module.CurrentModule;
+import seedu.address.model.module.Lab;
+import seedu.address.model.module.Lecture;
+import seedu.address.model.module.Lesson;
 import seedu.address.model.module.Module;
 import seedu.address.model.module.PlannedModule;
 import seedu.address.model.module.PreviousModule;
+import seedu.address.model.module.Recitation;
+import seedu.address.model.module.Tutorial;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Github;
@@ -222,5 +231,67 @@ public class ParserUtil {
             modSet.add(parsePlannedModule(modCode));
         }
         return modSet;
+    }
+
+
+    /**
+     * Parses a {@code String time} into a {@code LocalTime}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code time} is invalid.
+     */
+    private static LocalTime parseTime(String time) throws ParseException {
+        requireNonNull(time);
+        String timeTrim = time.trim();
+        try {
+            return LocalTime.parse(timeTrim);
+        } catch (DateTimeParseException e) {
+            throw new ParseException(LessonCommand.MESSAGE_INVALID_TIME);
+        }
+    }
+
+    /**
+     * Parses a {@code String day} into a {@code int}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code day} is invalid.
+     */
+    private static int parseDay(String day) throws ParseException {
+        requireNonNull(day);
+        String dayTrim = day.trim();
+        int dayNumber = Integer.parseInt(dayTrim);
+        if (dayNumber < 1 || dayNumber > 7) {
+            throw new ParseException(LessonCommand.MESSAGE_INVALID_DAY);
+        }
+        return dayNumber;
+    }
+
+    /**
+     * Parses a {@code String day} into a {@code int}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code day} is invalid.
+     */
+    public static Lesson parseLesson(String type, String module, String day,
+                                     String startTime, String endTime) throws ParseException {
+        requireNonNull(type);
+        requireNonNull(module);
+        String typeTrim = type.trim();
+        int dayNumber = parseDay(day);
+        LocalTime start = parseTime(startTime);
+        LocalTime end = parseTime(endTime);
+
+        switch(typeTrim) {
+        case "tut":
+            return new Tutorial(module, dayNumber, start, end);
+        case "lec":
+            return new Lecture(module, dayNumber, start, end);
+        case "rec":
+            return new Recitation(module, dayNumber, start, end);
+        case "lab":
+            return new Lab(module, dayNumber, start, end);
+        default:
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, LessonCommand.MESSAGE_USAGE));
+        }
     }
 }

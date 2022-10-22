@@ -38,6 +38,7 @@ class JsonAdaptedUser {
     private final List<JsonAdaptedCurrentModule> currModules = new ArrayList<>();
     private final List<JsonAdaptedPreviousModule> prevModules = new ArrayList<>();
     private final List<JsonAdaptedPlannedModule> planModules = new ArrayList<>();
+    private final List<JsonAdaptedLesson> lessons = new ArrayList<>();
     private final boolean isEmpty;
 
     /**
@@ -50,6 +51,7 @@ class JsonAdaptedUser {
                              @JsonProperty("currModules") List<JsonAdaptedCurrentModule> currModules,
                              @JsonProperty("prevModules") List<JsonAdaptedPreviousModule> prevModules,
                              @JsonProperty("planModules") List<JsonAdaptedPlannedModule> planModules,
+                             @JsonProperty("lessons") List<JsonAdaptedLesson> lesson,
                              @JsonProperty("isEmpty") boolean isEmpty) {
         this.name = name;
         this.phone = phone;
@@ -64,6 +66,9 @@ class JsonAdaptedUser {
         }
         if (planModules != null) {
             this.planModules.addAll(planModules);
+        }
+        if (lesson != null) {
+            this.lessons.addAll(lesson);
         }
         this.isEmpty = isEmpty;
     }
@@ -95,6 +100,9 @@ class JsonAdaptedUser {
                     .collect(Collectors.toList()));
             planModules.addAll(user.getPlanModules().stream()
                     .map(JsonAdaptedPlannedModule::new)
+                    .collect(Collectors.toList()));
+            lessons.addAll(user.getLessons().stream()
+                    .map(JsonAdaptedLesson::new)
                     .collect(Collectors.toList()));
             isEmpty = false;
         }
@@ -172,8 +180,13 @@ class JsonAdaptedUser {
 
         final Set<PlannedModule> modelPlanModules = new HashSet<>(personPlanModules);
 
-        return new ExistingUser(modelName, modelPhone, modelEmail, modelAddress, modelGithub,
+        User user = new ExistingUser(modelName, modelPhone, modelEmail, modelAddress, modelGithub,
                 modelCurrModules, modelPrevModules, modelPlanModules);
+
+        for (JsonAdaptedLesson lesson : lessons) {
+            user.addLesson(lesson.toModelType());
+        }
+        return user;
     }
 
 }

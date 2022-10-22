@@ -64,8 +64,10 @@ public class PersonCard extends UiPart<Region> {
         id.setText(displayedIndex + ". ");
         name.setText(person.getName().fullName);
         phone.setText(person.getPhone().value);
+        assert person.getPhone().value.isEmpty() == false;
         address.setText(person.getAddress().value);
         email.setText(person.getEmail().value);
+        assert person.getEmail().value.contains("@") == true;
         github.setText("Github: " + person.getGithub().value);
         currModuleDescription.setText("Current Modules: ");
         prevModuleDescription.setText("Previous Modules: ");

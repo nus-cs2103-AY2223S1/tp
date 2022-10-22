@@ -17,13 +17,14 @@ Class Person
 Class "Name" as PersonName
 Class "Name" as UserName
 Class "Tag" as PersonTag
-Class "Tag" as UserTag
 Class "Email" as PersonEmail
 Class "Email" as UserEmail
 Class "Phone" as PersonPhone
 Class "Phone" as UserPhone
 Class "Address" as PersonAddress
 Class "Address" as UserAddress
+Class "Github" as PersonGithub
+Class "Github" as UserGithub
 Class "CurrentModule" as PersonCurrentModule
 Class "CurrentModule" as UserCurrentModule
 Class "PreviousModule" as PersonPreviousModule
@@ -53,6 +54,7 @@ Person *--> PersonName
 Person *--> PersonPhone
 Person *--> PersonEmail
 Person *--> PersonAddress
+Person *--> "0..1" PersonGithub
 Person *--> "*" PersonTag
 Person *--> "*" PersonCurrentModule
 Person *--> "*" PersonPlannedModule
@@ -66,7 +68,7 @@ User *--> UserName
 User *--> UserPhone
 User *--> UserEmail
 User *--> UserAddress
-User *--> "*" UserTag
+User *--> "0..1" UserGithub
 User *--> "*" UserCurrentModule
 User *--> "*" UserPlannedModule
 User *--> "*" UserPreviousModule

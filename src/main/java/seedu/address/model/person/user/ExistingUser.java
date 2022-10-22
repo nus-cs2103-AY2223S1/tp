@@ -8,6 +8,7 @@ import java.util.Objects;
 import java.util.Set;
 
 import seedu.address.model.module.CurrentModule;
+import seedu.address.model.module.Lesson;
 import seedu.address.model.module.PlannedModule;
 import seedu.address.model.module.PreviousModule;
 import seedu.address.model.person.Address;
@@ -33,6 +34,7 @@ public class ExistingUser extends User {
     private final Set<CurrentModule> currModules = new HashSet<>();
     private final Set<PreviousModule> prevModules = new HashSet<>();
     private final Set<PlannedModule> planModules = new HashSet<>();
+    private final Set<Lesson> lessons = new HashSet<>();
 
     /**
      * Every field must be present and not null.
@@ -95,9 +97,17 @@ public class ExistingUser extends User {
         return Collections.unmodifiableSet(planModules);
     }
 
+    public void addLesson(Lesson lesson) {
+        lessons.add(lesson);
+    }
+
+    public Set<Lesson> getLessons() {
+        return Collections.unmodifiableSet(lessons);
+    }
+
     /**
      * Returns true if both users have the same identity and data fields.
-     * This defines a stronger notion of equality between two persons.
+     * This defines a stronger notion of equality between two users.
      */
     @Override
     public boolean equals(Object other) {

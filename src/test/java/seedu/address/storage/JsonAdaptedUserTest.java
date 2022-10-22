@@ -45,6 +45,7 @@ public class JsonAdaptedUserTest {
     private static final List<JsonAdaptedPlannedModule> VALID_PLANNED_MODULES = XAVIER.getPlanModules().stream()
             .map(JsonAdaptedPlannedModule::new)
             .collect(Collectors.toList());
+    private static final List<JsonAdaptedLesson> VALID_LESSONS = new ArrayList<>();
 
     private final EmptyUser emptyUser = new EmptyUser();
 
@@ -65,7 +66,8 @@ public class JsonAdaptedUserTest {
     public void toModelType_allValidDetailsEmptyTrue_returnsEmptyUser() throws Exception {
         JsonAdaptedUser user =
                 new JsonAdaptedUser(VALID_NAME, VALID_PHONE, VALID_EMAIL, VALID_ADDRESS, VALID_GITHUB,
-                        VALID_CURRENT_MODULES, VALID_PREVIOUS_MODULES, VALID_PLANNED_MODULES, USER_IS_EMPTY);
+                        VALID_CURRENT_MODULES, VALID_PREVIOUS_MODULES, VALID_PLANNED_MODULES, VALID_LESSONS,
+                        USER_IS_EMPTY);
         assertEquals(emptyUser, user.toModelType());
     }
 
@@ -76,14 +78,15 @@ public class JsonAdaptedUserTest {
         List<JsonAdaptedPlannedModule> invalidPlannedModules = new ArrayList<>(VALID_PLANNED_MODULES);
         JsonAdaptedUser user =
                 new JsonAdaptedUser(INVALID_NAME, INVALID_PHONE, INVALID_EMAIL, INVALID_ADDRESS, INVALID_GITHUB,
-                        invalidCurrentModules, invalidPreviousModules, invalidPlannedModules, USER_IS_EMPTY);
+                        invalidCurrentModules, invalidPreviousModules, invalidPlannedModules, VALID_LESSONS,
+                        USER_IS_EMPTY);
         assertEquals(emptyUser, user.toModelType());
     }
 
     @Test
     public void toModelType_allNullDetailsEmptyTrue_returnsEmptyUser() throws Exception {
         JsonAdaptedUser user =
-                new JsonAdaptedUser(null, null, null, null, null, null, null, null, USER_IS_EMPTY);
+                new JsonAdaptedUser(null, null, null, null, null, null, null, null, null, USER_IS_EMPTY);
         assertEquals(emptyUser, user.toModelType());
     }
 
@@ -92,7 +95,8 @@ public class JsonAdaptedUserTest {
     public void toModelType_invalidName_throwsIllegalValueException() {
         JsonAdaptedUser user =
                 new JsonAdaptedUser(INVALID_NAME, VALID_PHONE, VALID_EMAIL, VALID_ADDRESS, VALID_GITHUB,
-                        VALID_CURRENT_MODULES, VALID_PREVIOUS_MODULES, VALID_PLANNED_MODULES, USER_NOT_EMPTY);
+                        VALID_CURRENT_MODULES, VALID_PREVIOUS_MODULES, VALID_PLANNED_MODULES, VALID_LESSONS,
+                        USER_NOT_EMPTY);
         String expectedMessage = Name.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, user::toModelType);
     }
@@ -100,7 +104,7 @@ public class JsonAdaptedUserTest {
     @Test
     public void toModelType_nullName_throwsIllegalValueException() {
         JsonAdaptedUser user = new JsonAdaptedUser(null, VALID_PHONE, VALID_EMAIL, VALID_ADDRESS, VALID_GITHUB,
-                VALID_CURRENT_MODULES, VALID_PREVIOUS_MODULES, VALID_PLANNED_MODULES, USER_NOT_EMPTY);
+                VALID_CURRENT_MODULES, VALID_PREVIOUS_MODULES, VALID_PLANNED_MODULES, VALID_LESSONS, USER_NOT_EMPTY);
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Name.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, user::toModelType);
     }
@@ -109,7 +113,8 @@ public class JsonAdaptedUserTest {
     public void toModelType_invalidPhone_throwsIllegalValueException() {
         JsonAdaptedUser person =
                 new JsonAdaptedUser(VALID_NAME, INVALID_PHONE, VALID_EMAIL, VALID_ADDRESS, VALID_GITHUB,
-                        VALID_CURRENT_MODULES, VALID_PREVIOUS_MODULES, VALID_PLANNED_MODULES, USER_NOT_EMPTY);
+                        VALID_CURRENT_MODULES, VALID_PREVIOUS_MODULES, VALID_PLANNED_MODULES, VALID_LESSONS,
+                        USER_NOT_EMPTY);
         String expectedMessage = Phone.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
     }
@@ -117,7 +122,7 @@ public class JsonAdaptedUserTest {
     @Test
     public void toModelType_nullPhone_throwsIllegalValueException() {
         JsonAdaptedUser person = new JsonAdaptedUser(VALID_NAME, null, VALID_EMAIL, VALID_ADDRESS, VALID_GITHUB,
-                VALID_CURRENT_MODULES, VALID_PREVIOUS_MODULES, VALID_PLANNED_MODULES, USER_NOT_EMPTY);
+                VALID_CURRENT_MODULES, VALID_PREVIOUS_MODULES, VALID_PLANNED_MODULES, VALID_LESSONS, USER_NOT_EMPTY);
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Phone.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
     }
@@ -126,7 +131,8 @@ public class JsonAdaptedUserTest {
     public void toModelType_invalidEmail_throwsIllegalValueException() {
         JsonAdaptedUser person =
                 new JsonAdaptedUser(VALID_NAME, VALID_PHONE, INVALID_EMAIL, VALID_ADDRESS, VALID_GITHUB,
-                        VALID_CURRENT_MODULES, VALID_PREVIOUS_MODULES, VALID_PLANNED_MODULES, USER_NOT_EMPTY);
+                        VALID_CURRENT_MODULES, VALID_PREVIOUS_MODULES, VALID_PLANNED_MODULES, VALID_LESSONS,
+                        USER_NOT_EMPTY);
         String expectedMessage = Email.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
     }
@@ -134,7 +140,7 @@ public class JsonAdaptedUserTest {
     @Test
     public void toModelType_nullEmail_throwsIllegalValueException() {
         JsonAdaptedUser person = new JsonAdaptedUser(VALID_NAME, VALID_PHONE, null, VALID_ADDRESS, VALID_GITHUB,
-                VALID_CURRENT_MODULES, VALID_PREVIOUS_MODULES, VALID_PLANNED_MODULES, USER_NOT_EMPTY);
+                VALID_CURRENT_MODULES, VALID_PREVIOUS_MODULES, VALID_PLANNED_MODULES, VALID_LESSONS, USER_NOT_EMPTY);
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Email.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
     }
@@ -143,7 +149,8 @@ public class JsonAdaptedUserTest {
     public void toModelType_invalidAddress_throwsIllegalValueException() {
         JsonAdaptedUser person =
                 new JsonAdaptedUser(VALID_NAME, VALID_PHONE, VALID_EMAIL, INVALID_ADDRESS, VALID_GITHUB,
-                        VALID_CURRENT_MODULES, VALID_PREVIOUS_MODULES, VALID_PLANNED_MODULES, USER_NOT_EMPTY);
+                        VALID_CURRENT_MODULES, VALID_PREVIOUS_MODULES, VALID_PLANNED_MODULES, VALID_LESSONS,
+                        USER_NOT_EMPTY);
         String expectedMessage = Address.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
     }
@@ -151,7 +158,7 @@ public class JsonAdaptedUserTest {
     @Test
     public void toModelType_nullAddress_throwsIllegalValueException() {
         JsonAdaptedUser person = new JsonAdaptedUser(VALID_NAME, VALID_PHONE, VALID_EMAIL, null, VALID_GITHUB,
-                VALID_CURRENT_MODULES, VALID_PREVIOUS_MODULES, VALID_PLANNED_MODULES, USER_NOT_EMPTY);
+                VALID_CURRENT_MODULES, VALID_PREVIOUS_MODULES, VALID_PLANNED_MODULES, VALID_LESSONS, USER_NOT_EMPTY);
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Address.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
     }
@@ -160,7 +167,8 @@ public class JsonAdaptedUserTest {
     public void toModelType_invalidGithub_throwsIllegalValueException() {
         JsonAdaptedUser person =
                 new JsonAdaptedUser(VALID_NAME, VALID_PHONE, VALID_EMAIL, VALID_ADDRESS, INVALID_GITHUB,
-                        VALID_CURRENT_MODULES, VALID_PREVIOUS_MODULES, VALID_PLANNED_MODULES, USER_NOT_EMPTY);
+                        VALID_CURRENT_MODULES, VALID_PREVIOUS_MODULES, VALID_PLANNED_MODULES, VALID_LESSONS,
+                        USER_NOT_EMPTY);
         String expectedMessage = Github.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
     }
@@ -168,7 +176,7 @@ public class JsonAdaptedUserTest {
     @Test
     public void toModelType_nullGithub_throwsIllegalValueException() {
         JsonAdaptedUser person = new JsonAdaptedUser(VALID_NAME, VALID_PHONE, VALID_EMAIL, VALID_ADDRESS, null,
-                VALID_CURRENT_MODULES, VALID_PREVIOUS_MODULES, VALID_PLANNED_MODULES, USER_NOT_EMPTY);
+                VALID_CURRENT_MODULES, VALID_PREVIOUS_MODULES, VALID_PLANNED_MODULES, VALID_LESSONS, USER_NOT_EMPTY);
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Github.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
     }
@@ -179,7 +187,8 @@ public class JsonAdaptedUserTest {
         invalidCurrentModules.add(new JsonAdaptedCurrentModule(INVALID_CURRENT_MODULE));
         JsonAdaptedUser person =
                 new JsonAdaptedUser(VALID_NAME, VALID_PHONE, VALID_EMAIL, VALID_ADDRESS, VALID_GITHUB,
-                        invalidCurrentModules, VALID_PREVIOUS_MODULES, VALID_PLANNED_MODULES, USER_NOT_EMPTY);
+                        invalidCurrentModules, VALID_PREVIOUS_MODULES, VALID_PLANNED_MODULES, VALID_LESSONS,
+                        USER_NOT_EMPTY);
         assertThrows(IllegalValueException.class, person::toModelType);
     }
 
@@ -189,7 +198,8 @@ public class JsonAdaptedUserTest {
         invalidPreviousModules.add(new JsonAdaptedPreviousModule(INVALID_PREVIOUS_MODULE));
         JsonAdaptedUser person =
                 new JsonAdaptedUser(VALID_NAME, VALID_PHONE, VALID_EMAIL, VALID_ADDRESS, VALID_GITHUB,
-                        VALID_CURRENT_MODULES, invalidPreviousModules, VALID_PLANNED_MODULES, USER_NOT_EMPTY);
+                        VALID_CURRENT_MODULES, invalidPreviousModules, VALID_PLANNED_MODULES, VALID_LESSONS,
+                        USER_NOT_EMPTY);
         assertThrows(IllegalValueException.class, person::toModelType);
     }
 
@@ -199,7 +209,8 @@ public class JsonAdaptedUserTest {
         invalidPlannedModules.add(new JsonAdaptedPlannedModule(INVALID_PLANNED_MODULE));
         JsonAdaptedUser person =
                 new JsonAdaptedUser(VALID_NAME, VALID_PHONE, VALID_EMAIL, VALID_ADDRESS, VALID_GITHUB,
-                        VALID_CURRENT_MODULES, VALID_PREVIOUS_MODULES, invalidPlannedModules, USER_NOT_EMPTY);
+                        VALID_CURRENT_MODULES, VALID_PREVIOUS_MODULES, invalidPlannedModules, VALID_LESSONS,
+                        USER_NOT_EMPTY);
         assertThrows(IllegalValueException.class, person::toModelType);
     }
 }

@@ -8,6 +8,7 @@ import java.util.Objects;
 import java.util.Set;
 
 import seedu.address.model.module.CurrentModule;
+import seedu.address.model.module.Lesson;
 import seedu.address.model.module.PlannedModule;
 import seedu.address.model.module.PreviousModule;
 import seedu.address.model.tag.Tag;
@@ -30,6 +31,7 @@ public class Person {
     private final Set<CurrentModule> currModules = new HashSet<>();
     private final Set<PreviousModule> prevModules = new HashSet<>();
     private final Set<PlannedModule> planModules = new HashSet<>();
+    private final Set<Lesson> lessons = new HashSet<>();
 
     /**
      * Every field must be present and not null.
@@ -101,6 +103,14 @@ public class Person {
     }
 
     /**
+     * Returns an immutable lesson set, which throws {@code UnsupportedOperationException}
+     * if modification is attempted.
+     */
+    public Set<Lesson> getLessons() {
+        return Collections.unmodifiableSet(lessons);
+    }
+
+    /**
      * Returns true if both persons have the same name.
      * This defines a weaker notion of equality between two persons.
      */
@@ -111,6 +121,10 @@ public class Person {
 
         return otherPerson != null
                 && otherPerson.getName().equals(getName());
+    }
+
+    public void addLesson(Lesson lesson) {
+        lessons.add(lesson);
     }
 
     /**

@@ -69,13 +69,13 @@ The sections below give more details of each component.
 
 ### UI component
 
-The **API** of this component is specified in [`Ui.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/Ui.java)
+The **API** of this component is specified in [`Ui.java`](https://github.com/AY2223S1-CS2103T-T14-4/tp/blob/master/src/main/java/seedu/address/ui/Ui.java)
 
 ![Structure of the UI Component](images/UiClassDiagram.png)
 
-The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `PersonListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
+The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `PersonListPanel`, `StatusBarFooter`, `UserProfile` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
 
-The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/resources/view/MainWindow.fxml)
+The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/AY2223S1-CS2103T-T14-4/tp/blob/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/AY2223S1-CS2103T-T14-4/tp/blob/master/src/main/resources/view/MainWindow.fxml)
 
 The `UI` component,
 
@@ -141,7 +141,7 @@ All implementations of `Module`s have a name.
 
 `CurrentModule` has additional fields, which are implementations of `Lesson`s. These are `Tutorial`, `Recitation`, `Lab`, and `Lecture`.
 
-All implementations of `Lesson`s have a `StartTime` and `EndTime`. 
+All implementations of `Lesson`s have a `StartTime` and `EndTime`.
 
 
 ### Storage component
@@ -230,6 +230,135 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 <img src="images/CommitActivityDiagram.png" width="250" />
 
+### \[Proposed\] Timetable feature
+
+#### Proposed Implementation
+
+The proposed timetable feature is an extension of `CurrentModule` to allow users to see upcoming classes with the common 
+class types in School of Computing such as lab, lecture, recitation and tutorial.
+
+
+In NUS School of Computing, every module generally has lab, lecture, recitation and tutorial slots which sometimes makes 
+it difficult for students to keep track of especially when students take several “CS” coded modules in a semester. With 
+this feature, users will be able to collate all different class types as well as the lesson timings.
+The user will also be able to keep track of his/her friend’s timetable to know when they will be free in situations 
+where they would need to decide on a timing to meet up to do group projects, such as in CS2103/T.
+
+As such, the user can conveniently view his/her upcoming classes as well as his/her friends to easily keep track of 
+schedules
+
+Additionally, the following classes and methods are implemented to support adding Lessons:
+
+We implemented an abstract `Lesson` class and the classes `Lab`, `Lecture`, `Recitation` and `Tutorial` that inherits from it. 
+Each of the class types have the class fields, `type`, `module`, `day`, `startTime`, and `endTime`.
+
+The following class diagram illustrates the class diagram of the `Lesson` class and subclasses.
+
+![LessonClassDiagram](images/LessonClassDiagram-0.png)
+
+The command has the prefix `lesson` and has the parameters 
+`user / INDEX (must be a positive integer) [l/TYPE] [m/MODULE] [d/DAY] [start/START TIME] [end/END TIME]`
+
+Given below are some examples of a user command to add a `Lesson`
+1. Example 1 : Command to add a `Tutorial` for the module CS2103T that starts at 12pm and ends at 1pm every Thursday to the `User`
+- `lesson user l/tut m/CS2103T d/4 start/12:00 end/13:00`
+
+2. Example 2 : Command to add a `Lab` for the module CS2100 that starts at 4pm and ends at 5pm every Wednesday to the first contact.
+- `lesson 1 l/lab m/cs2100 d/3 start/16:00 end/17:00`
+
+3. Example 3 : Command to add a `Lecture` for the module CS2109S that starts at 10am and ends at 12pm every Friday to the fifth contact
+- `lesson 5 l/lec m/cs2109s d/5 start/10:00 end/12:00`
+
+Given below is a sequence diagram to illustrate how the timetable mechanism behaves after the user attempts to add a tutorial.
+
+![Timetable](images/AddTutorialSequenceDiagram-0.png)
+
+Given below is an activity diagram to illustrate the behaviour of adding a Lesson
+![LessonActivityDiagram](images/LessonActivityDiagram-0.png)
+
+Possible Extensions:
+
+1. Adding a `Link` field to allow Users to keep track of important links such as Coursemology, Microsoft Teams, Zoom 
+lecture and project documents (ie. Google Docs) for each module to increase accessibility and convenience since there 
+are many links to keep track off.
+
+2. Allow User to sort his/her classes from all modules in chronological order or by modules depending on the User's
+preference to view his/her timetable
+
+Given below are the proposed Classes to implement:
+
+* `VersionedAddressBook`
+  * Extends `AddressBook` with an Undo/Redo history
+  * Uses `addressBookStateList` (List of `AddressBook`s) and `currentStatePointer` (int Index of current `AddressBook` state)
+  * `VersionedAddressBook#commit()`
+    * Adds current `AddressBook` into `addressBookStateList`
+    * Called after each change in `AddressBook` state
+  * `VersionedAddressBook#undo()`
+    * Calls `Model#canUndoAddressBook()` to check if there is a previous state
+    * Shifts `currentStatePointer` back by one
+    * Called after user inputs `undo` command
+  * `VersionedAddressBook#redo()`
+    * Calls `Model#canRedoAddressBook()` to check if there is a next state
+    * Shifts `currentStatePointer` forward by one
+    * Called after user inputs `redo` command
+
+Given below are the proposed Methods to implement:
+* `Model`
+  * `Model#canUndoAddressBook()` - Checks if there is a previous `AddressBook` state
+  * `Model#canRedoAddressBook()` - Checks if there is a forward `AddressBook` state
+  * `Model#undoAddressBook()` - Changes the current Model to read from the previous `AddressBook` state
+  * `Model#redoAddressBook()` - Changes the current Model to read from the next `AddressBook` state
+  * `Model#commitAddressBook()` - Saves current `AddressBook` state into `addressBookStateList`
+
+### \[Proposed\] Filter feature
+
+#### Proposed Implementation
+
+The proposed feature enables users to filter contacts by tags or modules. It is facilitated by `Command`, with the PersonCards being sorted according to tags instead of the order in which they were added to the app. This will be stored as an `ObservableList<Person>`. Additionally, it implements the following operations:
+
+* `FilterByTagCommand#execute(Model model)` — Filters the `FilteredPersonList` according to tag.
+* `FilterByCurrModCommand#execute(Model model)` — Filters the `FilteredPersonList` according to Current Modules.
+* `FilterByPrevModCommand#execute(Model model)` — Filters the `FilteredPersonList` according to Previous Modules.
+* `FilterByPlanModCommand#execute(Model model)` — Filters the `FilteredPersonList` according to Planned Modules.
+
+These operations are exposed in the Model interface as `Model#updateFilteredPersonList`.
+
+Given below is an example of the usage scenario and how the filtering mechanism behaves at each step.
+
+Step 1. The User wants to filter their contacts according to tag. The `FilterByTagCommand#execute()` will update `Model#filteredPersons` with `Model#updateFilteredPersonList(Predicate<Person> predicate)`.
+
+![FilterState0](images/UndoRedoState0.png)
+
+Step 2. The `PersonListPanel` Ui will then only display `PersonCard`s of contacts that have the tag specified by the User.
+
+The following activity diagram summarizes what happens when a user executes a filterByTag command:
+
+Reason for implementation: All filter methods could have been implemented as one class instead of multiple subclasses. However as the different filtering specifications would have to access different classes to filter the contact list, each filter command has been abstracted out as a different class.
+
+### \[Proposed\] Filter feature
+
+#### Proposed Implementation
+
+The proposed feature enables the user to move the CurrentModules in both the User and their contacts into PreviousModules. It is facilitated by `ShiftCommand`, where each `CurrentModule` in User's and Peron's Set<CurrentModule> will be deleted and changed into a `PreviousModule` and added into the User and each Person's `Set<PreviousModule>`. Additionally, it implemented the following operations:
+
+* `Person#updatePrevMods` — Adds the `Modules` in `Set<CurrentModule>` into `Set<PreviousModule>`.
+* `User#updatePrevMods` — Adds the `Modules` in `Set<CurrentModule>` into `Set<PreviousModule>`.
+
+These operations are exposed in the Model interface as `Model#getPerson` and `Model#getUser` respectively.
+
+Given below is an example of the usage scenario and how the User's PreviousModule's are updated.
+
+Step 1. The User wants to update his ConnnectNUS app details as a new AY has started. He inputs the `shift` command.
+
+Step 2. The LogicManager will parse the User's input and execute a `ShiftCommand`.
+
+Step 3. When `ShiftCommand` is called, it will call on `Person#updatePrevMods` and `User#updatePrevMods`, updating both the User and all the Person's in the User's contact list.
+
+Step 4. The changes will be reflected in the PersonCard and UserProfile Uis.
+
+The following activity diagram summarizes what happens when a user executes a shift command:
+
+
 #### Design considerations:
 
 **Aspect: How undo & redo executes:**
@@ -242,6 +371,17 @@ The following activity diagram summarizes what happens when a user executes a ne
   itself.
   * Pros: Will use less memory (e.g. for `delete`, just save the person being deleted).
   * Cons: We must ensure that the implementation of each individual command are correct.
+
+**Aspect: How to implement the timetable feature:**
+
+* **Alternative 1 (current choice):** Displaying in the main window.
+    * Pros: User does not have to run a command to see his/her and his/her contact's timetable.
+    * Cons: User may have to scroll if there is insufficient space to see the full timetable.
+
+* **Alternative 2:** User runs a command to display his/her and his/her contact's timetable.
+    * Pros: User will have a larger space to see the timetable.
+    * Cons: We must ensure the implementation of the additional commands are correct and the UI displays correctly.
+
 
 _{more aspects and alternatives to be added}_
 
@@ -278,18 +418,25 @@ We help NUS CS Students to have a collection of fellow NUS CS Students to find p
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                    | I want to …​                                     | So that I can…​                                                        |
-|--------| ------------------------------------------ |--------------------------------------------------| ---------------------------------------------------------------------- |
-| `* * *` | new user                                   | see usage instructions                           | refer to instructions when I forget how to use the App                 |
-| `* * *` | user                                       | save a new contact                               | contact them if i wish to collaborate with them                                                                       |
-| `* * *` | user                                       | delete a person                                  | remove entries that I no longer need                                   |
-| `* * *` | user                                       | list out all my friend's contact/ info           | look through all my contacts at once |
-| `* * *` | user                                       | keep track of the modules I have taken           | plan my modules easily                |
-| `* * *` | user                                       | keep track of my friend's current modules        | so that i know which modules i can collaborate with them for                |
-| `* * *` | user                                       | keep track of my friend's previous modules       | consult my friends on those modules, if i am currently taking them                |
-| `* * *` | user                                       | see what modules my friends are planning to take | plan my modules together with them                |
-| `* *`  | user                                       | edit my friends' contact information             | change and update the contacts in my friend's list to make sure it is always up to date                |
-| `*`    | user                                       | view my own exam schedule                        | be clear on which exams are coming up                |
+| Priority | As a …​                                   | I want to …​                                     | So that I can…​                                                                         |
+|----------|-------------------------------------------|--------------------------------------------------|-----------------------------------------------------------------------------------------|
+| `* * *`  | new user                                  | see usage instructions                           | refer to instructions when I forget how to use the App                                  |
+| `* * *`  | user                                      | save my own profile                              | keep track of my own information                                                        |
+| `* * *`  | user                                      | edit my own profile                              | update my own information when there are changes                                        |
+| `* * *`  | user                                      | delete my own profile                            | remove my information in case of any data breach                                        |
+| `* * *`  | user                                      | save a new contact                               | contact them if i wish to collaborate with them                                         |
+| `* * *`  | user                                      | edit my friends' contact information             | change and update the contacts in my friend's list to make sure it is always up to date |
+| `* * *`  | user                                      | delete a person                                  | remove entries that I no longer need                                                    |
+| `* * *`  | user                                      | list out all my friend's contact/ info           | look through all my contacts at once                                                    |
+| `* * *`  | user                                      | keep track of the modules I have taken           | plan my modules easily                                                                  |
+| `* * *`  | user                                      | keep track of my friend's current modules        | so that i know which modules i can collaborate with them for                            |
+| `* * *`  | user                                      | keep track of my friend's previous modules       | consult my friends on those modules, if i am currently taking them                      |
+| `* * *`  | user                                      | see what modules my friends are planning to take | plan my modules together with them                                                      |
+| `* *`    | user                                      | view my timetable                                | be clear on what classes are coming up                                                  |
+| `* *`    | user                                      | check what core modules I have left to clear     | plan my following semesters better to accommodate these modules                         |
+| `*`      | user                                      | view my own exam schedule                        | be clear on which exams are coming up  <br/>                                            |
+
+
 
 *{More to be added}*
 
@@ -310,7 +457,88 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **System: ConnectNUS**
 
-**Use case: UC2 - Save a new contact**
+**Use case: UC2 - Save my user profile**
+
+**Actor: CS Students**
+
+**MSS**
+
+1. CS Student chooses to save their own profile.
+2. ConnectNUS requests for details of their profile to be saved.
+3. CS Student enters the requested details.
+4. ConnectNUS saves the user profile and updates the data file.
+5. Use case ends.
+
+**Extensions**
+
+* 1a. ConnectNUS detects another user profile that has already been saved
+
+  * 1a1. ConnectNUS informs the user that there already is a user profile saved.
+  * Use case ends.
+
+* 3a. ConnectNUS detects an error in the entered data
+
+    * 3a1. ConnectNUS requests for the correct data.
+    * 3a2. CS Student enters new data.
+    * Steps 3a-3b are repeated until the data entered are correct.
+      Use case resumes at step 4.
+
+**System: ConnectNUS**
+
+**Use case: UC3 - Edit user profile**
+
+**Actor: CS Students**
+
+**MSS**
+
+1. CS Student chooses to edit their own profile.
+2. ConnectNUS requests for details of their profile to be edited.
+3. CS Student enters the requested details.
+4. ConnectNUS saves the edited user profile and updates the data file.
+5. Use case ends.
+
+**Extensions**
+
+* 1a. ConnectNUS does not detect any user profile to edit
+
+    * 1a1. ConnectNUS informs user that there is no user profile to edit.
+    * Use case ends.
+
+* 3a. ConnectNUS detects an error in the entered data
+
+    * 3a1. ConnectNUS requests for the correct data.
+    * 3a2. CS Student enters new data.
+    * Steps 3a-3b are repeated until the data entered are correct.
+      Use case resumes at step 4.
+
+**System: ConnectNUS**
+
+**Use case: UC4 - Delete user profile**
+
+**Actor: CS Students**
+
+**MSS**
+
+1. CS Student chooses to delete their own profile.
+2. ConnectNUS deletes the user profile and updates the data file.
+3. Use case ends.
+
+**Extensions**
+
+* 1a. ConnectNUS does not detect any user profile to delete
+
+    * 1a1. ConnectNUS informs user that there is no user profile to delete.
+    * Use case ends.
+
+* 1b. ConnectNUS detects an error in the command format.
+    * 1b1. ConnectNUS requests for the correct format.
+    * User enters a new command in the correct format.
+      Steps 1a1-1a2 are repeated until the data entered are correct.
+      Use case resumes at step 2.
+
+**System: ConnectNUS**
+
+**Use case: UC5 - Save a new contact**
 
 **Actor: CS Students**
 
@@ -331,9 +559,36 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * Steps 3a-3b are repeated until the data entered are correct.
     Use case resumes at step 4.
 
+**Use case: UC6 - Edit a contact**
+
+**Actor: CS Students**
+
+**MSS**
+
+1. CS Student chooses to edit a specific index of contact.
+2. ConnectNUS requests for details of the contact to be edited.
+3. CS Student enters the requested details.
+4. ConnectNUS saves the edited contact and updates the data file.
+5. Use case ends.
+
+**Extensions**
+
+* 1a. ConnectNUS detects an error in the command format or invalid index.
+    * 1a1. ConnectNUS requests for the correct format or index.
+    * User enters a new command in the correct format or index.
+      Steps 1a1-1a2 are repeated until the data entered are correct.
+      Use case resumes at step 2.
+
+* 3a. ConnectNUS detects an error in the entered data
+
+    * 3a1. ConnectNUS requests for the correct data.
+    * 3a2. CS Student enters new data.
+    * Steps 3a-3b are repeated until the data entered are correct.
+      Use case resumes at step 4.
+
 **System: ConnectNUS**
 
-**Use case: UC3 - Delete a person**
+**Use case: UC7 - Delete a contact**
 
 **Actor: CS Students**
 
@@ -353,7 +608,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **System: ConnectNUS**
 
-**Use case: UC4 - List out all my friend’s contact/information**
+**Use case: UC8 - List out all my friend’s contact/information**
 
 **Actor: CS Students**
 
@@ -370,7 +625,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **System: ConnectNUS**
 
-**Use case: UC5 - Keep track of modules taken by user**
+**Use case: UC9 - Keep track of modules taken by user**
 
 **Actor: CS Students**
 
@@ -387,7 +642,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **System: ConnectNUS**
 
-**Use case: UC6 - Keep track of friend’s current modules**
+**Use case: UC10 - Keep track of friend’s current modules**
 
 **Actor: CS Students**
 
@@ -411,7 +666,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **System: ConnectNUS**
 
-**Use case: UC7 - Keep track of friend’s previous modules**
+**Use case: UC11 - Keep track of friend’s previous modules**
 
 **Actor: CS Students**
 
@@ -434,7 +689,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **System: ConnectNUS**
 
-**Use case: UC8 - Keep track of friend’s module plan**
+**Use case: UC12 - Keep track of friend’s module plan**
 
 **Actor: CS Students**
 
@@ -457,14 +712,14 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **System: ConnectNUS**
 
-**Use case: UC9 - Show User's Timetable**
+**Use case: UC13 - Show User's Timetable**
 
 **Actor: CS Students**
 
 **MSS**
 
 1. CS Student requests to show own Timetable.
-2. ConnectNUS the Timetable of CS Student's current modules.
+2. ConnectNUS shows the Timetable of CS Student's current modules.
 3. Use case ends.
 
 **Extensions**
@@ -481,14 +736,14 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **System: ConnectNUS**
 
-**Use case: UC10 - Show contact's Timetable**
+**Use case: UC14 - Show contact's Timetable**
 
 **Actor: CS Students**
 
 **MSS**
 
 1. CS Student requests to show contact's Timetable.
-2. ConnectNUS the Timetable of CS Student's contact's current modules.
+2. ConnectNUS shows the Timetable of CS Student's contact's current modules.
 3. Use case ends.
 
 **Extensions**
@@ -502,6 +757,31 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * 1b. No current modules for contact, or no lessons for current modules.
     * 1b1. ConnectNUS informs user of missing data.
     * Use case ends.
+
+**System: ConnectNUS**
+
+**Use case: UC15 - Check core modules left that user must take**
+
+**Actor: CS Students**
+
+**MSS**
+
+1. CS Student requests to check modules left.
+2. ConnectNUS shows what core modules the user has yet to take.
+3. Use case ends.
+
+**Extensions**
+
+* 1a. ConnectNUS detects an error in the command format.
+    * 1a1. ConnectNUS requests for the correct format.
+    * User enters a new command in the correct format.
+      Steps 1a1-1a2 are repeated until the data entered are correct.
+      Use case resumes at step 2.
+
+* 1b. No user, or no current and previous modules for user.
+    * 1b1. ConnectNUS informs user of missing data.
+    * Use case ends.
+
 
 *{More to be added}*
 
