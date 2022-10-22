@@ -292,7 +292,7 @@ for simplicity.
 
 The following activity diagram shows what happens when a user executes a new add command:
 
-![AddPersonActivityDiagram](images/AddPersonActivityDiagram(Date of Birth).png)
+![AddPersonActivityDiagram](images/AddPersonActivityDiagram_DOB.png)
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** Only the
 activities related to date of birth field are considered and shown in this activity diagram.
@@ -338,7 +338,7 @@ in the model. The specific `UniquePersonList` operations are not shown in the di
 
 The following activity diagram shows what happens when a user executes a new edit command:
 
-![EditPersonActivityDiagram](images/EditPersonActivityDiagram(Date of Birth).png)
+![EditPersonActivityDiagram](images/EditPersonActivityDiagram_DOB.png)
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** Only the
 activities related to date of birth field are considered and shown in this activity diagram. All fields are considered optional
