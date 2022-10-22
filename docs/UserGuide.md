@@ -289,7 +289,7 @@ Format: `lock`
 
 ### Changing Light/Dark mode
 
-Toggle the UI of FinBook by clicking on the `sun` or `moon` icon on the top right. 
+Toggle the interface theme of FinBook by clicking on the `sun` or `moon` icon on the top right. 
 * If icon is a `sun` FinBook is in Light mode. 
 * If icon is a `moon` FinBook is in Dark mode.
 
