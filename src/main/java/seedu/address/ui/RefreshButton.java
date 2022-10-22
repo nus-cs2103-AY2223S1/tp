@@ -21,7 +21,7 @@ public class RefreshButton extends Button {
         super(content);
         this.calendarLogic = calendarLogic;
         setStyle(switchButtonStyle);
-        setOnAction(e -> calendarLogic.previous());
+        setOnAction(e -> calendarLogic.refresh());
         setOnKeyPressed(e -> refresh(e));
     }
 
