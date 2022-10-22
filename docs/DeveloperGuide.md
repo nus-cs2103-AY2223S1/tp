@@ -286,7 +286,7 @@ is trying to find. Here we have made an assumption that there the StudentId uniq
 **Other Alternatives:**
 
 * **Alternative 1:** Extend the Edit command to include the MarkCommand 
-    * Pros: Harder to implement.
+    * Pros: Easier to implement.
     * Cons: No clear distinction between tags and project status
 
 ### \[Proposed\] `FindCommand` Feature
@@ -310,26 +310,28 @@ FypManager returns a list of projects whose names contain the `find` keyword.
 
 Step 3: Suppose that the user wants to find another project with keyword `blockchain`. The user keys in 
 `find blockchain` to find all projects which contain the keyword `blockchain`. FypManager returns an empty list,
-as there is no project whose project name contains `blockchain`
+as there is no project whose project name contains `blockchain`.
 
-
-student Jane Doe has now started on the project. The Professor wishes to update the
-project status for Jane to be `IP` instead of `YTS`, hence the Professor will execute the command
-`mark id/A0123456G s/IP` to update the status accordingly.
-
-tries adding a student to the FypManager by executing the command
-`add id/A0123456G ...`. Note that here we have set the default project Status to be `YTS` since
-the project has just been added.
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the student ID is incorrect or the 
-status is not one of the statuses {`YTS`, `IP`, `DONE`}, then the command will not be executed and an appropriate
-error message will be shown.
-
-</div>
+![FindCommandState2](images/FindCommandState2.png)
 
 The following sequence diagram shows how the MarkCommand operation works:
 
 ![FindCommandSequenceDiagram](images/FindCommandSequenceDiagram.png)
+
+#### Design considerations:
+
+**Implementation Choice: Why FindCommand is implemented this way**
+* We have currently implemented FindCommand to find a student's project by its project name. This is practical, since 
+  the user would want to find the relevant projects by their project name (or, a subset of the project name).
+
+* FindCommand also does not require the user to include a prefix for where they are searching, since the search is done 
+  by looking at the project name (and only that) at the current stage of implementation.
+
+**Other Alternatives:**
+
+* **Alternative 1:** Extend the FindCommand by allowing the user to search by fields other than project name
+    * Pros: Allows the users to search using more fields instead of ProjectName alone.
+    * Cons: Harder to implement. And requires inclusion of a suffix.
 
 --------------------------------------------------------------------------------------------------------------------
 
