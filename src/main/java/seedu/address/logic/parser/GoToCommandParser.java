@@ -25,6 +25,8 @@ public class GoToCommandParser implements Parser<GoToCommand> {
 
         ModuleCode moduleCode = ParserUtil.parseModuleCode(trimmedArgs);
 
+        assert moduleCode != null;
+
         return new GoToCommand(new ModuleCodeMatchesKeywordPredicate(trimmedArgs), moduleCode);
     }
 }

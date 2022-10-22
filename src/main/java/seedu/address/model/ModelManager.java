@@ -134,6 +134,7 @@ public class ModelManager implements Model {
         addressBook.removeModule(target);
         this.isHome = true;
         updateFilteredModuleList(PREDICATE_SHOW_ALL_MODULES);
+        updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
     }
 
     @Override
@@ -141,6 +142,7 @@ public class ModelManager implements Model {
         addressBook.addModule(module);
         this.isHome = true;
         updateFilteredModuleList(PREDICATE_SHOW_ALL_MODULES);
+        updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
     }
 
     @Override

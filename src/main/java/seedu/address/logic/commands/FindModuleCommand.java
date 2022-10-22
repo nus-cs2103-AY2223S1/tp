@@ -15,7 +15,7 @@ import seedu.address.model.module.ModuleCodeStartsWithKeywordPredicate;
 public class FindModuleCommand extends Command {
     public static final String COMMAND_WORD = "find-module";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all modules whose module code starts with"
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all modules whose module code starts with "
             + "the specified keywords (case-insensitive) and displays them as a list with index numbers.\n"
             + "Parameters: KEYWORD [MORE_KEYWORDS]\n"
             + "Example: " + COMMAND_WORD + " CS";
@@ -30,8 +30,9 @@ public class FindModuleCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
 
-        boolean applicationIsNotOnHomePage = !model.getHomeStatus();
-        if (applicationIsNotOnHomePage) {
+        boolean isNotAtHome = !model.getHomeStatus();
+
+        if (isNotAtHome) {
             throw new CommandException(MESSAGE_NOT_AT_HOMEPAGE);
         }
         model.updateFilteredModuleList(predicate);
