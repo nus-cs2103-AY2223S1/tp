@@ -195,6 +195,18 @@ Examples:
 * `find hrt` followed by `edit 1 pr/REJECTED` will edit the application process of the 1st internship in the results of the find command to `REJECTED`.
 
 
+### Undo previous command : `undo`
+
+Undo the most recent command that modified the internship book.
+
+Format: `undo`
+
+### Redo previous undone command : `redo`
+
+Redo the most recent command that was undone.
+
+Format: `redo`
+
 ### Clearing all entries : `clear`
 
 Clears all entries from the internship tracker.
@@ -246,3 +258,5 @@ Action | Format, Examples
 **Find** | `find [c/CATEGORY] KEYWORDS...`<br> e.g., `find c/p engineer`
 **List** | list [c/CATEGORY [DESCENDING]] <br> e.g, `list c/d true`
 **Help** | `help`
+**Undo** | `undo`
+**Redo** | `redo`
