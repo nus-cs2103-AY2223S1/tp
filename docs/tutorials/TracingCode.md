@@ -195,7 +195,7 @@ Recall from the User Guide that the `edit` command has the format: `edit INDEX [
            throw new CommandException(MESSAGE_DUPLICATE_PERSON);
        }
        model.setPerson(personToEdit, editedPerson);
-       model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+       model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PEOPLE);
        return new CommandResult(String.format(MESSAGE_EDIT_PERSON_SUCCESS, editedPerson));
    }
    ```

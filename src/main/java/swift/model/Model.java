@@ -15,7 +15,7 @@ import swift.model.task.Task;
  */
 public interface Model {
     /** {@code Predicate} that always evaluate to true */
-    Predicate<Person> PREDICATE_SHOW_ALL_PERSONS = unused -> true;
+    Predicate<Person> PREDICATE_SHOW_ALL_PEOPLE = unused -> true;
     Predicate<Person> PREDICATE_HIDE_ALL_PEOPLE = unused -> false;
     Predicate<Task> PREDICATE_SHOW_ALL_TASKS = unused -> true;
     Predicate<Task> PREDICATE_HIDE_ALL_TASKS = unused -> false;
