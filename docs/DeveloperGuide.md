@@ -316,9 +316,9 @@ working on the FYP project, or `DONE` once the FYP project has been completed.
 Given below is an example usage scenario and how MarkCommand is utilised:
 
 Step 1: The Professor launches the application for the first time. `FypManager` will be initialised with the 
-current Fyp Manager state.
+current FypManager state.
 
-Step 2: The Professor tries adding a student to the Fyp Manager by executing the command 
+Step 2: The Professor tries adding a student to the FypManager by executing the command 
 `add id/A0123456G ...`. Note that here we have set the default project Status to be `YTS` since
 the project has just been added. 
 
@@ -344,7 +344,7 @@ The following sequence diagram shows how the MarkCommand operation works:
 
 **Implementation Choice: Why MarkCommand is implemented this way**
 * We have only chosen to consider 3 general statuses {`YTS`, `IP`, `DONE`} since these are very general 
-labels that the Professor can use to identify the current status of an FYP project. This makes it very user friendly
+labels that the Professor can use to identify the current status of an FYP project. This makes it very user-friendly
   since there are a fixed number of statuses that can be used.
   
 * We have also used the studentId to uniquely identify the project of the student the Professor
@@ -357,6 +357,50 @@ is trying to find. Here we have made an assumption that there the StudentId uniq
 * **Alternative 1:** Extend the Edit command to include the MarkCommand 
     * Pros: Easier to implement.
     * Cons: No clear distinction between tags and project status
+
+### \[Proposed\] `FindCommand` Feature
+#### Proposed Implementation
+The proposed FindCommand Feature finds the project via the keywords in the project name, specified by the user.
+There may be future enhancements to support finding projects by their tags, to allow the user to filter the student's by
+certain specialisations. (e.g. ***NeuralNetwork***, ***Blockchain***, etc,)
+
+The FindCommand feature takes in a keyword specified by the user, and returns a list of projects whose names
+contain the keyword inputted. Note that the keyword is case-insensitive, can contain space, 
+
+Given below is an example usage scenario and how FindCommand is utilised:
+
+Step 1. The user launches the application for the first time. The 'FypManager' will be initialised with its
+'FypManager' state.
+
+Step 2: The user finds a project by keying in `find tree` to find all projects which contain the keyword `tree`.
+FypManager returns a list of projects whose names contain the `find` keyword.
+
+![FindCommandState1](images/FindCommandState1.png)
+
+Step 3: Suppose that the user wants to find another project with keyword `blockchain`. The user keys in 
+`find blockchain` to find all projects which contain the keyword `blockchain`. FypManager returns an empty list,
+as there is no project whose project name contains `blockchain`.
+
+![FindCommandState2](images/FindCommandState2.png)
+
+The following sequence diagram shows how the MarkCommand operation works:
+
+![FindCommandSequenceDiagram](images/FindCommandSequenceDiagram.png)
+
+#### Design considerations:
+
+**Implementation Choice: Why FindCommand is implemented this way**
+* We have currently implemented FindCommand to find a student's project by its project name. This is practical, since 
+  the user would want to find the relevant projects by their project name (or, a subset of the project name).
+
+* FindCommand also does not require the user to include a prefix for where they are searching, since the search is done 
+  by looking at the project name (and only that) at the current stage of implementation.
+
+**Other Alternatives:**
+
+* **Alternative 1:** Extend the FindCommand by allowing the user to search by fields other than project name
+    * Pros: Allows the users to search using more fields instead of ProjectName alone.
+    * Cons: Harder to implement. And requires inclusion of a suffix.
 
 --------------------------------------------------------------------------------------------------------------------
 
