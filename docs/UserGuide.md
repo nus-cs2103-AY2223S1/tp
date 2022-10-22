@@ -13,7 +13,7 @@ GithubContact is an address book **integrated with Github's Public API**, target
 
 ### Adding a person : `add`
 
-Adds person to list and shows contact information page, where attributes can be added and set. Fetches information from GitHub if personname is used. The @ symbol indicates the use of a GitHub personname.
+Adds person to list and shows contact information page, where attributes can be added and set.
 
 Format: `add name/NAME address/ADDRESS [role/ROLE] [timezone/TIMEZONE] [phone/PHONE] [email/EMAIL] [slack/SLACK] [telegram/TELEGRAM] [tag/TAG] `
 
@@ -24,7 +24,7 @@ Example:
 
 ### Show Person Details: `<ENTER>` or double click
 
-Show person details in another page.
+Shows person details in another page.
 
 There are two ways to show person details
 1. Keyboard-friendly way
@@ -71,17 +71,17 @@ Format: `delete INDEX`
 - The index refers to the index number shown in the person list.
 - The index must be **positive integer** 1, 2, 3...
 
-### Help Command : `help`
-
-Shows help page.
-
-Format: `help`
-
 ### Find Person : `find`
 
 Find person and displays the persons that match the keyword.
 
 Format: `find KEYWORD`
+
+### Help Command : `help`
+
+Shows help page.
+
+Format: `help`
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -92,5 +92,6 @@ Format: `find KEYWORD`
 | **add**              | `add name/NAME address/ADDRESS [role/ROLE] [timezone/TIMEZONE] [phone/PHONE] [email/EMAIL] [slack/SLACK] [telegram/TELEGRAM] [tag/TAG]`<br> `add name/John Doe address/27 Clementi` |
 | **delete person**    | `delete INDEX` <br> `delete 1, delete 2`                                                                                                                                            |
 | **delete attribute** | `delete ATTRIBUTE` <br> `delete name, delete slack, delete twitter`                                                                                                                 |
-| **set**              | `set [name/NAME] [address/ADDRESS] [role/ROLE] [timezone/TIMEZONE] [phone/PHONE] [email/EMAIL] [slack/SLACK] [telegram/TELEGRAM] [tag/TAG]`<br> `set name/Tex address/Clementi`      |
+| **set**              | `set [name/NAME] [address/ADDRESS] [role/ROLE] [timezone/TIMEZONE] [phone/PHONE] [email/EMAIL] [slack/SLACK] [telegram/TELEGRAM] [tag/TAG]`<br> `set name/Tex address/Clementi`     |
+| **help**             | `find` <br> `find Tex, find Engineer`                                                                                                                                               |
 | **help**             | `help`                                                                                                                                                                              |
