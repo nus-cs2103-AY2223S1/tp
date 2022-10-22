@@ -47,12 +47,13 @@ public class ViewCommand extends Command {
             throw new CommandException(Messages.MESSAGE_INVALID_INTERNSHIP_DISPLAYED_INDEX);
         }
 
-        List<Internship> internshipList = new ArrayList<>();
+        List<Internship> targetInternshipList = new ArrayList<>();
         for (Internship internship : targetInternships) {
-            internshipList.add(internship);
+            targetInternshipList.add(internship);
         }
+        assert (targetInternshipList.size() == 1);
 
-        model.updateViewItem(new ExactMatchPredicate(internshipList));
+        model.updateViewItem(new ExactMatchPredicate(targetInternshipList));
         return new CommandResult(MESSAGE_SUCCESS);
     }
 
