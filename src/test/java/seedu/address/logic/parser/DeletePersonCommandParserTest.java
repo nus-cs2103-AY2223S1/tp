@@ -13,8 +13,8 @@ import seedu.address.model.person.Name;
 
 /**
  * As we are only doing white-box testing, our test cases do not cover path variations
- * outside of the DeleteModuleCommand code. For example, inputs "n/Alan" and "n/Alan abc" take
- * the same path through the DeleteModuleCommand, and therefore we test only one of them.
+ * outside of the DeletePersonCommand code. For example, inputs "n/Alan" and "n/Alan abc" take
+ * the same path through the DeletePersonCommand, and therefore we test only one of them.
  * The path variation for those two cases occur inside the ParserUtil, and
  * therefore should be covered by the ParserUtilTest.
  */

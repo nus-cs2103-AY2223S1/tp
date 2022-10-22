@@ -3,7 +3,9 @@ package seedu.address.model;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_MODULES;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 import static seedu.address.model.Model.PREDICATE_SHOW_ZERO_MODULE;
@@ -254,8 +256,8 @@ public class ModelManagerTest {
     public void hasPersonInFilteredList_personWithSameNameButDifferentFieldsInFilteredList_returnsTrue() {
         Person personWithSameNameButDifferentFields =
                 new PersonBuilder().withName(VALID_NAME_AMY)
-                        .withEmail("test@gmail.com")
-                        .withPhone("55555555").build();
+                        .withEmail(VALID_EMAIL_BOB)
+                        .withPhone(VALID_PHONE_BOB).build();
         modelManager.addPerson(personWithSameNameButDifferentFields);
         assertTrue(modelManager.hasPersonInFilteredList(personWithSameNameButDifferentFields));
     }

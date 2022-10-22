@@ -22,7 +22,9 @@ public class DeletePersonCommandParser implements Parser<DeletePersonCommand> {
     public DeletePersonCommand parse(String args) throws ParseException {
         try {
             ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_NAME);
-            if (!arePrefixesPresent(argMultimap, PREFIX_NAME) || !argMultimap.getPreamble().isEmpty()) {
+            boolean isPrefixNameAbsent = !arePrefixesPresent(argMultimap, PREFIX_NAME);
+            boolean isPreamblePresent = !argMultimap.getPreamble().isEmpty();
+            if (isPrefixNameAbsent || isPreamblePresent) {
                 throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                         DeletePersonCommand.MESSAGE_USAGE));
             }
