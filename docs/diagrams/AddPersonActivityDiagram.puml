@@ -10,12 +10,10 @@ if () then ([gender field is provided])
       stop
     else ([else])
     endif
-  else ([else]))
+  else ([else])
   endif
 else ([else])
 endif
-: System shows error message;
+backward :System shows error message;
 repeat while;
 @enduml
-
-

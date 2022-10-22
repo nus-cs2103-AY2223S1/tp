@@ -4,14 +4,13 @@ repeat
 :User enters edit person command;
   if () then ([gender format is valid])
     if () then ([person already exists
-   in the contact list])
+    in the contact list])
       :Person is edited with new gender field;
       stop
     else ([else])
     endif
-  else ([else]))
+  else ([else])
   endif
-: System shows error message;
+backward :System shows error message;
 repeat while;
 @enduml
-
