@@ -47,7 +47,7 @@ public class AddTaskCommandTest {
         assertEquals(String.format(AddTaskCommand.MESSAGE_SUCCESS, validTask), commandResult.getFeedbackToUser());
         assertEquals(Arrays.asList(validTask), modelStub.tasksAdded);
         assertEquals(Arrays.asList(new PersonTaskBridge(
-                UUID.fromString("47005f2b-9c40-4051-8c95-69ca601cb58d"),
+                UUID.fromString(PersonBuilder.DEFAULT_UUID),
                 modelStub.tasksAdded.get(0).getId())), modelStub.bridgesAdded);
     }
 

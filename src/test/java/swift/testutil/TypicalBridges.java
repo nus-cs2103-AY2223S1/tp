@@ -13,13 +13,16 @@ import swift.model.bridge.PersonTaskBridge;
  * used in tests.
  */
 public class TypicalBridges {
+    public static final String PERSON1_UUID = "c4c645da-27b3-454d-9428-5295a6ee1f33";
+    public static final String TASK1_UUID = "bfbf250c-fd58-49b4-be15-ca12095ca2ee";
+    public static final String TASK2_UUID = "41478d11-dbba-441f-ab0f-99ddf097eac1";
 
     public static final PersonTaskBridge DEFAULT_BRIDGE_1 = new PersonTaskBridge(
-            UUID.fromString("c4c645da-27b3-454d-9428-5295a6ee1f33"),
-            UUID.fromString("bfbf250c-fd58-49b4-be15-ca12095ca2ee"));
+            UUID.fromString(PERSON1_UUID),
+            UUID.fromString(TASK1_UUID));
     public static final PersonTaskBridge DEFAULT_BRIDGE_2 = new PersonTaskBridge(
-            UUID.fromString("c4c645da-27b3-454d-9428-5295a6ee1f33"),
-            UUID.fromString("41478d11-dbba-441f-ab0f-99ddf097eac1"));
+            UUID.fromString(PERSON1_UUID),
+            UUID.fromString(TASK2_UUID));
 
     private TypicalBridges() {} // prevents instantiation
 
