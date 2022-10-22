@@ -1,5 +1,6 @@
 package seedu.address.model;
 
+import static java.time.format.DateTimeFormatter.ISO_LOCAL_DATE;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
@@ -288,22 +289,22 @@ public class ModelManager implements Model {
     }
 
     private XYChart.Series<String, Number> getLineChartData(FilteredList<Entry> filteredEntryList) {
-        HashMap<LocalDate, Number> dateToExpenditureMap = new HashMap<>();
+        HashMap<String, Number> dateToExpenditureMap = new HashMap<>();
 
         LocalDate date = monthForChart.atDay(1);
         int daysInMonth = date.lengthOfMonth();
         for (int i = 0; i < daysInMonth; i++) {
-            dateToExpenditureMap.put(date, 0);
+            dateToExpenditureMap.put(date.format(ISO_LOCAL_DATE), 0);
             date = date.plusDays(1);
         }
 
         ObservableList<XYChart.Data<String, Number>> expenseSeries = FXCollections.observableArrayList();
 
         filteredEntryList.forEach(entry -> dateToExpenditureMap.computeIfPresent(
-                entry.getDate().getLocalDate(), (key, val) -> val.doubleValue() + entry.getAmount().getValue()));
+                entry.getFormattedDate(ISO_LOCAL_DATE), (key, val) -> val.doubleValue() + entry.getAmountValue()));
 
-        for (HashMap.Entry<LocalDate, Number> entry : dateToExpenditureMap.entrySet()) {
-            expenseSeries.add(new XYChart.Data<>(entry.getKey().toString(), entry.getValue()));
+        for (HashMap.Entry<String, Number> entry : dateToExpenditureMap.entrySet()) {
+            expenseSeries.add(new XYChart.Data<>(entry.getKey(), entry.getValue()));
         }
         return new XYChart.Series<>(expenseSeries);
     }
