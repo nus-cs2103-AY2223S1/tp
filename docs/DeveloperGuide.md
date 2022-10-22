@@ -277,6 +277,25 @@ Alternatives:
     - Pros: Easy to remember
     - Cons: May be confusing to the user
 
+###Delete Feature
+
+####Current Implementation
+
+The delete mechanism deletes a patient, appointment or bill identified by their index in the list. The deletion is done
+through the `deletePatient`, `deleteAppointment` and `deleteBill` functions in `ModelManager`. 
+
+Given below is an example usage scenario and how the delete mechanism behaves at each step.
+
+Step 1. The user launches the application. All patients, appointments and bills are shown on different sections
+of the application as indexed lists.
+
+Step 2. The user executes `deletePatient 2` command to delete the patient at index 2 in the list.
+The `delete` command calls `Model#deletePatient` to delete the patient from the list of patients.
+
+The delete feature is now seperated for the patients, appointments and bills sections. Deleting a patient also deletes 
+related appointments.
+
+
 ### Select Feature
 
 #### Current Implementation
@@ -297,15 +316,12 @@ update the FilteredAppointmentList and FilteredBillList to contain selected pati
 
 Given below is an example usage scenario and how the find mechanism behaves at each step.
 
-Step 1. The user launches the application. All patients, appointments and bills are shown on different sections
-of the application as indexed lists.
-
-Step 2. The user executes `selectpatient 1` command to show all appointments and bills 
+Step 1. The user executes `selectpatient 1` command to show all appointments and bills 
 tied to the first listed patient.
 The `SelectPatient` command calls `Model#selectPatient(index)` to update the list of appointments
 and bills in the application.
 
-Step 3. The application displays the list of appointments and bills with the name equals to
+Step 2. The application displays the list of appointments and bills with the name equals to
 the first patient on the patient list panel.
 
 The select feature is now seperated for the patients and appointments sections.
