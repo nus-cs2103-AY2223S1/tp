@@ -199,7 +199,7 @@ public class UserCommandTest {
     private class ModelStubAcceptingUserAdded extends UserCommandTest.ModelStub {
 
         final EmptyUser emptyUser = new EmptyUser();
-        User user = emptyUser;
+        private User user = emptyUser;
 
         @Override
         public boolean hasUser() {

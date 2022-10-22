@@ -3,7 +3,7 @@ package seedu.address.logic.commands;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.DESC_XAVIER;
-import static seedu.address.logic.commands.CommandTestUtil.DESC_ZEPHYR;
+import static seedu.address.logic.commands.CommandTestUtil.DESC_ZAC;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_GITHUB_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
@@ -88,10 +88,10 @@ public class EditUserCommandTest {
 
     @Test
     public void equals() {
-        final EditUserCommand standardCommand = new EditUserCommand(DESC_ZEPHYR);
+        final EditUserCommand standardCommand = new EditUserCommand(DESC_ZAC);
 
         // same values -> returns true
-        EditCommand.EditPersonDescriptor copyDescriptor = new EditCommand.EditPersonDescriptor(DESC_ZEPHYR);
+        EditCommand.EditPersonDescriptor copyDescriptor = new EditCommand.EditPersonDescriptor(DESC_ZAC);
         EditUserCommand commandWithSameValues = new EditUserCommand(copyDescriptor);
         assertTrue(standardCommand.equals(commandWithSameValues));
 
