@@ -1,11 +1,10 @@
 package seedu.address.ui;
 
-import java.util.Timer;
-import java.util.TimerTask;
 import java.util.logging.Logger;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.ListView;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextInputControl;
 import javafx.scene.input.KeyCombination;
@@ -15,10 +14,12 @@ import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.Logic;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.person.Person;
 
 /**
  * The Main Window. Provides the basic application layout containing
@@ -134,7 +135,8 @@ public class MainWindow extends UiPart<Stage> {
         StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getAddressBookFilePath());
         statusbarPlaceholder.getChildren().add(statusBarFooter.getRoot());
 
-        CommandBox commandBox = new CommandBox(this::executeCommand);
+        CommandBox commandBox = new CommandBox(this::executeCommand,
+                windowAnchorPane.getPersonListPanel().getListView());
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
     }
 
@@ -178,6 +180,44 @@ public class MainWindow extends UiPart<Stage> {
         primaryStage.hide();
     }
 
+    private void handleInspect(String[] inspectingName) {
+        if (inspectingName == null || inspectingName.length == 0) {
+            resultDisplay.setFeedbackToUser("There was nothing given to inspect");
+            return;
+        }
+
+        ListView<Person> personListView = getPersonListPanel().getListView();
+
+        Person[] personsArray = personListView.getItems()
+                .stream().filter(x -> matches(x.getName().fullName, inspectingName))
+                .toArray(Person[]::new);
+
+        if (personsArray.length == 0) {
+            resultDisplay.setFeedbackToUser("There was nobody of that name found.\n"
+                    + "Note that inspection works only on the currently filtered list,"
+                    + "perhaps you would like to list all persons available first?");
+            return;
+        }
+
+        if (personsArray.length > 1) {
+            resultDisplay.setFeedbackToUser("There was more than one person of that name found.\n"
+                    + "Showing the first person matching the given name.\n"
+                    + "Note that inspection works on the currently filtered list, "
+                    + "perhaps you would like to filter away some persons first?");
+        }
+
+        personListView.getSelectionModel().select(personsArray[0]);
+    }
+
+    private boolean matches(String currentName, String[] matching) {
+        for (String word : matching) {
+            if (StringUtil.containsWordIgnoreCase(currentName, word)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
     public PersonListPanel getPersonListPanel() {
         return windowAnchorPane.getPersonListPanel();
     }
@@ -193,12 +233,21 @@ public class MainWindow extends UiPart<Stage> {
             logger.info("Result: " + commandResult.getFeedbackToUser());
             resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
 
-            if (commandResult.isShowHelp()) {
+            switch (commandResult.getUiState()) {
+            case ShowHelp:
                 handleHelp();
-            }
+                break;
 
-            if (commandResult.isExit()) {
+            case Exit:
                 handleExit();
+                break;
+
+            case Inspect:
+                handleInspect(commandResult.getArgs());
+                break;
+
+            default:
+                break;
             }
 
             return commandResult;

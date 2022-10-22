@@ -105,14 +105,14 @@
 }
 
 .person-VBox {
-    -fx-background-color: linear-gradient(to left, derive(-fx-shadow-color, 20%) 99.5%, orangered 100%);
+    -fx-background-color: linear-gradient(to left, -fx-shadow-color 99.5%, orangered 100%);
     -fx-background-radius: 20;
     -fx-padding: 5, 5, 5, 5;
     -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.3), 10, 0.5, -5.0, 0.0);
 }
 
 .inspectionPanel-VBox {
-    -fx-background-color: linear-gradient(to left, derive(-fx-shadow-color, 20%) 99.5%, orangered 100%);
+    -fx-background-color: linear-gradient(to left, -fx-shadow-color 99.5%, orangered 100%);
     -fx-background-radius: 20;
     -fx-padding: 5, 5, 5, 5;
     -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.3), 10, 0.5, -5.0, 0.0);

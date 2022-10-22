@@ -9,7 +9,7 @@
 <VBox xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" styleClass="person-VBox">
   <Label text="People" styleClass="label-header">
     <padding>
-      <Insets bottom="10" left="10" />
+      <Insets left="15" top="10"/>
     </padding>
   </Label>
   <ListView fx:id="personListView" HBox.hgrow="ALWAYS" orientation="HORIZONTAL">

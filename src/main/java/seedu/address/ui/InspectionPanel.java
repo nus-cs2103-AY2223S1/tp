@@ -67,6 +67,8 @@ public class InspectionPanel extends UiPart<Region> {
                     InspectionPanel.this.phone.setText(n.getPhone().value);
                     InspectionPanel.this.address.setText(n.getAddress().value);
                 });
+
+        personListView.getSelectionModel().select(0);
     }
 
     private void setImageViews() {

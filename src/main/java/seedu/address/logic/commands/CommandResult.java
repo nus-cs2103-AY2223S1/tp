@@ -2,6 +2,7 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 
+import java.util.Arrays;
 import java.util.Objects;
 
 /**
@@ -9,41 +10,51 @@ import java.util.Objects;
  */
 public class CommandResult {
 
+    /**
+     * Enum describing the state of the UI to trigger actions
+     */
+    public enum UiState {
+        ShowHelp,
+        Exit,
+        Inspect,
+        None
+    }
+
+    private final UiState state;
+
+    private final String[] args;
+
     private final String feedbackToUser;
 
-    /** Help information should be shown to the user. */
-    private final boolean showHelp;
-
-    /** The application should exit. */
-    private final boolean exit;
-
     /**
-     * Constructs a {@code CommandResult} with the specified fields.
+     * Constructs a {@code CommandResult} with the no additional state.
      */
-    public CommandResult(String feedbackToUser, boolean showHelp, boolean exit) {
+    public CommandResult(String feedbackToUser) {
         this.feedbackToUser = requireNonNull(feedbackToUser);
-        this.showHelp = showHelp;
-        this.exit = exit;
+        this.state = UiState.None;
+        this.args = new String[0];
     }
 
     /**
-     * Constructs a {@code CommandResult} with the specified {@code feedbackToUser},
-     * and other fields set to their default value.
+     * Constructs a {@code CommandResult} with the specified state.
      */
-    public CommandResult(String feedbackToUser) {
-        this(feedbackToUser, false, false);
+    public CommandResult(String feedbackToUser, UiState state, String... args) {
+        this.feedbackToUser = requireNonNull(feedbackToUser);
+        this.state = state;
+        this.args = args;
+    }
+
+    /**
+     * Constructs a {@code CommandResult} with the specified state.
+     */
+    public CommandResult(String feedbackToUser, UiState state) {
+        this.feedbackToUser = requireNonNull(feedbackToUser);
+        this.state = state;
+        this.args = new String[0];
     }
 
     public String getFeedbackToUser() {
         return feedbackToUser;
-    }
-
-    public boolean isShowHelp() {
-        return showHelp;
-    }
-
-    public boolean isExit() {
-        return exit;
     }
 
     @Override
@@ -59,13 +70,20 @@ public class CommandResult {
 
         CommandResult otherCommandResult = (CommandResult) other;
         return feedbackToUser.equals(otherCommandResult.feedbackToUser)
-                && showHelp == otherCommandResult.showHelp
-                && exit == otherCommandResult.exit;
+                && getUiState() == otherCommandResult.getUiState()
+                && Arrays.equals(getArgs(), otherCommandResult.getArgs());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(feedbackToUser, showHelp, exit);
+        return Objects.hash(feedbackToUser, getUiState(), Arrays.hashCode(getArgs()));
     }
 
+    public UiState getUiState() {
+        return state;
+    }
+
+    public String[] getArgs() {
+        return args;
+    }
 }

@@ -14,7 +14,7 @@ import seedu.address.logic.Logic;
  * Panel containing the list of persons.
  */
 public class WindowAnchorPane extends UiPart<Region> {
-    private static final double HORIZONTAL_DIVIDER = 0.45;
+    private static final double HORIZONTAL_DIVIDER = 0.5;
     private static final double VERTICAL_DIVIDER = 0.65;
     private static final double DISTANCE_BOTTOM = 20;
 
