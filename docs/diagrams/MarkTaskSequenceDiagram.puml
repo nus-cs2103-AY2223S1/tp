@@ -26,6 +26,7 @@ activate Task
 Task --> MarkTaskCommand
 deactivate Task
 
+
 MarkTaskCommand -> Model : updateFilteredTaskList()
 activate Model
 
