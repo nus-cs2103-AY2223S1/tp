@@ -44,6 +44,11 @@ public class AddTaskCommandParserTest {
                 PREAMBLE_WHITESPACE + MODULE_CODE_DESC_CS2106 + MODULE_TASK_DESC_A,
                 expectedCommand);
 
+        // multiple module codes - last module code used
+        assertParseSuccess(parser,
+                MODULE_CODE_DESC_MA2001 + MODULE_CODE_DESC_CS2106 + MODULE_TASK_DESC_B
+                        + MODULE_TASK_DESC_A, expectedCommand);
+
         // multiple task descriptions - last task accepted
         assertParseSuccess(parser,
                 MODULE_CODE_DESC_CS2106 + MODULE_TASK_DESC_C + MODULE_TASK_DESC_B

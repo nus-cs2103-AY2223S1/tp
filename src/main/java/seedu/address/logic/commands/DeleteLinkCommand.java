@@ -78,8 +78,9 @@ public class DeleteLinkCommand extends Command {
         ModuleCode moduleCode = moduleToEdit.getModuleCode();
         ModuleTitle moduleTitle = moduleToEdit.getModuleTitle();
         List<Task> moduleTasks = moduleToEdit.getTasks();
-        Set<Person> modulePersons = moduleToEdit.getPersons();
         Set<Link> originalLinksCopy = moduleToEdit.copyLinks();
+        Set<Person> modulePersons = moduleToEdit.getPersons();
+
         Set<Link> updatedLinks = removeLinksFromSet(originalLinksCopy, linksToRemove, index);
         return new Module(moduleCode, moduleTitle, moduleTasks, updatedLinks, modulePersons);
     }

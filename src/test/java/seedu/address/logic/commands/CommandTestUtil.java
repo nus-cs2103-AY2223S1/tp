@@ -136,17 +136,14 @@ public class CommandTestUtil {
         DESC_CS2106_ADD_TASK_B =
                 new AddTaskToModuleDescriptorBuilder(CS2106, VALID_TASK_B).build();
 
-        DESC_CS2106_DELETE_TASK_ONE =
-                new DeleteTaskFromModuleDescriptorBuilder(CS2106,
-                        Index.fromOneBased(1)).build();
-        DESC_CS2106_DELETE_TASK_TWO =
-                new DeleteTaskFromModuleDescriptorBuilder(CS2106,
-                        Index.fromOneBased(2)).build();
+        DESC_CS2106_DELETE_TASK_ONE = new DeleteTaskFromModuleDescriptorBuilder(CS2106,
+                Index.fromOneBased(1)).build();
+        DESC_CS2106_DELETE_TASK_TWO = new DeleteTaskFromModuleDescriptorBuilder(CS2106,
+                Index.fromOneBased(2)).build();
 
-        DESC_CS2106_SWAP_TASKS_ONE_AND_TWO =
-                new SwapTaskNumbersDescriptorBuilder(CS2106,
-                                                     Index.fromOneBased(1),
-                                                     Index.fromOneBased(2)).build();
+        DESC_CS2106_SWAP_TASKS_ONE_AND_TWO = new SwapTaskNumbersDescriptorBuilder(CS2106,
+                Index.fromOneBased(1),
+                Index.fromOneBased(2)).build();
     }
 
     /**

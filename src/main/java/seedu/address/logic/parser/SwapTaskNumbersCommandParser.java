@@ -34,11 +34,11 @@ public class SwapTaskNumbersCommandParser implements Parser<SwapTaskNumbersComma
                 new SwapTaskNumbersCommand.SwapTaskNumbersDescriptor();
         String moduleCodeOfModuleToSwapTasksAsString =
                 argMultimap.getValue(PREFIX_MODULE_CODE).get();
-        ModuleCode moduleCodeOfModuleToDeleteTaskFrom =
+        ModuleCode moduleCodeOfModuleToSwapTasks =
                 ParserUtil.parseModuleCode(moduleCodeOfModuleToSwapTasksAsString);
         List<Index> taskIndexesToSwap = ParserUtil.parseTaskNumbersToSwap(
                 argMultimap.getValue(PREFIX_TASK_NUMBERS_TO_SWAP).get());
-        swapTaskNumbersDescriptor.setModuleCodeOfModuleToSwapTasks(moduleCodeOfModuleToDeleteTaskFrom);
+        swapTaskNumbersDescriptor.setModuleCodeOfModuleToSwapTasks(moduleCodeOfModuleToSwapTasks);
         swapTaskNumbersDescriptor.setIndexesOfTaskToSwap(taskIndexesToSwap);
         return new SwapTaskNumbersCommand(swapTaskNumbersDescriptor);
     }

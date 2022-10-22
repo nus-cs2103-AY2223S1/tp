@@ -42,8 +42,8 @@ public class SwapTaskNumbersDescriptorTest {
         // both task numbers different -> returns false
         SwapTaskNumbersDescriptor descriptorWithDifferentTaskNumbers =
                 new SwapTaskNumbersDescriptorBuilder(CS2106,
-                                                     Index.fromOneBased(2),
-                                                     Index.fromOneBased(3)).build();
+                        Index.fromOneBased(5),
+                        Index.fromOneBased(6)).build();
         assertFalse(DESC_CS2106_SWAP_TASKS_ONE_AND_TWO.equals(descriptorWithDifferentTaskNumbers));
 
         // one task number different -> returns false

@@ -217,8 +217,8 @@ This command will require two flags:
 
 Format: `swap-task m/MODULE_CODE ts/FIRST_TASK_NUMBER SECOND_TASK_NUMBER`
 * You should provide a module code of an existing module in Plannit.
-* You should provide a task numbers corresponding to those of existing tasks in
-  the module.
+* You should provide a pair of task numbers corresponding to those of existing 
+  tasks in the module.
 * You may only specify two task numbers at once. Both task numbers must be 
   different.
 

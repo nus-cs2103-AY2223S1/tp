@@ -98,6 +98,9 @@ public class TaskListTest {
 
     @Test
     public void swapTasks_nullTasks_swapsTasks() {
+        Index indexZero = Index.fromZeroBased(0);
+        assertThrows(NullPointerException.class, () -> taskList.swapTasks(null, indexZero));
+        assertThrows(NullPointerException.class, () -> taskList.swapTasks(indexZero, null));
         assertThrows(NullPointerException.class, () -> taskList.swapTasks(null, null));
     }
 

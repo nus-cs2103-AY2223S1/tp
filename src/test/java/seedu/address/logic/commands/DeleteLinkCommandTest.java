@@ -35,18 +35,20 @@ import seedu.address.model.person.Person;
 public class DeleteLinkCommandTest {
     private static final int MODULE_INDEX_NONEXISTENT = 999999;
     private static final int MODULE_INDEX_WITH_LINK_ZERO_BASED = 3;
-    private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+    private final Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
 
     @Test
     public void execute_addLinkCommandFilteredList_success() {
         Model expectedModel = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+
         Module moduleToEdit = expectedModel.getFilteredModuleList().get(MODULE_INDEX_WITH_LINK_ZERO_BASED);
         ModuleCode moduleCode = moduleToEdit.getModuleCode();
         ModuleTitle moduleTitle = moduleToEdit.getModuleTitle();
         List<Task> moduleTasks = moduleToEdit.getTasks();
-        Set<Person> modulePersons = moduleToEdit.getPersons();
         Set<Link> moduleLinksToDelete = moduleToEdit.copyLinks();
         Set<Link> moduleLinksEmpty = new HashSet<Link>();
+        Set<Person> modulePersons = moduleToEdit.getPersons();
+
         Module moduleToDeleteLink = new Module(moduleCode, moduleTitle,
                 moduleTasks, moduleLinksEmpty, modulePersons);
 

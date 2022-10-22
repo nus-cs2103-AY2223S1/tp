@@ -31,8 +31,7 @@ public class SwapTaskNumbersDescriptorBuilder {
      * to swap.
      */
     public SwapTaskNumbersDescriptorBuilder(Module module,
-                                            Index firstTaskNumber,
-                                            Index secondTaskNumber) {
+             Index firstTaskNumber, Index secondTaskNumber) {
         descriptor = new SwapTaskNumbersDescriptor();
         descriptor.setModuleCodeOfModuleToSwapTasks(module.getModuleCode());
         descriptor.setIndexesOfTaskToSwap(Arrays.asList(firstTaskNumber, secondTaskNumber));

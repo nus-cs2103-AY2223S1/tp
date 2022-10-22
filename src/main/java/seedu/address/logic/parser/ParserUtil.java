@@ -189,13 +189,13 @@ public class ParserUtil {
             throws ParseException {
         requireNonNull(pairOfOneBasedTaskNumbers);
         String trimmedNumbers = pairOfOneBasedTaskNumbers.trim();
-        Boolean hasOnlyTwoTaskNumbers =
-                pairOfOneBasedTaskNumbers.split(" ").length == 2;
+        String[] arrayOfTaskNumbers = trimmedNumbers.split(" ");
+        Boolean hasOnlyTwoTaskNumbers = arrayOfTaskNumbers.length == 2;
         if (!hasOnlyTwoTaskNumbers) {
             throw new ParseException(MESSAGE_INVALID_TASK_NUMBERS_TO_SWAP);
         }
-        String firstTaskNumberAsString = trimmedNumbers.split(" ")[0];
-        String secondTaskNumberAsString = trimmedNumbers.split(" ")[1];
+        String firstTaskNumberAsString = arrayOfTaskNumbers[0];
+        String secondTaskNumberAsString = arrayOfTaskNumbers[1];
         Boolean isFirstTaskNumberInvalid =
                 !StringUtil.isNonZeroUnsignedInteger(firstTaskNumberAsString);
         Boolean isSecondTaskNumberInvalid =

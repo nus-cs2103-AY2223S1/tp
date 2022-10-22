@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.commons.core.Messages.MESSAGE_NO_MODULE_IN_FILTERED_LIST;
 import static seedu.address.commons.core.Messages.MESSAGE_NO_SUCH_TASK_NUMBER;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_CS9999_MODULE_CODE_NOT_IN_TYPICAL_ADDRESS_BOOK;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalAddressBook.getTypicalAddressBookWithOnlyModules;
@@ -56,7 +57,8 @@ public class DeleteTaskCommandTest {
     @Test
     public void execute_nonExistentModuleCode_throwsCommandException() {
         Module nonExistentModule =
-                new ModuleBuilder().withModuleCode("CS1234").build();
+                new ModuleBuilder()
+                        .withModuleCode(VALID_CS9999_MODULE_CODE_NOT_IN_TYPICAL_ADDRESS_BOOK).build();
         DeleteTaskCommand.DeleteTaskFromModuleDescriptor descriptor =
                 new DeleteTaskFromModuleDescriptorBuilder(nonExistentModule).build();
         DeleteTaskCommand deleteTaskCommand = new DeleteTaskCommand(descriptor);

@@ -93,8 +93,9 @@ public class AddTaskCommand extends Command {
         ModuleCode moduleCode = moduleToAddTaskTo.getModuleCode();
         ModuleTitle moduleTitle = moduleToAddTaskTo.getModuleTitle();
         Set<Link> moduleLinks = moduleToAddTaskTo.getLinks();
-        Set<Person> modulePersons = moduleToAddTaskTo.getPersons();
         ObservableList<Task> moduleTasks = moduleToAddTaskTo.getTasks();
+        Set<Person> modulePersons = moduleToAddTaskTo.getPersons();
+
         TaskList updatedTasks = new TaskList(moduleTasks);
         Task taskToAdd = addTaskToModuleDescriptor.getTask();
         // Add new task to the list.

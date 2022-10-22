@@ -93,11 +93,12 @@ public class DeleteTaskCommand extends Command {
 
         ModuleCode moduleCode = moduleToDeleteTaskFrom.getModuleCode();
         ModuleTitle moduleTitle = moduleToDeleteTaskFrom.getModuleTitle();
+        ObservableList<Task> moduleTasks = moduleToDeleteTaskFrom.getTasks();
         Set<Link> moduleLinks = moduleToDeleteTaskFrom.getLinks();
         Set<Person> modulePersons = moduleToDeleteTaskFrom.getPersons();
-        ObservableList<Task> moduleTasks = moduleToDeleteTaskFrom.getTasks();
+
         TaskList updatedTasks = new TaskList(moduleTasks);
-        // Delete new task to the list.
+        // Delete new task from the list.
         Index indexOfTaskToDelete =
                 deleteTaskFromModuleDescriptor.getTaskIndexToDelete();
         updatedTasks.remove(indexOfTaskToDelete);

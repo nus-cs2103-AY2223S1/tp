@@ -79,7 +79,8 @@ public class TaskList implements Iterable<Task> {
     /**
      * Replaces all {@code Task}s in the {@code internalList} with those
      * in the given {@code TaskList}
-     * @param replacement
+     * @param replacement The {@code TaskList} with the tasks we wish to
+     *                    replace with.
      */
     public void setTasks(TaskList replacement) {
         requireNonNull(replacement);

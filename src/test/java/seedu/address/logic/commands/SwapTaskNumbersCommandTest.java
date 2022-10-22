@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_CS2106_MODULE_CODE;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_CS2106_MODULE_TITLE;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_CS9999_MODULE_CODE_NOT_IN_TYPICAL_ADDRESS_BOOK;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalAddressBook.getTypicalAddressBookWithOnlyModules;
@@ -57,8 +58,8 @@ public class SwapTaskNumbersCommandTest {
         Collections.swap(expectedTaskList, 0, 1);
         Module expectedModule =
                 new ModuleBuilder().withModuleCode(VALID_CS2106_MODULE_CODE)
-                                   .withModuleTitle(VALID_CS2106_MODULE_TITLE)
-                                   .withTasks(expectedTaskList).build();
+                        .withModuleTitle(VALID_CS2106_MODULE_TITLE)
+                        .withTasks(expectedTaskList).build();
         String expectedMessage = String.format(SwapTaskNumbersCommand.MESSAGE_SWAP_TASK_NUMBERS_SUCCESS,
                 expectedModule);
 
@@ -71,7 +72,8 @@ public class SwapTaskNumbersCommandTest {
     @Test
     public void execute_nonExistentModuleCode_throwsCommandException() {
         Module nonExistentModule =
-                new ModuleBuilder().withModuleCode("CS1234").build();
+                new ModuleBuilder()
+                        .withModuleCode(VALID_CS9999_MODULE_CODE_NOT_IN_TYPICAL_ADDRESS_BOOK).build();
         SwapTaskNumbersDescriptor descriptor =
                 new SwapTaskNumbersDescriptorBuilder(nonExistentModule).build();
         SwapTaskNumbersCommand swapTaskCommand = new SwapTaskNumbersCommand(descriptor);
@@ -88,8 +90,7 @@ public class SwapTaskNumbersCommandTest {
         // one valid task number
         SwapTaskNumbersDescriptor descriptorWithOneValidTaskNumber =
                 new SwapTaskNumbersDescriptorBuilder(CS2106_WITH_TYPICAL_TASKS,
-                                                     validTaskNumber,
-                                                     nonExistentTaskNumberNinetyNine).build();
+                        validTaskNumber, nonExistentTaskNumberNinetyNine).build();
         SwapTaskNumbersCommand swapTaskCommandWithOneValidTaskNumber =
                 new SwapTaskNumbersCommand(descriptorWithOneValidTaskNumber);
         assertThrows(CommandException.class,
@@ -99,8 +100,7 @@ public class SwapTaskNumbersCommandTest {
         // no valid task numbers
         SwapTaskNumbersDescriptor descriptorWithNoValidTaskNumber =
                 new SwapTaskNumbersDescriptorBuilder(CS2106_WITH_TYPICAL_TASKS,
-                                                     nonExistentTaskNumberHundred,
-                                                     nonExistentTaskNumberNinetyNine).build();
+                        nonExistentTaskNumberHundred, nonExistentTaskNumberNinetyNine).build();
         SwapTaskNumbersCommand swapTaskCommandWithNoValidTaskNumber =
                 new SwapTaskNumbersCommand(descriptorWithNoValidTaskNumber);
         assertThrows(CommandException.class,

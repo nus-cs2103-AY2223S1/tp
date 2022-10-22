@@ -1,5 +1,3 @@
-//@@author cheeheng-reused
-//Reused from existing AB3 code with minor modifications
 package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
@@ -50,7 +48,12 @@ public class SwapTaskNumbersCommandParserTest {
                 PREAMBLE_WHITESPACE + MODULE_CODE_DESC_CS2106 + MODULE_TASKLIST_DESC_SWAP_ONE_AND_TWO,
                 expectedCommand);
 
-        // multiple task descriptions - last task accepted
+        // multiple module codes - last module code used
+        assertParseSuccess(parser,
+                MODULE_CODE_DESC_MA2001 + MODULE_CODE_DESC_CS2106
+                        + MODULE_TASKLIST_DESC_SWAP_ONE_AND_TWO, expectedCommand);
+
+        // multiple task number pairs given - last task number pair accepted
         assertParseSuccess(parser,
                 MODULE_CODE_DESC_CS2106 + MODULE_TASKLIST_DESC_SWAP_TWO_AND_THREE
                         + MODULE_TASKLIST_DESC_SWAP_ONE_AND_TWO, expectedCommand);
@@ -97,7 +100,7 @@ public class SwapTaskNumbersCommandParserTest {
                 MODULE_CODE_DESC_MA2001 + INVALID_TASK_NUMBERS_DESC_NEGATIVE,
                 MESSAGE_INVALID_TASK_NUMBER);
 
-        // invalid task number - ZERO
+        // invalid task number - zero
         assertParseFailure(parser,
                 MODULE_CODE_DESC_MA2001 + INVALID_TASK_NUMBERS_DESC_ZERO,
                 MESSAGE_INVALID_TASK_NUMBER);

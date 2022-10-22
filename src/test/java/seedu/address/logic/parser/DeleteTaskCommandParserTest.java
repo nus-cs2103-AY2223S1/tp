@@ -1,5 +1,3 @@
-//@@author cheeheng-reused
-//Reused from existing AB3 code with minor modifications
 package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
@@ -48,7 +46,12 @@ public class DeleteTaskCommandParserTest {
                 PREAMBLE_WHITESPACE + MODULE_CODE_DESC_CS2106 + MODULE_TASKLIST_DESC_NUMBER_ONE,
                 expectedCommand);
 
-        // multiple task descriptions - last task accepted
+        // multiple module codes - last module code used
+        assertParseSuccess(parser,
+                MODULE_CODE_DESC_MA2001 + MODULE_CODE_DESC_CS2106 + MODULE_TASKLIST_DESC_NUMBER_ONE,
+                expectedCommand);
+
+        // multiple task number prefixes - last task number accepted
         assertParseSuccess(parser,
                 MODULE_CODE_DESC_CS2106 + MODULE_TASKLIST_DESC_NUMBER_TWO
                         + MODULE_TASKLIST_DESC_NUMBER_ONE, expectedCommand);
@@ -92,7 +95,7 @@ public class DeleteTaskCommandParserTest {
                 MODULE_CODE_DESC_MA2001 + INVALID_TASK_NUMBER_DESC_NEGATIVE,
                 MESSAGE_INVALID_TASK_NUMBER);
 
-        // invalid task number - ZERO
+        // invalid task number - zero
         assertParseFailure(parser,
                 MODULE_CODE_DESC_MA2001 + INVALID_TASK_NUMBER_DESC_ZERO,
                 MESSAGE_INVALID_TASK_NUMBER);
