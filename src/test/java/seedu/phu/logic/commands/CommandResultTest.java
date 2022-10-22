@@ -3,11 +3,18 @@ package seedu.phu.logic.commands;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
+import static org.junit.jupiter.api.Assertions.assertTimeoutPreemptively;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
 
 public class CommandResultTest {
+    private final String validInputString = "valid";
+    private final boolean showHelpTrue = true;
+    private final boolean exitTrue = true;
+    private final boolean showHelpFalse = false;
+    private final boolean exitFalse = false;
+
     @Test
     public void equals() {
         CommandResult commandResult = new CommandResult("feedback");
@@ -35,6 +42,16 @@ public class CommandResultTest {
         assertFalse(commandResult.equals(new CommandResult("feedback", false, true)));
     }
 
+    @Test
+    public void parametersTest() {
+        CommandResult commandResultTrue = new CommandResult(validInputString, showHelpTrue, exitTrue);
+        assertEquals(true, commandResultTrue.isShowHelp());
+        assertEquals(true, commandResultTrue.isExit());
+
+        CommandResult commandResultFalse = new CommandResult(validInputString, showHelpFalse, exitFalse);
+        assertEquals(false, commandResultFalse.isShowHelp());
+        assertEquals(false, commandResultFalse.isExit());
+    }
     @Test
     public void hashcode() {
         CommandResult commandResult = new CommandResult("feedback");
