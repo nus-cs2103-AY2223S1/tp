@@ -17,7 +17,7 @@ public class FindCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all guests whose details contain any of "
             + "the specified keywords (case-insensitive) and displays them as a list with index numbers.\n"
             + "Parameters: KEYWORD [MORE_KEYWORDS]...\n"
-            + "Example: " + COMMAND_WORD + " alice 98765432 bob charles@example.com";
+            + "Example: " + COMMAND_WORD + " alice 98765432 bob charlie@example.com";
 
     private final GuestContainsKeywordsPredicate predicate;
 
