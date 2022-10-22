@@ -2,7 +2,6 @@ package seedu.address.logic.parser.util;
 
 import java.util.Comparator;
 
-import jdk.jfr.Frequency;
 import seedu.address.logic.commands.SortBuyerCommand;
 import seedu.address.logic.commands.SortCommand;
 import seedu.address.logic.commands.SortDelivererCommand;
@@ -16,8 +15,6 @@ import seedu.address.model.person.Deliverer;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Supplier;
 import seedu.address.model.pet.Pet;
-
-import static java.util.Objects.requireNonNull;
 
 /**
  * Provides utils for Sort related classes.
@@ -98,7 +95,8 @@ public class SortCommandParserUtil {
      * for sorting.
      */
     public static Comparator<Buyer> parseToSelectedBuyerComparator(String attribute) throws ParseException {
-        if (attribute.isEmpty()) {
+        if (attribute.isEmpty() || SortCommand.isValidParameter(
+                SortCommand.ACCEPTABLE_SORT_ORDER_SIZE_PARAMETER, attribute)) {
             return BUYER_COMPARATOR;
         }
         if (parseToSelectedPersonComparator(attribute) == null) {
@@ -123,7 +121,8 @@ public class SortCommandParserUtil {
      * for sorting.
      */
     public static Comparator<Supplier> parseToSelectedSupplierComparator(String attribute) throws ParseException {
-        if (attribute.isEmpty()) {
+        if (attribute.isEmpty() || SortCommand.isValidParameter(
+                SortCommand.ACCEPTABLE_SORT_PET_LIST_SIZE_PARAMETER, attribute)) {
             return SUPPLIER_COMPARATOR;
         }
         if (parseToSelectedPersonComparator(attribute) == null) {
@@ -148,7 +147,8 @@ public class SortCommandParserUtil {
      * for sorting.
      */
     public static Comparator<Deliverer> parseToSelectedDelivererComparator(String attribute) throws ParseException {
-        if (attribute.isEmpty()) {
+        if (attribute.isEmpty() || SortCommand.isValidParameter(
+                SortCommand.ACCEPTABLE_SORT_ORDER_SIZE_PARAMETER, attribute)) {
             return DELIVERER_COMPARATOR;
         }
         if (parseToSelectedPersonComparator(attribute) == null) {
