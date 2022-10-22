@@ -74,7 +74,7 @@ public class ClientPhone {
      * @return String representing phone
      */
     public String uiRepresentation() {
-        return "Contact: " + this.phone;
+        return "Contact Number: " + this.phone;
     }
 
     /**
