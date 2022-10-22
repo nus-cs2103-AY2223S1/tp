@@ -2,7 +2,9 @@ package seedu.address.logic.parser.util;
 
 import java.util.Comparator;
 
+import jdk.jfr.Frequency;
 import seedu.address.logic.commands.SortBuyerCommand;
+import seedu.address.logic.commands.SortCommand;
 import seedu.address.logic.commands.SortDelivererCommand;
 import seedu.address.logic.commands.SortOrderCommand;
 import seedu.address.logic.commands.SortPetCommand;
@@ -14,6 +16,8 @@ import seedu.address.model.person.Deliverer;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Supplier;
 import seedu.address.model.pet.Pet;
+
+import static java.util.Objects.requireNonNull;
 
 /**
  * Provides utils for Sort related classes.
@@ -62,20 +66,28 @@ public class SortCommandParserUtil {
     private static final Comparator<Pet> PET_CERTIFICATE_COMPARATOR = Pet::compareCertificate;
 
     private static Comparator<? extends Person> parseToSelectedPersonComparator(String attribute) {
-        switch (attribute.toUpperCase()) {
-        case "ADDRESS":
+
+        if (SortCommand.isValidParameter(SortCommand.ACCEPTABLE_SORT_ADDRESS_PARAMETER, attribute)) {
             return PERSON_ADDRESS_COMPARATOR;
-        case "EMAIL":
-            return PERSON_EMAIL_COMPARATOR;
-        case "LOCATION":
-            return PERSON_LOCATION_COMPARATOR;
-        case "NAME":
-            return PERSON_NAME_COMPARATOR;
-        case "PHONE":
-            return PERSON_PHONE_COMPARATOR;
-        default:
-            return null;
         }
+
+        if (SortCommand.isValidParameter(SortCommand.ACCEPTABLE_SORT_EMAIL_PARAMETER, attribute)) {
+            return PERSON_EMAIL_COMPARATOR;
+        }
+
+        if (SortCommand.isValidParameter(SortCommand.ACCEPTABLE_SORT_LOCATION_PARAMETER, attribute)) {
+            return PERSON_LOCATION_COMPARATOR;
+        }
+
+        if (SortCommand.isValidParameter(SortCommand.ACCEPTABLE_SORT_NAME_PARAMETER, attribute)) {
+            return PERSON_NAME_COMPARATOR;
+        }
+
+        if (SortCommand.isValidParameter(SortCommand.ACCEPTABLE_SORT_PHONE_PARAMETER, attribute)) {
+            return PERSON_PHONE_COMPARATOR;
+        }
+
+        return null;
     }
 
     /**

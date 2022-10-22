@@ -8,7 +8,7 @@ import seedu.address.model.Model;
  */
 public class SortBuyerCommand extends SortCommand {
 
-    public static final String MESSAGE_SUCCESS = "buyer list has been sorted successfully based on attribute(s) %1$s";
+    public static final String MESSAGE_SUCCESS = "buyer list has been sorted successfully";
     public static final String MESSAGE_USAGE =
             "Acceptable buyer attributes are    , address, email, location, name, phone";
     public static final String MESSAGE_WRONG_ATTRIBUTE =
