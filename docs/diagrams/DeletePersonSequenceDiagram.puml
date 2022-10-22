@@ -53,8 +53,16 @@ destroy AddressBookParser
 LogicManager -> DeleteCommand : execute()
 activate DeleteCommand
 
-DeleteCommand -> Model : getPersonUsingName(Amy)
+
 activate Model
+DeleteCommand -> Model : getPersonUsingName(Amy)
+
+
+Model -> Model : hasPersonInFilteredList(p)
+activate Model
+
+Model --> Model
+deactivate Model
 
 Model --> DeleteCommand : p
 deactivate Model
