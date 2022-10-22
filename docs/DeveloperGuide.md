@@ -176,6 +176,7 @@ The sequence diagram is similar apart from:
 More detailed implementation of the parsing of user input is be shown in the activity diagram below.
 
 <img src="images/ParseMasteryCheckActivityDiagram.png" width="550"/>
+
 From the diagram, `MasteryCheckCommandParser` checks if 
 
 1. all prefix are present
@@ -212,6 +213,7 @@ They are similar apart from:
 1. the different naming(`AddConsultCommandParser`, `AddStudioCommandParser`, etc instead of `AddMasteryCheckParser`)
 2. for `Studio`, all `Student` currently in the `StudentBook` instead of `FilteredStudentList` will be used to create `LessonAttendance` and `LessonNotes`
    1. Studio are tutorials and all students are expected to attend. Should any student not attend, the user can simply mark the student as absent. 
+   2. As a result, adding a Studio command does not require user to input student indexes.
    
 
 
@@ -236,6 +238,7 @@ They are similar apart from:
 * has to keep track of significant number of tasks
   * grade mission and quests
   * schedule mastery checks
+  * studio attendance and participation
 * prefer desktop apps over other types
 * can type fast
 * prefers typing to mouse interactions
