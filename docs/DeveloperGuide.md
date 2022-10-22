@@ -326,7 +326,25 @@ _{more aspects and alternatives to be added}_
 
 _{Explain here how the data archiving feature will be implemented}_
 
+### Feature: UpdatedPersonCard for UI
+#### Implementation:
+Adding/editing/deleting a patient would have a `UpdatedPersonCard` with the patient’s details appear in the `OutputPanel` of the `UI`. The possible commands to achieve this are:
+1. add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [d/TASK_DESCRIPTION]… [t/TAG]…
+2. edit -p PATIENT_INDEX
+3. delete -p PATIENT_INDEX 
 
+When the user enters any of the above 3 inputs, `UninurseBookParser` parses the inputs and returns the appropriate `Command` (i.e. `AddPatientCommand`, `EditPatientCommand`, or `DeletePatientCommand`) to `LogicManager`. Once the `Command` is executed, the patient is then set as the `patientOfInterest` in the `Model` by calling the `Model#setPatientOfInterest()` method. 
+
+Below is a sequence diagram to show the interaction between the `Logic` and `Model` components for **adding a patient** (sequence is similar for editing and deleting a patient):
+
+
+
+<img src="images/AddPatientSequenceDiagram3.png"  />
+
+After that, `MainWindow` would call `LogicManager#getPatientOfInterest()` to retrieve the required patient. Thereafter, assuming a patient is added, `MainWindow` calls `OutputPanel#handleAddPatient()` with the patient as a parameter, which would then create a `UpdatedPersonCard` with the patient’s details which appears in the `OutputPanel`.
+
+Below is the sequence diagram which shows the entire interaction between the `UI`, `Logic`, and `Model` components for **adding a patient** (sequence is similar for editing and deleting a patient):
+<img src="images/AddPatientSequenceDiagram2.png"  />
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Documentation, logging, testing, configuration, dev-ops**
