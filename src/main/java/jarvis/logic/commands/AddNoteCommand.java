@@ -93,9 +93,12 @@ public class AddNoteCommand extends Command {
 
         AddNoteCommand otherAddNotes = (AddNoteCommand) other;
 
-        boolean studentIndexEquality = studentIndex == null || otherAddNotes.studentIndex == null
-                ? studentIndex == null && otherAddNotes.studentIndex == null
-                : studentIndex.equals(otherAddNotes.studentIndex);
+        boolean studentIndexEquality;
+        if (studentIndex == null) {
+            studentIndexEquality = otherAddNotes.studentIndex == null;
+        } else {
+            studentIndexEquality = studentIndex.equals(otherAddNotes.studentIndex);
+        }
         return lessonIndex.equals(otherAddNotes.lessonIndex)
                 && studentIndexEquality
                 && notes.equals(otherAddNotes.notes);

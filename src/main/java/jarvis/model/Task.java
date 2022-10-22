@@ -82,9 +82,12 @@ public class Task {
 
         Task otherTask = (Task) other;
 
-        boolean taskDeadlineEquality = taskDeadline == null || otherTask.taskDeadline == null
-                ? taskDeadline == null && otherTask.taskDeadline == null
-                : otherTask.taskDeadline.equals(taskDeadline);
+        boolean taskDeadlineEquality;
+        if (taskDeadline == null) {
+            taskDeadlineEquality = otherTask.taskDeadline == null;
+        } else {
+            taskDeadlineEquality = taskDeadline.equals(otherTask.taskDeadline);
+        }
         return otherTask.taskDesc.equals(taskDesc)
                 && taskDeadlineEquality
                 && otherTask.isDone == isDone;

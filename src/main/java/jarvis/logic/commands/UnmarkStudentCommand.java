@@ -22,7 +22,7 @@ import jarvis.model.Student;
  */
 public class UnmarkStudentCommand extends Command {
 
-    public static final String COMMAND_WORD = "markabsent";
+    public static final String COMMAND_WORD = "unmarkstudent";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Marks a student as absent for a lesson. The student and lesson are identified by their respective"

@@ -22,7 +22,7 @@ import jarvis.model.Student;
  */
 public class MarkStudentCommand extends Command {
 
-    public static final String COMMAND_WORD = "markpresent";
+    public static final String COMMAND_WORD = "markstudent";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Marks a student as present for a lesson. The student and lesson are identified by their respective"
