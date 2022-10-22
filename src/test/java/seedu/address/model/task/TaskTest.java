@@ -1,5 +1,6 @@
 package seedu.address.model.task;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_DEADLINE_BETA;
@@ -9,6 +10,8 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HIGH_PRIORI
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalPersons.ALICE;
 import static seedu.address.testutil.TypicalPersons.BETA;
+import static seedu.address.testutil.TypicalPersons.ELLE;
+import static seedu.address.testutil.TypicalPersons.FIONA;
 
 import org.junit.jupiter.api.Test;
 
@@ -94,5 +97,29 @@ public class TaskTest {
         // different isDone -> returns false
         editedAlice = new PersonBuilder(ALICE).withIsDone(!ALICE.isDone()).build();
         assertFalse(ALICE.equals(editedAlice));
+    }
+
+    @Test
+    public void compareTo() {
+        // Identity
+        assertEquals(ALICE.compareTo(ALICE), 0);
+
+        // Comparison by Deadline
+        assertTrue(ALICE.compareTo(ELLE) < 0);
+        assertFalse(ELLE.compareTo(FIONA) >= 0);
+
+        // Comparison by Module
+        Task temp = new PersonBuilder().withDeadline("2022-09-09").build();
+        Task temp2 = new PersonBuilder().withDeadline("2022-09-09").withModule("ACC1234").build();
+        assertTrue(ELLE.compareTo(temp) > 0);
+        assertTrue(ELLE.compareTo(temp2) > 0);
+        assertTrue(temp2.compareTo(temp) < 0);
+
+        // Comparison by Name
+        Task temp3 = new PersonBuilder(FIONA).withName("Tutorial 1").build();
+        Task temp4 = new PersonBuilder(FIONA).withName("Project Work").build();
+        assertTrue(FIONA.compareTo(temp3) > 0);
+        assertTrue(FIONA.compareTo(temp4) > 0);
+        assertTrue(temp4.compareTo(temp3) < 0);
     }
 }
