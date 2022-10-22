@@ -5,17 +5,17 @@ import static java.util.Objects.requireNonNull;
 import seedu.address.commons.core.Messages;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.model.Model;
-import seedu.address.model.task.TaskIsDonePredicate;
+import seedu.address.model.task.TagContainsKeywordsPredicate;
 
 /**
- * List all unmarked tasks in NotionUS.
+ * List all tasks containing tag inputted by user.
  */
-public class ListUnmarkedCommand extends ListCommand {
+public class ListTagCommand extends ListCommand {
 
-    public static final String COMMAND_WORD = "-u";
-    public final TaskIsDonePredicate predicate;
+    public static final String COMMAND_WORD = "-t";
+    private final TagContainsKeywordsPredicate predicate;
 
-    public ListUnmarkedCommand(TaskIsDonePredicate predicate) {
+    public ListTagCommand(TagContainsKeywordsPredicate predicate) {
         this.predicate = predicate;
     }
 
@@ -30,7 +30,7 @@ public class ListUnmarkedCommand extends ListCommand {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof ListUnmarkedCommand // instanceof handles nulls
-                && predicate.equals(((ListUnmarkedCommand) other).predicate)); // state check
+                || (other instanceof ListTagCommand // instanceof handles nulls
+                && predicate.equals(((ListTagCommand) other).predicate)); // state check
     }
 }

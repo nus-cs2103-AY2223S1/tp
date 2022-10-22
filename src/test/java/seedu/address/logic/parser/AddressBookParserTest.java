@@ -27,7 +27,7 @@ import seedu.address.logic.commands.list.ListModuleCommand;
 import seedu.address.logic.commands.list.ListUnmarkedCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.task.ModuleContainsKeywordsPredicate;
-import seedu.address.model.task.ModuleIsDonePredicate;
+import seedu.address.model.task.TaskIsDonePredicate;
 import seedu.address.model.task.NameContainsKeywordsPredicate;
 import seedu.address.model.task.Task;
 import seedu.address.testutil.EditPersonDescriptorBuilder;
@@ -103,7 +103,7 @@ public class AddressBookParserTest {
         ListUnmarkedCommand command = (ListUnmarkedCommand) parser.parseCommand(str + " " + isDone
                 .stream()
                 .collect(Collectors.joining(" ")));
-        assertEquals(new ListUnmarkedCommand(new ModuleIsDonePredicate(isDone)), command);
+        assertEquals(new ListUnmarkedCommand(new TaskIsDonePredicate(isDone)), command);
     }
 
     @Test

@@ -10,12 +10,12 @@ import seedu.address.model.task.TaskIsDonePredicate;
 /**
  * List all unmarked tasks in NotionUS.
  */
-public class ListUnmarkedCommand extends ListCommand {
+public class ListMarkedCommand extends ListCommand {
 
-    public static final String COMMAND_WORD = "-u";
+    public static final String COMMAND_WORD = "-m";
     public final TaskIsDonePredicate predicate;
 
-    public ListUnmarkedCommand(TaskIsDonePredicate predicate) {
+    public ListMarkedCommand(TaskIsDonePredicate predicate) {
         this.predicate = predicate;
     }
 
@@ -30,7 +30,7 @@ public class ListUnmarkedCommand extends ListCommand {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof ListUnmarkedCommand // instanceof handles nulls
-                && predicate.equals(((ListUnmarkedCommand) other).predicate)); // state check
+                || (other instanceof ListMarkedCommand // instanceof handles nulls
+                && predicate.equals(((ListMarkedCommand) other).predicate)); // state check
     }
 }

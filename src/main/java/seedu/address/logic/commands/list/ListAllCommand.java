@@ -7,7 +7,7 @@ import seedu.address.logic.commands.CommandResult;
 import seedu.address.model.Model;
 
 /**
- * List all tasks in NotioNUS.
+ * List all tasks in NotionUS.
  */
 public class ListAllCommand extends ListCommand {
 

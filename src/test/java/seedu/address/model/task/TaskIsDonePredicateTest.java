@@ -9,17 +9,17 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.testutil.PersonBuilder;
 
-public class ModuleIsDonePredicateTest {
+public class TaskIsDonePredicateTest {
     @Test
     public void equals() {
 
-        ModuleIsDonePredicate predicate = new ModuleIsDonePredicate(List.of("false"));
+        TaskIsDonePredicate predicate = new TaskIsDonePredicate(List.of("false"));
 
         // same object -> returns true
         assertTrue(predicate.equals(predicate));
 
         // same values -> returns true
-        ModuleIsDonePredicate predicateCopy = new ModuleIsDonePredicate(List.of("false"));
+        TaskIsDonePredicate predicateCopy = new TaskIsDonePredicate(List.of("false"));
         assertTrue(predicate.equals(predicateCopy));
 
         // different types -> returns false
@@ -33,14 +33,14 @@ public class ModuleIsDonePredicateTest {
     @Test
     public void test_nameContainsKeywords_returnsTrue() {
         // One keyword
-        ModuleIsDonePredicate predicate = new ModuleIsDonePredicate(List.of("false"));
+        TaskIsDonePredicate predicate = new TaskIsDonePredicate(List.of("false"));
         assertTrue(predicate.test(new PersonBuilder().withIsDone(false).build()));
 
     }
 
     @Test
     public void test_nameDoesNotContainKeywords_returnsFalse() {
-        ModuleIsDonePredicate predicate = new ModuleIsDonePredicate(List.of("false"));
+        TaskIsDonePredicate predicate = new TaskIsDonePredicate(List.of("false"));
         assertFalse(predicate.test(new PersonBuilder().withIsDone(true).build()));
 
     }
