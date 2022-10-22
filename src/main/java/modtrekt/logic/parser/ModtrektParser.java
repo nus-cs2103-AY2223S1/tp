@@ -24,9 +24,6 @@ import modtrekt.logic.commands.tasks.ListTasksCommand;
 import modtrekt.logic.commands.tasks.PrioritizeTaskCommand;
 import modtrekt.logic.commands.tasks.UnarchiveTaskCommand;
 import modtrekt.logic.parser.exceptions.ParseException;
-import modtrekt.logic.parser.tasks.ArchiveTaskCommandParser;
-import modtrekt.logic.parser.tasks.ListTasksCommandParser;
-import modtrekt.logic.parser.tasks.UnarchiveTaskCommandParser;
 
 /**
  * Parses user input.
@@ -51,6 +48,9 @@ public class ModtrektParser {
         // devs: Instantiate your commands here by passing it to addCommand() -
         //       you don't need any CommandParser classes anymore.
         JCommander jcommander = JCommander.newBuilder()
+                .addCommand(ListTasksCommand.COMMAND_WORD, new ListTasksCommand())
+                .addCommand(ArchiveTaskCommand.COMMAND_WORD, new ArchiveTaskCommand())
+                .addCommand(UnarchiveTaskCommand.COMMAND_WORD, new UnarchiveTaskCommand())
                 .addCommand(PrioritizeTaskCommand.COMMAND_WORD, new PrioritizeTaskCommand())
                 .addCommand(EditTaskCommand.COMMAND_WORD, new EditTaskCommand())
                 .build();
@@ -94,12 +94,6 @@ public class ModtrektParser {
             } else {
                 throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, MESSAGE_ADD_COMMAND_PREFIXES));
             }
-        case ListTasksCommand.COMMAND_WORD:
-            return new ListTasksCommandParser().parse(arguments);
-        case ArchiveTaskCommand.COMMAND_WORD:
-            return new ArchiveTaskCommandParser().parse(arguments);
-        case UnarchiveTaskCommand.COMMAND_WORD:
-            return new UnarchiveTaskCommandParser().parse(arguments);
         case ExitCommand.COMMAND_WORD:
             return new ExitCommand();
         case HelpCommand.COMMAND_WORD:

@@ -13,7 +13,7 @@ public class IndexConverter implements IStringConverter<Index> {
     @Override
     public Index convert(String value) {
         if (!StringUtil.isNonZeroUnsignedInteger(value)) {
-            throw new ParameterException("The index is not a non-zero unsigned integer.");
+            throw new ParameterException("The index must be a non-zero unsigned integer.");
         }
         return Index.fromOneBased(Integer.parseInt(value));
     }
