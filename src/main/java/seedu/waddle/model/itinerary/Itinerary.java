@@ -24,7 +24,6 @@ public class Itinerary {
     private final ItineraryDuration duration;
     private final People people;
     private final Budget budget;
-
     private final UniqueItemList unscheduledItemList;
     private final List<Day> days;
     private final Comparator<Item> priorityComparator = new Comparator<Item>() {
@@ -39,16 +38,13 @@ public class Itinerary {
             return 0;
         }
         /*public int compare(Item item1, Item item2) {
-            return item1.getDay().compareTo(item2.getDay());
+            return item1.getStartTime.compareTo(item2.getStartTime());
         }*/
     };
 
     /**
      * Every field must be present and not null.
      */
-
-    // TODO
-    // Have to ensure startDate is < endDate.
     public Itinerary(Name name, Country country, Date startDate, ItineraryDuration duration,
                      People people, Budget budget) {
         requireAllNonNull(name, startDate, duration);
@@ -93,6 +89,10 @@ public class Itinerary {
 
     public Budget getBudget() {
         return this.budget;
+    }
+
+    public float getLeftoverBudget() {
+        return this.budget.getLeftOverBudget();
     }
 
     public UniqueItemList getItemList() {
@@ -140,6 +140,31 @@ public class Itinerary {
         this.unscheduledItemList.sort(priorityComparator);
     }
 
+    public void unplanItem(MultiIndex index) {
+        Day day = this.days.get(index.getDayIndex());
+        Item unplannedItem = day.removeItem(index.getTaskIndex());
+        addItem(unplannedItem);
+        this.unscheduledItemList.sort(priorityComparator);
+        this.budget.updateLeftOverBudget(unplannedItem.getCost().getValue());
+    }
+
+    public void planItem(int itemIndex, int dayIndex, int startTime) {
+        Item item = this.unscheduledItemList.get(itemIndex);
+        Day day = this.days.get(dayIndex);
+        day.addItem(item);
+        this.unscheduledItemList.remove(itemIndex);
+        this.budget.updateLeftOverBudget(-item.getCost().getValue());
+    }
+
+    public Item getItem(MultiIndex index) {
+        if (index.getDayIndex() == null) {
+            return this.unscheduledItemList.get(index.getTaskIndex());
+        } else {
+            Day day = this.days.get(index.getDayIndex());
+            return day.getItem(index.getTaskIndex());
+        }
+    }
+
     /**
      * Returns true if both itineraries have the same identity and data fields.
      * This defines a stronger notion of equality between two itineraries.
@@ -182,7 +207,9 @@ public class Itinerary {
                 .append("; Number of people: ")
                 .append(getPeople())
                 .append("; Budget: ")
-                .append(getBudget());
+                .append(getBudget())
+                .append("; Leftover Budget: ")
+                .append(getBudget().getLeftOverBudget());
 
         return builder.toString();
     }

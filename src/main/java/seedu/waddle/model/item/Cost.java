@@ -35,6 +35,10 @@ public class Cost {
         return value >= 0;
     }
 
+    public float getValue() {
+        return this.cost;
+    }
+
     @Override
     public String toString() {
         return String.valueOf(cost);
