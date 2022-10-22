@@ -5,7 +5,7 @@
 
 ![Ui](docs/images/Ui.png)
 
-* **Plannit** is a **unified desktop application** that aims to **help NUS CS students manage their academic details.**
+* **Plannit** is a **unified desktop application** that aims to **help NUS students manage their academic details.**
 
 * Plannit will be the **go-to platform** for them to access all modules links and information without needing to tediously navigate through multiple websites.
 
