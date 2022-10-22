@@ -176,7 +176,7 @@ The sequence diagram is similar apart from:
 `MasteryCheckCommandParser` checks if:
 
 1. all prefixes are present
-2. lesson description is empty
+2. lesson description is not empty
 3. start date time is before end date time
 4. student indexes are int
 
@@ -197,7 +197,7 @@ The following sequence diagram shows what happens when the `AddMasteryCheckComma
 <img src="images/AddMasteryCheckSequenceDiagram.png" width="550"/>
 
 - `AddMasteryCheckCommand` will get the students involved in the `MasteryCheck` via indexing of the `lastShownList`. If no `Student` are found based on the index, `CommandException` will be thrown, stating invalid student index.
-- After a `MasteryCheck` object is created, `Model` will check if there already exists a `MasteryCheck` in the current `LessonBook` with the same identity fields. `CommandException` will be thrown, stating duplicate Mastery Check.
+- After a `MasteryCheck` object is created, `Model` will check if there already exists a `MasteryCheck` in the current `LessonBook` with the same identity fields. If this is the case,`CommandException` will be thrown, stating duplicate Mastery Check.
 - `Model` will also check with existing `Lessons` if there will be a clash in `TimePeriod`. This serves as a reminder to the user that there is already another lesson at that time slot. `CommandException` will be thrown, stating clash in timeslot.
 
 
