@@ -255,7 +255,7 @@ Examples:
 - `find Betsy` followed by `delete 1` deletes the 1st person in the Student's Details panel.
 
 ```yaml
-❗ Caution: Deleting a student is irreversible! Please input the correct index number.
+❗ Caution: Deleting a student is irreversible! Please input the correct index number(s).
 ```
 
 [Back to top](#table-of-contents)
