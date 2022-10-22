@@ -527,7 +527,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *`  | user                     | close the app with a command                                   | close the app safely                                                      |
 | `* * *`  | forgetful user           | automatically save my progress after every command             | stop worrying about potentially closing the app without saving            |
 | `* *`    | careless user            | undo commands I have keyed in wrongly                          | effortlessly correct any blunders in commands that I notice               |
-| `* *`    | expert user              | redo commands to repeat commands                               | quickly perform bulk actions                                              |
+| `* *`    | expert user              | redo commands                                                  | revert back to a previously undone state                                  |
 | `* *`    | forgetful user           | navigate my command history to look at previous commands       | remember what actions I had taken recently                                |
 | `* *`    | lazy user                | handle all my tasks and contacts in 1 place                    |                                                                           |
 | `* *`    | user                     | use my preferred date format in commands                       | use the date format I am used to and not memorise a specific other format |
