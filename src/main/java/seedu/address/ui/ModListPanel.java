@@ -16,6 +16,7 @@ import seedu.address.model.person.Person;
  */
 public class ModListPanel extends UiPart<Region> {
     private static final String FXML = "ModListPanel.fxml";
+    private Person currentPerson;
     private final Logger logger = LogsCenter.getLogger(ModListPanel.class);
 
     @FXML
@@ -29,9 +30,17 @@ public class ModListPanel extends UiPart<Region> {
     }
 
     public void setPersonModList(Person person) {
+        currentPerson = person;
         ObservableList<Mod> moduleList = person.getMods();
         modListView.setItems(moduleList);
         modListView.setCellFactory(listView -> new ModListViewCell());
+    }
+
+    /**
+     * Returns the current {@code Person}.
+     */
+    public Person getCurrentPerson() {
+        return this.currentPerson;
     }
 
     /**

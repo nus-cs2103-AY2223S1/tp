@@ -3,7 +3,6 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.ColumnConstraints?>
-<?import javafx.scene.layout.FlowPane?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Region?>
@@ -18,7 +17,7 @@
             <padding>
                 <Insets top="5" right="5" bottom="5" left="15" />
             </padding>
-            <HBox spacing="5" alignment="CENTER_LEFT">
+            <HBox spacing="1" alignment="CENTER_LEFT">
                 <Label fx:id="id" styleClass="cell_big_label">
                     <minWidth>
                         <!-- Ensures that the label text is never truncated -->
@@ -31,7 +30,7 @@
                 <padding>
                     <Insets top="5"/>
                 </padding>
-                <Label fx:id="modCategory" wrapText="true" alignment="CENTER" prefHeight="20.0" />
+                <Label fx:id="modCategory" wrapText="true" alignment="CENTER" />
             </HBox>
             <HBox>
                 <padding>

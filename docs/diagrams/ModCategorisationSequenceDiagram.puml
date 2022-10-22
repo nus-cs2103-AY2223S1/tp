@@ -14,7 +14,7 @@ JsonAdaptedMod -> Mod: new Mod("CS2103T", false)
 activate Mod
 Mod -> ParserUtil: parseModsToCategory("CS2103T")
 activate ParserUtil
-ParserUtil -> Mod: modCategory
+ParserUtil --> Mod: modCategory
 deactivate ParserUtil
 Mod --> JsonAdaptedMod:
 deactivate Mod

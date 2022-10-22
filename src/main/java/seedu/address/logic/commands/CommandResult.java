@@ -20,14 +20,18 @@ public class CommandResult {
     /** The application should exit. */
     private final boolean exit;
 
+    private final boolean updatePersonPanel;
+
     /**
      * Constructs a {@code CommandResult} with the specified fields.
      */
-    public CommandResult(String feedbackToUser, boolean showHelp, boolean exit, boolean resetModPanel) {
+    public CommandResult(String feedbackToUser, boolean showHelp, boolean exit,
+                         boolean resetModPanel, boolean updatePersonPanel) {
         this.resetModPanel = resetModPanel;
         this.feedbackToUser = requireNonNull(feedbackToUser);
         this.showHelp = showHelp;
         this.exit = exit;
+        this.updatePersonPanel = updatePersonPanel;
     }
 
     /**
@@ -35,7 +39,7 @@ public class CommandResult {
      * and other fields set to their default value.
      */
     public CommandResult(String feedbackToUser) {
-        this(feedbackToUser, false, false, false);
+        this(feedbackToUser, false, false, false, false);
     }
 
     public String getFeedbackToUser() {
@@ -54,6 +58,10 @@ public class CommandResult {
         return exit;
     }
 
+    public boolean isUpdatePersonPanel() {
+        return updatePersonPanel;
+    }
+
     @Override
     public boolean equals(Object other) {
         if (other == this) {
@@ -68,7 +76,9 @@ public class CommandResult {
         CommandResult otherCommandResult = (CommandResult) other;
         return feedbackToUser.equals(otherCommandResult.feedbackToUser)
                 && showHelp == otherCommandResult.showHelp
-                && exit == otherCommandResult.exit;
+                && exit == otherCommandResult.exit
+                && resetModPanel == otherCommandResult.resetModPanel
+                && updatePersonPanel == otherCommandResult.updatePersonPanel;
     }
 
     @Override

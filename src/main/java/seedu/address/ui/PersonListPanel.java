@@ -31,6 +31,11 @@ public class PersonListPanel extends UiPart<Region> {
         this.modListPanel = personModList;
     }
 
+    public void setPersonPanel(ObservableList<Person> personList) {
+        personListView.setItems(personList);
+        personListView.setCellFactory(listView -> new PersonListViewCell());
+    }
+
     /**
      * Displays ListView item clicked on the ListView on the {@code testPanel}
      */
@@ -48,10 +53,10 @@ public class PersonListPanel extends UiPart<Region> {
      */
     class PersonListViewCell extends ListCell<Person> {
         @Override
-        protected void updateItem(Person person, boolean empty) {
-            super.updateItem(person, empty);
+        protected void updateItem(Person person, boolean isEmpty) {
+            super.updateItem(person, isEmpty);
 
-            if (empty || person == null) {
+            if (isEmpty || person == null) {
                 setGraphic(null);
                 setText(null);
             } else {

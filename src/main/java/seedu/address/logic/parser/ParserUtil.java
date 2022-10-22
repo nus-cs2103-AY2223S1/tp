@@ -154,7 +154,7 @@ public class ParserUtil {
     }
 
     /**
-     * Parses {@code Collection<String> mods} into a {@code Set<Mod>}.
+     * Parses {@code Collection<String> mods} into a {@code ObservableList<Mod>}.
      */
     public static ObservableList<Mod> parseMods(Collection<String> mods) throws ParseException {
         List<String> deDupStringList = new ArrayList<>(new HashSet<>(mods));

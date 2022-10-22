@@ -190,8 +190,16 @@ public class MainWindow extends UiPart<Stage> {
             logger.info("Result: " + commandResult.getFeedbackToUser());
             resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
 
+            if (commandResult.isUpdatePersonPanel()) {
+                personListPanel.setPersonPanel(logic.getFilteredPersonList());
+            }
+
             if (commandResult.isResetModPanel()) {
                 modListPanel.clearModPanel();
+            }
+
+            if (!commandResult.isResetModPanel()) {
+                modListPanel.setPersonModList(modListPanel.getCurrentPerson());
             }
 
             if (commandResult.isShowHelp()) {

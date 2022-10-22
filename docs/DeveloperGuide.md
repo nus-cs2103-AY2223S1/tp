@@ -199,7 +199,7 @@ The following (partial) class diagram shows how the different classes involved i
 
 The following activity diagram summarises what happens when a student enters a `mod mark` command, assuming the command is valid and no error occurs:
 
-![ModMarkWithLoopActivityDiagram](images/ModMarkWithLoopActivityDiagram.png)
+![ModMarkWithLoopActivityDiagram](images/ModMarkActivityDiagram.png)
 
 #### Design considerations:
 
@@ -212,6 +212,38 @@ The following activity diagram summarises what happens when a student enters a `
 * **Alternative 2:** Marks mods of a batchmate whose name is specified.
     * Pros: Easier to find the batchmate by directly entering the name.
     * Cons: Full name of the batchmate has to be specified. It may take more time to enter the name especially for long and complicated names.
+
+### Mod find feature
+
+### Implementation
+
+The `ModCommandParser` implements the operation `ModCommandParser#parseFindCommand(String args)` to read inputs entered by the student for execution in `ModFindCommand`. `ModFindCommand` extends `ModCommand` to execute the `mod find` command.
+
+During execution, the user inputs of module codes are passed into a `List` to `ModContainsKeywordsPredicate`.
+
+For simplicity, we will call this `List` of module codes `keywords`. `ModContainsKeywordsPredicate#test(Person person)` returns `true` for a particular `person` only if every elements in `keywords` is in the `Mod`s of this `person` (stored as `ObservableList<Mod>`).
+
+Checking of whether the elements in the `keywords` and the `Mod`s match is done by the `StringUtil#containsWordIgnoreCase(String sentence, String word)`.
+
+The result of `ModContainsKeywordsPredicate#test(Person person)` is then used by `Model#updateFilteredPersonList` to filter those `Persons` who have taken or are taking the specified module(s)) when `ModFindCommand#execute(Model model)` is called.
+
+The following sequence diagram shows how the different classes involved in the `mod find` operation interacts with one another:
+
+![ModFindSequenceDiagram](images/ModFindSequenceDiagram.png)
+
+The following activity diagram summarises what happens when a student enters a `mod find` command, assuming the command is valid and no error occurs:
+
+![ModFindActivityDiagram](images/ModFindActivityDiagram.png)
+
+#### Design considerations:
+
+* **Alternative 1 (current choice):** Modules will be identified only if user inputs fully matches the module code. For instance, `mod find cs1231` does not return `person` has taken or is taking the module `CS1231S` (lacking an "S").
+    * Pros: Reduces confusion. Requiring exact module code will display `persons` that are tailored to the specifications, reducing the need to manually filter through the `persons`. Imagine that if the system allows partial matching of module codes, typing `mod find cs` yields those who are taking or have taken modules with code "CS", regardless of whether he/she has "CS1231S".
+    * Cons: If the desired module code is so unique that partial matching can suffice to pinpoint the module, requiring a fully matching input would cause some inconvenience to the user.
+
+* **Alternative 2:** Modules can be identified by partially matching inputs of module codes. For instance, `mod find 123` will return `person` has taken or is taking the module `CS1231S`.
+    * Pros: Shorter commands to enter and grants greater convenience to the users.
+    * Cons: If many module codes share the partial module code that user inputs, many `persons` will be returned, rendering the `mod find` function ineffective as users still need to manually search for the `persons` with the desired module.
 
 ### Module Categorisation
 
@@ -253,6 +285,7 @@ Activity: Determines and returns a category
 * **Alternative 2:** Categories of mods are saved into Storage.
     * Pros: Users can edit mod categories with less changes to the code base. Increased performance.
     * Cons: Increased complexity.
+
 
 
 ### \[Proposed\] Undo/redo feature
@@ -452,7 +485,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * a1. Mass Linkers updates the storage file.
       \
       Use case ends.
-    
+
 **Use case 4: Add an interest to a batchmate**
 
 **MSS**

@@ -1,0 +1,37 @@
+@startuml
+hide Footbox
+
+box Logic #caedd6
+participant ":LogicManager" as LM #9064ed
+participant ":AddressBookParser" as ABP #0af2d7
+participant ":ModCommandParser" as MCP #fad400
+participant "f:ModFindCommand" as MFC #00e8ba
+participant ":CommandResult" as CR #fca55d
+box Model #ff7d63
+participant ":Model" as Model #33ff8a
+->LM ++ #0f5223 : execute("mod find cs2101")
+LM -> ABP ++ #a61600 : parseCommand("mod find cs2101")
+ABP -> MCP **
+activate MCP #3f038f
+MCP --> ABP
+deactivate MCP
+ABP -> MCP : parse("find cs2101")
+activate MCP #870ef0
+MCP -> MCP ++ #d1ce11 : parseFindCommand("cs2101")
+MCP -> MFC **
+activate MFC #055c07
+return f
+return f
+return f
+return f
+destroy MCP
+LM -> MFC ++ #4afff0 : execute(model)
+MFC -> Model ++ #7d2918 : updateFilteredPersonList(predicate)
+return
+MFC -> CR **
+activate CR #0d00bd
+return
+return result
+return
+
+@enduml

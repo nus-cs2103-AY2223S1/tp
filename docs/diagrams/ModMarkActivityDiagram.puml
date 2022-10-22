@@ -7,10 +7,10 @@ start
 :Mass Linkers searches for the
 batchmate at specified index;
 if () then ([1 mod to mark])
-    :Mass Linkers searches for the mod
-    in the list of mods of batchmate;
+    :Mass Linkers searches for the specified
+    mod in the list of mods of batchmate;
     :Mass Linkers marks
-    the mod as taken;
+    that mod as taken;
 else ([multiple mods to mark])
     :Mass Linkers searches for all specified
     mods in the list of mods of batchmate;

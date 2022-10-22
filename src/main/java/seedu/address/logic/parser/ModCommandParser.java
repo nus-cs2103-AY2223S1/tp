@@ -130,9 +130,9 @@ public class ModCommandParser implements Parser<ModCommand> {
             throw new ParseException(ModCommand.MESSAGE_MODS_EMPTY);
         }
 
-        String[] nameKeywords = trimmedArgs.split("\\s+");
+        String[] keywords = trimmedArgs.split("\\s+");
 
-        return new ModFindCommand(new ModContainsKeywordsPredicate(Arrays.asList(nameKeywords)));
+        return new ModFindCommand(new ModContainsKeywordsPredicate(Arrays.asList(keywords)));
     }
 
     /**
