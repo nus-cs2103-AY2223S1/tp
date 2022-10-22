@@ -55,6 +55,14 @@ public class ApplicantTest {
     }
 
     @Test
+    public void isMatchingApplicationStatus() {
+        assertTrue(ALICE.isMatchingApplicationStatus(new ApplicationStatus("pending")));
+        assertTrue(BENSON.isMatchingApplicationStatus(new ApplicationStatus("accepted")));
+        assertTrue(DANIEL.isMatchingApplicationStatus(new ApplicationStatus("rejected")));
+
+    }
+
+    @Test
     public void sortByName() {
         // Comparing names based on lexicographical order
         assertTrue(Applicant.sortByName().compare(ALICE, BENSON) == -1);
