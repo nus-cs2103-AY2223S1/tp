@@ -5,91 +5,92 @@ title: User Guide
 
 # GithubContact
 
-GithubContact is **an address book integrated with Github's Public API, targeted at programmers to help them communicate and collaborate smoothly.**
+GithubContact is an address book **integrated with Github's Public API**, targeted at programmers to help them communicate and collaborate smoothly.
 
 --------------------------------------------------------------------------------------------------------------------
 
 ## Features
 
-### Initialize Contact Book : `init`
-
-Initialize contact book with Github integration, this command will fetch all of your public repositories and cache it locally.
-
-Format: `init <github-username>`
-
-_Please note that github username is case-sensitive._
-
 ### Adding a person : `add`
 
-Adds user to list and shows contact information page, where attributes can be added and set. Fetches information from GitHub if username is used. The @ symbol indicates the use of a GitHub username.
+Adds person to list and shows contact information page, where attributes can be added and set. Fetches information from GitHub if personname is used. The @ symbol indicates the use of a GitHub personname.
 
-Format: `add @<github-username> | add <real name>`
+Format: `add name/NAME address/ADDRESS [role/ROLE] [timezone/TIMEZONE] [phone/PHONE] [email/EMAIL] [slack/SLACK] [telegram/TELEGRAM] [tag/TAG] `
 
-### Enter User Details Page : `<ENTER>`
+Example:
+- `add name/John Doe address/27 Clementi`
+- `add name/Alex address/22 Clementi phone/86609830 email/alex@gmail.com`
+- `add name/Mike address/21 Clementi phone/86609831 email/mike@gmail.com slack/mike123 telegram/@mike123`
 
-Switches to the details page of a selected user.
+### Show Person Details: `<ENTER>` or double click
 
-### Edit User Details : `{set|add}`
+Show person details in another page.
 
-Changes attribute in User contact card if it exists, else initializes a new property.
+There are two ways to show person details
+1. Keyboard-friendly way
+   1. Use `<TAB>` to navigate to the persons' list.
+   2. Press `<ENTER>` to show person details.
+2. General usage
+   1. Double-click on the person card in persons' list.
+   
+### Edit Person Details : `set`
 
-Format: `{set|add} <field-name> <user-attribute> | add <field-name> <user-attribute>`
+Set attribute of a person.
 
-All the `{set|add}` commands are provided below:
+Format `set [name/NAME] [address/ADDRESS] [role/ROLE] [timezone/TIMEZONE] [phone/PHONE] [email/EMAIL] [slack/SLACK] [telegram/TELEGRAM] [tag/TAG] `
 
-* Set name of contact set name `<user-real-name>`
-* Set email of contact set email `<user-email>`
-* Set timezone of contact set timezone `<user-timezone>`
-* Set slack handle of contact set slack `<user-slack>`
-* Set twitter handle of contact set twitter `<user-twitter>`
-* Set telegram handle of contact set telegram `<user-telegram>`
+- You can only run this command in person details page. Please refer to "Show Person Details" to enter person details page.
+- At least one optional attribute must be provided.
+- Existing values will be updated to provided values.
 
+### Delete Person Details: `delete`
 
-### Delete User Details: `delete <field-name> `
+Delete attribute of a person.
 
-Delete user attribute in User contact card if it exists, else it does nothing.
+Format: `delete ATTRIBUTE_NAME`
 
-Format: `delete <field-name> <user-attribute>`
+- You can only run this command in person details page. Please refer to "Show Person Details" to enter person details page.
+- `name` and `address` are not able to delete, as they are required attributes.
+- You only can delete one attribute at one time.
 
-All the `delete` commands are provided below:
+Attributes (`ATTRIBUTE_NAME`) that are able to delete:
+- `role`
+- `timezone`
+- `email`
+- `phone`
+- `slack`
+- `telegram`
 
-* Delete email of contact `delete email <user-email>`
-* Delete timezone of contact `delete timezone <user-timezone>`
-* Delete slack handle of contact `delete slack <user-slack>`
-* Delete twitter handle of contact `delete twitter <user-twitter>`
-* Delete telegram handle of contact `delete telegram <user-telegram>`
+### Delete Person : `delete`
 
+Delete the specified person from the address book.
 
-### Delete User : `delete`
+Format: `delete INDEX`
 
-Remove user from cache and from home page.
-
-Format: `delete <@github-username/real-name>`
-_Please note that github username is case-sensitive._
+- You can only run this command in person listing page.
+- The index refers to the index number shown in the person list.
+- The index must be **positive integer** 1, 2, 3...
 
 ### Help Command : `help`
 
-Shows a help page to the user.
+Shows help page.
 
 Format: `help`
 
-### Search User : `search `
+### Find Person : `find`
 
-Searches for and displays the users/repos that match the keyword.
+Find person and displays the persons that match the keyword.
 
-Format: `search <keyword>`
+Format: `find KEYWORD`
 
 --------------------------------------------------------------------------------------------------------------------
 
 ## Command summary
 
-| Action     | Format, Examples                                                             |
-|------------|------------------------------------------------------------------------------|
-| **init**   | `init <my-github-username>, init ted-world`                                  |
-| **add**    | `add @<github-username>, add <real-name>, add @arnav-ag, add Arnav Aggarwal` |
-| **delete** | `delete <attribute>, delete real-name, delete slack, delete twitter`         |
-| **delete** | `delete <@github-username/real-name>, delete @sh4nH, delete Shan Hashir`     |
-| **set**    | `set @<github-username>, set <real-name>, set @arnav-ag, set Arnav Aggarwal` |
-| **help**   | `help`                                                                       |
-| **search** | `search <keyword>, search tp`                                                |
-| **ENTER**  | N/A                                                                          |
+| Action               | Format, Examples                                                                                                                                                                    |
+|----------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **add**              | `add name/NAME address/ADDRESS [role/ROLE] [timezone/TIMEZONE] [phone/PHONE] [email/EMAIL] [slack/SLACK] [telegram/TELEGRAM] [tag/TAG]`<br> `add name/John Doe address/27 Clementi` |
+| **delete person**    | `delete INDEX` <br> `delete 1, delete 2`                                                                                                                                            |
+| **delete attribute** | `delete ATTRIBUTE` <br> `delete name, delete slack, delete twitter`                                                                                                                 |
+| **set**              | `set [name/NAME] [address/ADDRESS] [role/ROLE] [timezone/TIMEZONE] [phone/PHONE] [email/EMAIL] [slack/SLACK] [telegram/TELEGRAM] [tag/TAG]`<br> `set name/Tex address/Clementi`      |
+| **help**             | `help`                                                                                                                                                                              |
