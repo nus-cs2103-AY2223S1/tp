@@ -32,7 +32,7 @@ public class TaskDeleteCommand extends Command {
     private final Index targetIndex;
 
     /**
-     * Creates a TaskDeleteCommand to delete a task with the specified {@code Index index}
+     * Creates a TaskDeleteCommand to delete a task with the specified {@code Index index}.
      *
      * @param targetIndex Index of the Task in the task book.
      */

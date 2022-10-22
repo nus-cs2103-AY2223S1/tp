@@ -17,7 +17,7 @@ import taskbook.logic.parser.exceptions.ParseException;
 import taskbook.logic.parser.tasks.enums.SortTypes;
 
 /**
- * Parses input arguments and creates a new TaskSortCommand
+ * Parses input arguments and creates a new TaskSortCommand.
  */
 public class TaskSortCommandParser implements Parser<TaskSortCommand> {
     // Note: the space at the start of the arguments is necessary due to ArgumentTokenizer behavior.

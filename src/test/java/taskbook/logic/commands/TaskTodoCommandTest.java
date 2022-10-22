@@ -1,15 +1,28 @@
 package taskbook.logic.commands;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static taskbook.testutil.Assert.assertThrows;
 
+import java.util.Arrays;
+
 import org.junit.jupiter.api.Test;
 
+import taskbook.logic.commands.exceptions.CommandException;
+import taskbook.logic.commands.modelstubs.ModelStub;
+import taskbook.logic.commands.modelstubs.ModelStubAcceptingTaskAdded;
+import taskbook.logic.commands.modelstubs.ModelStubWithPerson;
+import taskbook.logic.commands.tasks.TaskAddCommand;
 import taskbook.logic.commands.tasks.TaskTodoCommand;
 import taskbook.model.person.Name;
+import taskbook.model.person.Person;
 import taskbook.model.task.Description;
+import taskbook.model.task.Todo;
 import taskbook.model.task.enums.Assignment;
+import taskbook.testutil.PersonBuilder;
+import taskbook.testutil.TodoBuilder;
+
 
 public class TaskTodoCommandTest {
 
@@ -33,6 +46,45 @@ public class TaskTodoCommandTest {
     @Test
     public void constructor_nullAssignment_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> new TaskTodoCommand(NAME_AMY, DESCRIPTION_ONE, null));
+    }
+
+    @Test
+    public void execute_taskAcceptedByModel_addSuccessful() throws Exception {
+        Person validPerson = new PersonBuilder().withName(String.valueOf(NAME_BOB)).build();
+        ModelStubAcceptingTaskAdded modelStub = new ModelStubAcceptingTaskAdded(validPerson);
+
+        Todo validTask = new TodoBuilder().withPersonName(validPerson).build();
+        CommandResult commandResult = new TaskTodoCommand(validTask.getName(), validTask.getDescription(),
+                validTask.getAssignment()).execute(modelStub);
+
+        assertEquals(String.format(TaskTodoCommand.MESSAGE_SUCCESS, validTask), commandResult.getFeedbackToUser());
+        assertEquals(Arrays.asList(validTask), modelStub.getTasks());
+    }
+
+    @Test
+    public void execute_personAssociatedWithTaskNotFound_throwsCommandException() {
+        Person johnny = new PersonBuilder().withName("Johnny").build();
+        TaskTodoCommand taskTodoCommand = new TaskTodoCommand(NAME_AMY, DESCRIPTION_ONE, ASSIGNMENT_TO);
+        ModelStub modelStub = new ModelStubWithPerson(johnny);
+
+        assertThrows(CommandException.class,
+                TaskAddCommand.MESSAGE_PERSON_NOT_FOUND, () -> taskTodoCommand.execute(modelStub));
+    }
+
+    @Test
+    public void execute_duplicateTodo_throwsCommandException() throws CommandException {
+        Person validPerson = new PersonBuilder().withName(String.valueOf(NAME_BOB)).build();
+        ModelStubAcceptingTaskAdded modelStub = new ModelStubAcceptingTaskAdded(validPerson);
+
+        Todo validTask = new TodoBuilder().withPersonName(validPerson).build();
+        TaskTodoCommand taskTodoCommand = new TaskTodoCommand(validTask.getName(), validTask.getDescription(),
+                validTask.getAssignment());
+
+        // Adds the task into the modelStub.
+        taskTodoCommand.execute(modelStub);
+
+        assertThrows(CommandException.class,
+                TaskAddCommand.MESSAGE_DUPLICATE_TASK_FAILURE, () -> taskTodoCommand.execute(modelStub));
     }
 
     @Test

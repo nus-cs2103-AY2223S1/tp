@@ -168,6 +168,9 @@ public interface Model {
      * Updates the comparator of the sorted task list to be null, which sorts tasks by the time they were added.
      */
     void resetSortedTaskList();
+
+    void updateSort(Comparator<Task> comparator);
+
     /**
      * Updates the filter of the filtered person list to filter by the given {@code predicate}.
      * @throws NullPointerException if {@code predicate} is null.
