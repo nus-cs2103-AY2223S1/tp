@@ -158,12 +158,7 @@ public class AddCommandTest {
         public void deletePerson(Person target) {
             throw new AssertionError("This method should not be called.");
         }
-
-        /**
-         * Adds a new supply {@code item} to inventory.
-         *
-         * @param item
-         */
+        
         @Override
         public void addSupplyItem(SupplyItem item) {
 
@@ -189,26 +184,29 @@ public class AddCommandTest {
             throw new AssertionError("This method should not be called.");
         }
 
-        /**
-         * Replaces the given supply item {@code target} with {@code editedSupplyItem}.
-         * {@code item} must exist in the inventory.
-         *
-         * @param item
-         * @param targetIndex
-         */
         @Override
         public void setSupplyItem(SupplyItem item, Index targetIndex) {
-
+            throw new AssertionError("This method should not be called.");
         }
 
-        /**
-         * Deletes the supply item at the specified {@code index}.
-         *
-         * @param index
-         */
         @Override
         public void deleteSupplyItem(Index index) {
+            throw new AssertionError("This method should not be called.");
+        }
 
+        @Override
+        public void increaseSupplyItem(Index targetIndex, int amount) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void decreaseSupplyItem(Index targetIndex, int amount) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void changeIncDecAmount(Index targetIndex, int amount) {
+            throw new AssertionError("This method should not be called.");
         }
 
         @Override
@@ -226,9 +224,6 @@ public class AddCommandTest {
             throw new AssertionError("This method should not be called.");
         }
 
-        /**
-         * Returns an unmodifiable view of the filtered supplyItem list
-         */
         @Override
         public ObservableList<SupplyItem> getFilteredSupplyItemList() {
             return null;
@@ -263,12 +258,6 @@ public class AddCommandTest {
         public void updateFilteredTaskList(Predicate<Task> predicate) {
         }
 
-        /**
-         * Updates the filter of the filtered supply item to filter by the given {@code predicate}.
-         *
-         * @param predicate
-         * @throws NullPointerException if (@code predicate) is null.
-         */
         @Override
         public void updateFilteredSupplyItemList(Predicate<SupplyItem> predicate) {
 
