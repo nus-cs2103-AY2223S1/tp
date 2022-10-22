@@ -1,7 +1,7 @@
 <!-- markdownlint-disable-file first-line-h1 -->
 #### Create a new item: `new`
 
-TODO:YX
+<!-- TODO: YX -->
 **Format**: `new n/ITEM_NAME [qty/QUANTITY] [type/TYPE] [bgt/BOUGHT_DATE] [exp/EXPIRY_DATE]`
 
 > Creates a new item with the provided item name. Other than the item name, all other fields are optional.
