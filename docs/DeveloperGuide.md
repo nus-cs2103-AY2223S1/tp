@@ -2,11 +2,43 @@
 layout: page
 title: Developer Guide
 ---
-* Table of Contents
-{:toc}
+
+# Welcome to RC4HDB Developer Guide!
+
+Choose a section from the table of contents below to learn more about how RC4HDB works!
 
 --------------------------------------------------------------------------------------------------------------------
 
+## **Table of Contents**
+
+* [Acknowledgements](#acknowledgements-outdated)
+* [Getting started](#setting-up-getting-started-outdated)
+* [Design](#design)
+    * [Architecture](#architecture-outdated)
+    * [Ui](#ui-component)
+    * [Logic](#logic-component-outdated)
+    * [Model](#model-component)
+    * [Storage](#storage-component-outdated)
+    * [Common classes](#common-classes)
+* [Implementation](#implementation-outdated)
+    * [Resident class](#the-resident-class)
+    * [Displaying results](#changes-in-displaying-results)
+    * [Show/Hide fields](#showhide-feature-for-resident-fields)
+    * [Filter fields](#filter-feature-to-filter-residents-according-to-fields)
+    * [File management system](#multiple-data-files)
+* [Documentation, logging, testing, configuration, dev-ops](#documentation-logging-testing-configuration-dev-ops-outdated)
+* [Appendix: requirements](#appendix-requirements)
+    * [Product scope](#product-scope)
+    * [User stories](#user-stories)
+    * [Use case](#use-cases)
+    * [Non-functional requirements](#non-functional-requirements)
+    * [Glossary](#glossary)
+* [Appendix: instructions for manual testing](#appendix-instructions-for-manual-testing)
+    * [Launch and shutdown](#launch-and-shutdown)
+    * [Deleting a person](#deleting-a-person)
+    * [Saving data](#saving-data)
+    
+---
 ## **Acknowledgements** (OUTDATED)
 
 * {list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the original source as well}
