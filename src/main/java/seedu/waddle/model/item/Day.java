@@ -6,7 +6,6 @@ import java.util.Comparator;
 import seedu.waddle.commons.core.Messages;
 import seedu.waddle.commons.core.index.Index;
 import seedu.waddle.logic.commands.exceptions.CommandException;
-import seedu.waddle.model.itinerary.Itinerary;
 
 /**
  * Encapsulates a day in an itinerary.
