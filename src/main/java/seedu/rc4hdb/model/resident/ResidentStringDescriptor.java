@@ -6,16 +6,19 @@ import java.util.Optional;
 import java.util.Set;
 
 import seedu.rc4hdb.commons.util.CollectionUtil;
-import seedu.rc4hdb.model.tag.Tag;
 
+/**
+ * Stores the details to filter the resident with. Each non-empty field value will replace the
+ * corresponding field value of the resident.
+ */
 public class ResidentStringDescriptor {
-    private Optional<String> name;
-    private Optional<String> phone;
-    private Optional<String> email;
-    private Optional<String> room;
-    private Optional<String> gender;
-    private Optional<String> house;
-    private Optional<String> matricNumber;
+    private String name;
+    private String phone;
+    private String email;
+    private String room;
+    private String gender;
+    private String house;
+    private String matricNumber;
     private Set<String> tags;
 
     public ResidentStringDescriptor() {
@@ -41,62 +44,62 @@ public class ResidentStringDescriptor {
     }
 
     //=========== Start of Getters and Setters ===============================================================
-
     public void setName(String name) {
-        this.name = Optional.of(name);
+        this.name = name;
     }
 
     public Optional<String> getName() {
-        return name;
+        return Optional.ofNullable(name);
     }
 
     public void setPhone(String phone) {
-        this.phone = Optional.of(phone);
+        this.phone = phone;
     }
 
     public Optional<String> getPhone() {
-        return phone;
+        return Optional.ofNullable(phone);
     }
 
     public void setEmail(String email) {
-        this.email = Optional.of(email);
+        this.email = email;
     }
 
     public Optional<String> getEmail() {
-        return email;
+        return Optional.ofNullable(email);
     }
 
     public void setRoom(String room) {
-        this.room = Optional.of(room);
+        this.room = room;
     }
 
     public Optional<String> getRoom() {
-        return room;
+        return Optional.ofNullable(room);
     }
 
     public void setGender(String gender) {
-        this.gender = Optional.of(gender);
+        this.gender = gender;
     }
 
     public Optional<String> getGender() {
-        return gender;
+        return Optional.ofNullable(gender);
     }
 
     public void setHouse(String house) {
-        this.house = Optional.of(house);
+        this.house = house;
     }
 
     public Optional<String> getHouse() {
-        return house;
+        return Optional.ofNullable(house);
     }
 
     public void setMatricNumber(String matricNumber) {
-        this.matricNumber = Optional.of(matricNumber);
+        this.matricNumber = matricNumber;
     }
 
     public Optional<String> getMatricNumber() {
-        return matricNumber;
+        return Optional.ofNullable(matricNumber);
     }
+
     /**
      * Sets {@code tags} to this object's {@code tags}.
      * A defensive copy of {@code tags} is used internally.
@@ -124,12 +127,12 @@ public class ResidentStringDescriptor {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof ResidentDescriptor)) {
+        if (!(other instanceof ResidentStringDescriptor)) {
             return false;
         }
 
         // state check
-        ResidentDescriptor e = (ResidentDescriptor) other;
+        ResidentStringDescriptor e = (ResidentStringDescriptor) other;
 
         return getName().equals(e.getName())
                 && getPhone().equals(e.getPhone())

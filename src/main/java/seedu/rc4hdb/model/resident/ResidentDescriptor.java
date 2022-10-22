@@ -1,6 +1,5 @@
 package seedu.rc4hdb.model.resident;
 
-import java.util.Collections;
 import java.util.HashSet;
 import java.util.Optional;
 import java.util.Set;

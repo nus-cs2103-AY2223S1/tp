@@ -5,7 +5,6 @@ import java.util.Set;
 import java.util.function.Predicate;
 
 import seedu.rc4hdb.model.resident.Resident;
-import seedu.rc4hdb.model.resident.ResidentDescriptor;
 import seedu.rc4hdb.model.resident.ResidentStringDescriptor;
 import seedu.rc4hdb.model.tag.Tag;
 
@@ -34,12 +33,20 @@ public class AttributesMatchAllKeywordsPredicate implements Predicate<Resident> 
                 && descriptor.getHouse().map(house -> resident.getHouse().contains(house)).orElse(true)
                 && descriptor.getMatricNumber().map(matric -> resident.getMatricNumber().contains(matric))
                 .orElse(true)
-                && resident.getTags().containsAll(makeTag(descriptor.getTags().get()));
+                && resident.getTags().containsAll(descriptor.getTags().map(x -> makeTag(x)).orElse(resident.getTags()));
     }
 
+    /**
+     * Converts a set of Strings to a set of tags
+     * @param tags the set of strings
+     * @return a set of tags
+     */
     public Set<Tag> makeTag(Set<String> tags) {
-        HashSet<Tag> newTags =  new HashSet<>();
-        tags.stream().map(str -> newTags.add(new Tag(str)));
+        HashSet<Tag> newTags = new HashSet<>();
+        for (String tag : tags) {
+            Tag newTag = new Tag(tag);
+            newTags.add(newTag);
+        }
         return newTags;
     }
 

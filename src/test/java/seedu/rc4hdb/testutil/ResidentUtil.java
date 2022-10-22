@@ -14,6 +14,7 @@ import java.util.Set;
 import seedu.rc4hdb.logic.commands.modelcommands.AddCommand;
 import seedu.rc4hdb.model.resident.Resident;
 import seedu.rc4hdb.model.resident.ResidentDescriptor;
+import seedu.rc4hdb.model.resident.ResidentStringDescriptor;
 import seedu.rc4hdb.model.tag.Tag;
 
 /**
@@ -65,6 +66,30 @@ public class ResidentUtil {
                 sb.append(PREFIX_TAG);
             } else {
                 tags.forEach(s -> sb.append(PREFIX_TAG).append(s.tagName).append(" "));
+            }
+        }
+        return sb.toString();
+    }
+
+    /**
+     * Returns the part of command string for the given {@code ResidentStringDescriptor}'s details.
+     */
+    public static String getResidentDescriptorDetails(ResidentStringDescriptor descriptor) {
+        StringBuilder sb = new StringBuilder();
+        descriptor.getName().ifPresent(name -> sb.append(PREFIX_NAME).append(name).append(" "));
+        descriptor.getPhone().ifPresent(phone -> sb.append(PREFIX_PHONE).append(phone).append(" "));
+        descriptor.getEmail().ifPresent(email -> sb.append(PREFIX_EMAIL).append(email).append(" "));
+        descriptor.getRoom().ifPresent(room -> sb.append(PREFIX_ROOM).append(room).append(" "));
+        descriptor.getGender().ifPresent(gender -> sb.append(PREFIX_GENDER).append(gender).append(" "));
+        descriptor.getHouse().ifPresent(house -> sb.append(PREFIX_HOUSE).append(house).append(" "));
+        descriptor.getMatricNumber().ifPresent(matricNumber ->
+                sb.append(PREFIX_MATRIC_NUMBER).append(matricNumber).append(" "));
+        if (descriptor.getTags().isPresent()) {
+            Set<String> tags = descriptor.getTags().get();
+            if (tags.isEmpty()) {
+                sb.append(PREFIX_TAG);
+            } else {
+                tags.forEach(s -> sb.append(PREFIX_TAG).append(s).append(" "));
             }
         }
         return sb.toString();

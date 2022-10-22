@@ -4,23 +4,12 @@ import static seedu.rc4hdb.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.rc4hdb.logic.commands.modelcommands.ModelCommandTestUtil.EMAIL_DESC_AMY;
 import static seedu.rc4hdb.logic.commands.modelcommands.ModelCommandTestUtil.GENDER_DESC_AMY;
 import static seedu.rc4hdb.logic.commands.modelcommands.ModelCommandTestUtil.HOUSE_DESC_AMY;
-import static seedu.rc4hdb.logic.commands.modelcommands.ModelCommandTestUtil.INVALID_EMAIL_DESC;
-import static seedu.rc4hdb.logic.commands.modelcommands.ModelCommandTestUtil.INVALID_GENDER_DESC;
-import static seedu.rc4hdb.logic.commands.modelcommands.ModelCommandTestUtil.INVALID_HOUSE_DESC;
-import static seedu.rc4hdb.logic.commands.modelcommands.ModelCommandTestUtil.INVALID_MATRIC_NUMBER_DESC;
-import static seedu.rc4hdb.logic.commands.modelcommands.ModelCommandTestUtil.INVALID_NAME_DESC;
-import static seedu.rc4hdb.logic.commands.modelcommands.ModelCommandTestUtil.INVALID_PHONE_DESC;
-import static seedu.rc4hdb.logic.commands.modelcommands.ModelCommandTestUtil.INVALID_ROOM_DESC;
-import static seedu.rc4hdb.logic.commands.modelcommands.ModelCommandTestUtil.INVALID_TAG_DESC;
 import static seedu.rc4hdb.logic.commands.modelcommands.ModelCommandTestUtil.MATRIC_NUMBER_DESC_AMY;
 import static seedu.rc4hdb.logic.commands.modelcommands.ModelCommandTestUtil.NAME_DESC_AMY;
 import static seedu.rc4hdb.logic.commands.modelcommands.ModelCommandTestUtil.PHONE_DESC_AMY;
-import static seedu.rc4hdb.logic.commands.modelcommands.ModelCommandTestUtil.PHONE_DESC_BOB;
 import static seedu.rc4hdb.logic.commands.modelcommands.ModelCommandTestUtil.ROOM_DESC_AMY;
 import static seedu.rc4hdb.logic.commands.modelcommands.ModelCommandTestUtil.TAG_DESC_FRIEND;
-import static seedu.rc4hdb.logic.commands.modelcommands.ModelCommandTestUtil.TAG_DESC_HUSBAND;
 import static seedu.rc4hdb.logic.commands.modelcommands.ModelCommandTestUtil.VALID_ALL_SPECIFIER_DESC;
-import static seedu.rc4hdb.logic.commands.modelcommands.ModelCommandTestUtil.VALID_ANY_SPECIFIER_DESC;
 import static seedu.rc4hdb.logic.commands.modelcommands.ModelCommandTestUtil.VALID_EMAIL_AMY;
 import static seedu.rc4hdb.logic.commands.modelcommands.ModelCommandTestUtil.VALID_GENDER_AMY;
 import static seedu.rc4hdb.logic.commands.modelcommands.ModelCommandTestUtil.VALID_HOUSE_AMY;
@@ -37,16 +26,8 @@ import static seedu.rc4hdb.testutil.TypicalSpecifiers.ALL_SPECIFIER;
 import org.junit.jupiter.api.Test;
 
 import seedu.rc4hdb.logic.commands.modelcommands.FilterCommand;
-import seedu.rc4hdb.model.resident.ResidentDescriptor;
-import seedu.rc4hdb.model.resident.fields.Email;
-import seedu.rc4hdb.model.resident.fields.Gender;
-import seedu.rc4hdb.model.resident.fields.House;
-import seedu.rc4hdb.model.resident.fields.MatricNumber;
-import seedu.rc4hdb.model.resident.fields.Name;
-import seedu.rc4hdb.model.resident.fields.Phone;
-import seedu.rc4hdb.model.resident.fields.Room;
-import seedu.rc4hdb.model.tag.Tag;
-import seedu.rc4hdb.testutil.ResidentDescriptorBuilder;
+import seedu.rc4hdb.model.resident.ResidentStringDescriptor;
+import seedu.rc4hdb.testutil.ResidentStringDescriptorBuilder;
 
 public class FilterCommandParserTest {
 
@@ -73,53 +54,11 @@ public class FilterCommandParserTest {
     }
 
     @Test
-    public void parse_invalidValue_failure() {
-        assertParseFailure(parser, VALID_ANY_SPECIFIER_DESC + INVALID_NAME_DESC,
-                Name.MESSAGE_CONSTRAINTS); // invalid name
-        assertParseFailure(parser, VALID_ANY_SPECIFIER_DESC + INVALID_PHONE_DESC,
-                Phone.MESSAGE_CONSTRAINTS); // invalid phone
-        assertParseFailure(parser, VALID_ANY_SPECIFIER_DESC + INVALID_EMAIL_DESC,
-                Email.MESSAGE_CONSTRAINTS); // invalid email
-        assertParseFailure(parser, VALID_ANY_SPECIFIER_DESC + INVALID_TAG_DESC,
-                Tag.MESSAGE_CONSTRAINTS); // invalid tag
-        assertParseFailure(parser, VALID_ANY_SPECIFIER_DESC + INVALID_MATRIC_NUMBER_DESC,
-                MatricNumber.MESSAGE_CONSTRAINTS); // invalid matric number
-        assertParseFailure(parser, VALID_ALL_SPECIFIER_DESC + INVALID_HOUSE_DESC,
-                House.MESSAGE_CONSTRAINTS); // invalid house
-        assertParseFailure(parser, VALID_ALL_SPECIFIER_DESC + INVALID_GENDER_DESC,
-                Gender.MESSAGE_CONSTRAINTS); // invalid gender
-        assertParseFailure(parser, VALID_ALL_SPECIFIER_DESC + INVALID_ROOM_DESC,
-                Room.MESSAGE_CONSTRAINTS); // invalid room
-
-        // invalid phone followed by valid email
-        assertParseFailure(parser, VALID_ALL_SPECIFIER_DESC + INVALID_PHONE_DESC + EMAIL_DESC_AMY,
-                Phone.MESSAGE_CONSTRAINTS);
-
-        // valid phone followed by invalid phone. The test case for invalid phone followed by valid phone
-        // is tested at {@code parse_invalidValueFollowedByValidValue_success()}
-        assertParseFailure(parser, VALID_ALL_SPECIFIER_DESC + PHONE_DESC_BOB + INVALID_PHONE_DESC,
-                Phone.MESSAGE_CONSTRAINTS);
-
-        // while parsing {@code PREFIX_TAG} alone will reset the tags of the {@code Resident} being Filtered,
-        // parsing it together with a valid tag results in error
-        assertParseFailure(parser, VALID_ALL_SPECIFIER_DESC + TAG_DESC_HUSBAND + TAG_EMPTY,
-                Tag.MESSAGE_CONSTRAINTS);
-        assertParseFailure(parser, VALID_ALL_SPECIFIER_DESC + TAG_DESC_FRIEND + TAG_EMPTY + TAG_DESC_HUSBAND,
-                Tag.MESSAGE_CONSTRAINTS);
-        assertParseFailure(parser, VALID_ALL_SPECIFIER_DESC + TAG_EMPTY + TAG_DESC_FRIEND + TAG_DESC_HUSBAND,
-                Tag.MESSAGE_CONSTRAINTS);
-
-        // multiple invalid values, but only the first invalid value is captured
-        assertParseFailure(parser, VALID_ALL_SPECIFIER_DESC + INVALID_NAME_DESC + INVALID_EMAIL_DESC
-                        + VALID_PHONE_AMY, Name.MESSAGE_CONSTRAINTS);
-    }
-
-    @Test
     public void parse_allFieldsSpecified_success() {
         String userInput = VALID_ALL_SPECIFIER_DESC + PHONE_DESC_AMY + EMAIL_DESC_AMY + NAME_DESC_AMY + HOUSE_DESC_AMY
                 + ROOM_DESC_AMY + GENDER_DESC_AMY + MATRIC_NUMBER_DESC_AMY + TAG_DESC_FRIEND;
 
-        ResidentDescriptor descriptor = new ResidentDescriptorBuilder().withName(VALID_NAME_AMY)
+        ResidentStringDescriptor descriptor = new ResidentStringDescriptorBuilder().withName(VALID_NAME_AMY)
                 .withPhone(VALID_PHONE_AMY).withEmail(VALID_EMAIL_AMY).withRoom(VALID_ROOM_AMY)
                 .withGender(VALID_GENDER_AMY).withHouse(VALID_HOUSE_AMY).withTags(VALID_TAG_FRIEND)
                 .withMatricNumber(VALID_MATRIC_NUMBER_AMY).build();
@@ -132,7 +71,7 @@ public class FilterCommandParserTest {
     public void parse_someFieldsSpecified_success() {
         String userInput = VALID_ALL_SPECIFIER_DESC + PHONE_DESC_AMY + EMAIL_DESC_AMY;
 
-        ResidentDescriptor descriptor = new ResidentDescriptorBuilder().withPhone(VALID_PHONE_AMY)
+        ResidentStringDescriptor descriptor = new ResidentStringDescriptorBuilder().withPhone(VALID_PHONE_AMY)
                 .withEmail(VALID_EMAIL_AMY).build();
         FilterCommand expectedCommand = new FilterCommand(descriptor, ALL_SPECIFIER);
 

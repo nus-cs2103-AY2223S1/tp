@@ -12,22 +12,16 @@ import static seedu.rc4hdb.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.rc4hdb.logic.parser.CliSyntax.PREFIX_ROOM;
 import static seedu.rc4hdb.logic.parser.CliSyntax.PREFIX_TAG;
 
-import java.util.Collection;
-import java.util.Collections;
 import java.util.HashSet;
-import java.util.Optional;
-import java.util.Set;
 
 import seedu.rc4hdb.logic.commands.modelcommands.FilterCommand;
 import seedu.rc4hdb.logic.parser.ArgumentMultimap;
 import seedu.rc4hdb.logic.parser.ArgumentTokenizer;
 import seedu.rc4hdb.logic.parser.FilterSpecifier;
 import seedu.rc4hdb.logic.parser.Parser;
-import seedu.rc4hdb.logic.parser.ParserUtil;
 import seedu.rc4hdb.logic.parser.exceptions.ParseException;
-import seedu.rc4hdb.model.resident.ResidentDescriptor;
 import seedu.rc4hdb.model.resident.ResidentStringDescriptor;
-import seedu.rc4hdb.model.tag.Tag;
+
 
 /**
  * Parses input arguments and creates a new FilterCommand object

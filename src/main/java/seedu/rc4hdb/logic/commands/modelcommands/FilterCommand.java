@@ -17,7 +17,6 @@ import seedu.rc4hdb.logic.commands.exceptions.CommandException;
 import seedu.rc4hdb.logic.parser.FilterSpecifier;
 import seedu.rc4hdb.model.Model;
 import seedu.rc4hdb.model.resident.Resident;
-import seedu.rc4hdb.model.resident.ResidentDescriptor;
 import seedu.rc4hdb.model.resident.ResidentStringDescriptor;
 import seedu.rc4hdb.model.resident.predicates.AttributesMatchAllKeywordsPredicate;
 import seedu.rc4hdb.model.resident.predicates.AttributesMatchAnyKeywordPredicate;
