@@ -22,7 +22,7 @@ public class SupplyItemCard extends UiPart<Region> {
      * These colors are made public for possible accessibility in other Ui components.
      */
     private static final String FXML = "SupplyItemCard.fxml";
-
+    private static final int MAX_LENGTH = 5;
     /**
      * Note: Certain keywords such as "location" and "resources" are reserved keywords in JavaFX.
      * As a consequence, UI elements' variable names cannot be set to such keywords
@@ -116,19 +116,25 @@ public class SupplyItemCard extends UiPart<Region> {
 
     /**
      * Handles the amount of SupplyItem to be increased/decreased in the user input.
+     * Limits max number length to {@code MAX_LENGTH}
      */
     @FXML
     private void handleAmount() {
         String input = amountInput.getText();
+
+        if (input.length() > MAX_LENGTH) {
+            input = input.substring(0, MAX_LENGTH);
+        }
+
         try {
             int parsedAmount = Integer.parseInt(input);
             if (parsedAmount >= 0) {
                 changeIncDecHandler.accept(parsedAmount);
             } else {
-                amountInput.setText(String.valueOf(supplyItem.getIncDecAmount()));
+                amountInput.setText(String.valueOf(amountInput.getText()));
             }
         } catch (NumberFormatException e) {
-            amountInput.setText(String.valueOf(supplyItem.getIncDecAmount()));
+            amountInput.setText(String.valueOf(1));
         }
     }
 }
