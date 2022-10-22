@@ -34,7 +34,6 @@ import seedu.address.model.module.task.Task;
  * Contains integration tests (interaction with the Model) and unit tests for DeleteLinkCommand.
  */
 public class DeleteLinkCommandTest {
-    private static final int MODULE_INDEX_NONEXISTENT = 999999;
     private static final String MODULE_CODE_WITH_LINK = VALID_GE3238_MODULE_CODE;
     private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
 
@@ -53,7 +52,8 @@ public class DeleteLinkCommandTest {
         DeleteLinkCommand deleteLinkCommand = new DeleteLinkCommand(
                 new ModuleCode(MODULE_CODE_WITH_LINK), moduleLinksToDelete);
         expectedModel.setModule(moduleToEdit, moduleToDeleteLink);
-        String expectedMessage = String.format(DeleteLinkCommand.MESSAGE_DELETE_LINK_SUCCESS, moduleToDeleteLink);
+        String expectedMessage = String.format(DeleteLinkCommand.MESSAGE_DELETE_LINK_SUCCESS,
+                moduleCode.getModuleCodeAsUpperCaseString());
 
         assertCommandSuccess(deleteLinkCommand, model, expectedMessage, expectedModel);
     }

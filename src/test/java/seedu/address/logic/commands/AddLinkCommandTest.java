@@ -13,7 +13,6 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_MA2001_MODULE_C
 import static seedu.address.logic.commands.CommandTestUtil.VALID_MODULE_LINK_URL;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_MODULE_LINK_URL_2;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_MODULE_LINK_URL_3;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_MODULE_LINK_URL_NO_HTTPS;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.testutil.TypicalAddressBook.getTypicalAddressBook;
@@ -39,7 +38,6 @@ import seedu.address.model.module.task.Task;
  * Contains integration tests (interaction with the Model) and unit tests for AddLinkCommand.
  */
 public class AddLinkCommandTest {
-    private static final int MODULE_INDEX_NONEXISTENT_LARGE = 999999;
     private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
     private static final String MODULE_CODE_WITH_LINK = VALID_GE3238_MODULE_CODE;
 
@@ -59,7 +57,8 @@ public class AddLinkCommandTest {
 
         AddLinkCommand addLinkCommand = new AddLinkCommand(new ModuleCode(VALID_CS2106_MODULE_CODE), linksToAdd);
         expectedModel.setModule(moduleToEdit, moduleToAddLink);
-        String expectedMessage = String.format(AddLinkCommand.MESSAGE_ADD_LINK_SUCCESS, moduleToAddLink);
+        String expectedMessage = String.format(AddLinkCommand.MESSAGE_ADD_LINK_SUCCESS,
+                moduleCode.getModuleCodeAsUpperCaseString());
 
         assertCommandSuccess(addLinkCommand, model, expectedMessage, expectedModel);
     }
@@ -97,18 +96,6 @@ public class AddLinkCommandTest {
         assertCommandFailure(addLinkCommand, model,
                 String.format(AddLinkCommand.MESSAGE_DUPLICATE_LINK
                         + new ModuleCode(MODULE_CODE_WITH_LINK).getModuleCodeAsUpperCaseString() + "]",
-                        new Link(VALID_MODULE_LINK_ALIAS_3, VALID_MODULE_LINK_URL)));
-    }
-
-    @Test
-    public void execute_duplicateModuleLinkUrlIgnoreHTTPSFilteredList_failure() {
-        Set<Link> links = new HashSet<Link>(Arrays.asList(
-                new Link(VALID_MODULE_LINK_ALIAS_3, VALID_MODULE_LINK_URL_NO_HTTPS)));
-        AddLinkCommand addLinkCommand = new AddLinkCommand(new ModuleCode(MODULE_CODE_WITH_LINK), links);
-
-        assertCommandFailure(addLinkCommand, model,
-                String.format(AddLinkCommand.MESSAGE_DUPLICATE_LINK
-                                + new ModuleCode(MODULE_CODE_WITH_LINK).getModuleCodeAsUpperCaseString() + "]",
                         new Link(VALID_MODULE_LINK_ALIAS_3, VALID_MODULE_LINK_URL)));
     }
 

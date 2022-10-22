@@ -26,14 +26,14 @@ public class AddLinkCommand extends Command {
 
     public static final String COMMAND_WORD = "add-link";
     public static final String MESSAGE_USAGE = "[" + COMMAND_WORD + "]: Add link/s to a the module "
-            + "using its module code. ("
-            + "A 'm/' flag should be appended to the front the module code; "
-            + "A 'l/' flag should be appended to the front of each link URL"
-            + "A 'la/' flag should be appended to the front of each link alias)\n"
+            + "using its module code, link URL, and a user-defined alias.\n"
+            + "A 'm/' flag should be appended to the front the module code ...\n"
+            + "A 'l/' flag should be appended to the front of each link URL ...\n"
+            + "A 'la/' flag should be appended to the front of each link alias) ...\n"
             + "Example: " + COMMAND_WORD + " " + PREFIX_MODULE_CODE + "GEA1000 "
             + PREFIX_MODULE_LINK_URL + "coursemology.org";
 
-    public static final String MESSAGE_ADD_LINK_SUCCESS = "Added link to module: %1$s";
+    public static final String MESSAGE_ADD_LINK_SUCCESS = "Successfully added link/s to module code [%1$s]";
     public static final String MESSAGE_NOT_EDITED = "At least one link must be added.";
     public static final String MESSAGE_DUPLICATE_LINK = "The link %1$s already exists"
             + " in the module with module code [";
@@ -68,7 +68,8 @@ public class AddLinkCommand extends Command {
         Module editedModule = createEditedModule(moduleToEdit, links);
 
         model.setModule(moduleToEdit, editedModule);
-        return new CommandResult(String.format(MESSAGE_ADD_LINK_SUCCESS, editedModule));
+        return new CommandResult(String.format(MESSAGE_ADD_LINK_SUCCESS,
+                moduleCode.getModuleCodeAsUpperCaseString()));
     }
 
     /**

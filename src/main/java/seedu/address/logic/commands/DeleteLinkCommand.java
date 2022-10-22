@@ -23,15 +23,14 @@ import seedu.address.model.module.task.Task;
  */
 public class DeleteLinkCommand extends Command {
     public static final String COMMAND_WORD = "delete-link";
-    public static final String MESSAGE_USAGE = "[" + COMMAND_WORD + "]: Deletes a link from a module "
-            + "using its module code. ("
-            + "A 'm/' flag should be appended to the front the module code; "
-            + "A 'l/' flag should be appended to the front of each link URL"
-            + "A 'la/' flag should be appended to the front of each link alias)\n"
+    public static final String MESSAGE_USAGE = "[" + COMMAND_WORD + "]: Deletes link/s from a module "
+            + "using its module code and user-defined alias.\n"
+            + "A 'm/' flag should be appended to the front the module code ...\n"
+            + "A 'la/' flag should be appended to the front of each link alias) ...\n"
             + "Example: " + COMMAND_WORD + " " + PREFIX_MODULE_CODE + "GEA1000 "
             + PREFIX_MODULE_LINK_URL + "coursemology.org";
 
-    public static final String MESSAGE_DELETE_LINK_SUCCESS = "Deleted link from module: %1$s";
+    public static final String MESSAGE_DELETE_LINK_SUCCESS = "Successfully deleted link/s from module code [%1$s]";
     public static final String MESSAGE_NOT_EDITED = "At least one link must be deleted.";
     public static final String MESSAGE_MISSING_LINK_ALIAS = "This link alias [%1$s] does not currently exist"
             + " in the module with module code [";
@@ -66,7 +65,8 @@ public class DeleteLinkCommand extends Command {
         Module editedModule = createEditedModule(moduleToEdit, linkAliases);
 
         model.setModule(moduleToEdit, editedModule);
-        return new CommandResult(String.format(MESSAGE_DELETE_LINK_SUCCESS, editedModule));
+        return new CommandResult(String.format(MESSAGE_DELETE_LINK_SUCCESS,
+                moduleCode.getModuleCodeAsUpperCaseString()));
     }
 
     /**
