@@ -8,6 +8,7 @@ import java.util.regex.Pattern;
 import seedu.address.logic.commands.event.AddEventCommand;
 import seedu.address.logic.commands.event.EditEventCommand;
 import seedu.address.logic.commands.event.EventCommand;
+import seedu.address.logic.commands.event.ViewEventsCommand;
 import seedu.address.logic.parser.Parser;
 import seedu.address.logic.parser.exceptions.ParseException;
 
@@ -51,6 +52,8 @@ public class EventCommandParser implements Parser<EventCommand> {
             return new AddEventCommandParser().parse(args);
         case EditEventCommand.COMMAND_OPTION:
             return new EditEventCommandParser().parse(args);
+        case ViewEventsCommand.COMMAND_OPTION:
+            return new ViewEventsCommandParser().parse(args);
         default:
             throw new ParseException(EventCommand.OPTION_UNKNOWN + EventCommand.VALID_FLAGS);
         }
