@@ -7,29 +7,31 @@ Since it is designed for SOC students, it is **optimized for use via a Command L
 but it also has a Graphical User Interface for simpler and quicker task.
 
 
-## Table of Contents <a id="toc"></a>
-1. [About the User Guide](#1-about)
-   - [1.1. Parameters](#11-parameters)
-   - [1.2. Format](#12-format)
+## Table of Contents
+1. [About the User Guide](#1-about-the-user-guide)
+    - [1.1. Parameters](#11-parameters)
+    - [1.2. Format](#12-format)
 2. [Quick Start](#2-quick-start)
 3. [Features](#3-features)
-   - [3.1 Add-Related Commands](#31-add-commands)
-       * [3.1.1 Add new Student Contact](#311-add-student)
-       * [3.1.2 Add new Prof Contact](#312-add-prof)
-       * [3.1.3 Add new Teaching Assistant (TA)](#313-add-ta)
-   - [3.2 Editing-Related Commands](#32-edit-commands)
-       * [3.2.1 Delete a person](#321-delete-person)
-       * [3.2.2 Editing contact](#322-edit-contact)
-   - [3.3 Searching-Related Commands](#33-search-commands)
-       * [3.3.1 Locate contact](#331-locate-contact)
-       * [3.3.2 List contact](#332-list-contact)
+    - [3.1 Add-Related Commands](#31-add-related-commands)
+        * [3.1.1 Add new Student Contact](#311-add-student)
+        * [3.1.2 Add new Prof Contact](#312-add-prof)
+        * [3.1.3 Add new Teaching Assistant (TA)](#313-add-ta)
+    - [3.2 Editing-Related Commands](#32-editing-related-commands)
+        * [3.2.1 Delete a person](#321-delete-person)
+        * [3.2.2 Editing contact](#322-edit-contact)
+    - [3.3 Searching-Related Commands](#33-searching-related-commands)
+        * [3.3.1 Locate contact](#331-locate-contact)
+        * [3.3.2 List contact](#332-list-contact)
+    - [3.4 Github-Related Commands](#34-github-related-commands)
+        * [3.4.1 Open a person's github profile page](#341-opening-a-persons-github-profile-page-github)
 
 <div style="page-break-after: always;"></div>
 
 --------------------------------------------------------------------------------------------------------------------
-# 1. About the User Guide <a id="1-doubt"></a>
+# 1. About the User Guide
 This section will explain the parameters and the format of commands.
-## 1.1 Parameters <a id="11-parameters"></a>
+## 1.1 Parameters
 | Prefix | Parameter    | Meaning                                         |
 |--------|--------------|-------------------------------------------------|
 | n/     | NAME         | Name of person                                  |
@@ -40,7 +42,7 @@ This section will explain the parameters and the format of commands.
 | t/     | TAG          | Tag person (i.e tag as friend)                  |
 | []()   | INDEX        | Index of item in the recent displayed item list |
 
-## 1.2 Format <a id="12-format"></a>
+## 1.2 Format
 <div markdown="block" class="alert alert-info show-whitespaces">
 
 * All prefixes must be preceded by a space.<br>
@@ -69,23 +71,23 @@ This section will explain the parameters and the format of commands.
 <div style="page-break-after: always;"></div>
 
 --------------------------------------------------------------------------------------------------------------------
-# 2. Quick Start <a id="2-quick-start"></a>
+# 2. Quick Start
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
 1. Download the latest `SOConnect.jar` from [here](https://github.com/AY2223S1-CS2103T-W08-3/tp).
 
-   1. **Double-click** the file to start the app or  using **CLI** and type `java -jar SOConnect.jar`. The GUI similar to the below should appear in a few seconds. Below is an UI mockup.
-      ![Ui](images/Ui.png)
+    1. **Double-click** the file to start the app or  using **CLI** and type `java -jar SOConnect.jar`. The GUI similar to the below should appear in a few seconds. Below is an UI mockup.
+       ![Ui](images/Ui.png)
 
 1. Refer to the [Features](#2-features) below for details of each command.
 
 <div style="page-break-after: always;"></div>
 
 --------------------------------------------------------------------------------------------------------------------
-# 3. Features <a id="3-features"></a>
+# 3. Features
 
-## 3.1 Add-Related Commands <a id="31-add-commands"></a>
+## 3.1 Add-Related Commands
 The Add-Related commands include `student`, `prof` and `ta`. These are the commands related to adding new person to the database.
 
 ### 3.1.1 Adding a new Student Contact: `student`<a id="311-add-student"></a>
@@ -95,7 +97,7 @@ The Add-Related commands include `student`, `prof` and `ta`. These are the comma
 ### 3.1.3 Add a new TA Contact: `ta`<a id="313-add-ta"></a>
 [coming soon]
 --------------------------------------------------------------------------------------------------------------------
-## 3.2 Editing-Related Commands <a id="32-edit-commands"></a>
+## 3.2 Editing-Related Commands
 ### 3.2.1 Delete a person<a id="321-delete-person"></a>
 [coming soon]
 ### 3.2.2 Edit contact<a id="322-edit-contact"></a>
@@ -104,11 +106,24 @@ The Add-Related commands include `student`, `prof` and `ta`. These are the comma
 <div style="page-break-after: always;"></div>
 
 --------------------------------------------------------------------------------------------------------------------
-## 3.3 Searching-Related Commands<a id="33-search-commands"></a>
+## 3.3 Searching-Related Commands
 ### 3.3.1 Locate contact<a id="331-locate-contact"></a>
 [coming soon]
 ### 3.3.2 List contact<a id="332-list-contact"></a>
 [coming soon]
 <div style="page-break-after: always;"></div>
+
+--------------------------------------------------------------------------------------------------------------------
+## 3.4 Github-Related Commands
+### 3.4.1 Opening a person's github profile page: `github`
+
+Opens the github profile page associated to the specified person in the address book.
+
+Format: `github INDEX`
+* Opens the github profile page associated to the person at the specified `INDEX'
+* The index refers to the index number shown in the displayed person list.
+* The index **must be a positive integer** 1, 2, 3, …
+
+Example command: `github 1`
 
 --------------------------------------------------------------------------------------------------------------------
