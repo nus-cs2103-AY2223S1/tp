@@ -13,8 +13,10 @@ import java.util.Set;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.module.ModuleCredit;
 import seedu.address.model.module.Module;
 import seedu.address.model.module.ModuleCode;
+import seedu.address.model.module.ModuleName;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
@@ -105,6 +107,44 @@ public class ParserUtil {
             throw new ParseException(ModuleCode.MODULE_CODE_CONSTRAINTS);
         }
         return new ModuleCode(trimmedModuleCode);
+    }
+
+    /**
+     * Parses the {@code moduleName} String into a {@code ModuleName} object.
+     *
+     * @param moduleName The name of the module.
+     * @return The ModuleName object created from the moduleName string.
+     * @throws ParseException if the given {@code moduleName} is not valid.
+     */
+    public static ModuleName parseModuleName(String moduleName) throws ParseException {
+        requireNonNull(moduleName);
+        String trimmedModuleName = moduleName.strip();
+        if (!ModuleName.isValidModuleName(trimmedModuleName)) {
+            throw new ParseException(ModuleName.MODULE_NAME_CONSTRAINTS);
+        }
+        return new ModuleName(trimmedModuleName);
+    }
+
+    /**
+     * Parses the {@code moduleCredit} String into a {@code ModuleCredit} object.
+     *
+     * @param moduleCredit The module credit of the module.
+     * @return The ModuleCredit object created from the moduleCredit string.
+     * @throws ParseException if the given {@code moduleCredit} is not valid.
+     */
+    public static ModuleCredit parseModuleCredit(String moduleCredit) throws ParseException {
+        requireNonNull(moduleCredit);
+        final int integerModuleCredit;
+        String trimmedModuleCredit = moduleCredit.strip();
+        try {
+            integerModuleCredit = Integer.parseInt(trimmedModuleCredit);
+        } catch (NumberFormatException nfe) {
+            throw new ParseException(ModuleCredit.MODULE_CREDIT_CONSTRAINTS);
+        }
+        if (!ModuleCredit.isValidModuleCredit(integerModuleCredit)) {
+            throw new ParseException(ModuleCredit.MODULE_CREDIT_CONSTRAINTS);
+        }
+        return new ModuleCredit(integerModuleCredit);
     }
 
     /**
@@ -199,12 +239,13 @@ public class ParserUtil {
      * @throws ParseException if the given {@code module} is invalid.
      */
     public static Module parseModule(String module) throws ParseException {
-        requireNonNull(module);
-        String trimmedModule = module.trim();
-        if (!TaskModule.isValidModule(trimmedModule)) {
-            throw new ParseException(TaskModule.MESSAGE_CONSTRAINTS);
-        }
-        return new Module(new ModuleCode(trimmedModule));
+//        requireNonNull(module);
+//        String trimmedModule = module.trim();
+//        if (!Module.isValidModule(trimmedModule)) {
+//            throw new ParseException(TaskModule.MESSAGE_CONSTRAINTS);
+//        }
+        ModuleCode moduleCode = parseModuleCode(module);
+        return new Module(moduleCode);
     }
 
     /**

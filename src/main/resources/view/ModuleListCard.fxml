@@ -21,6 +21,8 @@
                 </Label>
                 <Label fx:id="moduleCode" style="-fx-text-fill: black;" styleClass="cell_big_label" text="\$module" />
             </HBox>
+            <Label fx:id="moduleName" text="\$modName" style="-fx-text-fill: black;" />
+            <Label fx:id="moduleCredit" text="\$modCredit" style="-fx-text-fill: black;" />
         </VBox>
       <rowConstraints>
          <RowConstraints />

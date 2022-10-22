@@ -4,11 +4,17 @@ import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MODULE;
 
+import java.util.Optional;
 import java.util.stream.Stream;
 
+import seedu.address.commons.util.CollectionUtil;
 import seedu.address.logic.commands.AddTaskCommand;
+import seedu.address.logic.commands.EditModuleCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.module.Module;
+import seedu.address.model.module.ModuleCode;
+import seedu.address.model.module.ModuleCredit;
+import seedu.address.model.module.ModuleName;
 import seedu.address.model.task.Task;
 import seedu.address.model.task.TaskDescription;
 
@@ -33,9 +39,7 @@ public class AddTaskCommandParser implements Parser<AddTaskCommand> {
         Module module = ParserUtil.parseModule(argMultimap.getValue(PREFIX_MODULE).get());
         TaskDescription description = ParserUtil.parseDescription(argMultimap.getValue(PREFIX_DESCRIPTION).get());
 
-        Task task = new Task(module, description);
-
-        return new AddTaskCommand(task);
+        return new AddTaskCommand(new Task(module, description));
     }
 
     /**
@@ -45,4 +49,5 @@ public class AddTaskCommandParser implements Parser<AddTaskCommand> {
     private static boolean arePrefixesPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
         return Stream.of(prefixes).allMatch(prefix -> argumentMultimap.getValue(prefix).isPresent());
     }
+
 }

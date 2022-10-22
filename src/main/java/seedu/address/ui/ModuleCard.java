@@ -18,6 +18,12 @@ public class ModuleCard extends UiPart<Region> {
     @FXML
     private Label moduleCode;
 
+    @FXML
+    private Label moduleName;
+
+    @FXML
+    private Label moduleCredit;
+
     /**
      * The constructor of ModuleCard. Sets the id and module
      * code fields with their values.
@@ -29,5 +35,7 @@ public class ModuleCard extends UiPart<Region> {
         super(FXML);
         id.setText(position + ". ");
         moduleCode.setText(module.getModuleCode().moduleCode);
+        moduleName.setText("Name: " + module.getModuleName().moduleName);
+        moduleCredit.setText("Module Credit: " + String.valueOf(module.getModuleCredit().moduleCredit));
     }
 }

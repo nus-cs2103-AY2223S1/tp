@@ -3,12 +3,14 @@ package seedu.address.logic.parser;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.commands.EditTaskCommand.MESSAGE_NO_FIELDS_PROVIDED;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_MOD_CODE;
+import static seedu.address.logic.parser.CliSyntax.*;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.EditModuleCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.module.ModuleCredit;
 import seedu.address.model.module.ModuleCode;
+import seedu.address.model.module.ModuleName;
 
 /**
  * Parses input arguments and creates a new EditModuleCommand object.
@@ -23,7 +25,7 @@ public class EditModuleCommandParser implements Parser<EditModuleCommand> {
     public EditModuleCommand parse(String args) throws ParseException {
         requireNonNull(args);
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_MOD_CODE);
+                ArgumentTokenizer.tokenize(args, PREFIX_MOD_CODE, PREFIX_MOD_NAME, PREFIX_MOD_CREDIT);
 
         Index index;
 
@@ -39,6 +41,16 @@ public class EditModuleCommandParser implements Parser<EditModuleCommand> {
         if (argMultimap.getValue(PREFIX_MOD_CODE).isPresent()) {
             ModuleCode moduleCode = ParserUtil.parseModuleCode(argMultimap.getValue(PREFIX_MOD_CODE).get());
             editModuleDescriptor.setModuleCode(moduleCode);
+        }
+
+        if (argMultimap.getValue(PREFIX_MOD_NAME).isPresent()) {
+            ModuleName moduleName = ParserUtil.parseModuleName(argMultimap.getValue(PREFIX_MOD_NAME).get());
+            editModuleDescriptor.setModuleName(moduleName);
+        }
+
+        if (argMultimap.getValue(PREFIX_MOD_CREDIT).isPresent()) {
+            ModuleCredit moduleCredit = ParserUtil.parseModuleCredit(argMultimap.getValue(PREFIX_MOD_CREDIT).get());
+            editModuleDescriptor.setModuleCredit(moduleCredit);
         }
 
         if (!editModuleDescriptor.isAnyFieldEdited()) {
