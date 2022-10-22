@@ -17,7 +17,7 @@ if () then ([patient index is valid])
     given condition;
     :Replace the specified patient\nwith the newly created patient;
 else ([else])
-    :throw CommandException;
+    :Throw CommandException;
     :UI catches CommandException;
 endif
 :UI displays results of command to user;

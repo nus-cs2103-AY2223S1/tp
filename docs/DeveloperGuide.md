@@ -175,33 +175,35 @@ A medical condition is represented by `Condition`, and multiple conditions are s
 Figure 1 below summarises what happens when a user executes an add condition command on a specified patient:
 <figure>
     <img src="images/AddConditionActivityDiagram.png" alt="add_condition_activity_diagram"/>
-    <figcaption style="width:500px">
-        Figure 1: Activity diagram showing the flow of events when a user executes an add condition command
+    <figcaption>
+        <em>Figure 1: Activity diagram showing the flow of events when a user executes an add condition command</em>
     </figcaption>
 </figure>
 
-#### Sequence of Interactions
+#### Interactions 
 
 Given below is an example usage scenario and how the add condition mechanism behaves at each step.
 
-Step 1: The user executes the `addCondition 1 c/Diabetes` command to add a condition to the first patient in the
+1. The user executes the `addCondition 1 c/Diabetes` command to add a condition to the first patient in the
 displayed patient list.
 
-Step 2: `AddConditionCommandParser#parse()` parses the patient index provided and then creates an `AddConditionCommand`
-object.
+2. `UninurseBookParser#parseCommand()` parses the command word `addCondition`, and then creates a corresponding `AddConditionCommandParser` object.
 
-Step 3: The `AddConditionCommand` object interacts with the `Model` to add a condition to the specified patient's
-condition list.
+3. `AddConditionCommandParser#parse()` parses the patient index `1` and the condition `Diabetes` provided, and then creates an `AddConditionCommand` object.
 
-Step 4: `Logic` returns a `CommandResult` object, which encapsulates the result of the execution of the add condition
-command.
+4. The `AddConditionCommand` object interacts with the `Model` to add a condition to the specified patient's condition list.
 
-Figure 2 below shows how the add condition operation works:
+5. `Logic` returns a `CommandResult` object, which encapsulates the result of the execution of the add condition command.
 
-![add_condition_sequence diagram](images/AddConditionSequenceDiagram.png)
-_Figure 2: Sequence diagram showing interactions within the Logic component when a user executes an add condition command_
+Figure 2 below shows how `Logic` executes the add condition operation:
+<figure>
+    <img src="images/AddConditionSequenceDiagram.png" alt="add_condition_sequence_diagram"/>
+    <figcaption>
+        <em>Figure 2: Sequence diagram showing interactions within the Logic component when a user executes an add condition command</em>
+    </figcaption>
+</figure>
 
-_To be updated ..._
+_To be updated with details of delete condition feature ..._
 
 ### \[Proposed\] Undo/redo feature
 
