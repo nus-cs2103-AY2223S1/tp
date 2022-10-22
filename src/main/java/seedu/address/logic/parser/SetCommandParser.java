@@ -51,22 +51,22 @@ public class SetCommandParser implements Parser<SetCommand> {
 
         SetPersonDescriptor setPersonDescriptor = new SetPersonDescriptor();
         if (argMultimap.getValue(PREFIX_EMAIL).isPresent()) {
-            setPersonDescriptor.setContacts(ContactType.EMAIL,
+            setPersonDescriptor.setContact(ContactType.EMAIL,
                                                 ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get()));
         }
 
         if (argMultimap.getValue(PREFIX_PHONE).isPresent()) {
-            setPersonDescriptor.setContacts(ContactType.PHONE,
+            setPersonDescriptor.setContact(ContactType.PHONE,
                     ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONE).get()));
         }
 
         if (argMultimap.getValue(PREFIX_SLACK).isPresent()) {
-            setPersonDescriptor.setContacts(ContactType.SLACK,
+            setPersonDescriptor.setContact(ContactType.SLACK,
                     ParserUtil.parseSlack(argMultimap.getValue(PREFIX_SLACK).get()));
         }
 
         if (argMultimap.getValue(PREFIX_TELEGRAM).isPresent()) {
-            setPersonDescriptor.setContacts(ContactType.TELEGRAM,
+            setPersonDescriptor.setContact(ContactType.TELEGRAM,
                     ParserUtil.parseTelegram(argMultimap.getValue(PREFIX_TELEGRAM).get()));
         }
 
