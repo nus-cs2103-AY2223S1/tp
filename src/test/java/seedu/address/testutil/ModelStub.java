@@ -128,4 +128,15 @@ public class ModelStub implements Model {
         throw new AssertionError("This method should not be called.");
     }
 
+    @Override
+    public boolean getHomeStatus() {
+        throw new AssertionError("This method should not be called.");
+    }
+
+    @Override
+    public void setHomeStatus(boolean isHome) {
+        throw new AssertionError("This method should not be called.");
+    }
+
+
 }

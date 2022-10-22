@@ -14,7 +14,7 @@ Given below are my contributions to the project.
 
 * **New Feature**: [coming soon]
 
-* **Code contributed**: [RepoSense link *coming soon*]() 
+* **Code contributed**: [RepoSense link *coming soon*]()
 
 * **Project management**:
   * [coming soon]
