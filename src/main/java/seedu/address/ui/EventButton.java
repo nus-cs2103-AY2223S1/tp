@@ -38,10 +38,6 @@ public class EventButton extends UiPart<Region> {
         initialiseEventButton();
     }
 
-    public Button getButton() {
-        return eventButton;
-    }
-
     private void initialiseEventButton() {
         eventButton.setText(calendarEvent.getTimeFormat() + " " + calendarEvent.getName());
         eventButton.focusedProperty().addListener(this::handleFocusedEvent);

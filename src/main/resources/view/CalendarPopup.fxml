@@ -3,4 +3,4 @@
 <?import javafx.scene.control.Tooltip?>
 
 
-<Tooltip fx:id="popup" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" />
+<Tooltip fx:id="popup" anchorLocation="WINDOW_BOTTOM_LEFT" contentDisplay="BOTTOM" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" />
