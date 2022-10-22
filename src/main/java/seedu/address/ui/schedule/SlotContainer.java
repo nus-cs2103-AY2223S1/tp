@@ -1,13 +1,9 @@
 package seedu.address.ui.schedule;
 
 import javafx.fxml.FXML;
-import javafx.geometry.Insets;
-import javafx.scene.layout.Background;
-import javafx.scene.layout.BackgroundFill;
-import javafx.scene.layout.CornerRadii;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
-import javafx.scene.paint.Paint;
+import javafx.scene.layout.VBox;
 import seedu.address.ui.UiPart;
 
 /**
@@ -20,6 +16,8 @@ public abstract class SlotContainer extends UiPart<Region> {
 
     @FXML
     protected HBox slotPane;
+    @FXML
+    protected VBox slotPaneVBox;
 
     /**
      * Constructor for a slot container that sets the width of a slot
@@ -31,10 +29,7 @@ public abstract class SlotContainer extends UiPart<Region> {
     }
 
     public void setColor(String color) {
-        // BackgroundFill backgroundFill = new BackgroundFill(Paint.valueOf(color), new CornerRadii(10), Insets.EMPTY);
-        //  Background background = new Background(backgroundFill);
-        // slotPane.setBackground(background);
-        slotPane.setStyle("-fx-font-size: 20; -fx-background-color: #fae3d9#fae3d9; -fx-background-radius: 10px;");
+        slotPaneVBox.setStyle("-fx-font-size: 20; -fx-background-color: " + color + "; -fx-background-radius: 10px;");
     }
 
 }

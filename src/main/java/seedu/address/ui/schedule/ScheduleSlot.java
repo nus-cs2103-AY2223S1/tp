@@ -47,15 +47,15 @@ public class ScheduleSlot extends SlotContainer {
 
     private String getColor(double duration) {
         if (duration <= 1) {
-            return "#FF8787";
+            return "#ffb6c1"; // PINK
         } else if (duration == 1.5) {
-            return "#F8C4B4";
+            return "#F8C4B4"; // DARK RED
         } else if (duration == 2) {
-            return "#E5EBB2";
+            return "#E5EBB2"; // YELLOW
         } else if (duration <= 3) {
-            return "#BCE29E";
+            return "#BCE29E"; // GREEN
         } else {
-            return "#B8E8FC";
+            return "#B8E8FC"; // BLUE
         }
     }
 }
