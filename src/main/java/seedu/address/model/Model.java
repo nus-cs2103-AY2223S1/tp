@@ -22,9 +22,7 @@ public interface Model {
     Predicate<Event> PREDICATE_SHOW_ALL_EVENTS = unused -> true;
 
 
-
-
-    //=================== AddressBook Methods ===================
+    //=========== AddressBook Methods =========================================================================
 
     /**
      * Replaces user prefs data with the data in {@code userPrefs}.
@@ -65,9 +63,7 @@ public interface Model {
     ReadOnlyAddressBook getAddressBook();
 
 
-
-
-    //=================== Person Methods ===================
+    //=========== Person Methods ==============================================================================
 
     /**
      * Returns true if a person with the same identity as {@code person} exists in the address book.
@@ -108,9 +104,7 @@ public interface Model {
     void updateFilteredPersonList(Predicate<Person> predicate);
 
 
-
-
-    //=================== Event Methods ===================
+    //=========== Event Methods ===============================================================================
 
     /**
      * Adds the given event.

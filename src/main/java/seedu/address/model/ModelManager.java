@@ -45,6 +45,7 @@ public class ModelManager implements Model {
         this(new AddressBook(), new UserPrefs());
     }
 
+
     //=========== UserPrefs ===================================================================================
 
     @Override
@@ -149,6 +150,7 @@ public class ModelManager implements Model {
 
 
     //=========== Filtered Event List Accessor ================================================================
+
     /**
      * Returns an unmodifiable view of the list of Events backed by the internal list present in the AddressBook
      */
@@ -159,6 +161,7 @@ public class ModelManager implements Model {
 
 
     //=========== Filtered Person List Accessors ==============================================================
+
     /**
      * Returns an unmodifiable view of the list of {@code Person} backed by the internal list of
      * {@code versionedAddressBook}
