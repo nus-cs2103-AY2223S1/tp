@@ -133,6 +133,7 @@ public class DateTime {
         String year = matcher.group("yearGroup");
 
         if (month.length() == 3) {
+            month = month.substring(0, 1).toUpperCase() + month.substring(1).toLowerCase();
             return LocalDate.parse(day + "/" + month + "/" + year, DateTimeFormatter.ofPattern("d/MMM/yyyy"));
         }
         return LocalDate.parse(day + "/" + month + "/" + year, DateTimeFormatter.ofPattern("d/M/yyyy"));
