@@ -208,7 +208,17 @@ They are similar apart from:
    1. Studio are tutorials and all students are expected to attend. 
    2. As a result, adding a Studio command does not require user to input student indexes.
 
+### Adding notes for a lesson
 
+In adding notes for an existing `Lesson` in JARVIS, the user has the option to:
+1. add overall notes for a `Lesson`
+2. add `Student` specific notes for a `Lesson` 
+
+To add an overall note for an existing `Lesson` in JARVIS, the user keys in a valid add note command (e.g addnote n/get back to the class on streams li/1). 
+
+To add a `Student` specific note to an existing `Lesson` in JARVIS, the user similarly keys in a valid add note command, but additionally specifying the student index (e.g addnote n/get back to jeff on streams li/1 si/3).
+
+Parsing of the user input is done and a `AddNoteCommand` is then generated.
 
 --------------------------------------------------------------------------------------------------------------------
 
