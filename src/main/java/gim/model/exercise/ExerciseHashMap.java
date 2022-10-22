@@ -34,6 +34,15 @@ public class ExerciseHashMap {
     }
 
     /**
+     * Constructs a {@code ExerciseHashMap} with a given ArrayList of Observers
+     * @param arrL
+     */
+    public ExerciseHashMap(ArrayList<Observer> arrL) {
+        this.exerciseHashMap = new HashMap<>();
+        this.observerArrayList = arrL;
+    }
+
+    /**
      * Notifies observers who have 'subscribed' whenever there are changes in the state of the ExerciseHashMap
      */
     public void notifyObservers() {
@@ -112,6 +121,7 @@ public class ExerciseHashMap {
                     exercise.getReps(), exercise.getDate());
             exerciseHashMap.get(toStoreName).add(exercise); // add Exercise to arraylist
         }
+        this.notifyObservers();
     }
 
     /**
@@ -158,6 +168,15 @@ public class ExerciseHashMap {
         }
         Collections.sort(toReturn);
         return toReturn;
+    }
+
+    /**
+     * Returns the hashmap but all keys and values associated to keys are cleared.
+     * @return ExerciseHashMap
+     */
+    public ExerciseHashMap clearExerciseHashMap() {
+        this.exerciseHashMap.clear();
+        return this;
     }
 
 }
