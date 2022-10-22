@@ -60,7 +60,7 @@ public class SortCommandTest {
         expectedModel.sortApplicants(compareStatus);
         expectedModel.updateFilteredApplicantList(PREDICATE_SHOW_ALL_APPLICANTS);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
-        assertEquals(Arrays.asList(ALICE, CARL, ELLE, FIONA, BENSON, GEORGE,DANIEL), model.getFilteredApplicantList());
+        assertEquals(Arrays.asList(ALICE, CARL, ELLE, FIONA, BENSON, GEORGE, DANIEL), model.getFilteredApplicantList());
     }
 
     @Test
