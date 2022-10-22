@@ -32,6 +32,7 @@ class JsonAdaptedPerson {
     private final String email;
     private final String address;
     private final String studentClass;
+    private final String subjectsAndGrades;
     private final List<JsonAdaptedRemark> remarks = new ArrayList<>();
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
     private final List<JsonAdaptedSubject> subjects = new ArrayList<>();
@@ -43,6 +44,7 @@ class JsonAdaptedPerson {
     public JsonAdaptedPerson(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
                              @JsonProperty("email") String email, @JsonProperty("address") String address,
                              @JsonProperty("studentClass") String studentClass,
+                             @JsonProperty("subjectsAndGrades") String subjectsAndGrades,
                              @JsonProperty("remarks") List<JsonAdaptedRemark> remarks,
                              @JsonProperty("tagged") List<JsonAdaptedTag> tagged,
                              @JsonProperty("subjects") List<JsonAdaptedSubject> subjects) {
@@ -51,6 +53,7 @@ class JsonAdaptedPerson {
         this.email = email;
         this.address = address;
         this.studentClass = studentClass;
+        this.subjectsAndGrades = subjectsAndGrades;
         if (remarks != null) {
             this.remarks.addAll(remarks);
         }
@@ -71,6 +74,7 @@ class JsonAdaptedPerson {
         email = source.getEmail().value;
         address = source.getAddress().value;
         studentClass = source.getStudentClass().value;
+        subjectsAndGrades = source.getSubjectHandler().dataString();
 
         // Remarks follow the tag system
         remarks.addAll(source.getRemarks().stream()

@@ -10,6 +10,9 @@ public class Assessment {
     public static final String MESSAGE_CONSTRAINTS =
         "Assessment name should only contain letters and numbers, and it should not be blank";
 
+    public static final String MESSAGE_CONSTRAINTS_MARKS =
+            "Assessment score has to be more than 0 and less than the total score";
+
     // Checks for alphanumeric characters and includes spaces after the first word.
     // Also accepts dots and underscores.
     public static final String VALIDATION_REGEX = "([\\w.]+\\s*)+";
@@ -32,6 +35,7 @@ public class Assessment {
     public Assessment(String assessmentName, double assessmentWeightage, double assessmentScore,
         double assessmentTotalScore, double assessmentDifficulty) {
         checkArgument(isValidAssessment(assessmentName), MESSAGE_CONSTRAINTS);
+        checkArgument(isValidScore(assessmentScore,assessmentTotalScore), MESSAGE_CONSTRAINTS_MARKS);
         this.assessmentName = assessmentName;
         this.assessmentWeightage = assessmentWeightage;
         this.assessmentScore = assessmentScore;
@@ -41,6 +45,13 @@ public class Assessment {
 
     public static boolean isValidAssessment(String test) {
         return test.matches(VALIDATION_REGEX);
+    }
+
+    public static boolean isValidScore(double score, double totalScore) {
+        if (score >= 0 || score <= totalScore) {
+            return true;
+        }
+        return false;
     }
 
     public String getAssessmentName() {

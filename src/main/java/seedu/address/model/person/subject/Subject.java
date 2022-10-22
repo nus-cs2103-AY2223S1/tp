@@ -93,8 +93,16 @@ public class Subject {
                    && subjectName.equals(((Subject) other).subjectName)); // state check
     }
 
+    public String dataString() {
+        String str = "";
+        str += subjectName + ": ";
+        str += grades.dataString() + "\n";
+        return str;
+    }
+
     @Override
     public String toString() {
         return subjectName;
     }
+
 }

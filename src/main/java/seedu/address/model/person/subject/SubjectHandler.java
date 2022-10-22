@@ -1,6 +1,8 @@
 package seedu.address.model.person.subject;
 
+import java.util.Arrays;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -80,8 +82,19 @@ public class SubjectHandler {
         return false;
     }
 
+    public String dataString() {
+        String str = "";
+        Set<String> keys = subjectsTaken.keySet();
+        for (String key : keys) {
+            Subject keyValue = subjectsTaken.get(key);
+            str += keyValue.dataString();
+        }
+        return str;
+    }
+
     @Override
     public String toString() {
         return subjectsTaken.toString();
     }
+
 }

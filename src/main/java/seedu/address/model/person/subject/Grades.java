@@ -1,8 +1,6 @@
 package seedu.address.model.person.subject;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.NoSuchElementException;
+import java.util.*;
 
 /**
  * A high-level class that represents the grades of a student stored by subject
@@ -69,6 +67,18 @@ public class Grades {
         return assessmentMarks.hashCode();
     }
 
+    public String dataString() {
+        String str = "";
+        Set<String> keys = assessmentMarks.keySet();
+        for (String key : keys) {
+            String keyValue = Arrays.toString(assessmentMarks.get(key));
+            str += key + ":" + keyValue + ", ";
+        }
+        int stringLength = str.length();
+        str = str.substring(0, stringLength - 2);
+        return str;
+    }
+
     @Override
     public String toString() {
         double currentPercentageObtained = getCurrentPercentageObtained(assessmentMarks);
@@ -76,3 +86,5 @@ public class Grades {
     }
 
 }
+
+
