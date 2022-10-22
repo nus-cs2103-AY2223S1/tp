@@ -25,6 +25,7 @@ import jeryl.fyp.model.student.Student;
 public class StudentCard extends UiPart<Region> {
 
     private static final String FXML = "StudentCard.fxml";
+    private static final int MAX_TAG_LINE_LENGTH = 40;
 
     /**
      * Note: Certain keywords such as "location" and "resources" are reserved keywords in JavaFX.
@@ -58,7 +59,6 @@ public class StudentCard extends UiPart<Region> {
     private FlowPane deadlineList;
 
     private Image emailThumbnail = new Image(this.getClass().getResourceAsStream("/images/address_book_32.png"));
-    private static final int MAX_TAG_LINE_LENGTH = 40;
 
     /**
      * Creates a {@code StudentCard} with the given {@code Student} and index to display.
