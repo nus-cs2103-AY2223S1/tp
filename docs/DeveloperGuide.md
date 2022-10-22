@@ -172,6 +172,21 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
+### \[Proposed\] Sort feature
+
+#### Proposed Implementation
+
+The proposed sort command consists of these following classes:
+
+- `SortCommand` which extends `Command`
+- `SortCommandParser` which extends `Parser<SortCommand>`
+  
+As with all other commands, the sort command has a `Parser` subclass that goes through the `AddressBookParser` and a `Command` subclass that returns an appropriate new `CommandResult` Object. It sorts the list of students by their grades or attendance.
+
+Primarily there are two proposed cases for this command,
+- sort by grade - e.g.`sort g`
+- sort by attendance - e.g. `sort a`
+
 ### \[Proposed\] Undo/redo feature
 
 #### Proposed Implementation
@@ -288,14 +303,14 @@ _{Explain here how the data archiving feature will be implemented}_
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                | I can …​                                     | So that…​                                               |
-| -------- | -------------------------------------- | -------------------------------------------- | ------------------------------------------------------- | --- | --- | --- |
+| Priority | As a ... | I want to ... | so that I can ... |
+| -------- | -------------------------------------- | -------------------------------------------- | ------------------------------------------------------- | 
 | `* * *`  | policeman                              | find a person using part of their ID or name | I can retrieve the person's details quickly             |
 | `* * *`  | backend law enforcement staff          | add people and their details into Sherlock   | these information can be quickly and easily accessible  |
 | `* * *`  | policeman                              | see a person's full criminal history         |                                                         |
 | `* * *`  | detective                              | edit a person's details in Sherlock          | I can update the system with new information            |
 | `* *`    | law enforcement security officer       | allow only specific users into the system    | the information stored in Sherlock remains confidential |
-| `*`      | law enforcement administrative officer | import information from existing databases   | I can set up Sherlock quickly                           |     |     |     |
+| `*`      | law enforcement administrative officer | import information from existing databases   | I can set up Sherlock quickly                           | 
 
 _{User Stories to be updated according to new project direction}_
 
