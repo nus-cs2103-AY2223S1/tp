@@ -210,7 +210,7 @@ public class SortCommandParserUtil {
      */
     public static Comparator<Pet> parseToSelectedPetComparator(String attribute) throws ParseException {
         if (attribute.isEmpty() || SortCommand.isValidParameter(
-                SortCommand.ACCEPTABLE_SORT_PRICE_PARAMETER, attribute) ) {
+                SortCommand.ACCEPTABLE_SORT_PRICE_PARAMETER, attribute)) {
             return PET_PRICE_COMPARATOR;
         }
 
