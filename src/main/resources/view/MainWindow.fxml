@@ -14,6 +14,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
 <fx:root minHeight="600" minWidth="700" onCloseRequest="#handleExit" title="Mass Linkers"
          type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
   <icons>
@@ -27,7 +28,8 @@
       </stylesheets>
 
       <VBox>
-        <MenuBar fx:id="menuBar" VBox.vgrow="NEVER">
+        <AnchorPane fx:id="menuContainer" xmlns:fx="http://javafx.com/fxml/1">
+        <MenuBar AnchorPane.topAnchor="8" fx:id="menuBar" VBox.vgrow="NEVER">
           <Menu mnemonicParsing="false" text="File">
             <MenuItem mnemonicParsing="false" styleClass="menu-item"  onAction="#handleExit" text="Exit" />
           </Menu>
@@ -36,6 +38,8 @@
                       onAction="#handleHelp" text="Help" />
           </Menu>
         </MenuBar>
+            <Label AnchorPane.rightAnchor="20" AnchorPane.topAnchor="10" AnchorPane.bottomAnchor="10" fx:id="appLogo" text="Mass Linkers"/>
+        </AnchorPane>
         <!--Search bar-->
         <StackPane fx:id="commandBoxPlaceholder" styleClass="pane-with-border" VBox.vgrow="NEVER">
           <padding>

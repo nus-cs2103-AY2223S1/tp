@@ -1,3 +1,8 @@
+@font-face {
+    -fx-font-family: QTAncientOlive-Bold;
+    src: url('../font/QTAncientOlive-Bold.otf');
+}
+
 .background {
     -fx-background-color: white;
     background-color: white; /* Used in the default.html file */
@@ -264,6 +269,17 @@
     -fx-border-style: solid, segments(1, 1);
     -fx-border-radius: 0, 0;
     -fx-border-insets: 1 1 1 1, 0;
+}
+
+#menuContainer {
+    -fx-background-color: #0072C6;
+}
+
+#appLogo {
+    -fx-text-fill: white;
+    -fx-opacity: 1;
+    -fx-font-size: 20;
+    -fx-font-family: QTAncientOlive-Bold;
 }
 
 .button:disabled, .button:default:disabled {
