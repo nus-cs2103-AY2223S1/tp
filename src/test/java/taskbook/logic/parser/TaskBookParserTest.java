@@ -98,17 +98,17 @@ public class TaskBookParserTest {
     }
 
     @Test
-<<<<<<< HEAD
     public void parseCommand_taskShortcut_list() throws Exception {
         assertTrue(parseTaskCommandShortcut(TaskListCommand.COMMAND_WORD) instanceof TaskListCommand);
         assertTrue(parseTaskCommandShortcut(TaskListCommand.COMMAND_WORD + " 3") instanceof TaskListCommand);
-=======
+    }
+
+    @Test
     public void parseCommand_task_sort() throws Exception {
         assertTrue(parseTaskCommand(TaskSortCommand.COMMAND_WORD + " s/a")
                 instanceof TaskSortDescriptionAlphabeticalCommand);
         assertTrue(parseTaskCommand(TaskSortCommand.COMMAND_WORD + " s/ca")
                 instanceof TaskSortAddedChronologicalCommand);
->>>>>>> 228680f4a34db60f56a991709fb426ee696b85fd
     }
 
     @Test
