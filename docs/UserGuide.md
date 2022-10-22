@@ -49,8 +49,7 @@ If you are a new user to FoodRem, you can head over to the section about [Using 
 
 * Introducing you to the general [command format](#command-format).
 * [Flags](#flags) and [Placeholders](#placeholders) where you can find:
-  * Important syntax you will come across while reading the User
-    Guide such as `n/`, `bgt/` or `INDEX`, `ITEM_NAME`.
+  * Important syntax you will come across while reading the User Guide such as `n/`, `bgt/` or `INDEX`, `ITEM_NAME`.
   *  The description of these syntax and how to use them
 * [Trying out](#trying-your-first-command) a command.
 
