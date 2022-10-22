@@ -19,7 +19,7 @@
 {% capture viewexample %}{% include_relative _ug/commandSummary/itemCommandsExample/view.md %}{% endcapture %}
 {% capture incexample %}{% include_relative _ug/commandSummary/itemCommandsExample/inc.md %}{% endcapture %}
 {% capture decexample %}{% include_relative _ug/commandSummary/itemCommandsExample/dec.md %}{% endcapture %}
-{% capture set %}{% include_relative _ug/commandSummary/itemCommandsExample/edit.md %}{% endcapture %}
+{% capture editexample %}{% include_relative _ug/commandSummary/itemCommandsExample/edit.md %}{% endcapture %}
 {% capture del %}{% include_relative _ug/commandSummary/itemCommandsExample/del.md %}{% endcapture %}
 <!-- markdownlint-restore -->
 
