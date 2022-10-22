@@ -47,4 +47,14 @@ public interface Logic {
      * Set the user prefs' GUI settings.
      */
     void setGuiSettings(GuiSettings guiSettings);
+
+    /**
+     * Undoes the last undoable command.
+     */
+    CommandResult undo() throws CommandException;
+
+    /**
+     * Redoes the last undone command.
+     */
+    CommandResult redo() throws CommandException;
 }

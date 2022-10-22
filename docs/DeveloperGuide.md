@@ -9,7 +9,8 @@ title: Developer Guide
 
 ## **Acknowledgements**
 
-* {list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the original source as well}
+* The feature Undo and Redo was reused with minimal changes from a Tutorial called [Implementing Undo and Redo With The Command Design Pattern by ArjanCode](https://youtu.be/FM71_a3txTo).
+* The feature open and add PDF file was reused with minimal changes from a code from stackoverflow [Open PDF file on the fly](https://stackoverflow.com/questions/2546968/open-pdf-file-on-the-fly-from-a-java-application)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -158,35 +159,35 @@ This section describes some noteworthy details on how certain features are imple
 
 #### Implementation
 
-The proposed undo/redo mechanism is facilitated with a. Additionally, it implements the following operations:
+The undo/redo mechanism is facilitated by `UndoableCommands` and `CommandManager`. 
 
-* `VersionedAddressBook#commit()` — Saves the current address book state in its history.
-* `VersionedAddressBook#undo()` — Restores the previous address book state from its history.
-* `VersionedAddressBook#redo()` — Restores a previously undone address book state from its history.
+`UndoableCommand` extends from `Command` and implements its own undo and redo methods. `Command`s that implement `UndoableCommand` include:
+* `CreateCommand` — Deletes and adds saved person object for undo and redo methods respectively.
+* `DeleteCommand` — Adds and deletes saved person object for undo and redo methods respectively.
+* `UpdateCommand` — Saves the original and edited person objects and sets them accordingly for undo and redo methods.
+* `ClearCommand` — Restores the saved original address book and sets address book to new address book for undo and redo methods respectively.
 
-These operations are exposed in the `Model` interface as `Model#commitAddressBook()`, `Model#undoAddressBook()` and `Model#redoAddressBook()` respectively.
+`CommandManager` stores `UndoableCommand`s that have been executed and that have been undone in an `undoStack` and `redoStack` respectively. Additionally, `CommandManager` implements the following operations:
+
+* `CommandManager#pushNewCommand(Command)` — Saves the latest undoable command that was executed by user in its history.
+* `CommandManager#undo(UndoableCommand)` — Undoes the last undoable command from the top of the undo-stack.
+* `CommandManager#redo(UndoableCommand)` — Redoes the last undoable command from the top of the redo-stack.
+
+These operations are exposed in the `Logic` interface as `Logic#execute()`, `Logic#undo()` and `Logic#redo()` respectively.
 
 Given below is an example usage scenario and how the undo/redo mechanism behaves at each step.
 
-Step 1. The user launches the application for the first time. The `VersionedAddressBook` will be initialized with the initial address book state, and the `currentStatePointer` pointing to that single address book state.
+Step 1. The user launches the application for the first time. The `CommandManger` will be initialized with an empty `undoStack` and `redoStack`.
 
-![UndoRedoState0](images/UndoRedoState0.png)
+Step 2. The user executes `delete 5` command to delete the 5th person in the address book. `CommandManager#pushNewCommand()` is called by `Logic#execute()`, saving the `DeleteCommand` in the `undoStack`.
 
-Step 2. The user executes `delete 5` command to delete the 5th person in the address book. The `delete` command calls `Model#commitAddressBook()`, causing the modified state of the address book after the `delete 5` command executes to be saved in the `addressBookStateList`, and the `currentStatePointer` is shifted to the newly inserted address book state.
-
-![UndoRedoState1](images/UndoRedoState1.png)
-
-Step 3. The user executes `add n/David …​` to add a new person. The `add` command also calls `Model#commitAddressBook()`, causing another modified address book state to be saved into the `addressBookStateList`.
-
-![UndoRedoState2](images/UndoRedoState2.png)
+Step 3. The user executes `add n/David …​` to add a new person. `CommandManager#pushNewCommand()` is called by `Logic#execute()`, saving the `AddCommand` in the `undoStack`.
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** If a command fails its execution, it will not call `Model#commitAddressBook()`, so the address book state will not be saved into the `addressBookStateList`.
 
 </div>
-
-Step 4. The user now decides that adding the person was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `Model#undoAddressBook()`, which will shift the `currentStatePointer` once to the left, pointing it to the previous address book state, and restores the address book to that state.
-
-![UndoRedoState3](images/UndoRedoState3.png)
+    
+Step 4. The user now decides that adding the person was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `Logic#undo()` which calls `CommandManager#undo()` , which will pop the latest `UndoableCommand` from the `undoStack` and calls the `#UndoableCommand#undo()` method of that command which reverts the addressbook back to its previous state. The command popped is pushed to the `redoStack`.
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index 0, pointing to the initial AddressBook state, then there are no previous AddressBook states to restore. The `undo` command uses `Model#canUndoAddressBook()` to check if this is the case. If so, it will return an error to the user rather
 than attempting to perform the undo.
@@ -195,25 +196,19 @@ than attempting to perform the undo.
 
 The following sequence diagram shows how the undo operation works:
 
-![UndoSequenceDiagram](images/UndoSequenceDiagram.png)
-
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `UndoCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 
 </div>
 
-The `redo` command does the opposite — it calls `Model#redoAddressBook()`, which shifts the `currentStatePointer` once to the right, pointing to the previously undone state, and restores the address book to that state.
+The `redo` command does the opposite — it calls `Logic#redo()` which calls `CommandManager#redo()`, which pops the latest `UndoableCommand` from the `redostack` and calls the `UndoableCommand#redo()` of that command which reverts the addressbook to the state after the command execution. The command is added back to the `undoStack`.
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index `addressBookStateList.size() - 1`, pointing to the latest address book state, then there are no undone AddressBook states to restore. The `redo` command uses `Model#canRedoAddressBook()` to check if this is the case. If so, it will return an error to the user rather than attempting to perform the redo.
 
 </div>
 
-Step 5. The user then decides to execute the command `list`. Commands that do not modify the address book, such as `list`, will usually not call `Model#commitAddressBook()`, `Model#undoAddressBook()` or `Model#redoAddressBook()`. Thus, the `addressBookStateList` remains unchanged.
+Step 5. The user then decides to execute the command `list`. Commands that do not modify the address book, such as `list`, will usually not be be added to the undoStack by `CommandManger#pushNewCommand()`. Thus, the `undoStack` remains unchanged.
 
-![UndoRedoState4](images/UndoRedoState4.png)
-
-Step 6. The user executes `clear`, which calls `Model#commitAddressBook()`. Since the `currentStatePointer` is not pointing at the end of the `addressBookStateList`, all address book states after the `currentStatePointer` will be purged. Reason: It no longer makes sense to redo the `add n/David …​` command. This is the behavior that most modern desktop applications follow.
-
-![UndoRedoState5](images/UndoRedoState5.png)
+Step 6. The user executes `clear`, which calls `CommandManager#pushNewCommand()`. Since there redoStack is not empty, `CommandManager#pushNewCommand` then calls `CommandManger#clearRedoStack`. Reason: It no longer makes sense to redo the `add n/David …​` command. This is the behavior that most modern desktop applications follow.
 
 The following activity diagram summarizes what happens when a user executes a new command:
 
@@ -222,17 +217,40 @@ The following activity diagram summarizes what happens when a user executes a ne
 #### Design considerations:
 
 **Aspect: How undo & redo executes:**
+* **Alternative 1 (current choice):** Individual command knows how to undo/redo by
+  itself.
+    * Pros: Will use less memory (e.g. for `delete`, just save the person being deleted).
+    * Cons: We must ensure that the implementation of each individual command are correct.
 
-* **Alternative 1 (current choice):** Saves the entire address book.
+* **Alternative 2:** Saves the entire address book.
   * Pros: Easy to implement.
   * Cons: May have performance issues in terms of memory usage.
+  
+### Opening of Person specific PDF files
 
-* **Alternative 2:** Individual command knows how to undo/redo by
-  itself.
-  * Pros: Will use less memory (e.g. for `delete`, just save the person being deleted).
-  * Cons: We must ensure that the implementation of each individual command are correct.
+### Implementation
 
-_{more aspects and alternatives to be added}_
+The opening mechanism is facilitated by `OpenPersonFileCommand` and `FileUtil`.
+
+`OpenPersonFileCommand` extends from `Command` and implements its own execute method.
+
+`OpenPersonFileCommand` stores the target index of the list of persons, whose PDF will be opened.
+
+`FileUtil` implements `FileUtil#openPdfFile(String)` — If PDF file in from the String exists, 
+the PDF will be opened.
+It's exposed in the `OpenPersonFileCommand` as `OpenPersonFileCommand#execute(Model)`
+
+Given below is an example usage scenario and how the open file mechanism behaves at each step.
+
+Step 1. The user launches the application for the first time.
+
+Step 2. The user executes `file 2` command to open the file of the 2nd person in the address book.
+
+Step 3. The parser will parse the input command `file` and target index `2` and store the target index in the
+newly created `OpenPersonFileCommand`.
+
+Step 4. `OpenPersonFileCommand#execute(Model)` is called by the Logic Manager while in turn calls 
+`FileUtil#openPdfFile(String)` and the PDF file stored in the file path will be opened on the Users default PDF viewer.
 
 ### Person Enhancement
 
@@ -258,13 +276,7 @@ The person model now contains a `Net Worth` field.
   amount. 
     * Pros: Flexibility in creating a contact.
     * Cons: No means of comparison between a contact of different currency.
-
-
-### \[Proposed\] Data archiving
-
-_{Explain here how the data archiving feature will be implemented}_
-
-
+    
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Documentation, logging, testing, configuration, dev-ops**
@@ -322,14 +334,14 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Use cases
 
-(For all use cases below, the **System** is the `IBook` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is the `FABook` and the **Actor** is the `user`, unless specified otherwise)
 
 **Use case: UC01 - Requesting for help**
 
 **MSS**
 1. User requests for help
 
-2. IBook shows an external link for help
+2. FABook shows an external link for help
 
 3. User refers to link for help
 
@@ -340,18 +352,18 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **MSS**
 1. User creates a client
 
-2. IBook adds the client to its contents
+2. FABook adds the client to its contents
 
-3. IBook informs user that input client has been added
+3. FABook informs user that input client has been added
 
-4. IBook deletes the person
+4. FABook deletes the person
 
     Use case ends.
 
 **Extensions**
 * 1a. Format of creation is invalid.
 
-    * 1a1. IBook shows an error message with suggested format
+    * 1a1. FABook shows an error message with suggested format
 
     Use case ends.
 
@@ -360,7 +372,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **MSS**
 1. User requests to list clients
 
-2. IBook shows a list of clients
+2. FABook shows a list of clients
 
     Use case ends.
 
@@ -374,137 +386,159 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **MSS**
 1. User requests to update a specific client's information
 
-2. IBook updates the given client's information
+2. FABook updates the given client's information
 
-3. IBook informs user of updated client's information
+3. FABook informs user of updated client's information
 
     Use case ends.
 
 **Extensions**
 * 1a. The name is not found.
 
-  * 1a1. IBook shows an error message with suggested format.
+  * 1a1. FABook shows an error message with suggested format.
   
     Use case ends.
 
 * 1b. No input optional field was given.
 
-  * 1b1. IBook shows an error message with suggested format
+  * 1b1. FABook shows an error message with suggested format
 
     Use case ends.
 
 * 1c. Input optional field is in the wrong format.
 
-    * 1c. IBook shows an error message with suggested format
+    * 1c. FABook shows an error message with suggested format
 
       Use case ends.
 
-**Use case: UC05 - Finding a client by name**
+**Use case: UC05 - Adding description to a client**
+
+**MSS**
+1. User requests to add a description of any form to a specific client
+
+2. FABook adds the description
+
+3. FABook informs user the description has been added
+
+**Extensions**
+* 1a. The client is not found.
+
+  * 1a1. FABook shows an error message with command explanation.
+  
+    Use case ends.
+
+* 1b. No description was given.
+
+  * 1b1. FABook shows an error message with suggested format
+
+    Use case ends.
+
+**Use case: UC06 - Finding a client by name**
 
 **MSS**
 1. User requests to find a specific client by name
 
-2. IBook shows a list of matching clients
+2. FABook shows a list of matching clients
 
-3. IBook informs the user of number of clients found
+3. FABook informs the user of number of clients found
 
     Use case ends.
 
 **Extensions**
 * 1a. No client name was provided.
 
-    * 1a1. IBook shows an empty list
+    * 1a1. FABook shows an empty list
 
       Use case ends.
 
 * 1b. No such client name was found. 
 
-    * 1b1. IBook shows an error message with suggested format
+    * 1b1. FABook shows an error message with suggested format
 
       Use case ends.
 
-**Use case: UC06 - Finding a client by phone number**
+**Use case: UC07 - Finding a client by phone number**
 
 **MSS**
 1. User requests to find a specific client by phone number
 
-2. IBook shows a list of matching clients
+2. FABook shows a list of matching clients
 
-3. IBook informs the user of number of clients found
+3. FABook informs the user of number of clients found
 
     Use case ends.
 
 **Extensions**
 * 1a. No client number was provided.
 
-    * 1a1. IBook shows an error message with suggested format
+    * 1a1. FABook shows an error message with suggested format
   
       Use case ends.
 
 * 1b. No such client number was found.
 
-    * 1b1. IBook shows an empty list
+    * 1b1. FABook shows an empty list
   
       Use case ends.
 
 * 1c. No full phone number provided.
 
-    * 1c1. IBook shows an error message with suggested format
+    * 1c1. FABook shows an error message with suggested format
 
       Use case ends.
 
-**Use case: UC07 - Finding a client by address**
+**Use case: UC08 - Finding a client by address**
 
 **MSS**
 1. User requests to find a specific client by address
 
-2. IBook shows a list of matching clients
+2. FABook shows a list of matching clients
 
-3. IBook informs the user of number of clients found
+3. FABook informs the user of number of clients found
 
    Use case ends.
 
 **Extensions**
 * 1a. No client address was provided.
 
-    * 1a1. IBook shows an error message with suggested format
+    * 1a1. FABook shows an error message with suggested format
 
       Use case ends.
 
 * 1b. No such client address was found.
 
-    * 1b1. IBook shows an empty list
+    * 1b1. FABook shows an empty list
 
       Use case ends.
     
-**Use case: UC08 - Delete a person**
+**Use case: UC09 - Delete a person**
 
 **MSS**
 1. User requests to <u>find a client by name(UC05)</u>
 
 2. User requests to delete a specific client by name in the list
 
-3. IBook deletes the person
+3. FABook deletes the person
 
     Use case ends.
 
-**Use case: UC09 - Clearing all entries**
+**Use case: UC10 - Clearing all entries**
 
 **MSS**
 1. User requests to clear all entries
 
-2. IBook removes all clients' information
+2. FABook removes all clients' information
 
-3. IBook informs the user that all information has been cleared
+3. FABook informs the user that all information has been cleared
 
     Use case ends.
 
-**Use case: UC10 - Exiting IBook**
+**Use case: UC11 - Exiting FABook**
 
 **MSS**
 1. User requests to exit
 
-2. IBook closes
+2. FABook closes
 
    Use case ends.
 

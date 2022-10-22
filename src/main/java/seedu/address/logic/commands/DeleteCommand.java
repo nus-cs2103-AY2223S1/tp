@@ -13,7 +13,7 @@ import seedu.address.model.person.Person;
 /**
  * Deletes a person identified using it's displayed index from the address book.
  */
-public class DeleteCommand extends Command {
+public class DeleteCommand extends UndoableCommand {
 
     public static final String COMMAND_WORD = "delete";
 
@@ -25,8 +25,11 @@ public class DeleteCommand extends Command {
             + "Example: " + COMMAND_WORD + " 1";
 
     public static final String MESSAGE_DELETE_PERSON_SUCCESS = "Deleted Person: %1$s";
+    public static final String MESSAGE_UNDO = "Person added back: %1$s";
+    public static final String MESSAGE_REDO = "Person removed: %1$s";
 
     private final Index targetIndex;
+    private Person toDelete;
 
     public DeleteCommand(Index targetIndex) {
         this.targetIndex = targetIndex;
@@ -41,9 +44,21 @@ public class DeleteCommand extends Command {
             throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
         }
 
-        Person personToDelete = lastShownList.get(targetIndex.getZeroBased());
-        model.deletePerson(personToDelete);
-        return new CommandResult(String.format(MESSAGE_DELETE_PERSON_SUCCESS, personToDelete));
+        toDelete = lastShownList.get(targetIndex.getZeroBased());
+        model.deletePerson(toDelete);
+        return new CommandResult(String.format(MESSAGE_DELETE_PERSON_SUCCESS, toDelete));
+    }
+
+    @Override
+    public CommandResult undo(Model model) {
+        model.addPerson(toDelete);
+        return new CommandResult(String.format(MESSAGE_UNDO, toDelete));
+    }
+
+    @Override
+    public CommandResult redo(Model model) {
+        model.deletePerson(toDelete);
+        return new CommandResult(String.format(MESSAGE_REDO, toDelete));
     }
 
     @Override
