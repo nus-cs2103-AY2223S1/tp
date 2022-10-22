@@ -7,6 +7,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import friday.logic.commands.AddCommand;
+import friday.logic.commands.AliasCommand;
 import friday.logic.commands.ClearCommand;
 import friday.logic.commands.Command;
 import friday.logic.commands.DeleteCommand;
@@ -19,7 +20,9 @@ import friday.logic.commands.MarkMasteryCheckCommand;
 import friday.logic.commands.RemarkCommand;
 import friday.logic.commands.SortCommand;
 import friday.logic.commands.UgCommand;
+import friday.logic.commands.UnaliasCommand;
 import friday.logic.parser.exceptions.ParseException;
+import friday.model.Model;
 
 /**
  * Parses user input.
@@ -35,16 +38,18 @@ public class FridayParser {
      * Parses user input into command for execution.
      *
      * @param userInput full user input string
+     * @param model current model
      * @return the command based on the user input
      * @throws ParseException if the user input does not conform the expected format
      */
-    public Command parseCommand(String userInput) throws ParseException {
+    public Command parseCommand(String userInput, Model model) throws ParseException {
         final Matcher matcher = BASIC_COMMAND_FORMAT.matcher(userInput.trim());
         if (!matcher.matches()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, HelpCommand.MESSAGE_USAGE));
         }
 
-        final String commandWord = matcher.group("commandWord");
+        final String alias = matcher.group("commandWord");
+        final String commandWord = model.getKeyword(alias);
         final String arguments = matcher.group("arguments");
         switch (commandWord) {
 
@@ -83,6 +88,12 @@ public class FridayParser {
 
         case MarkMasteryCheckCommand.COMMAND_WORD:
             return new MarkMasteryCheckCommandParser().parse(arguments);
+
+        case AliasCommand.COMMAND_WORD:
+            return new AliasCommandParser().parse(arguments);
+
+        case UnaliasCommand.COMMAND_WORD:
+            return new UnaliasCommandParser().parse(arguments);
 
 
         default:
