@@ -20,7 +20,7 @@
                 <Insets top="5" right="5" bottom="5" left="15" />
             </padding>
             <HBox spacing="5" alignment="CENTER_LEFT">
-                <VBox style="-fx-padding:  0 20 0 10;" prefWidth="85" minWidth="85" maxWidth="85" alignment="CENTER">
+                <VBox style="-fx-padding: 0 10 0 0;" prefWidth="40" minWidth="40" maxWidth="40" alignment="CENTER">
                     <Label fx:id="id" styleClass="cell_big_label_todo">
                         <minWidth>
                             <!-- Ensures that the label text is never truncated -->
