@@ -385,16 +385,18 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *`  | CS2103T TA | add student's attendance                            | track student's attendance for grading purposes                     |
 | `* * *`  | CS2103T TA | add help tag to a student                           | see which students need more attention                              |
 | `* * *`  | CS2103T TA | delete a student                                    | remove entries I no longer need                                     |
+| `* * *`  | CS2103T TA | add students' response count                        | keep track of student's participation                               |
+| `* * *`  | CS2103T TA | find specific student(s)                            | see the details of the specific student(s)                          |
+| `* * *`  | CS2103T TA | list out all my students                            | have an overview of all the students under me                       |
 | `* * *`  | CS2103T TA | list out all the tutorial's details                 | have an overview of all the tutorials I have                        |
 | `* * *`  | CS2103T TA | mark certain tutorials as done                      | keep track of incomplete tutorials                                  |
-| `* * *`  | CS2103T TA | add students' response count                        | keep track of student's participation                               |
 | `* * *`  | CS2103T TA | add questions asked by students during the tutorial | address them in the future                                          |
 | `* * *`  | CS2103T TA | mark a question as important                        | to prioritise which questions to address first                      |
 | `* * *`  | CS2103T TA | mark a question as unimportant                      | undo the action of accidentally marking such questions as important |
 | `* * *`  | CS2103T TA | delete a question in the list of questions          | remove the questions that I have addressed                          |
 | `* * *`  | CS2103T TA | list out all the question's details                 | have an overview of all the questions I have                        |
-| `* * *`  | CS2103T TA | add a new tutorial                                  | keep track of the time and group number of a tutorial                   |
-| `* * *`  | CS2103T TA | delete a tutorial                                   | remove a tutorial I have already finished                              |
+| `* * *`  | CS2103T TA | add a new tutorial                                  | keep track of the time and group number of a tutorial               |
+| `* * *`  | CS2103T TA | delete a tutorial                                   | remove a tutorial I have already finished                           |
 
 *{More to be added}*
 
@@ -441,6 +443,21 @@ otherwise)
     * 3a1. SETA shows an error message.
 
       Use case resumes at step 2.
+
+****
+
+**Use case: Find student(s)**
+
+**MSS**
+
+1. User requests to find a student or student(s) with the specific keyword.
+2. SETA shows a list of students that contains the keyword(s).
+
+**Extensions**
+
+* 2a. The list is empty.
+
+  Use case ends.
 
 ****
 
