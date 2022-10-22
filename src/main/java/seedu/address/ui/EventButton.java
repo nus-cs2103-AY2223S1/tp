@@ -15,7 +15,7 @@ import seedu.address.model.calendar.CalendarEvent;
  */
 public class EventButton extends UiPart<Region> {
     private static final String FXML = "EventButton.fxml";
-    private static final String EVENT_BUTTON_STYLE = "-fx-font-size: 8pt; -fx-border-radius: 5;";
+    private static final String EVENT_BUTTON_STYLE = "-fx-font-size: 8pt; -fx-border-radius: 5; -fx-min-width: 100;";
     private static final String GREY_BORDER = "-fx-border-color: grey;";
     private static final String ORANGE_BORDER = "-fx-border-color: orange;";
     private static final double ORIGIN = 0.0;
