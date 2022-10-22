@@ -220,7 +220,39 @@ They are similar apart from:
    1. Studio are tutorials and all students are expected to attend. 
    2. As a result, adding a Studio command does not require user to input student indexes.
 
+### Adding notes for a lesson
 
+In adding notes for an existing `Lesson` in JARVIS, the user has the option to:
+1. add overall notes for a `Lesson`
+2. add `Student` specific notes for a `Lesson` 
+
+The rationale behind this design is that these are the two main types of notes that a tutor might make during a lesson. This design will help the tutor organise and view his/her notes more easily.
+
+To add an overall note for an existing `Lesson` in JARVIS, the user keys in a valid add note command (e.g addnote n/get back to the class on streams li/1). 
+
+To add a `Student` specific note to an existing `Lesson` in JARVIS, the user similarly keys in a valid add note command, but additionally specifying the student index (e.g addnote n/get back to jeff on streams li/1 si/2).
+
+Parsing of the user input is done and a `AddNoteCommand` is then generated.
+
+The following sequence diagram shows what happens when the `AddNoteCommand` is executed upon a successful command for adding to overall notes.
+
+<img src="images/AddOverallNoteSequenceDiagram.png" width="550"/>
+
+1. `AddNoteCommand` gets the list of lessons in JARVIS and gets the `Lesson` specified by the lesson index.
+2. `addOverallNotes` method of this lesson is called with the notes input by the user and the notes are added to the lesson.
+3. The list of lessons in the model is then updated to display the notes added.
+
+In the case where `AddNoteCommand` is executed for adding to student specific notes, the execution is similar except:
+ - `AddNoteCommand` additionally gets the list of students in JARVIS and the specified `Student`
+ - `addStudentNotes` is called instead of `addOverallNotes`.
+
+<img src="images/AddStudentNoteSequenceDiagram.png" width="550"/>
+
+`AddNoteCommand` checks if:
+1. The lesson index provided is within the valid range (from 1 to the number of lessons).
+2. The student index (if provided) is within the valid range (from 1 to the number of students).
+
+Otherwise, a CommandException will be thrown.
 
 --------------------------------------------------------------------------------------------------------------------
 
