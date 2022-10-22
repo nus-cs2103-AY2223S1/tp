@@ -176,20 +176,53 @@ public class RemoveCommand extends Command {
         private Session session;
         private Set<Tag> tags;
 
-        public RemovePersonDescriptor() {
+        public RemovePersonDescriptor() { }
 
+        /**
+         * Copy constructor.
+         * A defensive copy of {@code tags} is used internally.
+         */
+        public RemovePersonDescriptor(RemovePersonDescriptor toCopy) {
+            setName(toCopy.name);
+            setPhone(toCopy.phone);
+            setLessonPlan(toCopy.lessonPlan);
+            setHomeworkIndex(toCopy.homeworkIndex);
+            setHomework(toCopy.homework);
+            setGradeProgressIndex(toCopy.gradeProgressIndex);
+            setGradeProgress(toCopy.gradeProgress);
+            setAttendanceIndex(toCopy.attendanceIndex);
+            setAttendance(toCopy.attendance);
+            setSessionIndex(toCopy.sessionIndex);
+            setSession(toCopy.session);
+            setTags(toCopy.tags);
+        }
+
+        public void setName(Name name) {
+            this.name = name;
         }
 
         public Optional<Name> getName() {
             return Optional.ofNullable(name);
         }
 
+        public void setPhone(Phone phone) {
+            this.phone = phone;
+        }
+
         public Optional<Phone> getPhone() {
             return Optional.ofNullable(phone);
         }
 
+        public void setLessonPlan(LessonPlan lessonPlan) {
+            this.lessonPlan = lessonPlan;
+        }
+
         public Optional<LessonPlan> getLessonPlan() {
             return Optional.ofNullable(lessonPlan);
+        }
+
+        public void setHomework(Homework homework) {
+            this.homework = homework;
         }
 
         public Optional<Homework> getHomework() {
@@ -204,6 +237,10 @@ public class RemoveCommand extends Command {
             return Optional.ofNullable(homeworkIndex);
         }
 
+        public void setGradeProgress(GradeProgress gradeProgress) {
+            this.gradeProgress = gradeProgress;
+        }
+
         public Optional<GradeProgress> getGradeProgress() {
             return Optional.ofNullable(gradeProgress);
         }
@@ -214,6 +251,10 @@ public class RemoveCommand extends Command {
 
         public Optional<Index> getGradeProgressIndex() {
             return Optional.ofNullable(gradeProgressIndex);
+        }
+
+        public void setAttendance(Attendance attendance) {
+            this.attendance = attendance;
         }
 
         public Optional<Attendance> getAttendance() {
@@ -240,11 +281,17 @@ public class RemoveCommand extends Command {
             this.sessionIndex = sessionIndex;
         }
 
+        public void setSession(Session session) {
+            this.session = session;
+        }
+
         /**
          * Sets {@code tags} to this object's {@code tags}.
          * A defensive copy of {@code tags} is used internally.
          */
-        public void setTags(Set<Tag> tags) { this.tags = (tags != null) ? new HashSet<>(tags) : null; }
+        public void setTags(Set<Tag> tags) {
+            this.tags = (tags != null) ? new HashSet<>(tags) : null;
+        }
 
         public Optional<Set<Tag>> getTags() {
             return (tags != null) ? Optional.of(Collections.unmodifiableSet(tags)) : Optional.empty();
