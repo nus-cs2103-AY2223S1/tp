@@ -9,6 +9,7 @@
   -fx-text-fill: #ffffff;
 }
 
+/* TODO: Richard: Standardise font */
 #helpMessageContainer {
   -fx-background-color: #fdf6e3;
   -fx-padding: 16;
