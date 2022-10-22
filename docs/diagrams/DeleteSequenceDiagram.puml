@@ -16,7 +16,7 @@ end box
 [-> LogicManager : execute("delete 1")
 activate LogicManager
 
-LogicManager -> UniNurseParser : parseCommand("delete 1")
+LogicManager -> UninurseBookParser : parseCommand("delete 1")
 activate UniNurseParser
 
 create DeleteCommandParser
