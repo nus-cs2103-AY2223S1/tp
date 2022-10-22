@@ -40,7 +40,25 @@ public class PersonUtil {
         person.getTags().stream().forEach(
             s -> sb.append(PREFIX_TAG + s.tagName + " ")
         );
-        sb.append(PREFIX_ROLE + person.getRole().role + " ");
+
+        if (person.getContacts().containsKey(ContactType.TELEGRAM)) {
+            sb.append(PREFIX_TELEGRAM + person.getContacts().get(ContactType.TELEGRAM).getValue() + " ");
+        }
+
+        if (person.getContacts().containsKey(ContactType.SLACK)) {
+            sb.append(PREFIX_SLACK + person.getContacts().get(ContactType.SLACK).getValue() + " ");
+        }
+
+        if (person.getContacts().containsKey(ContactType.PHONE)) {
+            sb.append(PREFIX_PHONE + person.getContacts().get(ContactType.PHONE).getValue() + " ");
+        }
+
+        if (person.getContacts().containsKey(ContactType.EMAIL)) {
+            sb.append(PREFIX_EMAIL + person.getContacts().get(ContactType.EMAIL).getValue() + " ");
+        }
+
+        person.getRole().ifPresent(r -> sb.append(PREFIX_ROLE + r.role + " "));
+        person.getTimezone().ifPresent(t -> sb.append(PREFIX_TIMEZONE + t.timezone + " "));
         return sb.toString();
     }
 

@@ -30,11 +30,11 @@ public class AddCommand extends Command {
         + PREFIX_NAME + "John Doe "
         + PREFIX_ADDRESS + "311, Clementi Ave 2, #02-25 "
         + PREFIX_TAG + "friends "
-        + PREFIX_TAG + "owesMoney"
-        + PREFIX_PHONE + "81828384"
-        + PREFIX_EMAIL + "test@example.com"
-        + PREFIX_SLACK + "helloalex"
-        + PREFIX_TELEGRAM + "@helloalex";
+        + PREFIX_TAG + "owesMoney "
+        + PREFIX_PHONE + "81828384 "
+        + PREFIX_EMAIL + "test@example.com "
+        + PREFIX_SLACK + "helloalex "
+        + PREFIX_TELEGRAM + "@helloalex ";
 
     public static final String MESSAGE_SUCCESS = "New person added: %1$s";
     public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the address book";

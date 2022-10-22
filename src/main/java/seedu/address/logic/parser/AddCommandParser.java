@@ -51,7 +51,7 @@ public class AddCommandParser implements Parser<AddCommand> {
                 PREFIX_NAME, PREFIX_ADDRESS, PREFIX_TAG, PREFIX_ROLE,
                 PREFIX_PHONE, PREFIX_EMAIL, PREFIX_SLACK, PREFIX_TELEGRAM);
 
-        if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_ADDRESS, PREFIX_ROLE)
+        if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_ADDRESS)
             || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
         }
@@ -59,7 +59,6 @@ public class AddCommandParser implements Parser<AddCommand> {
         Name name = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());
         Address address = ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get());
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
-        Role role = ParserUtil.parseRole(argMultimap.getValue(PREFIX_ROLE).get());
 
         Map<ContactType, Contact> contacts = new HashMap<>();
         if (argMultimap.getValue(PREFIX_PHONE).isPresent()) {
@@ -78,6 +77,11 @@ public class AddCommandParser implements Parser<AddCommand> {
         Timezone timezone = null;
         if (argMultimap.getValue(PREFIX_TIMEZONE).isPresent()) {
             timezone = ParserUtil.parseTimezone(argMultimap.getValue(PREFIX_TIMEZONE).get());
+        }
+
+        Role role = null;
+        if (argMultimap.getValue(PREFIX_ROLE).isPresent()) {
+            role = ParserUtil.parseRole(argMultimap.getValue(PREFIX_ROLE).get());
         }
 
         Person person = new Person(name, address, tagList, contacts, role, timezone);

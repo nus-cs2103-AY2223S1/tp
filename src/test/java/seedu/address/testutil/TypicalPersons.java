@@ -4,6 +4,8 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_ROLE_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_ROLE_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_FRIEND;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 
@@ -23,12 +25,14 @@ public class TypicalPersons {
     public static final Person ALICE = new PersonBuilder().withName("Alice Pauline")
         .withAddress("123, Jurong West Ave 6, #08-111")
         .withTags("friends")
+        .withTimezone("+8")
         .withRole("Software Engineer")
         .withContact(ContactType.TELEGRAM, "@alice")
         .withContact(ContactType.EMAIL, "alice@gmail.com").build();
     public static final Person BENSON = new PersonBuilder().withName("Benson Meier")
         .withAddress("311, Clementi Ave 2, #02-25")
         .withTags("owesMoney", "friends")
+        .withTimezone("+8")
         .withRole("Product Manager")
         .withContact(ContactType.TELEGRAM, "@benson")
         .withContact(ContactType.EMAIL, "benson@gmail.com").build();
@@ -48,12 +52,12 @@ public class TypicalPersons {
             .withName(VALID_NAME_AMY)
             .withAddress(VALID_ADDRESS_AMY)
             .withTags(VALID_TAG_FRIEND)
-            .withRole("Software Engineer").build();
+            .withRole(VALID_ROLE_AMY).build();
     public static final Person BOB = new PersonBuilder()
             .withName(VALID_NAME_BOB)
             .withAddress(VALID_ADDRESS_BOB)
             .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND)
-            .withRole("Software Engineer").build();
+            .withRole(VALID_ROLE_BOB).build();
 
     public static final String KEYWORD_MATCHING_MEIER = "Meier"; // A keyword that matches MEIER
 

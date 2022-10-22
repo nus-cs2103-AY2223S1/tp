@@ -63,13 +63,9 @@ class JsonAdaptedPerson {
     public JsonAdaptedPerson(Person source) {
         name = source.getName().fullName;
         address = source.getAddress().value;
-        role = source.getRole().role; //TODO: Check for null using an Optional
 
-        if (source.getTimezone() != null) {
-            timezone = source.getTimezone().timezone;
-        } else {
-            timezone = null;
-        }
+        role = source.getRole().map(r -> r.role).orElse(null);
+        timezone = source.getTimezone().map(t -> t.timezone).orElse(null);
 
         tagged.addAll(source.getTags().stream()
             .map(JsonAdaptedTag::new)
@@ -114,25 +110,18 @@ class JsonAdaptedPerson {
             modelContacts.put(contactModel.getContactType(), contactModel);
         }
 
-        if (role == null) {
+        if (role != null && !Role.isValidRole(role)) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Role.class.getSimpleName()));
         }
 
-        if (!Role.isValidRole(role)) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Role.class.getSimpleName()));
-        }
-
-        final Role modelRole = new Role(role);
+        final Role modelRole = role != null ? new Role(role) : null;
 
         if (timezone != null && !Timezone.isValidTimezone(timezone)) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Role.class.getSimpleName()));
+            throw new IllegalValueException(
+                    String.format(MISSING_FIELD_MESSAGE_FORMAT, Timezone.class.getSimpleName()));
         }
 
-        if (timezone == null) {
-            return new Person(modelName, modelAddress, modelTags, modelContacts, modelRole, null);
-        }
-
-        final Timezone modelTimezone = new Timezone(timezone);
+        final Timezone modelTimezone = timezone != null ? new Timezone(timezone) : null;
 
         return new Person(modelName, modelAddress, modelTags, modelContacts, modelRole, modelTimezone);
     }
