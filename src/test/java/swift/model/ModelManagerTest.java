@@ -100,6 +100,11 @@ public class ModelManagerTest {
     }
 
     @Test
+    public void getFilteredBridgeList_modifyList_throwsUnsupportedOperationException() {
+        assertThrows(UnsupportedOperationException.class, () -> modelManager.getFilteredBridgeList().remove(0));
+    }
+
+    @Test
     public void hasTask_nullTask_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> modelManager.hasTask(null));
     }
