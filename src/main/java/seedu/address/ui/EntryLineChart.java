@@ -12,7 +12,7 @@ import javafx.scene.layout.Region;
 import seedu.address.commons.core.LogsCenter;
 
 /**
- * A UI component that displays the line graph
+ * A UI component that displays the line graph.
  */
 public class EntryLineChart extends UiPart<Region> {
     private static final String FXML = "EntryLineChart.fxml";
