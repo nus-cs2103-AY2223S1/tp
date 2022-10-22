@@ -9,8 +9,9 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.team.Link;
+
 /**
- * Deletes an existing link from the addressbook.
+ * Deletes an existing link from TruthTable.
  */
 public class DeleteLinkCommand extends Command {
     public static final String COMMAND_WORD = "delete_link";
@@ -23,10 +24,12 @@ public class DeleteLinkCommand extends Command {
 
     private final Index targetIndex;
 
+    /**
+     * Creates a DeleteLinkCommand to delete a {@code Link} at the specified index.
+     */
     public DeleteLinkCommand(Index targetIndex) {
         this.targetIndex = targetIndex;
     }
-
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
@@ -38,8 +41,6 @@ public class DeleteLinkCommand extends Command {
         Link linkToDelete = lastShownList.get(targetIndex.getZeroBased());
         model.deleteLink(linkToDelete);
         return new CommandResult(String.format(MESSAGE_DELETE_LINK_SUCCESS, linkToDelete));
-
-
     }
 
     @Override

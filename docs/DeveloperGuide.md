@@ -249,22 +249,21 @@ _Sequence diagram of marking tasks as done_
 
 #### Implementation
 
-The add member to team feature allows users to add a user to the current team based on the specified index. This index
-refers to the index of the user in the current view of persons in the `PersonListPanel`.
+The add member to team feature allows users to add a user to the current team using the person's name. 
 
 The following is an example usage scenario of how a member is added to a team:
 
-Precondition: Index of person provided is valid and the current working team is set to the team that the member should
+Precondition: Name provided is valid and the current working team is set to the team that the member should 
 be added to.
 
-1. User keys in `add_member` command with the specific index of the person. (e.g. `add_member 1`)
-2. The person with the specified index in the list is added to the team.
+1. User keys in `add_member` command with the person's name.
+2. The person with the specified name in the list is added to the team.
 
 If any of the following occurs:
 
-1. Index given is negative
-2. Index given is out of range (i.e. There are fewer people than the specified index)
-3. Person at specified index is already in the team
+1. Name is not alphanumeric
+2. Name provided does not match any persons' name
+3. Person with specified name is already in the team
 
 Then, an appropriate exception will be thrown and the respective error message will be shown to the user.
 

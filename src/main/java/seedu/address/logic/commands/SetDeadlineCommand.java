@@ -16,10 +16,10 @@ public class SetDeadlineCommand extends Command {
     public static final String COMMAND_WORD = "set_deadline";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-        + ": Sets a deadline to the specified existing task.\n"
-        + "Parameters: INDEX of task (must be a positive integer) \n"
-            + "Parameters: Deadline (format: YYYY-MM-DD HH:mm) \n"
-        + "Example: " + COMMAND_WORD + " 1" + " 2023-02-25 23:59";
+            + ": Sets a deadline to the specified existing task.\n"
+            + "Parameters: TASK_INDEX (must be a positive integer) \n"
+            + "Parameters: DEADLINE (format: YYYY-MM-DD HH:mm) \n"
+            + "Example: " + COMMAND_WORD + " 1" + " 2023-02-25 23:59";
 
     public static final String MESSAGE_SET_DEADLINE_SUCCESS = "Set Deadline: %1$s %2$s";
     public static final String MESSAGE_TASK_INDEX_OUT_OF_BOUNDS = "This task does not exist. "
@@ -29,8 +29,9 @@ public class SetDeadlineCommand extends Command {
 
     /**
      * Returns a command that adds a task to the current team.
+     *
      * @param taskIndex The index of the task to be added.
-     * @param deadline Deadline of task
+     * @param deadline  Deadline of task
      */
     public SetDeadlineCommand(int taskIndex, LocalDateTime deadline) {
         this.taskIndex = taskIndex;
@@ -52,8 +53,8 @@ public class SetDeadlineCommand extends Command {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-            || (other instanceof SetDeadlineCommand // instanceof handles nulls
-            && taskIndex == (((SetDeadlineCommand) other).taskIndex))
+                || (other instanceof SetDeadlineCommand // instanceof handles nulls
+                && taskIndex == (((SetDeadlineCommand) other).taskIndex))
                 && deadline.equals(((SetDeadlineCommand) other).deadline); // state check
     }
 }

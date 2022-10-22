@@ -9,7 +9,7 @@ import seedu.address.model.Model;
 import seedu.address.model.team.Link;
 
 /**
- * Adds a new link to the addressbook.
+ * Adds a new link to TruthTable.
  */
 public class AddLinkCommand extends Command {
     public static final String COMMAND_WORD = "add_link";
@@ -30,7 +30,7 @@ public class AddLinkCommand extends Command {
     private final Link toAdd;
 
     /**
-     * Creates an AddLinkCommand to add the specified {@Link}.
+     * Creates an AddLinkCommand to add the specified {@code Link}.
      */
     public AddLinkCommand(Link link) {
         requireNonNull(link);
