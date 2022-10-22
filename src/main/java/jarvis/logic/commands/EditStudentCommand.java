@@ -12,7 +12,7 @@ import jarvis.commons.core.Messages;
 import jarvis.commons.core.index.Index;
 import jarvis.commons.util.CollectionUtil;
 import jarvis.logic.commands.exceptions.CommandException;
-import jarvis.model.MasteryCheckStatus;
+import jarvis.model.GradeProfile;
 import jarvis.model.MatricNum;
 import jarvis.model.Model;
 import jarvis.model.Student;
@@ -70,8 +70,7 @@ public class EditStudentCommand extends Command {
 
         model.setStudent(studentToEdit, editedStudent);
         model.updateFilteredStudentList(PREDICATE_SHOW_ALL_STUDENTS);
-        return new CommandResult(String.format(MESSAGE_EDIT_PERSON_SUCCESS, editedStudent),
-                true, false);
+        return new CommandResult(String.format(MESSAGE_EDIT_PERSON_SUCCESS, editedStudent));
     }
 
     /**
@@ -83,8 +82,8 @@ public class EditStudentCommand extends Command {
 
         StudentName updatedStudentName = editStudentDescriptor.getName().orElse(studentToEdit.getName());
         MatricNum updatedMatricNum = editStudentDescriptor.getMatricNum().orElse(studentToEdit.getMatricNum());
-        MasteryCheckStatus mcStatus = studentToEdit.getMcStatus();
-        return new Student(updatedStudentName, updatedMatricNum, mcStatus);
+        GradeProfile gradeProfile = studentToEdit.getGradeProfile();
+        return new Student(updatedStudentName, updatedMatricNum, gradeProfile);
     }
 
     @Override

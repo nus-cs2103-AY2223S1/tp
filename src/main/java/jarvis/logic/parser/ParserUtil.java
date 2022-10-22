@@ -13,8 +13,8 @@ import jarvis.commons.core.Messages;
 import jarvis.commons.core.index.Index;
 import jarvis.commons.util.StringUtil;
 import jarvis.logic.parser.exceptions.ParseException;
+import jarvis.model.Assessment;
 import jarvis.model.LessonDesc;
-import jarvis.model.MasteryCheckStatus;
 import jarvis.model.MatricNum;
 import jarvis.model.StudentName;
 import jarvis.model.TaskDeadline;
@@ -27,6 +27,9 @@ import jarvis.model.TimePeriod;
 public class ParserUtil {
 
     public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero unsigned integer.";
+    public static final String MESSAGE_INVALID_MARK = "Mark has to be a non-negative number.";
+    public static final String MESSAGE_INVALID_MCNUM = "Mastery check number has to be 1 or 2.";
+    public static final String MESSAGE_INVALID_MCRESULT = "Mastery check result has to be \"PASS\" or \"FAIL\"";
 
     /**
      * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading and trailing whitespaces will be
@@ -106,29 +109,29 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String mcNum} into an {@code int} indicating the mastery check number.
+     * Parses a {@code String mcNum} into a {@code Assessment mc} corresponding to the specified mastery check.
      *
      * @throws ParseException if the given {@code mcNum} is invalid.
      */
-    public static int parseMcNum(String mcNum) throws ParseException {
+    public static Assessment parseMcNum(String mcNum) throws ParseException {
         String trimmedMcNum = mcNum.trim();
         int value;
         try {
             value = Integer.parseInt(trimmedMcNum);
         } catch (NumberFormatException nfe) {
-            throw new ParseException(MasteryCheckStatus.MESSAGE_INVALID_MCNUM);
+            throw new ParseException(MESSAGE_INVALID_MCNUM);
         }
 
         if (value != 1 && value != 2) {
-            throw new ParseException(MasteryCheckStatus.MESSAGE_INVALID_MCNUM);
+            throw new ParseException(MESSAGE_INVALID_MCNUM);
         }
-        return value;
+        return value == 1 ? Assessment.MC1 : Assessment.MC2;
     }
 
     /**
      * Parses a {@code String mcResult} into a {@code boolean}.
      *
-     * @return True if the mastery check result is a pass
+     * @return True if the mastery check result is a pass.
      * @throws ParseException if the given {@code mcResult} is invalid.
      */
     public static boolean parseMcResult(String mcResult) throws ParseException {
@@ -139,8 +142,30 @@ public class ParserUtil {
         } else if (trimmedMcResult.equals("fail")) {
             return false;
         } else {
-            throw new ParseException(MasteryCheckStatus.MESSAGE_INVALID_MCRESULT);
+            throw new ParseException(MESSAGE_INVALID_MCRESULT);
         }
+    }
+
+    /**
+     * Parses a {@code String marks} into the corresponding double that indicates the mark.
+     *
+     * @return A double representing the mark.
+     * @throws ParseException If the given {@code String mark} is invalid.
+     */
+    public static double parseMarks(String marks) throws ParseException {
+        requireNonNull(marks);
+        String trimmedMarks = marks.trim();
+        double value;
+        try {
+            value = Double.parseDouble(trimmedMarks);
+        } catch (NumberFormatException nfe) {
+            throw new ParseException(MESSAGE_INVALID_MARK);
+        }
+
+        if (value < 0) {
+            throw new ParseException(MESSAGE_INVALID_MARK);
+        }
+        return value;
     }
 
     /**
@@ -194,5 +219,4 @@ public class ParserUtil {
         }
         return studentIndexSet;
     }
-
 }

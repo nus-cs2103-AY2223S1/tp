@@ -17,4 +17,9 @@ public class CliSyntax {
     public static final Prefix PREFIX_STUDENT_INDEX = new Prefix("si/");
     public static final Prefix PREFIX_LESSON = new Prefix("l/");
 
+    public static final Prefix PREFIX_RA1 = new Prefix("ra1/");
+    public static final Prefix PREFIX_RA2 = new Prefix("ra2/");
+    public static final Prefix PREFIX_MIDTERM = new Prefix("mt/");
+    public static final Prefix PREFIX_PRACTICAL_ASST = new Prefix("pa/");
+    public static final Prefix PREFIX_FINAL_ASST = new Prefix("fn/");
 }

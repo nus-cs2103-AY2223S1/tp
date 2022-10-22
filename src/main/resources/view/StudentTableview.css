@@ -1,0 +1,21 @@
+.table-view:disabled {
+    -fx-opacity: 1.0;
+    -fx-base: #1d1d1d;
+    -fx-control-inner-background: transparent;
+    -fx-background-color: transparent;
+    -fx-padding: 5;
+    -fx-font-size: 15pt;
+    -fx-text-fill: white;
+}
+
+.table-row-cell:disabled {
+    -fx-font-size: 12pt;
+    -fx-text-fill: white;
+    -fx-cell-size: 50px;
+    -fx-alignment: center-right;
+    -fx-background-color: transparent;
+}
+
+.table-view .column-header .label {
+    -fx-font-size: 11pt;
+}

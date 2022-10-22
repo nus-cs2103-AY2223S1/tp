@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+
+<HBox id="cardPane" fx:id="cardPane" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
+  <GridPane HBox.hgrow="ALWAYS">
+    <columnConstraints>
+      <ColumnConstraints hgrow="SOMETIMES" minWidth="10" prefWidth="150" />
+    </columnConstraints>
+    <VBox alignment="CENTER_LEFT" minHeight="105" GridPane.columnIndex="0">
+      <padding>
+        <Insets bottom="5" left="15" right="5" top="5" />
+      </padding>
+      <HBox alignment="CENTER_LEFT" spacing="5">
+        <Label fx:id="id" styleClass="cell_big_label">
+          <minWidth>
+            <!-- Ensures that the label text is never truncated -->
+            <Region fx:constant="USE_PREF_SIZE" />
+          </minWidth>
+        </Label>
+      </HBox>
+     <Label fx:id="studentName" styleClass="cell_big_label" text="\$studentName" />
+         <Label fx:id="matricNum" text="\$matricNum" />
+         <TableView fx:id="gradeProfile" disable="true" prefHeight="120.0" prefWidth="129.0" style="-fx-background-color: transparent;" stylesheets="@StudentTableview.css">
+           <columns>
+               <TableColumn fx:id="mc1" prefWidth="75.0" text="Mastery Check 1" />
+               <TableColumn fx:id="mc2" prefWidth="75.0" text="Mastery Check 2" />
+             <TableColumn fx:id="ra1" prefWidth="18.666622161865234" text="RA1" />
+             <TableColumn fx:id="ra2" prefWidth="11.333309173583984" text="RA2" />
+               <TableColumn fx:id="midterm" editable="false" prefWidth="19.3333740234375" sortable="false" text="Midterm" />
+               <TableColumn fx:id="practicalAssessment" prefWidth="75.0" text="Practical Assessment" />
+               <TableColumn fx:id="finalAssessment" prefWidth="75.0" text="Final Assessment" />
+               <TableColumn fx:id="studioAttendance" prefWidth="75.0" text="Studio Attendance" />
+           </columns>
+            <columnResizePolicy>
+               <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+            </columnResizePolicy>
+         </TableView>
+    </VBox>
+      <rowConstraints>
+         <RowConstraints />
+      </rowConstraints>
+  </GridPane>
+</HBox>

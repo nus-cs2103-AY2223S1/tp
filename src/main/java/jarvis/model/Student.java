@@ -13,16 +13,16 @@ public class Student {
     private final MatricNum matricNum;
 
     // Data fields
-    private final MasteryCheckStatus mcStatus;
+    private final GradeProfile gradeProfile;
 
     /**
      * Every field must be present and not null.
      */
-    public Student(StudentName studentName, MatricNum matricNum, MasteryCheckStatus mcStatus) {
-        requireAllNonNull(studentName, matricNum, mcStatus);
+    public Student(StudentName studentName, MatricNum matricNum, GradeProfile gradeProfile) {
+        requireAllNonNull(studentName, matricNum, gradeProfile);
         this.studentName = studentName;
         this.matricNum = matricNum;
-        this.mcStatus = mcStatus;
+        this.gradeProfile = gradeProfile;
     }
 
     public StudentName getName() {
@@ -33,15 +33,19 @@ public class Student {
         return matricNum;
     }
 
-    public MasteryCheckStatus getMcStatus() {
-        return mcStatus;
+    public GradeProfile getGradeProfile() {
+        return gradeProfile;
     }
 
     /**
-     * Updates the student's mastery check status with the given mastery check result.
+     * Updates the student's result for the given assessment.
      */
-    public void updateMcStatus(MasteryCheckResult mcResult) {
-        mcStatus.updateMcResult(mcResult);
+    public void updateMark(Assessment assessment, int marks) {
+        gradeProfile.grade(assessment, marks);
+    }
+
+    public void updateGrades(GradeProfile gp) {
+        gradeProfile.updateGrades(gp);
     }
 
     /**

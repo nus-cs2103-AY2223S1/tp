@@ -4,6 +4,8 @@ import static java.util.Objects.requireNonNull;
 
 import java.util.Objects;
 
+import jarvis.ui.DisplayedList;
+
 /**
  * Represents the result of a command execution.
  */
@@ -14,33 +16,32 @@ public class CommandResult {
     /** Help information should be shown to the user. */
     private final boolean showHelp;
 
-    /** Student list should be shown to the user. */
-    private final boolean showStudents;
-
-    /** Task list should be shown to the user. */
-    private final boolean showTasks;
+    /** The list being displayed in the UI */
+    private final DisplayedList displayedList;
 
     /** The application should exit. */
     private final boolean exit;
 
     /**
-     * Constructs a {@code CommandResult} with the specified fields.
+     * Constructs a {@code CommandResult} with the specified fields,
+     * and other fields set to their default value.
      */
-    public CommandResult(String feedbackToUser, boolean showHelp, boolean exit,
-                         boolean showStudents, boolean showTasks) {
+    public CommandResult(String feedbackToUser, boolean showHelp, boolean exit) {
         this.feedbackToUser = requireNonNull(feedbackToUser);
         this.showHelp = showHelp;
         this.exit = exit;
-        this.showStudents = showStudents;
-        this.showTasks = showTasks;
+        this.displayedList = DisplayedList.SAME_LIST_AS_BEFORE;
     }
 
     /**
-     * Constructs a {@code CommandResult} with the specified {@code feedbackToUser},
-     * {@code showStudents}, {@code showTasks} and other fields set to their default value.
+     * Constructs a {@code CommandResult} with the specified fields,
+     * and other fields set to their default value.
      */
-    public CommandResult(String feedbackToUser, boolean showStudents, boolean showTasks) {
-        this(feedbackToUser, false, false, showStudents, showTasks);
+    public CommandResult(String feedbackToUser, DisplayedList displayedList) {
+        this.feedbackToUser = feedbackToUser;
+        this.displayedList = displayedList;
+        this.showHelp = false;
+        this.exit = false;
     }
 
     /**
@@ -48,27 +49,27 @@ public class CommandResult {
      * and other fields set to their default value.
      */
     public CommandResult(String feedbackToUser) {
-        this(feedbackToUser, false, false, false, false);
+        this(feedbackToUser, false, false);
     }
 
     public String getFeedbackToUser() {
         return feedbackToUser;
     }
 
+    public DisplayedList getDisplayedList() {
+        return displayedList;
+    }
+
     public boolean isShowHelp() {
         return showHelp;
     }
 
+    public boolean isList() {
+        return displayedList != DisplayedList.SAME_LIST_AS_BEFORE;
+    }
+
     public boolean isExit() {
         return exit;
-    }
-
-    public boolean isShowStudents() {
-        return showStudents;
-    }
-
-    public boolean isShowTasks() {
-        return showTasks;
     }
 
     @Override
