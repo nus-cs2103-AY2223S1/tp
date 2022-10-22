@@ -1,11 +1,13 @@
 package seedu.address.model.event;
 
+import static java.lang.Integer.parseInt;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 import java.util.HashSet;
 import java.util.LinkedHashSet;
 import java.util.Optional;
@@ -27,63 +29,44 @@ public class DateTime {
             String.format("The values for date and time are invalid! Try %s %s.",
                     RECOMMENDED_DATE_FORMAT, RECOMMENDED_TIME_FORMAT);
 
-    public static final String REGEX_YEAR = "(?<yearGroup>[0-9]{4})";
-    public static final String REGEX_MONTH_DIGITS = "(((0)?[0-9])|((1)[0-2]))";
-    public static final String REGEX_MONTH_LETTERS =
-            "((jan(uary)?)|(feb(ruary)?)|(mar(ch)?)|(apr(il)?)|(may)|(jun(e)?)|"
-                    + "(jul(y)?)|(aug(ust)?)|(sep(tember)?)|(oct(ober)?)|(nov(ember)?)|(dec(ember)?))";
-    public static final String REGEX_MONTH = "(?<monthGroup>" + REGEX_MONTH_LETTERS + "|" + REGEX_MONTH_DIGITS + ")";
-    public static final String REGEX_DAY = "(?<dayGroup>[1-9]|[0-2][0-9]|(3)[0-1])";
-    public static final String REGEX_SECONDS = "([0-5][0-9])";
-    public static final String REGEX_MINUTES = "([0-5][0-9])";
-    public static final String REGEX_HOURS = "([01][0-9]|2[0-3])";
+    public static final String REGEX_YEAR = "(?<yearGroup>\\d{4})";
+    public static final String REGEX_MONTH = "(?<monthGroup>" + "(\\d{1,2})" + "|" + "[A-Za-z]{3,}" + ")";
+    public static final String REGEX_DAY = "(?<dayGroup>\\d{1,2})";
+    public static final String REGEX_SECONDS = "(?<secondsGroup>\\d{2})";
+    public static final String REGEX_MINUTES = "(?<minutesGroup>\\d{2})";
+    public static final String REGEX_HOURS = "(?<hoursGroup>\\d{2})";
     public static final String REGEX_TIME_COLON =
             "(" + REGEX_HOURS + ":" + REGEX_MINUTES + "(:" + REGEX_SECONDS + ")?)";
-    public static final String REGEX_TIME_NO_SPACE =
-            "(" + REGEX_HOURS + REGEX_MINUTES + "(" + REGEX_SECONDS + ")?)";
-    public static final String REGEX_TIME = REGEX_TIME_COLON + "|" + REGEX_TIME_NO_SPACE;
-
-    public static final String REGEX_RELAXED_YEAR = "([0-9]+)";
-    public static final String REGEX_RELAXED_MONTH = "([0-9]+|[a-zA-z]{3})";
-    public static final String REGEX_RELAXED_DAY = "([0-9]+)";
-    public static final String REGEX_RELAXED_HOUR = "(\\d+)";
-    public static final String REGEX_RELAXED_MINUTE = "(\\d+)";
-    public static final String REGEX_RELAXED_SECOND = "(\\d+)";
-    public static final String REGEX_RELAXED_TIME =
-            REGEX_RELAXED_HOUR + "(:?)" + REGEX_RELAXED_MINUTE + "(:?" + REGEX_RELAXED_SECOND + ")?";
+    public static final String REGEX_TIME_NO_SPACE = "(" + REGEX_HOURS + REGEX_MINUTES + REGEX_SECONDS + ")";
 
     public static final HashSet<String> REGEX_DATES = new LinkedHashSet<>() {
         {
-            add("((?<dateGroup>" + REGEX_DAY + "\\s" + REGEX_MONTH + "\\s" + REGEX_YEAR + "))"
-                    + "(\\s(?<timeGroup>" + REGEX_TIME + "))?");
+            add("((?<dateGroup>" + REGEX_DAY + "\\s" + REGEX_MONTH + "(\\s" + REGEX_YEAR + ")?))"
+                    + "(\\s(?<timeGroup>" + REGEX_TIME_COLON + "))?");
+            add("((?<dateGroup>" + REGEX_DAY + "\\s" + REGEX_MONTH + "(\\s" + REGEX_YEAR + ")?))"
+                    + "(\\s(?<timeGroup>" + REGEX_TIME_NO_SPACE + "))?");
             add("((?<dateGroup>" + REGEX_YEAR + "\\s" + REGEX_MONTH + "\\s" + REGEX_DAY + "))"
-                    + "(\\s(?<timeGroup>" + REGEX_TIME + "))?");
-            add("((?<dateGroup>" + REGEX_DAY + "-" + REGEX_MONTH + "-" + REGEX_YEAR + "))"
-                    + "(\\s(?<timeGroup>" + REGEX_TIME + "))?");
+                    + "(\\s(?<timeGroup>" + REGEX_TIME_COLON + "))?");
+            add("((?<dateGroup>" + REGEX_YEAR + "\\s" + REGEX_MONTH + "\\s" + REGEX_DAY + "))"
+                    + "(\\s(?<timeGroup>" + REGEX_TIME_NO_SPACE + "))?");
+            add("((?<dateGroup>" + REGEX_DAY + "-" + REGEX_MONTH + "(-" + REGEX_YEAR + ")?))"
+                    + "(\\s(?<timeGroup>" + REGEX_TIME_COLON + "))?");
+            add("((?<dateGroup>" + REGEX_DAY + "-" + REGEX_MONTH + "(-" + REGEX_YEAR + ")?))"
+                    + "(\\s(?<timeGroup>" + REGEX_TIME_NO_SPACE + "))?");
             add("((?<dateGroup>" + REGEX_YEAR + "-" + REGEX_MONTH + "-" + REGEX_DAY + "))"
-                    + "(\\s(?<timeGroup>" + REGEX_TIME + "))?");
-            add("((?<dateGroup>" + REGEX_DAY + "/" + REGEX_MONTH + "/" + REGEX_YEAR + "))"
-                    + "(\\s(?<timeGroup>" + REGEX_TIME + "))?");
+                    + "(\\s(?<timeGroup>" + REGEX_TIME_COLON + "))?");
+            add("((?<dateGroup>" + REGEX_YEAR + "-" + REGEX_MONTH + "-" + REGEX_DAY + "))"
+                    + "(\\s(?<timeGroup>" + REGEX_TIME_NO_SPACE + "))?");
+            add("((?<dateGroup>" + REGEX_DAY + "/" + REGEX_MONTH + "(/" + REGEX_YEAR + ")?))"
+                    + "(\\s(?<timeGroup>" + REGEX_TIME_COLON + "))?");
+            add("((?<dateGroup>" + REGEX_DAY + "/" + REGEX_MONTH + "(/" + REGEX_YEAR + ")?))"
+                    + "(\\s(?<timeGroup>" + REGEX_TIME_NO_SPACE + "))?");
             add("((?<dateGroup>" + REGEX_YEAR + "/" + REGEX_MONTH + "/" + REGEX_DAY + "))"
-                    + "(\\s(?<timeGroup>" + REGEX_TIME + "))?");
+                    + "(\\s(?<timeGroup>" + REGEX_TIME_COLON + "))?");
+            add("((?<dateGroup>" + REGEX_YEAR + "/" + REGEX_MONTH + "/" + REGEX_DAY + "))"
+                    + "(\\s(?<timeGroup>" + REGEX_TIME_NO_SPACE + "))?");
         }
     };
-
-    private static final HashSet<String> REGEX_FORMAT = new LinkedHashSet<>() {
-        {
-            add("(" + REGEX_RELAXED_DAY + "/" + REGEX_RELAXED_MONTH + "/" + REGEX_RELAXED_YEAR + ")"
-                    + "(\\s" + REGEX_RELAXED_TIME + ")?");
-            add("(" + REGEX_RELAXED_DAY + "\\s" + REGEX_RELAXED_MONTH + "\\s" + REGEX_RELAXED_YEAR + ")"
-                    + "(\\s" + REGEX_RELAXED_TIME + ")?");
-            add("(" + REGEX_RELAXED_DAY + "-" + REGEX_RELAXED_MONTH + "-" + REGEX_RELAXED_YEAR + ")"
-                    + "(\\s" + REGEX_RELAXED_TIME + ")?");
-        }
-    };
-
-    private static final Pattern REGEX_TIME_GENERATOR = Pattern.compile(
-            "((?<hoursGroup>" + REGEX_HOURS + ")(:?)"
-                    + "(?<minutesGroup>" + REGEX_MINUTES + ")"
-                    + "((:?)(?<secondsGroup>" + REGEX_SECONDS + "))?)");
 
     public final LocalDate date;
     public final Optional<LocalTime> time;
@@ -93,7 +76,7 @@ public class DateTime {
      *
      * @param dateTime A valid datetime string.
      */
-    public DateTime(String dateTime) {
+    public DateTime(String dateTime) throws DateTimeParseException {
         requireNonNull(dateTime);
         checkArgument(isValidDateTime(dateTime), MESSAGE_CONSTRAINTS);
         this.date = parseDate(dateTime);
@@ -103,38 +86,19 @@ public class DateTime {
     /**
      * Returns a LocalTime object for an input time in the valid formats.
      */
-    private static LocalTime generateLocalTime(String time) {
-        Matcher matcher = REGEX_TIME_GENERATOR.matcher(time);
-        matcher.matches();
-        String hours = matcher.group("hoursGroup");
-        String minutes = matcher.group("minutesGroup");
-        String seconds = matcher.group("secondsGroup");
-        String formatterString = "H:mm";
-        if (seconds != null) {
-            formatterString += ":ss";
-            return LocalTime.parse(hours + ":" + minutes + ":" + seconds,
-                    DateTimeFormatter.ofPattern(formatterString));
+    private static LocalTime generateLocalTime(String hours, String minutes,
+                                               String seconds) throws DateTimeParseException {
+        if (seconds == null) {
+            return LocalTime.of(parseInt(hours), parseInt(minutes));
         }
-        return LocalTime.parse(hours + ":" + minutes, DateTimeFormatter.ofPattern(formatterString));
+        return LocalTime.of(parseInt(hours), parseInt(minutes), parseInt(seconds));
     }
 
     /**
      * Returns a LocalDate object for an input date in the valid formats.
      */
-    private static LocalDate generateLocalDate(String date) {
-        Pattern pattern = Pattern.compile("");
-        for (String regex : REGEX_DATES) {
-            if (date.toLowerCase().matches(regex)) {
-                pattern = Pattern.compile(regex);
-            }
-        }
-        Matcher matcher = pattern.matcher(date);
-        matcher.matches();
-        String day = matcher.group("dayGroup");
-        String month = matcher.group("monthGroup");
-        String year = matcher.group("yearGroup");
+    private static LocalDate generateLocalDate(String year, String month, String day) throws DateTimeParseException {
         String formatter = "d/";
-
         if (month.length() >= 3) {
             month = month.substring(0, 1).toUpperCase() + month.substring(1).toLowerCase();
             if (month.length() == 3) {
@@ -145,19 +109,17 @@ public class DateTime {
         } else {
             formatter += "M/";
         }
-
-        if (year.length() == 2) {
-            formatter += "yy";
-        } else {
-            formatter += "yyyy";
+        formatter += "yyyy";
+        if (year == null) {
+            return LocalDate.parse(day + "/" + month + "/" + LocalDate.now().getYear(),
+                    DateTimeFormatter.ofPattern(formatter));
         }
-
         return LocalDate.parse(day + "/" + month + "/" + year, DateTimeFormatter.ofPattern(formatter));
     }
 
     /**
-     * Returns true if an input string satisfies the required format and time
-     * period, false otherwise.
+     * Returns true if an input string satisfies the required format. Does not
+     * validate the values.
      */
     public static boolean isValidDateTime(String dateString) {
         for (String regex : REGEX_DATES) {
@@ -169,22 +131,9 @@ public class DateTime {
     }
 
     /**
-     * Checks if an input date string follows any of the allowed formats,
-     * without checking the values.
-     */
-    public static boolean isValidFormat(String dateString) {
-        for (String regex : REGEX_FORMAT) {
-            if (dateString.matches(regex)) {
-                return true;
-            }
-        }
-        return false;
-    }
-
-    /**
      * Returns a LocalDate from a given date time string.
      */
-    public static LocalDate parseDate(String dateString) {
+    public static LocalDate parseDate(String dateString) throws DateTimeParseException {
         Pattern pattern = Pattern.compile("");
         for (String regex : REGEX_DATES) {
             if (dateString.toLowerCase().matches(regex)) {
@@ -193,8 +142,8 @@ public class DateTime {
         }
         Matcher matcher = pattern.matcher(dateString.toLowerCase());
         matcher.matches();
-        String date = matcher.group("dateGroup");
-        return generateLocalDate(date);
+        return generateLocalDate(matcher.group("yearGroup"),
+                matcher.group("monthGroup"), matcher.group("dayGroup"));
     }
 
     /**
@@ -215,7 +164,12 @@ public class DateTime {
         if (time == null) {
             return Optional.empty();
         }
-        return Optional.ofNullable(generateLocalTime(time));
+
+        String hours = matcher.group("hoursGroup");
+        String minutes = matcher.group("minutesGroup");
+        String seconds = matcher.group("secondsGroup");
+
+        return Optional.ofNullable(generateLocalTime(hours, minutes, seconds));
     }
 
     @Override

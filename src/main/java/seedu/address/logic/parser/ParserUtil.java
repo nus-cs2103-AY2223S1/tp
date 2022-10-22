@@ -2,6 +2,7 @@ package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 
+import java.time.format.DateTimeParseException;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
@@ -121,12 +122,13 @@ public class ParserUtil {
         requireNonNull(dateTime);
         String trimmedDateTime = dateTime.trim();
         if (!DateTime.isValidDateTime(trimmedDateTime)) {
-            if (DateTime.isValidFormat(trimmedDateTime)) {
-                throw new ParseException(DateTime.MESSAGE_INVALID_DATETIME);
-            }
             throw new ParseException(DateTime.MESSAGE_CONSTRAINTS);
         }
-        return new DateTime(trimmedDateTime);
+        try {
+            return new DateTime(trimmedDateTime);
+        } catch (DateTimeParseException e) {
+            throw new ParseException(DateTime.MESSAGE_INVALID_DATETIME);
+        }
     }
 
     /**
