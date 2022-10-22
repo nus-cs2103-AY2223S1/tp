@@ -41,7 +41,6 @@ public class EditCommandTest {
         EditCommand editCommand = new EditCommand(INDEX_FIRST_ELEMENT, descriptor);
 
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_CLIENT_SUCCESS, editedClient);
-
         Model expectedModel = new ModelManager(new MyInsuRec(model.getMyInsuRec()), new UserPrefs());
         expectedModel.setClient(model.getFilteredClientList().get(0), editedClient);
 

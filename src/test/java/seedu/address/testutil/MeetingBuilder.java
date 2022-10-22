@@ -29,7 +29,7 @@ public class MeetingBuilder {
     public static final String DEFAULT_PHONE = "85355255";
     public static final String DEFAULT_EMAIL = "amy@gmail.com";
     public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
-    public static final Optional<Birthday> DEFAULT_BIRTHDAY = Optional.empty();
+    public static final LocalDate DEFAULT_BIRTHDAY = LocalDate.of(2000, 1, 1);
     private static final Set<Product> DEFAULT_PRODUCTS = new HashSet<>();
 
     private Description description;
@@ -45,7 +45,8 @@ public class MeetingBuilder {
         meetingDate = new MeetingDate(DEFAULT_MEETING_DATE);
         meetingTime = new MeetingTime(DEFAULT_MEETING_TIME);
         client = new Client(new Name(DEFAULT_NAME), new Phone(DEFAULT_PHONE),
-                new Email(DEFAULT_EMAIL), new Address(DEFAULT_ADDRESS), DEFAULT_BIRTHDAY, DEFAULT_PRODUCTS);
+                Optional.of(new Email(DEFAULT_EMAIL)), Optional.of(new Address(DEFAULT_ADDRESS)),
+                Optional.of(new Birthday(DEFAULT_BIRTHDAY)), DEFAULT_PRODUCTS);
     }
 
     /**

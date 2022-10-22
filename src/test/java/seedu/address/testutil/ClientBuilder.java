@@ -44,7 +44,7 @@ public class ClientBuilder {
         phone = new Phone(DEFAULT_PHONE);
         email = Optional.of(new Email(DEFAULT_EMAIL));
         address = Optional.of(new Address(DEFAULT_ADDRESS));
-        birthday = Optional.of(new Birthday(DEFAULT_BIRTHDAY));
+        birthday = Optional.empty();
         meetings = new ArrayList<>();
         products = new HashSet<>();
     }

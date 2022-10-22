@@ -72,7 +72,7 @@ class JsonAdaptedClient {
             : source.getEmail().get().toString();
         address = source.getAddress().isEmpty()
             ? ""
-            : source.getAddress().toString();
+            : source.getAddress().get().toString();
         birthday = source.getBirthday().isEmpty()
             ? ""
             : source.getBirthday().get().toString();
@@ -142,7 +142,7 @@ class JsonAdaptedClient {
         }
         final Optional<Email> modelEmail = email.equals("")
                 ? Optional.empty()
-                : Optional.of(new Email(address));
+                : Optional.of(new Email(email));
 
         if (address == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Address.class.getSimpleName()));

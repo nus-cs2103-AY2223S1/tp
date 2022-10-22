@@ -166,11 +166,11 @@ public class Client {
                 .append(phone);
 
         if (email.isPresent()) {
-            builder.append("; Email: ").append(email);
+            builder.append("; Email: ").append(email.get());
         }
 
         if (address.isPresent()) {
-            builder.append("; Address: ").append(address);
+            builder.append("; Address: ").append(address.get());
         }
 
         if (birthday.isPresent()) {
