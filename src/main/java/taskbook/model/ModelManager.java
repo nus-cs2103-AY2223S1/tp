@@ -261,7 +261,8 @@ public class ModelManager implements Model {
         return versionedTaskBook.equals(other.versionedTaskBook)
                 && userPrefs.equals(other.userPrefs)
                 && filteredPersons.equals(other.filteredPersons)
-                && filteredTasks.equals(other.filteredTasks);
+                && filteredTasks.equals(other.filteredTasks)
+                && sortedTasks.equals(other.sortedTasks);
     }
 
 }
