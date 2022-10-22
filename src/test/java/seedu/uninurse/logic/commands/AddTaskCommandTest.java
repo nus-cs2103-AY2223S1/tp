@@ -113,27 +113,27 @@ public class AddTaskCommandTest {
 
     @Test
     public void equals() {
-        AddTaskCommand addTaskFirstCommand = new AddTaskCommand(INDEX_FIRST_PERSON, TASK_INSULIN);
-        AddTaskCommand addTaskSecondCommand = new AddTaskCommand(INDEX_SECOND_PERSON, TASK_INSULIN);
-        AddTaskCommand addTaskThirdCommand = new AddTaskCommand(INDEX_FIRST_PERSON, TASK_HEALTH_RECORDS);
+        AddTaskCommand addTaskFirstInsulin = new AddTaskCommand(INDEX_FIRST_PERSON, TASK_INSULIN);
+        AddTaskCommand addTaskSecondInsulin = new AddTaskCommand(INDEX_SECOND_PERSON, TASK_INSULIN);
+        AddTaskCommand addTaskFirstHealthRecords = new AddTaskCommand(INDEX_FIRST_PERSON, TASK_HEALTH_RECORDS);
 
         // same object -> returns true
-        assertEquals(addTaskFirstCommand, addTaskFirstCommand);
+        assertEquals(addTaskFirstInsulin, addTaskFirstInsulin);
 
         // same values -> returns true
-        AddTaskCommand addTaskFirstCommandCopy = new AddTaskCommand(INDEX_FIRST_PERSON, TASK_INSULIN);
-        assertEquals(addTaskFirstCommand, addTaskFirstCommandCopy);
+        AddTaskCommand addTaskFirstInsulinCopy = new AddTaskCommand(INDEX_FIRST_PERSON, TASK_INSULIN);
+        assertEquals(addTaskFirstInsulin, addTaskFirstInsulinCopy);
 
         // different types -> returns false
-        assertNotEquals(1, addTaskFirstCommand);
+        assertNotEquals(1, addTaskFirstInsulin);
 
         // null -> returns false
-        assertNotEquals(null, addTaskFirstCommand);
-
-        // different task -> returns false
-        assertNotEquals(addTaskFirstCommand, addTaskSecondCommand);
+        assertNotEquals(null, addTaskFirstInsulin);
 
         // different patient index -> returns false
-        assertNotEquals(addTaskFirstCommand, addTaskThirdCommand);
+        assertNotEquals(addTaskFirstInsulin, addTaskSecondInsulin);
+
+        // different task -> returns false
+        assertNotEquals(addTaskFirstInsulin, addTaskFirstHealthRecords);
     }
 }
