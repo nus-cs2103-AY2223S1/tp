@@ -111,13 +111,15 @@ public class SupplyItem {
         builder.append("Item: ")
                 .append(getName())
                 .append(", Supplier: ")
-                .append(getSupplier())
+                .append(getSupplier().getName())
                 .append(", Price: ")
                 .append(getPrice())
-                .append(", Stock: ")
-                .append(getCurrentStock());
+                .append(", Current Stock: ")
+                .append(getCurrentStock())
+                .append(", Minimum Stock: ")
+                .append(getMinStock());
 
-        Set<Tag> tags = getSupplier().getTags();
+        Set<Tag> tags = getTags();
         if (!tags.isEmpty()) {
             builder.append("; Tags: ");
             tags.forEach(builder::append);
