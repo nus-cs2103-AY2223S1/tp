@@ -41,7 +41,7 @@ public class CommandHistory implements ReadOnlyCommandHistory {
 
     public void addToCommandHistory(String commandInput) {
         if (commandHistoryList.size() >= MAX_COMMAND_HISTORY_SIZE) {
-           commandHistoryList.remove(MAX_COMMAND_HISTORY_SIZE - 1);
+           commandHistoryList.remove(0);
         }
         commandHistoryList.add(commandInput);
     }
