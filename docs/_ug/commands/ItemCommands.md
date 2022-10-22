@@ -186,7 +186,7 @@ Tags: {vegetables}
 ---
 
 #### Edit the information of an item: `edit`
-TODO:YX
+<!-- TODO: YX -->
 Command: `edit ITEM_INDEX [n/ITEM_NAME] [qty/QUANTITY] [u/UNIT] [bgt/BOUGHT_DATE] [exp/EXPIRY_DATE]`
 NOTE: _At least one field to edit must be provided._
 
