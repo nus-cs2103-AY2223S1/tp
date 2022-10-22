@@ -252,9 +252,9 @@ public class SetCommand extends Command {
             // state check
             SetPersonDescriptor s = (SetPersonDescriptor) other;
             return this.contacts.equals(s.contacts)
-                   && this.name.equals(s.name)
-                   && this.address.equals(s.address)
-                   && this.tags.equals(s.tags)
+                   && getName().equals(s.getName())
+                   && getAddress().equals(s.getAddress())
+                   && getTags().equals(s.getTags())
                    && getRole().equals(s.getRole())
                    && getTimezone().equals(s.getTimezone());
         }
