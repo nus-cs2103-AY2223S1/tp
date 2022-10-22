@@ -308,12 +308,10 @@ and bills in the application.
 Step 3. The application displays the list of appointments and bills with the name equals to
 the first patient on the patient list panel.
 
-The select feature is now seperated for the patients, appointments and bills sections.
+The select feature is now seperated for the patients and appointments sections.
 
 Design considerations:
 1. Length of command word
-2. Whether to use a prefix for the search term
-3. Number of keywords used for the search term
 
 Alternatives:
 
