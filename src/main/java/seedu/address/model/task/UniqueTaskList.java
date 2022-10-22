@@ -3,6 +3,7 @@ package seedu.address.model.task;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
@@ -95,6 +96,24 @@ public class UniqueTaskList implements Iterable<Task> {
         }
 
         internalList.setAll(tasks);
+    }
+
+    public void filterTask() {
+        ArrayList<Task> completedTask = new ArrayList<>();
+        ArrayList<Task> uncompletedTask = new ArrayList<>();
+        int len = internalList.size();
+        TaskMark checkAgainst = new TaskMark("true");
+        for (int x = 0; x < len; x++) {
+            Task tempTask = internalList.get(x);
+            TaskMark tempTaskMark = tempTask.getTaskMark();
+            if (tempTaskMark.equals(checkAgainst)) {
+                completedTask.add(tempTask);
+            } else {
+                uncompletedTask.add(tempTask);
+            }
+        }
+        uncompletedTask.addAll(completedTask);
+        setTasks(uncompletedTask);
     }
 
     /**
