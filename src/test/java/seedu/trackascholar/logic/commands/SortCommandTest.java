@@ -28,6 +28,8 @@ public class SortCommandTest {
 
     private Comparator<Applicant> compareName = Applicant.sortByName();
     private Comparator<Applicant> compareScholarship = Applicant.sortByScholarship();
+    private Comparator<Applicant> compareStatus = Applicant.sortByStatus();
+
     private Model model = new ModelManager(getTypicalTrackAScholar(), new UserPrefs());
     private Model expectedModel = new ModelManager(getTypicalTrackAScholar(), new UserPrefs());
 
@@ -49,6 +51,16 @@ public class SortCommandTest {
         expectedModel.updateFilteredApplicantList(PREDICATE_SHOW_ALL_APPLICANTS);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
         assertEquals(Arrays.asList(DANIEL, ALICE, ELLE, FIONA, GEORGE, BENSON, CARL), model.getFilteredApplicantList());
+    }
+
+    @Test
+    public void execute_status_sortedByStatus() {
+        String expectedMessage = String.format(MESSAGE_APPLICANTS_LISTED_OVERVIEW, 7);
+        SortCommand command = new SortCommand(compareStatus);
+        expectedModel.sortApplicants(compareStatus);
+        expectedModel.updateFilteredApplicantList(PREDICATE_SHOW_ALL_APPLICANTS);
+        assertCommandSuccess(command, model, expectedMessage, expectedModel);
+        assertEquals(Arrays.asList(ALICE, CARL, ELLE, FIONA, BENSON, GEORGE,DANIEL), model.getFilteredApplicantList());
     }
 
     @Test
