@@ -1,0 +1,24 @@
+@startuml
+!include ../style.puml
+
+Participant ": AddressBookParser" as abp LOGIC_COLOR
+Participant ": GetCommandParser" as gcp LOGIC_COLOR
+Participant ": GetWardNumberCommandParser" as gwncp LOGIC_COLOR
+Participant ": GetWardNumberCommand" as gwn LOGIC_COLOR
+
+[-> abp: parseCommand(commandText)
+
+activate abp
+create gcp
+abp -> gcp
+abp -> gcp ++: parse(commandText)
+create gwncp
+gcp -> gwncp
+gcp -> gwncp ++: parse(commandText)
+create gwn
+gwncp -> gwn ++: predicate
+gwn --> gwncp --
+gwncp --> gcp --: command
+gcp --> abp --:command
+
+@enduml

@@ -42,15 +42,6 @@ public class PastAppointment extends Appointment {
         return this.diagnosis;
     }
 
-    /**
-     * Getter for appointment's date
-     * @return patient's appointment date
-     */
-    @Override
-    public LocalDate getDate() {
-        return super.getDate();
-    }
-
     @Override
     public String toString() {
         final StringBuilder builder = new StringBuilder();

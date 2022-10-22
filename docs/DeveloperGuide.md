@@ -289,6 +289,43 @@ now has an `UpcomingAppointment` associated with him.
 
 ![AppointmentObjectDiagramWithBothAppt](images/AppointmentObjectDiagramWithBothAppt.png)
 
+### Get Features (By prefixes)
+
+The get feature contains a series of sub-features that allows the user to get
+a list of persons based on the prefixes inputted. It is implemented the same way as the `AddressBookParser` class,
+but it matches the prefix of the user input instead of the command word. By having a parent `GetCommand` class,
+we can have a series of sub-commands that inherits from it. This way, new implementations of other items to be filtered
+when using the get command can be easily added in the future.
+
+This Sequence Diagram below illustrates the implementation of the `GetCommand` component.
+![GetCommandSequence](images/tracing/GetCommandSequenceDiagram.png)
+
+#### Floor Number (/fn)
+
+#### Hospital Wing (/hw)
+
+Getting the hospital wing of a patient involves the following steps:
+1. prefix "/hw" is matched in `GetCommandParser` class
+2. a new `GetHospitalWingCommandParser` instance is created and parses the user input
+3. a `GetHospitalWingCommand` instance is returned
+4. the model is updated such that the *filtered* list only displays patients who are assigned to the specified
+hospital wing
+
+#### Next of Kin (/nok)
+
+#### Ward Number (/wn)
+
+Getting the ward number of a patient involves the following steps:
+1. prefix "/wn" is matched in `GetCommandParser` class
+2. a new `GetWardNumberCommandParser` instance is created and parses the user input
+3. a `GetWardNumberCommand` instance is returned
+4. the model is updated such that the *filtered* list only displays patients who are assigned to the specified
+ward number
+
+Strict restrictions are placed to prevent too many varieties of ward number inputs. This way the regex for searching
+for ward numbers is simplified. Due to differing places having different ways of numbering their ward numbers, we
+have standardised it to be in the format of `Alphabet` + `3 Numbers`. For example, `A123`, `B241, `C005`, etc.
+
 ### \[Proposed\] Data archiving
 
 _{Explain here how the data archiving feature will be implemented}_
@@ -313,23 +350,57 @@ outpatients.
 
 #### Proposed implementation
 
-
-
-### New Add Command 
-The new `Add` Command incorporates support for the necessary fields for a patient, namely they are the: `NextOfKin`, 
-`PatientType`,`HospitalWing`, `FloorNumber`, `WardNumber` and `Medications` fields. The new command still follows the 
+### New Add Command
+The new `Add` Command incorporates support for the necessary fields for a patient, namely they are the: `NextOfKin`,
+`PatientType`,`HospitalWing`, `FloorNumber`, `WardNumber` and `Medications` fields. The new command still follows the
 flow of the old command, as illustrated in the Activity Diagram below.
 
 ![AddCommandSequenceDiagram](images/AddCommandSequenceDiagram.png)
 ![AddCommandParseArgsSequenceDiagram](images/AddCommandParseArgsSequenceDiagram.png)
 
-As the Add Command now includes more fields for the patients, the Person class has also been updated to store these 
+As the Add Command now includes more fields for the patients, the Person class has also been updated to store these
 fields, as shown in the class diagram below.
 
 ![PersonClassDiagram](images/PersonClassDiagram.png)
 
 The usage of the Add Command remains the same as before.
 
+### Get hospital wing feature (`get /hw`)
+When `get /hw` is inputted, the `AddressBookParser` object creates a `GetCommandParser` that parses the
+prefix of the `get` command inputted. If additional parameters are inputted (e.g. `get /hw south`), the extra
+parameters will be ignored, similar to how `help`, `list`, `exit` and `clear` are executed.
+
+The `GetCommandParser` object will then create the corresponding `GetHospitalWingCommand`  to be
+returned. When executing the `Command`, the model is updated such that the *filtered* list only displays 
+patients within the inputted hospital wing.
+
+![GetHospitalWingDiagram](images/GetHospitalWingSequenceDiagram.png)
+
+### Get next-of-kin data feature (`get /nok`)
+
+When `get /nok` is inputted, the `AddressBookParser` object creates a `GetCommandParser` that parses the
+prefix of the `get` command inputted. If additional parameters are inputted (e.g. `get /nok John`), the extra
+parameters will be ignored, similar to how `help`, `list`, `exit` and `clear` are executed.
+
+The `GetCommandParser` object will then create the corresponding `GetNextOfKinCommand`  to be
+returned. When executing the `Command`, the model is updated such that the *filtered* list only displays
+the next-of-kin details of the inputted patient.
+
+![GetNextOfKinSequenceDiagram](images/GetNextOfKinSequenceDiagram.png)
+
+### Get appointment by date feature (`get /appton`)
+
+When `get /appton` is inputted, the `AddressBookParser` object creates a `GetAppointmentByDateParser` that parses the
+prefix of the `get` command inputted. If additional parameters are inputted (e.g. `get .appton 12-12-1212`), the extra
+parameters will be ignored, similar to how `help`, `list`, `exit` and `clear` are executed.
+
+The `GetCommandParser` object will then create the corresponding `GetAppointmentByDateCommand`  to be
+returned. When executing the `Command`, the model is updated such that the *filtered* list only displays
+all the patients' appointment given a specific date.
+
+![GetAppointmentByDateSequenceDiagram](images/GetAppointmentByDateSequenceDiagram.png)
+
+#### Proposed implementation
 
 --------------------------------------------------------------------------------------------------------------------
 
