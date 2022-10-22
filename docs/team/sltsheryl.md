@@ -16,7 +16,8 @@ Given below are my contributions to the project.
 * Highlights:
   * Implemented a UI overhaul, with its new design inspired by Outlook. 
   * Created module panel to display the modules taken by selected student. 
-  * Handled live updates to UI when for commands such as ```mod add```, ```mod mark``` and ```addInt```. 
+  * Handled live updates to UI for commands such as ```mod add```, ```mod mark``` and ```addInt```. 
+  * Imported fonts to enhance style.
   * Added color-coded tags to modules. 
   * Handled rescaling of window size.
 * Changes to Files Made:
@@ -30,16 +31,16 @@ Given below are my contributions to the project.
   * The ```DarkTheme.css``` file was extensively refactored to update the UI interface.
 
 #### New Feature: Add Interest
-* What it does: Gives users a hassle-free way of adding new interests to a student.
+* What it does: Gives users a hassle-free way of adding new interests to a batchmate.
 * Justification: It is crucial for users to be able to add interests without overwriting current interests.
 * Highlights: 
   * Implemented ```AddInterestCommand``` which handles adding a set of interests to a student.
-  * Implemented ```AddInterestPaerserCommand``` to parse an ```addInt``` command arguments.
+  * Implemented ```AddInterestPaerserCommand``` to parse ```addInt``` command arguments.
   * Wrote tests for ```AddInterestCommandTest``` and ```AddInterestParserCommandTest```.
 
-#### Other Modifications: Align Person with Mass Linkers Purpose
-* What it does: Removes ```Address``` and add new ```Telegram```and ```GitHub``` fields to a student.
-* Justification: Since Mass Linkers serves as a CS address book, it would be a value-add to include relevant socials to a student.
+#### Other Modifications: Modify Student Information
+* What it does: Removes ```Address``` field and add ```Telegram```and ```GitHub``` fields to a student.
+* Justification: Since Mass Linkers serves as a CS address book, it would be a value-add to include relevant socials to a batchmate.
 * Highlights:
     * Added private ```Telegram``` and ```GitHub``` fields to ```Person```.
     * Created ```Telegram``` and ```GitHub``` classes to handle parsed inputs and display formatting.
@@ -50,7 +51,7 @@ Given below are my contributions to the project.
 #### Code contributed: [RepoSense link](https://nus-cs2103-ay2223s1.github.io/tp-dashboard/?search=sltsheryl&breakdown=true)
 
 #### Project management
-* Added weekly Issues - tasks that were required to be completed by the team. 
+* Added weekly Issues for the team on GitHub.
 * Facilitated the workflow on Git (PR and Issues categorisation).
 
 #### Documentation
