@@ -30,7 +30,7 @@ public class CopyCommand extends Command {
     private final Indexes targetIndex;
 
     /**
-     * Constructor for ViewCommand
+     * Constructor for CopyCommand
      */
     public CopyCommand(Indexes targetIndex) {
         this.targetIndex = targetIndex;
