@@ -1,7 +1,11 @@
 package seedu.rc4hdb.storage.csv;
 
+import static java.util.Objects.requireNonNull;
+
 import java.io.IOException;
+import java.nio.charset.StandardCharsets;
 import java.nio.file.Path;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
@@ -44,13 +48,15 @@ public class CsvReader {
      * @throws IOException if something unexpected occurs while reading the file.
      * @throws DataConversionException if the CSV file is in an invalid format.
      */
-    public Optional<ReadOnlyResidentBook> readCsv(Path filePath) throws IOException, DataConversionException {
+    public Optional<ReadOnlyResidentBook> readCsvFile(Path filePath) throws IOException, DataConversionException {
+        requireNonNull(filePath);
+        assert(isCsvFilePath(filePath));
         if (!FileUtil.isFileExists(filePath)) {
             logger.warning("File does not exist: " + filePath);
             return Optional.empty();
         }
 
-        String csvAsString = FileUtil.readFromFile(filePath).substring(1);
+        String csvAsString = cleanBom(filePath);
         String[] lines = csvAsString.split("\r\n");
         ResidentBook residentBook = new ResidentBook();
 
@@ -59,6 +65,28 @@ public class CsvReader {
         }
 
         return Optional.of(residentBook);
+    }
+
+    private boolean isCsvFilePath(Path filePath) {
+        return filePath.toString().endsWith(".csv");
+    }
+
+    /**
+     * Cleans up the BOM that exists in some UTF-8 files.
+     * Code was adapted from https://mkyong.com/java/java-how-to-add-and-remove-bom-from-utf-8-file/.
+     */
+    private String cleanBom(Path filePath) throws IOException {
+        byte[] bom = new byte[] {-17, -69, -65};
+
+        String csvAsString = FileUtil.readFromFile(filePath);
+        byte[] csvByteArray = csvAsString.getBytes(StandardCharsets.UTF_8);
+
+        if (bom[0] == csvByteArray[0]
+                && bom[1] == csvByteArray[1]
+                && bom[2] == csvByteArray[2]) {
+            return csvAsString.substring(1);
+        }
+        return csvAsString;
     }
 
     /**
@@ -92,8 +120,9 @@ public class CsvReader {
      * Parses the tagsString, based off the format specified in the CSV Format section of the UG.
      */
     private Set<Tag> parseTags(String tagsString) throws ParseException {
-        String[] tagStrings = tagsString.toLowerCase().split(" ");
-        Set<Tag> tags = ParserUtil.parseTags(List.of(tagStrings));
+        List<String> tagStrings = new ArrayList<>(List.of(tagsString.split(" ")));
+        tagStrings.removeIf((tagString) -> tagString.equalsIgnoreCase("nil"));
+        Set<Tag> tags = ParserUtil.parseTags(tagStrings);
         tags.remove(Tag.NIL_TAG);
         return tags;
     }

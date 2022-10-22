@@ -10,16 +10,20 @@ import seedu.rc4hdb.model.ReadOnlyResidentBook;
 /**
  * CSV file storage manager.
  */
-public class CsvResidentBookStorage {
+public class CsvFileManager {
 
     private CsvReader csvReader;
 
-    public CsvResidentBookStorage() {
+    public CsvFileManager() {
         this.csvReader = new CsvReader();
     }
 
+    public CsvFileManager(CsvReader csvReader) {
+        this.csvReader = csvReader;
+    }
+
     public Optional<ReadOnlyResidentBook> readCsvFile(Path filePath) throws IOException, DataConversionException {
-        return csvReader.readCsv(filePath);
+        return csvReader.readCsvFile(filePath);
     }
 
 }
