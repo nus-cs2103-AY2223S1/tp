@@ -30,12 +30,16 @@ public class CommandResult {
 
     private final boolean showScheduleList;
 
+    /** Timetable information should be shown to the user. */
+
+    private final boolean showTimeTable;
+
     /**
      * Constructs a {@code CommandResult} with the specified fields.
      */
     public CommandResult(String feedbackToUser, boolean showHelp, boolean exit,
                          boolean showModuleList, boolean showStudentList,
-                         boolean showModule, boolean showScheduleList) {
+                         boolean showModule, boolean showScheduleList, boolean showTimeTable) {
         this.feedbackToUser = requireNonNull(feedbackToUser);
         this.showHelp = showHelp;
         this.exit = exit;
@@ -43,6 +47,7 @@ public class CommandResult {
         this.showStudentList = showStudentList;
         this.showModule = showModule;
         this.showScheduleList = showScheduleList;
+        this.showTimeTable = showTimeTable;
     }
 
     /**
@@ -51,7 +56,19 @@ public class CommandResult {
      */
     public CommandResult(String feedbackToUser) {
         this(feedbackToUser, false, false, false,
-                false, false, false);
+                false, false, false, false);
+    }
+
+    /**
+     * Constructs a {@code CommandResult} with the specified fields,
+     * and showTimeTable set to the default value.
+     */
+    public CommandResult(String feedbackToUser, boolean showHelp, boolean exit,
+                         boolean showModuleList, boolean showStudentList,
+                         boolean showModule, boolean showScheduleList) {
+        this(feedbackToUser, showHelp, exit, showModuleList,
+                showStudentList, showModule, showScheduleList, false);
+
     }
 
     public String getFeedbackToUser() {
@@ -82,6 +99,10 @@ public class CommandResult {
         return showScheduleList;
     }
 
+    public boolean isShowTimeTable() {
+        return showTimeTable;
+    }
+
     @Override
     public boolean equals(Object other) {
         if (other == this) {
@@ -100,13 +121,14 @@ public class CommandResult {
                 && showModuleList == otherCommandResult.showModuleList
                 && showStudentList == otherCommandResult.showStudentList
                 && showModule == otherCommandResult.showModule
-                && showScheduleList == otherCommandResult.showScheduleList;
+                && showScheduleList == otherCommandResult.showScheduleList
+                && showTimeTable == otherCommandResult.showTimeTable;
     }
 
     @Override
     public int hashCode() {
         return Objects.hash(feedbackToUser, showHelp, exit, showModuleList,
-                showStudentList, showModule, showScheduleList);
+                showStudentList, showModule, showScheduleList, showTimeTable);
     }
 
 }

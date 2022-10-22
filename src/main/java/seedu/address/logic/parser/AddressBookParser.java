@@ -28,6 +28,7 @@ import seedu.address.logic.commands.schedule.ClearScheduleCommand;
 import seedu.address.logic.commands.schedule.DeleteScheduleCommand;
 import seedu.address.logic.commands.schedule.EditScheduleCommand;
 import seedu.address.logic.commands.schedule.ViewScheduleCommand;
+import seedu.address.logic.commands.schedule.ViewTimeTableCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 /**
@@ -111,6 +112,9 @@ public class AddressBookParser {
 
         case ModuleViewCommand.COMMAND_WORD:
             return new ModuleViewCommandParser().parse(arguments);
+
+        case ViewTimeTableCommand.COMMAND_WORD:
+            return new ViewTimeTableCommand();
 
         case ExitCommand.COMMAND_WORD:
             return new ExitCommand();

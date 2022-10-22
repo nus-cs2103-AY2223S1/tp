@@ -68,6 +68,6 @@ public class AddScheduleCommand extends Command {
         logger.fine("AddScheduleCommand executes successfully.");
         return new CommandResult(String.format(MESSAGE_SUCCESS, scheduleToAdd),
                 false, false, false,
-                false, false, true);
+                false, false, true, false);
     }
 }

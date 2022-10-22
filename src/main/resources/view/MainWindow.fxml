@@ -47,8 +47,12 @@
             <MenuItem fx:id="tabStudents" mnemonicParsing="false" onAction="#handleShowTabAllStudents" text="Students" />
           </Menu>
           <Menu mnemonicParsing="false" text="Schedules">
-            <MenuItem fx:id="tabSchedule" mnemonicParsing="false" onAction="#handleShowTabScheduleGrid"
+            <MenuItem fx:id="tabSchedule" mnemonicParsing="false" onAction="#handleShowTabAllSchedules"
                       text="Schedules" />
+          </Menu>
+          <Menu mnemonicParsing="false" text="Timetable">
+            <MenuItem fx:id="tabTimetable" mnemonicParsing="false" onAction="#handleShowTabScheduleGrid"
+                      text="Timetable" />
           </Menu>
         </MenuBar>
 
@@ -77,32 +81,32 @@
               </content>
             </Tab>
 
-          <Tab text="Module">
-            <content>
-              <HBox VBox.vgrow="ALWAYS">
-                <children>
-                <VBox fx:id="moduleInfo" styleClass="pane-with-border" minWidth="170" prefWidth="170" HBox.hgrow="ALWAYS">
-                  <padding>
-                    <Insets top="10" right="10" bottom="10" left="10" />
-                  </padding>
-                  <TextFlow textAlignment="CENTER">
-                    <Text styleClass="studentHeader" text="Students" ></Text>
-                  </TextFlow>
-                  <StackPane fx:id="moduleInfoPanelPlaceholder" VBox.vgrow="ALWAYS"/>
-                </VBox>
-                <VBox fx:id="tutorInfo" styleClass="pane-with-border" minWidth="170" prefWidth="170" HBox.hgrow="ALWAYS">
-                  <padding>
-                    <Insets top="10" right="10" bottom="10" left="10" />
-                  </padding>
-                  <TextFlow textAlignment="CENTER">
-                    <Text styleClass="studentHeader" text="Teaching Assistants" ></Text>
-                  </TextFlow>
-                  <StackPane fx:id="tutorListPanelPlaceholder" VBox.vgrow="ALWAYS"/>
-                </VBox>
-                </children>
-              </HBox>
-            </content>
-          </Tab>
+            <Tab text="Module">
+              <content>
+                <HBox VBox.vgrow="ALWAYS">
+                  <children>
+                    <VBox fx:id="moduleInfo" styleClass="pane-with-border" minWidth="170" prefWidth="170" HBox.hgrow="ALWAYS">
+                    <padding>
+                      <Insets top="10" right="10" bottom="10" left="10" />
+                    </padding>
+                    <TextFlow textAlignment="CENTER">
+                      <Text styleClass="studentHeader" text="Students" ></Text>
+                    </TextFlow>
+                    <StackPane fx:id="moduleInfoPanelPlaceholder" VBox.vgrow="ALWAYS"/>
+                  </VBox>
+                  <VBox fx:id="tutorInfo" styleClass="pane-with-border" minWidth="170" prefWidth="170" HBox.hgrow="ALWAYS">
+                    <padding>
+                      <Insets top="10" right="10" bottom="10" left="10" />
+                    </padding>
+                    <TextFlow textAlignment="CENTER">
+                      <Text styleClass="studentHeader" text="Teaching Assistants" ></Text>
+                    </TextFlow>
+                    <StackPane fx:id="tutorListPanelPlaceholder" VBox.vgrow="ALWAYS"/>
+                  </VBox>
+                  </children>
+                </HBox>
+              </content>
+            </Tab>
 
             <Tab text="Schedules">
               <content>
@@ -115,6 +119,17 @@
               </content>
             </Tab>
 
+
+            <Tab text="Timetable">
+              <content>
+                <VBox fx:id="scheduleGrid" styleClass="pane-with-border" minWidth="340" prefWidth="340" VBox.vgrow="ALWAYS">
+                  <padding>
+                    <Insets top="10" right="10" bottom="10" left="10" />
+                  </padding>
+                  <StackPane fx:id="scheduleGridPanelPlaceholder" VBox.vgrow="ALWAYS"/>
+                </VBox>
+              </content>
+            </Tab>
           </tabs>
         </TabPane>
 
