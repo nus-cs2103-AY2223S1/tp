@@ -10,7 +10,6 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.intrack.commons.exceptions.IllegalValueException;
-import seedu.intrack.model.internship.Address;
 import seedu.intrack.model.internship.Email;
 import seedu.intrack.model.internship.Internship;
 import seedu.intrack.model.internship.Name;
@@ -19,6 +18,7 @@ import seedu.intrack.model.internship.Position;
 import seedu.intrack.model.internship.Remark;
 import seedu.intrack.model.internship.Status;
 import seedu.intrack.model.internship.Task;
+import seedu.intrack.model.internship.Website;
 import seedu.intrack.model.tag.Tag;
 
 /**
@@ -33,7 +33,7 @@ class JsonAdaptedInternship {
     private final String status;
     private final String phone;
     private final String email;
-    private final String address;
+    private final String website;
     private final List<JsonAdaptedTask> taskFilled = new ArrayList<>();
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
     private final String remark;
@@ -44,7 +44,7 @@ class JsonAdaptedInternship {
     @JsonCreator
     public JsonAdaptedInternship(@JsonProperty("name") String name, @JsonProperty("position") String position,
             @JsonProperty("status") String status, @JsonProperty("phone") String phone,
-            @JsonProperty("email") String email, @JsonProperty("address") String address,
+            @JsonProperty("email") String email, @JsonProperty("website") String website,
             @JsonProperty("taskFilled") List<JsonAdaptedTask> taskFilled,
             @JsonProperty("tagged") List<JsonAdaptedTag> tagged, @JsonProperty("remark") String remark) {
         this.name = name;
@@ -52,7 +52,7 @@ class JsonAdaptedInternship {
         this.status = status;
         this.phone = phone;
         this.email = email;
-        this.address = address;
+        this.website = website;
         if (taskFilled != null) {
             this.taskFilled.addAll(taskFilled);
         }
@@ -71,7 +71,7 @@ class JsonAdaptedInternship {
         status = source.getStatus().value;
         phone = source.getPhone().value;
         email = source.getEmail().value;
-        address = source.getAddress().value;
+        website = source.getWebsite().value;
         taskFilled.addAll(source.getTasks().stream()
                 .map(JsonAdaptedTask::new)
                 .collect(Collectors.toList()));
@@ -138,13 +138,13 @@ class JsonAdaptedInternship {
         }
         final Email modelEmail = new Email(email);
 
-        if (address == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Address.class.getSimpleName()));
+        if (website == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Website.class.getSimpleName()));
         }
-        if (!Address.isValidAddress(address)) {
-            throw new IllegalValueException(Address.MESSAGE_CONSTRAINTS);
+        if (!Website.isValidWebsite(website)) {
+            throw new IllegalValueException(Website.MESSAGE_CONSTRAINTS);
         }
-        final Address modelAddress = new Address(address);
+        final Website modelWebsite = new Website(website);
 
         if (remark == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Remark.class.getSimpleName()));
@@ -155,7 +155,7 @@ class JsonAdaptedInternship {
 
         final Set<Tag> modelTags = new HashSet<>(internshipTags);
 
-        return new Internship(modelName, modelPosition, modelStatus, modelPhone, modelEmail, modelAddress, modelTasks,
+        return new Internship(modelName, modelPosition, modelStatus, modelPhone, modelEmail, modelWebsite, modelTasks,
                 modelTags, modelRemark);
     }
 

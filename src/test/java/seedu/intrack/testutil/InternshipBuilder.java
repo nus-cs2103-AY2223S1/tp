@@ -7,7 +7,6 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-import seedu.intrack.model.internship.Address;
 import seedu.intrack.model.internship.Email;
 import seedu.intrack.model.internship.Internship;
 import seedu.intrack.model.internship.Name;
@@ -16,6 +15,7 @@ import seedu.intrack.model.internship.Position;
 import seedu.intrack.model.internship.Remark;
 import seedu.intrack.model.internship.Status;
 import seedu.intrack.model.internship.Task;
+import seedu.intrack.model.internship.Website;
 import seedu.intrack.model.tag.Tag;
 import seedu.intrack.model.util.SampleDataUtil;
 
@@ -29,7 +29,7 @@ public class InternshipBuilder {
     public static final String DEFAULT_STATUS = "Progress";
     public static final String DEFAULT_PHONE = "85355255";
     public static final String DEFAULT_EMAIL = "amy@gmail.com";
-    public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
+    public static final String DEFAULT_WEBSITE = "https://careers.shopee.sg/";
     public static final Task DEFAULT_TASK = new Task("Application submitted",
             LocalDateTime.now().truncatedTo(ChronoUnit.MINUTES).format(Task.FORMATTER));
     public static final String DEFAULT_REMARK = "";
@@ -39,7 +39,7 @@ public class InternshipBuilder {
     private Status status;
     private Phone phone;
     private Email email;
-    private Address address;
+    private Website website;
     private List<Task> tasks;
     private Set<Tag> tags;
     private Remark remark;
@@ -53,7 +53,7 @@ public class InternshipBuilder {
         status = new Status(DEFAULT_STATUS);
         phone = new Phone(DEFAULT_PHONE);
         email = new Email(DEFAULT_EMAIL);
-        address = new Address(DEFAULT_ADDRESS);
+        website = new Website(DEFAULT_WEBSITE);
         tasks = new ArrayList<>();
         tasks.add(DEFAULT_TASK);
         tags = new HashSet<>();
@@ -69,7 +69,7 @@ public class InternshipBuilder {
         status = internshipToCopy.getStatus();
         phone = internshipToCopy.getPhone();
         email = internshipToCopy.getEmail();
-        address = internshipToCopy.getAddress();
+        website = internshipToCopy.getWebsite();
         tasks = new ArrayList<>(internshipToCopy.getTasks());
         tags = new HashSet<>(internshipToCopy.getTags());
         remark = internshipToCopy.getRemark();
@@ -116,10 +116,10 @@ public class InternshipBuilder {
     }
 
     /**
-     * Sets the {@code Address} of the {@code Internship} that we are building.
+     * Sets the {@code Website} of the {@code Internship} that we are building.
      */
-    public InternshipBuilder withAddress(String address) {
-        this.address = new Address(address);
+    public InternshipBuilder withWebsite(String website) {
+        this.website = new Website(website);
         return this;
     }
 
@@ -148,7 +148,7 @@ public class InternshipBuilder {
     }
 
     public Internship build() {
-        return new Internship(name, position, status, phone, email, address, tasks, tags, remark);
+        return new Internship(name, position, status, phone, email, website, tasks, tags, remark);
     }
 
 }

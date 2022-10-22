@@ -41,7 +41,7 @@ public class InternshipCard extends UiPart<Region> {
     @FXML
     private Label phone;
     @FXML
-    private Label address;
+    private Label website;
     @FXML
     private Label email;
     @FXML
@@ -69,7 +69,7 @@ public class InternshipCard extends UiPart<Region> {
         position.setText(internship.getPosition().positionName);
         status.getChildren().add(lab);
         phone.setText(internship.getPhone().value);
-        address.setText(internship.getAddress().value);
+        website.setText(internship.getWebsite().value);
         email.setText(internship.getEmail().value);
         internship.getTasks().stream()
                 .sorted(Comparator.comparing(task -> task.taskTime))

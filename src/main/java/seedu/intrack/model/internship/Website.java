@@ -7,7 +7,7 @@ import static seedu.intrack.commons.util.AppUtil.checkArgument;
  * Represents an Internship's address in the internship tracker.
  * Guarantees: immutable; is valid as declared in {@link #isValidAddress(String)}
  */
-public class Address {
+public class Website {
 
     public static final String MESSAGE_CONSTRAINTS = "Addresses can take any values, and it should not be blank";
 
@@ -20,20 +20,20 @@ public class Address {
     public final String value;
 
     /**
-     * Constructs an {@code Address}.
+     * Constructs an {@code Website}.
      *
-     * @param address A valid address.
+     * @param website A valid website.
      */
-    public Address(String address) {
-        requireNonNull(address);
-        checkArgument(isValidAddress(address), MESSAGE_CONSTRAINTS);
-        value = address;
+    public Website(String website) {
+        requireNonNull(website);
+        checkArgument(isValidWebsite(website), MESSAGE_CONSTRAINTS);
+        value = website;
     }
 
     /**
-     * Returns true if a given string is a valid address.
+     * Returns true if a given string is a valid website.
      */
-    public static boolean isValidAddress(String test) {
+    public static boolean isValidWebsite(String test) {
         return test.matches(VALIDATION_REGEX);
     }
 
@@ -45,8 +45,8 @@ public class Address {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof Address // instanceof handles nulls
-                && value.equals(((Address) other).value)); // state check
+                || (other instanceof Website // instanceof handles nulls
+                && value.equals(((Website) other).value)); // state check
     }
 
     @Override
