@@ -1,80 +1,53 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.net.URL?>
-<?import javafx.geometry.Insets?>
-<?import javafx.scene.Scene?>
-<?import javafx.scene.control.Menu?>
-<?import javafx.scene.control.MenuBar?>
-<?import javafx.scene.control.MenuItem?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.StackPane?>
-<?import javafx.scene.layout.VBox?>
-<?import javafx.stage.Stage?>
+<?import java.net.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.stage.*?>
 
-<fx:root minHeight="600" minWidth="450" onCloseRequest="#handleExit" title="ModtRekt" type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/11" xmlns:fx="http://javafx.com/fxml/1">
-  <icons>
-    <Image url="@/images/ModtRekt.png" />
-  </icons>
-  <scene>
-    <Scene>
-      <stylesheets>
-        <URL value="@DarkTheme.css" />
-        <URL value="@Extensions.css" />
-      </stylesheets>
+<fx:root minHeight="600" minWidth="800" onCloseRequest="#handleExit" title="ModtRekt" type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1">
+    <icons>
+        <Image url="@/images/ModtRekt.png" />
+    </icons>
+    <scene>
+        <Scene>
+            <stylesheets>
+                <URL value="@DarkTheme.css" />
+                <URL value="@Extensions.css" />
+            </stylesheets>
+            <VBox>
+                <MenuBar fx:id="menuBar" VBox.vgrow="NEVER">
+                    <Menu mnemonicParsing="false" text="File">
+                        <MenuItem mnemonicParsing="false" onAction="#handleExit" text="Exit" />
+                    </Menu>
+                    <Menu mnemonicParsing="false" text="Help">
+                        <MenuItem fx:id="helpMenuItem" mnemonicParsing="false" onAction="#handleHelp" text="Help" />
+                    </Menu>
+                </MenuBar>
 
-      <VBox maxHeight="-Infinity" prefHeight="532.0">
-        <MenuBar fx:id="menuBar" VBox.vgrow="NEVER">
-          <Menu mnemonicParsing="false" text="File">
-            <MenuItem mnemonicParsing="false" onAction="#handleExit" text="Exit" />
-          </Menu>
-          <Menu mnemonicParsing="false" text="Help">
-            <MenuItem fx:id="helpMenuItem" mnemonicParsing="false" onAction="#handleHelp" text="Help" />
-          </Menu>
-        </MenuBar>
-            <HBox styleClass="pane-with-border">
-               <children>
-                  <VBox HBox.hgrow="ALWAYS">
-                     <padding>
-                          <Insets bottom="10" top="10" />
-                     </padding>
-                     <children>
-                        <StackPane fx:id="profileSidePanelPlaceholder" />
-                     </children>
-                  </VBox>
-                  <VBox fx:id="moduleList" prefHeight="600.0" styleClass="pane-with-border" HBox.hgrow="ALWAYS">
-                <padding>
-                  <Insets bottom="10" left="10" right="10" top="10" />
-                </padding>
-                     <children>
-                   <StackPane fx:id="moduleListPanelPlaceholder" />
-                     </children>
-                  </VBox>
-                  <VBox fx:id="taskList" styleClass="pane-with-border" HBox.hgrow="ALWAYS">
-                     <padding>
-                        <Insets bottom="10" left="10" right="10" top="10" />
-                     </padding>
-                     <children>
-                        <StackPane fx:id="taskListPanelPlaceholder" />
-                     </children>
-                  </VBox>
-               </children>
-            </HBox>
+                <HBox spacing="15" styleClass="pane-without-border" VBox.vgrow="ALWAYS">
+                    <StackPane fx:id="profileSidePanelPlaceholder" HBox.hgrow="NEVER" />
+                    <StackPane fx:id="moduleListPanelPlaceholder" HBox.hgrow="ALWAYS" />
+                    <StackPane fx:id="taskListPanelPlaceholder" HBox.hgrow="ALWAYS" />
+                    <padding>
+                        <Insets bottom="15" left="15" right="15" top="15" />
+                    </padding>
+                </HBox>
 
-          <StackPane fx:id="resultDisplayPlaceholder" maxHeight="297.0" minHeight="100" prefHeight="297.0" prefWidth="858.0" styleClass="pane-with-border" VBox.vgrow="SOMETIMES">
-            <padding>
-                <Insets bottom="30" left="20" right="20" top="30" />
-            </padding>
-          </StackPane>
-          <StackPane fx:id="commandBoxPlaceholder" minHeight="200.0" styleClass="command-box-container" stylesheets="@DarkTheme.css">
-            <padding>
-                <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
-            </padding>
-            <VBox.margin>
-                <Insets />
-            </VBox.margin>
-          </StackPane>
-      </VBox>
-    </Scene>
-  </scene>
+                <StackPane fx:id="resultDisplayPlaceholder" minHeight="100" prefHeight="250" styleClass="pane-without-border" VBox.vgrow="ALWAYS">
+                    <padding>
+                        <Insets left="15" right="15" top="15" />
+                    </padding>
+                </StackPane>
+                <StackPane fx:id="commandBoxPlaceholder" minHeight="200" styleClass="command-box-container" stylesheets="@DarkTheme.css">
+                    <padding>
+                        <Insets bottom="15" left="15" right="15" top="15" />
+                    </padding>
+                </StackPane>
+            </VBox>
+        </Scene>
+    </scene>
 </fx:root>
