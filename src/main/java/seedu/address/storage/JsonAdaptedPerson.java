@@ -81,7 +81,7 @@ class JsonAdaptedPerson {
         phone = source.getPhone().value;
         email = source.getEmail().value;
         address = source.getAddress().value;
-        birthday = source.getBirthday().value;
+        birthday = source.getBirthday().toString();
         healthInsurance = Boolean.toString(source.getHealthInsurance().getHasInsurance());
         disabilityInsurance = Boolean.toString(source.getDisabilityInsurance().getHasInsurance());
         criticalIllnessInsurance = Boolean.toString(source.getCriticalIllnessInsurance().getHasInsurance());
@@ -142,6 +142,9 @@ class JsonAdaptedPerson {
         }
         final Address modelAddress = new Address(address);
 
+        if (!Birthday.isValidBirthday(birthday)) {
+            throw new IllegalValueException(Birthday.MESSAGE_CONSTRAINTS);
+        }
         final Birthday modelBirthday = new Birthday(birthday);
 
         final Insurance modelHealthInsurance = new HealthInsurance(Boolean.valueOf(healthInsurance));

@@ -4,13 +4,13 @@
     "phone": "94351253",
     "email": "alice@example.com",
     "address": "123, Jurong West Ave 6, #08-111",
-    "birthday": "1 December 1999",
+    "birthday": "01-12-1999",
     "tagged": [ "friends" ]
   }, {
     "name": "Alice Pauline",
     "phone": "94351253",
     "email": "pauline@example.com",
-    "birthday": "1 December 1999",
+    "birthday": "01-12-1999",
     "address": "4th street"
   } ]
 }
