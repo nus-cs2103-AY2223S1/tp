@@ -328,7 +328,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 (For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
 
-**Use case: Edit a patient**
+**Use case: Editing a patient**
 
 **MSS**
 
@@ -353,7 +353,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 2.
 
-**Use case: Add a patient**
+**Use case: Adding a patient**
 
 **MSS**
 
@@ -377,7 +377,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 
 
-**Use case: Add a bill to an appointment**
+**Use case: Adding a bill to an appointment**
 
 **MSS**
 
@@ -392,14 +392,21 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **Extensions**
 
 
-* 3a. The format for addBill command is not followed.
+* 3a. The format for AddBillCommand is not followed.
 
     * 3a.1 AddressBook shows an error message.
 
       Use case resumes at step 2.
 
+* 3b. The bill for an appointment already exists.
 
-**Use case: Edit a bill of an appointment**
+    * 3b.1 AddressBook shows an error message.
+
+      Use case resumes at step 2.
+
+
+
+**Use case: Editing a bill of an appointment**
 
 **MSS**
 
@@ -413,12 +420,17 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Extensions**
 
-* 3a. The format for editBill command is not followed.
+* 3a. The format for EditBillCommand is not followed.
     
     * 3a.1 AddressBook shows an error message.
 
       Use case resumes at step 2.
 
+* 3b. Index of the edited bill is not allowed.
+
+    * 3b.1 AddressBook shows an error message.
+
+      Use case resumes at step 2.
 
 
 ### Non-Functional Requirements
