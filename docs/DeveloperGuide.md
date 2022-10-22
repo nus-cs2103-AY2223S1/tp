@@ -73,7 +73,7 @@ The **API** of this component is specified in [`Ui.java`](https://github.com/AY2
 
 ![Structure of the UI Component](images/UiClassDiagram.png)
 
-The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `PersonListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
+The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `TaskListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
 
 The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/AY2223S1-CS2103T-T11-3/tp/tree/master/src/main/java/jarvis/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/AY2223S1-CS2103T-T11-3/tp/tree/master/src/main/resources/view/MainWindow.fxml)
 
@@ -135,11 +135,14 @@ Similar analogues exist for task and lesson data. The class diagram is similar a
 **API** : [`Storage.java`](https://github.com/AY2223S1-CS2103T-T11-3/tp/tree/master/src/main/java/jarvis/storage/Storage.java)
 
 <img src="images/StorageClassDiagram.png" width="550" />
-This diagram only shows the StudentBook Storage, but storage for Lessons and Tasks is done similarly. The only difference is the name of the classes (`JsonTaskBookStorage` instead of `JsonStudentBookStorage`, `JsonAdaptedTask` instead of `JsonAdaptedStudent` etc.)
+The above diagram only shows the UserPrefs and StudentBook Storage in full. TaskBook Storage is done similarly to StudentBook Storage. The only difference is the name of the classes (`JsonTaskBookStorage` instead of `JsonStudentBookStorage`, `JsonAdaptedTask` instead of `JsonAdaptedStudent` etc.)
+
+<img src="images/LessonStorageClassDiagram.png" width="550" />
+The LessonBook Storage is slightly different from the StudentBook and TaskBook Storages.
 
 The `Storage` component,
 * can save student, task and lesson data as well as user preference data in json format, and read them back into corresponding objects.
-* inherits from `StudentBookStorage`, `TaskBookStorage` and `UserPrefStorage`, which means it can be treated as any one of them (if only the functionality of only one is needed).
+* inherits from `StudentBookStorage`, `TaskBookStorage`, `LessonBookStorage` and `UserPrefStorage`, which means it can be treated as any one of them (if only the functionality of only one is needed).
 * depends on some classes in the `Model` component (because the `Storage` component's job is to save/retrieve objects that belong to the `Model`)
 
 ### Common classes
@@ -152,6 +155,15 @@ Classes used by multiple components are in the `jarvis.commons` package.
 
 This section describes some noteworthy details on how certain features are implemented.
 
+### List Students / Tasks
+To see the full list of students or tasks, the user keys in the valid command (`lists` or `listt`). Parsing of the user input is done and a `ListStudentCommand` is then generated. The following sequence diagram shows what happens when the `ListStudentCommand` is executed.
+
+<img src="images/ListStudentSequenceDiagram.png" width="550"/>
+
+1. The list of students in the model is updated to display all students.
+
+The implementation for listing tasks is similar.
+
 ### Mark Task as done / not done
 In order to mark a task as completed, the user keys in a valid command (e.g. `marktask 2`). Parsing of the user input is done (see the sequence diagram for deleting a student in the [Logic component](#logic-component) for a similar parsing sequence) and a `MarkTaskCommand` is then generated. The following sequence diagram shows what happens when the `MarkTaskCommand` is executed.
 
@@ -162,6 +174,85 @@ In order to mark a task as completed, the user keys in a valid command (e.g. `ma
 3. The list of tasks in the model is then updated in order to display the updated task in the UI.
 
 The implementation for marking a task as not done is similar.
+
+### Adding a Lesson
+
+In order to add a Lesson into JARVIS, the user keys in a valid command (e.g. `addmc l/mastery check 1 sd/2022-09-15T20:00 ed/2022-09-15T20:30 si/1 si/2`)
+Parsing of the user input is done and a `AddMasteryCheckCommand` is then generated. (See the sequence diagram for deleting a student in the [Logic component](#logic-component))
+
+The sequence diagram is similar apart from:
+1. the command executed and parsed (`addmc l/mastery check 1 sd/2022-09-15T20:00 ed/2022-09-15T20:30 si/1 si/2` instead of `deletestudent 2`)
+2. the different command class (`AddMasteryCheckCommandParser` and `AddMasteryCheckCommand` instead of `DeleteStudentCommandParser` and `DeleteStudentCommand`)
+3. function called in main (`addLesson` instead of `deleteStudent`)
+
+`MasteryCheckCommandParser` checks if:
+
+1. all prefixes are present
+2. lesson description is not empty
+3. start date time is before end date time
+4. student indexes are int
+
+Otherwise, `ParseException` will be thrown.
+
+The rationale behind this design is that for all `Lesson`, there must be a `LessonDesc` present.
+It is also illogical for a lesson to start after the end date time. A `Student` must also be assigned manually to a `MasteryCheck`
+as the purpose of `MasteryCheck` is to assess a student's capability.
+
+**Future Implementation**
+- Allow user to input duration of lesson(in hours) to replace end date time
+- JARVIS will calculate the end date time for user based on the given start date time and duration
+- Helps to shorten the command required to be typed as lessons are likely to end on the same day
+
+
+The following sequence diagram shows what happens when the `AddMasteryCheckCommand` is executed upon a successful command.
+
+<img src="images/AddMasteryCheckSequenceDiagram.png" width="550"/>
+
+- `AddMasteryCheckCommand` will get the students involved in the `MasteryCheck` via indexing of the `lastShownList`. If no `Student` are found based on the index, `CommandException` will be thrown, stating invalid student index.
+- After a `MasteryCheck` object is created, `Model` will check if there already exists a `MasteryCheck` in the current `LessonBook` with the same identity fields. If this is the case,`CommandException` will be thrown, stating duplicate Mastery Check.
+- `Model` will also check with existing `Lessons` if there will be a clash in `TimePeriod`. This serves as a reminder to the user that there is already another lesson at that time slot. `CommandException` will be thrown, stating clash in timeslot.
+
+
+The above explanation is also applicable to adding consultation and studio lessons.
+They are similar apart from:
+1. the different naming(`AddConsultCommandParser`, `AddStudioCommandParser` etc instead of `AddMasteryCheckParser`)
+2. for `Studio`, all `Student` currently in the `StudentBook` instead of `FilteredStudentList` will be used to create `LessonAttendance` and `LessonNotes`
+   1. Studio are tutorials and all students are expected to attend. 
+   2. As a result, adding a Studio command does not require user to input student indexes.
+
+### Adding notes for a lesson
+
+In adding notes for an existing `Lesson` in JARVIS, the user has the option to:
+1. add overall notes for a `Lesson`
+2. add `Student` specific notes for a `Lesson` 
+
+The rationale behind this design is that these are the two main types of notes that a tutor might make during a lesson. This design will help the tutor organise and view his/her notes more easily.
+
+To add an overall note for an existing `Lesson` in JARVIS, the user keys in a valid add note command (e.g addnote n/get back to the class on streams li/1). 
+
+To add a `Student` specific note to an existing `Lesson` in JARVIS, the user similarly keys in a valid add note command, but additionally specifying the student index (e.g addnote n/get back to jeff on streams li/1 si/2).
+
+Parsing of the user input is done and a `AddNoteCommand` is then generated.
+
+The following sequence diagram shows what happens when the `AddNoteCommand` is executed upon a successful command for adding to overall notes.
+
+<img src="images/AddOverallNoteSequenceDiagram.png" width="550"/>
+
+1. `AddNoteCommand` gets the list of lessons in JARVIS and gets the `Lesson` specified by the lesson index.
+2. `addOverallNotes` method of this lesson is called with the notes input by the user and the notes are added to the lesson.
+3. The list of lessons in the model is then updated to display the notes added.
+
+In the case where `AddNoteCommand` is executed for adding to student specific notes, the execution is similar except:
+ - `AddNoteCommand` additionally gets the list of students in JARVIS and the specified `Student`
+ - `addStudentNotes` is called instead of `addOverallNotes`.
+
+<img src="images/AddStudentNoteSequenceDiagram.png" width="550"/>
+
+`AddNoteCommand` checks if:
+1. The lesson index provided is within the valid range (from 1 to the number of lessons).
+2. The student index (if provided) is within the valid range (from 1 to the number of students).
+
+Otherwise, a CommandException will be thrown.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -184,6 +275,7 @@ The implementation for marking a task as not done is similar.
 * has to keep track of significant number of tasks
   * grade mission and quests
   * schedule mastery checks
+  * studio attendance and participation
 * prefer desktop apps over other types
 * can type fast
 * prefers typing to mouse interactions
@@ -214,7 +306,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* *`    | user ready to start using the app | clear all current data                                          | can get rid of the sample data used for exploring the app and input my own data            |
 | `*`      | user                              | assign different priorites to my tasks                          | can focus on the more important tasks                                                      |
 | `*`      | user ready to start using the app | import my timetable for the semester	                           | can plan my TA duties in sync with tasks from other modules                                |
-| `*`      | user                              | add in mastery check timeslots                                  | can keep track of when and who I have to see for mastery check and I can make preparations | 
+| `*`      | user                              | add in mastery check timeslots                                  | can keep track of when and who I have to see for mastery check and I can make preparations |
 | `*`      | user                              | detect if there any schedule conflicts in my upcoming tasks     | resolve those conflicts and complete all my tasks                                          |
 | `*`      | user                              | add in timeslots for consultations	                             | can keep track of details of consultation and students                                     |
 | `*`      | user                              | get the task with the next earliest deadline	                   | can plan my schedule accordingly                                                           |
@@ -296,17 +388,17 @@ Use case ends.
   * 1a1. JARVIS tells Avenger to make a request again.
 
     Use case resumes from step 1.
- 
+
 **Use case: UC5 - Delete a student**
 
-Preconditions:  There are existing students in JARVIS.  
+Preconditions:  There are existing students in JARVIS.
 
 **MSS**
 
 1. Avenger performs <ins>list students(UC3)</ins>.
 2. JARVIS displays list of students.
 3. Avenger requests to delete a student.
-4. JARVIS deletes the student.  
+4. JARVIS deletes the student.
 
 Use case ends.
 
@@ -319,7 +411,7 @@ Use case ends.
 
 **Use case: UC6 - Delete a task**
 
-Preconditions: There are existing tasks in JARVIS.  
+Preconditions: There are existing tasks in JARVIS.
 
 **MSS:**
 
@@ -336,7 +428,7 @@ Use case ends.
   * 3a1. JARVIS tells Avenger to make a request again.
 
     Use case resumes from step 2.
-    
+
 **Use case: UC7 - Clear all students and tasks**
 
 Preconditions: There are existing tasks and/or students in JARVIS.
@@ -443,10 +535,10 @@ Use case ends.
 2.  Should work without requiring an installer and be packaged in a single jar file
 3.  All data for the system should be stored locally in a human editable text file, and not be dependent on any remote server
 4.  GUI should not cause any resolution-related inconveniences for standard screen resolutions (1920 x 1080 and higher) and screen scales 100% and 125%
-5.  GUI should be usable (i.e. all functionality can be used, not necessarily optimally) for screen resolutions 1280 x 720 and higher, and for screen scales 150% 
+5.  GUI should be usable (i.e. all functionality can be used, not necessarily optimally) for screen resolutions 1280 x 720 and higher, and for screen scales 150%
 6.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands over other means of input.
 7.  The product is intended only for a single user (i.e. not a multi-user product)
-8.  The system is not required to handle the actual grading of student's works  
+8.  The system is not required to handle the actual grading of student's works
 
 *{More to be added}*
 
@@ -491,7 +583,7 @@ testers are expected to do more *exploratory* testing.
 
 1. Deleting a student while all persons are being shown
 
-   1. Prerequisites: List all student using the `liststudent` command. Multiple students in the list.
+   1. Prerequisites: List all student using the `lists` command. Multiple students in the list.
 
    1. Test case: `deletestudent 1`<br>
       Expected: First student is deleted from the list. Details of the deleted student shown in the status message. Timestamp in the status bar is updated.

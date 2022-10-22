@@ -1,0 +1,31 @@
+@startuml
+'https://plantuml.com/class-diagram
+
+!include style.puml
+skinparam arrowThickness 1.1
+skinparam arrowColor STORAGE_COLOR
+skinparam classBackgroundColor STORAGE_COLOR
+
+package "LessonBook Storage" #F4F6F6{
+Class "<<interface>>\nLessonBookStorage" as LessonBookStorage
+Class JsonLessonBookStorage
+Class JsonSerializableLessonBook
+Class "{abstract}\nJsonAdaptedLesson" as JsonAdaptedLesson
+Class JsonAdaptedConsult
+Class JsonAdaptedMasteryCheck
+Class JsonAdaptedStudio
+}
+
+Class HiddenOutside #FFFFFF
+HiddenOutside --|> LessonBookStorage
+HiddenOutside --> LessonBookStorage
+
+JsonLessonBookStorage .up.|> LessonBookStorage
+JsonLessonBookStorage ..> JsonSerializableLessonBook
+JsonSerializableLessonBook --> "*" JsonAdaptedLesson
+JsonAdaptedConsult -left|> JsonAdaptedLesson
+JsonAdaptedMasteryCheck -up|> JsonAdaptedLesson
+JsonAdaptedStudio -|> JsonAdaptedLesson
+JsonAdaptedConsult ...down[hidden] JsonAdaptedStudio
+
+@enduml
