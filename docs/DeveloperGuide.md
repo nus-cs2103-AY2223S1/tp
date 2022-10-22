@@ -316,7 +316,7 @@ is trying to find. Here we have made an assumption that there the StudentId uniq
 **Other Alternatives:**
 
 * **Alternative 1:** Extend the Edit command to include the MarkCommand 
-    * Pros: Harder to implement.
+    * Pros: Easier to implement.
     * Cons: No clear distinction between tags and project status
 
 --------------------------------------------------------------------------------------------------------------------
