@@ -32,8 +32,6 @@ public class TutorDescription extends UiPart<Region> {
     @FXML
     protected Label name;
     @FXML
-    protected Label id;
-    @FXML
     protected Label phone;
     @FXML
     protected Label address;
@@ -46,15 +44,14 @@ public class TutorDescription extends UiPart<Region> {
     @FXML
     protected FlowPane tags;
     @FXML
-    protected VBox belongedClassList;
+    protected VBox assignedClassList;
 
     /**
      * Creates a {@code TutorCode} with the given {@code Tutor} and index to display.
      */
-    public TutorDescription(Tutor tutor, int displayedIndex) {
+    public TutorDescription(Tutor tutor) {
         super(FXML);
         this.tutor = tutor;
-        id.setText(displayedIndex + ". ");
         name.setText(tutor.getName().fullName);
         phone.setText(tutor.getPhone().value);
         address.setText(tutor.getAddress().value);
@@ -66,7 +63,7 @@ public class TutorDescription extends UiPart<Region> {
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
         tutor.getTuitionClasses().stream()
                 .sorted(Comparator.comparing(tuitionClass -> tuitionClass.getName().name))
-                .forEach(tuitionClass -> belongedClassList.getChildren().add(
+                .forEach(tuitionClass -> assignedClassList.getChildren().add(
                         new AssignedClass(tuitionClass.getName().name).getRoot()));
     }
 
@@ -88,7 +85,6 @@ public class TutorDescription extends UiPart<Region> {
 
         // state check
         TutorDescription card = (TutorDescription) other;
-        return id.getText().equals(card.id.getText())
-                && tutor.equals(card.tutor);
+        return tutor.equals(card.tutor);
     }
 }

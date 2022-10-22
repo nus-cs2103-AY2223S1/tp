@@ -30,4 +30,7 @@ public class CliSyntax {
     public static final Prefix PREFIX_QUALIFICATION = new Prefix("q/");
     public static final Prefix PREFIX_INSTITUTION = new Prefix("i/");
 
+    /* Prefix definitions for Next Of Kins*/
+    public static final Prefix PREFIX_RELATIONSHIP = new Prefix("r/");
+
 }

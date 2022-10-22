@@ -49,7 +49,7 @@ public class StudentDescription extends UiPart<Region> {
     /**
      * Creates a {@code StudentCode} with the given {@code Student} and index to display.
      */
-    public StudentDescription(Student student, int displayedIndex) {
+    public StudentDescription(Student student) {
         super(FXML);
         this.student = student;
         name.setText(student.getName().fullName);

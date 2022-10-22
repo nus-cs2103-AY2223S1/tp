@@ -6,7 +6,6 @@
 <?import javafx.scene.layout.FlowPane?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.Region?>
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
@@ -20,15 +19,7 @@
       <padding>
         <Insets bottom="5" left="15" right="5" top="5" />
       </padding>
-      <HBox alignment="CENTER_LEFT">
-        <Label fx:id="id" styleClass="name-label">
-          <minWidth>
-            <!-- Ensures that the label text is never truncated -->
-            <Region fx:constant="USE_PREF_SIZE" />
-          </minWidth>
-        </Label>
-        <Label fx:id="name" styleClass="name-label" text="\$first" />
-      </HBox>
+     <Label fx:id="name" styleClass="name-label" text="\$first" />
          <HBox prefHeight="0.0" prefWidth="130.0" spacing="5.0">
             <children>
                <Label id="tutorDescriptionLabel" alignment="CENTER" contentDisplay="CENTER" minHeight="-Infinity" minWidth="-Infinity" prefHeight="15.0" prefWidth="35.0" text="Tutor" textAlignment="CENTER">
@@ -36,7 +27,7 @@
                      <Insets top="1.0" />
                   </HBox.margin>
                </Label>
-               <FlowPane fx:id="tags1" />
+               <FlowPane fx:id="tags" />
             </children>
          </HBox>
          <HBox alignment="CENTER_LEFT" spacing="5">
@@ -72,7 +63,7 @@
          <Label styleClass="prefix-label" text="Class:" />
          <StackPane fx:id="belongedClassListPlaceholder" VBox.vgrow="ALWAYS">
             <children>
-               <VBox fx:id="belongedClassList" alignment="TOP_CENTER" spacing="5.0">
+               <VBox fx:id="assignedClassList" alignment="TOP_CENTER" spacing="5.0">
                   <StackPane.margin>
                      <Insets bottom="5.0" top="5.0" />
                   </StackPane.margin>

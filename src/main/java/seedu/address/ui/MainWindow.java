@@ -221,13 +221,13 @@ public class MainWindow extends UiPart<Stage> {
         case STUDENT_LIST:
             entityDescriptionPlaceholder.getChildren().clear();
             studentDescription = new StudentDescription(
-                    logic.getFilteredStudentList().get(index), index + 1);
+                    logic.getFilteredStudentList().get(index));
             entityDescriptionPlaceholder.getChildren().add(studentDescription.getRoot());
             break;
         case TUTOR_LIST:
             entityDescriptionPlaceholder.getChildren().clear();
             tutorDescription = new TutorDescription(
-                    logic.getFilteredTutorList().get(index), index + 1);
+                    logic.getFilteredTutorList().get(index));
             entityDescriptionPlaceholder.getChildren().add(tutorDescription.getRoot());
             break;
         default:
@@ -268,13 +268,13 @@ public class MainWindow extends UiPart<Stage> {
         case STUDENT_LIST:
             listSize = logic.getFilteredStudentList().size();
             studentDescription = new StudentDescription(
-                    logic.getFilteredStudentList().get(listSize - 1), listSize - 1);
+                    logic.getFilteredStudentList().get(listSize - 1));
             entityDescriptionPlaceholder.getChildren().add(studentDescription.getRoot());
             break;
         case TUTOR_LIST:
             listSize = logic.getFilteredTutorList().size();
             tutorDescription = new TutorDescription(
-                    logic.getFilteredTutorList().get(listSize - 1), listSize - 1);
+                    logic.getFilteredTutorList().get(listSize - 1));
             entityDescriptionPlaceholder.getChildren().add(tutorDescription.getRoot());
             break;
         default:

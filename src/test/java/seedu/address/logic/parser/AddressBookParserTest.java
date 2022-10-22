@@ -25,15 +25,18 @@ import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListStudentCommand;
 import seedu.address.logic.commands.ListTuitionClassCommand;
 import seedu.address.logic.commands.ListTutorCommand;
+import seedu.address.logic.commands.NextOfKinCommand;
 import seedu.address.logic.commands.ShowCommand;
 import seedu.address.logic.commands.UnassignCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Model;
 import seedu.address.model.person.Person;
+import seedu.address.model.person.nextofkin.NextOfKin;
 import seedu.address.model.person.student.Student;
 import seedu.address.model.person.tutor.Tutor;
 import seedu.address.model.tuitionclass.TuitionClass;
 import seedu.address.testutil.EditPersonDescriptorBuilder;
+import seedu.address.testutil.NextOfKinBuilder;
 import seedu.address.testutil.PersonBuilder;
 import seedu.address.testutil.PersonUtil;
 import seedu.address.testutil.StudentBuilder;
@@ -141,6 +144,16 @@ public class AddressBookParserTest {
     public void parseCommand_unassign() throws ParseException {
         assertTrue(parser.parseCommand(
                 UnassignCommand.COMMAND_WORD + " 1" + " n/p1math", listType) instanceof UnassignCommand);
+    }
+
+    public void parseCommand_nok() throws Exception {
+        //without any arguments
+        assertTrue(parser.parseCommand(NextOfKinCommand.COMMAND_WORD + " " + INDEX_FIRST_PERSON.getOneBased(), listType)
+                instanceof NextOfKinCommand);
+        //with arguments
+        NextOfKin nextOfKin = new NextOfKinBuilder().build();
+        assertTrue(parser.parseCommand(PersonUtil.getNokCommand(nextOfKin), listType)
+                instanceof NextOfKinCommand);
     }
 
     @Test

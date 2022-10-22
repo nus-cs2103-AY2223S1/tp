@@ -10,6 +10,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_LEVEL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_QUALIFICATION;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_RELATIONSHIP;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_SCHOOL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_SUBJECT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
@@ -105,6 +106,9 @@ public class CommandTestUtil {
     public static final String INSTITUTION_DESC_AMY = " " + PREFIX_INSTITUTION + VALID_INSTITUTION_AMY;
     public static final String INSTITUTION_DESC_BOB = " " + PREFIX_INSTITUTION + VALID_INSTITUTION_BOB;
 
+    public static final String RELATIONSHIP_DESC_AMY = " " + PREFIX_RELATIONSHIP + VALID_RELATIONSHIP_AMY;
+    public static final String RELATIONSHIP_DESC_BOB = " " + PREFIX_RELATIONSHIP + VALID_RELATIONSHIP_BOB;
+
     //class related here
     public static final String ENTITY_DESC_CLASS = " " + VALID_ENTITY_CLASS;
     public static final String NAME_DESC_CLASS1 = " " + PREFIX_NAME + VALID_NAME_CLASS1;
@@ -139,6 +143,8 @@ public class CommandTestUtil {
             " " + PREFIX_QUALIFICATION + "M&c"; // '&' not allowed in qualifications name
     public static final String INVALID_INSTITUTION_DESC =
             " " + PREFIX_INSTITUTION + "& University"; // '&' not allowed in institutions name
+    public static final String INVALID_RELATIONSHIP_DESC =
+            " " + PREFIX_RELATIONSHIP + "stranger";
 
     public static final String INVALID_SUBJECT_DESC =
             " " + PREFIX_SUBJECT + "Philosophy"; //outside set subjects not allowed
