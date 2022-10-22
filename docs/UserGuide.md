@@ -3,18 +3,23 @@ layout: page
 title: User Guide
 show-toc: true
 ---
-## About
+## About FoodRem
 
-We want you to spend less time keeping track of perishable goods in your daily operations. FoodRem is a command line application that enables you to efficiently record, update and categorise food items. It is a convenient administrative tool that can answer the following questions in a flash:
+FoodRem is an Inventory Management System that empowers small Food and Beverage (F&B) restaurant managers to manage inventory and obtain insights from inventory data. After all, an inventory is not about merely a storehouse of items. It is the beating heart of any restaurant. FoodRem empowers its users to streamline inventory operations, alleviate inefficiencies such as food wastage, and focus on what truly matters to the business.
 
-* What food items are about to expire?
-* How much of each condiment do I have?
-* Which food items are newly purchases?
-* ...and many more!
+FoodRem provides greater clarity into your restaurant's inventory usage. As a restaurant manager, you can leverage upon FoodRem's Inventory Management System, where you can keep track of and update their stocks of ingredients in their daily operations. To help streamline your business decisions, FoodRem also provides deeper insights into your inventory usage, through statistics and a flexible tagging system.
 
-With a few quick commands, you can have complete control of your perishable goods, so you can focus on what is important: serving your customers, improving menu recipes, and transforming your business into the next success story.
 
-## Key Features
+This User Guide provides an in-depth documentation to help integrate FoodRem into your operational workflows. It covers how to launch FoodRem, core FoodRem features and commands, common terms and definitions used in FoodRem, and troubleshooting recommendations. In addition, a quick start guide is available that gives a whirlwind tour to help get you started. 
+
+
+Readers do not have to be familiar with the command line to use this guide effectively. The only expectation we have of you is to carefully read through the different sections.
+
+{% include page-break.html %} <!-- Force a page break -->
+
+{% include toc.md header=true show-in-toc=true ordered=true %}
+
+## Overview of Key Features
 
 1. Add, update and delete inventory items
 1. Search and sort food items by:
@@ -25,25 +30,7 @@ With a few quick commands, you can have complete control of your perishable good
    * Tags
 1. Tag items to group them into categories
 
-## Purpose, Scope and Audience
 
-### Purpose
-
-FoodRem helps small businesses to easily manage consumables and perishable goods within a single inventory to reduce time spent on managing and restocking inventory.
-
-### Scope
-
-This app is targeted at small F&B businesses which may struggle in inventory management due to a lack of streamlined process and manpower.
-
-### Audience
-
-This guide is targeted at users using FoodRem who wants to find out more about the different commands to manage their inventory in a quicker and more efficient manner.
-
-Readers do not have to be familiar with the command line to use this guide effectively. The only expectation we have of you is to carefully read through the different sections.
-
-{% include page-break.html %} <!-- Force a page break -->
-
-{% include toc.md header=true show-in-toc=true ordered=true %}
 
 ## How to use the User Guide
 
