@@ -26,20 +26,20 @@ public class CommandResult {
      */
     private final boolean showPrediction;
 
-    private final double gradePredicted;
+    private final String gradePredicted;
 
     /**
      *
      */
     public CommandResult(String feedbackToUser, boolean showHelp, boolean exit) {
-        this(feedbackToUser, showHelp, exit, false, 0.0);
+        this(feedbackToUser, showHelp, exit, false, "0.0");
     }
 
     /**
      * Constructs a {@code CommandResult} with the specified fields.
      */
     public CommandResult(String feedbackToUser, boolean showHelp, boolean exit,
-                         boolean showPrediction, double gradePredicted) {
+                         boolean showPrediction, String gradePredicted) {
         this.feedbackToUser = requireNonNull(feedbackToUser);
         this.showHelp = showHelp;
         this.exit = exit;
@@ -52,7 +52,7 @@ public class CommandResult {
      * and other fields set to their default value.
      */
     public CommandResult(String feedbackToUser) {
-        this(feedbackToUser, false, false, false, 0.0);
+        this(feedbackToUser, false, false, false, "0.0");
     }
 
     public String getFeedbackToUser() {
@@ -71,7 +71,7 @@ public class CommandResult {
         return exit;
     }
 
-    public double getGradePredicted() {
+    public String getGradePredicted() {
         return gradePredicted;
     }
 

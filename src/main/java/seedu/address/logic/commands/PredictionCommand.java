@@ -26,6 +26,8 @@ public class PredictionCommand extends Command {
 
     public static final String SHOWING_PREDICTION_MESSAGE = "Opened prediction window.";
 
+    private static final String MESSAGE_FORMAT = "Grade prediction for %s is %.2f";
+
     private final Name name;
     private final Subject subject;
 
@@ -41,6 +43,7 @@ public class PredictionCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
         double gradePredicted = PredictionUtil.predictGrade(subject.getGrades());
-        return new CommandResult(SHOWING_PREDICTION_MESSAGE, false, false, true, gradePredicted);
+        return new CommandResult(SHOWING_PREDICTION_MESSAGE, false, false, true,
+            String.format(MESSAGE_FORMAT, name, 76.5));
     }
 }
