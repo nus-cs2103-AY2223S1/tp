@@ -21,11 +21,14 @@ import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ResetCommand;
+import seedu.address.logic.commands.SetCommand;
+import seedu.address.logic.commands.SetCommand.SetPersonDescriptor;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.person.Person;
 import seedu.address.testutil.PersonBuilder;
 import seedu.address.testutil.PersonUtil;
+import seedu.address.testutil.SetPersonDescriptorBuilder;
 
 public class AddressBookParserTest {
 
@@ -81,6 +84,15 @@ public class AddressBookParserTest {
     public void parseCommand_reset() throws Exception {
         assertTrue(parser.parseCommand(ResetCommand.COMMAND_WORD) instanceof ResetCommand);
         assertTrue(parser.parseCommand(ResetCommand.COMMAND_WORD + " 3") instanceof ResetCommand);
+    }
+
+    @Test
+    public void parseCommand_set() throws Exception {
+        Person person = new PersonBuilder().build();
+        SetPersonDescriptor descriptor = new SetPersonDescriptorBuilder(person).build();
+        SetCommand command = (SetCommand) parser.parseCommand(SetCommand.COMMAND_WORD + " "
+                + PersonUtil.getSetPersonDescriptorDetails(descriptor));
+        assertEquals(new SetCommand(descriptor), command);
     }
 
     @Test

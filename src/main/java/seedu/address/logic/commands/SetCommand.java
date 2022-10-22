@@ -26,7 +26,6 @@ import seedu.address.model.person.Role;
 import seedu.address.model.person.Timezone;
 import seedu.address.model.person.contact.Contact;
 import seedu.address.model.person.contact.ContactType;
-import seedu.address.model.person.github.User;
 import seedu.address.model.tag.Tag;
 import seedu.address.ui.MainPanelName;
 
@@ -58,6 +57,7 @@ public class SetCommand extends Command {
             + PREFIX_TELEGRAM + "@johndoe";
 
     public static final String MESSAGE_UPDATE_SUCCESS = "Contact updated.";
+    public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the address book.";
 
     private final SetPersonDescriptor setPersonDescriptor;
 
@@ -79,6 +79,9 @@ public class SetCommand extends Command {
         // Create the updated person
         Person updatedPerson = createUpdatedPerson(toUpdate, setPersonDescriptor);
 
+        if (!toUpdate.isSamePerson(updatedPerson) && model.hasPerson(updatedPerson)) {
+            throw new CommandException(MESSAGE_DUPLICATE_PERSON);
+        }
         // Updates the current person
         model.setPerson(toUpdate, updatedPerson);
 
@@ -147,13 +150,27 @@ public class SetCommand extends Command {
         private Set<Tag> tags;
         private Role role;
         private Timezone timezone;
-        private User user;
         private Map<ContactType, Contact> contacts = new HashMap<>();
 
         /**
          * Instantiates a SetContactDescriptor object.
          */
         public SetPersonDescriptor() {}
+
+        /**
+         * Instantiates a copy of a given SetPersonDescriptor.
+         * Defensive copies of tags and contacts are used.
+         */
+        public SetPersonDescriptor(SetPersonDescriptor toCopy) {
+            this.setName(toCopy.name);
+            this.setAddress(toCopy.address);
+            this.setTags(toCopy.tags);
+            this.setRole(toCopy.role);
+            this.setTimezone(toCopy.timezone);
+            for (ContactType key : toCopy.contacts.keySet()) {
+                this.setContact(key, toCopy.contacts.get(key));
+            }
+        }
 
         public void setName(Name name) {
             this.name = name;
@@ -181,17 +198,13 @@ public class SetCommand extends Command {
             this.timezone = timezone;
         }
 
-        public void updateUser(User user) {
-            this.user = user;
-        }
-
         /**
          * Updates the Contacts map.
          *
          * @param typeToSet The type of Contact to be updated
          * @param contactToSet The Contact to be updated
          */
-        public void setContacts(ContactType typeToSet, Contact contactToSet) {
+        public void setContact(ContactType typeToSet, Contact contactToSet) {
             contacts.put(typeToSet, contactToSet);
         }
 
@@ -213,10 +226,6 @@ public class SetCommand extends Command {
 
         public Optional<Timezone> getTimezone() {
             return Optional.ofNullable(this.timezone);
-        }
-
-        public Optional<User> getUser() {
-            return Optional.ofNullable(this.user);
         }
 
         /**
@@ -246,9 +255,8 @@ public class SetCommand extends Command {
                    && this.name.equals(s.name)
                    && this.address.equals(s.address)
                    && this.tags.equals(s.tags)
-                   && this.role.equals(s.role)
-                   && this.timezone.equals(s.timezone)
-                   && this.user.equals(s.user);
+                   && getRole().equals(s.getRole())
+                   && getTimezone().equals(s.getTimezone());
         }
     }
 }
