@@ -61,6 +61,15 @@ class JsonAdaptedTodo {
             personTags.add(tag.toModelType());
         }
 
+        isDescriptionValid();
+        isPriorityValid();
+        final Description modelDescription = new Description(description);
+        final Priority modelPriority = new Priority(priority);
+        final Set<Tag> modelTags = new HashSet<>(personTags);
+        return new Todo(modelDescription, modelPriority, modelTags);
+    }
+
+    private void isDescriptionValid() throws IllegalValueException {
         if (description == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
                 Description.class.getSimpleName()));
@@ -68,8 +77,9 @@ class JsonAdaptedTodo {
         if (!Description.isValidDescription(description)) {
             throw new IllegalValueException(Description.MESSAGE_CONSTRAINTS);
         }
-        final Description modelDescription = new Description(description);
+    }
 
+    private void isPriorityValid() throws IllegalValueException {
         if (priority == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
                 Priority.class.getSimpleName()));
@@ -77,10 +87,6 @@ class JsonAdaptedTodo {
         if (!Priority.isValidPriority(priority)) {
             throw new IllegalValueException(Priority.MESSAGE_CONSTRAINTS);
         }
-        final Priority modelPriority = new Priority(priority);
-
-        final Set<Tag> modelTags = new HashSet<>(personTags);
-        return new Todo(modelDescription, modelPriority, modelTags);
     }
 
 }

@@ -15,26 +15,37 @@
         <columnConstraints>
             <ColumnConstraints hgrow="SOMETIMES" minWidth="10" prefWidth="150" />
         </columnConstraints>
-        <VBox alignment="CENTER_LEFT" minHeight="70" GridPane.columnIndex="0">
+        <VBox alignment="CENTER_LEFT" minHeight="105" GridPane.columnIndex="0">
             <padding>
-                <Insets bottom="5" left="15" right="5" top="5" />
+                <Insets top="5" right="5" bottom="5" left="15" />
             </padding>
-            <HBox alignment="CENTER_LEFT" spacing="5">
-                <Label fx:id="id" styleClass="cell_big_label">
-                    <minWidth>
-                        <!-- Ensures that the label text is never truncated -->
-                        <Region fx:constant="USE_PREF_SIZE" />
-                    </minWidth>
-                </Label>
-                <Label fx:id="description" styleClass="cell_big_label" text="\$first" />
-            </HBox>
-            <HBox alignment="CENTER_LEFT" spacing="5">
-                <Label fx:id="datetime" prefHeight="17.0" prefWidth="75.0" styleClass="cell_big_label" text="\$second" />
-                <FlowPane fx:id="priority" prefHeight="17.0" prefWidth="75.0" />
+            <HBox spacing="5" alignment="CENTER_LEFT">
+                <VBox style="-fx-padding:  0 20 0 10;" prefWidth="85" minWidth="85" maxWidth="85" alignment="CENTER">
+                    <Label fx:id="id" styleClass="cell_big_label_todo">
+                        <minWidth>
+                            <!-- Ensures that the label text is never truncated -->
+                            <Region fx:constant="USE_PREF_SIZE" />
+                        </minWidth>
+                    </Label>
+                </VBox>
+                <HBox>
+                    <padding>
+                        <Insets left="1"/>
+                    </padding>
+                </HBox>
+                <VBox>
+                    <Label fx:id="description" text="\$first" styleClass="cell_big_label_todo" />
+                    <HBox alignment="CENTER_LEFT" spacing="20">
+                        <Region styleClass="icon-button" id="calendarIcon"/>
+                        <Label fx:id="datetime" text="\$second" styleClass="cell_small_label_todo" />
+                        <Region styleClass="icon-button" id="dotIcon"/>
+                        <FlowPane fx:id="priority" styleClass="cell_small_label_todo" />
+                    </HBox>
+                </VBox>
             </HBox>
         </VBox>
-      <rowConstraints>
-         <RowConstraints />
-      </rowConstraints>
+        <rowConstraints>
+            <RowConstraints />
+        </rowConstraints>
     </GridPane>
 </HBox>

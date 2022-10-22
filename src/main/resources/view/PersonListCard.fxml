@@ -9,6 +9,7 @@
 <?import javafx.scene.layout.Region?>
 <?import javafx.scene.layout.VBox?>
 
+<?import javafx.scene.layout.RowConstraints?>
 <HBox id="cardPane" fx:id="cardPane" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
   <GridPane HBox.hgrow="ALWAYS">
     <columnConstraints>
@@ -19,18 +20,30 @@
         <Insets top="5" right="5" bottom="5" left="15" />
       </padding>
       <HBox spacing="5" alignment="CENTER_LEFT">
-        <Label fx:id="id" styleClass="cell_big_label">
-          <minWidth>
-            <!-- Ensures that the label text is never truncated -->
-            <Region fx:constant="USE_PREF_SIZE" />
-          </minWidth>
-        </Label>
-        <Label fx:id="name" text="\$first" styleClass="cell_big_label" />
+        <VBox style="-fx-padding:  0 20 0 10;" prefWidth="85" minWidth="85" maxWidth="85" alignment="CENTER">
+          <Label fx:id="id" styleClass="cell_big_label_person">
+            <minWidth>
+              <!-- Ensures that the label text is never truncated -->
+              <Region fx:constant="USE_PREF_SIZE" />
+            </minWidth>
+          </Label>
+        </VBox>
+        <HBox>
+          <padding>
+            <Insets left="1"/>
+          </padding>
+        </HBox>
+        <VBox>
+          <Label fx:id="name" text="\$first" styleClass="cell_big_label_person" />
+          <FlowPane fx:id="attributeA" styleClass="cell_small_label_person" />
+          <FlowPane fx:id="attributeB" styleClass="cell_small_label_person" />
+          <FlowPane fx:id="attributeC" styleClass="cell_small_label_person" />
+          <FlowPane fx:id="attributeD" styleClass="cell_small_label_person" />
+        </VBox>
       </HBox>
-      <FlowPane fx:id="attributeA" />
-      <FlowPane fx:id="attributeB" />
-      <FlowPane fx:id="attributeC" />
-      <FlowPane fx:id="attributeD" />
     </VBox>
+    <rowConstraints>
+      <RowConstraints />
+    </rowConstraints>
   </GridPane>
 </HBox>

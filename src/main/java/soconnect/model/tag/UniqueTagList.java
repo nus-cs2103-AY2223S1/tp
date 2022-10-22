@@ -47,12 +47,7 @@ public class UniqueTagList implements Iterable<Tag> {
      */
     public boolean hasTag(Tag tag) {
         requireNonNull(tag);
-        for (Tag value : tagArrayList) {
-            if (value.equals(tag)) {
-                return true;
-            }
-        }
-        return false;
+        return tagArrayList.contains(tag);
     }
 
     /**

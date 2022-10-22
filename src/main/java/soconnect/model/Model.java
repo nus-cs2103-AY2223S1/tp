@@ -103,10 +103,10 @@ public interface Model {
     boolean areTagsAvailable(Person person);
 
     /**
-     * Returns true if all the tags in the todo exist in the Tag list.
+     * Returns true if all the {@code Tag}s in the {@code Todo} exist in the Tag list.
      *
-     * @param todo The todo to be added.
-     * @return True if all the tags exists in the tagList. False if otherwise.
+     * @param todo The {@code Todo} to check.
+     * @return True if all the {@code Tag}s exist. False if otherwise.
      */
     boolean areTagsAvailable(Todo todo);
 
@@ -130,38 +130,38 @@ public interface Model {
     void setPerson(Person target, Person editedPerson);
 
     /**
-     * Sorts the SoConnect by name in alphabetical order.
+     * Sorts the SoConnect by {@code Name} in alphabetical order.
      *
      * @param isReverse Whether the sorting should be in reverse order.
      */
     void sortByName(Boolean isReverse);
 
     /**
-     * Sorts the SoConnect by phone number in increasing order.
+     * Sorts the SoConnect by {@code Phone} in increasing order.
      *
      * @param isReverse Whether the sorting should be in reverse order.
      */
     void sortByPhone(Boolean isReverse);
 
     /**
-     * Sorts the SoConnect by email in alphabetical order.
+     * Sorts the SoConnect by {@code Email} in alphabetical order.
      *
      * @param isReverse Whether the sorting should be in reverse order.
      */
     void sortByEmail(Boolean isReverse);
 
     /**
-     * Sorts the SoConnect by address in alphabetical order.
+     * Sorts the SoConnect by {@code Address} in alphabetical order.
      *
      * @param isReverse Whether the sorting should be in reverse order.
      */
     void sortByAddress(Boolean isReverse);
 
     /**
-     * Sorts the SoConnect by a tag.
-     * Contacts with the tag appear before those without the tag.
+     * Sorts the SoConnect by a {@code Tag}.
+     * Contacts with the {@code Tag} appear before those without the {@code Tag}.
      *
-     * @param tag       The tag to sort with.
+     * @param tag       The {@code Tag} to sort with.
      * @param isReverse Whether the sorting should be in reverse order.
      */
     void sortByTag(Tag tag, Boolean isReverse);
@@ -188,20 +188,23 @@ public interface Model {
 
     /**
      * Deletes the given {@code Todo}.
-     * The {@code Todo} must exist in the {@code TodoList}.
+     *
+     * @param target Must exist in the {@code TodoList}.
      */
     void deleteTodo(Todo target);
 
     /**
      * Adds the given {@code Todo}.
-     * {@code todo} must not already exist in the {@code TodoList}.
+     *
+     * @param todo Must not already exist in the {@code TodoList}.
      */
     void addTodo(Todo todo);
 
     /**
      * Replaces the given {@code Todo} with {@code editedTodo}.
-     * {@code target} must exist in the {@code TodoList}.
-     * {@code editedTodo} must not be the same as another existing {@code Todo} in the {@code TodoList}.
+     *
+     * @param target Must exist in the {@code TodoList}.
+     * @param editedTodo Must not be the same as another existing {@code Todo} in the {@code TodoList}.
      */
     void setTodo(Todo target, Todo editedTodo);
 
