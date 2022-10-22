@@ -123,6 +123,12 @@ public abstract class Person {
     public abstract String getTypeString();
 
     /**
+     * Returns the full string form of the Person's type.
+     * @return the full string form.
+     */
+    public abstract String getFullTypeString();
+
+    /**
      * Returns true if some or all the Person's module(s) match the provided set of modules.
      * @param modulesSet the Set of modules to be matched against
      * @param needsAllModules determines if all or some of the modules need to be matched.

@@ -99,6 +99,11 @@ public class Student extends Person {
     }
 
     @Override
+    public String getFullTypeString() {
+        return "Student";
+    }
+
+    @Override
     public boolean doModulesMatch(Set<String> modulesSet, boolean needsAllModules) {
         Set<String> personModulesList = getModulesSetString();
         if (needsAllModules) {

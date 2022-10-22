@@ -18,6 +18,7 @@ import java.util.StringJoiner;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.person.Person;
+import seedu.address.ui.PersonPieChart;
 
 /**
  * Adds a Professor to the address book.
@@ -87,6 +88,7 @@ public class ProfCommand extends Command {
         }
 
         model.addPerson(toAdd);
+        model.updatePieChart();
         return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
     }
 

@@ -18,6 +18,8 @@ import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.core.order.Order;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.person.Person;
+import seedu.address.ui.PersonPieChart;
+
 
 /**
  * Represents the in-memory model of the address book data.
@@ -30,6 +32,7 @@ public class ModelManager implements Model {
     private final AddressBook addressBook;
     private final UserPrefs userPrefs;
     private final FilteredList<Person> filteredPersons;
+    private PersonPieChart pieChart;
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
@@ -98,6 +101,21 @@ public class ModelManager implements Model {
     @Override
     public int getAddressBookSize() {
         return addressBook.size();
+    }
+
+    @Override
+    public PersonPieChart getPieChart() {
+        return pieChart;
+    }
+
+    @Override
+    public void setPieChart(PersonPieChart personPieChart) {
+        this.pieChart = personPieChart;
+    }
+
+    @Override
+    public void updatePieChart() {
+        pieChart.updatePieChart(filteredPersons);
     }
 
     @Override

@@ -374,3 +374,19 @@
     -fx-background-radius: 2;
     -fx-font-size: 11;
 }
+
+#pieChart {
+    -fx-text-fill: #557955;
+    -fx-font-family: "Segoe UI Semibold";
+
+}
+
+.chart-pie-label {
+    -fx-fill: white;
+}
+
+.chart-legend {
+    -fx-background-color:  #fafad2;
+    -fx-stroke: #daa520;
+}
+
