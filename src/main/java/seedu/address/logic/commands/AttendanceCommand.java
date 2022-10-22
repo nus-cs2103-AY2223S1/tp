@@ -10,6 +10,7 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.student.Attendance;
+import seedu.address.model.student.HelpTag;
 import seedu.address.model.student.Response;
 import seedu.address.model.student.StuEmail;
 import seedu.address.model.student.StuName;
@@ -65,12 +66,12 @@ public class AttendanceCommand extends Command {
         Telegram telegram = studentToMarkAttendance.getTelegram();
         StuEmail email = studentToMarkAttendance.getEmail();
         Response response = studentToMarkAttendance.getResponse();
-
+        HelpTag helpTag = studentToMarkAttendance.getHelpTag();
 
         String updatedAttendanceString = String.valueOf(Integer.parseInt(attendance.toString()) + 1);
         Attendance updatedAttendance = new Attendance(updatedAttendanceString);
 
-        return new Student(name, telegram, email, response, updatedAttendance);
+        return new Student(name, telegram, email, response, updatedAttendance, helpTag);
     }
 
     @Override
