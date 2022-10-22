@@ -90,6 +90,40 @@ public class TaskParserUtil {
             contactSet.add(new Contact(contactName));
         }
         return contactSet;
+        
+    /**
+     * Parses index inputs in {@code Collection<String> inputs} (that can contain index and non-index inputs)
+     * into a {@code Set<Index>}.
+     */
+    public static Set<Index> parseIndexesMixed(Collection<String> inputs) throws ParseException {
+        requireNonNull(inputs);
+        final Set<Index> indexSet = new HashSet<>();
+        for (String input : inputs) {
+            String trimmedInput = input.trim();
+            if (StringUtil.isInteger(trimmedInput)) {
+                if (!StringUtil.isNonZeroUnsignedInteger(trimmedInput)) {
+                    throw new ParseException(MESSAGE_INVALID_INDEX);
+                }
+                indexSet.add(Index.fromOneBased(Integer.parseInt(trimmedInput)));
+            }
+        }
+        return indexSet;
+    }
+
+    /**
+     * Parses non-index inputs in {@code Collection<String> inputs} (that can contain index and non index inputs)
+     * into a {@code Set<String>}.
+     */
+    public static Set<String> parseTextsMixed(Collection<String> inputs) {
+        requireNonNull(inputs);
+        final Set<String> textSet = new HashSet<>();
+        for (String input : inputs) {
+            String trimmedInput = input.trim();
+            if (!StringUtil.isInteger(trimmedInput)) {
+                textSet.add(trimmedInput);
+            }
+        }
+        return textSet;
     }
 
 }

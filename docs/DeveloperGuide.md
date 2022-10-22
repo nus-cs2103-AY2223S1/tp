@@ -183,6 +183,26 @@ The `delete` feature is implemented by acting on the current filtered`TaskPanel`
 5. The `Task` is deleted from the `Model`.
 6. The `GUI` is updated to show the new `TaskPanel` with the `Task` deleted.
 
+### Assign Person(s) to Task Feature
+
+#### Current Implementation
+
+The `task assign` feature assigns/unassigns contacts to the task specified by the user. The selection of tasks is implemented by acting on the current filtered `TaskPanel` with a one-based `Index` specified by the user, getting the target `Task` at the specified index. The selection of persons is implemented by acting on the current filtered `AddressBook` with one or more one-based `Index` specified by the user, getting the target `Person` at the specified index. The selection of person can also be done through specifying the full name of the person, which is matched with the target `Person` in the filtered `AddressBook`. Parameters are available to indicate if a `Person` should be assigned or unassigned.
+
+#### Example Usage of `task assign`
+
+1. User launches Arrow. The `TaskPanel` and `AddressBook` is populated with existing `Task` and `Person` entries respectively.
+2. User types in the command `task assign 1 +@2 -@Bernice Yu`. `1` is the specified index of `Task` in `TaskPanel` to be assigned to given in one-based form. `2` is the specified index of `Person` in the `AddressBook` to be assigned. "Bernice Yu" is the full name of the `Person` in the `AddressBook` to be unassigned.
+3. The `LogicManager` detects that this is a `TaskCommand`, and therefore passes the user input to the `TaskPanelParser`
+4. The `TaskPanelParser` detects the `AssignTaskCommand.COMMAND_WORD`, and therefore parses the command arguments via a `AssignTaskCommandParser`
+5. The relevant parameters are used to create an instance of a `AssignTaskCommandd`, which is then returned to the `TaskPanelParser`
+6. The `LogicManager` executes the command
+7. The command obtains the current state of the `TaskPanel` and `AddressBook` from `Model`.
+5. The `Task` to be deleted is fetched from the `TaskPanel` using the specified `Index`, using its zero-based form.
+6. The `Person`s to be assigned are fetched from the `AddressBook` using the specified `Index`, using its zero-based form, or his full name.
+7. The `Person`s are assigned/unassigned to the `Task`
+8. The `GUI` is updated to show the new `TaskPanel` with the `Task`'s assigned contacts updated.
+
 ### List Tasks feature
 
 #### Implementation
@@ -551,8 +571,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 2.  Arrow shows a list of persons.
 3.  User requests to list tasks.
 4.  Arrow shows a list of tasks.
-5.  User requests to assign persons in the persons list to a specific task in the tasks list.
-6.  Arrow assigns the persons to the task.
+5.  User requests to assign/unassign persons in the persons list to a specific task in the tasks list.
+6.  Arrow assigns/unassigns the persons to the task.
 
     Use case ends.
 
@@ -569,6 +589,12 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * 5a. The given task and/or person index is invalid.
 
     * 5a1. Arrow shows an error message.
+
+      Use case resumes at step 4.
+ 
+* 5b. The given person name is invalid.
+
+    * 5b1. Arrow shows an error message.
 
       Use case resumes at step 4.
 

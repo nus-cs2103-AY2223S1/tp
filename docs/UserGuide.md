@@ -175,17 +175,18 @@ Examples:
 
 ### Assigning contacts to a task: `task assign`
 
-Assigns the specified persons from address book to a task from task panel.
+Assigns or unassigns the specified persons from address book to a task from task panel.
 
-Format: `task assign TASK_INDEX [c/PERSON_INDEX]…​`
-* Assigns the persons at the specified PERSON_INDEXs from `address book` to task at the specified TASK_INDEX from `task list`.
+Format: `task assign TASK_INDEX [ca/PERSON_INDEX]…​ [ca/PERSON_NAME]…​ [cd/PERSON_INDEX]…​ [cd/PERSON_NAME]…​`
+* ca/: Assigns the persons at the specified PERSON_INDEXs, or with the PERSON_NAME, from `address book` to task at the specified TASK_INDEX from `task list`.
+* cd/: Unassigns the persons at the specified PERSON_INDEXs, or with the PERSON_NAME, from `address book` from task at the specified TASK_INDEX from `task list`.
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 A task can have any number of assigned contacts (including 0)
 </div>
 
 Examples:
-* `task assign 1 c/1 c/2` assigns the 1st and 2nd persons from the address book to the 1st task from task list.
+* `task assign 1 ca/1 ca/Alex Yeoh cd/Bernice Yu` assigns the 1st person and "Alex Yeoh" from the address book to the 1st task from task list, and unassigns "Bernice Yu" from the same task.
 
 
 ### Listing all persons : `list`
@@ -302,7 +303,7 @@ _Details coming soon ..._
 | **Task mark**   | `task mark TASK_INDEX`<br> e.g., `task mark 1`                                                                                                                        |
 | **Task unmark** | `task unmark TASK_INDEX`<br> e.g., `task unmark 1`                                                                                                                    |
 | **Task delete** | `task delete TASK_INDEX`<br> e.g., `task delete 2`                                                                                                                    |
-| **Task assign** | `task assign TASK_INDEX [c/PERSON_INDEX]…​`<br> e.g., `task assign 3 c/1 c/2`                                                                                         |
+| **Task assign** | `task assign TASK_INDEX [ca/PERSON_INDEX]…​ [ca/PERSON_NAME]…​ [cd/PERSON_INDEX]…​ [cd/PERSON_NAME]…​`<br> e.g., `task assign 3 ca/1 ca/Alex Yeoh cd/2`                                                                                         |
 | **Clear**       | `clear`                                                                                                                                                               |
 | **Delete**      | `delete INDEX`<br> e.g., `delete 3`                                                                                                                                   |
 | **Edit**        | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`                                           |
