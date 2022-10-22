@@ -3,6 +3,7 @@
 .root {
     -fx-base: derive(#3b2c72, 20%);
 }
+
 .background {
     -fx-background-color: derive(#3b2c72, 20%);
     background-color: #3b2c72;
