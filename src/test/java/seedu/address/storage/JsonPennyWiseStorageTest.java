@@ -6,10 +6,6 @@ import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalEntry.GROCERIES;
 import static seedu.address.testutil.TypicalEntry.SUPPER;
 import static seedu.address.testutil.TypicalEntry.getTypicalPennyWise;
-//import static seedu.address.testutil.TypicalPersons.ALICE;
-//import static seedu.address.testutil.TypicalPersons.HOON;
-//import static seedu.address.testutil.TypicalPersons.IDA;
-//import static seedu.address.testutil.TypicalPersons.getTypicalPennyWise;
 
 import java.io.IOException;
 import java.nio.file.Path;
@@ -76,8 +72,6 @@ public class JsonPennyWiseStorageTest {
 
         // Modify data, overwrite exiting file, and read back
         original.addExpenditure(GROCERIES);
-        //        original.addPerson(HOON);
-        //        original.removePerson(ALICE);
         jsonPennyWiseStorage.savePennyWise(original, filePath);
         readBack = jsonPennyWiseStorage.readPennyWise(filePath).get();
         assertEquals(original, new PennyWise(readBack));
