@@ -8,7 +8,8 @@ import java.time.format.DateTimeParseException;
  * Represents a date and time.
  */
 public class DateTime implements Comparable<DateTime> {
-    public static final String DATE_TIME_FORMATTER = "yyyy-MM-dd 'at' HH:mm";
+    public static final String DATE_TIME_FORMAT = "yyyy-MM-dd 'at' HH:mm";
+    public static final DateTimeFormatter DATE_TIME_FORMATTER = DateTimeFormatter.ofPattern(DATE_TIME_FORMAT);
     private final LocalDateTime dateTime;
 
     /**
@@ -16,8 +17,8 @@ public class DateTime implements Comparable<DateTime> {
      * @param dateTime {@code String} representing a date and time.
      */
     public DateTime(String dateTime) {
-        assert(isValidDateTimeString(dateTime));
-        this.dateTime = LocalDateTime.parse(dateTime, DateTimeFormatter.ofPattern(DATE_TIME_FORMATTER));
+        assert(isValidDateTimeString(dateTime, DATE_TIME_FORMATTER));
+        this.dateTime = LocalDateTime.parse(dateTime, DATE_TIME_FORMATTER);
     }
 
     /**
@@ -29,7 +30,7 @@ public class DateTime implements Comparable<DateTime> {
     }
 
     public String getDateTimeString() {
-        return dateTime.format(DateTimeFormatter.ofPattern(DATE_TIME_FORMATTER));
+        return dateTime.format(DATE_TIME_FORMATTER);
     }
 
     @Override
@@ -51,9 +52,9 @@ public class DateTime implements Comparable<DateTime> {
     /**
      * Returns true if {@code dateTimeString} is a valid date time.
      */
-    public static boolean isValidDateTimeString(String dateTimeString) {
+    public static boolean isValidDateTimeString(String dateTimeString, DateTimeFormatter dateTimeFormatter) {
         try {
-            LocalDateTime.parse(dateTimeString, DateTimeFormatter.ofPattern(DATE_TIME_FORMATTER));
+            LocalDateTime.parse(dateTimeString, dateTimeFormatter);
             return true;
         } catch (DateTimeParseException pe) {
             return false;

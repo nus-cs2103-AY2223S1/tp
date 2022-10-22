@@ -115,6 +115,7 @@ public class ReminderList implements ReadOnlyReminderList {
                 reminder.setNameAndPhone(newName, newPhone);
             }
         }
+        // this ensures that changes are observed, i.e. UI will be updated
         internalList.setAll(sortedList);
     }
 

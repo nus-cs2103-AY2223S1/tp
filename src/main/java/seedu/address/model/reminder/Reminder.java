@@ -71,7 +71,7 @@ public class Reminder implements Comparable<Reminder> {
      */
     public static boolean isValidReminder(String description, String dateTimeString, String name, String phone) {
         requireAllNonNull(description, dateTimeString, name, phone);
-        if (description.isEmpty() || !DateTime.isValidDateTimeString(dateTimeString)
+        if (description.isEmpty() || !DateTime.isValidDateTimeString(dateTimeString, DateTime.DATE_TIME_FORMATTER)
                 || !Name.isValidName(name) || !Phone.isValidPhone(phone)) {
             return false;
         }
