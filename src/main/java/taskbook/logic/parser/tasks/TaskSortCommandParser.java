@@ -79,4 +79,3 @@ public class TaskSortCommandParser implements Parser<TaskSortCommand> {
         return Stream.of(prefixes).allMatch(prefix -> argumentMultimap.getValue(prefix).isPresent());
     }
 }
-}
