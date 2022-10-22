@@ -58,10 +58,10 @@ public class AddCommandParser implements Parser<AddCommand> {
         Phone phone = (Phone) parseOptionalArgument(PREFIX_PHONE, argMultimap, ParserUtil::parsePhone);
         Email email = (Email) parseOptionalArgument(PREFIX_EMAIL, argMultimap, ParserUtil::parseEmail);
         Address address = (Address) parseOptionalArgument(PREFIX_ADDRESS, argMultimap, ParserUtil::parseAddress);
+        Country country = (Country) parseOptionalArgument(PREFIX_COUNTRY, argMultimap, ParserUtil::parseCountry);
         Set<Social> socialList = ParserUtil.parseSocials(argMultimap.getAllValues(PREFIX_SOCIAL));
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
         Set<Server> serverList = ParserUtil.parseServers(argMultimap.getAllValues(PREFIX_MINECRAFT_SERVER));
-        Country country = (Country) parseOptionalArgument(PREFIX_COUNTRY, argMultimap, ParserUtil::parseCountry);
         Set<GameType> gameTypeList = ParserUtil.parseGameType(argMultimap.getAllValues(PREFIX_GAME_TYPE));
 
         Person person = new Person(name, mcName, phone, email, address, socialList, tagList, serverList, country,

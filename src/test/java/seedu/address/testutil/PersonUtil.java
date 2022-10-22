@@ -45,6 +45,7 @@ public class PersonUtil {
         sb.append(PREFIX_PHONE + person.getPhone().value + " ");
         sb.append(PREFIX_EMAIL + person.getEmail().value + " ");
         sb.append(PREFIX_ADDRESS + person.getAddress().value + " ");
+        sb.append(PREFIX_COUNTRY + person.getCountry().country + " ");
         person.getSocials().stream().forEach(s -> sb.append(PREFIX_SOCIAL + s.toString() + " ")
         );
         person.getTags().stream().forEach(
@@ -53,7 +54,6 @@ public class PersonUtil {
         person.getServers().stream().forEach(
                 s -> sb.append(PREFIX_MINECRAFT_SERVER + s.getServerName() + " ")
         );
-        sb.append(PREFIX_COUNTRY + person.getCountry().country + " ");
         person.getGameType().stream().forEach(
                 s -> sb.append(PREFIX_GAME_TYPE + s.getGameTypeName() + " ")
         );
@@ -71,6 +71,7 @@ public class PersonUtil {
         descriptor.getPhone().ifPresent(phone -> sb.append(PREFIX_PHONE).append(phone.value).append(" "));
         descriptor.getEmail().ifPresent(email -> sb.append(PREFIX_EMAIL).append(email.value).append(" "));
         descriptor.getAddress().ifPresent(address -> sb.append(PREFIX_ADDRESS).append(address.value).append(" "));
+        descriptor.getCountry().ifPresent(country -> sb.append(PREFIX_COUNTRY).append(country.country).append(" "));
         if (descriptor.getSocials().isPresent()) {
             Set<Social> socials = descriptor.getSocials().get();
             if (socials.isEmpty()) {
@@ -95,8 +96,6 @@ public class PersonUtil {
                 servers.forEach(s -> sb.append(PREFIX_MINECRAFT_SERVER).append(s.getServerName()).append(" "));
             }
         }
-        descriptor.getCountry().ifPresent(country -> sb.append(PREFIX_COUNTRY)
-                .append(country.country).append(" "));
         if (descriptor.getGameTypes().isPresent()) {
             Set<GameType> gameTypes = descriptor.getGameTypes().get();
             if (gameTypes.isEmpty()) {

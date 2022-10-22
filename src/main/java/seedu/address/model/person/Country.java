@@ -14,18 +14,18 @@ public class Country {
      * The first character of the address must not be a whitespace,
      * otherwise " " (a blank string) becomes a valid input.
      */
-    public static final String VALIDATION_REGEX = ".*";
+    public static final String VALIDATION_REGEX = "[A-Za-z]*?";
 
     public final String country;
 
     /**
      * Constructs a {@code Country}.
-     * @param country
+     * @param fullCountry
      */
-    public Country(String country) {
-        requireNonNull(country);
-        checkArgument(isValidCountry(country), MESSAGE_CONSTRAINTS);
-        this.country = country;
+    public Country(String fullCountry) {
+        requireNonNull(fullCountry);
+        checkArgument(isValidCountry(fullCountry), MESSAGE_CONSTRAINTS);
+        country = fullCountry;
     }
 
     public static boolean isValidCountry(String test) {

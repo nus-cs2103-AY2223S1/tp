@@ -35,10 +35,10 @@ public class PersonBuilder {
     private Phone phone;
     private Email email;
     private Address address;
+    private Country country;
     private Set<Social> socials;
     private Set<Tag> tags;
     private Set<Server> servers;
-    private Country country;
     private Set<GameType> gameTypes;
 
     /**
@@ -50,10 +50,10 @@ public class PersonBuilder {
         phone = new Phone(DEFAULT_PHONE);
         email = new Email(DEFAULT_EMAIL);
         address = new Address(DEFAULT_ADDRESS);
+        country = new Country(DEFAULT_COUNTRY);
         socials = new HashSet<>();
         tags = new HashSet<>();
         servers = new HashSet<>();
-        country = new Country(DEFAULT_COUNTRY);
         gameTypes = new HashSet<>();
     }
 
@@ -125,6 +125,14 @@ public class PersonBuilder {
     }
 
     /**
+     * Sets the {@code country} of the {@code Person} that we are building.
+     */
+    public PersonBuilder withCountry(String country) {
+        this.country = new Country(country);
+        return this;
+    }
+
+    /**
      * Sets the {@code socials} of the {@code Person} that we are building.
      */
     public PersonBuilder withSocial(String ... socials) {
@@ -140,14 +148,6 @@ public class PersonBuilder {
         this.servers = new HashSet<>(Arrays.asList(servers).stream()
                 .map(Server::new)
                 .collect(Collectors.toList()));
-        return this;
-    }
-
-    /**
-     * Sets the {@code country} of the {@code Person} that we are building.
-     */
-    public PersonBuilder withCountry(String country) {
-        this.country = new Country(country);
         return this;
     }
 

@@ -72,6 +72,10 @@ public class Person {
         return address;
     }
 
+    public Country getCountry() {
+        return country;
+    }
+
     public Set<Social> getSocials() {
         return Collections.unmodifiableSet(socials);
     }
@@ -86,10 +90,6 @@ public class Person {
 
     public Set<Server> getServers() {
         return Collections.unmodifiableSet(servers);
-    }
-
-    public Country getCountry() {
-        return country;
     }
 
     public Set<GameType> getGameType() {

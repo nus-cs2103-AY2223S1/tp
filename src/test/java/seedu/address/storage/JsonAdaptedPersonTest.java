@@ -30,6 +30,7 @@ public class JsonAdaptedPersonTest {
     private static final String VALID_PHONE = BENSON.getPhone().toString();
     private static final String VALID_EMAIL = BENSON.getEmail().toString();
     private static final String VALID_ADDRESS = BENSON.getAddress().toString();
+    private static final String VALID_COUNTRY = BENSON.getCountry().toString();
     private static final List<JsonAdaptedSocial> VALID_SOCIALS = BENSON.getSocials().stream()
             .map(JsonAdaptedSocial::new)
             .collect(Collectors.toList());
@@ -40,7 +41,6 @@ public class JsonAdaptedPersonTest {
     private static final List<JsonAdaptedMinecraftServer> VALID_SERVERS = BENSON.getServers().stream()
             .map(JsonAdaptedMinecraftServer::new)
             .collect(Collectors.toList());
-    private static final String VALID_COUNTRY = BENSON.getCountry().toString();
     private static final List<JsonAdaptedGameType> VALID_GAME_TYPE = BENSON.getGameType().stream()
             .map(JsonAdaptedGameType::new)
             .collect(Collectors.toList());
