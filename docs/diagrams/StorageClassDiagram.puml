@@ -21,10 +21,19 @@ Class JsonSerializableStudentBook
 Class JsonAdaptedStudent
 }
 
+package "TaskBook Storage" #F4F6F6{
+
+}
+
+package "LessonBook Storage" #F4F6F6{
+
+}
+
 }
 
 Class HiddenOutside #FFFFFF
 HiddenOutside ..> Storage
+HiddenOutside ..[hidden] "LessonBook Storage"
 
 StorageManager .up.|> Storage
 StorageManager -up-> "1" UserPrefsStorage
@@ -32,6 +41,8 @@ StorageManager -up-> "1" StudentBookStorage
 
 Storage -left-|> UserPrefsStorage
 Storage -right-|> StudentBookStorage
+Storage -up-> "TaskBook Storage"
+Storage -up-> "LessonBook Storage"
 
 JsonUserPrefsStorage .up.|> UserPrefsStorage
 JsonStudentBookStorage .up.|> StudentBookStorage
