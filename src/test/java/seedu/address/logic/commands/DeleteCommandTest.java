@@ -60,7 +60,7 @@ public class DeleteCommandTest {
         firstIndexes.add(outOfBoundIndex);
         DeleteCommand deleteCommand = new DeleteCommand(firstIndexes);
 
-        assertCommandFailure(deleteCommand, model, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+        assertCommandFailure(deleteCommand, model, Messages.MESSAGE_INVALID_INDEXES);
     }
 
     @Test
@@ -90,7 +90,7 @@ public class DeleteCommandTest {
 
         DeleteCommand deleteCommand = new DeleteCommand(firstIndexes);
 
-        assertCommandFailure(deleteCommand, model, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+        assertCommandFailure(deleteCommand, model, Messages.MESSAGE_INVALID_INDEXES);
     }
 
     @Test
