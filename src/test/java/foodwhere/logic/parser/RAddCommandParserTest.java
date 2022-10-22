@@ -15,6 +15,7 @@ import static foodwhere.logic.commands.CommandTestUtil.TAG_DESC_FRIEND;
 import static foodwhere.logic.commands.CommandTestUtil.TAG_DESC_HUSBAND;
 import static foodwhere.logic.commands.CommandTestUtil.VALID_CONTENT_BOB;
 import static foodwhere.logic.commands.CommandTestUtil.VALID_DATE_BOB;
+import static foodwhere.logic.commands.CommandTestUtil.VALID_RATING_AMY;
 import static foodwhere.logic.commands.CommandTestUtil.VALID_TAG_FRIEND;
 import static foodwhere.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static foodwhere.logic.parser.CommandParserTestUtil.assertParseFailure;
@@ -37,8 +38,7 @@ public class RAddCommandParserTest {
     @Test
     public void parse_allFieldsPresent_success() {
         Review expectedReview = new ReviewBuilder(TypicalReviews.AMY).build();
-        RAddCommand expectedCommand = new RAddCommand(INDEX_FIRST_STALL, expectedReview.getDate(),
-                expectedReview.getContent(), expectedReview.getRating(), expectedReview.getTags());
+
         // whitespace only preamble
         assertParseSuccess(parser, PREAMBLE_WHITESPACE + STALL_INDEX_DESC + DATE_DESC_AMY
                 + CONTENT_DESC_AMY + RATING_DESC_AMY + TAG_DESC_FRIEND, new RAddCommand(INDEX_FIRST_STALL,
@@ -68,20 +68,41 @@ public class RAddCommandParserTest {
     }
 
     @Test
-    public void parse_compulsoryFieldMissing_failure() {
-        String expectedMessage = String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT, RAddCommand.MESSAGE_USAGE);
+    public void parse_stallIndexFieldMissing_failure() {
+        String expectedMessage = String.format(Messages.MESSAGE_MISSING_INDEX, RAddCommand.MESSAGE_USAGE);
 
         // missing name prefix
         assertParseFailure(parser, INDEX_FIRST_STALL
                         + DATE_DESC_AMY + CONTENT_DESC_AMY + RATING_DESC_AMY,
                 expectedMessage);
+    }
 
-        // missing address prefix
+    @Test
+    public void parse_dateFieldMissing_failure() {
+        String expectedMessage = String.format(Messages.MESSAGE_MISSING_DATE, RAddCommand.MESSAGE_USAGE);
+
+        // missing date prefix
         assertParseFailure(parser, STALL_INDEX_DESC + VALID_DATE_BOB + CONTENT_DESC_BOB + RATING_DESC_BOB,
                 expectedMessage);
+    }
 
-        // all prefixes missing
-        assertParseFailure(parser, INDEX_FIRST_STALL + VALID_DATE_BOB + VALID_CONTENT_BOB + VALID_DATE_BOB,
+    @Test
+    public void parse_contentFieldMissing_failure() {
+        String expectedMessage = String.format(Messages.MESSAGE_MISSING_CONTENT, RAddCommand.MESSAGE_USAGE);
+
+        // missing content prefix
+        assertParseFailure(parser, STALL_INDEX_DESC
+                        + DATE_DESC_BOB + VALID_CONTENT_BOB + RATING_DESC_AMY,
+                expectedMessage);
+    }
+
+    @Test
+    public void parse_ratingFieldMissing_failure() {
+        String expectedMessage = String.format(Messages.MESSAGE_MISSING_RATING, RAddCommand.MESSAGE_USAGE);
+
+        // missing rating prefix
+        assertParseFailure(parser, STALL_INDEX_DESC
+                        + DATE_DESC_BOB + CONTENT_DESC_BOB + VALID_RATING_AMY,
                 expectedMessage);
     }
 
@@ -100,7 +121,7 @@ public class RAddCommandParserTest {
                 + RATING_DESC_AMY + INVALID_TAG_DESC, Date.MESSAGE_CONSTRAINTS);
 
         // non-empty preamble
-        assertParseFailure(parser, PREAMBLE_NON_EMPTY + "1"
+        assertParseFailure(parser, PREAMBLE_NON_EMPTY + STALL_INDEX_DESC
                 + DATE_DESC_AMY + CONTENT_DESC_AMY + RATING_DESC_AMY,
                 String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT, RAddCommand.MESSAGE_USAGE));
     }

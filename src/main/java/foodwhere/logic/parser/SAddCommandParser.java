@@ -1,6 +1,8 @@
 package foodwhere.logic.parser;
 
 import static foodwhere.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static foodwhere.commons.core.Messages.MESSAGE_MISSING_ADDRESS;
+import static foodwhere.commons.core.Messages.MESSAGE_MISSING_NAME;
 
 import java.util.Set;
 import java.util.stream.Stream;
@@ -28,6 +30,14 @@ public class SAddCommandParser implements Parser<SAddCommand> {
                         CliSyntax.PREFIX_NAME,
                         CliSyntax.PREFIX_ADDRESS,
                         CliSyntax.PREFIX_TAG);
+
+        if (!arePrefixesPresent(argMultimap, CliSyntax.PREFIX_NAME)) {
+            throw new ParseException(String.format(MESSAGE_MISSING_NAME, SAddCommand.MESSAGE_USAGE));
+        }
+
+        if (!arePrefixesPresent(argMultimap, CliSyntax.PREFIX_ADDRESS)) {
+            throw new ParseException(String.format(MESSAGE_MISSING_ADDRESS, SAddCommand.MESSAGE_USAGE));
+        }
 
         if (!arePrefixesPresent(argMultimap,
                 CliSyntax.PREFIX_NAME,

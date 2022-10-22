@@ -15,7 +15,7 @@ public class ReviewBuilder {
     public static final String DEFAULT_NAME = "Untitled Review";
     public static final String DEFAULT_DATE = "1/1/1970";
     public static final String DEFAULT_CONTENT = "No comment.";
-    public static final Integer DEFAULT_RATING = 3;
+    public static final String DEFAULT_RATING = "3";
 
     private Name name;
     private Date date;
@@ -73,7 +73,7 @@ public class ReviewBuilder {
      * Sets the {@code Rating} of the {@code Review} that we are building.
      */
     public ReviewBuilder withRating(Integer rating) {
-        this.rating = new Rating(rating);
+        this.rating = new Rating(String.valueOf(rating));
         return this;
     }
 

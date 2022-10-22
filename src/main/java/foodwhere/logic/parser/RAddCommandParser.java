@@ -1,6 +1,11 @@
 package foodwhere.logic.parser;
 
 import static foodwhere.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static foodwhere.commons.core.Messages.MESSAGE_INVALID_STALL_DISPLAYED_INDEX;
+import static foodwhere.commons.core.Messages.MESSAGE_MISSING_CONTENT;
+import static foodwhere.commons.core.Messages.MESSAGE_MISSING_DATE;
+import static foodwhere.commons.core.Messages.MESSAGE_MISSING_INDEX;
+import static foodwhere.commons.core.Messages.MESSAGE_MISSING_RATING;
 
 import java.util.Set;
 import java.util.stream.Stream;
@@ -12,6 +17,7 @@ import foodwhere.model.commons.Tag;
 import foodwhere.model.review.Content;
 import foodwhere.model.review.Date;
 import foodwhere.model.review.Rating;
+
 
 /**
  * Parses input arguments and creates a new RAddCommand object
@@ -32,12 +38,23 @@ public class RAddCommandParser implements Parser<RAddCommand> {
                         CliSyntax.PREFIX_RATING,
                         CliSyntax.PREFIX_TAG);
 
-        if (!arePrefixesPresent(argMultimap,
-                CliSyntax.PREFIX_STALL_INDEX,
-                CliSyntax.PREFIX_DATE,
-                CliSyntax.PREFIX_CONTENT,
-                CliSyntax.PREFIX_RATING)
-                || !argMultimap.getPreamble().isEmpty()) {
+        if (!arePrefixesPresent(argMultimap, CliSyntax.PREFIX_STALL_INDEX)) {
+            throw new ParseException(String.format(MESSAGE_MISSING_INDEX, RAddCommand.MESSAGE_USAGE));
+        }
+
+        if (!arePrefixesPresent(argMultimap, CliSyntax.PREFIX_DATE)) {
+            throw new ParseException(String.format(MESSAGE_MISSING_DATE, RAddCommand.MESSAGE_USAGE));
+        }
+
+        if (!arePrefixesPresent(argMultimap, CliSyntax.PREFIX_CONTENT)) {
+            throw new ParseException(String.format(MESSAGE_MISSING_CONTENT, RAddCommand.MESSAGE_USAGE));
+        }
+
+        if (!arePrefixesPresent(argMultimap, CliSyntax.PREFIX_RATING)) {
+            throw new ParseException(String.format(MESSAGE_MISSING_RATING, RAddCommand.MESSAGE_USAGE));
+        }
+
+        if (!argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, RAddCommand.MESSAGE_USAGE));
         }
 
@@ -45,15 +62,14 @@ public class RAddCommandParser implements Parser<RAddCommand> {
         try {
             stallIndex = ParserUtil.parseIndex(argMultimap.getValue(CliSyntax.PREFIX_STALL_INDEX).get());
         } catch (ParseException pe) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, RAddCommand.MESSAGE_USAGE), pe);
+            throw new ParseException(String.format(MESSAGE_INVALID_STALL_DISPLAYED_INDEX,
+                    RAddCommand.MESSAGE_USAGE), pe);
         }
-
 
         Date date = ParserUtil.parseDate(argMultimap.getValue(CliSyntax.PREFIX_DATE).get());
         Content content = ParserUtil.parseContent(argMultimap.getValue(CliSyntax.PREFIX_CONTENT).get());
-        Rating rating = ParserUtil.parseRating(Integer.valueOf(argMultimap.getValue(CliSyntax.PREFIX_RATING).get()));
+        Rating rating = ParserUtil.parseRating(argMultimap.getValue(CliSyntax.PREFIX_RATING).get());
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(CliSyntax.PREFIX_TAG));
-
 
         return new RAddCommand(stallIndex, date, content, rating, tagList);
     }
