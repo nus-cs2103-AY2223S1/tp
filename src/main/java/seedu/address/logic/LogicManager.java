@@ -48,7 +48,11 @@ public class LogicManager implements Logic {
         commandResult = command.execute(model);
 
         model.addToCommandHistory(commandText);
-        storage.saveCommandHistory(model.getCommandHistory());
+        try {
+            storage.saveCommandHistory(model.getCommandHistory());
+        } catch (IOException e) {
+            logger.warning("Unable to save commandHistory");
+        }
         model.resetCommandHistoryIndex();
 
 

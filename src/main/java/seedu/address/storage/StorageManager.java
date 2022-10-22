@@ -1,5 +1,6 @@
 package seedu.address.storage;
 
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.nio.file.Path;
 import java.util.Optional;
@@ -82,17 +83,12 @@ public class StorageManager implements Storage {
 
     // ================ CommandHistory methods ==============================
     @Override
-    public Path getCommandHistoryFilePath() {
-        return commandHistoryStorage.getCommandHistoryFilePath();
-    }
-
-    @Override
-    public ReadOnlyCommandHistory readCommandHistory() {
+    public ReadOnlyCommandHistory readCommandHistory() throws FileNotFoundException {
         return commandHistoryStorage.readCommandHistory();
     }
 
     @Override
-    public void saveCommandHistory(ReadOnlyCommandHistory commandHistory) {
+    public void saveCommandHistory(ReadOnlyCommandHistory commandHistory) throws IOException {
         commandHistoryStorage.saveCommandHistory(commandHistory);
     }
 

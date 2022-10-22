@@ -25,11 +25,6 @@ public class TextCommandHistoryStorage implements CommandHistoryStorage {
         this.filePath = filePath;
     }
 
-    @Override
-    public Path getCommandHistoryFilePath() {
-        return filePath;
-    }
-
     private File getFile() {
         requireNonNull(filePath);
         File file = new File(filePath.toString());
@@ -52,34 +47,28 @@ public class TextCommandHistoryStorage implements CommandHistoryStorage {
      * @return
      */
     @Override
-    public ReadOnlyCommandHistory readCommandHistory() {
+    public ReadOnlyCommandHistory readCommandHistory() throws FileNotFoundException {
         File file = getFile();
         List<String> commandHistoryList = new ArrayList<>();
-        try {
             Scanner sc = new Scanner(file);
             while (sc.hasNextLine()) {
                 String commandString = sc.nextLine();
                 commandHistoryList.add(commandString);
             }
-        } catch (FileNotFoundException e) {
-            logger.fine("CommandHistory file not found");
-        }
         CommandHistory commandHistory = new CommandHistory();
         commandHistory.setCommandHistoryList(commandHistoryList);
         return commandHistory;
     }
 
     @Override
-    public void saveCommandHistory(ReadOnlyCommandHistory commandHistory) {
-        try {
+    public void saveCommandHistory(ReadOnlyCommandHistory commandHistory) throws IOException {
+        requireNonNull(commandHistory);
+        requireNonNull(filePath);
             List<String> commandHistoryList = commandHistory.getCommandHistoryList();
             FileWriter fw = new FileWriter(filePath.toString());
             for (int i = 0; i < commandHistoryList.size(); i++) {
                 fw.write(commandHistoryList.get(i) + "\n");
             }
             fw.close();
-        } catch (IOException e) {
-            logger.fine("Unable to save CommandHistory File: " + e.getMessage() + e.getStackTrace());
-        }
     }
 }

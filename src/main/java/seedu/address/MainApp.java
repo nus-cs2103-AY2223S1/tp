@@ -1,5 +1,6 @@
 package seedu.address;
 
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.nio.file.Path;
 import java.util.Optional;
@@ -88,16 +89,21 @@ public class MainApp extends Application {
                 logger.info("Data file not found. Will be starting with a sample AddressBook");
             }
             initialAddressBookData = addressBookOptional.orElseGet(SampleDataUtil::getSampleAddressBook);
-        } catch (DataConversionException e) {
+        }catch (DataConversionException e) {
             logger.warning("Data file not in the correct format. Will be starting with an empty AddressBook");
             initialAddressBookData = new AddressBook();
-        } catch (IOException e) {
+        }  catch (IOException e) {
             logger.warning("Problem while reading from the file. Will be starting with an empty AddressBook");
             initialAddressBookData = new AddressBook();
         }
 
-        ReadOnlyCommandHistory initialCommandHistoryData = storage.readCommandHistory();
-
+        ReadOnlyCommandHistory initialCommandHistoryData;
+        try{
+            initialCommandHistoryData = storage.readCommandHistory();
+        } catch (FileNotFoundException fnfe) {
+            logger.warning("Problem while reading from the Command History file. Will be starting with an empty CommandHistory");
+            initialCommandHistoryData = new CommandHistory();
+        }
         return new ModelManager(initialAddressBookData, userPrefs, initialCommandHistoryData);
     }
 

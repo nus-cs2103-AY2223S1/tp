@@ -1,5 +1,6 @@
 package seedu.address.storage;
 
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.nio.file.Path;
 import java.util.Optional;
@@ -31,10 +32,8 @@ public interface Storage extends AddressBookStorage, UserPrefsStorage, CommandHi
     void saveAddressBook(ReadOnlyAddressBook addressBook) throws IOException;
 
     @Override
-    Path getCommandHistoryFilePath();
-    @Override
-    ReadOnlyCommandHistory readCommandHistory();
+    ReadOnlyCommandHistory readCommandHistory() throws FileNotFoundException;
 
     @Override
-    void saveCommandHistory(ReadOnlyCommandHistory commandHistory);
+    void saveCommandHistory(ReadOnlyCommandHistory commandHistory) throws IOException;
 }
