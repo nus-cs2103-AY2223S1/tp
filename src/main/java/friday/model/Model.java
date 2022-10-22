@@ -5,6 +5,8 @@ import java.util.Comparator;
 import java.util.function.Predicate;
 
 import friday.commons.core.GuiSettings;
+import friday.model.alias.Alias;
+import friday.model.alias.ReservedKeyword;
 import friday.model.student.Student;
 import javafx.collections.ObservableList;
 
@@ -91,4 +93,33 @@ public interface Model {
      * @throws NullPointerException if {@code comparator} is null.
      */
     void updateSortedStudentList(Comparator<Student> comparator);
+
+    /**
+     * Returns true if an alias with the same identity as {@code alias} exists in FRIDAY.
+     */
+    boolean hasAlias(Alias alias);
+
+    /**
+     * Returns true if an alias with the same value as {@code key} exists in FRIDAY.
+     */
+    boolean hasAlias(String key);
+
+    /**
+     * Adds an alias that maps to keyword to FRIDAY.
+     * The alias must not already exist in FRIDAY.
+     * The keyword must be a valid reserved keyword.
+     */
+    void addAlias(Alias alias, ReservedKeyword keyword);
+
+    /**
+     * Deletes the given alias.
+     * The alias must exist in STUDENT.
+     */
+    void removeAlias(Alias target);
+
+    /**
+     * Returns the keyword map by a {@code key}.
+     * {@code key} must exist in FRIDAY.
+     */
+    String getKeyword(String key);
 }
