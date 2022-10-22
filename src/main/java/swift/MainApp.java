@@ -90,7 +90,10 @@ public class MainApp extends Application {
             initialData = new AddressBook();
         }
 
-        return new ModelManager(initialData, userPrefs);
+        ModelManager newModelManager = new ModelManager(initialData, userPrefs);
+        // Hide all Tasks by Default
+        newModelManager.updateFilteredTaskList(Model.PREDICATE_HIDE_ALL_TASKS);
+        return newModelManager;
     }
 
     private void initLogging(Config config) {
