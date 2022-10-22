@@ -198,6 +198,7 @@ Figure 2 below shows how the add condition operation works:
 ![add_condition_sequence diagram](images/AddConditionSequenceDiagram.png)
 _Figure 2: Sequence diagram showing interactions within the Logic component when a user executes an add condition command_
 
+_To be updated ..._
 
 ### \[Proposed\] Undo/redo feature
 
