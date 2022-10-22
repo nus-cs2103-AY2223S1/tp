@@ -10,6 +10,7 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import jeryl.fyp.commons.exceptions.IllegalValueException;
+import jeryl.fyp.model.student.Deadline;
 import jeryl.fyp.model.student.Email;
 import jeryl.fyp.model.student.ProjectName;
 import jeryl.fyp.model.student.ProjectStatus;
@@ -30,6 +31,7 @@ class JsonAdaptedStudent {
     private final String email;
     private final String projectName;
     private final String projectStatus;
+    private final List<JsonAdaptedDeadline> deadlines = new ArrayList<>();
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
 
     /**
@@ -39,12 +41,16 @@ class JsonAdaptedStudent {
     public JsonAdaptedStudent(@JsonProperty("name") String studentName, @JsonProperty("studentId") String studentId,
                               @JsonProperty("email") String email, @JsonProperty("projectName") String projectName,
                               @JsonProperty("projectStatus") String projectStatus,
+                              @JsonProperty("deadlines") List<JsonAdaptedDeadline> deadlines,
                               @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
         this.studentName = studentName;
         this.studentId = studentId;
         this.email = email;
         this.projectName = projectName;
         this.projectStatus = projectStatus;
+        if (deadlines != null) {
+            this.deadlines.addAll(deadlines);
+        }
         if (tagged != null) {
             this.tagged.addAll(tagged);
         }
@@ -59,6 +65,9 @@ class JsonAdaptedStudent {
         email = source.getEmail().value;
         projectName = source.getProjectName().fullProjectName;
         projectStatus = source.getProjectStatus().projectStatus;
+        deadlines.addAll(source.getDeadlineList().asUnmodifiableObservableList().stream()
+                .map(JsonAdaptedDeadline::new)
+                .collect(Collectors.toList()));
         tagged.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
@@ -71,8 +80,12 @@ class JsonAdaptedStudent {
      */
     public Student toModelType() throws IllegalValueException {
         final List<Tag> studentTags = new ArrayList<>();
+        final List<Deadline> studentDeadlines = new ArrayList<>();
         for (JsonAdaptedTag tag : tagged) {
             studentTags.add(tag.toModelType());
+        }
+        for (JsonAdaptedDeadline ddl : deadlines) {
+            studentDeadlines.add(ddl.toModelType());
         }
 
         if (studentName == null) {
@@ -119,8 +132,11 @@ class JsonAdaptedStudent {
 
         final Set<Tag> modelTags = new HashSet<>(studentTags);
 
-        return new Student(modelStudentName, modelStudentId, modelEmail,
+        Student student = new Student(modelStudentName, modelStudentId, modelEmail,
                 modelProjectName, modelProjectStatus, modelTags);
+        // restore deadlines
+        student.getDeadlineList().setDeadlines(studentDeadlines);
+        return student;
     }
 
 }

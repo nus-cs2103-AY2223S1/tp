@@ -8,7 +8,7 @@ import jeryl.fyp.model.Model;
 public class HelpDeleteCommand extends HelpCommand {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Shows DELETE Command usage instructions.\n"
-            + "Example: " + COMMAND_WORD + " " + DeleteCommand.COMMAND_WORD;
+            + "Example: " + COMMAND_WORD + " " + DeleteStudentCommand.COMMAND_WORD;
 
     public static final String SHOWING_HELP_DELETE_MESSAGE = "DELETE Command:\n"
             + "Removes a FYP from the FYP manager.\n"

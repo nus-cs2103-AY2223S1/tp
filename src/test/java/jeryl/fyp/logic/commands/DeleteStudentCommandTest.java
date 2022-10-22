@@ -21,9 +21,9 @@ import jeryl.fyp.model.student.StudentId;
 
 /**
  * Contains integration tests (interaction with the Model) and unit tests for
- * {@code DeleteCommand}.
+ * {@code DeleteStudentCommand}.
  */
-public class DeleteCommandTest {
+public class DeleteStudentCommandTest {
 
     private Model model = new ModelManager(getTypicalFypManager(), new UserPrefs());
 
@@ -31,9 +31,9 @@ public class DeleteCommandTest {
     public void execute_validStudentIdUnfilteredList_success() {
         Student studentToDelete = model.getFilteredStudentList().get(INDEX_FIRST_STUDENT.getZeroBased());
         StudentId validStudentId = studentToDelete.getStudentId();
-        DeleteCommand deleteCommand = new DeleteCommand(validStudentId);
+        DeleteStudentCommand deleteCommand = new DeleteStudentCommand(validStudentId);
 
-        String expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_STUDENT_SUCCESS, studentToDelete);
+        String expectedMessage = String.format(DeleteStudentCommand.MESSAGE_DELETE_STUDENT_SUCCESS, studentToDelete);
 
         ModelManager expectedModel = new ModelManager(model.getFypManager(), new UserPrefs());
         expectedModel.deleteStudent(studentToDelete);
@@ -45,7 +45,7 @@ public class DeleteCommandTest {
     public void execute_nonexistentStudentIdUnfilteredList_throwsCommandException() {
         Student studentToDelete = model.getFilteredStudentList().get(INDEX_FIRST_STUDENT.getZeroBased());
         StudentId nonexistentStudentId = new StudentId(VALID_STUDENT_ID_AMY);
-        DeleteCommand deleteCommand = new DeleteCommand(nonexistentStudentId);
+        DeleteStudentCommand deleteCommand = new DeleteStudentCommand(nonexistentStudentId);
 
         ModelManager expectedModel = new ModelManager(model.getFypManager(), new UserPrefs());
         expectedModel.deleteStudent(studentToDelete);
@@ -59,9 +59,9 @@ public class DeleteCommandTest {
 
         Student studentToDelete = model.getFilteredStudentList().get(INDEX_FIRST_STUDENT.getZeroBased());
         StudentId validStudentId = studentToDelete.getStudentId();
-        DeleteCommand deleteCommand = new DeleteCommand(validStudentId);
+        DeleteStudentCommand deleteCommand = new DeleteStudentCommand(validStudentId);
 
-        String expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_STUDENT_SUCCESS, studentToDelete);
+        String expectedMessage = String.format(DeleteStudentCommand.MESSAGE_DELETE_STUDENT_SUCCESS, studentToDelete);
 
         ModelManager expectedModel = new ModelManager(model.getFypManager(), new UserPrefs());
         expectedModel.deleteStudent(studentToDelete);
@@ -76,24 +76,24 @@ public class DeleteCommandTest {
 
         Student studentToDelete = model.getFilteredStudentList().get(INDEX_FIRST_STUDENT.getZeroBased());
         StudentId nonexistentStudentId = new StudentId(VALID_STUDENT_ID_AMY);
-        DeleteCommand deleteCommand = new DeleteCommand(nonexistentStudentId);
+        DeleteStudentCommand deleteStudentCommand = new DeleteStudentCommand(nonexistentStudentId);
 
         ModelManager expectedModel = new ModelManager(model.getFypManager(), new UserPrefs());
         expectedModel.deleteStudent(studentToDelete);
 
-        assertCommandFailure(deleteCommand, model, Messages.MESSAGE_STUDENT_NOT_FOUND);
+        assertCommandFailure(deleteStudentCommand, model, Messages.MESSAGE_STUDENT_NOT_FOUND);
     }
 
     @Test
     public void equals() {
-        DeleteCommand deleteFirstCommand = new DeleteCommand(new StudentId(VALID_STUDENT_ID_AMY));
-        DeleteCommand deleteSecondCommand = new DeleteCommand(new StudentId(VALID_STUDENT_ID_BOB));
+        DeleteStudentCommand deleteFirstCommand = new DeleteStudentCommand(new StudentId(VALID_STUDENT_ID_AMY));
+        DeleteStudentCommand deleteSecondCommand = new DeleteStudentCommand(new StudentId(VALID_STUDENT_ID_BOB));
 
         // same object -> returns true
         assertTrue(deleteFirstCommand.equals(deleteFirstCommand));
 
         // same values -> returns true
-        DeleteCommand deleteFirstCommandCopy = new DeleteCommand(new StudentId(VALID_STUDENT_ID_AMY));
+        DeleteStudentCommand deleteFirstCommandCopy = new DeleteStudentCommand(new StudentId(VALID_STUDENT_ID_AMY));
         assertTrue(deleteFirstCommand.equals(deleteFirstCommandCopy));
 
         // different types -> returns false

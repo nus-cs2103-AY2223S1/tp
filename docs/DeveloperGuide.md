@@ -154,6 +154,36 @@ Classes used by multiple components are in the `jeryl.fyp.commons` package.
 
 This section describes some noteworthy details on how certain features are implemented.
 
+### Adding a student to the FYP manager
+This feature allows professors as users to keep track of students that are supervised under, as well as the project each student is working on.
+
+#### Implementation details
+The add student feature is facilitated by `AddStudentCommandParser` and `AddStudentCommand`. The operation is exposed in the `Model` interface as `Model#addStudent()`.
+
+Given below is an example usage scenario and how the add student mechanism behaves at each step:
+1. The user enters the add student command and provides the name of the student, the student ID, the project name, and the student's email.
+2. `FypManagerParser` creates a new `AddStudentCommandParser` after preliminary processing of user input.
+3. `AddStudentCommandParser` then processes the input again and creates an `AddStudentCommand`.
+4. `LogicManager` executes the `AddStudentCommand` using the `LogicManager#execute()` method.
+5. `AddStudentCommand` checks if the student has existed before using `Model#hasStudent()`.
+6. If the student is not inside the student list yet, `AddStudentCommand` calls `Model#addStudent()` and passes the student as the parameter.
+7. Finally, `AddStudentCommand` creates a `CommandResult` and returns it to `LogicManager` to complete the command.
+
+The following sequence diagram shows how the add student command works:
+
+<img src="images/AddStudentSequenceDiagram.png" width="550" />
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `UndoCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+
+</div>
+
+The following activity diagram summarizes what happens when a user executes an add student command.
+
+<img src="images/AddStudentActivityDiagram.png" width="550" />
+
+#### Design considerations
+An add student command is designed to add a single student along with its detail particulars such as one's student ID, student name, project name, and email. These details are the important details every professor needs from a student so that the professor can understand the work of the student and is able to contact the student when needed.
+
 ### \[Proposed\] Undo/redo feature
 
 #### Proposed Implementation
@@ -234,10 +264,60 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 _{more aspects and alternatives to be added}_
 
-### \[Proposed\] Data archiving
+### \[Proposed\] `MarkCommand` Feature
+#### Proposed Implementation
+The proposed MarkCommand Feature marks the Project Status of an FYP project as one of 3 possible statuses 
+{***YTS***, ***IP***, ***DONE***}. Currently these are the only 3 statuses supported, although more may be implemented
+later on if there are other meaningful statuses.
 
-_{Explain here how the data archiving feature will be implemented}_
+The MarkCommand Feature sets a default status of `YTS` whenever a new FYP project is added to the FYP Manager, and the 
+MarkCommand allows us to accordingly the project Status to either `IP` if the student is still
+working on the FYP project, or `DONE` once the FYP project has been completed. 
 
+Given below is an example usage scenario and how MarkCommand is utilised:
+
+Step 1: The Professor launches the application for the first time. `FypManager` will be initialised with the 
+current Fyp Manager state.
+
+Step 2: The Professor tries adding a student to the Fyp Manager by executing the command 
+`add id/A0123456G ...`. Note that here we have set the default project Status to be `YTS` since
+the project has just been added. 
+
+![MarkCommandState1](images/MarkCommandState1.png)
+
+Step 3: Suppose that the student Jane Doe has now started on the project. The Professor wishes to update the 
+project status for Jane to be `IP` instead of `YTS`, hence the Professor will execute the command 
+`mark id/A0123456G s/IP` to update the status accordingly.
+
+![MarkCommandState2](images/MarkCommandState2.png)
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** If the student ID is incorrect or the 
+status is not one of the statuses {`YTS`, `IP`, `DONE`}, then the command will not be executed and an appropriate
+error message will be shown.
+
+</div>
+
+The following sequence diagram shows how the MarkCommand operation works:
+
+![MarkCommandSequenceDiagram](images/MarkCommandSequenceDiagram.png)
+
+#### Design considerations:
+
+**Implementation Choice: Why MarkCommand is implemented this way**
+* We have only chosen to consider 3 general statuses {`YTS`, `IP`, `DONE`} since these are very general 
+labels that the Professor can use to identify the current status of an FYP project. This makes it very user friendly
+  since there are a fixed number of statuses that can be used.
+  
+* We have also used the studentId to uniquely identify the project of the student the Professor
+is trying to find. Here we have made an assumption that there the StudentId uniquely identifies the FYP project
+  (i.e. a student can only take exactly 1 FYP project under a certain Professor)
+  This makes the Mark Command relatively easy to use in practice.
+
+**Other Alternatives:**
+
+* **Alternative 1:** Extend the Edit command to include the MarkCommand 
+    * Pros: Harder to implement.
+    * Cons: No clear distinction between tags and project status
 
 --------------------------------------------------------------------------------------------------------------------
 
