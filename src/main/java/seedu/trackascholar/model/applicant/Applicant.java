@@ -24,6 +24,8 @@ public class Applicant {
     // Data fields
     private final ApplicationStatus applicationStatus;
     private final Scholarship scholarship;
+
+    private final Pin pin;
     private final Set<Tag> tags = new HashSet<>();
 
     /**
@@ -37,6 +39,7 @@ public class Applicant {
         this.email = email;
         this.scholarship = scholarship;
         this.applicationStatus = applicationStatus;
+        this.pin = new Pin(false);
         this.tags.addAll(tags);
     }
 
@@ -58,6 +61,14 @@ public class Applicant {
 
     public ApplicationStatus getApplicationStatus() {
         return applicationStatus;
+    }
+
+    public Pin getPin() {
+        return pin;
+    }
+
+    public void setHasPinnedInPin(boolean hasPinned) {
+        this.pin.setHasPinned(hasPinned);
     }
 
     /**

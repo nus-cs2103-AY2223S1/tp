@@ -124,6 +124,7 @@ public class ModelManager implements Model {
         trackAScholar.sortApplicants(comparator);
     }
 
+
     //=========== Filtered Applicant List Accessors =============================================================
 
     /**
