@@ -1,0 +1,31 @@
+{
+  "projects" : [ {
+    "name" : "Individual Project",
+    "repository" : "johndoe/ip",
+    "deadline" : "2022-03-03",
+    "client" : {
+      "name" : "Alex Yeoh",
+      "phone" : "87438807",
+      "email" : "alexyeoh@example.com",
+      "clientId" : "1",
+      "projects" : [ ]
+    },
+    "issues" : [ ],
+    "projectId" : "1"
+  } ],
+  "issues" : [ {
+    "description" : "Refactor UI Classes",
+    "priority" : "LOW",
+    "deadline" : "2022-01-01",
+    "status" : "false",
+    "issueId" : "1",
+    "project" : "1"
+  }, {
+    "description" : "Refactor UI Classes",
+    "priority" : "LOW",
+    "deadline" : "2022-01-01",
+    "status" : "false",
+    "issueId" : "1",
+    "project" : "1"
+  } ]
+}

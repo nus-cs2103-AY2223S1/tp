@@ -32,7 +32,6 @@ public class MainWindow extends UiPart<Stage> {
     private Logic logic;
 
     // Independent Ui parts residing in this Ui container
-    private PersonListPanel personListPanel;
     private ProjectListPanel projectListPanel;
     private IssueListPanel issueListPanel;
     private ClientListPanel clientListPanel;
@@ -209,10 +208,6 @@ public class MainWindow extends UiPart<Stage> {
 
     private void handleDefaultView(DefaultView defaultView) {
         logic.setDefaultView(defaultView);
-    }
-
-    public PersonListPanel getPersonListPanel() {
-        return personListPanel;
     }
 
     public ClientListPanel getClientListPanel() {

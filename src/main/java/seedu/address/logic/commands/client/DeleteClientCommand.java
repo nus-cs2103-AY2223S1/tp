@@ -46,12 +46,11 @@ public class DeleteClientCommand extends ClientCommand {
                 for (Project p: clientToDelete.getProjects()) {
                     p.removeClient();
                 }
+                ui.showClients();
+                model.updateFilteredClientList(Model.PREDICATE_SHOW_ALL_CLIENTS);
                 return new CommandResult(String.format(MESSAGE_SUCCESS, clientToDelete));
             }
         }
-
-        ui.showClients();
-        model.updateFilteredClientList(Model.PREDICATE_SHOW_ALL_CLIENTS);
 
         throw new CommandException(Messages.MESSAGE_INVALID_ISSUE_DISPLAYED_ID);
 

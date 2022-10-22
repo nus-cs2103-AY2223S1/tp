@@ -1,0 +1,61 @@
+@startuml
+!include style.puml
+
+box Ui MODEL_COLOR_T1
+participant ":MainWindow" as MainWindow MODEL_COLOR
+end box
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
+participant ":IssueCommandParser" as IssueCommandParser LOGIC_COLOR
+participant ":EditIssueCommand" as EditIssueCommand LOGIC_COLOR
+end box
+
+[-> MainWindow : executeCommand\n(issue -e iid/1 desc/To edit \n issue command d/2022-04-09 p/1)
+activate MainWindow
+
+MainWindow --> LogicManager : execute\n(issue -e iid/1 desc/To edit \n issue command d/2022-04-09 p/1)
+activate LogicManager
+
+LogicManager -> AddressBookParser : parseCommand\n(issue -e iid/1 desc/To edit \n issue command d/2022-04-09 p/1)
+activate AddressBookParser
+
+create IssueCommandParser
+AddressBookParser -> IssueCommandParser
+activate IssueCommandParser
+IssueCommandParser --> AddressBookParser
+deactivate IssueCommandParser
+AddressBookParser -> IssueCommandParser : parse\n(issue -e iid/1 desc/To edit \n issue command d/2022-04-09 p/1)
+activate IssueCommandParser
+
+create EditIssueCommand
+IssueCommandParser -> EditIssueCommand
+activate EditIssueCommand
+
+EditIssueCommand --> IssueCommandParser
+deactivate EditIssueCommand
+
+IssueCommandParser --> AddressBookParser
+deactivate IssueCommandParser
+
+AddressBookParser --> LogicManager
+deactivate AddressBookParser
+
+LogicManager -> EditIssueCommand : execute\n(model, ui)
+activate EditIssueCommand
+
+EditIssueCommand --> LogicManager : result
+deactivate EditIssueCommand
+
+EditIssueCommand -[hidden]-> LogicManager : result
+destroy EditIssueCommand
+
+MainWindow <-- LogicManager : result
+deactivate LogicManager
+MainWindow --> MainWindow : swapIssueListDisplay()
+
+[<-- MainWindow : result
+deactivate MainWindow
+
+@enduml

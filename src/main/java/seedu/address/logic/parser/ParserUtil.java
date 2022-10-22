@@ -3,16 +3,12 @@ package seedu.address.logic.parser;
 import static java.util.Objects.requireNonNull;
 
 import java.util.ArrayList;
-import java.util.Collection;
-import java.util.HashSet;
-import java.util.Set;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Deadline;
 import seedu.address.model.Name;
-import seedu.address.model.client.Address;
 import seedu.address.model.client.Client;
 import seedu.address.model.client.ClientEmail;
 import seedu.address.model.client.ClientId;
@@ -24,7 +20,6 @@ import seedu.address.model.issue.Priority;
 import seedu.address.model.project.Project;
 import seedu.address.model.project.ProjectId;
 import seedu.address.model.project.Repository;
-import seedu.address.model.tag.Tag;
 
 
 /**
@@ -134,21 +129,6 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String address} into an {@code Address}.
-     * Leading and trailing whitespaces will be trimmed.
-     *
-     * @throws ParseException if the given {@code address} is invalid.
-     */
-    public static Address parseAddress(String address) throws ParseException {
-        requireNonNull(address);
-        String trimmedAddress = address.trim();
-        if (!Address.isValidAddress(trimmedAddress)) {
-            throw new ParseException(Address.MESSAGE_CONSTRAINTS);
-        }
-        return new Address(trimmedAddress);
-    }
-
-    /**
      * Parses a {@code String email} into an {@code ClientEmail}.
      * Leading and trailing whitespaces will be trimmed.
      *
@@ -161,33 +141,6 @@ public class ParserUtil {
             throw new ParseException(ClientEmail.MESSAGE_CONSTRAINTS);
         }
         return new ClientEmail(trimmedEmail);
-    }
-
-    /**
-     * Parses a {@code String tag} into a {@code Tag}.
-     * Leading and trailing whitespaces will be trimmed.
-     *
-     * @throws ParseException if the given {@code tag} is invalid.
-     */
-    public static Tag parseTag(String tag) throws ParseException {
-        requireNonNull(tag);
-        String trimmedTag = tag.trim();
-        if (!Tag.isValidTagName(trimmedTag)) {
-            throw new ParseException(Tag.MESSAGE_CONSTRAINTS);
-        }
-        return new Tag(trimmedTag);
-    }
-
-    /**
-     * Parses {@code Collection<String> tags} into a {@code Set<Tag>}.
-     */
-    public static Set<Tag> parseTags(Collection<String> tags) throws ParseException {
-        requireNonNull(tags);
-        final Set<Tag> tagSet = new HashSet<>();
-        for (String tagName : tags) {
-            tagSet.add(parseTag(tagName));
-        }
-        return tagSet;
     }
 
     /**

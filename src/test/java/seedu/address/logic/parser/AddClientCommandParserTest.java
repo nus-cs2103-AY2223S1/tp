@@ -55,9 +55,9 @@ public class AddClientCommandParserTest {
 
         // only name
         assertParseSuccess(parser, AddProjectCommand.COMMAND_FLAG, NAME_DESC_AMY + PROJECT_DESC_EMPTY_PROJECT,
-                new AddClientCommand(clientWithoutModel, new ProjectId.EmptyProjectId()));
+                new AddClientCommand(clientWithoutModel, ProjectId.EmptyProjectId.EMPTY_PROJECT_ID));
         assertParseSuccess(parser, AddProjectCommand.COMMAND_FLAG, NAME_DESC_AMY + PROJECT_DESC_PROJECT,
-                new AddClientCommand(clientWithoutModel, new ProjectId.EmptyProjectId()));
+                new AddClientCommand(clientWithoutModel, ProjectId.EmptyProjectId.EMPTY_PROJECT_ID));
 
     }
 
@@ -71,10 +71,10 @@ public class AddClientCommandParserTest {
         // email missing
         assertParseSuccess(parser, AddProjectCommand.COMMAND_FLAG,
                 NAME_DESC_AMY + PHONE_DESC_AMY + PROJECT_DESC_EMPTY_PROJECT,
-                new AddClientCommand(clientWithoutModel, new ProjectId.EmptyProjectId()));
+                new AddClientCommand(clientWithoutModel, ProjectId.EmptyProjectId.EMPTY_PROJECT_ID));
         assertParseSuccess(parser, AddProjectCommand.COMMAND_FLAG,
                 NAME_DESC_AMY + PHONE_DESC_AMY + PROJECT_DESC_PROJECT,
-                new AddClientCommand(clientWithoutModel, new ProjectId.EmptyProjectId()));
+                new AddClientCommand(clientWithoutModel, ProjectId.EmptyProjectId.EMPTY_PROJECT_ID));
 
     }
 
@@ -88,10 +88,10 @@ public class AddClientCommandParserTest {
         // phone missing
         assertParseSuccess(parser, AddProjectCommand.COMMAND_FLAG,
                 NAME_DESC_AMY + EMAIL_DESC_AMY + PROJECT_DESC_EMPTY_PROJECT,
-                new AddClientCommand(clientWithoutModel, new ProjectId.EmptyProjectId()));
+                new AddClientCommand(clientWithoutModel, ProjectId.EmptyProjectId.EMPTY_PROJECT_ID));
         assertParseSuccess(parser, AddProjectCommand.COMMAND_FLAG,
                 NAME_DESC_AMY + EMAIL_DESC_AMY + PROJECT_DESC_PROJECT,
-                new AddClientCommand(clientWithoutModel, new ProjectId.EmptyProjectId()));
+                new AddClientCommand(clientWithoutModel, ProjectId.EmptyProjectId.EMPTY_PROJECT_ID));
 
     }
 

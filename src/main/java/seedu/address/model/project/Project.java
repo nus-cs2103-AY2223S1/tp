@@ -68,6 +68,10 @@ public class Project implements ComparableByName<Project>, HasIntegerIdentifier<
         return this.projectId.getIdInt();
     }
 
+    public void addIssue(Issue toAddIssue) {
+        this.issueList.add(toAddIssue);
+    }
+
     /**
      * Represents an Empty Project.
      */
