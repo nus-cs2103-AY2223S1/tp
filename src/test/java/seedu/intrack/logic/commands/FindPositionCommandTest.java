@@ -18,30 +18,30 @@ import org.junit.jupiter.api.Test;
 import seedu.intrack.model.Model;
 import seedu.intrack.model.ModelManager;
 import seedu.intrack.model.UserPrefs;
-import seedu.intrack.model.internship.NameContainsKeywordsPredicate;
+import seedu.intrack.model.internship.PositionContainsKeywordsPredicate;
 
 /**
- * Contains integration tests (interaction with the Model) for {@code FindCommand}.
+ * Contains integration tests (interaction with the Model) for {@code FindPositionCommand}.
  */
-public class FindCommandTest {
+public class FindPositionCommandTest {
     private Model model = new ModelManager(getTypicalInTrack(), new UserPrefs());
     private Model expectedModel = new ModelManager(getTypicalInTrack(), new UserPrefs());
 
     @Test
     public void equals() {
-        NameContainsKeywordsPredicate firstPredicate =
-                new NameContainsKeywordsPredicate(Collections.singletonList("first"));
-        NameContainsKeywordsPredicate secondPredicate =
-                new NameContainsKeywordsPredicate(Collections.singletonList("second"));
+        PositionContainsKeywordsPredicate firstPredicate =
+                new PositionContainsKeywordsPredicate(Collections.singletonList("first"));
+        PositionContainsKeywordsPredicate secondPredicate =
+                new PositionContainsKeywordsPredicate(Collections.singletonList("second"));
 
-        FindCommand findFirstCommand = new FindCommand(firstPredicate);
-        FindCommand findSecondCommand = new FindCommand(secondPredicate);
+        FindPositionCommand findFirstCommand = new FindPositionCommand(firstPredicate);
+        FindPositionCommand findSecondCommand = new FindPositionCommand(secondPredicate);
 
         // same object -> returns true
         assertTrue(findFirstCommand.equals(findFirstCommand));
 
         // same values -> returns true
-        FindCommand findFirstCommandCopy = new FindCommand(firstPredicate);
+        FindPositionCommand findFirstCommandCopy = new FindPositionCommand(firstPredicate);
         assertTrue(findFirstCommand.equals(findFirstCommandCopy));
 
         // different types -> returns false
@@ -57,8 +57,8 @@ public class FindCommandTest {
     @Test
     public void execute_zeroKeywords_noInternshipFound() {
         String expectedMessage = String.format(MESSAGE_INTERNSHIPS_LISTED_OVERVIEW, 0);
-        NameContainsKeywordsPredicate predicate = preparePredicate(" ");
-        FindCommand command = new FindCommand(predicate);
+        PositionContainsKeywordsPredicate predicate = preparePredicate(" ");
+        FindPositionCommand command = new FindPositionCommand(predicate);
         expectedModel.updateFilteredInternshipList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
         assertEquals(Collections.emptyList(), model.getFilteredInternshipList());
@@ -67,17 +67,17 @@ public class FindCommandTest {
     @Test
     public void execute_multipleKeywords_multipleInternshipsFound() {
         String expectedMessage = String.format(MESSAGE_INTERNSHIPS_LISTED_OVERVIEW, 3);
-        NameContainsKeywordsPredicate predicate = preparePredicate("Kurz Elle Kunz");
-        FindCommand command = new FindCommand(predicate);
+        PositionContainsKeywordsPredicate predicate = preparePredicate("Frontend Stack Security");
+        FindPositionCommand command = new FindPositionCommand(predicate);
         expectedModel.updateFilteredInternshipList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
         assertEquals(Arrays.asList(CARL, ELLE, FIONA), model.getFilteredInternshipList());
     }
 
     /**
-     * Parses {@code userInput} into a {@code NameContainsKeywordsPredicate}.
+     * Parses {@code userInput} into a {@code PositionContainsKeywordsPredicate}.
      */
-    private NameContainsKeywordsPredicate preparePredicate(String userInput) {
-        return new NameContainsKeywordsPredicate(Arrays.asList(userInput.split("\\s+")));
+    private PositionContainsKeywordsPredicate preparePredicate(String userInput) {
+        return new PositionContainsKeywordsPredicate(Arrays.asList(userInput.split("\\s+")));
     }
 }

@@ -1,0 +1,17 @@
+@startuml
+start
+:User executes remark command;
+
+if () then ([command is in invalid format])
+    :Show invalid command format as error message;
+
+else ([else])
+    if () then ([command contains wrong index])
+    :Show incorrect index error message;
+    else([else])
+    :Displays the remark in the internship panel;
+    endif
+endif
+stop
+
+@enduml
