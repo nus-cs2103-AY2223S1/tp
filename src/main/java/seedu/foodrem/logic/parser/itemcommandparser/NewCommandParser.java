@@ -3,6 +3,8 @@ package seedu.foodrem.logic.parser.itemcommandparser;
 import static seedu.foodrem.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.foodrem.logic.parser.ParserUtil.arePrefixesPresent;
 
+import java.util.HashSet;
+
 import seedu.foodrem.logic.commands.itemcommands.NewCommand;
 import seedu.foodrem.logic.parser.ArgumentMultimap;
 import seedu.foodrem.logic.parser.ArgumentTokenizer;
@@ -61,7 +63,15 @@ public class NewCommandParser implements Parser<NewCommand> {
         String price = argMultimap.getValue(CliSyntax.PREFIX_ITEM_PRICE).orElse("");
         ItemPrice itemPrice = ParserUtil.parsePrice(price);
 
-        Item item = new Item(name, itemQuantity, itemUnit, itemBoughtDate, itemExpiryDate, itemPrice);
+        Item item = new Item(
+                name,
+                itemQuantity,
+                itemUnit,
+                itemBoughtDate,
+                itemExpiryDate,
+                itemPrice,
+                new HashSet<>()
+        );
 
         return new NewCommand(item);
     }

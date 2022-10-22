@@ -43,6 +43,13 @@ public class ViewCommand extends Command {
         return new CommandResult(itemToDisplayInformation.toString());
     }
 
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof ViewCommand // instanceof handles nulls
+                && index.equals(((ViewCommand) other).index)); // state check
+    }
+
     public static String getUsage() {
         return VIEW_COMMAND.getUsage();
     }

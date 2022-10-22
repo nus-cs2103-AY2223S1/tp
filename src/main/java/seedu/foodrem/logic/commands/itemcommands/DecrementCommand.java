@@ -40,7 +40,7 @@ public class DecrementCommand extends Command {
      * Creates and returns a {@code Item} with the quantity of {@code itemToEdit}
      * decremented by {@code editItemDescriptor}.
      */
-    private static Item createDecrementedItem(Item itemToDecrement, ItemQuantity quantity) {
+    private static Item createDecrementedItem(Item itemToDecrement, ItemQuantity quantity) throws CommandException {
         assert itemToDecrement != null;
 
         ItemQuantity decrementedQuantity;
@@ -48,7 +48,7 @@ public class DecrementCommand extends Command {
             decrementedQuantity = ItemQuantity.performArithmeticOperation(
                     itemToDecrement.getQuantity(), quantity, (x, y) -> x - y);
         } catch (IllegalArgumentException e) {
-            throw new IllegalArgumentException("(Final Quantity) " + e.getMessage());
+            throw new CommandException("(Final Quantity) " + e.getMessage());
         }
 
         return new Item(itemToDecrement.getName(),
@@ -56,7 +56,8 @@ public class DecrementCommand extends Command {
                 itemToDecrement.getUnit(),
                 itemToDecrement.getBoughtDate(),
                 itemToDecrement.getExpiryDate(),
-                itemToDecrement.getPrice());
+                itemToDecrement.getPrice(),
+                itemToDecrement.getTagSet());
     }
 
     @Override
@@ -74,6 +75,14 @@ public class DecrementCommand extends Command {
         model.setItem(itemToDecrement, decrementedItem);
         model.updateFilteredItemList(PREDICATE_SHOW_ALL_ITEMS);
         return new CommandResult(String.format(MESSAGE_SUCCESS, decrementedItem));
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof DecrementCommand // instanceof handles nulls
+                && index.equals(((DecrementCommand) other).index)
+                && quantity.equals(((DecrementCommand) other).quantity)); // state check
     }
 
     public static String getUsage() {

@@ -1,5 +1,7 @@
 package seedu.foodrem.model.util;
 
+import java.util.HashSet;
+
 import seedu.foodrem.model.FoodRem;
 import seedu.foodrem.model.ReadOnlyFoodRem;
 import seedu.foodrem.model.item.Item;
@@ -21,13 +23,15 @@ public class SampleDataUtil {
                     new ItemUnit("kg"),
                     new ItemBoughtDate("11-11-2022"),
                     new ItemExpiryDate("11-11-2022"),
-                    new ItemPrice("10.20")),
+                    new ItemPrice("10.20"),
+                    new HashSet<>()),
             new Item(new ItemName("Cucumbers"),
                     new ItemQuantity("2000"),
                     new ItemUnit("grams"),
                     new ItemBoughtDate("12-12-2022"),
                     new ItemExpiryDate("12-12-2022"),
-                    new ItemPrice("10"))
+                    new ItemPrice("10"),
+                    new HashSet<>())
         };
     }
 

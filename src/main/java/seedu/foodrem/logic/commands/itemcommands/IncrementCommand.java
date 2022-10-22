@@ -40,7 +40,7 @@ public class IncrementCommand extends Command {
      * Creates and returns a {@code Item} with the quantity of {@code itemToEdit}
      * incremented by {@code editItemDescriptor}.
      */
-    private static Item createIncrementedItem(Item itemToIncrement, ItemQuantity quantity) {
+    private static Item createIncrementedItem(Item itemToIncrement, ItemQuantity quantity) throws CommandException {
         assert itemToIncrement != null;
 
         ItemQuantity incrementedQuantity;
@@ -48,7 +48,7 @@ public class IncrementCommand extends Command {
             incrementedQuantity = ItemQuantity.performArithmeticOperation(
                     itemToIncrement.getQuantity(), quantity, Double::sum);
         } catch (IllegalArgumentException e) {
-            throw new IllegalArgumentException("(Final Quantity) " + e.getMessage());
+            throw new CommandException("(Final Quantity) " + e.getMessage());
         }
 
         return new Item(itemToIncrement.getName(),
@@ -56,7 +56,8 @@ public class IncrementCommand extends Command {
                 itemToIncrement.getUnit(),
                 itemToIncrement.getBoughtDate(),
                 itemToIncrement.getExpiryDate(),
-                itemToIncrement.getPrice());
+                itemToIncrement.getPrice(),
+                itemToIncrement.getTagSet());
     }
 
     @Override
@@ -74,6 +75,14 @@ public class IncrementCommand extends Command {
         model.setItem(itemToIncrement, incrementedItem);
         model.updateFilteredItemList(PREDICATE_SHOW_ALL_ITEMS);
         return new CommandResult(String.format(MESSAGE_SUCCESS, incrementedItem));
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof IncrementCommand // instanceof handles nulls
+                && index.equals(((IncrementCommand) other).index)
+                && quantity.equals(((IncrementCommand) other).quantity)); // state check
     }
 
     public static String getUsage() {
