@@ -273,6 +273,83 @@ the gender is not of valid format; Invalid person exception is thrown if the per
 contact list. Error message is displayed on the GUI subsequently.
 </div>
 
+### Add Date Of Birth
+
+The Add Date Of Birth feature allows users to add a date of birth field (format: dd/mm/yyyy) to a person in the contact list. It is performed as a part of `addPersonCommand#execute()`.
+
+These operations are exposed in the `Model` interface as the method `Model#addPerson()`, which calls
+`AddressBook#addPerson()` which calls `UniquePersonList#add()` to add a new person in the person list
+stored in AddressBook.
+
+The following sequence diagram shows the methods calls related to add person operation:
+
+![AddPersonSequenceDiagram](images/AddPersonSequenceDiagram.png)
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** `cmd` in the diagram represents the add
+person command text entered by user. The specific `UniquePersonList` operations are not shown in the diagram
+for simplicity.
+</div>
+
+The following activity diagram shows what happens when a user executes a new add command:
+
+![AddPersonActivityDiagram](images/AddPersonActivityDiagram(Date of Birth).png)
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** Only the
+activities related to date of birth field are considered and shown in this activity diagram.
+</div>
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:**Parser exceptions are thrown and caught if
+date of birth field is not provided in the command, or the date of birth is not of valid format; Duplicated person exception is
+thrown if the person to add already exists in the contact list. Error message is displayed on the GUI subsequently.
+</div>
+
+#### Design considerations:
+
+**Aspect: Whether date of birth field should be optional for a person:**
+
+* **Alternative 1 (current choice):** Compulsory date of birth field:
+    * Pros: It is a more logical implementation because date of birth is a common attribute for all persons,
+  similar to name, address, etc, which are also compulsory field for persons in contact list.
+    * Cons: It is less flexible in cases where the user is missing the date of birth field for a contact,
+    but wants to add the contact anyways, as the user is not able to leave the date of birth field blank.
+
+* **Alternative 2:** Optional date of birth field:
+    * Pros: It is a more flexible implementation, since the user has the choice to set a date of birth,
+    or leave it empty.
+    * Cons: It is less logical since date of birth is a common attribute for a person.
+
+### Edit Date of Birth
+
+The Edit Date of Birth feature allows users to edit a date of birth field (format: dd/mm/yyyy) of a person in the contact list.
+It is performed as a part of `editPersonCommand#execute()`.
+
+These operations are exposed in the `Model` interface as the method `Model#setPerson()`, which calls
+`AddressBook#setPerson()` which calls `UniquePersonList#setPerson()` to replace an existing person with a new person
+object with edited fields in the person list stored in AddressBook.
+
+The following sequence diagram shows the methods calls related to edit person operation:
+
+![EditPersonSequenceDiagram](images/EditPersonSequenceDiagram.png)
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** `cmd` in the diagram represents the edit
+person command text entered by user; the `setPerson(P1, P2)` method replaces person P1 with person P2 in the person list
+in the model. The specific `UniquePersonList` operations are not shown in the diagram for simplicity.
+</div>
+
+The following activity diagram shows what happens when a user executes a new edit command:
+
+![EditPersonActivityDiagram](images/EditPersonActivityDiagram(Date of Birth).png)
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** Only the
+activities related to date of birth field are considered and shown in this activity diagram. All fields are considered optional
+in edit person command, therefore, it is not compulsory that a date of birth field must be provided.
+</div>
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:**Parser exceptions are thrown and caught if
+the date of birth is not of valid format; Invalid person exception is thrown if the person to edit doesn't exist in the
+contact list. Error message is displayed on the GUI subsequently.
+</div>
+
 ### \[Proposed\] Undo/redo feature
 #### Proposed Implementation
 
@@ -359,14 +436,14 @@ _{Explain here how the data archiving feature will be implemented}_
 
 ### Listing Events
 
-The List Events feature allows users to enter `listEvents` and update the UI display for events, showing a list of all 
+The List Events feature allows users to enter `listEvents` and update the UI display for events, showing a list of all
 events sorted in their current order inside `ModelManager`. In the future, the command will take in a parameter,
 which specifies the field that the events list can be permanently sorted by.
 
 The List Events feature is facilitated by `ListEventsCommand` which extends from `Command`. Additionally, it implements
 the following operation:
 
-* `ModelManager#updateFilteredEventList()`  — Updates the predicate inside `ModelManager`'s filtered event list 
+* `ModelManager#updateFilteredEventList()`  — Updates the predicate inside `ModelManager`'s filtered event list
 to modify and sort which and how events are shown.
 
 This operation is exposed in the `Model` interface as the method `Model#updateFilteredEventList()`.
@@ -388,7 +465,7 @@ end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline 
 **Aspect: If `listEvents` should sort events permanently:**
 * **Alternative 1 (current choice):** Sort all events permanently.
   * Pros: Easy to implement.
-  * Cons: Whenever events are added, they are always added as the last event in the event list. Once sorted, the order 
+  * Cons: Whenever events are added, they are always added as the last event in the event list. Once sorted, the order
   cannot be returned to the order which events were added.
 * **Alternative 2:** Sort all events temporarily.
   * Pros: When users sort their events, the ordering of the events in `ModelManager` stays constant.
