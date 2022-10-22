@@ -22,7 +22,10 @@ public class SortDelivererCommand extends SortCommand {
 
     private final Comparator<Deliverer> comparator;
 
-
+    /**
+     * Constructs a SortDelivererCommand with the specified comparator.
+     * @param comparator The specified comparator.
+     */
     public SortDelivererCommand(Comparator<Deliverer> comparator) {
         requireNonNull(comparator);
         this.comparator = comparator;
