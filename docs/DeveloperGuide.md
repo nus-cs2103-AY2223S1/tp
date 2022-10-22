@@ -162,7 +162,7 @@ To see the full list of students or tasks, the user keys in the valid command (`
 
 1. The list of students in the model is updated to display all students.
 
-The implementation for listing students is similar.
+The implementation for listing tasks is similar.
 
 ### Mark Task as done / not done
 In order to mark a task as completed, the user keys in a valid command (e.g. `marktask 2`). Parsing of the user input is done (see the sequence diagram for deleting a student in the [Logic component](#logic-component) for a similar parsing sequence) and a `MarkTaskCommand` is then generated. The following sequence diagram shows what happens when the `MarkTaskCommand` is executed.
