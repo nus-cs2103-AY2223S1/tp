@@ -28,5 +28,5 @@ What you should expect to find:
 
 ### Statistics Commands
 
-{% include_relative _ug/features/StatisticsCommands.md %}
+{% include_relative _ug/commands/StatisticsCommands.md %}
 
