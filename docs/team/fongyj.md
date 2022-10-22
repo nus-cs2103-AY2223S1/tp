@@ -13,12 +13,12 @@ Given below are my contributions to the project.
 * 
 * **Code contributed**: [RepoSense link](https://nus-cs2103-ay2223s1.github.io/tp-dashboard/?search=fongyj&breakdown=true)
 
-* **Project management**: 
+* **Project management**:
   * [to be added]
 
 * **Enhancements to existing features**:
   * [to be added]
-  * 
+
 * **Documentation**:
     * User Guide:
       * [to be added]

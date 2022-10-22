@@ -48,5 +48,4 @@ deactivate CommandResult
 
 [<--AddMasteryCheckCommand : commandResult
 deactivate AddMasteryCheckCommand
-
 @enduml
