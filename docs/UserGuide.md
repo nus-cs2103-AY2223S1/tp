@@ -79,8 +79,6 @@ Interface (GUI). If you can type fast, RC4HDB can be a convenient and intuitive 
 workflow as a RC4 housing management staff.
 </div>
 
----
-
 ## Using this guide
 
 This user guide encompasses all the information that you will need to know as a user of RC4HDB. We hope that this user
@@ -140,8 +138,6 @@ Below shows a detailed breakdown of all rules that are applicable to the command
 may have typed a command incorrectly as RC4HDB will step in as and when needed!
 
 <div markdown="block" class="alert alert-info">
-
-**:information_source: Notes about the command format:**<br>
 
 * Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
   e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.

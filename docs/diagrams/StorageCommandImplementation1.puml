@@ -1,0 +1,25 @@
+@startuml
+!include style.puml
+skinparam arrowThickness 1.1
+skinparam arrowColor LOGIC_COLOR
+skinparam classBackgroundColor LOGIC_COLOR
+
+Class "<<Model>>" as Model MODEL_COLOR
+Class "<<Storage>>" as Storage STORAGE_COLOR
+
+package Logic {
+Class "<<interface>>\nLogic" as Logic
+Class "LogicManager" as LogicManager
+Class "{abstract}\nCommand" as Command
+}
+
+Model <-down- LogicManager
+Model <-- Command
+
+Storage <-down- LogicManager
+Storage <-- Command
+
+LogicManager ..> Command
+LogicManager .up.|> Logic
+
+@enduml

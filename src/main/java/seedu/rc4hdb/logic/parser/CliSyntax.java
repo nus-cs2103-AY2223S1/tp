@@ -14,5 +14,7 @@ public class CliSyntax {
     public static final Prefix PREFIX_HOUSE = new Prefix("h/");
     public static final Prefix PREFIX_MATRIC_NUMBER = new Prefix("m/");
     public static final Prefix PREFIX_TAG = new Prefix("t/");
+    public static final Prefix PREFIX_FILTER_ANY = new Prefix("/any");
+    public static final Prefix PREFIX_FILTER_ALL = new Prefix("/all");
 
 }

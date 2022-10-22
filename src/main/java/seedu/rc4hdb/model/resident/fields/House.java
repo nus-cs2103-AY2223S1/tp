@@ -3,6 +3,8 @@ package seedu.rc4hdb.model.resident.fields;
 import static java.util.Objects.requireNonNull;
 import static seedu.rc4hdb.commons.util.AppUtil.checkArgument;
 
+import seedu.rc4hdb.commons.util.StringUtil;
+
 /**
  * Represents a Resident's house in RC4HDB.
  * Guarantees: immutable; is valid as declared in {@link #isValidHouse(String)}
@@ -58,6 +60,15 @@ public class House extends Field {
     @Override
     public String toString() {
         return house;
+    }
+
+    /**
+     * Returns true if given {@code House} is contained in this House
+     * @param house a valid house object
+     * @return true if the given house is a substring of house
+     */
+    public boolean contains(House house) {
+        return StringUtil.containsWordIgnoreCase(this.house, house.house);
     }
 
     @Override
