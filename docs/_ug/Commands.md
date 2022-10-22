@@ -20,7 +20,7 @@ What you should expect to find:
 
 ### Item Commands
 
-{% include_relative _ug/features/ItemCommands.md %}
+{% include_relative _ug/commands/ItemCommands.md %}
 
 ### Tag Commands
 
