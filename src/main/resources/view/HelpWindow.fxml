@@ -47,6 +47,8 @@
           <Accordion fx:id="generalAccordion" maxHeight="-Infinity" prefWidth="288.0" />
           <Label styleClass="help-label" text="Profiles" />
           <Accordion fx:id="profileAccordion" maxHeight="-Infinity" prefWidth="288.0" />
+          <Label styleClass="help-label" text="Events" />
+          <Accordion fx:id="eventAccordion" maxHeight="-Infinity" prefWidth="288.0" />
         </children>
       </VBox>
     </Scene>

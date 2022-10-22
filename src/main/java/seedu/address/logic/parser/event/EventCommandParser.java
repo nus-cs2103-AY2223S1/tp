@@ -2,14 +2,24 @@ package seedu.address.logic.parser.event;
 
 import static seedu.address.commons.core.Messages.MESSAGE_FLAG_NOT_SPECIFIED;
 
+import java.util.LinkedHashMap;
+import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import seedu.address.logic.commands.event.AddEventCommand;
 import seedu.address.logic.commands.event.EventCommand;
 import seedu.address.logic.commands.event.ViewEventsCommand;
+import seedu.address.logic.commands.profile.AddProfileCommand;
+import seedu.address.logic.commands.profile.DeleteProfileCommand;
+import seedu.address.logic.commands.profile.EditProfileCommand;
+import seedu.address.logic.commands.profile.FindProfileCommand;
+import seedu.address.logic.commands.profile.ProfileCommand;
+import seedu.address.logic.commands.profile.ViewProfilesCommand;
+import seedu.address.logic.parser.CliSyntax;
 import seedu.address.logic.parser.Parser;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.event.Event;
 
 /**
  * Parses input arguments and creates a new EventCommand object
@@ -54,5 +64,19 @@ public class EventCommandParser implements Parser<EventCommand> {
         default:
             throw new ParseException(EventCommand.OPTION_UNKNOWN + EventCommand.VALID_FLAGS);
         }
+    }
+
+    /**
+     * Returns a hash map containing the details about event commands to display in the help window.
+     */
+    public static Map<String, String> getEventCommands() {
+        return new LinkedHashMap<>() {
+            {
+                put(EventCommand.COMMAND_WORD + " " + CliSyntax.PREFIX_OPTION + AddEventCommand.COMMAND_OPTION,
+                        AddEventCommand.MESSAGE_HELP);
+                put(EventCommand.COMMAND_WORD + " " + CliSyntax.PREFIX_OPTION + ViewEventsCommand.COMMAND_OPTION,
+                        ViewEventsCommand.MESSAGE_HELP);
+            }
+        };
     }
 }

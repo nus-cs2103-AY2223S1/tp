@@ -15,6 +15,7 @@ import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.logic.parser.NuSchedulerParser;
+import seedu.address.logic.parser.event.EventCommandParser;
 import seedu.address.logic.parser.profile.ProfileCommandParser;
 
 /**
@@ -38,6 +39,8 @@ public class HelpWindow extends UiPart<Stage> {
     private Accordion generalAccordion;
     @FXML
     private Accordion profileAccordion;
+    @FXML
+    private Accordion eventAccordion;
 
     /**
      * Creates a new HelpWindow.
@@ -70,6 +73,17 @@ public class HelpWindow extends UiPart<Stage> {
             profileAccordion.getPanes().add(new TitledPane(format, hBox));
         });
 
+        Map<String, String> eventCommands = EventCommandParser.getEventCommands();
+        eventCommands.forEach((format, description) -> {
+            Label label = new Label(description);
+            label.setWrapText(true);
+            HBox hBox = new HBox();
+            hBox.getChildren().add(label);
+            hBox.setAlignment(Pos.TOP_LEFT);
+            hBox.prefWidth(288.0);
+            eventAccordion.getPanes().add(new TitledPane(format, hBox));
+        });
+
         generalAccordion.heightProperty().addListener((obs, oldHeight, newHeight) -> {
             if (!root.isFullScreen()) {
                 root.sizeToScene();
@@ -77,6 +91,12 @@ public class HelpWindow extends UiPart<Stage> {
         });
 
         profileAccordion.heightProperty().addListener((obs, oldHeight, newHeight) -> {
+            if (!root.isFullScreen()) {
+                root.sizeToScene();
+            }
+        });
+
+        eventAccordion.heightProperty().addListener((obs, oldHeight, newHeight) -> {
             if (!root.isFullScreen()) {
                 root.sizeToScene();
             }

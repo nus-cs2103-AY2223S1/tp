@@ -43,7 +43,7 @@ public class AddProfileCommand extends ProfileCommand {
             + PREFIX_PHONE + "PHONE "
             + PREFIX_EMAIL + "EMAIL "
             + "[" + PREFIX_TELEGRAM + "TELEGRAM USERNAME] "
-            + "[" + PREFIX_TAG + "TAG]...\n";
+            + "[" + PREFIX_TAG + "TAG]...";
     public static final String MESSAGE_DUPLICATE_PROFILE = "This profile already exists in the address book";
 
     private final Profile toAdd;
