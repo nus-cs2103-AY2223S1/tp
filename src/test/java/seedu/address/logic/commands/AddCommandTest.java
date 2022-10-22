@@ -162,12 +162,7 @@ public class AddCommandTest {
         }
 
         @Override
-        public void setExam(Exam target, Exam editedExam) {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public void replaceExam(Exam target, Exam editedExam) throws DuplicateExamException {
+        public void replaceExam(Exam target, Exam editedExam, boolean isSameExam) throws DuplicateExamException {
             throw new AssertionError("This method should not be called.");
         }
 

@@ -60,6 +60,17 @@ public class Module implements Comparable<Module> {
     }
 
     /**
+     * Checks whether two modules have the same module fields.
+     *
+     * @param firstModule The first module being checked.
+     * @param secondModule The second module being checked against.
+     * @return true if both Module objects have the same fields; else return false.
+     */
+    public static boolean isSameModule(Module firstModule, Module secondModule) {
+        return firstModule.equals(secondModule);
+    }
+
+    /**
      * Creates and returns a {@code Module} with the details of {@code this}
      * edited with {@code editModuleDescriptor}.
      */

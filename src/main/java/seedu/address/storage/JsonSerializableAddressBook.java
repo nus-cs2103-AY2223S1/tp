@@ -24,6 +24,7 @@ class JsonSerializableAddressBook {
     public static final String MESSAGE_MODULE_NOT_PRESENT = "This module does not exist";
     public static final String MESSAGE_DUPLICATE_MODULE = "There are duplicate module(s) "
             + "present in the module list";
+    public static final String INVALID_EXAM_LINKED = "Invalid exam is linked to the task";
     private final List<JsonAdaptedModule> modules = new ArrayList<>();
     private final List<JsonAdaptedTask> tasks = new ArrayList<>();
     private final List<JsonAdaptedExam> exams = new ArrayList<>();
@@ -58,7 +59,6 @@ class JsonSerializableAddressBook {
      */
     public AddressBook toModelType() throws IllegalValueException {
         AddressBook addressBook = new AddressBook();
-
         for (JsonAdaptedModule jsonAdaptedModule: modules) {
             Module module = jsonAdaptedModule.toModelType();
             if (addressBook.hasModule(module)) {
@@ -66,19 +66,23 @@ class JsonSerializableAddressBook {
             }
             addressBook.addModule(module);
         }
-        for (JsonAdaptedTask jsonAdaptedTask: tasks) {
-            Task task = jsonAdaptedTask.toModelType();
-            if (!addressBook.hasModule(task.getModule())) {
-                throw new IllegalValueException(MESSAGE_MODULE_NOT_PRESENT);
-            }
-            addressBook.addTask(task);
-        }
         for (JsonAdaptedExam jsonAdaptedExam: exams) {
             Exam exam = jsonAdaptedExam.toModelType();
             if (!addressBook.hasModule(exam.getModule())) {
                 throw new IllegalValueException(MESSAGE_MODULE_NOT_PRESENT);
             }
             addressBook.addExam(exam);
+        }
+        for (JsonAdaptedTask jsonAdaptedTask: tasks) {
+            Task task = jsonAdaptedTask.toModelType();
+            if (!addressBook.hasModule(task.getModule())) {
+                throw new IllegalValueException(MESSAGE_MODULE_NOT_PRESENT);
+            }
+            if (task.getExam() != null && !addressBook.hasExam(task.getExam())) {
+                throw new IllegalValueException(INVALID_EXAM_LINKED);
+            }
+            addressBook.linkTaskToExam(task);
+            addressBook.addTask(task);
         }
         return addressBook;
     }

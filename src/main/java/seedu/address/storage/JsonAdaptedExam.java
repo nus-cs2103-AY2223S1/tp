@@ -28,7 +28,8 @@ public class JsonAdaptedExam {
      * @param date The date of the exam.
      */
     public JsonAdaptedExam(@JsonProperty("description") String description,
-                           @JsonProperty("modCode") String moduleCode, @JsonProperty("date") String date) {
+                           @JsonProperty("modCode") String moduleCode,
+                           @JsonProperty("date") String date) {
         this.description = description;
         this.moduleCode = moduleCode;
         this.date = date;
@@ -67,7 +68,9 @@ public class JsonAdaptedExam {
         if (!ModuleCode.isValidModuleCode(moduleCode)) {
             throw new IllegalValueException(ModuleCode.MODULE_CODE_CONSTRAINTS);
         }
-
+        if (!ExamDate.isValidDateFormat(date)) {
+            throw new IllegalValueException(ExamDate.DATE_CONSTRAINTS);
+        }
         final ExamDescription examDescription = new ExamDescription(description);
         final ModuleCode modCode = new ModuleCode(moduleCode);
         final Module module = new Module(modCode);

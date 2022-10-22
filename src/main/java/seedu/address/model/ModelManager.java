@@ -181,17 +181,9 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void setExam(Exam target, Exam editedExam) {
+    public void replaceExam(Exam target, Exam editedExam, boolean isSameExam) {
         requireAllNonNull(target, editedExam);
-
-        addressBook.setExam(target, editedExam);
-    }
-
-    @Override
-    public void replaceExam(Exam target, Exam editedExam) {
-        requireAllNonNull(target, editedExam);
-
-        addressBook.replaceExam(target, editedExam);
+        addressBook.replaceExam(target, editedExam, isSameExam);
     }
 
     @Override

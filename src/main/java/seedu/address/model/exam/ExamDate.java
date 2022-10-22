@@ -5,6 +5,7 @@ import static java.util.Objects.requireNonNull;
 import java.time.DateTimeException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 import java.time.format.ResolverStyle;
 
 
@@ -36,6 +37,21 @@ public class ExamDate {
      */
     public static boolean isValidDate(String date) {
         return isValidDateLength(date) && isExistingDate(date) && isNotAPastDate(date);
+    }
+
+    /**
+     * Checks if the format given for the date is valid.
+     *
+     * @param date The date provided.
+     * @return true if the date has the correct format; else return false.
+     */
+    public static boolean isValidDateFormat(String date) {
+        try {
+            LocalDate.parse(date, DATE_TIME_FORMATTER);
+            return true;
+        } catch (DateTimeParseException e) {
+            return false;
+        }
     }
 
     public static boolean isValidDateLength(String date) {
