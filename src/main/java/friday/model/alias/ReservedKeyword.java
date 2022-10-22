@@ -1,5 +1,9 @@
 package friday.model.alias;
 
+import static java.util.Objects.requireNonNull;
+
+import java.util.List;
+
 import friday.logic.commands.AddCommand;
 import friday.logic.commands.AliasCommand;
 import friday.logic.commands.ClearCommand;
@@ -13,11 +17,7 @@ import friday.logic.commands.MarkMasteryCheckCommand;
 import friday.logic.commands.RemarkCommand;
 import friday.logic.commands.SortCommand;
 import friday.logic.commands.UgCommand;
-
-import java.util.ArrayList;
-import java.util.Arrays;
-
-import static java.util.Objects.requireNonNull;
+import friday.logic.commands.UnaliasCommand;
 
 /**
  * Represents a ReservedKeyword in friday.
@@ -25,18 +25,15 @@ import static java.util.Objects.requireNonNull;
  */
 public class ReservedKeyword {
 
-    public final String value;
-
-    private static final String[] ARRAY_RESERVED_KEYWORDS = new String[]{AddCommand.COMMAND_WORD,
+    public static final List<String> LIST_RESERVED_KEYWORDS = List.of(AddCommand.COMMAND_WORD,
             AliasCommand.COMMAND_WORD, ClearCommand.COMMAND_WORD, DeleteCommand.COMMAND_WORD, EditCommand.COMMAND_WORD,
             ExitCommand.COMMAND_WORD, FindCommand.COMMAND_WORD, HelpCommand.COMMAND_WORD, ListCommand.COMMAND_WORD,
             MarkMasteryCheckCommand.COMMAND_WORD, RemarkCommand.COMMAND_WORD, SortCommand.COMMAND_WORD,
-            UgCommand.COMMAND_WORD};
-
-    public static final ArrayList<String> LIST_RESERVED_KEYWORDS = new ArrayList<>(Arrays.
-            asList(ARRAY_RESERVED_KEYWORDS));
+            UgCommand.COMMAND_WORD, UnaliasCommand.COMMAND_WORD);
 
     public static final String MESSAGE_CONSTRAINTS = "Reserved keyword given is not in the list of reserved keywords";
+
+    private final String value;
 
     /**
      * Constructs a {@code ReservedKeyword}.
@@ -48,8 +45,12 @@ public class ReservedKeyword {
         value = reservedKeyword;
     }
 
+    public static boolean isValidReservedKeyword(ReservedKeyword test) {
+        return LIST_RESERVED_KEYWORDS.contains(test.toString());
+    }
+
     public static boolean isValidReservedKeyword(String test) {
-        return this.LIST_RESERVED_KEYWORDS.contains(test);
+        return LIST_RESERVED_KEYWORDS.contains(test);
     }
 
     @Override

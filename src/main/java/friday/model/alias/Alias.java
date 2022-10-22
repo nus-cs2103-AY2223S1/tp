@@ -3,12 +3,12 @@ package friday.model.alias;
 import static java.util.Objects.requireNonNull;
 
 /**
- * Represents an Alias in friday.
+ * Represents an Alias in FRIDAY.
  * Guarantees: immutable; is always valid
  */
 public class Alias {
 
-    public final String value;
+    private final String value;
 
     /**
      * Constructs an {@code Alias}.
@@ -18,6 +18,10 @@ public class Alias {
     public Alias(String alias) {
         requireNonNull(alias);
         value = alias;
+    }
+
+    public static boolean isValidAlias(Alias test) {
+        return !ReservedKeyword.LIST_RESERVED_KEYWORDS.contains(test.toString());
     }
 
     @Override
