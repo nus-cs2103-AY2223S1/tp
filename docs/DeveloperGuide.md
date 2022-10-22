@@ -3,7 +3,7 @@ layout: page
 title: Developer Guide
 ---
 * Table of Contents
-{:toc}
+  {:toc}
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -163,9 +163,81 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 --------------------------------------------------------------------------------------------------------------------
 
+## Properties Objects
+
+### Properties of Person Objects
+
+This section explains the components of a person object and how they can be used to track information.
+
+<img src="images/PersonClassDiagram.png" width="450" />
+
+A person object contains editable properties:
+1. Name
+    - Describes the full name of the person
+2. Phone
+    - Records the mobile phone contact number of the person
+3. Email
+    - Records the email address of the person
+4. Address
+    - Records the home address of the person
+5. Tag
+    - Optionally tags the person with a variable number of tags for easy reference within the SectresBook.
+
+And a non-editable property:
+1. Loan
+    - Tracks the current loan amount of the person. A positive number means that the person currently owes money to the club, a negative number means that money is due to be paid to the person.
+
+During instantiation, a person object can be declared with all fields, but during editing, Loan must use a specialised command to transform its data.
+
+## Properties of Note Objects
+
+This section explains the components of a note object and how they can be used to track information.
+
+<img src="images/NoteClassDiagram.png" width="250" />
+
+A note object contains editable properties:
+1. Title
+    - The title of the note, which can be searched by.
+2. Content
+    - The description of the note.
+3. Tags
+    - Optional tags that can be assigned to the notes, after-which every person with that tag will be associated with the notes.
+
+During instantiation, a note object can be declared with any of these properties.
+
+-------------------
+
 ## **Implementation**
 
 This section describes some noteworthy details on how certain features are implemented.
+
+### Edit Feature
+
+The Edit Person feature is facilitated by the `EditCommand` which utilises the `FindCommand`. It allows users to edit any editable field of a person given the index of the person, or the name of the person.
+
+If given a name that does not correspond to any person in the SectresBook, the edit features performs the same operations as the Find Command.
+
+Given below is an example usage scenario and how the edit mechanism behaves at each step.
+
+Step 1. The user enters the edit command, with either the index or the person's name.
+
+Step 2a If an index is entered, the `EditCommandParser` carries this index to the `EditCommand`, which retrieves the `Person` to edit by getting the `Model`'s current `FilteredList<Person>` and retrieving by index.
+
+Step 2b. If a non-number is entered, the `EditCommandParser` invokes the `FindCommandParser#parse` method and executes it at the same time with `FindCommand#execute`. The `FilteredList<Person>` is then checked to ensure that there is exactly one person that corresponds with the search term. Otherwise, the method short-circuits with ambiguity errors (more than 1 person) or invalid person errors (no persons at all). If successful, `EditCommandParser` returns a new `EditCommand` with a one-based-index of 1.
+
+- Example of ambiguity error message:
+> There is more than 1 person with the name [NAME]
+
+- Example of invalid name error message:
+> There is nobody with the name [NAME]
+
+Step 3. `EditCommand#execute` is called by the `LogicManager`. The person to edit is retrieved by the index given and a new edited person is created by copying over non-transformed fields and replacing the transformed field.
+
+Step 4. The `editedPerson` is then set to replace the previous state of the `Person` object in the `Model` with `Model#setPerson`.
+
+The following sequence diagram shows how the `edit` feature works.
+
+![Interactions Inside the Logic Component for the `delete 1` Command](images/EditSequenceDiagram.png)
 
 ### addNote feature
 
@@ -217,7 +289,7 @@ The deleteNote mechanism is facilitated by `DeleteNoteCommand`. It extends `Comm
 Given below is an example usage scenario and how the addNote mechanism behaves at each step.
 
 Step 1. The user launches the application and wishes to delete a note that no longer needs to be kept track of. The user lists the current notes:
-1. Title: Meeting, Content: 3rd October 9pm 
+1. Title: Meeting, Content: 3rd October 9pm
 2. Title: Event, Content: Remind club members to attend.
 
 The user has decided to delete note 1.
@@ -281,6 +353,7 @@ The following sequence diagram shows how the findTag command works:
 * **Alternative 2:** Goto searched Tags and get the Persons that each Tag points to.
     * Pros: Will use fewer steps (Go directly to the Tags rather than looking through all Persons).
     * Cons: Implementation would be more complicated.
+>>>>>>> ccd6c8571657773021df9de2ac1c6aa8c8dadf7a
 
 ### \[Proposed\] Undo/redo feature
 
@@ -352,13 +425,13 @@ The following activity diagram summarizes what happens when a user executes a ne
 **Aspect: How undo & redo executes:**
 
 * **Alternative 1 (current choice):** Saves the entire address book.
-  * Pros: Easy to implement.
-  * Cons: May have performance issues in terms of memory usage.
+    * Pros: Easy to implement.
+    * Cons: May have performance issues in terms of memory usage.
 
 * **Alternative 2:** Individual command knows how to undo/redo by
   itself.
-  * Pros: Will use less memory (e.g. for `delete`, just save the person being deleted).
-  * Cons: We must ensure that the implementation of each individual command are correct.
+    * Pros: Will use less memory (e.g. for `delete`, just save the person being deleted).
+    * Cons: We must ensure that the implementation of each individual command are correct.
 
 _{more aspects and alternatives to be added}_
 
@@ -422,17 +495,17 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 1. User requests to add a person.
 2. SectresBook adds the person to the list of persons.
 
-    Use case ends.
+   Use case ends.
 
 **Extensions**
 * 1a. The given person already exists.
-  * 1a1. SectresBook shows an error message.
+    * 1a1. SectresBook shows an error message.
 
-    Use case ends.
+      Use case ends.
 * 1b. Necessary fields are incomplete/empty.
-  * 1b1. Sectresbook shows an error message.
+    * 1b1. Sectresbook shows an error message.
 
-    Use case ends.
+      Use case ends.
 
 **Use case: Update a person**
 
@@ -442,20 +515,20 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 3. User requests to update a specific person in the list.
 4. SectresBook updates information of the person.
 
-    Use case ends.
+   Use case ends.
 
 **Extensions**
 * 2a. The list is empty.
 
-    Use case ends.
+  Use case ends.
 * 3a. The given index is invalid.
-  * 3a1. SectresBook shows an error message.
+    * 3a1. SectresBook shows an error message.
 
-    Use case resumes at step 2.
+      Use case resumes at step 2.
 * 3b. The command line arguments are invalid.
-  * 3b1. SectresBook shows an error message.
+    * 3b1. SectresBook shows an error message.
 
-    Use case resumes at step 2.
+      Use case resumes at step 2.
 
 **Use case: Delete a person**
 
@@ -486,7 +559,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 1. User request to find using keyword.
 2. SectressBook shows a list of persons matching keyword.
 
-    Use case ends.
+   Use case ends.
 
 **Use case: Display list of persons**
 
@@ -494,7 +567,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 1. User requests to list persons.
 2. SectresBook displays the list of persons stored.
 
-    Use case ends.
+   Use case ends.
 
 *{More to be added}*
 
@@ -528,15 +601,15 @@ testers are expected to do more *exploratory* testing.
 
 1. Initial launch
 
-   1. Download the jar file and copy into an empty folder
+    1. Download the jar file and copy into an empty folder
 
-   1. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
+    1. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
 
 1. Saving window preferences
 
-   1. Resize the window to an optimum size. Move the window to a different location. Close the window.
+    1. Resize the window to an optimum size. Move the window to a different location. Close the window.
 
-   1. Re-launch the app by double-clicking the jar file.<br>
+    1. Re-launch the app by double-clicking the jar file.<br>
        Expected: The most recent window size and location is retained.
 
 1. _{ more test cases …​ }_
@@ -545,16 +618,16 @@ testers are expected to do more *exploratory* testing.
 
 1. Deleting a person while all persons are being shown
 
-   1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
+    1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
 
-   1. Test case: `delete 1`<br>
-      Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
+    1. Test case: `delete 1`<br>
+       Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
 
-   1. Test case: `delete 0`<br>
-      Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
+    1. Test case: `delete 0`<br>
+       Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
 
-   1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
-      Expected: Similar to previous.
+    1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
+       Expected: Similar to previous.
 
 1. _{ more test cases …​ }_
 
@@ -562,6 +635,6 @@ testers are expected to do more *exploratory* testing.
 
 1. Dealing with missing/corrupted data files
 
-   1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
+    1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
 
 1. _{ more test cases …​ }_
