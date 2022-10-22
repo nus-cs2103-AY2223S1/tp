@@ -1,10 +1,10 @@
 package seedu.address.ui;
 
 import java.util.logging.Logger;
-import java.util.prefs.*;
+import java.util.prefs.Preferences;
 
 import javafx.fxml.FXML;
-import javafx.scene.*;
+import javafx.scene.Scene;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import seedu.address.commons.core.LogsCenter;
