@@ -1,13 +1,17 @@
 package seedu.intrack.ui;
 
+import java.awt.Desktop;
+import java.net.URI;
 import java.util.Comparator;
 
 import javafx.css.PseudoClass;
 import javafx.fxml.FXML;
+import javafx.scene.control.Hyperlink;
 import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
+import javafx.scene.text.TextFlow;
 import seedu.intrack.model.internship.Internship;
 import seedu.intrack.model.internship.Task;
 
@@ -41,7 +45,7 @@ public class InternshipCard extends UiPart<Region> {
     @FXML
     private Label phone;
     @FXML
-    private Label website;
+    private TextFlow website;
     @FXML
     private Label email;
     @FXML
@@ -62,6 +66,7 @@ public class InternshipCard extends UiPart<Region> {
         lab.pseudoClassStateChanged(rejected, (internship.getStatus().toString()).equals("Rejected"));
         PseudoClass offered = PseudoClass.getPseudoClass("offered");
         lab.pseudoClassStateChanged(offered, (internship.getStatus().toString()).equals("Offered"));
+        Hyperlink hyperlink = new Hyperlink(internship.getWebsite().value);
 
         this.internship = internship;
         id.setText(displayedIndex + ". ");
@@ -69,7 +74,14 @@ public class InternshipCard extends UiPart<Region> {
         position.setText(internship.getPosition().positionName);
         status.getChildren().add(lab);
         phone.setText(internship.getPhone().value);
-        website.setText(internship.getWebsite().value);
+        website.getChildren().add(hyperlink);
+        hyperlink.setOnAction(e -> {
+            try {
+                Desktop.getDesktop().browse(new URI(internship.getWebsite().value));
+            } catch (Exception ex) {
+                System.out.println(ex.getMessage());
+            }
+        });
         email.setText(internship.getEmail().value);
         internship.getTasks().stream()
                 .sorted(Comparator.comparing(task -> task.taskTime))
