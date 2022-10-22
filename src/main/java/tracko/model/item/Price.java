@@ -13,13 +13,13 @@ public class Price {
     public static final String MESSAGE_CONSTRAINTS =
             "Price should be non-negative and rounded to the nearest cent.";
 
-    public final BigDecimal price;
+    public final Double price;
 
     /**
      * Constructs a {@code Price}.
      * @param price The Price of an item.
      */
-    public Price(BigDecimal price) {
+    public Price(Double price) {
         requireAllNonNull(price);
         checkArgument(isValidPrice(price), MESSAGE_CONSTRAINTS);
         this.price = roundToNearestCent(price);
@@ -28,25 +28,33 @@ public class Price {
     /**
      * Checks if {@code test} is a valid Price.
      * @param test The price to validate.
-     * @boolean Representing if the input is a valid price.
+     * @return True if input is a valid price
      */
-    public static boolean isValidPrice(BigDecimal test) {
-        boolean isPositive = !(test.compareTo(BigDecimal.ZERO) < 0);
-        boolean isRoundedTo2dp = (test.scale() <= 2);
-        return (isPositive && isRoundedTo2dp);
+    public static boolean isValidPrice(Double test) {
+        // BigDecimal bigDecimalTest = new BigDecimal(test);
+        boolean isPositive = !(BigDecimal.valueOf(test).compareTo(BigDecimal.ZERO) < 0);
+        boolean isRoundedTo2dp = (BigDecimal.valueOf(test).scale() <= 2);
+        return isPositive && isRoundedTo2dp;
     }
 
-    public BigDecimal getPrice() {
+    public Double getPrice() {
         return this.price;
     }
 
-    public BigDecimal roundToNearestCent(BigDecimal price) {
-        return price.setScale(2, RoundingMode.HALF_EVEN);
+    /**
+     * Rounds price to the nearest cent.
+     * @param price Price to be rounded to the nearest cent.
+     * @return Double Representing price rounded to the nearest cent.
+     */
+    public Double roundToNearestCent(Double price) {
+        BigDecimal bigDecimalPrice = new BigDecimal(price);
+        bigDecimalPrice.setScale(2, RoundingMode.HALF_UP);
+        return bigDecimalPrice.doubleValue();
     }
 
     @Override
     public String toString() {
-        return String.valueOf(price);
+        return String.format("%.2f", price);
     }
 
     @Override
@@ -60,8 +68,6 @@ public class Price {
         }
 
         Price otherPrice = (Price) other;
-        // return this.price.equals(otherPrice.getPrice());
-        // TODO: Reimplement the equals method
-        return true;
+        return (this.price.equals(otherPrice.getPrice()));
     }
 }

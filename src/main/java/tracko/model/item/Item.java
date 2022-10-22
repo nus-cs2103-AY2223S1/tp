@@ -115,7 +115,7 @@ public class Item {
                 && otherItem.getQuantity().equals(getQuantity())
                 && otherItem.getTags().equals(getTags())
                 && otherItem.getCostPrice().equals(getCostPrice())
-                && otherItem.getSellPrice().equals(getCostPrice());
+                && otherItem.getSellPrice().equals(getSellPrice());
     }
 
     @Override

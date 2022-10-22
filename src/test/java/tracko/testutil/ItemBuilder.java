@@ -1,6 +1,5 @@
 package tracko.testutil;
 
-import java.math.BigDecimal;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -22,8 +21,8 @@ public class ItemBuilder {
     public static final Integer DEFAULT_QUANTITY = 300;
     public static final Set<Tag> DEFAULT_TAGS = new HashSet<>();
 
-    public static final BigDecimal DEFAULT_SELL_PRICE = new BigDecimal("60");
-    public static final BigDecimal DEFAULT_COST_PRICE = new BigDecimal("45");
+    public static final Double DEFAULT_SELL_PRICE = 60.00;
+    public static final Double DEFAULT_COST_PRICE = 45.00;
 
     private ItemName itemName;
     private Description description;
@@ -82,15 +81,16 @@ public class ItemBuilder {
     /**
      * Sets the {@code Sell Price} of the {@code Item} that we are building.
      */
-    public ItemBuilder withSellPrice(BigDecimal sellPrice) {
+    public ItemBuilder withSellPrice(Double sellPrice) {
         this.sellPrice = new Price(sellPrice);
+        this.sellPrice.getPrice();
         return this;
     }
 
     /**
      * Sets the {@code Cost Price} of the {@code Item} that we are building.
      */
-    public ItemBuilder withCostPrice(BigDecimal costPrice) {
+    public ItemBuilder withCostPrice(Double costPrice) {
         this.costPrice = new Price(costPrice);
         return this;
     }
