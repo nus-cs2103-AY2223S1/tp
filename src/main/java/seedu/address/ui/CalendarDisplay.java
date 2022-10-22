@@ -11,8 +11,6 @@ import javafx.stage.Stage;
 import seedu.address.logic.CalendarLogic;
 import seedu.address.logic.Logic;
 
-import java.awt.*;
-
 /**
  * A UI component that displays information of a Calendar.
  */

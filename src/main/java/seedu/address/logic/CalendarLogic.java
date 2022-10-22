@@ -10,8 +10,6 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.geometry.Insets;
 import javafx.scene.Node;
-import javafx.scene.input.KeyCode;
-import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
@@ -81,7 +79,7 @@ public class CalendarLogic {
     private void drawHeader() {
         Text textHeader = getTextHeader();
         topCalendar.getChildren().addAll(textHeader, prevButton.getRoot(), nextButton.getRoot(), refreshButton);
-        //topCalendar.setMargin(textHeader, new Insets(0, 50, 0, 0));
+        topCalendar.setMargin(textHeader, new Insets(0, 50, 0, 0));
     }
 
     private void drawBody() {
@@ -162,7 +160,7 @@ public class CalendarLogic {
     private void updateCalendarMonth() {
         Text newMonthHeader = getTextHeader();
         topCalendar.getChildren().set(0, newMonthHeader);
-        //topCalendar.setMargin(newMonthHeader, new Insets(0, 50, 0, 0));
+        topCalendar.setMargin(newMonthHeader, new Insets(0, 50, 0, 0));
         resetCalendarBody();
         drawBody();
     }
