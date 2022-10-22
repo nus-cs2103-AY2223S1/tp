@@ -3,6 +3,7 @@ layout: page
 title: Developer guide
 ---
 
+
 * Table of Contents
 {:toc}
 
@@ -189,6 +190,8 @@ The user flow can be illustrated in the Activity Diagram as shown below.
 
 <img src="images/DisplayGroupActivityDiagram.png" width="550" />
 
+-------
+
 ### **\[Developed\] Delete Group feature**
 
 #### **Implementation**
@@ -235,6 +238,8 @@ The sequence diagram for DeleteGroup command is as shown below.
 
 <img src="images/DeleteGroupSequenceDiagram.png" width="550" />
 
+----------------------------
+
 ### **\[Developed\] Add Group Member feature**
 
 #### **Implementation**
@@ -278,6 +283,8 @@ The user flow can be illustrated in the Activity Diagram as shown below.
 
 <img src="images/AddGroupMemberActivityDiagram.png" width="550" />
 
+----
+
 ### **\[Developed\] Assign Task feature**
 
 #### **Implementation**
@@ -315,6 +322,8 @@ Step 5. CommandResult is then returned, which provides a feedback to user that t
 The user flow of Assign Task can be illustrated in the Activity Diagram as shown below.
 
 <img src="images/AssignTaskActivityDiagram-AssignTaskCommand.png" width="800" />
+
+----
 
 ### **\[Developed\] Bulk Assignment & Deletion of Tasks**
 All members in a group can be assigned a task via the `assigntaskall` command,
@@ -358,6 +367,8 @@ In doing so, some rationales are carried forward:
    in that the given Person is treated as immutable, and an edited copy is created before
    `Model` is invoked to set the Person, thus adhering to defensive programming standards
    previously established.
+
+----
 
 ### **\[Proposed\] Undo/redo feature**
 
