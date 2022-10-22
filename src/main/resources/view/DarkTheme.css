@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Figtree:wght@400;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Figtree:wght@400;600;700&display=swap');
 
 .background {
     -fx-background-color: derive(#010101, 20%);
@@ -129,6 +129,17 @@
     -fx-border-color: #bbbbbb;
     -fx-border-radius:15;
     -fx-border-width: 1;
+}
+
+.cell_session_label {
+    -fx-font-family: "Figtree";
+    -fx-font-weight: 700;
+    -fx-font-size:18;
+    -fx-text-fill: white;
+    -fx-background-color: #c28e92;
+    -fx-padding: 3 3 3 3;
+    -fx-border-radius: 2;
+    -fx-background-radius: 200;
 }
 
 .cell_big_label {
