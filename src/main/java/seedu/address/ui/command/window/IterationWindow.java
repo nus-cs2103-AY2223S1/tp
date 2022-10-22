@@ -136,8 +136,8 @@ public abstract class IterationWindow extends UiPart<Stage> {
         );
         File selectedFile = fileChooser.showOpenDialog(windowStage);
         if (selectedFile != null) {
-            imagePath = selectedFile.toURI().toString();
-            Image imageSelected = new Image(imagePath);
+            imagePath = selectedFile.getAbsolutePath();
+            Image imageSelected = new Image(selectedFile.toURI().toString());
             imagePreview.setImage(imageSelected);
         }
     }
