@@ -15,11 +15,11 @@ import java.util.function.Predicate;
 
 import org.junit.jupiter.api.Test;
 
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import swift.commons.core.GuiSettings;
 import swift.commons.core.index.Index;
 import swift.logic.commands.exceptions.CommandException;
-import swift.model.AddressBook;
 import swift.model.Model;
 import swift.model.ReadOnlyAddressBook;
 import swift.model.ReadOnlyUserPrefs;
@@ -250,11 +250,8 @@ public class AddTaskCommandTest {
         }
 
         @Override
-        public ReadOnlyAddressBook getAddressBook() {
-            AddressBook ab = new AddressBook();
-            ab.addPerson(new PersonBuilder().build());
-            return ab;
+        public ObservableList<Person> getFilteredPersonList() {
+            return FXCollections.observableArrayList(new PersonBuilder().build());
         }
     }
-
 }
