@@ -9,10 +9,10 @@ import static seedu.address.logic.commands.CommandTestUtil.INVALID_DATE_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.LOCATION_DESC_MEETING_1;
 import static seedu.address.logic.commands.CommandTestUtil.LOCATION_DESC_MEETING_2;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_DATE_MEETING_1;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_LOCATION_MEETING_1;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_MEETING_1;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_DATE_MEETING_2;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_LOCATION_MEETING_1;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_LOCATION_MEETING_2;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_MEETING_1;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_MEETING_2;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
@@ -112,8 +112,8 @@ public class EditMeetingCommandParserTest {
     @Test
     public void parse_multipleRepeatedFields_acceptsLast() {
         Index targetIndex = INDEX_FIRST_PERSON;
-        String userInput = targetIndex.getOneBased() + DESCRIPTION_DESC_MEETING_1 + LOCATION_DESC_MEETING_1 +
-                DATE_DESC_MEETING_1 + DESCRIPTION_DESC_MEETING_2 + LOCATION_DESC_MEETING_2 + DATE_DESC_MEETING_2;
+        String userInput = targetIndex.getOneBased() + DESCRIPTION_DESC_MEETING_1 + LOCATION_DESC_MEETING_1
+                + DATE_DESC_MEETING_1 + DESCRIPTION_DESC_MEETING_2 + LOCATION_DESC_MEETING_2 + DATE_DESC_MEETING_2;
 
         EditMeetingDescriptor descriptor = new EditMeetingDescriptorBuilder().withDescription(VALID_NAME_MEETING_2)
                 .withLocation(VALID_LOCATION_MEETING_2).withDate(VALID_DATE_MEETING_2).build();
