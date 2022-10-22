@@ -30,7 +30,8 @@ public class AddTaskCommandParser implements Parser<AddTaskCommand> {
         }
 
         TaskDesc taskDesc = ParserUtil.parseTaskDesc(argMultimap.getValue(PREFIX_TASK_DESC).get());
-        TaskDeadline taskDeadline = ParserUtil.parseDeadline(argMultimap.getValue(PREFIX_DEADLINE).orElse(""));
+        String deadline = argMultimap.getValue(PREFIX_DEADLINE).orElse("");
+        TaskDeadline taskDeadline = deadline.equals("") ? null : ParserUtil.parseDeadline(deadline);
 
         Task task = new Task(taskDesc, taskDeadline);
 

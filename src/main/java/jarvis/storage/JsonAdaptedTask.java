@@ -38,7 +38,7 @@ class JsonAdaptedTask {
      */
     public JsonAdaptedTask(Task source) {
         taskDesc = source.getDesc().taskDesc;
-        deadline = source.getDeadline().deadline;
+        deadline = source.getDeadline();
         isDone = source.isDone();
     }
 
@@ -54,7 +54,7 @@ class JsonAdaptedTask {
                     TaskDesc.class.getSimpleName()));
         }
         final TaskDesc modelTaskDesc = new TaskDesc(taskDesc);
-        final TaskDeadline modelTaskDeadline = new TaskDeadline(deadline);
+        final TaskDeadline modelTaskDeadline = deadline == null ? null : new TaskDeadline(deadline);
         Task task = new Task(modelTaskDesc, modelTaskDeadline);
         if (isDone) {
             task.markAsDone();

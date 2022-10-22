@@ -1,5 +1,7 @@
 package jarvis.model;
 
+import static java.util.Objects.requireNonNull;
+
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
@@ -18,16 +20,13 @@ public class TaskDeadline {
      * @param deadline A LocalDate representation of the deadline.
      */
     public TaskDeadline(LocalDate deadline) {
+        requireNonNull(deadline);
         this.deadline = deadline;
-    }
-
-    public boolean deadlineExists() {
-        return deadline != null;
     }
 
     @Override
     public String toString() {
-        return deadlineExists() ? deadline.format(DateTimeFormatter.ofPattern("MMM-dd-yyyy")) : "";
+        return deadline.format(DateTimeFormatter.ofPattern("MMM-dd-yyyy"));
     }
 
     @Override
@@ -39,14 +38,11 @@ public class TaskDeadline {
             return false;
         }
         TaskDeadline otherTaskDeadline = (TaskDeadline) other;
-        if (deadline == null || otherTaskDeadline.deadline == null) {
-            return deadline == null && otherTaskDeadline.deadline == null;
-        }
         return deadline.equals(otherTaskDeadline.deadline);
     }
 
     @Override
     public int hashCode() {
-        return deadlineExists() ? deadline.hashCode() : 0;
+        return deadline.hashCode();
     }
 }

@@ -1,12 +1,13 @@
 package jarvis.model;
 
-import static jarvis.commons.util.CollectionUtil.requireAllNonNull;
+import static java.util.Objects.requireNonNull;
 
+import java.time.LocalDate;
 import java.util.Objects;
 
 /**
  * Represents a Task in JARVIS.
- * Guarantees: details are present and not null.
+ * Guarantees: task description is present and not null.
  */
 public class Task {
 
@@ -18,10 +19,10 @@ public class Task {
     private boolean isDone;
 
     /**
-     * Every field must be present and not null.
+     * Task description must be present and not null.
      */
     public Task(TaskDesc taskDesc, TaskDeadline taskDeadline) {
-        requireAllNonNull(taskDesc, taskDeadline);
+        requireNonNull(taskDesc);
         this.taskDesc = taskDesc;
         this.taskDeadline = taskDeadline;
         this.isDone = false;
@@ -31,8 +32,12 @@ public class Task {
         return taskDesc;
     }
 
-    public TaskDeadline getDeadline() {
-        return taskDeadline;
+    public LocalDate getDeadline() {
+        return taskDeadline == null ? null : taskDeadline.deadline;
+    }
+
+    public String getDeadlineString() {
+        return taskDeadline == null ? "" : taskDeadline.toString();
     }
 
     public boolean isDone() {
@@ -74,10 +79,15 @@ public class Task {
             return false;
         }
 
+
         Task otherTask = (Task) other;
-        return otherTask.getDesc().equals(getDesc())
-                && otherTask.getDeadline().equals(getDeadline())
-                && otherTask.isDone() == isDone();
+
+        if (taskDeadline == null || otherTask.taskDeadline == null) {
+            return taskDeadline == null && otherTask.taskDeadline == null;
+        }
+        return otherTask.taskDesc.equals(taskDesc)
+                && otherTask.taskDeadline.equals(taskDeadline)
+                && otherTask.isDone == isDone;
     }
 
     @Override
@@ -95,8 +105,8 @@ public class Task {
             builder.append("[ ] ");
         }
         builder.append(getDesc());
-        if (getDeadline().deadlineExists()) {
-            builder.append("\nDeadline: ").append(getDeadline());
+        if (taskDeadline != null) {
+            builder.append("\nDeadline: ").append(taskDeadline);
         }
         return builder.toString();
     }

@@ -87,16 +87,13 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String deadline} into a {@code Deadline}.
+     * Parses a {@code String deadline} into a {@code TaskDeadline}.
      * Leading and trailing whitespaces will be trimmed.
      *
-     * @throws ParseException if the given {@code name} is invalid.
+     * @throws ParseException if the given {@code deadline} is invalid.
      */
     public static TaskDeadline parseDeadline(String deadline) throws ParseException {
         requireNonNull(deadline);
-        if (deadline.isEmpty()) {
-            return new TaskDeadline(null);
-        }
         try {
             LocalDate trimmedDeadline = LocalDate.parse(deadline.trim());
             return new TaskDeadline(trimmedDeadline);
