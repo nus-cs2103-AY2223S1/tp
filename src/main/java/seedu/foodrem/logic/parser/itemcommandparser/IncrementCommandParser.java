@@ -29,6 +29,10 @@ public class IncrementCommandParser implements Parser<IncrementCommand> {
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_ITEM_QUANTITY);
         Index index;
 
+        if (argMultimap.getPreamble().isEmpty()) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, IncrementCommand.getUsage()));
+        }
+
         try {
             index = ParserUtil.parseIndex(argMultimap.getPreamble());
         } catch (ParseException pe) {
@@ -37,11 +41,6 @@ public class IncrementCommandParser implements Parser<IncrementCommand> {
 
         // Default increment by 1 if PREFIX_ITEM_QUANTITY not provided
         ItemQuantity incrementQuantity = ParserUtil.parseQuantity("1");
-
-        if (argMultimap.getPreamble().isEmpty()) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, IncrementCommand.getUsage()));
-        }
-
         if (arePrefixesPresent(argMultimap, PREFIX_ITEM_QUANTITY)) {
             incrementQuantity = ParserUtil.parseQuantity(argMultimap.getPresentValue(PREFIX_ITEM_QUANTITY));
         }

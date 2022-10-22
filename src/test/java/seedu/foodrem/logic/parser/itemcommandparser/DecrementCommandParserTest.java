@@ -68,5 +68,10 @@ class DecrementCommandParserTest {
         assertParseFailure(parser,
                 CommandTestUtil.VALID_DESC_ITEM_QUANTITY_CUCUMBERS,
                 String.format(MESSAGE_INVALID_COMMAND_FORMAT, DecrementCommand.getUsage()));
+
+        // Index negative
+        assertParseFailure(parser,
+                "-1",
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, DecrementCommand.getUsage()));
     }
 }

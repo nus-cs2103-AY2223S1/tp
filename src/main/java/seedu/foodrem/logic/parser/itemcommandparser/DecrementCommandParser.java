@@ -29,6 +29,10 @@ public class DecrementCommandParser implements Parser<DecrementCommand> {
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_ITEM_QUANTITY);
         Index index;
 
+        if (argMultimap.getPreamble().isEmpty()) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, DecrementCommand.getUsage()));
+        }
+
         try {
             index = ParserUtil.parseIndex(argMultimap.getPreamble());
         } catch (ParseException pe) {
@@ -37,11 +41,6 @@ public class DecrementCommandParser implements Parser<DecrementCommand> {
 
         // Default decrement by 1 if PREFIX_ITEM_QUANTITY not provided
         ItemQuantity decrementQuantity = ParserUtil.parseQuantity("1");
-
-        if (argMultimap.getPreamble().isEmpty()) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, DecrementCommand.getUsage()));
-        }
-
         if (arePrefixesPresent(argMultimap, PREFIX_ITEM_QUANTITY)) {
             decrementQuantity = ParserUtil.parseQuantity(argMultimap.getPresentValue(PREFIX_ITEM_QUANTITY));
         }
