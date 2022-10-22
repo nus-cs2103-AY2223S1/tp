@@ -18,7 +18,12 @@ public class ListCommand extends Command {
     public static final String MESSAGE_USAGE = "To list all tasks in list: ls -a\n"
             + "To list all task under <module>: \n"
             + "EXAMPLE: ls --module cs2103t (case-insensitive for module name)\n"
-            + "To list all unmarked (uncompleted tasks): ls -u\n";
+            + "To list all unmarked (uncompleted tasks): ls -u\n"
+            + "To list all marked (completed tasks): ls -m\n"
+            + "To list all task with <tag>: \n"
+            + "EXAMPLE: ls -t urgent \n"
+            + "To list all tasks with deadline on or after <date>: \n"
+            + "EXAMPLE: ls -d 2022-10-28";
 
     public ListCommand() {};
 

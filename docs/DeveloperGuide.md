@@ -246,12 +246,50 @@ The following activity diagram summarizes what happens when a user executes a ne
   * Pros: Will use less memory (e.g. for `delete`, just save the person being deleted).
   * Cons: We must ensure that the implementation of each individual command are correct.
 
-_{more aspects and alternatives to be added}_
+_{more aspects and alternatives to be added} 
 
 ### \[Proposed\] Data archiving
 
 _{Explain here how the data archiving feature will be implemented}_
 
+### Returning to a previous command 
+
+#### Implementation 
+
+This feature allows the user to traverse through past commands via the up and down keys on the keyboard, similar to how it works in a terminal. 
+
+This mechanism of returning to previous commands is facilitated by `CommandHistory`. It works with `CommandBox`, storing entered commands internally in `previousCommands` and controls the traversal with the aid of `pointer`. 
+Additionally, it implements the following operations: 
+
+* `CommandHistory#add(String)` – Saves the entered command into the history. 
+* `CommandHistory#up()` – Traverses upwards through the history and restores the previously entered command.
+* `CommandHistory#down()` – Traverses downwards through the history and restores the command. 
+
+Given below is an example usage scenario and how the command history traversal mechanism behaves at each step. 
+
+Step 1. The user launches the application for the first time. The `CommandBox` will be initialised, which in turns initialises the `CommandHistory` that is contained within. Since command history is empty, `previousCommands`will be empty. 
+
+Step 2. The user enters a command `add n/Project m/CS2103T d/2022-10-18 t/lowPriority`. Upon entering a new command, `CommandBox#handleButtonPressed(KeyEvent)` is called, which in turn calls `CommandHistory#add(String)` to stores this command into `previousCommands`. 
+
+Step 3. The user presses on the `up` key to return to the previously entered command. This action calls the `CommandHistory#up()` which will shift `pointer` once to the left, pointing it to the previous command in history, and feeds this String back to the command box. 
+
+Step 4. The user presses on the `down` key to traverse down the history. This action calls the `CommandHistory#up()` which will shift `pointer` once to the right. Since the `pointer` is already pointing to the latest command in history, there are no more commands to be returned to. 
+Hence, the command box will be cleared. 
+
+The following activity diagram summarizes what happens when a user clicks on the `up`/`down` keys. 
+
+![UpDownKeyActivityDiagram](images/UpDownKeyActivityDiagram.png)
+
+#### Design considerations: 
+
+**Aspect: How command history is stored:** 
+
+* **Alternative 1 (current choice):** Stores entered commands in an arrayList, renewed everytime the app launches. 
+  * Pros: Easy to implement. 
+  * Cons: Will not be able to restore commands from previous launches. 
+* **Alternative 2:** Stores entered commands into a local `json` file. 
+  * Pros: Will be able to restore commands from previous launches. 
+  * Cons: Difficult to implement as storage architecture will have to be renewed.  
 
 --------------------------------------------------------------------------------------------------------------------
 

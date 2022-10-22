@@ -30,4 +30,3 @@ public class ModuleContainsKeywordsPredicate implements Predicate<Task> {
     }
 
 }
-
