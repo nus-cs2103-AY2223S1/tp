@@ -1,15 +1,18 @@
 package seedu.trackascholar.logic.commands;
 
+import static java.util.Objects.requireNonNull;
+
+import java.util.List;
+
 import seedu.trackascholar.commons.core.Messages;
 import seedu.trackascholar.commons.core.index.Index;
 import seedu.trackascholar.logic.commands.exceptions.CommandException;
 import seedu.trackascholar.model.Model;
 import seedu.trackascholar.model.applicant.Applicant;
 
-import java.util.List;
-
-import static java.util.Objects.requireNonNull;
-
+/**
+ * Pins an applicant identified using its displayed index from TrackAScholar.
+ */
 public class PinCommand extends Command {
     public static final String COMMAND_WORD = "pin";
     public static final String MESSAGE_USAGE = COMMAND_WORD
@@ -37,7 +40,7 @@ public class PinCommand extends Command {
         final Applicant copyOriginalApplicant = originalApplicant;
         originalApplicant.setHasPinnedInPin(true);
         Applicant pinnedApplicant = originalApplicant;
-        model.setApplicant(copyOriginalApplicant,pinnedApplicant);
+        model.setApplicant(copyOriginalApplicant, pinnedApplicant);
         return new CommandResult(String.format(MESSAGE_PIN_APPLICANT_SUCCESS, copyOriginalApplicant));
     }
 

@@ -1,10 +1,12 @@
 package seedu.trackascholar.logic.parser;
 
+import static seedu.trackascholar.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+
 import seedu.trackascholar.commons.core.index.Index;
 import seedu.trackascholar.logic.commands.PinCommand;
 import seedu.trackascholar.logic.parser.exceptions.ParseException;
 
-import static seedu.trackascholar.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+
 
 /**
  * Parses input arguments and creates a new PinCommand object

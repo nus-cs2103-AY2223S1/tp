@@ -101,11 +101,6 @@ public class UniqueApplicantList implements Iterable<Applicant> {
         internalList.sort(comparator);
     }
 
-    public void pinApplicant(Applicant applicantToPin) {
-        requireNonNull(applicantToPin);
-
-    }
-
     public void setApplicants(UniqueApplicantList replacement) {
         requireNonNull(replacement);
         internalList.setAll(replacement.internalList);
