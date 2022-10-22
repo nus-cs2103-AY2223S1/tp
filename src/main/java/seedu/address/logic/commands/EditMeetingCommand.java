@@ -38,9 +38,9 @@ public class EditMeetingCommand extends Command {
             + PREFIX_DESCRIPTION + "91234567 "
             + PREFIX_LOCATION + "johndoe@example.com";
 
-    public static final String MESSAGE_EDIT_MEETING_SUCCESS = "Edited Meeting: %1$s";
+    public static final String MESSAGE_EDIT_MEETING_SUCCESS = "Edited Meeting: %s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
-    public static final String MESSAGE_DUPLICATE_PERSON = "This meeting already exists in the address book.";
+    public static final String MESSAGE_DUPLICATE_MEETING = "This meeting already exists in the address book.";
 
     private final Index index;
     private final EditMeetingDescriptor editMeetingDescriptor;
@@ -70,7 +70,7 @@ public class EditMeetingCommand extends Command {
         Meeting editedMeeting = createEditedMeeting(meetingToEdit, editMeetingDescriptor);
 
         if (!meetingToEdit.isSameMeeting(editedMeeting) && model.hasMeeting(editedMeeting)) {
-            throw new CommandException(MESSAGE_DUPLICATE_PERSON);
+            throw new CommandException(MESSAGE_DUPLICATE_MEETING);
         }
 
         model.setMeeting(meetingToEdit, editedMeeting);
@@ -87,9 +87,11 @@ public class EditMeetingCommand extends Command {
         assert meetingToEdit != null;
 
         String updatedDescription = editMeetingDescriptor.getDescription().orElse(meetingToEdit.getDescription());
+        editMeetingDescriptor.getDate();
+        meetingToEdit.getNonProcessedDateAndTime();
         String updatedDate = editMeetingDescriptor.getDate().orElse(meetingToEdit.getNonProcessedDateAndTime());
         String updatedLocation = editMeetingDescriptor.getLocation().orElse(meetingToEdit.getLocation());
-        ArrayList<Person> persons = meetingToEdit.getArrayListPersonToMeet();
+        ArrayList<Person> persons = editMeetingDescriptor.getPeople().orElse(meetingToEdit.getArrayListPersonToMeet());
 
         return new Meeting(persons, updatedDescription, updatedDate, updatedLocation);
     }
@@ -132,6 +134,7 @@ public class EditMeetingCommand extends Command {
             setDescription(toCopy.description);
             setDate(toCopy.date);
             setLocation(toCopy.location);
+            setPeople(toCopy.people);
         }
 
         /**
@@ -165,6 +168,12 @@ public class EditMeetingCommand extends Command {
             return Optional.ofNullable(location);
         }
 
+        public void setPeople(ArrayList<Person> people) {
+            this.people = people;
+        }
+
+        public Optional<ArrayList<Person>> getPeople() { return Optional.ofNullable(people); }
+
         @Override
         public boolean equals(Object other) {
             // short circuit if same object
@@ -182,7 +191,8 @@ public class EditMeetingCommand extends Command {
 
             return getDescription().equals(e.getDescription())
                     && getDate().equals(e.getDate())
-                    && getLocation().equals(e.getLocation());
+                    && getLocation().equals(e.getLocation())
+                    && getPeople().equals(e.getPeople());
         }
     }
 }

@@ -20,14 +20,23 @@ import seedu.address.model.AddressBook;
 import seedu.address.model.MeetingList;
 import seedu.address.model.Model;
 import seedu.address.model.meeting.Meeting;
+import seedu.address.model.meeting.MeetingContainsKeywordsPredicate;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.person.Person;
+import seedu.address.testutil.EditMeetingDescriptorBuilder;
 import seedu.address.testutil.EditPersonDescriptorBuilder;
 
 /**
  * Contains helper methods for testing commands.
  */
 public class CommandTestUtil {
+
+    public static final String VALID_NAME_MEETING_1 = "Test 1";
+    public static final String VALID_NAME_MEETING_2 = "Test 2";
+    public static final String VALID_LOCATION_MEETING_1 = "Location 1";
+    public static final String VALID_LOCATION_MEETING_2 = "Location 2";
+    public static final String VALID_DATE_MEETING_1 = "23-09-2022 2359";
+    public static final String VALID_DATE_MEETING_2 = "24-09-2022 2359";
 
     public static final String VALID_NAME_AMY = "Amy Bee";
     public static final String VALID_NAME_BOB = "Bob Choo";
@@ -63,6 +72,9 @@ public class CommandTestUtil {
     public static final EditCommand.EditPersonDescriptor DESC_AMY;
     public static final EditCommand.EditPersonDescriptor DESC_BOB;
 
+    public static final EditMeetingCommand.EditMeetingDescriptor MEETING_1;
+    public static final EditMeetingCommand.EditMeetingDescriptor MEETING_2;
+
     static {
         DESC_AMY = new EditPersonDescriptorBuilder().withName(VALID_NAME_AMY)
                 .withPhone(VALID_PHONE_AMY).withEmail(VALID_EMAIL_AMY).withAddress(VALID_ADDRESS_AMY)
@@ -70,6 +82,13 @@ public class CommandTestUtil {
         DESC_BOB = new EditPersonDescriptorBuilder().withName(VALID_NAME_BOB)
                 .withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB).withAddress(VALID_ADDRESS_BOB)
                 .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).build();
+    }
+
+    static {
+        MEETING_1 = new EditMeetingDescriptorBuilder().withDescription(VALID_NAME_MEETING_1)
+                .withLocation(VALID_LOCATION_MEETING_1).withDate(VALID_DATE_MEETING_1).build();
+        MEETING_2 = new EditMeetingDescriptorBuilder().withDescription(VALID_NAME_MEETING_2)
+                .withLocation(VALID_LOCATION_MEETING_2).withDate(VALID_DATE_MEETING_2).build();
     }
 
     /**
@@ -139,6 +158,21 @@ public class CommandTestUtil {
         model.updateFilteredPersonList(new NameContainsKeywordsPredicate(Arrays.asList(splitName[0])));
 
         assertEquals(1, model.getFilteredPersonList().size());
+    }
+
+    /**
+     * Updates {@code model}'s filtered list to show only the meeting at the given {@code targetIndex} in the
+     * {@code model}'s address book.
+     */
+    public static void showMeetingAtIndex(Model model, Index targetIndex) {
+        assertTrue(targetIndex.getZeroBased() < model.getFilteredMeetingList().size());
+
+        Meeting meeting = model.getFilteredMeetingList().get(targetIndex.getZeroBased());
+        final String[] splitDescription = meeting.getDescription().split("\\s+");
+        model.updateFilteredMeetingList(new MeetingContainsKeywordsPredicate(Arrays.asList(splitDescription[0]),
+                Meeting::getDescription));
+
+        assertEquals(1, model.getFilteredMeetingList().size());
     }
 
 }
