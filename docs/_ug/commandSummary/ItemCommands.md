@@ -51,5 +51,14 @@
   | replace: ":dec:", dec
   | replace: ":set:", set
   | replace: ":del:", del
+  | replace: ":newexample:", newexample
+  | replace: ":listexample:", listexample
+  | replace: ":findexample:", findexample
+  | replace: ":sortexample:", sortexample
+  | replace: ":viewexample:", viewexample
+  | replace: ":incexample:", incexample
+  | replace: ":decexample:", decexample
+  | replace: ":editexample:", editexample
+  | replace: ":delexample:", delexample
 }}
 
