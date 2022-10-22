@@ -61,6 +61,10 @@ public class Day {
         return removedItem;
     }
 
+    public Item getItem(Index index) {
+        return this.itemList.get(index.getZeroBased());
+    }
+
     /**
      * Deletes the day. Resets the startTime field of all items in this day.
      *

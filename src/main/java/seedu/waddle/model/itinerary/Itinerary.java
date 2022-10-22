@@ -7,6 +7,8 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.Objects;
 
+import seedu.waddle.commons.core.index.MultiIndex;
+import seedu.waddle.logic.commands.exceptions.CommandException;
 import seedu.waddle.model.item.Day;
 import seedu.waddle.model.item.Item;
 import seedu.waddle.model.item.UniqueItemList;
@@ -124,6 +126,22 @@ public class Itinerary {
         unscheduledItemList.setItem(target, editedItem);
     }
 
+    public void setItem(Item target, Item editedItem, MultiIndex index) throws CommandException {
+        if (index.getDayIndex() == null) {
+            this.unscheduledItemList.setItem(target, editedItem);
+            sortUnscheduledItemList();
+        } else {
+            Day day = this.days.get(index.getDayIndex().getZeroBased());
+            day.removeItem(index.getTaskIndex());
+            try {
+                day.addItem(editedItem);
+            } catch (CommandException e) {
+                day.addItem(target);
+                throw e;
+            }
+        }
+    }
+
     public int getItemSize() {
         return this.unscheduledItemList.getSize();
     }
@@ -136,15 +154,26 @@ public class Itinerary {
         this.unscheduledItemList.sort(priorityComparator);
     }
 
-    /* public void unplanItem(MultiIndex index) {
-        Day day = this.days.get(index.getDayIndex());
+    /**
+     * Unplan an item.
+     * @param index A multiIndex to locate the day and index of task within the day
+     */
+    public void unplanItem(MultiIndex index) {
+        Day day = this.days.get(index.getDayIndex().getZeroBased());
         Item unplannedItem = day.removeItem(index.getTaskIndex());
         addItem(unplannedItem);
-        this.unscheduledItemList.sort(priorityComparator);
+        sortUnscheduledItemList();
         this.budget.updateSpending(-unplannedItem.getCost().getValue());
     }
 
-    public void planItem(int itemIndex, int dayIndex, int startTime) {
+    /**
+     * Plan an item.
+     * @param itemIndex Index of item in unscheduled list.
+     * @param dayIndex Day to include this item.
+     * @param startTime startTime of the item.
+     * @throws CommandException When adding item to specific day leads to conflict in time.
+     */
+    public void planItem(int itemIndex, int dayIndex, int startTime) throws CommandException {
         Item item = this.unscheduledItemList.get(itemIndex);
         Day day = this.days.get(dayIndex);
         day.addItem(item);
@@ -154,12 +183,13 @@ public class Itinerary {
 
     public Item getItem(MultiIndex index) {
         if (index.getDayIndex() == null) {
-            return this.unscheduledItemList.get(index.getTaskIndex());
+            return this.unscheduledItemList.get(index.getTaskIndex().getZeroBased());
         } else {
-            Day day = this.days.get(index.getDayIndex());
+            Day day = this.days.get(index.getDayIndex().getZeroBased());
             return day.getItem(index.getTaskIndex());
         }
-    } */
+    }
+
     /**
      * Returns true if both itineraries have the same identity and data fields.
      * This defines a stronger notion of equality between two itineraries.

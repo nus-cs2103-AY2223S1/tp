@@ -42,6 +42,14 @@ public class MultiIndex {
         return indices.get(pos - 1);
     }
 
+    public Index getDayIndex() {
+        return getIndex(1);
+    }
+
+    public Index getTaskIndex() {
+        return getIndex(2);
+    }
+
 
 
     private boolean isValidPos(int pos) {
