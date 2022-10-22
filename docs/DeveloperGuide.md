@@ -161,7 +161,7 @@ This section describes some noteworthy details on how certain features are imple
 
 Tutor information is stored as `Tutor` objects, which captures all the information that the tutor represents. When the user adds a tutor, the program creates a new `Tutor` object with the given information and adds it to the `ObservableList` to be displayed in the program. The `Model` class handles the checking of uniqueness while the `Storage` class handles the conversion of the `Tutor` object to a [JSON](https://www.json.org/) format and updating of the storage file in `{source_root}/data/Tuthub.json`.
 
-The following methods in `Tutub` manage the addition of tutors:
+The following methods in `Tuthub` manage the addition of tutors:
 * `Tuthub#AddCommand(Tutor tutor)` - Adds the provided tutor to the list of tutors created
 * `Tuthub#AddCommandParser(String args)` - Parses the command `add` and determines the attributes of the `Tutor` object created based on the given prefixes
 
@@ -269,6 +269,41 @@ The following sequence diagram demonstrates the above operations (excluding the 
 - **Alternative 2:** Store two lists, one for `FilteredList` and one for `SortedList`.
     - Pros: Idea is more simply understood. Serves the main purpose of `sort` if implemented correctly.
     - Cons: Complicated to implement and possibility of many bugs. Poor OOP practice as it may require reassigning of the `FilteredList` and `SortedList` variables.
+
+### Comment feature
+
+This command adds a comment to a tutor in `Tuthub`'s displayed list.
+
+<ins>Implementation</ins>
+
+The `comment` command involves the logic and model part of Tuthub. 
+Most updates are made within the `ModelManager`, which are:
+
+Given below is an example usage scenario when the user enters a `comment` command in the command box and how the comment is added to the tutor.
+
+Step 1: The user enters the command `comment 1 c/Often late`.
+
+Step 2: The `TuthubParser` verifies the `CommentCommand#COMMAND_WORD`, and requests `CommentCommandParser` to parse. 
+The `CommentCommandParser` verifies the appropriateness of the user input (`index` and `comment`).
+
+Step 3: Upon parsing, a new `CommentCommand` is created based on the index and the comment.
+
+Step 4: In the `CommentCommand` execution, the `model#setTutor` is called upon with the `comment` added to the tutor. Then, a new `CommandResult` is created and stored in `LogicManager`.
+
+The following sequence diagram demonstrates the above operations (excluding the parsing details):
+
+![SortSequenceDiagram](./images/CommentSequenceDiagram.png)
+
+<ins>Design Considerations</ins>
+
+**Aspect: How are the comments stored?**
+- **Alternative 1:** Store the comments as a list of comments, appending the comments to the list as needed. **(chosen)**
+    - Pros: It is easier to add a `comment` and remove them from each tutor.
+    - Cons: Took more time to think of and implement.
+
+- **Alternative 2:** Store the `comment` as a string, replacing it everytime a new comment is added to the tutor.
+    - Pros: Easier to implement.
+    - Cons: It is harder to add and remove comments from each tutor, as the previous comments need to be copied and then added manually by the user.
 
 --------------------------------------------------------------------------------------------------------------------
 
