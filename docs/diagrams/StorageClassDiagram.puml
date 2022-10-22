@@ -15,9 +15,9 @@ Class "<<interface>>\nStorage" as Storage
 Class StorageManager
 
 package "UniNurse Storage" #F4F6F6{
-Class "<<interface>>\nUniNurseStorage" as UniNurseStorage
-Class JsonUniNurseStorage
-Class JsonSerializableAddressBook
+Class "<<interface>>\nUninurseBookStorage" as UninurseBookStorage
+Class JsonUninurseBookStorage
+Class JsonSerializableUninurseBook
 Class JsonAdaptedPerson
 Class JsonAdaptedTag
 }
@@ -29,15 +29,15 @@ HiddenOutside ..> Storage
 
 StorageManager .up.|> Storage
 StorageManager -up-> "1" UserPrefsStorage
-StorageManager -up-> "1" UniNurseStorage
+StorageManager -up-> "1" UninurseBookStorage
 
 Storage -left-|> UserPrefsStorage
-Storage -right-|> UniNurseStorage
+Storage -right-|> UninurseBookStorage
 
 JsonUserPrefsStorage .up.|> UserPrefsStorage
-JsonUniNurseStorage .up.|> UniNurseStorage
-JsonUniNurseStorage ..> JsonSerializableAddressBook
-JsonSerializableAddressBook --> "*" JsonAdaptedPerson
+JsonUninurseBookStorage .up.|> UninurseBookStorage
+JsonUninurseBookStorage ..> JsonSerializableUninurseBook
+JsonSerializableUninurseBook --> "*" JsonAdaptedPerson
 JsonAdaptedPerson --> "*" JsonAdaptedTag
 
 @enduml
