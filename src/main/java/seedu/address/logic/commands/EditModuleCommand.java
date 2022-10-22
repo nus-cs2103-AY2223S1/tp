@@ -39,7 +39,8 @@ public class EditModuleCommand extends Command {
             + PREFIX_MOD_NAME + "Data Structures and Algorithms "
             + PREFIX_MOD_CREDIT + "4";
 
-    public static final String MESSAGE_EDIT_MODULE_SUCCESS = "Edited Module: %1$s";
+    public static final String MESSAGE_EDIT_MODULE_SUCCESS = "Edited Module: %1$s, Edited Name: %2$s, "
+            + "Edited Credit: %3$s";
     public static final String MESSAGE_MODULE_NOT_EDITED = "The provided fields are the same as the current module";
     public static final String MESSAGE_NO_FIELDS_PROVIDED = "At module name to edit must be provided.";
 
@@ -84,7 +85,8 @@ public class EditModuleCommand extends Command {
         }
 
         model.updateFilteredModuleList(PREDICATE_SHOW_ALL_MODULES);
-        return new CommandResult(String.format(MESSAGE_EDIT_MODULE_SUCCESS, editedModule));
+        return new CommandResult(String.format(MESSAGE_EDIT_MODULE_SUCCESS, editedModule,
+                editedModule.getModuleName(), editedModule.getModuleCredit()));
     }
 
     @Override
