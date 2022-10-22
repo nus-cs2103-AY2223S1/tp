@@ -125,7 +125,7 @@ The `Model` component,
 * stores the currently 'selected' `Person` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Person>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
 * stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
 * does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
-
+* _Diagram to be updated with new `Patient`attributes ..._
 <div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `AddressBook`, which `Person` references. This allows `AddressBook` to only require one `Tag` object per unique tag, instead of each `Person` needing their own `Tag` objects.<br>
 
 <img src="images/BetterModelClassDiagram.png" width="450" />
@@ -167,6 +167,57 @@ The Sequence diagram below shows the execution of a tasksOn command
 ![tasksOnSequenceDiagram](images/TasksOnSequenceDiagram.png)
 
 ### \[Proposed\] Undo/redo feature
+### Add/delete medical conditions from patients
+
+Users can add a medical condition to a particular patient by providing the following details:
+1. The patient's index number shown in the displayed patient list.
+2. The condition to be added.
+
+There are two ways a user can add a medical condition:
+1. Add multiple medical conditions at one go when the user first creates a patient.
+2. Add one condition at a time to an existing patient.
+
+#### Implementation
+
+A medical condition is represented by `Condition`, and multiple conditions are stored internally as a `ConditionList`.
+`ConditionList` facilitates the add/delete condition mechanism, and each patient only has one associated `ConditionList`.
+`ConditionList` mainly implements the following operations:
+* `ConditionList#add()`: adds a condition to the patient's list of conditions.
+* `ConditionList#delete()`: removes a condition from the patient's list of conditions.
+
+Figure 1 below summarises what happens when a user executes an add condition command on a specified patient:
+<figure>
+    <img src="images/AddConditionActivityDiagram.png" alt="add_condition_activity_diagram"/>
+    <figcaption>
+        <em>Figure 1: Activity diagram showing the flow of events when a user executes an add condition command</em>
+    </figcaption>
+</figure>
+
+#### Interactions 
+
+Given below is an example usage scenario and how the add condition mechanism behaves at each step.
+
+1. The user executes the `addCondition 1 c/Diabetes` command to add a condition to the first patient in the
+displayed patient list.
+
+2. `UninurseBookParser#parseCommand()` parses the command word `addCondition`, and then creates a corresponding `AddConditionCommandParser` object.
+
+3. `AddConditionCommandParser#parse()` parses the patient index `1` and the condition `Diabetes` provided, and then creates an `AddConditionCommand` object.
+
+4. The `AddConditionCommand` object interacts with the `Model` to add a condition to the specified patient's condition list.
+
+5. `Logic` returns a `CommandResult` object, which encapsulates the result of the execution of the add condition command.
+
+Figure 2 below shows how `Logic` executes the add condition operation:
+<figure>
+    <img src="images/AddConditionSequenceDiagram.png" alt="add_condition_sequence_diagram"/>
+    <figcaption>
+        <em>Figure 2: Sequence diagram showing interactions within the Logic component when a user executes an add condition command</em>
+    </figcaption>
+</figure>
+
+_To be updated with details of delete condition feature ..._
+
 ### Undo/redo feature
 
 The undo/redo mechanism is facilitated by `PersistentUninurseBook`. It consists of a list of `UninurseBookSnapshot`, which itself consists of a `UninurseBook` and a `CommandResult`. `PersistentUninurseBook` stores the saved versions of all `UninurseBook`s, stored internally as:
