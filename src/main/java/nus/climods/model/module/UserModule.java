@@ -1,12 +1,6 @@
 package nus.climods.model.module;
 
-import java.util.List;
 import java.util.Objects;
-import java.util.Optional;
-
-import nus.climods.logic.commands.exceptions.CommandException;
-import nus.climods.logic.parser.exceptions.ParseException;
-import nus.climods.model.Model;
 
 /**
  * Class representing module a User has in their My Modules list
@@ -15,53 +9,46 @@ public class UserModule {
     public static final String MESSAGE_MODULE_NOT_FOUND = "Module not in current NUS curriculum";
 
     // Identity fields
-    private final Module listModule;
 
-    //TODO: Remove when implement tutorial/lecture support
+    //TODO: Remove when implement tutorial/lecture/selectedSemester support
     private String tutorial = "Tutorial: Monday, 1400-1500";
     private String lecture = "Lecture: Friday, 1600-1800";
+    private String selectedSemester;
+    private String moduleCode;
 
     /**
      * Creates a UserModule
-     * @param moduleCode String for the module code
-     * @throws ParseException if module code is not a valid module in current NUS curriculum
+     * @param module chosen by user
      */
-    public UserModule(String moduleCode, Model model) throws CommandException {
-        Optional<Module> optionalModule = model.getModuleList().getListModule(moduleCode);
+    public UserModule(Module module) {
+        this.moduleCode = module.getCode();
+        // Todo:
+        this.selectedSemester = module.getSemesters().contains(1) ? "Semester 1" : "Semester 2";
+    }
 
-        if (optionalModule.isEmpty()) {
-            throw new CommandException(MESSAGE_MODULE_NOT_FOUND);
-        }
-
-        listModule = optionalModule.get();
+    /**
+     * Creates a UserModule from json {@code JsonAdaptedUserModule} object
+     * @param moduleCode String for the module code
+     * @param lecture cached selected lectures slot
+     * @param tutorial cached selected tutorial slot
+     * @param selectedSemesters the semesters selected
+     */
+    public UserModule(String moduleCode, String lecture, String tutorial, String selectedSemesters) {
+        this.moduleCode = moduleCode;
+        this.lecture = lecture;
+        this.tutorial = tutorial;
+        // TODO: update with user's selected semester
+        this.selectedSemester = selectedSemesters;
     }
 
     /**
      * Constructor for use purely in testing stub classes.
      */
     protected UserModule() {
-        this.listModule = null;
-    }
-
-    public Module getApiModule() {
-        return this.listModule;
     }
 
     public String getUserModuleCode() {
-        return this.listModule.getCode();
-    }
-
-    public String getUserModuleTitle() {
-        return this.listModule.getTitle();
-    }
-
-    public String getDepartment() {
-        return listModule.getDepartment();
-    }
-
-    //TODO: fix getWorkload from API
-    public String getWorkload() {
-        return listModule.getModuleCredit();
+        return this.moduleCode;
     }
 
     //TODO: add Tutorial method
@@ -81,13 +68,10 @@ public class UserModule {
         this.lecture = lecture;
     }
 
-    private List<Integer> getAvailableSemesters() {
-        return listModule.getSemesters();
-    }
 
     // TODO: update with user's selected semester
     public String getSelectedSemester() {
-        return getAvailableSemesters().contains(1) ? "Semester 1" : "Semester 2";
+        return selectedSemester;
     }
 
     /**
@@ -123,7 +107,7 @@ public class UserModule {
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(listModule);
+        return Objects.hash(moduleCode, selectedSemester, lecture, tutorial);
     }
 
     @Override

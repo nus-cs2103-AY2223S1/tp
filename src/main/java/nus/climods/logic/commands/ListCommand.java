@@ -44,6 +44,7 @@ public class ListCommand extends Command {
         model.setFilteredModuleList(new CodeContainsKeywordsPredicate(facultyCode));
 
         return new CommandResult(String.format(MESSAGE_MODULES_LISTED_OVERVIEW,
-                model.getFilteredModuleList().size()));
+                model.getFilteredModuleList().size()),
+                COMMAND_WORD, model);
     }
 }

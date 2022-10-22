@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static nus.climods.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Comparator;
+import java.util.Optional;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
@@ -63,6 +64,16 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public boolean isModuleOffered(String moduleCode) {
+        return this.moduleList.hasModule(moduleCode);
+    }
+
+    @Override
+    public Optional<Module> getModule(String moduleCode) {
+        return this.moduleList.getModule(moduleCode);
+    }
+
+    @Override
     public ObservableList<Module> getFilteredModuleList() {
         return filteredAndSortedModuleList;
     }
@@ -86,20 +97,25 @@ public class ModelManager implements Model {
     //=========== UserModule ==================================================================================
 
     @Override
-    public void addUserModule(UserModule module) {
-        userModuleList.add(module);
-    }
-
-    @Override
-    public void deleteUserModule(UserModule target) {
-        requireNonNull(target);
-        userModuleList.remove(target);
+    public UniqueUserModuleList getUserModuleList() {
+        return userModuleList;
     }
 
     @Override
     public boolean hasUserModule(UserModule module) {
         requireNonNull(module);
         return userModuleList.contains(module);
+    }
+
+    @Override
+    public void addUserModule(UserModule module) {
+        userModuleList.add(module);
+    }
+
+    @Override
+    public void deleteUserModule(String moduleCode) {
+        requireNonNull(moduleCode);
+        userModuleList.remove(moduleCode);
     }
 
     @Override

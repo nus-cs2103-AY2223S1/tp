@@ -7,6 +7,7 @@ import javafx.scene.layout.Region;
 import nus.climods.commons.core.CommandSession;
 import nus.climods.logic.commands.exceptions.CommandException;
 import nus.climods.logic.parser.exceptions.ParseException;
+import nus.climods.storage.exceptions.StorageException;
 import nus.climods.ui.UiPart;
 
 /**
@@ -61,7 +62,7 @@ public class CommandBox extends UiPart<Region> {
         try {
             commandSession.execute(commandText);
             commandTextField.setText("");
-        } catch (CommandException | ParseException e) {
+        } catch (CommandException | ParseException | StorageException e) {
             setStyleToIndicateCommandFailure();
         }
     }
