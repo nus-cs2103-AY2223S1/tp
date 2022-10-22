@@ -221,12 +221,57 @@ Alternative 1 was chosen to enable more efficient parsing of commands.
 `PropertyPriceWithinRangePredicate` 
 
 Firstly, 
+=======
+### Commands
+
+#### \[Proposed\] Search Command
+
+#### Proposed Implementation
+
+The proposed search command allows the user to search for a particular `Property`. It is facilitated by `SearchCommand`.
+It extends the `Command` class.
+
+Users can specify if they want to perform the search for a `Property` or `Client` with the following 
+options
+
+1. `-p` Search for a particular property with matching keywords
+2. `-c` Search for a particular client with matching keywords
+
+#### Parsing of commands within the `Logic` component
+
+The parsing of commands begins once the `LogicManager` receives and tries to execute the user input.
+
+To parse the different commands in our application, we have individual command parsers for the different commands 
+(e.g. `EditCommandParser`).
+
+The steps taken when parsing a search command are as follows:
+
+1. The `SearchCommandParser` will check what type (`Property` or `Client`) the search is for 
+and create the corresponding parser 
+   1. `search -p` will create the command: `SearchPropertyCommand`
+   2. `search -c` will create the command: `SearchClientCommand`
+3. The respective parsers all implement the `Parser` interface, and the `Parser#parse` method will then be called.
+
+#### Design Considerations:
+
+- Create a `SearchCommand` class 
+
+=======
+### User Uploaded Images
+The application allows users to upload their own images for Property and Client models. By default, the images are stored
+in `data/images`, but users can specify their custom directory in `preferences.json`.
+
+The Image object is not initialized until the PropertyCard/ClientCard of the UI is rendered. This is to save memory 
+consumption and rely on the Lazy Loading of Observable List. We need to inject the UserPrefs into the Property/Client 
+models in order to determine the location to source for the uploaded images.
 
 ### \[Proposed\] Undo/redo feature
 
 #### Proposed Implementation
 
-The proposed undo/redo mechanism is facilitated by `VersionedAddressBook`. It extends `AddressBook` with an undo/redo history, stored internally as an `addressBookStateList` and `currentStatePointer`. Additionally, it implements the following operations:
+The proposed undo/redo mechanism is facilitated by `VersionedAddressBook`. 
+It extends `AddressBook` with an undo/redo history, stored internally as an `addressBookStateList` and `currentStatePointer`. 
+Additionally, it implements the following operations:
 
 * `VersionedAddressBook#commit()` — Saves the current address book state in its history.
 * `VersionedAddressBook#undo()` — Restores the previous address book state from its history.
@@ -291,11 +336,15 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 **Aspect: How undo & redo executes:**
 
-* **Alternative 1 (current choice):** Saves the entire address book.
+* **Alternative 1:** Saves the initial PropertyDirectory and ClientDirectory on initialization. Store all commands in 
+CommandQueue and re-executes _n - 1_ commands on undo.
+    * Pros: Easy to implement. Less memory usage
+    * Cons: Might make undo command less responsive, depending on complexity of commands.
+* **Alternative 2:** Saves the entire address book.
     * Pros: Easy to implement.
     * Cons: May have performance issues in terms of memory usage.
 
-* **Alternative 2:** Individual command knows how to undo/redo by
+* **Alternative 3:** Individual command knows how to undo/redo by
   itself.
     * Pros: Will use less memory (e.g. for `delete`, just save the person being deleted).
     * Cons: We must ensure that the implementation of each individual command are correct.
