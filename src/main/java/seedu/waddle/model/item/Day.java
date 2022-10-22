@@ -33,6 +33,12 @@ public class Day {
         this.parentItinerary = parentItinerary;
     }
 
+    /**
+     * Adds an item to this day if there are no time conflicts.
+     *
+     * @param item The item to be added.
+     * @throws CommandException Conflicting items message thrown if there are time conflicts.
+     */
     public void addItem(Item item) throws CommandException {
         ArrayList<Item> conflictingItems = getConflictingItems(item);
         StringBuilder conflicts = new StringBuilder();
@@ -47,12 +53,23 @@ public class Day {
         this.itemList.sort(startTimeComparator);
     }
 
+    /**
+     * Removes an item from this day. Resets the item's startTime field.
+     *
+     * @param index The index of the item to be removed.
+     * @return The removed item.
+     */
     public Item removeItem(Index index) {
         Item removedItem = this.itemList.remove(index.getZeroBased());
         removedItem.resetStartTime();
         return removedItem;
     }
 
+    /**
+     * Deletes the day. Resets the startTime field of all items in this day.
+     *
+     * @return The list of items stored in this day.
+     */
     public UniqueItemList deleteDay() {
         for (Item item : this.itemList) {
             item.resetStartTime();
