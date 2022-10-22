@@ -56,6 +56,8 @@ public class SortCommandParserUtil {
     private static final Comparator<Pet> PET_COLOR_PATTERN_COMPARATOR = Comparator.comparing(Pet::getColorPattern);
     private static final Comparator<Pet> PET_BIRTH_DATE_COMPARATOR = Comparator.comparing(Pet::getDateOfBirth);
     private static final Comparator<Pet> PET_SPECIES_COMPARATOR = Comparator.comparing(Pet::getSpecies);
+    private static final Comparator<Pet> PET_HEIGHT_COMPARATOR = Comparator.comparing(Pet::getHeight);
+    private static final Comparator<Pet> PET_WEIGHT_COMPARATOR = Comparator.comparing(Pet::getWeight);
     private static final Comparator<Pet> PET_VACCINATION_STATUS_COMPARATOR = Comparator.comparing(
             Pet::getVaccinationStatus);
     private static final Comparator<Pet> PET_PRICE_COMPARATOR = Comparator.comparing(Pet::getPrice);
@@ -173,24 +175,31 @@ public class SortCommandParserUtil {
      *     for sorting.
      */
     public static Comparator<Order> parseToSelectedOrderComparator(String attribute) throws ParseException {
-        if (attribute.isEmpty()) {
+        if (attribute.isEmpty() || SortCommand.isValidParameter(
+                SortCommand.ACCEPTABLE_SORT_DUE_DATE_PARAMETER, attribute)) {
             return ORDER_DUE_DATE_COMPARATOR;
         }
 
-        switch (attribute.toUpperCase()) {
-        case "PRICERANGE":
+        if (SortCommand.isValidParameter(SortCommand.ACCEPTABLE_SORT_PRICE_RANGE_PARAMETER, attribute)) {
             return ORDER_PRICE_RANGE_COMPARATOR;
-        case "PRICE":
-            return ORDER_PRICE_COMPARATOR;
-        case "ORDERSTATUS":
-            return ORDER_STATUS_COMPARATOR;
-        case "DUEDATE":
-            return ORDER_DUE_DATE_COMPARATOR;
-        default:
-            throw new ParseException(String.format(SortOrderCommand.MESSAGE_WRONG_ATTRIBUTE, attribute,
-                    SortOrderCommand.MESSAGE_USAGE));
         }
+
+        if (SortCommand.isValidParameter(SortCommand.ACCEPTABLE_SORT_PRICE_PARAMETER, attribute)) {
+            return ORDER_PRICE_COMPARATOR;
+        }
+
+        if (SortCommand.isValidParameter(SortCommand.ACCEPTABLE_SORT_STATUS_PARAMETER, attribute)) {
+            return ORDER_STATUS_COMPARATOR;
+        }
+
+        if (SortCommand.isValidParameter(SortCommand.ACCEPTABLE_SORT_DUE_DATE_PARAMETER, attribute)) {
+            return ORDER_DUE_DATE_COMPARATOR;
+        }
+        throw new ParseException(String.format(SortOrderCommand.MESSAGE_WRONG_ATTRIBUTE, attribute,
+                SortOrderCommand.MESSAGE_USAGE));
+
     }
+
 
     /**
      * Parses the input string to a pet comparator according to the attribute specify by the input string.
@@ -200,32 +209,56 @@ public class SortCommandParserUtil {
      *     for sorting.
      */
     public static Comparator<Pet> parseToSelectedPetComparator(String attribute) throws ParseException {
-        if (attribute.isEmpty()) {
+        if (attribute.isEmpty() || SortCommand.isValidParameter(
+                SortCommand.ACCEPTABLE_SORT_PRICE_PARAMETER, attribute) ) {
             return PET_PRICE_COMPARATOR;
         }
 
-        switch (attribute.toUpperCase()) {
-        case "NAME":
+        if (SortCommand.isValidParameter(SortCommand.ACCEPTABLE_SORT_NAME_PARAMETER, attribute)) {
             return PET_NAME_COMPARATOR;
-        case "COLOR":
-            return PET_COLOR_COMPARATOR;
-        case "COLORPATTERN":
-            return PET_COLOR_PATTERN_COMPARATOR;
-        case "BIRTHDATE":
-            return PET_BIRTH_DATE_COMPARATOR;
-        case "SPECIES":
-            return PET_SPECIES_COMPARATOR;
-        case "VACINNATIONSTATUS":
-            return PET_VACCINATION_STATUS_COMPARATOR;
-        case "PRICE":
-            return PET_PRICE_COMPARATOR;
-        case "CHARACTERISTICS":
-            return PET_TAG_COMPARATOR;
-        case "CERTIFICATE":
-            return PET_CERTIFICATE_COMPARATOR;
-        default:
-            throw new ParseException(String.format(SortPetCommand.MESSAGE_WRONG_ATTRIBUTE, attribute,
-                    SortPetCommand.MESSAGE_USAGE));
         }
+
+        if (SortCommand.isValidParameter(SortCommand.ACCEPTABLE_SORT_COLOR_PARAMETER, attribute)) {
+            return PET_COLOR_COMPARATOR;
+        }
+
+        if (SortCommand.isValidParameter(SortCommand.ACCEPTABLE_SORT_COLOR_PATTERN_PARAMETER, attribute)) {
+            return PET_COLOR_PATTERN_COMPARATOR;
+        }
+
+        if (SortCommand.isValidParameter(SortCommand.ACCEPTABLE_SORT_BIRTH_DATE_PARAMETER, attribute)) {
+            return PET_BIRTH_DATE_COMPARATOR;
+        }
+
+        if (SortCommand.isValidParameter(SortCommand.ACCEPTABLE_SORT_SPECIES_PARAMETER, attribute)) {
+            return PET_SPECIES_COMPARATOR;
+        }
+
+        if (SortCommand.isValidParameter(SortCommand.ACCEPTABLE_SORT_HEIGHT_PARAMETER, attribute)) {
+            return PET_HEIGHT_COMPARATOR;
+        }
+
+        if (SortCommand.isValidParameter(SortCommand.ACCEPTABLE_SORT_WEIGHT_PARAMETER, attribute)) {
+            return PET_WEIGHT_COMPARATOR;
+        }
+
+        if (SortCommand.isValidParameter(SortCommand.ACCEPTABLE_SORT_VACCINATION_STATUS_PARAMETER, attribute)) {
+            return PET_VACCINATION_STATUS_COMPARATOR;
+        }
+
+        if (SortCommand.isValidParameter(SortCommand.ACCEPTABLE_SORT_PRICE_PARAMETER, attribute)) {
+            return PET_PRICE_COMPARATOR;
+        }
+
+        if (SortCommand.isValidParameter(SortCommand.ACCEPTABLE_SORT_TAGS_PARAMETER, attribute)) {
+            return PET_TAG_COMPARATOR;
+        }
+
+        if (SortCommand.isValidParameter(SortCommand.ACCEPTABLE_SORT_CERTIFICATES_PARAMETER, attribute)) {
+            return PET_CERTIFICATE_COMPARATOR;
+        }
+
+        throw new ParseException(String.format(SortPetCommand.MESSAGE_WRONG_ATTRIBUTE, attribute,
+                SortPetCommand.MESSAGE_USAGE));
     }
 }
