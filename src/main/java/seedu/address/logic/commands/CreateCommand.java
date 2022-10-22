@@ -35,7 +35,7 @@ public class CreateCommand extends UndoableCommand {
             + PREFIX_EMAIL + "johnd@example.com "
             + PREFIX_ADDRESS + "311, Clementi Ave 2, #02-25 "
             + PREFIX_NETWORTH + "$1423 "
-            + PREFIX_MEETING_TIME + "15-12-2022 19:00"
+            + PREFIX_MEETING_TIME + "12-15-2022 19:00 "
             + PREFIX_TAG + "friends "
             + PREFIX_TAG + "owesMoney";
 
