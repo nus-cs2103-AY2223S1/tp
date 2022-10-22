@@ -4,10 +4,13 @@ import static tracko.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static tracko.logic.parser.CliSyntax.FLAG_DELIVERED;
 import static tracko.logic.parser.CliSyntax.FLAG_PAID;
 
+import java.util.stream.Stream;
+
 import tracko.commons.core.index.Index;
 import tracko.logic.commands.order.MarkOrderCommand;
 import tracko.logic.parser.ArgumentMultimap;
-import tracko.logic.parser.ArgumentTokenizer;
+import tracko.logic.parser.Flag;
+import tracko.logic.parser.FlagTokenizer;
 import tracko.logic.parser.Parser;
 import tracko.logic.parser.ParserUtil;
 import tracko.logic.parser.exceptions.ParseException;
@@ -27,16 +30,30 @@ public class MarkOrderCommandParser implements Parser<MarkOrderCommand> {
     @Override
     public MarkOrderCommand parse(String userInput) throws ParseException {
         ArgumentMultimap argumentMultimap =
-                ArgumentTokenizer.tokenize(userInput, FLAG_PAID, FLAG_DELIVERED);
+                FlagTokenizer.tokenize(userInput, FLAG_PAID, FLAG_DELIVERED);
 
 
-        if (argumentMultimap.getPreamble().isEmpty()) {
+        if (argumentMultimap.getPreamble().isEmpty()
+                || !isAnyFlagPresent(argumentMultimap, FLAG_PAID, FLAG_DELIVERED)) {
             throw new ParseException(
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, MarkOrderCommand.MESSAGE_USAGE));
         }
 
         Index index = ParserUtil.parseIndex(argumentMultimap.getPreamble());
+        boolean isPaid = argumentMultimap.getValue(FLAG_PAID).orElse("false").equals("true");
+        boolean isDelivered = argumentMultimap.getValue(FLAG_DELIVERED).orElse("false").equals("true");
 
-        return new MarkOrderCommand(index, true, true);
+        return new MarkOrderCommand(index, isPaid, isDelivered);
+    }
+
+    /**
+     * Returns true if at least one flag does not contain empty {@Optional} value in the given
+     * {@code ArgumentMultimap}
+     * @param argumentMultimap Hashmap which maps all the flags with corresponding arguments
+     * @param flags flags to be checked for input present
+     * @return true if at least one flag is present in the given {@code ArgumentMultimap}
+     */
+    private static boolean isAnyFlagPresent(ArgumentMultimap argumentMultimap, Flag... flags) {
+        return Stream.of(flags).anyMatch(flag -> argumentMultimap.getValue(flag).isPresent());
     }
 }

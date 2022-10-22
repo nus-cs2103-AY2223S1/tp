@@ -12,8 +12,6 @@ import tracko.logic.commands.CommandResult;
 import tracko.logic.commands.exceptions.CommandException;
 import tracko.model.Model;
 import tracko.model.order.Order;
-import tracko.model.order.exceptions.OrderAlreadyDeliveredException;
-import tracko.model.order.exceptions.OrderAlreadyPaidException;
 
 /**
  * Marks the order identified with it's displayed index in the displayed order list as delivered and/or paid.
@@ -24,7 +22,8 @@ public class MarkOrderCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Marks the order identified by the index number used in the displayed order list.\n"
-            + "Parameters: INDEX (must be a positive integer) " + FLAG_PAID + " (optional) " + FLAG_DELIVERED + " (optional) \n"
+            + "Parameters: INDEX (must be a positive integer) " + FLAG_PAID + " (optional) "
+            + FLAG_DELIVERED + " (optional) \n"
             + "Example: " + COMMAND_WORD + " 1 " + FLAG_PAID + " " + FLAG_DELIVERED;
 
     public static final String MESSAGE_MARK_ORDER_SUCCESS = "Marked Order:\n %1$s";
@@ -57,13 +56,13 @@ public class MarkOrderCommand extends Command {
         Order orderToMark = lastShownList.get(targetIndex.getZeroBased());
 
         if (isPaid && orderToMark.getPaidStatus()) {
-            throw new OrderAlreadyPaidException();
+            throw new CommandException(Messages.MESSAGE_ORDER_ALREADY_PAID);
         } else if (isPaid && !orderToMark.getPaidStatus()) {
             orderToMark.setPaid();
         }
 
         if (isDelivered && orderToMark.getDeliveryStatus()) {
-            throw new OrderAlreadyDeliveredException();
+            throw new CommandException(Messages.MESSAGE_ORDER_ALREADY_DELIVERED);
         } else if (isDelivered && !orderToMark.getDeliveryStatus()) {
             orderToMark.setDelivered();
         }

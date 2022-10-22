@@ -11,4 +11,6 @@ public class Messages {
     public static final String MESSAGE_INVALID_ORDER_DISPLAYED_INDEX = "The order index provided is invalid";
     public static final String MESSAGE_ITEMS_FOUND_OVERVIEW = "%1$d item(s) found!";
     public static final String MESSAGE_INVALID_ITEM_DISPLAYED_INDEX = "The item index provided is invalid";
+    public static final String MESSAGE_ORDER_ALREADY_DELIVERED = "Order has been delivered previously";
+    public static final String MESSAGE_ORDER_ALREADY_PAID = "Order has already been paid for";
 }

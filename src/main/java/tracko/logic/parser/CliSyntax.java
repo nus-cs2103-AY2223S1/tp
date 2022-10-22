@@ -16,6 +16,6 @@ public class CliSyntax {
     public static final Prefix PREFIX_DESCRIPTION = new Prefix("d/");
     public static final Prefix PREFIX_COST_PRICE = new Prefix("cp/");
     public static final Prefix PREFIX_SELL_PRICE = new Prefix("sp/");
-    public static final Prefix FLAG_PAID = new Prefix("-p");
-    public static final Prefix FLAG_DELIVERED = new Prefix("-d");
+    public static final Flag FLAG_PAID = new Flag("-p");
+    public static final Flag FLAG_DELIVERED = new Flag("-d");
 }
