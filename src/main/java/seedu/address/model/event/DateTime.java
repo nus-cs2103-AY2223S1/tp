@@ -7,6 +7,7 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.HashSet;
+import java.util.LinkedHashSet;
 import java.util.Optional;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -29,11 +30,12 @@ public class DateTime {
     public static final String REGEX_YEAR = "(?<yearGroup>[0-9]{4})";
     public static final String REGEX_MONTH_DIGITS = "(((0)?[0-9])|((1)[0-2]))";
     public static final String REGEX_MONTH_LETTERS =
-            "((jan)|(feb)|(mar)|(apr)|(may)|(jun)|(jul)|(aug)|(sep)|(oct)|(nov)|(dec))";
+            "((jan(uary)?)|(feb(ruary)?)|(mar(ch)?)|(apr(il)?)|(may)|(jun(e)?)|"
+                    + "(jul(y)?)|(aug(ust)?)|(sep(tember)?)|(oct(ober)?)|(nov(ember)?)|(dec(ember)?))";
     public static final String REGEX_MONTH = "(?<monthGroup>" + REGEX_MONTH_LETTERS + "|" + REGEX_MONTH_DIGITS + ")";
     public static final String REGEX_DAY = "(?<dayGroup>[1-9]|[0-2][0-9]|(3)[0-1])";
-    public static final String REGEX_SECONDS = "([0-5]?[0-9])";
-    public static final String REGEX_MINUTES = "(([0-5][0-9]))";
+    public static final String REGEX_SECONDS = "([0-5][0-9])";
+    public static final String REGEX_MINUTES = "([0-5][0-9])";
     public static final String REGEX_HOURS = "([01][0-9]|2[0-3])";
     public static final String REGEX_TIME_COLON =
             "(" + REGEX_HOURS + ":" + REGEX_MINUTES + "(:" + REGEX_SECONDS + ")?)";
@@ -50,7 +52,7 @@ public class DateTime {
     public static final String REGEX_RELAXED_TIME =
             REGEX_RELAXED_HOUR + "(:?)" + REGEX_RELAXED_MINUTE + "(:?" + REGEX_RELAXED_SECOND + ")?";
 
-    public static final HashSet<String> REGEX_DATES = new HashSet<>() {
+    public static final HashSet<String> REGEX_DATES = new LinkedHashSet<>() {
         {
             add("((?<dateGroup>" + REGEX_DAY + "\\s" + REGEX_MONTH + "\\s" + REGEX_YEAR + "))"
                     + "(\\s(?<timeGroup>" + REGEX_TIME + "))?");
@@ -67,7 +69,7 @@ public class DateTime {
         }
     };
 
-    private static final HashSet<String> REGEX_FORMAT = new HashSet<>() {
+    private static final HashSet<String> REGEX_FORMAT = new LinkedHashSet<>() {
         {
             add("(" + REGEX_RELAXED_DAY + "/" + REGEX_RELAXED_MONTH + "/" + REGEX_RELAXED_YEAR + ")"
                     + "(\\s" + REGEX_RELAXED_TIME + ")?");
@@ -131,12 +133,26 @@ public class DateTime {
         String day = matcher.group("dayGroup");
         String month = matcher.group("monthGroup");
         String year = matcher.group("yearGroup");
+        String formatter = "d/";
 
-        if (month.length() == 3) {
+        if (month.length() >= 3) {
             month = month.substring(0, 1).toUpperCase() + month.substring(1).toLowerCase();
-            return LocalDate.parse(day + "/" + month + "/" + year, DateTimeFormatter.ofPattern("d/MMM/yyyy"));
+            if (month.length() == 3) {
+                formatter += "MMM/";
+            } else {
+                formatter += "MMMM/";
+            }
+        } else {
+            formatter += "M/";
         }
-        return LocalDate.parse(day + "/" + month + "/" + year, DateTimeFormatter.ofPattern("d/M/yyyy"));
+
+        if (year.length() == 2) {
+            formatter += "yy";
+        } else {
+            formatter += "yyyy";
+        }
+
+        return LocalDate.parse(day + "/" + month + "/" + year, DateTimeFormatter.ofPattern(formatter));
     }
 
     /**
