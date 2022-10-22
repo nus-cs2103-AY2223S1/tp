@@ -193,7 +193,7 @@ compared lexicographically.
 When the command `:sort` is entered, the `Ui` sends the command to `Logic`. `Logic` parses and identifies the `:sort` command that was entered, and creates
 an instance of it. `Logic` then executes the command. `Model` will have the displayed list sorted and the sorted list will be displayed by `Ui`.
 
-####Example Usage
+#### Example Usage
 
 Given below is an example usage scenario and how the sorting mechanism behaves at each step.
 
@@ -208,7 +208,7 @@ The following sequence diagram shows how the sort command is executed.
 
 <img src="images/SortSequenceDiagram.png" width="1000" />
 
-####Design considerations:
+#### Design considerations:
 
 **Aspect: Displayed List structure**
 * **Current choice**: `displayedList` is a duplicated copy of the list of exercises in `internalUnmodifiableList` of type
@@ -285,6 +285,48 @@ The following sequence diagram shows how the date range process (variant of sort
       potential bug that may arise in the future, caused by the assumption that `internalUnmodifiableList` preserves 
       the original ordered state.
 
+### \[Proposed\] Generating a suggested workout routine
+
+#### Proposed Implementation
+
+The mechanism for generating a suggested workout routine is facilitated by `GenerateCommand`, which extends from `Command`.
+
+It implements the following operations:
+
+* `GenerateCommand#execute()` — Executes and coordinates the necessary objects and methods to generate a suggested workout routine.
+* `GenerateCommandParser#parse()` — Parses user input from UI and initializes a GenerateCommand object.
+
+Cases such as where the index from the user input is out of bounds, are handled by the methods.
+
+Given below is an example usage scenario for how the mechanism for generating a workout routine behaves at each step.
+
+Step 1. The user launches the application, and already has 2 exercises, squat and deadlift, at index 1 and 2, in the exercise tracker.
+
+Step 2: The user enters the command `:gen 1,2 l/easy` to generate an easy workout routine consisting of the exercises squat and deadlift.
+
+The following sequence diagram shows how the `GenerateCommand` works:
+
+![GenerateWorkoutSequenceDiagram](images/GenerateWorkoutSequenceDiagram.png)
+
+The diagram detailing the interaction between `g:GenerateCommand` and `GeneratorFactory` class is shown below.
+The static method `GeneratorFactory#getGenerator()` creates a `Generator` of the correct difficulty level, such as `EasyGenerator`.
+The number of `Generator` objects created is equal to the number of unique exercise names. They are `s:EasyGenerator` and `d:EasyGenerator` for squat and deadlift respectively.
+
+![GetSuggestionSequenceDiagram](images/GetSuggestionSequenceDiagram.png)
+
+#### Design considerations:
+
+**Aspect: Type of arguments to accept:**
+* **Alternative 1 (current choice)**: Accept index as arguments.
+    * Pros: Suggestions are generated based on PR recorded by the app. As such, the input exercise(s) must already exist in the app. Accepting indexes would guarantee this condition. 
+    * Cons: May require users to scroll to locate index of desired exercise, when the number of exercises grow. 
+* **Alternative 2**: Accept exercise names.
+    * Pros: Easier to implement.  
+    * Cons: Would require users to type more characters; also require users to enter exercise names accurately.   
+
+**Aspect: Number of `Generator` objects:**
+* **Current choice**: Pairing each unique exercise to one `Generator`.
+    * Rationale: Allow generating suggestions of different difficulty level for different exercises, possibly in the future.
 
 ### \[Proposed\] Undo/redo feature
 
