@@ -1,0 +1,30 @@
+@startuml
+title AddResponseCommand
+
+start
+:User executes "addresponse 1 m/7' command;
+note left
+    Arguments should
+    contain non-zero positive
+    index and prefix m/ followed
+    by a integer
+end note
+
+if (command is valid) then (yes)
+
+    :Parse arguments into an ""AddResponseCommand"" object;
+
+    :Execute ""AddResponseCommand"";
+
+    :Edit ""Response"" in Student;
+
+    :show success message to  the user;
+else (no)
+    :Throw ""ParseException"";
+
+    :show error message to user;
+endif
+
+stop
+
+@enduml

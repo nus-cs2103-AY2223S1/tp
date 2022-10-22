@@ -1,0 +1,64 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
+participant ":AddStuCommandParser" as AddStuCommandParser LOGIC_COLOR
+participant "a:AddStuCommand" as AddStuCommand LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+participant ":AddressBook" as AddressBook MODEL_COLOR
+end box
+[-> LogicManager : execute(addstu n/John h/@johnlim e/john@gmail.com)
+activate LogicManager
+
+LogicManager -> AddressBookParser : parseCommand(addstu n/John h/@johnlim e/john@gmail.com)
+activate AddressBookParser
+
+create AddStuCommandParser
+AddressBookParser -> AddStuCommandParser
+activate AddStuCommandParser
+
+AddStuCommandParser --> AddressBookParser
+deactivate AddStuCommandParser
+
+AddressBookParser -> AddStuCommandParser : parse("n/John h/@johnlim e/john@gmail.com")
+activate AddStuCommandParser
+
+create AddStuCommand
+AddStuCommandParser -> AddStuCommand
+activate AddStuCommand
+
+AddStuCommand --> AddStuCommandParser
+deactivate AddStuCommand
+
+AddressBookParser --> LogicManager : a
+deactivate AddressBookParser
+
+LogicManager -> AddStuCommand : execute()
+activate AddStuCommand
+
+AddStuCommand -> Model : addStudent(Student student)
+activate Model
+
+Model -> AddressBook : addStudent(Student s)
+activate AddressBook
+
+AddressBook -> AddressBook :resetData(ReadOnlyAddressBook newData)
+AddressBook --> Model :
+deactivate AddressBook
+
+Model --> AddStuCommand
+deactivate Model
+
+AddStuCommand --> LogicManager : result
+deactivate AddStuCommand
+AddStuCommand -[hidden]-> LogicManager : result
+destroy AddStuCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml
