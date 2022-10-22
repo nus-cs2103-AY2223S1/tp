@@ -270,8 +270,9 @@ Compulsory prefix: cid/<valid client id>
 Optional prefixes (at least one to be included): n/<valid name>, p/<valid phone number>, e/<valid email>, pid/<valid project id>
 Example Use: `client -e cid/1 n/BenTen p/12345678 e/Ben10@gmail.com pid/1`
 
-#### TO BE DONE: The following sequence diagram shows how the edit command operation works for editing an issue entity:
+#### The following sequence diagram shows how the edit command operation works for editing an issue entity:
 Example: `issue -e iid/1 desc/To edit issue command d/2022-04-09 p/1`
+![AddSequenceDiagram](images/EditSequenceDiagram.png)
 
 #### Design considerations: 
 
