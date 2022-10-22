@@ -2,6 +2,7 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.ColumnConstraints?>
@@ -15,7 +16,7 @@
 <HBox id="cardPane" fx:id="cardPane" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
     <GridPane HBox.hgrow="ALWAYS">
         <columnConstraints>
-            <ColumnConstraints hgrow="SOMETIMES" minWidth="10" prefWidth="150" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="150.0" />
             <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="150.0" />
         </columnConstraints>
         <VBox alignment="CENTER_LEFT" minHeight="105" GridPane.columnIndex="0">
@@ -75,18 +76,12 @@
         </VBox>
         <VBox minHeight="105.0" GridPane.columnIndex="1">
             <children>
-                <HBox alignment="CENTER_LEFT" spacing="5">
+                <HBox alignment="CENTER_LEFT" prefHeight="19.0" prefWidth="129.0" spacing="5">
                     <children>
-                        <Label fx:id="id1" styleClass="cell_big_label" text="Appointment" textFill="WHITE" >
+                        <Label fx:id="id1" prefHeight="32.0" prefWidth="127.0" styleClass="cell_big_label" text="Appointments" textFill="WHITE">
                             <minWidth>
                                 <Region fx:constant="USE_PREF_SIZE" />
                             </minWidth>
-                            <graphic>
-                                <ImageView fitHeight="17.0" fitWidth="51.0" pickOnBounds="true" preserveRatio="true">
-                                    <image>
-                                        <Image url="@../images/calendar.png" />
-                                    </image></ImageView>
-                            </graphic>
                         </Label>
                     </children>
                     <VBox.margin>
@@ -96,7 +91,7 @@
                         <Insets bottom="10.0" />
                     </padding>
                 </HBox>
-                <FlowPane fx:id="appointments" />
+                <ListView fx:id="appointments" prefHeight="111.0" prefWidth="130.0" />
             </children>
             <padding>
                 <Insets bottom="5.0" left="15.0" right="5.0" top="5.0" />

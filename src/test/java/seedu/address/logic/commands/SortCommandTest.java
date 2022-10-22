@@ -31,8 +31,10 @@ public class SortCommandTest {
 
     @Test
     public void equals() {
-        SortByName sortByName = new SortByName();
+        SortByName sortByName = new SortByName("asc");
         SortCommand sortByNameCommand = new SortCommand(sortByName, "name");
+        SortByName sortByNameDesc = new SortByName("desc");
+        SortCommand sortByNameDescCommand = new SortCommand(sortByNameDesc, "name");
 
         // same object -> returns true
         assertTrue(sortByNameCommand.equals(sortByNameCommand));
@@ -44,8 +46,11 @@ public class SortCommandTest {
         SortCommand sortByNameCommandClone = new SortCommand(sortByName, "name");
         assertTrue(sortByNameCommand.equals(sortByNameCommandClone));
 
+        SortCommand sortByNameDescCommandClone = new SortCommand(sortByNameDesc, "name");
+        assertTrue(sortByNameDescCommand.equals(sortByNameDescCommandClone));
+
         // different types -> returns false
-        assertFalse(sortByNameCommand.equals(new ClearCommand()));
+        assertFalse(sortByNameCommand.equals(sortByNameDescCommand));
 
 
     }
@@ -59,7 +64,20 @@ public class SortCommandTest {
         }
 
         String expectedMessage = String.format(SortCommand.MESSAGE_SUCCESS, "name");
-        SortCommand sortCommand = new SortCommand(new SortByName(), "name");
+        SortCommand sortCommand = new SortCommand(new SortByName("asc"), "name");
+        assertCommandSuccess(sortCommand, model, expectedMessage, expectedModel);
+    }
+
+    @Test
+    public void execute_sortByNameDesc_success() {
+        this.expectedModel = new ModelManager();
+        Person[] persons = {ELLE, BOB, AMY};
+        for (Person p: persons) {
+            expectedModel.addPerson(p);
+        }
+
+        String expectedMessage = String.format(SortCommand.MESSAGE_SUCCESS, "name");
+        SortCommand sortCommand = new SortCommand(new SortByName("desc"), "name");
         assertCommandSuccess(sortCommand, model, expectedMessage, expectedModel);
     }
 }
