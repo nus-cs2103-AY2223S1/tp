@@ -1,20 +1,17 @@
-#copyButton,
-#helpMessage {
-  -fx-text-fill: white;
-}
-
 #copyButton {
-  -fx-background-color: dimgray;
+  -fx-background-color: #F1E4C2;
+  -fx-border-color: black
+  -fx-border-radius: 10px;
 }
 
 #copyButton:hover {
-  -fx-background-color: gray;
-}
-
-#copyButton:armed {
-  -fx-background-color: darkgray;
+  -fx-background-color: #0096C9;
+  -fx-text-fill: #ffffff;
 }
 
 #helpMessageContainer {
-  -fx-background-color: derive(#1d1d1d, 20%);
+  -fx-background-color: #fdf6e3;
+  -fx-padding: 16;
+  -fx-font-family: Menlo;
+  -fx-prompt-text-fill: #363636;
 }
