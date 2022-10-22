@@ -10,7 +10,8 @@ public class Budget {
     public static final String MESSAGE_CONSTRAINTS =
             "Budget should only contain numbers.";
     public static final String VALIDATION_REGEX = "\\d+([.][0-9]+)?$";
-    private final float budget;
+    private float initialBudget;
+    private float spending;
 
     /**
      * Constructs a {@code Budget}.
@@ -20,7 +21,8 @@ public class Budget {
     public Budget(String budgetStr) {
         requireNonNull(budgetStr);
         checkArgument(isValidBudget(budgetStr), MESSAGE_CONSTRAINTS);
-        this.budget = Float.parseFloat(budgetStr);
+        this.initialBudget = Float.parseFloat(budgetStr);
+        this.spending = 0;
     }
 
     /**
@@ -42,18 +44,26 @@ public class Budget {
 
     @Override
     public String toString() {
-        return String.valueOf(this.budget);
+        return String.valueOf(this.initialBudget);
     }
 
     public float getBudget() {
-        return this.budget;
+        return this.initialBudget;
+    }
+
+    public void updateSpending(float amount) {
+        this.spending += amount;
+    }
+
+    public float calculateLeftOverBudget() {
+        return this.initialBudget - this.spending;
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof Budget // instanceof handles nulls
-                && this.budget == (((Budget) other).getBudget())); // state check
+                && this.initialBudget == (((Budget) other).getBudget())); // state check
     }
 
     @Override

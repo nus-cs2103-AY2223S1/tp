@@ -42,6 +42,8 @@ public class MultiIndex {
         return indices.get(pos - 1);
     }
 
+
+
     private boolean isValidPos(int pos) {
         if (pos < 1 || pos >= indices.size()) {
             return false;
