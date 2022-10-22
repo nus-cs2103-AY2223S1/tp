@@ -143,11 +143,7 @@ The `Model` component,
 * stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
 * does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `AddressBook`, which `Person` references. This allows `AddressBook` to only require one `Tag` object per unique tag, instead of each `Person` needing their own `Tag` objects.<br>
 
-<img src="images/BetterModelClassDiagram.png" width="450" />
-
-</div>
 
 
 ### Storage component
@@ -253,6 +249,38 @@ The following sequence diagram shows how the addNote operation works:
 * **Alternative 2:** Note is specified by Title.
     * Pros: Would be more precise (Title of notes are unique).
     * Cons: Long command would be needed to delete a note with a long Title.
+
+### Find Person by Tag feature
+
+#### Implementation
+
+The find Person by Tag feature (called `findTag`) is facilitated by `FindTagCommand`. It allows users to find all Persons with the given Tags.
+
+Given below is an example usage scenario and how the findTag feature behaves at each step.
+
+Step 1. The user executes `findTag Finance` command to find all Persons in the address book with the tag `Finance`.
+
+Step 2. A `FindTagCommand` is constructed with a `TagsContainsKeywordsPredicate` which will check through the list of persons in the address book and only show those with the tag `Finance`.
+
+Step 3. The `FindTagCommand` is executed and the `TagsContainsKeywordsPredicate` is passed to model to update the Person List to only show Persons with the tag `Finance`.
+
+The following sequence diagram shows how the findTag command works:
+
+<img src="images/FindTagSequenceDiagram.png" width="740"/>
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `FindTagCommandParser` and `FindTagCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+
+#### Design considerations:
+
+**Aspect: How findTag executes:**
+
+* **Alternative 1 (current choice):** Goes through all Persons to check for Tag.
+    * Pros: Easy to implement (Similar to current find command).
+    * Cons: May have performance issues in terms of having to do many more steps.
+
+* **Alternative 2:** Goto searched Tags and get the Persons that each Tag points to.
+    * Pros: Will use fewer steps (Go directly to the Tags rather than looking through all Persons).
+    * Cons: Implementation would be more complicated.
 
 ### \[Proposed\] Undo/redo feature
 

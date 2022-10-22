@@ -13,6 +13,7 @@ Class ModelManager
 Class UserPrefs
 
 Class UniquePersonList
+Class UniqueTagMapping
 Class Person
 Class Address
 Class Email
@@ -38,9 +39,11 @@ ModelManager -left-> "1" AddressBook
 ModelManager -right-> "1" UserPrefs
 UserPrefs .up.|> ReadOnlyUserPrefs
 
-AddressBook *--> "1" UniquePersonList
-AddressBook *--> "1" NoteBook
+AddressBook *---> "1" UniquePersonList
+AddressBook *---> "1" UniqueTagMapping
+AddressBook *---> "1" NoteBook
 UniquePersonList --> "~* all" Person
+UniqueTagMapping ---> "~* all" Tag
 NoteBook --> Note
 Note *--> Content
 Note *-->  Title
@@ -49,7 +52,7 @@ Person *--> Name
 Person *--> Phone
 Person *--> Email
 Person *--> Address
-Person *--> "*" Tag
+Person "*" <--> "*" Tag
 
 Name -[hidden]right-> Phone
 Phone -[hidden]right-> Address
