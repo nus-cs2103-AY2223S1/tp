@@ -9,7 +9,7 @@
 {% capture view %}{% include_relative _ug/commandSummary/itemCommands/view.md %}{% endcapture %}
 {% capture inc %}{% include_relative _ug/commandSummary/itemCommands/inc.md %}{% endcapture %}
 {% capture dec %}{% include_relative _ug/commandSummary/itemCommands/dec.md %}{% endcapture %}
-{% capture set %}{% include_relative _ug/commandSummary/itemCommands/edit.md %}{% endcapture %}
+{% capture edit %}{% include_relative _ug/commandSummary/itemCommands/edit.md %}{% endcapture %}
 {% capture del %}{% include_relative _ug/commandSummary/itemCommands/del.md %}{% endcapture %}
 
 {% capture new %}{% include_relative _ug/commandSummary/itemCommandsExample/new.md %}{% endcapture %}
