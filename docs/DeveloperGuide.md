@@ -293,34 +293,58 @@ now has an `UpcomingAppointment` associated with him.
 
 The get feature contains a series of sub-features that allows the user to get
 a list of persons based on the prefixes inputted. It is implemented the same way as the `AddressBookParser` class,
-but it matches the prefix of the user input instead of the command word. By having a parent `GetCommand` class,
-we can have a series of sub-commands that inherits from it. This way, new implementations of other items to be filtered
-when using the get command can be easily added in the future.
+but it matches the following prefix of the user input instead of the first command word.
+By having a parent `GetCommand` class, we can have a series of sub-commands that inherits from it.
+This way, new implementations of other items to be filtered when using the get command can be easily
+added in the future.
 
-This Sequence Diagram below illustrates the implementation of the `GetCommand` component.
+This Sequence Diagram below illustrates the implementation of the `GetCommand` component using `GetWardNumberCommand`
+as an example of the sequence of events of a typical get command call.  
 ![GetCommandSequence](images/tracing/GetCommandSequenceDiagram.png)
+
+All get commands are implemented in the following steps:
+1. User input prefix is matched in `GetCommandParser` class
+2. Parser for the get command corresponding to the prefix is called and parses the user input
+3. Specific child classes of `GetCommand` is instantiated and executed
+4. The model is then updated such that the *filtered* list only displays patients whose details match the query
+arguments of that prefix
 
 #### Floor Number (/fn)
 
+Getting the list of patients in the query floor number involves the following steps:
+1. prefix "/fn" is matched in `GetCommandParser` class
+2. a new `GetFloorNumberCommandParser` instance is created and parses the user input
+3. a `GetFloorNumberCommand` instance is returned
+4. the model is updated such that the *filtered* list only displays patients who are on the query floor number
+
+Strict restrictions are placed to prevent querying and parsing of invalid floor numbers. Invalid floor numbers include
+floor numbers less than 1, negative numbers and characters or strings. 
+
 #### Hospital Wing (/hw)
 
-Getting the hospital wing of a patient involves the following steps:
+Getting the list of patients in the query hospital wing involves the following steps:
 1. prefix "/hw" is matched in `GetCommandParser` class
 2. a new `GetHospitalWingCommandParser` instance is created and parses the user input
 3. a `GetHospitalWingCommand` instance is returned
-4. the model is updated such that the *filtered* list only displays patients who are assigned to the specified
-hospital wing
+4. the model is updated such that the *filtered* list only displays patients who are in the query hospital wing
 
 #### Next of Kin (/nok)
 
+Getting the information of the next of kin of the list of query patient names involves the following steps:
+1. prefix "/nok" is matched in `GetCommandParser` class
+2. a new `GetNextOfKinCommandParser` instance is created and parses the user input
+3. a `GetNextOfKinCommand` instance is returned
+4. the model is updated such that the *filtered* list only displays queried patients' next of kin details
+
+Details of the next of kin include the name, relationship to patient and phone number.
+
 #### Ward Number (/wn)
 
-Getting the ward number of a patient involves the following steps:
+Getting the list of patients in the query ward number involves the following steps:
 1. prefix "/wn" is matched in `GetCommandParser` class
 2. a new `GetWardNumberCommandParser` instance is created and parses the user input
 3. a `GetWardNumberCommand` instance is returned
-4. the model is updated such that the *filtered* list only displays patients who are assigned to the specified
-ward number
+4. the model is updated such that the *filtered* list only displays patients who are in the query ward number
 
 Strict restrictions are placed to prevent too many varieties of ward number inputs. This way the regex for searching
 for ward numbers is simplified. Due to differing places having different ways of numbering their ward numbers, we
