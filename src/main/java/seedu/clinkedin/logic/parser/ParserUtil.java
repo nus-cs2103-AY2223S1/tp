@@ -12,6 +12,7 @@ import java.util.Set;
 
 import seedu.clinkedin.commons.core.index.Index;
 import seedu.clinkedin.commons.util.StringUtil;
+import seedu.clinkedin.logic.parser.exceptions.InvalidExtensionException;
 import seedu.clinkedin.logic.parser.exceptions.ParseException;
 import seedu.clinkedin.model.person.Address;
 import seedu.clinkedin.model.person.Email;
@@ -30,6 +31,16 @@ import seedu.clinkedin.model.tag.UniqueTagList;
 public class ParserUtil {
 
     public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero unsigned integer.";
+
+    /**
+     * Types of file extensions supported for export and/or import.
+     */
+    public enum FileType {
+        XML,
+        CSV,
+        TXT,
+        JSON
+    }
 
     /**
      * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading and trailing whitespaces will be
@@ -75,7 +86,7 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String clinkedin} into an {@code Address}.
+     * Parses a {@code String address} into an {@code Address}.
      * Leading and trailing whitespaces will be trimmed.
      *
      * @throws ParseException if the given {@code clinkedin} is invalid.
@@ -298,4 +309,25 @@ public class ParserUtil {
         return noteSet;
     }
 
+    /**
+     * Gets {@code FileType} from {@code String filePath}
+     */
+    public static FileType getFileType(String filePath) throws ParseException {
+        requireNonNull(filePath);
+        String trimmedFilePath = filePath.trim();
+
+        int periodIndex = trimmedFilePath.lastIndexOf(".");
+        String extension = trimmedFilePath.substring(periodIndex + 1).trim().toUpperCase();
+        if (periodIndex == -1) {
+            throw new InvalidExtensionException();
+        }
+        FileType fileType;
+        try {
+            fileType = FileType.valueOf(extension);
+        } catch (IllegalArgumentException e) {
+            throw new InvalidExtensionException();
+        }
+
+        return fileType;
+    }
 }

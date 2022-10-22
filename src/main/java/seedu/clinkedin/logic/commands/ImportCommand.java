@@ -1,9 +1,9 @@
 package seedu.clinkedin.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-//import static seedu.clinkedin.logic.parser.CliSyntax.PREFIX_FILETYPE;
-//import static seedu.clinkedin.logic.parser.CliSyntax.PREFIX_PATH;
+import static seedu.clinkedin.logic.parser.CliSyntax.PREFIX_PATH;
 
+import seedu.clinkedin.logic.parser.ParserUtil.FileType;
 import seedu.clinkedin.model.Model;
 
 /**
@@ -13,22 +13,20 @@ public class ImportCommand extends Command {
     public static final String COMMAND_WORD = "import";
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Imports the address book.\n"
             + "Parameters: "
-            + "PREFIX_FILETYPE" + "XML/CSV "
-            + "PREFIX_PATH" + "PATH\n"
+            + PREFIX_PATH + "PATH\n"
             + "Example: " + COMMAND_WORD + " "
-            + "PREFIX_FILETYPE" + "XML "
-            + "PREFIX_PATH" + "~/Desktop/data.xml";
+            + PREFIX_PATH + "~/Desktop/data.csv";
     public static final String MESSAGE_SUCCESS = "File imported successfully!";
 
-    private String pathName;
-    private boolean isCsvFormat;
+    private String filePath;
+    private FileType fileType;
 
     /**
      * Creates an ImportCommand to import an AddressBook
      */
-    public ImportCommand(String fileName, boolean isCsvFormat) {
-        this.pathName = fileName;
-        this.isCsvFormat = isCsvFormat;
+    public ImportCommand(String fileName, FileType fileType) {
+        this.filePath = fileName;
+        this.fileType = fileType;
     }
 
     @Override

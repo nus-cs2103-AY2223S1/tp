@@ -22,8 +22,8 @@ public class TagType {
     public final Prefix p;
     /**
      * Constructs a {@code TagType}.
-     *
      * @param tagType A valid tag type.
+     * @param p A valide prefix.
      */
     public TagType(String tagType, Prefix p) {
         requireNonNull(tagType);
