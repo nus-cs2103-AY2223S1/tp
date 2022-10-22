@@ -2,12 +2,16 @@ package seedu.address.ui;
 
 
 import javafx.fxml.FXML;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import javafx.stage.Stage;
 import seedu.address.logic.CalendarLogic;
 import seedu.address.logic.Logic;
+
+import java.awt.*;
 
 /**
  * A UI component that displays information of a Calendar.
@@ -32,5 +36,16 @@ public class CalendarDisplay extends UiPart<Region> {
         this.logic = logic;
         calendarLogic.initialiseLogic();
         calendarLogic.drawCalendar();
+    }
+
+    @FXML
+    private void handleKeyPressed(KeyEvent event) {
+        if (event.getCode().equals(KeyCode.B)) {
+            calendarLogic.previous();
+            calendarDisplay.requestFocus();
+        } else if (event.getCode().equals(KeyCode.N)) {
+            calendarLogic.next();
+            calendarDisplay.requestFocus();
+        }
     }
 }

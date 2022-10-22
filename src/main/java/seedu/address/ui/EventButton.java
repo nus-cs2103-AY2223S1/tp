@@ -72,7 +72,7 @@ public class EventButton extends UiPart<Region> {
     private void displayToolTip() {
         Point2D p = eventButton.localToScene(ORIGIN, ORIGIN);
         calendarPopup.getRoot().show(eventButton, p.getX()
-                - eventButton.getScene().getX() + eventButton.getScene().getWindow().getX(), p.getY()
+                + eventButton.getScene().getX() + eventButton.getScene().getWindow().getX(), p.getY()
                 + eventButton.getScene().getY() + eventButton.getScene().getWindow().getY() + TOOLTIP_OFFSET);
     }
 }

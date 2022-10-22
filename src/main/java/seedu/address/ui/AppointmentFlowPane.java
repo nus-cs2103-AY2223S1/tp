@@ -11,8 +11,6 @@ import seedu.address.model.person.Appointment;
  */
 public class AppointmentFlowPane extends UiPart<Region> {
     private static final String FXML = "AppointmentFlowPane.fxml";
-    private static final String INDEX_STYLE = "-fx-padding: 0 10 0 0; -fx-font-size: 20px; "
-            + "-fx-font-weight: bold; -fx-text-fill: #FFC600;";
     private static final String INDEX_FIRST_STYLE = "-fx-padding: 0 13 0 0; -fx-font-size: 20px; "
             + "-fx-font-weight: bold; -fx-text-fill: #FFC600;";
     @FXML

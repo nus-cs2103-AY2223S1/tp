@@ -35,8 +35,6 @@ public class CalendarLogic {
     private static final String[] DAY_NAMES = {
         "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"
     };
-    private static final String switchButtonStyle = "-fx-border-color: grey; -fx-border-radius: 5;";
-    private static final String SWITCH_BUTTON_STYLE = "-fx-border-color: grey; -fx-border-radius: 5;";
     private static final String TEXT_HEADER_STYLE = "-fx-font-size: 15pt; -fx-text-fill: white; "
             + "-fx-background-color: #fff";
     private PreviousButton prevButton = new PreviousButton("Prev", this);
@@ -70,7 +68,6 @@ public class CalendarLogic {
         calendarMonth = new CalendarMonth(logic.getFilteredCalendarEventList());
         currentMonth = new GregorianCalendar();
         currentMonth.set(Calendar.DAY_OF_MONTH, 1);
-        calendarDisplay.setOnKeyPressed(e -> handleKeyPressed(e));
     }
 
     /**
@@ -84,7 +81,7 @@ public class CalendarLogic {
     private void drawHeader() {
         Text textHeader = getTextHeader();
         topCalendar.getChildren().addAll(textHeader, prevButton.getRoot(), nextButton.getRoot(), refreshButton);
-        topCalendar.setMargin(textHeader, new Insets(0, 50, 0, 0));
+        //topCalendar.setMargin(textHeader, new Insets(0, 50, 0, 0));
     }
 
     private void drawBody() {
@@ -118,16 +115,6 @@ public class CalendarLogic {
         }
     }
 
-    private void handleKeyPressed(KeyEvent event) {
-        if (event.getCode().equals(KeyCode.B)) {
-            previous();
-            calendarDisplay.requestFocus();
-        } else if (event.getCode().equals(KeyCode.N)) {
-            next();
-            calendarDisplay.requestFocus();
-        }
-    }
-
     private String getDayName(int n) {
         return DAY_NAMES[n - 1];
     }
@@ -136,7 +123,7 @@ public class CalendarLogic {
         return MONTH_NAMES[n];
     }
 
-    public Text getTextHeader() {
+    private Text getTextHeader() {
         String monthString = getMonthName(currentMonth.get(Calendar.MONTH));
         String yearString = String.valueOf(currentMonth.get(Calendar.YEAR));
         Text header = new Text(monthString + ", " + yearString);
@@ -175,7 +162,7 @@ public class CalendarLogic {
     private void updateCalendarMonth() {
         Text newMonthHeader = getTextHeader();
         topCalendar.getChildren().set(0, newMonthHeader);
-        topCalendar.setMargin(newMonthHeader, new Insets(0, 50, 0, 0));
+        //topCalendar.setMargin(newMonthHeader, new Insets(0, 50, 0, 0));
         resetCalendarBody();
         drawBody();
     }
