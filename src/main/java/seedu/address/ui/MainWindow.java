@@ -37,7 +37,6 @@ public class MainWindow extends UiPart<Stage> {
     private Logic logic;
 
     // Independent Ui parts residing in this Ui container
-    private PersonListPanel personListPanel;
     private StudentListPanel studentListPanel;
     private TutorListPanel tutorListPanel;
     private TuitionClassListPanel tuitionClassListPanel;
@@ -129,7 +128,6 @@ public class MainWindow extends UiPart<Stage> {
      * Fills up all the placeholders of this window.
      */
     void fillInnerParts() {
-        personListPanel = new PersonListPanel(logic.getFilteredPersonList());
         studentListPanel = new StudentListPanel(logic.getFilteredStudentList());
         tutorListPanel = new TutorListPanel(logic.getFilteredTutorList());
         tuitionClassListPanel = new TuitionClassListPanel(logic.getFilteredTuitionClassList());
@@ -206,9 +204,6 @@ public class MainWindow extends UiPart<Stage> {
         case TUITIONCLASS_LIST:
             switchToTuitionClassList();
             break;
-        case PERSON_LIST:
-            entityListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
-            break;
         default:
             break;
         }
@@ -264,10 +259,6 @@ public class MainWindow extends UiPart<Stage> {
         default:
             break;
         }
-    }
-
-    public PersonListPanel getPersonListPanel() {
-        return personListPanel;
     }
 
     /**
