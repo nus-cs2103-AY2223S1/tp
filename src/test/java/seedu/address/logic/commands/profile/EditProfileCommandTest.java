@@ -1,4 +1,4 @@
-package seedu.address.logic.commands;
+package seedu.address.logic.commands.profile;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -10,15 +10,15 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.logic.commands.CommandTestUtil.showProfileAtIndex;
+import static seedu.address.testutil.TypicalAddressBook.getTypicalAddressBook;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PROFILE;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PROFILE;
-import static seedu.address.testutil.TypicalProfiles.getTypicalAddressBook;
 
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
-import seedu.address.logic.commands.profile.EditProfileCommand;
+import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.profile.EditProfileCommand.EditProfileDescriptor;
 import seedu.address.model.AddressBook;
 import seedu.address.model.Model;

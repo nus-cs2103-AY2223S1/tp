@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PROFILES;
 import static seedu.address.testutil.Assert.assertThrows;
+import static seedu.address.testutil.TypicalEvents.PRESENTATION;
 import static seedu.address.testutil.TypicalProfiles.ALICE;
 import static seedu.address.testutil.TypicalProfiles.BENSON;
 
@@ -78,8 +79,18 @@ public class ModelManagerTest {
     }
 
     @Test
+    public void hasEvent_nullEvent_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> modelManager.hasEvent(null));
+    }
+
+    @Test
     public void hasProfile_profileNotInAddressBook_returnsFalse() {
         assertFalse(modelManager.hasProfile(ALICE));
+    }
+
+    @Test
+    public void hasEvent_eventNotInAddressBook_returnsFalse() {
+        assertFalse(modelManager.hasEvent(PRESENTATION));
     }
 
     @Test
@@ -89,8 +100,19 @@ public class ModelManagerTest {
     }
 
     @Test
+    public void hasEvent_eventInAddressBook_returnsTrue() {
+        modelManager.addEvent(PRESENTATION);
+        assertTrue(modelManager.hasEvent(PRESENTATION));
+    }
+
+    @Test
     public void getFilteredProfileList_modifyList_throwsUnsupportedOperationException() {
         assertThrows(UnsupportedOperationException.class, () -> modelManager.getFilteredProfileList().remove(0));
+    }
+
+    @Test
+    public void getEventList_modifyList_throwsUnsupportedOperationException() {
+        assertThrows(UnsupportedOperationException.class, () -> modelManager.getFilteredEventList().remove(0));
     }
 
     @Test

@@ -3,11 +3,15 @@ package seedu.address.logic.parser;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import seedu.address.logic.commands.Command;
+import seedu.address.logic.commands.event.AddEventCommand;
+import seedu.address.logic.commands.event.ViewEventsCommand;
 import seedu.address.logic.commands.profile.AddProfileCommand;
 import seedu.address.logic.commands.profile.DeleteProfileCommand;
 import seedu.address.logic.commands.profile.EditProfileCommand;
 import seedu.address.logic.commands.profile.FindProfileCommand;
 import seedu.address.logic.commands.profile.ViewProfilesCommand;
+import seedu.address.logic.parser.event.AddEventCommandParser;
+import seedu.address.logic.parser.event.ViewEventsCommandParser;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.logic.parser.profile.AddProfileCommandParser;
 import seedu.address.logic.parser.profile.DeleteProfileCommandParser;
@@ -37,6 +41,12 @@ public class CommandParserTestUtil {
             userInput = " -" + ViewProfilesCommand.COMMAND_OPTION + " " + userInput;
         }
 
+        if (parser instanceof AddEventCommandParser) {
+            userInput = " -" + AddEventCommand.COMMAND_OPTION + " " + userInput;
+        } else if (parser instanceof ViewEventsCommandParser) {
+            userInput = " -" + ViewEventsCommand.COMMAND_OPTION + " " + userInput;
+        }
+
         try {
             Command command = parser.parse(userInput);
             assertEquals(expectedCommand, command);
@@ -60,6 +70,12 @@ public class CommandParserTestUtil {
             userInput = " -" + FindProfileCommand.COMMAND_OPTION + " " + userInput;
         } else if (parser instanceof ViewProfilesCommandParser) {
             userInput = " -" + ViewProfilesCommand.COMMAND_OPTION + " " + userInput;
+        }
+
+        if (parser instanceof AddEventCommandParser) {
+            userInput = " -" + AddEventCommand.COMMAND_OPTION + " " + userInput;
+        } else if (parser instanceof ViewEventsCommandParser) {
+            userInput = " -" + ViewEventsCommand.COMMAND_OPTION + " " + userInput;
         }
 
         try {

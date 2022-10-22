@@ -3,8 +3,10 @@ package seedu.address.logic.commands;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_END_DATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_START_DATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TELEGRAM;
 import static seedu.address.testutil.Assert.assertThrows;
@@ -18,6 +20,8 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.commands.profile.EditProfileCommand;
 import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
+import seedu.address.model.event.Event;
+import seedu.address.model.event.TitleContainsKeywordsPredicate;
 import seedu.address.model.profile.NameContainsKeywordsPredicate;
 import seedu.address.model.profile.Profile;
 import seedu.address.testutil.EditProfileDescriptorBuilder;
@@ -31,15 +35,14 @@ public class CommandTestUtil {
     public static final String VALID_NAME_BOB = "Bob Choo";
     public static final String VALID_PHONE_AMY = "11111111";
     public static final String VALID_PHONE_BOB = "22222222";
-    public static final String VALID_EMAIL_AMY = "amy@example.com";
-    public static final String VALID_EMAIL_BOB = "bob@example.com";
+    public static final String VALID_EMAIL_AMY = "amy@u.nus.edu";
+    public static final String VALID_EMAIL_BOB = "bob@u.nus.edu";
 
     public static final String VALID_TELEGRAM_AMY = "amy_doe";
 
     public static final String VALID_TELEGRAM_BOB = "bobTheBuilder";
 
     public static final String VALID_TAG_HUSBAND = "husband";
-
     public static final String VALID_TAG_FRIEND = "friend";
 
     public static final String NAME_DESC_AMY = " " + PREFIX_NAME + VALID_NAME_AMY;
@@ -59,6 +62,29 @@ public class CommandTestUtil {
     public static final String INVALID_TELEGRAM_DESC = " " + PREFIX_TELEGRAM + "bob__tele"; //consecutive underscores
 
     public static final String INVALID_TAG_DESC = " " + PREFIX_TAG + "hubby*"; // '*' not allowed in tags
+
+    public static final String VALID_TITLE_PRESENTATION = "Discuss presentation";
+    public static final String VALID_TITLE_PRACTICE = "Practice";
+    public static final String VALID_START_PRESENTATION = "11/10/2022 09:00";
+    public static final String VALID_START_PRACTICE = "11/10/2022 13:00";
+    public static final String VALID_END_PRESENTATION = "11/10/2022 10:00";
+    public static final String VALID_END_PRACTICE = "11/10/2022 14:00";
+
+    public static final String VALID_TAG_SWE = "CS2103T";
+    public static final String VALID_TAG_CCA = "CCA";
+
+    public static final String TITLE_DESC_PRESENTATION = " " + PREFIX_NAME + VALID_TITLE_PRESENTATION;
+    public static final String TITLE_DESC_PRACTICE = " " + PREFIX_NAME + VALID_TITLE_PRACTICE;
+    public static final String START_DESC_PRESENTATION = " " + PREFIX_START_DATE + VALID_START_PRESENTATION;
+    public static final String START_DESC_PRACTICE = " " + PREFIX_START_DATE + VALID_START_PRACTICE;
+    public static final String END_DESC_PRESENTATION = " " + PREFIX_END_DATE + VALID_END_PRESENTATION;
+    public static final String END_DESC_PRACTICE = " " + PREFIX_END_DATE + VALID_END_PRACTICE;
+
+    public static final String TAG_DESC_SWE = " " + PREFIX_TAG + VALID_TAG_SWE;
+    public static final String TAG_DESC_CCA = " " + PREFIX_TAG + VALID_TAG_CCA;
+
+    public static final String INVALID_START_DESC = " " + PREFIX_START_DATE + "2020/02/02 abcd";
+    public static final String INVALID_END_DESC = " " + PREFIX_END_DATE + "efgh 2020/15/02";
 
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
@@ -118,6 +144,7 @@ public class CommandTestUtil {
         assertEquals(expectedAddressBook, actualModel.getAddressBook());
         assertEquals(expectedFilteredList, actualModel.getFilteredProfileList());
     }
+
     /**
      * Updates {@code model}'s filtered list to show only the profile at the given {@code targetIndex} in the
      * {@code model}'s address book.
@@ -132,4 +159,17 @@ public class CommandTestUtil {
         assertEquals(1, model.getFilteredProfileList().size());
     }
 
+    /**
+     * Updates {@code model}'s filtered list to show only the event at the given {@code targetIndex} in the
+     * {@code model}'s address book.
+     */
+    public static void showEventAtIndex(Model model, Index targetIndex) {
+        assertTrue(targetIndex.getZeroBased() < model.getFilteredEventList().size());
+
+        Event event = model.getFilteredEventList().get(targetIndex.getZeroBased());
+        final String[] splitTitle = event.getTitle().title.split("\\s+");
+        model.updateFilteredEventList(new TitleContainsKeywordsPredicate(Arrays.asList(splitTitle[0])));
+
+        assertEquals(1, model.getFilteredEventList().size());
+    }
 }

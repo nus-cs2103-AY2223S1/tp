@@ -47,7 +47,7 @@ public class EditProfileCommand extends ProfileCommand {
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " " + PREFIX_OPTION + COMMAND_OPTION + " 1 "
             + PREFIX_PHONE + "91234567 "
-            + PREFIX_EMAIL + "johndoe@example.com "
+            + PREFIX_EMAIL + "johndoe@u.nus.edu "
             + PREFIX_TELEGRAM + "johndoe "
             + PREFIX_TAG + "CS2103T";
 

@@ -1,0 +1,16 @@
+@startuml
+start
+:User executes AddProfileCommand;
+
+if () then ([input is valid])
+    :Parses input into fields required for profile;
+    :Creates AddProfileCommand;
+    :LogicManager executes AddProfileCommand;
+    :Update ProfileList with the new profile;
+    :Update UI with new ProfileList;
+    :Display success message to user;
+else ([else])
+    :Display error message to user;
+endif
+stop
+@enduml

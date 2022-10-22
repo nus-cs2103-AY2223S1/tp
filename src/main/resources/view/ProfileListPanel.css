@@ -1,0 +1,6 @@
+#profileListTitle {
+    -fx-alignment: center-left;
+    -fx-text-fill: #ffffff;
+    -fx-font-size: 16pt;
+    -fx-padding: 0 0 8 0;
+}
