@@ -14,13 +14,17 @@ What you should expect to find:
 * Square brackets indicate an optional parameter.
 * For each command, "Format" indicates the syntax of the command.
 
-### Item Features
+### Item Commands
 
 {% include_relative _ug/features/ItemFeatures.md %}
 
-### Tag Features
+### Tag Commands
 
 {% include_relative _ug/features/TagFeatures.md %}
+
+### Statistics Commands
+
+### General Commands
 
 ### Receive help during usage
 
