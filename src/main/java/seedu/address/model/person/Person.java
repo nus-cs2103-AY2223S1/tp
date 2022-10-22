@@ -2,6 +2,7 @@ package seedu.address.model.person;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.time.LocalDate;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
@@ -56,6 +57,28 @@ public class Person {
         this.upcomingAppointment = Optional.ofNullable(upcomingAppointment);
     }
 
+    /**
+     * Adds input {@code PastAppointment} to stored list of {@code PastAppointment}s.
+     * @param appt the {@code PastAppointment} to be added
+     */
+    public void addPastAppointment(PastAppointment appt) {
+        // TODO optimise
+        int length = pastAppointments.size();
+        LocalDate apptDate = appt.getDate();
+
+        for (int i = 0; i < length; i++) {
+            LocalDate currentApptDate = pastAppointments.get(i).getDate();
+            if (apptDate.compareTo(currentApptDate) > 0) { //apptDate is more recent than currentApptDate
+                pastAppointments.add(i, appt);
+                break;
+            }
+        }
+
+        if (pastAppointments.size() == length) { //an appointment has not been added
+            pastAppointments.add(appt);
+        }
+    }
+
     public Name getName() {
         return name;
     }
@@ -94,6 +117,26 @@ public class Person {
      */
     public Set<Medication> getMedications() {
         return Collections.unmodifiableSet(medications);
+    }
+
+    /**
+     * Returns list of {@code PastAppointment}s tagged to this patient.
+     * @return the list of {@code PastAppointment}s
+     */
+    public List<PastAppointment> getPastAppointments() {
+        return pastAppointments;
+    }
+
+    public Optional<UpcomingAppointment> getUpcomingAppointment() {
+        return upcomingAppointment;
+    }
+
+    /**
+     * Returns count of {@code PastAppointment}s to this patient.
+     * @return the count of {@code PastAppointment}s
+     */
+    public int getPastAppointmentCount() {
+        return pastAppointments.size();
     }
 
     /**
@@ -137,34 +180,6 @@ public class Person {
                     && otherPerson.getWardNumber().equals(getWardNumber());
         }
         return isEqual;
-    }
-
-    /**
-     * Adds input {@code PastAppointment} to stored list of {@code PastAppointment}s.
-     * @param appt the {@code PastAppointment} to be added
-     */
-    public void addPastAppointment(PastAppointment appt) {
-        pastAppointments.add(appt);
-    }
-
-    /**
-     * Returns count of {@code PastAppointment}s to this patient.
-     * @return the count of {@code PastAppointment}s
-     */
-    public int getPastAppointmentCount() {
-        return pastAppointments.size();
-    }
-
-    /**
-     * Returns list of {@Code PastAppointment}s tagged to this patient.
-     * @return the list of {@code PastAppointment}s
-     */
-    public List<PastAppointment> getPastAppointments() {
-        return pastAppointments;
-    }
-
-    public Optional<UpcomingAppointment> getUpcomingAppointment() {
-        return upcomingAppointment;
     }
 
     @Override
