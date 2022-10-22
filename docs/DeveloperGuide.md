@@ -248,12 +248,6 @@ In the case where `AddNoteCommand` is executed for adding to student specific no
 
 <img src="images/AddStudentNoteSequenceDiagram.png" width="550"/>
 
-`AddNoteCommand` checks if:
-1. The lesson index provided is within the valid range (from 1 to the number of lessons).
-2. The student index (if provided) is within the valid range (from 1 to the number of students).
-
-Otherwise, a CommandException will be thrown.
-
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Documentation, logging, testing, configuration, dev-ops**
