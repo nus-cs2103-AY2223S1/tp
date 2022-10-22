@@ -293,6 +293,24 @@ creates a `DeletePersonDescriptor` containing null value for the attribute `Role
 attributes. A`DeleteAttributeCommand` instance containing that `DeletePersonDescriptor` will then be created. When executed, 
 the currently selected `Person`'s attributes will be updated according to the deleted attribute.
 
+### [Proposed] Add user using GitHub account
+
+When adding a contact, the user will be able to give a GitHub username to add, from which we pull all relevant data from:
+
+- `Name`
+- `Address`
+- `Location`
+- `Email`
+-  `Timezone`
+
+The updated `Add` command will make use of the following classes:
+
+- `AddCommand` - Creates and adds `Person` object to list of contacts
+- `AddCommandParser` - Parses the arguments supplied by the user for the `Add` command, differentiates between adding local name and GitHub account.
+- `GithubApiWrapper` - Retrieves information from GitHub API to populate user detail fields
+
+Step 1: Since the user is unsure of name/location/other info about the contact they wish to add, they wish to pull it straight from GitHub. Say the contact's GitHub account is `@exampleaccount`. The user executes the command `add github/exampleaccount`, upon which `AddCommandParser` parses the command, returning an `AddCommand` which will add a contact using their GitHub username. It then uses `GithubApiWrapper` to pull relevant information about the person then populates the fields before creating the `Person` object.
+
 
 --------------------------------------------------------------------------------------------------------------------
 
