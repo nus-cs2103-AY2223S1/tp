@@ -43,8 +43,7 @@ Thank you for choosing FoodRem! We are delighted to have you as a user and aim t
 
 We **highly recommend** that you read through the User Guide in a **sequential order** up until the section [Features](#features), where you can find all the information you need before using all commands.
 
-If this is your first time using FoodRem, start off with the [Quick Start](#quick-start) section.
-This guides you on how to install FoodRem.
+If this is your first time using FoodRem, start off with the [Quick Start](#quick-start) section. This guides you on how to install FoodRem.
 
 If you are a new user to FoodRem, you can head over to the section about [Using FoodRem](#using-foodrem) which will teach you the basics of FoodRem. This includes: 
 
