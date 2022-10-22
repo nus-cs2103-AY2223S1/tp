@@ -167,6 +167,9 @@ public class PersonBuilder {
         return this;
     }
 
+    /**
+     * Sets the {@code gameTypes} of the {@code Person} that we are building.
+     */
     public PersonBuilder withTimeIntervals(String ... timeIntervals) {
         this.timeIntervals = new HashSet<>(Arrays.asList(timeIntervals).stream()
                 .map(TimeInterval::new)
@@ -174,6 +177,9 @@ public class PersonBuilder {
         return this;
     }
 
+    /**
+     * Builds a {@code Person} through the different fields
+     */
     public Person build() {
         return new Person(name, minecraftName, phone, email, address, socials, tags, servers, country, gameTypes,
                 timeIntervals);
