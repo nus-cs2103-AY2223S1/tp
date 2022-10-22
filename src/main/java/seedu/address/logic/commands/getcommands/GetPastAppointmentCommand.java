@@ -1,5 +1,9 @@
 package seedu.address.logic.commands.getcommands;
 
+import static java.util.Objects.requireNonNull;
+
+import java.util.List;
+
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.CommandResult;
@@ -9,10 +13,10 @@ import seedu.address.model.Model;
 import seedu.address.model.appointment.PastAppointment;
 import seedu.address.model.person.Person;
 
-import java.util.List;
-
-import static java.util.Objects.requireNonNull;
-
+/**
+ * Gets and displays all the previous appointments of a patient identified using it's displayed index from the address
+ * book.
+ */
 public class GetPastAppointmentCommand extends GetCommand {
 
     public static final String PAST_APPOINTMENT_PREFIX = "/appt";
