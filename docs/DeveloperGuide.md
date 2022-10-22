@@ -184,6 +184,45 @@ The following activity diagram summarizes what happens when a user executes an a
 #### Design considerations
 An add student command is designed to add a single student along with its detail particulars such as one's student ID, student name, project name, and email. These details are the important details every professor needs from a student so that the professor can understand the work of the student and is able to contact the student when needed.
 
+
+### Deleting a student from the FYP manager
+This feature allows professors to delete students who have dropped their FYP
+
+#### Implementation details
+
+The borrow feature is facilitated by `DeleteStudentCommandParser` and `DeleteStudentCommand`. The operation is exposed in the `Model` interface as `Model#DeleteStudent()`.
+
+Given below is an example usage scenario and how the borrow mechanism behaves at each step:
+
+1. The user enters delete student command and provides the student id of student to be deleted.
+2. `FYPManagerParser` creates a new `DeleteStudentCommandParser` after preliminary processing of user input.
+3. `DeleteStudentCommandParser` creates a new `DeleteStudentCommand` based on the processed input.
+4. `LogicManager` executes the `DeleteStudentCommand`.
+5. `DeleteStudentCommand` calls `Model#getFilteredStudentList()` to get the list of student with FYP, and then gets the student at the specified index using the unique studentId.
+6. `DeleteStudentCommand` calls `Model#DeleteStudent()` and passes the studentID, and return student deleted as parameters.
+7. Finally, `DeleteStudentCommand` creates a `CommandResult` and returns it to `LogicManager` to complete the command.
+
+
+The following sequence diagram shows how delete student command works:
+
+<img src="images/DeleteStudentSequenceDiagram.png" width="550" />
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteStudentCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+
+</div>
+
+The following activity diagram summarizes what happens when a user executes a delete student command.
+
+<img src="images/DeleteStudentActivityDiagram.png" width="550" />
+
+#### Design considerations
+
+The delete student command is designed to be used in conjunction with find student command. For instance, the user would first use find student using project name to find the student taking FYP using `find machine`
+to find students taking machine learning projects before doing `delete-s id/A0123456X` to remove student from FYP Manager.
+
+This integration between delete student command with find student command is important because FYPManager can store large number of students with FYP, making it not fesiable for users to scroll through the list.
+By utilizing find student, users can find the student with only partial information and retrieve the student id. Using this student id, users can delete the student from the FYPManager once he/she drops the FYP.
+
 ### \[Proposed\] Undo/redo feature
 
 #### Proposed Implementation
