@@ -3,10 +3,11 @@ package seedu.waddle.logic.commands;
 import static java.util.Objects.requireNonNull;
 
 import seedu.waddle.commons.core.Messages;
-import seedu.waddle.commons.core.index.Index;
+import seedu.waddle.commons.core.index.MultiIndex;
 import seedu.waddle.logic.StageManager;
 import seedu.waddle.logic.commands.exceptions.CommandException;
 import seedu.waddle.model.Model;
+import seedu.waddle.model.item.Day;
 import seedu.waddle.model.item.Item;
 import seedu.waddle.model.itinerary.Itinerary;
 
@@ -26,12 +27,12 @@ public class DeleteItemCommand extends Command {
 
     public static final String MESSAGE_DELETE_ITINERARY_SUCCESS = "Deleted item: %1$s";
 
-    private final Index targetIndex;
+    private final MultiIndex targetIndex;
 
     /**
      * Creates an AddItemCommand to add the specified {@code Item}
      */
-    public DeleteItemCommand(Index targetIndex) {
+    public DeleteItemCommand(MultiIndex targetIndex) {
         this.targetIndex = targetIndex;
     }
 
@@ -51,10 +52,20 @@ public class DeleteItemCommand extends Command {
          */
         Itinerary itinerary = stageManager.getSelectedItinerary();
 
-        if (targetIndex.getZeroBased() >= itinerary.getItemSize()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_ITEM_DISPLAYED_INDEX);
+        if (targetIndex.getDayIndex() == null) {
+            if (targetIndex.getTaskIndex().getZeroBased() >= itinerary.getItemSize()) {
+                throw new CommandException(Messages.MESSAGE_INVALID_ITEM_DISPLAYED_INDEX);
+            }
+        } else {
+            if (targetIndex.getDayIndex().getZeroBased() >= itinerary.getDuration().getValue()) {
+                throw new CommandException(Messages.MESSAGE_INVALID_ITEM_DISPLAYED_INDEX);
+            }
+            Day day = itinerary.getDays().get(targetIndex.getDayIndex().getZeroBased());
+            if (targetIndex.getTaskIndex().getZeroBased() >= day.getItemSize()) {
+                throw new CommandException(Messages.MESSAGE_INVALID_ITEM_DISPLAYED_INDEX);
+            }
         }
-        Item itemToDelete = itinerary.removeItem(targetIndex.getZeroBased());
+        Item itemToDelete = itinerary.removeItem(targetIndex);
         return new CommandResult(String.format(MESSAGE_DELETE_ITINERARY_SUCCESS, itemToDelete));
     }
 

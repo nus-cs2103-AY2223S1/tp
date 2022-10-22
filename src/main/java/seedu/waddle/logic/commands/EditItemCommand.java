@@ -7,19 +7,20 @@ import static seedu.waddle.logic.parser.CliSyntax.PREFIX_DURATION;
 import static seedu.waddle.logic.parser.CliSyntax.PREFIX_PRIORITY;
 import static seedu.waddle.logic.parser.CliSyntax.PREFIX_START_TIME;
 
+import java.time.LocalTime;
 import java.util.Optional;
 
 import seedu.waddle.commons.core.Messages;
-import seedu.waddle.commons.core.index.Index;
+import seedu.waddle.commons.core.index.MultiIndex;
 import seedu.waddle.commons.util.CollectionUtil;
 import seedu.waddle.logic.StageManager;
 import seedu.waddle.logic.commands.exceptions.CommandException;
 import seedu.waddle.model.Model;
 import seedu.waddle.model.item.Cost;
+import seedu.waddle.model.item.Day;
 import seedu.waddle.model.item.Duration;
 import seedu.waddle.model.item.Item;
 import seedu.waddle.model.item.Priority;
-import seedu.waddle.model.item.StartTime;
 import seedu.waddle.model.itinerary.Itinerary;
 
 /**
@@ -45,18 +46,20 @@ public class EditItemCommand extends Command {
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
     public static final String MESSAGE_DUPLICATE_ITEM = "This item already exists.";
 
-    private final Index index;
+    public static final String MESSAGE_EDIT_START_TIME = "Editing start time of unscheduled item is not allowed";
+
+    private final MultiIndex multiIndex;
     private final EditItemDescriptor editItemDescriptor;
 
     /**
-     * @param index                   of the item in the unique item list to edit
+     * @param multiIndex of the item in the unique item list to edit
      * @param editItemDescriptor details to edit the item with
      */
-    public EditItemCommand(Index index, EditItemDescriptor editItemDescriptor) {
-        requireNonNull(index);
+    public EditItemCommand(MultiIndex multiIndex, EditItemDescriptor editItemDescriptor) {
+        requireNonNull(multiIndex);
         requireNonNull(editItemDescriptor);
 
-        this.index = index;
+        this.multiIndex = multiIndex;
         this.editItemDescriptor = new EditItemDescriptor(editItemDescriptor);
     }
 
@@ -70,8 +73,13 @@ public class EditItemCommand extends Command {
 
         String updatedDescription = editItemDescriptor.getDescription().orElse(itemToEdit.getDescription());
         Priority updatedPriority = editItemDescriptor.getPriority().orElse(itemToEdit.getPriority());
+        Cost updatedCost = editItemDescriptor.getCost().orElse(itemToEdit.getCost());
+        Duration updatedDuration = editItemDescriptor.getDuration().orElse(itemToEdit.getDuration());
 
-        return new Item(updatedDescription, updatedPriority, itemToEdit.getCost(), itemToEdit.getDuration());
+        Item editedItem = new Item(updatedDescription, updatedPriority, updatedCost, updatedDuration);
+        editedItem.setStartTime(editItemDescriptor.getStartTime().orElse(itemToEdit.getStartTime()));
+
+        return editedItem;
     }
 
     @Override
@@ -80,19 +88,35 @@ public class EditItemCommand extends Command {
         StageManager stageManager = StageManager.getInstance();
         Itinerary itinerary = stageManager.getSelectedItinerary();
 
-        if (index.getZeroBased() >= itinerary.getItemSize()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_ITEM_DISPLAYED_INDEX);
+        if (multiIndex.getDayIndex() == null) {
+            if (multiIndex.getTaskIndex().getZeroBased() >= itinerary.getItemSize()) {
+                throw new CommandException(Messages.MESSAGE_INVALID_ITEM_DISPLAYED_INDEX);
+            }
+            Item itemToEdit = itinerary.getItem(multiIndex);
+            Item editedItem = createEditedItem(itemToEdit, editItemDescriptor);
+            if (!itemToEdit.isSameItem(editedItem) && itinerary.hasItem(editedItem)) {
+                throw new CommandException(MESSAGE_DUPLICATE_ITEM);
+            }
+            itinerary.setItem(itemToEdit, editedItem, multiIndex);
+
+            return new CommandResult(String.format(MESSAGE_EDIT_ITEM_SUCCESS, editedItem));
+        } else {
+            if (multiIndex.getDayIndex().getZeroBased() >= itinerary.getDuration().getValue()) {
+                throw new CommandException(Messages.MESSAGE_INVALID_ITEM_DISPLAYED_INDEX);
+            }
+            Day day = itinerary.getDays().get(multiIndex.getDayIndex().getZeroBased());
+            if (multiIndex.getTaskIndex().getZeroBased() >= day.getItemSize()) {
+                throw new CommandException(Messages.MESSAGE_INVALID_ITEM_DISPLAYED_INDEX);
+            }
+            Item itemToEdit = itinerary.getItem(multiIndex);
+            Item editedItem = createEditedItem(itemToEdit, editItemDescriptor);
+            if (!itemToEdit.isSameItem(editedItem) && day.hasItem(editedItem)) {
+                throw new CommandException(MESSAGE_DUPLICATE_ITEM);
+            }
+            itinerary.setItem(itemToEdit, editedItem, multiIndex);
+
+            return new CommandResult(String.format(MESSAGE_EDIT_ITEM_SUCCESS, editedItem));
         }
-
-        Item itemToEdit = itinerary.getItemList().get(index.getZeroBased());
-        Item editedItem = createEditedItem(itemToEdit, editItemDescriptor);
-
-        if (!itemToEdit.isSameItem(editedItem) && itinerary.hasItem(editedItem)) {
-            throw new CommandException(MESSAGE_DUPLICATE_ITEM);
-        }
-
-        itinerary.setItem(itemToEdit, editedItem);
-        return new CommandResult(String.format(MESSAGE_EDIT_ITEM_SUCCESS, editedItem));
     }
 
     @Override
@@ -109,7 +133,7 @@ public class EditItemCommand extends Command {
 
         // state check
         EditItemCommand e = (EditItemCommand) other;
-        return index.equals(e.index)
+        return multiIndex.equals(e.multiIndex)
                 && editItemDescriptor.equals(e.editItemDescriptor);
     }
 
@@ -122,7 +146,7 @@ public class EditItemCommand extends Command {
         private Priority priority;
         private Cost cost;
         private Duration duration;
-        private StartTime startTime;
+        private LocalTime startTime;
 
         public EditItemDescriptor() {
         }
@@ -178,11 +202,11 @@ public class EditItemCommand extends Command {
             this.duration = duration;
         }
 
-        public Optional<StartTime> getStartTime() {
+        public Optional<LocalTime> getStartTime() {
             return Optional.ofNullable(startTime);
         }
 
-        public void setStartTime(StartTime startTime) {
+        public void setStartTime(LocalTime startTime) {
             this.startTime = startTime;
         }
 

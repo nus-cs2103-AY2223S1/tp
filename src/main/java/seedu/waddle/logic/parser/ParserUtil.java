@@ -2,13 +2,16 @@ package seedu.waddle.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 
+import java.time.LocalTime;
+import java.time.format.DateTimeParseException;
+
 import seedu.waddle.commons.core.index.Index;
+import seedu.waddle.commons.core.index.MultiIndex;
 import seedu.waddle.commons.util.StringUtil;
 import seedu.waddle.logic.parser.exceptions.ParseException;
 import seedu.waddle.model.item.Cost;
 import seedu.waddle.model.item.Duration;
 import seedu.waddle.model.item.Priority;
-import seedu.waddle.model.item.StartTime;
 import seedu.waddle.model.itinerary.Budget;
 import seedu.waddle.model.itinerary.Country;
 import seedu.waddle.model.itinerary.Date;
@@ -36,6 +39,23 @@ public class ParserUtil {
         }
         return Index.fromOneBased(Integer.parseInt(trimmedIndex));
     }
+
+    /**
+     * Parses {@code oneBasedMultiIndex} into an {@code MultiIndex} and returns it. Leading and trailing whitespaces
+     * will be trimmed.
+     * @throws ParseException if the specified MultiIndex is invalid (not non-zero unsigned integer).
+     */
+    public static MultiIndex parseMultiIndex(String oneBasedMultiIndex) throws ParseException {
+        String trimmedMultiIndex = oneBasedMultiIndex.trim();
+        String[] oneBasedIndexList = trimmedMultiIndex.split(".", 2);
+        MultiIndex multiIndex = new MultiIndex();
+        for (String oneBasedIndex : oneBasedIndexList) {
+            Index index = parseIndex(oneBasedIndex);
+            multiIndex.addIndex(index);
+        }
+        return multiIndex;
+    }
+
 
     /**
      * Parses a {@code String name} into a {@code Name}.
@@ -196,13 +216,16 @@ public class ParserUtil {
      *
      * @throws ParseException if the given {@code startTime} is invalid.
      */
-    public static StartTime parseStartTime(String startTime) throws ParseException {
+    public static LocalTime parseStartTime(String startTime) throws ParseException {
         requireNonNull(startTime);
         String trimmedStartTime = startTime.trim();
-        if (!StartTime.isValidStartTime(trimmedStartTime)) {
-            throw new ParseException(StartTime.MESSAGE_CONSTRAINTS);
+        LocalTime time;
+        try {
+            time = LocalTime.parse(startTime);
+        } catch (DateTimeParseException e) {
+            throw new ParseException("Start time should be written in HH:MM:SS format. For example, 10:15 or 10:15:30");
         }
-        return new StartTime(startTime);
+        return time;
     }
 
 }

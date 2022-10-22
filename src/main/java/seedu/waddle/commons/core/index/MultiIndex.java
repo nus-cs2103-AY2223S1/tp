@@ -21,6 +21,10 @@ public class MultiIndex {
         indices.add(Index.fromOneBased(index));
     }
 
+    public void addIndex(Index index) {
+        indices.add(index);
+    }
+
     /**
      * Removes indices more than or equal to specified position.
      *
@@ -43,10 +47,16 @@ public class MultiIndex {
     }
 
     public Index getDayIndex() {
+        if (this.indices.size() == 1) {
+            return null;
+        }
         return getIndex(1);
     }
 
     public Index getTaskIndex() {
+        if (this.indices.size() == 1) {
+            return getIndex(1);
+        }
         return getIndex(2);
     }
 

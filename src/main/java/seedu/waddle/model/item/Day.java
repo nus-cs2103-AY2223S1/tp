@@ -99,4 +99,12 @@ public class Day {
         }
         return conflictingItems;
     }
+
+    public int getItemSize() {
+        return itemList.getSize();
+    }
+
+    public boolean hasItem(Item item) {
+        return this.itemList.contains(item);
+    }
 }

@@ -81,8 +81,11 @@ public class EditCommand extends Command {
         People updatedPeople = editItineraryDescriptor.getPeople().orElse(itineraryToEdit.getPeople());
         Budget updatedBudget = editItineraryDescriptor.getBudget().orElse(itineraryToEdit.getBudget());
 
-        return new Itinerary(updatedName, updatedCountry, updatedStartDate, updatedDuration,
+        Itinerary editedItinerary = new Itinerary(updatedName, updatedCountry, updatedStartDate, updatedDuration,
                 updatedPeople, updatedBudget);
+        editedItinerary.setSpending(itineraryToEdit.getBudget());
+        editedItinerary.setDays(itineraryToEdit.getDays());
+        return editedItinerary;
     }
 
     @Override
