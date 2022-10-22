@@ -50,7 +50,7 @@
         </StackPane>
 
         <SplitPane dividerPositions="0.5" VBox.vgrow="ALWAYS">
-          <TabPane fx:id="dataPanelsTabPane" styleClass="pane-with-border" tabClosingPolicy="UNAVAILABLE" VBox.vgrow="ALWAYS">
+          <TabPane fx:id="dataPanelsTabPanes" styleClass="pane-with-border" tabClosingPolicy="UNAVAILABLE" VBox.vgrow="ALWAYS">
             <tabs>
               <Tab fx:id="personListPanelTab" text="Contact details">
                 <!--PersonList-->
