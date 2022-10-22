@@ -239,6 +239,26 @@ _{more aspects and alternatives to be added}_
 
 _{Explain here how the data archiving feature will be implemented}_
 
+### Calendar features
+
+#### Calendar navigation
+
+The Calendar navigation allows a user to navigate between different months in the calendar and also navigate between the different appointments within the current month. 
+This feature uses JavaFX's FocusModel features to obtain different behaviours when a Ui component is focused.
+
+Users have 3 ways to navigate between different months when viewing the calendar:
+
+1. Clicking on the Next/Prev buttons to view the next/previous month in the calendar
+2. Pressing N or B key to view the next/previous month in the calendar
+3. Pressing the ENTER key when the Next/Prev button is focused to view the next/previous month in the calendar
+
+Users have 2 ways to navigate between different appointments when viewing the calendar:
+
+1. Clicking on the Up/Down/Left/Right keys to view adjacent appointments oriented in space in the calendar 
+2. Pressing SHIFT or SHIFT + TAB key to view the next/previous appointment in the calendar
+3. Clicking on a desired appointment to view the appointment in the calendar 
+
+
 
 --------------------------------------------------------------------------------------------------------------------
 
