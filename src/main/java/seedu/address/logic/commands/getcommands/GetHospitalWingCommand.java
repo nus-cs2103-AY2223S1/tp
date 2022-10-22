@@ -32,10 +32,19 @@ public class GetHospitalWingCommand extends GetCommand {
 
     private final HospitalWingContainsKeywordsPredicate predicate;
 
+    /**
+     * Constructor for GetHospitalWingCommand.
+     * @param predicate hospital wing predicate.
+     */
     public GetHospitalWingCommand(HospitalWingContainsKeywordsPredicate predicate) {
         this.predicate = predicate;
     }
 
+    /**
+     * Executes the command.
+     * @param model {@code Model} which the command should operate on.
+     * @return the result of the command being executed.
+     */
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);
@@ -47,6 +56,11 @@ public class GetHospitalWingCommand extends GetCommand {
                 String.format(Messages.MESSAGE_PERSONS_LISTED_OVERVIEW, model.getFilteredPersonList().size()));
     }
 
+    /**
+     * Compares the similarity of two objects.
+     * @param other the object to be compared
+     * @return true if they are equal objects, otherwise false
+     */
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object

@@ -1,0 +1,39 @@
+@startuml
+!include style.puml
+skinparam arrowThickness 1.1
+skinparam arrowColor MODEL_COLOR
+skinparam classBackgroundColor MODEL_COLOR
+skinparam classAttributeIconSize 0
+show members
+'https://plantuml.com/object-diagram
+
+object "<u>John Davis:Person" as John
+
+object "<u>:Name" as Name
+object "<u>:NextofKin" as NextofKin
+object "<u>:PatientType" as PatientType
+object "<u>:PastAppointment" as PastAppointment
+object "<u>:Phone" as Phone
+object "<u>:UpcomingAppointment" as UpcomingAppointment
+object "<u>:Email" as Email
+
+John : ...
+Name : ...
+Email : ...
+NextofKin : ...
+PatientType : ...
+Phone : ...
+
+PastAppointment : date = "12-06-2022"
+PastAppointment : medication = {"paracetamol"}
+
+UpcomingAppointment : date = "16-06-2022"
+
+Name -left-> John
+Phone -up-> John
+NextofKin -down-> John
+PatientType -right-> John
+Email -down-> John
+PastAppointment -up-> John
+UpcomingAppointment -down-> John
+@enduml

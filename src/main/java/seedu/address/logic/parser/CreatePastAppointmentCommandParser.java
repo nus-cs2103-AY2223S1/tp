@@ -2,6 +2,7 @@ package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.commons.core.Messages.MESSAGE_MISSING_DATE;
 import static seedu.address.commons.core.Messages.MESSAGE_MISSING_DIAGNOSIS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DIAGNOSIS;
@@ -18,6 +19,7 @@ import java.util.Set;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.CreatePastAppointmentCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.appointment.Appointment;
 import seedu.address.model.appointment.PastAppointment;
 import seedu.address.model.tag.Medication;
 
@@ -38,11 +40,18 @@ public class CreatePastAppointmentCommandParser implements Parser<CreatePastAppo
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                     CreatePastAppointmentCommand.MESSAGE_USAGE), pe);
         }
-        if (argMultimap.getValue(PREFIX_DIAGNOSIS).get().equals("")) {
+        if (argMultimap.getValue(PREFIX_DIAGNOSIS).isEmpty()
+                || argMultimap.getValue(PREFIX_DIAGNOSIS).get().equals("")) {
             throw new ParseException(MESSAGE_MISSING_DIAGNOSIS);
         }
         Set<Medication> medicationSet = new HashSet<>();
         parseTagsForEdit(argMultimap.getAllValues(PREFIX_MEDICATION)).ifPresent(medicationSet::addAll);
+        if (argMultimap.getValue(PREFIX_DATE).isEmpty()) {
+            throw new ParseException(MESSAGE_MISSING_DATE);
+        }
+        if (!Appointment.isValidDate(argMultimap.getValue(PREFIX_DATE).get())) {
+            throw new ParseException(Appointment.MESSAGE_CONSTRAINTS);
+        }
         PastAppointment appt = new PastAppointment(
                 LocalDate.parse(argMultimap.getValue(PREFIX_DATE).get(), DateTimeFormatter.ofPattern("dd-MM-yyyy")),
                 medicationSet, argMultimap.getValue(PREFIX_DIAGNOSIS).get());
