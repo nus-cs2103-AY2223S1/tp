@@ -392,3 +392,8 @@
     -fx-background-radius: 2;
     -fx-font-size: 11;
 }
+
+#amountInput {
+    -fx-padding: 3;
+    -fx-font-size: 15;
+}
