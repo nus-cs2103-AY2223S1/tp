@@ -160,10 +160,12 @@
 }
 
 .result-display {
-    -fx-background-color: #bbbdbf;
+    -fx-background-color: #f0f1f2;
+    -fx-background-radius: 16px;
     -fx-font-family: "Segoe UI Light";
     -fx-font-size: 13pt;
     -fx-text-fill: #5e5e5e;
+    -fx-padding: 4px 4px 4px 4px;
 }
 
 #modHeader, #personHeader {
@@ -173,6 +175,7 @@
             linear-gradient(#020b02, #3a3a3a),
             linear-gradient(#9d9e9d 0%, #6b6a6b 20%, #343534 80%, #242424 100%),
             linear-gradient(#8a8a8a 0%, #6b6a6b 20%, #343534 80%, #262626 100%);
+    -fx-background-radius: 14 14 0 0;
 }
 
 .result-display .label {
@@ -219,10 +222,10 @@
 }
 
 .menu-bar .label {
-    -fx-font-size: 12pt;
+    -fx-font-size: 11pt;
     -fx-font-family: "Helvetica Neue";
     -fx-text-fill: white;
-    -fx-opacity: 0.9;
+    -fx-opacity: 1;
 }
 
 .menu .left-container {
