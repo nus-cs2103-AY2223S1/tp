@@ -9,7 +9,11 @@ import static seedu.trackascholar.logic.commands.CommandTestUtil.VALID_SCHOLARSH
 import static seedu.trackascholar.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.trackascholar.testutil.Assert.assertThrows;
 import static seedu.trackascholar.testutil.TypicalApplicants.ALICE;
+import static seedu.trackascholar.testutil.TypicalApplicants.BENSON;
 import static seedu.trackascholar.testutil.TypicalApplicants.BOB;
+import static seedu.trackascholar.testutil.TypicalApplicants.CARL;
+import static seedu.trackascholar.testutil.TypicalApplicants.DANIEL;
+import static seedu.trackascholar.testutil.TypicalApplicants.ELLE;
 
 import org.junit.jupiter.api.Test;
 
@@ -51,6 +55,44 @@ public class ApplicantTest {
     }
 
     @Test
+    public void isMatchingApplicationStatus() {
+        assertTrue(ALICE.isMatchingApplicationStatus(new ApplicationStatus("pending")));
+        assertTrue(BENSON.isMatchingApplicationStatus(new ApplicationStatus("accepted")));
+        assertTrue(DANIEL.isMatchingApplicationStatus(new ApplicationStatus("rejected")));
+
+    }
+
+    @Test
+    public void sortByName() {
+        // Comparing names based on lexicographical order
+        assertTrue(Applicant.sortByName().compare(ALICE, BENSON) == -1);
+        assertTrue(Applicant.sortByName().compare(CARL, BENSON) == 1);
+    }
+
+    @Test
+    public void sortByScholarship() {
+        // returns 4 which is the result of comparing Alice and Elle's names
+        // both Alice and Elle have the same Scholarships and thus names are used as a tiebreaker
+        assertTrue(Applicant.sortByScholarship().compare(ELLE, ALICE) == 4);
+
+        // returns 18 which is the result of comparing Arts and Sports Scholarships
+        assertTrue(Applicant.sortByScholarship().compare(CARL, DANIEL) == 18);
+    }
+
+
+    @Test
+    public void sortByStatus_acceptedAndRejected_returnsNegativeOne() {
+        // returns -1 from comparing accepted and rejected
+        assertTrue(Applicant.sortByStatus().compare(BENSON, DANIEL) == -1);
+
+        // returns -1 from comparing pending and rejected
+        assertTrue(Applicant.sortByStatus().compare(ALICE, DANIEL) == -1);
+
+        // both Alice and Elle have the same status and thus names are used as a tiebreaker
+        assertTrue(Applicant.sortByStatus().compare(ALICE, CARL) == -2);
+    }
+
+    @Test
     public void equals() {
         // same values -> returns true
         Applicant aliceCopy = new ApplicantBuilder(ALICE).build();
@@ -88,4 +130,13 @@ public class ApplicantTest {
         editedAlice = new ApplicantBuilder(ALICE).withTags(VALID_TAG_HUSBAND).build();
         assertFalse(ALICE.equals(editedAlice));
     }
+
+    @Test
+    public void toStringTest() {
+        String expectedString = "Benson Meier; Phone: 98765432; Email: johnd@example.com; "
+                + "Scholarship: Merit; Application Status: accepted; Tags: [owesMoney][friends]";
+        assertTrue(BENSON.toString().equals(expectedString));
+
+    }
+
 }
