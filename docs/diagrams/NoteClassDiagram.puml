@@ -4,14 +4,9 @@ skinparam arrowThickness 1.1
 skinparam arrowColor MODEL_COLOR
 skinparam classBackgroundColor MODEL_COLOR
 
-Person "1..*" <--> "*" Tag
 
-Person *--> Name
-Person *--> Phone
-Person *--> Email
-Person *--> Address
-Person *-right-> Loan
-Loan *--> "*" LoanHistory
-LoanHistory --> LoanDifference
-LoanHistory --> LoanReason
+Note *--> Title
+Note *--> Content
+Note "*" <--> "*" Tag
+Person "1..*" <-up-> "*" Tag
 @enduml
