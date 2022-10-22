@@ -1,6 +1,7 @@
 package tracko.logic.commands;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static tracko.logic.commands.CommandTestUtil.DESC_AMY;
 import static tracko.logic.commands.CommandTestUtil.DESC_BOB;
 import static tracko.logic.commands.CommandTestUtil.VALID_NAME_BOB;
@@ -8,12 +9,16 @@ import static tracko.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
 import static tracko.logic.commands.CommandTestUtil.assertCommandFailure;
 import static tracko.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static tracko.logic.commands.CommandTestUtil.showOrderAtIndex;
-import static tracko.testutil.TypicalIndexes.*;
+import static tracko.testutil.TypicalIndexes.INDEX_FIRST;
+import static tracko.testutil.TypicalIndexes.INDEX_SECOND;
 import static tracko.testutil.TypicalOrders.getTrackOWithTypicalOrders;
 
-import javafx.util.Pair;
+import java.util.ArrayList;
+import java.util.List;
+
 import org.junit.jupiter.api.Test;
 
+import javafx.util.Pair;
 import tracko.commons.core.Messages;
 import tracko.commons.core.index.Index;
 import tracko.logic.commands.order.EditOrderCommand;
@@ -28,8 +33,6 @@ import tracko.testutil.ItemQuantityPairBuilder;
 import tracko.testutil.OrderBuilder;
 import tracko.testutil.TypicalItems;
 
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Contains integration tests (interaction with the Model) and unit tests for EditCommand.
@@ -136,14 +139,49 @@ public class EditOrderCommandTest {
         Model copiedModel = new ModelManager(model.getTrackO(), new UserPrefs());
         copiedModel.addItem(TypicalItems.ITEM_1);
         Order initialOrder = new OrderBuilder().build();
-        copiedModel.setOrder(copiedModel.getOrderList().get(INDEX_FIRST.getZeroBased()),  initialOrder);
+        copiedModel.setOrder(copiedModel.getOrderList().get(INDEX_FIRST.getZeroBased()), initialOrder);
 
         Pair<String, Integer> unlinkedPair = new Pair<>(
                 initialOrder.getItemList().get(INDEX_FIRST.getZeroBased()).getItemName(), 0);
-        EditOrderDescriptor descriptor = new EditOrderDescriptorBuilder(initialOrder).withUnlinkedPair(unlinkedPair).build();
+        EditOrderDescriptor descriptor = new EditOrderDescriptorBuilder(initialOrder)
+                .withUnlinkedPair(unlinkedPair).build();
         EditOrderCommand editOrderCommand = new EditOrderCommand(INDEX_FIRST.fromZeroBased(0), descriptor);
 
         assertCommandFailure(editOrderCommand, copiedModel, EditOrderCommand.MESSAGE_ONE_ORDERED_ITEM);
+    }
+
+    @Test
+    public void execute_removeOneItemFromList_success() {
+        Model copiedModel = new ModelManager(model.getTrackO(), new UserPrefs());
+        copiedModel.addItem(TypicalItems.ITEM_1);
+        Order editedOrder = new OrderBuilder().build();
+        Order initialOrder = new OrderBuilder().withItemQuantityPair(new ItemQuantityPairBuilder().build()).build();
+        copiedModel.setOrder(copiedModel.getOrderList().get(INDEX_FIRST.getZeroBased()), initialOrder);
+
+        Pair<String, Integer> unlinkedPair = new Pair<>(
+                initialOrder.getItemList().get(INDEX_SECOND.getZeroBased()).getItemName(), 0);
+        EditOrderDescriptor descriptor = new EditOrderDescriptorBuilder(initialOrder)
+                .withUnlinkedPair(unlinkedPair).build();
+        EditOrderCommand editOrderCommand = new EditOrderCommand(INDEX_SECOND.fromZeroBased(0), descriptor);
+
+        String expectedMessage = String.format(EditOrderCommand.MESSAGE_EDIT_ORDER_SUCCESS, editedOrder);
+
+        Model expectedModel = new ModelManager(copiedModel.getTrackO(), new UserPrefs());
+        expectedModel.setOrder(copiedModel.getFilteredOrderList().get(0), editedOrder);
+        assertCommandSuccess(editOrderCommand, copiedModel, expectedMessage, expectedModel);
+    }
+
+    @Test
+    public void execute_itemNotInInventory_failure() {
+        Model copiedModel = new ModelManager(model.getTrackO(), new UserPrefs());
+        Order initialOrder = new OrderBuilder().build();
+
+        Pair<String, Integer> unlinkedPair = new Pair<>("Pencil Case", 20);
+        EditOrderDescriptor descriptor = new EditOrderDescriptorBuilder(initialOrder)
+                .withUnlinkedPair(unlinkedPair).build();
+        EditOrderCommand editOrderCommand = new EditOrderCommand(INDEX_FIRST.fromZeroBased(0), descriptor);
+
+        assertCommandFailure(editOrderCommand, copiedModel, EditOrderCommand.MESSAGE_NONEXISTENT_ITEM);
     }
 
     @Test
