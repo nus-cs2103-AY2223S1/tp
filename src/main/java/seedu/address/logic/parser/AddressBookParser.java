@@ -22,9 +22,11 @@ import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.EditStuCommand;
 import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.FindCommand;
+import seedu.address.logic.commands.FindStuCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.HelpStuCommand;
 import seedu.address.logic.commands.ListCommand;
+import seedu.address.logic.commands.ListStuCommand;
 import seedu.address.logic.commands.MarkQCommand;
 import seedu.address.logic.commands.MarkTutorialCommand;
 import seedu.address.logic.commands.UnhelpStuCommand;
@@ -88,8 +90,14 @@ public class AddressBookParser {
         case FindCommand.COMMAND_WORD:
             return new FindCommandParser().parse(arguments);
 
+        case FindStuCommand.COMMAND_WORD:
+            return new FindStuCommandParser().parse(arguments);
+
         case ListCommand.COMMAND_WORD:
             return new ListCommand();
+
+        case ListStuCommand.COMMAND_WORD:
+            return new ListStuCommand();
 
         case ExitCommand.COMMAND_WORD:
             return new ExitCommand();
