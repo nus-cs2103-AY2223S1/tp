@@ -27,7 +27,7 @@ public class JsonAdaptedExerciseTest {
     private static final String VALID_SETS = BENSON.getSets().toString();
 
     private static final String VALID_REP = BENSON.getReps().toString();
-    private static final JsonAdaptedTag VALID_DATE = new JsonAdaptedTag(BENSON.getDate());
+    private static final JsonAdaptedDate VALID_DATE = new JsonAdaptedDate(BENSON.getDate());
 
     @Test
     public void toModelType_validExerciseDetails_returnsExercise() throws Exception {
@@ -100,7 +100,7 @@ public class JsonAdaptedExerciseTest {
 
     @Test
     public void toModelType_invalidTags_throwsIllegalValueException() {
-        JsonAdaptedTag invalidDate = new JsonAdaptedTag(INVALID_DATE);
+        JsonAdaptedDate invalidDate = new JsonAdaptedDate(INVALID_DATE);
         JsonAdaptedExercise exercise =
                 new JsonAdaptedExercise(VALID_NAME, VALID_WEIGHT, VALID_SETS, VALID_REP, invalidDate);
         assertThrows(IllegalValueException.class, exercise::toModelType);
