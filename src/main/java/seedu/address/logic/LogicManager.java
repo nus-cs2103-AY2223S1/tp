@@ -102,7 +102,7 @@ public class LogicManager implements Logic {
             try {
                 storage.saveInventory(model.getInventory());
             } catch (IOException ioe) {
-
+                logger.warning("Failed to save SupplyItem count!");
             }
         };
     }
@@ -114,7 +114,7 @@ public class LogicManager implements Logic {
             try {
                 storage.saveInventory(model.getInventory());
             } catch (IOException ioe) {
-
+                logger.warning("Failed to save SupplyItem count!");
             }
         };
     }
