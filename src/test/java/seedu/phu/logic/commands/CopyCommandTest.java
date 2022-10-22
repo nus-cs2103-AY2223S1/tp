@@ -13,7 +13,7 @@ import static seedu.phu.testutil.TypicalIndexes.INDEX_FIRST_INTERNSHIP;
 import static seedu.phu.testutil.TypicalIndexes.INDEX_SECOND_INTERNSHIP;
 import static seedu.phu.testutil.TypicalInternships.getTypicalInternshipBook;
 
-import java.awt.Toolkit;
+import java.awt.*;
 import java.awt.datatransfer.DataFlavor;
 import java.awt.datatransfer.UnsupportedFlavorException;
 import java.io.IOException;
@@ -38,13 +38,13 @@ public class CopyCommandTest {
     private Model model;
     private Model expectedModel;
     private CommandHistory commandHistory;
+    private final String HEADLESS_ERROR = "Unable to be tested in headless environment";
 
     @BeforeEach
     public void setUp() {
         model = new ModelManager(getTypicalInternshipBook(), new UserPrefs());
         expectedModel = new ModelManager(model.getInternshipBook(), new UserPrefs());
         commandHistory = new CommandHistory();
-        System.setProperty("java.awt.headless", "false");
     }
 
     @Test
@@ -69,27 +69,36 @@ public class CopyCommandTest {
 
     @Test
     public void execute_validMessage_success() {
-        CommandResult expectedCommandResult = new CommandResult(MESSAGE_SUCCESS);
-        assertCommandSuccess(new CopyCommand(INDEXES_FIRST_INTERNSHIP), model,
-                commandHistory, expectedCommandResult, expectedModel);
+        try {
+            CommandResult expectedCommandResult = new CommandResult(MESSAGE_SUCCESS);
+            assertCommandSuccess(new CopyCommand(INDEXES_FIRST_INTERNSHIP), model,
+                    commandHistory, expectedCommandResult, expectedModel);
+        } catch (HeadlessException e) {
+            System.out.println(HEADLESS_ERROR);
+            e.printStackTrace();
+        }
     }
 
     @Test
     public void execute_validIndexUnfilteredList_success() throws IOException, UnsupportedFlavorException {
         Internship firstInternship = model.getFilteredInternshipList().get(INDEX_FIRST_INTERNSHIP.getZeroBased());
-
-        CopyCommand copyCommand = new CopyCommand(INDEXES_FIRST_INTERNSHIP);
         String expectedMessage = String.format(MESSAGE_SUCCESS);
-        assertCommandSuccess(copyCommand, model, commandHistory, expectedMessage, expectedModel);
 
-        // Object in Clipboard::getContents is not currently used
-        // https://docs.oracle.com/javase/7/docs/api/java/awt/datatransfer/Clipboard.html#getContents(java.lang.Object)
-        String currentContents = (String) Toolkit.getDefaultToolkit()
-                .getSystemClipboard().getData(DataFlavor.stringFlavor);
-        String toCopy = firstInternship.toString();
+        try {
+            CopyCommand copyCommand = new CopyCommand(INDEXES_FIRST_INTERNSHIP);
+            assertCommandSuccess(copyCommand, model, commandHistory, expectedMessage, expectedModel);
 
-        assertEquals(toCopy, currentContents);
-        System.setProperty("java.awt.headless", "true");
+            // Object in Clipboard::getContents is not currently used
+            // https://docs.oracle.com/javase/7/docs/api/java/awt/datatransfer/Clipboard.html#getContents(java.lang.Object)
+            String currentContents = (String) Toolkit.getDefaultToolkit()
+                    .getSystemClipboard().getData(DataFlavor.stringFlavor);
+
+            String toCopy = firstInternship.toString();
+            assertEquals(toCopy, currentContents);
+        } catch (HeadlessException e) {
+            System.out.println(HEADLESS_ERROR);
+            e.printStackTrace();
+        }
     }
 
     @Test
@@ -106,19 +115,22 @@ public class CopyCommandTest {
         showInternshipAtIndex(expectedModel, INDEX_FIRST_INTERNSHIP);
 
         Internship firstInternship = model.getFilteredInternshipList().get(INDEX_FIRST_INTERNSHIP.getZeroBased());
-
-        CopyCommand copyCommand = new CopyCommand(INDEXES_FIRST_INTERNSHIP);
         String expectedMessage = String.format(MESSAGE_SUCCESS);
-        assertCommandSuccess(copyCommand, model, commandHistory, expectedMessage, expectedModel);
+        try {
+            CopyCommand copyCommand = new CopyCommand(INDEXES_FIRST_INTERNSHIP);
+            assertCommandSuccess(copyCommand, model, commandHistory, expectedMessage, expectedModel);
 
-        // Object in Clipboard::getContents is not currently used
-        // https://docs.oracle.com/javase/7/docs/api/java/awt/datatransfer/Clipboard.html#getContents(java.lang.Object)
-        String currentContents = (String) Toolkit.getDefaultToolkit()
-                .getSystemClipboard().getData(DataFlavor.stringFlavor);
-        String toCopy = firstInternship.toString();
+            // Object in Clipboard::getContents is not currently used
+            // https://docs.oracle.com/javase/7/docs/api/java/awt/datatransfer/Clipboard.html#getContents(java.lang.Object)
+            String currentContents = (String) Toolkit.getDefaultToolkit()
+                    .getSystemClipboard().getData(DataFlavor.stringFlavor);
+            String toCopy = firstInternship.toString();
 
-        assertEquals(toCopy, currentContents);
-        System.setProperty("java.awt.headless", "true");
+            assertEquals(toCopy, currentContents);
+        } catch (HeadlessException e) {
+            System.out.println(HEADLESS_ERROR);
+            e.printStackTrace();
+        }
     }
 
     @Test
