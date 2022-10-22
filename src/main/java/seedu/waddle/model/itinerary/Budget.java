@@ -11,7 +11,7 @@ public class Budget {
             "Budget should only contain numbers.";
     public static final String VALIDATION_REGEX = "\\d+([.][0-9]+)?$";
     private float initialBudget;
-    private float leftoverBudget;
+    private float spending;
 
     /**
      * Constructs a {@code Budget}.
@@ -22,7 +22,7 @@ public class Budget {
         requireNonNull(budgetStr);
         checkArgument(isValidBudget(budgetStr), MESSAGE_CONSTRAINTS);
         this.initialBudget = Float.parseFloat(budgetStr);
-        this.leftoverBudget = initialBudget;
+        this.spending = 0;
     }
 
     /**
@@ -51,12 +51,12 @@ public class Budget {
         return this.initialBudget;
     }
 
-    public void updateLeftOverBudget(float amount) {
-        this.leftoverBudget += amount;
+    public void updateSpending(float amount) {
+        this.spending += amount;
     }
 
-    public float getLeftOverBudget() {
-        return this.leftoverBudget;
+    public float CalculateLeftOverBudget() {
+        return this.initialBudget - this.spending;
     }
 
     @Override

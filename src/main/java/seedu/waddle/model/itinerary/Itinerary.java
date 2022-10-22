@@ -91,10 +91,6 @@ public class Itinerary {
         return this.budget;
     }
 
-    public float getLeftoverBudget() {
-        return this.budget.getLeftOverBudget();
-    }
-
     public UniqueItemList getItemList() {
         return unscheduledItemList;
     }
@@ -140,30 +136,30 @@ public class Itinerary {
         this.unscheduledItemList.sort(priorityComparator);
     }
 
-    public void unplanItem(MultiIndex index) {
-        Day day = this.days.get(index.getDayIndex());
-        Item unplannedItem = day.removeItem(index.getTaskIndex());
-        addItem(unplannedItem);
-        this.unscheduledItemList.sort(priorityComparator);
-        this.budget.updateLeftOverBudget(unplannedItem.getCost().getValue());
-    }
-
-    public void planItem(int itemIndex, int dayIndex, int startTime) {
-        Item item = this.unscheduledItemList.get(itemIndex);
-        Day day = this.days.get(dayIndex);
-        day.addItem(item);
-        this.unscheduledItemList.remove(itemIndex);
-        this.budget.updateLeftOverBudget(-item.getCost().getValue());
-    }
-
-    public Item getItem(MultiIndex index) {
-        if (index.getDayIndex() == null) {
-            return this.unscheduledItemList.get(index.getTaskIndex());
-        } else {
-            Day day = this.days.get(index.getDayIndex());
-            return day.getItem(index.getTaskIndex());
-        }
-    }
+//    public void unplanItem(MultiIndex index) {
+//        Day day = this.days.get(index.getDayIndex());
+//        Item unplannedItem = day.removeItem(index.getTaskIndex());
+//        addItem(unplannedItem);
+//        this.unscheduledItemList.sort(priorityComparator);
+//        this.budget.updateSpending(-unplannedItem.getCost().getValue());
+//    }
+//
+//    public void planItem(int itemIndex, int dayIndex, int startTime) {
+//        Item item = this.unscheduledItemList.get(itemIndex);
+//        Day day = this.days.get(dayIndex);
+//        day.addItem(item);
+//        this.unscheduledItemList.remove(itemIndex);
+//        this.budget.updateSpending(item.getCost().getValue());
+//    }
+//
+//    public Item getItem(MultiIndex index) {
+//        if (index.getDayIndex() == null) {
+//            return this.unscheduledItemList.get(index.getTaskIndex());
+//        } else {
+//            Day day = this.days.get(index.getDayIndex());
+//            return day.getItem(index.getTaskIndex());
+//        }
+//    }
 
     /**
      * Returns true if both itineraries have the same identity and data fields.
@@ -209,7 +205,7 @@ public class Itinerary {
                 .append("; Budget: ")
                 .append(getBudget())
                 .append("; Leftover Budget: ")
-                .append(getBudget().getLeftOverBudget());
+                .append(getBudget().CalculateLeftOverBudget());
 
         return builder.toString();
     }
