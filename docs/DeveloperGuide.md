@@ -291,7 +291,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 (For all use cases below, the **System** is the `Financial Advisor Planner` and the **Actor** is the `user`, unless specified otherwise)
 
-**Use case: Add a client**
+**Use case: UC1 - Add a client**
 
 **MSS**
 
@@ -313,7 +313,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case ends.
 
-**Use case: Delete a client**
+**Use case: UC2 - Delete a client**
 
 **MSS**
 
@@ -336,7 +336,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 2.
 
-**Use case: Edit client details**
+**Use case: UC3 - Edit client details**
 
 **MSS**
 
@@ -361,7 +361,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 2.
 
-**Use case: Clear Financial Advisor Planner**
+**Use case: UC4 - Clear Financial Advisor Planner**
 
 **MSS**
 
@@ -370,7 +370,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     Use case ends.
 
-**Use case: Find client**
+**Use case: UC5 - Find client**
 
 **MSS**
 
@@ -379,7 +379,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     Use case ends.
 
-**Use case: Add an appointment**
+**Use case: UC6 - Add an appointment**
 
 **MSS**
 
@@ -420,7 +420,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case ends.
 
-**Use case: Sort contacts by keywords**
+**Use case: UC7 - Sort contacts by keywords**
 
 **MSS**
 
@@ -446,6 +446,41 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * 1c. User did not input any keywords.
 
     * 1c1. Financial Advisor Planner shows an error message.
+
+      Use case ends.
+
+**Use case: UC8 - Display appointments in a calendar view**
+
+**MSS**
+
+1. User <ins>add an appointment(UC6)</ins>
+2. User requests to view all the appointments in a calendar view of the current month
+3. Financial Advisor Planner shows all the appointments in a given month according to their dates
+
+    Use case ends.
+
+    **Extensions**
+
+* 1a. User <ins>find clients with matching keyword(s)(UC5)</ins>
+
+    * 1a1. Financial Advisor Planner shows the appointments of the all the clients in a calendar view.
+    * 1a2. User refreshes the calendar display.
+    * 1a3. Financial Advisor Planner shows the appointments of the given clients in a calendar view.
+    
+      Use case ends.
+
+* 2a. User could not see the appointment that was recently added.
+
+    * 2a1. User refreshes the calendar display.
+    * 2a2. Financial Advisor Planner shows the appointments of the all clients in a calendar view, including the recently added appointment.
+
+      Use case ends.
+
+* 2b. User requests to view appointments in another month.
+
+    * 2b1. Financial Advisor Planner shows the appointments of the all the clients in the current month.
+    * 2b2. User inputs the new month of the calendar to be displayed.
+    * 2b3. Financial Advisor Planner shows the appointments of the all the clients in the new month.
 
       Use case ends.
 
