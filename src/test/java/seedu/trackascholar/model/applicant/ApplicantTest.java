@@ -122,7 +122,7 @@ public class ApplicantTest {
         editedAlice = new ApplicantBuilder(ALICE).withEmail(VALID_EMAIL_BOB).build();
         assertFalse(ALICE.equals(editedAlice));
 
-        // different address -> returns false
+        // different scholarship -> returns false
         editedAlice = new ApplicantBuilder(ALICE).withScholarship(VALID_SCHOLARSHIP_BOB).build();
         assertFalse(ALICE.equals(editedAlice));
 
