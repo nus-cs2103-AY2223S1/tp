@@ -33,7 +33,8 @@ public class EditItemCommandParser implements Parser<EditItemCommand> {
         requireNonNull(args);
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, CliSyntax.PREFIX_ITEM, CliSyntax.PREFIX_QUANTITY,
-                        CliSyntax.PREFIX_DESCRIPTION, CliSyntax.PREFIX_TAG);
+                        CliSyntax.PREFIX_DESCRIPTION, CliSyntax.PREFIX_TAG,
+                        CliSyntax.PREFIX_SELL_PRICE, CliSyntax.PREFIX_COST_PRICE);
 
         Index index;
 
@@ -76,6 +77,16 @@ public class EditItemCommandParser implements Parser<EditItemCommand> {
         }
 
         parseTagsForEdit(argMultimap.getAllValues(CliSyntax.PREFIX_TAG)).ifPresent(editItemDescriptor::setTags);
+
+        if (argMultimap.getValue(CliSyntax.PREFIX_SELL_PRICE).isPresent()) {
+            editItemDescriptor.setSellPrice(ParserUtil
+                    .parsePrice(argMultimap.getValue(CliSyntax.PREFIX_SELL_PRICE).get()));
+        }
+
+        if (argMultimap.getValue(CliSyntax.PREFIX_COST_PRICE).isPresent()) {
+            editItemDescriptor.setCostPrice(ParserUtil
+                    .parsePrice(argMultimap.getValue(CliSyntax.PREFIX_COST_PRICE).get()));
+        }
     }
 
     /**

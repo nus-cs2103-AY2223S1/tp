@@ -73,6 +73,8 @@ public class Item {
         this.description = toCopy.description;
         this.totalQuantity = toCopy.totalQuantity;
         this.tags = toCopy.tags;
+        this.sellPrice = toCopy.sellPrice;
+        this.costPrice = toCopy.costPrice;
     }
 
     /**
