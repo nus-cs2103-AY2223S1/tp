@@ -20,13 +20,14 @@ public class Date {
      */
     public static final String VALIDATION_REGEX = "^([0-2][0-9]||3[0-1])/(0[0-9]||1[0-2])/([0-9][0-9])[0-9][0-9]$";
 
-    public final LocalDate date;
     /**
      * The formatter uses uuuu instead of yyyy to ensure a stricter formatting restriction for the year.
      * The strict ResolverStyle is used to prevent invalid or non-existent dates from being added.
      */
-    public static final DateTimeFormatter formatter = DateTimeFormatter.ofPattern(DATE_PATTERN)
+    private static final DateTimeFormatter formatter = DateTimeFormatter.ofPattern(DATE_PATTERN)
             .withResolverStyle(ResolverStyle.STRICT);
+
+    public final LocalDate date;
 
     /**
      * Constructs a {@code Date}.

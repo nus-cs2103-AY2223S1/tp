@@ -31,17 +31,17 @@ public class DateTest {
     @Test
     public void constructor_invalidDate_throwsIllegalArgumentException() {
         String invalidDateEmptyString = "";
-        String invalidDateFormat_one = "5/5/2022";
-        String invalidDateFormat_two = "05/5/2022";
-        String invalidDateFormat_three = "5/05/2022";
-        String invalidDateFormat_four = "05/05/22";
-        String invalidDateFormat_five = "31-04-2022";
+        String invalidDateFormatOne = "5/5/2022";
+        String invalidDateFormatTwo = "05/5/2022";
+        String invalidDateFormatThree = "5/05/2022";
+        String invalidDateFormatFour = "05/05/22";
+        String invalidDateFormatFive = "31-04-2022";
         assertThrows(IllegalArgumentException.class, () -> new Date(invalidDateEmptyString));
-        assertThrows(IllegalArgumentException.class, () -> new Date(invalidDateFormat_one));
-        assertThrows(IllegalArgumentException.class, () -> new Date(invalidDateFormat_two));
-        assertThrows(IllegalArgumentException.class, () -> new Date(invalidDateFormat_three));
-        assertThrows(IllegalArgumentException.class, () -> new Date(invalidDateFormat_four));
-        assertThrows(IllegalArgumentException.class, () -> new Date(invalidDateFormat_five));
+        assertThrows(IllegalArgumentException.class, () -> new Date(invalidDateFormatOne));
+        assertThrows(IllegalArgumentException.class, () -> new Date(invalidDateFormatTwo));
+        assertThrows(IllegalArgumentException.class, () -> new Date(invalidDateFormatThree));
+        assertThrows(IllegalArgumentException.class, () -> new Date(invalidDateFormatFour));
+        assertThrows(IllegalArgumentException.class, () -> new Date(invalidDateFormatFive));
     }
 
     /**
