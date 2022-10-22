@@ -38,8 +38,10 @@ public class EditPropertyCommandTest {
 
         String expectedMessage = String.format(EditPropertyCommand.MESSAGE_EDIT_PROPERTY_SUCCESS, editedProperty);
 
-        Model expectedModel = new ModelManager(new PropertyDirectory(model.getPropertyDirectory()),
-                new ClientDirectory(model.getClientDirectory()), new UserPrefs());
+        Model expectedModel = new ModelManager(
+            new PropertyDirectory(model.getPropertyDirectory(), model.getUserPrefs().getUserImageDirectoryPath()),
+            new ClientDirectory(model.getClientDirectory()), new UserPrefs()
+        );
         expectedModel.setProperty(model.getFilteredPropertyList().get(0), editedProperty);
 
         CommandTestUtil.assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
@@ -63,8 +65,10 @@ public class EditPropertyCommandTest {
 
         String expectedMessage = String.format(EditPropertyCommand.MESSAGE_EDIT_PROPERTY_SUCCESS, editedPerson);
 
-        Model expectedModel = new ModelManager(new PropertyDirectory(model.getPropertyDirectory()),
-                new ClientDirectory(model.getClientDirectory()), new UserPrefs());
+        Model expectedModel = new ModelManager(
+            new PropertyDirectory(model.getPropertyDirectory(), model.getUserPrefs().getUserImageDirectoryPath()),
+            new ClientDirectory(model.getClientDirectory()), new UserPrefs()
+        );
         expectedModel.setProperty(lastProperty, editedPerson);
 
         CommandTestUtil.assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
@@ -77,8 +81,10 @@ public class EditPropertyCommandTest {
 
         String expectedMessage = String.format(EditPropertyCommand.MESSAGE_EDIT_PROPERTY_SUCCESS, editedPerson);
 
-        Model expectedModel = new ModelManager(new PropertyDirectory(model.getPropertyDirectory()),
-                new ClientDirectory(model.getClientDirectory()), new UserPrefs());
+        Model expectedModel = new ModelManager(
+            new PropertyDirectory(model.getPropertyDirectory(), model.getUserPrefs().getUserImageDirectoryPath()),
+            new ClientDirectory(model.getClientDirectory()), new UserPrefs()
+        );
 
         CommandTestUtil.assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
     }
@@ -95,8 +101,10 @@ public class EditPropertyCommandTest {
 
         String expectedMessage = String.format(EditPropertyCommand.MESSAGE_EDIT_PROPERTY_SUCCESS, editedPerson);
 
-        Model expectedModel = new ModelManager(new PropertyDirectory(model.getPropertyDirectory()),
-                new ClientDirectory(model.getClientDirectory()), new UserPrefs());
+        Model expectedModel = new ModelManager(
+            new PropertyDirectory(model.getPropertyDirectory(), model.getUserPrefs().getUserImageDirectoryPath()),
+            new ClientDirectory(model.getClientDirectory()), new UserPrefs()
+        );
         expectedModel.setProperty(model.getFilteredPropertyList().get(0), editedPerson);
 
         CommandTestUtil.assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);

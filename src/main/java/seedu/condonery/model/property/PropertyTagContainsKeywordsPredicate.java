@@ -8,10 +8,10 @@ import seedu.condonery.commons.util.StringUtil;
 /**
  * Tests that a {@code Property}'s {@code Tags} matches any of the keywords given.
  */
-public class TagContainsKeywordsPredicate implements Predicate<Property> {
+public class PropertyTagContainsKeywordsPredicate implements Predicate<Property> {
     private final List<String> keywords;
 
-    public TagContainsKeywordsPredicate(List<String> keywords) {
+    public PropertyTagContainsKeywordsPredicate(List<String> keywords) {
         this.keywords = keywords;
     }
 
@@ -24,8 +24,8 @@ public class TagContainsKeywordsPredicate implements Predicate<Property> {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof TagContainsKeywordsPredicate // instanceof handles nulls
-                && keywords.equals(((TagContainsKeywordsPredicate) other).keywords)); // state check
+                || (other instanceof PropertyTagContainsKeywordsPredicate // instanceof handles nulls
+                && keywords.equals(((PropertyTagContainsKeywordsPredicate) other).keywords)); // state check
     }
 
 }
