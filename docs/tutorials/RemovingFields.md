@@ -28,7 +28,7 @@ IntelliJ IDEA provides a refactoring tool that can identify *most* parts of a re
 
 ### Assisted refactoring
 
-The `scholarship` field in `Applicant` is actually an instance of the `seedu.address.model.applicant.Scholarship` class. Since removing the `Scholarship` class will break the application, we start by identifying `Scholarship`'s usages. This allows us to see code that depends on `Scholarship` to function properly and edit them on a case-by-case basis. Right-click the `Scholarship` class and select `Refactor` \> `Safe Delete` through the menu.
+The `scholarship` field in `Applicant` is actually an instance of the `seedu.trackascholar.model.applicant.Scholarship` class. Since removing the `Scholarship` class will break the application, we start by identifying `Scholarship`'s usages. This allows us to see code that depends on `Scholarship` to function properly and edit them on a case-by-case basis. Right-click the `Scholarship` class and select `Refactor` \> `Safe Delete` through the menu.
 * :bulb: To make things simpler, you can unselect the options `Search in comments and strings` and `Search for text occurrences`
 
 ![Usages detected](../images/remove/UnsafeDelete.png)

@@ -29,8 +29,6 @@ activate AddCommandParser
 AddCommandParser --> TrackAScholarParser
 deactivate AddCommandParser
 
-'Hidden arrow to position the destroy marker below the end of the activation bar.
-AddCommandParser -[hidden]-> TrackAScholarParser: BUFFER_MESSAGE
 
 TrackAScholarParser -> AddCommandParser : parse(n/Sam \n p/98886767 \n e/sam@example.com \n s/NUS Merit Scholarship \n as/pending)
 activate AddCommandParser
@@ -52,10 +50,12 @@ AddCommandParser -> AddCommand : AddCommand(applicant)
 activate AddCommand
 
 AddCommand --> AddCommandParser
-deactivate
+deactivate AddCommand
+deactivate AddCommandParser
 
 AddCommandParser --> TrackAScholarParser
-deactivate
+deactivate AddCommandParser
+
 'Hidden arrow to position the destroy marker below the end of the activation bar.
 AddCommandParser -[hidden]-> TrackAScholarParser
 destroy AddCommandParser
@@ -71,6 +71,7 @@ activate Model
 
 Model --> AddCommand
 deactivate
+
 
 AddCommand -> Model : addApplicant(applicant)
 activate Model
