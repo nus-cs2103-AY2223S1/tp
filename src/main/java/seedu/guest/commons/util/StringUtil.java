@@ -39,36 +39,39 @@ public class StringUtil {
     }
 
     /**
-     * Returns true if the {@code sentence} contains the {@code dateRange}.
-     *   Ignores hyphen and space, but a full dateRange match is required.
+     * Returns true if the {@code sentence} contains the {@code date}.
+     *   Ignores hyphen and space, but a full date match is required.
      *   <br>examples:<pre>
-     *       containsDateRangeIgnoreHyphenIgnoreSpace("13/09/22 - 15/09/22", "13/09/22 - 15/09/22") == true
-     *       containsDateRangeIgnoreHyphenIgnoreSpace("13/09/22 - 15/09/22", "13/09/22 15/09/22") == true
-     *       containsDateRangeIgnoreHyphenIgnoreSpace("13/09/22 - 15/09/22", "13/09/2215/09/22") == true
-     *       containsDateRangeIgnoreHyphenIgnoreSpace("13/09/22 - 15/09/22", "13/09/22")
-     *              == false //not a full dateRange match
-     *       containsDateRangeIgnoreHyphenIgnoreSpace("13/09/22 - 15/09/22", "13/09/22 - 19/09/22")
-     *              == false //not a full dateRange match
+     *       containsDateIgnoreHyphenIgnoreSpace("13/09/22 - 15/09/22", "13/09/22 - 15/09/22") == true
+     *       containsDateIgnoreHyphenIgnoreSpace("13/09/22 - 15/09/22", "13/09/22 15/09/22") == true
+     *       containsDateIgnoreHyphenIgnoreSpace("13/09/22 - 15/09/22", "13/09/22") == true
+     *       containsDateIgnoreHyphenIgnoreSpace("13/09/22 - 15/09/22", "15/09/22") == true
+     *       containsDateIgnoreHyphenIgnoreSpace("13/09/22 - 15/09/22", "13/09/22 - 19/09/22")
+     *              == false //not a full date match
+     *       containsDateIgnoreHyphenIgnoreSpace("13/09/22 - 15/09/22", "14/09/22")
+     *              == false //not a full date match
+     *       containsDateIgnoreHyphenIgnoreSpace("13/09/22 - 15/09/22", "13/09")
+     *              == false //not a full date match
      *       </pre>
      * @param sentence cannot be null
-     * @param dateRange cannot be null, cannot be empty, must be a single dateRange
+     * @param date cannot be null, cannot be empty, must be a single date
      */
-    public static boolean containsDateRangeIgnoreHyphenIgnoreSpace(String sentence, String dateRange) {
+    public static boolean containsDateIgnoreHyphenIgnoreSpace(String sentence, String date) {
         requireNonNull(sentence);
-        requireNonNull(dateRange);
+        requireNonNull(date);
 
-        String preppedDateRange = dateRange.trim().replace("-", "");
-        if (preppedDateRange.isEmpty()) {
+        String preppedDate = date.trim().replace("-", "");
+        if (preppedDate.isEmpty()) {
             return false;
         }
-        checkArgument(!preppedDateRange.isEmpty(), "dateRange parameter cannot be empty");
-        checkArgument(preppedDateRange.split("\\s+").length == 1, "dateRange parameter should be a single dateRange");
+        checkArgument(!preppedDate.isEmpty(), "date parameter cannot be empty");
+        checkArgument(preppedDate.split("\\s+").length == 1, "date parameter should be a single date");
 
         String preppedSentence = sentence.replace("-", "");
         String[] wordsInPreppedSentence = preppedSentence.split("\\s+");
 
         return Arrays.stream(wordsInPreppedSentence)
-                .anyMatch(preppedDateRange::equalsIgnoreCase);
+                .anyMatch(preppedDate::equalsIgnoreCase);
     }
 
     /**

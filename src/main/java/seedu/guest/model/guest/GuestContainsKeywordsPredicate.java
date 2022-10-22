@@ -20,7 +20,7 @@ public class GuestContainsKeywordsPredicate implements Predicate<Guest> {
     }
 
     private boolean compareDate(String sentence) {
-        return keywords.stream().anyMatch(keyword -> StringUtil.containsDateRangeIgnoreHyphenIgnoreSpace(sentence,
+        return keywords.stream().anyMatch(keyword -> StringUtil.containsDateIgnoreHyphenIgnoreSpace(sentence,
                 keyword));
     }
 
