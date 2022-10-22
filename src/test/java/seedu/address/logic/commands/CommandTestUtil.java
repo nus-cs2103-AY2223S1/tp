@@ -159,6 +159,7 @@ public class CommandTestUtil {
         assertEquals(expectedAddressBook, actualModel.getAddressBook());
         assertEquals(expectedFilteredList, actualModel.getFilteredProfileList());
     }
+
     /**
      * Updates {@code model}'s filtered list to show only the profile at the given {@code targetIndex} in the
      * {@code model}'s address book.
@@ -181,10 +182,9 @@ public class CommandTestUtil {
         assertTrue(targetIndex.getZeroBased() < model.getFilteredEventList().size());
 
         Event event = model.getFilteredEventList().get(targetIndex.getZeroBased());
-        final String[] splitName = event.getTitle().title.split("\\s+");
-        model.updateFilteredEventList(new TitleContainsKeywordsPredicate(Arrays.asList(splitName[0])));
+        final String[] splitTitle = event.getTitle().title.split("\\s+");
+        model.updateFilteredEventList(new TitleContainsKeywordsPredicate(Arrays.asList(splitTitle[0])));
 
         assertEquals(1, model.getFilteredEventList().size());
     }
-
 }
