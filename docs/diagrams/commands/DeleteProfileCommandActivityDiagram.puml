@@ -1,0 +1,16 @@
+@startuml
+start
+:User executes DeleteProfileCommand;
+
+if () then ([input is valid])
+    :Parses input into Index;
+    :Creates DeleteProfileCommand;
+    :LogicManager executes DeleteProfileCommand;
+    :Update ProfileList to delete profile;
+    :Display success message to user;
+else ([else])
+    :Display error message to user;
+endif
+
+stop
+@enduml

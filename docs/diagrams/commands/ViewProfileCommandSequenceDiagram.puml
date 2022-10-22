@@ -1,0 +1,33 @@
+@startuml
+!include ../style.puml
+
+box Logic LOGIC_COLOR_T1
+Participant ":LogicManager" as logicManager LOGIC_COLOR_T3
+Participant ":NuSchedulerParser" as nuSchedulerParser LOGIC_COLOR_T3
+Participant "p:ViewProfileCommand" as viewProfileCommand LOGIC_COLOR_T3
+Participant "r:CommandResult" as commandResult LOGIC_COLOR_T3
+endBox
+
+box Model MODEL_COLOR_T1
+Participant "model:Model" as model MODEL_COLOR_T3
+Participant ":FilteredList" as filteredList MODEL_COLOR_T3
+endBox
+
+-> logicManager ++: execute("profile -v")
+logicManager -> nuSchedulerParser ++: parseCommand
+create viewProfileCommand
+nuSchedulerParser -[hidden]-> viewProfileCommand
+return p
+logicManager -> viewProfileCommand ++: execute(model)
+viewProfileCommand -> model ++: updateFilteredProfileList(predicate)
+model -> filteredList ++: setPredicate(predicate)
+return
+return
+create commandResult
+viewProfileCommand -> commandResult ++:
+return r
+return r
+return
+
+
+@enduml
