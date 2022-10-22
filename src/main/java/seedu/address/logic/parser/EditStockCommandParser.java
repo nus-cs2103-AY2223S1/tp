@@ -33,16 +33,25 @@ public class EditStockCommandParser implements Parser<EditStockCommand> {
         }
 
         EditStockDescriptor editStockDescriptor = new EditStockDescriptor();
-
+        Integer newCurrentStock = -1;
         if (argMultimap.getValue(PREFIX_CURRENTSTOCK).isPresent()) {
-            int newCurrentStock = getIntFromString(argMultimap.getValue(PREFIX_CURRENTSTOCK).get());
 
-            if (newCurrentStock < 0) {
-                throw new ParseException("current stock cannot be less than zero. Please try again !");
+            try {
+                newCurrentStock = getIntFromString(argMultimap.getValue(PREFIX_CURRENTSTOCK).get());
+            } catch (NumberFormatException nfe) {
+                throw new ParseException(EditStockCommand.MESSAGE_NOT_EDITED_PREFIX_DETECTED);
             }
-            editStockDescriptor.setCurrentStock(newCurrentStock);
         }
 
+        if (newCurrentStock == -1) {
+            throw new ParseException(EditStockCommand.MESSAGE_NOT_EDITED);
+        }
+
+        if (newCurrentStock < 0) {
+            throw new ParseException(EditStockCommand.MESSAGE_COUNT_NEGATIVE);
+        }
+
+        editStockDescriptor.setCurrentStock(newCurrentStock);
         if (!editStockDescriptor.isAnyFieldEdited()) {
             throw new ParseException(EditStockCommand.MESSAGE_NOT_EDITED);
         }

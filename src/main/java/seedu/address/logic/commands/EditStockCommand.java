@@ -33,7 +33,9 @@ public class EditStockCommand extends Command {
             + "Example: " + COMMAND_WORD + " 1 c/5";
 
     public static final String MESSAGE_SUCCESS = "Stock updated: %1$s";
-    public static final String MESSAGE_NOT_EDITED = "Item's stock is not updated.";
+    public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
+    public static final String MESSAGE_NOT_EDITED_PREFIX_DETECTED = "You did not provide a value to c/.";
+    public static final String MESSAGE_COUNT_NEGATIVE = "Current stock cannot have negative value. Please try again.";
     private final EditStockDescriptor editStockDescriptor;
     private final Index index;
 
@@ -61,6 +63,10 @@ public class EditStockCommand extends Command {
 
         SupplyItem supplyItemToUpdate = lastShownSupplyItemList.get(index.getZeroBased());
         SupplyItem updatedSupplyItem = createEditedSupplyItem(supplyItemToUpdate, editStockDescriptor);
+
+        if (updatedSupplyItem.getCurrentStock() < 0) {
+            throw new CommandException(Messages.MESSAGE_INVALID_SUPPLYITEM_CURRENT_STOCK_VALUE);
+        }
 
         model.setSupplyItem(updatedSupplyItem, index);
         model.updateFilteredSupplyItemList(PREDICATE_SHOW_ALL_SUPPLY_ITEMS);
@@ -113,8 +119,8 @@ public class EditStockCommand extends Command {
         private String name;
 
         // Data fields
-        private int currentStock;
-        private int minStock;
+        private Integer currentStock;
+        private Integer minStock;
         private Person supplier;
         private Set<Tag> tags;
 
