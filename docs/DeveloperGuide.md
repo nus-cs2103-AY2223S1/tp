@@ -163,7 +163,7 @@ The sequence diagram below shows how a `DeleteCommand` with multiple inputs is e
 <<<<<<< HEAD
 <div markdown="span" class="alert alert-info">
 :information_source: **Note:** The order of the inputs does not matter as the set is sorted in reverse order before creating the `DeleteCommand` object. This ensures that deletion of each entry in the `model` does not affect the deletion of the subsequent entries while the `for` loop is running.
-</div>z
+</div>
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The order of the inputs does not matter as the set is sorted in reverse order before creating the `DeleteCommand` object. This ensures that deletion of each entry in the `model` does not affect the deletion of the subsequent entries while the `for` loop is running.</div>
 
 
@@ -251,7 +251,6 @@ The following activity diagram summarizes what happens when a user executes a ne
 * **Alternative 2:** Opens github profile page through in-built browser.
     * Pros: Users will be able to see the github profile page from the app itself
     * Cons: Difficult to implement. (need to build browser on app, need to reserve UI space for it)
-    
 
 ### Find Contact
 
@@ -505,8 +504,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 3a1. AddressBook shows an error message.
 
       Use case resumes at step 2.
-    
-    
+
 ### Non-Functional Requirements
 
 1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
@@ -546,7 +544,6 @@ testers are expected to do more *exploratory* testing.
 
    1. Re-launch the app by double-clicking the jar file.<br>
        Expected: The most recent window size and location is retained.
-   
 
 ### Deleting a person
 
@@ -574,13 +571,12 @@ testers are expected to do more *exploratory* testing.
 
     3. Test case: `github 0`<br>
        Expected: No GitHub Profile page will be opened. Error details shown in the status message.
-   
+
     4. Test case: `github 2`<br>
        Expected: No GitHub Profile page will be opened. Error details shown in the status message.
 
-    6. Other incorrect github commands to try: `github`, `github x`, `...` (where x is larger than the list size)<br>
+    5. Other incorrect github commands to try: `github`, `github x`, `...` (where x is larger than the list size)<br>
        Expected: Similar to previous.
-
 
 ### Saving data
 
