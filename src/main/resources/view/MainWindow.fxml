@@ -13,6 +13,7 @@
 
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.image.ImageView?>
 <fx:root minHeight="600" minWidth="700" onCloseRequest="#handleExit" title="Mass Linkers"
          type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
   <icons>
@@ -21,8 +22,8 @@
   <scene>
     <Scene>
       <stylesheets>
-        <URL value="@DarkTheme.css" />
-        <URL value="@Extensions.css" />
+        <URL value="@css/DarkTheme.css" />
+        <URL value="@css/Extensions.css"/>
       </stylesheets>
 
       <VBox>
@@ -55,9 +56,21 @@
           <!--People left panel-->
         <StackPane minWidth="300" prefWidth="NaN" styleClass="pane-with-border" HBox.hgrow="ALWAYS" VBox.vgrow="ALWAYS">
         <VBox fx:id="personList" minWidth="340" prefWidth="340" styleClass="pane-with-border" VBox.vgrow="ALWAYS">
-          <Label styleClass="label-header" text="Students" textAlignment="CENTER" textFill="WHITE" />
-          <Label fx:id="noSelectedText" styleClass="label-subheader"
-                 text="Select a student to read." textAlignment="CENTER" />
+          <HBox alignment="CENTER">
+            <children>
+              <ImageView fitHeight="50.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
+                <image>
+                  <Image url="@../images/person.png" />
+                </image>
+              </ImageView>
+              <HBox alignment="CENTER">
+                <padding>
+                  <Insets top="5" right="1" bottom="1" left="8" />
+                </padding>
+                <Label styleClass="label-header" text="Students" textAlignment="CENTER" textFill="WHITE" />
+              </HBox>
+            </children>
+          </HBox>
           <padding>
             <Insets bottom="10" left="10" right="10" top="10" />
           </padding>
@@ -74,9 +87,21 @@
                      HBox.hgrow="ALWAYS" VBox.vgrow="ALWAYS">
 
           <VBox fx:id="modList" minWidth="340" prefWidth="340" styleClass="pane-with-border" VBox.vgrow="ALWAYS">
-          <Label styleClass="label-header" text="Mods Taken" textAlignment="CENTER" textFill="WHITE" />
-                <Label fx:id="modDescription" styleClass="label-subheader"
-                       text="Find students taking a mod with the find command." textAlignment="CENTER" />
+            <HBox alignment="CENTER">
+              <children>
+                <ImageView fitHeight="50.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
+                  <image>
+                    <Image url="@../images/book.png" />
+                  </image>
+                </ImageView>
+                <HBox alignment="CENTER">
+                  <padding>
+                    <Insets top="5" right="1" bottom="1" left="8" />
+                  </padding>
+                  <Label styleClass="label-header" text="Modules" textAlignment="CENTER" textFill="WHITE" />
+                </HBox>
+              </children>
+            </HBox>
             <padding>
               <Insets bottom="10" left="10" right="10" top="10" />
             </padding>

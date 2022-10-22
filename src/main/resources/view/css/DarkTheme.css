@@ -5,23 +5,23 @@
 
 .label {
     -fx-font-size: 11pt;
-    -fx-font-family: "Segoe UI Semibold";
+    -fx-font-family: "Helvetica Neue";
     -fx-text-fill: black;
-    -fx-opacity: 0.9;
+    -fx-opacity: 0.8;
 }
 
 .label-bright {
     -fx-font-size: 11pt;
-    -fx-font-family: "Segoe UI Semibold";
+    -fx-font-family: "Helvetica Neue";
     -fx-text-fill: black;
-    -fx-opacity: 1;
+    -fx-opacity: 0.8;
 }
 
 .label-header {
     -fx-font-size: 14pt;
     -fx-font-family: "Helvetica Neue";
     -fx-text-fill: black;
-    -fx-opacity: 1;
+    -fx-opacity: 0.8;
 }
 
 .menu-item {
@@ -73,10 +73,10 @@
     -fx-border-width: 0 0 1 0;
     -fx-background-color: white;
     -fx-border-color:
-        transparent
-        transparent
-        derive(-fx-base, 80%)
-        transparent;
+            transparent
+            transparent
+            derive(-fx-base, 80%)
+            transparent;
     -fx-border-insets: 0 10 1 0;
 }
 
@@ -147,12 +147,12 @@
 }
 
 .stack-pane {
-     -fx-background-color: transparent;
+    -fx-background-color: transparent;
 }
 
 .pane-with-border {
-     /*outlook color*/
-     -fx-background-color: #dbdbdb;
+    /*outlook color*/
+    -fx-background-color: #dbdbdb;
 }
 
 .status-bar {
@@ -172,9 +172,9 @@
 
 .status-bar .label {
     -fx-font-family: "Helvetica Neue";
+    -fx-font-size: 14;
     -fx-text-fill: white;
-    -fx-padding: 4px;
-    -fx-pref-height: 30px;
+    -fx-padding: 2px;
 }
 
 .status-bar-with-border {
@@ -210,8 +210,8 @@
 }
 
 .menu-bar .label {
-    -fx-font-size: 14pt;
-    -fx-font-family: "Segoe UI Light";
+    -fx-font-size: 12pt;
+    -fx-font-family: "Helvetica Neue";
     -fx-text-fill: white;
     -fx-opacity: 0.9;
 }
@@ -242,8 +242,8 @@
 }
 
 .button:pressed, .button:default:hover:pressed {
-  -fx-background-color: #0072C6;
-  -fx-text-fill: #1d1d1d;
+    -fx-background-color: #0072C6;
+    -fx-text-fill: #1d1d1d;
 }
 
 .button:focused {
@@ -331,12 +331,13 @@
 }
 
 #commandTextField {
+    -fx-pref-height: 30;
+    -fx-padding: 5 5 5 5;
     -fx-background-color: #f0f1f2;
     -fx-background-insets: 0;
-    -fx-padding: 12 10 12 10;
     -fx-border-color: grey;
-    -fx-font-family: "Segoe UI Light";
-    -fx-font-size: 13pt;
+    -fx-font-family: "Helvetica Neue";
+    -fx-font-size: 12pt;
     -fx-text-fill: #383838;
     -fx-border-radius: 10, 10, 10, 10;
     -fx-background-radius: 10, 10, 10, 10;
@@ -358,7 +359,7 @@
     -fx-padding: 3 3 3 3;
     -fx-border-radius: 2;
     -fx-background-radius: 12, 12, 0, 0;
-    -fx-font-size: 14;
+    -fx-font-size: 13;
     -fx-alignment: center;
 }
 
@@ -366,7 +367,8 @@
     -fx-background-radius: 16, 16, 0, 0;
     -fx-alignment: center;
     -fx-text-fill: white;
-    -fx-pref-width: 140px;
+    -fx-pref-width: 150px;
+    -fx-font-size: 15;
 }
 
 #takenStatus {
@@ -374,4 +376,5 @@
     -fx-alignment: center;
     -fx-text-fill: white;
     -fx-pref-width: 70px;
+    -fx-font-size: 14;
 }
