@@ -95,20 +95,6 @@
         </children>
       </HBox>
 
-      <HBox>
-        <padding>
-          <Insets top="3" bottom="3" />
-        </padding>
-        <FlowPane fx:id="assignments" />
-      </HBox>
-
-      <HBox>
-        <padding>
-          <Insets top="3" bottom="3" />
-        </padding>
-        <FlowPane fx:id="personGroup" />
-      </HBox>
-
     </VBox>
   </GridPane>
 </HBox>
