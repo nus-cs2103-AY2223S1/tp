@@ -20,7 +20,7 @@ public class Project implements ComparableByName<Project>, HasIntegerIdentifier<
             "Enter either a 0 to sort by chronological order or a 1 to sort by reverse chronological order";
 
     public static final String MESSAGE_INVALID_ISSUE_COUNT_SORT_KEY =
-            "Enter either a 0 to sort by ascending order or a 1 to sort by descending order";
+            "Enter either a 0 to sort by incomplete issue count or a 1 to sort by completed issue count";
 
     public static final String MESSAGE_INVALID_NAME_SORT_KEY =
             "Enter either a 0 to sort by alphabetical order or a 1 to sort by reverse alphabetical order";
@@ -32,7 +32,7 @@ public class Project implements ComparableByName<Project>, HasIntegerIdentifier<
     private Client client;
     private ProjectId projectId;
     private List<Issue> issueList;
-    
+
     /**
      * Name field must be present and not null and other fields may be optional.
      */
@@ -165,7 +165,7 @@ public class Project implements ComparableByName<Project>, HasIntegerIdentifier<
     /**
      * Checks if input is a valid issue count sort key.
      *
-     * 0 for ascending order and 1 for descending order
+     * 0 for incomplete issue count order and 1 for completed issue count order
      *
      * @param num input param to validate
      * @return true if input is a 0 or 1

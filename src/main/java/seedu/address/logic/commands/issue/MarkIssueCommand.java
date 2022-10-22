@@ -28,7 +28,7 @@ public class MarkIssueCommand extends IssueCommand {
             + COMMAND_FLAG + " 1";
 
 
-    public static final String MESSAGE_SUCCESS = "Issue marked: %1$s";
+    public static final String MESSAGE_SUCCESS = "Issue marked completed: %1$s";
 
     private final Status newStatus;
     private final IssueId issueId;

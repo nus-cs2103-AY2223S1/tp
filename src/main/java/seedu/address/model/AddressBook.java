@@ -239,20 +239,24 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
-     * Sort projects in ascending or descending order of issue counts based on key value of 0 or 1 respectively.
+     * Sort projects according to incomplete issue count or completed issue count based on key of 0 or 1 respectively.
      *
-     * @param order zero for ascending order and one for descending order
+     * @param order zero for sorting by incomplete issue count and one for sorting by completed issue count
      */
     public void sortProjectsByIssueCount(int order) {
         ObservableList<Project> sortedProjectsByIssueCount;
         if (order == 0) {
-            //sort according to ascending issue count
+            //sort according to incomplete issue count
             sortedProjectsByIssueCount =
-                    getModifiableProjectList().sorted(Comparator.comparingInt(p -> p.getIssueList().size()));
+                    getModifiableProjectList().sorted((p1, p2) -> {
+                        return p2.getIncompleteIssueCount() - p1.getIncompleteIssueCount();
+                    });
         } else {
-            //sort according to descending issue count
-            sortedProjectsByIssueCount = getModifiableProjectList().sorted((p1, p2) ->
-                    p2.getIssueList().size() - p1.getIssueList().size());
+            //sort according to completed issue count
+            sortedProjectsByIssueCount =
+                    getModifiableProjectList().sorted((p1, p2) -> {
+                        return p2.getCompletedIssueCount() - p1.getCompletedIssueCount();
+                    });
         }
         setProjects(sortedProjectsByIssueCount);
     }

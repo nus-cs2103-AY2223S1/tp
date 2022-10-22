@@ -7,8 +7,6 @@ import static seedu.address.logic.parser.ClientCliSyntax.PREFIX_CLIENT_EMAIL;
 import static seedu.address.logic.parser.ClientCliSyntax.PREFIX_CLIENT_NAME;
 import static seedu.address.logic.parser.ClientCliSyntax.PREFIX_CLIENT_PHONE;
 import static seedu.address.logic.parser.ClientCliSyntax.PREFIX_PROJECT_ID;
-import static seedu.address.logic.parser.IssueCliSyntax.PREFIX_DEADLINE;
-import static seedu.address.logic.parser.IssueCliSyntax.PREFIX_PRIORITY;
 
 import java.util.ArrayList;
 import java.util.stream.Stream;
@@ -25,7 +23,6 @@ import seedu.address.logic.commands.client.find.FindClientByEmailCommand;
 import seedu.address.logic.commands.client.find.FindClientByNameCommand;
 import seedu.address.logic.commands.client.find.FindClientByPhoneCommand;
 import seedu.address.logic.commands.client.find.FindClientCommand;
-import seedu.address.logic.commands.issue.SortIssueCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Name;
 import seedu.address.model.client.ClientEmail;
