@@ -173,9 +173,12 @@ A medical condition is represented by `Condition`, and multiple conditions are s
 * `ConditionList#delete()`: removes a condition from the patient's list of conditions.
 
 Figure 1 below summarises what happens when a user executes an add condition command on a specified patient:
-
-![add_condition_activity diagram](images/AddConditionActivityDiagram.png)
-_Figure 1: Activity diagram showing the flow of events when a user executes an add condition command_
+<figure>
+    <img src="images/AddConditionActivityDiagram.png" alt="add_condition_activity_diagram"/>
+    <figcaption style="width:500px">
+        Figure 1: Activity diagram showing the flow of events when a user executes an add condition command
+    </figcaption>
+</figure>
 
 #### Sequence of Interactions
 
