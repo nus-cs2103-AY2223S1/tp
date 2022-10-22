@@ -44,6 +44,9 @@ public class JsonAdaptedPersonTest {
     private static final List<JsonAdaptedGameType> VALID_GAME_TYPE = BENSON.getGameType().stream()
             .map(JsonAdaptedGameType::new)
             .collect(Collectors.toList());
+    private static final List<JsonAdaptedTimeInterval> VALID_TIME_INTERVAL = BENSON.getTimesAvailable().stream()
+            .map(JsonAdaptedTimeInterval::new)
+            .collect(Collectors.toList());
 
 
     @Test
@@ -57,7 +60,7 @@ public class JsonAdaptedPersonTest {
         JsonAdaptedPerson person =
                 new JsonAdaptedPerson(INVALID_NAME, VALID_MINECRAFTNAME, VALID_PHONE,
                         VALID_EMAIL, VALID_ADDRESS, VALID_SOCIALS, VALID_TAGS,
-                        VALID_SERVERS, VALID_TIMEZONE, VALID_GAME_TYPE);
+                        VALID_SERVERS, VALID_TIMEZONE, VALID_GAME_TYPE, VALID_TIME_INTERVAL);
         String expectedMessage = Name.MESSAGE_CONSTRAINTS;
     }
 
@@ -65,7 +68,7 @@ public class JsonAdaptedPersonTest {
     public void toModelType_nullName_throwsIllegalValueException() {
         JsonAdaptedPerson person = new JsonAdaptedPerson(null, VALID_MINECRAFTNAME,
                 VALID_PHONE, VALID_EMAIL, VALID_ADDRESS,
-                VALID_SOCIALS, VALID_TAGS, VALID_SERVERS, VALID_TIMEZONE, VALID_GAME_TYPE);
+                VALID_SOCIALS, VALID_TAGS, VALID_SERVERS, VALID_TIMEZONE, VALID_GAME_TYPE, VALID_TIME_INTERVAL);
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Name.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
     }
@@ -75,7 +78,7 @@ public class JsonAdaptedPersonTest {
         JsonAdaptedPerson person =
                 new JsonAdaptedPerson(VALID_NAME, VALID_MINECRAFTNAME,
                         INVALID_PHONE, VALID_EMAIL, VALID_ADDRESS, VALID_SOCIALS,
-                        VALID_TAGS, VALID_SERVERS, VALID_TIMEZONE, VALID_GAME_TYPE);
+                        VALID_TAGS, VALID_SERVERS, VALID_TIMEZONE, VALID_GAME_TYPE, VALID_TIME_INTERVAL);
         String expectedMessage = Phone.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
     }
@@ -84,7 +87,7 @@ public class JsonAdaptedPersonTest {
     public void toModelType_nullPhone_throwsIllegalValueException() {
         JsonAdaptedPerson person = new JsonAdaptedPerson(VALID_NAME, VALID_MINECRAFTNAME,
                 null, VALID_EMAIL, VALID_ADDRESS,
-                VALID_SOCIALS, VALID_TAGS, VALID_SERVERS, VALID_TIMEZONE, VALID_GAME_TYPE);
+                VALID_SOCIALS, VALID_TAGS, VALID_SERVERS, VALID_TIMEZONE, VALID_GAME_TYPE, VALID_TIME_INTERVAL);
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Phone.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
     }
@@ -94,7 +97,7 @@ public class JsonAdaptedPersonTest {
         JsonAdaptedPerson person =
                 new JsonAdaptedPerson(VALID_NAME, VALID_MINECRAFTNAME, VALID_PHONE,
                         INVALID_EMAIL, VALID_ADDRESS, VALID_SOCIALS,
-                        VALID_TAGS, VALID_SERVERS, VALID_TIMEZONE, VALID_GAME_TYPE);
+                        VALID_TAGS, VALID_SERVERS, VALID_TIMEZONE, VALID_GAME_TYPE, VALID_TIME_INTERVAL);
         String expectedMessage = Email.MESSAGE_CONSTRAINTS;
     }
 
@@ -102,7 +105,7 @@ public class JsonAdaptedPersonTest {
     public void toModelType_nullEmail_throwsIllegalValueException() {
         JsonAdaptedPerson person = new JsonAdaptedPerson(VALID_NAME, VALID_MINECRAFTNAME,
                 VALID_PHONE, null, VALID_ADDRESS,
-                VALID_SOCIALS, VALID_TAGS, VALID_SERVERS, VALID_TIMEZONE, VALID_GAME_TYPE);
+                VALID_SOCIALS, VALID_TAGS, VALID_SERVERS, VALID_TIMEZONE, VALID_GAME_TYPE, VALID_TIME_INTERVAL);
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Email.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
     }
@@ -112,7 +115,7 @@ public class JsonAdaptedPersonTest {
         JsonAdaptedPerson person =
                 new JsonAdaptedPerson(VALID_NAME, VALID_MINECRAFTNAME, VALID_PHONE,
                         VALID_EMAIL, INVALID_ADDRESS, VALID_SOCIALS,
-                        VALID_TAGS, VALID_SERVERS, VALID_TIMEZONE, VALID_GAME_TYPE);
+                        VALID_TAGS, VALID_SERVERS, VALID_TIMEZONE, VALID_GAME_TYPE, VALID_TIME_INTERVAL);
         String expectedMessage = Address.MESSAGE_CONSTRAINTS;
     }
 
@@ -120,7 +123,7 @@ public class JsonAdaptedPersonTest {
     public void toModelType_nullAddress_throwsIllegalValueException() {
         JsonAdaptedPerson person = new JsonAdaptedPerson(VALID_NAME, VALID_MINECRAFTNAME,
                 VALID_PHONE, VALID_EMAIL, null,
-                VALID_SOCIALS, VALID_TAGS, VALID_SERVERS, VALID_TIMEZONE, VALID_GAME_TYPE);
+                VALID_SOCIALS, VALID_TAGS, VALID_SERVERS, VALID_TIMEZONE, VALID_GAME_TYPE, VALID_TIME_INTERVAL);
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Address.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
     }
@@ -132,7 +135,7 @@ public class JsonAdaptedPersonTest {
         JsonAdaptedPerson person =
                 new JsonAdaptedPerson(VALID_NAME, VALID_MINECRAFTNAME, VALID_PHONE,
                         VALID_EMAIL, VALID_ADDRESS, VALID_SOCIALS,
-                        invalidTags, VALID_SERVERS, VALID_TIMEZONE, VALID_GAME_TYPE);
+                        invalidTags, VALID_SERVERS, VALID_TIMEZONE, VALID_GAME_TYPE, VALID_TIME_INTERVAL);
         assertThrows(IllegalValueException.class, person::toModelType);
     }
 

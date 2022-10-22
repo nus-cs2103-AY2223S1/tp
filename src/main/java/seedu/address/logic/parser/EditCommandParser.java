@@ -11,6 +11,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_SOCIAL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TIME_INTERVAL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TIMEZONE;
 
 import java.util.Collection;
@@ -23,6 +24,7 @@ import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.GameType;
+import seedu.address.model.person.ITimesAvailable;
 import seedu.address.model.person.Social;
 import seedu.address.model.server.Server;
 import seedu.address.model.tag.Tag;
@@ -44,7 +46,7 @@ public class EditCommandParser implements Parser<EditCommand> {
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_MINECRAFT_NAME, PREFIX_PHONE, PREFIX_EMAIL,
                         PREFIX_ADDRESS, PREFIX_SOCIAL, PREFIX_TAG, PREFIX_MINECRAFT_SERVER, PREFIX_TIMEZONE,
-                        PREFIX_GAME_TYPE);
+                        PREFIX_GAME_TYPE, PREFIX_TIME_INTERVAL);
 
         Index index;
 
@@ -86,6 +88,8 @@ public class EditCommandParser implements Parser<EditCommand> {
                 .ifPresent(editPersonDescriptor::setServers);
         parseGameTypesForEdit(argMultimap.getAllValues(PREFIX_GAME_TYPE))
                 .ifPresent(editPersonDescriptor::setGameTypes);
+        parseTimeIntervalsForEdit(argMultimap.getAllValues(PREFIX_TIME_INTERVAL))
+                .ifPresent(editPersonDescriptor::setTimeIntervals);
 
         if (!editPersonDescriptor.isAnyFieldEdited()) {
             throw new ParseException(EditCommand.MESSAGE_NOT_EDITED);
@@ -140,4 +144,14 @@ public class EditCommandParser implements Parser<EditCommand> {
         return Optional.of(ParserUtil.parseGameType(gameTypesSet));
     }
 
+    private Optional<Set<ITimesAvailable>> parseTimeIntervalsForEdit(Collection<String> timeIntervals) throws ParseException {
+        assert timeIntervals != null;
+
+        if (timeIntervals.isEmpty()) {
+            return Optional.empty();
+        }
+        Collection<String> timeIntervalSet =
+                timeIntervals.size() == 1 && timeIntervals.contains("") ? Collections.emptySet() : timeIntervals;
+        return Optional.of(ParserUtil.parseTimeIntervals(timeIntervalSet));
+    }
 }

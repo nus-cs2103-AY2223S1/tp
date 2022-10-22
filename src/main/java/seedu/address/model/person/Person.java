@@ -30,6 +30,7 @@ public class Person {
     private final Set<Server> servers;
     private final Set<GameType> gameTypes;
     private final Set<Tag> tags;
+    private final Set<ITimesAvailable> timeIntervals;
 
     /**
      * Every field must be present and not null.
@@ -37,7 +38,8 @@ public class Person {
 
 
     public Person(Name name, MinecraftName minecraftName, Phone phone, Email email, Address address,
-                  Set<Social> socials, Set<Tag> tags, Set<Server> servers, TimeZone timeZone, Set<GameType> gameTypes) {
+                  Set<Social> socials, Set<Tag> tags, Set<Server> servers, TimeZone timeZone,
+                  Set<GameType> gameTypes, Set<ITimesAvailable> timeIntervals) {
         requireAllNonNull(name, minecraftName);
 
         this.name = name;
@@ -50,6 +52,7 @@ public class Person {
         this.servers = servers == null ? new HashSet<>() : servers;
         this.timeZone = timeZone == null ? new TimeZone("") : timeZone;
         this.gameTypes = gameTypes == null ? new HashSet<>() : gameTypes;
+        this.timeIntervals = timeIntervals == null ? new HashSet<>() : timeIntervals;
     }
 
     public Name getName() {
@@ -98,9 +101,10 @@ public class Person {
 
     public Set<ITimesAvailable> getTimesAvailable() {
         // TODO: Remove placeholder and implement TimesAvailable
-        Set<ITimesAvailable> set = new HashSet<>();
-        set.add(dayTimeInWeek -> true);
-        return set;
+        return Collections.unmodifiableSet(timeIntervals);
+//        Set<ITimesAvailable> set = new HashSet<>();
+//        set.add(dayTimeInWeek -> true);
+//        return set;
     }
 
     /**
@@ -168,6 +172,7 @@ public class Person {
         builder.append("Timezone: ").append(getFieldOrElse(getTimeZone().toString())).append("\n");
         builder.append("Preferred Game Types: ").append(getFieldOrElse(getGameType().toString())).append("\n");
         builder.append("Socials: ").append(getFieldOrElse(getSocials())).append("\n");
+        builder.append("Available timings: ").append(getFieldOrElse(getTimesAvailable())).append("\n");
 
         return builder.toString();
     }
@@ -185,7 +190,8 @@ public class Person {
                 + getTimeZone() + "\n"
                 + getServers() + "\n"
                 + getSocials() + "\n"
-                + getGameType();
+                + getGameType() + "\n"
+                + getTimesAvailable();
     }
 
     private String getFieldOrElse(String s) {

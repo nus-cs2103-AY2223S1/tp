@@ -8,11 +8,13 @@ import java.util.stream.Collectors;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.GameType;
+import seedu.address.model.person.ITimesAvailable;
 import seedu.address.model.person.MinecraftName;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.Social;
+import seedu.address.model.person.TimeInterval;
 import seedu.address.model.person.TimeZone;
 import seedu.address.model.server.Server;
 import seedu.address.model.tag.Tag;
@@ -40,6 +42,7 @@ public class PersonBuilder {
     private Set<Server> servers;
     private TimeZone timeZone;
     private Set<GameType> gameTypes;
+    private Set<ITimesAvailable> timeIntervals;
 
     /**
      * Creates a {@code PersonBuilder} with the default details.
@@ -55,6 +58,7 @@ public class PersonBuilder {
         servers = new HashSet<>();
         timeZone = new TimeZone(DEFAULT_TIMEZONE);
         gameTypes = new HashSet<>();
+        timeIntervals = new HashSet<>();
     }
 
     /**
@@ -71,6 +75,7 @@ public class PersonBuilder {
         servers = new HashSet<>(personToCopy.getServers());
         timeZone = personToCopy.getTimeZone();
         gameTypes = new HashSet<>(personToCopy.getGameType());
+        timeIntervals = new HashSet<>(personToCopy.getTimesAvailable());
     }
 
     /**
@@ -162,8 +167,16 @@ public class PersonBuilder {
         return this;
     }
 
+    public PersonBuilder withTimeIntervals(String ... timeIntervals) {
+        this.timeIntervals = new HashSet<>(Arrays.asList(timeIntervals).stream()
+                .map(TimeInterval::new)
+                .collect(Collectors.toList()));
+        return this;
+    }
+
     public Person build() {
-        return new Person(name, minecraftName, phone, email, address, socials, tags, servers, timeZone, gameTypes);
+        return new Person(name, minecraftName, phone, email, address, socials, tags, servers, timeZone, gameTypes,
+                timeIntervals);
     }
 
 }
