@@ -227,6 +227,16 @@ containing the string alex captured in the `ModelManager` object, which makes us
 
 Step 5: The execution ends, returning a `CommandResult` object that has the success message to be displayed to the user.
 
+<ins>Design Considerations</ins>
+
+**Aspect: How `find` should be implemented:**
+- **Alternative 1:** `find` command integrates the use of prefixes in user input to determine which tutor attribute to search through. (i.e. `find n/alex`, `find s/A0123456X) **(chosen)**.
+    - Pros: Better OOP practice as the resultant find commands are all subclasses of `FindByPrefixCommand`
+    - Cons: Took more time to think of and implement.
+- **Alternative 2:** Individual attributes of the tutor have their own find command (E.g. `findbyname`, `findbyemail`)
+    - Pros: Easier to implement individual commands for each attribute.
+    - Cons: Poor OOP practice the individual commands are all `find` commands and should not be a different class on its own. User also have more commands to remeber.
+    
 ### View Feature
 <ins>Implementation</ins>
 
