@@ -38,7 +38,7 @@ public class UnmarkStudentCommand extends Command {
     private final Index studentIndex;
 
     /**
-     * Creates a UnmarkStudentCommand to mark the specified student at student index for a given lesson at lesson index
+     * Creates an UnmarkStudentCommand to mark the specified student at student index for a given lesson at lesson index
      * as absent.
      */
     public UnmarkStudentCommand(Index lessonIndex, Index studentIndex) {

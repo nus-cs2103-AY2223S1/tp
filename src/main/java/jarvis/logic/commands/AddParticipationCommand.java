@@ -43,7 +43,7 @@ public class AddParticipationCommand extends Command {
     private final Index studentIndex;
 
     /**
-     * Creates a AddParticipationCommand to add participation for the specified student at student index for a given
+     * Creates an AddParticipationCommand to add participation for the specified student at student index for a given
      * studio at lesson index.
      */
     public AddParticipationCommand(int participation, Index lessonIndex, Index studentIndex) {

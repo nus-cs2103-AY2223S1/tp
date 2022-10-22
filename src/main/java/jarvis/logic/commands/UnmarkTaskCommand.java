@@ -29,7 +29,7 @@ public class UnmarkTaskCommand extends Command {
     private final Index targetIndex;
 
     /**
-     * Creates a UnmarkTaskCommand to mark the task at the specified index as not done.
+     * Creates an UnmarkTaskCommand to mark the task at the specified index as not done.
      */
     public UnmarkTaskCommand(Index targetIndex) {
         requireNonNull(targetIndex);

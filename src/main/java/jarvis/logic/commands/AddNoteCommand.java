@@ -2,7 +2,7 @@ package jarvis.logic.commands;
 
 import static jarvis.commons.util.CollectionUtil.requireAllNonNull;
 import static jarvis.logic.parser.CliSyntax.PREFIX_LESSON_INDEX;
-import static jarvis.logic.parser.CliSyntax.PREFIX_NOTES;
+import static jarvis.logic.parser.CliSyntax.PREFIX_NOTE;
 import static jarvis.logic.parser.CliSyntax.PREFIX_STUDENT_INDEX;
 import static jarvis.model.Model.PREDICATE_SHOW_ALL_LESSONS;
 import static java.util.Objects.requireNonNull;
@@ -17,8 +17,8 @@ import jarvis.model.Model;
 import jarvis.model.Student;
 
 /**
- * Adds notes to a lesson.
- * Notes added can be for the lesson or for a specific student in the lesson if the student is specified.
+ * Adds a note to a lesson.
+ * Note added can be for the lesson or for a specific student in the lesson if the student is specified.
  * The student is identified using its displayed index from the student book.
  * The lesson is identified using its displayed index from the lesson book.
  */
@@ -27,31 +27,31 @@ public class AddNoteCommand extends Command {
     public static final String COMMAND_WORD = "addnote";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Adds notes to a lesson or for a specific student in the lesson if optional student index is specified."
+            + ": Adds a note to a lesson or for a specific student in a lesson if optional student index is specified."
             + "The student and lesson are identified by their respective index number used in the displayed student "
             + "list and in the displayed lesson list.\n"
             + "Parameters: "
-            + PREFIX_NOTES + "NOTES "
+            + PREFIX_NOTE + "NOTE "
             + PREFIX_LESSON_INDEX + "LESSON INDEX "
             + "[" + PREFIX_STUDENT_INDEX + "STUDENT_INDEX] \n"
-            + "Example: " + COMMAND_WORD + " " + PREFIX_NOTES + "Get back to jeff on streams "
+            + "Example: " + COMMAND_WORD + " " + PREFIX_NOTE + "Get back to jeff on streams "
             + PREFIX_LESSON_INDEX + "1 " + PREFIX_STUDENT_INDEX + "2";
 
-    public static final String MESSAGE_ADD_OVERALL_NOTES_SUCCESS = "Noted for lesson %1$s: %2$s";
-    public static final String MESSAGE_ADD_STUDENT_NOTES_SUCCESS = "Noted for %1$s in lesson %2$s: %3$s";
+    public static final String MESSAGE_ADD_OVERALL_NOTE_SUCCESS = "Noted for lesson %1$s: %2$s";
+    public static final String MESSAGE_ADD_STUDENT_NOTE_SUCCESS = "Noted for %1$s in lesson %2$s: %3$s";
 
     private final Index lessonIndex;
     private final Index studentIndex;
-    private final String notes;
+    private final String note;
 
     /**
-     * Creates a AddNotesCommand to add notes to a lesson or to a specified student in the lesson.
+     * Creates an AddNoteCommand to add a note to a lesson or to a specified student in the lesson.
      */
-    public AddNoteCommand(Index lessonIndex, Index studentIndex, String notes) {
-        requireAllNonNull(lessonIndex, notes);
+    public AddNoteCommand(Index lessonIndex, Index studentIndex, String note) {
+        requireAllNonNull(lessonIndex, note);
         this.lessonIndex = lessonIndex;
         this.studentIndex = studentIndex;
-        this.notes = notes;
+        this.note = note;
     }
 
     @Override
@@ -70,11 +70,11 @@ public class AddNoteCommand extends Command {
                 throw new CommandException(Messages.MESSAGE_INVALID_STUDENT_DISPLAYED_INDEX);
             }
             Student studentToAdd = lastShownStudentList.get(studentIndex.getZeroBased());
-            lessonToAdd.addStudentNotes(notes, studentToAdd);
-            successMessage = String.format(MESSAGE_ADD_STUDENT_NOTES_SUCCESS, studentToAdd, lessonToAdd, notes);
+            lessonToAdd.addStudentNotes(note, studentToAdd);
+            successMessage = String.format(MESSAGE_ADD_STUDENT_NOTE_SUCCESS, studentToAdd, lessonToAdd, note);
         } else {
-            lessonToAdd.addOverallNotes(notes);
-            successMessage = String.format(MESSAGE_ADD_OVERALL_NOTES_SUCCESS, lessonToAdd, notes);
+            lessonToAdd.addOverallNotes(note);
+            successMessage = String.format(MESSAGE_ADD_OVERALL_NOTE_SUCCESS, lessonToAdd, note);
         }
         model.setLesson(lessonToAdd, lessonToAdd);
         model.updateFilteredLessonList(PREDICATE_SHOW_ALL_LESSONS);
@@ -91,16 +91,16 @@ public class AddNoteCommand extends Command {
             return false;
         }
 
-        AddNoteCommand otherAddNotes = (AddNoteCommand) other;
+        AddNoteCommand otherAddNote = (AddNoteCommand) other;
 
         boolean studentIndexEquality;
         if (studentIndex == null) {
-            studentIndexEquality = otherAddNotes.studentIndex == null;
+            studentIndexEquality = otherAddNote.studentIndex == null;
         } else {
-            studentIndexEquality = studentIndex.equals(otherAddNotes.studentIndex);
+            studentIndexEquality = studentIndex.equals(otherAddNote.studentIndex);
         }
-        return lessonIndex.equals(otherAddNotes.lessonIndex)
+        return lessonIndex.equals(otherAddNote.lessonIndex)
                 && studentIndexEquality
-                && notes.equals(otherAddNotes.notes);
+                && note.equals(otherAddNote.note);
     }
 }

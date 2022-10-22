@@ -21,18 +21,18 @@ public class UnmarkLessonCommand extends Command {
     public static final String COMMAND_WORD = "unmarklesson";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Marks a lesson as uncompleted. The lesson is identified by its index number in the displayed "
+            + ": Marks a lesson as not completed. The lesson is identified by its index number in the displayed "
             + "lesson list.\n"
             + "Parameters: "
             + PREFIX_LESSON_INDEX + "LESSON INDEX \n"
             + "Example: " + COMMAND_WORD + " " + PREFIX_LESSON_INDEX + "1";
 
-    public static final String MESSAGE_MARK_STUDENT_SUCCESS = "Marked %1$s as uncomplete.";
+    public static final String MESSAGE_MARK_STUDENT_SUCCESS = "Marked %1$s as not completed.";
 
     private final Index lessonIndex;
 
     /**
-     * Creates a UnmarkLessonCommand to mark the lesson at the specified index as not completed.
+     * Creates an UnmarkLessonCommand to mark the lesson at the specified index as not completed.
      */
     public UnmarkLessonCommand(Index lessonIndex) {
         requireNonNull(lessonIndex);
