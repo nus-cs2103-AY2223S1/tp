@@ -7,6 +7,8 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.Objects;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import seedu.waddle.commons.core.index.MultiIndex;
 import seedu.waddle.logic.commands.exceptions.CommandException;
 import seedu.waddle.model.item.Day;
@@ -199,6 +201,16 @@ public class Itinerary {
             Day day = this.days.get(index.getDayIndex().getZeroBased());
             return day.getItem(index.getTaskIndex());
         }
+    }
+
+    public ObservableList<ObservableList<Item>> getUnmodifiableItemGroups() {
+        ObservableList<ObservableList<Item>> itemGroups = FXCollections.observableArrayList();
+        itemGroups.add(this.unscheduledItemList.asUnmodifiableObservableList());
+        for (Day day : this.days) {
+            ObservableList<Item> itemList = day.getItemList().asUnmodifiableObservableList();
+            itemGroups.add(itemList);
+        }
+        return FXCollections.unmodifiableObservableList(itemGroups);
     }
 
     /**

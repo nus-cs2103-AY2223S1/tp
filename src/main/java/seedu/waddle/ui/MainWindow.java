@@ -207,9 +207,9 @@ public class MainWindow extends UiPart<Stage> {
                     setListPanel(new ItineraryListPanel(itineraryList));
                     break;
                 case WISH:
-                    ObservableList<Item> itemList = StageManager.getInstance().getSelectedItinerary()
-                            .getItemList().asUnmodifiableObservableList();
-                    setListPanel(new ItemListPanel(itemList));
+                    ObservableList<ObservableList<Item>> itemGroups = StageManager.getInstance()
+                            .getSelectedItinerary().getUnmodifiableItemGroups();
+                    setListPanel(new ItemGroupListPanel(itemGroups));
                     break;
                 case SCHEDULE:
                     //TODO: create a ListPanel for Schedule page

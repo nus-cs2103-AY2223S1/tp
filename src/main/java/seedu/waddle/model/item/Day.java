@@ -27,6 +27,7 @@ public class Day {
      */
     public Day(int dayNumber) {
         this.dayNumber = dayNumber;
+        this.itemList = new UniqueItemList();
     }
 
     /**
@@ -106,5 +107,9 @@ public class Day {
 
     public boolean hasItem(Item item) {
         return this.itemList.contains(item);
+    }
+
+    public UniqueItemList getItemList() {
+        return this.itemList;
     }
 }

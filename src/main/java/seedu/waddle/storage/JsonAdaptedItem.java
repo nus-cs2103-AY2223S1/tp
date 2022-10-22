@@ -5,7 +5,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.waddle.commons.exceptions.IllegalValueException;
 import seedu.waddle.model.item.Cost;
-import seedu.waddle.model.item.Duration;
+//import seedu.waddle.model.item.Duration;
 import seedu.waddle.model.item.Item;
 import seedu.waddle.model.item.Priority;
 
@@ -19,7 +19,7 @@ public class JsonAdaptedItem {
     private final String description;
     private final String priority;
     private final String cost;
-    private final String duration;
+    //private final String duration;
 
     /**
      * Constructs a {@code JsonAdaptedItem} with the given item details.
@@ -32,7 +32,7 @@ public class JsonAdaptedItem {
         this.description = description;
         this.priority = priority;
         this.cost = cost;
-        this.duration = duration;
+        //this.duration = duration;
     }
 
     /**
@@ -42,7 +42,8 @@ public class JsonAdaptedItem {
         description = source.getDescription();
         priority = source.getPriority().priority;
         cost = source.getCost().toString();
-        duration = source.getDuration().toString();
+        //TODO duration and startTime null error
+        //duration = source.getDuration().toString();
     }
 
     /**
@@ -74,9 +75,9 @@ public class JsonAdaptedItem {
 
         final Priority modelPriority = new Priority(priority);
         final Cost modelCost = new Cost(cost);
-        final Duration modelDuration = new Duration(duration);
+        //final Duration modelDuration = new Duration(duration);
 
-        return new Item(modelDescription, modelPriority, modelCost, modelDuration);
+        return new Item(modelDescription, modelPriority, modelCost, null);
     }
 
 }
