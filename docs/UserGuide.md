@@ -126,10 +126,6 @@ Placeholders are words in UPPER_CASE to show you what parameters you can supply 
 
 {% include_relative _ug/FAQ.md %}
 
-## Future Extensions
-
-{% include_relative _ug/FutureExtensions.md %}
-
 ## Acknowledgements
 
 {% include_relative _ug/Acknowledgements.md %}
