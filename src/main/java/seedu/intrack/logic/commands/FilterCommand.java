@@ -7,8 +7,7 @@ import seedu.intrack.model.Model;
 import seedu.intrack.model.internship.StatusIsKeywordPredicate;
 
 /**
- * Updates the status of an Internship with upper and lowercase "p", "r" and "o" after
- * the s/ prefix.
+ * Filters the internship list based on the status letter provided
  */
 public class FilterCommand extends Command {
 
