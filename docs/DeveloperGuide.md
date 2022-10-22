@@ -3,6 +3,7 @@ layout: page
 title: Developer guide
 ---
 
+
 * Table of Contents
 {:toc}
 
@@ -150,7 +151,6 @@ The `Storage` component,
 Classes used by multiple components are in the `seedu.addressbook.commons` package.
 
 --------------------------------------------------------------------------------------------------------------------
-
 ## **Implementation**
 
 This section describes some noteworthy details on how certain features are implemented.
@@ -189,6 +189,186 @@ displayed.
 The user flow can be illustrated in the Activity Diagram as shown below.
 
 <img src="images/DisplayGroupActivityDiagram.png" width="550" />
+
+-------
+
+### **\[Developed\] Delete Group feature**
+
+#### **Implementation**
+
+This feature allows an existing group to be deleted from TABS, using the `deletegroup` command. Tasks assigned to the
+members will be deleted and existing members will be removed from the specified group. This is facilitated by the `DeleteGroupCommand` and `DeleteGroupCommandParser` classes.
+
+The `DeleteGroupCommandParser` class parses the input entered by the user, which is the group name the user wants to delete from TABS.
+
+The details of the members in the specified group will be updated as such:
+- Each member will have their assignments associated with the group removed.
+- Each member will be updated such that they are no longer associated with the target group.
+- Other details of the members will remain the same.
+
+A new `Person` with the edited fields above is created for each member, and `Model#setPerson()` will be called to update in TABS.
+
+`Model#deleteGroup(GroupName)` is called to remove the group from TABS, and `Model#updateFilteredPersonList(Predicate)` is called to display the new result in the GUI after deletion.
+
+**Steps**
+
+Step 1. The user enters `deletegroup [NAME OF GROUP]` command
+
+Step 2. The `DeleteGroupCommandParser` class parses the group name input and returns a `DeleteGroupCommand` object with a single `Group` attribute.
+
+Step 3. The `DisplayGroupCommand` object is executed. This group can be retrieved by calling `ObservableList#getGroupWithName()` method.
+
+Step 4. If no groups show up in the ObservableList, a CommandException is thrown where the group is not found in TABS. Otherwise, members of the group are retrieved with the `getMembers()` method in `Group` class.
+
+Step 5. For each member, `getAssignments()` and `getPersonGroups` methods from `Person` class are called to aid in removal of the tasks and associated group.
+
+Step 6. A new Person object is created with the edited fields and `Model#setPerson(Person)` is called to update the new details for each member, with the new `editedPerson` passed in as an argument.
+
+Step 7. The `Group` invoked is deleted from TABS. A CommandResult is then returned, which provides a feedback to user that the specified group has been successfully deleted.
+
+**Activity Diagram**
+
+The user flow can be illustrated in the Activity Diagram as shown below.
+
+<img src="images/DeleteGroupActivityDiagram.png" width="550" />
+
+**Sequence Diagram**
+
+The sequence diagram for DeleteGroup command is as shown below.
+
+<img src="images/DeleteGroupSequenceDiagram.png" width="550" />
+
+----------------------------
+
+### **\[Developed\] Add Group Member feature**
+
+#### **Implementation**
+
+This feature allows an existing group with its members to be displayed, using the `addgroupmember` command. This is facilitated by the `AddGroupMemberCommand` and `AddGroupMemberCommandParser` classes.
+
+The `AddGroupMemberCommandParser` class parses the input entered by the user, which consists of the person's name and the group's name.
+The person with the given name will then be added to the group with the given name. 
+
+The validity of the group name and person name input by the user will be checked with the help of an ObservableList for each field.
+
+`AddGroupMemberCommand` will also check if the person already exits in the specified group.
+
+If the both person and group names are valid, the specified person will be added to the group.
+
+Given below is an example of how `AddGroupMemberCommand` is being executed.
+
+**Steps**
+
+Step 1. The user enters `addmember [g/NAME OF GROUP] [n/ NAME OF PERSON]` command
+
+Step 2. The  `AddGroupMemberCommandParser` class parses the group name input and returns a `AddGroupMemberCommand` object with two attributes in two strings.
+
+Step 3. The `AddGroupMemberCommand` object is executed. The person and group
+can be obtained by calling the `ObservableList#get()` method on each field should they exist.
+
+Step 4. If an existing person in TABS has a name which matches exactly the name given by the user
+, then TABS will check for the group's existence.
+
+Step 5. If an existing group in TABS has a name which matches exactly the name given by the user, then TABS will check if the person already exists in the group. 
+
+Step 6. If the person does not yet exist in the group,
+then the person will be added to the specified group.
+
+Step 7. CommandResult is then returned, which provides a feedback to user that the specified person has been successfully
+added to the specified group.
+
+**Activity Diagram**
+
+The user flow can be illustrated in the Activity Diagram as shown below.
+
+<img src="images/AddGroupMemberActivityDiagram.png" width="550" />
+
+----
+
+### **\[Developed\] Assign Task feature**
+
+#### **Implementation**
+
+This feature allows the user to assign task to a member in an existing group, using the `assigntask` command. This is facilitated by the `AssignTaskCommand` and `AssignTaskCommandParser` classes.
+
+The `AssignTaskCommandParser` class parses the input entered by the user, which are the username, the group name, and the task name that the user wants to assign.
+
+The validity of the group name and person name input by the user will be checked with the help of an ObservableList for each field.
+
+`AssignTaskCommandParser` will also check if the person exists in the specified group.
+
+The task name should not be empty.
+
+If all the inputs are valid, the specified task will be assigned to the specified user in a specified group with the help of `Model#setPerson`.
+
+The specified task will then be displayed under that user with the help of `Model#updateFilteredPersonList(predicate)`.
+
+Given below is an example of how `AssignTaskCommand` is being executed.
+
+**Steps**
+
+Step 1. The user enters `assigntask [NAME OF GROUP]` command
+
+Step 2. The  `AssignTaskCommandParser` class parses the group name input and returns a `AssignTaskCommand` object, encapsulating the user, group name and task.
+
+Step 3. The `AssignTaskCommand` object is executed. If the user and group exists in the application, the existing user and group can be retrieved by calling `ObservableList#get()` method.
+
+Step 4. The assigned task will be added to the specified user under that specified group.
+
+Step 5. CommandResult is then returned, which provides a feedback to user that the task has been assigned to the specified user.
+
+**Activity Diagram**
+
+The user flow of Assign Task can be illustrated in the Activity Diagram as shown below.
+
+<img src="images/AssignTaskActivityDiagram-AssignTaskCommand.png" width="800" />
+
+----
+
+### **\[Developed\] Bulk Assignment & Deletion of Tasks**
+All members in a group can be assigned a task via the `assigntaskall` command,
+and similarly deleted via the `deletetaskall` command. The commands accept a group
+to affect, and the task to be added or deleted. In any cases where a member
+will have a duplicate task upon assignment/does not have the task to delete, they
+are skipped over.
+
+Below is an activity diagram reflecting the operation of the `assigntaskall` command.
+`deletetaskall` operates similarly.
+
+![AssignTaskAllDiagram](images/AssignTaskAllDiagram.png)
+![AssignTaskAllDiagramAddendum](images/AssignTaskAllDiagramAddendum.png)
+
+#### Implementation Details
+1. User input is parsed in the context of `assigntaskall` and `deletetaskall` commands
+   using the `AssignTaskAllCommandParser` and `DeleteTaskAllCommandParser` respectively.
+   Erroneous inputs trigger a ParseException indicating to the user of invalid input.
+2. The correct command is then generated and executed. During execution, several
+   conditions are checked to ensure proper operation of the instruction, failing which
+   the user is notified. These are:
+  1. The group specified exists in the app;
+  2. The group has members to operate on, and;
+  3. At least one member is modified following the instruction.
+3. The instruction iterates over each member and assigns/deletes the task respectively.
+   As mentioned prior, members which already have/do not have the task respectively are
+   skipped over.
+4. The model is invoked to update its displayed person list.
+5. Successfully modified members are told to user via feedback.
+
+#### Implementation Rationale
+The above-mentioned flow follows closely with pre-existing instruction `edit`.
+In doing so, some rationales are carried forward:
+1. Follows in line with other commands by having an "XYZParser", in this case
+   `AssignTaskAllCommandParser` and `DeleteTaskAllCommandParser` respectively, which
+   return an executable command to be executed by the `Logic` (and by extension `Model`)
+   class.
+2. Upon execution, performs several checks which upon failure throw CommandExceptions
+   to indicate to the user when the command is not successful.
+3. Modification of each person by adding/deleting assignment follows that of `edit`
+   in that the given Person is treated as immutable, and an edited copy is created before
+   `Model` is invoked to set the Person, thus adhering to defensive programming standards
+   previously established.
+
+----
 
 ### **\[Proposed\] Undo/redo feature**
 
@@ -286,7 +466,6 @@ _{Explain here how the data archiving feature will be implemented}_
 * [DevOps guide](DevOps.md)
 
 --------------------------------------------------------------------------------------------------------------------
-
 ## **Appendix: Requirements**
 ### Product scope
 **Target user profile**:
@@ -306,36 +485,37 @@ Project team leaders with many projects, members and tasks to assign.
 - Medium (nice to have) - `* *`
 - Low (unlikely to have) &nbsp;- `*`
 
-| Priority  | As a ...          | I want to ...                                                                  | So that I can ...                                                                      |
-|:----------|:------------------|:-------------------------------------------------------------------------------|:---------------------------------------------------------------------------------------|
-| ``* * *`` | beginner user     | add contacts to my app                                                         |                                                                                        |
-| `* * *`   | beginner user     | remove existing contacts on my app                                             | remove entries that I no longer need                                                   |
-| `* * *`   | beginner user     | create a group                                                                 |                                                                                        |
-| `* * *`   | beginner user     | add members to a group                                                         |                                                                                        |
-| `* *`     | intermediate user | locate a particular contact                                                    | quickly find a member                                                                  |
-| `* *`     | intermediate user | have a quick overview of all my groups with their existing members                                                   |                                                                  |
-| `* * *`   | intermediate user | assign tasks to members                                                        |                                                                                        |
-| `* *`     | intermediate user | have a quick overview of tasks assigned to members in the group                |                                                                                        |
-| `* *`     | intermediate user | create a tag specific to the group project                                     | quickly assign tags to members                                                         |
-| `* *`     | intermediate user | place tags on group members                                                    | better identify their role                                                             |
-| `* *`     | intermediate user | assign multiple tags to a user if needed                                       | identify their roles more specifically                                                 |
-| `* *`     | intermediate user | filter and search for groups                                                   | quickly identify the one in particular                                                 |
-| `* *`     | advanced user     | view deadlines for each project                                                | periodically use this for self-reminder                                                |
-| `* *`     | advanced user     | have a rough sense of the workload of every member in the group                | assign future tasks with more confidence                                               |
-| `*`       | advanced user     | view a member’s tasks in more detail                                           | assign future tasks to them with more confidence                                       |
-| `* * *`   | advanced user     | add more tasks to a member                                                     |                                                                                        |
-| `* * *`   | advanced user     | delete tasks from a member                                                     |                                                                                        |
-| `*`       | advanced user     | categorise the tasks assigned into different levels of intensity               | not judge workload based solely on the number of tasks per member                      |
-| `* * *`   | advanced user     | delete unused groups after the project is completed                            | declutter my app                                                                       |
-| `* * *`   | advanced user     | delete existing tags if they are no longer relevant                            | declutter my app                                                                       |
-| `*`       | advanced user     | reuse existing tags in groups for future projects                              | establish new projects under my management style                                       |
-| `*`       | advanced user     | move tags and assignments from one user to another easily                      | ensure that members can ‘swap’ roles hassle-free                                       |
-| `* *`     | expert user       | perform group-wide addition of tags and assignments                            | ensure that repetitive new assignments are made as quickly and accurately as possible. |
-| `* *`     | expert user       | perform group-wide removal of tags and assignments                             | ensure that group members’ roles are quickly cleared owing to new demands              |
-| `*`       | expert user       | be notified when a member completes his task or when a deadline is approaching | better manage my time                                                                  |
-| `*`       | expert user       | create shortcuts and pin most important projects on the top of the app         | access these projects faster                                                           |
-| `*`       | expert user       | have the choice of deleting users from the app when a project completes        | quickly declutter my app                                                               |
-| `*`       | expert user       | set timers to add/delete groups after a project ends                           | ensure that I do not have too many groups cluttering the database                      |
+| Priority | As a ...          | I want to ...                                                                  | So that I can ...                                                                      |
+|:---------|:------------------|:-------------------------------------------------------------------------------|:---------------------------------------------------------------------------------------|
+| `* * * ` | beginner user     | see usage instructions                                                         | refer to instructions when I forget how to use the App                                 |
+| `* * *`  | beginner user     | add contacts to my app                                                         |                                                                                        |
+| `* * *`  | beginner user     | remove existing contacts on my app                                             | remove entries that I no longer need                                                   |
+| `* * *`  | beginner user     | create a group                                                                 |                                                                                        |
+| `* * *`  | beginner user     | add members to a group                                                         |                                                                                        |
+| `* *`    | intermediate user | locate a particular contact                                                    | quickly find a member                                                                  |
+| `* *`    | intermediate user | have a quick overview of all my groups with their existing members             |                                                                                        |
+| `* * *`  | intermediate user | assign tasks to members                                                        |                                                                                        |
+| `* *`    | intermediate user | have a quick overview of tasks assigned to members in the group                |                                                                                        |
+| `* *`    | intermediate user | create a tag specific to the group project                                     | quickly assign tags to members                                                         |
+| `* *`    | intermediate user | place tags on group members                                                    | better identify their role                                                             |
+| `* *`    | intermediate user | assign multiple tags to a user if needed                                       | identify their roles more specifically                                                 |
+| `* *`    | intermediate user | filter and search for groups                                                   | quickly identify the one in particular                                                 |
+| `* *`    | advanced user     | view deadlines for each project                                                | periodically use this for self-reminder                                                |
+| `* *`    | advanced user     | have a rough sense of the workload of every member in the group                | assign future tasks with more confidence                                               |
+| `*`      | advanced user     | view a member’s tasks in more detail                                           | assign future tasks to them with more confidence                                       |
+| `* * *`  | advanced user     | add more tasks to a member                                                     |                                                                                        |
+| `* * *`  | advanced user     | delete tasks from a member                                                     |                                                                                        |
+| `*`      | advanced user     | categorise the tasks assigned into different levels of intensity               | not judge workload based solely on the number of tasks per member                      |
+| `* * *`  | advanced user     | delete unused groups after the project is completed                            | declutter my app                                                                       |
+| `* * *`  | advanced user     | delete existing tags if they are no longer relevant                            | declutter my app                                                                       |
+| `*`      | advanced user     | reuse existing tags in groups for future projects                              | establish new projects under my management style                                       |
+| `*`      | advanced user     | move tags and assignments from one user to another easily                      | ensure that members can ‘swap’ roles hassle-free                                       |
+| `* *`    | expert user       | perform group-wide addition of tags and assignments                            | ensure that repetitive new assignments are made as quickly and accurately as possible. |
+| `* *`    | expert user       | perform group-wide removal of tags and assignments                             | ensure that group members’ roles are quickly cleared owing to new demands              |
+| `*`      | expert user       | be notified when a member completes his task or when a deadline is approaching | better manage my time                                                                  |
+| `*`      | expert user       | create shortcuts and pin most important projects on the top of the app         | access these projects faster                                                           |
+| `*`      | expert user       | have the choice of deleting users from the app when a project completes        | quickly declutter my app                                                               |
+| `*`      | expert user       | set timers to add/delete groups after a project ends                           | ensure that I do not have too many groups cluttering the database                      |
 
 ---
 ## Use cases 

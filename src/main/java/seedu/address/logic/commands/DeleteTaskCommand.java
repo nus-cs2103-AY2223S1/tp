@@ -32,8 +32,8 @@ public class DeleteTaskCommand extends Command {
     public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the address book.";
     public static final String MESSAGE_INVALID_PERSON = "This person is not in the address book.";
     public static final String MESSAGE_DELETE_TASK_SUCCESS = "DELETETASK";
-    public static final String MESSAGE_GROUP_NOT_FOUND = "This group is not in the address book";
-    public static final String MESSAGE_ASSIGNMENT_NOT_FOUND = "This assignment is not in the address book";
+    public static final String MESSAGE_GROUP_NOT_FOUND = "This group is not in the address book.";
+    public static final String MESSAGE_ASSIGNMENT_NOT_FOUND = "This person does not have this assignment.";
     public static final String MESSAGE_INVALID_PERSON_NOT_IN_GROUP = "This person is not in the specified group.";
 
     private final Name name;

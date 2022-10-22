@@ -21,6 +21,8 @@ public class GroupCard extends UiPart<Region> {
     @FXML
     private HBox cardPane;
     @FXML
+    private Label id;
+    @FXML
     private Label name;
     @FXML
     private FlowPane members;
@@ -29,9 +31,10 @@ public class GroupCard extends UiPart<Region> {
     /**
      * Creates a {@code GroupCode} with the given {@code Group} to display.
      */
-    public GroupCard(Group group) {
+    public GroupCard(Group group, int displayedIndex) {
         super(FXML);
         this.group = group;
+        id.setText(displayedIndex + ". ");
         name.setText(group.getName().toString());
         group.getMembers().stream()
                 .sorted(Comparator.comparing(member ->
