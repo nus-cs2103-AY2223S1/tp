@@ -52,4 +52,11 @@ public class UnlinkExamCommand extends Command {
         model.replaceTask(toUnlink, unlinkedTask, true);
         return new CommandResult(EXAM_UNLINKED_SUCCESS);
     }
+
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof UnlinkExamCommand // instanceof handles nulls
+                && taskIndex.equals(((UnlinkExamCommand) other).taskIndex)); // state check
+    }
 }
