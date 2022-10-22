@@ -475,14 +475,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 2a2. Financial Advisor Planner shows the appointments of the all clients in a calendar view, including the recently added appointment.
 
       Use case ends.
-
-* 2b. User requests to view appointments in another month.
-
-    * 2b1. Financial Advisor Planner shows the appointments of the all the clients in the current month.
-    * 2b2. User inputs the new month of the calendar to be displayed.
-    * 2b3. Financial Advisor Planner shows the appointments of the all the clients in the new month.
-
-      Use case ends.
+    
 
 **Use case: UC9 - Display appointments of a new month in a calendar view**
 
