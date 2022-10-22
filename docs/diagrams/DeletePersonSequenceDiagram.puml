@@ -58,7 +58,7 @@ activate Model
 DeleteCommand -> Model : getPersonUsingName(Amy)
 
 
-Model -> Model : hasPersonInFilteredList(p)
+Model -> Model : hasPersonInFilteredList(Amy)
 activate Model
 
 Model --> Model
