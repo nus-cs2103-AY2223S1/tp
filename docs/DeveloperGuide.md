@@ -275,7 +275,7 @@ contact list. Error message is displayed on the GUI subsequently.
 
 ### Add Date Of Birth
 
-The Add Date Of Birth feature allows users to add a date of birth field (format: dd/mm/yyyy) to a person in the contact list. It is performed as a part of `addPersonCommand#execute()`.
+The Add Date Of Birth feature allows users to add a date of birth field (format: dd/mm/yyyy) to a person in the addressbook. It is performed as a part of `addPersonCommand#execute()`.
 
 These operations are exposed in the `Model` interface as the method `Model#addPerson()`, which calls
 `AddressBook#addPerson()` which calls `UniquePersonList#add()` to add a new person in the person list
@@ -290,7 +290,7 @@ person command text entered by user. The specific `UniquePersonList` operations 
 for simplicity.
 </div>
 
-The following activity diagram shows what happens when a user executes a new add command:
+The following activity diagram shows what happens when a user executes a new add person command:
 
 ![AddPersonActivityDiagram](images/AddPersonActivityDiagram_DOB.png)
 
@@ -299,8 +299,8 @@ activities related to date of birth field are considered and shown in this activ
 </div>
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:**Parser exceptions are thrown and caught if
-date of birth field is not provided in the command, or the date of birth is not of valid format; Duplicated person exception is
-thrown if the person to add already exists in the contact list. Error message is displayed on the GUI subsequently.
+date of birth field is not provided in the command, or the date of birth is not of valid format; Duplicate person exception is
+thrown if the person to add already exists in the addressbook. Error message is displayed on the GUI subsequently.
 </div>
 
 #### Design considerations:
@@ -309,18 +309,18 @@ thrown if the person to add already exists in the contact list. Error message is
 
 * **Alternative 1 (current choice):** Compulsory date of birth field:
     * Pros: It is a more logical implementation because date of birth is a common attribute for all persons,
-  similar to name, address, etc, which are also compulsory field for persons in contact list.
+  similar to name, address, etc, which are also compulsory fields for persons in the addressbook.
     * Cons: It is less flexible in cases where the user is missing the date of birth field for a contact,
     but wants to add the contact anyways, as the user is not able to leave the date of birth field blank.
 
 * **Alternative 2:** Optional date of birth field:
     * Pros: It is a more flexible implementation, since the user has the choice to set a date of birth,
     or leave it empty.
-    * Cons: It is less logical since date of birth is a common attribute for a person.
+    * Cons: It is less logical since date of birth is a common attribute for all persons in the addressbook.
 
 ### Edit Date of Birth
 
-The Edit Date of Birth feature allows users to edit a date of birth field (format: dd/mm/yyyy) of a person in the contact list.
+The Edit Date of Birth feature allows users to edit a date of birth field (format: dd/mm/yyyy) of a person in the addressbook.
 It is performed as a part of `editPersonCommand#execute()`.
 
 These operations are exposed in the `Model` interface as the method `Model#setPerson()`, which calls
@@ -341,13 +341,12 @@ The following activity diagram shows what happens when a user executes a new edi
 ![EditPersonActivityDiagram](images/EditPersonActivityDiagram_DOB.png)
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** Only the
-activities related to date of birth field are considered and shown in this activity diagram. All fields are considered optional
-in edit person command, therefore, it is not compulsory that a date of birth field must be provided.
+activities related to date of birth field are considered and shown in this activity diagram. The edit person command only requires at least one of the optional fields to be given, all of the fields are optional, therefore, it is not compulsory that a date of birth field must be provided.
 </div>
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:**Parser exceptions are thrown and caught if
 the date of birth is not of valid format; Invalid person exception is thrown if the person to edit doesn't exist in the
-contact list. Error message is displayed on the GUI subsequently.
+addressbook. Error message is displayed on the GUI subsequently.
 </div>
 
 ### \[Proposed\] Undo/redo feature
