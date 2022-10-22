@@ -30,7 +30,8 @@ public class Company {
     public Company(String name) {
         requireNonNull(name);
         checkArgument(isValidCompany(name), MESSAGE_CONSTRAINTS);
-        this.name = name;
+        String modifiedName = toUpperCase(name);
+        this.name = modifiedName;
     }
 
     /**
@@ -50,6 +51,21 @@ public class Company {
         return other == this // short circuit if same object
                 || (other instanceof Company // instanceof handles nulls
                         && name.equals(((Company) other).name)); // state check
+    }
+
+    public String toUpperCase(String companyName) {
+        char[] chars = companyName.toLowerCase().toCharArray();
+        boolean isNotWhitespace = false;
+        for (int i = 0; i < chars.length; i++) {
+           if (!isNotWhitespace && Character.isLetter(chars[i])) {
+               chars[i] = Character.toUpperCase(chars[i]);
+               isNotWhitespace = true;
+           }
+           else if (Character.isWhitespace(chars[i])) {
+               isNotWhitespace = false;
+           }
+        }
+        return String.valueOf(chars);
     }
 
     @Override

@@ -29,7 +29,8 @@ public class Role {
     public Role(String role) {
         requireNonNull(role);
         checkArgument(isValidRole(role), MESSAGE_CONSTRAINTS);
-        value = role;
+        String modifiedRole = toUpperCase(role);
+        value = modifiedRole;
     }
 
     /**
@@ -49,6 +50,21 @@ public class Role {
         return other == this // short circuit if same object
                 || (other instanceof Role // instanceof handles nulls
                         && value.equals(((Role) other).value)); // state check
+    }
+
+    public String toUpperCase(String roleName) {
+        char[] chars = roleName.toLowerCase().toCharArray();
+        boolean isNotWhitespace = false;
+        for (int i = 0; i < chars.length; i++) {
+            if (!isNotWhitespace && Character.isLetter(chars[i])) {
+                chars[i] = Character.toUpperCase(chars[i]);
+                isNotWhitespace = true;
+            }
+            else if (Character.isWhitespace(chars[i])) {
+                isNotWhitespace = false;
+            }
+        }
+        return String.valueOf(chars);
     }
 
     @Override

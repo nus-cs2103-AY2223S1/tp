@@ -51,6 +51,7 @@ public class Stage {
                 && value.equals(((Stage) other).value)); // state check
     }
 
+
     @Override
     public int hashCode() {
         return value.hashCode();
