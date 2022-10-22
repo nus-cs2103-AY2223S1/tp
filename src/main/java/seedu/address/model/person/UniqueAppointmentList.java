@@ -2,6 +2,7 @@ package seedu.address.model.person;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
+import static seedu.address.model.Model.COMPARATOR_UNGROUP_APPOINTMENTS;
 
 import java.util.Comparator;
 import java.util.Iterator;
@@ -30,6 +31,8 @@ public class UniqueAppointmentList implements Iterable<Appointment> {
     private final ObservableList<Appointment> internalUnmodifiableList =
             FXCollections.unmodifiableObservableList(internalList);
 
+    private Comparator<Appointment> comparator = COMPARATOR_UNGROUP_APPOINTMENTS;
+
     /**
      * Constructs a UniqueAppointmentList with an added listener to sort list when appointments are updated.
      */
@@ -37,10 +40,10 @@ public class UniqueAppointmentList implements Iterable<Appointment> {
         internalList.addListener((ListChangeListener<Appointment>) c -> {
             while (c.next()) {
                 if (c.wasUpdated()) {
-                    sortList();
+                    sort(comparator);
                 }
                 if (c.wasAdded()) {
-                    sortList();
+                    sort(comparator);
                 }
             }
         });
@@ -133,10 +136,6 @@ public class UniqueAppointmentList implements Iterable<Appointment> {
         internalList.set(index, editedAppointment);
     }
 
-    private void sortList() {
-        internalList.sort(Comparator.comparing(Appointment::getDateTime));
-    }
-
     /**
      * Returns the backing list as an unmodifiable {@code ObservableList}.
      */
@@ -173,5 +172,13 @@ public class UniqueAppointmentList implements Iterable<Appointment> {
             }
         }
         return true;
+    }
+
+    /**
+     * Sorts the contents of the appointment list with {@code comparator}.
+     */
+    public void sort(Comparator<Appointment> comparator) {
+        this.comparator = comparator;
+        internalList.sort(comparator);
     }
 }

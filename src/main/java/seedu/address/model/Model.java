@@ -2,6 +2,7 @@ package seedu.address.model;
 
 import java.nio.file.Path;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 import java.util.function.Predicate;
 
@@ -23,6 +24,18 @@ public interface Model {
 
     /** {@code Predicate} that always evaluate to true */
     Predicate<Appointment> PREDICATE_SHOW_ALL_APPOINTMENTS = unused -> true;
+
+    /** {@code Comparator} that ungroup persons by their tags */
+    Comparator<Person> COMPARATOR_UNGROUP_PATIENTS = (p1, p2) -> p1.compareTo(p2);
+
+    /** {@code Predicate} that ungroup appointments by their tags */
+    Comparator<Appointment> COMPARATOR_UNGROUP_APPOINTMENTS = (a1, a2) -> a2.compareTo(a2);
+
+    /** {@code Comparator} that group persons by their tags */
+    Comparator<Person> COMPARATOR_GROUP_PATIENTS = (p1, p2) -> p1.groupCompareTo(p2);
+
+    /** {@code Predicate} that group appointments by their tags */
+    Comparator<Appointment> COMPARATOR_GROUP_APPOINTMENTS = (a1, a2) -> a2.groupCompareTo(a2);
 
     /**
      * Replaces user prefs data with the data in {@code userPrefs}.
@@ -126,4 +139,16 @@ public interface Model {
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredAppointmentList(Predicate<Appointment> predicate);
+
+    /**
+     * Updates the comparator of the filtered person list to filter by the given {@code comparator}.
+     * @throws NullPointerException if {@code comparator} is null.
+     */
+    void updatePersonComparator(Comparator<Person> comparator);
+
+    /**
+     * Updates the comparator of the filtered appointment list to filter by the given {@code comparator}.
+     * @throws NullPointerException if {@code comparator} is null.
+     */
+    void updateAppointmentComparator(Comparator<Appointment> comparator);
 }

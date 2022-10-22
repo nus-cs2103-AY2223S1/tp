@@ -2,12 +2,15 @@ package seedu.address.model.person;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
+import static seedu.address.model.Model.COMPARATOR_UNGROUP_PATIENTS;
 
+import java.util.Comparator;
 import java.util.Iterator;
 import java.util.List;
 
 import javafx.beans.Observable;
 import javafx.collections.FXCollections;
+import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import javafx.util.Callback;
 import seedu.address.model.person.exceptions.DuplicatePersonException;
@@ -30,6 +33,23 @@ public class UniquePersonList implements Iterable<Person> {
     private final ObservableList<Person> internalList = FXCollections.observableArrayList(extractor);
     private final ObservableList<Person> internalUnmodifiableList =
             FXCollections.unmodifiableObservableList(internalList);
+    private Comparator<Person> comparator = COMPARATOR_UNGROUP_PATIENTS;
+
+    /**
+     * Constructs a UniquePersonList with an added listener to sort list when appointments are updated.
+     */
+    public UniquePersonList() {
+        internalList.addListener((ListChangeListener<Person>) c -> {
+            while (c.next()) {
+                if (c.wasUpdated()) {
+                    sort(comparator);
+                }
+                if (c.wasAdded()) {
+                    sort(comparator);
+                }
+            }
+        });
+    }
 
     /**
      * Returns true if the list contains an equivalent person as the given argument.
@@ -136,5 +156,13 @@ public class UniquePersonList implements Iterable<Person> {
             }
         }
         return true;
+    }
+
+    /**
+     * Sorts the contents of the person list with {@code comparator}.
+     */
+    public void sort(Comparator<Person> comparator) {
+        this.comparator = comparator;
+        internalList.sort(comparator);
     }
 }

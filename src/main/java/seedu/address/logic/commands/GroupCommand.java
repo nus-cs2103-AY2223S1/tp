@@ -1,18 +1,17 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.model.Model.PREDICATE_SHOW_ALL_APPOINTMENTS;
-import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
+import static seedu.address.model.Model.COMPARATOR_GROUP_APPOINTMENTS;
+import static seedu.address.model.Model.COMPARATOR_GROUP_PATIENTS;
 
 import seedu.address.model.Model;
-import seedu.address.model.person.HiddenPredicateSingleton;
 
 /**
  * Group all persons or appointments in the address book to the user.
  */
 public class GroupCommand extends Command {
 
-    public static final String COMMAND_WORD = "list";
+    public static final String COMMAND_WORD = "group";
 
     public static final String MESSAGE_SUCCESS_PATIENTS = "Grouped all patients.";
     public static final String MESSAGE_SUCCESS_APPOINTMENTS = "Grouped all appointments.";
@@ -31,13 +30,11 @@ public class GroupCommand extends Command {
     public CommandResult execute(Model model) {
         if (this.type.equals("patients")) {
             requireNonNull(model);
-            model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
-            HiddenPredicateSingleton.clearHiddenPatients();
+            model.updatePersonComparator(COMPARATOR_GROUP_PATIENTS);
             return new CommandResult(MESSAGE_SUCCESS_PATIENTS);
         } else {
             requireNonNull(model);
-            model.updateFilteredAppointmentList(PREDICATE_SHOW_ALL_APPOINTMENTS);
-            HiddenPredicateSingleton.clearHiddenAppts();
+            model.updateAppointmentComparator(COMPARATOR_GROUP_APPOINTMENTS);
             return new CommandResult(MESSAGE_SUCCESS_APPOINTMENTS);
         }
     }
@@ -45,7 +42,7 @@ public class GroupCommand extends Command {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof ListCommand // instanceof handles nulls
+                || (other instanceof GroupCommand // instanceof handles nulls
                 && type.equals(((GroupCommand) other).type)); // state check
     }
 }

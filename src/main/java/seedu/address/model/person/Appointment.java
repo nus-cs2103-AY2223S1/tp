@@ -302,6 +302,22 @@ public class Appointment {
     }
 
     /**
+     * Returns the group number where this appointment belongs to, which is determined
+     * by its tags.
+     *
+     */
+    public Integer getGroupNumber() {
+        if (this.getTags().isEmpty()) {
+            return 0;
+        }
+        int value = 0;
+        for (Tag tag: this.getTags()) {
+            value += (tag.ordinal() == 0 ? 1 : tag.ordinal() == 1 ? 2 : 4);
+        }
+        return value;
+    }
+
+    /**
      * Returns -1 if this appointment appears before the other appointment, and
      * returns 0 if this appointment has the same order as the other appointment, and
      * returns 1 if this appointment appears after the other appointment.
@@ -314,6 +330,19 @@ public class Appointment {
                 : this.dateTime.isAfter(appointment.dateTime)
                 ? 1
                 : 0;
+    }
+
+    /**
+     * Returns 10 * group difference -1 if this appointment appears before the other appointment, and
+     * returns 10 * group difference if this appointment has the same order as the other appointment, and
+     * returns 10 * group difference + 1 if this appointment appears after the other appointment. This method
+     * makes sure that appointments with the same tag group are grouped together.
+     *
+     * @param appointment The other person to compare with.
+     */
+    public int groupCompareTo(Appointment appointment) {
+        return 10 * this.getGroupNumber().compareTo(appointment.getGroupNumber())
+                + this.compareTo(appointment);
     }
 
     @Override

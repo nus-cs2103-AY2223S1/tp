@@ -11,6 +11,7 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_EAR;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalPersons.ALICE;
 import static seedu.address.testutil.TypicalPersons.BOB;
+import static seedu.address.testutil.TypicalPersons.DANIEL;
 
 import org.junit.jupiter.api.Test;
 
@@ -100,5 +101,10 @@ public class PersonTest {
 
         // BOB > ALICE
         assertEquals(BOB.compareTo(ALICE), 1);
+    }
+
+    @Test
+    public void groupCompares() {
+        assertEquals(ALICE.groupCompareTo(DANIEL), -1);
     }
 }

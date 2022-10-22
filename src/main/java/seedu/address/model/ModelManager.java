@@ -4,13 +4,13 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
+import java.util.Comparator;
 import java.util.List;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
-import javafx.collections.transformation.SortedList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.person.Appointment;
@@ -102,12 +102,6 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void addPerson(Person person) {
-        addressBook.addPerson(person);
-        updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
-    }
-
-    @Override
     public void deleteAppointment(Appointment target) {
         addressBook.removeAppointment(target);
     }
@@ -137,6 +131,12 @@ public class ModelManager implements Model {
         updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
     }
 
+    @Override
+    public void addPerson(Person person) {
+        addressBook.addPerson(person);
+        updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+    }
+
     //=========== Filtered Person List Accessors =============================================================
 
     /**
@@ -146,13 +146,19 @@ public class ModelManager implements Model {
      */
     @Override
     public ObservableList<Person> getFilteredPersonList() {
-        return new SortedList<>(filteredPersons, (p1, p2) -> p1.compareTo(p2));
+        return filteredPersons;
     }
 
     @Override
     public void updateFilteredPersonList(Predicate<Person> predicate) {
         requireNonNull(predicate);
         filteredPersons.setPredicate(predicate);
+    }
+
+    @Override
+    public void updatePersonComparator(Comparator<Person> comparator) {
+        requireNonNull(comparator);
+        addressBook.sortPersons(comparator);
     }
 
     //=========== Filtered Appointment List Accessors =============================================================
@@ -164,13 +170,19 @@ public class ModelManager implements Model {
      */
     @Override
     public ObservableList<Appointment> getFilteredAppointmentList() {
-        return new SortedList<>(filteredAppointments, (a1, a2) -> a1.compareTo(a2));
+        return filteredAppointments;
     }
 
     @Override
     public void updateFilteredAppointmentList(Predicate<Appointment> predicate) {
         requireNonNull(predicate);
         filteredAppointments.setPredicate(predicate);
+    }
+
+    @Override
+    public void updateAppointmentComparator(Comparator<Appointment> comparator) {
+        requireNonNull(comparator);
+        addressBook.sortAppointments(comparator);
     }
 
     @Override

@@ -128,16 +128,42 @@ public class Person {
      * @param person The other person to compare with.
      */
     public int compareTo(Person person) {
-        return this.getName().compareTo(person.getName());
+        return this.getName().compareTo(person.getName()) < 0
+                ? -1
+                : this.getName().compareTo(person.getName()) > 0
+                ? 1
+                : 0;
     }
 
-    public int getGroupNumber() {
+    /**
+     * Returns the group number where this person belongs to, which is determined
+     * by its tags.
+     *
+     */
+    public Integer getGroupNumber() {
         if (this.getTags().isEmpty()) {
             return 0;
         }
         int value = 0;
+        for (Tag tag: this.getTags()) {
+            value += (tag.ordinal() == 0 ? 1 : tag.ordinal() == 1 ? 2 : 4);
+        }
         return value;
     }
+
+    /**
+     * Returns 10 * group difference -1 if this person appears before the other person, and
+     * returns 10 * group difference if this person has the same order as the other person, and
+     * returns 10 * group difference + 1 if this person appears after the other person. This method
+     * makes sure that people with the same tag group are grouped together.
+     *
+     * @param person The other person to compare with.
+     */
+    public int groupCompareTo(Person person) {
+        return 10 * this.getGroupNumber().compareTo(person.getGroupNumber())
+                + this.compareTo(person);
+    }
+
     /**
      * Returns true if both persons have the same identity and data fields.
      * This defines a stronger notion of equality between two persons.
