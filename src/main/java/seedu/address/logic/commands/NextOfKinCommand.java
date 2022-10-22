@@ -80,8 +80,7 @@ public class NextOfKinCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
         if (model.getCurrentListType() == Model.ListType.TUTOR_LIST
-                || model.getCurrentListType() == Model.ListType.TUITIONCLASS_LIST
-                || model.getCurrentListType() == Model.ListType.PERSON_LIST) {
+                || model.getCurrentListType() == Model.ListType.TUITIONCLASS_LIST) {
             throw new CommandException((Messages.MESSAGE_WRONG_LIST_FOR_COMMAND_USAGE));
         }
 
