@@ -1,6 +1,9 @@
 package seedu.address.logic.commands;
 
+import static org.junit.jupiter.api.Assertions.assertAll;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertSame;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.DESC_BOB;
@@ -14,16 +17,23 @@ import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
 import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
+import seedu.address.logic.parser.AddCommandParser;
+import seedu.address.logic.parser.CliSyntax;
+import seedu.address.logic.parser.EditCommandParser;
 import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.person.Person;
+import seedu.address.model.tag.Tag;
 import seedu.address.testutil.EditPersonDescriptorBuilder;
 import seedu.address.testutil.PersonBuilder;
 
@@ -143,6 +153,74 @@ public class EditCommandTest {
                 new EditPersonDescriptorBuilder().withName(VALID_NAME_BOB).build());
 
         assertCommandFailure(editCommand, model, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+    }
+
+    @Test
+    public void execute_editPersonWithTag_addsTagIntoTagMapping() throws Exception {
+        Model model = new ModelManager();
+        String tagName = "Operations";
+        model.addPerson(new PersonBuilder().build());
+
+        assertFalse(model.getTagMapping().containsKey(tagName));
+
+        assertAll(() -> new EditCommandParser(model).parse(" "
+                        + "1" + " "
+                        + CliSyntax.PREFIX_TAG + tagName + " ")
+                .execute(model));
+
+        assertTrue(model.getTagMapping().containsKey(tagName));
+
+        assertEquals(1,
+                model.getTagMapping()
+                        .get(tagName)
+                        .getDeepCopiedPersonList()
+                        .stream()
+                        .filter(p -> p.getName().fullName.equals(PersonBuilder.DEFAULT_NAME))
+                        .count());
+    }
+
+    // Ensure that if a Person is edited with a Tag that already exists in the address book, the
+    // Tag that the Person points to is the same object as the Tag that exists in the address book.
+    @Test
+    public void execute_editPersonWithTag_tagAlreadyExistsInTagMapping() throws Exception {
+        Model model = new ModelManager();
+        String tagName = "Operations";
+        model.addPerson(new PersonBuilder().build());
+        model.addTag(new Tag(tagName));
+
+        assertAll(() -> new EditCommandParser(model).parse(" "
+                        + "1" + " "
+                        + CliSyntax.PREFIX_TAG + tagName + " ")
+                .execute(model));
+
+        List<Tag> listOfTagsFromPerson = new ArrayList<>(model.getAddressBook().getPersonList().get(0).getTags());
+        Tag tagFromPerson = listOfTagsFromPerson.get(0);
+        Tag tagFromTagMapping = model.getTagMapping().get(tagName);
+
+        assertSame(tagFromTagMapping, tagFromPerson);
+    }
+
+    @Test
+    public void execute_editPersonWithTag_deletesTagFromTagMapping() {
+        Model model = new ModelManager();
+        String tagName = "Operations";
+
+        assertAll(() -> new AddCommandParser(model).parse(" "
+                        + CliSyntax.PREFIX_NAME + PersonBuilder.DEFAULT_NAME + " "
+                        + CliSyntax.PREFIX_PHONE + PersonBuilder.DEFAULT_PHONE + " "
+                        + CliSyntax.PREFIX_ADDRESS + PersonBuilder.DEFAULT_ADDRESS + " "
+                        + CliSyntax.PREFIX_EMAIL + PersonBuilder.DEFAULT_EMAIL + " "
+                        + CliSyntax.PREFIX_TAG + tagName)
+                .execute(model));
+
+        assertTrue(model.getTagMapping().containsKey(tagName));
+
+        assertAll(() -> new EditCommandParser(model).parse(" "
+                        + "1" + " "
+                        + CliSyntax.PREFIX_TAG + " ")
+                .execute(model));
+
+        assertFalse(model.getTagMapping().containsKey(tagName));
     }
 
     @Test

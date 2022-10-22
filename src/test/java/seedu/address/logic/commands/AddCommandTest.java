@@ -4,12 +4,14 @@ import static java.util.Objects.requireNonNull;
 import static org.junit.jupiter.api.Assertions.assertAll;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertSame;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
 
 import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 import java.util.function.Predicate;
 
 import org.junit.jupiter.api.Test;
@@ -69,9 +71,9 @@ public class AddCommandTest {
         assertAll(() -> new AddCommandParser(model).parse(" "
                         + CliSyntax.PREFIX_NAME + nameA + " "
                         + CliSyntax.PREFIX_PHONE + PersonBuilder.DEFAULT_PHONE + " "
-                        + CliSyntax.PREFIX_ADDRESS + PersonBuilder.DEFAULT_ADDRESS + " "
                         + CliSyntax.PREFIX_EMAIL + PersonBuilder.DEFAULT_EMAIL + " "
-                        + CliSyntax.PREFIX_TAG + tagName)
+                        + CliSyntax.PREFIX_ADDRESS + PersonBuilder.DEFAULT_ADDRESS + " "
+                        + CliSyntax.PREFIX_TAG + tagName + " ")
                 .execute(model));
 
         assertTrue(model.getTagMapping().containsKey(tagName));
@@ -82,6 +84,29 @@ public class AddCommandTest {
                         .stream()
                         .filter(p -> p.getName().fullName.equals(nameA))
                         .count());
+    }
+
+    // Ensure that if a Person is added with a Tag that already exists in the address book, the
+    // Tag that the Person points to is the same object as the Tag that exists in the address book.
+    @Test
+    public void execute_addPersonWithTag_tagAlreadyExistsInTagMapping() throws Exception {
+        Model model = new ModelManager();
+        String tagName = "Operations";
+        model.addTag(new Tag(tagName));
+
+        assertAll(() -> new AddCommandParser(model).parse(" "
+                        + CliSyntax.PREFIX_NAME + PersonBuilder.DEFAULT_NAME + " "
+                        + CliSyntax.PREFIX_PHONE + PersonBuilder.DEFAULT_PHONE + " "
+                        + CliSyntax.PREFIX_EMAIL + PersonBuilder.DEFAULT_EMAIL + " "
+                        + CliSyntax.PREFIX_ADDRESS + PersonBuilder.DEFAULT_ADDRESS + " "
+                        + CliSyntax.PREFIX_TAG + tagName + " ")
+                .execute(model));
+
+        List<Tag> listOfTagsFromPerson = new ArrayList<>(model.getAddressBook().getPersonList().get(0).getTags());
+        Tag tagFromPerson = listOfTagsFromPerson.get(0);
+        Tag tagFromTagMapping = model.getTagMapping().get(tagName);
+
+        assertSame(tagFromTagMapping, tagFromPerson);
     }
 
     @Test
