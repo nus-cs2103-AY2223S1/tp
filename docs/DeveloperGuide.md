@@ -192,6 +192,34 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
+### Custom Fields feature
+
+#### Implementation
+
+The Custom Fields mechanism is facilitated by the creation of a new `Field` that is stored within the `Fields` object 
+that each `Person` object has. 
+
+To add a custom field, the user should also provide a unique prefix for the `Field`. The prefix is parsed as a `Prefix`
+object by `AddFieldCommandParser`, and then matched with the known `Prefix` objects stored in `FieldPrefixes`.
+If the `Prefix` and field name has not been stored previously, then the `AddFieldCommand` is executed and the `Fields`
+object of each `Person` is updated accordingly.
+
+The following sequence diagram shows how the add field operation works:
+
+![Sequence Diagram adding a field to the Model](images/AddFieldSequenceDiagram.png)
+
+#### Design Considerations
+
+* **Alternative 1 (current choice)**: Stores each `Field` in a `Fields` object within each `Person` or `Task'
+  * Pros: Adheres to object-oriented principles, as each `Person` or `Task` has `Fields`
+  * Cons: Needs an additional class `FieldPrefixes` to store the known `Prefix` objects that was
+    added by the user. <br><br>
+* **Alternative 2**: Stores the known `Fields` in a separate static class
+  * Pros: All `Field`-related operations are stored within one accessible component
+  * Cons: Might violate composition and encapsulation relationships in the object-oriented design.
+
+*{more alternatives to be added soon}*
+
 ### \[Proposed\] Undo/redo feature
 
 #### Proposed Implementation
