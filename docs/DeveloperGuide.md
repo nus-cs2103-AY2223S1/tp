@@ -154,6 +154,42 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
+### Task viewing feature
+
+#### Implementation
+
+The viewing of tasks that are associated with patients can be achieved using the following 2 commands.
+
+* `listTask` to list all tasks associated to all patients.
+* `viewTask PATIENT_INDEX` to list task associated to the patient at the specified `PATIENT_INDEX`.
+
+<br>
+
+The `listTask` command is executed when the user enters the command into the UI which is handled by `ListTaskCommand`. Note that the command does not accept any arguments, hence there is no need for a `ListTaskCommandParser` to be created.
+
+The change is reflected in the UI by calling `Model#updateFilteredPersonList()` with the predicate that returns true if a patient in the list has associated tasks. This currently only updates the patient list panel to display patients that have associated tasks and does not update the output panel. (Future implementations would update the output panel to display all tasks associated with all patients.)
+
+The following sequence diagram illustrates the interactions between the `Logic` and `Model` component when the command is being executed.
+
+<img src="images/ListTaskSequenceDiagram.png" width="500" />
+
+<br>
+
+The `viewTask` command is executed when the user enters the command into the UI which is handled by `ViewTaskCommand`. Since the command requires an argument `PATIENT_INDEX`, a `ViewTaskCommandParser` is created to determine the validity of the arguments provided. Given that valid arguments are provided, the command is then executed in the following manner.
+
+1. The `Patient` at the specified `PATIENT_INDEX` is retrieved from the `lastShownList` obtained from the `Model` component.
+1. The `Model` component updates its current list with `Model#updateFilteredPersonList()` to display only the specified `Patient`.
+1. The `UI` component updates its result display by displaying the feedback message from `ViewTaskCommand`.
+1. The `UI` component updates its output panel by displaying a `TaskListPanel`.
+
+Note that `TaskListPanel` only displays the complete list of tasks of the specified patient and essential information such as the patient name and tags.
+
+The following sequence diagrams illustrates the interactions between the `UI`, `Logic` and `Model` component when the command is being executed.
+
+<img src="images/ViewTaskSequenceDiagram1.png" width="900" />
+
+<img src="images/ViewTaskSequenceDiagram2.png" width="500" />
+
 ### Viewing tasks on a particular day feature
 
 #### Implementation
