@@ -8,4 +8,16 @@ public class DataConversionException extends Exception {
         super(cause);
     }
 
+    @Override
+    public String getMessage() {
+        if (super.getMessage() == null) {
+            return null;
+        }
+
+        String[] messageSegment = super.getMessage().split(":");
+        if (messageSegment.length >= 2) {
+            return messageSegment[1].trim();
+        }
+        return "";
+    }
 }

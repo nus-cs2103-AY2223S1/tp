@@ -2,8 +2,9 @@ package seedu.rc4hdb.storage.csv;
 
 import java.io.IOException;
 import java.nio.file.Path;
-import java.util.HashSet;
+import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 import java.util.logging.Logger;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -23,6 +24,7 @@ import seedu.rc4hdb.model.resident.fields.MatricNumber;
 import seedu.rc4hdb.model.resident.fields.Name;
 import seedu.rc4hdb.model.resident.fields.Phone;
 import seedu.rc4hdb.model.resident.fields.Room;
+import seedu.rc4hdb.model.resident.fields.Tag;
 import seedu.rc4hdb.storage.csv.exceptions.InvalidCsvFileFormatException;
 
 /**
@@ -32,8 +34,8 @@ public class CsvReader {
 
     private static final Logger logger = LogsCenter.getLogger(CsvReader.class);
 
-    private static final Pattern CSV_FORMAT = Pattern.compile("(?<Name>.+),(?<Phone>.+),(?<Email>.+),(?<Room>.+),"
-            + "(?<Gender>.+),(?<House>.+),(?<Matric>.+)");
+    private static final Pattern CSV_FORMAT = Pattern.compile("(?<Name>[^,]+),(?<Phone>[^,]+),(?<Email>[^,]+),"
+            + "(?<Room>[^,]+),(?<Gender>[^,]+),(?<House>[^,]+),(?<Matric>[^,]+),(?<Tags>[^,]+)");
 
     /**
      * Reads resident data from CSV file into ResidentBook format.
@@ -79,10 +81,21 @@ public class CsvReader {
             final Gender gender = ParserUtil.parseGender(matcher.group(Gender.IDENTIFIER));
             final House house = ParserUtil.parseHouse(matcher.group(House.IDENTIFIER));
             final MatricNumber matricNumber = ParserUtil.parseMatricNumber(matcher.group(MatricNumber.IDENTIFIER));
-            return new Resident(name, phone, email, room, gender, house, matricNumber, new HashSet<>());
+            final Set<Tag> tags = parseTags(matcher.group(Tag.IDENTIFIER));
+            return new Resident(name, phone, email, room, gender, house, matricNumber, tags);
         } catch (ParseException e) {
             throw new DataConversionException(e);
         }
+    }
+
+    /**
+     * Parses the tagsString, based off the format specified in the CSV Format section of the UG.
+     */
+    private Set<Tag> parseTags(String tagsString) throws ParseException {
+        String[] tagStrings = tagsString.toLowerCase().split(" ");
+        Set<Tag> tags = ParserUtil.parseTags(List.of(tagStrings));
+        tags.remove(Tag.NIL_TAG);
+        return tags;
     }
 
 }

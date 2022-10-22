@@ -29,7 +29,7 @@ public class ImportCommand extends CsvFileCommand implements StorageCommand {
 
     public static final String MESSAGE_FILE_DOES_NOT_EXIST = "%s does not exist. Please provide an existing file.";
 
-    public static final String MESSAGE_INVALID_FILE_DATA = "%s is not in the right format.";
+    public static final String MESSAGE_INVALID_FILE_DATA = "Failed to import from %s.\n%s";
 
     private Path newJsonFilePath;
 
@@ -57,9 +57,9 @@ public class ImportCommand extends CsvFileCommand implements StorageCommand {
         } catch (NoSuchElementException e) {
             throw new CommandException(String.format(MESSAGE_FILE_DOES_NOT_EXIST, fileName), e);
         } catch (DataConversionException e) {
-            throw new CommandException(String.format(MESSAGE_INVALID_FILE_DATA, fileName), e);
+            throw new CommandException(String.format(MESSAGE_INVALID_FILE_DATA, fileName, e.getMessage()), e);
         } catch (IOException e) {
-            throw new CommandException(String.format(MESSAGE_FAILED, "importing"));
+            throw new CommandException(String.format(MESSAGE_FAILED, "importing"), e);
         }
     }
 

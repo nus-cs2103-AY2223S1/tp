@@ -7,11 +7,13 @@ import java.io.IOException;
  */
 public class InvalidCsvFileFormatException extends IOException {
 
-    public static final String MESSAGE_INVALID_CSV_FILE_FORMAT = "The CSV file provided is in the incorrect format. "
-            + "Refer to the user guide for the correct file format.";
+    public static final String DEFAULT_ERROR_MESSAGE = "Refer to the user guide for the correct file format.";
 
+    /**
+     * Creates a default InvalidCsvFileFormatException.
+     */
     public InvalidCsvFileFormatException() {
-        super(MESSAGE_INVALID_CSV_FILE_FORMAT);
+        super(DEFAULT_ERROR_MESSAGE);
     }
 
 }

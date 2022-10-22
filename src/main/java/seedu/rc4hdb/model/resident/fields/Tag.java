@@ -14,6 +14,8 @@ public class Tag extends ResidentField {
 
     public static final String VALIDATION_REGEX = "\\p{Alnum}+";
 
+    public static final Tag NIL_TAG = new Tag("nil");
+
     /**
      * Constructs a {@code Tag}.
      *
