@@ -23,7 +23,7 @@ public class BillCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Adds to the bill of the guest identified "
             + "by the index number used in the last guest listing.\n"
-            + "To subtract from a bill, provide a negative value. "
+            + "To subtract from a bill, provide a negative value.\n"
             + "Parameters: INDEX (must be a positive integer) "
             + "b/BILL\n"
             + "Examples:\n"
