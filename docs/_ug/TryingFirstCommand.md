@@ -46,8 +46,7 @@ These commands are invalid:
 * `newn/Potatoesqty/30u/kgbgt/05-09-2022` (Removing space between command identifier and flags)
 * `new qty/-48 n/PÖtátÖes bgt/05/09/22 u/|kg|` (Restrictions of placeholders not followed)
 
-_Find out more about restrictions in the sections [Flags](#flags), [Placeholders](#placeholders) and
-[Commands](#commands)._
+_Find out more about restrictions in the sections [Flags](#flags), [Placeholders](#placeholders) and [Commands](#commands)._
 
 Let us try another command!
 
