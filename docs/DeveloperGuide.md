@@ -10,7 +10,7 @@ title: Developer Guide
 ## **Acknowledgements**
 
 * This product is adapted from [AddressBook Level-3](https://nus-cs2103-ay2223s1.github.io/tp/).
-* Libraries used: [JavaFX](https://openjfx.io/), 
+* Libraries used: [JavaFX](https://openjfx.io/),
 [Jackson](https://github.com/FasterXML/jackson), [JUnit5](https://github.com/junit-team/junit5).
 
 --------------------------------------------------------------------------------------------------------------------
@@ -38,7 +38,7 @@ Given below is a quick overview of main components and how they interact with ea
 
 **Main components of the architecture**
 
-**`Main`** has two classes called [`Main`](https://github.com/AY2223S1-CS2103T-W15-1/tp/blob/master/src/main/java/soconnect/Main.java) 
+**`Main`** has two classes called [`Main`](https://github.com/AY2223S1-CS2103T-W15-1/tp/blob/master/src/main/java/soconnect/Main.java)
 and [`MainApp`](https://github.com/AY2223S1-CS2103T-W15-1/tp/blob/master/src/main/java/soconnect/MainApp.java). It is responsible for:
 * At app launch: Initializes the components in the correct sequence and connects them up with each other.
 * At shut down: Shuts down the components and invokes cleanup methods where necessary.
@@ -63,7 +63,7 @@ Each of the four main components will:
 * Define its *API* in an `interface` with the same name as the Component.
 * Implement its functionality using a concrete `{Component Name}Manager` class, which follows the corresponding API `interface` mentioned in the previous point.
 
-For example, the `Logic` component defines its API in the `Logic.java` interface and implements its functionality using the `LogicManager.java` class which follows the `Logic` interface. 
+For example, the `Logic` component defines its API in the `Logic.java` interface and implements its functionality using the `LogicManager.java` class which follows the `Logic` interface.
 Other components interact with a given component through its interface rather than the concrete class.
 This is to prevent the outside component being coupled to the implementation of a component, as illustrated in the partial class diagram below.
 
@@ -77,10 +77,10 @@ The **API** of this component is specified in [`Ui.java`](https://github.com/AY2
 
 ![Structure of the UI Component](images/UiClassDiagram.png)
 
-The UI consists of a `MainWindow` that is made up of parts, e.g.,`CommandBox`, `ResultDisplay`, `PersonListPanel`, `StatusBarFooter`, etc. 
+The UI consists of a `MainWindow` that is made up of parts, e.g.,`CommandBox`, `ResultDisplay`, `PersonListPanel`, `StatusBarFooter`, etc.
 All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
 
-The `UI` component uses the [JavaFX](https://openjfx.io/) UI framework. The layout of these UI parts are defined in matching `.fxml` files that are present in the `src/main/resources/view` folder. 
+The `UI` component uses the [JavaFX](https://openjfx.io/) UI framework. The layout of these UI parts are defined in matching `.fxml` files that are present in the `src/main/resources/view` folder.
 For example, the layout of the [`MainWindow`](https://github.com/AY2223S1-CS2103T-W15-1/tp/blob/master/src/main/java/soconnect/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/AY2223S1-CS2103T-W15-1/tp/blob/master/src/main/resources/view/MainWindow.fxml)
 
 The `UI` component does the following:
@@ -108,7 +108,7 @@ The Sequence Diagram below illustrates the interactions within the `Logic` compo
 
 ![Interactions Inside the Logic Component for the `delete 1` Command](images/DeleteSequenceDiagram.png)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteCommandParser` should end at the destroy marker (X), 
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteCommandParser` should end at the destroy marker (X),
 but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
 
@@ -130,7 +130,7 @@ How the parsing works:
 The `Model` component does the following:
 
 * Stores the SoConnect data, i.e., all `Person` objects and all `Todo` objects (which are contained in a `UniquePersonList` object and a `UniqueTodoList` object respectively).
-* Stores the currently 'selected' `Person` or `Todo` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList` that can be 'observed', 
+* Stores the currently 'selected' `Person` or `Todo` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList` that can be 'observed',
 e.g., the UI can be bound to this list so that the UI automatically updates when the data in the list change.
 * Stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
 * Does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components).
@@ -191,7 +191,7 @@ These operations are exposed in the `Model` interface under the same method sign
 
 Given below is an example usage scenario and how the sorting mechanism behaves at each step.
 
-Step 1. The user enters `sort t/!friend n/` command to perform a multi-level sort. `SortCommandParser` calls `ArgumentTokenizer#tokenizeToList()` to separate the parameters of `t/!friend` and `n/`. 
+Step 1. The user enters `sort t/!friend n/` command to perform a multi-level sort. `SortCommandParser` calls `ArgumentTokenizer#tokenizeToList()` to separate the parameters of `t/!friend` and `n/`.
 The separated parameters are stored in a list that preserves the order that the user entered them in. `SortCommandParser` checks the list to confirm that at least 1 valid parameter has been entered.
 
 Step 2. Each parameter is processed by `SortCommandParser#convertArguments`. They are checked for reversed sorting through the presence of `!`.
@@ -278,7 +278,7 @@ _{more aspects and alternatives to be added}_
 
 #### Implementation
 
-The autocomplete mechanism is facilitated by `AutocompleteManager` and `CommandBox`. `AutocompleteManager` contains a 
+The autocomplete mechanism is facilitated by `AutocompleteManager` and `CommandBox`. `AutocompleteManager` contains a
 `UniquePersonList` which is used to filter and generate a list of autocomplete entries.
 
 The main methods in `AutocompleteManager` are:
@@ -323,7 +323,7 @@ then return an invalid argument and similarly, `AutocompleteManager` returns an 
 ` n/John p/12345678 a/NUS`, the last prefix and argument is `a/N` where `a/` is the prefix and `N` is the argument.
 
 Step 5. The `AutocompleteManager#updateFilteredPersonList(String argsString)` takes in the arguments without the last
-prefix and argument - ` n/John p/12345678` and filters the `UniquePersonList` based on the condition and contact 
+prefix and argument - ` n/John p/12345678` and filters the `UniquePersonList` based on the condition and contact
 information available in ` n/John p/12345678`.
 
 :information_source:**Note:** For `OR` condition, no filter will be applied to `UniquePersonList` (i.e. this returns
@@ -333,7 +333,7 @@ and argument, the `Person` in `UniquePersonList` will only need to satisfy the l
 
 Step 6. After the `UniquePersonList` is filtered, `AutocompleteManager#generateAutocompleteEntries(String
 argsWithoutLastPrefixArgument, String lastPrefixArgument)` will filter the filtered `UniquePersonList` with the last
-prefix and argument to generate a list of autocomplete entries. 
+prefix and argument to generate a list of autocomplete entries.
 
 For example, the filtered `UniquePersonList` has `Person1 - {n/John Loh, p/12345678, a/NUS}`, `Person2 - {n/John Teo,
 p/12345678, a/NTU}` and `Person3 - {n/John Wong, p/12345678, a/SMU}`. A filter and autocomplete will be done using the
@@ -347,7 +347,7 @@ search n/John p/12345678 a/NTU
 ```
 
 :information_source:**Note:** The example, `Person1 - {n/John Loh, p/12345678, a/NUS}`, used above means the
-`UniquePersonList` has a `Person` with information `n/John Loh`, `p/12345678` and `a/NUS`. 
+`UniquePersonList` has a `Person` with information `n/John Loh`, `p/12345678` and `a/NUS`.
 
 Step 7. The `CommandBox#autocompleteAction` will pass the list of autocomplete entries to
 `CommandBox#populatePopup(List<String> autocompleteEntries, String originalSearchInput)` to populate the autocomplete
@@ -591,7 +591,7 @@ Note:
 * **Alternative 2:** Have 24 different FXML files and use the one that is in the required order.
   * Pros: Easy to implement.
   * Cons: Harder to maintain and make changes.
-  
+
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -814,7 +814,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 8. Should not depend on a remote server.
 9. Should not cause any resolution-related inconveniences to the user.
 10. Should be packaged in a single JAR file and its size should not exceed 100MB.
-11. Should not have hard-to-test features or features that make the product hard-to-test, 
+11. Should not have hard-to-test features or features that make the product hard-to-test,
 i.e., features that require creating user accounts, login, logout etc., audio-related features and Features that depend heavily on remote APIs.
 
 ### Glossary

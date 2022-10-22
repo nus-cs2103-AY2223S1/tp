@@ -4,8 +4,8 @@ title: User Guide
 ---
 
 SoConnect is a **desktop app for managing contacts and tasks**. It aims to help NUS SoC students stay
-better connected to their school life, in terms of social connections and school tasks. SoConnect is also 
-**optimized for use via a Command Line Interface (CLI)** while still having the benefits of a Graphical User Interface (GUI). 
+better connected to their school life, in terms of social connections and school tasks. SoConnect is also
+**optimized for use via a Command Line Interface (CLI)** while still having the benefits of a Graphical User Interface (GUI).
 If you can type fast, SoConnect can **get your contact and task management done faster than traditional GUI apps.**
 
 * Table of Contents
@@ -310,7 +310,7 @@ Shows a filtered list of todos in your SoConnect.
 
 Format: `todo show CONDITION`
 
-Conditions: 
+Conditions:
 * `all`: Shows all todos.
 * `priority/PRIORITY`: Shows all todos of the specified priority.
 * `t/TAG`: Shows all todos with the specified tag.
