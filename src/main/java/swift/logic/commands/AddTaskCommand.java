@@ -54,7 +54,7 @@ public class AddTaskCommand extends Command {
         }
         model.addTask(toAdd);
         for (Index index : contactIndices) {
-            model.addBridge(model.getAddressBook().getPersonList().get(index.getZeroBased()), toAdd);
+            model.addBridge(model.getFilteredPersonList().get(index.getZeroBased()), toAdd);
         }
 
         return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
