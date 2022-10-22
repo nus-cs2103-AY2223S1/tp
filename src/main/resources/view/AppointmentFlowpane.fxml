@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.FlowPane?>
+
+<FlowPane fx:id="appointmentFlowPane" alignment="BASELINE_LEFT" style="-fx-padding: 0 0 5 0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Label fx:id="indexLabel" style="-fx-padding: 0 10 0 0; -fx-font-size: 20px; -fx-font-weight: bold; -fx-text-fill: #FFC600;" />
+      <ImageView pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/calendar.png" />
+         </image>
+      </ImageView>
+      <Label fx:id="dateLabel" style="-fx-padding: 0 10 0 10" />
+      <ImageView pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/clock.png" />
+         </image>
+      </ImageView>
+      <Label fx:id="timeLabel" style="-fx-padding: 0 10 0 10" />
+      <ImageView pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/location.png" />
+         </image>
+      </ImageView>
+      <Label fx:id="locationLabel" style="-fx-padding: 0 10 0 10" />
+   </children>
+</FlowPane>

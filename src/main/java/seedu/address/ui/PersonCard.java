@@ -84,7 +84,7 @@ public class PersonCard extends UiPart<Region> {
                 setPrefWidth(0);
                 setStyle(TRANSPARENT_BACKGROUND);
             } else {
-                setGraphic(new AppointmentFlowPane(getIndex() + 1, appointment));
+                setGraphic(new AppointmentFlowPane(getIndex() + 1, appointment).getRoot());
                 setStyle(TRANSPARENT_BACKGROUND);
             }
         }
