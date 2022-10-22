@@ -18,6 +18,7 @@ import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
+import seedu.address.model.person.nextofkin.Relationship;
 import seedu.address.model.tag.Tag;
 
 public class ParserUtilTest {
@@ -26,6 +27,7 @@ public class ParserUtilTest {
     private static final String INVALID_ADDRESS = " ";
     private static final String INVALID_EMAIL = "example.com";
     private static final String INVALID_TAG = "#friend";
+    private static final String INVALID_RELATIONSHIP = "stranger";
 
     private static final String VALID_NAME = "Rachel Walker";
     private static final String VALID_PHONE = "123456";
@@ -33,6 +35,7 @@ public class ParserUtilTest {
     private static final String VALID_EMAIL = "rachel@example.com";
     private static final String VALID_TAG_1 = "friend";
     private static final String VALID_TAG_2 = "neighbour";
+    private static final String VALID_RELATIONSHIP = "mother";
 
     private static final String WHITESPACE = " \t\r\n";
 
@@ -193,4 +196,35 @@ public class ParserUtilTest {
 
         assertEquals(expectedTagSet, actualTagSet);
     }
+
+    //TODO: add more for other methods in ParserUtil
+
+    @Test
+    public void parseRelationship_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseRelationship((String) null));
+    }
+
+    @Test
+    public void parseRelationship_invalidValue_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseRelationship(INVALID_RELATIONSHIP));
+    }
+
+    @Test
+    public void parseRelationship_validValueWithoutWhitespace_returnsRelationship() throws Exception {
+        Relationship expectedRelationship = Relationship.createRelationship(VALID_RELATIONSHIP);
+        assertEquals(expectedRelationship, ParserUtil.parseRelationship(VALID_RELATIONSHIP));
+    }
+
+    @Test
+    public void parseRelationship_validValueWithWhitespace_returnsTrimmedRelationship() throws Exception {
+        String relationshipWithWhitespace = WHITESPACE + VALID_RELATIONSHIP + WHITESPACE;
+        Relationship expectedRelationship = Relationship.createRelationship(VALID_RELATIONSHIP);
+        assertEquals(expectedRelationship, ParserUtil.parseRelationship(relationshipWithWhitespace));
+    }
+
+
+
+
+
+
 }

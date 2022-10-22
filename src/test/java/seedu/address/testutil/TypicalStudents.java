@@ -91,10 +91,37 @@ public class TypicalStudents {
 
     private TypicalStudents() {} // prevents instantiation
 
+    //    public static AddressBook getTypicalStudentsAddressBook() {
+    //        AddressBook ab = new AddressBook();
+    //
+    //        List<Student> studentList = new ArrayList<>(Arrays.asList(TypicalStudents.STUDENT1, TypicalStudents.STUDENT2));
+    //        for (Student s : studentList) {
+    //            ab.addPerson(s);
+    //        }
+    //        return ab;
+    //    }
+
+    //todo: temporary fix for problem: the tests that use the method may make changes to STUDENT1 and STUDENT2
     public static AddressBook getTypicalStudentsAddressBook() {
         AddressBook ab = new AddressBook();
 
-        List<Student> studentList = new ArrayList<>(Arrays.asList(TypicalStudents.STUDENT1, TypicalStudents.STUDENT2));
+        List<Student> studentList = new ArrayList<>(Arrays.asList(new StudentBuilder().withName("Alice Pauline")
+                .withAddress("123, Jurong West Ave 6, #08-111").withEmail("alice@example.com")
+                .withPhone("94351253")
+                .withTags("friends")
+                .withSchool("Keming Primary School")
+                .withLevel("PRIMARY3")
+                .withNextOfKin(NEXTOFKIN1)
+                .withTuitionClasses(TUITIONCLASS1, TUITIONCLASS2)
+                .build(), new StudentBuilder().withName("Benson Meier")
+                .withAddress("311, Clementi Ave 2, #02-25")
+                .withEmail("johnd@example.com").withPhone("98765432")
+                .withTags("owesMoney", "friends")
+                .withSchool("Zheng Hua Secondary School")
+                .withLevel("SECONDARY2")
+                .withNextOfKin(NEXTOFKIN2)
+                .withTuitionClasses(TUITIONCLASS1, TUITIONCLASS2)
+                .build()));
         for (Student s : studentList) {
             ab.addPerson(s);
         }
