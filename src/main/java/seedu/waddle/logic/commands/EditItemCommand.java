@@ -1,7 +1,10 @@
 package seedu.waddle.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.waddle.logic.parser.CliSyntax.PREFIX_COST;
 import static seedu.waddle.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
+import static seedu.waddle.logic.parser.CliSyntax.PREFIX_DURATION;
+import static seedu.waddle.logic.parser.CliSyntax.PREFIX_PRIORITY;
 
 import java.util.Optional;
 
@@ -11,6 +14,8 @@ import seedu.waddle.commons.util.CollectionUtil;
 import seedu.waddle.logic.StageManager;
 import seedu.waddle.logic.commands.exceptions.CommandException;
 import seedu.waddle.model.Model;
+import seedu.waddle.model.item.Cost;
+import seedu.waddle.model.item.Duration;
 import seedu.waddle.model.item.Item;
 import seedu.waddle.model.item.Priority;
 import seedu.waddle.model.itinerary.Itinerary;
@@ -25,8 +30,11 @@ public class EditItemCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the item identified "
             + "by the index number used in the displayed item list. "
             + "Existing values will be overwritten by the input values.\n"
-            + "Parameters: INDEX (must be a positive integer) "
-            + "[" + PREFIX_DESCRIPTION + "DESCRIPTION]...\n"
+            + "Parameters: "
+            + "[" + PREFIX_DESCRIPTION + "DESCRIPTION]"
+            + "[" + PREFIX_PRIORITY + "PRIORITY]"
+            + "[" + PREFIX_COST + "COST]"
+            + "[" + PREFIX_DURATION + "DURATION]...\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_DESCRIPTION + "Visit the Eiffel Tower ";
 
@@ -109,6 +117,8 @@ public class EditItemCommand extends Command {
     public static class EditItemDescriptor {
         private String description;
         private Priority priority;
+        private Cost cost;
+        private Duration duration;
 
         public EditItemDescriptor() {
         }
@@ -120,13 +130,15 @@ public class EditItemCommand extends Command {
         public EditItemDescriptor(EditItemDescriptor toCopy) {
             setDescription(toCopy.description);
             setPriority(toCopy.priority);
+            setCost(toCopy.cost);
+            setDuration(toCopy.duration);
         }
 
         /**
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(description, priority);
+            return CollectionUtil.isAnyNonNull(description, priority, cost, duration);
         }
 
         public Optional<String> getDescription() {
@@ -143,6 +155,22 @@ public class EditItemCommand extends Command {
 
         public void setPriority(Priority priority) {
             this.priority = priority;
+        }
+
+        public Optional<Cost> getCost() {
+            return Optional.ofNullable(cost);
+        }
+
+        public void setCost(Cost cost) {
+            this.cost = cost;
+        }
+
+        public Optional<Duration> getDuration() {
+            return Optional.ofNullable(duration);
+        }
+
+        public void setDuration(Duration duration) {
+            this.duration = duration;
         }
 
         @Override
