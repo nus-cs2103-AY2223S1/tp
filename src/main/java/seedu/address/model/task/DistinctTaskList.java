@@ -3,15 +3,17 @@ package seedu.address.model.task;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.util.Comparator;
 import java.util.Iterator;
 import java.util.List;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import seedu.address.model.commons.Criteria;
 import seedu.address.model.module.Module;
 import seedu.address.model.task.exceptions.DuplicateTaskException;
-import seedu.address.model.task.exceptions.TaskIdentityModifiedException;
 import seedu.address.model.task.exceptions.TaskNotFoundException;
+import seedu.address.model.task.exceptions.WrongTaskModifiedException;
 
 /**
  * This class represents a list which contains Tasks objects which are distinct from
@@ -56,42 +58,33 @@ public class DistinctTaskList implements Iterable<Task> {
     }
 
     /**
-     * Replaces the task {@code target} in the list with {@code editedTask}.
-     * {@code target} must exist in the list.
-     * The task identity of {@code editedTask} should be the same as task identity of {@code target}.
-     */
-    public void setTask(Task target, Task editedTask) {
-        requireAllNonNull(target, editedTask);
-
-        int index = taskList.indexOf(target);
-        if (index == -1) {
-            throw new TaskNotFoundException();
-        }
-
-        if (!target.isSameTask(editedTask)) {
-            throw new TaskIdentityModifiedException();
-        }
-
-        taskList.set(index, editedTask);
-    }
-
-    /**
      * Replaces the given task {@code target} with {@code editedTask}.
      * {@code target} must exist in the task list.
+     * If {@code isSameTask} is true, the task identity of {@code editedTask} should be the same as {@code target}.
      *
-     * @throws DuplicateTaskException if task identity of {@code editedTask} is the same as another task
-     *     in the list (other than {@code target}).
+     * @param target the task to be replaced.
+     * @param editedTask the edited task to replace {@code target}.
+     * @param isSameTask true if {@code target} has the same task identity as {@code editedTask}, false otherwise.
+     * @throws DuplicateTaskException if {@code isSameTask} is false but task identity of {@code editedTask}
+     *     is the same as another task in the list (other than {@code target}).
      */
-    public void replaceTask(Task target, Task editedTask) throws DuplicateTaskException {
-        requireAllNonNull(target, editedTask);
+    public void replaceTask(Task target, Task editedTask, boolean isSameTask) throws DuplicateTaskException {
+        requireAllNonNull(target, editedTask, isSameTask);
 
         int index = taskList.indexOf(target);
         if (index == -1) {
             throw new TaskNotFoundException();
         }
-        if (contains(editedTask) && !editedTask.isSameTask(target)) {
+
+        if (isSameTask && !target.isSameTask(editedTask)) {
+            throw new WrongTaskModifiedException();
+        }
+
+        boolean isDuplicateTask = contains(editedTask) && !editedTask.isSameTask(target);
+        if (!isSameTask && isDuplicateTask) {
             throw new DuplicateTaskException();
         }
+
         taskList.set(index, editedTask);
     }
 
@@ -104,6 +97,63 @@ public class DistinctTaskList implements Iterable<Task> {
         if (!taskList.remove(toRemove)) {
             throw new TaskNotFoundException();
         }
+    }
+
+    public int getNumOfTasksCompleted(Module module) {
+        requireNonNull(module);
+        return (int) taskList.stream().filter(Task::isComplete).map(Task::getModule)
+            .filter(module::isSameModule).count();
+    }
+
+    public int getTotalNumOfTasks(Module module) {
+        requireNonNull(module);
+        return (int) taskList.stream().map(Task::getModule).filter(module::isSameModule).count();
+    }
+
+    /**
+     * Sorts the tasks stored in the task list.
+     *
+     * @param criteria The criteria used for sorting.
+     */
+    public void sortTasks(Criteria criteria) {
+
+        //@@author dlimyy-reused
+        //Reused from https://stackoverflow.com/questions/51186174/
+        //with slight modifications
+        switch (criteria.getCriteria().toLowerCase()) {
+        case "priority":
+            FXCollections.sort(taskList, Comparator.comparing(Task::getPriorityTag,
+                    Comparator.nullsLast(Comparator.naturalOrder())));
+            break;
+        case "deadline":
+            FXCollections.sort(taskList, Comparator.comparing(Task::getDeadlineTag,
+                    Comparator.nullsLast(Comparator.naturalOrder())));
+            break;
+        case "module":
+            FXCollections.sort(taskList, Comparator.comparing(Task::getModule,
+                    Comparator.naturalOrder()));
+            break;
+        case "description":
+            FXCollections.sort(taskList, Comparator.comparing(Task::getDescription,
+                    Comparator.naturalOrder()));
+            break;
+        default:
+            break;
+        }
+        //@@author
+    }
+
+    /**
+     * Checks whether the criteria given by the user is valid.
+     *
+     * @param criteria The criteria that is being checked for validity.
+     * @return true if the criteria is valid; else return false.
+     */
+    public static boolean isValidCriteria(String criteria) {
+        return criteria.equalsIgnoreCase("priority")
+                || criteria.equalsIgnoreCase("deadline")
+                || criteria.equalsIgnoreCase("module")
+                || criteria.equalsIgnoreCase("description");
     }
 
     @Override

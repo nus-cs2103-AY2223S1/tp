@@ -9,8 +9,13 @@ import seedu.address.model.module.exceptions.NullModuleCodeException;
 /**
  * Module class represents a Module being taken.
  */
-public class Module {
+public class Module implements Comparable<Module> {
+
+    private static final String MESSAGE_NO_TASKS_FOR_MODULE = "You have no tasks for this module";
+
     private final ModuleCode moduleCode;
+    private int totalNumOfTasks;
+    private int numOfCompletedTasks;
     private final ModuleName moduleName;
     private final ModuleCredit moduleCredit;
 
@@ -23,12 +28,12 @@ public class Module {
      * @param moduleCredit The module credit of the module.
      */
     public Module(ModuleCode moduleCode, ModuleName moduleName, ModuleCredit moduleCredit) {
-        requireNonNull(moduleCode);
-        requireNonNull(moduleName);
-        requireNonNull(moduleCredit);
+        requireAllNonNull(moduleCode, moduleName, moduleCredit);
         this.moduleCode = moduleCode;
         this.moduleName = moduleName;
         this.moduleCredit = moduleCredit;
+        this.totalNumOfTasks = 0;
+        this.numOfCompletedTasks = 0;
     }
 
     /**
@@ -42,15 +47,41 @@ public class Module {
         this.moduleCode = moduleCode;
         this.moduleName = null;
         this.moduleCredit = null;
+        this.numOfCompletedTasks = 0;
+        this.totalNumOfTasks = 0;
+    }
+
+    /**
+     * Constructor of the Module class.
+     * Module code, number of completed tasks and total number of tasks must be specified.
+     *
+     * @param moduleCode The module code of the module.
+     * @param moduleName The name of the module.
+     * @param moduleCredit The number of module credit of the module.
+     * @param numOfCompletedTasks The number of completed tasks the module has.
+     * @param totalNumOfTasks The total number of tasks the module has.
+     */
+    public Module(ModuleCode moduleCode, ModuleName moduleName, ModuleCredit moduleCredit,
+                  int numOfCompletedTasks, int totalNumOfTasks) {
+        requireAllNonNull(moduleCode, moduleName, moduleCredit, numOfCompletedTasks, totalNumOfTasks);
+        this.moduleCode = moduleCode;
+        this.moduleName = moduleName;
+        this.moduleCredit = moduleCredit;
+        this.numOfCompletedTasks = numOfCompletedTasks;
+        this.totalNumOfTasks = totalNumOfTasks;
     }
 
     public ModuleCode getModuleCode() {
         return moduleCode;
     }
 
-    public ModuleName getModuleName() { return moduleName; }
+    public ModuleName getModuleName() {
+        return moduleName;
+    }
 
-    public ModuleCredit getModuleCredit() { return moduleCredit; }
+    public ModuleCredit getModuleCredit() {
+        return moduleCredit;
+    }
 
     /**
      * Checks whether two modules have the same module code or same module name.
@@ -61,6 +92,17 @@ public class Module {
      */
     public boolean isSameModule(Module otherModule) {
         return this.equals(otherModule);
+    }
+
+    /**
+     * Checks whether two modules have the same module fields.
+     *
+     * @param firstModule The first module being checked.
+     * @param secondModule The second module being checked against.
+     * @return true if both Module objects have the same fields; else return false.
+     */
+    public static boolean isSameModule(Module firstModule, Module secondModule) {
+        return firstModule.equals(secondModule);
     }
 
     /**
@@ -81,11 +123,11 @@ public class Module {
      * @return true if the two Module objects have the same module code;
      *         else return false
      * @throws NullModuleCodeException if the current module or other module {@code otherModule}
-     * has a null module code field.
+     *     has a null module code field.
      */
-    public boolean hasSameModuleCode(Module otherModule) throws NullModuleCodeException{
+    public boolean hasSameModuleCode(Module otherModule) throws NullModuleCodeException {
         requireNonNull(otherModule);
-        if (moduleCode == null || otherModule.moduleCode == null){
+        if (moduleCode == null || otherModule.moduleCode == null) {
             throw new NullModuleCodeException();
         }
         return moduleCode.equals(otherModule.moduleCode);
@@ -99,7 +141,7 @@ public class Module {
      *         else return false
      */
     public boolean hasSameModuleName(Module otherModule) {
-        if (moduleName != null && otherModule.moduleName != null){
+        if (moduleName != null && otherModule.moduleName != null) {
             return moduleName.equals(otherModule.moduleName);
         }
         return false;
@@ -113,12 +155,11 @@ public class Module {
      *         else return false
      */
     public boolean hasSameModuleCredit(Module otherModule) {
-        if (moduleCredit != null && otherModule.moduleCredit != null){
+        if (moduleCredit != null && otherModule.moduleCredit != null) {
             return moduleCredit.equals(otherModule.moduleCredit);
         }
         return false;
     }
-
 
     /**
      * Creates and returns a {@code Module} with the details of {@code this}
@@ -131,7 +172,39 @@ public class Module {
         ModuleName updatedModuleName = editModuleDescriptor.getModuleName().orElse(this.moduleName);
         ModuleCredit updatedModuleCredit = editModuleDescriptor.getModuleCredit().orElse(this.moduleCredit);
 
-        return new Module(updatedModuleCode, updatedModuleName, updatedModuleCredit);
+        return new Module(updatedModuleCode, updatedModuleName, updatedModuleCredit,
+                this.numOfCompletedTasks, this.totalNumOfTasks);
+    }
+
+    public Module setTotalNumOfTasks(Integer numOfTasks) {
+        return new Module(this.moduleCode, this.moduleName, this.moduleCredit, this.numOfCompletedTasks, numOfTasks);
+    }
+
+    public Module setNumOfCompletedTasks(Integer numOfCompletedTasks) {
+        return new Module(this.moduleCode, this.moduleName, this.moduleCredit,
+                numOfCompletedTasks, this.totalNumOfTasks);
+    }
+
+    /**
+     * Returns the percentage of tasks completed for the module.
+     */
+    public double getPercentageCompleted() {
+        return (double) numOfCompletedTasks / (double) totalNumOfTasks;
+    }
+
+    /**
+     * Returns a string representation of the number of completed tasks and number of total tasks.
+     */
+    public String generateProgressMessage() {
+        if (totalNumOfTasks == 0) {
+            return MESSAGE_NO_TASKS_FOR_MODULE;
+        } else {
+            return numOfCompletedTasks + " / " + totalNumOfTasks + " task(s) completed";
+        }
+    }
+
+    public boolean hasTasks() {
+        return totalNumOfTasks > 0;
     }
 
     @Override
@@ -154,4 +227,8 @@ public class Module {
         return getModuleCode().toString();
     }
 
+    @Override
+    public int compareTo(Module mod) {
+        return this.getModuleCode().moduleCode.compareTo(mod.getModuleCode().moduleCode);
+    }
 }

@@ -2,7 +2,9 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
-import static seedu.address.logic.parser.CliSyntax.*;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_MOD_CODE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_MOD_CREDIT;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_MOD_NAME;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_MODULES;
 
 import java.util.List;
@@ -13,9 +15,9 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.CollectionUtil;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.module.ModuleCredit;
 import seedu.address.model.module.Module;
 import seedu.address.model.module.ModuleCode;
+import seedu.address.model.module.ModuleCredit;
 import seedu.address.model.module.ModuleName;
 import seedu.address.model.module.exceptions.DuplicateModuleException;
 
@@ -127,7 +129,9 @@ public class EditModuleCommand extends Command {
             this.moduleCode = moduleCode;
         }
 
-        public void setModuleName(ModuleName moduleName) { this.moduleName = moduleName; }
+        public void setModuleName(ModuleName moduleName) {
+            this.moduleName = moduleName;
+        }
 
         public void setModuleCredit(ModuleCredit moduleCredit) {
             this.moduleCredit = moduleCredit;

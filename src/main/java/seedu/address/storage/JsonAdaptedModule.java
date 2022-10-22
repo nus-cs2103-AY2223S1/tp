@@ -19,7 +19,13 @@ public class JsonAdaptedModule {
     private final String moduleName;
     private final String moduleCredit;
 
-
+    /**
+     * Builds a {@code JsonAdaptedModule} with the module code, module name and module credit.
+     *
+     * @param moduleCode The module code of the module,
+     * @param moduleName The module name of the module.
+     * @param moduleCredit The module credit of the module.
+     */
     public JsonAdaptedModule(@JsonProperty("modCode") String moduleCode, @JsonProperty("modName") String moduleName,
                              @JsonProperty("modCredit") String moduleCredit) {
         this.moduleCode = moduleCode;
@@ -27,6 +33,11 @@ public class JsonAdaptedModule {
         this.moduleCredit = moduleCredit;
     }
 
+    /**
+     * Converts an existing module into {@code JsonAdaptedModule} object
+     *
+     * @param mod The module object being converted.
+     */
     public JsonAdaptedModule(Module mod) {
         moduleCode = mod.getModuleCode().moduleCode;
         moduleName = mod.getModuleName().moduleName;

@@ -64,13 +64,14 @@ public class AddTagCommand extends Command {
             }
             taggedTask = currentTask.setPriorityTag(priorityTag);
         }
+
         if (deadlineTag != null) {
             if (currentTask.hasDeadlineTag()) {
                 throw new CommandException(DEADLINE_TAG_ALREADY_EXIST);
             }
             taggedTask = requireNonNullElse(taggedTask, currentTask).setDeadlineTag(deadlineTag);
         }
-        model.setTask(currentTask, taggedTask);
+        model.replaceTask(currentTask, taggedTask, true);
         return new CommandResult(TAG_ADDED_SUCCESS);
     }
 }

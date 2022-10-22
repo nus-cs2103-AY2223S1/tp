@@ -34,6 +34,7 @@ public class MainWindow extends UiPart<Stage> {
 
     private TaskListPanel taskListPanel;
     private ModuleListPanel moduleListPanel;
+    private ExamListPanel examListPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
 
@@ -58,6 +59,8 @@ public class MainWindow extends UiPart<Stage> {
     @FXML
     private StackPane taskListPanelPlaceholder;
 
+    @FXML
+    private StackPane examListPanelPlaceholder;
 
     /**
      * Creates a {@code MainWindow} with the given {@code Stage} and {@code Logic}.
@@ -124,6 +127,9 @@ public class MainWindow extends UiPart<Stage> {
         moduleListPanel = new ModuleListPanel(logic.getFilteredModuleList());
         moduleListPanelPlaceholder.getChildren().add(moduleListPanel.getRoot());
 
+        examListPanel = new ExamListPanel(logic.getFilteredExamList());
+        examListPanelPlaceholder.getChildren().add(examListPanel.getRoot());
+
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
 
@@ -187,11 +193,9 @@ public class MainWindow extends UiPart<Stage> {
             if (commandResult.isShowHelp()) {
                 handleHelp();
             }
-
             if (commandResult.isExit()) {
                 handleExit();
             }
-
             return commandResult;
         } catch (CommandException | ParseException e) {
             logger.info("Invalid command: " + commandText);

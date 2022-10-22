@@ -1,0 +1,17 @@
+@startuml
+start
+:User executes command;
+if () then ([command is valid])
+  :Update filtered task list;
+  :Display filtered task list;
+else ([else])
+  if () then([module does not exist])
+    :Display module not found error message;
+  else ([else])
+    :Display status should be complete or incomplete;
+  endif
+endif
+
+stop
+
+@enduml

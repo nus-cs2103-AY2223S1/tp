@@ -4,17 +4,12 @@ import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MODULE;
 
-import java.util.Optional;
 import java.util.stream.Stream;
 
-import seedu.address.commons.util.CollectionUtil;
 import seedu.address.logic.commands.AddTaskCommand;
-import seedu.address.logic.commands.EditModuleCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.module.Module;
 import seedu.address.model.module.ModuleCode;
-import seedu.address.model.module.ModuleCredit;
-import seedu.address.model.module.ModuleName;
 import seedu.address.model.task.Task;
 import seedu.address.model.task.TaskDescription;
 
@@ -36,7 +31,8 @@ public class AddTaskCommandParser implements Parser<AddTaskCommand> {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddTaskCommand.MESSAGE_USAGE));
         }
 
-        Module module = ParserUtil.parseModule(argMultimap.getValue(PREFIX_MODULE).get());
+        ModuleCode moduleCode = ParserUtil.parseModuleCode(argMultimap.getValue(PREFIX_MODULE).get());
+        Module module = new Module(moduleCode);
         TaskDescription description = ParserUtil.parseDescription(argMultimap.getValue(PREFIX_DESCRIPTION).get());
 
         return new AddTaskCommand(new Task(module, description));

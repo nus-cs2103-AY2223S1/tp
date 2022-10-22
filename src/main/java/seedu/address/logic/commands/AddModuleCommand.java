@@ -1,7 +1,9 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.parser.CliSyntax.*;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_MOD_CODE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_MOD_CREDIT;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_MOD_NAME;
 
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;

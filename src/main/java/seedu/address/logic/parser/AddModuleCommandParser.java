@@ -1,16 +1,18 @@
 package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.parser.CliSyntax.*;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_MOD_CODE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_MOD_CREDIT;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_MOD_NAME;
 
 import java.util.stream.Stream;
 
 import seedu.address.logic.commands.AddModuleCommand;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.module.ModuleCredit;
 import seedu.address.model.module.Module;
 import seedu.address.model.module.ModuleCode;
+import seedu.address.model.module.ModuleCredit;
 import seedu.address.model.module.ModuleName;
 
 /**

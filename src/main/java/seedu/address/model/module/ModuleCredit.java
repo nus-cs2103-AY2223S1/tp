@@ -25,7 +25,7 @@ public class ModuleCredit {
     }
 
     public static boolean isValidModuleCredit(int moduleCredit) {
-        return moduleCredit >= 0 && moduleCredit <= 20 ;
+        return moduleCredit >= 0 && moduleCredit <= 20;
     }
 
     @Override
