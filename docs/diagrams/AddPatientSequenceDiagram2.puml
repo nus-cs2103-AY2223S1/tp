@@ -1,0 +1,67 @@
+@startuml
+!include style.puml
+
+
+Actor User as user USER_COLOR
+box UI UI_COLOR_T1
+participant ":MainWindow" as MainWindow UI_COLOR
+participant ":ResultDisplay" as ResultDisplay UI_COLOR
+participant ":OutputPanel" as OutputPanel UI_COLOR
+participant ":UpdatedPersonCard" as UpdatedPersonCard UI_COLOR
+end box
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+
+user -[USER_COLOR]> MainWindow : "add n/John Doe ..."
+activate MainWindow
+
+MainWindow -> LogicManager : execute("add n/John Doe...")
+activate LogicManager
+ref over LogicManager, Model : Command Execuction (1st diagram)
+
+deactivate Model
+
+
+LogicManager --> MainWindow : result
+deactivate LogicManager
+
+MainWindow -> ResultDisplay : setFeedbackToUser()
+activate ResultDisplay
+
+ResultDisplay --> MainWindow
+deactivate ResultDisplay
+
+MainWindow -> LogicManager : getPatientOfInterest()
+activate LogicManager
+
+LogicManager -> Model : getPatientOfInterest()
+activate Model
+
+Model --> LogicManager : patient
+deactivate Model
+
+LogicManager --> MainWindow : patient
+deactivate LogicManager
+
+MainWindow -> OutputPanel : handleAddPatient(patient)
+activate OutputPanel
+
+create UpdatedPersonCard
+OutputPanel -> UpdatedPersonCard
+activate UpdatedPersonCard
+
+UpdatedPersonCard --> OutputPanel
+deactivate UpdatedPersonCard
+
+OutputPanel --> MainWindow
+deactivate OutputPanel
+
+MainWindow --[UI_COLOR]> user
+deactivate MainWindow
+@enduml
