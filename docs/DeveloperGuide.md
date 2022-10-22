@@ -241,6 +241,41 @@ The following activity diagram summarizes what happens when a user executes a fi
 
 --------------------------------------------------------------------------------------------------------------------
 
+### Sort applicants by name, scholarship or status feature.
+
+#### Implementation
+
+The sort operation is facilitated by `SortCommand`. It extends `Command` and implements the `Command#execute` operation.
+
+Given below is an example usage scenario and how the sort operation is handled by TrackAScholar:
+
+1. The user enters `sort name`, for example, to sort all applicants by name in ascending lexicographic order.
+   This invokes `LogicManager#execute()`, which calls `TrackAScholarParser#parseCommand()` to separate the command word `sort` and
+   the argument `name`.
+
+2. `TrackAScholarParser` identifies the `sort` command and `SortCommandParser` will be instantiated which calls `SortCommandParser#parse()`
+   which checks if the arguments have the valid parameter name and flag by calling `List#contains()` and `SortCommandParser#checkInputSizeAndReverseFlag()` respectively.
+
+3. After passing the check, `SortCommandParser#parse()` creates a new `Comparator<Applicant>` with the argument before finally initializing and returning a `SortCommand`
+   with the new `Comparator<Applicant>` as an argument.
+
+4. `LogicManager#execute()` now calls `SortCommand#execute()`, which invokes `Model#updateFilteredApplicantList()` to filter out the list of
+   applicants with the matching application status. When the operation has concluded, `Model#getFilteredApplicantList()`
+   is called to retrieve the filtered list, such that TrackAScholar can count the total number of applicants in that particular list.
+
+5. `SortCommand#execute()` finishes with returning a `CommandResult` containing the newly sorted applicant list according to the input parameters.
+
+The following sequence diagram shows how the sort operation works:
+######(sequence diagram and activity diagram to be done replaced by jie hui)
+
+![Interactions Inside the Logic Component for the `filter` Command example](images/FilterSequenceDiagram.png)
+
+The following activity diagram summarizes what happens when a user executes a sort command:
+
+![Filter command activity diagram](images/FilterCommandActivityDiagram.png)
+
+--------------------------------------------------------------------------------------------------------------------
+
 ### Remove applicants by application status feature
 
 #### Implementation
