@@ -23,10 +23,6 @@ public class PersonBuilder {
     public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
     public static final String DEFAULT_ROLE = "Software Engineer";
     public static final String DEFAULT_TIMEZONE = "+8";
-    public static final String DEFAULT_TELEGRAM = "@amybee";
-    public static final String DEFAULT_EMAIL = "amy@gmail.com";
-    public static final String DEFAULT_SLACK = "amyb33";
-    public static final String DEFAULT_PHONE = "87654321";
 
     private Name name;
     private Address address;
@@ -41,15 +37,10 @@ public class PersonBuilder {
     public PersonBuilder() {
         name = new Name(DEFAULT_NAME);
         address = new Address(DEFAULT_ADDRESS);
-        role = new Role(DEFAULT_ROLE);
-        timezone = new Timezone(DEFAULT_TIMEZONE);
+        role = null;
+        timezone = null;
         tags = new HashSet<>();
         contacts = new HashMap<>();
-
-        contacts.put(ContactType.PHONE, Contact.of(ContactType.PHONE, DEFAULT_PHONE));
-        contacts.put(ContactType.EMAIL, Contact.of(ContactType.EMAIL, DEFAULT_EMAIL));
-        contacts.put(ContactType.TELEGRAM, Contact.of(ContactType.TELEGRAM, DEFAULT_TELEGRAM));
-        contacts.put(ContactType.SLACK, Contact.of(ContactType.SLACK, DEFAULT_SLACK));
     }
 
     /**
