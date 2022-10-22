@@ -32,7 +32,10 @@ title: Developer Guide
 
 ## **Acknowledgements**
 
-* {list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the original source as well}
+* Libraries used:
+  * [JavaFX](https://openjfx.io/)
+  * [Jackson](https://github.com/FasterXML/jackson)
+  * [JUnit5](https://github.com/junit-team/junit5)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -46,7 +49,7 @@ Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
 <div markdown="span" class="alert alert-primary">
 
-:bulb: **Tip:** The `.puml` files used to create diagrams in this document can be found in the [diagrams](https://github.com/se-edu/addressbook-level3/tree/master/docs/diagrams/) folder. Refer to the [_PlantUML Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create and edit diagrams.
+:bulb: **Tip:** The `.puml` files used to create diagrams in this document can be found in the [diagrams](https://github.com/AY2223S1-CS2103T-W16-1/tp/tree/master/docs/diagrams/) folder. Refer to the [_PlantUML Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create and edit diagrams.
 </div>
 
 ### Architecture
@@ -59,7 +62,7 @@ Given below is a quick overview of main components and how they interact with ea
 
 **Main components of the architecture**
 
-**`Main`** has two classes called [`Main`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/Main.java) and [`MainApp`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/MainApp.java). It is responsible for,
+**`Main`** has two classes called [`Main`](https://github.com/AY2223S1-CS2103T-W16-1/tp/tree/master/src/main/java/seedu/guest/Main.java) and [`MainApp`](https://github.com/AY2223S1-CS2103T-W16-1/tp/tree/master/src/main/java/seedu/guest/MainApp.java). It is responsible for,
 * At app launch: Initializes the components in the correct sequence, and connects them up with each other.
 * At shut down: Shuts down the components and invokes cleanup methods where necessary.
 
@@ -109,7 +112,7 @@ The `UI` component,
 
 ### Logic component
 
-**API** : [`Logic.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/logic/Logic.java)
+**API** : [`Logic.java`](https://github.com/AY2223S1-CS2103T-W16-1/tp/tree/master/src/main/java/seedu/guest/logic/Logic.java)
 
 Here's a (partial) class diagram of the `Logic` component:
 
@@ -137,7 +140,7 @@ How the parsing works:
 * All `XYZCommandParser` classes (e.g., `AddCommandParser`, `DeleteCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
 
 ### Model component
-**API** : [`Model.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/model/Model.java)
+**API** : [`Model.java`](https://github.com/AY2223S1-CS2103T-W16-1/tp/tree/master/src/main/java/seedu/guest/model/Model.java)
 
 <img src="images/ModelClassDiagram.png" width="450" />
 
@@ -149,16 +152,10 @@ The `Model` component,
 * stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
 * does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `GuestBook`, which `Guest` references. This allows `GuestBook` to only require one `Tag` object per unique tag, instead of each `Guest` needing their own `Tag` objects.<br>
-
-<img src="images/BetterModelClassDiagram.png" width="450" />
-
-</div>
-
 
 ### Storage component
 
-**API** : [`Storage.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/storage/Storage.java)
+**API** : [`Storage.java`](https://github.com/AY2223S1-CS2103T-W16-1/tp/tree/master/src/main/java/seedu/guest/storage/Storage.java)
 
 <img src="images/StorageClassDiagram.png" width="550" />
 
@@ -177,7 +174,48 @@ Classes used by multiple components are in the `seedu.guest.commons` package.
 
 This section describes some noteworthy details on how certain features are implemented.
 
-### Add feature
+### DateRange Field
+
+#### Implementation:
+
+* The `DateRange` class holds the period of stay of a `Guest`.
+* Its constructor takes in a string representing a check-in date and a check-out date.
+
+#### Design Considerations:
+
+**Aspect: How to represent dates**
+* **Alternative 1:** Separate classes for check-in and check-out dates extended from a `GuestDate` class.
+  * Pros: Easier to parse and edit dates separately.
+  * Cons: Depend on each other for validation (check-in must be earlier than check-out), increases coupling.
+* **Alternative 2 (current choice):** Single class representing both dates.
+  * Pros: Validation can be done within the class itself, reduces coupling. More intuitive as the dates are often displayed together.
+  * Cons: Parsing, editing, and other operations on the dates are more complex.
+
+Taking into consideration that check-in and check-out dates come as a pair, we decided to proceed with Alternative 2 to reduce coupling.
+
+### Bill Field
+
+#### Implementation:
+
+* The `Bill` class holds the value that a `Guest` owes.
+* Its constructor takes in a string representing a signed `double` with up to 2 decimal places.
+
+#### Design Considerations:
+
+**Aspect: `add()` method of the `Bill` class**
+* As `Bill`s can be added to each other, we abstracted this behaviour into the `add` method.
+
+**Aspect: How to deduct from bills**
+* **Alternative 1:** Create a `subtract` method.
+  * Pros: More understandable code.
+  * Cons: Requires knowledge of which method to call (`add` or `subtract`).
+* **Alternative 2 (current choice):** Use `add()` with a negative `Bill`.
+  * Pros: Less code, more flexibility.
+  * Cons: `Bill` must be allowed to hold negative values, but `Guest`s cannot (more checks required).
+
+Taking into consideration that `double`s are already signed and charges on bills can be negative, we decided to proceed with Alternative 2.
+
+### Add Command
 
 #### Implementation:
 
@@ -214,10 +252,10 @@ the initial bill to be 0 and chose to remove `Bill` as it makes the `add` comman
 * As adding the guest will be done during check in, the guest might not have any special requests to make for the room. Hence,
 we chose to make `Request` optional and default it as blank should it not be provided.
 
-### Edit feature
+### Edit Command
 
 #### Implementation:
-* The `edit` command takes in an INDEX indicating the index of the guests to edit in the current panel (starting from 1) and 8 optional fields (`Name`, `Phone`, `Email`, `Room`, `Date Range`, `Number of Guests`, `Room Clean` and `Request`) and is supported by the `EditCommandParser` that extracts out each of the fields from their respective prefixes.
+* The `edit` command takes in an INDEX indicating the index of the guest to edit in the current panel (starting from 1) and 8 optional fields (`Name`, `Phone`, `Email`, `Room`, `Date Range`, `Number of Guests`, `Is Room Clean` and `Request`) and is supported by the `EditCommandParser` that extracts out each of the fields from their respective prefixes.
 
 The following activity diagrams summarizes what happens when a user enters an `edit` command.
 
@@ -228,10 +266,41 @@ The following activity diagrams summarizes what happens when a user enters an `e
 **Aspect: Allowing only specific fields provided to be edited**
 * As the edit command is usually used when there is a change or error in the information provided, it makes more sense for the user to be able to change only selected fields.
 
-**Aspect: Excluding b/ (Bill) in the `edit` command**
+**Aspect: Excluding `Bill` in the `edit` command**
 * As the `bill` command allows us to add and subtract to the bill directly, the edit command is redundant and may cause user error if they were to replace it by accident.
 
-### MarkRoomsUnclean Feature
+### Bill Command
+
+#### Implementation:
+* The `bill` command takes in an INDEX indicating the index of the guest to edit in the current panel (starting from 1) and the `bill` field and is supported by the `BillCommandParser` that extracts the bill value.
+
+The following activity diagrams summarizes what happens when a user enters a `bill` command.
+
+![BillActivityDiagram](images/BillActivityDiagram.png)
+
+#### Design Considerations:
+
+**Aspect: How to update a bill**
+* **Alternative 1:** Set the bill to the input value.
+  * Pros: Can be implemented by extending the `edit` command, so that the user does not need to learn an additional command
+  * Cons: The user is required to calculate the updated bill value, which is less convenient and intuitive.
+* **Alternative 2 (current choice):** Add the input value to the bill.
+  * Pros: More aligned with real-life implementation of bills, by adding the next charge. Easy to undo as the previous command is displayed.
+  * Cons: Addition method must be implemented, and negative values must be accepted.
+* **Alternative 3:** Allow both depending on syntax.
+  * Pros: Flexibility for user, such as resetting the bill to 0 or another known value if needed.
+  * Cons: Syntax may be confusing and complex to implement.
+
+Taking into consideration the much higher probability of the user using the bill command to add a value as compared to setting the value,
+and that minimal calculation is needed to reset the bill to 0 (`b/-CURRENT_VALUE`), we decided to proceed with Alternative 2.
+
+**Aspect: Accepting signed and unsigned positive values**
+* As the user may prefer to see `+` differentiating positive and negative values, or leave out the `+` sign for convenience, we decided to accept both formats for positive values.
+
+**Aspect: Using the `b/` prefix**
+* To standardise the formatting and testing for field inputs, we decided to include the `b/` prefix in the command syntax.
+
+### MarkRoomsUnclean Command
 
 #### Implementation
 * The `markRoomsUnclean` command edits all the guests in the guest book and changes their isRoomClean statuses to "no". It takes in no additional inputs or fields. 
@@ -251,7 +320,7 @@ The following activity diagram summarizes what happens when a user enters a `mar
 
 Taking into consideration the context of GuestBook that operates for small hotels, it is unlikely to have a case in which the user has to mark different groups of guests' isRoomClean statuses differently as the types of rooms as mostly homogenous.
 
-### Find feature
+### Find Command
 
 #### Implementation:
 * The `find` command takes in multiple keywords separated by spaces, and find all guests whose `Name` contain any of the keywords. The keywords are case-insensitive as well. As such, entering 'Alice' is the same as entering 'aLiCE'.
@@ -268,7 +337,7 @@ The following activity diagram summarizes what happens when a user enters a `fin
 **Aspect: Only matching full keywords**
 * The `find` command only matches full keywords. For example, typing in 'ali' would not match a Guest named 'Alice'. As we do not want to display possible redundant data to the hotel manager, we decided to limit the `find` command to only full keywords, so that the results displayed are more targeted.
 
-### \[Proposed\] Improved `find` command
+### \[Proposed\] Improved `find` Command
 
 #### Proposed Implementation
 
@@ -279,8 +348,7 @@ The following activity diagram summarizes the proposed implementation of what sh
 
 ![ProposedImplementationFindActivityDiagram](images/ProposedImplementationFindActivityDiagram.png)
 
-
-#### Design considerations:
+#### Design Considerations:
 
 **Aspect: How to implement the extensible `find` command:**
 
@@ -293,7 +361,7 @@ The following activity diagram summarizes the proposed implementation of what sh
     * Cons: We must ensure that the implementation of each field predicate are correct.
 
 
-### \[Proposed\] Undo/redo feature
+### \[Proposed\] Undo/Redo Command
 
 #### Proposed Implementation
 
@@ -358,7 +426,7 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 <img src="images/CommitActivityDiagram.png" width="250" />
 
-#### Design considerations:
+#### Design Considerations:
 
 **Aspect: How undo & redo executes:**
 
@@ -373,7 +441,7 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 _{more aspects and alternatives to be added}_
 
-### \[Proposed\] Data archiving
+### \[Proposed\] Data Archiving
 
 _{Explain here how the data archiving feature will be implemented}_
 

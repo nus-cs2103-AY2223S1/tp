@@ -1,0 +1,16 @@
+@startuml
+skinparam activity {
+    ArrowColor #A80036
+    BackgroundColor #FEFECE
+    BorderColor #A80036
+    BorderThickness 1.5
+}
+start
+:User executes bill command;
+:Get guest to bill;
+:Create new bill with updated value;
+:Create new guest using updated bill;
+:Set new guest to model;
+stop
+
+@enduml
