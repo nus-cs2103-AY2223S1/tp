@@ -5,26 +5,21 @@ import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ATTENDANCE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_GRADEPROGRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_HOMEWORK;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_LESSON_PLAN;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_SESSION;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
-
-import java.util.Collection;
-import java.util.Collections;
-import java.util.Optional;
-import java.util.Set;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.RemoveCommand;
 import seedu.address.logic.commands.RemoveCommand.RemovePersonDescriptor;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.tag.Tag;
 
 
 public class RemoveCommandParser implements Parser<RemoveCommand> {
 
+    /**
+     * Parses the given {@code String} of arguments in the context of the RemoveCommand
+     * and returns the RemoveCommand object for execution
+     * @throws ParseException if the user input does not conform the expected format
+     */
     public RemoveCommand parse(String args) throws ParseException {
         requireNonNull(args);
         ArgumentMultimap argMultimap =
@@ -45,7 +40,8 @@ public class RemoveCommandParser implements Parser<RemoveCommand> {
             removePersonDescriptor.setHomeworkIndex(ParserUtil.parseIndex(homeworkArgs[0]));
         }
         if (argMultimap.getValue(PREFIX_GRADEPROGRESS).isPresent()) {
-            String[] gradeProgressArgs = ParserUtil.parseIndexedRemove(argMultimap.getValue(PREFIX_GRADEPROGRESS).get());
+            String[] gradeProgressArgs = ParserUtil
+                    .parseIndexedRemove(argMultimap.getValue(PREFIX_GRADEPROGRESS).get());
             removePersonDescriptor.setGradeProgressIndex(ParserUtil.parseIndex(gradeProgressArgs[0]));
         }
         if (argMultimap.getValue(PREFIX_ATTENDANCE).isPresent()) {

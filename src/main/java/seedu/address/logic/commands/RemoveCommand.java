@@ -4,13 +4,9 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ATTENDANCE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_GRADEPROGRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_HOMEWORK;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_LESSON_PLAN;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_SESSION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
@@ -30,7 +26,6 @@ import seedu.address.model.person.Homework;
 import seedu.address.model.person.HomeworkList;
 import seedu.address.model.person.LessonPlan;
 import seedu.address.model.person.Name;
-import seedu.address.model.person.NameIsKeywordsPredicate;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.Session;
@@ -52,11 +47,11 @@ public class RemoveCommand extends Command {
             + "[" + PREFIX_SESSION + "INDEX SESSION]"
             + "[" + PREFIX_GRADEPROGRESS + "INDEX GRADE PROGRESS]"
             + "[" + PREFIX_TAG + "TAG]...\n"
-            + "Example: " + COMMAND_WORD + " " + PREFIX_HOMEWORK + " 1 ";
+            + "Example: PERSON_INDEX " + COMMAND_WORD + " " + PREFIX_HOMEWORK + " 1 ";
 
     public static final String MESSAGE_REMOVED_PERSON_SUCCESS = "Removed Person Detail: %1$s";
-    public static final String MESSAGE_NOT_REMOVED = "At least one field to remove must be provided.";
-    public static final String MESSAGE_NOT_VIEW_MODE = "You need to be in full view mode to remove a person's details.";
+    public static final String MESSAGE_NOT_VIEW_MODE
+            = "You need to be in full view mode to remove a person's details.";
 
     private final Index index;
     private final RemovePersonDescriptor removePersonDescriptor;
@@ -109,8 +104,8 @@ public class RemoveCommand extends Command {
                 updatedAttendanceList, updatedSessionList, updatedGradeProgressList, updatedTags);
     }
 
-    public static HomeworkList getUpdatedHomeworkList(Person personToEdit, RemovePersonDescriptor removePersonDescriptor)
-            throws CommandException {
+    public static HomeworkList getUpdatedHomeworkList(Person personToEdit,
+            RemovePersonDescriptor removePersonDescriptor) throws CommandException {
         HomeworkList updatedHomeworkList = personToEdit.getHomeworkList();
         Optional<Index> homeworkIndex = removePersonDescriptor.getHomeworkIndex();
         if (homeworkIndex.isEmpty()) {
@@ -124,7 +119,7 @@ public class RemoveCommand extends Command {
     }
 
     public static AttendanceList getUpdatedAttendanceList(Person personToEdit,
-              RemovePersonDescriptor removePersonDescriptor) throws CommandException {
+            RemovePersonDescriptor removePersonDescriptor) throws CommandException {
         AttendanceList updatedAttendanceList = personToEdit.getAttendanceList();
         Optional<Index> attendanceIndex = removePersonDescriptor.getAttendanceIndex();
         if (attendanceIndex.isEmpty()) {
@@ -137,8 +132,8 @@ public class RemoveCommand extends Command {
         return updatedAttendanceList;
     }
 
-    public static SessionList getUpdatedSessionList(Person personToEdit, RemovePersonDescriptor removePersonDescriptor)
-        throws CommandException {
+    public static SessionList getUpdatedSessionList(Person personToEdit,
+            RemovePersonDescriptor removePersonDescriptor) throws CommandException {
         SessionList updatedSessionList = personToEdit.getSessionList();
         Optional<Index> sessionIndex = removePersonDescriptor.getSessionIndex();
         if (sessionIndex.isEmpty()) {
@@ -151,8 +146,8 @@ public class RemoveCommand extends Command {
         return updatedSessionList;
     }
 
-    public static GradeProgressList getUpdatedGradeProgressList(Person personToEdit, RemovePersonDescriptor removePersonDescriptor)
-        throws CommandException {
+    public static GradeProgressList getUpdatedGradeProgressList(Person personToEdit,
+            RemovePersonDescriptor removePersonDescriptor) throws CommandException {
         GradeProgressList updatedGradeProgressList = personToEdit.getGradeProgressList();
         Optional<Index> gradeProgressIndex = removePersonDescriptor.getGradeProgressIndex();
         if (gradeProgressIndex.isEmpty()) {
@@ -187,16 +182,13 @@ public class RemoveCommand extends Command {
             return Optional.ofNullable(name);
         }
 
-
         public Optional<Phone> getPhone() {
             return Optional.ofNullable(phone);
         }
 
-
         public Optional<LessonPlan> getLessonPlan() {
             return Optional.ofNullable(lessonPlan);
         }
-
 
         public Optional<Homework> getHomework() {
             return Optional.ofNullable(homework);
@@ -246,10 +238,10 @@ public class RemoveCommand extends Command {
             this.sessionIndex = sessionIndex;
         }
 
-    /**
-     * Sets {@code tags} to this object's {@code tags}.
-     * A defensive copy of {@code tags} is used internally.
-     */
+        /**
+         * Sets {@code tags} to this object's {@code tags}.
+         * A defensive copy of {@code tags} is used internally.
+         */
         public void setTags(Set<Tag> tags) {
         this.tags = (tags != null) ? new HashSet<>(tags) : null;
     }
