@@ -57,7 +57,7 @@ List Box:
 ---
 
 #### Search for an item: `find`
-TODO:YX (ditto as list)
+<!-- TODO: YX (ditto as list) -->
 **Format:** `find ITEM_NAME`
 
 > Finds an inventory item based on the given keywords
