@@ -28,7 +28,6 @@
 | EXPIRY_DATE  | exp/          | :EXPIRY_DATE: |
 | PRICE        | p/            | :PRICE:       |
 | REMARKS      | r/            | :REMARKS:     |
-
 {% endcapture %}
 
 <!-- ===== RENDER THE ACTUAL TABLE ===== -->
