@@ -81,14 +81,6 @@ public class EditInternshipDescriptorBuilder {
         return this;
     }
 
-    ///**
-    // * Sets the {@code Status} of the {@code EditInternshipDescriptor} that we are building.
-    // */
-    // public EditInternshipDescriptorBuilder withStatus(String status) {
-    // descriptor.setStatus(new Status(status));
-    // return this;
-    // }
-
     /**
      * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code EditInternshipDescriptor}
      * that we are building.

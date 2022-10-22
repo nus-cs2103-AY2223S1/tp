@@ -79,14 +79,14 @@ public class InTrackParser {
         case StatusCommand.COMMAND_WORD:
             return new StatusCommandParser().parse(arguments);
 
+        case RemarkCommand.COMMAND_WORD:
+            return new RemarkCommandParser().parse(arguments);
+
         case AddTaskCommand.COMMAND_WORD:
             return new AddTaskCommandParser().parse(arguments);
 
         case StatsCommand.COMMAND_WORD:
             return new StatsCommand();
-
-        case RemarkCommand.COMMAND_WORD:
-            return new RemarkCommandParser().parse(arguments);
 
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
