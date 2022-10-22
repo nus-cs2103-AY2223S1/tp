@@ -8,7 +8,6 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.Region;
-import javax.swing.text.LabelView;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.project.Project;
 

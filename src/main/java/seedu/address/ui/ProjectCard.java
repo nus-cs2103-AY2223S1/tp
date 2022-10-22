@@ -1,7 +1,5 @@
 package seedu.address.ui;
 
-import java.awt.*;
-
 import javafx.fxml.FXML;
 import javafx.scene.control.Hyperlink;
 import javafx.scene.control.Label;
@@ -33,8 +31,6 @@ public class ProjectCard extends UiPart<Region> {
     @FXML
     private Label id;
     @FXML
-    private Image imgRepository;
-    @FXML
     private Hyperlink repository;
     @FXML
     private Label deadline;
@@ -49,7 +45,8 @@ public class ProjectCard extends UiPart<Region> {
     public ProjectCard(Project project, int displayedIndex) {
         super(FXML);
         this.project = project;
-        name.setText(displayedIndex + ". " + project.getProjectName().toString() + " " + project.getProjectId().uiRepresentation());
+        name.setText(displayedIndex + ". " + project.getProjectName().toString()
+                + " " + project.getProjectId().uiRepresentation());
         repository.setText(project.getRepository().isEmpty() ? "No Repository Set"
                 : project.getRepository().getUiRepresentation());
         deadline.setText(project.getDeadline().isEmpty() ? "No Deadline Set"
