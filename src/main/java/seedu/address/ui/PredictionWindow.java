@@ -3,7 +3,6 @@ package seedu.address.ui;
 import java.util.logging.Logger;
 
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.input.Clipboard;
 import javafx.scene.input.ClipboardContent;
@@ -16,13 +15,9 @@ import seedu.address.commons.core.LogsCenter;
 public class PredictionWindow extends UiPart<Stage> {
 
     public static final String USERGUIDE_URL = "https://se-education.org/addressbook-level3/UserGuide.html";
-    public static final String HELP_MESSAGE = "Refer to the user guide: " + USERGUIDE_URL;
 
     private static final Logger logger = LogsCenter.getLogger(PredictionWindow.class);
     private static final String FXML = "PredictionWindow.fxml";
-
-    @FXML
-    private Button copyButton;
 
     @FXML
     private Label prediction;

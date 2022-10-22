@@ -157,9 +157,9 @@ public class MainWindow extends UiPart<Stage> {
      * @param predictedGrade the predicted grade to show
      */
     @FXML
-    public void handlePrediction(double predictedGrade) {
+    public void handlePrediction(String predictedGrade) {
         if (!predictionWindow.isShowing()) {
-            predictionWindow.show(String.valueOf(predictedGrade));
+            predictionWindow.show(predictedGrade);
         } else {
             predictionWindow.focus();
         }
