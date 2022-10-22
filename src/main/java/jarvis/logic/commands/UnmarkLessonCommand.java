@@ -13,7 +13,7 @@ import jarvis.model.Lesson;
 import jarvis.model.Model;
 
 /**
- * Marks a lesson as uncomplete.
+ * Marks a lesson as not complete.
  * The lesson is identified using its displayed index from the lesson book.
  */
 public class UnmarkLessonCommand extends Command {
@@ -32,7 +32,7 @@ public class UnmarkLessonCommand extends Command {
     private final Index lessonIndex;
 
     /**
-     * Creates a UnmarkLessonCommand to mark the lesson at the specified index as uncompleted.
+     * Creates a UnmarkLessonCommand to mark the lesson at the specified index as not completed.
      */
     public UnmarkLessonCommand(Index lessonIndex) {
         requireNonNull(lessonIndex);

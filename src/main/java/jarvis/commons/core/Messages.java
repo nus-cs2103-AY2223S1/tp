@@ -15,5 +15,5 @@ public class Messages {
     public static final String MESSAGE_INVALID_STUDIO_DISPLAYED_INDEX = "The studio index provided is invalid";
     public static final String MESSAGE_LESSONS_LISTED_OVERVIEW = "%1$d lessons listed!";
     public static final String MESSAGE_INVALID_PARTICIPATION = "The participation value provided should be an "
-            + "integer between 0 and 500";
+            + "integer from 0 to 500";
 }

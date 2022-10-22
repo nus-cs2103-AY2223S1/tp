@@ -48,7 +48,7 @@ public class AddNotesCommand extends Command {
      * Creates a AddNotesCommand to add notes to a lesson or to a specified student in the lesson.
      */
     public AddNotesCommand(Index lessonIndex, Index studentIndex, String notes) {
-        requireAllNonNull(lessonIndex, studentIndex, notes);
+        requireAllNonNull(lessonIndex, notes);
         this.lessonIndex = lessonIndex;
         this.studentIndex = studentIndex;
         this.notes = notes;
@@ -93,11 +93,11 @@ public class AddNotesCommand extends Command {
 
         AddNotesCommand otherAddNotes = (AddNotesCommand) other;
 
-        if (studentIndex == null || otherAddNotes.studentIndex == null) {
-            return studentIndex == null && otherAddNotes.studentIndex == null;
-        }
+        boolean studentIndexEquality = studentIndex == null || otherAddNotes.studentIndex == null
+                ? studentIndex == null && otherAddNotes.studentIndex == null
+                : studentIndex.equals(otherAddNotes.studentIndex);
         return lessonIndex.equals(otherAddNotes.lessonIndex)
-                && studentIndex.equals(otherAddNotes.studentIndex)
+                && studentIndexEquality
                 && notes.equals(otherAddNotes.notes);
     }
 }
