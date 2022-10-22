@@ -188,6 +188,15 @@ and create the corresponding parser
 
 - Create a `SearchCommand` class 
 
+=======
+### User Uploaded Images
+The application allows users to upload their own images for Property and Client models. By default, the images are stored
+in `data/images`, but users can specify their custom directory in `preferences.json`.
+
+The Image object is not initialized until the PropertyCard/ClientCard of the UI is rendered. This is to save memory 
+consumption and rely on the Lazy Loading of Observable List. We need to inject the UserPrefs into the Property/Client 
+models in order to determine the location to source for the uploaded images.
+
 ### \[Proposed\] Undo/redo feature
 
 #### Proposed Implementation
@@ -259,11 +268,15 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 **Aspect: How undo & redo executes:**
 
-* **Alternative 1 (current choice):** Saves the entire address book.
+* **Alternative 1:** Saves the initial PropertyDirectory and ClientDirectory on initialization. Store all commands in 
+CommandQueue and re-executes _n - 1_ commands on undo.
+    * Pros: Easy to implement. Less memory usage
+    * Cons: Might make undo command less responsive, depending on complexity of commands.
+* **Alternative 2:** Saves the entire address book.
     * Pros: Easy to implement.
     * Cons: May have performance issues in terms of memory usage.
 
-* **Alternative 2:** Individual command knows how to undo/redo by
+* **Alternative 3:** Individual command knows how to undo/redo by
   itself.
     * Pros: Will use less memory (e.g. for `delete`, just save the person being deleted).
     * Cons: We must ensure that the implementation of each individual command are correct.

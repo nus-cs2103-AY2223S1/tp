@@ -58,7 +58,7 @@ public class StorageManagerTest {
         PropertyDirectory original = getTypicalPropertyDirectory();
         storageManager.savePropertyDirectory(original);
         ReadOnlyPropertyDirectory retrieved = storageManager.readPropertyDirectory().get();
-        assertEquals(original, new PropertyDirectory(retrieved));
+        assertEquals(original, new PropertyDirectory(retrieved, testFolder.resolve("images")));
     }
 
     @Test

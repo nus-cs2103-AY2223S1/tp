@@ -1,4 +1,4 @@
-package seedu.condonery.logic.commands.property;
+package seedu.condonery.logic.commands.client;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.condonery.logic.parser.CliSyntax.PREFIX_ADDRESS;
@@ -9,6 +9,7 @@ import static seedu.condonery.model.Model.PREDICATE_SHOW_ALL_PROPERTIES;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 import java.util.Set;
 
@@ -19,84 +20,86 @@ import seedu.condonery.logic.commands.Command;
 import seedu.condonery.logic.commands.CommandResult;
 import seedu.condonery.logic.commands.exceptions.CommandException;
 import seedu.condonery.model.Model;
+import seedu.condonery.model.client.Client;
 import seedu.condonery.model.fields.Address;
 import seedu.condonery.model.fields.Name;
-import seedu.condonery.model.property.Property;
 import seedu.condonery.model.tag.Tag;
 
 /**
- * Edits the details of an existing property in the address book.
+ * Edits the details of an existing client in the address book.
  */
-public class EditPropertyCommand extends Command {
+public class EditClientCommand extends Command {
 
-    public static final String COMMAND_WORD = "edit -p";
+    public static final String COMMAND_WORD = "edit -c";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the property identified "
-            + "by the index number used in the displayed property list. "
-            + "Existing values will be overwritten by the input values.\n"
-            + "Parameters: INDEX (must be a positive integer) "
-            + "[" + PREFIX_NAME + "NAME] "
-            + "[" + PREFIX_ADDRESS + "ADDRESS] "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the specified "
+            + "client in Condonery. "
+            + "Parameters: "
+            + PREFIX_NAME + "NAME "
+            + PREFIX_ADDRESS + "ADDRESS "
             + "[" + PREFIX_TAG + "TAG]...\n"
-            + "Example: " + COMMAND_WORD + " 1 ";
+            + "Example: " + COMMAND_WORD + " "
+            + PREFIX_NAME + "Alice Tan"
+            + PREFIX_ADDRESS + "Cantonment Rd, #1G, S085301 "
+            + PREFIX_TAG + "Condo";
 
-    public static final String MESSAGE_EDIT_PROPERTY_SUCCESS = "Property successfully edited: %1$s";
+    public static final String MESSAGE_EDIT_CLIENT_SUCCESS = "Client successfully edited: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
-    public static final String MESSAGE_DUPLICATE_PROPERTY = "This property already exists in the address book.";
+    public static final String MESSAGE_DUPLICATE_CLIENT = "This client already exists in the address book.";
 
     private final Index targetIndex;
-    private final EditPropertyDescriptor editPropertyDescriptor;
+    private final EditClientDescriptor editClientDescriptor;
 
     /**
-     * Creates a EditPropertyCommand to edit the specific {@code Property} at the specified index
-     * @param targetIndex of the property to edit
-     * @param editPropertyDescriptor details to edit the property
+     * Creates a EditClientCommand to edit the specific {@code Client} at the specified index
+     * @param targetIndex index of the client to edit
+     * @param editClientDescriptor details to edit the client
      */
-    public EditPropertyCommand(Index targetIndex, EditPropertyDescriptor editPropertyDescriptor) {
+    public EditClientCommand(Index targetIndex, EditClientDescriptor editClientDescriptor) {
         requireNonNull(targetIndex);
-        requireNonNull(editPropertyDescriptor);
+        requireNonNull(editClientDescriptor);
 
         this.targetIndex = targetIndex;
-        this.editPropertyDescriptor = new EditPropertyDescriptor(editPropertyDescriptor);
-    }
-
-    public EditPropertyDescriptor getEditPropertyDescriptor() {
-        return editPropertyDescriptor;
+        this.editClientDescriptor = editClientDescriptor;
     }
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
 
-        List<Property> lastShownList = model.getFilteredPropertyList();
+        List<Client> lastShownList = model.getFilteredClientList();
         if (targetIndex.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_PROPERTY_DISPLAYED_INDEX);
+            throw new CommandException(Messages.MESSAGE_INVALID_CLIENT_DISPLAYED_INDEX);
         }
 
-        Property propertyToEdit = lastShownList.get(targetIndex.getZeroBased());
-        Property editedProperty = createEditedProperty(propertyToEdit, editPropertyDescriptor);
-        if (!propertyToEdit.isSameProperty(editedProperty) && model.hasProperty(editedProperty)) {
-            throw new CommandException(MESSAGE_DUPLICATE_PROPERTY);
+        Client clientToEdit = lastShownList.get(targetIndex.getZeroBased());
+        Client editedClient = createEditedClient(clientToEdit, editClientDescriptor);
+        if (!clientToEdit.isSameClient(editedClient) && model.hasClient(editedClient)) {
+            throw new CommandException(MESSAGE_DUPLICATE_CLIENT);
         }
 
-        model.setProperty(propertyToEdit, editedProperty);
+        model.setClient(clientToEdit, editedClient);
         model.updateFilteredPropertyList(PREDICATE_SHOW_ALL_PROPERTIES);
-        return new CommandResult(String.format(MESSAGE_EDIT_PROPERTY_SUCCESS, editedProperty));
+        return new CommandResult(String.format(MESSAGE_EDIT_CLIENT_SUCCESS, editedClient));
+    }
+
+    public EditClientDescriptor getEditClientDescriptor() {
+        return editClientDescriptor;
     }
 
     /**
-     * Creates and returns a {@code Property} with the details of {@code propertyToEdit}
-     * edited with {@code editPropertyDescriptor}.
+     * Creates and returns a {@code Client} with the details of {@code clientToEdit}
+     * edited with {@code editClientDescriptor}.
      */
-    private static Property createEditedProperty(Property propertyToEdit,
-                                                 EditPropertyDescriptor editPropertyDescriptor) {
-        assert propertyToEdit != null;
+    private static Client createEditedClient(Client clientToEdit,
+                                                 EditClientDescriptor editClientDescriptor) {
+        assert clientToEdit != null;
 
-        Name updatedName = editPropertyDescriptor.getName().orElse(propertyToEdit.getName());
-        Address updatedAddress = editPropertyDescriptor.getAddress().orElse(propertyToEdit.getAddress());
-        Set<Tag> updatedTags = editPropertyDescriptor.getTags().orElse(propertyToEdit.getTags());
+        Name updatedName = editClientDescriptor.getName().orElse(clientToEdit.getName());
+        Address updatedAddress = editClientDescriptor.getAddress().orElse(clientToEdit.getAddress());
+        Set<Tag> updatedTags = editClientDescriptor.getTags().orElse(clientToEdit.getTags());
 
-        return new Property(updatedName, updatedAddress, updatedTags);
+        return new Client(updatedName, updatedAddress, updatedTags);
     }
 
     @Override
@@ -107,35 +110,40 @@ public class EditPropertyCommand extends Command {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof EditPropertyCommand)) {
+        if (!(other instanceof EditClientCommand)) {
             return false;
         }
 
-        EditPropertyCommand e = (EditPropertyCommand) other;
+        EditClientCommand e = (EditClientCommand) other;
 
         if (!this.targetIndex.equals(e.targetIndex)) {
             return false;
         }
 
-        return editPropertyDescriptor.equals(e.getEditPropertyDescriptor());
+        return editClientDescriptor.equals(e.getEditClientDescriptor());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(targetIndex, editClientDescriptor);
     }
 
     /**
-     * Stores the details to edit the property with. Each non-empty field value will replace the
-     * corresponding field value of the property.
+     * Stores the details to edit the client with. Each non-empty field value will replace the
+     * corresponding field value of the client.
      */
-    public static class EditPropertyDescriptor {
+    public static class EditClientDescriptor {
         private Name name;
         private Address address;
         private Set<Tag> tags;
 
-        public EditPropertyDescriptor() {}
+        public EditClientDescriptor() {}
 
         /**
          * Copy constructor.
          * A defensive copy of {@code tags} is used internally.
          */
-        public EditPropertyDescriptor(EditPropertyDescriptor toCopy) {
+        public EditClientDescriptor(EditClientDescriptor toCopy) {
             setName(toCopy.name);
             setAddress(toCopy.address);
             setTags(toCopy.tags);
@@ -189,12 +197,12 @@ public class EditPropertyCommand extends Command {
             }
 
             // instanceof handles nulls
-            if (!(other instanceof EditPropertyDescriptor)) {
+            if (!(other instanceof EditClientDescriptor)) {
                 return false;
             }
 
             // state check
-            EditPropertyDescriptor e = (EditPropertyDescriptor) other;
+            EditClientDescriptor e = (EditClientDescriptor) other;
 
             return getName().equals(e.getName())
                     && getAddress().equals(e.getAddress())
@@ -211,12 +219,4 @@ public class EditPropertyCommand extends Command {
         }
     }
 
-    @Override
-    public String toString() {
-        return "EditPropertyCommand{"
-                + "targetIndex=" + targetIndex
-                + ", editPropertyDescriptor=" + editPropertyDescriptor
-                + '}';
-    }
 }
-

@@ -24,7 +24,7 @@ public class SampleDataUtil {
                     getTagSet("High-End", "Available")),
             new Property(new Name("INTERLACE"), new Address("180 Depot Road, S109684"),
                     getTagSet("High-End", "Sold")),
-            new Property(new Name("D'LEEDON"), new Address("7 Leedon Heights, D'leedon, S267953"),
+            new Property(new Name("DLEEDON"), new Address("7 Leedon Heights, D'leedon, S267953"),
                     getTagSet("High-End", "Reserved"))
         };
     }
@@ -32,6 +32,12 @@ public class SampleDataUtil {
     public static Client[] getSampleClients() {
         // TODO: add sample client data
         return new Client[] {
+            new Client(new Name("Dennis Tan"), new Address("Wall St, #1G, S085301"),
+                    getTagSet("High-End", "Available")),
+            new Client(new Name("Jeremy Tan"), new Address("11 Pulau Tekong Besar, Pulau, Tekong Camp, 508450"),
+                    getTagSet("High-End", "Sold")),
+            new Client(new Name("Walter Wong"), new Address("7 Leedon Heights, D'leedon, S267953"),
+                    getTagSet("High-End", "Reserved"))
         };
     }
 
