@@ -9,14 +9,19 @@ import jarvis.logic.Logic;
 import jarvis.logic.commands.CommandResult;
 import jarvis.logic.commands.exceptions.CommandException;
 import jarvis.logic.parser.exceptions.ParseException;
+import jarvis.model.Student;
+import jarvis.model.Task;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.MenuItem;
+import javafx.scene.control.SplitPane;
 import javafx.scene.control.TextInputControl;
 import javafx.scene.input.KeyCombination;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.StackPane;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 /**
@@ -35,6 +40,8 @@ public class MainWindow extends UiPart<Stage> {
     // Independent Ui parts residing in this Ui container
     private StudentListPanel studentListPanel;
     private UiPart<Region> taskListPanel;
+    private ExpandedStudentListPanel expStudentListPanel;
+    private ExpandedTaskListPanel expTaskListPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
 
@@ -45,13 +52,32 @@ public class MainWindow extends UiPart<Stage> {
     private MenuItem helpMenuItem;
 
     @FXML
-    private StackPane listPanelPlaceholder;
+    private StackPane studentListPanelPlaceholder;
+
+    @FXML
+    private StackPane taskListPanelPlaceholder;
 
     @FXML
     private StackPane resultDisplayPlaceholder;
 
     @FXML
+    private SplitPane defaultList;
+
+    @FXML
+    private VBox expandedStudentList;
+
+    @FXML
+    private VBox expandedTaskList;
+
+    @FXML
+    private StackPane expandedStudentListPanelPlaceholder;
+
+    @FXML
+    private StackPane expandedTaskListPanelPlaceholder;
+
+    @FXML
     private StackPane statusbarPlaceholder;
+
 
     /**
      * Creates a {@code MainWindow} with the given {@code Stage} and {@code Logic}.
@@ -113,9 +139,21 @@ public class MainWindow extends UiPart<Stage> {
      * Fills up all the placeholders of this window.
      */
     void fillInnerParts() {
-        studentListPanel = new StudentListPanel(logic.getFilteredStudentList());
-        taskListPanel = new TaskListPanel(logic.getFilteredTaskList());
-        listPanelPlaceholder.getChildren().add(taskListPanel.getRoot());
+        expandedStudentList.setVisible(false);
+        expandedTaskList.setVisible(false);
+
+        ObservableList<Student> filteredStudentList = logic.getFilteredStudentList();
+        ObservableList<Task> filteredTaskList = logic.getFilteredTaskList();
+
+        studentListPanel = new StudentListPanel(filteredStudentList);
+        taskListPanel = new TaskListPanel(filteredTaskList);
+        expStudentListPanel = new ExpandedStudentListPanel(filteredStudentList);
+        expTaskListPanel = new ExpandedTaskListPanel(filteredTaskList);
+
+        studentListPanelPlaceholder.getChildren().add(studentListPanel.getRoot());
+        taskListPanelPlaceholder.getChildren().add(taskListPanel.getRoot());
+        expandedStudentListPanelPlaceholder.getChildren().add(expStudentListPanel.getRoot());
+        expandedTaskListPanelPlaceholder.getChildren().add(expTaskListPanel.getRoot());
 
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
@@ -127,7 +165,6 @@ public class MainWindow extends UiPart<Stage> {
 
         CommandBox commandBox = new CommandBox(this::executeCommand);
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
-
     }
 
     /**
@@ -159,6 +196,30 @@ public class MainWindow extends UiPart<Stage> {
     }
 
     /**
+     * Displays the default list or an expanded student/task/lesson list, depending on the command.
+     */
+    @FXML
+    public void handleList(DisplayedList displayedList) {
+        hideAllList();
+        if (displayedList == DisplayedList.DEFAULT_LIST) {
+            defaultList.setVisible(true);
+        } else if (displayedList == DisplayedList.EXP_STUDENT_LIST) {
+            expandedStudentList.setVisible(true);
+        } else if (displayedList == DisplayedList.EXP_TASK_LIST) {
+            expandedTaskList.setVisible(true);
+        }
+    }
+
+    /**
+     * Helper function to hide all lists.
+     */
+    public void hideAllList() {
+        defaultList.setVisible(false);
+        expandedStudentList.setVisible(false);
+        expandedTaskList.setVisible(false);
+    }
+
+    /**
      * Closes the application.
      */
     @FXML
@@ -168,10 +229,6 @@ public class MainWindow extends UiPart<Stage> {
         logic.setGuiSettings(guiSettings);
         helpWindow.hide();
         primaryStage.hide();
-    }
-
-    public StudentListPanel getStudentListPanel() {
-        return studentListPanel;
     }
 
     /**
@@ -185,25 +242,17 @@ public class MainWindow extends UiPart<Stage> {
             logger.info("Result: " + commandResult.getFeedbackToUser());
             resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
 
+
             if (commandResult.isShowHelp()) {
                 handleHelp();
             }
 
-            if (commandResult.isExit()) {
-                handleExit();
+            if (commandResult.isList()) {
+                handleList(commandResult.getDisplayedList());
             }
 
-            if ((commandResult.isShowStudents() && taskListPanel.isShowing())
-                    || (commandResult.isShowTasks() && !taskListPanel.isShowing())) {
-                listPanelPlaceholder.getChildren().remove(0);
-                taskListPanel.changeShowingStatus();
-                studentListPanel.changeShowingStatus();
-
-                if (commandResult.isShowStudents()) {
-                    listPanelPlaceholder.getChildren().add(studentListPanel.getRoot());
-                } else {
-                    listPanelPlaceholder.getChildren().add(taskListPanel.getRoot());
-                }
+            if (commandResult.isExit()) {
+                handleExit();
             }
 
             return commandResult;

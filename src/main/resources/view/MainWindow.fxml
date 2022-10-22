@@ -2,16 +2,19 @@
 
 <?import java.net.URL?>
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.Scene?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.SplitPane?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
-<?import javafx.scene.Scene?>
+<?import javafx.scene.text.Font?>
 <?import javafx.stage.Stage?>
-<fx:root type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1"
-         title="JARVIS" minWidth="450" minHeight="600" onCloseRequest="#handleExit">
+
+<fx:root minHeight="600" minWidth="450" onCloseRequest="#handleExit" title="JARVIS" type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
   <icons>
     <Image url="@/images/address_book_32.png" />
   </icons>
@@ -32,25 +35,89 @@
           </Menu>
         </MenuBar>
 
-        <StackPane VBox.vgrow="NEVER" fx:id="commandBoxPlaceholder" styleClass="pane-with-border">
+        <StackPane fx:id="commandBoxPlaceholder" styleClass="pane-with-border" VBox.vgrow="NEVER">
           <padding>
-            <Insets top="5" right="10" bottom="5" left="10" />
+            <Insets bottom="5" left="10" right="10" top="5" />
           </padding>
         </StackPane>
 
-        <StackPane VBox.vgrow="NEVER" fx:id="resultDisplayPlaceholder" styleClass="pane-with-border"
-                   minHeight="100" prefHeight="100" maxHeight="100">
+        <StackPane fx:id="resultDisplayPlaceholder" maxHeight="100" minHeight="100" prefHeight="100" styleClass="pane-with-border" VBox.vgrow="NEVER">
           <padding>
-            <Insets top="5" right="10" bottom="5" left="10" />
+            <Insets bottom="5" left="10" right="10" top="5" />
           </padding>
         </StackPane>
-
-        <VBox fx:id="list" styleClass="pane-with-border" minWidth="340" prefWidth="340" VBox.vgrow="ALWAYS">
-          <padding>
-            <Insets top="10" right="10" bottom="10" left="10" />
-          </padding>
-          <StackPane fx:id="listPanelPlaceholder" VBox.vgrow="ALWAYS"/>
-        </VBox>
+            <StackPane fx:id="listPanelPlaceholder" minHeight="100" prefHeight="100" styleClass="pane-with-border" VBox.vgrow="ALWAYS">
+               <padding>
+                  <Insets bottom="5" left="10" right="10" top="5" />
+               </padding>
+               <children>
+                  <VBox fx:id="expandedTaskList" minWidth="340" prefWidth="340" styleClass="pane-with-border">
+                     <padding>
+                        <Insets bottom="10" left="10" right="10" top="10" />
+                     </padding>
+                     <children>
+                        <Label prefHeight="17.0" prefWidth="85.0" style="-fx-font-size: 17; -fx-text-fill: goldenrod; -fx-padding: 5;" text="Tasks" textFill="WHITE">
+                           <font>
+                              <Font name="System Bold" size="14.0" />
+                           </font>
+                        </Label>
+                        <StackPane fx:id="expandedTaskListPanelPlaceholder" VBox.vgrow="ALWAYS" />
+                     </children>
+                  </VBox>
+                  <VBox fx:id="expandedStudentList" minWidth="340" prefWidth="340" styleClass="pane-with-border">
+                     <padding>
+                        <Insets bottom="10" left="10" right="10" top="10" />
+                     </padding>
+                     <children>
+                        <Label prefHeight="17.0" prefWidth="85.0" style="-fx-font-size: 17; -fx-text-fill: goldenrod; -fx-padding: 5;" text="Students" textFill="WHITE">
+                           <font>
+                              <Font name="System Bold" size="14.0" />
+                           </font>
+                        </Label>
+                        <StackPane fx:id="expandedStudentListPanelPlaceholder" VBox.vgrow="ALWAYS" />
+                     </children>
+                  </VBox>
+                  <SplitPane fx:id="defaultList" dividerPositions="0.5, 0.5">
+                    <items>
+                                               <VBox fx:id="studentList" minWidth="340" prefWidth="340" styleClass="pane-with-border">
+                      <padding>
+                        <Insets bottom="10" left="10" right="10" top="10" />
+                      </padding>
+                           <Label prefHeight="17.0" prefWidth="85.0" style="-fx-font-size: 17; -fx-text-fill: goldenrod; -fx-padding: 5;" text="Students" textFill="WHITE">
+                              <font>
+                                 <Font name="System Bold" size="14.0" />
+                              </font>
+                           </Label>
+                      <StackPane fx:id="studentListPanelPlaceholder" VBox.vgrow="ALWAYS" />
+                    </VBox>
+                                      <VBox fx:id="taskList" minWidth="340" prefWidth="340" styleClass="pane-with-border">
+                      <padding>
+                        <Insets bottom="10" left="10" right="10" top="10" />
+                      </padding>
+                           <Label prefHeight="17.0" prefWidth="85.0" style="-fx-font-size: 17; -fx-text-fill: goldenrod; -fx-padding: 5;" text="Tasks" textFill="WHITE">
+                              <font>
+                                 <Font name="System Bold" size="14.0" />
+                              </font>
+                           </Label>
+                      <StackPane fx:id="taskListPanelPlaceholder" VBox.vgrow="ALWAYS" />
+                    </VBox>
+                        <VBox fx:id="lessonList" minWidth="340" prefWidth="340" styleClass="pane-with-border">
+                           <padding>
+                              <Insets bottom="10" left="10" right="10" top="10" />
+                           </padding>
+                           <children>
+                              <Label prefHeight="17.0" prefWidth="85.0" style="-fx-font-size: 17; -fx-text-fill: goldenrod; -fx-padding: 5;" text="Lessons" textFill="WHITE">
+                                 <font>
+                                    <Font name="System Bold" size="14.0" />
+                                 </font>
+                              </Label>
+                              <StackPane fx:id="lessonListPanelPlaceholder" VBox.vgrow="ALWAYS" />
+                           </children>
+                        </VBox>
+                    </items>
+                  </SplitPane>
+               </children>
+            </StackPane>
 
         <StackPane fx:id="statusbarPlaceholder" VBox.vgrow="NEVER" />
       </VBox>

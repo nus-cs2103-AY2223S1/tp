@@ -11,7 +11,7 @@ import java.util.List;
 import jarvis.commons.core.Messages;
 import jarvis.commons.core.index.Index;
 import jarvis.logic.commands.exceptions.CommandException;
-import jarvis.model.MasteryCheckResult;
+import jarvis.model.Assessment;
 import jarvis.model.Model;
 import jarvis.model.Student;
 
@@ -28,16 +28,17 @@ public class MasteryCheckCommand extends Command {
             + "Example: " + COMMAND_WORD + " 1 " + PREFIX_MC_NUM + "1 " + PREFIX_MC_RES + "PASS";
 
     private final Index index;
-    private final MasteryCheckResult mcResult;
+    private final Assessment assessment;
+    private final boolean isPass;
 
     /**
-     * @param index of the student in the filtered list
-     * @param mcResult result of the student's mastery check
+     * Constructor for a MasteryCheckCommand object.
      */
-    public MasteryCheckCommand(Index index, MasteryCheckResult mcResult) {
-        requireAllNonNull(index, mcResult);
+    public MasteryCheckCommand(Index index, Assessment assessment, boolean isPass) {
+        requireAllNonNull(index, assessment, isPass);
         this.index = index;
-        this.mcResult = mcResult;
+        this.assessment = assessment;
+        this.isPass = isPass;
     }
 
     @Override
@@ -50,9 +51,9 @@ public class MasteryCheckCommand extends Command {
         }
 
         Student studentToEdit = lastShownList.get(index.getZeroBased());
-        studentToEdit.updateMcStatus(mcResult);
+        studentToEdit.updateMark(assessment, isPass ? 1 : 0);
         model.setStudent(studentToEdit, studentToEdit);
         model.updateFilteredStudentList(PREDICATE_SHOW_ALL_STUDENTS);
-        return new CommandResult(String.format("Updated " + mcResult + " for " + studentToEdit));
+        return new CommandResult(String.format("Updated " + assessment + " for " + studentToEdit));
     }
 }

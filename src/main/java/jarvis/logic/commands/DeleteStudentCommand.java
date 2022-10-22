@@ -45,8 +45,7 @@ public class DeleteStudentCommand extends Command {
 
         Student studentToDelete = lastShownList.get(targetIndex.getZeroBased());
         model.deleteStudent(studentToDelete);
-        return new CommandResult(String.format(MESSAGE_DELETE_STUDENT_SUCCESS, studentToDelete),
-                true, false);
+        return new CommandResult(String.format(MESSAGE_DELETE_STUDENT_SUCCESS, studentToDelete));
     }
 
     @Override
