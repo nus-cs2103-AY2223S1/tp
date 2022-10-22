@@ -8,9 +8,13 @@ Package Model <<Rectangle>>{
 Class "<<interface>>\nReadOnlyUninurseBook" as ReadOnlyUninurseBook
 Class "<<interface>>\nReadOnlyUserPrefs" as ReadOnlyUserPrefs
 Class "<<interface>>\nModel" as Model
-Class UniNurse
+Class UninurseBook
 Class ModelManager
 Class UserPrefs
+
+Class PersistentUninurseBook
+Class UninurseBookSnapshot
+Class CommandResult
 
 Class UniquePersonList
 Class Person
@@ -25,16 +29,20 @@ Class Tag
 Class HiddenOutside #FFFFFF
 HiddenOutside ..> Model
 
-UniNurse .up.|> ReadOnlyUninurseBook
+UninurseBook .up.|> ReadOnlyUninurseBook
 
 ModelManager .up.|> Model
 Model .right.> ReadOnlyUserPrefs
 Model .left.> ReadOnlyUninurseBook
-ModelManager -left-> "1" UniNurse
+ModelManager -left-> "1" PersistentUninurseBook
 ModelManager -right-> "1" UserPrefs
 UserPrefs .up.|> ReadOnlyUserPrefs
 
-UniNurse *--> "1" UniquePersonList
+PersistentUninurseBook *-down-> "1..*" UninurseBookSnapshot
+UninurseBookSnapshot -up-> "1" ReadOnlyUninurseBook
+UninurseBookSnapshot -down-> "1" CommandResult
+
+UninurseBook *--> "1" UniquePersonList
 UniquePersonList --> "~* all" Person
 Person *--> Name
 Person *--> Phone
