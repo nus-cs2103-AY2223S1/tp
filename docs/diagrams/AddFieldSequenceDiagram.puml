@@ -1,0 +1,115 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
+participant ":AddFieldCommandParser" as AddFieldCommandParser LOGIC_COLOR
+participant ":AddFieldCommand" as AddFieldCommand LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+participant "prefix:Prefix" as Prefix LOGIC_COLOR
+participant "//FIELD_PREFIX//:FieldPrefixes" as FIELD_PREFIX LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+participant "persons:UniquePersonList" as UniquePersonList MODEL_COLOR
+participant "person:Person" as Person MODEL_COLOR
+participant "fields:Fields" as Fields MODEL_COLOR
+participant ":Field" as Field MODEL_COLOR
+end box
+
+[-> LogicManager : execute("fields g/ github")
+activate LogicManager
+
+LogicManager -> AddressBookParser : parseCommand("fields g/ github")
+activate AddressBookParser
+
+create AddFieldCommandParser
+AddressBookParser -> AddFieldCommandParser
+activate AddFieldCommandParser
+
+AddFieldCommandParser --> AddressBookParser
+deactivate AddFieldCommandParser
+
+AddressBookParser -> AddFieldCommandParser : parse("g/ github")
+activate AddFieldCommandParser
+
+create Prefix
+AddFieldCommandParser -> Prefix : Prefix("g/")
+activate Prefix
+
+Prefix --> AddFieldCommandParser
+deactivate Prefix
+
+create AddFieldCommand
+AddFieldCommandParser -> AddFieldCommand : AddFieldCommand()
+activate AddFieldCommand
+
+AddFieldCommand --> AddFieldCommandParser
+deactivate AddFieldCommand
+
+AddFieldCommandParser --> AddressBookParser
+deactivate AddFieldCommandParser
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+AddFieldCommandParser -[hidden]-> AddressBookParser
+destroy AddFieldCommandParser
+
+AddressBookParser --> LogicManager :
+deactivate AddressBookParser
+
+LogicManager -> AddFieldCommand : execute()
+activate AddFieldCommand
+
+AddFieldCommand -> FIELD_PREFIX : addPrefix(prefix, "github")
+activate FIELD_PREFIX
+
+FIELD_PREFIX -> Model : addField("github")
+activate Model
+
+Model -> UniquePersonList : addField("github")
+activate UniquePersonList
+
+loop until each Person in persons has been iterated
+    UniquePersonList -> Person : addField("github")
+    activate Person
+
+    Person -> Fields : addField("github")
+    activate Fields
+
+    create Field
+    Fields -> Field : Field("github")
+    activate Field
+
+    Field --> Fields
+    deactivate Field
+
+    Fields --> Person
+    deactivate Fields
+
+    Person --> UniquePersonList
+    deactivate Person
+end
+
+UniquePersonList --> Model
+deactivate UniquePersonList
+
+Model --> FIELD_PREFIX
+deactivate Model
+
+FIELD_PREFIX --> AddFieldCommand
+deactivate FIELD_PREFIX
+
+create CommandResult
+AddFieldCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> AddFieldCommand
+deactivate CommandResult
+
+AddFieldCommand --> LogicManager : result
+deactivate AddFieldCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml
