@@ -137,8 +137,9 @@ Commands for tasks (e.g., `AddTaskCommand`, `MarkTaskCommand`, ...) follow a sim
 the `Logic` component as the other commands described above.
 
 However, during execution, tasks commands may update the context of the current tasks of a team. To understand tasks better,
-Tasks are analogous to folders in a basic file system, which can contain other folders (`Team`), or other
-files (`Person` or `Task`).
+it should be understood that Tasks are an attribute of a Teams object, which is used to indicate if a tasks is done (also known as marked),
+or not (also known as unmarked).
+
 
 The Sequence Diagram below shows the interaction between `Logic` and `Model` components when `execute("at ..")` is called.
 
