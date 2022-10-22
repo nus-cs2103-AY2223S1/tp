@@ -32,6 +32,7 @@ public class TypicalPersons {
     public static final Patient BENSON = new PersonBuilder().withName("Benson Meier")
             .withAddress("311, Clementi Ave 2, #02-25")
             .withEmail("johnd@example.com").withPhone("98765432")
+            .withConditions("Crohn's disease", "H1N1")
             .withTasks(new Task("Insert urinary catheter", new DateTime("16-12-2022 1245")),
                     new Task("Check vitals", new DateTime("16-10-2022 1015")))
             .withTags("owesMoney", "friends").build();

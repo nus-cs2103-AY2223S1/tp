@@ -8,7 +8,7 @@ import seedu.uninurse.model.task.DateTime;
 import seedu.uninurse.model.task.Task;
 
 /**
- * Jackson-friendly version of {@link Task}
+ * Jackson-friendly version of {@link Task}.
  */
 public class JsonAdaptedTask {
 

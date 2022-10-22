@@ -22,7 +22,7 @@ public class AddTaskCommand extends AddGenericCommand {
             + ": Adds a task to the person identified "
             + "by the index number used in the last patient listing.\n"
             + "Parameters: INDEX (must be a positive integer) "
-            + PREFIX_TASK_DESCRIPTION + " [TASK_DESCRIPTION]\n"
+            + PREFIX_TASK_DESCRIPTION + "[TASK_DESCRIPTION]\n"
             + "Example: " + COMMAND_WORD + " 2 "
             + PREFIX_TASK_DESCRIPTION + "Change dressing on left arm";
 
@@ -55,8 +55,8 @@ public class AddTaskCommand extends AddGenericCommand {
         Patient personToEdit = lastShownList.get(index.getZeroBased());
         TaskList updatedTaskList = personToEdit.getTasks().add(task);
         Patient editedPerson = new Patient(
-                personToEdit.getName(), personToEdit.getPhone(), personToEdit.getEmail(),
-                personToEdit.getAddress(), updatedTaskList, personToEdit.getTags());
+                personToEdit.getName(), personToEdit.getPhone(), personToEdit.getEmail(), personToEdit.getAddress(),
+                personToEdit.getConditions(), updatedTaskList, personToEdit.getTags());
 
         model.setPerson(personToEdit, editedPerson);
         model.updateFilteredPersonList(Model.PREDICATE_SHOW_ALL_PERSONS);
