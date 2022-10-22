@@ -21,7 +21,7 @@ public class SummaryCommandParser implements Parser<SummaryCommand> {
      */
     @Override
     public SummaryCommand parse(String args) throws ParseException {
-        if (args.isEmpty() || args.equals(null)) {
+        if (args.isEmpty()) {
             return new SummaryCommand();
         }
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_DATE);
