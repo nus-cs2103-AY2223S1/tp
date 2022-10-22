@@ -42,7 +42,6 @@ class JsonAdaptedActivity {
                                @JsonProperty("rating") int rating,
                                @JsonProperty("status") String status){
 
-
         this.name = name;
         this.description = description;
         if (tagged != null) {
@@ -51,11 +50,8 @@ class JsonAdaptedActivity {
         if (date != null) {
             this.date.addAll(date);
         }
-
         this.rating = rating;
-
         this.status = status;
-
     }
 
     /**

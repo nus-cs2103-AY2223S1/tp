@@ -17,7 +17,6 @@ import hobbylist.logic.commands.FindTagCommand;
 import hobbylist.logic.commands.HelpCommand;
 import hobbylist.logic.commands.ListCommand;
 import hobbylist.logic.commands.RateCommand;
-
 import hobbylist.logic.parser.exceptions.ParseException;
 
 /**
