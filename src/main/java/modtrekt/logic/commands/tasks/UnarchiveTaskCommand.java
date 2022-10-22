@@ -48,7 +48,7 @@ public class UnarchiveTaskCommand extends Command {
         // Check that the task index is not out of bounds.
         // The 0-based index is guaranteed by the Index class invariant to be >= 0.
         if (index.getZeroBased() >= tasks.size()) {
-            throw new CommandException(String.format("Task index must an integer between 0 and %d.",
+            throw new CommandException(String.format("Task index must an integer between 1 and %d inclusive.",
                     tasks.size()));
         }
         Task target = model.getFilteredTaskList().get(index.getZeroBased());
