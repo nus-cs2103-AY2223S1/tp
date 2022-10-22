@@ -48,7 +48,7 @@ public class NextSessionUtil {
     }
 
     /**
-     * Helper method to get the system time now as a Session for constructor to help nextSessionFeedback.
+     * Helper method to get the system time now as a Session for constructor to help constructor.
      * @return the system time now as a Session.
      */
     private static Session getTimeNowAsSession() {
@@ -63,10 +63,6 @@ public class NextSessionUtil {
 
     public ArrayList<Session> getToSortList() {
         return toSortList;
-    }
-
-    public HashMap<Session, Person> getSessionPersonHashMap() {
-        return sessionPersonHashMap;
     }
 
     /**
