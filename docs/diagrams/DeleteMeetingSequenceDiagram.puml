@@ -1,0 +1,60 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":MyInsuRecParser" as MyInsuRecParser LOGIC_COLOR
+participant ":DeleteMeetingCommandParser" as DeleteMeetingCommandParser LOGIC_COLOR
+participant ":DeleteMeetingCommand" as DeleteMeetingCommand LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+[-> LogicManager : execute("delMeeting i/1")
+activate LogicManager
+
+LogicManager -> MyInsuRecParser : parseCommand("delMeeting i/1")
+activate MyInsuRecParser
+
+create DeleteMeetingCommandParser
+MyInsuRecParser -> DeleteMeetingCommandParser
+activate DeleteMeetingCommandParser
+
+create DeleteMeetingCommand
+DeleteMeetingCommandParser -> DeleteMeetingCommand
+activate DeleteMeetingCommand
+
+DeleteMeetingCommand -> DeleteMeetingCommandParser : Command d
+deactivate DeleteMeetingCommand
+
+DeleteMeetingCommandParser --> MyInsuRecParser : Command d
+deactivate DeleteMeetingCommandParser
+
+MyInsuRecParser --> LogicManager : Command d
+deactivate MyInsuRecParser
+
+LogicManager -> DeleteMeetingCommand : execute(model)
+activate DeleteMeetingCommand
+
+DeleteMeetingCommand -> Model : getFilteredMeetingList()
+activate Model
+
+Model -> DeleteMeetingCommand
+deactivate Model
+
+DeleteMeetingCommand -> Model : deleteMeeting()
+
+create CommandResult
+DeleteMeetingCommand -> CommandResult
+activate CommandResult
+
+CommandResult -> DeleteMeetingCommand : CommandResult r
+deactivate CommandResult
+
+DeleteMeetingCommand -> LogicManager : CommandResult r
+
+[<--LogicManager
+deactivate LogicManager
+@enduml

@@ -4,7 +4,7 @@
 
 # MyInsuRec
 *MyInsuRec* is a desktop app for financial advisors to manage and organize their clients and meetings, helping
-financial advisors stay connected with their clients. *MyInsuRec* is best suited for the quick typist, as it is 
+financial advisors stay connected with their clients. *MyInsuRec* is best suited for the quick typist, as it is
 optimized for use via a Command Line Interface (CLI), with all the benefits of a Graphical User Interface (GUI).
 
 * The project simulates an ongoing software project for a desktop application (called _MyInsuRec_) used for managing clients' details and meetings for an insurance agent.
@@ -16,5 +16,5 @@ optimized for use via a Command Line Interface (CLI), with all the benefits of a
 * [MyInsuRec User Guide](https://ay2223s1-cs2103t-w16-4.github.io/tp/UserGuide)
 
 ## Acknowledgements
-* The project is based on the [AB3 project template](https://github.com/se-edu/addressbook-level3) by 
+* The project is based on the [AB3 project template](https://github.com/se-edu/addressbook-level3) by
 [se-education.org](https://se-education.org).

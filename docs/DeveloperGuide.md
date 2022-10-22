@@ -155,6 +155,41 @@ Classes used by multiple components are in the `seedu.address.commons` package.
 
 This section describes some noteworthy details on how certain features are implemented.
 
+### Delete Meeting Feature
+
+Syntax: `delMeeting i/x`, where x is an index shown in the Meeting List.
+
+Purpose: Delete a specified `Meeting` from the Meeting List in `Model`
+
+#### Implementation
+
+Usage Scenario of `delMeeting`:
+
+1) User inputs `listMeeting` to view the current meetings in the `Model`'s Meeting List with their respective indexes.
+2) User then inputs `delMeeting i/1` to delete the first meeting shown in `listMeeting`. This will evoke `Command#execute` in `LogicManager`.
+
+Below is a sequence diagram that illustrates the execution of `delMeeting i/1` command and the interaction with `Model`.
+
+![DeleteMeetingSequenceDiagram](images/DeleteMeetingSequenceDiagram.png)
+
+Below is an activity diagram that summarises the execution of `delMeeting`.
+
+![DeleteMeetingActivityDiagram](images/DeleteMeetingActivityDiagram.png)
+
+#### Design Considerations
+
+Aspect: How many meetings to delete in one command
+
+- Alternative Solution 1 (Current Choice): Allows only one deletion
+  - Pros: Easy to implement
+  - Cons: Troublesome in the event where multiple meetings
+- Alternative Solution 2: Allows multiple deletion
+  - Pros: Convenient to delete multiple meetings when needed.
+  - Cons: Complex to implement
+- Considering that the approach taken to develop MyInsuRec is a breath first approach,
+where we should only build to the point where every iteration is a working product,
+**Solution 1** is thus chosen as it is easier to implement.
+
 ### List Meeting feature
 
 Syntax: `listMeeting`
@@ -276,6 +311,46 @@ e.g. String[] patternsForBirthday = {"b", "d", "birthday", "birthdate"}
 - No need to iterate through a list of Strings to find a match.
 - Matches can be made using pre-existing methods in Matcher (no need to rely on String methods)
 
+### Add Meeting Feature
+
+Syntax: `addMeeting i/INDEX d/DATE t/TIME dn/DESCRIPTION`
+Purpose: Adds a meeting with the given information to the internal model and storage
+
+#### Implementation
+
+In keeping with the command execution structure of the overall program, the command
+specific classes `AddMeetingCommandd` and `AddMeetingCommandParser` were added to the 
+commands and parser packages respectively. The main parser `MyInsuRecParser` was modified
+to accept the new command word, `addMeeting`.
+
+The following sequence diagram offers a high-level overview of how
+the command is executed.
+
+![AddMeetingSequenceDiagram](images/AddMeetingSequenceDiagram.png)
+
+#### Design Considerations
+
+**Aspect: What the addMeeting command accepts as a reference to a client:**
+
+- **Alternative 1 (current choice):** Accept the client's list index.
+  - Pros: Each valid index is guaranteed to refer to a unique client.
+  - Cons: It is less intuitive for the user compared to typing in a name.
+- **Alternative 2:** Accept the client's name.
+  - Pros: It is intuitive for the user to enter a name.
+  - Cons: Names have to be spelt exactly as stored, otherwise the name.
+could be referencing more than one client.
+
+**Aspect: The parameters that the AddMeetingCommand constructor should accept:**
+
+- **Alternative 1 (current choice):** Accept the parsed command arguments separately.
+  - Pros: The logic and operations on the model that are associated with 
+command execution are inside the AddMeetingCommand.
+  - Cons: The design of AddMeetingCommand is less intuitive.
+- **Alternative 2:** Accept a completed Meeting.
+  - Pros: The design of AddMeetingCommmand is simpler.
+  - Cons: The parser will need to have access to the model in order to 
+obtain the referenced client.
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Documentation, logging, testing, configuration, dev-ops**
@@ -314,7 +389,7 @@ e.g. String[] patternsForBirthday = {"b", "d", "birthday", "birthdate"}
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`
 
-| Priority | As an …​        | I want to …​                                                | So that I can…​                                                             | Conditions                                                             |
+| Priority | As an …         | I want to …                                                 | So that I can…                                                             | Conditions                                                             |
 |----------|-----------------|-------------------------------------------------------------|-----------------------------------------------------------------------------|------------------------------------------------------------------------|
 | `* * *`  | insurance agent | add client details                                          | keep track of my client's details                                           |                                                                        |
 | `* * *`  | insurance agent | view all my clients                                         | see who I am providing services to                                          |                                                                        |
@@ -467,7 +542,7 @@ testers are expected to do more *exploratory* testing.
    1. Re-launch the app by double-clicking the jar file.<br>
        Expected: The most recent window size and location is retained.
 
-1. _{ more test cases …​ }_
+1. _{ more test cases …  }_
 
 ### Deleting a client
 
@@ -484,7 +559,7 @@ testers are expected to do more *exploratory* testing.
    1. Other incorrect delete commands to try: `delClient`, `delClient x`, `...` (where x is larger than the list size)<br>
       Expected: Similar to previous.
 
-1. _{ more test cases …​ }_
+1. _{ more test cases …  }_
 
 ### Saving data
 

@@ -22,7 +22,7 @@ Given below are my contributions to the project.
     * User Guide:
         * Added documentation for 'Getting Started' section
         * Added documentation for `deleteClient` feature
-    * Developer Guide: 
+    * Developer Guide:
         * Added user stories for v1.2 (next iteration)
 
 * **Community**: [To be updated]
