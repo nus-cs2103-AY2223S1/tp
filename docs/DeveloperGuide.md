@@ -571,8 +571,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 2.  Arrow shows a list of persons.
 3.  User requests to list tasks.
 4.  Arrow shows a list of tasks.
-5.  User requests to assign persons in the persons list to a specific task in the tasks list.
-6.  Arrow assigns the persons to the task.
+5.  User requests to assign/unassign persons in the persons list to a specific task in the tasks list.
+6.  Arrow assigns/unassigns the persons to the task.
 
     Use case ends.
 
@@ -589,6 +589,12 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * 5a. The given task and/or person index is invalid.
 
     * 5a1. Arrow shows an error message.
+
+      Use case resumes at step 4.
+ 
+* 5b. The given person name is invalid.
+
+    * 5b1. Arrow shows an error message.
 
       Use case resumes at step 4.
 

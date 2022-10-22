@@ -71,4 +71,8 @@ shadowJar {
     archiveFileName = 'arrow.jar'
 }
 
+run {
+    enableAssertions = true
+}
+
 defaultTasks 'clean', 'test'
