@@ -2,8 +2,10 @@ package gim.model.exercise;
 
 import java.util.ArrayList;
 
+import gim.model.exercise.exceptions.ExerciseNotFoundException;
+
 /**
- * A class that contains the Keys in the Exercise Hashmap.
+ * A class that contains the names of Keys in the Exercise Hashmap.
  */
 public class ExerciseKeys {
 
@@ -13,6 +15,9 @@ public class ExerciseKeys {
      * Creates a {@code ExerciseKeys}.
      */
     public ExerciseKeys(ArrayList<String> arrL) {
+        if (arrL == null) {
+            throw new ExerciseNotFoundException();
+        }
         keyArrayList = arrL;
     }
 

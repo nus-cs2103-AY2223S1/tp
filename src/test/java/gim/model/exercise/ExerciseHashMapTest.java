@@ -76,7 +76,7 @@ public class ExerciseHashMapTest {
     }
 
     @Test
-    public void nonEmptyHashMap_returnsSortedArrayListKeys() {
+    public void nonEmptyHashMap_returnsSortedArrayListKeysWithAdd() {
         ArrayList<String> expectedArrayList = new ArrayList<>();
         expectedArrayList.add("Alice Pauline");
         expectedArrayList.add("Benson Meier");
@@ -84,6 +84,18 @@ public class ExerciseHashMapTest {
         exerciseHashMap.add(BENSON);
         exerciseHashMap.add(CARL);
         exerciseHashMap.add(ALICE);
+        assertEquals(expectedArrayList, exerciseHashMap.getAllKeys());
+    }
+
+    @Test
+    public void nonEmptyHashMap_returnsSortedArrayListKeysWithAddRemove() {
+        ArrayList<String> expectedArrayList = new ArrayList<>();
+        expectedArrayList.add("Alice Pauline");
+        expectedArrayList.add("Benson Meier");
+        exerciseHashMap.add(BENSON);
+        exerciseHashMap.add(CARL);
+        exerciseHashMap.add(ALICE);
+        exerciseHashMap.remove(CARL);
         assertEquals(expectedArrayList, exerciseHashMap.getAllKeys());
     }
 
