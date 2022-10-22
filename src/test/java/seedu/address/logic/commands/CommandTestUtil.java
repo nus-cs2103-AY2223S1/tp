@@ -23,6 +23,7 @@ import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.person.Person;
+import seedu.address.model.person.contact.ContactType;
 import seedu.address.testutil.SetPersonDescriptorBuilder;
 
 /**
@@ -89,10 +90,10 @@ public class CommandTestUtil {
                 .withAddress(VALID_ADDRESS_AMY)
                 .withTags(VALID_TAG_FRIEND)
                 .withRole(VALID_ROLE_AMY)
-                .withTelegram(VALID_TELEGRAM_AMY)
-                .withEmail(VALID_EMAIL_AMY)
-                .withPhone(VALID_PHONE_AMY)
-                .withSlack(VALID_SLACK_AMY)
+                .withContact(ContactType.TELEGRAM, VALID_TELEGRAM_AMY)
+                .withContact(ContactType.EMAIL, VALID_EMAIL_AMY)
+                .withContact(ContactType.PHONE, VALID_PHONE_AMY)
+                .withContact(ContactType.SLACK, VALID_SLACK_AMY)
                 .withTimezone(VALID_TIMEZONE_AMY)
                 .build();
 
@@ -100,10 +101,10 @@ public class CommandTestUtil {
                 .withAddress(VALID_ADDRESS_BOB)
                 .withTags(VALID_TAG_FRIEND, VALID_TAG_HUSBAND)
                 .withRole(VALID_ROLE_BOB)
-                .withTelegram(VALID_TELEGRAM_BOB)
-                .withEmail(VALID_EMAIL_BOB)
-                .withPhone(VALID_PHONE_BOB)
-                .withSlack(VALID_SLACK_BOB)
+                .withContact(ContactType.TELEGRAM, VALID_TELEGRAM_BOB)
+                .withContact(ContactType.EMAIL, VALID_EMAIL_BOB)
+                .withContact(ContactType.PHONE, VALID_PHONE_BOB)
+                .withContact(ContactType.SLACK, VALID_SLACK_BOB)
                 .withTimezone(VALID_TIMEZONE_BOB)
                 .build();
     }

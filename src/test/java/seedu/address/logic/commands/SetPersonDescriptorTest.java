@@ -18,6 +18,7 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_TIMEZONE_BOB;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.SetCommand.SetPersonDescriptor;
+import seedu.address.model.person.contact.ContactType;
 import seedu.address.testutil.SetPersonDescriptorBuilder;
 
 public class SetPersonDescriptorTest {
@@ -65,23 +66,33 @@ public class SetPersonDescriptorTest {
         assertFalse(DESC_AMY.equals(editedAmy));
 
         // extra tags -> returns false
-        editedAmy = new SetPersonDescriptorBuilder(DESC_AMY).withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).build();
+        editedAmy = new SetPersonDescriptorBuilder(DESC_AMY)
+                .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND)
+                .build();
         assertFalse(DESC_AMY.equals(editedAmy));
 
         // different telegram -> returns false
-        editedAmy = new SetPersonDescriptorBuilder(DESC_AMY).withTelegram(VALID_TELEGRAM_BOB).build();
+        editedAmy = new SetPersonDescriptorBuilder(DESC_AMY)
+                .withContact(ContactType.TELEGRAM, VALID_TELEGRAM_BOB)
+                .build();
         assertFalse(DESC_AMY.equals(editedAmy));
 
         // different email -> returns false
-        editedAmy = new SetPersonDescriptorBuilder(DESC_AMY).withEmail(VALID_EMAIL_BOB).build();
+        editedAmy = new SetPersonDescriptorBuilder(DESC_AMY)
+                .withContact(ContactType.EMAIL, VALID_EMAIL_BOB)
+                .build();
         assertFalse(DESC_AMY.equals(editedAmy));
 
         // different phone -> returns false
-        editedAmy = new SetPersonDescriptorBuilder(DESC_AMY).withPhone(VALID_PHONE_BOB).build();
+        editedAmy = new SetPersonDescriptorBuilder(DESC_AMY)
+                .withContact(ContactType.PHONE, VALID_PHONE_BOB)
+                .build();
         assertFalse(DESC_AMY.equals(editedAmy));
 
         // different slack -> returns false
-        editedAmy = new SetPersonDescriptorBuilder(DESC_AMY).withSlack(VALID_SLACK_BOB).build();
+        editedAmy = new SetPersonDescriptorBuilder(DESC_AMY)
+                .withContact(ContactType.SLACK, VALID_SLACK_BOB)
+                .build();
         assertFalse(DESC_AMY.equals(editedAmy));
     }
 }
