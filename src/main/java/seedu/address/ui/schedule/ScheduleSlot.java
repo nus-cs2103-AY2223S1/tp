@@ -32,17 +32,29 @@ public class ScheduleSlot extends SlotContainer {
         super(FXML);
         this.moduleCode = schedule.getModule();
         this.duration = schedule.getPeriod();
-        this.classType = schedule.getClassType().toString();
+        this.classType = schedule.getClassType().toString() + "  [" + schedule.getClassGroup() + "]";
         this.venue = schedule.getVenue().toString();
         setText();
+        setColor(getColor(schedule.getDuration()));
     }
-
     private void setText() {
         module.setText(moduleCode.toUpperCase());
         time.setText(duration);
         type.setText(classType);
         venueName.setText(venue);
-
     }
 
+    private String getColor(double duration) {
+        if (duration == 1) {
+            return "#FF8787";
+        } else if (duration == 1.5) {
+            return "#F8C4B4";
+        } else if (duration == 2) {
+            return "#E5EBB2";
+        } else if (duration == 3) {
+            return "#BCE29E";
+        } else {
+            return "#B8E8FC";
+        }
+    }
 }

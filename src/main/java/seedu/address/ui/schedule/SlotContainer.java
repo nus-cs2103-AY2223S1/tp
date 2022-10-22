@@ -1,8 +1,13 @@
 package seedu.address.ui.schedule;
 
 import javafx.fxml.FXML;
+import javafx.geometry.Insets;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundFill;
+import javafx.scene.layout.CornerRadii;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
+import javafx.scene.paint.Paint;
 import seedu.address.ui.UiPart;
 
 /**
@@ -22,4 +27,11 @@ public abstract class SlotContainer extends UiPart<Region> {
         super(fxml);
         slotPane.setPrefWidth(WIDTH_SCALING_FACTOR);
     }
+
+    public void setColor(String color) {
+        BackgroundFill backgroundFill = new BackgroundFill(Paint.valueOf(color), new CornerRadii(10), Insets.EMPTY);
+        Background background = new Background(backgroundFill);
+        slotPane.setBackground(background);
+    }
+
 }
