@@ -67,3 +67,4 @@ deactivate DeleteCommand
 [<--LogicManager
 deactivate LogicManager
 @enduml
+
