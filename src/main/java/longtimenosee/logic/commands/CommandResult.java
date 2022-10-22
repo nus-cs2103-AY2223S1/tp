@@ -21,7 +21,7 @@ public class CommandResult {
     private final boolean showPolicy;
 
     /** The application should display clients. */
-    private final boolean showClients;
+    private final boolean showPerson;
 
 
     /** The application should display events. */
@@ -34,14 +34,14 @@ public class CommandResult {
      * Constructs a {@code CommandResult} with the specified fields.
      */
     public CommandResult(String feedbackToUser, boolean showHelp, boolean exit,
-                         boolean showPolicy, boolean showClient, boolean showEvent, boolean showIncome) {
+                         boolean showPolicy, boolean showPerson, boolean showEvent, boolean showIncome) {
 
 
         this.feedbackToUser = requireNonNull(feedbackToUser);
         this.showHelp = showHelp;
         this.exit = exit;
         this.showPolicy = showPolicy;
-        this.showClients = showClient;
+        this.showPerson = showPerson;
         this.showEvent = showEvent;
         this.showIncome = showIncome;
 
@@ -73,8 +73,8 @@ public class CommandResult {
         return showPolicy;
     }
 
-    public boolean isShowClient() {
-        return showClients;
+    public boolean isShowPerson() {
+        return showPerson;
     }
     public boolean isShowIncome() {
         return showIncome;
@@ -106,7 +106,7 @@ public class CommandResult {
 
     @Override
     public int hashCode() {
-        return Objects.hash(feedbackToUser, showHelp, exit, showPolicy, showClients, showEvent, showIncome);
+        return Objects.hash(feedbackToUser, showHelp, exit, showPolicy, showPerson, showEvent, showIncome);
     }
 
 }

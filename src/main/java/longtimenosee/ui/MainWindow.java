@@ -229,7 +229,7 @@ public class MainWindow extends UiPart<Stage> {
                 handleExit();
             }
 
-            if (commandResult.isShowClient()) {
+            if (commandResult.isShowPerson()) {
                 updateInnerContent("client");
             }
 
