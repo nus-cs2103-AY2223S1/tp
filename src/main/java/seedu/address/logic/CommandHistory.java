@@ -50,6 +50,18 @@ public class CommandHistory {
         return String.join("\n", list);
     }
 
+    /**
+     * Resets the index to the last element of the list when starting up the application.
+     *
+     * @return The commandHistory with the index reset.
+     */
+    public CommandHistory resetIndex() {
+        if (history.size() >= 1) {
+            this.currentIndex = history.size();
+        }
+        return this;
+    }
+
     public List<String> getHistory() {
         return history;
     }
