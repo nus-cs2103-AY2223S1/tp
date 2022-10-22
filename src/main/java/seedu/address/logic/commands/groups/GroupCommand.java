@@ -1,6 +1,7 @@
 package seedu.address.logic.commands.groups;
 
 import static java.util.Objects.requireNonNull;
+
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
