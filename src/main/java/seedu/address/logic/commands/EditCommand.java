@@ -28,6 +28,7 @@ import seedu.address.model.person.Address;
 import seedu.address.model.person.Country;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.GameType;
+import seedu.address.model.person.ITimesAvailable;
 import seedu.address.model.person.MinecraftName;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
@@ -123,9 +124,11 @@ public class EditCommand extends Command {
         Set<Server> updatedServers = editPersonDescriptor.getServers().orElse(personToEdit.getServers());
         Country updatedCountry = editPersonDescriptor.getCountry().orElse(personToEdit.getCountry());
         Set<GameType> updatedGameType = editPersonDescriptor.getGameTypes().orElse(personToEdit.getGameType());
+        Set<ITimesAvailable> updatedTimeIntervals = editPersonDescriptor.getTimeIntervals()
+                .orElse(personToEdit.getTimesAvailable());
 
         return new Person(updatedName, updatedMinecraftName, updatedPhone, updatedEmail, updatedAddress,
-                updatedSocials, updatedTags, updatedServers, updatedCountry, updatedGameType);
+                updatedSocials, updatedTags, updatedServers, updatedCountry, updatedGameType, updatedTimeIntervals);
     }
 
     @Override
@@ -162,6 +165,7 @@ public class EditCommand extends Command {
         private Set<Server> servers;
         private Country country;
         private Set<GameType> gameTypes;
+        private Set<ITimesAvailable> timeIntervals;
 
         public EditPersonDescriptor() {}
 
@@ -180,6 +184,7 @@ public class EditCommand extends Command {
             setServers(toCopy.servers);
             setCountry(toCopy.country);
             setGameTypes(toCopy.gameTypes);
+            setTimeIntervals(toCopy.timeIntervals);
         }
 
         /**
@@ -288,6 +293,14 @@ public class EditCommand extends Command {
 
         public Optional<Set<GameType>> getGameTypes() {
             return (gameTypes != null) ? Optional.of(Collections.unmodifiableSet(gameTypes)) : Optional.empty();
+        }
+
+        public void setTimeIntervals(Set<ITimesAvailable> timeIntervals) {
+            this.timeIntervals = (timeIntervals != null) ? new HashSet<>(timeIntervals) : null;
+        }
+
+        public Optional<Set<ITimesAvailable>> getTimeIntervals() {
+            return (timeIntervals != null) ? Optional.of(Collections.unmodifiableSet(timeIntervals)) : Optional.empty();
         }
 
         @Override

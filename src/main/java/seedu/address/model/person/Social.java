@@ -58,6 +58,7 @@ public class Social {
                 && test.matches(VALIDATION_REGEX);
     }
 
+    @Override
     public String toString() {
         return this.platform + "@" + this.handle;
     }

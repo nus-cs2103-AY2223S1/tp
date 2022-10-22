@@ -14,6 +14,7 @@ import seedu.address.model.person.Address;
 import seedu.address.model.person.Country;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.GameType;
+import seedu.address.model.person.ITimesAvailable;
 import seedu.address.model.person.MinecraftName;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
@@ -39,6 +40,7 @@ class JsonAdaptedPerson {
     private final List<JsonAdaptedMinecraftServer> servers = new ArrayList<>();
     private final String country;
     private final List<JsonAdaptedGameType> gameTypes = new ArrayList<>();
+    private final List<JsonAdaptedTimeInterval> timeIntervals = new ArrayList<>();
 
     /**
      * Constructs a {@code JsonAdaptedPerson} with the given person details.
@@ -51,7 +53,8 @@ class JsonAdaptedPerson {
                              @JsonProperty("tags") List<JsonAdaptedTag> tags,
                              @JsonProperty("servers") List<JsonAdaptedMinecraftServer> servers,
                              @JsonProperty("country") String country,
-                             @JsonProperty("gameTypes") List<JsonAdaptedGameType> gameTypes) {
+                             @JsonProperty("gameTypes") List<JsonAdaptedGameType> gameTypes,
+                             @JsonProperty("timeIntervals") List<JsonAdaptedTimeInterval> timeIntervals) {
         this.name = name;
         this.minecraftName = minecraftName;
         this.phone = phone;
@@ -69,6 +72,9 @@ class JsonAdaptedPerson {
         }
         if (gameTypes != null) {
             this.gameTypes.addAll(gameTypes);
+        }
+        if (timeIntervals != null) {
+            this.timeIntervals.addAll(timeIntervals);
         }
     }
 
@@ -95,7 +101,9 @@ class JsonAdaptedPerson {
         gameTypes.addAll(source.getGameType().stream()
                 .map(JsonAdaptedGameType::new)
                 .collect(Collectors.toList()));
-
+        timeIntervals.addAll(source.getTimesAvailable().stream()
+                .map(JsonAdaptedTimeInterval::new)
+                .collect(Collectors.toList()));
     }
 
     /**
@@ -123,6 +131,11 @@ class JsonAdaptedPerson {
         final List<GameType> gameTypes = new ArrayList<>();
         for (JsonAdaptedGameType gameType : this.gameTypes) {
             gameTypes.add(gameType.toModelType());
+        }
+
+        final List<ITimesAvailable> timeIntervals = new ArrayList<>();
+        for (JsonAdaptedTimeInterval timeInterval : this.timeIntervals) {
+            timeIntervals.add(timeInterval.toModelType());
         }
 
         if (name == null) {
@@ -184,9 +197,10 @@ class JsonAdaptedPerson {
 
         final Country modelCountry = new Country(country);
 
-        return new Person(modelName, modelMinecraftName, modelPhone, modelEmail,
-                modelAddress, modelSocials, modelTags, modelServers, modelCountry, modelGameTypes);
+        final Set<ITimesAvailable> modelTimeIntervals = new HashSet<>(timeIntervals);
 
+        return new Person(modelName, modelMinecraftName, modelPhone, modelEmail,
+                modelAddress, modelSocials, modelTags, modelServers, modelCountry, modelGameTypes, modelTimeIntervals);
     }
 
 }
