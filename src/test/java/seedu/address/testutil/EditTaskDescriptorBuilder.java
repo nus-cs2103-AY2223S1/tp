@@ -7,7 +7,6 @@ import java.util.stream.Stream;
 import seedu.address.logic.commands.task.EditTaskCommand.EditTaskDescriptor;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.task.Contact;
-import seedu.address.model.task.Deadline;
 import seedu.address.model.task.Task;
 import seedu.address.model.task.Title;
 

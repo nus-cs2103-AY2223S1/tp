@@ -16,7 +16,6 @@ import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.TaskCommand;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.tag.Tag;
 import seedu.address.model.task.Contact;
 import seedu.address.model.task.Deadline;
 import seedu.address.model.task.Task;
