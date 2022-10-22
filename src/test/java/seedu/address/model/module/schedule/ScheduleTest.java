@@ -14,42 +14,51 @@ public class ScheduleTest {
     public void constructor_moduleNull_throwNullPointerException() {
         assertThrows(NullPointerException.class, () -> new Schedule(null, ScheduleBuilder.DEFAULT_VENUE,
                 ScheduleBuilder.DEFAULT_WEEKDAY, ScheduleBuilder.DEFAULT_START_TIME, ScheduleBuilder.DEFAULT_END_TIME,
-                ScheduleBuilder.DEFAULT_CLASS_TYPE));
+                ScheduleBuilder.DEFAULT_CLASS_TYPE, ScheduleBuilder.DEFAULT_CLASS_GROUP));
     }
 
     @Test
     public void constructor_venueNull_throwNullPointerException() {
         assertThrows(NullPointerException.class, () -> new Schedule(ScheduleBuilder.DEFAULT_MODULE, null,
                 ScheduleBuilder.DEFAULT_WEEKDAY, ScheduleBuilder.DEFAULT_START_TIME, ScheduleBuilder.DEFAULT_END_TIME,
-                ScheduleBuilder.DEFAULT_CLASS_TYPE));
+                ScheduleBuilder.DEFAULT_CLASS_TYPE, ScheduleBuilder.DEFAULT_CLASS_GROUP));
     }
 
     @Test
     public void constructor_weekdayNull_throwNullPointerException() {
         assertThrows(NullPointerException.class, () -> new Schedule(ScheduleBuilder.DEFAULT_MODULE,
                 ScheduleBuilder.DEFAULT_VENUE, null, ScheduleBuilder.DEFAULT_START_TIME,
-                ScheduleBuilder.DEFAULT_END_TIME, ScheduleBuilder.DEFAULT_CLASS_TYPE));
+                ScheduleBuilder.DEFAULT_END_TIME, ScheduleBuilder.DEFAULT_CLASS_TYPE,
+                ScheduleBuilder.DEFAULT_CLASS_GROUP));
     }
 
     @Test
     public void constructor_startTimeNull_throwNullPointerException() {
         assertThrows(NullPointerException.class, () -> new Schedule(ScheduleBuilder.DEFAULT_MODULE,
                 ScheduleBuilder.DEFAULT_VENUE, ScheduleBuilder.DEFAULT_WEEKDAY, null,
-                ScheduleBuilder.DEFAULT_END_TIME, ScheduleBuilder.DEFAULT_CLASS_TYPE));
+                ScheduleBuilder.DEFAULT_END_TIME, ScheduleBuilder.DEFAULT_CLASS_TYPE,
+                ScheduleBuilder.DEFAULT_CLASS_GROUP));
     }
 
     @Test
     public void constructor_endTimeNull_throwNullPointerException() {
         assertThrows(NullPointerException.class, () -> new Schedule(ScheduleBuilder.DEFAULT_MODULE,
                 ScheduleBuilder.DEFAULT_VENUE, ScheduleBuilder.DEFAULT_WEEKDAY, ScheduleBuilder.DEFAULT_START_TIME,
-                null, ScheduleBuilder.DEFAULT_CLASS_TYPE));
+                null, ScheduleBuilder.DEFAULT_CLASS_TYPE, ScheduleBuilder.DEFAULT_CLASS_GROUP));
     }
 
     @Test
     public void constructor_classTypeNull_throwNullPointerException() {
         assertThrows(NullPointerException.class, () -> new Schedule(ScheduleBuilder.DEFAULT_MODULE,
                 ScheduleBuilder.DEFAULT_VENUE, ScheduleBuilder.DEFAULT_WEEKDAY, ScheduleBuilder.DEFAULT_START_TIME,
-                ScheduleBuilder.DEFAULT_END_TIME, null));
+                ScheduleBuilder.DEFAULT_END_TIME, null, ScheduleBuilder.DEFAULT_CLASS_GROUP));
+    }
+
+    @Test
+    public void constructor_classGroupNull_throwNullPointerException() {
+        assertThrows(NullPointerException.class, () -> new Schedule(ScheduleBuilder.DEFAULT_MODULE,
+                ScheduleBuilder.DEFAULT_VENUE, ScheduleBuilder.DEFAULT_WEEKDAY, ScheduleBuilder.DEFAULT_START_TIME,
+                ScheduleBuilder.DEFAULT_END_TIME, ScheduleBuilder.DEFAULT_CLASS_TYPE, null));
     }
 
     @Test
@@ -69,9 +78,9 @@ public class ScheduleTest {
     public void isConflictTest() {
         Schedule s1 = new ScheduleBuilder().build();
         Schedule s2 = new Schedule("CS2109S", new Venue("COM2 02-17"), Weekdays.Friday, "15:00",
-                "17:00", ClassType.Tutorial);
+                "17:00", ClassType.Tutorial, "T10");
         Schedule s3 = new Schedule("MA2108", new Venue("LT31"), Weekdays.Tuesday,
-                "14:00", "16:00", ClassType.Lecture);
+                "14:00", "16:00", ClassType.Lecture, "L1");
 
         assertTrue(s1.isConflictWith(s2));
         assertFalse(s1.isConflictWith(s3));
