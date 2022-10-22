@@ -61,6 +61,11 @@
     -fx-background-color: #FFE3B3;
 }
 
+#cardPane {
+    -fx-border-color: #3e7b91;
+    -fx-border-radius: 5pt;
+}
+
 .cell_big_label,
 .list-panel-name {
     -fx-font-weight: bold;
