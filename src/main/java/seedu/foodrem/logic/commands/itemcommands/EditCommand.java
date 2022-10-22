@@ -1,7 +1,7 @@
 package seedu.foodrem.logic.commands.itemcommands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.foodrem.enums.CommandType.EDIT_COMMAND;
+import static seedu.foodrem.commons.enums.CommandType.EDIT_COMMAND;
 import static seedu.foodrem.model.Model.PREDICATE_SHOW_ALL_ITEMS;
 
 import java.util.List;
@@ -19,6 +19,7 @@ import seedu.foodrem.model.item.Item;
 import seedu.foodrem.model.item.ItemBoughtDate;
 import seedu.foodrem.model.item.ItemExpiryDate;
 import seedu.foodrem.model.item.ItemName;
+import seedu.foodrem.model.item.ItemPrice;
 import seedu.foodrem.model.item.ItemQuantity;
 import seedu.foodrem.model.item.ItemUnit;
 import seedu.foodrem.model.tag.Tag;
@@ -61,9 +62,16 @@ public class EditCommand extends Command {
         ItemUnit updatedUnit = editItemDescriptor.getItemUnit().orElse(itemToEdit.getUnit());
         ItemBoughtDate updatedBoughtDate = editItemDescriptor.getItemBoughtDate().orElse(itemToEdit.getBoughtDate());
         ItemExpiryDate updatedExpiryDate = editItemDescriptor.getItemExpiryDate().orElse(itemToEdit.getExpiryDate());
+        ItemPrice updatedPrice = editItemDescriptor.getItemPrice().orElse(itemToEdit.getPrice());
         Set<Tag> tagSet = itemToEdit.getTagSet();
 
-        return new Item(updatedName, updatedQuantity, updatedUnit, updatedBoughtDate, updatedExpiryDate, tagSet);
+        return new Item(updatedName,
+                updatedQuantity,
+                updatedUnit,
+                updatedBoughtDate,
+                updatedExpiryDate,
+                updatedPrice,
+                tagSet);
     }
 
     @Override
@@ -119,6 +127,7 @@ public class EditCommand extends Command {
         private ItemUnit unit;
         private ItemBoughtDate boughtDate;
         private ItemExpiryDate expiryDate;
+        private ItemPrice price;
 
         public EditItemDescriptor() {
         }
@@ -133,13 +142,14 @@ public class EditCommand extends Command {
             setItemUnit(toCopy.unit);
             setItemBoughtDate(toCopy.boughtDate);
             setItemExpiryDate(toCopy.expiryDate);
+            setItemPrice(toCopy.price);
         }
 
         /**
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, quantity, unit, boughtDate, expiryDate);
+            return CollectionUtil.isAnyNonNull(name, quantity, unit, boughtDate, expiryDate, price);
         }
 
         public Optional<ItemName> getItemName() {
@@ -182,6 +192,14 @@ public class EditCommand extends Command {
             this.expiryDate = expiryDate;
         }
 
+        public Optional<ItemPrice> getItemPrice() {
+            return Optional.ofNullable(price);
+        }
+
+        public void setItemPrice(ItemPrice price) {
+            this.price = price;
+        }
+
         @Override
         public boolean equals(Object other) {
             // short circuit if same object
@@ -201,7 +219,8 @@ public class EditCommand extends Command {
                     && getItemQuantity().equals(e.getItemQuantity())
                     && getItemUnit().equals(e.getItemUnit())
                     && getItemBoughtDate().equals(e.getItemBoughtDate())
-                    && getItemExpiryDate().equals(e.getItemExpiryDate());
+                    && getItemExpiryDate().equals(e.getItemExpiryDate())
+                    && getItemPrice().equals(e.getItemPrice());
         }
     }
 }

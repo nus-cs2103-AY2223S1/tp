@@ -5,6 +5,7 @@ import seedu.foodrem.model.item.Item;
 import seedu.foodrem.model.item.ItemBoughtDate;
 import seedu.foodrem.model.item.ItemExpiryDate;
 import seedu.foodrem.model.item.ItemName;
+import seedu.foodrem.model.item.ItemPrice;
 import seedu.foodrem.model.item.ItemQuantity;
 import seedu.foodrem.model.item.ItemUnit;
 
@@ -33,6 +34,7 @@ public class EditItemDescriptorBuilder {
         descriptor.setItemUnit(item.getUnit());
         descriptor.setItemBoughtDate(item.getBoughtDate());
         descriptor.setItemExpiryDate(item.getExpiryDate());
+        descriptor.setItemPrice(item.getPrice());
     }
 
     /**
@@ -73,6 +75,14 @@ public class EditItemDescriptorBuilder {
      */
     public EditItemDescriptorBuilder withItemExpiryDate(String boughtDate) {
         descriptor.setItemExpiryDate(new ItemExpiryDate(boughtDate));
+        return this;
+    }
+
+    /**
+     * Sets the {@code price} of the {@code EditItemDescriptor} that we are building.
+     */
+    public EditItemDescriptorBuilder withItemPrice(String price) {
+        descriptor.setItemPrice(new ItemPrice(price));
         return this;
     }
 

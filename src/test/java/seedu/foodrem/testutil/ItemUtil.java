@@ -1,6 +1,6 @@
 package seedu.foodrem.testutil;
 
-import seedu.foodrem.enums.CommandType;
+import seedu.foodrem.commons.enums.CommandType;
 import seedu.foodrem.logic.commands.itemcommands.EditCommand.EditItemDescriptor;
 import seedu.foodrem.logic.parser.CliSyntax;
 import seedu.foodrem.model.item.Item;
@@ -21,7 +21,7 @@ public class ItemUtil {
      * Returns the part of command string for the given {@code item}'s details.
      */
     public static String getItemDetails(Item item) {
-        return String.format("%s%s %s%s %s%s %s%s %s%s",
+        return String.format("%s%s %s%s %s%s %s%s %s%s %s%s",
                 CliSyntax.PREFIX_NAME,
                 item.getName(),
                 CliSyntax.PREFIX_ITEM_QUANTITY,
@@ -31,7 +31,9 @@ public class ItemUtil {
                 CliSyntax.PREFIX_ITEM_BOUGHT_DATE,
                 item.getBoughtDate(),
                 CliSyntax.PREFIX_ITEM_EXPIRY_DATE,
-                item.getExpiryDate());
+                item.getExpiryDate(),
+                CliSyntax.PREFIX_ITEM_PRICE,
+                item.getPrice());
     }
 
     /**
@@ -49,6 +51,8 @@ public class ItemUtil {
                 .ifPresent(boughtDate -> sb.append(CliSyntax.PREFIX_ITEM_BOUGHT_DATE).append(boughtDate).append(" "));
         descriptor.getItemBoughtDate()
                 .ifPresent(expiryDate -> sb.append(CliSyntax.PREFIX_ITEM_EXPIRY_DATE).append(expiryDate).append(" "));
+        descriptor.getItemPrice()
+                .ifPresent(price -> sb.append(CliSyntax.PREFIX_ITEM_PRICE).append(price).append(" "));
         //if (descriptor.getTags().isPresent()) {
         //    Set<Tag> tags = descriptor.getTags().get();
         //    if (tags.isEmpty()) {

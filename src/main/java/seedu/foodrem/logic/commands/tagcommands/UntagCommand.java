@@ -1,7 +1,7 @@
 package seedu.foodrem.logic.commands.tagcommands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.foodrem.enums.CommandType.UNTAG_COMMAND;
+import static seedu.foodrem.commons.enums.CommandType.UNTAG_COMMAND;
 
 import java.util.List;
 
@@ -19,7 +19,7 @@ import seedu.foodrem.model.tag.Tag;
 public class UntagCommand extends Command {
     // TODO: Test this command
     private static final String MESSAGE_SUCCESS = "Item untagged successfully";
-    private static final String ERROR_DUPLICATE = "This item is not tagged with this tag";
+    private static final String ERROR_ITEM_DOES_NOT_CONTAIN_TAG = "This item is not tagged with this tag";
     private static final String ERROR_NOT_FOUND_TAG = "This tag does not exist";
     private static final String ERROR_NOT_FOUND_ITEM = "The item index does not exist";
 
@@ -51,7 +51,7 @@ public class UntagCommand extends Command {
 
         Item itemToUntag = lastShownList.get(index.getZeroBased());
         if (!itemToUntag.containsTag(tag)) {
-            throw new CommandException(ERROR_DUPLICATE);
+            throw new CommandException(ERROR_ITEM_DOES_NOT_CONTAIN_TAG);
         }
 
         Item newTagSetItem = Item.createUntaggedItem(itemToUntag, tag);
@@ -64,5 +64,14 @@ public class UntagCommand extends Command {
 
     public static String getUsage() {
         return UNTAG_COMMAND.getUsage();
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                // instanceof handles nulls
+                || (other instanceof UntagCommand
+                && index.equals(((UntagCommand) other).index)
+                && tag.equals(((UntagCommand) other).tag));
     }
 }

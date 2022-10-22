@@ -1,9 +1,9 @@
 package seedu.foodrem.logic.commands.generalcommands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.foodrem.enums.CommandType.HELP_COMMAND;
+import static seedu.foodrem.commons.enums.CommandType.HELP_COMMAND;
 
-import seedu.foodrem.enums.CommandType;
+import seedu.foodrem.commons.enums.CommandType;
 import seedu.foodrem.logic.commands.Command;
 import seedu.foodrem.logic.commands.CommandResult;
 import seedu.foodrem.model.Model;

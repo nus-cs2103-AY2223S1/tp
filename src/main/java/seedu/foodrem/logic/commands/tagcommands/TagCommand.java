@@ -1,7 +1,7 @@
 package seedu.foodrem.logic.commands.tagcommands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.foodrem.enums.CommandType.TAG_COMMAND;
+import static seedu.foodrem.commons.enums.CommandType.TAG_COMMAND;
 
 import java.util.List;
 import java.util.Set;
@@ -52,6 +52,7 @@ public class TagCommand extends Command {
                 itemToTag.getUnit(),
                 itemToTag.getBoughtDate(),
                 itemToTag.getExpiryDate(),
+                itemToTag.getPrice(),
                 newTagSet);
     }
 
@@ -83,5 +84,14 @@ public class TagCommand extends Command {
 
     public static String getUsage() {
         return TAG_COMMAND.getUsage();
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                // instanceof handles nulls
+                || (other instanceof TagCommand
+                && index.equals(((TagCommand) other).index)
+                && tag.equals(((TagCommand) other).tag));
     }
 }

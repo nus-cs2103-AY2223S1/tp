@@ -6,6 +6,7 @@ import seedu.foodrem.model.item.Item;
 import seedu.foodrem.model.item.ItemBoughtDate;
 import seedu.foodrem.model.item.ItemExpiryDate;
 import seedu.foodrem.model.item.ItemName;
+import seedu.foodrem.model.item.ItemPrice;
 import seedu.foodrem.model.item.ItemQuantity;
 import seedu.foodrem.model.item.ItemUnit;
 
@@ -19,12 +20,14 @@ public class SampleDataUtil {
                     new ItemQuantity("10"),
                     new ItemUnit("kg"),
                     new ItemBoughtDate("11-11-2022"),
-                    new ItemExpiryDate("11-11-2022")),
+                    new ItemExpiryDate("11-11-2022"),
+                    new ItemPrice("10.20")),
             new Item(new ItemName("Cucumbers"),
                     new ItemQuantity("2000"),
                     new ItemUnit("grams"),
                     new ItemBoughtDate("12-12-2022"),
-                    new ItemExpiryDate("12-12-2022"))
+                    new ItemExpiryDate("12-12-2022"),
+                    new ItemPrice("10"))
         };
     }
 

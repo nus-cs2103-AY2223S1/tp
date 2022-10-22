@@ -1,6 +1,7 @@
 package seedu.foodrem.testutil;
 
 import static seedu.foodrem.testutil.TypicalItems.getTypicalItems;
+import static seedu.foodrem.testutil.TypicalItems.getTypicalItemsWithoutTags;
 import static seedu.foodrem.testutil.TypicalTags.getTypicalTags;
 
 import seedu.foodrem.model.FoodRem;
@@ -46,6 +47,18 @@ public class TypicalFoodRem {
         FoodRem foodRem = new FoodRem();
         for (Tag tag : getTypicalTags()) {
             foodRem.addTag(tag);
+        }
+
+        return foodRem;
+    }
+
+    /**
+     * Returns a {@code FoodRem} with all the typical items WITHOUT TAGS
+     */
+    public static FoodRem getFoodRemWithTypicalItemsWithoutTags() {
+        FoodRem foodRem = new FoodRem();
+        for (Item item : getTypicalItemsWithoutTags()) {
+            foodRem.addItem(item);
         }
 
         return foodRem;

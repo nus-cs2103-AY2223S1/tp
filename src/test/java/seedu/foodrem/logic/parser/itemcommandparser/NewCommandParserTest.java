@@ -3,11 +3,6 @@ package seedu.foodrem.logic.parser.itemcommandparser;
 import static seedu.foodrem.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.foodrem.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.foodrem.logic.parser.CommandParserTestUtil.assertParseSuccess;
-import static seedu.foodrem.model.item.itemvalidators.ItemBoughtDateValidator.MESSAGE_FOR_UNABLE_TO_PARSE_BOUGHT_DATE;
-import static seedu.foodrem.model.item.itemvalidators.ItemExpiryDateValidator.MESSAGE_FOR_UNABLE_TO_PARSE_EXPIRY_DATE;
-import static seedu.foodrem.model.item.itemvalidators.ItemNameValidator.MESSAGE_FOR_INVALID_CHARACTERS_IN_NAME;
-import static seedu.foodrem.model.item.itemvalidators.ItemQuantityValidator.MESSAGE_FOR_NOT_A_NUMBER;
-import static seedu.foodrem.model.item.itemvalidators.ItemUnitValidator.MESSAGE_FOR_INVALID_CHARACTERS_IN_UNIT;
 import static seedu.foodrem.testutil.TypicalItems.CUCUMBERS_WITHOUT_TAG;
 
 import org.junit.jupiter.api.Test;
@@ -16,8 +11,10 @@ import seedu.foodrem.logic.commands.CommandTestUtil;
 import seedu.foodrem.logic.commands.itemcommands.NewCommand;
 import seedu.foodrem.model.item.Item;
 import seedu.foodrem.testutil.ItemBuilder;
+import seedu.foodrem.testutil.MessageToUser;
 
 public class NewCommandParserTest {
+
     private final NewCommandParser parser = new NewCommandParser();
 
     @Test
@@ -30,7 +27,8 @@ public class NewCommandParserTest {
                         + CommandTestUtil.VALID_DESC_ITEM_QUANTITY_CUCUMBERS
                         + CommandTestUtil.VALID_DESC_ITEM_UNIT_CUCUMBERS
                         + CommandTestUtil.VALID_DESC_ITEM_BOUGHT_DATE_CUCUMBERS
-                        + CommandTestUtil.VALID_DESC_ITEM_EXPIRY_DATE_CUCUMBERS, new NewCommand(expectedItem));
+                        + CommandTestUtil.VALID_DESC_ITEM_EXPIRY_DATE_CUCUMBERS
+                        + CommandTestUtil.VALID_DESC_ITEM_PRICE_CUCUMBERS, new NewCommand(expectedItem));
 
         // multiple names - last name accepted
         assertParseSuccess(parser,
@@ -39,7 +37,8 @@ public class NewCommandParserTest {
                         + CommandTestUtil.VALID_DESC_ITEM_QUANTITY_CUCUMBERS
                         + CommandTestUtil.VALID_DESC_ITEM_UNIT_CUCUMBERS
                         + CommandTestUtil.VALID_DESC_ITEM_BOUGHT_DATE_CUCUMBERS
-                        + CommandTestUtil.VALID_DESC_ITEM_EXPIRY_DATE_CUCUMBERS, new NewCommand(expectedItem));
+                        + CommandTestUtil.VALID_DESC_ITEM_EXPIRY_DATE_CUCUMBERS
+                        + CommandTestUtil.VALID_DESC_ITEM_PRICE_CUCUMBERS, new NewCommand(expectedItem));
 
         // multiple quantities - last quantity accepted
         assertParseSuccess(parser,
@@ -48,7 +47,8 @@ public class NewCommandParserTest {
                         + CommandTestUtil.VALID_DESC_ITEM_QUANTITY_CUCUMBERS
                         + CommandTestUtil.VALID_DESC_ITEM_UNIT_CUCUMBERS
                         + CommandTestUtil.VALID_DESC_ITEM_BOUGHT_DATE_CUCUMBERS
-                        + CommandTestUtil.VALID_DESC_ITEM_EXPIRY_DATE_CUCUMBERS, new NewCommand(expectedItem));
+                        + CommandTestUtil.VALID_DESC_ITEM_EXPIRY_DATE_CUCUMBERS
+                        + CommandTestUtil.VALID_DESC_ITEM_PRICE_CUCUMBERS, new NewCommand(expectedItem));
 
         // multiple units - last unit accepted
         assertParseSuccess(parser,
@@ -57,7 +57,8 @@ public class NewCommandParserTest {
                         + CommandTestUtil.VALID_DESC_ITEM_UNIT_POTATOES
                         + CommandTestUtil.VALID_DESC_ITEM_UNIT_CUCUMBERS
                         + CommandTestUtil.VALID_DESC_ITEM_BOUGHT_DATE_CUCUMBERS
-                        + CommandTestUtil.VALID_DESC_ITEM_EXPIRY_DATE_CUCUMBERS, new NewCommand(expectedItem));
+                        + CommandTestUtil.VALID_DESC_ITEM_EXPIRY_DATE_CUCUMBERS
+                        + CommandTestUtil.VALID_DESC_ITEM_PRICE_CUCUMBERS, new NewCommand(expectedItem));
 
         // multiple bought dates - last bought date accepted
         assertParseSuccess(parser,
@@ -66,7 +67,8 @@ public class NewCommandParserTest {
                         + CommandTestUtil.VALID_DESC_ITEM_UNIT_CUCUMBERS
                         + CommandTestUtil.VALID_DESC_ITEM_BOUGHT_DATE_POTATOES
                         + CommandTestUtil.VALID_DESC_ITEM_BOUGHT_DATE_CUCUMBERS
-                        + CommandTestUtil.VALID_DESC_ITEM_EXPIRY_DATE_CUCUMBERS, new NewCommand(expectedItem));
+                        + CommandTestUtil.VALID_DESC_ITEM_EXPIRY_DATE_CUCUMBERS
+                        + CommandTestUtil.VALID_DESC_ITEM_PRICE_CUCUMBERS, new NewCommand(expectedItem));
 
 
         // multiple expiry dates - last expiry date accepted
@@ -76,7 +78,8 @@ public class NewCommandParserTest {
                         + CommandTestUtil.VALID_DESC_ITEM_UNIT_CUCUMBERS
                         + CommandTestUtil.VALID_DESC_ITEM_BOUGHT_DATE_CUCUMBERS
                         + CommandTestUtil.VALID_DESC_ITEM_EXPIRY_DATE_POTATOES
-                        + CommandTestUtil.VALID_DESC_ITEM_EXPIRY_DATE_CUCUMBERS, new NewCommand(expectedItem));
+                        + CommandTestUtil.VALID_DESC_ITEM_EXPIRY_DATE_CUCUMBERS
+                        + CommandTestUtil.VALID_DESC_ITEM_PRICE_CUCUMBERS, new NewCommand(expectedItem));
 
     }
 
@@ -121,8 +124,9 @@ public class NewCommandParserTest {
                         + CommandTestUtil.VALID_DESC_ITEM_QUANTITY_CUCUMBERS
                         + CommandTestUtil.VALID_DESC_ITEM_UNIT_CUCUMBERS
                         + CommandTestUtil.VALID_DESC_ITEM_BOUGHT_DATE_CUCUMBERS
-                        + CommandTestUtil.VALID_DESC_ITEM_EXPIRY_DATE_CUCUMBERS,
-                MESSAGE_FOR_INVALID_CHARACTERS_IN_NAME);
+                        + CommandTestUtil.VALID_DESC_ITEM_EXPIRY_DATE_CUCUMBERS
+                        + CommandTestUtil.VALID_DESC_ITEM_PRICE_CUCUMBERS,
+                MessageToUser.MESSAGE_FOR_INVALID_CHARACTERS_IN_NAME);
 
         // invalid quantity
         assertParseFailure(parser,
@@ -130,7 +134,9 @@ public class NewCommandParserTest {
                         + CommandTestUtil.INVALID_DESC_ITEM_QUANTITY_CUCUMBERS
                         + CommandTestUtil.VALID_DESC_ITEM_UNIT_CUCUMBERS
                         + CommandTestUtil.VALID_DESC_ITEM_BOUGHT_DATE_CUCUMBERS
-                        + CommandTestUtil.VALID_DESC_ITEM_EXPIRY_DATE_CUCUMBERS, MESSAGE_FOR_NOT_A_NUMBER);
+                        + CommandTestUtil.VALID_DESC_ITEM_EXPIRY_DATE_CUCUMBERS
+                        + CommandTestUtil.VALID_DESC_ITEM_PRICE_POTATOES,
+                MessageToUser.MESSAGE_FOR_QUANTITY_NOT_A_NUMBER);
 
         // invalid unit
         assertParseFailure(parser,
@@ -138,8 +144,9 @@ public class NewCommandParserTest {
                         + CommandTestUtil.VALID_DESC_ITEM_QUANTITY_CUCUMBERS
                         + CommandTestUtil.INVALID_DESC_ITEM_UNIT_CUCUMBERS
                         + CommandTestUtil.VALID_DESC_ITEM_BOUGHT_DATE_CUCUMBERS
-                        + CommandTestUtil.VALID_DESC_ITEM_EXPIRY_DATE_CUCUMBERS,
-                MESSAGE_FOR_INVALID_CHARACTERS_IN_UNIT);
+                        + CommandTestUtil.VALID_DESC_ITEM_EXPIRY_DATE_CUCUMBERS
+                        + CommandTestUtil.VALID_DESC_ITEM_PRICE_CUCUMBERS,
+                MessageToUser.MESSAGE_FOR_INVALID_CHARACTERS_IN_UNIT);
 
         // invalid bought date
         assertParseFailure(parser,
@@ -147,8 +154,9 @@ public class NewCommandParserTest {
                         + CommandTestUtil.VALID_DESC_ITEM_QUANTITY_CUCUMBERS
                         + CommandTestUtil.VALID_DESC_ITEM_UNIT_CUCUMBERS
                         + CommandTestUtil.INVALID_DESC_ITEM_BOUGHT_DATE_CUCUMBERS
-                        + CommandTestUtil.VALID_DESC_ITEM_EXPIRY_DATE_CUCUMBERS,
-                MESSAGE_FOR_UNABLE_TO_PARSE_BOUGHT_DATE);
+                        + CommandTestUtil.VALID_DESC_ITEM_EXPIRY_DATE_CUCUMBERS
+                        + CommandTestUtil.VALID_DESC_ITEM_PRICE_CUCUMBERS,
+                MessageToUser.MESSAGE_FOR_UNABLE_TO_PARSE_BOUGHT_DATE);
 
         // invalid expiry date
         assertParseFailure(parser,
@@ -156,8 +164,19 @@ public class NewCommandParserTest {
                         + CommandTestUtil.VALID_DESC_ITEM_QUANTITY_CUCUMBERS
                         + CommandTestUtil.VALID_DESC_ITEM_UNIT_CUCUMBERS
                         + CommandTestUtil.VALID_DESC_ITEM_BOUGHT_DATE_CUCUMBERS
-                        + CommandTestUtil.INVALID_DESC_ITEM_EXPIRY_DATE_CUCUMBERS,
-                MESSAGE_FOR_UNABLE_TO_PARSE_EXPIRY_DATE);
+                        + CommandTestUtil.INVALID_DESC_ITEM_EXPIRY_DATE_CUCUMBERS
+                        + CommandTestUtil.VALID_DESC_ITEM_PRICE_CUCUMBERS,
+                MessageToUser.MESSAGE_FOR_UNABLE_TO_PARSE_EXPIRY_DATE);
+
+        // invalid price
+        assertParseFailure(parser,
+                CommandTestUtil.VALID_DESC_ITEM_NAME_CUCUMBERS
+                        + CommandTestUtil.VALID_DESC_ITEM_QUANTITY_CUCUMBERS
+                        + CommandTestUtil.VALID_DESC_ITEM_UNIT_CUCUMBERS
+                        + CommandTestUtil.VALID_DESC_ITEM_BOUGHT_DATE_CUCUMBERS
+                        + CommandTestUtil.VALID_DESC_ITEM_EXPIRY_DATE_CUCUMBERS
+                        + CommandTestUtil.INVALID_DESC_ITEM_PRICE_CUCUMBERS,
+                MessageToUser.MESSAGE_FOR_UNABLE_TO_PARSE_PRICE);
 
         // two invalid values, only first invalid value reported
         assertParseFailure(parser,
@@ -165,7 +184,9 @@ public class NewCommandParserTest {
                         + CommandTestUtil.INVALID_DESC_ITEM_QUANTITY_CUCUMBERS
                         + CommandTestUtil.VALID_DESC_ITEM_UNIT_CUCUMBERS
                         + CommandTestUtil.VALID_DESC_ITEM_BOUGHT_DATE_CUCUMBERS
-                        + CommandTestUtil.INVALID_DESC_ITEM_EXPIRY_DATE_CUCUMBERS, MESSAGE_FOR_NOT_A_NUMBER);
+                        + CommandTestUtil.INVALID_DESC_ITEM_EXPIRY_DATE_CUCUMBERS
+                        + CommandTestUtil.VALID_DESC_ITEM_PRICE_CUCUMBERS,
+                MessageToUser.MESSAGE_FOR_QUANTITY_NOT_A_NUMBER);
 
         // non-empty preamble
         assertParseFailure(parser,
@@ -174,7 +195,8 @@ public class NewCommandParserTest {
                         + CommandTestUtil.VALID_DESC_ITEM_QUANTITY_CUCUMBERS
                         + CommandTestUtil.VALID_DESC_ITEM_UNIT_CUCUMBERS
                         + CommandTestUtil.VALID_DESC_ITEM_BOUGHT_DATE_CUCUMBERS
-                        + CommandTestUtil.VALID_DESC_ITEM_EXPIRY_DATE_CUCUMBERS,
+                        + CommandTestUtil.VALID_DESC_ITEM_EXPIRY_DATE_CUCUMBERS
+                        + CommandTestUtil.VALID_DESC_ITEM_PRICE_CUCUMBERS,
                 String.format(MESSAGE_INVALID_COMMAND_FORMAT, NewCommand.getUsage()));
     }
 }

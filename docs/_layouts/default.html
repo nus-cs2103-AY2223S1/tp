@@ -8,6 +8,12 @@
     {%- include header.html -%}
 
     <main class="page-content" aria-label="Content">
+      {% if page.show-toc %}
+        <aside class="sticky-toc">
+          {%- include toc.html html=content h_min=2 -%}
+        </aside>
+        <a class="after" href="javascript:scrollTo(0, 0);"></a>
+      {% endif %}
       <div class="wrapper">
         {{ content }}
       </div>

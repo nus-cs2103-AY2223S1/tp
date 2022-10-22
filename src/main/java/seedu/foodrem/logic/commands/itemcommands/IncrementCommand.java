@@ -1,7 +1,7 @@
 package seedu.foodrem.logic.commands.itemcommands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.foodrem.enums.CommandType.INCREMENT_COMMAND;
+import static seedu.foodrem.commons.enums.CommandType.INCREMENT_COMMAND;
 import static seedu.foodrem.model.Model.PREDICATE_SHOW_ALL_ITEMS;
 
 import java.util.List;
@@ -55,7 +55,8 @@ public class IncrementCommand extends Command {
                 incrementedQuantity,
                 itemToIncrement.getUnit(),
                 itemToIncrement.getBoughtDate(),
-                itemToIncrement.getExpiryDate());
+                itemToIncrement.getExpiryDate(),
+                itemToIncrement.getPrice());
     }
 
     @Override

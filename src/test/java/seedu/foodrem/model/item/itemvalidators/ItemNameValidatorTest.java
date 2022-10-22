@@ -1,11 +1,10 @@
 package seedu.foodrem.model.item.itemvalidators;
 
-import static seedu.foodrem.model.item.itemvalidators.ItemNameValidator.MESSAGE_FOR_INVALID_CHARACTERS_IN_NAME;
-import static seedu.foodrem.model.item.itemvalidators.ItemNameValidator.MESSAGE_FOR_NAME_IS_BLANK;
-import static seedu.foodrem.model.item.itemvalidators.ItemNameValidator.MESSAGE_FOR_NAME_TOO_LONG;
 import static seedu.foodrem.model.item.itemvalidators.ItemValidatorUtilTest.assertValidateFailure;
 
 import org.junit.jupiter.api.Test;
+
+import seedu.foodrem.testutil.MessageToUser;
 
 public class ItemNameValidatorTest {
     // TODO: Test for uniqueness of Item Name
@@ -17,31 +16,42 @@ public class ItemNameValidatorTest {
                 + "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
                 + "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
 
-        assertValidateFailure(() -> ItemNameValidator.validate(""), MESSAGE_FOR_NAME_IS_BLANK); // Blank
+        // Blank
+        assertValidateFailure(() -> ItemNameValidator.validate(""), MessageToUser.MESSAGE_FOR_NAME_IS_BLANK);
         assertValidateFailure(() -> ItemNameValidator.validate(
                         "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
                                 + "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
                                 + "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"),
-                MESSAGE_FOR_NAME_TOO_LONG); // 201 char
+                MessageToUser.MESSAGE_FOR_NAME_TOO_LONG); // 201 char
     }
 
     @Test
     public void test_nameHasValidSymbols() {
         // Invalid names - Spaces
-        assertValidateFailure(() -> ItemNameValidator.validate(" "), MESSAGE_FOR_NAME_IS_BLANK);
-        assertValidateFailure(() -> ItemNameValidator.validate(" "), MESSAGE_FOR_NAME_IS_BLANK);
-        assertValidateFailure(() -> ItemNameValidator.validate("       "), MESSAGE_FOR_NAME_IS_BLANK);
-        assertValidateFailure(() -> ItemNameValidator.validate("    a"), MESSAGE_FOR_INVALID_CHARACTERS_IN_NAME);
+        assertValidateFailure(() -> ItemNameValidator.validate(" "),
+                MessageToUser.MESSAGE_FOR_NAME_IS_BLANK);
+        assertValidateFailure(() -> ItemNameValidator.validate(" "),
+                MessageToUser.MESSAGE_FOR_NAME_IS_BLANK);
+        assertValidateFailure(() -> ItemNameValidator.validate("       "),
+                MessageToUser.MESSAGE_FOR_NAME_IS_BLANK);
+        assertValidateFailure(() -> ItemNameValidator.validate("    a"),
+                MessageToUser.MESSAGE_FOR_INVALID_CHARACTERS_IN_NAME);
 
         // Invalid names - Wrong Symbols
-        assertValidateFailure(() -> ItemNameValidator.validate("\\"), MESSAGE_FOR_INVALID_CHARACTERS_IN_NAME);
-        assertValidateFailure(() -> ItemNameValidator.validate("\\/"), MESSAGE_FOR_INVALID_CHARACTERS_IN_NAME);
-        assertValidateFailure(() -> ItemNameValidator.validate("|"), MESSAGE_FOR_INVALID_CHARACTERS_IN_NAME);
-        assertValidateFailure(() -> ItemNameValidator.validate("á"), MESSAGE_FOR_INVALID_CHARACTERS_IN_NAME);
-        assertValidateFailure(() -> ItemNameValidator.validate("你"), MESSAGE_FOR_INVALID_CHARACTERS_IN_NAME);
-        assertValidateFailure(() -> ItemNameValidator.validate("あ"), MESSAGE_FOR_INVALID_CHARACTERS_IN_NAME);
+        assertValidateFailure(() -> ItemNameValidator.validate("\\"),
+                MessageToUser.MESSAGE_FOR_INVALID_CHARACTERS_IN_NAME);
+        assertValidateFailure(() -> ItemNameValidator.validate("\\/"),
+                MessageToUser.MESSAGE_FOR_INVALID_CHARACTERS_IN_NAME);
+        assertValidateFailure(() -> ItemNameValidator.validate("|"),
+                MessageToUser.MESSAGE_FOR_INVALID_CHARACTERS_IN_NAME);
+        assertValidateFailure(() -> ItemNameValidator.validate("á"),
+                MessageToUser.MESSAGE_FOR_INVALID_CHARACTERS_IN_NAME);
+        assertValidateFailure(() -> ItemNameValidator.validate("你"),
+                MessageToUser.MESSAGE_FOR_INVALID_CHARACTERS_IN_NAME);
+        assertValidateFailure(() -> ItemNameValidator.validate("あ"),
+                MessageToUser.MESSAGE_FOR_INVALID_CHARACTERS_IN_NAME);
         assertValidateFailure(() -> ItemNameValidator.validate("，"),
-                MESSAGE_FOR_INVALID_CHARACTERS_IN_NAME); // Chinese comma
+                MessageToUser.MESSAGE_FOR_INVALID_CHARACTERS_IN_NAME); // Chinese comma
 
         // Valid names
         ItemNameValidator.validate("a");

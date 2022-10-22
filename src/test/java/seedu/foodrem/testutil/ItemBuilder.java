@@ -7,6 +7,7 @@ import seedu.foodrem.model.item.Item;
 import seedu.foodrem.model.item.ItemBoughtDate;
 import seedu.foodrem.model.item.ItemExpiryDate;
 import seedu.foodrem.model.item.ItemName;
+import seedu.foodrem.model.item.ItemPrice;
 import seedu.foodrem.model.item.ItemQuantity;
 import seedu.foodrem.model.item.ItemUnit;
 import seedu.foodrem.model.tag.Tag;
@@ -21,6 +22,7 @@ public class ItemBuilder {
     public static final String DEFAULT_ITEM_UNIT = "";
     public static final String DEFAULT_BOUGHT_DATE = "";
     public static final String DEFAULT_EXPIRY_DATE = "";
+    public static final String DEFAULT_PRICE = "";
 
     // Identity fields
     private ItemName name;
@@ -29,6 +31,7 @@ public class ItemBuilder {
     private ItemUnit unit;
     private ItemBoughtDate boughtDate;
     private ItemExpiryDate expiryDate;
+    private ItemPrice price;
     private Set<Tag> tags;
 
     /**
@@ -40,6 +43,7 @@ public class ItemBuilder {
         unit = new ItemUnit(DEFAULT_ITEM_UNIT);
         boughtDate = new ItemBoughtDate(DEFAULT_BOUGHT_DATE);
         expiryDate = new ItemExpiryDate(DEFAULT_EXPIRY_DATE);
+        price = new ItemPrice(DEFAULT_PRICE);
         tags = new HashSet<>();
     }
 
@@ -52,6 +56,7 @@ public class ItemBuilder {
         unit = itemToCopy.getUnit();
         boughtDate = itemToCopy.getBoughtDate();
         expiryDate = itemToCopy.getExpiryDate();
+        price = itemToCopy.getPrice();
         tags = new HashSet<>(itemToCopy.getTagSet());
     }
 
@@ -96,6 +101,14 @@ public class ItemBuilder {
     }
 
     /**
+     * Sets the item price of the {@link Item} that we are building.
+     */
+    public ItemBuilder withItemPrice(String price) {
+        this.price = new ItemPrice(price);
+        return this;
+    }
+
+    /**
      * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@link Item} that we are building.
      */
     public ItemBuilder withTags(String... tagNames) {
@@ -107,7 +120,7 @@ public class ItemBuilder {
 
 
     public Item build() {
-        return new Item(name, quantity, unit, boughtDate, expiryDate, tags);
+        return new Item(name, quantity, unit, boughtDate, expiryDate, price, tags);
     }
 
 }

@@ -53,5 +53,10 @@ public class EditItemDescriptorTest {
         editedPotato = new EditItemDescriptorBuilder(CommandTestUtil.DESC_POTATOES)
                 .withItemExpiryDate(CommandTestUtil.VALID_ITEM_EXPIRY_DATE_CUCUMBERS).build();
         assertFalse(CommandTestUtil.DESC_POTATOES.equals(editedPotato));
+
+        // different price -> returns false
+        editedPotato = new EditItemDescriptorBuilder(CommandTestUtil.DESC_POTATOES)
+                .withItemPrice(CommandTestUtil.VALID_ITEM_PRICE_CUCUMBERS).build();
+        assertFalse(CommandTestUtil.DESC_POTATOES.equals(editedPotato));
     }
 }

@@ -13,7 +13,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 
-import seedu.foodrem.enums.CommandType;
+import seedu.foodrem.commons.enums.CommandType;
 import seedu.foodrem.logic.commands.CommandResult;
 import seedu.foodrem.logic.commands.CommandTestUtil;
 import seedu.foodrem.logic.commands.exceptions.CommandException;
@@ -80,7 +80,8 @@ public class LogicManagerTest {
                 + CommandTestUtil.VALID_DESC_ITEM_QUANTITY_POTATOES
                 + CommandTestUtil.VALID_DESC_ITEM_UNIT_POTATOES
                 + CommandTestUtil.VALID_DESC_ITEM_BOUGHT_DATE_POTATOES
-                + CommandTestUtil.VALID_DESC_ITEM_EXPIRY_DATE_POTATOES;
+                + CommandTestUtil.VALID_DESC_ITEM_EXPIRY_DATE_POTATOES
+                + CommandTestUtil.VALID_DESC_ITEM_PRICE_POTATOES;
         Item expectedItem = new ItemBuilder(POTATOES_WITHOUT_TAG).build();
         ModelManager expectedModel = new ModelManager();
         expectedModel.addItem(expectedItem);

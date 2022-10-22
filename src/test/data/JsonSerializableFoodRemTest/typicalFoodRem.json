@@ -7,6 +7,7 @@
       "unit": "kg",
       "boughtDate": "11-11-2022",
       "expiryDate": "11-11-2022",
+      "price" : "10.30",
       "tags": ["vegetables"]
     },
     {
@@ -15,6 +16,7 @@
       "unit": "grams",
       "boughtDate": "12-12-2022",
       "expiryDate": "12-12-2022",
+      "price" : "8",
       "tags": ["vegetables"]
     }
   ],

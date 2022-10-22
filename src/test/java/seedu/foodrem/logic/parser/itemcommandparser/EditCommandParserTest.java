@@ -3,11 +3,6 @@ package seedu.foodrem.logic.parser.itemcommandparser;
 import static seedu.foodrem.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.foodrem.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.foodrem.logic.parser.CommandParserTestUtil.assertParseSuccess;
-import static seedu.foodrem.model.item.itemvalidators.ItemBoughtDateValidator.MESSAGE_FOR_UNABLE_TO_PARSE_BOUGHT_DATE;
-import static seedu.foodrem.model.item.itemvalidators.ItemExpiryDateValidator.MESSAGE_FOR_UNABLE_TO_PARSE_EXPIRY_DATE;
-import static seedu.foodrem.model.item.itemvalidators.ItemNameValidator.MESSAGE_FOR_INVALID_CHARACTERS_IN_NAME;
-import static seedu.foodrem.model.item.itemvalidators.ItemQuantityValidator.MESSAGE_FOR_NOT_A_NUMBER;
-import static seedu.foodrem.model.item.itemvalidators.ItemUnitValidator.MESSAGE_FOR_INVALID_CHARACTERS_IN_UNIT;
 import static seedu.foodrem.testutil.TypicalIndexes.INDEX_FIRST_ITEM;
 import static seedu.foodrem.testutil.TypicalIndexes.INDEX_SECOND_ITEM;
 import static seedu.foodrem.testutil.TypicalIndexes.INDEX_THIRD_ITEM;
@@ -19,6 +14,7 @@ import seedu.foodrem.logic.commands.CommandTestUtil;
 import seedu.foodrem.logic.commands.itemcommands.EditCommand;
 import seedu.foodrem.logic.commands.itemcommands.EditCommand.EditItemDescriptor;
 import seedu.foodrem.testutil.EditItemDescriptorBuilder;
+import seedu.foodrem.testutil.MessageToUser;
 
 public class EditCommandParserTest {
 
@@ -42,10 +38,12 @@ public class EditCommandParserTest {
     @Test
     public void parse_invalidPreamble_failure() {
         // negative index
-        assertParseFailure(parser, "-5" + CommandTestUtil.VALID_DESC_ITEM_NAME_POTATOES, MESSAGE_INVALID_FORMAT);
+        assertParseFailure(parser, "-5" + CommandTestUtil.VALID_DESC_ITEM_NAME_POTATOES,
+                MESSAGE_INVALID_FORMAT);
 
         // zero index
-        assertParseFailure(parser, "0" + CommandTestUtil.VALID_DESC_ITEM_NAME_POTATOES, MESSAGE_INVALID_FORMAT);
+        assertParseFailure(parser, "0" + CommandTestUtil.VALID_DESC_ITEM_NAME_POTATOES,
+                MESSAGE_INVALID_FORMAT);
 
         // invalid arguments being parsed as preamble
         assertParseFailure(parser, "1 some random string", MESSAGE_INVALID_FORMAT);
@@ -59,26 +57,29 @@ public class EditCommandParserTest {
         // Invalid Fields
         assertParseFailure(parser,
                 "1" + CommandTestUtil.INVALID_DESC_ITEM_NAME_CUCUMBERS,
-                MESSAGE_FOR_INVALID_CHARACTERS_IN_NAME);
+                MessageToUser.MESSAGE_FOR_INVALID_CHARACTERS_IN_NAME);
         assertParseFailure(parser,
                 "1" + CommandTestUtil.INVALID_DESC_ITEM_QUANTITY_CUCUMBERS,
-                MESSAGE_FOR_NOT_A_NUMBER);
+                MessageToUser.MESSAGE_FOR_QUANTITY_NOT_A_NUMBER);
         assertParseFailure(parser,
                 "1" + CommandTestUtil.INVALID_DESC_ITEM_UNIT_CUCUMBERS,
-                MESSAGE_FOR_INVALID_CHARACTERS_IN_UNIT);
+                MessageToUser.MESSAGE_FOR_INVALID_CHARACTERS_IN_UNIT);
         assertParseFailure(parser,
                 "1" + CommandTestUtil.INVALID_DESC_ITEM_BOUGHT_DATE_CUCUMBERS,
-                MESSAGE_FOR_UNABLE_TO_PARSE_BOUGHT_DATE);
+                MessageToUser.MESSAGE_FOR_UNABLE_TO_PARSE_BOUGHT_DATE);
         assertParseFailure(parser,
                 "1" + CommandTestUtil.INVALID_DESC_ITEM_EXPIRY_DATE_CUCUMBERS,
-                MESSAGE_FOR_UNABLE_TO_PARSE_EXPIRY_DATE);
+                MessageToUser.MESSAGE_FOR_UNABLE_TO_PARSE_EXPIRY_DATE);
+        assertParseFailure(parser,
+                "1" + CommandTestUtil.INVALID_DESC_ITEM_PRICE_CUCUMBERS,
+                MessageToUser.MESSAGE_FOR_UNABLE_TO_PARSE_PRICE);
 
         // Invalid Name followed by valid Quantity
         assertParseFailure(parser,
                 "1"
                         + CommandTestUtil.INVALID_DESC_ITEM_NAME_CUCUMBERS
                         + CommandTestUtil.VALID_DESC_ITEM_QUANTITY_POTATOES,
-                MESSAGE_FOR_INVALID_CHARACTERS_IN_NAME);
+                MessageToUser.MESSAGE_FOR_INVALID_CHARACTERS_IN_NAME);
 
         // Valid name followed by valid name.
         // The test case for invalid name followed by valid name
@@ -86,7 +87,7 @@ public class EditCommandParserTest {
         assertParseFailure(parser, "1"
                         + CommandTestUtil.VALID_DESC_ITEM_NAME_CUCUMBERS
                         + CommandTestUtil.INVALID_DESC_ITEM_NAME_CUCUMBERS,
-                MESSAGE_FOR_INVALID_CHARACTERS_IN_NAME);
+                MessageToUser.MESSAGE_FOR_INVALID_CHARACTERS_IN_NAME);
 
         // multiple invalid values, but only the first invalid value is captured
         assertParseFailure(parser, "1"
@@ -94,7 +95,7 @@ public class EditCommandParserTest {
                         + CommandTestUtil.INVALID_DESC_ITEM_QUANTITY_POTATOES
                         + CommandTestUtil.VALID_DESC_ITEM_EXPIRY_DATE_POTATOES
                         + CommandTestUtil.VALID_DESC_ITEM_BOUGHT_DATE_POTATOES,
-                MESSAGE_FOR_INVALID_CHARACTERS_IN_NAME);
+                MessageToUser.MESSAGE_FOR_INVALID_CHARACTERS_IN_NAME);
     }
 
     @Test
@@ -106,18 +107,21 @@ public class EditCommandParserTest {
                 + CommandTestUtil.VALID_DESC_ITEM_UNIT_CUCUMBERS
                 + CommandTestUtil.VALID_DESC_ITEM_BOUGHT_DATE_CUCUMBERS
                 + CommandTestUtil.VALID_DESC_ITEM_EXPIRY_DATE_CUCUMBERS
+                + CommandTestUtil.VALID_DESC_ITEM_PRICE_CUCUMBERS
                 + CommandTestUtil.VALID_DESC_ITEM_NAME_POTATOES
                 + CommandTestUtil.VALID_DESC_ITEM_QUANTITY_POTATOES
                 + CommandTestUtil.VALID_DESC_ITEM_UNIT_POTATOES
                 + CommandTestUtil.VALID_DESC_ITEM_BOUGHT_DATE_POTATOES
-                + CommandTestUtil.VALID_DESC_ITEM_EXPIRY_DATE_POTATOES;
+                + CommandTestUtil.VALID_DESC_ITEM_EXPIRY_DATE_POTATOES
+                + CommandTestUtil.VALID_DESC_ITEM_PRICE_POTATOES;
 
         EditItemDescriptor descriptor = new EditItemDescriptorBuilder()
                 .withItemName(CommandTestUtil.VALID_ITEM_NAME_POTATOES)
                 .withItemQuantity(CommandTestUtil.VALID_ITEM_QUANTITY_POTATOES)
                 .withItemUnit(CommandTestUtil.VALID_ITEM_UNIT_POTATOES)
                 .withItemBoughtDate(CommandTestUtil.VALID_ITEM_BOUGHT_DATE_POTATOES)
-                .withItemExpiryDate(CommandTestUtil.VALID_ITEM_EXPIRY_DATE_POTATOES).build();
+                .withItemExpiryDate(CommandTestUtil.VALID_ITEM_EXPIRY_DATE_POTATOES)
+                .withItemPrice(CommandTestUtil.VALID_ITEM_PRICE_POTATOES).build();
         EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
 
         assertParseSuccess(parser, userInput, expectedCommand);
@@ -174,6 +178,13 @@ public class EditCommandParserTest {
                 .withItemExpiryDate(CommandTestUtil.VALID_ITEM_EXPIRY_DATE_POTATOES).build();
         expectedCommand = new EditCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
+
+        // price
+        userInput = targetIndex.getOneBased() + CommandTestUtil.VALID_DESC_ITEM_PRICE_POTATOES;
+        descriptor = new EditItemDescriptorBuilder()
+                .withItemPrice(CommandTestUtil.VALID_ITEM_PRICE_POTATOES).build();
+        expectedCommand = new EditCommand(targetIndex, descriptor);
+        assertParseSuccess(parser, userInput, expectedCommand);
     }
 
     @Test
@@ -185,18 +196,21 @@ public class EditCommandParserTest {
                 + CommandTestUtil.VALID_DESC_ITEM_UNIT_CUCUMBERS
                 + CommandTestUtil.VALID_DESC_ITEM_BOUGHT_DATE_CUCUMBERS
                 + CommandTestUtil.VALID_DESC_ITEM_EXPIRY_DATE_CUCUMBERS
+                + CommandTestUtil.VALID_DESC_ITEM_PRICE_CUCUMBERS
                 + CommandTestUtil.VALID_DESC_ITEM_NAME_POTATOES
                 + CommandTestUtil.VALID_DESC_ITEM_QUANTITY_POTATOES
                 + CommandTestUtil.VALID_DESC_ITEM_UNIT_POTATOES
                 + CommandTestUtil.VALID_DESC_ITEM_BOUGHT_DATE_POTATOES
-                + CommandTestUtil.VALID_DESC_ITEM_EXPIRY_DATE_POTATOES;
+                + CommandTestUtil.VALID_DESC_ITEM_EXPIRY_DATE_POTATOES
+                + CommandTestUtil.VALID_DESC_ITEM_PRICE_POTATOES;
 
         EditItemDescriptor descriptor = new EditItemDescriptorBuilder()
                 .withItemName(CommandTestUtil.VALID_ITEM_NAME_POTATOES)
                 .withItemQuantity(CommandTestUtil.VALID_ITEM_QUANTITY_POTATOES)
                 .withItemUnit(CommandTestUtil.VALID_ITEM_UNIT_POTATOES)
                 .withItemBoughtDate(CommandTestUtil.VALID_ITEM_BOUGHT_DATE_POTATOES)
-                .withItemExpiryDate(CommandTestUtil.VALID_ITEM_EXPIRY_DATE_POTATOES).build();
+                .withItemExpiryDate(CommandTestUtil.VALID_ITEM_EXPIRY_DATE_POTATOES)
+                .withItemPrice(CommandTestUtil.VALID_ITEM_PRICE_POTATOES).build();
         EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
 
         assertParseSuccess(parser, userInput, expectedCommand);
@@ -219,13 +233,17 @@ public class EditCommandParserTest {
                 + CommandTestUtil.INVALID_DESC_ITEM_NAME_POTATOES
                 + CommandTestUtil.VALID_DESC_ITEM_NAME_POTATOES
                 + CommandTestUtil.VALID_DESC_ITEM_QUANTITY_POTATOES
+                + CommandTestUtil.VALID_DESC_ITEM_UNIT_POTATOES
                 + CommandTestUtil.VALID_DESC_ITEM_BOUGHT_DATE_POTATOES
-                + CommandTestUtil.VALID_DESC_ITEM_EXPIRY_DATE_POTATOES;
+                + CommandTestUtil.VALID_DESC_ITEM_EXPIRY_DATE_POTATOES
+                + CommandTestUtil.VALID_DESC_ITEM_PRICE_POTATOES;
         descriptor = new EditItemDescriptorBuilder()
                 .withItemName(CommandTestUtil.VALID_ITEM_NAME_POTATOES)
                 .withItemQuantity(CommandTestUtil.VALID_ITEM_QUANTITY_POTATOES)
+                .withItemUnit(CommandTestUtil.VALID_ITEM_UNIT_POTATOES)
                 .withItemBoughtDate(CommandTestUtil.VALID_ITEM_BOUGHT_DATE_POTATOES)
-                .withItemExpiryDate(CommandTestUtil.VALID_ITEM_EXPIRY_DATE_POTATOES).build();
+                .withItemExpiryDate(CommandTestUtil.VALID_ITEM_EXPIRY_DATE_POTATOES)
+                .withItemPrice(CommandTestUtil.VALID_ITEM_PRICE_POTATOES).build();
         expectedCommand = new EditCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
     }
