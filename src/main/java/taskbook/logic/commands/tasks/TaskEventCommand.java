@@ -62,7 +62,7 @@ public class TaskEventCommand extends TaskAddCommand {
         }
 
         model.addTask(newTask);
-
+        model.commitTaskBook();
         return new CommandResult(String.format(MESSAGE_SUCCESS, newTask));
     }
 

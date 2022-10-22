@@ -237,6 +237,28 @@ Format: `task unmark i/INDEX`
 Examples:
 * `task list` followed by `task unmark i/2` marks the 2nd task in the task list.
 
+### Undo Command : `undo`
+
+Undoes the previous command and reverts the TaskBook to the previous state. A _minimum_ of 15 previous states are guaranteed to be kept in the history, if there are that many commands executed.
+
+Note: Commands that do not cause a change in state cannot be undone.
+
+Format: `undo`
+
+Examples:
+* `task todo m/Bob d/Add undo feature` - some command that causes a change in state
+* `undo` will undo the previous command
+
+### Redo Command : `redo`
+
+Redoes the previous undo action and reverts the TaskBook to a previously undone state.
+
+Format: `redo`
+
+Examples:
+* `task delete i/1` - some command that causes a change in state
+* `undo` will undo the previous command
+* `redo` will revert the state such that the task is deleted
 
 ### Exiting the program : `bye`
 
@@ -245,6 +267,8 @@ Ends the application.
 Format: `bye`
 
 ### Navigating Command History
+
+A _minimum_ of 1000 commands are guaranteed to be kept in the history, if there are that many commands executed. Invalid commands are also saved in the command history, to allow for editing mistyped commands.
 
 #### History: Previous Command
 
@@ -279,10 +303,6 @@ If your changes to the data file makes its format invalid, AddressBook will disc
 </div>
 
 ### Locating persons by name: `find` [coming soon]
-
-### Archiving data files `[coming in v2.0]`
-
-_Details coming soon ..._
 
 ## Miscellaneous Information
 

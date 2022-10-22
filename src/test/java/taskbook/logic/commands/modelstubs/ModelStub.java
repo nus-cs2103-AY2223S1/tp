@@ -48,6 +48,31 @@ public class ModelStub implements Model {
     }
 
     @Override
+    public void commitTaskBook() {
+        // Intentionally empty method.
+    }
+
+    @Override
+    public boolean canUndoTaskBook() {
+        throw new AssertionError("This method should not be called.");
+    }
+
+    @Override
+    public void undoTaskBook() {
+        throw new AssertionError("This method should not be called.");
+    }
+
+    @Override
+    public boolean canRedoTaskBook() {
+        throw new AssertionError("This method should not be called.");
+    }
+
+    @Override
+    public void redoTaskBook() {
+        throw new AssertionError("This method should not be called.");
+    }
+
+    @Override
     public void addPerson(Person person) {
         throw new AssertionError("This method should not be called.");
     }
