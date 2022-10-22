@@ -1,5 +1,7 @@
 package seedu.address.logic.parser;
 
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+
 import seedu.address.logic.commands.AddMemberCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Name;
@@ -18,7 +20,7 @@ public class AddMemberCommandParser implements Parser<AddMemberCommand> {
     public AddMemberCommand parse(String args) throws ParseException {
         String name = args.trim();
         if (!Name.isValidName(name)) {
-            throw new ParseException(Name.MESSAGE_CONSTRAINTS);
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, Name.MESSAGE_CONSTRAINTS));
         }
         return new AddMemberCommand(new Name(name));
     }
