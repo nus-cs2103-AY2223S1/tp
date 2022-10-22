@@ -154,6 +154,48 @@ Classes used by multiple components are in the `tuthubbook.commons` package.
 
 This section describes some noteworthy details on how certain features are implemented.
 
+### Find Feature
+
+This feature filters TutHub's filtered list of tutors based on a predicate on whether a tutor's attribute contains the keywords
+being searched. User are to specify which attribute of the tutor to search for by including the prefix of the attribute when using the command.
+
+<ins>Implementation</ins>
+
+The `find` command involves the logic, model and UI components of Tuthub.
+Tutor information is stored in a `Tutor` object, where each piece of information is an object on its own. 
+E.g. `Name`, `Phone`, `Email`. When the user wants to find a tutor, the user specifies the `Prefix` corresponding
+to the specific attribute of the tutor followed by the keywords to be searched. `Tutor` objects that are matched the
+keywords being searched are added to the `FilteredList` to be displayed in the program to the user.
+
+The following methods in `tuthub` manage the finding of tutors:
+* `tuthub#FindByNameCommand(NameContainsKeywordsPredicate predicate)` - Finds and adds tutors with names matching keywords to list of tutors displayed
+* `tuthub#FindByPhoneCommand(PhoneContainsKeywordsPredicate predicate)` - Finds and adds tutors with phone number matching keywords to list of tutors displayed
+* `tuthub#FindByEmailCommand(EmailContainsKeywordsPredicate predicate)` - Finds and adds tutors with emails matching keywords to list of tutors displayed
+* `tuthub#FindByModuleCommand(ModuleContainsKeywordsPredicate predicate)` - Finds and adds tutors with modules matching keywords to list of tutors displayed
+* `tuthub#FindByYearCommand(YearContainsKeywordsPredicate predicate)` - Finds and adds tutors with year matching keywords to list of tutors displayed
+* `tuthub#FindByStudentIdCommand(StudenIdContainsKeywordsPredicate predicate)` - Finds and adds tutors with student ids matching keywords to list of tutors displayed
+* `tuthub#FindByTeachingNominationCommand(TeachingNominationContainsKeywordsPredicate predicate)` - Finds and adds tutors with teaching nominations matching keywords to list of tutors displayed
+* `tuthub#FindByRatingCommand(RatingContainsKeywordsPredicate predicate)` - Finds and adds tutors with rating matching keywords to list of tutors displayed
+* `tuthub#FindByTagCommand(TagContainsKeywordsPredicate predicate)` - Finds and adds tutors with tags matching keywords to list of tutors displayed
+* `tuthub#FindByPrefixParser(String args)` - Parses the `find` command and determines the `prefix` corresponding to the attribute to search through to find matching tutors
+* `ModelManager#filteredTutors` - A `javafx.collections.transformation.FilteredList` that contains a list of filtered tutors according to a predicate
+* `ModelManager#getFilteredTutorList()` - Returns the `filteredTutors` list
+* `ModelManager#updateFilteredTutorList(Predicate<Tutor> predicate)` - Updates filtered list based on predicate
+
+Given below is an example usage scenario when the user is finding tutors whose names contains alex.
+
+Step 1: The user enter the command `find n/alex`.
+
+Step 2: TutHub uses `TuthubParser` to determine which parser to use based on the command input by the user. In this case, `FindByPrefixParser` is used to parse the `find` command.
+
+Step 3: `FindByPrefixParser` parses the `find` command to determine the attribute to search through and the keywords input by the user.
+`FindByPrefixParser` creates a `FindByNameCommand` that extends `FindByPrefixCommand` with the keywords put into a `NameContainsKeywordsPredicate` object.
+
+Step 4: The `FindByNameCommand` is executed and tutors with names containing the string alex are added to the filtered list of tutors that have names
+containing the string alex captured in the `ModelManager` object, which makes use of the `UI` class to display the matching tutors.
+
+Step 5: The execution ends, returning a `CommandResult` object that has the success message to be displayed to the user.
+
 ### View Feature
 <ins>Implementation</ins>
 
@@ -316,7 +358,28 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 2.
 
-**Use case: UC5 - Exit the program**
+**Use case: UC5 - Finding tutors**
+
+**MSS**
+
+1. User requests to find tutors matching keywords searched.
+2. Tuthub shows a list of tutors that match the keywords searched.
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. Tuthub detects an error in the entered data.
+    * 1a1. Tuthub requests for the correct data.
+    * 1a2. User enters new data.
+    * Steps 1a1-1a2 are repeated until the data entered are correct.
+      Use case resumes from step 2.
+
+* 2a. The list is empty.
+
+   Use case ends.
+
+**Use case: UC6 - Exit the program**
 
 **MSS**
 
