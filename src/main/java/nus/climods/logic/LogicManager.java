@@ -53,7 +53,6 @@ public class LogicManager implements Logic {
     }
 
     @Override
-
     public ReadOnlyModuleList getModuleList() {
         return model.getModuleList();
     }

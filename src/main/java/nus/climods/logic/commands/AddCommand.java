@@ -1,9 +1,13 @@
 package nus.climods.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static nus.climods.model.module.UserModule.MESSAGE_MODULE_NOT_FOUND;
+
+import java.util.Optional;
 
 import nus.climods.logic.commands.exceptions.CommandException;
 import nus.climods.model.Model;
+import nus.climods.model.module.Module;
 import nus.climods.model.module.UserModule;
 
 /**
@@ -42,12 +46,15 @@ public class AddCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
 
-        UserModule moduleToAdd = new UserModule(model.getModule(toAdd.toUpperCase()));
+        Optional<Module> module = model.getModule(toAdd.toUpperCase());
+        if (module.isEmpty()) {
+            throw new CommandException(MESSAGE_MODULE_NOT_FOUND);
+        }
 
+        UserModule moduleToAdd = new UserModule(module.get());
         if (model.hasUserModule(moduleToAdd)) {
             throw new CommandException(MESSAGE_DUPLICATE_MODULE);
         }
-
         model.addUserModule(moduleToAdd);
 
         return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd.toUpperCase()),

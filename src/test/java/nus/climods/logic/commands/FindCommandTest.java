@@ -59,6 +59,14 @@ class FindCommandTest {
             Arrays.asList("CS2100", "CS2101", "CS2102", "CS2103"));
     }
 
+    @Test
+    public void execute_regexKeywords_correctSortOrder() {
+        FindCommand command = new FindCommand(prepareSearchRegexes("software engineering"));
+        command.execute(model);
+
+        assertEquals(model.getFilteredModuleList().get(0).getCode(), "CS2103");
+    }
+
     /**
      * Parses {@code userInput} into a search regexes.
      */

@@ -8,6 +8,7 @@ import java.util.stream.Collectors;
 
 import nus.climods.commons.core.Messages;
 import nus.climods.model.Model;
+import nus.climods.model.module.comparator.ModuleBestMatchKeywordComparator;
 import nus.climods.model.module.predicate.ModuleContainsKeywordsPredicate;
 
 /**
@@ -34,7 +35,8 @@ public class FindCommand extends Command {
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);
-        model.setFilteredModuleList(new ModuleContainsKeywordsPredicate(searchRegexes));
+        model.setFilteredModuleList(new ModuleContainsKeywordsPredicate(searchRegexes),
+            new ModuleBestMatchKeywordComparator(searchRegexes));
 
         return new CommandResult(
             String.format(Messages.MESSAGE_MODULES_LISTED_OVERVIEW, model.getFilteredModuleList().size()),

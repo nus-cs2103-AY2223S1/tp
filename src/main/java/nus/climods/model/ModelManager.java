@@ -2,18 +2,17 @@ package nus.climods.model;
 
 import static java.util.Objects.requireNonNull;
 import static nus.climods.commons.util.CollectionUtil.requireAllNonNull;
-import static nus.climods.model.module.UserModule.MESSAGE_MODULE_NOT_FOUND;
 
+import java.util.Comparator;
 import java.util.Optional;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
+import javafx.collections.transformation.SortedList;
 import nus.climods.commons.core.GuiSettings;
 import nus.climods.commons.core.LogsCenter;
-import nus.climods.logic.commands.exceptions.CommandException;
-import nus.climods.model.module.CodeContainsKeywordsPredicate;
 import nus.climods.model.module.Module;
 import nus.climods.model.module.ModuleList;
 import nus.climods.model.module.ReadOnlyModuleList;
@@ -25,17 +24,22 @@ import nus.climods.model.module.UserModule;
  */
 public class ModelManager implements Model {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
-    private final ModuleList moduleList;
-    private final UniqueUserModuleList uniqueUserModuleList;
 
-    private final FilteredList<UserModule> filteredUserModules;
-    private final UserPrefs userPrefs;
+    private final ModuleList moduleList;
+    private final UniqueUserModuleList userModuleList;
+
     private final FilteredList<Module> filteredModuleList;
+    private final SortedList<Module> filteredAndSortedModuleList;
+    private final Comparator<? super Module> defaultModuleListComparator;
+
+    private final FilteredList<UserModule> filteredUserModuleList;
+
+    private final UserPrefs userPrefs;
 
     /**
      * Initializes a ModelManager with the given moduleList and userPrefs.
      */
-    public ModelManager(ReadOnlyModuleList moduleList, UniqueUserModuleList uniqueUserModuleList,
+    public ModelManager(ReadOnlyModuleList moduleList, UniqueUserModuleList userModuleList,
                         ReadOnlyUserPrefs userPrefs) {
         requireAllNonNull(moduleList, userPrefs);
 
@@ -43,41 +47,94 @@ public class ModelManager implements Model {
 
         this.userPrefs = new UserPrefs(userPrefs);
         this.moduleList = new ModuleList(moduleList);
-        this.uniqueUserModuleList = uniqueUserModuleList;
+        this.userModuleList = userModuleList;
+
         this.filteredModuleList = new FilteredList<>(moduleList.getModules());
-        filteredUserModules = new FilteredList<UserModule>(uniqueUserModuleList.asUnmodifiableObservableList());
+        this.filteredAndSortedModuleList = new SortedList<>(filteredModuleList);
+        this.defaultModuleListComparator = filteredAndSortedModuleList.getComparator();
+
+        this.filteredUserModuleList = new FilteredList<>(userModuleList.asUnmodifiableObservableList());
+    }
+
+    //=========== Module ==================================================================================
+
+    @Override
+    public ReadOnlyModuleList getModuleList() {
+        return moduleList;
+    }
+
+    @Override
+    public boolean isModuleOffered(String moduleCode) {
+        return this.moduleList.hasModule(moduleCode);
+    }
+
+    @Override
+    public Optional<Module> getModule(String moduleCode) {
+        return this.moduleList.getModule(moduleCode);
+    }
+
+    @Override
+    public ObservableList<Module> getFilteredModuleList() {
+        return filteredAndSortedModuleList;
+    }
+
+    @Override
+    public void setFilteredModuleList(Predicate<Module> predicate) {
+        requireNonNull(predicate);
+        this.filteredModuleList.setPredicate(predicate);
+        // Reset to default comparator
+        this.filteredAndSortedModuleList.setComparator(defaultModuleListComparator);
+    }
+
+    @Override
+    public void setFilteredModuleList(Predicate<Module> predicate, Comparator<Module> comparator) {
+        setFilteredModuleList(predicate);
+
+        requireNonNull(comparator);
+        this.filteredAndSortedModuleList.setComparator(comparator);
     }
 
     //=========== UserModule ==================================================================================
 
     @Override
-    public boolean hasUserModule(UserModule module) {
-        requireNonNull(module);
-        return uniqueUserModuleList.contains(module);
+    public UniqueUserModuleList getUserModuleList() {
+        return userModuleList;
     }
 
     @Override
-    public void deleteUserModule(String target) {
-        requireNonNull(target);
-        uniqueUserModuleList.remove(target);
+    public boolean hasUserModule(UserModule module) {
+        requireNonNull(module);
+        return userModuleList.contains(module);
     }
 
     @Override
     public void addUserModule(UserModule module) {
-        uniqueUserModuleList.add(module);
+        userModuleList.add(module);
+    }
 
+    @Override
+    public void deleteUserModule(String moduleCode) {
+        requireNonNull(moduleCode);
+        userModuleList.remove(moduleCode);
     }
 
     @Override
     public ObservableList<UserModule> getFilteredUserModuleList() {
-        return filteredUserModules;
+        return filteredUserModuleList;
+    }
+
+    @Override
+    public boolean filteredListHasUserModule(UserModule module) {
+        return this.getFilteredUserModuleList().contains(module);
     }
 
     @Override
     public void updateFilteredUserModuleList(Predicate<UserModule> predicate) {
         requireNonNull(predicate);
-        filteredUserModules.setPredicate(predicate);
+        this.filteredUserModuleList.setPredicate(predicate);
     }
+
+    //=========== UserPrefs ==================================================================================
 
     @Override
     public ReadOnlyUserPrefs getUserPrefs() {
@@ -90,15 +147,7 @@ public class ModelManager implements Model {
         this.userPrefs.resetData(userPrefs);
     }
 
-    /**
-     * Filter the list by faculty Code
-     *
-     * @return
-     */
-    public void updateFilteredModuleList(Optional<String> facultyCode, Optional<Boolean> hasUser) {
-        CodeContainsKeywordsPredicate predicate = new CodeContainsKeywordsPredicate(facultyCode);
-        filteredModuleList.setPredicate(predicate);
-    }
+    //=========== GuiSettings ==================================================================================
 
     @Override
     public GuiSettings getGuiSettings() {
@@ -109,37 +158,5 @@ public class ModelManager implements Model {
     public void setGuiSettings(GuiSettings guiSettings) {
         requireNonNull(guiSettings);
         userPrefs.setGuiSettings(guiSettings);
-    }
-
-    @Override
-    public ReadOnlyModuleList getModuleList() {
-        return moduleList;
-    }
-
-    @Override
-    public UniqueUserModuleList getUserModuleList() {
-        return uniqueUserModuleList;
-    }
-
-
-    @Override
-    public ObservableList<Module> getFilteredModuleList() {
-        return filteredModuleList;
-
-
-    }
-
-    public void setFilteredModuleList(Predicate<Module> predicate) {
-        requireNonNull(predicate);
-        this.filteredModuleList.setPredicate(predicate);
-    }
-
-    public Module getModule(String moduleCode) throws CommandException {
-        Optional<Module> optionalModule = moduleList.getListModule(moduleCode);
-
-        if (optionalModule.isEmpty()) {
-            throw new CommandException(MESSAGE_MODULE_NOT_FOUND);
-        }
-        return optionalModule.get();
     }
 }

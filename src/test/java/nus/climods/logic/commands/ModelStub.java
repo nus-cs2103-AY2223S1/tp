@@ -1,11 +1,11 @@
 package nus.climods.logic.commands;
 
+import java.util.Comparator;
 import java.util.Optional;
 import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import nus.climods.commons.core.GuiSettings;
-import nus.climods.logic.commands.exceptions.CommandException;
 import nus.climods.model.Model;
 import nus.climods.model.ReadOnlyUserPrefs;
 import nus.climods.model.module.Module;
@@ -18,7 +18,7 @@ import nus.climods.model.module.UserModule;
  * Model that returns true or false for hasModule
  */
 class ModelStub implements Model {
-    private boolean hasModule;
+    private final boolean hasModule;
 
     public ModelStub(boolean hasModule) {
         this.hasModule = hasModule;
@@ -51,15 +51,36 @@ class ModelStub implements Model {
     }
 
     @Override
-    public boolean hasUserModule(UserModule module) {
-        return hasModule;
-    }
-    @Override
-    public void deleteUserModule(String target) {
+    public boolean isModuleOffered(String moduleCode) {
+        return false;
     }
 
     @Override
-    public void addUserModule(UserModule module) {
+    public Optional<Module> getModule(String moduleCode) {
+        return Optional.empty();
+    }
+
+    @Override
+    public void setFilteredModuleList(Predicate<Module> predicate) {}
+
+    @Override
+    public void setFilteredModuleList(Predicate<Module> predicate, Comparator<Module> comparator) {}
+
+    @Override
+    public boolean hasUserModule(UserModule module) {
+        return hasModule;
+    }
+
+    @Override
+    public boolean filteredListHasUserModule(UserModule module) {
+        return hasModule;
+    }
+
+    @Override
+    public void addUserModule(UserModule module) {}
+
+    @Override
+    public void deleteUserModule(String target) {
 
     }
 
@@ -69,14 +90,7 @@ class ModelStub implements Model {
     }
 
     @Override
-    public void updateFilteredUserModuleList(Predicate<UserModule> predicate) {
-
-    }
-
-    @Override
-    public void updateFilteredModuleList(Optional<String> facultyCode, Optional<Boolean> hasUser) {
-
-    }
+    public void updateFilteredUserModuleList(Predicate<UserModule> predicate) {}
 
     @Override
     public UniqueUserModuleList getUserModuleList() {
@@ -85,16 +99,6 @@ class ModelStub implements Model {
 
     @Override
     public ObservableList<Module> getFilteredModuleList() {
-        return null;
-    }
-
-    @Override
-    public void setFilteredModuleList(Predicate<Module> predicate) {
-
-    }
-
-    @Override
-    public Module getModule(String moduleCode) throws CommandException {
         return null;
     }
 }
