@@ -236,7 +236,7 @@ The `AddAttendeesCommand` class extends the `EventCommand` abstract class. `Even
 
 Similar to other commands, the user input to add attendees is passed to `LogicManager` to be executed. The following details the key difference in the methods that is invoked when the `AddAttendeesCommand#execute()` method is called:
 
-* Model#updateEventAttendees() - Adds the specified `Profile`s to the `Attendees` attribute of the `Event`.
+* `Model#updateEventAttendees()` - Adds the specified `Profile`s to the `Attendees` attribute of the `Event`.
 
 Given below is an example usage scenario on how `AddAttendeesCommand` can be used and how it works.
 
@@ -247,7 +247,7 @@ Step 1. The user clears all the data in the application with the `ClearCommand`a
 
 ![AddAttendeeState0](images/AddAttendeesState0.png)
 
-Step 2. The user executes `event -ap 1 n/1` to add the `Profile` John to the `Attendees` attribute under the `Event` Consultation.
+Step 2. The user executes `event -ap 1 n/1` to add the `Profile` John of `Index` 1 to the `Attendees` attribute under the `Event` Consultation of `Index` 1.
 
 ![AddAttendeeState1](images/AddAttendeesState1.png)
 
