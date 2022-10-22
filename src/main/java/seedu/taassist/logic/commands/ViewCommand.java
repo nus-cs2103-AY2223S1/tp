@@ -33,6 +33,7 @@ public class ViewCommand extends Command {
     private final Index index;
 
     public ViewCommand(Index index) {
+        requireNonNull(index);
         this.index = index;
     }
 
