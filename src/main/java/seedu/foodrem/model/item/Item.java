@@ -133,7 +133,7 @@ public class Item {
     }
 
     /**
-     * Returns true if item contains a certain tag.
+     * Returns {@code true} if item contains a certain tag.
      */
     public boolean containsTag(Tag tag) {
         return tagSet.contains(tag);
@@ -154,7 +154,7 @@ public class Item {
     }
 
     /**
-     * Returns true if both items have the same name.
+     * Returns {@code true} if both items have the same name.
      * This defines a weaker notion of equality between two items.
      */
     public boolean isSameItem(Item otherItem) {
@@ -167,11 +167,11 @@ public class Item {
     }
 
     /**
-     * Returns true if both items have the same name and data fields.
+     * Returns {@code true} if both items have the same name and data fields.
      * This defines a stronger notion of equality between two items.
      *
      * @param other an object to compare against.
-     * @return true if both items have the same name, false otherwise.
+     * @return true if both items have the same name, {@code false} otherwise.
      */
     @Override
     public boolean equals(Object other) {

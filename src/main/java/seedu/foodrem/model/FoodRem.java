@@ -73,7 +73,7 @@ public class FoodRem implements ReadOnlyFoodRem {
     //// item-level operations
 
     /**
-     * Returns true if an item with the same identity as {@code item} exists in FoodRem.
+     * Returns {@code true} if an item with the same identity as {@code item} exists in FoodRem.
      */
     public boolean hasItem(Item item) {
         requireNonNull(item);
@@ -110,7 +110,7 @@ public class FoodRem implements ReadOnlyFoodRem {
     //// tag-level methods
 
     /**
-     * Returns true if a tag with the same name as {@code tag} exists in the address book.
+     * Returns {@code true} if a tag with the same name as {@code tag} exists in the address book.
      */
     public boolean hasTag(Tag tag) {
         requireNonNull(tag);

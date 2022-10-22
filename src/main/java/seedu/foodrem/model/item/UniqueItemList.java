@@ -28,7 +28,7 @@ public class UniqueItemList implements Iterable<Item> {
             FXCollections.unmodifiableObservableList(internalList);
 
     /**
-     * Returns true if the list contains an equivalent item as the given argument.
+     * Returns {@code true} if the list contains an equivalent item as the given argument.
      */
     public boolean contains(Item toCheck) {
         requireNonNull(toCheck);
@@ -121,7 +121,7 @@ public class UniqueItemList implements Iterable<Item> {
     }
 
     /**
-     * Returns true if {@code items} contains only unique items.
+     * Returns {@code true} if {@code items} contains only unique items.
      */
     private boolean itemsAreUnique(List<Item> items) {
         for (int i = 0; i < items.size() - 1; i++) {

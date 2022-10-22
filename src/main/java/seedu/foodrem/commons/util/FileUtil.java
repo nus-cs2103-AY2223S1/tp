@@ -17,8 +17,8 @@ public class FileUtil {
     }
 
     /**
-     * Returns true if {@code path} can be converted into a {@code Path} via {@link Paths#get(String, String...)},
-     * otherwise returns false.
+     * Returns {@code true} if {@code path} can be converted into a {@code Path} via
+     * {@link Paths#get(String, String...)}, otherwise returns {@code false}.
      *
      * @param path A string representing the file path. Cannot be null.
      */

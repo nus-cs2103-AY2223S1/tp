@@ -35,7 +35,7 @@ public class ItemBoughtDate {
     }
 
     /**
-     * Returns true if both {@link ItemBoughtDate#boughtDate} have the same date by
+     * Returns {@code true} if both {@link ItemBoughtDate#boughtDate} have the same date by
      * {@link LocalDate#equals(Object)}.
      */
     @Override

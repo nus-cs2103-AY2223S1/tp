@@ -35,7 +35,7 @@ public class ItemExpiryDate {
     }
 
     /**
-     * Returns true if both {@link ItemExpiryDate#expiryDate} have the same date by
+     * Returns {@code true} if both {@link ItemExpiryDate#expiryDate} have the same date by
      * {@link LocalDate#equals(Object)}.
      */
     @Override

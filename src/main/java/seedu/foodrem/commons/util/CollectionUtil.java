@@ -26,7 +26,7 @@ public class CollectionUtil {
     }
 
     /**
-     * Returns true if {@code items} contain any elements that are non-null.
+     * Returns {@code true} if {@code items} contain any elements that are non-null.
      */
     public static boolean isAnyNonNull(Object... items) {
         return items != null && Arrays.stream(items).anyMatch(Objects::nonNull);

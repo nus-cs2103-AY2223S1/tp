@@ -41,7 +41,7 @@ public class ArgumentMultimap {
     }
 
     /**
-     * Returns true if there is a value of {@code prefix}.
+     * Returns {@code true} if there is a value of {@code prefix}.
      */
     public boolean isValuePresent(Prefix prefix) {
         return getValue(prefix).isPresent();

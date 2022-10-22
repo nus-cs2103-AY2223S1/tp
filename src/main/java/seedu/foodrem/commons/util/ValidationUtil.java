@@ -10,7 +10,7 @@ import java.time.format.ResolverStyle;
  */
 public class ValidationUtil {
     /**
-     * Returns true if a string can be parsed into a double, false otherwise.
+     * Returns {@code true} if a string can be parsed into a double, {@code false} otherwise.
      *
      * @param doubleString a string to be parsed.
      */
@@ -24,7 +24,7 @@ public class ValidationUtil {
     }
 
     /**
-     * Returns true if a string can be parsed into a date with the provided format, false otherwise.
+     * Returns {@code true} if a string can be parsed into a date with the provided format, {@code false} otherwise.
      *
      * @param dateString a string to be parsed.
      * @param dateRegex  the format the of the date to be parsed.
@@ -40,7 +40,7 @@ public class ValidationUtil {
     }
 
     /**
-     * Returns true if a double is positive or zero, false otherwise
+     * Returns {@code true} if a double is positive or zero, {@code false} otherwise
      *
      * @param number a double to be checked
      */
@@ -49,7 +49,7 @@ public class ValidationUtil {
     }
 
     /**
-     * Returns true if a string representing a double is too precise, false otherwise.
+     * Returns {@code true} if a string representing a double is too precise, {@code false} otherwise.
      *
      * @param string                   a string that represents a double.
      * @param maxNumberOfDecimalPlaces an int representing the number of decimal places
