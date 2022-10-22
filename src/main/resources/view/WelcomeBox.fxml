@@ -4,9 +4,9 @@
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.text.Font?>
 
-<StackPane alignment="CENTER_LEFT" style="-fx-background-color: FFFFFF;" styleClass="stack-pane" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
+<StackPane alignment="CENTER_LEFT" style="-fx-background-color: #d9d9d9;" styleClass="stack-pane" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
   <Label fx:id="welcomeLabel">
       <font>
-         <Font name="System Bold" size="12.0" />
+         <Font name="Inter Bold" size="12.0" />
       </font></Label>
 </StackPane>
