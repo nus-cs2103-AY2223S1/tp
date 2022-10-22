@@ -36,25 +36,21 @@ public class TaskCommandParser implements Parser<TaskCommand> {
                     TaskCommand.MESSAGE_USAGE));
         }
 
-        // if it's a deadline
-        if (arePrefixesPresent(argMultimap, PREFIX_DEADLINE_DATE)) {
-            TaskTitle title = ParserUtil.parseTitle(argMultimap.getValue(PREFIX_TASK_TITLE).get());
-            TaskDescription description = ParserUtil
-                    .parseDescription(argMultimap.getValue(PREFIX_TASK_DESCRIPTION).get());
-            FormatDate date = ParserUtil.parseDate(argMultimap.getValue(PREFIX_DEADLINE_DATE).get());
-
-            Task task = new Deadline(title, description, date);
-
-            return new TaskCommand(task);
-        }
-
-        // if it's a toDo
         TaskTitle title = ParserUtil.parseTitle(argMultimap.getValue(PREFIX_TASK_TITLE).get());
         TaskDescription description = ParserUtil.parseDescription(argMultimap.getValue(PREFIX_TASK_DESCRIPTION).get());
 
-        Task task = new ToDo(title, description);
+        if (arePrefixesPresent(argMultimap, PREFIX_DEADLINE_DATE)) {
+            // if it's a deadline
+            FormatDate date = ParserUtil.parseDate(argMultimap.getValue(PREFIX_DEADLINE_DATE).get());
+            Task task = new Deadline(title, description, date);
 
-        return new TaskCommand(task);
+            return new TaskCommand(task);
+        } else {
+            // if it's a toDo
+            Task task = new ToDo(title, description);
+
+            return new TaskCommand(task);
+        }
     }
 
     /**

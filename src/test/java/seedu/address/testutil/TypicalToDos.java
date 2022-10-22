@@ -30,7 +30,7 @@ public class TypicalToDos {
      * Returns a {@code TaskBook} with all the typical tasks.
      * @return
      */
-    public static TaskBook getTypicalTaskBookWithToDos() {
+    public static TaskBook getTypicalTaskBook() {
         TaskBook tb = new TaskBook();
         for (Task task : getTypicalTodos()) {
             tb.addTask(task);

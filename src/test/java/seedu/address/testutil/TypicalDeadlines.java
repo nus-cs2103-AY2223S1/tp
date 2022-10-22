@@ -31,7 +31,7 @@ public class TypicalDeadlines {
      *
      * @return
      */
-    public static TaskBook getTypicalTaskBookWithDeadlines() {
+    public static TaskBook getTypicalTaskBook() {
         TaskBook tb = new TaskBook();
         for (Task task : getTypicalDeadlines()) {
             tb.addTask(task);
