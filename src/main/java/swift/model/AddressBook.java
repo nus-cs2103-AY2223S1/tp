@@ -65,6 +65,14 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
+     * Replaces the contents of the bridge list with {@code bridges}.
+     * {@code bridges} must not contain duplicate bridges.
+     */
+    public void setBridges(List<PersonTaskBridge> bridges) {
+        this.bridges.setBridges(bridges);
+    }
+
+    /**
      * Resets the existing data of this {@code AddressBook} with {@code newData}.
      */
     public void resetData(ReadOnlyAddressBook newData) {
@@ -72,6 +80,7 @@ public class AddressBook implements ReadOnlyAddressBook {
 
         setPersons(newData.getPersonList());
         setTasks(newData.getTaskList());
+        setBridges(newData.getBridgeList());
     }
 
     //// person-level operations

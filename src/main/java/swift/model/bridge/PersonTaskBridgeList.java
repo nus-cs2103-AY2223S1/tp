@@ -1,8 +1,10 @@
 package swift.model.bridge;
 
 import static java.util.Objects.requireNonNull;
+import static swift.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Iterator;
+import java.util.List;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -79,6 +81,21 @@ public class PersonTaskBridgeList implements Iterable<PersonTaskBridge> {
     }
 
     /**
+     * Replaces the contents of this list with {@code bridges}.
+     * {@code bridges} must not contain duplicate bridges.
+     *
+     * @param bridges The list of bridges to replace the current list with.
+     */
+    public void setBridges(List<PersonTaskBridge> bridges) {
+        requireAllNonNull(bridges);
+        if (!bridgesAreUnique(bridges)) {
+            throw new DuplicateBridgeException();
+        }
+
+        internalList.setAll(bridges);
+    }
+
+    /**
      * Returns the backing list as an unmodifiable {@code ObservableList}.
      */
     public ObservableList<PersonTaskBridge> asUnmodifiableObservableList() {
@@ -100,5 +117,21 @@ public class PersonTaskBridgeList implements Iterable<PersonTaskBridge> {
     @Override
     public int hashCode() {
         return internalList.hashCode();
+    }
+
+    /**
+     * Returns true if {@code bridges} contains only unique bridges.
+     *
+     * @param bridges A list of bridges.
+     */
+    private boolean bridgesAreUnique(List<PersonTaskBridge> bridges) {
+        for (int i = 0; i < bridges.size() - 1; i++) {
+            for (int j = i + 1; j < bridges.size(); j++) {
+                if (bridges.get(i).equals(bridges.get(j))) {
+                    return false;
+                }
+            }
+        }
+        return true;
     }
 }
