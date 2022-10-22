@@ -5,13 +5,9 @@ show-toc: true
 ---
 ## About FoodRem
 
-FoodRem is an Inventory Management System that empowers small Food and Beverage (F&B) restaurant managers to manage inventory and obtain insights from inventory data. After all, an inventory is not about merely a storehouse of items. It is the beating heart of any restaurant. FoodRem empowers its users to streamline inventory operations, alleviate inefficiencies such as food wastage, and focus on what truly matters to the business.
-
-FoodRem provides greater clarity into your restaurant's inventory usage. As a restaurant manager, you can leverage upon FoodRem's Inventory Management System, where you can keep track of and update their stocks of ingredients in their daily operations. To help streamline your business decisions, FoodRem also provides deeper insights into your inventory usage, through statistics and a flexible tagging system.
-
+FoodRem is an Inventory Management System that empowers small Food and Beverage (F&B) restaurant managers to manage inventory and obtain insights from inventory data. FoodRem provides greater clarity into your restaurant's inventory usage. As a restaurant manager, you can leverage upon FoodRem's Inventory Management System, where you can manage your inventory during your daily operations. FoodRem also offers a flexible tagging system to let you organize your inventory according to your business needs. Finally, streamline your business decisions by deriving insights from your inventory usage through FoodRem's statistics, keeping track of vital data such as food wastage. 
 
 This User Guide provides an in-depth documentation to help integrate FoodRem into your operational workflows. It covers how to launch FoodRem, core FoodRem features and commands, common terms and definitions used in FoodRem, and troubleshooting recommendations. In addition, a quick start guide is available that gives a whirlwind tour to help get you started. 
-
 
 Readers do not have to be familiar with the command line to use this guide effectively. The only expectation we have of you is to carefully read through the different sections.
 
