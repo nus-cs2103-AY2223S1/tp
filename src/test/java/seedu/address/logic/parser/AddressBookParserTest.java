@@ -21,8 +21,6 @@ import seedu.address.logic.commands.FilterLocCommand;
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.FindPetCommand;
 import seedu.address.logic.commands.HelpCommand;
-//import seedu.address.logic.commands.ListCommand;
-import seedu.address.logic.commands.SortCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Buyer;
 import seedu.address.model.person.Deliverer;
@@ -224,11 +222,6 @@ public class AddressBookParserTest {
     //    assertTrue(parser.parseCommand(ListCommand.COMMAND_WORD) instanceof ListCommand);
     //    assertTrue(parser.parseCommand(ListCommand.COMMAND_WORD + " 3") instanceof ListCommand);
     //}
-
-    @Test
-    public void parseCommand_sort() throws Exception {
-        assertTrue(parser.parseCommand(SortCommand.COMMAND_WORD) instanceof SortCommand);
-    }
 
     @Test
     public void parseCommand_unrecognisedInput_throwsParseException() {
