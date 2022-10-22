@@ -20,7 +20,7 @@
 {% capture incexample %}{% include_relative _ug/commandSummary/itemCommandsExample/inc.md %}{% endcapture %}
 {% capture decexample %}{% include_relative _ug/commandSummary/itemCommandsExample/dec.md %}{% endcapture %}
 {% capture editexample %}{% include_relative _ug/commandSummary/itemCommandsExample/edit.md %}{% endcapture %}
-{% capture del %}{% include_relative _ug/commandSummary/itemCommandsExample/del.md %}{% endcapture %}
+{% capture delexample %}{% include_relative _ug/commandSummary/itemCommandsExample/del.md %}{% endcapture %}
 <!-- markdownlint-restore -->
 
 <!-- ===== CREATE TABLE FORMATTING IN NORMAL+ MARKDOWN ===== -->
