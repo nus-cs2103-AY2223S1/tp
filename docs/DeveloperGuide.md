@@ -245,6 +245,163 @@ The following activity diagram summarizes what happens when a user executes a ne
 - **Alternative 2: Only name, telegram handle and email needs to be keyed in when adding student**
   - Pros: Faster to add a student
   - Cons: CS2103T TA has to use another command to change the response and attendance number of the student.
+=======
+### Add Response feature 
+
+The `AddResponse` feature allows users to edit the response count of a `Student` object. When successfully edited,
+the response count will be updated on the Graphical User Interface.
+
+#### Implementation
+
+The  response mechanism is facilitated by `UniqueStudentList`. It is stored internally as a `Response` along with other 
+attributes of a `Student`. It is first initialized upon creation of a `Student` object and set as a `null`. 
+
+Given below is an example usage scenario and how the response mechanism behaves at each step.
+
+Step 1. The user launches the application for the first time. The `UniqueStudentList` will be initialized with the 
+initial json data stored.
+
+Step 2. The user executes `addresponse 1 m/7` command to add a response count to the first student in the 
+one-indexed `UniqueStudentList`. The `addresponse` command will call `AddResponseCommandParser#parse()`.
+
+**Note:**  
+1. If the index given is not a valid index (ie, out of bounds or negative), it will return an error to the user rather
+than attempting to execute the command.
+2. If the review is missing an `index`, or a category (`m/`), `AddResponseCommandParser` will throw an `ParseException`
+to the user with an error message specifying that the command parameters are incorrect, and an example usage of the 
+command.
+
+Step 3. `AddResponseCommandParser` returns an `AddResponseCommand` with the newly created `Response` as a parameter.
+
+Step 4. `AddResponseCommand` calls `Model#setStudent` and `Model#updateFilteredStudentList` to edit the response 
+attribute of the `Student`.
+
+Step 5. After successfully editing the response attribute, `AddResponseCommand` will return the `CommandResult` to the 
+`Ui`.
+
+The following sequence diagram shows how the add response feature is executed:
+<img src="images/AddResponseSequenceDiagram.png" width="574" />
+
+The following activity diagram summarizes what happens when a user executes a new command:
+![AddResponseActivityDiagram](images/AddResponseActivityDiagram.png)
+
+#### Design Considerations 
+
+**Aspect: How AddResponse executes:**  
+
+- **Alternative 1**: Only the number of responses on zoom recorded 
+  - Pros: Easy to implement
+  - Cons: No check on quality of messages sent, which might be factored in to give participation marks for CS2103T
+- **Alternative 2**: Number of responses and content of responses on zoom recorded
+  - Pros: More comprehensive, users can check the quality of responses to award participation marks correspondingly
+  - Cons: More memory consumed, takes quite long to implement on top of other features to be implemented in 4 weeks 
+before feature freeze.
+
+### Add Question feature
+
+#### Implementation
+
+The proposed add question mechanism is facilitated by `AddressBook`.
+It implements the following operations:
+* `AddressBook#hasQuestion(Question question)` - Returns true if a question with the same identity as Question question 
+  exists in the 
+  address book.
+* `AddressBook#addQuestion(Question question)` - Adds a question to the question list in the address book.
+
+These operations are exposed in the Model interface as `Model#hasQuestion(Question question)`
+and `Model#addQuestion(Question question)` respectively.
+
+Given below is an example usage scenario and how the addq mechanism behaves at each step.
+
+Step 1. The user launches the application for the first time. The `AddressBook` will be initialised with the initial
+address book state.
+
+Step 2. The user execute `addq Why?` command to add question called "Why?" to the question list ('UniqueQuestionList').
+The `addq` command calls `Model#setAddressBook(ReadOnlyAddressBook addressBook)`, causing the modified address book 
+after the `addq Why?` command executes to be saved in the `addressBook`.
+<div markdown="span" class="alert alert-info">:information_source: **Note:** If a command fails its execution 
+due to incorrect command format, it will not call `Model#setAddressBook(ReadOnlyAddressBook addressBook)`, 
+so the address book state will not be saved into `addressBook`. User will retype their command.
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** If upon invoking `AddressBook#hasQuestion` 
+method and return value is `true`, it will not call `Model#setAddressBook(ReadOnlyAddressBook addressBook)`, 
+so 'UniqueQuestionList' and `addressBook` will not be updated.
+
+<div markdown="span" class="alert alert-info">:information_source: **Note: Questions added not case sensitive. For 
+example, if a question in the `question list` is "why?", another question called "WHY?" can be added. Duplicates are 
+not allowed. E.g. adding another question called "why?".
+** .
+
+</div>
+
+The following sequence diagram shows how the add question operation works:
+![AddQSequenceDiagram](images/AddQSequenceDiagram.png)
+
+The following activity diagram summarizes what happens when a user executes a new `addq` command.
+
+<img src="images/AddQActivityDiagram.png" width="250" />
+
+#### Design considerations:
+
+**Aspect: How addq executes:**
+
+* **Alternative 1 (current choice):** Saves the question inside the entire address book.
+    * Pros: Easy to implement.
+    * Cons: If the data file is corrupted, all questions added are lost.
+
+* **Alternative 2:** Add questions to a separate list not part of the address book.
+    * Pros: Easier to test as data is stored separately.
+    * Cons: Having separate lists will cause the code to be more complicated.
+
+_{more aspects and alternatives to be added}_
+
+### Add Attendance feature
+
+#### Implementation
+
+The proposed add attendance mechanism is facilitated by `UniqueStudentList`.
+It is stored internally as an `Attendance` along with other attributes of a `Student`.
+It is first initialized upon creation of a `Student` object and set as `0`.
+
+Given below is an example usage scenario and how the attendance machanism behaves at each step.
+
+Step 1. The user launches the application for the first time. The `UniqueStudentList` will be initialized with the
+initial Json data stored.
+
+
+Step 2. The user executes `attendance 1` command to increment the attendance of the 1st student in the one-indexed
+`UniqueStudentList`. The `attendance` command calls `AttendanceCommandParser#parse()`).
+
+***NOTE:***
+1. If the index given is not a valid index (ie, out of bounds or negative), it will return an error to the user.
+2. If the resulting attendance is not a valid number (ie, out of bounds or negative), it will return an error to the
+   user.
+
+Step 3. `AttendanceCommandParser` returns and `AttendanceCommand` with the newly created `Attendance` as a parameter.
+
+Step 4. `AttendanceCommand` calls `Model#setStudent` and `Model#updateFilteredStudentList` to edit the attendance
+attribute of the `Student`.
+
+Step 5. After successfully editing the attendance attribute, `AttendanceCommand` will return thr `CommandResult` to the
+`Ui`.
+
+The following sequence diagram shows how the attendance feature is executed.
+![AttendanceSequenceDiagram](images/AttendanceSequenceDiagram.png)
+![AttendanceSequenceDiagramReferenceFrame](images/AttendanceSequenceDiagramReferenceFrame.png)
+
+The following activity diagram summarizes what happens when a user executes a new `attendance` command.
+![AttendaceActivityDiagram](images/AttendanceActivityDiagram.png)
+#### Design Considerations
+
+**Aspect: How Attendance executes:**
+
+- **Alternative 1 (current choice):** Increment attendance of student by 1.
+    - Pros: Easy to implement
+    - Cons: We are unable to decrement attendance. The workaround to this is by the `editstu` command to change the
+      attendance to a value input by user.
+- **Alternative 2:** Increment or decrement attendance of student by taking in a sign and a value.
+    - Pros: Attendance can be modified easily.
+    - Cons: Implementation is relatively complicated and require more exception handling.
 
 ### \[Proposed\] Undo/redo feature
 
@@ -413,7 +570,7 @@ otherwise)
 **MSS**
 
 1. User requests to add a student.
-2. SETA adds the student with his or her details into the student list.  
+2. SETA adds the student with his or her details into the student list.
    Use case ends.
 
 **Extensions**

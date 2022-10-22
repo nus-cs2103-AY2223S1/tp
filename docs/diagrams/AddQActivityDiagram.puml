@@ -1,0 +1,16 @@
+@startuml
+start
+
+'Since the beta syntax does not support placing the condition outside the
+'diamond we place it as the true branch instead.
+repeat
+:User executes "addq" command;
+repeat while (is question added a duplicate?) is (yes)
+-> no;
+
+:question added to question list;
+
+:Updated question list saved to SETA;
+
+stop
+@enduml
