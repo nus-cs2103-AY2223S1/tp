@@ -5,6 +5,8 @@ import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailur
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 
+import java.util.Arrays;
+
 import org.junit.jupiter.api.Test;
 
 import javafx.collections.FXCollections;
@@ -17,6 +19,9 @@ import seedu.address.logic.commands.ModFindCommand;
 import seedu.address.logic.commands.ModMarkCommand;
 import seedu.address.logic.commands.ModUnmarkCommand;
 import seedu.address.model.person.Mod;
+import seedu.address.model.person.ModContainsKeywordsPredicate;
+import seedu.address.model.person.ModTakenContainsKeywordsPredicate;
+import seedu.address.model.person.ModTakingContainsKeywordsPredicate;
 
 public class ModCommandParserTest {
     private static final String INVALID_MOD_COMMAND = "bad";
@@ -201,6 +206,56 @@ public class ModCommandParserTest {
     public void parse_findEmptyString_throwsParseException() {
         assertParseFailure(parser, ModFindCommand.COMMAND_WORD + " " + "     ", String.format(
                 ModCommand.MESSAGE_MODS_EMPTY));
+    }
+
+    /**
+     * Tests the behaviour of mod find taken when no module is entered.
+     */
+    @Test
+    public void parse_findTakenEmptyString_throwsParseException() {
+        assertParseFailure(parser, ModFindCommand.COMMAND_WORD + " " + ModFindCommand.COMMAND_WORD_TAKEN
+                + "     ", String.format(ModCommand.MESSAGE_MODS_EMPTY));
+    }
+
+    /**
+     * Tests the behaviour of mod find.
+     */
+    @Test
+    public void parse_modFind_success() {
+        String userInput = ModFindCommand.COMMAND_WORD
+                + " " + VALID_MOD_STRING_CS2100;
+        ModFindCommand expectedCommand = new ModFindCommand(
+                new ModContainsKeywordsPredicate(Arrays.asList(VALID_MOD_STRING_CS2100)));
+        assertParseSuccess(parser, userInput,
+                expectedCommand);
+    }
+
+    /**
+     * Tests the behaviour of mod find taken.
+     */
+    @Test
+    public void parse_modFindTaken_success() {
+        String userInput = ModFindCommand.COMMAND_WORD
+                + " " + ModFindCommand.COMMAND_WORD_TAKEN
+                + " " + VALID_MOD_STRING_CS2100;
+        ModFindCommand expectedCommand = new ModFindCommand(
+                new ModTakenContainsKeywordsPredicate(Arrays.asList(VALID_MOD_STRING_CS2100)));
+        assertParseSuccess(parser, userInput,
+                expectedCommand);
+    }
+
+    /**
+     * Tests the behaviour of mod find taking.
+     */
+    @Test
+    public void parse_modFindTaking_success() {
+        String userInput = ModFindCommand.COMMAND_WORD
+                + " " + ModFindCommand.COMMAND_WORD_TAKING
+                + " " + VALID_MOD_STRING_CS2100;
+        ModFindCommand expectedCommand = new ModFindCommand(
+                new ModTakingContainsKeywordsPredicate(Arrays.asList(VALID_MOD_STRING_CS2100)));
+        assertParseSuccess(parser, userInput,
+                expectedCommand);
     }
 
     /**

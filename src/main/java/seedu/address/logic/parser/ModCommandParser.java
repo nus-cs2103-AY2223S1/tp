@@ -25,6 +25,8 @@ import seedu.address.logic.commands.ModUnmarkCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Mod;
 import seedu.address.model.person.ModContainsKeywordsPredicate;
+import seedu.address.model.person.ModTakenContainsKeywordsPredicate;
+import seedu.address.model.person.ModTakingContainsKeywordsPredicate;
 
 /**
  * Parses input arguments and creates a new ModCommand object.
@@ -33,6 +35,8 @@ public class ModCommandParser implements Parser<ModCommand> {
 
     private static final Pattern BASIC_COMMAND_FORMAT = Pattern.compile("(?<commandWord>\\S+)(?<arguments>.*)");
     private static final Pattern INDEX_FORMAT = Pattern.compile("-?\\d+");
+    private static final String MOD_TAKEN_COMMAND_WORD = "taken";
+    private static final String MOD_TAKING_COMMAND_WORD = "taking";
 
     /**
      * Parses the given {@code userInput} of arguments in the context of the ModCommand
@@ -131,8 +135,23 @@ public class ModCommandParser implements Parser<ModCommand> {
         }
 
         String[] keywords = trimmedArgs.split("\\s+");
+        boolean isTaken = keywords[0].equalsIgnoreCase(MOD_TAKEN_COMMAND_WORD);
+        boolean isTaking = keywords[0].equalsIgnoreCase(MOD_TAKING_COMMAND_WORD);
+        String[] keywordsWithoutFirstElement = Arrays.copyOfRange(keywords, 1, keywords.length);
 
-        return new ModFindCommand(new ModContainsKeywordsPredicate(Arrays.asList(keywords)));
+        if ((isTaken || isTaking) && keywordsWithoutFirstElement.length == 0) {
+            throw new ParseException(ModCommand.MESSAGE_MODS_EMPTY);
+        }
+
+        if (isTaken) {
+            return new ModFindCommand(
+                    new ModTakenContainsKeywordsPredicate(Arrays.asList(keywordsWithoutFirstElement)));
+        } else if (isTaking) {
+            return new ModFindCommand(
+                    new ModTakingContainsKeywordsPredicate(Arrays.asList(keywordsWithoutFirstElement)));
+        } else {
+            return new ModFindCommand(new ModContainsKeywordsPredicate(Arrays.asList(keywords)));
+        }
     }
 
     /**
