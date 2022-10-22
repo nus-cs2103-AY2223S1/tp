@@ -2,13 +2,14 @@ package seedu.address.storage;
 
 import java.io.IOException;
 import java.nio.file.Path;
-import java.util.List;
 import java.util.Optional;
 import java.util.logging.Logger;
 
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.exceptions.DataConversionException;
+import seedu.address.model.CommandHistory;
 import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.ReadOnlyCommandHistory;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.UserPrefs;
 
@@ -72,6 +73,7 @@ public class StorageManager implements Storage {
         saveAddressBook(addressBook, addressBookStorage.getAddressBookFilePath());
     }
 
+
     @Override
     public void saveAddressBook(ReadOnlyAddressBook addressBook, Path filePath) throws IOException {
         logger.fine("Attempting to write to data file: " + filePath);
@@ -80,17 +82,18 @@ public class StorageManager implements Storage {
 
     // ================ CommandHistory methods ==============================
     @Override
-    public Path getUserCommandHistoryPath() {
-        return null;
+    public Path getCommandHistoryFilePath() {
+        return commandHistoryStorage.getCommandHistoryFilePath();
     }
 
     @Override
-    public Optional<List<String>> readCommandHistory() throws IOException {
-        return Optional.empty();
+    public ReadOnlyCommandHistory readCommandHistory() {
+        return commandHistoryStorage.readCommandHistory();
     }
 
     @Override
-    public void saveCommandHistory(List commandHistoryList) throws IOException {
-
+    public void saveCommandHistory(ReadOnlyCommandHistory commandHistory) {
+        commandHistoryStorage.saveCommandHistory(commandHistory);
     }
+
 }

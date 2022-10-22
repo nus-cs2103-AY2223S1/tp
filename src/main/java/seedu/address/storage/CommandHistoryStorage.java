@@ -12,20 +12,20 @@ public interface CommandHistoryStorage {
     /**
      * Returns the file path of the CommandHistory data file.
      */
-    Path getUserCommandHistoryPath();
+    Path getCommandHistoryFilePath();
 
     /**
      * Returns UserPrefs data from storage.
      *   Returns {@code Optional.empty()} if storage file is not found.
      * @throws IOException if there was any problem when reading from the storage.
      */
-    Optional<ReadOnlyCommandHistory> readCommandHistory() throws IOException;
+    ReadOnlyCommandHistory readCommandHistory();
 
     /**
      * Saves the given {@link seedu.address.model.ReadOnlyUserPrefs} to the storage.
      * @param commandHistoryList cannot be null.
      * @throws IOException if there was any problem writing to the file.
      */
-    void saveCommandHistory(CommandHistory commandHistoryList) throws IOException;
+    void saveCommandHistory(ReadOnlyCommandHistory commandHistory);
 
 }

@@ -96,16 +96,9 @@ public class MainApp extends Application {
             initialAddressBookData = new AddressBook();
         }
 
-        Optional<ReadOnlyCommandHistory> commandHistoryOptional;
-        ReadOnlyCommandHistory initialCommandHistoryData;
-        try {
-            commandHistoryOptional = storage.readCommandHistory();
-        } catch (IOException e) {
-            logger.warning("Problem while reading from the file. Will be starting with an empty AddressBook");
-            initialAddressBookData = new AddressBook();
-        }
+        ReadOnlyCommandHistory initialCommandHistoryData = storage.readCommandHistory();
 
-        return new ModelManager(initialAddressBookData, userPrefs);
+        return new ModelManager(initialAddressBookData, userPrefs, initialCommandHistoryData);
     }
 
     private void initLogging(Config config) {
@@ -178,33 +171,6 @@ public class MainApp extends Application {
         }
 
         return initializedPrefs;
-    }
-
-    /**
-     * Returns a {@code UserPrefs} using the file at {@code storage}'s user prefs file path,
-     * or a new {@code UserPrefs} with default configuration if errors occur when
-     * reading from the file.
-     */
-    protected CommandHistory initCommandHistory(Path commandHistoryFilePath) {
-        logger.info("Using commandHistory file : " + commandHistoryFilePath);
-
-        CommandHistory initializedCommandHistory;
-        try {
-            Optional<CommandHistory> commandHistoryOptional = storage.readCommandHistory();
-            initializedCommandHistory = commandHistoryOptional.orElse(new CommandHistory());
-        } catch (IOException e) {
-            logger.warning("Problem while reading from CommandHistory file. Will be starting with an empty CommandHistory");
-            initializedCommandHistory = new CommandHistory();
-        }
-
-        //Update commandHistory file in case it was missing to begin with
-        try {
-            storage.saveCommandHistory(initializedCommandHistory);
-        } catch (IOException e) {
-            logger.warning("Failed to save CommandHistory file : " + StringUtil.getDetails(e));
-        }
-
-        return initializedCommandHistory;
     }
 
     @Override

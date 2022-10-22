@@ -151,7 +151,30 @@ public class ModelManager implements Model {
         return calendarEventList;
     }
 
-    @Override public boolean equals(Object obj) {
+    //=========== Command History=============================================================
+    @Override
+    public ReadOnlyCommandHistory getCommandHistory() {
+        return commandHistory;
+    }
+
+    @Override
+    public void addToCommandHistory(String validCommandInput) {
+        commandHistory.addToCommandHistory(validCommandInput);
+    }
+
+    @Override
+    public String getPrevCommand() {
+        return commandHistory.getPrevCommand();
+    }
+
+    @Override
+    public String getNextCommand() {
+        return commandHistory.getNextCommand();
+    }
+
+    //=========== equals method =============================================================
+    @Override
+    public boolean equals(Object obj) {
         // short circuit if same object
         if (obj == this) {
             return true;
@@ -168,5 +191,4 @@ public class ModelManager implements Model {
                 && userPrefs.equals(other.userPrefs)
                 && filteredPersons.equals(other.filteredPersons);
     }
-
 }

@@ -6,6 +6,7 @@ import java.util.Optional;
 
 import seedu.address.commons.exceptions.DataConversionException;
 import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.ReadOnlyCommandHistory;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.UserPrefs;
 
@@ -29,4 +30,11 @@ public interface Storage extends AddressBookStorage, UserPrefsStorage, CommandHi
     @Override
     void saveAddressBook(ReadOnlyAddressBook addressBook) throws IOException;
 
+    @Override
+    Path getCommandHistoryFilePath();
+    @Override
+    ReadOnlyCommandHistory readCommandHistory();
+
+    @Override
+    void saveCommandHistory(ReadOnlyCommandHistory commandHistory);
 }

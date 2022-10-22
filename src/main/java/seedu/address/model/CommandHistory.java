@@ -8,15 +8,16 @@ import java.util.List;
 /**
  * Represents User's command history.
  */
-public class CommandHistory implements ReadOnlyCommandHistory{
+public class CommandHistory implements ReadOnlyCommandHistory {
     private List<String> commandHistoryList = new ArrayList<>();
     private int currentIndex = 0;
     private static final int MAX_COMMAND_HISTORY_SIZE = 20;
 
     public CommandHistory() {}
 
-    public CommandHistory(ReadOnlyCommandHistory toBeCopied) {
-        this.commandHistoryList = commandHistoryList;
+    public CommandHistory(ReadOnlyCommandHistory commandHistory) {
+        this();
+        setCommandHistoryList(commandHistory.getCommandHistoryList());
     }
 
     /**
@@ -36,6 +37,10 @@ public class CommandHistory implements ReadOnlyCommandHistory{
         setCommandHistoryList(newData.getCommandHistoryList());
     }
 
+    /**
+     * used for testing
+     * @return
+     */
     @Override
     public List<String> getCommandHistoryList() {
         return commandHistoryList;
@@ -48,7 +53,7 @@ public class CommandHistory implements ReadOnlyCommandHistory{
         commandHistoryList.add(validCommandInput);
     }
 
-    public String getPrev() {
+    public String getPrevCommand() {
         if (currentIndex <= 0) {
             return commandHistoryList.get(0);
         }
@@ -56,7 +61,7 @@ public class CommandHistory implements ReadOnlyCommandHistory{
         return commandHistoryList.get(currentIndex);
     }
 
-    public String getNext() {
+    public String getNextCommand() {
         if (currentIndex + 1 >= MAX_COMMAND_HISTORY_SIZE) {
             return commandHistoryList.get(0);
         }
