@@ -1,7 +1,8 @@
 package seedu.address.ui;
 
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
+import java.util.Objects;
+import java.util.logging.Logger;
+
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
@@ -12,9 +13,6 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.Region;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.person.Person;
-
-import java.util.Objects;
-import java.util.logging.Logger;
 
 /**
  * Panel containing the list of persons.
