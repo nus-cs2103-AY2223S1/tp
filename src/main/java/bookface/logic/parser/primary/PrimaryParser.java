@@ -16,9 +16,9 @@ public class PrimaryParser extends CommandParser<Command> {
 
     @Override
     protected Command handleParsedCommand(String commandWord, String args) throws ParseException {
-        PrimaryCommands taskType;
+        PrimaryCommand taskType;
         try {
-            taskType = PrimaryCommands.valueOf(commandWord.toUpperCase());
+            taskType = PrimaryCommand.valueOf(commandWord.toUpperCase());
         } catch (IllegalArgumentException e) {
             throw new ParseException(Messages.MESSAGE_UNKNOWN_COMMAND);
         }

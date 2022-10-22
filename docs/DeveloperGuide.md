@@ -33,7 +33,34 @@ title: Developer Guide
 
 ## **Acknowledgements**
 
-* {list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the original source as well}
+<table>
+<thead>
+<tr class="header">
+<th>Resource</th>
+<th>Used in</th>
+<th>To</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td markdown="span"><a href="https://stackoverflow.com/a/14018549/13742805">https://stackoverflow.
+com/a/14018549/13742805</a>
+</td>
+<td markdown="span"><a href="https://github.com/AY2223S1-CS2103-F14-4/tp/tree/master/src/main/java/bookface/commons/util/StringUtil.java">StringUtil.java</a></td>
+<td markdown="span">Help with parsing lower-case strings</td>
+</tr>
+<tr>
+<td markdown="span"><a href="https://stackoverflow.com/a/4217164/13742805">https://stackoverflow.com/a/4217164/13742805</a>
+</td>
+<td markdown="span"><a href="https://github.com/AY2223S1-CS2103-F14-4/tp/tree/master/src/main/java/bookface/logic
+/parser/CommandParser.java">CommandParser.java</a></td>
+<td markdown="span">Force subclasses to have the same initial method calls</td>
+</tr>
+</tbody>
+</table>
+
+_A list of the sources of all reused/adapted ideas, code, documentation, and third-party libraries -- with links to 
+the original source as well_
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -78,7 +105,8 @@ The rest of the App consists of four components.
 
 **How the architecture components interact with each other**
 
-The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues the command `delete 1`.
+The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user 
+issues the command `delete user 1`.
 
 <img src="images/ArchitectureSequenceDiagram.png" width="574" />
 
@@ -101,7 +129,7 @@ The **API** of this component is specified in [`Ui.java`](https://github.com/AY2
 
 The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `PersonListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
 
-The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files 
+The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files
 that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/AY2223S1-CS2103-F14-4/tp/blob/master/src/main/java/bookface/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/AY2223S1-CS2103-F14-4/tp/blob/master/src/main/resources/view/MainWindow.fxml)
 
 The `UI` component,
@@ -120,25 +148,19 @@ Here's a (partial) class diagram of the `Logic` component:
 <img src="images/LogicClassDiagram.png" width="550"/>
 
 How the `Logic` component works:
-1. When `Logic` is called upon to execute a command, it uses the `BookFaceParser` class to parse the user command.
-1. This results in a `Command` object (more precisely, an object of one of its subclasses e.g., `AddCommand`) which is executed by the `LogicManager`.
+1. When `Logic` is called upon to execute a command, it uses the `PrimaryParser` class to parse the user command.
+1. This results in a `Command` object (more precisely, an object of one of its subclasses e.g., `AddUserCommand`) which is executed by the `LogicManager`.
 1. The command can communicate with the `Model` when it is executed (e.g. to add a person).
-1. The result of the command execution is encapsulated as a `CommandResult` object which is returned back from `Logic`.
-
-The Sequence Diagram below illustrates the interactions within the `Logic` component for the `execute("delete 1")` API call.
-
-![Interactions Inside the Logic Component for the `delete 1` Command](images/DeleteSequenceDiagram.png)
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
-</div>
+1. The result of the command execution is encapsulated as a `CommandResult` object which is returned from `Logic`.
 
 Here are the other classes in `Logic` (omitted from the class diagram above) that are used for parsing a user command:
 
 <img src="images/ParserClasses.png" width="600"/>
 
 How the parsing works:
-* When called upon to parse a user command, the `BookFaceParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddCommand`) which the `BookFaceParser` returns back as a `Command` object.
-* All `XYZCommandParser` classes (e.g., `AddCommandParser`, `DeleteCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
+* When called upon to parse a user command, the `PrimaryParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddUserCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddCommand`) which the `PrimaryParser` returns back as a `Command` object.
+* Commands can be decomposed into subcommands. For example, to parse `delete user 1`, `PrimaryParser` calls `DeleteCommandParser`. `DeleteCommandParser` then parses `user 1` and returns a `DeleteUserCommand`.
+* All `XYZCommandParser` classes (e.g., `AddUserommandParser`, `DeleteUserCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
 
 ### Model component
 **API** : [`Model.java`](https://github.com/AY2223S1-CS2103-F14-4/tp/blob/master/src/main/java/bookface/model/Model.java)
@@ -181,16 +203,116 @@ Classes used by multiple components are in the `bookface.commons` package.
 
 This section describes some noteworthy details on how certain features are implemented.
 
-### Add feature
+### Command Parsing
+The [**Logic**](#logic-component) section briefly explains how the user's input is broken down, but the process is explained more thoroughly here.
 
+Parsing of commands is a three-step process - processing the first command word, then the arguments (if any), and constructing the Command instance. 
+
+The `add`, `find`, `list`, and `delete` commands can apply to either users or books. These commands need additional subcommands and additional parsers to handle the different execution logic and command-line flags for users and books. Thus, the arguments to these commands are actually subcommands.
+
+Contrast `loan 1 1` with `delete user 1`. `loan 1 1` has two integer arguments, which cannot be broken down further. However, the arguments `user 1` for `delete` can be treated as a single self-complete subcommand on their own.
+
+These commands (and subcommands) are represented as enums to associate each possible command from the user with a parser.
+
+#### Design consideration:
+
+This approach was chosen to reduce code duplication, and to manage the complexity of `PrimaryParser`. Now, `DeleteUserCommand` (`delete user`) and `DeleteBookCommand` (`delete book`) can share similar code through a common parent `DeleteCommand` (`delete`).
+
+Enums were chosen, as they use less memory (as enums are `final` subclasses of java.lang.Enum) than HashMap for key-value storage, and are easy to modify. Furthermore, they help to ensure type-checking during compile-time, preventing bugs. They also have a semantic value; they represent to both readers and future developers the current allowed constants. 
+
+### Adding a book/user
+The `add` command is an important command that is commonly used in BookFace. It allows the user to add a new book or a user to the system.
+
+#### Design consideration:
+Since `add` is used for the operations of both adding a book and adding a user, `AddSubCommand` is created to handle differentiating between adding a book and adding a user.
+
+#### Adding a book with `add book`
+`add book` adds a new book to the model. Specifically, `ModelManager` maintains a list of books and contains the method `addbook()` that is invoked by `AddBookCommand` to perform this adding operation.
+
+The updating of the model is represented in the following diagram:
+
+![AddBookSimpleDiagram](images/AddBookSimpleDiagram.png)
+
+*The above will be updated with a more accurate diagram*
+
+The following is the sequence diagram for this operation:
+*To be updated with sequence diagram.*
+
+#### Adding a user with `add user`
+*To be updated.*
 
 
 ### Delete feature
 
 
 
+
 ### List feature
 
+#### Implementation
+
+The list mechanism is facilitated by `LogicManager`. During its process of parsing the command by `PrimaryParser`,
+a new `ListCommandParser` will be created to internally parse the argument of the command
+through `ListSubcommand`.
+
+Currently, there are 2 possible `Command` classes that can be returned from `ListSubcommand`, and
+they are created in respect to the subcommand that is parsed:
+* `ListBooksCommand` for `Book` upon the command `list books`
+* `ListUsersCommand` for `Person` upon the command `list users`
+
+Given below is an example usage scenario and how the list mechanism behaves
+at each step.
+
+Step 1. The librarian has executed a `FindUserCommand`, which filtered certain user records to display in BookFace. The librarian
+then wants to return the display state to show all user records by entering the `list users` command, which attempts to list all users
+in BookFace.
+
+Step 2. `LogicManager` executes the command.
+
+Step 3. `PrimaryParser` then creates a new `ListCommandParser` object, which internally creates a `ListSubcommand` object
+to parse the second part of the command (which is `users`).
+
+Step 4. `ListSubcommand` parses the subcommand as an argument and creates a new `ListUsersCommand`.
+
+Step 5. `LogicManager` executes `ListUsersCommand`, which then calls `Model#updateFilteredPersonList()` with a predicate to show all users.
+
+The following sequence diagram shows how the list operation works
+(following the steps mentioned above):
+
+![ListSequenceDiagram](images/ListSequenceDiagram.png)
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `ListUsersCommand`
+and `ListUsersCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches
+the end of diagram.</div>
+
+The following activity diagram summarizes what happens when a user executes a list command:
+
+![ListActivityDiagram](images/ListActivityDiagram.png)
+
+### Deleting a book/user
+The `delete` allows the user to delete a book or a user from the system.
+
+#### Deleting a book with `delete book`
+`delete book` deletes a book from the model. Specifically, `ModelManager` maintains a list of books and contains the method `deleteBook()` that is invoked by `DeleteBookCommand` to perform this deletion.
+
+The sequence diagram below illustrates the interactions within the `Logic` component for the `execute("delete user 
+1")` API call.
+
+![Interactions Inside the Logic Component for the `delete 1` Command](images/DeleteSequenceDiagram.png)
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+</div>
+
+#### Deleting a user with `delete user`
+`delete book` deletes a user from the model. Specifically, `ModelManager` maintains a list of users and contains the method `deletePerson()` that is invoked by `DeleteUserCommand` to perform this deletion.
+
+The sequence diagram is rather similar to that of `delete book`, so in the interest of brevity, it has been omitted.
+
+#### Activity Diagram
+
+The following activity diagram summarizes what happens when the librarian executes a `delete` command:
+
+![DeleteActivityDiagram](images/DeleteActivityDiagram.png)
 
 
 ### Find feature
@@ -256,48 +378,6 @@ The following activity diagram summarizes what happens when the librarian execut
 The find command is designed such that the matches within `BookList` and `UniquePersonList` are easily found and listed onto the UI of BookFace. 
 
 
-### List feature
-
-#### Implementation
-
-The list mechanism is facilitated by `LogicManager`. During its process of parsing the command by `PrimaryParser`,
-a new `ListCommandParser` will be created to internally parse the argument of the command
-through `ListSubcommand`.
-
-Currently, there are 2 possible `Command` classes that can be returned from `ListSubcommand`, and 
-they are created in respect to the subcommand that is parsed:
-* `ListBooksCommand` for `Book` upon the command `list books`
-* `ListUsersCommand` for `Person` upon the command `list users`
-
-Given below is an example usage scenario and how the list mechanism behaves
-at each step.
-
-Step 1. The librarian has executed a `FindUserCommand`, which filtered certain user records to display in BookFace. The librarian 
-then wants to return the display state to show all user records by entering the `list users` command, which attempts to list all users
-in BookFace.
-
-Step 2. `LogicManager` executes the command.
-
-Step 3. `PrimaryParser` then creates a new `ListCommandParser` object, which internally creates a `ListSubcommand` object 
-to parse the second part of the command (which is `users`).
-
-Step 4. `ListSubcommand` parses the subcommand as an argument and creates a new `ListUsersCommand`.
-
-Step 5. `LogicManager` executes `ListUsersCommand`, which then calls `Model#updateFilteredPersonList()` with a predicate to show all users.
-
-The following sequence diagram shows how the list operation works
-(following the steps mentioned above):
-
-![ListSequenceDiagram](images/ListSequenceDiagram.png)
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `ListUsersCommand` 
-and `ListUsersCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches 
-the end of diagram.</div>
-
-The following activity diagram summarizes what happens when a user executes a list command:
-
-![ListActivityDiagram](images/ListActivityDiagram.png)
-
 ### Loan feature
 
 #### Implementation
@@ -311,7 +391,7 @@ Given below is an example usage scenario and how the loan mechanism behaves at e
 
 Step 1. Assume that FaceBook contains some users and some books that are added through several `AddUserCommand` and `AddBookCommand`
 executed by the librarian. The librarian then enters `loan 2 2` command to loan to the 2nd user in the user list the 2nd book
-in the book list. 
+in the book list.
 
 Step 2. `LogicManager` executes the librarian's `loan 2 2` command.
 
@@ -330,7 +410,7 @@ The following sequence diagram shows how the loan operation works:
 
 ![LoanSequenceDiagram](images/LoanSequenceDiagram.png)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `LoanCommandParser` 
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `LoanCommandParser`
 should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.</div>
 
 The following activity diagram summarizes what happens when the librarian executes a loan command:
@@ -339,8 +419,8 @@ The following activity diagram summarizes what happens when the librarian execut
 
 #### Design considerations:
 The loan command is designed such that the `BookList` and `UniquePersonList`
-are updated sequentially rather than concurrently, such that there are 
-separate loan commands in both `BookList` and `UniquePersonList` that are called 
+are updated sequentially rather than concurrently, such that there are
+separate loan commands in both `BookList` and `UniquePersonList` that are called
 by `BookFace` that updates the `BookList` and `UniquePersonList` respectively.
 
 It may be possible to make it such that only one loan command is ever called,
@@ -350,7 +430,7 @@ in the future.
 
 One issue is that the `UniquePersonList` and `BookList` do not refresh their UI
 automatically and we resorted to getting the index of each list to set their
-internal `ObservableLists` to 'refresh' their UI. 
+internal `ObservableLists` to 'refresh' their UI.
 
 ### Return feature
 
@@ -365,7 +445,7 @@ Given below is an example usage scenario and how the return mechanism behaves at
 
 Step 1. Assume that FaceBook contains some users and some books that are added through several `AddUserCommand` and `AddBookCommand`
 executed by the librarian. The librarian then enters `loan 2 2` command to loan to the 2nd user in the user list the 2nd book
-in the book list. The librarian now wants to return the 2nd book that was previously loaned out. 
+in the book list. The librarian now wants to return the 2nd book that was previously loaned out.
 The librarian enters `return 2` command.
 
 Step 2. `LogicManager` executes the librarian's `return 2` command.
@@ -384,7 +464,7 @@ The following sequence diagram shows how the return operation works:
 
 ![ReturnSequenceDiagram](images/ReturnSequenceDiagram.png)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `ReturnCommandParser` 
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `ReturnCommandParser`
 should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.</div>
 
 The following activity diagram summarizes what happens when a user executes a return command:
