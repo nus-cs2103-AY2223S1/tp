@@ -28,7 +28,7 @@ Item  “potato” successfully created
 ---
 
 #### List all items: `list`
-TODO:YX (add price, remarks to displayed items)
+<!-- TODO: YX (add price, remarks to displayed items) -->
 **Format**: `list`
 
 > Lists all the items in the inventory.
