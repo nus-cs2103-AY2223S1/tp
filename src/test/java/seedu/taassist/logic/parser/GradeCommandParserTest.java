@@ -11,6 +11,8 @@ import static seedu.taassist.logic.commands.CommandTestUtil.VALID_SESSION_LAB1;
 import static seedu.taassist.logic.parser.CliSyntax.PREFIX_SESSION;
 import static seedu.taassist.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.taassist.logic.parser.CommandParserTestUtil.assertParseSuccess;
+import static seedu.taassist.logic.parser.ParserUtil.MESSAGE_INVALID_GRADE;
+import static seedu.taassist.logic.parser.ParserUtil.MESSAGE_INVALID_INDEX;
 import static seedu.taassist.testutil.TestUtil.joinWithSpace;
 import static seedu.taassist.testutil.TypicalIndexes.INDEX_FIRST_STUDENT;
 
@@ -33,20 +35,20 @@ public class GradeCommandParserTest {
     @Test
     public void parse_invalidIndex_failure() {
         String userInput = " " + INVALID_INDEX + SESSION_DESC_LAB1 + GRADE_VALUE_DESC_12345;
-        assertParseFailure(parser, userInput, String.format(MESSAGE_INVALID_COMMAND_FORMAT, GradeCommand.MESSAGE_USAGE));
+        assertParseFailure(parser, userInput, MESSAGE_INVALID_INDEX);
     }
 
     @Test
     public void parse_invalidGrade_failure() {
         String userInput = " " + INDEX_FIRST_STUDENT + SESSION_DESC_LAB1 + INVALID_GRADE_VALUE_DESC;
-        assertParseFailure(parser, userInput, String.format(MESSAGE_INVALID_COMMAND_FORMAT, GradeCommand.MESSAGE_USAGE));
+        assertParseFailure(parser, userInput, MESSAGE_INVALID_GRADE);
     }
 
     @Test
     public void parse_emptySession_failure() {
         String userInput = joinWithSpace(" " + INDEX_FIRST_STUDENT, PREFIX_SESSION + PREAMBLE_WHITESPACE,
                 GRADE_VALUE_DESC_12345);
-        assertParseFailure(parser, userInput, String.format(MESSAGE_INVALID_COMMAND_FORMAT, GradeCommand.MESSAGE_USAGE));
+        assertParseFailure(parser, userInput, Session.MESSAGE_CONSTRAINTS);
     }
 
     @Test

@@ -11,7 +11,6 @@ import static seedu.taassist.logic.commands.CommandTestUtil.VALID_SESSION_LAB1;
 import static seedu.taassist.logic.parser.CliSyntax.PREFIX_SESSION;
 import static seedu.taassist.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.taassist.logic.parser.CommandParserTestUtil.assertParseSuccess;
-import static seedu.taassist.testutil.TestUtil.joinWithSpace;
 
 import org.junit.jupiter.api.Test;
 
