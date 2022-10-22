@@ -22,7 +22,7 @@ import jarvis.model.Student;
  * The student is identified using its displayed index from the student book.
  * The lesson is identified using its displayed index from the lesson book.
  */
-public class AddNotesCommand extends Command {
+public class AddNoteCommand extends Command {
 
     public static final String COMMAND_WORD = "addnote";
 
@@ -47,7 +47,7 @@ public class AddNotesCommand extends Command {
     /**
      * Creates a AddNotesCommand to add notes to a lesson or to a specified student in the lesson.
      */
-    public AddNotesCommand(Index lessonIndex, Index studentIndex, String notes) {
+    public AddNoteCommand(Index lessonIndex, Index studentIndex, String notes) {
         requireAllNonNull(lessonIndex, notes);
         this.lessonIndex = lessonIndex;
         this.studentIndex = studentIndex;
@@ -87,11 +87,11 @@ public class AddNotesCommand extends Command {
             return true;
         }
 
-        if (!(other instanceof AddNotesCommand)) { // instanceof handles nulls
+        if (!(other instanceof AddNoteCommand)) { // instanceof handles nulls
             return false;
         }
 
-        AddNotesCommand otherAddNotes = (AddNotesCommand) other;
+        AddNoteCommand otherAddNotes = (AddNoteCommand) other;
 
         boolean studentIndexEquality = studentIndex == null || otherAddNotes.studentIndex == null
                 ? studentIndex == null && otherAddNotes.studentIndex == null

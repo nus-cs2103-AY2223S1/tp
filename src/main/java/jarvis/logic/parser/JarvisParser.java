@@ -8,7 +8,7 @@ import java.util.regex.Pattern;
 
 import jarvis.logic.commands.AddConsultCommand;
 import jarvis.logic.commands.AddMasteryCheckCommand;
-import jarvis.logic.commands.AddNotesCommand;
+import jarvis.logic.commands.AddNoteCommand;
 import jarvis.logic.commands.AddParticipationCommand;
 import jarvis.logic.commands.AddStudentCommand;
 import jarvis.logic.commands.AddStudioCommand;
@@ -77,8 +77,8 @@ public class JarvisParser {
         case AddConsultCommand.COMMAND_WORD:
             return new AddConsultCommandParser().parse(arguments);
 
-        case AddNotesCommand.COMMAND_WORD:
-            return new AddNotesCommandParser().parse(arguments);
+        case AddNoteCommand.COMMAND_WORD:
+            return new AddNoteCommandParser().parse(arguments);
 
         case AddParticipationCommand.COMMAND_WORD:
             return new AddParticipationCommandParser().parse(arguments);

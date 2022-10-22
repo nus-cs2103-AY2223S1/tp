@@ -9,25 +9,25 @@ import java.util.Optional;
 import java.util.stream.Stream;
 
 import jarvis.commons.core.index.Index;
-import jarvis.logic.commands.AddNotesCommand;
+import jarvis.logic.commands.AddNoteCommand;
 import jarvis.logic.parser.exceptions.ParseException;
 
 /**
  * Parses input arguments and creates a new AddNotesCommand object
  */
-public class AddNotesCommandParser implements Parser<AddNotesCommand> {
+public class AddNoteCommandParser implements Parser<AddNoteCommand> {
     /**
      * Parses the given {@code String} of arguments in the context of the AddNotesCommand
      * and returns a AddNotesCommand object for execution.
      * @throws ParseException if the user input does not conform the expected format
      */
-    public AddNotesCommand parse(String args) throws ParseException {
+    public AddNoteCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_NOTES, PREFIX_LESSON_INDEX,
                 PREFIX_STUDENT_INDEX);
 
         if (!arePrefixesPresent(argMultimap, PREFIX_NOTES, PREFIX_LESSON_INDEX)
                 || !argMultimap.getPreamble().isEmpty()) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddNotesCommand.MESSAGE_USAGE));
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddNoteCommand.MESSAGE_USAGE));
         }
 
         Index lessonIndex = ParserUtil.parseIndex(argMultimap.getValue(PREFIX_LESSON_INDEX).get());
@@ -35,7 +35,7 @@ public class AddNotesCommandParser implements Parser<AddNotesCommand> {
         Index studentIndex = studentPrefix.isPresent() ? ParserUtil.parseIndex(studentPrefix.get()) : null;
         String notes = argMultimap.getValue(PREFIX_NOTES).get();
 
-        return new AddNotesCommand(lessonIndex, studentIndex, notes);
+        return new AddNoteCommand(lessonIndex, studentIndex, notes);
     }
 
     /**
