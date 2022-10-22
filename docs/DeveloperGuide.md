@@ -2,8 +2,32 @@
 layout: page
 title: Developer Guide
 ---
-* Table of Contents
-{:toc}
+# Developer Guide
+* Table of Contents {:toc}
+- [Acknowledgements](#acknowledgements)
+- [Setting up, getting started](#setting-up-getting-started)
+- [Design](#design)
+  - [Architecture](#architecture)
+  - [UI component](#ui-component)
+  - [Logic component](#logic-component)
+  - [Model component](#model-component)
+  - [Storage component](#storage-component)
+  - [Common classes](#common-classes)
+- [Implementation](#implementation)
+  - [Add](#add-feature)
+  - [Delete](#delete-feature)
+  - [List](#list-feature)
+  - [Find](#find-feature)
+  - [Loan](#loan-feature)
+  - [Return](#return-feature)
+- [Documentation, logging, testing, configuration](#documentation-logging-testing-configuration-dev-ops)
+- [Appendix: Requirements](#appendix-requirements)
+  - [Product scope](#product-scope)
+  - [User stories](#user-stories)
+  - [Use cases](#use-cases)
+  - [Non-function Requirements](#non-functional-requirements)
+  - [Glossary](#glossary)
+- [Appendix: Instructions for manual testing](#appendix-instructions-for-manual-testing)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -209,13 +233,19 @@ The updating of the model is represented in the following diagram:
 
 ![AddBookSimpleDiagram](images/AddBookSimpleDiagram.png)
 
-*Teh above will be updated with a more accurate diagram*
+*The above will be updated with a more accurate diagram*
 
 The following is the sequence diagram for this operation:
 *To be updated with sequence diagram.*
 
 #### Adding a user with `add user`
 *To be updated.*
+
+
+### Delete feature
+
+
+
 
 ### List feature
 
@@ -283,6 +313,70 @@ The sequence diagram is rather similar to that of `delete book`, so in the inter
 The following activity diagram summarizes what happens when the librarian executes a `delete` command:
 
 ![DeleteActivityDiagram](images/DeleteActivityDiagram.png)
+
+
+### Find feature
+#### Implementation
+
+The find feature is faciliated by `FindUserCommand` and `FindUserArgumentsParser` for finding users, and `FindBookCommand` and `FindBookArgumentsParser` for finding books. 
+It implements the following operations:
+* `#updateFilteredPersonList(predicate)` — Display users with names matching predicate.
+* `updatedFilteredBookList(predicate)` — Display books with title/authors matching predicate.
+
+
+Given below is an example usage scenario and how the find users mechanism behaves at each step.
+
+Step 1. Assume that BookFace contains some users that are added through several `AddUserCommand` executed by the user. The user executes `find user alex` command to find any user with name 'alex' within the address book. 
+
+Step 2. `LogicManager` executes the `find user alex` command.
+
+Step 3. PrimaryParser then creates a new `FindUserArgumentsParser` after parsing `find user alex`.
+
+Step 4. `FindUserArgumentsParser` parses `"alex"` and creates a new `FindUserCommand`.
+
+Step 5. `LogicManager` executes the `FindUserCommand`.
+
+Step 6. `FindUserCommand` calls `Model#updateFilteredPersonList("alex")`  and find all users with names matching "alex".
+
+Step 7. `FindUserCommand` creates new `CommandResult` and returns the result to `LogicManager`.
+
+
+The following sequence diagram shows a visualization of the above find process:
+
+![FindUserSequenceDiagram](images/FindUserSequenceDiagram.png)
+
+The following activity diagram summarizes what happens when the librarian executes a find user command:
+
+![FindUserActivityDiagram](images/FindUserActivityDiagram.png)
+
+The process for finding books goes through a similar process as the process for finding users. Given below is an example usage scenario and how the find books mechanism behaves at each step.
+
+Step 1. Assume that BookFace contains some books that are added through several `AddBookCommand` executed by the user. The user executes `find book moby` command to find any book with title or author with 'moby' within the book list. 
+
+Step 2. `LogicManager` executes the `find book moby` command.
+
+Step 3. PrimaryParser then creates a new `FindBookArgumentsParser` after parsing `find book moby`.
+
+Step 4. `FindBookArgumentsParser` parses `"moby"` and creates a new `FindBookCommand`.
+
+Step 5. `LogicManager` executes the `FindBookCommand`.
+
+Step 6. `FindBookCommand` calls `Model#updateFilteredBookList("moby")`  and find all books with titles or authors matching "moby".
+
+Step 7. `FindBookCommand` creates new `CommandResult` and returns the result to `LogicManager`.
+
+
+The following sequence diagram shows a visualization of the above find process:
+
+![FindBookSequenceDiagram](images/FindBookSequenceDiagram.png)
+
+The following activity diagram summarizes what happens when the librarian executes a find command:
+
+![FindBookActivityDiagram](images/FindBookActivityDiagram.png)
+
+#### Design considerations
+The find command is designed such that the matches within `BookList` and `UniquePersonList` are easily found and listed onto the UI of BookFace. 
+
 
 ### Loan feature
 
