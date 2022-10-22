@@ -5,6 +5,9 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static swift.testutil.Assert.assertThrows;
 
+import java.util.Arrays;
+import java.util.List;
+
 import org.junit.jupiter.api.Test;
 
 import swift.model.bridge.exceptions.BridgeNotFoundException;
@@ -85,6 +88,27 @@ public class PersonTaskBridgeListTest {
         bridges.removeTask(new TaskBuilder().withId("bfbf250c-fd58-49b4-be15-ca12095ca2ee").build());
         PersonTaskBridgeList expectedUniqueBridgeList = new PersonTaskBridgeList();
         assertEquals(bridges, expectedUniqueBridgeList);
+    }
+
+    @Test
+    public void setBridges_uniqueTaskList_replacesOwnListWithProvidedUniqueTaskList() {
+        bridges.add(TypicalBridges.DEFAULT_BRIDGE_1);
+        PersonTaskBridgeList expectedBridgeList = new PersonTaskBridgeList();
+        expectedBridgeList.add(TypicalBridges.DEFAULT_BRIDGE_2);
+        bridges.setBridges(List.of(TypicalBridges.DEFAULT_BRIDGE_2));
+        assertEquals(expectedBridgeList, bridges);
+    }
+
+    @Test
+    public void setBridges_nullList_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> bridges.setBridges(null));
+    }
+
+    @Test
+    public void setBridges_listWithDuplicateTasks_throwsDuplicateTaskException() {
+        List<PersonTaskBridge> listWithDuplicateTasks = Arrays
+                .asList(TypicalBridges.DEFAULT_BRIDGE_1, TypicalBridges.DEFAULT_BRIDGE_1);
+        assertThrows(DuplicateBridgeException.class, () -> bridges.setBridges(listWithDuplicateTasks));
     }
 
     @Test

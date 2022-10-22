@@ -80,6 +80,7 @@ The `UI` component,
 - listens for changes to `Model` data so that the UI can be updated with the modified data.
 - keeps a reference to the `Logic` component, because the `UI` relies on the `Logic` to execute commands.
 - depends on some classes in the `Model` component, as it displays `Person` object residing in the `Model`.
+- depends on some classes in the `Model` component, as it displays `Task` object located in the `Model`.
 
 ### Logic component
 
@@ -162,9 +163,9 @@ This section describes some noteworthy details on how certain features are imple
 
 The proposed undo/redo mechanism is facilitated by `VersionedAddressBook`. It extends `AddressBook` with an undo/redo history, stored internally as an `addressBookStateList` and `currentStatePointer`. Additionally, it implements the following operations:
 
-* `VersionedAddressBook#commit()` — Saves the current address book state in its history.
-* `VersionedAddressBook#undo()` — Restores the previous address book state from its history.
-* `VersionedAddressBook#redo()` — Restores a previously undone address book state from its history.
+- `VersionedAddressBook#commit()` — Saves the current address book state in its history.
+- `VersionedAddressBook#undo()` — Restores the previous address book state from its history.
+- `VersionedAddressBook#redo()` — Restores a previously undone address book state from its history.
 
 These operations are exposed in the `Model` interface as `Model#commitAddressBook()`, `Model#undoAddressBook()` and `Model#redoAddressBook()` respectively.
 
@@ -225,14 +226,15 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 **Aspect: How undo & redo executes:**
 
-* **Alternative 1 (current choice):** Saves the entire address book.
-  * Pros: Easy to implement.
-  * Cons: May have performance issues in terms of memory usage.
+- **Alternative 1 (current choice):** Saves the entire address book.
 
-* **Alternative 2:** Individual command knows how to undo/redo by
+  - Pros: Easy to implement.
+  - Cons: May have performance issues in terms of memory usage.
+
+- **Alternative 2:** Individual command knows how to undo/redo by
   itself.
-  * Pros: Will use less memory (e.g. for `delete`, just save the person being deleted).
-  * Cons: We must ensure that the implementation of each individual command are correct.
+  - Pros: Will use less memory (e.g. for `delete`, just save the person being deleted).
+  - Cons: We must ensure that the implementation of each individual command are correct.
 
 _{more aspects and alternatives to be added}_
 
@@ -250,6 +252,7 @@ The implementation of the contact-task relation is facilitated by `PersonTaskBri
 - `PersonTaskBridgeList#remove(PersonTaskBridge)` - Removes an existing relation between a `Person` and a `Task` from the list.
 - `PersonTaskBridgeList#removePerson(Person)` and `PersonTaskBridgeList#removeTask(Task)` - Removes all existing relations between a `Person` and `Task` objects from the list.
 
+
 These operations will be exposed in the `Model` interface.
 
 <img src="images/PersonTaskBridgeDiagram.png" width="250" />
@@ -263,6 +266,13 @@ The implementation of finding the contacts/tasks from our model is facilitated b
 `ContactNameContainsKeywordsPredicate` and `TaskNameContainsKeywordsPredicate` implement the interface `Predicate` and test if a contact/task's name contains the given keywords.
 
 The predicates are passed into `Model#updateFilteredContactList` and `Model#updateFilteredTaskList` respectively, which then uses the predicates to filter contacts/tasks containing the given keywords.
+
+### View tasks details
+The implementation of the task tab UI is facilitated by `TaskCard` and `TaskListPanel`.
+
+`TaskCard` and `TaskListPanel` extends the superclass `UiPart<Region>` and fills the UI container with a panel that displays the list of tasks, along with their assigned contacts and deadlines.
+
+`TaskListPanel` in is responsible for displaying the graphics of a task using a `TaskCard`.
 
 ### Command Suggestions and Command Auto-Completion
 
@@ -288,8 +298,8 @@ The implementation of Command Suggestions and Command Auto-Completion is facilit
 
 **Target user profile**:
 
-Designed for software engineering project leads who ...
 
+Designed for software engineering project leads who ...
 - need to keep track of many tasks and scheduled events with clients and colleagues
 - can type fast
 - prefer typing to mouse interactions
@@ -306,7 +316,7 @@ Priorities:
 - Low (unlikely to have) - `*`
 
 | Priority | As a …​        | I want to …​             | So that I can…​                                                            |
-| -------- | -------------- | ------------------------ | -------------------------------------------------------------------------- |
+| -------- | -------------- |--------------------------|----------------------------------------------------------------------------|
 | `* * *`  | new user       | see usage instructions   | refer to instructions when I forget how to use the app                     |
 | `* * *`  | user           | add a new contact        | add a new contact to keep track of                                         |
 | `* * *`  | user           | view all contacts        | get an overview of all contacts in my app                                  |
@@ -317,6 +327,7 @@ Priorities:
 | `* * *`  | user           | view tasks by contact    | view tasks belonging to a contact                                          |
 | `* *`    | user           | update a task            | update the particulars of a task                                           |
 | `* * *`  | user           | delete a task            | remove tasks that I no longer need                                         |
+| `* *`    | user           | list all tasks           | to locate details of all the tasks immediately                             |
 | `* *`    | user           | find tasks by name       | locate details of tasks without having to go through the entire list       |
 | `* *`    | forgetful user | autocomplete my commands | conveniently type commands without referring to the user guide excessively |
 
@@ -395,6 +406,7 @@ Priorities:
 
 - 3a. The given index is invalid.
 
+
   - 3a1. AddressBook shows an error message.
 
     Use case resumes at step 2.
@@ -465,25 +477,24 @@ testers are expected to do more *exploratory* testing.
 2. Saving window preferences
 
    1. Resize the window to an optimum size. Move the window to a different location. Close the window.
-
    2. Re-launch the app by double-clicking the jar file.<br>
       Expected: The most recent window size and location is retained.
 
 3. _{ more test cases …​ }_
 
-### Deleting a person
+### Deleting a person / task
 
-1. Deleting a person while all persons are being shown
+1. Deleting a person / task while all persons / task are being shown
 
-   1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
+   1. Prerequisites: List all persons / task using the `list_contact` or `list_task` command.
 
-   2. Test case: `delete_contact 1`<br>
-      Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
+   2. Test case: `delete_contact 1` / `delete_task 1`<br>
+      Expected: First contact / task is deleted from the list. Details of the deleted contact / task shown in the status message. Timestamp in the status bar is updated.
 
-   3. Test case: `delete_contact 0`<br>
-      Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
+   3. Test case: `delete_contact 0` / `delete_task 0`<br>
+      Expected: No person / task is deleted. Error details shown in the status message. Status bar remains the same.
 
-   4. Other incorrect delete commands to try: `delete_contact`, `delete_contact x`, `...` (where x is larger than the list size)<br>
+   4. Other incorrect delete commands to try: `delete_contact` / `delete_task`, `delete_contact x` / `delete_task x`, `...` (where x is larger than the list size)<br>
       Expected: Similar to previous.
 
 2. _{ more test cases …​ }_
