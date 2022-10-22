@@ -109,16 +109,19 @@ public class DeleteAllCommand extends Command {
                 .collect(Collectors.toList());
         StringBuilder sb = new StringBuilder();
         for (Task task : tasksToBeDeleted) {
-            boolean isTagSizeOne = task.getTags().size() == 1;
-            if (isTagSizeOne) {
-                model.deleteTask(task);
-                sb.append(String.format(MESSAGE_DELETE_TASK_SUCCESS, task));
-            } else {
+            boolean isTagSizeGreaterThanOne = task.getTags().size() > 1;
+            if (isTagSizeGreaterThanOne) {
                 EditTaskDescriptor editTaskDescriptor = new EditTaskDescriptor();
                 editTaskDescriptor.setTags(tagsToDelete);
                 Task editedTask = createEditedTask(task, editTaskDescriptor);
-                model.setTask(task, editedTask);
+                boolean isTagSizeNonEmpty = !editedTask.getTags().isEmpty();
+                if (isTagSizeNonEmpty) {
+                    model.setTask(task, editedTask);
+                    continue;
+                }
             }
+            model.deleteTask(task);
+            sb.append(String.format(MESSAGE_DELETE_TASK_SUCCESS, task));
         }
         model.updateFilteredTaskList(PREDICATE_SHOW_ALL_TASKS);
         return sb.toString();
@@ -131,16 +134,19 @@ public class DeleteAllCommand extends Command {
                 .collect(Collectors.toList());
         StringBuilder sb = new StringBuilder();
         for (Person person : personsWithTag) {
-            boolean isTagSizeOne = person.getTags().size() == 1;
-            if (isTagSizeOne) {
-                model.deletePerson(person);
-                sb.append(String.format(MESSAGE_DELETE_PERSON_SUCCESS, person));
-            } else {
+            boolean isTagSizeGreaterThanOne = person.getTags().size() > 1;
+            if (isTagSizeGreaterThanOne) {
                 EditPersonDescriptor editPersonDescriptor = new EditPersonDescriptor();
                 editPersonDescriptor.setTags(tagsToDelete);
                 Person editedPerson = createEditedPerson(person, editPersonDescriptor);
-                model.setPerson(person, editedPerson);
+                boolean isTagSizeNonEmpty = !editedPerson.getTags().isEmpty();
+                if (isTagSizeNonEmpty) {
+                    model.setPerson(person, editedPerson);
+                    continue;
+                }
             }
+            model.deletePerson(person);
+            sb.append(String.format(MESSAGE_DELETE_PERSON_SUCCESS, person));
         }
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
         return sb.toString();
