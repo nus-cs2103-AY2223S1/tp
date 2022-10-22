@@ -13,7 +13,7 @@ src/main/resources/docs/
 /config.json
 /preferences.json
 /*.log.*
-commandhistory.txt
+.commandhistory.txt
 
 
 # Test sandbox files
