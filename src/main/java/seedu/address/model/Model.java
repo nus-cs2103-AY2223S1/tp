@@ -94,7 +94,7 @@ public interface Model {
     ObservableList<CalendarEvent> getFilteredCalendarEventList();
 
 
-    ReadOnlyCommandHistory getCommandHistory();
+    CommandHistory getCommandHistory();
 
     void addToCommandHistory(String commandInput);
 

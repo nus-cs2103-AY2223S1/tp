@@ -10,7 +10,7 @@ import java.util.List;
  */
 public class CommandHistory implements ReadOnlyCommandHistory {
     private List<String> commandHistoryList = new ArrayList<>();
-    private int currentIndex = 0;
+    private int currentIndex =  0;
     private static final int MAX_COMMAND_HISTORY_SIZE = 20;
 
     public CommandHistory() {}
@@ -18,6 +18,7 @@ public class CommandHistory implements ReadOnlyCommandHistory {
     public CommandHistory(ReadOnlyCommandHistory commandHistory) {
         this();
         setCommandHistoryList(commandHistory.getCommandHistoryList());
+        currentIndex = commandHistoryList.size();
     }
 
     /**
@@ -28,14 +29,6 @@ public class CommandHistory implements ReadOnlyCommandHistory {
         this.commandHistoryList = commandHistoryList;
     }
 
-    /**
-     * Resets the existing data of this {@code AddressBook} with {@code newData}.
-     */
-    public void resetData(ReadOnlyCommandHistory newData) {
-        requireNonNull(newData);
-
-        setCommandHistoryList(newData.getCommandHistoryList());
-    }
 
     /**
      * used for testing
@@ -53,18 +46,31 @@ public class CommandHistory implements ReadOnlyCommandHistory {
         commandHistoryList.add(commandInput);
     }
 
+    public void resetCurrentIndexToLatest() {
+        // reset to past max index
+        currentIndex = commandHistoryList.size();
+        System.out.println("Resetting one-based index to " + (currentIndex + 1));
+    }
+
     public String getPrevCommand() {
-        if (currentIndex <= 0) {
-            return commandHistoryList.get(0);
+        if (currentIndex > 0) {
+            currentIndex--;
         }
-        currentIndex--;
+        System.out.println("Current one-based index: " + (currentIndex + 1));
         return commandHistoryList.get(currentIndex);
     }
 
     public String getNextCommand() {
-        if (currentIndex + 1 >= MAX_COMMAND_HISTORY_SIZE) {
-            return commandHistoryList.get(0);
+        int maxZeroBasedIndex = commandHistoryList.size() - 1;
+
+        // String shown at maxZeroBasedIndex + 1 will be empty
+        if (currentIndex >= maxZeroBasedIndex) {
+            currentIndex = maxZeroBasedIndex + 1;
+            System.out.println("Current one-based index: " + (currentIndex + 1));
+            return "";
         }
+
+        System.out.println("Current one-based index: " + (currentIndex + 1));
         currentIndex++;
         return commandHistoryList.get(currentIndex);
     }

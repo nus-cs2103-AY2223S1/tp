@@ -1,8 +1,10 @@
 list
+ add n/Johndsa Doe p/98765432 e/johnd@example.com a/311, Clementi Ave 2, #02-25 i/$1000 m/$200 r/HIGH t/friends t/owesMoney
+ea 2.1 l/fdsa
+da 2.1
+add n/Johdsn Doe p/98765432 e/johnd@example.com a/311, Clementi Ave 2, #02-25 i/$1000 m/$200 r/HIGH t/friends t/owesMoney
+edit 1 p/1223
 list
+edit 1 p/1223
+edit 1 p/1223
 list
-add 
-fasdaf
-sddassdf
-fdsafs
-hello UP

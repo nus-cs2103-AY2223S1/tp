@@ -16,6 +16,8 @@ import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.SortCommand;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.CommandHistory;
+import seedu.address.model.ReadOnlyCommandHistory;
 
 /**
  * The UI component that is responsible for receiving user command inputs.
@@ -33,17 +35,19 @@ public class CommandBox extends UiPart<Region> {
     /**
      * Creates a {@code CommandBox} with the given {@code CommandExecutor}.
      */
-    public CommandBox(CommandExecutor commandExecutor, ResultDisplay resultDisplay) {
+    public CommandBox(CommandExecutor commandExecutor, ResultDisplay resultDisplay, CommandHistory commandHistory) {
         super(FXML);
 
         commandTextField.addEventFilter(KeyEvent.KEY_PRESSED, event -> {
             switch (event.getCode()) {
             case UP:
-                commandTextField.setText("hello UP");
+                String prevCommand = commandHistory.getPrevCommand();
+                commandTextField.setText(prevCommand);
                 event.consume();
                 break;
             case DOWN:
-                commandTextField.setText("hello DOWN");
+                String nextCommand = commandHistory.getNextCommand();
+                commandTextField.setText(nextCommand);
                 event.consume();
                 break;
             }

@@ -153,7 +153,7 @@ public class ModelManager implements Model {
 
     //=========== Command History=============================================================
     @Override
-    public ReadOnlyCommandHistory getCommandHistory() {
+    public CommandHistory getCommandHistory() {
         return commandHistory;
     }
 
