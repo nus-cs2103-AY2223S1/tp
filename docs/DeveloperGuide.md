@@ -80,6 +80,7 @@ The `UI` component,
 - listens for changes to `Model` data so that the UI can be updated with the modified data.
 - keeps a reference to the `Logic` component, because the `UI` relies on the `Logic` to execute commands.
 - depends on some classes in the `Model` component, as it displays `Person` object residing in the `Model`.
+- depends on some classes in the `Model` component, as it displays `Task` object located in the `Model`.
 
 ### Logic component
 
@@ -266,6 +267,13 @@ The implementation of finding the contacts/tasks from our model is facilitated b
 
 The predicates are passed into `Model#updateFilteredContactList` and `Model#updateFilteredTaskList` respectively, which then uses the predicates to filter contacts/tasks containing the given keywords.
 
+### View tasks details
+The implementation of the task tab UI is facilitated by `TaskCard` and `TaskListPanel`.
+
+`TaskCard` and `TaskListPanel` extends the superclass `UiPart<Region>` and fills the UI container with a panel that displays the list of tasks, along with their assigned contacts and deadlines.
+
+`TaskListPanel` in is responsible for displaying the graphics of a task using a `TaskCard`.
+
 ### Command Suggestions and Command Auto-Completion
 
 The implementation of Command Suggestions and Command Auto-Completion is facilitated by `CommandSuggestor` in the `Logic` Component. The `CommandBox` UI component listens for changes in the command box textField and calls methods from `CommandSuggestor` to reflect command suggestions and allow autocompletion.
@@ -308,7 +316,7 @@ Priorities:
 - Low (unlikely to have) - `*`
 
 | Priority | As a …​        | I want to …​             | So that I can…​                                                            |
-| -------- | -------------- | ------------------------ | -------------------------------------------------------------------------- |
+| -------- | -------------- |--------------------------|----------------------------------------------------------------------------|
 | `* * *`  | new user       | see usage instructions   | refer to instructions when I forget how to use the app                     |
 | `* * *`  | user           | add a new contact        | add a new contact to keep track of                                         |
 | `* * *`  | user           | view all contacts        | get an overview of all contacts in my app                                  |
@@ -319,6 +327,7 @@ Priorities:
 | `* * *`  | user           | view tasks by contact    | view tasks belonging to a contact                                          |
 | `* *`    | user           | update a task            | update the particulars of a task                                           |
 | `* * *`  | user           | delete a task            | remove tasks that I no longer need                                         |
+| `* *`    | user           | list all tasks           | to locate details of all the tasks immediately                             |
 | `* *`    | user           | find tasks by name       | locate details of tasks without having to go through the entire list       |
 | `* *`    | forgetful user | autocomplete my commands | conveniently type commands without referring to the user guide excessively |
 
