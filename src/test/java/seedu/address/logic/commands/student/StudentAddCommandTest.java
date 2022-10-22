@@ -158,6 +158,11 @@ public class StudentAddCommandTest {
         }
 
         @Override
+        public void updateFilteredStudentListByTg(TutorialGroup tutorialGroup) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public boolean hasTask(Task task) {
             throw new AssertionError("This method should not be called.");
         }

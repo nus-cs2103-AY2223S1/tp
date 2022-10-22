@@ -101,6 +101,12 @@ public interface Model {
     void updateFilteredStudentList(Predicate<Student> predicate);
 
     /**
+     * Updates the filter of the filtered person list to filter by the given {@code tutorialGroup}.
+     * @throws NullPointerException if {@code tutorialGroup} is null.
+     */
+    void updateFilteredStudentListByTg(TutorialGroup tutorialGroup);
+
+    /**
      * Returns true if a tutorial group with the same identity as {@code tutorialGroup} exists in the address book.
      */
     boolean hasTutorialGroup(TutorialGroup tutorialGroup);

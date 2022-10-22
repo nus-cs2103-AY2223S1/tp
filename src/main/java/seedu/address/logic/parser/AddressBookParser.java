@@ -20,6 +20,7 @@ import seedu.address.logic.commands.student.StudentDeleteCommand;
 import seedu.address.logic.commands.student.StudentEditCommand;
 import seedu.address.logic.commands.student.StudentEnrollCommand;
 import seedu.address.logic.commands.student.StudentListCommand;
+import seedu.address.logic.commands.student.StudentResetFilterCommand;
 import seedu.address.logic.commands.task.TaskAddCommand;
 import seedu.address.logic.commands.task.TaskDeleteCommand;
 import seedu.address.logic.commands.task.TaskEditCommand;
@@ -102,6 +103,9 @@ public class AddressBookParser {
 
         case StudentEditCommand.COMMAND_WORD:
             return new StudentEditCommandParser().parse(arguments);
+
+        case StudentResetFilterCommand.COMMAND_WORD:
+            return new StudentResetFilterCommand();
 
         case TutorialGroupAddCommand.COMMAND_WORD:
             return new TutorialGroupAddCommandParser().parse(arguments);

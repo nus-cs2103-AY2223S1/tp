@@ -45,6 +45,7 @@ public class TutorialGroupFilterCommand extends Command {
 
         //model.addTutorialGroup(toFilter);
         List<Student> students = model.getFilteredStudentList();
+        model.updateFilteredStudentListByTg(toFilter);
         String result = "";
         for (int i = 0; i < students.size(); i++) {
             Student student = students.get(i);
