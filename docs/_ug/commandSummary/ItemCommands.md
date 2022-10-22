@@ -61,4 +61,3 @@
   | replace: ":editexample:", editexample
   | replace: ":delexample:", delexample
 }}
-
