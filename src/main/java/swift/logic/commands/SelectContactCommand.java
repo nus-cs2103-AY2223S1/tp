@@ -1,7 +1,6 @@
 package swift.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static swift.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 import static swift.model.Model.PREDICATE_SHOW_ALL_TASKS;
 
 import java.util.List;
@@ -48,14 +47,9 @@ public class SelectContactCommand extends Command {
         Person selectedPerson = lastShownPersonList.get(targetIndex.getZeroBased());
         model.updateFilteredPersonList((person) -> person.equals(selectedPerson));
 
-        // Expected 2 Bridges
-        System.out.println(model.getFilteredBridgeList());
-
         model.updateFilteredBridgeList((bridge) -> bridge.getPersonId().equals(selectedPerson.getId()));
         List<PersonTaskBridge> bridgeList = model.getFilteredBridgeList();
 
-        // Expected 1 Bridge
-        System.out.println(model.getFilteredBridgeList());
 
         // Predicate to check whether task exists within a bridgeList
         Predicate<Task> isTaskExist = (task) -> bridgeList.stream()
