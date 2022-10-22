@@ -46,7 +46,7 @@ public class EditTaskCommand extends Command {
     private LocalDate targetDeadline;
 
     @Parameter(names = "-ds", description = "The description that you want to change to",
-            converter = DescriptionConverter.class, variableArity = true)
+            converter = DescriptionConverter.class)
     private Description targetDescription;
 
     /**
