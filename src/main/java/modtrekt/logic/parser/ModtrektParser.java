@@ -15,10 +15,12 @@ import modtrekt.logic.commands.AddCommand;
 import modtrekt.logic.commands.AddTaskCommand;
 import modtrekt.logic.commands.CdModuleCommand;
 import modtrekt.logic.commands.Command;
+import modtrekt.logic.commands.DoneModuleCommand;
 import modtrekt.logic.commands.EditTaskCommand;
 import modtrekt.logic.commands.ExitCommand;
 import modtrekt.logic.commands.HelpCommand;
 import modtrekt.logic.commands.RemoveCommand;
+import modtrekt.logic.commands.UndoneModuleCommand;
 import modtrekt.logic.commands.tasks.ArchiveTaskCommand;
 import modtrekt.logic.commands.tasks.ListTasksCommand;
 import modtrekt.logic.commands.tasks.PrioritizeTaskCommand;
@@ -53,6 +55,8 @@ public class ModtrektParser {
                 .addCommand(UnarchiveTaskCommand.COMMAND_WORD, new UnarchiveTaskCommand())
                 .addCommand(PrioritizeTaskCommand.COMMAND_WORD, new PrioritizeTaskCommand())
                 .addCommand(EditTaskCommand.COMMAND_WORD, new EditTaskCommand())
+                .addCommand(DoneModuleCommand.COMMAND_WORD, new DoneModuleCommand())
+                .addCommand(UndoneModuleCommand.COMMAND_WORD, new UndoneModuleCommand())
                 .build();
         try {
             // This takes care of invalid commands, as well as missing or invalid arguments

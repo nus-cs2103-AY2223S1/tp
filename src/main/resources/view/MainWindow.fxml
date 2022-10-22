@@ -34,7 +34,7 @@
         </MenuBar>
             <HBox styleClass="pane-with-border">
                <children>
-                  <VBox HBox.hgrow="ALWAYS">
+                  <VBox alignment="CENTER" maxWidth="300.0" HBox.hgrow="ALWAYS">
                      <padding>
                           <Insets bottom="10" top="10" />
                      </padding>
