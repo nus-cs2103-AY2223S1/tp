@@ -1,6 +1,6 @@
 package seedu.address.logic.parser.task;
 
-import static seedu.address.testutil.TypicalTasks.TASK_ONE;
+import static seedu.address.testutil.TypicalTasks.TASK_TWO;
 
 import org.junit.jupiter.api.Test;
 
@@ -8,10 +8,11 @@ import seedu.address.model.task.Task;
 import seedu.address.testutil.TaskBuilder;
 
 public class AddTaskCommandParserTest {
-    private AddTaskCommandParser parser = new AddTaskCommandParser();
+
+    private final AddTaskCommandParser parser = new AddTaskCommandParser();
 
     @Test
     public void parse_allFieldsPresent_success() {
-        Task expectedTask = new TaskBuilder(TASK_ONE).build();
+        Task expectedTask = new TaskBuilder(TASK_TWO).build();
     }
 }

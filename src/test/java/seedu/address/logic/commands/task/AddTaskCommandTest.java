@@ -3,6 +3,7 @@ package seedu.address.logic.commands.task;
 import static java.util.Objects.requireNonNull;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
 
@@ -62,26 +63,26 @@ public class AddTaskCommandTest {
         AddTaskCommand addTaskTwoCommand = new AddTaskCommand(taskTwo);
 
         // same object -> returns true
-        assertTrue(addTaskOneCommand.equals(addTaskOneCommand));
+        assertEquals(addTaskOneCommand, addTaskOneCommand);
 
         // same values -> returns true
         AddTaskCommand addTaskOneCommandCopy = new AddTaskCommand(taskOne);
-        assertTrue(addTaskOneCommand.equals(addTaskOneCommandCopy));
+        assertEquals(addTaskOneCommand, addTaskOneCommandCopy);
 
         // different types -> returns false
-        assertFalse(addTaskOneCommand.equals(1));
+        assertNotEquals(1, addTaskOneCommand);
 
         // null -> returns false
-        assertFalse(addTaskOneCommand.equals(null));
+        assertNotEquals(null, addTaskOneCommand);
 
         // different person -> returns false
-        assertFalse(addTaskOneCommand.equals(addTaskTwoCommand));
+        assertNotEquals(addTaskOneCommand, addTaskTwoCommand);
     }
 
     /**
      * A default model stub that have all the methods failing.
      */
-    private class ModelStub implements Model {
+    private static class ModelStub implements Model {
         @Override
         public void setUserPrefs(ReadOnlyUserPrefs userPrefs) {
             throw new AssertionError("This method should not be called.");
@@ -190,7 +191,7 @@ public class AddTaskCommandTest {
     /**
      * A Model stub that contains a single person.
      */
-    private class ModelStubWithTask extends ModelStub {
+    private static class ModelStubWithTask extends ModelStub {
         private final Task task;
 
         ModelStubWithTask(Task task) {
@@ -208,7 +209,7 @@ public class AddTaskCommandTest {
     /**
      * A Model stub that always accept the person being added.
      */
-    private class ModelStubAcceptingTaskAdded extends ModelStub {
+    private static class ModelStubAcceptingTaskAdded extends ModelStub {
         final ArrayList<Task> tasksAdded = new ArrayList<>();
 
         @Override
