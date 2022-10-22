@@ -50,6 +50,35 @@ public interface Model {
     void setTaskBookFilePath(Path taskBookFilePath);
 
     /**
+     * Commits the current TaskBook to the version history.
+     */
+    void commitTaskBook();
+
+    /**
+     * Returns true if possible to revert the TaskBook to the previous state in the version history.
+     * @see VersionedTaskBook#canUndo()
+     */
+    boolean canUndoTaskBook();
+
+    /**
+     * Reverts the TaskBook to the previous state in the version history.
+     * @see VersionedTaskBook#undo()
+     */
+    void undoTaskBook();
+
+    /**
+     * Returns true if possible to revert the TaskBook to the previously undone state in the version history.
+     * @see VersionedTaskBook#canUndo()
+     */
+    boolean canRedoTaskBook();
+
+    /**
+     * Reverts the TaskBook to the previously undone state in the version history.
+     * @see VersionedTaskBook#redo()
+     */
+    void redoTaskBook();
+
+    /**
      * Replaces task book data with the data in {@code taskBook}.
      */
     void setTaskBook(ReadOnlyTaskBook taskBook);

@@ -84,6 +84,25 @@ public class TaskDeadlineCommandTest {
     }
 
     @Test
+    public void execute_duplicateDeadline_throwsCommandException() throws CommandException {
+        Person validPerson = new PersonBuilder().withName(String.valueOf(NAME_BOB)).build();
+        ModelStubAcceptingTaskAdded modelStub = new ModelStubAcceptingTaskAdded(validPerson);
+
+        Deadline validTask = new DeadlineBuilder().withPersonName(validPerson).withDeadlineDate(DATE_ONE).build();
+        TaskDeadlineCommand taskDeadlineCommand = new TaskDeadlineCommand(
+                validTask.getName(),
+                validTask.getDescription(),
+                validTask.getAssignment(),
+                validTask.getDate());
+
+        // Adds the task into the modelStub.
+        taskDeadlineCommand.execute(modelStub);
+
+        assertThrows(CommandException.class,
+                TaskAddCommand.MESSAGE_DUPLICATE_TASK_FAILURE, () -> taskDeadlineCommand.execute(modelStub));
+    }
+
+    @Test
     public void equals() {
         // 2 deadlines with different descriptions
         TaskDeadlineCommand taskDeadlineCommandOne =

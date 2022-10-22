@@ -38,6 +38,12 @@ public class ModelStubAcceptingTaskAdded extends ModelStub {
     }
 
     @Override
+    public boolean hasTask(Task task) {
+        requireNonNull(task);
+        return tasksAdded.stream().anyMatch(task::isSameTask);
+    }
+
+    @Override
     public void addPerson(Person person) {
         requireNonNull(person);
         personsAdded.add(person);

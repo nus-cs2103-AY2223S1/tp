@@ -55,6 +55,7 @@ public class ContactDeleteCommand extends Command {
         }
 
         model.deletePerson(personToDelete);
+        model.commitTaskBook();
         return new CommandResult(String.format(MESSAGE_DELETE_PERSON_SUCCESS, personToDelete));
     }
 

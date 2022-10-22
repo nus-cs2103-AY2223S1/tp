@@ -72,6 +72,22 @@ public class TaskTodoCommandTest {
     }
 
     @Test
+    public void execute_duplicateTodo_throwsCommandException() throws CommandException {
+        Person validPerson = new PersonBuilder().withName(String.valueOf(NAME_BOB)).build();
+        ModelStubAcceptingTaskAdded modelStub = new ModelStubAcceptingTaskAdded(validPerson);
+
+        Todo validTask = new TodoBuilder().withPersonName(validPerson).build();
+        TaskTodoCommand taskTodoCommand = new TaskTodoCommand(validTask.getName(), validTask.getDescription(),
+                validTask.getAssignment());
+
+        // Adds the task into the modelStub.
+        taskTodoCommand.execute(modelStub);
+
+        assertThrows(CommandException.class,
+                TaskAddCommand.MESSAGE_DUPLICATE_TASK_FAILURE, () -> taskTodoCommand.execute(modelStub));
+    }
+
+    @Test
     public void equals() {
         // 2 to-dos with different descriptions
         TaskTodoCommand taskTodoCommandOne = new TaskTodoCommand(NAME_AMY, DESCRIPTION_ONE, ASSIGNMENT_TO);

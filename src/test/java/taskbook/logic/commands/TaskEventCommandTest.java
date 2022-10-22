@@ -84,6 +84,22 @@ public class TaskEventCommandTest {
     }
 
     @Test
+    public void execute_duplicateEvent_throwsCommandException() throws CommandException {
+        Person validPerson = new PersonBuilder().withName(String.valueOf(NAME_BOB)).build();
+        ModelStubAcceptingTaskAdded modelStub = new ModelStubAcceptingTaskAdded(validPerson);
+
+        Event validTask = new EventBuilder().withPersonName(validPerson).withEventDate(DATE_TWO).build();
+        TaskEventCommand taskEventCommand = new TaskEventCommand(validTask.getName(), validTask.getDescription(),
+                validTask.getAssignment(), validTask.getDate());
+
+        // Adds the task into the modelStub.
+        taskEventCommand.execute(modelStub);
+
+        assertThrows(CommandException.class,
+                TaskAddCommand.MESSAGE_DUPLICATE_TASK_FAILURE, () -> taskEventCommand.execute(modelStub));
+    }
+
+    @Test
     public void equals() {
         // 2 events with different descriptions
         TaskEventCommand taskEventCommandOne = new TaskEventCommand(NAME_AMY, DESCRIPTION_ONE, ASSIGNMENT_TO, DATE_ONE);

@@ -58,6 +58,7 @@ public class TaskUnmarkCommand extends Command {
         Task unmarkedTask = taskToUnmark.createEditedCopy(editTaskDescriptor);
         model.setTask(taskToUnmark, unmarkedTask);
         model.updateFilteredTaskList(Model.PREDICATE_SHOW_ALL_TASKS);
+        model.commitTaskBook();
         return new CommandResult(String.format(MESSAGE_UNMARK_TASK_SUCCESS, unmarkedTask));
     }
 
