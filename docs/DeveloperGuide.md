@@ -59,8 +59,7 @@ com/a/14018549/13742805</a>
 </tbody>
 </table>
 
-_A list of the sources of all reused/adapted ideas, code, documentation, and third-party libraries -- with links to 
-the original source as well_
+_A list of the sources of all reused/adapted ideas, code, documentation, and third-party libraries -- with links to the original source as well_
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -105,8 +104,7 @@ The rest of the App consists of four components.
 
 **How the architecture components interact with each other**
 
-The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user 
-issues the command `delete user 1`.
+The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues the command `delete user 1`.
 
 <img src="images/ArchitectureSequenceDiagram.png" width="574" />
 
@@ -221,12 +219,15 @@ This approach was chosen to reduce code duplication, and to manage the complexit
 Enums were chosen, as they use less memory (as enums are `final` subclasses of java.lang.Enum) than HashMap for key-value storage, and are easy to modify. Furthermore, they help to ensure type-checking during compile-time, preventing bugs. They also have a semantic value; they represent to both readers and future developers the current allowed constants. 
 
 ### Adding a book/user
+
 The `add` command is an important command that is commonly used in BookFace. It allows the user to add a new book or a user to the system.
 
 #### Design consideration:
+
 Since `add` is used for the operations of both adding a book and adding a user, `AddSubCommand` is created to handle differentiating between adding a book and adding a user.
 
 #### Adding a book with `add book`
+
 `add book` adds a new book to the model. Specifically, `ModelManager` maintains a list of books and contains the method `addbook()` that is invoked by `AddBookCommand` to perform this adding operation.
 
 The updating of the model is represented in the following diagram:
@@ -293,6 +294,7 @@ The following activity diagram summarizes what happens when a user executes a li
 The `delete` allows the user to delete a book or a user from the system.
 
 #### Deleting a book with `delete book`
+
 `delete book` deletes a book from the model. Specifically, `ModelManager` maintains a list of books and contains the method `deleteBook()` that is invoked by `DeleteBookCommand` to perform this deletion.
 
 The sequence diagram below illustrates the interactions within the `Logic` component for the `execute("delete user 
@@ -316,6 +318,7 @@ The following activity diagram summarizes what happens when the librarian execut
 
 
 ### Find feature
+
 #### Implementation
 
 The find feature is faciliated by `FindUserCommand` and `FindUserArgumentsParser` for finding users, and `FindBookCommand` and `FindBookArgumentsParser` for finding books. 
