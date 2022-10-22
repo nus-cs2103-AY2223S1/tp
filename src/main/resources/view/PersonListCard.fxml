@@ -21,6 +21,7 @@
       <Label fx:id="name" text="\$first" styleClass="cell_big_label" />
       <Label fx:id="id" text="\$index" styleClass="cell_small_label" />
       <Label fx:id="phone" styleClass="cell_small_label" text="\$phone" />
+      <Label fx:id="loanAmount" styleClass="cell_small_label" text="\$loanAmount" />
       <Region VBox.vgrow="ALWAYS"/>
       <FlowPane alignment="BOTTOM_RIGHT" fx:id="tags"/>
     </VBox>
