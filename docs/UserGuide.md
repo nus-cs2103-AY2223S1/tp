@@ -51,62 +51,44 @@ The only expectation we have of you is to carefully read through the different s
 
 ## How to use the User Guide
 
-Thank you for choosing FoodRem! We are delighted to have you as a user and aim to serve you well!
+Thank you for choosing FoodRem!
 
-To gain the most out from this User Guide, start off with the [Quick Start](#quick-start) section.
-This will give you a brief overview about how to use this application.
+If this is your first time using FoodRem, start off with the [Quick Start](#quick-start) section.
+This gives you a brief overview about how to install and use FoodRem.
 
-It is **highly recommended** that you read through the User Guide in a **sequential order** up until the section
-[Features](#features) where you can find all the information you need for each command.
+We **highly recommend** that you read through the User Guide in a **sequential order** up until the section
+[Features](#features), where you can find all the information you need for each command.
 
-[Items and Tags](#items-and-tags) :
+Refer to the [Layout](#layout) section where you can find what you are expected to see in the different parts of FoodRem.
 
-* What FoodRem is capable of storing
-
-[Navigating around the application](#navigating-around-the-application):
-
-* Terminologies of different parts of the application
-* What you are expected to see.
-
-[Flags](#flags) and [Placeholders](#placeholders):
+In the [Flags](#flags) and [Placeholders](#placeholders) sections you can find:
 
 * Important syntax you will come across while reading the user
   guide such as `n/`, `bgt/` or `INDEX`, `ITEM_NAME`.
+* The description of these syntax and how to use them
 
-If you are confident, you can immediately refer to the [Command Summary](#command-summary)
-after completing the [Quick Start](#quick-start).
+If you are an experienced user, you can refer to the [Command Summary](#command-summary) to get an overview of all the currently supported FoodRem commands.
 
-Meaning of icons:
+Here are some icons you may encounter in FoodRem and what they mean:
 
 * ℹ️ : additional info
 * ❗ : warning
 
-If you are stuck, refer to [Troubleshooting](#troubleshooting) or [FAQ](#faq).
-There is also a [Glossary](#glossary) that contains definitions of what common words
-used in this application mean.
+`Words or phrases in code blocks like this` refer to user input.
 
-It is time for you to unleash the potential of a command line application!
+If you are stuck, refer to [Troubleshooting](#troubleshooting) or [FAQ](#faq).
+You can refer to [Glossary](#glossary) that contains definitions of some commonly used words in FoodRem
+
 
 ## Quick Start
 
 {% include_relative _ug/QuickStart.md %}
 
-## Items and Tags
+## Using FoodRem
 
 {% include_relative _ug/ItemsTags.md %}
 
-## Navigating around the application
-
-{Image of entire application}
-
-| Name           | Description |
-|----------------|-------------|
-| Command Input  | {image}     |
-| Command result | {image}     |
-| List Component | {image}     |
-| View Component | {image}     |
-
-## Flags
+### Flags
 
 Flags are delimiters that enable FoodRem to distinguish different parameters without ambiguity.
 
@@ -119,7 +101,7 @@ Flags are delimiters that enable FoodRem to distinguish different parameters wit
 | buy/  | BOUGHT_DATE           |
 | exp/  | EXPIRY DATE           |
 
-## Placeholders
+### Placeholders
 
 Placeholders are words in UPPER_CASE to show you what parameters you can supply to a command.
 
