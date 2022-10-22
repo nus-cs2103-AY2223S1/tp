@@ -20,7 +20,7 @@ public class DataPanelsTabPaneManager {
     /**
      * Change the current tab to person tab.
      */
-    public void changeToPatientTab() {
+    public void setPersonTabPage() {
         SingleSelectionModel<Tab> selectionModel = tabPane.getSelectionModel();
         selectionModel.select(personTabPage);
     }
@@ -28,7 +28,7 @@ public class DataPanelsTabPaneManager {
     /**
      * Change the current tab to group tab.
      */
-    public void changeToOngoingVisitTab() {
+    public void setAssignmentTabPage() {
         SingleSelectionModel<Tab> selectionModel = tabPane.getSelectionModel();
         selectionModel.select(assignmentTabPage);
     }

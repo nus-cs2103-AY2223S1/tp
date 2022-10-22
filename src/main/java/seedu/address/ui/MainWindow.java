@@ -37,6 +37,7 @@ public class MainWindow extends UiPart<Stage> {
     // Independent Ui parts residing in this Ui container
     private PersonListPanel personListPanel;
     private GroupListPanel groupListPanel;
+    private AssignmentListPanel assignmentListPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
 
@@ -51,6 +52,8 @@ public class MainWindow extends UiPart<Stage> {
 
     @FXML
     private StackPane groupListPanelPlaceholder;
+    @FXML
+    private StackPane assignmentListPanelPlaceholder;
 
     @FXML
     private StackPane resultDisplayPlaceholder;
@@ -58,9 +61,10 @@ public class MainWindow extends UiPart<Stage> {
     @FXML
     private StackPane statusbarPlaceholder;
     @FXML
-    private Tab personListPanel1;
+    private Tab assignmentListPanelTab;
     @FXML
-    private Tab groupListPanel1;
+    private Tab personListPanelTab;
+
 
     /**
      * Creates a {@code MainWindow} with the given {@code Stage} and {@code Logic}.
@@ -129,6 +133,9 @@ public class MainWindow extends UiPart<Stage> {
         groupListPanel = new GroupListPanel(logic.getFilteredGroupList());
         groupListPanelPlaceholder.getChildren().add(groupListPanel.getRoot());
 
+        assignmentListPanel = new AssignmentListPanel(logic.getFilteredPersonList());
+        personListPanelPlaceholder.getChildren().add(assignmentListPanel.getRoot());
+
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
 
@@ -139,8 +146,8 @@ public class MainWindow extends UiPart<Stage> {
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
 
         dataPanelsTabPaneManager = new DataPanelsTabPaneManager(dataPanelsTabPane,
-                personListPanel1,
-                groupListPanel1);
+                personListPanelTab,
+                assignmentListPanelTab);
     }
 
 
