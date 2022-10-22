@@ -55,7 +55,7 @@ public class Budget {
         this.spending += amount;
     }
 
-    public float CalculateLeftOverBudget() {
+    public float calculateLeftOverBudget() {
         return this.initialBudget - this.spending;
     }
 
