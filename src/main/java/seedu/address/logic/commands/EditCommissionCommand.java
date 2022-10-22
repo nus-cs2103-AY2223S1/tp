@@ -188,7 +188,7 @@ public class EditCommissionCommand extends Command {
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(title, fee, deadline, completionStatus, tags);
+            return CollectionUtil.isAnyNonNull(title, fee, deadline, completionStatus, tags, description);
         }
 
         public Optional<Title> getTitle() {
