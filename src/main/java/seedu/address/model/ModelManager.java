@@ -115,7 +115,9 @@ public class ModelManager implements Model {
 
     @Override
     public void updatePieChart() {
-        pieChart.updatePieChart(filteredPersons);
+        if (pieChart != null) {
+            pieChart.updatePieChart(filteredPersons);
+        }
     }
 
     @Override

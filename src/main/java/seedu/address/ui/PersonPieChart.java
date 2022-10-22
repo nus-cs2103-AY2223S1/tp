@@ -2,25 +2,17 @@ package seedu.address.ui;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.chart.PieChart;
-import javafx.scene.control.Label;
-import javafx.scene.control.Tooltip;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Region;
-import javafx.scene.paint.Color;
 import seedu.address.model.person.Person;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
 
 /**
  * A Ui component responsible for displaying the piechart used to visualise the spread of the different contacts in the
  * list.
  */
-public class PersonPieChart extends UiPart<Region>{
+public class PersonPieChart extends UiPart<Region> {
 
     private static final String FXML = "PieChart.fxml";
 
@@ -28,13 +20,16 @@ public class PersonPieChart extends UiPart<Region>{
     private PieChart pieChart;
 
     /**
-     * Creates a {@code PieChart} with the given {@code ObservableList}.
+     * Creates a pie chart with the given {@code ObservableList}.
      */
     public PersonPieChart(ObservableList<Person> personList) {
         super(FXML);
         updatePieChart(personList);
     }
 
+    /**
+     * Updates the pie chart with the given {@code ObservableList}.
+     */
     public void updatePieChart(ObservableList<Person> personList) {
         int studentCount = 0;
         int profCount = 0;

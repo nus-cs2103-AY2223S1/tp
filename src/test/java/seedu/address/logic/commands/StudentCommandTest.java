@@ -24,6 +24,7 @@ import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Student;
 import seedu.address.testutil.StudentBuilder;
+import seedu.address.ui.PersonPieChart;
 
 public class StudentCommandTest {
 
@@ -166,6 +167,18 @@ public class StudentCommandTest {
             throw new AssertionError("This method should not be called.");
         }
 
+        @Override
+        public PersonPieChart getPieChart() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void setPieChart(PersonPieChart personPieChart) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void updatePieChart() {}
     }
 
     /**
