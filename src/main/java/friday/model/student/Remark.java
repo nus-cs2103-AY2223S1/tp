@@ -3,7 +3,7 @@ package friday.model.student;
 import static java.util.Objects.requireNonNull;
 
 /**
- * Represents a Student's remark in the address book.
+ * Represents a Student's remark in friday.
  * Guarantees: immutable; is always valid
  */
 public class Remark {
