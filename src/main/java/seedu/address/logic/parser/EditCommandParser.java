@@ -63,7 +63,7 @@ public class EditCommandParser implements Parser<EditCommand> {
         }
 
         if (argMultimap.getValue(PREFIX_BIRTHDAY).isPresent()) {
-            LocalDate dateLocalDate = ParserUtil.parseDate(argMultimap.getValue(PREFIX_BIRTHDAY).get());
+            LocalDate dateLocalDate = ParserUtil.parseDate(argMultimap.getValue(PREFIX_BIRTHDAY).get(), "birthday");
             Birthday birthday = new Birthday(dateLocalDate);
             editClientDescriptor.setBirthday(birthday);
         }

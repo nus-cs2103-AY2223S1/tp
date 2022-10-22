@@ -11,6 +11,7 @@ import java.time.format.FormatStyle;
  */
 public class Birthday {
 
+    public static final String VALIDATION_REGEX = "^([0-2][0-9]||3[0-1])/(0[0-9]||1[0-2])/([0-9][0-9])?[0-9][0-9]$";
     public static final String MESSAGE_CONSTRAINTS =
             "Birthday should be in the format DDMMYYYY";
     private final LocalDate birthday;
@@ -45,5 +46,9 @@ public class Birthday {
         // returns date as '12 Jan 1952' for example
         birthdayFormatted = birthday.format(DateTimeFormatter.ofLocalizedDate(FormatStyle.MEDIUM));
         return birthdayFormatted;
+    }
+
+    public static boolean isValidBirthday(String test) {
+        return test.matches(VALIDATION_REGEX) | test == "";
     }
 }
