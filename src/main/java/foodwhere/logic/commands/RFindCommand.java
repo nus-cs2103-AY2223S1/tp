@@ -15,7 +15,7 @@ public class RFindCommand extends Command {
 
     public static final String COMMAND_WORD = "rfind";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all reviews whose names contain any of "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all reviews whose names or tags contain any of "
             + "the specified keywords (case-insensitive) and displays them as a list with index numbers.\n"
             + "Parameters: "
             + CliSyntax.PREFIX_NAME + "NAME_KEYWORD [MORE_NAME_KEYWORDS]... "

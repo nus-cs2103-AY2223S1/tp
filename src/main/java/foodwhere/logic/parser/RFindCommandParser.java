@@ -34,10 +34,10 @@ public class RFindCommandParser implements Parser<RFindCommand> {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, RFindCommand.MESSAGE_USAGE));
         }
 
-        Set<Name> nameList = ParserUtil.parseNameList(argMultimap.getAllValues(CliSyntax.PREFIX_NAME));
-        Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(CliSyntax.PREFIX_TAG));
+        Set<Name> nameSet = ParserUtil.parseNameList(argMultimap.getAllValues(CliSyntax.PREFIX_NAME));
+        Set<Tag> tagSet = ParserUtil.parseTags(argMultimap.getAllValues(CliSyntax.PREFIX_TAG));
 
-        return new RFindCommand(new ReviewContainsKeywordsPredicate(nameList, tagList));
+        return new RFindCommand(new ReviewContainsKeywordsPredicate(nameSet, tagSet));
     }
 
     private static boolean arePrefixesPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {

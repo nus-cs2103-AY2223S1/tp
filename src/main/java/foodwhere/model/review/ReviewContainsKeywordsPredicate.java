@@ -38,17 +38,14 @@ public class ReviewContainsKeywordsPredicate implements Predicate<Review> {
 
     @Override
     public boolean test(Review review) {
-        boolean hasTag = false;
         for (Tag tag : review.getTags()) {
             if (tagKeywords.stream().anyMatch(keyword -> StringUtil.containsWordIgnoreCase(tag.tag, keyword.tag))) {
-                hasTag = true;
-                break;
+                return true;
             }
         }
 
         return nameKeywords.stream()
-                .anyMatch(keyword -> StringUtil.containsWordIgnoreCase(review.getName().fullName, keyword.fullName))
-                || hasTag;
+                .anyMatch(keyword -> StringUtil.containsWordIgnoreCase(review.getName().fullName, keyword.fullName));
     }
 
 

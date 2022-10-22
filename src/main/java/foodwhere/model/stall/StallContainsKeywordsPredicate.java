@@ -38,17 +38,14 @@ public class StallContainsKeywordsPredicate implements Predicate<Stall> {
 
     @Override
     public boolean test(Stall stall) {
-        boolean hasTag = false;
         for (Tag tag : stall.getTags()) {
             if (tagKeywords.stream().anyMatch(keyword -> StringUtil.containsWordIgnoreCase(tag.tag, keyword.tag))) {
-                hasTag = true;
-                break;
+                return true;
             }
         }
 
         return nameKeywords.stream()
-                .anyMatch(keyword -> StringUtil.containsWordIgnoreCase(stall.getName().fullName, keyword.fullName))
-                || hasTag;
+                .anyMatch(keyword -> StringUtil.containsWordIgnoreCase(stall.getName().fullName, keyword.fullName));
     }
 
 
