@@ -35,12 +35,14 @@ public class IdTest {
         assertFalse(Id.isValidId("J_021392")); // underscore within alphanumeric
         assertFalse(Id.isValidId("J-021392")); // hyphen within alphanumeric
         assertFalse(Id.isValidId("(J021392)")); // brackets within alphanumeric
+        assertFalse(Id.isValidId("j021392")); // 1 lower case letter and numbers
+        assertFalse(Id.isValidId("JeWwXkeM")); // multiple lower case and upper case letters
+        assertFalse(Id.isValidId("eyhnmkiuygbn")); // all lower case letters
 
         // valid id
-        assertTrue(Id.isValidId("021392")); // digits only
-        assertTrue(Id.isValidId("J021392")); // capital alphabet with digits
-        assertTrue(Id.isValidId("j021392")); // alphabet with digits
-        assertTrue(Id.isValidId("J021392K")); // multiple capital alphabets with digits
-        assertTrue(Id.isValidId("JeWwXkeM")); // alphabets only
+        assertTrue(Id.isValidId("021392")); // numbers only
+        assertTrue(Id.isValidId("J021392")); // 1 upper case letter with numbers
+        assertTrue(Id.isValidId("J021392K")); // multiple upper case letters with numbers
+        assertTrue(Id.isValidId("JACBEIKK")); // multiple upper case letters
     }
 }
