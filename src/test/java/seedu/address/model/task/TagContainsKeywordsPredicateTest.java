@@ -66,7 +66,8 @@ public class TagContainsKeywordsPredicateTest {
         assertFalse(predicate.test(new PersonBuilder().withTags("anytime").build()));
 
         // Keywords match name, deadline, module and isDone, but does not match tag
-        predicate = new TagContainsKeywordsPredicate(Arrays.asList("tp", "2022-10-07", "CS2103T", "highPriority", "false"));
+        predicate = new TagContainsKeywordsPredicate(
+                Arrays.asList("tp", "2022-10-07", "CS2103T", "highPriority", "false"));
         assertFalse(predicate.test(new PersonBuilder().withName("tp").withModule("CS2103T")
                 .withDeadline("2022-10-07").withTags("lowPriority").withIsDone(false).build()));
     }
