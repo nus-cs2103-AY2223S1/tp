@@ -12,6 +12,7 @@ import taskbook.logic.commands.tasks.TaskEditCommand;
 import taskbook.logic.commands.tasks.TaskEventCommand;
 import taskbook.logic.commands.tasks.TaskListCommand;
 import taskbook.logic.commands.tasks.TaskMarkCommand;
+import taskbook.logic.commands.tasks.TaskSortCommand;
 import taskbook.logic.commands.tasks.TaskTodoCommand;
 import taskbook.logic.commands.tasks.TaskUnmarkCommand;
 import taskbook.logic.parser.exceptions.ParseException;
@@ -79,6 +80,13 @@ public class TaskCategoryParserTest {
         String arguments = "";
         Command command = TaskCategoryParser.parseCommand(TaskListCommand.COMMAND_WORD, arguments);
         assertTrue(command instanceof TaskListCommand);
+    }
+
+    @Test
+    public void parseCommand_sort() throws Exception {
+        String arguments = " s/a";
+        Command command = TaskCategoryParser.parseCommand(TaskSortCommand.COMMAND_WORD, arguments);
+        assertTrue(command instanceof TaskSortCommand);
     }
 
     @Test
