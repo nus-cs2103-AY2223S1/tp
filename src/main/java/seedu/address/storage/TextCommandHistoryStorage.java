@@ -75,7 +75,7 @@ public class TextCommandHistoryStorage implements CommandHistoryStorage {
             List<String> commandHistoryList = commandHistory.getCommandHistoryList();
             FileWriter fw = new FileWriter(filePath.toString());
             for (int i = 0; i < commandHistoryList.size(); i++) {
-                fw.write(commandHistoryList.get(i));
+                fw.write(commandHistoryList.get(i) + "\n");
             }
             fw.close();
         } catch (IOException e) {

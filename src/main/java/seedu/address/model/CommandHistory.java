@@ -46,11 +46,11 @@ public class CommandHistory implements ReadOnlyCommandHistory {
         return commandHistoryList;
     }
 
-    public void addToCommandHistory(String validCommandInput) {
+    public void addToCommandHistory(String commandInput) {
         if (commandHistoryList.size() >= MAX_COMMAND_HISTORY_SIZE) {
            commandHistoryList.remove(MAX_COMMAND_HISTORY_SIZE - 1);
         }
-        commandHistoryList.add(validCommandInput);
+        commandHistoryList.add(commandInput);
     }
 
     public String getPrevCommand() {

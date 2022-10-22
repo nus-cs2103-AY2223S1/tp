@@ -96,7 +96,7 @@ public interface Model {
 
     ReadOnlyCommandHistory getCommandHistory();
 
-    void addToCommandHistory(String validCommandInput);
+    void addToCommandHistory(String commandInput);
 
     String getPrevCommand();
     String getNextCommand();
