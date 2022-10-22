@@ -78,6 +78,9 @@ public class MyInsuRecParser {
         case AddProductCommand.COMMAND_WORD:
             return new AddProductCommandParser().parse(arguments);
 
+        case DeleteProductCommand.COMMAND_WORD:
+            return new DeleteProductCommandParser().parse(arguments);
+
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
         }

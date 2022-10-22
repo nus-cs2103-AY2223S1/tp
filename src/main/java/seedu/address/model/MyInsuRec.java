@@ -6,6 +6,7 @@ import java.util.List;
 
 import javafx.collections.ObservableList;
 import seedu.address.model.client.Client;
+import seedu.address.model.client.ClientRebuilder;
 import seedu.address.model.client.UniqueClientList;
 import seedu.address.model.meeting.Meeting;
 import seedu.address.model.meeting.NoConflictMeetingList;
@@ -157,12 +158,20 @@ public class MyInsuRec implements ReadOnlyMyInsuRec {
     }
 
     /**
-     * Removes product.
+     * Removes product from MyInsuRec. This includes any association of a client to the product.
      * The meeting must exist in the product list in MyInsuRec.
      */
     public void removeProduct(Product product) {
         requireNonNull(product);
         products.remove(product);
+        clients.forEach(client -> {
+            if (client.hasProduct(product)) {
+                ClientRebuilder rb = new ClientRebuilder(client);
+                rb = rb.removeProduct(product);
+                Client editedClient = rb.build();
+                clients.setClient(client, editedClient);
+            }
+        });
     }
 
     /**

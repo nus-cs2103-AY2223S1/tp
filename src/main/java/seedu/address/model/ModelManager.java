@@ -25,8 +25,10 @@ public class ModelManager implements Model {
     private final UserPrefs userPrefs;
     private final FilteredList<Client> filteredClients;
     private final FilteredList<Meeting> filteredMeetings;
+    private final FilteredList<Product> filteredProducts;
     private final FilteredList<Client> detailedClients;
     private final FilteredList<Meeting> detailedMeetings;
+
 
     /**
      * Initializes a ModelManager with the given myInsuRec and userPrefs.
@@ -44,6 +46,8 @@ public class ModelManager implements Model {
 
         detailedMeetings = new FilteredList<>(this.myInsuRec.getMeetingList());
         detailedClients = new FilteredList<>(this.myInsuRec.getClientList());
+
+        filteredProducts = new FilteredList<>(this.myInsuRec.getProductList());
     }
 
     public ModelManager() {
@@ -217,6 +221,12 @@ public class ModelManager implements Model {
     @Override
     public void setDetailedMeeting(Meeting meeting) {
         detailedMeetings.setPredicate(x -> x.equals(meeting));
+    }
+
+    //=========== Filtered Product List Accessors =============================================================
+    @Override
+    public ObservableList<Product> getFilteredProductList() {
+        return filteredProducts;
     }
 
     @Override

@@ -27,7 +27,7 @@ public class Client {
 
     // Data fields
     private final Address address;
-    private final Set<Product> products = new HashSet<>();
+    private final Set<Product> products;
     private final List<Meeting> meetings;
 
     /**
@@ -42,7 +42,7 @@ public class Client {
         this.email = email;
         this.address = address;
         this.birthday = birthday;
-        this.products.addAll(products);
+        this.products = Set.copyOf(products);
         this.meetings = new ArrayList<>();
     }
 
@@ -59,7 +59,7 @@ public class Client {
         this.address = address;
         this.birthday = birthday;
         this.meetings = meetings;
-        this.products.addAll(products);
+        this.products = Set.copyOf(products);
     }
 
 
@@ -109,11 +109,18 @@ public class Client {
     }
 
     /**
+     * Returns true if client has the given product.
+     */
+    public boolean hasProduct(Product product) {
+        return products.contains(product);
+    }
+
+    /**
      * Returns an immutable product set, which throws {@code UnsupportedOperationException}
      * if modification is attempted.
      */
     public Set<Product> getProducts() {
-        return Collections.unmodifiableSet(products);
+        return products;
     }
 
     /**

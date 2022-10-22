@@ -147,4 +147,7 @@ public interface Model {
     /** Returns an unmodifiable view of the client list, used to view one meeting in details at a time. **/
     ObservableList<Client> getDetailedClientList();
 
+    /** Returns an unmodifiable view of the filtered product list */
+    ObservableList<Product> getFilteredProductList();
+
 }
