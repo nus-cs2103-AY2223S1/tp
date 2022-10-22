@@ -5,31 +5,32 @@ show-toc: true
 ---
 ## About FoodRem
 
-FoodRem is an Inventory Management System that empowers small Food and Beverage (F&B) restaurant managers to manage inventory and obtain insights from inventory data. As a restaurant manager, leverage upon FoodRem's Inventory Management System, where you can manage your inventory during your daily operations. Utilize FoodRem's flexible tagging system to help you organize your inventory according to your business needs. Finally, streamline your business decisions by deriving insights from your inventory usage through FoodRem's statistics, keeping track of vital data such as food wastage. 
+FoodRem is an Inventory Management System that empowers small Food and Beverage (F&B) restaurant managers to manage inventory and obtain insights from inventory data. As a restaurant manager, leverage upon FoodRem's Inventory Management System, where you can manage your inventory during your daily operations. Utilize FoodRem's flexible tagging system to help you organize your inventory according to your business needs. Finally, streamline your business decisions by deriving insights from your inventory usage through FoodRem's statistics, keeping track of vital data such as food wastage.
 
-Using a Command-Line interface, efficiently interact with FoodRem without needing to even touch your mouse! With a focus on user-friendliness, FoodRem is easy to learn! 
+Using a Command-Line interface, efficiently interact with FoodRem without needing to even touch your mouse! With a focus on user-friendliness, FoodRem is easy to learn!
 
-This User Guide provides an in-depth documentation to help integrate FoodRem into your operational workflows. It covers how to launch FoodRem, core FoodRem features and commands, common terms and definitions used in FoodRem, and some troubleshooting recommendations. In addition, a quick start guide is available that gives a whirlwind tour to help get you started. 
+This User Guide provides an in-depth documentation to help integrate FoodRem into your operational workflows. It covers how to launch FoodRem, core FoodRem features and commands, common terms and definitions used in FoodRem, and some troubleshooting recommendations. In addition, a quick start guide is available that gives a whirlwind tour to help get you started.
 
 {% include page-break.html %} <!-- Force a page break -->
 
 {% include toc.md header=true show-in-toc=true ordered=true %}
 
 ## Features 
-There are two core features that FoodRem provides: The Inventory Management System, and inventory analysis capabilities. 
+There are two core features that FoodRem provides: The Inventory Management System, and inventory analysis capabilities.
 
 TODO: Add links to e.g. name, bought date, expiry date, etc.
 ### Inventory Management System
- FoodRem allows you to track your inventory during your daily operations. 
- 1. Quickly **add, remove, and view** your available inventory. 
+ FoodRem allows you to track your inventory during your daily operations.
+
+ 1. Quickly **add, remove, and view** your available inventory.
  2. **Sort** and **filter** your inventory by name, bought date, expiry date, quantity, unit and cost.
- 3. **Tag** items in your inventory. For example, you can quickly view all items that are tagged as vegetables. 
+ 3. **Tag** items in your inventory. For example, you can quickly view all items that are tagged as vegetables.
 
 ### Inventory Analysis
-FoodRem tracks data that helps you streamline your business decisions through **statistics**. 
+FoodRem tracks data that helps you streamline your business decisions through **statistics**.
 1. Track your **most expensive items**.
 2. View items that are **expiring** in the next 10 days.
-3. Find out how much **cost was incurred** due to food wastage. 
+3. Find out how much **cost was incurred** due to food wastage.
 
 ## How to use the User Guide
 To gain the most out from this User Guide, start off with the [Quick Start](#quick-start) section. This will give you a brief overview about how to use this application.
