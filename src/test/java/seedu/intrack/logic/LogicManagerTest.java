@@ -3,11 +3,11 @@ package seedu.intrack.logic;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static seedu.intrack.commons.core.Messages.MESSAGE_INVALID_INTERNSHIP_DISPLAYED_INDEX;
 import static seedu.intrack.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
-import static seedu.intrack.logic.commands.CommandTestUtil.WEBSITE_DESC_MSFT;
 import static seedu.intrack.logic.commands.CommandTestUtil.EMAIL_DESC_MSFT;
 import static seedu.intrack.logic.commands.CommandTestUtil.NAME_DESC_MSFT;
 import static seedu.intrack.logic.commands.CommandTestUtil.PHONE_DESC_MSFT;
 import static seedu.intrack.logic.commands.CommandTestUtil.POSITION_DESC_MSFT;
+import static seedu.intrack.logic.commands.CommandTestUtil.WEBSITE_DESC_MSFT;
 import static seedu.intrack.testutil.Assert.assertThrows;
 import static seedu.intrack.testutil.TypicalInternships.MSFT;
 

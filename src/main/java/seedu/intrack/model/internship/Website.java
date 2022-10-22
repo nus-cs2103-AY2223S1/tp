@@ -5,7 +5,7 @@ import static seedu.intrack.commons.util.AppUtil.checkArgument;
 
 /**
  * Represents an Internship's address in the internship tracker.
- * Guarantees: immutable; is valid as declared in {@link #isValidAddress(String)}
+ * Guarantees: immutable; is valid as declared in {@link #isValidWebsite(String)}
  */
 public class Website {
 

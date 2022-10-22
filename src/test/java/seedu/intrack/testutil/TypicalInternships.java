@@ -1,7 +1,5 @@
 package seedu.intrack.testutil;
 
-import static seedu.intrack.logic.commands.CommandTestUtil.VALID_WEBSITE_AAPL;
-import static seedu.intrack.logic.commands.CommandTestUtil.VALID_WEBSITE_MSFT;
 import static seedu.intrack.logic.commands.CommandTestUtil.VALID_EMAIL_AAPL;
 import static seedu.intrack.logic.commands.CommandTestUtil.VALID_EMAIL_MSFT;
 import static seedu.intrack.logic.commands.CommandTestUtil.VALID_NAME_AAPL;
@@ -16,6 +14,8 @@ import static seedu.intrack.logic.commands.CommandTestUtil.VALID_TAG_REMOTE;
 import static seedu.intrack.logic.commands.CommandTestUtil.VALID_TAG_URGENT;
 import static seedu.intrack.logic.commands.CommandTestUtil.VALID_TASK_AAPL;
 import static seedu.intrack.logic.commands.CommandTestUtil.VALID_TASK_MSFT;
+import static seedu.intrack.logic.commands.CommandTestUtil.VALID_WEBSITE_AAPL;
+import static seedu.intrack.logic.commands.CommandTestUtil.VALID_WEBSITE_MSFT;
 
 import java.util.ArrayList;
 import java.util.Arrays;

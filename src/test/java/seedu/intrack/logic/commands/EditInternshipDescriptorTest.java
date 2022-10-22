@@ -4,12 +4,12 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.intrack.logic.commands.CommandTestUtil.DESC_AAPL;
 import static seedu.intrack.logic.commands.CommandTestUtil.DESC_MSFT;
-import static seedu.intrack.logic.commands.CommandTestUtil.VALID_WEBSITE_MSFT;
 import static seedu.intrack.logic.commands.CommandTestUtil.VALID_EMAIL_MSFT;
 import static seedu.intrack.logic.commands.CommandTestUtil.VALID_NAME_MSFT;
 import static seedu.intrack.logic.commands.CommandTestUtil.VALID_PHONE_MSFT;
 import static seedu.intrack.logic.commands.CommandTestUtil.VALID_POSITION_MSFT;
 import static seedu.intrack.logic.commands.CommandTestUtil.VALID_TAG_URGENT;
+import static seedu.intrack.logic.commands.CommandTestUtil.VALID_WEBSITE_MSFT;
 
 import org.junit.jupiter.api.Test;
 

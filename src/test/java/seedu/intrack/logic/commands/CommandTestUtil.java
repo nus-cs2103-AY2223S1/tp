@@ -2,13 +2,13 @@ package seedu.intrack.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.intrack.logic.parser.CliSyntax.PREFIX_WEBSITE;
 import static seedu.intrack.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.intrack.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.intrack.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.intrack.logic.parser.CliSyntax.PREFIX_POSITION;
 import static seedu.intrack.logic.parser.CliSyntax.PREFIX_REMARK;
 import static seedu.intrack.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.intrack.logic.parser.CliSyntax.PREFIX_WEBSITE;
 import static seedu.intrack.testutil.Assert.assertThrows;
 
 import java.time.LocalDateTime;
@@ -61,7 +61,7 @@ public class CommandTestUtil {
     public static final String EMAIL_DESC_AAPL = " " + PREFIX_EMAIL + VALID_EMAIL_AAPL;
     public static final String EMAIL_DESC_MSFT = " " + PREFIX_EMAIL + VALID_EMAIL_MSFT;
     public static final String WEBSITE_DESC_AAPL = " " + PREFIX_WEBSITE + VALID_WEBSITE_AAPL;
-    public static final String WEBSITE_DESC_MSFT = " " + PREFIX_WEBSITE+ VALID_WEBSITE_MSFT;
+    public static final String WEBSITE_DESC_MSFT = " " + PREFIX_WEBSITE + VALID_WEBSITE_MSFT;
     public static final String TAG_DESC_REMOTE = " " + PREFIX_TAG + VALID_TAG_REMOTE;
     public static final String TAG_DESC_URGENT = " " + PREFIX_TAG + VALID_TAG_URGENT;
     public static final String REMARK_DESC_AAPL = " " + PREFIX_REMARK + VALID_REMARK_AAPL;
