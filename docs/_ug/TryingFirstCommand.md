@@ -47,9 +47,7 @@ After creating the potatoes item, you decided to buy 40 kg more of potatoes.
 
 Format: `inc id/INDEX [qty/QUANTITY]`
 
-`inc` tells FoodRem that this is the command to increment the quantity of an item.
-Suppose the `INDEX` for potatoes is `1` in the application, the command you
-would like to enter into the command box is `inc id/12 qty/40`.
+`inc` tells FoodRem that this is the command to increment the quantity of an item. Suppose the `INDEX` for potatoes is `1` in the application, the command you would like to enter into the command box is `inc id/12 qty/40`.
 
 You should now have a better understanding of how commands are formatted and used. All commands are
 consolidated in [Command Summary](#command-summary). 
