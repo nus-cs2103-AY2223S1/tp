@@ -216,6 +216,75 @@ The following sequence diagram shows how the sort command is executed.
     * Rationale: The sort command will sort the `diplayedList`, not affecting the `internalUnmodifiableList`. This allows
       users to view the sorted list of exercises while maintaining a defensive copy of exercises keyed by user.
 
+### **Viewing exercises within a date range**
+
+#### **Implementation**
+
+The range view is driven by `ModelManager` implements the interface `Model`. `ModelManager` contains a 
+`filteredExercises` list which is the list of exercises in a `FilteredList` 'wrapper' from 
+`javafc.collections.transformation`. `filteredExercises` gets the list of exercises to be displayed from method 
+`getExerciseList()` in `ExerciseTracker`.
+
+`ExerciseTracker` has the method `filterListByDateRange()` which calls `filterListByDateRange()` in `ExerciseList`.
+
+Inside `ExerciseList`, we have a list `internalUnmodifiableList` which contains the list of `Exercise` objects. Although
+it is declared as `final`, the elements within the list can potentially be modified. In order to preserve the order that 
+is currently true in the aforementioned list, a copy called `rangeFilteredList` is created within the method 
+`filterListByDateRange()`.
+
+The user interface `Ui` will display this `rangeFilteredList` of type `ObservableList<Exercise>` in `ExerciseList`. 
+
+Within the `filterListByDateRange()` method, the `rangeFilteredList` list is iterated through. For each `Exercise`,
+the `Date` is considered and compared with both the `startDate` and `endDate` arguments provided to the
+`filterListByDateRange()` method. If the `Exercise` has a `Date` value that falls between `startDate` (inclusive) 
+and `endDate` (inclusive), then it will be retained in the list. Otherwise, it will be removed from the list.
+
+Then, `rangeFilteredList` will be sorted in ascending order of `Date` using the method `sortDisplayedList()` 
+in `ExerciseList`.
+
+####Execution
+
+When the command `:sort DD/MM/YYYY DD/MM/YYYY` is entered, the `Ui` sends the command to `Logic`. 
+Here, `DD/MM/YYYY` is the supported format for entering the start date and end date.
+`Logic` parses and identifies the `:sort` command that was entered, and creates an instance of it. 
+`Logic` then executes the command.
+`Model` will have the displayed list sorted and the sorted list will be displayed by `Ui`.
+
+####Example Usage
+
+Given below is an example usage scenario and how the date range view mechanism behaves at each step.
+
+Step 1: The user launches the application which loads the set of exercises previously keyed. `rangeFilteredList` will be 
+initialised to be the same as the `internalUnmodifiableList` in `ExerciseList` where the exercises are sorted by the 
+date of input.
+
+Step 2: The user executes `:sort 11/10/2022 18/10/2022` command to view all the exercises done between 11 October 2022
+and 18 October 2022. The `ExerciseTrackerParser` identifies that the command is a `SortCommand`. 
+The command calls `Model` to `filterListByDateRange()` and the `Ui` displays the `rangeFilteredList` which has all the 
+exercises between the specified dates.
+
+The following sequence diagram shows how the date range process (variant of sort command) is executed.
+
+<img src="images/DateRangeSequenceDiagram.png" width="1000" />
+
+####Design considerations:
+
+**Aspect: Algorithm design**
+* **Current choice**: The `rangeFilteredList` is obtained by filtering by the date range first, before the sorting is
+    done by calling the `sortDisplayedList()` method
+    * Rationale: After filtering by the date range, there will be fewer number of `Exercise` objects to sort,
+    as compared to doing the reverse process of sorting then filtering. Practical time performance improves, even though
+    the time complexity remains at O(nlogn).
+
+**Aspect: Preserving ordering state**
+* **Current choice**: `rangeFilteredList` is a copy of `internalUnmodifiableList` in `ExerciseList` class
+    * Rationale: Inside `ExerciseList`, we have a list `internalUnmodifiableList` which contains the list of `Exercise` 
+      objects. Although it is declared as `final`, the elements within the list can potentially be modified. In order 
+      to preserve the order that is currently true in the aforementioned list, a copy called `rangeFilteredList` is 
+      created within the method `filterListByDateRange()`. This practice of defensive programming is to prevent the 
+      potential bug that may arise in the future, caused by the assumption that `internalUnmodifiableList` preserves 
+      the original ordered state.
+
 ### \[Proposed\] Generating a suggested workout routine
 
 #### Proposed Implementation
