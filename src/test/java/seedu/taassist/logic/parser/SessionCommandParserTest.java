@@ -1,11 +1,11 @@
 package seedu.taassist.logic.parser;
 
 import static seedu.taassist.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.taassist.logic.commands.CommandTestUtil.DATE_DESC;
 import static seedu.taassist.logic.commands.CommandTestUtil.INVALID_DATE_DESC;
 import static seedu.taassist.logic.commands.CommandTestUtil.PREAMBLE_NON_EMPTY;
 import static seedu.taassist.logic.commands.CommandTestUtil.PREAMBLE_WHITESPACE;
 import static seedu.taassist.logic.commands.CommandTestUtil.SESSION_DESC_LAB1;
-import static seedu.taassist.logic.commands.CommandTestUtil.SESSION_DESC_LAB1_WITH_DATE;
 import static seedu.taassist.logic.commands.CommandTestUtil.VALID_DATE;
 import static seedu.taassist.logic.commands.CommandTestUtil.VALID_SESSION_LAB1;
 import static seedu.taassist.logic.parser.CliSyntax.PREFIX_SESSION;
@@ -44,7 +44,7 @@ public class SessionCommandParserTest {
 
     @Test
     public void parse_invalidDate_failure() {
-        assertParseFailure(parser, joinWithSpace(SESSION_DESC_LAB1, INVALID_DATE_DESC), Date.MESSAGE_CONSTRAINTS);
+        assertParseFailure(parser, SESSION_DESC_LAB1 + INVALID_DATE_DESC, Date.MESSAGE_CONSTRAINTS);
     }
 
     @Test
@@ -56,6 +56,6 @@ public class SessionCommandParserTest {
     @Test
     public void parse_validSessionNameAndValidDate_success() {
         Session session = new SessionBuilder().withName(VALID_SESSION_LAB1).withDate(VALID_DATE).build();
-        assertParseSuccess(parser, SESSION_DESC_LAB1_WITH_DATE, new SessionCommand(session));
+        assertParseSuccess(parser, SESSION_DESC_LAB1 + DATE_DESC, new SessionCommand(session));
     }
 }
