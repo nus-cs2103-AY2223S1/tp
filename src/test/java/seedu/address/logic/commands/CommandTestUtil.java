@@ -73,11 +73,11 @@ public class CommandTestUtil {
     public static final String INVALID_ADDRESS_DESC = " " + PREFIX_ADDRESS; // empty string not allowed for addresses
     public static final String INVALID_TAG_DESC = " " + PREFIX_TAG + "hubby*"; // '*' not allowed in tags
     public static final String INVALID_TIMEZONE_DESC = " " + PREFIX_TIMEZONE + "gmt +8"; // should be a number with sign
-    public static final String INVALID_TELEGRAM_DESC = " " + PREFIX_TAG + "james"; // telegram should start with '@'
+    public static final String INVALID_TELEGRAM_DESC = " " + PREFIX_TELEGRAM + "james"; // telegram starts with '@'
     public static final String INVALID_EMAIL_DESC = " " + PREFIX_EMAIL + "james gmail"; // email should have an '@'
     public static final String INVALID_PHONE_DESC = " " + PREFIX_PHONE + "1800-SAFETY"; // phone shouldn't have letters
-    public static final String INVALID_SLACK_DESC = " " + PREFIX_EMAIL + "ReallyLoooongUsername"; // max slack length=20
-
+    public static final String INVALID_SLACK_DESC = " " + PREFIX_SLACK + "ReallyLoooongUsername"; // max slack length=20
+    public static final String INVALID_ROLE_DESC = " " + PREFIX_ROLE + "Software-Engineer"; // role only alphanumeric
 
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
