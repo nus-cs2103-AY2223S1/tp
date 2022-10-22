@@ -97,12 +97,26 @@ public class LogicManager implements Logic {
 
     @Override
     public Consumer<Integer> increaseSupplyItemHandler(int index) {
-        return amount -> model.increaseSupplyItem(Index.fromZeroBased(index), amount);
+        return amount -> {
+            model.increaseSupplyItem(Index.fromZeroBased(index), amount);
+            try {
+                storage.saveInventory(model.getInventory());
+            } catch (IOException ioe) {
+                logger.warning("Failed to save SupplyItem count!");
+            }
+        };
     }
 
     @Override
     public Consumer<Integer> decreaseSupplyItemHandler(int index) {
-        return amount -> model.decreaseSupplyItem(Index.fromZeroBased(index), amount);
+        return amount -> {
+            model.decreaseSupplyItem(Index.fromZeroBased(index), amount);
+            try {
+                storage.saveInventory(model.getInventory());
+            } catch (IOException ioe) {
+                logger.warning("Failed to save SupplyItem count!");
+            }
+        };
     }
 
     @Override
