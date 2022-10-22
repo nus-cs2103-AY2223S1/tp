@@ -22,7 +22,9 @@ import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.person.Person;
+import seedu.address.model.task.DescriptionContainsKeywordsPredicate;
 import seedu.address.model.task.Task;
+import seedu.address.model.task.TaskContainsKeywordsPredicate;
 import seedu.address.testutil.EditPersonDescriptorBuilder;
 import seedu.address.testutil.EditTaskDescriptorBuilder;
 
@@ -84,6 +86,7 @@ public class CommandTestUtil {
     public static final String VALID_DEADLINE_REPORT = "10-11-2023";
     public static final String VALID_TAG_2103 = "CS2103T";
     public static final String VALID_TAG_2101 = "CS2101";
+    public static final String VALID_DEADLINE_EARLIEST = "01-01-0001";
 
     public static final String DESCRIPTION_DESC_QUIZ = " " + PREFIX_TASK_DESCRIPTION + VALID_DESCRIPTION_QUIZ;
     public static final String DEADLINE_DESC_QUIZ = " " + PREFIX_TASK_DEADLINE + VALID_DEADLINE_QUIZ;
@@ -100,9 +103,9 @@ public class CommandTestUtil {
 
     static {
         DESC_QUIZ = new EditTaskDescriptorBuilder().withDescription(VALID_DESCRIPTION_QUIZ)
-                .withDeadline(VALID_DEADLINE_QUIZ).build();
+                .withDeadline(VALID_DEADLINE_QUIZ).withId(4).build();
         DESC_REPORT = new EditTaskDescriptorBuilder().withDescription(VALID_DESCRIPTION_REPORT)
-                .withDeadline(VALID_DEADLINE_REPORT).build();
+                .withDeadline(VALID_DEADLINE_REPORT).withId(5).build();
     }
 
     /**
@@ -162,5 +165,19 @@ public class CommandTestUtil {
         model.updateFilteredPersonList(new NameContainsKeywordsPredicate(Arrays.asList(splitName[0])));
 
         assertEquals(1, model.getFilteredPersonList().size());
+    }
+
+    /**
+     * Updates {@code model}'s filtered task list to show only the task at the given {@code targetIndex} in the
+     * {@code model}'s address book.
+     */
+    public static void showTaskAtIndex(Model model, Index targetIndex) {
+        assertTrue(targetIndex.getZeroBased() < model.getFilteredTaskList().size());
+
+        Task task = model.getFilteredTaskList().get(targetIndex.getZeroBased());
+        final String[] splitDescription = task.getDescription().taskDescription.split("\\s+");
+        model.updateFilteredTaskList(new DescriptionContainsKeywordsPredicate(Arrays.asList(splitDescription[0])));
+
+        assertEquals(1, model.getFilteredTaskList().size());
     }
 }
