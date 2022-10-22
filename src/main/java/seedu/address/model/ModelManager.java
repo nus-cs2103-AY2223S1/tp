@@ -22,6 +22,7 @@ import seedu.address.model.person.Person;
 import seedu.address.model.person.Session;
 import seedu.address.model.person.SessionList;
 import seedu.address.model.person.TimeSlot;
+import seedu.address.model.util.NextSessionUtil;
 
 /**
  * Represents the in-memory model of the address book data.
@@ -33,29 +34,9 @@ public class ModelManager implements Model {
     private final AddressBook addressBook;
     private final UserPrefs userPrefs;
     private final FilteredList<Person> filteredPersons;
-    private final Session timeNowSession;
-    private final ArrayList<Session> toSortList;
-    private final HashMap<Session, Person> sessionPersonHashMap;
     private ObservableList<TimeSlot> timeSlots;
     private boolean isDayView;
     private boolean isFullView;
-
-    /**
-     * Class implementing Consumer acting as a helper to add Sessions later
-     * than current time in the week to the list to be sorted.
-     */
-    private Consumer<Person> toSortListAdder = new Consumer<Person>() {
-        @Override
-        public void accept(Person person) {
-            for (int i = 0; i < person.getSessionList().sessionList.size(); i++) {
-                Session currSession = person.getSessionList().sessionList.get(i);
-                if (timeNowSession.compareTo(currSession) <= 0) {
-                    toSortList.add(currSession);
-                    sessionPersonHashMap.put(currSession, person);
-                }
-            }
-        }
-    };
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
@@ -68,9 +49,6 @@ public class ModelManager implements Model {
         this.addressBook = new AddressBook(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
-        toSortList = new ArrayList<>();
-        sessionPersonHashMap = new HashMap<>();
-        timeNowSession = getTimeNowAsSession();
         timeSlots = FXCollections.observableArrayList(new ArrayList<>());
         timeSlots.clear();
         isFullView = false;
@@ -238,30 +216,19 @@ public class ModelManager implements Model {
                 && filteredPersons.equals(other.filteredPersons);
     }
 
-    /**
-     * Helper method to get the system time now as a Session for constructor to help getNextSession.
-     * @return the system time now as a Session.
-     */
-    private static Session getTimeNowAsSession() {
-        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("EEE HH:mm").withResolverStyle(ResolverStyle.STRICT);
-        String timeNow = LocalDateTime.now().format(dtf);
-        return new Session(timeNow);
-    }
-
     @Override
     public String getNextSession() {
-        this.updateFilteredPersonList(Model.PREDICATE_SHOW_ALL_PERSONS);
+        updateFilteredPersonList(Model.PREDICATE_SHOW_ALL_PERSONS);
         if (getFilteredPersonList().isEmpty()) {
             return MESSAGE_NO_NEXT_SESSION_FOUND;
         }
-        toSortList.clear();
-        this.getFilteredPersonList().forEach(toSortListAdder);
-        if (toSortList.isEmpty()) {
+        NextSessionUtil nextSessionUtil = new NextSessionUtil();
+        this.getFilteredPersonList().forEach(nextSessionUtil.getToSortListAdder());
+        if (nextSessionUtil.getToSortList().isEmpty()) {
             return MESSAGE_NO_NEXT_SESSION_FOUND;
         }
-        toSortList.sort(Session::compareTo);
-        String res = "Next Session: " + sessionPersonHashMap.get(toSortList.get(0)).getName()
-                + " " + toSortList.get(0).toString();
+        nextSessionUtil.getToSortList().sort(Session::compareTo);
+        String res = nextSessionUtil.nextSessionFeedback();
         return res;
     }
 
