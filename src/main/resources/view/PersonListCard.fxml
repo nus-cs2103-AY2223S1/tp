@@ -36,7 +36,7 @@
         <FlowPane fx:id="tags" />
       </HBox>
       <HBox alignment="CENTER_LEFT" spacing="10">
-        <Label styleClass="title_name" text="Application Status:"></Label>
+        <Label styleClass="title_name" text="Application Status:"/>
         <Label fx:id="applicationStatus" styleClass="cell_pending_label" text="\$applicationStatus" />
         <ImageView>
           <image>
