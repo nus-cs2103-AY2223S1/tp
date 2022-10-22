@@ -67,5 +67,4 @@ deactivate ArchiveCommand
 
 [<--LogicManager
 deactivate LogicManager
-
 @enduml
