@@ -29,8 +29,18 @@ public class WebsiteTest {
         assertFalse(Website.isValidWebsite(" ")); // spaces only
 
         // valid websites
-        assertTrue(Website.isValidWebsite("Blk 456, Den Road, #01-355"));
-        assertTrue(Website.isValidWebsite("-")); // one character
-        assertTrue(Website.isValidWebsite("Leng Inc; 1234 Market St; San Francisco CA 2349879; USA")); // long website
+        assertTrue(Website.isValidWebsite("https://www.apple.com")); // url with https
+        assertTrue(Website.isValidWebsite("http://www.apple.com/careers")); // url with https and directory
+        assertTrue(Website.isValidWebsite("www.apple.com")); // standard url
+        assertTrue(Website.isValidWebsite("www.apple.com/careers/#/sg")); // standard url with multiple directory
+        assertTrue(Website.isValidWebsite("apple.com")); // url without www
+        assertTrue(Website.isValidWebsite("www.apple.com"));
+        assertTrue(Website.isValidWebsite("microsoft.com"));
+        assertTrue(Website.isValidWebsite("google.com"));
+        assertTrue(Website.isValidWebsite("http://www.apple.com/xyz?abc=dkd&p=q&c=2")); // url with directory path
+        assertTrue(Website.isValidWebsite("www.apple.gov.bd")); // url with subdomain
+        assertTrue(Website.isValidWebsite("www.apple.com.en"));
+        assertTrue(Website.isValidWebsite("www.apple.vu"));
+        assertTrue(Website.isValidWebsite("www.apple.u/")); // url with subdomain ending with /
     }
 }

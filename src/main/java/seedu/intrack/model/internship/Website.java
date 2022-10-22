@@ -12,10 +12,14 @@ public class Website {
     public static final String MESSAGE_CONSTRAINTS = "Addresses can take any values, and it should not be blank";
 
     /*
-     * The first character of the address must not be a whitespace,
-     * otherwise " " (a blank string) becomes a valid input.
+     * These website name could have these following components:
+     * - ftp or http or https (optional)
+     * - www (optional)
+     * - url name
+     * - valid subdomain
      */
-    public static final String VALIDATION_REGEX = "[^\\s].*";
+    public static final String VALIDATION_REGEX = "^((ftp|http|https):\\/\\/)?(www.)?(?!.*(ftp|http|https|www.))"
+            + "[a-zA-Z0-9_-]+(\\.[a-zA-Z]+)+((\\/)[\\w#]+)*(\\/\\w+\\?[a-zA-Z0-9_]+=\\w+(&[a-zA-Z0-9_]+=\\w+)*)?\\/?$";
 
     public final String value;
 
