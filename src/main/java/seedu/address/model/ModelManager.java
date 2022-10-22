@@ -251,6 +251,7 @@ public class ModelManager implements Model {
         return new Session(timeNow);
     }
 
+    @Override
     public String getNextSession() {
         this.updateFilteredPersonList(Model.PREDICATE_SHOW_ALL_PERSONS);
         if (getFilteredPersonList().isEmpty()) {
