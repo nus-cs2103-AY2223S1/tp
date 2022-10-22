@@ -41,6 +41,8 @@ public class AssignmentCard extends UiPart<Region> {
     public AssignmentCard(Person person, int displayedIndex) {
         super(FXML);
         this.person = person;
+        id.setText(displayedIndex + ". ");
+        name.setText(person.getName().fullName);
         person.getAssignments()
                 .forEach((key, value) -> {
                     String assignmentString = key + " : " + value;
