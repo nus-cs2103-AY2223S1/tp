@@ -1,7 +1,5 @@
 package seedu.taassist.testutil;
 
-import static seedu.taassist.logic.parser.CliSyntax.PREFIX_SESSION;
-
 import java.time.LocalDate;
 
 import seedu.taassist.model.session.Date;
