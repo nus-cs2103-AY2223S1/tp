@@ -209,7 +209,6 @@ public class MainWindow extends UiPart<Stage> {
                 case WISH:
                     ObservableList<ObservableList<Item>> itemGroups = StageManager.getInstance()
                             .getSelectedItinerary().getUnmodifiableItemGroups();
-                    System.out.println("GOT UNMODIFIABLE ITEM GROUPS");
                     setListPanel(new ItemGroupListPanel(itemGroups));
                     break;
                 case SCHEDULE:

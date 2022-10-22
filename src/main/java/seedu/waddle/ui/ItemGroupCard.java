@@ -29,7 +29,6 @@ public class ItemGroupCard extends UiPart<Region> {
     @FXML
     private StackPane itemListPanelPlaceholder;
 
-
     /**
      * Creates a {@code ItineraryCode} with the given {@code Itinerary} and index to display.
      */
@@ -41,8 +40,8 @@ public class ItemGroupCard extends UiPart<Region> {
         } else {
             this.id.setText("Day " + displayedIndex);
         }
-        System.out.println("SET ITEM GROUP ID");
         this.itemListPanelPlaceholder.getChildren().add(new ItemListPanel(itemGroup).getRoot());
+        this.itemListPanelPlaceholder.setMinHeight(UiSizes.ITEM_LIST_MIN_HEIGHT);
     }
 
     @Override

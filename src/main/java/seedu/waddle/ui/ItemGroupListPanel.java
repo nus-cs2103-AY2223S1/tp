@@ -26,7 +26,6 @@ public class ItemGroupListPanel extends ListPanel {
         super(FXML);
         itemGroupListView.setItems(itemGroups);
         itemGroupListView.setCellFactory(listView -> new ItemGroupListPanel.ItemGroupListViewCell());
-        System.out.println("DONE CREATING GROUP LIST PANEL");
     }
 
     /**

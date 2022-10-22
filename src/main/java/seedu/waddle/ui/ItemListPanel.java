@@ -2,6 +2,7 @@ package seedu.waddle.ui;
 
 import java.util.logging.Logger;
 
+import javafx.beans.binding.Bindings;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.ListCell;
@@ -26,6 +27,7 @@ public class ItemListPanel extends ListPanel {
         super(FXML);
         itemListView.setItems(itemList);
         itemListView.setCellFactory(listView -> new ItemListPanel.ItemListViewCell());
+        itemListView.prefHeightProperty().bind(Bindings.size(itemList).multiply(UiSizes.ITEM_CARD_HEIGHT));
     }
 
     /**
