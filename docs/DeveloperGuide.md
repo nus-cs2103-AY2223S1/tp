@@ -191,7 +191,6 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
-=======
 ### Add Student feature
 
 The Add Student feature allows CS2103T TAs to add a new `Student` object to the student list. When successfully added, 
@@ -297,7 +296,7 @@ The following activity diagram summarizes what happens when a user executes a ne
   - Pros: More comprehensive, users can check the quality of responses to award participation marks correspondingly
   - Cons: More memory consumed, takes quite long to implement on top of other features to be implemented in 4 weeks 
 before feature freeze.
-=======
+
 ### Add Question feature
 
 #### Implementation
@@ -355,6 +354,54 @@ The following activity diagram summarizes what happens when a user executes a ne
     * Cons: Having separate lists will cause the code to be more complicated.
 
 _{more aspects and alternatives to be added}_
+
+### Add Attendance feature
+
+#### Implementation
+
+The proposed add attendance mechanism is facilitated by `UniqueStudentList`.
+It is stored internally as an `Attendance` along with other attributes of a `Student`.
+It is first initialized upon creation of a `Student` object and set as `0`.
+
+Given below is an example usage scenario and how the attendance machanism behaves at each step.
+
+Step 1. The user launches the application for the first time. The `UniqueStudentList` will be initialized with the
+initial Json data stored.
+
+
+Step 2. The user executes `attendance 1` command to increment the attendance of the 1st student in the one-indexed
+`UniqueStudentList`. The `attendance` command calls `AttendanceCommandParser#parse()`).
+
+***NOTE:***
+1. If the index given is not a valid index (ie, out of bounds or negative), it will return an error to the user.
+2. If the resulting attendance is not a valid number (ie, out of bounds or negative), it will return an error to the
+   user.
+
+Step 3. `AttendanceCommandParser` returns and `AttendanceCommand` with the newly created `Attendance` as a parameter.
+
+Step 4. `AttendanceCommand` calls `Model#setStudent` and `Model#updateFilteredStudentList` to edit the attendance
+attribute of the `Student`.
+
+Step 5. After successfully editing the attendance attribute, `AttendanceCommand` will return thr `CommandResult` to the
+`Ui`.
+
+The following sequence diagram shows how the attendance feature is executed.
+![AttendanceSequenceDiagram](images/AttendanceSequenceDiagram.png)
+![AttendanceSequenceDiagramReferenceFrame](images/AttendanceSequenceDiagramReferenceFrame.png)
+
+The following activity diagram summarizes what happens when a user executes a new `attendance` command.
+![AttendaceActivityDiagram](images/AttendanceActivityDiagram.png)
+#### Design Considerations
+
+**Aspect: How Attendance executes:**
+
+- **Alternative 1 (current choice):** Increment attendance of student by 1.
+    - Pros: Easy to implement
+    - Cons: We are unable to decrement attendance. The workaround to this is by the `editstu` command to change the
+      attendance to a value input by user.
+- **Alternative 2:** Increment or decrement attendance of student by taking in a sign and a value.
+    - Pros: Attendance can be modified easily.
+    - Cons: Implementation is relatively complicated and require more exception handling.
 
 ### \[Proposed\] Undo/redo feature
 
