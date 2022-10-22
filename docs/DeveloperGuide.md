@@ -154,6 +154,40 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
+
+### Delete Person
+
+#### Implementation
+
+The delete person feature is facilitated by `DeleteCommand`. It allows users to delete a person from the SecTresBook that match the full
+First name or Last name of the person.
+
+Given below is the example usage scenario and how the delete feature behaves at each step.
+
+Step 1. The user executes 'delete David' command to delete a person with the name 'David' from the SecTresBook.
+
+Step 2. The `DeleteCommandParser` creates a `FindCommand` with 'David'.
+
+Step 3. The `DeleteCommand` is executed with Index 1.
+
+The following sequence diagram shows how the delete command works:
+
+<img src="images/DeleteSequenceWithNameDiagram.png" width="740"/>
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteCommandParser` should end at the destroy marker (X) 
+but due to a limitation of PlantUML, the lifeline reaches the end of diagram. </div>
+
+#### Design Considerations:
+
+**Aspect: How delete executes:**
+
+* **Alternative 1 (Currect choice):** Deletes person based on complete first/last name from input.
+  * Pros: Less strictness of input from the user to delete a person.
+  * Cons: User may accidentally delete a person not meant to be deleted.
+* **Alternative 2:** Delete a person based on completed name i.e. first and last name required in input.
+  * Pros: Stricter input requirement, ensuring that persons are not accidentally deleted.
+  * Cons: Longer input required for the same output. 
+
 ### \[Proposed\] Undo/redo feature
 
 #### Proposed Implementation
