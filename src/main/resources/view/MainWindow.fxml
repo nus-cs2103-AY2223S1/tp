@@ -58,14 +58,14 @@
         <VBox fx:id="personList" minWidth="340" prefWidth="340" styleClass="pane-with-border" VBox.vgrow="ALWAYS">
           <HBox alignment="CENTER">
             <children>
-              <ImageView fitHeight="50.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
+              <ImageView fitHeight="40.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
                 <image>
                   <Image url="@../images/person.png" />
                 </image>
               </ImageView>
               <HBox alignment="CENTER">
                 <padding>
-                  <Insets top="5" right="1" bottom="1" left="8" />
+                  <Insets top="5" right="1" bottom="1" left="5" />
                 </padding>
                 <Label styleClass="label-header" text="Students" textAlignment="CENTER" textFill="WHITE" />
               </HBox>
@@ -89,14 +89,14 @@
           <VBox fx:id="modList" minWidth="340" prefWidth="340" styleClass="pane-with-border" VBox.vgrow="ALWAYS">
             <HBox alignment="CENTER">
               <children>
-                <ImageView fitHeight="50.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
+                <ImageView fitHeight="40.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
                   <image>
                     <Image url="@../images/book.png" />
                   </image>
                 </ImageView>
                 <HBox alignment="CENTER">
                   <padding>
-                    <Insets top="5" right="1" bottom="1" left="8" />
+                    <Insets top="5" right="1" bottom="1" left="5" />
                   </padding>
                   <Label styleClass="label-header" text="Modules" textAlignment="CENTER" textFill="WHITE" />
                 </HBox>
