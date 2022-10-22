@@ -79,6 +79,7 @@ public class HelpWindow extends UiPart<Stage> {
             parent.getStylesheets().add("view/HelpWindowLight.css");
             parent.getStylesheets().remove("view/HelpWindowDark.css");
         }
+
         getRoot().show();
         getRoot().centerOnScreen();
     }

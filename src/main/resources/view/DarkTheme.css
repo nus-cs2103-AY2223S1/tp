@@ -444,4 +444,8 @@
     -fx-border-radius: 7;
 }
 
+#lockWindowBackground {
+    -fx-background-color: -main-background;
+}
+
 

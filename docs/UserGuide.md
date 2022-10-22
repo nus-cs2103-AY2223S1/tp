@@ -22,7 +22,9 @@ done faster and more securely than traditional GUI apps.
     * [Saving the data](#saving-the-data)
     * [Importing data: `import`](#importing-data--import)
     * [Exporting data: `export`](#exporting-data--export)
+    * [Locking the application: `lock`](#locking-the-application--lock)
     * [Changing Light/Dark mode](#changing-lightdark-mode)
+
 - [FAQ](#faq)
 - [Command Summary](#command-summary)
 
@@ -135,6 +137,7 @@ Examples:
 ### Deleting a client : `delete`
 
 Four formats of deleting a client.
+
 1. `delete INDEX`
 2. `delete INDEX1, INDEX2, …`
 3. `delete STARTINDEX - ENDINDEX`
@@ -157,6 +160,7 @@ Examples:
 * `find Betsy` followed by `delete 1` deletes the 1st client in the results of the `find` command.
 
 #### Deleting multiple clients
+
 Deletes multiple specified clients from the FinBook.
 
 Format: `delete INDEX1, INDEX2, …`
@@ -188,7 +192,6 @@ Format: `delete all`
 Examples:
 
 * `list` followed by `delete all` deletes the all clients in the FinBook.
-
 
 ---
 
@@ -244,7 +247,7 @@ Imports data from a `JSON` or `CSV` file
         * `plans`
 
         * The data in each corresponding column must be valid
-          * `tags` must be separated by commas `,` without spaces (e.g. `colleagues,friends,neighbours`)
+            * `tags` must be separated by commas `,` without spaces (e.g. `colleagues,friends,neighbours`)
 
 Format: `import PATH`
 
@@ -274,6 +277,16 @@ Examples:
 * `export ./data.csv` exports data to the file `data.csv` which is located in the same directory as the FinBook executable
 * `export ../data.csv` exports data to the file `data.csv` which is located one level outside the directory of the FinBook executable
 
+---
+
+### Locking the application : `lock`
+
+Locks the application. If a password has not been set, leave the password field empty to unlock the application.
+
+Format: `lock`
+
+---
+
 ### Changing Light/Dark mode
 
 Toggle the UI of FinBook by clicking on the `sun` or `moon` icon on the top right. 
@@ -296,7 +309,9 @@ the data of your previous FinBook home folder. Alternatively, you may use the `i
 |----------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | **Add**              | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS i/MONTHLY_INCOME m/UPCOMING_MEETING_DATES t/TAGS r/RISK_LEVEL pl/CURRENT_PLANS​` <br> e.g., `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 i/$100000 m/12-Jan-2022 t/VIPClient r/high pl/Prudential Health` |
 | **Delete**           | `delete INDEX` `delete INDEX1, INDEX2, …` `delete STARTINDEX - ENDINDEX` `delete all` <br> e.g., `delete 3` `delete 1, 2, 5` `delete 2-5`                                                                                                                                                 |
-| **Edit**             | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG] [r/RISK_LEVEL] [pl/CURRENT_PLANS]​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`                                                                                                                               |
+| **Edit**             | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG] [r/RISK_LEVEL] [pl/CURRENT_PLANS]​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`                                                                                                                              |
 | **List**             | `list`                                                                                                                                                                                                                                                                                    |
 | **Exit application** | `exit`                                                                                                                                                                                                                                                                                    |
 | **Import**           | `import PATH`<br> e.g., `import ./data.json`                                                                                                                                                                                                                                              |
+| **Export**           | `export PATH`<br> e.g., `export ./data.csv`                                                                                                                                                                                                                                               |
+| **Lock application** | `lock`                                                                                                                                                                                                                                                                                    |
