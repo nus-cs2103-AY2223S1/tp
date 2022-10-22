@@ -24,18 +24,17 @@ activate AddressBookParser
 create AddInterestCommandParser
 AddressBookParser -> AddInterestCommandParser
 activate AddInterestCommandParser
-
-
-create Interest
-AddInterestCommandParser -> Interest
-activate Interest
-Interest --> AddInterestCommandParser
-deactivate Interest
 AddInterestCommandParser --> AddressBookParser
 deactivate AddInterestCommandParser
 
 AddressBookParser -> AddInterestCommandParser : parse\n("1 anime")
 activate AddInterestCommandParser
+create Interest
+AddInterestCommandParser -> Interest
+activate Interest
+Interest --> AddInterestCommandParser
+deactivate Interest
+
 
 create AddInterestCommand
 AddInterestCommandParser -> AddInterestCommand: new\n(1, interestList)

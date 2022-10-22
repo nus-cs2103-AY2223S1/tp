@@ -10,19 +10,22 @@ participant ":Model" as Model MODEL_COLOR
 participant ":Person" as Person MODEL_COLOR
 end box
 
+group sd Add Interest
 [-> AddInterestCommand : execute()
 activate AddInterestCommand
 
-activate Model
-
 AddInterestCommand -> Model: getFilteredPersonList()
+activate Model
 Model --> AddInterestCommand: ObservableList<Person>
 deactivate Model
-activate Person
+
 AddInterestCommand -> Person: get(1)
+activate Person
 Person --> AddInterestCommand: personToEdit
+deactivate Person
 
 AddInterestCommand -> Person: addInterest("anime")
+activate Person
 Person --> AddInterestCommand
 deactivate Person
 
@@ -34,4 +37,5 @@ deactivate Model
 
 [<--AddInterestCommand
 deactivate AddInterestCommand
+end
 @enduml
