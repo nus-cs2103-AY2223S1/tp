@@ -219,9 +219,56 @@ The following activity diagram summarizes what happens when a user executes an a
 * **Alternative 2:** The `DateTime` input will be in the format of `YYYY-MM-DD` and slot. The slot will have fixed starting time and fixed duration.
     * Pros: It is easy to determine/check time crashes when assigning a home-visit `DateTime` slot to a nurse.
     * Cons: Less flexible in the home visit date and time that a patient can choose.
+    
+### \[Proposed\] Mark feature
 
+#### Proposed implementation for marking Appointments between Nurses and Patients
+
+The marking mechanism is facilitated by `Appointment`, `VisitStatus`, LogicManager`, `AddressBookParser`, `MarkCommandParser`, `MarkCommand`, `Model`, `AddressBook`, and `UniquePersonList`
+
+`Appointment` is an association class between Nurse and Patient, and also keeps track of the date and time of the appointment, and if the Patient has been visited by the Nurse.
+
+![AppointmentClassDiagram](images/AppointmentClassDiagram.png)
+
+The `AddressBookParser` will take in user input and recognise it as a `MarkCommand`, and pass on the user input to `MarkCommandParser`
+
+`MarkCommandParser` will then identify the appointment of interest, by parsing the index given by the user.
+
+Should the index provided by the user be valid, the `MarkCommand` returned by the `MarkCommandParser` will create a marked version of the `Appointment` specified by the user.
+
+Upon execution, the `MarkCommand` will replace the `Appointment` with the marked version.
+
+Given blow is an example usage scenario and how the mark mechanism works.
+
+Step 1. The user enters the command `mark id/1` command to mark the appointment at index 1 as visited.
+
+Step 2. The `AddressBookParser` will parse the user command and pass the input to the `MarkCommandParser`
+
+Step 3. The `MarkCommandParser` will parse the index, and ensure that the index is present. It will then return a `MarkCommand` with the index.
+
+Step 4. The `MarkCommand` will execute, and change the `VisitStatus` of the `Appointment` to reflect that the `Patient` has been visited.
+
+The following sequence diagram shows how marking an appointment works:
+
+![MarkSequenceDiagram](images/MarkSequenceDiagram.png)
+
+The following activity diagram shows what happens when a user marks an appointment as visited.
+
+![MarkActivityDiagram](images/MarkActivityDiagram.png)
+
+#### Design considerations
+
+** Aspect: Marking Appointments that are already marked: **
+* **Alternative 1:** Print and error message to inform the user that the Appointment has already been marked.
+  * Pros: User will be made aware that they have probably erroneously marked the wrong Appointment, and make the necessary correction.
+  * Cons: More difficult to implement, requires more thorough testing.
+
+* **Alternative 2:** Make no changes and raise no exceptions.
+  * Pros: Easier to implement and test.
+  * Cons: User may have erroneously marked the wrong Appointment, and may not notice.
 
 ### \[Proposed\] Undo/redo feature
+
 
 #### Proposed Implementation
 

@@ -1,0 +1,22 @@
+@startuml
+!include style.puml
+
+start
+:User executes mark command;
+
+if () then ([index is present])
+    if () then ([index is valid])
+        if () then ([specified Appointment is unmarked])
+            :Mark Appointment as visited;
+            :Save updated Appointment to Storage;
+        else ([else])
+            :Show error message about marking appointments that are already marked;
+        endif
+    else ([else])
+        :Show error message about invalid index;
+    endif
+else ([else])
+    :Show error message about missing index;
+endif
+stop
+@enduml
