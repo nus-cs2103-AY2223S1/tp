@@ -60,7 +60,7 @@ public class TaskCard extends UiPart<Region> {
         this.task = task;
         id.setText(displayedIndex + ". ");
         name.setText(task.getName().fullName);
-        deadline.setText(task.getDeadline().date);
+        deadline.setText(task.getDeadline().value);
         module.setText(task.getModule().fullName);
         Image checkBoxImage = new Image(task.isDone() ? checkedPngPath.toUri().toURL().toExternalForm()
                 : uncheckedPngPath.toUri().toURL().toExternalForm());
