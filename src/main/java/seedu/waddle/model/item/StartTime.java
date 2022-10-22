@@ -24,14 +24,14 @@ public class StartTime {
      */
     public StartTime(String startTime) {
         requireNonNull(startTime);
-        checkArgument(isValidCost(startTime), MESSAGE_CONSTRAINTS);
+        checkArgument(isValidStartTime(startTime), MESSAGE_CONSTRAINTS);
         this.startTime = LocalTime.parse(startTime, timeFormatter);
     }
 
     /**
      * Returns true if a given string is a valid Cost
      */
-    public static boolean isValidCost(String test) {
+    public static boolean isValidStartTime(String test) {
         LocalTime time;
         try {
             time = LocalTime.parse(test, timeFormatter);

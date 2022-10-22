@@ -5,6 +5,7 @@ import static seedu.waddle.logic.parser.CliSyntax.PREFIX_COST;
 import static seedu.waddle.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 import static seedu.waddle.logic.parser.CliSyntax.PREFIX_DURATION;
 import static seedu.waddle.logic.parser.CliSyntax.PREFIX_PRIORITY;
+import static seedu.waddle.logic.parser.CliSyntax.PREFIX_START_TIME;
 
 import java.util.Optional;
 
@@ -18,6 +19,7 @@ import seedu.waddle.model.item.Cost;
 import seedu.waddle.model.item.Duration;
 import seedu.waddle.model.item.Item;
 import seedu.waddle.model.item.Priority;
+import seedu.waddle.model.item.StartTime;
 import seedu.waddle.model.itinerary.Itinerary;
 
 /**
@@ -34,7 +36,8 @@ public class EditItemCommand extends Command {
             + "[" + PREFIX_DESCRIPTION + "DESCRIPTION]"
             + "[" + PREFIX_PRIORITY + "PRIORITY]"
             + "[" + PREFIX_COST + "COST]"
-            + "[" + PREFIX_DURATION + "DURATION]...\n"
+            + "[" + PREFIX_DURATION + "DURATION]"
+            + "[" + PREFIX_START_TIME + "START TIME]...\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_DESCRIPTION + "Visit the Eiffel Tower ";
 
@@ -119,6 +122,7 @@ public class EditItemCommand extends Command {
         private Priority priority;
         private Cost cost;
         private Duration duration;
+        private StartTime startTime;
 
         public EditItemDescriptor() {
         }
@@ -132,6 +136,7 @@ public class EditItemCommand extends Command {
             setPriority(toCopy.priority);
             setCost(toCopy.cost);
             setDuration(toCopy.duration);
+            setStartTime(toCopy.startTime);
         }
 
         /**
@@ -171,6 +176,14 @@ public class EditItemCommand extends Command {
 
         public void setDuration(Duration duration) {
             this.duration = duration;
+        }
+
+        public Optional<StartTime> getStartTime() {
+            return Optional.ofNullable(startTime);
+        }
+
+        public void setStartTime(StartTime startTime) {
+            this.startTime = startTime;
         }
 
         @Override

@@ -8,6 +8,7 @@ import seedu.waddle.logic.parser.exceptions.ParseException;
 import seedu.waddle.model.item.Cost;
 import seedu.waddle.model.item.Duration;
 import seedu.waddle.model.item.Priority;
+import seedu.waddle.model.item.StartTime;
 import seedu.waddle.model.itinerary.Budget;
 import seedu.waddle.model.itinerary.Country;
 import seedu.waddle.model.itinerary.Date;
@@ -187,6 +188,21 @@ public class ParserUtil {
             throw new ParseException(Duration.MESSAGE_CONSTRAINTS);
         }
         return new Duration(trimmedDuration);
+    }
+
+    /**
+     * Parses a {@code String startTime} into a {@code StartTime}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code startTime} is invalid.
+     */
+    public static StartTime parseStartTime(String startTime) throws ParseException {
+        requireNonNull(startTime);
+        String trimmedStartTime = startTime.trim();
+        if (!StartTime.isValidStartTime(trimmedStartTime)) {
+            throw new ParseException(StartTime.MESSAGE_CONSTRAINTS);
+        }
+        return new StartTime(startTime);
     }
 
 }
