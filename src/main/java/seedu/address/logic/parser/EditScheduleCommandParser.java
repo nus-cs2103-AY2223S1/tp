@@ -2,10 +2,12 @@ package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_CLASS_CATEGORY;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_CLASS_GROUP;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_CLASS_TIME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_CLASS_VENUE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MODULE_OF_SCHEDULE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_WEEKDAY;
+import static seedu.address.logic.parser.ParserUtil.isValidTimeSlot;
 
 import java.util.stream.Stream;
 
@@ -13,7 +15,6 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.schedule.EditScheduleCommand;
 import seedu.address.logic.commands.schedule.EditScheduleCommand.EditScheduleDescriptor;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.module.schedule.Schedule;
 
 /**
  * Parses input arguments and creates an EditScheduleCommand.
@@ -27,7 +28,7 @@ public class EditScheduleCommandParser implements Parser<EditScheduleCommand> {
      */
     public EditScheduleCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_MODULE_OF_SCHEDULE,
-                PREFIX_WEEKDAY, PREFIX_CLASS_TIME, PREFIX_CLASS_CATEGORY, PREFIX_CLASS_VENUE);
+                PREFIX_WEEKDAY, PREFIX_CLASS_TIME, PREFIX_CLASS_CATEGORY, PREFIX_CLASS_GROUP, PREFIX_CLASS_VENUE);
         Index index;
 
         try {
@@ -59,6 +60,10 @@ public class EditScheduleCommandParser implements Parser<EditScheduleCommand> {
         if (argMultimap.getValue(PREFIX_CLASS_VENUE).isPresent()) {
             editScheduleDescriptor.setVenue(ParserUtil.parseVenue(argMultimap.getValue(PREFIX_CLASS_VENUE).get()));
         }
+        if (argMultimap.getValue(PREFIX_CLASS_GROUP).isPresent()) {
+            editScheduleDescriptor.setClassGroup(ParserUtil.parseClassGroup(argMultimap.getValue(PREFIX_CLASS_GROUP)
+                    .get()));
+        }
 
         if (!editScheduleDescriptor.isAnyFieldEdited()) {
             throw new ParseException(EditScheduleCommand.MESSAGE_NOT_EDITED);
@@ -75,40 +80,4 @@ public class EditScheduleCommandParser implements Parser<EditScheduleCommand> {
         return Stream.of(prefixes).allMatch(prefix -> argumentMultimap.getValue(prefix).isPresent());
     }
 
-
-    private static boolean isValidTimeSlot(String startTime, String endTime) throws ParseException {
-        try {
-            int startHour = Integer.parseInt(startTime.split(":")[0]);
-            int startMin = Integer.parseInt(startTime.split(":")[1]);
-            int endHour = Integer.parseInt(endTime.split(":")[0]);
-            int endMin = Integer.parseInt(endTime.split(":")[1]);
-
-            if (startHour >= 24 || endHour >= 24 || startHour < 0 || endHour < 0) {
-                throw new ParseException(Schedule.MESSAGE_TIMESLOT_CONSTRAINT);
-            }
-            if (startMin != 0 && startMin != 30) {
-                throw new ParseException(Schedule.MESSAGE_TIMESLOT_CONSTRAINT);
-            }
-            if (endMin != 0 && endMin != 30) {
-                throw new ParseException(Schedule.MESSAGE_TIMESLOT_CONSTRAINT);
-            }
-            if (startHour < 7) {
-                throw new ParseException(Schedule.MESSAGE_CLASS_STARTINGTIME_CONSTRAINT);
-            }
-            if (endHour >= 22 && endMin > 0) {
-                throw new ParseException(Schedule.MESSAGE_CLASS_ENDINGTIME_CONSTRAINT);
-            }
-
-            if ((startHour > endHour) || ((startHour == endHour) && (startMin >= endMin))) {
-                throw new ParseException(Schedule.MESSAGE_CLASS_STARTING_ENDINGT_CONSTRAINT);
-            }
-
-            return true;
-
-
-        } catch (Exception e) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, e.getMessage()));
-        }
-
-    }
 }

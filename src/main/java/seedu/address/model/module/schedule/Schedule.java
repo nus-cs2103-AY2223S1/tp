@@ -34,6 +34,7 @@ public class Schedule {
     private String startTime;
     private String endTime;
     private ClassType classType;
+    private String classGroup;
 
     /**
      * Requires all fields to be not null
@@ -43,19 +44,21 @@ public class Schedule {
      * @param endTime end time
      */
     public Schedule(String module, Venue venue, Weekdays weekday, String startTime, String endTime, ClassType
-            classType) {
-        requireAllNonNull(module, venue, weekday, startTime, endTime, classType);
+            classType, String classGroup) {
+        requireAllNonNull(module, venue, weekday, startTime, endTime, classType, classGroup);
         this.module = module;
         this.venue = venue;
         this.weekday = weekday;
         this.startTime = startTime;
         this.endTime = endTime;
         this.classType = classType;
+        this.classGroup = classGroup;
     }
 
     @Override
     public String toString() {
-        return module.toUpperCase() + "\n" + classType + "\n" + startTime + "-" + endTime + "\n" + venue;
+        return module.toUpperCase() + "\n" + classType + "  [" + classGroup + "]" + "\n" + startTime + "-" + endTime
+                + "\n" + venue;
     }
 
     public Weekdays getWeekday() {
@@ -86,6 +89,10 @@ public class Schedule {
         return module;
     }
 
+    public String getClassGroup() {
+        return classGroup;
+    }
+
     public void setVenue(Venue newVenue) {
         this.venue = newVenue;
     }
@@ -108,6 +115,10 @@ public class Schedule {
 
     public void setClassType(ClassType classType) {
         this.classType = classType;
+    }
+
+    public void setClassGroup(String classGroup) {
+        this.classGroup = classGroup;
     }
 
     /**
@@ -174,7 +185,8 @@ public class Schedule {
                 && otherSchedule.weekday.equals(this.weekday)
                 && otherSchedule.startTime.equals(this.startTime)
                 && otherSchedule.endTime.equals(this.endTime)
-                && otherSchedule.classType.equals(this.classType);
+                && otherSchedule.classType.equals(this.classType)
+                && otherSchedule.classGroup.equals(this.classGroup);
     }
 
 }

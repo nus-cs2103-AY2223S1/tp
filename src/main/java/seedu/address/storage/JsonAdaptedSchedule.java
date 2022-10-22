@@ -22,19 +22,22 @@ public class JsonAdaptedSchedule {
     private final String endTime;
 
     private final ClassType classType;
+    private final String classGroup;
     /**
      * Constructs a {@code JsonAdaptedSchedule} with the given schedule details.
      */
     @JsonCreator
     public JsonAdaptedSchedule(@JsonProperty("module") String module, @JsonProperty("venue") Venue venue,
-                             @JsonProperty("weekday") Weekdays weekday, @JsonProperty("startTime") String startTime,
-                             @JsonProperty("endTime") String endTime, @JsonProperty("classType") ClassType classType) {
+                               @JsonProperty("weekday") Weekdays weekday, @JsonProperty("startTime") String startTime,
+                               @JsonProperty("endTime") String endTime, @JsonProperty("classType") ClassType classType,
+                               @JsonProperty("classGroup") String classGroup) {
         this.module = module;
         this.venue = venue;
         this.weekday = weekday;
         this.startTime = startTime;
         this.endTime = endTime;
         this.classType = classType;
+        this.classGroup = classGroup;
     }
 
     /**
@@ -47,6 +50,7 @@ public class JsonAdaptedSchedule {
         startTime = source.getStartTime();
         endTime = source.getEndTime();
         classType = source.getClassType();
+        classGroup = source.getClassGroup();
     }
 
     /**
@@ -72,9 +76,12 @@ public class JsonAdaptedSchedule {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
                     ClassType.class.getSimpleName()));
         }
+        if (classGroup == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, "group"));
+        }
         if (!Schedule.isTimeValid(startTime, endTime)) {
             throw new IllegalValueException(Schedule.MESSAGE_CLASS_TIME_CONSTRAINT);
         }
-        return new Schedule(module, venue, weekday, startTime, endTime, classType);
+        return new Schedule(module, venue, weekday, startTime, endTime, classType, classGroup);
     }
 }

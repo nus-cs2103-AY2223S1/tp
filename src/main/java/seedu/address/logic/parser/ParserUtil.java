@@ -1,6 +1,7 @@
 package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 
 import java.util.Collection;
 import java.util.HashSet;
@@ -374,6 +375,13 @@ public class ParserUtil {
     }
 
     /**
+     * Parses class group
+     */
+    public static String parseClassGroup(String classGroup) {
+        return classGroup.trim().toUpperCase();
+    }
+
+    /**
      * Parses class venue.
      * @param venue venue name
      * @return venue
@@ -381,5 +389,40 @@ public class ParserUtil {
     public static Venue parseVenue(String venue) {
         requireNonNull(venue);
         return new Venue(venue.trim());
+    }
+
+    /**
+     * Checks if the time is valid
+     */
+    public static boolean isValidTimeSlot(String startTime, String endTime) throws ParseException {
+        try {
+            int startHour = Integer.parseInt(startTime.split(":")[0]);
+            int startMin = Integer.parseInt(startTime.split(":")[1]);
+            int endHour = Integer.parseInt(endTime.split(":")[0]);
+            int endMin = Integer.parseInt(endTime.split(":")[1]);
+
+            if (startHour >= 24 || endHour >= 24 || startHour < 0 || endHour < 0) {
+                throw new ParseException(Schedule.MESSAGE_TIMESLOT_CONSTRAINT);
+            }
+            if (startMin != 0 && startMin != 30) {
+                throw new ParseException(Schedule.MESSAGE_TIMESLOT_CONSTRAINT);
+            }
+            if (endMin != 0 && endMin != 30) {
+                throw new ParseException(Schedule.MESSAGE_TIMESLOT_CONSTRAINT);
+            }
+            if (startHour < 7) {
+                throw new ParseException(Schedule.MESSAGE_CLASS_STARTINGTIME_CONSTRAINT);
+            }
+            if (endHour >= 22 && endMin > 0) {
+                throw new ParseException(Schedule.MESSAGE_CLASS_ENDINGTIME_CONSTRAINT);
+            }
+            if ((startHour > endHour) || ((startHour == endHour) && (startMin >= endMin))) {
+                throw new ParseException(Schedule.MESSAGE_CLASS_STARTING_ENDINGT_CONSTRAINT);
+            }
+            return true;
+        } catch (Exception e) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, e.getMessage()));
+        }
+
     }
 }
