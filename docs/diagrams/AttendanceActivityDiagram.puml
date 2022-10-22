@@ -1,0 +1,24 @@
+@startuml
+title AttendanceCommand
+
+start
+:User executes "attendance 1' command;
+
+if () then ([command is valid])
+
+    :Parse arguments into an ""AttendanceCommand"" object;
+
+    :Execute "AttendanceCommand";
+
+    :Increment Student's attendance by 1;
+
+    :show success message to  the user;
+else ([else])
+    :Throw ""ParseException"";
+
+    :show error message to user;
+endif
+
+stop
+
+@enduml

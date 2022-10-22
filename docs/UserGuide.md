@@ -18,6 +18,8 @@ more effectively than traditional GUI apps.
         * Adding student’s response: [`addresponse`](#adding-students-response-addresponse)
         * Adding help tag to a student: [`helpstu`](#adding-help-tag-helpstu)
         * Deleting a student: [`deletestu`](#deleting-a-student-deletestu)
+        * Finding a student: [`findstu`](#finding-a-student-findstu)
+        * Listing all students: [`liststu`](#listing-all-students-liststu)
     * **Question**
         * Adding a question: [`addq`](#adding-a-question--addq)
         * Marking a question: [`markq`](#marking-a-question--markq)
@@ -166,7 +168,33 @@ Format: `deletestu INDEX`
 
 Example:
 
-* `liststu` followed by `deletestu 2` deletes the second student in the student list
+* `deletestu 2` 
+
+
+### Finding a student: `findstu`
+
+Find one or more specific students.
+
+Format: `findstu KEYWORD [MORE_KEYWORDS]`
+
+* Finds student(s) with specified KEYWORD [MORE_KEYWORDS] in their name(s)
+* The keyword is case-insensitive
+
+Example:
+
+* `findstu bob`
+* `findstu john mary`
+
+
+### Listing all students: `liststu`
+
+Lists all students in the student list.
+
+Format: `liststu`
+
+Example: 
+
+* `liststu`
 
 
 ### Adding a question : `addq`
@@ -309,7 +337,8 @@ the data of your previous SETA home folder.
 | **Attendance** | `attendance`                        |
 | **Delete**     | `deletestu`, `deleteq`, `deletetut` |
 | **Edit**       | `editstu`                           |
-| **List**       | `liststu`, `listq`, `listtut`       |
+| **Find**       | `findstu`                           |  
+| **List**       | `liststu`                           |  
 | **Mark**       | `markq`, `unmarkq`, `marktut`       |
 | **Tag**        | `helpstu`                           |
 | **Exit**       | `exit`                              |

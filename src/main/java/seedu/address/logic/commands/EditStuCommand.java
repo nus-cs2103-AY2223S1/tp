@@ -16,6 +16,7 @@ import seedu.address.commons.util.CollectionUtil;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.student.Attendance;
+import seedu.address.model.student.HelpTag;
 import seedu.address.model.student.Response;
 import seedu.address.model.student.StuEmail;
 import seedu.address.model.student.StuName;
@@ -94,8 +95,9 @@ public class EditStuCommand extends Command {
         StuEmail updatedEmail = editStudentDescriptor.getEmail().orElse(studentToEdit.getEmail());
         Response response = studentToEdit.getResponse();
         Attendance attendance = editStudentDescriptor.getAttendance().orElse(studentToEdit.getAttendance());
+        HelpTag helpTag = editStudentDescriptor.getHelpTag().orElse(studentToEdit.getHelpTag());
 
-        return new Student(updatedName, updatedTelegram, updatedEmail, response, attendance);
+        return new Student(updatedName, updatedTelegram, updatedEmail, response, attendance, helpTag);
     }
 
     @Override
@@ -125,6 +127,7 @@ public class EditStuCommand extends Command {
         private Telegram telegram;
         private StuEmail email;
         private Attendance attendance;
+        private HelpTag helptag;
 
         public EditStudentDescriptor() {}
 
@@ -176,6 +179,14 @@ public class EditStuCommand extends Command {
 
         public Optional<Attendance> getAttendance() {
             return Optional.ofNullable(attendance);
+        }
+
+        public void setHelpTag(HelpTag helpTag) {
+            this.helptag = helptag;
+        }
+
+        public Optional<HelpTag> getHelpTag() {
+            return Optional.ofNullable(helptag);
         }
 
         @Override
