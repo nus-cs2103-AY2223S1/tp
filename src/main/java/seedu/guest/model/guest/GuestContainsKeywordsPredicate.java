@@ -15,27 +15,26 @@ public class GuestContainsKeywordsPredicate implements Predicate<Guest> {
         this.keywords = keywords;
     }
 
+    private boolean compareWord(String sentence) {
+        return keywords.stream().anyMatch(keyword -> StringUtil.containsWordIgnoreCase(sentence, keyword));
+    }
+
+    private boolean compareDate(String sentence) {
+        return keywords.stream().anyMatch(keyword -> StringUtil.containsDateRangeIgnoreHyphenIgnoreSpace(sentence,
+                keyword));
+    }
+
     @Override
     public boolean test(Guest guest) {
-        return keywords.stream()
-                .anyMatch(keyword -> StringUtil.containsWordIgnoreCase(guest.getName().fullName, keyword))
-                || keywords.stream()
-                .anyMatch(keyword -> StringUtil.containsWordIgnoreCase(guest.getPhone().toString(), keyword))
-                || keywords.stream()
-                .anyMatch(keyword -> StringUtil.containsWordIgnoreCase(guest.getEmail().toString(), keyword))
-                || keywords.stream()
-                .anyMatch(keyword -> StringUtil.containsWordIgnoreCase(guest.getRoom().toString(), keyword))
-                || keywords.stream()
-                .anyMatch(keyword -> StringUtil.containsDateRangeIgnoreHyphenIgnoreSpace(guest.getDateRange()
-                        .toString(), keyword))
-                || keywords.stream()
-                .anyMatch(keyword -> StringUtil.containsWordIgnoreCase(guest.getNumberOfGuests().toString(), keyword))
-                || keywords.stream()
-                .anyMatch(keyword -> StringUtil.containsWordIgnoreCase(guest.getIsRoomClean().toString(), keyword))
-                || keywords.stream()
-                .anyMatch(keyword -> StringUtil.containsWordIgnoreCase(guest.getBill().toString(), keyword))
-                || keywords.stream()
-                .anyMatch(keyword -> StringUtil.containsWordIgnoreCase(guest.getRequest().toString(), keyword));
+        return compareWord(guest.getName().fullName)
+                || compareWord(guest.getPhone().toString())
+                || compareWord(guest.getEmail().toString())
+                || compareWord(guest.getRoom().toString())
+                || compareWord(guest.getNumberOfGuests().toString())
+                || compareWord(guest.getIsRoomClean().toString())
+                || compareWord(guest.getBill().toString())
+                || compareWord(guest.getRequest().toString())
+                || compareDate(guest.getDateRange().toString());
     }
 
     @Override
