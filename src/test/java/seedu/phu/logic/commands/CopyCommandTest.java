@@ -13,7 +13,8 @@ import static seedu.phu.testutil.TypicalIndexes.INDEX_FIRST_INTERNSHIP;
 import static seedu.phu.testutil.TypicalIndexes.INDEX_SECOND_INTERNSHIP;
 import static seedu.phu.testutil.TypicalInternships.getTypicalInternshipBook;
 
-import java.awt.*;
+import java.awt.HeadlessException;
+import java.awt.Toolkit;
 import java.awt.datatransfer.DataFlavor;
 import java.awt.datatransfer.UnsupportedFlavorException;
 import java.io.IOException;
@@ -35,10 +36,10 @@ import seedu.phu.model.internship.Internship;
 
 public class CopyCommandTest {
 
+    private static final String HEADLESS_ERROR = "Unable to be tested in headless environment";
     private Model model;
     private Model expectedModel;
     private CommandHistory commandHistory;
-    private final String HEADLESS_ERROR = "Unable to be tested in headless environment";
 
     @BeforeEach
     public void setUp() {
@@ -88,8 +89,6 @@ public class CopyCommandTest {
             CopyCommand copyCommand = new CopyCommand(INDEXES_FIRST_INTERNSHIP);
             assertCommandSuccess(copyCommand, model, commandHistory, expectedMessage, expectedModel);
 
-            // Object in Clipboard::getContents is not currently used
-            // https://docs.oracle.com/javase/7/docs/api/java/awt/datatransfer/Clipboard.html#getContents(java.lang.Object)
             String currentContents = (String) Toolkit.getDefaultToolkit()
                     .getSystemClipboard().getData(DataFlavor.stringFlavor);
 
@@ -120,8 +119,6 @@ public class CopyCommandTest {
             CopyCommand copyCommand = new CopyCommand(INDEXES_FIRST_INTERNSHIP);
             assertCommandSuccess(copyCommand, model, commandHistory, expectedMessage, expectedModel);
 
-            // Object in Clipboard::getContents is not currently used
-            // https://docs.oracle.com/javase/7/docs/api/java/awt/datatransfer/Clipboard.html#getContents(java.lang.Object)
             String currentContents = (String) Toolkit.getDefaultToolkit()
                     .getSystemClipboard().getData(DataFlavor.stringFlavor);
             String toCopy = firstInternship.toString();
