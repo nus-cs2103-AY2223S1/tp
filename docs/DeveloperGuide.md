@@ -479,13 +479,13 @@ testers are expected to do more *exploratory* testing.
 
    1. Prerequisites: List all persons / task using the `list_contact` or `list_task` command.
 
-   2. Test case: `delete_contact 1`<br>
-      Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
+   2. Test case: `delete_contact 1` / `delete_task 1`<br>
+      Expected: First contact / task is deleted from the list. Details of the deleted contact / task shown in the status message. Timestamp in the status bar is updated.
 
-   3. Test case: `delete_contact 0`<br>
-      Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
+   3. Test case: `delete_contact 0` / `delete_task 0`<br>
+      Expected: No person / task is deleted. Error details shown in the status message. Status bar remains the same.
 
-   4. Other incorrect delete commands to try: `delete_contact`, `delete_contact x`, `...` (where x is larger than the list size)<br>
+   4. Other incorrect delete commands to try: `delete_contact` / `delete_task`, `delete_contact x` / `delete_task x`, `...` (where x is larger than the list size)<br>
       Expected: Similar to previous.
 
 2. _{ more test cases …​ }_
