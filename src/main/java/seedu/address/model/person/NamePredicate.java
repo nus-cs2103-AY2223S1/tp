@@ -20,8 +20,8 @@ public class NamePredicate implements Predicate<Person> {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-            || (other instanceof NamePredicate // instanceof handles nulls
-            && name.equals(((NamePredicate) other).name)); // state check
+                || (other instanceof NamePredicate // instanceof handles nulls
+                && name.equals(((NamePredicate) other).name)); // state check
     }
 
 }
