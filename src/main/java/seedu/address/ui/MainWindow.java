@@ -134,7 +134,7 @@ public class MainWindow extends UiPart<Stage> {
         groupListPanelPlaceholder.getChildren().add(groupListPanel.getRoot());
 
         assignmentListPanel = new AssignmentListPanel(logic.getFilteredPersonList());
-        personListPanelPlaceholder.getChildren().add(assignmentListPanel.getRoot());
+        assignmentListPanelPlaceholder.getChildren().add(assignmentListPanel.getRoot());
 
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
