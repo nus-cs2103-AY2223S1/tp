@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.VBox?>
 
 <HBox id="slotPane" fx:id="slotPane" alignment="BASELINE_LEFT" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
-    <VBox alignment="TOP_LEFT" prefHeight="70.0" prefWidth="2660" spacing="2.0" style=" #8ac6d1#8ac6d1; -fx-background-radius: 10px;" GridPane.columnIndex="0">
+    <VBox alignment="TOP_LEFT" prefHeight="70.0" prefWidth="2660" spacing="2.0" style="-fx-background-color: #8ac6d1#8ac6d1; -fx-background-radius: 10px;" GridPane.columnIndex="0">
         <padding>
             <Insets bottom="10.0" left="5.0" right="5.0" top="10.0" />
         </padding>
