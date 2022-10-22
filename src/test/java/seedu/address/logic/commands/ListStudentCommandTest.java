@@ -26,6 +26,7 @@ public class ListStudentCommandTest {
 
     @Test
     public void execute_listIsNotFiltered_showsSameList() {
-        assertCommandSuccess(new ListStudentCommand(), model, ListStudentCommand.MESSAGE_SUCCESS, expectedModel, true);
+        assertCommandSuccess(new ListStudentCommand(), model, ListStudentCommand.MESSAGE_SUCCESS,
+                expectedModel, CommandResult.CommandType.LIST);
     }
 }

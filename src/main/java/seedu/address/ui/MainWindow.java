@@ -1,10 +1,15 @@
 package seedu.address.ui;
 
+import static seedu.address.logic.commands.ListStudentCommand.COMMAND_LIST_STUDENT_STRING;
+import static seedu.address.logic.commands.ListTuitionClassCommand.COMMAND_LIST_CLASS_STRING;
+import static seedu.address.logic.commands.ListTutorCommand.COMMAND_LIST_TUTOR_STRING;
+
 import java.util.logging.Logger;
 
 import javafx.animation.PauseTransition;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Label;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextInputControl;
 import javafx.scene.input.KeyCombination;
@@ -21,15 +26,25 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Model;
 
+
+
 /**
  * The Main Window. Provides the basic application layout containing
  * a menu bar and space where other JavaFX elements can be placed.
  */
 public class MainWindow extends UiPart<Stage> {
-    private static final String SELECTED_LABEL_STYLE_CLASS = "active-label";
+    private static final String SELECTED_STUDENT_LABEL_STYLE_CLASS = "active-student-label";
+
+    private static final String SELECTED_TUTOR_LABEL_STYLE_CLASS = "active-tutor-label";
+
+    private static final String SELECTED_CLASS_LABEL_STYLE_CLASS = "active-class-label";
 
     private static final String UNSELECTED_LABEL_STYLE_CLASS = "inactive-label";
+
     private static final String FXML = "MainWindow.fxml";
+
+    private static final Label NO_ENTITY_DISPLAYED_LABEL = new Label("No Entity Displayed");
+
 
     private final Logger logger = LogsCenter.getLogger(getClass());
 
@@ -40,8 +55,12 @@ public class MainWindow extends UiPart<Stage> {
     private StudentListPanel studentListPanel;
     private TutorListPanel tutorListPanel;
     private TuitionClassListPanel tuitionClassListPanel;
+    private StudentDescription studentDescription;
+    private TutorDescription tutorDescription;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
+
+    private Model.ListType descriptionEntityType;
 
     @FXML
     private StackPane commandBoxPlaceholder;
@@ -51,6 +70,9 @@ public class MainWindow extends UiPart<Stage> {
 
     @FXML
     private StackPane entityListPanelPlaceholder;
+
+    @FXML
+    private Pane entityDescriptionPlaceholder;
 
     @FXML
     private StackPane resultDisplayPlaceholder;
@@ -143,6 +165,8 @@ public class MainWindow extends UiPart<Stage> {
 
         CommandBox commandBox = new CommandBox(this::executeCommand);
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
+
+        entityDescriptionPlaceholder.getChildren().add(NO_ENTITY_DISPLAYED_LABEL);
     }
 
     /**
@@ -189,6 +213,28 @@ public class MainWindow extends UiPart<Stage> {
         pause.play();
     }
 
+    /** Shows the specified entity **/
+    private void updateDescription(int index) {
+        Model.ListType type = logic.getCurrentListType();
+        descriptionEntityType = type;
+        switch(type) {
+        case STUDENT_LIST:
+            entityDescriptionPlaceholder.getChildren().clear();
+            studentDescription = new StudentDescription(
+                    logic.getFilteredStudentList().get(index));
+            entityDescriptionPlaceholder.getChildren().add(studentDescription.getRoot());
+            break;
+        case TUTOR_LIST:
+            entityDescriptionPlaceholder.getChildren().clear();
+            tutorDescription = new TutorDescription(
+                    logic.getFilteredTutorList().get(index));
+            entityDescriptionPlaceholder.getChildren().add(tutorDescription.getRoot());
+            break;
+        default:
+            break;
+        }
+    }
+
     /**
      * Updates the displayed list.
      */
@@ -196,65 +242,171 @@ public class MainWindow extends UiPart<Stage> {
         Model.ListType type = logic.getCurrentListType();
         switch (type) {
         case STUDENT_LIST:
-            switchToStudentList();
+            entityListPanelPlaceholder.getChildren().clear();
+            entityListPanelPlaceholder.getChildren().add(studentListPanel.getRoot());
             break;
         case TUTOR_LIST:
-            switchToTutorList();
+            entityListPanelPlaceholder.getChildren().clear();
+            entityListPanelPlaceholder.getChildren().add(tutorListPanel.getRoot());
             break;
         case TUITIONCLASS_LIST:
-            switchToTuitionClassList();
+            entityListPanelPlaceholder.getChildren().clear();
+            entityListPanelPlaceholder.getChildren().add(tuitionClassListPanel.getRoot());
+            break;
+        default:
+            break;
+        }
+        setLabelStyle();
+    }
+
+    /** Displays the added entity in Description Panel. **/
+    private void handleAdd() {
+        Model.ListType type = logic.getCurrentListType();
+        entityDescriptionPlaceholder.getChildren().clear();
+        int listSize;
+        switch(type) {
+        case STUDENT_LIST:
+            listSize = logic.getFilteredStudentList().size();
+            studentDescription = new StudentDescription(
+                    logic.getFilteredStudentList().get(listSize - 1));
+            entityDescriptionPlaceholder.getChildren().add(studentDescription.getRoot());
+            break;
+        case TUTOR_LIST:
+            listSize = logic.getFilteredTutorList().size();
+            tutorDescription = new TutorDescription(
+                    logic.getFilteredTutorList().get(listSize - 1));
+            entityDescriptionPlaceholder.getChildren().add(tutorDescription.getRoot());
             break;
         default:
             break;
         }
     }
 
-    @FXML
-    private void switchToStudentList() {
-        logic.updateCurrentListType(Model.ListType.STUDENT_LIST);
-        entityListPanelPlaceholder.getChildren().clear();
-        entityListPanelPlaceholder.getChildren().add(studentListPanel.getRoot());
+    /**
+     * Clears the current Description Panel if the displayed entity
+     * is in the cleared list.
+     */
+    private void handleClear() {
+        if (descriptionEntityType == null) {
+            return;
+        }
 
-        setLabelStyle(Model.ListType.STUDENT_LIST);
+        if (descriptionEntityType == logic.getCurrentListType()) {
+            entityDescriptionPlaceholder.getChildren().clear();
+            entityDescriptionPlaceholder.getChildren().add(NO_ENTITY_DISPLAYED_LABEL);
+        }
     }
 
-    @FXML
-    private void switchToTutorList() {
-        logic.updateCurrentListType(Model.ListType.TUTOR_LIST);
-        entityListPanelPlaceholder.getChildren().clear();
-        entityListPanelPlaceholder.getChildren().add(tutorListPanel.getRoot());
-
-        setLabelStyle(Model.ListType.TUTOR_LIST);
+    /** Clears the current Description Panel if it is the deleted entity **/
+    private void handleDelete(CommandResult commandResult) {
+        Model.ListType type = logic.getCurrentListType();
+        switch (type) {
+        case STUDENT_LIST:
+            if (commandResult.getDeletedStudent().equals(studentDescription.getDisplayedStudent())) {
+                entityDescriptionPlaceholder.getChildren().clear();
+                entityDescriptionPlaceholder.getChildren().add(NO_ENTITY_DISPLAYED_LABEL);
+            }
+            break;
+        case TUTOR_LIST:
+            if (commandResult.getDeletedTutor().equals(tutorDescription.getDisplayedTutor())) {
+                entityDescriptionPlaceholder.getChildren().clear();
+                entityDescriptionPlaceholder.getChildren().add(NO_ENTITY_DISPLAYED_LABEL);
+            }
+            break;
+        default:
+            break;
+        }
     }
 
+    /** Switches to the student list when the student tab is clicked **/
     @FXML
-    private void switchToTuitionClassList() {
-        logic.updateCurrentListType(Model.ListType.TUITIONCLASS_LIST);
-        entityListPanelPlaceholder.getChildren().clear();
-        entityListPanelPlaceholder.getChildren().add(tuitionClassListPanel.getRoot());
+    private void switchToStudentList() throws CommandException, ParseException {
+        try {
+            executeCommand(COMMAND_LIST_STUDENT_STRING);
 
-        setLabelStyle(Model.ListType.TUITIONCLASS_LIST);
+        } catch (CommandException e) {
+            throw e;
+        } catch (ParseException e) {
+            throw e;
+        }
     }
 
-    private void setLabelStyle(Model.ListType type) {
+    /** Switches to the tutor list when the tutor tab is clicked **/
+    @FXML
+    private void switchToTutorList() throws CommandException, ParseException {
+        try {
+            executeCommand(COMMAND_LIST_TUTOR_STRING);
+
+        } catch (CommandException e) {
+            throw e;
+        } catch (ParseException e) {
+            throw e;
+        }
+    }
+
+    /** Switches to the class list when the class tab is clicked **/
+    @FXML
+    private void switchToTuitionClassList() throws CommandException, ParseException {
+        try {
+            executeCommand(COMMAND_LIST_CLASS_STRING);
+
+        } catch (CommandException e) {
+            throw e;
+        } catch (ParseException e) {
+            throw e;
+        }
+    }
+
+
+    /** Updates the ui of the tabs **/
+    private void setLabelStyle() {
         studentLabelPanel.getStyleClass().clear();
         tutorLabelPanel.getStyleClass().clear();
         tuitionClassLabelPanel.getStyleClass().clear();
+        Model.ListType type = logic.getCurrentListType();
         switch (type) {
         case STUDENT_LIST:
             tutorLabelPanel.getStyleClass().add(UNSELECTED_LABEL_STYLE_CLASS);
             tuitionClassLabelPanel.getStyleClass().add(UNSELECTED_LABEL_STYLE_CLASS);
-            studentLabelPanel.getStyleClass().add(SELECTED_LABEL_STYLE_CLASS);
+            studentLabelPanel.getStyleClass().add(SELECTED_STUDENT_LABEL_STYLE_CLASS);
             break;
         case TUTOR_LIST:
             studentLabelPanel.getStyleClass().add(UNSELECTED_LABEL_STYLE_CLASS);
             tuitionClassLabelPanel.getStyleClass().add(UNSELECTED_LABEL_STYLE_CLASS);
-            tutorLabelPanel.getStyleClass().add(SELECTED_LABEL_STYLE_CLASS);
+            tutorLabelPanel.getStyleClass().add(SELECTED_TUTOR_LABEL_STYLE_CLASS);
             break;
         case TUITIONCLASS_LIST:
             studentLabelPanel.getStyleClass().add(UNSELECTED_LABEL_STYLE_CLASS);
             tutorLabelPanel.getStyleClass().add(UNSELECTED_LABEL_STYLE_CLASS);
-            tuitionClassLabelPanel.getStyleClass().add(SELECTED_LABEL_STYLE_CLASS);
+            tuitionClassLabelPanel.getStyleClass().add(SELECTED_CLASS_LABEL_STYLE_CLASS);
+            break;
+        default:
+            break;
+        }
+    }
+
+    /**
+     * Updates the list when specifications of an entity is changed.
+     * This is needed as ObservableList does not keep track of the
+     * changes in the elements of the list but only changes in the list itself.
+     */
+    private void updateListView() {
+        Model.ListType type = logic.getCurrentListType();
+        switch(type) {
+        case STUDENT_LIST:
+            studentListPanel = new StudentListPanel(logic.getFilteredStudentList());
+            entityListPanelPlaceholder.getChildren().clear();
+            entityListPanelPlaceholder.getChildren().add(studentListPanel.getRoot());
+            break;
+        case TUTOR_LIST:
+            tutorListPanel = new TutorListPanel(logic.getFilteredTutorList());
+            entityListPanelPlaceholder.getChildren().clear();
+            entityListPanelPlaceholder.getChildren().add(tutorListPanel.getRoot());
+            break;
+        case TUITIONCLASS_LIST:
+            tuitionClassListPanel = new TuitionClassListPanel(logic.getFilteredTuitionClassList());
+            entityListPanelPlaceholder.getChildren().clear();
+            entityListPanelPlaceholder.getChildren().add(tuitionClassListPanel.getRoot());
             break;
         default:
             break;
@@ -282,6 +434,26 @@ public class MainWindow extends UiPart<Stage> {
 
             if (commandResult.isList()) {
                 handleList();
+            }
+
+            if (commandResult.isUpdateListView()) {
+                updateListView();
+            }
+
+            if (commandResult.isUpdateDescription()) {
+                updateDescription(commandResult.getIndex());
+            }
+
+            if (commandResult.isClear()) {
+                handleClear();
+            }
+
+            if (commandResult.isAdd()) {
+                handleAdd();
+            }
+
+            if (commandResult.isDelete()) {
+                handleDelete(commandResult);
             }
 
             return commandResult;
