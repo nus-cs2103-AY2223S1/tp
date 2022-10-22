@@ -5,6 +5,7 @@ import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import swift.commons.core.GuiSettings;
+import swift.logic.commands.exceptions.CommandException;
 import swift.model.bridge.PersonTaskBridge;
 import swift.model.person.Person;
 import swift.model.task.Task;
@@ -15,7 +16,9 @@ import swift.model.task.Task;
 public interface Model {
     /** {@code Predicate} that always evaluate to true */
     Predicate<Person> PREDICATE_SHOW_ALL_PERSONS = unused -> true;
+    Predicate<Person> PREDICATE_HIDE_ALL_PEOPLE = unused -> false;
     Predicate<Task> PREDICATE_SHOW_ALL_TASKS = unused -> true;
+    Predicate<Task> PREDICATE_HIDE_ALL_TASKS = unused -> false;
     Predicate<PersonTaskBridge> PREDICATE_SHOW_ALL_BRIDGE = unused -> true;
 
     /**
@@ -47,6 +50,13 @@ public interface Model {
      * Sets the user prefs' address book file path.
      */
     void setAddressBookFilePath(Path addressBookFilePath);
+
+    /**
+     * Method that updates the associated contact list if it's unambiguous that a user has been selected.
+     *
+     * @throws CommandException
+     */
+    void hotUpdateAssociatedContacts() throws CommandException;
 
     /**
      * Replaces address book data with the data in {@code addressBook}.
