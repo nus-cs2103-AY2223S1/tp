@@ -65,4 +65,24 @@ public class EmailTest {
         assertTrue(Email.isValidEmail("if.you.dream.it_you.can.do.it@example.com")); // long local part
         assertTrue(Email.isValidEmail("e1234567@u.nus.edu")); // more than one period in domain
     }
+
+    @Test
+    public void equals() {
+        Email alice = new Email("alice@example.com");
+        Email aliceCopy = new Email("alice@example.com");
+        Email aliceCapitalCase = new Email("ALICE@example.com");
+        Email aliceSecond = new Email("alicechan@example.com");
+
+        // same values -> returns true
+        assertTrue(alice.equals(aliceCopy));
+
+        // same object -> returns true
+        assertTrue(alice.equals(alice));
+
+        // different case but same value -> returns true
+        assertTrue(aliceCapitalCase.equals(alice));
+
+        // different values -> returns false
+        assertFalse(aliceSecond.equals(alice));
+    }
 }
