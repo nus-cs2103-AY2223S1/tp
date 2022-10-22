@@ -58,9 +58,9 @@ public class PolicyDeleteAssignedCommand extends Command {
             throw new CommandException(Messages.MESSAGE_INVALID_POLICY_DISPLAYED_INDEX);
         }
 
-        AssignedPolicy[] AssignedPolicyArray = new AssignedPolicy[assignedPolicySet.size()];
-        assignedPolicySet.toArray(AssignedPolicyArray);
-        AssignedPolicy assignedPolicy = AssignedPolicyArray[targetPolicyIndex.getZeroBased()];
+        AssignedPolicy[] assignedPolicyArray = new AssignedPolicy[assignedPolicySet.size()];
+        assignedPolicySet.toArray(assignedPolicyArray);
+        AssignedPolicy assignedPolicy = assignedPolicyArray[targetPolicyIndex.getZeroBased()];
         boolean success = personToDeleteFrom.removePolicy(assignedPolicy);
         return new CommandResult(String.format(success
                 ? MESSAGE_ASSIGN_POLICY_SUCCESS : MESSAGE_ASSIGN_POLICY_FAIL, assignedPolicy, personToDeleteFrom),

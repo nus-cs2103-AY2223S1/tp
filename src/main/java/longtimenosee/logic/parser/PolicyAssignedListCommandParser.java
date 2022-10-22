@@ -1,11 +1,10 @@
 package longtimenosee.logic.parser;
 
+import static longtimenosee.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+
 import longtimenosee.commons.core.index.Index;
 import longtimenosee.logic.commands.PolicyAssignedListCommand;
-import longtimenosee.logic.commands.PolicyDeleteCommand;
 import longtimenosee.logic.parser.exceptions.ParseException;
-
-import static longtimenosee.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 
 /**
  * Parses input arguments and creates a new PolicyDeleteCommand object
