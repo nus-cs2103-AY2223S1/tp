@@ -151,7 +151,6 @@ The `Storage` component,
 Classes used by multiple components are in the `seedu.addressbook.commons` package.
 
 --------------------------------------------------------------------------------------------------------------------
-
 ## **Implementation**
 
 This section describes some noteworthy details on how certain features are implemented.
@@ -191,9 +190,102 @@ The user flow can be illustrated in the Activity Diagram as shown below.
 
 <img src="images/DisplayGroupActivityDiagram.png" width="550" />
 
-## Implementation
+-------
 
-### Bulk Assignment & Deletion of Tasks
+### **\[Developed\] Delete Group feature**
+
+#### **Implementation**
+
+This feature allows an existing group to be deleted from TABS, using the `deletegroup` command. Tasks assigned to the
+members will be deleted and existing members will be removed from the specified group. This is facilitated by the `DeleteGroupCommand` and `DeleteGroupCommandParser` classes.
+
+The `DeleteGroupCommandParser` class parses the input entered by the user, which is the group name the user wants to delete from TABS.
+
+The details of the members in the specified group will be updated as such:
+- Each member will have their assignments associated with the group removed.
+- Each member will be updated such that they are no longer associated with the target group.
+- Other details of the members will remain the same.
+
+A new `Person` with the edited fields above is created for each member, and `Model#setPerson()` will be called to update in TABS.
+
+`Model#deleteGroup(GroupName)` is called to remove the group from TABS, and `Model#updateFilteredPersonList(Predicate)` is called to display the new result in the GUI after deletion.
+
+**Steps**
+
+Step 1. The user enters `deletegroup [NAME OF GROUP]` command
+
+Step 2. The `DeleteGroupCommandParser` class parses the group name input and returns a `DeleteGroupCommand` object with a single `Group` attribute.
+
+Step 3. The `DisplayGroupCommand` object is executed. This group can be retrieved by calling `ObservableList#getGroupWithName()` method.
+
+Step 4. If no groups show up in the ObservableList, a CommandException is thrown where the group is not found in TABS. Otherwise, members of the group are retrieved with the `getMembers()` method in `Group` class.
+
+Step 5. For each member, `getAssignments()` and `getPersonGroups` methods from `Person` class are called to aid in removal of the tasks and associated group.
+
+Step 6. A new Person object is created with the edited fields and `Model#setPerson(Person)` is called to update the new details for each member, with the new `editedPerson` passed in as an argument.
+
+Step 7. The `Group` invoked is deleted from TABS. A CommandResult is then returned, which provides a feedback to user that the specified group has been successfully deleted.
+
+**Activity Diagram**
+
+The user flow can be illustrated in the Activity Diagram as shown below.
+
+<img src="images/DeleteGroupActivityDiagram.png" width="550" />
+
+**Sequence Diagram**
+
+The sequence diagram for DeleteGroup command is as shown below.
+
+<img src="images/DeleteGroupSequenceDiagram.png" width="550" />
+
+----------------------------
+
+### **\[Developed\] Add Group Member feature**
+
+#### **Implementation**
+
+This feature allows an existing group with its members to be displayed, using the `addgroupmember` command. This is facilitated by the `AddGroupMemberCommand` and `AddGroupMemberCommandParser` classes.
+
+The `AddGroupMemberCommandParser` class parses the input entered by the user, which consists of the person's name and the group's name.
+The person with the given name will then be added to the group with the given name. 
+
+The validity of the group name and person name input by the user will be checked with the help of an ObservableList for each field.
+
+`AddGroupMemberCommand` will also check if the person already exits in the specified group.
+
+If the both person and group names are valid, the specified person will be added to the group.
+
+Given below is an example of how `AddGroupMemberCommand` is being executed.
+
+**Steps**
+
+Step 1. The user enters `addmember [g/NAME OF GROUP] [n/ NAME OF PERSON]` command
+
+Step 2. The  `AddGroupMemberCommandParser` class parses the group name input and returns a `AddGroupMemberCommand` object with two attributes in two strings.
+
+Step 3. The `AddGroupMemberCommand` object is executed. The person and group
+can be obtained by calling the `ObservableList#get()` method on each field should they exist.
+
+Step 4. If an existing person in TABS has a name which matches exactly the name given by the user
+, then TABS will check for the group's existence.
+
+Step 5. If an existing group in TABS has a name which matches exactly the name given by the user, then TABS will check if the person already exists in the group. 
+
+Step 6. If the person does not yet exist in the group,
+then the person will be added to the specified group.
+
+Step 7. CommandResult is then returned, which provides a feedback to user that the specified person has been successfully
+added to the specified group.
+
+**Activity Diagram**
+
+The user flow can be illustrated in the Activity Diagram as shown below.
+
+<img src="images/AddGroupMemberActivityDiagram.png" width="550" />
+
+----
+
+### **\[Developed\] Bulk Assignment & Deletion of Tasks**
 All members in a group can be assigned a task via the `assigntaskall` command,
 and similarly deleted via the `deletetaskall` command. The commands accept a group
 to affect, and the task to be added or deleted. In any cases where a member
@@ -201,40 +293,42 @@ will have a duplicate task upon assignment/does not have the task to delete, the
 are skipped over.
 
 Below is an activity diagram reflecting the operation of the `assigntaskall` command.
-`deletetaskall` operates similarly. 
+`deletetaskall` operates similarly.
 
 ![AssignTaskAllDiagram](images/AssignTaskAllDiagram.png)
 ![AssignTaskAllDiagramAddendum](images/AssignTaskAllDiagramAddendum.png)
 
 #### Implementation Details
 1. User input is parsed in the context of `assigntaskall` and `deletetaskall` commands
-using the `AssignTaskAllCommandParser` and `DeleteTaskAllCommandParser` respectively.
-Erroneous inputs trigger a ParseException indicating to the user of invalid input.
+   using the `AssignTaskAllCommandParser` and `DeleteTaskAllCommandParser` respectively.
+   Erroneous inputs trigger a ParseException indicating to the user of invalid input.
 2. The correct command is then generated and executed. During execution, several
-conditions are checked to ensure proper operation of the instruction, failing which
-the user is notified. These are:
-   1. The group specified exists in the app;
-   2. The group has members to operate on, and;
-   3. At least one member is modified following the instruction.
+   conditions are checked to ensure proper operation of the instruction, failing which
+   the user is notified. These are:
+  1. The group specified exists in the app;
+  2. The group has members to operate on, and;
+  3. At least one member is modified following the instruction.
 3. The instruction iterates over each member and assigns/deletes the task respectively.
-As mentioned prior, members which already have/do not have the task respectively are
-skipped over.
+   As mentioned prior, members which already have/do not have the task respectively are
+   skipped over.
 4. The model is invoked to update its displayed person list.
 5. Successfully modified members are told to user via feedback.
 
 #### Implementation Rationale
 The above-mentioned flow follows closely with pre-existing instruction `edit`.
 In doing so, some rationales are carried forward:
-1. Follows in line with other commands by having an "XYZParser", in this case 
-`AssignTaskAllCommandParser` and `DeleteTaskAllCommandParser` respectively, which
-return an executable command to be executed by the `Logic` (and by extension `Model`)
-class.
+1. Follows in line with other commands by having an "XYZParser", in this case
+   `AssignTaskAllCommandParser` and `DeleteTaskAllCommandParser` respectively, which
+   return an executable command to be executed by the `Logic` (and by extension `Model`)
+   class.
 2. Upon execution, performs several checks which upon failure throw CommandExceptions
-to indicate to the user when the command is not successful.
+   to indicate to the user when the command is not successful.
 3. Modification of each person by adding/deleting assignment follows that of `edit`
-in that the given Person is treated as immutable, and an edited copy is created before
-`Model` is invoked to set the Person, thus adhering to defensive programming standards
-previously established.
+   in that the given Person is treated as immutable, and an edited copy is created before
+   `Model` is invoked to set the Person, thus adhering to defensive programming standards
+   previously established.
+
+----
 
 ### **\[Proposed\] Undo/redo feature**
 
@@ -332,7 +426,6 @@ _{Explain here how the data archiving feature will be implemented}_
 * [DevOps guide](DevOps.md)
 
 --------------------------------------------------------------------------------------------------------------------
-
 ## **Appendix: Requirements**
 ### Product scope
 **Target user profile**:
