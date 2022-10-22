@@ -79,7 +79,7 @@ public class Item {
      * Returns true if given item name is the same name.
      */
     public boolean nameMatches(String itemName) {
-        return itemName.equals(this.itemName.toString());
+        return itemName.equalsIgnoreCase(this.itemName.toString());
     }
 
     /**
@@ -127,19 +127,21 @@ public class Item {
     @Override
     public String toString() {
         final StringBuilder builder = new StringBuilder();
-        builder.append(getItemName())
-                .append("; Description: ")
-                .append(getDescription())
-                .append("; Quantity: ")
-                .append(getTotalQuantity())
-                .append("; Sell Price: ")
-                .append(getSellPrice())
-                .append("; Cost Price: ")
-                .append(getCostPrice());
+
+        builder.append("Name: ")
+                .append(getItemName() + "\n")
+                .append("Description: ")
+                .append(getDescription() + "\n")
+                .append("Quantity: ")
+                .append(getTotalQuantity() + "\n")
+                .append("Sell Price: ")
+                .append(getSellPrice() + "\n")
+                .append("Cost Price: ")
+                .append(getCostPrice() + "\n");
 
         Set<Tag> tags = getTags();
         if (!tags.isEmpty()) {
-            builder.append("; Tags: ");
+            builder.append("Tags: ");
             tags.forEach(builder::append);
         }
         return builder.toString();

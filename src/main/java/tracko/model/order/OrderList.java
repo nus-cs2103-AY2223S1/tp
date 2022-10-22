@@ -8,6 +8,7 @@ import java.util.List;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import tracko.model.item.exceptions.ItemNotFoundException;
 
 /**
  * A list of orders.
@@ -55,6 +56,16 @@ public class OrderList implements Iterable<Order> {
         return internalUnmodifiableList;
     }
 
+
+    /**
+     * Refreshes the data to reflect the updated data in the GUI.
+     */
+    public void refreshData() {
+        for (int i = 0; i < internalList.size(); i++) {
+            internalList.set(i, internalList.get(i));
+        }
+    }
+
     @Override
     public Iterator<Order> iterator() {
         return internalList.iterator();
@@ -65,6 +76,18 @@ public class OrderList implements Iterable<Order> {
         return other == this // short circuit if same object
             || (other instanceof OrderList // instanceof handles nulls
             && internalList.equals(((OrderList) other).internalList));
+    }
+
+    public void setOrder(Order orderToEdit, Order editedOrder) {
+        requireAllNonNull(orderToEdit, editedOrder);
+
+        int index = internalList.indexOf(orderToEdit);
+
+        if (index == -1) {
+            throw new ItemNotFoundException();
+        }
+
+        internalList.set(index, editedOrder);
     }
 
     @Override

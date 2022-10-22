@@ -112,7 +112,7 @@ public class MainWindow extends UiPart<Stage> {
      * Fills up all the placeholders of this window.
      */
     void fillInnerParts() {
-        orderListPanel = new OrderListPanel(logic.getFilteredOrderList());
+        orderListPanel = new OrderListPanel(logic.getSortedOrderList());
         //TODO: Edit when getInventoryList() is implemented in Logic
         itemListPanel = new ItemListPanel(logic.getFilteredItemList());
         displayBox = new DisplayBox(orderListPanel, itemListPanel);
@@ -154,6 +154,8 @@ public class MainWindow extends UiPart<Stage> {
 
     void show() {
         primaryStage.show();
+        primaryStage.setMaximized(true);
+        primaryStage.setResizable(false);
     }
 
     /**

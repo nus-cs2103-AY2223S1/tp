@@ -17,9 +17,11 @@ import tracko.logic.commands.item.FindItemCommand;
 import tracko.logic.commands.item.ListItemsCommand;
 import tracko.logic.commands.order.AddOrderCommand;
 import tracko.logic.commands.order.DeleteOrderCommand;
+import tracko.logic.commands.order.EditOrderCommand;
 import tracko.logic.commands.order.FindOrderCommand;
 import tracko.logic.commands.order.ListOrdersCommand;
 import tracko.logic.commands.order.MarkOrderCommand;
+import tracko.logic.commands.order.SortOrderCommand;
 import tracko.logic.parser.exceptions.ParseException;
 import tracko.logic.parser.item.AddItemCommandParser;
 import tracko.logic.parser.item.DeleteItemCommandParser;
@@ -27,8 +29,10 @@ import tracko.logic.parser.item.EditItemCommandParser;
 import tracko.logic.parser.item.FindItemCommandParser;
 import tracko.logic.parser.order.AddOrderCommandParser;
 import tracko.logic.parser.order.DeleteOrderCommandParser;
+import tracko.logic.parser.order.EditOrderCommandParser;
 import tracko.logic.parser.order.FindOrderCommandParser;
 import tracko.logic.parser.order.MarkOrderCommandParser;
+import tracko.logic.parser.order.SortOrderCommandParser;
 
 /**
  * Parses user input.
@@ -76,15 +80,27 @@ public class TrackOParser {
 
         case AddOrderCommand.COMMAND_WORD:
             return new AddOrderCommandParser().parse(arguments);
+
         case ListOrdersCommand.COMMAND_WORD:
             return new ListOrdersCommand();
+
         case FindOrderCommand.COMMAND_WORD:
             return new FindOrderCommandParser().parse(arguments);
+
+        case SortOrderCommand.COMMAND_WORD:
+            return new SortOrderCommandParser().parse(arguments);
+
+        case EditOrderCommand.COMMAND_WORD:
+            return new EditOrderCommandParser().parse(arguments);
+
+        case MarkOrderCommand.COMMAND_WORD:
+            return new MarkOrderCommandParser().parse(arguments);
+
         case DeleteOrderCommand.COMMAND_WORD:
             return new DeleteOrderCommandParser().parse(arguments);
 
-        // case HelpCommand.COMMAND_WORD:
-        //     return new HelpCommand();
+        case HelpCommand.COMMAND_WORD:
+            return new HelpCommand();
 
         case AddItemCommand.COMMAND_WORD:
             return new AddItemCommandParser().parse(arguments);
@@ -100,9 +116,6 @@ public class TrackOParser {
 
         case EditItemCommand.COMMAND_WORD:
             return new EditItemCommandParser().parse(arguments);
-
-        case MarkOrderCommand.COMMAND_WORD:
-            return new MarkOrderCommandParser().parse(arguments);
 
         case ExitCommand.COMMAND_WORD:
             return new ExitCommand();

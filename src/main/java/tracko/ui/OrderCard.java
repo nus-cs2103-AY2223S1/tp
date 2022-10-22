@@ -7,6 +7,7 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
+import tracko.commons.util.DateTimeUtil;
 import tracko.model.order.Order;
 
 /**
@@ -33,6 +34,8 @@ public class OrderCard extends UiPart<Region> {
     @FXML
     private Label id;
     @FXML
+    private Label timeCreated;
+    @FXML
     private Label phone;
     @FXML
     private Label address;
@@ -51,7 +54,7 @@ public class OrderCard extends UiPart<Region> {
     public OrderCard(Order order, int displayedIndex) {
         super(FXML);
         this.order = order;
-        id.setText(displayedIndex + ". ");
+        id.setText(Integer.toString(displayedIndex));
         name.setText(order.getName().fullName);
         name.setWrapText(true);
         name.setPadding(new Insets(0, 10, 0, 0));
@@ -63,6 +66,10 @@ public class OrderCard extends UiPart<Region> {
         phone.setText(order.getPhone().value);
         phone.setWrapText(true);
         phone.setPadding(new Insets(0, 10, 0, 0));
+
+        timeCreated.setText(order.getTimeCreated().format(DateTimeUtil.getFormat()));
+        timeCreated.setWrapText(true);
+        timeCreated.setPadding(new Insets(0, 10, 0, 0));
 
         address.setText(order.getAddress().value);
         address.setWrapText(true);
@@ -88,12 +95,13 @@ public class OrderCard extends UiPart<Region> {
             deliveryStatus.setStyle("-fx-background-color: #FF6C64; -fx-text-fill: #FFEDEC");
         }
 
-        items.setPadding(new Insets(15, 10, 15, 10));
-        items.setStyle("-fx-background-insets: 10, 10, 0, 0;");
+        items.setPadding(new Insets(8, 10, 8, 10));
+        items.setStyle("-fx-background-insets: 5 0 5 0;");
         items.getStyleClass().add("ordered-items-container");
         order.getItemList().stream()
                 .forEach(pair -> items.getChildren().add(
                         constructItemLabel(pair.toString())));
+
     }
 
     /**

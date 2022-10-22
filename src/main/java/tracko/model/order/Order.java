@@ -6,6 +6,8 @@ import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Objects;
 
+import tracko.commons.util.DateTimeUtil;
+
 /**
  * Represents an Order in the address book.
  * Guarantees: details are present and not null, field values are validated, immutable.
@@ -32,6 +34,23 @@ public class Order {
         this.address = address;
         this.itemList = itemList;
         this.timeCreated = LocalDateTime.now();
+        this.isPaid = isPaid;
+        this.isDelivered = isDelivered;
+    }
+
+    /**
+     * Every field must be present and not null.
+     * To be used for reading order data from Storage
+     */
+    public Order(Name name, Phone phone, Email email, Address address, LocalDateTime timeCreated,
+                 List<ItemQuantityPair> itemList, boolean isPaid, boolean isDelivered) {
+        requireAllNonNull(name, phone, email, address, timeCreated, itemList);
+        this.name = name;
+        this.phone = phone;
+        this.email = email;
+        this.address = address;
+        this.timeCreated = timeCreated;
+        this.itemList = itemList;
         this.isPaid = isPaid;
         this.isDelivered = isDelivered;
     }
@@ -128,6 +147,7 @@ public class Order {
         sb.append("Phone: " + getPhone().value + "\n");
         sb.append("Email: " + getEmail().value + "\n");
         sb.append("Address: " + getAddress().value + "\n");
+        sb.append("Time Created: " + getTimeCreated().format(DateTimeUtil.getFormat()) + "\n");
         sb.append("Item List: \n");
         for (ItemQuantityPair itemQuantityPair : getItemList()) {
             sb.append("\u2022 " + itemQuantityPair.toString() + "\n");
@@ -136,4 +156,5 @@ public class Order {
         sb.append("Delivery status: " + getDeliveryStatus() + "\n");
         return sb.toString();
     }
+
 }

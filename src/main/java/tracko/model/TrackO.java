@@ -146,4 +146,19 @@ public class TrackO implements ReadOnlyTrackO {
     public int hashCode() {
         return orders.hashCode();
     }
+
+    public void setOrder(Order orderToEdit, Order editedOrder) {
+        requireNonNull(editedOrder);
+
+        orders.setOrder(orderToEdit, editedOrder);
+    }
+
+    public void refreshInventoryData() {
+        items.refreshData();
+    }
+
+
+    public void refreshOrderData() {
+        orders.refreshData();
+    }
 }
