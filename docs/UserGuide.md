@@ -177,11 +177,12 @@ Examples:
 
 * `aa 1 d/21-Jan-2023 12:30 PM l/Jurong Point, Starbucks`
 
-### Sorting by alphabetical order : `sort alphabet`
+### Sorting: `sort KEYWORD`/  `sort KEYWORD desc`
 
-Sorts the contacts shown in the list of clients by alphabetical order.
+Sorts the contacts shown in the list of clients by alphabetical order. It is ascending by default.
+You can sort the contacts in descending order by adding `desc` behind the `KEYWORD`.
 
-Format: sort `KEYWORD`
+Format: sort `KEYWORD` / sort `KEYWORD desc`
 
 Types of `KEYWORD`: name
 
@@ -239,4 +240,4 @@ Action | Format, Examples
 **Find** | `find KEYWORD [MORE_KEYWORDS]` <br> `find [CATEGORY] KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`
 **List** | `list`
 **Help** | `help`
-**Sort Alphabet** | `sort alphabet` 
+**Sort** | `sort KEYWORD, sort KEYWORD desc` 
