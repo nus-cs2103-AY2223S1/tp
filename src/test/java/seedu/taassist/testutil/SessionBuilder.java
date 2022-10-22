@@ -1,5 +1,7 @@
 package seedu.taassist.testutil;
 
+import static seedu.taassist.logic.parser.CliSyntax.PREFIX_SESSION;
+
 import java.time.LocalDate;
 
 import seedu.taassist.model.session.Date;
@@ -57,5 +59,9 @@ public class SessionBuilder {
 
     public Session build() {
         return new Session(name, date);
+    }
+
+    public static String prependPrefix(Session session) {
+        return PREFIX_SESSION + session.getSessionName();
     }
 }
