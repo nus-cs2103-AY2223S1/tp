@@ -58,6 +58,18 @@ public class SessionList {
     }
 
     /**
+     * Removes session at the given index.
+     * @param index of session to be removed
+     */
+    public void removeAtIndex(Index index) {
+        int indexToRemove = index.getZeroBased();
+        if (indexToRemove >= sessionList.size()) {
+            throw new IllegalArgumentException(MESSAGE_INVALID_SESSION_INDEX);
+        }
+        sessionList.remove(indexToRemove);
+    }
+
+    /**
      * Gets a list of the days from the session list.
      *
      * @return List of strings with the days.

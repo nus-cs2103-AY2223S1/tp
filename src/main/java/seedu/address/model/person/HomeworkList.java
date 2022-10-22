@@ -64,6 +64,18 @@ public class HomeworkList {
     }
 
     /**
+     * Removes the homework at the given index.
+     * @param index of homework to be removed
+     */
+    public void removeAtIndex(Index index) {
+        int indexToEdit = index.getZeroBased();
+        if (indexToEdit >= homeworkList.size()) {
+            throw new IllegalArgumentException(MESSAGE_INVALID_HOMEWORK_INDEX);
+        }
+        homeworkList.remove(indexToEdit);
+    }
+
+    /**
      * Returns true if a given {@code Index} is a valid index in the list.
      */
     public boolean isValidIndex(Index index) {
@@ -73,7 +85,6 @@ public class HomeworkList {
     /**
      * Returns a String description of the homework list. If homework list size is greater than two,
      * only the first two are shown.
-     *
      * @return a truncated homework list.
      */
     public String shortDescription() {
