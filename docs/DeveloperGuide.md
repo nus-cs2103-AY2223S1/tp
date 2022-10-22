@@ -219,8 +219,8 @@ Step 1: The user enter the command `find n/alex`.
 
 Step 2: TutHub uses `TuthubParser` to determine which parser to use based on the command input by the user. In this case, `FindByPrefixParser` is used to parse the `find` command.
 
-Step 3: `FindByPrefixParser` parses the `find` command to determine the attribute to search through and the keywords input by the user.
-`FindByPrefixParser` creates a `FindByNameCommand` that extends `FindByPrefixCommand` with the keywords put into a `NameContainsKeywordsPredicate` object.
+Step 3: `FindByPrefixCommandParser` parses the `find` command to determine the attribute to search through and the keywords input by the user.
+`FindByPrefixCommandParser` creates a `FindByNameCommand` that extends `FindByPrefixCommand` with the keywords put into a `NameContainsKeywordsPredicate` object.
 
 Step 4: The `FindByNameCommand` is executed and tutors with names containing the string alex are added to the filtered list of tutors that have names
 containing the string alex captured in the `ModelManager` object, which makes use of the `UI` class to display the matching tutors.
