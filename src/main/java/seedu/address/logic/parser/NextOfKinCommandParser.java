@@ -20,11 +20,8 @@ import java.util.Set;
 import java.util.stream.Stream;
 
 import seedu.address.commons.core.index.Index;
-import seedu.address.logic.commands.AddCommand;
-import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.NextOfKinCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.Model;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Phone;
@@ -32,8 +29,16 @@ import seedu.address.model.person.nextofkin.NextOfKin;
 import seedu.address.model.person.nextofkin.Relationship;
 import seedu.address.model.tag.Tag;
 
+/**
+ * Parses input arguments and creates a new NextOfKinCommand object
+ */
 public class NextOfKinCommandParser implements Parser<NextOfKinCommand> {
 
+    /**
+     * Parses the given {@code String} of arguments in the context of the NextOfKinCommand
+     * and returns an NextOfKinCommand object for execution.
+     * @throws ParseException if the user input does not conform the expected format
+     */
     @Override
     public NextOfKinCommand parse(String args) throws ParseException {
         requireNonNull(args);

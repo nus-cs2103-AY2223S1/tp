@@ -108,6 +108,9 @@ public class Student extends Person {
         tuitionClasses.remove(tuitionClass);
     }
 
+    /**
+     * Add {@code nextOfKin} to student.
+     */
     public void addNextOfKin(NextOfKin nextOfKin) throws CommandException {
         requireAllNonNull(nextOfKin);
         if (this.nextOfKin != null && this.nextOfKin.equals(nextOfKin)) {

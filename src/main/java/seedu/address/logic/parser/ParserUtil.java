@@ -156,6 +156,11 @@ public class ParserUtil {
         return new Time(splitTime[0], splitTime[1]);
     }
 
+    /**
+     * Parses {@code String relationship} into an {@code Relationship} and returns it.
+     * Leading and trailing whitespaces will be trimmed.
+     * @throws ParseException if the given {@code relationship} is invalid.
+     */
     public static Relationship parseRelationship(String relationship) throws ParseException {
         requireNonNull(relationship);
         String trimmedRelationship = relationship.trim();

@@ -38,7 +38,6 @@ import static seedu.address.logic.commands.CommandTestUtil.PHONE_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.PHONE_DESC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.QUALIFICATION_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.QUALIFICATION_DESC_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.RELATIONSHIP_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.RELATIONSHIP_DESC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.SCHOOL_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.SCHOOL_DESC_BOB;

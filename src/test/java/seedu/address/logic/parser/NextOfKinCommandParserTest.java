@@ -1,13 +1,11 @@
 package seedu.address.logic.parser;
 
-import static org.junit.jupiter.api.Assertions.*;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.commands.CommandTestUtil.ADDRESS_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.ADDRESS_DESC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.DAY_DESC_CLASS1;
 import static seedu.address.logic.commands.CommandTestUtil.EMAIL_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.EMAIL_DESC_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.ENTITY_DESC_STUDENT;
 import static seedu.address.logic.commands.CommandTestUtil.INSTITUTION_DESC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_ADDRESS_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_EMAIL_DESC;
@@ -15,7 +13,6 @@ import static seedu.address.logic.commands.CommandTestUtil.INVALID_NAME_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_PHONE_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_RELATIONSHIP_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_TAG_DESC;
-import static seedu.address.logic.commands.CommandTestUtil.LEVEL_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.LEVEL_DESC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.NAME_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.NAME_DESC_BOB;
@@ -24,7 +21,6 @@ import static seedu.address.logic.commands.CommandTestUtil.PHONE_DESC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.QUALIFICATION_DESC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.RELATIONSHIP_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.RELATIONSHIP_DESC_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.SCHOOL_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.SCHOOL_DESC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.SUBJECT_DESC_CLASS1;
 import static seedu.address.logic.commands.CommandTestUtil.TAG_DESC_FRIEND;
@@ -44,13 +40,10 @@ import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
 import static seedu.address.testutil.TypicalIndexes.INDEX_THIRD_PERSON;
 import static seedu.address.testutil.TypicalNextOfKins.AMY_NEXTOFKIN;
 import static seedu.address.testutil.TypicalNextOfKins.BOB_NEXTOFKIN;
-import static seedu.address.testutil.TypicalStudents.AMY_STUDENT;
-import static seedu.address.testutil.TypicalStudents.BOB_STUDENT;
 
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.index.Index;
-import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.commands.NextOfKinCommand;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
@@ -58,10 +51,8 @@ import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.nextofkin.NextOfKin;
 import seedu.address.model.person.nextofkin.Relationship;
-import seedu.address.model.person.student.Student;
 import seedu.address.model.tag.Tag;
 import seedu.address.testutil.NextOfKinBuilder;
-import seedu.address.testutil.StudentBuilder;
 
 public class NextOfKinCommandParserTest {
     private NextOfKinCommandParser parser = new NextOfKinCommandParser();

@@ -94,7 +94,8 @@ public class TypicalStudents {
     //    public static AddressBook getTypicalStudentsAddressBook() {
     //        AddressBook ab = new AddressBook();
     //
-    //        List<Student> studentList = new ArrayList<>(Arrays.asList(TypicalStudents.STUDENT1, TypicalStudents.STUDENT2));
+    //        List<Student> studentList = new ArrayList<>(Arrays.asList(TypicalStudents.STUDENT1,
+    //        TypicalStudents.STUDENT2));
     //        for (Student s : studentList) {
     //            ab.addPerson(s);
     //        }

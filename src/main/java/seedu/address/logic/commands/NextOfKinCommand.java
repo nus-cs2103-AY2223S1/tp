@@ -18,6 +18,9 @@ import seedu.address.model.Model;
 import seedu.address.model.person.nextofkin.NextOfKin;
 import seedu.address.model.person.student.Student;
 
+/**
+ * Adds a Next Of Kin particulars to an existing student in the database.
+ */
 public class NextOfKinCommand extends Command {
 
     public static final String COMMAND_WORD = "nok";
@@ -50,6 +53,9 @@ public class NextOfKinCommand extends Command {
     private final Index index;
     private final NextOfKin nextOfKin;
 
+    /**
+     * @param index of the student in the filtered person list to edit
+     */
     public NextOfKinCommand(Index index) {
         requireNonNull(index);
 
@@ -57,6 +63,10 @@ public class NextOfKinCommand extends Command {
         this.nextOfKin = null;
     }
 
+    /**
+     * @param index of the student in the filtered student list to edit
+     * @param nextOfKin next of kin to add to the student
+     */
     public NextOfKinCommand(Index index, NextOfKin nextOfKin) {
         requireNonNull(index);
         requireNonNull(nextOfKin);
@@ -64,6 +74,7 @@ public class NextOfKinCommand extends Command {
         this.index = index;
         this.nextOfKin = nextOfKin;
     }
+
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
