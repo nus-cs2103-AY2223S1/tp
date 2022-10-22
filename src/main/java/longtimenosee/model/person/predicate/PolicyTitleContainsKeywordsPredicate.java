@@ -5,20 +5,21 @@ import java.util.function.Predicate;
 
 import longtimenosee.commons.util.StringUtil;
 import longtimenosee.model.person.Person;
-import longtimenosee.model.tag.Tag;
+import longtimenosee.model.policy.AssignedPolicy;
 
 /**
- * Tests that a {@code Person}'s {@code Tag} matches any of the keywords given.
+ * Tests that a {@code AssignedPolicy}'s {@code Policy} {@code Title} for a given {@code Person} matches any of the
+ * keywords given.
  */
-public class TagContainsKeywordsPredicate implements Predicate<Person> {
+public class PolicyTitleContainsKeywordsPredicate implements Predicate<Person> {
     private final List<String> keywords;
 
     /**
-     * Constructs a TagContainsKeywordsPredicate object, which consists of a keywords input.
+     * Constructs a PolicyTitleContainsKeywordsPredicate object, which consists of a keywords input.
      *
      * @param keywords is the keywords input by the user to be compared.
      */
-    public TagContainsKeywordsPredicate(List<String> keywords) {
+    public PolicyTitleContainsKeywordsPredicate(List<String> keywords) {
         assert !keywords.isEmpty();
         this.keywords = keywords;
     }
@@ -26,8 +27,8 @@ public class TagContainsKeywordsPredicate implements Predicate<Person> {
     @Override
     public boolean test(Person person) {
         for (String keyword : keywords) {
-            for (Tag tag : person.getTags()) {
-                if (StringUtil.containsWordIgnoreCase(tag.tagName, keyword)) {
+            for (AssignedPolicy assignedPolicy : person.getAssignedPolicies()) {
+                if (StringUtil.containsWordIgnoreCase(assignedPolicy.getPolicy().getTitle().fullTitle, keyword)) {
                     return true;
                 }
             }
@@ -40,12 +41,11 @@ public class TagContainsKeywordsPredicate implements Predicate<Person> {
         if (other == this) {
             return true;
         } else {
-            if (other instanceof TagContainsKeywordsPredicate) {
-                return keywords.equals(((TagContainsKeywordsPredicate) other).keywords);
+            if (other instanceof PolicyTitleContainsKeywordsPredicate) {
+                return keywords.equals(((PolicyTitleContainsKeywordsPredicate) other).keywords);
             } else {
                 return false;
             }
         }
     }
 }
-

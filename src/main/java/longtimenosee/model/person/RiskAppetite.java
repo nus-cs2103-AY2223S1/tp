@@ -1,6 +1,8 @@
 package longtimenosee.model.person;
 
+import java.util.Collections;
 import java.util.Comparator;
+import java.util.List;
 
 /**
  *  Encapsulation for a client's RiskAppetite
@@ -28,6 +30,9 @@ public class RiskAppetite {
     public static final String MESSAGE_FORMAT_CONSTRAINTS = "Error: RiskAppetite must be one "
             + "of the following indicators: "
             + "{H, M, L}";
+
+    public static final List<String> MESSAGE_VALIDATION = Collections.unmodifiableList(List.of("H", "M", "L"));
+
     public static final String SORT_RISK_APPETITE = "risk appetite";
 
     public final String value;
@@ -66,9 +71,14 @@ public class RiskAppetite {
         return this.rl;
     }
 
-
+    /**
+     * Returns true if a given string is a valid risk appetite.
+     *
+     * @param ra is the input string to be tested
+     * @return boolean to indicate if the given string is a valid risk appetite
+     */
     public static boolean isValidFormat(String ra) {
-        return MESSAGE_FORMAT_CONSTRAINTS.contains(ra);
+        return MESSAGE_VALIDATION.contains(ra);
     }
 
     /**

@@ -2,6 +2,9 @@ package longtimenosee.model.policy;
 
 import static longtimenosee.commons.util.AppUtil.checkArgument;
 
+import java.util.Collections;
+import java.util.List;
+
 /**
  * Encapsulation for the company a policy belongs to
  */
@@ -11,7 +14,8 @@ public class Company {
             + "of the following companies: "
             + "{MNF, PRU, AXA, GEL, NTU, ETQ, TML, AIA, AVI, FWD}";
 
-    public static final String CONSTRAINTS = "MNF, PRU, AXA, GEL, NTU, ETQ, TML, AIA, AVI, FWD";
+    public static final List<String> CONSTRAINTS =
+            Collections.unmodifiableList(List.of("MNF", "PRU", "AXA", "GEL", "NTU", "ETQ", "TML", "AIA", "AVI", "FWD"));
 
     public final String value;
 
