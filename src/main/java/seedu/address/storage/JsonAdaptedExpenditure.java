@@ -19,7 +19,7 @@ public class JsonAdaptedExpenditure extends JsonAdaptedEntry {
     /**
      * Constructs a {@code JsonAdaptedEntry} with the given person details.
      */
-    protected EntryType type = new EntryType("e");
+    protected static EntryType type = new EntryType("e");
     @JsonCreator
     public JsonAdaptedExpenditure(@JsonProperty("description") String description,
                                   @JsonProperty("amount") String amount,
@@ -38,29 +38,8 @@ public class JsonAdaptedExpenditure extends JsonAdaptedEntry {
      */
     @Override
     public void checkIsValidJsonEntry() throws IllegalValueException {
-        if (description == null) {
-            throw new IllegalValueException(
-                    String.format(MISSING_FIELD_MESSAGE_FORMAT, Description.class.getSimpleName()));
-        }
-        if (!Description.isValidDescription(description)) {
-            throw new IllegalValueException(Description.MESSAGE_CONSTRAINTS);
-        }
-        if (amount == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Amount.class.getSimpleName()));
-        }
-        if (!Amount.isValidAmount(amount)) {
-            throw new IllegalValueException(Amount.MESSAGE_CONSTRAINTS);
-        }
-        if (date == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Date.class.getSimpleName()));
-        }
-        if (!Date.isValidDate(date)) {
-            throw new IllegalValueException(Date.MESSAGE_CONSTRAINTS);
-        }
-        if (tagged == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Tag.class.getSimpleName()));
-        }
-        if (!Tag.isValidTagName(this.type, tagged)) {
+        super.checkIsValidJsonEntry();
+        if (!Tag.isValidTagName(JsonAdaptedExpenditure.type, tagged)) {
             throw new IllegalValueException(Tag.EXPENDITURE_CONSTRAINTS);
         }
     }
@@ -75,7 +54,7 @@ public class JsonAdaptedExpenditure extends JsonAdaptedEntry {
         final Description modelDescription = new Description(description);
         final Amount modelAmount = new Amount(amount);
         final Date modelDate = new Date(date);
-        final Tag modelTag = new Tag(this.type, tagged);
+        final Tag modelTag = new Tag(JsonAdaptedExpenditure.type, tagged);
         return new Expenditure(modelDescription, modelDate, modelAmount, modelTag);
     }
 }
