@@ -95,7 +95,7 @@ Here's a (partial) class diagram of the `Logic` component:
 How the `Logic` component works:
 1. When `Logic` is called upon to execute a command, it uses the `AddressBookParser` class to parse the user command.
 1. This results in a `Command` object (more precisely, an object of one of its subclasses e.g., `AddCommand`) which is executed by the `LogicManager`.
-1. The command can communicate with the `Model` when it is executed (e.g. to add a person).
+1. The command can communicate with the `Model` when it is executed (e.g. to add a task).
 1. The result of the command execution is encapsulated as a `CommandResult` object which is returned back from `Logic`.
 
 The Sequence Diagram below illustrates the interactions within the `Logic` component for the `execute("delete 1")` API call.
@@ -148,6 +148,22 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 ## **Implementation**
 
 This section describes some noteworthy details on how certain features are implemented.
+
+### Hide Command
+
+In order to get a clearer view by archiving overdue and completed tasks whenever a user enters the command. Hidden (archived) tasks will still be stored and can be retrieved using `listAllCommand`.    
+
+Command takes input
+* `archive <index>` where `<index>` is the index of the tasks based on the displayed index shown in Main Window.
+* `archive -d date` where `date` should be formatted as `YYYY-MM-DD` and all tasks before and on `date` will be hidden (archived).
+
+Command result will tell us number of tasks remaining. 
+
+Should `date` be improperly formatted or `<index>` entered is out of bound, a generic CommandResult and an error message will be given. Model will not be updated.
+
+Below is the sequence diagram for an execution of `archive <index>`, assuming `<index>` is not out of bound. 
+
+![Sequence diagram when command `archive 1` is executed](images/HideSequenceDiagram-0.png)
 
 ### \[Proposed\] Undo/redo feature
 
@@ -266,12 +282,14 @@ _{Explain here how the data archiving feature will be implemented}_
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
+*Core Functionalities*
+
 | Priority | As a …​        | I want to …​                                                              | So that I can…​                             |
 |--------|----------------|---------------------------------------------------------------------------|---------------------------------------------|
 | `* * *` | beginner user  | add tasks                                                                 | keep track of the tasks on hand             |
 | `* * *` | beginner user  | delete tasks                                                              | remove tasks that are no longer relevant    |
 | `* * *` | beginner user  | tag my tasks to a specific module or commitment                           | organise them better                        |
-| `* * *` | beginner user  | keep track of deadlines related to added tasks                            |                                             |
+| `* * *` | beginner user  | keep track of deadlines related to added tasks                            | complete tasks on time                      |
 | `* * *` | beginner user  | see all the tasks I have that have yet to be completed                    | easily identify tasks to work on            |
 | `* *`  | potential user | see example tasks that show how the app displays tasks and their statuses | have a better idea of how the app functions |
 | `* *`  | beginner user  | edit the task names                                                       | rectify mistakes                            |
@@ -280,6 +298,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 
 *{More to be added}*
+
 
 ### Use cases
 
