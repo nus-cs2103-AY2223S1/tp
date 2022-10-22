@@ -28,7 +28,7 @@ public class SavedExerciseListWindow extends UiPart<Region> implements Observer 
     }
 
     /**
-     * Sets a defensive copy of ExerciseHashMap in SavedExerciseListWindow.
+     * Sets a copy of ExerciseHashMap in SavedExerciseListWindow.
      * Subscribes the window to changes in the ExerciseHashmap and displays its current state.
      * @param ehm ExerciseHashMap
      */

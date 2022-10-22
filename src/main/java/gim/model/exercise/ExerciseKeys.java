@@ -2,8 +2,6 @@ package gim.model.exercise;
 
 import java.util.ArrayList;
 
-import gim.model.exercise.exceptions.ExerciseNotFoundException;
-
 /**
  * A class that contains the names of Keys in the Exercise Hashmap.
  */
@@ -16,13 +14,13 @@ public class ExerciseKeys {
      */
     public ExerciseKeys(ArrayList<String> arrL) {
         if (arrL == null) {
-            throw new ExerciseNotFoundException();
+            throw new NullPointerException("No Observer list found!");
         }
         keyArrayList = arrL;
     }
 
     /**
-     * Returns the formatted display based on the current state of the Hashmap.
+     * Returns the formatted display for UI SavedExerciseListWindow based on the current state of the Hashmap.
      * @return String
      */
     public String getDisplay() {

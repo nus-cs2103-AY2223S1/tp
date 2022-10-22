@@ -7,13 +7,11 @@ import java.util.ArrayList;
 
 import org.junit.jupiter.api.Test;
 
-import gim.model.exercise.exceptions.ExerciseNotFoundException;
-
 public class ExerciseKeysTest {
 
     @Test
     public void exerciseKeys_nullCreation() {
-        assertThrows( ExerciseNotFoundException.class, () -> new ExerciseKeys(null));
+        assertThrows(NullPointerException.class, () -> new ExerciseKeys(null));
     }
 
     @Test
