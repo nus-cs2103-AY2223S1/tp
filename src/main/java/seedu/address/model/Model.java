@@ -101,7 +101,7 @@ public interface Model {
     boolean hasSupplyItemExcluding(SupplyItem item, SupplyItem excludedItem);
 
     /**
-     * Returns true if {@supplier} is a supplier for some supply item in the inventory.
+     * Returns true if {@code supplier} is a supplier for some supply item in the inventory.
      */
     boolean hasSupplyItemSuppliedBy(Person supplier);
 
@@ -121,6 +121,21 @@ public interface Model {
      * Deletes the supply item at the specified {@code index}.
      */
     void deleteSupplyItem(Index index);
+
+    /**
+     * Increases the supply item at the specified {@code targetIndex} by {@code amount}.
+     */
+    void increaseSupplyItem(Index targetIndex, int amount);
+
+    /**
+     * Decreases the supply item at the specified {@code targetIndex} by {@code amount}.
+     */
+    void decreaseSupplyItem(Index targetIndex, int amount);
+
+    /**
+     * Changes the increase/decrease amount at the specified {@code targetIndex} to {@code amount}.
+     */
+    void changeIncDecAmount(Index targetIndex, int amount);
 
     /**
      * Adds a new task to taskList

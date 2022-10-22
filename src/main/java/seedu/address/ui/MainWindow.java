@@ -128,7 +128,8 @@ public class MainWindow extends UiPart<Stage> {
         taskListPanel = new TaskListPanel(logic.getFilteredTaskList());
         taskListPanelPlaceholder.getChildren().add(taskListPanel.getRoot());
 
-        inventoryPanel = new InventoryPanel(logic.getFilteredSupplyItemList());
+        inventoryPanel = new InventoryPanel(logic.getFilteredSupplyItemList(), logic::increaseSupplyItemHandler,
+                logic::decreaseSupplyItemHandler, logic::changeIncDecAmountHandler);
         inventoryPanelPlaceholder.getChildren().add(inventoryPanel.getRoot());
 
         statsCard = new StatsCard(logic.getFilteredSupplyItemList(), logic.getFilteredTaskList());

@@ -29,7 +29,11 @@ public class SupplyItem {
     private final int minStock;
     private final Person supplier;
     private final Set<Tag> tags = new HashSet<>();
+    private final int incDecAmount;
 
+    public SupplyItem(String name, int currentStock, int minStock, Person supplier, Set<Tag>tags) {
+        this(name, currentStock, minStock, supplier, tags, 1);
+    }
 
     /*
      * The first character of the item must not be a whitespace,
@@ -39,14 +43,15 @@ public class SupplyItem {
     /**
      * Every field must be present and not null.
      */
-    public SupplyItem(String name, int currentStock, int minStock, Person supplier, Set<Tag>tags) {
-        requireAllNonNull(name, currentStock, minStock, supplier, tags);
+    public SupplyItem(String name, int currentStock, int minStock, Person supplier, Set<Tag>tags, int incDecAmount) {
+        requireAllNonNull(name, supplier, tags);
         checkArgument(isValidSupplyItem(name), MESSAGE_CONSTRAINTS);
         this.name = name;
         this.currentStock = currentStock;
         this.minStock = minStock;
         this.supplier = supplier;
         this.tags.addAll(tags);
+        this.incDecAmount = incDecAmount;
     }
 
     public static boolean isValidSupplyItem(String name) {
@@ -75,6 +80,10 @@ public class SupplyItem {
 
     public Set<Tag> getTags() {
         return tags;
+    }
+
+    public int getIncDecAmount() {
+        return incDecAmount;
     }
 
     /**

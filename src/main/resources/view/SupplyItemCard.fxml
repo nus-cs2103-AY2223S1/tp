@@ -9,6 +9,8 @@
 <?import javafx.scene.layout.Region?>
 <?import javafx.scene.layout.VBox?>
 
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TextField?>
 <HBox id="cardPane" fx:id="cardPane" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
     <GridPane HBox.hgrow="ALWAYS">
         <columnConstraints>
@@ -27,6 +29,9 @@
                 </Label>
                 <Label fx:id="name" text="\$first" styleClass="cell_big_label" />
                 <Region HBox.hgrow="ALWAYS" />
+                <Button fx:id="decrease" text="-" onAction="#handleDecrease" />
+                <TextField fx:id="amountInput" onAction="#handleAmount" prefHeight="35.0" prefWidth="60.0" />
+                <Button fx:id="increase" text="+" onAction="#handleIncrease" />
                 <Label fx:id="currentStock" styleClass="cell_big_label_stock" text="\$currentStock" />
             </HBox>
             <FlowPane fx:id="tags" />
