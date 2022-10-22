@@ -285,6 +285,46 @@ The user flow can be illustrated in the Activity Diagram as shown below.
 
 ----
 
+### **\[Developed\] Assign Task feature**
+
+#### **Implementation**
+
+This feature allows the user to assign task to a member in an existing group, using the `assigntask` command. This is facilitated by the `AssignTaskCommand` and `AssignTaskCommandParser` classes.
+
+The `AssignTaskCommandParser` class parses the input entered by the user, which are the username, the group name, and the task name that the user wants to assign.
+
+The validity of the group name and person name input by the user will be checked with the help of an ObservableList for each field.
+
+`AssignTaskCommandParser` will also check if the person exists in the specified group.
+
+The task name should not be empty.
+
+If all the inputs are valid, the specified task will be assigned to the specified user in a specified group with the help of `Model#setPerson`.
+
+The specified task will then be displayed under that user with the help of `Model#updateFilteredPersonList(predicate)`.
+
+Given below is an example of how `AssignTaskCommand` is being executed.
+
+**Steps**
+
+Step 1. The user enters `assigntask [NAME OF GROUP]` command
+
+Step 2. The  `AssignTaskCommandParser` class parses the group name input and returns a `AssignTaskCommand` object, encapsulating the user, group name and task.
+
+Step 3. The `AssignTaskCommand` object is executed. If the user and group exists in the application, the existing user and group can be retrieved by calling `ObservableList#get()` method.
+
+Step 4. The assigned task will be added to the specified user under that specified group.
+
+Step 5. CommandResult is then returned, which provides a feedback to user that the task has been assigned to the specified user.
+
+**Activity Diagram**
+
+The user flow of Assign Task can be illustrated in the Activity Diagram as shown below.
+
+<img src="images/AssignTaskActivityDiagram-AssignTaskCommand.png" width="800" />
+
+----
+
 ### **\[Developed\] Bulk Assignment & Deletion of Tasks**
 All members in a group can be assigned a task via the `assigntaskall` command,
 and similarly deleted via the `deletetaskall` command. The commands accept a group
@@ -445,36 +485,37 @@ Project team leaders with many projects, members and tasks to assign.
 - Medium (nice to have) - `* *`
 - Low (unlikely to have) &nbsp;- `*`
 
-| Priority  | As a ...          | I want to ...                                                                  | So that I can ...                                                                      |
-|:----------|:------------------|:-------------------------------------------------------------------------------|:---------------------------------------------------------------------------------------|
-| ``* * *`` | beginner user     | add contacts to my app                                                         |                                                                                        |
-| `* * *`   | beginner user     | remove existing contacts on my app                                             | remove entries that I no longer need                                                   |
-| `* * *`   | beginner user     | create a group                                                                 |                                                                                        |
-| `* * *`   | beginner user     | add members to a group                                                         |                                                                                        |
-| `* *`     | intermediate user | locate a particular contact                                                    | quickly find a member                                                                  |
-| `* *`     | intermediate user | have a quick overview of all my groups with their existing members                                                   |                                                                  |
-| `* * *`   | intermediate user | assign tasks to members                                                        |                                                                                        |
-| `* *`     | intermediate user | have a quick overview of tasks assigned to members in the group                |                                                                                        |
-| `* *`     | intermediate user | create a tag specific to the group project                                     | quickly assign tags to members                                                         |
-| `* *`     | intermediate user | place tags on group members                                                    | better identify their role                                                             |
-| `* *`     | intermediate user | assign multiple tags to a user if needed                                       | identify their roles more specifically                                                 |
-| `* *`     | intermediate user | filter and search for groups                                                   | quickly identify the one in particular                                                 |
-| `* *`     | advanced user     | view deadlines for each project                                                | periodically use this for self-reminder                                                |
-| `* *`     | advanced user     | have a rough sense of the workload of every member in the group                | assign future tasks with more confidence                                               |
-| `*`       | advanced user     | view a member’s tasks in more detail                                           | assign future tasks to them with more confidence                                       |
-| `* * *`   | advanced user     | add more tasks to a member                                                     |                                                                                        |
-| `* * *`   | advanced user     | delete tasks from a member                                                     |                                                                                        |
-| `*`       | advanced user     | categorise the tasks assigned into different levels of intensity               | not judge workload based solely on the number of tasks per member                      |
-| `* * *`   | advanced user     | delete unused groups after the project is completed                            | declutter my app                                                                       |
-| `* * *`   | advanced user     | delete existing tags if they are no longer relevant                            | declutter my app                                                                       |
-| `*`       | advanced user     | reuse existing tags in groups for future projects                              | establish new projects under my management style                                       |
-| `*`       | advanced user     | move tags and assignments from one user to another easily                      | ensure that members can ‘swap’ roles hassle-free                                       |
-| `* *`     | expert user       | perform group-wide addition of tags and assignments                            | ensure that repetitive new assignments are made as quickly and accurately as possible. |
-| `* *`     | expert user       | perform group-wide removal of tags and assignments                             | ensure that group members’ roles are quickly cleared owing to new demands              |
-| `*`       | expert user       | be notified when a member completes his task or when a deadline is approaching | better manage my time                                                                  |
-| `*`       | expert user       | create shortcuts and pin most important projects on the top of the app         | access these projects faster                                                           |
-| `*`       | expert user       | have the choice of deleting users from the app when a project completes        | quickly declutter my app                                                               |
-| `*`       | expert user       | set timers to add/delete groups after a project ends                           | ensure that I do not have too many groups cluttering the database                      |
+| Priority | As a ...          | I want to ...                                                                  | So that I can ...                                                                      |
+|:---------|:------------------|:-------------------------------------------------------------------------------|:---------------------------------------------------------------------------------------|
+| `* * * ` | beginner user     | see usage instructions                                                         | refer to instructions when I forget how to use the App                                 |
+| `* * *`  | beginner user     | add contacts to my app                                                         |                                                                                        |
+| `* * *`  | beginner user     | remove existing contacts on my app                                             | remove entries that I no longer need                                                   |
+| `* * *`  | beginner user     | create a group                                                                 |                                                                                        |
+| `* * *`  | beginner user     | add members to a group                                                         |                                                                                        |
+| `* *`    | intermediate user | locate a particular contact                                                    | quickly find a member                                                                  |
+| `* *`    | intermediate user | have a quick overview of all my groups with their existing members             |                                                                                        |
+| `* * *`  | intermediate user | assign tasks to members                                                        |                                                                                        |
+| `* *`    | intermediate user | have a quick overview of tasks assigned to members in the group                |                                                                                        |
+| `* *`    | intermediate user | create a tag specific to the group project                                     | quickly assign tags to members                                                         |
+| `* *`    | intermediate user | place tags on group members                                                    | better identify their role                                                             |
+| `* *`    | intermediate user | assign multiple tags to a user if needed                                       | identify their roles more specifically                                                 |
+| `* *`    | intermediate user | filter and search for groups                                                   | quickly identify the one in particular                                                 |
+| `* *`    | advanced user     | view deadlines for each project                                                | periodically use this for self-reminder                                                |
+| `* *`    | advanced user     | have a rough sense of the workload of every member in the group                | assign future tasks with more confidence                                               |
+| `*`      | advanced user     | view a member’s tasks in more detail                                           | assign future tasks to them with more confidence                                       |
+| `* * *`  | advanced user     | add more tasks to a member                                                     |                                                                                        |
+| `* * *`  | advanced user     | delete tasks from a member                                                     |                                                                                        |
+| `*`      | advanced user     | categorise the tasks assigned into different levels of intensity               | not judge workload based solely on the number of tasks per member                      |
+| `* * *`  | advanced user     | delete unused groups after the project is completed                            | declutter my app                                                                       |
+| `* * *`  | advanced user     | delete existing tags if they are no longer relevant                            | declutter my app                                                                       |
+| `*`      | advanced user     | reuse existing tags in groups for future projects                              | establish new projects under my management style                                       |
+| `*`      | advanced user     | move tags and assignments from one user to another easily                      | ensure that members can ‘swap’ roles hassle-free                                       |
+| `* *`    | expert user       | perform group-wide addition of tags and assignments                            | ensure that repetitive new assignments are made as quickly and accurately as possible. |
+| `* *`    | expert user       | perform group-wide removal of tags and assignments                             | ensure that group members’ roles are quickly cleared owing to new demands              |
+| `*`      | expert user       | be notified when a member completes his task or when a deadline is approaching | better manage my time                                                                  |
+| `*`      | expert user       | create shortcuts and pin most important projects on the top of the app         | access these projects faster                                                           |
+| `*`      | expert user       | have the choice of deleting users from the app when a project completes        | quickly declutter my app                                                               |
+| `*`      | expert user       | set timers to add/delete groups after a project ends                           | ensure that I do not have too many groups cluttering the database                      |
 
 ---
 ## Use cases 
