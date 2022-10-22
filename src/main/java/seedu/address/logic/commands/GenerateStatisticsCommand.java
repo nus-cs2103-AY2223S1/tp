@@ -5,9 +5,9 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.statistics.StatisticChartType;
 
-public class GenerateStatsCommand extends Command {
+public class GenerateStatisticsCommand extends Command {
 
-    public GenerateStatsCommand(Index index, StatisticChartType type) {
+    public GenerateStatisticsCommand(Index index, StatisticChartType type) {
 
     }
 
