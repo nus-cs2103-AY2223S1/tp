@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.event.AddEventCommand;
+import seedu.address.logic.commands.event.DeleteEventCommand;
 import seedu.address.logic.commands.event.ViewEventsCommand;
 import seedu.address.logic.commands.profile.AddProfileCommand;
 import seedu.address.logic.commands.profile.DeleteProfileCommand;
@@ -11,6 +12,7 @@ import seedu.address.logic.commands.profile.EditProfileCommand;
 import seedu.address.logic.commands.profile.FindProfileCommand;
 import seedu.address.logic.commands.profile.ViewProfilesCommand;
 import seedu.address.logic.parser.event.AddEventCommandParser;
+import seedu.address.logic.parser.event.DeleteEventCommandParser;
 import seedu.address.logic.parser.event.ViewEventsCommandParser;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.logic.parser.profile.AddProfileCommandParser;
@@ -43,6 +45,8 @@ public class CommandParserTestUtil {
 
         if (parser instanceof AddEventCommandParser) {
             userInput = " -" + AddEventCommand.COMMAND_OPTION + " " + userInput;
+        } else if (parser instanceof DeleteEventCommandParser) {
+            userInput = " -" + DeleteEventCommand.COMMAND_OPTION + " " + userInput;
         } else if (parser instanceof ViewEventsCommandParser) {
             userInput = " -" + ViewEventsCommand.COMMAND_OPTION + " " + userInput;
         }
@@ -74,6 +78,8 @@ public class CommandParserTestUtil {
 
         if (parser instanceof AddEventCommandParser) {
             userInput = " -" + AddEventCommand.COMMAND_OPTION + " " + userInput;
+        } else if (parser instanceof DeleteEventCommandParser) {
+            userInput = " -" + DeleteEventCommand.COMMAND_OPTION + " " + userInput;
         } else if (parser instanceof ViewEventsCommandParser) {
             userInput = " -" + ViewEventsCommand.COMMAND_OPTION + " " + userInput;
         }
