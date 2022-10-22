@@ -420,7 +420,50 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case ends.
 
-**Use case: UC7 - Sort contacts by keywords**
+**Use case: UC7 - Edit an appointment**
+
+**MSS**
+
+1. User inputs edit appointment command with the new field/s (location, datetime) for a specific client
+2. Financial Advisor Planner edits the appointment for the specified client
+3. The client's list of appointments is reordered using the date time of each appointment
+
+   Use case ends.
+
+   **Extensions**
+
+* 1a. User did not input any arguments.
+
+    * 1a1. Financial Advisor Planner shows an error message.
+
+      Use case ends.
+
+* 1b. The given person/appointment index is invalid.
+
+    * 1b1. Financial Advisor Planner shows an error message.
+
+      Use case ends.
+
+* 1c. The given date and time has an incorrect format.
+
+    * 1c1. Financial Advisor Planner shows an error message.
+
+      Use case ends.
+
+* 1d. The given location has an incorrect format
+
+    * 1d1. Financial Advisor Planner shows an error message.
+
+      Use case ends.
+     
+* 1e. The newly edited appointment already exists for the specified client
+
+    * 1e1. Financial Advisor Planner shows an error message.
+
+      Use case ends.
+
+     
+**Use case: UC8 - Sort contacts by keywords**
 
 **MSS**
 
@@ -449,7 +492,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case ends.
 
-**Use case: UC8 - Display appointments of the current month in a calendar view**
+**Use case: UC9 - Display appointments of the current month in a calendar view**
 
 **MSS**
 
@@ -477,7 +520,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
       Use case ends.
     
 
-**Use case: UC9 - Display appointments of a new month in a calendar view**
+**Use case: UC10 - Display appointments of a new month in a calendar view**
 
 **MSS**
 
