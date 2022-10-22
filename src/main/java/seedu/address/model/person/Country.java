@@ -8,7 +8,7 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  */
 public class Country {
 
-    public static final String MESSAGE_CONSTRAINTS = "Any string can be accepted";
+    public static final String MESSAGE_CONSTRAINTS = "Country should only contain alphabets.";
 
     /*
      * The first character of the address must not be a whitespace,
