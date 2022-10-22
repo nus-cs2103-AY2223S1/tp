@@ -27,7 +27,7 @@ Arrow will help software project managers keep track of their members’ tasks a
    * **`list`** : Lists all contacts.
 
    * **`add`**`n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` : Adds a contact named `John Doe` to the Address Book.
-   
+
    * **`task add`** `Task 1` : Adds a task titled `Task 1` to the Task Panel.
 
    * **`delete`**`3` : Deletes the 3rd contact shown in the current list.
@@ -146,27 +146,47 @@ Format: `task delete TASK_INDEX`
 Examples:
 * `task list` followed by `task delete 1` delete the 1st task from task list.
 
+### Setting deadlines to a task: `task do ... by/`
+
+You can use the `task do ... by/` command to set (or remove) a deadline for some task.
+
+Format: `task do TASK_INDEX [by/DATE]...`
+- The `task do` command sets the deadline specified by `DATE` to the task at the specified `TASK_INDEX` from the task list.
+- You can use plain English to describe the intended deadline, such as `today`, `tomorrow`, `next Thursday`, `14 November`, and so on.
+- If the application is unable to determine a date from your input, an error message will be displayed and you will be prompted to try a different input.
+- To **remove** the deadline from a task, you can use the special character `?`.
+
+Examples:
+* `task do 1 by/tomorrow` sets the deadline for the 1st task in the list to tomorrow.
+* `task do 1 by/?` **removes** the deadline from the 1st task in the list.
 
 ### Listing all tasks : `task list`
 
-Shows a list of all tasks stored in the application.
+You can use the `task list` command to focus only on tasks that match your specified filter requirements.
 
-Format: `task list`
+Format: `task list [ti/KEYWORD] [c/PERSON_INDEX]...`
+- The `task list` command accepts **optional** parameters that can filter tasks by their title or assigned contacts.
+- If you do not specify any filters (i.e. `task list`), the command returns **all** tasks. You may find this useful to reset the task list after performing some filtering.
 
+Examples:
+* `task list ti/fix` filters the task list to only display tasks that contain the keyword `fix`.
+* `task list c/1 c/2` filters the task list to only display tasks that are assigned to **both** the 1st and 2nd persons from the address book.
+* `task list ti/fix c/1 c/2` filters the task list to only display tasks that contain the keyword `fix` **and** that are assigned to **both** the 1st and 2nd persons from the address book.
 
 ### Assigning contacts to a task: `task assign`
 
-Assigns the specified persons from address book to a task from task panel.
+Assigns or unassigns the specified persons from address book to a task from task panel.
 
-Format: `task assign TASK_INDEX [c/PERSON_INDEX]…​`
-* Assigns the persons at the specified PERSON_INDEXs from `address book` to task at the specified TASK_INDEX from `task list`.
+Format: `task assign TASK_INDEX [ca/PERSON_INDEX]…​ [ca/PERSON_NAME]…​ [cd/PERSON_INDEX]…​ [cd/PERSON_NAME]…​`
+* ca/: Assigns the persons at the specified PERSON_INDEXs, or with the PERSON_NAME, from `address book` to task at the specified TASK_INDEX from `task list`.
+* cd/: Unassigns the persons at the specified PERSON_INDEXs, or with the PERSON_NAME, from `address book` from task at the specified TASK_INDEX from `task list`.
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 A task can have any number of assigned contacts (including 0)
 </div>
 
 Examples:
-* `task assign 1 c/1 c/2` assigns the 1st and 2nd persons from the address book to the 1st task from task list.
+* `task assign 1 ca/1 ca/Alex Yeoh cd/Bernice Yu` assigns the 1st person and "Alex Yeoh" from the address book to the 1st task from task list, and unassigns "Bernice Yu" from the same task.
 
 
 ### Listing all persons : `list`
@@ -283,7 +303,7 @@ _Details coming soon ..._
 | **Task mark**   | `task mark TASK_INDEX`<br> e.g., `task mark 1`                                                                                                                        |
 | **Task unmark** | `task unmark TASK_INDEX`<br> e.g., `task unmark 1`                                                                                                                    |
 | **Task delete** | `task delete TASK_INDEX`<br> e.g., `task delete 2`                                                                                                                    |
-| **Task assign** | `task assign TASK_INDEX [c/PERSON_INDEX]…​`<br> e.g., `task assign 3 c/1 c/2`                                                                                         |
+| **Task assign** | `task assign TASK_INDEX [ca/PERSON_INDEX]…​ [ca/PERSON_NAME]…​ [cd/PERSON_INDEX]…​ [cd/PERSON_NAME]…​`<br> e.g., `task assign 3 ca/1 ca/Alex Yeoh cd/2`                                                                                         |
 | **Clear**       | `clear`                                                                                                                                                               |
 | **Delete**      | `delete INDEX`<br> e.g., `delete 3`                                                                                                                                   |
 | **Edit**        | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`                                           |

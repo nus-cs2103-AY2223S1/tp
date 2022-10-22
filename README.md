@@ -11,3 +11,7 @@
   * It is named `Arrow` after the Singaporean slang term which means to delegate somebody to perform a task.
 * For the detailed documentation of this project, visit the **[Arrow User Guide](https://ay2223s1-cs2103t-t08-2.github.io/tp/)**.
 * This project is based on the AddressBook-Level3 project created by the [SE-EDU initiative](https://se-education.org).
+
+
+## Acknowledgements
+- This project uses the [PrettyTime NLP library](https://www.ocpsoft.org/prettytime/nlp/) to enable simple parsing and computer understanding of natural language in terms of dates.

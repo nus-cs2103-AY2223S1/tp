@@ -10,8 +10,10 @@ import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
 import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 import static seedu.address.testutil.TypicalTasks.getTypicalTaskPanel;
 
+import java.time.LocalDate;
 import java.util.Arrays;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 import java.util.function.Predicate;
@@ -26,6 +28,9 @@ import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.task.AssignedToContactsPredicate;
+import seedu.address.model.task.Deadline;
+import seedu.address.model.task.DeadlineIsAfterPredicate;
+import seedu.address.model.task.DeadlineIsBeforePredicate;
 import seedu.address.model.task.Task;
 import seedu.address.model.task.TitleContainsKeywordPredicate;
 import seedu.address.testutil.TypicalIndexes;
@@ -46,10 +51,19 @@ public class ListTasksCommandTest {
 
     @Test
     public void execute_listIsNotFiltered_showsSameList() {
+        ListTasksCommand command =
+                new ListTasksCommand(
+                        "",
+                        List.of(),
+                        Optional.empty(),
+                        Optional.empty(),
+                        new HashSet<>()
+                );
+
         assertCommandSuccess(
-                new ListTasksCommand(Optional.empty(), new HashSet<>()),
+                command,
                 model,
-                String.format(ListTasksCommand.MESSAGE_SUCCESS, expectedModel.getFilteredTaskList().size(), "", ""),
+                command.getSuccessMessage(model),
                 expectedModel
         );
     }
@@ -57,10 +71,20 @@ public class ListTasksCommandTest {
     @Test
     public void execute_listIsFiltered_showsEverything() {
         hideAllTasks(model);
+
+        ListTasksCommand command =
+                new ListTasksCommand(
+                        "",
+                        List.of(),
+                        Optional.empty(),
+                        Optional.empty(),
+                        new HashSet<>()
+                );
+
         assertCommandSuccess(
-                new ListTasksCommand(Optional.empty(), new HashSet<>()),
+                command,
                 model,
-                String.format(ListTasksCommand.MESSAGE_SUCCESS, expectedModel.getFilteredTaskList().size(), "", ""),
+                command.getSuccessMessage(model),
                 expectedModel
         );
     }
@@ -74,22 +98,39 @@ public class ListTasksCommandTest {
         assertTrue(outOfBoundIndex.getZeroBased() < model.getAddressBook().getPersonList().size());
 
         Set<Index> personIndexes = new HashSet<>(Arrays.asList(outOfBoundIndex));
-        ListTasksCommand c = new ListTasksCommand(Optional.empty(), personIndexes);
 
-        assertCommandFailure(c, model, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+        ListTasksCommand command =
+                new ListTasksCommand(
+                        "",
+                        List.of(),
+                        Optional.empty(),
+                        Optional.empty(),
+                        personIndexes
+                );
+
+        assertCommandFailure(command, model, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
     }
 
     @Test
     public void execute_keyword_singleResult() {
         hideAllTasks(model);
 
-        Predicate<Task> filter = new TitleContainsKeywordPredicate("ass");
+        Predicate<Task> filter = Model.PREDICATE_INCOMPLETE_TASKS.and(new TitleContainsKeywordPredicate("ass"));
         expectedModel.updateFilteredTaskList(filter);
 
+        ListTasksCommand command =
+                new ListTasksCommand(
+                        "ass",
+                        List.of(),
+                        Optional.empty(),
+                        Optional.empty(),
+                        new HashSet<>()
+                );
+
         assertCommandSuccess(
-                new ListTasksCommand(Optional.of("ass"), new HashSet<>()),
+                command,
                 model,
-                String.format(ListTasksCommand.MESSAGE_SUCCESS, 1, "containing 'ass'", ""),
+                command.getSuccessMessage(model),
                 expectedModel
         );
     }
@@ -98,13 +139,70 @@ public class ListTasksCommandTest {
     public void execute_keyword_noResults() {
         hideAllTasks(model);
 
-        Predicate<Task> filter = new TitleContainsKeywordPredicate("test");
+        Predicate<Task> filter = Model.PREDICATE_INCOMPLETE_TASKS.and(new TitleContainsKeywordPredicate("test"));
         expectedModel.updateFilteredTaskList(filter);
 
+        ListTasksCommand command =
+                new ListTasksCommand(
+                        "test",
+                        List.of(),
+                        Optional.empty(),
+                        Optional.empty(),
+                        new HashSet<>()
+                );
+
         assertCommandSuccess(
-                new ListTasksCommand(Optional.of("test"), new HashSet<>()),
+                command,
                 model,
-                String.format(ListTasksCommand.MESSAGE_SUCCESS, 0, "containing 'test'", ""),
+                command.getSuccessMessage(model),
+                expectedModel
+        );
+    }
+
+    @Test
+    public void execute_afterDeadline() {
+        Predicate<Task> filter =
+                new DeadlineIsAfterPredicate(Deadline.of(LocalDate.of(2022, 9, 20)));
+
+        expectedModel.updateFilteredTaskList(filter);
+
+        ListTasksCommand command =
+                new ListTasksCommand(
+                        "",
+                        List.of(ListTasksCommand.ALL_FLAG),
+                        Optional.empty(),
+                        Optional.of(Deadline.of(LocalDate.of(2022, 9, 20))),
+                        new HashSet<>()
+                );
+
+        assertCommandSuccess(
+                command,
+                model,
+                command.getSuccessMessage(model),
+                expectedModel
+        );
+    }
+
+    @Test
+    public void execute_beforeDeadline() {
+        Predicate<Task> filter =
+                new DeadlineIsBeforePredicate(Deadline.of(LocalDate.of(2022, 9, 20)));
+
+        expectedModel.updateFilteredTaskList(filter);
+
+        ListTasksCommand command =
+                new ListTasksCommand(
+                        "",
+                        List.of(ListTasksCommand.ALL_FLAG),
+                        Optional.of(Deadline.of(LocalDate.of(2022, 9, 20))),
+                        Optional.empty(),
+                        new HashSet<>()
+                );
+
+        assertCommandSuccess(
+                command,
+                model,
+                command.getSuccessMessage(model),
                 expectedModel
         );
     }
@@ -113,22 +211,23 @@ public class ListTasksCommandTest {
     public void execute_contact_singleResults() throws CommandException {
         hideAllTasks(model);
         Set<Index> personIndexes = new HashSet<>(Arrays.asList(TypicalIndexes.INDEX_FIRST_PERSON));
+        AssignedToContactsPredicate filter = new AssignedToContactsPredicate(expectedModel, personIndexes);
 
-        Predicate<Task> keywordPredicate = new TitleContainsKeywordPredicate("ass");
-        AssignedToContactsPredicate assignedToContactsPredicate =
-                new AssignedToContactsPredicate(expectedModel, personIndexes);
+        expectedModel.updateFilteredTaskList(filter);
 
-        expectedModel.updateFilteredTaskList(keywordPredicate.and(assignedToContactsPredicate));
+        ListTasksCommand command =
+                new ListTasksCommand(
+                        "",
+                        List.of(),
+                        Optional.empty(),
+                        Optional.empty(),
+                        personIndexes
+                );
 
         assertCommandSuccess(
-                new ListTasksCommand(Optional.empty(), personIndexes),
+                command,
                 model,
-                String.format(
-                        ListTasksCommand.MESSAGE_SUCCESS,
-                        1,
-                        "",
-                        String.format("that are assigned to %s", assignedToContactsPredicate.getContactNames())
-                ),
+                command.getSuccessMessage(model),
                 expectedModel
         );
     }
@@ -137,19 +236,26 @@ public class ListTasksCommandTest {
     public void execute_keywordAndContact_noResults() throws CommandException {
         hideAllTasks(model);
         Set<Index> personIndexes = new HashSet<>(Arrays.asList(TypicalIndexes.INDEX_FIRST_PERSON));
-        AssignedToContactsPredicate filter = new AssignedToContactsPredicate(expectedModel, personIndexes);
 
-        expectedModel.updateFilteredTaskList(filter);
+        Predicate<Task> basePredicate = Model.PREDICATE_INCOMPLETE_TASKS.and(new TitleContainsKeywordPredicate("ass"));
+        AssignedToContactsPredicate assignedToContactsPredicate =
+                new AssignedToContactsPredicate(expectedModel, personIndexes);
+
+        expectedModel.updateFilteredTaskList(basePredicate.and(assignedToContactsPredicate));
+
+        ListTasksCommand command =
+                new ListTasksCommand(
+                        "ass",
+                        List.of(),
+                        Optional.empty(),
+                        Optional.empty(),
+                        personIndexes
+                );
 
         assertCommandSuccess(
-                new ListTasksCommand(Optional.of("ass"), personIndexes),
+                command,
                 model,
-                String.format(
-                        ListTasksCommand.MESSAGE_SUCCESS,
-                        0,
-                        "containing 'ass'",
-                        String.format("that are assigned to %s", filter.getContactNames())
-                ),
+                command.getSuccessMessage(model),
                 expectedModel
         );
     }

@@ -8,9 +8,9 @@ title: Developer Guide
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Acknowledgements**
-
 * {list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the original source as well}
 * Autocomplete feature: https://gist.github.com/floralvikings/10290131
+- This project uses the [PrettyTime NLP library](https://www.ocpsoft.org/prettytime/nlp/) to enable simple parsing and computer understanding of natural language in terms of dates.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -94,10 +94,17 @@ Here's a (partial) class diagram of the `Logic` component:
 <img src="images/LogicClassDiagram.png" width="550"/>
 
 How the `Logic` component works:
-1. When `Logic` is called upon to execute a command, it uses the `AddressBookParser` class to parse the user command.
-1. This results in a `Command` object (more precisely, an object of one of its subclasses e.g., `AddCommand`) which is executed by the `LogicManager`.
-1. The command can communicate with the `Model` when it is executed (e.g. to add a person).
-1. The result of the command execution is encapsulated as a `CommandResult` object which is returned back from `Logic`.
+1. When `Logic` is called upon to execute a command, it uses either the `AddressBookParser` class or the `TaskPanelParser` class to parse the user command.
+2. This results in a `Command` object (more precisely, an object of one of its subclasses e.g., `AddCommand`, `AddTaskCommand`) which is executed by the `LogicManager`.
+3. The command can communicate with the `Model` when it is executed (e.g. to add a person).
+4. The result of the command execution is encapsulated as a `CommandResult` object which is returned from `Logic`.
+
+The Sequence Diagram below illustrates the interactions within the `Logic` component for the `execute("task add New task")` API call.
+
+![Interactions inside the Logic Component for the `task add New task` Command](images/AddTaskSequenceDiagram.png)
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `AddTaskCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+</div>
 
 The Sequence Diagram below illustrates the interactions within the `Logic` component for the `execute("delete 1")` API call.
 
@@ -111,7 +118,14 @@ Here are the other classes in `Logic` (omitted from the class diagram above) tha
 <img src="images/ParserClasses.png" width="600"/>
 
 How the parsing works:
-* When called upon to parse a user command, the `AddressBookParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddCommand`) which the `AddressBookParser` returns back as a `Command` object.
+* When called upon to parse a user command, the `LogicManager` class first checks if the command is a task related command or an address book command. If the command is task related (i.e. format of `task ...`), it calls the `TaskPanelParser` to parse the user command. Otherwise, the `AddressBookParser` will parse the user command.
+
+Task commands:
+* The `TaskPanelParser` class creates an `XYZTaskCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddTaskCommandParser`) which uses the other classes shown above to parse the user command and create `XYZTaskCommand` object (e.g., `AddTaskCommand`) which the `TaskPanelParser` returns back as a `TaskCommand` object which is a `Command` object.
+* All `XYZTaskCommandParser` classes (e.g., `AddTaskCommandParser`, `DeleteTaskCommanParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g., during testing.
+
+AddressBook commands:
+* The `AddressBookParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddCommand`) which the `AddressBookParser` returns back as a `Command` object.
 * All `XYZCommandParser` classes (e.g., `AddCommandParser`, `DeleteCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
 
 ### Model component
@@ -154,6 +168,73 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 ## **Implementation**
 
 This section describes some noteworthy details on how certain features are implemented.
+
+### Delete Feature
+
+#### Current Implementation
+
+The `delete` feature is implemented by acting on the current filtered`TaskPanel` with a one-based `Index` specified by the user, getting the target `Task` at the specified index, and removing it from the list.
+
+#### Example Usage of `task delete`
+
+1. User launches Arrow and the `TaskPanel` is populated with existing `Task` entries.
+2. User types in the command `task delete 1`, where `1` is the specified index given in one-based form.
+3. The current state of the `TaskPanel` is obtained from `Model`.
+4. The `Task` to be deleted is fetched from the `TaskPanel` using the specified `Index`, using its zero-based form.
+5. The `Task` is deleted from the `Model`.
+6. The `GUI` is updated to show the new `TaskPanel` with the `Task` deleted.
+
+### Assign Person(s) to Task Feature
+
+#### Current Implementation
+
+The `task assign` feature assigns/unassigns contacts to the task specified by the user. The selection of tasks is implemented by acting on the current filtered `TaskPanel` with a one-based `Index` specified by the user, getting the target `Task` at the specified index. The selection of persons is implemented by acting on the current filtered `AddressBook` with one or more one-based `Index` specified by the user, getting the target `Person` at the specified index. The selection of person can also be done through specifying the full name of the person, which is matched with the target `Person` in the filtered `AddressBook`. Parameters are available to indicate if a `Person` should be assigned or unassigned.
+
+#### Example Usage of `task assign`
+
+1. User launches Arrow. The `TaskPanel` and `AddressBook` is populated with existing `Task` and `Person` entries respectively.
+2. User types in the command `task assign 1 +@2 -@Bernice Yu`. `1` is the specified index of `Task` in `TaskPanel` to be assigned to given in one-based form. `2` is the specified index of `Person` in the `AddressBook` to be assigned. "Bernice Yu" is the full name of the `Person` in the `AddressBook` to be unassigned.
+3. The `LogicManager` detects that this is a `TaskCommand`, and therefore passes the user input to the `TaskPanelParser`
+4. The `TaskPanelParser` detects the `AssignTaskCommand.COMMAND_WORD`, and therefore parses the command arguments via a `AssignTaskCommandParser`
+5. The relevant parameters are used to create an instance of a `AssignTaskCommandd`, which is then returned to the `TaskPanelParser`
+6. The `LogicManager` executes the command
+7. The command obtains the current state of the `TaskPanel` and `AddressBook` from `Model`.
+5. The `Task` to be deleted is fetched from the `TaskPanel` using the specified `Index`, using its zero-based form.
+6. The `Person`s to be assigned are fetched from the `AddressBook` using the specified `Index`, using its zero-based form, or his full name.
+7. The `Person`s are assigned/unassigned to the `Task`
+8. The `GUI` is updated to show the new `TaskPanel` with the `Task`'s assigned contacts updated.
+
+### List Tasks feature
+
+#### Implementation
+
+The list tasks feature filters the tasks in the task panel according to the user input. For example, users can choose to view only tasks containing a certain keyword, e.g. 'fix'.
+
+Other filter parameters are also available, which can filter tasks by their completion status, due date and assigned contacts.
+
+The following sequence diagram shows how the operation works:
+
+![ListTasksSequenceDiagram](images/ListTasksSequenceDiagram.png)
+
+As observed above, the execution flow for this command is quite straightforward.
+
+1. The user enters a list tasks command
+2. The `LogicManager` detects that this is a `TaskCommand`, and therefore passes the user input to the `TaskPanelParser`
+2. The `TaskPanelParser` detects the `ListTaskCommand.COMMAND_WORD`, and therefore parses the command arguments via a `ListTaskCommandParser`
+3. The relevant parameters are used to create an instance of a `ListTaskCommandd`, which is then returned to the `TaskPanelParser`
+4. The `LogicManager` executes the command
+5. The command generates the appropriate predicate based on its parameters, and filters the `Model`'s task list.
+
+Most of the work is done in the parsing step by the `ListTaskCommandParser`, and the execution step to generate the right predicate.
+
+The `ListTaskCommandParser` relies on the `ArgumentMultimap` abstraction, which helps to tokenize the user input by pre-specified prefixes. For example, the `before` prefix denotes that the user wishes to filter tasks that are before a certain deadline. Other prefixes include `-a` and `-c`, which function as flags to specify if all tasks should be shown (including completed ones), or to show completed or incomplete tasks only.
+
+:information_source: **Note:** If both the `-a` and `-c` flags are specified, the `-c` flag takes precedence. This is because the `ListTasksCommand` combines multiple predicates with a logical `AND`. Therefore, the `-a` flag becomes redundant if another more specific flag is also included i.e. `-c`.
+
+The `ListTaskCommandParser` also relies on the `PrettyTime NLP` open-source library to parse dates described in plain English. This is relevant for the `before` and `after` prefixes.
+
+Lastly, upon execution, the `ListTaskCommand` builds a single predicate to be used to filter the `Model`'s task list. As mentioned above, multiple filters are combined with the logical `AND`. For example, `task list fix before tomorrow -c` shows all tasks that are completed, contain the keyowrd 'fix', **and** has a due date that is before tomorrow.
+
 
 ### \[Proposed\] Undo/redo feature
 
@@ -323,7 +404,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 1a1. Arrow shows an error message.
 
   Use case resumes at step 1.
-  
+
 **Use case: UC02 - List all persons**
 
 **MSS**
@@ -338,7 +419,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * 2a. The list is empty.
 
    Use case ends.
-   
+
 **Use case: UC03 - Delete a person**
 
 **MSS**
@@ -361,7 +442,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 3a1. Arrow shows an error message.
 
       Use case resumes at step 2.
-      
+
 **Use case: UC04 - Edit a person**
 
 **MSS**
@@ -384,7 +465,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 3a1. Arrow shows an error message.
 
       Use case resumes at step 2.
-      
+
 * 3b. There is no new information provided.
 
     * 3b1. Arrow shows an error message.
@@ -407,7 +488,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 1b1. Arrow shows an error message.
 
   Use case resumes at step 1.
-  
+
 **Use case: UC06 - List tasks**
 
 **MSS**
@@ -418,11 +499,11 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     Use case ends.
 
 **Extensions**
- 
+
 * 1a. The task list is empty.
 
   Use case ends.
-  
+
 **Use case: UC07 - Mark a task as complete**
 
 **MSS**
@@ -457,11 +538,11 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     Use case ends.
 
 **Extensions**
-      
+
 * 1a. The tasks list is empty.
 
   Use case ends.
-      
+
 * 3a. The given task index is invalid.
 
     * 3a1. Arrow shows an error message.
@@ -482,7 +563,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * 2a. The list is empty.
 
    Use case ends.
-   
+
 **Use case: UC10 - Assign persons to a task**
 
 **MSS**
@@ -491,24 +572,30 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 2.  Arrow shows a list of persons.
 3.  User requests to list tasks.
 4.  Arrow shows a list of tasks.
-5.  User requests to assign persons in the persons list to a specific task in the tasks list.
-6.  Arrow assigns the persons to the task.
+5.  User requests to assign/unassign persons in the persons list to a specific task in the tasks list.
+6.  Arrow assigns/unassigns the persons to the task.
 
     Use case ends.
 
 **Extensions**
-      
+
 * 1a. The persons list is empty.
 
   Use case ends.
-  
+
 * 3a. The tasks list is empty.
 
   Use case ends.
-      
+
 * 5a. The given task and/or person index is invalid.
 
     * 5a1. Arrow shows an error message.
+
+      Use case resumes at step 4.
+ 
+* 5b. The given person name is invalid.
+
+    * 5b1. Arrow shows an error message.
 
       Use case resumes at step 4.
 

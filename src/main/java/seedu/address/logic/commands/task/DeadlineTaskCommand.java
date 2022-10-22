@@ -3,7 +3,6 @@ package seedu.address.logic.commands.task;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DEADLINE;
-import static seedu.address.model.Model.PREDICATE_SHOW_ALL_TASKS;
 
 import java.util.List;
 
@@ -27,16 +26,16 @@ public class DeadlineTaskCommand extends TaskCommand {
     public static final String MESSAGE_USAGE = COMMAND_WORD_FULL + ": Sets a deadline for a task.\n"
             + "Parameters: "
             + "TASK_INDEX (must be a positive integer) "
-            + "[" + PREFIX_DEADLINE + " dd-MM-yyyy]...\n"
+            + "[" + PREFIX_DEADLINE + " DATE]...\n\n"
             + "Example: " + COMMAND_WORD_FULL + " "
             + "1 "
-            + PREFIX_DEADLINE + " 19-10-2022\n\n"
+            + PREFIX_DEADLINE + " tomorrow\n\n"
             + "You can also use a '?' to remove the deadline from a task.\n"
             + "Example: " + COMMAND_WORD_FULL + " "
             + "1 "
             + PREFIX_DEADLINE + " ?\n";
 
-    public static final String MESSAGE_SUCCESS = "Deadline was set to the task: %1$s";
+    public static final String MESSAGE_SUCCESS = "Deadline of %1$s was set to the task: %2$s";
 
     private final Index targetIndex;
     private final Deadline newDeadline;
@@ -71,9 +70,8 @@ public class DeadlineTaskCommand extends TaskCommand {
         );
 
         model.setTask(taskToUpdate, updatedTask);
-        model.updateFilteredTaskList(PREDICATE_SHOW_ALL_TASKS);
 
-        return new CommandResult(String.format(MESSAGE_SUCCESS, targetIndex.getOneBased()));
+        return new CommandResult(String.format(MESSAGE_SUCCESS, updatedTask.getDeadline(), updatedTask.getTitle()));
     }
 
     @Override
