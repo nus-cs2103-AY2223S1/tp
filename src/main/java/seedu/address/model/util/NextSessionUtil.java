@@ -5,14 +5,17 @@ import java.time.format.DateTimeFormatter;
 import java.time.format.ResolverStyle;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.function.Consumer;
+import java.util.function.Predicate;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Session;
 
 /**
- * Utility class containing helper methods to help with getNextSession method in
- * ModelManager.
+ * Utility class containing helper methods to help with nextSessionFeedback method.
  */
 public class NextSessionUtil {
 
@@ -29,10 +32,8 @@ public class NextSessionUtil {
         public void accept(Person person) {
             for (int i = 0; i < person.getSessionList().sessionList.size(); i++) {
                 Session currSession = person.getSessionList().sessionList.get(i);
-                if (timeNowSession.compareTo(currSession) <= 0) {
-                    toSortList.add(currSession);
-                    sessionPersonHashMap.put(currSession, person);
-                }
+                toSortList.add(currSession);
+                sessionPersonHashMap.put(currSession, person);
             }
         }
     };
@@ -47,7 +48,7 @@ public class NextSessionUtil {
     }
 
     /**
-     * Helper method to get the system time now as a Session for constructor to help getNextSession.
+     * Helper method to get the system time now as a Session for constructor to help nextSessionFeedback.
      * @return the system time now as a Session.
      */
     private static Session getTimeNowAsSession() {
@@ -70,10 +71,21 @@ public class NextSessionUtil {
 
     /**
      * Returns the feedback for the next closest Session to the current time to ModelManager class.
+     * If no Session left this week, return the coming week's closest Session time.
      * @return a String feedback to be displayed to user.
      */
     public String nextSessionFeedback() {
-        return "Next Session: " + sessionPersonHashMap.get(toSortList.get(0)).getName()
-                + " " + toSortList.get(0).toString();
+        String feedback = "Next Session: ";
+        toSortList.sort(Session::compareTo);
+        Predicate<Session> laterThanNowCounter = s -> timeNowSession.compareTo(s) <= 0;
+        Stream<Session> toSortListAsStream = toSortList.stream().filter(laterThanNowCounter);
+        List<Session> filteredSortedList = toSortListAsStream.collect(Collectors.toList());
+        if (filteredSortedList.size() == 0) { //All sessions in the week is finished, first Session of new week.
+            return feedback + sessionPersonHashMap.get(toSortList.get(0)).getName()
+                    + " " + toSortList.get(0).toString();
+        } else { //Session in the week that is not done yet.
+            return feedback + sessionPersonHashMap.get(filteredSortedList.get(0)).getName()
+                    + " " + filteredSortedList.get(0).toString();
+        }
     }
 }

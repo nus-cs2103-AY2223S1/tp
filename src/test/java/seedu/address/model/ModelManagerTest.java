@@ -99,18 +99,20 @@ public class ModelManagerTest {
 
     @Test
     public void getNextSession_success() {
+        //One Session in Pupilist.
         Person testPerson = new PersonBuilder().withName(VALID_NAME_BOB).withSession(VALID_SESSION_BOB).build();
         AddressBook addressBook = new AddressBookBuilder().withPerson(testPerson).build();
         UserPrefs userPrefs = new UserPrefs();
         modelManager = new ModelManager(addressBook, userPrefs);
-        assertTrue((modelManager.getNextSession()
-                .equals(("Next Session: " + testPerson.getName() + " "
-                        + testPerson.getSessionList().sessionList.get(0))))
-                        || modelManager.getNextSession().equals(ModelManager.MESSAGE_NO_NEXT_SESSION_FOUND));
+        assertEquals(modelManager.getNextSession(), "Next Session: " + testPerson.getName() + " "
+                        + testPerson.getSessionList().sessionList.get(0));
+
+        //No Session in Pupilist.
         AddressBook emptyAddressBook = new AddressBook();
         modelManager = new ModelManager(emptyAddressBook, userPrefs);
         assertEquals(modelManager.getNextSession(), ModelManager.MESSAGE_NO_NEXT_SESSION_FOUND);
     }
+
     @Test
     public void equals() {
         AddressBook addressBook = new AddressBookBuilder().withPerson(ALICE).withPerson(BENSON).build();

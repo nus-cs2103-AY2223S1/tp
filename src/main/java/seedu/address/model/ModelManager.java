@@ -4,12 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
-import java.time.format.ResolverStyle;
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.function.Consumer;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
@@ -227,7 +222,6 @@ public class ModelManager implements Model {
         if (nextSessionUtil.getToSortList().isEmpty()) {
             return MESSAGE_NO_NEXT_SESSION_FOUND;
         }
-        nextSessionUtil.getToSortList().sort(Session::compareTo);
         String res = nextSessionUtil.nextSessionFeedback();
         return res;
     }
