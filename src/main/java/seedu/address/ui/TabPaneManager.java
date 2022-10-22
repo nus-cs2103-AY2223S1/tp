@@ -5,11 +5,21 @@ import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
 import seedu.address.commons.util.CollectionUtil;
 
+/**
+ * An UI component that displays allows switching between assignment and contact details.
+ */
 public class DataPanelsTabPaneManager {
     private final TabPane tabPane;
     private final Tab personTabPage;
     private final Tab assignmentTabPage;
 
+    /**
+     * Constructor that manages TabPanes
+     *
+     * @param pane
+     * @param personTabPage
+     * @param assignmentTabPage
+     */
     public DataPanelsTabPaneManager(TabPane pane, Tab personTabPage, Tab assignmentTabPage) {
         CollectionUtil.requireAllNonNull(pane, personTabPage, assignmentTabPage);
         tabPane = pane;
