@@ -9,8 +9,10 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  */
 public class Slack extends Contact {
 
-    public static final String MESSAGE_CONSTRAINTS = "Slack channel names must be up to 20 characters long.";
-    public static final String VALIDATION_REGEX = "^[a-z0-9-_]{1}[a-z0-9-_]{0,20}$";
+    public static final String MESSAGE_CONSTRAINTS = "Slack identifier should adhere to the following constraints:\n" +
+            "1. Only contains lower case, number and underscore\n" +
+            "2. The identifier should be between 1 and 20 characters in length";
+    public static final String VALIDATION_REGEX = "^[a-z0-9-_]{1,20}$";
     private static final String SLACK_LINK_PREFIX = "https://slack.com/app_redirect?channel=";
     private static final ContactType CONTACT_TYPE = ContactType.SLACK;
 
