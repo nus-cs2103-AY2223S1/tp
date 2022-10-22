@@ -1,6 +1,7 @@
 package gim.testutil;
 
 import static gim.logic.commands.CommandTestUtil.VALID_DATE;
+import static gim.logic.commands.CommandTestUtil.VALID_DATE_2;
 import static gim.logic.commands.CommandTestUtil.VALID_NAME_ARM_CURLS;
 import static gim.logic.commands.CommandTestUtil.VALID_NAME_BENCH_PRESS;
 import static gim.logic.commands.CommandTestUtil.VALID_REPS_ARM_CURLS;
@@ -52,6 +53,9 @@ public class TypicalExercises {
     public static final Exercise ARM_CURLS = new ExerciseBuilder()
             .withName(VALID_NAME_ARM_CURLS).withWeight(VALID_WEIGHT_ARM_CURLS).withSets(VALID_SETS_ARM_CURLS)
             .withReps(VALID_REPS_ARM_CURLS).withDate(VALID_DATE).build();
+    public static final Exercise ARM_CURLS_2 = new ExerciseBuilder()
+            .withName(VALID_NAME_ARM_CURLS).withWeight(VALID_WEIGHT_ARM_CURLS).withSets(VALID_SETS_ARM_CURLS)
+            .withReps(VALID_REPS_ARM_CURLS).withDate(VALID_DATE_2).build();
     public static final Exercise BENCH_PRESS = new ExerciseBuilder()
             .withName(VALID_NAME_BENCH_PRESS).withWeight(VALID_WEIGHT_BENCH_PRESS).withSets(VALID_SETS_BENCH_PRESS)
             .withReps(VALID_REPS_BENCH_PRESS).withDate(VALID_DATE)
@@ -74,5 +78,95 @@ public class TypicalExercises {
 
     public static List<Exercise> getTypicalExercises() {
         return new ArrayList<>(Arrays.asList(ALICE, BENSON, CARL, DANIEL, ELLE, FIONA, GEORGE));
+    }
+
+    /**
+     * Returns an {@code ExerciseTracker} with unsorted same exercises but different dates.
+     */
+    public static ExerciseTracker getUnsortedSameExercisesDifferentDatesExerciseTracker() {
+        ExerciseTracker ab = new ExerciseTracker();
+        for (Exercise exercise : getUnsortedSameExercisesDifferentDates()) {
+            ab.addExercise(exercise);
+        }
+        return ab;
+    }
+
+    public static List<Exercise> getUnsortedSameExercisesDifferentDates() {
+        return new ArrayList<>(Arrays.asList(ARM_CURLS_2, ARM_CURLS));
+    }
+
+    /**
+     * Returns an {@code ExerciseTracker} with sorted same exercises but different dates.
+     */
+    public static ExerciseTracker getSortedSameExercisesDifferentDatesExerciseTracker() {
+        ExerciseTracker ab = new ExerciseTracker();
+        for (Exercise exercise : getSortedSameExercisesDifferentDates()) {
+            ab.addExercise(exercise);
+        }
+        return ab;
+    }
+
+    public static List<Exercise> getSortedSameExercisesDifferentDates() {
+        return new ArrayList<>(Arrays.asList(ARM_CURLS, ARM_CURLS_2));
+    }
+
+    /**
+     * Returns an {@code ExerciseTracker} with unsorted different exercises but same dates.
+     */
+    public static ExerciseTracker getUnsortedDifferentExercisesSameDatesExerciseTracker() {
+        ExerciseTracker ab = new ExerciseTracker();
+        for (Exercise exercise : getUnsortedDifferentExercisesSameDates()) {
+            ab.addExercise(exercise);
+        }
+        return ab;
+    }
+
+    public static List<Exercise> getUnsortedDifferentExercisesSameDates() {
+        return new ArrayList<>(Arrays.asList(BENCH_PRESS, ARM_CURLS));
+    }
+
+    /**
+     * Returns an {@code ExerciseTracker} with sorted different exercises but same dates.
+     */
+    public static ExerciseTracker getSortedDifferentExercisesSameDatesExerciseTracker() {
+        ExerciseTracker ab = new ExerciseTracker();
+        for (Exercise exercise : getSortedDifferentExercisesSameDates()) {
+            ab.addExercise(exercise);
+        }
+        return ab;
+    }
+
+    public static List<Exercise> getSortedDifferentExercisesSameDates() {
+        return new ArrayList<>(Arrays.asList(ARM_CURLS, BENCH_PRESS));
+    }
+
+    /**
+     * Returns an {@code ExerciseTracker} with unsorted different exercises and different dates.
+     */
+    public static ExerciseTracker getUnsortedDifferentExercisesDifferentDatesExerciseTracker() {
+        ExerciseTracker ab = new ExerciseTracker();
+        for (Exercise exercise : getUnsortedDifferentExercisesDifferentDates()) {
+            ab.addExercise(exercise);
+        }
+        return ab;
+    }
+
+    public static List<Exercise> getUnsortedDifferentExercisesDifferentDates() {
+        return new ArrayList<>(Arrays.asList(ARM_CURLS_2, ARM_CURLS));
+    }
+
+    /**
+     * Returns an {@code ExerciseTracker} with sorted different exercises and different dates.
+     */
+    public static ExerciseTracker getSortedDifferentExercisesDifferentDatesExerciseTracker() {
+        ExerciseTracker ab = new ExerciseTracker();
+        for (Exercise exercise : getSortedDifferentExercisesDifferentDates()) {
+            ab.addExercise(exercise);
+        }
+        return ab;
+    }
+
+    public static List<Exercise> getSortedDifferentExercisesDifferentDates() {
+        return new ArrayList<>(Arrays.asList(ARM_CURLS, ARM_CURLS_2));
     }
 }
