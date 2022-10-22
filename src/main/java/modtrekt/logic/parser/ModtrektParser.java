@@ -53,6 +53,7 @@ public class ModtrektParser {
                 .addCommand(UnarchiveTaskCommand.COMMAND_WORD, new UnarchiveTaskCommand())
                 .addCommand(PrioritizeTaskCommand.COMMAND_WORD, new PrioritizeTaskCommand())
                 .addCommand(EditTaskCommand.COMMAND_WORD, new EditTaskCommand())
+                .addCommand(AddTaskCommand.COMMAND_WORD, new AddTaskCommand())
                 .build();
         try {
             // This takes care of invalid commands, as well as missing or invalid arguments
