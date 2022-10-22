@@ -54,18 +54,19 @@ The only expectation we have of you is to carefully read through the different s
 Thank you for choosing FoodRem!
 
 If this is your first time using FoodRem, start off with the [Quick Start](#quick-start) section.
-This gives you a brief overview about how to install and use FoodRem.
+This guides you on how to install FoodRem.
 
 We **highly recommend** that you read through the User Guide in a **sequential order** up until the section
-[Features](#features), where you can find all the information you need for each command.
+[Features](#features), where you can find all the information you need before using all command.
 
-Refer to the [Layout](#layout) section where you can find what you are expected to see in the different parts of FoodRem.
+If you are a new user to FoodRem, you can head over to the section about [Using FoodRem](#using-foodrem) which will teach you the basics of FoodRem. This includes: 
 
-In the [Flags](#flags) and [Placeholders](#placeholders) sections you can find:
-
-* Important syntax you will come across while reading the user
-  guide such as `n/`, `bgt/` or `INDEX`, `ITEM_NAME`.
-* The description of these syntax and how to use them
+* Introducing you to the general [command format](#command-formats).
+* [Flags](#flags) and [Placeholders](#placeholders) where you can find:
+  * Important syntax you will come across while reading the User
+    Guide such as `n/`, `bgt/` or `INDEX`, `ITEM_NAME`.
+  *  The description of these syntax and how to use them
+* [Trying out](#trying-your-first-command) a command.
 
 If you are an experienced user, you can refer to the [Command Summary](#command-summary) to get an overview of all the currently supported FoodRem commands.
 
