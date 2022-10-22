@@ -112,7 +112,7 @@ The `UI` component,
 
 ### Logic component
 
-**API** : [`Logic.java`](https://github.com/AY2223S1-CS2103T-W16-1/tp/tree/master/src/main/java/seedu/guest/logic/Logic.java)
+**API** : [`Logic.java`](https://https://github.com/AY2223S1-CS2103T-W16-1/tp/blob/master/src/main/java/seedu/guest/logic/Logic.java)
 
 Here's a (partial) class diagram of the `Logic` component:
 
@@ -731,3 +731,84 @@ testers are expected to do more *exploratory* testing.
    1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
 
 1. _{ more test cases …​ }_
+
+### Adding a guest
+
+1. Adding a guest
+
+   1. Prerequisites: Add a guest use add command, only one adding guest
+      the name of the adding guest should not in the guest book
+      Every part of guest information should be valid
+   
+   2. Test case: `add n/John Doe p/98765432 e/johnd@example.com rm/05-73 
+                  dr/13/09/22 - 15/09/22 ng/1 rc/yes rq/Apply for room service `<br>
+      Expected: add successfully
+   
+   3. Test case: `add n/John Doe p/98765431 e/johnd@nus.com rm/06-73
+                  dr/13/09/22 - 15/09/23 ng/1 rc/yes rq/Kill the insect `<br>
+      Expected: No guest is added, 
+      because the adding name is already in guest book. Error details shown in the status message.
+         Status bar remains the same.
+   
+   4. Test case: `add n/John@y Doe p/98765431 e/johnd@nus.com rm/06-73
+                  dr/13/09/22 - 15/09/23 ng/1 rc/yes rq/Kill the insect `<br>
+      Expected: No guest is added, because the name is invalid. Error details shown in the status message.
+      Status bar remains the same.
+   
+   5. Test case: `add n/Johnny Doe p/+65431 e/johnd@nus.com rm/06-73
+                  dr/13/09/22 - 15/09/23 ng/1 rc/yes rq/Kill the insect `<br>
+      Expected: No guest is added, because the phone number is invalid. Error details shown in the status message.
+      Status bar remains the same.
+   
+   6. Test case: `add n/Johnny Doe p/98765431 e/nus.com rm/06-73
+                  dr/13/09/22 - 15/09/23 ng/1 rc/yes rq/Kill the insect `<br>
+      Expected: No guest is added, because the E-mail address is invalid. Error details shown in the status message.
+      Status bar remains the same.
+
+   7. Test case: `add n/Johnny Doe p/98765431 e/johnd@nus.com rm/!06-73
+                  dr/13/09/22 - 15/09/23 ng/1 rc/yes rq/Kill the insect `<br>
+      Expected: No guest is added, because the room number is invalid. Error details shown in the status message.
+      Status bar remains the same.
+
+   8. Test case: `add n/Johnny Doe p/98765431 e/johnd@nus.com rm/06-73
+                  dr/13/09/22 - 13/09/23 ng/1 rc/yes rq/Kill the insect `<br>
+      Expected: No guest is added, because the date range is invalid. Error details shown in the status message.
+      Status bar remains the same.
+
+   9. Test case: `add n/Johnny Doe p/98765431 e/johnd@nus.com rm/06-73
+                  dr/13/09/22 - 15/09/23 ng/5 rc/yes rq/Kill the insect `<br>
+      Expected: No guest is added, because the number of guest is invalid, because the number of guest
+                cannot exceed 4. Error details shown in the status message.
+      Status bar remains the same.
+
+   10. Test case: `add n/Johnny Doe p/98765431 e/johnd@nus.com rm/06-73
+                   dr/13/09/22 - 15/09/23 ng/1 rc/hi rq/Kill the insect `<br>
+       Expected: No guest is added, because the is room clean is invalid. Error details shown in the status message.
+       Status bar remains the same.
+
+   11. Test case: `add n/Johnny Doe p/98765431 e/johnd@nus.com rm/06-73
+       dr/13/09/22 - 15/09/23 ng/1 rc/yes rq/hi*500 `<br>
+       Expected: No guest is added, because the request is invalid because request exceed 500 characters. 
+       Status bar remains the same.
+
+### Editing a guest
+
+1. Editing a guest
+   
+   1. Prerequisite: Edit the guest use edit command, only one editing guest.
+    The guest index should exist.  
+    The guest should exist in the guest book.
+    The edit content should be valid.
+   
+   2. Test case: `edit 1 n/Johnny`<br>
+      Expected: edit successfully, the first guest's name will change from "John Doe" to "Johnny"
+
+   3. Test case: `edit 2 n/Johnny`<br>
+      Expected: No guest is edited, because the input index does not exist. Error details shown in the status message.
+
+   4. Test case: `edit 1 n/Jo@`<br>
+      Expected: No guest is edited, because the name is invalid. Error details shown in the status message.
+      Status bar remains the same.
+
+   5. Other incorrect edit commands to try: `edit`, `edit x`, `edit 1 rc/hi`, `...`<br>
+      Expected: Similar to previous.
