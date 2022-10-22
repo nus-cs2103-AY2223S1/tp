@@ -3,7 +3,7 @@
   "persons" : [ {
     "name" : "Assignment 2",
     "module" : "CS2100",
-    "deadline" : "2022-11-02",
+    "deadline" : "2022-01-02",
     "tagged" : [ "highPriority" ],
     "isDone" : false
   }, {

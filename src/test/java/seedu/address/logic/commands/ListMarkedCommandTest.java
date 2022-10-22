@@ -56,7 +56,7 @@ public class ListMarkedCommandTest {
         ListMarkedCommand command = new ListMarkedCommand(predicate);
         expectedModel.updateFilteredPersonList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
-        assertEquals(List.of(BENSON, CARL, DANIEL, GEORGE), model.getFilteredPersonList());
+        assertEquals(List.of(GEORGE, BENSON, DANIEL, CARL), model.getFilteredPersonList());
     }
 
     /**
