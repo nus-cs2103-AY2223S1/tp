@@ -83,24 +83,6 @@ public class HelpWindow extends UiPart<Stage> {
             hBox.prefWidth(288.0);
             eventAccordion.getPanes().add(new TitledPane(format, hBox));
         });
-
-        generalAccordion.heightProperty().addListener((obs, oldHeight, newHeight) -> {
-            if (!root.isFullScreen()) {
-                root.sizeToScene();
-            }
-        });
-
-        profileAccordion.heightProperty().addListener((obs, oldHeight, newHeight) -> {
-            if (!root.isFullScreen()) {
-                root.sizeToScene();
-            }
-        });
-
-        eventAccordion.heightProperty().addListener((obs, oldHeight, newHeight) -> {
-            if (!root.isFullScreen()) {
-                root.sizeToScene();
-            }
-        });
     }
 
     /**
