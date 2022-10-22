@@ -52,6 +52,11 @@
                         <ToggleGroup fx:id="panel1" />
                      </toggleGroup>
                   </ToggleButton>
+                   <ToggleButton mnemonicParsing="false" onAction="#setListPanelToProduct" styleClass="button" text="Products">
+                       <toggleGroup>
+                           <ToggleGroup fx:id="panel2" />
+                       </toggleGroup>
+                   </ToggleButton>
                </children>
                <padding>
                   <Insets left="5.0" right="5.0" />

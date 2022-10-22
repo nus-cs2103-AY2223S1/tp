@@ -43,7 +43,7 @@ public class DeleteProductCommand extends Command {
 
         Product productToDelete = lastShownList.get(targetIndex.getZeroBased());
         model.removeProduct(productToDelete);
-        return new CommandResult(String.format(MESSAGE_DELETE_PRODUCT_SUCCESS, productToDelete), CommandSpecific.CLIENT);
+        return new CommandResult(String.format(MESSAGE_DELETE_PRODUCT_SUCCESS, productToDelete));
     }
 
     @Override

@@ -17,6 +17,7 @@ import seedu.address.logic.Logic;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.product.Product;
 
 /**
  * The Main Window. Provides the basic application layout containing
@@ -38,6 +39,7 @@ public class MainWindow extends UiPart<Stage> {
     // Independent Ui parts residing in this Ui container
     private ClientListPanel clientListPanel;
     private MeetingListPanel meetingListPanel;
+    private ProductListPanel productListPanel;
     private ClientDetailedViewPanel clientDetailedViewPanel;
     private MeetingDetailedViewPanel meetingDetailedViewPanel;
     private ResultDisplay resultDisplay;
@@ -125,12 +127,8 @@ public class MainWindow extends UiPart<Stage> {
         clientListPanelPlaceholder.getChildren().add(clientListPanel.getRoot());
 
         meetingListPanel = new MeetingListPanel(logic.getFilteredMeetingList());
-        // Depend on the command called, clientListPanel/meetingListPanel will swap with the panel in placeholder.
-        // However, we will start with clientListPanel.
-
+        productListPanel = new ProductListPanel(logic.getFilteredProductList());
         meetingDetailedViewPanel = new MeetingDetailedViewPanel(logic.getDetailedMeetingList());
-        clientDetailedViewPanel = new ClientDetailedViewPanel(logic.getDetailedClientList());
-
         clientDetailedViewPanel = new ClientDetailedViewPanel(logic.getDetailedClientList());
 
         resultDisplay = new ResultDisplay();
@@ -219,6 +217,12 @@ public class MainWindow extends UiPart<Stage> {
         clientListPanelPlaceholder.getChildren().add(meetingListPanel.getRoot());
     }
 
+    @FXML
+    public void setListPanelToProduct() {
+        clientListPanelPlaceholder.getChildren().clear();
+        clientListPanelPlaceholder.getChildren().add(productListPanel.getRoot());
+    }
+
     private void setListPanelToMeetingDetailed() {
         clientListPanelPlaceholder.getChildren().clear();
         clientListPanelPlaceholder.getChildren().add(meetingDetailedViewPanel.getRoot());
@@ -246,6 +250,9 @@ public class MainWindow extends UiPart<Stage> {
                 break;
             case MEETING:
                 setListPanelToMeeting();
+                break;
+            case PRODUCT:
+                setListPanelToProduct();
                 break;
             case DETAILED_MEETING:
                 setListPanelToMeetingDetailed();

@@ -1,6 +1,7 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.core.Messages.MESSAGE_NON_EXISTING_PRODUCT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_BIRTHDAY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
@@ -84,6 +85,13 @@ public class EditCommand extends Command {
 
         if (!clientToEdit.isSameClient(editedClient) && model.hasClient(editedClient)) {
             throw new CommandException(MESSAGE_DUPLICATE_CLIENT);
+        }
+
+        if (editedClient.getProducts()
+                .stream()
+                .map(model::hasProduct)
+                .anyMatch(entry -> !entry)) {
+            throw new CommandException(MESSAGE_NON_EXISTING_PRODUCT);
         }
 
         model.setClient(clientToEdit, editedClient);

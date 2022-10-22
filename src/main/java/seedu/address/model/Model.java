@@ -19,6 +19,9 @@ public interface Model {
     /** {@code Predicate} that always evaluate to true. Used for filtered meeting list. */
     Predicate<Meeting> PREDICATE_SHOW_ALL_MEETING = unused -> true;
 
+    /** {@code Predicate} that always evaluate to true. Used for filtered product list. */
+    Predicate<Product> PREDICATE_SHOW_ALL_PRODUCTS = unused -> true;
+
     /**
      * Replaces user prefs data with the data in {@code userPrefs}.
      */
@@ -150,4 +153,9 @@ public interface Model {
     /** Returns an unmodifiable view of the filtered product list */
     ObservableList<Product> getFilteredProductList();
 
+    /**
+     * Updates the filter of the filtered Meeting list to filter by the given {@code predicate}.
+     * @throws NullPointerException if {@code predicate} is null.
+     */
+    void updateFilteredProductList(Predicate<Product> predicate);
 }
