@@ -70,9 +70,8 @@ public class SupplyItemTest {
                 new Phone("63450864"), new Price("$1.10"), new Item("Egg"),
                 new Address("Blk 30 Lorong 3 Serangoon Gardens, #07-18"), new HashSet<>()), a.getSupplier());
         assertEquals(Collections.emptySet(), a.getTags());
-        assertEquals("Item: Egg, Supplier: Ya Shu Egg; Phone: 63450864; "
-                + "Price: $1.10; Item: Egg; "
-                + "Address: Blk 30 Lorong 3 Serangoon Gardens, #07-18, Price: $1.10, Stock: 5", a.toString());
+        assertEquals("Item: Egg, Supplier: Ya Shu Egg, "
+                + "Price: $1.10, Current Stock: 5, Minimum Stock: 2", a.toString());
     }
 
     @Test
