@@ -37,21 +37,21 @@ public class FindMeetingCommand extends Command {
         MeetingDate endDate;
         LocalDate today = LocalDate.now();
         switch(dateKeyword) {
-            case TOMORROW:
-                startDate = new MeetingDate(today.plusDays(1));
-                endDate = new MeetingDate(today.plusDays(1));
-                break;
-            case THIS_MONTH:
-                startDate = new MeetingDate(today.withDayOfMonth(1));
-                endDate = new MeetingDate(today.withDayOfMonth(today.getMonth().length(today.isLeapYear())));
-                break;
-            case THIS_WEEK:
-                startDate = new MeetingDate(today);
-                endDate = new MeetingDate(today.plusDays(7));
-                break;
-            default:
-                startDate = null;
-                endDate = null;
+        case TOMORROW:
+            startDate = new MeetingDate(today.plusDays(1));
+            endDate = new MeetingDate(today.plusDays(1));
+            break;
+        case THIS_MONTH:
+            startDate = new MeetingDate(today.withDayOfMonth(1));
+            endDate = new MeetingDate(today.withDayOfMonth(today.getMonth().length(today.isLeapYear())));
+            break;
+        case THIS_WEEK:
+            startDate = new MeetingDate(today);
+            endDate = new MeetingDate(today.plusDays(7));
+            break;
+        default:
+            startDate = null;
+            endDate = null;
         }
 
         requireNonNull(startDate);

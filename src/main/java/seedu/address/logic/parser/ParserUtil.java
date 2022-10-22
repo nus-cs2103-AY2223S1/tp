@@ -144,6 +144,9 @@ public class ParserUtil {
         }
     }
 
+    /**
+     * Parses {@code String keyword} into a {@code DateKeyword}.
+     */
     public static DateKeyword parseDateKeyword(String dateKeyword) throws ParseException {
         requireNonNull(dateKeyword);
         LocalDate today = LocalDate.now();
