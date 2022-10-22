@@ -238,6 +238,171 @@ _{more aspects and alternatives to be added}_
 
 _{Explain here how the data archiving feature will be implemented}_
 
+### Filter feature for transactions
+
+#### Implementation
+
+The filter transaction mechanism is facilitated by `FilterTransCommand` which extends from `Command` and `FilterTransCmdParser` which extends from `Parser`. To invoke the filter command, `FilterTransCmdParser` will parse the arguments from the user input via `FilterTransCmdParser#parse()` and returns the filter command if the arguments are valid.
+
+`FilterTransCommand` implements the `FilterTransCommand#execute()` operation which executes the command and returns the result message in a `CommandResult` object.
+
+The operation is exposed in the `Logic` interface as `Logic#execute()`.
+
+Given below is an example usage scenario and how the filter mechanism behaves at each step.
+
+Step 1. The user launches the application. The `UiManager` will call on the `MainWindow` to invoke the UI which displays the clients.
+
+![FilterTransState0](images/FilterTransState0.png)
+
+Step 2. The user executes `filter buy` command to filter all the buy transactions from all the clients. This is done by calling the
+`Client#getBuyTransactionList()` which returns an unmodifiable view of the buy transaction list.
+
+
+Step 3. The `CommandResult` of `FilterTransCommand` will call `MainWindow#handleFilterTransaction()`,
+to display only the filtered buy transactions from the `Client#getBuyTransactionList()`.
+
+![FilterTransState1](images/FilterTransState1.png)
+
+The following sequence diagram shows how the filter operation works:
+
+![FilterTransSequenceDiagram](images/FilterTransSequenceDiagram.png)
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `FilterTransCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+
+</div>
+
+The following activity diagram summarizes what happens when a user executes the filter command:
+
+<img src="images/FilterTransCmdActivityDiagram.png" width="250" />
+
+#### Design considerations:
+
+**Aspect: How filter transaction executes:**
+
+* **Alternative 1 (current choice):** Filter all the transactions made by all the clients.
+    * Pros: Easy to implement and allow the user to see all the buy or sell transactions at one glance.
+    * Cons: May have performance issues due to searching through all transactions of each client. Hard to distinguish which transaction belong to which client.
+
+* **Alternative 2:** Individual filter transaction for each client.
+    * Pros: Performs faster as the command only filters through one client. Also able to know which client the transactions are from.
+    * Cons: User would have to manually select each client and filter the transactions.
+
+### \[Proposed\] Buy feature for transactions
+
+The proposed sort mechanism is facilitated by `BuyCommand`. It extends `Command` and `BuyCommandParser` which extends from `Parser`.
+To invoke the buy command, `BuyCommandParser` will parse the arguments from the user input via `BuyCommandParser#parse()` and returns the buy command
+if the arguments are valid.
+
+`BuyCommand` implements the `BuyCommandParser#execute()` operation which executes the command and returns the result message in a 
+`CommandResult` object.
+
+The operation is exposed in the `logic` interface as `Logic#execute()`.
+
+Given below is an example usage scenario and how the buy transaction mechanism behaves at each step.
+
+Step 1. The user launches the application. The `UiManager` will call on the `MainWindow` to invoke the UI which displays the clients.
+
+![BuyState0](images/BuyState0-initial_state.png)
+
+Step 2. The user executes `buy 1 q/10 g/Apple p/0.5 d/17/05/2000` command to add a buy transaction of 10 apples at $0.50 each on the 17/05/2000 to the
+client at index 1.
+
+Step 3. The `Execute` of `BuyCommand` will call `Model#getFilteredClientList()` to get the list of clients. `List<Client>#get()` is called to
+get the client at the index to copy. The `BuyTransaction` is then added to the copied client by calling `Client#addTransaction(Transaction)`.
+The copied client is replaced with the client at the index by calling `Model#setClient(Client, Client)`.
+
+The following sequence diagrams shows how the buy operation works:
+
+![BuyCommandSequenceDiagram](images/BuyCommandSequenceDiagram.png)
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `BuyCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+
+ </div>
+
+The following activity diagram summarizes what happens when a user executes the buy command:
+
+<img src="images/BuyCommandActivityDiagram.png" width="250" />
+
+#### Design considerations:
+
+**Aspect: How buy transaction executes:**
+
+* **Alternative 1 (current choice):** Add buy transaction by into each client.
+    * Pros: Easy to implement and allow the user to see all the buy transactions for each client via view command.
+    * Cons: Users cannot see all buy transaction of every client at one time.
+* **Alternative 2:** Add buy transaction to JeeqTracker instead of per client.
+    * Pros: Easy to see every past buy transaction with all the clients.
+    * Cons: Users may be overwhelmed if there are too many transactions. Also cannot distintively see which buy transaction belongs to which client.
+
+_{more aspects and alternatives to be added}_
+
+--------------------------------------------------------------------------------------------------------------
+### \[Proposed\] Editing feature for transactions
+#### Implementation
+The edit transaction mechanism is facilitated by EditTransactionCommand which extends from `EditCommand` (which extends from `Command`) and
+`EditCommandParser` which extends from `Parser`. To invoke the edit command, `EditCommandParser` will parse the arguments from user input with
+`EditCommandParser#parse()` and returns the edit command if the arguments are valid.
+
+`EditTransactionCommand` implements the `EditTransactionCommand#execute()` operation which executes the command and returns the result
+message in a `CommandResult` object.
+
+The operation is exposed in the `Logic` interface as `Logic#execute()`.
+
+Give below is the usage scenario and how the edit mechanism behaves at each step.
+
+Step 1. The user launches the application. The `UiManager` will call on the `MainWindow` to invoke the UI which displays the clients.
+
+Step 2. The user executes `view 1` command to focus on the client at index 1 and see the client's list of transactions.
+
+Step 3. The user executes `edit 2 m/transaction q/10` command to edit the information of transaction at index 2 in the focused client's transaction list.
+This is done by accessing the `TransactionLog` of the focused client, and executing `TransactionLog#setTransaction(index, editedTransaction)`
+
+The following sequence diagram shows how the edit operation works in Logic Manager:
+
+![EditTransactionSequenceDiagram](images/EditTransactionSequenceDiagram.png)
+
+_{more aspects and alternatives to be added}_
+
+### Delete Client/Transaction/Remark feature
+
+#### Current Implementation
+
+The deletion mechanism for `clients`, `transactions`, and `remarks` is facilitated by a `DeleteCommandParser` and `DeleteCommand`.
+
+The following class diagram shows the parent-child relation of `DeleteClientCommand`, `DeleteTransactionCommand`, `DeleteRemarkCommand` relative to the `DeleteCommand`. The concrete classes consists of the logic to delete an item stated by the name of their command.
+
+![DeleteCommandClassDiagram](images/DeleteCommandClassDiagram.png)
+
+The `DeleteCommandParser` will take in the `userInput`, parse it, and return the correct concrete command type that is either `DeleteClientCommand`, `DeleteTransactionCommand`, or `DeleteRemarkCommand` which will be executed to achieve the deletion functionality.
+
+This process of deleting the first client in the list is depicted by the following sequence diagram (for user input `delete 1 m/client`):
+
+![DeleteSequenceDiagram](images/DeleteSequenceDiagram.png)
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `FilterTransCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+
+</div>
+
+The process for deleting `transaction` and `remark` is almost the same as the process stated above, with just the following changes:
+- For delete transaction:
+    - `userInput` is changed to `delete 1 m/transaction`
+    - `parse("1 m/transaction")` returns `d`, which is a `DeleteTransactionCommand`
+    - `deleteClient(1)` is changed to `deleteTransaction(1)`
+- For delete remark:
+    - `userInput` is changed to `delete 1 m/remark`
+    - `parse("1 m/remark")` returns `d`, which is a `DeleteRemarkCommand`
+    - `deleteClient(1)` is changed to `deleteRemark(1)`
+
+#### Design Considerations:
+
+**Aspect: How delete executes:**
+
+* **Alternative 1 (current choice):** Delete either Client/Transaction/Remark specified by `mode (m) flag` selected by `index`
+    * Pros: Easy to implement and lesser commands overall since flag is used to specify each command.
+    * Cons: May be more clunky to use as users have to type in a longer command.
+
+* **Alternative 2:** Create separate individual commands to Delete Client/Transaction/Remark, e.g. `deleteClient 1`, `deleteTransaction 1`, `deleteRemark 1`.
+    * Pros: More intuitive to use, shorter command to type.
+    * Cons: Adds more valid commands that the user can use, which may not be very user-friendly since they have to remember more commands. Also, there will be much more classes and code.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -276,17 +441,17 @@ _{Explain here how the data archiving feature will be implemented}_
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                  | I want to …​                                        | So that I can…​                                                    |
-|----------|--------------------------|-----------------------------------------------------|--------------------------------------------------------------------|
-| `* * *`  | business owner           | choose which client and company to delete | save only relevant clients and company to remove clutter |
-| `* * *`  | forgetful business owner | see usage instructions                              | refer to instructions when I forget how to use the application     |
-| `* * *`  | new business owner       | simply search for contacts                          | retrieve only the essential details I need                         |
-| `* * *`  | new business owner       | view a client's details and company       | easily know who to contact for that client                        |
-| `* * *`  | busy business owner      | quickly retrieve the data of the client            | save time without having to go through multiple layers             |
-| `* * *`  | new business owner       | create a new client input                          | keep track of all the new clients I work with                    |
-| `* * *`  | new business owner       | add a company to a client                 | know who to contact in that client                                |
-| `* *`    | careless business owner  | edit the details of company                | correct the mistakes that I did                                    |
-| `* *`    | efficient business owner | sort the search result by price                     | quickly know which client I have made the most transaction with   |
+| Priority | As a …​                  | I want to …​                              | So that I can…​                                                 |
+|----------|--------------------------|-------------------------------------------|-----------------------------------------------------------------|
+| `* * *`  | business owner           | choose which client and company to delete | save only relevant clients and company to remove clutter        |
+| `* * *`  | forgetful business owner | see usage instructions                    | refer to instructions when I forget how to use the application  |
+| `* * *`  | new business owner       | simply search for contacts                | retrieve only the essential details I need                      |
+| `* * *`  | new business owner       | view a client's details and company       | easily know who to contact for that client                      |
+| `* * *`  | busy business owner      | quickly retrieve the data of the client   | save time without having to go through multiple layers          |
+| `* * *`  | new business owner       | create a new client input                 | keep track of all the new clients I work with                   |
+| `* * *`  | new business owner       | add a company to a client                 | know who to contact in that client                              |
+| `* *`    | careless business owner  | edit the details of company               | correct the mistakes that I did                                 |
+| `* *`    | efficient business owner | sort the search result by price           | quickly know which client I have made the most transaction with |
 
 *{More to be added}*
 

@@ -1,0 +1,59 @@
+@startuml
+!include ../style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":JeeqTrackerParser" as JeeqTrackerParser LOGIC_COLOR
+participant ":EditCommandParser" as EditCommandParser LOGIC_COLOR
+participant "d:EditTransactionCommand" as EditTransactionCommand LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+[-> LogicManager : execute("edit")
+activate LogicManager
+
+LogicManager -> JeeqTrackerParser : parseCommand("edit")
+activate JeeqTrackerParser
+
+create EditCommandParser
+JeeqTrackerParser -> EditCommandParser
+activate EditCommandParser
+
+EditCommandParser --> JeeqTrackerParser
+deactivate EditCommandParser
+
+JeeqTrackerParser -> EditCommandParser : parse("edit")
+activate EditCommandParser
+
+create EditTransactionCommand
+EditCommandParser -> EditTransactionCommand
+activate EditTransactionCommand
+
+EditTransactionCommand --> EditCommandParser : d
+deactivate EditTransactionCommand
+
+EditCommandParser --> JeeqTrackerParser : d
+deactivate EditCommandParser
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+EditCommandParser -[hidden]-> JeeqTrackerParser
+destroy EditCommandParser
+
+JeeqTrackerParser --> LogicManager : d
+deactivate JeeqTrackerParser
+
+LogicManager -> EditTransactionCommand : execute()
+activate EditTransactionCommand
+
+create CommandResult
+EditTransactionCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> EditTransactionCommand
+deactivate CommandResult
+
+EditTransactionCommand --> LogicManager : result
+deactivate EditTransactionCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml
