@@ -23,7 +23,7 @@ public class ViewCommandParser implements Parser<ViewCommand> {
         try {
             index = ParserUtil.parseIndex(argMultimap.getPreamble());
         } catch (ParseException pe) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, ViewCommand.MESSAGE_USAGE));
+            throw new ParseException(pe.getMessage());
         }
 
         return new ViewCommand(index);
