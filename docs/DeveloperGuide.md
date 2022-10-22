@@ -449,7 +449,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case ends.
 
-**Use case: UC8 - Display appointments in a calendar view**
+**Use case: UC8 - Display appointments of the current month in a calendar view**
 
 **MSS**
 
@@ -484,7 +484,16 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case ends.
 
-      *{More to be added}*
+**Use case: UC9 - Display appointments of a new month in a calendar view**
+
+**MSS**
+
+1. User requests to view all the appointments of a new month in a calendar view
+2. Financial Advisor Planner shows all the appointments in the given new month according to their dates
+    
+    Use case ends.
+
+    *{More to be added}*
 
 ### Non-Functional Requirements
 
