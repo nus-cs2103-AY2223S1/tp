@@ -11,9 +11,9 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalClients.ALICE;
 import static seedu.address.testutil.TypicalClients.BOB;
-import static seedu.address.testutil.TypicalCompany.AMY;
-import static seedu.address.testutil.TypicalCompany.BENSON;
-import static seedu.address.testutil.TypicalCompany.ELLE;
+import static seedu.address.testutil.TypicalRemark.AMY;
+import static seedu.address.testutil.TypicalRemark.BENSON;
+import static seedu.address.testutil.TypicalRemark.ELLE;
 import static seedu.address.testutil.TypicalTransaction.BUY_BURGERS;
 import static seedu.address.testutil.TypicalTransaction.BUY_ORANGE;
 import static seedu.address.testutil.TypicalTransaction.SELL_PANTS;
@@ -26,21 +26,21 @@ import org.junit.jupiter.api.Test;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.address.logic.commands.CreateCommand;
-import seedu.address.model.company.Company;
-import seedu.address.model.company.UniqueCompanyList;
+import seedu.address.model.remark.Remark;
+import seedu.address.model.remark.UniqueRemarkList;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.transaction.Transaction;
 import seedu.address.model.transaction.TransactionLog;
 import seedu.address.testutil.ClientBuilder;
-import seedu.address.testutil.CompanyBuilder;
+import seedu.address.testutil.RemarkBuilder;
 import seedu.address.testutil.TypicalClients;
-import seedu.address.testutil.TypicalCompany;
+import seedu.address.testutil.TypicalRemark;
 
 public class ClientTest {
 
     @Test
     public void constructor_nullName_throwsNullPointerException() {
-        UniqueCompanyList companies = new UniqueCompanyList();
+        UniqueRemarkList companies = new UniqueRemarkList();
         TransactionLog transactions = new TransactionLog();
         Set<Tag> tags = new HashSet<>();
         assertThrows(NullPointerException.class, () ->
@@ -50,7 +50,7 @@ public class ClientTest {
 
     @Test
     public void constructor_nullAddress_throwsNullPointerException() {
-        UniqueCompanyList companies = new UniqueCompanyList();
+        UniqueRemarkList companies = new UniqueRemarkList();
         TransactionLog transactions = new TransactionLog();
         Set<Tag> tags = new HashSet<>();
         assertThrows(NullPointerException.class, () ->
@@ -60,7 +60,7 @@ public class ClientTest {
 
     @Test
     public void constructor_nullIndex_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> new CreateCommand(null, TypicalCompany.ALICE));
+        assertThrows(NullPointerException.class, () -> new CreateCommand(null, TypicalRemark.ALICE));
     }
 
     @Test
@@ -97,22 +97,22 @@ public class ClientTest {
     }
 
     @Test
-    public void addCompany() {
+    public void addRemark() {
         Client aliceCopy = new ClientBuilder(ALICE).build();
-        Company elleCopy = new CompanyBuilder(ELLE).build();
-        aliceCopy.addCompany(elleCopy);
+        Remark elleCopy = new RemarkBuilder(ELLE).build();
+        aliceCopy.addRemark(elleCopy);
         assertTrue(aliceCopy.getCompanies().contains(elleCopy));
 
         assertFalse(aliceCopy.getCompanies().contains(AMY));
     }
 
     @Test
-    public void containsCompany() {
+    public void containsRemark() {
         Client client = new ClientBuilder(TypicalClients.BENSON).build();
-        assertTrue(client.hasCompany(BENSON));
+        assertTrue(client.hasRemark(BENSON));
 
-        // Invalid Company
-        assertFalse(client.hasCompany(AMY));
+        // Invalid Remark
+        assertFalse(client.hasRemark(AMY));
     }
 
     @Test

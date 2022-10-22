@@ -10,27 +10,27 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
-import seedu.address.model.company.Company;
-import seedu.address.model.company.CompanyAddress;
-import seedu.address.model.company.CompanyName;
+import seedu.address.model.remark.Remark;
+import seedu.address.model.remark.RemarkAddress;
+import seedu.address.model.remark.RemarkName;
 import seedu.address.model.tag.Tag;
 
 /**
- * Jackson-friendly version of {@link Company}.
+ * Jackson-friendly version of {@link Remark}.
  */
-class JsonAdaptedCompany {
+class JsonAdaptedRemark {
 
-    public static final String MISSING_FIELD_MESSAGE_FORMAT = "Company's %s field is missing!";
+    public static final String MISSING_FIELD_MESSAGE_FORMAT = "Remark's %s field is missing!";
 
     private final String name;
     private final String address;
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
 
     /**
-     * Constructs a {@code JsonAdaptedCompany} with the given company details.
+     * Constructs a {@code JsonAdaptedRemark} with the given company details.
      */
     @JsonCreator
-    public JsonAdaptedCompany(@JsonProperty("name") String name, @JsonProperty("address") String address,
+    public JsonAdaptedRemark(@JsonProperty("name") String name, @JsonProperty("address") String address,
                               @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
         this.name = name;
         this.address = address;
@@ -40,9 +40,9 @@ class JsonAdaptedCompany {
     }
 
     /**
-     * Converts a given {@code Company} into this class for Jackson use.
+     * Converts a given {@code Remark} into this class for Jackson use.
      */
-    public JsonAdaptedCompany(Company source) {
+    public JsonAdaptedRemark(Remark source) {
         name = source.getName().fullName;
         address = source.getAddress().value;
         tagged.addAll(source.getTags().stream()
@@ -51,11 +51,11 @@ class JsonAdaptedCompany {
     }
 
     /**
-     * Converts this Jackson-friendly adapted company object into the model's {@code Company} object.
+     * Converts this Jackson-friendly adapted company object into the model's {@code Remark} object.
      *
      * @throws IllegalValueException if there were any data constraints violated in the adapted company.
      */
-    public Company toModelType() throws IllegalValueException {
+    public Remark toModelType() throws IllegalValueException {
         final List<Tag> clientTags = new ArrayList<>();
         for (JsonAdaptedTag tag : tagged) {
             clientTags.add(tag.toModelType());
@@ -63,24 +63,24 @@ class JsonAdaptedCompany {
 
         if (name == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
-                    CompanyName.class.getSimpleName()));
+                    RemarkName.class.getSimpleName()));
         }
-        if (!CompanyName.isValidName(name)) {
-            throw new IllegalValueException(CompanyName.MESSAGE_CONSTRAINTS);
+        if (!RemarkName.isValidName(name)) {
+            throw new IllegalValueException(RemarkName.MESSAGE_CONSTRAINTS);
         }
-        final CompanyName modelName = new CompanyName(name);
+        final RemarkName modelName = new RemarkName(name);
 
         if (address == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
-                    CompanyAddress.class.getSimpleName()));
+                    RemarkAddress.class.getSimpleName()));
         }
-        if (!CompanyAddress.isValidCompanyAddress(address)) {
-            throw new IllegalValueException(CompanyAddress.MESSAGE_CONSTRAINTS);
+        if (!RemarkAddress.isValidRemarkAddress(address)) {
+            throw new IllegalValueException(RemarkAddress.MESSAGE_CONSTRAINTS);
         }
-        final CompanyAddress modelAddress = new CompanyAddress(address);
+        final RemarkAddress modelAddress = new RemarkAddress(address);
 
         final Set<Tag> modelTags = new HashSet<>(clientTags);
-        return new Company(modelName, modelAddress, modelTags);
+        return new Remark(modelName, modelAddress, modelTags);
     }
 
 }

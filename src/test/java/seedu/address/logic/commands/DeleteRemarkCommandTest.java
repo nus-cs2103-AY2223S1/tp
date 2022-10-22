@@ -3,10 +3,10 @@ package seedu.address.logic.commands;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.logic.commands.DeleteCompanyCommand.MESSAGE_DELETE_COMPANY_SUCCESS;
+import static seedu.address.logic.commands.DeleteRemarkCommand.MESSAGE_DELETE_COMPANY_SUCCESS;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalClients.ALICE;
-import static seedu.address.testutil.TypicalCompany.FIONA;
+import static seedu.address.testutil.TypicalRemark.FIONA;
 
 import java.nio.file.Path;
 import java.util.function.Predicate;
@@ -22,21 +22,21 @@ import seedu.address.model.ReadOnlyJeeqTracker;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.client.Client;
 import seedu.address.model.client.UniqueClientList;
-import seedu.address.model.company.Company;
+import seedu.address.model.remark.Remark;
 import seedu.address.testutil.ClientBuilder;
 
 /**
  * Contains integration tests (interaction with the Model) and unit tests for
- * {@code DeleteCompanyCommand}.
+ * {@code DeleteRemarkCommand}.
  */
-public class DeleteCompanyCommandTest {
-    private static final Company companyToAdd = FIONA;
+public class DeleteRemarkCommandTest {
+    private static final Remark companyToAdd = FIONA;
 
     @Test
     public void execute_validIndex_success() throws Exception {
         Model modelStub = new ModelStub(new ClientBuilder().build());
 
-        DeleteCompanyCommand command = new DeleteCompanyCommand(Index.fromOneBased(1));
+        DeleteRemarkCommand command = new DeleteRemarkCommand(Index.fromOneBased(1));
         CommandResult result = command.execute(modelStub);
 
         String expectedMessage = String.format(MESSAGE_DELETE_COMPANY_SUCCESS, companyToAdd);
@@ -48,7 +48,7 @@ public class DeleteCompanyCommandTest {
     public void execute_invalidIndex_throwsCommandException() {
         Model modelStub = new ModelStub(new ClientBuilder().build());
 
-        assertThrows(CommandException.class, () -> new DeleteCompanyCommand(Index.fromOneBased(2)).execute(modelStub));
+        assertThrows(CommandException.class, () -> new DeleteRemarkCommand(Index.fromOneBased(2)).execute(modelStub));
     }
 
     @Test
@@ -56,13 +56,13 @@ public class DeleteCompanyCommandTest {
         Model modelStub = new ModelStub(new ClientBuilder().build());
         modelStub.addClient(ALICE);
 
-        assertThrows(CommandException.class, () -> new DeleteCompanyCommand(Index.fromOneBased(1)).execute(modelStub));
+        assertThrows(CommandException.class, () -> new DeleteRemarkCommand(Index.fromOneBased(1)).execute(modelStub));
     }
 
     @Test
     public void equals() {
-        DeleteCompanyCommand firstCommand = new DeleteCompanyCommand(Index.fromOneBased(1));
-        DeleteCompanyCommand secondCommand = new DeleteCompanyCommand(Index.fromOneBased(1));
+        DeleteRemarkCommand firstCommand = new DeleteRemarkCommand(Index.fromOneBased(1));
+        DeleteRemarkCommand secondCommand = new DeleteRemarkCommand(Index.fromOneBased(1));
 
         // same values -> returns true
         assertTrue(firstCommand.equals(secondCommand));
@@ -77,7 +77,7 @@ public class DeleteCompanyCommandTest {
         assertFalse(firstCommand.equals(new ListCommand()));
 
         // different index -> returns false
-        assertFalse(firstCommand.equals(new DeleteCompanyCommand(Index.fromOneBased(2))));
+        assertFalse(firstCommand.equals(new DeleteRemarkCommand(Index.fromOneBased(2))));
     }
 
     /**
@@ -89,7 +89,7 @@ public class DeleteCompanyCommandTest {
 
         public ModelStub(Client client) {
             this.client = client;
-            this.client.addCompany(companyToAdd);
+            this.client.addRemark(companyToAdd);
             clientList.add(client);
         }
 

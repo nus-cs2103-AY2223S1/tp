@@ -503,8 +503,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 1. User requests to create a Mcdonalds client
 2. JeeqTracker creates and adds a client called McDonalds into JeeqTracker
-3. User requests to add Justin as a Company to Mcdonalds
-4. JeeqTracker adds Justin and his details into the Mcdonalds as the Company
+3. User requests to add Justin as a Remark to Mcdonalds
+4. JeeqTracker adds Justin and his details into the Mcdonalds as the Remark
 
     Use case ends.
 
@@ -514,7 +514,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 1a1. JeeqTracker shows an error message.
 
         Use case resumes at 1.
-* 3a. User fails to provide all necessary details to create a Company.
+* 3a. User fails to provide all necessary details to create a Remark.
     * 3a1. JeeqTracker shows an error message.
 
         Use case resumes at 2.

@@ -11,7 +11,7 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_QUANTITY_SELL_P
 import seedu.address.model.transaction.Transaction;
 
 /**
- * A utility class containing a list of {@code Company} objects to be used in tests.
+ * A utility class containing a list of {@code Remark} objects to be used in tests.
  */
 public class TypicalTransaction {
 
@@ -65,7 +65,7 @@ public class TypicalTransaction {
             .withDate("08/08/1990")
             .build();
 
-    // Manually added - Company's details found in {@code CommandTestUtil}
+    // Manually added - Remark's details found in {@code CommandTestUtil}
     public static final Transaction BUY_ORANGE = new TransactionBuilder().withTransactionType("buy")
             .withGoods(VALID_GOODS_BUY_ORANGE)
             .withPrice(VALID_PRICE_BUY_ORANGE)

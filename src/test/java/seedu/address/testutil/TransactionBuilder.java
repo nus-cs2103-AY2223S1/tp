@@ -9,7 +9,7 @@ import seedu.address.model.transaction.SellTransaction;
 import seedu.address.model.transaction.Transaction;
 
 /**
- * A utility class to help with building Company objects.
+ * A utility class to help with building Remark objects.
  */
 public class TransactionBuilder {
 

@@ -38,7 +38,7 @@ class CreateCommandParserTest {
     }
 
     @Test
-    public void parse_invalidCompanyFields_failure() {
+    public void parse_invalidRemarkFields_failure() {
         // name but no address
         assertParseFailure(parser, "1" + INVALID_NAME_DESC, CreateCommand.MESSAGE_COMPANY_INVALID);
         // address but no name

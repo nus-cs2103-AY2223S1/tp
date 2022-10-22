@@ -7,14 +7,14 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
-import seedu.address.model.company.Company;
+import seedu.address.model.remark.Remark;
 
 /**
- * A UI component that displays information of a {@code Company}.
+ * A UI component that displays information of a {@code Remark}.
  */
-public class CompanyCard extends UiPart<Region> {
+public class RemarkCard extends UiPart<Region> {
 
-    private static final String FXML = "CompanyListCard.fxml";
+    private static final String FXML = "RemarkListCard.fxml";
 
     /**
      * Note: Certain keywords such as "location" and "resources" are reserved keywords in JavaFX.
@@ -24,7 +24,7 @@ public class CompanyCard extends UiPart<Region> {
      * @see <a href="https://github.com/se-edu/addressbook-level4/issues/336">The issue on JeeqTracker level 4</a>
      */
 
-    public final Company company;
+    public final Remark company;
 
     @FXML
     private HBox companyCardPane;
@@ -38,9 +38,9 @@ public class CompanyCard extends UiPart<Region> {
     private FlowPane tags;
 
     /**
-     * Creates a {@code CompanyCode} with the given {@code Company} and index to display
+     * Creates a {@code RemarkCode} with the given {@code Remark} and index to display
      */
-    public CompanyCard(Company company, int displayedIndex) {
+    public RemarkCard(Remark company, int displayedIndex) {
         super(FXML);
         this.company = company;
         id.setText(displayedIndex + ". ");
@@ -59,12 +59,12 @@ public class CompanyCard extends UiPart<Region> {
         }
 
         // instanceof handles null
-        if (!(other instanceof CompanyCard)) {
+        if (!(other instanceof RemarkCard)) {
             return false;
         }
 
         // state check
-        CompanyCard card = (CompanyCard) other;
+        RemarkCard card = (RemarkCard) other;
         return id.getText().equals(card.id.getText())
                 && company.equals(card.company);
     }

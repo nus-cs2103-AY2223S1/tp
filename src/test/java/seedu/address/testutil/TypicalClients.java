@@ -32,7 +32,7 @@ public class TypicalClients {
             .withClientPhone("12112121")
             .withClientEmail("ben@gmail.com")
             .withTags("owesMoney", "friends")
-            .withAddedCompany(TypicalCompany.BENSON)
+            .withAddedRemark(TypicalRemark.BENSON)
             .withTransaction(TypicalTransaction.BUY_BOOKS)
             .withTransaction(TypicalTransaction.BUY_TOYS)
             .build();
@@ -44,7 +44,7 @@ public class TypicalClients {
             .withClientPhone("12121212")
             .withClientEmail("dan@gmail.com")
             .withTags("friends")
-            .withAddedCompany(TypicalCompany.DANIEL).build();
+            .withAddedRemark(TypicalRemark.DANIEL).build();
     public static final Client ELLE = new ClientBuilder().withName("Elle Meyer")
             .withAddress("michegan ave")
             .withClientPhone("9228282")

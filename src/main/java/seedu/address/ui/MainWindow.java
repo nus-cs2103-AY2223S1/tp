@@ -20,7 +20,7 @@ import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.client.Client;
-import seedu.address.model.company.Company;
+import seedu.address.model.remark.Remark;
 import seedu.address.model.transaction.Transaction;
 
 /**
@@ -40,7 +40,7 @@ public class MainWindow extends UiPart<Stage> {
     private ClientListPanel clientListPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
-    private CompanyListPanel companyListPanel;
+    private RemarkListPanel companyListPanel;
     private TransactionListPanel transactionListPanel;
     private NetTransactionBox netTransactionBox;
 
@@ -138,7 +138,7 @@ public class MainWindow extends UiPart<Stage> {
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
 
-        companyListPanel = new CompanyListPanel();
+        companyListPanel = new RemarkListPanel();
         companyListPanelPlaceholder.getChildren().add(companyListPanel.getRoot());
 
         StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getJeeqTrackerFilePath());
@@ -192,7 +192,7 @@ public class MainWindow extends UiPart<Stage> {
     }
 
     /**
-     * Handles changes to the UI whenever the Company or Transaction information is updated in a client.
+     * Handles changes to the UI whenever the Remark or Transaction information is updated in a client.
      * @param commandResult the result of command executed.
      */
     private void handleClientDetailsUpdate(CommandResult commandResult) {
@@ -200,15 +200,15 @@ public class MainWindow extends UiPart<Stage> {
         double updatedNetTransaction = logic.calculateTotalTransaction(clientList);
         if (clientList.size() != 1) {
             // Empty company list panel.
-            companyListPanel.setCompanyList(FXCollections.observableArrayList());
+            companyListPanel.setRemarkList(FXCollections.observableArrayList());
             transactionListPanel.setTransactionList(FXCollections.observableArrayList());
             netTransactionBox.setNetTransaction(updatedNetTransaction);
             return;
         }
         Client client = clientList.get(0);
-        ObservableList<Company> companies = client.getCompanies().asUnmodifiableObservableList();
+        ObservableList<Remark> companies = client.getCompanies().asUnmodifiableObservableList();
         ObservableList<Transaction> transactions = client.getTransactions().asUnmodifiableObservableList();
-        companyListPanel.setCompanyList(companies);
+        companyListPanel.setRemarkList(companies);
         transactionListPanel.setTransactionList(transactions);
         netTransactionBox.setNetTransaction(updatedNetTransaction);
     }
@@ -218,7 +218,7 @@ public class MainWindow extends UiPart<Stage> {
      */
     private void handleFilterTransaction(CommandResult result) {
         ObservableList<Client> clientList = logic.getFilteredClientList();
-        companyListPanel.setCompanyList(FXCollections.observableArrayList());
+        companyListPanel.setRemarkList(FXCollections.observableArrayList());
         ObservableList<Transaction> transactions = FXCollections.observableArrayList();
         Iterator<Client> itr = clientList.listIterator();
         while (itr.hasNext()) {

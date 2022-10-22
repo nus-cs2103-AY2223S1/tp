@@ -11,9 +11,9 @@ import java.util.Set;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.CreateCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.company.Company;
-import seedu.address.model.company.CompanyAddress;
-import seedu.address.model.company.CompanyName;
+import seedu.address.model.remark.Remark;
+import seedu.address.model.remark.RemarkAddress;
+import seedu.address.model.remark.RemarkName;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -43,11 +43,11 @@ public class CreateCommandParser implements Parser<CreateCommand> {
             throw new ParseException(CreateCommand.MESSAGE_COMPANY_INVALID);
         }
 
-        CompanyName name = ParserUtil.parseCompanyName(argMultimap.getValue(PREFIX_NAME).get());
-        CompanyAddress address = ParserUtil.parseCompanyAddress(argMultimap.getValue(PREFIX_ADDRESS).get());
+        RemarkName name = ParserUtil.parseRemarkName(argMultimap.getValue(PREFIX_NAME).get());
+        RemarkAddress address = ParserUtil.parseRemarkAddress(argMultimap.getValue(PREFIX_ADDRESS).get());
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
 
-        Company company = new Company(name, address, tagList);
+        Remark company = new Remark(name, address, tagList);
 
         return new CreateCommand(index, company);
     }

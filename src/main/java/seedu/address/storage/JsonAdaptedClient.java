@@ -15,7 +15,7 @@ import seedu.address.model.client.Client;
 import seedu.address.model.client.ClientEmail;
 import seedu.address.model.client.ClientPhone;
 import seedu.address.model.client.Name;
-import seedu.address.model.company.Company;
+import seedu.address.model.remark.Remark;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.transaction.Transaction;
 
@@ -32,7 +32,7 @@ class JsonAdaptedClient {
     private final String phone;
     private final String email;
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
-    private final List<JsonAdaptedCompany> companies = new ArrayList<>();
+    private final List<JsonAdaptedRemark> companies = new ArrayList<>();
     private final List<JsonAdaptedTransaction> transactions = new ArrayList<>();
 
     /**
@@ -42,7 +42,7 @@ class JsonAdaptedClient {
     public JsonAdaptedClient(@JsonProperty("name") String name, @JsonProperty("address") String address,
                              @JsonProperty("phone") String phone, @JsonProperty("email") String email,
                              @JsonProperty("tagged") List<JsonAdaptedTag> tagged,
-                             @JsonProperty("companies") List<JsonAdaptedCompany> companies,
+                             @JsonProperty("companies") List<JsonAdaptedRemark> companies,
                              @JsonProperty("transactions") List<JsonAdaptedTransaction> transactions) {
         this.name = name;
         this.companies.addAll(companies);
@@ -63,7 +63,7 @@ class JsonAdaptedClient {
         address = source.getAddress().value;
         phone = source.getPhone().value;
         email = source.getEmail().value;
-        companies.addAll(source.getCompanyList().stream().map(JsonAdaptedCompany::new).collect(Collectors.toList()));
+        companies.addAll(source.getRemarkList().stream().map(JsonAdaptedRemark::new).collect(Collectors.toList()));
         transactions.addAll(source.getTransactionList().stream()
                 .map(JsonAdaptedTransaction::new).collect(Collectors.toList()));
         tagged.addAll(source.getTags().stream()
@@ -120,12 +120,12 @@ class JsonAdaptedClient {
 
         Client client = new Client(modelName, modelAddress, modelPhone, modelEmail, modelTags);
 
-        for (JsonAdaptedCompany jsonAdaptedCompany : companies) {
-            Company company = jsonAdaptedCompany.toModelType();
-            if (client.hasCompany(company)) {
+        for (JsonAdaptedRemark jsonAdaptedRemark : companies) {
+            Remark company = jsonAdaptedRemark.toModelType();
+            if (client.hasRemark(company)) {
                 throw new IllegalValueException(MESSAGE_DUPLICATE_COMPANY);
             }
-            client.addCompany(company);
+            client.addRemark(company);
         }
 
         for (JsonAdaptedTransaction jsonAdaptedTransaction : transactions) {

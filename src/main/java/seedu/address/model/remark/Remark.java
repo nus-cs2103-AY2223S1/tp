@@ -1,4 +1,4 @@
-package seedu.address.model.company;
+package seedu.address.model.remark;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
@@ -13,11 +13,11 @@ import seedu.address.model.tag.Tag;
  * Represents a Point of contact in the client.
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
-public class Company {
+public class Remark {
 
     // Identity fields
-    private final CompanyName name;
-    private final CompanyAddress address;
+    private final RemarkName name;
+    private final RemarkAddress address;
 
     // Data fields
     private final Set<Tag> tags = new HashSet<>();
@@ -25,7 +25,7 @@ public class Company {
     /**
      * Every field must be present and not null.
      */
-    public Company(CompanyName name, CompanyAddress address, Set<Tag> tags) {
+    public Remark(RemarkName name, RemarkAddress address, Set<Tag> tags) {
         requireAllNonNull(name, address, tags);
         this.name = name;
         this.address = address;
@@ -33,11 +33,11 @@ public class Company {
         this.tags.addAll(tags);
     }
 
-    public CompanyName getName() {
+    public RemarkName getName() {
         return name;
     }
 
-    public CompanyAddress getAddress() {
+    public RemarkAddress getAddress() {
         return address;
     }
 
@@ -53,13 +53,13 @@ public class Company {
      * Returns true if both companies have the same name.
      * This defines a weaker notion of equality between two companies.
      */
-    public boolean isSameCompany(Company otherCompany) {
-        if (otherCompany == this) {
+    public boolean isSameRemark(Remark otherRemark) {
+        if (otherRemark == this) {
             return true;
         }
 
-        return otherCompany != null
-                && otherCompany.getName().equals(getName());
+        return otherRemark != null
+                && otherRemark.getName().equals(getName());
     }
 
     /**
@@ -72,14 +72,14 @@ public class Company {
             return true;
         }
 
-        if (!(other instanceof Company)) {
+        if (!(other instanceof Remark)) {
             return false;
         }
 
-        Company otherCompany = (Company) other;
-        return otherCompany.getName().equals(getName())
-                && otherCompany.getAddress().equals(getAddress())
-                && otherCompany.getTags().equals(getTags());
+        Remark otherRemark = (Remark) other;
+        return otherRemark.getName().equals(getName())
+                && otherRemark.getAddress().equals(getAddress())
+                && otherRemark.getTags().equals(getTags());
     }
 
     @Override

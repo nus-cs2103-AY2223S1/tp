@@ -48,7 +48,7 @@ interactions recorded faster and simpler than traditional GUI applications.
 
    * **`list`** : Lists all clients.
 
-   * **`create`**`create 2 n/James p/97814456 e/test@test.com t/MainCompany t/owesMoney` : Creates a company named `James` linked to the client at index 2.
+   * **`create`**`create 2 n/James p/97814456 e/test@test.com t/MainRemark t/owesMoney` : Creates a company named `James` linked to the client at index 2.
 
    * **`delete`**`delete 1` : Deletes the client at the first index together with all their contacts and transactions in the current list.
 
@@ -90,13 +90,13 @@ interactions recorded faster and simpler than traditional GUI applications.
 
 ### Adding a client: `add`
 
-Adds an empty client to the list without any Company and transactions.
+Adds an empty client to the list without any Remark and transactions.
 
 Format: `add n/NAME a/ADDRESS p/PHONE e/EMAIL [t/TAG]`
 
 * Tags are optional.
 * Multiple tags can be tagged to the client.
-* Use `create` command to add Company to the client.
+* Use `create` command to add Remark to the client.
 
 Examples:
 * `add n/MacDonalds a/West Coast Park p/9876542 e/mcd@mcd.com`
@@ -115,7 +115,7 @@ Example:
 
 * `clear` followed by `confirm`
 
-### Creating a Company: `create`
+### Creating a Remark: `create`
 
 Creates a new company (company) for a specific client.
 
@@ -128,7 +128,7 @@ Format: `create INDEX n/NAME p/NUMBER e/EMAIL [t/TAG]`
 
 Examples:
 * `create 1 n/James p/82692192 e/JamesSho@KFC.com` adds James as a company for the client at index 1.
-* `create 5 n/John p/95692192 e/John123@ColdStorage.com t/Manager t/MainCompany` tags can also be added.
+* `create 5 n/John p/95692192 e/John123@ColdStorage.com t/Manager t/MainRemark` tags can also be added.
 
 ### Deleting a client : `delete`
 

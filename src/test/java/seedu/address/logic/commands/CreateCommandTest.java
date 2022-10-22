@@ -4,11 +4,11 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalClients.getTypicalJeeqTracker;
-import static seedu.address.testutil.TypicalCompany.ALICE;
-import static seedu.address.testutil.TypicalCompany.AMY;
-import static seedu.address.testutil.TypicalCompany.BOB;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_CLIENT;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_CLIENT;
+import static seedu.address.testutil.TypicalRemark.ALICE;
+import static seedu.address.testutil.TypicalRemark.AMY;
+import static seedu.address.testutil.TypicalRemark.BOB;
 
 import java.nio.file.Path;
 import java.util.function.Predicate;
@@ -33,7 +33,7 @@ class CreateCommandTest {
     private final Model model = new ModelManager(getTypicalJeeqTracker(), new UserPrefs());
 
     @Test
-    public void constructor_nullCompany_throwsNullPointerException() {
+    public void constructor_nullRemark_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> new CreateCommand(INDEX_FIRST_CLIENT, null));
     }
 
@@ -60,21 +60,21 @@ class CreateCommandTest {
     }
 
     @Test
-    public void execute_duplicateCompany_failure() {
+    public void execute_duplicateRemark_failure() {
         Client validClient = new ClientBuilder().build();
-        validClient.addCompany(AMY);
+        validClient.addRemark(AMY);
         Model modelStub = new ModelStub(validClient);
 
         assertThrows(CommandException.class, () -> new CreateCommand(INDEX_FIRST_CLIENT, AMY).execute(modelStub));
     }
 
     @Test
-    public void execute_addCompany_success() throws Exception {
+    public void execute_addRemark_success() throws Exception {
         Client validClient = new ClientBuilder().build();
         Model modelStub = new ModelStub(validClient);
         CreateCommand createCommand = new CreateCommand(INDEX_FIRST_CLIENT, AMY);
         createCommand.execute(modelStub);
-        assertTrue(modelStub.getFilteredClientList().get(0).hasCompany(AMY));
+        assertTrue(modelStub.getFilteredClientList().get(0).hasRemark(AMY));
     }
 
 
@@ -98,7 +98,7 @@ class CreateCommandTest {
         // different index -> returns false
         assertFalse(createCommand.equals(new CreateCommand(INDEX_SECOND_CLIENT, ALICE)));
 
-        // different Company -> returns false
+        // different Remark -> returns false
         assertFalse(createCommand.equals(new CreateCommand(INDEX_FIRST_CLIENT, BOB)));
     }
 

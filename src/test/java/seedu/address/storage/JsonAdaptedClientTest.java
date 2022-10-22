@@ -29,8 +29,8 @@ public class JsonAdaptedClientTest {
     private static final String VALID_ADDRESS = BENSON.getAddress().toString();
     private static final String VALID_PHONE = BENSON.getPhone().toString();
     private static final String VALID_EMAIL = BENSON.getEmail().toString();
-    private static final List<JsonAdaptedCompany> VALID_COMPANIES = BENSON.getCompanyList().stream()
-            .map(JsonAdaptedCompany::new)
+    private static final List<JsonAdaptedRemark> VALID_COMPANIES = BENSON.getRemarkList().stream()
+            .map(JsonAdaptedRemark::new)
             .collect(Collectors.toList());
     private static final List<JsonAdaptedTransaction> VALID_TRANSACTIONS = BENSON.getTransactionList().stream()
             .map(JsonAdaptedTransaction::new)
@@ -125,7 +125,7 @@ public class JsonAdaptedClientTest {
 
     @Test
     public void toModelType_duplicateCompanies_throwsIllegalValueException() {
-        List<JsonAdaptedCompany> duplicateCompanies = Stream.concat(VALID_COMPANIES.stream(),
+        List<JsonAdaptedRemark> duplicateCompanies = Stream.concat(VALID_COMPANIES.stream(),
                 VALID_COMPANIES.stream()).collect(Collectors.toList());
         JsonAdaptedClient client =
                 new JsonAdaptedClient(VALID_NAME, VALID_ADDRESS, VALID_PHONE,

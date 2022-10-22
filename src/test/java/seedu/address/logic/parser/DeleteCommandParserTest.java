@@ -9,7 +9,7 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.DeleteClientCommand;
 import seedu.address.logic.commands.DeleteCommand;
-import seedu.address.logic.commands.DeleteCompanyCommand;
+import seedu.address.logic.commands.DeleteRemarkCommand;
 import seedu.address.logic.commands.DeleteTransactionCommand;
 
 /**
@@ -34,8 +34,8 @@ public class DeleteCommandParserTest {
     }
 
     @Test
-    public void parse_validIndexAndCompanyMode_returnsDeleteCompanyCommand() {
-        assertParseSuccess(parser, "1 m/company", new DeleteCompanyCommand(INDEX_FIRST_CLIENT));
+    public void parse_validIndexAndRemarkMode_returnsDeleteRemarkCommand() {
+        assertParseSuccess(parser, "1 m/company", new DeleteRemarkCommand(INDEX_FIRST_CLIENT));
     }
 
     @Test

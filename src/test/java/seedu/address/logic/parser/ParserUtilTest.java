@@ -18,8 +18,8 @@ import seedu.address.model.client.Address;
 import seedu.address.model.client.ClientEmail;
 import seedu.address.model.client.ClientPhone;
 import seedu.address.model.client.Name;
-import seedu.address.model.company.CompanyAddress;
-import seedu.address.model.company.CompanyName;
+import seedu.address.model.remark.RemarkAddress;
+import seedu.address.model.remark.RemarkName;
 import seedu.address.model.tag.Tag;
 
 public class ParserUtilTest {
@@ -254,54 +254,54 @@ public class ParserUtilTest {
 
 
     @Test
-    public void parseCompanyAddress_null_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> ParserUtil.parseCompanyAddress((String) null));
+    public void parseRemarkAddress_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseRemarkAddress((String) null));
     }
 
     @Test
-    public void parseCompanyAddress_invalidValue_throwsParseException() {
+    public void parseRemarkAddress_invalidValue_throwsParseException() {
         assertThrows(ParseException.class, () -> ParserUtil.parseAddress(INVALID_ADDRESS));
     }
 
     @Test
-    public void parseCompanyAddress_validValueWithoutWhitespace_returnsAddress() throws Exception {
-        CompanyAddress expectedAddress = new CompanyAddress(VALID_ADDRESS);
-        assertEquals(expectedAddress, ParserUtil.parseCompanyAddress(VALID_ADDRESS));
+    public void parseRemarkAddress_validValueWithoutWhitespace_returnsAddress() throws Exception {
+        RemarkAddress expectedAddress = new RemarkAddress(VALID_ADDRESS);
+        assertEquals(expectedAddress, ParserUtil.parseRemarkAddress(VALID_ADDRESS));
     }
 
     @Test
-    public void parseCompanyAddress_validValueWithWhitespace_returnsTrimmedAddress() throws Exception {
+    public void parseRemarkAddress_validValueWithWhitespace_returnsTrimmedAddress() throws Exception {
         String addressWithWhitespace = WHITESPACE + VALID_ADDRESS + WHITESPACE;
-        CompanyAddress expectedAddress = new CompanyAddress(VALID_ADDRESS);
-        assertEquals(expectedAddress, ParserUtil.parseCompanyAddress(addressWithWhitespace));
+        RemarkAddress expectedAddress = new RemarkAddress(VALID_ADDRESS);
+        assertEquals(expectedAddress, ParserUtil.parseRemarkAddress(addressWithWhitespace));
     }
 
     @Test
-    public void parseInvalidCompanyName_throwsParseException() {
-        assertThrows(ParseException.class, CompanyName.MESSAGE_CONSTRAINTS, ()
-                -> ParserUtil.parseCompanyName("%$&^"));
+    public void parseInvalidRemarkName_throwsParseException() {
+        assertThrows(ParseException.class, RemarkName.MESSAGE_CONSTRAINTS, ()
+                -> ParserUtil.parseRemarkName("%$&^"));
     }
 
     @Test
-    public void parseCompanyName_null_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> ParserUtil.parseCompanyName((String) null));
+    public void parseRemarkName_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseRemarkName((String) null));
     }
 
     @Test
-    public void parseCompanyName_invalidValue_throwsParseException() {
-        assertThrows(ParseException.class, () -> ParserUtil.parseCompanyName(INVALID_NAME));
+    public void parseRemarkName_invalidValue_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseRemarkName(INVALID_NAME));
     }
 
     @Test
-    public void parseCompanyName_validValueWithoutWhitespace_returnsName() throws Exception {
-        CompanyName expectedName = new CompanyName(VALID_NAME);
-        assertEquals(expectedName, ParserUtil.parseCompanyName(VALID_NAME));
+    public void parseRemarkName_validValueWithoutWhitespace_returnsName() throws Exception {
+        RemarkName expectedName = new RemarkName(VALID_NAME);
+        assertEquals(expectedName, ParserUtil.parseRemarkName(VALID_NAME));
     }
 
     @Test
-    public void parseCompanyName_validValueWithWhitespace_returnsTrimmedName() throws Exception {
+    public void parseRemarkName_validValueWithWhitespace_returnsTrimmedName() throws Exception {
         String nameWithWhitespace = WHITESPACE + VALID_NAME + WHITESPACE;
-        CompanyName expectedName = new CompanyName(VALID_NAME);
-        assertEquals(expectedName, ParserUtil.parseCompanyName(nameWithWhitespace));
+        RemarkName expectedName = new RemarkName(VALID_NAME);
+        assertEquals(expectedName, ParserUtil.parseRemarkName(nameWithWhitespace));
     }
 }

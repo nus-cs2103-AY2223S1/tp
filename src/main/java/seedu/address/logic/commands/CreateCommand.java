@@ -12,7 +12,7 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.client.Client;
-import seedu.address.model.company.Company;
+import seedu.address.model.remark.Remark;
 
 /**
  * Creates a new company to be added to the specified client.
@@ -31,24 +31,24 @@ public class CreateCommand extends Command {
             + "Example: " + COMMAND_WORD + " 2 "
             + PREFIX_NAME + "John Doe "
             + PREFIX_ADDRESS + "Clem Mall "
-            + PREFIX_TAG + "MainCompany "
+            + PREFIX_TAG + "MainRemark "
             + PREFIX_TAG + "owesMoney";
 
-    public static final String MESSAGE_SUCCESS = "New Company created: %1$s\nLinked to Client: %2$s";
-    public static final String MESSAGE_DUPLICATE_COMPANY = "This client already has %1$s as Company";
-    public static final String MESSAGE_COMPANY_INVALID = "Company cannot be created. Enter a valid Company details:\n"
+    public static final String MESSAGE_SUCCESS = "New Remark created: %1$s\nLinked to Client: %2$s";
+    public static final String MESSAGE_DUPLICATE_COMPANY = "This client already has %1$s as Remark";
+    public static final String MESSAGE_COMPANY_INVALID = "Remark cannot be created. Enter a valid Remark details:\n"
             + "INDEX "
             + PREFIX_NAME + "NAME "
             + PREFIX_ADDRESS + "ADDRESS ";
 
     private final Index index;
-    private final Company company;
+    private final Remark company;
 
     /**
-     * @param index of the client in the client list to add the Company to
+     * @param index of the client in the client list to add the Remark to
      * @param company to be added
      */
-    public CreateCommand(Index index, Company company) {
+    public CreateCommand(Index index, Remark company) {
         requireNonNull(index);
         requireNonNull(company);
 
@@ -69,12 +69,12 @@ public class CreateCommand extends Command {
 
         Client clientToEdit = lastShownList.get(index.getZeroBased());
 
-        if (clientToEdit.hasCompany(company)) {
+        if (clientToEdit.hasRemark(company)) {
             throw new CommandException(String.format(MESSAGE_DUPLICATE_COMPANY, company.getName()));
         }
 
         Client editedClient = clientToEdit;
-        editedClient.addCompany(company);
+        editedClient.addRemark(company);
         model.setClient(clientToEdit, editedClient);
 
         return new CommandResult(String.format(MESSAGE_SUCCESS, company.getName(), editedClient));

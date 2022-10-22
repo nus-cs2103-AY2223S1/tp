@@ -13,8 +13,8 @@ import seedu.address.model.client.Address;
 import seedu.address.model.client.ClientEmail;
 import seedu.address.model.client.ClientPhone;
 import seedu.address.model.client.Name;
-import seedu.address.model.company.CompanyAddress;
-import seedu.address.model.company.CompanyName;
+import seedu.address.model.remark.RemarkAddress;
+import seedu.address.model.remark.RemarkName;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.transaction.Date;
 import seedu.address.model.transaction.Goods;
@@ -62,13 +62,13 @@ public class ParserUtil {
      *
      * @throws ParseException if the given {@code name} is invalid.
      */
-    public static CompanyName parseCompanyName(String name) throws ParseException {
+    public static RemarkName parseRemarkName(String name) throws ParseException {
         requireNonNull(name);
         String trimmedName = name.trim();
         if (!Name.isValidName(trimmedName)) {
             throw new ParseException(Name.MESSAGE_CONSTRAINTS);
         }
-        return new CompanyName(trimmedName);
+        return new RemarkName(trimmedName);
     }
 
     /**
@@ -107,13 +107,13 @@ public class ParserUtil {
      *
      * @throws ParseException if the given {@code address} is invalid.
      */
-    public static CompanyAddress parseCompanyAddress(String address) throws ParseException {
+    public static RemarkAddress parseRemarkAddress(String address) throws ParseException {
         requireNonNull(address);
         String trimmedAddress = address.trim();
-        if (!CompanyAddress.isValidCompanyAddress(trimmedAddress)) {
+        if (!RemarkAddress.isValidRemarkAddress(trimmedAddress)) {
             throw new ParseException(Address.MESSAGE_CONSTRAINTS);
         }
-        return new CompanyAddress(trimmedAddress);
+        return new RemarkAddress(trimmedAddress);
     }
 
     /**

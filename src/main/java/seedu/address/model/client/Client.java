@@ -11,8 +11,8 @@ import java.util.Set;
 
 import javafx.collections.ObservableList;
 import seedu.address.model.ReadOnlyClient;
-import seedu.address.model.company.Company;
-import seedu.address.model.company.UniqueCompanyList;
+import seedu.address.model.remark.Remark;
+import seedu.address.model.remark.UniqueRemarkList;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.transaction.Transaction;
 import seedu.address.model.transaction.TransactionLog;
@@ -31,14 +31,14 @@ public class Client implements ReadOnlyClient {
     private final ClientPhone phone;
     private final ClientEmail email;
     private final Set<Tag> tags = new HashSet<>();
-    private final UniqueCompanyList companies;
+    private final UniqueRemarkList companies;
     private final TransactionLog transactions;
 
     /**
      * Every field must be present and not null.
      */
     public Client(Name name, Address address, ClientPhone phone, ClientEmail email, Set<Tag> tags) {
-        this(name, address, phone, email, tags, new UniqueCompanyList(), new TransactionLog());
+        this(name, address, phone, email, tags, new UniqueRemarkList(), new TransactionLog());
     }
 
     /**
@@ -52,7 +52,7 @@ public class Client implements ReadOnlyClient {
      * @param transactions list of transactions.
      */
     public Client(Name name, Address address, ClientPhone phone, ClientEmail email,
-                  Set<Tag> tags, UniqueCompanyList companies, TransactionLog transactions) {
+                  Set<Tag> tags, UniqueRemarkList companies, TransactionLog transactions) {
         requireAllNonNull(name, address, tags, companies);
         this.name = name;
         this.address = address;
@@ -87,7 +87,7 @@ public class Client implements ReadOnlyClient {
         return Collections.unmodifiableSet(tags);
     }
 
-    public UniqueCompanyList getCompanies() {
+    public UniqueRemarkList getCompanies() {
         return companies;
     }
 
@@ -99,7 +99,7 @@ public class Client implements ReadOnlyClient {
      * Adds a company to the unique list in the client.
      * @param company to be added to the list.
      */
-    public void addCompany(Company company) {
+    public void addRemark(Remark company) {
         this.companies.add(company);
     }
 
@@ -108,7 +108,7 @@ public class Client implements ReadOnlyClient {
      * @param company to be checked
      * @return true if contains
      */
-    public boolean hasCompany(Company company) {
+    public boolean hasRemark(Remark company) {
         requireNonNull(company);
         return companies.contains(company);
     }
@@ -183,12 +183,12 @@ public class Client implements ReadOnlyClient {
             tags.forEach(builder::append);
         }
 
-        UniqueCompanyList companies = getCompanies();
+        UniqueRemarkList companies = getCompanies();
         builder.append("; Companies: ");
-        Iterator<Company> itr = companies.iterator();
+        Iterator<Remark> itr = companies.iterator();
         String prefix = "";
         while (itr.hasNext()) {
-            Company company = itr.next();
+            Remark company = itr.next();
             builder.append(prefix);
             prefix = ", ";
             builder.append(company.getName());
@@ -209,7 +209,7 @@ public class Client implements ReadOnlyClient {
     }
 
     @Override
-    public ObservableList<Company> getCompanyList() {
+    public ObservableList<Remark> getRemarkList() {
         return companies.asUnmodifiableObservableList();
     }
 

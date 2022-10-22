@@ -24,7 +24,7 @@ import seedu.address.model.client.Client;
 import seedu.address.model.client.ClientEmail;
 import seedu.address.model.client.ClientPhone;
 import seedu.address.model.client.Name;
-import seedu.address.model.company.UniqueCompanyList;
+import seedu.address.model.remark.UniqueRemarkList;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.transaction.TransactionLog;
 
@@ -98,7 +98,7 @@ public class EditCommand extends Command {
         ClientPhone updatedPhone = editClientDescriptor.getPhone().orElse(clientToEdit.getPhone());
         ClientEmail updatedEmail = editClientDescriptor.getEmail().orElse(clientToEdit.getEmail());
         Set<Tag> updatedTags = editClientDescriptor.getTags().orElse(clientToEdit.getTags());
-        UniqueCompanyList companies = editClientDescriptor.getUniqueCompanyList().orElse(clientToEdit.getCompanies());
+        UniqueRemarkList companies = editClientDescriptor.getUniqueRemarkList().orElse(clientToEdit.getCompanies());
         TransactionLog transactions = editClientDescriptor.getTransactionLog().orElse(clientToEdit.getTransactions());
 
         return new Client(updatedName, updatedAddress, updatedPhone,
@@ -133,7 +133,7 @@ public class EditCommand extends Command {
         private ClientPhone phone;
         private ClientEmail email;
         private Set<Tag> tags;
-        private UniqueCompanyList companies;
+        private UniqueRemarkList companies;
         private TransactionLog transactions;
 
         public EditClientDescriptor() {}
@@ -148,7 +148,7 @@ public class EditCommand extends Command {
             setPhone(toCopy.phone);
             setEmail(toCopy.email);
             setTags(toCopy.tags);
-            setUniqueCompanyList(toCopy.companies);
+            setUniqueRemarkList(toCopy.companies);
             setTransactionLog(toCopy.transactions);
         }
 
@@ -191,11 +191,11 @@ public class EditCommand extends Command {
             return Optional.ofNullable(address);
         }
 
-        public void setUniqueCompanyList(UniqueCompanyList companies) {
+        public void setUniqueRemarkList(UniqueRemarkList companies) {
             this.companies = companies;
         }
 
-        public Optional<UniqueCompanyList> getUniqueCompanyList() {
+        public Optional<UniqueRemarkList> getUniqueRemarkList() {
             return Optional.ofNullable(companies);
         }
 

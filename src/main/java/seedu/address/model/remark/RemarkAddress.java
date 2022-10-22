@@ -1,15 +1,15 @@
-package seedu.address.model.company;
+package seedu.address.model.remark;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
 /**
  * Represents a Client's address in the address book.
- * Guarantees: immutable; is valid as declared in {@link #isValidCompanyAddress(String)}
+ * Guarantees: immutable; is valid as declared in {@link #isValidRemarkAddress(String)}
  */
-public class CompanyAddress {
+public class RemarkAddress {
 
-    public static final String MESSAGE_CONSTRAINTS = "CompanyAddresses can take any values, and it should not be blank";
+    public static final String MESSAGE_CONSTRAINTS = "RemarkAddresses can take any values, and it should not be blank";
 
     /*
      * The first character of the address must not be a whitespace,
@@ -20,20 +20,20 @@ public class CompanyAddress {
     public final String value;
 
     /**
-     * Constructs an {@code CompanyAddress}.
+     * Constructs an {@code RemarkAddress}.
      *
      * @param address A valid address.
      */
-    public CompanyAddress(String address) {
+    public RemarkAddress(String address) {
         requireNonNull(address);
-        checkArgument(isValidCompanyAddress(address), MESSAGE_CONSTRAINTS);
+        checkArgument(isValidRemarkAddress(address), MESSAGE_CONSTRAINTS);
         value = address;
     }
 
     /**
      * Returns true if a given string is a valid address.
      */
-    public static boolean isValidCompanyAddress(String test) {
+    public static boolean isValidRemarkAddress(String test) {
         return test.matches(VALIDATION_REGEX);
     }
 
@@ -45,8 +45,8 @@ public class CompanyAddress {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof CompanyAddress // instanceof handles nulls
-                && value.equals(((CompanyAddress) other).value)); // state check
+                || (other instanceof RemarkAddress // instanceof handles nulls
+                && value.equals(((RemarkAddress) other).value)); // state check
     }
 
     @Override

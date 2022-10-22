@@ -10,15 +10,15 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.client.Client;
 import seedu.address.model.client.NameEqualsKeywordPredicate;
-import seedu.address.model.company.Company;
-import seedu.address.model.company.UniqueCompanyList;
+import seedu.address.model.remark.Remark;
+import seedu.address.model.remark.UniqueRemarkList;
 
 /**
  * Deletes a company from a client.
  */
-public class DeleteCompanyCommand extends DeleteCommand {
+public class DeleteRemarkCommand extends DeleteCommand {
 
-    public static final String MESSAGE_DELETE_COMPANY_SUCCESS = "Deleted Company: %1$s";
+    public static final String MESSAGE_DELETE_COMPANY_SUCCESS = "Deleted Remark: %1$s";
 
     public static final String MESSAGE_INVALID_USAGE = "Deletion of company can only happen when companies "
             + "are visible in the application!\n"
@@ -26,7 +26,7 @@ public class DeleteCompanyCommand extends DeleteCommand {
 
     private final Index targetIndex;
 
-    public DeleteCompanyCommand(Index index) {
+    public DeleteRemarkCommand(Index index) {
         this.targetIndex = index;
     }
 
@@ -40,23 +40,23 @@ public class DeleteCompanyCommand extends DeleteCommand {
         }
 
         Client focusedClient = lastShownList.get(0);
-        UniqueCompanyList companyList = focusedClient.getCompanies();
+        UniqueRemarkList companyList = focusedClient.getCompanies();
 
         if (targetIndex.getZeroBased() >= companyList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_COMPANY_DISPLAYED_INDEX);
         }
 
-        Company deletedCompany = companyList.removeByIndex(targetIndex.getZeroBased());
+        Remark deletedRemark = companyList.removeByIndex(targetIndex.getZeroBased());
 
         model.updateFilteredClientList(new NameEqualsKeywordPredicate(focusedClient));
 
-        return new CommandResult(String.format(MESSAGE_DELETE_COMPANY_SUCCESS, deletedCompany));
+        return new CommandResult(String.format(MESSAGE_DELETE_COMPANY_SUCCESS, deletedRemark));
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof DeleteCompanyCommand // instanceof handles nulls
-                && targetIndex.equals(((DeleteCompanyCommand) other).targetIndex)); // state check
+                || (other instanceof DeleteRemarkCommand // instanceof handles nulls
+                && targetIndex.equals(((DeleteRemarkCommand) other).targetIndex)); // state check
     }
 }
