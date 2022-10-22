@@ -2,8 +2,35 @@
 layout: page
 title: Developer Guide
 ---
-1. Table of Contents
-{:toc}
+# Table of Contents 
+1. [Acknowledgements](#acknowledgements)
+2. [Setting up, getting started](#setting-up-getting-started)
+3. [Design](#design)
+   - [Architecture](#architecture)
+   - [UI component](#ui-component)
+   - [Logic component](#logic-component)
+   - [Model component](#model-component)
+   - [Storage component](#storage-component)
+   - [Common classes](#common-classes)
+4. [Implementation](#implementation)
+   - [Module Features](#module-features)
+     - [Add Module](#add-module)
+     - [Remove Module](#remove-module)
+     - [Navigation](#navigation)
+   - [Task/Deadline Features](#taskdeadline-features)
+     - [Add Task](#add-task)
+     - [Remove Task](#remove-task)
+     - [Edit Task](#edit-task)
+     - [Task Archival](#task-archival)
+     - [Task Listing](#task-listing)
+5. [Documentation, logging, testing, configuration, dev-ops](#documentation-logging-testing-configuration-dev-ops)
+6. [Appendix: Requirements](#appendix-requirements)
+   - [Product Scope](#product-scope)
+   - [User Stories](#user-stories)
+   - [Use Cases](#use-cases)
+   - [Non-Functional Requirements](#non-functional-requirements)
+   - [Glossary](#glossary)
+7. [Appendix: Instructions for manual testing](#appendix-instructions-for-manual-testing)
 
 --------------------------------------------------------------------------------------------------------------------
 
