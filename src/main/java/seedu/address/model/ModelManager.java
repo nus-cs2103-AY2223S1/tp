@@ -116,7 +116,7 @@ public class ModelManager implements Model {
         // When the selected person is changed, we need to change
         // the reference of selectedPerson as well to notify.
         if (target.equals(selectedPerson.get())) {
-            selectedPerson.set(editedPerson);
+            setSelectedPerson(editedPerson);
         }
     }
 
