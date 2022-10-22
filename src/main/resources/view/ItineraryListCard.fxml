@@ -29,7 +29,7 @@
       </HBox>
       <Label fx:id="country" styleClass="cell_small_label" text="\$country" />
       <Label fx:id="startDate" styleClass="cell_small_label" text="\$startDate" />
-      <Label fx:id="endDate" styleClass="cell_small_label" text="\$endDate" />
+      <Label fx:id="duration" styleClass="cell_small_label" text="\$duration" />
       <Label fx:id="people" styleClass="cell_small_label" text="\$people" />
     </VBox>
   </GridPane>
