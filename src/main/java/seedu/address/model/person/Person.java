@@ -26,6 +26,7 @@ public class Person {
 
     // Data fields
     private final Address address;
+    private final Github github;
     private final Set<Tag> tags = new HashSet<>();
     private final Set<CurrentModule> currModules = new HashSet<>();
     private final Set<PreviousModule> prevModules = new HashSet<>();
@@ -35,13 +36,14 @@ public class Person {
     /**
      * Every field must be present and not null.
      */
-    public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags,
+    public Person(Name name, Phone phone, Email email, Address address, Github github, Set<Tag> tags,
                   Set<CurrentModule> currModules, Set<PreviousModule> prevModules, Set<PlannedModule> planModules) {
-        requireAllNonNull(name, phone, email, address, tags);
+        requireAllNonNull(name, phone, email, address, github, tags);
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
+        this.github = github;
         this.tags.addAll(tags);
         this.currModules.addAll(currModules);
         this.prevModules.addAll(prevModules);
@@ -62,6 +64,10 @@ public class Person {
 
     public Address getAddress() {
         return address;
+    }
+
+    public Github getGithub() {
+        return github;
     }
 
     /**
@@ -140,6 +146,7 @@ public class Person {
                 && otherPerson.getPhone().equals(getPhone())
                 && otherPerson.getEmail().equals(getEmail())
                 && otherPerson.getAddress().equals(getAddress())
+                && otherPerson.getGithub().equals(getGithub())
                 && otherPerson.getTags().equals(getTags())
                 && otherPerson.getCurrModules().equals(getCurrModules())
                 && otherPerson.getPrevModules().equals(getPrevModules())
@@ -149,7 +156,7 @@ public class Person {
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, address, tags, currModules, prevModules, planModules);
+        return Objects.hash(name, phone, email, address, github, tags, currModules, prevModules, planModules);
     }
 
     @Override
@@ -161,7 +168,9 @@ public class Person {
                 .append("; Email: ")
                 .append(getEmail())
                 .append("; Address: ")
-                .append(getAddress());
+                .append(getAddress())
+                .append("; Github: ")
+                .append(getGithub());
 
         Set<Tag> tags = getTags();
         if (!tags.isEmpty()) {

@@ -24,6 +24,7 @@ import seedu.address.model.module.Recitation;
 import seedu.address.model.module.Tutorial;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
+import seedu.address.model.person.Github;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
 import seedu.address.model.tag.Tag;
@@ -106,6 +107,21 @@ public class ParserUtil {
             throw new ParseException(Email.MESSAGE_CONSTRAINTS);
         }
         return new Email(trimmedEmail);
+    }
+
+    /**
+     * Parses a {@code String github} into a {@code Github}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code github} is invalid.
+     */
+    public static Github parseGithub(String github) throws ParseException {
+        requireNonNull(github);
+        String trimmedGithub = github.trim();
+        if (!Github.isValidUsername(trimmedGithub)) {
+            throw new ParseException(Github.MESSAGE_CONSTRAINTS);
+        }
+        return new Github(trimmedGithub);
     }
 
     /**

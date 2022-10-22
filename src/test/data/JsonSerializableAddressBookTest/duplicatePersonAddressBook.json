@@ -4,6 +4,7 @@
     "phone": "94351253",
     "email": "alice@example.com",
     "address": "123, Jurong West Ave 6, #08-111",
+    "github" : "alice-pauline",
     "tagged": [ "friends" ],
     "currModules": [ "CS2103T" ],
     "prevModules": [ "CS2040S" ],
@@ -13,6 +14,7 @@
     "phone": "94351253",
     "email": "pauline@example.com",
     "address": "4th street",
+    "github" : "Al1ceP4uline",
     "tagged": [ "friends" ],
     "currModules": [ "CS2103T" ],
     "prevModules": [ "CS2040S" ],
@@ -20,12 +22,14 @@
   } ],
   "jsonAdaptedUser" : {
     "name" : "",
-    "phone" : "empty",
+    "phone" : "",
     "email" : "",
     "address" : "",
+    "github" : "",
     "currModules" : [ ],
     "prevModules" : [ ],
     "planModules" : [ ],
+    "isEmpty" : true,
     "emptyUser" : { }
   }
 }

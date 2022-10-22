@@ -7,6 +7,11 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalPersons.ALICE;
+import static seedu.address.testutil.TypicalPersons.BENSON;
+import static seedu.address.testutil.TypicalPersons.CARL;
+import static seedu.address.testutil.TypicalPersons.DANIEL;
+import static seedu.address.testutil.TypicalPersons.XAVIER;
+import static seedu.address.testutil.TypicalPersons.ZEPHYR;
 import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 
 import java.util.Arrays;
@@ -21,6 +26,7 @@ import javafx.collections.ObservableList;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.exceptions.DuplicatePersonException;
 import seedu.address.model.person.user.User;
+import seedu.address.testutil.AddressBookBuilder;
 import seedu.address.testutil.PersonBuilder;
 
 public class AddressBookTest {
@@ -56,6 +62,17 @@ public class AddressBookTest {
     }
 
     @Test
+    public void hasUser_emptyUser_returnsFalse() {
+        assertFalse(addressBook.hasUser());
+    }
+
+    @Test
+    public void hasUser_existingUser_returnsTrue() {
+        addressBook.addUser(ZEPHYR);
+        assertTrue(addressBook.hasUser());
+    }
+
+    @Test
     public void hasPerson_nullPerson_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> addressBook.hasPerson(null));
     }
@@ -82,6 +99,40 @@ public class AddressBookTest {
     @Test
     public void getPersonList_modifyList_throwsUnsupportedOperationException() {
         assertThrows(UnsupportedOperationException.class, () -> addressBook.getPersonList().remove(0));
+    }
+
+    @Test
+    public void equals() {
+        // same values -> returns true
+        AddressBook ab = new AddressBookBuilder().withPerson(ALICE).withPerson(BENSON).withUser(ZEPHYR).build();
+        AddressBook abCopy = new AddressBookBuilder().withPerson(ALICE).withPerson(BENSON).withUser(ZEPHYR).build();
+        assertTrue(ab.equals(abCopy));
+
+        // same object -> returns true
+        assertTrue(ab.equals(ab));
+
+        // null -> returns false
+        assertFalse(ab.equals(null));
+
+        // different types -> returns false
+        assertFalse(ab.equals(5));
+
+        // different addressBook -> returns false
+        AddressBook differentAddressBook = new AddressBookBuilder().withPerson(CARL).withPerson(DANIEL)
+                .withUser(XAVIER).build();
+        assertFalse(ab.equals(differentAddressBook));
+
+        // different user -> returns false
+        abCopy.setUser(XAVIER);
+        assertFalse(ab.equals(abCopy));
+
+        // abCopy empty user -> returns false
+        abCopy.deleteUser();
+        assertFalse(ab.equals(abCopy));
+
+        // both empty user -> returns true
+        ab.deleteUser();
+        assertTrue(ab.equals(abCopy));
     }
 
     /**

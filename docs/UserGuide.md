@@ -65,7 +65,7 @@ ConnectNUS data is saved as a JSON file `[JAR file location]/data/connectnus.jso
 
 Add your own user profile into the contact list.
 
-Format: `user n/[your name] p/[your phone number] e/[your email] a/[your address] curr/[current module] prev/[previous module] plan/[future module]`
+Format: `user n/[your name] p/[your phone number] e/[your email] a/[your address] [g/your github username] [curr/current module] [prev/previous module] [plan/future module]`
 
 
 
@@ -77,13 +77,13 @@ Format: `user n/[your name] p/[your phone number] e/[your email] a/[your address
 Examples:
 
 
-* `user n/Silas p/98765432 e/silastay@gmail.com a/Kent Ridge Drive curr/CS2100 prev/CS1101S plan/CS2109`adds your own user profile to your contact list with all the details specified.
+* `user n/Silas p/98765432 e/silastay@gmail.com a/Kent Ridge Drive g/SilasTSL curr/CS2100 prev/CS1101S plan/CS2109`adds your own user profile to your contact list with all the details specified.
 
 ### Editing user
 
 Edit the current user profile.
 
-Format: `edit user n/[your name] p/[your phone number] e/[your email] a/[your address]`
+Format: `edit user [n/your name] [p/your phone number] [e/your email] [a/your address] [g/your github username]`
 
 
 
@@ -113,7 +113,7 @@ Format: `delete user`
 
 Add a contact to your contact list.
 
-Format: `add n/[contact name] p/[contact phone number] e/[contact email] a/[contact address] t/[contact tag] curr/[current module] prev/[previous module] plan/[future module]`
+Format: `add n/[contact name] p/[contact phone number] e/[contact email] a/[contact address] [g/contact github username] [t/contact tag] [curr/current module] [prev/previous module] [plan/future module]`
 
 
 
@@ -127,7 +127,7 @@ Examples:
 
 
 
-* `add n/Ruijie p/91234567 e/kohrj@gmail.com a/Kent Ridge Avenue t/Classmate curr/CS2100 prev/CS1101S plan/CS2109`adds module contact Ruijie to your contact list with all the details specified.
+* `add n/Ruijie p/91234567 e/kohrj@gmail.com a/Kent Ridge Avenue g/rjkoh t/Classmate curr/CS2100 prev/CS1101S plan/CS2109`adds module contact Ruijie to your contact list with all the details specified.
 
 
 ### Listing contacts
@@ -144,7 +144,7 @@ Format: `list`
 
 Edit a specified contact from the user’s contacts list.
 
-Format: `edit INDEX n/[contact name] p/[contact phone number] e/[contact email] a/[contact address] t/[contact tag]`
+Format: `edit INDEX [n/contact name] [p/contact phone number] [e/contact email] [a/contact address] [g/contact github username] [t/contact tag]`
 
 
 
@@ -307,15 +307,15 @@ Format: `exit`
   <tr>
    <td><strong>Adding User</strong>
    </td>
-   <td><code>user n/[your name] p/[your phone number] e/[your email] a/[your address] curr/[current module] prev/[previous module] plan/[future module]</code>
+   <td><code>user n/[your name] p/[your phone number] e/[your email] a/[your address] [g/your github username] [curr/current module] [prev/previous module] [plan/future module]</code>
 <p>
-<code>Eg. user n/Silas p/98765432 e/silastay@gmail.com a/Kent Ridge Drive curr/CS2100 prev/CS1101S plan/CS2109</code>
+<code>Eg. user n/Silas p/98765432 e/silastay@gmail.com a/Kent Ridge Drive g/SilasTSL curr/CS2100 prev/CS1101S plan/CS2109</code>
    </td>
   </tr>
 <tr>
    <td><strong>Editing User</strong>
    </td>
-   <td><code>edit user n/[your name] p/[your phone number] e/[your email] a/[your address]</code>
+   <td><code>edit user [n/your name] [p/your phone number] [e/your email] [a/your address] [g/your github username]</code>
 <p>
 <code>Eg. edit user p/92323232 a/Kent Ridge Crescent</code>
    </td>
@@ -329,15 +329,15 @@ Format: `exit`
 <tr>
    <td><strong>Adding Contact</strong>
    </td>
-   <td><code>add n/[contact name] p/[contact phone number] e/[contact email] a/[contact address] t/[contact tag] curr/[current module] prev/[previous module] plan/[future module]</code>
+   <td><code>add n/[contact name] p/[contact phone number] e/[contact email] a/[contact address] [g/contact github username] [t/contact tag] [curr/current module] [prev/previous module] [plan/future module]</code>
 <p>
-<code>Eg. add n/Ruijie p/91234567 e/kohrj@gmail.com a/Kent Ridge Avenue t/Classmate curr/CS2100 prev/CS1101S plan/CS2109</code>
+<code>Eg. add n/Ruijie p/91234567 e/kohrj@gmail.com a/Kent Ridge Avenue g/rjkoh t/Classmate curr/CS2100 prev/CS1101S plan/CS2109</code>
    </td>
 </tr>
 <tr>
    <td><strong>Editing Contact</strong>
    </td>
-   <td><code>edit INDEX n/[contact name] p/[contact phone number] e/[contact email] a/[contact address] t/[contact tag]</code>
+   <td><code>edit INDEX [n/contact name] [p/contact phone number] [e/contact email] [a/contact address] [t/contact tag]</code>
 <p>
 <code>Eg. edit 2 n/Laura Lee e/laura@nus.sg t/Hall</code>
    </td>

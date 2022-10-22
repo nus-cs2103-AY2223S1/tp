@@ -30,6 +30,8 @@ public class UserProfile extends UiPart<Region> {
     @FXML
     private Label email;
     @FXML
+    private Label github;
+    @FXML
     private Label userLabel;
     @FXML
     private Label currModuleDescription;
@@ -58,6 +60,7 @@ public class UserProfile extends UiPart<Region> {
             phone.setText(user.getPhone().value);
             address.setText(user.getAddress().value);
             email.setText(user.getEmail().value);
+            github.setText("Github: " + user.getGithub().value);
             currModuleDescription.setText("Current Modules: ");
             prevModuleDescription.setText("Previous Modules: ");
             planModuleDescription.setText("Planned Modules: ");
@@ -88,6 +91,7 @@ public class UserProfile extends UiPart<Region> {
             phone.setText(user.getPhone().value);
             address.setText(user.getAddress().value);
             email.setText(user.getEmail().value);
+            github.setText("Github: " + user.getGithub().value);
             currModuleDescription.setText("Current Modules: ");
             prevModuleDescription.setText("Previous Modules: ");
             planModuleDescription.setText("Planned Modules: ");
@@ -106,6 +110,7 @@ public class UserProfile extends UiPart<Region> {
             phone.setText("");
             address.setText("");
             email.setText("");
+            github.setText("");
             currModuleDescription.setText("");
             prevModuleDescription.setText("");
             planModuleDescription.setText("");

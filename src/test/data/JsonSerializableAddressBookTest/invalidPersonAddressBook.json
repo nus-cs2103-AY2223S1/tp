@@ -4,6 +4,7 @@
     "phone": "9482424",
     "email": "invalid@email!3e",
     "address": "4th street",
+    "github" : "hans-muster",
     "tagged": [ "friends" ],
     "currModules": [ "CS2103T" ],
     "prevModules": [ "CS2040S" ],
@@ -11,12 +12,14 @@
   } ],
   "jsonAdaptedUser" : {
     "name" : "",
-    "phone" : "empty",
+    "phone" : "",
     "email" : "",
     "address" : "",
+    "github" : "",
     "currModules" : [ ],
     "prevModules" : [ ],
     "planModules" : [ ],
+    "isEmpty" : true,
     "emptyUser" : { }
   }
 }

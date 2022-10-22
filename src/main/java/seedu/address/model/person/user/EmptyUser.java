@@ -8,6 +8,7 @@ import seedu.address.model.module.PlannedModule;
 import seedu.address.model.module.PreviousModule;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
+import seedu.address.model.person.Github;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
 
@@ -59,6 +60,11 @@ public class EmptyUser extends User {
 
     @Override
     public Address getAddress() {
+        return null;
+    }
+
+    @Override
+    public Github getGithub() {
         return null;
     }
 

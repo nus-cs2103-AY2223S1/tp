@@ -8,6 +8,7 @@ import seedu.address.model.module.PlannedModule;
 import seedu.address.model.module.PreviousModule;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
+import seedu.address.model.person.Github;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
 
@@ -23,6 +24,8 @@ public abstract class User {
     public abstract Email getEmail();
 
     public abstract Address getAddress();
+
+    public abstract Github getGithub();
 
     /**
      * Returns an immutable current module set, which throws {@code UnsupportedOperationException}

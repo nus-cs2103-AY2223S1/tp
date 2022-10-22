@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_CURRENTMOD;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_GITHUB;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PLANNEDMOD;
@@ -26,6 +27,7 @@ public class UserCommand extends Command {
             + PREFIX_PHONE + "PHONE "
             + PREFIX_EMAIL + "EMAIL "
             + PREFIX_ADDRESS + "ADDRESS "
+            + "[" + PREFIX_GITHUB + "GITHUB USERNAME] "
             + "[" + PREFIX_CURRENTMOD + "MOD]..."
             + "[" + PREFIX_PREVIOUSMOD + "MOD]..."
             + "[" + PREFIX_PLANNEDMOD + "MOD]...\n"
@@ -34,10 +36,11 @@ public class UserCommand extends Command {
             + PREFIX_PHONE + "92345678 "
             + PREFIX_EMAIL + "usertan@example.com "
             + PREFIX_ADDRESS + "888, Woodlands Ave 4, #05-06 "
-            + PREFIX_CURRENTMOD + "CS2103T"
-            + PREFIX_CURRENTMOD + "CS2100"
-            + PREFIX_PREVIOUSMOD + "CS1231S"
-            + PREFIX_PLANNEDMOD + "CS3230";
+            + PREFIX_GITHUB + "Tan-u5er "
+            + PREFIX_CURRENTMOD + "CS2103T "
+            + PREFIX_CURRENTMOD + "CS2100 "
+            + PREFIX_PREVIOUSMOD + "CS1231S "
+            + PREFIX_PLANNEDMOD + "CS3230 ";
 
 
     public static final String MESSAGE_SUCCESS = "New user added: %1$s";

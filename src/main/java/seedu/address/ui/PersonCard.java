@@ -39,6 +39,8 @@ public class PersonCard extends UiPart<Region> {
     @FXML
     private Label email;
     @FXML
+    private Label github;
+    @FXML
     private Label currModuleDescription;
     @FXML
     private Label prevModuleDescription;
@@ -66,6 +68,7 @@ public class PersonCard extends UiPart<Region> {
         address.setText(person.getAddress().value);
         email.setText(person.getEmail().value);
         assert person.getEmail().value.contains("@") == true;
+        github.setText("Github: " + person.getGithub().value);
         currModuleDescription.setText("Current Modules: ");
         prevModuleDescription.setText("Previous Modules: ");
         planModuleDescription.setText("Planned Modules: ");
