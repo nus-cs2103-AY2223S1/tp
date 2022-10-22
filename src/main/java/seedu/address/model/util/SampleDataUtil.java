@@ -16,10 +16,7 @@ import seedu.address.model.student.Phone;
 import seedu.address.model.student.Student;
 import seedu.address.model.student.StudentId;
 import seedu.address.model.tag.Tag;
-import seedu.address.model.task.Task;
-import seedu.address.model.task.TaskDescription;
-import seedu.address.model.task.TaskTitle;
-import seedu.address.model.task.ToDo;
+import seedu.address.model.task.*;
 
 /**
  * Contains utility methods for populating {@code AddressBook} with sample data.
@@ -55,11 +52,11 @@ public class SampleDataUtil {
 
     public static Task[] getSampleTasks() {
         return new Task[] {
-            new ToDo(new TaskTitle("Grade assignments"), new TaskDescription("Complete by tonight")),
+            new Deadline(new TaskTitle("Grade assignments"), new TaskDescription("Complete by tonight"), new FormatDate("2022-10-23")),
             new ToDo(new TaskTitle("Prepare slides for studio"), new TaskDescription("Topic Environment Model")),
             new ToDo(new TaskTitle("Review CS1101S topics with Adam"), new TaskDescription("Essence of Recursion")),
             new ToDo(new TaskTitle("Collect robot"), new TaskDescription("At MakersLab")),
-            new ToDo(new TaskTitle("Go through tutorial sheet"), new TaskDescription("By this friday"))
+            new Deadline(new TaskTitle("Go through tutorial sheet"), new TaskDescription("By this friday"), new FormatDate("2022-10-21"))
         };
     }
 
