@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.VBox?>
 
 <fx:root type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1"
-         title="NotioNUS" minWidth="450" minHeight="600" onCloseRequest="#handleExit">
+         title="NotionUS" minWidth="450" minHeight="600" onCloseRequest="#handleExit">
     <icons>
         <Image url="@/images/checkbox_checked.png"/>
     </icons>
@@ -20,7 +20,7 @@
         <Scene>
             <stylesheets>
                 <URL value="@Fonts.css"/>
-                <URL value="@NotioNUS.css"/>
+                <URL value="@NotionUS.css"/>
                 <URL value="@Extensions.css"/>
             </stylesheets>
 

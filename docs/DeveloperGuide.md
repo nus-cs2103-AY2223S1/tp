@@ -23,7 +23,7 @@ Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
 <div markdown="span" class="alert alert-primary">
 
-:bulb: **Tip:** The `.puml` files used to create diagrams in this document can be found in the [diagrams](https://github.com/se-edu/addressbook-level3/tree/master/docs/diagrams/) folder. Refer to the [_PlantUML Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create and edit diagrams.
+:bulb: **Tip:** The `.puml` files used to create diagrams in this document can be found in the [diagrams](https://github.com/AY2223S1-CS2103T-F12-3/tp/tree/master/docs/diagrams/) folder. Refer to the [_PlantUML Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create and edit diagrams.
 </div>
 
 ### Architecture
@@ -36,7 +36,7 @@ Given below is a quick overview of main components and how they interact with ea
 
 **Main components of the architecture**
 
-**`Main`** has two classes called [`Main`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/Main.java) and [`MainApp`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/MainApp.java). It is responsible for,
+**`Main`** has two classes called [`Main`](https://github.com/AY2223S1-CS2103T-F12-3/tp/tree/master/src/main/java/seedu/address/Main.java) and [`MainApp`](https://github.com/AY2223S1-CS2103T-F12-3/tp/tree/master/src/main/java/seedu/address/MainApp.java). It is responsible for,
 * At app launch: Initializes the components in the correct sequence, and connects them up with each other.
 * At shut down: Shuts down the components and invokes cleanup methods where necessary.
 
@@ -69,24 +69,27 @@ The sections below give more details of each component.
 
 ### UI component
 
-The **API** of this component is specified in [`Ui.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/Ui.java)
+The **API** of this component is specified in [`Ui.java`](https://github.com/AY2223S1-CS2103T-F12-3/tp/tree/master/src/main/java/seedu/address/ui/Ui.java)
 
 ![Structure of the UI Component](images/UiClassDiagram.png)
 
-The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `PersonListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
+The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `TaskListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
 
-The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/resources/view/MainWindow.fxml)
+The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder, except for `MainWindow`. The layout of the [`MainWindow`](https://github.com/AY2223S1-CS2103T-F12-3/tp/tree/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`NotionUSMainWindow.fxml`](https://github.com/AY2223S1-CS2103T-F12-3/tp/tree/master/src/main/resources/view/NotionUSMainWindow.fxml).
+An FXML variable declared in the Java Class must correspond to the fxml component with the same fx id.
+
+The layout of `TaskCard` has been edited to fit the look of a task in Notion, especially the behaviour of task cards when resizing the main window. The CSS of the app is specified in [`NotionUS.css`](https://github.com/AY2223S1-CS2103T-F12-3/tp/tree/master/src/main/resources/view/NotionUS.css).
 
 The `UI` component,
 
 * executes user commands using the `Logic` component.
-* listens for changes to `Model` data so that the UI can be updated with the modified data.
+* listens for changes to `Model` data so that the UI can be updated with the modified task data.
 * keeps a reference to the `Logic` component, because the `UI` relies on the `Logic` to execute commands.
-* depends on some classes in the `Model` component, as it displays `Person` object residing in the `Model`.
+* depends on some classes in the `Model` component, as it displays `Task` object residing in the `Model`.
 
 ### Logic component
 
-**API** : [`Logic.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/logic/Logic.java)
+**API** : [`Logic.java`](https://github.com/AY2223S1-CS2103T-F12-3/tp/tree/master/src/main/java/seedu/address/logic/Logic.java)
 
 Here's a (partial) class diagram of the `Logic` component:
 
@@ -95,7 +98,7 @@ Here's a (partial) class diagram of the `Logic` component:
 How the `Logic` component works:
 1. When `Logic` is called upon to execute a command, it uses the `AddressBookParser` class to parse the user command.
 1. This results in a `Command` object (more precisely, an object of one of its subclasses e.g., `AddCommand`) which is executed by the `LogicManager`.
-1. The command can communicate with the `Model` when it is executed (e.g. to add a person).
+1. The command can communicate with the `Model` when it is executed (e.g. to add a task).
 1. The result of the command execution is encapsulated as a `CommandResult` object which is returned back from `Logic`.
 
 The Sequence Diagram below illustrates the interactions within the `Logic` component for the `execute("delete 1")` API call.
@@ -148,6 +151,22 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 ## **Implementation**
 
 This section describes some noteworthy details on how certain features are implemented.
+
+### Hide Command
+
+In order to get a clearer view by archiving overdue and completed tasks whenever a user enters the command. Hidden (archived) tasks will still be stored and can be retrieved using `listAllCommand`.    
+
+Command takes input
+* `archive <index>` where `<index>` is the index of the tasks based on the displayed index shown in Main Window.
+* `archive -d date` where `date` should be formatted as `YYYY-MM-DD` and all tasks before and on `date` will be hidden (archived).
+
+Command result will tell us number of tasks remaining. 
+
+Should `date` be improperly formatted or `<index>` entered is out of bound, a generic CommandResult and an error message will be given. Model will not be updated.
+
+Below is the sequence diagram for an execution of `archive <index>`, assuming `<index>` is not out of bound. 
+
+![Sequence diagram when command `archive 1` is executed](images/HideSequenceDiagram-0.png)
 
 ### \[Proposed\] Undo/redo feature
 
@@ -227,7 +246,7 @@ The following activity diagram summarizes what happens when a user executes a ne
   * Pros: Will use less memory (e.g. for `delete`, just save the person being deleted).
   * Cons: We must ensure that the implementation of each individual command are correct.
 
-_{more aspects and alternatives to be added}_
+_{more aspects and alternatives to be added} 
 
 ### \[Proposed\] Data archiving
 
@@ -243,6 +262,45 @@ The implementation of `mark` and `unmark` is such that a task being marked or un
 Below is the sequence diagram for an execution of `mark <index>`, assuming `<index>` is not out of bounds.
 
 ![Sequence diagram when command `mark 1` is executed](images/MarkSequenceDiagram.png)
+
+### Returning to a previous command 
+
+#### Implementation 
+
+This feature allows the user to traverse through past commands via the up and down keys on the keyboard, similar to how it works in a terminal. 
+
+This mechanism of returning to previous commands is facilitated by `CommandHistory`. It works with `CommandBox`, storing entered commands internally in `previousCommands` and controls the traversal with the aid of `pointer`. 
+Additionally, it implements the following operations: 
+
+* `CommandHistory#add(String)` – Saves the entered command into the history. 
+* `CommandHistory#up()` – Traverses upwards through the history and restores the previously entered command.
+* `CommandHistory#down()` – Traverses downwards through the history and restores the command. 
+
+Given below is an example usage scenario and how the command history traversal mechanism behaves at each step. 
+
+Step 1. The user launches the application for the first time. The `CommandBox` will be initialised, which in turns initialises the `CommandHistory` that is contained within. Since command history is empty, `previousCommands`will be empty. 
+
+Step 2. The user enters a command `add n/Project m/CS2103T d/2022-10-18 t/lowPriority`. Upon entering a new command, `CommandBox#handleButtonPressed(KeyEvent)` is called, which in turn calls `CommandHistory#add(String)` to stores this command into `previousCommands`. 
+
+Step 3. The user presses on the `up` key to return to the previously entered command. This action calls the `CommandHistory#up()` which will shift `pointer` once to the left, pointing it to the previous command in history, and feeds this String back to the command box. 
+
+Step 4. The user presses on the `down` key to traverse down the history. This action calls the `CommandHistory#up()` which will shift `pointer` once to the right. Since the `pointer` is already pointing to the latest command in history, there are no more commands to be returned to. 
+Hence, the command box will be cleared. 
+
+The following activity diagram summarizes what happens when a user clicks on the `up`/`down` keys. 
+
+![UpDownKeyActivityDiagram](images/UpDownKeyActivityDiagram.png)
+
+#### Design considerations: 
+
+**Aspect: How command history is stored:** 
+
+* **Alternative 1 (current choice):** Stores entered commands in an arrayList, renewed everytime the app launches. 
+  * Pros: Easy to implement. 
+  * Cons: Will not be able to restore commands from previous launches. 
+* **Alternative 2:** Stores entered commands into a local `json` file. 
+  * Pros: Will be able to restore commands from previous launches. 
+  * Cons: Difficult to implement as storage architecture will have to be renewed.  
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -276,12 +334,14 @@ Below is the sequence diagram for an execution of `mark <index>`, assuming `<ind
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
+*Core Functionalities*
+
 | Priority | As a …​        | I want to …​                                                              | So that I can…​                             |
 |--------|----------------|---------------------------------------------------------------------------|---------------------------------------------|
 | `* * *` | beginner user  | add tasks                                                                 | keep track of the tasks on hand             |
 | `* * *` | beginner user  | delete tasks                                                              | remove tasks that are no longer relevant    |
 | `* * *` | beginner user  | tag my tasks to a specific module or commitment                           | organise them better                        |
-| `* * *` | beginner user  | keep track of deadlines related to added tasks                            |                                             |
+| `* * *` | beginner user  | keep track of deadlines related to added tasks                            | complete tasks on time                      |
 | `* * *` | beginner user  | see all the tasks I have that have yet to be completed                    | easily identify tasks to work on            |
 | `* *`  | potential user | see example tasks that show how the app displays tasks and their statuses | have a better idea of how the app functions |
 | `* *`  | beginner user  | edit the task names                                                       | rectify mistakes                            |
@@ -290,6 +350,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 
 *{More to be added}*
+
 
 ### Use cases
 

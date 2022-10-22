@@ -5,17 +5,17 @@ import static java.util.Objects.requireNonNull;
 import seedu.address.commons.core.Messages;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.model.Model;
-import seedu.address.model.task.TaskIsDonePredicate;
+import seedu.address.model.task.TaskByDeadlinePredicate;
 
 /**
- * List all unmarked tasks in NotionUS.
+ * List all tasks with deadline on or after the date inputted by user.
  */
-public class ListUnmarkedCommand extends ListCommand {
+public class ListDeadlineCommand extends ListCommand {
 
-    public static final String COMMAND_WORD = "-u";
-    public final TaskIsDonePredicate predicate;
+    public static final String COMMAND_WORD = "-d";
+    private final TaskByDeadlinePredicate predicate;
 
-    public ListUnmarkedCommand(TaskIsDonePredicate predicate) {
+    public ListDeadlineCommand(TaskByDeadlinePredicate predicate) {
         this.predicate = predicate;
     }
 
@@ -30,7 +30,7 @@ public class ListUnmarkedCommand extends ListCommand {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof ListUnmarkedCommand // instanceof handles nulls
-                && predicate.equals(((ListUnmarkedCommand) other).predicate)); // state check
+                || (other instanceof ListDeadlineCommand // instanceof handles nulls
+                && predicate.equals(((ListDeadlineCommand) other).predicate)); // state check
     }
 }

@@ -77,23 +77,49 @@ Format : `tag <taskId> <tag>`
 
 Example: `tag 2 optional`
 
-### Listing all tasks : `li -a`
+### Listing all tasks : `ls -a`
 
 Shows a list of all tasks in the task list.
 
 Format: `ls -a`
 
-### Listing all unmarked tasks : `li -u`
+### Listing all unmarked tasks : `ls -u`
 
 Shows a list of all unmarked tasks in the task list.
 
 Format: `ls -u`
 
-### Listing all tasks under the same module : `li --module <module>`
+### Listing all marked tasks : `ls -m`
+
+Shows a list of all marked tasks in the task list.
+
+Format: `ls -m`
+
+### Listing all tasks under the same module : `ls --module`
 
 Shows a list of all tasks under the same module.
 
 Format: `ls --module <module>`
+
+Example: `ls --module cs2103t`
+
+### Listing all tasks containing the same tag : `ls -t`
+
+Shows a list of all tasks under the same module.
+
+Format: `ls -t <tag>`
+
+Example: `ls -t highPriority`
+
+### Listing all tasks with deadline on or after a date : `ls -d`
+
+Shows a list of all tasks under the same module.
+
+Format: `ls -d <date>`
+
+* `Date` must be in the format of YYYY-MM-DD
+
+Example: `ls -d 2022-11-11`
 
 ### Editing a task : `edit`
 
@@ -166,12 +192,12 @@ To be added..
 
 ## Command summary
 
-| Action     | Format, Examples                                                    |
-|------------|---------------------------------------------------------------------|
-| **Add**    | `add m/MODULE n/taskName [--tag <tag>]`                             |
-| **Clear**  | `clear`                                                             |
-| **Delete** | `delete INDEX`<br> e.g., `delete 3`                                 |
-| **Edit**   | `edit <taskId> <module> <taskname>…​`<br> e.g.,`edit 1 CS2103T ip`  |
-| **Find**   | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`          |
-| **List**   | `li -a` `li -u` `li --module <module>`                              |
-| **Help**   | `help`                                                              |
+| Action     | Format, Examples                                                            |
+|------------|-----------------------------------------------------------------------------|
+| **Add**    | `add m/MODULE n/taskName [--tag <tag>]`                                     |
+| **Clear**  | `clear`                                                                     |
+| **Delete** | `delete INDEX`<br> e.g., `delete 3`                                         |
+| **Edit**   | `edit <taskId> <module> <taskname>…​`<br> e.g.,`edit 1 CS2103T ip`          |
+| **Find**   | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`                  |
+| **List**   | `ls -a` `ls -u` `ls -m` `ls --module <module>` `ls -t <tag>` `ls -d <date>` |
+| **Help**   | `help`                                                                      |

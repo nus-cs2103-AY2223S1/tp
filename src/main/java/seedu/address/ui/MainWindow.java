@@ -23,7 +23,7 @@ import seedu.address.logic.parser.exceptions.ParseException;
  */
 public class MainWindow extends UiPart<Stage> {
 
-    private static final String FXML = "NotNUSMainWindow.fxml";
+    private static final String FXML = "NotionUSMainWindow.fxml";
 
     private final Logger logger = LogsCenter.getLogger(getClass());
 
