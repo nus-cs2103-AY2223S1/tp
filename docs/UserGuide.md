@@ -5,7 +5,7 @@ show-toc: true
 ---
 ## About FoodRem
 
-FoodRem is an Inventory Management System that empowers small Food and Beverage (F&B) restaurant managers to manage inventory and obtain insights from inventory data. As a restaurant manager, leverage upon FoodRem's Inventory Management System, where you can manage your inventory during your daily operations. Utilize FoodRem's flexible tagging system to help you organize your inventory according to your business needs. Finally, streamline your business decisions by deriving insights from your inventory usage through FoodRem's statistics, keeping track of vital data such as food wastage.
+FoodRem is an Inventory Management System that empowers small food and beverage (F&B) restaurant managers to manage inventory and obtain insights from inventory data. As a restaurant manager, leverage upon FoodRem's Inventory Management System, where you can manage your inventory during your daily operations. Utilize FoodRem's flexible tagging system to help you organize your inventory according to your business needs. Finally, streamline your business decisions by deriving insights from your inventory usage through FoodRem's statistics, keeping track of vital data such as food wastage.
 
 Using a Command-Line interface, efficiently interact with FoodRem without needing to even touch your mouse! With a focus on user-friendliness, FoodRem is easy to learn!
 
@@ -22,9 +22,9 @@ TODO: Add links to e.g. name, bought date, expiry date, etc.
 ### Inventory Management System
  FoodRem allows you to track your inventory during your daily operations.
 
- 1. Quickly **add, remove, and view** your available inventory.
+ 1. Quickly **create, view, edit, and remove** your available inventory.
  2. **Sort** and **filter** your inventory by name, bought date, expiry date, quantity, unit and cost.
- 3. **Tag** items in your inventory. For example, you can quickly view all items that are tagged as vegetables.
+ 3. **Tag** items in your inventory using an efficient tagging system where you can create, rename and delete existing tags. You can then filter and sort items according to these tags.
 
 ### Inventory Analysis
 FoodRem tracks data that helps you streamline your business decisions through **statistics**.
