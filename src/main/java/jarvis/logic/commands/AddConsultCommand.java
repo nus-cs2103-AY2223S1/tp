@@ -88,7 +88,7 @@ public class AddConsultCommand extends Command {
         }
 
         model.addLesson(consultToAdd);
-        return new CommandResult(String.format(MESSAGE_SUCCESS, consultToAdd), true, false);
+        return new CommandResult(String.format(MESSAGE_SUCCESS, consultToAdd));
     }
 
     @Override

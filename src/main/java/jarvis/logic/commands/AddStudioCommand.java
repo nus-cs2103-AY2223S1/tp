@@ -74,7 +74,7 @@ public class AddStudioCommand extends Command {
         }
 
         model.addLesson(studioToAdd);
-        return new CommandResult(String.format(MESSAGE_SUCCESS, studioToAdd), true, false);
+        return new CommandResult(String.format(MESSAGE_SUCCESS, studioToAdd));
     }
 
     @Override

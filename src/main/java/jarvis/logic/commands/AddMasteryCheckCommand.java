@@ -89,7 +89,7 @@ public class AddMasteryCheckCommand extends Command {
         }
 
         model.addLesson(masteryCheckToAdd);
-        return new CommandResult(String.format(MESSAGE_SUCCESS, masteryCheckToAdd), true, false);
+        return new CommandResult(String.format(MESSAGE_SUCCESS, masteryCheckToAdd));
     }
 
     @Override

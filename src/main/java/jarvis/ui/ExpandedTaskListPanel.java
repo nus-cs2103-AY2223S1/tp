@@ -12,11 +12,11 @@ import javafx.scene.layout.Region;
 
 
 /**
- * Panel containing the list of tasks.
+ * Panel containing the list of tasks, fully expanded with all details shown.
  */
-public class TaskListPanel extends UiPart<Region> {
-    private static final String FXML = "TaskListPanel.fxml";
-    private final Logger logger = LogsCenter.getLogger(TaskListPanel.class);
+public class ExpandedTaskListPanel extends UiPart<Region> {
+    private static final String FXML = "ExpandedTaskListPanel.fxml";
+    private final Logger logger = LogsCenter.getLogger(ExpandedTaskListPanel.class);
 
     @FXML
     private ListView<Task> taskListView;
@@ -24,7 +24,7 @@ public class TaskListPanel extends UiPart<Region> {
     /**
      * Creates a {@code StudentListPanel} with the given {@code ObservableList}.
      */
-    public TaskListPanel(ObservableList<Task> taskList) {
+    public ExpandedTaskListPanel(ObservableList<Task> taskList) {
         super(FXML);
         taskListView.setItems(taskList);
         taskListView.setCellFactory(listView -> new TaskListViewCell());
@@ -42,7 +42,7 @@ public class TaskListPanel extends UiPart<Region> {
                 setGraphic(null);
                 setText(null);
             } else {
-                setGraphic(new TaskCard(task, getIndex() + 1).getRoot());
+                setGraphic(new ExpandedTaskCard(task, getIndex() + 1).getRoot());
             }
         }
     }
