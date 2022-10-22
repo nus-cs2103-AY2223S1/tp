@@ -328,7 +328,8 @@ public class EditCommand extends Command {
                     && getTags().equals(e.getTags())
                     && getServers().equals(e.getServers())
                     && getCountry().equals(e.getCountry())
-                    && getGameTypes().equals(e.getGameTypes());
+                    && getGameTypes().equals(e.getGameTypes())
+                    && getTimeIntervals().equals(e.getTimeIntervals());
         }
     }
 }
