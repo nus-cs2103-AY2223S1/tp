@@ -158,10 +158,11 @@ This section describes some noteworthy details on how certain features are imple
 
 #### Implementation
 
-The `FindInterestCommandParser` reads the specified interests entered by the student in `FindInterestCommandParser#parse` and passes them as a `PersonContainsInterestPredicate` predicate for execution in `FindInterestCommand`.
+The `FindInterestCommandParser` reads the specified interests entered by the student in `FindInterestCommandParser#parse`.
+The specified interests are then passed as a `PersonContainsInterestPredicate` predicate for execution in `FindInterestCommand#execute`.
 
-Upon execution, the interests of every batchmates will be tested against said predicate in `FindInterestCommand#execute`.
-If all interests specified can be found in the set of a batchmates' interests, that batchmate will then be filtered out and displayed.
+During execution, the interests of every batchmate will be tested against the aforementioned predicate.
+If all interests specified are found in the set of a batchmates' interests, that batchmate will then be filtered out and displayed.
 The result would be a list of all batchmates that are filtered out.
 
 The following (partial) class diagram shows how the different classes involved in the find interest operation interact with one another:
@@ -181,7 +182,7 @@ The following activity diagram summarises what happens when a student enters a `
     * Cons: Search might be too narrow since it excludes batchmates that have some but not all the interests specified. (Specifying `tennis` and `baking` will not result in a batchmate whose only interest is `tennis` to be displayed)
 
 * **Alternative 2:** Finds all batchmates whose interests match at least one of the interests specified.
-    * Pros: A more general search might be useful for finding much more batchmates who share some of the interests as the student.
+    * Pros: A more general search might be useful for finding a greater number of batchmates who share some of the interests as the student.
     * Cons: It diminishes the usefulness of being able to search for multiple interests at once if a general search is implemented. The purpose of specifying multiple interests is so that the search results would be specific.
 
 
