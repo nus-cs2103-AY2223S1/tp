@@ -34,17 +34,17 @@ FoodRem tracks data that helps you streamline your business decisions through **
 
 ## How to use the User Guide
 
-Thank you for choosing FoodRem! We are delighted to have you as a user and aim to serve you well!
+Thank you for choosing FoodRem! We are delighted to have you as a user and aim to serve you well
+
+We **highly recommend** that you read through the User Guide in a **sequential order** up until the section
+[Features](#features), where you can find all the information you need before using all commands.
 
 If this is your first time using FoodRem, start off with the [Quick Start](#quick-start) section.
 This guides you on how to install FoodRem.
 
-We **highly recommend** that you read through the User Guide in a **sequential order** up until the section
-[Features](#features), where you can find all the information you need before using all command.
-
 If you are a new user to FoodRem, you can head over to the section about [Using FoodRem](#using-foodrem) which will teach you the basics of FoodRem. This includes: 
 
-* Introducing you to the general [command format](#command-formats).
+* Introducing you to the general [command format](#command-format).
 * [Flags](#flags) and [Placeholders](#placeholders) where you can find:
   * Important syntax you will come across while reading the User
     Guide such as `n/`, `bgt/` or `INDEX`, `ITEM_NAME`.
@@ -73,7 +73,7 @@ Here is an overview of what FoodRem consists of and how you can perform a comman
 
 {% include_relative _ug/ItemsTags.md %}
 
-### Command Formats
+### Command Format
 
 You will encounter FoodRem commands throughout this User Guide.
 Before you delve into the different commands in [Features](#features), let’s learn what a command consists of.
