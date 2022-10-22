@@ -1,194 +1,234 @@
 <!-- markdownlint-disable-file first-line-h1 -->
-{Insert an image of items}
+#### Create a new item: `new`
 
-#### Create a new item
+**Format**: `new n/ITEM_NAME [qty/QUANTITY] [type/TYPE] [bgt/BOUGHT_DATE] [exp/EXPIRY_DATE]`
 
-<!--- TODO: emember to warn users if expiry date < bought date-->
+> Creates a new item with the provided item name. Other than the item name, all other fields are optional.
 
-Command: `item new ITEM_NAME`
+* The bought date should not be after the expiry date. 
+* Format for Bought Date and Expiry Date should follow: "dd-mm-yyyy".
+  * d: Day of the month, and the last day of the month depends on that month. For example, the 10th day would be "10".
+  * m: Month of the year, ranging from 1 to 12. This represents the months from January to December. For example, January would be "01".
+  * y: Year of the era. For example, "2019" would represent the 2019th year of the Common Era (CE). 
 
-> Description: Creates a new item with the provided item_name.
-
----
-
-Example:
-
-Input
+**Example Input:**
 
 ```text
-item new potato
+new n/Potato qty/70 type/kg bgt/22-02-2022 exp/22-03-2022
 ```
 
-Output
+**Example Output:**
 
+Command Output Box:
 ```text
 Item  “potato” successfully created
 ```
 
-#### List all items
-
-Command: `list`
-
-> Description: Lists all the items in the inventory.
-
 ---
 
-Example:
+#### List all items: `list`
 
-Input
+**Format**: `list`
+
+> Lists all the items in the inventory.
+
+**Example Input:**
 
 ```text
 list
 ```
 
-Output
+**Example Output:**
 
+Command Output Box:
 ```text
-Here are the items in your inventory:
-Onions
-Details about onions
-Tomatoes
-Details about tomatoes
-Chicken wings
-Details about chicken wings
+Listed all items
 ```
 
-### Search for an item
-
-<!--- Remember to implement find by tags-->
-
-Command: `find NAME`
-
-> Description: Find an inventory item based on the given keywords
-> The search is case-insensitive. (e.g. apples will match Apples)
-> The order of the keyword does not matter e.g (rose apple will match apple rose)
-> Only the item name is searched
-
----
-
-Example:
-
-Input
-
+List Box:
 ```text
-find apple
+1. Onions 8 kg (Bought Date: 10-10-2022) (Expiry Date: 10-11-2022)
+2. Chicken 30 kg (Bought Date: 10-10-2022) (Expiry Date: 15-10-2022)
+3. Carrots 11 kg (Bought Date: 10-10-2022) (Expiry Date: 26-10-2022)
 ```
 
-Output
+
+---
+
+#### Search for an item: `find`
+
+**Format:** `find ITEM_NAME`
+
+> Finds an inventory item based on the given keywords
+* It is not necessary to include the "n/" delimiter in front of the item name.
+* The search is case-insensitive. (e.g. apples will match Apples)
+* The order of the keyword does not matter e.g ("rose apple" will match "apple rose")
+* Only the item name is searched
+
+
+**Example Input:**
 
 ```text
-Here are the results matching your search
-Green apple
-Rose apple
+find potato
 ```
 
-#### Sort all items by an attribute
+**Example Output:**
 
+Command Output Box:
+```text
+Listed all items
+```
+
+List Box:
+```text
+1. Potato 6 kg (Bought Date: 10-10-2022) (Expiry Date: 10-11-2022)
+```
 ---
 
-#### View the information of an item
+#### Sort all items by an attribute: `sort`
+**Format:**: `sort [n/] [qty/] [type/] [bgt/] [exp/]`
+_NOTE: At least one of the sorting criteria must be provided._
 
+> Sorts the list of currently displayed items by one or more criteria in order.
+* The list of currently selected items can be modified by other Commands, e.g. the [Find Command](#Find)
+* Sorting criteria are applied in the order they were provided, from left-to-right. For example, `sort n/ qty/` would sort the list of currently selected items by name first, then by quantity.
+* (!!) After sorting, you can call the [List Command](#List) to re-display all items.
+
+**Example Input:**
+```text
+sort n/ qty/
+```
+
+**Example Output:**
+Command Output Box:
+```text
+3 items sorted!
+```
+
+List Box:
+```text
+1. Carrots 11 kg (Bought Date: 10-10-2022) (Expiry Date: 26-10-2022)
+2. Chicken 30 kg (Bought Date: 10-10-2022) (Expiry Date: 15-10-2022)
+3. Onions 8 kg (Bought Date: 10-10-2022) (Expiry Date: 10-11-2022)
+`
+```
 ---
 
-#### Increase the quantity of an item
+#### View the information of an item: `view`
+**Format:**: `view INDEX`
+> Displays information about the specified item.
+* Displayed information includes the name, quantity, bought date, expiry date, price, and tags of items.
 
+**Example Input:**
+```text
+view 1 
+```
+
+**Example Output:**
+Command Output Box:
+```text
+Name: Onions
+Quantity: 8 kg
+Bought Date: 10-10-2022
+Expiry Date: 10-11-2022
+Price: $6
+Tags: {vegetables}
+```
 ---
 
-#### Decrease the quantity of an item
+#### Increment the quantity of an item: `inc`
+**Format:**: `inc INDEX [qty/QUANTITY]`
+> Increments the item at the specified index by an optional quantity. 
+* Quantity to increment by will default to 1 if it is not specified.
 
+**Example Input:**
+```text
+inc 1 qty/3
+```
+
+**Example Output:**
+Command Output Box:
+```text
+Incremented Item: 
+Name: Onions
+Quantity: 11 kg
+Bought Date: 10-10-2022
+Expiry Date: 10-11-2022
+Price: $6
+Tags: {vegetables}
+```
 ---
 
-#### Update the information of an item
+#### Decrement the quantity of an item: `dec`
+**Format:**: `dec INDEX [qty/QUANTITY]`
+> Decrements the item at the specified index by an optional quantity.
+* Quantity to decrement by will default to 1 if it is not specified.
+
+**Example Input:**
+```text
+dec 1 qty/4
+```
+
+**Example Output:**
+Command Output Box:
+```text
+Decremented Item: 
+Name: Onions
+Quantity: 7 kg
+Bought Date: 10-10-2022
+Expiry Date: 10-11-2022
+Price: $6
+Tags: {vegetables}
+```
+---
+
+#### Edit the information of an item: `edit`
 
 Command: `edit ITEM_INDEX [n/ITEM_NAME] [qty/QUANTITY] [u/UNIT] [bgt/BOUGHT_DATE] [exp/EXPIRY_DATE]`
+NOTE: _At least one field to edit must be provided._
 
-> Description: Updates the details of the item identified.
+> Edit the details of the item identified.
 
-Example:
-
+**Example Input:**
 ```text
-edit 1 qty/1000
-edit 10 n/Potatoes qty/1000
-edit 100 bgt/11-11-2022 exp/11-30-2023
+edit 1 qty/100
 ```
 
-Output:
-
+**Example Output:**
+Command Output Box:
 ```text
-Edited Item:
-(A description of the item being edited)
+Edited Item: 
+Name: Onions
+Quantity: 100 kg
+Bought Date: 10-10-2022
+Expiry Date: 10-11-2022
+Price: $6
+Tags: {vegetables}
 ```
-
-Common errors:
-
-1) If the item index is not shown in the current list an error message will be thrown.
-
-    ```
-    The item index provided is invalid.
-    ```
-
-   Remedy:
-
-    ```
-    Use the list command or find command to find out what is the index of the item to be deleted.
-    ```
-
-2) If no fields to edit was provided.
-
-   ```text
-   At least one field to edit must be provided.
-   ```
-
-   Remedy:
-
-   ```
-   Include at least one field using the prefix as shown in the command format.
-   ```
-
-3) If the item name is set to a name similar to an item in FoodRem.
-
-   ```text
-   This item already exists in the FoodRem.
-   ```
-
-   Remedy:
-
-   ```
-   Choose a different name while editing the item.
-   ```
-
 ---
 
-#### Delete an item
+#### Delete an item: `del`
 
 Command: `del ITEM_INDEX`
 
-> Description: Deletes an item from FoodRem permanently.
+> Deletes an item from the item list. 
 
-Example:
-
+**Example Input:**
 ```text
 del 1
-del 10
 ```
 
-Output:
-
+**Example Output:**
+Command Output Box:
 ```text
 Deleted Item:
-(A description of the item being deleted)
+Name: Onions
+Quantity: 100 kg
+Bought Date: 10-10-2022
+Expiry Date: 10-11-2022
+Price: $6
+Tags: {vegetables}
 ```
+---
 
-Possible errors:
 
-1) If the item index is not shown in the current list an error message will be thrown.
-
-    ```
-    The item index provided is invalid.
-    ```
-
-    Remedy:
-
-    ```
-    Use the list command or find command to find out what is the index of the item to be deleted.
-    ```
