@@ -1,2 +1,2 @@
 <!-- markdownlint-disable-file first-line-h1 -->
-`view INDEX`
+`edit 1 n/Potatoes qty/60 u/kg`

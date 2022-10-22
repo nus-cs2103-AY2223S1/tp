@@ -3,48 +3,34 @@ layout: page
 title: User Guide
 show-toc: true
 ---
-## About
+## About FoodRem
 
-We want you to spend less time keeping track of perishable goods in your daily operations. FoodRem is a command line application that enables you to efficiently record, update and categorise food items. It is a convenient administrative tool that can answer the following questions in a flash:
+FoodRem is an Inventory Management System that empowers small food and beverage (F&B) restaurant managers to manage inventory and obtain insights from inventory data. As a restaurant manager, leverage upon FoodRem's Inventory Management System, where you can manage your inventory during your daily operations. Utilize FoodRem's flexible tagging system to help you organize your inventory according to your business needs. Finally, streamline your business decisions by deriving insights from your inventory usage through FoodRem's statistics, keeping track of vital data such as food wastage.
 
-* What food items are about to expire?
-* How much of each condiment do I have?
-* Which food items are newly purchases?
-* ...and many more!
+Using a Command-Line interface, efficiently interact with FoodRem without needing to even touch your mouse! With a focus on user-friendliness, FoodRem is easy to learn!
 
-With a few quick commands, you can have complete control of your perishable goods, so you can focus on what is important: serving your customers, improving menu recipes, and transforming your business into the next success story.
-
-## Key Features
-
-1. Add, update and delete inventory items
-1. Search and sort food items by:
-   * Name
-   * Quantity
-   * Bought date
-   * Expiry date
-   * Tags
-1. Tag items to group them into categories
-
-## Purpose, Scope and Audience
-
-### Purpose
-
-FoodRem helps small businesses to easily manage consumables and perishable goods within a single inventory to reduce time spent on managing and restocking inventory.
-
-### Scope
-
-This app is targeted at small F&B businesses which may struggle in inventory management due to a lack of streamlined process and manpower.
-
-### Audience
-
-This guide is targeted at users using FoodRem who wants to find out more about the different commands to manage their inventory in a quicker and more efficient manner.
-
-Readers do not have to be familiar with the command line to use this guide effectively.
-The only expectation we have of you is to carefully read through the different sections.
+This User Guide provides an in-depth documentation to help integrate FoodRem into your operational workflows. It covers how to launch FoodRem, core FoodRem features and commands, common terms and definitions used in FoodRem, and some troubleshooting recommendations. In addition, a quick start guide is available that gives a whirlwind tour to help get you started.
 
 {% include page-break.html %} <!-- Force a page break -->
 
 {% include toc.md header=true show-in-toc=true ordered=true %}
+
+## Features 
+There are two core features that FoodRem provides: The Inventory Management System, and Inventory Analysis.
+
+TODO: Add links to e.g. name, bought date, expiry date, etc.
+### Inventory Management System
+ FoodRem allows you to track your inventory during your daily operations.
+
+ 1. Quickly **create, view, edit, and remove** your available inventory.
+ 2. **Sort** and **filter** your inventory by name, bought date, expiry date, quantity, unit and cost.
+ 3. **Tag** items in your inventory using an efficient tagging system where you can create, rename and delete existing tags. You can then filter and sort items according to these tags.
+
+### Inventory Analysis
+FoodRem tracks data that helps you streamline your business decisions through **statistics**.
+1. Track your **most expensive items**.
+2. View items that are **expiring** in the next 10 days.
+3. Find out how much **cost was incurred** due to food wastage.
 
 ## How to use the User Guide
 
@@ -72,7 +58,6 @@ Here are some icons you may encounter in FoodRem and what they mean:
 * ℹ️ : additional info
 * ❗ : warning
 
-`Words or phrases in code blocks like this` refer to user input.
 
 If you are stuck, refer to [Troubleshooting](#troubleshooting) or [FAQ](#faq).
 You can refer to [Glossary](#glossary) that contains definitions of some commonly used words in FoodRem
@@ -127,9 +112,10 @@ Placeholders are words in UPPER_CASE to show you what parameters you can supply 
 
 {% include_relative _ug/TryingFirstCommand.md %}
 
-## Features
 
-{% include_relative _ug/Features.md %}
+## Commands
+
+{% include_relative _ug/Commands.md %}
 
 ## Command Summary
 
@@ -147,51 +133,16 @@ Placeholders are words in UPPER_CASE to show you what parameters you can supply 
 
 ## Troubleshooting
 
-Something goes here...
+<!-- TODO: Consider removing this section -->
+{% include_relative _ug/Troubleshooting.md %}
 
 ## FAQ
 
 {% include_relative _ug/FAQ.md %}
 
-## Future Extensions
-
-(NOT COMPLETED)
-
-1. **Food expiring soon / Date food bought**
-
-1. **Glorified search and sort**
-
-   1. Upgrade sort and search
-   1. Sort food items by quantity
-   1. Sort food items by name
-   1. Sort food items by expiry date
-   1. Sort food items by purchase date
-   {: .lower-alpha}
-
-1. **Food buffer**
-
-   1. Rainbow UI / Dashboard
-   1. Optional : Minimum acceptable quantity
-   1. Optional : Percentage of stock expiring
-   {: .lower-alpha}
-
-1. **Purchasing (Hard -> Will not see benefit immediately)**
-
-   1. History + Statistics
-   1. Inventory need a price of items
-   {: .lower-alpha}
-
-1. **(Last priority) Order management**
-
-   1. Grouping of items
-   1. Creation of menu with specific items
-   1. Record menu items bought
-   1. Statistics
-   {: .lower-alpha}
-
 ## Acknowledgements
 
-FoodRem is a brownfield software project based off [AddressBook3](https://se-education.org/addressbook-level3/), taken under the [CS2103T Software Engineering module](https://nus-cs2103-ay2223s1.github.io/website/index.html) held by the School of Computing at the National University of Singapore.
+{% include_relative _ug/Acknowledgements.md %}
 
 ## Glossary
 

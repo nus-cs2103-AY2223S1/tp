@@ -1,2 +1,2 @@
 <!-- markdownlint-disable-file first-line-h1 -->
-`view INDEX`
+`inc 1 qty/100`
