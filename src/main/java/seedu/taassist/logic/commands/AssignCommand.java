@@ -87,6 +87,6 @@ public class AssignCommand extends Command {
         return other == this // short circuit if same object
                 || (other instanceof AssignCommand // instanceof handles nulls
                 && indices.equals(((AssignCommand) other).indices))
-                && moduleClassToAssign.equals(((AssignCommand) other).moduleClassToAssign);
+                && moduleClassToAssign.isSame(((AssignCommand) other).moduleClassToAssign);
     }
 }

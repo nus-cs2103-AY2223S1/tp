@@ -62,4 +62,11 @@ public class SessionCommand extends Command {
 
         return new CommandResult(String.format(MESSAGE_SUCCESS, session));
     }
+
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof SessionCommand // instanceof handles nulls
+                && session.isSame(((SessionCommand) other).session));
+    }
 }

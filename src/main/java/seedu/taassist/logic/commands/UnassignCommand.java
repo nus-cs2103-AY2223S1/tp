@@ -86,6 +86,6 @@ public class UnassignCommand extends Command {
         return other == this // short circuit if same object
                 || (other instanceof UnassignCommand // instanceof handles nulls
                 && indices.equals(((UnassignCommand) other).indices))
-                && moduleClassToUnassign.equals(((UnassignCommand) other).moduleClassToUnassign);
+                && moduleClassToUnassign.isSame(((UnassignCommand) other).moduleClassToUnassign);
     }
 }

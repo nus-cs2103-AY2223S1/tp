@@ -83,9 +83,9 @@ public class GradeCommand extends Command {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof GradeCommand // instanceof handles nulls
-                && index.equals(((GradeCommand) other).index)
+                && index.equals(((GradeCommand) other).index) // state check
                 && grade == ((GradeCommand) other).grade
-                && session.equals(((GradeCommand) other).session)); // state check
+                && session.isSame(((GradeCommand) other).session));
     }
 
 }

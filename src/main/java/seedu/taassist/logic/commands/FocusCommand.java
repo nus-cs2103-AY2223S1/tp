@@ -46,7 +46,7 @@ public class FocusCommand extends Command {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof FocusCommand // instanceof handles nulls
-                && targetClass.equals(((FocusCommand) other).targetClass));
+                && targetClass.isSame(((FocusCommand) other).targetClass));
     }
 
 }
