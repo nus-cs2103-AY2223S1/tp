@@ -10,8 +10,7 @@ The first word of every command allows FoodRem to distinguish different commands
 
 Notice that there is a pair of square brackets [] surrounding some parameters like `qty/QUANTITY` in the format. This indicates that the parameter is **optional**. Each of these placeholders have a default value based on the commands. These are documented in the [Commands](#commands) section for each command.
 
-Suppose you just bought 30 kg of potatoes, today is 5th September 2022, and you do not feel the need to record
-an expiry date, price or remarks for this item.
+Suppose you just bought 30 kg of potatoes, today is 5th September 2022, and you do not feel the need to record an expiry date, price or remarks for this item.
 
 `ITEM_NAME`: Potatoes
 
