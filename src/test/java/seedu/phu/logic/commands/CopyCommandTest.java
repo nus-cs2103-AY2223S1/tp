@@ -44,6 +44,7 @@ public class CopyCommandTest {
         model = new ModelManager(getTypicalInternshipBook(), new UserPrefs());
         expectedModel = new ModelManager(model.getInternshipBook(), new UserPrefs());
         commandHistory = new CommandHistory();
+        System.setProperty("java.awt.headless", "false");
     }
 
     @Test
@@ -88,6 +89,7 @@ public class CopyCommandTest {
         String toCopy = firstInternship.toString();
 
         assertEquals(toCopy, currentContents);
+        System.setProperty("java.awt.headless", "true");
     }
 
     @Test
@@ -116,6 +118,7 @@ public class CopyCommandTest {
         String toCopy = firstInternship.toString();
 
         assertEquals(toCopy, currentContents);
+        System.setProperty("java.awt.headless", "true");
     }
 
     @Test
