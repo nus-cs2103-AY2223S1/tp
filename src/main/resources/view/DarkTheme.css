@@ -432,8 +432,9 @@ CommandBox
     -fx-border-color: transparent;
     -fx-background-radius: 20;
     -fx-padding: 16px;
-    -fx-min-width:300px;
-    -fx-max-width: 300px !important;
+    -fx-min-width: 200px;
+    -fx-pref-width: 300px;
+    -fx-max-width: 300px;
     -fx-min-height: 200px !important;
 }
 
@@ -441,22 +442,37 @@ CommandBox
     -fx-font-weight: bold;
     -fx-text-fill: #94D8DA;
     -fx-font-size: 18px !important;
+    -fx-pref-width: 300px;
 }
 
 .inspirational-quote {
     -fx-padding: 12px 0px;
     -fx-font-style: italic;
     -fx-text-fill: #FFFFFF;
-    -fx-min-width: 250px;
-    -fx-max-width: 250px;
-    -fx-pref-width: 100px;
+    -fx-min-width: 200px;
+    -fx-max-width: 300px;
+    -fx-pref-width: 300px;
     -fx-font-size: 14px !important;
+}
+
+.progress-content {
+    -fx-background-color: #545454;
+    -fx-background-radius: 4;
+    -fx-padding: 20px 15px;
+    -fx-border-insets: 5px;
+    -fx-background-insets: 5px;
+    -fx-min-width: 100px;
+    -fx-pref-width: 140px;
 }
 
 .credits-count {
     -fx-text-fill: #FFFFFF !important;
+    -fx-font-size: 21px !important;
+}
+
+.credits-count-completed {
+    -fx-text-fill: #FFFFFF !important;
     -fx-font-size: 13px !important;
-    -fx-padding: 12px 0px 4px 0px;
 }
 
 .progress-label {
@@ -468,6 +484,15 @@ CommandBox
     -fx-font-size: 13px !important;
     -fx-font-weight: bold;
     -fx-text-fill: #FFFFFF;
+}
+
+.cap {
+    -fx-font-style: italic;
+    -fx-text-fill: #FFFFFF;
+    -fx-font-size: 14px !important;
+    -fx-min-width: 200px;
+    -fx-max-width: 300px;
+    -fx-pref-width: 300px;
 }
 
 /*Result Display*/

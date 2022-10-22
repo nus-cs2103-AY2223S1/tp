@@ -18,27 +18,12 @@
     <Label fx:id="inspirationalQuote" styleClass="inspirational-quote"
            text="&quot;Strive for progress, not perfection.&quot;" textFill="WHITE" wrapText="true"
            HBox.hgrow="ALWAYS"/>
-    <VBox styleClass="progress-content">
-        <Label fx:id="creditsCount" styleClass="credits-count" text="0 of 0 MCs completed" textFill="WHITE">
-            <font>
-                <Font name="Segoe UI" size="12.0"/>
-            </font>
-        </Label>
+    <VBox styleClass="progress-content" alignment="CENTER_LEFT">
+        <Label fx:id="creditsCount" styleClass="credits-count" text="0 of 0 MCs" textFill="WHITE" />
+        <Label styleClass="credits-count-completed" text="Completed" textFill="WHITE" />
     </VBox>
-    <VBox>
-        <GridPane hgap="80.0" vgap="4.0">
-            <Label styleClass="progress-label" text="Current CAP" textFill="WHITE" GridPane.columnIndex="0"
-                   GridPane.rowIndex="1"/>
-            <Label fx:id="currentCapLabel" styleClass="progress-value" text="-/5.0" textFill="WHITE"
-                   GridPane.columnIndex="1" GridPane.rowIndex="1"/>
-            <columnConstraints>
-                <ColumnConstraints/>
-                <ColumnConstraints/>
-            </columnConstraints>
-            <rowConstraints>
-                <RowConstraints/>
-                <RowConstraints/>
-            </rowConstraints>
-        </GridPane>
+    <VBox styleClass="progress-content" alignment="CENTER_LEFT">
+        <Label fx:id="activeTasks" styleClass="credits-count" text="0" textFill="WHITE" />
+        <Label styleClass="credits-count-completed" text="Active Tasks" textFill="WHITE" />
     </VBox>
 </VBox>
