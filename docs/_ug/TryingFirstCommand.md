@@ -13,11 +13,11 @@ supplied by you without ambiguity. [Placeholders](#placeholders) such as `ITEM_N
 what you should place in each portion of the command.
 
 Notice that there is a pair of square brackets [] surrounding some parameters like `qty/QUANTITY`
-in the format. This indicates that the parameter is optional. Each of these placeholders have a default value
-based on the commands. These are documented in the [Features](#features) section for each command.
+in the format. This indicates that the parameter is **optional**. Each of these placeholders have a default value
+based on the commands. These are documented in the [Commands](#commands) section for each command.
 
-Suppose you just bought 30 kg of potatoes, today is 5th September 22, and you do not feel the need to record
-an expiry date, price or remarks  for the potatoes.
+Suppose you just bought 30 kg of potatoes, today is 5th September 2022, and you do not feel the need to record
+an expiry date, price or remarks for this item.
 
 `ITEM_NAME`: Potatoes
 
@@ -25,7 +25,7 @@ an expiry date, price or remarks  for the potatoes.
 
 `UNIT`: kg
 
-`BOUGHT_DATE`: 05-09-22
+`BOUGHT_DATE`: 05-09-2022
 
 
 Note:
@@ -35,19 +35,19 @@ Note:
 
 The command you would like to enter into the command box would be:
 
-`new n/Potatoes qty/30 u/kg bgt/05-09-22`
+`new n/Potatoes qty/30 u/kg bgt/05-09-2022`
 
 Alternatively this command would do the same thing:
 
-* `new qty/30 n/Potatoes bgt/05-09-22 u/kg` (Reordering the flags)
+* `new qty/30 n/Potatoes bgt/05-09-2022 u/kg` (Reordering the flags)
 
 These commands are invalid:
 
-* `newn/Potatoesqty/30u/kgbgt/05-09-22` (Removing space between command identifier and flags)
+* `newn/Potatoesqty/30u/kgbgt/05-09-2022` (Removing space between command identifier and flags)
 * `new qty/-48 n/PÖtátÖes bgt/05/09/22 u/|kg|` (Restrictions of placeholders not followed)
 
-Find out more about restrictions in the sections [Flags](#flags), [Placeholders](#placeholders) and
-[Features](#features).
+_Find out more about restrictions in the sections [Flags](#flags), [Placeholders](#placeholders) and
+[Commands](#commands)._
 
 Let us try another command!
 
@@ -59,10 +59,10 @@ Format: `inc id/INDEX [qty/QUANTITY]`
 Suppose the `INDEX` for potatoes is `1` in the application, the command you
 would like to enter into the command box is `inc id/12 qty/40`.
 
-Now you should have a general sensing of how commands are used and how to interpret formats. All commands are
+You should now have a better understanding of how commands are formatted and used. All commands are
 consolidated in [Command Summary](#command-summary). 
 
-Here is a checklist you can use before using a command:
+Here is a checklist you can use before running a command:
 
 * [ ] I know the restrictions of the command
 * [ ] I know what flags are supplied to the command
