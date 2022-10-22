@@ -25,6 +25,7 @@ public class ModelManager implements Model {
     private final UserPrefs userPrefs;
     private final FilteredList<Person> filteredPersons;
     private final FilteredList<Task> filteredTasks;
+    private final FilteredList<PersonTaskBridge> filteredBridges;
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
@@ -38,6 +39,7 @@ public class ModelManager implements Model {
         this.userPrefs = new UserPrefs(userPrefs);
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
         filteredTasks = new FilteredList<>(this.addressBook.getTaskList());
+        filteredBridges = new FilteredList<>(this.addressBook.getBridgeList());
     }
 
     public ModelManager() {
@@ -170,6 +172,22 @@ public class ModelManager implements Model {
     public void updateFilteredTaskList(Predicate<Task> predicate) {
         requireNonNull(predicate);
         filteredTasks.setPredicate(predicate);
+    }
+
+    //=========== Filtered Bridge List Accessors =============================================================
+    /**
+     * Returns an unmodifiable view of the list of {@code Task} backed by the internal list of
+     * {@code versionedAddressBook}
+     */
+    @Override
+    public ObservableList<PersonTaskBridge> getFilteredBridgeList() {
+        return filteredBridges;
+    }
+
+    @Override
+    public void updateFilteredBridgeList(Predicate<PersonTaskBridge> predicate) {
+        requireNonNull(predicate);
+        filteredBridges.setPredicate(predicate);
     }
 
     //=========== Filtered Person List Accessors =============================================================

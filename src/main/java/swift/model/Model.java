@@ -16,6 +16,7 @@ public interface Model {
     /** {@code Predicate} that always evaluate to true */
     Predicate<Person> PREDICATE_SHOW_ALL_PERSONS = unused -> true;
     Predicate<Task> PREDICATE_SHOW_ALL_TASKS = unused -> true;
+    Predicate<PersonTaskBridge> PREDICATE_SHOW_ALL_BRIDGE = unused -> true;
 
     /**
      * Replaces user prefs data with the data in {@code userPrefs}.
@@ -90,6 +91,15 @@ public interface Model {
 
     /** Returns an unmodifiable view of the filtered task list */
     ObservableList<Task> getFilteredTaskList();
+
+    /**
+     * Updates the filter of the filtered person list to filter by the given {@code predicate}.
+     * @throws NullPointerException if {@code predicate} is null.
+     */
+    void updateFilteredBridgeList(Predicate<PersonTaskBridge> predicate);
+
+    /** Returns an unmodifiable view of the filtered task list */
+    ObservableList<PersonTaskBridge> getFilteredBridgeList();
 
     /**
      * Updates the filter of the filtered task list to filter by the given {@code predicate}.
