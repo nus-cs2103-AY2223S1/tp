@@ -26,7 +26,7 @@ public class Person {
     // Data fields
     private final Address address;
     private final Set<Social> socials;
-    private final TimeZone timeZone;
+    private final Country country;
     private final Set<Server> servers;
     private final Set<GameType> gameTypes;
     private final Set<Tag> tags;
@@ -37,7 +37,7 @@ public class Person {
 
 
     public Person(Name name, MinecraftName minecraftName, Phone phone, Email email, Address address,
-                  Set<Social> socials, Set<Tag> tags, Set<Server> servers, TimeZone timeZone, Set<GameType> gameTypes) {
+                  Set<Social> socials, Set<Tag> tags, Set<Server> servers, Country country, Set<GameType> gameTypes) {
         requireAllNonNull(name, minecraftName);
 
         this.name = name;
@@ -48,7 +48,7 @@ public class Person {
         this.socials = socials == null ? new HashSet<>() : socials;
         this.tags = tags == null ? new HashSet<>() : tags;
         this.servers = servers == null ? new HashSet<>() : servers;
-        this.timeZone = timeZone == null ? new TimeZone("") : timeZone;
+        this.country = country == null ? new Country("") : country;
         this.gameTypes = gameTypes == null ? new HashSet<>() : gameTypes;
     }
 
@@ -88,8 +88,8 @@ public class Person {
         return Collections.unmodifiableSet(servers);
     }
 
-    public TimeZone getTimeZone() {
-        return timeZone;
+    public Country getCountry() {
+        return country;
     }
 
     public Set<GameType> getGameType() {
@@ -165,7 +165,7 @@ public class Person {
         builder.append("Email: ").append(getFieldOrElse(getEmail().toString())).append("\n");
         builder.append("Address: ").append(getFieldOrElse(getAddress().toString())).append("\n");
         builder.append("Servers: ").append(getFieldOrElse(getServers())).append("\n");
-        builder.append("Timezone: ").append(getFieldOrElse(getTimeZone().toString())).append("\n");
+        builder.append("Country: ").append(getFieldOrElse(getCountry().toString())).append("\n");
         builder.append("Preferred Game Types: ").append(getFieldOrElse(getGameType().toString())).append("\n");
         builder.append("Socials: ").append(getFieldOrElse(getSocials())).append("\n");
 
@@ -182,7 +182,7 @@ public class Person {
                 + getPhone() + "\n"
                 + getEmail() + "\n"
                 + getAddress() + "\n"
-                + getTimeZone() + "\n"
+                + getCountry() + "\n"
                 + getServers() + "\n"
                 + getSocials() + "\n"
                 + getGameType();

@@ -9,7 +9,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_SOCIAL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TIMEZONE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_COUNTRY;
 
 import java.util.Set;
 
@@ -53,7 +53,7 @@ public class PersonUtil {
         person.getServers().stream().forEach(
                 s -> sb.append(PREFIX_MINECRAFT_SERVER + s.getServerName() + " ")
         );
-        sb.append(PREFIX_TIMEZONE + person.getTimeZone().getOffsetInString() + " ");
+        sb.append(PREFIX_COUNTRY + person.getCountry().country + " ");
         person.getGameType().stream().forEach(
                 s -> sb.append(PREFIX_GAME_TYPE + s.getGameTypeName() + " ")
         );
@@ -95,8 +95,8 @@ public class PersonUtil {
                 servers.forEach(s -> sb.append(PREFIX_MINECRAFT_SERVER).append(s.getServerName()).append(" "));
             }
         }
-        descriptor.getTimeZone().ifPresent(timeZone -> sb.append(PREFIX_TIMEZONE)
-                .append(timeZone.getOffsetInString()).append(" "));
+        descriptor.getCountry().ifPresent(country -> sb.append(PREFIX_COUNTRY)
+                .append(country.country).append(" "));
         if (descriptor.getGameTypes().isPresent()) {
             Set<GameType> gameTypes = descriptor.getGameTypes().get();
             if (gameTypes.isEmpty()) {

@@ -2,6 +2,7 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_COUNTRY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MINECRAFT_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MINECRAFT_SERVER;
@@ -9,7 +10,6 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_SOCIAL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TIMEZONE;
 
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
@@ -29,7 +29,7 @@ public class AddCommand extends Command {
             + "[" + PREFIX_PHONE + "PHONE] "
             + "[" + PREFIX_EMAIL + "EMAIL] "
             + "[" + PREFIX_ADDRESS + "ADDRESS] "
-            + "[" + PREFIX_TIMEZONE + "TIMEZONE] "
+            + "[" + PREFIX_COUNTRY + "TIMEZONE] "
             + "[" + PREFIX_SOCIAL + "SOCIAL_PLATFORM@HANDLE] "
             + "[" + PREFIX_MINECRAFT_SERVER + "SERVER_IP] "
             + "[" + PREFIX_TAG + "TAG]...\n\n"
@@ -39,7 +39,7 @@ public class AddCommand extends Command {
             + PREFIX_PHONE + "98765432 "
             + PREFIX_EMAIL + "johnd@example.com "
             + PREFIX_ADDRESS + "10 Downing Street "
-            + PREFIX_TIMEZONE + "+08:00 "
+            + PREFIX_COUNTRY + "+08:00 "
             + PREFIX_SOCIAL + "fb@Bozheng "
             + PREFIX_SOCIAL + "ig@catherine_33334 "
             + PREFIX_MINECRAFT_SERVER + "192.168.1.255 "
