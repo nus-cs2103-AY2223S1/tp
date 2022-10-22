@@ -319,6 +319,28 @@ is trying to find. Here we have made an assumption that there the StudentId uniq
     * Pros: Harder to implement.
     * Cons: No clear distinction between tags and project status
 
+
+
+
+###  `List` Feature
+#### Proposed Implementation
+The proposed `List` Feature allows the professor to list all FYP students in the FYP Manager.
+The `List` feature mechanism is facilitated by `ListCommand`. It extends from the abstract class `Command`.
+To summarize, it implements the following operation:
+* `ListCommand#execute()` — oversees the execution process for `ListCommand`.
+
+Given below is an example usage scenario of `ListCommand`:
+1. The user enters the `list` command
+2. `FypManagerParser` creates a new `ListCommand` after preliminary check of user input.
+3. `LogicManager` executes the `ListCommand` using the `LogicManager#execute()` method.
+4. `ListCommand` updates a `ObservableList<Student>`, and then creates a `CommandResult` and returns it to `LogicManager` to complete the command.
+
+The following sequence diagram shows how the add student command works:
+
+<img src="images/ListCommandSequenceDiagram.png" width="550" />
+
+
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Documentation, logging, testing, configuration, dev-ops**

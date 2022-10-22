@@ -121,7 +121,7 @@ Examples:
 * `mark id/A0123456G s/DONE`
 * `mark id/A0234567H s/YTS`
 
-### Searching keyword: `find` [pending implementation]
+### Searching keyword: `find`
 
 Finds projects whose names contain any of the given keyword(s).
 
