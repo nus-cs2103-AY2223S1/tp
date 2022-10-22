@@ -244,9 +244,7 @@ public class RemoveCommand extends Command {
          * Sets {@code tags} to this object's {@code tags}.
          * A defensive copy of {@code tags} is used internally.
          */
-        public void setTags(Set<Tag> tags) {
-        this.tags = (tags != null) ? new HashSet<>(tags) : null;
-    }
+        public void setTags(Set<Tag> tags) { this.tags = (tags != null) ? new HashSet<>(tags) : null; }
 
         public Optional<Set<Tag>> getTags() {
             return (tags != null) ? Optional.of(Collections.unmodifiableSet(tags)) : Optional.empty();
