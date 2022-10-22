@@ -176,17 +176,19 @@ Examples:
 *  `remove accepted` removes all entries with ACCEPTED as an application status from TrackAScholar.
 *  `remove rejected` removes all entries with REJECTED as an application status from TrackAScholar.
 
-### Sorting applicants by name, scholarship or status : `sort`
+### Sorting applicants by either name, scholarship or application status : `sort`
 
 All applicants in TrackAScholar will be sorted in the specified manner 
 
-Format: `sort NAME/SCHOLARSHIP`
+Format: `sort APPLICATION_STATUS/NAME/SCHOLARSHIP`
 
-* The user can choose to sort the list according the applicant's `NAME` or types of `SCHOLARSHIP` they are applying for.
+* The user can choose to sort the list according the applicant's `APPLICATION_STATUS`, `NAME` or types of `SCHOLARSHIP` they are applying for.
 
 Examples:
 *  `sort name` All applicants in TrackAScholar will be sorted based on their name in a lexicographical manner.
-*  `sort scholarship` All applicants in TrackAScholar will be sorted based on the type of scholarship they have applied for.
+*  `sort scholarship` All applicants in TrackAScholar will be sorted based on the type of scholarship they have applied for. 
+*  `sort status` All applicants in TrackAScholar will be sorted according to their application status.
+
 
 --------------------------------------------------------------------------------------------------------------------
 ## Further details
@@ -223,5 +225,5 @@ _Details coming soon ..._
 | **Help**   | `help`                                                      |
 | **List**   | `list`                                                      |
 | **Remove** | `remove ACCEPTED/REJECTED`                                  |
-| **Sort**   | `sort NAME/SCHOLARSHIP`                                     |
+| **Sort**   | `sort NAME/SCHOLARSHIP/APPLICATION_STATUS`                  |
 

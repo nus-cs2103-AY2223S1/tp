@@ -313,7 +313,19 @@ The following activity diagram summarizes what happens when a user executes a re
 ![Remove command activity diagram](images/RemoveCommandActivityDiagram.png)
 
 --------------------------------------------------------------------------------------------------------------------
+### Find applicant by find name feature
 
+#### Implementation
+
+The find operation is facilitated by `FindCommand`. It extends `Command` and implements the `Command#execute` operation.
+
+Given below is an example usage scenario and how the find command operates in TrackAScholar:
+
+1. The user enters `find john`.The application searches the data for all the applicants with the name that matches
+
+2. `TrackAScholarParser` identifies the person and displays it to the user.
+
+--------------------------------------------------------------------------------------------------------------------
 ## **Documentation, logging, testing, configuration, dev-ops**
 
 * [Documentation guide](Documentation.md)

@@ -18,14 +18,18 @@ public class SortCommandParserTest {
             new SortCommand(Applicant.sortByName());
         SortCommand expectedScholarshipSortCommand =
             new SortCommand(Applicant.sortByScholarship());
+        SortCommand expectedStatusSortCommand =
+            new SortCommand(Applicant.sortByStatus());
 
         // no leading and trailing whitespaces
         assertParseSuccess(parser, "name", expectedNameSortCommand);
         assertParseSuccess(parser, "scholarship", expectedScholarshipSortCommand);
+        assertParseSuccess(parser, "status", expectedStatusSortCommand);
 
         // with multiple trailing and leading whitespaces
         assertParseSuccess(parser, "\n name \n", expectedNameSortCommand);
         assertParseSuccess(parser, "\n scholarship \n", expectedScholarshipSortCommand);
+        assertParseSuccess(parser, "\n status \n", expectedStatusSortCommand);
     }
 
     @Test
@@ -41,7 +45,7 @@ public class SortCommandParserTest {
         assertParseFailure(parser, "email",
             String.format(MESSAGE_INVALID_COMMAND_FORMAT, SortCommand.MESSAGE_USAGE));
 
-        //Throw error when sort by applicationStatuses
+        //Throw error when sort by applicationStatuses.It should be status.
         assertParseFailure(parser, "applicationStatus",
             String.format(MESSAGE_INVALID_COMMAND_FORMAT, SortCommand.MESSAGE_USAGE));
     }
