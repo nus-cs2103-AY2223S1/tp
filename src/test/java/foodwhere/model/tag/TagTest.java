@@ -1,6 +1,7 @@
 package foodwhere.model.tag;
 
 import static foodwhere.testutil.Assert.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
 
@@ -23,6 +24,12 @@ public class TagTest {
     public void isValidTagName() {
         // null tag
         assertThrows(NullPointerException.class, () -> Tag.isValidTag(null));
+    }
+
+    @Test
+    public void equals() {
+        assertTrue(new Tag("Bob").equals(new Tag("Bob"))); //same name and capitalisation
+        assertTrue(new Tag("BOB").equals(new Tag("bob"))); //case insensitive
     }
 
 }

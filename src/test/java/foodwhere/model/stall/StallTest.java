@@ -38,14 +38,9 @@ public class StallTest {
         editedAlice = new StallBuilder(TypicalStalls.ALICE).withName(CommandTestUtil.VALID_NAME_BOB).build();
         assertFalse(TypicalStalls.ALICE.isSameStall(editedAlice));
 
-        // name differs in case, all other attributes same -> returns false
-        Stall editedBob = new StallBuilder(TypicalStalls.BOB)
-                .withName(CommandTestUtil.VALID_NAME_BOB.toLowerCase()).build();
-        assertFalse(TypicalStalls.BOB.isSameStall(editedBob));
-
         // name has trailing spaces, all other attributes same -> returns false
         String nameWithTrailingSpaces = CommandTestUtil.VALID_NAME_BOB + " ";
-        editedBob = new StallBuilder(TypicalStalls.BOB).withName(nameWithTrailingSpaces).build();
+        Stall editedBob = new StallBuilder(TypicalStalls.BOB).withName(nameWithTrailingSpaces).build();
         assertFalse(TypicalStalls.BOB.isSameStall(editedBob));
     }
 
