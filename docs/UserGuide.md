@@ -19,9 +19,9 @@ This User Guide provides an in-depth documentation to help integrate FoodRem int
 There are two core features that FoodRem provides: The Inventory Management System, and inventory analysis capabilities. 
 
 ### Inventory Management System
-FoodRem allows you to track your inventory during your daily operations. Quickly *add, remove, and view* your available inventory. In addition to the usual sorting and filtering, FoodRem provides a *tagging system* to tag items in your inventory. For example, you can quickly view all items that are tagged as vegetables. Feel free to flexibly tag your items to suit your organizational needs! 
+1. FoodRem allows you to track your inventory during your daily operations. Quickly *add, remove, and view* your available inventory. In addition to the usual sorting and filtering, FoodRem provides a *tagging system* to tag items in your inventory. For example, you can quickly view all items that are tagged as vegetables. Feel free to flexibly tag your items to suit your organizational needs! 
 
-1. Inventory Analysis
+2. Inventory Analysis
 FoodRem tracks data that helps you streamline your business decisions through statistics. In addition to tracking your big ticket items, cut down food wastage by finding which items are expiring soon! Strive to reduce the costs lost to food wastage, and maximize your profits.
 
 ## How to use the User Guide
