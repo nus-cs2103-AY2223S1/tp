@@ -64,7 +64,8 @@ public class UpdateCommandParser implements Parser<UpdateCommand> {
             editPersonDescriptor.setNetWorth(ParserUtil.parseNetWorth(argMultimap.getValue(PREFIX_NETWORTH).get()));
         }
 
-        parseMeetingTimesForEdit(argMultimap.getAllValues(PREFIX_MEETING_TIME)).ifPresent(editPersonDescriptor::setMeetingTimes);
+        parseMeetingTimesForEdit(argMultimap.getAllValues(PREFIX_MEETING_TIME))
+                .ifPresent(editPersonDescriptor::setMeetingTimes);
 
         parseTagsForEdit(argMultimap.getAllValues(PREFIX_TAG)).ifPresent(editPersonDescriptor::setTags);
 
@@ -86,7 +87,9 @@ public class UpdateCommandParser implements Parser<UpdateCommand> {
         if (meetingTimes.isEmpty()) {
             return Optional.empty();
         }
-        Collection<String> meetingTimeSet = meetingTimes.size() == 1 && meetingTimes.contains("") ? Collections.emptySet() : meetingTimes;
+        Collection<String> meetingTimeSet = meetingTimes.size() == 1 && meetingTimes.contains("")
+                ? Collections.emptySet()
+                : meetingTimes;
         return Optional.of(ParserUtil.parseMeetingTimes(meetingTimeSet));
     }
 

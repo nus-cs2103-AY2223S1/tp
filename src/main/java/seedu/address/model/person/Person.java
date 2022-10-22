@@ -189,7 +189,6 @@ public class Person {
                 .append(getNetWorth())
                 .append(" Meeting time: ");
         getMeetingTimes().forEach(builder::append);
-                //.append(getMeetingTimes())
         builder.append(" File Path: ")
                 .append(getFilePath())
                 .append(" Tags: ");

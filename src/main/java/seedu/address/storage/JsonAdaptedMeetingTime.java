@@ -44,5 +44,4 @@ class JsonAdaptedMeetingTime {
         }
         return new MeetingTime(meetingTimeName);
     }
-
 }

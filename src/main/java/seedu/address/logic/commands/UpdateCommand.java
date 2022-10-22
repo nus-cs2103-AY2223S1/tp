@@ -129,7 +129,8 @@ public class UpdateCommand extends UndoableCommand {
         Email updatedEmail = editPersonDescriptor.getEmail().orElse(personToEdit.getEmail());
         Address updatedAddress = editPersonDescriptor.getAddress().orElse(personToEdit.getAddress());
         NetWorth updatedNetWorth = editPersonDescriptor.getNetWorth().orElse(personToEdit.getNetWorth());
-        Set<MeetingTime> updatedMeetingTimes = editPersonDescriptor.getMeetingTimes().orElse(personToEdit.getMeetingTimes());
+        Set<MeetingTime> updatedMeetingTimes = editPersonDescriptor.getMeetingTimes()
+                .orElse(personToEdit.getMeetingTimes());
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
         FilePath updatedFilePath = personToEdit.getFilePath();
         Remark updatedRemark = personToEdit.getRemark(); // edit command does not allow editing remarks
