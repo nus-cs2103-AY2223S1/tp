@@ -8,7 +8,9 @@ import modtrekt.logic.parser.Prefix;
 
 /**
  * Builder for a CommandParser object via a fluent API.
+ * @deprecated Use JCommander instead.
  */
+@Deprecated
 public class CommandParserBuilder {
     private final List<Prefix> requiredPrefixes = new ArrayList<>();
     private final List<Prefix> optionalPrefixes = new ArrayList<>();

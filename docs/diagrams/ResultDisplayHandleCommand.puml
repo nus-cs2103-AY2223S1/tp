@@ -1,0 +1,24 @@
+@startuml
+!include style.puml
+autoactivate on
+
+box UI UI_COLOR_T1
+participant ":MainWindow" as MainWindow UI_COLOR
+participant ":ResultDisplay" as ResultDisplay UI_COLOR
+end box
+
+[-> MainWindow : executeCommand("add -m -c CS2103T")
+activate MainWindow
+
+
+MainWindow -> MainWindow : executeCommand(feedbackToUser)
+
+MainWindow -> ResultDisplay : setFeedbackToUser(feedbackToUser)
+activate ResultDisplay
+return
+deactivate ResultDisplay
+deactivate
+
+[<-- MainWindow : return CommandResult
+deactivate MainWindow
+@enduml

@@ -1,5 +1,7 @@
 package modtrekt.logic.commands.tasks;
 
+import com.beust.jcommander.Parameter;
+
 import modtrekt.logic.commands.Command;
 import modtrekt.logic.commands.CommandResult;
 import modtrekt.logic.commands.exceptions.CommandException;
@@ -10,9 +12,15 @@ import modtrekt.model.Model;
  */
 public class ListTasksCommand extends Command {
     public static final String COMMAND_WORD = "ls";
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Lists all tasks in the task book.";
 
-    private final boolean areArchivedTasksShown;
+    @Parameter(names = "-a", description = "Show all tasks")
+    private boolean areArchivedTasksShown;
+
+    /**
+     * Returns a new ListTasksCommand object, with no fields initialized, for use with JCommander.
+     */
+    public ListTasksCommand() {
+    }
 
     public ListTasksCommand(boolean areArchivedTasksShown) {
         this.areArchivedTasksShown = areArchivedTasksShown;

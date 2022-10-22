@@ -57,6 +57,11 @@ public class TaskCard extends UiPart<Region> {
             Label archivedBadge = new Label("ARCHIVED");
             this.tags.getChildren().add(archivedBadge);
         }
+        if (task.getPriority() != Task.Priority.NONE) {
+            // Add the priority badge only if it has been set.
+            Label priorityBadge = new Label(task.getPriority().toString());
+            this.tags.getChildren().add(priorityBadge);
+        }
     }
 
     @Override

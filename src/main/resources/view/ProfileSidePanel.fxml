@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox styleClass="profile-side-panel" stylesheets="@DarkTheme.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
+<VBox styleClass="profile-side-panel" stylesheets="@DarkTheme.css" xmlns="http://javafx.com/javafx/11" xmlns:fx="http://javafx.com/fxml/1">
     <children>
         <HBox alignment="CENTER_LEFT" spacing="4.0" VBox.vgrow="ALWAYS">
             <Label fx:id="courseNameLabel" styleClass="course-name" text="My Course" textFill="WHITE" wrapText="true" HBox.hgrow="ALWAYS" />

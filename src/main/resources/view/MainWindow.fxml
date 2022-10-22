@@ -12,7 +12,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.stage.Stage?>
 
-<fx:root minHeight="600" minWidth="450" onCloseRequest="#handleExit" title="ModtRekt" type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
+<fx:root minHeight="600" minWidth="450" onCloseRequest="#handleExit" title="ModtRekt" type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/11" xmlns:fx="http://javafx.com/fxml/1">
   <icons>
     <Image url="@/images/ModtRekt.png" />
   </icons>
@@ -42,12 +42,12 @@
                         <StackPane fx:id="profileSidePanelPlaceholder" />
                      </children>
                   </VBox>
-                  <VBox fx:id="personList" prefHeight="600.0" styleClass="pane-with-border" HBox.hgrow="ALWAYS">
+                  <VBox fx:id="moduleList" prefHeight="600.0" styleClass="pane-with-border" HBox.hgrow="ALWAYS">
                 <padding>
                   <Insets bottom="10" left="10" right="10" top="10" />
                 </padding>
                      <children>
-                   <StackPane fx:id="personListPanelPlaceholder" />
+                   <StackPane fx:id="moduleListPanelPlaceholder" />
                      </children>
                   </VBox>
                   <VBox fx:id="taskList" styleClass="pane-with-border" HBox.hgrow="ALWAYS">
@@ -61,7 +61,7 @@
                </children>
             </HBox>
 
-          <StackPane fx:id="resultDisplayPlaceholder" maxHeight="297.0" minHeight="100" prefHeight="297.0" prefWidth="858.0" styleClass="pane-with-border" VBox.vgrow="NEVER">
+          <StackPane fx:id="resultDisplayPlaceholder" maxHeight="297.0" minHeight="100" prefHeight="297.0" prefWidth="858.0" styleClass="pane-with-border" VBox.vgrow="SOMETIMES">
             <padding>
                 <Insets bottom="30" left="20" right="20" top="30" />
             </padding>
