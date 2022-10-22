@@ -5,14 +5,14 @@ import java.util.Arrays;
 import bookface.commons.core.Messages;
 import bookface.commons.util.StringUtil;
 import bookface.logic.commands.find.FindUserCommand;
-import bookface.logic.parser.ArgumentsParsable;
+import bookface.logic.parser.Parseable;
 import bookface.logic.parser.exceptions.ParseException;
 import bookface.model.ObjectContainsKeywordsPredicate;
 
 /**
  * Parses input arguments and creates the relevant new FindCommand object for the relevant entity to be added
  */
-public class FindUserArgumentsParser implements ArgumentsParsable<FindUserCommand> {
+public class FindUserArgumentsParser implements Parseable<FindUserCommand> {
     /**
      * Parses the given {@code String} of arguments in the context of the FindCommand
      * and returns a FindCommand object for execution.

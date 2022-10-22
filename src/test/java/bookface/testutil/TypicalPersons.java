@@ -71,7 +71,7 @@ public class TypicalPersons {
         return new ArrayList<>(Arrays.asList(ALICE, BENSON, CARL, DANIEL, ELLE, FIONA, GEORGE));
     }
 
-    public static List<Person> getSinglePerson() {
-        return new ArrayList<>(List.of(ALICE));
+    public static Person getSinglePerson() {
+        return ALICE;
     }
 }

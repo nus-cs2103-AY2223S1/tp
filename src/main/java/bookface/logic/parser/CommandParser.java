@@ -8,9 +8,9 @@ import bookface.logic.commands.Command;
 import bookface.logic.parser.exceptions.ParseException;
 
 /**
- * Represents a Parser that is able to parse user input into a {@code Command} of type {@code T}.
+ * Represents a Parseable object that is able to parse user input into a {@code Command} of type {@code Command}.
  */
-public abstract class CommandParser<T extends Command> implements Parser<T> {
+public abstract class CommandParser<T extends Command> implements Parseable<T> {
     /**
      * Used for initial separation of command word and args.
      */

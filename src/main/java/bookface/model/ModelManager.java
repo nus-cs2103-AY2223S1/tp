@@ -104,23 +104,27 @@ public class ModelManager implements Model {
 
     @Override
     public void deletePerson(Person target) {
+        requireNonNull(target);
         bookFace.removePerson(target);
     }
 
     @Override
     public void addPerson(Person person) {
+        requireNonNull(person);
         bookFace.addPerson(person);
         updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
     }
 
     @Override
     public void addBook(Book book) {
+        requireNonNull(book);
         bookFace.addBook(book);
         updateFilteredBookList(PREDICATE_SHOW_ALL_BOOKS);
     }
 
     @Override
     public void deleteBook(Book book) {
+        requireNonNull(book);
         bookFace.deleteBook(book);
     }
 

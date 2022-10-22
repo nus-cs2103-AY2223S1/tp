@@ -3,14 +3,14 @@ package bookface.logic.parser.delete;
 import bookface.commons.core.Messages;
 import bookface.commons.core.index.Index;
 import bookface.logic.commands.delete.DeleteUserCommand;
-import bookface.logic.parser.ArgumentsParsable;
+import bookface.logic.parser.Parseable;
 import bookface.logic.parser.ParserUtil;
 import bookface.logic.parser.exceptions.ParseException;
 
 /**
  * Parses input arguments and creates the relevant new DeleteCommand object for the relevant entity to be added
  */
-public class DeleteUserArgumentsParser implements ArgumentsParsable<DeleteUserCommand> {
+public class DeleteUserArgumentsParser implements Parseable<DeleteUserCommand> {
     /**
      * Parses the given {@code String} of arguments in the context of the DeleteCommand
      * and returns a DeleteCommand object for execution.

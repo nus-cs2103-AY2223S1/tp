@@ -14,7 +14,7 @@ public class CommandParserTestUtil {
      * Asserts that the parsing of {@code userInput} by {@code parser} is successful and the command created
      * equals to {@code expectedCommand}.
      */
-    public static void assertParseSuccess(Parser<? extends Command> parser, String userInput,
+    public static void assertParseSuccess(Parseable<? extends Command> parser, String userInput,
             Command expectedCommand) {
         try {
             Command command = parser.parse(userInput);
@@ -28,7 +28,7 @@ public class CommandParserTestUtil {
      * Asserts that the parsing of {@code userInput} by {@code parser} is unsuccessful and the error message
      * equals to {@code expectedMessage}.
      */
-    public static void assertParseFailure(Parser<? extends Command> parser, String userInput, String expectedMessage) {
+    public static void assertParseFailure(Parseable<? extends Command> parser, String userInput, String expectedMessage) {
         try {
             parser.parse(userInput);
             throw new AssertionError("The expected ParseException was not thrown.");

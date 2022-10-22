@@ -8,7 +8,7 @@ import bookface.logic.parser.exceptions.ParseException;
 /**
  * Parses input arguments and creates a new LoanCommand object
  */
-public class LoanCommandParser implements Parser<LoanCommand> {
+public class LoanCommandParser implements Parseable<LoanCommand> {
 
     //TODO Check if there's a better way to detect invalid loan commands
     public static final String VALIDATION_REGEX = "(\\d+\\s+\\d+)";
