@@ -171,18 +171,16 @@ Parsing of the user input is done and a `AddMasteryCheckCommand` is then generat
 The sequence diagram is similar apart from:
 1. the command executed and parsed (`addmc l/mastery check 1 sd/2022-09-15T20:00 ed/2022-09-15T20:30 si/1 si/2` instead of `deletestudent 2`)
 2. the different command class (`AddMasteryCheckCommandParser` and `AddMasteryCheckCommand` instead of `DeleteStudentCommandParser` and `DeleteStudentCommand`)
-3. function called in main (`addLesson()` instead of `deleteStudent`)
+3. function called in main (`addLesson` instead of `deleteStudent`)
 
-More detailed implementation of the parsing of user input is be shown in the activity diagram below.
+`MasteryCheckCommandParser` checks if:
 
-<img src="images/ParseMasteryCheckActivityDiagram.png" width="550"/>
-
-From the diagram, `MasteryCheckCommandParser` checks if
-
-1. all prefix are present
+1. all prefixes are present
 2. lesson description is empty
 3. start date time is before end date time
-4. student index are int
+4. student indexes are int
+
+Otherwise, `ParseException` will be thrown.
 
 The rationale behind this design is that for all `Lesson`, there must be a `LessonDesc` present.
 It is also illogical for a lesson to start after the end date time. A `Student` must also be assigned manually to a `MasteryCheck`
@@ -191,28 +189,23 @@ as the purpose of `MasteryCheck` is to assess a student's capability.
 **Future Implementation**
 - Allow user to input duration of lesson(in hours) to replace end date time
 - JARVIS will calculate the end date time for user based on the given start date time and duration
-- Helps to shorten the command required to be typed
+- Helps to shorten the command required to be typed as lessons are likely to end on the same day
 
 
-The following sequence diagram shows what happens when the AddMasteryCheckCommand is executed upon a successful command.
+The following sequence diagram shows what happens when the `AddMasteryCheckCommand` is executed upon a successful command.
 
 <img src="images/AddMasteryCheckSequenceDiagram.png" width="550"/>
 
-What is not shown in the above sequence diagram are:
+- `AddMasteryCheckCommand` will get the students involved in the `MasteryCheck` via indexing of the `lastShownList`. If no `Student` are found based on the index, `CommandException` will be thrown, stating invalid student index.
+- After a `MasteryCheck` object is created, `Model` will check if there already exists a `MasteryCheck` in the current `LessonBook` with the same identity fields. `CommandException` will be thrown, stating duplicate Mastery Check.
+- `Model` will also check with existing `Lessons` if there will be a clash in `TimePeriod`. This serves as a reminder to the user that there is already another lesson at that time slot. `CommandException` will be thrown, stating clash in timeslot.
 
-1. how `AddMasteryCheckCommand` creates a `MasteryCheck` object with students when `AddMasteryCheckCommandParser` returns parses student indexes
-2. considerations when a `MasteryCheck` object is created but not added to `Model`
-
-`AddMasteryCheckCommand` will get the students involved in the `MasteryCheck` via indexing of the `lastShownList`.
-
-After a `MasteryCheck` object is created, `Model` will check if there already exists a `MasteryCheck` in the current `LessonBook` with the same identity fields.
-`Model` will also check with existing `Lessons` if there will be a clash in `TimePeriod`. This serves as a reminder to the user that there is already another lesson at that time.
 
 The above explanation is also applicable to adding consultation and studio lessons.
 They are similar apart from:
-1. the different naming(`AddConsultCommandParser`, `AddStudioCommandParser`, etc instead of `AddMasteryCheckParser`)
+1. the different naming(`AddConsultCommandParser`, `AddStudioCommandParser` etc instead of `AddMasteryCheckParser`)
 2. for `Studio`, all `Student` currently in the `StudentBook` instead of `FilteredStudentList` will be used to create `LessonAttendance` and `LessonNotes`
-   1. Studio are tutorials and all students are expected to attend. Should any student not attend, the user can simply mark the student as absent.
+   1. Studio are tutorials and all students are expected to attend. 
    2. As a result, adding a Studio command does not require user to input student indexes.
 
 
