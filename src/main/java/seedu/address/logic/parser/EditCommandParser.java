@@ -23,7 +23,6 @@ import java.util.Set;
 import java.util.stream.Stream;
 
 import seedu.address.commons.core.index.Index;
-import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.EditCommand.EditDescriptor;
 import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
@@ -67,7 +66,8 @@ public class EditCommandParser implements Parser<EditCommand> {
         }
 
         if (areAnyPrefixesPresent(argMultimap, PREFIX_RELATIONSHIP)) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
+            throw new ParseException(
+                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditCommand.getMessageUsage(listType)));
         }
 
         EditDescriptor editDescriptor;

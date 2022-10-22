@@ -8,6 +8,8 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_RELATIONSHIP;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
+import java.util.Objects;
+
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
@@ -43,6 +45,7 @@ public class NextOfKinCommand extends Command {
 
     public static final String MESSAGE_ADD_NEXTOFKIN_SUCCESS = "Added Next Of Kin: %1$s to Student: %2$s";
     public static final String MESSAGE_REMOVE_NEXTOFKIN_SUCCESS = "Removed Next Of Kin from Student: %1$s";
+    public static final String MESSAGE_DUPLICATE_NEXTOFKIN = "This next of kin already is assigned";
 
     private final Index index;
     private final NextOfKin nextOfKin;
@@ -83,8 +86,20 @@ public class NextOfKinCommand extends Command {
             studentToEdit.removeNextOfKin();
             return new CommandResult(String.format(MESSAGE_REMOVE_NEXTOFKIN_SUCCESS, studentToEdit));
         } else {
-            studentToEdit.addNextOfKin(this.nextOfKin);
+            try {
+                studentToEdit.addNextOfKin(this.nextOfKin);
+            } catch (CommandException e) {
+                throw new CommandException(MESSAGE_DUPLICATE_NEXTOFKIN);
+            }
             return new CommandResult(String.format(MESSAGE_ADD_NEXTOFKIN_SUCCESS, this.nextOfKin, studentToEdit));
         }
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof NextOfKinCommand // instanceof handles nulls
+                && (Objects.equals(this.index, ((NextOfKinCommand) other).index))
+                && (Objects.equals(this.nextOfKin, ((NextOfKinCommand) other).nextOfKin)));
     }
 }
