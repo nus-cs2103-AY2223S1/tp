@@ -1,7 +1,6 @@
 package hobbylist.logic.parser;
 
 import static hobbylist.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static hobbylist.logic.parser.CliSyntax.PREFIX_STATUS;
 
 import java.util.List;
 import java.util.Set;

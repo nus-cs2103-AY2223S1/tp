@@ -40,7 +40,7 @@ class JsonAdaptedActivity {
                                @JsonProperty("tagged") List<JsonAdaptedTag> tagged,
                                @JsonProperty("date") List<JsonAdaptedDate> date,
                                @JsonProperty("rating") int rating,
-                               @JsonProperty("status") String status){
+                               @JsonProperty("status") String status) {
 
         this.name = name;
         this.description = description;
