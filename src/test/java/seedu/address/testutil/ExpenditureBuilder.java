@@ -70,7 +70,7 @@ public class ExpenditureBuilder {
     }
 
     /**
-     * Sets the {@code tags} of the {@code Expenditure} that we are building.
+     * Sets the {@code tag} of the {@code Expenditure} that we are building.
      */
     public ExpenditureBuilder withTag(String tag) {
         this.tag = new Tag(new EntryType(DEFAULT_TYPE), tag);

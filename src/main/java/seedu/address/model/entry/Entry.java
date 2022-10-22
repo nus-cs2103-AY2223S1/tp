@@ -102,7 +102,7 @@ public class Entry {
                 .append(getAmount());
 
         Tag tag = getTag();
-        if (!tag.equals(null)) {
+        if (tag != null) {
             builder.append("; Tag: ");
             builder.append(tag);
         }

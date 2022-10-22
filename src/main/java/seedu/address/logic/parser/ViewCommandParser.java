@@ -2,14 +2,14 @@ package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_GRAPH;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_MONTH;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TYPE;
-
-import java.util.stream.Stream;
 
 import seedu.address.logic.commands.ViewCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.entry.EntryType;
 import seedu.address.model.entry.GraphType;
+import seedu.address.model.entry.Month;
 
 /**
  * Parses input arguments and creates a new ViewCommand object
@@ -22,23 +22,36 @@ public class ViewCommandParser implements Parser<ViewCommand> {
      * @throws ParseException if the user input does not conform the expected format
      */
     public ViewCommand parse(String args) throws ParseException {
-        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_TYPE, PREFIX_GRAPH);
+        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_TYPE, PREFIX_MONTH, PREFIX_GRAPH);
 
-        if (!arePrefixesPresent(argMultimap, PREFIX_TYPE, PREFIX_GRAPH) || !argMultimap.getPreamble().isEmpty()) {
+        if (argMultimap.getValue(PREFIX_TYPE).isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, ViewCommand.MESSAGE_USAGE));
         }
 
-        EntryType entryType = ParserUtil.parseEntryType(argMultimap.getValue(PREFIX_TYPE).get());
+        EntryType entryType;
+        Month month;
+
+        try {
+            entryType = ParserUtil.parseEntryType(argMultimap.getValue(PREFIX_TYPE).get());
+        } catch (ParseException pe) {
+            throw new ParseException(
+                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, ViewCommand.MESSAGE_USAGE), pe);
+        }
+
         GraphType graphType = ParserUtil.parseGraphType(argMultimap.getValue(PREFIX_GRAPH).get());
+
+        if (argMultimap.getValue(PREFIX_MONTH).isPresent()) {
+            try {
+                month = ParserUtil.parseMonth(argMultimap.getValue(PREFIX_MONTH).get());
+            } catch (ParseException pe) {
+                throw new ParseException(
+                        String.format(MESSAGE_INVALID_COMMAND_FORMAT, ViewCommand.MESSAGE_USAGE), pe);
+            }
+            return new ViewCommand(entryType, month, graphType);
+        }
 
         return new ViewCommand(entryType, graphType);
     }
 
-    /**
-     * Returns true if none of the prefixes contains empty {@code Optional} values in the given
-     * {@code ArgumentMultimap}.
-     */
-    private static boolean arePrefixesPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
-        return Stream.of(prefixes).allMatch(prefix -> argumentMultimap.getValue(prefix).isPresent());
-    }
 }
+
