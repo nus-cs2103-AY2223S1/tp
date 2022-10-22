@@ -35,7 +35,7 @@ public class Assessment {
     public Assessment(String assessmentName, double assessmentWeightage, double assessmentScore,
         double assessmentTotalScore, double assessmentDifficulty) {
         checkArgument(isValidAssessment(assessmentName), MESSAGE_CONSTRAINTS);
-        checkArgument(isValidScore(assessmentScore,assessmentTotalScore), MESSAGE_CONSTRAINTS_MARKS);
+        checkArgument(isValidScore(assessmentScore, assessmentTotalScore), MESSAGE_CONSTRAINTS_MARKS);
         this.assessmentName = assessmentName;
         this.assessmentWeightage = assessmentWeightage;
         this.assessmentScore = assessmentScore;
@@ -47,6 +47,13 @@ public class Assessment {
         return test.matches(VALIDATION_REGEX);
     }
 
+    /**
+     * Checks if the score typed is a valid score.
+     *
+     * @param score
+     * @param totalScore
+     * @return true if the score is valid and false if it is an invalid score typed.
+     */
     public static boolean isValidScore(double score, double totalScore) {
         if (score >= 0 || score <= totalScore) {
             return true;

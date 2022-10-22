@@ -1,6 +1,11 @@
 package seedu.address.model.person.subject;
 
-import java.util.*;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.NoSuchElementException;
+import java.util.Set;
 
 /**
  * A high-level class that represents the grades of a student stored by subject
@@ -67,6 +72,11 @@ public class Grades {
         return assessmentMarks.hashCode();
     }
 
+    /**
+     * Returns the grades into a String datatype to be stored in Json.
+     *
+     * @return a String which represents the data of the grades of the individual subject taken by the person.
+     */
     public String dataString() {
         String str = "";
         Set<String> keys = assessmentMarks.keySet();

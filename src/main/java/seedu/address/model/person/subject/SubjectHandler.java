@@ -1,8 +1,6 @@
 package seedu.address.model.person.subject;
 
-import java.util.Arrays;
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -82,6 +80,11 @@ public class SubjectHandler {
         return false;
     }
 
+    /**
+     * Returns the subjects into a String datatype to be stored in Json.
+     *
+     * @return a String which represents the data of the subjects taken by the person.
+     */
     public String dataString() {
         String str = "";
         Set<String> keys = subjectsTaken.keySet();

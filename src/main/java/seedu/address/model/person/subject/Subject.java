@@ -93,6 +93,11 @@ public class Subject {
                    && subjectName.equals(((Subject) other).subjectName)); // state check
     }
 
+    /**
+     * Returns the subject into a String datatype to be stored in Json.
+     *
+     * @return a String which represents the data of the subject taken by the person.
+     */
     public String dataString() {
         String str = "";
         str += subjectName + ": ";
