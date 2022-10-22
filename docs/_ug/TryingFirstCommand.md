@@ -6,11 +6,7 @@ The format for commands are not identical. One command in FoodRem is the command
 
 Format: `new n/ITEM_NAME [qty/QUANTITY] [unit/UNIT] [bgt/BOUGHT_DATE] [exp/EXPIRY_DATE] [p/PRICE] [r/REMARKS]`
 
-The first word of every command allows FoodRem to distinguish different commands.
-`new` tells FoodRem that this is the command to create a new item.
-[Flags](#flags) such as `n/` and `qty/` are delimiters that enable FoodRem to distinguish different parameters
-supplied by you without ambiguity. [Placeholders](#placeholders) such as `ITEM_NAME` and `QUANTITY` shows you
-what you should place in each portion of the command.
+The first word of every command allows FoodRem to distinguish different commands. `new` tells FoodRem that this is the command to create a new item. [Flags](#flags) such as `n/` and `qty/` are delimiters that enable FoodRem to distinguish different parameters supplied by you without ambiguity. [Placeholders](#placeholders) such as `ITEM_NAME` and `QUANTITY` shows you what you should place in each portion of the command.
 
 Notice that there is a pair of square brackets [] surrounding some parameters like `qty/QUANTITY`
 in the format. This indicates that the parameter is **optional**. Each of these placeholders have a default value
