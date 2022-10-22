@@ -1,0 +1,78 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
+participant ":AddExamCommandParser" as AddExamCommandParser LOGIC_COLOR
+participant ":st:AddExamCommand" as AddExamCommand LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+
+[-> LogicManager : execute("addexam m/cs2030s ex/midterm ed/20-12-2022")
+activate LogicManager
+
+LogicManager -> AddressBookParser: parseCommand("addexam...")
+activate AddressBookParser
+
+create AddExamCommandParser
+AddressBookParser -> AddExamCommandParser
+activate AddExamCommandParser
+
+AddExamCommandParser --> AddressBookParser
+deactivate AddExamCommandParser
+
+AddressBookParser -> AddExamCommandParser: parse("addexam...")
+activate AddExamCommandParser
+
+create AddExamCommand
+AddExamCommandParser -> AddExamCommand
+activate AddExamCommand
+
+AddExamCommand --> AddExamCommandParser : st
+deactivate AddExamCommand
+
+AddExamCommandParser --> AddressBookParser : st
+deactivate AddExamCommandParser
+AddExamCommandParser [hidden]--> AddressBookParser
+destroy AddExamCommandParser
+
+AddressBookParser --> LogicManager : st
+deactivate AddressBookParser
+
+LogicManager -> AddExamCommand : execute(model)
+activate AddExamCommand
+
+AddExamCommand -> Model: hasModule(exam)
+activate Model
+Model --> AddExamCommand
+
+
+
+AddExamCommand -> Model: hasExam(exam)
+Model --> AddExamCommand
+AddExamCommand -> Model: addExam(exam)
+Model --> AddExamCommand
+deactivate Model
+
+
+
+create CommandResult
+AddExamCommand -> CommandResult: CommandResult(MESSAGE_SUCCESS)
+
+activate CommandResult
+CommandResult --> AddExamCommand
+deactivate CommandResult
+
+AddExamCommand --> LogicManager
+deactivate AddExamCommand
+
+
+[<--LogicManager
+deactivate LogicManager
+
+@enduml
