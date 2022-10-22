@@ -234,10 +234,173 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 _{more aspects and alternatives to be added}_
 
+### Appointments feature
+
+![AppointmentClassDiagram](images/AppointmentClassDiagram.png)
+
+The class diagram above visualises the `Appointment` package. The members of the `Medication` class have been hidden.
+
+**Implementation**
+
+The appointment creation mechanism is facilitated by its own `Appointment` component under the `Model` component. There
+are 2 types of appointments, namely, `PastAppointment` and `UpcomingAppointment`.
+
+- Both of these extend the abstract `Appointment` class, which implements the `Appointment#getDate()` operation.
+- The static method `Appointment#isValidDate()` helps check against invalid date inputs for appointment creation.
+
+#### `PastAppointment`
+
+`PastAppointment`s represent a completed appointment for a patient. They are guaranteed to be immutable as they
+constitute of sensitive patient data. Apart from `date`, `PastAppointment`s also require the following:
+
+* `diagnosis`
+  * Stored as a string, and is compulsory for the creation of a `PastAppointment`. Represents the doctor's analysis of
+    the patient's state in the appointment, and is input using the `diag/` prefix.
+  * Exposed using the `PastAppointment#getDiagnosis()` method for use in `JsonAdaptedPastAppointment`.
+* `medication`
+  * Stored as a set of medication tags, a `PastAppointment` may contain 0 or more medicine tags. Each medicine tag is
+    input separately with a `m/` prefix.
+  * Exposed using the `PastApointment#getMedication()` method for use in `JsonAdaptedPastAppointment`.
+
+#### `UpcomingAppointment`
+
+`UpcomingAppointment`s represent an upcoming appointment for a patient. They only contain the `date` of the upcoming
+appointment. A patient can only have  a **maximum of 1** `UpcomingAppointment` at any given time.
+
+Given below is an example usage scenario and how the appointment mechanism behaves at each step.
+
+Context: Patient `John Davis` had a past appointment on `12-06-2022` where they were diagnosed with a `headache` and
+prescribed `paracetamol` medication as a painkiller. They are scheduled for a follow-up appointment on `16-06-2022`.
+
+Step 1. The medical assistant opens the application and executes `get /n John Davis` to find the target patient. The
+assistant notices John is at index 2. John Davis currently has 0 `PastAppointment`s and no `UpcomingAppointment`.
+
+![AppointmentObjectDiagramBefore](images/AppointmentObjectDiagramBefore.png)
+
+The values of John's default details have been hidden in the above diagram.
+
+Step 2. The medical assistant creates a `PastAppointment` for John by executing `appt 2 on/12-06-2022 diag/headache
+m/paracetamol`. The `PastAppointment` count is now at `1`.
+
+![AppointmentObjectDiagramWithPastAppt](images/AppointmentObjectDiagramWithPastAppt.png)
+
+Step 3. The medical assistant creates an `UpcomingAppointment` for John by executing `edit upcoming/16-06-2022`. John
+now has an `UpcomingAppointment` associated with him.
+
+![AppointmentObjectDiagramWithBothAppt](images/AppointmentObjectDiagramWithBothAppt.png)
+
+### Get Features (By prefixes)
+
+The get feature contains a series of sub-features that allows the user to get
+a list of persons based on the prefixes inputted. It is implemented the same way as the `AddressBookParser` class,
+but it matches the prefix of the user input instead of the command word. By having a parent `GetCommand` class,
+we can have a series of sub-commands that inherits from it. This way, new implementations of other items to be filtered
+when using the get command can be easily added in the future.
+
+This Sequence Diagram below illustrates the implementation of the `GetCommand` component.
+![GetCommandSequence](images/tracing/GetCommandSequenceDiagram.png)
+
+#### Floor Number (/fn)
+
+#### Hospital Wing (/hw)
+
+Getting the hospital wing of a patient involves the following steps:
+1. prefix "/hw" is matched in `GetCommandParser` class
+2. a new `GetHospitalWingCommandParser` instance is created and parses the user input
+3. a `GetHospitalWingCommand` instance is returned
+4. the model is updated such that the *filtered* list only displays patients who are assigned to the specified
+hospital wing
+
+#### Next of Kin (/nok)
+
+#### Ward Number (/wn)
+
+Getting the ward number of a patient involves the following steps:
+1. prefix "/wn" is matched in `GetCommandParser` class
+2. a new `GetWardNumberCommandParser` instance is created and parses the user input
+3. a `GetWardNumberCommand` instance is returned
+4. the model is updated such that the *filtered* list only displays patients who are assigned to the specified
+ward number
+
+Strict restrictions are placed to prevent too many varieties of ward number inputs. This way the regex for searching
+for ward numbers is simplified. Due to differing places having different ways of numbering their ward numbers, we
+have standardised it to be in the format of `Alphabet` + `3 Numbers`. For example, `A123`, `B241, `C005`, etc.
+
 ### \[Proposed\] Data archiving
 
 _{Explain here how the data archiving feature will be implemented}_
 
+### Get inpatients and outpatients feature (`get /inp` & `get /outp`)
+
+#### Current implementation
+
+The current implementation of `get /inp` and `get /outp` is similar to how other commands are executed. 
+
+When `get /inp` or `get /outp` is inputted, the `AddressBookParser` object creates a `GetCommandParser` that parses the 
+prefix of the `get` command inputted. If additional parameters are inputted (e.g. `get /inp hello world`), the extra
+parameters will be ignored, similar to how `help`, `list`, `exit` and `clear` are executed. 
+
+The `GetCommandParser` object will then create the corresponding `GetInpatientCommand` or `GetOutpatientCommand` to be 
+returned. When executing the `Command`, the model is updated such that the *filtered* list only displays inpatients or
+outpatients.
+
+![GetInpatientSequenceDiagram](images/GetInpatientSequenceDiagram.png)
+
+### \[Proposed\] Getting the past appointments of a patient (`get /appt INDEX`)
+
+#### Proposed implementation
+
+### New Add Command
+The new `Add` Command incorporates support for the necessary fields for a patient, namely they are the: `NextOfKin`,
+`PatientType`,`HospitalWing`, `FloorNumber`, `WardNumber` and `Medications` fields. The new command still follows the
+flow of the old command, as illustrated in the Activity Diagram below.
+
+![AddCommandSequenceDiagram](images/AddCommandSequenceDiagram.png)
+![AddCommandParseArgsSequenceDiagram](images/AddCommandParseArgsSequenceDiagram.png)
+
+As the Add Command now includes more fields for the patients, the Person class has also been updated to store these
+fields, as shown in the class diagram below.
+
+![PersonClassDiagram](images/PersonClassDiagram.png)
+
+The usage of the Add Command remains the same as before.
+
+### Get hospital wing feature (`get /hw`)
+When `get /hw` is inputted, the `AddressBookParser` object creates a `GetCommandParser` that parses the
+prefix of the `get` command inputted. If additional parameters are inputted (e.g. `get /hw south`), the extra
+parameters will be ignored, similar to how `help`, `list`, `exit` and `clear` are executed.
+
+The `GetCommandParser` object will then create the corresponding `GetHospitalWingCommand`  to be
+returned. When executing the `Command`, the model is updated such that the *filtered* list only displays 
+patients within the inputted hospital wing.
+
+![GetHospitalWingDiagram](images/GetHospitalWingSequenceDiagram.png)
+
+### Get next-of-kin data feature (`get /nok`)
+
+When `get /nok` is inputted, the `AddressBookParser` object creates a `GetCommandParser` that parses the
+prefix of the `get` command inputted. If additional parameters are inputted (e.g. `get /nok John`), the extra
+parameters will be ignored, similar to how `help`, `list`, `exit` and `clear` are executed.
+
+The `GetCommandParser` object will then create the corresponding `GetNextOfKinCommand`  to be
+returned. When executing the `Command`, the model is updated such that the *filtered* list only displays
+the next-of-kin details of the inputted patient.
+
+![GetNextOfKinSequenceDiagram](images/GetNextOfKinSequenceDiagram.png)
+
+### Get appointment by date feature (`get /appton`)
+
+When `get /appton` is inputted, the `AddressBookParser` object creates a `GetAppointmentByDateParser` that parses the
+prefix of the `get` command inputted. If additional parameters are inputted (e.g. `get .appton 12-12-1212`), the extra
+parameters will be ignored, similar to how `help`, `list`, `exit` and `clear` are executed.
+
+The `GetCommandParser` object will then create the corresponding `GetAppointmentByDateCommand`  to be
+returned. When executing the `Command`, the model is updated such that the *filtered* list only displays
+all the patients' appointment given a specific date.
+
+![GetAppointmentByDateSequenceDiagram](images/GetAppointmentByDateSequenceDiagram.png)
+
+#### Proposed implementation
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -271,18 +434,24 @@ _{Explain here how the data archiving feature will be implemented}_
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                | I want to …​                                      | So that I can…​                                                        |
-| -------- | ---------------------- | ------------------------------------------------- | ---------------------------------------------------------------------- |
-| `* * *`  | doctor                 | search for patients by name                       | view medication patient is currently taking and prescribe new medication based on that info |
-| `* * *`  | doctor                 | retrieve patient contact info and next-of-kin data| quickly and efficiently contact the patient or someone near them                                                                     |
-| `* * *`  | hospital administrator | check the total number of patients in my hospital | know when my hospital is oversubscribed
-| `* * *`  | hospital staff         | retrieve patients by ward number                  | attend to them quickly |
-| `* * *`  | hospital staff         | retrieve patients by floor number                 | attend to them quickly |
-| `* * *`  | hospital staff         | retrieve patients by hospital wings               | attend to them quickly |
-| `* * *`  | hospital staff         | check if patient is inpatient or for daily checkup| knows where to direct them  |
-| `* * *`  | hospital staff         | create patient profiles                           | store new patients into the system                          |
-| `* * *`  |nurse                   | retrieve patients by medication                   | find out a list of patients under each medication             |
-| `* * *`  | hospital staff         | remove patients from the database                 | remove redundant entries that are no longer necessary                |
+
+| Priority | As a …​                | I want to …​                                       | So that I can…​                                                                             |
+
+|----------|------------------------|----------------------------------------------------|---------------------------------------------------------------------------------------------|
+| `* * *`  | doctor                 | search for patients by name                        | view medication patient is currently taking and prescribe new medication based on that info |
+| `* * *`  | doctor                 | retrieve patient contact info and next-of-kin data | quickly and efficiently contact the patient or someone near them                            |
+| `* * *`  | hospital administrator | check the total number of patients in my hospital  | know when my hospital is oversubscribed                                                     |
+| `* * *`  | hospital staff         | retrieve patients by ward number                   | attend to them quickly                                                                      |
+| `* * *`  | hospital staff         | retrieve patients by floor number                  | attend to them quickly                                                                      |
+| `* * *`  | hospital staff         | retrieve patients by hospital wings                | attend to them quickly                                                                      |
+
+| `* * *`  | hospital staff         | have a list of inpatients and outpatients          | easily see which patients are staying in the hospital                                       |
+
+| `* * *`  | hospital staff         | check if patient is inpatient or for daily checkup | knows where to direct them                                                                  |
+
+| `* * *`  | hospital staff         | create patient profiles                            | store new patients into the system                                                          |
+| `* * *`  | nurse                  | retrieve patients by medication                    | find out a list of patients under each medication                                           |
+| `* * *`  | hospital staff         | remove patients from the database                  | remove redundant entries that are no longer necessary                                       |
 
 *{More to be added}*
 
