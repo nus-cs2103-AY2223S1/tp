@@ -9,6 +9,7 @@ import java.util.regex.Pattern;
 import seedu.address.logic.commands.AddGroupCommand;
 import seedu.address.logic.commands.AddGroupMemberCommand;
 import seedu.address.logic.commands.AddPersonCommand;
+import seedu.address.logic.commands.AssignTaskAllCommand;
 import seedu.address.logic.commands.AssignTaskCommand;
 import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.Command;
@@ -16,6 +17,7 @@ import seedu.address.logic.commands.DeleteCommand;
 import seedu.address.logic.commands.DeleteGroupCommand;
 import seedu.address.logic.commands.DeleteGroupMemberCommand;
 import seedu.address.logic.commands.DeletePersonCommand;
+import seedu.address.logic.commands.DeleteTaskAllCommand;
 import seedu.address.logic.commands.DeleteTaskCommand;
 import seedu.address.logic.commands.DisplayGroupCommand;
 import seedu.address.logic.commands.EditCommand;
@@ -23,6 +25,7 @@ import seedu.address.logic.commands.EditPersonCommand;
 import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.FindPersonCommand;
 import seedu.address.logic.commands.HelpCommand;
+import seedu.address.logic.commands.ListGroupsCommand;
 import seedu.address.logic.commands.ListPersonsCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
@@ -65,6 +68,9 @@ public class AddressBookParser {
         case AssignTaskCommand.COMMAND_WORD:
             return new AssignTaskCommandParser().parse(arguments);
 
+        case AssignTaskAllCommand.COMMAND_WORD:
+            return new AssignTaskAllCommandParser().parse(arguments);
+
         case ClearCommand.COMMAND_WORD:
             return new ClearCommand();
 
@@ -79,6 +85,9 @@ public class AddressBookParser {
 
         case DeleteTaskCommand.COMMAND_WORD:
             return new DeleteTaskCommandParser().parse(arguments);
+
+        case DeleteTaskAllCommand.COMMAND_WORD:
+            return new DeleteTaskAllCommandParser().parse(arguments);
 
         case DeletePersonCommand.COMMAND_WORD:
             return new DeletePersonCommandParser().parse(arguments);
@@ -97,6 +106,9 @@ public class AddressBookParser {
 
         case FindPersonCommand.COMMAND_WORD:
             return new FindPersonCommandParser().parse(arguments);
+
+        case ListGroupsCommand.COMMAND_WORD:
+            return new ListGroupsCommand();
 
         case ListPersonsCommand.COMMAND_WORD:
             return new ListPersonsCommand();

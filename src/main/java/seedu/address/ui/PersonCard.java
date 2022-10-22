@@ -45,6 +45,13 @@ public class PersonCard extends UiPart<Region> {
     private FlowPane assignments;
     @FXML
     private FlowPane personGroup;
+    @FXML
+    private HBox phoneContainer;
+    @FXML
+    private HBox addressContainer;
+    @FXML
+    private HBox emailContainer;
+
 
     /**
      * Creates a {@code PersonCode} with the given {@code Person} and index to display.
@@ -57,13 +64,14 @@ public class PersonCard extends UiPart<Region> {
         phone.setText(person.getPhone().value);
         address.setText(person.getAddress().value);
         email.setText(person.getEmail().value);
+
         person.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
         person.getAssignments()
                 .forEach((key, value) -> {
-                    String assignment = key + " : " + value;
-                    assignments.getChildren().add(new Label(assignment));
+                    String assignmentString = key + " : " + value;
+                    assignments.getChildren().add(new Label(assignmentString));
                 });
         person.getPersonGroups().stream()
                 .sorted(Comparator.comparing(PersonGroup::getGroupName))

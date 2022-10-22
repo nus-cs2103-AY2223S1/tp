@@ -8,6 +8,8 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Region?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.image.Image?>
 
 <HBox id="cardPane" fx:id="cardPane" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
   <GridPane HBox.hgrow="ALWAYS">
@@ -18,6 +20,7 @@
       <padding>
         <Insets top="5" right="5" bottom="5" left="15" />
       </padding>
+
       <HBox spacing="5" alignment="CENTER_LEFT">
         <Label fx:id="id" styleClass="cell_big_label">
           <minWidth>
@@ -27,12 +30,85 @@
         </Label>
         <Label fx:id="name" text="\$first" styleClass="cell_big_label" />
       </HBox>
-      <FlowPane fx:id="tags" />
-      <Label fx:id="phone" styleClass="cell_small_label" text="\$phone" />
-      <Label fx:id="address" styleClass="cell_small_label" text="\$address" />
-      <Label fx:id="email" styleClass="cell_small_label" text="\$email" />
-      <FlowPane fx:id="assignments" />
-      <FlowPane fx:id="personGroup" />
+
+      <HBox>
+        <padding>
+          <Insets top="3" bottom="3" />
+        </padding>
+        <FlowPane fx:id="tags" />
+      </HBox>
+
+      <HBox fx:id="phoneContainer" alignment="CENTER_LEFT">
+        <padding>
+          <Insets top="2" right="0" bottom="2" left="-3" />
+        </padding>
+        <children>
+          <ImageView fitHeight="28.0" fitWidth="28.0" pickOnBounds="true" preserveRatio="true">
+            <image>
+              <Image url="@../images/phone.png" />
+            </image>
+          </ImageView>
+          <HBox>
+            <padding>
+              <Insets top="3" right="1" bottom="1" left="0" />
+            </padding>
+            <Label fx:id="phone" styleClass="cell_small_label" wrapText="true" />
+          </HBox>
+        </children>
+      </HBox>
+
+      <HBox fx:id="addressContainer" alignment="CENTER_LEFT">
+        <padding>
+          <Insets top="0" right="0" bottom="2" left="-1" />
+        </padding>
+        <children>
+          <ImageView fitHeight="23.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
+            <image>
+              <Image url="@../images/address.png" />
+            </image>
+          </ImageView>
+          <HBox>
+            <padding>
+              <Insets top="0" right="1" bottom="1" left="0" />
+            </padding>
+            <Label fx:id="address" styleClass="cell_small_label" wrapText="true" />
+          </HBox>
+        </children>
+      </HBox>
+
+      <HBox fx:id="emailContainer" alignment="CENTER_LEFT">
+        <padding>
+          <Insets top="0" right="1" bottom="1" left="1" />
+        </padding>
+        <children>
+          <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+            <image>
+              <Image url="@../images/email.png" />
+            </image>
+          </ImageView>
+          <HBox>
+            <padding>
+              <Insets top="0" right="1" bottom="1" left="3" />
+            </padding>
+            <Label fx:id="email" styleClass="cell_small_label" wrapText="true" />
+          </HBox>
+        </children>
+      </HBox>
+
+      <HBox>
+        <padding>
+          <Insets top="3" bottom="3" />
+        </padding>
+        <FlowPane fx:id="assignments" />
+      </HBox>
+
+      <HBox>
+        <padding>
+          <Insets top="3" bottom="3" />
+        </padding>
+        <FlowPane fx:id="personGroup" />
+      </HBox>
+
     </VBox>
   </GridPane>
 </HBox>

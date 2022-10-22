@@ -1,0 +1,30 @@
+@startuml
+
+title AssignTaskCommand
+
+start
+:User executes "assigntask" command;
+:Command is parsed;
+
+if () then ([inputs are not empty])
+    :Check validity of inputs;
+
+    if () then ([valid username and group name])
+        :Check whether user in group;
+        if () then ([user in group])
+            : Set the person with the new assigned task;
+        else ([else])
+            :Throw CommandException;
+        endif
+    else ([else])
+        :Throw CommandException;
+    endif
+
+else ([else])
+    :Throw ParseException;
+
+endif
+
+stop
+
+@enduml

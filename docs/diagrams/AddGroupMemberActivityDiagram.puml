@@ -1,0 +1,37 @@
+@startuml
+
+title AddGroupMemberCommand
+
+start
+:User executes "AddGroupMemberCommand" command;
+:Command is parsed;
+
+if () then ([input is not empty])
+    :Check existence of person's name;
+
+    if () then ([existing person's name])
+        if () then ([existing group name])
+            if () then([person does not exist in group])
+        :Get the group from the group list;
+        :Add the person with the given name to
+        the group specified;
+        :Feedback to user that execution
+        was successful;
+            else ([else])
+                    :Throw CommandException;
+                endif
+        else ([else])
+                :Throw CommandException;
+            endif
+
+    else ([else])
+        :Throw CommandException;
+    endif
+
+else ([else])
+    :Throw ParseException;
+endif
+
+stop
+
+@enduml

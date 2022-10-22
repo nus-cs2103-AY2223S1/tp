@@ -7,7 +7,8 @@ TABS helps project team leaders **overview tasks assigned to group members**. It
 
 - [`Quick start`](#quick-start)
 - [`Features`](#features)
-  - Adding a person: [`addpeson`](#adding-a-person-addperson)
+  - Viewing help: [`help`](#viewing-help--help)
+  - Adding a person: [`addperson`](#adding-a-person-addperson)
   - Listing all persons: [`listpersons`](#listing-all-persons--listpersons)
   - Edit a person: [`editperson`](#editing-a-person--editperson)
   - Locating persons by name: [`findperson`](#locating-persons-by-name-findperson)
@@ -64,6 +65,13 @@ Note how the app contains some sample data.
   e.g. if the command specifies `listpersons 123`, it will be interpreted as `listpersons`.
 
 </div>
+
+### Viewing help : help
+Shows a message explaining how to access the help page.
+
+![Help Example](Help.png)
+
+Format: help
 
 ### Adding a person: `addperson`
 
