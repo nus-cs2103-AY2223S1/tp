@@ -117,7 +117,7 @@ List Box:
 ---
 
 #### View the information of an item: `view`
-TODO:YX
+<!-- TODO: YX -->
 **Format:**: `view INDEX`
 > Displays information about the specified item.
 * Displayed information includes the name, quantity, bought date, expiry date, price, and tags of items.
