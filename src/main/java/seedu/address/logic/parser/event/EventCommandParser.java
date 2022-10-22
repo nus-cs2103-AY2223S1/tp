@@ -49,7 +49,7 @@ public class EventCommandParser implements Parser<EventCommand> {
         case AddEventCommand.COMMAND_OPTION:
             return new AddEventCommandParser().parse(args);
         default:
-            throw new ParseException(EventCommand.OPTION_UNKNOWN);
+            throw new ParseException(EventCommand.OPTION_UNKNOWN + EventCommand.VALID_FLAGS);
         }
     }
 }
