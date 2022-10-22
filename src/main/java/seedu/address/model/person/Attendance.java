@@ -1,4 +1,4 @@
-package seedu.address.model.person.subject;
+package seedu.address.model.person;
 
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
@@ -8,6 +8,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import seedu.address.commons.util.DateUtil;
+import seedu.address.logic.parser.exceptions.ParseException;
 
 /**
  * Represents the attendance of the student
@@ -25,7 +26,14 @@ public class Attendance {
      * Constructs an {@code Attendance} object.
      */
     public Attendance() {
-        personAttendance = new HashMap<>();
+        this(new HashMap<>());
+    }
+
+    /**
+     * Constructs an {@code Attendance} object with a given date/value HashMap.
+     */
+    public Attendance(HashMap<String, Integer> hashMap) {
+        personAttendance = hashMap;
     }
 
     /**
@@ -43,6 +51,27 @@ public class Attendance {
         String date = matcher.group("date");
         date += " 00:00"; // scuffed implementation to avoid Temporal errors
         return DateUtil.isValidDateString(date);
+    }
+
+    public static HashMap<String, Integer> parseAttendanceFromJson(String json)
+        throws ParseException {
+        String trimmedInput = json.trim();
+        String[] toParse = trimmedInput.split("%%");
+        HashMap<String, Integer> tempMap = new HashMap<>();
+        for (String s : toParse) {
+            if (!Attendance.isValidAttendance(s)) {
+                throw new ParseException(Attendance.MESSAGE_CONSTRAINTS);
+            } else {
+                Matcher matcher = FORMAT.matcher(s.trim());
+                if (!matcher.matches()) {
+                    throw new ParseException(Attendance.MESSAGE_CONSTRAINTS); // "initializes" matcher
+                }
+                String date = matcher.group("date");
+                int attendance = Integer.parseInt(matcher.group("attendance"));
+                tempMap.put(date, attendance);
+            }
+        }
+        return tempMap;
     }
 
     /**
@@ -80,8 +109,11 @@ public class Attendance {
 
     @Override
     public String toString() {
-        int[] attendanceArray = getAttendanceDetails();
-        return String.format("Attendance: %d/%d", attendanceArray[0], attendanceArray[1]);
+        StringBuilder sb = new StringBuilder();
+        for (String key : personAttendance.keySet()) {
+            sb.append("date/").append(key).append(" attendance/").append(personAttendance.get(key)).append("%%");
+        }
+        return sb.toString();
     }
 
 }

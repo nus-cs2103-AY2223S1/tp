@@ -3,6 +3,7 @@ package seedu.address.logic.parser;
 import static java.util.Objects.requireNonNull;
 
 import java.util.Collection;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -10,6 +11,7 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Address;
+import seedu.address.model.person.Attendance;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
@@ -100,7 +102,7 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String clazz} into an {@code Clazz}.
+     * Parses a {@code string} into an {@code StudentClass}.
      * Leading and trailing whitespaces will be trimmed.
      *
      * @throws ParseException if the given {@code clazz} is invalid.
@@ -112,6 +114,16 @@ public class ParserUtil {
             throw new ParseException(StudentClass.MESSAGE_CONSTRAINTS);
         }
         return new StudentClass(trimmedStudentClass);
+    }
+
+    /**
+     * Parses a {@code String clazz} into an {@code Clazz}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     */
+    public static Attendance parseAttendance(String attendance) throws ParseException {
+        requireNonNull(attendance);
+        return new Attendance(Attendance.parseAttendanceFromJson(attendance));
     }
 
     /**
@@ -194,5 +206,4 @@ public class ParserUtil {
         }
         return tagSet;
     }
-
 }
