@@ -2,6 +2,7 @@ package seedu.address.model.appointment;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 
 /**
  * Represents an upcoming appointment for a patient.
@@ -30,14 +31,21 @@ public class UpcomingAppointment extends Appointment {
     }
 
     /**
-     * Getter for patient's upcoming appointment date.
-     * @return patient's upcoming appointment date.
+     * Check if current date is valid
+     * @param test date to be tested
+     * @return true if it is a valid date, otherwise false
      */
-    @Override
-    public LocalDate getDate() {
-        return super.getDate();
+    public static boolean isValidDate(String test) {
+        if (test == null) {
+            return true;
+        }
+        try {
+            LocalDate.parse(test, DateTimeFormatter.ofPattern("dd-MM-yyyy"));
+        } catch (DateTimeParseException e) {
+            return false;
+        }
+        return true;
     }
-
     @Override
     public String toString() {
         return "Upcoming Appointment Date: " + (value == null ? "None" : value);
