@@ -120,7 +120,7 @@ Placeholders are words in UPPER_CASE to show you what parameters you can supply 
 
 ## Troubleshooting
 
-Something goes here...
+{% include_relative _ug/Troubleshooting.md %}
 
 ## FAQ
 
