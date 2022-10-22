@@ -21,7 +21,7 @@ import seedu.address.model.calendar.CalendarEvent;
 import seedu.address.model.calendar.CalendarMonth;
 import seedu.address.ui.CalendarEventListPanel;
 import seedu.address.ui.NextButton;
-import seedu.address.ui.PrevButton;
+import seedu.address.ui.PreviousButton;
 import seedu.address.ui.RefreshButton;
 
 /**
@@ -39,7 +39,7 @@ public class CalendarLogic {
     private static final String SWITCH_BUTTON_STYLE = "-fx-border-color: grey; -fx-border-radius: 5;";
     private static final String TEXT_HEADER_STYLE = "-fx-font-size: 15pt; -fx-text-fill: white; "
             + "-fx-background-color: #fff";
-    private PrevButton prevButton = new PrevButton("Prev", this);
+    private PreviousButton prevButton = new PreviousButton("Prev", this);
     private NextButton nextButton = new NextButton("Next", this);
     private RefreshButton refreshButton = new RefreshButton("Refresh", this);
     @FXML
@@ -83,7 +83,7 @@ public class CalendarLogic {
 
     private void drawHeader() {
         Text textHeader = getTextHeader();
-        topCalendar.getChildren().addAll(textHeader, prevButton, nextButton, refreshButton);
+        topCalendar.getChildren().addAll(textHeader, prevButton.getRoot(), nextButton.getRoot(), refreshButton);
         topCalendar.setMargin(textHeader, new Insets(0, 50, 0, 0));
     }
 
