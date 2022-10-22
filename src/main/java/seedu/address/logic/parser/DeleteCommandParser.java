@@ -36,7 +36,13 @@ public class DeleteCommandParser implements Parser<DeleteCommand> {
             String trimmedInput = args.trim();
             NameContainsKeywordsPredicate predicate = new NameContainsKeywordsPredicate(List.of(trimmedInput));
             model.updateFilteredPersonList(predicate);
-            return new DeleteCommand(predicate);
+            if (model.getFilteredPersonList().size() == 0) {
+                throw new ParseException("The person / name does not exist ! Try again");
+            } else if (model.getFilteredPersonList().size() > 1) {
+                throw new ParseException("There are more than 1 person in the given list!");
+            } else {
+                return new DeleteCommand(Index.fromOneBased(1));
+            }
         }
     }
 

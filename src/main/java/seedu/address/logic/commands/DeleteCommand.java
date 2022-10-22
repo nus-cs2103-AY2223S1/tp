@@ -30,58 +30,28 @@ public class DeleteCommand extends Command {
 
     private Index targetIndex;
 
-    private NameContainsKeywordsPredicate predicate;
-
     public DeleteCommand(Index targetIndex) {
         this.targetIndex = targetIndex;
     }
 
-    public DeleteCommand(NameContainsKeywordsPredicate predicate) {
-        this.predicate = predicate;
-    }
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-
-        if (targetIndex != null) {
-            List<Person> lastShownList = model.getFilteredPersonList();
-            if (targetIndex.getZeroBased() >= lastShownList.size()) {
-                throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
-            }
-            Person personToDelete = lastShownList.get(targetIndex.getZeroBased());
-            Set<Tag> personToDeleteTagSet = personToDelete.getTags();
-            for (Tag tag : personToDeleteTagSet) {
-                tag.removePerson(personToDelete);
-                if (tag.isPersonListEmpty()) {
-                    model.removeTag(tag);
-                }
-            }
-            model.deletePerson(personToDelete);
-            return new CommandResult(String.format(MESSAGE_DELETE_PERSON_SUCCESS, personToDelete));
-        } else {
-            model.updateFilteredPersonList(predicate);
-            List<Person> filteredList = model.getFilteredPersonList();
-            if (filteredList.size() > 1) {
-                throw new CommandException(String.format(Messages.MESSAGE_INVALID_AMBIGUOUS_NAME,
-                        predicate.getFirst()));
-            } else if (filteredList.size() <= 0) {
-                model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
-                throw new CommandException(String.format(Messages.MESSAGE_INVALID_NAME, predicate.getFirst()));
-            } else {
-                Person personToDelete = filteredList.get(0);
-                Set<Tag> personToDeleteTagSet = personToDelete.getTags();
-                for (Tag tag : personToDeleteTagSet) {
-                    tag.removePerson(personToDelete);
-                    if (tag.isPersonListEmpty()) {
-                        model.removeTag(tag);
-                    }
-                }
-                model.deletePerson(personToDelete);
-                model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
-                return new CommandResult(String.format(MESSAGE_DELETE_PERSON_SUCCESS, personToDelete));
+        List<Person> lastShownList = model.getFilteredPersonList();
+        if (targetIndex.getZeroBased() >= lastShownList.size()) {
+            throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+        }
+        Person personToDelete = lastShownList.get(targetIndex.getZeroBased());
+        Set<Tag> personToDeleteTagSet = personToDelete.getTags();
+        for (Tag tag : personToDeleteTagSet) {
+            tag.removePerson(personToDelete);
+            if (tag.isPersonListEmpty()) {
+                model.removeTag(tag);
             }
         }
+        model.deletePerson(personToDelete);
+        return new CommandResult(String.format(MESSAGE_DELETE_PERSON_SUCCESS, personToDelete));
     }
 
     @Override
