@@ -37,7 +37,7 @@ public interface Logic {
     ObservableList<Exercise> getFilteredExerciseList();
 
     /**
-     * Returns a defensive copy of the hashmap of exercises stored.
+     * Returns a copy of the hashmap of exercises stored.
      */
     ExerciseHashMap getExerciseHashmap();
 
