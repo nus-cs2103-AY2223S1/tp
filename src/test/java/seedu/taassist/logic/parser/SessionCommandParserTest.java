@@ -43,7 +43,7 @@ public class SessionCommandParserTest {
     }
 
     @Test
-    public void parse_InvalidDate_failure() {
+    public void parse_invalidDate_failure() {
         assertParseFailure(parser, joinWithSpace(SESSION_DESC_LAB1, INVALID_DATE_DESC), Date.MESSAGE_CONSTRAINTS);
     }
 

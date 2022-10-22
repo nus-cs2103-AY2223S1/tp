@@ -32,6 +32,11 @@ public class ViewCommand extends Command {
 
     private final Index index;
 
+    /**
+     * Returns a ViewCommand object with the specified index of the student to view.
+     *
+     * @param index Index of the student to view.
+     */
     public ViewCommand(Index index) {
         requireNonNull(index);
         this.index = index;
