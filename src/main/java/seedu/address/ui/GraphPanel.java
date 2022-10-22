@@ -17,6 +17,8 @@ import seedu.address.model.entry.EntryType;
  */
 public class GraphPanel extends UiPart<Region> {
     private static final String FXML = "GraphPanel.fxml";
+    private static final String EXPENSE_CHART_TITLE = "Expenses";
+    private static final String INCOME_CHART_TITLE = "Income";
     private final Logger logger = LogsCenter.getLogger(seedu.address.ui.GraphPanel.class);
     private EntryPieChart pieChart;
     private EntryLineChart lineChart;
@@ -38,10 +40,10 @@ public class GraphPanel extends UiPart<Region> {
 
         switch (entryType.getEntryType()) {
         case EXPENDITURE:
-            chartTitle.setText("Expenses");
+            chartTitle.setText(EXPENSE_CHART_TITLE);
             break;
         case INCOME:
-            chartTitle.setText("Income");
+            chartTitle.setText(INCOME_CHART_TITLE);
             break;
         default:
             break;
@@ -60,10 +62,10 @@ public class GraphPanel extends UiPart<Region> {
 
         switch (entryType.getEntryType()) {
         case EXPENDITURE:
-            chartTitle.setText("Expenses");
+            chartTitle.setText(EXPENSE_CHART_TITLE);
             break;
         case INCOME:
-            chartTitle.setText("Income");
+            chartTitle.setText(INCOME_CHART_TITLE);
             break;
         default:
             break;
