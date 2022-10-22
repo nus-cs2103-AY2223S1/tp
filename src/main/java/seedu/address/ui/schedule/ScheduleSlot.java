@@ -36,6 +36,7 @@ public class ScheduleSlot extends SlotContainer {
         this.venue = schedule.getVenue().toString();
         setText();
         setColor(getColor(schedule.getDuration()));
+
     }
     private void setText() {
         module.setText(moduleCode.toUpperCase());
@@ -45,13 +46,13 @@ public class ScheduleSlot extends SlotContainer {
     }
 
     private String getColor(double duration) {
-        if (duration == 1) {
+        if (duration <= 1) {
             return "#FF8787";
         } else if (duration == 1.5) {
             return "#F8C4B4";
         } else if (duration == 2) {
             return "#E5EBB2";
-        } else if (duration == 3) {
+        } else if (duration <= 3) {
             return "#BCE29E";
         } else {
             return "#B8E8FC";
