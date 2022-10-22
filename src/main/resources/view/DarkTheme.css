@@ -128,38 +128,46 @@
 
 .cell_small_label {
     -fx-font-family: "Segoe UI";
-    -fx-font-size: 13px;
+    -fx-font-size: 15px;
     -fx-text-fill: #010504;
 }
 
 .cell_pending_label {
     -fx-background-color: #0B4CF8;
-    -fx-padding: 2 4 2 4;
-    -fx-font-size: 11;
+    -fx-padding: 2 8 2 8;
+    -fx-font-size: 15;
     -fx-font-family: "Segoe UI";
-    -fx-border-radius: 10 10 0 0;
-    -fx-background-radius: 10 10 0 0;
+    -fx-border-radius: 18;
+    -fx-background-radius: 18;
+    -fx-border-width: 3;
 
 }
 
 .cell_accepted_label {
     -fx-background-color: #228B22;
-    -fx-padding: 2 4 2 4;
-    -fx-font-size: 11;
+    -fx-padding: 2 8 2 8;
+    -fx-font-size: 15;
     -fx-font-family: "Segoe UI";
-    -fx-border-radius: 10 10 0 0;
-    -fx-background-radius: 10 10 0 0;
+    -fx-border-radius: 18;
+    -fx-background-radius: 18;
+    -fx-border-width: 3;
 
 }
 
 .cell_rejected_label {
     -fx-background-color: #F83434;
-    -fx-padding: 2 4 2 4;
-    -fx-font-size: 11;
+    -fx-padding: 2 8 2 8;
+    -fx-font-size: 15;
     -fx-font-family: "Segoe UI";
-    -fx-border-radius: 10 10 0 0;
-    -fx-background-radius: 10 10 0 0;
+    -fx-border-radius: 18;
+    -fx-background-radius: 18;
+    -fx-border-width: 3;
 
+}
+
+.card_pane_style {
+    -fx-padding: 20;
+    -fx-spacing: 20;
 }
 
 .stack-pane {
@@ -173,7 +181,7 @@
 }
 
 .status-bar {
-    -fx-background-color: derive(#1d1d1d, 30%);
+    -fx-background-color: derive(#f4b41a, 30%);
 }
 
 .result-display {
@@ -183,13 +191,20 @@
     -fx-text-fill: white;
 }
 
+.title_name {
+    -fx-font-family: "Segoe UI Bold";
+    -fx-font-size: 15px;
+    -fx-text-fill: #010504;
+    -fx-font-weight: bold;
+}
+
 .result-display .label {
     -fx-text-fill: black !important;
 }
 
 .status-bar .label {
     -fx-font-family: "Segoe UI Light";
-    -fx-text-fill: white;
+    -fx-text-fill: #143d59;
     -fx-padding: 4px;
     -fx-pref-height: 30px;
 }
@@ -223,13 +238,13 @@
 }
 
 .menu-bar {
-    -fx-background-color: derive(#1d1d1d, 20%);
+    -fx-background-color: #f4b41a
 }
 
 .menu-bar .label {
     -fx-font-size: 14pt;
     -fx-font-family: "Segoe UI Light";
-    -fx-text-fill: white;
+    -fx-text-fill: #143d59;
     -fx-opacity: 0.9;
 }
 
@@ -349,7 +364,7 @@
 
 #commandTypeLabel {
     -fx-font-size: 11px;
-    -fx-text-fill: #F70D1A;
+    -fx-text-fill: red;
 }
 
 #commandTextField {
@@ -378,10 +393,12 @@
 }
 
 #tags .label {
-    -fx-text-fill: white;
-    -fx-background-color: #3e7b91;
+    -fx-text-fill: #343148FF;
+    -fx-background-color: #D7C49EFF;
     -fx-padding: 1 3 1 3;
     -fx-border-radius: 2;
     -fx-background-radius: 2;
-    -fx-font-size: 11;
+    -fx-font-size: 15;
 }
+
+

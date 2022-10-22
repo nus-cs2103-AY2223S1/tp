@@ -45,7 +45,7 @@ Given below is a quick overview of main components and how they interact with ea
 
 **Main components of the architecture**
 
-**`Main`** has two classes called [`Main`](https://github.com/AY2223S1-CS2103T-W10-3/tp/blob/master/src/main/java/seedu/address/Main.java) and [`MainApp`](https://github.com/AY2223S1-CS2103T-W10-3/tp/blob/master/src/main/java/seedu/address/MainApp.java). It is responsible for,
+**`Main`** has two classes called [`Main`](https://github.com/AY2223S1-CS2103T-W10-3/tp/blob/master/src/main/java/seedu/trackascholar/Main.java) and [`MainApp`](https://github.com/AY2223S1-CS2103T-W10-3/tp/blob/master/src/main/java/seedu/trackascholar/MainApp.java). It is responsible for,
 * At app launch: Initializes the components in the correct sequence, and connects them up with each other.
 * At shut down: Shuts down the components and invokes cleanup methods where necessary.
 
@@ -80,13 +80,13 @@ The sections below give more details of each component.
 
 ### UI component
 
-The **API** of this component is specified in [`Ui.java`](https://github.com/AY2223S1-CS2103T-W10-3/tp/blob/master/src/main/java/seedu/address/ui/Ui.java)
+The **API** of this component is specified in [`Ui.java`](https://github.com/AY2223S1-CS2103T-W10-3/tp/blob/master/src/main/java/seedu/trackascholar/ui/Ui.java)
 
 ![Structure of the UI Component](images/UiClassDiagram.png)
 
 The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `PersonListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
 
-The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/AY2223S1-CS2103T-W10-3/tp/blob/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/AY2223S1-CS2103T-W10-3/tp/blob/master/src/main/resources/view/MainWindow.fxml)
+The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/AY2223S1-CS2103T-W10-3/tp/blob/master/src/main/java/seedu/trackascholar/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/AY2223S1-CS2103T-W10-3/tp/blob/master/src/main/resources/view/MainWindow.fxml)
 
 The `UI` component,
 
@@ -99,7 +99,7 @@ The `UI` component,
 
 ### Logic component
 
-**API** : [`Logic.java`](https://github.com/AY2223S1-CS2103T-W10-3/tp/blob/master/src/main/java/seedu/address/logic/Logic.java)
+**API** : [`Logic.java`](https://github.com/AY2223S1-CS2103T-W10-3/tp/blob/master/src/main/java/seedu/trackascholar/logic/Logic.java)
 
 Here's a (partial) class diagram of the `Logic` component:
 
@@ -129,7 +129,7 @@ How the parsing works:
 --------------------------------------------------------------------------------------------------------------------
 
 ### Model component
-**API** : [`Model.java`](https://github.com/AY2223S1-CS2103T-W10-3/tp/blob/master/src/main/java/seedu/address/model/Model.java)
+**API** : [`Model.java`](https://github.com/AY2223S1-CS2103T-W10-3/tp/blob/master/src/main/java/seedu/trackascholar/model/Model.java)
 
 <img src="images/ModelClassDiagram.png" width="450" />
 
@@ -151,7 +151,7 @@ The `Model` component,
 
 ### Storage component
 
-**API** : [`Storage.java`](https://github.com/AY2223S1-CS2103T-W10-3/tp/blob/master/src/main/java/seedu/address/storage/Storage.java)
+**API** : [`Storage.java`](https://github.com/AY2223S1-CS2103T-W10-3/tp/blob/master/src/main/java/seedu/trackascholar/storage/Storage.java)
 
 <img src="images/StorageClassDiagram.png" width="550" />
 
@@ -162,7 +162,7 @@ The `Storage` component,
 
 ### Common classes
 
-Classes used by multiple components are in the `seedu.address.commons` package.
+Classes used by multiple components are in the `seedu.trackascholar.commons` package.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -179,23 +179,23 @@ The add operation is facilitated by `AddCommand`. It extends `Command` and imple
 Given below is an example usage scenario and how the add operation is handled by TrackAScholar:
 
 1. The user enters `add n/Sam p/98886767 e/sam@example.com s/NUS Merit Scholarship as/pending`, for example, to add a new applicant.
-This invokes `LogicManager#execute()`, which calls `TrackAScholarParser#parseCommand()` to separate the command word `add` and
-the arguments `n/Sam p/98886767 e/sam@example.com s/NUS Merit Scholarship as/pending`.
+   This invokes `LogicManager#execute()`, which calls `TrackAScholarParser#parseCommand()` to separate the command word `add` and
+   the arguments `n/Sam p/98886767 e/sam@example.com s/NUS Merit Scholarship as/pending`.
 
 2. `TrackAScholarParser` identifies the `add` command and `AddCommandParser` will be instantiated which calls `AddCommandParser#parse()`
-to map the various arguments via their prefixes (e.g. `Sam` is mapped using prefix `n/`).
+   to map the various arguments via their prefixes (e.g. `Sam` is mapped using prefix `n/`).
 
 3. `AddCommandParser#parse()` will then call `AddCommandParser#arePrefixesPresent()` to ensure that all mandatory prefixes are present
-in the user input, after which the various arguments will be retrieved via the prefixes and parsed into their respective attributes.
+   in the user input, after which the various arguments will be retrieved via the prefixes and parsed into their respective attributes.
 
 4. `AddCommandParser#parse()` creates a new `Applicant` with the various attributes before finally initializing and returning an `AddCommand`
-with the new `Applicant` as an argument.
+   with the new `Applicant` as an argument.
 
 5. `LogicManager#execute()` now calls `AddCommand#execute()`, which invokes `Model#hasApplicant()` to check if the new `Applicant` is a
-duplicate of any applicant already stored in TrackAScholar. When the check has concluded and no duplicate was found, `Model#addApplicant()`
-is called to add the new `Applicant` into TrackAScholar.
+   duplicate of any applicant already stored in TrackAScholar. When the check has concluded and no duplicate was found, `Model#addApplicant()`
+   is called to add the new `Applicant` into TrackAScholar.
 
-6. `AddCommand#execute()` finishes with returning a `CommandResult` containing details of the new applicant to the user.
+6. `AddCommand#execute()` finishes with returning a `CommandResult` containing details about the applicant's successful addition to TrackAScholar.
 
 The following sequence diagram shows how the add operation works:
 
@@ -205,6 +205,7 @@ The following activity diagram summarizes what happens when a user executes an a
 
 ![Add command activity diagram](images/AddCommandActivityDiagram.png)
 
+--------------------------------------------------------------------------------------------------------------------
 
 ### Filter application status feature
 
@@ -214,28 +215,102 @@ The filter operation is facilitated by `FilterCommand`. It extends `Command` and
 
 Given below is an example usage scenario and how the filter operation is handled by TrackAScholar:
 
-1. The user enters `filter pending`, for example, to filter out applicants with pending scholarship status.
+1. The user enters `filter pending`, for example, to filter out applicants with pending scholarship application status.
    This invokes `LogicManager#execute()`, which calls `TrackAScholarParser#parseCommand()` to separate the command word `filter` and
    the argument `pending`.
 
 2. `TrackAScholarParser` identifies the `filter` command and `FilterCommandParser` will be instantiated which calls `FilterCommandParser#parse()`
-   to map the argument into its corresponding application status.
+   which checks that the argument is a valid application status by calling `ApplicationStatus#isValidApplicationStatus()`.
 
-3. `FilterCommandParser#parse()` creates a new `ApplicationStatusPredicate` with the argument before finally initializing and returning an `FilterCommand`
+3. After passing the check, `FilterCommandParser#parse()` creates a new `ApplicationStatusPredicate` with the argument before finally initializing and returning a `FilterCommand`
    with the new `ApplicationStatusPredicate` as an argument.
 
-4. `LogicManager#execute()` now calls `FilterCommand#execute()`, which invokes `Model#updateFilteredApplicantList()` to filter out the list of applicants with the matching application status. When the operation has concluded, `Model#getFilteredApplicantList()`
+4. `LogicManager#execute()` now calls `FilterCommand#execute()`, which invokes `Model#updateFilteredApplicantList()` to filter out the list of
+   applicants with the matching application status. When the operation has concluded, `Model#getFilteredApplicantList()`
    is called to retrieve the filtered list, such that TrackAScholar can count the total number of applicants in that particular list.
 
-5. `AddCommand#execute()` finishes with returning a `CommandResult` containing list of all applicants with the matching scholarship status.
+5. `FilterCommand#execute()` finishes with returning a `CommandResult` containing details of how many applicants were found with a matching scholarship application status.
 
 The following sequence diagram shows how the filter operation works:
 
 ![Interactions Inside the Logic Component for the `filter` Command example](images/FilterSequenceDiagram.png)
 
-The following activity diagram summarizes what happens when a user executes an filter command:
+The following activity diagram summarizes what happens when a user executes a filter command:
 
-![Add command activity diagram](images/FilterCommandActivityDiagram.png)
+![Filter command activity diagram](images/FilterCommandActivityDiagram.png)
+
+--------------------------------------------------------------------------------------------------------------------
+
+### Sort applicants by name, scholarship or status feature.
+
+#### Implementation
+
+The sort operation is facilitated by `SortCommand`. It extends `Command` and implements the `Command#execute` operation.
+
+Given below is an example usage scenario and how the sort operation is handled by TrackAScholar:
+
+1. The user enters `sort name`, for example, to sort all applicants by name in ascending lexicographic order.
+   This invokes `LogicManager#execute()`, which calls `TrackAScholarParser#parseCommand()` to separate the command word `sort` and
+   the argument `name`.
+
+2. `TrackAScholarParser` identifies the `sort` command and `SortCommandParser` will be instantiated which calls `SortCommandParser#parse()`
+   which checks if the arguments have the valid parameter name and flag by calling `List#contains()` and `SortCommandParser#checkInputSizeAndReverseFlag()` respectively.
+
+3. After passing the check, `SortCommandParser#parse()` creates a new `Comparator<Applicant>` with the argument before finally initializing and returning a `SortCommand`
+   with the new `Comparator<Applicant>` as an argument.
+
+4. `LogicManager#execute()` now calls `SortCommand#execute()`, which invokes `Model#updateFilteredApplicantList()` to filter out the list of
+   applicants with the matching application status. When the operation has concluded, `Model#getFilteredApplicantList()`
+   is called to retrieve the filtered list, such that TrackAScholar can count the total number of applicants in that particular list.
+
+5. `SortCommand#execute()` finishes with returning a `CommandResult` containing the newly sorted applicant list according to the input parameters.
+
+The following sequence diagram shows how the sort operation works:
+######(sequence diagram and activity diagram to be done replaced by jie hui)
+
+![Interactions Inside the Logic Component for the `filter` Command example](images/FilterSequenceDiagram.png)
+
+The following activity diagram summarizes what happens when a user executes a sort command:
+
+![Filter command activity diagram](images/FilterCommandActivityDiagram.png)
+
+--------------------------------------------------------------------------------------------------------------------
+
+### Remove applicants by application status feature
+
+#### Implementation
+
+The remove operation is facilitated by `RemoveCommand`. It extends `Command` and implements the `Command#execute` operation.
+
+Given below is an example usage scenario and how the remove operation is handled by TrackAScholar:
+
+1. The user enters `remove accepted`, for example, to remove all applicants with accepted scholarship application status.
+   This invokes `LogicManager#execute()`, which calls `TrackAScholarParser#parseCommand()` to separate the command word `remove` and
+   the argument `accepted`.
+
+2. `TrackAScholarParser` identifies the `remove` command and `RemoveCommandParser` will be instantiated which calls `RemoveCommandParser#parse()`.
+
+3. `RemoveCommandParser#parse()` now parses the argument and creates a new `ApplicationStatus` before finally initializing and returning a `RemoveCommand`
+   with the new `ApplicationStatus` as an argument.
+
+4. `LogicManager#execute()` now calls `RemoveCommand#execute()`, which invokes `RemoveCommand#promptUserConfirmation()`. TrackAScholar now displays
+   a window asking for the user's confirmation to remove the applicants. After the user confirms, `RemoveCommand#confirmRemove()` is called which
+   in turn calls `Model#removeApplicant()` to remove all applicants from the list matching the targeted `ApplicationStatus`.
+
+5. `FilterCommand#execute()` finishes with returning a `CommandResult` containing information of the successful removal.
+
+The following sequence diagram shows how the remove operation works:
+
+![Interactions Inside the Logic Component for the `remove` Command example](images/RemoveSequenceDiagram.png)
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The GUI interactions when `RemoveCommand#execute()` calls `RemoveCommand#promptUserConfirmation()`
+is abstracted out as this sequence diagram aims only to demonstrate the interactions inside Logic Component for the `remove` command.
+
+</div>
+
+The following activity diagram summarizes what happens when a user executes a remove command:
+
+![Remove command activity diagram](images/RemoveCommandActivityDiagram.png)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -265,18 +340,18 @@ Streamline the scholarship application process by organizing the scholarship app
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                         | I want to …​                                       | So that I can…​                                                                |
-|---------|-------------------------------------------------|----------------------------------------------------|--------------------------------------------------------------------------------|
-| `* * *` | new user                                        | see usage instructions easily                      | discover functionalities provided by the application                           |
-| `* * *` | new user                                        | operate with clear and concise commands            | learn easily and grow proficiency with time                                    |
-| `* * *` | user                                            | retrieve previously stored application data        | access stored database                                                         |
-| `* * *` | user                                            | save fresh data easily                             | avoid losing all my data                                                       |
-| `* * *` | administrator                                   | add a scholar to my database                       | keep track of the application status of the scholar                            |
-| `* * *` | administrator                                   | delete a scholar from my database                  | remove data of accepted or rejected applications that is no longer needed      |
-| `* * *` | administrator managing <br/>multiple applicants | list all applicants in my database                 | view all scholarship applicants on the list of applications                    |
-| `* *`   | administrator                                   | edit the details of a scholar in my database       | have easy access to their most updated details                                 |
+| Priority | As a …​                                         | I want to …​                                       | So that I can…​                                                                    |
+|---------|-------------------------------------------------|----------------------------------------------------|------------------------------------------------------------------------------------|
+| `* * *` | new user                                        | see usage instructions easily                      | discover functionalities provided by the application                               |
+| `* * *` | new user                                        | operate with clear and concise commands            | learn easily and grow proficiency with time                                        |
+| `* * *` | user                                            | retrieve previously stored application data        | access stored database                                                             |
+| `* * *` | user                                            | save fresh data easily                             | avoid losing all my data                                                           |
+| `* * *` | administrator                                   | add a scholar to my database                       | keep track of the application status of the scholar                                |
+| `* * *` | administrator                                   | delete a scholar from my database                  | remove data of applications that is no longer needed                               |
+| `* * *` | administrator managing <br/>multiple applicants | list all applicants in my database                 | view all scholarship applicants on the list of applications                        |
+| `* *`   | administrator                                   | edit the details of a scholar in my database       | have easy access to their most updated details                                     |
 | `* *`   | administrator managing <br/>multiple applicants | find applicants using keywords                     | retrieve details of their application without having to go through the entire list |
-| `*`     | advanced user                                   | run the application on different operating systems | access the same database/storage on different operating systems                |
+| `*`     | advanced user                                   | run the application on different operating systems | access the same database/storage on different operating systems                    |
 
 
 
