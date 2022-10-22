@@ -10,7 +10,7 @@ It is optimized for use via a **Command Line Interface** (CLI) while still havin
 Cobb can also run on any machine, *without the need for an internet connection*.
 
 * Table of Contents
-{:toc}
+  {:toc}
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -28,6 +28,7 @@ Cobb can also run on any machine, *without the need for an internet connection*.
 1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will display some help text.<br>
    Some example commands you can try:
 
+<<<<<<< HEAD
    * **`listbuyers`** : Lists all buyers in the database, that is, clears any buyer filters currently in place..
    
    * **`addbuyer -n Tim Cook -ph 91234567 -r 1000000-2500000 -c bright; sunny`**: Adds a buyer named "Tim Cook" with phone number "91234567" to the database.
@@ -38,6 +39,18 @@ Cobb can also run on any machine, *without the need for an internet connection*.
   * **`help`** : Displays some help text.
 
   * **`exit`** : Exits the app.
+=======
+    * **`listbuyers`** : Lists all buyers in the database, that is, clears any buyer filters currently in place..
+
+    * **`addbuyer -n Tim Cook -ph 91234567 -r 1000000-2500000 -c bright; sunny`**: Adds a buyer named "Tim Cook" with phone number "91234567" to the database.
+      This buyer has a specified price range, and desired characteristics for the property he wants to buy.
+
+* **`delete -s -n Tim Cook`** : Deletes a seller named Tim Cook from the database.
+
+* **`help`** : Displays some help text.
+
+* **`exit`** : Exits the app.
+>>>>>>> 617ebbc151bb50e948cbdd3c1cab21cc3ba249bd
 
 1. Refer to the [Features](#features) below for details of each command.
 
@@ -299,18 +312,18 @@ If the problem persists, report the bug to us!
 
 ## Command summary
 
- | Action                | Format, Examples                                                                                                                                                                                                                                             |
+| Action                | Format, Examples                                                                                                                                                                                                                                             |
 |-----------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
- | **Add buyer**         | `addbuyer [-n NAME] [-ph PHONE]] [-e EMAIL] [-a address] {-r PRICE RANGE} {-c CHARACTERISTICS}}` <br> e.g., `addbuyer -n Tim -ph 87321237 -e tim@gmail.com -a S648234`                                                                                       |
- | **Add property**      | `addprop [-n NAME] [-price PRICE] [-a ADDRESS] [-d DESCRIPTION] {-c CHARACTERISTICS} [-owner OWNER NAME] [-p PHONE]` <br> e.g.`addprop -n Peak Residences -a 333 Thompson Road -price 1000000 -d long long long property description -owner Bob -p 91234567` |
- | **Delete buyer**      | `deletebuyer INDEX` <br> e.g. `deletebuyer 5`                                                                                                                                                                                                                |
+| **Add buyer**         | `addbuyer [-n NAME] [-ph PHONE]] [-e EMAIL] [-a address] {-r PRICE RANGE} {-c CHARACTERISTICS}}` <br> e.g., `addbuyer -n Tim -ph 87321237 -e tim@gmail.com -a S648234`                                                                                       |
+| **Add property**      | `addprop [-n NAME] [-price PRICE] [-a ADDRESS] [-d DESCRIPTION] {-c CHARACTERISTICS} [-owner OWNER NAME] [-p PHONE]` <br> e.g.`addprop -n Peak Residences -a 333 Thompson Road -price 1000000 -d long long long property description -owner Bob -p 91234567` |
+| **Delete buyer**      | `deletebuyer INDEX` <br> e.g. `deletebuyer 5`                                                                                                                                                                                                                |
 | **Delete property**   | `deleteprop INDEX` <br> e.g. `deleteprop 5`                                                                                                                                                                                                                  | 
- | **Update property**   | `editprop INDEX {-n NAME} {-price PRICE} {-a ADDRESS} {-d DESCRIPTION} {-c CHARACTERISTICS} {-owner OWNERNAME} {-p PHONE}`<br> e.g., `editprop 3 -n Hill Residence -a Block 225 -p 750000`                                                                   |
- | **Update buyer**      | `editbuyer INDEX {-n NAME} {-p PHONE} {-e EMAIL} {-a ADDRESS} {-r PRICERANGE} {-c CHARACTERISTICS} {-priority PRIORITY<HIGH, NORMAL, LOW>}`<br> e.g.,`editbuyer 3 -n John Doe -e johndoe@yahoo.com -r 40000-50000 -priority HIGH`                            |
- | **Find entries**      | `find [-k KEYWORDS]` <br> e.g. `find -k John Alice Bob`                                                                                                                                                                                                      |
+| **Update property**   | `editprop INDEX {-n NAME} {-price PRICE} {-a ADDRESS} {-d DESCRIPTION} {-c CHARACTERISTICS} {-owner OWNERNAME} {-p PHONE}`<br> e.g., `editprop 3 -n Hill Residence -a Block 225 -p 750000`                                                                   |
+| **Update buyer**      | `editbuyer INDEX {-n NAME} {-p PHONE} {-e EMAIL} {-a ADDRESS} {-r PRICERANGE} {-c CHARACTERISTICS} {-priority PRIORITY<HIGH, NORMAL, LOW>}`<br> e.g.,`editbuyer 3 -n John Doe -e johndoe@yahoo.com -r 40000-50000 -priority HIGH`                            |
+| **Find entries**      | `find [-k KEYWORDS]` <br> e.g. `find -k John Alice Bob`                                                                                                                                                                                                      |
 | **Filter buyers**     | `filterbuyers {-p PRICE} {-c CHARACTERISTICS} {-priority PRIORITY<HIGH, NORMAL, LOW>}` <br> e.g. `filterbuyers -c bright; sunny`                                                                                                                             |
 | **Filter properties** | `filterprops {-r PRICE RANGE} {-c CHARACTERISTICS} {-seller}` <br> e.g. `filterprops -r 500000-1000000`                                                                                                                                                      |
- | **List users**        | `listbuyers`                                                                                                                                                                                                                                                 |
+| **List users**        | `listbuyers`                                                                                                                                                                                                                                                 |
 | **List Properties**   | `listprops`                                                                                                                                                                                                                                                  |
 | **Exit cobb**         | `exit`                                                                                                                                                                                                                                                       |
 | **Get help**          | `help`                                                                                                                                                                                                                                                       |
