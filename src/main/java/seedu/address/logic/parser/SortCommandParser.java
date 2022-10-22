@@ -10,6 +10,10 @@ import java.util.regex.Pattern;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.SortBuyerCommand;
 import seedu.address.logic.commands.SortCommand;
+import seedu.address.logic.commands.SortDelivererCommand;
+import seedu.address.logic.commands.SortOrderCommand;
+import seedu.address.logic.commands.SortPetCommand;
+import seedu.address.logic.commands.SortSupplierCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.logic.parser.util.SortCommandParserUtil;
 import seedu.address.model.order.Order;
@@ -60,24 +64,24 @@ public class SortCommandParser implements Parser<SortCommand> {
                 SortCommand.MESSAGE_SUPPORTED_LIST));
     }
 
-    private SortCommand parseToSortPetCommand(String attributes) {
+    private SortCommand parseToSortPetCommand(String attributes) throws ParseException {
         requireNonNull(attributes);
-        return null;
+        return new SortPetCommand(getPetComparator(attributes));
     }
 
-    private SortCommand parseToSortOrderCommand(String attributes) {
+    private SortCommand parseToSortOrderCommand(String attributes) throws ParseException {
         requireNonNull(attributes);
-        return null;
+        return new SortOrderCommand(getOrderComparator(attributes));
     }
 
-    private SortCommand parseToSortDelivererCommand(String attributes) {
+    private SortCommand parseToSortDelivererCommand(String attributes) throws ParseException {
         requireNonNull(attributes);
-        return null;
+        return new SortDelivererCommand(getDelivererComparator(attributes));
     }
 
-    private SortCommand parseToSortSupplierCommand(String attributes) {
+    private SortCommand parseToSortSupplierCommand(String attributes) throws ParseException {
         requireNonNull(attributes);
-        return null;
+        return new SortSupplierCommand(getSupplierComparator(attributes));
     }
 
     private SortCommand parseToSortBuyerCommand(String attributes) throws ParseException {
