@@ -9,6 +9,7 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.DeleteCommand;
 import seedu.address.logic.commands.DeleteIndexCommand;
+import seedu.address.logic.commands.DeleteUserCommand;
 
 /**
  * As we are only doing white-box testing, our test cases do not cover path variations
@@ -22,8 +23,13 @@ public class DeleteCommandParserTest {
     private DeleteCommandParser parser = new DeleteCommandParser();
 
     @Test
-    public void parse_validArgs_returnsDeleteCommand() {
+    public void parse_validIndex_returnsDeleteIndexCommand() {
         assertParseSuccess(parser, "1", new DeleteIndexCommand(INDEX_FIRST_PERSON));
+    }
+
+    @Test
+    public void parse_user_returnsDeleteUserCommand() {
+        assertParseSuccess(parser, "user", new DeleteUserCommand());
     }
 
     @Test
