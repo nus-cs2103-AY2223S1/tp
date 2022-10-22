@@ -30,18 +30,19 @@ public class GroupListPanel extends UiPart<Region> {
     }
 
     /**
-     * Custom {@code ListCell} that displays the graphics of a {@code Person} using a {@code PersonCard}.
+     * Custom {@code ListCell} that displays the graphics of a {@code Person} using
+     * a {@code PersonCard}.
      */
     class TeamListViewCell extends ListCell<Group> {
         @Override
-        protected void updateItem(Group person, boolean empty) {
-            super.updateItem(person, empty);
+        protected void updateItem(Group group, boolean empty) {
+            super.updateItem(group, empty);
 
-            if (empty || person == null) {
+            if (empty || group == null) {
                 setGraphic(null);
                 setText(null);
             } else {
-                setGraphic(new TeamCard(person, getIndex() + 1).getRoot());
+                setGraphic(new GroupCard(group, getIndex() + 1).getRoot());
             }
         }
     }
