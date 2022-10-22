@@ -121,9 +121,10 @@ Examples:
 * `mark id/A0123456G s/DONE`
 * `mark id/A0234567H s/YTS`
 
-### Searching keyword: `find` [pending implementation]
+### Searching keyword: `find` [pending enhancement]
 
 Finds projects whose names contain any of the given keyword(s).
+[Enhancement: we can find students by their tags, names, etc.]
 
 Format: `find KEYWORD/[KEYWORD2/KEYWORD3/…]`
 * Only project names could be searched

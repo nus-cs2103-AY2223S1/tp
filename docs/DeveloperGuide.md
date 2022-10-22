@@ -247,9 +247,9 @@ working on the FYP project, or `DONE` once the FYP project has been completed.
 Given below is an example usage scenario and how MarkCommand is utilised:
 
 Step 1: The Professor launches the application for the first time. `FypManager` will be initialised with the 
-current Fyp Manager state.
+current FypManager state.
 
-Step 2: The Professor tries adding a student to the Fyp Manager by executing the command 
+Step 2: The Professor tries adding a student to the FypManager by executing the command 
 `add id/A0123456G ...`. Note that here we have set the default project Status to be `YTS` since
 the project has just been added. 
 
@@ -275,7 +275,7 @@ The following sequence diagram shows how the MarkCommand operation works:
 
 **Implementation Choice: Why MarkCommand is implemented this way**
 * We have only chosen to consider 3 general statuses {`YTS`, `IP`, `DONE`} since these are very general 
-labels that the Professor can use to identify the current status of an FYP project. This makes it very user friendly
+labels that the Professor can use to identify the current status of an FYP project. This makes it very user-friendly
   since there are a fixed number of statuses that can be used.
   
 * We have also used the studentId to uniquely identify the project of the student the Professor
@@ -288,6 +288,48 @@ is trying to find. Here we have made an assumption that there the StudentId uniq
 * **Alternative 1:** Extend the Edit command to include the MarkCommand 
     * Pros: Harder to implement.
     * Cons: No clear distinction between tags and project status
+
+### \[Proposed\] `FindCommand` Feature
+#### Proposed Implementation
+The proposed FindCommand Feature finds the project via the keywords in the project name, specified by the user.
+There may be future enhancements to support finding projects by their tags, to allow the user to filter the student's by
+certain specialisations. (e.g. ***NeuralNetwork***, ***Blockchain***, etc,)
+
+The FindCommand feature takes in a keyword specified by the user, and returns a list of projects whose names
+contain the keyword inputted. Note that the keyword is case-insensitive, can contain space, 
+
+Given below is an example usage scenario and how FindCommand is utilised:
+
+Step 1. The user launches the application for the first time. The 'FypManager' will be initialised with its
+'FypManager' state.
+
+Step 2: The user finds a project by keying in `find tree` to find all projects which contain the keyword `tree`.
+FypManager returns a list of projects whose names contain the `find` keyword.
+
+![FindCommandState1](images/FindCommandState1.png)
+
+Step 3: Suppose that the user wants to find another project with keyword `blockchain`. The user keys in 
+`find blockchain` to find all projects which contain the keyword `blockchain`. FypManager returns an empty list,
+as there is no project whose project name contains `blockchain`
+
+
+student Jane Doe has now started on the project. The Professor wishes to update the
+project status for Jane to be `IP` instead of `YTS`, hence the Professor will execute the command
+`mark id/A0123456G s/IP` to update the status accordingly.
+
+tries adding a student to the FypManager by executing the command
+`add id/A0123456G ...`. Note that here we have set the default project Status to be `YTS` since
+the project has just been added.
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** If the student ID is incorrect or the 
+status is not one of the statuses {`YTS`, `IP`, `DONE`}, then the command will not be executed and an appropriate
+error message will be shown.
+
+</div>
+
+The following sequence diagram shows how the MarkCommand operation works:
+
+![FindCommandSequenceDiagram](images/FindCommandSequenceDiagram.png)
 
 --------------------------------------------------------------------------------------------------------------------
 
