@@ -9,6 +9,7 @@ import jarvis.logic.Logic;
 import jarvis.logic.commands.CommandResult;
 import jarvis.logic.commands.exceptions.CommandException;
 import jarvis.logic.parser.exceptions.ParseException;
+import jarvis.model.Lesson;
 import jarvis.model.Student;
 import jarvis.model.Task;
 import javafx.collections.ObservableList;
@@ -40,6 +41,7 @@ public class MainWindow extends UiPart<Stage> {
     // Independent Ui parts residing in this Ui container
     private StudentListPanel studentListPanel;
     private UiPart<Region> taskListPanel;
+    private UiPart<Region> lessonListPanel;
     private ExpandedStudentListPanel expStudentListPanel;
     private ExpandedTaskListPanel expTaskListPanel;
     private ResultDisplay resultDisplay;
@@ -56,6 +58,9 @@ public class MainWindow extends UiPart<Stage> {
 
     @FXML
     private StackPane taskListPanelPlaceholder;
+
+    @FXML
+    private StackPane lessonListPanelPlaceholder;
 
     @FXML
     private StackPane resultDisplayPlaceholder;
@@ -144,14 +149,17 @@ public class MainWindow extends UiPart<Stage> {
 
         ObservableList<Student> filteredStudentList = logic.getFilteredStudentList();
         ObservableList<Task> filteredTaskList = logic.getFilteredTaskList();
+        ObservableList<Lesson> filteredLessonList = logic.getFilteredLessonList();
 
         studentListPanel = new StudentListPanel(filteredStudentList);
         taskListPanel = new TaskListPanel(filteredTaskList);
+        lessonListPanel = new LessonListPanel(filteredLessonList);
         expStudentListPanel = new ExpandedStudentListPanel(filteredStudentList);
         expTaskListPanel = new ExpandedTaskListPanel(filteredTaskList);
 
         studentListPanelPlaceholder.getChildren().add(studentListPanel.getRoot());
         taskListPanelPlaceholder.getChildren().add(taskListPanel.getRoot());
+        lessonListPanelPlaceholder.getChildren().add(lessonListPanel.getRoot());
         expandedStudentListPanelPlaceholder.getChildren().add(expStudentListPanel.getRoot());
         expandedTaskListPanelPlaceholder.getChildren().add(expTaskListPanel.getRoot());
 
@@ -160,7 +168,9 @@ public class MainWindow extends UiPart<Stage> {
 
         String studentBookPath = Paths.get(".").resolve(logic.getStudentBookFilePath()).toString();
         String taskBookPath = Paths.get(".").resolve(logic.getTaskBookFilePath()).toString();
-        StatusBarFooter statusBarFooter = new StatusBarFooter(studentBookPath + " and " + taskBookPath);
+        String lessonBookPath = Paths.get(".").resolve(logic.getLessonBookFilePath()).toString();
+        StatusBarFooter statusBarFooter = new StatusBarFooter(studentBookPath + " and " + taskBookPath
+                + " and " + lessonBookPath );
         statusbarPlaceholder.getChildren().add(statusBarFooter.getRoot());
 
         CommandBox commandBox = new CommandBox(this::executeCommand);
