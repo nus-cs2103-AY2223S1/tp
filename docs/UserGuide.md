@@ -68,7 +68,7 @@ Format: `help`
 
 ### Adding a scholarship application: `add`
 
-Adds a scholarship application to the TrackAScholar.
+Adds a scholarship application to the TrackAScholar
 
 Format: `add n/NAME p/PHONE_NUMBER e/EMAIL [t/TAG]…​`
 
@@ -110,7 +110,7 @@ Examples:
 
 ### Locating applicants by name : `find`
 
-Finds scholarship applicants whose names contain any of the given keywords.
+Finds scholarship applicants whose names contain any of the given keywords
 
 Format: `find KEYWORD [MORE_KEYWORDS]`
 
@@ -127,7 +127,7 @@ Examples:
 
 ### Filtering scholarship applicants by application status: `filter`
 
-Filters scholarship applications based on the given keywords.
+Filters scholarship applications based on the given keywords
 
 Format: `filter [as/APPLICATIONSTATUS]`
 
@@ -136,39 +136,39 @@ Format: `filter [as/APPLICATIONSTATUS]`
 * Only 3 keywords are accepted i.e. `pending`, `accepted`, `rejected`.
 
 Examples:
-* `filter pending` displays all applicants with the application status `pending`
+* `filter pending` displays all applicants with the application status `pending`.
 
 
 ### Deleting a scholarship application : `delete`
 
-Deletes the specified scholarship application from TrackAScholar.
+Deletes the specified scholarship application from TrackAScholar
 
 Format: `delete INDEX`
 
 * Deletes the scholarship application at the specified `INDEX`.
 * The index refers to the index number shown in the displayed applicant list.
-* The index **must be a positive integer** 1, 2, 3, …​
+* The index **must be a positive integer** 1, 2, 3, …​.
 
 Examples:
 * `list` followed by `delete 2` deletes the 2nd applicant in TrackAScholar.
 
 ### Clearing all entries : `clear`
 
-Clears all entries from data stored in TrackAScholar.
+Clears all entries from data stored in TrackAScholar
 
 Format: `clear`
 
 ### Exiting the program : `exit`
 
-Exits TrackAScholar.
+Exits TrackAScholar
 
 Format: `exit`
 
 ### Removing applicants by status : `remove`
 
-All applicants with the corresponding statuses stored in TrackAScholar are removed.
+All applicants with the corresponding statuses stored in TrackAScholar are removed
 
-Format: `remove [ACCEPTED/REJECTED]`
+Format: `remove ACCEPTED/REJECTED`
 
 * The user selects the applicant(s) with application status of either `ACCEPTED` or `REJECTED` to be removed from TrackAScholar. 
 
@@ -176,11 +176,11 @@ Examples:
 *  `remove accepted` removes all entries with ACCEPTED as an application status from TrackAScholar.
 *  `remove rejected` removes all entries with REJECTED as an application status from TrackAScholar.
 
-### Removing applicants by status : `sort`
+### Sorting applicants by name, scholarship or status : `sort`
 
-All applicants in TrackAScholar will be sorted in the specified manner .
+All applicants in TrackAScholar will be sorted in the specified manner 
 
-Format: `sort [NAME/SCHOLARSHIP]`
+Format: `sort NAME/SCHOLARSHIP`
 
 * The user can choose to sort the list according the applicant's `NAME` or types of `SCHOLARSHIP` they are applying for.
 
@@ -211,17 +211,17 @@ _Details coming soon ..._
 
 ## Command summary
 
-| Action     | Format, Examples                                                |
-|------------|-----------------------------------------------------------------|
-| **Add**    | `add n/NAME e/EMAIL [p/PHONE_NUMBER] [s/SCHOLARSHIP] [t/TAG] …` |
-| **Clear**  | `clear`                                                         |
-| **Delete** | `delete INDEX`                                                  |
-| **Edit**   | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [t/TAG]…​`      |
-| **Exit**   | `exit`                                                          |
-| **Find**   | `find KEYWORD [MORE_KEYWORDS]`                                  |
-| **filter** | `filter [as/APPLICATIONSTATUS]`                                 |
-| **Help**   | `help`                                                          |
-| **List**   | `list`                                                          |
-| **Remove** | `remove [ACCEPTED/REJECTED]`                                    |
-| **Sort**   | `sort [NAME/SCHOLARSHIP]`                                       |
+| Action     | Format, Examples                                            |
+|------------|-------------------------------------------------------------|
+| **Add**    | `add n/NAME e/EMAIL p/PHONE_NUMBER s/SCHOLARSHIP [t/TAG] …` |
+| **Clear**  | `clear`                                                     |
+| **Delete** | `delete INDEX`                                              |
+| **Edit**   | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [t/TAG]…​`  |
+| **Exit**   | `exit`                                                      |
+| **Find**   | `find KEYWORD [MORE_KEYWORDS]`                              |
+| **filter** | `filter as/APPLICATIONSTATUS`                               |
+| **Help**   | `help`                                                      |
+| **List**   | `list`                                                      |
+| **Remove** | `remove ACCEPTED/REJECTED`                                  |
+| **Sort**   | `sort NAME/SCHOLARSHIP`                                     |
 
