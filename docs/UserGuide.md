@@ -103,10 +103,10 @@ Default sorting orders:
 Format: `sort [n/] [p/] [e/] [a/] [t/TAG]…​`
 * To sort in reverse order, use these modified parameters: `[n/!] [p/!] [e/!] [a/!] [t/!TAG]`.
 * To sort with multiple parameters, arrange the parameters in order of decreasing priority.
-  * The list will be sorted by the first parameter
-  * If ties occur (e.g. both contacts have the exact same name), the second parameter will be used to sort the tied contacts
-  * If the tie still occurs, the third parameter will be used
-  * Repeat until the tie is resolved or there are no more parameters
+  * The list will be sorted by the first parameter.
+  * If ties occur (e.g. both contacts have the exact same name), the second parameter will be used to sort the tied contacts.
+  * If the tie still occurs, the third parameter will be used.
+  * Repeat until the tie is resolved or there are no more parameters.
 
 Example:
 * `sort n/` sorts by names. (E.g. `David` appears before `Mike`)
@@ -253,11 +253,71 @@ Example:
 * `customise order a/ e/ p/` The application will show address first, followed by email, phone number, then tags.
 * `customise order a/` The application will show address first. The rest of the attributes will follow the default order. Therefore, address will be followed by tags, phone number and then email.
 
-### Clearing all entries : `clear`
+### Clearing all contacts : `clear`
 
 Clears all contacts from your SoConnect.
 
 Format: `clear`
+
+### Adding a todo: `todo add`
+
+Adds a todo to your SoConnect.
+
+Format: `todo add d/DESCRIPTION priority/PRIORITY [t/TAG]…​`
+* PRIORITY can only be `low`, `medium`, `high`.
+* The todo list will always be sorted in decreasing priority.
+
+Examples:
+* `todo add d/Watched recorded videos for CS2100 priority/low t/CS2100`
+* `todo add d/Prepare slides for OP2 priority/high t/CS2101 t/CS2103T`
+
+### Editing a todo : `todo edit`
+
+Edits an existing todo in your SoConnect.
+
+Format: `todo edit INDEX [d/DESCRIPTION] [priority/PRIORITY] [t/TAG]…​`
+* Edits the todo at the specified `INDEX`. The index refers to the index number shown in the displayed todo list. The index **must be a positive integer** 1, 2, 3, …​
+* At least one of the optional fields must be provided.
+* Parameters given will overwrite the existing values completely.
+  * For example, giving 1 tag in the edit command will erase all existing tags except the one given in the edit command.
+
+Examples:
+*  `todo edit 1 d/Read notes for ST2334` Edits the description of the 1st todo to be `Read notes for ST2334`.
+*  `todo edit 1 priority/medium t/ST2334` Edits the priority of the 2nd contact to be `medium` and changes its tags to just `ST2334`.
+
+### Deleting a todo : `todo delete`
+
+Deletes the specified todo from your SoConnect.
+
+Format: `delete INDEX`
+
+* Deletes the todo at the specified `INDEX`.
+* The index refers to the index number shown in the displayed todo list.
+* The index **must be a positive integer** 1, 2, 3, …​
+
+Examples:
+* `todo show all` followed by `todo delete 2` deletes the 2nd todo shown in your SoConnect.
+
+### Clearing all todos : `todo clear`
+
+Clears all todos from your SoConnect.
+
+Format: `todo clear`
+
+### Filter todos shown : `todo show`
+
+Shows a filtered list of todos in your SoConnect.
+
+Format: `todo show CONDITION`
+
+Conditions: 
+* `all`: Shows all todos.
+* `priority/PRIORITY`: Shows all todos of the specified priority.
+* `t/TAG`: Shows all todos with the specified tag.
+
+Examples:
+* `todo show priority/low` shows all todos that are low priority.
+* `todo show t/2103T` shows all todos tagged by `CS2103T`.
 
 ### Exiting the program : `exit`
 
@@ -288,23 +348,28 @@ _Details coming soon ..._
 ## FAQ
 
 **Q**: How do I transfer my data to another Computer?<br>
-**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous AddressBook home folder.
+**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous SoConnect home folder.
 
 --------------------------------------------------------------------------------------------------------------------
 
 ## Command summary
 
-| Action         | Format, Examples                                                                                                                                               |
-|----------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Add**        | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665`                         |
-| **Clear**      | `clear`                                                                                                                                                        |
-| **Customise**  | `customise hide [t/] [p/] [e/] [a/]` <br> `customise show [t/] [p/] [e/] [a/]` <br> `customise order [t/] [p/] [e/] [a/]` <br> e.g, `customise hide a/ e/ p/` `customise show a/` `customise order a/ p/` |
-| **Delete**     | `delete INDEX`<br> e.g., `delete 3`                                                                                                                            |
-| **Edit**       | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS]`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`                                              |
-| **Search**     | `search [CONDITION] [n/NAME] [p/PHONE_NUMBER]…​`<br> e.g., `seach or n/John Doe t/cs2103t`                                                                      |
-| **List**       | `list`                                                                                                                                                         |
-| **Sort**       | `sort [n/] [p/] [e/] [a/] [t/TAG]…​` <br> e.g., `sort t/!friend n/`                                                                                            |
-| **Help**       | `help`                                                                                                                                                         |
-| **Create Tag** | `tag create t/TAG` <br> e.g., `tag create t/friend`                                                                                                            |
-| **Edit Tag**   | `tag edit t/TAG1 t/TAG2`  <br> e.g., `tag edit t/friend t/bestFriend`                                                                                          |
-| **Add Tag**    | `tag add INDEX t/TAG` <br> e.g., `tag add 1 t/friend`                                                                                                          |
+| Action          | Format, Examples                                                                                                                                                                                          |
+|-----------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Add**         | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665`                                                                    |
+| **Clear**       | `clear`                                                                                                                                                                                                   |
+| **Customise**   | `customise hide [t/] [p/] [e/] [a/]` <br> `customise show [t/] [p/] [e/] [a/]` <br> `customise order [t/] [p/] [e/] [a/]` <br> e.g, `customise hide a/ e/ p/` `customise show a/` `customise order a/ p/` |
+| **Delete**      | `delete INDEX`<br> e.g., `delete 3`                                                                                                                                                                       |
+| **Edit**        | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS]`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`                                                                                         |
+| **Search**      | `search [CONDITION] [n/NAME] [p/PHONE_NUMBER]…​`<br> e.g., `seach or n/John Doe t/cs2103t`                                                                                                                |
+| **List**        | `list`                                                                                                                                                                                                    |
+| **Sort**        | `sort [n/] [p/] [e/] [a/] [t/TAG]…​` <br> e.g., `sort t/!friend n/`                                                                                                                                       |
+| **Help**        | `help`                                                                                                                                                                                                    |
+| **Create Tag**  | `tag create t/TAG` <br> e.g., `tag create t/friend`                                                                                                                                                       |
+| **Edit Tag**    | `tag edit t/TAG1 t/TAG2`  <br> e.g., `tag edit t/friend t/bestFriend`                                                                                                                                     |
+| **Add Tag**     | `tag add INDEX t/TAG` <br> e.g., `tag add 1 t/friend`                                                                                                                                                     |
+| **Add Todo**    | `todo add d/DESCRIPTION priority/PRIORITY [t/TAG]…​` <br> e.g., `todo add d/Revise priority/high`                                                                                                         |
+| **Edit Todo**   | `todo edit INDEX [d/DESCRIPTION] [priority/PRIORITY] [t/TAG]…​` <br> e.g., `todo edit t/CS2101`                                                                                                           |
+| **Delete Todo** | `todo delete INDEX` <br> e.g., `todo delete 3`                                                                                                                                                            |
+| **Clear Todo**  | `todo clear`                                                                                                                                                                                              |
+| **Show Todo**   | `todo show CONDITION` <br> e.g., `todo show all`, `todo show priority/high`, `todo show t/CS2100`                                                                                                         |
