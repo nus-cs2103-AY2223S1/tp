@@ -133,6 +133,7 @@ Placeholders are words in UPPER_CASE to show you what parameters you can supply 
 ## Troubleshooting
 
 <!-- TODO: Consider removing this section -->
+<!-- Added one issue that is referred to by Quick Start -->
 {% include_relative _ug/Troubleshooting.md %}
 
 ## FAQ
