@@ -99,7 +99,10 @@ Flags are delimiters that enable FoodRem to distinguish different parameters wit
 | qty/  | QUANTITY              |
 | unit/ | UNIT                  |
 | buy/  | BOUGHT_DATE           |
-| exp/  | EXPIRY DATE           |
+| exp/  | EXPIRY_DATE           |
+| p/    | PRICE                 |
+| r/    | REMARKS               |
+
 
 ### Placeholders
 
