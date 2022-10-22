@@ -27,6 +27,8 @@ import seedu.address.model.tag.Tag;
 public class ParserUtil {
 
     public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero unsigned integer.";
+    public static final String MESSAGE_INVALID_DATE_KEYWORD =
+            "The date keyword should be one of tomorrow, week, or month";
 
     /**
      * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading and trailing whitespaces will be
@@ -139,6 +141,22 @@ public class ParserUtil {
             return new MeetingDate(parsedDate);
         } catch (DateTimeParseException e) {
             throw new ParseException(MeetingDate.MESSAGE_CONSTRAINTS);
+        }
+    }
+
+    public static DateKeyword parseDateKeyword(String dateKeyword) throws ParseException {
+        requireNonNull(dateKeyword);
+        LocalDate today = LocalDate.now();
+
+        switch(dateKeyword) {
+        case "tomorrow":
+            return DateKeyword.TOMORROW;
+        case "week":
+            return DateKeyword.THIS_WEEK;
+        case "month":
+            return DateKeyword.THIS_MONTH;
+        default:
+            throw new ParseException(MESSAGE_INVALID_DATE_KEYWORD);
         }
     }
 
