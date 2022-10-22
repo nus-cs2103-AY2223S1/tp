@@ -241,41 +241,48 @@ The following sequence diagram shows how the find command works.
     * Pros: Easier to implement
     * Cons: Command is longer and more cumbersome to type
 
-### \[Proposed\] Undo/redo feature
+### Undo/redo feature
 
 #### Proposed Implementation
 
-The proposed undo/redo mechanism is facilitated by `VersionedAddressBook`. It extends `AddressBook` with an undo/redo history, stored internally as an `addressBookStateList` and `currentStatePointer`. Additionally, it implements the following operations:
+The proposed undo/redo mechanism is facilitated by `VersionedInternshipBook`. It extends `InternshipBook` with an undo/redo history, stored internally as an `internshipBookStateList` and `currentStatePointer`. Additionally, it implements the following operations:
 
-* `VersionedAddressBook#commit()` — Saves the current address book state in its history.
-* `VersionedAddressBook#undo()` — Restores the previous address book state from its history.
-* `VersionedAddressBook#redo()` — Restores a previously undone address book state from its history.
+* `VersionedInternshipBook#commitChange()` — Saves the current internship book state in its history.
+* `VersionedInternshipBook#undo()` — Restores the previous internship book state from its history, if exists.
+* `VersionedInternshipBook#redo()` — Restores a previously undone internship book state from its history, if exists.
 
-These operations are exposed in the `Model` interface as `Model#commitAddressBook()`, `Model#undoAddressBook()` and `Model#redoAddressBook()` respectively.
+These operations are exposed in the `Model` interface as `Model#commitInternshipBook()`, `Model#undoInternshipBook()` and `Model#redoInternshipBook()` respectively.
+
+Besides `VersionedInternshipBook`, undo/redo mechanism is also helped by `CommandHistory`. It exists inside `LogicManager` and implements the following operation,
+
+* `CommandHistory#getPreviousModifyCommand()` — Get the command to be undone, if exists.
+* `CommandHistory#getNextModifyCommand()`Get the command to be redone, if exists.
+
+In essence, `CommandHistory` will enable the undo and redo command to show which command was undone/redone, which gives a better user experience.
 
 Given below is an example usage scenario and how the undo/redo mechanism behaves at each step.
 
-Step 1. The user launches the application for the first time. The `VersionedAddressBook` will be initialized with the initial address book state, and the `currentStatePointer` pointing to that single address book state.
+Step 1. The user launches the application for the first time. The `VersionedInternshipBook` will be initialized with the initial internship book state, and the `currentStatePointer` pointing to that single internship book state.
 
 ![UndoRedoState0](images/UndoRedoState0.png)
 
-Step 2. The user executes `delete 5` command to delete the 5th person in the address book. The `delete` command calls `Model#commitAddressBook()`, causing the modified state of the address book after the `delete 5` command executes to be saved in the `addressBookStateList`, and the `currentStatePointer` is shifted to the newly inserted address book state.
+Step 2. The user executes `delete 1` command to delete the 1st internship in the internship book. The `delete` command calls `Model#commitInternshipBook()`, causing the modified state of the internship book after the `delete 1` command executes to be saved in the `internshipBookStateList`, and the `currentStatePointer` is shifted to the newly inserted internship book state.
 
 ![UndoRedoState1](images/UndoRedoState1.png)
 
-Step 3. The user executes `add n/David …​` to add a new person. The `add` command also calls `Model#commitAddressBook()`, causing another modified address book state to be saved into the `addressBookStateList`.
+Step 3. The user executes `add n/Optiver p/Quant` to add a new internship. The `add` command also calls `Model#commitInternshipBook()`, causing another modified internship book state to be saved into the `internshipBookStateList`.
 
 ![UndoRedoState2](images/UndoRedoState2.png)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If a command fails its execution, it will not call `Model#commitAddressBook()`, so the address book state will not be saved into the `addressBookStateList`.
+<div markdown="span" class="alert alert-info">:information_source: **Note:** If a command fails its execution, it will not call `Model#commitInternshipBook()`, so the internship book state will not be saved into the `internshipBookStateList`.
 
 </div>
 
-Step 4. The user now decides that adding the person was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `Model#undoAddressBook()`, which will shift the `currentStatePointer` once to the left, pointing it to the previous address book state, and restores the address book to that state.
+Step 4. The user now decides that adding the internship was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `Model#undoInternshipBook()`, which will shift the `currentStatePointer` once to the left, pointing it to the previous internship book state, and restores the internship book to that state.
 
 ![UndoRedoState3](images/UndoRedoState3.png)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index 0, pointing to the initial AddressBook state, then there are no previous AddressBook states to restore. The `undo` command uses `Model#canUndoAddressBook()` to check if this is the case. If so, it will return an error to the user rather
+<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index 0, pointing to the initial InternshipBook state, then there are no previous InternshipBook states to restore. The `undo` command uses `Model#canUndoInternshipBook()` to check if this is the case. If so, it will return an error to the user rather
 than attempting to perform the undo.
 
 </div>
@@ -288,17 +295,21 @@ The following sequence diagram shows how the undo operation works:
 
 </div>
 
-The `redo` command does the opposite — it calls `Model#redoAddressBook()`, which shifts the `currentStatePointer` once to the right, pointing to the previously undone state, and restores the address book to that state.
+The `redo` command does the opposite — it calls `Model#redoInternshipBook()`, which shifts the `currentStatePointer` once to the right, pointing to the previously undone state, and restores the internship book to that state.
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index `addressBookStateList.size() - 1`, pointing to the latest address book state, then there are no undone AddressBook states to restore. The `redo` command uses `Model#canRedoAddressBook()` to check if this is the case. If so, it will return an error to the user rather than attempting to perform the redo.
+The following sequence diagram shows how the redo command works:
+
+![RedoSequenceDiagram](images/RedoSequenceDiagram.png)
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index `internshipBookStateList.size() - 1`, pointing to the latest internship book state, then there are no undone InternshipBook states to restore. The `redo` command uses `Model#canRedoInternshipBook()` to check if this is the case. If so, it will return an error to the user rather than attempting to perform the redo.
 
 </div>
 
-Step 5. The user then decides to execute the command `list`. Commands that do not modify the address book, such as `list`, will usually not call `Model#commitAddressBook()`, `Model#undoAddressBook()` or `Model#redoAddressBook()`. Thus, the `addressBookStateList` remains unchanged.
+Step 5. The user then decides to execute the command `list`. Commands that do not modify the internship book, such as `list`, will usually not call `Model#commitInternshipBook()`, `Model#undoInternshipBook()` or `Model#redoInternshipBook()`. Thus, the `internshipBookStateList` remains unchanged.
 
 ![UndoRedoState4](images/UndoRedoState4.png)
 
-Step 6. The user executes `clear`, which calls `Model#commitAddressBook()`. Since the `currentStatePointer` is not pointing at the end of the `addressBookStateList`, all address book states after the `currentStatePointer` will be purged. Reason: It no longer makes sense to redo the `add n/David …​` command. This is the behavior that most modern desktop applications follow.
+Step 6. The user executes `clear`, which calls `Model#commitInternshipBook()`. Since the `currentStatePointer` is not pointing at the end of the `internshipBookStateList`, all internship book states after the `currentStatePointer` will be purged. Reason: It no longer makes sense to redo the `add n/Optiver p/Quant` command. This is the behavior that most modern desktop applications follow.
 
 ![UndoRedoState5](images/UndoRedoState5.png)
 
@@ -310,17 +321,15 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 **Aspect: How undo & redo executes:**
 
-* **Alternative 1 (current choice):** Saves the entire address book.
+* **Alternative 1 (current choice):** Saves the entire internship book.
   * Pros: Easy to implement.
   * Cons: May have performance issues in terms of memory usage.
 
 * **Alternative 2:** Individual command knows how to undo/redo by
   itself.
   * Pros: Will use less memory (e.g. for `delete`, just save the person being deleted).
-  * Cons: We must ensure that the implementation of each individual command are correct.
-
-_{more aspects and alternatives to be added}_
-
+  * Cons: Quite hard to implement as we must ensure that the implementation of each individual command are correct
+  
 ### \[Proposed\] Data archiving
 
 _{Explain here how the data archiving feature will be implemented}_
@@ -527,10 +536,40 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1.  User request to view help message
-2.  System displays command summary and link to user guide
+1. User request to view help message
+2. System displays command summary and link to user guide
 
     Use case ends.
+
+**Use case: Undo command**
+
+**MSS**
+1. User requests to undo
+2. System updates the internship book to the previous state
+3. System displays the success message
+
+   Use case ends
+
+**Extensions**
+* 1a. No command to be undone 
+    * 1a1. PleaseHireUs shows an error message.
+
+  Use case ends.
+
+**Use case: Redo command**
+
+**MSS**
+1. User requests to redo
+2. System updates the internship book to the next state
+3. System displays the success message
+
+   Use case ends
+
+**Extensions**
+* 1a. No command to be redone
+    * 1a1. PleaseHireUs shows an error message.
+
+  Use case ends.
 
 *{More to be added}*
 
@@ -687,6 +726,39 @@ testers are expected to do more *exploratory* testing.
 
     3. Test case: `view 0`<br>
        Expected: No internship is viewed. Error details shown in the status message.
+
+### Undo command
+
+1. Undo a command when there is a command that modified the internship book previously.
+
+    1. Prerequisites: Executes any command that modified the internship book. In this instruction, `delete 1` is used.
+
+    2. Test case: `undo`<br>
+       Expected: Restore the internship that was previously deleted. Details of the command that is undone, in this case `delete 1`, is shown in the status message.
+
+2. Undo a command when there is no command that modified the internship book previously.
+
+    1. Prerequisites: Ensure that one didn't execute any command that modified the internship book (e.g., `add`, `clear`, `delete`, `edit`) previously.
+   
+    2. Test case: `undo`<br>
+       Expected: No command is undone. Error details shown in the status message.
+
+### Redo command
+
+1. Redo a command when there is a command to redo.
+
+    1. Prerequisites: Executes any command that modified the internship book, in this instruction is `delete 1`, followed by `undo` command.
+   
+    2. Test case: `redo`<br>
+       Expected: Delete the first internship again. Details of the command that is redone, in this case `delete 1`, is shown in the status message.
+
+2. Redo a command when there is no command to redo.
+
+    1. Prerequisites: Ensure that one didn't execute any `undo` command previously.
+
+    2. Test case: `redo`<br>
+       Expected: No command is redone. Error details shown in the status message.
+
 
 ### Saving data
 
