@@ -12,6 +12,7 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.ImageView?>
 
+<?import javafx.scene.layout.StackPane?>
 <fx:root type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/11" resizable="false"
          xmlns:fx="http://javafx.com/fxml/1" width="720" height="580"
          onCloseRequest="#handleCloseIterationWindow">
@@ -69,9 +70,10 @@
                         <HBox spacing="56">
                             <Button text="+   Choose Image" styleClass="addButton"
                                     onAction="#chooseFile" minHeight="189"/>
-                            <HBox fx:id="dragDropTarget" styleClass="imagePreview">
+                            <StackPane fx:id="dragDropTarget" styleClass="imagePreview">
+                                <Label text="Or drag and drop an image here" styleClass="uploadImagePrompt"/>
                                 <ImageView fitWidth="350" fitHeight="189" fx:id="imagePreview"/>
-                            </HBox>
+                            </StackPane>
                             <VBox.margin>
                                 <Insets top="24"/>
                             </VBox.margin>

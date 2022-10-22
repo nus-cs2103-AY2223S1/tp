@@ -14,6 +14,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.Dragboard;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.StackPane;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import seedu.address.commons.core.LogsCenter;
@@ -45,7 +46,7 @@ public abstract class IterationWindow extends UiPart<Stage> {
     @FXML
     private TextField feedback;
     @FXML
-    private HBox dragDropTarget;
+    private StackPane dragDropTarget;
     @FXML
     private ImageView imagePreview;
     @FXML
@@ -140,6 +141,7 @@ public abstract class IterationWindow extends UiPart<Stage> {
                 parseImagePath(file.getAbsolutePath());
                 imagePath = file.getAbsolutePath();
                 imagePreview.setImage(new Image(file.toURI().toString()));
+                errorDisplay.clearError();
                 return;
             } catch (ParseException e) {
                 // not a valid image
@@ -166,6 +168,7 @@ public abstract class IterationWindow extends UiPart<Stage> {
             imagePath = selectedFile.getAbsolutePath();
             Image imageSelected = new Image(selectedFile.toURI().toString());
             imagePreview.setImage(imageSelected);
+            errorDisplay.clearError();
         }
     }
 
