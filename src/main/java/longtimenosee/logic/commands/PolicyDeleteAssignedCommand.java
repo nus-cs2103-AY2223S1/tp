@@ -1,11 +1,9 @@
 package longtimenosee.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static longtimenosee.logic.parser.CliSyntax.PREFIX_END;
-import static longtimenosee.logic.parser.CliSyntax.PREFIX_PREMIUM;
-import static longtimenosee.logic.parser.CliSyntax.PREFIX_START;
 
 import java.util.List;
+import java.util.Set;
 
 import longtimenosee.commons.core.Messages;
 import longtimenosee.commons.core.index.Index;
@@ -13,75 +11,60 @@ import longtimenosee.logic.commands.exceptions.CommandException;
 import longtimenosee.model.Model;
 import longtimenosee.model.person.Person;
 import longtimenosee.model.policy.AssignedPolicy;
-import longtimenosee.model.policy.Policy;
-import longtimenosee.model.policy.PolicyDate;
-import longtimenosee.model.policy.Premium;
 
 
 /**
  * Policy assign command, used to assign a policy to a client.
  */
-public class PolicyAssignCommand extends Command {
+public class PolicyDeleteAssignedCommand extends Command {
 
-    public static final String COMMAND_WORD = "assign";
+    public static final String COMMAND_WORD = "deleteAssigned";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": assigns a policy to a client. "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": deletes assigned policy from a person. "
             + "Parameters: "
+            + "(Index of person) "
             + "(Index of client) "
-            + "(Index of policy) "
-            + PREFIX_PREMIUM + "200.00 "
-            + PREFIX_START + "2020-12-10 "
-            + PREFIX_END + "2021-12-15";
+            + "\nExample: " + COMMAND_WORD + " 1 1";
 
-    public static final String MESSAGE_ASSIGN_POLICY_SUCCESS = "Assigned policy %1$s to Client: %2$s";
-
-    public static final String MESSAGE_ASSIGN_PERSON_DUPLICATE = "Policy has already been assigned to Client: %2$s";
+    public static final String MESSAGE_ASSIGN_POLICY_SUCCESS = "Deleted assigned policy %1$s from Client: %2$s";
+    public static final String MESSAGE_ASSIGN_POLICY_FAIL = "Unable to delete assigned policy %1$s from Client: %2$s";
 
     private final Index targetPersonIndex;
     private final Index targetPolicyIndex;
-    private final Premium premium;
-    private final PolicyDate startDate;
-    private final PolicyDate endDate;
 
     /**
      * Constructor for PolicyAssignCommand.
      * @param targetPersonIndex
      * @param targetPolicyIndex
-     * @param premium
-     * @param startDate
-     * @param endDate
      */
-    public PolicyAssignCommand(Index targetPersonIndex, Index targetPolicyIndex, Premium premium,
-                               PolicyDate startDate, PolicyDate endDate) {
+    public PolicyDeleteAssignedCommand(Index targetPersonIndex, Index targetPolicyIndex) {
         this.targetPersonIndex = targetPersonIndex;
         this.targetPolicyIndex = targetPolicyIndex;
-        this.premium = premium;
-        this.startDate = startDate;
-        this.endDate = endDate;
     }
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
         List<Person> lastShownPersonList = model.getFilteredPersonList();
-        List<Policy> lastShownPolicyList = model.getFilteredPolicyList();
 
         if (targetPersonIndex.getZeroBased() >= lastShownPersonList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
         }
 
-        if (targetPolicyIndex.getZeroBased() >= lastShownPolicyList.size()) {
+        Person personToDeleteFrom = lastShownPersonList.get(targetPersonIndex.getZeroBased());
+        Set<AssignedPolicy> assignedPolicySet = personToDeleteFrom.getAssignedPolicies();
+
+        if (targetPolicyIndex.getZeroBased() >= assignedPolicySet.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_POLICY_DISPLAYED_INDEX);
         }
 
-        Person personToAddTo = lastShownPersonList.get(targetPersonIndex.getZeroBased()); //gets the person to be added
-        Policy policyToAdd = lastShownPolicyList.get(targetPolicyIndex.getZeroBased()); //gets the policy to be added
-        boolean success = personToAddTo.addPolicy(new AssignedPolicy(
-                policyToAdd, premium, startDate, endDate)); //add the policy
-        //model.deletePerson(personToPin); optional because we don't alter the list
+        AssignedPolicy[] AssignedPolicyArray = new AssignedPolicy[assignedPolicySet.size()];
+        assignedPolicySet.toArray(AssignedPolicyArray);
+        AssignedPolicy assignedPolicy = AssignedPolicyArray[targetPolicyIndex.getZeroBased()];
+        boolean success = personToDeleteFrom.removePolicy(assignedPolicy);
         return new CommandResult(String.format(success
-                ? MESSAGE_ASSIGN_POLICY_SUCCESS : MESSAGE_ASSIGN_PERSON_DUPLICATE, policyToAdd, personToAddTo),
-                false, true, false, false, false, false);
+                ? MESSAGE_ASSIGN_POLICY_SUCCESS : MESSAGE_ASSIGN_POLICY_FAIL, assignedPolicy, personToDeleteFrom),
+                false, false, false, true, false, false);
     }
 
 }

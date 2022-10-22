@@ -23,7 +23,9 @@ import longtimenosee.logic.commands.PersonCommand;
 import longtimenosee.logic.commands.PinCommand;
 import longtimenosee.logic.commands.PolicyAddCommand;
 import longtimenosee.logic.commands.PolicyAssignCommand;
+import longtimenosee.logic.commands.PolicyAssignedListCommand;
 import longtimenosee.logic.commands.PolicyCommand;
+import longtimenosee.logic.commands.PolicyDeleteAssignedCommand;
 import longtimenosee.logic.commands.PolicyDeleteCommand;
 import longtimenosee.logic.commands.PolicyListCommand;
 import longtimenosee.logic.commands.SortCommand;
@@ -116,13 +118,21 @@ public class AddressBookParser {
         case PolicyAssignCommand.COMMAND_WORD:
             return new PolicyAssignCommandParser().parse(arguments);
 
+        case PolicyAssignedListCommand.COMMAND_WORD:
+            return new PolicyAssignedListCommandParser().parse(arguments);
+
+        case PolicyDeleteAssignedCommand.COMMAND_WORD:
+            return new PolicyAssignedDeleteCommandParser().parse(arguments);
+
         case AddEventCommand.COMMAND_WORD:
             return new AddEventCommandParser().parse(arguments);
 
         case DeleteEventCommand.COMMAND_WORD:
             return new DeleteEventCommandParser().parse(arguments);
+
         case ListEventsCommand.COMMAND_WORD:
             return new ListEventsCommand();
+
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
         }

@@ -23,7 +23,6 @@ public class AddressBook implements ReadOnlyAddressBook {
 
     private final UniquePersonList persons;
     private final UniquePolicyList policies;
-
     private final UniqueEventList events;
 
     /*

@@ -10,7 +10,7 @@ import longtimenosee.model.Model;
  */
 public class PolicyListCommand extends Command {
 
-    public static final String COMMAND_WORD = "policyList";
+    public static final String COMMAND_WORD = "listPolicy";
 
     public static final String MESSAGE_SUCCESS = "Listed all policies";
 
