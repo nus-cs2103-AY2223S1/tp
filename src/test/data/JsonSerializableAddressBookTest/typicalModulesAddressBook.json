@@ -17,6 +17,6 @@
     "moduleCode": "GE3238",
     "moduleTitle": "GIS Design and Practices",
     "tasks" : [ ],
-    "linked" : ["qgis.org", "www.arcgis.com"]
+    "linked" : ["2103T;https://nus-cs2103-ay2223s1.github.io/website/", "nusmods;https://nusmods.com/timetable/sem-1"]
   }]
 }

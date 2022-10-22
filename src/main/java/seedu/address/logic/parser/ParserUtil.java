@@ -1,16 +1,19 @@
 package seedu.address.logic.parser;
 
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import static java.util.Objects.requireNonNull;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 import java.util.stream.Stream;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.link.Link;
+import seedu.address.model.module.link.Link;
 import seedu.address.model.module.ModuleCode;
 import seedu.address.model.module.ModuleTitle;
 import seedu.address.model.module.task.Task;
@@ -110,30 +113,85 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String link} into a {@code Link}.
-     * Leading and trailing whitespaces will be trimmed.
-     *
-     * @throws ParseException if the given {@code link} is invalid.
+     * Parses {@code Collection<String> links} into a {@code Set<Link>}.
      */
-    public static Link parseLink(String link) throws ParseException {
-        requireNonNull(link);
-        String trimmedLink = link.trim();
-        if (!Link.isValidLinkName(trimmedLink)) {
-            throw new ParseException(Link.MESSAGE_CONSTRAINTS);
+    public static Set<Link> parseLinks(
+            Collection<String> linkAliases, Collection<String> linkUrls) throws ParseException {
+        requireAllNonNull(linkAliases, linkUrls);
+
+        final Set<Link> linkSet = new HashSet<>();
+        final List<String> listLinkAliases = new ArrayList<>(linkAliases);
+        final List<String> listLinkUrls = new ArrayList<>(linkUrls);
+
+        validateAddLinkCommandPairSize(listLinkAliases, listLinkUrls);
+        if (!isUniqueList(listLinkAliases)) {
+            throw new ParseException(AddLinkCommandParser.MESSAGE_DUPLICATE_ALIAS);
         }
-        return new Link(trimmedLink);
+        if (!isUniqueList(listLinkUrls)) {
+            throw new ParseException(AddLinkCommandParser.MESSAGE_DUPLICATE_URL);
+        }
+
+        for (int i = 0; i < linkAliases.size(); i++) {
+            String parsedLinkAlias = parseLinkAlias(listLinkAliases.get(i));
+            String parsedLinkUrl = parseLinkUrl(listLinkUrls.get(i));
+            linkSet.add(new Link(parsedLinkAlias, parsedLinkUrl));
+        }
+        return linkSet;
+    }
+
+    //Ensures that the number of link aliases match the number of link URLs
+    static void validateAddLinkCommandPairSize(
+            List<String> linkAliases, List<String> linkUrls) throws ParseException {
+        boolean isLinkFieldsSameSize = linkAliases.size() == linkUrls.size();
+        if (!isLinkFieldsSameSize) {
+            throw new ParseException(AddLinkCommandParser.MESSAGE_CONSTRAINTS);
+        }
+    }
+
+    // Checks for no duplicates in a generic list
+    static boolean isUniqueList(List<String> inputList) {
+        return inputList.stream().allMatch(new HashSet<>()::add);
     }
 
     /**
-     * Parses {@code Collection<String> links} into a {@code Set<Link>}.
+     * Parses a {@code String linkUrl}.
+     * Leading and trailing whitespaces will be trimmed.
+     * @throws ParseException if the given {@code linkUrl} is invalid.
      */
-    public static Set<Link> parseLinks(Collection<String> links) throws ParseException {
-        requireNonNull(links);
-        final Set<Link> linkSet = new HashSet<>();
-        for (String link : links) {
-            linkSet.add(parseLink(link));
+    public static String parseLinkUrl(String linkUrl) throws ParseException {
+        requireNonNull(linkUrl);
+        String trimmedLinkUrl = linkUrl.trim();
+        if (!Link.isValidLinkUrl(trimmedLinkUrl)) {
+            throw new ParseException(Link.MESSAGE_CONSTRAINTS_URL);
         }
-        return linkSet;
+        return trimmedLinkUrl;
+    }
+
+    /**
+     * Parses a {@code String linkAlias}.
+     * Leading and trailing whitespaces will be trimmed.
+     * @throws ParseException if the given {@code linkAlias} is invalid.
+     */
+    public static String parseLinkAlias(String linkAlias) throws ParseException {
+        requireNonNull(linkAlias);
+        String trimmedLinkAlias = linkAlias.trim();
+        if (!Link.isValidLinkAlias(trimmedLinkAlias)) {
+            throw new ParseException(Link.MESSAGE_CONSTRAINTS_ALIAS);
+        }
+        return trimmedLinkAlias;
+    }
+
+    /**
+     * Set is used to deal with duplicate aliases. (Order is not maintained)
+     * Parses {@code Collection<String> linkAliases}, returns {@code Set<String>} of validated linkAliases.
+     */
+    public static Set<String> parseLinkAliasesUnordered(Collection<String> linkAliases) throws ParseException {
+        requireNonNull(linkAliases);
+        final Set<String> aliasSet = new HashSet<>();
+        for (String linkAlias : linkAliases) {
+            aliasSet.add(parseLinkAlias(linkAlias));
+        }
+        return aliasSet;
     }
 
     //@@author cheeheng-reused

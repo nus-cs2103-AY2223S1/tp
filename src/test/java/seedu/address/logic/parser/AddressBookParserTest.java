@@ -5,9 +5,11 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_MODULE_CODE;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_MODULE_LINK;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_MODULE_LINK_ALIAS;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_MODULE_LINK_URL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MODULE_CODE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_MODULE_LINK;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_MODULE_LINK_ALIAS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_MODULE_LINK_URL;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 
@@ -49,8 +51,9 @@ public class AddressBookParserTest {
     @Test
     public void parseCommand_addLink() throws Exception {
         assertTrue(parser.parseCommand(AddLinkCommand.COMMAND_WORD + " "
-                + PREFIX_MODULE_CODE + VALID_MODULE_CODE + " " + PREFIX_MODULE_LINK
-                + VALID_MODULE_LINK) instanceof AddLinkCommand);
+                + PREFIX_MODULE_CODE + VALID_MODULE_CODE + " " + PREFIX_MODULE_LINK_URL
+                + VALID_MODULE_LINK_URL + " " + PREFIX_MODULE_LINK_ALIAS + VALID_MODULE_LINK_ALIAS
+                ) instanceof AddLinkCommand);
     }
 
     @Test
@@ -69,8 +72,8 @@ public class AddressBookParserTest {
     @Test
     public void parseCommand_deleteLink() throws Exception {
         assertTrue(parser.parseCommand(DeleteLinkCommand.COMMAND_WORD + " "
-                + PREFIX_MODULE_CODE + VALID_MODULE_CODE + " " + PREFIX_MODULE_LINK
-                + VALID_MODULE_LINK) instanceof DeleteLinkCommand);
+                + PREFIX_MODULE_CODE + VALID_MODULE_CODE + " " + PREFIX_MODULE_LINK_ALIAS
+                + VALID_MODULE_LINK_ALIAS) instanceof DeleteLinkCommand);
     }
 
     @Test

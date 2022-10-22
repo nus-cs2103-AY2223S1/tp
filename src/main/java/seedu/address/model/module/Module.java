@@ -7,9 +7,10 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Objects;
 import java.util.Set;
+import java.util.TreeSet;
 
 import javafx.collections.ObservableList;
-import seedu.address.model.link.Link;
+import seedu.address.model.module.link.Link;
 import seedu.address.model.module.task.Task;
 import seedu.address.model.module.task.TaskList;
 import seedu.address.model.person.Person;
@@ -29,7 +30,7 @@ public class Module {
     // Data fields
     private final ModuleTitle moduleTitle;
     private final TaskList tasks;
-    private final Set<Link> links = new HashSet<>();
+    private final Set<Link> links = new TreeSet<>();
     private final Set<Person> persons = new HashSet<>();
 
     /**
@@ -108,7 +109,7 @@ public class Module {
      * Returns a copied links set
      */
     public Set<Link> copyLinks() {
-        return new HashSet<>(links);
+        return new TreeSet<>(links);
     }
 
     /**

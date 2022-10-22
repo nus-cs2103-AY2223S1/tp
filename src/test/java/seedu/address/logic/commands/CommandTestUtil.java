@@ -2,16 +2,7 @@ package seedu.address.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_MODULE_CODE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_MODULE_LINK;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_MODULE_TITLE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TASK_DESCRIPTION;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TASK_NUMBER;
+import static seedu.address.logic.parser.CliSyntax.*;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalModules.CS2103T;
 import static seedu.address.testutil.TypicalModules.CS2106;
@@ -60,11 +51,18 @@ public class CommandTestUtil {
     public static final String VALID_TASK_A = "Complete assignment for week 8";
     public static final String VALID_TASK_B = "Submit the quiz@LumiNUS";
     public static final String VALID_TASK_C = "Pay $5 to Ann for project costs";
-    public static final String VALID_MODULE_LINK = "https://nus-cs2103-ay2223s1.github.io/website/";
-    public static final String VALID_MODULE_LINK_2 = "https://nusmods.com/timetable/sem-1";
+    public static final String VALID_MODULE_LINK_ALIAS = "2103T";
+    public static final String VALID_MODULE_LINK_ALIAS_2 = "nusmods";
+    public static final String VALID_MODULE_LINK_ALIAS_3 = "wow";
+    public static final String VALID_MODULE_LINK_ALIAS_URL = "2103T;https://nus-cs2103-ay2223s1.github.io/website/";
+    public static final String VALID_MODULE_LINK_URL = "https://nus-cs2103-ay2223s1.github.io/website/";
+    public static final String VALID_MODULE_LINK_URL_NO_HTTPS = "nus-cs2103-ay2223s1.github.io/website/";
+    public static final String VALID_MODULE_LINK_URL_2 = "https://nusmods.com/timetable/sem-1";
+    public static final String VALID_MODULE_LINK_URL_3 = "haxball.com";
     // Module code cannot have brackets
     public static final String INVALID_MODULE_CODE = "(CS2103T)";
-    public static final String MODULE_LINK_CS2103T = " " + PREFIX_MODULE_LINK + VALID_MODULE_LINK;
+    public static final String VALID_MODULE_LINK_CS2103T = " " + PREFIX_MODULE_LINK_ALIAS
+            + VALID_MODULE_LINK_ALIAS + " " + PREFIX_MODULE_LINK_URL + VALID_MODULE_LINK_URL;
     public static final String NAME_DESC_AMY = " " + PREFIX_NAME + VALID_NAME_AMY;
     public static final String NAME_DESC_BOB = " " + PREFIX_NAME + VALID_NAME_BOB;
     public static final String PHONE_DESC_AMY = " " + PREFIX_PHONE + VALID_PHONE_AMY;
@@ -93,7 +91,8 @@ public class CommandTestUtil {
     public static final String INVALID_TAG_DESC = " " + PREFIX_TAG + "hubby*"; // '*' not allowed in tags
     // '$' not allowed in module code
     public static final String INVALID_MODULE_CODE_DESC = " " + PREFIX_MODULE_CODE + "C$2500";
-
+    public static final String INVALID_MODULE_LINK_ALIAS = "().()";
+    public static final String INVALID_MODULE_LINK_URL = "^.^";
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
     public static final String INVALID_TASK_DESC = " " + PREFIX_TASK_DESCRIPTION; // empty string

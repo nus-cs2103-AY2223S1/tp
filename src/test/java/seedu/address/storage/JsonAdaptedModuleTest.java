@@ -3,7 +3,7 @@ package seedu.address.storage;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_MODULE_CODE;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_MODULE_CODE;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_MODULE_LINK;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_MODULE_LINK_ALIAS_URL;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_MODULE_TITLE;
 import static seedu.address.storage.JsonAdaptedModule.MISSING_FIELD_MESSAGE_FORMAT;
 import static seedu.address.testutil.Assert.assertThrows;
@@ -42,7 +42,7 @@ public class JsonAdaptedModuleTest {
     public void toModelType_invalidModuleCode_throwsIllegalValueException() {
         JsonAdaptedModule module =
                 new JsonAdaptedModule(INVALID_MODULE_CODE, VALID_MODULE_TITLE,
-                        Arrays.asList(new JsonAdaptedLink((VALID_MODULE_LINK))),
+                        Arrays.asList(new JsonAdaptedLink((VALID_MODULE_LINK_ALIAS_URL))),
                         VALID_LIST_OF_TASKS);
         String expectedMessage = ModuleCode.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, module::toModelType);
@@ -51,7 +51,7 @@ public class JsonAdaptedModuleTest {
     @Test
     public void toModelType_nullModuleCode_throwsIllegalValueException() {
         JsonAdaptedModule module = new JsonAdaptedModule(null, VALID_MODULE_TITLE,
-                Arrays.asList(new JsonAdaptedLink((VALID_MODULE_LINK))),
+                Arrays.asList(new JsonAdaptedLink((VALID_MODULE_LINK_ALIAS_URL))),
                 VALID_LIST_OF_TASKS);
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT,
                 ModuleCode.class.getSimpleName());
@@ -61,7 +61,7 @@ public class JsonAdaptedModuleTest {
     @Test
     public void toModelType_nullModuleTitle_throwsIllegalValueException() {
         JsonAdaptedModule module = new JsonAdaptedModule(VALID_MODULE_CODE, null,
-                Arrays.asList(new JsonAdaptedLink((VALID_MODULE_LINK))), VALID_LIST_OF_TASKS);
+                Arrays.asList(new JsonAdaptedLink((VALID_MODULE_LINK_ALIAS_URL))), VALID_LIST_OF_TASKS);
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT,
                 ModuleTitle.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, module::toModelType);
@@ -70,7 +70,7 @@ public class JsonAdaptedModuleTest {
     @Test
     public void toModelType_nullModuleTasks_throwsIllegalValueException() {
         JsonAdaptedModule module = new JsonAdaptedModule(VALID_MODULE_CODE,
-                VALID_MODULE_TITLE, Arrays.asList(new JsonAdaptedLink((VALID_MODULE_LINK))), null);
+                VALID_MODULE_TITLE, Arrays.asList(new JsonAdaptedLink((VALID_MODULE_LINK_ALIAS_URL))), null);
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT,
                 TaskList.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, module::toModelType);

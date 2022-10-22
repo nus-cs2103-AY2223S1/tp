@@ -9,10 +9,12 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Hyperlink;
 import javafx.scene.control.Label;
+import javafx.scene.control.Tooltip;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.StackPane;
+import javafx.util.Duration;
 import seedu.address.model.module.Module;
 import seedu.address.model.module.task.Task;
 
@@ -69,16 +71,16 @@ public class ModuleCard extends UiPart<Region> {
         moduleTitle.setText(module.getModuleTitleAsUpperCaseString());
         module.getLinks().stream()
                 .forEach(link -> links.getChildren()
-                        .add(createHyperLinkNode(link.linkName)));
+                        .add(createHyperLinkNode(link.linkAlias, link.linkUrl)));
         ObservableList<Task> taskList = module.getTasks();
         taskListPanel = new TaskListPanel(taskList);
         taskListPanelPlaceholder.getChildren().add(taskListPanel.getRoot());
     }
 
-    private static Hyperlink createHyperLinkNode(String linkUrl) {
-        Hyperlink node = new Hyperlink(linkUrl);
+    private static Hyperlink createHyperLinkNode(String linkAlias, String linkUrl) {
+        Hyperlink node = new Hyperlink(linkAlias);
         node.setStyle(LINK_TEXT_COLOR);
-        if (!linkUrl.substring(0, 4).equals(LINK_HEADER_PLAIN_TEXT)) {
+        if (!linkUrl.startsWith(LINK_HEADER_PLAIN_TEXT)) {
             linkUrl = LINK_HEADER_TEXT_WITH_SLASH + linkUrl;
         }
         final String finalLinkUrl = linkUrl;
@@ -91,6 +93,10 @@ public class ModuleCard extends UiPart<Region> {
                 alert.showAndWait();
             }
         });
+        final Tooltip linkUrlHint = new Tooltip();
+        linkUrlHint.setText(linkUrl);
+        linkUrlHint.setShowDelay(Duration.seconds(0.5));
+        node.setTooltip(linkUrlHint);
         return node;
     }
 

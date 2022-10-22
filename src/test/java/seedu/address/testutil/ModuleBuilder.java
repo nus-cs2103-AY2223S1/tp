@@ -1,11 +1,11 @@
 package seedu.address.testutil;
 
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.TreeSet;
 
-import seedu.address.model.link.Link;
+import seedu.address.model.module.link.Link;
 import seedu.address.model.module.Module;
 import seedu.address.model.module.ModuleCode;
 import seedu.address.model.module.ModuleTitle;
@@ -19,7 +19,7 @@ public class ModuleBuilder {
     public static final String DEFAULT_MODULE_CODE = "CS2109S";
     public static final String DEFAULT_MODULE_TITLE = "";
     public static final List<Task> DEFAULT_TASKS = new ArrayList<>();
-    public static final Set<Link> DEFAULT_LINKS = new HashSet<>();
+    public static final Set<Link> DEFAULT_LINKS = new TreeSet<>();
 
     private ModuleCode moduleCode;
     private ModuleTitle moduleTitle;
@@ -74,7 +74,7 @@ public class ModuleBuilder {
      * Sets the set of {@code Link} objects of the {@code Module} that we are building.
      */
     public ModuleBuilder withLinks(Set<Link> links) {
-        this.links = new HashSet<>(links);
+        this.links = new TreeSet<>(links);
         return this;
     }
 

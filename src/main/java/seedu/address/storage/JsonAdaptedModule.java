@@ -10,7 +10,7 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
-import seedu.address.model.link.Link;
+import seedu.address.model.module.link.Link;
 import seedu.address.model.module.Module;
 import seedu.address.model.module.ModuleCode;
 import seedu.address.model.module.ModuleTitle;
@@ -81,11 +81,11 @@ class JsonAdaptedModule {
         }
         final ModuleTitle modelModuleTitle = new ModuleTitle(moduleTitle);
 
-        final List<Link> moduleLinks = new ArrayList<>();
+        final List<Link> listModuleLinks = new ArrayList<>();
         for (JsonAdaptedLink links : linked) {
-            moduleLinks.add(links.toModelType());
+            listModuleLinks.add(links.toModelType());
         }
-        final Set<Link> modelModuleLinks = new HashSet<>(moduleLinks);
+        final Set<Link> modelModuleLinks = new HashSet<>(listModuleLinks);
 
         if (moduleTasks == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
