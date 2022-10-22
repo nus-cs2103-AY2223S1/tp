@@ -6,6 +6,7 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 import seedu.address.model.person.Address;
+import seedu.address.model.person.Country;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.GameType;
 import seedu.address.model.person.MinecraftName;
@@ -13,7 +14,6 @@ import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.Social;
-import seedu.address.model.person.TimeZone;
 import seedu.address.model.server.Server;
 import seedu.address.model.tag.Tag;
 
@@ -28,17 +28,17 @@ public class PersonBuilder {
     public static final String DEFAULT_PHONE = "85355255";
     public static final String DEFAULT_EMAIL = "amy@gmail.com";
     public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
-    public static final String DEFAULT_TIMEZONE = "+08:30";
+    public static final String DEFAULT_COUNTRY = "Singapore";
 
     private Name name;
     private MinecraftName minecraftName;
     private Phone phone;
     private Email email;
     private Address address;
+    private Country country;
     private Set<Social> socials;
     private Set<Tag> tags;
     private Set<Server> servers;
-    private TimeZone timeZone;
     private Set<GameType> gameTypes;
 
     /**
@@ -50,10 +50,10 @@ public class PersonBuilder {
         phone = new Phone(DEFAULT_PHONE);
         email = new Email(DEFAULT_EMAIL);
         address = new Address(DEFAULT_ADDRESS);
+        country = new Country(DEFAULT_COUNTRY);
         socials = new HashSet<>();
         tags = new HashSet<>();
         servers = new HashSet<>();
-        timeZone = new TimeZone(DEFAULT_TIMEZONE);
         gameTypes = new HashSet<>();
     }
 
@@ -69,7 +69,7 @@ public class PersonBuilder {
         socials = new HashSet<>(personToCopy.getSocials());
         tags = new HashSet<>(personToCopy.getTags());
         servers = new HashSet<>(personToCopy.getServers());
-        timeZone = personToCopy.getTimeZone();
+        country = personToCopy.getCountry();
         gameTypes = new HashSet<>(personToCopy.getGameType());
     }
 
@@ -125,6 +125,14 @@ public class PersonBuilder {
     }
 
     /**
+     * Sets the {@code country} of the {@code Person} that we are building.
+     */
+    public PersonBuilder withCountry(String country) {
+        this.country = new Country(country);
+        return this;
+    }
+
+    /**
      * Sets the {@code socials} of the {@code Person} that we are building.
      */
     public PersonBuilder withSocial(String ... socials) {
@@ -144,14 +152,6 @@ public class PersonBuilder {
     }
 
     /**
-     * Sets the {@code timeZone} of the {@code Person} that we are building.
-     */
-    public PersonBuilder withTimeZone(String timeZone) {
-        this.timeZone = new TimeZone(timeZone);
-        return this;
-    }
-
-    /**
      * Sets the {@code gameTypes} of the {@code Person} that we are building.
      */
 
@@ -163,7 +163,7 @@ public class PersonBuilder {
     }
 
     public Person build() {
-        return new Person(name, minecraftName, phone, email, address, socials, tags, servers, timeZone, gameTypes);
+        return new Person(name, minecraftName, phone, email, address, socials, tags, servers, country, gameTypes);
     }
 
 }

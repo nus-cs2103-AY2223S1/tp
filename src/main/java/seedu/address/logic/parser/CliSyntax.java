@@ -14,7 +14,7 @@ public class CliSyntax {
     public static final Prefix PREFIX_TAG = new Prefix("t/");
     public static final Prefix PREFIX_SOCIAL = new Prefix("s/");
     public static final Prefix PREFIX_MINECRAFT_SERVER = new Prefix("ms/");
-    public static final Prefix PREFIX_TIMEZONE = new Prefix("tz/");
+    public static final Prefix PREFIX_COUNTRY = new Prefix("c/");
     public static final Prefix PREFIX_GAME_TYPE = new Prefix("gt/");
     public static final Prefix PREFIX_DAY_TIME_OF_WEEK = new Prefix("dt/");
     public static final Prefix PREFIX_KEYWORD = new Prefix("k/");

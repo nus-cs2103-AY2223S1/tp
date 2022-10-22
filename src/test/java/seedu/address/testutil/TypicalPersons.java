@@ -32,7 +32,7 @@ public class TypicalPersons {
             .withEmail("alice@example.com")
             .withPhone("94351253")
             .withTags("friends")
-            .withTimeZone("+08:00").build();
+            .withCountry("Singapore").build();
     public static final Person BENSON = new PersonBuilder()
             .withName("Benson Meier")
             .withMinecraftName("Benson123")
@@ -40,7 +40,7 @@ public class TypicalPersons {
             .withEmail("johnd@example.com")
             .withPhone("98765432")
             .withTags("owesMoney", "friends")
-            .withTimeZone("+08:00").build();
+            .withCountry("Singapore").build();
     public static final Person CARL = new PersonBuilder()
             .withName("Carl Kurz")
             .withMinecraftName("Carl")
@@ -48,7 +48,7 @@ public class TypicalPersons {
             .withEmail("heinz@example.com")
             .withAddress("wall street")
             .withTags("friends")
-            .withTimeZone("+08:00").build();
+            .withCountry("Singapore").build();
     public static final Person DANIEL = new PersonBuilder()
             .withName("Daniel Meier")
             .withMinecraftName("Dan")
@@ -56,7 +56,7 @@ public class TypicalPersons {
             .withEmail("cornelia@example.com")
             .withAddress("10th street")
             .withTags("friends")
-            .withTimeZone("+08:00").build();
+            .withCountry("USA").build();
     public static final Person ELLE = new PersonBuilder()
             .withName("Elle Meyer")
             .withMinecraftName("Elli")
@@ -64,7 +64,7 @@ public class TypicalPersons {
             .withEmail("werner@example.com")
             .withAddress("michegan ave")
             .withTags("friends")
-            .withTimeZone("+08:00").build();
+            .withCountry("USA").build();
     public static final Person FIONA = new PersonBuilder()
             .withName("Fiona Kunz")
             .withMinecraftName("KUNCZ")
@@ -72,7 +72,7 @@ public class TypicalPersons {
             .withEmail("lydia@example.com")
             .withAddress("little tokyo")
             .withTags("friends")
-            .withTimeZone("+08:00").build();
+            .withCountry("Japan").build();
     public static final Person GEORGE = new PersonBuilder()
             .withName("George Best")
             .withMinecraftName("dinnerbone")
@@ -80,7 +80,7 @@ public class TypicalPersons {
             .withEmail("anna@example.com")
             .withAddress("4th street")
             .withTags("friends")
-            .withTimeZone("+08:00").build();
+            .withCountry("USA").build();
 
     // Manually added
     public static final Person HOON = new PersonBuilder()

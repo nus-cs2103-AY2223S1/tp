@@ -41,7 +41,7 @@ public class EditPersonDescriptorBuilder {
         descriptor.setServers(person.getServers());
         descriptor.setTags(person.getTags());
         descriptor.setSocials(person.getSocials());
-        descriptor.setTimeZone(person.getTimeZone());
+        descriptor.setCountry(person.getCountry());
         descriptor.setGameTypes(person.getGameType());
     }
 

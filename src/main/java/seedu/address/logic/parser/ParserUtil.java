@@ -10,6 +10,7 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Address;
+import seedu.address.model.person.Country;
 import seedu.address.model.person.DayTimeInWeek;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.GameType;
@@ -18,7 +19,6 @@ import seedu.address.model.person.MinecraftName;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.Social;
-import seedu.address.model.person.TimeZone;
 import seedu.address.model.server.Server;
 import seedu.address.model.tag.Tag;
 
@@ -274,18 +274,18 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String timezone offset} into a {@code TimeZone object}.
-     * @param offset the offset of the timezone
-     * @return the parsed offset as a TimeZone
-     * @throws ParseException if the given {@code offset} is invalid.
+     * Parses a {@code String Country} into a {@code Country object}.
+     * @param country the country
+     * @return the parsed Country
+     * @throws ParseException if the given {@code country} is invalid.
      */
-    public static TimeZone parseTimeZone(String offset) throws ParseException {
-        requireNonNull(offset);
-        String trimmedOffset = offset.trim();
-        if (!TimeZone.isValidTimeZone(trimmedOffset)) {
-            throw new ParseException(TimeZone.getMessageConstraints());
+    public static Country parseCountry(String country) throws ParseException {
+        requireNonNull(country);
+        String trimmedCountry = country.trim();
+        if (!Country.isValidCountry(trimmedCountry)) {
+            throw new ParseException(Country.getMessageConstraints());
         }
-        return new TimeZone(trimmedOffset);
+        return new Country(trimmedCountry);
     }
 
     /**

@@ -11,6 +11,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.person.Address;
+import seedu.address.model.person.Country;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.GameType;
 import seedu.address.model.person.MinecraftName;
@@ -18,7 +19,6 @@ import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.Social;
-import seedu.address.model.person.TimeZone;
 import seedu.address.model.server.Server;
 import seedu.address.model.tag.Tag;
 
@@ -37,7 +37,7 @@ class JsonAdaptedPerson {
     private final List<JsonAdaptedSocial> socials = new ArrayList<>();
     private final List<JsonAdaptedTag> tags = new ArrayList<>();
     private final List<JsonAdaptedMinecraftServer> servers = new ArrayList<>();
-    private final String timeZone;
+    private final String country;
     private final List<JsonAdaptedGameType> gameTypes = new ArrayList<>();
 
     /**
@@ -50,13 +50,14 @@ class JsonAdaptedPerson {
                              @JsonProperty("socials") List<JsonAdaptedSocial> socials,
                              @JsonProperty("tags") List<JsonAdaptedTag> tags,
                              @JsonProperty("servers") List<JsonAdaptedMinecraftServer> servers,
-                             @JsonProperty("timeZone") String timeZone,
+                             @JsonProperty("country") String country,
                              @JsonProperty("gameTypes") List<JsonAdaptedGameType> gameTypes) {
         this.name = name;
         this.minecraftName = minecraftName;
         this.phone = phone;
         this.email = email;
         this.address = address;
+        this.country = country;
         if (socials != null) {
             this.socials.addAll(socials);
         }
@@ -66,8 +67,6 @@ class JsonAdaptedPerson {
         if (servers != null) {
             this.servers.addAll(servers);
         }
-        this.timeZone = timeZone;
-
         if (gameTypes != null) {
             this.gameTypes.addAll(gameTypes);
         }
@@ -83,6 +82,7 @@ class JsonAdaptedPerson {
         phone = source.getPhone().toString();
         email = source.getEmail().toString();
         address = source.getAddress().toString();
+        country = source.getCountry().toString();
         socials.addAll(source.getSocials().stream()
                 .map(JsonAdaptedSocial::new)
                 .collect(Collectors.toList()));
@@ -92,7 +92,6 @@ class JsonAdaptedPerson {
         servers.addAll(source.getServers().stream()
                 .map(JsonAdaptedMinecraftServer::new)
                 .collect(Collectors.toList()));
-        timeZone = source.getTimeZone().toString();
         gameTypes.addAll(source.getGameType().stream()
                 .map(JsonAdaptedGameType::new)
                 .collect(Collectors.toList()));
@@ -165,6 +164,14 @@ class JsonAdaptedPerson {
         if (!Address.isValidAddress(address)) {
             throw new IllegalValueException(Address.MESSAGE_CONSTRAINTS);
         }
+        if (country == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    Country.class.getSimpleName()));
+        }
+        if (!Country.isValidCountry(country)) {
+            throw new IllegalValueException(Country.MESSAGE_CONSTRAINTS);
+        }
+
         final Address modelAddress = new Address(address);
 
         final Set<Tag> modelTags = new HashSet<>(tags);
@@ -175,17 +182,10 @@ class JsonAdaptedPerson {
 
         final Set<GameType> modelGameTypes = new HashSet<>(gameTypes);
 
-        if (timeZone == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
-                    TimeZone.class.getSimpleName()));
-        }
-        if (!TimeZone.isValidTimeZone(timeZone)) {
-            throw new IllegalValueException(TimeZone.MESSAGE_CONSTRAINTS);
-        }
-        final TimeZone modelTimeZone = new TimeZone(timeZone);
+        final Country modelCountry = new Country(country);
 
         return new Person(modelName, modelMinecraftName, modelPhone, modelEmail,
-                modelAddress, modelSocials, modelTags, modelServers, modelTimeZone, modelGameTypes);
+                modelAddress, modelSocials, modelTags, modelServers, modelCountry, modelGameTypes);
 
     }
 
