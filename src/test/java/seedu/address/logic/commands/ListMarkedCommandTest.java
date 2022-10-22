@@ -32,20 +32,20 @@ public class ListMarkedCommandTest {
         TaskIsDonePredicate firstPredicate =
                 new TaskIsDonePredicate(Collections.singletonList("false"));
 
-        ListMarkedCommand ListMarkedCommand = new ListMarkedCommand(firstPredicate);
+        ListMarkedCommand listMarkedCommand = new ListMarkedCommand(firstPredicate);
 
         // same object -> returns true
-        assertTrue(ListMarkedCommand.equals(ListMarkedCommand));
+        assertTrue(listMarkedCommand.equals(listMarkedCommand));
 
         // same values -> returns true
         ListMarkedCommand findCommandCopy = new ListMarkedCommand(firstPredicate);
-        assertTrue(ListMarkedCommand.equals(findCommandCopy));
+        assertTrue(listMarkedCommand.equals(findCommandCopy));
 
         // different types -> returns false
-        assertFalse(ListMarkedCommand.equals(1));
+        assertFalse(listMarkedCommand.equals(1));
 
         // null -> returns false
-        assertFalse(ListMarkedCommand.equals(null));
+        assertFalse(listMarkedCommand.equals(null));
 
     }
 
