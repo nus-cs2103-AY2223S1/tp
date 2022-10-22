@@ -454,6 +454,22 @@
     -fx-background-color: -main-background;
 }
 
+#headerText, #passwordText {
+    -fx-font-family: "Segoe UI Semibold";
+    -fx-text-fill: -text;
+}
+
+#unlockBtn {
+    -fx-background-color: -contrast-background;
+    -fx-text-fill: white;
+}
+
+#password {
+    -fx-background-color: -second-background;
+    -fx-font-family: "Segoe UI Light";
+    -fx-text-fill: -text;
+}
+
 
 
 

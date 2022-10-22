@@ -1,8 +1,10 @@
 package seedu.address.ui;
 
 import java.util.logging.Logger;
+import java.util.prefs.*;
 
 import javafx.fxml.FXML;
+import javafx.scene.*;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import seedu.address.commons.core.LogsCenter;
@@ -15,6 +17,9 @@ public class LockWindow extends UiPart<Stage> {
     private static final String FXML = "LockWindow.fxml";
 
     private MainWindow mainWindow;
+
+    @FXML
+    private Scene parent;
 
     @FXML
     private TextField password;
@@ -50,6 +55,17 @@ public class LockWindow extends UiPart<Stage> {
      */
     public void show() {
         logger.fine("Showing FinBook lock dialog.");
+
+        //Set LockWindow dark/light theme
+        Preferences pref = Preferences.userRoot().node("seedu.address.ui.MainWindow");
+        if (pref.getInt("mode", 0) == 0) {
+            parent.getStylesheets().add("view/DarkTheme.css");
+            parent.getStylesheets().remove("view/LightTheme.css");
+        } else {
+            parent.getStylesheets().add("view/LightTheme.css");
+            parent.getStylesheets().remove("view/DarkTheme.css");
+        }
+
         getRoot().show();
         getRoot().centerOnScreen();
     }
