@@ -16,25 +16,25 @@ import java.util.Optional;
 public class ArgumentMultimap {
 
     /** Prefixes mapped to their respective arguments**/
-    private final Map<Prefix, List<String>> argMultimap = new HashMap<>();
+    private final Map<ArgumentToken, List<String>> argMultimap = new HashMap<>();
 
     /**
-     * Associates the specified argument value with {@code prefix} key in this map.
+     * Associates the specified argument value with {@code argToken} key in this map.
      * If the map previously contained a mapping for the key, the new value is appended to the list of existing values.
      *
-     * @param prefix   Prefix key with which the specified argument value is to be associated
-     * @param argValue Argument value to be associated with the specified prefix key
+     * @param argToken   Prefix key with which the specified argument value is to be associated
+     * @param argValue Argument value to be associated with the specified argToken key
      */
-    public void put(Prefix prefix, String argValue) {
-        List<String> argValues = getAllValues(prefix);
+    public void put(ArgumentToken argToken, String argValue) {
+        List<String> argValues = getAllValues(argToken);
         argValues.add(argValue);
-        argMultimap.put(prefix, argValues);
+        argMultimap.put(argToken, argValues);
     }
 
     /**
      * Returns the last value of {@code prefix}.
      */
-    public Optional<String> getValue(Prefix prefix) {
+    public Optional<String> getValue(ArgumentToken prefix) {
         List<String> values = getAllValues(prefix);
         return values.isEmpty() ? Optional.empty() : Optional.of(values.get(values.size() - 1));
     }
@@ -44,7 +44,7 @@ public class ArgumentMultimap {
      * If the prefix does not exist or has no values, this will return an empty list.
      * Modifying the returned list will not affect the underlying data structure of the ArgumentMultimap.
      */
-    public List<String> getAllValues(Prefix prefix) {
+    public List<String> getAllValues(ArgumentToken prefix) {
         if (!argMultimap.containsKey(prefix)) {
             return new ArrayList<>();
         }
@@ -55,6 +55,7 @@ public class ArgumentMultimap {
      * Returns the preamble (text before the first valid prefix). Trims any leading/trailing spaces.
      */
     public String getPreamble() {
-        return getValue(new Prefix("")).orElse("");
+        return getValue(new Prefix(""))
+                .orElseGet(() -> getValue(new Flag("")).orElse(""));
     }
 }

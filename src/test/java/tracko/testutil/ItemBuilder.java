@@ -49,7 +49,7 @@ public class ItemBuilder {
     public ItemBuilder(Item itemToCopy) {
         itemName = itemToCopy.getItemName();
         description = itemToCopy.getDescription();
-        quantity = itemToCopy.getQuantity();
+        quantity = itemToCopy.getTotalQuantity();
         sellPrice = itemToCopy.getSellPrice();
         costPrice = itemToCopy.getCostPrice();
     }
