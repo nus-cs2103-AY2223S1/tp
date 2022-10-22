@@ -13,9 +13,7 @@ import java.util.stream.Collectors;
  * 3. An argument may be repeated and all its values will be accumulated e.g. the value of {@code t/}
  *    in the above example.<br>
  */
-public class
-
-ArgumentTokenizer {
+public class ArgumentTokenizer {
 
     /**
      * Tokenizes an arguments string and returns an {@code ArgumentMultimap} object that maps prefixes to their
