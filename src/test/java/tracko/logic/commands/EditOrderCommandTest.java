@@ -133,16 +133,17 @@ public class EditOrderCommandTest {
 
     @Test
     public void execute_removeOnlyItemInOrderList_failure() {
-        model.addItem(TypicalItems.ITEM_1);
+        Model copiedModel = new ModelManager(model.getTrackO(), new UserPrefs());
+        copiedModel.addItem(TypicalItems.ITEM_1);
         Order initialOrder = new OrderBuilder().build();
-        model.setOrder(model.getOrderList().get(INDEX_FIRST.getZeroBased()),  initialOrder);
+        copiedModel.setOrder(copiedModel.getOrderList().get(INDEX_FIRST.getZeroBased()),  initialOrder);
 
         Pair<String, Integer> unlinkedPair = new Pair<>(
                 initialOrder.getItemList().get(INDEX_FIRST.getZeroBased()).getItemName(), 0);
         EditOrderDescriptor descriptor = new EditOrderDescriptorBuilder(initialOrder).withUnlinkedPair(unlinkedPair).build();
         EditOrderCommand editOrderCommand = new EditOrderCommand(INDEX_FIRST.fromZeroBased(0), descriptor);
 
-        assertCommandFailure(editOrderCommand, model, EditOrderCommand.MESSAGE_ONE_ORDERED_ITEM);
+        assertCommandFailure(editOrderCommand, copiedModel, EditOrderCommand.MESSAGE_ONE_ORDERED_ITEM);
     }
 
     @Test
