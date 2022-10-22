@@ -358,6 +358,33 @@ is trying to find. Here we have made an assumption that there the StudentId uniq
     * Pros: Easier to implement.
     * Cons: No clear distinction between tags and project status
 
+###  `Help` Feature
+#### Proposed Implementation
+The proposed `Help` Feature provides the professor or students with useful information on how to optimally make use of this Jeryl app.
+The `Help` feature mechanism is facilitated by `HelpCommand` and `HelpCommandParser`. `HelpCommand` extends from the abstract class `Command`
+while `HelpCommandParser` extends from the interface `Parser`.
+More specific features like `HelpAddCommand` and `HelpDeleteCommand` extend from `HelpCommand` to serve for certain specific help requests.
+To summarize, it implements the following operation:
+* `HelpCommand#execute()` — oversees the execution process for `HelpCommand`.
+* `HelpAddCommand#execute()` — oversees the execution process for `HelpAddCommand`.
+* `HelpDeleteCommand#execute()` — oversees the execution process for `HelpDeleteCommand`.
+* `HelpFindCommand#execute()` — oversees the execution process for `HelpFindCommand`.
+* `HelpListCommand#execute()` — oversees the execution process for `HelpListCommand`.
+* `HelpMarkCommand#execute()` — oversees the execution process for `HelpMarkCommand`.
+
+Given below is an example usage scenario of `HelpCommand`:
+1. The user enters the `help` command or also provides the specific command of interest.
+2. `FypManagerParser` creates a new `HelpCommandParser` after preliminary check of user input.
+3. `HelpCommandParser` creates a new `HelpCommand` based on the processed input.
+4. `LogicManager` executes the `HelpCommand` using the `LogicManager#execute()` method.
+5. `HelpCommand` shows help message, and then creates a `CommandResult` and returns it to `LogicManager` to complete the command.
+6. If it is just `HelpCommand`, `HelpWindow` would pop up with a link to JERYL user guide on it.
+
+The following sequence diagram shows how the help command works:
+
+<img src="images/helpMessage.png" width="550" />
+
+
 ###  `List` Feature
 #### Proposed Implementation
 The proposed `List` Feature allows the professor to list all FYP students in the FYP Manager.
