@@ -99,9 +99,9 @@ public class IssueCommandParser implements Parser<IssueCommand> {
 
     /**
      * Verifies only one valid user input argument
-     * Length of a valid command for sort key for issue by priority e.g.d/1
+     * Length of a valid command for sort key for issue by deadline and priority e.g.d/1
      *
-     * @param arguments user input for key for sort by deadline
+     * @param arguments user input for key for sort
      * @return true if there is only one valid input
      */
     private boolean hasOneArgumentOfLengthThree(String arguments) {

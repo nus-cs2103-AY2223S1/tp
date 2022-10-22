@@ -32,10 +32,7 @@ public class Project implements ComparableByName<Project>, HasIntegerIdentifier<
     private Client client;
     private ProjectId projectId;
     private List<Issue> issueList;
-
-
-
-
+    
     /**
      * Name field must be present and not null and other fields may be optional.
      */

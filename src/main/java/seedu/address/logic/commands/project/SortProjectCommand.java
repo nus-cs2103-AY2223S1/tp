@@ -33,6 +33,7 @@ public class SortProjectCommand extends ProjectCommand {
             + PREFIX_NAME + "1 (reverse alphabetical). "
             + "Example: "
             + COMMAND_WORD + " "
+            + COMMAND_FLAG + " "
             + PREFIX_DEADLINE + "0";
 
     private final Prefix sortKey;

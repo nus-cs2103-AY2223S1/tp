@@ -17,6 +17,10 @@ public class Client implements ComparableByName<Client>, HasIntegerIdentifier<Cl
 
     public static final String MESSAGE_INVALID = "Client does not exist in the project.";
 
+
+    public static final String MESSAGE_INVALID_NAME_SORT_KEY =
+            "Enter either a 0 to sort by alphabetical order or a 1 to sort by reverse alphabetical order";
+
     //Represents the Client's name
     private Name name;
 
@@ -106,7 +110,22 @@ public class Client implements ComparableByName<Client>, HasIntegerIdentifier<Cl
 
     }
 
-
+    /**
+     * Checks if input is a valid name sort key.
+     *
+     * 0 for alphabetical order and 1 for reverse alphabetical order
+     *
+     * @param num input param to validate
+     * @return true if input is a 0 or 1
+     */
+    public static boolean isValidNameSortKey(String num) {
+        try {
+            int number = Integer.parseInt(num);
+            return number == 0 || number == 1;
+        } catch (NumberFormatException e) {
+            return false;
+        }
+    }
 
     /**
      * Returns the client name as is represented in the Name object.

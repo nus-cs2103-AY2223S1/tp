@@ -320,7 +320,7 @@ public class ParserUtil {
      * @param key is the value entered by the user for sort by name.
      * @return Integer of 0 or 1 which specifies the alphabetical order of sorting.
      */
-    public static Integer parseNameSort(String key) throws ParseException {
+    public static Integer parseProjectNameSort(String key) throws ParseException {
         requireNonNull(key);
         String trimmedKey = key.trim();
         if (!Project.isValidNameSortKey(trimmedKey)) {
@@ -344,7 +344,6 @@ public class ParserUtil {
         return Integer.parseInt(trimmedKey);
     }
 
-
     /**
      * Parses a {@code String key} into an {@code Integer}.
      *
@@ -356,6 +355,21 @@ public class ParserUtil {
         String trimmedKey = key.trim();
         if (!Issue.isValidDeadlineSortKey(trimmedKey)) {
             throw new ParseException(Issue.MESSAGE_INVALID_DEADLINE_SORT_KEY);
+        }
+        return Integer.parseInt(trimmedKey);
+    }
+
+    /**
+     * Parses a {@code String key} into an {@code Integer}.
+     *
+     * @param key is the value entered by the user for sort by name.
+     * @return Integer of 0 or 1 which specifies the alphabetical order of sorting.
+     */
+    public static Integer parseClientNameSort(String key) throws ParseException {
+        requireNonNull(key);
+        String trimmedKey = key.trim();
+        if (!Client.isValidNameSortKey(trimmedKey)) {
+            throw new ParseException(Client.MESSAGE_INVALID_NAME_SORT_KEY);
         }
         return Integer.parseInt(trimmedKey);
     }

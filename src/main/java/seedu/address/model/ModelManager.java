@@ -351,4 +351,10 @@ public class ModelManager implements Model {
         addressBook.sortIssuesByPriority(key);
         updateFilteredIssueList(PREDICATE_SHOW_ALL_ISSUES);
     }
+
+    @Override
+    public void sortClientsByName(int key) {
+        addressBook.sortClientsByName(key);
+        updateFilteredClientList(PREDICATE_SHOW_ALL_CLIENTS);
+    }
 }
