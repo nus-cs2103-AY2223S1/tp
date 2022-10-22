@@ -17,10 +17,10 @@
         </columnConstraints>
         <VBox alignment="CENTER_LEFT" minHeight="105" GridPane.columnIndex="0">
             <padding>
-                <Insets top="5" right="5" bottom="5" left="15" />
+                <Insets bottom="5" left="15" right="5" top="5" />
             </padding>
-            <HBox spacing="5" alignment="CENTER_LEFT">
-                <VBox style="-fx-padding:  0 20 0 10;" prefWidth="85" minWidth="85" maxWidth="85" alignment="CENTER">
+            <HBox alignment="CENTER_LEFT" spacing="5">
+                <VBox alignment="CENTER" maxWidth="40" minWidth="40" prefWidth="40" style="-fx-padding: 0 10 0 0;">
                     <Label fx:id="id" styleClass="cell_big_label_todo">
                         <minWidth>
                             <!-- Ensures that the label text is never truncated -->
@@ -30,15 +30,17 @@
                 </VBox>
                 <HBox>
                     <padding>
-                        <Insets left="1"/>
+                        <Insets left="1" />
                     </padding>
                 </HBox>
                 <VBox>
-                    <Label fx:id="description" text="\$first" styleClass="cell_big_label_todo" />
+                    <Label fx:id="description" styleClass="cell_big_label_todo" text="\$first" />
                     <HBox alignment="CENTER_LEFT" spacing="20">
-                        <Region styleClass="icon-button" id="calendarIcon"/>
-                        <Label fx:id="datetime" text="\$second" styleClass="cell_small_label_todo" />
-                        <Region styleClass="icon-button" id="dotIcon"/>
+                        <Region id="calendarIcon" styleClass="icon-button" />
+                        <Label fx:id="datetime" styleClass="cell_small_label_todo" text="\$second" />
+                    </HBox>
+                    <HBox alignment="CENTER_LEFT" spacing="20">
+                        <Region id="dotIcon" styleClass="icon-button" />
                         <FlowPane fx:id="priority" styleClass="cell_small_label_todo" />
                     </HBox>
                 </VBox>
