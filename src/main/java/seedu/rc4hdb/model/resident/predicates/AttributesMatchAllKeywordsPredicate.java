@@ -22,13 +22,13 @@ public class AttributesMatchAllKeywordsPredicate implements Predicate<Resident> 
     @Override
     public boolean test(Resident resident) {
         assert resident != null : "Resident object is null";
-        return descriptor.getName().map(name -> resident.getName().contains(name)).orElse(true)
-                && descriptor.getPhone().map(phone -> resident.getPhone().contains(phone)).orElse(true)
-                && descriptor.getEmail().map(email -> resident.getEmail().contains(email)).orElse(true)
-                && descriptor.getRoom().map(room -> resident.getRoom().contains(room)).orElse(true)
-                && descriptor.getGender().map(gender -> resident.getGender().contains(gender)).orElse(true)
-                && descriptor.getHouse().map(house -> resident.getHouse().contains(house)).orElse(true)
-                && descriptor.getMatricNumber().map(matric -> resident.getMatricNumber().contains(matric))
+        return descriptor.getName().map(name -> resident.getName().containsIgnoreCase(name)).orElse(true)
+                && descriptor.getPhone().map(phone -> resident.getPhone().containsIgnoreCase(phone)).orElse(true)
+                && descriptor.getEmail().map(email -> resident.getEmail().containsIgnoreCase(email)).orElse(true)
+                && descriptor.getRoom().map(room -> resident.getRoom().containsIgnoreCase(room)).orElse(true)
+                && descriptor.getGender().map(gender -> resident.getGender().containsIgnoreCase(gender)).orElse(true)
+                && descriptor.getHouse().map(house -> resident.getHouse().containsIgnoreCase(house)).orElse(true)
+                && descriptor.getMatricNumber().map(matric -> resident.getMatricNumber().containsIgnoreCase(matric))
                 .orElse(true) && resident.getTags().containsAll(descriptor.getTags().orElse(resident.getTags()));
     }
 
