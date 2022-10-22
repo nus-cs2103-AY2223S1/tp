@@ -2,7 +2,7 @@
 
 ![Ui](docs/images/Ui.png)
 
-* GithubContact is **an address book integrated with Github Public API, targeted at programmers and help them communicate smoothly**.<br>
+* GithubContact is **an address book integrated with Github Public API**, targeted at programmers and help them communicate smoothly.
   Example usages:
   * as a contact book to keep tracks of contact details of your peers.
   * as a case study
@@ -13,3 +13,4 @@
 * This project is based on the AddressBook-Level3 project created by the [SE-EDU initiative](https://se-education.org).
   * For the detailed documentation of this project, see the **[Address Book Product Website](https://se-education.org/addressbook-level3)**.
   * `AddressBook-Level3` is is a **part of the se-education.org** initiative. If you would like to contribute code to this project, see [se-education.org](https://se-education.org#https://se-education.org/#contributing) for more info.
+* App icon by [icons8](https://icons8.com/)
