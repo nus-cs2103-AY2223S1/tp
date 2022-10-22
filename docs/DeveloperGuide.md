@@ -184,7 +184,7 @@ The following activity diagram summarises what happens when a student enters a `
 
 ### Mod find feature
 
-### Implementation
+#### Implementation
 
 The `ModCommandParser` implements the operation `ModCommandParser#parseFindCommand(String args)` to read inputs entered by the student for execution in `ModFindCommand`. `ModFindCommand` extends `ModCommand` to execute the `mod find` command.
 
