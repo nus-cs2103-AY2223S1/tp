@@ -77,8 +77,7 @@ Here is an overview of what FoodRem consists of and how you can perform a comman
 
 ### Command Format
 
-You will encounter FoodRem commands throughout this User Guide.
-Before you delve into the different commands in [Features](#features), let’s learn what a command consists of.
+You will encounter FoodRem commands throughout this User Guide. Before you delve into the different commands in [Features](#features), let’s learn what a command consists of.
 
 Here is an example:
 ![CommandExample](images/CommandExample.png)
