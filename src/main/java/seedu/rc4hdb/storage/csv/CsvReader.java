@@ -8,6 +8,7 @@ import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.Scanner;
 import java.util.Set;
 import java.util.logging.Logger;
 import java.util.regex.Matcher;
@@ -57,7 +58,7 @@ public class CsvReader {
         }
 
         String csvAsString = cleanBom(filePath);
-        String[] lines = csvAsString.split("\r\n");
+        List<String> lines = splitLines(csvAsString);
         ResidentBook residentBook = new ResidentBook();
 
         for (String line : lines) {
@@ -69,6 +70,18 @@ public class CsvReader {
 
     private boolean isCsvFilePath(Path filePath) {
         return filePath.toString().endsWith(".csv");
+    }
+
+    /**
+     * Splits the CSV string by lines and return as a list of lines.
+     */
+    private List<String> splitLines(String csvAsString) {
+        Scanner sc = new Scanner(csvAsString);
+        List<String> lines = new ArrayList<>();
+        while (sc.hasNext()) {
+            lines.add(sc.nextLine());
+        }
+        return lines;
     }
 
     /**
