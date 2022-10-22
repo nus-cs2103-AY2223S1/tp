@@ -1,12 +1,10 @@
 package seedu.address.logic.parser;
 
-import java.util.List;
-
+import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.DeleteCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Model;
-import seedu.address.model.person.NameContainsKeywordsPredicate;
 
 /**
  * Parses input arguments and creates a new DeleteCommand object
@@ -33,13 +31,11 @@ public class DeleteCommandParser implements Parser<DeleteCommand> {
             Index index = ParserUtil.parseIndex(args);
             return new DeleteCommand(index);
         } catch (ParseException pe) {
-            String trimmedInput = args.trim();
-            NameContainsKeywordsPredicate predicate = new NameContainsKeywordsPredicate(List.of(trimmedInput));
-            model.updateFilteredPersonList(predicate);
+            new FindCommandParser().parse(args).execute(model);
             if (model.getFilteredPersonList().size() == 0) {
-                throw new ParseException("The person / name does not exist ! Try again");
+                throw new ParseException(String.format(Messages.MESSAGE_INVALID_NAME, args), pe);
             } else if (model.getFilteredPersonList().size() > 1) {
-                throw new ParseException("There are more than 1 person in the given list!");
+                throw new ParseException(String.format(Messages.MESSAGE_INVALID_AMBIGUOUS_NAME, args), pe);
             } else {
                 return new DeleteCommand(Index.fromOneBased(1));
             }
