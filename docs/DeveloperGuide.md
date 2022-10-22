@@ -175,14 +175,14 @@ The following sequence diagram illustrates the interactions between the `Logic` 
 
 <br>
 
-The `viewTask` command is executed when the user enters the command into the UI which is handled by `ViewTaskCommand`. Since the command requires an argument `PATIENT_INDEX`, a `ViewTaskCommandParser` is created to determine the validity of the arguments provided. Given that valid arguments are given, the command is then executed in the following manner.
+The `viewTask` command is executed when the user enters the command into the UI which is handled by `ViewTaskCommand`. Since the command requires an argument `PATIENT_INDEX`, a `ViewTaskCommandParser` is created to determine the validity of the arguments provided. Given that valid arguments are provided, the command is then executed in the following manner.
 
 1. The `Patient` at the specified `PATIENT_INDEX` is retrieved from the `lastShownList` obtained from the `Model` component.
 1. The `Model` component updates its current list with `Model#updateFilteredPersonList()` to display only the specified `Patient`.
 1. The `UI` component updates its result display by displaying the feedback message from `ViewTaskCommand`.
 1. The `UI` component updates its output panel by displaying a `TaskListPanel`.
 
-Note that `TaskListPanel` only displays the complete list of tasks of the specififed patient and essential information such as the patient name and tags.
+Note that `TaskListPanel` only displays the complete list of tasks of the specified patient and essential information such as the patient name and tags.
 
 The following sequence diagrams illustrates the interactions between the `UI`, `Logic` and `Model` component when the command is being executed.
 
