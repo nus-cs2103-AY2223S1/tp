@@ -77,13 +77,19 @@ public class Meeting {
     }
 
     /**
-     * Returns true if and only if this meeting has a date before the given {@code MeetingDate}.
-     * @param other
-     * @return
+     * Returns true if and only if this meeting has a date at or before the given {@code MeetingDate}.
      */
     public boolean isBeforeDate(MeetingDate other) {
         return meetingDate.compareTo(other) <= 0;
     }
+
+    /**
+     * Returns true if and only if this meeting has a date at or after the given {@code MeetingDate}.
+     */
+    public boolean isAfterDate(MeetingDate other) {
+        return meetingDate.compareTo(other) >= 0;
+    }
+
 
     /**
      * Returns true if both meetings have the same date and time and conflicts.

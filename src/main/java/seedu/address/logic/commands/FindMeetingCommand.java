@@ -33,23 +33,31 @@ public class FindMeetingCommand extends Command {
     public CommandResult execute(Model model) {
         requireNonNull(model);
 
-        MeetingDate dateBefore;
+        MeetingDate startDate;
+        MeetingDate endDate;
+        LocalDate today = LocalDate.now();
         switch(dateKeyword) {
             case TOMORROW:
-                dateBefore = new MeetingDate(LocalDate.now().plusDays(1));
+                startDate = new MeetingDate(today.plusDays(1));
+                endDate = new MeetingDate(today.plusDays(1));
                 break;
             case THIS_MONTH:
-                dateBefore = new MeetingDate(LocalDate.now().plusDays(7));
+                startDate = new MeetingDate(today.withDayOfMonth(1));
+                endDate = new MeetingDate(today.withDayOfMonth(today.getMonth().length(today.isLeapYear())));
                 break;
             case THIS_WEEK:
-                dateBefore = new MeetingDate(LocalDate.now().plusDays(30));
+                startDate = new MeetingDate(today);
+                endDate = new MeetingDate(today.plusDays(7));
                 break;
             default:
-                dateBefore = null;
+                startDate = null;
+                endDate = null;
         }
 
-        requireNonNull(dateBefore);
-        Predicate<Meeting> pred = meeting -> meeting.isBeforeDate(dateBefore);
+        requireNonNull(startDate);
+        requireNonNull(endDate);
+        Predicate<Meeting> pred = meeting ->
+                meeting.isAfterDate(startDate) && meeting.isBeforeDate(endDate);
         model.updateFilteredMeetingList(pred);
         return new CommandResult(MESSAGE_SUCCESS, CommandSpecific.MEETING);
     }
