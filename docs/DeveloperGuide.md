@@ -277,6 +277,22 @@ _{more aspects and alternatives to be added}_
 
 _{Explain here how the data archiving feature will be implemented}_
 
+### \[Proposed\] Delete User Attributes Feature (In Github Contact Page)
+
+When the user navigates to the ContactDetail Page of a specified Person, this feature allows the User to delete specified attributes from the command line. 
+
+The Delete Attribute feature will make use of the following classes:
+* `DeleteAttributeCommand` — Removes specified attribute from specified `Person` object in the model.
+* `DeleteAttributeCommandParser` — Parses the arguments supplied by the user - the `name` of the person whose `attribute` will be deleted.
+* `DeleteAttributePersonDescriptor` - Contains the attributes of the Person after an Attribute has been deleted. 
+
+Step 1: The user enters the `ContactDetailPage` of a previously added `Person`.
+
+Step 2: The user executes `delete name/Bob role/DevOps`. `DeleteAttributeCommandParser` parses the arguments and
+creates a `DeletePersonDescriptor` containing null value for the attribute `Role` while maintaining the values for the other 
+attributes. A`DeleteAttributeCommand` instance containing that `DeletePersonDescriptor` will then be created. When executed, 
+the currently selected `Person`'s attributes will be updated according to the deleted attribute.
+
 
 --------------------------------------------------------------------------------------------------------------------
 
