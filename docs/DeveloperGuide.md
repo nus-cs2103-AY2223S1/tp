@@ -83,9 +83,10 @@ The `UI` component,
 
 - executes user commands using the `Logic` component.
 - listens for changes to `Model` data so that the UI can be updated with the modified data.
-- Shows the an active view of the currently available content based on filter and current context.
+- shows the an active view of the currently available content based on filter and current context.
 - keeps a reference to the `Logic` component, because the `UI` relies on the `Logic` to execute commands.
-- `DetailPanel` will display a finer detail of the currently selected `DisplayItem` that is chosen inside Model.
+
+The `DetailPanel` component of the `UI` will display a finer detail of the currently selected `DisplayItem` that is chosen inside Model.
 
 How `UI` displays and updates `DisplayItem`'s in list view. Below will illustrate how any `DisplayItem` is generated as an card UI and then added into the corresponding ListPanel.
 
@@ -169,7 +170,8 @@ The `Model` component,
 - stores the currently 'selected' `Person`, `Task`, `Group` objects (e.g., results of a search query or a change in group context) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<T>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
 - stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
 - does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
-- The additional `Attribute`s are stored within `DisplayItem` (`AbstractDisplayItem`, `AbstractContainerItem`).
+
+Additional `Attribute`s are stored within `DisplayItem` (`AbstractDisplayItem`, `AbstractContainerItem`).
 
 ### Storage component
 
