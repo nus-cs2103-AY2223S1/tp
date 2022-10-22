@@ -19,18 +19,15 @@ public class Day {
         }
     };
     private final int dayNumber;
-    private final Itinerary parentItinerary;
     private UniqueItemList itemList;
 
     /**
      * Constructor.
      *
-     * @param dayNumber       The day number.
-     * @param parentItinerary The itinerary object it is stored in.
+     * @param dayNumber The day number.
      */
-    public Day(int dayNumber, Itinerary parentItinerary) {
+    public Day(int dayNumber) {
         this.dayNumber = dayNumber;
-        this.parentItinerary = parentItinerary;
     }
 
     /**
