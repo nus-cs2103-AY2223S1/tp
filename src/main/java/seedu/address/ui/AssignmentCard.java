@@ -38,6 +38,9 @@ public class AssignmentCard extends UiPart<Region> {
     @FXML
     private FlowPane personGroup;
 
+    /**
+     * An UI component that displays information of a {@code Assignment}.
+     */
     public AssignmentCard(Person person, int displayedIndex) {
         super(FXML);
         this.person = person;

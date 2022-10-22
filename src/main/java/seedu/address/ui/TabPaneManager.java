@@ -8,19 +8,19 @@ import seedu.address.commons.util.CollectionUtil;
 /**
  * An UI component that displays allows switching between assignment and contact details.
  */
-public class DataPanelsTabPaneManager {
+public class TabPaneManager {
     private final TabPane tabPane;
     private final Tab personTabPage;
     private final Tab assignmentTabPage;
 
     /**
-     * Constructor that manages TabPanes
+     * Constructor that manages the clickable TabPanes.
      *
-     * @param pane
-     * @param personTabPage
-     * @param assignmentTabPage
+     * @param pane TabPane
+     * @param personTabPage list of person contact details
+     * @param assignmentTabPage list of assignments under each person
      */
-    public DataPanelsTabPaneManager(TabPane pane, Tab personTabPage, Tab assignmentTabPage) {
+    public TabPaneManager(TabPane pane, Tab personTabPage, Tab assignmentTabPage) {
         CollectionUtil.requireAllNonNull(pane, personTabPage, assignmentTabPage);
         tabPane = pane;
         this.personTabPage = personTabPage;

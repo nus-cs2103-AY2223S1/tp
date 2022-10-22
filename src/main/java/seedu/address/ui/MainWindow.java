@@ -28,9 +28,9 @@ public class MainWindow extends UiPart<Stage> {
     private static final String FXML = "MainWindow.fxml";
 
     private final Logger logger = LogsCenter.getLogger(getClass());
-    private DataPanelsTabPaneManager dataPanelsTabPaneManager;
+    private TabPaneManager dataPanels;
     @FXML
-    private TabPane dataPanelsTabPane;
+    private TabPane dataPanelsTabPanes;
     private Stage primaryStage;
     private Logic logic;
 
@@ -145,7 +145,7 @@ public class MainWindow extends UiPart<Stage> {
         CommandBox commandBox = new CommandBox(this::executeCommand);
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
 
-        dataPanelsTabPaneManager = new DataPanelsTabPaneManager(dataPanelsTabPane,
+        dataPanels = new TabPaneManager(dataPanelsTabPanes,
                 personListPanelTab,
                 assignmentListPanelTab);
     }
