@@ -1,0 +1,16 @@
+@startuml
+'https://plantuml.com/activity-diagram-beta
+
+start
+:User executes a view command;
+if () then ([input is valid])
+    :Input gets parsed;
+    :Creates ViewCommand;
+    :Executes ViewCommand;
+    :List of Profiles/Events gets filtered;
+    :Display success message to user;
+else ([else])
+    :Display error message to user;
+endif
+stop
+@enduml

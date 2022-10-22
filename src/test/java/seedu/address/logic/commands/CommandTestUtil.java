@@ -20,6 +20,8 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.commands.profile.EditProfileCommand;
 import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
+import seedu.address.model.event.Event;
+import seedu.address.model.event.TitleContainsKeywordsPredicate;
 import seedu.address.model.profile.NameContainsKeywordsPredicate;
 import seedu.address.model.profile.Profile;
 import seedu.address.testutil.EditProfileDescriptorBuilder;
@@ -142,6 +144,7 @@ public class CommandTestUtil {
         assertEquals(expectedAddressBook, actualModel.getAddressBook());
         assertEquals(expectedFilteredList, actualModel.getFilteredProfileList());
     }
+
     /**
      * Updates {@code model}'s filtered list to show only the profile at the given {@code targetIndex} in the
      * {@code model}'s address book.
@@ -156,4 +159,17 @@ public class CommandTestUtil {
         assertEquals(1, model.getFilteredProfileList().size());
     }
 
+    /**
+     * Updates {@code model}'s filtered list to show only the event at the given {@code targetIndex} in the
+     * {@code model}'s address book.
+     */
+    public static void showEventAtIndex(Model model, Index targetIndex) {
+        assertTrue(targetIndex.getZeroBased() < model.getFilteredEventList().size());
+
+        Event event = model.getFilteredEventList().get(targetIndex.getZeroBased());
+        final String[] splitTitle = event.getTitle().title.split("\\s+");
+        model.updateFilteredEventList(new TitleContainsKeywordsPredicate(Arrays.asList(splitTitle[0])));
+
+        assertEquals(1, model.getFilteredEventList().size());
+    }
 }
