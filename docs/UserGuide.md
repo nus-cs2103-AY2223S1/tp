@@ -16,7 +16,7 @@ This User Guide provides an in-depth documentation to help integrate FoodRem int
 {% include toc.md header=true show-in-toc=true ordered=true %}
 
 ## Features 
-There are two core features that FoodRem provides: The Inventory Management System, and inventory analysis capabilities.
+There are two core features that FoodRem provides: The Inventory Management System, and Inventory Analysis.
 
 TODO: Add links to e.g. name, bought date, expiry date, etc.
 ### Inventory Management System
