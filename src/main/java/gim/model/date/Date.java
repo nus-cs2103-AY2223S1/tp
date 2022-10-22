@@ -36,7 +36,10 @@ public class Date {
      * This is used when the user did not input any date.
      */
     public Date() {
-        this.date = LocalDate.parse(LocalDate.now().toString(), formatter);
+        LocalDate today = LocalDate.now();
+        String todayText = today.format(formatter);
+        LocalDate todayFormatted = LocalDate.parse(todayText, formatter);
+        this.date = todayFormatted;
     }
 
     /**

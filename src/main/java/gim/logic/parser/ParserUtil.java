@@ -93,13 +93,13 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String date} into a {@code Tag}.
+     * Parses a {@code String date} into a {@code Date}.
      * Leading and trailing whitespaces will be trimmed.
      *
      * @throws ParseException if the given {@code date} is invalid.
      */
     public static Date parseDate(String date) throws ParseException {
-        requireNonNull(date);
+//        requireNonNull(date);
         String trimmedTag = date.trim();
         if (!Date.isValidDate(trimmedTag)) {
             throw new ParseException(Date.MESSAGE_CONSTRAINTS);
