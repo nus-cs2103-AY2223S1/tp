@@ -3,7 +3,6 @@ package seedu.phu.logic.commands;
 import static java.util.Objects.requireNonNull;
 
 import java.awt.Toolkit;
-import java.awt.datatransfer.Clipboard;
 import java.awt.datatransfer.StringSelection;
 import java.util.ArrayList;
 import java.util.List;
@@ -57,9 +56,9 @@ public class CopyCommand extends Command {
 
         Internship internship = targetInternshipList.get(0);
         String toCopy = internship.toString();
-        StringSelection stringSelection = new StringSelection(toCopy);
-        Clipboard clipboard = Toolkit.getDefaultToolkit().getSystemClipboard();
-        clipboard.setContents(stringSelection, null);
+        Toolkit.getDefaultToolkit()
+                .getSystemClipboard()
+                .setContents(new StringSelection(toCopy), null);
 
         return new CommandResult(MESSAGE_SUCCESS);
     }
