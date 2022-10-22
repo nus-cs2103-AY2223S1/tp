@@ -12,12 +12,12 @@ import seedu.address.model.task.Task;
  */
 public class TypicalTasks {
 
-    public static final Task READ_BOOK = new TaskBuilder().withDescription("read book").withDeadline("12-11-2022")
-            .withId(1).build();
-    public static final Task WRITE_TEST_CASES = new TaskBuilder().withDescription("write test cases").withDeadline("21-09-2022")
-            .withId(2).withTags("CS2103T").build();
+    public static final Task READ_BOOK = new TaskBuilder().withDescription("read book")
+            .withDeadline("12-11-2022").withId(1).build();
+    public static final Task WRITE_TEST_CASES = new TaskBuilder().withDescription("write test cases")
+            .withDeadline("21-09-2022").withId(2).withTags("CS2103T").build();
     public static final Task PREPARE_SLIDES = new TaskBuilder().withDescription("prepare slides")
-            .withId(3).withDeadline("28-10-2022").withStatus(true).withTags("CS2101").build();
+            .withDeadline("28-10-2022").withId(3).withStatus(true).withTags("CS2101").build();
 
     private TypicalTasks() {} // prevents instantiation
 

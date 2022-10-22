@@ -1,14 +1,12 @@
 package seedu.address.logic.commands.task;
 
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.address.testutil.TypicalTasks.PREPARE_SLIDES;
-import static seedu.address.testutil.TypicalTasks.READ_BOOK;
-import static seedu.address.testutil.TypicalTasks.WRITE_TEST_CASES;
 import static seedu.address.testutil.TypicalTasks.getTypicalAddressBook;
 import static seedu.address.testutil.TypicalTasks.getTypicalTasksSortedByDeadline;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+
 import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;

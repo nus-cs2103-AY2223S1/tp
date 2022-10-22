@@ -3,14 +3,11 @@ package seedu.address.model.task;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.logic.commands.CommandTestUtil.DESCRIPTION_DESC_QUIZ;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_DEADLINE_EARLIEST;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_DEADLINE_QUIZ;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_DESCRIPTION_QUIZ;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_2103;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalTasks.PREPARE_SLIDES;
 import static seedu.address.testutil.TypicalTasks.READ_BOOK;
 import static seedu.address.testutil.TypicalTasks.WRITE_TEST_CASES;
 import static seedu.address.testutil.TypicalTasks.getTypicalTasks;
@@ -36,12 +33,12 @@ public class TaskListTest {
     }
 
     @Test
-    public void contains_TaskNotInList_returnsFalse() {
+    public void contains_taskNotInList_returnsFalse() {
         assertFalse(taskList.contains(READ_BOOK));
     }
 
     @Test
-    public void contains_TaskInList_returnsTrue() {
+    public void contains_taskInList_returnsTrue() {
         taskList.addTask(READ_BOOK);
         assertTrue(taskList.contains(READ_BOOK));
     }

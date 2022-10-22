@@ -4,8 +4,8 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.DESC_QUIZ;
 import static seedu.address.logic.commands.CommandTestUtil.DESC_REPORT;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_DESCRIPTION_QUIZ;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_DEADLINE_QUIZ;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_DESCRIPTION_QUIZ;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_2103;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
@@ -15,6 +15,7 @@ import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_TASK;
 import static seedu.address.testutil.TypicalTasks.getTypicalAddressBook;
 
 import org.junit.jupiter.api.Test;
+
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.ClearCommand;
