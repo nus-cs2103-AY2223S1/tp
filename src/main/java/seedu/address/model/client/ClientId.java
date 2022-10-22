@@ -38,7 +38,7 @@ public class ClientId {
      */
     public static class EmptyClientId extends ClientId {
         public static final ClientId EMPTY_CLIENT_ID = new EmptyClientId();
-        public static final int ID = -1;
+        public static final int ID = Integer.MAX_VALUE;
         public EmptyClientId() {
             super(ID);
         }
@@ -65,8 +65,8 @@ public class ClientId {
      */
     public static boolean isValidClientId(String clientId) {
         try {
-            Integer.parseInt(clientId);
-            return true;
+            int pid = Integer.parseInt(clientId);
+            return pid > 0;
         } catch (NumberFormatException e) {
             return false;
         }

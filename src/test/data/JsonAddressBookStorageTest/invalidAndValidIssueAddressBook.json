@@ -1,0 +1,31 @@
+{
+  "projects" : [ {
+    "name" : "Individual Project",
+    "repository" : "johndoe/ip",
+    "deadline" : "2022-03-03",
+    "client" : {
+      "name" : "Alex Yeoh",
+      "phone" : "87438807",
+      "email" : "alexyeoh@example.com",
+      "clientId" : "1",
+      "projects" : [ ]
+    },
+    "issues" : [ ],
+    "projectId" : "1"
+  } ],
+  "issues" : [ {
+    "description" : "Refactor UI Classes",
+    "priority" : "X@",
+    "deadline" : "2020a1",
+    "status" : "x123",
+    "issueId" : "1",
+    "project" : "5"
+  }, {
+    "description" : "Fix loading screen bug",
+    "priority" : "MEDIUM",
+    "deadline" : "2022-10-04",
+    "status" : "true",
+    "issueId" : "2",
+    "project" : "1"
+  } ]
+}

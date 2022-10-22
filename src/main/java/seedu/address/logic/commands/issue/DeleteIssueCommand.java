@@ -43,12 +43,13 @@ public class DeleteIssueCommand extends IssueCommand {
             if (i.getIssueIdInInt() == targetIndex.getOneBased()) {
                 i.deleteProjectIssue(i);
                 model.deleteIssue(i);
+                ui.showIssues();
+                model.updateFilteredIssueList(PREDICATE_SHOW_ALL_ISSUES);
                 return new CommandResult(String.format(MESSAGE_SUCCESS, i));
             }
         }
 
-        ui.showIssues();
-        model.updateFilteredIssueList(PREDICATE_SHOW_ALL_ISSUES);
+
 
         throw new CommandException(Messages.MESSAGE_INVALID_ISSUE_DISPLAYED_ID);
 

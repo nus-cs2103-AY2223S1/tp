@@ -13,7 +13,6 @@ import seedu.address.commons.core.DefaultView;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.client.Client;
-import seedu.address.model.client.Person;
 import seedu.address.model.issue.Issue;
 import seedu.address.model.project.Project;
 
@@ -25,7 +24,6 @@ public class ModelManager implements Model {
 
     private AddressBook addressBook;
     private final UserPrefs userPrefs;
-    private final FilteredList<Person> filteredPersons;
     private final FilteredList<Project> filteredProjects;
     private final FilteredList<Issue> filteredIssues;
     private final FilteredList<Client> filteredClients;
@@ -40,7 +38,6 @@ public class ModelManager implements Model {
 
         this.addressBook = new AddressBook(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
-        filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
         filteredProjects = new FilteredList<>(this.addressBook.getProjectList());
         filteredIssues = new FilteredList<>(this.addressBook.getIssueList());
         filteredClients = new FilteredList<>(this.addressBook.getClientList());
@@ -109,12 +106,6 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public boolean hasPerson(Person person) {
-        requireNonNull(person);
-        return addressBook.hasPerson(person);
-    }
-
-    @Override
     public boolean hasProject(Project project) {
         requireNonNull(project);
         return addressBook.hasProject(project);
@@ -163,11 +154,6 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void deletePerson(Person target) {
-        addressBook.removePerson(target);
-    }
-
-    @Override
     public void deleteProject(Project target) {
         addressBook.removeProject(target);
     }
@@ -180,12 +166,6 @@ public class ModelManager implements Model {
     @Override
     public void deleteClient(Client target) {
         addressBook.removeClient(target);
-    }
-
-    @Override
-    public void addPerson(Person person) {
-        addressBook.addPerson(person);
-        updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
     }
 
     @Override
@@ -204,13 +184,6 @@ public class ModelManager implements Model {
     public void addClient(Client client) {
         addressBook.addClient(client);
         updateFilteredClientList(PREDICATE_SHOW_ALL_CLIENTS);
-    }
-
-    @Override
-    public void setPerson(Person target, Person editedPerson) {
-        requireAllNonNull(target, editedPerson);
-
-        addressBook.setPerson(target, editedPerson);
     }
 
     @Override
@@ -249,17 +222,12 @@ public class ModelManager implements Model {
         return addressBook.generateProjectId();
     }
 
-    //=========== Filtered Person List Accessors =============================================================
+    //=========== Filtered List Accessors =============================================================
 
     /**
-     * Returns an unmodifiable view of the list of {@code Person} backed by the internal list of
+     * Returns an unmodifiable view of the list of projects backed by the internal list of
      * {@code versionedAddressBook}
      */
-    @Override
-    public ObservableList<Person> getFilteredPersonList() {
-        return filteredPersons;
-    }
-
     @Override
     public ObservableList<Project> getFilteredProjectList() {
         return filteredProjects;
@@ -275,12 +243,6 @@ public class ModelManager implements Model {
         return filteredClients;
     }
 
-
-    @Override
-    public void updateFilteredPersonList(Predicate<Person> predicate) {
-        requireNonNull(predicate);
-        filteredPersons.setPredicate(predicate);
-    }
 
     @Override
     public void updateFilteredProjectList(Predicate<Project> predicate) {
@@ -316,7 +278,6 @@ public class ModelManager implements Model {
         ModelManager other = (ModelManager) obj;
         return addressBook.equals(other.addressBook)
                 && userPrefs.equals(other.userPrefs)
-                && filteredPersons.equals(other.filteredPersons)
                 && filteredProjects.equals(other.filteredProjects)
                 && filteredIssues.equals(other.filteredIssues)
                 && filteredClients.equals(other.filteredClients);
