@@ -48,7 +48,8 @@ public class JsonAdaptedActivityTest {
     public void toModelType_nullName_throwsIllegalValueException() {
         List<JsonAdaptedDate> dateList = new ArrayList<>();
         dateList.add(new JsonAdaptedDate(VALID_DATE));
-        JsonAdaptedActivity activity = new JsonAdaptedActivity(null, VALID_DESCRIPTION, VALID_TAGS, dateList, 1, VALID_STATUS);
+        JsonAdaptedActivity activity = new JsonAdaptedActivity(null, VALID_DESCRIPTION, VALID_TAGS,
+                dateList, 1, VALID_STATUS);
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Name.class.getSimpleName());
         Assert.assertThrows(IllegalValueException.class, expectedMessage, activity::toModelType);
     }
@@ -67,7 +68,8 @@ public class JsonAdaptedActivityTest {
     public void toModelType_nullDescription_throwsIllegalValueException() {
         List<JsonAdaptedDate> dateList = new ArrayList<>();
         dateList.add(new JsonAdaptedDate(VALID_DATE));
-        JsonAdaptedActivity activity = new JsonAdaptedActivity(VALID_NAME, null, VALID_TAGS, dateList, 1, VALID_STATUS);
+        JsonAdaptedActivity activity = new JsonAdaptedActivity(VALID_NAME, null, VALID_TAGS,
+                dateList, 1, VALID_STATUS);
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Description.class.getSimpleName());
         Assert.assertThrows(IllegalValueException.class, expectedMessage, activity::toModelType);
     }
