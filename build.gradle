@@ -6,10 +6,6 @@ plugins {
     id 'jacoco'
 }
 
-run {
-    enableAssertions = true
-}
-
 mainClassName = 'seedu.intrack.Main'
 
 sourceCompatibility = JavaVersion.VERSION_11
@@ -71,6 +67,10 @@ dependencies {
 
 shadowJar {
     archiveFileName = 'addressbook.jar'
+}
+
+run {
+    enableAssertions = true
 }
 
 defaultTasks 'clean', 'test'
