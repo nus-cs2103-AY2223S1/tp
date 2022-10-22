@@ -17,7 +17,7 @@
 {% capture findexample %}{% include_relative _ug/commandSummary/itemCommandsExample/find.md %}{% endcapture %}
 {% capture sortexample %}{% include_relative _ug/commandSummary/itemCommandsExample/sort.md %}{% endcapture %}
 {% capture viewexample %}{% include_relative _ug/commandSummary/itemCommandsExample/view.md %}{% endcapture %}
-{% capture inc %}{% include_relative _ug/commandSummary/itemCommandsExample/inc.md %}{% endcapture %}
+{% capture incexample %}{% include_relative _ug/commandSummary/itemCommandsExample/inc.md %}{% endcapture %}
 {% capture dec %}{% include_relative _ug/commandSummary/itemCommandsExample/dec.md %}{% endcapture %}
 {% capture set %}{% include_relative _ug/commandSummary/itemCommandsExample/edit.md %}{% endcapture %}
 {% capture del %}{% include_relative _ug/commandSummary/itemCommandsExample/del.md %}{% endcapture %}
