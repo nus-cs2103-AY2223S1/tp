@@ -5,6 +5,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_ROLES;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
 import java.util.List;
+import java.util.Locale;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
@@ -43,7 +44,22 @@ public class RolesCommand extends Command {
         requireAllNonNull(index, roles);
 
         this.index = index;
-        this.roles = roles;
+        switch (roles.toLowerCase(Locale.ROOT)) {
+        case "coordinator":
+            this.roles = "Coordinator";
+            break;
+        case "lecturer":
+            this.roles = "Lecturer";
+            break;
+        case "tutor":
+            this.roles = "Tutor";
+            break;
+        case "advisor":
+            this.roles = "Advisor";
+            break;
+        default:
+            this.roles = "Unassigned";
+        }
     }
 
     /**

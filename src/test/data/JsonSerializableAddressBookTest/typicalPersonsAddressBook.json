@@ -7,7 +7,7 @@
     "position" : "TA",
     "address" : "123, Jurong West Ave 6, #08-111",
     "remark": "",
-    "details": "available",
+    "details": "Available",
     "tagged" : [ "friends" ]
   }, {
     "name" : "Benson Meier",
@@ -34,7 +34,7 @@
     "position" : "TA",
     "address" : "10th street",
     "remark": "",
-    "details": "unavailable",
+    "details": "Unavailable",
     "tagged" : [ "friends" ]
   }, {
     "name" : "Elle Meyer",
@@ -61,7 +61,7 @@
     "position" : "TA",
     "address" : "4th street",
     "remark": "",
-    "details": "unavailable",
+    "details": "Unavailable",
     "tagged" : [ ]
   } ]
 }

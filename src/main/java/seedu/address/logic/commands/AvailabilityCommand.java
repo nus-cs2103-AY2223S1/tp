@@ -5,6 +5,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_AVAILABILITY;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
 import java.util.List;
+import java.util.Locale;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
@@ -42,7 +43,13 @@ public class AvailabilityCommand extends Command {
         requireAllNonNull(index, availability);
 
         this.index = index;
-        this.availability = availability;
+        switch (availability.toLowerCase(Locale.ROOT)) {
+        case "unavailable":
+            this.availability = "Unavailable";
+            break;
+        default:
+            this.availability = "Available";
+        }
     }
 
     /**
