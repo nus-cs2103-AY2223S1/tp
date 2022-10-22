@@ -6,6 +6,7 @@ import static paymelah.commons.util.AppUtil.checkArgument;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
+import java.time.format.ResolverStyle;
 
 /**
  * Represents a Debt's date in the address book.
@@ -15,8 +16,9 @@ public class DebtDate {
 
     public static final String MESSAGE_CONSTRAINTS =
             "Dates should be in yyyy-mm-dd format; where y is year, m is month and d is day.";
-    public static final DateTimeFormatter DATE_INPUT_FORMAT = DateTimeFormatter.ofPattern("yyyy-M-d");
-    public static final DateTimeFormatter DATE_OUTPUT_FORMAT = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+    public static final DateTimeFormatter DATE_INPUT_FORMAT = DateTimeFormatter.ofPattern("uuuu-M-d")
+            .withResolverStyle(ResolverStyle.STRICT);
+    public static final DateTimeFormatter DATE_OUTPUT_FORMAT = DateTimeFormatter.ofPattern("uuuu-MM-dd");
 
     private final LocalDate date;
 
