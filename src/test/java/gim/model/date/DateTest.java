@@ -1,26 +1,63 @@
 package gim.model.date;
 
 import static gim.testutil.Assert.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
+import java.time.LocalDate;
+import java.time.format.DateTimeParseException;
 
 import org.junit.jupiter.api.Test;
 
 public class DateTest {
+
+    /**
+     * Date constructor does not accept null as its value. When no
+     * argument is provided to the constructor, the value is set by
+     * default as today's date.
+     */
+    @Test
+    public void constructor_default_setAsDateToday() {
+        assertEquals((new Date()).date, LocalDate.now());
+    }
 
     @Test
     public void constructor_null_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> new Date(null));
     }
 
+    /**
+     * Test for invalid date where the formatting does not conform to dd/MM/uuuu format.
+     */
     @Test
-    public void constructor_invalidTagName_throwsIllegalArgumentException() {
-        String invalidTagName = "";
-        assertThrows(IllegalArgumentException.class, () -> new Date(invalidTagName));
+    public void constructor_invalidDate_throwsIllegalArgumentException() {
+        String invalidDateEmptyString = "";
+        String invalidDateFormat_one = "5/5/2022";
+        String invalidDateFormat_two = "05/5/2022";
+        String invalidDateFormat_three = "5/05/2022";
+        String invalidDateFormat_four = "05/05/22";
+        String invalidDateFormat_five = "31-04-2022";
+        assertThrows(IllegalArgumentException.class, () -> new Date(invalidDateEmptyString));
+        assertThrows(IllegalArgumentException.class, () -> new Date(invalidDateFormat_one));
+        assertThrows(IllegalArgumentException.class, () -> new Date(invalidDateFormat_two));
+        assertThrows(IllegalArgumentException.class, () -> new Date(invalidDateFormat_three));
+        assertThrows(IllegalArgumentException.class, () -> new Date(invalidDateFormat_four));
+        assertThrows(IllegalArgumentException.class, () -> new Date(invalidDateFormat_five));
+    }
+
+    /**
+     * Test for invalid date where the date is non-existent, but is not covered by the regex.
+     * Example: 31st February 2022 is a non-existent date.
+     */
+    @Test
+    public void constructor_nonExistentDate_throwsDateTimeParseException() {
+        String nonExistentDate = "31/02/2022";
+        assertThrows(DateTimeParseException.class, () -> new Date(nonExistentDate));
     }
 
     @Test
-    public void isValidTagName() {
-        // null tag name
-        assertThrows(NullPointerException.class, () -> Date.isValidDate(null));
+    public void isValidDate() {
+        // null date
+        assertThrows(NullPointerException.class, () -> Date.isValidDateByRegex(null));
     }
 
 }

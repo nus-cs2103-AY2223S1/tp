@@ -91,7 +91,7 @@ class JsonAdaptedExercise {
         if (date == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Date.class.getSimpleName()));
         }
-        if (!Date.isValidDate(date.toModelType().toString())) {
+        if (!Date.isValidDateByRegex(date.toModelType().toString())) {
             throw new IllegalValueException(Date.MESSAGE_CONSTRAINTS);
         }
         final Date modelDates = date.toModelType();

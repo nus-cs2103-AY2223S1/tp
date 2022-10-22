@@ -39,7 +39,7 @@ class JsonAdaptedTag {
      * @throws IllegalValueException if there were any data constraints violated in the adapted tag.
      */
     public Date toModelType() throws IllegalValueException {
-        if (!Date.isValidDate(tagName)) {
+        if (!Date.isValidDateByRegex(tagName)) {
             throw new IllegalValueException(Date.MESSAGE_CONSTRAINTS);
         }
         return new Date(tagName);
