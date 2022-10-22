@@ -177,44 +177,40 @@ This section describes some noteworthy details on how certain features are imple
 #### Implementation
 
 The sorting mechanism is facilitated by `SortCommand` and `SortCommandParser`.
-Additionally, the mechanism utilises the following operations in `UniquePersonList`:
+Additionally, the mechanism utilises the following operations in `UniquePersonList` to carry out sorting:
 
-* `UniquePersonList#sortByName(Boolean isReverse)` — Sorts the contact list by **Name** in alphabetical order.
-* `UniquePersonList#sortByPhone(Boolean isReverse)` — Sorts the contact list by **Phone** number in increasing order.
-* `UniquePersonList#sortByEmail(Boolean isReverse)` — Sorts the contact list by **Email** in alphabetical order.
-* `UniquePersonList#sortByAddress(Boolean isReverse)` — Sorts the contact list by **Address** in alphabetical order.
-* `UniquePersonList#sortByTag(Tag tag, Boolean isReverse)` — Sorts the contact list by a specified **Tag**.
+* `UniquePersonList#sortByName(Boolean isReverse)` — Sorts the list of contacts by **Name** in alphabetical order.
+* `UniquePersonList#sortByPhone(Boolean isReverse)` — Sorts the list of contacts by **Phone** number in increasing order.
+* `UniquePersonList#sortByEmail(Boolean isReverse)` — Sorts the list of contacts by **Email** in alphabetical order.
+* `UniquePersonList#sortByAddress(Boolean isReverse)` — Sorts the list of contacts by **Address** in alphabetical order.
+* `UniquePersonList#sortByTag(Tag tag, Boolean isReverse)` — Sorts the list of contacts by a specified **Tag**. Contacts containing it will be at the top of the list.
 
 These operations sort in reverse order when `isReverse` is true.
 
-These operations are exposed in the `Model` interface under the same method name.
+These operations are exposed in the `Model` interface under the same method signature.
 
 Given below is an example usage scenario and how the sorting mechanism behaves at each step.
 
-Step 1. The user enters `sort t/!friend n/` command to perform a multi-level sort. `SortCommandParser` checks the user input to confirm
-that the parameters have been entered. `SortCommandParser` calls `ArgumentTokenizer#tokenizeToList()` to separate the parameters of `t/!friend` and `n/`.
+Step 1. The user enters `sort t/!friend n/` command to perform a multi-level sort. `SortCommandParser` calls `ArgumentTokenizer#tokenizeToList()` to separate the parameters of `t/!friend` and `n/`. 
+The separated parameters are stored in a list that preserves the order that the user entered them in. `SortCommandParser` checks the list to confirm that at least 1 valid parameter has been entered.
 
-Step 2. Each parameter is processed by `SortCommandParser#convertArguments`. The `friend` string is checked to see if it 
-fulfils the requirements of the `Tag` class. If the user entered string values for non-`Tag` parameters,
-they are ignored and the command continues execution as per normal.
+Step 2. Each parameter is processed by `SortCommandParser#convertArguments`. They are checked for reversed sorting through the presence of `!`.
+The `friend` string is checked to see if it fulfils the requirements of the `Tag` class. If the user entered string values for non-`Tag` parameters (`n/NAME`, `p/PHONE`, `e/EMAIL`, `a/ADDRESS`),
+the string values are ignored and the command continues execution as per normal.
 
 Step 3. The `sort` command sorts the currently displayed list by **Name** first, calling `Model#sortByName(Boolean isReverse)` where `isReverse = false`.
 
-Step 4. The `sort` command sorts the currently displayed list by the `friend` **Tag** next, calling `Model#sortByTag(Tag tag, Boolean isReverse)` where `isReverse = true`.
+Step 4. The `sort` command reverse sorts the currently displayed list by the `friend` **Tag** next, calling `Model#sortByTag(Tag tag, Boolean isReverse)` where `isReverse = true`.
 
 The following sequence diagram shows how the sort operation works:
 
-(insert sequence diagram here)
+![SortSequenceDiagram](images/SortSequenceDiagram.png)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `SortCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `SortCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 
 </div>
 
-Step 5. The user is shown the sorted list. The sorted list contains the same contacts as the previous displayed list. It has two sections, the first section contains contacts without the `friend` tag and the second section contains contacts with the `friend` tag. Each section is sorted by name in alphabetical order.
-
-The following activity diagram summarizes what happens when a user executes a sort command:
-
-(insert activity diagram here)
+Step 5. The user is shown the sorted list of contacts. The sorted list contains the same contacts as the previous displayed list. It has two sections, the first section contains contacts without the `friend` tag and the second section contains contacts with the `friend` tag. Each section is sorted by **Name** in alphabetical order.
 
 #### Design consideration
 
@@ -224,11 +220,9 @@ The following activity diagram summarizes what happens when a user executes a so
     * Pros: Easy to implement.
     * Cons: May have performance issues in terms of time needed to sort.
 
-* **Alternative 2:** Single complex sorting method that combines all the individual sorting for each parameter.
+* **Alternative 2:** Single composite sorting method that combines all the individual sorting for each parameter.
     * Pros: Save time as only 1 sorting operation is carried out.
     * Cons: Harder to modify when more parameters are added. Can result in more bugs due to complexity.
-
-_{more aspects and alternatives to be added}_
 
 ### Search feature
 
@@ -617,7 +611,7 @@ Note:
 
 **Target user profile**: NUS SoC Student
 
-* Has a need to manage a significant number of contacts (from NUS modules and co-curricular activities).
+* Has a need to manage a significant number of contacts and tasks (from NUS modules and co-curricular activities).
 * Prefers desktop apps over other types (easy access to laptop for NUS/SoC modules).
 * Can type fast (from SoC coding modules).
 * Prefers typing to mouse interactions (from SoC coding modules).
@@ -625,8 +619,9 @@ Note:
 
 **Value proposition**:
 
-* Manage contacts faster than a typical mouse/GUI driven app.
+* Manage contacts and tasks faster than a typical mouse/GUI driven app.
 * Organise and separate their school contacts from personal contacts.
+* Organise and separate their school tasks from personal tasks.
 * Practice and train their typing speed.
 * Increase their familiarity with using CLI tools.
 
@@ -636,11 +631,11 @@ Note:
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
 | Priority | As a …                  | I want to …                                            | So that I can…                                                             |
-| -------- | ----------------------- |--------------------------------------------------------| -------------------------------------------------------------------------- |
+|----------|-------------------------|--------------------------------------------------------|----------------------------------------------------------------------------|
 | `* * *`  | new user                | see usage instructions                                 | refer to instructions when I forget how to use the App                     |
 | `* * *`  | user                    | add a new contact                                      |                                                                            |
 | `* * *`  | user                    | delete a contact                                       | remove entries that I no longer need                                       |
-| `* * *`  | user                    | view all my contacts                                   | keep track of all my contacts                                              |
+| `* * *`  | user                    | view all my contacts                                   | keep track of all my contacts in one place                                 |
 | `* *`    | user                    | edit a contact                                         | update it or correct mistakes                                              |
 | `* *`    | user                    | clear all my contacts                                  | save time deleting them one by one                                         |
 | `* *`    | user                    | create a new tag                                       | categorise my contacts                                                     |
@@ -660,8 +655,11 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* *`    | user with many contacts | sort contacts by name, email, phone number, or address | organise my contacts list                                                  |
 | `* *`    | user with many contacts | sort contacts according to tags                        | view contacts with a specified tag before other contacts                   |
 | `* *`    | user with many contacts | sort contacts by multiple fields                       | organise my contacts list with greater degree                              |
-| `*`      | user with many contacts | mark some contacts as my favourites                    | spot them easily among other contacts                                      |
-| `*`      | user with many contacts | sort favourite contacts before others                  | see them before other contacts                                             |
+| `* *`    | user                    | add a new todo                                         |                                                                            |
+| `* *`    | user                    | delete a todo                                          | remove a todo that I have completed                                        |
+| `* *`    | user                    | edit a todo                                            | update it or correct my mistakes                                           |
+| `* *`    | user                    | clear all my todos                                     | save time on deleting them one by one                                      |
+| `* *`    | user                    | filter the list of todos shown                         | only view the portion of list I need at the moment                         |
 | `*`      | user                    | change the order of information for contacts           | view more important information before others                              |
 | `*`      | user                    | customise the theme of the app                         | adjust it to my comfort and liking                                         |
 
@@ -862,15 +860,15 @@ testers are expected to do more *exploratory* testing.
 
 ### Deleting a person
 
-1. Deleting a person while all persons are being shown
+1. Deleting a contact while all contacts are being shown
 
-   1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
+   1. Prerequisites: List all contacts using the `list` command. Multiple contacts in the list.
 
    1. Test case: `delete 1`<br>
       Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
 
    1. Test case: `delete 0`<br>
-      Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
+      Expected: No contact is deleted. Error details shown in the status message. Status bar remains the same.
 
    1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
       Expected: Similar to previous.
