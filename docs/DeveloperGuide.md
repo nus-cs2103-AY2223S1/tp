@@ -235,9 +235,70 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 _{more aspects and alternatives to be added}_
 
+### \[Proposed\] Filter feature
+
+#### Proposed Implementation
+
+The proposed filter mechanism is facilitated by `FilteredAddressBook`. It extends `AddressBook` with a temporary history, stored internally as an `savedAddressBook`, with a `currentStatePointer` showing if the filtered list or the original list is shown. Additionally, it implements the following operations:
+
+* `FilteredAddressBook#filter()` — Filters and saves the filtered address book state from the current address book state.
+* `FilteredAddressBook#restore()` — Restores and shows the current address book state.
+
+These operations are exposed in the `Model` interface as `Model#filterAddressBook()` and `Model#restoreAddressBook()` respectively.
+
+Given below is an example usage scenario and how the filter mechanism behaves at each step.
+
+Step 1. The user launches the application for the first time. The `FilteredAddressBook` will be initialized with the current address book state.
+
+
+Step 2. The user executes `filter LOW` command to show only contacts with risk tag LOW in the address book. The `filter` command calls `Model#filterAddressBook()`, causing the modified state of the address book after the `filter LOW` command executes to be saved in the `savedAddressBook`, and the `currentStatePointer` is shifted to the filtered address book state.
+
+
+The `clear` command does the opposite — it calls `Model#restoreAddressBook()`, which shifts the `currentStatePointer` to the current address book state, and restores the address book to that state.
+
+
+
+Step 3. The user then decides to execute the command `list`. Commands that do not modify the address book, such as `list`, will usually not call `Model#filterAddressBook()` or `Model#restoreAddressBook()`. Thus, the `savedAddressBook` remains unchanged.
+
+
+
+#### Design considerations:
+
+**Aspect: How filter executes:**
+
+
+_{more aspects and alternatives to be added}_
+
+
 ### \[Proposed\] Data archiving
 
 _{Explain here how the data archiving feature will be implemented}_
+
+#### Parameter hint feature
+
+The feature allows a user to view the correct prefixes and arguments of a command before entering the command.
+
+The parameter hints for the command will be shown in the ResultDisplay once the command word is typed out.
+
+### Calendar features
+
+#### Calendar navigation
+
+The Calendar navigation allows a user to navigate between different months in the calendar and also navigate between the different appointments within the current month. 
+This feature uses JavaFX's FocusModel features to obtain different behaviours when a Ui component is focused.
+
+Users have 3 ways to navigate between different months when viewing the calendar:
+
+1. Clicking on the Next/Prev buttons to view the next/previous month in the calendar
+2. Pressing N or B key to view the next/previous month in the calendar
+3. Pressing the ENTER key when the Next/Prev button is focused to view the next/previous month in the calendar
+
+Users have 2 ways to navigate between different appointments when viewing the calendar:
+
+1. Clicking on the Up/Down/Left/Right keys to view adjacent appointments oriented in space in the calendar 
+2. Pressing SHIFT or SHIFT + TAB key to view the next/previous appointment in the calendar
+3. Clicking on a desired appointment to view the appointment in the calendar 
+
 
 
 --------------------------------------------------------------------------------------------------------------------
@@ -291,7 +352,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 (For all use cases below, the **System** is the `Financial Advisor Planner` and the **Actor** is the `user`, unless specified otherwise)
 
-**Use case: Add a client**
+**Use case: UC1 - Add a client**
 
 **MSS**
 
@@ -313,7 +374,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case ends.
 
-**Use case: Delete a client**
+**Use case: UC2 - Delete a client**
 
 **MSS**
 
@@ -336,7 +397,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 2.
 
-**Use case: Edit client details**
+**Use case: UC3 - Edit client details**
 
 **MSS**
 
@@ -361,7 +422,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 2.
 
-**Use case: Clear Financial Advisor Planner**
+**Use case: UC4 - Clear Financial Advisor Planner**
 
 **MSS**
 
@@ -370,7 +431,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     Use case ends.
 
-**Use case: Find client**
+**Use case: UC5 - Find client**
 
 **MSS**
 
@@ -379,7 +440,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     Use case ends.
 
-**Use case: Add an appointment**
+**Use case: UC6 - Add an appointment**
 
 **MSS**
 
@@ -420,7 +481,50 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case ends.
 
-**Use case: Sort contacts by keywords**
+**Use case: UC7 - Edit an appointment**
+
+**MSS**
+
+1. User inputs edit appointment command with the new field/s (location, datetime) for a specific client
+2. Financial Advisor Planner edits the appointment for the specified client
+3. The client's list of appointments is reordered using the date time of each appointment
+
+   Use case ends.
+
+   **Extensions**
+
+* 1a. User did not input any arguments.
+
+    * 1a1. Financial Advisor Planner shows an error message.
+
+      Use case ends.
+
+* 1b. The given person/appointment index is invalid.
+
+    * 1b1. Financial Advisor Planner shows an error message.
+
+      Use case ends.
+
+* 1c. The given date and time has an incorrect format.
+
+    * 1c1. Financial Advisor Planner shows an error message.
+
+      Use case ends.
+
+* 1d. The given location has an incorrect format
+
+    * 1d1. Financial Advisor Planner shows an error message.
+
+      Use case ends.
+     
+* 1e. The newly edited appointment already exists for the specified client
+
+    * 1e1. Financial Advisor Planner shows an error message.
+
+      Use case ends.
+
+     
+**Use case: UC8 - Sort contacts by keywords**
 
 **MSS**
 
@@ -449,7 +553,44 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case ends.
 
-      *{More to be added}*
+**Use case: UC9 - Display appointments of the current month in a calendar view**
+
+**MSS**
+
+1. User <ins>add an appointment(UC6)</ins>
+2. User requests to view all the appointments in a calendar view of the current month
+3. Financial Advisor Planner shows all the appointments in a given month according to their dates
+
+    Use case ends.
+
+    **Extensions**
+
+* 1a. User <ins>find clients with matching keyword(s)(UC5)</ins>
+
+    * 1a1. Financial Advisor Planner shows the appointments of the all the clients in a calendar view.
+    * 1a2. User refreshes the calendar display.
+    * 1a3. Financial Advisor Planner shows the appointments of the given clients in a calendar view.
+    
+      Use case ends.
+
+* 2a. User could not see the appointment that was recently added.
+
+    * 2a1. User refreshes the calendar display.
+    * 2a2. Financial Advisor Planner shows the appointments of the all clients in a calendar view, including the recently added appointment.
+
+      Use case ends.
+    
+
+**Use case: UC10 - Display appointments of a new month in a calendar view**
+
+**MSS**
+
+1. User requests to view all the appointments of a new month in a calendar view
+2. Financial Advisor Planner shows all the appointments in the given new month according to their dates
+    
+    Use case ends.
+
+    *{More to be added}*
 
 ### Non-Functional Requirements
 
