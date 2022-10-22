@@ -41,8 +41,8 @@ StorageManager -up-> "1" StudentBookStorage
 
 Storage -left-|> UserPrefsStorage
 Storage -right-|> StudentBookStorage
-Storage -up-> "TaskBook Storage"
-Storage -up-> "LessonBook Storage"
+Storage -up-|> "TaskBook Storage"
+Storage -up-|> "LessonBook Storage"
 
 JsonUserPrefsStorage .up.|> UserPrefsStorage
 JsonStudentBookStorage .up.|> StudentBookStorage
