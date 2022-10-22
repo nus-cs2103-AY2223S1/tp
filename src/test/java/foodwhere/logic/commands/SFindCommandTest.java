@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
@@ -15,8 +16,10 @@ import foodwhere.commons.core.Messages;
 import foodwhere.model.Model;
 import foodwhere.model.ModelManager;
 import foodwhere.model.UserPrefs;
-import foodwhere.model.stall.NameContainsKeywordsPredicate;
+import foodwhere.model.commons.Name;
+import foodwhere.model.commons.Tag;
 import foodwhere.model.stall.Stall;
+import foodwhere.model.stall.StallContainsKeywordsPredicate;
 import foodwhere.testutil.TypicalStalls;
 
 /**
@@ -28,13 +31,24 @@ public class SFindCommandTest {
 
     @Test
     public void equals() {
-        NameContainsKeywordsPredicate firstPredicate =
-                new NameContainsKeywordsPredicate(Collections.singletonList("first"));
-        NameContainsKeywordsPredicate secondPredicate =
-                new NameContainsKeywordsPredicate(Collections.singletonList("second"));
+        StallContainsKeywordsPredicate firstPredicate =
+                new StallContainsKeywordsPredicate(Collections.singleton(new Name("first")),
+                        Collections.singleton(new Tag("first")));
+        StallContainsKeywordsPredicate secondPredicate =
+                new StallContainsKeywordsPredicate(Collections.singleton(new Name("second")),
+                        Collections.singleton(new Tag("first")));
+
+        StallContainsKeywordsPredicate thirdPredicate =
+                new StallContainsKeywordsPredicate(Collections.singleton(new Name("first")),
+                        Collections.singleton(new Tag("second")));
+        StallContainsKeywordsPredicate fourthPredicate =
+                new StallContainsKeywordsPredicate(Collections.singleton(new Name("second")),
+                        Collections.singleton(new Tag("second")));
 
         SFindCommand findFirstCommand = new SFindCommand(firstPredicate);
         SFindCommand findSecondCommand = new SFindCommand(secondPredicate);
+        SFindCommand findThirdCommand = new SFindCommand(thirdPredicate);
+        SFindCommand findFourthCommand = new SFindCommand(fourthPredicate);
 
         // same object -> returns true
         assertTrue(findFirstCommand.equals(findFirstCommand));
@@ -49,14 +63,16 @@ public class SFindCommandTest {
         // null -> returns false
         assertFalse(findFirstCommand.equals(null));
 
-        // different stall -> returns false
-        assertFalse(findFirstCommand.equals(findSecondCommand));
+        // different name or tag -> returns false
+        assertFalse(findFirstCommand.equals(findSecondCommand)); //different names
+        assertFalse(findFirstCommand.equals(findThirdCommand)); //different tags
+        assertFalse(findFirstCommand.equals(findFourthCommand)); //different names and tags
     }
 
     @Test
     public void execute_zeroKeywords_noStallFound() {
         String expectedMessage = String.format(Messages.MESSAGE_STALLS_LISTED_OVERVIEW, 0);
-        NameContainsKeywordsPredicate predicate = preparePredicate(" ");
+        StallContainsKeywordsPredicate predicate = preparePredicate(" ");
         SFindCommand command = new SFindCommand(predicate);
         expectedModel.updateFilteredStallList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
@@ -66,7 +82,7 @@ public class SFindCommandTest {
     @Test
     public void execute_multipleKeywords_multipleStallsFound() {
         String expectedMessage = String.format(Messages.MESSAGE_STALLS_LISTED_OVERVIEW, 3);
-        NameContainsKeywordsPredicate predicate = preparePredicate("Kurz Elle Kunz");
+        StallContainsKeywordsPredicate predicate = preparePredicate("Kurz Elle Kunz");
         SFindCommand command = new SFindCommand(predicate);
         expectedModel.updateFilteredStallList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
@@ -81,9 +97,14 @@ public class SFindCommandTest {
     }
 
     /**
-     * Parses {@code userInput} into a {@code NameContainsKeywordsPredicate}.
+     * Parses {@code userInput} into a {@code StallContainsKeywordsPredicate}.
      */
-    private NameContainsKeywordsPredicate preparePredicate(String userInput) {
-        return new NameContainsKeywordsPredicate(Arrays.asList(userInput.split("\\s+")));
+    private StallContainsKeywordsPredicate preparePredicate(String userInput) {
+        List<String> lst = Arrays.asList(userInput.split("\\s+"));
+        List<Name> nameList = new ArrayList<>();
+        for (String s : lst) {
+            nameList.add(new Name(s));
+        }
+        return new StallContainsKeywordsPredicate(nameList, Collections.emptyList());
     }
 }
