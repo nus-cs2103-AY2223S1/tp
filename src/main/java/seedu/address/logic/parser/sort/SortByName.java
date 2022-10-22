@@ -9,9 +9,24 @@ import seedu.address.model.person.Person;
  */
 public class SortByName implements Comparator<Person> {
 
+    private String order;
+
+    /**
+     * Constructor that takes in the order to sort the contact book by.
+     * @param order the order to sort by.
+     */
+    public SortByName(String order) {
+        this.order = order;
+    }
     @Override
     public int compare(Person p1, Person p2) {
-        return p1.getName().fullName.compareTo(p2.getName().fullName);
+        // sorts the contact by descending order if there is a desc keyword
+        if (this.order.equals("desc")) {
+            return p2.getName().fullName.compareToIgnoreCase(p1.getName().fullName);
+        }
+
+        // default sorting is ascending
+        return p1.getName().fullName.compareToIgnoreCase(p2.getName().fullName);
     }
 
     @Override
@@ -21,7 +36,12 @@ public class SortByName implements Comparator<Person> {
             return true;
         }
 
-        // handles null
-        return other instanceof SortByName;
+        if (other instanceof SortByName) {
+            SortByName s = (SortByName) other;
+            return this.order.equals(s.order);
+        }
+
+        // handles null and if object is not an instance of SortByName
+        return false;
     }
 }
