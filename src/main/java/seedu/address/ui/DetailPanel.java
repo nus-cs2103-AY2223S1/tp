@@ -64,15 +64,10 @@ public class DetailPanel extends MainPanel {
         profileImageContainer.setFill(new ImagePattern(placeholder));
 
         roleLabel.setVisible(person.getRole() != null);
-        if (person.getRole() != null) {
-            roleLabel.setText(person.getRole().toString());
-        }
+        person.getRole().ifPresent(r -> roleLabel.setText(r.toString()));
 
         timezoneLabel.setVisible(person.getTimezone() != null);
-        if (person.getTimezone() != null) {
-            timezoneLabel.setText("Local Time: " + person.getTimezone().toString());
-        }
-
+        person.getTimezone().ifPresent(t -> timezoneLabel.setText(t.toString()));
 
         List<ContactBox> contactBoxList = new ArrayList<ContactBox>(
                 person.getContacts()
