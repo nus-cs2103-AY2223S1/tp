@@ -93,9 +93,9 @@ Placeholders are words in UPPER_CASE to show you what parameters you can supply 
 
 {% include_relative _ug/Placeholders.md %}
 
-## Features
+## Commands
 
-{% include_relative _ug/Features.md %}
+{% include_relative _ug/Commands.md %}
 
 ## Command Summary
 
