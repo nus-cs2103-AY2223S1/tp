@@ -1,0 +1,27 @@
+@startuml
+!include style.puml
+skinparam classAttributeIconSize 0
+
+Package " " <<Rectangle>> {
+    Class "<<interface>>\nObserver" as Observer LOGIC_COLOR
+    Class ExerciseHashMap MODEL_COLOR
+    Class SavedExerciseListWindow UI_COLOR
+    Class ExerciseKeys MODEL_COLOR
+}
+
+ExerciseHashMap : - internalArrayList : ArrayList
+ExerciseHashMap : - notifyObservers()
+ExerciseHashMap : + addUI(Observer)
+
+SavedExerciseListWindow : + update()
+SavedExerciseListWindow : -exerciseHashMap : ExerciseHashMap
+
+Observer : + update()
+
+ExerciseKeys : + getDisplay()
+
+ExerciseHashMap - "*" Observer
+SavedExerciseListWindow ..|> Observer
+SavedExerciseListWindow --> ExerciseKeys
+
+@enduml
