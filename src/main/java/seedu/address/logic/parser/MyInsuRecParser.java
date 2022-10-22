@@ -6,7 +6,23 @@ import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import seedu.address.logic.commands.*;
+import seedu.address.logic.commands.AddClientCommand;
+import seedu.address.logic.commands.AddMeetingCommand;
+import seedu.address.logic.commands.AddProductCommand;
+import seedu.address.logic.commands.ClearCommand;
+import seedu.address.logic.commands.Command;
+import seedu.address.logic.commands.DeleteClientCommand;
+import seedu.address.logic.commands.DeleteMeetingCommand;
+import seedu.address.logic.commands.DeleteProductCommand;
+import seedu.address.logic.commands.EditCommand;
+import seedu.address.logic.commands.ExitCommand;
+import seedu.address.logic.commands.FindCommand;
+import seedu.address.logic.commands.HelpCommand;
+import seedu.address.logic.commands.ListClientCommand;
+import seedu.address.logic.commands.ListMeetingCommand;
+import seedu.address.logic.commands.ListProductCommand;
+import seedu.address.logic.commands.ViewClientCommand;
+import seedu.address.logic.commands.ViewMeetingCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 /**

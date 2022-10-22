@@ -42,6 +42,7 @@ public class CommandTestUtil {
     public static final Birthday VALID_BIRTHDAY = new Birthday(LocalDate.of(1952, 12, 12));
     public static final String VALID_PRODUCT_1 = "Product1";
     public static final String VALID_PRODUCT_2 = "Product2";
+    public static final String INVALID_PRODUCT_1 = "Unadded Product";
 
     public static final String VALID_DESCRIPTION_MEETING1 = "meeting1";
     public static final String VALID_DESCRIPTION_MEETING2 = "meeting2";

@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.DESC_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.INVALID_PRODUCT_1;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PRODUCT_2;
@@ -67,6 +68,24 @@ public class EditCommandTest {
         expectedModel.setClient(lastClient, editedClient);
 
         assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
+    }
+
+    @Test
+    public void execute_invalidProductsUnfilteredList_failure() {
+        Index indexLastClient = Index.fromOneBased(model.getFilteredClientList().size());
+        Client lastClient = model.getFilteredClientList().get(indexLastClient.getZeroBased());
+
+        ClientBuilder clientInList = new ClientBuilder(lastClient);
+        Client editedClient = clientInList.withName(VALID_NAME_BOB).withPhone(VALID_PHONE_BOB)
+                .withProducts(VALID_PRODUCT_2).build();
+
+        EditClientDescriptor descriptor = new EditClientDescriptorBuilder().withName(VALID_NAME_BOB)
+                .withPhone(VALID_PHONE_BOB).withProducts(VALID_PRODUCT_2, INVALID_PRODUCT_1).build();
+        EditCommand editCommand = new EditCommand(indexLastClient, descriptor);
+
+        String expectedMessage = Messages.MESSAGE_NON_EXISTING_PRODUCT;
+
+        assertCommandFailure(editCommand, model, expectedMessage);
     }
 
     @Test

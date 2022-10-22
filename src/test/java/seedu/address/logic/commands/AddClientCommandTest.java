@@ -22,6 +22,7 @@ import seedu.address.model.ReadOnlyMyInsuRec;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.client.Client;
 import seedu.address.model.meeting.Meeting;
+import seedu.address.model.product.Product;
 import seedu.address.testutil.ClientBuilder;
 
 public class AddClientCommandTest {
@@ -151,6 +152,21 @@ public class AddClientCommandTest {
         }
 
         @Override
+        public void addProduct(Product product) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void removeProduct(Product product) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public boolean hasProduct(Product product) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public ObservableList<Client> getFilteredClientList() {
             throw new AssertionError("This method should not be called.");
         }
@@ -192,6 +208,15 @@ public class AddClientCommandTest {
 
         @Override
         public void deleteMeeting(Meeting meeting) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public ObservableList<Product> getFilteredProductList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        public void updateFilteredProductList(Predicate<Product> predicate) {
             throw new AssertionError("This method should not be called.");
         }
     }

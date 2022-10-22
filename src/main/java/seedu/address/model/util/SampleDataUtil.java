@@ -1,7 +1,9 @@
 package seedu.address.model.util;
 
 import java.time.LocalDate;
-import java.util.*;
+import java.util.Arrays;
+import java.util.Optional;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 import seedu.address.model.MyInsuRec;
@@ -13,7 +15,6 @@ import seedu.address.model.client.Email;
 import seedu.address.model.client.Name;
 import seedu.address.model.client.Phone;
 import seedu.address.model.product.Product;
-import seedu.address.model.product.UniqueProductList;
 
 /**
  * Contains utility methods for populating {@code MyInsuRec} with sample data.
@@ -21,12 +22,12 @@ import seedu.address.model.product.UniqueProductList;
 public class SampleDataUtil {
     private static Product[] getSampleProducts() {
         return new Product[] {
-                new Product("Product1"),
-                new Product("Product2"),
-                new Product("Product3"),
-                new Product("Product4"),
-                new Product("Product5"),
-                new Product("Product6")
+            new Product("Product1"),
+            new Product("Product2"),
+            new Product("Product3"),
+            new Product("Product4"),
+            new Product("Product5"),
+            new Product("Product6")
         };
     }
 
@@ -38,7 +39,7 @@ public class SampleDataUtil {
                     getProductSet("Product1")),
             new Client(new Name("Bernice Yu"), new Phone("99272758"), new Email("berniceyu@example.com"),
                     new Address("Blk 30 Lorong 3 Serangoon Gardens, #07-18"),
-                    Optional.of(new Birthday(LocalDate.of(1989, 03, 24))),
+                    Optional.of(new Birthday(LocalDate.of(1989, 3, 24))),
                     getProductSet("Product2")),
             new Client(new Name("Charlotte Oliveiro"), new Phone("93210283"), new Email("charlotte@example.com"),
                     new Address("Blk 11 Ang Mo Kio Street 74, #11-04"),

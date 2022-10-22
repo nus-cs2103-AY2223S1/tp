@@ -1,13 +1,13 @@
 package seedu.address.model.client;
 
-import seedu.address.model.meeting.Meeting;
-import seedu.address.model.product.Product;
-
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
+
+import seedu.address.model.meeting.Meeting;
+import seedu.address.model.product.Product;
 
 /**
  * This class is used to create a mutable copy of a {@code Client} if a field in {@code Client} needs to be updated
