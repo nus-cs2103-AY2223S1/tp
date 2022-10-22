@@ -77,6 +77,7 @@ public class TaskEditCommand extends Command {
         }
 
         Task taskToEdit = lastShownList.get(index.getZeroBased());
+        System.out.println("---");
         Task editedTask = createEditedTask(taskToEdit, editTaskDescriptor, model);
 
         if (!taskToEdit.isSameTask(editedTask) && model.hasTask(editedTask)) {

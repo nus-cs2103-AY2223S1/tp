@@ -12,6 +12,7 @@ import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.AddressBook;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.student.Student;
+import seedu.address.model.student.TutorialGroup;
 import seedu.address.model.task.Task;
 
 /**
@@ -24,15 +25,18 @@ class JsonSerializableAddressBook {
 
     private final List<JsonAdaptedStudent> students = new ArrayList<>();
     private final List<JsonAdaptedTask> tasks = new ArrayList<>();
+    private final List<JsonAdaptedTutorialGroup> groups = new ArrayList<>();
 
     /**
      * Constructs a {@code JsonSerializableAddressBook} with the given persons.
      */
     @JsonCreator
     public JsonSerializableAddressBook(@JsonProperty("students") List<JsonAdaptedStudent> students,
-                                       @JsonProperty("tasks") List<JsonAdaptedTask> tasks) {
+                                       @JsonProperty("tasks") List<JsonAdaptedTask> tasks,
+                                       @JsonProperty("groups") List<JsonAdaptedTutorialGroup> groups) {
         this.students.addAll(students);
         this.tasks.addAll(tasks);
+        this.groups.addAll(groups);
     }
 
     /**
@@ -43,6 +47,8 @@ class JsonSerializableAddressBook {
     public JsonSerializableAddressBook(ReadOnlyAddressBook source) {
         students.addAll(source.getStudentList().stream().map(JsonAdaptedStudent::new).collect(Collectors.toList()));
         tasks.addAll(source.getTaskList().stream().map(JsonAdaptedTask::new).collect(Collectors.toList()));
+        groups.addAll(source.getTutorialGroupList().stream().map(JsonAdaptedTutorialGroup::new)
+                .collect(Collectors.toList()));
     }
 
     /**
@@ -60,6 +66,14 @@ class JsonSerializableAddressBook {
             addressBook.addStudent(student);
         }
 
+        for (JsonAdaptedTutorialGroup jsonAdaptedTutorialGroup : groups) {
+            TutorialGroup tutorialGroup = jsonAdaptedTutorialGroup.toModelType();
+            if (addressBook.hasTutorialGroup(tutorialGroup)) {
+                throw new IllegalValueException(MESSAGE_DUPLICATE_PERSON);
+            }
+            addressBook.addTutorialGroup(tutorialGroup);
+        }
+
         for (JsonAdaptedTask jsonAdaptedTask : tasks) {
             Task task = jsonAdaptedTask.toModelType();
             if (addressBook.hasTask(task)) {
@@ -69,5 +83,4 @@ class JsonSerializableAddressBook {
         }
         return addressBook;
     }
-
 }
