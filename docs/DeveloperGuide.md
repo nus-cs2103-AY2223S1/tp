@@ -148,6 +148,45 @@ The `Storage` component,
 
 Classes used by multiple components are in the `seedu.addressbook.commons` package.
 
+### Entity specific classes
+
+Yellowbooks has 3 primary entities: 'Person', 'Task', and 'Tag', these are represented by classes with the respective names. The 'Tag' class provides an association between a 'Person' and 'Task'.
+
+These are the specifications for the fields of 'Person' and 'Task'.
+
+#### Person
+
+Each field is implemented by a class with the same name. For example, the `Name` class represents the name of a person.
+
+Names of person(s) must be unique, names containing the same characters but in different cases are considered distinct. (e.g. Persons with name `John Doe` and `john doe` are considered different and hence allowed )
+
+| Field Name | Description              | Constraints                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      |
+|------------|--------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| Name       | Unique identifier for Person | Non-empty string                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 |
+| Phone      | -                        | String consisting of at least 3 numbers from 0-9 inclusive                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       |
+| Address    | -                        | Non-empty string                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 |
+| Email      |                          | Non-empty string of the format local-part@domain name<br/><ul><li>local-part contains only alphanumeric characters and these special characters, excluding the parantheses, (+_.-)</li><li>local-part cannot start with a special character</li><li>domain name consists of domain labels separated by periods</li><li>domain name must end with domain label at least 2 charaacters long</li><li>each domain label must start and end with alphanumeric characters</li><li>each domain label must consist only of alphanumberic characters, separated only by hyphens (if any)</li></ul> |
+| Remark     | -                        |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  |
+| Tag        | -                        |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  |
+
+#### Task
+
+Each Task is implemented by a class with the same name, except for 'Status' which is implemented using a boolean.
+
+Id of each task is unique and automatically generated when task is added. Tasks with the same fields (description, deadline, status, and/or tag) are allowed as a unique Id is generated for each task.
+
+| Field Name  | Description                | Constraints                        |
+|-------------|----------------------------|------------------------------------|
+| Id          | Unique identifier for Task | Non-empty String                   |
+| Description | Details of the task        | STR                                |
+| Deadline    | -                          |                                    |
+| Status      | Completion status of task  | Binary (Completed or Not Complete) |
+| Tag         | -                          |                                    |
+
+#### Tag
+
+Each Tag is implemented by the class "Tag". Tags are non-empty strings and can be associated with both Persons and Tasks.
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Implementation**
