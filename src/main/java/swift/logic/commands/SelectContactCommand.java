@@ -1,6 +1,7 @@
 package swift.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static swift.model.Model.PREDICATE_SHOW_ALL_BRIDGE;
 import static swift.model.Model.PREDICATE_SHOW_ALL_TASKS;
 
 import java.util.List;
@@ -27,7 +28,7 @@ public class SelectContactCommand extends Command {
             + "Parameters: INDEX (must be a positive integer)\n"
             + "Example: " + COMMAND_WORD + " 1";
 
-    public static final String MESSAGE_SELECT_CONTACT_SUCCESS = "Selected task: %1$s";
+    public static final String MESSAGE_SELECT_CONTACT_SUCCESS = "Person Selected!";
 
     private final Index targetIndex;
 
@@ -47,15 +48,16 @@ public class SelectContactCommand extends Command {
         Person selectedPerson = lastShownPersonList.get(targetIndex.getZeroBased());
         model.updateFilteredPersonList((person) -> person.equals(selectedPerson));
 
+        model.updateFilteredBridgeList(PREDICATE_SHOW_ALL_BRIDGE);
         model.updateFilteredBridgeList((bridge) -> bridge.getPersonId().equals(selectedPerson.getId()));
         List<PersonTaskBridge> bridgeList = model.getFilteredBridgeList();
 
-
         // Predicate to check whether task exists within a bridgeList
         Predicate<Task> isTaskExist = (task) -> bridgeList.stream()
-                                                          .filter((bridge) -> bridge.getTaskId().equals(task.getId()))
-                                                          .collect(Collectors.toList())
-                                                          .size() != 0;
+              .filter((bridge) -> bridge.getTaskId().equals(task.getId()))
+              .collect(Collectors.toList())
+              .size() != 0;
+
         model.updateFilteredTaskList(PREDICATE_SHOW_ALL_TASKS);
         model.updateFilteredTaskList(isTaskExist);
 
