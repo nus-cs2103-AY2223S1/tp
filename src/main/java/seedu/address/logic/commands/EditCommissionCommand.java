@@ -66,7 +66,7 @@ public class EditCommissionCommand extends Command {
     private final EditCommissionDescriptor editCommissionDescriptor;
 
     /**
-     * @param index                  of the customer in the filtered commission list to edit
+     * @param index                    of the commission in the filtered commission list to edit
      * @param editCommissionDescriptor details to edit the commission with
      */
     public EditCommissionCommand(Index index, EditCommissionDescriptor editCommissionDescriptor) {
@@ -157,8 +157,8 @@ public class EditCommissionCommand extends Command {
     }
 
     /**
-     * Stores the details to edit the customer with. Each non-empty field value will replace the
-     * corresponding field value of the customer.
+     * Stores the details to edit the commission with. Each non-empty field value will replace the
+     * corresponding field value of the commission.
      */
     public static class EditCommissionDescriptor {
         private Title title;
