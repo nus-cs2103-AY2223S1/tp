@@ -36,9 +36,7 @@ import seedu.foodrem.testutil.ItemBuilder;
 import seedu.foodrem.testutil.ItemUtil;
 import seedu.foodrem.testutil.TagBuilder;
 
-
 public class FoodRemParserTest {
-
     private final FoodRemParser parser = new FoodRemParser();
 
     @Test

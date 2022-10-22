@@ -8,7 +8,6 @@ import static seedu.foodrem.commons.util.AppUtil.checkArgument;
  * Guarantees: immutable; is valid as declared in {@link #isValidName(String)}
  */
 public class TagName {
-
     public static final String MESSAGE_CONSTRAINTS =
             "Names should only contain alphanumeric characters, spaces, and the punctuations within the "
                     + "list of allowed punctuations. "
@@ -49,7 +48,6 @@ public class TagName {
         return test.matches(VALIDATION_REGEX);
     }
 
-
     @Override
     public String toString() {
         return fullName;
@@ -66,5 +64,4 @@ public class TagName {
     public int hashCode() {
         return fullName.hashCode();
     }
-
 }

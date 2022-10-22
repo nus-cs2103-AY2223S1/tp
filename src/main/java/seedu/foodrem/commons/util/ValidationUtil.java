@@ -9,7 +9,6 @@ import java.time.format.ResolverStyle;
  * Helper functions for handling validation.
  */
 public class ValidationUtil {
-
     /**
      * Returns true if a string can be parsed into a double, false otherwise.
      *

@@ -7,7 +7,6 @@ import static seedu.foodrem.testutil.Assert.assertThrows;
 import org.junit.jupiter.api.Test;
 
 public class VersionTest {
-
     @Test
     public void versionParsing_acceptableVersionString_parsedVersionCorrectly() {
         verifyVersionParsedCorrectly("V0.0.0ea", 0, 0, 0, true);

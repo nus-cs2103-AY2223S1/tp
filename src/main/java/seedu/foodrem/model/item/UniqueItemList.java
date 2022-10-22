@@ -23,7 +23,6 @@ import seedu.foodrem.model.item.exceptions.ItemNotFoundException;
  * @see Item#isSameItem(Item)
  */
 public class UniqueItemList implements Iterable<Item> {
-
     private final ObservableList<Item> internalList = FXCollections.observableArrayList();
     private final ObservableList<Item> internalUnmodifiableList =
             FXCollections.unmodifiableObservableList(internalList);

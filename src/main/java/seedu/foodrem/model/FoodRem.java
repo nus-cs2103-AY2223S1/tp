@@ -15,7 +15,6 @@ import seedu.foodrem.model.tag.UniqueTagList;
  * Duplicates are not allowed (by .isSameItem comparison)
  */
 public class FoodRem implements ReadOnlyFoodRem {
-
     private final UniqueItemList items;
     private final UniqueTagList tags;
 

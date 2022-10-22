@@ -12,7 +12,6 @@ import seedu.foodrem.model.item.itemvalidators.ItemBoughtDateValidator;
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
 public class ItemBoughtDate {
-
     // Remember to change relevant messages when changing the regex.
     public static final String BOUGHT_DATE_PATTERN_REGEX = "dd-MM-uuuu";
     public static final DateTimeFormatter BOUGHT_DATE_FORMATTER = DateTimeFormatter

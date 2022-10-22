@@ -9,7 +9,6 @@ import seedu.foodrem.model.item.itemvalidators.ItemNameValidator;
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
 public class ItemName {
-
     private final String itemName;
 
     /**

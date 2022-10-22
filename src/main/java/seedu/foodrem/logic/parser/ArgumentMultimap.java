@@ -14,7 +14,6 @@ import java.util.Optional;
  * can be inserted multiple times for the same prefix.
  */
 public class ArgumentMultimap {
-
     /**
      * Prefixes mapped to their respective arguments
      **/

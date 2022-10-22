@@ -16,7 +16,6 @@ import seedu.foodrem.model.tag.Tag;
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
 public class Item {
-
     // Identity fields
     private final ItemName name;
 
@@ -104,7 +103,6 @@ public class Item {
                 itemToUntag.getTagSet()
         );
     }
-
 
     public ItemName getName() {
         return name;

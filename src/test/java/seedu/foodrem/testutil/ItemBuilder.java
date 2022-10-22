@@ -16,7 +16,6 @@ import seedu.foodrem.model.tag.Tag;
  * A utility class to help with building Item objects.
  */
 public class ItemBuilder {
-
     public static final String DEFAULT_NAME = "NONE";
     public static final String DEFAULT_QUANTITY = "0";
     public static final String DEFAULT_ITEM_UNIT = "";
@@ -118,9 +117,7 @@ public class ItemBuilder {
         return this;
     }
 
-
     public Item build() {
         return new Item(name, quantity, unit, boughtDate, expiryDate, price, tags);
     }
-
 }

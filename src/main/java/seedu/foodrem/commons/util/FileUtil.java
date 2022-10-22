@@ -10,7 +10,6 @@ import java.nio.file.Paths;
  * Writes and reads files
  */
 public class FileUtil {
-
     private static final String CHARSET = "UTF-8";
 
     public static boolean isFileExists(Path file) {
@@ -81,5 +80,4 @@ public class FileUtil {
     public static void writeToFile(Path file, String content) throws IOException {
         Files.write(file, content.getBytes(CHARSET));
     }
-
 }

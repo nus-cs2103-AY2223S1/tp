@@ -8,7 +8,6 @@ import javafx.beans.DefaultProperty;
  */
 @DefaultProperty("text")
 public class TestFxmlObject {
-
     private String text;
 
     public TestFxmlObject() {}
@@ -31,5 +30,4 @@ public class TestFxmlObject {
                 || (other instanceof TestFxmlObject // instanceof handles nulls
                         && text.equals(((TestFxmlObject) other).getText()));
     }
-
 }

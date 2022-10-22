@@ -11,7 +11,6 @@ import java.util.Arrays;
  * Helper functions for handling strings.
  */
 public class StringUtil {
-
     /**
      * Returns true if the {@code sentence} contains the {@code word}.
      * Ignores case, but a full word match is required.

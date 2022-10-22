@@ -14,7 +14,6 @@ import seedu.foodrem.testutil.TestUtil;
  * Tests JSON Read and Write
  */
 public class JsonUtilTest {
-
     private static final Path SERIALIZATION_FILE = TestUtil.getFilePathInSandboxFolder("serialize.json");
 
     @Test

@@ -15,7 +15,6 @@ import seedu.foodrem.logic.commands.generalcommands.HelpCommand;
  * Controller for a help page
  */
 public class HelpWindow extends UiPart<Stage> {
-
     private static final Logger logger = LogsCenter.getLogger(HelpWindow.class);
     private static final String FXML = "HelpWindow.fxml";
 

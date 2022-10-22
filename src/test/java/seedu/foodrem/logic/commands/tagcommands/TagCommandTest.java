@@ -31,11 +31,8 @@ public class TagCommandTest {
     private static final String ERROR_NOT_FOUND_TAG = "This tag does not exist";
     private static final String ERROR_NOT_FOUND_ITEM = "The item index does not exist";
 
-
-
     @Test
     public void execute_tagItem_success() throws CommandException {
-
         final Model model = new ModelManager(getFoodRemWithTypicalItemsWithoutTags(), new UserPrefs());
 
         // Creating a copy of first item of model and adding a vegetable tag
@@ -64,7 +61,6 @@ public class TagCommandTest {
 
     @Test
     public void execute_tagItemWithoutExistingTagInModel_throwsCommandException() {
-
         final Model model = new ModelManager(getFoodRemWithTypicalItemsWithoutTags(), new UserPrefs());
 
         Tag tag = new TagBuilder().withTagName(VALID_TAG_NAME_VEGETABLES).build();
@@ -130,5 +126,4 @@ public class TagCommandTest {
         // different item -> returns false
         assertNotEquals(tagItemWithVegetableCommand, tagItemWithFruitsCommand);
     }
-
 }

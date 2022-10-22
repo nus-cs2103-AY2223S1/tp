@@ -6,13 +6,11 @@ import java.text.DecimalFormat;
 
 import seedu.foodrem.model.item.itemvalidators.ItemPriceValidator;
 
-
 /**
  * Represents an item price in an {@link Item}.
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
 public class ItemPrice {
-
     private static final DecimalFormat DECIMAL_FORMAT = new DecimalFormat("0.##");
     private static final double DEFAULT_PRICE = 0;
 
