@@ -15,14 +15,21 @@ This User Guide provides an in-depth documentation to help integrate FoodRem int
 
 {% include toc.md header=true show-in-toc=true ordered=true %}
 
-## Overview of Key Features
+## Features 
 There are two core features that FoodRem provides: The Inventory Management System, and inventory analysis capabilities. 
 
+TODO: Add links to e.g. name, bought date, expiry date, etc.
 ### Inventory Management System
-1. FoodRem allows you to track your inventory during your daily operations. Quickly *add, remove, and view* your available inventory. In addition to the usual sorting and filtering, FoodRem provides a *tagging system* to tag items in your inventory. For example, you can quickly view all items that are tagged as vegetables. Feel free to flexibly tag your items to suit your organizational needs! 
+ FoodRem allows you to track your inventory during your daily operations. 
+ 1. Quickly **add, remove, and view** your available inventory. 
+ 2. **Sort** and **filter** your inventory by name, bought date, expiry date, quantity, unit and cost.
+ 3. **Tag** items in your inventory. For example, you can quickly view all items that are tagged as vegetables. 
 
-2. Inventory Analysis
-FoodRem tracks data that helps you streamline your business decisions through statistics. In addition to tracking your big ticket items, cut down food wastage by finding which items are expiring soon! Strive to reduce the costs lost to food wastage, and maximize your profits.
+### Inventory Analysis
+FoodRem tracks data that helps you streamline your business decisions through **statistics**. 
+1. Track your **most expensive items**.
+2. View items that are **expiring** in the next 10 days.
+3. Find out how much **cost was incurred** due to food wastage. 
 
 ## How to use the User Guide
 To gain the most out from this User Guide, start off with the [Quick Start](#quick-start) section. This will give you a brief overview about how to use this application.
