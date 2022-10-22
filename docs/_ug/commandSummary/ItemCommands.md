@@ -49,7 +49,7 @@
   | replace: ":view:", view
   | replace: ":inc:", inc
   | replace: ":dec:", dec
-  | replace: ":set:", set
+  | replace: ":edit:", edit
   | replace: ":del:", del
   | replace: ":newexample:", newexample
   | replace: ":listexample:", listexample
