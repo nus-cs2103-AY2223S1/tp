@@ -69,7 +69,7 @@ You can refer to [Glossary](#glossary) that contains definitions of some commonl
 
 ## Using FoodRem
 Here is an overview of what FoodRem consists of and how you can perform a command.
-## Items and Tags
+### Items and Tags
 
 {% include_relative _ug/ItemsTags.md %}
 
@@ -81,7 +81,7 @@ Before you delve into the different commands in [Features](#features), let’s l
 Here is an example:
 ![CommandExample](images/CommandExample.png)
 A command consists of:
-1. Command word to tell FoodRem what action you wish to do, These actions are covered in [Features](#features)
+1. Command Word to tell FoodRem what action you wish to execute. These actions are covered in [Commands](#commands)
 2. [Flags](#flags) to distinguish parameters
 3. [Placeholders](#placeholders) that you can replace with your parameter inputs
 
@@ -111,7 +111,6 @@ Placeholders are words in UPPER_CASE to show you what parameters you can supply 
 ### Trying your First Command
 
 {% include_relative _ug/TryingFirstCommand.md %}
-
 
 ## Commands
 
