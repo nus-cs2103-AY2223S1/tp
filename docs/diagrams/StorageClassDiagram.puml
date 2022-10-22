@@ -11,13 +11,20 @@ Class "<<interface>>\nUserPrefsStorage" as UserPrefsStorage
 Class JsonUserPrefsStorage
 }
 
+package "TodoList Storage" #F4F6F6{
+Class "<<interface>>\nTodoListStorage" as TodoListStorage
+Class JsonTodoListBookStorage
+Class JsonSerializableTodoList
+Class JsonAdaptedTodo
+}
+
 Class "<<interface>>\nStorage" as Storage
 Class StorageManager
 
-package "AddressBook Storage" #F4F6F6{
-Class "<<interface>>\nAddressBookStorage" as AddressBookStorage
-Class JsonAddressBookStorage
-Class JsonSerializableAddressBook
+package "SoConnect Storage" #F4F6F6{
+Class "<<interface>>\nSoConnectStorage" as SoConnectStorage
+Class JsonSoConnectStorage
+Class JsonSerializableSoConnect
 Class JsonAdaptedPerson
 Class JsonAdaptedTag
 }
@@ -28,16 +35,22 @@ Class HiddenOutside #FFFFFF
 HiddenOutside ..> Storage
 
 StorageManager .up.|> Storage
-StorageManager -up-> "1" UserPrefsStorage
-StorageManager -up-> "1" AddressBookStorage
+StorageManager --> "1" UserPrefsStorage
+StorageManager --> "1" SoConnectStorage
+StorageManager --> "1" TodoListStorage
 
-Storage -left-|> UserPrefsStorage
-Storage -right-|> AddressBookStorage
+Storage --|> UserPrefsStorage
+Storage --|> SoConnectStorage
+Storage --|> TodoListStorage
 
 JsonUserPrefsStorage .up.|> UserPrefsStorage
-JsonAddressBookStorage .up.|> AddressBookStorage
-JsonAddressBookStorage ..> JsonSerializableAddressBook
-JsonSerializableAddressBook --> "*" JsonAdaptedPerson
+JsonSoConnectStorage .up.|> SoConnectStorage
+JsonTodoListBookStorage .up.|> TodoListStorage
+JsonSoConnectStorage ..> JsonSerializableSoConnect
+JsonTodoListBookStorage ..> JsonSerializableTodoList
+JsonSerializableSoConnect --> "*" JsonAdaptedPerson
+JsonSerializableTodoList --> "*" JsonAdaptedTodo
 JsonAdaptedPerson --> "*" JsonAdaptedTag
+JsonAdaptedTodo --> "*" JsonAdaptedTag
 
 @enduml

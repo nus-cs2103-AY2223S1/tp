@@ -129,8 +129,8 @@ How the parsing works:
 
 The `Model` component does the following:
 
-* Stores the SoConnect data, i.e., all `Person` objects (which are contained in a `UniquePersonList` object).
-* Stores the currently 'selected' `Person` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Person>` that can be 'observed', 
+* Stores the SoConnect data, i.e., all `Person` objects and all `Todo` objects (which are contained in a `UniquePersonList` object and a `UniqueTodoList` object respectively).
+* Stores the currently 'selected' `Person` or `Todo` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList` that can be 'observed', 
 e.g., the UI can be bound to this list so that the UI automatically updates when the data in the list change.
 * Stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
 * Does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components).
@@ -150,7 +150,7 @@ e.g., the UI can be bound to this list so that the UI automatically updates when
 
 The `Storage` component does the following:
 * Saves both SoConnect data and user preference data in `json` format, and read them back into corresponding objects.
-* Inherits from both `SoConnectStorage` and `UserPrefStorage`, which means it can be treated as either one (if only one of the functionality is needed).
+* Inherits from `SoConnectStorage`, `TodoListStorage`, and `UserPrefStorage`, which means it can be treated as any one of them (if only one of the functionality is needed).
 * Depends on some classes in the `Model` component (because the `Storage` component's job is to save/retrieve objects that belong to the `Model`).
 
 ### Autocomplete component

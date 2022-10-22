@@ -5,10 +5,12 @@ skinparam arrowColor MODEL_COLOR
 skinparam classBackgroundColor MODEL_COLOR
 
 Package Model <<Rectangle>>{
-Class "<<interface>>\nReadOnlyAddressBook" as ReadOnlyAddressBook
+Class "<<interface>>\nReadOnlySoConnect" as ReadOnlySoConnect
+Class "<<interface>>\nReadOnlyTodoList" as ReadOnlyTodoList
 Class "<<interface>>\nReadOnlyUserPrefs" as ReadOnlyUserPrefs
 Class "<<interface>>\nModel" as Model
-Class AddressBook
+Class SoConnect
+Class TodoList
 Class ModelManager
 Class UserPrefs
 
@@ -20,21 +22,28 @@ Class Name
 Class Phone
 Class Tag
 
+Class UniqueTodoList
+Class Todo
+Class Description
+Class Priority
+
 }
 
 Class HiddenOutside #FFFFFF
 HiddenOutside ..> Model
 
-AddressBook .up.|> ReadOnlyAddressBook
-
+SoConnect .up.|> ReadOnlySoConnect
+TodoList .up.|> ReadOnlyTodoList
 ModelManager .up.|> Model
-Model .right.> ReadOnlyUserPrefs
-Model .left.> ReadOnlyAddressBook
-ModelManager -left-> "1" AddressBook
-ModelManager -right-> "1" UserPrefs
+Model ..> ReadOnlySoConnect
+Model ..> ReadOnlyUserPrefs
+Model ..> ReadOnlyTodoList
+ModelManager --> "1" SoConnect
+ModelManager --> "1" UserPrefs
+ModelManager --> "1" TodoList
 UserPrefs .up.|> ReadOnlyUserPrefs
 
-AddressBook *--> "1" UniquePersonList
+SoConnect *--> "1" UniquePersonList
 UniquePersonList --> "~* all" Person
 Person *--> Name
 Person *--> Phone
@@ -42,9 +51,16 @@ Person *--> Email
 Person *--> Address
 Person *--> "*" Tag
 
+TodoList *--> "1" UniqueTodoList
+UniqueTodoList --> "~* all" Todo
+Todo *--> Description
+Todo *--> Priority
+Todo *--> "*" Tag
+
 Name -[hidden]right-> Phone
 Phone -[hidden]right-> Address
 Address -[hidden]right-> Email
 
-ModelManager -->"~* filtered" Person
+ModelManager ----->"~* filtered" Person
+ModelManager ------> "~* filtered" Todo
 @enduml
