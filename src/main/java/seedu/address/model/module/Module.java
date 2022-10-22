@@ -2,6 +2,7 @@ package seedu.address.model.module;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
@@ -56,12 +57,7 @@ public class Module {
                   ModuleTitle moduleTitle,
                   List<Task> tasks,
                   Set<Link> links) {
-        requireAllNonNull(moduleCode, moduleTitle, tasks, links);
-        this.moduleCode = moduleCode;
-        this.moduleTitle = moduleTitle;
-        this.tasks = new TaskList(tasks);
-        this.links.addAll(links);
-        this.persons = new HashSet<>();
+        this(moduleCode, moduleTitle, tasks, links, new HashSet<>());
     }
 
     /**
@@ -69,12 +65,7 @@ public class Module {
      * any tasks and persons.
      */
     public Module(ModuleCode moduleCode, ModuleTitle moduleTitle, Set<Link> links) {
-        requireAllNonNull(moduleCode, moduleTitle, links);
-        this.moduleCode = moduleCode;
-        this.moduleTitle = moduleTitle;
-        this.tasks = new TaskList();
-        this.links.addAll(links);
-        this.persons = new HashSet<>();
+        this(moduleCode, moduleTitle, new ArrayList<>(), links, new HashSet<>());
     }
 
     /**
