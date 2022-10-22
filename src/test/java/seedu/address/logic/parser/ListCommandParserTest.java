@@ -7,7 +7,6 @@ import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSucces
 
 import java.util.List;
 
-import org.junit.jupiter.api.Tags;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.list.ListAllCommand;
@@ -30,7 +29,8 @@ public class ListCommandParserTest {
 
     @Test
     public void parse_emptyArg_throwsParseException() {
-        assertParseFailure(parser, "     ", String.format(MESSAGE_INVALID_COMMAND_FORMAT, ListCommand.MESSAGE_USAGE));
+        assertParseFailure(parser, "     ",
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, ListCommand.MESSAGE_USAGE));
     }
 
     @Test
@@ -68,7 +68,8 @@ public class ListCommandParserTest {
 
     @Test
     public void parseListModuleCommand_emptyModule_throwsParseException() {
-        assertParseFailure(parser, "--module", String.format(MESSAGE_INVALID_COMMAND_FORMAT, Module.MESSAGE_CONSTRAINTS));
+        assertParseFailure(parser, "--module",
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, Module.MESSAGE_CONSTRAINTS));
     }
 
     @Test
@@ -92,7 +93,8 @@ public class ListCommandParserTest {
 
     @Test
     public void parseListTagCommand_emptyTag_throwsParseException() {
-        assertParseFailure(parser, "-t", String.format(MESSAGE_INVALID_COMMAND_FORMAT, Tag.MESSAGE_CONSTRAINTS));
+        assertParseFailure(parser, "-t",
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, Tag.MESSAGE_CONSTRAINTS));
     }
 
     @Test
