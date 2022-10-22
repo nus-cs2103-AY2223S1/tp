@@ -1,5 +1,5 @@
 <!-- markdownlint-disable-file first-line-h1 -->
-### Item
+#### Item
 
 An item is a food item that you would like to include in FoodRem.
 The following are all the attributes store for each item:
@@ -14,7 +14,7 @@ The following are all the attributes store for each item:
 
 Restrictions for all attributes can be found in [Placeholders](#placeholders).
 
-### Tag
+#### Tag
 
 A tag serves as a means to categorise items. These tags are also unique and case-sensitive.
 
