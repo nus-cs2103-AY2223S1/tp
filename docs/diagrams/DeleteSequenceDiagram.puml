@@ -5,8 +5,8 @@ box Logic LOGIC_COLOR_T1
 participant ":LogicManager" as LogicManager LOGIC_COLOR
 participant ":PrimaryParser" as PrimaryParser LOGIC_COLOR
 participant ":DeleteCommandParser" as DeleteCommandParser LOGIC_COLOR
-participant ":DeleteUserCommand" as DeleteUserCommand LOGIC_COLOR
 participant ":DeleteUserArgumentsParser" as DeleteUserArgumentsParser LOGIC_COLOR
+participant "d:DeleteUserCommand" as DeleteUserCommand LOGIC_COLOR
 participant ":CommandResult" as CommandResult LOGIC_COLOR
 end box
 
@@ -20,21 +20,22 @@ activate LogicManager
 LogicManager -> PrimaryParser : parse("delete user 1")
 activate PrimaryParser
 
-create DeleteCommandParser
-PrimaryParser -> DeleteCommandParser
+PrimaryParser -> DeleteCommandParser : parse("user 1")
 activate DeleteCommandParser
 
-create DeleteUserArgumentsParser
-DeleteCommandParser --> DeleteUserArgumentsParser : parse("user 1")
+DeleteCommandParser -> DeleteUserArgumentsParser : parse("1")
 activate DeleteUserArgumentsParser
-DeleteCommand --> DeleteCommandParser
 
+DeleteUserArgumentsParser -> DeleteUserCommand : DeleteUserCommand(index)
 
+activate DeleteUserCommand
+DeleteUserCommand --> DeleteUserArgumentsParser : d
+deactivate DeleteUserCommand
+
+DeleteUserArgumentsParser --> DeleteCommandParser : d
 deactivate DeleteUserArgumentsParser
-deactivate DeleteCommandParser
-
-PrimaryParser -> DeleteCommandParser
-activate DeleteCommandParser
+DeleteUserArgumentsParser -[hidden]-> DeleteCommandParser
+destroy DeleteUserArgumentsParser
 
 DeleteCommandParser --> PrimaryParser : d
 deactivate DeleteCommandParser
@@ -45,24 +46,24 @@ destroy DeleteCommandParser
 PrimaryParser --> LogicManager : d
 deactivate PrimaryParser
 
-LogicManager -> DeleteCommand : execute()
-activate DeleteCommand
+LogicManager -> DeleteUserCommand : execute()
+activate DeleteUserCommand
 
-DeleteCommand -> Model : deletePerson(1)
+DeleteUserCommand -> Model : deletePerson(1)
 activate Model
 
-Model --> DeleteCommand
+Model --> DeleteUserCommand
 deactivate Model
 
 create CommandResult
-DeleteCommand -> CommandResult
+DeleteUserCommand -> CommandResult
 activate CommandResult
 
-CommandResult --> DeleteCommand
+CommandResult --> DeleteUserCommand
 deactivate CommandResult
 
-DeleteCommand --> LogicManager : result
-deactivate DeleteCommand
+DeleteUserCommand --> LogicManager : result
+deactivate DeleteUserCommand
 
 [<--LogicManager
 deactivate LogicManager

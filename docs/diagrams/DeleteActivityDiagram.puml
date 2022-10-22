@@ -5,23 +5,23 @@ start
 'Since the beta syntax does not support placing the condition outside the
 'diamond we place it as the true branch instead.
 
-if (Delete command is valid?) then (yes)
-    if (What is the subcommand?) then ('users')
-        if (Valid?) then (yes)
+if () then ([valid format])
+    if () then ([subcommand is 'users'])
+        if () then ([valid format])
             :Create and execute DeleteUserCommand;
             :UI updates its list of users to reflect deletion of user;
-        else (no)
-            :Return error message;
+        else ([invalid])
+            :Show error message;
         endif
-    else ('books')
-        if (Valid?) then (yes)
+    else ([subcommand is 'books'])
+        if () then ([valid format])
             :Return and execute DeleteBookCommand;
             :UI updates its list of books to reflect deletion of book;
-        else (no)
+        else ([invalid]])
             :Show error message;
         endif
     endif
-else (no)
+else ([invalid])
     :Show error message;
 endif
 stop

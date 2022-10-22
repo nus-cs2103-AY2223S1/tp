@@ -194,7 +194,7 @@ These commands (and subcommands) are represented as enums to associate each poss
 
 This approach was chosen to reduce code duplication, and to manage the complexity of `PrimaryParser`. Now, `DeleteUserCommand` (`delete user`) and `DeleteBookCommand` (`delete book`) can share similar code through a common parent `DeleteCommand` (`delete`).
 
-Enums were chosen, as they are more performant than using HashMap for a key-value storage, and are easy to modify.
+Enums were chosen, as they use less memory (as enums are `final` subclasses of java.lang.Enum) than HashMap for key-value storage, and are easy to modify. Furthermore, they help to ensure type-checking during compile-time, preventing bugs. They also have a semantic value; they represent to both readers and future developers the current allowed constants. 
 
 ### Adding a book/user
 The `add` command is an important command that is commonly used in BookFace. It allows the user to add a new book or a user to the system.
