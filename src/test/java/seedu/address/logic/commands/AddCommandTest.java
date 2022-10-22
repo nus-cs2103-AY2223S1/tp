@@ -203,6 +203,10 @@ public class AddCommandTest {
             throw new AssertionError("This method should not be called.");
         }
 
+        @Override
+        public void filterTask() {
+            throw new AssertionError("This method should not be called.");
+        }
     }
 
     /**

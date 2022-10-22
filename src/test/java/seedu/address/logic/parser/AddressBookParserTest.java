@@ -24,6 +24,7 @@ import seedu.address.logic.commands.DeleteTaskCommand;
 import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.EditCommand.EditProjectDescriptor;
 import seedu.address.logic.commands.ExitCommand;
+import seedu.address.logic.commands.FilterTaskCommand;
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
@@ -120,6 +121,13 @@ public class AddressBookParserTest {
     public void parseCommand_exit() throws Exception {
         assertTrue(parser.parseCommand(ExitCommand.COMMAND_WORD) instanceof ExitCommand);
         assertTrue(parser.parseCommand(ExitCommand.COMMAND_WORD + " 3") instanceof ExitCommand);
+    }
+
+    @Test
+    public void parseCommand_filterTask() throws Exception {
+        assertTrue(parser.parseCommand(FilterTaskCommand.COMMAND_WORD) instanceof FilterTaskCommand);
+        assertTrue(parser.parseCommand(
+                FilterTaskCommand.COMMAND_WORD + " RANDOM INPUT 123!!") instanceof FilterTaskCommand);
     }
 
     @Test
