@@ -13,7 +13,7 @@ import seedu.address.model.tag.Tag;
  * Represents a Task in the task tracker.
  * Guarantees: All details are present and not null, field values are validated and immutable
  */
-public class Task {
+public class Task implements Comparable<Task> {
 
     private final Name name;
     private final Module module;
@@ -120,5 +120,31 @@ public class Task {
 
         builder.append("; Done: ").append(isDone);
         return builder.toString();
+    }
+
+    /**
+     * Compares two {@code Task}s by the following order:
+     * <ul>
+     *     <li>Compare the deadline</li>
+     *     <li>Compare the module</li>
+     *     <li>Compare the name</li>
+     * </ul>
+     * Returns a negative number, zero, or positive if the this {@code Task}
+     * comes before, is the same, or comes after the compared {@code Task}.
+     */
+    @Override
+    public int compareTo(Task o) {
+        int result = this.deadline.compareTo(o.deadline);
+        if (result != 0) {
+            return result;
+        }
+
+        result = this.module.compareTo(o.module);
+        if (result != 0) {
+            return result;
+        }
+
+        result = this.name.compareTo(o.name);
+        return result;
     }
 }

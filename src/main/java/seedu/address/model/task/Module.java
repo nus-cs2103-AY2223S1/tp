@@ -7,7 +7,7 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  * Represents a module in the task tracker.
  * Guarantees: immutable; is valid as declared in {@link #isValidModule(String)}
  */
-public class Module {
+public class Module implements Comparable<Module> {
 
     public static final String MESSAGE_CONSTRAINTS =
             "Modules should only contain alphanumeric characters with no spaces, and it should not be blank";
@@ -52,4 +52,13 @@ public class Module {
         return fullName.hashCode();
     }
 
+    /**
+     * Compares two {@code Module}s lexicographically. Returns a negative integer,
+     * zero, or a positive integer as this {@code Module} is lexicographically
+     * less than, equal to, or greater than the specified {@code Module}.
+     */
+    @Override
+    public int compareTo(Module o) {
+        return this.fullName.compareTo(o.fullName);
+    }
 }
