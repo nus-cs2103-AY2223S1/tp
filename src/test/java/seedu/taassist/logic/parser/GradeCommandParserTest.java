@@ -34,19 +34,19 @@ public class GradeCommandParserTest {
 
     @Test
     public void parse_invalidIndex_failure() {
-        String userInput = " " + INVALID_INDEX + SESSION_DESC_LAB1 + GRADE_VALUE_DESC_12345;
+        String userInput = INVALID_INDEX + SESSION_DESC_LAB1 + GRADE_VALUE_DESC_12345;
         assertParseFailure(parser, userInput, MESSAGE_INVALID_INDEX);
     }
 
     @Test
     public void parse_invalidGrade_failure() {
-        String userInput = " " + INDEX_FIRST_STUDENT + SESSION_DESC_LAB1 + INVALID_GRADE_VALUE_DESC;
+        String userInput = INDEX_FIRST_STUDENT + SESSION_DESC_LAB1 + INVALID_GRADE_VALUE_DESC;
         assertParseFailure(parser, userInput, MESSAGE_INVALID_GRADE);
     }
 
     @Test
     public void parse_emptySession_failure() {
-        String userInput = joinWithSpace(" " + INDEX_FIRST_STUDENT, PREFIX_SESSION + PREAMBLE_WHITESPACE,
+        String userInput = joinWithSpace(INDEX_FIRST_STUDENT.toString(), PREFIX_SESSION + PREAMBLE_WHITESPACE,
                 GRADE_VALUE_DESC_12345);
         assertParseFailure(parser, userInput, Session.MESSAGE_CONSTRAINTS);
     }
@@ -54,7 +54,7 @@ public class GradeCommandParserTest {
     @Test
     public void parse_validIndexGradeAndSession_success() {
         Session session = new SessionBuilder().withName(VALID_SESSION_LAB1).build();
-        String userInput = " " + INDEX_FIRST_STUDENT + SESSION_DESC_LAB1 + GRADE_VALUE_DESC_12345;
+        String userInput = INDEX_FIRST_STUDENT + SESSION_DESC_LAB1 + GRADE_VALUE_DESC_12345;
         assertParseSuccess(parser, userInput, new GradeCommand(INDEX_FIRST_STUDENT, session , VALID_GRADE_VALUE_12345));
     }
 }
