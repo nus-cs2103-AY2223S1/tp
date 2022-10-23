@@ -10,11 +10,11 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Arrays;
 
-import friday.testutil.FridayBuilder;
 import org.junit.jupiter.api.Test;
 
 import friday.commons.core.GuiSettings;
 import friday.model.student.NameContainsKeywordsPredicate;
+import friday.testutil.FridayBuilder;
 import friday.testutil.TypicalStudents;
 
 public class ModelManagerTest {
