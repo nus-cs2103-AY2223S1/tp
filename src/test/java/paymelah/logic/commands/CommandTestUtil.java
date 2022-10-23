@@ -83,6 +83,7 @@ public class CommandTestUtil {
 
     public static final String MONEY_DESC_MCDONALDS = " " + PREFIX_MONEY + VALID_MONEY_MCDONALDS;
     public static final String MONEY_DESC_SUPPER = " " + PREFIX_MONEY + VALID_MONEY_SUPPER;
+    public static final String MONEY_DESC_TEN_DOLLARS = " " + PREFIX_MONEY + "10";
 
     public static final String INVALID_DESCRIPTION_DESC = " " + PREFIX_DESCRIPTION + " ";
     public static final String INVALID_MONEY_DESC = " " + PREFIX_MONEY + "one hundred";

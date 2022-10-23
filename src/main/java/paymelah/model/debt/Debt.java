@@ -40,6 +40,15 @@ public class Debt {
     }
 
     /**
+     * Returns a copy of the debt.
+     *
+     * @return Debt that is a copy of this debt.
+     */
+    public Debt copyDebt() {
+        return new Debt(this.description, this.money);
+    }
+
+    /**
      * Returns true only if both debts have the same data fields.
      *
      * @param other The other {@code Debt} object to check.
