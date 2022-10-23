@@ -4,6 +4,7 @@ import java.util.logging.Logger;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Tab;
+import javafx.scene.control.TabPane;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.StackPane;
 import seedu.address.commons.core.LogsCenter;
@@ -25,6 +26,9 @@ public class EntryPane extends UiPart<Region> {
     private Tab income;
 
     @FXML
+    private TabPane tabPane;
+
+    @FXML
     private StackPane expenseEntryPlaceholder;
 
     @FXML
@@ -41,6 +45,16 @@ public class EntryPane extends UiPart<Region> {
         this.incomeEntryPanel = incomeEntry;
         expenseEntryPlaceholder.getChildren().add(expenseEntry.getRoot());
         incomeEntryPlaceholder.getChildren().add(incomeEntry.getRoot());
+    }
+
+    public void showExpenseEntryPanel() {
+        logger.info("Showing expenses entry panel");
+        tabPane.getSelectionModel().select(expenses);
+    }
+
+    public void showIncomeEntryPanel() {
+        logger.info("Showing income entry panel");
+        tabPane.getSelectionModel().select(income);
     }
 
     public EntryListPanel getExpenseEntryPanel() {

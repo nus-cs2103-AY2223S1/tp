@@ -1,5 +1,7 @@
 package seedu.address.ui;
 
+import static seedu.address.model.entry.EntryType.Type.EXPENDITURE;
+
 import java.util.logging.Logger;
 
 import javafx.event.ActionEvent;
@@ -116,11 +118,11 @@ public class MainWindow extends UiPart<Stage> {
     /**
      * Fills up all the placeholders of this window.
      */
-    void fillInnerParts() {
+     public void fillInnerParts() {
         EntryListPanel expenseEntryPanel = new EntryListPanel(logic.getFilteredExpenditureList());
         EntryListPanel incomeEntryPanel = new EntryListPanel(logic.getFilteredIncomeList());
 
-        EntryPane entryPane = new EntryPane(expenseEntryPanel, incomeEntryPanel);
+        entryPane = new EntryPane(expenseEntryPanel, incomeEntryPanel);
         entryPanePlaceholder.getChildren().add(entryPane.getRoot());
 
         resultDisplay = new ResultDisplay();
@@ -245,6 +247,15 @@ public class MainWindow extends UiPart<Stage> {
             GraphConfiguration graphConfiguration = commandResult.getGraphConfiguration();
             if (graphConfiguration.getShouldUpdateGraph()) {
                 updateGraph(commandResult);
+            }
+            EntryType entryType = graphConfiguration.getEntryType();
+            switch (entryType.getEntryType()) {
+            case EXPENDITURE:
+                entryPane.showExpenseEntryPanel();
+                break;
+            case INCOME:
+                entryPane.showIncomeEntryPanel();
+                break;
             }
 
             return commandResult;

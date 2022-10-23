@@ -10,6 +10,8 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 public class GraphType {
     public static final String GRAPH_TYPE_CATEGORY = "c";
     public static final String GRAPH_TYPE_MONTH = "m";
+    public static final String GRAPH_TYPE_CATEGORY_LABEL = "category";
+    public static final String GRAPH_TYPE_MONTH_LABEL = "month";
 
     public static final String MESSAGE_CONSTRAINTS = "Graph type should only be either '"
             + GRAPH_TYPE_CATEGORY
@@ -24,13 +26,13 @@ public class GraphType {
         CATEGORY() {
             @Override
             public String toString() {
-                return GRAPH_TYPE_CATEGORY;
+                return GRAPH_TYPE_CATEGORY_LABEL;
             }
         },
         MONTH() {
             @Override
             public String toString() {
-                return GRAPH_TYPE_MONTH;
+                return GRAPH_TYPE_MONTH_LABEL;
             }
         };
 
