@@ -1,6 +1,5 @@
 ---
-layout: page 
-title: User Guide
+layout: page title: User Guide
 ---
 
 `CLIMods` is a native desktop application for NUS students to explore, manage and plan academic
@@ -9,8 +8,7 @@ Interface (CLI) while still providing the benefits of a Graphical User Interface
 of the command line/terminal will be able to plan and manage their modules much faster than doing it
 on [nusmods.com](https://www.nusmods.com).
 
-* Table of Contents 
-{:toc}
+* Table of Contents {:toc}
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -38,26 +36,18 @@ on [nusmods.com](https://www.nusmods.com).
 
 ### User Manual: `help`
 
-Format: `help [COMMAND-NAME]`
+Format: `help`
 
-Optional Arguments:
-
-- `COMMAND-NAME`
-    - If not supplied, `help` returns the list of all commands available
-
-Provides the user manual for the given command and an explanation on the associated faculty/module
-prefix and optional arguments.
+Provides the user manual for all supported commands.
 
 ### Listing modules: `ls`
 
-Format: `ls [FACULTY-PREFIX] [--user]`
+Format: `ls [FACULTY-PREFIX]`
 
 Optional Arguments:
 
 - `FACULTY-PREFIX`
-  - e.g. `CS`, `CEG`
-- `--user`
-  - A flag that narrows the list of modules to user's own list of chosen modules
+    - e.g. `CS`, `CEG`
 
 Shows the entire list of modules offered by NUS with the option to also filter it by faculty (via
 module prefix e.g. CS, CEG).
@@ -69,7 +59,9 @@ Format: `find KEYWORD`
 Required Arguments:
 
 - `KEYWORD`
-  - Any keyword to search against the list of modules
+    - Any keyword to search against the list of modules
+    - A keyword can be a regex expression
+        - e.g. `^CS20\d0$`
 
 Search for a (list of) module in the entire list of modules offered by NUS.
 
@@ -80,7 +72,7 @@ Format: `view MODULE-CODE`
 Required Arguments:
 
 - `MODULE-CODE`
-  - e.g. `CS2103`
+    - e.g. `CS2103`
 
 View full details (e.g. description, workload) of a module via its module code.
 
@@ -118,14 +110,26 @@ Format: `exit`
 
 Exits the program
 
+### Previous/Next command: `<Up>/<Down>`
+
+Using the `<Up>` and `<Down>` arrow keys, users can traverse through the command history.
+
+Traverse/Scroll **up**: `<Up>`
+
+Traverse/Scroll **down**: `<Down>`
+
+> Do note that the implementation of the command history will not keep track of consecutive 
+> duplicate commands. This is to prevent clutter in the command history. Therefore, a command
+> sequence like `ls CS` followed by another `ls CS` will only have one record in the command history.
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## Command summary
 
 Action | Format, Examples
 --------|------------------
-**help** | `help [COMMAND-NAME]`<br> e.g. `help find`
-**ls** | `ls [FACULTY-PREFIX] [--user]`<br> e.g. `ls`, `ls CS`, `ls MA --user`
+**help** | `help`<br> e.g. `help find`
+**ls** | `ls [FACULTY-PREFIX]`<br> e.g. `ls`, `ls CS`, `ls MA --user`
 **find** | `find KEYWORD`<br> e.g. `find compilers`
 **view** | `view MODULE-CODE`<br> e.g. `view CS2103`
 **add** | `add MODULE-CODE`<br> e.g. `add CS2103`

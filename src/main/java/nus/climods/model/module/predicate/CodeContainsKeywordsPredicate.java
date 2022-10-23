@@ -1,8 +1,10 @@
-package nus.climods.model.module;
+package nus.climods.model.module.predicate;
 
 import java.util.Optional;
 import java.util.function.Predicate;
 import java.util.regex.Pattern;
+
+import nus.climods.model.module.Module;
 
 /**
  * Tests that a {@code Module}'s {@code Module Code} matches any of the keywords given.

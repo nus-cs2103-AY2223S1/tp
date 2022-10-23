@@ -47,7 +47,7 @@ public class SavedModuleCard extends UiPart<Region> {
     public SavedModuleCard(UserModule module) {
         super(FXML);
         this.module = module;
-        moduleCode.setText(module.getUserModuleCode());
+        moduleCode.setText(module.getCode());
         tutorial.setText(module.getTutorial());
         lecture.setText(module.getLecture());
         ayData.getChildren().add(createSemesterPill(module.getSelectedSemester()));

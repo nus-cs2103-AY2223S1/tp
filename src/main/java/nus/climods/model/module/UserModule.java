@@ -1,166 +1,109 @@
 package nus.climods.model.module;
 
-import java.util.List;
-import java.util.Objects;
-import java.util.Optional;
-
 import org.openapitools.client.model.SemestersEnum;
 
-import nus.climods.logic.commands.exceptions.CommandException;
-import nus.climods.logic.parser.exceptions.ParseException;
-import nus.climods.model.Model;
-
 /**
- * Class representing module a User has in their My Modules list
+ * Class representing module a chosen by a user
  */
 public class UserModule {
-    public static final String MESSAGE_MODULE_NOT_FOUND = "Module not in current NUS curriculum";
-    public static final String MESSAGE_MODULE_NOT_OFFERED = "Module not offered in chosen semester";
 
-    // Identity fields
-    private final Module listModule;
-    private final SemestersEnum semester;
-
-    //TODO: Remove when implement tutorial/lecture support
-    private String tutorial = "Tutorial: Monday, 1400-1500";
-    private String lecture = "Lecture: Friday, 1600-1800";
+    private String code;
+    private SemestersEnum selectedSemester;
+    private String tutorial = "<Not Selected>"; // TODO placeholder
+    private String lecture = "<Not Selected>"; // TODO placeholder
 
     /**
      * Creates a UserModule
-     * @param moduleCode String for the module code
-     * @throws ParseException if module code is not a valid module in current NUS curriculum
+     *
+     * @param moduleCode module code
+     * @param selectedSemester semester
      */
-    public UserModule(String moduleCode, Model model) throws CommandException {
-        Optional<Module> optionalModule = model.getModuleList().getListModule(moduleCode);
-
-        if (optionalModule.isEmpty()) {
-            throw new CommandException(MESSAGE_MODULE_NOT_FOUND);
-        }
-
-        listModule = optionalModule.get();
-        //default put semester 1
-        this.semester = SemestersEnum.S1;
+    public UserModule(String moduleCode, SemestersEnum selectedSemester) {
+        this.code = moduleCode;
+        this.selectedSemester = selectedSemester;
     }
 
     /**
-     * Creates a UserModule with Semester details
-     * @param moduleCode String for the module code
-     * @throws CommandException if module code is not a valid module in current NUS curriculum or module is not
-     *      offered in specified semester.
+     * Creates a UserModule
+     *
+     * @param moduleCode           string for the module code
+     * @param lecture              selected lecture slot
+     * @param tutorial             selected tutorial slot
+     * @param selectedSemesterStr  selected semester
      */
-    public UserModule(String moduleCode, SemestersEnum semester, Model model) throws CommandException {
-        Optional<Module> optionalModule = model.getModuleList().getListModule(moduleCode);
+    public UserModule(String moduleCode, String lecture, String tutorial, String selectedSemesterStr) {
+        this.code = moduleCode;
+        this.selectedSemester = SemestersEnum.fromValue(selectedSemesterStr);
 
-        if (optionalModule.isEmpty()) {
-            throw new CommandException(MESSAGE_MODULE_NOT_FOUND);
-        }
-
-        listModule = optionalModule.get();
-
-        if (!listModule.getSemesters().contains(semester)) {
-            throw new CommandException(MESSAGE_MODULE_NOT_OFFERED);
-        }
-
-        this.semester = semester;
+        this.lecture = lecture;
+        this.tutorial = tutorial;
     }
 
     /**
-     * Constructor for use purely in testing stub classes.
+     * Constructor used for UserModuleStub
      */
-    protected UserModule() {
-        this.listModule = null;
-        this.semester = null;
+    protected UserModule() {}
+
+    /**
+     * Returns the module code.
+     *
+     * @return module code
+     */
+    public String getCode() {
+        return this.code;
     }
 
-    public Module getApiModule() {
-        return this.listModule;
+    /**
+     * Returns the semester chosen by user to take this module
+     *
+     * @return selected semester
+     */
+    public SemestersEnum getSelectedSemester() {
+        return this.selectedSemester;
     }
 
-    public String getUserModuleCode() {
-        return this.listModule.getCode();
-    }
-
-    public String getUserModuleTitle() {
-        return this.listModule.getTitle();
-    }
-
-    public String getDepartment() {
-        return listModule.getDepartment();
-    }
-
-    //TODO: fix getWorkload from API
-    public String getWorkload() {
-        return listModule.getModuleCredit();
-    }
-
-    //TODO: add Tutorial method
+    // TEMP
     public String getTutorial() {
         return this.tutorial;
     }
 
+    // TEMP
     public void setTutorial(String tutorial) {
         this.tutorial = tutorial;
     }
 
+    // TEMP
     public String getLecture() {
         return this.lecture;
     }
 
+    // TEMP
     public void setLecture(String lecture) {
         this.lecture = lecture;
     }
 
-    private List<SemestersEnum> getAvailableSemesters() {
-        return listModule.getSemesters();
-    }
-
-    public SemestersEnum getSelectedSemester() {
-        return this.semester;
-    }
-
     /**
-     * Returns true if both modules have the same name. This defines a weaker notion of equality between two modules.
+     * Returns true if both modules have the same code. This defines a weaker notion of equality between two modules.
+     *
+     * @param otherModule other user module
+     * @return true if both module has the same module code else false
      */
     public boolean isSameUserModule(UserModule otherModule) {
-        if (otherModule == this) {
-            return true;
-        }
-
-        return otherModule != null
-                && otherModule.getUserModuleCode().equals(getUserModuleCode());
+        return (otherModule == this) || otherModule != null && code.equals(otherModule.code);
     }
 
-    /**
-     * Returns true if both modules have the same identity and data fields. This defines a stronger notion of equality
-     * between two modules.
-     */
     @Override
     public boolean equals(Object other) {
         if (other == this) {
             return true;
         }
 
-        if (!(other instanceof nus.climods.model.module.UserModule)) {
+        if (!(other instanceof UserModule)) {
             return false;
         }
 
-        nus.climods.model.module.UserModule otherModule = (nus.climods.model.module.UserModule) other;
-        return otherModule.getUserModuleCode().equals(getUserModuleCode());
+        UserModule otherModule = (UserModule) other;
+        return code.equals(otherModule.getCode()) && selectedSemester.equals(otherModule.selectedSemester)
+            && tutorial.equals(otherModule.tutorial) && lecture.equals(otherModule.lecture);
     }
-
-    @Override
-    public int hashCode() {
-        // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(listModule);
-    }
-
-    @Override
-    public String toString() {
-        final StringBuilder builder = new StringBuilder();
-        builder.append(getUserModuleCode());
-
-        //TODO: add string builder for other module details
-        return builder.toString();
-    }
-
 }

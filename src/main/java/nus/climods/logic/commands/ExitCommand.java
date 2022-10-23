@@ -19,8 +19,10 @@ public class ExitCommand extends Command {
         return obj instanceof ExitCommand;
     }
 
+
     @Override
-    public CommandResult execute(Model model) {
+    public CommandResult execute(Model mode) {
         return new CommandResult(MESSAGE_EXIT_ACKNOWLEDGEMENT, false, true);
     }
+
 }
