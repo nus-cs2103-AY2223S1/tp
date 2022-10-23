@@ -214,6 +214,16 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public void addTagCount(Tag tag) {
+        addressBook.addTagCount(tag);
+    }
+
+    @Override
+    public void decreaseTagCount(Tag toDelete) {
+        addressBook.decreaseTagCount(toDelete);
+    }
+
+    @Override
     public void deleteTag(Tag target) {
         addressBook.removeTag(target);
     }

@@ -94,6 +94,16 @@ public class AddTagCommand extends Command {
             model.setPerson(personToEdit, editedPerson);
             model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
 
+            for (String string : tagStrings) {
+                Tag toAdd = new Tag(string);
+                if (model.hasTag(toAdd)) {
+                    model.addTagCount(toAdd);
+                } else {
+                    model.addTag(toAdd);
+                    model.updateFilteredTagList(PREDICATE_SHOW_ALL_TAGS);
+                }
+            }
+
             return new CommandResult(String.format(MESSAGE_ADD_TAG_SUCCESS,
                     editPersonDescriptor.getTags().orElse(new HashSet<>())));
         }
@@ -113,26 +123,18 @@ public class AddTagCommand extends Command {
 
             model.setTask(taskToEdit, editedTask);
             model.updateFilteredTaskList(PREDICATE_SHOW_ALL_TASKS);
+
+            for (String string : tagStrings) {
+                Tag toAdd = new Tag(string);
+                if (model.hasTag(toAdd)) {
+                    model.addTagCount(toAdd);
+                } else {
+                    model.addTag(toAdd);
+                    model.updateFilteredTagList(PREDICATE_SHOW_ALL_TAGS);
+                }
+            }
             return new CommandResult(String.format(MESSAGE_ADD_TAG_SUCCESS,
                     editTaskDescriptor.getTags().orElse(new HashSet<>())));
-        }
-
-        List<Tag> lastShownTagList = model.getFilteredTagList();
-        for (String string : tagStrings) {
-            Tag toAdd = new Tag(string);
-            System.out.println("test");
-            if (model.hasTag(toAdd)) {
-                for (Tag tag: lastShownTagList) {
-                    if (tag.tagName.equals(string)) {
-                        tag.addToCount();
-                        break;
-                    }
-                }
-            } else {
-                model.addTag(toAdd);
-                model.updateFilteredTagList(PREDICATE_SHOW_ALL_TAGS);
-            }
-
         }
 
         throw new CommandException(MESSAGE_MISSING_INDEX);

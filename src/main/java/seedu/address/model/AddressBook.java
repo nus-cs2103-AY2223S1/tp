@@ -263,4 +263,12 @@ public class AddressBook implements ReadOnlyAddressBook {
     public ObservableList<Tag> getTagList() {
         return tags.asUnmodifiableObservableList();
     }
+
+    public void addTagCount(Tag tag) {
+        tags.addTagCount(tag);
+    }
+
+    public void decreaseTagCount(Tag toDelete) {
+        tags.decreaseTagCount(toDelete);
+    }
 }

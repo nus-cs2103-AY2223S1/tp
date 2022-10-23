@@ -8,6 +8,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_TASK;
 
 import java.util.Collection;
 import java.util.Collections;
+import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 
@@ -61,8 +62,10 @@ public class DeleteTagCommandParser implements Parser<DeleteTagCommand> {
             throw new ParseException(DeleteTagCommand.MESSAGE_TAG_NOT_DELETED);
         }
 
+        List<String> tagStrings = argMultimap.getAllValues(PREFIX_TAG);
+
         return new DeleteTagCommand(contactIndex, taskIndex, editPersonDescriptor, editTaskDescriptor,
-            deleteTagFromContact, deleteTagFromTask);
+            deleteTagFromContact, deleteTagFromTask, tagStrings);
     }
 
     /**

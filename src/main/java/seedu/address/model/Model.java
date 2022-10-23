@@ -164,4 +164,8 @@ public interface Model {
 
     /** Returns an unmodifiable view of the filtered tag list */
     ObservableList<Tag> getFilteredTagList();
+
+    void addTagCount(Tag toAdd);
+
+    void decreaseTagCount(Tag toDelete);
 }

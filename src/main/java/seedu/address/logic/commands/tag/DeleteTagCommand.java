@@ -2,8 +2,7 @@ package seedu.address.logic.commands.tag;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
-import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
-import static seedu.address.model.Model.PREDICATE_SHOW_ALL_TASKS;
+import static seedu.address.model.Model.*;
 
 import java.util.HashSet;
 import java.util.List;
@@ -56,6 +55,7 @@ public class DeleteTagCommand extends Command {
     private final EditTaskDescriptor editTaskDescriptor;
     private final boolean deleteTagFromContact;
     private final boolean deleteTagFromTask;
+    private final List<String> tagStrings;
 
     /**
      * @param contactIndex of the person in the filtered person list to edit
@@ -67,7 +67,7 @@ public class DeleteTagCommand extends Command {
      */
     public DeleteTagCommand(Index contactIndex, Index taskIndex, EditPersonDescriptor editPersonDescriptor,
                             EditTaskDescriptor editTaskDescriptor, boolean deleteTagFromContact,
-                            boolean deleteTagFromTask) {
+                            boolean deleteTagFromTask, List<String> tagStrings) {
         requireNonNull(contactIndex);
         requireNonNull(taskIndex);
         requireNonNull(editPersonDescriptor);
@@ -79,6 +79,7 @@ public class DeleteTagCommand extends Command {
         this.deleteTagFromContact = deleteTagFromContact;
         this.deleteTagFromTask = deleteTagFromTask;
         this.editTaskDescriptor = new EditTaskDescriptor(editTaskDescriptor);
+        this.tagStrings = tagStrings;
     }
 
     @Override
@@ -101,6 +102,11 @@ public class DeleteTagCommand extends Command {
 
             model.setPerson(personToEdit, editedPerson);
             model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+
+            for (String string : tagStrings) {
+                Tag toDelete = new Tag(string);
+                model.decreaseTagCount(toDelete);
+            }
             return new CommandResult(String.format(MESSAGE_DELETE_TAG_SUCCESS,
                     editPersonDescriptor.getTags().orElse(new HashSet<>())));
         }

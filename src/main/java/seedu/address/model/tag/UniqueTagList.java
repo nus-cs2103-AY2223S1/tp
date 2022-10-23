@@ -136,5 +136,26 @@ public class UniqueTagList implements Iterable<Tag> {
         }
         return true;
     }
+
+    public void addTagCount(Tag tag) {
+        for (Tag currTag: internalList) {
+            if (tag.equals(currTag)) {
+                currTag.addToCount();
+                break;
+            }
+        }
+    }
+
+    public void decreaseTagCount(Tag toDelete) {
+        for (Tag currTag: internalList) {
+            if (toDelete.equals(currTag)) {
+                currTag.removeFromCount();
+                if (currTag.count == 0) {
+                    remove(currTag);
+                }
+                break;
+            }
+        }
+    }
 }
 
