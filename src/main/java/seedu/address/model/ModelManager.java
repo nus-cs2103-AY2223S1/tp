@@ -316,7 +316,7 @@ public class ModelManager implements Model {
     @Override
     public Quote getQuote() {
         return QuoteList.getRandomQuote();
-
+    }
     // =========== Reminder ====================================================================
 
     @Override
