@@ -1,7 +1,7 @@
 <!-- markdownlint-disable-file first-line-h1 -->
 ### Tagging functionality
 
-#### Implementation
+#### Functionality Implementation
 
 The tagging functionality is facilitated by the `UniqueTagList` stored in `FoodRem`. Additionally, each `Item` stores its own sets of associated `Tag` objects in an internal `Set<Tag>`.
 
