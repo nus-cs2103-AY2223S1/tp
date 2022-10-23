@@ -12,15 +12,15 @@ import static seedu.uninurse.logic.parser.CliSyntax.PREFIX_TASK_DESCRIPTION;
 import static seedu.uninurse.testutil.Assert.assertThrows;
 
 import java.util.ArrayList;
-import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 import seedu.uninurse.commons.core.index.Index;
 import seedu.uninurse.logic.commands.exceptions.CommandException;
 import seedu.uninurse.model.Model;
 import seedu.uninurse.model.UninurseBook;
-import seedu.uninurse.model.person.NameContainsKeywordsPredicate;
 import seedu.uninurse.model.person.Patient;
+import seedu.uninurse.model.person.PatientContainsKeywordsPredicate;
 import seedu.uninurse.testutil.EditPatientDescriptorBuilder;
 
 /**
@@ -84,7 +84,7 @@ public class CommandTestUtil {
      * - the {@code actualModel} matches {@code expectedModel}
      */
     public static void assertCommandSuccess(Command command, Model actualModel, CommandResult expectedCommandResult,
-            Model expectedModel) {
+                                            Model expectedModel) {
         try {
             CommandResult result = command.execute(actualModel);
             assertEquals(expectedCommandResult, result);
@@ -99,7 +99,7 @@ public class CommandTestUtil {
      * that takes a string {@code expectedMessage}.
      */
     public static void assertCommandSuccess(Command command, Model actualModel, String expectedMessage,
-            CommandType expectedCommandType, Model expectedModel) {
+                                            CommandType expectedCommandType, Model expectedModel) {
         CommandResult expectedCommandResult = new CommandResult(expectedMessage, expectedCommandType);
         assertCommandSuccess(command, actualModel, expectedCommandResult, expectedModel);
     }
@@ -120,6 +120,7 @@ public class CommandTestUtil {
         assertEquals(expectedUninurseBook, actualModel.getUninurseBook());
         assertEquals(expectedFilteredList, actualModel.getFilteredPersonList());
     }
+
     /**
      * Updates {@code model}'s filtered list to show only the person at the given {@code targetIndex} in the
      * {@code model}'s uninurse book.
@@ -129,7 +130,7 @@ public class CommandTestUtil {
 
         Patient person = model.getFilteredPersonList().get(targetIndex.getZeroBased());
         final String[] splitName = person.getName().getValue().split("\\s+");
-        model.updateFilteredPersonList(new NameContainsKeywordsPredicate(Arrays.asList(splitName[0])));
+        model.updateFilteredPersonList(new PatientContainsKeywordsPredicate(Collections.singletonList(splitName[0])));
 
         assertEquals(1, model.getFilteredPersonList().size());
     }

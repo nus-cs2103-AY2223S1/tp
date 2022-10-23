@@ -4,7 +4,7 @@ import static java.util.Objects.requireNonNull;
 
 import seedu.uninurse.commons.core.Messages;
 import seedu.uninurse.model.Model;
-import seedu.uninurse.model.person.NameContainsKeywordsPredicate;
+import seedu.uninurse.model.person.PatientContainsKeywordsPredicate;
 
 /**
  * Finds and lists all persons in uninurse book whose name contains any of the argument keywords.
@@ -20,9 +20,9 @@ public class FindCommand extends Command {
 
     public static final CommandType FIND_COMMAND_TYPE = CommandType.FIND;
 
-    private final NameContainsKeywordsPredicate predicate;
+    private final PatientContainsKeywordsPredicate predicate;
 
-    public FindCommand(NameContainsKeywordsPredicate predicate) {
+    public FindCommand(PatientContainsKeywordsPredicate predicate) {
         this.predicate = predicate;
     }
 

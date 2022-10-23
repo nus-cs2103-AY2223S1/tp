@@ -2,6 +2,7 @@ package seedu.uninurse.model;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.uninurse.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 import static seedu.uninurse.testutil.Assert.assertThrows;
@@ -15,7 +16,7 @@ import java.util.Arrays;
 import org.junit.jupiter.api.Test;
 
 import seedu.uninurse.commons.core.GuiSettings;
-import seedu.uninurse.model.person.NameContainsKeywordsPredicate;
+import seedu.uninurse.model.person.PatientContainsKeywordsPredicate;
 import seedu.uninurse.testutil.UninurseBookBuilder;
 
 public class ModelManagerTest {
@@ -102,24 +103,24 @@ public class ModelManagerTest {
         // same values -> returns true
         modelManager = new ModelManager(uninurseBook, userPrefs);
         ModelManager modelManagerCopy = new ModelManager(uninurseBook, userPrefs);
-        assertTrue(modelManager.equals(modelManagerCopy));
+        assertEquals(modelManager, modelManagerCopy);
 
         // same object -> returns true
-        assertTrue(modelManager.equals(modelManager));
+        assertEquals(modelManager, modelManager);
 
         // null -> returns false
-        assertFalse(modelManager.equals(null));
+        assertNotEquals(null, modelManager);
 
         // different types -> returns false
-        assertFalse(modelManager.equals(5));
+        assertNotEquals(5, modelManager);
 
         // different uninurseBook -> returns false
-        assertFalse(modelManager.equals(new ModelManager(differentUninurseBook, userPrefs)));
+        assertNotEquals(modelManager, new ModelManager(differentUninurseBook, userPrefs));
 
         // different filteredList -> returns false
         String[] keywords = ALICE.getName().getValue().split("\\s+");
-        modelManager.updateFilteredPersonList(new NameContainsKeywordsPredicate(Arrays.asList(keywords)));
-        assertFalse(modelManager.equals(new ModelManager(uninurseBook, userPrefs)));
+        modelManager.updateFilteredPersonList(new PatientContainsKeywordsPredicate(Arrays.asList(keywords)));
+        assertNotEquals(modelManager, new ModelManager(uninurseBook, userPrefs));
 
         // resets modelManager to initial state for upcoming tests
         modelManager.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
@@ -127,6 +128,6 @@ public class ModelManagerTest {
         // different userPrefs -> returns false
         UserPrefs differentUserPrefs = new UserPrefs();
         differentUserPrefs.setUninurseBookFilePath(Paths.get("differentFilePath"));
-        assertFalse(modelManager.equals(new ModelManager(uninurseBook, differentUserPrefs)));
+        assertNotEquals(modelManager, new ModelManager(uninurseBook, differentUserPrefs));
     }
 }
