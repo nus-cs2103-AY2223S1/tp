@@ -112,7 +112,7 @@ View a particular student's details.
 Format: `find n/STUDENT_NAME`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-Use student name as user is looking for details and doesn't have them.
+Use student name/telegram handle/consultation/mastery check date/remark to search up a particular student.
 </div>
 
 ### Viewing all students: `list`
@@ -171,7 +171,7 @@ Format: `help`
 | **Delete a student**                         | `delete i/INDEX`                                                                           |
 | **Edit a student's details**                 | `edit INDEX [n/NAME] [t/TELEGRAM_HANDLE] [c/CONSULTATION] [m/MASTERY_CHECK] [tag/TAG]...`  |
 | **Add remarks for a student**                | `remark INDEX [r/REMARK]`                                                                  |
-| **Find a student's details**                 | `find s/STUDENT_NAME`                                                                      |
+| **Find a student's details**                 | `find k/KEYWORD`                                                                           |
 | **Mark a student's Mastery Check as passed** | `mark INDEX`                                                                               |
 | **View all students**                        | `list`                                                                                     |
 | **Sort students**                            | `sort CRITERIA/ORDER`                                                                      |

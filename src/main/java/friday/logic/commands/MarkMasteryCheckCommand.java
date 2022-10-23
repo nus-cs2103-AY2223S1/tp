@@ -15,7 +15,7 @@ import friday.model.student.Student;
  */
 public class MarkMasteryCheckCommand extends Command {
     public static final String COMMAND_WORD = "mark";
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Marks the Mastery Check of the person identified by"
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Marks the Mastery Check of the student identified by"
             + " the index number as done.\n"
             + "Parameters: INDEX (must be a positive integer)\n"
             + "Example: " + COMMAND_WORD + " 1 ";
