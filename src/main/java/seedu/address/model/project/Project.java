@@ -16,6 +16,15 @@ import seedu.address.model.issue.Issue;
  */
 public class Project implements ComparableByName<Project>, HasIntegerIdentifier<Project> {
 
+    public static final String MESSAGE_INVALID_DEADLINE_SORT_KEY =
+            "Enter either a 0 to sort by chronological order or a 1 to sort by reverse chronological order";
+
+    public static final String MESSAGE_INVALID_ISSUE_COUNT_SORT_KEY =
+            "Enter either a 0 to sort by ascending order or a 1 to sort by descending order";
+
+    public static final String MESSAGE_INVALID_NAME_SORT_KEY =
+            "Enter either a 0 to sort by alphabetical order or a 1 to sort by reverse alphabetical order";
+
     // Components of a project
     private Name name;
     private Repository repository;
@@ -23,6 +32,9 @@ public class Project implements ComparableByName<Project>, HasIntegerIdentifier<
     private Client client;
     private ProjectId projectId;
     private List<Issue> issueList;
+
+
+
 
     /**
      * Name field must be present and not null and other fields may be optional.
@@ -56,6 +68,10 @@ public class Project implements ComparableByName<Project>, HasIntegerIdentifier<
         return this.projectId.getIdInt();
     }
 
+    public void addIssue(Issue toAddIssue) {
+        this.issueList.add(toAddIssue);
+    }
+
     /**
      * Represents an Empty Project.
      */
@@ -85,6 +101,10 @@ public class Project implements ComparableByName<Project>, HasIntegerIdentifier<
 
     public ProjectId getProjectId() {
         return projectId;
+    }
+
+    public int getProjectIdInInt() {
+        return getProjectId().getIdInt();
     }
 
     public Name getProjectName() {
@@ -123,6 +143,62 @@ public class Project implements ComparableByName<Project>, HasIntegerIdentifier<
         this.client = Client.EmptyClient.EMPTY_CLIENT;
     }
 
+    public void removeIssue(Issue i) {
+        getIssueList().remove(i);
+    }
+
+
+    /**
+     * Checks if input is a valid deadline sort key.
+     *
+     * 0 for chronological order and 1 for reverse chronological order
+     *
+     * @param num input param to validate
+     * @return true if input is a 0 or 1
+     */
+    public static boolean isValidDeadlineSortKey(String num) {
+        try {
+            int number = Integer.parseInt(num);
+            return number == 0 || number == 1;
+        } catch (NumberFormatException e) {
+            return false;
+        }
+    }
+
+    /**
+     * Checks if input is a valid issue count sort key.
+     *
+     * 0 for ascending order and 1 for descending order
+     *
+     * @param num input param to validate
+     * @return true if input is a 0 or 1
+     */
+    public static boolean isValidIssueCountSortKey(String num) {
+        try {
+            int number = Integer.parseInt(num);
+            return number == 0 || number == 1;
+        } catch (NumberFormatException e) {
+            return false;
+        }
+    }
+
+    /**
+     * Checks if input is a valid name sort key.
+     *
+     * 0 for alphabetical order and 1 for reverse alphabetical order
+     *
+     * @param num input param to validate
+     * @return true if input is a 0 or 1
+     */
+    public static boolean isValidNameSortKey(String num) {
+        try {
+            int number = Integer.parseInt(num);
+            return number == 0 || number == 1;
+        } catch (NumberFormatException e) {
+            return false;
+        }
+    }
+
     /**
      * Checks if this Project is empty.
      *
@@ -132,6 +208,33 @@ public class Project implements ComparableByName<Project>, HasIntegerIdentifier<
         return false;
     }
 
+    /**
+     * Counts number of completed issues in Project Issue List
+     * @return number of completed issues
+     */
+    public int getCompletedIssueCount() {
+        int count = 0;
+        for (Issue i: issueList) {
+            if (i.getStatus().getStatus() == true) {
+                count += 1;
+            }
+        }
+        return count;
+    }
+
+    /**
+     * Counts number of incomplete issues in Project Issue List
+     * @return number of incomplete issues;
+     */
+    public int getIncompleteIssueCount() {
+        int count = 0;
+        for (Issue i: issueList) {
+            if (i.getStatus().getStatus() == false) {
+                count += 1;
+            }
+        }
+        return count;
+    }
     /**
      * Returns true if both projects have the same identity and data fields.
      * This defines a stronger notion of equality between two projects.

@@ -23,8 +23,8 @@ public class DeleteIssueCommand extends IssueCommand {
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + " " + COMMAND_FLAG
             + ": Deletes the issue identified by the issue id. \n"
-            + "Parameters: INDEX (must be a positive integer) \n"
-            + "Example: " + COMMAND_WORD + "" + COMMAND_FLAG + " 1";
+            + "Parameters: ISSUE_ID (must be a positive integer) \n"
+            + "Example: " + COMMAND_WORD + " " + COMMAND_FLAG + " 1";
 
     public static final String MESSAGE_SUCCESS = "Deleted Issue: %1$s";
 
@@ -40,16 +40,16 @@ public class DeleteIssueCommand extends IssueCommand {
         List<Issue> lastShownList = model.getFilteredIssueList();
 
         for (Issue i : lastShownList) {
-            if (i.getIssueId().getIdInt() == targetIndex.getOneBased()) {
-                Issue issueToDelete = i;
-                model.deleteIssue(issueToDelete);
-                issueToDelete.getProject().getIssueList().remove(i);
-                return new CommandResult(String.format(MESSAGE_SUCCESS, issueToDelete));
+            if (i.getIssueIdInInt() == targetIndex.getOneBased()) {
+                i.deleteProjectIssue(i);
+                model.deleteIssue(i);
+                ui.showIssues();
+                model.updateFilteredIssueList(PREDICATE_SHOW_ALL_ISSUES);
+                return new CommandResult(String.format(MESSAGE_SUCCESS, i));
             }
         }
 
-        ui.showIssues();
-        model.updateFilteredIssueList(PREDICATE_SHOW_ALL_ISSUES);
+
 
         throw new CommandException(Messages.MESSAGE_INVALID_ISSUE_DISPLAYED_ID);
 

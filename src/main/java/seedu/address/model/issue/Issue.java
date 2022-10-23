@@ -13,6 +13,12 @@ import seedu.address.model.project.Project;
  */
 public class Issue implements ComparableByName<Issue>, HasIntegerIdentifier<Issue> {
 
+    public static final String MESSAGE_INVALID_DEADLINE_SORT_KEY =
+            "Enter either a 0 to sort by chronological order or a 1 to sort by reverse chronological order";
+
+    public static final String MESSAGE_INVALID_PRIORITY_SORT_KEY =
+            "Enter either a 0 to sort by lowest priority or a 1 to sort by highest priority";
+
     // Components of an issue
     private Description description;
     private Deadline deadline;
@@ -75,6 +81,10 @@ public class Issue implements ComparableByName<Issue>, HasIntegerIdentifier<Issu
         return this.issueId;
     }
 
+    public int getIssueIdInInt() {
+        return getIssueId().getIdInt();
+    }
+
     public Description getDescription() {
         return this.description;
     }
@@ -91,6 +101,14 @@ public class Issue implements ComparableByName<Issue>, HasIntegerIdentifier<Issu
         return this.project;
     }
 
+    public void deleteProjectIssue(Issue i) {
+        getProject().removeIssue(i);
+    }
+
+    public Status getStatus() {
+        return this.status;
+    }
+
     /**
      * Returns true if both issues have the same description.
      * This defines a weaker notion of equality between two issues.
@@ -100,9 +118,7 @@ public class Issue implements ComparableByName<Issue>, HasIntegerIdentifier<Issu
         return otherIssue.description == this.description;
     }
 
-    public Status getStatus() {
-        return this.status;
-    }
+
 
     public void setDescription(Description description) {
         this.description = description;
@@ -139,6 +155,40 @@ public class Issue implements ComparableByName<Issue>, HasIntegerIdentifier<Issu
     }
 
     /**
+     * Checks if input is a valid deadline sort key.
+     *
+     * 0 for chronological order and 1 for reverse chronological order
+     *
+     * @param num input param to validate
+     * @return true if input is a 0 or 1
+     */
+    public static boolean isValidDeadlineSortKey(String num) {
+        try {
+            int number = Integer.parseInt(num);
+            return number == 0 || number == 1;
+        } catch (NumberFormatException e) {
+            return false;
+        }
+    }
+
+    /**
+     * Checks if input is a valid priority sort key.
+     *
+     * 0 for lowest priority order and 1 for highest priority order
+     *
+     * @param num input param to validate
+     * @return true if input is a 0 or 1
+     */
+    public static boolean isValidPrioritySortKey(String num) {
+        try {
+            int number = Integer.parseInt(num);
+            return number == 0 || number == 1;
+        } catch (NumberFormatException e) {
+            return false;
+        }
+    }
+
+    /**
      * Returns true if both issues have the same description.
      * This defines a weaker notion of equality between two issues.
      */
@@ -150,6 +200,8 @@ public class Issue implements ComparableByName<Issue>, HasIntegerIdentifier<Issu
         return otherIssue != null
                 && otherIssue.getDescription().equals(getDescription());
     }
+
+
 
     /**
      * Returns true if both projects have the same identity and data fields.

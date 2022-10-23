@@ -10,7 +10,8 @@ import static java.util.Objects.requireNonNull;
 public class IssueId {
 
     public static final String MESSAGE_CONSTRAINTS = "Issue ID must be a valid integer";
-    public static final String MESSAGE_INVALID = "No existing issue with this issue ID";
+    public static final String MESSAGE_INVALID = "Issue ID must be a valid integer. "
+            + "No existing issue with this issue ID";
     private int issueId;
 
     /**
@@ -30,7 +31,7 @@ public class IssueId {
         public static final IssueId EMPTY_ISSUE_ID = new EmptyIssueId();
 
         private EmptyIssueId() {
-            super(0);
+            super(Integer.MAX_VALUE);
         }
 
         @Override
@@ -55,8 +56,8 @@ public class IssueId {
      */
     public static boolean isValidIssueId(String issueId) {
         try {
-            Integer.parseInt(issueId);
-            return true;
+            int pid = Integer.parseInt(issueId);
+            return pid > 0;
         } catch (NumberFormatException e) {
             return false;
         }
