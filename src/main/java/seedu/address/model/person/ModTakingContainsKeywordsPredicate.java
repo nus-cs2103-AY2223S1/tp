@@ -12,7 +12,7 @@ public class ModTakingContainsKeywordsPredicate extends ModContainsKeywordsPredi
     private final List<String> keywords;
 
     /**
-     * Constructor for ModTakingContainsKeywordsPredicate
+     * Constructs the ModTakingContainsKeywordsPredicate
      * @param keywords list of user inputs.
      */
     public ModTakingContainsKeywordsPredicate(List<String> keywords) {
