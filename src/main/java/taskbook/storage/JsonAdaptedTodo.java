@@ -1,11 +1,17 @@
 package taskbook.storage;
 
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import taskbook.commons.exceptions.IllegalValueException;
 import taskbook.model.person.Email;
 import taskbook.model.person.Name;
+import taskbook.model.tag.Tag;
 import taskbook.model.task.Description;
 import taskbook.model.task.Task;
 import taskbook.model.task.Todo;
@@ -20,9 +26,10 @@ public class JsonAdaptedTodo extends JsonAdaptedTask {
      * Constructs a {@code JsonAdaptedTask} with the given person details.
      */
     @JsonCreator
-    public JsonAdaptedTodo(@JsonProperty("name") String name, @JsonProperty("phone") String assignment,
-                           @JsonProperty("email") String description, @JsonProperty("address") boolean isDone) {
-        super(name, assignment, description, isDone);
+    public JsonAdaptedTodo(@JsonProperty("name") String name, @JsonProperty("assignment") String assignment,
+                           @JsonProperty("description") String description, @JsonProperty("isDone") boolean isDone,
+                           @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
+        super(name, assignment, description, isDone, tagged);
     }
 
     /**
@@ -38,6 +45,11 @@ public class JsonAdaptedTodo extends JsonAdaptedTask {
      * @throws IllegalValueException if there were any data constraints violated in the adapted task.
      */
     public Todo toModelType() throws IllegalValueException {
+        final List<Tag> taskTags = new ArrayList<>();
+        for (JsonAdaptedTag tag : tagged) {
+            taskTags.add(tag.toModelType());
+        }
+
         if (this.getName() == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Name.class.getSimpleName()));
         }
@@ -63,6 +75,7 @@ public class JsonAdaptedTodo extends JsonAdaptedTask {
         }
         final Description modelDescription = new Description(this.getDescription());
 
-        return new Todo(modelName, modelAssignment, modelDescription, this.isDone());
+        final Set<Tag> modelTags = new HashSet<>(taskTags);
+        return new Todo(modelName, modelAssignment, modelDescription, this.isDone(), modelTags);
     }
 }
