@@ -138,7 +138,7 @@ public class AddCommandParserTest {
         assertParseFailure(parser, NAME_DESC_MSFT + POSITION_DESC_MSFT + PHONE_DESC_MSFT + INVALID_EMAIL_DESC
                 + WEBSITE_DESC_MSFT + TAG_DESC_URGENT + TAG_DESC_REMOTE, Email.MESSAGE_CONSTRAINTS);
 
-        // invalid address
+        // invalid website
         assertParseFailure(parser, NAME_DESC_MSFT + POSITION_DESC_MSFT + PHONE_DESC_MSFT + EMAIL_DESC_MSFT
                 + INVALID_WEBSITE_DESC + TAG_DESC_URGENT + TAG_DESC_REMOTE,
                 Website.MESSAGE_CONSTRAINTS);
