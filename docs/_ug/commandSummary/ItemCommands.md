@@ -10,7 +10,7 @@
 {% capture inc %}{% include_relative _ug/commandSummary/itemCommands/inc.md %}{% endcapture %}
 {% capture dec %}{% include_relative _ug/commandSummary/itemCommands/dec.md %}{% endcapture %}
 {% capture edit %}{% include_relative _ug/commandSummary/itemCommands/edit.md %}{% endcapture %}
-{% capture edit %}{% include_relative _ug/commandSummary/itemCommands/rmk.md %}{% endcapture %}
+{% capture rmk %}{% include_relative _ug/commandSummary/itemCommands/rmk.md %}{% endcapture %}
 {% capture del %}{% include_relative _ug/commandSummary/itemCommands/del.md %}{% endcapture %}
 
 {% assign new = new | markdownify %}
