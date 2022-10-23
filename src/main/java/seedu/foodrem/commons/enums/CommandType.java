@@ -5,6 +5,7 @@ import static seedu.foodrem.logic.parser.CliSyntax.PREFIX_ID;
 import static seedu.foodrem.logic.parser.CliSyntax.PREFIX_ITEM_BOUGHT_DATE;
 import static seedu.foodrem.logic.parser.CliSyntax.PREFIX_ITEM_EXPIRY_DATE;
 import static seedu.foodrem.logic.parser.CliSyntax.PREFIX_ITEM_QUANTITY;
+import static seedu.foodrem.logic.parser.CliSyntax.PREFIX_ITEM_REMARKS;
 import static seedu.foodrem.logic.parser.CliSyntax.PREFIX_ITEM_UNIT;
 import static seedu.foodrem.logic.parser.CliSyntax.PREFIX_NAME;
 
@@ -154,6 +155,15 @@ public enum CommandType {
             return getCommandWord() + ": Displays the information about an Item. The command "
                     + "displays the name, quantity, bought date, expiry date, unit, and associated tags of the item.\n"
                     + "Example: " + getCommandWord() + " 1";
+        }
+    },
+    REMARK_COMMAND("rmk") {
+        @Override
+        public String getUsage() {
+            return getCommandWord() + ": Adds a remark to an Item\n"
+                    + "Parameters: "
+                    + PREFIX_ITEM_REMARKS
+                    + "Example: " + getCommandWord() + " 1" + PREFIX_ITEM_REMARKS + "For oranges";
         }
     },
 

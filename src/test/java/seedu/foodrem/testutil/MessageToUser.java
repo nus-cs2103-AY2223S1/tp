@@ -49,4 +49,12 @@ public class MessageToUser {
     // Price
     public static final String MESSAGE_FOR_UNABLE_TO_PARSE_PRICE =
             "The item price should be a number.";
+
+    // Remarks
+    public static final String MESSAGE_FOR_INVALID_CHARACTERS_IN_REMARKS =
+            "The item remark should only contain alphanumeric characters and spaces. "
+                    + "It should not start with a blank space.";
+    private static final String MESSAGE_FOR_REMARKS_TOO_LONG =
+            "The item remark should not exceed 1000 characters";
+
 }
