@@ -42,14 +42,12 @@ class JsonAdaptedStudent {
      * Constructs a {@code JsonAdaptedStudent} with the given student details.
      */
     @JsonCreator
-
     public JsonAdaptedStudent(@JsonProperty("name") String name, @JsonProperty("telegramHandle") String telegramHandle,
                              @JsonProperty("consultation") LocalDate consultation,
                              @JsonProperty("masteryCheck") LocalDate masteryCheck,
                              @JsonProperty("masteryCheckIsDone") boolean masteryCheckIsDone,
                              @JsonProperty("remark") String remark, @JsonProperty("tagged") List<JsonAdaptedTag> tagged,
                              @JsonProperty("gradesList") List<JsonAdaptedGrade> gradesList) {
-
         this.name = name;
         this.telegramHandle = telegramHandle;
         this.masteryCheck = masteryCheck;
