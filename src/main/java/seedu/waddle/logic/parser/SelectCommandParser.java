@@ -9,16 +9,16 @@ import seedu.waddle.logic.commands.SelectCommand;
 import seedu.waddle.logic.parser.exceptions.ParseException;
 
 /**
- * Parses input arguments and creates a new FindCommand object
+ * Parses input arguments and creates a new SelectCommand object
  */
-public class PlanCommandParser {
+public class SelectCommandParser {
     /**
-     * Parses the given {@code String} of arguments in the context of the PlanCommand
-     * and returns a PlanCommand object for execution.
+     * Parses the given {@code String} of arguments in the context of the SelectCommand
+     * and returns a SelectCommand object for execution.
      *
-     * @param args Arguments.
-     * @return PlanCommand.
-     * @throws ParseException If the user input does not conform the expected format.
+     * @param args Arguments
+     * @return SelectCommand
+     * @throws ParseException If the user input does not conform to the expected format
      */
     public SelectCommand parse(String args) throws ParseException {
         requireNonNull(args);

@@ -96,7 +96,7 @@ public class WaddleParser {
             return new ListCommand();
 
         case SelectCommand.COMMAND_WORD:
-            return new PlanCommandParser().parse(arguments);
+            return new SelectCommandParser().parse(arguments);
 
         case HomeCommand.COMMAND_WORD:
             return new HomeCommand();
