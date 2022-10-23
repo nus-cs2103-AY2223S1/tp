@@ -219,7 +219,7 @@ public class ImageStorage {
      */
     public static void empty() {
         File dir = new File(Paths.get(System.getProperty("user.dir"), "images").toString());
-        if (dir == null) {
+        if (dir.listFiles() == null || dir == null) {
             return;
         }
         for (File file : dir.listFiles()) {
