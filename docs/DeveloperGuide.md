@@ -136,7 +136,7 @@ As the `Person` and `Reminder` models are more complex, below are the Class Diag
 
 <img src="images/PersonClassDiagram.png" width="450" />
 
-<img src="images/ReminderClassDiagram.png" width="450">
+<img src="images/ReminderClassDiagram.png" width="300">
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** As of now, each `Reminder` object contains the `Name` and `Phone` objects which are used as foreign keys to identify which `Person` object the `Reminder` belongs to. This is a workaround and we may implement unique primary keys for `Person` in the future.<br>
 
