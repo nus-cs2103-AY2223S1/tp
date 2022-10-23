@@ -43,9 +43,14 @@ public class HelpWindow extends UiPart<Stage> {
             + "| List all internship(s)   | list [c/CATEGORY [DESCENDING]]                                     |\n"
             + "| in specified order       |                                                                    |\n"
             + "+--------------------------+--------------------------------------------------------------------+\n"
+            + "| Undo previous command    | undo                                                               |\n"
+            + "+--------------------------+--------------------------------------------------------------------+\n"
+            + "| Redo previous            | redo                                                               |\n"
+            + "| undone command           |                                                                    |\n"
+            + "+--------------------------+--------------------------------------------------------------------+\n"
             + "| List available commands  | help                                                               |\n"
             + "| and link to User Guide   |                                                                    |\n"
-            + "+--------------------------+--------------------------------------------------------------------+";
+            + "+--------------------------+--------------------------------------------------------------------+\n";
     private static final Logger logger = LogsCenter.getLogger(HelpWindow.class);
     private static final String FXML = "HelpWindow.fxml";
 

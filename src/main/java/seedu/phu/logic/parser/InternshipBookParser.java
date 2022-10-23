@@ -9,6 +9,7 @@ import java.util.regex.Pattern;
 import seedu.phu.logic.commands.AddCommand;
 import seedu.phu.logic.commands.ClearCommand;
 import seedu.phu.logic.commands.Command;
+import seedu.phu.logic.commands.CopyCommand;
 import seedu.phu.logic.commands.DeleteCommand;
 import seedu.phu.logic.commands.EditCommand;
 import seedu.phu.logic.commands.ExitCommand;
@@ -68,6 +69,9 @@ public class InternshipBookParser {
         case ViewCommand.COMMAND_WORD:
             return new ViewCommandParser().parse(arguments);
 
+        case CopyCommand.COMMAND_WORD:
+            return new CopyCommandParser().parse(arguments);
+
         case ExitCommand.COMMAND_WORD:
             return new ExitCommand();
 
@@ -79,6 +83,7 @@ public class InternshipBookParser {
 
         case UndoCommand.COMMAND_WORD:
             return new UndoCommand();
+
 
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
