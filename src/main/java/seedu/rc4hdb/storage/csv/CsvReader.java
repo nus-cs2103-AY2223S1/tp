@@ -135,9 +135,7 @@ public class CsvReader {
     private Set<Tag> parseTags(String tagsString) throws ParseException {
         List<String> tagStrings = new ArrayList<>(List.of(tagsString.split(" ")));
         tagStrings.removeIf((tagString) -> tagString.equalsIgnoreCase("nil"));
-        Set<Tag> tags = ParserUtil.parseTags(tagStrings);
-        tags.remove(Tag.NIL_TAG);
-        return tags;
+        return ParserUtil.parseTags(tagStrings);
     }
 
 }
