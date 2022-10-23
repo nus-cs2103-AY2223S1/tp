@@ -20,7 +20,7 @@ public class TeamBuilder {
     private UniqueTaskList tasks = new UniqueTaskList();
 
     /**
-     * Creates a {@code PersonBuilder} with the default details.
+     * Creates a {@code TeamBuilder} with the default details.
      */
     public TeamBuilder() {
         name = new seedu.address.model.team.Name(DEFAULT_TEAM_NAME);
