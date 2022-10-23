@@ -39,7 +39,7 @@ public class GradeProfile {
         return gradeMap.clone();
     }
 
-    // Getters (for Jackson Use)
+    // Getters (for JavaFX Use)
     public String getMc1() {
         return gradeMap.get(Assessment.MC1).getGradeString();
     }

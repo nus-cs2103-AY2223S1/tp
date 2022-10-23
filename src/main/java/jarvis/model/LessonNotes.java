@@ -1,8 +1,9 @@
 package jarvis.model;
 
 import java.util.Collection;
-import java.util.HashMap;
+import java.util.Comparator;
 import java.util.Map;
+import java.util.TreeMap;
 
 import jarvis.model.exceptions.StudentNotFoundException;
 
@@ -10,15 +11,15 @@ import jarvis.model.exceptions.StudentNotFoundException;
  * Represents the notes for a lesson in JARVIS.
  */
 public class LessonNotes {
-    private final StringBuilder overallNotes = new StringBuilder("Lesson Notes:\n");
-    private final HashMap<Student, StringBuilder> studentNotes;
+    private final StringBuilder generalNotes = new StringBuilder("General Notes:\n");
+    private final TreeMap<Student, StringBuilder> studentNotes;
 
     /**
      * Creates the notes for a lesson.
      * @param students Students who are involved in the lesson.
      */
     public LessonNotes(Collection<Student> students) {
-        studentNotes = new HashMap<>();
+        studentNotes = new TreeMap<>(Comparator.comparing(s -> s.getName().toString()));
         for (Student stu : students) {
             studentNotes.put(stu, new StringBuilder());
         }
@@ -29,8 +30,8 @@ public class LessonNotes {
      * @param notes Lines to append to the overall lesson notes.
      */
     public void addNote(String notes) {
-        overallNotes.append(notes);
-        overallNotes.append("\n");
+        generalNotes.append(notes);
+        generalNotes.append("\n");
     }
 
     /**
@@ -46,11 +47,11 @@ public class LessonNotes {
         studentNotes.get(student).append("\n");
     }
 
-    public String getNotes() {
-        return overallNotes.toString();
+    public String getGeneralNotes() {
+        return generalNotes.toString();
     }
 
-    public String getNotes(Student student) {
+    public String getStudentNotes(Student student) {
         if (!studentNotes.containsKey(student)) {
             throw new StudentNotFoundException();
         }
@@ -58,7 +59,7 @@ public class LessonNotes {
     }
 
     public String getAllNotes() {
-        StringBuilder sb = new StringBuilder(overallNotes);
+        StringBuilder sb = new StringBuilder(generalNotes);
         sb.append("\nNotes for individual students:\n");
         for (Map.Entry<Student, StringBuilder> entry : studentNotes.entrySet()) {
             sb.append(entry.getKey());

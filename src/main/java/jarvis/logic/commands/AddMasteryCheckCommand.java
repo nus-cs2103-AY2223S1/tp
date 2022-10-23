@@ -33,7 +33,7 @@ public class AddMasteryCheckCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a mastery check lesson to JARVIS.\n"
             + "Parameters: "
-            + "[" +PREFIX_LESSON + "LESSON_DESC] "
+            + "[" + PREFIX_LESSON + "LESSON_DESC] "
             + PREFIX_START_DATE + "START_DATE "
             + PREFIX_START_TIME + "START_TIME ["
             + PREFIX_END_DATE + "END_DATE] "

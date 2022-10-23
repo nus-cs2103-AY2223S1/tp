@@ -48,6 +48,7 @@ public class Student {
         gradeProfile.updateGrades(gp);
     }
 
+
     /**
      * Returns true if both students have the same matriculation number.
      */

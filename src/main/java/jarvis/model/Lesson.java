@@ -51,8 +51,8 @@ public abstract class Lesson {
         return attendance.getAllStudentsName();
     }
 
-    public boolean isPresent(Student student) {
-        return attendance.isPresent(student);
+    public String isPresent(Student student) {
+        return attendance.isPresent(student) ? "Present" : "Absent";
     }
 
     public void markAsPresent(Student student) {
@@ -89,6 +89,14 @@ public abstract class Lesson {
 
     public LessonAttendance getAttendance() {
         return attendance;
+    }
+
+    public String getStudentNotes(Student student) {
+        return notes.getStudentNotes(student);
+    }
+
+    public String getGeneralNotes() {
+        return notes.getGeneralNotes();
     }
 
     public abstract LessonType getLessonType();

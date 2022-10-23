@@ -173,7 +173,7 @@ public class ParserUtil {
      */
     public static LessonDesc parseLessonDesc(String lessonDesc) throws ParseException {
         requireNonNull(lessonDesc);
-        String trimmedLessonDesc = lessonDesc.trim().toLowerCase();
+        String trimmedLessonDesc = lessonDesc.trim();
         if (!LessonDesc.isValidLessonDesc(trimmedLessonDesc)) {
             throw new ParseException(LessonDesc.MESSAGE_CONSTRAINTS);
         }

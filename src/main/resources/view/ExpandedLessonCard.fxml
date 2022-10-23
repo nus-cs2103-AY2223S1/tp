@@ -2,6 +2,8 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
@@ -28,9 +30,18 @@
                 </Label>
                 <Label fx:id="lessonType" styleClass="cell_big_label" text="\$lessonType" />
             </HBox>
-            <Label fx:id="lessonDesc" styleClass="cell_small_label" text="\$lessonDesc"/>
-            <Label fx:id="timePeriod" styleClass="cell_small_label" text="\$timePeriod" />
-            <Label fx:id="lessonAttendance" styleClass="cell_small_label" text="\$lessonAttendance" />
+            <Label fx:id="lessonDesc" style="-fx-font-size: 15; -fx-padding: 12; -fx-border-insets: 12; -fx-background-insets: 12;" styleClass="cell_small_label" text="\$lessonDesc" />
+            <Label fx:id="timePeriod" style="-fx-font-size: 15; -fx-padding: 12; -fx-border-insets: 12; -fx-background-insets: 12;" styleClass="cell_small_label" text="\$timePeriod" />
+         <TableView fx:id="tableView" prefWidth="200.0" style="-fx-background-color: transparent;" stylesheets="@ExpandedLessonTable.css">
+           <columns>
+               <TableColumn fx:id="studentIndex" editable="false" prefWidth="50.0" sortable="false" text="S/N" />
+               <TableColumn fx:id="studentNames" editable="false" prefWidth="175.0" sortable="false" text="Students" />
+             <TableColumn fx:id="studentAttendance" editable="false" prefWidth="150.0" sortable="false" text="Attendance" />
+             <TableColumn fx:id="studentParticipation" editable="false" minWidth="80.0" prefWidth="100.0" sortable="false" text="Participation" visible="false" />
+               <TableColumn fx:id="studentNotes" editable="false" prefWidth="1000.0" sortable="false" text="Notes" />
+           </columns>
+         </TableView>
+         <Label fx:id="generalNotes" style="-fx-font-size: 15; -fx-padding: 12; -fx-border-insets: 12; -fx-background-insets: 12;" styleClass="cell_small_label" text="General Notes:" />
         </VBox>
       <rowConstraints>
          <RowConstraints />

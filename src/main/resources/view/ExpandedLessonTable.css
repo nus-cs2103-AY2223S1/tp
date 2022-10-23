@@ -1,0 +1,38 @@
+.table-view {
+    -fx-opacity: 1.0;
+    -fx-base: #1d1d1d;
+    -fx-control-inner-background: transparent;
+    -fx-background-color: transparent;
+    -fx-padding: 5;
+    -fx-font-size: 15pt;
+    -fx-text-fill: white;
+    /*-fx-border-color: black;*/
+    -fx-table-cell-border-color: black;
+}
+
+.table-row-cell {
+    -fx-font-size: 12pt;
+    -fx-text-fill: white;
+    -fx-cell-size: 50px;
+    -fx-alignment: center-right;
+    -fx-background-color: transparent;
+    -fx-border-color: black;
+}
+
+.table-row-cell:empty {
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
+    -fx-table-cell-border-color: transparent;
+} 
+
+.table-view .column-header .label {
+    -fx-font-size: 11pt;
+}
+
+.table-row-cell:selected .table-cell {
+    -fx-font-size: 12pt;
+    -fx-text-fill: white;
+    -fx-cell-size: 50px;
+    -fx-background-color: transparent;
+    -fx-border-color: black;
+}

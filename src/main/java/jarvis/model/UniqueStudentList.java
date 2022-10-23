@@ -3,6 +3,7 @@ package jarvis.model;
 import static jarvis.commons.util.CollectionUtil.requireAllNonNull;
 import static java.util.Objects.requireNonNull;
 
+import java.util.Comparator;
 import java.util.Iterator;
 import java.util.List;
 
@@ -47,6 +48,8 @@ public class UniqueStudentList implements Iterable<Student> {
             throw new DuplicateStudentException();
         }
         internalList.add(toAdd);
+        // Sorts the student list in alphabetical order of name
+        FXCollections.sort(internalList, Comparator.comparing(s -> s.getName().toString()));
     }
 
     /**

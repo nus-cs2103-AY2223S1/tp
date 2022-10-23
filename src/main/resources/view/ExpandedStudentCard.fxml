@@ -30,7 +30,7 @@
       </HBox>
      <Label fx:id="studentName" styleClass="cell_big_label" text="\$studentName" />
          <Label fx:id="matricNum" text="\$matricNum" />
-         <TableView fx:id="gradeProfile" disable="true" prefHeight="120.0" prefWidth="129.0" style="-fx-background-color: transparent;" stylesheets="@StudentTableview.css">
+         <TableView fx:id="gradeProfile" disable="true" prefHeight="120.0" prefWidth="129.0" style="-fx-background-color: transparent;" stylesheets="@ExpandedStudentTable.css">
            <columns>
                <TableColumn fx:id="mc1" prefWidth="75.0" text="Mastery Check 1" />
                <TableColumn fx:id="mc2" prefWidth="75.0" text="Mastery Check 2" />
