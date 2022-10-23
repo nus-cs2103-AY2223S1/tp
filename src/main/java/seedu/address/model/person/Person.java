@@ -20,6 +20,7 @@ public class Person {
     private final Name name;
     private final Phone phone;
     private final Email email;
+    // private final Telegram telegram;
 
     // Data fields
     private final ModuleCode moduleCode;
@@ -28,11 +29,16 @@ public class Person {
     /**
      * Every field must be present and not null.
      */
-    public Person(Name name, Phone phone, Email email, ModuleCode moduleCode, Set<Tag> tags) {
-        requireAllNonNull(name, phone, email, moduleCode, tags);
+    public Person(Name name, Phone phone, Email email,
+                  //Telegram telegram,
+                  ModuleCode moduleCode, Set<Tag> tags) {
+        requireAllNonNull(name, phone, email,
+                //telegram,
+                moduleCode, tags);
         this.name = name;
         this.phone = phone;
         this.email = email;
+        // this.telegram = telegram;
         this.moduleCode = moduleCode;
         this.tags.addAll(tags);
     }
@@ -48,6 +54,10 @@ public class Person {
     public Email getEmail() {
         return email;
     }
+
+//    public Telegram getTelegram() {
+//        return telegram;
+//    }
 
     public ModuleCode getModuleCode() {
         return moduleCode;
@@ -92,6 +102,7 @@ public class Person {
         return otherPerson.getName().equals(getName())
                 && otherPerson.getPhone().equals(getPhone())
                 && otherPerson.getEmail().equals(getEmail())
+                // && otherPerson.getTelegram().equals(getTelegram())
                 && otherPerson.getModuleCode().equals(getModuleCode())
                 && otherPerson.getTags().equals(getTags());
     }
@@ -99,7 +110,9 @@ public class Person {
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, moduleCode, tags);
+        return Objects.hash(name, phone, email,
+                //telegram,
+                moduleCode, tags);
     }
 
     @Override
@@ -110,6 +123,8 @@ public class Person {
                 .append(getPhone())
                 .append("; Email: ")
                 .append(getEmail())
+//                .append("; Telegram: ")
+//                .append(getTelegram())
                 .append("; Module Code: ")
                 .append(getModuleCode());
 
