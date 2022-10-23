@@ -31,12 +31,12 @@ public class TagListFlowPane extends UiPart<Region> {
         tagList.addListener(new ListChangeListener<Tag>() {
             @Override
             public void onChanged(Change<? extends Tag> c) {
-                RefreshFlowPane(tagList);
+                refreshFlowPane(tagList);
             }
         });
     }
 
-    private void RefreshFlowPane(ObservableList<Tag> tagList) {
+    private void refreshFlowPane(ObservableList<Tag> tagList) {
         tags.getChildren().clear();
         tagList.stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
