@@ -46,7 +46,7 @@ public class TaskBuilder {
     }
 
     /**
-     * Sets the {@code deadline} to the {@code Task} that we are building.
+     * Sets the {@code deadline} of the {@code Task} that we are building.
      */
     public TaskBuilder withDeadline(String deadline) {
         this.deadline = SampleDataUtil.getDeadline(deadline);
@@ -54,7 +54,7 @@ public class TaskBuilder {
     }
 
     /**
-     * Sets the {@code isDone} to the {@code Task} that we are building.
+     * Sets the {@code isDone} of the {@code Task} that we are building.
      */
     public TaskBuilder withIsDone(boolean isDone) {
         this.isDone = isDone;
