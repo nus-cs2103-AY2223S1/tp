@@ -21,7 +21,7 @@ public class FindModuleCommandParserTest {
     }
 
     @Test
-    public void parse_validArgs_returnsFindCommand() {
+    public void parse_validArgs_returnsFindModuleCommand() {
         // no leading and trailing whitespaces
         FindModuleCommand expectedFindModuleCommand =
                 new FindModuleCommand(new ModuleCodeStartsWithKeywordPredicate("CS"));
