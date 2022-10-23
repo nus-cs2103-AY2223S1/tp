@@ -5,7 +5,7 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import java.util.Objects;
 
 /**
- * Represents a Person in the address book.
+ * Represents a Reminder in the address book.
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
 public class Reminder {
@@ -13,33 +13,35 @@ public class Reminder {
     // Identity fields
     private final ReminderName name;
 
-    //Data fields
+    // Data fields
     private final ReminderDeadline deadline;
-    private final ReminderDescription details;
     private final ReminderPriority priority;
+    private final ReminderDescription description;
     private ReminderStatus isDone;
 
     /**
      * Every field must be present and not null.
      */
-    public Reminder(ReminderName name, ReminderDeadline deadline, ReminderDescription details,
-                    ReminderPriority priority) {
-        requireAllNonNull(name, deadline, details);
+    public Reminder(ReminderName name, ReminderDeadline deadline, ReminderPriority priority,
+                    ReminderDescription description) {
+        requireAllNonNull(name, deadline, priority);
         this.name = name;
         this.deadline = deadline;
-        this.details = details;
+        this.priority = priority;
+        this.description = description;
         this.isDone = new ReminderStatus(false);
     }
 
     /**
      * Every field must be present and not null.
      */
-    public Reminder(ReminderName name, ReminderDeadline deadline, ReminderDescription details,
-                    ReminderPriority priority, ReminderStatus status) {
-        requireAllNonNull(name, deadline, priority, details);
+    public Reminder(ReminderName name, ReminderDeadline deadline, ReminderPriority priority,
+                    ReminderDescription description, ReminderStatus status) {
+        requireAllNonNull(name, deadline, priority);
         this.name = name;
         this.deadline = deadline;
-        this.details = details;
+        this.priority = priority;
+        this.description = description;
         this.isDone = status;
     }
 
@@ -60,7 +62,7 @@ public class Reminder {
     }
     
     public ReminderDescription getDescription() {
-        return details;
+        return description;
     }
 
     public boolean getStatus() {
@@ -101,7 +103,7 @@ public class Reminder {
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, deadline, details);
+        return Objects.hash(name, deadline, description);
     }
 
     @Override

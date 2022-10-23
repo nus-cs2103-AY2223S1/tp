@@ -46,7 +46,7 @@ public class AddReminderCommandParser implements Parser<AddReminderCommand> {
         ReminderPriority priority = ReminderParserUtil.parseReminderPriority(argMultimap.getValue(PREFIX_PRIORITY)
                 .get());
 
-        Reminder reminder = new Reminder(name, deadline, description, priority);
+        Reminder reminder = new Reminder(name, deadline, priority, description);
 
         return new AddReminderCommand(reminder);
     }
