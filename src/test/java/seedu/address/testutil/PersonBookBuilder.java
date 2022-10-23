@@ -6,22 +6,22 @@ import seedu.address.model.person.Person;
 /**
  * A utility class to help with building PersonBook objects.
  */
-public class PersonModelBuilder {
+public class PersonBookBuilder {
 
     private PersonBook personBook;
 
-    public PersonModelBuilder() {
+    public PersonBookBuilder() {
         personBook = new PersonBook();
     }
 
-    public PersonModelBuilder(PersonBook personBook) {
+    public PersonBookBuilder(PersonBook personBook) {
         this.personBook = personBook;
     }
 
     /**
      * Adds a new {@code Person} to the {@code PersonBook} that we are building.
      */
-    public PersonModelBuilder withPerson(Person person) {
+    public PersonBookBuilder withPerson(Person person) {
         personBook.addPerson(person);
         return this;
     }

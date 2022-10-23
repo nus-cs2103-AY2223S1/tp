@@ -20,8 +20,8 @@ import org.junit.jupiter.api.Test;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.property.PropertyNameContainsKeywordsPredicate;
-import seedu.address.testutil.PersonModelBuilder;
-import seedu.address.testutil.PropertyModelBuilder;
+import seedu.address.testutil.PersonBookBuilder;
+import seedu.address.testutil.PropertyBookBuilder;
 
 public class ModelManagerTest {
 
@@ -100,12 +100,12 @@ public class ModelManagerTest {
     }
 
     @Test
-    public void setPropertyModelFilePath_nullPath_throwsNullPointerException() {
+    public void setPropertyBookFilePath_nullPath_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> modelManager.setPropertyBookFilePath(null));
     }
 
     @Test
-    public void setPropertyModelFilePath_validPath_setsPropertyModelFilePath() {
+    public void setPropertyBookFilePath_validPath_setsPropertyBookFilePath() {
         Path path = Paths.get("address/book/file/path");
         modelManager.setPropertyBookFilePath(path);
         assertEquals(path, modelManager.getPropertyBookFilePath());
@@ -117,12 +117,12 @@ public class ModelManagerTest {
     }
 
     @Test
-    public void hasProperty_propertyNotInPropertyModel_returnsFalse() {
+    public void hasProperty_propertyNotInPropertyBook_returnsFalse() {
         assertFalse(modelManager.hasProperty(PEAKRESIDENCE));
     }
 
     @Test
-    public void hasProperty_propertyInPropertyModel_returnsTrue() {
+    public void hasProperty_propertyInPropertyBook_returnsTrue() {
         modelManager.addProperty(PEAKRESIDENCE);
         assertTrue(modelManager.hasProperty(PEAKRESIDENCE));
     }
@@ -134,9 +134,9 @@ public class ModelManagerTest {
 
     @Test
     public void equals() {
-        PersonBook personBook = new PersonModelBuilder().withPerson(ALICE).withPerson(BENSON).build();
+        PersonBook personBook = new PersonBookBuilder().withPerson(ALICE).withPerson(BENSON).build();
         PersonBook differentPersonBook = new PersonBook();
-        PropertyBook propertyBook = new PropertyModelBuilder().withProperty(PEAKRESIDENCE).withProperty(HUT).build();
+        PropertyBook propertyBook = new PropertyBookBuilder().withProperty(PEAKRESIDENCE).withProperty(HUT).build();
         PropertyBook differentPropertyBook = new PropertyBook();
         UserPrefs userPrefs = new UserPrefs();
 
