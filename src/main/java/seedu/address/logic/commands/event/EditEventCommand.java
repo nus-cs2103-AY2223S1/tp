@@ -45,6 +45,12 @@ public class EditEventCommand extends EventCommand {
             + PREFIX_NAME + "Group Meeting";
 
     public static final String MESSAGE_EDIT_EVENT_SUCCESS = "Edited Event:\n%1$s";
+    public static final String MESSAGE_HELP = "Edits an existing event in NUScheduler.\n"
+            + "Format: " + COMMAND_WORD + " " + PREFIX_OPTION + COMMAND_OPTION + " INDEX "
+            + "[" + PREFIX_NAME + "TITLE] "
+            + "[" + PREFIX_START_DATE + "START] "
+            + "[" + PREFIX_END_DATE + "END] "
+            + "[" + PREFIX_TAG + "TAG]...\n";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
     public static final String MESSAGE_DUPLICATE_EVENT = "This event already exists in the address book.";
 

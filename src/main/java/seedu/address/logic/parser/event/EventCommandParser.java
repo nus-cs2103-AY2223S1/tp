@@ -73,6 +73,10 @@ public class EventCommandParser implements Parser<EventCommand> {
             {
                 put(EventCommand.COMMAND_WORD + " " + CliSyntax.PREFIX_OPTION + AddEventCommand.COMMAND_OPTION,
                         AddEventCommand.MESSAGE_HELP);
+                put(EventCommand.COMMAND_WORD + " " + CliSyntax.PREFIX_OPTION + DeleteEventCommand.COMMAND_OPTION,
+                        DeleteEventCommand.MESSAGE_HELP);
+                put(EventCommand.COMMAND_WORD + " " + CliSyntax.PREFIX_OPTION + EditEventCommand.COMMAND_OPTION,
+                        EditEventCommand.MESSAGE_HELP);
                 put(EventCommand.COMMAND_WORD + " " + CliSyntax.PREFIX_OPTION + ViewEventsCommand.COMMAND_OPTION,
                         ViewEventsCommand.MESSAGE_HELP);
             }

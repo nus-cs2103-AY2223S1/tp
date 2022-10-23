@@ -26,6 +26,8 @@ public class DeleteEventCommand extends EventCommand {
 
     public static final String MESSAGE_MISSING_INDEX = "Index is required!\n%1$s";
     public static final String MESSAGE_DELETE_EVENT_SUCCESS = "Deleted Event:\n%1$s";
+    public static final String MESSAGE_HELP = "Deletes an existing event in NUScheduler.\n"
+            + "Format: " + COMMAND_WORD + " " + PREFIX_OPTION + COMMAND_OPTION + " INDEX";
 
     private final Index targetIndex;
 
