@@ -211,4 +211,9 @@ public interface Model {
      * Clears the currently displayed reminder list.
      */
     void clearCurrentReminderList();
+
+    /**
+     * Clears all reminders
+     */
+    void clearAllReminders();
 }

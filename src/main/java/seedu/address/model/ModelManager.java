@@ -58,8 +58,8 @@ public class ModelManager implements Model {
         this.targetPersonReminderList = new ReminderList();
         this.namePredicates = new HashSet<>();
         this.tagPredicates = new HashSet<>();
-        filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
-        targetPerson = new TargetPerson();
+        this.filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
+        this.targetPerson = new TargetPerson();
     }
 
     public ModelManager() {
@@ -106,7 +106,6 @@ public class ModelManager implements Model {
     @Override
     public void setAddressBook(ReadOnlyAddressBook addressBook) {
         this.addressBook.resetData(addressBook);
-        clearTargetPerson();
     }
 
     @Override
@@ -385,5 +384,11 @@ public class ModelManager implements Model {
                 editedPerson.getName(), editedPerson.getPhone());
         targetPersonReminderList.updateRemindersWithNewNameAndPhone(target.getName(), target.getPhone(),
                 editedPerson.getName(), editedPerson.getPhone());
+    }
+
+    @Override
+    public void clearAllReminders() {
+        targetPersonReminderList.clear();
+        reminderList.clear();
     }
 }
