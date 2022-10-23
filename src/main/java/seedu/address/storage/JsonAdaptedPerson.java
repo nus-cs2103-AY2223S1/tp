@@ -60,7 +60,7 @@ class JsonAdaptedPerson {
             @JsonProperty("cap") String cap,
             @JsonProperty("university") String university,
             @JsonProperty("major") String major,
-                             @JsonProperty("id") String id,
+            @JsonProperty("id") String id,
             @JsonProperty("title") String title,
             @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
         this.name = name;
@@ -113,6 +113,9 @@ class JsonAdaptedPerson {
         if (name == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Name.class.getSimpleName()));
         }
+        if (!Name.isWithinLengthLimit(name)) {
+            throw new IllegalValueException(Name.MESSAGE_LENGTH_LIMIT_EXCEEDED);
+        }
         if (!Name.isValidName(name)) {
             throw new IllegalValueException(Name.MESSAGE_CONSTRAINTS);
         }
@@ -120,6 +123,9 @@ class JsonAdaptedPerson {
 
         if (phone == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Phone.class.getSimpleName()));
+        }
+        if (!Phone.isWithinLengthLimit(phone)) {
+            throw new IllegalValueException(Phone.MESSAGE_LENGTH_LIMIT_EXCEEDED);
         }
         if (!Phone.isValidPhone(phone)) {
             throw new IllegalValueException(Phone.MESSAGE_CONSTRAINTS);
@@ -129,6 +135,9 @@ class JsonAdaptedPerson {
         if (email == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Email.class.getSimpleName()));
         }
+        if (!Email.isWithinLengthLimit(email)) {
+            throw new IllegalValueException(Email.MESSAGE_LENGTH_LIMIT_EXCEEDED);
+        }
         if (!Email.isValidEmail(email)) {
             throw new IllegalValueException(Email.MESSAGE_CONSTRAINTS);
         }
@@ -136,6 +145,9 @@ class JsonAdaptedPerson {
 
         if (address == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Address.class.getSimpleName()));
+        }
+        if (!Address.isWithinLengthLimit(address)) {
+            throw new IllegalValueException(Address.MESSAGE_LENGTH_LIMIT_EXCEEDED);
         }
         if (!Address.isValidAddress(address)) {
             throw new IllegalValueException(Address.MESSAGE_CONSTRAINTS);
@@ -169,6 +181,9 @@ class JsonAdaptedPerson {
             throw new IllegalValueException(
                 String.format(MISSING_FIELD_MESSAGE_FORMAT, University.class.getSimpleName()));
         }
+        if (!University.isWithinLengthLimit(university)) {
+            throw new IllegalValueException(University.MESSAGE_LENGTH_LIMIT_EXCEEDED);
+        }
         if (!University.isValidUniversity(university)) {
             throw new IllegalValueException(University.MESSAGE_CONSTRAINTS);
         }
@@ -176,6 +191,9 @@ class JsonAdaptedPerson {
 
         if (major == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Major.class.getSimpleName()));
+        }
+        if (!Major.isWithinLengthLimit(major)) {
+            throw new IllegalValueException(Major.MESSAGE_LENGTH_LIMIT_EXCEEDED);
         }
         if (!Major.isValidMajor(major)) {
             throw new IllegalValueException(Major.MESSAGE_CONSTRAINTS);
@@ -185,6 +203,9 @@ class JsonAdaptedPerson {
         if (id == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Id.class.getSimpleName()));
         }
+        if (!Id.isWithinLengthLimit(id)) {
+            throw new IllegalValueException(Id.MESSAGE_LENGTH_LIMIT_EXCEEDED);
+        }
         if (!Id.isValidId(id)) {
             throw new IllegalValueException(Id.MESSAGE_CONSTRAINTS);
         }
@@ -192,6 +213,9 @@ class JsonAdaptedPerson {
 
         if (title == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Title.class.getSimpleName()));
+        }
+        if (!Title.isWithinLengthLimit(title)) {
+            throw new IllegalValueException(Title.MESSAGE_LENGTH_LIMIT_EXCEEDED);
         }
         if (!Title.isValidTitle(title)) {
             throw new IllegalValueException(Title.MESSAGE_CONSTRAINTS);
