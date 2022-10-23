@@ -24,7 +24,7 @@ public class DeleteTaskCommand extends DeleteGenericCommand {
             + "TASK_INDEX (must be a positive integer)\n"
             + "Example: " + COMMAND_WORD + " 1 2";
 
-    public static final String MESSAGE_DELETE_TASK_SUCCESS = "Deleted task from %1$s: %2$s";
+    public static final String MESSAGE_DELETE_TASK_SUCCESS = "Deleted task %1$d from %2$s: %3$s";
 
     public static final CommandType DELETE_TASK_COMMAND_TYPE = CommandType.TASK;
 
@@ -68,8 +68,8 @@ public class DeleteTaskCommand extends DeleteGenericCommand {
         model.updateFilteredPersonList(patient -> patient.equals(editedPerson));
         model.setPatientOfInterest(editedPerson);
 
-        return new CommandResult(String.format(MESSAGE_DELETE_TASK_SUCCESS, editedPerson.getName(), deletedTask),
-                DELETE_TASK_COMMAND_TYPE);
+        return new CommandResult(String.format(MESSAGE_DELETE_TASK_SUCCESS,
+                taskIndex.getOneBased(), editedPerson.getName(), deletedTask), DELETE_TASK_COMMAND_TYPE);
     }
 
     @Override
