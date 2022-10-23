@@ -29,13 +29,15 @@ public class TaskCard extends UiPart<Region> {
     @FXML
     private HBox cardPane;
     @FXML
-    private Label description;
-    @FXML
     private Label id;
+    @FXML
+    private Label module;
+    @FXML
+    private Label description;
     @FXML
     private Label dueDate;
     @FXML
-    private FlowPane tags;
+    private FlowPane badges;
 
     /**
      * Creates a {@code ModuleCode} with the given {@code Module} and index to display.
@@ -43,24 +45,34 @@ public class TaskCard extends UiPart<Region> {
     public TaskCard(Task t, int displayedIndex) {
         super(FXML);
         this.task = t;
-        id.setText(displayedIndex + ". ");
+        id.setText("#" + displayedIndex);
 
         description.setText(task.getDescription().toString());
-        Label moduleBadge = new Label(t.getModule().toString());
-        this.tags.getChildren().add(moduleBadge);
-        dueDate.setText("");
+        module.setText(t.getModule().toString());
         if (t instanceof Deadline) {
-            dueDate.setText("Due by: " + ((Deadline) t).getDueDate().toString());
+            dueDate.setText("due " + ((Deadline) t).getDueDate().toString());
+            dueDate.setVisible(true);
+            dueDate.setManaged(true);
+        } else {
+            // Setting it to invisible will still give the text vertical height, unless it is not managed.
+            dueDate.setVisible(false);
+            dueDate.setManaged(false);
         }
+        this.badges.setVisible(false);
+        this.badges.setManaged(false);
         if (task.isArchived()) {
             // Add the `archived` badge if the task is archived.
-            Label archivedBadge = new Label("ARCHIVED");
-            this.tags.getChildren().add(archivedBadge);
+            Label archivedBadge = new Label("archived");
+            this.badges.getChildren().add(archivedBadge);
+            this.badges.setVisible(true);
+            this.badges.setManaged(true);
         }
         if (task.getPriority() != Task.Priority.NONE) {
             // Add the priority badge only if it has been set.
-            Label priorityBadge = new Label(task.getPriority().toString());
-            this.tags.getChildren().add(priorityBadge);
+            Label priorityBadge = new Label(task.getPriority().toString().toLowerCase() + " priority");
+            this.badges.getChildren().add(priorityBadge);
+            this.badges.setVisible(true);
+            this.badges.setManaged(true);
         }
     }
 
