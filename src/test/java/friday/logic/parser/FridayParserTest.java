@@ -14,39 +14,37 @@ import java.util.stream.Collectors;
 
 import org.junit.jupiter.api.Test;
 
-// import friday.logic.commands.AddCommand;
+import friday.logic.commands.AddCommand;
 import friday.logic.commands.ClearCommand;
 import friday.logic.commands.DeleteCommand;
-// import friday.logic.commands.EditCommand;
-// import friday.logic.commands.EditCommand.EditStudentDescriptor;
+import friday.logic.commands.EditCommand;
+import friday.logic.commands.EditCommand.EditStudentDescriptor;
 import friday.logic.commands.ExitCommand;
 import friday.logic.commands.FindCommand;
+import friday.logic.commands.GradeCommand;
+import friday.logic.commands.GradeCommand.EditGradeDescriptor;
 import friday.logic.commands.HelpCommand;
 import friday.logic.commands.ListCommand;
 import friday.logic.commands.RemarkCommand;
 import friday.logic.parser.exceptions.ParseException;
 import friday.model.student.NameContainsKeywordsPredicate;
 import friday.model.student.Remark;
-/*
 import friday.model.student.Student;
+import friday.testutil.EditGradeDescriptorBuilder;
 import friday.testutil.EditStudentDescriptorBuilder;
 import friday.testutil.StudentBuilder;
 import friday.testutil.StudentUtil;
-*/
 
 public class FridayParserTest {
 
     private final FridayParser parser = new FridayParser();
 
-    /*
     @Test
     public void parseCommand_add() throws Exception {
         Student student = new StudentBuilder().build();
         AddCommand command = (AddCommand) parser.parseCommand(StudentUtil.getAddCommand(student));
         assertEquals(new AddCommand(student), command);
     }
-
-     */
 
     @Test
     public void parseCommand_clear() throws Exception {
@@ -61,7 +59,7 @@ public class FridayParserTest {
         assertEquals(new DeleteCommand(INDEX_FIRST_STUDENT), command);
     }
 
-    /*
+
     @Test
     public void parseCommand_edit() throws Exception {
         Student student = new StudentBuilder().build();
@@ -70,8 +68,6 @@ public class FridayParserTest {
                 + INDEX_FIRST_STUDENT.getOneBased() + " " + StudentUtil.getEditStudentDescriptorDetails(descriptor));
         assertEquals(new EditCommand(INDEX_FIRST_STUDENT, descriptor), command);
     }
-
-     */
 
     @Test
     public void parseCommand_exit() throws Exception {
@@ -105,6 +101,15 @@ public class FridayParserTest {
         RemarkCommand command = (RemarkCommand) parser.parseCommand(RemarkCommand.COMMAND_WORD + " "
                 + INDEX_FIRST_STUDENT.getOneBased() + " " + PREFIX_REMARK + remark.value);
         assertEquals(new RemarkCommand(INDEX_FIRST_STUDENT, remark), command);
+    }
+
+    @Test
+    public void parseCommand_grade() throws Exception {
+        Student student = new StudentBuilder().build();
+        EditGradeDescriptor descriptor = new EditGradeDescriptorBuilder(student.getGradesList()).build();
+        GradeCommand command = (GradeCommand) parser.parseCommand(GradeCommand.COMMAND_WORD + " "
+                + INDEX_FIRST_STUDENT.getOneBased() + " " + StudentUtil.getEditGradesDescriptorDetails(descriptor));
+        assertEquals(new GradeCommand(INDEX_FIRST_STUDENT, descriptor), command);
     }
 
     @Test

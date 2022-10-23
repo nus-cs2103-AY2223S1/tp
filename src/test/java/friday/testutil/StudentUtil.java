@@ -1,8 +1,13 @@
 package friday.testutil;
 
 import static friday.logic.parser.CliSyntax.PREFIX_CONSULTATION;
+import static friday.logic.parser.CliSyntax.PREFIX_FINALS;
 import static friday.logic.parser.CliSyntax.PREFIX_MASTERYCHECK;
+import static friday.logic.parser.CliSyntax.PREFIX_MIDTERM;
 import static friday.logic.parser.CliSyntax.PREFIX_NAME;
+import static friday.logic.parser.CliSyntax.PREFIX_PRACTICAL;
+import static friday.logic.parser.CliSyntax.PREFIX_RA1;
+import static friday.logic.parser.CliSyntax.PREFIX_RA2;
 import static friday.logic.parser.CliSyntax.PREFIX_TAG;
 import static friday.logic.parser.CliSyntax.PREFIX_TELEGRAMHANDLE;
 
@@ -10,6 +15,7 @@ import java.util.Set;
 
 import friday.logic.commands.AddCommand;
 import friday.logic.commands.EditCommand.EditStudentDescriptor;
+import friday.logic.commands.GradeCommand.EditGradeDescriptor;
 import friday.model.student.Student;
 import friday.model.tag.Tag;
 
@@ -60,6 +66,19 @@ public class StudentUtil {
                 tags.forEach(s -> sb.append(PREFIX_TAG).append(s.tagName).append(" "));
             }
         }
+        return sb.toString();
+    }
+
+    /**
+     * Returns the part of command string for the given {@code EditGradeDescriptor}'s grades.
+     */
+    public static String getEditGradesDescriptorDetails(EditGradeDescriptor descriptor) {
+        StringBuilder sb = new StringBuilder();
+        descriptor.getRa1().ifPresent(ra1 -> sb.append(PREFIX_RA1).append(ra1.score).append(" "));
+        descriptor.getRa2().ifPresent(ra2 -> sb.append(PREFIX_RA2).append(ra2.score).append(" "));
+        descriptor.getMt().ifPresent(mt -> sb.append(PREFIX_MIDTERM).append(mt.score).append(" "));
+        descriptor.getFt().ifPresent(ft -> sb.append(PREFIX_FINALS).append(ft.score).append(" "));
+        descriptor.getPa().ifPresent(pa -> sb.append(PREFIX_PRACTICAL).append(pa.score).append(" "));
         return sb.toString();
     }
 }
