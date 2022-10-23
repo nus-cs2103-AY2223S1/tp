@@ -109,8 +109,8 @@ public class UniqueStudentListTest {
     public void setStudent_editedStudentHasNonUniqueIdentity_throwsDuplicateStudentException() {
         uniqueStudentList.add(TypicalStudents.ALICE);
         uniqueStudentList.add(BENSON);
-        assertThrows(DuplicateStudentException.class,
-                () -> uniqueStudentList.setStudent(TypicalStudents.ALICE, BENSON));
+        assertThrows(DuplicateStudentException.class, () -> uniqueStudentList.setStudent(TypicalStudents.ALICE,
+                BENSON));
     }
 
     @Test
