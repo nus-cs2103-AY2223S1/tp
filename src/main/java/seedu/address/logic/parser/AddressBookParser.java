@@ -25,7 +25,6 @@ import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.commands.RemarkCommand;
 import seedu.address.logic.commands.SelectAppointmentCommand;
 import seedu.address.logic.commands.SelectPatientCommand;
-import seedu.address.logic.commands.SetUnpaidCommand;
 import seedu.address.logic.commands.SortAppointmentCommand;
 import seedu.address.logic.commands.SortBillCommand;
 import seedu.address.logic.commands.SortPatientCommand;
@@ -97,8 +96,6 @@ public class AddressBookParser {
             return new HelpCommand();
         } else if (SelectPatientCommand.COMMAND_WORD.matches(commandWord)) {
             return new SelectPatientCommandParser().parse(arguments);
-        } else if (SetUnpaidCommand.COMMAND_WORD.matches(commandWord)) {
-            return new SetUnpaidCommandParser().parse(arguments);
         } else if (SelectAppointmentCommand.COMMAND_WORD.matches(commandWord)) {
             return new SelectAppointmentCommandParser().parse(arguments);
         } else {
