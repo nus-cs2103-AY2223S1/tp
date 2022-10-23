@@ -1,17 +1,25 @@
 package seedu.address.logic.commands;
 
+import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
+
+import java.util.List;
+import java.util.Optional;
+
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.category.Category;
-import seedu.address.model.person.*;
+import seedu.address.model.person.Email;
+import seedu.address.model.person.Name;
+import seedu.address.model.person.Patient;
+import seedu.address.model.person.Person;
+import seedu.address.model.person.Phone;
+import seedu.address.model.person.Physician;
 
-import java.util.List;
-import java.util.Optional;
-
-import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
-
+/**
+ * Represents the command to assign an attending physician to a patient.
+ */
 public class SetPhysicianCommand extends Command {
     public static final String COMMAND_WORD = "setphys";
 
@@ -36,6 +44,13 @@ public class SetPhysicianCommand extends Command {
 
     private final Email pEmail;
 
+    /**
+     * Create a new SetPhysicianCommand.
+     * @param i index
+     * @param n physician's name
+     * @param p physician's phone number
+     * @param e physician's email
+     */
     public SetPhysicianCommand(Index i, Name n, Phone p, Email e) {
         index = i;
         pName = n;
@@ -60,9 +75,8 @@ public class SetPhysicianCommand extends Command {
 
         Patient editedPatient = new Patient(personToEdit.getUid(),
                 personToEdit.getName(), personToEdit.getGender(), personToEdit.getPhone(), personToEdit.getEmail(),
-                personToEdit.getAddress(), personToEdit.getTags(), ((Patient) personToEdit).getDatesTimes(),
-                ((Patient) personToEdit).getVisitStatus(), Optional.of(physician), Optional.empty()
-        );
+                personToEdit.getAddress(), personToEdit.getTags(), ((Patient) personToEdit).getDatesTimes(), ((Patient)
+                personToEdit).getVisitStatus(), Optional.of(physician), Optional.empty());
 
         model.setPerson(personToEdit, editedPatient);
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
