@@ -46,10 +46,6 @@ public class ReservedKeyword {
         value = reservedKeyword;
     }
 
-    public static boolean isValidReservedKeyword(ReservedKeyword test) {
-        return LIST_RESERVED_KEYWORDS.contains(test.toString());
-    }
-
     public static boolean isValidReservedKeyword(String test) {
         return LIST_RESERVED_KEYWORDS.contains(test);
     }

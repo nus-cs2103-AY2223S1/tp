@@ -65,7 +65,7 @@ class JsonSerializableFriday {
         for (JsonAdaptedAlias jsonAdaptedAlias : aliases) {
             Alias alias = jsonAdaptedAlias.toAliasModelType();
             ReservedKeyword keyword = jsonAdaptedAlias.toReservedKeywordModelType();
-            if (!ReservedKeyword.isValidReservedKeyword(keyword)) {
+            if (!ReservedKeyword.isValidReservedKeyword(keyword.toString())) {
                 throw new IllegalValueException(MESSAGE_INVALID_KEYWORD);
             }
             if (addressBook.hasAlias(alias)) {

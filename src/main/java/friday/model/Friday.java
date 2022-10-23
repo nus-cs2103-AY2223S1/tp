@@ -124,7 +124,7 @@ public class Friday implements ReadOnlyFriday {
      */
     public boolean hasAlias(Alias alias) {
         requireNonNull(alias);
-        return aliases.contains(alias);
+        return aliases.contains(alias.toString());
     }
 
     /**

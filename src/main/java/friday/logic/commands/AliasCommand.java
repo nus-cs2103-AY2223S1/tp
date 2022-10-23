@@ -46,7 +46,7 @@ public class AliasCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
 
-        if (!ReservedKeyword.isValidReservedKeyword(keyword)) {
+        if (!ReservedKeyword.isValidReservedKeyword(keyword.toString())) {
             throw new CommandException(MESSAGE_INVALID_KEYWORD);
         }
 

@@ -26,14 +26,6 @@ public class AliasMap {
     }
 
     /**
-     * Returns true if the hashmap contains an alias.
-     */
-    public boolean contains(Alias alias) {
-        requireNonNull(alias);
-        return internalMap.containsKey(alias.toString());
-    }
-
-    /**
      * Adds an alias that maps to keyword to the hashmap.
      * The alias must not already exist in the hashmap.
      * The keyword must be a valid reserved keyword.
@@ -41,8 +33,8 @@ public class AliasMap {
     public void add(Alias toAdd, ReservedKeyword keyword) {
         requireNonNull(toAdd);
         requireNonNull(keyword);
-        assert ReservedKeyword.isValidReservedKeyword(keyword);
-        if (contains(toAdd)) {
+        assert ReservedKeyword.isValidReservedKeyword(keyword.toString());
+        if (contains(toAdd.toString())) {
             throw new DuplicateAliasException();
         }
         internalMap.put(toAdd.toString(), keyword.toString());
@@ -54,7 +46,7 @@ public class AliasMap {
      */
     public void remove(Alias toRemove) {
         requireNonNull(toRemove);
-        if (!contains(toRemove)) {
+        if (!contains(toRemove.toString())) {
             throw new AliasNotFoundException();
         }
         internalMap.remove(toRemove.toString());
