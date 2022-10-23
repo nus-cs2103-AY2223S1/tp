@@ -18,6 +18,7 @@ import java.util.regex.Pattern;
 import seedu.address.logic.commands.FilterClearCommand;
 import seedu.address.logic.commands.FilterCommand;
 import seedu.address.logic.commands.FilterCommandPredicate;
+import seedu.address.logic.commands.FilterListCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.person.TagMatchesQueryPredicate;
@@ -30,8 +31,9 @@ public class FilterCommandParser implements Parser<FilterCommand> {
     private static final String MATCH_GROUP_SPECIFIER = "specifier";
     private static final String MATCH_GROUP_ARGUMENTS = "arguments";
 
-    private static final String REGEX_FILTER_COMMAND = String.format("(?<%1$s>%2$s|%3$s\\b)?(?<%4$s>.*)?",
+    private static final String REGEX_FILTER_COMMAND = String.format("(?<%s>%s|%s|%s|%s\\b)?(?<%s>.*)?",
             MATCH_GROUP_SPECIFIER, FilterClearCommand.COMMAND_SPECIFIER,
+            FilterClearCommand.COMMAND_SPECIFIER_ALIAS, FilterListCommand.COMMAND_SPECIFIER,
             FilterClearCommand.COMMAND_SPECIFIER_ALIAS, MATCH_GROUP_ARGUMENTS);
     private static final Pattern COMMAND_FORMAT = Pattern.compile(REGEX_FILTER_COMMAND);
 
@@ -51,9 +53,15 @@ public class FilterCommandParser implements Parser<FilterCommand> {
         final String commandSpecifier = matcher.group(MATCH_GROUP_SPECIFIER);
         final String arguments = matcher.group(MATCH_GROUP_ARGUMENTS);
 
-        // no clear specifier
+        // no specifier
         if (commandSpecifier == null) {
             return new FilterCommand(parseSearchKeywords(arguments, createParseException(FilterCommand.MESSAGE_USAGE)));
+        }
+        if (commandSpecifier.equals(FilterListCommand.COMMAND_SPECIFIER)
+                || commandSpecifier.equals(FilterListCommand.COMMAND_SPECIFIER_ALIAS)) {
+
+            System.out.println(commandSpecifier);
+            return new FilterListCommand();
         }
         return hasArguments(arguments)
                 ? new FilterClearCommand(

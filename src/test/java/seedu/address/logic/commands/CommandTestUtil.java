@@ -99,6 +99,20 @@ public class CommandTestUtil {
     }
 
     /**
+     * Executes the given {@code command}, confirms that <br>
+     * - the returned {@link CommandResult} matches {@code expectedCommandResult} <br>
+     * - the {@code actualModel} matches {@code expectedModel}
+     */
+    public static void assertCommandSuccess(Command command, Model actualModel, Model expectedModel) {
+        try {
+            command.execute(actualModel);
+            assertEquals(expectedModel, actualModel);
+        } catch (CommandException ce) {
+            throw new AssertionError("Execution of command should not fail.", ce);
+        }
+    }
+
+    /**
      * Convenience wrapper to {@link #assertCommandSuccess(Command, Model, CommandResult, Model)}
      * that takes a string {@code expectedMessage}.
      */
@@ -134,7 +148,9 @@ public class CommandTestUtil {
 
         Person person = model.getFilteredPersonList().get(targetIndex.getZeroBased());
         final String[] splitName = person.getName().fullName.split("\\s+");
-        model.addNewFilterToFilteredPersonList(new NameContainsKeywordsPredicate(splitName[0]));
+        FilterCommandPredicate predicate =
+                new FilterCommandPredicate(new NameContainsKeywordsPredicate(splitName[0]), null);
+        model.addNewFilterToFilteredPersonList(predicate);
 
         assertEquals(1, model.getFilteredPersonList().size());
     }
@@ -230,7 +246,7 @@ public class CommandTestUtil {
         }
 
         @Override
-        public void addNewFilterToFilteredPersonList(Predicate<Person> predicate) {
+        public void addNewFilterToFilteredPersonList(FilterCommandPredicate predicate) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -240,7 +256,7 @@ public class CommandTestUtil {
         }
 
         @Override
-        public void removeFilterFromFilteredPersonList(Predicate<Person> predicate) {
+        public void removeFilterFromFilteredPersonList(FilterCommandPredicate predicate) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -331,6 +347,16 @@ public class CommandTestUtil {
 
         @Override
         public boolean hasMessage(Message message) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public Set<Predicate<Person>> getTagFilters() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public Set<Predicate<Person>> getNameFilters() {
             throw new AssertionError("This method should not be called.");
         }
     }
