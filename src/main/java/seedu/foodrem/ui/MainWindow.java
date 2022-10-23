@@ -32,16 +32,12 @@ public class MainWindow extends UiPart<Stage> {
     private ResultDisplay resultDisplay;
     @FXML
     private StackPane commandBoxPlaceholder;
-
     @FXML
     private MenuItem helpMenuItem;
-
     @FXML
     private StackPane itemListPanelPlaceholder;
-
     @FXML
     private StackPane resultDisplayPlaceholder;
-
     @FXML
     private StackPane statusbarPlaceholder;
 
