@@ -20,6 +20,7 @@ public class ContactAddCommand extends Command {
     public static final String MESSAGE_USAGE =
             ContactCategoryParser.CATEGORY_WORD + " " + COMMAND_WORD
             + ": Adds a person to the task book.\n"
+            + "\n"
             + "Parameters: "
             + CliSyntax.PREFIX_NAME + "NAME "
             + CliSyntax.PREFIX_PHONE + "PHONE "

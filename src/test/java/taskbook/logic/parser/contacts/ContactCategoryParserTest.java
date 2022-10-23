@@ -15,7 +15,7 @@ public class ContactCategoryParserTest {
     @Test
     public void parseCommand_add() throws Exception {
         // Note: the space at the start of the arguments is necessary due to ArgumentTokenizer behavior.
-        String arguments = " n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01";
+        String arguments = " n/John Doe p/98765432 e/johnd@example.com a/John street, block 123";
         Command command = ContactCategoryParser.parseCommand(ContactAddCommand.COMMAND_WORD, arguments);
         assertTrue(command instanceof ContactAddCommand);
     }

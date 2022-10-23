@@ -30,6 +30,7 @@ public class TaskDeadlineCommand extends TaskAddCommand {
     public static final String MESSAGE_USAGE =
             TaskCategoryParser.CATEGORY_WORD + " " + COMMAND_WORD
                     + ": Adds a deadline to the task book.\n"
+                    + "\n"
                     + "Parameters:\n"
                     + PREFIX_ASSIGN_FROM + "NAME " + PREFIX_DESCRIPTION + "DESCRIPTION " + PREFIX_DATE + "DATE "
                     + "[" + PREFIX_TAG + "TAG]...\n"

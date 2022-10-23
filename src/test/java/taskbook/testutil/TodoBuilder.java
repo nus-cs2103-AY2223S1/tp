@@ -1,7 +1,14 @@
 package taskbook.testutil;
 
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.Set;
+
+import taskbook.logic.parser.ParserUtil;
+import taskbook.logic.parser.exceptions.ParseException;
 import taskbook.model.person.Name;
 import taskbook.model.person.Person;
+import taskbook.model.tag.Tag;
 import taskbook.model.task.Description;
 import taskbook.model.task.Todo;
 import taskbook.model.task.enums.Assignment;
@@ -18,6 +25,7 @@ public class TodoBuilder {
     private Assignment assignment;
     private Description description;
     private boolean isDone;
+    private final Set<Tag> tags = new HashSet<>();
 
     /**
      * Creates a {@code TodoBuilder} with the default details.
@@ -70,9 +78,21 @@ public class TodoBuilder {
     }
 
     /**
+     * Sets the {@code tags} of the {@code Todo} that we are building.
+     */
+    public TodoBuilder withTags(String... tags) {
+        try {
+            this.tags.addAll(ParserUtil.parseTags(Arrays.asList(tags)));
+        } catch (ParseException e) {
+            return this;
+        }
+        return this;
+    }
+
+    /**
      * Builds a {@code Todo} based on the parameters stored in the {@code TodoBuilder}.
      */
     public Todo build() {
-        return new Todo(this.name, this.assignment, this.description, this.isDone);
+        return new Todo(this.name, this.assignment, this.description, this.isDone, this.tags);
     }
 }

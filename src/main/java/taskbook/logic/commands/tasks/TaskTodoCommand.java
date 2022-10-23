@@ -28,6 +28,7 @@ public class TaskTodoCommand extends TaskAddCommand {
     public static final String MESSAGE_USAGE =
             TaskCategoryParser.CATEGORY_WORD + " " + COMMAND_WORD
             + ": Adds a todo to the task book.\n"
+            + "\n"
             + "Parameters:\n"
             + PREFIX_ASSIGN_FROM + "NAME " + PREFIX_DESCRIPTION + "DESCRIPTION " + "[" + PREFIX_TAG + "TAG]...\n"
             + PREFIX_ASSIGN_TO + "NAME " + PREFIX_DESCRIPTION + "DESCRIPTION " + "[" + PREFIX_TAG + "TAG]...\n";

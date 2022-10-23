@@ -25,6 +25,7 @@ public class ContactDeleteCommand extends Command {
     public static final String MESSAGE_USAGE =
             ContactCategoryParser.CATEGORY_WORD + " " + COMMAND_WORD
             + ": Deletes the person identified by the index number used in the displayed person list.\n"
+            + "\n"
             + "Parameters: " + CliSyntax.PREFIX_INDEX + "INDEX (must be a positive integer)\n"
             + "Example: " + ContactCategoryParser.CATEGORY_WORD + " "
             + COMMAND_WORD + " " + CliSyntax.PREFIX_INDEX + "1";
