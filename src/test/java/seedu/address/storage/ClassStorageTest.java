@@ -7,7 +7,9 @@ import static seedu.address.testutil.Assert.assertThrows;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.time.LocalDate;
 import java.time.LocalTime;
+import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
@@ -82,4 +84,24 @@ public class ClassStorageTest {
         assertEquals(0, ClassStorage.getIndex(person));
     }
 
+    @Test
+    public void execute_updatePerson() throws Exception {
+        Person personToEdit = new PersonBuilder().withName("Daniel Tan").withPhone("81201230")
+                .withEmail("cornelia@example.com").withAddress("10th street").withClass("2022-05-05 1400-1430")
+                .withMoneyOwed(0).withMoneyPaid(0).withAdditionalNotes("Remind student to submit homework")
+                .withRatesPerClass(40).build();
+        Person editedPerson = new PersonBuilder().withName("Daniel Tan").withPhone("81201230")
+                .withEmail("cornelia@example.com").withAddress("10th street").withClass("2022-05-05 1400-1430")
+                .withMoneyOwed(20).withMoneyPaid(10).withAdditionalNotes("Remind student to submit homework")
+                .withRatesPerClass(40).build();
+        JsonSerializableTeachersPet dataFromFile = JsonUtil.readJsonFile(PERSONS_FILE,
+                JsonSerializableTeachersPet.class).get();
+        TeachersPet teachersPetFromFile = dataFromFile.toModelType();
+        ModelManager modelManager = new ModelManager(teachersPetFromFile, new UserPrefs());
+        ClassStorage classStorage = new ClassStorage(modelManager);
+        ClassStorage.updatePerson(personToEdit, editedPerson);
+        List<Person> listOfPerson = ClassStorage.getListOfPerson(LocalDate.of(2022, 5, 5));
+        assert listOfPerson.size() == 3;
+        assertEquals(editedPerson, listOfPerson.get(2));
+    }
 }

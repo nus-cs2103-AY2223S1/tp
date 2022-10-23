@@ -103,6 +103,7 @@ public class EditCommand extends Command {
             ClassStorage.removeExistingClass(personToEdit);
         } else if (!personToEdit.hasEmptyClass()) {
             editedPerson.setClass(personToEdit.getAClass());
+            ClassStorage.updatePerson(personToEdit, editedPerson);
         }
 
         model.setPerson(personToEdit, editedPerson);
