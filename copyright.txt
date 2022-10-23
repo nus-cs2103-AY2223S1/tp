@@ -1,5 +1,9 @@
 ﻿Some code adapted from http://code.makery.ch/library/javafx-8-tutorial/ by Marco Jakob
 
+Copyright by Colton Wiscombe - https://mdi.bessarabov.com/icon/food-turkey
+- foodrem.png
+- foodrem.ico
+
 Copyright by Jan Jan Kovařík - http://glyphicons.com/
 - calendar.png
 - edit.png
