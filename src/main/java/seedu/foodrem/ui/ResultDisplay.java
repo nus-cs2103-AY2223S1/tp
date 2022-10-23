@@ -10,8 +10,7 @@ import javafx.scene.layout.Region;
  * A ui for the status bar that is displayed at the header of the application.
  */
 public class ResultDisplay extends UiPart<Region> {
-    @FXML
-    private TextArea resultDisplay;
+    @FXML private TextArea resultDisplay;
 
     public ResultDisplay() {
         super("ResultDisplay.fxml");

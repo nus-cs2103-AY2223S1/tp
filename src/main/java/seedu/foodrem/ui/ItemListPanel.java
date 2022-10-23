@@ -11,8 +11,7 @@ import seedu.foodrem.model.item.Item;
  * Panel containing the list of items.
  */
 public class ItemListPanel extends UiPart<Region> {
-    @FXML
-    private ListView<Item> itemListView;
+    @FXML private ListView<Item> itemListView;
 
     /**
      * Creates a {@code ItemListPanel} with the given {@code ObservableList}.

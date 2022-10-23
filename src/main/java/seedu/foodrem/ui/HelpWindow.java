@@ -17,11 +17,8 @@ import seedu.foodrem.logic.commands.generalcommands.HelpCommand;
 public class HelpWindow extends UiPart<Stage> {
     private static final Logger logger = LogsCenter.getLogger(HelpWindow.class);
 
-    @FXML
-    private Button copyButton;
-
-    @FXML
-    private Label helpMessage;
+    @FXML private Button copyButton;
+    @FXML private Label helpMessage;
 
     /**
      * Creates a new HelpWindow.

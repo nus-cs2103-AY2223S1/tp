@@ -24,20 +24,13 @@ public class ItemCard extends UiPart<Region> {
 
     public final Item item;
 
-    @FXML
-    private HBox cardPane;
-    @FXML
-    private Label name;
-    @FXML
-    private Label id;
-    @FXML
-    private Label quantityAndUnit;
-    @FXML
-    private Label bought;
-    @FXML
-    private Label expiry;
-    @FXML
-    private FlowPane tags;
+    @FXML private HBox cardPane;
+    @FXML private Label name;
+    @FXML private Label id;
+    @FXML private Label quantityAndUnit;
+    @FXML private Label bought;
+    @FXML private Label expiry;
+    @FXML private FlowPane tags;
 
     /**
      * Creates a {@code ItemCode} with the given {@link Item} and index to display.

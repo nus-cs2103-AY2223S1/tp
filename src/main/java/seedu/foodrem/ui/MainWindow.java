@@ -30,16 +30,12 @@ public class MainWindow extends UiPart<Stage> {
     // Independent Ui parts residing in this Ui container
     private ItemListPanel itemListPanel;
     private ResultDisplay resultDisplay;
-    @FXML
-    private StackPane commandBoxPlaceholder;
-    @FXML
-    private MenuItem helpMenuItem;
-    @FXML
-    private StackPane itemListPanelPlaceholder;
-    @FXML
-    private StackPane resultDisplayPlaceholder;
-    @FXML
-    private StackPane statusbarPlaceholder;
+
+    @FXML private StackPane commandBoxPlaceholder;
+    @FXML private MenuItem helpMenuItem;
+    @FXML private StackPane itemListPanelPlaceholder;
+    @FXML private StackPane resultDisplayPlaceholder;
+    @FXML private StackPane statusbarPlaceholder;
 
     /**
      * Creates a {@code MainWindow} with the given {@code Stage} and {@code Logic}.
