@@ -10,11 +10,11 @@ show-toc: true
 
 ## Acknowledgements
 
-* {list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the original source as well}
+* Libraries used: [Jackson](https://github.com/FasterXML/jackson), [JavaFX](https://openjfx.io/), [Jekyll](https://jekyllrb.com/), [JUnit5](https://github.com/junit-team/junit5), [PlantUML](https://plantuml.com/)
 
 ---
 
-## Setting up, getting started
+## Setting up, Getting Started
 
 Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
@@ -69,7 +69,7 @@ For example, the `Logic` component defines its API in the `Logic.java` interface
 
 The sections below give more details of each component.
 
-### UI component
+### UI Component
 
 The **API** of this component is specified in [`Ui.java`]({{ page.master_branch }}/{{ page.main_src }}/ui/Ui.java)
 
@@ -86,7 +86,7 @@ The `UI` component,
 * keeps a reference to the `Logic` component, because the `UI` relies on the `Logic` to execute commands.
 * depends on some classes in the `Model` component, as it displays `Item` object residing in the `Model`.
 
-### Logic component
+### Logic Component
 
 **API** : [`Logic.java`]({{ page.master_branch }}/{{ page.main_src }}/logic/Logic.java)
 
@@ -117,7 +117,7 @@ How the parsing works:
 * When called upon to parse a user command, the `FoodRemParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddCommand`) which the `FoodRemParser` returns back as a `Command` object.
 * All `XYZCommandParser` classes (e.g., `AddCommandParser`, `DeleteCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
 
-### Model component
+### Model Component
 
 **API** : [`Model.java`]({{ page.master_branch }}/{{ page.main_src }}/model/Model.java)
 
@@ -137,7 +137,7 @@ The `Model` component,
 </div>
 {% include_relative _dg/ModelComponent.md %}
 
-### Storage component
+### Storage Component
 
 **API** : [`Storage.java`]({{ page.master_branch }}/{{ page.main_src }}/storage/Storage.java)
 
@@ -149,7 +149,7 @@ The `Storage` component,
 * inherits from both `FoodRemStorage` and `UserPrefStorage`, which means it can be treated as either one (if only the functionality of only one is needed).
 * depends on some classes in the `Model` component (because the `Storage` component's job is to save/retrieve objects that belong to the `Model`)
 
-### Common classes
+### Common Classes
 
 Classes used by multiple components are in the `seedu.foodrem.commons` package.
 
@@ -253,7 +253,7 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 <img src="images/CommitActivityDiagram.png" width="250" />
 
-#### Design considerations
+#### Design Considerations
 
 **Aspect: How undo & redo executes:**
 
@@ -275,7 +275,7 @@ _{Explain here how the data archiving feature will be implemented}_
 
 ---
 
-## Documentation, logging, testing, configuration, dev-ops
+## Documentation, Logging, Testing, Configuration, Dev-Ops
 
 * [Documentation guide](Documentation.md)
 * [Testing guide](Testing.md)
@@ -287,18 +287,18 @@ _{Explain here how the data archiving feature will be implemented}_
 
 ## Appendix: Requirements
 
-### Product scope
+### Product Scope
 
 **Target user profile**: Purchasing managers who are proficient with typing for small F&B businesses
 
 **Value proposition**: This application will help small businesses to manage perishable goods within a single inventory
 (no support for multiple inventories).
 
-### User stories
+### User Stories
 
 {% include_relative _dg/UserStories.md %}
 
-### Use cases
+### Use Cases
 
 {% include_relative _dg/UseCases.md %}
 
@@ -312,7 +312,7 @@ _{Explain here how the data archiving feature will be implemented}_
 
 ---
 
-## Appendix: Instructions for manual testing
+## Appendix: Instructions for Manual Testing
 
 Given below are instructions to test the app manually.
 
@@ -320,7 +320,7 @@ Given below are instructions to test the app manually.
 
 </div>
 
-### Launch and shutdown
+### Launch and Shutdown
 
 1. Initial launch
 
