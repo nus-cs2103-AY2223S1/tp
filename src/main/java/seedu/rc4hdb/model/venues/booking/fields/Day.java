@@ -1,9 +1,6 @@
 package seedu.rc4hdb.model.venues.booking.fields;
 
-import static java.util.Objects.requireNonNull;
 import static seedu.rc4hdb.commons.util.AppUtil.checkArgument;
-
-import java.time.DayOfWeek;
 
 /**
  * Represents a Booking's day in RC4HDB.
@@ -12,10 +9,7 @@ import java.time.DayOfWeek;
 public class Day extends BookingField {
 
     public static final String MESSAGE_CONSTRAINTS =
-            "Day should only contain numbers from 1-7";
-
-    public static final String VALIDATION_REGEX = "^[1-7]$";
-    public final DayOfWeek dayOfWeek;
+            "Day should only contain the first 3 letters of the day of the week. Day is also not case-sensitive";
 
     /**
      * Constructs a {@code Day}.
@@ -23,38 +17,20 @@ public class Day extends BookingField {
      * @param dayOfWeek A valid day
      */
     public Day(String dayOfWeek) {
-        super(dayOfWeek);
+        super(dayOfWeek.toUpperCase());
         checkArgument(isValidDay(dayOfWeek), MESSAGE_CONSTRAINTS);
-        this.dayOfWeek = generateDayOfWeek(dayOfWeek);
     }
 
     /**
      * Returns true if a given string is a valid day.
      */
     public static boolean isValidDay(String test) {
-        return test.matches(VALIDATION_REGEX);
-    }
-
-    private DayOfWeek generateDayOfWeek(String time) {
-        requireNonNull(time);
-        return DayOfWeek.of(Integer.parseInt(time));
-    }
-
-    @Override
-    public String toString() {
-        return dayOfWeek.toString();
-    }
-
-    @Override
-    public boolean equals(Object other) {
-        return other == this // short circuit if same object
-                || (other instanceof Day // instanceof handles nulls
-                && dayOfWeek.equals(((Day) other).dayOfWeek)); // state check
-    }
-
-    @Override
-    public int hashCode() {
-        return dayOfWeek.hashCode();
+        switch (test.toUpperCase()) {
+        case "MON": case "TUE": case "WED": case "THU": case "FRI": case "SAT": case "SUN":
+            return true;
+        default:
+            return false;
+        }
     }
 
 }
