@@ -19,6 +19,7 @@ import taskbook.logic.parser.exceptions.ParseException;
  */
 public class TaskCategoryParser {
     public static final String CATEGORY_WORD = "task";
+    public static final String CATEGORY_WORD_SHORTCUT = "t";
 
     /**
      * Parses user input into command for execution.
