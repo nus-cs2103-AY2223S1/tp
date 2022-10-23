@@ -3,7 +3,6 @@ package seedu.intrack.model.internship;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-
 import static seedu.intrack.logic.commands.CommandTestUtil.VALID_EMAIL_AAPL;
 import static seedu.intrack.logic.commands.CommandTestUtil.VALID_EMAIL_MSFT;
 import static seedu.intrack.logic.commands.CommandTestUtil.VALID_NAME_AAPL;
