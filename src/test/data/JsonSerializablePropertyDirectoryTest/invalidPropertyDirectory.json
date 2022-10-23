@@ -2,7 +2,8 @@
   "properties": [
     {
       "name": "",
-      "address": "Wall Street**"
+      "address": "Wall Street**",
+      "price": "100000"
     }
   ]
 }

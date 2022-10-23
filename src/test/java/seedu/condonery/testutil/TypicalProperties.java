@@ -6,6 +6,8 @@ import static seedu.condonery.logic.commands.CommandTestUtil.CLIENT_VALID_NAME_A
 import static seedu.condonery.logic.commands.CommandTestUtil.CLIENT_VALID_NAME_BOB;
 import static seedu.condonery.logic.commands.CommandTestUtil.CLIENT_VALID_TAG_FRIEND;
 import static seedu.condonery.logic.commands.CommandTestUtil.CLIENT_VALID_TAG_HUSBAND;
+import static seedu.condonery.logic.commands.CommandTestUtil.VALID_PRICE_AMY;
+import static seedu.condonery.logic.commands.CommandTestUtil.VALID_PRICE_BOB;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -21,32 +23,42 @@ public class TypicalProperties {
 
     public static final Property PINNACLE = new PropertyBuilder().withName("Pinnacle@Duxton")
             .withAddress("123, Jurong West Ave 6, #08-111")
+            .withPrice("1,000,000")
             .withTags("friends").build();
     public static final Property OASIS = new PropertyBuilder().withName("Oasis")
             .withAddress("311, Clementi Ave 2, #02-25")
+            .withPrice("1,000,000")
             .withTags("owesMoney", "friends").build();
-    public static final Property CARL = new PropertyBuilder().withName("Carl Kurz").withAddress("wall street").build();
-    public static final Property DANIEL = new PropertyBuilder()
-            .withName("Daniel Meier").withAddress("10th street").withTags("friends").build();
+    public static final Property CARL = new PropertyBuilder().withName("Carl Kurz")
+            .withPrice("1,000,000")
+            .withAddress("wall street").build();
+    public static final Property DANIEL = new PropertyBuilder().withName("Daniel Meier")
+            .withAddress("10th street")
+            .withPrice("1,000,000")
+            .withTags("friends").build();
     public static final Property ELLE = new PropertyBuilder().withName("Elle Meyer")
-            .withAddress("michegan ave").build();
+            .withAddress("michegan ave")
+            .withPrice("1,000,000").build();
     public static final Property FIONA = new PropertyBuilder().withName("Fiona Kunz")
-            .withAddress("little tokyo").build();
+            .withAddress("little tokyo")
+            .withPrice("1,000,000").build();
     public static final Property GEORGE = new PropertyBuilder().withName("George Best")
-            .withAddress("4th street").build();
+            .withAddress("4th street")
+            .withPrice("1,000,000").build();
 
     // Manually added
     public static final Property HOON = new PropertyBuilder().withName("Hoon Meier")
-            .withAddress("little india").build();
+            .withAddress("little india").withPrice("1000000").build();
     public static final Property IDA = new PropertyBuilder().withName("Ida Mueller")
-            .withAddress("chicago ave").build();
+            .withAddress("chicago ave").withPrice("1000000").build();
 
     // Manually added - Person's details found in {@code CommandTestUtil}
     public static final Property AMY = new PropertyBuilder().withName(CLIENT_VALID_NAME_AMY)
-            .withAddress(CLIENT_VALID_ADDRESS_AMY).withTags(CLIENT_VALID_TAG_FRIEND).build();
+            .withAddress(CLIENT_VALID_ADDRESS_AMY).withPrice(VALID_PRICE_AMY)
+            .withTags(CLIENT_VALID_TAG_FRIEND).build();
     public static final Property BOB = new PropertyBuilder().withName(CLIENT_VALID_NAME_BOB)
-            .withAddress(CLIENT_VALID_ADDRESS_BOB).withTags(CLIENT_VALID_TAG_HUSBAND, CLIENT_VALID_TAG_FRIEND)
-            .build();
+            .withAddress(CLIENT_VALID_ADDRESS_BOB).withPrice(VALID_PRICE_BOB)
+            .withTags(CLIENT_VALID_TAG_HUSBAND, CLIENT_VALID_TAG_FRIEND).build();
 
     public static final String KEYWORD_MATCHING_MEIER = "Meier"; // A keyword that matches MEIER
 
