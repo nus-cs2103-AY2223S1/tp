@@ -36,7 +36,7 @@ public class TeamBuilder {
     }
 
     /**
-     * Sets the {@code Name} of the {@code Person} that we are building.
+     * Sets the {@code Name} of the {@code Team} that we are building.
      */
     public TeamBuilder withName(String name) {
         this.name = new seedu.address.model.team.Name(name);
