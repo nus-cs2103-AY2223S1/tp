@@ -29,6 +29,8 @@ public class DeleteConditionCommand extends DeleteGenericCommand {
 
     public static final String MESSAGE_DELETE_CONDITION_SUCCESS = "Deleted condition from %1$s: %2$s";
 
+    public static final CommandType DELETE_CONDITION_COMMAND_TYPE = CommandType.EDIT_PATIENT;
+
     private final Index patientIndex;
     private final Index conditionIndex;
 
@@ -72,7 +74,7 @@ public class DeleteConditionCommand extends DeleteGenericCommand {
         model.updateFilteredPersonList(Model.PREDICATE_SHOW_ALL_PERSONS);
 
         return new CommandResult(String.format(MESSAGE_DELETE_CONDITION_SUCCESS, editedPerson.getName(),
-                deletedCondition), CommandType.DELETE_CONDITION);
+                deletedCondition), DELETE_CONDITION_COMMAND_TYPE);
     }
 
     @Override

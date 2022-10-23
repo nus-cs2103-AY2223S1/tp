@@ -39,6 +39,8 @@ public class AddPatientCommand extends AddGenericCommand {
     public static final String MESSAGE_SUCCESS = "New person added: %1$s";
     public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the uninurse book";
 
+    public static final CommandType ADD_PATIENT_COMMAND_TYPE = CommandType.ADD_PATIENT;
+
     private final Patient toAdd;
 
     /**
@@ -59,7 +61,7 @@ public class AddPatientCommand extends AddGenericCommand {
 
         model.addPerson(toAdd);
         model.setPatientOfInterest(toAdd);
-        return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd), CommandType.ADD_PATIENT);
+        return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd), ADD_PATIENT_COMMAND_TYPE);
     }
 
     @Override

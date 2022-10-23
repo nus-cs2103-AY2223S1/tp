@@ -30,6 +30,8 @@ public class AddConditionCommand extends AddGenericCommand {
 
     public static final String MESSAGE_ADD_CONDITION_SUCCESS = "New condition added to %1$s: %2$s";
 
+    public static final CommandType ADD_CONDITION_COMMAND_TYPE = CommandType.EDIT_PATIENT;
+
     private final Index index;
     private final Condition condition;
 
@@ -64,7 +66,7 @@ public class AddConditionCommand extends AddGenericCommand {
         model.updateFilteredPersonList(Model.PREDICATE_SHOW_ALL_PERSONS);
 
         return new CommandResult(String.format(MESSAGE_ADD_CONDITION_SUCCESS, editedPatient.getName(), condition),
-                CommandType.ADD_CONDITION);
+                ADD_CONDITION_COMMAND_TYPE);
     }
 
     @Override

@@ -14,7 +14,6 @@ import seedu.uninurse.model.person.Patient;
  * Shows all tasks associcated with the given patient in the uninurse book to the user.
  */
 public class ViewTaskCommand extends Command {
-
     public static final String COMMAND_WORD = "viewTask";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
@@ -24,6 +23,8 @@ public class ViewTaskCommand extends Command {
             + "Example: " + COMMAND_WORD + " 1";
 
     public static final String MESSAGE_SUCCESS = "Showing Tasks for Patient: %1$s\n%2$s";
+
+    public static final CommandType VIEW_TASK_COMMAND_TYPE = CommandType.TASK;
 
     private final Index targetIndex;
 
@@ -44,6 +45,6 @@ public class ViewTaskCommand extends Command {
         model.updateFilteredPersonList(p -> p.equals(person));
         model.setPatientOfInterest(person);
         return new CommandResult(String.format(MESSAGE_SUCCESS, person.getName(), person.getTasks().toString()),
-                CommandType.TASK);
+                VIEW_TASK_COMMAND_TYPE);
     }
 }

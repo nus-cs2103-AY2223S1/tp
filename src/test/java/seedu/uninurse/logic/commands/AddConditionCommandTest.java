@@ -3,6 +3,7 @@ package seedu.uninurse.logic.commands;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.uninurse.logic.commands.AddConditionCommand.ADD_CONDITION_COMMAND_TYPE;
 import static seedu.uninurse.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.uninurse.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.uninurse.logic.commands.CommandTestUtil.showPersonAtIndex;
@@ -64,7 +65,7 @@ public class AddConditionCommandTest {
         Model expectedModel = new ModelManager(new UninurseBook(model.getUninurseBook()), new UserPrefs());
         expectedModel.setPerson(patientToAddCondition, editedPatient);
 
-        assertCommandSuccess(addConditionCommand, model, expectedMessage, CommandType.ADD_CONDITION, expectedModel);
+        assertCommandSuccess(addConditionCommand, model, expectedMessage, ADD_CONDITION_COMMAND_TYPE, expectedModel);
     }
 
     @Test
@@ -93,7 +94,7 @@ public class AddConditionCommandTest {
         Model expectedModel = new ModelManager(new UninurseBook(model.getUninurseBook()), new UserPrefs());
         expectedModel.setPerson(patientToAddCondition, editedPatient);
 
-        assertCommandSuccess(addConditionCommand, model, expectedMessage, CommandType.ADD_CONDITION, expectedModel);
+        assertCommandSuccess(addConditionCommand, model, expectedMessage, ADD_CONDITION_COMMAND_TYPE, expectedModel);
     }
 
     @Test
