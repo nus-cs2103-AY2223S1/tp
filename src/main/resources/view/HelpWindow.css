@@ -5,13 +5,13 @@
 }
 
 
-#copyButton, #helpMessage, #description, #parameters, #examples, #choose{
+#copyButton, #helpMessage, #description, #parameters, #examples, #choose {
     -fx-text-fill: white;
     -fx-font-family: 'Minecraft';
 }
 
-#desc, #param, #ex{
-    -fx-text-fill: lightgrey;
+#desc, #param, #ex {
+    -fx-text-fill: #cccccc;
     -fx-font-family: 'Minecraft';
 }
 

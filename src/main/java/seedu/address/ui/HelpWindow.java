@@ -4,11 +4,13 @@ import java.lang.reflect.InvocationTargetException;
 import java.util.logging.Logger;
 
 import javafx.fxml.FXML;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
 import javafx.scene.input.Clipboard;
 import javafx.scene.input.ClipboardContent;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.logic.commands.AddCommand;
@@ -43,13 +45,16 @@ public class HelpWindow extends UiPart<Stage> {
     private Label helpMessage;
 
     @FXML
-    private Label desc;
+    private Text desc;
 
     @FXML
-    private Label param;
+    private Text param;
 
     @FXML
-    private Label ex;
+    private Text ex;
+
+    @FXML
+    private Scene scene;
 
     /**
      * Creates a new HelpWindow.
@@ -127,6 +132,7 @@ public class HelpWindow extends UiPart<Stage> {
 
     private void setChoiceBox() {
         choiceBox.getItems().addAll("Add", "Delete", "Edit", "Find", "List", "Help", "Clear", "Suggest", "Exit");
+        setTextAutoWrap();
         choiceBox.setOnAction(e -> {
             String command = choiceBox.getValue();
             switch (command) {
@@ -174,5 +180,11 @@ public class HelpWindow extends UiPart<Stage> {
             logger.warning("Unable to set help labels");
             e.printStackTrace();
         }
+    }
+
+    private void setTextAutoWrap() {
+        desc.wrappingWidthProperty().bind(scene.widthProperty().subtract(20));
+        param.wrappingWidthProperty().bind(scene.widthProperty().subtract(20));
+        ex.wrappingWidthProperty().bind(scene.widthProperty().subtract(20));
     }
 }
