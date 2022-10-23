@@ -173,11 +173,6 @@ public interface Model {
      */
     void addConsultation(Consultation consultation);
 
-    /**
-     * Clears all existing consultations.
-     */
-    void resetConsultations();
-
     /** Returns an unmodifiable view of the filtered consultation list */
     ObservableList<Consultation> getFilteredConsultationList();
 
@@ -186,5 +181,26 @@ public interface Model {
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredConsultationList(Predicate<Consultation> predicate);
+
+    /**
+     * Clears all existing consultations.
+     */
+    void resetStudents();
+
+    /**
+     * Clears all existing consultations.
+     */
+    void resetConsultations();
+
+    /**
+     * Clears all existing consultations.
+     */
+    void resetTutorials();
+
+    /**
+     * Clears all existing consultations.
+     */
+    void resetReminders();
+
 
 }

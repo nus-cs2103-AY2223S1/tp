@@ -123,6 +123,11 @@ public class ModelManager implements Model {
         addressBook.setPerson(target, editedStudent);
     }
 
+    @Override
+    public void resetStudents() {
+        addressBook.setPersons(new ArrayList<>());
+    }
+
     //=========== Filtered Person List Accessors =============================================================
 
     /**
@@ -191,6 +196,11 @@ public class ModelManager implements Model {
         addressBook.removeReminder(target);
     }
 
+    @Override
+    public void resetReminders() {
+        addressBook.setReminders(new ArrayList<>());
+    }
+
     //=========== Filtered Reminder List Accessors =============================================================
 
     /**
@@ -250,6 +260,11 @@ public class ModelManager implements Model {
         filteredTutorials.setPredicate(predicate);
     }
 
+    @Override
+    public void resetTutorials() {
+        addressBook.setTutorials(new ArrayList<>());
+    }
+
     //=========== Consultation ==================================================================================
 
     @Override
@@ -274,6 +289,7 @@ public class ModelManager implements Model {
     public void resetConsultations() {
         addressBook.setConsultations(new ArrayList<>());
     }
+
     @Override
     public void deleteConsultation(Consultation target) {
         addressBook.removeConsultation(target);
