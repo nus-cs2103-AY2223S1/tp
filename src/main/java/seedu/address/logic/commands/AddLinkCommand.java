@@ -17,6 +17,7 @@ import seedu.address.model.module.Module;
 import seedu.address.model.module.ModuleCode;
 import seedu.address.model.module.ModuleTitle;
 import seedu.address.model.module.task.Task;
+import seedu.address.model.person.Person;
 
 /**
  * Adds a link to an existing module in Plannit.
@@ -82,8 +83,10 @@ public class AddLinkCommand extends Command {
         ModuleTitle moduleTitle = moduleToEdit.getModuleTitle();
         List<Task> moduleTasks = moduleToEdit.getTasks();
         Set<Link> updatedLinks = moduleToEdit.copyLinks();
+        Set<Person> modulePersons = moduleToEdit.getPersons();
+
         updatedLinks.addAll(linksToAdd);
-        return new Module(moduleCode, moduleTitle, moduleTasks, updatedLinks);
+        return new Module(moduleCode, moduleTitle, moduleTasks, updatedLinks, modulePersons);
     }
 
     @Override

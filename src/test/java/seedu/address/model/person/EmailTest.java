@@ -2,6 +2,7 @@ package seedu.address.model.person;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.address.logic.commands.CommandTestUtil.EMPTY_STRING;
 import static seedu.address.testutil.Assert.assertThrows;
 
 import org.junit.jupiter.api.Test;
@@ -15,7 +16,7 @@ public class EmailTest {
 
     @Test
     public void constructor_invalidEmail_throwsIllegalArgumentException() {
-        String invalidEmail = "";
+        String invalidEmail = EMPTY_STRING;
         assertThrows(IllegalArgumentException.class, () -> new Email(invalidEmail));
     }
 
@@ -25,7 +26,7 @@ public class EmailTest {
         assertThrows(NullPointerException.class, () -> Email.isValidEmail(null));
 
         // blank email
-        assertFalse(Email.isValidEmail("")); // empty string
+        assertFalse(Email.isValidEmail(EMPTY_STRING)); // empty string
         assertFalse(Email.isValidEmail(" ")); // spaces only
 
         // missing parts

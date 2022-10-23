@@ -1,9 +1,14 @@
 package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_NUMBER_OF_TASK_NUMBERS_TO_SWAP;
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_TASK_NUMBER;
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_TASK_NUMBERS_TO_SWAP;
 
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 import java.util.stream.Stream;
 
@@ -171,8 +176,41 @@ public class ParserUtil {
         requireNonNull(oneBasedTaskNumber);
         String trimmedIndex = oneBasedTaskNumber.trim();
         if (!StringUtil.isNonZeroUnsignedInteger(trimmedIndex)) {
-            throw new ParseException(MESSAGE_INVALID_INDEX);
+            throw new ParseException(MESSAGE_INVALID_TASK_NUMBER);
         }
         return Index.fromOneBased(Integer.parseInt(trimmedIndex));
+    }
+
+    /**
+     * Parses a {@code String} with two task numbers into a {@code List} with
+     * two {@code Index}es.
+     * @throws ParseException if the given numbers are invalid.
+     */
+    public static List<Index> parseTaskNumbersToSwap(String pairOfOneBasedTaskNumbers)
+            throws ParseException {
+        requireNonNull(pairOfOneBasedTaskNumbers);
+        String trimmedNumbers = pairOfOneBasedTaskNumbers.trim();
+        String[] arrayOfTaskNumbers = trimmedNumbers.split(" ");
+        Boolean hasOnlyTwoTaskNumbers = arrayOfTaskNumbers.length == 2;
+        if (!hasOnlyTwoTaskNumbers) {
+            throw new ParseException(MESSAGE_INVALID_NUMBER_OF_TASK_NUMBERS_TO_SWAP);
+        }
+        String firstTaskNumberAsString = arrayOfTaskNumbers[0];
+        String secondTaskNumberAsString = arrayOfTaskNumbers[1];
+        Boolean isFirstTaskNumberInvalid =
+                !StringUtil.isNonZeroUnsignedInteger(firstTaskNumberAsString);
+        Boolean isSecondTaskNumberInvalid =
+                !StringUtil.isNonZeroUnsignedInteger(secondTaskNumberAsString);
+        if (isFirstTaskNumberInvalid || isSecondTaskNumberInvalid) {
+            throw new ParseException(MESSAGE_INVALID_TASK_NUMBER);
+        }
+        Boolean areTaskNumbersSame =
+                firstTaskNumberAsString.equals(secondTaskNumberAsString);
+        if (areTaskNumbersSame) {
+            throw new ParseException(MESSAGE_INVALID_TASK_NUMBERS_TO_SWAP);
+        }
+        return Arrays.asList(
+                Index.fromOneBased(Integer.parseInt(firstTaskNumberAsString)),
+                Index.fromOneBased(Integer.parseInt(secondTaskNumberAsString)));
     }
 }
