@@ -1,15 +1,17 @@
 package seedu.address.logic.commands;
 
-import javafx.scene.input.*;
-import seedu.address.commons.core.*;
-import seedu.address.commons.core.index.*;
-import seedu.address.logic.commands.exceptions.*;
-import seedu.address.model.*;
-import seedu.address.model.person.*;
+import static java.util.Objects.requireNonNull;
 
+import java.awt.Toolkit;
+import java.awt.datatransfer.Clipboard;
+import java.awt.datatransfer.StringSelection;
 import java.util.List;
 
-import static java.util.Objects.requireNonNull;
+import seedu.address.commons.core.Messages;
+import seedu.address.commons.core.index.Index;
+import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.model.Model;
+import seedu.address.model.person.Person;
 
 /**
  * Copy a client's details in FinBook.
@@ -22,7 +24,7 @@ public class CopyCommand extends Command {
             + " index number used in the displayed client list.\n"
             + "Example: " + COMMAND_WORD + " 2";
 
-    public static final String SHOWING_COPY_MESSAGE = "Client copied: %1$s";
+    public static final String COPY_MESSAGE_SUCCESS = "Client's details copied: %1$s";
 
     private final Index index;
 
@@ -31,7 +33,6 @@ public class CopyCommand extends Command {
      */
     public CopyCommand(Index index) {
         requireNonNull(index);
-
         this.index = index;
     }
 
@@ -46,12 +47,15 @@ public class CopyCommand extends Command {
 
         Person person = lastShownList.get(index.getZeroBased());
 
-        final Clipboard clipboard = Clipboard.getSystemClipboard();
-        final ClipboardContent url = new ClipboardContent();
-        url.putString(person.toClipboardString());
-        clipboard.setContent(url);
+        StringSelection stringSelection = new StringSelection(person.toClipboardString());
+        Clipboard clipboard = Toolkit.getDefaultToolkit().getSystemClipboard();
+        clipboard.setContents(stringSelection, null);
+        //final Clipboard clipboard = Clipboard.getSystemClipboard();
+        //final ClipboardContent url = new ClipboardContent();
+        //url.putString(person.toClipboardString());
+        //clipboard.setContent(url);
 
-        return new CommandResult(String.format(SHOWING_COPY_MESSAGE, person));
+        return new CommandResult(String.format(COPY_MESSAGE_SUCCESS, person.getName()));
 
     }
 }
