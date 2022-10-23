@@ -39,11 +39,11 @@ public class MainApp extends Application {
 
     private static final Logger logger = LogsCenter.getLogger(MainApp.class);
 
-    protected Ui ui;
-    protected Logic logic;
-    protected Storage storage;
-    protected Model model;
-    protected Config config;
+    private Ui ui;
+    private Logic logic;
+    private Storage storage;
+    private Model model;
+    private Config config;
 
     @Override
     public void init() throws Exception {
