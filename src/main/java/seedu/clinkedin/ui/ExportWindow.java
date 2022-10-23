@@ -9,6 +9,7 @@ import java.util.List;
 import java.util.logging.Logger;
 
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
@@ -19,6 +20,9 @@ import seedu.clinkedin.logic.Logic;
 import seedu.clinkedin.logic.commands.ExportCommand;
 import seedu.clinkedin.logic.commands.exceptions.CommandException;
 
+/**
+ * Window for allowing export of addressbook.
+ */
 public class ExportWindow extends UiPart<Stage> {
     public static final String CHOOSE_PATH = "Choose Location";
     public static final String CHOOSE_NAME = "Name";
@@ -107,6 +111,10 @@ public class ExportWindow extends UiPart<Stage> {
     @FXML
     private void handleUserInput() {
     }
+
+    /**
+     * Opens Directory Chooser to select location of file to export.
+     */
     @FXML
     public void handleSelect() {
         File selectedDirectory = directoryChooser.showDialog(getRoot());
@@ -114,6 +122,11 @@ public class ExportWindow extends UiPart<Stage> {
             chosenLocation.setText(selectedDirectory.getAbsolutePath());
         }
     }
+
+    /**
+     * Exports addressbook to specified location.
+     * @throws CommandException If unable to export to location.
+     */
     @FXML
     public void handleOnExport() throws CommandException {
         String filePath = chosenLocation.getText() + "/" + userEnteredFileName.getText() + ".csv";
@@ -122,7 +135,12 @@ public class ExportWindow extends UiPart<Stage> {
         try {
             exportToCsvFile(filePath, data);
         } catch (IOException ioe) {
-            throw new CommandException(ioe.getMessage());
+            Alert a = new Alert(Alert.AlertType.ERROR);
+            a.setContentText("Invalid File Name! Please try again!");
+            chosenLocation.setText("");
+            userEnteredFileName.clear();
+            a.show();
+            return;
         }
         resultDisplay.setFeedbackToUser(String.format(ExportCommand.MESSAGE_SUCCESS, filePath));
         logger.info("Result: " + String.format(ExportCommand.MESSAGE_SUCCESS, filePath));
