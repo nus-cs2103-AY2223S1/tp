@@ -1,9 +1,9 @@
 package seedu.address.logic.parser.exceptions;
 
+import java.util.Arrays;
+
 import seedu.address.commons.core.Messages;
 import seedu.address.logic.parser.Prefix;
-
-import java.util.Arrays;
 
 /**
  * Represents userinput command is missing some prefixes.

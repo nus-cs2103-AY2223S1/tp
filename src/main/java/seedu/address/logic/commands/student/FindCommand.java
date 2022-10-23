@@ -2,14 +2,14 @@ package seedu.address.logic.commands.student;
 
 import static java.util.Objects.requireNonNull;
 
+import java.util.function.Predicate;
+
 import seedu.address.commons.core.Messages;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.model.Model;
 import seedu.address.model.student.Student;
-import seedu.address.model.student.predicates.NameContainsKeywordsPredicate;
 
-import java.util.function.Predicate;
 
 /**
  * Finds and lists all persons in address book whose name contains any of the argument keywords.

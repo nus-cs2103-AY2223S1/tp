@@ -1,9 +1,10 @@
 package seedu.address.model.student.predicates;
 
+import java.util.function.Predicate;
+
 import seedu.address.commons.util.StringUtil;
 import seedu.address.model.student.Student;
 
-import java.util.function.Predicate;
 
 /**
  * Tests that a {@code Student}'s {@code studentId} matches the keyword given.
