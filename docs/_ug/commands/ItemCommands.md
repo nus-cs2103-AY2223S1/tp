@@ -81,7 +81,7 @@ List Box:
 #### Search for an item: `find`
 **Format:** `find KEYWORD [KEYWORDS]...`
 
->  Finds all items in FoodRem whose names contain any of the specified keywords
+> Finds all items in FoodRem whose names contain any of the specified keywords
 
 **Note:**
 * The notation `[KEYWORDS]...` means that we can take in multiple keywords. In this case, at least one `KEYWORD` is required.
