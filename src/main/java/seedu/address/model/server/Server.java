@@ -9,10 +9,12 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 public class Server {
 
     private static final String VALIDATION_REGEX =
-            "^(([0-9]|[1-9][0-9]|1[0-9][0-9]|2[0-4][0-9]|25[0-5])(\\.(?!$)|$)){4}$";
+            "^\\w+@(([0-9]|[1-9][0-9]|1[0-9][0-9]|2[0-4][0-9]|25[0-5])(\\.(?!$)|$)){4}$";
 
     private static final String SERVER_CONSTRAINTS =
-            "Server address should only contain numbers and dots. "
+            "Server name should only contain numbers and letters."
+                    + "@ between Server name and Server address."
+                    + "Server address should only contain numbers and dots. "
                     + "There can only be a maximum of 4 dots in the address.";
 
     private final String serverName;
