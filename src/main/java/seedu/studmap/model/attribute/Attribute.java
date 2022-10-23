@@ -14,22 +14,13 @@ import seedu.studmap.model.student.Student;
 public abstract class Attribute {
 
     public static final String MESSAGE_CONSTRAINTS = "Invalid Attribute entered";
-    //public static final Set<String> ATTRIBUTE_SET = Set.of("name", "phone", "address", "email", "attendance");
-//    enum AttributeType {
-//        NAME,
-//        PHONE,
-//        ADDRESS,
-//        EMAIL,
-//        ATTENDANCE
-//    }
 
     /**
      * Returns true if a given string is a valid attribute name.
      */
     public static boolean isValidAttributeType(String test) {
-        //return ATTRIBUTE_SET.contains(test);
         try {
-            valueOf(test);
+            valueOf(test.toUpperCase());
         } catch (IllegalArgumentException illegalArgumentException) {
             return false;
         }
@@ -39,10 +30,11 @@ public abstract class Attribute {
     /**
      * Returns the Comparator to sort the given attribute
      */
-    public static Comparator<Student> getAttributeComparator(AttributeType attributeType) throws AttributeNotFoundException {
+    public static Comparator<Student> getAttributeComparator(AttributeType attributeTypeEnum)
+            throws AttributeNotFoundException {
         Comparator<Student> resultComparator;
 
-        switch (attributeType) {
+        switch (attributeTypeEnum) {
 
         case NAME:
             resultComparator = Comparator.comparing(Student::getNameString);
@@ -67,7 +59,6 @@ public abstract class Attribute {
         default:
             throw new AttributeNotFoundException();
         }
-
         return resultComparator;
     }
 }

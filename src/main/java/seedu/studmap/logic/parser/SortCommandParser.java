@@ -5,7 +5,6 @@ import static seedu.studmap.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT
 import static seedu.studmap.logic.parser.CliSyntax.PREFIX_ATTRIBUTE;
 
 import java.util.Comparator;
-import java.util.Locale;
 
 import seedu.studmap.logic.commands.SortCommand;
 import seedu.studmap.logic.parser.exceptions.ParseException;
@@ -20,8 +19,8 @@ import seedu.studmap.model.student.Student;
 public class SortCommandParser implements Parser<SortCommand> {
 
     /**
-     * Parses the given {@code String} of arguments in the context of the EditCommand
-     * and returns an EditCommand object for execution.
+     * Parses the given {@code String} of arguments in the context of the SortCommand
+     * and returns an SortCommand object for execution.
      * @throws ParseException if the user input does not conform the expected format
      */
     public SortCommand parse(String args) throws ParseException {
@@ -43,7 +42,8 @@ public class SortCommandParser implements Parser<SortCommand> {
                 throw new ParseException("Caused by: No attribute specified\n");
             }
             if (Attribute.isValidAttributeType(attributeType)) {
-                comparator = Attribute.getAttributeComparator(AttributeType.valueOf(attributeType.toUpperCase(Locale.ROOT)));
+                AttributeType attributeTypeEnum = AttributeType.valueOf(attributeType.toUpperCase());
+                comparator = Attribute.getAttributeComparator(attributeTypeEnum);
             } else {
                 throw new ParseException("Caused by: Invalid attribute\n");
             }

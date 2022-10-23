@@ -109,7 +109,7 @@ public class StudMap implements ReadOnlyStudMap {
         return students.asUnmodifiableObservableList();
     }
 
-    /** Sort the studmap by the given attribute and order */
+    /** Sort the studmap by the given comparator and order */
     public void sort(Comparator<Student> comparator, Order order) {
         boolean isDescending = order.isDescending();
         students.sort(comparator, isDescending);
