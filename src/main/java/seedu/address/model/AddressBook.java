@@ -311,6 +311,19 @@ public class AddressBook implements ReadOnlyAddressBook {
         this.exams.linkTaskToExams(task);
     }
 
+    /**
+     * Unlinks all tasks that are currently linked to {@code exam}.
+     * @param exam
+     */
+    public void unlinkTasksFromExam(Exam exam) {
+        this.tasks.forEach(task -> {
+            if (task.isLinked() && task.getExam().equals(exam)) {
+                Task unlinkedTask = task.unlinkTask();
+                replaceTask(task, unlinkedTask, true);
+            }
+        });
+    }
+
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
