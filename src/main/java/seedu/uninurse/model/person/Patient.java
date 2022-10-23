@@ -33,7 +33,7 @@ public class Patient extends Person {
     /**
      * Used to return a new immutable {@code Patient} when {@code ConditionList} is updated.
      * @param patient the patient to be updated
-     * @param condupdatedConditionsitions the updated conditions.
+     * @param updatedConditions the updated conditions.
      */
     public Patient(Patient patient, ConditionList updatedConditions) {
         super(patient);
