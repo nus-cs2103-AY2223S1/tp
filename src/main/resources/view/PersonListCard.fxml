@@ -32,7 +32,7 @@
         <Label fx:id="name" styleClass="cell_big_label" text="\$first" />
       </HBox>
       <HBox alignment="CENTER_LEFT" spacing="10">
-        <Label styleClass="title_name" text="Majors:" />
+        <Label styleClass="title_name" text="Major(s):" />
         <FlowPane fx:id="majors" />
       </HBox>
       <HBox alignment="CENTER_LEFT" spacing="10">
