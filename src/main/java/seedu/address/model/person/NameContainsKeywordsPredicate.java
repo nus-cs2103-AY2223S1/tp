@@ -40,4 +40,9 @@ public class NameContainsKeywordsPredicate implements Predicate<Person> {
         return keyword.hashCode();
     }
 
+    @Override
+    public String toString() {
+        return "[" + keyword + "]";
+    }
+
 }
