@@ -13,7 +13,7 @@ GREWZ boasts a timeless, compartmentalised Graphical User Interface(GUI) while u
 Hopefuly our application has grown on you! Jump over to [Quick start](#quick-start) to continue.
 
 * Table of Contents
-- {:toc}
+{:toc}
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -152,7 +152,7 @@ Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [c/CLASS] [i/STUDENT_ID] [t/TAG
 * When editing tags, the existing tags of the student will be removed i.e adding of tags is not cumulative.
 * You can remove all the student’s tags by typing `t/` without
     specifying any tags after it.
-* This command does not offer editing a student's profile picture. To do this, refer to [upload](#upload)
+* This command does not offer editing a student's profile picture. To do this, refer to [upload](#uploading-changing-student-profile-picture-upload-pic)
 
 Examples:
 *  `edit 1 p/91234567 e/studentEmail@example.com` Edits the phone number and email of the 1st student in the list to be `91234567` and `studentEmail@example.com` respectively.
@@ -269,7 +269,7 @@ Examples:
 * `task t/Prepare slides for studio d/Topic Environment Model by/2020-12-12`
 * `task t/Collect robot d/At MakersLab by/2019-09-10`
 
-### Removing A Task
+### Removing a Task
 
 Removes a specified task from the Task List (Can be a ToDo and a Deadline).
 
@@ -323,22 +323,28 @@ _More details coming soon ..._
 ## FAQ
 
 **Q:** Do I have to retype the command every single time even if they are similar?
-**A:** You can use our [input history feature]() and simply use the UP `↑` and DOWN `↓` arrow keys to  access your older commands.
+<br />
+**A:** You can use our [input history feature](#navigating-user-input-history--) and simply use the UP `↑` and DOWN `↓` arrow keys to  access your older commands.
 
 **Q:** What is the difference between the different types of tasks?
+<br />
 **A:** All the three tasks essentially have a task title and description. What differentiate them is that a deadline task has date property where you can set its deadline and an assignment task has a student property where you can add a list of student who are yet to complete the assignment task. Lastly, the todo task doesn't have either of these fields.
 
-Q: How to add a student if I do not have their student ID?
-A: Unfortunately we need the name and student ID of the student minimally as we are using this fields to distinguish the students in the student list.
+**Q:** How to add a student if I do not have their student ID?
+<br />
+**A:** Unfortunately we need the name and student ID of the student minimally as we are using this fields to distinguish the students in the student list.
 
-Q: How to add a deadline to an existing toDo task?
-A: Remove the existing toDo task, then add the same task with your given deadline.
+**Q:** How to add a deadline to an existing toDo task?
+<br />
+**A:** Remove the existing toDo task, then add the same task with your given deadline.
 
-Q: How to edit an existing task?
-A: Remove the existing task, then add the same task with the change that you want to make.
+**Q:** How to edit an existing task?
+<br />
+**A:** Remove the existing task, then add the same task with the change that you want to make.
 
-Q: How do I transfer my data into another computer?
-A: Install the app in the other computer. From your current computer, transfer the "data" folder from GREWZ to your new GREWZ folder.
+**Q:** How do I transfer my data into another computer?
+<br />
+**A:** Install the app in the other computer. From your current computer, transfer the "data" folder from GREWZ to your new GREWZ folder.
 
 
 --------------------------------------------------------------------------------------------------------------------
@@ -364,6 +370,6 @@ A: Install the app in the other computer. From your current computer, transfer t
 
 --------------------------------------------------------------------------------------------------------------------
 
-##Glossary
+## Glossary
 
 
