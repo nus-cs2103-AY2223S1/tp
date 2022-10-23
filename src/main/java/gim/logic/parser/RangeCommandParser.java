@@ -28,8 +28,14 @@ public class RangeCommandParser implements Parser<RangeCommand> {
                 || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, RangeCommand.MESSAGE_USAGE));
         }
-        Date startDate = ParserUtil.parseDate(argMultimap.getValue(PREFIX_DATE).get());
-        Date endDate = ParserUtil.parseDate(argMultimap.getValue(PREFIX_END_DATE).get());
+        Date startDate;
+        Date endDate;
+        try {
+            startDate = ParserUtil.parseDate(argMultimap.getValue(PREFIX_DATE).get());
+            endDate = ParserUtil.parseDate(argMultimap.getValue(PREFIX_END_DATE).get());
+        } catch (ParseException e) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, RangeCommand.MESSAGE_USAGE));
+        }
 
         return new RangeCommand(new DateWithinRangePredicate(startDate, endDate));
     }
