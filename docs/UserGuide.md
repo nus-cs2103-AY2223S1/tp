@@ -163,6 +163,12 @@ edit-module 3 m/CS2103T t/Software Engineering
 In the above example, we are changing the module code of the third module on Plannit to `CS2103T`,
 and at the same time, changing the module title to `Software Engineering`.
 
+```
+edit-module 3 t/Software Engineering
+```
+In the above example, we are changing the module title of the third module on Plannit to 
+`Software Engineering`.
+
 #### 2.1.4. Find module
 You can find all modules in Plannit whose module code starts with a specific keyword.
 
