@@ -17,6 +17,7 @@ import seedu.rc4hdb.model.venues.booking.fields.BookingField;
 import seedu.rc4hdb.model.venues.booking.fields.Day;
 import seedu.rc4hdb.model.venues.booking.fields.Hour;
 
+import java.util.Comparator;
 import java.util.List;
 
 /**
@@ -90,6 +91,16 @@ public class BookingTableView extends UiPart<Region> {
 //        this.venueNameColumn.setCellValueFactory(new PropertyValueFactory<>("venueName"));
     }
 
+//    private void sort(ObservableList<Booking> bookingList) {
+//        bookingList.sorted(new Comparator<Booking>() {
+//            @Override
+//            public int compare(Booking o1, Booking o2) {
+//
+//                return ;
+//            }
+//        })
+//    }
+
     /**
      * Code referenced from:
      * https://stackoverflow.com/questions/33353014/creating-a-row-index-column-in-javafx
@@ -100,7 +111,7 @@ public class BookingTableView extends UiPart<Region> {
             public void updateIndex(int index) {
                 super.updateIndex(index);
                 List<String> days = List.of("MON", "TUE", "WED", "THU", "FRI", "SAT", "SUN");
-                if (isEmpty() || index > 6) {
+                if (index > 6 || index < 0) {
                     setText(null);
                 } else {
                     setText(days.get(index));

@@ -100,17 +100,17 @@ public class ResidentTableView extends UiPart<Region> {
             @Override
             public void updateIndex(int index) {
                 super.updateIndex(index);
-                List<String> days = List.of("MON", "TUE", "WED", "THU", "FRI", "SAT", "SUN");
-//                if (isEmpty() || index < 0) {
-//                    setText(null);
-//                } else {
-//                    setText(Integer.toString(index + 1));
-//                }
-                if (index > 6) {
+//                List<String> days = List.of("MON", "TUE", "WED", "THU", "FRI", "SAT", "SUN");
+                if (isEmpty() || index < 0) {
                     setText(null);
                 } else {
-                    setText(days.get(index));
+                    setText(Integer.toString(index + 1));
                 }
+//                if (index > 6 || index < 0) {
+//                    setText(null);
+//                } else {
+//                    setText(days.get(index));
+//                }
             }
         };
     }
@@ -119,29 +119,29 @@ public class ResidentTableView extends UiPart<Region> {
      * Stylizes the {@code ResidentTableView} to maximise column width.
      */
     private void configureTableProperties() {
-        residentTableView.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
-
-        indexColumn.setResizable(false);
-        indexColumn.setPrefWidth(70);
-
-        nameColumn.setMinWidth(300);
-
-        phoneColumn.setResizable(false);
-        phoneColumn.setPrefWidth(120);
-
-        emailColumn.setMinWidth(300);
-
-        roomColumn.setResizable(false);
-        roomColumn.setPrefWidth(140);
-
-        genderColumn.setResizable(false);
-        genderColumn.setPrefWidth(90);
-
-        houseColumn.setResizable(false);
-        houseColumn.setPrefWidth(90);
-
-        matricColumn.setResizable(false);
-        matricColumn.setPrefWidth(140);
+        this.residentTableView.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
+//
+//        indexColumn.setResizable(false);
+//        indexColumn.setPrefWidth(70);
+//
+//        nameColumn.setMinWidth(300);
+//
+//        phoneColumn.setResizable(false);
+//        phoneColumn.setPrefWidth(120);
+//
+//        emailColumn.setMinWidth(300);
+//
+//        roomColumn.setResizable(false);
+//        roomColumn.setPrefWidth(140);
+//
+//        genderColumn.setResizable(false);
+//        genderColumn.setPrefWidth(90);
+//
+//        houseColumn.setResizable(false);
+//        houseColumn.setPrefWidth(90);
+//
+//        matricColumn.setResizable(false);
+//        matricColumn.setPrefWidth(140);
     }
 
 

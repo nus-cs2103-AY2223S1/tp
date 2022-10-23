@@ -33,7 +33,7 @@
           </Menu>
         </MenuBar>
 
-        <TabPane fx:id="tableViewPane" minWidth="340" prefHeight="600">
+        <TabPane fx:id="tableViewPane" minWidth="340" prefHeight="600" VBox.vgrow="ALWAYS">
             <Tab fx:id="residentTab" closable="false" styleClass="tab">
                 <VBox fx:id="residentTableView" styleClass="pane-with-border" minWidth="340" prefWidth="340" VBox.vgrow="ALWAYS">
                   <padding>
