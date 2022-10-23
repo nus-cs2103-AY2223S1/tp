@@ -1,9 +1,13 @@
 package seedu.address.model.util;
 
+import java.time.LocalDate;
 import java.util.Arrays;
+import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
 
+import seedu.address.logic.parser.ParserUtil;
+import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.AddressBook;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.person.Address;
@@ -57,4 +61,14 @@ public class SampleDataUtil {
                 .collect(Collectors.toSet());
     }
 
+    /**
+     * Returns a deadline with the given date in string.
+     */
+    public static Optional<LocalDate> getDeadline(String deadline) {
+        try {
+            return ParserUtil.parseDeadline(deadline);
+        } catch (ParseException e) {
+            return Optional.empty();
+        }
+    }
 }
