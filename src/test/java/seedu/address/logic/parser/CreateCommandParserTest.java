@@ -3,6 +3,8 @@ package seedu.address.logic.parser;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.commands.CommandTestUtil.ADDRESS_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.ADDRESS_DESC_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.DESCRIPTION_DESC_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.DESCRIPTION_DESC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.EMAIL_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.EMAIL_DESC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.EMPTY_FILEPATH;
@@ -63,33 +65,33 @@ public class CreateCommandParserTest {
 
         // whitespace only preamble
         assertParseSuccess(parser, PREAMBLE_WHITESPACE + NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
-                + ADDRESS_DESC_BOB + NETWORTH_DESC_BOB + MEETING_TIME_DESC_BOB + TAG_DESC_FRIEND,
+                + ADDRESS_DESC_BOB + NETWORTH_DESC_BOB + MEETING_TIME_DESC_BOB + DESCRIPTION_DESC_BOB + TAG_DESC_FRIEND,
                 new CreateCommand(expectedPerson));
 
         // multiple names - last name accepted
         assertParseSuccess(parser, NAME_DESC_AMY + NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
-                + ADDRESS_DESC_BOB + NETWORTH_DESC_BOB + MEETING_TIME_DESC_BOB + TAG_DESC_FRIEND,
+                + ADDRESS_DESC_BOB + NETWORTH_DESC_BOB + MEETING_TIME_DESC_BOB + DESCRIPTION_DESC_BOB + TAG_DESC_FRIEND,
                 new CreateCommand(expectedPerson));
 
         // multiple phones - last phone accepted
         assertParseSuccess(parser, NAME_DESC_BOB + PHONE_DESC_AMY + PHONE_DESC_BOB + EMAIL_DESC_BOB
-                + ADDRESS_DESC_BOB + NETWORTH_DESC_BOB + MEETING_TIME_DESC_BOB + TAG_DESC_FRIEND,
+                + ADDRESS_DESC_BOB + NETWORTH_DESC_BOB + MEETING_TIME_DESC_BOB + DESCRIPTION_DESC_BOB + TAG_DESC_FRIEND,
                 new CreateCommand(expectedPerson));
 
         // multiple emails - last email accepted
         assertParseSuccess(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_AMY + EMAIL_DESC_BOB
-                + ADDRESS_DESC_BOB + NETWORTH_DESC_BOB + MEETING_TIME_DESC_BOB + TAG_DESC_FRIEND,
+                + ADDRESS_DESC_BOB + NETWORTH_DESC_BOB + MEETING_TIME_DESC_BOB + DESCRIPTION_DESC_BOB + TAG_DESC_FRIEND,
                 new CreateCommand(expectedPerson));
 
         // multiple addresses - last address accepted
         assertParseSuccess(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_AMY
-                + ADDRESS_DESC_BOB + NETWORTH_DESC_BOB + MEETING_TIME_DESC_BOB + TAG_DESC_FRIEND,
+                + ADDRESS_DESC_BOB + NETWORTH_DESC_BOB + MEETING_TIME_DESC_BOB + DESCRIPTION_DESC_BOB + TAG_DESC_FRIEND,
                 new CreateCommand(expectedPerson));
 
         // multiple networths - last networth accepted
         assertParseSuccess(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_BOB
-                + NETWORTH_DESC_AMY + NETWORTH_DESC_BOB + MEETING_TIME_DESC_BOB + TAG_DESC_FRIEND,
-                new CreateCommand(expectedPerson));
+                + NETWORTH_DESC_AMY + NETWORTH_DESC_BOB + MEETING_TIME_DESC_BOB + DESCRIPTION_DESC_BOB
+                + TAG_DESC_FRIEND, new CreateCommand(expectedPerson));
 
         // multiple meeting times - all accepted
         Person expectedPersonMultipleMeetingTimes = new PersonBuilder(BOB)
@@ -98,7 +100,7 @@ public class CreateCommandParserTest {
                 .withFilePath(EMPTY_FILEPATH).build();
         assertParseSuccess(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_BOB
                         + NETWORTH_DESC_BOB + MEETING_TIME_DESC_AMY
-                        + MEETING_TIME_DESC_BOB + TAG_DESC_FRIEND,
+                        + MEETING_TIME_DESC_BOB + DESCRIPTION_DESC_BOB + TAG_DESC_FRIEND,
                 new CreateCommand(expectedPersonMultipleMeetingTimes));
 
         // multiple tags - all accepted
@@ -107,16 +109,16 @@ public class CreateCommandParserTest {
                 .withTags(VALID_TAG_FRIEND, VALID_TAG_HUSBAND)
                 .withFilePath(EMPTY_FILEPATH).build();
         assertParseSuccess(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_BOB
-                + NETWORTH_DESC_BOB + MEETING_TIME_DESC_BOB + TAG_DESC_HUSBAND + TAG_DESC_FRIEND,
+                + NETWORTH_DESC_BOB + MEETING_TIME_DESC_BOB + DESCRIPTION_DESC_BOB + TAG_DESC_HUSBAND + TAG_DESC_FRIEND,
                 new CreateCommand(expectedPersonMultipleTags));
     }
 
     @Test
     public void parse_optionalFieldsMissing_success() {
         // zero tags and no remark
-        Person expectedPerson = new PersonBuilder(AMY).withTags().buildNoDescriptionAndFilePath();
+        Person expectedPerson = new PersonBuilder(AMY).withTags().buildNoFilePath();
         assertParseSuccess(parser, NAME_DESC_AMY + PHONE_DESC_AMY + EMAIL_DESC_AMY + ADDRESS_DESC_AMY
-                + NETWORTH_DESC_AMY + MEETING_TIME_DESC_AMY , new CreateCommand(expectedPerson));
+                + NETWORTH_DESC_AMY + MEETING_TIME_DESC_AMY + DESCRIPTION_DESC_AMY, new CreateCommand(expectedPerson));
     }
 
     @Test
@@ -148,46 +150,47 @@ public class CreateCommandParserTest {
     public void parse_invalidValue_failure() {
         // invalid name
         assertParseFailure(parser, INVALID_NAME_DESC + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_BOB
-                + NETWORTH_DESC_BOB + MEETING_TIME_DESC_BOB + TAG_DESC_HUSBAND + TAG_DESC_FRIEND,
+                + DESCRIPTION_DESC_BOB + NETWORTH_DESC_BOB + MEETING_TIME_DESC_BOB + TAG_DESC_HUSBAND + TAG_DESC_FRIEND,
                 Name.MESSAGE_CONSTRAINTS);
 
         // invalid phone
         assertParseFailure(parser, NAME_DESC_BOB + INVALID_PHONE_DESC + EMAIL_DESC_BOB + ADDRESS_DESC_BOB
-                + NETWORTH_DESC_BOB + MEETING_TIME_DESC_BOB + TAG_DESC_HUSBAND + TAG_DESC_FRIEND,
+                + DESCRIPTION_DESC_BOB + NETWORTH_DESC_BOB + MEETING_TIME_DESC_BOB + TAG_DESC_HUSBAND + TAG_DESC_FRIEND,
                 Phone.MESSAGE_CONSTRAINTS);
 
         // invalid email
         assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + INVALID_EMAIL_DESC + ADDRESS_DESC_BOB
-                + NETWORTH_DESC_BOB + MEETING_TIME_DESC_BOB + TAG_DESC_HUSBAND + TAG_DESC_FRIEND,
+                + DESCRIPTION_DESC_BOB + NETWORTH_DESC_BOB + MEETING_TIME_DESC_BOB + TAG_DESC_HUSBAND + TAG_DESC_FRIEND,
                 Email.MESSAGE_CONSTRAINTS);
 
         // invalid address
         assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + INVALID_ADDRESS_DESC
-                + NETWORTH_DESC_BOB + MEETING_TIME_DESC_BOB + FILEPATH_DESC_BOB
+                + DESCRIPTION_DESC_BOB + NETWORTH_DESC_BOB + MEETING_TIME_DESC_BOB + FILEPATH_DESC_BOB
                 + TAG_DESC_HUSBAND + TAG_DESC_FRIEND, Address.MESSAGE_CONSTRAINTS);
 
         // invalid networth
         assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_BOB
-                + INVALID_NETWORTH_DESC + MEETING_TIME_DESC_BOB + TAG_DESC_HUSBAND + VALID_TAG_FRIEND,
-                NetWorth.MESSAGE_CONSTRAINTS);
+                + DESCRIPTION_DESC_BOB + INVALID_NETWORTH_DESC + MEETING_TIME_DESC_BOB + TAG_DESC_HUSBAND
+                + VALID_TAG_FRIEND, NetWorth.MESSAGE_CONSTRAINTS);
 
         // invalid meeting time
         assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_BOB
-                + NETWORTH_DESC_BOB + INVALID_MEETING_TIME + TAG_DESC_HUSBAND + VALID_TAG_FRIEND,
+                + DESCRIPTION_DESC_BOB + NETWORTH_DESC_BOB + INVALID_MEETING_TIME + TAG_DESC_HUSBAND + VALID_TAG_FRIEND,
                 MeetingTime.MESSAGE_CONSTRAINTS);
 
         // invalid tag
         assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_BOB
-                + NETWORTH_DESC_BOB + MEETING_TIME_DESC_BOB + INVALID_TAG_DESC + VALID_TAG_FRIEND,
-                Tag.MESSAGE_CONSTRAINTS);
+                + DESCRIPTION_DESC_BOB + NETWORTH_DESC_BOB + MEETING_TIME_DESC_BOB + INVALID_TAG_DESC
+                + VALID_TAG_FRIEND, Tag.MESSAGE_CONSTRAINTS);
 
         // two invalid values, only first invalid value reported
         assertParseFailure(parser, INVALID_NAME_DESC + PHONE_DESC_BOB + EMAIL_DESC_BOB + INVALID_ADDRESS_DESC
-                + NETWORTH_DESC_BOB + MEETING_TIME_DESC_BOB , Name.MESSAGE_CONSTRAINTS);
+                + DESCRIPTION_DESC_BOB + NETWORTH_DESC_BOB + MEETING_TIME_DESC_BOB , Name.MESSAGE_CONSTRAINTS);
 
         // non-empty preamble
         assertParseFailure(parser, PREAMBLE_NON_EMPTY + NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
-                + ADDRESS_DESC_BOB + NETWORTH_DESC_BOB + MEETING_TIME_DESC_BOB + TAG_DESC_HUSBAND + TAG_DESC_FRIEND,
+                + ADDRESS_DESC_BOB + DESCRIPTION_DESC_BOB + NETWORTH_DESC_BOB + MEETING_TIME_DESC_BOB
+                + TAG_DESC_HUSBAND + TAG_DESC_FRIEND,
                 String.format(MESSAGE_INVALID_COMMAND_FORMAT, CreateCommand.MESSAGE_USAGE));
     }
 }

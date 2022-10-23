@@ -2,6 +2,7 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MEETING_TIME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
@@ -49,6 +50,7 @@ public class UpdateCommand extends UndoableCommand {
             + "[" + PREFIX_PHONE + "PHONE] "
             + "[" + PREFIX_EMAIL + "EMAIL] "
             + "[" + PREFIX_ADDRESS + "ADDRESS] "
+            + "[" + PREFIX_DESCRIPTION + "DESCRIPTION] "
             + "[" + PREFIX_NETWORTH + "NETWORTH] "
             + "[" + PREFIX_MEETING_TIME + "MEETING TIME]"
             + "[" + PREFIX_TAG + "TAG]...\n"
@@ -128,12 +130,12 @@ public class UpdateCommand extends UndoableCommand {
         Phone updatedPhone = editPersonDescriptor.getPhone().orElse(personToEdit.getPhone());
         Email updatedEmail = editPersonDescriptor.getEmail().orElse(personToEdit.getEmail());
         Address updatedAddress = editPersonDescriptor.getAddress().orElse(personToEdit.getAddress());
+        Description updatedDescription = editPersonDescriptor.getDescription().orElse(personToEdit.getDescription());
         NetWorth updatedNetWorth = editPersonDescriptor.getNetWorth().orElse(personToEdit.getNetWorth());
         Set<MeetingTime> updatedMeetingTimes = editPersonDescriptor.getMeetingTimes()
                 .orElse(personToEdit.getMeetingTimes());
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
-        FilePath updatedFilePath = personToEdit.getFilePath();
-        Description updatedDescription = personToEdit.getDescription(); // edit command does not allow editing remarks
+        FilePath updatedFilePath = personToEdit.getFilePath(); // edit command does not allow editing file paths
 
         return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress,
                 updatedDescription, updatedNetWorth, updatedMeetingTimes, updatedFilePath, updatedTags);
@@ -166,10 +168,10 @@ public class UpdateCommand extends UndoableCommand {
         private Phone phone;
         private Email email;
         private Address address;
+        private Description description;
         private NetWorth netWorth;
         private Set<MeetingTime> meetingTimes;
         private Set<Tag> tags;
-
         public EditPersonDescriptor() {}
 
         /**
@@ -181,6 +183,7 @@ public class UpdateCommand extends UndoableCommand {
             setPhone(toCopy.phone);
             setEmail(toCopy.email);
             setAddress(toCopy.address);
+            setDescription(toCopy.description);
             setNetWorth(toCopy.netWorth);
             setMeetingTimes(toCopy.meetingTimes);
             setTags(toCopy.tags);
@@ -190,7 +193,7 @@ public class UpdateCommand extends UndoableCommand {
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, phone, email, address, netWorth, meetingTimes, tags);
+            return CollectionUtil.isAnyNonNull(name, phone, email, address, description, netWorth, meetingTimes, tags);
         }
 
         public void setName(Name name) {
@@ -225,6 +228,13 @@ public class UpdateCommand extends UndoableCommand {
             return Optional.ofNullable(address);
         }
 
+        public void setDescription(Description description) {
+            this.description = description;
+        }
+
+        public Optional<Description> getDescription() {
+            return Optional.ofNullable(description);
+        }
         public void setNetWorth(NetWorth netWorth) {
             this.netWorth = netWorth;
         }
@@ -277,6 +287,7 @@ public class UpdateCommand extends UndoableCommand {
                     && getPhone().equals(e.getPhone())
                     && getEmail().equals(e.getEmail())
                     && getAddress().equals(e.getAddress())
+                    && getDescription().equals(e.getDescription())
                     && getNetWorth().equals(e.getNetWorth())
                     && getMeetingTimes().equals(e.getMeetingTimes())
                     && getTags().equals(e.getTags());

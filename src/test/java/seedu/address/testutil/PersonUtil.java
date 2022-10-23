@@ -59,6 +59,7 @@ public class PersonUtil {
         sb.append(PREFIX_PHONE + person.getPhone().value + " ");
         sb.append(PREFIX_EMAIL + person.getEmail().value + " ");
         sb.append(PREFIX_ADDRESS + person.getAddress().value + " ");
+        sb.append(PREFIX_DESCRIPTION + person.getDescription().value + " ");
         sb.append(PREFIX_NETWORTH + person.getNetWorth().value + " ");
         person.getMeetingTimes().stream().forEach(
                 s -> sb.append(PREFIX_MEETING_TIME + s.value + " ")
@@ -78,6 +79,8 @@ public class PersonUtil {
         descriptor.getPhone().ifPresent(phone -> sb.append(PREFIX_PHONE).append(phone.value).append(" "));
         descriptor.getEmail().ifPresent(email -> sb.append(PREFIX_EMAIL).append(email.value).append(" "));
         descriptor.getAddress().ifPresent(address -> sb.append(PREFIX_ADDRESS).append(address.value).append(" "));
+        descriptor.getDescription().ifPresent(description
+                -> sb.append(PREFIX_DESCRIPTION).append(description.value).append(" "));
         descriptor.getNetWorth().ifPresent(netWorth -> sb.append(PREFIX_NETWORTH).append(netWorth.value).append(" "));
         if (descriptor.getMeetingTimes().isPresent()) {
             Set<MeetingTime> meetingTimes = descriptor.getMeetingTimes().get();
