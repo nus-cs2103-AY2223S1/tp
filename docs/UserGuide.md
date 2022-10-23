@@ -23,6 +23,8 @@ done faster and more securely than traditional GUI apps.
     * [Importing data: `import`](#importing-data--import)
     * [Exporting data: `export`](#exporting-data--export)
     * [Locking the application: `lock`](#locking-the-application--lock)
+    * [Changing Light/Dark mode](#changing-lightdark-mode)
+
 - [FAQ](#faq)
 - [Command Summary](#command-summary)
 
@@ -282,6 +284,14 @@ Examples:
 Locks the application. If a password has not been set, leave the password field empty to unlock the application.
 
 Format: `lock`
+
+---
+
+### Changing Light/Dark mode
+
+Toggle the theme of FinBook by clicking on the `sun` or `moon` icon on the top right of the application. 
+* If icon is a `sun` FinBook is in Light mode. 
+* If icon is a `moon` FinBook is in Dark mode.
 
 --------------------------------------------------------------------------------------------------------------------
 
