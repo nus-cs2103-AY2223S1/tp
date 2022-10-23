@@ -323,7 +323,7 @@ public class CommandTestUtil {
         public Set<Predicate<Person>> getNameFilters() {
             throw new AssertionError("This method should not be called.");
         }
-        
+
         @Override
         public Quote getQuote() {
             throw new AssertionError("This method should not be called.");
