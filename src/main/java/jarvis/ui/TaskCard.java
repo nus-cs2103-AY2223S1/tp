@@ -36,8 +36,8 @@ public class TaskCard extends UiPart<Region> {
     @FXML
     private Label taskDeadline;
 
-    Image tick = new Image(getClass().getResourceAsStream("/images/tick.png"));
-    Image cross = new Image(getClass().getResourceAsStream("/images/cross.png"));
+    private Image tick = new Image(getClass().getResourceAsStream("/images/tick.png"));
+    private Image cross = new Image(getClass().getResourceAsStream("/images/cross.png"));
 
     /**
      * Creates a {@code TaskCard} with the given {@code Task} and index to display.

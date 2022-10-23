@@ -41,8 +41,8 @@ public class LessonCard extends UiPart<Region> {
     @FXML
     private Label lessonAttendance;
 
-    Image tick = new Image(getClass().getResourceAsStream("/images/tick.png"));
-    Image cross = new Image(getClass().getResourceAsStream("/images/cross.png"));
+    private Image tick = new Image(getClass().getResourceAsStream("/images/tick.png"));
+    private Image cross = new Image(getClass().getResourceAsStream("/images/cross.png"));
 
     /**
      * Creates a {@code LessonCard} with the given {@code Lesson} and index to display.

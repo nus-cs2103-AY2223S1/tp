@@ -170,7 +170,7 @@ public class MainWindow extends UiPart<Stage> {
         String taskBookPath = Paths.get(".").resolve(logic.getTaskBookFilePath()).toString();
         String lessonBookPath = Paths.get(".").resolve(logic.getLessonBookFilePath()).toString();
         StatusBarFooter statusBarFooter = new StatusBarFooter(studentBookPath + " and " + taskBookPath
-                + " and " + lessonBookPath );
+                + " and " + lessonBookPath);
         statusbarPlaceholder.getChildren().add(statusBarFooter.getRoot());
 
         CommandBox commandBox = new CommandBox(this::executeCommand);
