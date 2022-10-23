@@ -63,9 +63,9 @@ public class Description {
      * @param query input query
      * @return true if query exists exactly in description, false otherwise.
      */
-    public boolean isWordInDescription(String query) {
+    public boolean isQueryInDescription(String query) {
         requireNonNull(query);
-        return description.contains(query);
+        return description.toUpperCase().contains(query.toUpperCase());
     }
 
     /**

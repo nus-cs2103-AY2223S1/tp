@@ -63,8 +63,8 @@ public class Name {
      * @param query input query.
      * @return true if the query exists exactly in fullName, false otherwise.
      */
-    public boolean isWordInName(String query) {
+    public boolean isQueryInName(String query) {
         requireNonNull(query);
-        return fullName.contains(query);
+        return fullName.toUpperCase().contains(query.toUpperCase());
     }
 }

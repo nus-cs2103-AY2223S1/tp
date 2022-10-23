@@ -128,9 +128,19 @@ public abstract class Task {
      * @param query input word.
      * @return true if the query exists exactly in this task, false otherwise.
      */
-    public boolean isWordInTask(String query) {
+    public boolean isQueryInTask(String query) {
         requireNonNull(query);
-        return getName().isWordInName(query) || getDescription().isWordInDescription(query);
+        return getName().isQueryInName(query) || getDescription().isQueryInDescription(query);
+    }
+
+    /**
+     * Checks if the task is of a particular assignment
+     * @param query input assignment.
+     * @return true if the query exists exactly in this task, false otherwise.
+     */
+    public boolean isAssignmentCorrect(Assignment query) {
+        requireNonNull(query);
+        return this.getAssignment().equals(query);
     }
 
     /**
