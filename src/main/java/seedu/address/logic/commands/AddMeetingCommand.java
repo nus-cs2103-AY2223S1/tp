@@ -2,8 +2,9 @@ package seedu.address.logic.commands;
 
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_END_TIME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_INDEX;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TIME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_START_TIME;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.Messages;
@@ -27,22 +28,26 @@ public class AddMeetingCommand extends Command {
             + "Parameters: "
             + PREFIX_INDEX + "INDEX "
             + PREFIX_DATE + "DATE "
-            + PREFIX_TIME + "TIME "
+            + PREFIX_START_TIME + "START TIME "
+            + PREFIX_END_TIME + "END TIME "
             + PREFIX_DESCRIPTION + "DESCRIPTION ";
     public static final String MESSAGE_DUPLICATE_MEETING = "This meeting already exists in MyInsuRec";
     public static final String MESSAGE_CLIENT_NOT_FOUND = "A client named %s could not be found";
 
     private final MeetingDate meetingDate;
-    private final MeetingTime meetingTime;
+    private final MeetingTime meetingStartTime;
+    private final MeetingTime meetingEndTime;
     private final Index linkedClientIndex;
     private final Description description;
 
     /**
      * Creates an AddMeetingCommand to add the specified meeting.
      */
-    public AddMeetingCommand(Index clientIndex, MeetingDate date, MeetingTime time, Description desc) {
+    public AddMeetingCommand(Index clientIndex, MeetingDate date,
+                             MeetingTime startTime, MeetingTime endTime, Description desc) {
         meetingDate = date;
-        meetingTime = time;
+        meetingStartTime = startTime;
+        meetingEndTime = endTime;
         linkedClientIndex = clientIndex;
         description = desc;
     }
@@ -55,7 +60,7 @@ public class AddMeetingCommand extends Command {
         }
 
         Client clientToUpdate = clientList.get(linkedClientIndex.getZeroBased());
-        Meeting meetingToAdd = new Meeting(clientToUpdate, description, meetingDate, meetingTime);
+        Meeting meetingToAdd = new Meeting(clientToUpdate, description, meetingDate, meetingStartTime, meetingEndTime);
 
         if (model.hasMeeting(meetingToAdd)) {
             throw new CommandException(MESSAGE_DUPLICATE_MEETING);

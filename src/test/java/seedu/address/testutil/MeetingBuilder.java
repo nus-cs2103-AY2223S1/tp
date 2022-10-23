@@ -24,7 +24,8 @@ import seedu.address.model.product.Product;
 public class MeetingBuilder {
     public static final String DEFAULT_DESCRIPTION = "meeting";
     public static final LocalDate DEFAULT_MEETING_DATE = LocalDate.of(2020, 1, 8);
-    public static final LocalTime DEFAULT_MEETING_TIME = LocalTime.of(7, 20, 45, 342123342);
+    public static final LocalTime DEFAULT_MEETING_START_TIME = LocalTime.of(7, 20, 45, 342123342);
+    public static final LocalTime DEFAULT_MEETING_END_TIME = LocalTime.of(8, 20, 45, 342123342);
     public static final String DEFAULT_NAME = "Amy Bee";
     public static final String DEFAULT_PHONE = "85355255";
     public static final String DEFAULT_EMAIL = "amy@gmail.com";
@@ -35,7 +36,8 @@ public class MeetingBuilder {
     private Description description;
     private Client client;
     private MeetingDate meetingDate;
-    private MeetingTime meetingTime;
+    private MeetingTime meetingStartTime;
+    private MeetingTime meetingEndTime;
 
     /**
      * Creates a {@code MeetingBuilder} with the default details.
@@ -43,7 +45,8 @@ public class MeetingBuilder {
     public MeetingBuilder() {
         description = new Description(DEFAULT_DESCRIPTION);
         meetingDate = new MeetingDate(DEFAULT_MEETING_DATE);
-        meetingTime = new MeetingTime(DEFAULT_MEETING_TIME);
+        meetingStartTime = new MeetingTime(DEFAULT_MEETING_START_TIME);
+        meetingEndTime = new MeetingTime(DEFAULT_MEETING_END_TIME);
         client = new Client(new Name(DEFAULT_NAME), new Phone(DEFAULT_PHONE),
                 Optional.of(new Email(DEFAULT_EMAIL)), Optional.of(new Address(DEFAULT_ADDRESS)),
                 Optional.of(new Birthday(DEFAULT_BIRTHDAY)), DEFAULT_PRODUCTS);
@@ -55,7 +58,8 @@ public class MeetingBuilder {
     public MeetingBuilder(Meeting meetingToCopy) {
         description = meetingToCopy.getDescription();
         meetingDate = meetingToCopy.getMeetingDate();
-        meetingTime = meetingToCopy.getMeetingTime();
+        meetingStartTime = meetingToCopy.getMeetingStartTime();
+        meetingEndTime = meetingToCopy.getMeetingEndTime();
         client = meetingToCopy.getClient();
     }
 
@@ -78,8 +82,16 @@ public class MeetingBuilder {
     /**
      * Sets the {@code MeetingTime} of the {@code Meeting} that we are building.
      */
-    public MeetingBuilder withMeetingTime(LocalTime time) {
-        this.meetingTime = new MeetingTime(time);
+    public MeetingBuilder withMeetingStartTime(LocalTime time) {
+        this.meetingStartTime = new MeetingTime(time);
+        return this;
+    }
+
+    /**
+     * Sets the {@code MeetingTime} of the {@code Meeting} that we are building.
+     */
+    public MeetingBuilder withMeetingEndTime(LocalTime time) {
+        this.meetingEndTime = new MeetingTime(time);
         return this;
     }
 
@@ -92,6 +104,6 @@ public class MeetingBuilder {
     }
 
     public Meeting build() {
-        return new Meeting(client, description, meetingDate, meetingTime);
+        return new Meeting(client, description, meetingDate, meetingStartTime, meetingEndTime);
     }
 }

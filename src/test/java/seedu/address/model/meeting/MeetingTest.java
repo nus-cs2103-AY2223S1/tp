@@ -47,7 +47,7 @@ public class MeetingTest {
         assertFalse(MEETING1.equals(editedMeeting1));
 
         // different meeting time -> returns false
-        editedMeeting1 = new MeetingBuilder(MEETING1).withMeetingTime(VALID_MEETING_TIME_MEETING2).build();
+        editedMeeting1 = new MeetingBuilder(MEETING1).withMeetingStartTime(VALID_MEETING_TIME_MEETING2).build();
         assertFalse(MEETING1.equals(editedMeeting1));
 
         // different client -> returns false
@@ -60,7 +60,7 @@ public class MeetingTest {
         Meeting meeting1 = new MeetingBuilder(MEETING1)
                 .withDescription(VALID_DESCRIPTION_MEETING2)
                 .withMeetingDate(VALID_MEETING_DATE_MEETING2)
-                .withMeetingTime(VALID_MEETING_TIME_MEETING2)
+                .withMeetingStartTime(VALID_MEETING_TIME_MEETING2)
                 .withClient(BENSON)
                 .build();
         assertEquals(meeting1.getClientName(), meeting1.getClient().getName());
@@ -71,7 +71,7 @@ public class MeetingTest {
         Meeting meeting1 = new MeetingBuilder(MEETING1)
                 .withDescription(VALID_DESCRIPTION_MEETING2)
                 .withMeetingDate(VALID_MEETING_DATE_MEETING2)
-                .withMeetingTime(VALID_MEETING_TIME_MEETING2)
+                .withMeetingStartTime(VALID_MEETING_TIME_MEETING2)
                 .withClient(BENSON)
                 .build();
         assertEquals(meeting1.getClientPhone(), meeting1.getClient().getPhone());
@@ -82,14 +82,14 @@ public class MeetingTest {
         Meeting meeting1 = new MeetingBuilder(MEETING1)
                 .withDescription(VALID_DESCRIPTION_MEETING1)
                 .withMeetingDate(VALID_MEETING_DATE_MEETING1)
-                .withMeetingTime(VALID_MEETING_TIME_MEETING1)
+                .withMeetingStartTime(VALID_MEETING_TIME_MEETING1)
                 .withClient(ALICE)
                 .build();
 
         Meeting meeting2 = new MeetingBuilder(MEETING2)
                 .withDescription(VALID_DESCRIPTION_MEETING2)
                 .withMeetingDate(VALID_MEETING_DATE_MEETING2)
-                .withMeetingTime(VALID_MEETING_TIME_MEETING2)
+                .withMeetingStartTime(VALID_MEETING_TIME_MEETING2)
                 .withClient(BENSON)
                 .build();
         assertFalse(meeting1.willConflict(meeting2));
@@ -100,14 +100,14 @@ public class MeetingTest {
         Meeting meeting1 = new MeetingBuilder(MEETING1)
                 .withDescription(VALID_DESCRIPTION_MEETING1)
                 .withMeetingDate(VALID_MEETING_DATE_MEETING1)
-                .withMeetingTime(VALID_MEETING_TIME_MEETING1)
+                .withMeetingStartTime(VALID_MEETING_TIME_MEETING1)
                 .withClient(ALICE)
                 .build();
 
         Meeting meeting2 = new MeetingBuilder(MEETING2)
                 .withDescription(VALID_DESCRIPTION_MEETING2)
                 .withMeetingDate(VALID_MEETING_DATE_MEETING1)
-                .withMeetingTime(VALID_MEETING_TIME_MEETING1)
+                .withMeetingStartTime(VALID_MEETING_TIME_MEETING1)
                 .withClient(BENSON)
                 .build();
         assertTrue(meeting1.willConflict(meeting2));
@@ -118,7 +118,7 @@ public class MeetingTest {
         Meeting meeting1 = new MeetingBuilder(MEETING1)
                 .withDescription(VALID_DESCRIPTION_MEETING1)
                 .withMeetingDate(VALID_MEETING_DATE_MEETING1)
-                .withMeetingTime(VALID_MEETING_TIME_MEETING1)
+                .withMeetingStartTime(VALID_MEETING_TIME_MEETING1)
                 .withClient(ALICE)
                 .build();
 
@@ -131,7 +131,7 @@ public class MeetingTest {
         Meeting meeting1 = new MeetingBuilder(MEETING1)
                 .withDescription(VALID_DESCRIPTION_MEETING1)
                 .withMeetingDate(VALID_MEETING_DATE_MEETING1)
-                .withMeetingTime(VALID_MEETING_TIME_MEETING1)
+                .withMeetingStartTime(VALID_MEETING_TIME_MEETING1)
                 .withClient(ALICE)
                 .build();
         String expected = "Client: Alice Pauline; Description: meeting1; Date: 08012020; Time: 0720";
