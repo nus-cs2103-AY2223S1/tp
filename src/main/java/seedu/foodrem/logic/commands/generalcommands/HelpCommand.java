@@ -22,7 +22,7 @@ public class HelpCommand extends Command {
             "To receive help for a specific command, enter "
                     + "\"" + COMMAND_WORD + " COMMAND_WORD\" "
                     + "in the command box, where COMMAND_WORD is any one of the following:\n"
-                    + CommandType.listAllCommandWords() + "\n\n"
+                    + CommandType.listAllCommandWords() + ".\n\n"
                     + MORE_INFORMATION;
     public static final String NOT_A_COMMAND = "\"%s\" is not a valid command\n\n" + HELP_FORMAT_GENERAL;
     private static final String SHOWING_HELP_MESSAGE = "Opened help window.";

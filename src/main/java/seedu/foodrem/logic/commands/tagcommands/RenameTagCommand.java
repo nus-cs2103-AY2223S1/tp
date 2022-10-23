@@ -13,7 +13,7 @@ import seedu.foodrem.model.tag.Tag;
  * Renames an existing tag in FoodRem.
  */
 public class RenameTagCommand extends Command {
-    private static final String MESSAGE_SUCCESS = "Renamed tag: %1$s";
+    private static final String MESSAGE_SUCCESS = "Original tag: %s\nRenamed tag: %s\n";
     private static final String ERROR_NOT_FOUND = "This tag does not exist in the FoodRem.";
     private static final String ERROR_DUPLICATE = "This tag name already exists in the FoodRem.";
 
@@ -43,7 +43,7 @@ public class RenameTagCommand extends Command {
         }
 
         model.setTag(originalTag, renamedTag);
-        return new CommandResult(String.format(MESSAGE_SUCCESS, renamedTag));
+        return new CommandResult(String.format(MESSAGE_SUCCESS, originalTag, renamedTag));
     }
 
     public static String getUsage() {

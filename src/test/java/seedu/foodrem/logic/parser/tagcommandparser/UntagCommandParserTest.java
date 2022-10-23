@@ -11,9 +11,7 @@ import static seedu.foodrem.testutil.TypicalTags.FRUITS;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.foodrem.commons.core.index.Index;
 import seedu.foodrem.logic.commands.tagcommands.UntagCommand;
-import seedu.foodrem.logic.parser.ParserUtil;
 import seedu.foodrem.model.tag.Tag;
 import seedu.foodrem.model.tag.TagName;
 import seedu.foodrem.testutil.TagBuilder;
@@ -25,24 +23,12 @@ public class UntagCommandParserTest {
     private final UntagCommandParser parser = new UntagCommandParser();
 
     @Test
-    public void parse_tagThenIndex_success() {
-        Tag fruitTag = new TagBuilder(FRUITS).build();
-        String fruitTagName = fruitTag.getName();
-        Index targetIndex = INDEX_FIRST_ITEM;
-
-        String userInput = VALID_DESC_TAG_NAME_FRUITS + VALID_DESC_ID_FIRST;
-        UntagCommand expectedCommand = new UntagCommand(fruitTagName, targetIndex);
-        assertParseSuccess(parser, userInput, expectedCommand);
-    }
-
-    @Test
     public void parse_indexThenTag_success() {
         Tag fruitTag = new TagBuilder(FRUITS).build();
         String fruitTagName = fruitTag.getName();
-        Index targetIndex = INDEX_FIRST_ITEM;
 
         String userInput = VALID_DESC_ID_FIRST + VALID_DESC_TAG_NAME_FRUITS;
-        UntagCommand expectedCommand = new UntagCommand(fruitTagName, targetIndex);
+        UntagCommand expectedCommand = new UntagCommand(fruitTagName, INDEX_FIRST_ITEM);
         assertParseSuccess(parser, userInput, expectedCommand);
     }
 
@@ -59,7 +45,7 @@ public class UntagCommandParserTest {
 
         String userInput = VALID_DESC_TAG_NAME_FRUITS + VALID_DESC_ID_FIRST + VALID_DESC_ITEM_QUANTITY_CUCUMBERS;
 
-        assertParseFailure(parser, userInput, ParserUtil.MESSAGE_INVALID_INDEX);
+        assertParseFailure(parser, userInput, MESSAGE_INVALID_FORMAT);
     }
 
     @Test
@@ -77,7 +63,7 @@ public class UntagCommandParserTest {
     @Test
     public void parse_invalidPreamble_failure() {
         // Number preamble
-        assertParseFailure(parser, "0 " + VALID_DESC_TAG_NAME_FRUITS
+        assertParseFailure(parser, "-1 " + VALID_DESC_TAG_NAME_FRUITS
                 + VALID_DESC_ID_FIRST, MESSAGE_INVALID_FORMAT);
 
         // invalid arguments being parsed as preamble

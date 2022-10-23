@@ -86,7 +86,7 @@ public class CommandTestUtil {
     public static final String VALID_DESC_TAG_NAME_NUMBERS = " " + CliSyntax.PREFIX_NAME
             + VALID_TAG_NAME_NUMBERS;
 
-    public static final String VALID_DESC_ID_FIRST = " " + CliSyntax.PREFIX_ID + VALID_ID_NUMBER_ONE;
+    public static final String VALID_DESC_ID_FIRST = " " + VALID_ID_NUMBER_ONE;
 
     public static final String INVALID_ITEM_NAME_POTATOES = "Potatoe@s";
     public static final String INVALID_ITEM_QUANTITY_POTATOES = "1@0";
