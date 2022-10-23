@@ -58,7 +58,7 @@ Suppose the `INDEX` for potatoes is `1` in the application, the command you woul
 
 `inc id/12 qty/40`
 
-You should now have a better understanding of how commands are formatted and used. All commands are consolidated in the [Command Summary](#command-summary). 
+You should now have a better understanding of how commands are formatted and used. All commands are consolidated in the [Command Summary](#command-summary).
 
 Here is a checklist you can use before running a command:
 

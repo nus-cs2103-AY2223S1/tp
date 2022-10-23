@@ -20,19 +20,10 @@ show-toc: true
 {% include_relative _ug/HowToUseUserGuide.md %}
 
 ## Installation
+
 {% include_relative _ug/Installation.md %}
 
 ## Using FoodRem
-
-Here is an overview of what FoodRem can do and how you can perform a command.
-
-### Items and Tags
-
-{% include_relative _ug/ItemsTags.md %}
-
-### Command Format
-
-You will encounter FoodRem commands throughout this User Guide. Before you delve into the different commands in [Features](#features), let’s learn what a command consists of.
 
 {% include_relative _ug/UsingFoodRem.md %}
 
