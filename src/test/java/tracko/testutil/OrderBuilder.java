@@ -102,6 +102,14 @@ public class OrderBuilder {
     }
 
     /**
+     * Sets the {@code Email} of the {@code Order} that we are building.
+     */
+    public OrderBuilder withTimeCreated(LocalDateTime timeCreated) {
+        this.timeCreated = timeCreated;
+        return this;
+    }
+
+    /**
      * Sets the list of ordered items of the {@code Order} that we are building.
      */
     public OrderBuilder withItemList(List<ItemQuantityPair> itemList) {
