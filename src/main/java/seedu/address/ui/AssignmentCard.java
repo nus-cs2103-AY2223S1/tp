@@ -5,6 +5,7 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
+import seedu.address.model.assignment.Assignment;
 import seedu.address.model.person.Person;
 
 /**
@@ -43,7 +44,13 @@ public class AssignmentCard extends UiPart<Region> {
         name.setText(person.getName().fullName);
         person.getAssignments()
                 .forEach((key, value) -> {
-                    String assignmentString = key + ": " + value;
+                    String input = "";
+                    int a = 1;
+                    for (int i = 0; i < value.size(); i++) {
+                        input += a + ". " + value.get(i);
+                        a++;
+                    }
+                    String assignmentString = key + ": \n" + input;
                     assignments.getChildren().add(new Label(assignmentString));
                 });
     }
