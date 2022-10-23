@@ -69,6 +69,10 @@ public class Event {
                 && otherEvent.getEndDateTime().equals(getEndDateTime());
     }
 
+    public boolean isValidStartEnd() {
+        return startDateTime.isBeforeOrEqual(endDateTime);
+    }
+
     /**
      * Returns true if both event have the same identity and data fields.
      * This defines a stronger notion of equality between two events.

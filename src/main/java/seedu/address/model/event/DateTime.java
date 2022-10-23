@@ -115,6 +115,14 @@ public class DateTime {
         return dateFormat != null;
     }
 
+    /**
+     * Returns true if a start DateTime is before or equal another DateTime.
+     * Otherwise, returns false
+     */
+    public boolean isBeforeOrEqual(DateTime dateTime) {
+        return !this.dateTime.isAfter(dateTime.dateTime);
+    }
+
     @Override
     public String toString() {
         String pattern = this.hasTime ? RECOMMENDED_FORMAT_WITH_TIME : RECOMMENDED_FORMAT;

@@ -7,6 +7,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_OPTION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_START_DATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
+import seedu.address.commons.core.Messages;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
@@ -58,6 +59,10 @@ public class AddEventCommand extends EventCommand {
 
         if (model.hasEvent(toAdd)) {
             throw new CommandException(MESSAGE_DUPLICATE_EVENT);
+        }
+
+        if (!toAdd.isValidStartEnd()) {
+            throw new CommandException(Messages.MESSAGE_EVENTS_INVALID_START_END);
         }
 
         model.addEvent(toAdd);
