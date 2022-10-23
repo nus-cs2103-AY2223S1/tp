@@ -7,7 +7,6 @@ import java.util.Set;
 
 import taskbook.commons.util.CollectionUtil;
 import taskbook.model.tag.Tag;
-import taskbook.model.task.Task;
 
 /**
  * Represents a Person in the task book.
