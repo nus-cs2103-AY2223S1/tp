@@ -19,6 +19,7 @@ Class "<<interface>>\nNuSchedulerStorage" as NuSchedulerStorage
 Class JsonNuSchedulerStorage
 Class JsonSerializableNuScheduler
 Class JsonAdaptedProfile
+Class JsonAdaptedEvent
 Class JsonAdaptedTag
 }
 
@@ -38,6 +39,7 @@ JsonUserPrefsStorage .up.|> UserPrefsStorage
 JsonNuSchedulerStorage .up.|> NuSchedulerStorage
 JsonNuSchedulerStorage ..> JsonSerializableNuScheduler
 JsonSerializableNuScheduler --> "*" JsonAdaptedProfile
+JsonSerializableNuScheduler --> "*" JsonAdaptedEvent
 JsonAdaptedProfile --> "*" JsonAdaptedTag
 
 @enduml

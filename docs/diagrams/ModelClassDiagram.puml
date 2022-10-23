@@ -13,6 +13,10 @@ Class ModelManager
 Class UserPrefs
 
 Class UniqueProfileList
+Class UniqueEventList
+Class Event
+Class DateTime
+Class Title
 Class Profile
 Class Telegram
 Class Email
@@ -42,9 +46,16 @@ Profile *--> Email
 Profile *--> Telegram
 Profile *--> "*" Tag
 
+NuScheduler *--> "1" UniqueEventList
+UniqueEventList --> "~* all" Event
+Event *--> Title
+Event *--> "startDate" DateTime
+Event *--> "endDate" DateTime
+
 Name -[hidden]right-> Phone
 Phone -[hidden]right-> Telegram
 Telegram -[hidden]right-> Email
 
-ModelManager -->"~* filtered" Profile
+ModelManager ->"~* filtered" Profile
+ModelManager ->"~* filtered" Event
 @enduml

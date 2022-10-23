@@ -109,24 +109,23 @@ Here are the other classes in `Logic` (omitted from the class diagram above) tha
 
 How the parsing works:
 * When called upon to parse a user command, the `NuSchedulerParser` class creates an `XCommandParser` (`X` is a placeholder for the command type e.g., `ProfileCommandParser`, `EventCommandParser`) for `Profile` and `Event` commands. A `YCommand` (`Y` is a placeholder for the command name e.g., `FindCommand`. `ClearCommand`) is created instead for other commands.
-* For `Event` and `Profile` commands,  `ProfileCommandParser` and `EventCommandParser` will create the respective `ZXCommandParser` (`Z` is a placeholder for the command name of command type `X` e.g., `AddProfileCommandParser`) to parse the user command and create a `ZXCommand` (e.g., `AddProfileCommand`) object which the `NuSchedulerParser` returns back as a `Command` object.
-* All `XCommandParser` classes (e.g., `ProfileCommandParser`, `EventCommandParser`) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
-* All `ZXCommandParser` classes (e.g., `AddProfileCommandParser`, `DeleteEventCommandParser`) inherits from the respective `XCommandParser` class (e.g., `EventCommandParser`, `ProfileCommandParser`).
+* For `Event` and `Profile` commands,  `ProfileCommandParser` and `EventCommandParser` will create the respective `ZXCommandParser` (`Z` is a placeholder for the command name of command type `X` e.g., `AddProfileCommandParser`) to parse the user command. After parsing the user command, a `ZXCommand` (e.g., `AddProfileCommand`) object is created which is then returned by `NuSchedulerParser` as a `Command` object.
+* All `XCommandParser` and `ZXCommandParser` classes (e.g., `ProfileCommandParser`, `FindEventCommandParser`) implements the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
 
 ### Model component
 **API** : [`Model.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/model/Model.java)
 
 <img src="images/ModelClassDiagram.png" width="450" />
 
+Both `Event` and `Profile` data are handled by the `Model` component. Since the implementation for both objects are similar, we will only describe `Profile` objects below.
 
 The `Model` component,
-
 * stores the NuScheduler data i.e., all `Profile` objects (which are contained in a `UniqueProfileList` object).
 * stores the currently 'selected' `Profile` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Profile>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
 * stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
 * does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `NuScheduler`, which `Profile` references. This allows `NuScheduler` to only require one `Tag` object per unique tag, instead of each `Profile` needing their own `Tag` objects.<br>
+<div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below (`Event` is ommitted for simplification). It has a `Tag` list in the `NuScheduler`, which `Profile` references. This allows `NuScheduler` to only require one `Tag` object per unique tag, instead of each `Profile` needing their own `Tag` objects.<br>
 
 <img src="images/BetterModelClassDiagram.png" width="450" />
 

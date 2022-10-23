@@ -15,6 +15,7 @@ Class CliSyntax
 Class ParserUtil
 Class ArgumentMultimap
 Class ArgumentTokenizer
+Class ZXCommandParser
 Class Prefix
 }
 
@@ -23,9 +24,11 @@ HiddenOutside ..> NuSchedulerParser
 
 NuSchedulerParser .down.> XCommandParser: creates >
 NuSchedulerParser .down.> YCommand : creates >
-XCommandParser ..> ZXCommand : creates >
+XCommandParser ..> ZXCommandParser : creates >
+ZXCommandParser ..> ZXCommand : creates >
 NuSchedulerParser ..> Command : returns >
 XCommandParser .up.|> Parser
+ZXCommandParser .up.|> Parser
 XCommandParser ..> ArgumentMultimap
 XCommandParser ..> ArgumentTokenizer
 ArgumentTokenizer .left.> ArgumentMultimap
@@ -34,6 +37,7 @@ CliSyntax ..> Prefix
 XCommandParser ..> ParserUtil
 ParserUtil .down.> Prefix
 ArgumentTokenizer .down.> Prefix
-ZXCommand -up-|> Command
+XCommand -up-|> Command
+ZXCommand -up-|> XCommand
 YCommand -up-|> Command
 @enduml
