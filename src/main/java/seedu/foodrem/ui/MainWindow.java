@@ -188,7 +188,7 @@ public class MainWindow extends UiPart<Stage> {
                 handleHelpCommand();
             }
 
-            if (commandResult.isExit()) {
+            if (commandResult.shouldExit()) {
                 handleExit();
             }
 

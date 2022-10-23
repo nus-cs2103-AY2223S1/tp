@@ -68,7 +68,7 @@ public class CommandResult {
         return showHelp;
     }
 
-    public boolean isExit() {
+    public boolean shouldExit() {
         return exit;
     }
 
