@@ -25,7 +25,11 @@ public class ClearCommand extends Command {
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_FIELD + "student";
 
-    public static final String MESSAGE_SUCCESS = "All data of your selected field in ModQuik have been cleared!";
+    public static final String MESSAGE_SUCCESS_ALL = "All data in ModQuik have been cleared!";
+    public static final String MESSAGE_SUCCESS_STUDENT = "All students in ModQuik have been cleared!";
+    public static final String MESSAGE_SUCCESS_CONSULTATION = "All consultations in ModQuik have been cleared!";
+    public static final String MESSAGE_SUCCESS_TUTORIAL = "All tutorials in ModQuik have been cleared!";
+    public static final String MESSAGE_SUCCESS_REMINDER = "All reminders in ModQuik have been cleared!";
 
     private static String[] temp = {"all", "student", "consultation", "tutorial", "reminder"};
     private static Set<String> possibleFields = new HashSet<>(Arrays.asList(temp));
@@ -46,23 +50,23 @@ public class ClearCommand extends Command {
         switch (field) {
         case "all":
             model.setAddressBook(new AddressBook());
-            return new CommandResult(MESSAGE_SUCCESS);
+            return new CommandResult(MESSAGE_SUCCESS_ALL);
 
         case "student":
             model.resetStudents();
-            return new CommandResult(MESSAGE_SUCCESS);
+            return new CommandResult(MESSAGE_SUCCESS_STUDENT);
 
         case "consultation":
             model.resetConsultations();
-            return new CommandResult(MESSAGE_SUCCESS);
+            return new CommandResult(MESSAGE_SUCCESS_CONSULTATION);
 
         case "tutorial":
             model.resetTutorials();
-            return new CommandResult(MESSAGE_SUCCESS);
+            return new CommandResult(MESSAGE_SUCCESS_TUTORIAL);
 
         case "reminder":
             model.resetReminders();
-            return new CommandResult(MESSAGE_SUCCESS);
+            return new CommandResult(MESSAGE_SUCCESS_REMINDER);
 
         default:
             throw new CommandException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, MESSAGE_USAGE));

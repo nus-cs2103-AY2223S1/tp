@@ -17,7 +17,7 @@ public class ClearCommandTest {
         Model model = new ModelManager();
         Model expectedModel = new ModelManager();
 
-        assertCommandSuccess(new ClearCommand("all"), model, ClearCommand.MESSAGE_SUCCESS, expectedModel);
+        assertCommandSuccess(new ClearCommand("all"), model, ClearCommand.MESSAGE_SUCCESS_ALL, expectedModel);
     }
 
     @Test
@@ -26,7 +26,7 @@ public class ClearCommandTest {
         Model expectedModel = new ModelManager(getTypicalAddressBook(), new UserPrefs());
         expectedModel.setAddressBook(new AddressBook());
 
-        assertCommandSuccess(new ClearCommand("all"), model, ClearCommand.MESSAGE_SUCCESS, expectedModel);
+        assertCommandSuccess(new ClearCommand("all"), model, ClearCommand.MESSAGE_SUCCESS_ALL, expectedModel);
     }
 
     @Test
@@ -34,7 +34,8 @@ public class ClearCommandTest {
         Model model = new ModelManager();
         Model expectedModel = new ModelManager();
 
-        assertCommandSuccess(new ClearCommand("student"), model, ClearCommand.MESSAGE_SUCCESS, expectedModel);
+        assertCommandSuccess(new ClearCommand("student"), model,
+                ClearCommand.MESSAGE_SUCCESS_STUDENT, expectedModel);
     }
 
     @Test
@@ -43,7 +44,8 @@ public class ClearCommandTest {
         Model expectedModel = new ModelManager(getTypicalAddressBook(), new UserPrefs());
         expectedModel.resetStudents();
 
-        assertCommandSuccess(new ClearCommand("student"), model, ClearCommand.MESSAGE_SUCCESS, expectedModel);
+        assertCommandSuccess(new ClearCommand("student"), model,
+                ClearCommand.MESSAGE_SUCCESS_STUDENT, expectedModel);
     }
 
     @Test
@@ -51,7 +53,8 @@ public class ClearCommandTest {
         Model model = new ModelManager();
         Model expectedModel = new ModelManager();
 
-        assertCommandSuccess(new ClearCommand("consultation"), model, ClearCommand.MESSAGE_SUCCESS, expectedModel);
+        assertCommandSuccess(new ClearCommand("consultation"), model,
+                ClearCommand.MESSAGE_SUCCESS_CONSULTATION, expectedModel);
     }
 
     @Test
@@ -60,7 +63,8 @@ public class ClearCommandTest {
         Model expectedModel = new ModelManager(getTypicalAddressBook(), new UserPrefs());
         expectedModel.resetConsultations();
 
-        assertCommandSuccess(new ClearCommand("consultation"), model, ClearCommand.MESSAGE_SUCCESS, expectedModel);
+        assertCommandSuccess(new ClearCommand("consultation"), model,
+                ClearCommand.MESSAGE_SUCCESS_CONSULTATION, expectedModel);
     }
 
     @Test
@@ -68,7 +72,8 @@ public class ClearCommandTest {
         Model model = new ModelManager();
         Model expectedModel = new ModelManager();
 
-        assertCommandSuccess(new ClearCommand("tutorial"), model, ClearCommand.MESSAGE_SUCCESS, expectedModel);
+        assertCommandSuccess(new ClearCommand("tutorial"), model,
+                ClearCommand.MESSAGE_SUCCESS_TUTORIAL, expectedModel);
     }
 
     @Test
@@ -77,7 +82,8 @@ public class ClearCommandTest {
         Model expectedModel = new ModelManager(getTypicalAddressBook(), new UserPrefs());
         expectedModel.resetTutorials();
 
-        assertCommandSuccess(new ClearCommand("tutorial"), model, ClearCommand.MESSAGE_SUCCESS, expectedModel);
+        assertCommandSuccess(new ClearCommand("tutorial"), model,
+                ClearCommand.MESSAGE_SUCCESS_TUTORIAL, expectedModel);
     }
 
     @Test
@@ -85,7 +91,8 @@ public class ClearCommandTest {
         Model model = new ModelManager();
         Model expectedModel = new ModelManager();
 
-        assertCommandSuccess(new ClearCommand("reminder"), model, ClearCommand.MESSAGE_SUCCESS, expectedModel);
+        assertCommandSuccess(new ClearCommand("reminder"), model,
+                ClearCommand.MESSAGE_SUCCESS_REMINDER, expectedModel);
     }
 
     @Test
@@ -94,6 +101,7 @@ public class ClearCommandTest {
         Model expectedModel = new ModelManager(getTypicalAddressBook(), new UserPrefs());
         expectedModel.resetReminders();
 
-        assertCommandSuccess(new ClearCommand("reminder"), model, ClearCommand.MESSAGE_SUCCESS, expectedModel);
+        assertCommandSuccess(new ClearCommand("reminder"), model,
+                ClearCommand.MESSAGE_SUCCESS_REMINDER, expectedModel);
     }
 }
