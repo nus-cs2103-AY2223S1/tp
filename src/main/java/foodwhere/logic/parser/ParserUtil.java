@@ -10,13 +10,13 @@ import foodwhere.commons.core.Messages;
 import foodwhere.commons.core.index.Index;
 import foodwhere.commons.util.StringUtil;
 import foodwhere.logic.parser.exceptions.ParseException;
+import foodwhere.model.commons.Address;
 import foodwhere.model.commons.Name;
 import foodwhere.model.commons.Tag;
 import foodwhere.model.review.Content;
 import foodwhere.model.review.Date;
 import foodwhere.model.review.Rating;
 import foodwhere.model.review.comparator.ReviewsComparatorList;
-import foodwhere.model.stall.Address;
 import foodwhere.model.stall.comparator.StallsComparatorList;
 
 

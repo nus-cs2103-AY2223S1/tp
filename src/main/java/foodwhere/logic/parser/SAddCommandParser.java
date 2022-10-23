@@ -9,9 +9,9 @@ import java.util.stream.Stream;
 
 import foodwhere.logic.commands.SAddCommand;
 import foodwhere.logic.parser.exceptions.ParseException;
+import foodwhere.model.commons.Address;
 import foodwhere.model.commons.Name;
 import foodwhere.model.commons.Tag;
-import foodwhere.model.stall.Address;
 import foodwhere.model.stall.Stall;
 
 /**

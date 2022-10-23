@@ -12,8 +12,8 @@ import java.util.stream.Collectors;
 import org.junit.jupiter.api.Test;
 
 import foodwhere.commons.exceptions.IllegalValueException;
+import foodwhere.model.commons.Address;
 import foodwhere.model.commons.Name;
-import foodwhere.model.stall.Address;
 import foodwhere.model.stall.Stall;
 import foodwhere.model.stall.StallBuilder;
 import foodwhere.testutil.TypicalReviews;
