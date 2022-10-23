@@ -2,7 +2,6 @@ package seedu.application.model.application;
 
 import static seedu.application.commons.util.CollectionUtil.requireAllNonNull;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.Collections;
 import java.util.HashSet;

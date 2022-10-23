@@ -4,6 +4,7 @@ import java.nio.file.Path;
 import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
 import seedu.application.commons.core.GuiSettings;
 import seedu.application.model.application.Application;
 import seedu.application.model.application.interview.Interview;
@@ -110,6 +111,9 @@ public interface Model {
     /** Returns an unmodifiable view of the filtered application list */
     ObservableList<Application> getFilteredApplicationList();
 
+    /** Returns an unmodifiable view of the filtered applications with upcoming interviews list */
+    ObservableList<Application> getFilteredApplicationsWithUpcomingInterviewList();
+
     /** Returns an unmodifiable view of the filtered application list with existing interview*/
     ObservableList<Application> getApplicationListWithInterview();
 
@@ -118,6 +122,13 @@ public interface Model {
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredApplicationList(Predicate<Application> predicate);
+
+    /**
+     * Updates the filter of the filtered applications with upcoming interviews list to filter by the given
+     * {@code predicate}.
+     * @throws NullPointerException if {@code predicate} is null.
+     */
+    void updateFilteredApplicationsWithUpcomingInterviewList(Predicate<Application> predicate);
 
     /**
      * Updates the application list with interview when a new interview is added.

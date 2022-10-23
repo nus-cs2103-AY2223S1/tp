@@ -27,6 +27,7 @@ public class ModelManager implements Model {
     private final VersionedApplicationBook versionedApplicationBook;
     private final UserPrefs userPrefs;
     private final FilteredList<Application> filteredApplications;
+    private final FilteredList<Application> filteredApplicationsWithUpcomingInterviews;
     private final SortedList<Application> sortedFilteredApplications;
     private final ObservableList<Application> applicationsWithInterview;
 
@@ -41,6 +42,7 @@ public class ModelManager implements Model {
         versionedApplicationBook = new VersionedApplicationBook(applicationBook);
         this.userPrefs = new UserPrefs(userPrefs);
         filteredApplications = initialiseFilteredList(this.versionedApplicationBook);
+        filteredApplicationsWithUpcomingInterviews = initialiseFilteredList(this.versionedApplicationBook);
         sortedFilteredApplications = new SortedList<>(filteredApplications);
         applicationsWithInterview = filterApplicationsWithInterview();
     }
@@ -186,6 +188,11 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public ObservableList<Application> getFilteredApplicationsWithUpcomingInterviewList() {
+        return filteredApplicationsWithUpcomingInterviews;
+    }
+
+    @Override
     public ObservableList<Application> getApplicationListWithInterview() {
         return applicationsWithInterview;
     }
@@ -194,6 +201,12 @@ public class ModelManager implements Model {
     public void updateFilteredApplicationList(Predicate<Application> predicate) {
         requireNonNull(predicate);
         filteredApplications.setPredicate(predicate);
+    }
+
+    @Override
+    public void updateFilteredApplicationsWithUpcomingInterviewList(Predicate<Application> predicate) {
+        requireNonNull(predicate);
+        filteredApplicationsWithUpcomingInterviews.setPredicate(predicate);
     }
 
     //=========== Undo & Redo =====================================================================================
@@ -226,6 +239,7 @@ public class ModelManager implements Model {
     /**
      * Updates the interview list.
      */
+    @Override
     public void updateApplicationListWithInterview() {
         applicationsWithInterview.clear();
         applicationsWithInterview.addAll(filteredApplications);
