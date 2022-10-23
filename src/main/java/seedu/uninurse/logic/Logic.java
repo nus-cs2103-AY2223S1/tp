@@ -1,7 +1,6 @@
 package seedu.uninurse.logic;
 
 import java.nio.file.Path;
-import java.util.function.Supplier;
 
 import javafx.collections.ObservableList;
 import seedu.uninurse.commons.core.GuiSettings;
@@ -34,9 +33,6 @@ public interface Logic {
     /** Returns an unmodifiable view of the filtered list of persons */
     ObservableList<Patient> getFilteredPersonList();
 
-    /** Returns a supplier to get the flag to display tasks */
-    Supplier<Boolean> getTaskListFlagSupplier();
-
     /**
      * Returns the user prefs' uninurse book file path.
      */
@@ -51,4 +47,9 @@ public interface Logic {
      * Set the user prefs' GUI settings.
      */
     void setGuiSettings(GuiSettings guiSettings);
+
+    /**
+     * Returns the patient of interest.
+     */
+    Patient getPatientOfInterest();
 }

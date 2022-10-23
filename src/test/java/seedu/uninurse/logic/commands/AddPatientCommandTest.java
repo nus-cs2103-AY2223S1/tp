@@ -9,7 +9,6 @@ import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.function.Predicate;
-import java.util.function.Supplier;
 
 import org.junit.jupiter.api.Test;
 
@@ -149,12 +148,12 @@ public class AddPatientCommandTest {
         }
 
         @Override
-        public void updateFilteredPersonListWithTasks(Predicate<Patient> predicate) {
+        public void setPatientOfInterest(Patient patient) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public Supplier<Boolean> getTaskListFlagSupplier() {
+        public Patient getPatientOfInterest() {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -206,7 +205,12 @@ public class AddPatientCommandTest {
      * A Model stub that always accept the person being added.
      */
     private class ModelStubAcceptingPersonAdded extends ModelStub {
-        final ArrayList<Patient> personsAdded = new ArrayList<>();
+        private final ArrayList<Patient> personsAdded = new ArrayList<>();
+        private Patient patientOfInterest;
+
+        ModelStubAcceptingPersonAdded() {
+            this.patientOfInterest = new PersonBuilder().build();
+        }
 
         @Override
         public boolean hasPerson(Patient person) {
@@ -223,6 +227,11 @@ public class AddPatientCommandTest {
         @Override
         public ReadOnlyUninurseBook getUninurseBook() {
             return new UninurseBook();
+        }
+
+        @Override
+        public void setPatientOfInterest(Patient patient) {
+            this.patientOfInterest = patient;
         }
     }
 
