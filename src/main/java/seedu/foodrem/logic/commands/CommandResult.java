@@ -5,15 +5,15 @@ import static java.util.Objects.requireNonNull;
 /**
  * Represents the result of a command execution.
  */
-public abstract class CommandResult {
+public abstract class CommandResult<T> {
     /**
      * Constructs a {@code CommandResult} with the specified message to display.
      * @param feedbackToUser the message to display to the user.
      * @return a {@code CommandResult} with the supplied string as a message.
      */
-    public static CommandResult fromString(String feedbackToUser) {
+    public static CommandResult<String> fromString(String feedbackToUser) {
         requireNonNull(feedbackToUser);
-        return new CommandResult() {
+        return new CommandResult<>() {
             @Override
             public String getOutput() {
                 return feedbackToUser;
@@ -21,7 +21,7 @@ public abstract class CommandResult {
         };
     }
 
-    public String getOutput() {
+    public T getOutput() {
         throw new UnsupportedOperationException();
     }
     public String getHelpText() {
