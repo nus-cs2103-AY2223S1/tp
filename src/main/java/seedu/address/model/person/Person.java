@@ -141,14 +141,21 @@ public class Person {
      *
      */
     public Integer getGroupNumber() {
-        if (this.getTags().isEmpty()) {
+        Set<Tag> tags = this.getTags();
+        if (tags.isEmpty()) {
             return 0;
         }
         int value = 0;
-        for (Tag tag: this.getTags()) {
-            value += (tag.ordinal() == 0 ? 1 : tag.ordinal() == 1 ? 2 : 4);
+        for (Tag tag: tags) {
+            value += tag.ordinal();
         }
-        return value;
+        if (tags.size() == 1) {
+            return value + 1;
+        }
+        if (tags.size() == 2) {
+            return value + 3;
+        }
+        return value + 4;
     }
 
     /**
@@ -162,7 +169,7 @@ public class Person {
     public int groupCompareTo(Person person) {
         int tagWeight = 10;
         int nameWeight = 1;
-        return tagWeight * this.getGroupNumber().compareTo(person.getGroupNumber())
+        return tagWeight * this.getGroupNumber() -compareTo(person.getGroupNumber())
             + nameWeight * this.compareTo(person);
     }
 

@@ -308,14 +308,21 @@ public class Appointment {
      *
      */
     public Integer getGroupNumber() {
-        if (this.getTags().isEmpty()) {
+        Set<Tag> tags = this.getTags();
+        if (tags.isEmpty()) {
             return 0;
         }
         int value = 0;
-        for (Tag tag: this.getTags()) {
-            value += (tag.ordinal() == 0 ? 1 : tag.ordinal() == 1 ? 2 : 4);
+        for (Tag tag: tags) {
+            value += tag.ordinal();
         }
-        return value;
+        if (tags.size() == 1) {
+            return value + 1;
+        }
+        if (tags.size() == 2) {
+            return value + 3;
+        }
+        return value + 4;
     }
 
     /**
