@@ -55,7 +55,9 @@ public class AddTaskCommand extends AddGenericCommand {
         }
 
         Patient personToEdit = lastShownList.get(index.getZeroBased());
+
         TaskList updatedTaskList = personToEdit.getTasks().add(task);
+
         Patient editedPerson = new Patient(personToEdit, updatedTaskList);
 
         model.setPerson(personToEdit, editedPerson);

@@ -25,7 +25,7 @@ public class EditTaskCommand extends EditGenericCommand {
             + "Example: " + COMMAND_WORD + " 1 " + " 2 "
             + PREFIX_TASK_DESCRIPTION + "change bandage";
 
-    public static final String MESSAGE_EDIT_TASK_SUCCESS = "Edited Task: %1$s";
+    public static final String MESSAGE_EDIT_TASK_SUCCESS = "Edited Task: %1$s -> %2$s";
     public static final String MESSAGE_NOT_EDITED = "Task to edit must be provided.";
 
     public static final CommandType EDIT_TASK_COMMAND_TYPE = CommandType.TASK;
@@ -63,14 +63,17 @@ public class EditTaskCommand extends EditGenericCommand {
         if (taskIndex.getZeroBased() >= patientToEdit.getTasks().size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_TASK_INDEX);
         }
+
+        Task initialTask = patientToEdit.getTasks().get(taskIndex.getZeroBased());
         TaskList updatedTaskList = patientToEdit.getTasks().edit(taskIndex.getZeroBased(), updatedTask);
+
         Patient editedPatient = new Patient(patientToEdit, updatedTaskList);
 
         model.setPerson(patientToEdit, editedPatient);
         model.updateFilteredPersonList(patient -> patient.equals(editedPatient));
         model.setPatientOfInterest(editedPatient);
 
-        return new CommandResult(String.format(MESSAGE_EDIT_TASK_SUCCESS, editedPatient),
+        return new CommandResult(String.format(MESSAGE_EDIT_TASK_SUCCESS, initialTask, updatedTask),
                 EDIT_TASK_COMMAND_TYPE);
     }
 

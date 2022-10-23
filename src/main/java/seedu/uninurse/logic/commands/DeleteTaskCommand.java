@@ -54,14 +54,13 @@ public class DeleteTaskCommand extends DeleteGenericCommand {
         }
 
         Patient patientToEdit = lastShownList.get(patientIndex.getZeroBased());
-        TaskList initialTaskList = patientToEdit.getTasks();
 
-        if (taskIndex.getZeroBased() >= initialTaskList.size()) {
+        if (taskIndex.getZeroBased() >= patientToEdit.getTasks().size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_TASK_INDEX);
         }
 
+        Task deletedTask = patientToEdit.getTasks().get(taskIndex.getZeroBased());
         TaskList updatedTaskList = patientToEdit.getTasks().delete(taskIndex.getZeroBased());
-        Task deletedTask = initialTaskList.get(taskIndex.getZeroBased());
 
         Patient editedPerson = new Patient(patientToEdit, updatedTaskList);
 
