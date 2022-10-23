@@ -24,6 +24,7 @@ import jarvis.logic.commands.FindStudentCommand;
 import jarvis.logic.commands.GradeCommand;
 import jarvis.logic.commands.HelpCommand;
 import jarvis.logic.commands.ListAllCommand;
+import jarvis.logic.commands.ListLessonCommand;
 import jarvis.logic.commands.ListStudentCommand;
 import jarvis.logic.commands.ListTaskCommand;
 import jarvis.logic.commands.MarkLessonCommand;
@@ -109,6 +110,9 @@ public class JarvisParser {
 
         case ListTaskCommand.COMMAND_WORD:
             return new ListTaskCommand();
+
+        case ListLessonCommand.COMMAND_WORD:
+            return new ListLessonCommand();
 
         case ListAllCommand.COMMAND_WORD:
             return new ListAllCommand();
