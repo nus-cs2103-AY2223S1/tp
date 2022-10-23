@@ -2,20 +2,21 @@ package seedu.intrack.model.internship;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.intrack.logic.commands.CommandTestUtil.VALID_ADDRESS_MSFT;
-import static seedu.intrack.logic.commands.CommandTestUtil.VALID_EMAIL_MSFT;
-import static seedu.intrack.logic.commands.CommandTestUtil.VALID_NAME_MSFT;
-import static seedu.intrack.logic.commands.CommandTestUtil.VALID_PHONE_MSFT;
-import static seedu.intrack.logic.commands.CommandTestUtil.VALID_POSITION_MSFT;
-import static seedu.intrack.logic.commands.CommandTestUtil.VALID_STATUS_MSFT;
-import static seedu.intrack.logic.commands.CommandTestUtil.VALID_TAG_URGENT;
+import static seedu.intrack.logic.commands.CommandTestUtil.*;
 import static seedu.intrack.testutil.Assert.assertThrows;
 import static seedu.intrack.testutil.TypicalInternships.ALICE;
 import static seedu.intrack.testutil.TypicalInternships.MSFT;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.intrack.model.tag.Tag;
 import seedu.intrack.testutil.InternshipBuilder;
+
+import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 public class InternshipTest {
 
@@ -106,5 +107,46 @@ public class InternshipTest {
         // different tags -> returns false
         editedAlice = new InternshipBuilder(ALICE).withTags(VALID_TAG_URGENT).build();
         assertFalse(ALICE.equals(editedAlice));
+    }
+
+    @Test
+    public void getFurthestTaskDate() {
+        List<Task> taskList = new ArrayList<>();
+        Set<Tag> tagList = new HashSet<>();
+        tagList.add(new Tag("Urgent"));
+        Task first = new Task("HRA", "10-09-2023 11:00");
+        Task second = new Task("HRB", "10-06-2023 11:00");
+        Task third = new Task("HRC", "10-09-2023 12:00");
+        taskList.add(first);
+        taskList.add(second);
+        taskList.add(third);
+        Internship internship = new Internship(new Name(VALID_NAME_AAPL),new Position(VALID_POSITION_AAPL),
+                new Phone(VALID_PHONE_AAPL), new Email(VALID_EMAIL_AAPL),
+                new Status(VALID_STATUS_AAPL), new Address(VALID_ADDRESS_AAPL), taskList,
+                tagList, new Remark(VALID_REMARK_AAPL));
+        LocalDateTime furthestDate = internship.getFurthestTaskDate();
+        LocalDateTime expectedFurthestDate = third.getTaskTime();
+        assertTrue(furthestDate.equals(expectedFurthestDate));
+
+    }
+
+    @Test
+    public void getNearestTaskDate() {
+        List<Task> taskList = new ArrayList<>();
+        Set<Tag> tagList = new HashSet<>();
+        tagList.add(new Tag("Urgent"));
+        Task first = new Task("HRA", "10-09-2023 11:00");
+        Task second = new Task("HRB", "10-06-2023 11:00");
+        Task third = new Task("HRC", "10-09-2023 12:00");
+        taskList.add(first);
+        taskList.add(second);
+        taskList.add(third);
+        Internship internship = new Internship(new Name(VALID_NAME_AAPL),new Position(VALID_POSITION_AAPL),
+                new Phone(VALID_PHONE_AAPL), new Email(VALID_EMAIL_AAPL),
+                new Status(VALID_STATUS_AAPL), new Address(VALID_ADDRESS_AAPL), taskList,
+                tagList, new Remark(VALID_REMARK_AAPL));
+        LocalDateTime nearestDate = internship.getNearestTaskDate();
+        LocalDateTime expectedNearestDate = second.getTaskTime();
+        assertTrue(nearestDate.equals(expectedNearestDate));
     }
 }

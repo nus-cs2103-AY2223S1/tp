@@ -3,6 +3,8 @@ package seedu.intrack.model.internship;
 import static java.util.Objects.requireNonNull;
 import static seedu.intrack.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.Iterator;
 import java.util.List;
 
@@ -99,6 +101,8 @@ public class UniqueInternshipList implements Iterable<Internship> {
         internalList.setAll(internships);
     }
 
+
+
     /**
      * Returns the backing list as an unmodifiable {@code ObservableList}.
      */
@@ -135,5 +139,22 @@ public class UniqueInternshipList implements Iterable<Internship> {
             }
         }
         return true;
+    }
+
+    /**
+     * Sorts all the {@code internships} in the list by their respective tasks
+     * with the nearest date and time in ascending order
+     */
+    public void dateSortAscending() {
+        internalList.sort(Comparator.comparing(o -> o.getNearestTaskDate()));
+    }
+
+    /**
+     * Sorts all the {@code internships} in the list by their respective tasks
+     * with the furthest date and time in descending order
+     */
+    public void dateSortDescending() {
+        internalList.sort(Comparator.comparing(o -> o.getFurthestTaskDate()));
+        Collections.reverse(internalList);
     }
 }

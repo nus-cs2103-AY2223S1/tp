@@ -15,6 +15,7 @@ import java.util.Arrays;
 import org.junit.jupiter.api.Test;
 
 import seedu.intrack.commons.core.GuiSettings;
+import seedu.intrack.model.internship.Internship;
 import seedu.intrack.model.internship.NameContainsKeywordsPredicate;
 import seedu.intrack.model.internship.StatusIsKeywordPredicate;
 import seedu.intrack.testutil.InTrackBuilder;
@@ -88,6 +89,33 @@ public class ModelManagerTest {
         modelManager.addInternship(ALICE);
         assertTrue(modelManager.hasInternship(ALICE));
     }
+
+    @Test
+    public void isInternshipSortedAscending_internshipInInTrack_returnsTrue() {
+        InTrack inTrack = new InTrackBuilder().withInternship(ALICE).withInternship(BENSON).build();
+        UserPrefs userPrefs = new UserPrefs();
+
+        // after sorting, elements are the same buf different order
+        modelManager = new ModelManager(inTrack, userPrefs);
+        ModelManager modelManagerCopy = new ModelManager(inTrack, userPrefs);
+        modelManager.ascendSort();
+        assertTrue(modelManager.equals(modelManagerCopy));
+
+    }
+
+    @Test
+    public void isInternshipSortedDescending_internshipInInTrack_returnsTrue() {
+        InTrack inTrack = new InTrackBuilder().withInternship(ALICE).withInternship(BENSON).build();
+        UserPrefs userPrefs = new UserPrefs();
+
+        // after sorting, elements should not change, but reverse in collections for some reason alters it?
+        modelManager = new ModelManager(inTrack, userPrefs);
+        ModelManager modelManagerCopy = new ModelManager(inTrack, userPrefs);
+        modelManager.descendSort();
+        assertFalse(modelManager.equals(modelManagerCopy));
+
+    }
+
 
     @Test
     public void getFilteredInternshipList_modifyList_throwsUnsupportedOperationException() {

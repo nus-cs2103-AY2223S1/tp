@@ -7,6 +7,8 @@ import static seedu.intrack.logic.commands.CommandTestUtil.VALID_ADDRESS_MSFT;
 import static seedu.intrack.logic.commands.CommandTestUtil.VALID_TAG_URGENT;
 import static seedu.intrack.testutil.Assert.assertThrows;
 import static seedu.intrack.testutil.TypicalInternships.ALICE;
+import static seedu.intrack.testutil.TypicalInternships.BENSON;
+import static seedu.intrack.testutil.TypicalInternships.ELLE;
 import static seedu.intrack.testutil.TypicalInternships.MSFT;
 
 import java.util.Arrays;
@@ -168,5 +170,29 @@ public class UniqueInternshipListTest {
     public void asUnmodifiableObservableList_modifyList_throwsUnsupportedOperationException() {
         assertThrows(UnsupportedOperationException.class, ()
             -> uniqueInternshipList.asUnmodifiableObservableList().remove(0));
+    }
+
+    @Test
+    public void sortInternshipsAscending_list() {
+        //proper order should be A, B ,E in ascending order
+        uniqueInternshipList.add(ALICE);
+        uniqueInternshipList.add(ELLE);
+        uniqueInternshipList.add(BENSON);
+        uniqueInternshipList.dateSortAscending();
+        assertTrue(uniqueInternshipList.contains(ALICE));
+        assertTrue(uniqueInternshipList.contains(BENSON));
+        assertTrue(uniqueInternshipList.contains(ELLE));
+    }
+
+    @Test
+    public void sortInternshipsDescending_list() {
+        //proper order should be A, B ,E in ascending order
+        uniqueInternshipList.add(ALICE);
+        uniqueInternshipList.add(ELLE);
+        uniqueInternshipList.add(BENSON);
+        uniqueInternshipList.dateSortDescending();
+        assertTrue(uniqueInternshipList.contains(ALICE));
+        assertTrue(uniqueInternshipList.contains(BENSON));
+        assertTrue(uniqueInternshipList.contains(ELLE));
     }
 }

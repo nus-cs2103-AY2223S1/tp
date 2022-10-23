@@ -104,4 +104,16 @@ public class TypicalInternships {
     public static List<Internship> getTypicalInternships() {
         return new ArrayList<>(Arrays.asList(ALICE, BENSON, CARL, DANIEL, ELLE, FIONA, GEORGE));
     }
+
+    public static List<Internship> getUnsortedInternships() {
+        return new ArrayList<>(Arrays.asList(ALICE, ELLE, BENSON));
+    }
+
+    public static List<Internship> getSortedAscendingInternships() {
+        return new ArrayList<>(Arrays.asList(ALICE, BENSON, ELLE));
+    }
+
+    public static List<Internship> getSortedDescendingInternships() {
+        return new ArrayList<>(Arrays.asList(ELLE, BENSON, ALICE));
+    }
 }

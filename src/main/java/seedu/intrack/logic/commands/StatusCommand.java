@@ -51,6 +51,7 @@ public class StatusCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         List<Internship> lastShownList = model.getFilteredInternshipList();
 
+        System.out.println(lastShownList.size());
         if (index.getZeroBased() >= lastShownList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_INTERNSHIP_DISPLAYED_INDEX);
         }

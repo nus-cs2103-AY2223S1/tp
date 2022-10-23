@@ -2,6 +2,7 @@ package seedu.intrack.model.internship;
 
 import static seedu.intrack.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashSet;
@@ -30,6 +31,7 @@ public class Internship {
 
     private final List<Task> tasks = new ArrayList<>();
     private final Set<Tag> tags = new HashSet<>();
+    private final List<LocalDateTime> tasksDates = new ArrayList<>();
 
     /**
      * Every field must be present and not null.
@@ -48,6 +50,11 @@ public class Internship {
         this.tasks.addAll(tasks);
         this.tags.addAll(tags);
         this.remark = remark;
+        for (int i = 0; i < tasks.size(); i++) {
+            Task task = tasks.get(i);
+            LocalDateTime x = task.getTaskTime();
+            tasksDates.add(x);
+        }
     }
 
     public Name getName() {
@@ -106,6 +113,27 @@ public class Internship {
         return otherInternship != null
                 && otherInternship.getName().equals(getName())
                 && otherInternship.getPosition().equals(getPosition());
+    }
+
+    /**
+     * Returns the date and time of the task with the nearest date and time
+     * @return LocalDateTime of the nearest date and time
+     */
+    public LocalDateTime getNearestTaskDate() {
+        Collections.sort(tasksDates);
+        LocalDateTime nearestDate = tasksDates.get(0);
+        return nearestDate;
+    }
+
+    /**
+     * Returns the date and time of the task with the furthest date and time
+     * @return LocalDateTime of the furthest date and time
+     */
+    public LocalDateTime getFurthestTaskDate() {
+        int maxIndex = tasks.size() - 1;
+        Collections.sort(tasksDates);
+        LocalDateTime furthestDate = tasksDates.get(maxIndex);
+        return furthestDate;
     }
 
     /**

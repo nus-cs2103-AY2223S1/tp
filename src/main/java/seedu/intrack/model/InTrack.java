@@ -94,6 +94,18 @@ public class InTrack implements ReadOnlyInTrack {
         internships.remove(key);
     }
 
+    /**
+     * Sorts the entire list of internships in ascending order based on their respective tasks
+     * with the nearest date and time
+     */
+    public void sortAscending() {internships.dateSortAscending();}
+
+    /**
+     * Sorts the entire list of internships in descending order based on their respective tasks
+     * with the furthest date and time
+     */
+    public void sortDescending() {internships.dateSortDescending();}
+
     //// util methods
 
     @Override

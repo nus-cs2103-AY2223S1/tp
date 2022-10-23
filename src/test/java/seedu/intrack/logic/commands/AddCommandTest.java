@@ -153,6 +153,16 @@ public class AddCommandTest {
         public int getFilteredStatusInternshipListSize(Predicate<Internship> predicate) {
             throw new AssertionError("This method should not be called.");
         }
+
+        @Override
+        public void ascendSort() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void descendSort() {
+            throw new AssertionError("This method should not be called.");
+        }
     }
 
     /**

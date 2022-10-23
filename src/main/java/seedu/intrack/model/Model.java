@@ -93,4 +93,17 @@ public interface Model {
      * @throws NullPointerException if {@code predicate} is null.
      */
     int getFilteredStatusInternshipListSize(Predicate<Internship> predicate);
+
+    /**
+     * Sorts all internships in ascending order based on their respective tasks
+     * with the nearest date and time
+     */
+    void ascendSort();
+
+    /**
+     * Sorts all internships in descending order based on their respective tasks
+     * with the furthest date and time
+     */
+    void descendSort();
+
 }
