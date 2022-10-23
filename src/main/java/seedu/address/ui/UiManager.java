@@ -44,6 +44,8 @@ public class UiManager implements Ui {
             mainWindow.show(); //This should be called before creating other UI parts
             mainWindow.fillInnerParts();
 
+            // Show help window at the start of the application
+            showHelpWindow();
         } catch (Throwable e) {
             logger.severe(StringUtil.getDetails(e));
             showFatalErrorDialogAndShutdown("Fatal error during initializing", e);
@@ -85,4 +87,13 @@ public class UiManager implements Ui {
         System.exit(1);
     }
 
+    private void showHelpWindow() {
+        if (MainApp.isNewDataFileCreated()) {
+            HelpWindow helpWindow = new HelpWindow();
+            helpWindow.show();
+        } else {
+            HelpWindow helpWindow = new HelpWindow();
+            helpWindow.show();
+        }
+    }
 }

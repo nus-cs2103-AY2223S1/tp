@@ -43,28 +43,29 @@ import seedu.address.model.tag.Tag;
 public class EditCommand extends Command {
 
     public static final String COMMAND_WORD = "edit";
-
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the friend identified "
-            + "by the index number used in the displayed friend list. "
-            + "Existing values will be overwritten by the input values.\n\n"
-            + "Parameters: \nINDEX (must be a positive integer) "
+    public static final String DESCRIPTION = "Edits the details of the person identified "
+            + "by the index number used in the displayed person list. "
+            + "Existing values will be overwritten by the input values.";
+    public static final String PARAMETER = "INDEX (must be a positive integer) "
             + "[" + PREFIX_NAME + "NAME] "
-            + "[" + PREFIX_MINECRAFT_NAME + "MINECRAFT NAME] "
             + "[" + PREFIX_PHONE + "PHONE] "
             + "[" + PREFIX_EMAIL + "EMAIL] "
-            + "[" + PREFIX_COUNTRY + "COUNTRY] "
             + "[" + PREFIX_ADDRESS + "ADDRESS] "
-            + "[" + PREFIX_SOCIAL + "SOCIAL_PLATFORM@HANDLE] "
-            + "[" + PREFIX_TAG + "TAG] "
-            + "[" + PREFIX_MINECRAFT_SERVER + "SERVERS] "
-            + "[" + PREFIX_COUNTRY + "COUNTRY]"
-            + "[" + PREFIX_GAME_TYPE + "GAME TYPE]\n"
-            + "Example: " + COMMAND_WORD + " 1 "
-            + PREFIX_PHONE + " 91234567 "
-            + PREFIX_MINECRAFT_NAME + "newMinecraftName "
-            + PREFIX_ADDRESS + " 38 Oxley Road "
+            + "[" + PREFIX_COUNTRY + "COUNTRY] "
+            + "[" + PREFIX_MINECRAFT_NAME + "MINECRAFT_NAME] "
+            + "[" + PREFIX_MINECRAFT_SERVER + "MINECRAFT_SERVER] "
+            + "[" + PREFIX_GAME_TYPE + "GAME_TYPE] "
+            + "[" + PREFIX_SOCIAL + "SOCIAL] "
+            + "[" + PREFIX_TAG + "TAG]...";
+    public static final String EXAMPLE = COMMAND_WORD + " 1 "
+            + PREFIX_PHONE + "91234567 "
             + PREFIX_EMAIL + " johndoe@example.com "
             + PREFIX_SOCIAL + " fb@John Doe ";
+
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": " + DESCRIPTION + "\n\n"
+            + "Parameters: \n"
+            + PARAMETER + "\n"
+            + "Example: " + EXAMPLE;
 
     public static final String MESSAGE_EDIT_PERSON_SUCCESS = "Edited friend: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
@@ -72,6 +73,11 @@ public class EditCommand extends Command {
 
     private final Index index;
     private final EditPersonDescriptor editPersonDescriptor;
+
+    public EditCommand() {
+        this.index = null;
+        this.editPersonDescriptor = null;
+    }
 
     /**
      * @param index of the person in the filtered person list to edit
@@ -104,6 +110,21 @@ public class EditCommand extends Command {
         model.setPerson(personToEdit, editedPerson);
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
         return new CommandResult(String.format(MESSAGE_EDIT_PERSON_SUCCESS, editedPerson));
+    }
+
+    @Override
+    public String getDescription() {
+        return DESCRIPTION;
+    }
+
+    @Override
+    public String getParameter() {
+        return PARAMETER;
+    }
+
+    @Override
+    public String getExample() {
+        return EXAMPLE;
     }
 
     /**

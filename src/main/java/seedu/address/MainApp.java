@@ -39,6 +39,8 @@ public class MainApp extends Application {
 
     private static final Logger logger = LogsCenter.getLogger(MainApp.class);
 
+    private static boolean isNewDataFileCreated = false;
+
     protected Ui ui;
     protected Logic logic;
     protected Storage storage;
@@ -79,14 +81,17 @@ public class MainApp extends Application {
             addressBookOptional = storage.readAddressBook();
             if (!addressBookOptional.isPresent()) {
                 logger.info("Data file not found. Will be starting with an empty AddressBook");
+                isNewDataFileCreated = true;
             }
             initialData = addressBookOptional.orElseGet(AddressBook::new);
         } catch (DataConversionException e) {
             logger.warning("Data file not in the correct format. Will be starting with an empty AddressBook");
             initialData = new AddressBook();
+            isNewDataFileCreated = true;
         } catch (IOException e) {
             logger.warning("Problem while reading from the file. Will be starting with an empty AddressBook");
             initialData = new AddressBook();
+            isNewDataFileCreated = true;
         }
 
         return new ModelManager(initialData, userPrefs);
@@ -178,5 +183,9 @@ public class MainApp extends Application {
         } catch (IOException e) {
             logger.severe("Failed to save preferences " + StringUtil.getDetails(e));
         }
+    }
+
+    public static boolean isNewDataFileCreated() {
+        return isNewDataFileCreated;
     }
 }
