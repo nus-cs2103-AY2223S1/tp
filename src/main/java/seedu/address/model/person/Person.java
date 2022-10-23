@@ -4,6 +4,7 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.time.LocalDate;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Objects;
@@ -120,6 +121,18 @@ public class Person {
     }
 
     /**
+     * Returns a string representation of the medications.
+     */
+    public String getMedicationString() {
+        StringBuilder sb = new StringBuilder("Medication: ");
+        getMedications().stream().sorted(Comparator.comparing(medication -> medication.medicationName))
+                .forEach(medication -> sb.append(medication.medicationName).append(", "));
+        // remove trailing comma
+        sb.delete(sb.length() - 2, sb.length());
+        return sb.toString();
+    }
+
+    /**
      * Returns list of {@code PastAppointment}s tagged to this patient.
      * @return the list of {@code PastAppointment}s
      */
@@ -215,7 +228,7 @@ public class Person {
         Set<Medication> tags = getMedications();
         if (!tags.isEmpty()) {
             builder.append("; Medications: ");
-            tags.forEach(builder::append);
+            tags.forEach(tag -> builder.append(tag.medicationName).append(", "));
         }
         builder.append("; Past Appointments: ").append(getPastAppointmentCount());
         builder.append(" Upcoming Appointment: ").append(getUpcomingAppointment());

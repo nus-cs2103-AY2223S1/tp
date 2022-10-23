@@ -11,6 +11,7 @@ public class Medication {
 
     public static final String MESSAGE_CONSTRAINTS = "Medication names should be alphanumeric and spaces only";
     public static final String VALIDATION_REGEX = "[A-Za-z0-9\\s]+";
+    private static int medicationCount = 0;
 
     public final String medicationName;
 
@@ -23,6 +24,7 @@ public class Medication {
         requireNonNull(medicationName);
         checkArgument(isValidMedicationName(medicationName), MESSAGE_CONSTRAINTS);
         this.medicationName = medicationName;
+        Medication.medicationCount++;
     }
 
     /**
@@ -30,6 +32,13 @@ public class Medication {
      */
     public static boolean isValidMedicationName(String test) {
         return test.matches(VALIDATION_REGEX);
+    }
+    /**
+     * Returns the number of medications in the database.
+     * @return the number of medications in the database.
+     */
+    public static int getMedicationCount() {
+        return medicationCount;
     }
 
     @Override

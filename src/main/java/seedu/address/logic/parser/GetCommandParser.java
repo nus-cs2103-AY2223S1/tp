@@ -65,7 +65,6 @@ public class GetCommandParser implements Parser<GetCommand> {
             case GetNextOfKinCommand.NEXT_OF_KIN_PREFIX:
                 return new GetNextOfKinCommandParser().parse(arguments);
 
-
             case GetPastAppointmentCommand.PAST_APPOINTMENT_PREFIX:
                 return new GetPastAppointmentCommandParser().parse(arguments);
 

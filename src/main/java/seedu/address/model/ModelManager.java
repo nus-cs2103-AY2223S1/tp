@@ -147,6 +147,7 @@ public class ModelManager implements Model {
                 && filteredPersons.equals(other.filteredPersons);
     }
 
+    @Override
     public int getPersonCount() {
         return addressBook.getPersonList().size();
     }

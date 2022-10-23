@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
+import seedu.address.model.tag.Medication;
 
 /**
  * Returns count of all patients in the hospital.
@@ -15,11 +16,15 @@ public class CountCommand extends Command {
             + "Parameters: NONE\n"
             + "Example: count";
     public static final String MESSAGE_COUNT = "Current patient count: %d";
+    public static final String MEDICATION_COUNT = "Current medication count: %d";
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        return new CommandResult(String.format(MESSAGE_COUNT, model.getPersonCount()));
+        StringBuilder sb = new StringBuilder();
+        sb.append(String.format(MESSAGE_COUNT, model.getPersonCount()));
+        sb.append("\n").append(String.format(MEDICATION_COUNT, Medication.getMedicationCount()));
+        return new CommandResult(sb.toString());
     }
 
     @Override
