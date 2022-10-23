@@ -15,6 +15,7 @@ import nus.climods.model.module.Module;
 import nus.climods.model.module.ReadOnlyModuleList;
 import nus.climods.model.module.UserModule;
 import nus.climods.storage.Storage;
+import nus.climods.storage.exceptions.StorageException;
 
 /**
  * The main LogicManager of the app.
@@ -35,8 +36,13 @@ public class LogicManager implements Logic {
         this.storage = storage;
     }
 
+    private void saveModuleList(boolean isSave) throws StorageException {
+        if (isSave) {
+            storage.saveUserModuleList(model.getUserModuleList());
+        }
+    }
     @Override
-    public CommandResult execute(String commandText) throws CommandException, ParseException {
+    public CommandResult execute(String commandText) throws CommandException, ParseException, StorageException {
         logger.info("[User Command] " + commandText);
         // clear module in focus before each command
         model.clearModuleInFocus();
@@ -44,7 +50,7 @@ public class LogicManager implements Logic {
         CommandResult commandResult;
         Command command = CliModsParser.parseCommand(commandText);
         commandResult = command.execute(model);
-
+        saveModuleList(commandResult.isSave());
         return commandResult;
     }
 

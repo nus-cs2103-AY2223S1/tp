@@ -10,7 +10,8 @@ import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
 import nus.climods.model.module.Module;
 import nus.climods.ui.UiPart;
-import nus.climods.ui.common.Pill;
+import nus.climods.ui.module.components.ModuleCreditsPill;
+import nus.climods.ui.module.components.SemesterPill;
 
 /**
  * A UI component that displays information of a {@code Module}.
@@ -66,8 +67,8 @@ public class ModuleCard extends UiPart<Region> {
         title.setText(module.getTitle());
         department.setText(module.getDepartment());
         moduleInfo.getChildren()
-            .addAll(module.getSemesters().stream().map(this::createSemesterPill).collect(Collectors.toList()));
-        moduleInfo.getChildren().add(createModuleCreditsPill(module.getModuleCredit()));
+                .addAll(module.getSemesters().stream().map(SemesterPill::new).collect(Collectors.toList()));
+        moduleInfo.getChildren().add(new ModuleCreditsPill(module.getModuleCredit()));
 
         moduleDescription.setText(module.getDescription().replace("\n", " "));
 
@@ -92,28 +93,6 @@ public class ModuleCard extends UiPart<Region> {
         preclusion.setText(module.getPreclusion());
     }
 
-    private Pill createSemesterPill(int semesterNum) {
-        String semesterText;
-        switch (semesterNum) {
-        case 3:
-            semesterText = "Special Term I";
-            break;
-        case 4:
-            semesterText = "Special Term II";
-            break;
-        default:
-            semesterText = String.format("Semester %s", semesterNum);
-        }
-
-        return new Pill(semesterText, SEMESTER_BG_COLOR, SEMESTER_TEXT_COLOR,
-            SEMESTER_FONT_SIZE);
-    }
-
-    private Pill createModuleCreditsPill(String moduleCredits) {
-        return new Pill(String.format("%s MCs", moduleCredits), MODULE_CREDITS_BG_COLOR, MODULE_CREDITS_TEXT_COLOR,
-            MODULE_CREDITS_FONT_SIZE);
-    }
-
     @Override
     public boolean equals(Object other) {
         // short circuit if same object
@@ -127,8 +106,7 @@ public class ModuleCard extends UiPart<Region> {
         }
 
         // state check
-        ModuleCard card = (ModuleCard) other;
-        return moduleCode.getText().equals(card.moduleCode.getText())
-            && module.equals(card.module);
+        ModuleCard otherCard = (ModuleCard) other;
+        return module.equals(otherCard.module);
     }
 }

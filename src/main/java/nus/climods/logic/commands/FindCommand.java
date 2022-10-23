@@ -39,7 +39,8 @@ public class FindCommand extends Command {
             new ModuleBestMatchKeywordComparator(searchRegexes));
 
         return new CommandResult(
-            String.format(Messages.MESSAGE_MODULES_LISTED_OVERVIEW, model.getFilteredModuleList().size()));
+            String.format(Messages.MESSAGE_MODULES_LISTED_OVERVIEW, model.getFilteredModuleList().size()),
+                COMMAND_WORD, model);
     }
 
     @Override

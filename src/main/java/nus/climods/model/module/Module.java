@@ -12,6 +12,7 @@ import java.util.stream.Collectors;
 import org.openapitools.client.ApiException;
 import org.openapitools.client.api.ModulesApi;
 import org.openapitools.client.model.ModuleInformationSemesterDataInner;
+import org.openapitools.client.model.SemestersEnum;
 
 /**
  * A wrapper class for <code>ModuleInformation</code>
@@ -99,13 +100,13 @@ public class Module {
     /**
      * Returns the semesters that this module is offered.
      *
-     * @return list of integers representing semesters
+     * @return list of semesters
      */
-    public List<Integer> getSemesters() {
+    public List<SemestersEnum> getSemesters() {
         List<ModuleInformationSemesterDataInner> apiSemesterData = apiModuleInfo.getSemesterData();
 
         return apiSemesterData.stream().map(ModuleInformationSemesterDataInner::getSemester).filter(Objects::nonNull)
-            .map(BigDecimal::intValue).collect(Collectors.toList());
+            .map(SemestersEnum::fromValue).collect(Collectors.toList());
     }
 
     /**

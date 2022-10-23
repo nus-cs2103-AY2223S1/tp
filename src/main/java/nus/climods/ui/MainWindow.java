@@ -21,6 +21,7 @@ import nus.climods.logic.Logic;
 import nus.climods.logic.commands.CommandResult;
 import nus.climods.logic.commands.exceptions.CommandException;
 import nus.climods.logic.parser.exceptions.ParseException;
+import nus.climods.storage.exceptions.StorageException;
 import nus.climods.ui.common.CommandBox;
 import nus.climods.ui.common.HelpWindow;
 import nus.climods.ui.common.ResultDisplay;
@@ -197,7 +198,7 @@ public class MainWindow extends UiPart<Stage> {
      *
      * @see Logic#execute(String)
      */
-    private CommandResult executeCommand(String commandText) throws CommandException, ParseException {
+    private CommandResult executeCommand(String commandText) throws CommandException, ParseException, StorageException {
         try {
             CommandResult commandResult = logic.execute(commandText);
             logger.info("Result: " + commandResult.getFeedbackToUser());
@@ -212,7 +213,7 @@ public class MainWindow extends UiPart<Stage> {
             }
 
             return commandResult;
-        } catch (CommandException | ParseException e) {
+        } catch (CommandException | ParseException | StorageException e) {
             logger.info("Invalid command: " + commandText);
             resultDisplay.setFeedbackToUser(e.getMessage());
             throw e;

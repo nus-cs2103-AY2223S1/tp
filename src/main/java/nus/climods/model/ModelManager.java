@@ -9,6 +9,7 @@ import java.util.function.Predicate;
 import java.util.logging.Logger;
 
 import org.openapitools.client.ApiException;
+import org.openapitools.client.model.SemestersEnum;
 
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
@@ -26,6 +27,7 @@ import nus.climods.model.module.predicate.ViewModulePredicate;
  * Represents the in-memory model of module list data.
  */
 public class ModelManager implements Model {
+
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
 
     private final ModuleList moduleList;
@@ -45,7 +47,7 @@ public class ModelManager implements Model {
      * Initializes a ModelManager with the given moduleList and userPrefs.
      */
     public ModelManager(ReadOnlyModuleList moduleList, UniqueUserModuleList userModuleList,
-                        ReadOnlyUserPrefs userPrefs) {
+        ReadOnlyUserPrefs userPrefs) {
         requireAllNonNull(moduleList, userPrefs);
 
         logger.fine("Initializing with module list: " + moduleList + " and user prefs " + userPrefs);
@@ -71,6 +73,25 @@ public class ModelManager implements Model {
     @Override
     public Optional<Module> getListModule(String moduleCode) {
         return getModuleList().getListModule(moduleCode);
+    }
+
+    public boolean isModuleOffered(String moduleCode) {
+        return this.moduleList.hasModule(moduleCode);
+    }
+
+    @Override
+    public boolean isModuleOfferedInSemester(String moduleCode, SemestersEnum semester) {
+        Optional<Module> module = getModule(moduleCode);
+        if (module.isEmpty()) {
+            return false;
+        }
+
+        return module.get().getSemesters().stream().anyMatch(semesterOffered -> semesterOffered.equals(semester));
+    }
+
+    @Override
+    public Optional<Module> getModule(String moduleCode) {
+        return this.moduleList.getModule(moduleCode);
     }
 
     @Override
@@ -113,20 +134,25 @@ public class ModelManager implements Model {
     //=========== UserModule ==================================================================================
 
     @Override
-    public void addUserModule(UserModule module) {
-        userModuleList.add(module);
-    }
-
-    @Override
-    public void deleteUserModule(UserModule target) {
-        requireNonNull(target);
-        userModuleList.remove(target);
+    public UniqueUserModuleList getUserModuleList() {
+        return userModuleList;
     }
 
     @Override
     public boolean hasUserModule(UserModule module) {
         requireNonNull(module);
         return userModuleList.contains(module);
+    }
+
+    @Override
+    public void addUserModule(UserModule module) {
+        userModuleList.add(module);
+    }
+
+    @Override
+    public void deleteUserModule(String moduleCode) {
+        requireNonNull(moduleCode);
+        userModuleList.remove(moduleCode);
     }
 
     @Override

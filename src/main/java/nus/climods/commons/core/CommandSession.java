@@ -8,6 +8,7 @@ import nus.climods.logic.Logic;
 import nus.climods.logic.commands.CommandResult;
 import nus.climods.logic.commands.exceptions.CommandException;
 import nus.climods.logic.parser.exceptions.ParseException;
+import nus.climods.storage.exceptions.StorageException;
 
 /**
  * Keeps the state of commands in application
@@ -81,7 +82,7 @@ public class CommandSession {
      *
      * @param commandText command string
      */
-    public CommandResult execute(String commandText) throws CommandException, ParseException {
+    public CommandResult execute(String commandText) throws CommandException, ParseException, StorageException {
         addCommand(commandText);
         return commandExecutor.execute(commandText);
     }
@@ -97,6 +98,6 @@ public class CommandSession {
          *
          * @see Logic#execute(String)
          */
-        CommandResult execute(String commandText) throws CommandException, ParseException;
+        CommandResult execute(String commandText) throws CommandException, ParseException, StorageException;
     }
 }

@@ -18,7 +18,6 @@ import nus.climods.model.module.Module;
 import nus.climods.model.module.ModuleList;
 import nus.climods.model.module.UniqueUserModuleList;
 
-
 class FindCommandTest {
 
     private static final String testAcademicYear = "2022-2023";
