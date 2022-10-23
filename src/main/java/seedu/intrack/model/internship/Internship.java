@@ -23,14 +23,13 @@ public class Internship {
     private final Position position;
     private final Phone phone;
     private final Email email;
-    private final Status status;
-    private final Remark remark;
 
     // Data fields
+    private final Status status;
     private final Address address;
-
     private final List<Task> tasks = new ArrayList<>();
     private final Set<Tag> tags = new HashSet<>();
+    private final Remark remark;
     private final List<LocalDateTime> tasksDates = new ArrayList<>();
 
     /**
