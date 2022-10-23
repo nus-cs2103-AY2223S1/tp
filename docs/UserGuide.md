@@ -80,11 +80,11 @@ Format: `help`
 Adds a task to the task manager.
 
 Format:
-`add {task_name} by/{deadline} mod/{module_code}`
+`add {task_name} by/{deadline} m/{module_code}`
 
 Examples:
-* `add finish problem set 5 by/2022-01-02 15:04 mod/CS2040S`
-* `add finish SEP application by/2022-12-25 23:59 mod/SEP`
+* `add finish problem set 5 by/2022-01-02 15:04 m/CS2040S`
+* `add finish SEP application by/2022-12-25 23:59 m/SEP`
 
 #### Deleting a task: `del`
 
@@ -142,11 +142,11 @@ Format: `list` /  `list time`
 
 Adds a contact to the contact list.
 
-Format: `addc {name} /email {email} /hp {phone_number} /mods {module1} {module2}...`
+Format: `addc n/ {name} p/ {phone_number} e/ {email} m/ {module1} m/ {module2}...`
 
 Examples:
-* `addc Bob Martin /email bobbymartini@gmail.com /hp 98765432 /mods CS1101S CS1231S`
-* `addc Betsy Crowe /email betsycrowe@gmail.com /hp 89985432`
+* `addc n/ Bob Martin p/ 98765432 e/ bobbymartini@gmail.com m/ CS1101S m/ CS1231S`
+* `addc n/ Betsy Crowe p/ 89985432 e/ betsycrowe@gmail.com`
 
 #### Listing all contact : `listc`
 
