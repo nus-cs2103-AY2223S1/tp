@@ -41,19 +41,22 @@ public class ContactAddCommandParser implements Parser<ContactAddCommand> {
 
         if (!arePrefixesPresent(
                 argMultimap,
-                CliSyntax.PREFIX_NAME,
-                CliSyntax.PREFIX_ADDRESS,
-                CliSyntax.PREFIX_PHONE,
-                CliSyntax.PREFIX_EMAIL)
+                CliSyntax.PREFIX_NAME)
                 || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(
                     Messages.MESSAGE_INVALID_COMMAND_FORMAT, ContactAddCommand.MESSAGE_USAGE));
         }
 
         Name name = ParserUtil.parseName(argMultimap.getValue(CliSyntax.PREFIX_NAME).get());
-        Phone phone = ParserUtil.parsePhone(argMultimap.getValue(CliSyntax.PREFIX_PHONE).get());
-        Email email = ParserUtil.parseEmail(argMultimap.getValue(CliSyntax.PREFIX_EMAIL).get());
-        Address address = ParserUtil.parseAddress(argMultimap.getValue(CliSyntax.PREFIX_ADDRESS).get());
+        Phone phone = ParserUtil.parsePhone(argMultimap.getValue(CliSyntax.PREFIX_PHONE).isPresent()
+                ? argMultimap.getValue(CliSyntax.PREFIX_PHONE).get()
+                : Phone.NO_PHONE_PROVIDED);
+        Email email = ParserUtil.parseEmail(argMultimap.getValue(CliSyntax.PREFIX_EMAIL).isPresent()
+                ? argMultimap.getValue(CliSyntax.PREFIX_EMAIL).get()
+                : Email.NO_EMAIL_PROVIDED);
+        Address address = ParserUtil.parseAddress(argMultimap.getValue(CliSyntax.PREFIX_ADDRESS).isPresent()
+                ? argMultimap.getValue(CliSyntax.PREFIX_ADDRESS).get()
+                : Address.NO_ADDRESS_PROVIDED);
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(CliSyntax.PREFIX_TAG));
 
         Person person = new Person(name, phone, email, address, tagList);
