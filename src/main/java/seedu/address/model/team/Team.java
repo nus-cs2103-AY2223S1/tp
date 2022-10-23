@@ -27,28 +27,43 @@ public class Team {
      * Constructs a {@code Team}.
      *
      * @param teamName A valid team name.
-     * @param teamMembers A list of persons to be added as members.
      */
-    public Team(String teamName, List<Person> teamMembers) {
+    public Team(String teamName) {
         requireNonNull(teamName);
         checkArgument(isValidTeamName(teamName), MESSAGE_CONSTRAINTS);
         this.teamName = teamName;
+    }
+
+    /**
+     * Constructs a {@code Team}.
+     *
+     * @param teamName    A valid team name.
+     * @param teamMembers A list of persons to be added as members.
+     */
+    public Team(String teamName, List<Person> teamMembers) {
+        this(teamName);
         this.teamMembers.setPersons(teamMembers);
     }
 
     /**
      * Constructs a {@code Team}
-     * @param teamName A valid team name
+     *
+     * @param teamName    A valid team name
      * @param teamMembers A list of persons to be added as members
-     * @param tasks A list of tasks for the team to do
+     * @param tasks       A list of tasks for the team to do
      */
     public Team(String teamName, List<Person> teamMembers, List<Task> tasks) {
-        requireNonNull(teamName);
-        checkArgument(isValidTeamName(teamName), MESSAGE_CONSTRAINTS);
-        this.teamName = teamName;
-        this.teamMembers.setPersons(teamMembers);
+        this(teamName, teamMembers);
         this.taskList.setTasks(tasks);
     }
+
+    /**
+     * Returns true if a given string is a valid tag name.
+     */
+    public static boolean isValidTeamName(String test) {
+        return test.matches(VALIDATION_REGEX);
+    }
+
     public String getTeamName() {
         return teamName;
     }
@@ -106,18 +121,12 @@ public class Team {
 
     /**
      * Sets a specified team member as the assignee for the task.
-     * @param task The specified task to be assigned
+     *
+     * @param task   The specified task to be assigned
      * @param person The specified member that task is assigned to
      */
     public void assignTask(Task task, Person person) {
         task.assignTo(person);
-    }
-
-    /**
-     * Returns true if a given string is a valid tag name.
-     */
-    public static boolean isValidTeamName(String test) {
-        return test.matches(VALIDATION_REGEX);
     }
 
     /**
@@ -153,6 +162,7 @@ public class Team {
 
     /**
      * Returns a string representation of the task list.
+     *
      * @return string representation of task list.
      */
     public String getTasksAsString() {
