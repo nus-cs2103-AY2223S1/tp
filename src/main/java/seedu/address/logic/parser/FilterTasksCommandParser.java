@@ -13,8 +13,6 @@ import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.module.Module;
 import seedu.address.model.module.ModuleCode;
 import seedu.address.model.task.FilterPredicate;
-import seedu.address.model.task.LinkStatus;
-import seedu.address.model.task.TaskStatus;
 
 /**
  * Parses input arguments and creates a new FilterTasksCommand object
@@ -27,8 +25,8 @@ public class FilterTasksCommandParser implements Parser<FilterTasksCommand> {
      */
     public FilterTasksCommand parse(String args) throws ParseException {
         Optional<Module> module = Optional.empty();
-        Optional<TaskStatus> taskStatus = Optional.empty();
-        Optional<LinkStatus> linkStatus = Optional.empty();
+        Optional<Boolean> isComplete = Optional.empty();
+        Optional<Boolean> isLinked = Optional.empty();
 
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_MODULE, PREFIX_IS_COMPLETE, PREFIX_IS_LINKED);
@@ -44,14 +42,14 @@ public class FilterTasksCommandParser implements Parser<FilterTasksCommand> {
         }
 
         if (hasPrefix(argMultimap, PREFIX_IS_COMPLETE)) {
-            taskStatus = Optional.of(ParserUtil.parseIsComplete(argMultimap.getValue(PREFIX_IS_COMPLETE).get()));
+            isComplete = Optional.of(ParserUtil.parseYesNoResponse(argMultimap.getValue(PREFIX_IS_COMPLETE).get()));
         }
 
         if (hasPrefix(argMultimap, PREFIX_IS_LINKED)) {
-            linkStatus = Optional.of(ParserUtil.parseIsLinked(argMultimap.getValue(PREFIX_IS_LINKED).get()));
+            isLinked = Optional.of(ParserUtil.parseYesNoResponse(argMultimap.getValue(PREFIX_IS_LINKED).get()));
         }
 
-        return new FilterTasksCommand(new FilterPredicate(module, taskStatus, linkStatus));
+        return new FilterTasksCommand(new FilterPredicate(module, isComplete, isLinked));
     }
 
     /**

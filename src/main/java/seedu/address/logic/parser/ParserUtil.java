@@ -24,7 +24,6 @@ import seedu.address.model.person.Phone;
 import seedu.address.model.tag.DeadlineTag;
 import seedu.address.model.tag.PriorityTag;
 import seedu.address.model.tag.Tag;
-import seedu.address.model.task.LinkStatus;
 import seedu.address.model.task.TaskDescription;
 import seedu.address.model.task.TaskStatus;
 
@@ -34,6 +33,7 @@ import seedu.address.model.task.TaskStatus;
 public class ParserUtil {
 
     public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero unsigned integer.";
+    private static final String RESPONSE_CONSTRAINTS = "Response for criteria should be indicated as y or n";
 
     public static boolean isValidYesNoResponse(String response) {
         return response.equals("y") || response.equals("n");
@@ -245,33 +245,22 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String response} into a {@code TaskStatus}.
+     * Parses a {@code String response} into a boolean.
      * Leading and trailing whitespaces will be trimmed.
      *
-     * @throws ParseException if the given {@code response} is invalid.
+     * @throws ParseException if the given {@code status} is invalid.
      */
-    public static TaskStatus parseIsComplete(String response) throws ParseException {
+    public static boolean parseYesNoResponse(String response) throws ParseException {
         requireNonNull(response);
         String lowerCaseTrimmedResponse = response.trim().toLowerCase();
         if (!isValidYesNoResponse(lowerCaseTrimmedResponse)) {
-            throw new ParseException(TaskStatus.RESPONSE_CONSTRAINTS);
+            throw new ParseException(RESPONSE_CONSTRAINTS);
         }
-        return TaskStatus.getStatusFromResponse(lowerCaseTrimmedResponse);
-    }
-
-    /**
-     * Parses a {@code String response} into a {@code LinkStatus}.
-     * Leading and trailing whitespaces will be trimmed.
-     *
-     * @throws ParseException if the given {@code response} is invalid.
-     */
-    public static LinkStatus parseIsLinked(String response) throws ParseException {
-        requireNonNull(response);
-        String lowerCaseTrimmedResponse = response.trim().toLowerCase();
-        if (!isValidYesNoResponse(lowerCaseTrimmedResponse)) {
-            throw new ParseException(LinkStatus.RESPONSE_CONSTRAINTS);
+        if (lowerCaseTrimmedResponse.equals("y")) {
+            return true;
+        } else {
+            return false;
         }
-        return LinkStatus.getLinkStatusFromResponse(lowerCaseTrimmedResponse);
     }
 
     /**

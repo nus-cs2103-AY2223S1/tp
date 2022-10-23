@@ -10,19 +10,19 @@ import seedu.address.model.module.Module;
  */
 public class FilterPredicate implements Predicate<Task> {
     private final Optional<Module> moduleToCheck;
-    private final Optional<TaskStatus> completionStatusToCheck;
-    private final Optional<LinkStatus> linkStatusToCheck;
+    private final Optional<Boolean> isComplete;
+    private final Optional<Boolean> isLinked;
 
     /**
      * Tests that a {@code Task} matches all the module and status constraints given.
      * @param module check if task has same module code.
-     * @param completionStatus check if task has same status.
+     * @param isComplete check if task has same completion status.
+     * @param isLinked check if task has same link status.
      */
-    public FilterPredicate(Optional<Module> module, Optional<TaskStatus> completionStatus,
-                           Optional<LinkStatus> linkStatusToCheck) {
+    public FilterPredicate(Optional<Module> module, Optional<Boolean> isComplete, Optional<Boolean> isLinked) {
         this.moduleToCheck = module;
-        this.completionStatusToCheck = completionStatus;
-        this.linkStatusToCheck = linkStatusToCheck;
+        this.isComplete = isComplete;
+        this.isLinked = isLinked;
     }
 
     public Module getModuleToCheck() {
@@ -33,17 +33,33 @@ public class FilterPredicate implements Predicate<Task> {
         return moduleToCheck.isPresent();
     }
 
+    public String getCompleteCondition() {
+        if (isComplete.get()) {
+            return "Complete";
+        } else {
+            return "Incomplete";
+        }
+    }
+
+    public String getLinkCondition() {
+        if (isLinked.get()) {
+            return "Linked";
+        } else {
+            return "Unlinked";
+        }
+    }
+
     @Override
     public boolean test(Task task) {
         boolean result = true;
         if (moduleToCheck.isPresent()) {
             result &= task.getModule().equals(moduleToCheck.get());
         }
-        if (completionStatusToCheck.isPresent()) {
-            result &= task.getStatus().equals(completionStatusToCheck.get());
+        if (isComplete.isPresent()) {
+            result &= task.getStatus().isComplete() == isComplete.get();
         }
-        if (linkStatusToCheck.isPresent()) {
-            result &= task.isLinked() == linkStatusToCheck.get().isLinked();
+        if (isLinked.isPresent()) {
+            result &= task.isLinked() == isLinked.get();
         }
         return result;
     }
@@ -53,8 +69,8 @@ public class FilterPredicate implements Predicate<Task> {
         return other == this // short circuit if same object
                 || (other instanceof FilterPredicate // instanceof handles nulls
                 && moduleToCheck.equals(((FilterPredicate) other).moduleToCheck)
-                && completionStatusToCheck.equals(((FilterPredicate) other).completionStatusToCheck)
-                && linkStatusToCheck.equals(((FilterPredicate) other).linkStatusToCheck)); // state check
+                && isComplete.equals(((FilterPredicate) other).isComplete)
+                && isLinked.equals(((FilterPredicate) other).isLinked)); // state check
     }
 
     @Override
@@ -63,11 +79,11 @@ public class FilterPredicate implements Predicate<Task> {
         if (moduleToCheck.isPresent()) {
             result += " Module: " + moduleToCheck.get();
         }
-        if (completionStatusToCheck.isPresent()) {
-            result += " " + completionStatusToCheck.get();
+        if (isComplete.isPresent()) {
+            result += " " + getCompleteCondition();
         }
-        if (linkStatusToCheck.isPresent()) {
-            result += " " + linkStatusToCheck.get();
+        if (isLinked.isPresent()) {
+            result += " " + getLinkCondition();
         }
         return result;
     }

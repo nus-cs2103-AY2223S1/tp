@@ -8,7 +8,6 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  */
 public class TaskStatus {
 
-    public static final String RESPONSE_CONSTRAINTS = "Complete criteria should be indicated as y or n";
     private static final String COMPLETE_STRING = "complete";
     private static final String INCOMPLETE_STRING = "incomplete";
 
@@ -59,20 +58,6 @@ public class TaskStatus {
      */
     public boolean isComplete() {
         return status.equals(COMPLETE_STRING);
-    }
-
-    /**
-     * Returns a {@code TaskStatus} object based on user response.
-     *
-     * @param response string of "y" or "n".
-     * @return A valid status.
-     */
-    public static TaskStatus getStatusFromResponse(String response) {
-        if (response.equals("y")) {
-            return COMPLETE;
-        } else {
-            return INCOMPLETE;
-        }
     }
 
     @Override
