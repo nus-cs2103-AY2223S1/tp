@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
+import seedu.address.model.datetime.Datetime;
 import seedu.address.model.datetime.DatetimeRange;
 
 import static seedu.address.logic.parser.DatetimeParserUtil.toDatetimeRange;
@@ -11,7 +12,7 @@ import static seedu.address.logic.parser.DatetimeParserUtil.toDatetimeRange;
 /**
  * Jackson-friendly version of {@link DatetimeRange}.
  */
-class JsonAdaptedDatetimeRange {
+public class JsonAdaptedDatetimeRange {
 
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "Person's %s field is missing!";
 
@@ -46,6 +47,6 @@ class JsonAdaptedDatetimeRange {
             throw new IllegalValueException(
                     String.format(MISSING_FIELD_MESSAGE_FORMAT, DatetimeRange.class.getSimpleName()));
         }
-        return toDatetimeRange("", startDatetime, endDatetime);
+        return toDatetimeRange(startDatetime, endDatetime);
     }
 }

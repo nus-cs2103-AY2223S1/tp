@@ -11,7 +11,7 @@ import static seedu.address.logic.parser.DatetimeParserUtil.toDatetime;
 /**
  * Jackson-friendly version of {@link Datetime}.
  */
-class JsonAdaptedDatetime {
+public class JsonAdaptedDatetime {
 
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "Person's %s field is missing!";
 

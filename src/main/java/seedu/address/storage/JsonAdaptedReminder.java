@@ -8,6 +8,7 @@ import seedu.address.model.datetime.Datetime;
 import seedu.address.model.reminder.Reminder;
 import seedu.address.model.reminder.ReminderDescription;
 import seedu.address.model.reminder.ReminderName;
+import seedu.address.storage.datetime.JsonAdaptedDatetime;
 
 import static seedu.address.logic.parser.DatetimeParserUtil.toDatetime;
 
@@ -18,14 +19,14 @@ import static seedu.address.logic.parser.DatetimeParserUtil.toDatetime;
 class JsonAdaptedReminder {
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "Reminder's %s field is missing!";
     private final String name;
-    private final String deadline;
     private final String description;
+    private final JsonAdaptedDatetime deadline;
 
     /**
      * Constructs a {@code JsonAdaptedPerson} with the given reminder details.
      */
     @JsonCreator
-    public JsonAdaptedReminder(@JsonProperty("name") String name, @JsonProperty("deadline") String deadline,
+    public JsonAdaptedReminder(@JsonProperty("name") String name, @JsonProperty("deadline") JsonAdaptedDatetime deadline,
                                @JsonProperty("description") String description) {
         this.name = name;
         this.deadline = deadline;
@@ -37,8 +38,8 @@ class JsonAdaptedReminder {
      */
     public JsonAdaptedReminder(Reminder source) {
         name = source.getName().fullName;
-        deadline = source.getDeadline().toString();
         description = source.getDescription().description;
+        deadline = new JsonAdaptedDatetime(source.getDeadline());
     }
 
     /**
@@ -58,8 +59,8 @@ class JsonAdaptedReminder {
 
         final ReminderDescription modelDescription = new ReminderDescription(description);
 
-        Datetime modelDeadline = toDatetime("Not implemetned");
+        Datetime datetime = deadline.toModelType();
 
-        return new Reminder(modelName, modelDeadline, modelDescription);
+        return new Reminder(modelName, datetime, modelDescription);
     }
 }

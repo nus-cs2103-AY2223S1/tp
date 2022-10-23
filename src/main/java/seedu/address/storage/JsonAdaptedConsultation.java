@@ -10,6 +10,7 @@ import seedu.address.model.consultation.ConsultationModule;
 import seedu.address.model.consultation.ConsultationName;
 import seedu.address.model.consultation.ConsultationVenue;
 import seedu.address.model.datetime.DatetimeRange;
+import seedu.address.storage.datetime.JsonAdaptedDatetimeRange;
 
 import static seedu.address.logic.parser.DatetimeParserUtil.toDatetimeRange;
 
@@ -23,15 +24,15 @@ public class JsonAdaptedConsultation {
     private final String name;
     private final String module;
     private final String venue;
-    private final String timeslot;
     private final String description;
+    private final JsonAdaptedDatetimeRange timeslot;
 
     /**
      * Constructs a {@code JsonAdaptedPerson} with the given Consultation details.
      */
     @JsonCreator
     public JsonAdaptedConsultation(@JsonProperty("name") String name, @JsonProperty("module") String module,
-                               @JsonProperty("venue") String venue, @JsonProperty("timeslot") String timeslot,
+                               @JsonProperty("venue") String venue, @JsonProperty("timeslot") JsonAdaptedDatetimeRange timeslot,
                                    @JsonProperty("description") String description) {
         this.name = name;
         this.module = module;
@@ -47,8 +48,8 @@ public class JsonAdaptedConsultation {
         name = source.getName().fullName;
         module = source.getModule().moduleName;
         venue = source.getVenue().venue;
-        timeslot = source.getTimeslot().toString();
         description = source.getDescription().description;
+        timeslot = new JsonAdaptedDatetimeRange(source.getTimeslot());
     }
 
     /**
@@ -95,9 +96,9 @@ public class JsonAdaptedConsultation {
 
         final ConsultationDescription modelDescription = new ConsultationDescription(description);
 
-        DatetimeRange modelTimeslot = toDatetimeRange("", "Not implemented", "Not implemented");
+        final DatetimeRange datetimeRange = timeslot.toModelType();
 
-        return new Consultation(modelName, modelModule, modelVenue, modelTimeslot, modelDescription);
+        return new Consultation(modelName, modelModule, modelVenue, datetimeRange, modelDescription);
     }
 
 }
