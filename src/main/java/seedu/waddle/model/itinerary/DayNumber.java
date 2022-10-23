@@ -3,6 +3,8 @@ package seedu.waddle.model.itinerary;
 import static java.util.Objects.requireNonNull;
 import static seedu.waddle.commons.util.AppUtil.checkArgument;
 
+import seedu.waddle.commons.core.index.Index;
+
 /**
  * Represents an Itinerary's day number element.
  * Guarantees: immutable; is valid as declared in {@link #isValidDayNumber(String)}
@@ -12,7 +14,7 @@ public class DayNumber {
             "Day number should only contain positive numbers";
     public static final String VALIDATION_REGEX = "\\d+";
 
-    public final int dayNumber;
+    public final Index dayNumber;
 
     /**
      * Constructs a {@code DayNumber}.
@@ -22,7 +24,7 @@ public class DayNumber {
     public DayNumber(String dayNumber) {
         requireNonNull(dayNumber);
         checkArgument(isValidDayNumber(dayNumber), MESSAGE_CONSTRAINTS);
-        this.dayNumber = Integer.parseInt(dayNumber);
+        this.dayNumber = Index.fromOneBased(Integer.parseInt(dayNumber));
     }
 
     /**

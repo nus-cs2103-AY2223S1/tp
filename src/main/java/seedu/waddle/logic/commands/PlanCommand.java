@@ -38,7 +38,7 @@ public class PlanCommand extends Command {
     private final LocalTime startTime;
 
     /**
-     * Creates an AddItemCommand to add the specified {@code Item}
+     * Creates a PlanCommand to add the specified {@code Item}
      */
     public PlanCommand(Index itemIndex, DayNumber dayNumber, LocalTime startTime) {
         requireNonNull(itemIndex);
