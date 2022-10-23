@@ -269,16 +269,16 @@ The following sequence diagram shows how the mark task operation works:
 
 #### Implementation
 
-The edit person feature edit the information of a person in the address book, this change is reflected within
-all teams with the edited person as member. The editable information all phone number, email address, physical
+The edit person feature edits the information of a person in the address book, this change is reflected within
+all teams containing the edited person. The editable information are phone number, email address, physical
 address and tag.
 
 Given below is an example usage scenario
 
-Step 1. The user want to change the phone number of a person in his company to 80779043. Said person is indexed number 4 in
+Step 1. The user wants to change the phone number of a person to 80779043. Said person is indexed number 4 in
 the global list. The user executes `edit 1 p/80779043`.
 
-Step 2. The parser will create an `edit` command. This `edit command` will call `Model#getFilteredList()`
+Step 2. The parser will create a `edit` command. This `edit command` will call `Model#getFilteredList()`
 to get the `person` specified by the index in the command then create a new `person` with the modified info.
 `Model#updateFiltedPersonList` is called to update all teams with the edited members.
 
@@ -289,7 +289,7 @@ The following sequence diagram shows how the edit task operation works:
 
 #### Implementation
 
-The Create Team Feature allow the user to create a team in EZLead. Team will be stored in a global team list
+The Create Team Feature allows the user to create a team in EZLead. Team will be stored in a global team list
 
 Step 1. The user wants to create a team named Backend. The user executes `create t/backend`.
 
