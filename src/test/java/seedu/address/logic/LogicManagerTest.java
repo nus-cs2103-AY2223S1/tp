@@ -47,12 +47,12 @@ public class LogicManagerTest {
 
     @BeforeEach
     public void setUp() {
-        JsonPersonBookStorage addressBookStorage =
-                new JsonPersonBookStorage(temporaryFolder.resolve("addressBook.json"));
+        JsonPersonBookStorage personBookStorage =
+                new JsonPersonBookStorage(temporaryFolder.resolve("personBook.json"));
         JsonUserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(temporaryFolder.resolve("userPrefs.json"));
         JsonPropertyBookStorage propertyBookStorage = new JsonPropertyBookStorage(
                 temporaryFolder.resolve("propertyBook.json"));
-        StorageManager storage = new StorageManager(addressBookStorage, propertyBookStorage, userPrefsStorage);
+        StorageManager storage = new StorageManager(personBookStorage, propertyBookStorage, userPrefsStorage);
         logic = new LogicManager(model, storage);
     }
 
@@ -77,13 +77,13 @@ public class LogicManagerTest {
     @Test
     public void execute_storageThrowsIoException_throwsCommandException() {
         // Setup LogicManager with JsonPersonBookIoExceptionThrowingStub
-        JsonPersonBookStorage addressBookStorage =
-                new JsonPersonBookIoExceptionThrowingStub(temporaryFolder.resolve("ioExceptionAddressBook.json"));
+        JsonPersonBookStorage personBookStorage =
+                new JsonPersonBookIoExceptionThrowingStub(temporaryFolder.resolve("ioExceptionPersonBook.json"));
         JsonUserPrefsStorage userPrefsStorage =
                 new JsonUserPrefsStorage(temporaryFolder.resolve("ioExceptionUserPrefs.json"));
         JsonPropertyBookStorage propertyBookStorage =
                 new JsonPropertyBookStorage(temporaryFolder.resolve("ioExceptionPropertyBook.json"));
-        StorageManager storage = new StorageManager(addressBookStorage, propertyBookStorage, userPrefsStorage);
+        StorageManager storage = new StorageManager(personBookStorage, propertyBookStorage, userPrefsStorage);
         logic = new LogicManager(model, storage);
 
         // Execute add command
@@ -164,7 +164,7 @@ public class LogicManagerTest {
         }
 
         @Override
-        public void savePersonBook(ReadOnlyPersonBook addressBook, Path filePath) throws IOException {
+        public void savePersonBook(ReadOnlyPersonBook personBook, Path filePath) throws IOException {
             throw DUMMY_IO_EXCEPTION;
         }
     }

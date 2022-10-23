@@ -107,7 +107,7 @@ public class AddPersonCommandTest {
         }
 
         @Override
-        public void setPersonBookFilePath(Path addressBookFilePath) {
+        public void setPersonBookFilePath(Path personBookFilePath) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -117,7 +117,7 @@ public class AddPersonCommandTest {
         }
 
         @Override
-        public void setPropertyBookFilePath(Path addressBookFilePath) {
+        public void setPropertyBookFilePath(Path personBookFilePath) {
             throw new AssertionError("This method should not be called.");
         }
 

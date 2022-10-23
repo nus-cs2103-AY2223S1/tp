@@ -15,7 +15,7 @@ import seedu.address.model.UserPrefs;
 public class ClearCommandTest {
 
     @Test
-    public void execute_emptyAddressBook_success() {
+    public void execute_emptyPersonBook_success() {
         Model model = new ModelManager();
         Model expectedModel = new ModelManager();
 
@@ -23,7 +23,7 @@ public class ClearCommandTest {
     }
 
     @Test
-    public void execute_nonEmptyAddressBook_success() {
+    public void execute_nonEmptyPersonBook_success() {
         Model model = new ModelManager(getTypicalPersonsBook(), getTypicalPropertyBook(), new UserPrefs());
         Model expectedModel = new ModelManager(getTypicalPersonsBook(), getTypicalPropertyBook(), new UserPrefs());
         expectedModel.setPersonBook(new PersonBook());

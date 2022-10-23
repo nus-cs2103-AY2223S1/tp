@@ -37,7 +37,7 @@ public class PersonBookTest {
     }
 
     @Test
-    public void resetData_withValidReadOnlyAddressBook_replacesData() {
+    public void resetData_withValidReadOnlyPersonBook_replacesData() {
         PersonBook newData = getTypicalPersonsBook();
         personBook.resetData(newData);
         assertEquals(newData, personBook);
@@ -60,18 +60,18 @@ public class PersonBookTest {
     }
 
     @Test
-    public void hasPerson_personNotInAddressBook_returnsFalse() {
+    public void hasPerson_personNotInPersonBook_returnsFalse() {
         assertFalse(personBook.hasPerson(ALICE));
     }
 
     @Test
-    public void hasPerson_personInAddressBook_returnsTrue() {
+    public void hasPerson_personInPersonBook_returnsTrue() {
         personBook.addPerson(ALICE);
         assertTrue(personBook.hasPerson(ALICE));
     }
 
     @Test
-    public void hasPerson_personWithSameIdentityFieldsInAddressBook_returnsTrue() {
+    public void hasPerson_personWithSameIdentityFieldsInPersonBook_returnsTrue() {
         personBook.addPerson(ALICE);
         Person editedAlice = new PersonBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withPriority(VALID_PRIORITY_HIGH)
                 .build();
