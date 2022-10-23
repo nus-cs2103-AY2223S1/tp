@@ -9,7 +9,8 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_MODULE_TITLE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TASK_DESCRIPTION;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TASK_NUMBER;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TASK_NUMBERS_TO_SWAP;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TASK_NUMBER_TO_DELETE;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalModules.CS2103T;
 import static seedu.address.testutil.TypicalModules.CS2106;
@@ -29,12 +30,14 @@ import seedu.address.model.person.Person;
 import seedu.address.testutil.AddTaskToModuleDescriptorBuilder;
 import seedu.address.testutil.DeleteTaskFromModuleDescriptorBuilder;
 import seedu.address.testutil.EditPersonDescriptorBuilder;
+import seedu.address.testutil.SwapTaskNumbersDescriptorBuilder;
 
 /**
  * Contains helper methods for testing commands.
  */
 public class CommandTestUtil {
 
+    public static final String EMPTY_STRING = "";
     public static final String VALID_NAME_AMY = "Amy Bee";
     public static final String VALID_NAME_BOB = "Bob Choo";
     public static final String VALID_PHONE_AMY = "11111111";
@@ -72,12 +75,15 @@ public class CommandTestUtil {
     public static final String MODULE_TASK_DESC_B = " " + PREFIX_TASK_DESCRIPTION + VALID_TASK_B;
     public static final String MODULE_TASK_DESC_C = " " + PREFIX_TASK_DESCRIPTION + VALID_TASK_C;
     public static final String MODULE_TASKLIST_DESC_NUMBER_ONE =
-            " " + PREFIX_TASK_NUMBER + "1";
+            " " + PREFIX_TASK_NUMBER_TO_DELETE + "1";
     public static final String MODULE_TASKLIST_DESC_NUMBER_TWO =
-            " " + PREFIX_TASK_NUMBER + "2";
+            " " + PREFIX_TASK_NUMBER_TO_DELETE + "2";
     public static final String MODULE_TASKLIST_DESC_NUMBER_THREE =
-            " " + PREFIX_TASK_NUMBER + "3";
-
+            " " + PREFIX_TASK_NUMBER_TO_DELETE + "3";
+    public static final String MODULE_TASKLIST_DESC_SWAP_ONE_AND_TWO =
+            " " + PREFIX_TASK_NUMBERS_TO_SWAP + "1 2";
+    public static final String MODULE_TASKLIST_DESC_SWAP_TWO_AND_THREE =
+            " " + PREFIX_TASK_NUMBERS_TO_SWAP + "2 3";
 
     public static final String MODULE_LINK_CS2103T = " " + PREFIX_MODULE_LINK + VALID_MODULE_LINK;
 
@@ -86,16 +92,28 @@ public class CommandTestUtil {
     public static final String INVALID_EMAIL_DESC = " " + PREFIX_EMAIL + "bob!yahoo"; // missing '@' symbol
     // '$' not allowed in module code
     public static final String INVALID_MODULE_CODE_DESC = " " + PREFIX_MODULE_CODE + "C$2500";
+    public static final String INVALID_TASK_DESC = " " + PREFIX_TASK_DESCRIPTION; // empty string
+    public static final String INVALID_TASK_NUMBER_DESC_NON_NUMERIC =
+            " " + PREFIX_TASK_NUMBER_TO_DELETE + "-99$9";
+    public static final String INVALID_TASK_NUMBER_DESC_NEGATIVE =
+            " " + PREFIX_TASK_NUMBER_TO_DELETE + "-999";
+    public static final String INVALID_TASK_NUMBER_DESC_ZERO =
+            " " + PREFIX_TASK_NUMBER_TO_DELETE + "0";
+    public static final String INVALID_TASK_NUMBERS_DESC_NON_NUMERIC =
+            " " + PREFIX_TASK_NUMBERS_TO_SWAP + "a $9";
+    public static final String INVALID_TASK_NUMBERS_DESC_NEGATIVE =
+            " " + PREFIX_TASK_NUMBERS_TO_SWAP + "-1 -2";
+    public static final String INVALID_TASK_NUMBERS_DESC_ZERO =
+            " " + PREFIX_TASK_NUMBERS_TO_SWAP + "0 1";
+    public static final String INVALID_TASK_NUMBERS_DESC_SAME_NUMBER =
+            " " + PREFIX_TASK_NUMBERS_TO_SWAP + "1 1";
+    public static final String INVALID_TASK_NUMBERS_DESC_ONLY_ONE_NUMBER =
+            " " + PREFIX_TASK_NUMBERS_TO_SWAP + "1";
+    public static final String INVALID_TASK_NUMBERS_DESC_THREE_NUMBERS =
+            " " + PREFIX_TASK_NUMBERS_TO_SWAP + "1 2 3";
 
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
-    public static final String INVALID_TASK_DESC = " " + PREFIX_TASK_DESCRIPTION; // empty string
-    public static final String INVALID_TASK_NUMBER_DESC_NON_NUMERIC =
-            " " + PREFIX_TASK_NUMBER + "-99$9";
-    public static final String INVALID_TASK_NUMBER_DESC_NEGATIVE =
-            " " + PREFIX_TASK_NUMBER + "-999";
-    public static final String INVALID_TASK_NUMBER_DESC_ZERO =
-            " " + PREFIX_TASK_NUMBER + "0";
 
     public static final EditPersonCommand.EditPersonDescriptor DESC_AMY;
     public static final EditPersonCommand.EditPersonDescriptor DESC_BOB;
@@ -103,6 +121,7 @@ public class CommandTestUtil {
     public static final AddTaskCommand.AddTaskToModuleDescriptor DESC_CS2106_ADD_TASK_B;
     public static final DeleteTaskCommand.DeleteTaskFromModuleDescriptor DESC_CS2106_DELETE_TASK_ONE;
     public static final DeleteTaskCommand.DeleteTaskFromModuleDescriptor DESC_CS2106_DELETE_TASK_TWO;
+    public static final SwapTaskNumbersCommand.SwapTaskNumbersDescriptor DESC_CS2106_SWAP_TASKS_ONE_AND_TWO;
 
     static {
         DESC_AMY = new EditPersonDescriptorBuilder().withName(VALID_NAME_AMY)
@@ -116,12 +135,15 @@ public class CommandTestUtil {
                 new AddTaskToModuleDescriptorBuilder(CS2106, VALID_TASK_A).build();
         DESC_CS2106_ADD_TASK_B =
                 new AddTaskToModuleDescriptorBuilder(CS2106, VALID_TASK_B).build();
-        DESC_CS2106_DELETE_TASK_ONE =
-                new DeleteTaskFromModuleDescriptorBuilder(CS2106,
-                        Index.fromOneBased(1)).build();
-        DESC_CS2106_DELETE_TASK_TWO =
-                new DeleteTaskFromModuleDescriptorBuilder(CS2106,
-                        Index.fromOneBased(2)).build();
+
+        DESC_CS2106_DELETE_TASK_ONE = new DeleteTaskFromModuleDescriptorBuilder(CS2106,
+                Index.fromOneBased(1)).build();
+        DESC_CS2106_DELETE_TASK_TWO = new DeleteTaskFromModuleDescriptorBuilder(CS2106,
+                Index.fromOneBased(2)).build();
+
+        DESC_CS2106_SWAP_TASKS_ONE_AND_TWO = new SwapTaskNumbersDescriptorBuilder(CS2106,
+                Index.fromOneBased(1),
+                Index.fromOneBased(2)).build();
     }
 
     /**

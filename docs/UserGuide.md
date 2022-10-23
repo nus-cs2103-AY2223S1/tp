@@ -34,24 +34,26 @@ contains some sample data.<br>
 
 ### 1.1. Command summary
 
-| Action                                  | Format                                                         | Short Description                                                               |
-|-----------------------------------------|----------------------------------------------------------------|---------------------------------------------------------------------------------|
-| [`add-module`](#211-add-module)         | `add-module      m/MODULE_CODE [t/MODULE_TITLE]`               | Add module with a module code and optional module title                         |
-| [`delete-module`](#212-delete-module)   | `delete-module   m/MODULE_CODE`                                | Delete module by module code                                                    |
-| [`find-module`](#213-find-module)       | `find-module     KEYWORD`                                      | Find module that starts with specified keyword in home page                     |
-| [`list-module`](#214-list-module)       | `list-module`                                                  | List all modules in home page after finding                                     |
-| [`add-task`](#221-add-task)             | `add-task        m/MODULE_CODE td/TASK_DESCRIPTION`            | Add task with specified module code and task description                        |
-| [`delete-task`](#222-delete-task)       | `delete-task     m/MODULE_CODE tn/TASK_NUMBER`                 | Delete task corresponding to specified task number of specified module code     |
-| [`add-link`](#231-add-link)             | `add-link        INDEX l/LINK_URL`                             | Add link URL to a module by its displayed index                                 |
-| [`delete-link`](#232-delete-link)       | `delete-link     INDEX l/LINK_URL`                             | Delete link URL from a module by its displayed index                            |
-| [`add-person`](#241-add-person)         | `add-person      n/NAME    e/EMAIL    p/PHONE_NUMBER`          | Add contact with specified name, email, and phone number                        |
-| [`delete-person`](#242-delete-person)   | `delete-person   n/NAME`                                       | Delete contact belonging to the specified name                                  |
-| [`edit-person`](#243-edit-person)       | `edit-person     INDEX ([n/NAME] [e/EMAIL]  [p/PHONE_NUMBER])` | Edit contact belonging to the specified index currently displayed on the screen |
-| [`find-person`](#244-find-person)       | `find-person     KEYWORD`                                      | Find contacts that starts with specified keyword                                |
-| [`list-person`](#245-list-person)       | `list-person`                                                  | List all contacts                                                               |
-| [`home`](#251-navigate-to-home)         | `home`                                                         | Navigate to the home page                                                       |
-| [`goto`](#252-navigate-between-modules) | `goto MODULE_CODE`                                             | Navigate to specified module page                                               |
-| [`exit`](#26-exiting-the-program)       | `exit`                                                         | Exit the program                                                                |
+
+| Action                                  | Format                                                                  | Short Description                                                               |
+|-----------------------------------------|-------------------------------------------------------------------------|---------------------------------------------------------------------------------|
+| [`add-module`](#211-add-module)         | `add-module      m/MODULE_CODE [t/MODULE_TITLE]`                        | Add module with a module code and optional module title                         |
+| [`delete-module`](#212-delete-module)   | `delete-module   m/MODULE_CODE`                                         | Delete module by module code                                                    |
+| [`find-module`](#213-find-module)       | `find-module     KEYWORD`                                               | Find module that starts with specified keyword in home page                     |
+| [`list-module`](#214-list-module)       | `list-module`                                                           | List all modules in home page after finding                                     |
+| [`add-task`](#221-add-task)             | `add-task        m/MODULE_CODE td/TASK_DESCRIPTION`                     | Add task with specified module code and task description                        |
+| [`delete-task`](#222-delete-task)       | `delete-task     m/MODULE_CODE tn/TASK_NUMBER`                          | Delete task corresponding to specified task number of specified module code     |
+| [`swap-task`](#223-reorder-tasks-swap)  | `swap-task       m/MODULE_CODE ts/FIRST_TASK_NUMBER SECOND_TASK_NUMBER` | Swaps the order of tasks in the task list of a specified module                 |
+| [`add-link`](#231-add-link)             | `add-link        INDEX l/LINK_URL`                                      | Add link URL to a module by its displayed index                                 |
+| [`delete-link`](#232-delete-link)       | `delete-link     INDEX l/LINK_URL`                                      | Delete link URL from a module by its displayed index                            |
+| [`add-person`](#241-add-person)         | `add-person      n/NAME    e/EMAIL    p/PHONE_NUMBER`                   | Add contact with specified name, email, and phone number                        |
+| [`delete-person`](#242-delete-person)   | `delete-person   n/NAME`                                                | Delete contact belonging to the specified name                                  |
+| [`edit-person`](#243-edit-person)       | `edit-person     INDEX ([n/NAME] [e/EMAIL]  [p/PHONE_NUMBER])`          | Edit contact belonging to the specified index currently displayed on the screen |
+| [`find-person`](#244-find-person)       | `find-person     KEYWORD`                                               | Find contacts that starts with specified keyword                                |
+| [`list-person`](#245-list-person)       | `list-person`                                                           | List all contacts                                                               |
+| [`home`](#251-navigate-to-home)         | `home`                                                                  | Navigate to the home page                                                       |
+| [`goto`](#252-navigate-between-modules) | `goto MODULE_CODE`                                                      | Navigate to specified module page                                               |
+| [`exit`](#26-exiting-the-program)       | `exit`                                                                  | Exit the program                                                                |
 
 ## 2. Features
 
@@ -165,7 +167,7 @@ In the above example, we list every module in Plannit while in home page.
 
 <br>
 
-### 2.2. Adding and deleting tasks
+### 2.2. Tasks
 #### 2.2.1. Add task
 You may add a task using the `add-task` command.
 
@@ -206,8 +208,29 @@ delete-task m/CS2103T tn/3
 In the above example, we are deleting task number **3** from the module
 with the module code `CS2103T`.
 
-#### 2.2.3. Finding tasks [coming soon]
-[coming soon]
+#### 2.2.3. Reorder tasks (swap)
+You may change the order in which tasks appear in the task list of a 
+particular module using the `swap-task` command.
+
+This command will require two flags:
+* `m/`: To be followed by the module code of the module which assigned the
+  task.
+* `ts/`: To be followed by task number of the tasks whose ordering you 
+  wish to swap.
+
+Format: `swap-task m/MODULE_CODE ts/FIRST_TASK_NUMBER SECOND_TASK_NUMBER`
+* You should provide a module code of an existing module in Plannit.
+* You should provide a pair of task numbers corresponding to those of existing 
+  tasks in the module.
+* You may only specify two task numbers at once. Both task numbers must be 
+  different.
+
+Example:
+```
+swap-task m/CS2103T ts/1 3
+```
+In the above example, we are swapping the position of the first and third 
+task within the task list of the module with the module code `CS2103T`.
 
 <br>
 

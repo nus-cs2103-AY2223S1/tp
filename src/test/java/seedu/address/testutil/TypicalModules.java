@@ -37,14 +37,12 @@ public class TypicalModules {
     public static final Module MA2001 = new ModuleBuilder().withModuleCode(VALID_MA2001_MODULE_CODE)
             .withModuleTitle(VALID_MA2001_MODULE_TITLE).build();
     public static final Module CS2103T_WITH_TASK_A =
-            new ModuleBuilder().withModuleCode("CS2103T").withTasks(VALID_TASKS.subList(0, 1))
-                    .withModuleTitle("Software Engineering").build();
-    public static final Module CS2106_WITH_TASK_A =
-            new ModuleBuilder().withModuleCode(VALID_CS2106_MODULE_CODE).withTasks(VALID_TASKS.subList(0, 1))
-            .withModuleTitle(VALID_CS2106_MODULE_TITLE).build();
-    public static final Module MA2001_WITH_TASK_A =
-            new ModuleBuilder().withModuleCode(VALID_MA2001_MODULE_CODE).withTasks(VALID_TASKS.subList(0, 1))
-                    .withModuleTitle(VALID_MA2001_MODULE_TITLE).build();
+            new ModuleBuilder(CS2103T).withTasks(VALID_TASKS.subList(0, 1)).build();
+    public static final Module CS2106_WITH_TYPICAL_TASKS =
+            new ModuleBuilder(CS2106).withTasks(VALID_TASKS).build();
+    public static final Module MA2001_WITH_TYPICAL_PERSONS =
+            new ModuleBuilder(MA2001).withTasks(VALID_TASKS).build();
+
     private TypicalModules() {} // prevents instantiation
 
     public static List<Module> getTypicalModules() {
