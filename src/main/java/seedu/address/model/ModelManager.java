@@ -151,6 +151,7 @@ public class ModelManager implements Model {
     @Override
     public Set<Tag> deleteTags(Set<Tag> tags) {
         requireNonNull(tags);
+        clearFiltersInFilteredPersonList();
         Set<Tag> deletedTags = addressBook.deleteTags(tags);
         return deletedTags;
     }

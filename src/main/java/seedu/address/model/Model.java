@@ -99,6 +99,7 @@ public interface Model {
 
     /**
      * Deletes the tags from the address book and returns the set of deleted tags.
+     * Will also clear filters for the filtered list.
      */
     Set<Tag> deleteTags(Set<Tag> tag);
 
