@@ -141,7 +141,7 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String mods} into an {@code Mods}.
+     * Parses a {@code String mods} into an {@code Set<Mods>}.
      * Leading and trailing whitespaces will be trimmed.
      *
      * @throws ParseException if the given {@code mods} is invalid.
