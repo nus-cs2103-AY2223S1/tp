@@ -57,7 +57,7 @@ public class UserModule {
 
         listModule = optionalModule.get();
 
-        if (!listModule.getSemesters().contains(semester.getValue())) {
+        if (!listModule.getSemesters().contains(semester)) {
             throw new CommandException(MESSAGE_MODULE_NOT_OFFERED);
         }
 
