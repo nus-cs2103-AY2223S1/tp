@@ -59,7 +59,7 @@ The rest of the App consists of four components.
 **How the architecture components interact with each other**
 
 The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues
-the command `delete 1`.
+the command `delete 1 t/e`.
 
 <img src="images/ArchitectureSequenceDiagram.png" width="574" />
 
@@ -121,7 +121,7 @@ How the `Logic` component works:
 The Sequence Diagram below illustrates the interactions within the `Logic` component for the `execute("delete 1")` API
 call.
 
-![Interactions Inside the Logic Component for the `delete 1` Command](images/DeleteSequenceDiagram.png)
+![Interactions Inside the Logic Component for the `delete 1 t/e` Command](images/DeleteSequenceDiagram.png)
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
@@ -141,8 +141,7 @@ How the parsing works:
 
 ### Model component
 
-**
-API** : [`Model.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/model/Model.java)
+**API** : [`Model.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/model/Model.java)
 
 <img src="images/ModelClassDiagram.png" width="450" />
 
@@ -182,7 +181,8 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 ## **Implementation**
 
 This section describes some noteworthy details on how certain features are implemented.
-### Summary Feature
+
+### Summarise Entries
 
 The `summary` command is implemented by the `SummaryCommandParser` and `SummaryCommand` classes
 
@@ -228,7 +228,7 @@ Step 10. The `SummaryCommand` then creates a CommandResult and returns it to `Lo
   * Pros: Allows more customisation to the scope of the summary statistics
   * Cons: Harder to implement and the command will be more complex as it will require more parameters
 
-### Add feature
+### Add Entry
 
 The `add` command is implemented by the `AddCommandParser` and `AddCommand` classes.
 
@@ -372,9 +372,13 @@ The pie chart view feature displays a pie chart view by categories of spending/i
 
 These operations are exposed in the `Model` interface as `Model#getExpensePieChartData()`, `Model#getIncomePieChartData()` respectively. 
 
+The activity diagram below shows the workflow when a user executes the `view` command.
+
+![ViewActivityDiagram](images/ViewActivityDiagram.png)
+
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The command syntax for view command is as follows:
 view entryType graphType
-E.g. `view t/e g/c` indicates type expenses, graph category. This shows a pie chart view of the expenses entries grouped by categories.
+E.g. `view t/e g/c` indicates type expenses and graph category. This shows a pie chart view of the expenses entries grouped by categories.
 </div>
 
 Given below is an example usage scenario and how the pie chart view mechanism behaves at each step.
@@ -606,6 +610,7 @@ otherwise, for all **Entries**, they can only be of type `expenditure` or `incom
 ### Glossary
 
 * **Mainstream OS**: Windows, Linux, Unix, macOS
+* **Entry**: An entry refers to either an expenditure or income
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Appendix: Instructions for manual testing**
@@ -660,7 +665,7 @@ testers are expected to do more *exploratory* testing.
     1. Prerequisites: At least 1 entry in the specified list.
 
     1. Test case: `delete 1 t/e`<br>
-       Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message.
+       Expected: First expenditure entry is deleted from the list. Details of the deleted entry shown in the status message.
        Timestamp in the status bar is updated.
 
     1. Test case: `delete 0 t/e`<br>
@@ -677,7 +682,7 @@ testers are expected to do more *exploratory* testing.
     1. Prerequisites: At least 1 entry in the specified list.
 
     1. Test case: `edit 1 t/e d/Edited Description`<br>
-       Expected: First contact is edited from the list. Details of the edited contact shown in the status message.
+       Expected: First expenditure entry is edited from the list. Details of the edited entry shown in the status message.
 
     1. Test case: `edit 0 t/e d/Edited Description`<br>
        Expected: No entry is edited. Error details shown in the status message.

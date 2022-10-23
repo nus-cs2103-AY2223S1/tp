@@ -34,7 +34,7 @@ public class AddCommand extends Command {
         + PREFIX_TAG + "Food";
 
     public static final String MESSAGE_SUCCESS = "New entry added: %1$s";
-    public static final String MESSAGE_DUPLICATE_ENTRY = "This entry already exists in the penny wise application";
+    public static final String MESSAGE_DUPLICATE_ENTRY = "This entry already exists in the PennyWise application";
 
     final Entry toAdd;
     final EntryType entryType;
@@ -52,15 +52,17 @@ public class AddCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
 
-        if (model.hasExpenditure(toAdd)) {
-            throw new CommandException(MESSAGE_DUPLICATE_ENTRY);
-        }
-
         switch (entryType.getEntryType()) {
         case EXPENDITURE:
+            if (model.hasExpenditure(toAdd)) {
+                throw new CommandException(MESSAGE_DUPLICATE_ENTRY);
+            }
             model.addExpenditure(toAdd);
             break;
         case INCOME:
+            if (model.hasIncome(toAdd)) {
+                throw new CommandException(MESSAGE_DUPLICATE_ENTRY);
+            }
             model.addIncome(toAdd);
             break;
         default:
