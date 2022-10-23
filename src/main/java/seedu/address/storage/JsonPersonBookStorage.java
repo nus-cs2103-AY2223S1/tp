@@ -45,14 +45,14 @@ public class JsonPersonBookStorage implements PersonBookStorage {
     public Optional<ReadOnlyPersonBook> readPersonBook(Path filePath) throws DataConversionException {
         requireNonNull(filePath);
 
-        Optional<JsonSerializablePersonBook> jsonAddressBook = JsonUtil.readJsonFile(
+        Optional<JsonSerializablePersonBook> jsonPersonBook = JsonUtil.readJsonFile(
                 filePath, JsonSerializablePersonBook.class);
-        if (!jsonAddressBook.isPresent()) {
+        if (!jsonPersonBook.isPresent()) {
             return Optional.empty();
         }
 
         try {
-            return Optional.of(jsonAddressBook.get().toModelType());
+            return Optional.of(jsonPersonBook.get().toModelType());
         } catch (IllegalValueException ive) {
             logger.info("Illegal values found in " + filePath + ": " + ive.getMessage());
             throw new DataConversionException(ive);
