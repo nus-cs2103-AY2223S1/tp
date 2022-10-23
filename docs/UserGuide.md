@@ -89,18 +89,18 @@ Format: `help`
 
 Adds a guest to the guest book. This is akin to checking a guest in with their personal and room details.
 
-Format: `add n/NAME p/PHONE_NUMBER e/EMAIL rm/ROOM dr/DATE_RANGE ng/NUMBER_OF_GUESTS [rq/REQUEST]`
+Format: `add n/NAME p/PHONE e/EMAIL rm/ROOM dr/DATE_RANGE ng/NUMBER_OF_GUESTS [rq/REQUEST]`
 
 Constraints of parameters:
 
-Unless stated otherwise, all fields should not be left blank.
+&nbsp;&nbsp;&nbsp;Unless stated otherwise, all fields should not be left blank.
 * `NAME` should only contain alphanumeric characters and spaces.
-* `PHONE_NUMBER` should only contain numbers, and it should be at least 3 digits long.
+* `PHONE` should only contain numbers, and it should be at least 3 digits long.
 * `EMAIL` should only contain alphanumeric characters and '@' character.
 * `ROOM` should only contain alphanumeric characters and a hyphen.
 * `DATE_RANGE` should follow the format dd/MM/yy - dd/MM/yy.
 * `NUMBER_OF_GUESTS` should only contain numbers, and it should be at least 1 and at most 4.
-* `REQUEST` is an optional field.
+* `REQUEST` is an optional field and it should be at most 500 characters long.
 
 Examples:
 * `add n/John Doe p/98765432 e/johnd@example.com rm/05-73 dr/19/05/22 - 24/05/22 ng/3`
@@ -108,7 +108,7 @@ Examples:
 
 ### Listing all guests : `list`
 
-Shows a list of all guests in the guest book.
+hows a list of all guests in the guest book.
 
 Format: `list`
 
@@ -226,7 +226,7 @@ _Details coming soon ..._
 
 | Action               | Format, Examples                                                                                                                                                                               |
 |----------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Add**              | `add n/NAME p/PHONE_NUMBER e/EMAIL rm/ROOM dr/DATE_RANGE ng/NUMBER_OF_GUESTS [rq/REQUEST]` <br> e.g., `add n/John Doe p/98765432 e/johnd@example.com rm/ 05-73 dr/19/05/20 - 24/05/22 ng/3`    |
+| **Add**              | `add n/NAME p/PHONE e/EMAIL rm/ROOM dr/DATE_RANGE ng/NUMBER_OF_GUESTS [rq/REQUEST]` <br> e.g., `add n/John Doe p/98765432 e/johnd@example.com rm/ 05-73 dr/19/05/20 - 24/05/22 ng/3`           |
 | **Clear**            | `clear`                                                                                                                                                                                        |
 | **Delete**           | `delete INDEX`<br> e.g., `delete 3`                                                                                                                                                            |
 | **Edit**             | `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [rm/ROOM] [dr/DATE_RANGE] [ng/NUMBER_OF_GUESTS] [rc/IS_ROOM_CLEAN] [rq/REQUEST]`<br> e.g.,`edit 2 e/jameslee@example.com dr/13/09/22 - 15/09/22 ng/5` |
