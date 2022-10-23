@@ -8,6 +8,7 @@ public enum CommandType {
     EMPTY,
     HELP,
     EXIT,
+    VIEW,
     ADD_PATIENT,
     EDIT_PATIENT,
     DELETE_PATIENT,
