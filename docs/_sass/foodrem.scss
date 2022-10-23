@@ -6,6 +6,19 @@ html {
   }
 }
 
+.task-list-item {
+  list-style-type: none;
+}
+
+.task-list-item-checkbox {
+  margin: 0;
+  position: relative;
+
+  $offset: 13px;
+  left: -$offset - 6px; // Gap between marker and text
+  margin-right: -$offset;
+}
+
 .site-header {
   font-family: "Epilogue", $base-font-family;
   border: none;
