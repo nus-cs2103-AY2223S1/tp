@@ -20,8 +20,8 @@ public class PayCommandParser implements Parser<PayCommand> {
      */
     public PayCommand parse(String args) throws ParseException {
         try {
-            Index index = ParserUtil.parseIndex(args.trim().split("\\s+")[0]);
-            Money moneyPaid = ParserUtil.parseMoney(args.trim().split("\\s+")[1]);
+            Index index = ParserUtil.parseIndex(args.trim().split("\\s+", 2)[0]);
+            Money moneyPaid = ParserUtil.parseMoney(args.trim().split("\\s+", 2)[1]);
             return new PayCommand(index, moneyPaid);
         } catch (ParseException pe) {
             throw new ParseException(
