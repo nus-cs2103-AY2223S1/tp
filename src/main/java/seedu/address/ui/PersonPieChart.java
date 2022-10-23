@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+import com.sun.javafx.beans.event.AbstractNotifyListener;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -13,6 +14,7 @@ import javafx.scene.layout.Region;
 import javafx.scene.text.Text;
 import seedu.address.model.person.Person;
 
+import javax.print.attribute.IntegerSyntax;
 
 
 /**
@@ -37,6 +39,8 @@ public class PersonPieChart extends UiPart<Region> {
         super(FXML);
         pieChart.setData(pieChartData);
         updatePieChart(personList);
+        pieChart.setLegendVisible(false);
+        pieChart.setTitle("Your Contacts");
     }
 
     /**
@@ -45,19 +49,23 @@ public class PersonPieChart extends UiPart<Region> {
     public void updatePieChart(ObservableList<Person> personList) {
 
         List<Integer> studentProfTaCount = personListToCount(personList);
-
-        ObservableList<PieChart.Data> updatedPieChartData = FXCollections.observableArrayList();
-        int i = 0;
-        for (Integer count : studentProfTaCount) {
-            pieChartData.get(i).setPieValue(count);
-            i++;
-        }
+        updatePieChartData(studentProfTaCount);
+        setLabelNames(studentProfTaCount);
         addCountToLabels();
 
         if (isCountZero(studentProfTaCount)) {
             pieChart.setVisible(false);
         } else {
             pieChart.setVisible(true);
+        }
+    }
+
+    /**
+     * Updates pieChartData of the pieChart with the given count list of student, professor and TA.
+     */
+    public void updatePieChartData(List<Integer> studentProfTaCount) {
+        for (int i = 0; i < 3; i++) {
+            pieChartData.get(i).setPieValue(studentProfTaCount.get(i));
         }
     }
 
@@ -89,6 +97,23 @@ public class PersonPieChart extends UiPart<Region> {
     }
 
     /**
+     * Sets the names of the labels based on the count of student, professor and TA.
+     */
+    public void setLabelNames(List<Integer> studentProfTaCount) {
+
+        StringBuilder others = new StringBuilder();
+
+        PieChart.Data studentData = pieChartData.get(0);
+        PieChart.Data profData = pieChartData.get(1);
+        PieChart.Data taData = pieChartData.get(2);
+
+        studentData.setName(studentProfTaCount.get(0) != 0 ? "Student" : "Others");
+        profData.setName(studentProfTaCount.get(1) != 0 ? "Professor" : "Others");
+        taData.setName(studentProfTaCount.get(2) != 0 ? "TA" : "Others");
+
+    }
+
+    /**
      * Returns true if student, professor and TA count are all 0.
      */
     public boolean isCountZero(List<Integer> studentProfTaCount) {
@@ -116,7 +141,6 @@ public class PersonPieChart extends UiPart<Region> {
             if (opTextNode.isPresent()) {
                 Text text = (Text) opTextNode.get();
                 text.setText(d.getName() + " (" + (int) d.getPieValue() + ")");
-                opTextNode.get().setVisible(false);
             }
         });
     }

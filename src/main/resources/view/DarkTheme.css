@@ -376,9 +376,13 @@
 }
 
 #pieChart {
-    -fx-text-fill: #557955;
     -fx-font-family: "Segoe UI Semibold";
+}
 
+.chart-title {
+    -fx-font-family: "Segoe UI Semibold";
+    -fx-text-fill: white;
+    -fx-font-size: 25;
 }
 
 .chart-pie-label {
