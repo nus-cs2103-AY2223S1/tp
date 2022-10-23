@@ -1,9 +1,9 @@
 package seedu.address.model.person;
 
-import seedu.address.logic.commands.exceptions.CommandException;
-
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
+
+import seedu.address.logic.commands.exceptions.CommandException;
 
 /**
  * Represents a Person's Money in the Address Book.
