@@ -60,8 +60,8 @@ public class JsonPersonBookStorage implements PersonBookStorage {
     }
 
     @Override
-    public void savePersonBook(ReadOnlyPersonBook addressBook) throws IOException {
-        savePersonBook(addressBook, filePath);
+    public void savePersonBook(ReadOnlyPersonBook personBook) throws IOException {
+        savePersonBook(personBook, filePath);
     }
 
     /**
@@ -69,12 +69,12 @@ public class JsonPersonBookStorage implements PersonBookStorage {
      *
      * @param filePath location of the data. Cannot be null.
      */
-    public void savePersonBook(ReadOnlyPersonBook addressBook, Path filePath) throws IOException {
-        requireNonNull(addressBook);
+    public void savePersonBook(ReadOnlyPersonBook personBook, Path filePath) throws IOException {
+        requireNonNull(personBook);
         requireNonNull(filePath);
 
         FileUtil.createIfMissing(filePath);
-        JsonUtil.saveJsonFile(new JsonSerializablePersonBook(addressBook), filePath);
+        JsonUtil.saveJsonFile(new JsonSerializablePersonBook(personBook), filePath);
     }
 
 }

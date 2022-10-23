@@ -33,14 +33,14 @@ public interface PersonBookStorage {
 
     /**
      * Saves the given {@link ReadOnlyPersonBook} to the storage.
-     * @param addressBook cannot be null.
+     * @param personBook cannot be null.
      * @throws IOException if there was any problem writing to the file.
      */
-    void savePersonBook(ReadOnlyPersonBook addressBook) throws IOException;
+    void savePersonBook(ReadOnlyPersonBook personBook) throws IOException;
 
     /**
      * @see #savePersonBook(ReadOnlyPersonBook)
      */
-    void savePersonBook(ReadOnlyPersonBook addressBook, Path filePath) throws IOException;
+    void savePersonBook(ReadOnlyPersonBook personBook, Path filePath) throws IOException;
 
 }

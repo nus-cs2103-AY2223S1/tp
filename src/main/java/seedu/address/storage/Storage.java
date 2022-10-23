@@ -27,6 +27,6 @@ public interface Storage extends PersonBookStorage, UserPrefsStorage, PropertyBo
     Optional<ReadOnlyPersonBook> readPersonBook() throws DataConversionException, IOException;
 
     @Override
-    void savePersonBook(ReadOnlyPersonBook addressBook) throws IOException;
+    void savePersonBook(ReadOnlyPersonBook personBook) throws IOException;
 
 }
