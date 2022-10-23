@@ -114,7 +114,7 @@ public class AddressBookParser {
             return new ModuleViewCommandParser().parse(arguments);
 
         case ViewTimeTableCommand.COMMAND_WORD:
-            return new ViewTimeTableCommand();
+            return new ViewTimeTableCommandParser().parse(arguments);
 
         case ExitCommand.COMMAND_WORD:
             return new ExitCommand();

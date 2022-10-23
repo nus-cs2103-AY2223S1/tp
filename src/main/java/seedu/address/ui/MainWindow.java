@@ -19,7 +19,6 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.ui.schedule.ScheduleGridPanel;
 import seedu.address.ui.schedule.ScheduleListPanel;
-import seedu.address.ui.schedule.VerticalScheduleGridPanel;
 
 /**
  * The Main Window. Provides the basic application layout containing
@@ -31,8 +30,9 @@ public class MainWindow extends UiPart<Stage> {
     private static final int MODULELIST = 1;
     private static final int MODULE = 2;
     private static final int SCHEDULE = 3;
-
     private static final int TIMETABLE = 4;
+
+    private int TIME_TABLE_MODEL = 0;
     private static final String FXML = "MainWindow.fxml";
 
     private final Logger logger = LogsCenter.getLogger(getClass());
@@ -48,7 +48,6 @@ public class MainWindow extends UiPart<Stage> {
     private ModulePanel modulePanel;
     private ScheduleListPanel scheduleListPanel;
     private ScheduleGridPanel scheduleGridPanel;
-    private VerticalScheduleGridPanel verticalScheduleGridPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
 
@@ -79,8 +78,6 @@ public class MainWindow extends UiPart<Stage> {
     @FXML
     private StackPane scheduleGridPanelPlaceholder;
 
-    @FXML
-    private StackPane verticalScheduleGridPanelPlaceholder;
     @FXML
     private StackPane resultDisplayPlaceholder;
 
@@ -159,12 +156,9 @@ public class MainWindow extends UiPart<Stage> {
         scheduleListPanel = new ScheduleListPanel(logic.getFilteredScheduleList());
         scheduleListPanelPlaceholder.getChildren().add(scheduleListPanel.getRoot());
 
-//        scheduleGridPanel = new ScheduleGridPanel(logic.getAllScheduleList());
-//        scheduleGridPanel.construct();
-//        scheduleGridPanelPlaceholder.getChildren().add(scheduleGridPanel.getRoot());
-        verticalScheduleGridPanel = new VerticalScheduleGridPanel(logic.getAllScheduleList());
-        verticalScheduleGridPanel.construct();
-        verticalScheduleGridPanelPlaceholder.getChildren().add(verticalScheduleGridPanel.getRoot());
+        scheduleGridPanel = new ScheduleGridPanel(logic.getAllScheduleList());
+        scheduleGridPanel.constructHorizontalTimetable();
+        scheduleGridPanelPlaceholder.getChildren().add(scheduleGridPanel.getRoot());
 
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
@@ -264,24 +258,20 @@ public class MainWindow extends UiPart<Stage> {
     @FXML
     public void handleShowTabScheduleGrid() {
         scheduleGridPanel = new ScheduleGridPanel(logic.getAllScheduleList());
-        scheduleGridPanel.construct();
-        scheduleGridPanelPlaceholder.getChildren().add(scheduleGridPanel.getRoot());
         tabPane.getSelectionModel().select(TIMETABLE);
-        resultDisplay.setFeedbackToUser("Show the Timetable!");
-    }
+        if (TIME_TABLE_MODEL == 0) { // horizontal Timetable
+            scheduleGridPanel.constructHorizontalTimetable();
+            scheduleGridPanelPlaceholder.getChildren().add(scheduleGridPanel.getRoot());
+            resultDisplay.setFeedbackToUser("Show the Horizontal Timetable!");
+        } else if (TIME_TABLE_MODEL == 1){ // vertical Timetable
+            scheduleGridPanel.constructVerticalTimetable();
+            scheduleGridPanelPlaceholder.getChildren().add(scheduleGridPanel.getRoot());
+            resultDisplay.setFeedbackToUser("Show the Vertical Timetable!");
+        } else {
+            resultDisplay.setFeedbackToUser("Something wrong....");
+        }
 
-    /**
-     * Switch to Vertical Timetable page with all schedules.
-     */
-    @FXML
-    public void handleShowTabVerticalScheduleGrid() {
-        verticalScheduleGridPanel = new VerticalScheduleGridPanel(logic.getAllScheduleList());
-        verticalScheduleGridPanel.construct();
-        verticalScheduleGridPanelPlaceholder.getChildren().add(verticalScheduleGridPanel.getRoot());
-        tabPane.getSelectionModel().select(TIMETABLE);
-        resultDisplay.setFeedbackToUser("Show the vertical Timetable!");
     }
-
 
 
     /**
@@ -359,8 +349,13 @@ public class MainWindow extends UiPart<Stage> {
             if (commandResult.isShowScheduleList()) {
                 handleShowTabSchedule();
             }
-            if (commandResult.isShowTimeTable()) {
-                handleShowTabVerticalScheduleGrid();
+            if (commandResult.isShowHorizontalTimeTable()) {
+                TIME_TABLE_MODEL = 0;
+                handleShowTabScheduleGrid();
+            }
+            if (commandResult.isShowVerticalTimeTable()) {
+                TIME_TABLE_MODEL = 1;
+                handleShowTabScheduleGrid();
             }
 
             return commandResult;
