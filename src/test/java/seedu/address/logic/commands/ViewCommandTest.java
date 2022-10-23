@@ -82,9 +82,9 @@ public class ViewCommandTest {
         );
 
         Model expectedModel = new ModelManager(new PennyWise(model.getPennyWise()), new UserPrefs());
-        assert EXPENDITURE_BY_MONTH.getMonth().isPresent();
+        assert EXPENDITURE_BY_MONTH.getYearMonth().isPresent();
         expectedModel.updateFilteredExpenditureList(
-                new EntryInYearMonthPredicate(EXPENDITURE_BY_MONTH.getMonth().get())
+                new EntryInYearMonthPredicate(EXPENDITURE_BY_MONTH.getYearMonth().get())
         );
         assertCommandSuccess(
                 viewCommand,

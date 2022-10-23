@@ -7,6 +7,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_MONTH;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TYPE;
 
 import seedu.address.logic.commands.ViewCommand;
+import seedu.address.logic.commands.ViewCommand.ViewEntriesDescriptor;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.entry.GraphType;
 
@@ -24,7 +25,7 @@ public class ViewCommandParser implements Parser<ViewCommand> {
         requireNonNull(args);
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_TYPE, PREFIX_MONTH, PREFIX_GRAPH);
 
-        ViewCommand.ViewEntriesDescriptor viewEntriesDescriptor = new ViewCommand.ViewEntriesDescriptor();
+        ViewEntriesDescriptor viewEntriesDescriptor = new ViewEntriesDescriptor();
         try {
             if (argMultimap.getValue(PREFIX_TYPE).isPresent()) {
                 viewEntriesDescriptor.setEntryType(
@@ -37,8 +38,8 @@ public class ViewCommandParser implements Parser<ViewCommand> {
                 GraphType graphType = viewEntriesDescriptor.getGraphType();
                 if (graphType.equals(new GraphType(GraphType.GRAPH_TYPE_MONTH))) {
                     if (argMultimap.getValue(PREFIX_MONTH).isPresent()) {
-                        viewEntriesDescriptor.setMonth(
-                                ParserUtil.parseMonth(argMultimap.getValue(PREFIX_MONTH).get()));
+                        viewEntriesDescriptor.setYearMonth(
+                                ParserUtil.parseYearMonth(argMultimap.getValue(PREFIX_MONTH).get()));
                     }
                 }
             }

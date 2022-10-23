@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
 import java.time.LocalDate;
+import java.time.YearMonth;
 import java.time.format.DateTimeFormatter;
 
 /**
@@ -17,6 +18,7 @@ public class Date {
     public static final String VALIDATION_REGEX =
             "^([0-2][0-9]||3[0-1])-(0[1-9]||[1-9]||1[0-2])-([0-9][0-9])?[0-9][0-9]$";
 
+    public static final String YEAR_MONTH_PATTERN = "yyyy-MM";
     public final LocalDate date;
 
     /**
@@ -42,8 +44,13 @@ public class Date {
      *
      * @return Year-Month of the date.
      */
-    public Month getYearMonth() {
-        return new Month(date);
+    public YearMonth getYearMonth() {
+        String yearMonth = date.format(DateTimeFormatter.ofPattern(YEAR_MONTH_PATTERN));
+        return YearMonth.parse(yearMonth, DateTimeFormatter.ofPattern(Date.YEAR_MONTH_PATTERN));
+    }
+
+    public LocalDate getLocalDate() {
+        return date;
     }
 
     @Override

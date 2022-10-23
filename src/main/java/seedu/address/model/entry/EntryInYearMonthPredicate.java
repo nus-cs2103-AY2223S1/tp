@@ -1,14 +1,15 @@
 package seedu.address.model.entry;
 
+import java.time.YearMonth;
 import java.util.function.Predicate;
 
 /**
  * Tests that a {@code Entry}'s {@code year-month} matches the given year-month.
  */
 public class EntryInYearMonthPredicate implements Predicate<Entry> {
-    private final Month yearMonth;
+    private final YearMonth yearMonth;
 
-    public EntryInYearMonthPredicate(Month yearMonth) {
+    public EntryInYearMonthPredicate(YearMonth yearMonth) {
         this.yearMonth = yearMonth;
     }
 

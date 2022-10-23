@@ -3,7 +3,6 @@ package seedu.address.testutil;
 import seedu.address.logic.commands.ViewCommand.ViewEntriesDescriptor;
 import seedu.address.model.entry.EntryType;
 import seedu.address.model.entry.GraphType;
-import seedu.address.model.entry.Month;
 
 /**
  * A utility class to help with building ViewEntriesDescriptor objects.

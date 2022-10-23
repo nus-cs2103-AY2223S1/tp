@@ -1,9 +1,13 @@
 package seedu.address.model;
 
+import static java.time.format.DateTimeFormatter.ISO_LOCAL_DATE;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
+import java.time.LocalDate;
+import java.time.YearMonth;
+import java.util.HashMap;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
@@ -11,6 +15,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import javafx.scene.chart.PieChart;
+import javafx.scene.chart.XYChart;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.entry.Entry;
@@ -25,9 +30,7 @@ public class ModelManager implements Model {
     private final UserPrefs userPrefs;
     private final FilteredList<Entry> filteredExpenditure;
     private final FilteredList<Entry> filteredIncome;
-
-
-
+    private YearMonth monthForChart;
 
     /**
      * Initializes a ModelManager with the given pennyWise and userPrefs.
@@ -41,6 +44,7 @@ public class ModelManager implements Model {
         this.userPrefs = new UserPrefs(userPrefs);
         filteredExpenditure = new FilteredList<>(this.pennyWise.getExpenditureList());
         filteredIncome = new FilteredList<>(this.pennyWise.getIncomeList());
+        monthForChart = YearMonth.now();
     }
 
     public ModelManager() {
@@ -181,6 +185,11 @@ public class ModelManager implements Model {
         filteredIncome.setPredicate(predicate);
     }
 
+    @Override
+    public void setMonthForChart(YearMonth month) {
+        this.monthForChart = month;
+    }
+
     /**
      * Gets pie chart data of income entries
      *
@@ -267,6 +276,37 @@ public class ModelManager implements Model {
             new PieChart.Data("Others", expensePieChartArr[5]));
 
         return expensePieChartData;
+    }
+
+    @Override
+    public XYChart.Series<String, Number> getExpenseLineChartData() {
+        return getLineChartData(filteredExpenditure);
+    }
+
+    @Override
+    public XYChart.Series<String, Number> getIncomeLineChartData() {
+        return getLineChartData(filteredIncome);
+    }
+
+    private XYChart.Series<String, Number> getLineChartData(FilteredList<Entry> filteredEntryList) {
+        HashMap<String, Number> dateToExpenditureMap = new HashMap<>();
+
+        LocalDate date = monthForChart.atDay(1);
+        int daysInMonth = date.lengthOfMonth();
+        for (int i = 0; i < daysInMonth; i++) {
+            dateToExpenditureMap.put(date.format(ISO_LOCAL_DATE), 0);
+            date = date.plusDays(1);
+        }
+
+        ObservableList<XYChart.Data<String, Number>> expenseSeries = FXCollections.observableArrayList();
+
+        filteredEntryList.forEach(entry -> dateToExpenditureMap.computeIfPresent(
+                entry.getFormattedDate(ISO_LOCAL_DATE), (key, val) -> val.doubleValue() + entry.getAmountValue()));
+
+        for (HashMap.Entry<String, Number> entry : dateToExpenditureMap.entrySet()) {
+            expenseSeries.add(new XYChart.Data<>(entry.getKey(), entry.getValue()));
+        }
+        return new XYChart.Series<>(expenseSeries);
     }
 
     @Override

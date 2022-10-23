@@ -2,6 +2,8 @@ package seedu.address.model.entry;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.time.YearMonth;
+import java.time.format.DateTimeFormatter;
 import java.util.Objects;
 
 import seedu.address.model.tag.Tag;
@@ -13,7 +15,6 @@ import seedu.address.model.tag.Tag;
 public class Entry {
     // Identity fields
     private final Description description;
-    // private final EntryType type;
     // Data fields
     private final Date date;
     private final Amount amount;
@@ -39,12 +40,20 @@ public class Entry {
         return date;
     }
 
-    public Month getYearMonth() {
+    public YearMonth getYearMonth() {
         return date.getYearMonth();
+    }
+
+    public String getFormattedDate(DateTimeFormatter formatter) {
+        return date.getLocalDate().format(formatter);
     }
 
     public Amount getAmount() {
         return amount;
+    }
+
+    public Double getAmountValue() {
+        return amount.getValue();
     }
 
     /**

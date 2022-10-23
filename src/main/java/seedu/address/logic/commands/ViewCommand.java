@@ -4,9 +4,9 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_GRAPH;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TYPE;
 
+import java.time.YearMonth;
 import java.util.Optional;
 import java.util.function.Predicate;
-
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.GraphConfiguration;
 import seedu.address.model.Model;
@@ -14,7 +14,6 @@ import seedu.address.model.entry.Entry;
 import seedu.address.model.entry.EntryInYearMonthPredicate;
 import seedu.address.model.entry.EntryType;
 import seedu.address.model.entry.GraphType;
-import seedu.address.model.entry.Month;
 
 /**
  * View income/expenditure entries to the application.
@@ -44,10 +43,10 @@ public class ViewCommand extends Command {
         // If the specified graph type is "Month", we select the predicate to check if the entry
         // is in the corresponding month.
         if (graphType.getGraphType().equals(GraphType.Type.MONTH)) {
-            Optional<Month> month = viewEntriesDescriptor.getMonth();
-            assert month.isPresent();
+            Optional<YearMonth> yearMonth = viewEntriesDescriptor.getYearMonth();
+            assert yearMonth.isPresent();
 
-            return new EntryInYearMonthPredicate(month.get());
+            return new EntryInYearMonthPredicate(yearMonth.get());
         }
 
         // By default, show all entries in the entry list.
@@ -101,7 +100,7 @@ public class ViewCommand extends Command {
      */
     public static class ViewEntriesDescriptor {
         private EntryType entryType;
-        private Month month;
+        private YearMonth yearMonth;
         private GraphType graphType;
 
         public ViewEntriesDescriptor() {
@@ -113,7 +112,7 @@ public class ViewCommand extends Command {
         public ViewEntriesDescriptor(ViewEntriesDescriptor toCopy) {
             setEntryType(toCopy.entryType);
             setGraphType(toCopy.graphType);
-            setMonth(toCopy.month);
+            setYearMonth(toCopy.yearMonth);
         }
 
         public void setEntryType(EntryType entryType) {
@@ -126,12 +125,12 @@ public class ViewCommand extends Command {
             return entryType;
         }
 
-        public void setMonth(Month month) {
-            this.month = month;
+        public void setYearMonth(YearMonth yearMonth) {
+            this.yearMonth = yearMonth;
         }
 
-        public Optional<Month> getMonth() {
-            return Optional.ofNullable(month);
+        public Optional<YearMonth> getYearMonth() {
+            return Optional.ofNullable(yearMonth);
         }
 
         public void setGraphType(GraphType graphType) {
@@ -159,7 +158,7 @@ public class ViewCommand extends Command {
                 return false;
             }
             GraphType graphTypeMonth = new GraphType(GraphType.GRAPH_TYPE_MONTH);
-            if (getGraphType().equals(graphTypeMonth) && getMonth().isEmpty()) {
+            if (getGraphType().equals(graphTypeMonth) && getYearMonth().isEmpty()) {
                 return false;
             }
             return true;
@@ -184,7 +183,7 @@ public class ViewCommand extends Command {
 
             return getEntryType().equals(otherEntriesDescriptor.getEntryType())
                     && getGraphType().equals(otherEntriesDescriptor.getGraphType())
-                    && getMonth().equals(otherEntriesDescriptor.getMonth());
+                    && getYearMonth().equals(otherEntriesDescriptor.getYearMonth());
         }
     }
 }
