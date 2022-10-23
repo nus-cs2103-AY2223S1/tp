@@ -7,13 +7,15 @@ TABS helps project team leaders **overview tasks assigned to group members**. It
 
 - [`Quick start`](#quick-start)
 - [`Features`](#features)
-  - Adding a person: [`addpeson`](#adding-a-person-adduser)
-  - Listing all persons: [`listpersons`](#listing-all-persons--list)
-  - Edit a person: [`editperson`](#editing-a-person--edituser)
-  - Locating persons by name: [`findperson`](#locating-persons-by-name-finduser)
-  - Deleting a person : [`deleteperson`](#deleting-a-person--deleteuser)
+  - Viewing help: [`help`](#viewing-help--help)
+  - Adding a person: [`addperson`](#adding-a-person-addperson)
+  - Listing all persons: [`listpersons`](#listing-all-persons--listpersons)
+  - Edit a person: [`editperson`](#editing-a-person--editperson)
+  - Locating persons by name: [`findperson`](#locating-persons-by-name-findperson)
+  - Deleting a person : [`deleteperson`](#deleting-a-person--deleteperson)
   - Adding a group: [`addgroup`](#creating-a-group--addgroup)
-  - Add member to  group: [`addmember`](#adding-a-member--addmember)
+  - Add member to group: [`addmember`](#adding-a-member--addmember)
+  - Delete member from group: [`deletemember`](#deleting-a-member--deletemember)
   - Assign member a task: [`assigntask`](#assigning-a-task-to-a-person-assigntask)
   - Delete task from member [`deletetask`](#deleting-a-task-from-a-person-deletetask)
   - Locate group by name: [`display`](#display-a-group--display)
@@ -63,6 +65,13 @@ Note how the app contains some sample data.
   e.g. if the command specifies `listpersons 123`, it will be interpreted as `listpersons`.
 
 </div>
+
+### Viewing help : help
+Shows a message explaining how to access the help page.
+
+![Help Example](Help.png)
+
+Format: help
 
 ### Adding a person: `addperson`
 
@@ -149,13 +158,23 @@ Examples:
 
 Adds an existing person to an existing group in TABS.
 
-Format: `addmember GROUP NAME`
+Format: `addmember g/GROUP n/NAME`
 
 Examples:
 
-* `addmember CS2103T UserName`
-* `addmember CS2101 DefaultUser`
+* `addmember g/CS2103T n/UserName`
+* `addmember g/CS2101 n/DefaultUser`
 
+### Deleting a member : `deletemember`
+
+Deletes an existing person from an existing group in TABS.
+
+Format: `deletemember g/GROUP n/NAME`
+
+Examples:
+
+* `deletemember g/CS2103T n/UserName`
+* `deletemember g/CS2101 n/DefaultUser`
 ### Assigning a task to a person: `assigntask`
 
 Assigns a task to a person with a group in TABS.
@@ -222,13 +241,14 @@ Format: `exit`
 
  Action | Format, Examples
 -------------------|------------------
-**Add User** | `adduser [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…` <br> e.g. `adduser n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`
-**Delete User** | `deleteuser NAME`<br> e.g. `deleteuser James Ho`
-**Edit User** | `edituser NAME [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…`<br> e.g. `edituser 2 n/James Lee e/jameslee@example.com`
-**Find User** | `finduser KEYWORD [MORE_KEYWORDS]`<br> e.g. `finduser James Jake`
-**List** | `list`
+**Add Person** | `addperson [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…` <br> e.g. `adduser n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`
+**Delete Person** | `deleteperson NAME`<br> e.g. `deleteuser James Ho`
+**Edit Person** | `editperson NAME [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…`<br> e.g. `edituser 2 n/James Lee e/jameslee@example.com`
+**Find Person** | `findperson KEYWORD [MORE_KEYWORDS]`<br> e.g. `finduser James Jake`
+**List** | `listpersons`
 **Add Group** | `addgroup GROUP` <br> e.g. `addgroup CS2103T`
 **Add Member** | `addmember [g/GROUP] [n/NAME]` <br> e.g. `addmember g/CS2103T n/James Lee, addmember g/CS2101 n/DefaultUser`
+**Delete Member** | `deletemember [g/GROUP] [n/NAME]` <br> e.g. `deletemember g/CS2103T n/James Lee, deletemember g/CS2101 n/DefaultUser`
 **Assign Task** | `assigntask NAME [g/GROUP] [task/TASK]` <br> e.g. `assigntask John g/CS2103T task/TeamProject`
 **Delete Task** | `deletetask NAME [g/GROUP] [task/TASK]` <br> e.g. `deletetask John g/CS2103T task/TeamProject`
 **Display Group** | `display GROUP` <br> e.g. `display CS2103T`

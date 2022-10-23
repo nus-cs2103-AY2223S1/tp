@@ -1,7 +1,10 @@
 package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.time.DateTimeException;
+import java.time.LocalDateTime;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
@@ -10,6 +13,8 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.assignment.Assignment;
+import seedu.address.model.assignment.Deadline;
+import seedu.address.model.assignment.Workload;
 import seedu.address.model.group.GroupName;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
@@ -126,6 +131,44 @@ public class ParserUtil {
     }
 
     /**
+     * Parses a {@code String workload} into a {@code Workload}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code tag} is invalid.
+     */
+    public static Workload parseWorkload(String workload) throws ParseException {
+        requireNonNull(workload);
+        String trimmedWorkload = workload.trim();
+        Workload wl;
+        //Workload specified is not low, medium or high
+        try {
+            wl = Workload.valueOf(trimmedWorkload);
+        } catch (IllegalArgumentException e) {
+            throw new ParseException(Workload.MESSAGE_CONSTRAINTS);
+        }
+        return wl;
+    }
+
+    /**
+     * Parses a {@code String deadline} into a {@code Deadline}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code tag} is invalid.
+     */
+    public static Deadline parseDeadline(String deadline) throws ParseException {
+        requireNonNull(deadline);
+        String trimmedDeadline = deadline.trim();
+        LocalDateTime dateTime;
+        //Check if deadline is in yyyy-mm-dd HH:mm or yyyy-mm-dd format
+        try {
+            dateTime = DateTimeParser.getDateTime(trimmedDeadline);
+        } catch (DateTimeException e) {
+            throw new ParseException(Deadline.MESSAGE_CONSTRAINTS);
+        }
+        return new Deadline(dateTime);
+    }
+
+    /**
      * Parses a {@code String assignment} into a {@code Assignment}.
      * Leading and trailing whitespaces will be trimmed.
      */
@@ -136,6 +179,35 @@ public class ParserUtil {
             throw new ParseException(Assignment.MESSAGE_CONSTRAINTS);
         }
         return new Assignment(trimmedAssignment);
+    }
+
+    /**
+     * Parses a {@code String assignment} and {@code String workload} into a {@code Assignment}.
+     * Leading and trailing whitespaces will be trimmed.
+     */
+    public static Assignment parseAssignmentWithWorkload(String assignment, Workload workload)
+            throws ParseException {
+        requireAllNonNull(assignment, workload);
+        String trimmedAssignment = assignment.trim();
+        if (!Assignment.isValidAssignment(trimmedAssignment)) {
+            throw new ParseException(Assignment.MESSAGE_CONSTRAINTS);
+        }
+        return new Assignment(trimmedAssignment, workload);
+    }
+
+    /**
+     * Parses a {@code String assignment}, {@code String workload}, {@code String deadline}
+     * into a {@code Assignment}.
+     * Leading and trailing whitespaces will be trimmed.
+     */
+    public static Assignment parseAssignmentWithDeadline(
+            String assignment, Workload workload, Deadline deadline) throws ParseException {
+        requireAllNonNull(assignment, workload, deadline);
+        String trimmedAssignment = assignment.trim();
+        if (!Assignment.isValidAssignment(trimmedAssignment)) {
+            throw new ParseException(Assignment.MESSAGE_CONSTRAINTS);
+        }
+        return new Assignment(trimmedAssignment, workload, deadline);
     }
 
     /**

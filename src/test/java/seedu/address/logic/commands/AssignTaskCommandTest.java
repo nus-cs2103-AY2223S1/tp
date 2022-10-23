@@ -77,14 +77,12 @@ public class AssignTaskCommandTest {
         String assignmentName = "Assignment ABC";
 
         Person editedPerson = new PersonBuilder(personToAssignTask)
-                .withAssignments(new String[]{"Alpha", "Beta", groupName},
-                        new String[][]{{"Team Project", "Team A"},
-                                       {"Team Beta"}, {assignmentName}}).build();
+                .withAssignments(new String[]{groupName},
+                        new String[][]{{}}).build();
 
         Person expectedEditedPerson = new PersonBuilder(personToAssignTask)
-                .withAssignments(new String[]{"Alpha", "Beta", groupName},
-                        new String[][]{{"Team Project", "Team A"},
-                                       {"Team Beta"}, {assignmentName, assignmentName}}).build();
+                .withAssignments(new String[]{groupName},
+                        new String[][]{{assignmentName}}).build();
 
         AssignTaskCommand assignTaskCommand = new AssignTaskCommand(
                 ELLE.getName(),
@@ -111,8 +109,8 @@ public class AssignTaskCommandTest {
         String assignmentName = "Assignment ABC";
 
         Person editedPerson = new PersonBuilder(personToAssignTask)
-                .withAssignments(new String[]{"Alpha", "Beta", groupName},
-                        new String[][]{{"Team Project", "Team A"}, {"Team Beta"}, {assignmentName}}).build();
+                .withAssignments(new String[]{groupName},
+                        new String[][]{{assignmentName}}).build();
 
         AssignTaskCommand assignTaskCommand = new AssignTaskCommand(
                 ELLE.getName(),
@@ -120,15 +118,11 @@ public class AssignTaskCommandTest {
                 new Assignment(assignmentName)
         );
 
-        String expectedMessage = String.format(AssignTaskCommand.MESSAGE_ASSIGN_TASK_SUCCESS + "\n"
-                        + AssignTaskCommand.MESSAGE_ARGUMENTS,
-                ELLE.getName(), groupName, assignmentName);
-
-        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
         model.setPerson(personToAssignTask, editedPerson);
-        expectedModel.setPerson(personToAssignTask, editedPerson);
+        assertCommandFailure(assignTaskCommand, model, AssignTaskCommand.MESSAGE_DUPLICATE_TASK);
 
-        assertCommandSuccess(assignTaskCommand, model, expectedMessage, expectedModel);
+        assertThrows(CommandException.class,
+                AssignTaskCommand.MESSAGE_DUPLICATE_TASK, () -> assignTaskCommand.execute(model));
     }
 
     @Test

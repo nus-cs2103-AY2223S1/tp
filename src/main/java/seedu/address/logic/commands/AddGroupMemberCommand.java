@@ -25,13 +25,12 @@ public class AddGroupMemberCommand extends Command {
 
     public static final String COMMAND_WORD = "addmember";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds member to a specified group"
-            + " Parameters: " + PREFIX_GROUP + "GROUP " + PREFIX_NAME + "NAME\n"
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds member to a specified group. "
+            + "Parameters: " + PREFIX_GROUP + "GROUP " + PREFIX_NAME + "NAME\n"
             + "Example: " + COMMAND_WORD + " g/Group Alpha n/Alice Chee";
-    public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the address book.";
-    public static final String MESSAGE_DUPLICATE_PERSON_IN_GROUP = "This person already exists in this group.";
+    public static final String MESSAGE_DUPLICATE_PERSON_IN_GROUP = "%1$s already exists in the group.";
     public static final String MESSAGE_INVALID_GROUP = "This group does not exist.";
-    public static final String MESSAGE_INVALID_PERSON = "This person is not in the address book.";
+    public static final String MESSAGE_INVALID_PERSON = "%1$s is not in the address book.";
     public static final String MESSAGE_ASSIGN_GROUP_SUCCESS = "%1$s was added to group: %2$s";
 
     private final Name name;
@@ -56,7 +55,7 @@ public class AddGroupMemberCommand extends Command {
         try {
             personToGroup = personList.get(0);
         } catch (IndexOutOfBoundsException e) {
-            throw new CommandException(MESSAGE_INVALID_PERSON);
+            throw new CommandException(String.format(MESSAGE_INVALID_PERSON, this.name));
         }
 
         // check if group exist
@@ -65,12 +64,12 @@ public class AddGroupMemberCommand extends Command {
         try {
             groupToAddPerson = groupList.get(0);
         } catch (IndexOutOfBoundsException e) {
-            throw new CommandException(MESSAGE_INVALID_GROUP);
+            throw new CommandException(String.format(MESSAGE_INVALID_GROUP, this.personGroup));
         }
 
         // check if person already in group
         if (groupToAddPerson.contains(personToGroup)) {
-            throw new CommandException(MESSAGE_DUPLICATE_PERSON_IN_GROUP);
+            throw new CommandException(String.format(MESSAGE_DUPLICATE_PERSON_IN_GROUP, this.name, this.personGroup));
         }
 
         //change field
@@ -87,10 +86,6 @@ public class AddGroupMemberCommand extends Command {
         groupMembers.addAll(groupToAddPerson.getMembers());
         groupMembers.add(editedPerson);
         Group editedGroup = new Group(groupToAddPerson.getName(), groupMembers);
-
-        if (!personToGroup.isSamePerson(editedPerson) && model.hasPerson(editedPerson)) {
-            throw new CommandException(MESSAGE_DUPLICATE_PERSON);
-        }
 
         model.setGroup(groupToAddPerson, editedGroup);
         model.setPerson(personToGroup, editedPerson);
