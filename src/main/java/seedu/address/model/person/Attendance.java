@@ -3,6 +3,7 @@ package seedu.address.model.person;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -16,7 +17,7 @@ import seedu.address.logic.parser.exceptions.ParseException;
 public class Attendance {
 
     public static final String MESSAGE_CONSTRAINTS =
-        "Attendance should only contain a date followed by a \"1\" or a \"0\", and it should not be blank";
+        "Attendance should only contain a date followed by a \"1\" or a \"0\"";
 
     private static final Pattern FORMAT = Pattern.compile("date/(?<date>.+) attendance/(?<attendance>[01])");
 
@@ -44,6 +45,9 @@ public class Attendance {
     public static boolean isValidAttendance(String test) {
         // Input should be in the form date/DATE attendance/[1/0]
         // e.g. date/13 Jan 2022 attendance/1
+        if (test.isBlank()) {
+            return true; // a student will start with a blank attendance
+        }
         Matcher matcher = FORMAT.matcher(test.trim());
         if (!matcher.matches()) {
             return false;
@@ -55,6 +59,10 @@ public class Attendance {
 
     public static HashMap<String, Integer> parseAttendanceFromJson(String json)
         throws ParseException {
+        // For empty attendances
+        if (json.isBlank()) {
+            return new HashMap<>();
+        }
         String trimmedInput = json.trim();
         String[] toParse = trimmedInput.split("%%");
         HashMap<String, Integer> tempMap = new HashMap<>();
@@ -64,6 +72,7 @@ public class Attendance {
             } else {
                 Matcher matcher = FORMAT.matcher(s.trim());
                 if (!matcher.matches()) {
+                    System.out.println("failed valid check: " + s);
                     throw new ParseException(Attendance.MESSAGE_CONSTRAINTS); // "initializes" matcher
                 }
                 String date = matcher.group("date");
@@ -116,4 +125,10 @@ public class Attendance {
         return sb.toString();
     }
 
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+            || (other instanceof Attendance // instanceof handles nulls
+            && personAttendance.equals(((Attendance) other).personAttendance)); // state check
+    }
 }

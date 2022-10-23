@@ -7,6 +7,7 @@
       "email": "alice@example.com",
       "address": "123, Jurong West Ave 6, #08-111",
       "studentClass": "1A",
+      "attendance": "",
       "tagged": [
         "friends"
       ],
@@ -21,6 +22,7 @@
       "email": "johnd@example.com",
       "address": "311, Clementi Ave 2, #02-25",
       "studentClass": "1A",
+      "attendance": "date/12-02-2022 attendance/1 %% date/13-02-2022 attendance/0",
       "tagged": [
         "owesMoney",
         "friends"
@@ -36,6 +38,7 @@
       "email": "heinz@example.com",
       "address": "wall street",
       "studentClass": "1A",
+      "attendance": "",
       "subjects": [
         "English"
       ]
@@ -46,6 +49,7 @@
       "email": "cornelia@example.com",
       "address": "10th street",
       "studentClass": "1A",
+      "attendance": "",
       "remarks": [
         "friendly"
       ],
@@ -62,6 +66,7 @@
       "email": "werner@example.com",
       "address": "michegan ave",
       "studentClass": "1A",
+      "attendance": "",
       "remarks": [],
       "tagged": [],
       "subjects": [
@@ -74,6 +79,7 @@
       "email": "lydia@example.com",
       "address": "little tokyo",
       "studentClass": "1A",
+      "attendance": "",
       "remarks": [],
       "tagged": [],
       "subjects": [
@@ -86,6 +92,7 @@
       "email": "anna@example.com",
       "address": "4th street",
       "studentClass": "1A",
+      "attendance": "",
       "remarks": [],
       "tagged": [],
       "subjects": [
