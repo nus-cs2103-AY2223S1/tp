@@ -105,14 +105,13 @@ public class PersonCard extends UiPart<Region> {
                         platformIcon.setFitHeight(20);
                         platformIcon.setFitWidth(20);
                         button.setGraphic(platformIcon);
-//                        button.setText(link.link);
                     }
                     links.getChildren().add(button);
                 });
     }
 
     private EventHandler<ActionEvent> openBrowser(final String url) {
-        Application a = new Application(){
+        Application a = new Application() {
             @Override
             public void start(Stage primaryStage) {
             }

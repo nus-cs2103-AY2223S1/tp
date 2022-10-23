@@ -1,7 +1,13 @@
 package seedu.clinkedin.logic.parser;
 
 import static seedu.clinkedin.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.clinkedin.logic.parser.CliSyntax.*;
+import static seedu.clinkedin.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static seedu.clinkedin.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.clinkedin.logic.parser.CliSyntax.PREFIX_LINK;
+import static seedu.clinkedin.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.clinkedin.logic.parser.CliSyntax.PREFIX_NOTE;
+import static seedu.clinkedin.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.clinkedin.logic.parser.CliSyntax.PREFIX_STATUS;
 
 import java.util.HashMap;
 import java.util.List;

@@ -1,5 +1,8 @@
 package seedu.clinkedin.model.util;
 
+import java.util.HashSet;
+import java.util.Set;
+
 import seedu.clinkedin.logic.parser.Prefix;
 import seedu.clinkedin.model.AddressBook;
 import seedu.clinkedin.model.ReadOnlyAddressBook;
@@ -14,9 +17,6 @@ import seedu.clinkedin.model.person.Status;
 import seedu.clinkedin.model.person.UniqueTagTypeMap;
 import seedu.clinkedin.model.tag.Tag;
 import seedu.clinkedin.model.tag.TagType;
-
-import java.util.HashSet;
-import java.util.Set;
 
 /**
  * Contains utility methods for populating {@code AddressBook} with sample data.

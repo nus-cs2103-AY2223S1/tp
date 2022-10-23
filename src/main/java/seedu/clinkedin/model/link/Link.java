@@ -11,7 +11,8 @@ public class Link {
     public static final String MESSAGE_CONSTRAINTS = "Link should be valid links, "
             + "and it should not be blank. If you do not want to add a link, please leave the field blank. "
             + "Blank links will be ignored.";
-    public static final String VALIDATION_REGEX = "^(https?|ftp|file)://[-a-zA-Z0-9+&@#/%?=~_|!:,.;]*[-a-zA-Z0-9+&@#/%=~_|]";
+    public static final String VALIDATION_REGEX =
+            "^(https?|ftp|file)://[-a-zA-Z0-9+&@#/%?=~_|!:,.;]*[-a-zA-Z0-9+&@#/%=~_|]";
 
     public final String link;
 
