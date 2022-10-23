@@ -35,22 +35,22 @@ public class CommandTestUtil {
     public static final String VALID_NAME_MSFT = "Microsoft";
     public static final String VALID_POSITION_AAPL = "Software Engineer";
     public static final String VALID_POSITION_MSFT = "Frontend Developer";
+    public static final String VALID_STATUS_AAPL = "Offered";
+    public static final String VALID_STATUS_MSFT = "Progress";
     public static final String VALID_PHONE_AAPL = "11111111";
     public static final String VALID_PHONE_MSFT = "22222222";
     public static final String VALID_EMAIL_AAPL = "hr@apple.com";
     public static final String VALID_EMAIL_MSFT = "hr@microsoft.com";
     public static final String VALID_ADDRESS_AAPL = "Apple Park";
     public static final String VALID_ADDRESS_MSFT = "Microsoft Campus";
-    public static final String VALID_STATUS_AAPL = "Offered";
-    public static final String VALID_STATUS_MSFT = "Progress";
     public static final String VALID_TASK_AAPL = "Application submitted /at "
             + LocalDateTime.now().truncatedTo(ChronoUnit.MINUTES).format(Task.FORMATTER);
     public static final String VALID_TASK_MSFT = "Application submitted /at "
             + LocalDateTime.now().truncatedTo(ChronoUnit.MINUTES).format(Task.FORMATTER);
     public static final String VALID_TAG_REMOTE = "Remote";
     public static final String VALID_TAG_URGENT = "Urgent";
-    public static final String VALID_REMARK_AAPL = "Forgot how to invert a binary tree";
-    public static final String VALID_REMARK_MSFT = "Revise graphs";
+    public static final String VALID_REMARK_AAPL = "Revise Trees";
+    public static final String VALID_REMARK_MSFT = "Revise Graphs";
 
     public static final String NAME_DESC_AAPL = " " + PREFIX_NAME + VALID_NAME_AAPL;
     public static final String NAME_DESC_MSFT = " " + PREFIX_NAME + VALID_NAME_MSFT;
@@ -95,7 +95,7 @@ public class CommandTestUtil {
      * - the {@code actualModel} matches {@code expectedModel}
      */
     public static void assertCommandSuccess(Command command, Model actualModel, CommandResult expectedCommandResult,
-            Model expectedModel) {
+                                            Model expectedModel) {
         try {
             CommandResult result = command.execute(actualModel);
             assertEquals(expectedCommandResult, result);
@@ -110,7 +110,7 @@ public class CommandTestUtil {
      * that takes a string {@code expectedMessage}.
      */
     public static void assertCommandSuccess(Command command, Model actualModel, String expectedMessage,
-            Model expectedModel) {
+                                            Model expectedModel) {
         CommandResult expectedCommandResult = new CommandResult(expectedMessage);
         assertCommandSuccess(command, actualModel, expectedCommandResult, expectedModel);
     }

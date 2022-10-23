@@ -88,7 +88,7 @@ public class InTrackParser {
 
         case StatsCommand.COMMAND_WORD:
             return new StatsCommand();
-
+            
         case SortCommand.COMMAND_WORD:
             return new SortCommandParser().parse(arguments);
 
@@ -96,5 +96,4 @@ public class InTrackParser {
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
         }
     }
-
 }
