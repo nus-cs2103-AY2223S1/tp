@@ -101,6 +101,7 @@ public class DeleteTagCommand extends Command {
 
             model.setPerson(personToEdit, editedPerson);
             model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+            model.commitAddressBook();
             return new CommandResult(String.format(MESSAGE_DELETE_TAG_SUCCESS,
                     editPersonDescriptor.getTags().orElse(new HashSet<>())));
         }
@@ -120,6 +121,7 @@ public class DeleteTagCommand extends Command {
 
             model.setTask(taskToEdit, editedTask);
             model.updateFilteredTaskList(PREDICATE_SHOW_ALL_TASKS);
+            model.commitAddressBook();
             return new CommandResult(String.format(MESSAGE_DELETE_TAG_SUCCESS,
                     editTaskDescriptor.getTags().orElse(new HashSet<>())));
         }

@@ -58,6 +58,19 @@ public interface Model {
     ReadOnlyAddressBook getAddressBook();
 
     /**
+     * Adds the address book to the versioned address book.
+     */
+    void commitAddressBook();
+
+    void undoAddressBook();
+
+    void redoAddressBook();
+
+    boolean canUndoAddressBook();
+
+    boolean canRedoAddressBook();
+
+    /**
      * Returns true if a person with the same identity as {@code person} exists in the address book.
      */
     boolean hasPerson(Person person);
