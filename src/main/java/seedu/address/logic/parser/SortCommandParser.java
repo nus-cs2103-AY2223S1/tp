@@ -4,6 +4,7 @@ import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT
 
 import seedu.address.logic.commands.SortCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.logic.parser.sort.SortByAppointment;
 import seedu.address.logic.parser.sort.SortByName;
 
 /**
@@ -30,6 +31,12 @@ public class SortCommandParser implements Parser<SortCommand> {
 
         case "name desc":
             return new SortCommand(new SortByName("desc"), "name");
+
+        case "appt":
+            return new SortCommand(new SortByAppointment("asc"), "appt");
+
+        case "appt desc":
+            return new SortCommand(new SortByAppointment("desc"), "appt");
 
         default:
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, SortCommand.MESSAGE_USAGE));
