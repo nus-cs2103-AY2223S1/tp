@@ -41,7 +41,7 @@ class JsonSerializablePersonBook {
     }
 
     /**
-     * Converts this address book into the model's {@code PersonBook} object.
+     * Converts this person book into the model's {@code PersonBook} object.
      *
      * @throws IllegalValueException if there were any data constraints violated.
      */

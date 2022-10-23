@@ -70,7 +70,7 @@ public class DeleteBuyerCommandTest {
         showPersonAtIndex(model, INDEX_FIRST_ITEM);
 
         Index outOfBoundIndex = INDEX_SECOND_ITEM;
-        // ensures that outOfBoundIndex is still in bounds of address book list
+        // ensures that outOfBoundIndex is still in bounds of person book list
         assertTrue(outOfBoundIndex.getZeroBased() < model.getPersonBook().getPersonList().size());
 
         DeleteBuyerCommand deleteCommand = new DeleteBuyerCommand(outOfBoundIndex);

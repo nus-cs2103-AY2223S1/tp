@@ -70,7 +70,7 @@ public class DeletePropertyCommandTest {
         showPropertyAtIndex(model, INDEX_FIRST_ITEM);
 
         Index outOfBoundIndex = INDEX_SECOND_ITEM;
-        // ensures that outOfBoundIndex is still in bounds of address book list
+        // ensures that outOfBoundIndex is still in bounds of property book list
         assertTrue(outOfBoundIndex.getZeroBased() < model.getPropertyBook().getPropertyList().size());
 
         DeletePropertyCommand deletePropertyCommand = new DeletePropertyCommand(outOfBoundIndex);

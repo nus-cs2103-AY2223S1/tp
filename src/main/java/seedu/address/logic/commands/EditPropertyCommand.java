@@ -28,7 +28,7 @@ import seedu.address.model.property.Property;
 import seedu.address.model.property.PropertyName;
 
 /**
- * Edits the details of an existing property in the address book.
+ * Edits the details of an existing property in the property book.
  */
 public class EditPropertyCommand extends Command {
 

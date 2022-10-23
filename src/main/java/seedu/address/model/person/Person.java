@@ -11,7 +11,7 @@ import seedu.address.model.pricerange.PriceRange;
 
 
 /**
- * Represents a Person in the address book.
+ * Represents a Person in the person book.
  * Guarantees: field values are validated, immutable.
  * Only priceRange and desiredCharacteristics may be null.
  */

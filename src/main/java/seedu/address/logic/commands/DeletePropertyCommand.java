@@ -11,7 +11,7 @@ import seedu.address.model.Model;
 import seedu.address.model.property.Property;
 
 /**
- * Deletes a properety identified using it's displayed index from the address book.
+ * Deletes a property identified using it's displayed index from the property book.
  */
 public class DeletePropertyCommand extends Command {
 

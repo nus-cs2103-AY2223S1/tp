@@ -120,7 +120,7 @@ public class EditBuyerCommandTest {
     public void execute_duplicatePersonFilteredList_failure() {
         showPersonAtIndex(model, INDEX_FIRST_ITEM);
 
-        // edit person in filtered list into a duplicate in address book
+        // edit person in filtered list into a duplicate in person book
         Person personInList = model.getPersonBook().getPersonList().get(INDEX_SECOND_ITEM.getZeroBased());
         EditBuyerCommand editBuyerCommand = new EditBuyerCommand(INDEX_FIRST_ITEM,
                 new EditPersonDescriptorBuilder(personInList).build());
@@ -139,13 +139,13 @@ public class EditBuyerCommandTest {
 
     /**
      * Edit filtered list where index is larger than size of filtered list,
-     * but smaller than size of address book
+     * but smaller than size of person book
      */
     @Test
     public void execute_invalidPersonIndexFilteredList_failure() {
         showPersonAtIndex(model, INDEX_FIRST_ITEM);
         Index outOfBoundIndex = INDEX_SECOND_ITEM;
-        // ensures that outOfBoundIndex is still in bounds of address book list
+        // ensures that outOfBoundIndex is still in bounds of person book list
         assertTrue(outOfBoundIndex.getZeroBased() < model.getPersonBook().getPersonList().size());
 
         EditBuyerCommand editBuyerCommand = new EditBuyerCommand(outOfBoundIndex,

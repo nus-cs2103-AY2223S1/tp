@@ -28,7 +28,7 @@ import seedu.address.model.person.Priority;
 import seedu.address.model.pricerange.PriceRange;
 
 /**
- * Edits the details of an existing person in the address book.
+ * Edits the details of an existing person in the person book.
  */
 public class EditBuyerCommand extends Command {
 

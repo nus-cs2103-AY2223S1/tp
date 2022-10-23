@@ -77,26 +77,26 @@ public interface Model {
     ReadOnlyPersonBook getPersonBook();
 
     /**
-     * Returns true if a person with the same identity as {@code person} exists in the address book.
+     * Returns true if a person with the same identity as {@code person} exists in the person book.
      */
     boolean hasPerson(Person person);
 
     /**
      * Deletes the given person.
-     * The person must exist in the address book.
+     * The person must exist in the person book.
      */
     void deletePerson(Person target);
 
     /**
      * Adds the given person.
-     * {@code person} must not already exist in the address book.
+     * {@code person} must not already exist in the person book.
      */
     void addPerson(Person person);
 
     /**
      * Replaces the given person {@code target} with {@code editedPerson}.
-     * {@code target} must exist in the address book.
-     * The person identity of {@code editedPerson} must not be the same as another existing person in the address book.
+     * {@code target} must exist in the person book.
+     * The person identity of {@code editedPerson} must not be the same as another existing person in the person book.
      */
     void setPerson(Person target, Person editedPerson);
 
@@ -127,25 +127,25 @@ public interface Model {
     ReadOnlyPropertyBook getPropertyBook();
 
     /**
-     * Returns true if a property with the same identity as {@code property} exists in the address book.
+     * Returns true if a property with the same identity as {@code property} exists in the property book.
      */
     boolean hasProperty(Property property);
 
     /**
      * Deletes the given property.
-     * The property must exist in the address book.
+     * The property must exist in the property book.
      */
     void deleteProperty(Property target);
 
     /**
      * Adds the given property.
-     * {@code property} must not already exist in the address book.
+     * {@code property} must not already exist in the property book.
      */
     void addProperty(Property property);
 
     /**
      * Replaces the given property {@code target} with {@code editedProperty}.
-     * {@code target} must exist in the address book.
+     * {@code target} must exist in the property book.
      * The property identity of {@code editedProperty} must not be the same as another existing property in the address
      * book.
      */

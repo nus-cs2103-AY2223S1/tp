@@ -14,7 +14,7 @@ import seedu.address.model.Model;
 import seedu.address.model.property.Property;
 
 /**
- * Adds a property to the address book.
+ * Adds a property to the property book.
  */
 public class AddPropertyCommand extends Command {
 
