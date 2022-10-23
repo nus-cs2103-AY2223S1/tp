@@ -3,7 +3,7 @@ package seedu.uninurse.storage;
 import static java.util.Objects.requireNonNull;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonValue;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.uninurse.commons.exceptions.IllegalValueException;
 import seedu.uninurse.model.medication.Medication;
@@ -13,17 +13,18 @@ import seedu.uninurse.model.medication.Medication;
  */
 public class JsonAdaptedMedication {
     private final String medicationType;
-    private final String dosage;
+    private final String medicationDosage;
 
     /**
      * Constructs a {@code JsonAdaptedMedication} with the given {@code Medication}.
      */
     @JsonCreator
-    public JsonAdaptedMedication(String medicationType, String dosage) {
+    public JsonAdaptedMedication(@JsonProperty("medicationType") String medicationType,
+                                 @JsonProperty("medicationDosage") String medicationDosage) {
         requireNonNull(medicationType);
-        requireNonNull(dosage);
+        requireNonNull(medicationDosage);
         this.medicationType = medicationType;
-        this.dosage = dosage;
+        this.medicationDosage = medicationDosage;
     }
 
     /**
@@ -32,17 +33,7 @@ public class JsonAdaptedMedication {
     public JsonAdaptedMedication(Medication source) {
         requireNonNull(source);
         this.medicationType = source.getType();
-        this.dosage = source.getDosage();
-    }
-
-    @JsonValue
-    public String getType() {
-        return medicationType;
-    }
-
-    @JsonValue
-    public String getDosage() {
-        return dosage;
+        this.medicationDosage = source.getDosage();
     }
 
     /**
@@ -51,9 +42,9 @@ public class JsonAdaptedMedication {
      * @throws IllegalValueException if there were any data constraints violated in the adapted medication.
      */
     public Medication toModelType() throws IllegalValueException {
-        if (!Medication.isValidMedication(medicationType, dosage)) {
+        if (!Medication.isValidMedication(medicationType, medicationDosage)) {
             throw new IllegalValueException(Medication.MESSAGE_CONSTRAINTS);
         }
-        return new Medication(medicationType, dosage);
+        return new Medication(medicationType, medicationDosage);
     }
 }

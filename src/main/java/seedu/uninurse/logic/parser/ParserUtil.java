@@ -177,13 +177,13 @@ public class ParserUtil {
 
         String trimmedMedicationType = medicationTypeAndDosage[0].trim();
         String trimmedMedicationDosage = medicationTypeAndDosage[1].trim();
-        
+
         if (!Medication.isValidMedication(trimmedMedicationType, trimmedMedicationDosage)) {
             throw new ParseException(Medication.MESSAGE_CONSTRAINTS);
         }
         return new Medication(trimmedMedicationType, trimmedMedicationDosage);
     }
-    
+
     /**
      * Parses {@code Collection<String> medications} into a {@code MedicationList}.
      */

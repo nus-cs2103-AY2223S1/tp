@@ -33,7 +33,8 @@ public class SampleDataUtil {
     public static Patient[] getSamplePersons() {
         return new Patient[] {
             new Patient(new Name("Alex Yeoh"), new Phone("87438807"), new Email("alexyeoh@example.com"),
-                new Address("Blk 30 Geylang Street 29, #06-40"), EMPTY_CONDITION_LIST, EMPTY_MEDICATION_LIST, EMPTY_TASK_LIST,
+                new Address("Blk 30 Geylang Street 29, #06-40"),
+                EMPTY_CONDITION_LIST, EMPTY_MEDICATION_LIST, EMPTY_TASK_LIST,
                 getTagSet("friends")),
             new Patient(new Name("Bernice Yu"), new Phone("99272758"), new Email("berniceyu@example.com"),
                 new Address("Blk 30 Lorong 3 Serangoon Gardens, #07-18"),
@@ -49,13 +50,16 @@ public class SampleDataUtil {
                         new Task("Administer insulin dose", new DateTime("30-12-2022 1845"))),
                 getTagSet("neighbours")),
             new Patient(new Name("David Li"), new Phone("91031282"), new Email("lidavid@example.com"),
-                new Address("Blk 436 Serangoon Gardens Street 26, #16-43"), EMPTY_CONDITION_LIST, EMPTY_MEDICATION_LIST, EMPTY_TASK_LIST,
+                new Address("Blk 436 Serangoon Gardens Street 26, #16-43"),
+                EMPTY_CONDITION_LIST, EMPTY_MEDICATION_LIST, EMPTY_TASK_LIST,
                 getTagSet("family")),
             new Patient(new Name("Irfan Ibrahim"), new Phone("92492021"), new Email("irfan@example.com"),
-                new Address("Blk 47 Tampines Street 20, #17-35"), EMPTY_CONDITION_LIST, EMPTY_MEDICATION_LIST, EMPTY_TASK_LIST,
+                new Address("Blk 47 Tampines Street 20, #17-35"),
+                EMPTY_CONDITION_LIST, EMPTY_MEDICATION_LIST, EMPTY_TASK_LIST,
                 getTagSet("classmates")),
             new Patient(new Name("Roy Balakrishnan"), new Phone("92624417"), new Email("royb@example.com"),
-                new Address("Blk 45 Aljunied Street 85, #11-31"), EMPTY_CONDITION_LIST, EMPTY_MEDICATION_LIST, EMPTY_TASK_LIST,
+                new Address("Blk 45 Aljunied Street 85, #11-31"),
+                EMPTY_CONDITION_LIST, EMPTY_MEDICATION_LIST, EMPTY_TASK_LIST,
                 getTagSet("colleagues"))
         };
     }

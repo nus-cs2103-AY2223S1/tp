@@ -17,24 +17,24 @@ public class MedicationTest {
     }
 
     @Test
-    public void constructor_invalidMedication_throwsIllegalArgumentException() {
-        String invalidMedication = "";
+    public void constructor_invalidMedicationType_throwsIllegalArgumentException() {
+        String invalidMedicationType = "";
         assertThrows(IllegalArgumentException.class, () ->
-                new Medication(invalidMedication, TypicalMedications.TYPICAL_DOSAGE_AMOXICILLIN));
+                new Medication(invalidMedicationType, TypicalMedications.TYPICAL_DOSAGE_AMOXICILLIN));
     }
 
     @Test
-    public void constructor_emptyDosage_throwsIllegalArgumentException() {
-        String emptyDosage = "";
+    public void constructor_emptyMedicationDosage_throwsIllegalArgumentException() {
+        String emptyMedicationDosage = "";
         assertThrows(IllegalArgumentException.class, () ->
-                new Medication(TypicalMedications.TYPICAL_MEDICATION_AMOXICILLIN, emptyDosage));
+                new Medication(TypicalMedications.TYPICAL_MEDICATION_AMOXICILLIN, emptyMedicationDosage));
     }
 
     @Test
-    public void constructor_invalidDosage_throwsIllegalArgumentException() {
-        String invalidDosage = "+%*";
+    public void constructor_invalidMedicationDosage_throwsIllegalArgumentException() {
+        String invalidMedicationDosage = "+%*";
         assertThrows(IllegalArgumentException.class, () ->
-                new Medication(TypicalMedications.TYPICAL_MEDICATION_AMOXICILLIN, invalidDosage));
+                new Medication(TypicalMedications.TYPICAL_MEDICATION_AMOXICILLIN, invalidMedicationDosage));
     }
 
 
@@ -44,7 +44,7 @@ public class MedicationTest {
     }
 
     @Test
-    public void isValidMedication_validMedication_returnsTrue() {
+    public void isValidMedication_validMedicationType_returnsTrue() {
         // numbers in medication -> returns true
         assertTrue(Medication.isValidMedication("123", TypicalMedications.TYPICAL_DOSAGE_AMOXICILLIN));
 
@@ -58,7 +58,7 @@ public class MedicationTest {
     }
 
     @Test
-    public void isValidMedication_invalidMedication_returnsFalse() {
+    public void isValidMedication_invalidMedicationType_returnsFalse() {
         // empty medication -> returns false
         assertFalse(Medication.isValidMedication("", TypicalMedications.TYPICAL_DOSAGE_AMOXICILLIN));
 
@@ -67,7 +67,7 @@ public class MedicationTest {
     }
 
     @Test
-    public void isValidMedication_validDosage_returnsTrue() {
+    public void isValidMedication_validMedicationDosage_returnsTrue() {
         // alphanumeric characters in dosage -> returns true
         assertTrue(Medication.isValidMedication(TypicalMedications.TYPICAL_MEDICATION_AMOXICILLIN, "abc123"));
 
@@ -77,7 +77,7 @@ public class MedicationTest {
     }
 
     @Test
-    public void isValidMedication_invalidDosage_returnsFalse() {
+    public void isValidMedication_invalidMedicationDosage_returnsFalse() {
         // empty dosage -> returns false
         assertFalse(Medication.isValidMedication(TypicalMedications.TYPICAL_MEDICATION_AMOXICILLIN, ""));
 
