@@ -2,8 +2,6 @@ package modtrekt.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 
-import java.util.stream.Stream;
-
 import com.beust.jcommander.Parameter;
 import com.beust.jcommander.Parameters;
 
@@ -78,10 +76,10 @@ public class DoneModuleCommand extends Command {
      */
     public static void refresh(ObservableList<Module> modules) {
         // Sum up credits.
-        Stream<Module> doneModules = modules.stream().filter(x -> x.isDone());
-        int totalCreditsDone = doneModules.reduce(0, (creditsResult, mod) ->
-                creditsResult + mod.getCredits().getIntValue(), Integer::sum);
-        totalCredits = totalCreditsDone;
+        totalCredits = modules.stream()
+                .filter(Module::isDone)
+                .mapToInt(mod -> mod.getCredits().getIntValue())
+                .sum();
     }
 
     /**
