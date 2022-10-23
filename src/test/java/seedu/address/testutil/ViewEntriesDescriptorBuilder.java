@@ -1,6 +1,10 @@
 package seedu.address.testutil;
 
+import java.time.YearMonth;
+import java.time.format.DateTimeFormatter;
+
 import seedu.address.logic.commands.ViewCommand.ViewEntriesDescriptor;
+import seedu.address.model.entry.Date;
 import seedu.address.model.entry.EntryType;
 import seedu.address.model.entry.GraphType;
 
@@ -22,11 +26,11 @@ public class ViewEntriesDescriptorBuilder {
     /**
      * Returns a {@code ViewEntriesDescriptor} with fields containing {@code entry}'s details
      */
-    public ViewEntriesDescriptorBuilder(EntryType entryType, GraphType graphType, Month month) {
+    public ViewEntriesDescriptorBuilder(EntryType entryType, GraphType graphType, YearMonth yearMonth) {
         descriptor = new ViewEntriesDescriptor();
         descriptor.setEntryType(entryType);
         descriptor.setGraphType(graphType);
-        descriptor.setMonth(month);
+        descriptor.setYearMonth(yearMonth);
     }
 
     /**
@@ -49,7 +53,7 @@ public class ViewEntriesDescriptorBuilder {
      * Sets the {@code Month} of the {@code ViewEntriesDescriptor} that we are building.
      */
     public ViewEntriesDescriptorBuilder withMonth(String month) {
-        descriptor.setMonth(new Month(month));
+        descriptor.setYearMonth(YearMonth.parse(month, DateTimeFormatter.ofPattern(Date.YEAR_MONTH_PATTERN)));
         return this;
     }
 
