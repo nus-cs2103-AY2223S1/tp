@@ -637,8 +637,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* *`    | user                    | search with multiple tags                              | narrow my search results to only contacts that have all the specified tags |
 | `* *`    | user                    | search with multiple tags                              | broaden my result results to contacts that have any of the specified tags  |
 | `* *`    | user                    | view contacts related to my search query               | find contacts even when I mistype their name                               |
-| `* *`    | user                    | hide private contact details                           | minimize chance of someone else seeing them by accident                    |
-| `* *`    | user                    | show private contact details                           | view them when I need to                                                   |
+| `* *`    | user                    | hide contact details                                   | focus on certain information                                               |
+| `* *`    | user                    | show contact details                                   | view certain information                                                   |
 | `* *`    | user                    | have an autocomplete for my current search query       | search faster by names and minimize the chance of an unsuccessful search   |
 | `* *`    | user with many contacts | specify the default order of my contacts               | avoid re-sorting the list everytime                                        |
 | `* *`    | user with many contacts | sort contacts by name, email, phone number, or address | organise my contacts list                                                  |
@@ -649,8 +649,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* *`    | user                    | edit a todo                                            | update it or correct my mistakes                                           |
 | `* *`    | user                    | clear all my todos                                     | save time on deleting them one by one                                      |
 | `* *`    | user                    | filter the list of todos shown                         | only view the portion of list I need at the moment                         |
-| `*`      | user                    | change the order of information for contacts           | view more important information before others                              |
-| `*`      | user                    | customise the theme of the app                         | adjust it to my comfort and liking                                         |
+| `*`      | user                    | customise the order of information for contacts        | view more important information before others                              |
 
 *{More to be added}*
 

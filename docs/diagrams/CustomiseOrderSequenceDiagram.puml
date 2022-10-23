@@ -1,5 +1,6 @@
 @startuml
 !include style.puml
+scale 1550*500
 
 box Logic LOGIC_COLOR_T1
 participant ":LogicManager" as LogicManager LOGIC_COLOR
@@ -7,15 +8,11 @@ participant ":SoConnectParser" as SoConnectParser LOGIC_COLOR
 participant ":CustomiseCommandParser" as CustomiseCommandParser LOGIC_COLOR
 participant ":CustomiseOrderCommandParser" as CustomiseOrderCommandParser LOGIC_COLOR
 participant "u:CustomiseOrderCommand" as CustomiseOrderCommand LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
 end box
 
 box Model MODEL_COLOR_T1
 participant ":Model" as Model MODEL_COLOR
-participant ":UserPrefs" as UserPrefs MODEL_COLOR
-end box
-
-box Commons STORAGE_COLOR_T1
-participant ":GuiSettings" as GuiSettings STORAGE_COLOR
 end box
 
 [-> LogicManager : execute("customise order e/")
@@ -48,16 +45,22 @@ create CustomiseOrderCommand
 CustomiseOrderCommandParser -> CustomiseOrderCommand
 activate CustomiseOrderCommand
 
-CustomiseOrderCommand --> CustomiseOrderCommandParser
+CustomiseOrderCommand --> CustomiseOrderCommandParser : c
 deactivate CustomiseOrderCommand
 
-CustomiseOrderCommandParser --> CustomiseCommandParser
+CustomiseOrderCommandParser --> CustomiseCommandParser : c
 deactivate CustomiseOrderCommandParser
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+CustomiseOrderCommandParser -[hidden]-> CustomiseCommandParser
+destroy CustomiseOrderCommandParser
 
-CustomiseCommandParser --> SoConnectParser
+CustomiseCommandParser --> SoConnectParser : c
 deactivate CustomiseCommandParser
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+CustomiseCommandParser -[hidden]-> SoConnectParser
+destroy CustomiseCommandParser
 
-SoConnectParser --> LogicManager
+SoConnectParser --> LogicManager : c
 deactivate SoConnectParser
 
 LogicManager -> CustomiseOrderCommand : execute()
@@ -66,39 +69,26 @@ activate CustomiseOrderCommand
 CustomiseOrderCommand -> Model : getGuiSettings()
 activate Model
 
-Model -> UserPrefs : getGuiSettings()
-activate UserPrefs
-
-UserPrefs --> Model
-deactivate UserPrefs
-
 Model --> CustomiseOrderCommand
 deactivate Model
-
-create GuiSettings
-CustomiseOrderCommand -> GuiSettings
-activate GuiSettings
-
-GuiSettings --> CustomiseOrderCommand
-deactivate GuiSettings
 
 CustomiseOrderCommand -> Model : setGuiSettings()
 activate Model
 
-Model -> UserPrefs : setGuiSettings()
-activate UserPrefs
-
-UserPrefs --> Model
-deactivate UserPrefs
-
 Model --> CustomiseOrderCommand
 deactivate Model
+
+create CommandResult
+CustomiseOrderCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> CustomiseOrderCommand : result
+deactivate CommandResult
 
 CustomiseOrderCommand --> LogicManager : result
 deactivate CustomiseOrderCommand
 
 CustomiseOrderCommand -[hidden]-> LogicManager : result
-destroy CustomiseOrderCommand
 
 [<--LogicManager
 deactivate LogicManager
