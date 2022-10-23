@@ -41,7 +41,7 @@ public class CommandTestUtil {
     public static final String VALID_CLASS_CS1231S = "CS1231S";
     public static final String VALID_SESSION_LAB1 = "LAB1";
     public static final String VALID_DATE = "2022-01-01";
-    public static final Double VALID_GRADE_VALUE_12345 = 12.345;
+    public static final String VALID_GRADE_VALUE_12345 = "12.345";
 
     public static final String NAME_DESC_AMY = " " + PREFIX_NAME + VALID_NAME_AMY;
     public static final String NAME_DESC_BOB = " " + PREFIX_NAME + VALID_NAME_BOB;
