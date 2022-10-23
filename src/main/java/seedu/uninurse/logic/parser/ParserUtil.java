@@ -22,6 +22,7 @@ import seedu.uninurse.model.person.Name;
 import seedu.uninurse.model.person.Phone;
 import seedu.uninurse.model.tag.Tag;
 import seedu.uninurse.model.task.DateTime;
+import seedu.uninurse.model.task.RecurringTasks;
 import seedu.uninurse.model.task.Task;
 import seedu.uninurse.model.task.TaskList;
 
@@ -173,6 +174,10 @@ public class ParserUtil {
             return parseTaskWithoutDateTime(descriptionAndTime[0]);
         }
 
+        if (descriptionAndTime.length == 3) {
+            return parseRecurringTask(descriptionAndTime[0], descriptionAndTime[1], descriptionAndTime[2]);
+        }
+
         return parseTaskWithDateTime(descriptionAndTime[0], descriptionAndTime[1]);
     }
 
@@ -199,6 +204,27 @@ public class ParserUtil {
         }
 
         return new Task(trimmedTaskDescription, new DateTime(trimmedDateTime));
+    }
+
+    private static Task parseRecurringTask(String taskDescription, String dateTime, String freq) throws ParseException {
+        String trimmedTaskDescription = taskDescription.trim();
+        String trimmedDateTime = dateTime.trim();
+        String trimmedFreq = freq.trim();
+
+        if (!Task.isValidTaskDescription(trimmedTaskDescription)) {
+            throw new ParseException(Task.MESSAGE_CONSTRAINTS);
+        }
+
+        if (!DateTime.isValidDateTime(trimmedDateTime)) {
+            throw new ParseException(DateTime.MESSAGE_CONSTRAINTS);
+        }
+
+        if (!RecurringTasks.isValidFreq(trimmedFreq)) {
+            throw new ParseException(RecurringTasks.MESSAGE_CONSTRAINTS);
+        }
+
+        return new RecurringTasks(trimmedTaskDescription, new DateTime(trimmedDateTime),
+                RecurringTasks.parseFreq(trimmedFreq));
     }
 
     /**

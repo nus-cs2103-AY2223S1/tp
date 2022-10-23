@@ -103,6 +103,8 @@ public interface Model {
      */
     void updateFilteredPersonListWithTasks(Predicate<Patient> predicate);
 
+    void updateRecurringTasks();
+
     /**
      * Returns a supplier to get the flag to display tasks
      */

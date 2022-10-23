@@ -47,6 +47,7 @@ public class LogicManager implements Logic {
         commandResult = command.execute(model);
 
         try {
+            model.updateRecurringTasks();
             storage.saveUninurseBook(model.getUninurseBook());
             if (command.isUndoable()) {
                 model.makeSnapshot(commandResult);

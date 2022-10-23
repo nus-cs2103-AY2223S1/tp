@@ -118,6 +118,24 @@ public class TaskList implements GenericList<Task> {
         return !this.getAllTasksToday().isEmpty();
     }
 
+    /**
+     * TODO
+     */
+    public void updateRecurringTasks() {
+        ArrayList<Task> updatedTasks = new ArrayList<>(internalTaskList);
+
+        for (Task task : internalTaskList) {
+            if (task instanceof RecurringTasks && ((RecurringTasks) task).pastTaskDate()) {
+                RecurringTasks nextRecurringTask = ((RecurringTasks) task).getNextRecurringTask();
+                if (!updatedTasks.contains(nextRecurringTask)) {
+                    updatedTasks.add(nextRecurringTask);
+                }
+            }
+        }
+
+        internalTaskList = updatedTasks;
+    }
+
     @Override
     public String toString() {
         final StringBuilder builder = new StringBuilder();

@@ -45,6 +45,10 @@ public class DateTime {
                 && today.getYear() == dateTime.getYear();
     }
 
+    public boolean isPastDate() {
+        return dateTime.isBefore(LocalDateTime.now());
+    }
+
     /**
      * returns if the {@code test} is a valid date time string.
      */
@@ -58,8 +62,28 @@ public class DateTime {
         }
     }
 
+    public DateTime plusDays(int days) {
+        return new DateTime(dateTime.plusDays(days).format(FORMATTER));
+    }
+
     @Override
     public String toString() {
         return dateTime.format(FORMATTER);
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        if (other == this) {
+            return true;
+        }
+
+        if (!(other instanceof DateTime)) {
+            return false;
+        }
+
+        DateTime o = (DateTime) other;
+
+        return this.dateTime.getYear() == o.dateTime.getYear()
+                && this.dateTime.getDayOfYear() == o.dateTime.getDayOfYear();
     }
 }

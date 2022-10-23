@@ -2,6 +2,7 @@ package seedu.uninurse.model.task;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.uninurse.commons.util.AppUtil.checkArgument;
+
 /**
  * Represents a Task for a Patient.
  * Guarantees: immutable; is valid as declared in {@link #isValidTaskDescription(String)}

@@ -172,6 +172,11 @@ public class ModelManager implements Model {
     //=========== Other Accessors =============================================================
 
     @Override
+    public void updateRecurringTasks() {
+        filteredPersons.forEach(p -> p.getTasks().updateRecurringTasks());
+    }
+
+    @Override
     public Supplier<Boolean> getTaskListFlagSupplier() {
         return (() -> taskListFlag);
     }
