@@ -11,6 +11,7 @@ import seedu.address.ui.SecondaryPaneState;
 public class HomeCommand extends Command {
 
     public static final String COMMAND_WORD = "home";
+    public static final String COMMAND_WORD_ALIAS = "h";
     public static final String MESSAGE_SUCCESS = "Displaying the home page. Welome back!";
 
     @Override

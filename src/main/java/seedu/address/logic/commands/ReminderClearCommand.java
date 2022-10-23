@@ -11,6 +11,7 @@ import seedu.address.model.Model;
  */
 public class ReminderClearCommand extends ReminderCommandGroup {
     public static final String COMMAND_SPECIFIER = "clear";
+    public static final String COMMAND_SPECIFIER_ALIAS = "c";
     public static final String COMMAND_WORD = COMMAND_GROUP + " " + COMMAND_SPECIFIER;
 
     public static final String MESSAGE_USAGE = COMMAND_WORD

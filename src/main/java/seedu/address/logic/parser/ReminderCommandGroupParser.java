@@ -36,8 +36,12 @@ public class ReminderCommandGroupParser implements Parser<ReminderCommandGroup> 
 
         switch (commandSpecifier) {
         case ReminderClearCommand.COMMAND_SPECIFIER:
+            // Fallthrough
+        case ReminderClearCommand.COMMAND_SPECIFIER_ALIAS:
             return new ReminderClearCommand();
         case ReminderDeleteCommand.COMMAND_SPECIFIER:
+            // Fallthrough
+        case ReminderDeleteCommand.COMMAND_SPECIFIER_ALIAS:
             if (argArray.length < 2) {
                 throw new ParseException(
                         String.format(MESSAGE_INVALID_COMMAND_FORMAT, ReminderDeleteCommand.MESSAGE_USAGE));
