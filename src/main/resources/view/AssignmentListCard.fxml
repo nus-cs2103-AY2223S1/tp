@@ -28,18 +28,12 @@
                 </Label>
                 <Label fx:id="name" text="\$first" styleClass="cell_big_label" />
             </HBox>
-            <HBox>
-                <padding>
-                    <Insets top="3" bottom="3" />
-                </padding>
-                <FlowPane fx:id="assignments" />
-            </HBox>
 
             <HBox>
                 <padding>
                     <Insets top="3" bottom="3" />
                 </padding>
-                <FlowPane fx:id="personGroup" />
+                <FlowPane fx:id="assignments" />
             </HBox>
 
         </VBox>

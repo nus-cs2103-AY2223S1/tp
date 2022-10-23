@@ -1,14 +1,11 @@
 package seedu.address.ui;
 
-import java.util.Comparator;
-
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import seedu.address.model.person.Person;
-import seedu.address.model.person.PersonGroup;
 
 /**
  * An UI component that displays information of a {@code Assignments}.
@@ -35,8 +32,6 @@ public class AssignmentCard extends UiPart<Region> {
     private Label id;
     @FXML
     private FlowPane assignments;
-    @FXML
-    private FlowPane personGroup;
 
     /**
      * An UI component that displays information of a {@code Assignment}.
@@ -51,10 +46,6 @@ public class AssignmentCard extends UiPart<Region> {
                     String assignmentString = key + " : " + value;
                     assignments.getChildren().add(new Label(assignmentString));
                 });
-        person.getPersonGroups().stream()
-                .sorted(Comparator.comparing(PersonGroup::getGroupName))
-                .forEach(group -> personGroup.getChildren()
-                        .add((new Label(group.getGroupName()))));
     }
 
     @Override
