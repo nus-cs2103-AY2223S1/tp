@@ -22,5 +22,7 @@ public class CliSyntax {
     public static final Prefix PREFIX_EXAM_INDEX = new Prefix("e/");
     public static final Prefix PREFIX_TASK_INDEX = new Prefix("t/");
     public static final Prefix PREFIX_CRITERIA = new Prefix("c/");
+    public static final Prefix PREFIX_IS_COMPLETE = new Prefix("c/");
+    public static final Prefix PREFIX_IS_LINKED = new Prefix("l/");
 
 }

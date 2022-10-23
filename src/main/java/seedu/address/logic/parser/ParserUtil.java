@@ -24,6 +24,7 @@ import seedu.address.model.person.Phone;
 import seedu.address.model.tag.DeadlineTag;
 import seedu.address.model.tag.PriorityTag;
 import seedu.address.model.tag.Tag;
+import seedu.address.model.task.LinkStatus;
 import seedu.address.model.task.TaskDescription;
 import seedu.address.model.task.TaskStatus;
 
@@ -33,6 +34,10 @@ import seedu.address.model.task.TaskStatus;
 public class ParserUtil {
 
     public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero unsigned integer.";
+
+    public static boolean isValidYesNoResponse(String response) {
+        return response.equals("y") || response.equals("n");
+    }
 
     /**
      * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading and trailing whitespaces will be
@@ -237,6 +242,36 @@ public class ParserUtil {
             throw new ParseException(TaskStatus.STATUS_CONSTRAINTS);
         }
         return TaskStatus.of(trimmedStatus);
+    }
+
+    /**
+     * Parses a {@code String response} into a {@code TaskStatus}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code response} is invalid.
+     */
+    public static TaskStatus parseIsComplete(String response) throws ParseException {
+        requireNonNull(response);
+        String lowerCaseTrimmedResponse = response.trim().toLowerCase();
+        if (!isValidYesNoResponse(lowerCaseTrimmedResponse)) {
+            throw new ParseException(TaskStatus.RESPONSE_CONSTRAINTS);
+        }
+        return TaskStatus.getStatusFromResponse(lowerCaseTrimmedResponse);
+    }
+
+    /**
+     * Parses a {@code String response} into a {@code LinkStatus}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code response} is invalid.
+     */
+    public static LinkStatus parseIsLinked(String response) throws ParseException {
+        requireNonNull(response);
+        String lowerCaseTrimmedResponse = response.trim().toLowerCase();
+        if (!isValidYesNoResponse(lowerCaseTrimmedResponse)) {
+            throw new ParseException(LinkStatus.RESPONSE_CONSTRAINTS);
+        }
+        return LinkStatus.getLinkStatusFromResponse(lowerCaseTrimmedResponse);
     }
 
     /**

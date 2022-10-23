@@ -10,16 +10,19 @@ import seedu.address.model.module.Module;
  */
 public class FilterPredicate implements Predicate<Task> {
     private final Optional<Module> moduleToCheck;
-    private final Optional<TaskStatus> statusToCheck;
+    private final Optional<TaskStatus> completionStatusToCheck;
+    private final Optional<LinkStatus> linkStatusToCheck;
 
     /**
      * Tests that a {@code Task} matches all the module and status constraints given.
      * @param module check if task has same module code.
-     * @param status check if task has same status.
+     * @param completionStatus check if task has same status.
      */
-    public FilterPredicate(Optional<Module> module, Optional<TaskStatus> status) {
+    public FilterPredicate(Optional<Module> module, Optional<TaskStatus> completionStatus,
+                           Optional<LinkStatus> linkStatusToCheck) {
         this.moduleToCheck = module;
-        this.statusToCheck = status;
+        this.completionStatusToCheck = completionStatus;
+        this.linkStatusToCheck = linkStatusToCheck;
     }
 
     public Module getModuleToCheck() {
@@ -36,8 +39,11 @@ public class FilterPredicate implements Predicate<Task> {
         if (moduleToCheck.isPresent()) {
             result &= task.getModule().equals(moduleToCheck.get());
         }
-        if (statusToCheck.isPresent()) {
-            result &= task.getStatus().equals(statusToCheck.get());
+        if (completionStatusToCheck.isPresent()) {
+            result &= task.getStatus().equals(completionStatusToCheck.get());
+        }
+        if (linkStatusToCheck.isPresent()) {
+            result &= task.isLinked() == linkStatusToCheck.get().isLinked();
         }
         return result;
     }
@@ -47,7 +53,8 @@ public class FilterPredicate implements Predicate<Task> {
         return other == this // short circuit if same object
                 || (other instanceof FilterPredicate // instanceof handles nulls
                 && moduleToCheck.equals(((FilterPredicate) other).moduleToCheck)
-                && statusToCheck.equals(((FilterPredicate) other).statusToCheck)); // state check
+                && completionStatusToCheck.equals(((FilterPredicate) other).completionStatusToCheck)
+                && linkStatusToCheck.equals(((FilterPredicate) other).linkStatusToCheck)); // state check
     }
 
     @Override
@@ -56,8 +63,11 @@ public class FilterPredicate implements Predicate<Task> {
         if (moduleToCheck.isPresent()) {
             result += " Module: " + moduleToCheck.get();
         }
-        if (statusToCheck.isPresent()) {
-            result += " Status: " + statusToCheck.get();
+        if (completionStatusToCheck.isPresent()) {
+            result += " " + completionStatusToCheck.get();
+        }
+        if (linkStatusToCheck.isPresent()) {
+            result += " " + linkStatusToCheck.get();
         }
         return result;
     }
