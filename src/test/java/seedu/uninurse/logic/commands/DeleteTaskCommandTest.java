@@ -7,10 +7,10 @@ import static seedu.uninurse.logic.commands.CommandTestUtil.assertCommandFailure
 import static seedu.uninurse.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.uninurse.logic.commands.CommandTestUtil.showPersonAtIndex;
 import static seedu.uninurse.testutil.Assert.assertThrows;
-import static seedu.uninurse.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static seedu.uninurse.testutil.TypicalIndexes.INDEX_FIRST_ATTRIBUTE;
-import static seedu.uninurse.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
+import static seedu.uninurse.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static seedu.uninurse.testutil.TypicalIndexes.INDEX_SECOND_ATTRIBUTE;
+import static seedu.uninurse.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
 import static seedu.uninurse.testutil.TypicalIndexes.INDEX_THIRD_PERSON;
 import static seedu.uninurse.testutil.TypicalPersons.getTypicalUninurseBook;
 
@@ -126,14 +126,17 @@ class DeleteTaskCommandTest {
     @Test
     public void equals() {
         DeleteTaskCommand deleteFirstPersonFirstTask = new DeleteTaskCommand(INDEX_FIRST_PERSON, INDEX_FIRST_ATTRIBUTE);
-        DeleteTaskCommand deleteSecondPersonFirstTask = new DeleteTaskCommand(INDEX_SECOND_PERSON, INDEX_FIRST_ATTRIBUTE);
-        DeleteTaskCommand deleteFirstPersonSecondTask = new DeleteTaskCommand(INDEX_FIRST_PERSON, INDEX_SECOND_ATTRIBUTE);
+        DeleteTaskCommand deleteSecondPersonFirstTask =
+                new DeleteTaskCommand(INDEX_SECOND_PERSON, INDEX_FIRST_ATTRIBUTE);
+        DeleteTaskCommand deleteFirstPersonSecondTask =
+                new DeleteTaskCommand(INDEX_FIRST_PERSON, INDEX_SECOND_ATTRIBUTE);
 
         // same object -> returns true
         assertEquals(deleteFirstPersonFirstTask, deleteFirstPersonFirstTask);
 
         // same values -> returns true
-        DeleteTaskCommand deleteFirstPersonFirstTaskCopy = new DeleteTaskCommand(INDEX_FIRST_PERSON, INDEX_FIRST_ATTRIBUTE);
+        DeleteTaskCommand deleteFirstPersonFirstTaskCopy =
+                new DeleteTaskCommand(INDEX_FIRST_PERSON, INDEX_FIRST_ATTRIBUTE);
         assertEquals(deleteFirstPersonFirstTask, deleteFirstPersonFirstTaskCopy);
 
         // different types -> returns false
