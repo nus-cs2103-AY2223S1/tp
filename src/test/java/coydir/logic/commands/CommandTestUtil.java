@@ -1,6 +1,7 @@
 package coydir.logic.commands;
 
 import static coydir.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static coydir.logic.parser.CliSyntax.PREFIX_DEPARTMENT;
 import static coydir.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static coydir.logic.parser.CliSyntax.PREFIX_NAME;
 import static coydir.logic.parser.CliSyntax.PREFIX_PHONE;
@@ -42,6 +43,9 @@ public class CommandTestUtil {
     public static final String VALID_POSITION_AMY = "Software Engineer";
     public static final String VALID_POSITION_BOB = "Product Manager";
     public static final String VALID_POSITION_PRITTAM = "Intern";
+    public static final String VALID_DEPARTMENT_AMY = "Information Technology";
+    public static final String VALID_DEPARTMENT_BOB = "Product Management";
+    public static final String VALID_DEPARTMENT_PRITTAM = "Board of Directors";
     public static final String VALID_ADDRESS_AMY = "Block 312, Amy Street 1";
     public static final String VALID_ADDRESS_BOB = "Block 123, Bobby Street 3";
     public static final String VALID_ADDRESS_PRITTAM = "null";
@@ -60,6 +64,9 @@ public class CommandTestUtil {
     public static final String POSITION_DESC_AMY = " " + PREFIX_POSITION + VALID_POSITION_AMY;
     public static final String POSITION_DESC_BOB = " " + PREFIX_POSITION + VALID_POSITION_BOB;
     public static final String POSITION_DESC_PRITTAM = " " + PREFIX_POSITION + VALID_POSITION_PRITTAM;
+    public static final String DEPARTMENT_DESC_AMY = " " + PREFIX_DEPARTMENT + VALID_DEPARTMENT_AMY;
+    public static final String DEPARTMENT_DESC_BOB = " " + PREFIX_DEPARTMENT + VALID_DEPARTMENT_BOB;
+    public static final String DEPARTMENT_DESC_PRITTAM = " " + PREFIX_DEPARTMENT + VALID_DEPARTMENT_PRITTAM;
     public static final String ADDRESS_DESC_AMY = " " + PREFIX_ADDRESS + VALID_ADDRESS_AMY;
     public static final String ADDRESS_DESC_BOB = " " + PREFIX_ADDRESS + VALID_ADDRESS_BOB;
     public static final String ADDRESS_DESC_PRITTAM = " " + PREFIX_ADDRESS + VALID_ADDRESS_PRITTAM;
@@ -72,6 +79,7 @@ public class CommandTestUtil {
     public static final String INVALID_PHONE_DESC = " " + PREFIX_PHONE + "911a"; // 'a' not allowed in phones
     public static final String INVALID_EMAIL_DESC = " " + PREFIX_EMAIL + "bob!yahoo"; // missing '@' symbol
     public static final String INVALID_POSITION_DESC = " " + PREFIX_POSITION; // empty string not allowed for positions
+    public static final String INVALID_DEPARTMENT_DESC = " " + PREFIX_DEPARTMENT + "Invalid Department"; // not in list of valid departments
     public static final String INVALID_ADDRESS_DESC = " " + PREFIX_ADDRESS; // empty string not allowed for addresses
     public static final String INVALID_TAG_DESC = " " + PREFIX_TAG + "hubby*"; // '*' not allowed in tags
 
@@ -84,10 +92,12 @@ public class CommandTestUtil {
     static {
         DESC_AMY = new EditPersonDescriptorBuilder().withName(VALID_NAME_AMY)
                 .withPhone(VALID_PHONE_AMY).withEmail(VALID_EMAIL_AMY).withPosition(VALID_POSITION_AMY)
-                .withAddress(VALID_ADDRESS_AMY).withTags(VALID_TAG_FRIEND).build();
+                .withDepartment(VALID_DEPARTMENT_AMY).withAddress(VALID_ADDRESS_AMY)
+                .withTags(VALID_TAG_FRIEND).build();
         DESC_BOB = new EditPersonDescriptorBuilder().withName(VALID_NAME_BOB)
                 .withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB).withPosition(VALID_POSITION_BOB)
-                .withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).build();
+                .withDepartment(VALID_DEPARTMENT_BOB).withAddress(VALID_ADDRESS_BOB)
+                .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).build();
     }
 
     /**

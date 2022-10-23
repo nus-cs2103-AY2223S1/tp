@@ -6,11 +6,12 @@
       "phone": "94351253",
       "email": "alice@example.com",
       "position": "Recruiter",
+      "department": "Human Resources",
       "address": "123, Jurong West Ave 6, #08-111",
-      "leave" : "14",
-      "leaveLeft" : "14",
+      "leave": "14",
+      "leaveLeft": "14",
       "tagged": ["friends"],
-      "leaveTaken" : [ ]
+      "leaveTaken": []
     },
     {
       "name": "Alice Pauline",
@@ -18,9 +19,11 @@
       "phone": "94351253",
       "email": "pauline@example.com",
       "position": "Recruiter",
+      "department": "Human Resources",
       "address": "4th street",
-      "leave" : "14",
-      "leaveLeft" : "14"
+      "leave": "14",
+      "leaveLeft": "14",
+      "leaveTaken": []
     }
   ]
 }

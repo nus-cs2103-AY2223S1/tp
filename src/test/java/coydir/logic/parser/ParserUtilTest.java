@@ -15,6 +15,7 @@ import org.junit.jupiter.api.Test;
 
 import coydir.logic.parser.exceptions.ParseException;
 import coydir.model.person.Address;
+import coydir.model.person.Department;
 import coydir.model.person.Email;
 import coydir.model.person.Name;
 import coydir.model.person.Phone;
@@ -27,6 +28,7 @@ public class ParserUtilTest {
     private static final String INVALID_ADDRESS = " ";
     private static final String INVALID_EMAIL = "example.com";
     private static final String INVALID_POSITION = " ";
+    private static final String INVALID_DEPARTMENT = "Invalid";
     private static final String INVALID_TAG = "#friend";
 
     private static final String VALID_NAME = "Rachel Walker";
@@ -34,6 +36,7 @@ public class ParserUtilTest {
     private static final String VALID_ADDRESS = "123 Main Street #0505";
     private static final String VALID_EMAIL = "rachel@example.com";
     private static final String VALID_POSITION = "Software Engineer";
+    private static final String VALID_DEPARTMENT = "Information Technology";
     private static final String VALID_TAG_1 = "friend";
     private static final String VALID_TAG_2 = "neighbour";
 
@@ -172,6 +175,29 @@ public class ParserUtilTest {
         String positionWithWhitespace = WHITESPACE + VALID_POSITION + WHITESPACE;
         Position expectedPosition = new Position(VALID_POSITION);
         assertEquals(expectedPosition, ParserUtil.parsePosition(positionWithWhitespace));
+    }
+
+    @Test
+    public void parseDepartment_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseDepartment((String) null));
+    }
+
+    @Test
+    public void parseDepartment_invalidValue_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseDepartment(INVALID_DEPARTMENT));
+    }
+
+    @Test
+    public void parseDepartment_validValueWithoutWhitespace_returnsDepartment() throws Exception {
+        Department expectedDepartment = new Department(VALID_DEPARTMENT);
+        assertEquals(expectedDepartment, ParserUtil.parseDepartment(VALID_DEPARTMENT));
+    }
+
+    @Test
+    public void parseDepartment_validValueWithWhitespace_returnsTrimmedDepartment() throws Exception {
+        String departmentWithWhitespace = WHITESPACE + VALID_DEPARTMENT + WHITESPACE;
+        Department expectedDepartment = new Department(VALID_DEPARTMENT);
+        assertEquals(expectedDepartment, ParserUtil.parseDepartment(departmentWithWhitespace));
     }
 
     @Test

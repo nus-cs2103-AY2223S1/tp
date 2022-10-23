@@ -6,7 +6,11 @@
       "phone": "9482424",
       "email": "hans@example.com",
       "position": "Worker",
-      "address": "4th street"
+      "department": "Operations",
+      "address": "4th street",
+      "leave": "14",
+      "leaveLeft": "14",
+      "leaveTaken": []
     }
   ]
 }

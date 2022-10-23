@@ -4,6 +4,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 import coydir.model.person.Address;
+import coydir.model.person.Department;
 import coydir.model.person.Email;
 import coydir.model.person.EmployeeId;
 import coydir.model.person.Name;
@@ -21,6 +22,7 @@ public class PersonBuilder {
     public static final String DEFAULT_NAME = "Amy Bee";
     public static final String DEFAULT_PHONE = "85355255";
     public static final String DEFAULT_POSITION = "Software Engineer";
+    public static final String DEFAULT_DEPARTMENT = "Information Technology";
     public static final String DEFAULT_EMAIL = "amy@gmail.com";
     public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
 
@@ -29,6 +31,7 @@ public class PersonBuilder {
     private Phone phone;
     private Email email;
     private Position position;
+    private Department department;
     private Address address;
     private Set<Tag> tags;
 
@@ -41,6 +44,7 @@ public class PersonBuilder {
         phone = new Phone(DEFAULT_PHONE);
         email = new Email(DEFAULT_EMAIL);
         position = new Position(DEFAULT_POSITION);
+        department = new Department(DEFAULT_DEPARTMENT);
         address = new Address(DEFAULT_ADDRESS);
         tags = new HashSet<>();
     }
@@ -54,6 +58,7 @@ public class PersonBuilder {
         phone = personToCopy.getPhone();
         email = personToCopy.getEmail();
         position = personToCopy.getPosition();
+        department = personToCopy.getDepartment();
         address = personToCopy.getAddress();
         tags = new HashSet<>(personToCopy.getTags());
     }
@@ -142,8 +147,16 @@ public class PersonBuilder {
         return this;
     }
 
+    /**
+     * Sets the {@code Department} of the {@code Person} that we are building.
+     */
+    public PersonBuilder withDepartment(String department) {
+        this.department = new Department(department);
+        return this;
+    }
+
     public Person build() {
-        return new Person(name, employeeId, phone, email, position, address, tags, 14);
+        return new Person(name, employeeId, phone, email, position, department, address, tags, 14);
     }
 
 }
