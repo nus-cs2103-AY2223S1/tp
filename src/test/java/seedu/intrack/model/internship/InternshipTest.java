@@ -24,7 +24,6 @@ import org.junit.jupiter.api.Test;
 
 import seedu.intrack.model.tag.Tag;
 import seedu.intrack.testutil.InternshipBuilder;
-
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -133,7 +132,7 @@ public class InternshipTest {
         taskList.add(first);
         taskList.add(second);
         taskList.add(third);
-        Internship internship = new Internship(new Name(VALID_NAME_AAPL),new Position(VALID_POSITION_AAPL),
+        Internship internship = new Internship(new Name(VALID_NAME_AAPL), new Position(VALID_POSITION_AAPL),
                 new Status(VALID_STATUS_AAPL), new Phone(VALID_PHONE_AAPL), new Email(VALID_EMAIL_AAPL),
                 new Address(VALID_ADDRESS_AAPL), taskList,
                 tagList, new Remark(VALID_REMARK_AAPL));
@@ -154,7 +153,7 @@ public class InternshipTest {
         taskList.add(first);
         taskList.add(second);
         taskList.add(third);
-        Internship internship = new Internship(new Name(VALID_NAME_AAPL),new Position(VALID_POSITION_AAPL),
+        Internship internship = new Internship(new Name(VALID_NAME_AAPL), new Position(VALID_POSITION_AAPL),
                 new Status(VALID_STATUS_AAPL), new Phone(VALID_PHONE_AAPL), new Email(VALID_EMAIL_AAPL),
                 new Address(VALID_ADDRESS_AAPL), taskList,
                 tagList, new Remark(VALID_REMARK_AAPL));

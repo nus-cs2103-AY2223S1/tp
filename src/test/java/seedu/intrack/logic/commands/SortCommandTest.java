@@ -1,17 +1,18 @@
 package seedu.intrack.logic.commands;
 
-import org.junit.jupiter.api.Test;
-
-import seedu.intrack.model.Model;
-import seedu.intrack.model.ModelManager;
-import seedu.intrack.model.UserPrefs;
-
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.intrack.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.intrack.logic.commands.SortCommand.MESSAGE_SUCCESS_A;
 import static seedu.intrack.logic.commands.SortCommand.MESSAGE_SUCCESS_D;
 import static seedu.intrack.testutil.TypicalInternships.getTypicalInTrack;
+
+import org.junit.jupiter.api.Test;
+
+import seedu.intrack.model.Model;
+import seedu.intrack.model.ModelManager;
+import seedu.intrack.model.UserPrefs;
+
 
 /**
  * Contains integration tests (interaction with the Model) and unit tests for SortCommand.

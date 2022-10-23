@@ -1,12 +1,12 @@
 package seedu.intrack.logic.parser;
 
-import org.junit.jupiter.api.Test;
-
-import seedu.intrack.logic.commands.SortCommand;
-
 import static seedu.intrack.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.intrack.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.intrack.logic.parser.CommandParserTestUtil.assertParseSuccess;
+
+import org.junit.jupiter.api.Test;
+
+import seedu.intrack.logic.commands.SortCommand;
 
 
 class SortCommandParserTest {
