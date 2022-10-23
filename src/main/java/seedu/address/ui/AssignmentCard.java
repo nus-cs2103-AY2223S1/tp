@@ -34,7 +34,7 @@ public class AssignmentCard extends UiPart<Region> {
     private FlowPane assignments;
 
     /**
-     * An UI component that displays information of a {@code Assignment}.
+     * A UI component that displays information of a {@code Assignment}.
      */
     public AssignmentCard(Person person, int displayedIndex) {
         super(FXML);
@@ -43,7 +43,7 @@ public class AssignmentCard extends UiPart<Region> {
         name.setText(person.getName().fullName);
         person.getAssignments()
                 .forEach((key, value) -> {
-                    String assignmentString = key + " : " + value;
+                    String assignmentString = key + ": " + value;
                     assignments.getChildren().add(new Label(assignmentString));
                 });
     }
