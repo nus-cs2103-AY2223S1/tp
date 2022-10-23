@@ -29,7 +29,6 @@ import seedu.uninurse.testutil.PersonBuilder;
  * Contains integration tests (interaction with the Model) and unit tests for {@code EditTaskCommand}.
  */
 class EditTaskCommandTest {
-
     private static final String TASK_STUB = "Some task";
 
     private final Model model = new ModelManager(getTypicalUninurseBook(), new UserPrefs());
@@ -79,7 +78,8 @@ class EditTaskCommandTest {
         expectedModel.updateFilteredPersonList(patient -> patient.equals(editedPatient));
         expectedModel.setPatientOfInterest(editedPatient);
 
-        assertCommandSuccess(editTaskCommand, model, expectedMessage, CommandType.TASK, expectedModel);
+        assertCommandSuccess(editTaskCommand, model, expectedMessage,
+                EditTaskCommand.EDIT_TASK_COMMAND_TYPE, expectedModel);
     }
 
     @Test

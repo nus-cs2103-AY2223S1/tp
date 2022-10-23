@@ -35,6 +35,8 @@ public class EditTaskCommand extends EditGenericCommand {
     public static final String MESSAGE_EDIT_TASK_SUCCESS = "Edited Task: %1$s";
     public static final String MESSAGE_NOT_EDITED = "Task to edit must be provided.";
 
+    public static final CommandType EDIT_TASK_COMMAND_TYPE = CommandType.TASK;
+
     private final Index patientIndex;
     private final Index taskIndex;
     private final Task updatedTask;
@@ -75,7 +77,7 @@ public class EditTaskCommand extends EditGenericCommand {
         model.updateFilteredPersonList(patient -> patient.equals(editedPatient));
         model.setPatientOfInterest(editedPatient);
         return new CommandResult(String.format(MESSAGE_EDIT_TASK_SUCCESS, editedPatient),
-                CommandType.TASK);
+                EDIT_TASK_COMMAND_TYPE);
     }
 
     /**

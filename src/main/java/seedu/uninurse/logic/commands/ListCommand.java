@@ -9,10 +9,11 @@ import seedu.uninurse.model.Model;
  * Lists all persons in the uninurse book to the user.
  */
 public class ListCommand extends Command {
-
     public static final String COMMAND_WORD = "list";
 
     public static final String MESSAGE_SUCCESS = "Listed all persons";
+
+    public static final CommandType LIST_COMMAND_TYPE = CommandType.LIST;
 
     @Override
     public CommandResult execute(Model model) {

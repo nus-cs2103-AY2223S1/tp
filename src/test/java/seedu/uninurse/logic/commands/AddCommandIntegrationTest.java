@@ -17,7 +17,6 @@ import seedu.uninurse.testutil.PersonBuilder;
  * Contains integration tests (interaction with the Model) for {@code AddPatientCommand}.
  */
 public class AddCommandIntegrationTest {
-
     private Model model;
 
     @BeforeEach
@@ -33,7 +32,8 @@ public class AddCommandIntegrationTest {
         expectedModel.addPerson(validPerson);
 
         assertCommandSuccess(new AddPatientCommand(validPerson), model,
-                String.format(AddPatientCommand.MESSAGE_SUCCESS, validPerson), CommandType.ADD_PATIENT, expectedModel);
+                String.format(AddPatientCommand.MESSAGE_SUCCESS, validPerson),
+                        AddPatientCommand.ADD_PATIENT_COMMAND_TYPE, expectedModel);
     }
 
     @Test
@@ -41,5 +41,4 @@ public class AddCommandIntegrationTest {
         Patient personInList = model.getUninurseBook().getPersonList().get(0);
         assertCommandFailure(new AddPatientCommand(personInList), model, AddPatientCommand.MESSAGE_DUPLICATE_PERSON);
     }
-
 }
