@@ -131,7 +131,7 @@ public class UniqueEventList implements Iterable<Event> {
 
     /**
      * Attempts to delete an event
-     * Notice the strict equality for deleting events, as opposed to hasEvent
+     * Strict equality applies for deleting events, as opposed to hasEvent
      * @param e
      */
     public void deleteEvent(Event e) {

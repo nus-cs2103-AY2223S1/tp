@@ -13,7 +13,7 @@ Long Time No See (LTNS) is a  **desktop app for managing clients, policies and e
 
 # Table of Contents
 1. [Quickstart](#quick-start)
-2. [Features](fFeatures)<br>
+2. [Features](#Features)<br>
     a. [Common Features](#common-features)<br>
     b. [Person Features](#person-features)<br>
     c. [Policy Features](#policy-features)<br>
@@ -142,7 +142,7 @@ The format for entering a birthday is "YYYY-MM-DD". The dates entered must be va
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 The `Risk Appetite` can be classified as High, Medium or Low. They are represented by characters "H", "M" and
-"L" respectively. e.g: "ra/H"
+"L" respectively. e.g: "ra/H". All other values will be ignored.
 </div>
 
 Examples:
@@ -295,25 +295,40 @@ If you have yet to add either your Client or Policy to the Application, you can 
 ## Event Features 
 
 
-### Adding an Event 
+### Adding an Event : `addEvent`
+* Format: `addEvent desc/EVENT_DESCRIPTION n/CLIENT_NAME d/EVENT_DATE s/START_TIME e/END_TIME`
+* Description: Adds an event into the address book. Note the following restrictions 
+  * `START_TIME` must before `END_TIME`. All times are in the format: `HH:MM`.
+  * `EVENT_DATE` follows a standard date format for our app (i.e: `YYYY-MM-DD`).
+  * `CLIENT_NAME` indicates the name of a valid client within the address book. All Events must be tagged to a single client.
+    * If you have not added this Client to your Client Book, you can refer to the [Adding a Person](#adding-a-person-add) guide to add your Client first.
+* Example Usage: `addEvent desc/CS101 Consultation n/Ben Leong date/2023-01-01 st/12:00 et/13:00`
+* Example Result: add an event with `Ben Leong` from `12:00` to `13:00` for the `1st January 2023` for a CS101 consultation,
 
 
 
 
 
+### Deleting an Event : `deleteEvent`
+Deletes the specified Event from the address book.
 
-(for Colin: can put this where you deem fit)<br>
-You may want to indicate that a particular Event involves a Client of yours. If you have not added this Client to your Client Book, you can refer to the [Adding a Person](#adding-a-person-add) guide to add your Client first.
+Format: `deleteEvent INDEX`
+
+* Deletes the event at the specified `INDEX`.
+* The index refers to the index number shown in the displayed event list.
+* The index **must be a positive integer** 1, 2, 3, …​
+* Example Usage: `deleteEvent 2`
+* Example Result: deletes the 2nd event from the list.
 
 
-### Deleting an Event 
-
-
-### Viewing all Events : `listEvents`
+### Viewing all Events : `events`
 
 This allows you to view all Events that have been previously added.
+* Note that events are automatically sorted in chronological order.
 
-Format: `listEvents`
+Format: `events`
+
+![result for 'listEventsSample'](images/listEventsExample.png)
 
 
 ### Searching for an Event
