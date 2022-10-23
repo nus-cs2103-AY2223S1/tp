@@ -32,7 +32,7 @@
         <VBox id="personalParticulars" minWidth="280" maxWidth="280" HBox.hgrow="NEVER">
           <Label fx:id="personalParticulars" text="Personal Particulars" />
 
-          <HBox fx:id="phoneBox" alignment="CENTER_LEFT" >
+          <HBox fx:id="phoneBox" alignment="CENTER_LEFT">
             <Label fx:id="phone" styleClass="cell_small_label" text="\$phone" />
           </HBox>
 
@@ -46,7 +46,7 @@
 
         <Region minWidth="5" HBox.hgrow="NEVER" />
 
-        <HBox minWidth="240" maxWidth="240" >
+        <HBox minWidth="240" maxWidth="240">
           <VBox id="roomDetails" minWidth="240" HBox.hgrow="NEVER">
             <Label fx:id="roomDetails" text="Room Details" />
 
@@ -89,7 +89,7 @@
 
             <Region minHeight="3" />
 
-            <HBox fx:id="requestBox" alignment="CENTER_LEFT" >
+            <HBox fx:id="requestBox" alignment="CENTER_LEFT">
               <Label fx:id="request" styleClass="cell_small_label" text="\$request" />
             </HBox>
 

@@ -28,7 +28,7 @@ public class AddCommand extends Command {
             + PREFIX_ROOM + "ROOM "
             + PREFIX_DATE_RANGE + "DATE_RANGE "
             + PREFIX_NUMBER_OF_GUESTS + "NUMBER_OF_GUESTS "
-            + "[" + PREFIX_REQUEST + "REQUEST] "
+            + "[" + PREFIX_REQUEST + "REQUEST]\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_NAME + "John Doe "
             + PREFIX_PHONE + "98765432 "
