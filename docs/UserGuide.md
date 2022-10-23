@@ -191,16 +191,16 @@ If your changes to the data file make its format invalid, FoodWhere will discard
 
 ## Command summary
 
-| Action    | Format, Examples                                                                                        |
-|-----------|---------------------------------------------------------------------------------------------------------|
-| **Exit**  | `exit`                                                                                                  |
-| **Help**  | `help`                                                                                                  |
-| **Clear** | `clear`                                                                                                 |
-| **rAdd**  | `radd s/STALL_INDEX d/DATE c/CONTENT r/RATING [t/TAGS]…`<br> e.g., `radd s/3 d/2022-09-20 c/Great food!` |
-| **rDel**  | `rdel INDEX`                                                                                            |
-| **rList** | `rlist`                                                                                                 |
-| **rFind** | `rfind KEYWORD [MORE_KEYWORDS]…`                                                                         |
-| **sAdd**  | `sadd n/NAME a/ADDRESS [t/TAGS]…`<br> e.g., `sadd n/John Chicken Rice a/Blk 123 Bedok South t/veryNice` |
-| **sDel**  | `sdel INDEX`                                                                                            |
-| **sList** | `slist`                                                                                                 |
-| **sFind** | `sfind KEYWORD [MORE_KEYWORDS]…`                                                                         |
+| Action    | Format, Examples                                                                                         |
+|-----------|----------------------------------------------------------------------------------------------------------|
+| **exit**  | `exit`                                                                                                   |
+| **help**  | `help`                                                                                                   |
+| **clear** | `clear`                                                                                                  |
+| **radd**  | `radd s/STALL_INDEX d/DATE c/CONTENT r/RATING [t/TAGS]…`<br> e.g., `radd s/3 d/2022-09-20 c/Great food!` |
+| **rdel**  | `rdel INDEX`                                                                                             |
+| **rlist** | `rlist`                                                                                                  |
+| **rfind** | `rfind KEYWORD [MORE_KEYWORDS]…`                                                                         |
+| **sadd**  | `sadd n/NAME a/ADDRESS [t/TAGS]…`<br> e.g., `sadd n/John Chicken Rice a/Blk 123 Bedok South t/veryNice`  |
+| **sdel**  | `sdel INDEX`                                                                                             |
+| **slist** | `slist`                                                                                                  |
+| **sfind** | `sfind KEYWORD [MORE_KEYWORDS]…`                                                                         |
