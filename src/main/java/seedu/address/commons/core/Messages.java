@@ -12,6 +12,8 @@ public class Messages {
             "This command is missing all of the following prefixes: %s\n%s";
     public static final String MESSAGE_MISSING_PREFIXES_SOME =
             "This command requires at least one of the following prefixes: %s\n%s";
+    public static final String MESSAGE_EMPTY_PREFIXES =
+            "This command's prefixes should not be empty: %s\n%s";
     public static final String MESSAGE_INVALID_PERSON_DISPLAYED_INDEX = "The person index provided is invalid";
     public static final String MESSAGE_INVALID_TUTORIAL_DISPLAYED_INDEX = "The tutorial index provided is invalid";
     public static final String MESSAGE_INVALID_REMINDER_DISPLAYED_INDEX = "The reminder index provided is invalid";

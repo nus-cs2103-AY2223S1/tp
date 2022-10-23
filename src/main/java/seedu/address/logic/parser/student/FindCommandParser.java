@@ -40,6 +40,8 @@ public class FindCommandParser implements Parser<FindCommand> {
 
         ParserUtil.assertAnyPrefixesPresent(argMultimap,
                 PREFIX_NAME, PREFIX_ID, PREFIX_MODULE, PREFIX_TUTORIAL);
+        ParserUtil.assertPrefixesPresentNotEmpty(argMultimap,
+                PREFIX_NAME, PREFIX_ID, PREFIX_MODULE, PREFIX_TUTORIAL);
 
         List<Predicate<Student>> predicates = new ArrayList<>();
 
