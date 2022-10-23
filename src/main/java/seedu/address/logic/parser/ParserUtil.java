@@ -4,8 +4,9 @@ import java.util.stream.Stream;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
-import seedu.address.logic.parser.exceptions.MissingPrefixesException;
+import seedu.address.logic.parser.exceptions.AllPrefixesMissingException;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.logic.parser.exceptions.SomePrefixesMissingException;
 
 /**
  * Contains utility methods used for parsing strings in the various *Parser classes.
@@ -31,15 +32,31 @@ public class ParserUtil {
      * Returns true if none of the prefixes contains empty {@code Optional} values in the given
      * {@code ArgumentMultimap}.
      */
-    public static void assertPrefixesPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes)
-            throws MissingPrefixesException {
+    public static void assertAllPrefixesPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes)
+            throws AllPrefixesMissingException {
         Prefix[] missingPrefixes = Stream.of(prefixes)
                 .filter(prefix -> argumentMultimap.getValue(prefix).isEmpty())
                 .map(prefix -> new Prefix(prefix.getPrefix()))
                 .toArray(Prefix[]::new);
 
         if (missingPrefixes.length != 0) {
-            throw new MissingPrefixesException(missingPrefixes);
+            throw new AllPrefixesMissingException(missingPrefixes);
+        }
+    }
+
+    /**
+     * Returns true if at least one of the prefixes has non-empty {@code Optional} values in the given
+     * {@code ArgumentMultimap}.
+     */
+    public static void assertAnyPrefixesPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes)
+            throws SomePrefixesMissingException {
+        Prefix[] missingPrefixes = Stream.of(prefixes)
+                .filter(prefix -> argumentMultimap.getValue(prefix).isEmpty())
+                .map(prefix -> new Prefix(prefix.getPrefix()))
+                .toArray(Prefix[]::new);
+
+        if (missingPrefixes.length == prefixes.length) {
+            throw new SomePrefixesMissingException(prefixes);
         }
     }
 
