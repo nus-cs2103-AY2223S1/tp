@@ -13,3 +13,37 @@
     margin-bottom: 0;
   }
 }
+
+.admonition-title {
+  font-weight: bold;
+}
+
+.admonition-title::before {
+  // Guide from https://fontawesome.com/v6/docs/web/add-icons/pseudo-elements
+  display: inline-block;
+  text-rendering: auto;
+  font-family: "Font Awesome 6 Free";
+  font-weight: 900; // Solid icons
+  -webkit-font-smoothing: antialiased;
+  margin-right: 6px;
+
+  .admonition-type-note & {
+    content: "\f02d"; // book
+  }
+
+  .admonition-type-tip & {
+    content: "\f0eb"; // lightbulb
+  }
+
+  .admonition-type-info & {
+    content: "\f05a"; // circle-info
+  }
+
+  .admonition-type-warning & {
+    content: "\f071"; // triangle-exclamation
+  }
+
+  .admonition-type-danger & {
+    content: "\f7e4"; // fire-flame-curved
+  }
+}
