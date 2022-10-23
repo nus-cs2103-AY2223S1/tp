@@ -12,6 +12,7 @@ import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.person.Person;
+import seedu.address.model.person.SamePersonPredicate;
 
 /**
  * Represents the in-memory model of the address book data.
@@ -102,8 +103,10 @@ public class ModelManager implements Model {
 
     @Override
     public void addPerson(Person person) {
+        requireNonNull(person);
         addressBook.addPerson(person);
         updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+        updateViewedPersonList(new SamePersonPredicate(person));
     }
 
     @Override
