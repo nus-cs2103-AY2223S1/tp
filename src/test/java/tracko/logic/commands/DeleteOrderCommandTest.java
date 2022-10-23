@@ -79,6 +79,22 @@ public class DeleteOrderCommandTest {
     }
 
     @Test
+    public void execute_validIndexSortedList_success() {
+        showOrderAtIndex(model, INDEX_FIRST);
+
+        Order orderToDelete = model.getSortedOrderList().get(INDEX_FIRST.getZeroBased());
+        DeleteOrderCommand deleteOrderCommand = new DeleteOrderCommand(INDEX_FIRST);
+
+        String expectedMessage = String.format(DeleteOrderCommand.MESSAGE_DELETE_ORDER_SUCCESS, orderToDelete);
+
+        Model expectedModel = new ModelManager(model.getTrackO(), new UserPrefs());
+        expectedModel.deleteOrder(orderToDelete);
+        showNoOrder(expectedModel);
+
+        assertCommandSuccess(deleteOrderCommand, model, expectedMessage, expectedModel);
+    }
+
+    @Test
     public void equals() {
         DeleteOrderCommand deleteFirstCommand = new DeleteOrderCommand(INDEX_FIRST);
         DeleteOrderCommand deleteSecondCommand = new DeleteOrderCommand(INDEX_SECOND);
