@@ -28,7 +28,7 @@ class IncrementCommandTest {
 
     @Test
     public void execute_success() {
-        Item originalItem = model.getFilteredItemList().get(0);
+        Item originalItem = model.getCurrentList().get(0);
 
         Item expectedItem = new ItemBuilder(originalItem)
                 .withItemQuantity("20")
@@ -40,7 +40,7 @@ class IncrementCommandTest {
                 new ItemQuantity("10"));
 
         Model expectedModel = new ModelManager(new FoodRem(model.getFoodRem()), new UserPrefs());
-        expectedModel.setItem(model.getFilteredItemList().get(0), expectedItem);
+        expectedModel.setItem(model.getCurrentList().get(0), expectedItem);
 
         assertCommandSuccess(incrementCommand, model, expectedMessage, expectedModel);
     }

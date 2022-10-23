@@ -29,7 +29,7 @@ public class DeleteCommandTest {
 
     @Test
     public void execute_validIndexUnfilteredList_success() {
-        Item itemToDelete = model.getFilteredItemList().get(TypicalIndexes.INDEX_FIRST_ITEM.getZeroBased());
+        Item itemToDelete = model.getCurrentList().get(TypicalIndexes.INDEX_FIRST_ITEM.getZeroBased());
         DeleteCommand deleteCommand = new DeleteCommand(TypicalIndexes.INDEX_FIRST_ITEM);
 
         String expectedMessage = String.format(EXPECTED_FORMAT_SUCCESS, itemToDelete);
@@ -42,7 +42,7 @@ public class DeleteCommandTest {
 
     @Test
     public void execute_invalidIndexUnfilteredList_throwsCommandException() {
-        Index outOfBoundIndex = Index.fromOneBased(model.getFilteredItemList().size() + 1);
+        Index outOfBoundIndex = Index.fromOneBased(model.getCurrentList().size() + 1);
         DeleteCommand deleteCommand = new DeleteCommand(outOfBoundIndex);
 
         assertCommandFailure(deleteCommand, model, Messages.MESSAGE_INVALID_ITEMS_DISPLAYED_INDEX);
@@ -52,7 +52,7 @@ public class DeleteCommandTest {
     public void execute_validIndexFilteredList_success() {
         showItemAtIndex(model, TypicalIndexes.INDEX_FIRST_ITEM);
 
-        Item itemToDelete = model.getFilteredItemList().get(TypicalIndexes.INDEX_FIRST_ITEM.getZeroBased());
+        Item itemToDelete = model.getCurrentList().get(TypicalIndexes.INDEX_FIRST_ITEM.getZeroBased());
         DeleteCommand deleteCommand = new DeleteCommand(TypicalIndexes.INDEX_FIRST_ITEM);
 
         String expectedMessage = String.format(EXPECTED_FORMAT_SUCCESS, itemToDelete);
@@ -105,6 +105,6 @@ public class DeleteCommandTest {
     private void showNoItem(Model model) {
         model.updateFilteredItemList(p -> false);
 
-        assertTrue(model.getFilteredItemList().isEmpty());
+        assertTrue(model.getCurrentList().isEmpty());
     }
 }

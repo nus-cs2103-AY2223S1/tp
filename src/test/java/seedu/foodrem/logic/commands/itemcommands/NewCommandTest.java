@@ -2,8 +2,7 @@ package seedu.foodrem.logic.commands.itemcommands;
 
 import static java.util.Objects.requireNonNull;
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static seedu.foodrem.testutil.Assert.assertThrows;
 
 import java.nio.file.Path;
@@ -61,20 +60,20 @@ public class NewCommandTest {
         NewCommand addCucumberCommand = new NewCommand(cucumbers);
 
         // same object -> returns true
-        assertTrue(addPotatoCommand.equals(addPotatoCommand));
+        assertEquals(addPotatoCommand, addPotatoCommand);
 
         // same values -> returns true
         NewCommand addPotatoCommandCopy = new NewCommand(potatoes);
-        assertTrue(addPotatoCommand.equals(addPotatoCommandCopy));
+        assertEquals(addPotatoCommand, addPotatoCommandCopy);
 
         // different types -> returns false
-        assertFalse(addPotatoCommand.equals(1));
+        assertNotEquals(1, addPotatoCommand);
 
         // null -> returns false
-        assertFalse(addPotatoCommand.equals(null));
+        assertNotEquals(null, addPotatoCommand);
 
         // different item -> returns false
-        assertFalse(addPotatoCommand.equals(addCucumberCommand));
+        assertNotEquals(addPotatoCommand, addCucumberCommand);
     }
 
     /**
@@ -103,16 +102,6 @@ public class NewCommandTest {
 
         @Override
         public ObservableList<Tag> getFilteredTagList() {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public ObservableList<Item> getFilteredSortedItemList() {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public ObservableList<Item> getSortedItemList() {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -187,7 +176,7 @@ public class NewCommandTest {
         }
 
         @Override
-        public ObservableList<Item> getFilteredItemList() {
+        public ObservableList<Item> getCurrentList() {
             throw new AssertionError("This method should not be called.");
         }
 

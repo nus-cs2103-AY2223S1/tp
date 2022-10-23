@@ -28,7 +28,7 @@ class DecrementCommandTest {
 
     @Test
     public void execute_success() {
-        Item originalItem = model.getFilteredItemList().get(0);
+        Item originalItem = model.getCurrentList().get(0);
 
         Item expectedItem = new ItemBuilder(originalItem)
                 .withItemQuantity("4")
@@ -40,7 +40,7 @@ class DecrementCommandTest {
                 new ItemQuantity("6"));
 
         Model expectedModel = new ModelManager(new FoodRem(model.getFoodRem()), new UserPrefs());
-        expectedModel.setItem(model.getFilteredItemList().get(0), expectedItem);
+        expectedModel.setItem(model.getCurrentList().get(0), expectedItem);
 
         assertCommandSuccess(decrementCommand, model, expectedMessage, expectedModel);
     }

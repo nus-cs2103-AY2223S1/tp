@@ -32,7 +32,7 @@ class SortCommandTest {
         Model tempModel = new ModelManager(new FoodRem(model.getFoodRem()), new UserPrefs());
         sortCommandName.execute(tempModel);
 
-        ObservableList<Item> filteredList = tempModel.getSortedItemList();
+        ObservableList<Item> filteredList = tempModel.getCurrentList();
         Item firstItem = filteredList.get(0);
         Item lastItem = filteredList.get(filteredList.size() - 1);
         String firstItemName = String.valueOf(firstItem.getName());
@@ -48,7 +48,7 @@ class SortCommandTest {
         Model tempModel = new ModelManager(new FoodRem(model.getFoodRem()), new UserPrefs());
         sortCommandQuantity.execute(tempModel);
 
-        ObservableList<Item> sortedItemList = tempModel.getSortedItemList();
+        ObservableList<Item> sortedItemList = tempModel.getCurrentList();
         int sortedItemListSize = sortedItemList.size();
         for (int i = 1; i <= sortedItemListSize; i += 1) {
             Item item = sortedItemList.get(i - 1);
@@ -64,7 +64,7 @@ class SortCommandTest {
         Model tempModel = new ModelManager(new FoodRem(model.getFoodRem()), new UserPrefs());
         sortCommandUnit.execute(tempModel);
 
-        ObservableList<Item> sortedItemList = tempModel.getSortedItemList();
+        ObservableList<Item> sortedItemList = tempModel.getCurrentList();
         int sortedItemListSize = sortedItemList.size();
         for (int i = 1; i <= sortedItemListSize; i += 1) {
             Item item = sortedItemList.get(i - 1);
@@ -80,7 +80,7 @@ class SortCommandTest {
         Model tempModel = new ModelManager(new FoodRem(model.getFoodRem()), new UserPrefs());
         sortCommandBoughtDate.execute(tempModel);
 
-        ObservableList<Item> sortedItemList = tempModel.getSortedItemList();
+        ObservableList<Item> sortedItemList = tempModel.getCurrentList();
         int sortedItemListSize = sortedItemList.size();
         for (int i = 1; i <= sortedItemListSize; i += 1) {
             Item item = sortedItemList.get(i - 1);
@@ -96,7 +96,7 @@ class SortCommandTest {
         Model tempModel = new ModelManager(new FoodRem(model.getFoodRem()), new UserPrefs());
         sortCommandExpiryDate.execute(tempModel);
 
-        ObservableList<Item> sortedItemList = tempModel.getSortedItemList();
+        ObservableList<Item> sortedItemList = tempModel.getCurrentList();
         int sortedItemListSize = sortedItemList.size();
         for (int i = 1; i <= sortedItemListSize; i += 1) {
             Item item = sortedItemList.get(i - 1);
@@ -112,7 +112,7 @@ class SortCommandTest {
         Model tempModel = new ModelManager(new FoodRem(model.getFoodRem()), new UserPrefs());
         sortCommandPrice.execute(tempModel);
 
-        ObservableList<Item> sortedItemList = tempModel.getSortedItemList();
+        ObservableList<Item> sortedItemList = tempModel.getCurrentList();
         int sortedItemListSize = sortedItemList.size();
         for (int i = 1; i <= sortedItemListSize; i += 1) {
             Item item = sortedItemList.get(i - 1);
@@ -128,7 +128,7 @@ class SortCommandTest {
         Model tempModel = new ModelManager(new FoodRem(model.getFoodRem()), new UserPrefs());
         sortCommandRemarks.execute(tempModel);
 
-        ObservableList<Item> sortedItemList = tempModel.getSortedItemList();
+        ObservableList<Item> sortedItemList = tempModel.getCurrentList();
         int sortedItemListSize = sortedItemList.size();
         for (int i = 1; i <= sortedItemListSize; i += 1) {
             Item item = sortedItemList.get(i - 1);

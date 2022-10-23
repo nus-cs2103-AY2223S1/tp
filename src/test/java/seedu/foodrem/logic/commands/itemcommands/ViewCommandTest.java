@@ -23,7 +23,7 @@ class ViewCommandTest {
 
     @Test
     void execute_success() {
-        Item expectedItem = model.getFilteredItemList().get(0);
+        Item expectedItem = model.getCurrentList().get(0);
 
         String expectedMessage = expectedItem.toString();
 

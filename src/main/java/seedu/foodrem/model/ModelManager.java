@@ -14,7 +14,6 @@ import javafx.collections.transformation.SortedList;
 import seedu.foodrem.commons.core.GuiSettings;
 import seedu.foodrem.commons.core.LogsCenter;
 import seedu.foodrem.model.item.Item;
-import seedu.foodrem.model.item.itemcomparators.ItemNameComparator;
 import seedu.foodrem.model.tag.Tag;
 
 /**
@@ -42,7 +41,6 @@ public class ModelManager implements Model {
         this.userPrefs = new UserPrefs(userPrefs);
         filteredItems = new FilteredList<>(this.foodRem.getItemList());
         sortedItems = new SortedList<>(filteredItems);
-        sortedItems.setComparator(new ItemNameComparator());
         itemsList = sortedItems;
         filteredTags = new FilteredList<>(this.foodRem.getTagList());
     }
@@ -117,7 +115,6 @@ public class ModelManager implements Model {
     @Override
     public void setItem(Item target, Item editedItem) {
         requireAllNonNull(target, editedItem);
-
         foodRem.setItem(target, editedItem);
     }
 

@@ -2,6 +2,7 @@ package seedu.foodrem.model;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.foodrem.model.Model.PREDICATE_SHOW_ALL_ITEMS;
 import static seedu.foodrem.testutil.Assert.assertThrows;
@@ -89,8 +90,8 @@ public class ModelManagerTest {
     }
 
     @Test
-    public void getFilteredItemList_modifyList_throwsUnsupportedOperationException() {
-        assertThrows(UnsupportedOperationException.class, () -> modelManager.getFilteredItemList().remove(0));
+    public void getCurrentList_modifyList_throwsUnsupportedOperationException() {
+        assertThrows(UnsupportedOperationException.class, () -> modelManager.getCurrentList().remove(0));
     }
 
     @Test
@@ -102,24 +103,24 @@ public class ModelManagerTest {
         // same values -> returns true
         modelManager = new ModelManager(foodRem, userPrefs);
         ModelManager modelManagerCopy = new ModelManager(foodRem, userPrefs);
-        assertTrue(modelManager.equals(modelManagerCopy));
+        assertEquals(modelManager, modelManagerCopy);
 
         // same object -> returns true
-        assertTrue(modelManager.equals(modelManager));
+        assertEquals(modelManager, modelManager);
 
         // null -> returns false
-        assertFalse(modelManager.equals(null));
+        assertNotEquals(null, modelManager);
 
         // different types -> returns false
-        assertFalse(modelManager.equals(5));
+        assertNotEquals(5, modelManager);
 
         // different foodRem -> returns false
-        assertFalse(modelManager.equals(new ModelManager(differentFoodRem, userPrefs)));
+        assertNotEquals(modelManager, new ModelManager(differentFoodRem, userPrefs));
 
         // different filteredList -> returns false
         String keywords = String.valueOf(POTATOES.getName());
         modelManager.updateFilteredItemList(new NameContainsKeywordsPredicate(List.of(keywords)));
-        assertFalse(modelManager.equals(new ModelManager(foodRem, userPrefs)));
+        assertNotEquals(modelManager, new ModelManager(foodRem, userPrefs));
 
         // resets modelManager to initial state for upcoming tests
         modelManager.updateFilteredItemList(PREDICATE_SHOW_ALL_ITEMS);
@@ -127,6 +128,6 @@ public class ModelManagerTest {
         // different userPrefs -> returns false
         UserPrefs differentUserPrefs = new UserPrefs();
         differentUserPrefs.setFoodRemFilePath(Paths.get("differentFilePath"));
-        assertFalse(modelManager.equals(new ModelManager(foodRem, differentUserPrefs)));
+        assertNotEquals(modelManager, new ModelManager(foodRem, differentUserPrefs));
     }
 }

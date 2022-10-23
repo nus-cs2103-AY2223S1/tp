@@ -38,7 +38,7 @@ public class TagCommandTest {
         final Model model = new ModelManager(getFoodRemWithTypicalItemsWithoutTags(), new UserPrefs());
 
         // Creating a copy of first item of model and adding a vegetable tag
-        Item editedItem = new ItemBuilder(model.getFilteredItemList().get(0))
+        Item editedItem = new ItemBuilder(model.getCurrentList().get(0))
                 .withTags(CommandTestUtil.VALID_TAG_NAME_VEGETABLES).build();
 
         Tag tag = new TagBuilder().withTagName(VALID_TAG_NAME_VEGETABLES).build();
@@ -50,14 +50,14 @@ public class TagCommandTest {
 
         // Setting expected model's first item to the tagged first item correct
         expectedModel.addTag(tag);
-        expectedModel.setItem(expectedModel.getFilteredItemList().get(0), editedItem);
+        expectedModel.setItem(expectedModel.getCurrentList().get(0), editedItem);
 
         //Run  tag command on original model
         model.addTag(tag);
         TagCommand tagItemCommand = new TagCommand(tag.getName(), INDEX_FIRST_ITEM);
 
         assertCommandSuccess(tagItemCommand, model, expectedMessage, expectedModel);
-        assertTrue(model.getFilteredItemList().get(0).containsTag(tag));
+        assertTrue(model.getCurrentList().get(0).containsTag(tag));
 
     }
 
@@ -96,7 +96,7 @@ public class TagCommandTest {
 
         model.addTag(tag);
 
-        model.getFilteredItemList().get(0).addItemTag(tag);
+        model.getCurrentList().get(0).addItemTag(tag);
 
         TagCommand tagItemCommand = new TagCommand(tag.getName(), INDEX_FIRST_ITEM);
 

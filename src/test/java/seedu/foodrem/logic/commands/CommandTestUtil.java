@@ -205,11 +205,11 @@ public class CommandTestUtil {
         // we are unable to defensively copy the model for comparison later, so we can
         // only do so by copying its components.
         FoodRem expectedFoodRem = new FoodRem(actualModel.getFoodRem());
-        List<Item> expectedFilteredList = new ArrayList<>(actualModel.getFilteredItemList());
+        List<Item> expectedFilteredList = new ArrayList<>(actualModel.getCurrentList());
 
         assertThrows(CommandException.class, expectedMessage, () -> command.execute(actualModel));
         assertEquals(expectedFoodRem, actualModel.getFoodRem());
-        assertEquals(expectedFilteredList, actualModel.getFilteredItemList());
+        assertEquals(expectedFilteredList, actualModel.getCurrentList());
     }
 
     /**
@@ -217,12 +217,12 @@ public class CommandTestUtil {
      * {@code model}'s foodRem.
      */
     public static void showItemAtIndex(Model model, Index targetIndex) {
-        assertTrue(targetIndex.getZeroBased() < model.getFilteredItemList().size());
+        assertTrue(targetIndex.getZeroBased() < model.getCurrentList().size());
 
-        Item item = model.getFilteredItemList().get(targetIndex.getZeroBased());
+        Item item = model.getCurrentList().get(targetIndex.getZeroBased());
         final String name = item.getName().toString();
         model.updateFilteredItemList(new NameContainsKeywordsPredicate(List.of(name)));
 
-        assertEquals(1, model.getFilteredItemList().size());
+        assertEquals(1, model.getCurrentList().size());
     }
 }

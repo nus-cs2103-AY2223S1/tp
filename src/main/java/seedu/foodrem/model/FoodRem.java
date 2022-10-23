@@ -96,7 +96,6 @@ public class FoodRem implements ReadOnlyFoodRem {
      */
     public void setItem(Item target, Item editedItem) {
         requireNonNull(editedItem);
-
         items.setItem(target, editedItem);
     }
 
