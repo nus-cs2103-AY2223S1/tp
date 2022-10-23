@@ -54,7 +54,7 @@ public class TeamBuilder {
     }
 
     /**
-     * insert the {@code tasks} into a {@code UniquePersonList} and set it to the {@code Team} that we are building.
+     * Inserts the {@code tasks} into a {@code UniqueTaskList} and set it to the {@code Team} that we are building.
      */
     public TeamBuilder withTask(Task... tasks) {
         for (Task t : tasks) {
