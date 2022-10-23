@@ -39,7 +39,7 @@ public class TaskBook implements ReadOnlyTaskBook {
     public TaskBook() {}
 
     /**
-     * Creates an TaskBook using the Persons in the {@code toBeCopied}
+     * Creates a TaskBook using the Persons in the {@code toBeCopied}
      */
     public TaskBook(ReadOnlyTaskBook toBeCopied) {
         this();

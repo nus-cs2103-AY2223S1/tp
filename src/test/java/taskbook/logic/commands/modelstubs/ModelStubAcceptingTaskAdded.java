@@ -3,6 +3,7 @@ package taskbook.logic.commands.modelstubs;
 import static java.util.Objects.requireNonNull;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 
 import taskbook.model.ReadOnlyTaskBook;
 import taskbook.model.TaskBook;
@@ -38,6 +39,12 @@ public class ModelStubAcceptingTaskAdded extends ModelStub {
     }
 
     @Override
+    public boolean hasTask(Task task) {
+        requireNonNull(task);
+        return tasksAdded.stream().anyMatch(task::isSameTask);
+    }
+
+    @Override
     public void addPerson(Person person) {
         requireNonNull(person);
         personsAdded.add(person);
@@ -47,6 +54,14 @@ public class ModelStubAcceptingTaskAdded extends ModelStub {
     public Person findPerson(Name name) {
         requireNonNull(name);
         return personsAdded.stream().filter(person -> person.getName().equals(name)).findAny().orElse(null);
+    }
+
+    @Override
+    public void updateSortedTaskList(Comparator<Task> comparator) {
+    }
+
+    @Override
+    public void resetSortedTaskList() {
     }
 
     @Override

@@ -63,12 +63,20 @@ TaskBook is a **desktop app for managing contacts and tasks, optimized for use v
 * If a parameter is expected only once in the command but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>
   e.g. if you specify `p/12341234 p/56785678`, only `p/56785678` will be taken.
 
-* Extraneous parameters for commands that do not take in parameters (such as `help`, `task list`, `contact list` and `exit`) will be ignored.<br>
-  e.g. if the command specifies `help 123`, it will be interpreted as `help`.
+* Extraneous parameters for commands that do not take in parameters (such as `task list`, `contact list` and `exit`) will be ignored.<br>
+  e.g. if the command specifies `exit 123`, it will be interpreted as `exit`.
 
 </div>
 
-### Viewing help : `help` [coming soon]
+### Viewing help : `help`
+
+Shows either the list of commands available or information about a particular command.
+
+Format: `help [c/COMMAND]`
+
+Examples:
+* `help` shows the list of commands available.
+* `help c/contact delete` shows the information about the `command delete` command.
 
 ### Listing all Contacts : `contact list`
 
@@ -88,7 +96,7 @@ Format: `task list`
 
 Adds a contact to the taskbook.
 
-Format: `contact add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [#TAG]…`
+Format: `contact add n/NAME [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [#TAG]…`
 
 Examples:
 * `contact add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
@@ -198,6 +206,48 @@ Format: `task delete i/INDEX`
 Examples:
 * `task list` followed by `task delete i/2` deletes the 2nd task in the task list.
 
+### Finding contacts : `contact find`
+
+Displays all contacts matching the arguments provided by the user.
+
+Format: `contact find q/QUERY`
+
+* QUERY is not case sensitive.
+
+Examples:
+* `contact find q/ea` will change the contact list in the GUI to show a contact list where all contacts will have "ea" in their name.
+
+### Finding tasks : `task find`
+
+Displays all tasks matching the arguments provided by the user.
+
+Format: `task find q/QUERY x/DONE a/ASSIGNMENT`
+
+* The arguments for this command can be given in any order.
+* Up to 2 arguments can be omitted, but at least 1 argument of the 3 must be given.
+* QUERY is not case sensitive.
+* ASSIGNMENT is either FROM or TO, representing "m/" and "o/", or 'Assigned by' and 'Assigned to', respectively.
+* DONE is either X or O, representing 'Done' and 'Not done' respectively.
+
+Examples:
+* `task find q/ea` will change the task list in the GUI to show a task list where all tasks will have "ea" in either their connected person, or their description.
+* `task find x/X` will change the task list in the GUI to show a task list where all tasks are marked done, with [X].
+* `task find a/FROM` will change the task list in the GUI to show a task list where all tasks are assigned to the user by someone else.
+* `task find q/ea x/X` is equivalent to `task find x/X q/ea`.
+
+## Sorting tasks : `contact sort`
+
+Sorts the person list based on the input flag.
+
+Format: `contact sort s/SORT`
+
+SORT flags:
+* ca: Chronologically sort tasks by date and time added
+* a: Alphabetically sort contact names
+
+Examples:
+* `contact sort s/a` will change the contact list in the GUI to show a contact list where names are sorted by alphabetical order.
+
 ### Sorting tasks : `task sort`
 
 Sorts the task list based on the input flag.
@@ -237,6 +287,28 @@ Format: `task unmark i/INDEX`
 Examples:
 * `task list` followed by `task unmark i/2` marks the 2nd task in the task list.
 
+### Undo Command : `undo`
+
+Undoes the previous command and reverts the TaskBook to the previous state. A _minimum_ of 15 previous states are guaranteed to be kept in the history, if there are that many commands executed.
+
+Note: Commands that do not cause a change in state cannot be undone.
+
+Format: `undo`
+
+Examples:
+* `task todo m/Bob d/Add undo feature` - some command that causes a change in state
+* `undo` will undo the previous command
+
+### Redo Command : `redo`
+
+Redoes the previous undo action and reverts the TaskBook to a previously undone state.
+
+Format: `redo`
+
+Examples:
+* `task delete i/1` - some command that causes a change in state
+* `undo` will undo the previous command
+* `redo` will revert the state such that the task is deleted
 
 ### Exiting the program : `bye`
 
@@ -245,6 +317,8 @@ Ends the application.
 Format: `bye`
 
 ### Navigating Command History
+
+A _minimum_ of 1000 commands are guaranteed to be kept in the history, if there are that many commands executed. Invalid commands are also saved in the command history, to allow for editing mistyped commands.
 
 #### History: Previous Command
 
@@ -280,10 +354,6 @@ If your changes to the data file makes its format invalid, TaskBook will discard
 
 ### Locating persons by name: `find` [coming soon]
 
-### Archiving data files `[coming in v2.0]`
-
-_Details coming soon ..._
-
 ## Miscellaneous Information
 
 ### Accepted Date Formats
@@ -308,24 +378,30 @@ The following date formats are accepted:
 
 ## Command summary
 
-| Action                        | Format, Examples                                                                                                                                                  |
-|-------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **View All Tasks**            | `task list`                                                                                                                                                       |
-| **View Contacts**             | `contact list`                                                                                                                                                    |
-| **Add Contact**               | `contact add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [#TAG]…` <br> e.g., `contact add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` |
-| **Add Todo: Assignor**        | `task todo m/ASSIGNOR d/DESCRIPTION [#TAG]…` <br> e.g., `task todo m/John d/Finish user guide #cs2103 #homework`                                                  |
-| **Add Todo: Assignee**        | `task todo o/ASSIGNEE d/DESCRIPTION [#TAG]…` <br> e.g., `task todo o/Sam d/Finish the assignment #compulsory`                                                     |
-| **Add Deadline: Assignor**    | `task deadline m/ASSIGNOR d/DESCRIPTION t/DATE [#TAG]…` <br> e.g., `task deadline m/John d/Finish user guide t/2022-12-31 #cs2103 #homework`                      |
-| **Add Deadline: Assignee**    | `task deadline o/ASSIGNEE d/DESCRIPTION t/DATE [#TAG]…` <br> e.g., `task deadline o/Sam d/Finish the assignment t/Jan 31 2022 #compulsory`                        |
-| **Add Event: Assignor**       | `task event m/ASSIGNOR d/DESCRIPTION t/DATE [#TAG]…` <br> e.g., `task event m/John d/Finish user guide t/2022-12-31 #cs2103 #homework`                            |
-| **Add Event: Assignee**       | `task event o/ASSIGNEE d/DESCRIPTION t/DATE [#TAG]…` <br> e.g., `task event o/Sam d/Finish the assignment t/Jan 31 2022 #compulsory`                              |
-| **Edit Contact**              | `contact edit i/INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [#TAG]…`<br> e.g.,`contact edit i/2 n/James Lee e/jameslee@example.com #friend`             |
-| **Edit Task**                 | `task edit i/INDEX [m/NAME] [o/NAME] [d/DESCRIPTION] [t/DATE] [#TAG]…`<br> e.g.,`task edit i/2 o/James Lee #classmate`                                            |
-| **Delete Contact**            | `contact delete i/INDEX`<br> e.g., `contact delete i/3`                                                                                                           |
-| **Delete Task**               | `task delete i/INDEX`<br> e.g., `task delete i/3`                                                                                                                 |
-| **Sort Tasks**                | `task sort s/SORT`<br> e.g., `task sort s/a`                                                                                                                      |
-| **Mark Task**                 | `task mark i/INDEX`<br> e.g., `task mark i/3`                                                                                                                     |
-| **Unmark Task**               | `task unmark i/INDEX`<br> e.g., `task unmark i/3`                                                                                                                 |
-| **Quit**                      | `bye`                                                                                                                                                             |
-| **History: Previous Command** | `UP` arrow key                                                                                                                                                    |
-| **History: Next Command**     | `DOWN` arrow key                                                                                                                                                  |
+| Action                        | Format, Examples                                                                                                                                                   |
+|-------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Help**                      | `help [c/COMMAND]`                                                                                                                                                 |
+| **View All Tasks**            | `task list`                                                                                                                                                        |
+| **View Contacts**             | `contact list`                                                                                                                                                     |
+| **Add Contact**               | `contact add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [#TAG]…` <br> e.g., `contact add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123`          |
+| **Add Todo: Assignor**        | `task todo m/ASSIGNOR d/DESCRIPTION [#TAG]…` <br> e.g., `task todo m/John d/Finish user guide #cs2103 #homework`                                                   |
+| **Add Todo: Assignee**        | `task todo o/ASSIGNEE d/DESCRIPTION [#TAG]…` <br> e.g., `task todo o/Sam d/Finish the assignment #compulsory`                                                      |
+| **Add Deadline: Assignor**    | `task deadline m/ASSIGNOR d/DESCRIPTION t/DATE [#TAG]…` <br> e.g., `task deadline m/John d/Finish user guide t/2022-12-31 #cs2103 #homework`                       |
+| **Add Deadline: Assignee**    | `task deadline o/ASSIGNEE d/DESCRIPTION t/DATE [#TAG]…` <br> e.g., `task deadline o/Sam d/Finish the assignment t/Jan 31 2022 #compulsory`                         |
+| **Add Event: Assignor**       | `task event m/ASSIGNOR d/DESCRIPTION t/DATE [#TAG]…` <br> e.g., `task event m/John d/Finish user guide t/2022-12-31 #cs2103 #homework`                             |
+| **Add Event: Assignee**       | `task event o/ASSIGNEE d/DESCRIPTION t/DATE [#TAG]…` <br> e.g., `task event o/Sam d/Finish the assignment t/Jan 31 2022 #compulsory`                               |
+| **Edit Contact**              | `contact edit i/INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [#TAG]…`<br> e.g.,`contact edit i/2 n/James Lee e/jameslee@example.com #friend`              |
+| **Edit Task**                 | `task edit i/INDEX [m/NAME] [o/NAME] [d/DESCRIPTION] [t/DATE] [#TAG]…`<br> e.g.,`task edit i/2 o/James Lee #classmate`                                             |
+| **Delete Contact**            | `contact delete i/INDEX`<br> e.g., `contact delete i/3`                                                                                                            |
+| **Delete Task**               | `task delete i/INDEX`<br> e.g., `task delete i/3`                                                                                                                  |
+| **Sort Contacts**             | `contact sort s/SORT`<br> e.g., `contact sort s/a`                                                                                                                 |
+| **Sort Tasks**                | `task sort s/SORT`<br> e.g., `task sort s/a`                                                                                                                       |
+| **Find Contacts**             | `contact find q/QUERY` <br> e.g., `contact find q/ea`                                                                                                              |
+| **Find Tasks**                | `task find q/QUERY a/ASSIGNMENT x/DONE` <br> (Arguments unordered) <br> e.g., `task find a/FROM q/ea`                                                              |
+| **Mark Task**                 | `task mark i/INDEX`<br> e.g., `task mark i/3`                                                                                                                      |
+| **Unmark Task**               | `task unmark i/INDEX`<br> e.g., `task unmark i/3`                                                                                                                  |
+| **Undo**                      | `undo`                                                                                                                                                             |
+| **Redo**                      | `redo`                                                                                                                                                             |
+| **Exiting the program**       | `bye`                                                                                                                                                              |
+| **History: Previous Command** | `UP` arrow key                                                                                                                                                     |
+| **History: Next Command**     | `DOWN` arrow key                                                                                                                                                   |

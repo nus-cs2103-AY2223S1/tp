@@ -57,6 +57,7 @@ public class ContactAddCommand extends Command {
         }
 
         model.addPerson(toAdd);
+        model.commitTaskBook();
         return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
     }
 

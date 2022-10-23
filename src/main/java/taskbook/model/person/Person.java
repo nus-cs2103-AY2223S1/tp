@@ -1,5 +1,7 @@
 package taskbook.model.person;
 
+import static java.util.Objects.requireNonNull;
+
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Objects;
@@ -129,4 +131,22 @@ public class Person {
         return builder.toString();
     }
 
+    /**
+     * Compares this person and the other person to decide name alphabetical order.
+     * @param other input person.
+     * @return 1 if this person's name is alphabetically first, -1 otherwise.
+     */
+    public int compareByNameAlphabeticalTo(Person other) {
+        return this.getName().compareByAlphabeticalTo(other.getName());
+    }
+
+    /**
+     * Checks of this person's name contains the query.
+     * @param query input query.
+     * @return true if the query exists exactly in this task, false otherwise.
+     */
+    public boolean isQueryInPerson(String query) {
+        requireNonNull(query);
+        return getName().isQueryInName(query);
+    }
 }

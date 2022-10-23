@@ -96,7 +96,7 @@ How the `Logic` component works:
 1. When `Logic` is called upon to execute a command, it uses the `TaskBookParser` class to parse the user command.
 1. This results in a `Command` object (more precisely, an object of one of its subclasses e.g., `AddCommand`) which is executed by the `LogicManager`.
 1. The command can communicate with the `Model` when it is executed (e.g. to add a person).
-1. The result of the command execution is encapsulated as a `CommandResult` object which is returned back from `Logic`.
+1. The result of the command execution is encapsulated as a `CommandResult` object which is returned from `Logic`.
 
 The Sequence Diagram below illustrates the interactions within the `Logic` component for the `execute("delete 1")` API call.
 
@@ -122,16 +122,12 @@ How the parsing works:
 
 The `Model` component,
 
-* stores the task book data i.e., all `Person` objects (which are contained in a `UniquePersonList` object).
-* stores the currently 'selected' `Person` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Person>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
+* stores the task book data i.e., all `Person` objects which are contained in a `UniquePersonList` object, as well as `Task` objects which are contained in a `TaskList` a object.
+* stores a subset of `Person` objects in the `UniquePersonList` (according to user filter query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Person>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
+* stores a subset of `Task` objects in the `TaskList` (according to user filter query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Task>` that can be 'observed'.
+* stores the `Task` objects in the _filtered_ list above (according to user sort query) as a _sorted_ list which is exposed to outsiders as an unmodifiable `ObservableList<Task>` that can be 'observed'.
 * stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
 * does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `TaskBook`, which `Person` references. This allows `TaskBook` to only require one `Tag` object per unique tag, instead of each `Person` needing their own `Tag` objects.<br>
-
-<img src="images/BetterModelClassDiagram.png" width="450" />
-
-</div>
 
 
 ### Storage component
@@ -147,15 +143,13 @@ The `Storage` component,
 
 ### Common classes
 
-Classes used by multiple components are in the `taskbookbook.commons` package.
+Classes used by multiple components are in the `taskbook.commons` package.
 
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Implementation**
 
 This section describes some noteworthy details on how certain features are implemented.
-
-### \[Proposed\] Command History Navigation
 
 ### Command History Navigation
 
@@ -175,6 +169,8 @@ The methods will handle cases where the command history is empty, full and when 
 
 * Set the `setOnKeyPressed` for the `commandTextField` to detect key presses `UP` and `DOWN` arrow keys and call `CommandHistory#getPreviousCommmand()` and `CommandHistory#getNextCommmand()` respectively and update the text displayed.
 * Call `CommandHistory#addCommand(commandText)` with the `commandText` in `CommandBox#handleCommandEntered()` when handling user input to save the user's input into the command history. Even if the commands are invalid, save them into the history. This allows the user to fix the wrong commands and re-execute them.
+
+![CommandHistoryActivityDiagram](images/CommandHistoryActivityDiagram.png)
 
 Note: Some interim steps are omitted for simplicity. Full details are in the sequence diagram below.
 
@@ -262,29 +258,31 @@ The following sequence diagram shows how a sort by description alphabetical comm
 * **Current choice:** Wrap the task list with a `FilteredList`, and the `FilteredList` with a `SortedList`.
     * Rationale: Commands on the filtered list will also affect the sorted list. This means that the `Ui` can be guaranteed that `sortedList` is the list that the user wishes to be shown, which can combine both filters and a particular sorting order.
 
-### \[Proposed\] Undo/redo feature
+### Undo/redo feature
 
-#### Proposed Implementation
+#### Implementation
 
-The proposed undo/redo mechanism is facilitated by `VersionedTaskBook`. It extends `TaskBook` with an undo/redo history, stored internally as an `taskBookStateList` and `currentStatePointer`. Additionally, it implements the following operations:
+The undo/redo mechanism is facilitated by `VersionedTaskBook`. It stores various `TaskBook` states with an undo/redo history, stored internally as an `taskBookStateList` and `pointer`. Additionally, it implements the following operations:
 
-* `VersionedTaskBook#commit()` — Saves the current task book state in its history.
+* `VersionedTaskBook#commit(TaskBook)` — Saves the current task book state in its history, if there are any changes in the state.
 * `VersionedTaskBook#undo()` — Restores the previous task book state from its history.
 * `VersionedTaskBook#redo()` — Restores a previously undone task book state from its history.
+
+`VersionedTaskBook` can be instantiated with an optional capacity, the default is as explained in the design considerations below. When the size of the version history exceeds double the allocated capacity, the older half of the history is pruned.
 
 These operations are exposed in the `Model` interface as `Model#commitTaskBook()`, `Model#undoTaskBook()` and `Model#redoTaskBook()` respectively.
 
 Given below is an example usage scenario and how the undo/redo mechanism behaves at each step.
 
-Step 1. The user launches the application for the first time. The `VersionedTaskBook` will be initialized with the initial task book state, and the `currentStatePointer` pointing to that single task book state.
+Step 1. The user launches the application for the first time. The `VersionedTaskBook` will be initialized with the initial task book state, and the `pointer` pointing to that single task book state.
 
 ![UndoRedoState0](images/UndoRedoState0.png)
 
-Step 2. The user executes `delete 5` command to delete the 5th person in the task book. The `delete` command calls `Model#commitTaskBook()`, causing the modified state of the task book after the `delete 5` command executes to be saved in the `taskBookStateList`, and the `currentStatePointer` is shifted to the newly inserted task book state.
+Step 2. The user executes `contact delete i/5` command to delete the 5th person in the task book. The `contact delete i/5` command calls `Model#commitTaskBook()`, causing the modified state of the task book after the `contact delete i/5` command executes to be saved in the `taskBookStateList`, and the `pointer` is shifted to the newly inserted task book state.
 
 ![UndoRedoState1](images/UndoRedoState1.png)
 
-Step 3. The user executes `add n/David …​` to add a new person. The `add` command also calls `Model#commitTaskBook()`, causing another modified task book state to be saved into the `taskBookStateList`.
+Step 3. The user executes `contact add n/David …​` to add a new person. The `add` command also calls `Model#commitTaskBook()`, causing another modified task book state to be saved into the `taskBookStateList`.
 
 ![UndoRedoState2](images/UndoRedoState2.png)
 
@@ -292,11 +290,11 @@ Step 3. The user executes `add n/David …​` to add a new person. The `add` co
 
 </div>
 
-Step 4. The user now decides that adding the person was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `Model#undoTaskBook()`, which will shift the `currentStatePointer` once to the left, pointing it to the previous task book state, and restores the task book to that state.
+Step 4. The user now decides that adding the person was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `Model#undoTaskBook()`, which will shift the `pointer` once to the left, pointing it to the previous task book state, and restores the task book to that state.
 
 ![UndoRedoState3](images/UndoRedoState3.png)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index 0, pointing to the initial TaskBook state, then there are no previous TaskBook states to restore. The `undo` command uses `Model#canUndoTaskBook()` to check if this is the case. If so, it will return an error to the user rather
+<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `pointer` is at index 0, pointing to the initial TaskBook state, then there are no previous TaskBook states to restore. The `undo` command uses `Model#canUndoTaskBook()` to check if this is the case. If so, it will return an error to the user rather
 than attempting to perform the undo.
 
 </div>
@@ -309,17 +307,17 @@ The following sequence diagram shows how the undo operation works:
 
 </div>
 
-The `redo` command does the opposite — it calls `Model#redoTaskBook()`, which shifts the `currentStatePointer` once to the right, pointing to the previously undone state, and restores the task book to that state.
+The `redo` command does the opposite — it calls `Model#redoTaskBook()`, which shifts the `pointer` once to the right, pointing to the previously undone state, and restores the task book to that state.
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index `taskBookStateList.size() - 1`, pointing to the latest task book state, then there are no undone TaskBook states to restore. The `redo` command uses `Model#canRedoTaskBook()` to check if this is the case. If so, it will return an error to the user rather than attempting to perform the redo.
+<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `pointer` is at index `taskBookStateList.size() - 1`, pointing to the latest task book state, then there are no undone TaskBook states to restore. The `redo` command uses `Model#canRedoTaskBook()` to check if this is the case. If so, it will return an error to the user rather than attempting to perform the redo.
 
 </div>
 
-Step 5. The user then decides to execute the command `list`. Commands that do not modify the task book, such as `list`, will usually not call `Model#commitTaskBook()`, `Model#undoTaskBook()` or `Model#redoTaskBook()`. Thus, the `taskBookStateList` remains unchanged.
+Step 5. The user then decides to execute the command `task sort s/a`. Commands that do not modify the task book, such as `task sort s/a`, will usually not call `Model#undoTaskBook()` or `Model#redoTaskBook()`. Thus, the `taskBookStateList` remains unchanged.
 
 ![UndoRedoState4](images/UndoRedoState4.png)
 
-Step 6. The user executes `clear`, which calls `Model#commitTaskBook()`. Since the `currentStatePointer` is not pointing at the end of the `taskBookStateList`, all task book states after the `currentStatePointer` will be purged. Reason: It no longer makes sense to redo the `add n/David …​` command. This is the behavior that most modern desktop applications follow.
+Step 6. The user executes `task delete i/1`, which calls `Model#commitTaskBook()`. Since the `pointer` is not pointing at the end of the `taskBookStateList`, all task book states after the `pointer` will be purged. Reason: It no longer makes sense to redo the `contact add n/David …​` command. This is the behavior that most modern desktop applications follow.
 
 ![UndoRedoState5](images/UndoRedoState5.png)
 
@@ -349,6 +347,11 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 * **Current choice:** 15 commands.
     * Rationale: Since the current choice of undo operations to be supported is 15, the number of redo operations supported is also 15.
+
+**Aspect: Invalid undo/redo operation:**
+
+* **Current choice:** Show an error to the user in the UI.
+    * Rationale: Alert the user of the invalid action, stemming from a lack of actions to undo/redo, so that the user is aware that the command is invalid.
 
 ### \[Proposed\] Mark/Unmark Task Command
 
@@ -432,11 +435,23 @@ The following sequence diagram shows how the `TaskTagCommand` works:
 * **Current choice:** Empty tags are not saved.
     * Rationale: Does not unnecessarily clutter the number of tags saved to a task.
   
-**Aspect: How many tags can be saved:**
+### \[Proposed\] ToDo/Deadline/Event Task types
 
-* **Current choice:** A maximum of 5 tags can be saved.
-    * Rationale: Reduce clutter of tags saved to a task. Too many tags would defeat the purpose of a tag itself.
-  
+#### Proposed Implementation
+
+The proposed Todo, Deadline and Event task types is facilitated by `TaskList`. It extends `Task` with 3 specific task types. Additional features of each task type:
+
+- ToDo: Nil
+- Event: Event Date
+- Deadline: Deadline Date
+
+#### Design Considerations:
+
+**Aspect: `Task` superclass implementation**
+
+* **Current choice:** Implement `Task` as an abstract class.
+    * Rationale: Having the specific task types extend from `Task` allows `TaskList` to store them homogeneously. `Task` is made abstract as `ToDo` Task type models a basic task without a concept of time.
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Documentation, logging, testing, configuration, dev-ops**
@@ -506,7 +521,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *`  | user                     | close the app with a command                                   | close the app safely                                                      |
 | `* * *`  | forgetful user           | automatically save my progress after every command             | stop worrying about potentially closing the app without saving            |
 | `* *`    | careless user            | undo commands I have keyed in wrongly                          | effortlessly correct any blunders in commands that I notice               |
-| `* *`    | expert user              | redo commands to repeat commands                               | quickly perform bulk actions                                              |
+| `* *`    | expert user              | redo commands                                                  | revert back to a previously undone state                                  |
 | `* *`    | forgetful user           | navigate my command history to look at previous commands       | remember what actions I had taken recently                                |
 | `* *`    | lazy user                | handle all my tasks and contacts in 1 place                    |                                                                           |
 | `* *`    | user                     | use my preferred date format in commands                       | use the date format I am used to and not memorise a specific other format |

@@ -10,15 +10,21 @@ import org.junit.jupiter.api.Test;
 
 import taskbook.commons.core.Messages;
 import taskbook.logic.commands.Command;
-import taskbook.logic.commands.HelpCommand;
 import taskbook.logic.commands.categoryless.ExitCommand;
+import taskbook.logic.commands.categoryless.HelpCommand;
 import taskbook.logic.commands.contacts.ContactAddCommand;
 import taskbook.logic.commands.contacts.ContactDeleteCommand;
 import taskbook.logic.commands.contacts.ContactListCommand;
+import taskbook.logic.commands.contacts.ContactSortAddedChronologicalCommand;
+import taskbook.logic.commands.contacts.ContactSortCommand;
+import taskbook.logic.commands.contacts.ContactSortNameAlphabeticalCommand;
 import taskbook.logic.commands.tasks.TaskDeleteCommand;
 import taskbook.logic.commands.tasks.TaskEditCommand;
 import taskbook.logic.commands.tasks.TaskListCommand;
 import taskbook.logic.commands.tasks.TaskMarkCommand;
+import taskbook.logic.commands.tasks.TaskSortAddedChronologicalCommand;
+import taskbook.logic.commands.tasks.TaskSortCommand;
+import taskbook.logic.commands.tasks.TaskSortDescriptionAlphabeticalCommand;
 import taskbook.logic.commands.tasks.TaskTodoCommand;
 import taskbook.logic.commands.tasks.TaskUnmarkCommand;
 import taskbook.logic.parser.contacts.ContactCategoryParser;
@@ -50,6 +56,20 @@ public class TaskBookParserTest {
     public void parseCommand_contact_list() throws Exception {
         assertTrue(parseContactCommand(ContactListCommand.COMMAND_WORD) instanceof ContactListCommand);
         assertTrue(parseContactCommand(ContactListCommand.COMMAND_WORD + " 3") instanceof ContactListCommand);
+    }
+
+    @Test
+    public void parseCommand_contactShortcut_list() throws Exception {
+        assertTrue(parseContactCommandShortcut(ContactListCommand.COMMAND_WORD) instanceof ContactListCommand);
+        assertTrue(parseContactCommandShortcut(ContactListCommand.COMMAND_WORD + " 3") instanceof ContactListCommand);
+    }
+
+    @Test
+    public void parseCommand_contact_sort() throws Exception {
+        assertTrue(parseContactCommand(ContactSortCommand.COMMAND_WORD + " s/a")
+                instanceof ContactSortNameAlphabeticalCommand);
+        assertTrue(parseContactCommand(ContactSortCommand.COMMAND_WORD + " s/ca")
+                instanceof ContactSortAddedChronologicalCommand);
     }
 
     @Test
@@ -89,6 +109,20 @@ public class TaskBookParserTest {
     }
 
     @Test
+    public void parseCommand_taskShortcut_list() throws Exception {
+        assertTrue(parseTaskCommandShortcut(TaskListCommand.COMMAND_WORD) instanceof TaskListCommand);
+        assertTrue(parseTaskCommandShortcut(TaskListCommand.COMMAND_WORD + " 3") instanceof TaskListCommand);
+    }
+
+    @Test
+    public void parseCommand_task_sort() throws Exception {
+        assertTrue(parseTaskCommand(TaskSortCommand.COMMAND_WORD + " s/a")
+                instanceof TaskSortDescriptionAlphabeticalCommand);
+        assertTrue(parseTaskCommand(TaskSortCommand.COMMAND_WORD + " s/ca")
+                instanceof TaskSortAddedChronologicalCommand);
+    }
+
+    @Test
     public void parseCommand_exit() throws Exception {
         assertTrue(parser.parseCommand(ExitCommand.COMMAND_WORD) instanceof ExitCommand);
         assertTrue(parser.parseCommand(ExitCommand.COMMAND_WORD + " 3") instanceof ExitCommand);
@@ -115,7 +149,15 @@ public class TaskBookParserTest {
         return parseCommandWithCategory(ContactCategoryParser.CATEGORY_WORD, command);
     }
 
+    private Command parseContactCommandShortcut(String command) throws ParseException {
+        return parseCommandWithCategory(ContactCategoryParser.CATEGORY_WORD_SHORTCUT, command);
+    }
+
     private Command parseTaskCommand(String command) throws ParseException {
         return parseCommandWithCategory(TaskCategoryParser.CATEGORY_WORD, command);
+    }
+
+    private Command parseTaskCommandShortcut(String command) throws ParseException {
+        return parseCommandWithCategory(TaskCategoryParser.CATEGORY_WORD_SHORTCUT, command);
     }
 }

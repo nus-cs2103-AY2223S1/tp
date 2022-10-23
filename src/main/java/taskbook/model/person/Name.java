@@ -40,6 +40,24 @@ public class Name {
         return test.matches(VALIDATION_REGEX);
     }
 
+    /**
+     * Searches the fullName for a query.
+     * @param query input query.
+     * @return true if the query exists exactly in fullName, false otherwise.
+     */
+    public boolean isQueryInName(String query) {
+        requireNonNull(query);
+        return fullName.toUpperCase().contains(query.toUpperCase());
+    }
+
+    /**
+     * Compares this person's name and the other person's name to decide name alphabetical order.
+     * @param other input person.
+     * @return 1 if this person's name is alphabetically first, -1 otherwise.
+     */
+    public int compareByAlphabeticalTo(Name other) {
+        return this.fullName.compareTo(other.fullName);
+    }
 
     @Override
     public String toString() {
@@ -57,5 +75,4 @@ public class Name {
     public int hashCode() {
         return fullName.hashCode();
     }
-
 }

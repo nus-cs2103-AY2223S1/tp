@@ -67,7 +67,12 @@ public class TaskTodoCommand extends TaskAddCommand {
         checkPersonNameExist(model);
 
         Task newTask = createTodo();
+        if (model.hasTask(newTask)) {
+            throw new CommandException(MESSAGE_DUPLICATE_TASK_FAILURE);
+        }
+
         model.addTask(newTask);
+        model.commitTaskBook();
         return new CommandResult(String.format(MESSAGE_SUCCESS, newTask));
     }
 

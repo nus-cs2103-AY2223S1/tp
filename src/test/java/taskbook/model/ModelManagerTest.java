@@ -1,5 +1,6 @@
 package taskbook.model;
 
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNull;
@@ -13,7 +14,9 @@ import org.junit.jupiter.api.Test;
 
 import taskbook.commons.core.GuiSettings;
 import taskbook.model.person.NameContainsKeywordsPredicate;
+import taskbook.model.person.Person;
 import taskbook.testutil.Assert;
+import taskbook.testutil.PersonBuilder;
 import taskbook.testutil.TaskBookBuilder;
 import taskbook.testutil.TypicalTaskBook;
 
@@ -70,6 +73,67 @@ public class ModelManagerTest {
         Path path = Paths.get("address/book/file/path");
         modelManager.setTaskBookFilePath(path);
         assertEquals(path, modelManager.getTaskBookFilePath());
+    }
+
+    @Test
+    public void commitTaskBook() {
+        assertDoesNotThrow(modelManager::commitTaskBook);
+    }
+
+    @Test
+    public void canUndoTaskBook_cannotUndo_false() {
+        ModelManager model = new ModelManager();
+        assertFalse(model.canUndoTaskBook());
+    }
+
+    @Test
+    public void canUndoTaskBook_canUndo_true() {
+        ModelManager model = new ModelManager();
+        Person p1 = new PersonBuilder().build();
+        model.addPerson(p1);
+        model.commitTaskBook();
+        assertTrue(model.canUndoTaskBook());
+    }
+
+    @Test
+    public void undoTaskBook() {
+        ModelManager model = new ModelManager();
+        Person p1 = new PersonBuilder().build();
+        model.addPerson(p1);
+        model.commitTaskBook();
+        model.undoTaskBook();
+        assertEquals(new ModelManager(), model);
+    }
+
+    @Test
+    public void canRedoTaskBook_cannotRedo_false() {
+        ModelManager model = new ModelManager();
+        assertFalse(model.canRedoTaskBook());
+    }
+
+    @Test
+    public void canRedoTaskBook_canRedo_true() {
+        ModelManager model = new ModelManager();
+        Person p1 = new PersonBuilder().build();
+        model.addPerson(p1);
+        model.commitTaskBook();
+        model.undoTaskBook();
+        assertTrue(model.canRedoTaskBook());
+    }
+
+    @Test
+    public void redoTaskBook() {
+        ModelManager model = new ModelManager();
+        Person p1 = new PersonBuilder().build();
+        model.addPerson(p1);
+        model.commitTaskBook();
+        model.undoTaskBook();
+        model.redoTaskBook();
+
+        ModelManager expected = new ModelManager();
+        expected.addPerson(p1);
+        expected.commitTaskBook();
+        assertEquals(expected, model);
     }
 
     @Test
@@ -151,11 +215,11 @@ public class ModelManagerTest {
 
         // different filteredList -> returns false
         String[] keywords = TypicalTaskBook.ALICE.getName().fullName.split("\\s+");
-        modelManager.updateFilteredPersonList(new NameContainsKeywordsPredicate(Arrays.asList(keywords)));
+        modelManager.updateFilteredPersonListPredicate(new NameContainsKeywordsPredicate(Arrays.asList(keywords)));
         assertFalse(modelManager.equals(new ModelManager(taskBook, userPrefs)));
 
         // resets modelManager to initial state for upcoming tests
-        modelManager.updateFilteredPersonList(Model.PREDICATE_SHOW_ALL_PERSONS);
+        modelManager.updateFilteredPersonListPredicate(Model.PREDICATE_SHOW_ALL_PERSONS);
 
         // different userPrefs -> returns false
         UserPrefs differentUserPrefs = new UserPrefs();

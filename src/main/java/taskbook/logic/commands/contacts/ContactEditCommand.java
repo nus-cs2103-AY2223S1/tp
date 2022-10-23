@@ -85,7 +85,8 @@ public class ContactEditCommand extends Command {
         }
 
         model.setPerson(personToEdit, editedPerson);
-        model.updateFilteredPersonList(Model.PREDICATE_SHOW_ALL_PERSONS);
+        model.updateFilteredPersonListPredicate(Model.PREDICATE_SHOW_ALL_PERSONS);
+        model.commitTaskBook();
         return new CommandResult(String.format(MESSAGE_EDIT_PERSON_SUCCESS, editedPerson));
     }
 

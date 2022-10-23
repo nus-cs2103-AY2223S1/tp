@@ -5,6 +5,8 @@ import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
+import static java.util.Objects.requireNonNull;
+
 import taskbook.commons.util.CollectionUtil;
 import taskbook.logic.commands.exceptions.CommandException;
 import taskbook.model.person.Name;
@@ -158,6 +160,26 @@ public abstract class Task {
                 .append("\n")
                 .append(getTags().size() == 0 ? "" : getTags());
         return builder.toString();
+    }
+
+    /**
+     * Searches this task to find if input query exists anywhere in the description or name.
+     * @param query input query.
+     * @return true if the query exists exactly in this task, false otherwise.
+     */
+    public boolean isQueryInTask(String query) {
+        requireNonNull(query);
+        return getName().isQueryInName(query) || getDescription().isQueryInDescription(query);
+    }
+
+    /**
+     * Checks if the task is of a particular assignment
+     * @param query input assignment.
+     * @return true if the query exists exactly in this task, false otherwise.
+     */
+    public boolean isAssignmentCorrect(Assignment query) {
+        requireNonNull(query);
+        return this.getAssignment().equals(query);
     }
 
     /**

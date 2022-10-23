@@ -50,6 +50,35 @@ public interface Model {
     void setTaskBookFilePath(Path taskBookFilePath);
 
     /**
+     * Commits the current TaskBook to the version history.
+     */
+    void commitTaskBook();
+
+    /**
+     * Returns true if possible to revert the TaskBook to the previous state in the version history.
+     * @see VersionedTaskBook#canUndo()
+     */
+    boolean canUndoTaskBook();
+
+    /**
+     * Reverts the TaskBook to the previous state in the version history.
+     * @see VersionedTaskBook#undo()
+     */
+    void undoTaskBook();
+
+    /**
+     * Returns true if possible to revert the TaskBook to the previously undone state in the version history.
+     * @see VersionedTaskBook#canUndo()
+     */
+    boolean canRedoTaskBook();
+
+    /**
+     * Reverts the TaskBook to the previously undone state in the version history.
+     * @see VersionedTaskBook#redo()
+     */
+    void redoTaskBook();
+
+    /**
      * Replaces task book data with the data in {@code taskBook}.
      */
     void setTaskBook(ReadOnlyTaskBook taskBook);
@@ -132,6 +161,7 @@ public interface Model {
 
     /**
      * Updates the comparator of the sorted task list to sort by the given {@code comparator}.
+     * @param comparator comparator to sort task list by.
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateSortedTaskList(Comparator<Task> comparator);
@@ -140,17 +170,24 @@ public interface Model {
      */
     void resetSortedTaskList();
 
-    void updateSort(Comparator<Task> comparator);
-
     /**
      * Updates the filter of the filtered person list to filter by the given {@code predicate}.
      * @throws NullPointerException if {@code predicate} is null.
      */
-    void updateFilteredPersonList(Predicate<Person> predicate);
+    void updateFilteredPersonListPredicate(Predicate<Person> predicate);
 
     /**
-     * Updates the filter of the filtered task list to filter by the given {@code predicate}.
-     * @throws NullPointerException if {@code predicate} is null.
+     * Updates the comparator of the sorted task list to sort by the given {@code comparator}.
+     * @param comparator comparator to sort person list by.
+     * @throws NullPointerException if {@code comparator} is null.
      */
-    void updateFilteredTaskList(Predicate<Task> predicate);
+    void updateSortedPersonList(Comparator<Person> comparator);
+
+    /**
+     * Updates the comparator of the sorted person list to be null, which sorts persons by the time they were added.
+     */
+    void resetSortedPersonList();
+
+    /** Returns an unmodifiable view of the sorted person list */
+    ObservableList<Person> getSortedPersonList();
 }
