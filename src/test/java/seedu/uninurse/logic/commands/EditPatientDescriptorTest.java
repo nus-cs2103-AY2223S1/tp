@@ -1,14 +1,13 @@
 package seedu.uninurse.logic.commands;
 
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static seedu.uninurse.logic.commands.CommandTestUtil.DESC_AMY;
 import static seedu.uninurse.logic.commands.CommandTestUtil.DESC_BOB;
 import static seedu.uninurse.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
 import static seedu.uninurse.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
 import static seedu.uninurse.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static seedu.uninurse.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
-import static seedu.uninurse.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 
 import org.junit.jupiter.api.Test;
 
@@ -21,38 +20,34 @@ public class EditPatientDescriptorTest {
     public void equals() {
         // same values -> returns true
         EditPatientDescriptor descriptorWithSameValues = new EditPatientDescriptor(DESC_AMY);
-        assertTrue(DESC_AMY.equals(descriptorWithSameValues));
+        assertEquals(DESC_AMY, descriptorWithSameValues);
 
         // same object -> returns true
-        assertTrue(DESC_AMY.equals(DESC_AMY));
+        assertEquals(DESC_AMY, DESC_AMY);
 
         // null -> returns false
-        assertFalse(DESC_AMY.equals(null));
+        assertNotEquals(null, DESC_AMY);
 
         // different types -> returns false
-        assertFalse(DESC_AMY.equals(5));
+        assertNotEquals(5, DESC_AMY);
 
         // different values -> returns false
-        assertFalse(DESC_AMY.equals(DESC_BOB));
+        assertNotEquals(DESC_BOB, DESC_AMY);
 
         // different name -> returns false
         EditPatientDescriptor editedAmy = new EditPatientDescriptorBuilder(DESC_AMY).withName(VALID_NAME_BOB).build();
-        assertFalse(DESC_AMY.equals(editedAmy));
+        assertNotEquals(DESC_AMY, editedAmy);
 
         // different phone -> returns false
         editedAmy = new EditPatientDescriptorBuilder(DESC_AMY).withPhone(VALID_PHONE_BOB).build();
-        assertFalse(DESC_AMY.equals(editedAmy));
+        assertNotEquals(DESC_AMY, editedAmy);
 
         // different email -> returns false
         editedAmy = new EditPatientDescriptorBuilder(DESC_AMY).withEmail(VALID_EMAIL_BOB).build();
-        assertFalse(DESC_AMY.equals(editedAmy));
+        assertNotEquals(DESC_AMY, editedAmy);
 
         // different address -> returns false
         editedAmy = new EditPatientDescriptorBuilder(DESC_AMY).withAddress(VALID_ADDRESS_BOB).build();
-        assertFalse(DESC_AMY.equals(editedAmy));
-
-        // different tags -> returns false
-        editedAmy = new EditPatientDescriptorBuilder(DESC_AMY).withTags(VALID_TAG_HUSBAND).build();
-        assertFalse(DESC_AMY.equals(editedAmy));
+        assertNotEquals(DESC_AMY, editedAmy);
     }
 }

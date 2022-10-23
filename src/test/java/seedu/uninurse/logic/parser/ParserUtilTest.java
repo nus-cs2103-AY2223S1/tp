@@ -8,8 +8,6 @@ import static seedu.uninurse.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 
 import java.util.Arrays;
 import java.util.Collections;
-import java.util.HashSet;
-import java.util.Set;
 
 import org.junit.jupiter.api.Test;
 
@@ -21,6 +19,7 @@ import seedu.uninurse.model.person.Email;
 import seedu.uninurse.model.person.Name;
 import seedu.uninurse.model.person.Phone;
 import seedu.uninurse.model.tag.Tag;
+import seedu.uninurse.model.tag.TagList;
 
 public class ParserUtilTest {
     private static final String INVALID_NAME = "R@chel";
@@ -28,7 +27,7 @@ public class ParserUtilTest {
     private static final String INVALID_ADDRESS = " ";
     private static final String INVALID_EMAIL = "example.com";
     private static final String INVALID_CONDITION = " ";
-    private static final String INVALID_TAG = "#friend";
+    private static final String INVALID_TAG = " ";
 
     private static final String VALID_NAME = "Rachel Walker";
     private static final String VALID_PHONE = "123456";
@@ -36,8 +35,8 @@ public class ParserUtilTest {
     private static final String VALID_EMAIL = "rachel@example.com";
     private static final String VALID_CONDITION_1 = "Wolff-Parkinson-White Syndrome";
     private static final String VALID_CONDITION_2 = "COVID-19";
-    private static final String VALID_TAG_1 = "friend";
-    private static final String VALID_TAG_2 = "neighbour";
+    private static final String VALID_TAG_1 = "high-risk";
+    private static final String VALID_TAG_2 = "A20 Nursing Home";
 
     private static final String WHITESPACE = " \t\r\n";
 
@@ -236,15 +235,15 @@ public class ParserUtilTest {
     }
 
     @Test
-    public void parseTags_emptyCollection_returnsEmptySet() throws Exception {
+    public void parseTags_emptyCollection_returnsEmptyList() throws Exception {
         assertTrue(ParserUtil.parseTags(Collections.emptyList()).isEmpty());
     }
 
     @Test
-    public void parseTags_collectionWithValidTags_returnsTagSet() throws Exception {
-        Set<Tag> actualTagSet = ParserUtil.parseTags(Arrays.asList(VALID_TAG_1, VALID_TAG_2));
-        Set<Tag> expectedTagSet = new HashSet<Tag>(Arrays.asList(new Tag(VALID_TAG_1), new Tag(VALID_TAG_2)));
+    public void parseTags_collectionWithValidTags_returnsTagList() throws Exception {
+        TagList actualTagList = ParserUtil.parseTags(Arrays.asList(VALID_TAG_1, VALID_TAG_2));
+        TagList expectedTagList = new TagList(Arrays.asList(new Tag(VALID_TAG_1), new Tag(VALID_TAG_2)));
 
-        assertEquals(expectedTagSet, actualTagSet);
+        assertEquals(expectedTagList, actualTagList);
     }
 }

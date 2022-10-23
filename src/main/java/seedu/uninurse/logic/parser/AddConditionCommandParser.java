@@ -26,12 +26,10 @@ public class AddConditionCommandParser implements Parser<AddConditionCommand> {
         requireNonNull(args);
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_CONDITION);
 
-        Index index;
-        Condition condition;
-
         try {
-            index = ParserUtil.parseIndex(argMultimap.getPreamble());
-            condition = ParserUtil.parseCondition(argMultimap.getValue(PREFIX_CONDITION).orElseThrow());
+            Index index = ParserUtil.parseIndex(argMultimap.getPreamble());
+            Condition condition = ParserUtil.parseCondition(argMultimap.getValue(PREFIX_CONDITION).orElseThrow());
+            return new AddConditionCommand(index, condition);
             // TODO: display specific error messages
         } catch (ParseException pe) { // handles invalid indices and conditions
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
@@ -39,7 +37,5 @@ public class AddConditionCommandParser implements Parser<AddConditionCommand> {
         } catch (NoSuchElementException nse) { // Handles missing prefix
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddConditionCommand.MESSAGE_USAGE));
         }
-
-        return new AddConditionCommand(index, condition);
     }
 }

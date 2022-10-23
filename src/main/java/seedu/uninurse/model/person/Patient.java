@@ -31,24 +31,37 @@ public class Patient extends Person {
 
     /**
      * Used to return a new immutable {@code Patient} when {@code ConditionList} is updated.
-     * @param patient the patient to be updated
+     * @param patient the patient to be updated.
      * @param updatedConditions the updated conditions.
      */
     public Patient(Patient patient, ConditionList updatedConditions) {
         super(patient);
+        requireAllNonNull(patient, updatedConditions);
         this.conditions = updatedConditions;
         this.tasks = patient.tasks;
     }
 
     /**
      * Used to return a new immutable {@code Patient} when {@code TaskList} is updated.
-     * @param patient the patient to be updated
+     * @param patient the patient to be updated.
      * @param updatedTasks the updated tasks.
      */
     public Patient(Patient patient, TaskList updatedTasks) {
         super(patient);
+        requireAllNonNull(patient, updatedTasks);
         this.conditions = patient.conditions;
         this.tasks = updatedTasks;
+    }
+
+    /**
+     * Used to return a new immutable {@code Patient} when {@code TagList} is updated.
+     * @param patient The patient to be updated.
+     * @param updatedTagList The updated tags.
+     */
+    public Patient(Patient patient, TagList updatedTagList) {
+        super(patient, updatedTagList);
+        this.conditions = patient.conditions;
+        this.tasks = patient.tasks;
     }
 
     public ConditionList getConditions() {

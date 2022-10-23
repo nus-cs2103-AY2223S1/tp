@@ -9,7 +9,6 @@ import static seedu.uninurse.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.uninurse.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.uninurse.logic.parser.CliSyntax.PREFIX_TASK_DESCRIPTION;
 
-import java.util.Set;
 import java.util.stream.Stream;
 
 import seedu.uninurse.logic.commands.AddPatientCommand;
@@ -20,7 +19,7 @@ import seedu.uninurse.model.person.Email;
 import seedu.uninurse.model.person.Name;
 import seedu.uninurse.model.person.Patient;
 import seedu.uninurse.model.person.Phone;
-import seedu.uninurse.model.tag.Tag;
+import seedu.uninurse.model.tag.TagList;
 import seedu.uninurse.model.task.TaskList;
 
 /**
@@ -49,7 +48,7 @@ public class AddPatientCommandParser implements Parser<AddPatientCommand> {
         Address address = ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get());
         ConditionList conditionList = ParserUtil.parseConditions(argMultimap.getAllValues(PREFIX_CONDITION));
         TaskList taskList = ParserUtil.parseTasks(argMultimap.getAllValues(PREFIX_TASK_DESCRIPTION));
-        Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
+        TagList tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
 
         Patient person = new Patient(name, phone, email, address, conditionList, taskList, tagList);
 

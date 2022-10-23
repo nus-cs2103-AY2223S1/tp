@@ -7,7 +7,7 @@
     "address" : "123, Jurong West Ave 6, #08-111",
     "conditions" : [ ],
     "tasks" : [ ],
-    "tagged" : [ "friends" ]
+    "tagged" : [ ]
   }, {
     "name" : "Benson Meier",
     "phone" : "98765432",
@@ -32,7 +32,7 @@
       "taskDescription" : "Update health records",
       "dateTime": "28-10-2022 1730"
     } ],
-    "tagged" : [ ]
+    "tagged" : [ "high-risk" ]
   }, {
     "name" : "Daniel Meier",
     "phone" : "87652533",

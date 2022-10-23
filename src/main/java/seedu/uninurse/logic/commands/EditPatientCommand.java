@@ -5,14 +5,10 @@ import static seedu.uninurse.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.uninurse.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.uninurse.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.uninurse.logic.parser.CliSyntax.PREFIX_PHONE;
-import static seedu.uninurse.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.uninurse.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
-import java.util.Collections;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
-import java.util.Set;
 
 import seedu.uninurse.commons.core.Messages;
 import seedu.uninurse.commons.core.index.Index;
@@ -25,7 +21,7 @@ import seedu.uninurse.model.person.Email;
 import seedu.uninurse.model.person.Name;
 import seedu.uninurse.model.person.Patient;
 import seedu.uninurse.model.person.Phone;
-import seedu.uninurse.model.tag.Tag;
+import seedu.uninurse.model.tag.TagList;
 import seedu.uninurse.model.task.TaskList;
 
 /**
@@ -39,8 +35,7 @@ public class EditPatientCommand extends EditGenericCommand {
             + "[" + PREFIX_NAME + "NAME] "
             + "[" + PREFIX_PHONE + "PHONE] "
             + "[" + PREFIX_EMAIL + "EMAIL] "
-            + "[" + PREFIX_ADDRESS + "ADDRESS] "
-            + "[" + PREFIX_TAG + "TAG]...\n"
+            + "[" + PREFIX_ADDRESS + "ADDRESS]\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_PHONE + "91234567 "
             + PREFIX_EMAIL + "johndoe@example.com";
@@ -101,8 +96,8 @@ public class EditPatientCommand extends EditGenericCommand {
         Email updatedEmail = editPatientDescriptor.getEmail().orElse(patientToEdit.getEmail());
         Address updatedAddress = editPatientDescriptor.getAddress().orElse(patientToEdit.getAddress());
         ConditionList updatedConditions = patientToEdit.getConditions(); // editing of conditions is not supported
-        TaskList updatedTasks = patientToEdit.getTasks(); // editPatient command does not allow editing tasks
-        Set<Tag> updatedTags = editPatientDescriptor.getTags().orElse(patientToEdit.getTags());
+        TaskList updatedTasks = patientToEdit.getTasks(); // editPatient command does not allow editing of tasks
+        TagList updatedTags = patientToEdit.getTags(); // editPatient command does not allow editing of tags
 
         return new Patient(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedConditions, updatedTasks,
                 updatedTags);
@@ -135,27 +130,24 @@ public class EditPatientCommand extends EditGenericCommand {
         private Phone phone;
         private Email email;
         private Address address;
-        private Set<Tag> tags;
 
         public EditPatientDescriptor() {}
 
         /**
          * Copy constructor.
-         * A defensive copy of {@code tags} is used internally.
          */
         public EditPatientDescriptor(EditPatientDescriptor toCopy) {
             setName(toCopy.name);
             setPhone(toCopy.phone);
             setEmail(toCopy.email);
             setAddress(toCopy.address);
-            setTags(toCopy.tags);
         }
 
         /**
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, phone, email, address, tags);
+            return CollectionUtil.isAnyNonNull(name, phone, email, address);
         }
 
         public void setName(Name name) {
@@ -190,23 +182,6 @@ public class EditPatientCommand extends EditGenericCommand {
             return Optional.ofNullable(address);
         }
 
-        /**
-         * Sets {@code tags} to this object's {@code tags}.
-         * A defensive copy of {@code tags} is used internally.
-         */
-        public void setTags(Set<Tag> tags) {
-            this.tags = (tags != null) ? new HashSet<>(tags) : null;
-        }
-
-        /**
-         * Returns an unmodifiable tag set, which throws {@code UnsupportedOperationException}
-         * if modification is attempted.
-         * Returns {@code Optional#empty()} if {@code tags} is null.
-         */
-        public Optional<Set<Tag>> getTags() {
-            return (tags != null) ? Optional.of(Collections.unmodifiableSet(tags)) : Optional.empty();
-        }
-
         @Override
         public boolean equals(Object other) {
             // short circuit if same object
@@ -225,8 +200,7 @@ public class EditPatientCommand extends EditGenericCommand {
             return getName().equals(e.getName())
                     && getPhone().equals(e.getPhone())
                     && getEmail().equals(e.getEmail())
-                    && getAddress().equals(e.getAddress())
-                    && getTags().equals(e.getTags());
+                    && getAddress().equals(e.getAddress());
         }
     }
 }

@@ -42,7 +42,21 @@ public class Person {
         this.phone = person.phone;
         this.email = person.email;
         this.address = person.address;
-        this.tags.addAll(person.tags);
+        this.tags = person.tags;
+    }
+
+    /**
+     * Used to return a new immutable {@code Person} when {@code TagList} is updated.
+     * @param person The person to be updated.
+     * @param updatedTagList The updated tags.
+     */
+    public Person(Person person, TagList updatedTagList) {
+        requireAllNonNull(person, updatedTagList);
+        this.name = person.name;
+        this.phone = person.phone;
+        this.email = person.email;
+        this.address = person.address;
+        this.tags = updatedTagList;
     }
 
     public Name getName() {

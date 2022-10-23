@@ -5,7 +5,6 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.uninurse.testutil.Assert.assertThrows;
-
 import static seedu.uninurse.testutil.TypicalTags.TAG_ELDERLY;
 import static seedu.uninurse.testutil.TypicalTags.TAG_NURSING_HOME;
 import static seedu.uninurse.testutil.TypicalTags.TYPICAL_TAG_ELDERLY;

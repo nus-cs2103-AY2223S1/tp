@@ -1,15 +1,12 @@
 package seedu.uninurse.testutil;
 
-import java.util.HashSet;
-import java.util.Set;
-
 import seedu.uninurse.model.condition.ConditionList;
 import seedu.uninurse.model.person.Address;
 import seedu.uninurse.model.person.Email;
 import seedu.uninurse.model.person.Name;
 import seedu.uninurse.model.person.Patient;
 import seedu.uninurse.model.person.Phone;
-import seedu.uninurse.model.tag.Tag;
+import seedu.uninurse.model.tag.TagList;
 import seedu.uninurse.model.task.Task;
 import seedu.uninurse.model.task.TaskList;
 import seedu.uninurse.model.util.SampleDataUtil;
@@ -30,7 +27,7 @@ public class PersonBuilder {
     private Address address;
     private ConditionList conditions;
     private TaskList tasks;
-    private Set<Tag> tags;
+    private TagList tags;
 
     /**
      * Creates a {@code PersonBuilder} with the default details.
@@ -42,7 +39,7 @@ public class PersonBuilder {
         address = new Address(DEFAULT_ADDRESS);
         conditions = new ConditionList();
         tasks = new TaskList();
-        tags = new HashSet<>();
+        tags = new TagList();
     }
 
     /**
@@ -55,7 +52,7 @@ public class PersonBuilder {
         address = personToCopy.getAddress();
         conditions = personToCopy.getConditions();
         tasks = personToCopy.getTasks();
-        tags = new HashSet<>(personToCopy.getTags());
+        tags = personToCopy.getTags();
     }
 
     /**
@@ -84,10 +81,10 @@ public class PersonBuilder {
     }
 
     /**
-     * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code Patient} that we are building.
+     * Parses the {@code tags} into a {@code TagList} and set it to the {@code Patient} that we are building.
      */
     public PersonBuilder withTags(String ... tags) {
-        this.tags = SampleDataUtil.getTagSet(tags);
+        this.tags = SampleDataUtil.getTagList(tags);
         return this;
     }
 
