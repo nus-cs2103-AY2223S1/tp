@@ -26,6 +26,7 @@ import seedu.address.logic.commands.RemarkCommand;
 import seedu.address.logic.commands.SelectAppointmentCommand;
 import seedu.address.logic.commands.SelectPatientCommand;
 import seedu.address.logic.commands.SetPaidCommand;
+import seedu.address.logic.commands.SetUnpaidCommand;
 import seedu.address.logic.commands.SortAppointmentCommand;
 import seedu.address.logic.commands.SortBillCommand;
 import seedu.address.logic.commands.SortPatientCommand;
@@ -101,6 +102,8 @@ public class AddressBookParser {
             return new SelectAppointmentCommandParser().parse(arguments);
         } else if (SetPaidCommand.COMMAND_WORD.matches(commandWord)) {
             return new SetPaidCommandParser().parse(arguments);
+        } else if (SetUnpaidCommand.COMMAND_WORD.matches(commandWord)) {
+            return new SetUnpaidCommandParser().parse(arguments);
         } else {
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
         }
