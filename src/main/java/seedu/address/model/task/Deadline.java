@@ -15,7 +15,7 @@ import java.time.format.DateTimeParseException;
 public class Deadline {
 
     public static final String MESSAGE_CONSTRAINTS =
-            "The deadline was not understood. Perhaps enter it like \"2 Jan 2022 15:04\" or \"tomorrow at 2pm\"?";
+            "The deadline was not understood. Perhaps enter it like \"2 Jan 2022 15:04\" or \"tomorrow 2pm\"?";
 
     //@@author parnikkapore-reused
     // Date format taken from https://github.com/angkl0/ip/blob/master/src/main/java/duke/tasks/Deadline.java#L39
@@ -26,7 +26,8 @@ public class Deadline {
     public final LocalDateTime deadline;
 
     /**
-     * Constructs a {@code Deadline} from a handwritten description.
+     * Constructs a {@code Deadline} from a String written in the CONSTRUCT_FORMATTER format.
+     * This can be used to make constants more readable. For all other cases, use Deadline(LocalDateTime).
      *
      * @param deadlineString A valid deadline written as a string.
      */

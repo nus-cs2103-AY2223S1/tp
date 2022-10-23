@@ -209,13 +209,11 @@ This was done so that it would be easy for the user to remember what command to 
 - The only difference when finding contacts is that there is a c after the find for contacts
 - Both use the same prefixes
 
-### Adding tasks
+### Add task feature
 
 #### About
 
 CodeConnect has features that allow you to add and track your tasks and annotate them with modules, so that you can search for matching people. The `add` command, implemented in [`AddTaskCommand`](https://github.com/AY2223S1-CS2103T-T14-2/tp/blob/master/src/main/java/seedu/address/logic/commands/AddTaskCommand.java) and [`AddTaskCommandParser`](https://github.com/AY2223S1-CS2103T-T14-2/tp/blob/master/src/main/java/seedu/address/logic/parser/AddTaskCommandParser.java), is how you add new tasks.
-
-The following describes the implementation planned for v1.3.
 
 Examples of command use:
 - `add Lab2 by/2022-02-02 23:59 m/CS2030S`
@@ -230,9 +228,12 @@ The `add` command follows the [general command implementation flow](#logic-compo
 
 #### Design Considerations
 
-* A natural date parser is used because it gives the most flexibility possible in the type of date formats that can be entered. The risk of confusion between multiple date formats (including `DD/MM/YY` vs `MM/DD/YY`) is alleviated by the fact that the user's locale will in most cases give a correct parsing.
-* The existing architecture requires fields to support separately validating user input and interpreting user input. The deadline input is validated by attempting to parse it and checking for errors, as there is no cheaper method in this case.
-* The natural parser we are using does not support parsing time. We decided that this is an acceptable tradeoff as the benefit of being able to enter the date in the format most intuitive to the user outweighs the small and rarely used benefit of being able to track the time of the deadline.
+* A natural date parser is used because it gives the most flexibility possible in the type of date formats that can be entered, including relative dates ("tomorrow") and abbreviations ("2 Jan").
+* Uniquely, the LocalDateTime within Deadline is expected to be formatted to and from strings by the class's users. This is because different formats and strictnesses are appropriate in different situations.
+  * `ParserUtil.parseDeadline` handles user input, so it uses the NaturalDateParser.
+  * The `Storage` component uses a fixed format string so that saved data can be unambiguously restored.
+  * Deadline(String) uses the format used before natural date parsing to reduce changes to test code.
+* Deadline has a validation function for the input to its string constructor, just like other field classes. The validation is performed by attempting to parse it and checking for errors, as there is no cheaper method in this case.
 * The `add` command shares the `m/` prefix for modules with the other commands.
   * The `by/` prefix is chosen for the deadline, as it is a good compromise between brevity and comprehensibility ("do this *by* a certain date").
 

@@ -9,7 +9,6 @@ CodeConnect is a specialised task management that can help NUS CS students keep 
 
 Given below are my contributions to the project.
 
-
 * **Code contributed**: [RepoSense link](https://nus-cs2103-ay2223s1.github.io/tp-dashboard/?search=parnikkapore&breakdown=true)
 
 * **Project management**:
@@ -19,7 +18,8 @@ Given below are my contributions to the project.
   * Model classes for task tracking
   * Add / delete task commands
 
-* **Enhancements to existing features**: to be added soon
+* **Enhancements to existing features**:
+  * Natural date parsing for task deadlines
 
 * **Documentation**:
   * User Guide:
