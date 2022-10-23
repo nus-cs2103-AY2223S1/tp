@@ -341,7 +341,7 @@ Alternatives:
 
 #### Current Implementation
 
-The sort feature allows the user to sort the list of patients, appointments and bills in the application. The sorting is done.
+The sort feature allows the user to sort the list of patients, appointments and bills in the application. 
 
 The sort feature is now separated for the patients, appointments and bills sections.
 
