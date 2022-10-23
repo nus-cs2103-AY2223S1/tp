@@ -1,9 +1,11 @@
 package jarvis.logic.commands;
 
 import static jarvis.commons.util.CollectionUtil.requireAllNonNull;
-import static jarvis.logic.parser.CliSyntax.PREFIX_END_DATE_TIME;
+import static jarvis.logic.parser.CliSyntax.PREFIX_END_DATE;
+import static jarvis.logic.parser.CliSyntax.PREFIX_END_TIME;
 import static jarvis.logic.parser.CliSyntax.PREFIX_LESSON;
-import static jarvis.logic.parser.CliSyntax.PREFIX_START_DATE_TIME;
+import static jarvis.logic.parser.CliSyntax.PREFIX_START_DATE;
+import static jarvis.logic.parser.CliSyntax.PREFIX_START_TIME;
 import static jarvis.logic.parser.CliSyntax.PREFIX_STUDENT_INDEX;
 import static java.util.Objects.requireNonNull;
 
@@ -32,13 +34,16 @@ public class AddConsultCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a consultation lesson to JARVIS.\n"
             + "Parameters: "
             + PREFIX_LESSON + "LESSON_DESC "
-            + PREFIX_START_DATE_TIME + "START_DATE_TIME "
-            + PREFIX_END_DATE_TIME + "END_DATE_TIME "
-            + PREFIX_STUDENT_INDEX + "STUDENT_INDEX...\n"
-            + "Example: " + COMMAND_WORD + " "
+            + PREFIX_START_DATE + "START_DATE "
+            + PREFIX_START_TIME + "START_TIME ["
+            + PREFIX_END_DATE + "END_DATE] "
+            + PREFIX_END_TIME + "END_TIME "
+            + PREFIX_STUDENT_INDEX + "STUDENT_INDEX..."
+            + "\nExample: " + COMMAND_WORD + " "
             + PREFIX_LESSON + "Consultation on recursion "
-            + PREFIX_START_DATE_TIME + "2022-10-14T20:00 "
-            + PREFIX_END_DATE_TIME + "2022-10-14T21:00 "
+            + PREFIX_START_DATE + "2022-10-14 "
+            + PREFIX_START_TIME + "12:00 "
+            + PREFIX_END_TIME + "14:00 "
             + PREFIX_STUDENT_INDEX + "3 "
             + PREFIX_STUDENT_INDEX + "4";
 

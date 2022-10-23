@@ -9,7 +9,8 @@ import java.util.Objects;
  */
 public class TimePeriod {
 
-    public static final String MESSAGE_CONSTRAINTS = "Date Time should be in yyyy-MM-ddTHH:mm format";
+    public static final String MESSAGE_CONSTRAINTS_DATE = "Date should be in yyyy-MM-dd format";
+    public static final String MESSAGE_CONSTRAINTS_TIME = "Time should be in HH:mm format";
 
     public static final DateTimeFormatter DATE_TIME_FORMAT = DateTimeFormatter.ofPattern("MMM-dd-yyyy HH:mm");
     private final LocalDateTime start;

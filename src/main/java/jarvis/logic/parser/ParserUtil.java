@@ -3,7 +3,7 @@ package jarvis.logic.parser;
 import static java.util.Objects.requireNonNull;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.time.format.DateTimeParseException;
 import java.util.Collection;
 import java.util.HashSet;
@@ -181,18 +181,34 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String DateTime} into a {@code LocalDateTime}.
+     * Parses a {@code String date} into a {@code LocalDate}.
      * Leading and trailing whitespaces will be trimmed.
      *
      * @throws ParseException if the given {@code name} is invalid.
      */
-    public static LocalDateTime parseDateTime(String dateTime) throws ParseException {
-        requireNonNull(dateTime);
+    public static LocalDate parseDate(String date) throws ParseException {
+        requireNonNull(date);
 
         try {
-            return LocalDateTime.parse(dateTime.trim());
+            return LocalDate.parse(date.trim());
         } catch (DateTimeParseException e) {
-            throw new ParseException(TimePeriod.MESSAGE_CONSTRAINTS);
+            throw new ParseException(TimePeriod.MESSAGE_CONSTRAINTS_DATE);
+        }
+    }
+
+    /**
+     * Parses a {@code String time} into a {@code LocalTime}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code name} is invalid.
+     */
+    public static LocalTime parseTime(String time) throws ParseException {
+        requireNonNull(time);
+
+        try {
+            return LocalTime.parse(time.trim());
+        } catch (DateTimeParseException e) {
+            throw new ParseException(TimePeriod.MESSAGE_CONSTRAINTS_TIME);
         }
     }
 
