@@ -43,12 +43,15 @@ public class CommandBox extends UiPart<Region> {
             if (event.getCode().equals(KeyCode.UP) && (pos - 1 < previousCommands.size()) && pos - 1 >= 0) {
                 pos -= 1;
                 commandTextField.setText(previousCommands.get(pos));
+                commandTextField.positionCaret(Integer.MAX_VALUE);
             } else if (event.getCode().equals(KeyCode.DOWN) && (pos + 1 < previousCommands.size())) {
                 pos += 1;
                 commandTextField.setText(previousCommands.get(pos));
+                commandTextField.positionCaret(Integer.MAX_VALUE);
             } else if (event.getCode().equals(KeyCode.DOWN) && (pos + 1 <= previousCommands.size())) {
                 pos = previousCommands.size();
                 commandTextField.setText(currentInput);
+                commandTextField.positionCaret(Integer.MAX_VALUE);
             }
         });
     }
