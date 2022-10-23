@@ -6,15 +6,12 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TASK;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
-import java.util.Scanner;
-import java.util.Set;
-import java.util.stream.Collectors;
 
 import seedu.address.logic.commands.FindContactCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.module.Module;
+import seedu.address.model.person.CanHelpWithTaskPredicate;
 import seedu.address.model.person.ModuleTakenPredicate;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 
@@ -29,7 +26,7 @@ public class FindContactCommandParser implements Parser<FindContactCommand> {
      * @throws ParseException if the user input does not conform the expected format
      */
     public FindContactCommand parse(String args) throws ParseException {
-        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_MODULE);
+        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_MODULE, PREFIX_TASK);
 
         Prefix searchPrefix = getSearchPrefix(argMultimap);
 
@@ -40,13 +37,13 @@ public class FindContactCommandParser implements Parser<FindContactCommand> {
 
         } else if (searchPrefix.equals(PREFIX_MODULE)) {
 
-            List<Module> moduleNames = ParserUtil.parseModules(argMultimap.getAllValues(PREFIX_MODULE)).stream().collect(Collectors.toList());
+            List<Module> moduleNames = new ArrayList<>(ParserUtil.parseModules(argMultimap.getAllValues(PREFIX_MODULE)));
             return new FindContactCommand(new ModuleTakenPredicate((moduleNames)));
 
         } else if (searchPrefix.equals(PREFIX_TASK)) {
 
             int taskIndex = Integer.parseInt(argMultimap.getValue(PREFIX_TASK).get());
-            return new FindContactCommand(new ModuleTakenPredicate(taskIndex));
+            return new FindContactCommand(new CanHelpWithTaskPredicate(taskIndex));
 
         } else {
 
@@ -59,6 +56,8 @@ public class FindContactCommandParser implements Parser<FindContactCommand> {
         List<Prefix> searchablePrefixes = new ArrayList<>();
         searchablePrefixes.add(PREFIX_NAME);
         searchablePrefixes.add(PREFIX_MODULE);
+        searchablePrefixes.add(PREFIX_TASK);
+
         List<Prefix> prefixesInArgs = new ArrayList<>();
 
         for (Prefix prefix : searchablePrefixes) {

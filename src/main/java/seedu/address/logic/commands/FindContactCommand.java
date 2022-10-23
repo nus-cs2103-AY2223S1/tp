@@ -26,12 +26,7 @@ public class FindContactCommand extends Command {
 
     private final Predicate<Person> predicate;
 
-    public FindContactCommand(NameContainsKeywordsPredicate predicate) {
-        this.predicate = predicate;
-    }
-
-    // TODO
-    public FindContactCommand(ModuleTakenPredicate predicate) {
+    public FindContactCommand(Predicate<Person> predicate) {
         this.predicate = predicate;
     }
 
