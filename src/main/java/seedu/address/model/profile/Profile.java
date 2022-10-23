@@ -13,7 +13,7 @@ import seedu.address.model.tag.Tag;
  * Represents a Profile in the address book.
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
-public class Profile {
+public class Profile implements Comparable<Profile> {
 
     // Identity fields
     private final Name name;
@@ -99,6 +99,11 @@ public class Profile {
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
         return Objects.hash(name, phone, email, tags);
+    }
+
+    @Override
+    public int compareTo(Profile other) {
+        return this.getName().compareTo(other.getName());
     }
 
     @Override

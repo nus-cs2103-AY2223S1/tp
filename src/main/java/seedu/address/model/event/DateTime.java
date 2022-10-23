@@ -15,7 +15,8 @@ import java.util.Map;
  */
 public class DateTime {
 
-    public static final String RECOMMENDED_FORMAT = "dd/MM/yyyy HH:mm";
+    public static final String RECOMMENDED_FORMAT = "dd/MM/yyyy";
+    public static final String RECOMMENDED_FORMAT_WITH_TIME = "dd/MM/yyyy HH:mm";
     public static final String MESSAGE_CONSTRAINTS =
             "Dates should follow a valid format. Try " + RECOMMENDED_FORMAT;
 
@@ -51,6 +52,7 @@ public class DateTime {
         }};
 
     public final LocalDateTime dateTime;
+    private final boolean hasTime;
 
     /**
      * Constructs a {@code DateTime}.
@@ -61,6 +63,7 @@ public class DateTime {
         requireNonNull(dateTime);
         checkArgument(isValidDateTime(dateTime), MESSAGE_CONSTRAINTS);
         this.dateTime = parseDateTime(dateTime);
+        this.hasTime = checkDateHasTime(dateTime);
     }
 
     /**
@@ -104,9 +107,18 @@ public class DateTime {
         }
     }
 
+    /**
+     * Returns whether a date string contains a time.
+     */
+    public static boolean checkDateHasTime(String dateString) {
+        String dateFormat = determineDateFormat(dateString, TIME_VALIDATION_REGEXS);
+        return dateFormat != null;
+    }
+
     @Override
     public String toString() {
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern(RECOMMENDED_FORMAT);
+        String pattern = this.hasTime ? RECOMMENDED_FORMAT_WITH_TIME : RECOMMENDED_FORMAT;
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern(pattern);
         return dateTime.format(formatter);
     }
 
