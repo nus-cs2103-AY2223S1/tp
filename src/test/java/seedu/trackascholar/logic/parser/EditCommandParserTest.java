@@ -4,26 +4,26 @@ import static seedu.trackascholar.commons.core.Messages.MESSAGE_INVALID_COMMAND_
 import static seedu.trackascholar.logic.commands.CommandTestUtil.EMAIL_DESC_AMY;
 import static seedu.trackascholar.logic.commands.CommandTestUtil.EMAIL_DESC_BOB;
 import static seedu.trackascholar.logic.commands.CommandTestUtil.INVALID_EMAIL_DESC;
+import static seedu.trackascholar.logic.commands.CommandTestUtil.INVALID_MAJOR_DESC;
 import static seedu.trackascholar.logic.commands.CommandTestUtil.INVALID_NAME_DESC;
 import static seedu.trackascholar.logic.commands.CommandTestUtil.INVALID_PHONE_DESC;
 import static seedu.trackascholar.logic.commands.CommandTestUtil.INVALID_SCHOLARSHIP_DESC;
-import static seedu.trackascholar.logic.commands.CommandTestUtil.INVALID_MAJOR_DESC;
+import static seedu.trackascholar.logic.commands.CommandTestUtil.MAJOR_DESC_FRIEND;
+import static seedu.trackascholar.logic.commands.CommandTestUtil.MAJOR_DESC_HUSBAND;
 import static seedu.trackascholar.logic.commands.CommandTestUtil.NAME_DESC_AMY;
 import static seedu.trackascholar.logic.commands.CommandTestUtil.PHONE_DESC_AMY;
 import static seedu.trackascholar.logic.commands.CommandTestUtil.PHONE_DESC_BOB;
 import static seedu.trackascholar.logic.commands.CommandTestUtil.SCHOLARSHIP_DESC_AMY;
 import static seedu.trackascholar.logic.commands.CommandTestUtil.SCHOLARSHIP_DESC_BOB;
-import static seedu.trackascholar.logic.commands.CommandTestUtil.MAJOR_DESC_FRIEND;
-import static seedu.trackascholar.logic.commands.CommandTestUtil.MAJOR_DESC_HUSBAND;
 import static seedu.trackascholar.logic.commands.CommandTestUtil.VALID_EMAIL_AMY;
 import static seedu.trackascholar.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
+import static seedu.trackascholar.logic.commands.CommandTestUtil.VALID_MAJOR_FRIEND;
+import static seedu.trackascholar.logic.commands.CommandTestUtil.VALID_MAJOR_HUSBAND;
 import static seedu.trackascholar.logic.commands.CommandTestUtil.VALID_NAME_AMY;
 import static seedu.trackascholar.logic.commands.CommandTestUtil.VALID_PHONE_AMY;
 import static seedu.trackascholar.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
 import static seedu.trackascholar.logic.commands.CommandTestUtil.VALID_SCHOLARSHIP_AMY;
 import static seedu.trackascholar.logic.commands.CommandTestUtil.VALID_SCHOLARSHIP_BOB;
-import static seedu.trackascholar.logic.commands.CommandTestUtil.VALID_MAJOR_FRIEND;
-import static seedu.trackascholar.logic.commands.CommandTestUtil.VALID_MAJOR_HUSBAND;
 import static seedu.trackascholar.logic.parser.CliSyntax.PREFIX_MAJOR;
 import static seedu.trackascholar.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.trackascholar.logic.parser.CommandParserTestUtil.assertParseSuccess;
@@ -101,9 +101,12 @@ public class EditCommandParserTest {
 
         // while parsing {@code PREFIX_MAJOR} alone will reset the tags of the {@code Applicant} being edited,
         // parsing it together with a valid major results in error
-        assertParseFailure(parser, "1" + MAJOR_DESC_FRIEND + MAJOR_DESC_HUSBAND + MAJOR_EMPTY, Major.MESSAGE_CONSTRAINTS);
-        assertParseFailure(parser, "1" + MAJOR_DESC_FRIEND + MAJOR_EMPTY + MAJOR_DESC_HUSBAND, Major.MESSAGE_CONSTRAINTS);
-        assertParseFailure(parser, "1" + MAJOR_EMPTY + MAJOR_DESC_FRIEND + MAJOR_DESC_HUSBAND, Major.MESSAGE_CONSTRAINTS);
+        assertParseFailure(parser, "1" + MAJOR_DESC_FRIEND + MAJOR_DESC_HUSBAND + MAJOR_EMPTY,
+            Major.MESSAGE_CONSTRAINTS);
+        assertParseFailure(parser, "1" + MAJOR_DESC_FRIEND + MAJOR_EMPTY + MAJOR_DESC_HUSBAND,
+            Major.MESSAGE_CONSTRAINTS);
+        assertParseFailure(parser, "1" + MAJOR_EMPTY + MAJOR_DESC_FRIEND + MAJOR_DESC_HUSBAND,
+            Major.MESSAGE_CONSTRAINTS);
 
         // multiple invalid values, but only the first invalid value is captured
         assertParseFailure(parser, "1" + INVALID_NAME_DESC + INVALID_EMAIL_DESC + VALID_SCHOLARSHIP_AMY

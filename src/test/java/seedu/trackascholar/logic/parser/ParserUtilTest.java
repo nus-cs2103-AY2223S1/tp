@@ -189,7 +189,8 @@ public class ParserUtilTest {
     @Test
     public void parseMajors_collectionWithValidMajors_returnsMajorSet() throws Exception {
         Set<Major> actualMajorSet = ParserUtil.parseMajors(Arrays.asList(VALID_MAJOR_1, VALID_MAJOR_2));
-        Set<Major> expectedMajorSet = new HashSet<Major>(Arrays.asList(new Major(VALID_MAJOR_1), new Major(VALID_MAJOR_2)));
+        Set<Major> expectedMajorSet = new HashSet<Major>(Arrays.asList(new Major(VALID_MAJOR_1),
+            new Major(VALID_MAJOR_2)));
 
         assertEquals(expectedMajorSet, actualMajorSet);
     }

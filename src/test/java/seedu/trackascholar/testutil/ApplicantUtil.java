@@ -2,10 +2,10 @@ package seedu.trackascholar.testutil;
 
 import static seedu.trackascholar.logic.parser.CliSyntax.PREFIX_APPLICATION_STATUS;
 import static seedu.trackascholar.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.trackascholar.logic.parser.CliSyntax.PREFIX_MAJOR;
 import static seedu.trackascholar.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.trackascholar.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.trackascholar.logic.parser.CliSyntax.PREFIX_SCHOLARSHIP;
-import static seedu.trackascholar.logic.parser.CliSyntax.PREFIX_MAJOR;
 
 import java.util.Set;
 

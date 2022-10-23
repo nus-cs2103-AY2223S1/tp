@@ -11,26 +11,26 @@ import seedu.trackascholar.model.major.Major;
  */
 class JsonAdaptedMajor {
 
-    private final String majorName;
+    private final String major;
 
     /**
-     * Constructs a {@code JsonAdaptedMajor} with the given {@code majorName}.
+     * Constructs a {@code JsonAdaptedMajor} with the given {@code major}.
      */
     @JsonCreator
-    public JsonAdaptedMajor(String majorName) {
-        this.majorName = majorName;
+    public JsonAdaptedMajor(String major) {
+        this.major = major;
     }
 
     /**
      * Converts a given {@code Major} into this class for Jackson use.
      */
     public JsonAdaptedMajor(Major source) {
-        majorName = source.majorName;
+        major = source.majorName;
     }
 
     @JsonValue
-    public String getMajorName() {
-        return majorName;
+    public String getMajor() {
+        return major;
     }
 
     /**
@@ -39,10 +39,10 @@ class JsonAdaptedMajor {
      * @throws IllegalValueException if there were any data constraints violated in the adapted major.
      */
     public Major toModelType() throws IllegalValueException {
-        if (!Major.isValidMajorName(majorName)) {
+        if (!Major.isValidMajorName(major)) {
             throw new IllegalValueException(Major.MESSAGE_CONSTRAINTS);
         }
-        return new Major(majorName);
+        return new Major(major);
     }
 
 }

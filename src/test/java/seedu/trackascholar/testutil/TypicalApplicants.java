@@ -4,14 +4,14 @@ import static seedu.trackascholar.logic.commands.CommandTestUtil.VALID_APPLICATI
 import static seedu.trackascholar.logic.commands.CommandTestUtil.VALID_APPLICATION_STATUS_BOB;
 import static seedu.trackascholar.logic.commands.CommandTestUtil.VALID_EMAIL_AMY;
 import static seedu.trackascholar.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
+import static seedu.trackascholar.logic.commands.CommandTestUtil.VALID_MAJOR_FRIEND;
+import static seedu.trackascholar.logic.commands.CommandTestUtil.VALID_MAJOR_HUSBAND;
 import static seedu.trackascholar.logic.commands.CommandTestUtil.VALID_NAME_AMY;
 import static seedu.trackascholar.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static seedu.trackascholar.logic.commands.CommandTestUtil.VALID_PHONE_AMY;
 import static seedu.trackascholar.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
 import static seedu.trackascholar.logic.commands.CommandTestUtil.VALID_SCHOLARSHIP_AMY;
 import static seedu.trackascholar.logic.commands.CommandTestUtil.VALID_SCHOLARSHIP_BOB;
-import static seedu.trackascholar.logic.commands.CommandTestUtil.VALID_MAJOR_FRIEND;
-import static seedu.trackascholar.logic.commands.CommandTestUtil.VALID_MAJOR_HUSBAND;
 
 import java.util.ArrayList;
 import java.util.Arrays;

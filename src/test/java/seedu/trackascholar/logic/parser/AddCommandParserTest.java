@@ -7,10 +7,12 @@ import static seedu.trackascholar.logic.commands.CommandTestUtil.EMAIL_DESC_AMY;
 import static seedu.trackascholar.logic.commands.CommandTestUtil.EMAIL_DESC_BOB;
 import static seedu.trackascholar.logic.commands.CommandTestUtil.INVALID_APPLICATION_STATUS_DESC;
 import static seedu.trackascholar.logic.commands.CommandTestUtil.INVALID_EMAIL_DESC;
+import static seedu.trackascholar.logic.commands.CommandTestUtil.INVALID_MAJOR_DESC;
 import static seedu.trackascholar.logic.commands.CommandTestUtil.INVALID_NAME_DESC;
 import static seedu.trackascholar.logic.commands.CommandTestUtil.INVALID_PHONE_DESC;
 import static seedu.trackascholar.logic.commands.CommandTestUtil.INVALID_SCHOLARSHIP_DESC;
-import static seedu.trackascholar.logic.commands.CommandTestUtil.INVALID_MAJOR_DESC;
+import static seedu.trackascholar.logic.commands.CommandTestUtil.MAJOR_DESC_FRIEND;
+import static seedu.trackascholar.logic.commands.CommandTestUtil.MAJOR_DESC_HUSBAND;
 import static seedu.trackascholar.logic.commands.CommandTestUtil.NAME_DESC_AMY;
 import static seedu.trackascholar.logic.commands.CommandTestUtil.NAME_DESC_BOB;
 import static seedu.trackascholar.logic.commands.CommandTestUtil.PHONE_DESC_AMY;
@@ -19,15 +21,13 @@ import static seedu.trackascholar.logic.commands.CommandTestUtil.PREAMBLE_NON_EM
 import static seedu.trackascholar.logic.commands.CommandTestUtil.PREAMBLE_WHITESPACE;
 import static seedu.trackascholar.logic.commands.CommandTestUtil.SCHOLARSHIP_DESC_AMY;
 import static seedu.trackascholar.logic.commands.CommandTestUtil.SCHOLARSHIP_DESC_BOB;
-import static seedu.trackascholar.logic.commands.CommandTestUtil.MAJOR_DESC_FRIEND;
-import static seedu.trackascholar.logic.commands.CommandTestUtil.MAJOR_DESC_HUSBAND;
 import static seedu.trackascholar.logic.commands.CommandTestUtil.VALID_APPLICATION_STATUS_BOB;
 import static seedu.trackascholar.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
+import static seedu.trackascholar.logic.commands.CommandTestUtil.VALID_MAJOR_FRIEND;
+import static seedu.trackascholar.logic.commands.CommandTestUtil.VALID_MAJOR_HUSBAND;
 import static seedu.trackascholar.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static seedu.trackascholar.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
 import static seedu.trackascholar.logic.commands.CommandTestUtil.VALID_SCHOLARSHIP_BOB;
-import static seedu.trackascholar.logic.commands.CommandTestUtil.VALID_MAJOR_FRIEND;
-import static seedu.trackascholar.logic.commands.CommandTestUtil.VALID_MAJOR_HUSBAND;
 import static seedu.trackascholar.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.trackascholar.logic.parser.CommandParserTestUtil.assertParseSuccess;
 import static seedu.trackascholar.testutil.TypicalApplicants.AMY;
@@ -143,7 +143,8 @@ public class AddCommandParserTest {
 
         // invalid scholarship
         assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + INVALID_SCHOLARSHIP_DESC
-                + APPLICATION_STATUS_DESC_BOB + MAJOR_DESC_HUSBAND + MAJOR_DESC_FRIEND, Scholarship.MESSAGE_CONSTRAINTS);
+                + APPLICATION_STATUS_DESC_BOB + MAJOR_DESC_HUSBAND + MAJOR_DESC_FRIEND,
+            Scholarship.MESSAGE_CONSTRAINTS);
 
         // invalid application status
         assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + SCHOLARSHIP_DESC_BOB

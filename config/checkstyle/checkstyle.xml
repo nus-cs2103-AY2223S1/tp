@@ -400,7 +400,7 @@
     <!-- Checks that each non-empty line in Javadoc has whitespace after leading asterisk. -->
     <module name="JavadocMissingWhitespaceAfterAsterisk"/>
 
-    <!-- Checks that for block majors, indentation of continuation lines is at least 4 spaces. -->
+    <!-- Checks that for block tags, indentation of continuation lines is at least 4 spaces. -->
     <module name="JavadocTagContinuationIndentation"/>
 
     <!-- Checks the Javadoc's format for every class, enumeration and interface. -->
