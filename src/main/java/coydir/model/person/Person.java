@@ -68,6 +68,10 @@ public class Person {
         return this.position;
     }
 
+    public Department getDepartment() {
+        return this.department;
+    }
+
     public Address getAddress() {
         return this.address;
     }
@@ -103,6 +107,7 @@ public class Person {
     public void setLeavesLeft(int leavesLeft) {
         this.leavesLeft = leavesLeft;
     }
+
     /**
      * Returns true if both persons have the same name.
      * This defines a weaker notion of equality between two persons.
@@ -136,6 +141,7 @@ public class Person {
                 && otherPerson.getPhone().equals(getPhone())
                 && otherPerson.getEmail().equals(getEmail())
                 && otherPerson.getPosition().equals(getPosition())
+                && otherPerson.getDepartment().equals(getDepartment())
                 && otherPerson.getAddress().equals(getAddress())
                 && otherPerson.getTags().equals(getTags())
                 && otherPerson.getLeaves().equals(getLeaves())
@@ -146,7 +152,7 @@ public class Person {
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, employeeId, phone, email, position, address, tags,
+        return Objects.hash(name, employeeId, phone, email, position, department, address, tags,
                 leaves, totalNumberOfLeaves, leavesLeft);
     }
 
@@ -162,6 +168,8 @@ public class Person {
                 .append(getEmail())
                 .append("; Position: ")
                 .append(getPosition())
+                .append("; Department: ")
+                .append(getDepartment())
                 .append("; Address: ")
                 .append(getAddress())
                 .append("; Total Leaves: ")
