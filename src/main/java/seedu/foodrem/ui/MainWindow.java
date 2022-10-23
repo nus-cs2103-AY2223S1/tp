@@ -15,6 +15,7 @@ import seedu.foodrem.commons.core.LogsCenter;
 import seedu.foodrem.logic.Logic;
 import seedu.foodrem.logic.commands.CommandResult;
 import seedu.foodrem.logic.commands.exceptions.CommandException;
+import seedu.foodrem.logic.commands.generalcommands.HelpCommand;
 
 /**
  * The Main Window. Provides the basic application layout containing
@@ -136,13 +137,22 @@ public class MainWindow extends UiPart<Stage> {
     /**
      * Opens the help window or focuses on it if it's already opened.
      */
-    @FXML
-    public void handleHelp() {
+    public void handleHelpCommand() {
         if (!helpWindow.isShowing()) {
             helpWindow.show();
         } else {
             helpWindow.focus();
         }
+    }
+
+    /**
+     * Opens the help window or focuses on it if it's already opened.
+     * Sets the default message to the general help message.
+     */
+    @FXML
+    public void handleHelp() {
+        helpWindow.setMessageToDisplay(HelpCommand.getGeneralHelpMessage());
+        handleHelpCommand();
     }
 
     void show() {
@@ -180,7 +190,7 @@ public class MainWindow extends UiPart<Stage> {
             helpWindow.setMessageToDisplay(commandResult.getHelpText());
 
             if (commandResult.isShowHelp()) {
-                handleHelp();
+                handleHelpCommand();
             }
 
             if (commandResult.isExit()) {
