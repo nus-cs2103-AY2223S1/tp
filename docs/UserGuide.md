@@ -13,11 +13,13 @@ Teacher’s Pet can get your contact and class management tasks done faster than
     * [Viewing help: `help`](#viewing-help-help)
     * [Adding a student: `add`](#adding-a-student-add)
     * [Editing student details: `edit`](#editing-student-details-edit)
+    * [Marking a student: `mark`](#marking-a-student-mark)
+    * [Receiving money from a student: `pay`](#receiving-money-from-a-student-pay)
     * [Viewing all students: `list`](#viewing-all-students-list)
     * [Finding a student: `find`](#finding-a-student-find)
     * [Deleting a student: `delete`](#deleting-a-student-delete)
     * [Clearing all student: `clear`](#clearing-all-student-clear)
-    * [Exiting the program : `exit`](#exiting-the-program-exit)
+    * [Exiting the program: `exit`](#exiting-the-program-exit)
     * [Saving the data](#saving-the-data)
     * [Editing the data file](#editing-the-data-file)
 * [FAQ](#faq)
@@ -192,6 +194,22 @@ Example:
 - `edit 1 e/Ben2022@gmail.com`
 
 ![UiEdit](images/UG-screenshots/UiEdit.png)
+
+[Back to top](#table-of-contents)
+
+---
+### Marking a student: `mark`
+
+Allows the user to mark a student as present for a class.
+
+Format: `mark INDEX`
+
+- Marks the person as present at the specified `INDEX`.
+- The index refers to the index number shown in the Schedule panel (bottom right).
+- The index must be a positive integer. e.g. `1, 2, 3, ...`.
+
+Examples:
+- `mark 2` marks the 2nd person in the Schedule panel.
 
 [Back to top](#table-of-contents)
 
