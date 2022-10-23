@@ -147,6 +147,10 @@ public class Person {
         return assignedPolicies.add(assignedPolicy);
     }
 
+    public boolean removePolicy(AssignedPolicy assignedPolicy) {
+        return assignedPolicies.remove(assignedPolicy);
+    }
+
     public Birthday getBirthday() {
         return this.birthday;
     }

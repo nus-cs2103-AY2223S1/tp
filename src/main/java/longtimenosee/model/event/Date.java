@@ -18,6 +18,7 @@ public class Date {
     public static final String STANDARD_DATE = "yyyy-MM-dd";
 
     public static final String MESSAGE_FORMAT_CONSTRAINTS = "Dates must follow Format: " + STANDARD_DATE;
+    public static final String RANGE_FORMAT_CONSTRAINTS = "Ensure that Year/Month/Date values entered are appropriate.";
 
     private static final String DATE_VALIDATION_REGEX = "\\d{4}-\\d{2}-\\d{2}";
     public final String value;
@@ -32,6 +33,23 @@ public class Date {
         checkArgument(isValidFormat(value), MESSAGE_FORMAT_CONSTRAINTS);
         this.value = value;
         this.date = parseDate(value);
+    }
+
+    /**
+     * Requires a dateTime object to already have an appropriate format (YYYY-MM-DD).
+     * Checks if given Year, Month, Date values are integer values in the appropriate range
+     * (e.g: 0 <= MM <= 12)
+     * @param value in YYYY-MM-DD.
+     * @return
+     */
+    public static boolean isValidRange(String value) {
+        assert(isValidFormat(value) == true);
+        try {
+            LocalDate dateTime = LocalDate.parse(value);
+        } catch (DateTimeParseException dte) {
+            return false;
+        }
+        return true;
     }
 
     private LocalDate parseDate(String value) {
