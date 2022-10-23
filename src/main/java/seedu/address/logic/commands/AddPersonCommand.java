@@ -16,10 +16,6 @@ import java.util.Set;
 
 import picocli.CommandLine;
 import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.logic.parser.AddressConverter;
-import seedu.address.logic.parser.EmailConverter;
-import seedu.address.logic.parser.NameConverter;
-import seedu.address.logic.parser.PhoneConverter;
 import seedu.address.logic.parser.TagsConverter;
 import seedu.address.model.Model;
 import seedu.address.model.person.Address;
@@ -54,25 +50,22 @@ public class AddPersonCommand extends Command {
 
     private Person toAdd;
 
-    @CommandLine.Option(names = {FLAG_NAME_STR, FLAG_NAME_STR_LONG}, required = true, description = "Name of person",
-            converter = NameConverter.class)
+    @CommandLine.Option(names = {FLAG_NAME_STR, FLAG_NAME_STR_LONG}, required = true, description = "Name of person")
     private Name name;
 
-    @CommandLine.Option(names = {FLAG_PHONE_STR, FLAG_PHONE_STR_LONG}, required = true, description = "Phone of "
-            + "person", converter = PhoneConverter.class)
+    @CommandLine.Option(names = {FLAG_PHONE_STR, FLAG_PHONE_STR_LONG}, required = true, description = "Phone of person")
     private Phone phone;
 
-    @CommandLine.Option(names = {FLAG_EMAIL_STR, FLAG_EMAIL_STR_LONG}, required = true, description = "Email of "
-            + "person", converter = EmailConverter.class)
+    @CommandLine.Option(names = {FLAG_EMAIL_STR, FLAG_EMAIL_STR_LONG}, required = true, description = "Email of person")
     private Email email;
 
-    @CommandLine.Option(names = {FLAG_ADDRESS_STR, FLAG_ADDRESS_STR_LONG}, required = true, description = "Address of "
-            + "person", converter = AddressConverter.class)
+    @CommandLine.Option(names = {FLAG_ADDRESS_STR, FLAG_ADDRESS_STR_LONG}, required = true,
+            description = "Address of person")
     private Address address;
 
     @CommandLine.Option(names = {FLAG_TAG_STR, FLAG_TAG_STR_LONG}, description = "Tags of person",
-            parameterConsumer = TagsConverter.class)
-    private Set<Tag> tags;
+            parameterConsumer = TagsConverter.class, arity = "*")
+    private Set<Tag> tagList;
 
     @CommandLine.Spec
     private CommandLine.Model.CommandSpec spec;
@@ -92,6 +85,10 @@ public class AddPersonCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
 
+        Set<Tag> tags = Set.of();
+        if (tagList != null) {
+            tags = tagList;
+        }
         Person toAdd = new Person(name, phone, email, address, tags);
 
         if (model.hasPerson(toAdd)) {

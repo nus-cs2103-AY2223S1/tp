@@ -4,9 +4,14 @@ import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT
 import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 
 import picocli.CommandLine;
+import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.MainCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.person.Address;
+import seedu.address.model.person.Email;
+import seedu.address.model.person.Name;
+import seedu.address.model.person.Phone;
 
 /**
  * Parses user input.
@@ -22,7 +27,12 @@ public class AddressBookParser {
     public Command parseCommand(String userInput) throws ParseException {
         try {
             String[] args = ArgumentTokenizer.tokenize(userInput.trim());
-            CommandLine commandLine = new CommandLine(new MainCommand());
+            CommandLine commandLine = new CommandLine(new MainCommand())
+                    .registerConverter(Name.class, new NameConverter())
+                    .registerConverter(Email.class, new EmailConverter())
+                    .registerConverter(Phone.class, new PhoneConverter())
+                    .registerConverter(Address.class, new AddressConverter())
+                    .registerConverter(Index.class, new IndexConverter());
             CommandLine.ParseResult parseResult = commandLine.parseArgs(args);
             CommandLine.ParseResult commandExecuted = parseResult.subcommand();
 

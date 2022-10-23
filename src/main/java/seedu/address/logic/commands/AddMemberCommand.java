@@ -8,7 +8,6 @@ import picocli.CommandLine;
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.logic.parser.IndexConverter;
 import seedu.address.model.Model;
 import seedu.address.model.person.Person;
 
@@ -28,7 +27,7 @@ public class AddMemberCommand extends Command {
     public static final String MESSAGE_ADD_MEMBER_SUCCESS = "Added Member: %1$s";
     public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the team";
 
-    @CommandLine.Parameters(arity = "1", converter = IndexConverter.class)
+    @CommandLine.Parameters(arity = "1")
     private Index targetIndex;
 
     public AddMemberCommand() {
