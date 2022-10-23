@@ -24,7 +24,7 @@ public class DeleteReminderCommand extends Command {
             + "Parameters: INDEX (must be a positive integer)\n"
             + "Example: " + COMMAND_WORD + " 1";
 
-    public static final String MESSAGE_DELETE_REMINDER_SUCCESS = "Deleted Person: %1$s";
+    public static final String MESSAGE_DELETE_REMINDER_SUCCESS = "Deleted Reminder: %1$s";
 
     private final Index targetIndex;
 
