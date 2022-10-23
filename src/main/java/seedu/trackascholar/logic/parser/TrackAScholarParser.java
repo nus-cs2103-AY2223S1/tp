@@ -16,6 +16,7 @@ import seedu.trackascholar.logic.commands.FilterCommand;
 import seedu.trackascholar.logic.commands.FindCommand;
 import seedu.trackascholar.logic.commands.HelpCommand;
 import seedu.trackascholar.logic.commands.ListCommand;
+import seedu.trackascholar.logic.commands.PinCommand;
 import seedu.trackascholar.logic.commands.RemoveCommand;
 import seedu.trackascholar.logic.commands.SortCommand;
 import seedu.trackascholar.logic.parser.exceptions.ParseException;
@@ -73,6 +74,9 @@ public class TrackAScholarParser {
 
         case SortCommand.COMMAND_WORD:
             return new SortCommandParser().parse(arguments);
+
+        case PinCommand.COMMAND_WORD:
+            return new PinCommandParser().parse(arguments);
 
         case ExitCommand.COMMAND_WORD:
             return new ExitCommand();
