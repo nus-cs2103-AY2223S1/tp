@@ -32,7 +32,7 @@ guest management tasks done faster than traditional GUI apps.
 
    * **`add`**`n/John Doe p/98765432 e/johnd@example.com rm/05-73 dr/13/09/22 - 15/09/22 ng/3 rq/Extra towels`: Adds a guest named `John Doe` to the guest book.
 
-   * **`edit`** `1` `n/Bob rc/no rq/Room Service`: Edits the 3rd guest shown in the current list.
+   * **`edit`** `1` `n/Bob rc/no rq/Room Service`: Edits the first guest shown in the current list.
    
    * **`find`** `James` : Finds all the guests where at least one of the fields contains James.
 
