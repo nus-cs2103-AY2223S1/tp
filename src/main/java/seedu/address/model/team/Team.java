@@ -22,9 +22,23 @@ public class Team {
     public static final String VALIDATION_REGEX = "\\p{Alnum}+";
 
     private final String teamName;
+    private final String description;
     private final UniquePersonList teamMembers = new UniquePersonList();
     private final TaskList taskList = new TaskList();
     private final UniqueLinkList links = new UniqueLinkList();
+
+    /**
+     * Constructor with of an empty team only with its name.
+     *
+     * @param teamName A valid team name.
+     */
+    public Team(String teamName, String description) {
+        requireNonNull(teamName);
+        checkArgument(isValidTeamName(teamName), MESSAGE_CONSTRAINTS);
+        checkArgument(isValidTeamName(description), MESSAGE_CONSTRAINTS);
+        this.teamName = teamName;
+        this.description = description;
+    }
     /**
      * Constructs a {@code Team}.
      *
@@ -35,6 +49,7 @@ public class Team {
         requireNonNull(teamName);
         checkArgument(isValidTeamName(teamName), MESSAGE_CONSTRAINTS);
         this.teamName = teamName;
+        this.description = "No description";
         this.teamMembers.setPersons(teamMembers);
     }
 
@@ -48,6 +63,7 @@ public class Team {
         requireNonNull(teamName);
         checkArgument(isValidTeamName(teamName), MESSAGE_CONSTRAINTS);
         this.teamName = teamName;
+        this.description = "No description";
         this.teamMembers.setPersons(teamMembers);
         this.taskList.setTasks(tasks);
     }
@@ -63,17 +79,40 @@ public class Team {
         requireNonNull(teamName);
         checkArgument(isValidTeamName(teamName), MESSAGE_CONSTRAINTS);
         this.teamName = teamName;
+        this.description = "No description";
+        this.teamMembers.setPersons(teamMembers);
+        this.taskList.setTasks(tasks);
+        this.links.setLinks(links);
+    }
+
+    /**
+     * Constructs a {@code Team}
+     * @param teamName A valid team name
+     * @param description A valid team description
+     * @param teamMembers A list of persons to be added as members
+     * @param tasks A list of tasks for the team to do
+     * @param links A list of links that the team should keep track of
+     */
+    public Team(String teamName, String description, List<Person> teamMembers, List<Task> tasks, List<Link> links) {
+        requireNonNull(teamName);
+        checkArgument(isValidTeamName(teamName), MESSAGE_CONSTRAINTS);
+        this.teamName = teamName;
+        this.description = "No description";
         this.teamMembers.setPersons(teamMembers);
         this.taskList.setTasks(tasks);
         this.links.setLinks(links);
     }
 
     public static Team createDefaultTeam() {
-        return new Team("default", new ArrayList<>(), new ArrayList<>(), new ArrayList<>());
+        return new Team("default", "A default team created just for you!", new ArrayList<>(), new ArrayList<>(), new ArrayList<>());
     }
 
     public String getTeamName() {
         return teamName;
+    }
+
+    public String getDescription() {
+        return description;
     }
 
     /**
