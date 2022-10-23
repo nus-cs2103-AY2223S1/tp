@@ -11,6 +11,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.person.Address;
+import seedu.address.model.person.Attendance;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
@@ -32,6 +33,7 @@ class JsonAdaptedPerson {
     private final String email;
     private final String address;
     private final String studentClass;
+    private final String attendance;
     private final List<JsonAdaptedRemark> remarks = new ArrayList<>();
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
     private final List<JsonAdaptedSubject> subjects = new ArrayList<>();
@@ -43,6 +45,7 @@ class JsonAdaptedPerson {
     public JsonAdaptedPerson(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
                              @JsonProperty("email") String email, @JsonProperty("address") String address,
                              @JsonProperty("studentClass") String studentClass,
+                              @JsonProperty("attendance") String attendance,
                              @JsonProperty("remarks") List<JsonAdaptedRemark> remarks,
                              @JsonProperty("tagged") List<JsonAdaptedTag> tagged,
                              @JsonProperty("subjects") List<JsonAdaptedSubject> subjects) {
@@ -51,6 +54,7 @@ class JsonAdaptedPerson {
         this.email = email;
         this.address = address;
         this.studentClass = studentClass;
+        this.attendance = attendance;
         if (remarks != null) {
             this.remarks.addAll(remarks);
         }
@@ -71,7 +75,7 @@ class JsonAdaptedPerson {
         email = source.getEmail().value;
         address = source.getAddress().value;
         studentClass = source.getStudentClass().value;
-
+        attendance = source.getAttendance().toString();
         // Remarks follow the tag system
         remarks.addAll(source.getRemarks().stream()
                              .map(JsonAdaptedRemark::new)
@@ -145,6 +149,12 @@ class JsonAdaptedPerson {
         }
         final StudentClass modelStudentClass = new StudentClass(studentClass);
 
+        if (attendance == null) {
+            throw new IllegalValueException(
+                String.format(MISSING_FIELD_MESSAGE_FORMAT, Attendance.class.getSimpleName()));
+        }
+        final Attendance modelAttendance = new Attendance(Attendance.parseAttendanceFromJson(attendance));
+
         final Set<Tag> modelTags = new HashSet<>(personTags);
 
         final Set<Remark> modelRemarks = new HashSet<>(personRemarks);
@@ -152,7 +162,7 @@ class JsonAdaptedPerson {
         final Set<Subject> modelSubjects = new HashSet<>(personSubjects);
 
         return new Person(modelName, modelPhone, modelEmail, modelAddress, modelStudentClass,
-                          modelRemarks, modelSubjects, modelTags);
+                          modelAttendance, modelRemarks, modelSubjects, modelTags);
     }
 
 }
