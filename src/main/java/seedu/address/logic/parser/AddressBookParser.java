@@ -34,6 +34,7 @@ import seedu.address.logic.commands.ListModulesCommand;
 import seedu.address.logic.commands.ListTasksCommand;
 import seedu.address.logic.commands.MarkCommand;
 import seedu.address.logic.commands.SortTaskCommand;
+import seedu.address.logic.commands.UnlinkExamCommand;
 import seedu.address.logic.commands.UnmarkCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
@@ -92,6 +93,9 @@ public class AddressBookParser {
 
         case LinkExamCommand.COMMAND_WORD:
             return new LinkExamCommandParser().parse(arguments);
+
+        case UnlinkExamCommand.COMMAND_WORD:
+            return new UnlinkExamCommandParser().parse(arguments);
 
         case SortTaskCommand.COMMAND_WORD:
             return new SortTaskCommandParser().parse(arguments);
