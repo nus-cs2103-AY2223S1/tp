@@ -105,6 +105,13 @@ public class InventoryTest {
     }
 
     @Test
+    public void getSupplyItem_validIndex_success() {
+        inventory.addSupplyItem(EGGS);
+        SupplyItem target = inventory.getSupplyItem(Index.fromZeroBased(0));
+        assertEquals(EGGS, target);
+    }
+
+    @Test
     public void getInventory_modifyList_throwsUnsupportedOperationException() {
         assertThrows(UnsupportedOperationException.class, () -> typicalInventory.getSupplyItems().remove(0));
     }
