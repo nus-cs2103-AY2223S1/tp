@@ -71,7 +71,6 @@ public class MainWindow extends UiPart<Stage> {
         setAccelerators();
 
         helpWindow = new HelpWindow();
-        exportWindow = new ExportWindow(logic);
     }
 
     public Stage getPrimaryStage() {
@@ -123,6 +122,8 @@ public class MainWindow extends UiPart<Stage> {
         personCountDisplayPlaceholder.getChildren().add(personCountDisplay.getRoot());
 
         resultDisplay = new ResultDisplay();
+        exportWindow = new ExportWindow(logic, this.resultDisplay);
+
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
 
         StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getAddressBookFilePath());

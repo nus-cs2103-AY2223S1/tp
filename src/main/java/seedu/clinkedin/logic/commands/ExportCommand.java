@@ -26,7 +26,7 @@ public class ExportCommand extends Command {
             + PREFIX_PATH + "PATH\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_PATH + "~/Desktop/data.csv";
-    public static final String MESSAGE_SUCCESS = "PersonList exported successfully to";
+    public static final String MESSAGE_SUCCESS = "PersonList exported successfully in %s";
 
     private String filePath;
     private FileType fileType;
@@ -42,6 +42,13 @@ public class ExportCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
+        List<String[]> data = toCsvFormat(model.getFilteredPersonList());
+
+        try {
+            exportToCsvFile(filePath, data);
+        } catch (IOException ioe) {
+            throw new CommandException(ioe.getMessage());
+        }
         return new CommandResult(String.format(MESSAGE_SUCCESS, filePath));
     }
 

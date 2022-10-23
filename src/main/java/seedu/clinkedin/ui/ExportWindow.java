@@ -16,6 +16,7 @@ import javafx.stage.DirectoryChooser;
 import javafx.stage.Stage;
 import seedu.clinkedin.commons.core.LogsCenter;
 import seedu.clinkedin.logic.Logic;
+import seedu.clinkedin.logic.commands.ExportCommand;
 import seedu.clinkedin.logic.commands.exceptions.CommandException;
 
 public class ExportWindow extends UiPart<Stage> {
@@ -25,6 +26,7 @@ public class ExportWindow extends UiPart<Stage> {
     private static final String FXML = "ExportWindow.fxml";
 
     private Logic logic;
+    private ResultDisplay resultDisplay;
     private DirectoryChooser directoryChooser;
 
 
@@ -52,26 +54,28 @@ public class ExportWindow extends UiPart<Stage> {
      *
      * @param root Stage to use as the root of the ExportWindow.
      */
-    public ExportWindow(Stage root, Logic logic) {
+    public ExportWindow(Stage root, Logic logic, ResultDisplay resultDisplay) {
         super(FXML, root);
         this.logic = logic;
+        this.resultDisplay = resultDisplay;
         chooseLocation.setText(CHOOSE_PATH);
         directoryChooser = new DirectoryChooser();
         fileName.setText(CHOOSE_NAME);
+
     }
 
     /**
      * Creates a new ExportWindow.
      */
-    public ExportWindow(Logic logic) {
-        this(new Stage(), logic);
+    public ExportWindow(Logic logic, ResultDisplay resultDisplay) {
+        this(new Stage(), logic, resultDisplay);
     }
 
     /**
      * Shows the Export Window.
      */
     public void show() {
-        logger.fine("Showing export window.");
+        logger.info("Showing Export Window.");
         getRoot().show();
         getRoot().centerOnScreen();
     }
@@ -120,6 +124,8 @@ public class ExportWindow extends UiPart<Stage> {
         } catch (IOException ioe) {
             throw new CommandException(ioe.getMessage());
         }
+        resultDisplay.setFeedbackToUser(String.format(ExportCommand.MESSAGE_SUCCESS, filePath));
+        logger.info("Result: " + String.format(ExportCommand.MESSAGE_SUCCESS, filePath));
         chosenLocation.setText("");
         userEnteredFileName.clear();
         this.hide();
