@@ -23,24 +23,17 @@ public class Venue implements BookingField {
     public static final String VALID_ROOM = "meeting";
 
     //IMPORTANT: Venue is a singleton with just one Venue, Meeting Room as of now
-    public static final Venue MEETING_ROOM = new Venue("Meeting Room");
+    public static final Venue MEETING_ROOM = new Venue(new VenueName("Meeting Room"));
 
     private ObservableList<Booking> bookings = FXCollections.observableArrayList();
-    private final String venueName;
+    private final VenueName venueName;
 
     /**
      * Constructor for a Venue instance.
      * @param venueName The name of the venue as specified by the venue book.
      */
-    public Venue(String venueName) {
+    public Venue(VenueName venueName) {
         this.venueName = venueName;
-    }
-
-    /**
-     * Returns true if a given venue is a valid venue.
-     */
-    public static boolean isValidVenue(String test) {
-        return test.equalsIgnoreCase(VALID_ROOM);
     }
 
     /**
@@ -88,6 +81,10 @@ public class Venue implements BookingField {
         return this.venueName.equals(other.venueName);
     }
 
+    public boolean isSameVenue(VenueName otherVenueName) {
+        return this.venueName.equals(otherVenueName);
+    }
+
     public ObservableList<Booking> getObservableBookings() {
         clearExpiredBookings();
         return this.bookings;
@@ -95,7 +92,7 @@ public class Venue implements BookingField {
 
     @Override
     public String toString() {
-        return this.venueName;
+        return this.venueName.toString();
     }
 
     @Override

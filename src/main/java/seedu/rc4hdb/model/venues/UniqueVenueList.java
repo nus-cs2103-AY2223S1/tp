@@ -61,13 +61,13 @@ public class UniqueVenueList implements Iterable<Venue> {
     }
 
     /**
-     * Adds a booking to the venue in the list with the same name as {@code otherVenue}.
+     * Adds a booking to the venue in the list with the name {@code venueName}.
      * @throws VenueNotFoundException if the venue does not exist in the list.
      */
-    public void addBookingToVenueWithSameName(Venue otherVenue, Booking booking) throws VenueNotFoundException {
-        requireAllNonNull(otherVenue, booking);
+    public void addBookingToVenueWithSameName(VenueName otherVenueName, Booking booking) throws VenueNotFoundException {
+        requireAllNonNull(otherVenueName, booking);
         for (Venue venue : internalList) {
-            if (otherVenue.isSameVenue(venue)) {
+            if (venue.isSameVenue(otherVenueName)) {
                 venue.addBooking(booking);
                 return;
             }

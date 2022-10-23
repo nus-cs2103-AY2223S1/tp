@@ -8,6 +8,7 @@ import javafx.collections.ObservableList;
 import seedu.rc4hdb.commons.core.GuiSettings;
 import seedu.rc4hdb.model.resident.Resident;
 import seedu.rc4hdb.model.venues.Venue;
+import seedu.rc4hdb.model.venues.VenueName;
 import seedu.rc4hdb.model.venues.booking.Booking;
 import seedu.rc4hdb.model.venues.exceptions.VenueNotFoundException;
 
@@ -107,7 +108,7 @@ public class ModelStub implements Model {
     }
 
     @Override
-    public void addBookingToVenueWithSameName(Venue venue, Booking booking) throws VenueNotFoundException {
+    public void addBookingToVenueWithSameName(VenueName venueName, Booking booking) throws VenueNotFoundException {
         throw new AssertionError("This method should not be called.");
     }
 

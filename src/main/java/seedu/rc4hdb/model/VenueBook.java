@@ -7,6 +7,7 @@ import java.util.List;
 import javafx.collections.ObservableList;
 import seedu.rc4hdb.model.venues.UniqueVenueList;
 import seedu.rc4hdb.model.venues.Venue;
+import seedu.rc4hdb.model.venues.VenueName;
 import seedu.rc4hdb.model.venues.booking.Booking;
 import seedu.rc4hdb.model.venues.exceptions.VenueNotFoundException;
 
@@ -72,11 +73,11 @@ public class VenueBook implements ReadOnlyVenueBook {
     }
 
     /**
-     * Adds a booking to the venue in the list with the same name as {@code otherVenue}.
+     * Adds a booking to the venue in the list with the name {@code venueName}.
      * @throws VenueNotFoundException if the venue does not exist in the list.
      */
-    public void addBookingToVenueWithSameName(Venue venue, Booking booking) throws VenueNotFoundException {
-        venues.addBookingToVenueWithSameName(venue, booking);
+    public void addBookingToVenueWithSameName(VenueName venueName, Booking booking) throws VenueNotFoundException {
+        venues.addBookingToVenueWithSameName(venueName, booking);
     }
 
     //// util methods

@@ -8,6 +8,7 @@ import javafx.collections.ObservableList;
 import seedu.rc4hdb.commons.core.GuiSettings;
 import seedu.rc4hdb.model.resident.Resident;
 import seedu.rc4hdb.model.venues.Venue;
+import seedu.rc4hdb.model.venues.VenueName;
 import seedu.rc4hdb.model.venues.booking.Booking;
 import seedu.rc4hdb.model.venues.exceptions.VenueNotFoundException;
 
@@ -111,10 +112,10 @@ public interface Model {
     void addVenue(Venue venue);
 
     /**
-     * Adds a booking to the venue in the list with the same name as {@code otherVenue}.
+     * Adds a booking to the venue in the list with the name {@code venueName}.
      * @throws VenueNotFoundException if the venue does not exist in the list.
      */
-    void addBookingToVenueWithSameName(Venue venue, Booking booking) throws VenueNotFoundException;
+    void addBookingToVenueWithSameName(VenueName venueName, Booking booking) throws VenueNotFoundException;
 
     ObservableList<String> getObservableFields();
 

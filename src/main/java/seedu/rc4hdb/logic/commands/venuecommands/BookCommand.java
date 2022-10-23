@@ -4,7 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.rc4hdb.commons.util.CollectionUtil.requireAllNonNull;
 import static seedu.rc4hdb.logic.parser.CliSyntax.PREFIX_DAY;
 import static seedu.rc4hdb.logic.parser.CliSyntax.PREFIX_TIME_PERIOD;
-import static seedu.rc4hdb.logic.parser.CliSyntax.PREFIX_VENUE;
+import static seedu.rc4hdb.logic.parser.CliSyntax.PREFIX_VENUE_NAME;
 
 import java.util.List;
 import java.util.NoSuchElementException;
@@ -16,7 +16,7 @@ import seedu.rc4hdb.logic.commands.exceptions.CommandException;
 import seedu.rc4hdb.logic.commands.modelcommands.ModelCommand;
 import seedu.rc4hdb.model.Model;
 import seedu.rc4hdb.model.resident.Resident;
-import seedu.rc4hdb.model.venues.Venue;
+import seedu.rc4hdb.model.venues.VenueName;
 import seedu.rc4hdb.model.venues.booking.Booking;
 import seedu.rc4hdb.model.venues.booking.BookingDescriptor;
 import seedu.rc4hdb.model.venues.booking.RecurrentBooking;
@@ -34,11 +34,11 @@ public class BookCommand implements ModelCommand {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a booking to RC4HDB. "
             + "Parameters: "
-            + PREFIX_VENUE + "VENUE_NAME "
+            + PREFIX_VENUE_NAME + "VENUE_NAME "
             + PREFIX_TIME_PERIOD + "START_TIME-END_TIME "
             + PREFIX_DAY + "DAY "
             + "Example: " + COMMAND_WORD + " "
-            + PREFIX_VENUE + "meeting "
+            + PREFIX_VENUE_NAME + "meeting "
             + PREFIX_TIME_PERIOD + "10-14 "
             + PREFIX_DAY + "TUE ";
 
@@ -54,33 +54,29 @@ public class BookCommand implements ModelCommand {
      */
     public BookCommand(Index residentIndex, BookingDescriptor bookingDescriptor) {
         requireAllNonNull(residentIndex, bookingDescriptor);
-        this.bookingDescriptor = new BookingDescriptor(bookingDescriptor);
         this.residentIndex = residentIndex;
+        this.bookingDescriptor = new BookingDescriptor(bookingDescriptor);
     }
 
     //todo handle venue booking
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        List<Resident> lastShownList = model.getFilteredResidentList();
-
-        if (residentIndex.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_RESIDENT_DISPLAYED_INDEX);
-        }
-
-        Resident resident = lastShownList.get(residentIndex.getZeroBased());
-        bookingDescriptor.setResident(resident);
-
         try {
-            Booking toMake = createNewBooking();
-            Venue venue = bookingDescriptor.getVenue().get();
-            model.addBookingToVenueWithSameName(venue, toMake);
+            List<Resident> lastShownList = model.getFilteredResidentList();
+            Resident resident = lastShownList.get(residentIndex.getZeroBased());
+            Booking toMake = createNewBooking(resident);
+            VenueName venueName = bookingDescriptor.getVenueName().get();
+            model.addBookingToVenueWithSameName(venueName, toMake);
             return new CommandResult(String.format(MESSAGE_SUCCESS, toMake));
+        } catch (IndexOutOfBoundsException e) {
+            throw new CommandException(Messages.MESSAGE_INVALID_RESIDENT_DISPLAYED_INDEX);
         } catch (NoSuchElementException e) {
             throw new CommandException(MESSAGE_USAGE, e);
         } catch (VenueNotFoundException e) {
-            Venue venue = bookingDescriptor.getVenue().get();
-            throw new CommandException(String.format(MESSAGE_VENUE_NOT_FOUND, venue));
+            // NoSuchElementException will not be thrown as it is caught above.
+            VenueName venueName = bookingDescriptor.getVenueName().get();
+            throw new CommandException(String.format(MESSAGE_VENUE_NOT_FOUND, venueName));
         } catch (BookingClashesException e) {
             throw new CommandException(MESSAGE_CLASHING_BOOKING, e);
         }
@@ -89,14 +85,12 @@ public class BookCommand implements ModelCommand {
     /**
      * Creates and returns a {@code Booking} with the details of {@code bookingDescriptor}.
      */
-    private Booking createNewBooking() throws NoSuchElementException {
-        assert bookingDescriptor != null;
-
-        Resident resident = bookingDescriptor.getResident().get();
+    private Booking createNewBooking(Resident resident) throws NoSuchElementException {
+        assert bookingDescriptor != null && resident != null;
+        VenueName venueName = bookingDescriptor.getVenueName().get();
         HourPeriod hourPeriod = bookingDescriptor.getHourPeriod().get();
         Day dayOfWeek = bookingDescriptor.getDayOfWeek().get();
-        Venue venue = bookingDescriptor.getVenue().get();
-        return new RecurrentBooking(resident, hourPeriod, dayOfWeek, venue);
+        return new RecurrentBooking(venueName, resident, hourPeriod, dayOfWeek);
     }
 
     @Override

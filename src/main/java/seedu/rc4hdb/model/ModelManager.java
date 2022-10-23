@@ -15,6 +15,7 @@ import seedu.rc4hdb.commons.core.GuiSettings;
 import seedu.rc4hdb.commons.core.LogsCenter;
 import seedu.rc4hdb.model.resident.Resident;
 import seedu.rc4hdb.model.venues.Venue;
+import seedu.rc4hdb.model.venues.VenueName;
 import seedu.rc4hdb.model.venues.booking.Booking;
 import seedu.rc4hdb.model.venues.exceptions.VenueNotFoundException;
 
@@ -168,9 +169,9 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void addBookingToVenueWithSameName(Venue venue, Booking booking) throws VenueNotFoundException {
-        requireAllNonNull(venue, booking);
-        venueBook.addBookingToVenueWithSameName(venue, booking);
+    public void addBookingToVenueWithSameName(VenueName venueName, Booking booking) throws VenueNotFoundException {
+        requireAllNonNull(venueName, booking);
+        venueBook.addBookingToVenueWithSameName(venueName, booking);
     }
 
     //=========== End of venue book methods =============================================

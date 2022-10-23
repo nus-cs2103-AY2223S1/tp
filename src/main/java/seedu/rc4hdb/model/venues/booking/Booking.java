@@ -3,7 +3,7 @@ package seedu.rc4hdb.model.venues.booking;
 import static seedu.rc4hdb.commons.util.CollectionUtil.requireAllNonNull;
 
 import seedu.rc4hdb.model.resident.Resident;
-import seedu.rc4hdb.model.venues.Venue;
+import seedu.rc4hdb.model.venues.VenueName;
 import seedu.rc4hdb.model.venues.booking.fields.Day;
 import seedu.rc4hdb.model.venues.booking.fields.HourPeriod;
 
@@ -12,23 +12,24 @@ import seedu.rc4hdb.model.venues.booking.fields.HourPeriod;
  */
 public abstract class Booking {
 
-    protected Venue venue;
+    protected VenueName venueName;
     protected Resident resident;
     protected HourPeriod hourPeriod;
     protected Day dayOfWeek;
 
     /**
      * Constructor for a Booking instance.
+     * @param venueName The name of the venue.
      * @param resident The resident trying to book the venue.
      * @param hourPeriod The period of time that the venue is to be booked.
-     * @param venue The venue of the booking.
+     * @param dayOfWeek The day of the week the venue is to be booked.
      */
-    public Booking(Resident resident, HourPeriod hourPeriod, Day dayOfWeek, Venue venue) {
-        requireAllNonNull(resident, hourPeriod, dayOfWeek, venue);
+    public Booking(VenueName venueName, Resident resident, HourPeriod hourPeriod, Day dayOfWeek) {
+        requireAllNonNull(venueName, resident, hourPeriod, dayOfWeek);
+        this.venueName = venueName;
         this.resident = resident;
         this.hourPeriod = hourPeriod;
         this.dayOfWeek = dayOfWeek;
-        this.venue = venue;
     }
 
     /**
@@ -49,7 +50,7 @@ public abstract class Booking {
         final StringBuilder builder = new StringBuilder();
         builder.append(resident.getName())
                 .append("; Venue: ")
-                .append(venue)
+                .append(venueName)
                 .append("; Start Time: ")
                 .append(hourPeriod.getStart())
                 .append("; End Time: ")

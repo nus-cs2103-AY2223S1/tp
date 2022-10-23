@@ -3,8 +3,9 @@ package seedu.rc4hdb.logic.parser.commandparsers;
 import static seedu.rc4hdb.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.rc4hdb.logic.parser.CliSyntax.PREFIX_DAY;
 import static seedu.rc4hdb.logic.parser.CliSyntax.PREFIX_TIME_PERIOD;
-import static seedu.rc4hdb.logic.parser.CliSyntax.PREFIX_VENUE;
+import static seedu.rc4hdb.logic.parser.CliSyntax.PREFIX_VENUE_NAME;
 
+import java.util.NoSuchElementException;
 import java.util.stream.Stream;
 
 import seedu.rc4hdb.commons.core.index.Index;
@@ -29,9 +30,9 @@ public class BookCommandParser implements Parser<BookCommand> {
      */
     public BookCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_DAY, PREFIX_TIME_PERIOD, PREFIX_VENUE);
+                ArgumentTokenizer.tokenize(args, PREFIX_DAY, PREFIX_TIME_PERIOD, PREFIX_VENUE_NAME);
 
-        if (!arePrefixesPresent(argMultimap, PREFIX_DAY, PREFIX_TIME_PERIOD, PREFIX_VENUE)
+        if (!arePrefixesPresent(argMultimap, PREFIX_DAY, PREFIX_TIME_PERIOD, PREFIX_VENUE_NAME)
                 || argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, BookCommand.MESSAGE_USAGE));
         }
@@ -39,8 +40,8 @@ public class BookCommandParser implements Parser<BookCommand> {
         try {
             Index index = ParserUtil.parseIndex(argMultimap.getPreamble());
             return new BookCommand(index, buildBookingDescriptor(argMultimap));
-        } catch (ParseException pe) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, BookCommand.MESSAGE_USAGE), pe);
+        } catch (ParseException | NoSuchElementException e) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, BookCommand.MESSAGE_USAGE), e);
         }
     }
 
@@ -50,7 +51,7 @@ public class BookCommandParser implements Parser<BookCommand> {
     private static BookingDescriptor buildBookingDescriptor(ArgumentMultimap argMultimap) throws ParseException {
         BookingDescriptor bookingDescriptor = new BookingDescriptor();
 
-        bookingDescriptor.setVenue(ParserUtil.parseVenue(argMultimap.getValue(PREFIX_VENUE).get()));
+        bookingDescriptor.setVenueName(ParserUtil.parseVenueName(argMultimap.getValue(PREFIX_VENUE_NAME).get()));
         bookingDescriptor.setHourPeriod(ParserUtil.parseHourPeriod(argMultimap.getValue(PREFIX_TIME_PERIOD).get()));
         bookingDescriptor.setDayOfWeek(ParserUtil.parseDay(argMultimap.getValue(PREFIX_DAY).get()));
         return bookingDescriptor;
