@@ -347,6 +347,11 @@ public class CommandTestUtil {
         }
 
         @Override
+        public void clearAllReminders() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public boolean hasMessage(Message message) {
             throw new AssertionError("This method should not be called.");
         }
