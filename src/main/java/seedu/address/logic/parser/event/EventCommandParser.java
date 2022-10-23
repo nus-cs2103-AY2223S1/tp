@@ -2,13 +2,18 @@ package seedu.address.logic.parser.event;
 
 import static seedu.address.commons.core.Messages.MESSAGE_FLAG_NOT_SPECIFIED;
 
+import java.util.LinkedHashMap;
+import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import seedu.address.logic.commands.event.AddEventCommand;
+import seedu.address.logic.commands.event.DeleteEventCommand;
+import seedu.address.logic.commands.event.EditEventCommand;
 import seedu.address.logic.commands.event.EventCommand;
 import seedu.address.logic.commands.event.ViewEventsCommand;
 import seedu.address.logic.commands.event.ViewUpcomingEventsCommand;
+import seedu.address.logic.parser.CliSyntax;
 import seedu.address.logic.parser.Parser;
 import seedu.address.logic.parser.exceptions.ParseException;
 
@@ -50,6 +55,10 @@ public class EventCommandParser implements Parser<EventCommand> {
         switch (eventOption) {
         case AddEventCommand.COMMAND_OPTION:
             return new AddEventCommandParser().parse(args);
+        case DeleteEventCommand.COMMAND_OPTION:
+            return new DeleteEventCommandParser().parse(args);
+        case EditEventCommand.COMMAND_OPTION:
+            return new EditEventCommandParser().parse(args);
         case ViewUpcomingEventsCommand.COMMAND_OPTION:
             return new ViewUpcomingEventsCommandParser().parse(args);
         case ViewEventsCommand.COMMAND_OPTION:
@@ -57,5 +66,23 @@ public class EventCommandParser implements Parser<EventCommand> {
         default:
             throw new ParseException(EventCommand.OPTION_UNKNOWN + EventCommand.VALID_FLAGS);
         }
+    }
+
+    /**
+     * Returns a hash map containing the details about event commands to display in the help window.
+     */
+    public static Map<String, String> getEventCommands() {
+        return new LinkedHashMap<>() {
+            {
+                put(EventCommand.COMMAND_WORD + " " + CliSyntax.PREFIX_OPTION + AddEventCommand.COMMAND_OPTION,
+                        AddEventCommand.MESSAGE_HELP);
+                put(EventCommand.COMMAND_WORD + " " + CliSyntax.PREFIX_OPTION + DeleteEventCommand.COMMAND_OPTION,
+                        DeleteEventCommand.MESSAGE_HELP);
+                put(EventCommand.COMMAND_WORD + " " + CliSyntax.PREFIX_OPTION + EditEventCommand.COMMAND_OPTION,
+                        EditEventCommand.MESSAGE_HELP);
+                put(EventCommand.COMMAND_WORD + " " + CliSyntax.PREFIX_OPTION + ViewEventsCommand.COMMAND_OPTION,
+                        ViewEventsCommand.MESSAGE_HELP);
+            }
+        };
     }
 }

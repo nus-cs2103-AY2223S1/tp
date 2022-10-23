@@ -31,6 +31,11 @@
           <Menu mnemonicParsing="false" text="Help">
             <MenuItem fx:id="helpMenuItem" mnemonicParsing="false" onAction="#handleHelp" text="Help" />
           </Menu>
+          <Menu mnemonicParsing="false" text="Links">
+            <MenuItem fx:id="luminusMenuItem" mnemonicParsing="false" onAction="#handleLuminusClick" text="LumiNUS" />
+            <MenuItem fx:id="canvasMenuItem" mnemonicParsing="false" onAction="#handleCanvasClick" text="Canvas" />
+            <MenuItem fx:id="edurecMenuItem" mnemonicParsing="false" onAction="#handleEdurecClick" text="MyEduRec" />
+          </Menu>
         </MenuBar>
 
         <StackPane VBox.vgrow="NEVER" fx:id="commandBoxPlaceholder" styleClass="pane-with-border">
