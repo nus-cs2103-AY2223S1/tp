@@ -60,7 +60,8 @@ public class TaskDeadlineCommandParser implements Parser<TaskDeadlineCommand> {
 
     private TaskDeadlineCommand parseWithPrefix(String args, Prefix firstPrefix) throws ParseException {
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, firstPrefix, CliSyntax.PREFIX_DESCRIPTION, CliSyntax.PREFIX_DATE);
+                ArgumentTokenizer.tokenize(args, firstPrefix, CliSyntax.PREFIX_DESCRIPTION,
+                        CliSyntax.PREFIX_DATE, CliSyntax.PREFIX_TAG);
 
         if (!arePrefixesPresent(argMultimap, firstPrefix, CliSyntax.PREFIX_DESCRIPTION, CliSyntax.PREFIX_DATE)
                 || !argMultimap.getPreamble().isEmpty()) {
