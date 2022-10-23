@@ -22,6 +22,7 @@ import seedu.address.commons.util.CollectionUtil;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.person.Address;
+import seedu.address.model.person.Description;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.FilePath;
 import seedu.address.model.person.MeetingTime;
@@ -29,7 +30,6 @@ import seedu.address.model.person.Name;
 import seedu.address.model.person.NetWorth;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
-import seedu.address.model.person.Remark;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -132,10 +132,10 @@ public class UpdateCommand extends UndoableCommand {
         MeetingTime updatedMeetingTime = editPersonDescriptor.getMeetingTime().orElse(personToEdit.getMeetingTime());
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
         FilePath updatedFilePath = personToEdit.getFilePath();
-        Remark updatedRemark = personToEdit.getRemark(); // edit command does not allow editing remarks
+        Description updatedDescription = personToEdit.getDescription(); // edit command does not allow editing remarks
 
         return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress,
-                updatedRemark, updatedNetWorth, updatedMeetingTime, updatedFilePath, updatedTags);
+                updatedDescription, updatedNetWorth, updatedMeetingTime, updatedFilePath, updatedTags);
     }
 
     @Override

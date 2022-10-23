@@ -7,7 +7,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_MEETING_TIME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NETWORTH;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_REMARK;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
 import java.util.Set;
@@ -40,7 +40,7 @@ public class PersonUtil {
         sb.append(PREFIX_PHONE + person.getPhone().value + " ");
         sb.append(PREFIX_EMAIL + person.getEmail().value + " ");
         sb.append(PREFIX_ADDRESS + person.getAddress().value + " ");
-        sb.append(PREFIX_REMARK + person.getRemark().value + " ");
+        sb.append(PREFIX_DESCRIPTION + person.getDescription().value + " ");
         sb.append(PREFIX_NETWORTH + person.getNetWorth().value + " ");
         sb.append(PREFIX_MEETING_TIME + person.getMeetingTime().value + " ");
         sb.append(PREFIX_FILEPATH + person.getFilePath().value + " ");
