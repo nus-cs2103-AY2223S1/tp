@@ -301,4 +301,9 @@ public class ModelManager implements Model {
     public void sortAppointments(Comparator<Appointment> comparator, boolean isAscending) {
         this.addressBook.sortAppointments(comparator, isAscending);
     }
+
+    @Override
+    public void setBillAsPaid(Bill bill) {
+        this.addressBook.setBillAsPaid(bill);
+    }
 }

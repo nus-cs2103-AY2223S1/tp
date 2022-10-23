@@ -199,4 +199,10 @@ public interface Model {
      * @throws NullPointerException if {@code comparator} is null.
      */
     void sortBills(Comparator<Bill> comparator, boolean isAscending);
+
+    /**
+     * Sets the Status of PaymentStatus of the given bill to PAID.
+     * @param bill
+     */
+    void setBillAsPaid(Bill bill);
 }
