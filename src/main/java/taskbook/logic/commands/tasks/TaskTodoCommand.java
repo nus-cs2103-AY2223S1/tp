@@ -4,15 +4,20 @@ import static java.util.Objects.requireNonNull;
 import static taskbook.logic.parser.CliSyntax.PREFIX_ASSIGN_FROM;
 import static taskbook.logic.parser.CliSyntax.PREFIX_ASSIGN_TO;
 import static taskbook.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
+import static taskbook.logic.parser.CliSyntax.PREFIX_TAG;
+
+import java.util.Set;
 
 import taskbook.logic.commands.CommandResult;
 import taskbook.logic.commands.exceptions.CommandException;
 import taskbook.logic.parser.tasks.TaskCategoryParser;
 import taskbook.model.Model;
 import taskbook.model.person.Name;
+import taskbook.model.tag.Tag;
 import taskbook.model.task.Description;
 import taskbook.model.task.Task;
 import taskbook.model.task.enums.Assignment;
+
 
 /**
  * Adds a to-do to the task book.
@@ -26,7 +31,9 @@ public class TaskTodoCommand extends TaskAddCommand {
             + ": Adds a todo to the task book.\n"
             + "Parameters:\n"
             + PREFIX_ASSIGN_FROM + "NAME " + PREFIX_DESCRIPTION + "DESCRIPTION\n"
-            + PREFIX_ASSIGN_TO + "NAME " + PREFIX_DESCRIPTION + "DESCRIPTION";
+            + PREFIX_ASSIGN_TO + "NAME " + PREFIX_DESCRIPTION + "DESCRIPTION\n"
+            + PREFIX_TAG + "work";
+
     public static final String MESSAGE_SUCCESS = "New todo added: %1$s";
 
     /**
@@ -39,6 +46,19 @@ public class TaskTodoCommand extends TaskAddCommand {
      */
     public TaskTodoCommand(Name name, Description description, Assignment assignment) {
         super(name, description, assignment);
+    }
+
+    /**
+     * Creates a TaskTodoCommand to add a task with the specified
+     * {@code Name name}, {@code Description description} and {@code Task.Assignment assignment}.
+     *
+     * @param name Name of the Person in the task book.
+     * @param description The description for the new to-do.
+     * @param assignment Represents to-do assigned to user or others.
+     * @param tags Tags assigned to task.
+     */
+    public TaskTodoCommand(Name name, Description description, Assignment assignment, Set<Tag> tags) {
+        super(name, description, assignment, tags);
     }
 
     @Override

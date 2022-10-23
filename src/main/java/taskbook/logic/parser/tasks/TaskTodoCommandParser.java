@@ -1,5 +1,6 @@
 package taskbook.logic.parser.tasks;
 
+import java.util.Set;
 import java.util.regex.Pattern;
 import java.util.stream.Stream;
 
@@ -13,6 +14,7 @@ import taskbook.logic.parser.ParserUtil;
 import taskbook.logic.parser.Prefix;
 import taskbook.logic.parser.exceptions.ParseException;
 import taskbook.model.person.Name;
+import taskbook.model.tag.Tag;
 import taskbook.model.task.Description;
 import taskbook.model.task.enums.Assignment;
 
@@ -54,7 +56,8 @@ public class TaskTodoCommandParser implements Parser<TaskTodoCommand> {
     }
 
     private TaskTodoCommand parseWithPrefix(String args, Prefix firstPrefix) throws ParseException {
-        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, firstPrefix, CliSyntax.PREFIX_DESCRIPTION);
+        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, firstPrefix, CliSyntax.PREFIX_DESCRIPTION,
+                CliSyntax.PREFIX_TAG);
 
         if (!arePrefixesPresent(argMultimap, firstPrefix, CliSyntax.PREFIX_DESCRIPTION)
                 || !argMultimap.getPreamble().isEmpty()) {
@@ -68,8 +71,9 @@ public class TaskTodoCommandParser implements Parser<TaskTodoCommand> {
                 firstPrefix.equals(CliSyntax.PREFIX_ASSIGN_FROM)
                 ? Assignment.FROM
                 : Assignment.TO;
+        Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(CliSyntax.PREFIX_TAG));
 
-        return new TaskTodoCommand(name, description, assignment);
+        return new TaskTodoCommand(name, description, assignment, tagList);
     }
 
     /**

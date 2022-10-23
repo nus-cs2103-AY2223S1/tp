@@ -3,9 +3,12 @@ package taskbook.model.task;
 import static taskbook.logic.commands.tasks.TaskEditCommand.MESSAGE_INVALID_PARAMETER;
 import static taskbook.logic.parser.CliSyntax.PREFIX_DATE;
 
+import java.util.Set;
+
 import taskbook.logic.commands.exceptions.CommandException;
 import taskbook.model.person.Name;
 import taskbook.model.person.Person;
+import taskbook.model.tag.Tag;
 import taskbook.model.task.enums.Assignment;
 
 /**
@@ -28,6 +31,20 @@ public class Todo extends Task {
      */
     public Todo(Name name, Assignment assignment, Description description, boolean isDone) {
         super(name, assignment, description, isDone);
+    }
+
+    /**
+     * Every field must be present and not null.
+     */
+    public Todo(Person person, Assignment assignment, Description description, boolean isDone, Set<Tag> tags) {
+        super(person, assignment, description, isDone, tags);
+    }
+
+    /**
+     * Every field must be present and not null.
+     */
+    public Todo(Name name, Assignment assignment, Description description, boolean isDone, Set<Tag> tags) {
+        super(name, assignment, description, isDone, tags);
     }
 
     @Override
@@ -56,6 +73,7 @@ public class Todo extends Task {
         Assignment assignment = descriptor.getAssignment().orElse(getAssignment());
         Description description = descriptor.getDescription().orElse(getDescription());
         Boolean isDone = descriptor.getIsDone().orElse(isDone());
+        //todo: add tags
 
         return new Todo(name, assignment, description, isDone);
     }
@@ -74,7 +92,8 @@ public class Todo extends Task {
         return otherTask.getName().equals(getName())
                 && otherTask.getAssignment().equals(getAssignment())
                 && otherTask.getDescription().equals(getDescription())
-                && (otherTask.isDone() == (isDone()));
+                && (otherTask.isDone() == (isDone()))
+                && otherTask.getTags().equals(getTags());
     }
 }
 

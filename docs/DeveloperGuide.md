@@ -436,6 +436,7 @@ The following sequence diagram shows how the `TaskTagCommand` works:
 
 * **Current choice:** A maximum of 5 tags can be saved.
     * Rationale: Reduce clutter of tags saved to a task. Too many tags would defeat the purpose of a tag itself.
+  
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Documentation, logging, testing, configuration, dev-ops**

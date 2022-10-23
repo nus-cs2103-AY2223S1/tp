@@ -2,9 +2,11 @@ package taskbook.model.task;
 
 import java.time.LocalDate;
 import java.util.Objects;
+import java.util.Set;
 
 import taskbook.model.person.Name;
 import taskbook.model.person.Person;
+import taskbook.model.tag.Tag;
 import taskbook.model.task.enums.Assignment;
 
 /**
