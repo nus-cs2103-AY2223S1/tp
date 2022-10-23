@@ -23,6 +23,7 @@ import seedu.rc4hdb.model.Model;
 import seedu.rc4hdb.model.ReadOnlyResidentBook;
 import seedu.rc4hdb.model.resident.Resident;
 import seedu.rc4hdb.model.venues.Venue;
+import seedu.rc4hdb.model.venues.booking.Booking;
 import seedu.rc4hdb.storage.Storage;
 
 /**
@@ -125,5 +126,10 @@ public class LogicManager implements Logic {
     @Override
     public ObservableList<Venue> getObservableVenues() {
         return model.getObservableVenues();
+    }
+
+    @Override
+    public ObservableList<Booking> getObservableBookings() {
+        return model.getObservableBookings();
     }
 }

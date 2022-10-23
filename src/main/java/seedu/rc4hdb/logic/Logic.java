@@ -11,6 +11,7 @@ import seedu.rc4hdb.logic.parser.exceptions.ParseException;
 import seedu.rc4hdb.model.ReadOnlyResidentBook;
 import seedu.rc4hdb.model.resident.Resident;
 import seedu.rc4hdb.model.venues.Venue;
+import seedu.rc4hdb.model.venues.booking.Booking;
 
 /**
  * API of the Logic component
@@ -65,4 +66,5 @@ public interface Logic {
      */
     ObservableList<Venue> getObservableVenues();
 
+    ObservableList<Booking> getObservableBookings();
 }

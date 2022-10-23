@@ -15,6 +15,7 @@ import seedu.rc4hdb.commons.core.GuiSettings;
 import seedu.rc4hdb.commons.core.LogsCenter;
 import seedu.rc4hdb.model.resident.Resident;
 import seedu.rc4hdb.model.venues.Venue;
+import seedu.rc4hdb.model.venues.booking.Booking;
 
 /**
  * Represents the in-memory model of the resident book data.
@@ -27,6 +28,7 @@ public class ModelManager implements Model {
     private final FilteredList<Resident> filteredResidents;
     private final ObservableList<String> observableFieldList;
     private final ObservableList<Venue> observableVenueList;
+    private final ObservableList<Booking> observableBookingList;
 
     /**
      * Initializes a ModelManager with the given residentBook and userPrefs.
@@ -40,6 +42,7 @@ public class ModelManager implements Model {
         filteredResidents = new FilteredList<>(this.residentBook.getResidentList());
         this.observableFieldList = FXCollections.observableArrayList();
         this.observableVenueList = FXCollections.observableArrayList(); // to be modified after linking with storage
+        this.observableBookingList = FXCollections.observableArrayList();
     }
 
     public ModelManager() {
@@ -175,4 +178,15 @@ public class ModelManager implements Model {
     public void setObservableVenues(List<Venue> modifiableFields) {
         this.observableVenueList.setAll(modifiableFields);
     }
+
+    //=========== Observable Booking List Accessors =============================================================
+    @Override
+    public ObservableList<Booking> getObservableBookings() {
+        return this.observableBookingList;
+    }
+    @Override
+    public void setObservableBookings(List<Booking> modifiableFields) {
+        this.observableBookingList.setAll(modifiableFields);
+    }
+
 }

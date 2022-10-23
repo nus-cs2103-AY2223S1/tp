@@ -22,6 +22,8 @@ import seedu.rc4hdb.model.resident.fields.ResidentField;
 import seedu.rc4hdb.model.resident.fields.Room;
 import seedu.rc4hdb.model.resident.fields.Tag;
 
+import java.util.List;
+
 /**
  * Panel containing the list of persons.
  */
@@ -98,10 +100,16 @@ public class ResidentTableView extends UiPart<Region> {
             @Override
             public void updateIndex(int index) {
                 super.updateIndex(index);
-                if (isEmpty() || index < 0) {
+                List<String> days = List.of("MON", "TUE", "WED", "THU", "FRI", "SAT", "SUN");
+//                if (isEmpty() || index < 0) {
+//                    setText(null);
+//                } else {
+//                    setText(Integer.toString(index + 1));
+//                }
+                if (index > 6) {
                     setText(null);
                 } else {
-                    setText(Integer.toString(index + 1));
+                    setText(days.get(index));
                 }
             }
         };
