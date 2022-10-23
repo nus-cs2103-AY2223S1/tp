@@ -8,7 +8,7 @@
     "netWorth" : "$54400",
     "meetingTime" : [ "10-08-2022-15:00" ],
     "filePath" : "src/test/data/TestPDFs/Test_PDF.pdf",
-    "tagged": [ "friends" ]
+    "tagged": [ "POTENTIAL" ]
   }, {
     "name": "Alice Pauline",
     "phone": "94351253",
@@ -17,6 +17,7 @@
     "description" : "",
     "netWorth" : "$54400",
     "meetingTime" : [ "10-08-2022-15:00" ],
-    "filePath" : "src/test/data/TestPDFs/Test_PDF.pdf"
+    "filePath" : "src/test/data/TestPDFs/Test_PDF.pdf",
+    "tagged": [ "POTENTIAL" ]
   } ]
 }
