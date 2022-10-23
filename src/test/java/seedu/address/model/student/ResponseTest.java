@@ -13,11 +13,11 @@ public class ResponseTest {
         assertThrows(NullPointerException.class, () -> new Response(null));
     }
 
-    @Test
+    /*@Test
     public void constructor_invalidResponse_throwsIllegalArgumentException() {
         String invalidResponse = "";
         assertThrows(IllegalArgumentException.class, () -> Response.isValidResponse(invalidResponse));
-    }
+    }*/
 
     @Test
     public void isValidResponse() {
