@@ -1,6 +1,8 @@
 package tracko.testutil;
 
 import java.util.Set;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import tracko.logic.commands.item.EditItemCommand.EditItemDescriptor;
 import tracko.model.item.Description;
@@ -49,7 +51,7 @@ public class EditItemDescriptorBuilder {
     /**
      * Sets the {@code Quantity} of the {@code EditItemDescriptor} that we are building.
      */
-    public EditItemDescriptorBuilder withQuantity(int quantity) {
+    public EditItemDescriptorBuilder withQuantity(Integer quantity) {
         descriptor.setQuantity(new Quantity(quantity));
         return this;
     }
@@ -65,8 +67,9 @@ public class EditItemDescriptorBuilder {
     /**
      * Sets the {@code Tags} of the {@code EditItemDescriptor} that we are building.
      */
-    public EditItemDescriptorBuilder withTags(Set<Tag> tags) {
-        descriptor.setTags(tags);
+    public EditItemDescriptorBuilder withTags(String... tags) {
+        Set<Tag> tagSet = Stream.of(tags).map(Tag::new).collect(Collectors.toSet());
+        descriptor.setTags(tagSet);
         return this;
     }
 
