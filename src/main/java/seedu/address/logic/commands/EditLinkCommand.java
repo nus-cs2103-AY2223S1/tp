@@ -18,20 +18,17 @@ import seedu.address.model.team.Link;
 import seedu.address.model.team.Url;
 
 /**
- * Edits the details of an existing link in the address book.
+ * Edits the details of an existing link in TruthTable.
  */
 public class EditLinkCommand extends Command {
     public static final String COMMAND_WORD = "edit_link";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Edits a current link identified by the index number used in the displayed link list. \n"
-            + "Existing values will be overwritten by the input values. \n"
-            + "Parameters: INDEX (must be a positive integer) "
-            + "-" + FLAG_NAME_STR + " NAME "
-            + "-" + FLAG_URL_STR + " PHONE \n"
-            + "Example: " + COMMAND_WORD + " 1 "
-            + "-" + FLAG_NAME_STR + " \"Google\" "
-            + "-" + FLAG_URL_STR + " https://google.com ";
+    public static final String MESSAGE_USAGE =
+            COMMAND_WORD + ": Edits a current link identified by the index number used in the displayed link list. \n"
+                    + "Existing values will be overwritten by the input values. \n"
+                    + "Parameters: INDEX (must be a positive integer) " + "-" + FLAG_NAME_STR + " NAME " + "-"
+                    + FLAG_URL_STR + " PHONE \n" + "Example: " + COMMAND_WORD + " 1 " + "-" + FLAG_NAME_STR
+                    + " \"Google\" " + "-" + FLAG_URL_STR + " https://google.com ";
     public static final String MESSAGE_EDIT_LINK_SUCCESS = "Edited link: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
     public static final String MESSAGE_DUPLICATE_LINK = "This link already exists in the address book.";
@@ -40,7 +37,9 @@ public class EditLinkCommand extends Command {
     private final EditLinkDescriptor editLinkDescriptor;
 
     /**
-     * @param index                of the link in the filtered link list to edit
+     * Creates an EditLinkCommand to edit a {@code Link}.
+     *
+     * @param index              of the link in the filtered link list to edit
      * @param editLinkDescriptor details to edit the link with
      */
     public EditLinkCommand(Index index, EditLinkDescriptor editLinkDescriptor) {
@@ -99,8 +98,7 @@ public class EditLinkCommand extends Command {
 
         // state check
         EditLinkCommand e = (EditLinkCommand) other;
-        return index.equals(e.index)
-                && editLinkDescriptor.equals(e.editLinkDescriptor);
+        return index.equals(e.index) && editLinkDescriptor.equals(e.editLinkDescriptor);
     }
 
     /**
@@ -112,7 +110,8 @@ public class EditLinkCommand extends Command {
 
         private Url url;
 
-        public EditLinkDescriptor() {};
+        public EditLinkDescriptor() {
+        }
 
         /**
          * Copy constructor.
@@ -160,10 +159,8 @@ public class EditLinkCommand extends Command {
             // state check
             EditLinkCommand.EditLinkDescriptor e = (EditLinkCommand.EditLinkDescriptor) other;
 
-            return getName().equals(e.getName())
-                    && getUrl().equals(e.getUrl());
+            return getName().equals(e.getName()) && getUrl().equals(e.getUrl());
         }
-
 
     }
 }

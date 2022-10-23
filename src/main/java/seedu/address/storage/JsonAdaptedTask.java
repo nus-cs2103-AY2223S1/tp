@@ -8,7 +8,6 @@ import java.util.stream.Collectors;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonValue;
 
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.person.Person;
@@ -21,7 +20,7 @@ class JsonAdaptedTask {
 
     private final String taskName;
     private final List<JsonAdaptedPerson> assignees = new ArrayList<>();
-    private boolean isComplete;
+    private String isComplete;
     private final String deadline;
 
     /**
@@ -30,7 +29,7 @@ class JsonAdaptedTask {
     @JsonCreator
     public JsonAdaptedTask(@JsonProperty("taskName") String taskName,
                            @JsonProperty("assignees") List<JsonAdaptedPerson> assignees,
-                           @JsonProperty("isComplete") boolean isComplete,
+                           @JsonProperty("isComplete") String isComplete,
                            @JsonProperty("deadline") String deadline) {
         this.taskName = taskName;
         if (assignees != null) {
@@ -48,13 +47,8 @@ class JsonAdaptedTask {
         assignees.addAll(source.getAssigneesList().stream()
                 .map(JsonAdaptedPerson::new)
                 .collect(Collectors.toList()));
-        isComplete = source.isComplete();
+        isComplete = String.valueOf(source.isComplete());
         deadline = source.getDeadlineStorage();
-    }
-
-    @JsonValue
-    public String getTaskName() {
-        return taskName;
     }
 
     /**
@@ -74,6 +68,10 @@ class JsonAdaptedTask {
         if (!this.deadline.equals("")) {
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
             deadline = LocalDateTime.parse(this.deadline, formatter);
+        }
+        boolean isComplete = false;
+        if (this.isComplete.equals("true")) {
+            isComplete = true;
         }
         return new Task(taskName, assigneeList, isComplete, deadline);
     }

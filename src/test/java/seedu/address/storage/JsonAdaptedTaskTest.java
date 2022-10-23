@@ -21,7 +21,7 @@ class JsonAdaptedTaskTest {
 
     @Test
     void toModelType_invalidTask_throwsException() {
-        JsonAdaptedTask task = new JsonAdaptedTask(" ", List.of(), false, "2022-12-12T23:59");
+        JsonAdaptedTask task = new JsonAdaptedTask(" ", List.of(), "false", "2022-12-12T23:59");
         assertThrows(IllegalValueException.class, () -> task.toModelType());
     }
 }

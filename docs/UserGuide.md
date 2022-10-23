@@ -74,8 +74,8 @@ Examples:
 ### Delete an existing team `delete_team`
 
 Delete an existing team from the user's list of teams. Throws an error under these conditions.
-- The target team does not exist.
-- The target team is the only existing team.
+ - The target team does not exist.
+ - The target team is the only existing team.
 
 Format:
 * `delete_team TEAM_NAME`
@@ -172,10 +172,23 @@ Examples:
 
 ### List tasks in team: `list_tasks`
 
-View all the tasks currently in the user’s team in the form of a list.
+View all the tasks currently in the user’s team in the form of a list. List can also be filtered based on complete
+or remaining tasks.
 
 Format:
 * `list_tasks` will list all the tasks of the current team.
+* `list_tasks -f i` will list all the incomplete tasks of the current team.
+* `list_tasks -f c` will list all the completed tasks of the current team.
+
+### Mark tasks as done: `mark`
+
+Mark a specified task as done.
+
+Format:
+* `mark INDEX`
+
+Examples:
+* `mark 1` will mark the first task in the team as done.
 
 ### View summary of task assignments in team: `summary`
 
