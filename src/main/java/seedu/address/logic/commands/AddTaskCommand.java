@@ -2,14 +2,13 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 
+import java.time.LocalDateTime;
+import java.util.List;
+
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.person.Person;
 import seedu.address.model.team.Task;
-
-import java.time.LocalDateTime;
-import java.util.List;
-
 
 /**
  * Adds a task to the current team.
@@ -25,6 +24,8 @@ public class AddTaskCommand extends Command {
     public static final String MESSAGE_ADD_TASK_SUCCESS = "Added Task: %1$s";
     public static final String MESSAGE_DUPLICATE_TASK = "This task already exists in the team";
     public static final String MESSAGE_TASK_NAME_FORMAT_ERROR = "Task name cannot be empty";
+    public static final String MESSAGE_PERSON_NOT_EXISTS = "The person you are trying to assign "
+            + "the task to does not exist";
 
     private final Task task;
     private String[] assignees;
@@ -54,6 +55,9 @@ public class AddTaskCommand extends Command {
                     task.assignTo(person);
                     break;
                 }
+            }
+            if (i == assignees.length - 1) {
+                throw new CommandException(MESSAGE_PERSON_NOT_EXISTS);
             }
         }
         model.getTeam().addTask(task);

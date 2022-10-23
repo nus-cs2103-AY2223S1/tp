@@ -1,12 +1,12 @@
 package seedu.address.storage;
 
+import java.util.List;
+
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.team.Task;
-
-import java.util.List;
 
 /**
  * Jackson-friendly version of {@link Task}.

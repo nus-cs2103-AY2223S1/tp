@@ -14,6 +14,7 @@ import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.person.Person;
 import seedu.address.model.team.Link;
+import seedu.address.model.team.Task;
 import seedu.address.model.team.Team;
 
 /**
@@ -164,6 +165,10 @@ public class ModelManager implements Model {
         addressBook.setLink(target, editedLink);
     }
 
+    @Override
+    public void setTask(Task target, Task editedTask) {
+        addressBook.setTask(target, editedTask);
+    }
     @Override
     public void deleteLink(Link link) {
         addressBook.deleteLink(link);
