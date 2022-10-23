@@ -10,7 +10,7 @@ import taskbook.commons.util.AppUtil;
  */
 public class Address {
 
-    public static final String NO_ADDRESS_PROVIDED = "No address";
+    public static final String NO_ADDRESS_PROVIDED = "[No address]";
 
     public static final String MESSAGE_CONSTRAINTS = "Addresses can take any values, and it should not be blank";
 

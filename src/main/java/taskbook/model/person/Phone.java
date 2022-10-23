@@ -10,7 +10,7 @@ import taskbook.commons.util.AppUtil;
  */
 public class Phone {
 
-    public static final String NO_PHONE_PROVIDED = "No phone number";
+    public static final String NO_PHONE_PROVIDED = "[No phone number]";
 
     public static final String MESSAGE_CONSTRAINTS =
             "Phone numbers should only contain numbers, and it should be at least 3 digits long";
