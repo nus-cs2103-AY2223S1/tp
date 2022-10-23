@@ -1,7 +1,5 @@
 package seedu.address;
 
-import static seedu.address.model.util.SampleDataUtil.getSamplePropertyModel;
-
 import java.io.IOException;
 import java.nio.file.Path;
 import java.util.Optional;
@@ -91,7 +89,7 @@ public class MainApp extends Application {
             if (!personBookOptional.isPresent()) {
                 logger.info("Data file not found. Will be starting with a sample PersonBook");
             }
-            personBook = personBookOptional.orElseGet(SampleDataUtil::getSamplePersonModel);
+            personBook = personBookOptional.orElseGet(SampleDataUtil::getSamplePersonBook);
         } catch (DataConversionException e) {
             logger.warning("Data file not in the correct format. Will be starting with an empty PersonBook");
             personBook = new PersonBook();
@@ -105,7 +103,7 @@ public class MainApp extends Application {
             if (!propertyBookOptional.isPresent()) {
                 logger.info("Data file not found. Will be starting with a sample PropertyBook");
             }
-            propertyBook = propertyBookOptional.orElseGet(SampleDataUtil::getSamplePropertyModel);
+            propertyBook = propertyBookOptional.orElseGet(SampleDataUtil::getSamplePropertyBook);
         } catch (DataConversionException e) {
             logger.warning("Data file not in the correct format. Will be starting with an empty PropertyBook");
             propertyBook = new PropertyBook();
