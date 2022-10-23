@@ -26,12 +26,12 @@ public class SortCommandParser implements Parser<SortCommand> {
         String orderType = splitCommand[1];
 
         switch (orderType.toUpperCase()) {
-            case "A":
-                return new SortCommand("a");
-            case "D":
-                return new SortCommand("d");
-            default:
-                throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+        case "A":
+            return new SortCommand("a");
+        case "D":
+            return new SortCommand("d");
+        default:
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                         SortCommand.SORT_COMMAND_CONSTRAINTS));
         }
     }
