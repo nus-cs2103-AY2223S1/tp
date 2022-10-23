@@ -33,7 +33,7 @@ public class OrderContainsKeywordsPredicate implements Predicate<Order> {
         }
 
         return nameKeywords.stream()
-                .anyMatch(keyword -> StringUtil.containsWordIgnoreCase(order.getName().toString(), keyword));
+                .anyMatch(keyword -> StringUtil.containsWordIgnoreCase(order.getName().toString(), keyword.trim()));
     }
 
     private boolean orderMatchesAddressKeywords(Order order) {
@@ -42,7 +42,8 @@ public class OrderContainsKeywordsPredicate implements Predicate<Order> {
         }
 
         return addressKeywords.stream()
-                .anyMatch(keyword -> StringUtil.containsWordIgnoreCase(order.getAddress().toString(), keyword));
+                .anyMatch(keyword ->
+                        StringUtil.containsWordIgnoreCase(order.getAddress().toString(), keyword.trim()));
     }
 
     private boolean orderMatchesItemKeywords(Order order) {
@@ -53,7 +54,7 @@ public class OrderContainsKeywordsPredicate implements Predicate<Order> {
         return itemKeywords.stream()
                 .anyMatch(keyword -> {
                     for (ItemQuantityPair i : order.getItemList()) {
-                        if (StringUtil.containsWordIgnoreCase(i.getItemName(), keyword)) {
+                        if (StringUtil.containsWordIgnoreCase(i.getItemName(), keyword.trim())) {
                             return true;
                         }
                     }

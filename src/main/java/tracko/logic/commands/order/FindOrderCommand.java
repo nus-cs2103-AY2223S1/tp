@@ -1,13 +1,11 @@
 package tracko.logic.commands.order;
 
 import static java.util.Objects.requireNonNull;
-import static tracko.logic.parser.CliSyntax.PREFIX_ADDRESS;
-import static tracko.logic.parser.CliSyntax.PREFIX_ITEM;
+import static tracko.logic.parser.CliSyntax.*;
 
 import tracko.commons.core.Messages;
 import tracko.logic.commands.Command;
 import tracko.logic.commands.CommandResult;
-import tracko.logic.parser.CliSyntax;
 import tracko.model.Model;
 import tracko.model.order.OrderContainsKeywordsPredicate;
 
@@ -22,12 +20,14 @@ public class FindOrderCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Finds all orders that contain any of "
             + "the specified keywords (case-insensitive) and displays them as a list with index numbers."
-            + "Keywords under the same prefix are separated by a semicolon (;).\n"
-            + "Parameters: "
-            + PREFIX_ITEM + "ITEM_KEYWORD; [MORE_ITEM_KEYWORDS]..."
-            + PREFIX_ADDRESS + "ADDRESS_KEYWORD; [MORE_ADDRESS_KEYWORDS]..."
-            + PREFIX_ITEM + "ITEM_KEYWORD; [MORE_ITEM_KEYWORDS]..."
-            + "Example: " + COMMAND_WORD + PREFIX_ITEM + " keychain" ;
+            + "Keywords under the same prefix are separated by a semicolon(;). "
+            + "Use at least one prefix during searching. \n"
+            + "Parameters: \n"
+            + PREFIX_ITEM + "ITEM_KEYWORD; [MORE_ITEM_KEYWORDS]...\n"
+            + PREFIX_ADDRESS + "ADDRESS_KEYWORD; [MORE_ADDRESS_KEYWORDS]...\n"
+            + PREFIX_NAME + "NAME_KEYWORD; [MORE_NAME_KEYWORDS]...\n"
+            + "Example: " + COMMAND_WORD
+            + " " + PREFIX_ITEM + "keychain " + PREFIX_ADDRESS + "Ang Mo Kio; Clementi" ;
 
     private final OrderContainsKeywordsPredicate predicate;
 
@@ -39,6 +39,7 @@ public class FindOrderCommand extends Command {
     public CommandResult execute(Model model) {
         requireNonNull(model);
         model.updateFilteredOrderList(predicate);
+        model.refreshData();
 
         return new CommandResult(
                 String.format(Messages.MESSAGE_ORDERS_FOUND_OVERVIEW, model.getFilteredOrderList().size()));
