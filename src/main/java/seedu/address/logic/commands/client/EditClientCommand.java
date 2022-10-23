@@ -1,5 +1,11 @@
 package seedu.address.logic.commands.client;
 
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.address.logic.parser.ClientCliSyntax.PREFIX_CLIENT_EMAIL;
+import static seedu.address.logic.parser.ClientCliSyntax.PREFIX_CLIENT_PHONE;
+import static seedu.address.logic.parser.ProjectCliSyntax.PREFIX_CLIENT_ID;
+import static seedu.address.model.Model.PREDICATE_SHOW_ALL_CLIENTS;
+
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
@@ -9,12 +15,6 @@ import seedu.address.model.client.ClientEmail;
 import seedu.address.model.client.ClientId;
 import seedu.address.model.client.ClientPhone;
 import seedu.address.ui.Ui;
-
-import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
-import static seedu.address.logic.parser.ClientCliSyntax.PREFIX_CLIENT_EMAIL;
-import static seedu.address.logic.parser.ClientCliSyntax.PREFIX_CLIENT_PHONE;
-import static seedu.address.logic.parser.ProjectCliSyntax.PREFIX_CLIENT_ID;
-import static seedu.address.model.Model.PREDICATE_SHOW_ALL_CLIENTS;
 
 /**
  * Edits the details of an existing client in the address book.
