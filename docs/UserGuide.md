@@ -6,7 +6,7 @@ title: User Guide
 GREWZ is a **desktop app for managing student details, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, GREWZ can get your student management tasks done faster than traditional GUI apps.
 
 * Table of Contents
-{:toc}
+- {:toc}
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -72,20 +72,34 @@ Shows a message explaning how to access the help page.
 
 Format: `help`
 
+### Exiting the program : `exit`
+
+Exits the program.
+
+Format: `exit`
+
+# AddressBook Commands
+---
+
 
 ### Adding a student: `add`
 
 Adds a student to the class list.
 
-Format: `add n/NAME p/PHONE_NUMBER e/EMAIL c/CLASS a/ADDRESS [t/TAG]…​`
+Format: `add n/NAME i/STUDENT_ID [p/PHONE_NUMBER] [e/EMAIL] [c/CLASS_GROUP] [t/TAG]…​`
 
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-A student can have any number of tags (including 0)
-</div>
+
+* ~~Compulsory~~ Optional Fields to Fill in (Fields in Square Bracket are Optional).
+* The fields can be written in any order.
+* ***Only*** Name and Student ID are a must.
+* Name must only consist of alphanumeric characters.
+* Student ID must take the format of e0XXXXXX where X is a digit from 0 to 9.
+* A student can have any number of tags (including 0).
+
 
 Examples:
-* `add n/John Doe p/98765432 e/johnd@example.com c/CS2030S a/John street, block 123, #01-01`
-* `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal`
+* `add n/John Doe i/e0123456`
+* `add n/Betsy Crowe i/e0321456 e/betsycrowe@example.com p/1234567 t/criminal`
 
 ### Listing all students : `list`
 
@@ -155,7 +169,6 @@ Examples:
 * find alex dav returns Wong Alex, David Lim<br>
 
 
-
 ### Deleting a student : `delete`
 
 Deletes the specified student from the student list.
@@ -214,11 +227,53 @@ Clears all entries from the student list.
 
 Format: `clear`
 
-### Exiting the program : `exit`
+# Task Commands 
+---
 
-Exits the program.
+### Adding a Task : `task`
 
-Format: `exit`
+Adds a task to the Task List. 
+There is two different types of Task - ***ToDo*** and ***Deadline***.
+
+#### Adding a ToDo
+
+Adds a ***ToDo*** (A type of Task) to the Task List.
+
+Format: `task t/TITLE d/DESC`
+
+* A ToDo should always include a title and description and should not be left blank.
+* Both title and description should consist of only alphanumeric characters.
+
+Examples:
+* `task t/Prepare slides for studio d/Topic Environment Model`
+* `task t/Collect robot d/At MakersLab`
+
+#### Adding a Deadline
+
+Adds a ***Deadline*** (A type of Task) to the Task List.
+
+Format: `task t/TITLE d/DESC by/YYYY-MM-DD`
+
+* A Deadline should always include a title, description and date and should not be left blank.
+* Both title and description should consist of only alphanumeric characters.
+* A date should strictly follow the format of YYYY-MM-DD.
+
+Examples:
+* `task t/Prepare slides for studio d/Topic Environment Model by/2020-12-12`
+* `task t/Collect robot d/At MakersLab by/2019-09-10`
+
+### Removing A Task
+
+Removes a specified task from the Task List (Can be a ToDo and a Deadline).
+
+Format: `remove-task INDEX`
+
+* Deletes the task at the specified `INDEX`.
+* The index refers to the index number shown in the displayed task list.
+* The index **must be a positive integer** 1, 2, 3, …​
+
+Examples:
+* `remove-task 2` deletes the 2nd student in the task list.
 
 ### Navigating User Input History: `↑`, `↓`
 
@@ -248,6 +303,15 @@ _Details coming soon ..._
 
 ## FAQ
 
+Q: How to add a student if I do not have their student ID?
+A: Unfortunately we need the name and student ID of the student minimally as we are using this fields to distinguish the students in the student list.
+
+Q: How to add a deadline to an existing toDo task?
+A: Remove the existing toDo task, then add the same task with your given deadline.
+
+Q: How to edit an existing task?
+A: Remove the existing task, then add the same task with the change that you want to make.
+
 Q: How do I transfer my data into another computer?
 A: Install the app in the other computer. From your current computer, transfer the "data" folder from GREWZ to your new GREWZ folder.
 
@@ -266,11 +330,14 @@ A: Install the app in the other computer. From your current computer, transfer t
 | **Edit**   | `edit INDEX [n/NAME] [i/STUDENT_ID] [p/PHONE_NUMBER] [e/EMAIL] [i/STUDENT_ID] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`                                           |
 | **Find**   | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`                                                                                                            |
 | **List**   | `list`                                                                                                                                                                |
-| **Help**   | `help`                                                                                                                                                                |
+| **Task**   | `task t/TITLE d/DESC [by/YYYY-MM-DD]`  <br> e.g.,<br> `task t/Collect robot d/At MakersLab` ,<br> `task t/Prepare slides for studio d/Topic Environment Model by/2020-12-12` |
+| **Remove Task** | `remove-task INDEX` |
 | **Upload** | `upload-pic`| `upload-pic INDEX` <br> e.g., `upload-pic 1`|
+| **Help**   | `help`                                                                                                                                                                |
 
 
 --------------------------------------------------------------------------------------------------------------------
 
 ##Glossary
+
 
