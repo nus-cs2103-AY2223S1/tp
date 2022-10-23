@@ -6,6 +6,7 @@ import static taskbook.logic.parser.CliSyntax.PREFIX_ASSIGN_TO;
 import static taskbook.logic.parser.CliSyntax.PREFIX_DATE;
 import static taskbook.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 import static taskbook.logic.parser.CliSyntax.PREFIX_INDEX;
+import static taskbook.logic.parser.CliSyntax.PREFIX_TAG;
 
 import taskbook.commons.core.Messages;
 import taskbook.commons.core.index.Index;
@@ -15,8 +16,14 @@ import taskbook.logic.parser.ArgumentTokenizer;
 import taskbook.logic.parser.Parser;
 import taskbook.logic.parser.ParserUtil;
 import taskbook.logic.parser.exceptions.ParseException;
+import taskbook.model.tag.Tag;
 import taskbook.model.task.EditTaskDescriptor;
 import taskbook.model.task.enums.Assignment;
+
+import java.util.Collection;
+import java.util.Collections;
+import java.util.Optional;
+import java.util.Set;
 
 /**
  * Parses input arguments and creates a new TaskEditCommand object.
@@ -33,7 +40,7 @@ public class TaskEditCommandParser implements Parser<TaskEditCommand> {
         requireNonNull(args);
 
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(
-            args, PREFIX_INDEX, PREFIX_ASSIGN_TO, PREFIX_ASSIGN_FROM, PREFIX_DESCRIPTION, PREFIX_DATE);
+            args, PREFIX_INDEX, PREFIX_ASSIGN_TO, PREFIX_ASSIGN_FROM, PREFIX_DESCRIPTION, PREFIX_DATE, PREFIX_TAG);
 
         if (argMultimap.getValue(PREFIX_INDEX).isEmpty()) {
             throw new ParseException(
@@ -72,6 +79,7 @@ public class TaskEditCommandParser implements Parser<TaskEditCommand> {
         if (argMultimap.getValue(PREFIX_DATE).isPresent()) {
             editTaskDescriptor.setDate(ParserUtil.parseDate(argMultimap.getValue(PREFIX_DATE).get()));
         }
+        parseTagsForEdit(argMultimap.getAllValues(PREFIX_TAG)).ifPresent(editTaskDescriptor::setTags);
 
         if (!editTaskDescriptor.isAnyFieldEdited()) {
             throw new ParseException(TaskEditCommand.MESSAGE_NOT_EDITED);
@@ -79,4 +87,20 @@ public class TaskEditCommandParser implements Parser<TaskEditCommand> {
 
         return new TaskEditCommand(index, editTaskDescriptor);
     }
+
+    /**
+     * Parses {@code Collection<String> tags} into a {@code Set<Tag>} if {@code tags} is non-empty.
+     * If {@code tags} contain only one element which is an empty string, it will be parsed into a
+     * {@code Set<Tag>} containing zero tags.
+     */
+    private Optional<Set<Tag>> parseTagsForEdit(Collection<String> tags) throws ParseException {
+        assert tags != null;
+
+        if (tags.isEmpty()) {
+            return Optional.empty();
+        }
+        Collection<String> tagSet = tags.size() == 1 && tags.contains("") ? Collections.emptySet() : tags;
+        return Optional.of(ParserUtil.parseTags(tagSet));
+    }
+
 }

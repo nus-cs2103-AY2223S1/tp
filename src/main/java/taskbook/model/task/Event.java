@@ -76,9 +76,9 @@ public class Event extends Task {
         Description description = descriptor.getDescription().orElse(getDescription());
         Boolean isDone = descriptor.getIsDone().orElse(isDone());
         LocalDate date = descriptor.getDate().orElse(getDate());
-        //todo: add tags
+        Set<Tag> tags = descriptor.getTags().orElse(getTags());
 
-        return new Event(name, assignment, description, isDone, date);
+        return new Event(name, assignment, description, isDone, date, tags);
     }
 
     @Override
@@ -108,5 +108,4 @@ public class Event extends Task {
                 + String.format("[%s]", getDate().toString())
                 + taskString.substring(newLineIndex);
     }
-
 }

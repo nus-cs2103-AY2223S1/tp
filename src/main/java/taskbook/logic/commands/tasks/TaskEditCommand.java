@@ -8,6 +8,7 @@ import static taskbook.logic.parser.CliSyntax.PREFIX_ASSIGN_TO;
 import static taskbook.logic.parser.CliSyntax.PREFIX_DATE;
 import static taskbook.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 import static taskbook.logic.parser.CliSyntax.PREFIX_INDEX;
+import static taskbook.logic.parser.CliSyntax.PREFIX_TAG;
 
 import java.util.List;
 
@@ -33,7 +34,8 @@ public class TaskEditCommand extends Command {
         + "[" + PREFIX_ASSIGN_FROM + "NAME] "
         + "[" + PREFIX_ASSIGN_TO + "NAME] "
         + "[" + PREFIX_DESCRIPTION + "DESCRIPTION] "
-        + "[" + PREFIX_DATE + "DATE\n] "
+        + "[" + PREFIX_DATE + "DATE] "
+        + "[" + PREFIX_TAG + "TAG] \n"
         + "Example: " + COMMAND_WORD + " " + PREFIX_INDEX + " 1 "
         + PREFIX_ASSIGN_FROM + "Jackie Chan "
         + PREFIX_DESCRIPTION + "Practice kick 10000 times";

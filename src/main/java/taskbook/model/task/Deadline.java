@@ -76,9 +76,9 @@ public class Deadline extends Task {
         Description description = descriptor.getDescription().orElse(getDescription());
         Boolean isDone = descriptor.getIsDone().orElse(isDone());
         LocalDate date = descriptor.getDate().orElse(getDate());
-        //todo: add tags
+        Set<Tag> tags = descriptor.getTags().orElse(getTags());
 
-        return new Deadline(name, assignment, description, isDone, date);
+        return new Deadline(name, assignment, description, isDone, date, tags);
     }
 
     @Override

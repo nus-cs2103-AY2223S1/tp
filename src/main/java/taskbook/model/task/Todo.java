@@ -73,9 +73,9 @@ public class Todo extends Task {
         Assignment assignment = descriptor.getAssignment().orElse(getAssignment());
         Description description = descriptor.getDescription().orElse(getDescription());
         Boolean isDone = descriptor.getIsDone().orElse(isDone());
-        //todo: add tags
+        Set<Tag> tags = descriptor.getTags().orElse(getTags());
 
-        return new Todo(name, assignment, description, isDone);
+        return new Todo(name, assignment, description, isDone, tags);
     }
 
     @Override
