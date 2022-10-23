@@ -1,5 +1,6 @@
 package seedu.address.logic.parser;
 
+import static seedu.address.commons.core.Messages.MESSAGE_END_TIME_BEFORE_START_TIME;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
@@ -37,6 +38,9 @@ public class AddMeetingCommandParser implements Parser<AddMeetingCommand> {
         MeetingDate date = new MeetingDate(ParserUtil.parseDate(argMultimap.getValue(PREFIX_DATE).get(), "meeting"));
         MeetingTime startTime = ParserUtil.parseTime(argMultimap.getValue(PREFIX_START_TIME).get());
         MeetingTime endTime = ParserUtil.parseTime(argMultimap.getValue(PREFIX_END_TIME).get());
+        if (endTime.isBefore(startTime)) {
+            throw new ParseException(MESSAGE_END_TIME_BEFORE_START_TIME);
+        }
         Description description = new Description(argMultimap.getValue(PREFIX_DESCRIPTION).get());
         return new AddMeetingCommand(clientIndex, date, startTime, endTime, description);
     }
