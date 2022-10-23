@@ -11,7 +11,7 @@ import seedu.address.model.tag.Tag;
 /**
  * Meeting class is a meeting a client has at a listing on a specific dateTime.
  */
-public class Meeting {
+public class Meeting implements Comparable<Meeting> {
 
     /**
      * Date and Time of meeting.
@@ -97,6 +97,21 @@ public class Meeting {
                 && otherMeeting.getListing().equals(getListing())
                 && otherMeeting.getdateTime().equals(getdateTime());
     }
+
+    /**
+     * Compares this meeting to another meeting
+     */
+    @Override
+    public int compareTo(Meeting o) {
+        if (this.dateTime.isAfter(o.dateTime)) {
+            return 1;
+        } else if (this.dateTime.isBefore(o.dateTime)) {
+            return 1;
+        } else {
+            return 0;
+        }
+    }
+
     /**
      * String representation of meeting.
      * @return String
@@ -105,4 +120,5 @@ public class Meeting {
     public String toString() {
         return String.format("%s is meeting at %s on %s", client.getName(), listing.getAddress(), dateTime);
     }
+
 }

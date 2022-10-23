@@ -13,6 +13,7 @@ import seedu.address.model.listing.Listing;
 import seedu.address.model.listing.ListingID;
 import seedu.address.model.offer.Price;
 import seedu.address.model.person.Address;
+import seedu.address.model.person.Client;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 
@@ -59,7 +60,7 @@ public class AddListingCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
 
-        Person owner = model.getPerson(name);
+        Client owner = model.getClient(name);
         this.toAdd = new Listing(id, address, owner, askingPrice);
 
         if (model.hasListing(toAdd)) {

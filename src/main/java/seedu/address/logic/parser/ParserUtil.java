@@ -143,7 +143,7 @@ public class ParserUtil {
         requireNonNull(id);
         String trimmedListingID = id.trim();
         if (!ListingID.isValidListingID(trimmedListingID)) {
-            throw new ParseException(Name.MESSAGE_CONSTRAINTS);
+            throw new ParseException(ListingID.MESSAGE_CONSTRAINTS);
         }
         return new ListingID(trimmedListingID);
     }
