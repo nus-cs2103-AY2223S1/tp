@@ -98,9 +98,9 @@ public class EditCommandTest {
         expectedModel.setItem(model.getCurrentList().get(0), editedItem);
 
         EditCommand editCommand = new EditCommand(TypicalIndexes.INDEX_FIRST_ITEM,
-                                                  new EditItemDescriptorBuilder()
-                                                          .withItemQuantity(CommandTestUtil.VALID_ITEM_QUANTITY_CUCUMBERS)
-                                                          .build());
+                                              new EditItemDescriptorBuilder()
+                                                      .withItemQuantity(CommandTestUtil.VALID_ITEM_QUANTITY_CUCUMBERS)
+                                                      .build());
         editCommand.execute(expectedModel);
 
         assertEquals(editedItem, expectedModel.getCurrentList().get(0));
