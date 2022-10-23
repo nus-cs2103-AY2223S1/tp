@@ -10,6 +10,7 @@ import seedu.rc4hdb.model.Model;
 import seedu.rc4hdb.model.ReadOnlyResidentBook;
 import seedu.rc4hdb.model.ReadOnlyUserPrefs;
 import seedu.rc4hdb.model.resident.Resident;
+import seedu.rc4hdb.model.venues.Venue;
 
 /**
  * A default model stub where methods fail.
@@ -95,4 +96,15 @@ public class ModelStub implements Model {
     public void setObservableFields(List<String> observableFields) {
         throw new AssertionError("This method should not be called.");
     }
+
+    @Override
+    public ObservableList<Venue> getObservableVenues() {
+        throw new AssertionError("This method should not be called.");
+    }
+
+    @Override
+    public void setObservableVenues(List<Venue> modifiableVenues) {
+        throw new AssertionError("This method should not be called.");
+    }
+
 }

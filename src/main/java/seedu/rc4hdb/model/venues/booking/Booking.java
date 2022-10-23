@@ -1,10 +1,9 @@
 package seedu.rc4hdb.model.venues.booking;
 
-import java.time.DayOfWeek;
-import java.time.LocalTime;
-
 import seedu.rc4hdb.model.resident.Resident;
 import seedu.rc4hdb.model.venues.Venue;
+import seedu.rc4hdb.model.venues.booking.fields.Day;
+import seedu.rc4hdb.model.venues.booking.fields.Hour;
 
 /**
  * Represents a booking for a venue. Bookings cannot span multiple days.
@@ -13,9 +12,9 @@ public abstract class Booking {
 
     protected Venue venue;
     protected Resident resident;
-    protected LocalTime startHour;
-    protected LocalTime endHour;
-    protected DayOfWeek dayOfWeek;
+    protected Hour startHour;
+    protected Hour endHour;
+    protected Day dayOfWeek;
 
     /**
      * Constructor for a Booking instance.
@@ -24,35 +23,12 @@ public abstract class Booking {
      * @param endTime The end time of the booking.
      * @param venue The venue of the booking.
      */
-    public Booking(Resident resident, LocalTime startTime, LocalTime endTime, Venue venue) {
+    public Booking(Resident resident, Hour startTime, Hour endTime, Day dayOfWeek, Venue venue) {
         this.resident = resident;
         this.startHour = startTime;
         this.endHour = endTime;
-        this.venue = venue;
-    }
-
-    public Venue getVenue() {
-        return this.venue;
-    }
-
-    public Resident getResident() {
-        return this.resident;
-    }
-
-    public LocalTime getStartHour() {
-        return this.startHour;
-    }
-
-    public LocalTime getEndHour() {
-        return this.endHour;
-    }
-
-    public DayOfWeek getDayOfWeek() {
-        return this.dayOfWeek;
-    }
-
-    protected void setDayOfWeek(DayOfWeek dayOfWeek) {
         this.dayOfWeek = dayOfWeek;
+        this.venue = venue;
     }
 
     /**
@@ -67,4 +43,21 @@ public abstract class Booking {
      * @return True if both bookings overlap.
      */
     public abstract boolean clashesWith(Booking booking);
+
+    @Override
+    public String toString() {
+        final StringBuilder builder = new StringBuilder();
+        builder.append(resident.getName())
+                .append("; Venue: ")
+                .append(venue)
+                .append("; Start Time: ")
+                .append(startHour)
+                .append("; End Time: ")
+                .append(endHour)
+                .append("; Day: ")
+                .append(dayOfWeek);
+
+        return builder.toString();
+    }
+
 }

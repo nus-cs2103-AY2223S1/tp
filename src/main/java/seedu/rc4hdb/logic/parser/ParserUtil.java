@@ -19,7 +19,7 @@ import seedu.rc4hdb.model.resident.fields.Room;
 import seedu.rc4hdb.model.resident.fields.Tag;
 import seedu.rc4hdb.model.venues.Venue;
 import seedu.rc4hdb.model.venues.booking.fields.Day;
-import seedu.rc4hdb.model.venues.booking.fields.Time;
+import seedu.rc4hdb.model.venues.booking.fields.Hour;
 
 /**
  * Contains utility methods used for parsing strings in the various *Parser classes.
@@ -192,13 +192,13 @@ public class ParserUtil {
     /**
      * Parses {@code String time} into a {@code Time}.
      */
-    public static Time parseTime(String time) throws ParseException {
+    public static Hour parseTime(String time) throws ParseException {
         requireNonNull(time);
         String trimmedStartTime = time.trim();
-        if (!Time.isValidTime(trimmedStartTime)) {
-            throw new ParseException(Time.MESSAGE_CONSTRAINTS);
+        if (!Hour.isValidHour(trimmedStartTime)) {
+            throw new ParseException(Hour.MESSAGE_CONSTRAINTS);
         }
-        return new Time(time);
+        return new Hour(time);
     }
 
     /**
