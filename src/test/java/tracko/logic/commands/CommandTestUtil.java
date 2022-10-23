@@ -30,7 +30,6 @@ import tracko.testutil.EditItemDescriptorBuilder;
  * Contains helper methods for testing commands.
  */
 public class CommandTestUtil {
-    private static final List<Tag> TAGS_AMY = new ArrayList<>();
 
     public static final String VALID_NAME_AMY = "Amy Bee";
     public static final String VALID_NAME_BOB = "Bob Choo";
@@ -103,6 +102,8 @@ public class CommandTestUtil {
                 .withTags(VALID_ITEM_TAG_ERASER).withSellPrice(VALID_ITEM_SELL_PRICE_ERASER)
                 .withCostPrice(VALID_ITEM_COST_PRICE_ERASER).build();
     }
+
+    private static final List<Tag> TAGS_AMY = new ArrayList<>();
 
     /**
      * Executes the given {@code command}, confirms that <br>
