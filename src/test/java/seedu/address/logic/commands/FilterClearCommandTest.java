@@ -19,6 +19,7 @@ import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.person.TagMatchesQueryPredicate;
+import seedu.address.model.reminder.ReminderList;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -26,8 +27,8 @@ import seedu.address.model.tag.Tag;
  */
 public class FilterClearCommandTest {
     private static final String COMMA = "\\s*,\\s*";
-    private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
-    private Model expectedModel = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+    private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs(), new ReminderList());
+    private Model expectedModel = new ModelManager(getTypicalAddressBook(), new UserPrefs(), new ReminderList());
 
     @Test
     public void equals() {
@@ -41,8 +42,10 @@ public class FilterClearCommandTest {
         TagMatchesQueryPredicate secondTagPredicate =
                 new TagMatchesQueryPredicate(new Tag("neighbor"));
 
-        FilterCommandPredicate firstPredicate = new FilterCommandPredicate(firstNamePredicate, firstTagPredicate);
-        FilterCommandPredicate secondPredicate = new FilterCommandPredicate(secondNamePredicate, secondTagPredicate);
+        FilterCommandPredicate firstPredicate =
+                new FilterCommandPredicate(firstNamePredicate, firstTagPredicate);
+        FilterCommandPredicate secondPredicate =
+                new FilterCommandPredicate(secondNamePredicate, secondTagPredicate);
 
         FilterClearCommand filterFirstCommand = new FilterClearCommand(firstPredicate);
         FilterClearCommand filterSecondCommand = new FilterClearCommand(secondPredicate);
@@ -79,8 +82,8 @@ public class FilterClearCommandTest {
         Set<NameContainsKeywordsPredicate> namePredicates = prepareNamePredicate("Kurz,Elle,Kunz");
         FilterCommandPredicate predicate1 = new FilterCommandPredicate(namePredicates, null);
         FilterClearCommand command1 = new FilterClearCommand(predicate1);
-        String expectedMessage1 = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 7);
-        namePredicates.forEach(pred -> model.addNewFilterToFilteredPersonList(pred));
+        String expectedMessage1 = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 7) + "\n";
+        model.removeFilterFromFilteredPersonList(predicate1);
         assertCommandSuccess(command1, model, expectedMessage1, expectedModel);
         assertEquals(getTypicalAddressBook().getPersonList(), model.getFilteredPersonList());
 
@@ -88,8 +91,8 @@ public class FilterClearCommandTest {
         Set<TagMatchesQueryPredicate> tagPredicates = prepareTagPredicate("owesMoney, friends");
         FilterCommandPredicate predicate2 = new FilterCommandPredicate(null, tagPredicates);
         FilterClearCommand command2 = new FilterClearCommand(predicate2);
-        String expectedMessage2 = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 7);
-        tagPredicates.forEach(pred -> model.addNewFilterToFilteredPersonList(pred));
+        String expectedMessage2 = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 7) + "\n";
+        model.removeFilterFromFilteredPersonList(predicate2);
         assertCommandSuccess(command2, model, expectedMessage2, expectedModel);
         assertEquals(getTypicalAddressBook().getPersonList(), model.getFilteredPersonList());
 
@@ -97,9 +100,8 @@ public class FilterClearCommandTest {
         // clear name and tag predicate
         FilterCommandPredicate predicate3 = new FilterCommandPredicate(namePredicates, tagPredicates);
         FilterClearCommand command3 = new FilterClearCommand(predicate3);
-        String expectedMessage3 = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 7);
-        namePredicates.forEach(pred -> model.addNewFilterToFilteredPersonList(pred));
-        tagPredicates.forEach(pred -> model.addNewFilterToFilteredPersonList(pred));
+        String expectedMessage3 = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 7) + "\n";
+        model.removeFilterFromFilteredPersonList(predicate3);
         assertCommandSuccess(command3, model, expectedMessage3, expectedModel);
         assertEquals(getTypicalAddressBook().getPersonList(), model.getFilteredPersonList());
     }

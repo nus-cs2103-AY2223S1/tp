@@ -7,6 +7,7 @@ import java.util.List;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.message.Message;
+import seedu.address.ui.SecondaryPaneState;
 
 
 /**
@@ -36,7 +37,7 @@ public class ListMessageCommand extends MessageCommandGroup {
         for (int i = 0; i < messages.size(); ++i) {
             sb.append(i + 1 + ". " + messages.get(i) + "\n");
         }
-        return new CommandResult(String.format(MESSAGE_SUCCESS, sb));
+        return new CommandResult(String.format(MESSAGE_SUCCESS, sb), SecondaryPaneState.MESSAGE_TEMPLATES);
     }
 
     @Override

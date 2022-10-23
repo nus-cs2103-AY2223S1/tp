@@ -15,6 +15,7 @@ import seedu.address.model.tag.Tag;
 public class DeleteTagCommand extends TagCommandGroup {
 
     public static final String COMMAND_SPECIFIER = "delete";
+    public static final String COMMAND_SPECIFIER_ALIAS = "d";
     public static final String COMMAND_WORD = COMMAND_GROUP + " " + COMMAND_SPECIFIER;
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Deletes tags with the names given. "

@@ -3,11 +3,10 @@ package seedu.address.logic.commands;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.logic.commands.CommandTestUtil.ModelStub;
+import static seedu.address.commons.core.Messages.MESSAGE_TAGS_NOT_FOUND;
 import static seedu.address.logic.commands.TagCommand.MESSAGE_DUPLICATE_TAGS;
 import static seedu.address.logic.commands.TagCommand.MESSAGE_NO_TAGS_ADDED;
 import static seedu.address.logic.commands.TagCommand.MESSAGE_SUCCESS;
-import static seedu.address.logic.commands.TagCommand.MESSAGE_TAGS_NOT_FOUND;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalPersons.ALICE;
 import static seedu.address.testutil.TypicalTags.VALID_TAG_FRIENDS;
@@ -22,6 +21,7 @@ import org.junit.jupiter.api.Test;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.index.Index;
+import seedu.address.logic.commands.CommandTestUtil.ModelStub;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.TargetPerson;
@@ -179,8 +179,7 @@ public class TagCommandTest {
         }
 
         @Override
-        public void clearFiltersInFilteredPersonList() {
-        }
+        public void clearFiltersInFilteredPersonList() {}
 
         @Override
         public ObservableList<Person> getFilteredPersonList() {

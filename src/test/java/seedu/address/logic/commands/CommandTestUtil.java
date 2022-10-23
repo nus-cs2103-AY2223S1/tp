@@ -27,6 +27,9 @@ import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.message.Message;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.person.Person;
+import seedu.address.model.quote.Quote;
+import seedu.address.model.reminder.ReadOnlyReminderList;
+import seedu.address.model.reminder.Reminder;
 import seedu.address.model.tag.Tag;
 import seedu.address.testutil.EditPersonDescriptorBuilder;
 
@@ -97,6 +100,20 @@ public class CommandTestUtil {
     }
 
     /**
+     * Executes the given {@code command}, confirms that <br>
+     * - the returned {@link CommandResult} matches {@code expectedCommandResult} <br>
+     * - the {@code actualModel} matches {@code expectedModel}
+     */
+    public static void assertCommandSuccess(Command command, Model actualModel, Model expectedModel) {
+        try {
+            command.execute(actualModel);
+            assertEquals(expectedModel, actualModel);
+        } catch (CommandException ce) {
+            throw new AssertionError("Execution of command should not fail.", ce);
+        }
+    }
+
+    /**
      * Convenience wrapper to {@link #assertCommandSuccess(Command, Model, CommandResult, Model)}
      * that takes a string {@code expectedMessage}.
      */
@@ -132,7 +149,9 @@ public class CommandTestUtil {
 
         Person person = model.getFilteredPersonList().get(targetIndex.getZeroBased());
         final String[] splitName = person.getName().fullName.split("\\s+");
-        model.addNewFilterToFilteredPersonList(new NameContainsKeywordsPredicate(splitName[0]));
+        FilterCommandPredicate predicate =
+                new FilterCommandPredicate(new NameContainsKeywordsPredicate(splitName[0]), null);
+        model.addNewFilterToFilteredPersonList(predicate);
 
         assertEquals(1, model.getFilteredPersonList().size());
     }
@@ -228,7 +247,7 @@ public class CommandTestUtil {
         }
 
         @Override
-        public void addNewFilterToFilteredPersonList(Predicate<Person> predicate) {
+        public void addNewFilterToFilteredPersonList(FilterCommandPredicate predicate) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -238,7 +257,7 @@ public class CommandTestUtil {
         }
 
         @Override
-        public void removeFilterFromFilteredPersonList(Predicate<Person> predicate) {
+        public void removeFilterFromFilteredPersonList(FilterCommandPredicate predicate) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -273,7 +292,22 @@ public class CommandTestUtil {
         }
 
         @Override
+        public ReadOnlyReminderList getReminderList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public ObservableList<Reminder> getReminderListAsObservableList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public List<Message> getMessages() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public ObservableList<Reminder> getTargetPersonReminderListAsObservableList() {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -283,12 +317,57 @@ public class CommandTestUtil {
         }
 
         @Override
+        public void deleteReminder(Reminder reminder) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public void deleteMessage(Message message) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
+        public void addReminder(Reminder reminder) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public boolean reminderExists(Reminder reminder) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public ObservableList<Reminder> getCurrentReminderList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void clearCurrentReminderList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void clearAllReminders() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public boolean hasMessage(Message message) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public Set<Predicate<Person>> getTagFilters() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public Set<Predicate<Person>> getNameFilters() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public Quote getQuote() {
             throw new AssertionError("This method should not be called.");
         }
     }
