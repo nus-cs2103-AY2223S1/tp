@@ -1,11 +1,12 @@
 package foodwhere.logic.parser;
 
+import static foodwhere.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static foodwhere.commons.core.Messages.MESSAGE_INVALID_INDEX;
 import static foodwhere.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static foodwhere.logic.parser.CommandParserTestUtil.assertParseSuccess;
 
 import org.junit.jupiter.api.Test;
 
-import foodwhere.commons.core.Messages;
 import foodwhere.logic.commands.RDeleteCommand;
 import foodwhere.testutil.TypicalIndexes;
 
@@ -28,6 +29,13 @@ public class RDeleteCommandParserTest {
     @Test
     public void parse_invalidArgs_throwsParseException() {
         assertParseFailure(parser, "a",
-                String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT, RDeleteCommand.MESSAGE_USAGE));
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, MESSAGE_INVALID_INDEX)
+                        + RDeleteCommand.MESSAGE_USAGE);
+    }
+
+    @Test
+    public void parse_extraIndex_throwsParseException() {
+        assertParseFailure(parser, "1 2",
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, MESSAGE_INVALID_INDEX) + RDeleteCommand.MESSAGE_USAGE);
     }
 }

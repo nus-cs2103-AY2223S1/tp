@@ -1,6 +1,7 @@
 package foodwhere.logic.parser;
 
 import static foodwhere.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static foodwhere.commons.core.Messages.MESSAGE_INVALID_INDEX;
 
 import foodwhere.commons.core.index.Index;
 import foodwhere.logic.commands.SDeleteCommand;
@@ -22,7 +23,9 @@ public class SDeleteCommandParser implements Parser<SDeleteCommand> {
             return new SDeleteCommand(index);
         } catch (ParseException pe) {
             throw new ParseException(
-                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, SDeleteCommand.MESSAGE_USAGE), pe);
+                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, MESSAGE_INVALID_INDEX)
+                            + SDeleteCommand.MESSAGE_USAGE);
+
         }
     }
 

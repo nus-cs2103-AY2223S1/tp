@@ -12,6 +12,7 @@ import java.util.Set;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
+import foodwhere.commons.core.Messages;
 import foodwhere.logic.parser.exceptions.ParseException;
 import foodwhere.model.commons.Name;
 import foodwhere.model.commons.Tag;
@@ -37,7 +38,7 @@ public class ParserUtilTest {
 
     @Test
     public void parseIndex_outOfRangeInput_throwsParseException() {
-        assertThrows(ParseException.class, ParserUtil.MESSAGE_INVALID_INDEX, ()
+        assertThrows(ParseException.class, Messages.MESSAGE_INVALID_INDEX, ()
             -> ParserUtil.parseIndex(Long.toString(Integer.MAX_VALUE + 1)));
     }
 

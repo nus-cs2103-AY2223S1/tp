@@ -22,7 +22,8 @@ public class RDeleteCommandParser implements Parser<RDeleteCommand> {
             return new RDeleteCommand(index);
         } catch (ParseException pe) {
             throw new ParseException(
-                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, RDeleteCommand.MESSAGE_USAGE), pe);
+                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, pe.getMessage())
+                            + RDeleteCommand.MESSAGE_USAGE);
         }
     }
 
