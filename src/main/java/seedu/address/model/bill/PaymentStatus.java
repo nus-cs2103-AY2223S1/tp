@@ -49,10 +49,6 @@ public class PaymentStatus {
         return status.equals(Status.PAID);
     }
 
-    public void setAsUnpaid() {
-        this.status = Status.UNPAID;
-    }
-
     @Override
     public String toString() {
         return String.valueOf(status);
@@ -68,5 +64,9 @@ public class PaymentStatus {
     @Override
     public int hashCode() {
         return status.hashCode();
+    }
+
+    public void setAsUnpaid() {
+        this.status = Status.UNPAID;
     }
 }

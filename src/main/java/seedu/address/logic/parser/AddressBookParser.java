@@ -97,10 +97,10 @@ public class AddressBookParser {
             return new HelpCommand();
         } else if (SelectPatientCommand.COMMAND_WORD.matches(commandWord)) {
             return new SelectPatientCommandParser().parse(arguments);
-        } else if (SelectAppointmentCommand.COMMAND_WORD.matches(commandWord)) {
-            return new SelectAppointmentCommandParser().parse(arguments);
         } else if (SetUnpaidCommand.COMMAND_WORD.matches(commandWord)) {
             return new SetUnpaidCommandParser().parse(arguments);
+        } else if (SelectAppointmentCommand.COMMAND_WORD.matches(commandWord)) {
+            return new SelectAppointmentCommandParser().parse(arguments);
         } else {
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
         }

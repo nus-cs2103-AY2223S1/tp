@@ -298,12 +298,12 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void sortAppointments(Comparator<Appointment> comparator, boolean isAscending) {
-        this.addressBook.sortAppointments(comparator, isAscending);
+    public void setBillAsUnpaid(Bill bill) {
+        this.addressBook.setBillAsUnpaid(bill);
     }
 
     @Override
-    public void setBillAsUnpaid(Bill bill) {
-        this.addressBook.setBillAsUnpaid(bill);
+    public void sortAppointments(Comparator<Appointment> comparator, boolean isAscending) {
+        this.addressBook.sortAppointments(comparator, isAscending);
     }
 }

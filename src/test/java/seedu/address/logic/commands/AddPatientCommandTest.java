@@ -249,12 +249,12 @@ public class AddPatientCommandTest {
         }
 
         @Override
-        public void deleteRelativeBills(Appointment appointment) {
+        public void setBillAsUnpaid(Bill bill) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void setBillAsUnpaid(Bill bill) {
+        public void deleteRelativeBills(Appointment appointment) {
             throw new AssertionError("This method should not be called.");
         }
     }
