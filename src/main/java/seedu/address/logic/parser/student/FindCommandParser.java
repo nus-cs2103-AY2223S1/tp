@@ -33,14 +33,9 @@ public class FindCommandParser implements Parser<FindCommand> {
 
         ParserUtil.assertAnyPrefixesPresent(argMultimap,
                 PREFIX_NAME, PREFIX_ID, PREFIX_MODULE, PREFIX_TUTORIAL);
-        String trimmedArgs = args.trim();
-        if (trimmedArgs.isEmpty()) {
-            throw new ParseException(
-                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
-        }
 
-        String[] nameKeywords = trimmedArgs.split("\\s+");
-
+        String trimmedName = argMultimap.getValue(PREFIX_NAME).get().trim();
+        String[] nameKeywords = trimmedName.split("\\s+");
         return new FindCommand(new NameContainsKeywordsPredicate(Arrays.asList(nameKeywords)));
     }
 
