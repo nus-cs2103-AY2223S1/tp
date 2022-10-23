@@ -48,6 +48,8 @@ public class TagCommandGroupParser implements Parser<TagCommandGroup> {
         case CreateTagCommand.COMMAND_SPECIFIER_ALIAS:
             return new CreateTagCommand(parseArgs(argsToPass));
         case DeleteTagCommand.COMMAND_SPECIFIER:
+            // Fallthrough
+        case DeleteTagCommand.COMMAND_SPECIFIER_ALIAS:
             return new DeleteTagCommand(parseArgs(argsToPass));
         case RemoveTagCommand.COMMAND_SPECIFIER:
             // Fallthrough
