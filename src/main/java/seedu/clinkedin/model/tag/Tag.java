@@ -52,4 +52,11 @@ public class Tag {
     public String toString() {
         return '[' + tagName + ']';
     }
+
+    /**
+     * Returns the tagName.
+     */
+    public String getTagName() {
+        return tagName;
+    }
 }

@@ -34,6 +34,7 @@ public class MainWindow extends UiPart<Stage> {
     private PersonListPanel personListPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
+    private ExportWindow exportWindow;
     private PersonCountDisplay personCountDisplay;
 
     @FXML
@@ -70,6 +71,7 @@ public class MainWindow extends UiPart<Stage> {
         setAccelerators();
 
         helpWindow = new HelpWindow();
+        exportWindow = new ExportWindow(logic);
     }
 
     public Stage getPrimaryStage() {
@@ -151,6 +153,18 @@ public class MainWindow extends UiPart<Stage> {
             helpWindow.show();
         } else {
             helpWindow.focus();
+        }
+    }
+
+    /**
+     * Opens the export window or focuses on it if it's already opened.
+     */
+    @FXML
+    public void handleExport() {
+        if (!exportWindow.isShowing()) {
+            exportWindow.show();
+        } else {
+            exportWindow.focus();
         }
     }
 

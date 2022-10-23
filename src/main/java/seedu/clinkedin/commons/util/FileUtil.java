@@ -1,10 +1,19 @@
 package seedu.clinkedin.commons.util;
 
+import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.OutputStreamWriter;
+import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.InvalidPathException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.List;
+
+import com.opencsv.CSVReader;
+import com.opencsv.CSVReaderBuilder;
+import com.opencsv.CSVWriter;
 
 /**
  * Writes and reads files
@@ -18,7 +27,7 @@ public class FileUtil {
     }
 
     /**
-     * Returns true if {@code path} can be converted into a {@code Path} via {@link Paths#get(String)},
+     * Returns true if {@code path} can be converted into a {@code Path} via {@code Paths#get(String)},
      * otherwise returns false.
      * @param path A string representing the file path. Cannot be null.
      */
@@ -80,4 +89,21 @@ public class FileUtil {
         Files.write(file, content.getBytes(CHARSET));
     }
 
+    /**
+     * Exports data to file path.
+     */
+    public static void exportToCsvFile(String filePath, List<String[]> data) throws IOException {
+        File file = new File(filePath);
+        if (file.getParentFile() != null) {
+            file.getParentFile().mkdirs();
+        }
+        file.createNewFile();
+        FileOutputStream outputStream = new FileOutputStream(file, false);
+        CSVWriter writer = new CSVWriter(new OutputStreamWriter(outputStream, StandardCharsets.UTF_8));
+        outputStream.write(0xef);
+        outputStream.write(0xbb);
+        outputStream.write(0xbf);
+        writer.writeAll(data);
+        writer.close();
+    }
 }

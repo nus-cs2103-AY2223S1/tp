@@ -2,6 +2,8 @@ package seedu.clinkedin.model.person;
 
 import static seedu.clinkedin.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 import javafx.collections.ObservableMap;
@@ -134,6 +136,30 @@ public class Person {
     public String getDetailsAsString() {
         return String.format("%s %s %s %s %s %s %s", name, phone, email, address, status,
                 tagTypeMap, note);
+    }
+
+    public List<String[]> getDetailsAsArray() {
+        List<String[]> personDetails = new ArrayList<>();
+        personDetails.add(new String[]{"Name", name.fullName});
+        personDetails.add(new String[]{"Phone", phone.value});
+        personDetails.add(new String[]{"Email", email.value});
+        personDetails.add(new String[]{"Address", address.value});
+        personDetails.add(new String[]{"Status", status.status});
+        personDetails.add(new String[]{"Note", note.value});
+
+
+        ObservableMap<TagType, UniqueTagList> tags = getTags();
+        if (!tags.isEmpty()) {
+            tags.forEach((tagType, tagList) -> {
+                List<String> tagWithTagType = new ArrayList<>();
+                tagWithTagType.add("Tag:" + tagType.getTagTypeName());
+                tagWithTagType.addAll(tagList.getAsList());
+                String[] tagWithTagTypeArray = tagWithTagType.toArray(new String[tagWithTagType.size()]);
+                personDetails.add(tagWithTagTypeArray);
+            });
+        }
+        personDetails.add(new String[]{});
+        return personDetails;
     }
 
     @Override
