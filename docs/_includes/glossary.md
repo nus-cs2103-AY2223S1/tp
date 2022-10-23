@@ -26,7 +26,10 @@
 #### {{ entry.name }}
 {: .no_toc}
 
+<!-- markdownlint-disable-next-line no-inline-html -->
+<div markdown="1" class="glossary-body">
 {{ entry }}
+</div>
 {% endfor %}
 </div>
 

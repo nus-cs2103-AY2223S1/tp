@@ -225,6 +225,10 @@ article.post {
   // Follows default blockquote style for now
   border-left: 4px solid #e8e8e8;
   padding-left: 15px;
+
+  .glossary-body {
+    margin-left: $spacing-unit;
+  }
 }
 
 .glossary-quick-reference {
