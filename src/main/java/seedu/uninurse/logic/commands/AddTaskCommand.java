@@ -28,6 +28,8 @@ public class AddTaskCommand extends AddGenericCommand {
 
     public static final String MESSAGE_ADD_TASK_SUCCESS = "New task added to %1$s: %2$s";
 
+    public static final CommandType ADD_TASK_COMMAND_TYPE = CommandType.TASK;
+
     private final Index index;
     private final Task task;
 
@@ -63,7 +65,7 @@ public class AddTaskCommand extends AddGenericCommand {
         model.setPatientOfInterest(editedPerson);
 
         return new CommandResult(String.format(MESSAGE_ADD_TASK_SUCCESS, editedPerson.getName().toString(), task),
-                CommandType.TASK);
+                ADD_TASK_COMMAND_TYPE);
     }
 
     @Override
