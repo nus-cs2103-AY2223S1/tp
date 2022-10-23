@@ -15,7 +15,6 @@ import seedu.foodrem.model.UserPrefs;
  * Manages storage of FoodRem data in local storage.
  */
 public class StorageManager implements Storage {
-
     private static final Logger logger = LogsCenter.getLogger(StorageManager.class);
     private final FoodRemStorage foodRemStorage;
     private final UserPrefsStorage userPrefsStorage;
@@ -45,7 +44,6 @@ public class StorageManager implements Storage {
         userPrefsStorage.saveUserPrefs(userPrefs);
     }
 
-
     // ================ FoodRem methods ==============================
 
     @Override
@@ -74,5 +72,4 @@ public class StorageManager implements Storage {
         logger.fine("Attempting to write to data file: " + filePath);
         foodRemStorage.saveFoodRem(foodRem, filePath);
     }
-
 }

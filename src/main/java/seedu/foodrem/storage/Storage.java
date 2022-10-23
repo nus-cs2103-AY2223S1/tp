@@ -13,7 +13,6 @@ import seedu.foodrem.model.UserPrefs;
  * API of the Storage component
  */
 public interface Storage extends FoodRemStorage, UserPrefsStorage {
-
     @Override
     Optional<UserPrefs> readUserPrefs() throws DataConversionException, IOException;
 
@@ -28,5 +27,4 @@ public interface Storage extends FoodRemStorage, UserPrefsStorage {
 
     @Override
     void saveFoodRem(ReadOnlyFoodRem foodRem) throws IOException;
-
 }

@@ -13,7 +13,6 @@ import seedu.foodrem.MainApp;
  * It contains a scene graph with a root node of type {@code T}.
  */
 public abstract class UiPart<T> {
-
     /** Resource folder where FXML files are stored. */
     public static final String FXML_FILE_FOLDER = "/view/";
 
@@ -84,5 +83,4 @@ public abstract class UiPart<T> {
         URL fxmlFileUrl = MainApp.class.getResource(fxmlFileNameWithFolder);
         return requireNonNull(fxmlFileUrl);
     }
-
 }

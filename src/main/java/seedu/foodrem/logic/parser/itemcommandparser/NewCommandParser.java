@@ -23,7 +23,6 @@ import seedu.foodrem.model.item.ItemUnit;
  * Parses input arguments and creates a new AddCommand object
  */
 public class NewCommandParser implements Parser<NewCommand> {
-
     /**
      * Parses the given {@code String} of arguments in the context of the AddCommand
      * and returns an AddCommand object for execution.
@@ -70,5 +69,4 @@ public class NewCommandParser implements Parser<NewCommand> {
 
         return new NewCommand(item);
     }
-
 }

@@ -14,7 +14,6 @@ import seedu.foodrem.model.item.ItemUnit;
  * A utility class to help with building EditItemDescriptor objects.
  */
 public class EditItemDescriptorBuilder {
-
     private final EditItemDescriptor descriptor;
 
     public EditItemDescriptorBuilder() {
@@ -46,7 +45,6 @@ public class EditItemDescriptorBuilder {
         descriptor.setItemName(new ItemName(name));
         return this;
     }
-
 
     /**
      * Sets the {@code Quantity} of the {@code EditItemDescriptor} that we are building.

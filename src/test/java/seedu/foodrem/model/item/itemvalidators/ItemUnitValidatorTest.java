@@ -1,6 +1,5 @@
 package seedu.foodrem.model.item.itemvalidators;
 
-
 import static seedu.foodrem.model.item.itemvalidators.ItemValidatorUtilTest.assertValidateFailure;
 
 import org.junit.jupiter.api.Test;
@@ -8,7 +7,6 @@ import org.junit.jupiter.api.Test;
 import seedu.foodrem.testutil.MessageToUser;
 
 public class ItemUnitValidatorTest {
-
     @Test
     public void test_nameIsValidLength() {
         ItemUnitValidator.validate("a");

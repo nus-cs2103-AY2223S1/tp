@@ -7,7 +7,6 @@ import org.junit.jupiter.api.Test;
 import seedu.foodrem.testutil.MessageToUser;
 
 public class ItemBoughtDateValidatorTest {
-
     /**
      * Checks for valid date string formatting.
      */
@@ -83,7 +82,6 @@ public class ItemBoughtDateValidatorTest {
         assertValidateFailure(() -> ItemBoughtDateValidator.validate("你-01-2000"),
                 MessageToUser.MESSAGE_FOR_UNABLE_TO_PARSE_BOUGHT_DATE);
     }
-
 
     /**
      * Checks if dates are within valid bounds.

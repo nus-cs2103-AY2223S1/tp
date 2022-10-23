@@ -12,7 +12,6 @@ import seedu.foodrem.commons.util.ValidationUtil;
  * Validation class for item dates.
  */
 public class ItemBoughtDateValidator implements Validator {
-
     // Validation for parsing
     private static final String MESSAGE_FOR_UNABLE_TO_PARSE_BOUGHT_DATE =
             "The item bought date must follow the format dd-mm-yyyy.";

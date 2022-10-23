@@ -17,7 +17,6 @@ import seedu.foodrem.logic.commands.itemcommands.DeleteCommand;
  * therefore should be covered by the ParserUtilTest.
  */
 public class DeleteCommandParserTest {
-
     private final DeleteCommandParser parser = new DeleteCommandParser();
 
     @Test

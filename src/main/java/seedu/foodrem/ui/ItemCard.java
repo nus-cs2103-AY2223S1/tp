@@ -13,7 +13,6 @@ import seedu.foodrem.model.item.Item;
  * A UI component that displays information of a {@code Item}.
  */
 public class ItemCard extends UiPart<Region> {
-
     private static final String FXML = "ItemListCard.fxml";
 
     /**
