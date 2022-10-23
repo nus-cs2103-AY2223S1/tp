@@ -12,7 +12,6 @@ import seedu.foodrem.model.ReadOnlyFoodRem;
  * Represents a storage for {@link FoodRem}.
  */
 public interface FoodRemStorage {
-
     /**
      * Returns the file path of the data file.
      */
@@ -44,5 +43,4 @@ public interface FoodRemStorage {
      * @see #saveFoodRem(ReadOnlyFoodRem)
      */
     void saveFoodRem(ReadOnlyFoodRem foodRem, Path filePath) throws IOException;
-
 }

@@ -17,7 +17,6 @@ import seedu.foodrem.commons.exceptions.DataConversionException;
 import seedu.foodrem.model.UserPrefs;
 
 public class JsonUserPrefsStorageTest {
-
     private static final Path TEST_DATA_FOLDER = Paths.get("src", "test", "data", "JsonUserPrefsStorageTest");
 
     @TempDir
@@ -101,7 +100,6 @@ public class JsonUserPrefsStorageTest {
 
     @Test
     public void saveUserPrefs_allInOrder_success() throws DataConversionException, IOException {
-
         UserPrefs original = new UserPrefs();
         original.setGuiSettings(new GuiSettings(1200, 200, 0, 2));
 
@@ -119,5 +117,4 @@ public class JsonUserPrefsStorageTest {
         readBack = jsonUserPrefsStorage.readUserPrefs().get();
         assertEquals(original, readBack);
     }
-
 }

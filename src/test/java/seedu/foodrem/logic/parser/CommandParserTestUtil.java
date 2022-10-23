@@ -9,7 +9,6 @@ import seedu.foodrem.logic.parser.exceptions.ParseException;
  * Contains helper methods for testing command parsers.
  */
 public class CommandParserTestUtil {
-
     /**
      * Asserts that the parsing of {@code userInput} by {@code parser} is successful and the command created
      * equals to {@code expectedCommand}.

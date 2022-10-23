@@ -17,7 +17,6 @@ import seedu.foodrem.model.tag.TagName;
 import seedu.foodrem.testutil.TagBuilder;
 
 public class UntagCommandParserTest {
-
     private static final String MESSAGE_INVALID_FORMAT =
             String.format(MESSAGE_INVALID_COMMAND_FORMAT, UntagCommand.getUsage());
     private final UntagCommandParser parser = new UntagCommandParser();
@@ -34,7 +33,6 @@ public class UntagCommandParserTest {
 
     @Test
     public void parse_invalidExtraFlagAfterTag_failure() {
-
         String userInput = VALID_DESC_ID_FIRST + VALID_DESC_TAG_NAME_FRUITS + VALID_DESC_ITEM_QUANTITY_CUCUMBERS;
 
         assertParseFailure(parser, userInput, TagName.MESSAGE_CONSTRAINTS);
@@ -42,7 +40,6 @@ public class UntagCommandParserTest {
 
     @Test
     public void parse_invalidExtraFlagAfterIndex_failure() {
-
         String userInput = VALID_DESC_TAG_NAME_FRUITS + VALID_DESC_ID_FIRST + VALID_DESC_ITEM_QUANTITY_CUCUMBERS;
 
         assertParseFailure(parser, userInput, MESSAGE_INVALID_FORMAT);

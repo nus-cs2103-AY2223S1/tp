@@ -27,7 +27,6 @@ import seedu.foodrem.commons.exceptions.DataConversionException;
  * Converts a Java object instance to JSON and vice versa
  */
 public class JsonUtil {
-
     private static final Logger logger = LogsCenter.getLogger(JsonUtil.class);
 
     private static final ObjectMapper objectMapper = new ObjectMapper().findAndRegisterModules()
@@ -92,7 +91,6 @@ public class JsonUtil {
         serializeObjectToJsonFile(filePath, jsonFile);
     }
 
-
     /**
      * Converts a given string representation of a JSON data to instance of a class
      *
@@ -118,7 +116,6 @@ public class JsonUtil {
      * Contains methods that retrieve logging level from serialized string.
      */
     private static class LevelDeserializer extends FromStringDeserializer<Level> {
-
         protected LevelDeserializer(Class<?> vc) {
             super(vc);
         }
@@ -142,5 +139,4 @@ public class JsonUtil {
             return Level.class;
         }
     }
-
 }

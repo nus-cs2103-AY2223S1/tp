@@ -45,5 +45,4 @@ public class ItemListPanel extends UiPart<Region> {
             }
         }
     }
-
 }
