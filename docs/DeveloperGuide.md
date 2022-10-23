@@ -507,7 +507,7 @@ tag friends
 As an encouragement, Rapportbook will show a motivational quote on the starting page of Rapportbook. The quote is randomly selected from a list of 300 quotes, and will not change until Rapportbook is restarted.
 
 The following is the class diagram for this feature.
-![QuoteListClassDiagram](images/motivational-quote/QuoteListClassDiagram.svg)
+![QuoteListClassDiagram](images/motivational-quote/QuoteListClassDiagram.png)
 
 The quotes are stored as a static list, in the `QuoteList` class. As this class has only static variables and methods, it should not be instantiated and hence does not have a constructor. To access a quote, the class provides the `QuoteList#getRandomQuote()` method which will return a random quote from the quote list. Once the `getRandomQuote()` method has been called, the quote returend will be stored as a static variable, which will be used as the return value for subsequent calls.
 
