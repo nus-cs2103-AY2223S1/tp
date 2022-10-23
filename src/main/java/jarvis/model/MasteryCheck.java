@@ -29,7 +29,15 @@ public class MasteryCheck extends Lesson {
         }
 
         MasteryCheck otherMasteryCheck = (MasteryCheck) other;
-        return otherMasteryCheck.getDesc().equals(getDesc())
+
+        boolean masteryCheckDescEquality;
+        if (hasDesc()) {
+            masteryCheckDescEquality = getDesc().equals(otherMasteryCheck.getDesc());
+        } else {
+            masteryCheckDescEquality = otherMasteryCheck.getDesc() == null;
+        }
+
+        return masteryCheckDescEquality
                 && otherMasteryCheck.startTime().equals(startTime())
                 && otherMasteryCheck.endTime().equals(endTime())
                 && otherMasteryCheck.getAttendance().equals(getAttendance());

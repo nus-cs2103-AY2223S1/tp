@@ -27,7 +27,7 @@ public class AddStudioCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a studio lesson to JARVIS.\n"
             + "Parameters: "
-            + PREFIX_LESSON + "LESSON_DESC "
+            + "[" + PREFIX_LESSON + "LESSON_DESC] "
             + PREFIX_START_DATE_TIME + "START_DATE_TIME "
             + PREFIX_END_DATE_TIME + "END_DATE_TIME\n"
             + "Example: " + COMMAND_WORD + " "
@@ -49,7 +49,7 @@ public class AddStudioCommand extends Command {
      * with {@code studioDesc, studioPeriod}
      */
     public AddStudioCommand(LessonDesc studioDesc, TimePeriod studioPeriod) {
-        requireAllNonNull(studioDesc, studioPeriod);
+        requireNonNull(studioPeriod);
         this.studioDesc = studioDesc;
         this.studioPeriod = studioPeriod;
     }
@@ -87,9 +87,16 @@ public class AddStudioCommand extends Command {
             return false;
         }
 
-        AddStudioCommand ac = (AddStudioCommand) other;
+        AddStudioCommand sc = (AddStudioCommand) other;
 
-        return studioDesc.equals(ac.studioDesc) && studioPeriod.equals(ac.studioPeriod);
+        boolean studioDescEquality;
+        if (studioDesc == null) {
+            studioDescEquality = sc.studioDesc == null;
+        } else {
+            studioDescEquality = sc.equals(sc.studioDesc);
+        }
+
+        return studioDescEquality && studioPeriod.equals(sc.studioPeriod);
     }
 
 

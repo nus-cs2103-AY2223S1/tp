@@ -31,7 +31,7 @@ public class AddMasteryCheckCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a mastery check lesson to JARVIS.\n"
             + "Parameters: "
-            + PREFIX_LESSON + "LESSON_DESC "
+            + "[" + PREFIX_LESSON + "LESSON_DESC] "
             + PREFIX_START_DATE_TIME + "START_DATE_TIME "
             + PREFIX_END_DATE_TIME + "END_DATE_TIME "
             + PREFIX_STUDENT_INDEX + "STUDENT_INDEX...\n"
@@ -58,7 +58,7 @@ public class AddMasteryCheckCommand extends Command {
      */
     public AddMasteryCheckCommand(LessonDesc masteryCheckDesc, TimePeriod masteryCheckPeriod,
                                   Set<Index> studentIndexSet) {
-        requireAllNonNull(masteryCheckDesc, masteryCheckPeriod, studentIndexSet);
+        requireAllNonNull(masteryCheckPeriod, studentIndexSet);
         this.masteryCheckDesc = masteryCheckDesc;
         this.masteryCheckPeriod = masteryCheckPeriod;
         this.studentIndexSet = studentIndexSet;
@@ -104,7 +104,13 @@ public class AddMasteryCheckCommand extends Command {
 
         AddMasteryCheckCommand mc = (AddMasteryCheckCommand) other;
 
-        return masteryCheckDesc.equals(mc.masteryCheckDesc)
+        boolean masteryCheckDescEquality;
+        if (masteryCheckDesc == null) {
+            masteryCheckDescEquality = mc.masteryCheckDesc == null;
+        } else {
+            masteryCheckDescEquality = mc.equals(mc.masteryCheckDesc);
+        }
+        return masteryCheckDescEquality
                 && masteryCheckPeriod.equals(mc.masteryCheckPeriod)
                 && studentIndexSet.equals(mc.studentIndexSet);
     }

@@ -31,7 +31,7 @@ public class AddConsultCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a consultation lesson to JARVIS.\n"
             + "Parameters: "
-            + PREFIX_LESSON + "LESSON_DESC "
+            + "[" + PREFIX_LESSON + "LESSON_DESC] "
             + PREFIX_START_DATE_TIME + "START_DATE_TIME "
             + PREFIX_END_DATE_TIME + "END_DATE_TIME "
             + PREFIX_STUDENT_INDEX + "STUDENT_INDEX...\n"
@@ -58,7 +58,7 @@ public class AddConsultCommand extends Command {
      */
     public AddConsultCommand(LessonDesc consultDesc, TimePeriod consultPeriod,
                                   Set<Index> studentIndexSet) {
-        requireAllNonNull(consultDesc, consultPeriod, studentIndexSet);
+        requireAllNonNull(consultPeriod, studentIndexSet);
         this.consultDesc = consultDesc;
         this.consultPeriod = consultPeriod;
         this.studentIndexSet = studentIndexSet;
@@ -103,7 +103,13 @@ public class AddConsultCommand extends Command {
 
         AddConsultCommand ac = (AddConsultCommand) other;
 
-        return consultDesc.equals(ac.consultDesc)
+        boolean consultDescEquality;
+        if (consultDesc == null) {
+            consultDescEquality = ac.consultDesc == null;
+        } else {
+            consultDescEquality = ac.equals(ac.consultDesc);
+        }
+        return consultDescEquality
                 && consultPeriod.equals(ac.consultPeriod)
                 && studentIndexSet.equals(ac.studentIndexSet);
     }

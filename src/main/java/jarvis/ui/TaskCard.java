@@ -52,7 +52,7 @@ public class TaskCard extends UiPart<Region> {
             checkbox.setImage(cross);
         }
         taskDesc.setText(task.getDesc().taskDesc);
-        taskDeadline.setText(task.getDeadline().toString());
+        taskDeadline.setText(task.getDeadlineString());
     }
 
     @Override

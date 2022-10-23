@@ -1,12 +1,13 @@
 package jarvis.model;
 
-import static jarvis.commons.util.CollectionUtil.requireAllNonNull;
+import static java.util.Objects.requireNonNull;
 
+import java.time.LocalDate;
 import java.util.Objects;
 
 /**
  * Represents a Task in JARVIS.
- * Guarantees: details are present and not null.
+ * Guarantees: task description is present and not null.
  */
 public class Task {
 
@@ -18,10 +19,10 @@ public class Task {
     private boolean isDone;
 
     /**
-     * Every field must be present and not null.
+     * Task description must be present and not null.
      */
     public Task(TaskDesc taskDesc, TaskDeadline taskDeadline) {
-        requireAllNonNull(taskDesc, taskDeadline);
+        requireNonNull(taskDesc);
         this.taskDesc = taskDesc;
         this.taskDeadline = taskDeadline;
         this.isDone = false;
@@ -31,8 +32,16 @@ public class Task {
         return taskDesc;
     }
 
-    public TaskDeadline getDeadline() {
-        return taskDeadline;
+    public boolean hasDeadline() {
+        return taskDeadline != null;
+    }
+
+    public LocalDate getDeadline() {
+        return hasDeadline() ? taskDeadline.deadline : null;
+    }
+
+    public String getDeadlineString() {
+        return hasDeadline() ? taskDeadline.toString() : "";
     }
 
     public boolean isDone() {
@@ -75,9 +84,16 @@ public class Task {
         }
 
         Task otherTask = (Task) other;
-        return otherTask.getDesc().equals(getDesc())
-                && otherTask.getDeadline().equals(getDeadline())
-                && otherTask.isDone() == isDone();
+
+        boolean taskDeadlineEquality;
+        if (!hasDeadline()) {
+            taskDeadlineEquality = otherTask.taskDeadline == null;
+        } else {
+            taskDeadlineEquality = taskDeadline.equals(otherTask.taskDeadline);
+        }
+        return otherTask.taskDesc.equals(taskDesc)
+                && taskDeadlineEquality
+                && otherTask.isDone == isDone;
     }
 
     @Override
@@ -89,14 +105,9 @@ public class Task {
     @Override
     public String toString() {
         final StringBuilder builder = new StringBuilder();
-        if (isDone) {
-            builder.append("[X] ");
-        } else {
-            builder.append("[ ] ");
-        }
         builder.append(getDesc());
-        if (getDeadline().deadlineExists()) {
-            builder.append("\nDeadline: ").append(getDeadline());
+        if (hasDeadline()) {
+            builder.append("\nDeadline: ").append(taskDeadline);
         }
         return builder.toString();
     }

@@ -49,7 +49,15 @@ public class Studio extends Lesson {
         }
 
         Studio otherStudio = (Studio) other;
-        return otherStudio.getDesc().equals(getDesc())
+
+        boolean studioDescEquality;
+        if (hasDesc()) {
+            studioDescEquality = getDesc().equals(otherStudio.getDesc());
+        } else {
+            studioDescEquality = otherStudio.getDesc() == null;
+        }
+
+        return studioDescEquality
                 && otherStudio.startTime().equals(startTime())
                 && otherStudio.endTime().equals(endTime())
                 && otherStudio.getAttendance().equals(getAttendance())

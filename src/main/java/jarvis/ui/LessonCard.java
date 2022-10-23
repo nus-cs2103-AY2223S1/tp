@@ -2,7 +2,6 @@ package jarvis.ui;
 
 
 import jarvis.model.Lesson;
-import jarvis.model.LessonType;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
@@ -72,7 +71,11 @@ public class LessonCard extends UiPart<Region> {
             lessonAttendance.setText(EMPTY_FIELD);
             break;
         }
-        lessonDesc.setText("Description: " + lesson.getDesc().lessonDesc);
+        if (lesson.hasDesc()) {
+            lessonDesc.setText("Description: " + lesson.getDesc().lessonDesc);
+        } else {
+            lessonDesc.setText("Description: ");
+        }
         timePeriod.setText(lesson.getTimePeriod().toString());
     }
 
