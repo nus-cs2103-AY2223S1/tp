@@ -7,6 +7,11 @@ import static seedu.rc4hdb.logic.parser.CliSyntax.PREFIX_END_TIME;
 import static seedu.rc4hdb.logic.parser.CliSyntax.PREFIX_START_TIME;
 import static seedu.rc4hdb.logic.parser.CliSyntax.PREFIX_VENUE;
 
+import java.time.DayOfWeek;
+import java.time.LocalDate;
+import java.time.LocalTime;
+import java.util.List;
+
 import seedu.rc4hdb.commons.core.Messages;
 import seedu.rc4hdb.commons.core.index.Index;
 import seedu.rc4hdb.logic.commands.CommandResult;
@@ -14,12 +19,12 @@ import seedu.rc4hdb.logic.commands.exceptions.CommandException;
 import seedu.rc4hdb.logic.commands.modelcommands.ModelCommand;
 import seedu.rc4hdb.model.Model;
 import seedu.rc4hdb.model.resident.Resident;
-import seedu.rc4hdb.model.venues.*;
+import seedu.rc4hdb.model.venues.AdHocBooking;
+import seedu.rc4hdb.model.venues.Booking;
+import seedu.rc4hdb.model.venues.BookingDescriptor;
+import seedu.rc4hdb.model.venues.RecurrentBooking;
+import seedu.rc4hdb.model.venues.Venue;
 
-import java.time.DayOfWeek;
-import java.time.LocalDate;
-import java.time.LocalTime;
-import java.util.List;
 
 /**
  * Adds a booking to the Venue.
