@@ -232,4 +232,53 @@ article.post {
   .lower-alpha {
     list-style-type: lower-alpha;
   }
+
+  pre,
+  code {
+    border-color: #ccc;
+  }
+}
+
+.glossary {
+  // Follows default blockquote style for now
+  border-left: 4px solid #e8e8e8;
+  padding-left: 15px;
+
+  .glossary-body {
+    margin-left: $spacing-unit;
+  }
+}
+
+.glossary-quick-reference {
+  * {
+    border: none;
+    padding: 0;
+  }
+
+  thead {
+    td {
+      text-align: center;
+      font-weight: bold;
+      padding: 1rem 1rem 0;
+    }
+  }
+
+  tbody {
+    tr {
+      display: block;
+      columns: 3 180px;
+      padding: 1rem;
+
+      @media print {
+        // Bug in Chrome when having multiple columns for printing
+        columns: 1;
+      }
+    }
+
+    td {
+      display: list-item;
+      list-style-type: disc;
+      margin-left: 30px;
+    }
+  }
 }
