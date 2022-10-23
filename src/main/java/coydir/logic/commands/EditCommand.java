@@ -107,8 +107,6 @@ public class EditCommand extends Command {
         int updatedLeaves = editPersonDescriptor.getLeaves().orElse(currentLeaves);
         EmployeeId employeeId = personToEdit.getEmployeeId();
 
-        System.out.println(updatedLeaves);
-
         Person p = new Person(
                 updatedName, employeeId, updatedPhone, updatedEmail,
                 updatedPosition, updatedAddress, updatedTags, updatedLeaves);

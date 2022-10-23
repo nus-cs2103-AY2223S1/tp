@@ -33,7 +33,6 @@
             <Label fx:id="address" styleClass="info_small_label" text="\$address" />
             <Label fx:id="totalLeave" styleClass="info_small_label" text="\$totalLeave" />
             <Label fx:id="leaveLeft" styleClass="info_small_label" text="\$leaveLeft" />
-
         </VBox>
     </GridPane>
 </HBox>

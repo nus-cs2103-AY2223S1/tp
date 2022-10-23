@@ -26,8 +26,6 @@ public class JsonSerializableDatabaseTest {
                 JsonSerializableDatabase.class).get();
         Database databaseFromFile = dataFromFile.toModelType();
         Database typicalPersonsDatabase = TypicalPersons.getTypicalDatabase();
-        System.out.println(typicalPersonsDatabase.getPersonList());
-        System.out.println(databaseFromFile.getPersonList());
         assertEquals(databaseFromFile, typicalPersonsDatabase);
     }
 

@@ -39,9 +39,7 @@ public class EditCommandTest {
         String employeeId = model.getFilteredPersonList().get(0).getEmployeeId().value;
         PersonBuilder.setEmployeeId(employeeId); // employee id of first index
         Person editedPerson = new PersonBuilder().build();
-        System.out.println(editedPerson);
         EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder(editedPerson).build();
-        System.out.println(descriptor);
         EditCommand editCommand = new EditCommand(INDEX_FIRST_PERSON, descriptor);
 
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_PERSON_SUCCESS, editedPerson);

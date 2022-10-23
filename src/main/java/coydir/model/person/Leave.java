@@ -8,7 +8,7 @@ import java.time.format.DateTimeFormatter;
  * Guarantees: immutable; name is valid as declared in {@link #isValidLeave}
  */
 public class Leave {
-    private static final DateTimeFormatter FORMAT = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+    private static final DateTimeFormatter FORMAT = DateTimeFormatter.ofPattern("dd-MM-yyyy");
 
     public final LocalDate startDate;
     public final LocalDate endDate;
@@ -29,7 +29,7 @@ public class Leave {
      */
     public static boolean isValidLeave(String startDate, String endDate) {
         final int b = LocalDate.parse(endDate, FORMAT).compareTo(LocalDate.parse(startDate, FORMAT));
-        return b > 0;
+        return b >= 0;
     }
 
     /**

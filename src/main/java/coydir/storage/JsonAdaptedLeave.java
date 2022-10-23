@@ -10,7 +10,7 @@ import coydir.model.tag.Tag;
 
 
 /**
- * Jackson-friendly version of {@link Tag}.
+ * Jackson-friendly version of {@link Leave}.
  */
 class JsonAdaptedLeave {
 

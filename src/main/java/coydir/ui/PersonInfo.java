@@ -58,8 +58,8 @@ public class PersonInfo extends UiPart<Region> {
         phone.setText("Phone number:  " + person.getPhone().value);
         address.setText("Address:  " + person.getAddress().value);
         email.setText("Email address:  " + person.getEmail().value);
-        totalLeave.setText("Total Leave: " + person.getTotalNumberOfLeaves());
-        leaveLeft.setText("Leaves Left: " + person.getTotalNumberOfLeaves());
+        totalLeave.setText("Total Leaves: " + person.getTotalNumberOfLeaves());
+        leaveLeft.setText("Leaves Left: " + person.getLeavesLeft());
         tags.getChildren().clear();
         person.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))

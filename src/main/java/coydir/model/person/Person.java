@@ -165,7 +165,7 @@ public class Person {
                 .append("; Total Leaves: ")
                 .append(getTotalNumberOfLeaves())
                 .append("; Number of Leaves Left: ")
-                .append(getTotalNumberOfLeaves());
+                .append(getLeavesLeft());
 
         Set<Tag> tags = getTags();
         if (!tags.isEmpty()) {

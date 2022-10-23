@@ -34,7 +34,7 @@ class JsonAdaptedPerson {
     private final String position;
     private final String address;
     private final String leave;
-    private final String leaveleft;
+    private final String leaveLeft;
 
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
     private final List<JsonAdaptedLeave> leaveTaken = new ArrayList<>();
@@ -46,7 +46,7 @@ class JsonAdaptedPerson {
     public JsonAdaptedPerson(@JsonProperty("name") String name, @JsonProperty("employeeId") String employeeId,
             @JsonProperty("phone") String phone, @JsonProperty("email") String email,
             @JsonProperty("position") String position, @JsonProperty("address") String address,
-            @JsonProperty("leave") String leave, @JsonProperty("leaveleft") String leaveleft,
+            @JsonProperty("leave") String leave, @JsonProperty("leaveLeft") String leaveLeft,
             @JsonProperty("tagged") List<JsonAdaptedTag> tagged,
             @JsonProperty("leaveTaken") List<JsonAdaptedLeave> leaveTaken) {
         this.name = name;
@@ -59,7 +59,7 @@ class JsonAdaptedPerson {
         if (tagged != null) {
             this.tagged.addAll(tagged);
         }
-        this.leaveleft = leaveleft;
+        this.leaveLeft = leaveLeft;
         if (leaveTaken != null) {
             this.leaveTaken.addAll(leaveTaken);
         }
@@ -79,7 +79,7 @@ class JsonAdaptedPerson {
         tagged.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
-        leaveleft = String.valueOf(source.getLeavesLeft());
+        leaveLeft = String.valueOf(source.getLeavesLeft());
         leaveTaken.addAll(source.getLeaves().stream()
                 .map(JsonAdaptedLeave::new)
                 .collect(Collectors.toList()));
@@ -160,7 +160,7 @@ class JsonAdaptedPerson {
         final Set<Leave> modelLeaveTaken = new HashSet<>(personLeaves);
         Person p = new Person(modelName, modelEmployeeId, modelPhone, modelEmail,
                 modelPosition, modelAddress, modelTags, modelLeave);
-        p.setLeavesLeft(Integer.valueOf(leaveleft));
+        p.setLeavesLeft(Integer.valueOf(leaveLeft));
         for (Leave l : modelLeaveTaken) {
             p.addLeave(l);
         }
