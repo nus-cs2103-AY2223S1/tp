@@ -31,11 +31,12 @@ public class ArgumentTokenizer {
 
     /**
      * Tokenizes an arguments string and returns an {@code List<PrefixArgument>} object that stores a list of
-     * PrefixArguments. Each PrefixArgument contains a prefix and its argument value. Only the given prefixes will be
-     * recognized in the arguments string. The PrefixArguments are in the same order as that their prefix appeared in
-     * argsString.
+     * {@code PrefixArgument}s. Each {@code PrefixArgument} contains a prefix and its argument value.
+     * Only the given prefixes will be recognized in the arguments string. The {@code PrefixArgument}s are
+     * in the same order as their prefix in argsString.
      *
-     * @param argsString Arguments string of the form: {@code preamble <prefix>value <prefix>value ...}
+     * @param argsString Arguments string consisting of a preamble string followed by pairs of prefixes and
+     *                   their argument strings.
      * @param prefixes   Prefixes to tokenize the arguments string with.
      * @return           List of prefixes and their respective argument values.
      */

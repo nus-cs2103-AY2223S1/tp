@@ -7,7 +7,7 @@ title: About Us
 
 We are a team based in the [School of Computing, National University of Singapore](http://www.comp.nus.edu.sg).
 
-You can reach us at the email `florenyu[at]comp.nus.edu.sg`
+You can reach us via [GitHub Issues](https://github.com/AY2223S1-CS2103T-W15-1/tp/issues).
 
 ## Project team
 

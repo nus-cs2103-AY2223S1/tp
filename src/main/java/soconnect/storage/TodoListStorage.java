@@ -20,21 +20,23 @@ public interface TodoListStorage {
     Path getTodoListFilePath();
 
     /**
-     * Returns {@code TodoList} data as a {@link ReadOnlyTodoList}.
-     * Returns {@code Optional.empty()} if storage file is not found.
+     * Reads the {@code TodoList} data from storage.
      *
      * @param tagList The list of existing {@code Tag}s in {@code SoConnect}.
+     * @return {@code TodoList} data as a {@link ReadOnlyTodoList} or
+     *         {@code Optional.empty()} if storage file is not found.
      * @throws DataConversionException If the data in storage is not in the expected format.
      * @throws IOException If there was any problem when reading from the storage.
      */
     Optional<ReadOnlyTodoList> readTodoList(List<Tag> tagList) throws DataConversionException, IOException;
 
     /**
-     * Returns {@code TodoList} data as a {@link ReadOnlyTodoList}.
-     * Returns {@code Optional.empty()} if storage file is not found.
+     * Reads the {@code TodoList} data from storage.
      *
      * @param tagList The list of existing {@code Tag}s in {@code SoConnect}.
      * @param filePath The path of the {@code TodoList} data file.
+     * @return {@code TodoList} data as a {@link ReadOnlyTodoList} or
+     *         {@code Optional.empty()} if storage file is not found.
      * @throws DataConversionException If the data in storage is not in the expected format.
      * @throws IOException If there was any problem when reading from the storage.
      */

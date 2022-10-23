@@ -113,9 +113,7 @@ public class UniqueTodoList implements Iterable<Todo> {
                 int index = todoTags.indexOf(oldTag);
                 todoTags.set(index, newTag);
                 Set<Tag> newTags = new HashSet<>(todoTags);
-                Todo newTodo = new Todo(oldTodo.getDescription(),
-                    oldTodo.getPriority(),
-                    newTags);
+                Todo newTodo = new Todo(oldTodo.getDescription(), oldTodo.getPriority(), newTags);
                 internalList.set(i, newTodo);
             }
         }
@@ -133,9 +131,7 @@ public class UniqueTodoList implements Iterable<Todo> {
             if (todoTags.contains(tag)) {
                 todoTags.remove(tag);
                 Set<Tag> updatedTags = new HashSet<>(todoTags);
-                Todo updatedTodo = new Todo(oldTodo.getDescription(),
-                    oldTodo.getPriority(),
-                    updatedTags);
+                Todo updatedTodo = new Todo(oldTodo.getDescription(), oldTodo.getPriority(), updatedTags);
                 internalList.set(i, updatedTodo);
             }
         }
@@ -177,13 +173,6 @@ public class UniqueTodoList implements Iterable<Todo> {
      * Returns true if {@code todos} contains only unique {@code Todo}s.
      */
     private boolean todosAreUnique(List<Todo> todos) {
-        for (int i = 0; i < todos.size() - 1; i++) {
-            for (int j = i + 1; j < todos.size(); j++) {
-                if (todos.get(i).equals(todos.get(j))) {
-                    return false;
-                }
-            }
-        }
-        return true;
+        return todos.stream().distinct().count() == (long) todos.size();
     }
 }

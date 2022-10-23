@@ -66,7 +66,6 @@ public class TodoShowCommandParser implements Parser<TodoShowCommand> {
         String arg = prefixArg.getArgument();
 
         switch (prefix.getPrefix()) {
-
         case INDICATOR_ALL:
             return new TodoShowCommand(PREDICATE_SHOW_ALL_TODOS);
 

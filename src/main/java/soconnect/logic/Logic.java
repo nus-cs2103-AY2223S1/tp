@@ -48,7 +48,7 @@ public interface Logic {
     ObservableList<Person> getFilteredPersonList();
 
     /**
-     * Returns an unmodifiable view of the filtered list of todos.
+     * Returns an unmodifiable view of the filtered list of {@code Todo}s.
      */
     ObservableList<Todo> getFilteredTodoList();
 

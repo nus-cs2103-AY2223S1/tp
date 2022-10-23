@@ -39,14 +39,6 @@ public class JsonTodoListStorage implements TodoListStorage {
         return readTodoList(tagList, filePath);
     }
 
-    /**
-     * Returns {@code TodoList} data as a {@link ReadOnlyTodoList}.
-     * Returns {@code Optional.empty()} if storage file is not found.
-     *
-     * @param tagList The list of existing {@code Tag}s in {@code SoConnect}.
-     * @param filePath The path of the {@code TodoList} data file.
-     * @throws DataConversionException If the data in storage is not in the expected format.
-     */
     @Override
     public Optional<ReadOnlyTodoList> readTodoList(List<Tag> tagList, Path filePath)
             throws DataConversionException {

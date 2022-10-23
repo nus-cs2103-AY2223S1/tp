@@ -8,6 +8,7 @@ import static soconnect.logic.parser.CliSyntax.PREFIX_TAG;
 import soconnect.commons.core.Messages;
 import soconnect.commons.core.index.Index;
 import soconnect.logic.commands.todo.TodoEditCommand;
+import soconnect.logic.commands.todo.TodoEditCommand.EditTodoDescriptor;
 import soconnect.logic.parser.ArgumentMultimap;
 import soconnect.logic.parser.ArgumentTokenizer;
 import soconnect.logic.parser.Parser;
@@ -31,7 +32,6 @@ public class TodoEditCommandParser implements Parser<TodoEditCommand> {
             PREFIX_TAG);
 
         Index index;
-
         try {
             index = ParserUtil.parseIndex(argMultimap.getPreamble());
         } catch (ParseException pe) {
@@ -39,7 +39,12 @@ public class TodoEditCommandParser implements Parser<TodoEditCommand> {
                 TodoEditCommand.MESSAGE_USAGE), pe);
         }
 
-        TodoEditCommand.EditTodoDescriptor editTodoDescriptor = new TodoEditCommand.EditTodoDescriptor();
+        EditTodoDescriptor editTodoDescriptor = createEditedTodo(argMultimap);
+        return new TodoEditCommand(index, editTodoDescriptor);
+    }
+
+    private EditTodoDescriptor createEditedTodo(ArgumentMultimap argMultimap) throws ParseException {
+        EditTodoDescriptor editTodoDescriptor = new EditTodoDescriptor();
         if (argMultimap.getValue(PREFIX_DESCRIPTION).isPresent()) {
             editTodoDescriptor.setDescription(ParserUtil.parseDescription(
                 argMultimap.getValue(PREFIX_DESCRIPTION).get()));
@@ -58,8 +63,6 @@ public class TodoEditCommandParser implements Parser<TodoEditCommand> {
         if (!editTodoDescriptor.isAnyFieldEdited()) {
             throw new ParseException(TodoEditCommand.MESSAGE_NOT_EDITED);
         }
-
-        return new TodoEditCommand(index, editTodoDescriptor);
+        return editTodoDescriptor;
     }
-
 }
