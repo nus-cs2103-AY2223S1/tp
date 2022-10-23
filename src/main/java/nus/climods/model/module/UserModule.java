@@ -110,7 +110,7 @@ public class UserModule {
         this.lecture = lecture;
     }
 
-    private List<Integer> getAvailableSemesters() {
+    private List<SemestersEnum> getAvailableSemesters() {
         return listModule.getSemesters();
     }
 
