@@ -59,9 +59,8 @@ public class LessonAttendance {
         StringBuilder studentsNameBuilder = new StringBuilder();
         studentsNameBuilder.append("Students: ");
         Set<Student> students = getAllStudents();
-        if (students.isEmpty()) {
-            return studentsNameBuilder.toString();
-        }
+        assert !students.isEmpty();
+
         for (Student student : students) {
             studentsNameBuilder.append(student.getName() + ", ");
         }

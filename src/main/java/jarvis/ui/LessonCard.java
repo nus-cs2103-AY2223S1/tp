@@ -2,6 +2,7 @@ package jarvis.ui;
 
 
 import jarvis.model.Lesson;
+import jarvis.model.LessonType;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
@@ -15,6 +16,7 @@ import javafx.scene.layout.Region;
 public class LessonCard extends UiPart<Region> {
 
     private static final String FXML = "LessonCard.fxml";
+    private static final String EMPTY_FIELD = "";
 
     /**
      * Note: Certain keywords such as "location" and "resources" are reserved keywords in JavaFX.
@@ -26,7 +28,7 @@ public class LessonCard extends UiPart<Region> {
 
     public final Lesson lesson;
 
-    @javafx.fxml.FXML
+    @FXML
     private HBox cardPane;
     @FXML
     private Label id;
@@ -56,10 +58,22 @@ public class LessonCard extends UiPart<Region> {
         } else {
             checkbox.setImage(cross);
         }
-        lessonType.setText(lesson.getLessonType());
-        lessonDesc.setText(lesson.getDesc().lessonDesc);
+        switch(lesson.getLessonType()) {
+        case MASTERY_CHECK:
+            lessonType.setText("Mastery Check");
+            lessonAttendance.setText(lesson.getStudentsName());
+            break;
+        case CONSULT:
+            lessonType.setText("Consult");
+            lessonAttendance.setText(lesson.getStudentsName());
+            break;
+        case STUDIO:
+            lessonType.setText("Studio");
+            lessonAttendance.setText(EMPTY_FIELD);
+            break;
+        }
+        lessonDesc.setText("Description: " + lesson.getDesc().lessonDesc);
         timePeriod.setText(lesson.getTimePeriod().toString());
-        lessonAttendance.setText(lesson.getStudentsName());
     }
 
     @Override

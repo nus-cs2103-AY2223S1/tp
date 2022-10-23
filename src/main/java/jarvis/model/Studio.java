@@ -67,7 +67,7 @@ public class Studio extends Lesson {
     }
 
     @Override
-    public String getLessonType() {
-        return "Studio";
+    public LessonType getLessonType() {
+        return LessonType.STUDIO;
     }
 }

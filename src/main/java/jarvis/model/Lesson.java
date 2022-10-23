@@ -87,5 +87,5 @@ public abstract class Lesson {
         return attendance;
     }
 
-    public abstract String getLessonType();
+    public abstract LessonType getLessonType();
 }

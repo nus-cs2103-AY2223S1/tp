@@ -26,9 +26,9 @@
                         <Region fx:constant="USE_PREF_SIZE" />
                     </minWidth>
                 </Label>
-                <Label fx:id="lessonDesc" styleClass="cell_big_label" text="\$lessonDesc" />
+                <Label fx:id="lessonType" styleClass="cell_big_label" text="\$lessonType" />
             </HBox>
-            <Label fx:id="lessonType" styleClass="cell_small_label" text="\$lessonType"/>
+            <Label fx:id="lessonDesc" styleClass="cell_small_label" text="\$lessonDesc"/>
             <Label fx:id="timePeriod" styleClass="cell_small_label" text="\$timePeriod" />
             <Label fx:id="lessonAttendance" styleClass="cell_small_label" text="\$lessonAttendance" />
         </VBox>

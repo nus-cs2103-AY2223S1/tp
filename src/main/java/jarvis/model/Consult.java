@@ -46,7 +46,7 @@ public class Consult extends Lesson {
     }
 
     @Override
-    public String getLessonType() {
-        return "Consult";
+    public LessonType getLessonType() {
+        return LessonType.CONSULT;
     }
 }

@@ -46,7 +46,7 @@ public class MasteryCheck extends Lesson {
     }
 
     @Override
-    public String getLessonType() {
-        return "Mastery Check";
+    public LessonType getLessonType() {
+        return LessonType.MASTERY_CHECK;
     }
 }
