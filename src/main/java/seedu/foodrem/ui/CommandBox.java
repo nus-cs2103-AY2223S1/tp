@@ -12,7 +12,6 @@ import seedu.foodrem.logic.commands.exceptions.CommandException;
  */
 public class CommandBox extends UiPart<Region> {
     private static final String ERROR_STYLE_CLASS = "error";
-    private static final String FXML = "CommandBox.fxml";
 
     private final CommandExecutor commandExecutor;
 
@@ -23,7 +22,7 @@ public class CommandBox extends UiPart<Region> {
      * Creates a {@code CommandBox} with the given {@code CommandExecutor}.
      */
     public CommandBox(CommandExecutor commandExecutor) {
-        super(FXML);
+        super("CommandBox.fxml");
         this.commandExecutor = commandExecutor;
         // calls #setStyleToDefault() whenever there is a change to the text of the command box.
         commandTextField.textProperty().addListener((unused1, unused2, unused3) -> setStyleToDefault());

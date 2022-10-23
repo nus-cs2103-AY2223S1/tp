@@ -11,8 +11,6 @@ import javafx.scene.layout.Region;
  * A ui for the status bar that is displayed at the footer of the application.
  */
 public class StatusBarFooter extends UiPart<Region> {
-    private static final String FXML = "StatusBarFooter.fxml";
-
     @FXML
     private Label saveLocationStatus;
 
@@ -20,7 +18,7 @@ public class StatusBarFooter extends UiPart<Region> {
      * Creates a {@code StatusBarFooter} with the given {@code Path}.
      */
     public StatusBarFooter(Path saveLocation) {
-        super(FXML);
+        super("StatusBarFooter.fxml");
         saveLocationStatus.setText(Paths.get(".").resolve(saveLocation).toString());
     }
 }

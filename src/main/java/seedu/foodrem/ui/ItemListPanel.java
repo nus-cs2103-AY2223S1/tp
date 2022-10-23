@@ -14,7 +14,6 @@ import seedu.foodrem.model.item.Item;
  * Panel containing the list of items.
  */
 public class ItemListPanel extends UiPart<Region> {
-    private static final String FXML = "ItemListPanel.fxml";
     private final Logger logger = LogsCenter.getLogger(ItemListPanel.class);
 
     @FXML
@@ -24,7 +23,7 @@ public class ItemListPanel extends UiPart<Region> {
      * Creates a {@code ItemListPanel} with the given {@code ObservableList}.
      */
     public ItemListPanel(ObservableList<Item> itemList) {
-        super(FXML);
+        super("ItemListPanel.fxml");
         itemListView.setItems(itemList);
         itemListView.setCellFactory(listView -> new ItemListViewCell());
     }

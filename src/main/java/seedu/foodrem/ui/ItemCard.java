@@ -14,8 +14,6 @@ import seedu.foodrem.model.tag.Tag;
  * A UI component that displays information of a {@code Item}.
  */
 public class ItemCard extends UiPart<Region> {
-    private static final String FXML = "ItemListCard.fxml";
-
     /**
      * Note: Certain keywords such as "location" and "resources" are reserved keywords in JavaFX.
      * As a consequence, UI elements' variable names cannot be set to such keywords
@@ -45,7 +43,7 @@ public class ItemCard extends UiPart<Region> {
      * Creates a {@code ItemCode} with the given {@link Item} and index to display.
      */
     public ItemCard(Item item, int displayedIndex) {
-        super(FXML);
+        super("ItemListCard.fxml");
         this.item = item;
         id.setText(displayedIndex + ". ");
         name.setText(String.valueOf(item.getName()));

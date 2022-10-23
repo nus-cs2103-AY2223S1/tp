@@ -22,8 +22,6 @@ import seedu.foodrem.logic.commands.generalcommands.HelpCommand;
  * a menu bar and space where other JavaFX elements can be placed.
  */
 public class MainWindow extends UiPart<Stage> {
-    private static final String FXML = "MainWindow.fxml";
-
     private final Logger logger = LogsCenter.getLogger(getClass());
 
     private final Stage primaryStage;
@@ -51,7 +49,7 @@ public class MainWindow extends UiPart<Stage> {
      * Creates a {@code MainWindow} with the given {@code Stage} and {@code Logic}.
      */
     public MainWindow(Stage primaryStage, Logic logic) {
-        super(FXML, primaryStage);
+        super("MainWindow.fxml", primaryStage);
 
         // Set dependencies
         this.primaryStage = primaryStage;
