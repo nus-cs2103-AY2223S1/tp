@@ -23,7 +23,8 @@ public class RenameTagCommandParserTest {
 
         // whitespace only preamble
         assertParseSuccess(parser,
-                CommandTestUtil.VALID_DESC_TAG_NAME_FRUITS + CommandTestUtil.VALID_DESC_TAG_NAME_FRUITS_WITH_WHITESPACES,
+                CommandTestUtil.VALID_DESC_TAG_NAME_FRUITS
+                        + CommandTestUtil.VALID_DESC_TAG_NAME_FRUITS_WITH_WHITESPACES,
                 new RenameTagCommand(fruitTag, fruitWithWhitespaceTag));
 
         assertParseSuccess(parser,

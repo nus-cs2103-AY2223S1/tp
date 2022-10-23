@@ -29,6 +29,10 @@ public class RemarkCommandParser implements Parser<RemarkCommand> {
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, CliSyntax.PREFIX_ITEM_REMARKS);
         Index index;
 
+        if (argMultimap.getPreamble().isEmpty()) {
+            throw new ParseException(String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT, RemarkCommand.getUsage()));
+        }
+
         try {
             index = ParserUtil.parseIndex(argMultimap.getPreamble());
         } catch (ParseException pe) {
@@ -36,11 +40,7 @@ public class RemarkCommandParser implements Parser<RemarkCommand> {
                     RemarkCommand.getUsage()), pe);
         }
 
-        if (argMultimap.getPreamble().isEmpty()) {
-            throw new ParseException(String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT, RemarkCommand.getUsage()));
-        }
-
-        // TODO: Share behaviour about no r/ tag means delete remark in UG.
+        // TODO: Share behaviour about no r/ prefix means delete remark in UG.
         ItemRemark remark = ParserUtil.parseRemarks("");
         if (arePrefixesPresent(argMultimap, CliSyntax.PREFIX_ITEM_REMARKS)) {
             remark = ParserUtil.parseRemarks(argMultimap.getPresentValue(CliSyntax.PREFIX_ITEM_REMARKS));

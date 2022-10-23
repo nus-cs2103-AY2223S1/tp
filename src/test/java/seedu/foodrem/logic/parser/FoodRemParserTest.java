@@ -23,6 +23,7 @@ import seedu.foodrem.logic.commands.itemcommands.FindCommand;
 import seedu.foodrem.logic.commands.itemcommands.IncrementCommand;
 import seedu.foodrem.logic.commands.itemcommands.ListCommand;
 import seedu.foodrem.logic.commands.itemcommands.NewCommand;
+import seedu.foodrem.logic.commands.itemcommands.RemarkCommand;
 import seedu.foodrem.logic.commands.itemcommands.SortCommand;
 import seedu.foodrem.logic.commands.itemcommands.ViewCommand;
 import seedu.foodrem.logic.commands.tagcommands.DeleteTagCommand;
@@ -131,6 +132,12 @@ public class FoodRemParserTest {
                 + " 1") instanceof ViewCommand);
     }
 
+    @Test
+    public void parseCommand_remark() {
+        assertTrue(parser.parseCommand(CommandType.REMARK_COMMAND.getCommandWord()
+                + " 1") instanceof RemarkCommand);
+    }
+
     // Tag Commands
     @Test
     public void parseCommand_deleteTagCommand() {
@@ -177,8 +184,8 @@ public class FoodRemParserTest {
     @Test
     public void parseCommand_unrecognisedInput_throwsParseException() {
         assertThrows(ParseException.class,
-                String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT, HelpCommand.getUsage()), ()
-                -> parser.parseCommand(""));
+                String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT,
+                        HelpCommand.getUsage()), () -> parser.parseCommand(""));
     }
 
     @Test
