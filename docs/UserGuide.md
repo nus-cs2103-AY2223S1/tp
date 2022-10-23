@@ -10,7 +10,7 @@ GREWZ is your all-in-one **address book desktop application designed for univers
 
 GREWZ boasts a timeless, compartmentalised Graphical User Interface(GUI) while utilising a clean Command Line Interface(CLI) - this means that the faster you can type, the faster you can get your work done. 
 
-Hopefuly our application has grown on you! Jump over to [Quick start](#quick-start) to continue.
+Hopefully our application has grown on you! Jump over to [Quick start](#quick-start) to continue.
 
 * Table of Contents
 {:toc}
