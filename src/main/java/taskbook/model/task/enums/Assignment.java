@@ -42,6 +42,6 @@ public enum Assignment {
             throw new ParseException(String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT,
                     "Assignments should be either <FROM> or <TO>"));
         }
-        return query.toUpperCase().equals("FROM") ? FROM : TO;
+        return query.toUpperCase().equals(FROM.name()) ? FROM : TO;
     }
 }

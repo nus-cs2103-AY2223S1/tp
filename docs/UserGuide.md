@@ -220,7 +220,7 @@ Format: `task find q/QUERY x/DONE a/ASSIGNMENT`
 
 Examples:
 * `task find q/ea` will change the task list in the GUI to show a task list where all tasks will have "ea" in either their connected person, or their description.
-* `task find x/X` will change the task list in the GUI to show a task list where all tasks are marked done, with [X}.
+* `task find x/X` will change the task list in the GUI to show a task list where all tasks are marked done, with [X].
 * `task find a/FROM` will change the task list in the GUI to show a task list where all tasks are assigned to the user by someone else.
 * `task find q/ea x/X` is equivalent to `task find x/X q/ea`.
 
