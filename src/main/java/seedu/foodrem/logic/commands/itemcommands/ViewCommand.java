@@ -34,7 +34,7 @@ public class ViewCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
 
-        List<Item> lastShownList = model.getFilteredItemList();
+        List<Item> lastShownList = model.getCurrentList();
         if (index.getZeroBased() > lastShownList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_ITEMS_DISPLAYED_INDEX);
         }

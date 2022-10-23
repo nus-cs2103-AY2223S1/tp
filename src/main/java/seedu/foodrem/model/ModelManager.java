@@ -14,6 +14,7 @@ import javafx.collections.transformation.SortedList;
 import seedu.foodrem.commons.core.GuiSettings;
 import seedu.foodrem.commons.core.LogsCenter;
 import seedu.foodrem.model.item.Item;
+import seedu.foodrem.model.item.itemcomparators.ItemNameComparator;
 import seedu.foodrem.model.tag.Tag;
 
 /**
@@ -41,6 +42,7 @@ public class ModelManager implements Model {
         this.userPrefs = new UserPrefs(userPrefs);
         filteredItems = new FilteredList<>(this.foodRem.getItemList());
         sortedItems = new SortedList<>(filteredItems);
+        sortedItems.setComparator(new ItemNameComparator());
         itemsList = sortedItems;
         filteredTags = new FilteredList<>(this.foodRem.getTagList());
     }
@@ -110,7 +112,6 @@ public class ModelManager implements Model {
     @Override
     public void addItem(Item item) {
         foodRem.addItem(item);
-        updateFilteredItemList(PREDICATE_SHOW_ALL_ITEMS);
     }
 
     @Override
@@ -144,33 +145,21 @@ public class ModelManager implements Model {
         foodRem.setTag(target, editedTag);
     }
 
-    //=========== Sorted Item List Accessors =============================================================
-
-    /**
-     * Returns an unmodifiable view of the list of {@code Item} backed by the internal list of
-     * {@code versionedAddressBook} according to a Comparator.
-     */
-    @Override
-    public ObservableList<Item> getSortedItemList() {
-        return sortedItems;
-    }
-
-    @Override
-    public void updateSortedItemList(Comparator<Item> comparator) {
-        requireNonNull(comparator);
-        sortedItems.setComparator(comparator);
-    }
-
-
-    //=========== Filtered Item List Accessors =============================================================
+    //=========== Item List Accessors =============================================================
 
     /**
      * Returns an unmodifiable view of the list of {@code Item} backed by the internal list of
      * {@code versionedAddressBook}
      */
     @Override
-    public ObservableList<Item> getFilteredItemList() {
-        return filteredItems;
+    public ObservableList<Item> getCurrentList() {
+        return itemsList;
+    }
+
+    @Override
+    public void updateSortedItemList(Comparator<Item> comparator) {
+        requireNonNull(comparator);
+        sortedItems.setComparator(comparator);
     }
 
     /**
@@ -214,10 +203,4 @@ public class ModelManager implements Model {
                 && sortedItems.equals(other.sortedItems)
                 && itemsList.equals(other.itemsList);
     }
-
-    @Override
-    public ObservableList<Item> getFilteredSortedItemList() {
-        return itemsList;
-    }
-
 }

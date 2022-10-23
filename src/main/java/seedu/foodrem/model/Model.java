@@ -124,14 +124,9 @@ public interface Model {
     void setItem(Item target, Item editedItem);
 
     /**
-     * Returns an unmodifiable view of the filtered item list.
+     * Returns an unmodifiable view of the sorted or filtered items in the list.
      */
-    ObservableList<Item> getFilteredItemList();
-
-    /**
-     * Returns an unmodifiable view of the filtered and sorted item list.
-     */
-    ObservableList<Item> getFilteredSortedItemList();
+    ObservableList<Item> getCurrentList();
 
     /**
      * Updates the filter of the filtered item list to filter by the given {@code predicate}.
@@ -139,11 +134,6 @@ public interface Model {
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredItemList(Predicate<Item> predicate);
-
-    /**
-     * Returns an unmodifiable view of the sorted item list.
-     */
-    ObservableList<Item> getSortedItemList();
 
     /**
      * Updates the sorter of the sorted item list to filter by the given {@code comparator}.

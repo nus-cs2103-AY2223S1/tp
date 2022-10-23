@@ -31,11 +31,9 @@ public interface Logic {
     ReadOnlyFoodRem getFoodRem();
 
     /**
-     * Returns an unmodifiable view of the filtered list of items
+     * Returns an unmodifiable view of the filtered list or sorted list of items.
      */
-    ObservableList<Item> getFilteredItemList();
-
-    ObservableList<Item> getFilteredSortedItemList();
+    ObservableList<Item> getCurrentList();
 
     /**
      * Returns the user prefs' address book file path.

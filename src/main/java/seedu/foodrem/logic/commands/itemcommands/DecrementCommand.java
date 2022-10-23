@@ -63,7 +63,7 @@ public class DecrementCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        List<Item> lastShownList = model.getFilteredItemList();
+        List<Item> lastShownList = model.getCurrentList();
 
         if (index.getZeroBased() >= lastShownList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_ITEMS_DISPLAYED_INDEX);
@@ -73,7 +73,6 @@ public class DecrementCommand extends Command {
         Item decrementedItem = createDecrementedItem(itemToDecrement, quantity);
 
         model.setItem(itemToDecrement, decrementedItem);
-        model.updateFilteredItemList(Model.PREDICATE_SHOW_ALL_ITEMS);
         return new CommandResult(String.format(MESSAGE_SUCCESS, decrementedItem));
     }
 

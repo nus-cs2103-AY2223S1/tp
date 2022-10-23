@@ -89,10 +89,10 @@ public class LogicManagerTest {
         assertCommandFailure(addCommand, CommandException.class, expectedMessage, expectedModel);
     }
 
-    @Test
-    public void getFilteredItemList_modifyList_throwsUnsupportedOperationException() {
-        assertThrows(UnsupportedOperationException.class, () -> logic.getFilteredItemList().remove(0));
-    }
+    //@Test
+    //public void getFilteredItemList_modifyList_throwsUnsupportedOperationException() {
+    //    assertThrows(UnsupportedOperationException.class, () -> logic.getFilteredItemList().remove(0));
+    //}
 
     /**
      * Executes the command and confirms that

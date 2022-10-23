@@ -35,7 +35,6 @@ public class DeleteTagCommand extends Command {
         }
 
         model.deleteTag(toDelete);
-        model.updateFilteredItemList(Model.PREDICATE_SHOW_ALL_ITEMS);
         return new CommandResult(String.format(MESSAGE_SUCCESS, toDelete));
     }
 
