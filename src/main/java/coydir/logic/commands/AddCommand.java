@@ -1,6 +1,7 @@
 package coydir.logic.commands;
 
 import static coydir.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static coydir.logic.parser.CliSyntax.PREFIX_DEPARTMENT;
 import static coydir.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static coydir.logic.parser.CliSyntax.PREFIX_LEAVE;
 import static coydir.logic.parser.CliSyntax.PREFIX_NAME;
