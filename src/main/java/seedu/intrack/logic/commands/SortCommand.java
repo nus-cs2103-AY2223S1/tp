@@ -1,8 +1,12 @@
 package seedu.intrack.logic.commands;
 
 import static seedu.intrack.model.Model.PREDICATE_SHOW_ALL_INTERNSHIPS;
+
 import seedu.intrack.model.Model;
 
+/**
+ * Sorts all the internships in the internship list by the dates and time of their respective tasks
+ */
 public class SortCommand extends Command {
 
     public static final String COMMAND_WORD = "sort";
