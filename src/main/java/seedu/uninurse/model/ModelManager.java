@@ -5,7 +5,6 @@ import static seedu.uninurse.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
 import java.util.function.Predicate;
-import java.util.function.Supplier;
 import java.util.logging.Logger;
 
 import javafx.collections.ObservableList;
@@ -26,7 +25,7 @@ public class ModelManager implements Model {
     private final UserPrefs userPrefs;
     private final FilteredList<Patient> filteredPersons;
 
-    private boolean taskListFlag;
+    private Patient patientOfInterest;
 
     /**
      * Initializes a ModelManager with the given uninurseBook and userPrefs.
@@ -39,7 +38,7 @@ public class ModelManager implements Model {
         this.userPrefs = new UserPrefs(userPrefs);
         this.persistentUninurseBook = new PersistentUninurseBook(uninurseBook);
         this.filteredPersons = new FilteredList<>(this.persistentUninurseBook.getWorkingCopy().getPersonList());
-        this.taskListFlag = false;
+        this.patientOfInterest = null;
     }
 
     public ModelManager() {
@@ -131,15 +130,20 @@ public class ModelManager implements Model {
     @Override
     public void updateFilteredPersonList(Predicate<Patient> predicate) {
         requireNonNull(predicate);
-        taskListFlag = false;
         filteredPersons.setPredicate(predicate);
     }
 
+    //=========== Other Accessors =============================================================
+
     @Override
-    public void updateFilteredPersonListWithTasks(Predicate<Patient> predicate) {
-        requireNonNull(predicate);
-        taskListFlag = true;
-        filteredPersons.setPredicate(predicate);
+    public void setPatientOfInterest(Patient patient) {
+        requireNonNull(patient);
+        this.patientOfInterest = patient;
+    }
+
+    @Override
+    public Patient getPatientOfInterest() {
+        return this.patientOfInterest;
     }
 
     //=========== Undo and Redo =============================================================
@@ -169,13 +173,6 @@ public class ModelManager implements Model {
         persistentUninurseBook.makeSnapshot(commandResult);
     }
 
-    //=========== Other Accessors =============================================================
-
-    @Override
-    public Supplier<Boolean> getTaskListFlagSupplier() {
-        return (() -> taskListFlag);
-    }
-
     @Override
     public boolean equals(Object obj) {
         // short circuit if same object
@@ -194,5 +191,4 @@ public class ModelManager implements Model {
                 && userPrefs.equals(other.userPrefs)
                 && filteredPersons.equals(other.filteredPersons);
     }
-
 }

@@ -25,6 +25,6 @@ public class UndoCommand extends Command {
 
         model.undo();
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
-        return new CommandResult(MESSAGE_SUCCESS);
+        return new CommandResult(MESSAGE_SUCCESS, CommandType.UNDO);
     }
 }

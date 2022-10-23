@@ -17,7 +17,7 @@ public class ClearCommandTest {
         Model model = new ModelManager();
         Model expectedModel = new ModelManager();
 
-        assertCommandSuccess(new ClearCommand(), model, ClearCommand.MESSAGE_SUCCESS, expectedModel);
+        assertCommandSuccess(new ClearCommand(), model, ClearCommand.MESSAGE_SUCCESS, CommandType.CLEAR, expectedModel);
     }
 
     @Test
@@ -26,7 +26,6 @@ public class ClearCommandTest {
         Model expectedModel = new ModelManager(getTypicalUninurseBook(), new UserPrefs());
         expectedModel.setUninurseBook(new UninurseBook());
 
-        assertCommandSuccess(new ClearCommand(), model, ClearCommand.MESSAGE_SUCCESS, expectedModel);
+        assertCommandSuccess(new ClearCommand(), model, ClearCommand.MESSAGE_SUCCESS, CommandType.CLEAR, expectedModel);
     }
-
 }

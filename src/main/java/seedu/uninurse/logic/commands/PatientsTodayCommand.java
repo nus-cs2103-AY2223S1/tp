@@ -19,7 +19,7 @@ public class PatientsTodayCommand extends Command {
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);
-        model.updateFilteredPersonListWithTasks(PREDICATE_SHOW_PATIENTS_FOR_TODAY);
-        return new CommandResult(MESSAGE_SUCCESS);
+        model.updateFilteredPersonList(PREDICATE_SHOW_PATIENTS_FOR_TODAY);
+        return new CommandResult(MESSAGE_SUCCESS, CommandType.SCHEDULE);
     }
 }

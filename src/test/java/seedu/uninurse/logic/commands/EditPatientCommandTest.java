@@ -45,7 +45,7 @@ public class EditPatientCommandTest {
         Model expectedModel = new ModelManager(new UninurseBook(model.getUninurseBook()), new UserPrefs());
         expectedModel.setPerson(model.getFilteredPersonList().get(0), editedPerson);
 
-        assertCommandSuccess(editPatientCommand, model, expectedMessage, expectedModel);
+        assertCommandSuccess(editPatientCommand, model, expectedMessage, CommandType.EDIT_PATIENT, expectedModel);
     }
 
     @Test
@@ -66,7 +66,7 @@ public class EditPatientCommandTest {
         Model expectedModel = new ModelManager(new UninurseBook(model.getUninurseBook()), new UserPrefs());
         expectedModel.setPerson(lastPerson, editedPerson);
 
-        assertCommandSuccess(editPatientCommand, model, expectedMessage, expectedModel);
+        assertCommandSuccess(editPatientCommand, model, expectedMessage, CommandType.EDIT_PATIENT, expectedModel);
     }
 
     @Test
@@ -78,7 +78,7 @@ public class EditPatientCommandTest {
 
         Model expectedModel = new ModelManager(new UninurseBook(model.getUninurseBook()), new UserPrefs());
 
-        assertCommandSuccess(editPatientCommand, model, expectedMessage, expectedModel);
+        assertCommandSuccess(editPatientCommand, model, expectedMessage, CommandType.EDIT_PATIENT, expectedModel);
     }
 
     @Test
@@ -95,7 +95,7 @@ public class EditPatientCommandTest {
         Model expectedModel = new ModelManager(new UninurseBook(model.getUninurseBook()), new UserPrefs());
         expectedModel.setPerson(model.getFilteredPersonList().get(0), editedPerson);
 
-        assertCommandSuccess(editPatientCommand, model, expectedMessage, expectedModel);
+        assertCommandSuccess(editPatientCommand, model, expectedMessage, CommandType.EDIT_PATIENT, expectedModel);
     }
 
     @Test

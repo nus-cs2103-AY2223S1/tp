@@ -24,6 +24,6 @@ public class ClearCommand extends UndoableCommand {
         for (Patient patientToDelete : lastShownList) {
             model.deletePerson(patientToDelete);
         }
-        return new CommandResult(MESSAGE_SUCCESS);
+        return new CommandResult(MESSAGE_SUCCESS, CommandType.CLEAR);
     }
 }
