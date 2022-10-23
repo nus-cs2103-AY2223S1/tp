@@ -8,11 +8,14 @@ import java.util.Locale;
 import java.util.stream.Collectors;
 
 import seedu.rc4hdb.model.venues.booking.Booking;
+import seedu.rc4hdb.model.venues.booking.fields.BookingField;
 
 /**
  * Represents a venue in RC4 that can be booked by residents.
  */
-public class Venue {
+public class Venue implements BookingField {
+
+    public static final String IDENTIFIER = "Venue";
 
     public static final String MESSAGE_CONSTRAINTS =
             "Venue should only consist of: 'meeting' ";

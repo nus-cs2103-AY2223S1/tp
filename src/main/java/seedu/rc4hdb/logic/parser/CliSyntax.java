@@ -21,8 +21,7 @@ public class CliSyntax {
 
     /* Prefix definitions for Venue Fields */
     public static final Prefix PREFIX_VENUE = new Prefix("v/");
-    public static final Prefix PREFIX_START_TIME = new Prefix("st/");
-    public static final Prefix PREFIX_END_TIME = new Prefix("et/");
+    public static final Prefix PREFIX_TIME_PERIOD = new Prefix("tp/");
     public static final Prefix PREFIX_DAY = new Prefix("d/");
 
 }

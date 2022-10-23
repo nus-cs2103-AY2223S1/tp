@@ -2,11 +2,13 @@ package seedu.rc4hdb.model.resident.fields;
 
 import static seedu.rc4hdb.commons.util.AppUtil.checkArgument;
 
+import seedu.rc4hdb.model.StringField;
+
 /**
  * Represents a Resident's Room in RC4HDB.
  * Guarantees: immutable; is valid as declared in {@link #isValidRoom(String)}
  */
-public class Room extends ResidentField {
+public class Room extends StringField implements ResidentField {
 
     public static final String IDENTIFIER = "Room";
 

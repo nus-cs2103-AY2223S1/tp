@@ -1,9 +1,11 @@
 package seedu.rc4hdb.model.venues.booking;
 
+import static seedu.rc4hdb.commons.util.CollectionUtil.requireAllNonNull;
+
 import seedu.rc4hdb.model.resident.Resident;
 import seedu.rc4hdb.model.venues.Venue;
 import seedu.rc4hdb.model.venues.booking.fields.Day;
-import seedu.rc4hdb.model.venues.booking.fields.Hour;
+import seedu.rc4hdb.model.venues.booking.fields.HourPeriod;
 
 /**
  * Represents a booking for a venue. Bookings cannot span multiple days.
@@ -12,21 +14,19 @@ public abstract class Booking {
 
     protected Venue venue;
     protected Resident resident;
-    protected Hour startHour;
-    protected Hour endHour;
+    protected HourPeriod hourPeriod;
     protected Day dayOfWeek;
 
     /**
      * Constructor for a Booking instance.
      * @param resident The resident trying to book the venue.
-     * @param startTime The start time of the booking.
-     * @param endTime The end time of the booking.
+     * @param hourPeriod
      * @param venue The venue of the booking.
      */
-    public Booking(Resident resident, Hour startTime, Hour endTime, Day dayOfWeek, Venue venue) {
+    public Booking(Resident resident, HourPeriod hourPeriod, Day dayOfWeek, Venue venue) {
+        requireAllNonNull(resident, hourPeriod, dayOfWeek, venue);
         this.resident = resident;
-        this.startHour = startTime;
-        this.endHour = endTime;
+        this.hourPeriod = hourPeriod;
         this.dayOfWeek = dayOfWeek;
         this.venue = venue;
     }
@@ -51,9 +51,9 @@ public abstract class Booking {
                 .append("; Venue: ")
                 .append(venue)
                 .append("; Start Time: ")
-                .append(startHour)
+                .append(hourPeriod.getStart())
                 .append("; End Time: ")
-                .append(endHour)
+                .append(hourPeriod.getEnd())
                 .append("; Day: ")
                 .append(dayOfWeek);
 

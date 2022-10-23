@@ -15,12 +15,15 @@ import seedu.rc4hdb.model.resident.fields.Name;
 import seedu.rc4hdb.model.resident.fields.Phone;
 import seedu.rc4hdb.model.resident.fields.Room;
 import seedu.rc4hdb.model.resident.fields.Tag;
+import seedu.rc4hdb.model.venues.booking.fields.BookingField;
 
 /**
  * Represents a resident in the resident book.
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
-public class Resident {
+public class Resident implements BookingField {
+
+    public static final String IDENTIFIER = "Resident";
 
     // Identity fields
     private final Name name;
