@@ -7,6 +7,8 @@ import java.util.List;
 import javafx.collections.ObservableList;
 import seedu.address.model.project.Project;
 import seedu.address.model.project.UniqueProjectList;
+import seedu.address.model.staff.Staff;
+import seedu.address.model.staff.UniqueStaffList;
 import seedu.address.model.task.Task;
 import seedu.address.model.task.UniqueTaskList;
 
@@ -17,7 +19,7 @@ import seedu.address.model.task.UniqueTaskList;
 public class AddressBook implements ReadOnlyAddressBook {
 
     private final UniqueProjectList projects;
-
+    private final UniqueStaffList staff;
     private final UniqueTaskList tasks;
 
     /*
@@ -29,6 +31,17 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     {
         projects = new UniqueProjectList();
+    }
+
+    /*
+     * The 'unusual' code block below is a non-static initialization block, sometimes used to avoid duplication
+     * between constructors. See https://docs.oracle.com/javase/tutorial/java/javaOO/initial.html
+     *
+     * Note that non-static init blocks are not recommended to use. There are other ways to avoid duplication
+     *   among constructors.
+     */
+    {
+        staff = new UniqueStaffList();
     }
 
     /*
@@ -63,6 +76,22 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
+     * Replaces the contents of the staff list with {@code staff}.
+     * {@code staff} must not contain duplicate staff.
+     */
+    public void setStaffList(UniqueStaffList staff) {
+        this.staff.setStaffs(staff);
+    }
+
+    /**
+     * Replaces the contents of the staff list with {@code staff}.
+     * {@code staff} must not contain duplicate staff.
+     */
+    public void setStaffList(List<Staff> staff) {
+        this.staff.setStaffs(staff);
+    }
+
+    /**
      * Replaces the contents of the task list with {@code tasks}.
      * {@code tasks} must not contain duplicate tasks.
      */
@@ -77,6 +106,7 @@ public class AddressBook implements ReadOnlyAddressBook {
         requireNonNull(newData);
 
         setProjects(newData.getProjectList());
+        setStaffList(newData.getStaffList());
         setTasks(newData.getTaskList());
     }
 
@@ -123,6 +153,44 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     public void sortProjects() {
         projects.sortProjects();
+    }
+
+    //// staff-level operations
+
+    /**
+     * Returns true if a staff with the same identity as {@code staff} exists in the address book.
+     */
+    public boolean hasStaff(Staff staff) {
+        requireNonNull(staff);
+        return this.staff.contains(staff);
+    }
+
+    /**
+     * Adds a staff to the address book.
+     * The staff must not already exist in the address book.
+     */
+    public void addStaff(Staff p) {
+        this.staff.add(p);
+    }
+
+    /**
+     * Replaces the given staff {@code target} in the list with {@code editedStaff}.
+     * {@code target} must exist in the address book.
+     * The staff identity of {@code editedStaff} must not be the same as another
+     * existing staff in the address book.
+     */
+    public void setStaff(Staff target, Staff editedStaff) {
+        requireNonNull(editedStaff);
+
+        this.staff.setStaff(target, editedStaff);
+    }
+
+    /**
+     * Removes {@code key} from this {@code AddressBook}.
+     * {@code key} must exist in the address book.
+     */
+    public void removeStaff(Staff key) {
+        this.staff.remove(key);
     }
 
     //// task-level operations
@@ -175,6 +243,11 @@ public class AddressBook implements ReadOnlyAddressBook {
     @Override
     public ObservableList<Project> getProjectList() {
         return projects.asUnmodifiableObservableList();
+    }
+
+    @Override
+    public ObservableList<Staff> getStaffList() {
+        return staff.asUnmodifiableObservableList();
     }
 
     @Override
