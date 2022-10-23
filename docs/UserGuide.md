@@ -14,7 +14,7 @@ Mass Linkers is a powerful Desktop application tool that provides a centralised 
 
 1. Ensure you have Java `11` or above installed in your computer.
 
-2. Download the latest `masslinkers.jar` from [here](https://github.com/AY2223S1-CS2103T-T11-4/tp/releases).
+2. Download the latest `MassLinkers.jar` from [here](https://github.com/AY2223S1-CS2103T-T11-4/tp/releases).
 
 3. Copy the file to the folder you want to use as the _home folder_ for your Mass Linkers.
 
@@ -309,5 +309,5 @@ Module prefix refers to the first two characters of every module name.
 | **Unmark module**                | `mod unmark INDEX MODULE [MORE_MODULES]...` <br> Example: `mod unmark 3 cs2100 cs2103t cs2101 cs2105`                                                                                                        |
 | **Mark module of all**           | `mod mark all MODULE [MORE_MODULES]...` <br> Example: `mod mark all cs2100 cs2103t cs2101 cs2105`                                                                                                            |
 | **Find module**                  | `mod find MODULE [MORE_MODULES]...` <br> Example: `mod find cs2101 cs2103t`                                                                                                                                  |
-| **Find modules taken or taking** | `mod find taken MODULE [MORE_MODULES]...` <br> `mod find taking MODULE [MORE_MODULES]...` <br> Example: ``mod find taken cs2100` <br> `mod find taking cs2101 cs2103t`                                       |
+| **Find modules taken or taking** | `mod find taken MODULE [MORE_MODULES]...` <br> `mod find taking MODULE [MORE_MODULES]...` <br> Example: `mod find taken cs2100` or <br> `mod find taking cs2101 cs2103t`                                     |
 | **Exit**                         | `exit`                                                                                                                                                                                                       |
