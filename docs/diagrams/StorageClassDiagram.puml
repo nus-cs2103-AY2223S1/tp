@@ -1,5 +1,6 @@
 @startuml
 !include style.puml
+scale 938*475
 skinparam arrowThickness 1.1
 skinparam arrowColor STORAGE_COLOR
 skinparam classBackgroundColor STORAGE_COLOR
@@ -11,13 +12,20 @@ Class "<<interface>>\nUserPrefsStorage" as UserPrefsStorage
 Class JsonUserPrefsStorage
 }
 
+package "TodoList Storage" #F4F6F6{
+Class "<<interface>>\nTodoListStorage" as TodoListStorage
+Class JsonTodoListBookStorage
+Class JsonSerializableTodoList
+Class JsonAdaptedTodo
+}
+
 Class "<<interface>>\nStorage" as Storage
 Class StorageManager
 
-package "AddressBook Storage" #F4F6F6{
-Class "<<interface>>\nAddressBookStorage" as AddressBookStorage
-Class JsonAddressBookStorage
-Class JsonSerializableAddressBook
+package "SoConnect Storage" #F4F6F6{
+Class "<<interface>>\nSoConnectStorage" as SoConnectStorage
+Class JsonSoConnectStorage
+Class JsonSerializableSoConnect
 Class JsonAdaptedPerson
 Class JsonAdaptedTag
 }
@@ -27,17 +35,31 @@ Class JsonAdaptedTag
 Class HiddenOutside #FFFFFF
 HiddenOutside ..> Storage
 
+Storage -up|> UserPrefsStorage
+Storage -right|> SoConnectStorage
+Storage -down|> TodoListStorage
+
 StorageManager .up.|> Storage
 StorageManager -up-> "1" UserPrefsStorage
-StorageManager -up-> "1" AddressBookStorage
+StorageManager -right-> "1" SoConnectStorage
+StorageManager -right-> "1" TodoListStorage
 
-Storage -left-|> UserPrefsStorage
-Storage -right-|> AddressBookStorage
+SoConnectStorage -[hidden]-> TodoListStorage
+UserPrefsStorage -[hidden]-> SoConnectStorage
 
-JsonUserPrefsStorage .up.|> UserPrefsStorage
-JsonAddressBookStorage .up.|> AddressBookStorage
-JsonAddressBookStorage ..> JsonSerializableAddressBook
-JsonSerializableAddressBook --> "*" JsonAdaptedPerson
-JsonAdaptedPerson --> "*" JsonAdaptedTag
+JsonUserPrefsStorage .left.|> UserPrefsStorage
+JsonSoConnectStorage .left.|> SoConnectStorage
+JsonTodoListBookStorage .left.|> TodoListStorage
+
+JsonSoConnectStorage .right.> JsonSerializableSoConnect
+JsonTodoListBookStorage .right.> JsonSerializableTodoList
+
+JsonSerializableSoConnect -right-> "*" JsonAdaptedPerson
+JsonSerializableTodoList -right-> "*" JsonAdaptedTodo
+
+JsonAdaptedPerson -right-> "*" JsonAdaptedTag
+JsonAdaptedTodo -up-> "*" JsonAdaptedTag
+
+
 
 @enduml

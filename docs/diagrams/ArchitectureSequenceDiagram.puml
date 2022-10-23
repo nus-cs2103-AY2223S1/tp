@@ -1,5 +1,6 @@
 @startuml
 !include style.puml
+scale 718*469
 
 Actor User as user USER_COLOR
 Participant ":UI" as ui UI_COLOR
@@ -19,7 +20,7 @@ activate model MODEL_COLOR
 model -[MODEL_COLOR]-> logic
 deactivate model
 
-logic -[LOGIC_COLOR]> storage : saveAddressBook(addressBook)
+logic -[LOGIC_COLOR]> storage : saveSoConnect(soConnect)
 activate storage STORAGE_COLOR
 
 storage -[STORAGE_COLOR]> storage : Save to file
