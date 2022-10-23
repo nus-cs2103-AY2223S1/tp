@@ -132,6 +132,7 @@ public class ModelManager implements Model {
     @Override
     public void updateFilteredPersonList(Predicate<Person> predicate) {
         requireNonNull(predicate);
+        @SuppressWarnings("unchecked")
         FilteredList<Person> personList = (FilteredList<Person>) filteredPersons.getSource();
         personList.setPredicate(predicate);
     }
