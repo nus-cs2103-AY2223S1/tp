@@ -158,7 +158,7 @@ This section describes some noteworthy details on how certain features are imple
 
 #### About this feature
 
-The add internship application feature allows users to quickly add an internship application  in the tracker via the 
+The add internship application feature allows users to quickly add an internship application in the tracker via the
 command `add n/NAME p/POSITION hp/PHONE e/EMAIL a/ADDRESS [t/TAG]...`.
 
 #### How it is implemented
@@ -174,7 +174,7 @@ The status field, by default, will be set to `Progress`. The `InTrack#addInterns
 2. The `InTrackParser` processes the input and creates a new `AddCommandParser`.
 3. The `AddCommandParser` then calls `ArgumentTokenizer#tokenize(String argString, Prefix... prefixes)` to extract the relevant inputs for each field.
    If any prefix is absent but compulsory or invalid, a `ParseException` would be thrown.
-4. The respective `Name`, `Position`, `Phone`, `Email`, `Address` and `Tag` constructors then check for the validity of parsed inputs. 
+4. The respective `Name`, `Position`, `Phone`, `Email`, `Address` and `Tag` constructors then check for the validity of parsed inputs.
    If any of the parsed inputs are absent but compulsory or invalid, a `ParseException` would be thrown.
 5. The `AddCommandParser` then creates the `AddCommand` based on the processed input.
 
@@ -210,15 +210,15 @@ a prefix for the `Status` field.
 #### About this feature
 
 The update internship application status feature allows users to quickly update the status of an internship application
-in the tracker via the command `status INDEX STATUS`, where `INDEX` must be a positive integer within the list and 
+in the tracker via the command `status INDEX STATUS`, where `INDEX` must be a positive integer within the list and
 `STATUS` must be either `o` (for **O**ffered), `p` (for in **P**rogress) or `r` (for **R**ejected).
 
 #### How it is implemented
 
 The `status` command is facilitated by the `StatusCommand` and the `StatusCommandParser`. It uses the `List#get(int index)`
-on the list of internship applications returned from the `Model#getFilteredInternshipList()` to get the target `Internship` 
-object to be updated. A new `Internship` object is then created with the new status. The 
-`InTrack#setInternship(Internship target, Internship editedInternship)` which is exposed in the `Model` interface as 
+on the list of internship applications returned from the `Model#getFilteredInternshipList()` to get the target `Internship`
+object to be updated. A new `Internship` object is then created with the new status. The
+`InTrack#setInternship(Internship target, Internship editedInternship)` which is exposed in the `Model` interface as
 `Model#setInternship(Internship target, Internship editedInternship)` is called to replace the target `Internship` object
 with the updated one.
 
@@ -226,25 +226,25 @@ with the updated one.
 
 1. The user inputs the `status` command.
 2. The `InTrackParser` processes the input and creates a new `StatusCommandParser`.
-3. The `StatusCommandParser` then calls `ParserUtil#parseIndex(String oneBasedIndex)` to check for the validity of INDEX. 
+3. The `StatusCommandParser` then calls `ParserUtil#parseIndex(String oneBasedIndex)` to check for the validity of INDEX.
 If `INDEX` is absent or invalid, a `ParseException` would be thrown.
-4. The `StatusCommandParser` then checks for the validity of STATUS. If `STATUS` is absent or invalid, a `ParseException` 
+4. The `StatusCommandParser` then checks for the validity of STATUS. If `STATUS` is absent or invalid, a `ParseException`
 would be thrown.
 5. The `StatusCommandParser` then creates the `StatusCommand` based on the processed input.
 
 #### Command execution
 
 1. The `LogicManager` executes the `StatusCommand`.
-2. The `StatusCommand` calls the `Model#getFilteredPersonList()` and `List#get(int index)` to get the target `Internship` 
+2. The `StatusCommand` calls the `Model#getFilteredPersonList()` and `List#get(int index)` to get the target `Internship`
 object to be updated based on the provided `INDEX`.
-3. The `StatusCommand` then creates a new `Internship` object with the same variables as the target one except with the 
+3. The `StatusCommand` then creates a new `Internship` object with the same variables as the target one except with the
 new status.
-4. The `StatusCommand` then calls `InTrack#setInternship(Internship target, Internship editedInternship)` to replace the 
+4. The `StatusCommand` then calls `InTrack#setInternship(Internship target, Internship editedInternship)` to replace the
 target `Internship` object with the updated one.
 
 #### Displaying of result
 
-1. Finally, the `StatusCommand` creates a `CommandResult` with a success message and returns it to the `LogicManager` 
+1. Finally, the `StatusCommand` creates a `CommandResult` with a success message and returns it to the `LogicManager`
 to complete the command execution. The GUI would also be updated with the change of status.
 
 The following sequence diagram shows how the `status` command works:
@@ -258,9 +258,9 @@ The following activity diagram shows what happens when a user executes a `status
 #### Design considerations
 
 **Aspect: Command to update status of an internship application**
-Most internship applications added by users would still be in progress, so a default "Progress" status is provided for 
-each new `Internship` instead of requiring the user to provide one initially, saving time. As such, there is no need for 
-a prefix for the `Status` field and the `edit` command will not work in this case. Having a separate `status` command 
+Most internship applications added by users would still be in progress, so a default "Progress" status is provided for
+each new `Internship` instead of requiring the user to provide one initially, saving time. As such, there is no need for
+a prefix for the `Status` field and the `edit` command will not work in this case. Having a separate `status` command
 allows for the format to be kept short and simple which further increases the ease of updating the status of internship
 applications.
 
@@ -268,7 +268,7 @@ applications.
 
 #### About this feature
 
-The add internship application task feature allows users to add a task associated to an internship application 
+The add internship application task feature allows users to add a task associated to an internship application
 in the tracker via the command `addtask INDEX TASKNAME /at TASKTIME`, where `INDEX` must be a positive integer within
 the list, `TASKNAME` must not be an empty string, and `TASKTIME` must be in the format `dd-MM-yyyy HH:mm`.
 
@@ -316,34 +316,34 @@ The following activity diagram shows what happens when a user executes a `addtas
 
 #### About this feature
 
-The find internship application by company name feature allows users to query the list of added internship applications 
-for applications that match the desired company name via the command `findn COMPANYNAME`, where `COMPANYNAME` must not 
+The find internship application by company name feature allows users to query the list of added internship applications
+for applications that match the desired company name via the command `findn COMPANYNAME`, where `COMPANYNAME` must not
 be an empty string.
 
 #### How it is implemented
 
-The `findn` command is facilitated by the `FindNameCommand`, `FindNameCommandParser` and the `NameContainsKeywordsPredicate`. 
-It uses `Model#updateFilteredInternshipList(Predicate<Internship> predicate)` to apply the `NameContainsKeywordsPredicate` 
+The `findn` command is facilitated by the `FindNameCommand`, `FindNameCommandParser` and the `NameContainsKeywordsPredicate`.
+It uses `Model#updateFilteredInternshipList(Predicate<Internship> predicate)` to apply the `NameContainsKeywordsPredicate`
 in order to produce a filtered list containing only entries whose names correspond to `COMPANYNAME`.
 
 #### Parsing user input
 
 1. The user inputs the `findn` command.
 2. The `InTrackParser` processes the input and creates a new `FindNameCommandParser`.
-3. The `FindNameCommandParser` then trims the input to remove whitespace. If the input is an empty string, a `ParseException` 
+3. The `FindNameCommandParser` then trims the input to remove whitespace. If the input is an empty string, a `ParseException`
 would be thrown.
 4. The `FindNameCommandParser` then creates the new `FindNameCommand` based on the processed input.
 
 #### Command execution
 
 1. The `LogicManager` executes the `FindNameCommand`.
-2. The `FindNameCommand` calls the `Model#updateFilteredInternshipList(Predicate<Internship> predicate)` to update the 
+2. The `FindNameCommand` calls the `Model#updateFilteredInternshipList(Predicate<Internship> predicate)` to update the
 current internship list to only show internship applications matching the provided `COMPANYNAME`.
 
 #### Displaying of result
 
-1. Finally, the `FindNameCommand` creates a `CommandResult` containing the number of matching internship applications 
-and returns it to the `LogicManager` to complete the command execution. The GUI would also be updated with the change in 
+1. Finally, the `FindNameCommand` creates a `CommandResult` containing the number of matching internship applications
+and returns it to the `LogicManager` to complete the command execution. The GUI would also be updated with the change in
 list.
 
 The following sequence diagram shows how the `findn` command works:
