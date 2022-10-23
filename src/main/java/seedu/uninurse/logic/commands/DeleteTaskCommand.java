@@ -26,6 +26,8 @@ public class DeleteTaskCommand extends DeleteGenericCommand {
 
     public static final String MESSAGE_DELETE_TASK_SUCCESS = "Deleted task from %1$s: %2$s";
 
+    public static final CommandType DELETE_TASK_COMMAND_TYPE = CommandType.TASK;
+
     private final Index patientIndex;
     private final Index taskIndex;
 
@@ -70,7 +72,7 @@ public class DeleteTaskCommand extends DeleteGenericCommand {
         model.setPatientOfInterest(editedPerson);
 
         return new CommandResult(String.format(MESSAGE_DELETE_TASK_SUCCESS, editedPerson.getName(), deletedTask),
-                CommandType.TASK);
+                DELETE_TASK_COMMAND_TYPE);
     }
 
     @Override

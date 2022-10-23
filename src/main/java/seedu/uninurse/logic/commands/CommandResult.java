@@ -8,18 +8,9 @@ import java.util.Objects;
  * Represents the result of a command execution.
  */
 public class CommandResult {
-
     private final String feedbackToUser;
 
-
-    ///** Help information should be shown to the user. */
-    //private final boolean showHelp;
-
-    ///** The application should exit. */
-    //private final boolean exit;
-
     private final CommandType commandType;
-
 
     /**
      * Constructs a {@code CommandResult} with the specified fields.
@@ -43,10 +34,6 @@ public class CommandResult {
         return this.commandType == CommandType.EXIT;
     }
 
-    public boolean isTaskRelated() {
-        return this.commandType == CommandType.TASK;
-    }
-
     public boolean isAddPatient() {
         return this.commandType == CommandType.ADD_PATIENT;
     }
@@ -59,10 +46,13 @@ public class CommandResult {
         return this.commandType == CommandType.DELETE_PATIENT;
     }
 
+    public boolean isTaskRelated() {
+        return this.commandType == CommandType.TASK;
+    }
+
     public boolean isSchedule() {
         return this.commandType == CommandType.SCHEDULE;
     }
-
 
     @Override
     public boolean equals(Object other) {
@@ -78,12 +68,10 @@ public class CommandResult {
         CommandResult otherCommandResult = (CommandResult) other;
         return feedbackToUser.equals(otherCommandResult.feedbackToUser)
                 && this.commandType == otherCommandResult.commandType;
-
     }
 
     @Override
     public int hashCode() {
         return Objects.hash(feedbackToUser, commandType);
     }
-
 }

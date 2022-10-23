@@ -11,13 +11,13 @@ import seedu.uninurse.model.UninurseBook;
 import seedu.uninurse.model.UserPrefs;
 
 public class ClearCommandTest {
-
     @Test
     public void execute_emptyUninurseBook_success() {
         Model model = new ModelManager();
         Model expectedModel = new ModelManager();
 
-        assertCommandSuccess(new ClearCommand(), model, ClearCommand.MESSAGE_SUCCESS, CommandType.CLEAR, expectedModel);
+        assertCommandSuccess(new ClearCommand(), model, ClearCommand.MESSAGE_SUCCESS,
+                ClearCommand.CLEAR_COMMAND_TYPE, expectedModel);
     }
 
     @Test
@@ -26,6 +26,7 @@ public class ClearCommandTest {
         Model expectedModel = new ModelManager(getTypicalUninurseBook(), new UserPrefs());
         expectedModel.setUninurseBook(new UninurseBook());
 
-        assertCommandSuccess(new ClearCommand(), model, ClearCommand.MESSAGE_SUCCESS, CommandType.CLEAR, expectedModel);
+        assertCommandSuccess(new ClearCommand(), model, ClearCommand.MESSAGE_SUCCESS,
+                ClearCommand.CLEAR_COMMAND_TYPE, expectedModel);
     }
 }

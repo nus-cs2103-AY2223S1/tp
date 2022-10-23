@@ -65,7 +65,8 @@ class DeleteTaskCommandTest {
         expectedModel.updateFilteredPersonList(patient -> patient.equals(editedPatient));
         expectedModel.setPatientOfInterest(editedPatient);
 
-        assertCommandSuccess(deleteTaskCommand, model, expectedMessage, CommandType.TASK, expectedModel);
+        assertCommandSuccess(deleteTaskCommand, model, expectedMessage,
+                DeleteTaskCommand.DELETE_TASK_COMMAND_TYPE, expectedModel);
     }
 
     @Test
@@ -96,7 +97,8 @@ class DeleteTaskCommandTest {
         expectedModel.updateFilteredPersonList(patient -> patient.equals(editedPatient));
         expectedModel.setPatientOfInterest(editedPatient);
 
-        assertCommandSuccess(deleteTaskCommand, model, expectedMessage, CommandType.TASK, expectedModel);
+        assertCommandSuccess(deleteTaskCommand, model, expectedMessage,
+                DeleteTaskCommand.DELETE_TASK_COMMAND_TYPE, expectedModel);
     }
 
     @Test

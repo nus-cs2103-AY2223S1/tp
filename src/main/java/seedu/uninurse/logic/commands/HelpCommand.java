@@ -6,7 +6,6 @@ import seedu.uninurse.model.Model;
  * Format full help instructions for every command for display.
  */
 public class HelpCommand extends Command {
-
     public static final String COMMAND_WORD = "help";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Shows program usage instructions.\n"
@@ -14,8 +13,10 @@ public class HelpCommand extends Command {
 
     public static final String SHOWING_HELP_MESSAGE = "Opened help window.";
 
+    public static final CommandType HELP_COMMAND_TYPE = CommandType.HELP;
+
     @Override
     public CommandResult execute(Model model) {
-        return new CommandResult(SHOWING_HELP_MESSAGE, CommandType.HELP);
+        return new CommandResult(SHOWING_HELP_MESSAGE, HELP_COMMAND_TYPE);
     }
 }
