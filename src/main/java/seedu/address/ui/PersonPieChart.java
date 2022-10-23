@@ -1,5 +1,9 @@
 package seedu.address.ui;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
+
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -9,9 +13,6 @@ import javafx.scene.layout.Region;
 import javafx.scene.text.Text;
 import seedu.address.model.person.Person;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
 
 
 /**
@@ -47,7 +48,7 @@ public class PersonPieChart extends UiPart<Region> {
 
         ObservableList<PieChart.Data> updatedPieChartData = FXCollections.observableArrayList();
         int i = 0;
-        for(Integer count : studentProfTaCount) {
+        for (Integer count : studentProfTaCount) {
             pieChartData.get(i).setPieValue(count);
             i++;
         }
@@ -66,7 +67,7 @@ public class PersonPieChart extends UiPart<Region> {
     private List<Integer> personListToCount(ObservableList<Person> personList) {
         int studentCount = 0;
         int profCount = 0;
-        int TaCount = 0;
+        int taCount = 0;
         List<Integer> result = new ArrayList<>();
 
         for (Person person: personList) {
@@ -76,13 +77,13 @@ public class PersonPieChart extends UiPart<Region> {
             } else if (personType.equals("Professor")) {
                 profCount++;
             } else {
-                TaCount++;
+                taCount++;
             }
         }
 
         result.add(studentCount);
         result.add(profCount);
-        result.add(TaCount);
+        result.add(taCount);
 
         return result;
     }
@@ -90,7 +91,7 @@ public class PersonPieChart extends UiPart<Region> {
     /**
      * Returns true if student, professor and TA count are all 0.
      */
-     public boolean isCountZero(List<Integer> studentProfTaCount){
+    public boolean isCountZero(List<Integer> studentProfTaCount) {
         boolean isCountZero = true;
         for (Integer count : studentProfTaCount) {
             if (count != 0) {
@@ -113,9 +114,10 @@ public class PersonPieChart extends UiPart<Region> {
                     .filter(n -> n instanceof Text && ((Text) n).getText().contains(d.getName()))
                     .findAny();
             if (opTextNode.isPresent()) {
-                    opTextNode.get().setVisible(false);
-                    ((Text) opTextNode.get()).setText(d.getName() + " (" + (int) d.getPieValue() + ")");
-                }
+                Text text = (Text) opTextNode.get();
+                text.setText(d.getName() + " (" + (int) d.getPieValue() + ")");
+                opTextNode.get().setVisible(false);
+            }
         });
     }
 
