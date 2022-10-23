@@ -215,9 +215,10 @@ Examples:
 
 Hide certain information of all contacts displayed.
 
-Format: `customise hide [p/] [e/] [a/] [t/]`
+Format: `customise hide [t/] [p/] [e/] [a/]`
 
-* Hides the information specified.
+* Information that can be hidden: Tags, Phone Number, Email, Address.
+* After using the command, the information specified is hidden.
 * If the information specified is already hidden, it will stay hidden.
 
 Example:
@@ -228,9 +229,10 @@ Example:
 
 Show certain information of all contacts displayed.
 
-Format: `customise show [p/] [e/] [a/] [t/]`
+Format: `customise show [t/] [p/] [e/] [a/]`
 
-* Shows the information specified.
+* Information that can be changed from being hidden to being shown: Tags, Phone Number, Email, Address.
+* After using the command, the information specified is shown.
 * If the information specified is already shown, it will stay shown.
 
 Example:
@@ -239,16 +241,18 @@ Example:
 
 ### Customise Order of Details: `customise order`
 
-Customise order of information shown in all contacts shown.
+Customise the order of information shown in all contacts shown.
 
-Format: `customise order [p/] [e/] [a/] [t/]`
+Format: `customise order [t/] [p/] [e/] [a/]`
 
-* Attributes not given will be ordered last in default order. (tag > phone > email > address)
+* Name of contact will always be at the top of each contact and cannot have its order changed.
+* Information that can have its order changed: Tags, Phone Number, Email, Address.
+* Information that are not specified will be ordered last in default order. (Tags > Phone Number > Email > Address)
 
 Example:
 
 * `customise order a/ e/ p/` The application will show address first, followed by email, phone number, then tags.
-* `customise order a/` The application will show address first. The rest of the attributes will follow the default order. Therefore, address will be followed by tags, phone number and then email.
+* `customise order a/` The application will show address first. The rest of the information will follow the default order. Therefore, address will be followed by tags, phone number and then email.
 
 ### Clearing all contacts : `clear`
 
