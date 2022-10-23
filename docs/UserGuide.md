@@ -232,18 +232,18 @@ _Details coming soon ..._
 
 ## Command summary
 
-Action | Format, Examples
---------|------------------
-**Add task** | `add {task_name} by/{deadline} m/{module_code}` <br> e.g. `add finish problem set 5 by/Week 6 Sunday m/CS2040S`
-**Delete task** | `del {task_index}` <br> e.g. `delete 5`
-**Mark task** | `mark {task_index}` <br> e.g. `mark 3`
-**Unmark task** | `unmark {task_index}` <br> e.g. `unmark 3`
-**Find tasks** | `find /t {task}` <br> `find /m {module}`<br> e.g., `find /t homework`, <br> `find /m CS1101S`
-**List tasks** | `list` / `list time`
-**Add contact** | `addc {name} /email {email} /hp {phone_number} /mods {module1} {module2}...` <br> e.g., `addc Bob Martin /email bobbymartini@gmail.com /hp 98765432 /mods CS1101S CS1231S`
-**Clear contacts** | `clear`
-**Delete contact** | `delc {contact_index}`<br> e.g., `delete 3`
-**Edit contact** | `edit INDEX [n/name}] [p/{phone_number}] [e/{email}] [a/{address}] [t/{tag}]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
-**Find contacts** | `findc /n {name}` <br> `findc /m {module}`<br> e.g., `findc /n John`, <br> `findc /m CS1231S`
-**List contacts** | `listc`
-**Help** | `help`
+| Action             | Format, Examples                                                                                                                                                           |
+|--------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Add task**       | `add {task_name} by/{deadline} m/{module_code}` <br> e.g. `add finish problem set 5 by/Week 6 Sunday m/CS2040S`                                                            |
+| **Delete task**    | `del {task_index}` <br> e.g. `delete 5`                                                                                                                                    |
+| **Mark task**      | `mark {task_index}` <br> e.g. `mark 3`                                                                                                                                     |
+| **Unmark task**    | `unmark {task_index}` <br> e.g. `unmark 3`                                                                                                                                 |
+| **Find tasks**     | `find /t {task}` <br> `find /m {module}`<br> e.g., `find /t homework`, <br> `find /m CS1101S`                                                                              |
+| **List tasks**     | `list` / `list time`                                                                                                                                                       |
+| **Add contact**    | `addc {name} /email {email} /hp {phone_number} /mods {module1} {module2}...` <br> e.g., `addc Bob Martin /email bobbymartini@gmail.com /hp 98765432 /mods CS1101S CS1231S` |
+| **Clear contacts** | `clear`                                                                                                                                                                    |
+| **Delete contact** | `delc {contact_index}`<br> e.g., `delete 3`                                                                                                                                |
+| **Edit contact**   | `edit INDEX [n/name}] [p/{phone_number}] [e/{email}] [a/{address}] [t/{tag}]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`                                       |
+| **Find contacts**  | `findc /n {name}` <br> `findc /m {module}`<br> e.g., `findc /n John`, <br> `findc /m CS1231S`                                                                              |
+| **List contacts**  | `listc`                                                                                                                                                                    |
+| **Help**           | `help`                                                                                                                                                                     |
