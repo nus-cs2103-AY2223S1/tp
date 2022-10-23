@@ -13,6 +13,10 @@
     margin-bottom: 0;
   }
 
+  @media print {
+    break-inside: avoid-page;
+  }
+
   // Border colors from https://www.schemecolor.com/pastel-rainbow.php
   // Other colors from https://docusaurus.io/docs/markdown-features/admonitions
 
