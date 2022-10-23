@@ -19,10 +19,10 @@ import seedu.address.model.person.Keyword;
 import seedu.address.model.person.MinecraftName;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
+import seedu.address.model.person.Server;
 import seedu.address.model.person.Social;
+import seedu.address.model.person.Tag;
 import seedu.address.model.person.TimeInterval;
-import seedu.address.model.server.Server;
-import seedu.address.model.tag.Tag;
 
 /**
  * Contains utility methods used for parsing strings in the various *Parser classes.

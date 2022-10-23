@@ -11,7 +11,7 @@ public class TimeInterval implements ITimesAvailable {
     private static final String VALIDATION_REGEX =
             "(mon|tue|wed|thu|fri|sat|sun)@([0-9]{4})-(mon|tue|wed|thu|fri|sat|sun)@([0-9]{4})";
     private static final String TIME_INTERVAL_CONSTRAINTS =
-            "Time Interval should be in the form mon@2200-mon@2300";
+            "Time Interval should be in the form mon@2200-tue@2300";
 
     private final DayTimeInWeek startTime;
     private final DayTimeInWeek endTime;
@@ -75,8 +75,6 @@ public class TimeInterval implements ITimesAvailable {
         if (startTime.minutesSinceMondayMidnight > endTime.minutesSinceMondayMidnight) {
             return dayTimeInWeek.minutesSinceMondayMidnight >= startTime.minutesSinceMondayMidnight
                     || dayTimeInWeek.minutesSinceMondayMidnight <= endTime.minutesSinceMondayMidnight;
-        } else if (startTime.minutesSinceMondayMidnight == endTime.minutesSinceMondayMidnight) {
-            return dayTimeInWeek.minutesSinceMondayMidnight == startTime.minutesSinceMondayMidnight;
         } else {
             return dayTimeInWeek.minutesSinceMondayMidnight >= startTime.minutesSinceMondayMidnight
                     && dayTimeInWeek.minutesSinceMondayMidnight <= endTime.minutesSinceMondayMidnight;
@@ -85,7 +83,7 @@ public class TimeInterval implements ITimesAvailable {
 
     @Override
     public String toString() {
-        return startTime + " to " + endTime;
+        return startTime + "-" + endTime;
     }
 
     @Override
