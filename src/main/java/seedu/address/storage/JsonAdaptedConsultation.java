@@ -11,6 +11,8 @@ import seedu.address.model.consultation.ConsultationName;
 import seedu.address.model.consultation.ConsultationVenue;
 import seedu.address.model.datetime.DatetimeRange;
 
+import static seedu.address.logic.parser.DatetimeParserUtil.toDatetimeRange;
+
 /**
  * Jackson-friendly version of {@link Consultation}.
  */
@@ -93,7 +95,7 @@ public class JsonAdaptedConsultation {
 
         final ConsultationDescription modelDescription = new ConsultationDescription(description);
 
-        DatetimeRange modelTimeslot = new DatetimeRange("Not implemented", "Not implemented");
+        DatetimeRange modelTimeslot = toDatetimeRange("", "Not implemented", "Not implemented");
 
         return new Consultation(modelName, modelModule, modelVenue, modelTimeslot, modelDescription);
     }

@@ -6,6 +6,8 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.datetime.DatetimeRange;
 
+import static seedu.address.logic.parser.DatetimeParserUtil.toDatetimeRange;
+
 /**
  * Jackson-friendly version of {@link DatetimeRange}.
  */
@@ -44,9 +46,6 @@ class JsonAdaptedDatetimeRange {
             throw new IllegalValueException(
                     String.format(MISSING_FIELD_MESSAGE_FORMAT, DatetimeRange.class.getSimpleName()));
         }
-        if (!DatetimeRange.isValidDatetimeRange(startDatetime, endDatetime)) {
-            throw new IllegalValueException(DatetimeRange.MESSAGE_CONSTRAINTS);
-        }
-        return new DatetimeRange(startDatetime, endDatetime);
+        return toDatetimeRange("", startDatetime, endDatetime);
     }
 }

@@ -25,7 +25,7 @@ public class WeeklyTimeslot {
     public static final String VALIDATION_REGEX = "[1-7]";
     private static final DateTimeFormatter TIME_FORMAT = DateTimeFormatter.ofPattern("HH:mm");
 
-    public final DayOfWeek dayValue;
+    public final DayOfWeek day;
     public final LocalTime startTime;
     public final LocalTime endTime;
 
@@ -39,16 +39,13 @@ public class WeeklyTimeslot {
      * @param startTimeString A validly formatted time for start.
      * @param endTimeString A validly formatted time for end.
      */
-    public WeeklyTimeslot(String dayString, String startTimeString, String endTimeString) {
-        requireNonNull(dayString);
-        requireNonNull(startTimeString);
-        requireNonNull(endTimeString);
-        checkArgument(isValidTime(startTimeString), MESSAGE_CONSTRAINTS_TIMES);
-        checkArgument(isValidTime(endTimeString), MESSAGE_CONSTRAINTS_TIMES);
-        checkArgument(isValidDay(dayString), MESSAGE_CONSTRAINTS_DAY);
-        this.startTime = LocalTime.parse(startTimeString, TIME_FORMAT);
-        this.endTime = LocalTime.parse(endTimeString, TIME_FORMAT);
-        dayValue = DayOfWeek.of(Integer.parseInt(dayString));
+    public WeeklyTimeslot(DayOfWeek day, LocalTime startTime, LocalTime endTime) {
+        requireNonNull(day);
+        requireNonNull(startTime);
+        requireNonNull(endTime);
+        this.day = day;
+        this.startTime = startTime;
+        this.endTime = endTime;
     }
 
     /**
@@ -94,7 +91,7 @@ public class WeeklyTimeslot {
      * @return Day of the week
      */
     public String getDay() {
-        return String.valueOf(dayValue.getValue());
+        return String.valueOf(day.getValue());
     }
 
     /**
@@ -122,7 +119,7 @@ public class WeeklyTimeslot {
      * @return Day of the week
      */
     private String getDayOfWeekReadable() {
-        return dayValue.getDisplayName(TextStyle.SHORT, Locale.getDefault());
+        return day.getDisplayName(TextStyle.SHORT, Locale.getDefault());
     }
 
     @Override
@@ -136,12 +133,12 @@ public class WeeklyTimeslot {
                 || (other instanceof WeeklyTimeslot // instanceof handles nulls
                 && startTime.equals(((WeeklyTimeslot) other).startTime) // state check
                 && endTime.equals(((WeeklyTimeslot) other).endTime) // state check
-                && dayValue.equals(((WeeklyTimeslot) other).dayValue)); // state check
+                && day.equals(((WeeklyTimeslot) other).day)); // state check
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(startTime, endTime, dayValue);
+        return Objects.hash(startTime, endTime, day);
     }
 
 }

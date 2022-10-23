@@ -30,42 +30,11 @@ public class DatetimeRange {
      * @param startDatetimeString A valid time.
      * @param endDatetimeString A valid time.
      */
-    public DatetimeRange(String startDatetimeString, String endDatetimeString) {
-        requireNonNull(startDatetimeString);
-        requireNonNull(endDatetimeString);
-        checkArgument(isValidDatetime(startDatetimeString), MESSAGE_CONSTRAINTS);
-        checkArgument(isValidDatetime(endDatetimeString), MESSAGE_CONSTRAINTS);
-        this.startDatetime = LocalDateTime.parse(startDatetimeString, DATE_TIME_FORMAT);
-        this.endDatetime = LocalDateTime.parse(endDatetimeString, DATE_TIME_FORMAT);
-    }
-
-    private static boolean isValidDatetime(String datetimeString) {
-        try {
-            LocalDateTime.parse(datetimeString, DATE_TIME_FORMAT);
-        } catch (DateTimeParseException ex) {
-            return false;
-        }
-        return true;
-    }
-
-
-    /**
-     * Returns true if given strings are valid as a datetime range.
-     *
-     * @param datetimeStart Starting datetime
-     * @param datetimeEnd Ending datetime
-     * @return Whether both strings are valid when taken together as a time range
-     */
-    public static boolean isValidDatetimeRange(String datetimeStart, String datetimeEnd) {
-        // Unideal: does additional work by creating objects to check validity.
-        // This is to confirm to the rest of the codebase, where checks are done on a
-        // "check for permission" in a static method beforehand.
-        if (!isValidDatetime(datetimeStart) || !isValidDatetime(datetimeEnd)) {
-            return false;
-        }
-        LocalDateTime datetimeStartObj = LocalDateTime.parse(datetimeStart, DATE_TIME_FORMAT);
-        LocalDateTime datetimeEndObj = LocalDateTime.parse(datetimeEnd, DATE_TIME_FORMAT);
-        return !datetimeEndObj.isBefore(datetimeStartObj);
+    public DatetimeRange(LocalDateTime startDatetime, LocalDateTime endDatetime) {
+        requireNonNull(startDatetime);
+        requireNonNull(endDatetime);
+        this.startDatetime = startDatetime;
+        this.endDatetime = endDatetime;
     }
 
 

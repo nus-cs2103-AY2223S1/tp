@@ -8,6 +8,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_TIMESLOT;
 import seedu.address.logic.commands.reminder.AddReminderCommand;
 import seedu.address.logic.parser.ArgumentMultimap;
 import seedu.address.logic.parser.ArgumentTokenizer;
+import seedu.address.logic.parser.DatetimeParserUtil;
 import seedu.address.logic.parser.Parser;
 import seedu.address.logic.parser.ParserUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
@@ -38,7 +39,7 @@ public class AddReminderCommandParser implements Parser<AddReminderCommand> {
         ReminderName name = ReminderParserUtil.parseReminderName(argMultimap.getValue(PREFIX_NAME).get());
         ReminderDescription description = ReminderParserUtil.parseReminderDescription(argMultimap.getValue(PREFIX_DESCRIPTION)
                 .get());
-        Datetime deadline = ParserUtil.parseDatetime(argMultimap.getValue(PREFIX_TIMESLOT).get());
+        Datetime deadline = DatetimeParserUtil.parseDatetime(argMultimap.getValue(PREFIX_TIMESLOT).get());
 
         Reminder reminder = new Reminder(name, deadline, description);
 

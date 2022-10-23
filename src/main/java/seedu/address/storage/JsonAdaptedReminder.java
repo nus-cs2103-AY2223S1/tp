@@ -9,6 +9,8 @@ import seedu.address.model.reminder.Reminder;
 import seedu.address.model.reminder.ReminderDescription;
 import seedu.address.model.reminder.ReminderName;
 
+import static seedu.address.logic.parser.DatetimeParserUtil.toDatetime;
+
 /**
  * Jackson-friendly version of {@link Reminder}.
  */
@@ -56,7 +58,7 @@ class JsonAdaptedReminder {
 
         final ReminderDescription modelDescription = new ReminderDescription(description);
 
-        Datetime modelDeadline = new Datetime("Not implemetned");
+        Datetime modelDeadline = toDatetime("Not implemetned");
 
         return new Reminder(modelName, modelDeadline, modelDescription);
     }

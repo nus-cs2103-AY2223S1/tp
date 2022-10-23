@@ -24,11 +24,12 @@ public class Datetime {
      *
      * @param datetime A valid datetime that is formatted appropriately.
      */
-    public Datetime(String datetime) {
+    public Datetime(LocalDateTime datetime) {
         requireNonNull(datetime);
-        checkArgument(isValidDatetime(datetime), MESSAGE_CONSTRAINTS);
-        this.datetime = LocalDateTime.parse(datetime, DATE_TIME_FORMAT);
+        this.datetime = datetime;
     }
+
+
 
     /**
      * Checks whether datetime string is of valid format.

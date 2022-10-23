@@ -10,6 +10,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_VENUE;
 import seedu.address.logic.commands.tutorial.AddTutorialCommand;
 import seedu.address.logic.parser.ArgumentMultimap;
 import seedu.address.logic.parser.ArgumentTokenizer;
+import seedu.address.logic.parser.DatetimeParserUtil;
 import seedu.address.logic.parser.Parser;
 import seedu.address.logic.parser.ParserUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
@@ -48,7 +49,7 @@ public class AddTutorialCommandParser implements Parser<AddTutorialCommand> {
 
         String dayString = argMultimap.getValue(PREFIX_DAY).get();
         String timeslotString = argMultimap.getValue(PREFIX_TIMESLOT).get();
-        WeeklyTimeslot timeslot = ParserUtil.parseWeeklyTimeslot(dayString, timeslotString);
+        WeeklyTimeslot timeslot = DatetimeParserUtil.parseWeeklyTimeslot(dayString, timeslotString);
 
         Tutorial tutorial = new Tutorial(name, module, venue, timeslot);
 

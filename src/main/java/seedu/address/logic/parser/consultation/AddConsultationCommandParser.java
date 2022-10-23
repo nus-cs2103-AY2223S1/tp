@@ -1,5 +1,6 @@
 package seedu.address.logic.parser.consultation;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DAY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MODULE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
@@ -9,6 +10,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_VENUE;
 import seedu.address.logic.commands.consultation.AddConsultationCommand;
 import seedu.address.logic.parser.ArgumentMultimap;
 import seedu.address.logic.parser.ArgumentTokenizer;
+import seedu.address.logic.parser.DatetimeParserUtil;
 import seedu.address.logic.parser.Parser;
 import seedu.address.logic.parser.ParserUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
@@ -30,10 +32,10 @@ public class AddConsultationCommandParser implements Parser<AddConsultationComma
      */
     public AddConsultationCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_MODULE, PREFIX_VENUE, PREFIX_TIMESLOT,
+                ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_MODULE, PREFIX_VENUE, PREFIX_DAY, PREFIX_TIMESLOT,
                         PREFIX_DESCRIPTION);
 
-        ParserUtil.assertPrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_MODULE, PREFIX_VENUE, PREFIX_TIMESLOT,
+        ParserUtil.assertPrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_MODULE, PREFIX_VENUE, PREFIX_DAY, PREFIX_TIMESLOT,
                 PREFIX_DESCRIPTION);
         if (!argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
@@ -46,8 +48,9 @@ public class AddConsultationCommandParser implements Parser<AddConsultationComma
         ConsultationDescription description = ConsultationParserUtil.parseConsultationDescription(
                 argMultimap.getValue(PREFIX_DESCRIPTION).get());
 
-        DatetimeRange timeslot = ParserUtil.parseDatetimeRange(
-                argMultimap.getValue(PREFIX_TIMESLOT).get());
+        String date = argMultimap.getValue(PREFIX_DAY).get();
+        String timeslotString = argMultimap.getValue(PREFIX_TIMESLOT).get();
+        DatetimeRange timeslot = DatetimeParserUtil.parseDatetimeRange(date, timeslotString);
 
 
         Consultation consultation = new Consultation(name, module, venue, timeslot, description);
