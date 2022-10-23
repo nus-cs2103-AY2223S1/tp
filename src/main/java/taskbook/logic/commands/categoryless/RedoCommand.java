@@ -16,6 +16,8 @@ public class RedoCommand extends Command {
     public static final String COMMAND_WORD = "redo";
     public static final String MESSAGE_SUCCESS = "Reverted to the previously undone state.";
     public static final String MESSAGE_INVALID_ACTION = "There are no actions left to redo.";
+    public static final String MESSAGE_USAGE = COMMAND_WORD
+        + ": Redoes the previous undo action and reverts the TaskBook to a previously undone state.";
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
