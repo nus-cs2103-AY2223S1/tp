@@ -165,6 +165,14 @@ Exits the program.
 
 Format: `exit`
 
+### Navigating User Input History: `↑`, `↓`
+
+Adapted from [senior](https://github.com/AY2122S2-CS2103T-W13-3/tp)
+
+Allows user to quickly retrieve their previous inputs from current session by using the up and down arrow keys.
+
+Format: `↑`, `↓`
+
 ### Saving the data
 
 GREWZ data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
