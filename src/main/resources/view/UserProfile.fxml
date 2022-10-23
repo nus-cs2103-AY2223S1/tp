@@ -1,18 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.Insets?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.layout.ColumnConstraints?>
-<?import javafx.scene.layout.FlowPane?>
-<?import javafx.scene.layout.GridPane?>
-<?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.Region?>
-<?import javafx.scene.layout.VBox?>
+<?import java.net.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
 
-<?import java.net.URL?>
-<HBox id="userProfilePane" fx:id="userProfilePane" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<HBox id="userProfilePane" fx:id="userProfilePane" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1">
     <stylesheets>
-        <URL value ="@DarkTheme.css" />
+        <URL value="@DarkTheme.css" />
     </stylesheets>
     <GridPane HBox.hgrow="ALWAYS">
         <columnConstraints>
@@ -20,44 +15,52 @@
         </columnConstraints>
         <VBox alignment="CENTER_LEFT" minHeight="125" GridPane.columnIndex="0">
             <padding>
-                <Insets top="5" right="5" bottom="5" left="15" />
+                <Insets bottom="5" left="15" right="5" top="5" />
             </padding>
-            <HBox spacing="5" alignment="CENTER_LEFT">
+            <HBox alignment="CENTER_LEFT" spacing="5">
                 <Label fx:id="userLabel" styleClass="cell_big_label" />
+                <Label fx:id="name" styleClass="cell_big_label" />
                 <minWidth>
                     <!-- Ensures that the label text is never truncated -->
                     <Region fx:constant="USE_PREF_SIZE" />
                 </minWidth>
-                <Label fx:id="name" styleClass="cell_big_label"  />
             </HBox>
             <Label fx:id="phone" styleClass="cell_small_label" />
             <Label fx:id="address" styleClass="cell_small_label" />
             <Label fx:id="email" styleClass="cell_small_label" />
             <Label fx:id="github" styleClass="cell_small_label" />
-            <HBox spacing="5" alignment="CENTER_LEFT">
+            <HBox alignment="CENTER_LEFT" spacing="5">
                 <Label fx:id="currModuleDescription" styleClass="cell_small_label" />
-                <minWidth>
-                    <!-- Ensures that the label text is never truncated -->
-                    <Region fx:constant="USE_PREF_SIZE" />
-                </minWidth>
                 <FlowPane fx:id="currModulesTags" />
+                <minWidth>
+                    <!-- Ensures that the label text is never truncated -->
+                    <Region fx:constant="USE_PREF_SIZE" />
+                </minWidth>
             </HBox>
-            <HBox spacing="5" alignment="CENTER_LEFT">
+            <HBox alignment="CENTER_LEFT" spacing="5">
                 <Label fx:id="prevModuleDescription" styleClass="cell_small_label" />
-                <minWidth>
-                    <!-- Ensures that the label text is never truncated -->
-                    <Region fx:constant="USE_PREF_SIZE" />
-                </minWidth>
                 <FlowPane fx:id="prevModulesTags" />
-            </HBox>
-            <HBox spacing="5" alignment="CENTER_LEFT">
-                <Label fx:id="planModuleDescription" styleClass="cell_small_label" />
                 <minWidth>
                     <!-- Ensures that the label text is never truncated -->
                     <Region fx:constant="USE_PREF_SIZE" />
                 </minWidth>
+            </HBox>
+            <HBox alignment="CENTER_LEFT" spacing="5">
+                <Label fx:id="planModuleDescription" styleClass="cell_small_label" />
                 <FlowPane fx:id="planModulesTags" styleClass="cell_mods" />
+                <minWidth>
+                    <!-- Ensures that the label text is never truncated -->
+                    <Region fx:constant="USE_PREF_SIZE" />
+                </minWidth>
             </HBox>
         </VBox>
+      <rowConstraints>
+         <RowConstraints />
+      </rowConstraints>
     </GridPane>
+    <Button fx:id="copyButton" mnemonicParsing="false" onAction="#copyUrl" prefHeight="11.0" prefWidth="198.0" text="Copy Github Profile URL">
+        <HBox.margin>
+            <Insets left="5.0" />
+        </HBox.margin>
+    </Button>
 </HBox>
