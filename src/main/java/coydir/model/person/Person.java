@@ -23,6 +23,7 @@ public class Person {
 
     // Data fields
     private final Position position;
+    private final Department department;
     private final Address address;
     private final Set<Tag> tags = new HashSet<>();
     private final Set<Leave> leaves = new HashSet<>();
@@ -33,13 +34,14 @@ public class Person {
      * Every field must be present and not null.
      */
     public Person(Name name, EmployeeId employeeId, Phone phone, Email email, Position position,
-            Address address, Set<Tag> tags, int numberOfLeaves) {
+            Department department, Address address, Set<Tag> tags, int numberOfLeaves) {
         requireAllNonNull(name, employeeId, position);
         this.name = name;
         this.employeeId = employeeId;
         this.phone = phone;
         this.email = email;
         this.position = position;
+        this.department = department;
         this.address = address;
         this.tags.addAll(tags);
         this.totalNumberOfLeaves = numberOfLeaves;
