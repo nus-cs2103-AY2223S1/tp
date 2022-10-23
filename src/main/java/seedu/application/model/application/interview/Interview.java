@@ -2,6 +2,7 @@ package seedu.application.model.application.interview;
 
 import static seedu.application.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.time.LocalDateTime;
 import java.util.Objects;
 
 /**
@@ -26,6 +27,10 @@ public class Interview {
         this.interviewDate = interviewDate;
         this.interviewTime = interviewTime;
         this.location = location;
+    }
+
+    public static LocalDateTime getInterviewDateTime(Interview interview) {
+        return LocalDateTime.of(interview.getInterviewDate().value, interview.getInterviewTime().value);
     }
 
     public Round getRound() {
