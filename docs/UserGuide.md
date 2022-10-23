@@ -295,13 +295,31 @@ GREWZ data are saved as a JSON file `[JAR file location]/data/addressbook.json`.
 If your changes to the data file makes its format invalid, GREWZ will discard all data and start with an empty data file at the next run.
 </div>
 
-### Archiving data files `[coming in v2.0]`
+### Creating Assignment Tasks `[coming in v1.3]`
 
-_Details coming soon ..._
+Create assignment tasks with a list of students.
+
+Format: `task t/TITLE d/DESCRIPTION addStu/STUDENT_1, STUDENT_2`
+
+_More details coming soon ..._
+
+### Editing Tasks `[coming in v1.3]`
+
+Edits an existing tasks with a list of students.
+
+Format: `task t/TITLE d/DESCRIPTION addStu/STUDENT_1, STUDENT_2`
+
+_More details coming soon ..._
 
 --------------------------------------------------------------------------------------------------------------------
 
 ## FAQ
+
+**Q:** Do I have to retype the command every single time even if they are similar?
+**A:** You can use our [input history feature]() and simply use the UP `↑` and DOWN `↓` arrow keys to  access your older commands.
+
+**Q:** What is the difference between the different types of tasks?
+**A:** All the three tasks essentially have a task title and description. What differentiate them is that a deadline task has date property where you can set its deadline and an assignment task has a student property where you can add a list of student who are yet to complete the assignment task. Lastly, the todo task doesn't have either of these fields.
 
 Q: How to add a student if I do not have their student ID?
 A: Unfortunately we need the name and student ID of the student minimally as we are using this fields to distinguish the students in the student list.
@@ -314,6 +332,7 @@ A: Remove the existing task, then add the same task with the change that you wan
 
 Q: How do I transfer my data into another computer?
 A: Install the app in the other computer. From your current computer, transfer the "data" folder from GREWZ to your new GREWZ folder.
+
 
 --------------------------------------------------------------------------------------------------------------------
 
