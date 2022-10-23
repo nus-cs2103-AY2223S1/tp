@@ -18,6 +18,7 @@
 * The default values for `UNIT` is blank.
 * The value of `BOUGHT_DATE`, `EXPIRY_DATE` will be `Not Set` if not provided.
 * The value of `REMARKS` will be `No Remarks` if not provided.
+* `PRICE` do not require you to include the currency. Only include the value.
 * You cannot create an item with a tag immediately.
 * If two or more of the same parameters are provided, the last parameter will be taken.
 
@@ -243,7 +244,18 @@ Command: `edit ITEM_INDEX [n/ITEM_NAME] [qty/QUANTITY] [u/UNIT] [bgt/BOUGHT_DATE
 > Updates the details of the item at the specified index
 
 **Note:**
-* At least one parameter must be edited.
+* All fields are optional. However, you need to include at least one parameter.
+* The `BOUGHT_DATE` ideally should not be after the `EXPIRY_DATE` but we will allow that.
+* The format for `BOUGHT_DATE` and `EXPIRY_DATE` should follow: "dd-mm-yyyy".
+  * dd: Day of the month. For example, "10" would represent the 10th day of the month.
+  * mm: Month of the year, ranging from 1 to 12. This represents the months from January to December. For example, "01" would represent January.
+  * yyyy: The current year. For example, "2019" would represent the year 2019.
+* The default values for `QUANTITY` and `PRICE` is `0`.
+* The default values for `UNIT` is blank.
+* The value of `BOUGHT_DATE`, `EXPIRY_DATE` will be `Not Set` if not provided.
+* The value of `REMARKS` will be `No Remarks` if not provided.
+* `PRICE` do not require you to include the currency. Only include the value.
+* You cannot create an item with a tag immediately.
 * If two or more of the same parameters are provided, the last parameter will be taken.
 
 **Example Input:**
