@@ -13,7 +13,7 @@ public class ModContainsKeywordsPredicate implements Predicate<Person> {
     private final List<String> keywords;
 
     /**
-     * Constructor for ModContainsKeywordsPredicate
+     * Constructs for ModContainsKeywordsPredicate
      * @param keywords list of user inputs.
      */
     public ModContainsKeywordsPredicate(List<String> keywords) {
