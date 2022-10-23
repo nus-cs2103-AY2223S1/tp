@@ -2,7 +2,8 @@ package seedu.address.model.datetime;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
-import static seedu.address.model.datetime.DatetimeCommonUtils.DATETIME_FORMATTER;
+import static seedu.address.model.datetime.DatetimeCommonUtils.DATETIME_INPUT_FORMATTER;
+import static seedu.address.model.datetime.DatetimeCommonUtils.DATETIME_READABLE_FORMATTER;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -37,7 +38,7 @@ public class Datetime {
      */
     public static boolean isValidDatetime(String datetimeString) {
         try {
-            LocalDateTime.parse(datetimeString, DATETIME_FORMATTER);
+            LocalDateTime.parse(datetimeString, DATETIME_INPUT_FORMATTER);
         } catch (DateTimeParseException ex) {
             return false;
         }
@@ -45,7 +46,7 @@ public class Datetime {
     }
 
     public static Datetime fromFormattedString(String datetimeString) {
-        LocalDateTime datetime = LocalDateTime.parse(datetimeString, DATETIME_FORMATTER);
+        LocalDateTime datetime = LocalDateTime.parse(datetimeString, DATETIME_INPUT_FORMATTER);
         return new Datetime(datetime);
     }
 
@@ -55,12 +56,12 @@ public class Datetime {
      * @return Formatted datetime
      */
     public String toFormatted() {
-        return datetime.format(DATETIME_FORMATTER);
+        return datetime.format(DATETIME_INPUT_FORMATTER);
     }
 
     @Override
     public String toString() {
-        return datetime.toString();
+        return datetime.format(DATETIME_READABLE_FORMATTER);
     }
 
     @Override

@@ -2,13 +2,14 @@ package seedu.address.model.datetime;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
-import static seedu.address.model.datetime.DatetimeCommonUtils.DATETIME_FORMAT;
-import static seedu.address.model.datetime.DatetimeCommonUtils.DATETIME_FORMATTER;
+import static seedu.address.model.datetime.DatetimeCommonUtils.DATETIME_INPUT_FORMATTER;
+import static seedu.address.model.datetime.DatetimeCommonUtils.DATE_READABLE_FORMATTER;
+import static seedu.address.model.datetime.DatetimeCommonUtils.TIME_FORMAT;
+import static seedu.address.model.datetime.DatetimeCommonUtils.TIME_FORMATTER;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
-import java.time.format.DateTimeFormatter;
 import java.util.Objects;
 
 
@@ -37,18 +38,18 @@ public class DatetimeRange {
     }
 
     public static DatetimeRange fromFormattedString(String dateString, String startTimeString, String endTimeString) {
-        LocalTime startTime = LocalTime.parse(startTimeString, DatetimeCommonUtils.TIME_FORMATTER);
-        LocalTime endTime = LocalTime.parse(endTimeString, DatetimeCommonUtils.TIME_FORMATTER);
-        LocalDateTime startDatetime = LocalDate.parse(dateString, DatetimeCommonUtils.DATE_FORMATTER)
+        LocalTime startTime = LocalTime.parse(startTimeString, TIME_FORMATTER);
+        LocalTime endTime = LocalTime.parse(endTimeString, TIME_FORMATTER);
+        LocalDateTime startDatetime = LocalDate.parse(dateString, DatetimeCommonUtils.DATE_INPUT_FORMATTER)
                 .atTime(startTime);
-        LocalDateTime endDatetime = LocalDate.parse(dateString, DatetimeCommonUtils.DATE_FORMATTER)
+        LocalDateTime endDatetime = LocalDate.parse(dateString, DatetimeCommonUtils.DATE_INPUT_FORMATTER)
                 .atTime(endTime);
         return new DatetimeRange(startDatetime, endDatetime);
     }
 
     public static DatetimeRange fromFormattedString(String startDatetimeString, String endDatetimeString) {
-        LocalDateTime startDatetime = LocalDateTime.parse(startDatetimeString, DATETIME_FORMATTER);
-        LocalDateTime endDatetime = LocalDateTime.parse(endDatetimeString, DATETIME_FORMATTER);
+        LocalDateTime startDatetime = LocalDateTime.parse(startDatetimeString, DATETIME_INPUT_FORMATTER);
+        LocalDateTime endDatetime = LocalDateTime.parse(endDatetimeString, DATETIME_INPUT_FORMATTER);
         return new DatetimeRange(startDatetime, endDatetime);
     }
 
@@ -59,7 +60,7 @@ public class DatetimeRange {
      * @return Formatted start datetime
      */
     public String getStartDatetimeFormatted() {
-        return startDatetime.format(DATETIME_FORMATTER);
+        return startDatetime.format(DATETIME_INPUT_FORMATTER);
     }
 
     /**
@@ -68,12 +69,19 @@ public class DatetimeRange {
      * @return Formatted end datetime
      */
     public String getEndDatetimeFormatted() {
-        return endDatetime.format(DATETIME_FORMATTER);
+        return endDatetime.format(DATETIME_INPUT_FORMATTER);
     }
 
     @Override
     public String toString() {
-        return String.format("%s to %s", startDatetime, endDatetime);
+        if (!startDatetime.toLocalDate().equals(endDatetime.toLocalDate())) {
+            System.out.println(startDatetime.toLocalDate().toString());
+            return String.format("%s to %s", startDatetime, endDatetime);
+        }
+        return String.format("%s, %s to %s",
+                startDatetime.toLocalDate().format(DATE_READABLE_FORMATTER),
+                startDatetime.toLocalTime().format(TIME_FORMATTER),
+                endDatetime.toLocalTime().format(TIME_FORMATTER));
     }
 
     @Override

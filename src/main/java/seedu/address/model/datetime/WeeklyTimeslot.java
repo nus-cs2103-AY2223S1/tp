@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 import static seedu.address.model.datetime.DatetimeCommonUtils.DAY_FORMAT_REGEX;
 import static seedu.address.model.datetime.DatetimeCommonUtils.TIME_FORMATTER;
+import static seedu.address.model.datetime.DatetimeCommonUtils.dayOfWeekToReadable;
 
 import java.time.DayOfWeek;
 import java.time.LocalTime;
@@ -120,7 +121,7 @@ public class WeeklyTimeslot {
      * @return Day of the week
      */
     private String getDayOfWeekReadable() {
-        return day.getDisplayName(TextStyle.SHORT, Locale.getDefault());
+        return dayOfWeekToReadable(day);
     }
 
     @Override

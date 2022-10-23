@@ -6,13 +6,17 @@ import java.time.DayOfWeek;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
+import java.time.format.TextStyle;
+import java.util.Locale;
 import java.util.Objects;
 
 public class DatetimeCommonUtils {
 
-    public static final String DATE_FORMAT = "yyyy-MM-dd";
-    public static final DateTimeFormatter DATE_FORMATTER = DateTimeFormatter.ofPattern(DATE_FORMAT);
+    public static final String DATE_INPUT_FORMAT = "yyyy-MM-dd";
+    public static final DateTimeFormatter DATE_INPUT_FORMATTER = DateTimeFormatter.ofPattern(DATE_INPUT_FORMAT);
     public static final String DATE_FORMAT_REGEX = "\\d{4}-\\d{2}-\\d{2}";
+    public static final String DATE_READABLE_FORMAT = "yyyy MMM dd";
+    public static final DateTimeFormatter DATE_READABLE_FORMATTER = DateTimeFormatter.ofPattern(DATE_READABLE_FORMAT);
     public static final String DATE_MESSAGE_CONSTRAINTS =
             "Date should be in yyyy-MM-dd format, e.g. 2022-01-01";
 
@@ -30,10 +34,13 @@ public class DatetimeCommonUtils {
 
 
 
-    public static final String DATETIME_FORMAT = DATE_FORMAT + " " + TIME_FORMAT;
-    public static final DateTimeFormatter DATETIME_FORMATTER =
-            DateTimeFormatter.ofPattern(DATETIME_FORMAT);
+    public static final String DATETIME_INPUT_FORMAT = DATE_INPUT_FORMAT + " " + TIME_FORMAT;
+    public static final DateTimeFormatter DATETIME_INPUT_FORMATTER =
+            DateTimeFormatter.ofPattern(DATETIME_INPUT_FORMAT);
     public static final String DATETIME_FORMAT_REGEX = DATE_FORMAT_REGEX + " " + TIME_FORMAT_REGEX;
+    public static final String DATETIME_READABLE_FORMAT = DATE_READABLE_FORMAT + " " + TIME_FORMAT;
+    public static final DateTimeFormatter DATETIME_READABLE_FORMATTER =
+            DateTimeFormatter.ofPattern(DATETIME_READABLE_FORMAT);
     public static final String DATETIME_MESSAGE_CONSTRAINTS =
             "Datetime should be in yyyy-MM-dd HH:mm format, e.g. 2022-01-01 08:00";
 
@@ -51,6 +58,9 @@ public class DatetimeCommonUtils {
             throw new ParseException(TIMESLOT_MESSAGE_CONSTRAINTS);
         }
     }
+    public static String dayOfWeekToReadable(DayOfWeek day) {
+        return day.getDisplayName(TextStyle.SHORT, Locale.getDefault());
+    }
 
     /**
      * Parses a {@code String deadline} into a {@code ReminderDeadline}.
@@ -67,7 +77,7 @@ public class DatetimeCommonUtils {
             throw new ParseException(DATETIME_MESSAGE_CONSTRAINTS);
         }
 
-        LocalDateTime datetime = LocalDateTime.parse(trimmedDatetime, DATETIME_FORMATTER);
+        LocalDateTime datetime = LocalDateTime.parse(trimmedDatetime, DATETIME_INPUT_FORMATTER);
         return new Datetime(datetime);
     }
 

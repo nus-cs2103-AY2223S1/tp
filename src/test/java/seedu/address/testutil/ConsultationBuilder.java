@@ -33,7 +33,7 @@ public class ConsultationBuilder {
         consultationName = new ConsultationName(DEFAULT_NAME);
         consultationModule = new ConsultationModule(DEFAULT_MODULE);
         consultationVenue = new ConsultationVenue(DEFAULT_VENUE);
-        consultationTimeslot = new DatetimeRange(DEFAULT_TIMESLOT_START, DEFAULT_TIMESLOT_END);
+        consultationTimeslot = DatetimeRange.fromFormattedString(DEFAULT_TIMESLOT_START, DEFAULT_TIMESLOT_END);
         consultationDescription = new ConsultationDescription(DEFAULT_DESCRIPTION);
     }
 
