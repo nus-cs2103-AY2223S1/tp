@@ -24,7 +24,7 @@ public class ModFindCommand extends ModCommand {
     private final ModContainsKeywordsPredicate predicate;
 
     /**
-     * Constructor for ModFindCommand.
+     * Constructs the ModFindCommand.
      * @param predicate Boolean condition for whether modules match all the given user inputs and the given condition,
      *     if any.
      */
