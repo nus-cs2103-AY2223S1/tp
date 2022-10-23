@@ -26,6 +26,14 @@ public interface Logic {
     CommandResult execute(String commandText) throws CommandException, ParseException;
 
     /**
+     * Returns id of the tab to show.
+     * @param commandText The command as entered by the user.
+     * @return the unique int id of the tab to show.
+     * @throws ParseException If an error occurs during parsing.
+     */
+    int getTabToShow(String commandText) throws ParseException;
+
+    /**
      * Returns the AddressBook.
      *
      * @see seedu.address.model.Model#getAddressBook()
