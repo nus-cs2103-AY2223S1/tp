@@ -4,7 +4,7 @@ import friday.model.Friday;
 import friday.model.student.Student;
 
 /**
- * A utility class to help with building Addressbook objects.
+ * A utility class to help with building Friday objects.
  * Example usage: <br>
  *     {@code AddressBook ab = new FridayBuilder().withStudent("John", "Doe").build();}
  */

@@ -71,12 +71,12 @@ public class ModelManager implements Model {
     }
 
     public Path getFridayFilePath() {
-        return userPrefs.getAddressBookFilePath();
+        return userPrefs.getFridayFilePath();
     }
 
     public void setFridayFilePath(Path fridayFilePath) {
         requireNonNull(fridayFilePath);
-        userPrefs.setAddressBookFilePath(fridayFilePath);
+        userPrefs.setFridayFilePath(fridayFilePath);
     }
 
     //=========== FRIDAY ================================================================================

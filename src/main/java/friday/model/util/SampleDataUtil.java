@@ -50,7 +50,7 @@ public class SampleDataUtil {
         };
     }
 
-    public static ReadOnlyFriday getSampleAddressBook() {
+    public static ReadOnlyFriday getSampleFriday() {
         Friday sampleAb = new Friday();
         for (Student sampleStudent : getSampleStudents()) {
             sampleAb.addStudent(sampleStudent);
