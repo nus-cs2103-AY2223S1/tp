@@ -40,7 +40,7 @@ public class EditCommand extends Command {
             + "[" + PREFIX_TAG + "TAG]  \n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_TYPE + "e "
-            + PREFIX_DESCRIPTION + "Lunch@Deck";
+            + PREFIX_DESCRIPTION + "LunchDeck";
 
     public static final String MESSAGE_EDIT_ENTRY_SUCCESS = "Edited Entry: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";

@@ -1,0 +1,67 @@
+@startuml
+!include style.puml
+skinparam arrowThickness 1.1
+skinparam arrowColor UI_COLOR_T4
+skinparam classBackgroundColor UI_COLOR
+
+package UI <<Rectangle>>{
+Class "<<interface>>\nUi" as Ui
+Class "{abstract}\nUiPart" as UiPart
+Class UiManager
+Class MainWindow
+Class HelpWindow
+Class ResultDisplay
+Class GraphPanel
+Class EntryPane
+Class EntryListPanel
+Class EntryCard
+Class StatusBarFooter
+Class CommandBox
+}
+
+package Model <<Rectangle>> {
+Class HiddenModel #FFFFFF
+}
+
+package Logic <<Rectangle>> {
+Class HiddenLogic #FFFFFF
+}
+
+Class HiddenOutside #FFFFFF
+HiddenOutside ..> Ui
+
+UiManager .left.|> Ui
+UiManager -down-> "1" MainWindow
+MainWindow *-down->  "1" CommandBox
+MainWindow --> "0..1" HelpWindow
+MainWindow *-down-> "1" EntryPane
+MainWindow *-down-> "1" ResultDisplay
+MainWindow *-down-> "1" StatusBarFooter
+MainWindow *-down-> "1" GraphPanel
+
+EntryPane *-down-> "2" EntryListPanel
+
+
+EntryListPanel -down-> "*" EntryCard
+
+MainWindow -left-|> UiPart
+
+ResultDisplay --|> UiPart
+CommandBox --|> UiPart
+EntryListPanel --|> UiPart
+EntryCard --|> UiPart
+StatusBarFooter --|> UiPart
+HelpWindow --|> UiPart
+GraphPanel --|> UiPart
+
+EntryCard ..> Model
+UiManager -right-> Logic
+MainWindow -left-> Logic
+
+EntryListPanel -[hidden]left- HelpWindow
+HelpWindow -[hidden]left- CommandBox
+CommandBox -[hidden]left- ResultDisplay
+ResultDisplay -[hidden]left- StatusBarFooter
+
+MainWindow -[hidden]-|> UiPart
+@enduml

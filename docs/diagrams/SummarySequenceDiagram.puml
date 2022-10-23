@@ -1,0 +1,77 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":PennyWiseParser" as PennyWiseParser LOGIC_COLOR
+participant ":SummaryCommandParser" as SummaryCommandParser LOGIC_COLOR
+participant "predicate:MonthPredicate" as MonthPredicate LOGIC_COLOR
+participant "s:SummaryCommand" as SummaryCommand LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+
+[-> LogicManager : execute("summary mo/08-2022")
+activate LogicManager
+
+LogicManager -> PennyWiseParser : parseCommand("summary mo/08-2022"")
+activate PennyWiseParser
+
+create SummaryCommandParser
+PennyWiseParser -> SummaryCommandParser
+activate SummaryCommandParser
+
+SummaryCommandParser --> PennyWiseParser
+deactivate SummaryCommandParser
+
+PennyWiseParser -> SummaryCommandParser : parse("mo/08-2022")
+activate SummaryCommandParser
+
+create MonthPredicate
+SummaryCommandParser -> MonthPredicate : MonthPredicate([Month])
+activate MonthPredicate
+
+MonthPredicate --> SummaryCommandParser
+deactivate MonthPredicate
+
+create SummaryCommand
+SummaryCommandParser -> SummaryCommand : SummaryCommand(predicate)
+activate SummaryCommand
+
+SummaryCommand --> SummaryCommandParser : s
+deactivate SummaryCommand
+
+SummaryCommandParser --> PennyWiseParser : s
+deactivate SummaryCommandParser
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+SummaryCommandParser -[hidden]-> PennyWiseParser
+destroy SummaryCommandParser
+
+PennyWiseParser --> LogicManager : s
+deactivate PennyWiseParser
+
+LogicManager -> SummaryCommand : execute(model)
+activate SummaryCommand
+
+SummaryCommand -> Model : updateFilteredEntry(predicate)
+activate Model
+
+Model --> SummaryCommand
+deactivate Model
+
+create CommandResult
+SummaryCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> SummaryCommand
+deactivate CommandResult
+
+SummaryCommand --> LogicManager : result
+deactivate SummaryCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml
