@@ -261,7 +261,10 @@ _More details coming soon ..._
 ## FAQ
 
 **Q:** Do I have to retype the command every single time even if they are similar?
-**A:** You can use our [input history feature]() and simply use the UP and DOWN arror keys to  access your older commands.
+**A:** You can use our [input history feature]() and simply use the UP `↑` and DOWN `↓` arrow keys to  access your older commands.
+
+**Q:** What is the difference between the different types of tasks?
+**A:** All the three tasks essentially have a task title and description. What differentiate them is that a deadline task has date property where you can set its deadline and an assignment task has a student property where you can add a list of student who are yet to complete the assignment task. Lastly, the todo task doesn't have either of these fields.
 
 --------------------------------------------------------------------------------------------------------------------
 
