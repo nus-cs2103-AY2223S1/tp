@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.uninurse.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
+import java.util.Optional;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
@@ -12,6 +13,7 @@ import javafx.collections.transformation.FilteredList;
 import seedu.uninurse.commons.core.GuiSettings;
 import seedu.uninurse.commons.core.LogsCenter;
 import seedu.uninurse.logic.commands.CommandResult;
+import seedu.uninurse.model.exceptions.PatientOfInterestNotFoundException;
 import seedu.uninurse.model.person.Patient;
 
 /**
@@ -25,7 +27,7 @@ public class ModelManager implements Model {
     private final UserPrefs userPrefs;
     private final FilteredList<Patient> filteredPersons;
 
-    private Patient patientOfInterest;
+    private Optional<Patient> patientOfInterest;
 
     /**
      * Initializes a ModelManager with the given uninurseBook and userPrefs.
@@ -38,7 +40,7 @@ public class ModelManager implements Model {
         this.userPrefs = new UserPrefs(userPrefs);
         this.persistentUninurseBook = new PersistentUninurseBook(uninurseBook);
         this.filteredPersons = new FilteredList<>(this.persistentUninurseBook.getWorkingCopy().getPersonList());
-        this.patientOfInterest = null;
+        this.patientOfInterest = Optional.empty();
     }
 
     public ModelManager() {
@@ -137,13 +139,12 @@ public class ModelManager implements Model {
 
     @Override
     public void setPatientOfInterest(Patient patient) {
-        requireNonNull(patient);
-        this.patientOfInterest = patient;
+        this.patientOfInterest = Optional.ofNullable(patient);
     }
 
     @Override
-    public Patient getPatientOfInterest() {
-        return this.patientOfInterest;
+    public Patient getPatientOfInterest() throws PatientOfInterestNotFoundException {
+        return this.patientOfInterest.orElseThrow(() -> new PatientOfInterestNotFoundException());
     }
 
     //=========== Undo and Redo =============================================================

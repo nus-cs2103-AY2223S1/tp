@@ -1,7 +1,6 @@
 package seedu.uninurse.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.uninurse.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
 import java.util.List;
 
@@ -42,9 +41,15 @@ public class ViewPatientCommand extends Command {
         }
 
         Patient patient = lastShownList.get(targetIndex.getZeroBased());
-        model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
         model.setPatientOfInterest(patient);
 
         return new CommandResult(String.format(MESSAGE_SUCCESS, patient.getName()), VIEW_PATIENT_COMMAND_TYPE);
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof ViewPatientCommand // instanceof handles nulls
+                && targetIndex.equals(((ViewPatientCommand) other).targetIndex)); // state check
     }
 }
