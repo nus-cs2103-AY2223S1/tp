@@ -1,14 +1,18 @@
 # 👾 MineFriends User Guide
 
-MineFriends is a **desktop app for MineCraft players to manage information about their online friends, 
-optimized for use via a Command Line Interface** (CLI), while still having the 
-benefits of a Graphical User Interface (GUI).
+MineFriends is an address book for you to find friends to play Minecraft multiplayer with,
+at the right time, with the right game modes and on the right servers.
 
-###**_Table of Contents_**
-* Quick Start
-* Features
-* FAQ
-* Command Summary
+This user guide will help you get started with Minefriends and get to know what it can do for you. 
+The guide is meant for Minecraft players who are familiar with the game and how multiplayer in Minecraft works.
+No other technical knowledge is required.
+
+
+### Table of Contents
+* Getting started
+* User interface breakdown
+* Managing your Minecraft friends
+* Summary of commands
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -135,6 +139,40 @@ Examples: - image to be added -
 
 * `find amy benson` returns `Amy Bee`, `Benson Tan`<br> - image to be added -
 
+
+### Suggest me a friend: `suggest`
+
+Suggest friends to play with given a set of constraints.
+
+Format: `suggest [dt/DAY_TIME_IN_WEEK]* [k/KEYWORD]*`
+
+* The search is case-insensitive (e.g. `amy` will match `Amy`)
+* The order of the keywords does not matter
+* The `Keyword` will be matched against **all** attributes of a friend (eg. Name, Minecraft Name, Address etc.)
+* As long as some attribute of a friend contains the `Keyword`, the `Keyword` is considered to have a valid match
+* All `Keyword` must be matched, but only 1 `DayTimeInWeek` needs to be matched
+
+Examples:
+
+`suggest dt/tue@2125 dt/sat@1200 k/Victoria k/Vicky` 
+will return friends subjected to **all** of the following conditions:
+1. Is available at either Tuesday 9:25pm or Saturday 12:00pm
+2. Attributes contain the `Keyword` "Victoria" (ignore case)
+3. Attributes contain the `Keyword` "Vicky" (ignore case)
+
+* A friend with name "Victoria Tan" and Minecraft name "vicky12345", who is available from Tuesday 7pm to 11pm
+will be matched
+* A friend with name "Victoria Tan" but no other attributes containing "Vicky" will not be matched
+* A friend with name "Victoria Tan" and Minecraft name "vicky12345", who is only available from Sunday 1pm to 6pm
+will also not be matched
+
+`suggest k/Victoria`
+will return friends subjected to the only condition:
+1. Attributes contain the `Keyword` "Victoria" (ignore case)
+
+`suggest dt/tue@2125`
+will return friends subjected to the only condition:
+1. Is available at Tuesday 9:25pm
 
 ### Deleting a friend : `delete`
 
