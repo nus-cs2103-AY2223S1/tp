@@ -7,6 +7,7 @@ import java.util.function.Predicate;
 import javafx.collections.ObservableList;
 import seedu.rc4hdb.commons.core.GuiSettings;
 import seedu.rc4hdb.model.resident.Resident;
+import seedu.rc4hdb.model.venues.Venue;
 
 /**
  * The API of the Model component.
@@ -90,4 +91,8 @@ public interface Model {
     ObservableList<String> getObservableFields();
 
     void setObservableFields(List<String> modifiableList);
+
+    ObservableList<Venue> getObservableVenues();
+
+    void setObservableVenues(List<Venue> modifiableVenues);
 }

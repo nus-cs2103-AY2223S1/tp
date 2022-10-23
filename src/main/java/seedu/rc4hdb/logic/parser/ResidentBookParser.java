@@ -19,7 +19,9 @@ import seedu.rc4hdb.logic.commands.modelcommands.HideCommand;
 import seedu.rc4hdb.logic.commands.modelcommands.ListCommand;
 import seedu.rc4hdb.logic.commands.modelcommands.ShowCommand;
 import seedu.rc4hdb.logic.commands.storagecommands.filecommands.FileCommand;
+import seedu.rc4hdb.logic.commands.venuecommands.BookCommand;
 import seedu.rc4hdb.logic.parser.commandparsers.AddCommandParser;
+import seedu.rc4hdb.logic.parser.commandparsers.BookCommandParser;
 import seedu.rc4hdb.logic.parser.commandparsers.DeleteCommandParser;
 import seedu.rc4hdb.logic.parser.commandparsers.EditCommandParser;
 import seedu.rc4hdb.logic.parser.commandparsers.FileCommandParser;
@@ -92,6 +94,9 @@ public class ResidentBookParser {
 
         case ShowCommand.COMMAND_WORD:
             return new ShowCommandParser().parse(arguments);
+
+        case BookCommand.COMMAND_WORD:
+            return new BookCommandParser().parse(arguments);
 
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);

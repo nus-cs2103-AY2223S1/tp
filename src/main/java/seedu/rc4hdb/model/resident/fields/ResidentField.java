@@ -5,7 +5,7 @@ import java.util.List;
 import seedu.rc4hdb.model.Field;
 
 /**
- * Represents the fields for a residents.
+ * Represents the fields for a resident.
  */
 public abstract class ResidentField extends Field {
 

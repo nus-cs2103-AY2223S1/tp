@@ -10,6 +10,7 @@ import seedu.rc4hdb.logic.commands.exceptions.CommandException;
 import seedu.rc4hdb.logic.parser.exceptions.ParseException;
 import seedu.rc4hdb.model.ReadOnlyResidentBook;
 import seedu.rc4hdb.model.resident.Resident;
+import seedu.rc4hdb.model.venues.Venue;
 
 /**
  * API of the Logic component
@@ -49,7 +50,19 @@ public interface Logic {
      */
     void setGuiSettings(GuiSettings guiSettings);
 
+    /**
+     * Returns the list of observable resident fields in the model.
+     */
     ObservableList<String> getObservableFields();
 
+    /**
+     * Returns the current data file path of the storage's ResidentBookStorage.
+     */
     ObservableValue<Path> getObservableResidentBookFilePath();
+
+    /**
+     * Returns the list of observable venues in the model.
+     */
+    ObservableList<Venue> getObservableVenues();
+
 }

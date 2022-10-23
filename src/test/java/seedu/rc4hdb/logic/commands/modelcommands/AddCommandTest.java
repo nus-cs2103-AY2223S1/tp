@@ -19,6 +19,9 @@ import seedu.rc4hdb.model.ResidentBook;
 import seedu.rc4hdb.model.resident.Resident;
 import seedu.rc4hdb.testutil.ResidentBuilder;
 
+/**
+ * Unit tests for {@link AddCommand}.
+ */
 public class AddCommandTest {
 
     @Test
