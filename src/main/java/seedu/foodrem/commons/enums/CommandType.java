@@ -17,6 +17,14 @@ import java.util.StringJoiner;
  */
 public enum CommandType {
     // General Commands
+    EXIT_COMMAND("exit") {
+        @Override
+        public String getUsage() {
+            return getCommandWord() + ": Exits FoodRem.\n\n"
+                    + "Example:\n"
+                    + getCommandWord();
+        }
+    },
     HELP_COMMAND("help") {
         @Override
         public String getUsage() {
@@ -33,16 +41,86 @@ public enum CommandType {
                     + getCommandWord();
         }
     },
-    EXIT_COMMAND("exit") {
+
+
+    // Item Commands
+    DECREMENT_COMMAND("dec") {
         @Override
         public String getUsage() {
-            return getCommandWord() + ": Exits FoodRem.\n\n"
+            return getCommandWord() + ": Decrements the quantity of " + THE_ITEM_IN_LIST
+                    + "If a quantity is not provided, the item quantity will be decremented by 1.\n\n"
+                    + "Format:\n"
+                    + getCommandWord() + " INDEX [" + PREFIX_ITEM_QUANTITY + "QUANTITY]\n\n"
+                    + "Examples:\n"
+                    + getCommandWord() + " 10\n"
+                    + getCommandWord() + " 10 " + PREFIX_ITEM_QUANTITY + "100";
+        }
+    },
+    DELETE_COMMAND("del") {
+        @Override
+        public String getUsage() {
+            return getCommandWord() + ": Deletes " + THE_ITEM_IN_LIST
+                    + "\n"
+                    + "Format:\n"
+                    + getCommandWord() + " INDEX\n\n"
+                    + "Example:\n"
+                    + getCommandWord() + " 1";
+        }
+    },
+    EDIT_COMMAND("edit") {
+        @Override
+        public String getUsage() {
+            return getCommandWord() + ": Updates the details of " + THE_ITEM_IN_LIST
+                    + "Existing values will be overwritten by the input values.\n\n"
+                    + "Format (At least one optional prefix must be present):\n"
+                    + getCommandWord() + " INDEX "
+                    + "[" + PREFIX_NAME + "NAME] "
+                    + "[" + PREFIX_ITEM_QUANTITY + "QUANTITY] "
+                    + "[" + PREFIX_ITEM_UNIT + "UNIT] "
+                    + "[" + PREFIX_ITEM_BOUGHT_DATE + "BOUGHT_DATE] "
+                    + "[" + PREFIX_ITEM_EXPIRY_DATE + "EXPIRY_DATE] "
+                    + "[" + PREFIX_ITEM_PRICE + "PRICE]\n\n"
+                    + "Examples:\n"
+                    + getCommandWord() + " 1 "
+                    + PREFIX_ITEM_QUANTITY + "1000 "
+                    + PREFIX_ITEM_UNIT + "grams "
+                    + PREFIX_ITEM_PRICE + "10.2\n"
+                    + getCommandWord() + " 2 "
+                    + PREFIX_NAME + "Potatoes";
+        }
+    },
+    FIND_COMMAND("find") {
+        @Override
+        public String getUsage() {
+            return getCommandWord() + ": Finds all items in FoodRem whose names contain any of "
+                    + "the specified keywords (case-insensitive).\n\n"
+                    + "Format:\n"
+                    + getCommandWord() + " KEYWORD [KEYWORDS]...\n\n"
+                    + "Examples:\n"
+                    + getCommandWord() + " Potatoes\n"
+                    + getCommandWord() + " Potatoes Carrots Cucumbers";
+        }
+    },
+    INCREMENT_COMMAND("inc") {
+        @Override
+        public String getUsage() {
+            return getCommandWord() + ": Increments the quantity of " + THE_ITEM_IN_LIST
+                    + "If a quantity is not provided, the item quantity will be incremented by 1.\n\n"
+                    + "Format:\n"
+                    + getCommandWord() + " INDEX [" + PREFIX_ITEM_QUANTITY + "QUANTITY]\n\n"
+                    + "Examples:\n"
+                    + getCommandWord() + " 10\n"
+                    + getCommandWord() + " 10 " + PREFIX_ITEM_QUANTITY + "100";
+        }
+    },
+    LIST_COMMAND("list") {
+        @Override
+        public String getUsage() {
+            return getCommandWord() + ": List all items in FoodRem.\n\n"
                     + "Example:\n"
                     + getCommandWord();
         }
     },
-
-    // Item Commands
     NEW_COMMAND("new") {
         // TODO: Ensure remarks is added
         @Override
@@ -68,24 +146,13 @@ public enum CommandType {
                     + PREFIX_ITEM_PRICE + "10";
         }
     },
-    LIST_COMMAND("list") {
+    REMARK_COMMAND("rmk") {
         @Override
         public String getUsage() {
-            return getCommandWord() + ": List all items in FoodRem.\n\n"
-                    + "Example:\n"
-                    + getCommandWord();
-        }
-    },
-    FIND_COMMAND("find") {
-        @Override
-        public String getUsage() {
-            return getCommandWord() + ": Finds all items in FoodRem whose names contain any of "
-                    + "the specified keywords (case-insensitive).\n\n"
-                    + "Format:\n"
-                    + getCommandWord() + " KEYWORD [KEYWORDS]...\n\n"
-                    + "Examples:\n"
-                    + getCommandWord() + " Potatoes\n"
-                    + getCommandWord() + " Potatoes Carrots Cucumbers";
+            return getCommandWord() + ": Adds a remark to an Item\n"
+                    + "Parameters: "
+                    + PREFIX_ITEM_REMARKS
+                    + "Example: " + getCommandWord() + " 1" + PREFIX_ITEM_REMARKS + "For oranges";
         }
     },
     SORT_COMMAND("sort") {
@@ -121,78 +188,13 @@ public enum CommandType {
                     + getCommandWord() + " 1";
         }
     },
-    INCREMENT_COMMAND("inc") {
-        @Override
-        public String getUsage() {
-            return getCommandWord() + ": Increments the quantity of " + THE_ITEM_IN_LIST
-                    + "If a quantity is not provided, the item quantity will be incremented by 1.\n\n"
-                    + "Format:\n"
-                    + getCommandWord() + " INDEX [" + PREFIX_ITEM_QUANTITY + "QUANTITY]\n\n"
-                    + "Examples:\n"
-                    + getCommandWord() + " 10\n"
-                    + getCommandWord() + " 10 " + PREFIX_ITEM_QUANTITY + "100";
-        }
-    },
-    DECREMENT_COMMAND("dec") {
-        @Override
-        public String getUsage() {
-            return getCommandWord() + ": Decrements the quantity of " + THE_ITEM_IN_LIST
-                    + "If a quantity is not provided, the item quantity will be decremented by 1.\n\n"
-                    + "Format:\n"
-                    + getCommandWord() + " INDEX [" + PREFIX_ITEM_QUANTITY + "QUANTITY]\n\n"
-                    + "Examples:\n"
-                    + getCommandWord() + " 10\n"
-                    + getCommandWord() + " 10 " + PREFIX_ITEM_QUANTITY + "100";
-        }
-    },
-    EDIT_COMMAND("edit") {
-        @Override
-        public String getUsage() {
-            return getCommandWord() + ": Updates the details of " + THE_ITEM_IN_LIST
-                    + "Existing values will be overwritten by the input values.\n\n"
-                    + "Format (At least one optional prefix must be present):\n"
-                    + getCommandWord() + " INDEX "
-                    + "[" + PREFIX_NAME + "NAME] "
-                    + "[" + PREFIX_ITEM_QUANTITY + "QUANTITY] "
-                    + "[" + PREFIX_ITEM_UNIT + "UNIT] "
-                    + "[" + PREFIX_ITEM_BOUGHT_DATE + "BOUGHT_DATE] "
-                    + "[" + PREFIX_ITEM_EXPIRY_DATE + "EXPIRY_DATE] "
-                    + "[" + PREFIX_ITEM_PRICE + "PRICE]\n\n"
-                    + "Examples:\n"
-                    + getCommandWord() + " 1 "
-                    + PREFIX_ITEM_QUANTITY + "1000 "
-                    + PREFIX_ITEM_UNIT + "grams "
-                    + PREFIX_ITEM_PRICE + "10.2\n"
-                    + getCommandWord() + " 2 "
-                    + PREFIX_NAME + "Potatoes";
-        }
-    },
-    DELETE_COMMAND("del") {
-        @Override
-        public String getUsage() {
-            return getCommandWord() + ": Deletes " + THE_ITEM_IN_LIST
-                    + "\n"
-                    + "Format:\n"
-                    + getCommandWord() + " INDEX\n\n"
-                    + "Example:\n"
-                    + getCommandWord() + " 1";
-        }
-    },
-    REMARK_COMMAND("rmk") {
-        @Override
-        public String getUsage() {
-            return getCommandWord() + ": Adds a remark to an Item\n"
-                    + "Parameters: "
-                    + PREFIX_ITEM_REMARKS
-                    + "Example: " + getCommandWord() + " 1" + PREFIX_ITEM_REMARKS + "For oranges";
-        }
-    },
 
     // Tag Commands
-    NEW_TAG_COMMAND("newtag") {
+    DELETE_TAG_COMMAND("deletetag") {
         @Override
         public String getUsage() {
-            return getCommandWord() + ": Creates a tag in FoodRem.\n\n"
+            return getCommandWord() + ": Deletes an existing tag in FoodRem.\n"
+                    + "\n"
                     + "Format:\n"
                     + getCommandWord() + " "
                     + PREFIX_NAME + "NAME\n\n"
@@ -207,6 +209,18 @@ public enum CommandType {
             return getCommandWord() + ": List all tags in FoodRem.\n\n"
                     + "Example:\n"
                     + getCommandWord();
+        }
+    },
+    NEW_TAG_COMMAND("newtag") {
+        @Override
+        public String getUsage() {
+            return getCommandWord() + ": Creates a tag in FoodRem.\n\n"
+                    + "Format:\n"
+                    + getCommandWord() + " "
+                    + PREFIX_NAME + "NAME\n\n"
+                    + "Example:\n"
+                    + getCommandWord() + " "
+                    + PREFIX_NAME + "Potatoes ";
         }
     },
     RENAME_TAG_COMMAND("renametag") {
@@ -251,19 +265,6 @@ public enum CommandType {
                     + getCommandWord() + " "
                     + "1 "
                     + PREFIX_NAME + "Condiments";
-        }
-    },
-    DELETE_TAG_COMMAND("deletetag") {
-        @Override
-        public String getUsage() {
-            return getCommandWord() + ": Deletes an existing tag in FoodRem.\n"
-                    + "\n"
-                    + "Format:\n"
-                    + getCommandWord() + " "
-                    + PREFIX_NAME + "NAME\n\n"
-                    + "Example:\n"
-                    + getCommandWord() + " "
-                    + PREFIX_NAME + "Potatoes ";
         }
     },
 
