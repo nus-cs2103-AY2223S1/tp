@@ -30,7 +30,7 @@ public interface Logic {
      *
      * @see seedu.address.model.Model#getPersonModel()
      */
-    ReadOnlyPersonBook getPersonModel();
+    ReadOnlyPersonBook getPersonBook();
 
     /** Returns an unmodifiable view of the filtered list of persons */
     ObservableList<Person> getFilteredPersonList();
@@ -40,7 +40,7 @@ public interface Logic {
      *
      * @see seedu.address.model.Model#getPropertyModel()
      */
-    ReadOnlyPropertyBook getPropertyModel();
+    ReadOnlyPropertyBook getPropertyBook();
 
     /** Returns an unmodifiable view of the filtered list of properties */
     ObservableList<Property> getFilteredPropertyList();
@@ -48,12 +48,12 @@ public interface Logic {
     /**
      * Returns the user prefs' person book file path.
      */
-    Path getPersonModelFilePath();
+    Path getPersonBookFilePath();
 
     /**
      * Returns the user prefs' property book file path.
      */
-    Path getPropertyModelFilePath();
+    Path getPropertyBookFilePath();
 
     /**
      * Returns the user prefs' GUI settings.

@@ -58,7 +58,7 @@ public class LogicManager implements Logic {
     }
 
     @Override
-    public ReadOnlyPersonBook getPersonModel() {
+    public ReadOnlyPersonBook getPersonBook() {
         return model.getPersonModel();
     }
 
@@ -68,7 +68,7 @@ public class LogicManager implements Logic {
     }
 
     @Override
-    public ReadOnlyPropertyBook getPropertyModel() {
+    public ReadOnlyPropertyBook getPropertyBook() {
         return model.getPropertyModel();
     }
 
@@ -78,12 +78,12 @@ public class LogicManager implements Logic {
     }
 
     @Override
-    public Path getPersonModelFilePath() {
+    public Path getPersonBookFilePath() {
         return model.getPersonModelFilePath();
     }
 
     @Override
-    public Path getPropertyModelFilePath() {
+    public Path getPropertyBookFilePath() {
         return model.getPropertyModelFilePath();
     }
 
