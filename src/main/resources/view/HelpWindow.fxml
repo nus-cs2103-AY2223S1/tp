@@ -15,7 +15,7 @@
   <scene>
     <Scene fx:id="parent">
       <stylesheets>
-        <URL value="@HelpWindowDark.css" />
+        <URL value="@styles/HelpWindowDark.css" />
       </stylesheets>
 
       <HBox fx:id="helpMessageContainer" alignment="CENTER">

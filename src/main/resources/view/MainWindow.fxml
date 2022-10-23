@@ -15,8 +15,8 @@
   <scene>
     <Scene fx:id="parent">
       <stylesheets>
-        <URL value="@DarkTheme.css" />
-        <URL value="@Extensions.css" />
+        <URL value="@styles/MainWindowDark.css" />
+        <URL value="@styles/Extensions.css" />
       </stylesheets>
 
       <VBox>

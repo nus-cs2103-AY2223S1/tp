@@ -94,18 +94,18 @@ public class MainWindow extends UiPart<Stage> implements Initializable {
 
         // Configure the UI
         setWindowDefaultSize(logic.getGuiSettings());
-
         setAccelerators();
         getTotalClient();
         helpWindow = new HelpWindow();
-
         lockWindow = new LockWindow(new Stage(), this);
 
+        // Set the layout of menuBar
         HBox.setHgrow(menuBar, Priority.ALWAYS);
         HBox.setHgrow(btnChangeTheme, Priority.NEVER);
 
         Preferences pref = Preferences.userRoot().node(this.getClass().getName());
         initializeTheme(pref);
+        // Toggle the theme with each mouse click on button
         btnChangeTheme.setOnMouseClicked(event -> {
             int mode = pref.getInt("mode", 0);
             if (mode == 0) { //dark change to light
@@ -116,33 +116,44 @@ public class MainWindow extends UiPart<Stage> implements Initializable {
         });
     }
 
+    /**
+     * Sets FinBook to light mode if user set his/her preference as light mode (mode == 1).
+     * FinBook's default theme is dark mode. (mode == 0)
+     * @param pref Stored preference of application theme.
+     */
     void initializeTheme(Preferences pref) {
         int mode = pref.getInt("mode", 0);
-        if (mode == 0) { //dark mode
-            parent.getStylesheets().add("view/DarkTheme.css");
-            Image image = new Image("images/moon.png");
-            imageTheme.setImage(image);
-        } else { //light mode
-            parent.getStylesheets().add("view/LightTheme.css");
-            Image image = new Image("images/sun.png");
-            imageTheme.setImage(image);
+        if ( mode == 1) {
+            setLightTheme(pref);
         }
     }
 
+    /**
+     * Sets FinBook UI to light mode by changing MainWindow, HelpWindow and LockWindow stylesheet to their
+     * respective light stylesheet and sets the button to sun icon.
+     * @param pref Stored preference of application theme.
+     */
     void setLightTheme(Preferences pref) {
-        parent.getStylesheets().add("view/LightTheme.css");
-        parent.getStylesheets().remove("view/DarkTheme.css");
         pref.putInt("mode", 1);
-        Image image = new Image("images/sun.png");
-        imageTheme.setImage(image);
+        parent.getStylesheets().add("view/styles/MainWindowLight.css");
+        parent.getStylesheets().remove("view/styles/MainWindowDark.css");
+        imageTheme.setImage(new Image("images/sun.png"));
+        helpWindow.setLightTheme();
+        lockWindow.setLightTheme();
     }
 
+    /**
+     * Sets FinBook UI to dark mode by changing MainWindow, HelpWindow and LockWindow stylesheet to their
+     * respective dark stylesheet and sets the button to moon icon.
+     * @param pref Stored preference of application theme.
+     */
     void setDarkTheme(Preferences pref) {
-        parent.getStylesheets().add("view/DarkTheme.css");
-        parent.getStylesheets().remove("view/LightTheme.css");
         pref.putInt("mode", 0);
-        Image image = new Image("images/moon.png");
-        imageTheme.setImage(image);
+        parent.getStylesheets().add("view/styles/MainWindowDark.css");
+        parent.getStylesheets().remove("view/styles/MainWindowLight.css");
+        imageTheme.setImage(new Image("images/moon.png"));
+        helpWindow.setDarkTheme();
+        lockWindow.setDarkTheme();
     }
 
     public Stage getPrimaryStage() {

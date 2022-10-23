@@ -69,19 +69,24 @@ public class HelpWindow extends UiPart<Stage> {
      */
     public void show() {
         logger.fine("Showing help page about the application.");
-
-        //Set helpWindow dark/light theme
-        Preferences pref = Preferences.userRoot().node("seedu.address.ui.MainWindow");
-        if (pref.getInt("mode", 0) == 0) {
-            parent.getStylesheets().add("view/HelpWindowDark.css");
-            parent.getStylesheets().remove("view/HelpWindowLight.css");
-        } else {
-            parent.getStylesheets().add("view/HelpWindowLight.css");
-            parent.getStylesheets().remove("view/HelpWindowDark.css");
-        }
-
         getRoot().show();
         getRoot().centerOnScreen();
+    }
+
+    /**
+     * Sets HelpWindow UI to light mode by changing the parent stylesheet to HelpWindowLight.css file
+     */
+    void setLightTheme() {
+        parent.getStylesheets().add("view/styles/HelpWindowLight.css");
+        parent.getStylesheets().remove("view/styles/HelpWindowDark.css");
+    }
+
+    /**
+     * Sets HelpWindow UI to dark mode by changing the parent stylesheet to HelpWindowDark.css file
+     */
+    void setDarkTheme() {
+        parent.getStylesheets().add("view/styles/HelpWindowDark.css");
+        parent.getStylesheets().remove("view/styles/HelpWindowLight.css");
     }
 
     /**

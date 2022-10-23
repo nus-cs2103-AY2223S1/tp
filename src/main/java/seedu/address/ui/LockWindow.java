@@ -55,19 +55,24 @@ public class LockWindow extends UiPart<Stage> {
      */
     public void show() {
         logger.fine("Showing FinBook lock dialog.");
-
-        //Set LockWindow dark/light theme
-        Preferences pref = Preferences.userRoot().node("seedu.address.ui.MainWindow");
-        if (pref.getInt("mode", 0) == 0) {
-            parent.getStylesheets().add("view/DarkTheme.css");
-            parent.getStylesheets().remove("view/LightTheme.css");
-        } else {
-            parent.getStylesheets().add("view/LightTheme.css");
-            parent.getStylesheets().remove("view/DarkTheme.css");
-        }
-
         getRoot().show();
         getRoot().centerOnScreen();
+    }
+
+    /**
+     * Sets LockWindow UI to light mode by changing the parent stylesheet to LockWindowLight.css file
+     */
+    void setLightTheme() {
+        parent.getStylesheets().add("view/styles/LockWindowLight.css");
+        parent.getStylesheets().remove("view/styles/LockWindowDark.css");
+    }
+
+    /**
+     * Sets LockWindow UI to dark mode by changing the parent stylesheet to LockWindowDark.css file
+     */
+    void setDarkTheme() {
+        parent.getStylesheets().add("view/styles/LockWindowDark.css");
+        parent.getStylesheets().remove("view/styles/LockWindowLight.css");
     }
 
     /**

@@ -444,27 +444,4 @@
     -fx-border-radius: 7;
 }
 
-/*
- * CSS for LockWindow
- */
-#lockWindowBackground {
-    -fx-background-color: -main-background;
-}
-
-#headerText, #passwordText {
-    -fx-font-family: "Segoe UI Semibold";
-    -fx-text-fill: white;
-}
-
-#unlockBtn {
-    -fx-background-color: -contrast-background;
-    -fx-text-fill: white;
-}
-
-#password {
-    -fx-background-color: -second-background;
-    -fx-font-family: "Segoe UI Light";
-    -fx-text-fill: white;
-}
-
 
