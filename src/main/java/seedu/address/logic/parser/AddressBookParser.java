@@ -56,7 +56,6 @@ public class AddressBookParser {
 
         case ClearCommand.COMMAND_WORD:
             return new ClearCommand();
-
         case ExitCommand.COMMAND_WORD:
             return new ExitCommand();
 

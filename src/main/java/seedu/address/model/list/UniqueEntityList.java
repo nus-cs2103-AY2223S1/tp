@@ -106,6 +106,13 @@ public class UniqueEntityList<T extends ComparableByName<T> & HasIntegerIdentifi
         return internalUnmodifiableList;
     }
 
+    /**
+     * Returns the backing list as a modifiable {@code ObservableList}.
+     */
+    public ObservableList<T> asModifiableObservableList() {
+        return internalList;
+    }
+
     @Override
     public Iterator<T> iterator() {
         return internalList.iterator();

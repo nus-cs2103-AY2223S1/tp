@@ -1,6 +1,5 @@
 package seedu.address.logic.commands.issue;
 
-import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import static seedu.address.logic.parser.IssueCliSyntax.PREFIX_DEADLINE;
 import static seedu.address.logic.parser.IssueCliSyntax.PREFIX_DESCRIPTION;
 import static seedu.address.logic.parser.IssueCliSyntax.PREFIX_ISSUE_ID;
@@ -24,7 +23,9 @@ public class EditIssueCommand extends IssueCommand {
 
     public static final String COMMAND_FLAG = "-e";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits an issue in the address book. "
+    public static final String MESSAGE_USAGE = COMMAND_WORD
+            + " " + COMMAND_FLAG
+             + ": Edits an issue in the address book. "
             + "Parameters: "
             + PREFIX_ISSUE_ID + "ISSUE_ID "
             + PREFIX_DESCRIPTION + "DESCRIPTION "
@@ -48,7 +49,7 @@ public class EditIssueCommand extends IssueCommand {
      * Creates an EditIssueCommand to edit the specified {@code Issue}
      */
     public EditIssueCommand(Description newDescription, Deadline newDeadline, Priority newPriority, IssueId issueId) {
-        requireAllNonNull(newDescription, newDeadline, newPriority, issueId);
+        // NULL values passed into constructor here represent absent optional inputs
         this.newDescription = newDescription;
         this.newDeadline = newDeadline;
         this.newPriority = newPriority;

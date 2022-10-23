@@ -59,8 +59,38 @@ public class Status {
         return false;
     }
 
+    /**
+     * Returns the ui representation of the status
+     */
+    public String uiRepresentation() {
+        if (this.completed == true) {
+            return "Status: Completed";
+        } else {
+            return "Status: Incomplete";
+        }
+    }
+
     @Override
     public String toString() {
         return String.valueOf(this.completed);
+    }
+
+    /**
+     * Returns true if both projects have the same identity and data fields.
+     * This defines a stronger notion of equality between two projects.
+     */
+    @Override
+    public boolean equals(Object other) {
+        if (other == this) {
+            return true;
+        }
+
+        if (!(other instanceof Status)) {
+            return false;
+        }
+
+        Status otherStatus = (Status) other;
+        return otherStatus.completed == this.completed;
+
     }
 }

@@ -2,7 +2,6 @@ package seedu.address.model;
 
 import javafx.collections.ObservableList;
 import seedu.address.model.client.Client;
-import seedu.address.model.client.Person;
 import seedu.address.model.issue.Issue;
 import seedu.address.model.project.Project;
 
@@ -12,22 +11,24 @@ import seedu.address.model.project.Project;
 public interface ReadOnlyAddressBook {
 
     /**
-     * Returns an unmodifiable view of the persons list.
-     * This list will not contain any duplicate persons.
-     */
-    ObservableList<Person> getPersonList();
-
-    /**
      * Returns an unmodifiable view of the projects list.
      * This list will not contain any duplicate projects.
      */
     ObservableList<Project> getProjectList();
 
     /**
+     * Returns a modifiable view of the projects list.
+     * This list will not contain any duplicate projects.
+     */
+    ObservableList<Project> getModifiableProjectList();
+
+    /**
      * Returns an unmodifiable view of the issues list.
      * This list will not contain any duplicate issues.
      */
     ObservableList<Issue> getIssueList();
+
+    ObservableList<Issue> getModifiableIssueList();
 
     /**
      * Returns an unmodifiable view of the clients list.

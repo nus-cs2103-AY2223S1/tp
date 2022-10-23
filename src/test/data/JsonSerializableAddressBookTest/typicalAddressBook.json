@@ -1,0 +1,124 @@
+{
+  "projects" : [ {
+    "name" : "Individual Project",
+    "repository" : "johndoe/ip",
+    "deadline" : "2022-03-03",
+    "client" : {
+      "name" : "Alex Yeoh",
+      "phone" : "87438807",
+      "email" : "alexyeoh@example.com",
+      "clientId" : "1",
+      "projects" : [ ]
+    },
+    "issues" : [ ],
+    "projectId" : "1"
+  }, {
+    "name" : "Team Project",
+    "repository" : "johndoe/tp",
+    "deadline" : "2023-01-02",
+    "client" : {
+      "name" : "Alex Yeoh",
+      "phone" : "87438807",
+      "email" : "alexyeoh@example.com",
+      "clientId" : "1",
+      "projects" : [ ]
+    },
+    "issues" : [ ],
+    "projectId" : "2"
+  }, {
+    "name" : "Group Project",
+    "repository" : "johndoe/gp",
+    "deadline" : "2023-11-29",
+    "client" : {
+      "name" : "Bernice Yu",
+      "phone" : "99272758",
+      "email" : "berniceyu@example.com",
+      "clientId" : "2",
+      "projects" : [ ]
+    },
+    "issues" : [ ],
+    "projectId" : "3"
+  }, {
+    "name" : "Personal Project",
+    "repository" : "johndoe/pp",
+    "deadline" : "2022-04-11",
+    "client" : {
+      "name" : "Charlotte Oliveiro",
+      "phone" : "93210283",
+      "email" : "charlotte@example.com",
+      "clientId" : "3",
+      "projects" : [ ]
+    },
+    "issues" : [ ],
+    "projectId" : "4"
+  }, {
+    "name" : "Random Project",
+    "repository" : "johndoe/rp",
+    "deadline" : "2022-05-27",
+    "client" : {
+      "name" : "David Li",
+      "phone" : "91031282",
+      "email" : "lidavid@example.com",
+      "clientId" : "4",
+      "projects" : [ ]
+    },
+    "issues" : [ ],
+    "projectId" : "5"
+  }, {
+    "name" : "Final Year Project",
+    "repository" : "johndoe/fyp",
+    "deadline" : "2023-02-27",
+    "client" : {
+      "name" : "Irfan Ibrahim",
+      "phone" : "92492021",
+      "email" : "irfan@example.com",
+      "clientId" : "5",
+      "projects" : [ ]
+    },
+    "issues" : [ ],
+    "projectId" : "6"
+  } ],
+  "issues" : [ {
+    "description" : "Refactor UI Classes",
+    "priority" : "LOW",
+    "deadline" : "2022-01-01",
+    "status" : "false",
+    "issueId" : "1",
+    "project" : "1"
+  }, {
+    "description" : "Fix loading screen bug",
+    "priority" : "MEDIUM",
+    "deadline" : "2022-10-04",
+    "status" : "true",
+    "issueId" : "2",
+    "project" : "2"
+  }, {
+    "description" : "Implement filter command",
+    "priority" : "LOW",
+    "deadline" : "2022-09-03",
+    "status" : "false",
+    "issueId" : "3",
+    "project" : "2"
+  }, {
+    "description" : "Update collision logic",
+    "priority" : "HIGH",
+    "deadline" : "2023-07-14",
+    "status" : "true",
+    "issueId" : "4",
+    "project" : "3"
+  }, {
+    "description" : "Create Developer Guide",
+    "priority" : "HIGH",
+    "deadline" : "2022-02-04",
+    "status" : "true",
+    "issueId" : "5",
+    "project" : "4"
+  }, {
+    "description" : "Change default behaviour",
+    "priority" : "MEDIUM",
+    "deadline" : "2022-02-19",
+    "status" : "false",
+    "issueId" : "6",
+    "project" : "5"
+  } ]
+}
