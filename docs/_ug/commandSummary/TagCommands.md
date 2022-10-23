@@ -10,6 +10,13 @@
 {% capture deletetag %}{% include_relative _ug/commandSummary/tagCommands/deletetag.md %}{% endcapture %}
 {% capture filtertag %}{% include_relative _ug/commandSummary/tagCommands/filtertag.md %}{% endcapture %}
 
+{% assign newtag = newtag | markdownify %}
+{% assign listtag = listtag | markdownify %}
+{% assign tag = tag | markdownify %}
+{% assign untag = untag | markdownify %}
+{% assign renametag = renametag | markdownify %}
+{% assign deletetag = deletetag | markdownify %}
+{% assign filtertag = filtertag | markdownify %}
 
 {% capture newtagexample %}{% include_relative _ug/commandSummary/tagCommandsExamples/newtag.md %}{% endcapture %}
 {% capture listtagexample %}{% include_relative _ug/commandSummary/tagCommandsExamples/listtag.md %}{% endcapture %}
@@ -19,6 +26,13 @@
 {% capture deletetagexample %}{% include_relative _ug/commandSummary/tagCommandsExamples/deletetag.md %}{% endcapture %}
 {% capture filtertagexample %}{% include_relative _ug/commandSummary/tagCommandsExamples/filtertag.md %}{% endcapture %}
 
+{% assign newtagexample = newtagexample | markdownify %}
+{% assign listtagexample = listtagexample | markdownify %}
+{% assign tagexample = tagexample | markdownify %}
+{% assign untagexample = untagexample | markdownify %}
+{% assign renametagexample = renametagexample | markdownify %}
+{% assign deletetagexample = deletetagexample | markdownify %}
+{% assign filtertagexample = filtertagexample | markdownify %}
 <!-- markdownlint-restore -->
 
 <!-- ===== CREATE TABLE FORMATTING IN NORMAL+ MARKDOWN ===== -->
