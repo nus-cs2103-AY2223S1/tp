@@ -6,7 +6,18 @@ import java.util.List;
 import java.util.Set;
 
 import seedu.address.model.category.Category;
-import seedu.address.model.person.*;
+import seedu.address.model.person.Address;
+import seedu.address.model.person.DateTime;
+import seedu.address.model.person.Email;
+import seedu.address.model.person.Gender;
+import seedu.address.model.person.Name;
+import seedu.address.model.person.Nurse;
+import seedu.address.model.person.Patient;
+import seedu.address.model.person.Person;
+import seedu.address.model.person.Phone;
+import seedu.address.model.person.Physician;
+import seedu.address.model.person.Uid;
+import seedu.address.model.person.VisitStatus;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.util.SampleDataUtil;
 
@@ -71,10 +82,11 @@ public class PersonBuilder {
         address = personToCopy.getAddress();
         tags = new HashSet<>(personToCopy.getTags());
         if (personToCopy.getCategory().categoryName.equals("P")) {
-            dateTimeList = new ArrayList<>(((Patient) personToCopy).getDatesTimes());
-            visitStatus = ((Patient) personToCopy).getVisitStatus();
+            Patient patientToCopy = (Patient) personToCopy;
+            dateTimeList = new ArrayList<>(patientToCopy.getDatesTimes());
+            visitStatus = patientToCopy.getVisitStatus();
             Physician[] physicianArr = new Physician[]{null};
-            ((Patient) personToCopy).getAttendingPhysician().ifPresent(
+            patientToCopy.getAttendingPhysician().ifPresent(
                     x -> physicianArr[0] = new Physician(x.getName(), x.getPhone(), x.getEmail()));
         } else {
             physician = null;
@@ -189,7 +201,8 @@ public class PersonBuilder {
         if (category.categoryName.equals("N")) {
             return new Nurse(uid, name, gender, phone, email, address, tags);
         } else if (this.category.categoryName.equals("P")) {
-            return new Patient(uid, name, gender, phone, email, address, tags, dateTimeList, visitStatus, physician, null);
+            return new Patient(uid, name, gender, phone, email, address, tags, dateTimeList, visitStatus,
+                    physician, null);
         }
         return new Person(uid, name, gender, phone, email, address, tags);
 

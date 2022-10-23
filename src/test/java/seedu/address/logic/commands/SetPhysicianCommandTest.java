@@ -64,7 +64,7 @@ class SetPhysicianCommandTest {
     }
 
     @Test
-    void execute_setPhysicianOnInvalidUID_fail() {
+    void execute_setPhysicianOnInvalidUid_fail() {
         Command setPhysCommand = new SetPhysicianCommand(new Uid(9999L), new Name(DEFAULT_PHYS_NAME),
                 new Phone(DEFAULT_PHYS_PHONE), new Email(DEFAULT_PHYS_EMAIL));
 

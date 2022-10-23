@@ -9,7 +9,6 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_UID;
 
 import java.util.function.Supplier;
 
-import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.logic.commands.SetPhysicianCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Email;
