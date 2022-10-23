@@ -335,6 +335,30 @@ Alternatives:
     - Pros: Easy to type
     - Cons: Easier to type the wrong short-form command as they differ by 1 letter
 
+
+
+### Sort Feature
+
+#### Current Implementation
+
+The sort feature allows the user to sort the list of patients, appointments and bills in the application. The sorting is done.
+
+The sort feature is now separated for the patients, appointments and bills sections.
+
+#### Design considerations:
+
+**Aspect: How sort executes:**
+
+* **Alternative 1 (current choice):** Saves the entire address book.
+  * Pros: Easy to implement.
+  * Cons: May have performance issues in terms of memory usage.
+* **Alternative 2:** Individual command knows how to sort by itself.
+  * Pros: Will use less memory (e.g. for `delete`, just save the patient being deleted).
+  * Cons: We must ensure that the implementation of each individual command are correct.
+
+_{more aspects and alternatives to be added}_
+
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Documentation, logging, testing, configuration, dev-ops**

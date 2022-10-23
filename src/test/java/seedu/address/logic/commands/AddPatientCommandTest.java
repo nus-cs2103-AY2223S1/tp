@@ -259,6 +259,31 @@ public class AddPatientCommandTest {
         }
 
         @Override
+        public void undo() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void updateAddressBookHistory() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void updateRedoAddressBookHistory() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void deleteAddressBookHistory() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void redo() {
+           throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public void setBillAsPaid(Bill bill) {
             throw new AssertionError("This method should not be called.");
         }
