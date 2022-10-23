@@ -255,4 +255,10 @@ public class AddressBook implements ReadOnlyAddressBook {
     void sortAppointments(Comparator<Appointment> comparator, boolean isAscending) {
         appointments.sort(comparator, isAscending);
     }
+
+    void setBillAsUnpaid(Bill bill) {
+        Bill editedBill = bill;
+        editedBill.setBillAsUnpaid();
+        setBill(bill, editedBill);
+    }
 }

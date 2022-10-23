@@ -43,6 +43,10 @@ public class Bill {
         return paymentStatus;
     }
 
+    public void setBillAsUnpaid() {
+        this.paymentStatus.setAsUnpaid();
+    }
+
     public boolean isSameBill(Bill bill) {
         return !(bill == null) && this.appointment.equals(bill.getAppointment());
     }
