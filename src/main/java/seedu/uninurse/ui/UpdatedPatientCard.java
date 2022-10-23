@@ -13,9 +13,9 @@ import seedu.uninurse.model.person.Patient;
  * An UI component that displays information of a {@code Patient} without index.
  * UpdatedPersonCard to be used for output panel when adding, editing, or deleting a patient.
  */
-public class UpdatedPersonCard extends UiPart<Region> {
+public class UpdatedPatientCard extends UiPart<Region> {
 
-    private static final String FXML = "UpdatedPersonCard.fxml";
+    private static final String FXML = "UpdatedPatientCard.fxml";
 
     /**
      * Note: Certain keywords such as "location" and "resources" are reserved keywords in JavaFX.
@@ -25,7 +25,7 @@ public class UpdatedPersonCard extends UiPart<Region> {
      * @see <a href="https://github.com/se-edu/addressbook-level4/issues/336">The issue on AddressBook level 4</a>
      */
 
-    public final Patient person;
+    public final Patient patient;
 
     @FXML
     private VBox cardPane;
@@ -51,28 +51,28 @@ public class UpdatedPersonCard extends UiPart<Region> {
     private Label tasklist;
 
     /**
-     * Creates a {@code UpdatePersonCard} with the given {@code Patient}.
+     * Creates a {@code UpdatedPatientCard} with the given {@code Patient}.
      */
-    public UpdatedPersonCard(Patient person, String headerString) {
+    public UpdatedPatientCard(Patient patient, String headerString) {
         super(FXML);
         cardPane.setSpacing(2);
         cardPane.setStyle("-fx-padding: 2;" + "-fx-border-style: solid inside;"
                 + "-fx-border-width: 2;" + "-fx-border-insets: 2;"
                 + "-fx-border-radius: 2;" + "-fx-border-color: black;");
-        this.person = person;
+        this.patient = patient;
 
-        name.setText(person.getName().getValue());
-        phone.setText(person.getPhone().getValue());
-        address.setText(person.getAddress().getValue());
-        email.setText(person.getEmail().getValue());
-        person.getTags().stream()
+        name.setText(patient.getName().getValue());
+        phone.setText(patient.getPhone().getValue());
+        address.setText(patient.getAddress().getValue());
+        email.setText(patient.getEmail().getValue());
+        patient.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.getValue()))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.getValue())));
         header.setText(headerString);
-        conditions.setText("Conditions:" + "\n" + "1. small syndrome with a really really long name"); //dummy values
+        conditions.setText("Conditions:" + "\n" + patient.getConditions().toString());
         medications.setText("Medications:" + "\n" + "1. enlarger with also a really really long name"); //dummy values
         taskheader.setText("Tasks:");
-        tasklist.setText(person.getTasks().toString());
+        tasklist.setText(patient.getTasks().toString());
     }
 
     @Override
@@ -83,12 +83,12 @@ public class UpdatedPersonCard extends UiPart<Region> {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof UpdatedPersonCard)) {
+        if (!(other instanceof UpdatedPatientCard)) {
             return false;
         }
 
         // state check
-        UpdatedPersonCard card = (UpdatedPersonCard) other;
-        return person.equals(card.person);
+        UpdatedPatientCard card = (UpdatedPatientCard) other;
+        return patient.equals(card.patient);
     }
 }
