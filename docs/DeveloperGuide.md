@@ -73,16 +73,29 @@ The **API** of this component is specified in [`Ui.java`](https://github.com/se-
 
 ![Structure of the UI Component](images/UiClassDiagram.png)
 
-The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `PersonListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
+The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `PersonListPanel`, `NoteListPanel`, `PersonInspectPanel` `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
 
 The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/resources/view/MainWindow.fxml)
+
+The `UI` component is separate from the state of the `Model` and changes to the `UI` will not affect the `Model`, but changes to the `Model`'s state will affect the information displayed by the `UI` elements.
+
+Similarly, changes to the visual aspects of `UI`, such as current person viewed, or the filtered state of the lists, will not be saved to file as they do not affect the `Model`'s data.
 
 The `UI` component,
 
 * executes user commands using the `Logic` component.
 * listens for changes to `Model` data so that the UI can be updated with the modified data.
 * keeps a reference to the `Logic` component, because the `UI` relies on the `Logic` to execute commands.
-* depends on some classes in the `Model` component, as it displays `Person` object residing in the `Model`.
+* depends on some classes in the `Model` component, as it displays `Person` and `Notes` object residing in the `Model`.
+
+#### UI Elements
+
+1. **Command Box**: A text box that allows users to enter in commands for later execution.
+2. **ResultDisplay**: A readonly text box that serves as a console to give feedback from the `Logic` component to the user, such as error messages or logs.
+3. **Person List**: A horizontal sliding list that displays all persons in the SectresBook. This list can be filtered to display only relevant people according to some predicate.
+4. **Note List**: A vertical sliding list that displays all notes in the SectresBook. This list can be filtered to display only relevant notes according to some predicate.
+5. **Person Inspect Panel**: This Panel displays data of a person, using the UI command `inspect`.
+6. **Status Bar Footer**: This footer displays the address where the data file is saved to.
 
 ### Logic component
 
@@ -102,8 +115,12 @@ The Sequence Diagram below illustrates the interactions within the `Logic` compo
 
 ![Interactions Inside the Logic Component for the `delete 1` Command](images/DeleteSequenceDiagram.png)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteCommandParser` should end at the destroy-marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
+
+Commands such as Edit and Delete feature the ability to delete by name, which utilises the Find feature. Illustrated here is how `execute("edit Lynette")` interacts with the Logic component, using a sequence diagram
+
+![Interactions Inside the Logic Component for the `edit Lynette` Command](images/EditSequenceDiagram.png)
 
 Here are the other classes in `Logic` (omitted from the class diagram above) that are used for parsing a user command:
 
@@ -121,16 +138,12 @@ How the parsing works:
 
 The `Model` component,
 
-* stores the address book data i.e., all `Person` objects (which are contained in a `UniquePersonList` object).
+* stores the address book data i.e., all `Person` objects (which are contained in a `UniquePersonList` object) and all `Note` objects (contained in a `NoteBook` object)
 * stores the currently 'selected' `Person` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Person>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
 * stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
 * does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `AddressBook`, which `Person` references. This allows `AddressBook` to only require one `Tag` object per unique tag, instead of each `Person` needing their own `Tag` objects.<br>
 
-<img src="images/BetterModelClassDiagram.png" width="450" />
-
-</div>
 
 
 ### Storage component
@@ -153,6 +166,121 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 ## **Implementation**
 
 This section describes some noteworthy details on how certain features are implemented.
+
+### addNote feature
+
+#### Implementation
+
+The addNote mechanism is facilitated by `AddNoteCommand`. It extends `Command` and overrides `Command#execute()` to implement the following operation:
+- `AddNoteCommand#execute()` : adds the specified note with its associated title and content into the list of notes to be kept track of.
+
+Given below is an example usage scenario and how the addNote mechanism behaves at each step.
+
+Step 1. The user launches the application and wishes to keep track of a note with the following attributes :
+1. Title : Club meeting
+2. Content : 3rd October 9pm, brief everybody on upcoming events.
+
+Step 2. The user executes `addNote n_t/Meeting n_c/3rd October 9pm`, which calls `LogicManager#execute()`. Subsequently, `AddressBookParser#parseCommand()` is called
+which will create a `AddNoteCommandParser` object and call `AddNoteCommandParser#parse()`. This method will take the user's input and make sense of it to create a `Note` object.
+
+Step 3. An `AddNoteCommand` will be created and `AddNoteCommand#execute()` will be called by `LogicManager#execute()`.
+
+Step 4. `AddNoteCommand#execute()` will call the following method from `Model` :
+- `addNote(toAdd)`
+
+Step 5. `AddNoteCommand#execute()` will return a `CommandResult` object which will display the following message back to the user:
+> New note added: Title: Meeting, Content: 3rd October 9pm
+
+The following sequence diagram shows how the addNote operation works:
+
+![AddNoteSequenceDiagram](images/AddNoteSequenceDiagram.png)
+
+#### Design considerations
+
+**Aspect: How Title and Content are represented:**
+
+* **Alternative 1 (current choice):** Title and Content as separate objects.
+    * Pros: Easy to validate Title/Content. (In the respective classes)
+    * Cons: May have performance issues in terms of memory usage(Many objects might be created).
+
+* **Alternative 2:** Title and Content as fields of Note
+    * Pros: Will use less memory (Fewer objects created).
+    * Cons: Harder to validate Title/Content. Better OOP(Object-oriented programming) design.
+
+### deleteNote feature
+
+#### Proposed implementation
+
+The deleteNote mechanism is facilitated by `DeleteNoteCommand`. It extends `Command` and overrides `Command#execute()` to implement the following operation:
+- `DeleteNoteCommand#execute()` : deletes the note at the specified index from the note list.
+
+Given below is an example usage scenario and how the addNote mechanism behaves at each step.
+
+Step 1. The user launches the application and wishes to delete a note that no longer needs to be kept track of. The user lists the current notes:
+1. Title: Meeting, Content: 3rd October 9pm 
+2. Title: Event, Content: Remind club members to attend.
+
+The user has decided to delete note 1.
+
+Step 2. The user executes `deleteNote 1`, which calls `LogicManager#execute()`. Subsequently, `AddressBookParser#parseCommand()` is called
+which will create a `DeleteNoteCommandParser` object and call `DeleteNoteCommandParser#parse()`. This method will take the user's input and make sense of it to get the index of note to be deleted.
+
+Step 3. A `DeleteNoteCommand` object will be created and `DeleteNoteCommand#execute()` will be called by `LogicManager#execute()`.
+
+Step 4. `DeleteNoteCommand#execute()` will call the following method from `Model` :
+- `getAddressBook()`
+- `deleteNote(noteToDelete)`
+
+Step 5. `DeleteNoteCommand#execute()` will return a `CommandResult` object which will display the following message back to the user:
+> Deleted Note: Title: Meeting, Content: 3rd October 9pm
+
+The following sequence diagram shows how the addNote operation works:
+
+![DeleteNoteSequenceDiagram](images/DeleteNoteSequenceDiagram.png)
+
+#### Design considerations
+
+**Aspect: How the note to be deleted is specified:**
+
+* **Alternative 1 (current choice):** Note is specified by index.
+    * Pros: Easy to implement.
+    * Cons: Would need to use listNote command or gui to allow easy identification of index of note.
+
+* **Alternative 2:** Note is specified by Title.
+    * Pros: Would be more precise (Title of notes are unique).
+    * Cons: Long command would be needed to delete a note with a long Title.
+
+### Find Person by Tag feature
+
+#### Implementation
+
+The find Person by Tag feature (called `findTag`) is facilitated by `FindTagCommand`. It allows users to find all Persons with the given Tags.
+
+Given below is an example usage scenario and how the findTag feature behaves at each step.
+
+Step 1. The user executes `findTag Finance` command to find all Persons in the address book with the tag `Finance`.
+
+Step 2. A `FindTagCommand` is constructed with a `TagsContainsKeywordsPredicate` which will check through the list of persons in the address book and only show those with the tag `Finance`.
+
+Step 3. The `FindTagCommand` is executed and the `TagsContainsKeywordsPredicate` is passed to model to update the Person List to only show Persons with the tag `Finance`.
+
+The following sequence diagram shows how the findTag command works:
+
+<img src="images/FindTagSequenceDiagram.png" width="740"/>
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `FindTagCommandParser` and `FindTagCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+
+#### Design considerations:
+
+**Aspect: How findTag executes:**
+
+* **Alternative 1 (current choice):** Goes through all Persons to check for Tag.
+    * Pros: Easy to implement (Similar to current find command).
+    * Cons: May have performance issues in terms of having to do many more steps.
+
+* **Alternative 2:** Goto searched Tags and get the Persons that each Tag points to.
+    * Pros: Will use fewer steps (Go directly to the Tags rather than looking through all Persons).
+    * Cons: Implementation would be more complicated.
 
 ### \[Proposed\] Undo/redo feature
 
