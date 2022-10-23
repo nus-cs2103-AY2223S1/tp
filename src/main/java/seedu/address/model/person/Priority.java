@@ -3,6 +3,8 @@ package seedu.address.model.person;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
+import java.util.Arrays;
+
 /**
  * Represents a Priority in the address book.
  * Guarantees: immutable; name is valid as declared in {@link #isValidPriority(String)}
@@ -14,9 +16,6 @@ public class Priority {
     }
 
     public static final String MESSAGE_CONSTRAINTS = "Priority should be high, low or normal.";
-    public static final String VALIDATION_HIGH = "HIGH";
-    public static final String VALIDATION_NORMAL = "NORMAL";
-    public static final String VALIDATION_LOW = "LOW";
 
     public final PriorityName specifiedPriority;
 
@@ -36,9 +35,7 @@ public class Priority {
      * Returns true if a given string is a valid priority.
      */
     public static boolean isValidPriority(String test) {
-        return test.equals(VALIDATION_HIGH)
-                || test.equals(VALIDATION_NORMAL)
-                || test.equals(VALIDATION_LOW);
+        return Arrays.stream(PriorityName.values()).anyMatch(p -> test.equalsIgnoreCase(p.name()));
     }
 
     @Override
