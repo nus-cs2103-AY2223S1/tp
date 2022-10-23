@@ -75,7 +75,7 @@ public class AddressBookTest {
 
         assertThrows(DuplicateStaffException.class, () -> addressBook.resetData(newData));
     }
-    
+
     @Test
     public void resetData_withDuplicateTasks_throwsDuplicateTaskException() {
         // Two tasks with the same identity fields
