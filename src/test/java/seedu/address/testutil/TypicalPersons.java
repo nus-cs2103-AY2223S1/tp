@@ -11,8 +11,7 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_FRIEND;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_POTENTIAL;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -29,18 +28,18 @@ public class TypicalPersons {
     public static final Person ALICE = new PersonBuilder().withName("Alice Pauline")
             .withAddress("123, Jurong West Ave 6, #08-111").withEmail("alice@example.com")
             .withPhone("94351253").withDescription("").withNetWorth("$54400").withMeetingTimes("10-08-2022-15:00")
-            .withFilePath("src/test/data/TestPDFs/Test_PDF.pdf").withTags("friends").build();
+            .withFilePath("src/test/data/TestPDFs/Test_PDF.pdf").withTags("POTENTIAL").build();
     public static final Person BENSON = new PersonBuilder().withName("Benson Meier")
             .withAddress("311, Clementi Ave 2, #02-25").withDescription("He can't take beer!")
             .withEmail("johnd@example.com").withPhone("98765432").withNetWorth("$1350")
             .withMeetingTimes("11-04-2022-11:00")
-            .withFilePath("src/test/data/TestPDFs/Test_PDF2.pdf").withTags("owesMoney", "friends").build();
+            .withFilePath("src/test/data/TestPDFs/Test_PDF2.pdf").withTags("POTENTIAL").build();
     public static final Person CARL = new PersonBuilder().withName("Carl Kurz").withPhone("95352563")
             .withEmail("heinz@example.com").withAddress("wall street").withNetWorth("$444444400")
             .withMeetingTimes("30-12-2023-10:00")
             .withFilePath("src/test/data/TestPDFs/Test_PDF3.pdf").build();
     public static final Person DANIEL = new PersonBuilder().withName("Daniel Meier").withPhone("87652533")
-            .withEmail("cornelia@example.com").withAddress("10th street").withTags("friends")
+            .withEmail("cornelia@example.com").withAddress("10th street").withTags("SECURED")
             .withNetWorth("$7777")
             .withMeetingTimes("01-01-2022-13:00").withFilePath("src/test/data/TestPDFs/Test_PDF4.pdf").build();
     public static final Person ELLE = new PersonBuilder().withName("Elle Meyer").withPhone("9482224")
@@ -63,11 +62,11 @@ public class TypicalPersons {
     // Manually added - Person's details found in {@code CommandTestUtil}
     public static final Person AMY = new PersonBuilder().withName(VALID_NAME_AMY).withPhone(VALID_PHONE_AMY)
             .withEmail(VALID_EMAIL_AMY).withAddress(VALID_ADDRESS_AMY).withNetWorth("$1350")
-            .withMeetingTimes(VALID_MEETING_TIME_AMY).withFilePath(EMPTY_FILEPATH).withTags(VALID_TAG_FRIEND).build();
+            .withMeetingTimes(VALID_MEETING_TIME_AMY).withFilePath(EMPTY_FILEPATH).withTags(VALID_TAG_POTENTIAL).build();
     public static final Person BOB = new PersonBuilder().withName(VALID_NAME_BOB).withPhone(VALID_PHONE_BOB)
             .withEmail(VALID_EMAIL_BOB).withAddress(VALID_ADDRESS_BOB).withNetWorth("$53000")
             .withMeetingTimes(VALID_MEETING_TIME_BOB).withFilePath(EMPTY_FILEPATH)
-            .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).build();
+            .withTags(VALID_TAG_POTENTIAL).build();
 
     public static final String KEYWORD_MATCHING_MEIER = "Meier"; // A keyword that matches MEIER
     private TypicalPersons() {} // prevents instantiation
