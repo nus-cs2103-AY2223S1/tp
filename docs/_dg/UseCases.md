@@ -1,7 +1,7 @@
 <!-- markdownlint-disable-file first-line-h1 -->
 #### UC1: Add Item to Inventory
 
-<!-- Use Case 1 to 5 to be updated in another PR by Ting Kai-->
+<!-- TODO: Use Cases 1 to 5 to be updated in another PR by Ting Kai-->
 Use Case: UC1 - Add Item to Inventory
 
 MSS:
