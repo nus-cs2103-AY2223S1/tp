@@ -12,6 +12,7 @@
 {% capture PRICE %}{% include_relative _ug/placeholders/PRICE.md %}{% endcapture %}
 {% capture REMARKS %}{% include_relative _ug/placeholders/REMARKS.md %}{% endcapture %}
 {% capture COMMAND_WORD %}{% include_relative _ug/placeholders/COMMAND_WORD.md %}{% endcapture %}
+{% capture KEYWORD %}{% include_relative _ug/placeholders/KEYWORD.md %}{% endcapture %}
 <!-- markdownlint-restore -->
 
 <!-- ===== CREATE TABLE FORMATTING IN NORMAL+ MARKDOWN ===== -->
