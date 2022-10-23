@@ -1,11 +1,11 @@
 package taskbook.model.task;
 
+import static java.util.Objects.requireNonNull;
+
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
-
-import static java.util.Objects.requireNonNull;
 
 import taskbook.commons.util.CollectionUtil;
 import taskbook.logic.commands.exceptions.CommandException;
