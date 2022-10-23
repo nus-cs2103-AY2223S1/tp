@@ -27,7 +27,8 @@ public class TypicalPersons {
 
     public static final Person ALICE = new PersonBuilder().withName("Alice Pauline")
             .withAddress("123, Jurong West Ave 6, #08-111").withEmail("alice@example.com")
-            .withPhone("94351253").withDescription("").withNetWorth("$54400").withMeetingTimes("10-08-2022-15:00")
+            .withPhone("94351253").withDescription("").withNetWorth("$54400")
+            .withMeetingTimes("10-08-2022-15:00")
             .withFilePath("src/test/data/TestPDFs/Test_PDF.pdf").withTags("POTENTIAL").build();
     public static final Person BENSON = new PersonBuilder().withName("Benson Meier")
             .withAddress("311, Clementi Ave 2, #02-25").withDescription("He can't take beer!")
@@ -62,7 +63,8 @@ public class TypicalPersons {
     // Manually added - Person's details found in {@code CommandTestUtil}
     public static final Person AMY = new PersonBuilder().withName(VALID_NAME_AMY).withPhone(VALID_PHONE_AMY)
             .withEmail(VALID_EMAIL_AMY).withAddress(VALID_ADDRESS_AMY).withNetWorth("$1350")
-            .withMeetingTimes(VALID_MEETING_TIME_AMY).withFilePath(EMPTY_FILEPATH).withTags(VALID_TAG_POTENTIAL).build();
+            .withMeetingTimes(VALID_MEETING_TIME_AMY).withFilePath(EMPTY_FILEPATH).withTags(VALID_TAG_POTENTIAL)
+            .build();
     public static final Person BOB = new PersonBuilder().withName(VALID_NAME_BOB).withPhone(VALID_PHONE_BOB)
             .withEmail(VALID_EMAIL_BOB).withAddress(VALID_ADDRESS_BOB).withNetWorth("$53000")
             .withMeetingTimes(VALID_MEETING_TIME_BOB).withFilePath(EMPTY_FILEPATH)
