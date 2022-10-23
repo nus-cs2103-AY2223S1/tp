@@ -36,7 +36,7 @@ public class GraphConfiguration {
     public static GraphConfiguration ofDefault() {
         EntryType expenditureEntryType = new EntryType(EntryType.ENTRY_TYPE_EXPENDITURE);
         GraphType categoryGraphType = new GraphType(GraphType.GRAPH_TYPE_CATEGORY);
-        return new GraphConfiguration(expenditureEntryType, categoryGraphType, true);
+        return new GraphConfiguration(expenditureEntryType, categoryGraphType, false);
     }
 
     public EntryType getEntryType() {
@@ -55,9 +55,6 @@ public class GraphConfiguration {
     public boolean equals(Object other) {
         if (other == this) {
             return true;
-        }
-        if (other == null) {
-            return false;
         }
         if (!(other instanceof GraphConfiguration)) {
             return false;

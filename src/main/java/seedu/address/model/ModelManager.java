@@ -185,11 +185,6 @@ public class ModelManager implements Model {
         filteredIncome.setPredicate(predicate);
     }
 
-    @Override
-    public void setMonthForChart(YearMonth month) {
-        this.monthForChart = month;
-    }
-
     /**
      * Gets pie chart data of income entries
      *

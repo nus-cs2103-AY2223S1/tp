@@ -85,9 +85,7 @@ public class ViewCommand extends Command {
         if (other == this) {
             return true;
         }
-        if (other == null) {
-            return false;
-        }
+        // instanceof handles nulls
         if (!(other instanceof ViewCommand)) {
             return false;
         }
@@ -170,9 +168,6 @@ public class ViewCommand extends Command {
             // short circuit if same object
             if (other == this) {
                 return true;
-            }
-            if (other == null) {
-                return false;
             }
             // instanceof handles nulls
             if (!(other instanceof ViewEntriesDescriptor)) {

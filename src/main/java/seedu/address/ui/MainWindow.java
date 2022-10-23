@@ -1,9 +1,13 @@
 package seedu.address.ui;
 
+import java.util.function.Supplier;
 import java.util.logging.Logger;
 
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.chart.PieChart;
+import javafx.scene.chart.XYChart;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextInputControl;
 import javafx.scene.input.KeyCombination;
@@ -182,43 +186,44 @@ public class MainWindow extends UiPart<Stage> {
         GraphType graphType = graphConfiguration.getGraphType();
         EntryType entryType = graphConfiguration.getEntryType();
 
+        Supplier<ObservableList<PieChart.Data>> pieChartDataSupplier = () -> {
+            switch (entryType.getEntryType()) {
+            case EXPENDITURE:
+                return logic.getExpensePieChartData();
+            case INCOME:
+                return logic.getIncomePieChartData();
+            default:
+                // Should never reach here
+                return null;
+            }
+        };
+
+        Supplier<XYChart.Series<String, Number>> lineChartDataSupplier = () -> {
+            switch (entryType.getEntryType()) {
+            case EXPENDITURE:
+                return logic.getExpenseLineChartData();
+            case INCOME:
+                return logic.getIncomeLineChartData();
+            default:
+                // Should never reach here
+                return null;
+            }
+        };
+
+        GraphPanel graphPanel = null;
         switch (graphType.getGraphType()) {
         case CATEGORY:
-            switch (entryType.getEntryType()) {
-            case EXPENDITURE:
-                GraphPanel expenseGraphPanel = new GraphPanel(entryType, logic.getExpensePieChartData());
-                graphPanelPlaceholder.getChildren().add(expenseGraphPanel.getRoot());
-                break;
-            case INCOME:
-                GraphPanel incomeGraphPanel = new GraphPanel(entryType, logic.getIncomePieChartData());
-                graphPanelPlaceholder.getChildren().add(incomeGraphPanel.getRoot());
-                break;
-            default:
-                break;
-            }
+            graphPanel = new GraphPanel(entryType, pieChartDataSupplier.get());
             break;
-
         case MONTH:
-            switch (entryType.getEntryType()) {
-            case EXPENDITURE:
-                GraphPanel expenseGraphPanel = new GraphPanel(new EntryType(EntryType.ENTRY_TYPE_EXPENDITURE),
-                        logic.getExpenseLineChartData());
-                graphPanelPlaceholder.getChildren().add(expenseGraphPanel.getRoot());
-                break;
-            case INCOME:
-                GraphPanel incomeGraphPanel = new GraphPanel(new EntryType(EntryType.ENTRY_TYPE_INCOME),
-                        logic.getIncomeLineChartData());
-                graphPanelPlaceholder.getChildren().add(incomeGraphPanel.getRoot());
-                break;
-            default:
-                break;
-            }
+            graphPanel = new GraphPanel(entryType, lineChartDataSupplier.get());
             break;
         default:
             break;
-
         }
 
+        assert graphPanel != null;
+        graphPanelPlaceholder.getChildren().add(graphPanel.getRoot());
     }
 
     /**
