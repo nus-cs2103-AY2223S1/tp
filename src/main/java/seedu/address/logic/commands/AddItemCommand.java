@@ -33,10 +33,16 @@ public class AddItemCommand extends Command {
             + "Example: " + COMMAND_WORD + " 1 c/5 m/2";
 
     public static final String MESSAGE_SUCCESS = "New supplyItem added: %1$s";
+
     public static final String MESSAGE_DUPLICATE_SUPPLYITEM = "This supplyItem from different"
-            + "supplier already exists in inventory";
+            + " supplier already exists in inventory";
     public static final String MESSAGE_DUPLICATE_SUPPLIER = "This supplyItem from same"
-            + "supplier already exists in inventory";
+            + " supplier already exists in inventory";
+
+    public static final String MESSAGE_INVALID_CURRENT_STOCK = "Current Stock field must be provided";
+    public static final String MESSAGE_INVALID_MINIMUM_STOCK = "Minimum Stock field must be provided";
+
+
 
 
 
@@ -75,10 +81,9 @@ public class AddItemCommand extends Command {
             throw new CommandException(MESSAGE_DUPLICATE_SUPPLIER);
         }
 
-
         for (SupplyItem item: inventoryList) {
-            Person existingSupplier = item.getSupplier();
-            if (existingSupplier.equals(supplier)) {
+            String existingSupplier = item.getSupplier().getName().toString();
+            if (existingSupplier.equals(supplier.getName().toString())) {
                 throw new CommandException(MESSAGE_DUPLICATE_SUPPLIER);
             }
         }
