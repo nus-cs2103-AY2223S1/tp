@@ -152,6 +152,27 @@ public class Module {
     }
 
     /**
+     * Returns a boolean indicating if the specified person is contained in the module.
+     *
+     * @param person The person that is being checked for.
+     * @return Boolean indicating if the specified person is contained in the module.
+     */
+    public boolean containsPerson(Person person) {
+        return persons.contains(person);
+    }
+
+    /**
+     * Replaces the person {@code target} in the module's set of persons with {@code editedPerson}.
+     *
+     * @param target The person in the module's set to be replaced.
+     * @param editedPerson The person to replace {@code target} in the module's set.
+     */
+    public void setPerson(Person target, Person editedPerson) {
+        persons.remove(target);
+        persons.add(editedPerson);
+    }
+
+    /**
      * Returns true if both modules have the same identity and data fields.
      * This defines a stronger notion of equality between two modules.
      */

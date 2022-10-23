@@ -10,6 +10,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.address.model.module.exceptions.DuplicateModuleException;
 import seedu.address.model.module.exceptions.ModuleNotFoundException;
+import seedu.address.model.person.Person;
 
 /**
  * A list of module that enforces uniqueness between its elements and does not allow nulls.
@@ -116,6 +117,26 @@ public class UniqueModuleList implements Iterable<Module> {
         }
 
         internalList.setAll(modules);
+    }
+
+    /**
+     * Replaces the person {@code target} in every module with {@code editedPerson}
+     * if {@code target} exists in the module.
+     *
+     * {@code target} must exist in the address book person list.
+     * The person identity of {@code editedPerson} must not be the same as another existing person
+     * in the address book person list.
+     *
+     * @param target The person to be replaced.
+     * @param editedPerson The person to replace {@code target}.
+     */
+    public void setPersonInModules(Person target, Person editedPerson) {
+        for (int i = 0; i < internalList.size(); i++) {
+            Module module = internalList.get(i);
+            if (module.containsPerson(target)) {
+                module.setPerson(target, editedPerson);
+            }
+        }
     }
 
     /**
