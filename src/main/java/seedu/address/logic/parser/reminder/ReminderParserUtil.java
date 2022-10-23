@@ -53,10 +53,13 @@ public class ReminderParserUtil {
     
     /**
      * Parses a {@code String priority} into a {@code ReminderPriority}.
-     * Leading and trailing whitespaces will be trimmed.
+     * Leading and trailing whitespaces will be trimmed. Input will also be converted to upper case.
      */
-    public static ReminderPriority parseReminderPriority(String priority) {
-        String trimmedPriority = priority.trim();
+    public static ReminderPriority parseReminderPriority(String priority) throws ParseException {
+        String trimmedPriority = priority.trim().toUpperCase();
+        if (!ReminderPriority.isValidPriority(trimmedPriority)) {
+            throw new ParseException(ReminderPriority.MESSAGE_CONSTRAINTS);
+        }
         return new ReminderPriority(trimmedPriority);
     }
     
