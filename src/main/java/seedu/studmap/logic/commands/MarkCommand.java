@@ -134,10 +134,12 @@ public class MarkCommand extends EditStudentCommand<MarkCommand.MarkCommandStude
 
             if (attendance != null) {
                 Set<Attendance> newAttendance = new HashSet<>(studentToEdit.getAttendances());
+                newAttendance.remove(attendance);
                 newAttendance.add(attendance);
                 studentData.setAttendances(newAttendance);
             } else if (assignment != null) {
                 Set<Assignment> newAssignments = new HashSet<>(studentToEdit.getAssignments());
+                newAssignments.remove(assignment);
                 newAssignments.add(assignment);
                 studentData.setAssignments(newAssignments);
             }
