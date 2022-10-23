@@ -67,6 +67,9 @@ dependencies {
     testImplementation group: 'org.junit.jupiter', name: 'junit-jupiter-api', version: jUnitVersion
 
     testRuntimeOnly group: 'org.junit.jupiter', name: 'junit-jupiter-engine', version: jUnitVersion
+
+    // JChronic date parser
+    implementation 'com.rubiconproject.oss:jchronic:0.2.8'
 }
 
 shadowJar {
