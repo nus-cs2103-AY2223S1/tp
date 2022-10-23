@@ -32,6 +32,7 @@ public class MainWindow extends UiPart<Stage> {
 
     // Independent Ui parts residing in this Ui container
     private PersonListPanel personListPanel;
+    private PersonTaskListPanel personTaskListPanel;
     private ResultDisplay resultDisplay;
     private TaskListPanel taskListPanel;
 
@@ -51,6 +52,9 @@ public class MainWindow extends UiPart<Stage> {
 
     @FXML
     private StackPane resultDisplayPlaceholder;
+
+    @FXML
+    private StackPane personTaskListPanelPlaceholder;
 
     @FXML
     private StackPane statusbarPlaceholder;
@@ -120,6 +124,9 @@ public class MainWindow extends UiPart<Stage> {
 
         taskListPanel = new TaskListPanel(logic.getFilteredTaskList());
         taskListPanelPlaceholder.getChildren().add(taskListPanel.getRoot());
+
+        personTaskListPanel = new PersonTaskListPanel(logic.getFilteredTaskList());
+        personTaskListPanelPlaceholder.getChildren().add(personTaskListPanel.getRoot());
 
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());

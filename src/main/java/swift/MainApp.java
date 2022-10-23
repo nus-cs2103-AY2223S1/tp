@@ -36,7 +36,7 @@ import swift.ui.UiManager;
  */
 public class MainApp extends Application {
 
-    public static final Version VERSION = new Version(0, 2, 0, true);
+    public static final Version VERSION = new Version(1, 3, 0, true);
 
     private static final Logger logger = LogsCenter.getLogger(MainApp.class);
 
@@ -90,7 +90,10 @@ public class MainApp extends Application {
             initialData = new AddressBook();
         }
 
-        return new ModelManager(initialData, userPrefs);
+        ModelManager newModelManager = new ModelManager(initialData, userPrefs);
+        // Hide all Tasks by Default
+        newModelManager.updateFilteredTaskList(Model.PREDICATE_HIDE_ALL_TASKS);
+        return newModelManager;
     }
 
     private void initLogging(Config config) {

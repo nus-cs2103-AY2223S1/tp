@@ -65,6 +65,14 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
+     * Replaces the contents of the bridge list with {@code bridges}.
+     * {@code bridges} must not contain duplicate bridges.
+     */
+    public void setBridges(List<PersonTaskBridge> bridges) {
+        this.bridges.setBridges(bridges);
+    }
+
+    /**
      * Resets the existing data of this {@code AddressBook} with {@code newData}.
      */
     public void resetData(ReadOnlyAddressBook newData) {
@@ -72,6 +80,7 @@ public class AddressBook implements ReadOnlyAddressBook {
 
         setPersons(newData.getPersonList());
         setTasks(newData.getTaskList());
+        setBridges(newData.getBridgeList());
     }
 
     //// person-level operations
@@ -194,11 +203,13 @@ public class AddressBook implements ReadOnlyAddressBook {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof AddressBook // instanceof handles nulls
-                && persons.equals(((AddressBook) other).persons));
+                && persons.equals(((AddressBook) other).persons))
+                && tasks.equals(((AddressBook) other).tasks)
+                && bridges.equals(((AddressBook) other).bridges);
     }
 
     @Override
     public int hashCode() {
-        return persons.hashCode() ^ tasks.hashCode();
+        return persons.hashCode() ^ tasks.hashCode() ^ bridges.hashCode();
     }
 }
