@@ -43,14 +43,15 @@ public class CommandResult {
         this(feedbackToUser, helpText, true, false);
     }
 
-    /**
-     * Constructs a {@code CommandResult} with the specified {@code feedbackToUser},
-     * and other fields set to their default value.
-     */
     private CommandResult(String feedbackToUser) {
         this(feedbackToUser, "", false, false);
     }
 
+    /**
+     * Constructs a {@code CommandResult} with the specified message to display.
+     * @param feedbackToUser the message to display to the user.
+     * @return a {@code CommandResult} with the supplied string as a message.
+     */
     public static CommandResult fromString(String feedbackToUser) {
         return new CommandResult(feedbackToUser);
     }
