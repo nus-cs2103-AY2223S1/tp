@@ -20,6 +20,13 @@ public class EmailTest {
     }
 
     @Test
+    public void isWithinLengthLimit() {
+        assertTrue(Email.isWithinLengthLimit("A".repeat(Email.LENGTH_LIMIT - 1)));
+        assertTrue(Email.isWithinLengthLimit("A".repeat(Email.LENGTH_LIMIT)));
+        assertFalse(Email.isWithinLengthLimit("A".repeat(Email.LENGTH_LIMIT + 1)));
+    }
+
+    @Test
     public void isValidEmail() {
         // null email
         assertThrows(NullPointerException.class, () -> Email.isValidEmail(null));

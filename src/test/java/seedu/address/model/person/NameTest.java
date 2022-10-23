@@ -20,6 +20,13 @@ public class NameTest {
     }
 
     @Test
+    public void isWithinLengthLimit() {
+        assertTrue(Name.isWithinLengthLimit("A".repeat(Name.LENGTH_LIMIT - 1)));
+        assertTrue(Name.isWithinLengthLimit("A".repeat(Name.LENGTH_LIMIT)));
+        assertFalse(Name.isWithinLengthLimit("A".repeat(Name.LENGTH_LIMIT + 1)));
+    }
+
+    @Test
     public void isValidName() {
         // null name
         assertThrows(NullPointerException.class, () -> Name.isValidName(null));

@@ -20,6 +20,13 @@ public class PhoneTest {
     }
 
     @Test
+    public void isWithinLengthLimit() {
+        assertTrue(Phone.isWithinLengthLimit("A".repeat(Phone.LENGTH_LIMIT - 1)));
+        assertTrue(Phone.isWithinLengthLimit("A".repeat(Phone.LENGTH_LIMIT)));
+        assertFalse(Phone.isWithinLengthLimit("A".repeat(Phone.LENGTH_LIMIT + 1)));
+    }
+
+    @Test
     public void isValidPhone() {
         // null phone number
         assertThrows(NullPointerException.class, () -> Phone.isValidPhone(null));
