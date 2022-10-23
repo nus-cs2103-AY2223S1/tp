@@ -10,7 +10,7 @@ import seedu.address.model.Model;
 import seedu.address.model.bill.Bill;
 
 /**
- *
+ * Sets the payment status of a bill as paid.
  */
 public class SetPaidCommand extends Command {
 
