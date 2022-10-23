@@ -140,4 +140,34 @@ public class Person {
         return builder.toString();
     }
 
+
+    /**
+     * Returns client details that is formatted to an organized and readable string
+     * @return Readable string of client details.
+     */
+    public String toClipboardString() {
+        final StringBuilder builder = new StringBuilder();
+        builder.append("Name: ")
+                .append(getName())
+                .append("\nPhone: ")
+                .append(getPhone())
+                .append("\nEmail: ")
+                .append(getEmail())
+                .append("\nAddress: ")
+                .append(getAddress())
+                .append("\nIncome: ")
+                .append(getIncome())
+                .append("\nMeeting date: ")
+                .append(getMeetingDate());
+
+        Set<Tag> tags = getTags();
+        if (!tags.isEmpty()) {
+            builder.append("\nTags: ");
+            String outputTag = tags.toString().replace("[", "");
+            outputTag = outputTag.replace("]", "");
+            builder.append(outputTag);
+        }
+        return builder.toString();
+    }
+
 }
