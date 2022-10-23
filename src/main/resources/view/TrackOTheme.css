@@ -262,7 +262,7 @@
 }
 
 .costPrice-container {
-    -fx-background-color: #FFD3D0;
+    -fx-background-color: #FFD9D6;
     -fx-background-radius: 50;
     -fx-padding: 4 12 6 12;
     -fx-background-insets: 2 3 4 3;
@@ -315,7 +315,7 @@
 }
 
 .costPrice-icon {
-    -icon-paint: #FF6C64; // to set the color
+    -icon-paint: #EF5F57; // to set the color
     -fx-background-color: -icon-paint !important;
     -size: 18; // to set the icon size
     -fx-min-width: -size;
@@ -619,7 +619,7 @@
 
 #costPrice {
     -fx-font-weight: 900 !important;
-    -fx-text-fill: #FF6C64;
+    -fx-text-fill: #EF5F57;
     -fx-font-family: Poppins;
     -fx-font-size: 16px;
 }
