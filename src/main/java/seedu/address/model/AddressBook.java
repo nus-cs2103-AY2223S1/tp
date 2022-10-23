@@ -10,7 +10,7 @@ import seedu.address.model.consultation.UniqueConsultationList;
 import seedu.address.model.reminder.Reminder;
 import seedu.address.model.reminder.UniqueReminderList;
 import seedu.address.model.student.Student;
-import seedu.address.model.student.UniquePersonList;
+import seedu.address.model.student.UniqueStudentList;
 import seedu.address.model.tutorial.Tutorial;
 import seedu.address.model.tutorial.UniqueTutorialList;
 
@@ -20,7 +20,7 @@ import seedu.address.model.tutorial.UniqueTutorialList;
  */
 public class AddressBook implements ReadOnlyAddressBook {
 
-    private final UniquePersonList persons;
+    private final UniqueStudentList persons;
     private final UniqueReminderList reminders;
     private final UniqueTutorialList tutorials;
     private final UniqueConsultationList consultations;
@@ -33,7 +33,7 @@ public class AddressBook implements ReadOnlyAddressBook {
      *   among constructors.
      */
     {
-        persons = new UniquePersonList();
+        persons = new UniqueStudentList();
         reminders = new UniqueReminderList();
         tutorials = new UniqueTutorialList();
         consultations = new UniqueConsultationList();
@@ -163,6 +163,13 @@ public class AddressBook implements ReadOnlyAddressBook {
         reminders.remove(key);
     }
 
+    public void markReminder(Reminder target) {
+        reminders.mark(target);
+    }
+
+    public void unmarkReminder(Reminder target) {
+        reminders.unmark(target);
+    }
 
     //// tutorial-level operations
 
@@ -304,4 +311,5 @@ public class AddressBook implements ReadOnlyAddressBook {
     public int hashCode() {
         return persons.hashCode();
     }
+
 }
