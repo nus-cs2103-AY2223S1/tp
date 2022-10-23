@@ -121,8 +121,11 @@ How the parsing works:
 
 The `Model` component,
 
-* stores the address book data i.e., all `Person` objects (which are contained in a `UniquePersonList` object).
-* stores the currently 'selected' `Person` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Person>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
+* stores the address book data. This address book data consists of:
+  * all `Person` objects (which are contained in a `UniquePersonList` object),
+  * all `Team` objects (which are contained in a `UniqueTeamList` object),
+  * and all 'Task' objects (which are contained in a `UniqueTaskList` object).
+* stores the currently 'selected' `Person`, `Team`, and `Task` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Person>`, `ObservableList<Team>`, and `ObservableList<Task>` respectively, that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
 * stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
 * does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
 
@@ -265,6 +268,36 @@ Step 3. The user realised that there is some error in the task and wants to unma
 The following sequence diagram shows how the mark task operation works:
 ![TaskMarkSequenceDiagram](images/TaskMarkSequenceDiagram.png)
 
+### Edit Task Feature
+
+#### Implementation
+
+The edit task feature updates the name of the task to the new name given by the user and this change is reflected in the Graphical User Interface.
+
+Given below is an example usage scenario:
+
+Step 1. The user creates the task and assign it to a team using `taskadd` command. The name of the task provided by the user is stored as Name in the Task class.
+
+Step 2. The user might want to update the name of the task in the future. The user then executes `taskedit t/1 task/1 n/update GUI` to update the name of the task from the previous name to the new name provided by the user. The `taskedit` command will call `Model#getFilteredTeamList()`, which then gets the specified task from the `UniqueTaskList`. The specified task in team 1 would be updated to the new name by keeping all the other task feature as same. `Model#updateFilterPersonList` is called to update the team with the new task name and this would be reflected in the gui.
+
+The following sequence diagram shows how the edit task operation works:
+![TaskEditSequenceDiagram](images/TaskEditSequenceDiagram.png)
+
+### Delete Task Feature
+
+#### Implementation
+
+The delete task feature deletes the task from the specified team given by the user and this change is reflected in the Graphical User Interface.
+
+Given below is an example usage scenario:
+
+Step 1. The user creates the task and assign it to a team using `taskadd` command. The tasks are stored in the UniqueTaskList for each Team. 
+
+Step 2. The user might want to delete the task to remove the unwanted task in the future. The user then executes `taskdelete t/1 task/1` to delete the task from the specified team. The `taskdelete` command will call `Model#getFilteredTeamList()`, which then gets the specified task from the `UniqueTaskList`. The specified task in team 1 would be deleted from the taskList. `Model#updateFilterPersonList` is called to update the team with the new deletions and this would be reflected in the gui.
+
+The following sequence diagram shows how delete task operation works:
+![TaskDeleteSequenceDiagram](images/TaskDeleteSequenceDiagram.png)
+
 ### Edit Person Feature
 
 #### Implementation
@@ -298,6 +331,62 @@ The `createTeam` command will call `Model#addTeam` to add the team into EZLead.
 
 The following sequence diagram show how the create team operation works:
 ![CreateTeamSequenceDiagram](images/CreateTeamSequenceDiagram.png)
+
+### Delete Team Feature
+
+#### Implementation
+
+The Delete Team Feature allows the user to delete a team in EZLead. After deletion, the team will no longer be reflected in the Graphical User Interface.
+
+Given below is an example usage scenario
+
+Step 1. The user created a team using the `createteam` command.
+
+Step 2. The user assigns some members into the newly created team using the `assign` command.
+
+Step 3. The user realises that the team has completed their work and is no longer needed, and proceeds to delete the team using the `deleteteam t/1` command (Given that the team created in Step 1 is the team in index 1).
+
+The following sequence diagram shows how the delete team operation works:
+![DeleteTeamSequenceDaigram](images/DeleteTeamSequenceDiagram.png)
+
+### Edit Team Feature
+
+#### Implementation
+
+The Edit Team Feature allows the user to edit the name of a pre-existing team in EZLead.
+
+Given below is an example usage scenario and how the Edit Team mechanism behaves at each step.
+
+Step 1. The user executes `editteam t/1 n/Team1` to change the name of first team to Team1.
+
+Step 2. The `editTeam` command is created by the parser using the given team index and new name. It calls
+`Model#setTeamName`to change the name of the required team.
+
+### Assign Member Feature
+
+#### Implementation
+
+The Assign Member Feature allows the user to assign a person to a pre-existing team in EZLead.
+
+Given below is an example usage scenario and how the Assign Member mechanism behaves at each step.
+
+Step 1. The user executes `assign m/1 t/1` to assign the first person as a member in the first team.
+
+Step 2. The `assignMember` command is created by the parser using the given member's index (global person index) and 
+team's index. It calls `Model#addPersonToTeam` to add the person to given team.
+
+### unAssign Member Feature
+
+#### Implementation
+
+The unAssign Member Feature allows the user to assign a person to a pre-existing team in EZLead.
+
+Given below is an example usage scenario and how the unAssign Member mechanism behaves at each step.
+
+Step 1. The user executes `unassign m/1 (global person index) t/1` to unAssign the first person as a member from the first team.
+
+Step 2. The `unassignMember` command is created by the parser using the given member's index (global person index) and 
+team's index. It calls `Model#removePersonFromTeam` to remove the person from given team.
 
 _{more aspects and alternatives to be added}
 
@@ -510,7 +599,7 @@ Step 1 and 2 is repeated until all members have been added
 
 **Extensions:**
 
-* 1a. Specified team does not exist.
+* 1a. Specified team index is invalid.
 
     * 1a1. EZLead displays an error message.
 
@@ -530,7 +619,85 @@ Step 1 and 2 is repeated until all members have been added
 
 **Extensions:**
 
-* 1a. Specified team does not exist.
+* 1a. Specified team index is invalid.
+
+    * 1a1. EZLead displays an error message.
+
+      Use case ends.
+
+* 1b. Specified task does not exist.
+
+    * 1b1. EZLead displays an error message.
+
+      Use case ends.
+
+
+**Use case: UC8 - Editing a task name**
+
+**Actor: Team Lead**
+
+**Prerequisites: A team exists**
+
+**MSS**
+
+1. Team Lead specifies the team, the task and the new task name.
+2. EZLead updates task name associated to specified task of the team.
+
+**Extensions:**
+
+* 1a. Specified team index is invalid.
+
+    * 1a1. EZLead displays an error message.
+
+      Use case ends.
+
+* 1b. Specified task does not exist.
+
+    * 1b1. EZLead displays an error message.
+
+      Use case ends.
+
+
+**Use case: UC9 - Marking a task item as done**
+
+**Actor: Team Lead**
+
+**Prerequisites: A team exists**
+
+**MSS**
+
+1. Team Lead specifies the team and the task to be marked as done.
+2. EZLead marks the task associated to specified team as done.
+
+**Extensions:**
+
+* 1a. Specified team index is invalid.
+
+    * 1a1. EZLead displays an error message.
+
+      Use case ends.
+
+* 1b. Specified task does not exist.
+
+    * 1b1. EZLead displays an error message.
+
+      Use case ends.
+
+
+**Use case: UC10 - Marking a task item as not done**
+
+**Actor: Team Lead**
+
+**Prerequisites: A team exists**
+
+**MSS**
+
+1. Team Lead specifies  the team and the task to be marked as not done.
+2. EZLead marks the task associated to specified team as not done.
+
+**Extensions:**
+
+* 1a. Specified team index is invalid.
 
     * 1a1. EZLead displays an error message.
 

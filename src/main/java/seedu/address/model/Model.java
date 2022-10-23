@@ -127,6 +127,8 @@ public interface Model {
 
     public List<Team> teamsWithMember(Person p);
 
+    public boolean teamHasMember(Index p, Index t);
+
     void addTask(Index index, Task task);
 
     void markTask(Index teamIndex, Index taskIndex);

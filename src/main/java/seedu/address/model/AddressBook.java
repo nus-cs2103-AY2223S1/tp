@@ -138,14 +138,23 @@ public class AddressBook implements ReadOnlyAddressBook {
         teams.remove(t);
     }
 
+    /**
+     * Adds person to the given team.
+     */
     public void addPersonToTeam(Person person, Team team) {
         team.addMember(person);
     }
 
+    /**
+     * Removes person from the given team.
+     */
     public void removePersonFromTeam(Person person, Team team) {
         team.removeMember(person);
     }
 
+    /**
+     * Changes team name to given name.
+     */
     public void setTeamName(Index targetIndex, seedu.address.model.team.Name newTeamName) {
         requireNonNull(newTeamName);
         teams.setTeamName(targetIndex.getZeroBased(), newTeamName);

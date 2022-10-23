@@ -21,14 +21,14 @@ public class UnAssignMemberCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": removes a person from the team. "
             + "Parameters: "
-            + PREFIX_MEMBER_INDEX + "MEMBER INDEX "
+            + PREFIX_MEMBER_INDEX + "MEMBER INDEX (Global person index) "
             + PREFIX_TEAM_INDEX + "TEAM INDEX \n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_MEMBER_INDEX + "1 "
             + PREFIX_TEAM_INDEX + "1";
 
     public static final String MESSAGE_SUCCESS = "Person removed: %1$s from team: %2$s";
-    public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the team";
+    public static final String MESSAGE_PERSON_DOES_NOT_EXIST = "This person does not exist in the team";
     public static final String MESSAGE_ARGUMENTS = "Person: %1$s, Team: %2$s";
 
     private final Index personIndex;
@@ -37,7 +37,7 @@ public class UnAssignMemberCommand extends Command {
     /**
      * Creates an UnAssignMemberCommand to remove the specified {@code Person} from specified {@code Team}
      */
-    public UnAssignMemberCommand(Index teamIndex, Index personIndex) {
+    public UnAssignMemberCommand(Index personIndex, Index teamIndex) {
         requireAllNonNull(personIndex, teamIndex);
         this.personIndex = personIndex;
         this.teamIndex = teamIndex;
@@ -47,6 +47,7 @@ public class UnAssignMemberCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
 
         requireNonNull(model);
+
         Team team = model.getTeamUsingIndex(teamIndex);
         Person person = model.getPersonUsingIndex(personIndex);
 
