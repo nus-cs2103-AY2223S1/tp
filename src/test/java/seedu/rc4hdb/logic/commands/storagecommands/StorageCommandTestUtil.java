@@ -10,12 +10,12 @@ import java.nio.file.Path;
 import seedu.rc4hdb.commons.util.FileUtil;
 import seedu.rc4hdb.logic.commands.CommandResult;
 import seedu.rc4hdb.logic.commands.exceptions.CommandException;
-import seedu.rc4hdb.storage.JsonResidentBookStorage;
 import seedu.rc4hdb.storage.JsonUserPrefsStorage;
-import seedu.rc4hdb.storage.ResidentBookStorage;
 import seedu.rc4hdb.storage.Storage;
 import seedu.rc4hdb.storage.StorageManager;
 import seedu.rc4hdb.storage.UserPrefsStorage;
+import seedu.rc4hdb.storage.residentbook.JsonResidentBookStorage;
+import seedu.rc4hdb.storage.residentbook.ResidentBookStorage;
 
 /**
  * Contains helper methods for testing storage commands.

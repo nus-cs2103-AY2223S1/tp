@@ -10,12 +10,12 @@ import seedu.rc4hdb.logic.commands.exceptions.CommandException;
 import seedu.rc4hdb.model.Model;
 import seedu.rc4hdb.model.ResidentBook;
 import seedu.rc4hdb.model.resident.Resident;
-import seedu.rc4hdb.storage.JsonResidentBookStorage;
 import seedu.rc4hdb.storage.JsonUserPrefsStorage;
-import seedu.rc4hdb.storage.ResidentBookStorage;
 import seedu.rc4hdb.storage.Storage;
 import seedu.rc4hdb.storage.StorageManager;
 import seedu.rc4hdb.storage.UserPrefsStorage;
+import seedu.rc4hdb.storage.residentbook.JsonResidentBookStorage;
+import seedu.rc4hdb.storage.residentbook.ResidentBookStorage;
 
 /**
  * Contains helper methods for testing storage model commands.

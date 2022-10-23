@@ -13,6 +13,7 @@ import seedu.rc4hdb.commons.exceptions.DataConversionException;
 import seedu.rc4hdb.model.ReadOnlyResidentBook;
 import seedu.rc4hdb.model.ReadOnlyUserPrefs;
 import seedu.rc4hdb.model.UserPrefs;
+import seedu.rc4hdb.storage.residentbook.ResidentBookStorage;
 
 /**
  * Manages storage of AddressBook data in local storage.

@@ -25,12 +25,12 @@ import seedu.rc4hdb.model.UserPrefs;
 import seedu.rc4hdb.model.VenueBook;
 import seedu.rc4hdb.model.util.SampleDataUtil;
 import seedu.rc4hdb.model.venues.Venue;
-import seedu.rc4hdb.storage.JsonResidentBookStorage;
 import seedu.rc4hdb.storage.JsonUserPrefsStorage;
-import seedu.rc4hdb.storage.ResidentBookStorage;
 import seedu.rc4hdb.storage.Storage;
 import seedu.rc4hdb.storage.StorageManager;
 import seedu.rc4hdb.storage.UserPrefsStorage;
+import seedu.rc4hdb.storage.residentbook.JsonResidentBookStorage;
+import seedu.rc4hdb.storage.residentbook.ResidentBookStorage;
 import seedu.rc4hdb.ui.Ui;
 import seedu.rc4hdb.ui.UiManager;
 
