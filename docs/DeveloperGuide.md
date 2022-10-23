@@ -163,8 +163,6 @@ The sequence diagram below shows how a `DeleteCommand` with multiple inputs is e
 <div markdown="span" class="alert alert-info">
 :information_source: **Note:** The order of the inputs does not matter as the set is sorted in reverse order before creating the `DeleteCommand` object. This ensures that deletion of each entry in the `model` does not affect the deletion of the subsequent entries while the `for` loop is running.
 </div>
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The order of the inputs does not matter as the set is sorted in reverse order before creating the `DeleteCommand` object. This ensures that deletion of each entry in the `model` does not affect the deletion of the subsequent entries while the `for` loop is running.</div>
-
 
 ### Fast Template Feature
 
