@@ -141,8 +141,8 @@ public class Person {
     }
 
     /**
-     * Searches this task to find if input query exists anywhere in the description or name.
-     * @param query input word.
+     * Checks of this person's name contains the query.
+     * @param query input query.
      * @return true if the query exists exactly in this task, false otherwise.
      */
     public boolean isQueryInPerson(String query) {
