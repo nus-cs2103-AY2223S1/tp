@@ -4,6 +4,8 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_GRAPH;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TYPE;
 
+import java.util.Optional;
+
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.entry.EntryType;
@@ -52,6 +54,18 @@ public class ViewCommand extends Command {
         this.graphType = graphType;
     }
 
+    public EntryType getEntryType() {
+        return entryType;
+    }
+
+    public GraphType getGraphType() {
+        return graphType;
+    }
+
+    public Optional<Month> getMonth() {
+        return Optional.ofNullable(month);
+    }
+
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
@@ -98,11 +112,11 @@ public class ViewCommand extends Command {
             return false;
         }
         ViewCommand otherViewCommand = (ViewCommand) other;
-        if (this.month == null) {
-            return this.entryType.equals(otherViewCommand.entryType);
+        if (month == null) {
+            return entryType.equals(otherViewCommand.entryType);
         }
-        return this.entryType.equals(otherViewCommand.entryType)
-                && this.month.equals(otherViewCommand.month)
-                && this.graphType.equals(otherViewCommand.graphType);
+        return getEntryType().equals(otherViewCommand.getEntryType())
+                && getMonth().equals(otherViewCommand.getMonth())
+                && getGraphType().equals(otherViewCommand.getGraphType());
     }
 }
