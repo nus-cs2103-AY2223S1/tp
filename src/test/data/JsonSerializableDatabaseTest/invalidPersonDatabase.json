@@ -7,7 +7,7 @@
       "email": "invalid@email!3e",
       "position": "Chief of Nothing",
       "leave" : "14",
-      "leaveleft" : "14",
+      "leaveLeft" : "14",
       "address": "4th street",
       "leaveTaken" : [ ]
     }
