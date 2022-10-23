@@ -316,17 +316,7 @@ public class ModelManager implements Model {
     public void sortAppointments(Comparator<Appointment> comparator, boolean isAscending) {
         this.addressBook.sortAppointments(comparator, isAscending);
     }
-    
-    @Override
-    public void setBillAsPaid(Bill bill) {
-        this.addressBook.setBillAsPaid(bill);
-    }
-    
-    @Override
-    public void setBillAsUnpaid(Bill bill) {
-        this.addressBook.setBillAsUnpaid(bill);
-    }
-    
+
     @Override
     public void updateAddressBookHistory() {
         this.addressBookHistory.add(new AddressBook(this.addressBook));
@@ -366,4 +356,10 @@ public class ModelManager implements Model {
     public void deleteAddressBookHistory() {
         this.addressBookHistory.remove(addressBookHistory.size() - 1);
     }
+
+    @Override
+    public void setBillAsPaid(Bill bill) {
+        this.addressBook.setBillAsPaid(bill);
+    }
+
 }

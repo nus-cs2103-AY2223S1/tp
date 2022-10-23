@@ -208,7 +208,6 @@ public interface Model {
     void sortBills(Comparator<Bill> comparator, boolean isAscending);
 
     /**
-
      * Updates previous state of the address book.
      */
     void updateAddressBookHistory();
