@@ -64,27 +64,28 @@ public class CreateCommandParserTest {
 
         // whitespace only preamble
         assertParseSuccess(parser, PREAMBLE_WHITESPACE + NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
-                + ADDRESS_DESC_BOB + NETWORTH_DESC_BOB + MEETING_TIME_DESC_BOB + DESCRIPTION_DESC_BOB + TAG_DESC_POTENTIAL,
-                new CreateCommand(expectedPerson));
+                + ADDRESS_DESC_BOB + NETWORTH_DESC_BOB + MEETING_TIME_DESC_BOB + DESCRIPTION_DESC_BOB
+                + TAG_DESC_POTENTIAL, new CreateCommand(expectedPerson));
 
         // multiple names - last name accepted
         assertParseSuccess(parser, NAME_DESC_AMY + NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
-                + ADDRESS_DESC_BOB + NETWORTH_DESC_BOB + MEETING_TIME_DESC_BOB + DESCRIPTION_DESC_BOB + TAG_DESC_POTENTIAL,
-                new CreateCommand(expectedPerson));
+                + ADDRESS_DESC_BOB + NETWORTH_DESC_BOB + MEETING_TIME_DESC_BOB + DESCRIPTION_DESC_BOB
+                + TAG_DESC_POTENTIAL, new CreateCommand(expectedPerson));
 
         // multiple phones - last phone accepted
         assertParseSuccess(parser, NAME_DESC_BOB + PHONE_DESC_AMY + PHONE_DESC_BOB + EMAIL_DESC_BOB
-                + ADDRESS_DESC_BOB + NETWORTH_DESC_BOB + MEETING_TIME_DESC_BOB + DESCRIPTION_DESC_BOB + TAG_DESC_POTENTIAL,
-                new CreateCommand(expectedPerson));
+                + ADDRESS_DESC_BOB + NETWORTH_DESC_BOB + MEETING_TIME_DESC_BOB + DESCRIPTION_DESC_BOB
+                + TAG_DESC_POTENTIAL, new CreateCommand(expectedPerson));
 
         // multiple emails - last email accepted
         assertParseSuccess(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_AMY + EMAIL_DESC_BOB
-                + ADDRESS_DESC_BOB + NETWORTH_DESC_BOB + MEETING_TIME_DESC_BOB + DESCRIPTION_DESC_BOB + TAG_DESC_POTENTIAL,
+                + ADDRESS_DESC_BOB + NETWORTH_DESC_BOB + MEETING_TIME_DESC_BOB + DESCRIPTION_DESC_BOB
+                + TAG_DESC_POTENTIAL, new CreateCommand(expectedPerson));
 
         // multiple addresses - last address accepted
         assertParseSuccess(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_AMY
-                + ADDRESS_DESC_BOB + NETWORTH_DESC_BOB + MEETING_TIME_DESC_BOB + DESCRIPTION_DESC_BOB + TAG_DESC_POTENTIAL,
-                new CreateCommand(expectedPerson));
+                + ADDRESS_DESC_BOB + NETWORTH_DESC_BOB + MEETING_TIME_DESC_BOB + DESCRIPTION_DESC_BOB
+                + TAG_DESC_POTENTIAL, new CreateCommand(expectedPerson));
 
         // multiple networths - last networth accepted
         assertParseSuccess(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_BOB
@@ -139,17 +140,17 @@ public class CreateCommandParserTest {
     public void parse_invalidValue_failure() {
         // invalid name
         assertParseFailure(parser, INVALID_NAME_DESC + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_BOB
-                + DESCRIPTION_DESC_BOB + NETWORTH_DESC_BOB + MEETING_TIME_DESC_BOB + TAG_DESC_HUSBAND + TAG_DESC_POTENTIAL,
+                + DESCRIPTION_DESC_BOB + NETWORTH_DESC_BOB + MEETING_TIME_DESC_BOB + TAG_DESC_POTENTIAL,
                 Name.MESSAGE_CONSTRAINTS);
 
         // invalid phone
         assertParseFailure(parser, NAME_DESC_BOB + INVALID_PHONE_DESC + EMAIL_DESC_BOB + ADDRESS_DESC_BOB
-                + DESCRIPTION_DESC_BOB + NETWORTH_DESC_BOB + MEETING_TIME_DESC_BOB + TAG_DESC_HUSBAND + TAG_DESC_POTENTIAL,
+                + DESCRIPTION_DESC_BOB + NETWORTH_DESC_BOB + MEETING_TIME_DESC_BOB + TAG_DESC_POTENTIAL,
                 Phone.MESSAGE_CONSTRAINTS);
 
         // invalid email
         assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + INVALID_EMAIL_DESC + ADDRESS_DESC_BOB
-                + DESCRIPTION_DESC_BOB + NETWORTH_DESC_BOB + MEETING_TIME_DESC_BOB + TAG_DESC_HUSBAND + TAG_DESC_POTENTIAL,
+                + DESCRIPTION_DESC_BOB + NETWORTH_DESC_BOB + MEETING_TIME_DESC_BOB + TAG_DESC_POTENTIAL,
                 Email.MESSAGE_CONSTRAINTS);
 
         // invalid address
@@ -164,14 +165,14 @@ public class CreateCommandParserTest {
 
         // invalid meeting time
         assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_BOB
-                + DESCRIPTION_DESC_BOB + NETWORTH_DESC_BOB + INVALID_MEETING_TIME + TAG_DESC_POTENTIAL 
+                + DESCRIPTION_DESC_BOB + NETWORTH_DESC_BOB + INVALID_MEETING_TIME + TAG_DESC_POTENTIAL
                 + VALID_TAG_POTENTIAL, MeetingTime.MESSAGE_CONSTRAINTS);
 
         // invalid tag
         assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_BOB
-                + DESCRIPTION_DESC_BOB + NETWORTH_DESC_BOB + MEETING_TIME_DESC_BOB + INVALID_TAG_DESC
-                , Tag.MESSAGE_CONSTRAINTS);
-      
+                + DESCRIPTION_DESC_BOB + NETWORTH_DESC_BOB + MEETING_TIME_DESC_BOB + INVALID_TAG_DESC,
+                Tag.MESSAGE_CONSTRAINTS);
+
         // two invalid values, only first invalid value reported
         assertParseFailure(parser, INVALID_NAME_DESC + PHONE_DESC_BOB + EMAIL_DESC_BOB + INVALID_ADDRESS_DESC
                 + DESCRIPTION_DESC_BOB + NETWORTH_DESC_BOB + MEETING_TIME_DESC_BOB , Name.MESSAGE_CONSTRAINTS);
