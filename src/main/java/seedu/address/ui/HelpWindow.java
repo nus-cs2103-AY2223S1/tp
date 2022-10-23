@@ -1,7 +1,6 @@
 package seedu.address.ui;
 
 import java.util.logging.Logger;
-import java.util.prefs.Preferences;
 
 import javafx.fxml.FXML;
 import javafx.scene.Scene;

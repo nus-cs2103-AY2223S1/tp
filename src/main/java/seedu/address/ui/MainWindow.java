@@ -123,7 +123,7 @@ public class MainWindow extends UiPart<Stage> implements Initializable {
      */
     void initializeTheme(Preferences pref) {
         int mode = pref.getInt("mode", 0);
-        if ( mode == 1) {
+        if (mode == 1) {
             setLightTheme(pref);
         }
     }
