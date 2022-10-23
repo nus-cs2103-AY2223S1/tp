@@ -22,7 +22,7 @@ import seedu.studmap.model.tag.Tag;
  */
 public class AddTagCommand extends EditStudentCommand<AddTagCommand.AddTagCommandStudentEditor> {
 
-    public static final Logger LOGGER = LogsCenter.getLogger(MainApp.class);
+    public static final Logger LOGGER = LogsCenter.getLogger(AddTagCommand.class);
 
     public static final String COMMAND_WORD = "addtag";
 

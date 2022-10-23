@@ -371,3 +371,29 @@
 #absent {
     -fx-background-color: #FF4444;
 }
+
+#assignments {
+    -fx-hgap: 7;
+    -fx-vgap: 3;
+}
+
+#assignments .label {
+    -fx-text-fill: white;
+    -fx-padding: 1 3 1 3;
+    -fx-border-radius: 2;
+    -fx-background-radius: 2;
+    -fx-font-size: 11;
+}
+
+#marked {
+    -fx-background-color: #447959;
+}
+
+#new {
+    -fx-background-color: #a5344c;
+}
+
+#received {
+    -fx-background-color: #be6805;
+}
+

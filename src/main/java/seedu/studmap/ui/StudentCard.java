@@ -7,6 +7,7 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
+import seedu.studmap.model.student.Assignment;
 import seedu.studmap.model.student.Student;
 
 /**
@@ -42,6 +43,8 @@ public class StudentCard extends UiPart<Region> {
     private FlowPane tags;
     @FXML
     private FlowPane attendances;
+    @FXML
+    private FlowPane assignments;
 
     /**
      * Creates a {@code StudentCode} with the given {@code Student} and index to display.
@@ -65,6 +68,14 @@ public class StudentCard extends UiPart<Region> {
                     return x;
                 })
                 .forEach(attendance -> attendances.getChildren().add(attendance));
+        student.getAssignments().stream()
+                .sorted(Comparator.comparing(assignment -> assignment.assignmentName))
+                .map(assignment -> {
+                    Label x = new Label(assignment.assignmentName);
+                    x.setId(Assignment.statusToString(assignment.markingStatus));
+                    return x;
+                })
+                .forEach(assignment -> assignments.getChildren().add(assignment));
     }
 
     @Override

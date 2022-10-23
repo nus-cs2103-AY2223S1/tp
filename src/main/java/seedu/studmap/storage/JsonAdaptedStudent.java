@@ -11,6 +11,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.studmap.commons.exceptions.IllegalValueException;
 import seedu.studmap.model.student.Address;
+import seedu.studmap.model.student.Assignment;
 import seedu.studmap.model.student.Attendance;
 import seedu.studmap.model.student.Email;
 import seedu.studmap.model.student.Name;
@@ -32,6 +33,7 @@ class JsonAdaptedStudent {
     private final String address;
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
     private final List<JsonAdaptedAttendance> attended = new ArrayList<>();
+    private final List<JsonAdaptedAssignment> assigned = new ArrayList<>();
 
     /**
      * Constructs a {@code JsonAdaptedStudent} with the given student details.
@@ -40,7 +42,8 @@ class JsonAdaptedStudent {
     public JsonAdaptedStudent(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
                               @JsonProperty("email") String email, @JsonProperty("studmap") String address,
                               @JsonProperty("tagged") List<JsonAdaptedTag> tagged,
-                              @JsonProperty("attended") List<JsonAdaptedAttendance> attended) {
+                              @JsonProperty("attended") List<JsonAdaptedAttendance> attended,
+                              @JsonProperty("assignments") List<JsonAdaptedAssignment> assignments) {
         this.name = name;
         this.phone = phone;
         this.email = email;
@@ -50,6 +53,9 @@ class JsonAdaptedStudent {
         }
         if (attended != null) {
             this.attended.addAll(attended);
+        }
+        if (assignments != null) {
+            this.assigned.addAll(assignments);
         }
     }
 
@@ -67,6 +73,9 @@ class JsonAdaptedStudent {
         attended.addAll(source.getAttendances().stream()
                 .map(attendance -> new JsonAdaptedAttendance(attendance.getString()))
                 .collect(Collectors.toList()));
+        assigned.addAll(source.getAssignments().stream()
+                .map(assignment -> new JsonAdaptedAssignment(assignment.getString()))
+                .collect(Collectors.toList()));
     }
 
     /**
@@ -83,6 +92,11 @@ class JsonAdaptedStudent {
         final List<Attendance> studentAttendances = new ArrayList<>();
         for (JsonAdaptedAttendance attendance : attended) {
             studentAttendances.add(attendance.toModelType());
+        }
+
+        final List<Assignment> studentAssignments = new ArrayList<>();
+        for (JsonAdaptedAssignment assignment : assigned) {
+            studentAssignments.add(assignment.toModelType());
         }
 
         if (name == null) {
@@ -119,6 +133,7 @@ class JsonAdaptedStudent {
 
         final Set<Tag> modelTags = new HashSet<>(studentTags);
         final Set<Attendance> modelAttendances = new HashSet<>(studentAttendances);
+        final Set<Assignment> modelAssignments = new HashSet<>(studentAssignments);
 
         StudentData studentData = new StudentData();
         studentData.setName(modelName);
@@ -127,6 +142,7 @@ class JsonAdaptedStudent {
         studentData.setAddress(modelAddress);
         studentData.setTags(modelTags);
         studentData.setAttendances(modelAttendances);
+        studentData.setAssignments(modelAssignments);
         return new Student(studentData);
     }
 

@@ -34,7 +34,10 @@ public class TypicalStudents {
             .addAttended("T01", "T02")
             .addNotAttended("T03").build();
     public static final Student CARL = new StudentBuilder().withName("Carl Kurz").withPhone("95352563")
-            .withEmail("heinz@example.com").withAddress("wall street").build();
+            .withEmail("heinz@example.com").withAddress("wall street")
+            .addAssignedMarked("A01", "A02")
+            .addAssignedReceived("A03")
+            .addAssignedNew("A04").build();
     public static final Student DANIEL = new StudentBuilder().withName("Daniel Meier").withPhone("87652533")
             .withEmail("cornelia@example.com").withAddress("10th street").withTags("friends").build();
     public static final Student ELLE = new StudentBuilder().withName("Elle Meyer").withPhone("9482224")

@@ -4,6 +4,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 import seedu.studmap.model.student.Address;
+import seedu.studmap.model.student.Assignment;
 import seedu.studmap.model.student.Attendance;
 import seedu.studmap.model.student.Email;
 import seedu.studmap.model.student.Name;
@@ -29,6 +30,7 @@ public class StudentBuilder {
     private Address address;
     private Set<Tag> tags;
     private Set<Attendance> attendances;
+    private Set<Assignment> assignments;
 
     /**
      * Creates a {@code StudentBuilder} with the default details.
@@ -40,6 +42,7 @@ public class StudentBuilder {
         address = new Address(DEFAULT_ADDRESS);
         tags = new HashSet<>();
         attendances = new HashSet<>();
+        assignments = new HashSet<>();
     }
 
     /**
@@ -52,6 +55,7 @@ public class StudentBuilder {
         address = studentToCopy.getAddress();
         tags = new HashSet<>(studentToCopy.getTags());
         attendances = new HashSet<>(studentToCopy.getAttendances());
+        assignments = new HashSet<>(studentToCopy.getAssignments());
     }
 
     /**
@@ -71,7 +75,7 @@ public class StudentBuilder {
     }
 
     /**
-     * Parses the {@code classNames} which the user has attended into a
+     * Parses the {@code classNames} which the student has attended into a
      * {@code Set<Attendance>} and adds it to the {@code Student} that we are building.
      */
     public StudentBuilder addAttended(String ... classNames) {
@@ -80,7 +84,7 @@ public class StudentBuilder {
     }
 
     /**
-     * Parses the {@code classNames} which the user has attended into a
+     * Parses the {@code classNames} which the student has attended into a
      * {@code Set<Attendance>} and adds it to the {@code Student} that we are building.
      */
     public StudentBuilder addNotAttended(String ... classNames) {
@@ -88,8 +92,40 @@ public class StudentBuilder {
         return this;
     }
 
+    /**
+     * Parses the {@code assignmentNames} which the user has not marked into a
+     * {@code Set<Assignment>} and adds it to the {@code Student} that we are building.
+     */
+    public StudentBuilder addAssignedNew(String ... assignmentNames) {
+        this.assignments.addAll(SampleDataUtil.getNewAssignments(assignmentNames));
+        return this;
+    }
+
+    /**
+     * Parses the {@code assignmentNames} which the user has received into a
+     * {@code Set<Assignment>} and adds it to the {@code Student} that we are building.
+     */
+    public StudentBuilder addAssignedReceived(String ... assignmentNames) {
+        this.assignments.addAll(SampleDataUtil.getReceivedAssignments(assignmentNames));
+        return this;
+    }
+
+    /**
+     * Parses the {@code assignmentNames} which the user has marked into a
+     * {@code Set<Assignment>} and adds it to the {@code Student} that we are building.
+     */
+    public StudentBuilder addAssignedMarked(String ... assignmentNames) {
+        this.assignments.addAll(SampleDataUtil.getMarkedAssignments(assignmentNames));
+        return this;
+    }
+
     public StudentBuilder setAttended(Set<Attendance> attendances) {
         this.attendances = attendances;
+        return this;
+    }
+
+    public StudentBuilder setAssigned(Set<Assignment> assignments) {
+        this.assignments = assignments;
         return this;
     }
 
@@ -129,6 +165,7 @@ public class StudentBuilder {
         studentData.setAddress(this.address);
         studentData.setTags(this.tags);
         studentData.setAttendances(this.attendances);
+        studentData.setAssignments(this.assignments);
         return new Student(studentData);
     }
 
