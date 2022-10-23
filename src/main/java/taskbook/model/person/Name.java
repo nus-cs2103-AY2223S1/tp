@@ -58,4 +58,13 @@ public class Name {
         return fullName.hashCode();
     }
 
+    /**
+     * Searches the fullName for a query.
+     * @param query input query.
+     * @return true if the query exists exactly in fullName, false otherwise.
+     */
+    public boolean isQueryInName(String query) {
+        requireNonNull(query);
+        return fullName.toUpperCase().contains(query.toUpperCase());
+    }
 }
