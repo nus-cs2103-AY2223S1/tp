@@ -41,6 +41,19 @@ public class CommandBox extends UiPart<Region> {
     public CommandBox(CommandExecutor commandExecutor, ResultDisplay resultDisplay, Logic logic) {
         super(FXML);
 
+        setupListener(resultDisplay);
+        setupCommandHistoryNavigation(logic, resultDisplay);
+
+        this.commandExecutor = commandExecutor;
+
+    }
+
+    /**
+     * Setup down and up arrow key to show previous and next command in commandTextField
+     * @param logic gets the previous/next command in CommandHistory
+     * @param resultDisplay is cleared when the next command string is empty
+     */
+    private void setupCommandHistoryNavigation(Logic logic, ResultDisplay resultDisplay) {
         commandTextField.addEventFilter(KeyEvent.KEY_PRESSED, event -> {
             switch (event.getCode()) {
             case UP:
@@ -58,8 +71,15 @@ public class CommandBox extends UiPart<Region> {
                 break;
             }
         });
+    }
 
-        this.commandExecutor = commandExecutor;
+    /**
+     * Add listener to commandTextField to set text style to default when typing
+     * and to display the command's message usage to the ResultDisplay when
+     * a valid command word is typed.
+     * @param resultDisplay displays the command's message usage
+     */
+    private void setupListener(ResultDisplay resultDisplay) {
         // calls #setStyleToDefault() whenever there is a change to the text of the command box.
         // displays command parameters in ResultDisplay when a COMMAND_WORD is typed.
         // clears ResultDisplay when a single character is in the CommandBox
