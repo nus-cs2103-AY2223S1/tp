@@ -7,7 +7,6 @@ import static seedu.workbook.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.workbook.logic.parser.CliSyntax.PREFIX_ROLE;
 import static seedu.workbook.logic.parser.CliSyntax.PREFIX_STAGE;
 import static seedu.workbook.logic.parser.CliSyntax.PREFIX_TAG;
-import static seedu.workbook.model.Model.PREDICATE_SHOW_ALL_INTERNSHIPS;
 
 import java.util.Collections;
 import java.util.HashSet;
@@ -101,7 +100,10 @@ public class EditCommand extends Command {
         }
 
         model.setInternship(internshipToEdit, editedInternship);
-        model.updateFilteredInternshipList(PREDICATE_SHOW_ALL_INTERNSHIPS);
+        // Doesnt make sense to me to reset the filtering after editing an internship
+        // its not that hard to just type list
+
+        // model.updateFilteredInternshipList(PREDICATE_SHOW_ALL_INTERNSHIPS);
         model.commitWorkBook();
         return new CommandResult(String.format(MESSAGE_EDIT_INTERNSHIP_SUCCESS, editedInternship));
     }

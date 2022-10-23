@@ -8,6 +8,7 @@ import static seedu.workbook.logic.commands.CommandTestUtil.VALID_COMPANY_BOB;
 import static seedu.workbook.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.workbook.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.workbook.logic.commands.CommandTestUtil.assertCommandSuccess;
+import static seedu.workbook.logic.commands.CommandTestUtil.filterOutAllInternships;
 import static seedu.workbook.logic.commands.CommandTestUtil.showInternshipAtIndex;
 import static seedu.workbook.testutil.TypicalIndexes.INDEX_FIRST_INTERNSHIP;
 import static seedu.workbook.testutil.TypicalIndexes.INDEX_SECOND_INTERNSHIP;
@@ -99,6 +100,9 @@ public class EditCommandTest {
 
         Model expectedModel = new ModelManager(new WorkBook(model.getWorkBook()), new UserPrefs());
         expectedModel.setInternship(model.getFilteredInternshipList().get(0), editedInternship);
+        // since `edit` does not reset filtering anymore, and we changed the Company
+        // name in this test case no internships should match the original predicate
+        filterOutAllInternships(expectedModel);
         expectedModel.commitWorkBook();
 
         assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
@@ -118,7 +122,7 @@ public class EditCommandTest {
         showInternshipAtIndex(model, INDEX_FIRST_INTERNSHIP);
 
         // edit internship in filtered list into a duplicate in work book
-        Internship internshipInList = model.getWorkBook().getInternshipList()
+        Internship internshipInList = model.getWorkBook().getBaseInternshipList()
                 .get(INDEX_SECOND_INTERNSHIP.getZeroBased());
         EditCommand editCommand = new EditCommand(INDEX_FIRST_INTERNSHIP,
                 new EditInternshipDescriptorBuilder(internshipInList).build());
@@ -145,7 +149,7 @@ public class EditCommandTest {
         showInternshipAtIndex(model, INDEX_FIRST_INTERNSHIP);
         Index outOfBoundIndex = INDEX_SECOND_INTERNSHIP;
         // ensures that outOfBoundIndex is still in bounds of work book list
-        assertTrue(outOfBoundIndex.getZeroBased() < model.getWorkBook().getInternshipList().size());
+        assertTrue(outOfBoundIndex.getZeroBased() < model.getWorkBook().getBaseInternshipList().size());
 
         EditCommand editCommand = new EditCommand(outOfBoundIndex,
                 new EditInternshipDescriptorBuilder().withCompany(VALID_COMPANY_BOB).build());
