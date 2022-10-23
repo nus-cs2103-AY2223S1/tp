@@ -2,6 +2,7 @@
 {Insert an image of items}
 
 #### Create a new item: `new`
+
 **Format**: `new n/ITEM_NAME [qty/QUANTITY] [u/UNIT] [bgt/BOUGHT_DATE] [exp/EXPIRY_DATE] [p/PRICE] [r/REMARKS]`
 
 > Creates a new item with the provided item name
@@ -44,6 +45,7 @@ Tags: {}
 ---
 
 #### List all items: `list`
+
 **Format**: `list`
 
 > List all items in FoodRem.
@@ -60,16 +62,19 @@ list
 **Expected Output:**
 
 Command Output Box:
+
 ```text
 Listed all items
 ```
 
 List Box:
+
 ```text
 1. Onions 8 kg $1 (Bought Date: 10-10-2022) (Expiry Date: 10-11-2022)
 2. Chicken 30 kg $4.20 (Bought Date: 10-10-2022) (Expiry Date: 15-10-2022)
 3. Carrots 11 kg $0.60 (Bought Date: 10-10-2022) (Expiry Date: 26-10-2022)
 ```
+
 ---
 
 #### Search for an item: `find`
@@ -92,14 +97,17 @@ find potato carrot cucumbers
 **Expected Output:**
 
 Command Output Box:
+
 ```text
 1 item listed!
 ```
 
 List Box:
+
 ```text
 1. Potato 6 kg $2.40 (Bought Date: 10-10-2022) (Expiry Date: 10-11-2022)
 ```
+
 ---
 
 #### Sort all items by an attribute: `sort`
@@ -111,6 +119,7 @@ List Box:
 * Only one of the sorting criteria must be provided.
 
 **Example Input:**
+
 ```text
 sort n/
 ```
@@ -118,16 +127,19 @@ sort n/
 **Expected Output:**
 
 Command Output Box:
+
 ```text
 3 items sorted!
 ```
 
 List Box:
+
 ```text
 1. Onions 8 kg $1 (Bought Date: 10-10-2022) (Expiry Date: 10-11-2022)
 2. Chicken 30 kg $4.20 (Bought Date: 10-10-2022) (Expiry Date: 15-10-2022)
 3. Carrots 11 kg $0.60 (Bought Date: 10-10-2022) (Expiry Date: 26-10-2022)
 ```
+
 ---
 
 #### View the information of an item: `view`
@@ -139,6 +151,7 @@ List Box:
 * Displayed information includes the name, quantity, unit, bought date, expiry date, price, remarks and tags of items.
 
 **Example Input:**
+
 ```text
 view 1 
 ```
@@ -146,6 +159,7 @@ view 1
 **Expected Output:**
 
 Command Output Box:
+
 ```text
 Name: Onions
 Quantity: 8 kg
@@ -155,9 +169,11 @@ Price: $6
 Remarks: No Remarks
 Tags: {vegetables}
 ```
+
 ---
 
 #### Increment the quantity of an item: `inc`
+
 **Format:**: `inc INDEX [qty/QUANTITY]`
 
 > Increments the quantity of the item at the specified index
@@ -167,6 +183,7 @@ Tags: {vegetables}
 * If two or more `QUANTITY` are provided, the last `QUANTITY` will be taken.
 
 **Example Input:**
+
 ```text
 inc 1 qty/3
 ```
@@ -174,6 +191,7 @@ inc 1 qty/3
 **Expected Output:**
 
 Command Output Box:
+
 ```text
 Incremented Item: 
 Name: Onions
@@ -184,9 +202,11 @@ Price: $6
 Remarks: No Remarks
 Tags: {vegetables}
 ```
+
 ---
 
 #### Decrement the quantity of an item: `dec`
+
 **Format:**: `dec INDEX [qty/QUANTITY]`
 > Decrements the quantity of the item at the specified index
 
@@ -195,6 +215,7 @@ Tags: {vegetables}
 * If two or more `QUANTITY` are provided, the last `QUANTITY` will be taken.
 
 **Example Input:**
+
 ```text
 dec 1 qty/4
 ```
@@ -202,6 +223,7 @@ dec 1 qty/4
 **Expected Output:**
 
 Command Output Box:
+
 ```text
 Decremented Item: 
 Name: Onions
@@ -212,6 +234,7 @@ Price: $6
 Remarks: No Remarks
 Tags: {vegetables}
 ```
+
 ---
 
 #### Edit the information of an item: `edit`
@@ -224,6 +247,7 @@ Command: `edit ITEM_INDEX [n/ITEM_NAME] [qty/QUANTITY] [u/UNIT] [bgt/BOUGHT_DATE
 * If two or more of the same parameters are provided, the last parameter will be taken.
 
 **Example Input:**
+
 ```text
 edit 1 qty/100 n/Potatoes
 ```
@@ -231,6 +255,7 @@ edit 1 qty/100 n/Potatoes
 **Expected Output:**
 
 Command Output Box:
+
 ```text
 Edited Item: 
 Name: Onions
@@ -274,11 +299,13 @@ Tags: {vegetables}
 ---
 
 #### Delete an item: `del`
+
 Command: `del ITEM_INDEX`
 
 > Deletes the item at the specified index
 
 **Example Input:**
+
 ```text
 del 1
 ```
@@ -286,6 +313,7 @@ del 1
 **Expected Output:**
 
 Command Output Box:
+
 ```text
 Deleted Item:
 Name: Onions
@@ -296,4 +324,5 @@ Price: $6
 Remarks: No Remarks
 Tags: {vegetables}
 ```
+
 ---
