@@ -80,7 +80,7 @@ public class Email {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof Email // instanceof handles nulls
-                && value.equals(((Email) other).value)); // state check
+                && value.toLowerCase().equals(((Email) other).value.toLowerCase())); // state check
     }
 
     @Override
