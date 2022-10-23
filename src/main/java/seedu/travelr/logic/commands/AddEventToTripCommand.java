@@ -3,6 +3,7 @@ package seedu.travelr.logic.commands;
 import static java.util.Objects.requireNonNull;
 import static seedu.travelr.logic.parser.CliSyntax.PREFIX_TITLE;
 import static seedu.travelr.logic.parser.CliSyntax.PREFIX_TRIP;
+import static seedu.travelr.model.trip.TripComparators.DO_NOTHING;
 
 import java.util.HashSet;
 
@@ -10,6 +11,7 @@ import seedu.travelr.logic.commands.exceptions.CommandException;
 import seedu.travelr.model.Model;
 import seedu.travelr.model.component.Description;
 import seedu.travelr.model.component.Title;
+import seedu.travelr.model.event.AllInBucketListPredicate;
 import seedu.travelr.model.event.Event;
 import seedu.travelr.model.trip.Trip;
 
@@ -61,6 +63,9 @@ public class AddEventToTripCommand extends Command {
         Trip toAddInto = model.getTrip(new Trip(tripToAddInto, new Description("random"), new HashSet<>()));
         model.removeFromBucketList(event);
         toAddInto.addEvent(event);
+        AllInBucketListPredicate predicate = model.getBucketPredicate();
+        model.updateFilteredEventList(predicate);
+        model.sortTripsByComparator(DO_NOTHING);
         return new CommandResult(String.format(MESSAGE_SUCCESS, event));
     }
 
