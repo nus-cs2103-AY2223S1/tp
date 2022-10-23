@@ -1,14 +1,14 @@
 @startuml
 start
 if () then ([else])
-    :Retrieve person at given index;
+    :Retrieve person with given name;
     if () then ([else])
         :Add person to current team;
         :Displays success message to user;
-    else ([person already in current team])
+    else ([person already in current team or no persons found])
         :Throw CommandException;
     endif
-else ([index is invalid])
+else ([name has non-alphanumeric and non-space characters])
     :Throw ParseException;
 endif
 stop

@@ -25,7 +25,7 @@
                         <Region fx:constant="USE_PREF_SIZE" />
                     </minWidth>
                 </Label>
-                <Label fx:id="taskName" text="\$taskName" styleClass="label-bright" />
+                <Label fx:id="memberName" text="\$memberName" styleClass="cell_big_label" />
             </HBox>
         </VBox>
     </GridPane>

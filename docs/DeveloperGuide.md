@@ -158,6 +158,27 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
+### Add a Team Feature
+
+#### Implementation
+
+The `add team` feature allows users to add a specific team to their list of teams.
+
+The `AddressBook` object is designed to have a list of teams called `UniqueTeamList`.
+
+The following is an example of how a team is added:
+
+Precondition: Team name is valid (it cannot be empty or begin with a space)
+1. User keys in the add team command with the name of the team to be added (e.g. `add_team CS2103`)
+2. A team is created added to the team list.
+
+If the team name provided is invalid, an appropriate exception will be thrown and the respective error message will be shown to the user.
+
+The following activity diagram summarises the action taken when the `AddTeamCommand` is executed.
+![AddTeamActivityDiagram](images/AddTeamActivityDiagram.png)
+
+
+
 ### Add a Task Feature
 
 #### Implementation
@@ -171,7 +192,7 @@ Precondition: Task name is valid (it cannot be empty or begin with a space).
 
 If the task name provided is invalid, an appropriate exception will be thrown and the respective error message will be shown to the user.
 
-The following activity diagram summarises the action taken when `addTaskCommand` is executed:
+The following activity diagram summarises the action taken when `AddTaskCommand` is executed:
 ![AddTaskActivityDiagram](images/AddTaskActivityDiagram.png)
 
 _Activity diagram of adding a task_
@@ -179,11 +200,11 @@ _Activity diagram of adding a task_
 #### Design considerations:
 
 - **Alternative 1**: Store a global list of tasks and each task keeps track of which team it was created for through an attribute.
-  - Pros: A single list of tasks makes it easier to list all the tasks associated with all teams.
-  - Cons: Does not accurately model how teams actually work in terms of task distribution.
+    - Pros: A single list of tasks makes it easier to list all the tasks associated with all teams.
+    - Cons: Does not accurately model how teams actually work in terms of task distribution.
 - **Alternative 2**: Each team stores a list of tasks that are associated with it.
-  - Pros: Better modularisation since a team contains all the information related to itelf, including the tasks associated with it.
-  - Cons: It is slightly more complicated to find the list of all tasks associated with a person if the person belongs to multiple teams since there multiple task lists.
+    - Pros: Better modularisation since a team contains all the information related to itelf, including the tasks associated with it.
+    - Cons: It is slightly more complicated to find the list of all tasks associated with a person if the person belongs to multiple teams since there multiple task lists.
 
 We decided to use alternative 2 because it scales better as the number of teams increase.
 
@@ -208,15 +229,15 @@ If any of the following occurs:
 
 Then, an appropriate exception will be thrown and the respective error message will be shown to the user.
 
-The following activity diagram summarizes the action taken when markCommand is executed:
+The following activity diagram summarizes the action taken when `MarkCommand` is executed:
 
 ![MarkActivityDiagram](images/MarkActivityDiagram.png)
 
 _Activity diagram of marking task as done_
 
-In the `Logic` component, once `LogicManager#execute()` is called, `TruthTableParser` and `MarkCommandParser` parses 
-the index of the task in the user input, and generates a `MarkCommand` object. `LogicManager` then executes the 
-`MarkCommand` object, which sets which task in the team is to be set as done in the `Model` component. A 
+In the `Logic` component, once `LogicManager#execute()` is called, `TruthTableParser` and `MarkCommandParser` parses
+the index of the task in the user input, and generates a `MarkCommand` object. `LogicManager` then executes the
+`MarkCommand` object, which sets which task in the team is to be set as done in the `Model` component. A
 `CommandResult` is generated with `isCompleted` boolean value being true.
 
 The sequence diagram of the Mark command is shown below:
@@ -228,26 +249,25 @@ _Sequence diagram of marking tasks as done_
 
 #### Implementation
 
-The add member to team feature allows users to add a user to the current team based on the specified index. This index
-refers to the index of the user in the current view of persons in the `PersonListPanel`.
+The add member to team feature allows users to add a user to the current team using the person's name. 
 
 The following is an example usage scenario of how a member is added to a team:
 
-Precondition: Index of person provided is valid and the current working team is set to the team that the member should 
+Precondition: Name provided is valid and the current working team is set to the team that the member should 
 be added to.
 
-1. User keys in `add_member` command with the specific index of the person. (e.g. `add_member 1`)
-2. The person with the specified index in the list is added to the team.
+1. User keys in `add_member` command with the person's name.
+2. The person with the specified name in the list is added to the team.
 
 If any of the following occurs:
 
-1. Index given is negative
-2. Index given is out of range (i.e. There are fewer people than the specified index)
-3. Person at specified index is already in the team
+1. Name is not alphanumeric
+2. Name provided does not match any persons' name
+3. Person with specified name is already in the team
 
 Then, an appropriate exception will be thrown and the respective error message will be shown to the user.
 
-The following activity diagram summarizes the action taken when the add member command is executed:
+The following activity diagram summarizes the action taken when the `AddMemberCommand` is executed:
 
 ![AddMemberActivityDiagram](images/AddMemberActivityDiagram.png)
 
@@ -258,25 +278,59 @@ parses the index of the person in the user input, and generates a `AddMemberComm
 executes the `AddMemberCommand` object, which adds the person to the current team in the `Model` component. A
 `CommandResult` is generated with a message indicating the person being added to the team.
 
-
 ### List Members Feature
 
 #### Implementation
 
 The list members feature allows users to view the members in their current team.
 
-The list members command works similar to list command, which updates the `PersonListPanel` and shows the members in 
+The list members command works similar to list command, which updates the `PersonListPanel` and shows the members in
 the current team.
 
-Currently, `PersonListPanel` displays all persons that satisfy some `Predicate`, which is stored in the 
-`filteredPersons` in `ModelManager`. 
+Currently, `PersonListPanel` displays all persons that satisfy some `Predicate`, which is stored in the
+`filteredPersons` in `ModelManager`.
 
-Whenever list members command is called, the `Predicate` for `filteredPersons` is then updated and the corresponding 
-members of the team is shown. 
+Whenever list members command is called, the `Predicate` for `filteredPersons` is then updated and the corresponding
+members of the team is shown.
 
-The following sequence diagram illustrates what happens within the `Logic` component when the list members command is 
+The following sequence diagram illustrates what happens within the `Logic` component when the list members command is
 executed:
 ![ListMembersSequenceDiagram](images/ListMembersSequenceDiagram.png)
+
+### Randomly Assign Task Feature
+#### Implementation
+
+The randomly assign task feature allows users to assign a `Task` (within a particular `Team`) to a random team member (represented as a `Person` object) within the team, who are not already assigned to that `Task`.
+
+This functionality is exposed to the user through the `assign_task_rand` command, and the logic is executed in `RandomlyAssignTaskCommand#execute()`.
+
+Given below is an example usage scenario and the state of the `Team` object at each step.
+
+Step 1. The user launches the application and adds multiple users into the current team, as well as at least one task. The `Team` will contain multiple `Person` objects (representing team members).
+
+![RandomlyAssignTaskState0](images/RandomlyAssignTaskState0.png)
+
+Step 2. The user executes the command `assign_task_rand 1` to assign the first (and only) `Task` randomly to any team member.
+As none of the team members have been added, all of them are candidates for random assignment.
+One of them will be randomly assigned the task.
+
+![RandomlyAssignTaskState1](images/RandomlyAssignTaskState1.png)
+
+Step 3. The user may want to assign a second team member to the task, hence executing `assign_task_rand 1` again.
+The team member who has previously been allocated will not be considered.
+Similar to above, one more team member will be randomly allocated the task.
+
+![RandomlyAssignTaskState2](images/RandomlyAssignTaskState2.png)
+
+<div markdown="span" class="alert alert-info">
+:information_source: **Note:** If there are no team members left to allocate (e.g. all team members have already been assigned to this task), an error will be thrown.
+</div>
+
+The following activity diagram summarizes the flow of `RandomlyAssignTaskCommand#execute()`.
+
+![RandomlyAssignTaskActivityDiagram](images/RandomlyAssignTaskActivityDiagram.png)
+
+_Activity diagram of randomly assigning_
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -360,9 +414,9 @@ Preconditions: The current working team is set to the team that the member shoul
 
 - 1a. There is no name provided.
 
-  - 1a1. TruthTable shows an error message.
+    - 1a1. TruthTable shows an error message.
 
-    Use case resumes at step 1.
+      Use case resumes at step 1.
 
 **Use case: UC02 - Delete a member from a team**
 
@@ -385,9 +439,9 @@ Preconditions: The current working team is set to the team that the member shoul
 
 - 3a. The given index is invalid.
 
-  - 3a1. TruthTable shows an error message.
+    - 3a1. TruthTable shows an error message.
 
-    Use case resumes at step 2.
+      Use case resumes at step 2.
 
 **Use case: UC03 - List all members of a team**
 
@@ -421,21 +475,21 @@ Preconditions: The current working team is set to the team that the task should 
 
 - 1a. There is no task name provided.
 
-  - 1a1. TruthTable shows an error message.
+    - 1a1. TruthTable shows an error message.
 
-    Use case resumes at step 1.
+      Use case resumes at step 1.
 
 - 1b. There is no task deadline provided.
 
-  - 1b1. TruthTable shows an error message.
+    - 1b1. TruthTable shows an error message.
 
-    Use case resumes at step 1.
+      Use case resumes at step 1.
 
 - 1c. The task deadline is badly formatted.
 
-  - 1c1. TruthTable shows an error message.
+    - 1c1. TruthTable shows an error message.
 
-    Use case resumes at step 1.
+      Use case resumes at step 1.
 
 **Use case: UC05 - Delete a task from a team**
 
@@ -458,9 +512,9 @@ Preconditions: The current working team is set to the team that the task should 
 
 - 3a. The given index is invalid.
 
-  - 3a1. TruthTable shows an error message.
+    - 3a1. TruthTable shows an error message.
 
-    Use case resumes at step 2.
+      Use case resumes at step 2.
 
 **Use case: UC06 - List all tasks of a team**
 
@@ -500,15 +554,15 @@ Preconditions: The current working team is set to the team that has the existing
 
 - 3a. The given index is invalid.
 
-  - 3a1. TruthTable shows an error message.
+    - 3a1. TruthTable shows an error message.
 
-    Use case resumes at step 2.
+      Use case resumes at step 2.
 
 - 3b. The given deadline is invalid.
 
-  - 3b1. TruthTable shows an error message.
+    - 3b1. TruthTable shows an error message.
 
-    Use case resumes at step 2.
+      Use case resumes at step 2.
 
 **Use case: UC08 - Create new team**
 
@@ -523,15 +577,15 @@ Preconditions: The current working team is set to the team that has the existing
 
 - 1a. The given team name is used for an existing team already.
 
-  - 1a1. TruthTable shows an error message.
+    - 1a1. TruthTable shows an error message.
 
-    Use case resumes at step 1.
+      Use case resumes at step 1.
 
 - 1b. There is no team name given.
 
-  - 1b1. TruthTable shows an error message.
+    - 1b1. TruthTable shows an error message.
 
-    Use case resumes at step 1.
+      Use case resumes at step 1.
 
 **Use case: UC09 - Change current working team**
 
@@ -546,24 +600,19 @@ Preconditions: The current working team is set to the team that has the existing
 
 - 1a. There is no team name given.
 
-  - 1a1. TruthTable shows an error message.
+    - 1a1. TruthTable shows an error message.
 
-    Use case resumes at step 1.
+      Use case resumes at step 1.
+- 1b. Team provided does not exist.
 
-**Use case: UC10 - List all teams**
+    - 1b1. TruthTable shows an error message
 
-**MSS**
+      Use case resumes at step 1.
+- 1c. Team provided already set as current team.
 
-1. User requests to list all teams managed by user
-2. TruthTable shows a list of teams
+    - 1c1. TruthTable shows an error message.
 
-   Use case ends.
-
-**Extensions**
-
-- 2a. The list is empty.
-
-  Use case ends.
+      Use case resumes at step 1.
 
 ### Non-Functional Requirements
 
@@ -600,16 +649,16 @@ testers are expected to do more *exploratory* testing.
 
 1. Initial launch
 
-   1. Download the jar file and copy into an empty folder
+    1. Download the jar file and copy into an empty folder
 
-   1. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
+    1. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
 
 1. Saving window preferences
 
-   1. Resize the window to an optimum size. Move the window to a different location. Close the window.
+    1. Resize the window to an optimum size. Move the window to a different location. Close the window.
 
-   1. Re-launch the app by double-clicking the jar file.<br>
-      Expected: The most recent window size and location is retained.
+    1. Re-launch the app by double-clicking the jar file.<br>
+       Expected: The most recent window size and location is retained.
 
 1. _{ more test cases …​ }_
 
@@ -617,16 +666,16 @@ testers are expected to do more *exploratory* testing.
 
 1. Deleting a person while all persons are being shown
 
-   1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
+    1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
 
-   1. Test case: `delete 1`<br>
-      Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
+    1. Test case: `delete 1`<br>
+       Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
 
-   1. Test case: `delete 0`<br>
-      Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
+    1. Test case: `delete 0`<br>
+       Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
 
-   1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
-      Expected: Similar to previous.
+    1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
+       Expected: Similar to previous.
 
 1. _{ more test cases …​ }_
 
@@ -634,6 +683,6 @@ testers are expected to do more *exploratory* testing.
 
 1. Dealing with missing/corrupted data files
 
-   1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
+    1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
 
 1. _{ more test cases …​ }_
