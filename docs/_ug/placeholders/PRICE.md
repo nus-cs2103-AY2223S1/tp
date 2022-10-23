@@ -7,4 +7,3 @@ The PRICE is a number representing the price of an item. PRICE is a number large
 
 **INVALID EXAMPLES**<br>
 10.501<br>
-
