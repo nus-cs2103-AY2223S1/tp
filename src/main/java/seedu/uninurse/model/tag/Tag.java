@@ -8,11 +8,10 @@ import static seedu.uninurse.commons.util.AppUtil.checkArgument;
  * Guarantees: immutable; name is valid as declared in {@link #isValidTagName(String)}
  */
 public class Tag {
-
     public static final String MESSAGE_CONSTRAINTS = "Tags names should be alphanumeric";
     public static final String VALIDATION_REGEX = "\\p{Alnum}+";
 
-    public final String tagName;
+    private final String tagName;
 
     /**
      * Constructs a {@code Tag}.
@@ -42,6 +41,10 @@ public class Tag {
     @Override
     public int hashCode() {
         return tagName.hashCode();
+    }
+
+    public String getValue() {
+        return tagName;
     }
 
     /**
