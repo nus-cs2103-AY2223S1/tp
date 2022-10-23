@@ -121,8 +121,8 @@ public class InternshipTest {
         taskList.add(second);
         taskList.add(third);
         Internship internship = new Internship(new Name(VALID_NAME_AAPL),new Position(VALID_POSITION_AAPL),
-                new Phone(VALID_PHONE_AAPL), new Email(VALID_EMAIL_AAPL),
-                new Status(VALID_STATUS_AAPL), new Address(VALID_ADDRESS_AAPL), taskList,
+                new Status(VALID_STATUS_AAPL), new Phone(VALID_PHONE_AAPL), new Email(VALID_EMAIL_AAPL),
+                new Address(VALID_ADDRESS_AAPL), taskList,
                 tagList, new Remark(VALID_REMARK_AAPL));
         LocalDateTime furthestDate = internship.getFurthestTaskDate();
         LocalDateTime expectedFurthestDate = third.getTaskTime();
@@ -142,8 +142,8 @@ public class InternshipTest {
         taskList.add(second);
         taskList.add(third);
         Internship internship = new Internship(new Name(VALID_NAME_AAPL),new Position(VALID_POSITION_AAPL),
-                new Phone(VALID_PHONE_AAPL), new Email(VALID_EMAIL_AAPL),
-                new Status(VALID_STATUS_AAPL), new Address(VALID_ADDRESS_AAPL), taskList,
+                new Status(VALID_STATUS_AAPL), new Phone(VALID_PHONE_AAPL), new Email(VALID_EMAIL_AAPL),
+                new Address(VALID_ADDRESS_AAPL), taskList,
                 tagList, new Remark(VALID_REMARK_AAPL));
         LocalDateTime nearestDate = internship.getNearestTaskDate();
         LocalDateTime expectedNearestDate = second.getTaskTime();
