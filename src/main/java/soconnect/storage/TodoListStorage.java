@@ -21,7 +21,7 @@ public interface TodoListStorage {
     /**
      * Reads the {@code TodoList} data from storage.
      *
-     * @param readOnlySoConnect The list of existing {@code Tag}s in {@code SoConnect}.
+     * @param readOnlySoConnect The existing {@code ReadOnlySoConnect} in {@code SoConnect}.
      * @throws DataConversionException If the data in storage is not in the expected format.
      * @throws IOException If there was any problem when reading from the storage.
      */
@@ -31,7 +31,7 @@ public interface TodoListStorage {
     /**
      * Reads the {@code TodoList} data from storage.
      *
-     * @param readOnlySoConnect The list of existing {@code Tag}s in {@code SoConnect}.
+     * @param readOnlySoConnect The {@code ReadOnlySoConnect} in {@code SoConnect}.
      * @param filePath The path of the {@code TodoList} data file.
      * @return {@code TodoList} data as a {@link ReadOnlyTodoList} or
      *         {@code Optional.empty()} if storage file is not found.

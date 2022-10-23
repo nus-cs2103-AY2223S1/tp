@@ -181,6 +181,21 @@ public class SoConnectTest {
         public void addTag(Tag tag) {
             tags.add(tag);
         }
+
+        @Override
+        public boolean hasTag(Tag tag) {
+            return false;
+        }
+
+        @Override
+        public Tag getTagFromList(int index) {
+            return this.tags.get(index);
+        }
+
+        @Override
+        public int getTagReference(Tag tag) {
+            return this.tags.indexOf(tag);
+        }
     }
 
 }

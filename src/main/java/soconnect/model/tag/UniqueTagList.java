@@ -96,6 +96,16 @@ public class UniqueTagList implements Iterable<Tag> {
     }
 
     /**
+     * Gets the number of where the tag is in the tagList.
+     *
+     * @param tag The tag to be referenced.
+     * @return The integer of where the tag is in the tagList.
+     */
+    public int getTagReference(Tag tag) {
+        return tagArrayList.indexOf(tag);
+    }
+
+    /**
      * Returns an unmodifiable list of tags.
      *
      * @return The list of unmodifiable tags.
