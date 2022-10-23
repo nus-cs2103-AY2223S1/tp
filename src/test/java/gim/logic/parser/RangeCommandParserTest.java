@@ -61,5 +61,4 @@ class RangeCommandParserTest {
         assertParseFailure(parser, VALID_START_DATE_DESC + INVALID_END_DATE_DESC,
                 String.format(MESSAGE_INVALID_COMMAND_FORMAT, RangeCommand.MESSAGE_USAGE));
     }
-
 }
