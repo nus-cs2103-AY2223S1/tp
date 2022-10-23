@@ -52,6 +52,12 @@ public class PersonPieChart extends UiPart<Region> {
             i++;
         }
         addCountToLabels();
+
+        if (isCountZero(studentProfTaCount)) {
+            pieChart.setVisible(false);
+        } else {
+            pieChart.setVisible(true);
+        }
     }
 
     /**
@@ -82,6 +88,19 @@ public class PersonPieChart extends UiPart<Region> {
     }
 
     /**
+     * Returns true if student, professor and TA count are all 0.
+     */
+     public boolean isCountZero(List<Integer> studentProfTaCount){
+        boolean isCountZero = true;
+        for (Integer count : studentProfTaCount) {
+            if (count != 0) {
+                isCountZero = false;
+            }
+        }
+        return isCountZero;
+    }
+
+    /**
      * Adds the count of each contact type to corresponding labels in the pie chart.
      */
     public void addCountToLabels() {
@@ -94,8 +113,9 @@ public class PersonPieChart extends UiPart<Region> {
                     .filter(n -> n instanceof Text && ((Text) n).getText().contains(d.getName()))
                     .findAny();
             if (opTextNode.isPresent()) {
-                ((Text) opTextNode.get()).setText(d.getName() + " (" + (int) d.getPieValue() + ")");
-            }
+                    opTextNode.get().setVisible(false);
+                    ((Text) opTextNode.get()).setText(d.getName() + " (" + (int) d.getPieValue() + ")");
+                }
         });
     }
 
