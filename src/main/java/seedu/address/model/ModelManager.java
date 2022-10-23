@@ -313,7 +313,7 @@ public class ModelManager implements Model {
         this.addressBook.setBillAsPaid(bill);
     }
     
-    @Overide
+    @Override
     public void setBillAsUnpaid(Bill bill) {
         this.addressBook.setBillAsUnpaid(bill);
     }
