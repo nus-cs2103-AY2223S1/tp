@@ -72,14 +72,13 @@ public class ConsultationBuilder {
         return this;
     }
 
-    // Unused
-    //    /**
-    //     * Sets the {@code ConsultationTimeslot} of the {@code Consultation} that we are building.
-    //     */
-    //    public ConsultationBuilder withTimeslot(String timeslot) {
-    //        this.consultationTimeslot = new ConsultationTimeslot(timeslot);
-    //        return this;
-    //    }
+    /**
+     * Sets the {@code ConsultationTimeslot} of the {@code Consultation} that we are building.
+     */
+    public ConsultationBuilder withTimeslot(String startDatetimeString, String endDatetimeString) {
+        this.consultationTimeslot = DatetimeRange.fromFormattedString(startDatetimeString, endDatetimeString);
+        return this;
+    }
 
     /**
      * Sets the {@code ConsultationDescription} of the {@code Consultation} that we are building.

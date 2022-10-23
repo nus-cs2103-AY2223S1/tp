@@ -94,7 +94,7 @@ public class TutorialBuilder {
      * @return A Tutorial
      */
     public Tutorial build() {
-        WeeklyTimeslot timeslot = new WeeklyTimeslot(tutorialDay, tutorialTimeStart, tutorialTimeEnd);
+        WeeklyTimeslot timeslot = WeeklyTimeslot.fromFormattedString(tutorialDay, tutorialTimeStart, tutorialTimeEnd);
         return new Tutorial(tutorialName, tutorialModule, tutorialVenue, timeslot);
     }
 

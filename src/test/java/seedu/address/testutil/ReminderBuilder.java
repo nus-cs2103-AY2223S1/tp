@@ -24,7 +24,7 @@ public class ReminderBuilder {
     public ReminderBuilder() {
         reminderName = new ReminderName(DEFAULT_NAME);
         reminderDescription = new ReminderDescription(DEFAULT_DESCRIPTION);
-        reminderDeadline = new Datetime(DEFAULT_DEADLINE);
+        reminderDeadline = Datetime.fromFormattedString(DEFAULT_DEADLINE);
     }
 
     /**
@@ -48,7 +48,7 @@ public class ReminderBuilder {
      * Sets the {@code ReminderDeadline} of the {@code Reminder} that we are building.
      */
     public ReminderBuilder withDeadline(String deadline) {
-        this.reminderDeadline = new Datetime(deadline);
+        this.reminderDeadline = Datetime.fromFormattedString(deadline);
         return this;
     }
 

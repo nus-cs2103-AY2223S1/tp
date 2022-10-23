@@ -69,8 +69,10 @@ public class CommandTestUtil {
     public static final String VALID_MODULE_CONSULT2 = "CS2101";
     public static final String VALID_VENUE_CONSULT1 = "COM2-0105";
     public static final String VALID_VENUE_CONSULT2 = "LT27";
-    public static final String VALID_TIMESLOT_CONSULT1 = "14:00-16:00";
-    public static final String VALID_TIMESLOT_CONSULT2 = "17:00-18:00";
+    public static final String VALID_TIMESLOT_CONSULT1_START = "2022-10-23 14:00";
+    public static final String VALID_TIMESLOT_CONSULT1_END = "2022-10-23 16:00";
+    public static final String VALID_TIMESLOT_CONSULT2_START = "2022-10-24 17:00";
+    public static final String VALID_TIMESLOT_CONSULT2_END = "2022-10-24 18:00";
     public static final String VALID_DESCRIPTION_CONSULT1 = "Review past year paper";
     public static final String VALID_DESCRIPTION_CONSULT2 = "Consult about product demo and pitch";
 
