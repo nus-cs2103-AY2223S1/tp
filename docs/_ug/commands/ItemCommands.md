@@ -209,7 +209,7 @@ Tags: {vegetables}
 #### Decrement the quantity of an item: `dec`
 
 **Format:**: `dec INDEX [qty/QUANTITY]`
-> Decrements the quantity of the item at the specified index
+> Decrements the quantity of the item at the specified index.
 
 **Note:**
 * If a quantity is not provided, the item quantity will be decremented by 1.
