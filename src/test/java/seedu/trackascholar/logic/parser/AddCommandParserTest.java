@@ -78,9 +78,9 @@ public class AddCommandParserTest {
                 new AddCommand(expectedApplicant));
 
         // multiple application status - last application status accepted (doesn't work)
-        // assertParseSuccess(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + SCHOLARSHIP_DESC_AMY
-        //               + APPLICATION_STATUS_DESC_AMY + APPLICATION_STATUS_DESC_BOB + TAG_DESC_FRIEND,
-        //        new AddCommand(expectedApplicant));
+         assertParseSuccess(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + SCHOLARSHIP_DESC_BOB
+                       + APPLICATION_STATUS_DESC_AMY + APPLICATION_STATUS_DESC_BOB + TAG_DESC_FRIEND,
+                new AddCommand(expectedApplicant));
 
         // multiple tags - all accepted
         Applicant expectedApplicantMultipleTags = new ApplicantBuilder(BOB)
