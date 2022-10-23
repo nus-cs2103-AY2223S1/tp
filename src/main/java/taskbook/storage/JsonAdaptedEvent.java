@@ -28,7 +28,7 @@ public class JsonAdaptedEvent extends JsonAdaptedTask {
     private final String eventDate;
 
     /**
-     * Constructs a {@code JsonAdaptedTask} with the given person details.
+     * Constructs a {@code JsonAdaptedTask} with the given task details.
      */
     @JsonCreator
     public JsonAdaptedEvent(@JsonProperty("name") String name, @JsonProperty("assignment") String assignment,

@@ -28,7 +28,7 @@ public class JsonAdaptedDeadline extends JsonAdaptedTask {
     private final String deadlineDate;
 
     /**
-     * Constructs a {@code JsonAdaptedTask} with the given person details.
+     * Constructs a {@code JsonAdaptedTask} with the given task details.
      */
     @JsonCreator
     public JsonAdaptedDeadline(@JsonProperty("name") String name, @JsonProperty("assignment") String assignment,

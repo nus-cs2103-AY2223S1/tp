@@ -23,7 +23,7 @@ import taskbook.model.task.enums.Assignment;
 public class JsonAdaptedTodo extends JsonAdaptedTask {
 
     /**
-     * Constructs a {@code JsonAdaptedTask} with the given person details.
+     * Constructs a {@code JsonAdaptedTask} with the given task details.
      */
     @JsonCreator
     public JsonAdaptedTodo(@JsonProperty("name") String name, @JsonProperty("assignment") String assignment,
