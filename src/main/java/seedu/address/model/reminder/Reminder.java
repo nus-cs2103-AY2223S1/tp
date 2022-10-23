@@ -60,7 +60,7 @@ public class Reminder {
     public ReminderPriority getPriority() {
         return priority;
     }
-    
+
     public ReminderDescription getDescription() {
         return description;
     }

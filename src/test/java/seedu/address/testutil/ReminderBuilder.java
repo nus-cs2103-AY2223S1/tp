@@ -75,6 +75,6 @@ public class ReminderBuilder {
     }
 
     public Reminder build() {
-        return new Reminder(reminderName, reminderDeadline, reminderDescription, reminderPriority);
+        return new Reminder(reminderName, reminderDeadline, reminderPriority, reminderDescription);
     }
 }
