@@ -44,4 +44,9 @@ public class Consult extends Lesson {
     public String toString() {
         return "Consult at " + getTimePeriod();
     }
+
+    @Override
+    public String getLessonType() {
+        return "Consult";
+    }
 }

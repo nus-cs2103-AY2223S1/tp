@@ -1,5 +1,6 @@
 package jarvis.model;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Objects;
@@ -12,6 +13,7 @@ public class TimePeriod {
     public static final String MESSAGE_CONSTRAINTS = "Date Time should be in yyyy-MM-ddTHH:mm format";
 
     public static final DateTimeFormatter DATE_TIME_FORMAT = DateTimeFormatter.ofPattern("MMM-dd-yyyy HH:mm");
+    public static final DateTimeFormatter TIME_FORMAT = DateTimeFormatter.ofPattern("HH:mm");
     private final LocalDateTime start;
     private final LocalDateTime end;
 
@@ -38,8 +40,17 @@ public class TimePeriod {
         return end.isAfter(other.start) && start.isBefore(other.end);
     }
 
+    public boolean isOnSameDay() {
+        LocalDate startDate = start.toLocalDate();
+        LocalDate endDate = end.toLocalDate();
+        return startDate.isEqual(endDate);
+    }
+
     @Override
     public String toString() {
+        if (isOnSameDay()) {
+            return start.format(DATE_TIME_FORMAT) + " - " + end.format(TIME_FORMAT);
+        }
         return start.format(DATE_TIME_FORMAT) + " - " + end.format(DATE_TIME_FORMAT);
     }
 

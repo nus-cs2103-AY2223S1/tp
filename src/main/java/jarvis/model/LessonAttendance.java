@@ -55,6 +55,20 @@ public class LessonAttendance {
         return attendance.keySet();
     }
 
+    public String getAllStudentsName() {
+        StringBuilder studentsNameBuilder = new StringBuilder();
+        studentsNameBuilder.append("Students: ");
+        Set<Student> students = getAllStudents();
+        if (students.isEmpty()) {
+            return studentsNameBuilder.toString();
+        }
+        for (Student student : students) {
+            studentsNameBuilder.append(student.getName() + ", ");
+        }
+        studentsNameBuilder.deleteCharAt(studentsNameBuilder.length() - 2); //remove the last ','
+        return studentsNameBuilder.toString();
+    }
+
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder("Attendance:\n");

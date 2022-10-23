@@ -65,4 +65,9 @@ public class Studio extends Lesson {
     public String toString() {
         return "Studio at " + getTimePeriod();
     }
+
+    @Override
+    public String getLessonType() {
+        return "Studio";
+    }
 }

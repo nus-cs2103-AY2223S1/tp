@@ -47,6 +47,10 @@ public abstract class Lesson {
         return attendance.getAllStudents();
     }
 
+    public String getStudentsName() {
+        return attendance.getAllStudentsName();
+    }
+
     public boolean isPresent(Student student) {
         return attendance.isPresent(student);
     }
@@ -70,6 +74,7 @@ public abstract class Lesson {
     public boolean isCompleted() {
         return isCompleted;
     }
+
     public LessonDesc getDesc() {
         return lessonDesc;
     }
@@ -81,4 +86,6 @@ public abstract class Lesson {
     public LessonAttendance getAttendance() {
         return attendance;
     }
+
+    public abstract String getLessonType();
 }

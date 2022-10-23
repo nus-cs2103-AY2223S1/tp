@@ -4,6 +4,8 @@ package jarvis.ui;
 import jarvis.model.Lesson;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 
@@ -29,13 +31,18 @@ public class LessonCard extends UiPart<Region> {
     @FXML
     private Label id;
     @FXML
-    private Label done;
+    private ImageView checkbox;
+    @FXML
+    private Label lessonType;
     @FXML
     private Label lessonDesc;
     @FXML
     private Label timePeriod;
     @FXML
-//    private Label lessonAttendance;
+    private Label lessonAttendance;
+
+    Image tick = new Image(getClass().getResourceAsStream("/images/tick.png"));
+    Image cross = new Image(getClass().getResourceAsStream("/images/cross.png"));
 
     /**
      * Creates a {@code LessonCard} with the given {@code Lesson} and index to display.
@@ -45,13 +52,14 @@ public class LessonCard extends UiPart<Region> {
         this.lesson = lesson;
         id.setText(displayedIndex + ". ");
         if (lesson.isCompleted()) {
-            done.setText("[X]");
+            checkbox.setImage(tick);
         } else {
-            done.setText("[ ]");
+            checkbox.setImage(cross);
         }
+        lessonType.setText(lesson.getLessonType());
         lessonDesc.setText(lesson.getDesc().lessonDesc);
         timePeriod.setText(lesson.getTimePeriod().toString());
-//        lessonAttendance.setText(lesson.getStudents().toString());
+        lessonAttendance.setText(lesson.getStudentsName());
     }
 
     @Override

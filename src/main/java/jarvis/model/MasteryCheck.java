@@ -44,4 +44,9 @@ public class MasteryCheck extends Lesson {
     public String toString() {
         return "Mastery Check at " + getTimePeriod();
     }
+
+    @Override
+    public String getLessonType() {
+        return "Mastery Check";
+    }
 }

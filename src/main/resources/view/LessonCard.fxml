@@ -1,34 +1,44 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
-<?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.GridPane?>
-<?import javafx.scene.layout.ColumnConstraints?>
-<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
 
-<HBox id="cardPane" fx:id="cardPane" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<HBox id="cardPane" fx:id="cardPane" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
     <GridPane HBox.hgrow="ALWAYS">
         <columnConstraints>
             <ColumnConstraints hgrow="SOMETIMES" minWidth="10" prefWidth="150" />
         </columnConstraints>
         <VBox alignment="CENTER_LEFT" minHeight="105" GridPane.columnIndex="0">
             <padding>
-                <Insets top="5" right="5" bottom="5" left="15" />
+                <Insets bottom="5" left="15" right="5" top="5" />
             </padding>
-            <HBox spacing="5" alignment="CENTER_LEFT">
+            <HBox alignment="CENTER_LEFT" spacing="5">
                 <Label fx:id="id" styleClass="cell_big_label">
                     <minWidth>
                         <!-- Ensures that the label text is never truncated -->
                         <Region fx:constant="USE_PREF_SIZE" />
                     </minWidth>
                 </Label>
-                <Label fx:id="done" text="\$done" styleClass="cell_big_label" />
-                <Label fx:id="lessonDesc" text="\$lessonDesc" styleClass="cell_big_label" />
+                <Label fx:id="lessonDesc" styleClass="cell_big_label" text="\$lessonDesc" />
             </HBox>
-            <Label fx:id="timePeriod" text="\$timePeriod" styleClass="cell_small_label" />
-<!--            <Label fx:id="lessonAttendence" text="\$lessonAttendence" styleClass="cell_small_label" />-->
+            <Label fx:id="lessonType" styleClass="cell_small_label" text="\$lessonType"/>
+            <Label fx:id="timePeriod" styleClass="cell_small_label" text="\$timePeriod" />
+            <Label fx:id="lessonAttendance" styleClass="cell_small_label" text="\$lessonAttendance" />
         </VBox>
+      <rowConstraints>
+         <RowConstraints />
+      </rowConstraints>
     </GridPane>
+   <ImageView fx:id="checkbox" fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
+      <HBox.margin>
+         <Insets bottom="25.0" right="15.0" top="25.0" />
+      </HBox.margin>
+   </ImageView>
 </HBox>
