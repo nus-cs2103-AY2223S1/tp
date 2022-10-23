@@ -1,16 +1,15 @@
 package seedu.address.model.event;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
-
-import org.junit.jupiter.api.Test;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.format.DateTimeParseException;
 import java.util.Optional;
+
+import org.junit.jupiter.api.Test;
 
 public class DateTimeTest {
 
@@ -77,56 +76,56 @@ public class DateTimeTest {
 
     @Test
     public void parseTime_validTimes_success() {
-        final String VALID_DATE = "23/11/2022 ";
+        final String validDate = "23/11/2022 ";
         // no time
         assertEquals(Optional.empty(), DateTime.parseTime("23/11/2022"));
         assertEquals(Optional.empty(), DateTime.parseTime("1 jan 1998"));
 
         // HHmm
         assertEquals(Optional.ofNullable(LocalTime.parse("23:59")),
-                DateTime.parseTime(VALID_DATE + "2359"));
+                DateTime.parseTime(validDate + "2359"));
         assertEquals(Optional.ofNullable(LocalTime.parse("00:00")),
-                DateTime.parseTime(VALID_DATE + "0000"));
+                DateTime.parseTime(validDate + "0000"));
 
         // HH:mm
         assertEquals(Optional.ofNullable(LocalTime.parse("23:59")),
-                DateTime.parseTime(VALID_DATE + "23:59"));
+                DateTime.parseTime(validDate + "23:59"));
         assertEquals(Optional.ofNullable(LocalTime.parse("00:00")),
-                DateTime.parseTime(VALID_DATE + "00:00"));
+                DateTime.parseTime(validDate + "00:00"));
 
         // HHmmss
         assertEquals(Optional.ofNullable(LocalTime.parse("23:59:59")),
-                DateTime.parseTime(VALID_DATE + "235959"));
+                DateTime.parseTime(validDate + "235959"));
         assertEquals(Optional.ofNullable(LocalTime.parse("00:00:00")),
-                DateTime.parseTime(VALID_DATE + "000000"));
+                DateTime.parseTime(validDate + "000000"));
 
         // HH:mm:ss
         assertEquals(Optional.ofNullable(LocalTime.parse("23:59:59")),
-                DateTime.parseTime(VALID_DATE + "23:59:59"));
+                DateTime.parseTime(validDate + "23:59:59"));
         assertEquals(Optional.ofNullable(LocalTime.parse("00:00:00")),
-                DateTime.parseTime(VALID_DATE + "00:00:00"));
+                DateTime.parseTime(validDate + "00:00:00"));
     }
 
     @Test
     public void parseTime_invalidTimes_exceptionThrown() {
-        final String VALID_DATE = "23/11/2022 ";
+        final String validDate = "23/11/2022 ";
         // out of bounds time
-        assertThrows(DateTimeParseException.class, () -> DateTime.parseTime(VALID_DATE + "9999"));
-        assertThrows(DateTimeParseException.class, () -> DateTime.parseTime(VALID_DATE + "5959"));
-        assertThrows(DateTimeParseException.class, () -> DateTime.parseTime(VALID_DATE + "99:99"));
-        assertThrows(DateTimeParseException.class, () -> DateTime.parseTime(VALID_DATE + "59:59"));
+        assertThrows(DateTimeParseException.class, () -> DateTime.parseTime(validDate + "9999"));
+        assertThrows(DateTimeParseException.class, () -> DateTime.parseTime(validDate + "5959"));
+        assertThrows(DateTimeParseException.class, () -> DateTime.parseTime(validDate + "99:99"));
+        assertThrows(DateTimeParseException.class, () -> DateTime.parseTime(validDate + "59:59"));
 
         // 60 as minutes
-        assertThrows(DateTimeParseException.class, () -> DateTime.parseTime(VALID_DATE + "2360"));
-        assertThrows(DateTimeParseException.class, () -> DateTime.parseTime(VALID_DATE + "23:60"));
+        assertThrows(DateTimeParseException.class, () -> DateTime.parseTime(validDate + "2360"));
+        assertThrows(DateTimeParseException.class, () -> DateTime.parseTime(validDate + "23:60"));
 
         // 60 as seconds
-        assertThrows(DateTimeParseException.class, () -> DateTime.parseTime(VALID_DATE + "235960"));
-        assertThrows(DateTimeParseException.class, () -> DateTime.parseTime(VALID_DATE + "23:59:60"));
+        assertThrows(DateTimeParseException.class, () -> DateTime.parseTime(validDate + "235960"));
+        assertThrows(DateTimeParseException.class, () -> DateTime.parseTime(validDate + "23:59:60"));
 
         // 60 as minutes and 60 as seconds
-        assertThrows(DateTimeParseException.class, () -> DateTime.parseTime(VALID_DATE + "236060"));
-        assertThrows(DateTimeParseException.class, () -> DateTime.parseTime(VALID_DATE + "23:60:60"));
+        assertThrows(DateTimeParseException.class, () -> DateTime.parseTime(validDate + "236060"));
+        assertThrows(DateTimeParseException.class, () -> DateTime.parseTime(validDate + "23:60:60"));
     }
 
     @Test
