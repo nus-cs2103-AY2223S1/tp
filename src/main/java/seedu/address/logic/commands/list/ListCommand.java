@@ -16,7 +16,7 @@ public class ListCommand extends Command {
 
     public static final String MESSAGE_SUCCESS = "Listed all tasks";
     public static final String MESSAGE_USAGE = "To list all tasks in list: ls -a\n"
-            + "To list all task under <module>: \n"
+            + "To list all task under <module>: ls --module <module>\n"
             + "EXAMPLE: ls --module cs2103t (case-insensitive for module name)\n"
             + "To list all unmarked (uncompleted tasks): ls -u\n";
 
