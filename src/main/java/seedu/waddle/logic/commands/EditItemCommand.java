@@ -33,7 +33,7 @@ public class EditItemCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the item identified "
             + "by the index number used in the displayed item list. "
             + "Existing values will be overwritten by the input values.\n"
-            + "Parameters: "
+            + "Parameters: INDEX (must be a positive integer) "
             + "[" + PREFIX_DESCRIPTION + "DESCRIPTION]"
             + "[" + PREFIX_PRIORITY + "PRIORITY]"
             + "[" + PREFIX_COST + "COST]"

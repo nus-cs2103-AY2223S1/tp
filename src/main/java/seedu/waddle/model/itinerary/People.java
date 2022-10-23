@@ -11,13 +11,13 @@ import static seedu.waddle.commons.util.AppUtil.checkArgument;
 public class People {
 
     public static final String MESSAGE_CONSTRAINTS =
-            "Number of people should only contain numbers";
+            "Number of people should only contain positive numbers";
     public static final String VALIDATION_REGEX = "\\d+";
 
     public final String numOfPeople;
 
     /**
-     * Constructs a {@code Name}.
+     * Constructs a {@code People}.
      *
      * @param numOfPeople A valid value.
      */
@@ -28,7 +28,7 @@ public class People {
     }
 
     /**
-     * Returns true if a given string is a valid name.
+     * Returns true if a given string is a valid number of people.
      */
     public static boolean isValidPeople(String test) {
         return test.matches(VALIDATION_REGEX);

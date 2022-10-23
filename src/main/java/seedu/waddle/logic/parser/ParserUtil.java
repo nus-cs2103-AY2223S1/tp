@@ -15,6 +15,7 @@ import seedu.waddle.model.item.Priority;
 import seedu.waddle.model.itinerary.Budget;
 import seedu.waddle.model.itinerary.Country;
 import seedu.waddle.model.itinerary.Date;
+import seedu.waddle.model.itinerary.DayNumber;
 import seedu.waddle.model.itinerary.ItineraryDuration;
 import seedu.waddle.model.itinerary.Name;
 import seedu.waddle.model.itinerary.People;
@@ -193,6 +194,19 @@ public class ParserUtil {
             throw new ParseException(Cost.MESSAGE_CONSTRAINTS);
         }
         return new Cost(trimmedCost);
+    }
+
+    /**
+     * Parses a {@code int Day Number}.
+     * Leading and trailing whitespaces will be trimmed.
+     */
+    public static DayNumber parseDayNumber(String dayNumber) throws ParseException {
+        requireNonNull(dayNumber);
+        String trimmedDayNumber = dayNumber.trim();
+        if (!DayNumber.isValidDayNumber(trimmedDayNumber)) {
+            throw new ParseException(DayNumber.MESSAGE_CONSTRAINTS);
+        }
+        return new DayNumber(trimmedDayNumber);
     }
 
     /**
