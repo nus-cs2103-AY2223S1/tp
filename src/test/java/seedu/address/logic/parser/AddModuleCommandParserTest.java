@@ -35,7 +35,7 @@ public class AddModuleCommandParserTest {
                 PREAMBLE_WHITESPACE + MODULE_CODE_DESC_MA2001 + MODULE_TITLE_DESC_MA2001,
                 new AddModuleCommand(expectedModule));
 
-        // multiple module code - last module code accepted
+        // multiple module codes - last module code accepted
         assertParseSuccess(parser, MODULE_CODE_DESC_CS2106 + MODULE_CODE_DESC_MA2001
                 + MODULE_TITLE_DESC_MA2001, new AddModuleCommand(expectedModule));
 

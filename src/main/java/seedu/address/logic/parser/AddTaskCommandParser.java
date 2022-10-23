@@ -28,15 +28,7 @@ public class AddTaskCommandParser implements Parser<AddTaskCommand> {
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args,
                         PREFIX_MODULE_CODE, PREFIX_TASK_DESCRIPTION);
-        Boolean isModuleCodeAbsent = !arePrefixesPresent(argMultimap,
-                PREFIX_MODULE_CODE);
-        Boolean isPreamblePresent = !argMultimap.getPreamble().isEmpty();
-        Boolean isTaskDescriptionAbsent = !arePrefixesPresent(argMultimap,
-                PREFIX_TASK_DESCRIPTION);
-        if (isModuleCodeAbsent || isPreamblePresent || isTaskDescriptionAbsent) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                    AddTaskCommand.MESSAGE_USAGE));
-        }
+        checkIfAllArgumentsArePresent(argMultimap);
 
         AddTaskToModuleDescriptor addTaskToModuleDescriptor =
                 new AddTaskToModuleDescriptor();
@@ -51,5 +43,22 @@ public class AddTaskCommandParser implements Parser<AddTaskCommand> {
                 ParserUtil.parseNewTaskDescription(taskDescriptionOfNewTaskToAdd);
         addTaskToModuleDescriptor.setNewTask(newTaskToAdd);
         return new AddTaskCommand(addTaskToModuleDescriptor);
+    }
+
+    /**
+     * Checks that all arguments are present.
+     * @param argMultimap {@code ArgumentMultimap} containing the arguments
+     *                    given by the user.
+     */
+    private void checkIfAllArgumentsArePresent(ArgumentMultimap argMultimap) throws ParseException {
+        Boolean isModuleCodeAbsent = !arePrefixesPresent(argMultimap,
+                PREFIX_MODULE_CODE);
+        Boolean isPreamblePresent = !argMultimap.getPreamble().isEmpty();
+        Boolean isTaskDescriptionAbsent = !arePrefixesPresent(argMultimap,
+                PREFIX_TASK_DESCRIPTION);
+        if (isModuleCodeAbsent || isPreamblePresent || isTaskDescriptionAbsent) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                    AddTaskCommand.MESSAGE_USAGE));
+        }
     }
 }
