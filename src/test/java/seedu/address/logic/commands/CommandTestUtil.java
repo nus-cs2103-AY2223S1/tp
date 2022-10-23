@@ -32,6 +32,8 @@ import seedu.address.testutil.EditTaskDescriptorBuilder;
  */
 public class CommandTestUtil {
 
+    public static final String VALID_ID_AMY = "766ae941-4ce9-4211-b599-d799a8de84d9";
+    public static final String VALID_ID_BOB = "7a912c32-9f0e-49d0-9b12-e22d7c7d6d29";
     public static final String VALID_NAME_AMY = "Amy Bee";
     public static final String VALID_NAME_BOB = "Bob Choo";
     public static final String VALID_PHONE_AMY = "11111111";
