@@ -5,12 +5,12 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import seedu.intrack.logic.commands.EditCommand.EditInternshipDescriptor;
-import seedu.intrack.model.internship.Address;
 import seedu.intrack.model.internship.Email;
 import seedu.intrack.model.internship.Internship;
 import seedu.intrack.model.internship.Name;
 import seedu.intrack.model.internship.Phone;
 import seedu.intrack.model.internship.Position;
+import seedu.intrack.model.internship.Website;
 import seedu.intrack.model.tag.Tag;
 
 /**
@@ -37,7 +37,7 @@ public class EditInternshipDescriptorBuilder {
         descriptor.setPosition(internship.getPosition());
         descriptor.setPhone(internship.getPhone());
         descriptor.setEmail(internship.getEmail());
-        descriptor.setAddress(internship.getAddress());
+        descriptor.setWebsite(internship.getWebsite());
         descriptor.setTags(internship.getTags());
     }
 
@@ -74,10 +74,10 @@ public class EditInternshipDescriptorBuilder {
     }
 
     /**
-     * Sets the {@code Address} of the {@code EditInternshipDescriptor} that we are building.
+     * Sets the {@code Website} of the {@code EditInternshipDescriptor} that we are building.
      */
-    public EditInternshipDescriptorBuilder withAddress(String address) {
-        descriptor.setAddress(new Address(address));
+    public EditInternshipDescriptorBuilder withWebsite(String website) {
+        descriptor.setWebsite(new Website(website));
         return this;
     }
 

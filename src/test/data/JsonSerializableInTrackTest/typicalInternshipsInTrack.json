@@ -6,7 +6,7 @@
     "status" : "Progress",
     "phone" : "94351253",
     "email" : "alice@example.com",
-    "address" : "123, Jurong West Ave 6, #08-111",
+    "website" : "https://careers.google.com/",
     "taskFilled" : [ {
       "taskName" : "Application submitted",
       "taskTime" : "19-10-2022 11:38"
@@ -19,7 +19,7 @@
     "status" : "Progress",
     "phone" : "98765432",
     "email" : "johnd@example.com",
-    "address" : "311, Clementi Ave 2, #02-25",
+    "website" : "https://careers.google.com/",
     "taskFilled" : [ {
       "taskName" : "Application submitted",
       "taskTime" : "20-10-2022 12:00"
@@ -32,7 +32,7 @@
     "status" : "Offered",
     "phone" : "95352563",
     "email" : "heinz@example.com",
-    "address" : "wall street",
+    "website" : "https://careers.google.com/",
     "taskFilled" : [ {
       "taskName" : "Application submitted",
       "taskTime" : "19-10-2022 11:38"
@@ -45,7 +45,7 @@
     "status" : "Progress",
     "phone" : "87652533",
     "email" : "cornelia@example.com",
-    "address" : "10th street",
+    "website" : "https://careers.google.com/",
     "taskFilled" : [ {
       "taskName" : "Application submitted",
       "taskTime" : "19-10-2022 11:38"
@@ -61,7 +61,7 @@
     "status" : "Offered",
     "phone" : "9482224",
     "email" : "werner@example.com",
-    "address" : "michegan ave",
+    "website" : "https://careers.google.com/",
     "taskFilled" : [ {
       "taskName" : "Application submitted",
       "taskTime" : "25-10-2022 08:30"
@@ -77,7 +77,7 @@
     "status" : "Offered",
     "phone" : "9482427",
     "email" : "lydia@example.com",
-    "address" : "little tokyo",
+    "website" : "https://careers.google.com/",
     "taskFilled" : [ {
       "taskName" : "Application submitted",
       "taskTime" : "19-10-2022 11:38"
@@ -93,7 +93,7 @@
     "status" : "Progress",
     "phone" : "9482442",
     "email" : "anna@example.com",
-    "address" : "4th street",
+    "website" : "https://careers.google.com/",
     "taskFilled" : [ {
       "taskName" : "Application submitted",
       "taskTime" : "19-10-2022 11:38"

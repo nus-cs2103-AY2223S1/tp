@@ -3,8 +3,8 @@ package seedu.intrack.model;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.intrack.logic.commands.CommandTestUtil.VALID_ADDRESS_MSFT;
 import static seedu.intrack.logic.commands.CommandTestUtil.VALID_TAG_URGENT;
+import static seedu.intrack.logic.commands.CommandTestUtil.VALID_WEBSITE_MSFT;
 import static seedu.intrack.testutil.Assert.assertThrows;
 import static seedu.intrack.testutil.TypicalInternships.ALICE;
 import static seedu.intrack.testutil.TypicalInternships.getTypicalInTrack;
@@ -46,7 +46,7 @@ public class InTrackTest {
     @Test
     public void resetData_withDuplicateInternships_throwsDuplicateInternshipException() {
         // Two internships with the same identity fields
-        Internship editedAlice = new InternshipBuilder(ALICE).withAddress(VALID_ADDRESS_MSFT).withTags(VALID_TAG_URGENT)
+        Internship editedAlice = new InternshipBuilder(ALICE).withWebsite(VALID_WEBSITE_MSFT).withTags(VALID_TAG_URGENT)
                 .build();
         List<Internship> newInternships = Arrays.asList(ALICE, editedAlice);
         InTrackStub newData = new InTrackStub(newInternships);
@@ -73,7 +73,7 @@ public class InTrackTest {
     @Test
     public void hasInternship_internshipWithSameIdentityFieldsInInTrack_returnsTrue() {
         inTrack.addInternship(ALICE);
-        Internship editedAlice = new InternshipBuilder(ALICE).withAddress(VALID_ADDRESS_MSFT).withTags(VALID_TAG_URGENT)
+        Internship editedAlice = new InternshipBuilder(ALICE).withWebsite(VALID_WEBSITE_MSFT).withTags(VALID_TAG_URGENT)
                 .build();
         assertTrue(inTrack.hasInternship(editedAlice));
     }
