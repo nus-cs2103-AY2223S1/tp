@@ -38,7 +38,7 @@ public class TaskListPanel extends UiPart<Region> {
 
         header.setText("Tasks:");
         name.setText(patient.getName().toString());
-        patient.getTags().stream()
+        patient.getTags().getInternalList().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
     }

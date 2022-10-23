@@ -3,10 +3,9 @@ package seedu.uninurse.model.person;
 import static seedu.uninurse.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Objects;
-import java.util.Set;
 
 import seedu.uninurse.model.condition.ConditionList;
-import seedu.uninurse.model.tag.Tag;
+import seedu.uninurse.model.tag.TagList;
 import seedu.uninurse.model.task.TaskList;
 
 
@@ -23,7 +22,7 @@ public class Patient extends Person {
      * Every field must be present and not null.
      */
     public Patient(Name name, Phone phone, Email email, Address address, ConditionList conditions, TaskList tasks,
-                   Set<Tag> tags) {
+                   TagList tags) {
         super(name, phone, email, address, tags);
         requireAllNonNull(name, phone, email, address, conditions, tasks, tags);
         this.conditions = conditions;
@@ -104,10 +103,10 @@ public class Patient extends Person {
                     .append(tasks);
         }
 
-        Set<Tag> tags = getTags();
+        TagList tags = getTags();
         if (!tags.isEmpty()) {
-            builder.append("\nTags: ");
-            tags.forEach(builder::append);
+            builder.append("\nTags: ")
+                    .append(tags);
         }
         return builder.toString();
     }

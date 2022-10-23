@@ -35,7 +35,7 @@ public class TypicalPersons {
             .withConditions("Crohn's disease", "H1N1")
             .withTasks(new Task("Insert urinary catheter", new DateTime("16-12-2022 1245")),
                     new Task("Check vitals", new DateTime("16-10-2022 1015")))
-            .withTags("owesMoney", "friends").build();
+            .withTags("high-risk", "2A nursing home").build();
     public static final Patient CARL = new PersonBuilder().withName("Carl Kurz").withPhone("95352563")
             .withEmail("heinz@example.com").withAddress("wall street")
             .withTasks(new Task("Update health records", new DateTime("28-10-2022 1730")))

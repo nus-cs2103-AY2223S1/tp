@@ -24,7 +24,7 @@ public class JsonAdaptedPersonTest {
     private static final String INVALID_EMAIL = "example.com";
     private static final String INVALID_CONDITION = " ";
     private static final String INVALID_TASK = " ";
-    private static final String INVALID_TAG = "#friend";
+    private static final String INVALID_TAG = " ";
 
     private static final String VALID_NAME = BENSON.getName().toString();
     private static final String VALID_PHONE = BENSON.getPhone().toString();
@@ -38,7 +38,7 @@ public class JsonAdaptedPersonTest {
     private static final List<JsonAdaptedTask> VALID_TASKS = BENSON.getTasks().getTasks().stream()
             .map(JsonAdaptedTask::new)
             .collect(Collectors.toList());
-    private static final List<JsonAdaptedTag> VALID_TAGS = BENSON.getTags().stream()
+    private static final List<JsonAdaptedTag> VALID_TAGS = BENSON.getTags().getInternalList().stream()
             .map(JsonAdaptedTag::new)
             .collect(Collectors.toList());
 
