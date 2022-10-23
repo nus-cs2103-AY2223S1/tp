@@ -11,12 +11,12 @@ import java.util.stream.Collectors;
 import org.junit.jupiter.api.Test;
 
 import foodwhere.commons.exceptions.IllegalValueException;
+import foodwhere.model.commons.Address;
 import foodwhere.model.commons.Name;
 import foodwhere.model.commons.Tag;
 import foodwhere.model.review.Content;
 import foodwhere.model.review.Date;
 import foodwhere.model.review.Rating;
-import foodwhere.model.stall.Address;
 
 public class JsonAdaptedReviewTest {
     private static final String INVALID_TAG = "#friend";

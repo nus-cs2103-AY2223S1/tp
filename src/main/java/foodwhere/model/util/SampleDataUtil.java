@@ -8,13 +8,13 @@ import java.util.stream.Collectors;
 
 import foodwhere.model.AddressBook;
 import foodwhere.model.ReadOnlyAddressBook;
+import foodwhere.model.commons.Address;
 import foodwhere.model.commons.Name;
 import foodwhere.model.commons.Tag;
 import foodwhere.model.review.Content;
 import foodwhere.model.review.Date;
 import foodwhere.model.review.Rating;
 import foodwhere.model.review.Review;
-import foodwhere.model.stall.Address;
 import foodwhere.model.stall.Stall;
 
 /**

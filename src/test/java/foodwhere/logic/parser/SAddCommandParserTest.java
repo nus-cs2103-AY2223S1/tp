@@ -22,9 +22,9 @@ import org.junit.jupiter.api.Test;
 
 import foodwhere.commons.core.Messages;
 import foodwhere.logic.commands.SAddCommand;
+import foodwhere.model.commons.Address;
 import foodwhere.model.commons.Name;
 import foodwhere.model.commons.Tag;
-import foodwhere.model.stall.Address;
 import foodwhere.model.stall.Stall;
 import foodwhere.model.stall.StallBuilder;
 import foodwhere.testutil.TypicalStalls;
