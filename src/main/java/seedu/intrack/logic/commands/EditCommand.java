@@ -1,12 +1,12 @@
 package seedu.intrack.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.intrack.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.intrack.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.intrack.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.intrack.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.intrack.logic.parser.CliSyntax.PREFIX_POSITION;
 import static seedu.intrack.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.intrack.logic.parser.CliSyntax.PREFIX_WEBSITE;
 import static seedu.intrack.model.Model.PREDICATE_SHOW_ALL_INTERNSHIPS;
 
 import java.util.Collections;
@@ -20,7 +20,6 @@ import seedu.intrack.commons.core.index.Index;
 import seedu.intrack.commons.util.CollectionUtil;
 import seedu.intrack.logic.commands.exceptions.CommandException;
 import seedu.intrack.model.Model;
-import seedu.intrack.model.internship.Address;
 import seedu.intrack.model.internship.Email;
 import seedu.intrack.model.internship.Internship;
 import seedu.intrack.model.internship.Name;
@@ -29,6 +28,7 @@ import seedu.intrack.model.internship.Position;
 import seedu.intrack.model.internship.Remark;
 import seedu.intrack.model.internship.Status;
 import seedu.intrack.model.internship.Task;
+import seedu.intrack.model.internship.Website;
 import seedu.intrack.model.tag.Tag;
 
 /**
@@ -46,7 +46,7 @@ public class EditCommand extends Command {
             + "[" + PREFIX_POSITION + "POSITION] "
             + "[" + PREFIX_PHONE + "PHONE] "
             + "[" + PREFIX_EMAIL + "EMAIL] "
-            + "[" + PREFIX_ADDRESS + "ADDRESS] "
+            + "[" + PREFIX_WEBSITE + "WEBSITE] "
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_PHONE + "91234567 "
@@ -107,12 +107,12 @@ public class EditCommand extends Command {
         Status updatedStatus = internshipToEdit.getStatus(); // edit command does not allow editing status
         Phone updatedPhone = editInternshipDescriptor.getPhone().orElse(internshipToEdit.getPhone());
         Email updatedEmail = editInternshipDescriptor.getEmail().orElse(internshipToEdit.getEmail());
-        Address updatedAddress = editInternshipDescriptor.getAddress().orElse(internshipToEdit.getAddress());
+        Website updatedWebsite = editInternshipDescriptor.getWebsite().orElse(internshipToEdit.getWebsite());
         List<Task> updatedTasks = internshipToEdit.getTasks();
         Set<Tag> updatedTags = editInternshipDescriptor.getTags().orElse(internshipToEdit.getTags());
         Remark updatedRemark = internshipToEdit.getRemark(); // edit command does not allow editing remarks
 
-        return new Internship(updatedName, updatedPosition, updatedStatus, updatedPhone, updatedEmail, updatedAddress,
+        return new Internship(updatedName, updatedPosition, updatedStatus, updatedPhone, updatedEmail, updatedWebsite,
                 updatedTasks, updatedTags, updatedRemark);
     }
 
@@ -143,7 +143,7 @@ public class EditCommand extends Command {
         private Position position;
         private Phone phone;
         private Email email;
-        private Address address;
+        private Website website;
         private Set<Tag> tags;
 
         public EditInternshipDescriptor() {}
@@ -157,7 +157,7 @@ public class EditCommand extends Command {
             setPosition(toCopy.position);
             setPhone(toCopy.phone);
             setEmail(toCopy.email);
-            setAddress(toCopy.address);
+            setWebsite(toCopy.website);
             setTags(toCopy.tags);
         }
 
@@ -165,7 +165,7 @@ public class EditCommand extends Command {
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, position, phone, email, address, tags);
+            return CollectionUtil.isAnyNonNull(name, position, phone, email, website, tags);
         }
 
         public void setName(Name name) {
@@ -200,12 +200,12 @@ public class EditCommand extends Command {
             return Optional.ofNullable(email);
         }
 
-        public void setAddress(Address address) {
-            this.address = address;
+        public void setWebsite(Website website) {
+            this.website = website;
         }
 
-        public Optional<Address> getAddress() {
-            return Optional.ofNullable(address);
+        public Optional<Website> getWebsite() {
+            return Optional.ofNullable(website);
         }
 
         /**
@@ -244,7 +244,7 @@ public class EditCommand extends Command {
                     && getPosition().equals(e.getPosition())
                     && getPhone().equals(e.getPhone())
                     && getEmail().equals(e.getEmail())
-                    && getAddress().equals(e.getAddress())
+                    && getWebsite().equals(e.getWebsite())
                     && getTags().equals(e.getTags());
         }
     }

@@ -1,11 +1,11 @@
 package seedu.intrack.testutil;
 
-import static seedu.intrack.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.intrack.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.intrack.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.intrack.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.intrack.logic.parser.CliSyntax.PREFIX_POSITION;
 import static seedu.intrack.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.intrack.logic.parser.CliSyntax.PREFIX_WEBSITE;
 
 import java.util.Set;
 
@@ -35,7 +35,7 @@ public class InternshipUtil {
         sb.append(PREFIX_POSITION + internship.getPosition().positionName + " ");
         sb.append(PREFIX_PHONE + internship.getPhone().value + " ");
         sb.append(PREFIX_EMAIL + internship.getEmail().value + " ");
-        sb.append(PREFIX_ADDRESS + internship.getAddress().value + " ");
+        sb.append(PREFIX_WEBSITE + internship.getWebsite().value + " ");
         internship.getTags().stream().forEach(
                 s -> sb.append(PREFIX_TAG + s.tagName + " ")
         );
@@ -52,7 +52,7 @@ public class InternshipUtil {
                 .append(position.positionName).append(" "));
         descriptor.getPhone().ifPresent(phone -> sb.append(PREFIX_PHONE).append(phone.value).append(" "));
         descriptor.getEmail().ifPresent(email -> sb.append(PREFIX_EMAIL).append(email.value).append(" "));
-        descriptor.getAddress().ifPresent(address -> sb.append(PREFIX_ADDRESS).append(address.value).append(" "));
+        descriptor.getWebsite().ifPresent(website -> sb.append(PREFIX_WEBSITE).append(website.value).append(" "));
         if (descriptor.getTags().isPresent()) {
             Set<Tag> tags = descriptor.getTags().get();
             if (tags.isEmpty()) {

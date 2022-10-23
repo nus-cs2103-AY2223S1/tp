@@ -3,8 +3,8 @@ package seedu.intrack.model.internship;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.intrack.logic.commands.CommandTestUtil.VALID_ADDRESS_MSFT;
 import static seedu.intrack.logic.commands.CommandTestUtil.VALID_TAG_URGENT;
+import static seedu.intrack.logic.commands.CommandTestUtil.VALID_WEBSITE_MSFT;
 import static seedu.intrack.testutil.Assert.assertThrows;
 import static seedu.intrack.testutil.TypicalInternships.ALICE;
 import static seedu.intrack.testutil.TypicalInternships.MSFT;
@@ -42,7 +42,7 @@ public class UniqueInternshipListTest {
     @Test
     public void contains_internshipWithSameIdentityFieldsInList_returnsTrue() {
         uniqueInternshipList.add(ALICE);
-        Internship editedAlice = new InternshipBuilder(ALICE).withAddress(VALID_ADDRESS_MSFT).withTags(VALID_TAG_URGENT)
+        Internship editedAlice = new InternshipBuilder(ALICE).withWebsite(VALID_WEBSITE_MSFT).withTags(VALID_TAG_URGENT)
                 .build();
         assertTrue(uniqueInternshipList.contains(editedAlice));
     }
@@ -85,7 +85,7 @@ public class UniqueInternshipListTest {
     @Test
     public void setInternship_editedInternshipHasSameIdentity_success() {
         uniqueInternshipList.add(ALICE);
-        Internship editedAlice = new InternshipBuilder(ALICE).withAddress(VALID_ADDRESS_MSFT).withTags(VALID_TAG_URGENT)
+        Internship editedAlice = new InternshipBuilder(ALICE).withWebsite(VALID_WEBSITE_MSFT).withTags(VALID_TAG_URGENT)
                 .build();
         uniqueInternshipList.setInternship(ALICE, editedAlice);
         UniqueInternshipList expectedUniqueInternshipList = new UniqueInternshipList();

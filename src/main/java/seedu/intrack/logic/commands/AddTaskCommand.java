@@ -62,7 +62,7 @@ public class AddTaskCommand extends Command {
 
         Internship editedInternship = new Internship(internshipToEdit.getName(), internshipToEdit.getPosition(),
                 internshipToEdit.getStatus(), internshipToEdit.getPhone(), internshipToEdit.getEmail(),
-                internshipToEdit.getAddress(), editedTasks, internshipToEdit.getTags(), internshipToEdit.getRemark());
+                internshipToEdit.getWebsite(), editedTasks, internshipToEdit.getTags(), internshipToEdit.getRemark());
 
         model.setInternship(internshipToEdit, editedInternship);
         model.updateFilteredInternshipList(PREDICATE_SHOW_ALL_INTERNSHIPS);
