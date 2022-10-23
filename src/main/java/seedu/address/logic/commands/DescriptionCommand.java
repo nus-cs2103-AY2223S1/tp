@@ -69,7 +69,8 @@ public class DescriptionCommand extends Command {
      * {@code personToEdit}.
      */
     private String generateSuccessMessage(Person personToEdit) {
-        String message = !description.value.isEmpty() ? MESSAGE_ADD_DESCRIPTION_SUCCESS : MESSAGE_DELETE_DESCRIPTION_SUCCESS;
+        String message = !description.value.isEmpty() ? MESSAGE_ADD_DESCRIPTION_SUCCESS
+                : MESSAGE_DELETE_DESCRIPTION_SUCCESS;
         return String.format(message, personToEdit);
     }
 

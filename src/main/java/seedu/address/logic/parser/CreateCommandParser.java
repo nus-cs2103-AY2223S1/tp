@@ -2,12 +2,12 @@ package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MEETING_TIME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NETWORTH;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
 import java.util.Set;
@@ -57,7 +57,8 @@ public class CreateCommandParser implements Parser<CreateCommand> {
         Description description = new Description(""); // add command does not allow adding remarks straight away
         FilePath filePath = new FilePath(""); // add command does not allow adding file path straight away
 
-        Person person = new Person(name, phone, email, address, description, netWorth, meetingTimeList, filePath, tagList);
+        Person person = new Person(name, phone, email, address, description, netWorth,
+                meetingTimeList, filePath, tagList);
 
         return new CreateCommand(person);
     }
