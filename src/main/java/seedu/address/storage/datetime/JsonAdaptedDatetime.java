@@ -6,7 +6,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.datetime.Datetime;
 
-import static seedu.address.logic.parser.DatetimeParserUtil.toDatetime;
+import static seedu.address.model.datetime.Datetime.fromFormattedString;
 
 /**
  * Jackson-friendly version of {@link Datetime}.
@@ -45,6 +45,6 @@ public class JsonAdaptedDatetime {
         if (!Datetime.isValidDatetime(datetime)) {
             throw new IllegalValueException(Datetime.MESSAGE_CONSTRAINTS);
         }
-        return toDatetime(datetime);
+        return fromFormattedString(datetime);
     }
 }

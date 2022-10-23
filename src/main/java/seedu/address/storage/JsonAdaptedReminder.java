@@ -10,8 +10,6 @@ import seedu.address.model.reminder.ReminderDescription;
 import seedu.address.model.reminder.ReminderName;
 import seedu.address.storage.datetime.JsonAdaptedDatetime;
 
-import static seedu.address.logic.parser.DatetimeParserUtil.toDatetime;
-
 /**
  * Jackson-friendly version of {@link Reminder}.
  */

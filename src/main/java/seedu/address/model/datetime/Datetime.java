@@ -46,6 +46,11 @@ public class Datetime {
         return true;
     }
 
+    public static Datetime fromFormattedString(String datetimeString) {
+        LocalDateTime datetime = LocalDateTime.parse(datetimeString, DatetimeCommonUtils.DATETIME_FORMATTER);
+        return new Datetime(datetime);
+    }
+
     /**
      * Returns a formatted datetime.
      *

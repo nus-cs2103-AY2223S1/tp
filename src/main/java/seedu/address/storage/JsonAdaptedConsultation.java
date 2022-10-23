@@ -12,7 +12,7 @@ import seedu.address.model.consultation.ConsultationVenue;
 import seedu.address.model.datetime.DatetimeRange;
 import seedu.address.storage.datetime.JsonAdaptedDatetimeRange;
 
-import static seedu.address.logic.parser.DatetimeParserUtil.toDatetimeRange;
+import static seedu.address.model.datetime.DatetimeRange.fromFormattedString;
 
 /**
  * Jackson-friendly version of {@link Consultation}.

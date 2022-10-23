@@ -10,7 +10,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_VENUE;
 import seedu.address.logic.commands.consultation.AddConsultationCommand;
 import seedu.address.logic.parser.ArgumentMultimap;
 import seedu.address.logic.parser.ArgumentTokenizer;
-import seedu.address.logic.parser.DatetimeParserUtil;
+import seedu.address.model.datetime.DatetimeCommonUtils;
 import seedu.address.logic.parser.Parser;
 import seedu.address.logic.parser.ParserUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
@@ -50,7 +50,7 @@ public class AddConsultationCommandParser implements Parser<AddConsultationComma
 
         String date = argMultimap.getValue(PREFIX_DAY).get();
         String timeslotString = argMultimap.getValue(PREFIX_TIMESLOT).get();
-        DatetimeRange timeslot = DatetimeParserUtil.parseDatetimeRange(date, timeslotString);
+        DatetimeRange timeslot = DatetimeCommonUtils.parseDatetimeRange(date, timeslotString);
 
 
         Consultation consultation = new Consultation(name, module, venue, timeslot, description);

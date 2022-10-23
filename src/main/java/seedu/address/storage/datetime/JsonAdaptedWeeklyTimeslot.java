@@ -6,7 +6,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.datetime.WeeklyTimeslot;
 
-import static seedu.address.logic.parser.DatetimeParserUtil.toWeeklyTimeslot;
+import static seedu.address.model.datetime.WeeklyTimeslot.fromFormattedString;
 
 /**
  * Jackson-friendly version of {@link WeeklyTimeslot}.
@@ -60,6 +60,6 @@ public class JsonAdaptedWeeklyTimeslot {
         if (!WeeklyTimeslot.isValidTimeRange(startTime, endTime)) {
             throw new IllegalValueException(WeeklyTimeslot.MESSAGE_CONSTRAINTS_TIMES);
         }
-        return toWeeklyTimeslot(day, startTime, endTime);
+        return fromFormattedString(day, startTime, endTime);
     }
 }

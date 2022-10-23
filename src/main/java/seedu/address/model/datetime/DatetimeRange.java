@@ -3,9 +3,10 @@ package seedu.address.model.datetime;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
-import java.time.format.DateTimeParseException;
 import java.util.Objects;
 
 
@@ -35,6 +36,22 @@ public class DatetimeRange {
         requireNonNull(endDatetime);
         this.startDatetime = startDatetime;
         this.endDatetime = endDatetime;
+    }
+
+    public static DatetimeRange fromFormattedString(String dateString, String startTimeString, String endTimeString) {
+        LocalTime startTime = LocalTime.parse(startTimeString, DatetimeCommonUtils.TIME_FORMATTER);
+        LocalTime endTime = LocalTime.parse(endTimeString, DatetimeCommonUtils.TIME_FORMATTER);
+        LocalDateTime startDatetime = LocalDate.parse(dateString, DatetimeCommonUtils.DATE_FORMATTER)
+                .atTime(startTime);
+        LocalDateTime endDatetime = LocalDate.parse(dateString, DatetimeCommonUtils.DATE_FORMATTER)
+                .atTime(endTime);
+        return new DatetimeRange(startDatetime, endDatetime);
+    }
+
+    public static DatetimeRange fromFormattedString(String startDatetimeString, String endDatetimeString) {
+        LocalDateTime startDatetime = LocalDateTime.parse(startDatetimeString, DatetimeCommonUtils.DATETIME_FORMATTER);
+        LocalDateTime endDatetime = LocalDateTime.parse(endDatetimeString, DatetimeCommonUtils.DATETIME_FORMATTER);
+        return new DatetimeRange(startDatetime, endDatetime);
     }
 
 

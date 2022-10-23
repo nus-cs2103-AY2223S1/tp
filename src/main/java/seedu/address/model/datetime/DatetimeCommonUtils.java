@@ -1,18 +1,14 @@
-package seedu.address.logic.parser;
+package seedu.address.model.datetime;
 
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.datetime.Datetime;
-import seedu.address.model.datetime.DatetimeRange;
-import seedu.address.model.datetime.WeeklyTimeslot;
 
 import java.time.DayOfWeek;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Objects;
 
-public class DatetimeParserUtil {
+public class DatetimeCommonUtils {
 
     public static final String DATE_FORMAT = "yyyy-MM-dd";
     public static final DateTimeFormatter DATE_FORMATTER = DateTimeFormatter.ofPattern(DATE_FORMAT);
@@ -58,11 +54,6 @@ public class DatetimeParserUtil {
         }
     }
 
-    public static Datetime toDatetime(String datetimeString) {
-        LocalDateTime datetime = LocalDateTime.parse(datetimeString, DATETIME_FORMATTER);
-        return new Datetime(datetime);
-    }
-
     /**
      * Parses a {@code String deadline} into a {@code ReminderDeadline}.
      * Leading and trailing whitespaces will be trimmed.
@@ -80,22 +71,6 @@ public class DatetimeParserUtil {
 
         LocalDateTime datetime = LocalDateTime.parse(trimmedDatetime, DATETIME_FORMATTER);
         return new Datetime(datetime);
-    }
-
-    public static DatetimeRange toDatetimeRange(String dateString, String startTimeString, String endTimeString) {
-        LocalTime startTime = LocalTime.parse(startTimeString, TIME_FORMATTER);
-        LocalTime endTime = LocalTime.parse(endTimeString, TIME_FORMATTER);
-        LocalDateTime startDatetime = LocalDate.parse(dateString, DATE_FORMATTER)
-                .atTime(startTime);
-        LocalDateTime endDatetime = LocalDate.parse(dateString, DATE_FORMATTER)
-                .atTime(endTime);
-        return new DatetimeRange(startDatetime, endDatetime);
-    }
-
-    public static DatetimeRange toDatetimeRange(String startDatetimeString, String endDatetimeString) {
-        LocalDateTime startDatetime = LocalDateTime.parse(startDatetimeString, DATETIME_FORMATTER);
-        LocalDateTime endDatetime = LocalDateTime.parse(endDatetimeString, DATETIME_FORMATTER);
-        return new DatetimeRange(startDatetime, endDatetime);
     }
 
     /**
@@ -123,14 +98,7 @@ public class DatetimeParserUtil {
         LocalTime endTime = LocalTime.parse(times[1], TIME_FORMATTER);
         assertTimeRangeValid(startTime, endTime);
 
-        return toDatetimeRange(date, times[0], times[1]);
-    }
-
-    public static WeeklyTimeslot toWeeklyTimeslot(String dayString, String startTimeString, String endTimeString) {
-        DayOfWeek day = DayOfWeek.of(Integer.parseInt(dayString));
-        LocalTime startTime = LocalTime.parse(startTimeString, TIME_FORMATTER);
-        LocalTime endTime = LocalTime.parse(endTimeString, TIME_FORMATTER);
-        return new WeeklyTimeslot(day, startTime, endTime);
+        return DatetimeRange.fromFormattedString(date, times[0], times[1]);
     }
 
     /**
@@ -159,6 +127,6 @@ public class DatetimeParserUtil {
         LocalTime endTime = LocalTime.parse(times[1], TIME_FORMATTER);
         assertTimeRangeValid(startTime, endTime);
 
-        return toWeeklyTimeslot(dayString, times[0], times[1]);
+        return WeeklyTimeslot.fromFormattedString(dayString, times[0], times[1]);
     }
 }

@@ -84,6 +84,13 @@ public class WeeklyTimeslot {
         return !timeEndObj.isBefore(timeStartObj);
     }
 
+    public static WeeklyTimeslot fromFormattedString(String dayString, String startTimeString, String endTimeString) {
+        DayOfWeek day = DayOfWeek.of(Integer.parseInt(dayString));
+        LocalTime startTime = LocalTime.parse(startTimeString, DatetimeCommonUtils.TIME_FORMATTER);
+        LocalTime endTime = LocalTime.parse(endTimeString, DatetimeCommonUtils.TIME_FORMATTER);
+        return new WeeklyTimeslot(day, startTime, endTime);
+    }
+
 
     /**
      * Returns the numerical value of the day of the week.
