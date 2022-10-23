@@ -45,5 +45,4 @@ class JsonAdaptedLink {
         }
         return new Link(link);
     }
-
 }
