@@ -19,11 +19,16 @@ import foodwhere.testutil.TypicalIndexes;
  */
 public class SDeleteCommandParserTest {
 
+    private static final String WHITESPACE = " \t\r\n";
+
     private SDeleteCommandParser parser = new SDeleteCommandParser();
 
     @Test
     public void parse_validArgs_returnsDeleteCommand() {
         assertParseSuccess(parser, "1", new SDeleteCommand(TypicalIndexes.INDEX_FIRST_STALL));
+        assertParseSuccess(parser, WHITESPACE + "1" + WHITESPACE,
+                new SDeleteCommand(TypicalIndexes.INDEX_FIRST_STALL));
+
     }
 
     @Test
