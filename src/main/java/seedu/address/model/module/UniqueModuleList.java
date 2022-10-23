@@ -120,7 +120,7 @@ public class UniqueModuleList implements Iterable<Module> {
     }
 
     /**
-     * Removes the provided person object from every module's set of persons.
+     * Removes the provided person object from every module's set of persons if it exists.
      *
      * @param person The person to be removed from every module's set of persons.
      */

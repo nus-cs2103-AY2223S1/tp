@@ -112,7 +112,8 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
-     * Removes {@code person} from this {@code AddressBook}.
+     * Removes {@code person} from every module that contains {@code person} inside
+     * and also removes {@code person} from this {@code AddressBook}.
      * {@code person} must exist in the address book.
      */
     public void removePerson(Person person) {
