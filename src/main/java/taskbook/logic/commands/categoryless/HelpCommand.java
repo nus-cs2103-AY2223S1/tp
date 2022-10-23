@@ -15,6 +15,7 @@ import taskbook.logic.commands.tasks.TaskDeadlineCommand;
 import taskbook.logic.commands.tasks.TaskDeleteCommand;
 import taskbook.logic.commands.tasks.TaskEditCommand;
 import taskbook.logic.commands.tasks.TaskEventCommand;
+import taskbook.logic.commands.tasks.TaskFindCommand;
 import taskbook.logic.commands.tasks.TaskListCommand;
 import taskbook.logic.commands.tasks.TaskMarkCommand;
 import taskbook.logic.commands.tasks.TaskSortCommand;
@@ -85,6 +86,8 @@ public class HelpCommand extends Command {
             return ContactDeleteCommand.MESSAGE_USAGE;
         case TASK_DELETE:
             return TaskDeleteCommand.MESSAGE_USAGE;
+        case TASK_FIND:
+            return TaskFindCommand.MESSAGE_USAGE;
         case TASK_SORT:
             return TaskSortCommand.MESSAGE_USAGE;
         case TASK_MARK:
@@ -132,6 +135,7 @@ public class HelpCommand extends Command {
         TASK_EDIT(TaskCategoryParser.CATEGORY_WORD, TaskEditCommand.COMMAND_WORD),
         CONTACT_DELETE(ContactCategoryParser.CATEGORY_WORD, ContactDeleteCommand.COMMAND_WORD),
         TASK_DELETE(TaskCategoryParser.CATEGORY_WORD, TaskDeleteCommand.COMMAND_WORD),
+        TASK_FIND(TaskCategoryParser.CATEGORY_WORD, TaskFindCommand.COMMAND_WORD),
         TASK_SORT(TaskCategoryParser.CATEGORY_WORD, TaskSortCommand.COMMAND_WORD),
         TASK_MARK(TaskCategoryParser.CATEGORY_WORD, TaskMarkCommand.COMMAND_WORD),
         TASK_UNMARK(TaskCategoryParser.CATEGORY_WORD, TaskUnmarkCommand.COMMAND_WORD),

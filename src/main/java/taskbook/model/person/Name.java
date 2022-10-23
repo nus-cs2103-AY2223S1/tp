@@ -57,8 +57,14 @@ public class Name {
     public int hashCode() {
         return fullName.hashCode();
     }
-
-    public int compareByAlphabeticalTo(Name other) {
-        return this.fullName.compareTo(other.fullName);
+    
+    /**
+     * Searches the fullName for a query.
+     * @param query input query.
+     * @return true if the query exists exactly in fullName, false otherwise.
+     */
+    public boolean isQueryInName(String query) {
+        requireNonNull(query);
+        return fullName.toUpperCase().contains(query.toUpperCase());
     }
 }

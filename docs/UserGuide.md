@@ -96,7 +96,7 @@ Format: `task list`
 
 Adds a contact to the taskbook.
 
-Format: `contact add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…`
+Format: `contact add n/NAME [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…`
 
 Examples:
 * `contact add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
@@ -205,6 +205,24 @@ Format: `task delete i/INDEX`
 
 Examples:
 * `task list` followed by `task delete i/2` deletes the 2nd task in the task list.
+
+### Finding tasks : `task find`
+
+Displays all tasks matching the arguments provided by the user.
+
+Format: `task find q/QUERY x/DONE a/ASSIGNMENT`
+
+* The arguments for this command can be given in any order.
+* Up to 2 arguments can be omitted, but at least 1 argument of the 3 must be given.
+* QUERY is not case sensitive.
+* ASSIGNMENT is either FROM or TO, representing "m/" and "o/", or 'Assigned by' and 'Assigned to', respectively.
+* DONE is either X or O, representing 'Done' and 'Not done' respectively.
+
+Examples:
+* `task find q/ea` will change the task list in the GUI to show a task list where all tasks will have "ea" in either their connected person, or their description.
+* `task find x/X` will change the task list in the GUI to show a task list where all tasks are marked done, with [X].
+* `task find a/FROM` will change the task list in the GUI to show a task list where all tasks are assigned to the user by someone else.
+* `task find q/ea x/X` is equivalent to `task find x/X q/ea`.
 
 ### Sorting tasks : `task sort`
 
@@ -341,7 +359,7 @@ The following date formats are accepted:
 | **Help**                      | `help [c/COMMAND]`                                                                                                                                                 |
 | **View All Tasks**            | `task list`                                                                                                                                                        |
 | **View Contacts**             | `contact list`                                                                                                                                                     |
-| **Add Contact**               | `contact add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…` <br> e.g., `contact add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` |
+| **Add Contact**               | `contact add n/NAME [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…` <br> e.g., `contact add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` |
 | **Add Todo: Assignor**        | `task todo m/ASSIGNOR d/DESCRIPTION` <br> e.g., `task todo m/John d/Finish user guide`                                                                             |
 | **Add Todo: Assignee**        | `task todo o/ASSIGNEE d/DESCRIPTION` <br> e.g., `task todo o/Sam d/Finish the assignment`                                                                          |
 | **Add Deadline: Assignor**    | `task deadline m/ASSIGNOR d/DESCRIPTION t/DATE` <br> e.g., `task deadline m/John d/Finish user guide t/2022-12-31`                                                 |
@@ -354,9 +372,11 @@ The following date formats are accepted:
 | **Delete Task**               | `task delete i/INDEX`<br> e.g., `task delete i/3`                                                                                                                  |
 | **Sort Tasks**                | `task sort s/SORT`<br> e.g., `task sort s/a`                                                                                                                       |
 | **Mark Task**                 | `task mark i/INDEX`<br> e.g., `task mark i/3`                                                                                                                      |
+| **Find Task**                 | `task find q/QUERY a/ASSIGNMENT x/DONE` <br> (Arguments unordered) <br> e.g., `task find a/FROM q/ea`                                                              |
 | **Unmark Task**               | `task unmark i/INDEX`<br> e.g., `task unmark i/3`                                                                                                                  |
 | **Undo**                      | `undo`                                                                                                                                                             |
 | **Redo**                      | `redo`                                                                                                                                                             |
 | **Exiting the program**       | `bye`                                                                                                                                                              |
 | **History: Previous Command** | `UP` arrow key                                                                                                                                                     |
 | **History: Next Command**     | `DOWN` arrow key                                                                                                                                                   |
+
