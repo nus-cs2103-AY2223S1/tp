@@ -33,6 +33,8 @@ public class TutorialCard extends UiPart<Region> {
     @FXML
     private Label time;
     @FXML
+    private Label date;
+    @FXML
     private CheckBox status;
     @FXML
     private Label id;
@@ -47,7 +49,8 @@ public class TutorialCard extends UiPart<Region> {
         id.setText(displayedIndex + ". ");
         content.setText(tutorial.getContent().content);
         group.setText(tutorial.getGroup().group);
-        time.setText(tutorial.getTime().time);
+        time.setText(tutorial.getTimeOrDateStr("time"));
+        date.setText(tutorial.getTimeOrDateStr("date"));
         status.setText("");
         status.setSelected(tutorial.getStatus());
     }

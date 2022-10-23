@@ -26,7 +26,7 @@ public class UnmarkTutorialCommand extends Command {
             + "Example: "
             + COMMAND_WORD + " 1";
 
-    public static final String MESSAGE_UNMARKTUT_SUCCESS = "Unmarked Tutorial %1$s";
+    public static final String MESSAGE_UNMARKTUT_SUCCESS = "Unmarked:\n%1$s";
 
     private final Index index;
 

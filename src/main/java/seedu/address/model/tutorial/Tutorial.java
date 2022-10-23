@@ -40,6 +40,13 @@ public class Tutorial {
         return time;
     }
 
+    public String getTimeOrDateStr(String s) {
+        String timeAndDate = time.toString();
+        String[] timeAndDateArr = timeAndDate.split("T");
+
+        return s.equalsIgnoreCase("time") ? timeAndDateArr[1] : timeAndDateArr[0];
+    }
+
     public boolean getStatus() {
         return status;
     }
@@ -94,8 +101,10 @@ public class Tutorial {
                 .append("; Content: ")
                 .append(getContent())
                 .append("; Time: ")
-                .append(getTime())
-                .append(getStatus() ? "[X]" : "[ ]");
+                .append(getTimeOrDateStr("time"))
+                .append("; Date: ")
+                .append(getTimeOrDateStr("date"))
+                .append(getStatus() ? "\n[X]" : "\n[ ]");
 
         return builder.toString();
     }
