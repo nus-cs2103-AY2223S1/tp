@@ -12,15 +12,8 @@ import javafx.collections.transformation.SortedList;
 import seedu.nutrigoals.model.meal.exceptions.MealNotFoundException;
 
 /**
- * A list of food that enforces uniqueness between its elements and does not allow nulls.
- * A Food is considered unique by comparing using {@code Food#isSameFood(Food)}. As such, adding and updating of
- * Foods uses Food#isSameFood(Food) for equality so as to ensure that the Food being added or updated is
- * unique in terms of identity in the FoodList. However, the removal of a Food uses Food#equals(Object) so
- * as to ensure that the Food with exactly the same fields will be removed.
- *
+ * Represents the user's list of {@code Food}.
  * Supports a minimal set of list operations.
- *
- * @see Food#isSameFood(Food)
  */
 public class FoodList implements Iterable<Food> {
 
