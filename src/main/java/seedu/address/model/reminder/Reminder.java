@@ -90,7 +90,9 @@ public class Reminder {
                 .append("; Deadline: ")
                 .append(getDeadline())
                 .append("; Details: ")
-                .append(getDescription());
+                .append(getDescription())
+                .append("; Priority: ")
+                .append(getPriority());
 
         return builder.toString();
     }
