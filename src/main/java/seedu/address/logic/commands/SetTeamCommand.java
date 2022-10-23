@@ -55,4 +55,8 @@ public class SetTeamCommand extends Command {
                 || (other instanceof SetTeamCommand // instanceof handles nulls
                 && targetTeam.equals(((SetTeamCommand) other).targetTeam)); // state check
     }
+
+    @Override
+    public void run() {
+    }
 }

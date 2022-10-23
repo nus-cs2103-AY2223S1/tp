@@ -7,6 +7,7 @@ import java.util.List;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.team.Team;
+
 /**
  * Adds a new team to the address book.
  */
@@ -45,5 +46,9 @@ public class AddTeamCommand extends Command {
         return other == this // short circuit if same object
                 || (other instanceof AddTeamCommand // instanceof handles nulls
                 && targetTeam.equals(((AddTeamCommand) other).targetTeam)); // state check
+    }
+
+    @Override
+    public void run() {
     }
 }

@@ -92,6 +92,7 @@ public class MainWindow extends UiPart<Stage> {
 
     /**
      * Sets the accelerator of a MenuItem.
+     *
      * @param keyCombination the KeyCombination value of the accelerator
      */
     private void setAccelerator(MenuItem menuItem, KeyCombination keyCombination) {
@@ -214,6 +215,7 @@ public class MainWindow extends UiPart<Stage> {
 
             return commandResult;
         } catch (CommandException | ParseException e) {
+            System.out.println("mainwindow" + e.getMessage());
             logger.info("Invalid command: " + commandText);
             resultDisplay.setFeedbackToUser(e.getMessage());
             throw e;

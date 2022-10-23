@@ -54,4 +54,8 @@ public class AddMemberCommand extends Command {
                 || (other instanceof AddMemberCommand // instanceof handles nulls
                 && targetIndex.equals(((AddMemberCommand) other).targetIndex)); // state check
     }
+
+    @Override
+    public void run() {
+    }
 }

@@ -51,4 +51,8 @@ public class DeleteMemberCommand extends Command {
                 || (other instanceof DeleteMemberCommand // instanceof handles nulls
                 && targetIndex.equals(((DeleteMemberCommand) other).targetIndex)); // state check
     }
+
+    @Override
+    public void run() {
+    }
 }

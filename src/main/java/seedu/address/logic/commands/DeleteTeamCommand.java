@@ -7,6 +7,7 @@ import java.util.List;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.team.Team;
+
 /**
  * Deletes a team from the addressbook.
  */
@@ -27,6 +28,7 @@ public class DeleteTeamCommand extends Command {
     public DeleteTeamCommand(Team targetTeam) {
         this.targetTeam = targetTeam;
     }
+
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
@@ -53,5 +55,10 @@ public class DeleteTeamCommand extends Command {
         return other == this // short circuit if same object
                 || (other instanceof DeleteTeamCommand // instanceof handles nulls
                 && targetTeam.equals(((DeleteTeamCommand) other).targetTeam)); // state check
+    }
+
+    @Override
+    public void run() {
+
     }
 }

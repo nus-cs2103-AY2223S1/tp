@@ -34,17 +34,17 @@ public class EditCommand extends Command {
     public static final String COMMAND_WORD = "edit";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the person identified "
-        + "by the index number used in the displayed person list. "
-        + "Existing values will be overwritten by the input values.\n"
-        + "Parameters: INDEX (must be a positive integer) "
-        + "[" + FLAG_NAME_STR + " NAME] "
-        + "[" + FLAG_PHONE_STR + " PHONE] "
-        + "[" + FLAG_EMAIL_STR + " EMAIL] "
-        + "[" + FLAG_ADDRESS_STR + " ADDRESS] "
-        + "[" + FLAG_TAG_STR + " TAG]...\n"
-        + "Example: " + COMMAND_WORD + " 1 "
-        + FLAG_PHONE_STR + " 91234567 "
-        + FLAG_EMAIL_STR + " johndoe@example.com";
+            + "by the index number used in the displayed person list. "
+            + "Existing values will be overwritten by the input values.\n"
+            + "Parameters: INDEX (must be a positive integer) "
+            + "[" + FLAG_NAME_STR + " NAME] "
+            + "[" + FLAG_PHONE_STR + " PHONE] "
+            + "[" + FLAG_EMAIL_STR + " EMAIL] "
+            + "[" + FLAG_ADDRESS_STR + " ADDRESS] "
+            + "[" + FLAG_TAG_STR + " TAG]...\n"
+            + "Example: " + COMMAND_WORD + " 1 "
+            + FLAG_PHONE_STR + " 91234567 "
+            + FLAG_EMAIL_STR + " johndoe@example.com";
 
     public static final String MESSAGE_EDIT_PERSON_SUCCESS = "Edited Person: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
@@ -117,7 +117,12 @@ public class EditCommand extends Command {
         // state check
         EditCommand e = (EditCommand) other;
         return index.equals(e.index)
-            && editPersonDescriptor.equals(e.editPersonDescriptor);
+                && editPersonDescriptor.equals(e.editPersonDescriptor);
+    }
+
+    @Override
+    public void run() {
+
     }
 
     /**
@@ -218,10 +223,10 @@ public class EditCommand extends Command {
             EditPersonDescriptor e = (EditPersonDescriptor) other;
 
             return getName().equals(e.getName())
-                && getPhone().equals(e.getPhone())
-                && getEmail().equals(e.getEmail())
-                && getAddress().equals(e.getAddress())
-                && getTags().equals(e.getTags());
+                    && getPhone().equals(e.getPhone())
+                    && getEmail().equals(e.getEmail())
+                    && getAddress().equals(e.getAddress())
+                    && getTags().equals(e.getTags());
         }
     }
 }

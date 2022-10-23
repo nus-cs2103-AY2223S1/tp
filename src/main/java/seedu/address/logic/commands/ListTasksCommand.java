@@ -7,7 +7,6 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 
 
-
 /**
  * Lists all tasks of the current team.
  */
@@ -15,8 +14,8 @@ public class ListTasksCommand extends Command {
     public static final String COMMAND_WORD = "list_tasks";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-        + ": Lists all the tasks of the current team.\n"
-        + "Example: " + COMMAND_WORD;
+            + ": Lists all the tasks of the current team.\n"
+            + "Example: " + COMMAND_WORD;
 
     public static final String MESSAGE_ADD_TASK_SUCCESS = "Tasks: \n%1$s";
 
@@ -36,6 +35,11 @@ public class ListTasksCommand extends Command {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-            || (other instanceof ListTasksCommand); // instanceof handles nulls
+                || (other instanceof ListTasksCommand); // instanceof handles nulls
+    }
+
+    @Override
+    public void run() {
+
     }
 }
