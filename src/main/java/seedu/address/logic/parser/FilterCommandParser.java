@@ -34,7 +34,7 @@ public class FilterCommandParser implements Parser<FilterCommand> {
     private static final String REGEX_FILTER_COMMAND = String.format("(?<%s>%s|%s|%s|%s\\b)?(?<%s>.*)?",
             MATCH_GROUP_SPECIFIER, FilterClearCommand.COMMAND_SPECIFIER,
             FilterClearCommand.COMMAND_SPECIFIER_ALIAS, FilterListCommand.COMMAND_SPECIFIER,
-            FilterClearCommand.COMMAND_SPECIFIER_ALIAS, MATCH_GROUP_ARGUMENTS);
+            FilterListCommand.COMMAND_SPECIFIER_ALIAS, MATCH_GROUP_ARGUMENTS);
     private static final Pattern COMMAND_FORMAT = Pattern.compile(REGEX_FILTER_COMMAND);
 
     /**

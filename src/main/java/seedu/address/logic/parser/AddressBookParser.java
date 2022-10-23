@@ -82,6 +82,8 @@ public class AddressBookParser {
             return new MessageCommandGroupParser().parse(arguments);
 
         case ReminderCommandGroup.COMMAND_GROUP:
+            // Fallthrough
+        case ReminderCommandGroup.COMMAND_GROUP_ALIAS:
             return new ReminderCommandGroupParser().parse(arguments);
 
         case ExitCommand.COMMAND_WORD:
@@ -91,6 +93,8 @@ public class AddressBookParser {
             return new HelpCommand();
 
         case HomeCommand.COMMAND_WORD:
+            // Fallthrough
+        case HomeCommand.COMMAND_WORD_ALIAS:
             return new HomeCommand();
 
         case ShowCommand.COMMAND_WORD:

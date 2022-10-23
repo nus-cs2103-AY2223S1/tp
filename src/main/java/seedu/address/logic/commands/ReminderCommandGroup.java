@@ -5,4 +5,5 @@ package seedu.address.logic.commands;
  */
 public abstract class ReminderCommandGroup extends Command {
     public static final String COMMAND_GROUP = "reminder";
+    public static final String COMMAND_GROUP_ALIAS = "r";
 }
