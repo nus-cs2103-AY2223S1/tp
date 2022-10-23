@@ -3,6 +3,7 @@ package jarvis.model;
 import static jarvis.commons.util.CollectionUtil.requireAllNonNull;
 import static java.util.Objects.requireNonNull;
 
+import java.util.Comparator;
 import java.util.Iterator;
 import java.util.List;
 
@@ -63,6 +64,8 @@ public class UniqueLessonList implements Iterable<Lesson> {
         }
 
         internalList.add(toAdd);
+        // Sorts the lesson list in chronological order
+        FXCollections.sort(internalList, Comparator.comparing(l -> l.getTimePeriod().getStart()));
     }
 
     /**

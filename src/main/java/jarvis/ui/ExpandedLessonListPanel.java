@@ -4,7 +4,6 @@ import java.util.logging.Logger;
 
 import jarvis.commons.core.LogsCenter;
 import jarvis.model.Lesson;
-import jarvis.model.Task;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.ListCell;
