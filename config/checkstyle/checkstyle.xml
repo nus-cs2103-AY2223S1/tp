@@ -385,10 +385,10 @@
     JAVADOC CHECKS
     -->
 
-    <!-- Checks that all block-majors are ordered correctly. -->
+    <!-- Checks that all block-tags are ordered correctly. -->
     <module name="AtclauseOrder"/>
 
-    <!-- Checks that Javadoc block majors appear only at the beginning of the line. -->
+    <!-- Checks that Javadoc block tags appear only at the beginning of the line. -->
     <module name="JavadocBlockTagLocation"/>
 
     <!-- Checks that all Javadoc comments start from the second line. -->

@@ -57,8 +57,8 @@ public class PersonCard extends UiPart<Region> {
         setApplicationStatusStyling(applicant.getApplicationStatus().applicationStatus);
         email.setText(applicant.getEmail().value);
         applicant.getMajors().stream()
-                .sorted(Comparator.comparing(major -> major.majorName))
-                .forEach(major -> majors.getChildren().add(new Label(major.majorName)));
+                .sorted(Comparator.comparing(major -> major.major))
+                .forEach(major -> majors.getChildren().add(new Label(major.major)));
     }
 
     @Override

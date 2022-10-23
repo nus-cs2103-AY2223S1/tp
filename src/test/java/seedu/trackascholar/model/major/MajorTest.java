@@ -12,15 +12,15 @@ public class MajorTest {
     }
 
     @Test
-    public void constructor_invalidMajorName_throwsIllegalArgumentException() {
-        String invalidMajorName = "";
-        assertThrows(IllegalArgumentException.class, () -> new Major(invalidMajorName));
+    public void constructor_invalidMajor_throwsIllegalArgumentException() {
+        String invalidMajor = "";
+        assertThrows(IllegalArgumentException.class, () -> new Major(invalidMajor));
     }
 
     @Test
-    public void isValidMajorName() {
+    public void isValidMajor() {
         // null major name
-        assertThrows(NullPointerException.class, () -> Major.isValidMajorName(null));
+        assertThrows(NullPointerException.class, () -> Major.isValidMajor(null));
     }
 
 }

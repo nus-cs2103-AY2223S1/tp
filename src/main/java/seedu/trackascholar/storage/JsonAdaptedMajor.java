@@ -25,7 +25,7 @@ class JsonAdaptedMajor {
      * Converts a given {@code Major} into this class for Jackson use.
      */
     public JsonAdaptedMajor(Major source) {
-        major = source.majorName;
+        major = source.major;
     }
 
     @JsonValue
@@ -39,7 +39,7 @@ class JsonAdaptedMajor {
      * @throws IllegalValueException if there were any data constraints violated in the adapted major.
      */
     public Major toModelType() throws IllegalValueException {
-        if (!Major.isValidMajorName(major)) {
+        if (!Major.isValidMajor(major)) {
             throw new IllegalValueException(Major.MESSAGE_CONSTRAINTS);
         }
         return new Major(major);

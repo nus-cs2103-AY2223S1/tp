@@ -135,7 +135,7 @@ public class ParserUtil {
     public static Major parseMajor(String major) throws ParseException {
         requireNonNull(major);
         String trimmedMajor = major.trim();
-        if (!Major.isValidMajorName(trimmedMajor)) {
+        if (!Major.isValidMajor(trimmedMajor)) {
             throw new ParseException(Major.MESSAGE_CONSTRAINTS);
         }
         return new Major(trimmedMajor);
@@ -147,8 +147,8 @@ public class ParserUtil {
     public static Set<Major> parseMajors(Collection<String> majors) throws ParseException {
         requireNonNull(majors);
         final Set<Major> majorSet = new HashSet<>();
-        for (String majorName : majors) {
-            majorSet.add(parseMajor(majorName));
+        for (String major : majors) {
+            majorSet.add(parseMajor(major));
         }
         return majorSet;
     }

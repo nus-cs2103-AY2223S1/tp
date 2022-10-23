@@ -37,7 +37,7 @@ public class ApplicantUtil {
         sb.append(PREFIX_SCHOLARSHIP + applicant.getScholarship().scholarship + " ");
         sb.append(PREFIX_APPLICATION_STATUS + applicant.getApplicationStatus().applicationStatus + " ");
         applicant.getMajors().stream().forEach(
-            s -> sb.append(PREFIX_MAJOR + s.majorName + " ")
+            s -> sb.append(PREFIX_MAJOR + s.major + " ")
         );
         return sb.toString();
     }
@@ -60,7 +60,7 @@ public class ApplicantUtil {
             if (majors.isEmpty()) {
                 sb.append(PREFIX_MAJOR);
             } else {
-                majors.forEach(s -> sb.append(PREFIX_MAJOR).append(s.majorName).append(" "));
+                majors.forEach(s -> sb.append(PREFIX_MAJOR).append(s.major).append(" "));
             }
         }
         return sb.toString();
