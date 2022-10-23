@@ -1,6 +1,7 @@
 package seedu.address.logic.commands.event;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_OPTION;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_EVENTS;
 
 import seedu.address.logic.commands.CommandResult;
@@ -14,6 +15,8 @@ public class ViewEventsCommand extends EventCommand {
 
     public static final String MESSAGE_SUCCESS = "Listed all events.";
     public static final String MESSAGE_FAILURE = "Please remove extra inputs after the option flag.";
+    public static final String MESSAGE_HELP = "Lists all events in NUScheduler.\n"
+            + "Format: " + COMMAND_WORD + " " + PREFIX_OPTION + COMMAND_OPTION;
 
     @Override
     public CommandResult execute(Model model) {

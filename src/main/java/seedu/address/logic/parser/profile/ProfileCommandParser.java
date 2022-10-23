@@ -2,6 +2,8 @@ package seedu.address.logic.parser.profile;
 
 import static seedu.address.commons.core.Messages.MESSAGE_FLAG_NOT_SPECIFIED;
 
+import java.util.LinkedHashMap;
+import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -11,6 +13,7 @@ import seedu.address.logic.commands.profile.EditProfileCommand;
 import seedu.address.logic.commands.profile.FindProfileCommand;
 import seedu.address.logic.commands.profile.ProfileCommand;
 import seedu.address.logic.commands.profile.ViewProfilesCommand;
+import seedu.address.logic.parser.CliSyntax;
 import seedu.address.logic.parser.Parser;
 import seedu.address.logic.parser.exceptions.ParseException;
 
@@ -63,6 +66,26 @@ public class ProfileCommandParser implements Parser<ProfileCommand> {
         default:
             throw new ParseException(ProfileCommand.OPTION_UNKNOWN + ProfileCommand.VALID_FLAGS);
         }
+    }
+
+    /**
+     * Returns a hash map containing the details about profile commands to display in the help window.
+     */
+    public static Map<String, String> getProfileCommands() {
+        return new LinkedHashMap<>() {
+            {
+                put(ProfileCommand.COMMAND_WORD + " " + CliSyntax.PREFIX_OPTION + AddProfileCommand.COMMAND_OPTION,
+                        AddProfileCommand.MESSAGE_HELP);
+                put(ProfileCommand.COMMAND_WORD + " " + CliSyntax.PREFIX_OPTION + DeleteProfileCommand.COMMAND_OPTION,
+                        DeleteProfileCommand.MESSAGE_HELP);
+                put(ProfileCommand.COMMAND_WORD + " " + CliSyntax.PREFIX_OPTION + EditProfileCommand.COMMAND_OPTION,
+                        EditProfileCommand.MESSAGE_HELP);
+                put(ProfileCommand.COMMAND_WORD + " " + CliSyntax.PREFIX_OPTION + FindProfileCommand.COMMAND_OPTION,
+                        FindProfileCommand.MESSAGE_HELP);
+                put(ProfileCommand.COMMAND_WORD + " " + CliSyntax.PREFIX_OPTION + ViewProfilesCommand.COMMAND_OPTION,
+                        ViewProfilesCommand.MESSAGE_HELP);
+            }
+        };
     }
 
 }

@@ -24,6 +24,10 @@ public class FindProfileCommand extends ProfileCommand {
             + "Parameters: KEYWORD [MORE_KEYWORDS]...\n"
             + "Example: " + COMMAND_WORD + " " + PREFIX_OPTION + COMMAND_OPTION + " alice bob charlie";
 
+    public static final String MESSAGE_HELP = "Finds profiles matching the keywords. "
+            + "Case insensitive and will return partial matches.\n"
+            + "Format: " + COMMAND_WORD + " " + PREFIX_OPTION + COMMAND_OPTION + " KEYWORDS [MORE KEYWORDS]";
+
     private final NameContainsKeywordsPredicate predicate;
 
     public FindProfileCommand(NameContainsKeywordsPredicate predicate) {
