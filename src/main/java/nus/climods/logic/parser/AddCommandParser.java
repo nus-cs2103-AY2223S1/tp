@@ -1,6 +1,6 @@
 package nus.climods.logic.parser;
 
-import org.openapitools.client.model.ModuleCondensed.SemestersEnum;
+import org.openapitools.client.model.SemestersEnum;
 
 import nus.climods.logic.commands.AddCommand;
 import nus.climods.logic.parser.exceptions.ParseException;

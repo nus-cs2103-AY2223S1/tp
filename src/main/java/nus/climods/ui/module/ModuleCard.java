@@ -2,7 +2,7 @@ package nus.climods.ui.module;
 
 import java.util.stream.Collectors;
 
-import org.openapitools.client.model.ModuleCondensed.SemestersEnum;
+import org.openapitools.client.model.SemestersEnum;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
@@ -63,8 +63,7 @@ public class ModuleCard extends UiPart<Region> {
         moduleInfo.getChildren().add(createModuleCreditsPill(module.getModuleCredit()));
     }
     private Pill createSemesterPill(int semesterNum) {
-        String semesterText;
-        semesterText = SemestersEnum.fromValue(semesterNum).toString();
+        String semesterText = "";
 
         return new Pill(semesterText, SEMESTER_BG_COLOR, SEMESTER_TEXT_COLOR,
             SEMESTER_FONT_SIZE);

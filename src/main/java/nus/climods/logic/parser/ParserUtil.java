@@ -4,7 +4,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.regex.Pattern;
 
-import org.openapitools.client.model.ModuleCondensed.SemestersEnum;
+import org.openapitools.client.model.SemestersEnum;
 
 /**
  * Contains utility methods used for parsing strings in the various *Parser classes.

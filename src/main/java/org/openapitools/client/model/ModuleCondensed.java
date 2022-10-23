@@ -17,11 +17,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
-import com.fasterxml.jackson.annotation.JsonValue;
 
 import io.swagger.annotations.ApiModelProperty;
 
@@ -168,80 +166,5 @@ public class ModuleCondensed {
             return "null";
         }
         return o.toString().replace("\n", "\n    ");
-    }
-
-    /**
-     * Gets or Sets semesters
-     */
-    public enum SemestersEnum {
-        S1(1),
-
-        S2(2),
-
-        ST1(3),
-
-        ST2(4);
-
-        private int value;
-
-        SemestersEnum(int value) {
-            this.value = value;
-        }
-
-        @JsonCreator
-        public static SemestersEnum fromValue(int value) {
-            for (SemestersEnum b : SemestersEnum.values()) {
-                if (b.value == value) {
-                    return b;
-                }
-            }
-            throw new IllegalArgumentException("Unexpected value '" + value + "'");
-        }
-
-        /**
-         * Overload method that takes in integer as value (original implementation) and returns correct sem details.
-         * @param value
-         * @return
-         */
-        @JsonCreator
-        public static SemestersEnum fromValue(String value) {
-            switch (value) {
-            case "S1":
-                return S1;
-            case "S2":
-                return S2;
-            case "ST1":
-                return ST1;
-            case "ST2":
-                return ST2;
-            default:
-                throw new IllegalArgumentException("Unexpected value '" + value + "'");
-            }
-        }
-
-        /**
-         * Method that returns integer value instead of string value based on original implementation.
-         * @return
-         */
-        @JsonValue
-        public int getValue() {
-            return this.value;
-        }
-
-        @Override
-        public String toString() {
-            switch (value) {
-            case 1:
-                return "Semester 1";
-            case 2:
-                return "Semester 2";
-            case 3:
-                return "Special Term 1";
-            case 4:
-                return "Special Term 2";
-            default:
-                return "Invalid semester!";
-            }
-        }
     }
 }

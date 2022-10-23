@@ -2,7 +2,7 @@ package nus.climods.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 
-import org.openapitools.client.model.ModuleCondensed.SemestersEnum;
+import org.openapitools.client.model.SemestersEnum;
 
 import nus.climods.logic.commands.exceptions.CommandException;
 import nus.climods.model.Model;

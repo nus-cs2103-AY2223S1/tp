@@ -1,6 +1,6 @@
 package nus.climods.ui.module;
 
-import org.openapitools.client.model.ModuleCondensed.SemestersEnum;
+import org.openapitools.client.model.SemestersEnum;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;

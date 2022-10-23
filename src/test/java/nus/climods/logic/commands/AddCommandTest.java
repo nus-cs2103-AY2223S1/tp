@@ -4,7 +4,7 @@ import static nus.climods.testutil.Assert.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import org.junit.jupiter.api.Test;
-import org.openapitools.client.model.ModuleCondensed.SemestersEnum;
+import org.openapitools.client.model.SemestersEnum;
 
 import nus.climods.logic.commands.exceptions.CommandException;
 import nus.climods.model.Model;
