@@ -26,7 +26,7 @@ public class ModCard extends UiPart<Region> {
     @FXML
     private HBox cardPane;
     @FXML
-    private Label id;
+    private Label modId;
     @FXML
     private Label modName;
     @FXML
@@ -40,7 +40,7 @@ public class ModCard extends UiPart<Region> {
     public ModCard(Mod module, int displayedIndex) {
         super(FXML);
         this.module = module;
-        id.setText(displayedIndex + ". ");
+        modId.setText(displayedIndex + ". ");
         modName.setText(module.getModName());
 
         Mod.ModCategory modCat = module.getModCategory();
@@ -52,13 +52,13 @@ public class ModCard extends UiPart<Region> {
         } else if (modCat.equals(Mod.ModCategory.MATH)) {
             modCategory.setStyle("-fx-background-color: #c29d06;");
         } else if (modCat.equals(Mod.ModCategory.SCI)) {
-            modCategory.setStyle("-fx-background-color: #2e8054;");
+            modCategory.setStyle("-fx-background-color: #cf7332;");
         } else if (modCat.equals(Mod.ModCategory.COMMS)) {
             modCategory.setStyle("-fx-background-color: #9f3cb6;");
         } else if (modCat.equals(Mod.ModCategory.GE)) {
-            modCategory.setStyle("-fx-background-color: #6b43ab;");
+            modCategory.setStyle("-fx-background-color: #42997d;");
         } else if (modCat.equals(Mod.ModCategory.UE)) {
-            modCategory.setStyle("-fx-background-color: #2d589b;");
+            modCategory.setStyle("-fx-background-color: #54789c;");
         }
 
         boolean hasTaken = module.getModStatus();
@@ -85,7 +85,7 @@ public class ModCard extends UiPart<Region> {
 
         // state check
         ModCard card = (ModCard) other;
-        return id.getText().equals(card.id.getText())
+        return modId.getText().equals(card.modId.getText())
                 && this.module.equals(card.module);
     }
 }
