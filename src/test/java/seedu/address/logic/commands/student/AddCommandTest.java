@@ -229,6 +229,16 @@ public class AddCommandTest {
         }
 
         @Override
+        public void resetTutorials() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void resetReminders() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public ObservableList<Consultation> getFilteredConsultationList() {
             throw new AssertionError("This method should not be called.");
         }
@@ -245,6 +255,11 @@ public class AddCommandTest {
 
         @Override
         public void updateFilteredConsultationList(Predicate<Consultation> predicate) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void resetStudents() {
             throw new AssertionError("This method should not be called.");
         }
     }

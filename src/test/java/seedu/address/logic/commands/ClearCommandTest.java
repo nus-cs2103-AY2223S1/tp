@@ -13,20 +13,87 @@ import seedu.address.model.UserPrefs;
 public class ClearCommandTest {
 
     @Test
-    public void execute_emptyAddressBook_success() {
+    public void execute_emptyAddressBookAll_success() {
         Model model = new ModelManager();
         Model expectedModel = new ModelManager();
 
-        assertCommandSuccess(new ClearCommand(), model, ClearCommand.MESSAGE_SUCCESS, expectedModel);
+        assertCommandSuccess(new ClearCommand("all"), model, ClearCommand.MESSAGE_SUCCESS, expectedModel);
     }
 
     @Test
-    public void execute_nonEmptyAddressBook_success() {
+    public void execute_nonEmptyAddressBookAll_success() {
         Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
         Model expectedModel = new ModelManager(getTypicalAddressBook(), new UserPrefs());
         expectedModel.setAddressBook(new AddressBook());
 
-        assertCommandSuccess(new ClearCommand(), model, ClearCommand.MESSAGE_SUCCESS, expectedModel);
+        assertCommandSuccess(new ClearCommand("all"), model, ClearCommand.MESSAGE_SUCCESS, expectedModel);
     }
 
+    @Test
+    public void execute_emptyAddressBookStudent_success() {
+        Model model = new ModelManager();
+        Model expectedModel = new ModelManager();
+
+        assertCommandSuccess(new ClearCommand("student"), model, ClearCommand.MESSAGE_SUCCESS, expectedModel);
+    }
+
+    @Test
+    public void execute_nonEmptyAddressBookStudent_success() {
+        Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+        Model expectedModel = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+        expectedModel.resetStudents();
+
+        assertCommandSuccess(new ClearCommand("student"), model, ClearCommand.MESSAGE_SUCCESS, expectedModel);
+    }
+
+    @Test
+    public void execute_emptyAddressBookConsultation_success() {
+        Model model = new ModelManager();
+        Model expectedModel = new ModelManager();
+
+        assertCommandSuccess(new ClearCommand("consultation"), model, ClearCommand.MESSAGE_SUCCESS, expectedModel);
+    }
+
+    @Test
+    public void execute_nonEmptyAddressBookConsultation_success() {
+        Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+        Model expectedModel = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+        expectedModel.resetConsultations();
+
+        assertCommandSuccess(new ClearCommand("consultation"), model, ClearCommand.MESSAGE_SUCCESS, expectedModel);
+    }
+
+    @Test
+    public void execute_emptyAddressBookTutorial_success() {
+        Model model = new ModelManager();
+        Model expectedModel = new ModelManager();
+
+        assertCommandSuccess(new ClearCommand("tutorial"), model, ClearCommand.MESSAGE_SUCCESS, expectedModel);
+    }
+
+    @Test
+    public void execute_nonEmptyAddressBookTutorial_success() {
+        Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+        Model expectedModel = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+        expectedModel.resetTutorials();
+
+        assertCommandSuccess(new ClearCommand("tutorial"), model, ClearCommand.MESSAGE_SUCCESS, expectedModel);
+    }
+
+    @Test
+    public void execute_emptyAddressBookReminder_success() {
+        Model model = new ModelManager();
+        Model expectedModel = new ModelManager();
+
+        assertCommandSuccess(new ClearCommand("reminder"), model, ClearCommand.MESSAGE_SUCCESS, expectedModel);
+    }
+
+    @Test
+    public void execute_nonEmptyAddressBookReminder_success() {
+        Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+        Model expectedModel = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+        expectedModel.resetReminders();
+
+        assertCommandSuccess(new ClearCommand("reminder"), model, ClearCommand.MESSAGE_SUCCESS, expectedModel);
+    }
 }
