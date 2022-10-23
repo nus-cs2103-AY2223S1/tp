@@ -15,7 +15,7 @@ import java.time.format.DateTimeParseException;
 public class Deadline {
 
     public static final String MESSAGE_CONSTRAINTS =
-            "The deadline was not understood. Perhaps enter it like \"2 Jan 2022 15:04\"?";
+            "The deadline was not understood. Perhaps enter it like \"2 Jan 2022 15:04\" or \"tomorrow at 2pm\"?";
 
     //@@author parnikkapore-reused
     // Date format taken from https://github.com/angkl0/ip/blob/master/src/main/java/duke/tasks/Deadline.java#L39
