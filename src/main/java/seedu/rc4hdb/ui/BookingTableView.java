@@ -2,23 +2,17 @@ package seedu.rc4hdb.ui;
 
 import static java.util.Objects.requireNonNull;
 
+import java.util.List;
+
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
-import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.Region;
-import seedu.rc4hdb.model.resident.Resident;
-import seedu.rc4hdb.model.resident.fields.ResidentField;
-import seedu.rc4hdb.model.venues.Venue;
 import seedu.rc4hdb.model.venues.booking.Booking;
 import seedu.rc4hdb.model.venues.booking.fields.BookingField;
-import seedu.rc4hdb.model.venues.booking.fields.Day;
 import seedu.rc4hdb.model.venues.booking.fields.Hour;
-
-import java.util.Comparator;
-import java.util.List;
 
 /**
  * Represents the table of venues.
@@ -57,7 +51,7 @@ public class BookingTableView extends UiPart<Region> {
         requireNonNull(bookingList);
 
         // make sure venue has cleared all expired bookings before showing bookings
-//        bookingList.forEach(Venue::clearExpiredBookings);
+        // bookingList.forEach(Venue::clearExpiredBookings);
         this.bookingTableView.setItems(bookingList);
 
         populateDayOfWeekColumn(dayColumn);
@@ -87,19 +81,19 @@ public class BookingTableView extends UiPart<Region> {
     }
 
     private void populateRows() {
-//        this.venueIndexColumn.setCellValueFactory(new PropertyValueFactory<>("venueIndex"));
-//        this.venueNameColumn.setCellValueFactory(new PropertyValueFactory<>("venueName"));
+        // this.venueIndexColumn.setCellValueFactory(new PropertyValueFactory<>("venueIndex"));
+        // this.venueNameColumn.setCellValueFactory(new PropertyValueFactory<>("venueName"));
     }
 
-//    private void sort(ObservableList<Booking> bookingList) {
-//        bookingList.sorted(new Comparator<Booking>() {
-//            @Override
-//            public int compare(Booking o1, Booking o2) {
-//
-//                return ;
-//            }
-//        })
-//    }
+    // private void sort(ObservableList<Booking> bookingList) {
+    //    bookingList.sorted(new Comparator<Booking>() {
+    //        @Override
+    //        public int compare(Booking o1, Booking o2) {
+
+    //            return ;
+    //        }
+    //    })
+    // }
 
     /**
      * Code referenced from:
