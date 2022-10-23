@@ -15,7 +15,7 @@ public class MarkCommandParserTest {
     private MarkCommandParser parser = new MarkCommandParser();
 
     @Test
-    public void parse_validArgs_returnsDeleteCommand() {
+    public void parse_validArgs_returnsMarkCommand() {
         assertParseSuccess(parser, "1", new MarkCommand(INDEX_FIRST_PERSON));
     }
 

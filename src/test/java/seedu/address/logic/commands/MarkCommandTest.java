@@ -29,7 +29,7 @@ import seedu.address.model.person.Person;
 import seedu.address.testutil.PersonBuilder;
 
 /**
- * Contains integration tests (interaction with the Model) and unit tests for EditCommand.
+ * Contains integration tests (interaction with the Model) and unit tests for MarkCommand.
  */
 public class MarkCommandTest {
 
