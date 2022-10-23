@@ -192,6 +192,7 @@ public class Person {
                 .append(getAttendanceList())
                 .append("; Session: ")
                 .append(getSessionList())
+                .append("; Grade Progress: ")
                 .append(getGradeProgressList());
 
         Set<Tag> tags = getTags();
