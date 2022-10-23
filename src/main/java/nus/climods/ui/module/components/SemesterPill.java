@@ -28,6 +28,17 @@ public class SemesterPill extends Pill {
      * @param semester semester enum
      * @param bgColor background color
      * @param textColor text color
+     */
+    public SemesterPill(SemestersEnum semester, String bgColor, String textColor) {
+        super(semester.toString(), bgColor, textColor, DEFAULT_SEMESTER_FONT_SIZE);
+    }
+
+    /**
+     * Creates a SemesterPill.
+     *
+     * @param semester semester enum
+     * @param bgColor background color
+     * @param textColor text color
      * @param fontSize font size
      */
     public SemesterPill(SemestersEnum semester, String bgColor, String textColor, int fontSize) {
