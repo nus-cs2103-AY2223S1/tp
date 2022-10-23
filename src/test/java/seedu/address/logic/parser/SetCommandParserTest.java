@@ -135,59 +135,100 @@ public class SetCommandParserTest {
     }
 
     @Test
-    public void parse_oneFieldSpecified_success() {
-        // name
+    public void parse_onlyNameSpecified_success() {
         String userInput = NAME_DESC_AMY;
-        SetPersonDescriptor descriptor = new SetPersonDescriptorBuilder().withName(VALID_NAME_AMY).build();
+        SetPersonDescriptor descriptor = new SetPersonDescriptorBuilder()
+                .withName(VALID_NAME_AMY)
+                .build();
         SetCommand expectedCommand = new SetCommand(descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
+    }
 
+    @Test
+    public void parse_onlyAddressSpecified_success() {
         // address
-        userInput = ADDRESS_DESC_AMY;
-        descriptor = new SetPersonDescriptorBuilder().withAddress(VALID_ADDRESS_AMY).build();
-        expectedCommand = new SetCommand(descriptor);
+        String userInput = ADDRESS_DESC_AMY;
+        SetPersonDescriptor descriptor = new SetPersonDescriptorBuilder()
+                .withAddress(VALID_ADDRESS_AMY)
+                .build();
+        SetCommand expectedCommand = new SetCommand(descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
+    }
 
-        // tags
-        userInput = TAG_DESC_FRIEND;
-        descriptor = new SetPersonDescriptorBuilder().withTags(VALID_TAG_FRIEND).build();
-        expectedCommand = new SetCommand(descriptor);
-        assertParseSuccess(parser, userInput, expectedCommand);
-
+    @Test
+    public void parse_onlyRoleSpecified_success() {
         // role
-        userInput = ROLE_DESC_AMY;
-        descriptor = new SetPersonDescriptorBuilder().withRole(VALID_ROLE_AMY).build();
-        expectedCommand = new SetCommand(descriptor);
+        String userInput = ROLE_DESC_AMY;
+        SetPersonDescriptor descriptor = new SetPersonDescriptorBuilder()
+                .withRole(VALID_ROLE_AMY)
+                .build();
+        SetCommand expectedCommand = new SetCommand(descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
+    }
 
+    @Test
+    public void parse_onlyTimezoneSpecified_success() {
         // timezone
-        userInput = TIMEZONE_DESC_AMY;
-        descriptor = new SetPersonDescriptorBuilder().withTimezone(VALID_TIMEZONE_AMY).build();
-        expectedCommand = new SetCommand(descriptor);
+        String userInput = TIMEZONE_DESC_AMY;
+        SetPersonDescriptor descriptor = new SetPersonDescriptorBuilder()
+                .withTimezone(VALID_TIMEZONE_AMY)
+                .build();
+        SetCommand expectedCommand = new SetCommand(descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
+    }
 
+    @Test
+    public void parse_onlyTagsSpecified_success() {
+        // tags
+        String userInput = TAG_DESC_FRIEND;
+        SetPersonDescriptor descriptor = new SetPersonDescriptorBuilder()
+                .withTags(VALID_TAG_FRIEND)
+                .build();
+        SetCommand expectedCommand = new SetCommand(descriptor);
+        assertParseSuccess(parser, userInput, expectedCommand);
+    }
+
+    @Test
+    public void parse_onlyTelegramSpecified_success() {
         // telegram
-        userInput = TELEGRAM_DESC_AMY;
-        descriptor = new SetPersonDescriptorBuilder().withContact(ContactType.TELEGRAM, VALID_TELEGRAM_AMY).build();
-        expectedCommand = new SetCommand(descriptor);
+        String userInput = TELEGRAM_DESC_AMY;
+        SetPersonDescriptor descriptor = new SetPersonDescriptorBuilder()
+                .withContact(ContactType.TELEGRAM, VALID_TELEGRAM_AMY)
+                .build();
+        SetCommand expectedCommand = new SetCommand(descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
+    }
 
-        // slack
-        userInput = SLACK_DESC_AMY;
-        descriptor = new SetPersonDescriptorBuilder().withContact(ContactType.SLACK, VALID_SLACK_AMY).build();
-        expectedCommand = new SetCommand(descriptor);
-        assertParseSuccess(parser, userInput, expectedCommand);
-
+    @Test
+    public void parse_onlyEmailSpecified_success() {
         // email
-        userInput = EMAIL_DESC_AMY;
-        descriptor = new SetPersonDescriptorBuilder().withContact(ContactType.EMAIL, VALID_EMAIL_AMY).build();
-        expectedCommand = new SetCommand(descriptor);
+        String userInput = EMAIL_DESC_AMY;
+        SetPersonDescriptor descriptor = new SetPersonDescriptorBuilder()
+                .withContact(ContactType.EMAIL, VALID_EMAIL_AMY)
+                .build();
+        SetCommand expectedCommand = new SetCommand(descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
+    }
 
+    @Test
+    public void parse_onlyPhoneSpecified_success() {
         // phone
-        userInput = PHONE_DESC_AMY;
-        descriptor = new SetPersonDescriptorBuilder().withContact(ContactType.PHONE, VALID_PHONE_AMY).build();
-        expectedCommand = new SetCommand(descriptor);
+        String userInput = PHONE_DESC_AMY;
+        SetPersonDescriptor descriptor = new SetPersonDescriptorBuilder()
+                .withContact(ContactType.PHONE, VALID_PHONE_AMY)
+                .build();
+        SetCommand expectedCommand = new SetCommand(descriptor);
+        assertParseSuccess(parser, userInput, expectedCommand);
+    }
+
+    @Test
+    public void parse_onlySlackSpecified_success() {
+        // slack
+        String userInput = SLACK_DESC_AMY;
+        SetPersonDescriptor descriptor = new SetPersonDescriptorBuilder()
+                .withContact(ContactType.SLACK, VALID_SLACK_AMY)
+                .build();
+        SetCommand expectedCommand = new SetCommand(descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
     }
 
@@ -200,8 +241,10 @@ public class SetCommandParserTest {
                 + ADDRESS_DESC_BOB
                 + TAG_DESC_HUSBAND;
 
-        SetPersonDescriptor descriptor = new SetPersonDescriptorBuilder().withAddress(VALID_ADDRESS_BOB)
-                .withTags(VALID_TAG_FRIEND, VALID_TAG_HUSBAND).build();
+        SetPersonDescriptor descriptor = new SetPersonDescriptorBuilder()
+                .withAddress(VALID_ADDRESS_BOB)
+                .withTags(VALID_TAG_FRIEND, VALID_TAG_HUSBAND)
+                .build();
 
         SetCommand expectedCommand = new SetCommand(descriptor);
 
@@ -212,7 +255,9 @@ public class SetCommandParserTest {
     public void parse_invalidValueFollowedByValidValue_success() {
         // no other valid values specified
         String userInput = INVALID_ADDRESS_DESC + ADDRESS_DESC_BOB;
-        SetPersonDescriptor descriptor = new SetPersonDescriptorBuilder().withAddress(VALID_ADDRESS_BOB).build();
+        SetPersonDescriptor descriptor = new SetPersonDescriptorBuilder()
+                .withAddress(VALID_ADDRESS_BOB)
+                .build();
         SetCommand expectedCommand = new SetCommand(descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
     }
@@ -221,7 +266,9 @@ public class SetCommandParserTest {
     public void parse_resetTags_success() {
         String userInput = TAG_EMPTY;
 
-        SetPersonDescriptor descriptor = new SetPersonDescriptorBuilder().withTags().build();
+        SetPersonDescriptor descriptor = new SetPersonDescriptorBuilder()
+                .withTags()
+                .build();
         SetCommand expectedCommand = new SetCommand(descriptor);
 
         assertParseSuccess(parser, userInput, expectedCommand);
