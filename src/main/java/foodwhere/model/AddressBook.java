@@ -78,7 +78,9 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     private Stall getStallOfReview(Review review) throws StallNotFoundException {
         for (Stall stall : stalls) {
-            if (stall.getName().equals(review.getName())) {
+            boolean isMatchingName = stall.getName().equals(review.getName());
+            boolean isMatchingAddress = stall.getAddress().equals(review.getAddress());
+            if (isMatchingName && isMatchingAddress) {
                 return stall;
             }
         }

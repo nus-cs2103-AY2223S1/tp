@@ -5,6 +5,7 @@ import java.util.Set;
 
 import foodwhere.model.commons.Name;
 import foodwhere.model.commons.Tag;
+import foodwhere.model.stall.Address;
 import foodwhere.model.util.SampleDataUtil;
 
 /**
@@ -13,11 +14,13 @@ import foodwhere.model.util.SampleDataUtil;
 public class ReviewBuilder {
 
     public static final String DEFAULT_NAME = "Untitled Review";
+    public static final String DEFAULT_ADDRESS = "Unknown Location";
     public static final String DEFAULT_DATE = "1/1/1970";
     public static final String DEFAULT_CONTENT = "No comment.";
     public static final String DEFAULT_RATING = "3";
 
     private Name name;
+    private Address address;
     private Date date;
     private Content content;
     private Rating rating;
@@ -28,6 +31,7 @@ public class ReviewBuilder {
      */
     public ReviewBuilder() {
         name = new Name(DEFAULT_NAME);
+        address = new Address(DEFAULT_ADDRESS);
         date = new Date(DEFAULT_DATE);
         content = new Content(DEFAULT_CONTENT);
         rating = new Rating(DEFAULT_RATING);
@@ -38,7 +42,8 @@ public class ReviewBuilder {
      * Initializes the ReviewBuilder with the data of {@code reviewToCopy}.
      */
     public ReviewBuilder(Review reviewToCopy) {
-        name = new Name(reviewToCopy.getName().fullName);
+        name = reviewToCopy.getName();
+        address = reviewToCopy.getAddress();
         date = reviewToCopy.getDate();
         content = reviewToCopy.getContent();
         rating = reviewToCopy.getRating();
@@ -50,6 +55,14 @@ public class ReviewBuilder {
      */
     public ReviewBuilder withName(String name) {
         this.name = new Name(name);
+        return this;
+    }
+
+    /**
+     * Sets the {@code Address} of the {@code Review} that we are building.
+     */
+    public ReviewBuilder withAddress(String address) {
+        this.address = new Address(address);
         return this;
     }
 
@@ -86,7 +99,7 @@ public class ReviewBuilder {
     }
 
     public Review build() {
-        return new Review(name, date, content, rating, tags);
+        return new Review(name, address, date, content, rating, tags);
     }
 
 }

@@ -6,7 +6,7 @@
     "tags" : [ "friends" ],
     "reviews" : [ {
       "date" : "1/1/2020",
-      "content" : "123, Jurong West Ave 6, #08-111",
+      "content" : "Great view and decor!",
       "rating": 3,
       "tags" : [ "friends" ]
     } ]
@@ -16,7 +16,7 @@
     "tags" : [ "owesMoney", "friends" ],
     "reviews" : [ {
       "date" : "31/12/2021",
-      "content" : "311, Clementi Ave 2, #02-25",
+      "content" : "The food is warm and nourishing.",
       "rating": 3,
       "tags" : [ "owesMoney", "friends" ]
     } ]

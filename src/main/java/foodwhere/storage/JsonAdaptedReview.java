@@ -16,6 +16,7 @@ import foodwhere.model.review.Content;
 import foodwhere.model.review.Date;
 import foodwhere.model.review.Rating;
 import foodwhere.model.review.Review;
+import foodwhere.model.stall.Address;
 
 /**
  * Jackson-friendly version of {@link Review}.
@@ -62,10 +63,15 @@ class JsonAdaptedReview {
      *
      * @throws IllegalValueException if there were any data constraints violated in the adapted stall.
      */
-    public Review toModelType(Name modelName) throws IllegalValueException {
+    public Review toModelType(Name modelName, Address modelAddress) throws IllegalValueException {
         if (modelName == null) {
             throw new IllegalValueException(String.format(JsonAdaptedReview.MISSING_FIELD_MESSAGE_FORMAT,
                     Name.class.getSimpleName()));
+        }
+
+        if (modelAddress == null) {
+            throw new IllegalValueException(String.format(JsonAdaptedReview.MISSING_FIELD_MESSAGE_FORMAT,
+                    Address.class.getSimpleName()));
         }
 
         final List<Tag> reviewTags = new ArrayList<>();
@@ -102,7 +108,7 @@ class JsonAdaptedReview {
 
         final Set<Tag> modelTags = new HashSet<>(reviewTags);
 
-        return new Review(modelName, modelDate, modelContent, modelRating, modelTags);
+        return new Review(modelName, modelAddress, modelDate, modelContent, modelRating, modelTags);
     }
 
 }

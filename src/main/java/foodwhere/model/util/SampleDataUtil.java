@@ -36,10 +36,12 @@ public class SampleDataUtil {
 
     public static Review[] getSampleReviews() {
         return new Review[] {
-            new Review(new Name("Alex Chicken Rice"), new Date("20/09/2022"),
-                    new Content("Very tasty. Worth the trip"), new Rating("5"), getTagSet("travelworthy")),
-            new Review(new Name("Irfan Muslim Food"), new Date("21/09/2022"),
-                    new Content("Very affordable"), new Rating("3"), getTagSet("halal"))
+            new Review(new Name("Alex Chicken Rice"), new Address("Blk 30 Geylang Street 29, #06-40"),
+                    new Date("20/09/2022"), new Content("Very tasty. Worth the trip"), new Rating("5"),
+                    getTagSet("travelworthy")),
+            new Review(new Name("Irfan Muslim Food"), new Address("Blk 436 Serangoon Gardens Street 26, #16-43"),
+                    new Date("21/09/2022"), new Content("Very affordable"), new Rating("3"),
+                    getTagSet("halal"))
         };
     }
 
