@@ -29,10 +29,12 @@ import seedu.address.logic.commands.FindTasksCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.LinkExamCommand;
 import seedu.address.logic.commands.ListCommand;
+import seedu.address.logic.commands.ListExamTasksCommand;
 import seedu.address.logic.commands.ListModulesCommand;
 import seedu.address.logic.commands.ListTasksCommand;
 import seedu.address.logic.commands.MarkCommand;
 import seedu.address.logic.commands.SortTaskCommand;
+import seedu.address.logic.commands.UnlinkExamCommand;
 import seedu.address.logic.commands.UnmarkCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
@@ -92,6 +94,9 @@ public class AddressBookParser {
         case LinkExamCommand.COMMAND_WORD:
             return new LinkExamCommandParser().parse(arguments);
 
+        case UnlinkExamCommand.COMMAND_WORD:
+            return new UnlinkExamCommandParser().parse(arguments);
+
         case SortTaskCommand.COMMAND_WORD:
             return new SortTaskCommandParser().parse(arguments);
 
@@ -118,6 +123,7 @@ public class AddressBookParser {
 
         case FindModulesCommand.COMMAND_WORD:
             return new FindModulesCommandParser().parse(arguments);
+
         case ListModulesCommand.COMMAND_WORD:
             return new ListModulesCommand();
 
@@ -141,8 +147,13 @@ public class AddressBookParser {
 
         case FilterTasksCommand.COMMAND_WORD:
             return new FilterTasksCommandParser().parse(arguments);
+
         case AddExamCommand.COMMAND_WORD:
             return new AddExamCommandParser().parse(arguments);
+
+        case ListExamTasksCommand.COMMAND_WORD:
+            return new ListExamTasksCommandParser().parse(arguments);
+
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
         }

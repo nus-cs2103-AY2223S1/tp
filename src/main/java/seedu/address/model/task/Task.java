@@ -210,6 +210,10 @@ public class Task {
         return new Task(module, description, status, priorityTag, deadlineTag, exam);
     }
 
+    public Task unlinkTask() {
+        return new Task(module, description, status, priorityTag, deadlineTag, null);
+    }
+
     @Override
     public boolean equals(Object other) {
         if (other == this) {
