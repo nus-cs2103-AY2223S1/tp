@@ -5,10 +5,10 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
 import java.util.List;
 
 import seedu.address.model.person.Person;
+import seedu.address.model.person.UniquePersonList;
 
 /**
  * Tasks are used to track the progress of a team.
@@ -32,7 +32,7 @@ public class Task {
     /**
      * Team member(s) assigned to be in charge of this task.
      */
-    private List<Person> assignees;
+    private final UniquePersonList assignees = new UniquePersonList();
 
     /**
      * Deadline of the task.
@@ -40,16 +40,22 @@ public class Task {
     private LocalDateTime deadline;
 
     /**
+     * Completion status of the task.
+     */
+    private boolean completionStatus;
+
+    /**
      * Constructs a {@code Task}.
      *
      * @param name A valid task name.
      */
-    public Task(String name) {
+    public Task(String name, List<Person> assignees, boolean completionStatus, LocalDateTime deadline) {
         requireNonNull(name);
         checkArgument(isValidName(name), MESSAGE_CONSTRAINTS);
         this.name = name;
-        assignees = new ArrayList<>();
-        deadline = null;
+        this.assignees.setPersons(assignees);
+        this.completionStatus = completionStatus;
+        this.deadline = deadline;
     }
 
     /**
@@ -60,34 +66,34 @@ public class Task {
     }
 
     public boolean isValidIndex(int test) {
-        return test < assignees.size();
+        return test < getAssigneesList().size();
     }
 
     @Override
     public String toString() {
-        return name + getAssigneesAsString() + getDeadlineAsString();
+        return getCompletionStatus() + name + getAssigneesAsString() + getDeadlineAsString();
     }
 
     public String getName() {
         return name;
     }
 
-    public List<Person> getAssignees() {
-        return assignees;
-    }
-
     public String getAssigneesAsString() {
-        if (assignees.isEmpty()) {
+        if (getAssigneesList().isEmpty()) {
             return " (Not assigned to any member yet)";
         } else {
             StringBuilder assigneeNames = new StringBuilder(" (Assigned to: ");
-            assigneeNames.append(assignees.get(0).getName());
-            for (int i = 1; i < assignees.size(); i++) {
-                assigneeNames.append(", ").append(assignees.get(i).getName());
+            assigneeNames.append(getAssigneesList().get(0).getName());
+            for (int i = 1; i < getAssigneesList().size(); i++) {
+                assigneeNames.append(", ").append(getAssigneesList().get(i).getName());
             }
             assigneeNames.append(")");
             return assigneeNames.toString();
         }
+    }
+
+    public List<Person> getAssigneesList() {
+        return this.assignees.asUnmodifiableObservableList();
     }
 
     public String getDeadlineAsString() {
@@ -95,6 +101,14 @@ public class Task {
             return "";
         } else {
             return String.format("(By %s)", deadline.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm")));
+        }
+    }
+
+    public String getDeadlineStorage() {
+        if (deadline == null) {
+            return "";
+        } else {
+            return deadline.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm"));
         }
     }
 
@@ -133,5 +147,21 @@ public class Task {
 
     public void setDeadline(LocalDateTime date) {
         this.deadline = date;
+    }
+
+    public void mark(boolean completionStatus) {
+        this.completionStatus = completionStatus;
+    }
+
+    public boolean isComplete() {
+        return completionStatus;
+    }
+
+    public String getCompletionStatus() {
+        if (this.isComplete()) {
+            return "[X] ";
+        } else {
+            return "[ ] ";
+        }
     }
 }

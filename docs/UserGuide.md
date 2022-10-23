@@ -172,10 +172,23 @@ Examples:
 
 ### List tasks in team: `list_tasks`
 
-View all the tasks currently in the user’s team in the form of a list.
+View all the tasks currently in the user’s team in the form of a list. List can also be filtered based on complete
+or remaining tasks.
 
 Format:
 * `list_tasks` will list all the tasks of the current team.
+* `list_tasks -f i` will list all the incomplete tasks of the current team.
+* `list_tasks -f c` will list all the completed tasks of the current team.
+
+### Mark tasks as done: `mark`
+
+Mark a specified task as done.
+
+Format:
+* `mark INDEX`
+
+Examples:
+* `mark 1` will mark the first task in the team as done.
 
 ### View summary of task assignments in team: `summary`
 

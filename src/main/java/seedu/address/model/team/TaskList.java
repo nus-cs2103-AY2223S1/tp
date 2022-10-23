@@ -90,7 +90,7 @@ public class TaskList implements Iterable<Task> {
     public Map<Person, Integer> getTasksPerPerson() {
         HashMap<Person, Integer> assignments = new HashMap<>();
         for (Task t : internalList) {
-            for (Person p : t.getAssignees()) {
+            for (Person p : t.getAssigneesList()) {
                 assignments.put(p, assignments.getOrDefault(p, 0) + 1);
             }
         }
@@ -103,6 +103,36 @@ public class TaskList implements Iterable<Task> {
      */
     public ObservableList<Task> asUnmodifiableObservableList() {
         return internalUnmodifiableList;
+    }
+
+    public String getCompletedTasksString() {
+        if (internalList.isEmpty()) {
+            return ""; //return NO_TASKS;
+        }
+        StringBuilder sb = new StringBuilder();
+        int i = 1;
+        for (Task task : internalList) {
+            if (task.isComplete()) {
+                sb.append(String.format("\t%d. %s\n", i, task));
+            }
+            i++;
+        }
+        return sb.toString();
+    }
+
+    public String getIncompleteTasksString() {
+        if (internalList.isEmpty()) {
+            return ""; //return NO_TASKS;
+        }
+        StringBuilder sb = new StringBuilder();
+        int i = 1;
+        for (Task task : internalList) {
+            if (!task.isComplete()) {
+                sb.append(String.format("\t%d. %s\n", i, task));
+            }
+            i++;
+        }
+        return sb.toString();
     }
 
     @Override
