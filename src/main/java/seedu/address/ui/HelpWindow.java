@@ -53,10 +53,8 @@ public class HelpWindow extends UiPart<Stage> {
 
         Map<String, String> generalCommands = NuSchedulerParser.getGeneralCommands();
         generalCommands.forEach((format, description) -> {
-            Label label = new Label(description);
-            label.setWrapText(true);
             HBox hBox = new HBox();
-            hBox.getChildren().add(label);
+            hBox.getChildren().add(new Label(description));
             hBox.setAlignment(Pos.TOP_LEFT);
             hBox.prefWidth(288.0);
             generalAccordion.getPanes().add(new TitledPane(format, hBox));
@@ -64,10 +62,8 @@ public class HelpWindow extends UiPart<Stage> {
 
         Map<String, String> profileCommands = ProfileCommandParser.getProfileCommands();
         profileCommands.forEach((format, description) -> {
-            Label label = new Label(description);
-            label.setWrapText(true);
             HBox hBox = new HBox();
-            hBox.getChildren().add(label);
+            hBox.getChildren().add(new Label(description));
             hBox.setAlignment(Pos.TOP_LEFT);
             hBox.prefWidth(288.0);
             profileAccordion.getPanes().add(new TitledPane(format, hBox));
@@ -75,10 +71,8 @@ public class HelpWindow extends UiPart<Stage> {
 
         Map<String, String> eventCommands = EventCommandParser.getEventCommands();
         eventCommands.forEach((format, description) -> {
-            Label label = new Label(description);
-            label.setWrapText(true);
             HBox hBox = new HBox();
-            hBox.getChildren().add(label);
+            hBox.getChildren().add(new Label(description));
             hBox.setAlignment(Pos.TOP_LEFT);
             hBox.prefWidth(288.0);
             eventAccordion.getPanes().add(new TitledPane(format, hBox));
