@@ -1,7 +1,7 @@
+# Swift+
+
 [![codecov](https://codecov.io/gh/AY2223S1-CS2103T-T12-2/tp/branch/master/graph/badge.svg?token=A2FU6P932B)](https://app.codecov.io/gh/AY2223S1-CS2103T-T12-2/tp)
 [![CI Status](https://github.com/AY2223S1-CS2103T-T12-2/tp/workflows/Java%20CI/badge.svg)](https://github.com/AY2223S1-CS2103T-T12-2/tp/actions)
-
-# Swift+
 
 ![Ui](docs/images/Ui.png)
 
@@ -27,3 +27,4 @@
 ## Acknowledgements
 
 - This project is based on the AddressBook-Level3 project created by the [SE-EDU initiative](https://se-education.org).
+- Libraries used: [JavaFX](https://openjfx.io/), [Jackson](https://github.com/FasterXML/jackson), [JUnit5](https://github.com/junit-team/junit5)

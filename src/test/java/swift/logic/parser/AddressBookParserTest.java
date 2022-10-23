@@ -17,7 +17,7 @@ import org.junit.jupiter.api.Test;
 import swift.logic.commands.AddContactCommand;
 import swift.logic.commands.AddTaskCommand;
 import swift.logic.commands.ClearCommand;
-import swift.logic.commands.DeleteCommand;
+import swift.logic.commands.DeleteContactCommand;
 import swift.logic.commands.EditContactCommand;
 import swift.logic.commands.EditContactCommand.EditPersonDescriptor;
 import swift.logic.commands.ExitCommand;
@@ -25,6 +25,7 @@ import swift.logic.commands.FindContactCommand;
 import swift.logic.commands.HelpCommand;
 import swift.logic.commands.ListContactCommand;
 import swift.logic.commands.ListTaskCommand;
+import swift.logic.commands.SelectContactCommand;
 import swift.logic.parser.exceptions.ParseException;
 import swift.model.person.Person;
 import swift.model.person.PersonNameContainsKeywordsPredicate;
@@ -54,9 +55,9 @@ public class AddressBookParserTest {
 
     @Test
     public void parseCommand_delete() throws Exception {
-        DeleteCommand command = (DeleteCommand) parser.parseCommand(
-                DeleteCommand.COMMAND_WORD + " " + INDEX_FIRST_PERSON.getOneBased());
-        assertEquals(new DeleteCommand(INDEX_FIRST_PERSON), command);
+        DeleteContactCommand command = (DeleteContactCommand) parser.parseCommand(
+                DeleteContactCommand.COMMAND_WORD + " " + INDEX_FIRST_PERSON.getOneBased());
+        assertEquals(new DeleteContactCommand(INDEX_FIRST_PERSON), command);
     }
 
     @Test
@@ -86,6 +87,13 @@ public class AddressBookParserTest {
     public void parseCommand_help() throws Exception {
         assertTrue(parser.parseCommand(HelpCommand.COMMAND_WORD) instanceof HelpCommand);
         assertTrue(parser.parseCommand(HelpCommand.COMMAND_WORD + " 3") instanceof HelpCommand);
+    }
+
+    @Test
+    public void parseCommand_selectContact() throws Exception {
+        SelectContactCommand command = (SelectContactCommand) parser.parseCommand(
+                SelectContactCommand.COMMAND_WORD + " " + INDEX_FIRST_PERSON.getOneBased());
+        assertEquals(new SelectContactCommand(INDEX_FIRST_PERSON), command);
     }
 
     @Test

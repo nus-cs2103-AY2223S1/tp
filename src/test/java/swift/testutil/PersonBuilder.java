@@ -17,7 +17,7 @@ import swift.model.util.SampleDataUtil;
  */
 public class PersonBuilder {
 
-    public static final String DEFAULT_UUID = "47005f2b-9c40-4051-8c95-69ca601cb58d";
+    public static final String DEFAULT_UUID = "c4c645da-27b3-454d-9428-5295a6ee1f33";
     public static final String DEFAULT_NAME = "Amy Bee";
     public static final String DEFAULT_PHONE = "85355255";
     public static final String DEFAULT_EMAIL = "amy@gmail.com";
