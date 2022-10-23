@@ -3,6 +3,7 @@ package taskbook.logic.parser.categoryless;
 import taskbook.commons.core.Messages;
 import taskbook.logic.commands.Command;
 import taskbook.logic.commands.categoryless.ExitCommand;
+import taskbook.logic.commands.categoryless.HelpCommand;
 import taskbook.logic.commands.categoryless.RedoCommand;
 import taskbook.logic.commands.categoryless.UndoCommand;
 import taskbook.logic.parser.exceptions.ParseException;
@@ -25,6 +26,8 @@ public class CategorylessParser {
             return new UndoCommand();
         case RedoCommand.COMMAND_WORD:
             return new RedoCommand();
+        case HelpCommand.COMMAND_WORD:
+            return new HelpCommandParser().parse(arguments);
         case ExitCommand.COMMAND_WORD:
             return new ExitCommand();
         default:

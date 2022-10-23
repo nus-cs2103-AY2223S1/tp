@@ -16,6 +16,8 @@ public class UndoCommand extends Command {
     public static final String COMMAND_WORD = "undo";
     public static final String MESSAGE_SUCCESS = "Reverted to the previous state.";
     public static final String MESSAGE_INVALID_ACTION = "There are no actions left to undo.";
+    public static final String MESSAGE_USAGE = COMMAND_WORD
+        + ": Undoes the previous command and reverts the TaskBook to the previous state.";
 
     @Override
     public CommandResult execute(Model model) throws CommandException {

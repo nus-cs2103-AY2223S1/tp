@@ -10,8 +10,8 @@ import org.junit.jupiter.api.Test;
 
 import taskbook.commons.core.Messages;
 import taskbook.logic.commands.Command;
-import taskbook.logic.commands.HelpCommand;
 import taskbook.logic.commands.categoryless.ExitCommand;
+import taskbook.logic.commands.categoryless.HelpCommand;
 import taskbook.logic.commands.contacts.ContactAddCommand;
 import taskbook.logic.commands.contacts.ContactDeleteCommand;
 import taskbook.logic.commands.contacts.ContactListCommand;
