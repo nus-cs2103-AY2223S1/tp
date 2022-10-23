@@ -341,8 +341,10 @@ public class Appointment {
      * @param appointment The other person to compare with.
      */
     public int groupCompareTo(Appointment appointment) {
-        return 10 * this.getGroupNumber().compareTo(appointment.getGroupNumber())
-                + this.compareTo(appointment);
+        int tagWeight = 10;
+        int dateWeight = 1;
+        return tagWeight * this.getGroupNumber().compareTo(appointment.getGroupNumber())
+            + dateWeight * this.compareTo(appointment);
     }
 
     @Override

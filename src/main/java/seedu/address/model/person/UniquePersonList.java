@@ -36,7 +36,7 @@ public class UniquePersonList implements Iterable<Person> {
     private Comparator<Person> comparator = COMPARATOR_UNGROUP_PATIENTS;
 
     /**
-     * Constructs a UniquePersonList with an added listener to sort list when appointments are updated.
+     * Constructs a UniquePersonList with an added listener to sort list when patients are updated.
      */
     public UniquePersonList() {
         internalList.addListener((ListChangeListener<Person>) c -> {

@@ -29,13 +29,12 @@ public class ListCommand extends Command {
 
     @Override
     public CommandResult execute(Model model) {
+        requireNonNull(model);
         if (this.type.equals("patients")) {
-            requireNonNull(model);
             model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
             HiddenPredicateSingleton.clearHiddenPatients();
             return new CommandResult(MESSAGE_SUCCESS_PATIENTS);
         } else {
-            requireNonNull(model);
             model.updateFilteredAppointmentList(PREDICATE_SHOW_ALL_APPOINTMENTS);
             HiddenPredicateSingleton.clearHiddenAppts();
             return new CommandResult(MESSAGE_SUCCESS_APPOINTMENTS);

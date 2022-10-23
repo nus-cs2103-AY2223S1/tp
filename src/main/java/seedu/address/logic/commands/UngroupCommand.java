@@ -28,12 +28,11 @@ public class UngroupCommand extends Command {
 
     @Override
     public CommandResult execute(Model model) {
+        requireNonNull(model);
         if (this.type.equals("patients")) {
-            requireNonNull(model);
             model.updatePersonComparator(COMPARATOR_UNGROUP_PATIENTS);
             return new CommandResult(MESSAGE_SUCCESS_PATIENTS);
         } else {
-            requireNonNull(model);
             model.updateAppointmentComparator(COMPARATOR_UNGROUP_APPOINTMENTS);
             return new CommandResult(MESSAGE_SUCCESS_APPOINTMENTS);
         }

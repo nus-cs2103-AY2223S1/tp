@@ -160,8 +160,10 @@ public class Person {
      * @param person The other person to compare with.
      */
     public int groupCompareTo(Person person) {
-        return 10 * this.getGroupNumber().compareTo(person.getGroupNumber())
-                + this.compareTo(person);
+        int tagWeight = 10;
+        int nameWeight = 1;
+        return tagWeight * this.getGroupNumber().compareTo(person.getGroupNumber())
+            + nameWeight * this.compareTo(person);
     }
 
     /**
