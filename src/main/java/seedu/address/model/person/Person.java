@@ -7,6 +7,7 @@ import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
+import seedu.address.model.module.ModuleCode;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -21,18 +22,18 @@ public class Person {
     private final Email email;
 
     // Data fields
-    private final Address address;
+    private final ModuleCode moduleCode;
     private final Set<Tag> tags = new HashSet<>();
 
     /**
      * Every field must be present and not null.
      */
-    public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags) {
-        requireAllNonNull(name, phone, email, address, tags);
+    public Person(Name name, Phone phone, Email email, ModuleCode moduleCode, Set<Tag> tags) {
+        requireAllNonNull(name, phone, email, moduleCode, tags);
         this.name = name;
         this.phone = phone;
         this.email = email;
-        this.address = address;
+        this.moduleCode = moduleCode;
         this.tags.addAll(tags);
     }
 
@@ -48,8 +49,8 @@ public class Person {
         return email;
     }
 
-    public Address getAddress() {
-        return address;
+    public ModuleCode getModuleCode() {
+        return moduleCode;
     }
 
     /**
@@ -91,14 +92,14 @@ public class Person {
         return otherPerson.getName().equals(getName())
                 && otherPerson.getPhone().equals(getPhone())
                 && otherPerson.getEmail().equals(getEmail())
-                && otherPerson.getAddress().equals(getAddress())
+                && otherPerson.getModuleCode().equals(getModuleCode())
                 && otherPerson.getTags().equals(getTags());
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, address, tags);
+        return Objects.hash(name, phone, email, moduleCode, tags);
     }
 
     @Override
@@ -109,8 +110,8 @@ public class Person {
                 .append(getPhone())
                 .append("; Email: ")
                 .append(getEmail())
-                .append("; Address: ")
-                .append(getAddress());
+                .append("; Module Code: ")
+                .append(getModuleCode());
 
         Set<Tag> tags = getTags();
         if (!tags.isEmpty()) {
