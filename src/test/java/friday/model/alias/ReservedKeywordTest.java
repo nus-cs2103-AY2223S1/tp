@@ -4,9 +4,14 @@ import static friday.testutil.Assert.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+import friday.logic.commands.AddCommand;
+import friday.logic.commands.DeleteCommand;
 import org.junit.jupiter.api.Test;
 
 public class ReservedKeywordTest {
+
+    private static final String INVALID_RESERVED_KEYWORD_1 = "";
+    private static final String INVALID_RESERVED_KEYWORD_2 = "ad";
 
     @Test
     public void constructor_null_throwsNullPointerException() {
@@ -19,12 +24,12 @@ public class ReservedKeywordTest {
         assertThrows(NullPointerException.class, () -> ReservedKeyword.isValidReservedKeyword(null));
 
         // invalid reserved keyword
-        assertFalse(ReservedKeyword.isValidReservedKeyword("")); // empty string
-        assertFalse(ReservedKeyword.isValidReservedKeyword("ad")); // non-empty invalid string
+        assertFalse(ReservedKeyword.isValidReservedKeyword(INVALID_RESERVED_KEYWORD_1)); // empty string
+        assertFalse(ReservedKeyword.isValidReservedKeyword(INVALID_RESERVED_KEYWORD_2)); // non-empty invalid string
 
         // valid reserved keyword
-        assertTrue(ReservedKeyword.isValidReservedKeyword("add")); // valid string
-        assertTrue(ReservedKeyword.isValidReservedKeyword("delete")); // valid string
+        assertTrue(ReservedKeyword.isValidReservedKeyword(AddCommand.COMMAND_WORD)); // valid string
+        assertTrue(ReservedKeyword.isValidReservedKeyword(DeleteCommand.COMMAND_WORD)); // valid string
     }
 }
 
