@@ -11,9 +11,7 @@ import static seedu.foodrem.testutil.TypicalTags.FRUITS;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.foodrem.commons.core.index.Index;
 import seedu.foodrem.logic.commands.tagcommands.TagCommand;
-import seedu.foodrem.logic.parser.ParserUtil;
 import seedu.foodrem.model.tag.Tag;
 import seedu.foodrem.model.tag.TagName;
 import seedu.foodrem.testutil.TagBuilder;
@@ -25,24 +23,12 @@ public class TagCommandParserTest {
     private final TagCommandParser parser = new TagCommandParser();
 
     @Test
-    public void parse_tagThenIndex_success() {
-        Tag fruitTag = new TagBuilder(FRUITS).build();
-        String fruitTagName = fruitTag.getName();
-        Index targetIndex = INDEX_FIRST_ITEM;
-
-        String userInput = VALID_DESC_TAG_NAME_FRUITS + VALID_DESC_ID_FIRST;
-        TagCommand expectedCommand = new TagCommand(fruitTagName, targetIndex);
-        assertParseSuccess(parser, userInput, expectedCommand);
-    }
-
-    @Test
     public void parse_indexThenTag_success() {
         Tag fruitTag = new TagBuilder(FRUITS).build();
         String fruitTagName = fruitTag.getName();
-        Index targetIndex = INDEX_FIRST_ITEM;
 
         String userInput = VALID_DESC_ID_FIRST + VALID_DESC_TAG_NAME_FRUITS;
-        TagCommand expectedCommand = new TagCommand(fruitTagName, targetIndex);
+        TagCommand expectedCommand = new TagCommand(fruitTagName, INDEX_FIRST_ITEM);
         assertParseSuccess(parser, userInput, expectedCommand);
     }
 
@@ -59,7 +45,7 @@ public class TagCommandParserTest {
 
         String userInput = VALID_DESC_TAG_NAME_FRUITS + VALID_DESC_ID_FIRST + VALID_DESC_ITEM_QUANTITY_CUCUMBERS;
 
-        assertParseFailure(parser, userInput, ParserUtil.MESSAGE_INVALID_INDEX);
+        assertParseFailure(parser, userInput, MESSAGE_INVALID_FORMAT);
     }
 
     @Test
@@ -77,7 +63,7 @@ public class TagCommandParserTest {
     @Test
     public void parse_invalidPreamble_failure() {
         // Number preamble
-        assertParseFailure(parser, "0 " + VALID_DESC_TAG_NAME_FRUITS
+        assertParseFailure(parser, "-1 " + VALID_DESC_TAG_NAME_FRUITS
                 + VALID_DESC_ID_FIRST, MESSAGE_INVALID_FORMAT);
 
         // invalid arguments being parsed as preamble

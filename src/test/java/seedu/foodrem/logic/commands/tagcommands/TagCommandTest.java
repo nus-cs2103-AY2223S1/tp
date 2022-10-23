@@ -13,7 +13,6 @@ import static seedu.foodrem.testutil.TypicalIndexes.INDEX_THIRD_ITEM;
 import org.junit.jupiter.api.Test;
 
 import seedu.foodrem.logic.commands.CommandTestUtil;
-import seedu.foodrem.logic.commands.exceptions.CommandException;
 import seedu.foodrem.logic.commands.generalcommands.ResetCommand;
 import seedu.foodrem.model.FoodRem;
 import seedu.foodrem.model.Model;
@@ -26,7 +25,7 @@ import seedu.foodrem.testutil.TagBuilder;
 import seedu.foodrem.testutil.TypicalTags;
 
 public class TagCommandTest {
-    private static final String MESSAGE_SUCCESS = "Item tagged successfully";
+    private static final String MESSAGE_SUCCESS = "Item tagged successfully.\n%1$s";
     private static final String ERROR_DUPLICATE = "This item has already been tagged with this tag";
     private static final String ERROR_NOT_FOUND_TAG = "This tag does not exist";
     private static final String ERROR_NOT_FOUND_ITEM = "The item index does not exist";
@@ -34,7 +33,7 @@ public class TagCommandTest {
 
 
     @Test
-    public void execute_tagItem_success() throws CommandException {
+    public void execute_tagItem_success() {
 
         final Model model = new ModelManager(getFoodRemWithTypicalItemsWithoutTags(), new UserPrefs());
 
@@ -44,7 +43,7 @@ public class TagCommandTest {
 
         Tag tag = new TagBuilder().withTagName(VALID_TAG_NAME_VEGETABLES).build();
 
-        String expectedMessage = String.format(MESSAGE_SUCCESS);
+        String expectedMessage = String.format(MESSAGE_SUCCESS, editedItem);
 
         //Creating an expected model to compare to
         Model expectedModel = new ModelManager(new FoodRem(model.getFoodRem()), new UserPrefs());

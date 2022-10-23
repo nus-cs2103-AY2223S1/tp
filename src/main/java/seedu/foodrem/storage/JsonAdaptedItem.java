@@ -16,6 +16,7 @@ import seedu.foodrem.model.item.ItemExpiryDate;
 import seedu.foodrem.model.item.ItemName;
 import seedu.foodrem.model.item.ItemPrice;
 import seedu.foodrem.model.item.ItemQuantity;
+import seedu.foodrem.model.item.ItemRemark;
 import seedu.foodrem.model.item.ItemUnit;
 import seedu.foodrem.model.tag.Tag;
 
@@ -32,6 +33,7 @@ class JsonAdaptedItem {
     private final String boughtDate;
     private final String expiryDate;
     private final String price;
+    private final String remarks;
     private final List<JsonAdaptedTag> tags = new ArrayList<>();
 
     /**
@@ -44,6 +46,7 @@ class JsonAdaptedItem {
                            @JsonProperty("bought") String boughtDate,
                            @JsonProperty("expiry") String expiryDate,
                            @JsonProperty("price") String price,
+                           @JsonProperty("remarks") String remarks,
                            @JsonProperty("tags") List<JsonAdaptedTag> tagSet) {
         this.name = name;
         this.quantity = quantity;
@@ -51,6 +54,7 @@ class JsonAdaptedItem {
         this.boughtDate = boughtDate;
         this.expiryDate = expiryDate;
         this.price = price;
+        this.remarks = remarks;
         this.tags.addAll(tagSet);
     }
 
@@ -64,6 +68,7 @@ class JsonAdaptedItem {
         boughtDate = Objects.toString(source.getBoughtDate(), "");
         expiryDate = Objects.toString(source.getExpiryDate(), "");
         price = Objects.toString(source.getPrice(), "");
+        remarks = Objects.toString(source.getRemarks(), "");
         tags.addAll(source.getTagSet().stream().map(JsonAdaptedTag::new).collect(Collectors.toList()));
     }
 
@@ -110,6 +115,12 @@ class JsonAdaptedItem {
         }
         final ItemPrice modelItemPrice = new ItemPrice(price);
 
+        if (remarks == null) {
+            throw new IllegalArgumentException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    ItemRemark.class.getSimpleName()));
+        }
+        final ItemRemark modelItemRemark = new ItemRemark(remarks);
+
         final List<Tag> itemTags = new ArrayList<>();
         for (JsonAdaptedTag tag : tags) {
             itemTags.add(tag.toModelType());
@@ -122,6 +133,7 @@ class JsonAdaptedItem {
                 modelItemBoughtDate,
                 modelItemExpiryDate,
                 modelItemPrice,
+                modelItemRemark,
                 modelTags);
     }
 

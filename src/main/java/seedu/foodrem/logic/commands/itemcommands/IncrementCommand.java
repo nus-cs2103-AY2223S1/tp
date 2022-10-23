@@ -19,7 +19,7 @@ import seedu.foodrem.model.item.ItemQuantity;
  * Increments the quantity of an item by a specified amount.
  */
 public class IncrementCommand extends Command {
-    public static final String MESSAGE_SUCCESS = "Incremented Item: %1$s";
+    public static final String MESSAGE_SUCCESS = "Incremented Item:\n%1$s";
 
     private final Index index;
     private final ItemQuantity quantity;
@@ -37,7 +37,7 @@ public class IncrementCommand extends Command {
     }
 
     /**
-     * Creates and returns a {@code Item} with the quantity of {@code itemToEdit}
+     * Creates and returns an {@code Item} with the quantity of {@code itemToEdit}
      * incremented by {@code editItemDescriptor}.
      */
     private static Item createIncrementedItem(Item itemToIncrement, ItemQuantity quantity) throws CommandException {
@@ -57,6 +57,7 @@ public class IncrementCommand extends Command {
                 itemToIncrement.getBoughtDate(),
                 itemToIncrement.getExpiryDate(),
                 itemToIncrement.getPrice(),
+                itemToIncrement.getRemarks(),
                 itemToIncrement.getTagSet());
     }
 

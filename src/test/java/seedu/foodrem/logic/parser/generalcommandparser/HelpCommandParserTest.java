@@ -19,6 +19,7 @@ import seedu.foodrem.logic.commands.itemcommands.FindCommand;
 import seedu.foodrem.logic.commands.itemcommands.IncrementCommand;
 import seedu.foodrem.logic.commands.itemcommands.ListCommand;
 import seedu.foodrem.logic.commands.itemcommands.NewCommand;
+import seedu.foodrem.logic.commands.itemcommands.RemarkCommand;
 import seedu.foodrem.logic.commands.itemcommands.SortCommand;
 import seedu.foodrem.logic.commands.itemcommands.ViewCommand;
 import seedu.foodrem.logic.commands.tagcommands.DeleteTagCommand;
@@ -30,8 +31,9 @@ import seedu.foodrem.logic.commands.tagcommands.UntagCommand;
 
 class HelpCommandParserTest {
     private static final String EXPECTED_ALL_COMMANDS = "exit, help, reset, " // General commands
-            + "dec, del, edit, find, inc, list, new, sort, view, " // Item commands
+            + "dec, del, edit, find, inc, list, new, rmk, sort, view, " // Item commands
             + "deletetag, listtag, newtag, renametag, tag, untag"; // Tag commands
+
 
     private final HelpCommandParser parser = new HelpCommandParser();
 
@@ -51,7 +53,7 @@ class HelpCommandParserTest {
 
         Thank you :D
         */
-        int numberOfCommands = 19; // equal to total number of commands + 1 for invalid command
+        int numberOfCommands = 20; // equal to total number of commands + 1 for invalid command
         assertEquals(numberOfCommands, CommandType.values().length);
     }
 
@@ -94,7 +96,7 @@ class HelpCommandParserTest {
                         + "To receive help for a specific command, enter "
                         + "\"help COMMAND_WORD\" in the command box, where COMMAND_WORD is any one of the following:\n"
                         + EXPECTED_ALL_COMMANDS
-                        + "\n\nFor more information please head to:\n"
+                        + ".\n\nFor more information please head to:\n"
                         + "https://ay2223s1-cs2103t-w16-2.github.io/tp/UserGuide",
                 String.format(HelpCommand.NOT_A_COMMAND, "testing"));
     }
@@ -161,6 +163,8 @@ class HelpCommandParserTest {
                 new HelpCommand(getCommandHelpMessage(parseWord("sort"))));
         assertParseSuccess(parser, CommandType.VIEW_COMMAND.getCommandWord(),
                 new HelpCommand(getCommandHelpMessage(parseWord("view"))));
+        assertParseSuccess(parser, CommandType.REMARK_COMMAND.getCommandWord(),
+                new HelpCommand(getCommandHelpMessage(parseWord("rmk"))));
     }
 
     @Test
@@ -174,6 +178,7 @@ class HelpCommandParserTest {
         assertEquals(ListCommand.getUsage(), parseWord("list").getUsage());
         assertEquals(SortCommand.getUsage(), parseWord("sort").getUsage());
         assertEquals(ViewCommand.getUsage(), parseWord("view").getUsage());
+        assertEquals(RemarkCommand.getUsage(), parseWord("rmk").getUsage());
     }
 
     @Test

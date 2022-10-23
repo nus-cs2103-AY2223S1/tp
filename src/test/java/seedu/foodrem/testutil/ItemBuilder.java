@@ -9,6 +9,7 @@ import seedu.foodrem.model.item.ItemExpiryDate;
 import seedu.foodrem.model.item.ItemName;
 import seedu.foodrem.model.item.ItemPrice;
 import seedu.foodrem.model.item.ItemQuantity;
+import seedu.foodrem.model.item.ItemRemark;
 import seedu.foodrem.model.item.ItemUnit;
 import seedu.foodrem.model.tag.Tag;
 
@@ -23,6 +24,7 @@ public class ItemBuilder {
     public static final String DEFAULT_BOUGHT_DATE = "";
     public static final String DEFAULT_EXPIRY_DATE = "";
     public static final String DEFAULT_PRICE = "";
+    public static final String DEFAULT_REMARKS = "";
 
     // Identity fields
     private ItemName name;
@@ -32,6 +34,7 @@ public class ItemBuilder {
     private ItemBoughtDate boughtDate;
     private ItemExpiryDate expiryDate;
     private ItemPrice price;
+    private ItemRemark remarks;
     private Set<Tag> tags;
 
     /**
@@ -44,6 +47,7 @@ public class ItemBuilder {
         boughtDate = new ItemBoughtDate(DEFAULT_BOUGHT_DATE);
         expiryDate = new ItemExpiryDate(DEFAULT_EXPIRY_DATE);
         price = new ItemPrice(DEFAULT_PRICE);
+        remarks = new ItemRemark(DEFAULT_REMARKS);
         tags = new HashSet<>();
     }
 
@@ -57,6 +61,7 @@ public class ItemBuilder {
         boughtDate = itemToCopy.getBoughtDate();
         expiryDate = itemToCopy.getExpiryDate();
         price = itemToCopy.getPrice();
+        remarks = itemToCopy.getRemarks();
         tags = new HashSet<>(itemToCopy.getTagSet());
     }
 
@@ -109,6 +114,14 @@ public class ItemBuilder {
     }
 
     /**
+     * Sets the item remark of the {@link Item} that we are building.
+     */
+    public ItemBuilder withItemRemarks(String remarks) {
+        this.remarks = new ItemRemark(remarks);
+        return this;
+    }
+
+    /**
      * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@link Item} that we are building.
      */
     public ItemBuilder withTags(String... tagNames) {
@@ -120,7 +133,7 @@ public class ItemBuilder {
 
 
     public Item build() {
-        return new Item(name, quantity, unit, boughtDate, expiryDate, price, tags);
+        return new Item(name, quantity, unit, boughtDate, expiryDate, price, remarks, tags);
     }
 
 }

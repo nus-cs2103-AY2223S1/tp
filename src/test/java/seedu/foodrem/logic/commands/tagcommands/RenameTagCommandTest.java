@@ -21,7 +21,7 @@ import seedu.foodrem.testutil.TagBuilder;
 public class RenameTagCommandTest {
     private static final String EXPECTED_ERROR_NOT_FOUND = "This tag does not exist in the FoodRem.";
     private static final String EXPECTED_ERROR_DUPLICATE = "This tag name already exists in the FoodRem.";
-    private static final String EXPECTED_FORMAT_SUCCESS = "Renamed tag: %1$s";
+    private static final String EXPECTED_FORMAT_SUCCESS = "Original tag: %s\nRenamed tag: %s\n";
     private final Model model = new ModelManager(getTypicalFoodRem(), new UserPrefs());
 
     @Test
@@ -30,7 +30,7 @@ public class RenameTagCommandTest {
         Tag renamedTag = new TagBuilder().withTagName("test").build();
         RenameTagCommand renameTagCommand = new RenameTagCommand(originalTag, renamedTag);
 
-        String expectedMessage = String.format(EXPECTED_FORMAT_SUCCESS, renamedTag);
+        String expectedMessage = String.format(EXPECTED_FORMAT_SUCCESS, originalTag, renamedTag);
 
         Model expectedModel = new ModelManager(new FoodRem(model.getFoodRem()), new UserPrefs());
         expectedModel.setTag(originalTag, renamedTag);

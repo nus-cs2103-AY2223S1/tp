@@ -81,7 +81,8 @@ public class LogicManagerTest {
                 + CommandTestUtil.VALID_DESC_ITEM_UNIT_POTATOES
                 + CommandTestUtil.VALID_DESC_ITEM_BOUGHT_DATE_POTATOES
                 + CommandTestUtil.VALID_DESC_ITEM_EXPIRY_DATE_POTATOES
-                + CommandTestUtil.VALID_DESC_ITEM_PRICE_POTATOES;
+                + CommandTestUtil.VALID_DESC_ITEM_PRICE_POTATOES
+                + CommandTestUtil.VALID_DESC_ITEM_REMARKS_POTATOES;
         Item expectedItem = new ItemBuilder(POTATOES_WITHOUT_TAG).build();
         ModelManager expectedModel = new ModelManager();
         expectedModel.addItem(expectedItem);

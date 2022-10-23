@@ -25,7 +25,7 @@ public class Item {
     private final ItemBoughtDate boughtDate;
     private final ItemExpiryDate expiryDate;
     private final ItemPrice price;
-
+    private final ItemRemark remarks;
     private final Set<Tag> tagSet;
 
     /**
@@ -37,6 +37,7 @@ public class Item {
      * @param boughtDate Date when the item was purchased.
      * @param expiryDate Date when the item will expire.
      * @param price      Price of one unit of the item.
+     * @param remarks    Remarks related to the item.
      * @param tagSet     The set of tags in item.
      */
     public Item(ItemName name,
@@ -45,14 +46,16 @@ public class Item {
                 ItemBoughtDate boughtDate,
                 ItemExpiryDate expiryDate,
                 ItemPrice price,
+                ItemRemark remarks,
                 Set<Tag> tagSet) {
-        requireAllNonNull(name, quantity, unit, boughtDate, expiryDate, price, tagSet);
+        requireAllNonNull(name, quantity, unit, boughtDate, expiryDate, price, remarks, tagSet);
         this.name = name;
         this.quantity = quantity;
         this.unit = unit;
         this.boughtDate = boughtDate;
         this.expiryDate = expiryDate;
         this.price = price;
+        this.remarks = remarks;
         this.tagSet = tagSet;
     }
 
@@ -74,6 +77,7 @@ public class Item {
                 itemToUntag.getBoughtDate(),
                 itemToUntag.getExpiryDate(),
                 itemToUntag.getPrice(),
+                itemToUntag.getRemarks(),
                 itemToUntag.getTagSet()
         );
     }
@@ -105,6 +109,10 @@ public class Item {
 
     public ItemPrice getPrice() {
         return price;
+    }
+
+    public ItemRemark getRemarks() {
+        return remarks;
     }
 
     /**
@@ -165,6 +173,7 @@ public class Item {
                 && otherItem.getBoughtDate().equals(boughtDate)
                 && otherItem.getExpiryDate().equals(expiryDate)
                 && otherItem.getPrice().equals(price)
+                && otherItem.getRemarks().equals(remarks)
                 && otherItem.getTagSet().equals(tagSet);
     }
 
@@ -174,7 +183,7 @@ public class Item {
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, quantity, unit, boughtDate, expiryDate, price, tagSet);
+        return Objects.hash(name, quantity, unit, boughtDate, expiryDate, price, remarks, tagSet);
     }
 
     /**
@@ -184,13 +193,14 @@ public class Item {
     public String toString() {
         String tagsString = tagSet.stream().map(Tag::getName).collect(Collectors.joining(", "));
         return String.format("Name: %s\nQuantity: %s%s\nBought Date: %s\n"
-                        + "Expiry Date: %s\nPrice: %s\nTags: {%s}\n",
+                        + "Expiry Date: %s\nPrice: %s\nRemarks: %s\nTags: {%s}\n",
                 name,
                 quantity,
                 String.valueOf(unit).isBlank() ? "" : " " + unit,
                 String.valueOf(boughtDate).isBlank() ? "Not Set" : boughtDate,
                 String.valueOf(expiryDate).isBlank() ? "Not Set" : expiryDate,
                 "$" + price,
+                String.valueOf(remarks).isBlank() ? "No Remarks" : remarks,
                 tagsString);
     }
 }

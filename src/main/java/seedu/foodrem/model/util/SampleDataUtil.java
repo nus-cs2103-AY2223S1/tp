@@ -10,6 +10,7 @@ import seedu.foodrem.model.item.ItemExpiryDate;
 import seedu.foodrem.model.item.ItemName;
 import seedu.foodrem.model.item.ItemPrice;
 import seedu.foodrem.model.item.ItemQuantity;
+import seedu.foodrem.model.item.ItemRemark;
 import seedu.foodrem.model.item.ItemUnit;
 
 /**
@@ -24,6 +25,7 @@ public class SampleDataUtil {
                     new ItemBoughtDate("11-11-2022"),
                     new ItemExpiryDate("11-11-2022"),
                     new ItemPrice("10.20"),
+                    new ItemRemark("For Mashed Potatoes"),
                     new HashSet<>()),
             new Item(new ItemName("Cucumbers"),
                     new ItemQuantity("2000"),
@@ -31,6 +33,7 @@ public class SampleDataUtil {
                     new ItemBoughtDate("12-12-2022"),
                     new ItemExpiryDate("12-12-2022"),
                     new ItemPrice("10"),
+                    new ItemRemark("For Salad"),
                     new HashSet<>())
         };
     }
@@ -43,7 +46,7 @@ public class SampleDataUtil {
         return sampleFoodRem;
     }
 
-    // TODO: Implement with tags
+    // TODO: Check if we can delete this. Implement with tags
     ///**
     // * Returns a tag set containing the list of strings given.
     // */
