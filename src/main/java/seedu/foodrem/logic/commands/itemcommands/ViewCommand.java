@@ -31,7 +31,7 @@ public class ViewCommand extends Command {
     }
 
     @Override
-    public CommandResult execute(Model model) throws CommandException {
+    public CommandResult<Item> execute(Model model) throws CommandException {
         requireNonNull(model);
 
         List<Item> lastShownList = model.getFilteredItemList();
@@ -40,7 +40,7 @@ public class ViewCommand extends Command {
         }
         Item itemToDisplayInformation = lastShownList.get(index.getZeroBased());
 
-        return CommandResult.from(itemToDisplayInformation.toString());
+        return CommandResult.from(itemToDisplayInformation);
     }
 
     public static String getUsage() {
