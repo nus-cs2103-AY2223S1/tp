@@ -24,7 +24,7 @@ public class AddResponseCommand extends Command {
             + "The student is identified by the index number used "
             + "in the last student listing.\n "
             + "Example: " + COMMAND_WORD + " 1 " + PREFIX_MESSAGE_COUNT + "7 ";
-    public static final String MESSAGE_ADDRESPONSE_SUCCESS = "Added response count from Student";
+    public static final String MESSAGE_ADDRESPONSE_SUCCESS = "Added response count for Student ";
 
     private final Index index;
     private final Response response;
@@ -71,6 +71,6 @@ public class AddResponseCommand extends Command {
         model.setStudent(studentToEdit, editedStudent);
         model.updateFilteredStudentList(PREDICATE_SHOW_ALL_STUDENTS);
 
-        return new CommandResult(MESSAGE_ADDRESPONSE_SUCCESS);
+        return new CommandResult(MESSAGE_ADDRESPONSE_SUCCESS + String.valueOf(index.getOneBased()));
     }
 }
