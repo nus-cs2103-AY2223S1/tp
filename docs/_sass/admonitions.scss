@@ -16,6 +16,26 @@
 
 .admonition-title {
   font-weight: bold;
+
+  .admonition-type-note & {
+    color: #474748;
+  }
+
+  .admonition-type-tip & {
+    color: #013100;
+  }
+
+  .admonition-type-info & {
+    color: #193c47;
+  }
+
+  .admonition-type-warning & {
+    color: #4d3800;
+  }
+
+  .admonition-type-danger & {
+    color: #4b1013;
+  }
 }
 
 .admonition-title::before {
