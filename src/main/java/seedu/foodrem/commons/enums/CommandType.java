@@ -159,7 +159,7 @@ public enum CommandType {
         @Override
         public String getUsage() {
             return getCommandWord() + ": Sorts all items in FoodRem according to the specified criteria.\n"
-                    + "Available criteria includes sorting by name, quantity, unit, bought date, expiry date "
+                    + "Available criteria includes sorting by name, quantity, unit, bought date, expiry date, "
                     + "price and remarks.\n\n"
                     + "Format (Only one of the optional prefix should be present):\n"
                     + getCommandWord() + " "
