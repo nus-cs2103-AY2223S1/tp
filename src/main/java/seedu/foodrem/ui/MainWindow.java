@@ -18,6 +18,7 @@ import seedu.foodrem.logic.Logic;
 import seedu.foodrem.logic.commands.CommandResult;
 import seedu.foodrem.logic.commands.exceptions.CommandException;
 import seedu.foodrem.logic.commands.generalcommands.HelpCommand;
+import seedu.foodrem.views.UiView;
 
 /**
  * The Main Window. Provides the basic application layout containing
@@ -32,6 +33,7 @@ public class MainWindow extends UiPart<Stage> {
     // Independent Ui parts residing in this Ui container
     private ItemListPanel itemListPanel;
     private ResultDisplay resultDisplay;
+    private UiView uiView;
 
     @FXML private StackPane commandBoxPlaceholder;
     @FXML private MenuItem helpMenuItem;
@@ -104,6 +106,7 @@ public class MainWindow extends UiPart<Stage> {
         place(itemListPanelPlaceholder, itemListPanel);
 
         resultDisplay = new ResultDisplay();
+        uiView = new UiView(resultDisplay);
         place(resultDisplayPlaceholder, resultDisplay);
 
         place(statusbarPlaceholder, new StatusBarFooter(logic.getFoodRemFilePath()));
@@ -176,7 +179,7 @@ public class MainWindow extends UiPart<Stage> {
         try {
             CommandResult commandResult = logic.execute(commandText);
             logger.info("Result: " + commandResult.getFeedbackToUser());
-            resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
+            uiView.viewFrom(commandResult.getFeedbackToUser());
             // We need to hide the window to ensure it resizes on changing message to display.
             helpWindow.hide();
             helpWindow.setMessageToDisplay(commandResult.getHelpText());
@@ -192,7 +195,7 @@ public class MainWindow extends UiPart<Stage> {
             return commandResult;
         } catch (CommandException | IllegalArgumentException e) {
             logger.info("Invalid command: " + commandText);
-            resultDisplay.setFeedbackToUser(e.getMessage());
+            uiView.viewFrom(e.getMessage());
             throw e;
         }
     }
