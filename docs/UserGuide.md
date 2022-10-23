@@ -77,7 +77,7 @@ Format: `help`
 
 #### Adding a task: `add`
 
-Adds a task to the task manager.
+Adds a task to the task list.
 
 Format:
 `add {task_name} by/{deadline} m/{module_code}`
@@ -85,6 +85,17 @@ Format:
 Examples:
 * `add finish problem set 5 by/2022-01-02 15:04 m/CS2040S`
 * `add finish SEP application by/2022-12-25 23:59 m/SEP`
+
+#### Editing a task: `edit`
+
+Edit the specified task from the task list.
+
+Format:
+`edit {task_index} {field prefix + field description}`
+
+Examples:
+* `edit 2 n/Rewatch lecture 6`
+* `edit 3 m/CS2040S by/2022-12-12 23:59`
 
 #### Deleting a task: `del`
 
@@ -142,11 +153,11 @@ Format: `list` /  `list time`
 
 Adds a contact to the contact list.
 
-Format: `addc {name} /email {email} /hp {phone_number} /mods {module1} {module2}...`
+Format: `addc {name} e/ {email} p/ {phone_number} [m/ {module1} {module2}] [t/ {tag1}]`
 
 Examples:
-* `addc Bob Martin /email bobbymartini@gmail.com /hp 98765432 /mods CS1101S CS1231S`
-* `addc Betsy Crowe /email betsycrowe@gmail.com /hp 89985432`
+* `addc Bob Martin e/ bobbymartini@gmail.com p/ 98765432 m/ CS1101S CS1231S`
+* `addc Betsy Crowe e/ betsycrowe@gmail.com p/ 89985432 t/ friend`
 
 #### Listing all contact : `listc`
 
@@ -232,18 +243,19 @@ _Details coming soon ..._
 
 ## Command summary
 
-| Action             | Format, Examples                                                                                                                                                           |
-|--------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Add task**       | `add {task_name} by/{deadline} m/{module_code}` <br> e.g. `add finish problem set 5 by/Week 6 Sunday m/CS2040S`                                                            |
-| **Delete task**    | `del {task_index}` <br> e.g. `delete 5`                                                                                                                                    |
-| **Mark task**      | `mark {task_index}` <br> e.g. `mark 3`                                                                                                                                     |
-| **Unmark task**    | `unmark {task_index}` <br> e.g. `unmark 3`                                                                                                                                 |
-| **Find tasks**     | `find /t {task}` <br> `find /m {module}`<br> e.g., `find /t homework`, <br> `find /m CS1101S`                                                                              |
-| **List tasks**     | `list` / `list time`                                                                                                                                                       |
-| **Add contact**    | `addc {name} /email {email} /hp {phone_number} /mods {module1} {module2}...` <br> e.g., `addc Bob Martin /email bobbymartini@gmail.com /hp 98765432 /mods CS1101S CS1231S` |
-| **Clear contacts** | `clear`                                                                                                                                                                    |
-| **Delete contact** | `delc {contact_index}`<br> e.g., `delete 3`                                                                                                                                |
-| **Edit contact**   | `edit INDEX [n/name}] [p/{phone_number}] [e/{email}] [a/{address}] [t/{tag}]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`                                       |
-| **Find contacts**  | `findc /n {name}` <br> `findc /m {module}`<br> e.g., `findc /n John`, <br> `findc /m CS1231S`                                                                              |
-| **List contacts**  | `listc`                                                                                                                                                                    |
-| **Help**           | `help`                                                                                                                                                                     |
+| Action             | Format, Examples                                                                                                                                                              |
+|--------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Add task**       | `add {task_name} by/{deadline} m/{module_code}` <br> e.g. `add finish problem set 5 by/Week 6 Sunday m/CS2040S`                                                               |
+| **Edit task**      | `edit {task_index} {field prefix + field description}` <br> e.g. `edit 2 by/2022-12-12 23:59`                                                                                 |
+| **Delete task**    | `del {task_index}` <br> e.g. `delete 5`                                                                                                                                       |
+| **Mark task**      | `mark {task_index}` <br> e.g. `mark 3`                                                                                                                                        |
+| **Unmark task**    | `unmark {task_index}` <br> e.g. `unmark 3`                                                                                                                                    |
+| **Find tasks**     | `find /t {task}` <br> `find /m {module}`<br> e.g., `find /t homework`, <br> `find /m CS1101S`                                                                                 |
+| **List tasks**     | `list` / `list time`                                                                                                                                                          |
+| **Add contact**    | `addc {name} e/ {email} p/ {phone_number} [m/{module1} {module2}] [t/{tag1}]` <br> e.g., `addc Bob Martin e/ bobbymartini@gmail.com p/ 98765432 m/ CS1101S CS1231S t/ friend` |
+| **Clear contacts** | `clear`                                                                                                                                                                       |
+| **Delete contact** | `delc {contact_index}`<br> e.g., `delete 3`                                                                                                                                   |
+| **Edit contact**   | `editc {contact_index} {field prefix + field description}` <br> e.g. `editc 2 p/91919100`                                                                                     |
+| **Find contacts**  | `findc /n {name}` <br> `findc /m {module}`<br> e.g., `findc /n John`, <br> `findc /m CS1231S`                                                                                 |
+| **List contacts**  | `listc`                                                                                                                                                                       |
+| **Help**           | `help`                                                                                                                                                                        |

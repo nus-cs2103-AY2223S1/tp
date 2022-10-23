@@ -9,7 +9,8 @@ CodeConnect is a specialised task management that can help NUS CS students keep 
 
 Given below are my contributions to the project.
 
-* **New Feature**: to be added soon
+* **New Feature**: 
+  * Added edit task feature that allows user to edit their tasks.
 
 * **Code contributed**: [RepoSense link](https://nus-cs2103-ay2223s1.github.io/tp-dashboard/?search=songivan00&breakdown=true&sort=groupTitle&sortWithin=title&since=2022-09-16&timeframe=commit&mergegroup=&groupSelect=groupByRepos&checkedFileTypes=docs~functional-code~test-code~other)
 
@@ -17,13 +18,15 @@ Given below are my contributions to the project.
 
 * **Enhancements to existing features**:
   * Changed naming convention for all Contacts features
-  * Added and allowed commands to take in Mods field
+  * Added and allowed commands to take a module field
 
 * **Documentation**:
   * User Guide:
     * Added documentation for the features `list` and `listc`
+    * Added documentation for the feature `edit`
   * Developer Guide:
     * Added Non-Functional Requirements
+    * Worked on the implementation of the edit task feature
 
 * **Community**: to be added soon
 
