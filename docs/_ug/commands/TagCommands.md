@@ -5,7 +5,7 @@
 
 **Format**: `newtag n/TAG_NAME`
 
-> Creates a new tag with the provided tag name
+> Creates a new tag with the provided tag name.
 
 **Example Input:**
 
