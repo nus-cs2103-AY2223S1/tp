@@ -33,6 +33,24 @@ public class Deadline extends Task {
         this.date = date;
     }
 
+    /**
+     * Every field must be present and not null.
+     */
+    public Deadline(Person person, Assignment assignment, Description description, boolean isDone,
+                    LocalDate date, Set<Tag> tags) {
+        super(person, assignment, description, isDone, tags);
+        this.date = date;
+    }
+
+    /**
+     * Every field must be present and not null.
+     */
+    public Deadline(Name name, Assignment assignment, Description description, boolean isDone,
+                    LocalDate date, Set<Tag> tags) {
+        super(name, assignment, description, isDone, tags);
+        this.date = date;
+    }
+
     public LocalDate getDate() {
         return date;
     }
@@ -58,6 +76,7 @@ public class Deadline extends Task {
         Description description = descriptor.getDescription().orElse(getDescription());
         Boolean isDone = descriptor.getIsDone().orElse(isDone());
         LocalDate date = descriptor.getDate().orElse(getDate());
+        //todo: add tags
 
         return new Deadline(name, assignment, description, isDone, date);
     }

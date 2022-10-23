@@ -150,7 +150,7 @@ public abstract class Task {
     @Override
     public String toString() {
         final StringBuilder builder = new StringBuilder();
-        builder.append(String.format("[%s]", isDone()))
+        builder.append(String.format("%s", getStatus()))
                 .append(String.format("[%s]", getAssignment()))
                 .append(String.format("[%s]", getName()))
                 .append("\n")

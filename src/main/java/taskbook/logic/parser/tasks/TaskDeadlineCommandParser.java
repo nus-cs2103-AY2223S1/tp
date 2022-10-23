@@ -1,6 +1,7 @@
 package taskbook.logic.parser.tasks;
 
 import java.time.LocalDate;
+import java.util.Set;
 import java.util.regex.Pattern;
 import java.util.stream.Stream;
 
@@ -14,6 +15,7 @@ import taskbook.logic.parser.ParserUtil;
 import taskbook.logic.parser.Prefix;
 import taskbook.logic.parser.exceptions.ParseException;
 import taskbook.model.person.Name;
+import taskbook.model.tag.Tag;
 import taskbook.model.task.Description;
 import taskbook.model.task.enums.Assignment;
 
@@ -73,8 +75,9 @@ public class TaskDeadlineCommandParser implements Parser<TaskDeadlineCommand> {
                         ? Assignment.FROM
                         : Assignment.TO;
         LocalDate date = ParserUtil.parseDate(argMultimap.getValue(CliSyntax.PREFIX_DATE).get());
+        Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(CliSyntax.PREFIX_TAG));
 
-        return new TaskDeadlineCommand(name, description, assignment, date);
+        return new TaskDeadlineCommand(name, description, assignment, date, tagList);
     }
 
     /**

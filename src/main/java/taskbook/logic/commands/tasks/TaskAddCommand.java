@@ -71,11 +71,11 @@ public abstract class TaskAddCommand extends Command {
     }
 
     public Task createDeadline(LocalDate date) {
-        return new Deadline(name, assignment, description, isDone, date);
+        return new Deadline(name, assignment, description, isDone, date , tags);
     }
 
     public Task createEvent(LocalDate date) {
-        return new Event(name, assignment, description, isDone, date);
+        return new Event(name, assignment, description, isDone, date , tags);
     }
 
     /**
@@ -106,6 +106,7 @@ public abstract class TaskAddCommand extends Command {
         return otherCommand.name.equals(name)
                 && otherCommand.description.equals(description)
                 && otherCommand.assignment.equals(assignment)
-                && otherCommand.isDone == isDone;
+                && otherCommand.isDone == isDone
+                && otherCommand.tags.equals(tags);
     }
 }

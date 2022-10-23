@@ -18,7 +18,6 @@ import taskbook.model.task.Description;
 import taskbook.model.task.Task;
 import taskbook.model.task.enums.Assignment;
 
-
 /**
  * Adds a to-do to the task book.
  */
@@ -30,9 +29,8 @@ public class TaskTodoCommand extends TaskAddCommand {
             TaskCategoryParser.CATEGORY_WORD + " " + COMMAND_WORD
             + ": Adds a todo to the task book.\n"
             + "Parameters:\n"
-            + PREFIX_ASSIGN_FROM + "NAME " + PREFIX_DESCRIPTION + "DESCRIPTION\n"
-            + PREFIX_ASSIGN_TO + "NAME " + PREFIX_DESCRIPTION + "DESCRIPTION\n"
-            + PREFIX_TAG + "work";
+            + PREFIX_ASSIGN_FROM + "NAME " + PREFIX_DESCRIPTION + "DESCRIPTION " + "[" + PREFIX_TAG + "TAG]...\n"
+            + PREFIX_ASSIGN_TO + "NAME " + PREFIX_DESCRIPTION + "DESCRIPTION " + "[" + PREFIX_TAG + "TAG]...\n";
 
     public static final String MESSAGE_SUCCESS = "New todo added: %1$s";
 

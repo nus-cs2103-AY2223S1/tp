@@ -30,7 +30,7 @@ public class ContactAddCommand extends Command {
             + CliSyntax.PREFIX_NAME + "John Doe "
             + CliSyntax.PREFIX_PHONE + "98765432 "
             + CliSyntax.PREFIX_EMAIL + "johnd@example.com "
-            + CliSyntax.PREFIX_ADDRESS + "311, Clementi Ave 2, #02-25 "
+            + CliSyntax.PREFIX_ADDRESS + "311, Clementi Ave 2 "
             + CliSyntax.PREFIX_TAG + "friends "
             + CliSyntax.PREFIX_TAG + "owesMoney";
 
