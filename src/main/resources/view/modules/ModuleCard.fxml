@@ -27,7 +27,7 @@
             <TextFlow maxWidth="1.7976931348623157E308">
                 <Text fx:id="name" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="cell_big_label" text="\$name" />
             </TextFlow>
-            <FlowPane fx:id="badges">
+            <FlowPane fx:id="badges" hgap="5">
             <padding>
                <Insets top="4.0" />
             </padding>
