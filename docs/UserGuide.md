@@ -87,21 +87,24 @@ Format: `help`
 
 ### Adding a guest: `add`
 
-Adds a guest to the guest book.
+Adds a guest to the guest book. This is akin to checking a guest in with their personal and room details.
 
-Format: `add n/NAME p/PHONE_NUMBER e/EMAIL rm/ROOM dr/DATE_RANGE ng/NUMBER_OF_GUESTS`
+Format: `add n/NAME p/PHONE e/EMAIL rm/ROOM dr/DATE_RANGE ng/NUMBER_OF_GUESTS [rq/REQUEST]`
 
-[//]: # (Commented out first as not relevant since we do not have optional fields)
-[//]: # (But may be relevant in the future)
-[//]: # (<div markdown="span" class="alert alert-primary">:bulb: **Tip:**)
+Constraints of parameters:
 
-[//]: # (A guest can have any number of tags &#40;including 0&#41;)
-
-[//]: # (</div>)
+&nbsp;&nbsp;&nbsp;Unless stated otherwise, all fields should not be left blank.
+* `NAME` should only contain alphanumeric characters and spaces.
+* `PHONE` should only contain numbers, and it should be at least 3 digits long.
+* `EMAIL` should only contain alphanumeric characters and '@' character.
+* `ROOM` should only contain alphanumeric characters and a hyphen.
+* `DATE_RANGE` should follow the format dd/MM/yy - dd/MM/yy.
+* `NUMBER_OF_GUESTS` should only contain numbers, and it should be at least 1 and at most 4.
+* `REQUEST` is an optional field and it should be at most 500 characters long.
 
 Examples:
 * `add n/John Doe p/98765432 e/johnd@example.com rm/05-73 dr/19/05/22 - 24/05/22 ng/3`
-* `add n/Betsy Crowe p/82297553 e/betsycrowe@example.com rm/Aloha5 dr/10/01/12 - 11/01/12 ng/1`
+* `add n/Betsy Crowe p/82297553 e/betsycrowe@example.com rm/Aloha5 dr/10/01/12 - 11/01/12 ng/1 rq/Extra towels`
 
 ### Listing all guests : `list`
 
@@ -113,7 +116,7 @@ Format: `list`
 
 Edits an existing guest in the guest book.
 
-Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [rm/ROOM] [dr/DATE_RANGE] [ng/NUMBER_OF_GUESTS]`
+Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [rm/ROOM] [dr/DATE_RANGE] [ng/NUMBER_OF_GUESTS] [rq/REQUEST]`
 
 * Edits the guest at the specified `INDEX`. The index refers to the index number shown in the displayed guest list. The index **must be a positive integer** 1, 2, 3, …​
 
@@ -221,14 +224,14 @@ _Details coming soon ..._
 
 ## Command summary
 
-| Action               | Format, Examples                                                                                                                                                                    |
-|----------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Add**              | `add n/NAME p/PHONE_NUMBER e/EMAIL rm/ROOM dr/DATE_RANGE ng/NUMBER_OF_GUESTS` <br> e.g., `add n/John Doe p/98765432 e/johnd@example.com rm/ 05-73 dr/19/05/20 - 24/05/22 ng/3`      |
-| **Clear**            | `clear`                                                                                                                                                                             |
-| **Delete**           | `delete INDEX`<br> e.g., `delete 3`                                                                                                                                                 |
-| **Edit**             | `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [rm/ROOM] [dr/DATE_RANGE] [ng/NUMBER_OF_GUESTS] [rc/IS_ROOM_CLEAN]`<br> e.g.,`edit 2 e/jameslee@example.com dr/13/09/22 - 15/09/22 ng/5`   |
-| **Bill**             | `bill INDEX b/BILL`<br> e.g., `bill 2 b/99.99`      
-| **Find**             | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`                                                                                                                          |
-| **MarkRoomsUnclean** | `markRoomsUnclean`                                                                                                                                                                  |
-| **List**             | `list`                                                                                                                                                                              |
-| **Help**             | `help`                                                                                                                                                                              |
+| Action               | Format, Examples                                                                                                                                                                               |
+|----------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Add**              | `add n/NAME p/PHONE e/EMAIL rm/ROOM dr/DATE_RANGE ng/NUMBER_OF_GUESTS [rq/REQUEST]` <br> e.g., `add n/John Doe p/98765432 e/johnd@example.com rm/ 05-73 dr/19/05/20 - 24/05/22 ng/3`           |
+| **Clear**            | `clear`                                                                                                                                                                                        |
+| **Delete**           | `delete INDEX`<br> e.g., `delete 3`                                                                                                                                                            |
+| **Edit**             | `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [rm/ROOM] [dr/DATE_RANGE] [ng/NUMBER_OF_GUESTS] [rc/IS_ROOM_CLEAN] [rq/REQUEST]`<br> e.g.,`edit 2 e/jameslee@example.com dr/13/09/22 - 15/09/22 ng/5` |
+| **Bill**             | `bill INDEX b/BILL`<br> e.g., `bill 2 b/99.99`                                                                                                                                                 |
+| **Find**             | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`                                                                                                                                     |
+| **MarkRoomsUnclean** | `markRoomsUnclean`                                                                                                                                                                             |
+| **List**             | `list`                                                                                                                                                                                         |
+| **Help**             | `help`                                                                                                                                                                                         |
