@@ -143,6 +143,11 @@ public class TaskCommandTest {
         }
 
         @Override
+        public void clearStudentPictures() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public Path getTaskBookFilePath() {
             throw new AssertionError("This method should not be called.");
         }
@@ -181,6 +186,8 @@ public class TaskCommandTest {
         public boolean hasTask(Task task) {
             throw new AssertionError("This method should not be called.");
         }
+
+
     }
 
     private class ModelStubAcceptingTaskAdded extends TaskCommandTest.ModelStub {

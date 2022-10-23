@@ -16,7 +16,6 @@ public class AppParametersTest {
 
     private final ParametersStub parametersStub = new ParametersStub();
     private final AppParameters expected = new AppParameters();
-
     @Test
     public void parse_validConfigPath_success() {
         parametersStub.namedParameters.put("config", "config.json");

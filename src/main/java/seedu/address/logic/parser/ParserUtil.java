@@ -2,10 +2,14 @@ package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Optional;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
@@ -208,5 +212,18 @@ public class ParserUtil {
             throw new ParseException(FormatDate.MESSAGE_CONSTRAINTS);
         }
         return new FormatDate(trimmedDate);
+    }
+
+    /**
+     * Parse a {@code String students} into a {@code List<String>}.
+     * Leading and trailing whitespaces will be trimmed for each student name.
+     */
+    public static List<String> parseStudents(String students) {
+        requireNonNull(students);
+
+        String[] arr = students.split(",");
+        ArrayList<String> result = Arrays.stream(arr).map(String::trim)
+                .collect(Collectors.toCollection(ArrayList::new));
+        return result;
     }
 }

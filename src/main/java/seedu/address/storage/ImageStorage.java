@@ -213,4 +213,17 @@ public class ImageStorage {
     public static void setStage(Stage stage) {
         primaryStage = stage;
     }
+
+    /**
+     * Empties the images folder in current working directory.
+     */
+    public static void empty() {
+        File dir = new File(Paths.get(System.getProperty("user.dir"), "images").toString());
+        if (dir.listFiles() == null || dir == null) {
+            return;
+        }
+        for (File file : dir.listFiles()) {
+            file.delete();
+        }
+    }
 }

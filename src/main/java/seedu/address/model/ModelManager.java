@@ -133,8 +133,12 @@ public class ModelManager implements Model {
         if (!target.hasSameId(editedStudent)) {
             ImageStorage.renamePictureFile(target, editedStudent);
         }
-
         addressBook.setStudent(target, editedStudent);
+    }
+
+    @Override
+    public void clearStudentPictures() {
+        ImageStorage.empty();
     }
 
     //=========== TaskBook ================================================================================

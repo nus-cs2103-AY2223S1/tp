@@ -1,6 +1,8 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ASSIGNMENT_ADD_STUDENTS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DEADLINE_DATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TASK_DESCRIPTION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TASK_TITLE;
 
@@ -18,6 +20,8 @@ public class TaskCommand extends Command {
             + "Parameters: "
             + PREFIX_TASK_TITLE + "TITLE "
             + PREFIX_TASK_DESCRIPTION + "DESCRIPTION... \n"
+            + "One or none of : " + PREFIX_DEADLINE_DATE + "Date in YYYY-MM-DD \n"
+            + PREFIX_ASSIGNMENT_ADD_STUDENTS + "Student names separated by commas\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_TASK_TITLE + "Test Title "
             + PREFIX_TASK_DESCRIPTION + "Very descriptive description ";
