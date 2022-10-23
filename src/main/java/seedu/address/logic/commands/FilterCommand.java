@@ -9,7 +9,9 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import seedu.address.commons.core.Messages;
+import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
+import seedu.address.model.tag.Tag;
 
 /**
  * Filters contacts in address book whose name contains the argument keywords.
@@ -43,11 +45,25 @@ public class FilterCommand extends Command {
     }
 
     @Override
-    public CommandResult execute(Model model) {
+    public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
         requireNonNull(predicate);
+        requireTagExists(model, predicate);
         applySpecifiedFilters(model);
         return new CommandResult(getListOverviewAsString(model) + "\n" + getFiltersAppliedAsString(model));
+    }
+
+    protected void requireTagExists(Model model, FilterCommandPredicate predicate) throws CommandException {
+        if (predicate == null || predicate.getTagPredicate() == null) {
+            return;
+        }
+        List<Tag> tagsNotInModel = predicate.getTagPredicate().stream()
+                .map(tagPred -> tagPred.getTag())
+                .filter(tag -> !model.hasTag(tag))
+                .collect(Collectors.toList());
+        if (!tagsNotInModel.isEmpty()) {
+            throw new CommandException(String.format(Messages.MESSAGE_TAGS_NOT_FOUND, Tag.toString(tagsNotInModel)));
+        }
     }
 
     private void applySpecifiedFilters(Model model) {

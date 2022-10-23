@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
+import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 
 /**
@@ -29,8 +30,9 @@ public class FilterClearCommand extends FilterCommand {
     }
 
     @Override
-    public CommandResult execute(Model model) {
+    public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
+        requireTagExists(model, predicate);
         clearSpecifiedFilters(model);
         return new CommandResult(getListOverviewAsString(model) + "\n" + getFiltersAppliedAsString(model));
     }
