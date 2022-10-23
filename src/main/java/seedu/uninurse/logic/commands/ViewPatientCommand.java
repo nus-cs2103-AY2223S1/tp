@@ -1,6 +1,7 @@
 package seedu.uninurse.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.uninurse.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
 import java.util.List;
 
@@ -23,7 +24,7 @@ public class ViewPatientCommand extends Command {
 
     public static final String MESSAGE_SUCCESS = "Showing Patient: %1$s";
 
-    public static final CommandType VIEW_PATIENT_COMMAND_TYPE = CommandType.VIEW;
+    public static final CommandType VIEW_PATIENT_COMMAND_TYPE = CommandType.VIEW_PATIENT;
 
     private final Index targetIndex;
 
@@ -41,7 +42,7 @@ public class ViewPatientCommand extends Command {
         }
 
         Patient patient = lastShownList.get(targetIndex.getZeroBased());
-        model.updateFilteredPersonList(p -> p.equals(patient));
+        model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
         model.setPatientOfInterest(patient);
 
         return new CommandResult(String.format(MESSAGE_SUCCESS, patient.getName()), VIEW_PATIENT_COMMAND_TYPE);

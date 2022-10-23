@@ -41,6 +41,14 @@ public class OutputPanel extends UiPart<Region> {
     }
 
     /**
+     * Updates the outputView panel accordingly if executed command is ViewPatient.
+     * @param patient patient of interest.
+     */
+    public void handleViewPatient(Patient patient) {
+        handlePatient(patient, "Patient:");
+    }
+
+    /**
      * Updates the outputView panel accordingly if executed command is AddPatient.
      * @param patient patient of interest.
      */
