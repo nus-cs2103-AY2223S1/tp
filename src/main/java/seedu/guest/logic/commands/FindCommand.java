@@ -4,7 +4,7 @@ import static java.util.Objects.requireNonNull;
 
 import seedu.guest.commons.core.Messages;
 import seedu.guest.model.Model;
-import seedu.guest.model.guest.NameContainsKeywordsPredicate;
+import seedu.guest.model.guest.GuestContainsKeywordsPredicate;
 
 /**
  * Finds and lists all guests in guest book whose name contains any of the argument keywords.
@@ -14,14 +14,14 @@ public class FindCommand extends Command {
 
     public static final String COMMAND_WORD = "find";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all guests whose names contain any of "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all guests whose details contain any of "
             + "the specified keywords (case-insensitive) and displays them as a list with index numbers.\n"
             + "Parameters: KEYWORD [MORE_KEYWORDS]...\n"
-            + "Example: " + COMMAND_WORD + " alice bob charlie";
+            + "Example: " + COMMAND_WORD + " alice 98765432 bob charlie@example.com";
 
-    private final NameContainsKeywordsPredicate predicate;
+    private final GuestContainsKeywordsPredicate predicate;
 
-    public FindCommand(NameContainsKeywordsPredicate predicate) {
+    public FindCommand(GuestContainsKeywordsPredicate predicate) {
         this.predicate = predicate;
     }
 

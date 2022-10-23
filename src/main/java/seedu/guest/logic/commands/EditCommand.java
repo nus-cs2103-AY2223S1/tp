@@ -46,7 +46,7 @@ public class EditCommand extends Command {
             + "[" + PREFIX_ROOM + "ROOM] "
             + "[" + PREFIX_DATE_RANGE + "DATE_RANGE] "
             + "[" + PREFIX_NUMBER_OF_GUESTS + "NUMBER_OF_GUESTS] "
-            + "[" + PREFIX_IS_ROOM_CLEAN + "IS_ROOM_CLEAN] "
+            + "[" + PREFIX_IS_ROOM_CLEAN + "IS_ROOM_CLEAN]\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_PHONE + "91234567 "
             + PREFIX_EMAIL + "johndoe@example.com";

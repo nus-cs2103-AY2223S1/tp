@@ -24,7 +24,7 @@ import seedu.guest.logic.commands.ListCommand;
 import seedu.guest.logic.commands.MarkRoomsUncleanCommand;
 import seedu.guest.logic.parser.exceptions.ParseException;
 import seedu.guest.model.guest.Guest;
-import seedu.guest.model.guest.NameContainsKeywordsPredicate;
+import seedu.guest.model.guest.GuestContainsKeywordsPredicate;
 import seedu.guest.testutil.EditGuestDescriptorBuilder;
 import seedu.guest.testutil.GuestBuilder;
 import seedu.guest.testutil.GuestUtil;
@@ -73,7 +73,7 @@ public class GuestBookParserTest {
         List<String> keywords = Arrays.asList("foo", "bar", "baz");
         FindCommand command = (FindCommand) parser.parseCommand(
                 FindCommand.COMMAND_WORD + " " + keywords.stream().collect(Collectors.joining(" ")));
-        assertEquals(new FindCommand(new NameContainsKeywordsPredicate(keywords)), command);
+        assertEquals(new FindCommand(new GuestContainsKeywordsPredicate(keywords)), command);
     }
 
     @Test

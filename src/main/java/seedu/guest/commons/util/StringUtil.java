@@ -39,6 +39,36 @@ public class StringUtil {
     }
 
     /**
+     * Returns true if the {@code sentence} contains the {@code date}.
+     *   Ignores hyphen and space, but a full date match is required.
+     *   <br>examples:<pre>
+     *       containsDateIgnoreHyphenIgnoreSpace("13/09/22 - 15/09/22", "13/09/22") == true
+     *       containsDateIgnoreHyphenIgnoreSpace("13/09/22 - 15/09/22", "15/09/22") == true
+     *       containsDateIgnoreHyphenIgnoreSpace("13/09/22 - 15/09/22", "14/09/22")
+     *              == false //not a full date match
+     *       containsDateIgnoreHyphenIgnoreSpace("13/09/22 - 15/09/22", "13/09")
+     *              == false //not a full date match
+     *       </pre>
+     * @param sentence cannot be null
+     * @param date cannot be null, cannot be empty, must be a single date
+     */
+    public static boolean containsDateIgnoreHyphenIgnoreSpace(String sentence, String date) {
+        requireNonNull(sentence, date);
+
+        String preppedDate = date.trim().replace("-", "");
+        if (preppedDate.isEmpty()) {
+            return false;
+        }
+        checkArgument(preppedDate.split("\\s+").length == 1, "date parameter should be a single date");
+
+        String preppedSentence = sentence.replace("-", "");
+        String[] wordsInPreppedSentence = preppedSentence.split("\\s+");
+
+        return Arrays.stream(wordsInPreppedSentence)
+                .anyMatch(preppedDate::equalsIgnoreCase);
+    }
+
+    /**
      * Returns a detailed message of the t, including the stack trace.
      */
     public static String getDetails(Throwable t) {

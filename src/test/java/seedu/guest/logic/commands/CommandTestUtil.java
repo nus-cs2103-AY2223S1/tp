@@ -21,7 +21,7 @@ import seedu.guest.logic.commands.exceptions.CommandException;
 import seedu.guest.model.GuestBook;
 import seedu.guest.model.Model;
 import seedu.guest.model.guest.Guest;
-import seedu.guest.model.guest.NameContainsKeywordsPredicate;
+import seedu.guest.model.guest.GuestContainsKeywordsPredicate;
 import seedu.guest.testutil.EditGuestDescriptorBuilder;
 
 /**
@@ -144,7 +144,7 @@ public class CommandTestUtil {
 
         Guest guest = model.getFilteredGuestList().get(targetIndex.getZeroBased());
         final String[] splitName = guest.getName().fullName.split("\\s+");
-        model.updateFilteredGuestList(new NameContainsKeywordsPredicate(Arrays.asList(splitName[0])));
+        model.updateFilteredGuestList(new GuestContainsKeywordsPredicate(Arrays.asList(splitName[0])));
 
         assertEquals(1, model.getFilteredGuestList().size());
     }
