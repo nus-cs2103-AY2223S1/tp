@@ -8,8 +8,12 @@ import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.logic.commands.FilterCommandPredicate;
 import seedu.address.model.message.Message;
 import seedu.address.model.person.Person;
+import seedu.address.model.quote.Quote;
+import seedu.address.model.reminder.ReadOnlyReminderList;
+import seedu.address.model.reminder.Reminder;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -129,7 +133,7 @@ public interface Model {
      * Adds the filter given by {@code predicate} to the set of filters for the fitlered person list.
      * @throws NullPointerException if {@code predicate} is null.
      */
-    void addNewFilterToFilteredPersonList(Predicate<Person> predicate);
+    void addNewFilterToFilteredPersonList(FilterCommandPredicate predicate);
 
     /**
      * Clears the set of filters in the fitlered person list.
@@ -139,7 +143,13 @@ public interface Model {
     /**
      * Removes the filter given by {@code predicate} from the set of filters for the fitlered person list.
      */
-    void removeFilterFromFilteredPersonList(Predicate<Person> predicate);
+    void removeFilterFromFilteredPersonList(FilterCommandPredicate predicate);
+
+    /** Returns the list of tag filters applied. */
+    Set<Predicate<Person>> getTagFilters();
+
+    /** Returns the list of name filters applied. */
+    Set<Predicate<Person>> getNameFilters();
 
     /** Returns an unmodifiable view of the list of target person */
     ObservableList<Person> getTargetPersonAsObservableList();
@@ -163,4 +173,41 @@ public interface Model {
 
     /** Returns the target {@code Person} */
     Person getTargetPerson();
+
+    /** Returns a random quote for the current session.*/
+    Quote getQuote();
+
+    /** Returns list of reminders */
+    ReadOnlyReminderList getReminderList();
+
+    /** Returns an unmodifiable view of the list of reminders */
+    ObservableList<Reminder> getReminderListAsObservableList();
+
+    /** Returns an unmodifiable view of the list of reminders for target person */
+    ObservableList<Reminder> getTargetPersonReminderListAsObservableList();
+
+    /**
+     * Deletes the given reminder.
+     * The reminder must exist in the address book.
+     */
+    void deleteReminder(Reminder reminder);
+
+    /**
+     * Adds the given reminder.
+     * {@code Reminder} must not already exist in the address book.
+     */
+    void addReminder(Reminder reminder);
+
+    /** Returns {@code true} if reminder already exists, {@code false} otherwise */
+    boolean reminderExists(Reminder reminder);
+
+    /**
+     * Clears the currently displayed reminder list.
+     */
+    ObservableList<Reminder> getCurrentReminderList();
+
+    /**
+     * Clears the currently displayed reminder list.
+     */
+    void clearCurrentReminderList();
 }

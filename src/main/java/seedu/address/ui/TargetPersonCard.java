@@ -1,13 +1,9 @@
 package seedu.address.ui;
 
-import java.time.LocalDateTime;
 import java.util.Comparator;
 
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
-import javafx.scene.control.ListView;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
@@ -50,8 +46,6 @@ public class TargetPersonCard extends UiPart<Region> {
     private Label remark;
     @FXML
     private FlowPane tags;
-    @FXML
-    private ListView<TempReminder> reminderView;
 
     /**
      * Creates a {@code PersonCode} with the given {@code Person} and index to display.
@@ -74,16 +68,6 @@ public class TargetPersonCard extends UiPart<Region> {
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
 
-        ObservableList<TempReminder> remindersPlaceholder = FXCollections.observableArrayList(
-            new TempReminder("Reminder 1", LocalDateTime.now()),
-            new TempReminder("Reminder 2", LocalDateTime.now().plusDays(1)),
-            new TempReminder("Reminder 3 which is a very long reminder just to test"
-                    + " whether the text UI component will warp.", LocalDateTime.now().plusDays(4)),
-            new TempReminder("Reminder 4", LocalDateTime.now().plusDays(3)),
-            new TempReminder("Reminder 5", LocalDateTime.now().plusDays(2))
-        );
-        reminderView.setItems(remindersPlaceholder);
-        reminderView.setCellFactory(listView -> new TempReminderListViewCell());
     }
 
     @Override

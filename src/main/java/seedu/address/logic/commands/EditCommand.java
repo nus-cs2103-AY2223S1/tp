@@ -89,8 +89,8 @@ public class EditCommand extends Command {
             throw new CommandException(Messages.MESSAGE_NO_TARGET_PERSON);
         }
 
-        Person personToEdit = index.isPresent() ? lastShownList.get(index.get().getZeroBased())
-                : model.getTargetPerson();
+        Person personToEdit = index.map(i -> lastShownList.get(i.getZeroBased()))
+                .orElseGet(() -> model.getTargetPerson());
         Person editedPerson = createEditedPerson(personToEdit, editPersonDescriptor);
 
         if (!personToEdit.isSamePerson(editedPerson) && model.hasPerson(editedPerson)) {
