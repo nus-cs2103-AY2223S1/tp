@@ -28,6 +28,8 @@ import static seedu.address.logic.commands.CommandTestUtil.TAG_DESC_FRIEND;
 import static seedu.address.logic.commands.CommandTestUtil.TAG_DESC_HUSBAND;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_MEETING_TIME_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_MEETING_TIME_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_FRIEND;
@@ -55,7 +57,9 @@ public class CreateCommandParserTest {
 
     @Test
     public void parse_allFieldsPresent_success() {
-        Person expectedPerson = new PersonBuilder(BOB).withFilePath(EMPTY_FILEPATH).withTags(VALID_TAG_FRIEND).build();
+        Person expectedPerson = new PersonBuilder(BOB).withMeetingTimes(VALID_MEETING_TIME_BOB)
+                .withFilePath(EMPTY_FILEPATH)
+                .withTags(VALID_TAG_FRIEND).build();
 
         // whitespace only preamble
         assertParseSuccess(parser, PREAMBLE_WHITESPACE + NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
@@ -87,14 +91,20 @@ public class CreateCommandParserTest {
                 + NETWORTH_DESC_AMY + NETWORTH_DESC_BOB + MEETING_TIME_DESC_BOB + TAG_DESC_FRIEND,
                 new CreateCommand(expectedPerson));
 
-        // multiple meeting times - last meeting time accepted
+        // multiple meeting times - all accepted
+        Person expectedPersonMultipleMeetingTimes = new PersonBuilder(BOB)
+                .withMeetingTimes(VALID_MEETING_TIME_BOB, VALID_MEETING_TIME_AMY)
+                .withTags(VALID_TAG_FRIEND)
+                .withFilePath(EMPTY_FILEPATH).build();
         assertParseSuccess(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_BOB
-                        + NETWORTH_DESC_AMY + NETWORTH_DESC_BOB + MEETING_TIME_DESC_AMY
+                        + NETWORTH_DESC_BOB + MEETING_TIME_DESC_AMY
                         + MEETING_TIME_DESC_BOB + TAG_DESC_FRIEND,
-                new CreateCommand(expectedPerson));
+                new CreateCommand(expectedPersonMultipleMeetingTimes));
 
         // multiple tags - all accepted
-        Person expectedPersonMultipleTags = new PersonBuilder(BOB).withTags(VALID_TAG_FRIEND, VALID_TAG_HUSBAND)
+        Person expectedPersonMultipleTags = new PersonBuilder(BOB)
+                .withMeetingTimes(VALID_MEETING_TIME_BOB)
+                .withTags(VALID_TAG_FRIEND, VALID_TAG_HUSBAND)
                 .withFilePath(EMPTY_FILEPATH).build();
         assertParseSuccess(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_BOB
                 + NETWORTH_DESC_BOB + MEETING_TIME_DESC_BOB + TAG_DESC_HUSBAND + TAG_DESC_FRIEND,

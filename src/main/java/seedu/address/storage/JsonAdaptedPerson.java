@@ -34,7 +34,7 @@ class JsonAdaptedPerson {
     private final String address;
     private final String description;
     private final String netWorth;
-    private final String meetingTime;
+    private final List<JsonAdaptedMeetingTime> meetingTimes = new ArrayList<>();
     private final String filePath;
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
 
@@ -46,7 +46,7 @@ class JsonAdaptedPerson {
             @JsonProperty("email") String email, @JsonProperty("address") String address,
                              @JsonProperty("description") String description,
                              @JsonProperty("netWorth") String netWorth,
-                             @JsonProperty("meetingTime") String meetingTime,
+                             @JsonProperty("meetingTime") List<JsonAdaptedMeetingTime> meetingTimes,
                              @JsonProperty("filePath") String filePath,
                              @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
         this.name = name;
@@ -55,7 +55,9 @@ class JsonAdaptedPerson {
         this.address = address;
         this.description = description;
         this.netWorth = netWorth;
-        this.meetingTime = meetingTime;
+        if (meetingTimes != null) {
+            this.meetingTimes.addAll(meetingTimes);
+        }
         this.filePath = filePath;
         if (tagged != null) {
             this.tagged.addAll(tagged);
@@ -72,7 +74,9 @@ class JsonAdaptedPerson {
         address = source.getAddress().value;
         description = source.getDescription().value;
         netWorth = source.getNetWorth().value;
-        meetingTime = source.getMeetingTime().value;
+        meetingTimes.addAll(source.getMeetingTimes().stream()
+                .map(JsonAdaptedMeetingTime::new)
+                .collect(Collectors.toList()));
         filePath = source.getFilePath().value;
         tagged.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
@@ -88,6 +92,11 @@ class JsonAdaptedPerson {
         final List<Tag> personTags = new ArrayList<>();
         for (JsonAdaptedTag tag : tagged) {
             personTags.add(tag.toModelType());
+        }
+
+        final List<MeetingTime> personMeetingTimes = new ArrayList<>();
+        for (JsonAdaptedMeetingTime meetingTime : meetingTimes) {
+            personMeetingTimes.add(meetingTime.toModelType());
         }
 
         if (name == null) {
@@ -131,14 +140,7 @@ class JsonAdaptedPerson {
         }
         final NetWorth modelNetWorth = new NetWorth(netWorth);
 
-        if (meetingTime == null) {
-            throw new IllegalValueException(
-                    String.format(MISSING_FIELD_MESSAGE_FORMAT, MeetingTime.class.getSimpleName()));
-        }
-        if (!MeetingTime.isValidMeetingTime(meetingTime)) {
-            throw new IllegalValueException(MeetingTime.MESSAGE_CONSTRAINTS);
-        }
-        final MeetingTime modelMeetingTime = new MeetingTime(meetingTime);
+        final Set<MeetingTime> modelMeetingTimes = new HashSet<>(personMeetingTimes);
 
         if (filePath == null) {
             throw new IllegalValueException(
@@ -157,6 +159,6 @@ class JsonAdaptedPerson {
 
         final Set<Tag> modelTags = new HashSet<>(personTags);
         return new Person(modelName, modelPhone, modelEmail, modelAddress, modelDescription,
-                modelNetWorth, modelMeetingTime, modelFilePath, modelTags);
+                modelNetWorth, modelMeetingTimes, modelFilePath, modelTags);
     }
 }

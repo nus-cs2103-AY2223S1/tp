@@ -136,7 +136,7 @@ public class ParserUtil {
      */
     public static MeetingTime parseMeetingTime(String meetingTime) throws ParseException {
         requireNonNull(meetingTime);
-        String trimmedMeetingTime = meetingTime.trim();
+        String trimmedMeetingTime = meetingTime.replaceAll("\\s", "");
         if (!MeetingTime.isValidMeetingTime(trimmedMeetingTime)) {
             throw new ParseException(MeetingTime.MESSAGE_CONSTRAINTS);
         }
@@ -157,6 +157,18 @@ public class ParserUtil {
         }
         return new FilePath(trimmedFilePath);
 
+    }
+
+    /**
+     * Parses {@code Collection<String> meetingTimes} into a {@code Set<MeetingTime>}.
+     */
+    public static Set<MeetingTime> parseMeetingTimes(Collection<String> meetingTimes) throws ParseException {
+        requireNonNull(meetingTimes);
+        final Set<MeetingTime> meetingTimeSet = new HashSet<>();
+        for (String meetingTime : meetingTimes) {
+            meetingTimeSet.add(parseMeetingTime(meetingTime));
+        }
+        return meetingTimeSet;
     }
 
     /**

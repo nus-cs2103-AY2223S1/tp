@@ -7,7 +7,7 @@
     "address" : "123, Jurong West Ave 6, #08-111",
     "description" : "",
     "netWorth" : "$54400",
-    "meetingTime" : "10-08-2022 15:00",
+    "meetingTime" : [ "10-08-2022-15:00" ],
     "filePath" : "src/test/data/TestPDFs/Test_PDF.pdf",
     "tagged" : [ "friends" ]
   }, {
@@ -17,7 +17,7 @@
     "address" : "311, Clementi Ave 2, #02-25",
     "description" : "He can't take beer!",
     "netWorth" : "$1350",
-    "meetingTime" : "11-04-2022 11:00",
+    "meetingTime" : [ "11-04-2022-11:00" ],
     "filePath" : "src/test/data/TestPDFs/Test_PDF2.pdf",
     "tagged" : [ "owesMoney", "friends" ]
   }, {
@@ -27,7 +27,7 @@
     "address" : "wall street",
     "description" : "",
     "netWorth" : "$444444400",
-    "meetingTime" : "30-12-2023 10:00",
+    "meetingTime" : [ "30-12-2023-10:00" ],
     "filePath" : "src/test/data/TestPDFs/Test_PDF3.pdf",
     "tagged" : [ ]
   }, {
@@ -37,7 +37,7 @@
     "address" : "10th street",
     "description" : "",
     "netWorth" : "$7777",
-    "meetingTime" : "01-01-2022 13:00",
+    "meetingTime" : [ "01-01-2022-13:00" ],
     "filePath" : "src/test/data/TestPDFs/Test_PDF4.pdf",
     "tagged" : [ "friends" ]
   }, {
@@ -47,7 +47,7 @@
     "address" : "michegan ave",
     "description" : "",
     "netWorth" : "$888888",
-    "meetingTime" : "06-10-2023 18:00",
+    "meetingTime" : [ "06-10-2023-18:00" ],
     "filePath" : "src/test/data/TestPDFs/Test_PDF5.pdf",
     "tagged" : [ ]
   }, {
@@ -57,7 +57,7 @@
     "address" : "little tokyo",
     "description" : "",
     "netWorth" : "$11222333",
-    "meetingTime" : "19-11-2024 02:00",
+    "meetingTime" : [ "19-11-2024-02:00" ],
     "filePath" : "src/test/data/TestPDFs/Test_PDF6.pdf",
     "tagged" : [ ]
   }, {
@@ -67,7 +67,7 @@
     "address" : "4th street",
     "description" : "",
     "netWorth" : "$1000",
-    "meetingTime" : "15-06-2022 17:00",
+    "meetingTime" : [ "15-06-2022-17:00" ],
     "filePath" : "src/test/data/TestPDFs/Test_PDF7.pdf",
     "tagged" : [ ]
   } ]

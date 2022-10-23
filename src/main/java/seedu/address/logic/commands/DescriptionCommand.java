@@ -54,7 +54,7 @@ public class DescriptionCommand extends Command {
 
         Person personToEdit = lastShownList.get(index.getZeroBased());
         Person editedPerson = new Person(personToEdit.getName(), personToEdit.getPhone(), personToEdit.getEmail(),
-                personToEdit.getAddress(), description, personToEdit.getNetWorth(), personToEdit.getMeetingTime(),
+                personToEdit.getAddress(), description, personToEdit.getNetWorth(), personToEdit.getMeetingTimes(),
                 personToEdit.getFilePath(), personToEdit.getTags());
 
 

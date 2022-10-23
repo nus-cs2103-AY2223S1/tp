@@ -45,7 +45,7 @@ public class PersonCard extends UiPart<Region> {
     @FXML
     private Label netWorth;
     @FXML
-    private Label meetingTime;
+    private FlowPane meetingTimes;
 
     /**
      * Creates a {@code PersonCode} with the given {@code Person} and index to display.
@@ -60,7 +60,9 @@ public class PersonCard extends UiPart<Region> {
         email.setText(person.getEmail().value);
         description.setText(person.getDescription().value);
         netWorth.setText(person.getNetWorth().value);
-        meetingTime.setText(person.getMeetingTime().value);
+        person.getMeetingTimes().stream()
+                .sorted(Comparator.comparing(meetingTime -> meetingTime.displayValue))
+                .forEach(meetingTime -> meetingTimes.getChildren().add(new Label(meetingTime.displayValue)));
         person.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));

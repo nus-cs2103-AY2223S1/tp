@@ -39,7 +39,7 @@ public class EditPersonDescriptorBuilder {
         descriptor.setEmail(person.getEmail());
         descriptor.setAddress(person.getAddress());
         descriptor.setNetWorth(person.getNetWorth());
-        descriptor.setMeetingTime(person.getMeetingTime());
+        descriptor.setMeetingTimes(person.getMeetingTimes());
         descriptor.setTags(person.getTags());
     }
 
@@ -86,8 +86,9 @@ public class EditPersonDescriptorBuilder {
     /**
      * Sets the {@code MeetingTime} of the {@code EditPersonDescriptor} that we are building.
      */
-    public EditPersonDescriptorBuilder withMeetingTime(String meetingTime) {
-        descriptor.setMeetingTime(new MeetingTime(meetingTime));
+    public EditPersonDescriptorBuilder withMeetingTimes(String ... meetingTimes) {
+        Set<MeetingTime> meetingTimeSet = Stream.of(meetingTimes).map(MeetingTime::new).collect(Collectors.toSet());
+        descriptor.setMeetingTimes(meetingTimeSet);
         return this;
     }
 
