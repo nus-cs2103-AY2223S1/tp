@@ -3,6 +3,7 @@ package paymelah.logic.commands;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static paymelah.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static paymelah.logic.parser.CliSyntax.PREFIX_DEBT;
 import static paymelah.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 import static paymelah.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static paymelah.logic.parser.CliSyntax.PREFIX_MONEY;
@@ -86,6 +87,13 @@ public class CommandTestUtil {
 
     public static final String INVALID_DESCRIPTION_DESC = " " + PREFIX_DESCRIPTION + " ";
     public static final String INVALID_MONEY_DESC = " " + PREFIX_MONEY + "one hundred";
+
+    public static final String VALID_DEBT_INDEX = " " + PREFIX_DEBT + "1";
+    public static final String VALID_DEBT_INDEXES = " " + PREFIX_DEBT + "1 2 3";
+    public static final String VALID_DEBT_INDEXES_REPEAT = " " + PREFIX_DEBT + "1 3 3 1";
+    public static final String INVALID_DEBT_INDEX = " " + PREFIX_DEBT + "a";
+    public static final String INVALID_DEBT_INDEX_ZERO = " " + PREFIX_DEBT + "0";
+    public static final String INVALID_DEBT_INDEXES = " " + PREFIX_DEBT + "1  2";
 
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
