@@ -13,7 +13,6 @@ import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.model.person.exceptions.DuplicatePersonException;
 import seedu.address.model.student.exceptions.DuplicateStudentException;
 import seedu.address.model.student.exceptions.StudentNotFoundException;
 import seedu.address.testutil.StudentBuilder;
@@ -110,7 +109,8 @@ public class UniqueStudentListTest {
     public void setStudent_editedStudentHasNonUniqueIdentity_throwsDuplicateStudentException() {
         uniqueStudentList.add(TypicalStudents.ALICE);
         uniqueStudentList.add(BENSON);
-        assertThrows(DuplicateStudentException.class, () -> uniqueStudentList.setStudent(TypicalStudents.ALICE, BENSON));
+        assertThrows(DuplicateStudentException.class,
+                () -> uniqueStudentList.setStudent(TypicalStudents.ALICE, BENSON));
     }
 
     @Test
