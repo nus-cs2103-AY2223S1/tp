@@ -32,7 +32,12 @@ public class ReminderCard extends UiPart<Region> {
     public ReminderCard(Reminder reminder, int displayedIndex) {
         super(FXML);
         this.reminder = reminder;
-        id.setText(displayedIndex + ". ");
+        if (!reminder.getStatus()) {
+            id.setText(displayedIndex + ". ");
+
+        } else {
+            id.setText("✓" + displayedIndex + ". ");
+        }
         name.setText(reminder.getName().fullName);
         deadline.setText(reminder.getDeadline().deadline);
         description.setText(reminder.getDescription().description);
