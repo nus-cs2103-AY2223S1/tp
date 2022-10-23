@@ -6,6 +6,7 @@ import taskbook.logic.commands.contacts.ContactAddCommand;
 import taskbook.logic.commands.contacts.ContactDeleteCommand;
 import taskbook.logic.commands.contacts.ContactEditCommand;
 import taskbook.logic.commands.contacts.ContactListCommand;
+import taskbook.logic.commands.contacts.ContactSortCommand;
 import taskbook.logic.parser.exceptions.ParseException;
 
 /**
@@ -33,6 +34,8 @@ public class ContactCategoryParser {
             return new ContactDeleteCommandParser().parse(arguments);
         case ContactListCommand.COMMAND_WORD:
             return new ContactListCommand();
+        case ContactSortCommand.COMMAND_WORD:
+            return new ContactSortCommandParser().parse(arguments);
         default:
             throw new ParseException(Messages.MESSAGE_UNKNOWN_COMMAND);
         }

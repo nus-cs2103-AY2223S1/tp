@@ -57,7 +57,7 @@ public class TaskMarkCommand extends Command {
         Task taskToMark = lastShownList.get(targetIndex.getZeroBased());
         Task markedTask = taskToMark.createEditedCopy(editTaskDescriptor);
         model.setTask(taskToMark, markedTask);
-        model.updateFilteredTaskList(Model.PREDICATE_SHOW_ALL_TASKS);
+        model.updateFilteredTaskListPredicate(Model.PREDICATE_SHOW_ALL_TASKS);
         model.commitTaskBook();
         return new CommandResult(String.format(MESSAGE_MARK_TASK_SUCCESS, markedTask));
     }

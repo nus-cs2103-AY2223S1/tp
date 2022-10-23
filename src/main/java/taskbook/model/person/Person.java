@@ -7,6 +7,7 @@ import java.util.Set;
 
 import taskbook.commons.util.CollectionUtil;
 import taskbook.model.tag.Tag;
+import taskbook.model.task.Task;
 
 /**
  * Represents a Person in the task book.
@@ -129,4 +130,12 @@ public class Person {
         return builder.toString();
     }
 
+    /**
+     * Compares this personn and the person task to decide name alphabetical order.
+     * @param other input person.
+     * @return 1 if this person's name is alphabetically first, -1 otherwise.
+     */
+    public int compareByNameAlphabeticalTo(Person other) {
+        return this.getName().compareByAlphabeticalTo(other.getName());
+    }
 }

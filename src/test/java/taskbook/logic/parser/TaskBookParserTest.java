@@ -15,6 +15,9 @@ import taskbook.logic.commands.categoryless.ExitCommand;
 import taskbook.logic.commands.contacts.ContactAddCommand;
 import taskbook.logic.commands.contacts.ContactDeleteCommand;
 import taskbook.logic.commands.contacts.ContactListCommand;
+import taskbook.logic.commands.contacts.ContactSortAddedChronologicalCommand;
+import taskbook.logic.commands.contacts.ContactSortCommand;
+import taskbook.logic.commands.contacts.ContactSortNameAlphabeticalCommand;
 import taskbook.logic.commands.tasks.TaskDeleteCommand;
 import taskbook.logic.commands.tasks.TaskEditCommand;
 import taskbook.logic.commands.tasks.TaskListCommand;
@@ -59,6 +62,14 @@ public class TaskBookParserTest {
     public void parseCommand_contactShortcut_list() throws Exception {
         assertTrue(parseContactCommandShortcut(ContactListCommand.COMMAND_WORD) instanceof ContactListCommand);
         assertTrue(parseContactCommandShortcut(ContactListCommand.COMMAND_WORD + " 3") instanceof ContactListCommand);
+    }
+
+    @Test
+    public void parseCommand_contact_sort() throws Exception {
+        assertTrue(parseContactCommand(ContactSortCommand.COMMAND_WORD + " s/a")
+                instanceof ContactSortNameAlphabeticalCommand);
+        assertTrue(parseContactCommand(ContactSortCommand.COMMAND_WORD + " s/ca")
+                instanceof ContactSortAddedChronologicalCommand);
     }
 
     @Test
