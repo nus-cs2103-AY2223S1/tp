@@ -48,11 +48,36 @@
       </HBox>
       <FlowPane fx:id="tags" />
       <FlowPane fx:id="moduleCodes" />
-      <Label fx:id="phone" styleClass="cell_small_label" text="\$phone" />
-      <Label fx:id="email" styleClass="cell_small_label" text="\$email" />
-      <Label fx:id="githubUsername" styleClass="cell_small_label" />
-      <Label fx:id="locationAt" styleClass="cell_small_label" text="\$location" />
-        <Label fx:id="officeHour" styleClass="cell_small_label"/>
+         <HBox alignment="CENTER_LEFT" layoutX="25.0" layoutY="15.0" spacing="5">
+            <children>
+               <ImageView fx:id="phoneImage" fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true" />
+            <Label fx:id="phone" styleClass="cell_small_label" text="\$phone" />
+            </children>
+         </HBox>
+         <HBox alignment="CENTER_LEFT" layoutX="25.0" layoutY="35.0" spacing="5">
+            <children>
+               <ImageView fx:id="emailImage" fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true" />
+            <Label fx:id="email" styleClass="cell_small_label" text="\$email" />
+            </children>
+         </HBox>
+         <HBox fx:id="gitHubPanel" alignment="CENTER_LEFT" layoutX="25.0" layoutY="55.0" spacing="5">
+            <children>
+               <ImageView fx:id="githubImage" fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true" />
+            <Label fx:id="githubUsername" styleClass="cell_small_label" />
+            </children>
+         </HBox>
+         <HBox alignment="CENTER_LEFT" layoutX="25.0" layoutY="75.0" spacing="5">
+            <children>
+               <ImageView fx:id="locationImage" fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true" />
+            <Label fx:id="locationAt" styleClass="cell_small_label" text="\$location" />
+            </children>
+         </HBox>
+         <HBox fx:id="officeHourpanel" alignment="CENTER_LEFT" layoutX="25.0" layoutY="146.0" spacing="5">
+            <children>
+               <ImageView fx:id="officeHourImage" fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true" />
+              <Label fx:id="officeHour" styleClass="cell_small_label" />
+            </children>
+         </HBox>
     </VBox>
       <rowConstraints>
          <RowConstraints />
