@@ -5,7 +5,7 @@ import java.util.regex.Pattern;
 
 import taskbook.commons.core.Messages;
 import taskbook.logic.commands.Command;
-import taskbook.logic.commands.HelpCommand;
+import taskbook.logic.commands.categoryless.HelpCommand;
 import taskbook.logic.parser.categoryless.CategorylessParser;
 import taskbook.logic.parser.contacts.ContactCategoryParser;
 import taskbook.logic.parser.exceptions.ParseException;

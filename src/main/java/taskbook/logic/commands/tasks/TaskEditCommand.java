@@ -33,7 +33,7 @@ public class TaskEditCommand extends Command {
         + "[" + PREFIX_ASSIGN_FROM + "NAME] "
         + "[" + PREFIX_ASSIGN_TO + "NAME] "
         + "[" + PREFIX_DESCRIPTION + "DESCRIPTION] "
-        + "[" + PREFIX_DATE + "DATE\n] "
+        + "[" + PREFIX_DATE + "DATE]\n"
         + "Example: " + COMMAND_WORD + " " + PREFIX_INDEX + " 1 "
         + PREFIX_ASSIGN_FROM + "Jackie Chan "
         + PREFIX_DESCRIPTION + "Practice kick 10000 times";
