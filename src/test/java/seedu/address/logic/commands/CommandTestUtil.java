@@ -352,11 +352,6 @@ public class CommandTestUtil {
         }
 
         @Override
-        public Quote getQuote() {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
         public Set<Predicate<Person>> getTagFilters() {
             throw new AssertionError("This method should not be called.");
         }
