@@ -56,16 +56,17 @@ public class EditCommandParser implements Parser<EditCommand> {
             editClientDescriptor.setPhone(ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONE).get()));
         }
         if (argMultimap.getValue(PREFIX_EMAIL).isPresent()) {
-            editClientDescriptor.setEmail(ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get()));
+            editClientDescriptor.setEmail(Optional.of(ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get())));
         }
         if (argMultimap.getValue(PREFIX_ADDRESS).isPresent()) {
-            editClientDescriptor.setAddress(ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get()));
+            editClientDescriptor.setAddress(Optional.of(
+                    ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get())));
         }
 
         if (argMultimap.getValue(PREFIX_BIRTHDAY).isPresent()) {
-            LocalDate dateLocalDate = ParserUtil.parseDate(argMultimap.getValue(PREFIX_BIRTHDAY).get());
+            LocalDate dateLocalDate = ParserUtil.parseDate(argMultimap.getValue(PREFIX_BIRTHDAY).get(), "birthday");
             Birthday birthday = new Birthday(dateLocalDate);
-            editClientDescriptor.setBirthday(birthday);
+            editClientDescriptor.setBirthday(Optional.of(birthday));
         }
 
         parseProductsForEdit(argMultimap.getAllValues(PREFIX_PRODUCT)).ifPresent(editClientDescriptor::setProducts);

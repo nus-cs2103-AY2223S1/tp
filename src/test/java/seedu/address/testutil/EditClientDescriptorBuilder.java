@@ -1,11 +1,14 @@
 package seedu.address.testutil;
 
+import java.time.LocalDate;
+import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import seedu.address.logic.commands.EditCommand.EditClientDescriptor;
 import seedu.address.model.client.Address;
+import seedu.address.model.client.Birthday;
 import seedu.address.model.client.Client;
 import seedu.address.model.client.Email;
 import seedu.address.model.client.Name;
@@ -59,7 +62,7 @@ public class EditClientDescriptorBuilder {
      * Sets the {@code Email} of the {@code EditClientDescriptor} that we are building.
      */
     public EditClientDescriptorBuilder withEmail(String email) {
-        descriptor.setEmail(new Email(email));
+        descriptor.setEmail(Optional.of(new Email(email)));
         return this;
     }
 
@@ -67,7 +70,15 @@ public class EditClientDescriptorBuilder {
      * Sets the {@code Address} of the {@code EditClientDescriptor} that we are building.
      */
     public EditClientDescriptorBuilder withAddress(String address) {
-        descriptor.setAddress(new Address(address));
+        descriptor.setAddress(Optional.of(new Address(address)));
+        return this;
+    }
+
+    /**
+     * Sets the {@code Birthday} of the {@code EditClientDescriptor} that we are building.
+     */
+    public EditClientDescriptorBuilder withBirthday(LocalDate birthday) {
+        descriptor.setBirthday(Optional.of(new Birthday(birthday)));
         return this;
     }
 

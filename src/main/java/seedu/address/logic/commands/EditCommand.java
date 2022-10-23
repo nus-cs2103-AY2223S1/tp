@@ -100,8 +100,12 @@ public class EditCommand extends Command {
 
         Name updatedName = editClientDescriptor.getName().orElse(clientToEdit.getName());
         Phone updatedPhone = editClientDescriptor.getPhone().orElse(clientToEdit.getPhone());
-        Email updatedEmail = editClientDescriptor.getEmail().orElse(clientToEdit.getEmail());
-        Address updatedAddress = editClientDescriptor.getAddress().orElse(clientToEdit.getAddress());
+        Optional<Email> updatedEmail = editClientDescriptor.getEmail().isEmpty()
+                ? clientToEdit.getEmail()
+                : editClientDescriptor.getEmail();
+        Optional<Address> updatedAddress = editClientDescriptor.getAddress().isEmpty()
+                ? clientToEdit.getAddress()
+                : editClientDescriptor.getAddress();
         Optional<Birthday> updatedBirthday = editClientDescriptor.getBirthday().isEmpty()
             ? clientToEdit.getBirthday()
             : editClientDescriptor.getBirthday();
@@ -136,9 +140,9 @@ public class EditCommand extends Command {
     public static class EditClientDescriptor {
         private Name name;
         private Phone phone;
-        private Email email;
-        private Address address;
-        private Birthday birthday;
+        private Optional<Email> email;
+        private Optional<Address> address;
+        private Optional<Birthday> birthday;
         private Set<Product> products;
 
         public EditClientDescriptor() {}
@@ -148,12 +152,12 @@ public class EditCommand extends Command {
          * A defensive copy of {@code Products} is used internally.
          */
         public EditClientDescriptor(EditClientDescriptor toCopy) {
-            setName(toCopy.name);
-            setPhone(toCopy.phone);
-            setEmail(toCopy.email);
-            setAddress(toCopy.address);
-            setBirthday(toCopy.birthday);
-            setProducts(toCopy.products);
+            name = toCopy.name;
+            phone = toCopy.phone;
+            email = toCopy.email;
+            address = toCopy.address;
+            birthday = toCopy.birthday;
+            products = toCopy.products;
 
         }
 
@@ -161,7 +165,7 @@ public class EditCommand extends Command {
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, phone, email, address, products);
+            return CollectionUtil.isAnyNonNull(name, phone, email, address, birthday, products);
         }
 
         public void setName(Name name) {
@@ -180,27 +184,33 @@ public class EditCommand extends Command {
             return Optional.ofNullable(phone);
         }
 
-        public void setEmail(Email email) {
+        public void setEmail(Optional<Email> email) {
             this.email = email;
         }
 
         public Optional<Email> getEmail() {
-            return Optional.ofNullable(email);
+            return email == null
+                    ? Optional.empty()
+                    : email;
         }
 
-        public void setAddress(Address address) {
+        public void setAddress(Optional<Address> address) {
             this.address = address;
         }
 
         public Optional<Address> getAddress() {
-            return Optional.ofNullable(address);
+            return address == null
+                    ? Optional.empty()
+                    : address;
         }
 
-        public void setBirthday(Birthday birthday) {
+        public void setBirthday(Optional<Birthday> birthday) {
             this.birthday = birthday;
         }
         public Optional<Birthday> getBirthday() {
-            return Optional.ofNullable(birthday);
+            return birthday == null
+                    ? Optional.empty()
+                    : birthday;
         }
 
         /**
