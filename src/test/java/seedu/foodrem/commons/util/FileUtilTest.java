@@ -7,7 +7,6 @@ import static seedu.foodrem.testutil.Assert.assertThrows;
 import org.junit.jupiter.api.Test;
 
 public class FileUtilTest {
-
     @Test
     public void isValidPath() {
         // valid path
@@ -19,5 +18,4 @@ public class FileUtilTest {
         // null path -> throws NullPointerException
         assertThrows(NullPointerException.class, () -> FileUtil.isValidPath(null));
     }
-
 }

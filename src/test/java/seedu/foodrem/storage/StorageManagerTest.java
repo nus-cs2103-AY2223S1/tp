@@ -16,7 +16,6 @@ import seedu.foodrem.model.ReadOnlyFoodRem;
 import seedu.foodrem.model.UserPrefs;
 
 public class StorageManagerTest {
-
     @TempDir
     public Path testFolder;
 
@@ -64,5 +63,4 @@ public class StorageManagerTest {
     public void getFoodRemFilePath() {
         assertNotNull(storageManager.getFoodRemFilePath());
     }
-
 }

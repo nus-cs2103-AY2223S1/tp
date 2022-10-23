@@ -21,13 +21,12 @@ import seedu.foodrem.model.tag.exceptions.TagNotFoundException;
  * Supports a minimal set of list operations.
  */
 public class UniqueTagList implements Iterable<Tag> {
-
     private final ObservableList<Tag> internalList = FXCollections.observableArrayList();
     private final ObservableList<Tag> internalUnmodifiableList =
             FXCollections.unmodifiableObservableList(internalList);
 
     /**
-     * Returns true if the list contains an equivalent tag as the given argument.
+     * Returns {@code true} if the list contains an equivalent tag as the given argument.
      */
     public boolean contains(Tag toCheck) {
         requireNonNull(toCheck);
@@ -120,7 +119,7 @@ public class UniqueTagList implements Iterable<Tag> {
     }
 
     /**
-     * Returns true if {@code tags} contains only unique tags.
+     * Returns {@code true} if {@code tags} contains only unique tags.
      */
     private boolean tagsAreUnique(List<Tag> tags) {
         HashSet<Tag> set = new HashSet<>();

@@ -6,7 +6,6 @@ import static seedu.foodrem.testutil.Assert.assertThrows;
 import org.junit.jupiter.api.Test;
 
 public class AppUtilTest {
-
     @Test
     public void getImage_exitingImage() {
         assertNotNull(AppUtil.getImage("/images/foodrem.png"));

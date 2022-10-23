@@ -12,7 +12,6 @@ import seedu.foodrem.logic.commands.itemcommands.FindCommand;
 import seedu.foodrem.model.item.NameContainsKeywordsPredicate;
 
 public class FindCommandParserTest {
-
     private final FindCommandParser parser = new FindCommandParser();
 
     @Test
@@ -30,5 +29,4 @@ public class FindCommandParserTest {
         // multiple whitespaces between keywords
         assertParseSuccess(parser, " \n Potato \n \t Cucumber  \t", expectedFindCommand);
     }
-
 }

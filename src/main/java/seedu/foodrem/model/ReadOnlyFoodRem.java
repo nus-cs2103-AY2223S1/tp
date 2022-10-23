@@ -8,7 +8,6 @@ import seedu.foodrem.model.tag.Tag;
  * Unmodifiable view of FoodRem.
  */
 public interface ReadOnlyFoodRem {
-
     /**
      * Returns an unmodifiable view of the item list.
      * This list will not contain any duplicate items.
@@ -16,5 +15,4 @@ public interface ReadOnlyFoodRem {
     ObservableList<Item> getItemList();
 
     ObservableList<Tag> getTagList();
-
 }

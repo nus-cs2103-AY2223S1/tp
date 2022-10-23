@@ -26,8 +26,6 @@ import seedu.foodrem.model.util.ChainComparator;
  * SortCommand object
  */
 public class SortCommandParser implements Parser<SortCommand> {
-
-
     /**
      * Parses the given {@code String} of arguments in the context of the SortCommand
      * and returns a SortCommand object for execution.
