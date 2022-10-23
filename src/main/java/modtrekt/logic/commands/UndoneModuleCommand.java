@@ -66,6 +66,6 @@ public class UndoneModuleCommand extends Command {
         // Sum up credits.
         ObservableList<Module> modules = model.getModuleList().getModuleList();
         DoneModuleCommand.refresh(modules);
-        return new CommandResult("Marked module as undone.", true);
+        return new CommandResult("Marked module as undone.");
     }
 }

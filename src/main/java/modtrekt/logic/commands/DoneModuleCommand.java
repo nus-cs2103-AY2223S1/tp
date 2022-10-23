@@ -69,7 +69,7 @@ public class DoneModuleCommand extends Command {
         // Sum up credits.
         ObservableList<Module> modules = model.getModuleList().getModuleList();
         refresh(modules);
-        return new CommandResult("Marked module as done.", true);
+        return new CommandResult("Marked module as done.");
     }
 
     /**
