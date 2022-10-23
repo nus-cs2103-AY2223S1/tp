@@ -1,3 +1,8 @@
+@font-face {
+    -fx-font-family: QTAncientOlive-Bold;
+    src: url('../font/QTAncientOlive-Bold.otf');
+}
+
 .background {
     -fx-background-color: white;
     background-color: white; /* Used in the default.html file */
@@ -5,22 +10,22 @@
 
 .label {
     -fx-font-size: 11pt;
-    -fx-font-family: "Segoe UI Semibold";
+    -fx-font-family: "Helvetica Neue";
     -fx-text-fill: black;
-    -fx-opacity: 0.9;
+    -fx-opacity: 0.8;
 }
 
 .label-bright {
     -fx-font-size: 11pt;
-    -fx-font-family: "Segoe UI Semibold";
+    -fx-font-family: "Helvetica Neue";
     -fx-text-fill: black;
-    -fx-opacity: 1;
+    -fx-opacity: 0.8;
 }
 
 .label-header {
     -fx-font-size: 14pt;
     -fx-font-family: "Helvetica Neue";
-    -fx-text-fill: black;
+    -fx-text-fill: white;
     -fx-opacity: 1;
 }
 
@@ -73,10 +78,10 @@
     -fx-border-width: 0 0 1 0;
     -fx-background-color: white;
     -fx-border-color:
-        transparent
-        transparent
-        derive(-fx-base, 80%)
-        transparent;
+            transparent
+            transparent
+            derive(-fx-base, 80%)
+            transparent;
     -fx-border-insets: 0 10 1 0;
 }
 
@@ -147,12 +152,12 @@
 }
 
 .stack-pane {
-     -fx-background-color: white;
+    -fx-background-color: transparent;
 }
 
 .pane-with-border {
-     /*outlook color*/
-     -fx-background-color: #dbdbdb;
+    /*outlook color*/
+    -fx-background-color: #dbdbdb;
 }
 
 .status-bar {
@@ -160,10 +165,22 @@
 }
 
 .result-display {
-    -fx-background-color: #bbbdbf;
+    -fx-background-color: #f0f1f2;
+    -fx-background-radius: 16px;
     -fx-font-family: "Segoe UI Light";
     -fx-font-size: 13pt;
     -fx-text-fill: #5e5e5e;
+    -fx-padding: 4px 4px 4px 4px;
+}
+
+#modHeader, #personHeader {
+    /* color referenced from https://introjava.wordpress.com/2012/03/23/java-fx-2-linear-gradients/*/
+    -fx-background-color:
+            linear-gradient(#686868 0%, #232723 25%, #373837 75%, #757575 100%),
+            linear-gradient(#020b02, #3a3a3a),
+            linear-gradient(#9d9e9d 0%, #6b6a6b 20%, #343534 80%, #242424 100%),
+            linear-gradient(#8a8a8a 0%, #6b6a6b 20%, #343534 80%, #262626 100%);
+    -fx-background-radius: 14 14 0 0;
 }
 
 .result-display .label {
@@ -172,9 +189,9 @@
 
 .status-bar .label {
     -fx-font-family: "Helvetica Neue";
+    -fx-font-size: 14;
     -fx-text-fill: white;
-    -fx-padding: 4px;
-    -fx-pref-height: 30px;
+    -fx-padding: 2px;
 }
 
 .status-bar-with-border {
@@ -210,10 +227,10 @@
 }
 
 .menu-bar .label {
-    -fx-font-size: 14pt;
-    -fx-font-family: "Segoe UI Light";
+    -fx-font-size: 11pt;
+    -fx-font-family: "Helvetica Neue";
     -fx-text-fill: white;
-    -fx-opacity: 0.9;
+    -fx-opacity: 1;
 }
 
 .menu .left-container {
@@ -242,8 +259,8 @@
 }
 
 .button:pressed, .button:default:hover:pressed {
-  -fx-background-color: #0072C6;
-  -fx-text-fill: #1d1d1d;
+    -fx-background-color: #0072C6;
+    -fx-text-fill: #1d1d1d;
 }
 
 .button:focused {
@@ -252,6 +269,17 @@
     -fx-border-style: solid, segments(1, 1);
     -fx-border-radius: 0, 0;
     -fx-border-insets: 1 1 1 1, 0;
+}
+
+#menuContainer {
+    -fx-background-color: #0072C6;
+}
+
+#appLogo {
+    -fx-text-fill: white;
+    -fx-opacity: 1;
+    -fx-font-size: 20;
+    -fx-font-family: QTAncientOlive-Bold;
 }
 
 .button:disabled, .button:default:disabled {
@@ -331,14 +359,16 @@
 }
 
 #commandTextField {
+    -fx-pref-height: 30;
+    -fx-padding: 5 5 5 5;
     -fx-background-color: #f0f1f2;
     -fx-background-insets: 0;
-    -fx-padding: 12 10 12 10;
-    -fx-border-radius: 1px;
     -fx-border-color: grey;
-    -fx-font-family: "Segoe UI Light";
-    -fx-font-size: 13pt;
+    -fx-font-family: "Helvetica Neue";
+    -fx-font-size: 12pt;
     -fx-text-fill: #383838;
+    -fx-border-radius: 10, 10, 10, 10;
+    -fx-background-radius: 10, 10, 10, 10;
 }
 
 #resultDisplay .content {
@@ -357,7 +387,7 @@
     -fx-padding: 3 3 3 3;
     -fx-border-radius: 2;
     -fx-background-radius: 12, 12, 0, 0;
-    -fx-font-size: 14;
+    -fx-font-size: 13;
     -fx-alignment: center;
 }
 
@@ -365,7 +395,8 @@
     -fx-background-radius: 16, 16, 0, 0;
     -fx-alignment: center;
     -fx-text-fill: white;
-    -fx-pref-width: 140px;
+    -fx-pref-width: 150px;
+    -fx-font-size: 15;
 }
 
 #takenStatus {
@@ -373,4 +404,5 @@
     -fx-alignment: center;
     -fx-text-fill: white;
     -fx-pref-width: 70px;
+    -fx-font-size: 14;
 }

@@ -113,7 +113,7 @@ public class ModUnmarkCommandTest {
         String actualThirdModStatus = batchmate.getMods().get(2).toString();
         String actualModStatus = actualFirstModStatus + actualSecondModStatus + actualThirdModStatus;
 
-        String expectedModStatus = "[CS2100: false]" + "[CS2103: true]" + "[CS2101: false]";
+        String expectedModStatus = "[CS2100: false]" + "[CS2101: false]" + "[CS2103: true]";
 
         assertEquals(expectedModStatus, actualModStatus);
         assertEquals(ModUnmarkCommand.MESSAGE_SUCCESS, commandResult.getFeedbackToUser());

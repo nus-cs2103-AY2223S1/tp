@@ -48,25 +48,25 @@ public class ModCard extends UiPart<Region> {
 
         // set color of category tag
         if (modCat.equals(Mod.ModCategory.COMP)) {
-            modCategory.setStyle("-fx-background-color: #bd4d5a;");
+            modCategory.setStyle("-fx-background-color: #a81d2d;");
         } else if (modCat.equals(Mod.ModCategory.MATH)) {
-            modCategory.setStyle("-fx-background-color: #cca60e;");
+            modCategory.setStyle("-fx-background-color: #c29d06;");
         } else if (modCat.equals(Mod.ModCategory.SCI)) {
-            modCategory.setStyle("-fx-background-color: #68ab85;");
+            modCategory.setStyle("-fx-background-color: #2e8054;");
         } else if (modCat.equals(Mod.ModCategory.COMMS)) {
-            modCategory.setStyle("-fx-background-color: #9f68ab;");
+            modCategory.setStyle("-fx-background-color: #9f3cb6;");
         } else if (modCat.equals(Mod.ModCategory.GE)) {
-            modCategory.setStyle("-fx-background-color: #9373c7;");
+            modCategory.setStyle("-fx-background-color: #6b43ab;");
         } else if (modCat.equals(Mod.ModCategory.UE)) {
-            modCategory.setStyle("-fx-background-color: #5077ba;");
+            modCategory.setStyle("-fx-background-color: #2d589b;");
         }
 
         boolean hasTaken = module.getModStatus();
         if (hasTaken) {
-            takenStatus.setStyle("-fx-background-color: #418a43;");
+            takenStatus.setStyle("-fx-background-color: #157a17;");
             takenStatus.setText("Taken");
         } else {
-            takenStatus.setStyle("-fx-background-color: #919191;");
+            takenStatus.setStyle("-fx-background-color: #858585;");
             takenStatus.setText("Taking");
         }
     }

@@ -66,7 +66,7 @@ public class ModUnmarkCommand extends ModCommand {
                 String.format(MESSAGE_SUCCESS, personToEdit),
                 false,
                 false,
-                true, false);
+                false, false);
     }
 
     @Override
