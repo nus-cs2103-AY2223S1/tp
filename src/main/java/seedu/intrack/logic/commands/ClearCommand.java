@@ -11,7 +11,7 @@ import seedu.intrack.model.Model;
 public class ClearCommand extends Command {
 
     public static final String COMMAND_WORD = "clear";
-    public static final String MESSAGE_SUCCESS = "Internship tracker has been cleared!";
+    public static final String MESSAGE_SUCCESS = "InTrack has been cleared!";
 
     @Override
     public CommandResult execute(Model model) {

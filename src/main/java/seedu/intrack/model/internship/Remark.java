@@ -3,7 +3,7 @@ package seedu.intrack.model.internship;
 import static java.util.Objects.requireNonNull;
 
 /**
- * Represents a Person's remark in the address book.
+ * Represents an Internship's remark in the tracker.
  * Guarantees: immutable; is always valid
  */
 public class Remark {

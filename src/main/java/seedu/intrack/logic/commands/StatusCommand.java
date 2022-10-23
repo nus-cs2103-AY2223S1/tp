@@ -13,8 +13,7 @@ import seedu.intrack.model.internship.Internship;
 import seedu.intrack.model.internship.Status;
 
 /**
- * Updates the status of an Internship with upper and lowercase "p", "r" and "o" after
- * the s/ prefix.
+ * Updates the status of the internship specified by the given index.
  */
 public class StatusCommand extends Command {
 

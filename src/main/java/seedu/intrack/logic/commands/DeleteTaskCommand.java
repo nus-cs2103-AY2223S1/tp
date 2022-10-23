@@ -4,37 +4,38 @@ import static seedu.intrack.commons.util.CollectionUtil.requireAllNonNull;
 import static seedu.intrack.model.Model.PREDICATE_SHOW_ALL_INTERNSHIPS;
 
 import java.util.ArrayList;
-import java.util.Comparator;
 import java.util.List;
 
 import seedu.intrack.commons.core.Messages;
+import seedu.intrack.commons.core.index.Index;
 import seedu.intrack.logic.commands.exceptions.CommandException;
 import seedu.intrack.model.Model;
 import seedu.intrack.model.internship.Internship;
 import seedu.intrack.model.internship.Task;
 
 /**
- * Adds a new Task to the selected Internship.
+ * Deletes a Task from the selected Internship.
  */
-public class AddTaskCommand extends Command {
+public class DeleteTaskCommand extends Command {
 
-    public static final String COMMAND_WORD = "addtask";
+    public static final String COMMAND_WORD = "deltask";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a task to the selected internship application.\n"
-            + "Parameters: DESCRIPTION /at TIME (must be in the format dd-MM-yyyy HH:mm)\n"
-            + "Example: " + COMMAND_WORD + " Technical Interview /at 04-11-2022 17:00";
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Deletes the task identified by the index number used "
+            + "in the displayed list of the selected internship application.\n"
+            + "Parameters: INDEX (must be a positive integer)\n"
+            + "Example: " + COMMAND_WORD + " 1";
 
-    public static final String MESSAGE_UPDATE_TASK_SUCCESS = "Added task: %1$s";
+    public static final String MESSAGE_DELETE_TASK_SUCCESS = "Deleted task: %1$s";
 
-    private final Task task;
+    private final Index index;
 
     /**
-     * @param task Task to be added
+     * @param index Index of the task to be deleted
      */
-    public AddTaskCommand(Task task) {
-        requireAllNonNull(task);
+    public DeleteTaskCommand(Index index) {
+        requireAllNonNull(index);
 
-        this.task = task;
+        this.index = index;
     }
 
     @Override
@@ -46,9 +47,11 @@ public class AddTaskCommand extends Command {
         Internship internshipToEdit = lastShownList.get(0);
 
         List<Task> copyTasks = internshipToEdit.getTasks();
+        if (index.getZeroBased() >= copyTasks.size()) {
+            throw new CommandException(Messages.MESSAGE_INVALID_INTERNSHIP_DISPLAYED_INDEX);
+        }
         List<Task> editedTasks = new ArrayList<>(copyTasks);
-        editedTasks.add(task);
-        editedTasks.sort(Comparator.comparing(task -> task.taskTime));
+        editedTasks.remove(index.getZeroBased());
 
         Internship editedInternship = new Internship(internshipToEdit.getName(), internshipToEdit.getPosition(),
                 internshipToEdit.getStatus(), internshipToEdit.getPhone(), internshipToEdit.getEmail(),
@@ -57,14 +60,14 @@ public class AddTaskCommand extends Command {
         model.setInternship(internshipToEdit, editedInternship);
         model.updateFilteredInternshipList(PREDICATE_SHOW_ALL_INTERNSHIPS);
 
-        return new CommandResult(String.format(MESSAGE_UPDATE_TASK_SUCCESS, editedInternship));
+        return new CommandResult(String.format(MESSAGE_DELETE_TASK_SUCCESS, editedInternship));
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof AddTaskCommand // instanceof handles nulls
-                && task.equals(((AddTaskCommand) other).task)); // state check
+                || (other instanceof DeleteTaskCommand // instanceof handles nulls
+                && index.equals(((DeleteTaskCommand) other).index)); // state check
     }
 
 }
