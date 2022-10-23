@@ -9,6 +9,9 @@ import seedu.rc4hdb.model.venues.UniqueVenueList;
 import seedu.rc4hdb.model.venues.Venue;
 import seedu.rc4hdb.model.venues.VenueName;
 import seedu.rc4hdb.model.venues.booking.Booking;
+import seedu.rc4hdb.model.venues.booking.exceptions.BookingNotFoundException;
+import seedu.rc4hdb.model.venues.booking.fields.Day;
+import seedu.rc4hdb.model.venues.booking.fields.HourPeriod;
 import seedu.rc4hdb.model.venues.exceptions.VenueNotFoundException;
 
 /**
@@ -78,6 +81,17 @@ public class VenueBook implements ReadOnlyVenueBook {
      */
     public void addBookingToVenueWithSameName(VenueName venueName, Booking booking) throws VenueNotFoundException {
         venues.addBookingToVenueWithSameName(venueName, booking);
+    }
+
+    /**
+     * Removes a booking corresponding to {@code bookedPeriod} and {@code bookedDay} from the venue in the list with
+     * the name {@code venueName}.
+     * @throws VenueNotFoundException if the venue does not exist in the list.
+     * @throws BookingNotFoundException if the venue is not booked during the specified period and day.
+     */
+    public void removeBookingFromVenueWithSameName(VenueName venueName, HourPeriod bookingPeriod , Day bookedDay)
+            throws VenueNotFoundException, BookingNotFoundException {
+        venues.removeBookingFromVenueWithSameName(venueName, bookingPeriod, bookedDay);
     }
 
     //// util methods

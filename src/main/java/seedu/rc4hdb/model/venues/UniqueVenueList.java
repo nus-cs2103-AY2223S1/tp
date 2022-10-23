@@ -9,6 +9,10 @@ import java.util.List;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.rc4hdb.model.venues.booking.Booking;
+import seedu.rc4hdb.model.venues.booking.exceptions.BookingClashesException;
+import seedu.rc4hdb.model.venues.booking.exceptions.BookingNotFoundException;
+import seedu.rc4hdb.model.venues.booking.fields.Day;
+import seedu.rc4hdb.model.venues.booking.fields.HourPeriod;
 import seedu.rc4hdb.model.venues.exceptions.DuplicateVenueException;
 import seedu.rc4hdb.model.venues.exceptions.VenueNotFoundException;
 
@@ -64,15 +68,23 @@ public class UniqueVenueList implements Iterable<Venue> {
      * Adds a booking to the venue in the list with the name {@code venueName}.
      * @throws VenueNotFoundException if the venue does not exist in the list.
      */
-    public void addBookingToVenueWithSameName(VenueName otherVenueName, Booking booking) throws VenueNotFoundException {
+    public void addBookingToVenueWithSameName(VenueName otherVenueName, Booking booking)
+            throws VenueNotFoundException, BookingClashesException {
         requireAllNonNull(otherVenueName, booking);
-        for (Venue venue : internalList) {
-            if (venue.isSameVenue(otherVenueName)) {
-                venue.addBooking(booking);
-                return;
-            }
-        }
+        getVenueWithName(otherVenueName).addBooking(booking);
         throw new VenueNotFoundException();
+    }
+
+    /**
+     * Removes a booking corresponding to {@code bookedPeriod} and {@code bookedDay} from the venue in the list with
+     * the name {@code venueName}.
+     * @throws VenueNotFoundException if the venue does not exist in the list.
+     * @throws BookingNotFoundException if the venue is not booked during the specified period and day.
+     */
+    public void removeBookingFromVenueWithSameName(VenueName otherVenueName, HourPeriod bookingPeriod, Day bookedDay)
+            throws VenueNotFoundException, BookingNotFoundException {
+        requireAllNonNull(otherVenueName, bookingPeriod, bookedDay);
+        getVenueWithName(otherVenueName).removeBooking(bookingPeriod, bookedDay);
     }
 
     public void setVenues(UniqueVenueList replacement) {
@@ -91,6 +103,15 @@ public class UniqueVenueList implements Iterable<Venue> {
         }
 
         internalList.setAll(venues);
+    }
+
+    private Venue getVenueWithName(VenueName venueName) throws VenueNotFoundException {
+        for (Venue venue : internalList) {
+            if (venue.isSameVenue(venueName)) {
+                return venue;
+            }
+        }
+        throw new VenueNotFoundException();
     }
 
     /**

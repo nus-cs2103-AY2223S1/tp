@@ -45,6 +45,17 @@ public abstract class Booking {
      */
     public abstract boolean clashesWith(Booking booking);
 
+    /**
+     * Checks if the booking lies on the same day and time period.
+     * @param hourPeriod the booking period of the booking to be checked.
+     * @param bookingDay the day of the booking to be checked
+     * @return True if the booking lies on the same day and time period.
+     */
+    public boolean isSameBooking(HourPeriod hourPeriod, Day bookingDay) {
+        return this.hourPeriod.equals(hourPeriod)
+                && this.dayOfWeek.equals(bookingDay);
+    }
+
     @Override
     public String toString() {
         final StringBuilder builder = new StringBuilder();

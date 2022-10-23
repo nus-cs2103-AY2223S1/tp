@@ -10,6 +10,9 @@ import seedu.rc4hdb.model.resident.Resident;
 import seedu.rc4hdb.model.venues.Venue;
 import seedu.rc4hdb.model.venues.VenueName;
 import seedu.rc4hdb.model.venues.booking.Booking;
+import seedu.rc4hdb.model.venues.booking.exceptions.BookingNotFoundException;
+import seedu.rc4hdb.model.venues.booking.fields.Day;
+import seedu.rc4hdb.model.venues.booking.fields.HourPeriod;
 import seedu.rc4hdb.model.venues.exceptions.VenueNotFoundException;
 
 /**
@@ -116,6 +119,15 @@ public interface Model {
      * @throws VenueNotFoundException if the venue does not exist in the list.
      */
     void addBookingToVenueWithSameName(VenueName venueName, Booking booking) throws VenueNotFoundException;
+
+    /**
+     * Removes a booking corresponding to {@code bookedPeriod} and {@code bookedDay} from the venue in the list with
+     * the name {@code venueName}.
+     * @throws VenueNotFoundException if the venue does not exist in the list.
+     * @throws BookingNotFoundException if the venue is not booked during the specified period and day.
+     */
+    void removeBookingFromVenueWithSameName(VenueName venueName, HourPeriod bookedPeriod, Day bookedDay)
+            throws VenueNotFoundException, BookingNotFoundException;
 
     ObservableList<String> getObservableFields();
 
