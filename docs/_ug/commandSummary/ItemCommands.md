@@ -12,6 +12,16 @@
 {% capture edit %}{% include_relative _ug/commandSummary/itemCommands/edit.md %}{% endcapture %}
 {% capture del %}{% include_relative _ug/commandSummary/itemCommands/del.md %}{% endcapture %}
 
+{% assign new = new | markdownify %}
+{% assign list = list | markdownify %}
+{% assign find = find | markdownify %}
+{% assign sort = sort | markdownify %}
+{% assign view = view | markdownify %}
+{% assign inc = inc | markdownify %}
+{% assign dec = dec | markdownify %}
+{% assign edit = edit | markdownify %}
+{% assign del = del | markdownify %}
+
 {% capture newexample %}{% include_relative _ug/commandSummary/itemCommandsExamples/new.md %}{% endcapture %}
 {% capture listexample %}{% include_relative _ug/commandSummary/itemCommandsExamples/list.md %}{% endcapture %}
 {% capture findexample %}{% include_relative _ug/commandSummary/itemCommandsExamples/find.md %}{% endcapture %}
@@ -21,6 +31,16 @@
 {% capture decexample %}{% include_relative _ug/commandSummary/itemCommandsExamples/dec.md %}{% endcapture %}
 {% capture editexample %}{% include_relative _ug/commandSummary/itemCommandsExamples/edit.md %}{% endcapture %}
 {% capture delexample %}{% include_relative _ug/commandSummary/itemCommandsExamples/del.md %}{% endcapture %}
+
+{% assign newexample = newexample | markdownify %}
+{% assign listexample = listexample | markdownify %}
+{% assign findexample = findexample | markdownify %}
+{% assign sortexample = sortexample | markdownify %}
+{% assign viewexample = viewexample | markdownify %}
+{% assign incexample = incexample | markdownify %}
+{% assign decexample = decexample | markdownify %}
+{% assign editexample = editexample | markdownify %}
+{% assign delexample = delexample | markdownify %}
 <!-- markdownlint-restore -->
 
 <!-- ===== CREATE TABLE FORMATTING IN NORMAL+ MARKDOWN ===== -->
