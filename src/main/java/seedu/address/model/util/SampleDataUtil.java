@@ -32,8 +32,6 @@ import seedu.address.model.tutorial.TutorialModule;
 import seedu.address.model.tutorial.TutorialName;
 import seedu.address.model.tutorial.TutorialVenue;
 
-import static seedu.address.model.datetime.DatetimeRange.fromFormattedString;
-
 /**
  * Contains utility methods for populating {@code AddressBook} with sample data.
  */
@@ -113,14 +111,17 @@ public class SampleDataUtil {
     public static Consultation[] getSampleConsultations() {
         return new Consultation[] {
             new Consultation(new ConsultationName("Anna"), new ConsultationModule("CS2103T"),
-                        new ConsultationVenue("COM1-0203"), DatetimeRange.fromFormattedString("2022-01-01", "16:00", "18:00"),
-                        new ConsultationDescription("Review past year paper")),
+                    new ConsultationVenue("COM1-0203"),
+                    DatetimeRange.fromFormattedString("2022-01-01", "16:00", "18:00"),
+                    new ConsultationDescription("Review past year paper")),
             new Consultation(new ConsultationName("Tom"), new ConsultationModule("CS2103T"),
-                        new ConsultationVenue("COM1-0201"), DatetimeRange.fromFormattedString("2022-01-01", "15:00", "17:00"),
-                        new ConsultationDescription("Review IP code quality")),
+                    new ConsultationVenue("COM1-0201"),
+                    DatetimeRange.fromFormattedString("2022-01-01", "15:00", "17:00"),
+                    new ConsultationDescription("Review IP code quality")),
             new Consultation(new ConsultationName("John"), new ConsultationModule("CS2103T"),
-                        new ConsultationVenue("COM1-0202"), DatetimeRange.fromFormattedString("2022-01-01", "10:00", "11:00"),
-                        new ConsultationDescription("Clear doubts about lecture")),
+                    new ConsultationVenue("COM1-0202"),
+                    DatetimeRange.fromFormattedString("2022-01-01", "10:00", "11:00"),
+                    new ConsultationDescription("Clear doubts about lecture")),
         };
     }
 
@@ -148,5 +149,4 @@ public class SampleDataUtil {
                 .map(Tag::new)
                 .collect(Collectors.toSet());
     }
-
 }

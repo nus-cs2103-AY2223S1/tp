@@ -28,15 +28,20 @@ import seedu.address.model.consultation.Consultation;
 
 public class TypicalConsultations {
     public static final Consultation CONSULTATION1 = new ConsultationBuilder().withName("John").withModule("CS2103T")
-            .withVenue("COM1-0203").withTimeslot("2022-10-10 10:00", "2022-10-10 12:00").withDescription("testing").build();
+            .withVenue("COM1-0203").withTimeslot("2022-10-10 10:00", "2022-10-10 12:00")
+            .withDescription("testing").build();
     public static final Consultation CONSULTATION2 = new ConsultationBuilder().withName("Anna").withModule("CS2103T")
-            .withVenue("COM1-0203").withTimeslot("2022-11-11 12:00", "2022-11-11 13:00").withDescription("testing").build();
+            .withVenue("COM1-0203").withTimeslot("2022-11-11 12:00", "2022-11-11 13:00")
+            .withDescription("testing").build();
     public static final Consultation CONSULTATION3 = new ConsultationBuilder().withName("Stu3").withModule("CS2103T")
-            .withVenue("COM1-0203").withTimeslot("2022-10-31 13:00", "2022-10-31 14:00").withDescription("testing").build();
+            .withVenue("COM1-0203").withTimeslot("2022-10-31 13:00", "2022-10-31 14:00")
+            .withDescription("testing").build();
     public static final Consultation CONSULTATION4 = new ConsultationBuilder().withName("Stu4").withModule("CS2103T")
-            .withVenue("COM1-0203").withTimeslot("2022-10-31 14:00", "2022-10-31 15:00").withDescription("testing").build();
+            .withVenue("COM1-0203").withTimeslot("2022-10-31 14:00", "2022-10-31 15:00")
+            .withDescription("testing").build();
     public static final Consultation CONSULTATION5 = new ConsultationBuilder().withName("Stu5").withModule("CS2103T")
-            .withVenue("COM1-0203").withTimeslot("2022-12-31 23:00", "2023-01-01 00:30").withDescription("testing").build();
+            .withVenue("COM1-0203").withTimeslot("2022-12-31 23:00", "2023-01-01 00:30")
+            .withDescription("testing").build();
 
     // Manually added
     public static final Consultation FIRST = new ConsultationBuilder().withName("W03").withModule("CS2101")

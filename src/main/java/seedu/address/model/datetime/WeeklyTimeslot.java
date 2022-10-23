@@ -1,17 +1,13 @@
 package seedu.address.model.datetime;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.commons.util.AppUtil.checkArgument;
 import static seedu.address.model.datetime.DatetimeCommonUtils.DAY_FORMAT_REGEX;
 import static seedu.address.model.datetime.DatetimeCommonUtils.TIME_FORMATTER;
 import static seedu.address.model.datetime.DatetimeCommonUtils.dayOfWeekToReadable;
 
 import java.time.DayOfWeek;
 import java.time.LocalTime;
-import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
-import java.time.format.TextStyle;
-import java.util.Locale;
 import java.util.Objects;
 
 /**

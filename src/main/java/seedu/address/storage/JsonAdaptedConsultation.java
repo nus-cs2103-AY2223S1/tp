@@ -12,8 +12,6 @@ import seedu.address.model.consultation.ConsultationVenue;
 import seedu.address.model.datetime.DatetimeRange;
 import seedu.address.storage.datetime.JsonAdaptedDatetimeRange;
 
-import static seedu.address.model.datetime.DatetimeRange.fromFormattedString;
-
 /**
  * Jackson-friendly version of {@link Consultation}.
  */
@@ -32,8 +30,9 @@ public class JsonAdaptedConsultation {
      */
     @JsonCreator
     public JsonAdaptedConsultation(@JsonProperty("name") String name, @JsonProperty("module") String module,
-                               @JsonProperty("venue") String venue, @JsonProperty("timeslot") JsonAdaptedDatetimeRange timeslot,
-                                   @JsonProperty("description") String description) {
+                               @JsonProperty("venue") String venue,
+                               @JsonProperty("timeslot") JsonAdaptedDatetimeRange timeslot,
+                               @JsonProperty("description") String description) {
         this.name = name;
         this.module = module;
         this.venue = venue;
@@ -100,5 +99,4 @@ public class JsonAdaptedConsultation {
 
         return new Consultation(modelName, modelModule, modelVenue, datetimeRange, modelDescription);
     }
-
 }

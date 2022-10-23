@@ -24,7 +24,8 @@ class JsonAdaptedReminder {
      * Constructs a {@code JsonAdaptedPerson} with the given reminder details.
      */
     @JsonCreator
-    public JsonAdaptedReminder(@JsonProperty("name") String name, @JsonProperty("deadline") JsonAdaptedDatetime deadline,
+    public JsonAdaptedReminder(@JsonProperty("name") String name,
+                               @JsonProperty("deadline") JsonAdaptedDatetime deadline,
                                @JsonProperty("description") String description) {
         this.name = name;
         this.deadline = deadline;

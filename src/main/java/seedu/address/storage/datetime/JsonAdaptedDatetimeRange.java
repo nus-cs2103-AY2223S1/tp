@@ -1,12 +1,12 @@
 package seedu.address.storage.datetime;
 
+import static seedu.address.model.datetime.DatetimeRange.fromFormattedString;
+
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.datetime.DatetimeRange;
-
-import static seedu.address.model.datetime.DatetimeRange.fromFormattedString;
 
 /**
  * Jackson-friendly version of {@link DatetimeRange}.

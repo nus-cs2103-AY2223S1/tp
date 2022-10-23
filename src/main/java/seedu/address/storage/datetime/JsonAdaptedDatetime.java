@@ -1,13 +1,13 @@
 package seedu.address.storage.datetime;
 
+import static seedu.address.model.datetime.Datetime.fromFormattedString;
+import static seedu.address.model.datetime.DatetimeCommonUtils.DATETIME_MESSAGE_CONSTRAINTS;
+
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.datetime.Datetime;
-
-import static seedu.address.model.datetime.Datetime.fromFormattedString;
-import static seedu.address.model.datetime.DatetimeCommonUtils.DATETIME_MESSAGE_CONSTRAINTS;
 
 /**
  * Jackson-friendly version of {@link Datetime}.

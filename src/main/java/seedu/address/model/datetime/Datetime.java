@@ -1,12 +1,10 @@
 package seedu.address.model.datetime;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.commons.util.AppUtil.checkArgument;
 import static seedu.address.model.datetime.DatetimeCommonUtils.DATETIME_INPUT_FORMATTER;
 import static seedu.address.model.datetime.DatetimeCommonUtils.DATETIME_READABLE_FORMATTER;
 
 import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 
 /**

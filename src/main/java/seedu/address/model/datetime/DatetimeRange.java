@@ -1,10 +1,8 @@
 package seedu.address.model.datetime;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.commons.util.AppUtil.checkArgument;
 import static seedu.address.model.datetime.DatetimeCommonUtils.DATETIME_INPUT_FORMATTER;
 import static seedu.address.model.datetime.DatetimeCommonUtils.DATE_READABLE_FORMATTER;
-import static seedu.address.model.datetime.DatetimeCommonUtils.TIME_FORMAT;
 import static seedu.address.model.datetime.DatetimeCommonUtils.TIME_FORMATTER;
 
 import java.time.LocalDate;
@@ -117,5 +115,4 @@ public class DatetimeRange {
     public int hashCode() {
         return Objects.hash(startDatetime, endDatetime);
     }
-
 }
