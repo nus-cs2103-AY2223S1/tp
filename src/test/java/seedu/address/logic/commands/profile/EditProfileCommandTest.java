@@ -29,7 +29,7 @@ import seedu.address.testutil.EditProfileDescriptorBuilder;
 import seedu.address.testutil.ProfileBuilder;
 
 /**
- * Contains integration tests (interaction with the Model) and unit tests for EditCommand.
+ * Contains integration tests (interaction with the Model) and unit tests for EditProfileCommand.
  */
 public class EditProfileCommandTest {
 
