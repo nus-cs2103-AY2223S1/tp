@@ -55,6 +55,7 @@ public class TextCommandHistoryStorage implements CommandHistoryStorage {
                 String commandString = sc.nextLine();
                 commandHistoryList.add(commandString);
             }
+            sc.close();
         CommandHistory commandHistory = new CommandHistory();
         commandHistory.setCommandHistoryList(commandHistoryList);
         return commandHistory;

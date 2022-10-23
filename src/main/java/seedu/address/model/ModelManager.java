@@ -163,7 +163,7 @@ public class ModelManager implements Model {
     }
 
     public void resetCommandHistoryIndex() {
-        commandHistory.resetCurrentIndexToLatest();
+        commandHistory.resetCurrentIndexToBeyondMaxIndex();
     }
 
     @Override

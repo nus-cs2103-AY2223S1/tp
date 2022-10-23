@@ -32,7 +32,7 @@ public class CommandHistory implements ReadOnlyCommandHistory {
      */
     public void setCommandHistoryList(List<String> commandHistoryList) {
         this.commandHistoryList = commandHistoryList;
-        resetCurrentIndexToLatest();
+        resetCurrentIndexToBeyondMaxIndex();
     }
 
 
@@ -68,8 +68,8 @@ public class CommandHistory implements ReadOnlyCommandHistory {
     }
 
     // util methods
-    public void resetCurrentIndexToLatest() {
-        // reset to max index + 1 to show empty
+    public void resetCurrentIndexToBeyondMaxIndex() {
+        // reset to max index + 1 to show empty string
         currentIndex = commandHistoryList.size();
     }
 
