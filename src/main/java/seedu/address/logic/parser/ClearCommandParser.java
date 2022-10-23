@@ -1,20 +1,12 @@
 package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.parser.CliSyntax.*;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_FIELD;
 
 import java.util.Objects;
 
-import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.ClearCommand;
-import seedu.address.logic.commands.consultation.AddConsultationCommand;
-import seedu.address.logic.commands.consultation.DeleteConsultationCommand;
-import seedu.address.logic.parser.consultation.ConsultationParserUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.consultation.ConsultationModule;
-import seedu.address.model.consultation.ConsultationName;
-import seedu.address.model.consultation.ConsultationVenue;
 
 
 /**

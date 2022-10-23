@@ -1,8 +1,8 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.parser.CliSyntax.*;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_FIELD;
 
 import java.util.Arrays;
 import java.util.HashSet;
@@ -27,12 +27,12 @@ public class ClearCommand extends Command {
 
     public static final String MESSAGE_SUCCESS = "All data of your selected field in ModQuik have been cleared!";
 
-    private static String temp[] = {"all","student", "consultation", "tutorial", "reminder"};
+    private static String[] temp = {"all", "student", "consultation", "tutorial", "reminder"};
     private static Set<String> possibleFields = new HashSet<>(Arrays.asList(temp));
 
 
     private String field;
-    public ClearCommand (String field) {
+    public ClearCommand(String field) {
         this.field = field;
     }
 
