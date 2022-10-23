@@ -25,29 +25,28 @@ public class PersonMatchesPredicate implements Predicate<Person> {
     private List<String> ratingsList = new ArrayList<>();
     private List<String> yearsList = new ArrayList<>();
     private List<String> specList = new ArrayList<>();
+    private List<String> officeHoursList = new ArrayList<>();
 
     private Set<String> tagsSet = new HashSet<>();
     private Set<String> modulesSet = new HashSet<>();
 
-
-    private boolean hasNamesList = false;
-
     private boolean hasModulesList = false;
     private boolean needsAllModules = false;
-
-    private boolean hasPhonesList = false;
-    private boolean hasEmailsList = false;
-    private boolean hasGendersList = false;
 
     private boolean hasTagsList = false;
     private boolean needsAllTags = false;
 
+    private boolean hasNamesList = false;
+    private boolean hasPhonesList = false;
+    private boolean hasEmailsList = false;
+    private boolean hasGendersList = false;
     private boolean hasLocationsList = false;
     private boolean hasTypesList = false;
     private boolean hasUserNamesList = false;
     private boolean hasRatingsList = false;
     private boolean hasYearsList = false;
     private boolean hasSpecList = false;
+    private boolean hasOfficeHoursList = false;
 
     @Override
     public boolean test(Person person) {
@@ -57,7 +56,7 @@ public class PersonMatchesPredicate implements Predicate<Person> {
                 && tagMatches(person) && locationMatches(person)
                 && typeMatches(person) && userNameMatches(person)
                 && ratingMatches(person) && yearMatches(person)
-                && specialisationMatches(person);
+                && specialisationMatches(person) && officeHoursMatches(person);
     }
 
     /**
@@ -251,6 +250,21 @@ public class PersonMatchesPredicate implements Predicate<Person> {
         }
     }
 
+    /**
+     * Checks if the person's office hours matches any of the provided office hours
+     * Returns true if no office hours have been provided by the user to filter by.
+     *
+     * @param person the person to check against the specified office hours.
+     * @return true if a match is found or if no office hours were provided.
+     */
+    public boolean officeHoursMatches(Person person) {
+        if (!hasOfficeHoursList) {
+            return true;
+        } else {
+            return person.doesOfficeHourMatch(officeHoursList);
+        }
+    }
+
     public void setNamesList(List<String> otherList) {
         this.namesList = otherList;
         hasNamesList = true;
@@ -311,6 +325,11 @@ public class PersonMatchesPredicate implements Predicate<Person> {
     public void setSpecList(List<String> specList) {
         this.specList = specList;
         hasSpecList = true;
+    }
+
+    public void setOfficeHoursList(List<String> officeHoursList) {
+        this.officeHoursList = officeHoursList;
+        hasOfficeHoursList = true;
     }
 
     //get methods are for tests. some have not been used yet

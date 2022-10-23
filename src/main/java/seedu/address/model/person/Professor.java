@@ -169,4 +169,10 @@ public class Professor extends Person {
         return specList.stream().anyMatch(specialisation
                 -> specialisation.equals(this.getSpecialisation().value.toLowerCase()));
     }
+
+    @Override
+    public boolean doesOfficeHourMatch(List<String> officeHoursList) {
+        return officeHoursList.stream().anyMatch(officeHours
+                -> officeHours.equals(this.getOfficeHour().value));
+    }
 }

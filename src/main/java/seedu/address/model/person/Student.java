@@ -159,4 +159,9 @@ public class Student extends Person {
     public boolean doesSpecialisationMatch(List<String> specList) {
         return false;
     }
+
+    @Override
+    public boolean doesOfficeHourMatch(List<String> officeHoursList) {
+       return false;
+    }
 }

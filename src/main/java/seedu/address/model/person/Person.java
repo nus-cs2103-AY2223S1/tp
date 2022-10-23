@@ -135,4 +135,6 @@ public abstract class Person {
     public abstract boolean doesYearMatch(List<String> yearList);
 
     public abstract boolean doesSpecialisationMatch(List<String> specList);
+
+    public abstract boolean doesOfficeHourMatch(List<String> officeHoursList);
 }
