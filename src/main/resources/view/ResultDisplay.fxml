@@ -4,9 +4,15 @@
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.text.Font?>
 
+<?import javafx.scene.control.TextField?>
+<?import javafx.geometry.Insets?>
 <StackPane fx:id="placeHolder" styleClass="pane-with-border" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
   <TextArea fx:id="resultDisplay" editable="false" styleClass="result-display" wrapText="true">
       <font>
          <Font size="11.0" />
-      </font></TextArea>
+      </font>
+      <padding>
+          <Insets bottom="105.0"/>
+      </padding>
+  </TextArea>
 </StackPane>
