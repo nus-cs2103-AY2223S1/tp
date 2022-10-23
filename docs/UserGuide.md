@@ -13,7 +13,7 @@ NutriGoals is a desktop app that tracks a user’s diet and calorie consumption.
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
-2. Download NutriGoals.jar.
+2. Download the latest `nutrigoals.jar` from [here](https://github.com/AY2223S1-CS2103T-T17-2/tp/releases).
 
 3. Double-click the file to start the app.
 
@@ -40,14 +40,13 @@ Shows a message explaining how to access the help page.
 
 Format: `help`
 
-
 ### Adding the calorie content of a food item : `add`
 
 Adds a food item with its calorie content.
 
 Format: `add n/FOOD c/CALORIE t/MEAL_TYPE`
 
-* Adds a food item into the food list, together with its calorie content and meal type.
+* Adds a food item into the food list for the day, together with its calorie content and meal type.
 * Each field can only be specified once.
 * `MEAL_TYPE` can only take on three values: breakfast, lunch or dinner (case-insensitive).
 
@@ -69,7 +68,7 @@ Format: `delete INDEX`
 Example:
 
 * `delete 1` deletes the first item in the food list.
-* `list 2022-10-10` followed by `delete 1` will delete the first food item recorded on 2022-10-10.
+* `list 2022-10-23` followed by `delete 1` will delete the first food item recorded on 23 October 2022.
 
 ### Editing a food item : `edit`
 
@@ -89,6 +88,20 @@ Example:
 * `edit 2 c/100 n/bread` edits the name and calorie content of the first item to bread and 100 respectively.
 * `list 2022-10-10` followed by `edit 1 n/sushi` will edit the name of the first food item recorded on 2022-10-10
 to sushi.
+
+### Listing all foods for a day: `list`
+
+Shows a list of all food items and their respective calories for the specified day (if any).
+
+Format: `list [DATE]`
+
+* Shows the food list for the current day if no `DATE` is supplied.
+* `DATE` must be in the format **yyyy-MM-dd** if supplied.
+
+Example:
+
+* `list` shows a list of all food items and their calories for the current day.
+* `list 2022-11-27` shows a list of all food items and their calories for 27 November 2022.
 
 ### Finding the calorie content of a food item: `find`
 
@@ -119,20 +132,6 @@ Example:
 Shows the total calories consumed, the calorie target and the deficient or excess amount of calories for the day.
 
 Format: `review`
-
-### Listing all foods for a day: `list`
-
-Shows a list of all food items and their respective calories for the specified day (if any).
-
-Format: `list [DATE]`
-
-* Shows the food list for the current day if no `DATE` is supplied. 
-* `DATE` must be in the format **yyyy-MM-dd** if supplied.
-
-Example:
-
-* `list` shows a list of all food items and their calories for the current day. 
-* `list 2022-11-27` shows a list of all food items and their calories for 27 November 2022.
 
 ### Setting up a user profile: `setup`
 
