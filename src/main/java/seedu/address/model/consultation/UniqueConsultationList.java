@@ -79,7 +79,7 @@ public class UniqueConsultationList implements Iterable<Consultation> {
             throw new ConsultationNotFoundException();
         }
     }
-    
+
     /**
      * Returns the backing list as an unmodifiable {@code ObservableList}.
      */
