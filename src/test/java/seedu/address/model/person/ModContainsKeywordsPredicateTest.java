@@ -56,7 +56,7 @@ public class ModContainsKeywordsPredicateTest {
     }
 
     @Test
-    public void test_nameDoesNotContainKeywords_returnsFalse() {
+    public void test_modDoesNotContainKeywords_returnsFalse() {
         // Only one matching keyword
         ModContainsKeywordsPredicate predicate = new ModContainsKeywordsPredicate(Arrays.asList("ma1521", "cs3230"));
         assertFalse(predicate.test(new PersonBuilder().withName("Chan Huat Heng").withMods("MA1521")
