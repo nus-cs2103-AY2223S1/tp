@@ -19,7 +19,6 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.MyInsuRec;
-import seedu.address.model.client.Birthday;
 import seedu.address.model.client.Client;
 import seedu.address.model.client.NameContainsKeywordsPredicate;
 import seedu.address.model.meeting.Meeting;
@@ -40,7 +39,8 @@ public class CommandTestUtil {
     public static final String VALID_EMAIL_BOB = "bob@example.com";
     public static final String VALID_ADDRESS_AMY = "Block 312, Amy Street 1";
     public static final String VALID_ADDRESS_BOB = "Block 123, Bobby Street 3";
-    public static final Birthday VALID_BIRTHDAY = new Birthday(LocalDate.of(1952, 12, 12));
+    public static final LocalDate VALID_BIRTHDAY_AMY = LocalDate.of(1952, 12, 12);
+    public static final LocalDate VALID_BIRTHDAY_BOB = LocalDate.of(2000, 1, 1);
     public static final String VALID_PRODUCT_1 = "Product1";
     public static final String VALID_PRODUCT_2 = "Product2";
     public static final String INVALID_PRODUCT_1 = "Unadded Product";
@@ -78,10 +78,10 @@ public class CommandTestUtil {
     static {
         DESC_AMY = new EditClientDescriptorBuilder().withName(VALID_NAME_AMY)
                 .withPhone(VALID_PHONE_AMY).withEmail(VALID_EMAIL_AMY).withAddress(VALID_ADDRESS_AMY)
-                .withProducts(VALID_PRODUCT_1).build();
+                .withBirthday(VALID_BIRTHDAY_AMY).withProducts(VALID_PRODUCT_1).build();
         DESC_BOB = new EditClientDescriptorBuilder().withName(VALID_NAME_BOB)
                 .withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB).withAddress(VALID_ADDRESS_BOB)
-                .withProducts(VALID_PRODUCT_1, VALID_PRODUCT_2).build();
+                .withBirthday(VALID_BIRTHDAY_BOB).withProducts(VALID_PRODUCT_1, VALID_PRODUCT_2).build();
     }
 
     /**

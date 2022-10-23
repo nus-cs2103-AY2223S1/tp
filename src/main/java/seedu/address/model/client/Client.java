@@ -14,18 +14,16 @@ import seedu.address.model.product.Product;
 
 /**
  * Represents a Client in MyInsuRec.
- * Guarantees: all details except birthday are present and not null, field values are validated, immutable.
+ * Guarantees: Name and phone are present and not null and the rest are optional, field values are validated, immutable.
  */
 public class Client {
 
     // Identity fields
     private final Name name;
     private final Phone phone;
-    private final Email email;
+    private final Optional<Email> email;
     private final Optional<Birthday> birthday;
-
-    // Data fields
-    private final Address address;
+    private final Optional<Address> address;
     private final Set<Product> products;
     private final List<Meeting> meetings;
 
@@ -33,7 +31,7 @@ public class Client {
      * Every field must be present.
      * Birthday may be null.
      */
-    public Client(Name name, Phone phone, Email email, Address address,
+    public Client(Name name, Phone phone, Optional<Email> email, Optional<Address> address,
                   Optional<Birthday> birthday, Set<Product> products) {
         requireAllNonNull(name, phone, products);
         this.name = name;
@@ -46,10 +44,10 @@ public class Client {
     }
 
     /**
-     * Construct a client with meetings
+     * Construct a client with meetings.
      * Birthday may be null.
      */
-    public Client(Name name, Phone phone, Email email, Address address,
+    public Client(Name name, Phone phone, Optional<Email> email, Optional<Address> address,
                   Optional<Birthday> birthday, List<Meeting> meetings, Set<Product> products) {
         requireAllNonNull(name, phone, email, address, meetings, products);
         this.name = name;
@@ -70,11 +68,11 @@ public class Client {
         return phone;
     }
 
-    public Email getEmail() {
+    public Optional<Email> getEmail() {
         return email;
     }
 
-    public Address getAddress() {
+    public Optional<Address> getAddress() {
         return address;
     }
 
@@ -167,26 +165,22 @@ public class Client {
     @Override
     public String toString() {
         final StringBuilder builder = new StringBuilder();
-        builder.append(getName())
+        builder.append(name)
                 .append("; Phone: ")
-                .append(getPhone());
+                .append(phone);
 
-        if (!getEmail().isEmpty()) {
-            builder.append("; Email: ").append(getEmail());
+        if (email.isPresent()) {
+            builder.append("; Email: ").append(email.get());
         }
 
-        if (!getAddress().isEmpty()) {
-            builder.append("; Address: ").append(getAddress());
+        if (address.isPresent()) {
+            builder.append("; Address: ").append(address.get());
         }
 
-        Optional<Birthday> birthday = getBirthday();
-        if (!birthday.isEmpty()) {
+        if (birthday.isPresent()) {
             builder.append("; Birthday: ").append(birthday.get());
-        } else {
-            builder.append("; Birthday: ");
         }
 
-        Set<Product> products = getProducts();
         if (!products.isEmpty()) {
             builder.append("; Products: ");
             products.forEach(builder::append);

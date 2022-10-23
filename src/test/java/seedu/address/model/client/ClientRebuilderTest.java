@@ -46,11 +46,11 @@ public class ClientRebuilderTest {
     @Test
     public void withAddress_validAddress_success() {
         ClientRebuilder cr = new ClientRebuilder(ALICE);
-        Address newAddress = BOB.getAddress();
+        Address newAddress = BOB.getAddress().get();
         Client editedClient = cr.withAddress(newAddress).build();
 
         assertEquals(editedClient.getName(), ALICE.getName());
-        assertEquals(editedClient.getAddress(), newAddress);
+        assertEquals(editedClient.getAddress().get(), newAddress);
         assertEquals(editedClient.getEmail(), ALICE.getEmail());
         assertEquals(editedClient.getPhone(), ALICE.getPhone());
         assertEquals(editedClient.getProducts(), ALICE.getProducts());
@@ -70,19 +70,22 @@ public class ClientRebuilderTest {
     }
 
     @Test
-    public void withMultipleField_validEmailProductsMeetings_success() {
+    public void withMultipleField_validEmailBirthdayProductsMeetings_success() {
         ClientRebuilder cr = new ClientRebuilder(ALICE);
         Email newEmail = new Email("alice123@gmail.com");
+        Birthday newBirthday = new Birthday(LocalDate.of(2000, 2, 28));
         Set<Product> newProducts = BENSON.getProducts();
         List<Meeting> newMeetings = new ArrayList<>();
         Client editedClient = cr
                 .withEmail(newEmail)
+                .withBirthday(newBirthday)
                 .withProducts(newProducts)
                 .withMeetings(newMeetings).build();
 
         assertEquals(editedClient.getName(), ALICE.getName());
         assertEquals(editedClient.getAddress(), ALICE.getAddress());
-        assertEquals(editedClient.getEmail(), newEmail);
+        assertEquals(editedClient.getEmail().get(), newEmail);
+        assertEquals(editedClient.getBirthday().get(), newBirthday);
         assertEquals(editedClient.getPhone(), ALICE.getPhone());
         assertEquals(editedClient.getProducts(), newProducts);
         assertEquals(editedClient.getMeetings(), newMeetings);
@@ -92,7 +95,11 @@ public class ClientRebuilderTest {
     public void addMeeting_validMeeting_success() {
         ClientRebuilder cr = new ClientRebuilder(ALICE);
         Meeting newMeeting = new Meeting(
-                ALICE, new Description("desc"), new MeetingDate(LocalDate.now()), new MeetingTime(LocalTime.now()));
+                ALICE,
+                new Description("desc"),
+                new MeetingDate(LocalDate.of(2022, 12, 31)),
+                new MeetingTime(LocalTime.of(10, 0)),
+                new MeetingTime(LocalTime.of(10, 10)));
         Client editedClient = cr
                 .addMeeting(newMeeting).build();
 
@@ -104,7 +111,11 @@ public class ClientRebuilderTest {
     @Test
     public void addRemoveMeeting_validMeeting_success() {
         Meeting newMeeting = new Meeting(
-                ALICE, new Description("desc"), new MeetingDate(LocalDate.now()), new MeetingTime(LocalTime.now()));
+                ALICE,
+                new Description("desc"),
+                new MeetingDate(LocalDate.of(2023, 1, 1)),
+                new MeetingTime(LocalTime.of(0, 0)),
+                new MeetingTime(LocalTime.of(23, 59)));
         ClientRebuilder cr = new ClientRebuilder(ALICE);
 
         Client editedClient = cr.addMeeting(newMeeting).build();

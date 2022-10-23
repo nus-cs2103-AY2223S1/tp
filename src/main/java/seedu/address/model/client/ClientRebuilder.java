@@ -16,8 +16,8 @@ import seedu.address.model.product.Product;
 public class ClientRebuilder {
     private Name name;
     private Phone phone;
-    private Email email;
-    private Address address;
+    private Optional<Email> email;
+    private Optional<Address> address;
     private Optional<Birthday> birthday;
     private Set<Product> products;
     private List<Meeting> meetings;
@@ -44,14 +44,6 @@ public class ClientRebuilder {
     }
 
     /**
-     * Sets the {@code Address} of the {@code Client} that we are building.
-     */
-    public ClientRebuilder withAddress(Address address) {
-        this.address = address;
-        return this;
-    }
-
-    /**
      * Sets the {@code Phone} of the {@code Client} that we are building.
      */
     public ClientRebuilder withPhone(Phone phone) {
@@ -63,9 +55,27 @@ public class ClientRebuilder {
      * Sets the {@code Email} of the {@code Client} that we are building.
      */
     public ClientRebuilder withEmail(Email email) {
-        this.email = email;
+        this.email = Optional.ofNullable(email);
         return this;
     }
+
+    /**
+     * Sets the {@code Address} of the {@code Client} that we are building.
+     */
+    public ClientRebuilder withAddress(Address address) {
+        this.address = Optional.ofNullable(address);
+        return this;
+    }
+
+
+    /**
+     * Sets the {@code Birthday} of the {@code Client} that we are building.
+     */
+    public ClientRebuilder withBirthday(Birthday birthday) {
+        this.birthday = Optional.ofNullable(birthday);
+        return this;
+    }
+
     /**
      * Sets the {@code Set<Product>} of the {@code Client} that we are building.
      */

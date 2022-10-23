@@ -45,14 +45,15 @@ public class AddClientCommandParser implements Parser<AddClientCommand> {
 
         Name name = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());
         Phone phone = ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONE).get());
-        Email email = argMultimap.getValue(PREFIX_EMAIL).isPresent()
-                ? ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get())
-                : new Email("");
-        Address address = argMultimap.getValue(PREFIX_ADDRESS).isPresent()
-                ? ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get())
-                : new Address("");
+        Optional<Email> email = argMultimap.getValue(PREFIX_EMAIL).isPresent()
+                ? Optional.of(ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get()))
+                : Optional.empty();
+        Optional<Address> address = argMultimap.getValue(PREFIX_ADDRESS).isPresent()
+                ? Optional.of(ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get()))
+                : Optional.empty();
         Optional<Birthday> birthday = argMultimap.getValue(PREFIX_BIRTHDAY).isPresent()
-                ? Optional.of(new Birthday(ParserUtil.parseDate(argMultimap.getValue(PREFIX_BIRTHDAY).get())))
+                ? Optional.of(new Birthday(ParserUtil.parseDate(
+                        argMultimap.getValue(PREFIX_BIRTHDAY).get(), "birthday")))
                 : Optional.empty();
         Set<Product> product = ParserUtil.parseProducts(argMultimap.getAllValues(PREFIX_PRODUCT));
         Client client = new Client(name, phone, email, address, birthday, product);
