@@ -21,7 +21,7 @@
         <URL value="@HelpWindow.css" />
       </stylesheets>
       <ScrollPane fx:id="myScrollPane" fitToHeight="true" fitToWidth="true" pannable="true">
-        <VBox alignment="CENTER" fx:id="helpResultContainer" minHeight="500.0" minWidth="750.0">
+        <VBox alignment="CENTER" fx:id="helpResultContainer" minHeight="600.0" minWidth="750.0">
           <children>
             <Label fx:id="welcomeMessage" text="Label" alignment="CENTER">
               <padding>
