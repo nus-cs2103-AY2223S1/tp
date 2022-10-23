@@ -73,11 +73,14 @@ public class TimeInterval implements ITimesAvailable {
     public boolean isAvailable(DayTimeInWeek dayTimeInWeek) {
         // Must consider the case where user is available from Sunday night to Monday morning
         if (startTime.minutesSinceMondayMidnight > endTime.minutesSinceMondayMidnight) {
-            return dayTimeInWeek.minutesSinceMondayMidnight >= startTime.minutesSinceMondayMidnight;
+            return dayTimeInWeek.minutesSinceMondayMidnight >= startTime.minutesSinceMondayMidnight
+                    || dayTimeInWeek.minutesSinceMondayMidnight <= endTime.minutesSinceMondayMidnight;
+        } else if (startTime.minutesSinceMondayMidnight == endTime.minutesSinceMondayMidnight) {
+            return dayTimeInWeek.minutesSinceMondayMidnight == startTime.minutesSinceMondayMidnight;
+        } else {
+            return dayTimeInWeek.minutesSinceMondayMidnight >= startTime.minutesSinceMondayMidnight
+                    && dayTimeInWeek.minutesSinceMondayMidnight <= endTime.minutesSinceMondayMidnight;
         }
-        // Consider the other cases
-        return dayTimeInWeek.minutesSinceMondayMidnight >= startTime.minutesSinceMondayMidnight
-                && dayTimeInWeek.minutesSinceMondayMidnight <= endTime.minutesSinceMondayMidnight;
     }
 
     @Override

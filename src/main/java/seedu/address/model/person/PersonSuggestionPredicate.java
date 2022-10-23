@@ -35,9 +35,11 @@ public class PersonSuggestionPredicate implements Predicate<Person> {
         // Only one time interval need to be matched
         boolean isDayTimeInWeekMatching = true;
         if (!dayTimeInWeek.isEmpty()) {
-            dayTimeInWeek.stream()
+            if (!dayTimeInWeek.stream()
                     .anyMatch(dayTimeInWeek -> person.getTimesAvailable().stream()
-                            .anyMatch(iTimesAvailable -> iTimesAvailable.isAvailable(dayTimeInWeek)));
+                            .anyMatch(iTimesAvailable -> iTimesAvailable.isAvailable(dayTimeInWeek)))) {
+                isDayTimeInWeekMatching = false;
+            }
         }
 
         // Both the keyword and time interval conditions must be satisfied
