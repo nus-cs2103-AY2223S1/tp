@@ -1,5 +1,7 @@
 package seedu.address.model.person;
 
+import seedu.address.logic.commands.exceptions.CommandException;
+
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
@@ -10,6 +12,10 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 public class Money {
     public static final String MESSAGE_CONSTRAINTS = "Money can take any positive integer values,"
             + " and its default value is 0";
+
+    public static final String MESSAGE_AMOUNT_TOO_LARGE = "Amount of money is too large to handle";
+
+    public static final String MESSAGE_NEGATIVE_AMOUNT = "Amount of money cannot be negative";
 
     public final Integer value;
 
@@ -39,6 +45,39 @@ public class Money {
      */
     public static boolean isValidMoney(Integer amount) {
         return amount >= 0;
+    }
+
+    /**
+     * Computes the subtraction of a predefined value and the current value.
+     *
+     * @param amountToAdd the money to be added.
+     * @return Money that consists of the sum of the 2 amounts.
+     * @throws CommandException if an error occurs during addition.
+     */
+    public Money addTo(Money amountToAdd) throws CommandException {
+        try {
+            Integer amountSum = Math.addExact(this.value, amountToAdd.value);
+            return new Money(amountSum);
+        } catch (ArithmeticException e) {
+            throw new CommandException(MESSAGE_AMOUNT_TOO_LARGE);
+        }
+    }
+
+    /**
+     * Computes the subtraction of a predefined value from the current value.
+     *
+     * @param amountToSubtract the money to be subtracted.
+     * @return Money that consists of amount after subtraction.
+     * @throws CommandException if the final value is negative.
+     */
+    public Money subtract(Money amountToSubtract) throws CommandException {
+        Integer finalAmount = this.value - amountToSubtract.value;
+
+        if (finalAmount < 0) {
+            throw new CommandException(MESSAGE_NEGATIVE_AMOUNT);
+        }
+
+        return new Money(finalAmount);
     }
 
     /**
