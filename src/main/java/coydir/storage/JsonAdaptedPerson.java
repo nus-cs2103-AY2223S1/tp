@@ -11,6 +11,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import coydir.commons.exceptions.IllegalValueException;
 import coydir.model.person.Address;
+import coydir.model.person.Department;
 import coydir.model.person.Email;
 import coydir.model.person.EmployeeId;
 import coydir.model.person.Leave;
@@ -32,6 +33,7 @@ class JsonAdaptedPerson {
     private final String phone;
     private final String email;
     private final String position;
+    private final String department;
     private final String address;
     private final String leave;
     private final String leaveLeft;
@@ -46,14 +48,15 @@ class JsonAdaptedPerson {
     public JsonAdaptedPerson(@JsonProperty("name") String name, @JsonProperty("employeeId") String employeeId,
             @JsonProperty("phone") String phone, @JsonProperty("email") String email,
             @JsonProperty("position") String position, @JsonProperty("address") String address,
-            @JsonProperty("leave") String leave, @JsonProperty("leaveLeft") String leaveLeft,
-            @JsonProperty("tagged") List<JsonAdaptedTag> tagged,
+            @JsonProperty("department") String department, @JsonProperty("leave") String leave,
+            @JsonProperty("leaveLeft") String leaveLeft, @JsonProperty("tagged") List<JsonAdaptedTag> tagged,
             @JsonProperty("leaveTaken") List<JsonAdaptedLeave> leaveTaken) {
         this.name = name;
         this.employeeId = employeeId;
         this.phone = phone;
         this.email = email;
         this.position = position;
+        this.department = department;
         this.address = address;
         this.leave = leave;
         if (tagged != null) {
@@ -74,6 +77,7 @@ class JsonAdaptedPerson {
         phone = source.getPhone().value;
         email = source.getEmail().value;
         position = source.getPosition().value;
+        department = source.getDepartment().value;
         address = source.getAddress().value;
         leave = String.valueOf(source.getTotalNumberOfLeaves());
         tagged.addAll(source.getTags().stream()
@@ -143,6 +147,15 @@ class JsonAdaptedPerson {
         }
         final Position modelPosition = new Position(position);
 
+        if (department == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                        Department.class.getSimpleName()));
+        }
+        if (!Department.isValidDepartment(department)) {
+            throw new IllegalValueException(Department.MESSAGE_CONSTRAINTS);
+        }
+        final Department modelDepartment = new Department(department);
+
         if (address == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Address.class.getSimpleName()));
         }
@@ -158,8 +171,12 @@ class JsonAdaptedPerson {
 
         final Set<Tag> modelTags = new HashSet<>(personTags);
         final Set<Leave> modelLeaveTaken = new HashSet<>(personLeaves);
+
+        // Create Person object
         Person p = new Person(modelName, modelEmployeeId, modelPhone, modelEmail,
-                modelPosition, modelAddress, modelTags, modelLeave);
+                modelPosition, modelDepartment, modelAddress, modelTags, modelLeave);
+
+        // Add related data
         p.setLeavesLeft(Integer.valueOf(leaveLeft));
         for (Leave l : modelLeaveTaken) {
             p.addLeave(l);
