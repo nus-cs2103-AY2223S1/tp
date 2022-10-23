@@ -108,7 +108,7 @@ Examples:
 
 ### Listing all guests : `list`
 
-hows a list of all guests in the guest book.
+Shows a list of all guests in the guest book.
 
 Format: `list`
 
