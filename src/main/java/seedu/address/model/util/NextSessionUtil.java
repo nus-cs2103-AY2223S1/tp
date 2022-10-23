@@ -24,8 +24,7 @@ public class NextSessionUtil {
     private final HashMap<Session, Person> sessionPersonHashMap;
 
     /**
-     * Class implementing Consumer acting as a helper to add Sessions later
-     * than current time in the week to the list to be sorted.
+     * Helps ModelManager to add Sessions into toSortList.
      */
     private Consumer<Person> toSortListAdder = new Consumer<Person>() {
         @Override
@@ -48,7 +47,7 @@ public class NextSessionUtil {
     }
 
     /**
-     * Helper method to get the system time now as a Session for constructor to help constructor.
+     * Helps to get the system time now as a Session for constructor.
      * @return the system time now as a Session.
      */
     private static Session getTimeNowAsSession() {
