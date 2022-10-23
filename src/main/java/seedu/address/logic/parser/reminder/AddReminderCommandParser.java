@@ -32,7 +32,8 @@ public class AddReminderCommandParser implements Parser<AddReminderCommand> {
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_TIMESLOT, PREFIX_DESCRIPTION, PREFIX_PRIORITY);
 
-        ParserUtil.assertPrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_TIMESLOT, PREFIX_DESCRIPTION, PREFIX_PRIORITY);
+        ParserUtil.assertPrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_TIMESLOT, PREFIX_DESCRIPTION,
+                PREFIX_PRIORITY);
         if (!argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddReminderCommand.MESSAGE_USAGE));
         }
@@ -42,8 +43,9 @@ public class AddReminderCommandParser implements Parser<AddReminderCommand> {
                 argMultimap.getValue(PREFIX_TIMESLOT).get());
         ReminderDescription description = ReminderParserUtil.parseReminderDescription(
                 argMultimap.getValue(PREFIX_DESCRIPTION).get());
-        ReminderPriority priority = ReminderParserUtil.parseReminderPriority(argMultimap.getValue(PREFIX_PRIORITY).get());
-        
+        ReminderPriority priority = ReminderParserUtil.parseReminderPriority(argMultimap.getValue(PREFIX_PRIORITY)
+                .get());
+
         Reminder reminder = new Reminder(name, deadline, description, priority);
 
         return new AddReminderCommand(reminder);

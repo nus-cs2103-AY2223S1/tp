@@ -50,7 +50,7 @@ public class ReminderParserUtil {
         String trimmedDescription = description.trim();
         return new ReminderDescription(trimmedDescription);
     }
-    
+
     /**
      * Parses a {@code String priority} into a {@code ReminderPriority}.
      * Leading and trailing whitespaces will be trimmed. Input will also be converted to upper case.
@@ -62,5 +62,5 @@ public class ReminderParserUtil {
         }
         return new ReminderPriority(trimmedPriority);
     }
-    
+
 }

@@ -13,10 +13,8 @@ public class ReminderPriority {
             "Priority should only be either HIGH, MEDIUM or LOW";
 
     /*
-     * The first character of the name must not be a whitespace,
-     * otherwise " " (a blank string) becomes a valid input.
+     * Priority should only be either HIGH, MEDIUM or LOW, case-insensitive.
      */
-//    public static final String VALIDATION_REGEX = "[\\p{Alnum}][\\p{Alnum} ]*";
     public static final String VALIDATION_REGEX = "(HIGH)|(MEDIUM)|(LOW)";
 
     public final String priority;
