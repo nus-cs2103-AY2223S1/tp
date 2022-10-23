@@ -30,7 +30,7 @@ public class ScheduleCard extends UiPart<Region> {
     public ScheduleCard(Patient patient, Task task) {
         super(FXML);
         taskListCardContainer.getChildren().add((new TaskListCard(task, 1)).getRoot());
-        name.setText(patient.getName().fullName);
+        name.setText(patient.getName().getValue());
         patient.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));

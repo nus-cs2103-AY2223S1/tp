@@ -67,10 +67,10 @@ class JsonAdaptedPerson {
      * Converts a given {@code Patient} into this class for Jackson use.
      */
     public JsonAdaptedPerson(Patient source) {
-        name = source.getName().fullName;
-        phone = source.getPhone().value;
-        email = source.getEmail().value;
-        address = source.getAddress().value;
+        name = source.getName().getValue();
+        phone = source.getPhone().getValue();
+        email = source.getEmail().getValue();
+        address = source.getAddress().getValue();
         conditions.addAll(source.getConditions().getInternalList().stream()
                 .map(JsonAdaptedCondition::new)
                 .collect(Collectors.toList()));
