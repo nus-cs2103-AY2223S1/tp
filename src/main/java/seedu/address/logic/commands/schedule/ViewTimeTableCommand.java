@@ -11,10 +11,7 @@ import seedu.address.model.Model;
  * Views all schedules which satisfies selection requirements.
  */
 public class ViewTimeTableCommand extends Command {
-
     public static final String COMMAND_WORD = "tview";
-
-
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Views the Horizontal/Vertical Timetable. \n"
             + "Format: tview 0 (View Horizontal Timetable)\n"
             + "Format: tview 1 (View Vertical Timetable)\n";
@@ -22,30 +19,30 @@ public class ViewTimeTableCommand extends Command {
     public static final String SHOWING_HORIZONTAL_TIMETABLE_MESSAGE = "Show the Horizontal Timetable!";
     public static final String SHOWING_VERTICAL_TIMETABLE_MESSAGE = "Show the Vertical Timetable!";
 
-    public static String MODEL;
+    private int timetableModel = 0;
 
     /**
      * Constructor of ViewTimeTableCommand with default MODEL
      */
     public ViewTimeTableCommand() {
-        this.MODEL = "0";
+        this.timetableModel = 0;
     }
 
     /**
      * Constructor of ViewTimeTableCommand with input MODEL "0" or "1"
-     * @param MODEL
+     * @param timetableModel
      */
-    public ViewTimeTableCommand(String MODEL) {
-        this.MODEL = MODEL;
+    public ViewTimeTableCommand(int timetableModel) {
+        this.timetableModel = timetableModel;
     }
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
-        if (this.MODEL.equals("0")) { // Horizontal
+        if (this.timetableModel == 0) { // Horizontal
             return new CommandResult(String.format(SHOWING_HORIZONTAL_TIMETABLE_MESSAGE),
                     false, false, false, false,
                     false, false, true, false);
-        } else if (this.MODEL.equals("1")){ // Vertical
+        } else if (this.timetableModel == 1) { // Vertical
             return new CommandResult(String.format(SHOWING_VERTICAL_TIMETABLE_MESSAGE),
                     false, false, false, false,
                     false, false, false, true);

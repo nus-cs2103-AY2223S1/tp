@@ -31,10 +31,8 @@ public class MainWindow extends UiPart<Stage> {
     private static final int MODULE = 2;
     private static final int SCHEDULE = 3;
     private static final int TIMETABLE = 4;
-
-    private int TIME_TABLE_MODEL = 0;
     private static final String FXML = "MainWindow.fxml";
-
+    private int timetableModel = 0;
     private final Logger logger = LogsCenter.getLogger(getClass());
 
     private Stage primaryStage;
@@ -259,11 +257,11 @@ public class MainWindow extends UiPart<Stage> {
     public void handleShowTabScheduleGrid() {
         scheduleGridPanel = new ScheduleGridPanel(logic.getAllScheduleList());
         tabPane.getSelectionModel().select(TIMETABLE);
-        if (TIME_TABLE_MODEL == 0) { // horizontal Timetable
+        if (timetableModel == 0) { // horizontal Timetable
             scheduleGridPanel.constructHorizontalTimetable();
             scheduleGridPanelPlaceholder.getChildren().add(scheduleGridPanel.getRoot());
             resultDisplay.setFeedbackToUser("Show the Horizontal Timetable!");
-        } else if (TIME_TABLE_MODEL == 1){ // vertical Timetable
+        } else if (timetableModel == 1) { // vertical Timetable
             scheduleGridPanel.constructVerticalTimetable();
             scheduleGridPanelPlaceholder.getChildren().add(scheduleGridPanel.getRoot());
             resultDisplay.setFeedbackToUser("Show the Vertical Timetable!");
@@ -350,11 +348,11 @@ public class MainWindow extends UiPart<Stage> {
                 handleShowTabSchedule();
             }
             if (commandResult.isShowHorizontalTimeTable()) {
-                TIME_TABLE_MODEL = 0;
+                timetableModel = 0;
                 handleShowTabScheduleGrid();
             }
             if (commandResult.isShowVerticalTimeTable()) {
-                TIME_TABLE_MODEL = 1;
+                timetableModel = 1;
                 handleShowTabScheduleGrid();
             }
 

@@ -27,13 +27,11 @@ public class ScheduleGridPanel extends UiPart<Region> {
     private static final int SCALE_FACTOR = 2;
 
     private static final int ROW_SPAN = 1;
-    private static final double COLUMNS_WIDTH = 95;
-    private static final int NUM_OF_COLUMNS = SCALE_FACTOR * (END_HOUR - START_HOUR) + ROW_SPAN;
-
     private static final int COLUMN_SPAN = 1;
-    private static final double ROWS_WIDTH = 95;
+    private static final double COLUMNS_WIDTH = 50;
+    private static final double ROWS_WIDTH = 50;
+    private static final int NUM_OF_COLUMNS = SCALE_FACTOR * (END_HOUR - START_HOUR) + ROW_SPAN * 2;
     private static final int NUM_OF_ROWS = SCALE_FACTOR * (END_HOUR - START_HOUR) + COLUMN_SPAN;
-
     private final Logger logger = LogsCenter.getLogger(ScheduleGridPanel.class);
     private final ObservableList<Schedule> schedules;
     @FXML
@@ -48,7 +46,6 @@ public class ScheduleGridPanel extends UiPart<Region> {
         super(FXML);
         this.schedules = schedules;
     }
-
     /**
      * Constructs horizontal timetable
      */
@@ -61,7 +58,6 @@ public class ScheduleGridPanel extends UiPart<Region> {
             addScheduleSlotToHorizontalGrid();
         }
     }
-
     /**
      * Constructs vertical timetable
      */
@@ -74,22 +70,26 @@ public class ScheduleGridPanel extends UiPart<Region> {
             addScheduleSlotToVerticalGrid();
         }
     }
-
-
     private int getColumnSpan(double duration) {
         return (int) (duration * SCALE_FACTOR);
     }
-
     private int getRowSpan(double duration) {
         return (int) (duration * SCALE_FACTOR);
     }
-
     /**
      * Get the index of slot's start time
      * @param hour beginning hour
      * @return the 0-based index
      */
     public int getStartTimeIndex(double hour) {
+        return (int) ((hour - START_HOUR) * SCALE_FACTOR + 1 * 2);
+    }
+    /**
+     * Get the index of slot's start time
+     * @param hour beginning hour
+     * @return the 0-based index
+     */
+    public int getVerticalStartTimeIndex(double hour) {
         return (int) ((hour - START_HOUR) * SCALE_FACTOR + 1);
     }
 
@@ -124,6 +124,7 @@ public class ScheduleGridPanel extends UiPart<Region> {
      */
     public void constructHorizontalGrid() {
         logger.fine("Constructing the horizontal grid panel");
+        // gridPane.setGridLinesVisible(true);
         gridPane.setPadding(new Insets(10, 10, 10, 10));
         for (int i = 0; i < NUM_OF_COLUMNS; ++i) {
             ColumnConstraints column = new ColumnConstraints();
@@ -162,15 +163,13 @@ public class ScheduleGridPanel extends UiPart<Region> {
         double slotHeight = duration * SCALE_FACTOR * ROWS_WIDTH;
         return new ScheduleSlot(schedule);
     }
-
-
     /**
      * Adds weekdays to the horizontal grid
      */
     public void addWeekdayToHorizontalGrid() {
         for (int i = 0; i < 7; ++i) {
             SlotContainer weekday = new WeekdayCard(i);
-            gridPane.add(weekday.getRoot(), 0, i, 1, ROW_SPAN);
+            gridPane.add(weekday.getRoot(), 0, i, 1 * 2, ROW_SPAN);
         }
     }
 
@@ -217,7 +216,7 @@ public class ScheduleGridPanel extends UiPart<Region> {
             double duration = schedule.getDuration();
             Weekdays weekday = schedule.getWeekday();
             colIndex = getWeekdayIndex(weekday);
-            rowIndex = getStartTimeIndex(startHour);
+            rowIndex = getVerticalStartTimeIndex(startHour);
             SlotContainer slot = createVerticalSlot(schedule);
             gridPane.add(slot.getRoot(), colIndex, rowIndex, COLUMN_SPAN, getRowSpan(duration));
         }
