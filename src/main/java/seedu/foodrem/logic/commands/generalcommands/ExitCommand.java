@@ -16,7 +16,7 @@ public class ExitCommand extends Command {
     public CommandResult execute(Model model) {
         return new CommandResult() {
             @Override
-            public String getFeedbackToUser() {
+            public String getOutput() {
                 return MESSAGE_SUCCESS;
             }
 

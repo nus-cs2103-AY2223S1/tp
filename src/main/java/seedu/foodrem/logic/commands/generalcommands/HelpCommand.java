@@ -51,7 +51,7 @@ public class HelpCommand extends Command {
     public CommandResult execute(Model model) {
         return new CommandResult() {
             @Override
-            public String getFeedbackToUser() {
+            public String getOutput() {
                 return SHOWING_HELP_MESSAGE;
             }
 

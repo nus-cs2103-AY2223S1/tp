@@ -39,7 +39,7 @@ public class NewCommandTest {
 
         CommandResult commandResult = new NewCommand(validItem).execute(modelStub);
 
-        assertEquals(String.format(NewCommand.MESSAGE_SUCCESS, validItem), commandResult.getFeedbackToUser());
+        assertEquals(String.format(NewCommand.MESSAGE_SUCCESS, validItem), commandResult.getOutput());
         assertEquals(List.of(validItem), modelStub.itemsAdded);
     }
 

@@ -178,8 +178,8 @@ public class MainWindow extends UiPart<Stage> {
     private CommandResult executeCommand(String commandText) throws CommandException, IllegalArgumentException {
         try {
             CommandResult commandResult = logic.execute(commandText);
-            logger.info("Result: " + commandResult.getFeedbackToUser());
-            uiView.viewFrom(commandResult.getFeedbackToUser());
+            logger.info("Result: " + commandResult.getOutput());
+            uiView.viewFrom(commandResult.getOutput());
             // We need to hide the window to ensure it resizes on changing message to display.
             helpWindow.hide();
 

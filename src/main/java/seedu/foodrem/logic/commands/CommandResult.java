@@ -2,8 +2,6 @@ package seedu.foodrem.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 
-import java.util.Objects;
-
 /**
  * Represents the result of a command execution.
  */
@@ -17,13 +15,13 @@ public abstract class CommandResult {
         requireNonNull(feedbackToUser);
         return new CommandResult() {
             @Override
-            public String getFeedbackToUser() {
+            public String getOutput() {
                 return feedbackToUser;
             }
         };
     }
 
-    public String getFeedbackToUser() {
+    public String getOutput() {
         throw new UnsupportedOperationException();
     }
     public String getHelpText() {

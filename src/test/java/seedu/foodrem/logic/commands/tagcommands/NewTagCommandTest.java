@@ -42,7 +42,7 @@ public class NewTagCommandTest {
 
         CommandResult commandResult = new NewTagCommand(validTag).execute(modelStub);
 
-        assertEquals(String.format(EXPECTED_FORMAT_SUCCESS, validTag), commandResult.getFeedbackToUser());
+        assertEquals(String.format(EXPECTED_FORMAT_SUCCESS, validTag), commandResult.getOutput());
         assertEquals(List.of(validTag), modelStub.tagsAdded);
     }
 
