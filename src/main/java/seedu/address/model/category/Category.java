@@ -9,14 +9,14 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  */
 public class Category {
 
-    public static final String MESSAGE_CONSTRAINTS = "Category names can be only N for nurse, " +
-            "P for patient, D for physician or K for next of kin.";
+    public static final String MESSAGE_CONSTRAINTS = "Category names can be only N for nurse, "
+            + "P for patient, D for physician or K for next of kin.";
     public static final String NURSE_SYMBOL = "N";
     public static final String PATIENT_SYMBOL = "P";
     public static final String PHYSICIAN_SYMBOL = "D";
     public static final String NEXTOFKIN_SYMBOL = "K";
-    public static final String VALIDATION_REGEX = "[" + NURSE_SYMBOL + "|" + PATIENT_SYMBOL + "|" +
-            PHYSICIAN_SYMBOL + "|" + NEXTOFKIN_SYMBOL + "]";
+    public static final String VALIDATION_REGEX = "[" + NURSE_SYMBOL + "|" + PATIENT_SYMBOL + "|"
+            + PHYSICIAN_SYMBOL + "|" + NEXTOFKIN_SYMBOL + "]";
 
     public final String categoryName;
 

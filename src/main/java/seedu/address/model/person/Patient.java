@@ -24,6 +24,9 @@ public class Patient extends Person {
     private final Optional<Physician> attendingPhysician;
     private final Optional<NextOfKin> nextOfKin;
 
+    /**
+     * Initialise patient with no attending physician and no next of kin.
+     */
     public Patient(Uid uid, Name name, Gender gender, Phone phone, Email email, Address address,
                    Set<Tag> tags, List<DateTime> dateTime, VisitStatus visitStatus) {
         super(uid, name, gender, phone, email, address, tags);
@@ -47,6 +50,9 @@ public class Patient extends Person {
         nextOfKin = Optional.of(n);
     }
 
+    /**
+     * Initialise patient with given attending physician and next of kin.
+     */
     public Patient(Uid uid, Name name, Gender gender, Phone phone, Email email, Address address,
                    Set<Tag> tags, List<DateTime> dateTime, VisitStatus visitStatus,
                    Optional<Physician> p, Optional<NextOfKin> n) {
@@ -66,7 +72,7 @@ public class Patient extends Person {
         return nextOfKin;
     }
 
-    public String getNOKDetails() {
+    public String getNextOfKinDetails() {
         String[] output = new String[]{NO_NEXTOFKIN_SET};
         nextOfKin.ifPresent(x -> output[0] = x.toString());
         return output[0];

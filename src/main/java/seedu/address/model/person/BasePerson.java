@@ -13,14 +13,20 @@ public abstract class BasePerson {
     private final Phone phone;
     private final Email email;
 
-    public abstract Category getCategory();
-
+    /**
+     * Initialise name, phone and email for person
+     * @param n name
+     * @param p phone
+     * @param e email
+     */
     public BasePerson(Name n, Phone p, Email e) {
         requireAllNonNull(n, p, e);
         name = n;
         phone = p;
         email = e;
     }
+
+    public abstract Category getCategory();
 
     public Name getName() {
         return name;

@@ -153,8 +153,10 @@ public class EditCommand extends Command {
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
 
         if (personToEdit instanceof Patient && updatedCategory.categoryName.equals("P")) {
-            Optional<Physician> updatedPhysician = editPersonDescriptor.getPhysician().orElse(((Patient) personToEdit).getAttendingPhysician());
-            Optional<NextOfKin> updatedNextOfKin = editPersonDescriptor.getNextOfKin().orElse(((Patient) personToEdit).getNextOfKin());
+            Optional<Physician> updatedPhysician = editPersonDescriptor.getPhysician()
+                    .orElse(((Patient) personToEdit).getAttendingPhysician());
+            Optional<NextOfKin> updatedNextOfKin = editPersonDescriptor.getNextOfKin()
+                    .orElse(((Patient) personToEdit).getNextOfKin());
             List<DateTime> originalDateTime = ((Patient) personToEdit).getDatesTimes();
             Optional<List<DateTime>> toBeUpdateDateTime = editPersonDescriptor.getDatesTimes();
             Optional<List<Index>> toBeUpdateDateTimeIndexes = editPersonDescriptor.getDateTimeIndexes();
@@ -166,8 +168,10 @@ public class EditCommand extends Command {
                         updatedAddress, updatedTags, updatedDateTime, updatedVisitStatus,
                         updatedPhysician, updatedNextOfKin);
         } else if (updatedCategory.categoryName.equals("P")) {
-            Optional<Physician> updatedPhysician = editPersonDescriptor.getPhysician().orElse(((Patient) personToEdit).getAttendingPhysician());
-            Optional<NextOfKin> updatedNextOfKin = editPersonDescriptor.getNextOfKin().orElse(((Patient) personToEdit).getNextOfKin());
+            Optional<Physician> updatedPhysician = editPersonDescriptor.getPhysician()
+                    .orElse(((Patient) personToEdit).getAttendingPhysician());
+            Optional<NextOfKin> updatedNextOfKin = editPersonDescriptor.getNextOfKin()
+                    .orElse(((Patient) personToEdit).getNextOfKin());
             List<DateTime> updatedDateTime = editPersonDescriptor.getDatesTimes().orElse(null);
             VisitStatus updatedVisitStatus = editPersonDescriptor.getVisitStatus()
                     .orElse(((Patient) personToEdit).getVisitStatus());
