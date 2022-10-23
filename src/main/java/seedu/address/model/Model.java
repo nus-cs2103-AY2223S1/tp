@@ -16,10 +16,14 @@ import seedu.address.model.person.PersonId;
  */
 public interface Model {
 
-    /** {@code Predicate} that always evaluate to true */
+    /**
+     * {@code Predicate} that always evaluate to true
+     */
     Predicate<Person> PREDICATE_SHOW_ALL_PERSONS = unused -> true;
 
-    /** {@code Predicate} that always evaluate to true */
+    /**
+     * {@code Predicate} that always evaluate to true
+     */
     Predicate<Internship> PREDICATE_SHOW_ALL_INTERNSHIPS = unused -> true;
 
     /**
@@ -57,7 +61,9 @@ public interface Model {
      */
     void setAddressBook(ReadOnlyAddressBook addressBook);
 
-    /** Returns the AddressBook */
+    /**
+     * Returns the AddressBook
+     */
     ReadOnlyAddressBook getAddressBook();
 
     /**
@@ -84,17 +90,21 @@ public interface Model {
      */
     void setPerson(Person target, Person editedPerson);
 
-    /** Returns an unmodifiable view of the filtered person list */
+    /**
+     * Returns an unmodifiable view of the filtered person list
+     */
     ObservableList<Person> getFilteredPersonList();
 
     /**
      * Updates the filter of the filtered person list to filter by the given {@code predicate}.
+     *
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredPersonList(Predicate<Person> predicate);
 
     /**
      * Sorts the filter of the filtered person list by the given {@code comparator}.
+     *
      * @throws NullPointerException if {@code comparator} is null.
      */
     void sortPersonList(Comparator<Person> comparator);
@@ -124,14 +134,22 @@ public interface Model {
      */
     void setInternship(Internship target, Internship editedInternship);
 
-    /** Returns an unmodifiable view of the filtered internship list */
+    /**
+     * Returns an unmodifiable view of the filtered internship list
+     */
     ObservableList<Internship> getFilteredInternshipList();
 
     /**
      * Updates the filter of the filtered internship list to filter by the given {@code predicate}.
+     *
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredInternshipList(Predicate<Internship> predicate);
+
+    /**
+     * Sorts the filter of the filtered person list by the given {@code comparator}.
+     */
+    void sortInternshipList(Comparator<Internship> comparator);
 
     /**
      * Gets a unique Id to assign to a newly created Person
