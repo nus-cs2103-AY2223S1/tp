@@ -12,5 +12,5 @@ public class Messages {
     public static final String MESSAGE_PERSONS_LISTED_OVERVIEW = "%1$d persons listed!";
     public static final String MESSAGE_NO_TARGET_PERSON = "No target person found, use \"show INDEX\" to set a target";
     public static final String MESSAGE_EMPTY_ARGUMENTS = "Please enter a query after \"%1$s\"";
-
+    public static final String MESSAGE_NO_FILTERS_APPLIED = "No filters applied!";
 }
