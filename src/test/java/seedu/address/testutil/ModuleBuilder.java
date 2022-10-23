@@ -48,8 +48,8 @@ public class ModuleBuilder {
         moduleCode = moduleToCopy.getModuleCode();
         moduleTitle = moduleToCopy.getModuleTitle();
         tasks = new ArrayList<>(moduleToCopy.getTasks());
-        links = moduleToCopy.getLinks();
-        persons = moduleToCopy.getPersons();
+        links = new HashSet<>(moduleToCopy.getLinks());
+        persons = new HashSet<>(moduleToCopy.getPersons());
     }
 
     /**

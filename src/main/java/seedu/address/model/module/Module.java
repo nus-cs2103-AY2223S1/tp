@@ -29,8 +29,8 @@ public class Module {
     // Data fields
     private final ModuleTitle moduleTitle;
     private final TaskList tasks;
-    private final Set<Link> links = new HashSet<>();
-    private final Set<Person> persons = new HashSet<>();
+    private final Set<Link> links;
+    private final Set<Person> persons;
 
     /**
      * Every field must be present and not null.
@@ -43,8 +43,8 @@ public class Module {
         this.moduleCode = moduleCode;
         this.moduleTitle = moduleTitle;
         this.tasks = new TaskList(tasks);
-        this.links.addAll(links);
-        this.persons.addAll(persons);
+        this.links = new HashSet<>(links);
+        this.persons = new HashSet<>(persons);
     }
 
     /**
@@ -57,7 +57,8 @@ public class Module {
         this.moduleCode = moduleCode;
         this.moduleTitle = moduleTitle;
         this.tasks = new TaskList();
-        this.links.addAll(links);
+        this.links = new HashSet<>(links);
+        this.persons = new HashSet<>();
     }
 
     /**
