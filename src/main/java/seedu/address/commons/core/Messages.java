@@ -15,4 +15,5 @@ public class Messages {
     public static final String MESSAGE_REMINDER_ALREADY_EXIST = "Reminder list already contains the reminder:\n%1$s";
     public static final String MESSAGE_EMPTY_ARGUMENTS = "Please enter a query after \"%1$s\"";
     public static final String MESSAGE_NO_FILTERS_APPLIED = "No filters applied!";
+    public static final String MESSAGE_TAGS_NOT_FOUND = "Tags do not exist: %1$s";
 }

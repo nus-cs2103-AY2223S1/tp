@@ -22,6 +22,10 @@ public class TagMatchesQueryPredicate implements Predicate<Person> {
         this.tag = tag;
     }
 
+    public Tag getTag() {
+        return tag;
+    }
+
     @Override
     public boolean test(Person person) {
         return person.getTags().contains(tag);
@@ -31,7 +35,7 @@ public class TagMatchesQueryPredicate implements Predicate<Person> {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof TagMatchesQueryPredicate // instanceof handles nulls
-                && tag.equals(((TagMatchesQueryPredicate) other).tag)); // state check
+                        && tag.equals(((TagMatchesQueryPredicate) other).tag)); // state check
     }
 
     @Override
