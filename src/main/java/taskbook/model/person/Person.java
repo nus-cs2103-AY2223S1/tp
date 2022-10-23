@@ -1,5 +1,7 @@
 package taskbook.model.person;
 
+import static java.util.Objects.requireNonNull;
+
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Objects;
@@ -136,5 +138,15 @@ public class Person {
      */
     public int compareByNameAlphabeticalTo(Person other) {
         return this.getName().compareByAlphabeticalTo(other.getName());
+    }
+
+    /**
+     * Searches this task to find if input query exists anywhere in the description or name.
+     * @param query input word.
+     * @return true if the query exists exactly in this task, false otherwise.
+     */
+    public boolean isQueryInPerson(String query) {
+        requireNonNull(query);
+        return getName().isQueryInName(query);
     }
 }
