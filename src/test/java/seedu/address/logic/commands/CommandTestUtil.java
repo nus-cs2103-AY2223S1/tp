@@ -16,6 +16,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import seedu.address.commons.core.index.Index;
+import seedu.address.logic.commands.event.EditEventCommand;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.commands.profile.EditProfileCommand;
 import seedu.address.model.AddressBook;
@@ -24,6 +25,7 @@ import seedu.address.model.event.Event;
 import seedu.address.model.event.TitleContainsKeywordsPredicate;
 import seedu.address.model.profile.NameContainsKeywordsPredicate;
 import seedu.address.model.profile.Profile;
+import seedu.address.testutil.EditEventDescriptorBuilder;
 import seedu.address.testutil.EditProfileDescriptorBuilder;
 
 /**
@@ -83,6 +85,7 @@ public class CommandTestUtil {
     public static final String TAG_DESC_SWE = " " + PREFIX_TAG + VALID_TAG_SWE;
     public static final String TAG_DESC_CCA = " " + PREFIX_TAG + VALID_TAG_CCA;
 
+    public static final String INVALID_TITLE_DESC = " " + PREFIX_NAME + "Lunch&Dinner";
     public static final String INVALID_START_DESC = " " + PREFIX_START_DATE + "2020/02/02 abcd";
     public static final String INVALID_END_DESC = " " + PREFIX_END_DATE + "efgh 2020/15/02";
 
@@ -100,6 +103,18 @@ public class CommandTestUtil {
                 .withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB)
                 .withTelegram(VALID_TELEGRAM_BOB)
                 .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).build();
+    }
+
+    public static final EditEventCommand.EditEventDescriptor DESC_PRESENTATION;
+    public static final EditEventCommand.EditEventDescriptor DESC_PRACTICE;
+
+    static {
+        DESC_PRESENTATION = new EditEventDescriptorBuilder().withTitle(VALID_TITLE_PRESENTATION)
+                .withStartDateTime(VALID_START_PRESENTATION).withEndDateTime(VALID_END_PRESENTATION)
+                .withTags(VALID_TAG_SWE).build();
+        DESC_PRACTICE = new EditEventDescriptorBuilder().withTitle(VALID_TITLE_PRACTICE)
+                .withStartDateTime(VALID_START_PRACTICE).withEndDateTime(VALID_END_PRACTICE)
+                .withTags(VALID_TAG_CCA).build();
     }
 
     /**
