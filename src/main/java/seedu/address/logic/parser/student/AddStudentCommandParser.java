@@ -15,7 +15,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_TUTORIAL;
 
 import java.util.Set;
 
-import seedu.address.logic.commands.student.AddCommand;
+import seedu.address.logic.commands.student.AddStudentCommand;
 import seedu.address.logic.parser.ArgumentMultimap;
 import seedu.address.logic.parser.ArgumentTokenizer;
 import seedu.address.logic.parser.Parser;
@@ -38,23 +38,23 @@ import seedu.address.model.tutorial.TutorialName;
 /**
  * Parses input arguments and creates a new AddCommand object
  */
-public class AddStudentCommandParser implements Parser<AddCommand> {
+public class AddStudentCommandParser implements Parser<AddStudentCommand> {
 
     /**
      * Parses the given {@code String} of arguments in the context of the AddCommand
      * and returns an AddCommand object for execution.
      * @throws ParseException if the user input does not conform the expected format
      */
-    public AddCommand parse(String args) throws ParseException {
+    public AddStudentCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_ID, PREFIX_PHONE,
                         PREFIX_EMAIL, PREFIX_TELEGRAM, PREFIX_MODULE, PREFIX_TUTORIAL,
                         PREFIX_ATTENDANCE, PREFIX_PARTICIPATION, PREFIX_GRADE, PREFIX_TAG);
 
-        ParserUtil.assertAllPrefixesPresent(argMultimap, AddCommand.MESSAGE_USAGE,
+        ParserUtil.assertAllPrefixesPresent(argMultimap, AddStudentCommand.MESSAGE_USAGE,
                 PREFIX_NAME, PREFIX_ID, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_TELEGRAM, PREFIX_MODULE, PREFIX_TUTORIAL);
         if (!argMultimap.getPreamble().isEmpty()) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddStudentCommand.MESSAGE_USAGE));
         }
 
         Name name = StudentParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());
@@ -76,7 +76,7 @@ public class AddStudentCommandParser implements Parser<AddCommand> {
         Student student = new Student(name, id, phone, email, telegramHandle,
                 moduleCode, tutorialName, attendance, participation, grade, tagList);
 
-        return new AddCommand(student);
+        return new AddStudentCommand(student);
     }
 
 

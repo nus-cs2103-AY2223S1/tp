@@ -40,7 +40,7 @@ import java.util.Arrays;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.logic.commands.student.AddCommand;
+import seedu.address.logic.commands.student.AddStudentCommand;
 import seedu.address.logic.parser.student.AddStudentCommandParser;
 import seedu.address.model.student.Email;
 import seedu.address.model.student.Name;
@@ -62,27 +62,27 @@ public class AddStudentCommandParserTest {
         assertParseSuccess(parser, PREAMBLE_WHITESPACE + NAME_DESC_BOB + ID_DESC_BOB
                  + PHONE_DESC_BOB + EMAIL_DESC_BOB + TELEGRAM_DESC_BOB + MODULE_DESC_BOB + TUTORIAL_DESC_BOB
                  + ATTENDANCE_DESC_BOB + PARTICIPATION_DESC_BOB + GRADE_DESC_BOB
-                 + TAG_DESC_FRIEND, new AddCommand(expectedStudent));
+                 + TAG_DESC_FRIEND, new AddStudentCommand(expectedStudent));
 
         // multiple names - last name accepted
         assertParseSuccess(parser, NAME_DESC_AMY + NAME_DESC_BOB + ID_DESC_BOB
                 + PHONE_DESC_BOB + EMAIL_DESC_BOB + TELEGRAM_DESC_BOB + MODULE_DESC_BOB + TUTORIAL_DESC_BOB
                 + ATTENDANCE_DESC_BOB + PARTICIPATION_DESC_BOB + GRADE_DESC_BOB
-                 + TAG_DESC_FRIEND, new AddCommand(expectedStudent));
+                 + TAG_DESC_FRIEND, new AddStudentCommand(expectedStudent));
 
         // multiple phones - last phone accepted
         assertParseSuccess(parser, NAME_DESC_BOB + ID_DESC_BOB
                 + PHONE_DESC_AMY + PHONE_DESC_BOB + EMAIL_DESC_BOB + TELEGRAM_DESC_BOB
                 + MODULE_DESC_BOB + TUTORIAL_DESC_BOB
                 + ATTENDANCE_DESC_BOB + PARTICIPATION_DESC_BOB + GRADE_DESC_BOB
-                + TAG_DESC_FRIEND, new AddCommand(expectedStudent));
+                + TAG_DESC_FRIEND, new AddStudentCommand(expectedStudent));
 
         // multiple emails - last email accepted
         assertParseSuccess(parser, NAME_DESC_BOB + ID_DESC_BOB
                 + PHONE_DESC_BOB + EMAIL_DESC_BOB + EMAIL_DESC_BOB + TELEGRAM_DESC_BOB + MODULE_DESC_BOB
                 + TUTORIAL_DESC_BOB
                 + ATTENDANCE_DESC_BOB + PARTICIPATION_DESC_BOB + GRADE_DESC_BOB
-                + TAG_DESC_FRIEND, new AddCommand(expectedStudent));
+                + TAG_DESC_FRIEND, new AddStudentCommand(expectedStudent));
 
         // multiple tags - all accepted
         Student expectedStudentMultipleTags = new PersonBuilder(BOB).withTags(VALID_TAG_FRIEND, VALID_TAG_HUSBAND)
@@ -90,7 +90,7 @@ public class AddStudentCommandParserTest {
         assertParseSuccess(parser, NAME_DESC_BOB + ID_DESC_BOB
                 + PHONE_DESC_BOB + EMAIL_DESC_BOB + TELEGRAM_DESC_BOB + MODULE_DESC_BOB + TUTORIAL_DESC_BOB
                 + ATTENDANCE_DESC_BOB + PARTICIPATION_DESC_BOB + GRADE_DESC_BOB
-                + TAG_DESC_HUSBAND + TAG_DESC_FRIEND, new AddCommand(expectedStudentMultipleTags));
+                + TAG_DESC_HUSBAND + TAG_DESC_FRIEND, new AddStudentCommand(expectedStudentMultipleTags));
 
     }
 
@@ -100,7 +100,7 @@ public class AddStudentCommandParserTest {
         Student expectedStudent = new PersonBuilder(BOB).withTags().build();
         assertParseSuccess(parser, NAME_DESC_BOB + ID_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
                 + TELEGRAM_DESC_BOB + MODULE_DESC_BOB + TUTORIAL_DESC_BOB,
-                new AddCommand(expectedStudent));
+                new AddStudentCommand(expectedStudent));
     }
 
     @Test
@@ -109,19 +109,19 @@ public class AddStudentCommandParserTest {
         assertParseFailure(parser, VALID_NAME_BOB + ID_DESC_BOB
                 + PHONE_DESC_BOB + EMAIL_DESC_BOB + TELEGRAM_DESC_BOB + MODULE_DESC_BOB + TUTORIAL_DESC_BOB,
                 String.format(MESSAGE_MISSING_PREFIXES_ALL, Arrays.toString(new Prefix[]{CliSyntax.PREFIX_NAME}),
-                AddCommand.MESSAGE_USAGE));
+                AddStudentCommand.MESSAGE_USAGE));
 
         // missing phone prefix
         assertParseFailure(parser, NAME_DESC_BOB + ID_DESC_BOB
                 + VALID_PHONE_BOB + EMAIL_DESC_BOB + TELEGRAM_DESC_BOB + MODULE_DESC_BOB + TUTORIAL_DESC_BOB,
                 String.format(MESSAGE_MISSING_PREFIXES_ALL, Arrays.toString(new Prefix[]{CliSyntax.PREFIX_PHONE}),
-                AddCommand.MESSAGE_USAGE));
+                AddStudentCommand.MESSAGE_USAGE));
 
         // missing email prefix
         assertParseFailure(parser, NAME_DESC_BOB + ID_DESC_BOB
                 + PHONE_DESC_BOB + VALID_EMAIL_BOB + TELEGRAM_DESC_BOB + MODULE_DESC_BOB + TUTORIAL_DESC_BOB,
                 String.format(MESSAGE_MISSING_PREFIXES_ALL, Arrays.toString(new Prefix[]{CliSyntax.PREFIX_EMAIL}),
-                AddCommand.MESSAGE_USAGE));
+                AddStudentCommand.MESSAGE_USAGE));
 
         // all prefixes missing
         assertParseFailure(parser, VALID_NAME_BOB + VALID_ID_BOB
@@ -129,7 +129,7 @@ public class AddStudentCommandParserTest {
                 String.format(MESSAGE_MISSING_PREFIXES_ALL, Arrays.toString(new Prefix[]{
                     CliSyntax.PREFIX_NAME, CliSyntax.PREFIX_ID, CliSyntax.PREFIX_PHONE, CliSyntax.PREFIX_EMAIL,
                     CliSyntax.PREFIX_TELEGRAM, CliSyntax.PREFIX_MODULE, CliSyntax.PREFIX_TUTORIAL}),
-                    AddCommand.MESSAGE_USAGE));
+                    AddStudentCommand.MESSAGE_USAGE));
     }
 
     @Test
@@ -168,6 +168,6 @@ public class AddStudentCommandParserTest {
         assertParseFailure(parser, PREAMBLE_NON_EMPTY + NAME_DESC_BOB + ID_DESC_BOB
                         + PHONE_DESC_BOB + EMAIL_DESC_BOB + TELEGRAM_DESC_BOB + MODULE_DESC_BOB + TUTORIAL_DESC_BOB
                 + TAG_DESC_HUSBAND + TAG_DESC_FRIEND,
-                String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddStudentCommand.MESSAGE_USAGE));
     }
 }
