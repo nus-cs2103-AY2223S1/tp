@@ -7,6 +7,10 @@
 
 'T1 through T4 are shades of the original color from lightest to darkest
 
+!define MAIN_WINDOW_COLOR #A45A52
+
+!define RESIDENT_TABLE_VIEW_COLOR #5A7585
+
 !define UI_COLOR #1D8900
 !define UI_COLOR_T1 #83E769
 !define UI_COLOR_T2 #3FC71B

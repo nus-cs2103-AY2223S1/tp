@@ -22,6 +22,7 @@ import seedu.rc4hdb.model.Model;
 import seedu.rc4hdb.model.ModelManager;
 import seedu.rc4hdb.model.ResidentBook;
 import seedu.rc4hdb.model.UserPrefs;
+import seedu.rc4hdb.model.VenueBook;
 import seedu.rc4hdb.model.resident.Resident;
 import seedu.rc4hdb.model.resident.ResidentDescriptor;
 import seedu.rc4hdb.testutil.ResidentBuilder;
@@ -32,7 +33,7 @@ import seedu.rc4hdb.testutil.ResidentDescriptorBuilder;
  */
 public class EditCommandTest {
 
-    private Model model = new ModelManager(getTypicalResidentBook(), new UserPrefs());
+    private Model model = new ModelManager(getTypicalResidentBook(), new VenueBook(), new UserPrefs());
 
     @Test
     public void execute_allFieldsSpecifiedUnfilteredList_success() {
@@ -42,7 +43,8 @@ public class EditCommandTest {
 
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_RESIDENT_SUCCESS, editedResident);
 
-        Model expectedModel = new ModelManager(new ResidentBook(model.getResidentBook()), new UserPrefs());
+        Model expectedModel = new ModelManager(new ResidentBook(model.getResidentBook()),
+                new VenueBook(), new UserPrefs());
         expectedModel.setResident(model.getFilteredResidentList().get(0), editedResident);
 
         assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
@@ -63,7 +65,8 @@ public class EditCommandTest {
 
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_RESIDENT_SUCCESS, editedResident);
 
-        Model expectedModel = new ModelManager(new ResidentBook(model.getResidentBook()), new UserPrefs());
+        Model expectedModel = new ModelManager(new ResidentBook(model.getResidentBook()),
+                new VenueBook(), new UserPrefs());
         expectedModel.setResident(lastResident, editedResident);
 
         assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
@@ -76,7 +79,8 @@ public class EditCommandTest {
 
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_RESIDENT_SUCCESS, editedResident);
 
-        Model expectedModel = new ModelManager(new ResidentBook(model.getResidentBook()), new UserPrefs());
+        Model expectedModel = new ModelManager(new ResidentBook(model.getResidentBook()),
+                new VenueBook(), new UserPrefs());
 
         assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
     }
@@ -92,7 +96,8 @@ public class EditCommandTest {
 
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_RESIDENT_SUCCESS, editedResident);
 
-        Model expectedModel = new ModelManager(new ResidentBook(model.getResidentBook()), new UserPrefs());
+        Model expectedModel = new ModelManager(new ResidentBook(model.getResidentBook()),
+                new VenueBook(), new UserPrefs());
         expectedModel.setResident(model.getFilteredResidentList().get(0), editedResident);
 
         assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);

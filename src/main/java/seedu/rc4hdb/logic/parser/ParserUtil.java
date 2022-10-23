@@ -16,7 +16,10 @@ import seedu.rc4hdb.model.resident.fields.MatricNumber;
 import seedu.rc4hdb.model.resident.fields.Name;
 import seedu.rc4hdb.model.resident.fields.Phone;
 import seedu.rc4hdb.model.resident.fields.Room;
-import seedu.rc4hdb.model.tag.Tag;
+import seedu.rc4hdb.model.resident.fields.Tag;
+import seedu.rc4hdb.model.venues.Venue;
+import seedu.rc4hdb.model.venues.booking.fields.Day;
+import seedu.rc4hdb.model.venues.booking.fields.HourPeriod;
 
 /**
  * Contains utility methods used for parsing strings in the various *Parser classes.
@@ -24,6 +27,9 @@ import seedu.rc4hdb.model.tag.Tag;
 public class ParserUtil {
 
     public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero unsigned integer.";
+    public static final String MESSAGE_INVALID_SPECIFIER = "Specifier should be either /any or /all";
+    public static final String VALID_ALL_SPECIFIER = "/all";
+    public static final String VALID_ANY_SPECIFIER = "/any";
 
     /**
      * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading and trailing whitespaces will be
@@ -169,4 +175,42 @@ public class ParserUtil {
         }
         return tagSet;
     }
+
+    /**
+     * Parses {@code String venue} into a {@code Venue}.
+     * currently only supports one venue: MEETING_ROOM
+     */
+    public static Venue parseVenue(String venue) throws ParseException {
+        requireNonNull(venue);
+        String trimmedVenue = venue.trim();
+        if (!Venue.isValidVenue(trimmedVenue)) {
+            throw new ParseException(Venue.MESSAGE_CONSTRAINTS);
+        }
+        return Venue.MEETING_ROOM;
+    }
+
+    /**
+     * Parses {@code String hourPeriod} into a {@code HourPeriod}.
+     */
+    public static HourPeriod parseHourPeriod(String hourPeriod) throws ParseException {
+        requireNonNull(hourPeriod);
+        String trimmedHourPeriod = hourPeriod.trim();
+        if (!HourPeriod.isValidHourPeriod(trimmedHourPeriod)) {
+            throw new ParseException(HourPeriod.MESSAGE_CONSTRAINTS);
+        }
+        return new HourPeriod(hourPeriod);
+    }
+
+    /**
+     * Parses {@code String day} into a {@code Day}.
+     */
+    public static Day parseDay(String day) throws ParseException {
+        requireNonNull(day);
+        String trimmedDay = day.trim();
+        if (!Day.isValidDay(trimmedDay)) {
+            throw new ParseException(Day.MESSAGE_CONSTRAINTS);
+        }
+        return new Day(day);
+    }
+
 }

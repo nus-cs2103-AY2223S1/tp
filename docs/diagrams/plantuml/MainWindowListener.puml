@@ -1,0 +1,12 @@
+@startuml
+!include ../style.puml
+
+Class MainWindow MAIN_WINDOW_COLOR
+Class LogicManager LOGIC_COLOR_T2
+Class ModelManager MODEL_COLOR_T2
+Class ResidentTableView RESIDENT_TABLE_VIEW_COLOR
+
+MainWindow --> LogicManager
+MainWindow --> ResidentTableView
+LogicManager --> ModelManager
+@enduml

@@ -24,6 +24,8 @@ RC4HDB is a **desktop app for managing RC4 housing related information, optimize
     * [Exporting to csv file : export](#exporting-to-csv-file--export)
     * [CSV file format](#csv-file-format)
     * [Format for resident fields](#format-for-resident-fields)
+    * [File commands](FileCommands.html)
+* [Keyboard Shortcuts](#keyboard-shortcuts)
 * [Frequently Asked Questions](#faq)
 * [Command Summary](#command-summary)
 
@@ -74,7 +76,7 @@ RC4HDB is a **desktop app for managing RC4 housing related information, optimize
 
 ### Viewing help : `help`
 
-Shows a message directing the user to our user guide.
+Shows a summary of all commands, and examples of its usage, as well as a message directing the user to our user guide.
 
 <!---
 ![help message](images/helpMessage.png)
@@ -148,13 +150,18 @@ Examples:
 
 Shows a list of residents whose fields match the input keywords.
 
-Format: `filter KEY/VALUE [ADDITIONAL_KEYS/ADDITIONAL_VALUES]`
-* The fields have to be the same (no substrings allowed) for the resident to be filtered.
-* Commands with multiple fields require the resident to match all the fields to be filtered.
+Format: `filter [/SPECIFIER] KEY/VALUE [ADDITIONAL_KEYS/ADDITIONAL_VALUES]`
+
+* The default specifier, if not specified by the user is `/all`.
+* Currently, only two specifiers are supported:
+  * `/all` returns a resident if it fulfills **all** of the specified keywords.
+  * `/any` returns a resident if it fulfills **any** of the specified keywords.
+* Repeated keys are not permitted for `/all` specifier, e.g. `filter /all h/D h/A` will not work.
 * Valid keys are those included [here](#format-for-resident-fields), and any additional tags.
 
 Examples:
-* `filter h/D g/M` returns residents who are in Draco house, **and** are Male.
+* `filter /all h/D g/M` returns residents who are in Draco house, **and** are Male.
+* `filter /any h/D h/A` returns residents belonging to either `Draco` **or** `Aquila` house.
 * `filter g/M` returns residents who are male.
 
 ### Deleting a resident : `delete`
@@ -201,7 +208,7 @@ If your changes to the data file makes its format invalid, RC4HDB will discard a
 
 RC4HDB has the ability to import data through .csv files. In order for RC4HDB to find your files, place them in the data directory, `[JAR file location]/data`.
 
-Format: `import FILENAME`
+Format: `import FILE_NAME`
 
 :information_source: The csv file that you want to have imported must follow this [format](#csv-file-format).<br>
 
@@ -213,7 +220,7 @@ Examples:
 
 RC4HDB has the ability to export data to .csv files. The file will be safe to remove from the directory, `[JAR file location]/data`.
 
-Format: `export FILENAME`
+Format: `export FILE_NAME`
 
 :information_source: The csv file will be exported in this [format](#csv-file-format).<br>
 
@@ -270,6 +277,20 @@ _More details coming soon ..._
 
 --------------------------------------------------------------------------------------------------------------------
 
+## Keyboard Shortcuts
+
+Inline with our optimization for use via a **Command Line Interface (CLI)**. Here are several keyboard shortcuts that
+you may find useful for your use:
+
+Key | Functionality
+----|------------------
+`Esc`| Closes the Help Window if it's open
+`F1` | Opens the Help Window if it's not open
+`F2` | Highlights the first row of the displayed list
+`F3` | Quick-access to the command input box
+
+--------------------------------------------------------------------------------------------------------------------
+
 ## FAQ
 
 **Q**: How do I transfer my data to another Computer?<br>
@@ -293,11 +314,10 @@ Action | Format, Examples
 **Delete** | `delete INDEX`<br> e.g., `delete 3`
 **Clear** | `clear`
 **Exit** | `exit`
-**Import** | `import FILENAME` <br> e.g., `import students.csv`
-**Export** | `export FILENAME` <br> e.g., `export students.csv`
-
+**Create file** | `file create FILE_NAME` <br> e.g., `file create rc4_data_2022`
+**Delete file** | `file delete FILE_NAME` <br> e.g., `file delete rc4_data_2022`
+**Switch file** | `file switch FILE_NAME` <br> e.g., `file switch rc4_data_2022`
+**Import** | `import FILE_NAME` <br> e.g., `import students.csv`
+**Export** | `export FILE_NAME` <br> e.g., `export students.csv`
 
 ---
-
-
-

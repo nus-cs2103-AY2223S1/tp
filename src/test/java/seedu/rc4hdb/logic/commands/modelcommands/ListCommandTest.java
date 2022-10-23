@@ -11,6 +11,7 @@ import org.junit.jupiter.api.Test;
 import seedu.rc4hdb.model.Model;
 import seedu.rc4hdb.model.ModelManager;
 import seedu.rc4hdb.model.UserPrefs;
+import seedu.rc4hdb.model.VenueBook;
 
 /**
  * Contains integration tests (interaction with the Model) and unit tests for ListCommand.
@@ -22,8 +23,8 @@ public class ListCommandTest {
 
     @BeforeEach
     public void setUp() {
-        model = new ModelManager(getTypicalResidentBook(), new UserPrefs());
-        expectedModel = new ModelManager(model.getResidentBook(), new UserPrefs());
+        model = new ModelManager(getTypicalResidentBook(), new VenueBook(), new UserPrefs());
+        expectedModel = new ModelManager(model.getResidentBook(), new VenueBook(), new UserPrefs());
     }
 
     @Test

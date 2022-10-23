@@ -7,7 +7,7 @@ import seedu.rc4hdb.logic.commands.exceptions.CommandException;
 /**
  * Represents a command that does not directly interact with any components.
  */
-public abstract class MiscCommand extends Command {
+public interface MiscCommand extends Command {
 
     /**
      * Executes the command and returns the result message.
@@ -15,6 +15,6 @@ public abstract class MiscCommand extends Command {
      * @return feedback message of the operation result for display
      * @throws CommandException If an error occurs during command execution.
      */
-    public abstract CommandResult execute() throws CommandException;
+    CommandResult execute() throws CommandException;
 
 }

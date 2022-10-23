@@ -6,11 +6,13 @@ import java.io.IOException;
 import java.nio.file.Path;
 import java.util.logging.Logger;
 
+import javafx.beans.value.ObservableValue;
 import javafx.collections.ObservableList;
 import seedu.rc4hdb.commons.core.GuiSettings;
 import seedu.rc4hdb.commons.core.LogsCenter;
 import seedu.rc4hdb.logic.commands.Command;
 import seedu.rc4hdb.logic.commands.CommandResult;
+import seedu.rc4hdb.logic.commands.StorageModelCommand;
 import seedu.rc4hdb.logic.commands.exceptions.CommandException;
 import seedu.rc4hdb.logic.commands.misccommands.MiscCommand;
 import seedu.rc4hdb.logic.commands.modelcommands.ModelCommand;
@@ -79,6 +81,9 @@ public class LogicManager implements Logic {
         if (command instanceof StorageCommand) {
             return ((StorageCommand) command).execute(storage);
         }
+        if (command instanceof StorageModelCommand) {
+            return ((StorageModelCommand) command).execute(storage, model);
+        }
         throw new CommandException(MESSAGE_UNKNOWN_COMMAND);
     }
 
@@ -93,7 +98,7 @@ public class LogicManager implements Logic {
     }
 
     @Override
-    public Path getResidentBookFilePath() {
+    public Path getUserPrefsResidentBookFilePath() {
         return model.getResidentBookFilePath();
     }
 
@@ -110,6 +115,11 @@ public class LogicManager implements Logic {
     @Override
     public ObservableList<String> getObservableFields() {
         return model.getObservableFields();
+    }
+
+    @Override
+    public ObservableValue<Path> getObservableResidentBookFilePath() {
+        return storage.getObservableResidentBookFilePath();
     }
 
     @Override
