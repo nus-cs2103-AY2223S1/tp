@@ -30,7 +30,13 @@
 }
 
 .active-label {
-    -fx-background-color: derive(#1d1d1d, 40%);
+    -fx-background-color: derive(#1d1d1d, 15%);
+}
+
+.active-label .label {
+    -fx-font-family: "Segoe UI Semibold";
+    -fx-font-size: 14px;
+    -fx-text-fill: white;
 }
 
 .active-student-label {
@@ -47,6 +53,12 @@
 
 .inactive-label {
     -fx-background-color: derive(#1d1d1d, 10%);
+}
+
+.inactive-label .label {
+    -fx-font-family: "Segoe UI Semibold";
+        -fx-font-size: 14px;
+        -fx-text-fill: derive(#1d1d1d, 90%);
 }
 
 .tab-pane {
@@ -108,32 +120,33 @@
 }
 
 .list-view {
-    -fx-background-insets: 0;
+    -fx-background-insets: 5;
     -fx-padding: 0;
-    -fx-background-color: derive(#1d1d1d, 20%);
+    -fx-background-color: derive(#1d1d1d, 15%);
 }
 
 .list-cell {
+    -fx-border-radius: 10;
+    -fx-background-radius: 10;
     -fx-label-padding: 0 0 0 0;
-    -fx-graphic-text-gap : 0;
-    -fx-padding: 0 0 0 0;
+    -fx-graphic-text-gap: 0;
+    -fx-padding: 0;
+    -fx-background-insets: 5;
 }
 
 .list-cell:filled:even {
+    -fx-background-insets: 5;
     -fx-background-color: #3c3e3f;
 }
 
 .list-cell:filled:odd {
+    -fx-background-insets: 5;
     -fx-background-color: #515658;
 }
 
 .list-cell:filled:selected {
+    -fx-background-insets: 5;
     -fx-background-color: #424d5f;
-}
-
-.list-cell:filled:selected #cardPane {
-    -fx-border-color: #3e7b91;
-    -fx-border-width: 1;
 }
 
 .list-cell .label {
@@ -173,6 +186,7 @@
      -fx-background-color: derive(#1d1d1d, 20%);
      -fx-border-color: derive(#1d1d1d, 10%);
      -fx-border-top-width: 1px;
+     -fx-padding: 5;
 }
 
 .status-bar {
@@ -182,7 +196,7 @@
 .result-display {
     -fx-background-color: transparent;
     -fx-font-family: "Segoe UI Light";
-    -fx-font-size: 13pt;
+    -fx-font-size: 11pt;
     -fx-text-fill: white;
 }
 
@@ -218,7 +232,8 @@
 }
 
 .context-menu {
-    -fx-background-color: derive(#1d1d1d, 50%);
+    -fx-background-color: derive(#1d1d1d, 20%);
+    -fx-padding: 0;
 }
 
 .context-menu .label {
@@ -226,11 +241,12 @@
 }
 
 .menu-bar {
+    -fx-padding: 0;
     -fx-background-color: derive(#1d1d1d, 20%);
 }
 
 .menu-bar .label {
-    -fx-font-size: 14pt;
+    -fx-font-size: 12pt;
     -fx-font-family: "Segoe UI Light";
     -fx-text-fill: white;
     -fx-opacity: 0.9;
@@ -240,37 +256,43 @@
     -fx-background-color: black;
 }
 
+.menu {
+    -fx-background-color: derive(#1d1d1d, 20%);
+    -fx-padding: 5;
+}
+
+.menu:hover {
+    -fx-background-color: derive(#1d1d1d, 50%);
+}
+
+.menu-item {
+    -fx-background-color: derive(#1d1d1d, 30%);
+    -fx-padding: 5;
+}
+
+.menu-item:hover {
+     -fx-background-color: derive(#1d1d1d, 50%);
+}
+
 /*
  * Metro style Push Button
  * Author: Pedro Duque Vieira
  * http://pixelduke.wordpress.com/2012/10/23/jmetro-windows-8-controls-on-java/
  */
 .button {
-    -fx-border-color: #e2e2e2;
-    -fx-border-width: 2;
-    -fx-background-radius: 0;
-    -fx-background-color: #1d1d1d;
     -fx-font-family: "Segoe UI", Helvetica, Arial, sans-serif;
+    -fx-background-color: #3a3a3a;
     -fx-font-size: 11pt;
     -fx-text-fill: #d8d8d8;
-    -fx-background-insets: 0 0 0 0, 0, 1, 2;
 }
 
 .button:hover {
-    -fx-background-color: #3a3a3a;
+    -fx-background-color: derive(#1d1d1d, 50%);
 }
 
 .button:pressed, .button:default:hover:pressed {
-  -fx-background-color: white;
+  -fx-background-color: derive(#1d1d1d, 50%);
   -fx-text-fill: #1d1d1d;
-}
-
-.button:focused {
-    -fx-border-color: white, white;
-    -fx-border-width: 1, 1;
-    -fx-border-style: solid, segments(1, 1);
-    -fx-border-radius: 0, 0;
-    -fx-border-insets: 1 1 1 1, 0;
 }
 
 .button:disabled, .button:default:disabled {
@@ -339,13 +361,24 @@
     -fx-padding: 8 1 8 1;
 }
 
-.entityDescriptionPanel {
-    -fx-background-color: #3c3e3f;
+#title {
+    -fx-font-size: 35px;
+    -fx-font-family: "Segoe UI Semibold";
+    -fx-text-fill: derive(#1d1d1d, 90%);
+}
+#entityDescriptionPanel {
+    -fx-background-color: derive(#1d1d1d, 15%);
+    -fx-background-radius: 5;
 }
 
-.entityDescriptionPanel .label {
-    -fx-font-family: "Segoe UI";
-    -fx-font-size: 16px;
+#entityDescription .label {
+    -fx-text-fill: white;
+    -fx-alignment: center-left;
+}
+
+#entityList {
+    -fx-background-color: derive(#1d1d1d, 15%);
+    -fx-background-radius: 5;
 }
 
 #cardPane {
@@ -359,14 +392,17 @@
 }
 
 #commandTextField {
-    -fx-background-color: transparent #383838 transparent #383838;
+    -fx-background-color: derive(#1d1d1d, 40%);
     -fx-background-insets: 0;
-    -fx-border-color: #383838 #383838 #ffffff #383838;
-    -fx-border-insets: 0;
-    -fx-border-width: 1;
+    -fx-background-radius: 0;
     -fx-font-family: "Segoe UI Light";
-    -fx-font-size: 13pt;
+    -fx-font-size: 11pt;
     -fx-text-fill: white;
+    -fx-accent: derive(#1d1d1d, 50%);
+}
+
+#commandBox {
+    -fx-background-color: derive(#1d1d1d, 40%);
 }
 
 #filterField, #personListPanel, #personWebpage {
@@ -374,8 +410,13 @@
 }
 
 #resultDisplay .content {
-    -fx-background-color: transparent, #383838, transparent, #383838;
+    -fx-background-color: derive(#1d1d1d, 10%);
     -fx-background-radius: 0;
+}
+
+#resultDisplayHolder {
+    -fx-background-color: derive(#1d1d1d, 10%);
+    -fx-background-radius: 5;
 }
 
 #tags {
@@ -419,15 +460,6 @@
     -fx-font-family: "Segoe UI Light";
     -fx-text-fill: white;
     -fx-alignment: center;
-}
-
-#entityDescription {
-    -fx-background-color: #3c3e3f;
-}
-
-#entityDescription .label {
-    -fx-text-fill: white;
-    -fx-alignment: center-left;
 }
 
 #studentDescriptionLabel {

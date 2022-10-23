@@ -63,11 +63,7 @@
          <Label styleClass="prefix-label" text="Class:" />
          <StackPane fx:id="belongedClassListPlaceholder" VBox.vgrow="ALWAYS">
             <children>
-               <VBox fx:id="assignedClassList" spacing="5.0">
-                  <StackPane.margin>
-                     <Insets />
-                  </StackPane.margin>
-               </VBox>
+               <FlowPane fx:id="classes" prefHeight="0.0" prefWidth="130.0" />
             </children>
          </StackPane>
     </VBox>

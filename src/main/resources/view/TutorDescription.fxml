@@ -61,13 +61,9 @@
             </children>
          </HBox>
          <Label styleClass="prefix-label" text="Class:" />
-         <StackPane fx:id="belongedClassListPlaceholder" VBox.vgrow="ALWAYS">
+         <StackPane fx:id="belongedClassListPlaceholder" alignment="CENTER_LEFT" VBox.vgrow="ALWAYS">
             <children>
-               <VBox fx:id="assignedClassList" alignment="TOP_CENTER" spacing="5.0">
-                  <StackPane.margin>
-                     <Insets bottom="5.0" top="5.0" />
-                  </StackPane.margin>
-               </VBox>
+               <FlowPane fx:id="classes" prefHeight="0.0" prefWidth="60.0" />
             </children>
          </StackPane>
     </VBox>

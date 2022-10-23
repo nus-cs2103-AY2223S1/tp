@@ -2,6 +2,7 @@
 
 <?import java.net.URL?>
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.Scene?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Menu?>
@@ -12,105 +13,145 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
-<?import javafx.scene.Scene?>
+<?import javafx.scene.text.Font?>
 <?import javafx.stage.Stage?>
-<fx:root minHeight="600" minWidth="800.0" onCloseRequest="#handleExit" title="myStudent" type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
+
+<fx:root minHeight="550.0" minWidth="950.0" onCloseRequest="#handleExit" title="myStudent" type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
     <icons>
         <Image url="@/images/address_book_32.png" />
     </icons>
     <scene>
         <Scene>
 
-            <VBox minWidth="-Infinity" prefHeight="403.0" prefWidth="800.0" styleClass="background">
+            <VBox minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="950.0" styleClass="background">
                 <MenuBar fx:id="menuBar" VBox.vgrow="NEVER">
-                    <Menu mnemonicParsing="false" text="File">
+                    <Menu mnemonicParsing="false" text="    File    ">
+                  <MenuItem mnemonicParsing="false" onAction="#handleExport" text="Export" />
                         <MenuItem mnemonicParsing="false" onAction="#handleExit" text="Exit" />
                     </Menu>
-                    <Menu mnemonicParsing="false" text="Help">
+                    <Menu mnemonicParsing="false" text="     Help     ">
                         <MenuItem fx:id="helpMenuItem" mnemonicParsing="false" onAction="#handleHelp" text="Help" />
                     </Menu>
-                </MenuBar>
-
-                <StackPane fx:id="commandBoxPlaceholder" styleClass="pane-with-border" VBox.vgrow="NEVER">
-                    <padding>
-                        <Insets bottom="5" left="10" right="10" top="5" />
-                    </padding>
                <VBox.margin>
                   <Insets />
                </VBox.margin>
-                </StackPane>
-
-                <StackPane fx:id="resultDisplayPlaceholder" maxHeight="100" minHeight="100" minWidth="-Infinity" prefHeight="100" prefWidth="800.0" styleClass="pane-with-border" VBox.vgrow="NEVER">
-                    <padding>
-                        <Insets bottom="5" left="10" right="10" top="5" />
-                    </padding>
-                </StackPane>
-                <StackPane fx:id="entityLabel" alignment="CENTER_LEFT" maxHeight="40.0" minHeight="30.0" minWidth="-Infinity" prefHeight="40.0" prefWidth="800.0" styleClass="background" VBox.vgrow="NEVER">
-                    <children>
-                        <HBox alignment="CENTER_LEFT" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="340.0" spacing="10.0">
-                            <children>
-                        <Button maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#switchToStudentList" prefHeight="30.0" prefWidth="110.0">
-                           <graphic>
-                                      <Pane fx:id="studentLabelPanel" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" nodeOrientation="LEFT_TO_RIGHT" prefHeight="30.0" prefWidth="110.0" styleClass="active-student-label">
-                                          <children>
-                                              <Label alignment="CENTER" prefHeight="26.0" prefWidth="113.0" styleClass="label-bright" text="Student" textAlignment="CENTER" />
-                                          </children>
-                                      </Pane>
-                           </graphic>
-                        </Button>
-                        <Button maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#switchToTutorList" prefHeight="30.0" prefWidth="110.0">
-                           <graphic>
-                                      <Pane fx:id="tutorLabelPanel" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" nodeOrientation="LEFT_TO_RIGHT" prefHeight="30.0" prefWidth="110.0" styleClass="inactive-label">
-                                          <children>
-                                              <Label alignment="CENTER" prefHeight="26.0" prefWidth="113.0" styleClass="label-bright" text="Tutor" textAlignment="CENTER" />
-                                          </children>
-                                      </Pane>
-                           </graphic>
-                        </Button>
-                        <Button maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#switchToTuitionClassList" prefHeight="30.0" prefWidth="110.0">
-                           <graphic>
-                                      <Pane fx:id="tuitionClassLabelPanel" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" nodeOrientation="LEFT_TO_RIGHT" prefHeight="30.0" prefWidth="110.0" styleClass="inactive-label">
-                                          <children>
-                                              <Label alignment="CENTER" prefHeight="26.0" prefWidth="113.0" styleClass="label-bright" text="Class" textAlignment="CENTER" />
-                                          </children>
-                                      </Pane>
-                           </graphic>
-                        </Button>
-                            </children>
-                     <padding>
-                        <Insets left="11.0" right="10.0" top="10.0" />
-                     </padding>
-                        </HBox>
-                    </children>
-                </StackPane>
-            <HBox alignment="CENTER_LEFT" minWidth="-Infinity" prefHeight="100.0" prefWidth="800.0" styleClass="background" VBox.vgrow="ALWAYS">
+                </MenuBar>
+            <HBox minWidth="-Infinity" prefHeight="571.0" prefWidth="950.0">
                <children>
-                            <VBox fx:id="personList" minWidth="-Infinity" prefWidth="400.0" styleClass="pane-with-border" HBox.hgrow="ALWAYS">
-                          <padding>
-                              <Insets bottom="10" left="10" right="10" top="10" />
-                          </padding>
-                          <StackPane fx:id="entityListPanelPlaceholder" VBox.vgrow="ALWAYS" />
+                  <VBox minWidth="-Infinity" prefHeight="460.0" prefWidth="500.0">
+                     <children>
+                        <Label id="title" prefHeight="44.0" prefWidth="500.0" text="myStudent">
+                           <font>
+                              <Font name="American Typewriter" size="43.0" />
+                           </font>
+                        </Label>
+                        <VBox id="resultDisplayHolder" minHeight="-Infinity" minWidth="-Infinity" prefHeight="149.0" prefWidth="500.0">
+                           <children>
+                  
+                                                    <StackPane id="commandBox" fx:id="commandBoxPlaceholder" minWidth="-Infinity" prefWidth="450.0" VBox.vgrow="NEVER">
+                                      <padding>
+                                          <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
+                                      </padding>
+                                 <VBox.margin>
+                                    <Insets bottom="5.0" left="10.0" right="10.0" top="10.0" />
+                                 </VBox.margin>
+                                  </StackPane>
+                  
+                                                    <StackPane fx:id="resultDisplayPlaceholder" maxHeight="100" minHeight="100" minWidth="-Infinity" prefHeight="100" prefWidth="500.0" VBox.vgrow="NEVER">
+                                      <padding>
+                                          <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                      </padding>
+                                  </StackPane>
+                           </children>
+                           <VBox.margin>
+                              <Insets />
+                           </VBox.margin>
+                        </VBox>
+                        <StackPane id="entityDescriptionPanel" fx:id="entityDescriptionPlaceholder" minHeight="-Infinity" minWidth="-Infinity" prefHeight="240.0" prefWidth="500.0">
+                           <padding>
+                              <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                           </padding>
+                           <VBox.margin>
+                              <Insets top="20.0" />
+                           </VBox.margin>
+                        </StackPane>
+                     </children>
+                  </VBox>
+                  <VBox minWidth="-Infinity" prefHeight="520.0" prefWidth="430.0">
+                     <children>
+                            <StackPane fx:id="entityLabel" alignment="CENTER_LEFT" maxHeight="40.0" minHeight="30.0" minWidth="-Infinity" prefHeight="40.0" prefWidth="370.0" styleClass="background">
+                                <children>
+                                    <HBox alignment="CENTER_LEFT" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="340.0" spacing="10.0">
+                                        <children>
+                                    <Button maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#switchToStudentList" prefHeight="30.0" prefWidth="90.0">
+                                       <graphic>
+                                                  <Pane fx:id="studentLabelPanel" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" nodeOrientation="LEFT_TO_RIGHT" prefHeight="30.0" prefWidth="90.0" styleClass="active-label">
+                                                      <children>
+                                                          <Label alignment="CENTER" prefHeight="26.0" prefWidth="90.0" styleClass="label-bright" text="Student" textAlignment="CENTER" />
+                                                      </children>
+                                                  </Pane>
+                                       </graphic>
+                                    </Button>
+                                    <Button maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#switchToTutorList" prefHeight="30.0" prefWidth="90.0">
+                                       <graphic>
+                                                  <Pane fx:id="tutorLabelPanel" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" nodeOrientation="LEFT_TO_RIGHT" prefHeight="30.0" prefWidth="90.0" styleClass="inactive-label">
+                                                      <children>
+                                                          <Label alignment="CENTER" prefHeight="26.0" prefWidth="90.0" styleClass="label-bright" text="Tutor" textAlignment="CENTER" />
+                                                      </children>
+                                                  </Pane>
+                                       </graphic>
+                                    </Button>
+                                    <Button maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#switchToTuitionClassList" prefHeight="30.0" prefWidth="90.0">
+                                       <graphic>
+                                                  <Pane fx:id="tuitionClassLabelPanel" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" nodeOrientation="LEFT_TO_RIGHT" prefHeight="30.0" prefWidth="90.0" styleClass="inactive-label">
+                                                      <children>
+                                                          <Label alignment="CENTER" prefHeight="26.0" prefWidth="90.0" styleClass="label-bright" text="Class" textAlignment="CENTER" />
+                                                      </children>
+                                                  </Pane>
+                                       </graphic>
+                                    </Button>
+                                        </children>
+                                 <padding>
+                                    <Insets left="30.0" right="10.0" top="10.0" />
+                                 </padding>
+                                    </HBox>
+                                </children>
+                           <VBox.margin>
+                              <Insets />
+                           </VBox.margin>
+                            </StackPane>
+                                  <VBox id="entityList" fx:id="personList" minWidth="-Infinity" prefHeight="460.0" prefWidth="390.0">
+                                <padding>
+                                    <Insets bottom="10" left="10" right="10" top="10" />
+                                </padding>
+                                <StackPane fx:id="entityListPanelPlaceholder" VBox.vgrow="ALWAYS" />
+                           <VBox.margin>
+                              <Insets />
+                           </VBox.margin>
+                            </VBox>
+                     </children>
                      <HBox.margin>
-                        <Insets bottom="10.0" left="10.0" />
-                     </HBox.margin>
-                      </VBox>
-                  <StackPane fx:id="entityDescriptionPlaceholder" minWidth="-Infinity" prefHeight="150.0" prefWidth="150.0" styleClass="pane-with-border" HBox.hgrow="ALWAYS">
-                     <HBox.margin>
-                        <Insets bottom="10.0" left="10.0" right="10.0" />
+                        <Insets />
                      </HBox.margin>
                      <padding>
-                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                        <Insets left="20.0" right="20.0" />
                      </padding>
-                  </StackPane>
+                  </VBox>
                </children>
+               <VBox.margin>
+                  <Insets />
+               </VBox.margin>
+               <padding>
+                  <Insets bottom="20.0" left="20.0" right="20.0" />
+               </padding>
             </HBox>
 
-                <StackPane fx:id="statusbarPlaceholder" prefHeight="0.0" prefWidth="539.0" VBox.vgrow="NEVER" />
+                            <StackPane fx:id="statusbarPlaceholder" prefHeight="0.0" prefWidth="539.0" VBox.vgrow="NEVER" />
             </VBox>
-            <stylesheets>
-                <URL value="@DarkTheme.css" />
-                <URL value="@Extensions.css" />
-            </stylesheets>
+         <stylesheets>
+            <URL value="@DarkTheme.css" />
+            <URL value="@Extensions.css" />
+         </stylesheets>
         </Scene>
     </scene>
 </fx:root>

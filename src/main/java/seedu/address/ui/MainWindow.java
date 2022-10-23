@@ -33,17 +33,12 @@ import seedu.address.model.Model;
  * a menu bar and space where other JavaFX elements can be placed.
  */
 public class MainWindow extends UiPart<Stage> {
-    private static final String SELECTED_STUDENT_LABEL_STYLE_CLASS = "active-student-label";
-
-    private static final String SELECTED_TUTOR_LABEL_STYLE_CLASS = "active-tutor-label";
-
-    private static final String SELECTED_CLASS_LABEL_STYLE_CLASS = "active-class-label";
-
+    private static final String SELECTED_LABEL_STYLE_CLASS = "active-label";
     private static final String UNSELECTED_LABEL_STYLE_CLASS = "inactive-label";
 
     private static final String FXML = "MainWindow.fxml";
 
-    private static final Label NO_ENTITY_DISPLAYED_LABEL = new Label("No Entity Displayed");
+    private static final Label NO_ENTITY_DISPLAYED_LABEL = new Label("No Person Displayed");
 
 
     private final Logger logger = LogsCenter.getLogger(getClass());
@@ -167,6 +162,8 @@ public class MainWindow extends UiPart<Stage> {
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
 
         entityDescriptionPlaceholder.getChildren().add(NO_ENTITY_DISPLAYED_LABEL);
+
+        resultDisplay.setFeedbackToUser("Welcome to myStudent\n" + "Key in command to start");
     }
 
     /**
@@ -196,6 +193,12 @@ public class MainWindow extends UiPart<Stage> {
     void show() {
         primaryStage.show();
     }
+
+    /**
+     * Export the data.
+     */
+    @FXML
+    private void handleExport() {}
 
     /**
      * Closes the application.
@@ -368,17 +371,17 @@ public class MainWindow extends UiPart<Stage> {
         case STUDENT_LIST:
             tutorLabelPanel.getStyleClass().add(UNSELECTED_LABEL_STYLE_CLASS);
             tuitionClassLabelPanel.getStyleClass().add(UNSELECTED_LABEL_STYLE_CLASS);
-            studentLabelPanel.getStyleClass().add(SELECTED_STUDENT_LABEL_STYLE_CLASS);
+            studentLabelPanel.getStyleClass().add(SELECTED_LABEL_STYLE_CLASS);
             break;
         case TUTOR_LIST:
             studentLabelPanel.getStyleClass().add(UNSELECTED_LABEL_STYLE_CLASS);
             tuitionClassLabelPanel.getStyleClass().add(UNSELECTED_LABEL_STYLE_CLASS);
-            tutorLabelPanel.getStyleClass().add(SELECTED_TUTOR_LABEL_STYLE_CLASS);
+            tutorLabelPanel.getStyleClass().add(SELECTED_LABEL_STYLE_CLASS);
             break;
         case TUITIONCLASS_LIST:
             studentLabelPanel.getStyleClass().add(UNSELECTED_LABEL_STYLE_CLASS);
             tutorLabelPanel.getStyleClass().add(UNSELECTED_LABEL_STYLE_CLASS);
-            tuitionClassLabelPanel.getStyleClass().add(SELECTED_CLASS_LABEL_STYLE_CLASS);
+            tuitionClassLabelPanel.getStyleClass().add(SELECTED_LABEL_STYLE_CLASS);
             break;
         default:
             break;

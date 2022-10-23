@@ -7,7 +7,6 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
-import javafx.scene.layout.VBox;
 import seedu.address.model.person.tutor.Tutor;
 
 
@@ -44,7 +43,7 @@ public class TutorDescription extends UiPart<Region> {
     @FXML
     protected FlowPane tags;
     @FXML
-    protected VBox assignedClassList;
+    protected FlowPane classes;
 
     /**
      * Creates a {@code TutorCode} with the given {@code Tutor} and index to display.
@@ -63,8 +62,8 @@ public class TutorDescription extends UiPart<Region> {
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
         tutor.getTuitionClasses().stream()
                 .sorted(Comparator.comparing(tuitionClass -> tuitionClass.getName().name))
-                .forEach(tuitionClass -> assignedClassList.getChildren().add(
-                        new AssignedClass(tuitionClass.getName().name).getRoot()));
+                .forEach(tuitionClass -> classes.getChildren().add(
+                        new Label(tuitionClass.getName().name)));
     }
 
     public Tutor getDisplayedTutor() {

@@ -15,18 +15,18 @@
     <columnConstraints>
       <ColumnConstraints hgrow="SOMETIMES" minWidth="10" prefWidth="150" />
     </columnConstraints>
-    <VBox alignment="CENTER_LEFT" minHeight="105" GridPane.columnIndex="0">
+    <VBox alignment="CENTER_LEFT" minHeight="105" spacing="5.0" GridPane.columnIndex="0">
       <padding>
-        <Insets bottom="5" left="15" right="5" top="5" />
+        <Insets bottom="20.0" left="15.0" right="10.0" top="10.0" />
       </padding>
       <HBox alignment="CENTER_LEFT">
-        <Label fx:id="id" styleClass="cell_big_label">
+        <Label fx:id="id" styleClass="name-label">
           <minWidth>
             <!-- Ensures that the label text is never truncated -->
             <Region fx:constant="USE_PREF_SIZE" />
           </minWidth>
         </Label>
-        <Label fx:id="name" styleClass="cell_big_label" text="\$first" />
+        <Label fx:id="name" styleClass="name-label" text="\$first" />
       </HBox>
          <HBox prefHeight="0.0" prefWidth="130.0" spacing="5.0">
             <children>
