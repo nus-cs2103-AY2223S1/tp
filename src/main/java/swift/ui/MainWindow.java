@@ -216,6 +216,14 @@ public class MainWindow extends UiPart<Stage> {
                 handleExit();
             }
 
+            if (commandResult.isListContact()) {
+                handleContactTab();
+            }
+
+            if (commandResult.isListTask()) {
+                handleTaskTab();
+            }
+
             return commandResult;
         } catch (CommandException | ParseException e) {
             logger.info("Invalid command: " + commandText);

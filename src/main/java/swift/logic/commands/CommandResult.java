@@ -17,13 +17,21 @@ public class CommandResult {
     /** The application should exit. */
     private final boolean exit;
 
+    /** The applciation should switch to contacts tab. */
+    private final boolean listContact;
+
+    /** The application should switch to tasks tab. */
+    private final boolean listTask;
+
     /**
      * Constructs a {@code CommandResult} with the specified fields.
      */
-    public CommandResult(String feedbackToUser, boolean showHelp, boolean exit) {
+    public CommandResult(String feedbackToUser, boolean showHelp, boolean exit, boolean listContact, boolean listTask) {
         this.feedbackToUser = requireNonNull(feedbackToUser);
         this.showHelp = showHelp;
         this.exit = exit;
+        this.listContact = listContact;
+        this.listTask = listTask;
     }
 
     /**
@@ -31,7 +39,7 @@ public class CommandResult {
      * and other fields set to their default value.
      */
     public CommandResult(String feedbackToUser) {
-        this(feedbackToUser, false, false);
+        this(feedbackToUser, false, false, false, false);
     }
 
     public String getFeedbackToUser() {
@@ -44,6 +52,14 @@ public class CommandResult {
 
     public boolean isExit() {
         return exit;
+    }
+
+    public boolean isListContact() {
+        return listContact;
+    }
+
+    public boolean isListTask() {
+        return listTask;
     }
 
     @Override
@@ -60,7 +76,9 @@ public class CommandResult {
         CommandResult otherCommandResult = (CommandResult) other;
         return feedbackToUser.equals(otherCommandResult.feedbackToUser)
                 && showHelp == otherCommandResult.showHelp
-                && exit == otherCommandResult.exit;
+                && exit == otherCommandResult.exit
+                && listContact == otherCommandResult.listContact
+                && listTask == otherCommandResult.listTask;
     }
 
     @Override
