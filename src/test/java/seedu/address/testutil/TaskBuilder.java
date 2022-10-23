@@ -12,7 +12,8 @@ import seedu.address.model.util.SampleDataUtil;
  */
 public class TaskBuilder {
     public static final String DEFAULT_NAME = "Some task";
-    public static final Optional<LocalDate> DEFAULT_DEADLINE = Optional.ofNullable(LocalDate.of(2022,1,1));
+    public static final Optional<LocalDate> DEFAULT_DEADLINE = Optional.ofNullable(
+            LocalDate.of(2022, 1, 1));
     public static final boolean DEFAULT_IS_DONE = false;
 
     private Name name;
