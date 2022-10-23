@@ -1,19 +1,18 @@
 package swift.ui;
 
-import java.util.UUID;
-
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
-import swift.model.person.Address;
-import swift.model.person.Email;
-import swift.model.person.Name;
+import swift.model.bridge.PersonTaskBridge;
 import swift.model.person.Person;
-import swift.model.person.Phone;
 import swift.model.task.Task;
-import swift.model.util.SampleDataUtil;
+
+import java.util.List;
+import java.util.UUID;
+import java.util.stream.Collectors;
 
 
 /**
@@ -47,28 +46,32 @@ public class TaskCard extends UiPart<Region> {
     /**
      * Creates a {@code TaskCode} with the given {@code Task} and index to display.
      */
-    public TaskCard(Task task, int displayedIndex) {
+    public TaskCard(Task task, int displayedIndex, ObservableList<PersonTaskBridge> personTaskBridgeList,
+                    ObservableList<Person> personList) {
         super(FXML);
         this.task = task;
         id.setText(displayedIndex + ". ");
         taskName.setText(task.getTaskName().fullName);
 
-        // placeholder for task ui testing
-        UUID id1 = UUID.fromString("47005f2b-9c40-4051-8c95-69ca601cb58d");
-        Person john = new Person(id1, new Name("John Cena"), new Phone("91122668"),
-                new Email("john@gmail.com"), new Address("blk 123 st 28"),
-                SampleDataUtil.getTagSet("friends"));
-        Label lb1 = new Label(john.getName().fullName);
-        Label lb2 = new Label("Alice Smith");
-        setStyle(lb1, lb2);
-        contacts.getChildren().add(lb1);
-        contacts.getChildren().add(lb2);
-        String due = "31 Oct 2022";
-        dueDate.setText("Due " + due);
+        List<PersonTaskBridge> taskBridgeList = personTaskBridgeList.stream()
+                .filter(bridge -> bridge.getTaskId().equals(task.getId()))
+                .collect(Collectors.toList());
 
-        //task.getContacts().stream()
-        //        .sorted(Comparator.comparing(contact -> contact.fullName))
-        //        .forEach(contact -> contacts.getChildren().add(new Label(contact.fullName)));
+        taskBridgeList.forEach(taskBridge -> {
+            UUID personId = taskBridge.getPersonId();
+            Person associatedPerson;
+
+            for (Person person : personList) {
+                associatedPerson = person;
+                if (associatedPerson.getId().equals(personId)) {
+                    Label label = new Label(associatedPerson.getName().toString());
+                    setStyle(label);
+                    contacts.getChildren().add(label);
+                    dueDate.setText("No due date");
+                    return;
+                }
+            }
+        });
     }
 
     private void setStyle(Label... labels) {

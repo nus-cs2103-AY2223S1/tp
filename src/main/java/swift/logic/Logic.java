@@ -8,6 +8,7 @@ import swift.logic.commands.CommandResult;
 import swift.logic.commands.exceptions.CommandException;
 import swift.logic.parser.exceptions.ParseException;
 import swift.model.ReadOnlyAddressBook;
+import swift.model.bridge.PersonTaskBridge;
 import swift.model.person.Person;
 import swift.model.task.Task;
 
@@ -36,6 +37,9 @@ public interface Logic {
 
     /** Returns an unmodifiable view of the filtered list of tasks */
     ObservableList<Task> getFilteredTaskList();
+
+    /** Returns an unmodifiable view of the filtered list of bridge */
+    ObservableList<PersonTaskBridge> getFilteredBridgeList();
 
     /**
      * Returns the user prefs' address book file path.

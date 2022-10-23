@@ -9,6 +9,8 @@ import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.Region;
 import swift.commons.core.LogsCenter;
+import swift.model.bridge.PersonTaskBridge;
+import swift.model.person.Person;
 import swift.model.task.Task;
 
 /**
@@ -26,10 +28,11 @@ public class TaskListPanel extends UiPart<Region> {
     /**
      * Creates a {@code TaskListPanel} with the given {@code ObservableList}.
      */
-    public TaskListPanel(ObservableList<Task> taskList) {
+    public TaskListPanel(ObservableList<Task> taskList, ObservableList<PersonTaskBridge> personTaskBridgeList,
+                         ObservableList<Person> personList) {
         super(FXML);
         taskListView.setItems(taskList);
-        taskListView.setCellFactory(listView -> new TaskListViewCell());
+        taskListView.setCellFactory(listView -> new TaskListViewCell(personTaskBridgeList, personList));
     }
 
     /**
@@ -43,6 +46,13 @@ public class TaskListPanel extends UiPart<Region> {
      * Custom {@code ListCell} that displays the graphics of a {@code Task} using a {@code TaskCard}.
      */
     class TaskListViewCell extends ListCell<Task> {
+        private ObservableList<PersonTaskBridge> personTaskBridgeList;
+        private ObservableList<Person> personList;
+
+        protected TaskListViewCell(ObservableList<PersonTaskBridge> personTaskBridgeList, ObservableList<Person> personList) {
+            this.personTaskBridgeList = personTaskBridgeList;
+            this.personList = personList;
+        }
         @Override
         protected void updateItem(Task task, boolean empty) {
             super.updateItem(task, empty);
@@ -51,7 +61,7 @@ public class TaskListPanel extends UiPart<Region> {
                 setGraphic(null);
                 setText(null);
             } else {
-                setGraphic(new TaskCard(task, getIndex() + 1).getRoot());
+                setGraphic(new TaskCard(task, getIndex() + 1, personTaskBridgeList, personList).getRoot());
             }
         }
     }

@@ -32,20 +32,10 @@ public class MainWindow extends UiPart<Stage> {
 
     // Independent Ui parts residing in this Ui container
     private PersonListPanel personListPanel;
-    private PersonTaskListPanel personTaskListPanel;
-    private ResultDisplay resultDisplay;
     private TaskListPanel taskListPanel;
-
+    private ResultDisplay resultDisplay;
+    private PersonTaskListPanel personTaskListPanel;
     private HelpWindow helpWindow;
-
-    @FXML
-    private StackPane commandBoxPlaceholder;
-
-    @FXML
-    private MenuItem helpMenuItem;
-
-    @FXML
-    private MenuItem openTaskTabItem;
 
     @FXML
     private StackPane listPanelPlaceholder;
@@ -58,6 +48,15 @@ public class MainWindow extends UiPart<Stage> {
 
     @FXML
     private StackPane statusbarPlaceholder;
+
+    @FXML
+    private StackPane commandBoxPlaceholder;
+
+    @FXML
+    private MenuItem helpMenuItem;
+
+    @FXML
+    private MenuItem openTaskTabItem;
 
     /**
      * Creates a {@code MainWindow} with the given {@code Stage} and {@code Logic}.
@@ -178,7 +177,7 @@ public class MainWindow extends UiPart<Stage> {
     @FXML
     private void handleTaskTab() {
         personListPanel.removeHeading();
-        taskListPanel = new TaskListPanel(logic.getFilteredTaskList());
+        taskListPanel = new TaskListPanel(logic.getFilteredTaskList(), logic.getFilteredBridgeList(), logic.getFilteredPersonList());
         listPanelPlaceholder.getChildren().add(taskListPanel.getRoot());
     }
 

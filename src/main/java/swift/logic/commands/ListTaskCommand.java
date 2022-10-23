@@ -1,7 +1,7 @@
 package swift.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static swift.model.Model.PREDICATE_HIDE_ALL_PEOPLE;
+import static swift.model.Model.PREDICATE_SHOW_ALL_PEOPLE;
 import static swift.model.Model.PREDICATE_SHOW_ALL_TASKS;
 
 import swift.commons.core.Messages;
@@ -23,7 +23,7 @@ public class ListTaskCommand extends Command {
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);
-        // model.updateFilteredPersonList(PREDICATE_HIDE_ALL_PEOPLE);
+        model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PEOPLE);
         model.updateFilteredTaskList(PREDICATE_SHOW_ALL_TASKS);
         return new CommandResult(
                 String.format(Messages.MESSAGE_TASKS_LISTED_OVERVIEW, model.getFilteredTaskList().size()),
