@@ -121,7 +121,7 @@ public class MainWindow extends UiPart<Stage> {
         projectListPanel = new ProjectListPanel(logic.getFilteredProjectList());
         projectListPanelPlaceholder.getChildren().add(projectListPanel.getRoot());
 
-        staffListPanel = new StaffListPanel();
+        staffListPanel = new StaffListPanel(logic.getFilteredStaffList());
         staffListPanelPlaceholder.getChildren().add(staffListPanel.getRoot());
 
         taskListPanel = new TaskListPanel(logic.getFilteredTaskList());
@@ -135,13 +135,6 @@ public class MainWindow extends UiPart<Stage> {
 
         CommandBox commandBox = new CommandBox(this::executeCommand);
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
-    }
-
-    void updateStaffList() {
-        if (logic.getTargetProjectStaffList() != null) {
-            staffListPanel = new StaffListPanel(logic.getTargetProjectStaffList().asUnmodifiableObservableList());
-            staffListPanelPlaceholder.getChildren().add(staffListPanel.getRoot());
-        }
     }
 
     /**
@@ -206,7 +199,7 @@ public class MainWindow extends UiPart<Stage> {
             if (commandResult.isExit()) {
                 handleExit();
             }
-            updateStaffList();
+
             return commandResult;
         } catch (CommandException | ParseException e) {
             logger.info("Invalid command: " + commandText);
