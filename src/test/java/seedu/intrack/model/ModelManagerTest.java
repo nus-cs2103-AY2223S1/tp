@@ -15,7 +15,6 @@ import java.util.Arrays;
 import org.junit.jupiter.api.Test;
 
 import seedu.intrack.commons.core.GuiSettings;
-import seedu.intrack.model.internship.Internship;
 import seedu.intrack.model.internship.NameContainsKeywordsPredicate;
 import seedu.intrack.model.internship.StatusIsKeywordPredicate;
 import seedu.intrack.testutil.InTrackBuilder;
