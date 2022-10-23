@@ -41,7 +41,7 @@ public class TypicalTutorials {
     // Manually added - Tutorial's details found in {@code CommandTestUtil}
     public static final Tutorial TUT1 = new TutorialBuilder().withName(VALID_NAME_TUT1).withModule(VALID_MODULE_TUT1)
             .withVenue(VALID_VENUE_TUT1).withTimeslot(VALID_TIMESLOT_TUT1).build();
-    public static final Tutorial TU2 = new TutorialBuilder().withName(VALID_NAME_TUT2).withModule(VALID_MODULE_TUT2)
+    public static final Tutorial TUT2 = new TutorialBuilder().withName(VALID_NAME_TUT2).withModule(VALID_MODULE_TUT2)
             .withVenue(VALID_VENUE_TUT2).withTimeslot(VALID_TIMESLOT_TUT2).build();
 
     public static final String KEYWORD_MATCHING_MEIER = "Meier"; // A keyword that matches MEIER
