@@ -15,8 +15,8 @@ public abstract class ContactSortCommand extends Command {
             ContactCategoryParser.CATEGORY_WORD + " " + COMMAND_WORD
                     + ": Sorts list of persons in some order.\n"
                     + "Available sorting commands:\n"
-                    + "a: sorts names of persons in alphabetical order"
-                    + "ca: sorts persons chronologically by the time they were added into Task Book";
+                    + "a: sorts names of persons in alphabetical order.\n"
+                    + "ca: sorts persons chronologically by the time they were added into Task Book.\n";
     public static final String MESSAGE_SORT_TASK_SUCCESS = "Persons sorted";
     private final Comparator<Person> comparator;
 
