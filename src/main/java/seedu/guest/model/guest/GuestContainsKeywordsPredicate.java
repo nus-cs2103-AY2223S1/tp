@@ -6,7 +6,7 @@ import java.util.function.Predicate;
 import seedu.guest.commons.util.StringUtil;
 
 /**
- * Tests that a {@code Guest}'s {@code Name} matches any of the keywords given.
+ * Tests that a {@code Guest}'s details matches any of the keywords given.
  */
 public class GuestContainsKeywordsPredicate implements Predicate<Guest> {
     private final List<String> keywords;

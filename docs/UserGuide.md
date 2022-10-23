@@ -30,7 +30,7 @@ guest management tasks done faster than traditional GUI apps.
 
    * **`add`**`n/John Doe p/98765432 e/johnd@example.com rm/05-73 dr/13/09/22 - 15/09/22 ng/3`: Adds a guest named `John Doe` to the guest book.
 
-   * **`find`**`John` : Finds any guest that has `John` (Case insensitive) in any of their details.
+   * **`find`**`John` : Finds any guest that has `John` (case insensitive) in any of their details.
 
    * **`list`** : Lists all guests.
 

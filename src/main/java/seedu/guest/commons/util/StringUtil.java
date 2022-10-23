@@ -42,12 +42,8 @@ public class StringUtil {
      * Returns true if the {@code sentence} contains the {@code date}.
      *   Ignores hyphen and space, but a full date match is required.
      *   <br>examples:<pre>
-     *       containsDateIgnoreHyphenIgnoreSpace("13/09/22 - 15/09/22", "13/09/22 - 15/09/22") == true
-     *       containsDateIgnoreHyphenIgnoreSpace("13/09/22 - 15/09/22", "13/09/22 15/09/22") == true
      *       containsDateIgnoreHyphenIgnoreSpace("13/09/22 - 15/09/22", "13/09/22") == true
      *       containsDateIgnoreHyphenIgnoreSpace("13/09/22 - 15/09/22", "15/09/22") == true
-     *       containsDateIgnoreHyphenIgnoreSpace("13/09/22 - 15/09/22", "13/09/22 - 19/09/22")
-     *              == false //not a full date match
      *       containsDateIgnoreHyphenIgnoreSpace("13/09/22 - 15/09/22", "14/09/22")
      *              == false //not a full date match
      *       containsDateIgnoreHyphenIgnoreSpace("13/09/22 - 15/09/22", "13/09")
@@ -57,14 +53,12 @@ public class StringUtil {
      * @param date cannot be null, cannot be empty, must be a single date
      */
     public static boolean containsDateIgnoreHyphenIgnoreSpace(String sentence, String date) {
-        requireNonNull(sentence);
-        requireNonNull(date);
+        requireNonNull(sentence, date);
 
         String preppedDate = date.trim().replace("-", "");
         if (preppedDate.isEmpty()) {
             return false;
         }
-        checkArgument(!preppedDate.isEmpty(), "date parameter cannot be empty");
         checkArgument(preppedDate.split("\\s+").length == 1, "date parameter should be a single date");
 
         String preppedSentence = sentence.replace("-", "");
