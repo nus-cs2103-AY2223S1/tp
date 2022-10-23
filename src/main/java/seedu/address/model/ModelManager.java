@@ -318,7 +318,7 @@ public class ModelManager implements Model {
         this.addressBook.setBillAsUnpaid(bill);
     }
     
-     @Override
+    @Override
     public void updateAddressBookHistory() {
         this.addressBookHistory.add(new AddressBook(this.addressBook));
     }
