@@ -6,6 +6,8 @@ import com.fasterxml.jackson.annotation.JsonValue;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.team.Task;
 
+import java.util.List;
+
 /**
  * Jackson-friendly version of {@link Task}.
  */
@@ -42,7 +44,7 @@ class JsonAdaptedTask {
         if (!Task.isValidName(taskName)) {
             throw new IllegalValueException(Task.MESSAGE_CONSTRAINTS);
         }
-        return new Task(taskName);
+        return new Task(taskName, List.of(), false, null);
     }
 
 }

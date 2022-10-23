@@ -24,7 +24,7 @@ public class AddTaskCommandParserTest {
 
     @Test
     public void parse_validArgs_returnsAddTaskCommand() {
-        assertParseSuccess(parser, PLACEHOLDER_TASK_NAME, new AddTaskCommand(PLACEHOLDER_TASK_NAME));
+        assertParseSuccess(parser, PLACEHOLDER_TASK_NAME, new AddTaskCommand(PLACEHOLDER_TASK_NAME, null, null));
     }
 
     @Test

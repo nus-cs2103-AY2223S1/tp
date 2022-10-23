@@ -16,8 +16,10 @@ public class CliSyntax {
     public static final String FLAG_ADDRESS_STR_LONG = "address";
     public static final String FLAG_TAG_STR = "t";
     public static final String FLAG_TAG_STR_LONG = "tag";
-
     public static final String FLAG_URL_STR = "l";
     public static final String FLAG_URL_STR_LONG = "link";
-
+    public static final String FLAG_DEADLINE_STR = "d";
+    public static final String FLAG_DEADLINE_STR_LONG = "deadline";
+    public static final String FLAG_ASSIGNEE_STR = "a";
+    public static final String FLAG_ASSIGNEE_STR_LONG = "assignee";
 }

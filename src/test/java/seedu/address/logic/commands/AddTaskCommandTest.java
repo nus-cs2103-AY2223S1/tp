@@ -17,8 +17,8 @@ class AddTaskCommandTest {
 
     @Test
     public void equals() {
-        AddTaskCommand addTaskFirstCommand = new AddTaskCommand(PLACEHOLDER_TASK_NAME);
-        AddTaskCommand addTaskSecondCommand = new AddTaskCommand(PLACEHOLDER_TASK_NAME);
+        AddTaskCommand addTaskFirstCommand = new AddTaskCommand(PLACEHOLDER_TASK_NAME, null, null);
+        AddTaskCommand addTaskSecondCommand = new AddTaskCommand(PLACEHOLDER_TASK_NAME, null, null);
 
         // Same Add Task Commands should be equal.
         assertTrue(addTaskFirstCommand.equals(addTaskFirstCommand));

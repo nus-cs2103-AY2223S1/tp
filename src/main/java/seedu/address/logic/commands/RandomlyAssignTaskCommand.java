@@ -46,7 +46,7 @@ public class RandomlyAssignTaskCommand extends Command {
         if (taskIndex >= tasks.size()) {
             throw new CommandException(String.format(MESSAGE_TASK_INDEX_OUT_OF_BOUNDS, taskIndex + 1));
         }
-        if (tasks.get(taskIndex).getAssignees().size() == members.size()) {
+        if (tasks.get(taskIndex).getAssigneesList().size() == members.size()) {
             throw new CommandException(MESSAGE_ALL_MEMBERS_ASSIGNED);
         }
 

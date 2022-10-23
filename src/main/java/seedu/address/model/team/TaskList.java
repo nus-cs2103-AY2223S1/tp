@@ -90,7 +90,7 @@ public class TaskList implements Iterable<Task> {
     public Map<Person, Integer> getTasksPerPerson() {
         HashMap<Person, Integer> assignments = new HashMap<>();
         for (Task t : internalList) {
-            for (Person p : t.getAssignees()) {
+            for (Person p : t.getAssigneesList()) {
                 assignments.put(p, assignments.getOrDefault(p, 0) + 1);
             }
         }
