@@ -30,7 +30,7 @@ public class MarkOrderCommandParser implements Parser<MarkOrderCommand> {
 
 
         if (argumentMultimap.getPreamble().isEmpty()
-                || !argumentMultimap.isAnyFlagPresent(FLAG_PAID, FLAG_DELIVERED)) {
+                || !isAnyFlagPresent(argumentMultimap, FLAG_PAID, FLAG_DELIVERED)) {
             throw new ParseException(
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, MarkOrderCommand.MESSAGE_USAGE));
         }
@@ -40,5 +40,15 @@ public class MarkOrderCommandParser implements Parser<MarkOrderCommand> {
         boolean isDelivered = argumentMultimap.getValue(FLAG_DELIVERED).orElse("false").equals("true");
 
         return new MarkOrderCommand(index, isPaid, isDelivered);
+    }
+
+    /**
+     * Returns true if at least one flag does not contain empty {@Optional} value in the
+     * {@code ArgumentMultimap}
+     * @param flags flags to be checked for input present
+     * @return true if at least one flag is present in the {@code ArgumentMultimap}
+     */
+    public static boolean isAnyFlagPresent(ArgumentMultimap argumentMultimap, Flag... flags) {
+        return Stream.of(flags).anyMatch(flag -> argumentMultimap.getValue(flag).isPresent());
     }
 }

@@ -8,6 +8,7 @@ import tracko.logic.commands.Command;
 import tracko.logic.commands.CommandResult;
 import tracko.model.Model;
 import tracko.model.order.OrderContainsKeywordsPredicate;
+import tracko.model.order.OrderDeliveredOrPaidPredicate;
 
 /**
  * Finds and lists all orders whose name contains any of the argument keywords.
@@ -29,16 +30,20 @@ public class FindOrderCommand extends Command {
             + "Example: " + COMMAND_WORD
             + " " + PREFIX_ITEM + "keychain " + PREFIX_ADDRESS + "Ang Mo Kio; Clementi" ;
 
-    private final OrderContainsKeywordsPredicate predicate;
+    private final OrderContainsKeywordsPredicate prefixPredicate;
+    private final OrderDeliveredOrPaidPredicate flagPredicate;
 
-    public FindOrderCommand(OrderContainsKeywordsPredicate predicate) {
-        this.predicate = predicate;
+    public FindOrderCommand(OrderContainsKeywordsPredicate prefixPredicate,
+                            OrderDeliveredOrPaidPredicate flagPredicate) {
+        this.prefixPredicate = prefixPredicate;
+        this.flagPredicate = flagPredicate;
     }
 
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);
-        model.updateFilteredOrderList(predicate);
+        model.updateFilteredOrderList(prefixPredicate);
+        model.updateFilteredOrderList(flagPredicate);
         model.refreshData();
 
         return new CommandResult(
@@ -49,6 +54,7 @@ public class FindOrderCommand extends Command {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof FindOrderCommand // instanceof handles nulls
-                && predicate.equals(((FindOrderCommand) other).predicate)); // state check
+                && (prefixPredicate.equals(((FindOrderCommand) other).prefixPredicate))
+                && flagPredicate.equals(((FindOrderCommand) other).flagPredicate)); // state check
     }
 }

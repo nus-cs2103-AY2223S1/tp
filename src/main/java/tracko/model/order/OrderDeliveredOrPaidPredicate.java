@@ -1,20 +1,35 @@
 package tracko.model.order;
 
-import java.util.List;
 import java.util.function.Predicate;
 
 public class OrderDeliveredOrPaidPredicate implements Predicate<Order> {
     Boolean isPaid;
     Boolean isDelivered;
+    Boolean filterPaid;
+    Boolean filterDelivered;
 
-    public OrderDeliveredOrPaidPredicate(Boolean isPaid, Boolean isDelivered) {
+    public OrderDeliveredOrPaidPredicate(Boolean filterPaid, Boolean filterDelivered, Boolean isPaid, Boolean isDelivered) {
+        this.filterPaid = filterPaid;
+        this.filterDelivered = filterDelivered;
         this.isPaid = isPaid;
         this.isDelivered = isDelivered;
     }
 
     @Override
     public boolean test(Order order) {
-        return paidStatusMatch(order) && deliveredStatusMatch(order);
+        if (filterPaid && filterDelivered) { // case 1: both -p/P and -d/D tags are present
+            return paidStatusMatch(order) && deliveredStatusMatch(order);
+        }
+
+        if (filterDelivered) { // case 2: only -d/D tags present, only filter by delivery status
+            return deliveredStatusMatch(order);
+        }
+
+        if (filterPaid) { // case 3: only -p/P tags present, only filter by payment status
+            return paidStatusMatch(order);
+        }
+
+        return true; // case 4: no tags present, do not filter by delivery or payment status
     }
 
     private boolean paidStatusMatch(Order order) {

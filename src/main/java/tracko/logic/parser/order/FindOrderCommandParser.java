@@ -12,6 +12,7 @@ import tracko.logic.commands.order.FindOrderCommand;
 import tracko.logic.parser.*;
 import tracko.logic.parser.exceptions.ParseException;
 import tracko.model.order.OrderContainsKeywordsPredicate;
+import tracko.model.order.OrderDeliveredOrPaidPredicate;
 
 /**
  * Parses input arguments and creates a new FindOrderCommand object
@@ -30,8 +31,15 @@ public class FindOrderCommandParser implements Parser<FindOrderCommand> {
         ArgumentMultimap flagMultimap = FlagTokenizer.tokenize(userInput, FLAG_PAID, FLAG_UNPAID,
                 FLAG_DELIVERED, FLAG_UNDELIVERED);
 
-        if (!isAnyPrefixPresent(prefixMultimap, PREFIX_NAME, PREFIX_ADDRESS, PREFIX_ITEM)
-                || !prefixMultimap.getPreamble().isEmpty()) {
+        boolean isAnyPrefixPresent = isAnyPrefixPresent(prefixMultimap, PREFIX_NAME, PREFIX_ADDRESS,
+                PREFIX_ITEM);
+        boolean isAnyFlagPresent = isAnyFlagPresent(flagMultimap, FLAG_PAID, FLAG_UNPAID,
+                FLAG_DELIVERED, FLAG_UNDELIVERED);
+        boolean isPrefixMultimapPreambleEmpty = prefixMultimap.getPreamble().isEmpty();
+        boolean isFlagMultimapPreampleEmpty = flagMultimap.getPreamble().isEmpty();
+
+        if (!(isAnyPrefixPresent || isAnyFlagPresent)
+                || !(isFlagMultimapPreampleEmpty || isPrefixMultimapPreambleEmpty)) {
             throw new ParseException(String.format(FindOrderCommand.MESSAGE_USAGE, FindOrderCommand.MESSAGE_USAGE));
         }
 
@@ -46,13 +54,32 @@ public class FindOrderCommandParser implements Parser<FindOrderCommand> {
                 Arrays.asList(addressKeywords),
                 Arrays.asList(itemKeywords));
 
+        // if -d => delivered only
+        // if -p => paid only
+        // if -D => undelivered only
+        // if -P => unpaid only
+        // by the end of parsing, need to have 4 booleans
 
+        boolean isPaid = flagMultimap.getValue(FLAG_PAID).orElse("false").equals("true");
+        boolean isDelivered = flagMultimap.getValue(FLAG_DELIVERED).orElse("false").equals("true");
+        boolean isUnpaid = flagMultimap.getValue(FLAG_UNPAID).orElse("false").equals("true");
+        boolean isUndelivered = flagMultimap.getValue(FLAG_UNDELIVERED).orElse("false").equals("true");
 
-        return new FindOrderCommand(prefixPredicate);
+        boolean isFilteringByPaid = isPaid || isUnpaid;
+        boolean isFilterByDelivered = isDelivered || isUndelivered;
+
+        OrderDeliveredOrPaidPredicate flagPredicate = new OrderDeliveredOrPaidPredicate(isFilteringByPaid,
+                isFilterByDelivered, isPaid, isDelivered);
+
+        return new FindOrderCommand(prefixPredicate, flagPredicate);
     }
 
-    private static boolean isAnyPrefixPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
-        return Stream.of(prefixes).anyMatch(prefix -> argumentMultimap.getValue(prefix).isPresent());
+    private static boolean isAnyPrefixPresent(ArgumentMultimap prefixMap, Prefix... prefixes) {
+        return Stream.of(prefixes).anyMatch(prefix -> prefixMap.getValue(prefix).isPresent());
+    }
+
+    public static boolean isAnyFlagPresent(ArgumentMultimap flagMap, Flag... flags) {
+        return Stream.of(flags).anyMatch(flag -> flagMap.getValue(flag).isPresent());
     }
 
     /**
