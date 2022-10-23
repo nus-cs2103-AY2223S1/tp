@@ -19,10 +19,19 @@ public class FindContactCommand extends Command {
 
     public static final String COMMAND_WORD = "findc";
 
+    /*
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all persons whose names contain any of "
             + "the specified keywords (case-insensitive) and displays them as a list with index numbers.\n"
             + "Parameters: KEYWORD [MORE_KEYWORDS]...\n"
             + "Example: " + COMMAND_WORD + " alice bob charlie";
+     */
+
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all persons matching a given filter.\n"
+            + "Parameters: [type_prefix] [key_1]\n"
+            + "Example 1: " + COMMAND_WORD + " n/ Jacob n/ Alice";
+
+    public static final String VALID_ARGUMENTS = COMMAND_WORD + " can only search for a single type at a time.\n"
+            + "ie. If searching for module with m/, you cannot simultaneously search for a name with n/.";
 
     private final Predicate<Person> predicate;
 

@@ -26,6 +26,10 @@ public class FindContactCommandParser implements Parser<FindContactCommand> {
      * @throws ParseException if the user input does not conform the expected format
      */
     public FindContactCommand parse(String args) throws ParseException {
+        if (args.isEmpty()) {
+            return new FindContactCommand(new CanHelpWithTaskPredicate(1));
+        }
+
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_MODULE, PREFIX_TASK);
 
         Prefix searchPrefix = getSearchPrefix(argMultimap);
@@ -47,6 +51,7 @@ public class FindContactCommandParser implements Parser<FindContactCommand> {
 
         } else {
 
+            // TODO: change the command format error message
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindContactCommand.MESSAGE_USAGE));
 
         }
@@ -68,7 +73,8 @@ public class FindContactCommandParser implements Parser<FindContactCommand> {
 
         // if number of prefixes in arguments is not 1, the arguments are invalid
         if (prefixesInArgs.size() != 1) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindContactCommand.MESSAGE_USAGE));
+            // TODO: change the error message for this particular error
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindContactCommand.VALID_ARGUMENTS));
         }
 
         return prefixesInArgs.get(0);
