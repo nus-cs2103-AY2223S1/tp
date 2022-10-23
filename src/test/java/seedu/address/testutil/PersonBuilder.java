@@ -6,12 +6,12 @@ import java.util.Set;
 import seedu.address.model.student.Attendance;
 import seedu.address.model.student.Email;
 import seedu.address.model.student.Grade;
-import seedu.address.model.student.ID;
 import seedu.address.model.student.Name;
 import seedu.address.model.student.Participation;
 import seedu.address.model.student.Phone;
 import seedu.address.model.student.Student;
-import seedu.address.model.student.Telegram;
+import seedu.address.model.student.StudentId;
+import seedu.address.model.student.TelegramHandle;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.tutorial.TutorialModule;
 import seedu.address.model.tutorial.TutorialName;
@@ -23,7 +23,7 @@ import seedu.address.model.util.SampleDataUtil;
 public class PersonBuilder {
 
     public static final String DEFAULT_NAME = "Amy Bee";
-    public static final String DEFAULT_ID = "A0000000A";
+    public static final String DEFAULT_ID = "A0000000Z";
     public static final String DEFAULT_PHONE = "85355255";
     public static final String DEFAULT_EMAIL = "amy@gmail.com";
     public static final String DEFAULT_TELEGRAM = "amy_bee";
@@ -36,10 +36,10 @@ public class PersonBuilder {
     //public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
 
     private Name name;
-    private ID id;
+    private StudentId id;
     private Phone phone;
     private Email email;
-    private Telegram telegram;
+    private TelegramHandle telegramHandle;
     private TutorialModule tutorialModule;
     private TutorialName tutorialName;
     private Attendance attendance;
@@ -55,10 +55,10 @@ public class PersonBuilder {
      */
     public PersonBuilder() {
         name = new Name(DEFAULT_NAME);
-        id = new ID(DEFAULT_ID);
+        id = new StudentId(DEFAULT_ID);
         phone = new Phone(DEFAULT_PHONE);
         email = new Email(DEFAULT_EMAIL);
-        telegram = new Telegram(DEFAULT_TELEGRAM);
+        telegramHandle = new TelegramHandle(DEFAULT_TELEGRAM);
         tutorialModule = new TutorialModule(DEFAULT_MODULE);
         tutorialName = new TutorialName(DEFAULT_TUTORIAL);
         attendance = new Attendance(DEFAULT_ATTENDANCE);
@@ -77,7 +77,7 @@ public class PersonBuilder {
         id = studentToCopy.getId();
         phone = studentToCopy.getPhone();
         email = studentToCopy.getEmail();
-        telegram = studentToCopy.getTelegram();
+        telegramHandle = studentToCopy.getTelegram();
         tutorialModule = studentToCopy.getTutorialModule();
         tutorialName = studentToCopy.getTutorialName();
         attendance = studentToCopy.getAttendance();
@@ -123,7 +123,7 @@ public class PersonBuilder {
      */
     public Student build() {
         return new Student(name, id, phone, email,
-                telegram, tutorialModule,
+                telegramHandle, tutorialModule,
                 tutorialName, attendance,
                 participation, grade, tags);
     }
@@ -132,7 +132,7 @@ public class PersonBuilder {
      * Sets the {@code ID} of the {@code Person} that we are building.
      */
     public PersonBuilder withId(String id) {
-        this.id = new ID(id);
+        this.id = new StudentId(id);
         return this;
     }
 
@@ -140,7 +140,7 @@ public class PersonBuilder {
      * Sets the {@code Telegram} of the {@code Person} that we are building.
      */
     public PersonBuilder withTelegram(String telegram) {
-        this.telegram = new Telegram(telegram);
+        this.telegramHandle = new TelegramHandle(telegram);
         return this;
     }
 

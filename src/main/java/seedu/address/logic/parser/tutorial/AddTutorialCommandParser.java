@@ -42,9 +42,10 @@ public class AddTutorialCommandParser implements Parser<AddTutorialCommand> {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddTutorialCommand.MESSAGE_USAGE));
         }
 
-        TutorialName name = ParserUtil.parseTutorialName(argMultimap.getValue(PREFIX_NAME).get());
-        TutorialModule module = ParserUtil.parseTutorialModule(argMultimap.getValue(PREFIX_MODULE).get());
-        TutorialVenue venue = ParserUtil.parseTutorialVenue(argMultimap.getValue(PREFIX_VENUE).get());
+        TutorialName name = TutorialParserUtil.parseTutorialName(argMultimap.getValue(PREFIX_NAME).get());
+        TutorialModule module = TutorialParserUtil.parseTutorialModule(argMultimap.getValue(PREFIX_MODULE).get());
+        TutorialVenue venue = TutorialParserUtil.parseTutorialVenue(argMultimap.getValue(PREFIX_VENUE).get());
+
         String dayString = argMultimap.getValue(PREFIX_DAY).get();
         String timeslotString = argMultimap.getValue(PREFIX_TIMESLOT).get();
         WeeklyTimeslot timeslot = ParserUtil.parseWeeklyTimeslot(dayString, timeslotString);

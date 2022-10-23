@@ -4,8 +4,7 @@ title: Nguyen Doan Phuong Anh's Project Portfolio Page
 ---
 
 # Overview
-ModQuik is a desktop app for NUS CS Professors, optimised for use via a Command Line Interface (CLI).
-It allows the professors to keep track of their students, teaching assistants and timetable for their courses.
+ModQuik is a desktop app that allows Teaching Assistants to keep track of their responsibilities, students’ progress and schedules for their semester.
 
 ## Summary of contributions
 Given below are my contributions to the project.
@@ -13,9 +12,13 @@ Given below are my contributions to the project.
 * **Code contributed**: [anh's tP Dashboard](https://nus-cs2103-ay2223s1.github.io/tp-dashboard/?search=april-anh&breakdown=true)
 
 * **Enhancements implemented**: to be added soon
+  * `add consultation` command
+  * `delete consultation` command
+  * `clear consultation` command
+  * `edit consultation` command
 
 * **Project management**:
-  * to be added soon
+  * Responsible for admin tasks (wrap up milestone, release jar file, submit documentation,...)
 
 * **Documentation**:
   * User Guide:
@@ -26,7 +29,14 @@ Given below are my contributions to the project.
 
 * **Contributions to team-based tasks**:
   * Upload draft UG
+  * Release v1.3.trial
+  * Wrap up v1.2
 
 * **Review/mentoring contributions**: to be added soon
+  * PR #25
+  * PR #39
+  * PR #53
+  * PR #54
+  * PR #56
 
 * **Contributions beyond the project team**: to be added soon

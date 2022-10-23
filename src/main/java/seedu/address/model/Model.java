@@ -4,6 +4,7 @@ import java.nio.file.Path;
 import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
+import javafx.scene.chart.PieChart;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.consultation.Consultation;
 import seedu.address.model.reminder.Reminder;
@@ -84,6 +85,9 @@ public interface Model {
 
     /** Returns an unmodifiable view of the filtered person list */
     ObservableList<Student> getFilteredPersonList();
+
+    /** Returns an unmodifiable view of the student'grade */
+    ObservableList<PieChart.Data> getStudentGradeChartData();
 
     /**
      * Updates the filter of the filtered person list to filter by the given {@code predicate}.

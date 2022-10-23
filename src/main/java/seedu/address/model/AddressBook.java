@@ -10,7 +10,7 @@ import seedu.address.model.consultation.UniqueConsultationList;
 import seedu.address.model.reminder.Reminder;
 import seedu.address.model.reminder.UniqueReminderList;
 import seedu.address.model.student.Student;
-import seedu.address.model.student.UniquePersonList;
+import seedu.address.model.student.UniqueStudentList;
 import seedu.address.model.tutorial.Tutorial;
 import seedu.address.model.tutorial.UniqueTutorialList;
 
@@ -20,7 +20,7 @@ import seedu.address.model.tutorial.UniqueTutorialList;
  */
 public class AddressBook implements ReadOnlyAddressBook {
 
-    private final UniquePersonList persons;
+    private final UniqueStudentList persons;
     private final UniqueReminderList reminders;
     private final UniqueTutorialList tutorials;
     private final UniqueConsultationList consultations;
@@ -33,7 +33,7 @@ public class AddressBook implements ReadOnlyAddressBook {
      *   among constructors.
      */
     {
-        persons = new UniquePersonList();
+        persons = new UniqueStudentList();
         reminders = new UniqueReminderList();
         tutorials = new UniqueTutorialList();
         consultations = new UniqueConsultationList();
@@ -228,6 +228,36 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     public void removeConsultation(Consultation key) {
         consultations.remove(key);
+    }
+
+    /**
+     * Returns an array containing number of specific grade.
+     */
+    public int[] getGradeData() {
+        int[] gradeArr = new int[5];
+        for (Student student : persons) {
+            String grade = student.getGrade().value;
+            switch (grade) {
+            case "A":
+                gradeArr[0]++;
+                break;
+            case "B":
+                gradeArr[1]++;
+                break;
+            case "C":
+                gradeArr[2]++;
+                break;
+            case "D":
+                gradeArr[3]++;
+                break;
+            case "F":
+                gradeArr[4]++;
+                break;
+            default:
+                break;
+            }
+        }
+        return gradeArr;
     }
 
     //// util methods

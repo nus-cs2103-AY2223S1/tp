@@ -7,7 +7,7 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  * Represents a student ID in the ModQuik.
  * Guarantees: immutable; is valid as declared in {@link #isValidId(String)}
  */
-public class ID {
+public class StudentId {
     public static final String MESSAGE_CONSTRAINTS =
             "ID should follow the format AXXXXXXXY, where the X is a number, and Y is an alphabet";
 
@@ -24,7 +24,7 @@ public class ID {
      *
      * @param id A valid id.
      */
-    public ID(String id) {
+    public StudentId(String id) {
         requireNonNull(id);
         checkArgument(isValidId(id), MESSAGE_CONSTRAINTS);
         this.id = id.toUpperCase();
@@ -46,8 +46,8 @@ public class ID {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof ID // instanceof handles nulls
-                && id.equals(((ID) other).id)); // state check
+                || (other instanceof StudentId // instanceof handles nulls
+                && id.equals(((StudentId) other).id)); // state check
     }
 
     @Override

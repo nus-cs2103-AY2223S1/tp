@@ -12,17 +12,17 @@ import seedu.address.model.tutorial.TutorialModule;
 import seedu.address.model.tutorial.TutorialName;
 
 /**
- * Represents a Person in the address book.
+ * Represents a Student in the address book.
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
 public class Student {
 
     // Identity fields
     private final Name name;
-    private final ID id;
+    private final StudentId id;
     private final Phone phone;
     private final Email email;
-    private final Telegram telegram;
+    private final TelegramHandle telegramHandle;
 
     // Data fields
     private final TutorialModule tutorialModule;
@@ -35,16 +35,16 @@ public class Student {
     /**
      * Every field must be present and not null.
      */
-    public Student(Name name, ID id, Phone phone, Email email,
-                   Telegram telegram, TutorialModule tutorialModule,
+    public Student(Name name, StudentId id, Phone phone, Email email,
+                   TelegramHandle telegramHandle, TutorialModule tutorialModule,
                    TutorialName tutorialName, Attendance attendance,
                    Participation participation, Grade grade, Set<Tag> tags) {
-        requireAllNonNull(name, id, phone, email, telegram, tutorialModule, tutorialName, grade, tags);
+        requireAllNonNull(name, id, phone, email, telegramHandle, tutorialModule, tutorialName, grade, tags);
         this.name = name;
         this.id = id;
         this.phone = phone;
         this.email = email;
-        this.telegram = telegram;
+        this.telegramHandle = telegramHandle;
         this.tutorialModule = tutorialModule;
         this.tutorialName = tutorialName;
         this.attendance = attendance;
@@ -57,7 +57,7 @@ public class Student {
         return name;
     }
 
-    public ID getId() {
+    public StudentId getId() {
         return id;
     }
 
@@ -69,8 +69,8 @@ public class Student {
         return email;
     }
 
-    public Telegram getTelegram() {
-        return telegram;
+    public TelegramHandle getTelegram() {
+        return telegramHandle;
     }
 
     public TutorialModule getTutorialModule() {
@@ -105,13 +105,14 @@ public class Student {
      * Returns true if both persons have the same name.
      * This defines a weaker notion of equality between two persons.
      */
-    public boolean isSamePerson(Student otherStudent) {
+    public boolean isSameStudent(Student otherStudent) {
         if (otherStudent == this) {
             return true;
         }
 
         return otherStudent != null
-                && otherStudent.getName().equals(getName());
+                && otherStudent.getId().equals(getId()) && otherStudent.getTutorialName().equals(getTutorialName())
+                && otherStudent.getTutorialModule().equals(getTutorialModule());
     }
 
     /**
@@ -130,11 +131,14 @@ public class Student {
 
         Student otherStudent = (Student) other;
         return otherStudent.getName().equals(getName())
+                && otherStudent.getId().equals(getId())
                 && otherStudent.getPhone().equals(getPhone())
                 && otherStudent.getEmail().equals(getEmail())
                 && otherStudent.getTelegram().equals(getTelegram())
                 && otherStudent.getTutorialModule().equals(getTutorialModule())
                 && otherStudent.getTutorialName().equals(getTutorialName())
+                && otherStudent.getAttendance().equals(getAttendance())
+                && otherStudent.getParticipation().equals(getParticipation())
                 && otherStudent.getGrade().equals(getGrade())
                 && otherStudent.getTags().equals(getTags());
     }
@@ -142,7 +146,8 @@ public class Student {
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, id, phone, email, telegram, tutorialModule, tutorialName, grade, tags);
+        return Objects.hash(name, id, phone, email, telegramHandle, tutorialModule, tutorialName,
+                attendance, participation, grade, tags);
     }
 
     @Override
@@ -157,10 +162,14 @@ public class Student {
                 .append(getEmail())
                 .append("; Telegram Handle: ")
                 .append(getTelegram())
-                .append("; Tutorial: ")
+                .append("; Module: ")
                 .append(getTutorialModule())
-                .append(" ")
+                .append("; Tutorial: ")
                 .append(getTutorialName())
+                .append("; Attendance: ")
+                .append(getAttendance())
+                .append("; Participation: ")
+                .append(getParticipation())
                 .append("; Grade: ")
                 .append(getGrade());
 

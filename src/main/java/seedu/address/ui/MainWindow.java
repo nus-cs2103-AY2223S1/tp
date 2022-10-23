@@ -36,6 +36,7 @@ public class MainWindow extends UiPart<Stage> {
     private TutorialListPanel tutorialListPanel;
     private ReminderListPanel reminderListPanel;
     private ConsultationListPanel consultationListPanel;
+    private GradeChart gradeChart;
 
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
@@ -45,15 +46,6 @@ public class MainWindow extends UiPart<Stage> {
 
     @FXML
     private MenuItem helpMenuItem;
-
-    @FXML
-    private StackPane personListPanelPlaceholder;
-
-    @FXML
-    private StackPane tutorialListPanelPlaceholder;
-
-    @FXML
-    private StackPane consultationListPanelPlaceholder;
 
     @FXML
     private Label listHeader;
@@ -164,6 +156,16 @@ public class MainWindow extends UiPart<Stage> {
     }
 
     /**
+     * Opens the pie chart.
+     */
+    public void handleShowChart() {
+        gradeChart = new GradeChart(logic.getStudentGradeChartData());
+        modelListPanelPlaceholder.getChildren().clear();
+        modelListPanelPlaceholder.getChildren().add(gradeChart.getRoot());
+        listHeader.setText("Grade chart");
+    }
+
+    /**
      * Opens the help window or focuses on it if it's already opened.
      */
     @FXML
@@ -246,6 +248,10 @@ public class MainWindow extends UiPart<Stage> {
 
             if (commandResult.isExit()) {
                 handleExit();
+            }
+
+            if (commandResult.isShowChart()) {
+                handleShowChart();
             }
 
             return commandResult;

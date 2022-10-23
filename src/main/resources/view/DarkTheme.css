@@ -315,6 +315,20 @@
     -fx-padding: 8 1 8 1;
 }
 
+.chart-pie-label-line {
+    -fx-stroke: #8b4513;
+    -fx-fill: #8b4513;
+}
+
+.chart-pie-label {
+    -fx-fill: #8b4513;
+    -fx-font-size: 11pt;
+}
+.chart-legend {
+   -fx-background-color:  #fafad2;
+   -fx-stroke: #daa520;
+}
+
 #cardPane {
     -fx-background-color: transparent;
     -fx-border-width: 0;

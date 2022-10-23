@@ -20,12 +20,12 @@ import seedu.address.model.reminder.ReminderName;
 import seedu.address.model.student.Attendance;
 import seedu.address.model.student.Email;
 import seedu.address.model.student.Grade;
-import seedu.address.model.student.ID;
 import seedu.address.model.student.Name;
 import seedu.address.model.student.Participation;
 import seedu.address.model.student.Phone;
 import seedu.address.model.student.Student;
-import seedu.address.model.student.Telegram;
+import seedu.address.model.student.StudentId;
+import seedu.address.model.student.TelegramHandle;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.tutorial.Tutorial;
 import seedu.address.model.tutorial.TutorialModule;
@@ -39,44 +39,44 @@ public class SampleDataUtil {
     public static Student[] getSamplePersons() {
         return new Student[] {
             new Student(new Name("Alex Yeoh"),
-                    new ID("A0000000a"),
+                    new StudentId("A0000000a"),
                     new Phone("87438807"), new Email("alexyeoh@example.com"),
-                    new Telegram("alexyeoh"),
+                    new TelegramHandle("alexyeoh"),
                     new TutorialModule("CS2103T"), new TutorialName("W17"),
                     new Attendance("0"), new Participation("0"), new Grade("A"),
                 getTagSet("friends")),
             new Student(new Name("Bernice Yu"),
-                    new ID("A0000000B"),
+                    new StudentId("A0000000B"),
                     new Phone("99272758"), new Email("berniceyu@example.com"),
-                    new Telegram("berniceyu"),
+                    new TelegramHandle("berniceyu"),
                     new TutorialModule("CS2103T"), new TutorialName("W17"),
                     new Attendance("0"), new Participation("0"), new Grade(""),
                 getTagSet("colleagues", "friends")),
             new Student(new Name("Charlotte Oliveiro"),
-                    new ID("A0000000C"),
+                    new StudentId("A0000000C"),
                     new Phone("93210283"), new Email("charlotte@example.com"),
-                    new Telegram("charlotte"),
+                    new TelegramHandle("charlotte"),
                     new TutorialModule("CS2103T"), new TutorialName("W17"),
                     new Attendance("0"), new Participation("0"), new Grade("A"),
                 getTagSet("neighbours")),
             new Student(new Name("David Li"),
-                    new ID("A0000000D"),
+                    new StudentId("A0000000D"),
                     new Phone("91031282"), new Email("lidavid@example.com"),
-                    new Telegram("lidavid"),
+                    new TelegramHandle("lidavid"),
                     new TutorialModule("CS2103T"), new TutorialName("W17"),
                     new Attendance("0"), new Participation("0"), new Grade("A"),
                 getTagSet("family")),
             new Student(new Name("Irfan Ibrahim"),
-                    new ID("A0000000I"),
+                    new StudentId("A0000000I"),
                     new Phone("92492021"), new Email("irfan@example.com"),
-                    new Telegram("irfan"),
+                    new TelegramHandle("irfan"),
                     new TutorialModule("CS2103T"), new TutorialName("W17"),
                     new Attendance("0"), new Participation("0"), new Grade("A"),
                 getTagSet("classmates")),
             new Student(new Name("Roy Balakrishnan"),
-                    new ID("A0000000R"),
+                    new StudentId("A0000000R"),
                     new Phone("92624417"), new Email("royb@example.com"),
-                    new Telegram("royb"),
+                    new TelegramHandle("royb"),
                     new TutorialModule("CS2103T"), new TutorialName("W17"),
                     new Attendance("0"), new Participation("0"), new Grade(""),
                     getTagSet("colleagues"))

@@ -35,8 +35,8 @@ public class AddReminderCommandParser implements Parser<AddReminderCommand> {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddReminderCommand.MESSAGE_USAGE));
         }
 
-        ReminderName name = ParserUtil.parseReminderName(argMultimap.getValue(PREFIX_NAME).get());
-        ReminderDescription description = ParserUtil.parseReminderDescription(argMultimap.getValue(PREFIX_DESCRIPTION)
+        ReminderName name = ReminderParserUtil.parseReminderName(argMultimap.getValue(PREFIX_NAME).get());
+        ReminderDescription description = ReminderParserUtil.parseReminderDescription(argMultimap.getValue(PREFIX_DESCRIPTION)
                 .get());
         Datetime deadline = ParserUtil.parseDatetime(argMultimap.getValue(PREFIX_TIMESLOT).get());
 
