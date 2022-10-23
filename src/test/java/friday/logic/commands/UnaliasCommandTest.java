@@ -25,7 +25,6 @@ public class UnaliasCommandTest {
     public void execute_unaliasAcceptedByModel_removeSuccessful() {
         ModelManager expectedModel = new ModelManager(model.getFriday(), new UserPrefs());
         model.addAlias(VALID_ALIAS, VALID_KEYWORD);
-        
         UnaliasCommand unaliasCommand = new UnaliasCommand(VALID_ALIAS);
 
         String expectedMessage = String.format(UnaliasCommand.MESSAGE_SUCCESS, VALID_ALIAS);
