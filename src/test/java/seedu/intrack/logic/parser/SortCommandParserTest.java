@@ -31,5 +31,4 @@ class SortCommandParserTest {
         assertParseFailure(parser, SortCommand.COMMAND_WORD, expectedMessage);
 
     }
-
 }

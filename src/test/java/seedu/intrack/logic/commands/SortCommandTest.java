@@ -59,5 +59,4 @@ class SortCommandTest {
         String expectedMessage = String.format(MESSAGE_SUCCESS_D, model.getFilteredInternshipList().size());
         assertCommandSuccess(sortCommand, model, expectedMessage, expectedModel);
     }
-
 }
