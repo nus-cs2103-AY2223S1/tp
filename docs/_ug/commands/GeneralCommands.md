@@ -7,6 +7,7 @@
 > Displays a help message for this application.
 
 **Example Input:**
+
 ```text
 help
 help del
@@ -22,9 +23,10 @@ The general help shows a list of commands available to the user and a URL to thi
 
 If a `COMMAND_WORD` was specified, additional help for that command will be provided in addition to the general help.
 
---- 
+---
 
 #### Reset the application: `reset`
+
 **Format**: `reset`
 
 > Resets FoodRem program by clearing all items and tags currently stored.
@@ -34,13 +36,16 @@ If a `COMMAND_WORD` was specified, additional help for that command will be prov
 ```text
 reset
 ```
+
 **Example Output:**
 
 Command Output Box:
+
 ```text
 FoodRem has been reset!
 ```
-___
+
+---
 
 #### Exit the application: `exit`
 
