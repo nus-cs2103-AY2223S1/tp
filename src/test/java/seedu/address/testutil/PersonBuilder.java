@@ -88,6 +88,7 @@ public class PersonBuilder {
             Physician[] physicianArr = new Physician[]{null};
             patientToCopy.getAttendingPhysician().ifPresent(
                     x -> physicianArr[0] = new Physician(x.getName(), x.getPhone(), x.getEmail()));
+            physician = physicianArr[0];
         } else {
             physician = null;
         }
