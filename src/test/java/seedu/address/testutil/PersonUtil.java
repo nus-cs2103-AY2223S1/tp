@@ -14,6 +14,7 @@ import java.util.Set;
 
 import seedu.address.logic.commands.CreateCommand;
 import seedu.address.logic.commands.UpdateCommand.EditPersonDescriptor;
+import seedu.address.model.person.MeetingTime;
 import seedu.address.model.person.Person;
 import seedu.address.model.tag.Tag;
 
@@ -42,7 +43,9 @@ public class PersonUtil {
         sb.append(PREFIX_ADDRESS + person.getAddress().value + " ");
         sb.append(PREFIX_REMARK + person.getRemark().value + " ");
         sb.append(PREFIX_NETWORTH + person.getNetWorth().value + " ");
-        sb.append(PREFIX_MEETING_TIME + person.getMeetingTime().value + " ");
+        person.getMeetingTimes().stream().forEach(
+                s -> sb.append(PREFIX_MEETING_TIME + s.value + " ")
+        );
         sb.append(PREFIX_FILEPATH + person.getFilePath().value + " ");
         person.getTags().stream().forEach(
             s -> sb.append(PREFIX_TAG + s.tagName + " ")
@@ -57,7 +60,9 @@ public class PersonUtil {
         sb.append(PREFIX_EMAIL + person.getEmail().value + " ");
         sb.append(PREFIX_ADDRESS + person.getAddress().value + " ");
         sb.append(PREFIX_NETWORTH + person.getNetWorth().value + " ");
-        sb.append(PREFIX_MEETING_TIME + person.getMeetingTime().value + " ");
+        person.getMeetingTimes().stream().forEach(
+                s -> sb.append(PREFIX_MEETING_TIME + s.value + " ")
+        );
         person.getTags().stream().forEach(
                 s -> sb.append(PREFIX_TAG + s.tagName + " ")
         );
@@ -74,8 +79,14 @@ public class PersonUtil {
         descriptor.getEmail().ifPresent(email -> sb.append(PREFIX_EMAIL).append(email.value).append(" "));
         descriptor.getAddress().ifPresent(address -> sb.append(PREFIX_ADDRESS).append(address.value).append(" "));
         descriptor.getNetWorth().ifPresent(netWorth -> sb.append(PREFIX_NETWORTH).append(netWorth.value).append(" "));
-        descriptor.getMeetingTime().ifPresent(meetingTime -> sb.append(PREFIX_MEETING_TIME)
-                .append(meetingTime.value).append(" "));
+        if (descriptor.getMeetingTimes().isPresent()) {
+            Set<MeetingTime> meetingTimes = descriptor.getMeetingTimes().get();
+            if (meetingTimes.isEmpty()) {
+                sb.append(PREFIX_MEETING_TIME);
+            } else {
+                meetingTimes.forEach(s -> sb.append(PREFIX_MEETING_TIME).append(s.value).append(" "));
+            }
+        }
         if (descriptor.getTags().isPresent()) {
             Set<Tag> tags = descriptor.getTags().get();
             if (tags.isEmpty()) {

@@ -41,8 +41,8 @@ public class CommandTestUtil {
     public static final String VALID_REMARK_BOB = "Favourite pastime: Eating";
     public static final String VALID_NETWORTH_AMY = "$1350";
     public static final String VALID_NETWORTH_BOB = "$53000";
-    public static final String VALID_MEETING_TIME_AMY = "14-11-2022 23:30";
-    public static final String VALID_MEETING_TIME_BOB = "18-12-2022 13:30";
+    public static final String VALID_MEETING_TIME_AMY = "14-11-2022-23:30";
+    public static final String VALID_MEETING_TIME_BOB = "18-12-2022-13:30";
     public static final String VALID_FILEPATH_AMY = "src/test/data/TestPDFs/Test_PDF.pdf";
     public static final String VALID_FILEPATH_BOB = "src/test/data/TestPDFs/Test_PDF2.pdf";
     public static final String EMPTY_FILEPATH = "";
@@ -84,11 +84,11 @@ public class CommandTestUtil {
     static {
         DESC_AMY = new EditPersonDescriptorBuilder().withName(VALID_NAME_AMY)
                 .withPhone(VALID_PHONE_AMY).withEmail(VALID_EMAIL_AMY).withAddress(VALID_ADDRESS_AMY)
-                .withNetWorth(VALID_NETWORTH_AMY).withMeetingTime(VALID_MEETING_TIME_AMY)
+                .withNetWorth(VALID_NETWORTH_AMY).withMeetingTimes(VALID_MEETING_TIME_AMY)
                 .withTags(VALID_TAG_FRIEND).build();
         DESC_BOB = new EditPersonDescriptorBuilder().withName(VALID_NAME_BOB)
                 .withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB).withAddress(VALID_ADDRESS_BOB)
-                .withNetWorth(VALID_NETWORTH_BOB).withMeetingTime(VALID_MEETING_TIME_BOB)
+                .withNetWorth(VALID_NETWORTH_BOB).withMeetingTimes(VALID_MEETING_TIME_BOB)
                 .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).build();
     }
 

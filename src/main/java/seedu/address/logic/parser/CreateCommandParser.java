@@ -52,12 +52,12 @@ public class CreateCommandParser implements Parser<CreateCommand> {
         Email email = ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get());
         Address address = ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get());
         NetWorth netWorth = ParserUtil.parseNetWorth(argMultimap.getValue(PREFIX_NETWORTH).get());
-        MeetingTime meetingTime = ParserUtil.parseMeetingTime(argMultimap.getValue(PREFIX_MEETING_TIME).get());
+        Set<MeetingTime> meetingTimeList = ParserUtil.parseMeetingTimes(argMultimap.getAllValues(PREFIX_MEETING_TIME));
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
         Remark remark = new Remark(""); // add command does not allow adding remarks straight away
         FilePath filePath = new FilePath(""); // add command does not allow adding file path straight away
 
-        Person person = new Person(name, phone, email, address, remark, netWorth, meetingTime, filePath, tagList);
+        Person person = new Person(name, phone, email, address, remark, netWorth, meetingTimeList, filePath, tagList);
 
         return new CreateCommand(person);
     }

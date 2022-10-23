@@ -1,5 +1,6 @@
 package seedu.address.testutil;
 
+import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -25,7 +26,7 @@ public class PersonBuilder {
     public static final String DEFAULT_EMAIL = "alice@gmail.com";
     public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
     public static final String DEFAULT_REMARK = "";
-    public static final String DEFAULT_MEETING_TIME = "01-01-2000 12:00";
+    public static final MeetingTime DEFAULT_MEETING_TIME = new MeetingTime("01-01-2000-12:00");
     public static final String DEFAULT_NETWORTH = "$2000";
     public static final String DEFAULT_FILEPATH = "src/test/data/TestPDFs/Test_PDF.pdf";
 
@@ -35,7 +36,7 @@ public class PersonBuilder {
     private Address address;
     private Remark remark;
     private NetWorth netWorth;
-    private MeetingTime meetingTime;
+    private Set<MeetingTime> meetingTimes;
     private FilePath filePath;
     private Set<Tag> tags;
 
@@ -49,7 +50,7 @@ public class PersonBuilder {
         address = new Address(DEFAULT_ADDRESS);
         remark = new Remark(DEFAULT_REMARK);
         netWorth = new NetWorth(DEFAULT_NETWORTH);
-        meetingTime = new MeetingTime(DEFAULT_MEETING_TIME);
+        meetingTimes = new HashSet<>(Arrays.asList(DEFAULT_MEETING_TIME));
         filePath = new FilePath(DEFAULT_FILEPATH);
         tags = new HashSet<>();
     }
@@ -64,7 +65,7 @@ public class PersonBuilder {
         address = personToCopy.getAddress();
         remark = personToCopy.getRemark();
         netWorth = personToCopy.getNetWorth();
-        meetingTime = personToCopy.getMeetingTime();
+        meetingTimes = new HashSet<>(personToCopy.getMeetingTimes());
         filePath = personToCopy.getFilePath();
         tags = new HashSet<>(personToCopy.getTags());
     }
@@ -128,8 +129,8 @@ public class PersonBuilder {
     /**
      * Sets the {@code meetingTime} of the {@code Person} that we are building.
      */
-    public PersonBuilder withMeetingTime(String meetingTime) {
-        this.meetingTime = new MeetingTime(meetingTime);
+    public PersonBuilder withMeetingTimes(String ... meetingTimes) {
+        this.meetingTimes = SampleDataUtil.getMeetingTimeSet(meetingTimes);
         return this;
     }
 
@@ -142,10 +143,10 @@ public class PersonBuilder {
     }
 
     public Person build() {
-        return new Person(name, phone, email, address, remark, netWorth, meetingTime, filePath, tags);
+        return new Person(name, phone, email, address, remark, netWorth, meetingTimes, filePath, tags);
     }
 
     public Person buildNoRemarkAndFilePath() {
-        return new Person(name, phone, email, address, netWorth, meetingTime, tags);
+        return new Person(name, phone, email, address, netWorth, meetingTimes, tags);
     }
 }
