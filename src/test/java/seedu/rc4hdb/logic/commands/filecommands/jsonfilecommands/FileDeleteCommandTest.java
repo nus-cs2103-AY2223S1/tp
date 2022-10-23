@@ -1,8 +1,8 @@
-package seedu.rc4hdb.logic.commands.storagecommands.filecommands.jsonfilecommands;
+package seedu.rc4hdb.logic.commands.filecommands.jsonfilecommands;
 
-import static seedu.rc4hdb.logic.commands.storagecommands.StorageCommandTestUtil.assertCommandFailure;
-import static seedu.rc4hdb.logic.commands.storagecommands.StorageCommandTestUtil.assertCommandSuccess;
-import static seedu.rc4hdb.logic.commands.storagecommands.StorageCommandTestUtil.assertFileExists;
+import static seedu.rc4hdb.logic.commands.StorageCommandTestUtil.assertCommandFailure;
+import static seedu.rc4hdb.logic.commands.StorageCommandTestUtil.assertCommandSuccess;
+import static seedu.rc4hdb.logic.commands.StorageCommandTestUtil.assertFileDoesNotExist;
 import static seedu.rc4hdb.testutil.Assert.assertThrows;
 
 import java.io.IOException;
@@ -14,7 +14,7 @@ import org.junit.jupiter.api.io.TempDir;
 
 import seedu.rc4hdb.commons.util.FileUtil;
 import seedu.rc4hdb.logic.commands.exceptions.CommandException;
-import seedu.rc4hdb.logic.commands.storagecommands.filecommands.FileCommand;
+import seedu.rc4hdb.logic.commands.filecommands.FileCommand;
 import seedu.rc4hdb.storage.JsonResidentBookStorage;
 import seedu.rc4hdb.storage.JsonUserPrefsStorage;
 import seedu.rc4hdb.storage.ResidentBookStorage;
@@ -24,9 +24,9 @@ import seedu.rc4hdb.storage.StorageStub;
 import seedu.rc4hdb.storage.UserPrefsStorage;
 
 /**
- * Unit tests for {@link FileCreateCommand}.
+ * Unit tests for {@link FileDeleteCommand}.
  */
-public class FileCreateCommandTest {
+public class FileDeleteCommandTest {
 
     @TempDir
     public Path testFolder;
@@ -45,19 +45,20 @@ public class FileCreateCommandTest {
     }
 
     @Test
-    public void execute_fileDoesNotExist_fileCreated() {
+    public void execute_fileExists_fileDeleted() throws Exception {
         ResidentBookStorage expectedResidentBookStorage =
                 new JsonResidentBookStorage(storage.getResidentBookFilePath());
         UserPrefsStorage expectedUserPrefsStorage = new JsonUserPrefsStorage(storage.getUserPrefsFilePath());
         Storage expectedStorage = new StorageManager(expectedResidentBookStorage, expectedUserPrefsStorage);
-        String expectedMessage = String.format(FileCreateCommand.MESSAGE_SUCCESS, "DoesNotExist.json");
+        String expectedMessage = String.format(FileDeleteCommand.MESSAGE_SUCCESS, "AlreadyExists.json");
 
-        Path targetFilePath = getTempFilePath("DoesNotExist.json");
-        String targetFileName = "DoesNotExist";
-        FileCreateCommand fileCreateCommand = new FileCreateCommand(testFolder, targetFileName);
+        Path targetFilePath = getTempFilePath("AlreadyExists.json");
+        String targetFileName = "AlreadyExists";
+        FileDeleteCommand fileDeleteCommand = new FileDeleteCommand(testFolder, targetFileName);
+        FileUtil.createFile(targetFilePath);
 
-        assertCommandSuccess(fileCreateCommand, storage, expectedMessage, expectedStorage);
-        assertFileExists(targetFilePath);
+        assertCommandSuccess(fileDeleteCommand, storage, expectedMessage, expectedStorage);
+        assertFileDoesNotExist(targetFilePath);
     }
 
     @Test
@@ -66,44 +67,42 @@ public class FileCreateCommandTest {
         String targetFileName = "test";
 
         String expectedMessage = String.format(FileCommand.MESSAGE_TRYING_TO_EXECUTE_ON_CURRENT_FILE, "test.json");
-        FileCreateCommand fileCreateCommand = new FileCreateCommand(testFolder, targetFileName);
+        FileDeleteCommand fileDeleteCommand = new FileDeleteCommand(testFolder, targetFileName);
         FileUtil.createIfMissing(target);
 
-        assertCommandFailure(fileCreateCommand, storage, expectedMessage);
+        assertCommandFailure(fileDeleteCommand, storage, expectedMessage);
     }
 
     @Test
-    public void execute_fileAlreadyExists_throwsCommandException() throws IOException {
-        String expectedMessage = String.format(FileCreateCommand.MESSAGE_FILE_EXISTS, "AlreadyExists.json");
+    public void execute_fileDoesNotExist_throwsCommandException() {
+        String expectedMessage = String.format(FileDeleteCommand.MESSAGE_FILE_NON_EXISTENT, "DoesNotExist.json");
 
-        Path filePath = getTempFilePath("AlreadyExists.json");
-        String targetFileName = "AlreadyExists";
-        FileCreateCommand fileCreateCommand = new FileCreateCommand(testFolder, targetFileName);
-        FileUtil.createFile(filePath);
+        String targetFileName = "DoesNotExist";
+        FileDeleteCommand fileDeleteCommand = new FileDeleteCommand(testFolder, targetFileName);
 
-        assertCommandFailure(fileCreateCommand, storage, expectedMessage);
+        assertCommandFailure(fileDeleteCommand, storage, expectedMessage);
     }
 
     @Test
     public void execute_storageThrowsIoException_throwsCommandException() {
-        String expectedMessage = String.format(FileCreateCommand.MESSAGE_FAILED, "creating");
+        String expectedMessage = String.format(FileDeleteCommand.MESSAGE_FAILED, "deleting");
 
-        String targetFileName = "DoesNotExist";
-        FileCreateCommand fileCreateCommand = new FileCreateCommand(testFolder, targetFileName);
+        String targetFileName = "AlreadyExists";
+        FileDeleteCommand fileDeleteCommand = new FileDeleteCommand(testFolder, targetFileName);
         storage = new StorageStubThrowsIoException();
 
-        assertThrows(CommandException.class, expectedMessage, () -> fileCreateCommand.execute(storage));
+        assertThrows(CommandException.class, expectedMessage, () -> fileDeleteCommand.execute(storage));
     }
 
     /**
      * A storage stub class that throws an {@code IOException} when the
-     * @see #createResidentBookFile(Path) method is invoked.
+     * @see #deleteResidentBookFile(Path) method is invoked.
      */
     private static class StorageStubThrowsIoException extends StorageStub {
         public static final IOException DUMMY_IO_EXCEPTION = new IOException("dummy exception");
 
         @Override
-        public void createResidentBookFile(Path filePath) throws IOException {
+        public void deleteResidentBookFile(Path filePath) throws IOException {
             throw DUMMY_IO_EXCEPTION;
         }
 

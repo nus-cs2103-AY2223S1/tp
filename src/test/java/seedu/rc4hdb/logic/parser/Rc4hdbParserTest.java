@@ -4,10 +4,10 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.rc4hdb.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.rc4hdb.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
+import static seedu.rc4hdb.logic.commands.StorageCommandTestUtil.VALID_FILE_NAME_STRING;
 import static seedu.rc4hdb.logic.commands.modelcommands.ModelCommandTestUtil.NAME_DESC_AMY;
 import static seedu.rc4hdb.logic.commands.modelcommands.ModelCommandTestUtil.VALID_ALL_SPECIFIER_DESC;
 import static seedu.rc4hdb.logic.commands.modelcommands.ModelCommandTestUtil.VALID_ANY_SPECIFIER_DESC;
-import static seedu.rc4hdb.logic.commands.storagecommands.StorageCommandTestUtil.VALID_FILE_NAME_STRING;
 import static seedu.rc4hdb.logic.parser.commandparsers.FileCommandParser.DATA_DIR_PATH;
 import static seedu.rc4hdb.testutil.Assert.assertThrows;
 import static seedu.rc4hdb.testutil.TypicalIndexes.INDEX_FIRST_RESIDENT;
@@ -20,6 +20,8 @@ import java.util.stream.Collectors;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.rc4hdb.logic.commands.filecommands.FileCommand;
+import seedu.rc4hdb.logic.commands.filecommands.jsonfilecommands.FileCreateCommand;
 import seedu.rc4hdb.logic.commands.misccommands.ExitCommand;
 import seedu.rc4hdb.logic.commands.misccommands.HelpCommand;
 import seedu.rc4hdb.logic.commands.modelcommands.AddCommand;
@@ -31,8 +33,6 @@ import seedu.rc4hdb.logic.commands.modelcommands.FindCommand;
 import seedu.rc4hdb.logic.commands.modelcommands.HideCommand;
 import seedu.rc4hdb.logic.commands.modelcommands.ListCommand;
 import seedu.rc4hdb.logic.commands.modelcommands.ShowCommand;
-import seedu.rc4hdb.logic.commands.storagecommands.filecommands.FileCommand;
-import seedu.rc4hdb.logic.commands.storagecommands.filecommands.jsonfilecommands.FileCreateCommand;
 import seedu.rc4hdb.logic.parser.commandparsers.HideCommandParser;
 import seedu.rc4hdb.logic.parser.commandparsers.ListCommandParser;
 import seedu.rc4hdb.logic.parser.commandparsers.ShowCommandParser;
@@ -44,9 +44,12 @@ import seedu.rc4hdb.testutil.ResidentBuilder;
 import seedu.rc4hdb.testutil.ResidentDescriptorBuilder;
 import seedu.rc4hdb.testutil.ResidentUtil;
 
-public class ResidentBookParserTest {
+/**
+ * Unit tests for {@link Rc4hdbParser}.
+ */
+public class Rc4hdbParserTest {
 
-    private final ResidentBookParser parser = new ResidentBookParser();
+    private final Rc4hdbParser parser = new Rc4hdbParser();
 
     @Test
     public void parseCommand_add() throws Exception {

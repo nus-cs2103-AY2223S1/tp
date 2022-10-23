@@ -1,12 +1,12 @@
-package seedu.rc4hdb.logic.commands.storagecommands.filecommands.jsonfilecommands;
+package seedu.rc4hdb.logic.commands.filecommands.jsonfilecommands;
 
 import java.io.IOException;
 import java.nio.file.FileAlreadyExistsException;
 import java.nio.file.Path;
 
 import seedu.rc4hdb.logic.commands.CommandResult;
+import seedu.rc4hdb.logic.commands.StorageCommand;
 import seedu.rc4hdb.logic.commands.exceptions.CommandException;
-import seedu.rc4hdb.logic.commands.storagecommands.StorageCommand;
 import seedu.rc4hdb.storage.Storage;
 
 /**

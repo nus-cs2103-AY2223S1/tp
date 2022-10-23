@@ -1,8 +1,8 @@
-package seedu.rc4hdb.logic.commands.storagecommands.filecommands.jsonfilecommands;
+package seedu.rc4hdb.logic.commands.filecommands.jsonfilecommands;
 
 import java.nio.file.Path;
 
-import seedu.rc4hdb.logic.commands.storagecommands.filecommands.FileCommand;
+import seedu.rc4hdb.logic.commands.filecommands.FileCommand;
 
 /**
  * Encapsulates a command that targets a JSON file.

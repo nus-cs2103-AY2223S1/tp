@@ -1,4 +1,4 @@
-package seedu.rc4hdb.logic.commands.storagecommands;
+package seedu.rc4hdb.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
@@ -8,7 +8,6 @@ import static seedu.rc4hdb.testutil.Assert.assertThrows;
 import java.nio.file.Path;
 
 import seedu.rc4hdb.commons.util.FileUtil;
-import seedu.rc4hdb.logic.commands.CommandResult;
 import seedu.rc4hdb.logic.commands.exceptions.CommandException;
 import seedu.rc4hdb.storage.JsonResidentBookStorage;
 import seedu.rc4hdb.storage.JsonUserPrefsStorage;

@@ -28,7 +28,7 @@ import seedu.rc4hdb.model.venues.exceptions.VenueNotFoundException;
 /**
  * Adds a booking to the Venue.
  */
-public class BookCommand implements ModelCommand {
+public class BookCommand extends VenueCommand implements ModelCommand {
 
     public static final String COMMAND_WORD = "book";
 
@@ -52,7 +52,8 @@ public class BookCommand implements ModelCommand {
     /**
      * Creates an BookCommand to add the specified {@code Booking}
      */
-    public BookCommand(Index residentIndex, BookingDescriptor bookingDescriptor) {
+    public BookCommand(Index residentIndex, VenueName venueName, BookingDescriptor bookingDescriptor) {
+        super(venueName);
         requireAllNonNull(residentIndex, bookingDescriptor);
         this.residentIndex = residentIndex;
         this.bookingDescriptor = new BookingDescriptor(bookingDescriptor);

@@ -1,4 +1,4 @@
-package seedu.rc4hdb.logic.commands.storagecommands.filecommands;
+package seedu.rc4hdb.logic.commands.filecommands;
 
 import java.nio.file.Path;
 import java.util.Collection;
