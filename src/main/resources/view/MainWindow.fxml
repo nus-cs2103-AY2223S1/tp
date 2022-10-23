@@ -50,35 +50,35 @@
         </StackPane>
 
         <SplitPane dividerPositions="0.5" VBox.vgrow="ALWAYS">
-          <TabPane fx:id="dataPanelsTabPanes" minWidth="340" prefWidth="340" styleClass="pane-with-border"
-                   tabClosingPolicy="UNAVAILABLE" VBox.vgrow="ALWAYS">
-            <Tab fx:id="personListPanelTab" styleClass="cell_big_label" text="Contact details">
-              <!--PersonList-->
-              <VBox fx:id="personList" styleClass="pane-with-border" minWidth="340" prefWidth="340"
-                    VBox.vgrow="ALWAYS">
-                <padding>
-                  <Insets top="10" right="10" bottom="10" left="10"/>
-                </padding>
-                <StackPane fx:id="personListPanelPlaceholder" VBox.vgrow="ALWAYS"/>
-              </VBox>
-            </Tab>
-            <Tab fx:id="assignmentListPanelTab" styleClass="cell_big_label" text="Assignments">
-              <!--AssignmentList-->
-              <VBox fx:id="assignmentList" styleClass="pane-with-border" minWidth="340" prefWidth="340"
-                    VBox.vgrow="ALWAYS">
-                <padding>
-                  <Insets top="10" right="10" bottom="10" left="10"/>
-                </padding>
-                <StackPane fx:id="assignmentListPanelPlaceholder" VBox.vgrow="ALWAYS"/>
-              </VBox>
-            </Tab>
-          </TabPane>
+          <VBox fx:id="dataPanelsTabPaneBox" minWidth="340" prefWidth="340" styleClass="pane-with-border" VBox.vgrow="ALWAYS">
+            <TextField alignment="CENTER" editable="False" text="Contacts" />
+            <padding>
+              <Insets top="7" right="10" bottom="7" left="10"/>
+            </padding>
+            <TabPane fx:id="dataPanelsTabPanes" styleClass="pane-with-border"
+                     tabClosingPolicy="UNAVAILABLE" VBox.vgrow="ALWAYS">
+              <Tab fx:id="personListPanelTab" styleClass="cell_big_label" text="Contact details">
+                <!--PersonList-->
+                <VBox fx:id="personList" styleClass="pane-with-border" minWidth="340" prefWidth="340"
+                      VBox.vgrow="ALWAYS">
+                  <StackPane fx:id="personListPanelPlaceholder" VBox.vgrow="ALWAYS"/>
+                </VBox>
+              </Tab>
+              <Tab fx:id="assignmentListPanelTab" styleClass="cell_big_label" text="Assignments">
+                <!--AssignmentList-->
+                <VBox fx:id="assignmentList" styleClass="pane-with-border" minWidth="340" prefWidth="340"
+                      VBox.vgrow="ALWAYS">
+                  <StackPane fx:id="assignmentListPanelPlaceholder" VBox.vgrow="ALWAYS"/>
+                </VBox>
+              </Tab>
+            </TabPane>
+          </VBox>
 
           <VBox fx:id="groupList" minWidth="340" prefWidth="340" styleClass="pane-with-border" VBox.vgrow="ALWAYS">
             <TextField alignment="CENTER" editable="False" text="Groups" />
             <StackPane fx:id="groupListPanelPlaceholder" VBox.vgrow="ALWAYS" />
             <padding>
-              <Insets bottom="10" left="10" right="10" top="10" />
+              <Insets bottom="7" left="10" right="10" top="7" />
             </padding>
 
           </VBox>
