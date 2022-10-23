@@ -252,6 +252,9 @@ table {
   border-collapse: collapse;
   border: 1px solid $table-border-color;
   tr {
+    &:nth-child(odd) {
+      background-color: white;
+    }
     &:nth-child(even) {
       background-color: $table-zebra-color;
     }
