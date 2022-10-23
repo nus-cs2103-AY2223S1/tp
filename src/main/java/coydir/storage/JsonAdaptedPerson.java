@@ -13,6 +13,7 @@ import coydir.commons.exceptions.IllegalValueException;
 import coydir.model.person.Address;
 import coydir.model.person.Email;
 import coydir.model.person.EmployeeId;
+import coydir.model.person.Leave;
 import coydir.model.person.Name;
 import coydir.model.person.Person;
 import coydir.model.person.Phone;
@@ -32,7 +33,11 @@ class JsonAdaptedPerson {
     private final String email;
     private final String position;
     private final String address;
+    private final String leave;
+    private final String leaveLeft;
+
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
+    private final List<JsonAdaptedLeave> leaveTaken = new ArrayList<>();
 
     /**
      * Constructs a {@code JsonAdaptedPerson} with the given person details.
@@ -41,15 +46,22 @@ class JsonAdaptedPerson {
     public JsonAdaptedPerson(@JsonProperty("name") String name, @JsonProperty("employeeId") String employeeId,
             @JsonProperty("phone") String phone, @JsonProperty("email") String email,
             @JsonProperty("position") String position, @JsonProperty("address") String address,
-            @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
+            @JsonProperty("leave") String leave, @JsonProperty("leaveLeft") String leaveLeft,
+            @JsonProperty("tagged") List<JsonAdaptedTag> tagged,
+            @JsonProperty("leaveTaken") List<JsonAdaptedLeave> leaveTaken) {
         this.name = name;
         this.employeeId = employeeId;
         this.phone = phone;
         this.email = email;
         this.position = position;
         this.address = address;
+        this.leave = leave;
         if (tagged != null) {
             this.tagged.addAll(tagged);
+        }
+        this.leaveLeft = leaveLeft;
+        if (leaveTaken != null) {
+            this.leaveTaken.addAll(leaveTaken);
         }
     }
 
@@ -63,8 +75,13 @@ class JsonAdaptedPerson {
         email = source.getEmail().value;
         position = source.getPosition().value;
         address = source.getAddress().value;
+        leave = String.valueOf(source.getTotalNumberOfLeaves());
         tagged.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
+                .collect(Collectors.toList()));
+        leaveLeft = String.valueOf(source.getLeavesLeft());
+        leaveTaken.addAll(source.getLeaves().stream()
+                .map(JsonAdaptedLeave::new)
                 .collect(Collectors.toList()));
     }
 
@@ -77,6 +94,11 @@ class JsonAdaptedPerson {
         final List<Tag> personTags = new ArrayList<>();
         for (JsonAdaptedTag tag : tagged) {
             personTags.add(tag.toModelType());
+        }
+
+        final List<Leave> personLeaves = new ArrayList<>();
+        for (JsonAdaptedLeave leave : leaveTaken) {
+            personLeaves.add(leave.toModelType());
         }
 
         if (name == null) {
@@ -129,8 +151,20 @@ class JsonAdaptedPerson {
         }
         final Address modelAddress = new Address(address);
 
+        if (leave == null) {
+            throw new IllegalValueException("FAIL");
+        }
+        final int modelLeave = Integer.valueOf(leave);
+
         final Set<Tag> modelTags = new HashSet<>(personTags);
-        return new Person(modelName, modelEmployeeId, modelPhone, modelEmail, modelPosition, modelAddress, modelTags);
+        final Set<Leave> modelLeaveTaken = new HashSet<>(personLeaves);
+        Person p = new Person(modelName, modelEmployeeId, modelPhone, modelEmail,
+                modelPosition, modelAddress, modelTags, modelLeave);
+        p.setLeavesLeft(Integer.valueOf(leaveLeft));
+        for (Leave l : modelLeaveTaken) {
+            p.addLeave(l);
+        }
+        return p;
     }
 
 }

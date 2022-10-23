@@ -3,6 +3,7 @@ package coydir.logic.parser;
 import static coydir.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static coydir.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static coydir.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static coydir.logic.parser.CliSyntax.PREFIX_LEAVE;
 import static coydir.logic.parser.CliSyntax.PREFIX_NAME;
 import static coydir.logic.parser.CliSyntax.PREFIX_PHONE;
 import static coydir.logic.parser.CliSyntax.PREFIX_POSITION;
@@ -36,7 +37,7 @@ public class AddCommandParser implements Parser<AddCommand> {
     public AddCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL,
-                        PREFIX_POSITION, PREFIX_ADDRESS, PREFIX_TAG);
+                        PREFIX_POSITION, PREFIX_ADDRESS, PREFIX_LEAVE, PREFIX_TAG);
 
         if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_POSITION)
                 || !argMultimap.getPreamble().isEmpty()) {
@@ -50,6 +51,7 @@ public class AddCommandParser implements Parser<AddCommand> {
         Address address = new Address().getNullAddress();
         Set<Tag> tagList = new HashSet<>();
         EmployeeId employeeId = new EmployeeId();
+        int numberOfLeaves = 14;
 
         if (argMultimap.getValue(PREFIX_PHONE).isPresent()) {
             phone = ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONE).get());
@@ -65,7 +67,10 @@ public class AddCommandParser implements Parser<AddCommand> {
             tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
         }
 
-        Person person = new Person(name, employeeId, phone, email, position, address, tagList);
+        if (!argMultimap.getAllValues(PREFIX_LEAVE).isEmpty()) {
+            numberOfLeaves = Integer.valueOf(ParserUtil.parseId(argMultimap.getValue(PREFIX_LEAVE).get()));
+        }
+        Person person = new Person(name, employeeId, phone, email, position, address, tagList, numberOfLeaves);
 
         return new AddCommand(person);
     }

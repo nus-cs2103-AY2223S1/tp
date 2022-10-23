@@ -8,7 +8,10 @@
       "email": "alice@example.com",
       "position": "Software Engineer",
       "address": "123, Jurong West Ave 6, #08-111",
-      "tagged": ["friends"]
+      "leave" : "14",
+      "leaveLeft" : "14",
+      "tagged": ["friends"],
+      "leaveTaken" : [ ]
     },
     {
       "name": "Benson Meier",
@@ -17,7 +20,10 @@
       "email": "johnd@example.com",
       "position": "Product Manager",
       "address": "311, Clementi Ave 2, #02-25",
-      "tagged": ["owesMoney", "friends"]
+      "leave" : "14",
+      "leaveLeft" : "14",
+      "tagged": ["owesMoney", "friends"],
+      "leaveTaken" : [ ]
     },
     {
       "name": "Carl Kurz",
@@ -26,7 +32,10 @@
       "email": "heinz@example.com",
       "position": "Fire Support Officer",
       "address": "wall street",
-      "tagged": []
+      "leave" : "14",
+      "leaveLeft" : "14",
+      "tagged": [],
+      "leaveTaken" : [ ]
     },
     {
       "name": "Daniel Meier",
@@ -35,7 +44,10 @@
       "email": "cornelia@example.com",
       "position": "Junior Research Analyst",
       "address": "10th street",
-      "tagged": ["friends"]
+      "leave" : "14",
+      "leaveLeft" : "14",
+      "tagged": ["friends"],
+      "leaveTaken" : [ ]
     },
     {
       "name": "Elle Meyer",
@@ -44,7 +56,10 @@
       "email": "werner@example.com",
       "position": "Coffee Maker",
       "address": "michegan ave",
-      "tagged": []
+      "leave" : "14",
+      "leaveLeft" : "14",
+      "tagged": [],
+      "leaveTaken" : [ ]
     },
     {
       "name": "Fiona Kunz",
@@ -53,7 +68,10 @@
       "email": "lydia@example.com",
       "position": "DevOps Lead",
       "address": "little tokyo",
-      "tagged": []
+      "leave" : "14",
+      "leaveLeft" : "14",
+      "tagged": [],
+      "leaveTaken" : [ ]
     },
     {
       "name": "George Best",
@@ -62,7 +80,10 @@
       "email": "anna@example.com",
       "position": "Senior Consultant Specialist",
       "address": "4th street",
-      "tagged": []
+      "leave" : "14",
+      "leaveLeft" : "14",
+      "tagged": [],
+      "leaveTaken" : [ ]
     }
   ]
 }

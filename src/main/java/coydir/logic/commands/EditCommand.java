@@ -96,6 +96,7 @@ public class EditCommand extends Command {
      */
     private static Person createEditedPerson(Person personToEdit, EditPersonDescriptor editPersonDescriptor) {
         assert personToEdit != null;
+        int currentLeaves = personToEdit.getTotalNumberOfLeaves();
 
         Name updatedName = editPersonDescriptor.getName().orElse(personToEdit.getName());
         Phone updatedPhone = editPersonDescriptor.getPhone().orElse(personToEdit.getPhone());
@@ -103,10 +104,14 @@ public class EditCommand extends Command {
         Position updatedPosition = editPersonDescriptor.getPosition().orElse(personToEdit.getPosition());
         Address updatedAddress = editPersonDescriptor.getAddress().orElse(personToEdit.getAddress());
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
+        int updatedLeaves = editPersonDescriptor.getLeaves().orElse(currentLeaves);
         EmployeeId employeeId = personToEdit.getEmployeeId();
 
-        return new Person(
-                updatedName, employeeId, updatedPhone, updatedEmail, updatedPosition, updatedAddress, updatedTags);
+        Person p = new Person(
+                updatedName, employeeId, updatedPhone, updatedEmail,
+                updatedPosition, updatedAddress, updatedTags, updatedLeaves);
+        p.setLeavesLeft(updatedLeaves - currentLeaves + currentLeaves);
+        return p;
     }
 
     @Override
@@ -137,6 +142,7 @@ public class EditCommand extends Command {
         private Email email;
         private Position position;
         private Address address;
+        private int totalNumberofLeaves;
         private Set<Tag> tags;
 
         public EditPersonDescriptor() {}
@@ -152,13 +158,18 @@ public class EditCommand extends Command {
             setPosition(toCopy.position);
             setAddress(toCopy.address);
             setTags(toCopy.tags);
+            setLeaves(toCopy.totalNumberofLeaves);
         }
 
         /**
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, phone, email, position, address, tags);
+            Integer temp = null;
+            if (totalNumberofLeaves > 0) {
+                temp = totalNumberofLeaves;
+            }
+            return CollectionUtil.isAnyNonNull(name, phone, email, position, address, tags, temp);
         }
 
         public void setName(Name name) {
@@ -199,6 +210,18 @@ public class EditCommand extends Command {
 
         public Optional<Address> getAddress() {
             return Optional.ofNullable(address);
+        }
+
+        public void setLeaves(int leaves) {
+            this.totalNumberofLeaves = leaves;
+        }
+
+        public Optional<Integer> getLeaves() {
+            Integer temp = null;
+            if (totalNumberofLeaves > 0) {
+                temp = totalNumberofLeaves;
+            }
+            return Optional.ofNullable(temp);
         }
 
         /**

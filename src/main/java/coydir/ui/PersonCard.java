@@ -43,6 +43,10 @@ public class PersonCard extends UiPart<Region> {
     @FXML
     private Label email;
     @FXML
+    private Label totalLeave;
+    @FXML
+    private Label leaveLeft;
+    @FXML
     private FlowPane tags;
 
     /**

@@ -6,7 +6,10 @@
       "phone": "9482424",
       "email": "invalid@email!3e",
       "position": "Chief of Nothing",
-      "address": "4th street"
+      "leave" : "14",
+      "leaveLeft" : "14",
+      "address": "4th street",
+      "leaveTaken" : [ ]
     }
   ]
 }

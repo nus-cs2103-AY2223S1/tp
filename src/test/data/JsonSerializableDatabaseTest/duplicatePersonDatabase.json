@@ -7,7 +7,10 @@
       "email": "alice@example.com",
       "position": "Recruiter",
       "address": "123, Jurong West Ave 6, #08-111",
-      "tagged": ["friends"]
+      "leave" : "14",
+      "leaveLeft" : "14",
+      "tagged": ["friends"],
+      "leaveTaken" : [ ]
     },
     {
       "name": "Alice Pauline",
@@ -15,7 +18,9 @@
       "phone": "94351253",
       "email": "pauline@example.com",
       "position": "Recruiter",
-      "address": "4th street"
+      "address": "4th street",
+      "leave" : "14",
+      "leaveLeft" : "14"
     }
   ]
 }
