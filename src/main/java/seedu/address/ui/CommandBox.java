@@ -8,6 +8,7 @@ import javafx.scene.layout.Region;
 import seedu.address.logic.Logic;
 import seedu.address.logic.commands.AddAppointmentCommand;
 import seedu.address.logic.commands.AddCommand;
+import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.DeleteAppointmentCommand;
 import seedu.address.logic.commands.DeleteCommand;
@@ -50,6 +51,9 @@ public class CommandBox extends UiPart<Region> {
             case DOWN:
                 String nextCommand = logic.getNextInCommandHistory();
                 commandTextField.setText(nextCommand);
+                if (nextCommand.equals("")) {
+                    resultDisplay.setFeedbackToUser("");
+                }
                 event.consume();
                 break;
             }
@@ -81,6 +85,9 @@ public class CommandBox extends UiPart<Region> {
                 break;
             case ListCommand.COMMAND_WORD:
                 resultDisplay.setFeedbackToUser(ListCommand.MESSAGE_USAGE);
+                break;
+            case ClearCommand.COMMAND_WORD:
+                resultDisplay.setFeedbackToUser(ClearCommand.MESSAGE_USAGE);
                 break;
             case SortCommand.COMMAND_WORD:
                 resultDisplay.setFeedbackToUser(SortCommand.MESSAGE_USAGE);
