@@ -53,8 +53,6 @@ public class LogicManager implements Logic {
         } catch (IOException e) {
             logger.warning("Unable to save commandHistory");
         }
-        model.resetCommandHistoryIndex();
-
 
         try {
             storage.saveAddressBook(model.getAddressBook());

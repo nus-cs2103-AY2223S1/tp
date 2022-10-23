@@ -12,7 +12,7 @@ import java.util.List;
 public class CommandHistory implements ReadOnlyCommandHistory {
     private List<String> commandHistoryList = new ArrayList<>();
     private int currentIndex = 0;
-    private static final int MAX_COMMAND_HISTORY_SIZE = 20;
+    public static final int MAX_COMMAND_HISTORY_SIZE = 20;
 
     public CommandHistory() {
     }
@@ -42,6 +42,7 @@ public class CommandHistory implements ReadOnlyCommandHistory {
             commandHistoryList.remove(0);
         }
         commandHistoryList.add(commandInput);
+        resetCurrentIndexToBeyondMaxIndex();
     }
 
     public String getPrevCommand() {
@@ -71,6 +72,14 @@ public class CommandHistory implements ReadOnlyCommandHistory {
     public void resetCurrentIndexToBeyondMaxIndex() {
         // reset to max index + 1 to show empty string
         currentIndex = commandHistoryList.size();
+    }
+
+    public int getCurrentZeroBasedIndex() {
+        return currentIndex;
+    }
+
+    public int setCurrentZeroBasedIndex(int i) {
+        return currentIndex = i;
     }
 
     @Override
