@@ -35,7 +35,7 @@ public class ExportCommand extends Command {
         ObservableList<Person> displayedList = model.getFilteredPersonList();
 
         try {
-            Storage.saveDisplayedList(displayedList, filePath);
+            Storage.exportDisplayedList(displayedList, filePath);
         } catch (IOException ioe) {
             throw new CommandException("An error has occurred during exporting. Please try again.");
         }

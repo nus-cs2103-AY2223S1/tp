@@ -38,12 +38,12 @@ public interface Storage extends AddressBookStorage, UserPrefsStorage {
     void saveAddressBook(ReadOnlyAddressBook addressBook) throws IOException;
 
     /**
-     * Saves the given {@link ObservableList} as a JSON file to the storage at filePathString.
+     * Exports the given {@link ObservableList} as a JSON file to the storage at filePathString.
      * @param displayedList cannot be null.
      * @param filePathString cannot be null.
      * @throws IOException if there was any problem writing to the file.
      */
-    static void saveDisplayedList(ObservableList<Person> displayedList, String filePathString) throws IOException {
+    static void exportDisplayedList(ObservableList<Person> displayedList, String filePathString) throws IOException {
         requireNonNull(displayedList);
         requireNonNull(filePathString);
 
