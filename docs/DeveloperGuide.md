@@ -244,11 +244,34 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 _{more aspects and alternatives to be added}_
 
-### \[Proposed\] Personalising the UI
+### UI Design
 
 #### Proposed Implementation
 
+The proposed design for the UI is to follow the [Material Design system](https://m2.material.io/design/) as much as possible.
+However due to limitations of JavaFx, we will only be mainly focusing on adhering the color system
+and typography, with the other foundations serving more of a guide for future component designs.
+
+The main stylesheet can be found under `resources/view/LightTheme.css`. The primary colour chosen is `#9837d9`, with the full colour palette shown below.
+
+![colorpalette](images/colorpalette.jpg)
+
 #### Design considerations:
+
+- **Aspect: The application only supports a light theme**
+
+* **Alternative 1 (current choice):** Only implement a light theme.
+    * Pros:
+        * Most applications are light themed by default, thus only support light theme for consistency.
+        * Only need to maintain one stylesheet.
+    * Cons:
+        * User may have enable system-wide dark mode, so the light theme of Rapportbook may not blend in with other applications nicely.
+* **Alternative 2:** Implement both light theme and dark theme and follow user's system light/dark mode setting.
+    * Pros:
+        * Current theme will blend in with other applications on the system nicely.
+    * Cons:
+        * Extra manpower is required to maintain two different stylesheets.
+        * [There is still no official way to detect system-wide light/dark mode setting in Java yet without the use of a third-party library.](https://stackoverflow.com/a/60323132)
 
 ### Remark field for entries
 
