@@ -48,8 +48,8 @@ public class Team {
      * Creates a team with certain preset {@code task} and {@code member}.
      * 
      * @param name A valid team name.
-     * @param tasks An UniqueTaskList.
-     * @param members An UniquePersonList.
+     * @param tasks A UniqueTaskList.
+     * @param members A UniquePersonList.
      */
     public Team(Name name, UniqueTaskList tasks, UniquePersonList members) {
         this.name = name;
