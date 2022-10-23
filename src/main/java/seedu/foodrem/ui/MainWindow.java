@@ -4,10 +4,12 @@ import java.util.logging.Logger;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.Node;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextInputControl;
 import javafx.scene.input.KeyCombination;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 import seedu.foodrem.commons.core.GuiSettings;
@@ -99,16 +101,17 @@ public class MainWindow extends UiPart<Stage> {
      */
     void fillInnerParts() {
         itemListPanel = new ItemListPanel(logic.getFilteredSortedItemList());
-        itemListPanelPlaceholder.getChildren().add(itemListPanel.getRoot());
+        place(itemListPanelPlaceholder, itemListPanel);
 
         resultDisplay = new ResultDisplay();
-        resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
+        place(resultDisplayPlaceholder, resultDisplay);
 
-        StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getFoodRemFilePath());
-        statusbarPlaceholder.getChildren().add(statusBarFooter.getRoot());
+        place(statusbarPlaceholder, new StatusBarFooter(logic.getFoodRemFilePath()));
+        place(commandBoxPlaceholder, new CommandBox(this::executeCommand));
+    }
 
-        CommandBox commandBox = new CommandBox(this::executeCommand);
-        commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
+    private <T extends Node> void place(Pane target, UiPart<T> item) {
+        target.getChildren().add(item.getRoot());
     }
 
     /**
