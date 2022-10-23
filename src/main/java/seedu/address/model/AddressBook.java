@@ -65,6 +65,14 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
+     * Replaces the contents of the tag list with {@code tags}.
+     * {@code tags} must not contain duplicate tags.
+     */
+    public void setTags(List<Tag> tags) {
+        this.tags.setTags(tags);
+    }
+
+    /**
      * Resets the existing data of this {@code AddressBook} with {@code newData}.
      */
     public void resetData(ReadOnlyAddressBook newData) {
@@ -214,6 +222,41 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     public void sortById() {
         tasks.sortById();
+    }
+
+    /**
+     * Adds a tag to the address book.
+     * The tag must not already exist in the address book.
+     */
+    public void addTag(Tag tag) {
+        tags.add(tag);
+    }
+
+    /**
+     * Removes {@code key} from this {@code AddressBook}.
+     * {@code key} must exist in the address book.
+     */
+    public void removeTag(Tag key) {
+        tags.remove(key);
+    }
+
+    /**
+     * Returns true if a tag with the same description as {@code tag} exists in the address book.
+     */
+    public boolean hasTag(Tag tag) {
+        requireNonNull(tag);
+        return tags.contains(tag);
+    }
+
+    /**
+     * Replaces the given tag {@code target} in the list with {@code editedTag}.
+     * {@code target} must exist in the address book.
+     * The tag description of {@code editedTag} must not be the same as another existing tag in the address book.
+     */
+    public void setTag(Tag target, Tag editedTag) {
+        requireNonNull(editedTag);
+
+        tags.setTag(target, editedTag);
     }
 
     @Override

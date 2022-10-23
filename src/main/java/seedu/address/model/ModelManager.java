@@ -208,12 +208,41 @@ public class ModelManager implements Model {
     }
 
     //=========== Tag List Accessors =============================================================
+    @Override
+    public void addTag(Tag tag) {
+        addressBook.addTag(tag);
+    }
+
+    @Override
+    public void deleteTag(Tag target) {
+        addressBook.removeTag(target);
+    }
+
+    @Override
+    public boolean hasTag(Tag tag) {
+        requireNonNull(tag);
+        return addressBook.hasTag(tag);
+    }
+
+    @Override
+    public void setTag(Tag target, Tag editedTag) {
+        requireAllNonNull(target, editedTag);
+
+        addressBook.setTag(target, editedTag);
+    }
+
+    @Override
+    public void updateFilteredTagList(Predicate<Tag> predicate) {
+        requireNonNull(predicate);
+        filteredTags.setPredicate(predicate);
+    }
+
     /**
      * Returns an unmodifiable view of the list of {@code Tag} backed by the internal list of
      * {@code versionedAddressBook}
      */
     @Override
-    public ObservableList<Tag> getTagList() {
-        return addressBook.getTagList();
+    public ObservableList<Tag> getFilteredTagList() {
+        return filteredTags;
     }
 }

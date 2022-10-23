@@ -13,6 +13,7 @@ public class Tag {
     public static final String VALIDATION_REGEX = "\\p{Alnum}+";
 
     public final String tagName;
+    public int count;
 
     /**
      * Constructs a {@code Tag}.
@@ -23,6 +24,7 @@ public class Tag {
         requireNonNull(tagName);
         checkArgument(isValidTagName(tagName), MESSAGE_CONSTRAINTS);
         this.tagName = tagName;
+        this.count = 1;
     }
 
     /**
@@ -34,6 +36,20 @@ public class Tag {
 
     public String getName() {
         return this.tagName;
+    }
+
+    /**
+     * Adds to counter every time this tag is added to a new contact or task.
+     */
+    public void addToCount() {
+        this.count++;
+    }
+
+    /**
+     * Decreases count every time this tag is removed from a contact or task.
+     */
+    public void removeFromCount() {
+        this.count--;
     }
 
     /**

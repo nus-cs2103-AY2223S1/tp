@@ -19,6 +19,9 @@ public interface Model {
     /** {@code Predicate} that always evaluate to true */
     Predicate<Task> PREDICATE_SHOW_ALL_TASKS = unused -> true;
 
+    /** {@code Predicate} that always evaluate to true */
+    Predicate<Tag> PREDICATE_SHOW_ALL_TAGS = unused -> true;
+
     /**
      * Replaces user prefs data with the data in {@code userPrefs}.
      */
@@ -114,6 +117,36 @@ public interface Model {
      */
     void setTask(Task target, Task editedTask);
 
+    /**
+     * Adds a tag to the TagList.
+     * @param tag The tag to be added.
+     */
+    void addTag(Tag tag);
+
+    /**
+     * Deletes a tag from the TagList.
+     * @param target the tag to be deleted
+     */
+    void deleteTag(Tag target);
+
+    /**
+     * Returns true if a tag with the same description as {@code tag} exists in the address book.
+     */
+    boolean hasTag(Tag tag);
+
+    /**
+     * Replaces the given tag {@code target} with {@code editedTag}.
+     * {@code target} must exist in the address book.
+     * The tag description of {@code editedTag} must not be the same as another existing tag in the address book.
+     */
+    void setTag(Tag target, Tag editedTag);
+
+    /**
+     * Updates the filter of the filtered tag list to filter by the given {@code predicate}.
+     * @throws NullPointerException if {@code predicate} is null.
+     */
+    void updateFilteredTagList(Predicate<Tag> predicate);
+
     /** Returns an unmodifiable view of the filtered task list */
     ObservableList<Task> getFilteredTaskList();
 
@@ -130,5 +163,5 @@ public interface Model {
     void sortById();
 
     /** Returns an unmodifiable view of the filtered tag list */
-    ObservableList<Tag> getTagList();
+    ObservableList<Tag> getFilteredTagList();
 }

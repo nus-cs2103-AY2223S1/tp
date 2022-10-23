@@ -68,6 +68,8 @@ public class UniqueTagList implements Iterable<Tag> {
         internalList.set(index, editedTag);
     }
 
+
+
     /**
      * Removes the equivalent tag from the list.
      * The tag must exist in the list.

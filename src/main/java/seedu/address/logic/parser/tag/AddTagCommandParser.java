@@ -8,6 +8,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_TASK;
 
 import java.util.Collection;
 import java.util.Collections;
+import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 
@@ -55,13 +56,15 @@ public class AddTagCommandParser implements Parser<AddTagCommand> {
 
         EditTaskDescriptor editTaskDescriptor = new EditTaskDescriptor();
         parseTagsForEdit(argMultimap.getAllValues(PREFIX_TAG)).ifPresent(editTaskDescriptor::setTags);
+        List<String> tagStrings = argMultimap.getAllValues(PREFIX_TAG);
+
 
         if (!editPersonDescriptor.isAnyFieldEdited() && !editTaskDescriptor.isAnyFieldEdited()) {
             throw new ParseException(AddTagCommand.MESSAGE_TAG_NOT_ADDED);
         }
 
         return new AddTagCommand(contactIndex, taskIndex, editPersonDescriptor, editTaskDescriptor,
-            addTagToContact, addTagToTask);
+            addTagToContact, addTagToTask, tagStrings);
     }
 
     /**
