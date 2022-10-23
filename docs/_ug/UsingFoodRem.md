@@ -1,5 +1,6 @@
 <!-- markdownlint-disable-file first-line-h1 -->
 Here is an overview of what FoodRem consists of and how you can perform a command.
+
 ### Items and Tags
 
 {% include_relative _ug/ItemsTags.md %}
@@ -11,10 +12,10 @@ You will encounter FoodRem commands throughout this User Guide. Before you delve
 Here is an example:
 ![CommandExample](images/CommandExample.png)
 A command consists of:
-1. Command Word to tell FoodRem what action you wish to execute. These actions are covered in [Commands](#commands)
-2. [Flags](#flags) to distinguish parameters
-3. [Placeholders](#placeholders) that you can replace with your parameter inputs
 
+1. Command Word to tell FoodRem what action you wish to execute. These actions are covered in [Commands](#commands)
+1. [Flags](#flags) to distinguish parameters
+1. [Placeholders](#placeholders) that you can replace with your parameter inputs
 
 ### Flags
 
@@ -30,7 +31,6 @@ Flags are delimiters that enable FoodRem to distinguish different parameters wit
 | exp/  | EXPIRY_DATE           |
 | p/    | PRICE                 |
 | r/    | REMARKS               |
-
 
 ### Placeholders
 
