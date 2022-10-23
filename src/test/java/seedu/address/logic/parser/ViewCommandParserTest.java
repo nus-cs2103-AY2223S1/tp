@@ -36,8 +36,8 @@ public class ViewCommandParserTest {
         PersonContainsAttributePredicate testPredicate =
                 new PersonContainsAttributePredicate(new ArrayList<>(), new ArrayList<>(),
                         new ArrayList<>(), new ArrayList<>(), List.of("male"), new ArrayList<>(),
-                        List.of("chinese"), new ArrayList<>(), new HashSet<>(),
-                        new HashSet<>());
+                        List.of("chinese"), new ArrayList<>(), new ArrayList<>(),
+                        new ArrayList<>());
         ViewCommand expectedViewCommand = new ViewCommand(testPredicate);
 
         assertParseSuccess(parser, " g/male ra/chinese", expectedViewCommand);

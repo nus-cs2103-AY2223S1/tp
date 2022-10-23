@@ -17,6 +17,9 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import seedu.address.logic.commands.ViewCommand;
@@ -58,9 +61,8 @@ public class ViewCommandParser implements Parser<ViewCommand> {
         List<String> birthdateList = getKeywordsAsList(argMultimap.getValue(PREFIX_BIRTHDATE));
         List<String> raceList = getKeywordsAsList(argMultimap.getValue(PREFIX_RACE));
         List<String> religionList = getKeywordsAsList(argMultimap.getValue(PREFIX_RELIGION));
-
-        Set<Survey> surveyList = ParserUtil.parseSurveys(argMultimap.getAllValues(PREFIX_SURVEY));
-        Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
+        List<String> surveyList = getKeywordsAsList(argMultimap.getValue(PREFIX_SURVEY));
+        List<String> tagList = getKeywordsAsList(argMultimap.getValue(PREFIX_TAG));
 
         PersonContainsAttributePredicate predicate = new PersonContainsAttributePredicate(nameList, phoneList,
                 emailList, addressList, genderList, birthdateList, raceList, religionList, surveyList,
@@ -70,14 +72,27 @@ public class ViewCommandParser implements Parser<ViewCommand> {
     }
 
     /**
-     * Parses the given (possibly empty) {@code attributeStringOptional} of a given prefix.
+     * Parses the given (possibly empty) {@code Optional<String>} of a given prefix.
      * @return A list of {@code String} of keywords associated to the given prefix.
      */
     private static List<String> getKeywordsAsList(Optional<String> attributeStringOptional) {
         return attributeStringOptional
-                .map(arg -> arg.trim().split("\\s+"))
-                .map(Arrays::asList)
+                .map(ViewCommandParser::parseWithQuotations)
                 .orElse(new ArrayList<>());
+    }
+
+    /**
+     * Parses the given {@code String} of a given prefix.
+     * @return A list of {@code String} of keywords associated to the given prefix, taking into account any quotation
+     * marks used.
+     */
+    //Solution below adapted from https://stackoverflow.com/a/7804472
+    private static List<String> parseWithQuotations(String input) {
+        ArrayList<String> parsedArray = new ArrayList<>();
+        Matcher m = Pattern.compile("\\s*([^\"]\\S*|\".+?\")\\s*").matcher(input);
+        while (m.find())
+            parsedArray.add(m.group(1).replace("\"", ""));
+        return parsedArray;
     }
 
     /**

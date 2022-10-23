@@ -175,6 +175,15 @@ Views the attributes of all surveyees with some specified attributes.
 
 Format: `[n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [g/GENDER] [b/BIRTHDATE] [ra/RACE] [re/RELIGION] [s/NAME OF SURVEY]`
 
+- The search is case-insensitive. e.g `alex` will match `Alex`
+- The order of the keywords does not matter. e.g. `Alex Tan` will match `Tan Alex`
+- For all attributes except `email` and `birthdate`, only full words will be matched e.g. `Ale` will not match `Alex`
+- Use quotes (") to `view` persons whose attributes contain an exact phrase.
+- For phrases not in quotes, `view` lists all persons whose attributes contain any of the words specified.
+    e.g. `view n/Jane Doe "Alex Tan"` lists all persons whose names contain any of the following: `Jane`, `Doe` or `Alex Tan`.
+- When using `view` on an attribute with multiple objects (e.g. `Survey` or `Tag`), `view` performs the search on each object.
+- When using `view` on any attribute, only the last prefix is parsed. e.g. `view ra/chinese ra/malay g/male g/female` lists female malay persons, ignores `ra/chinese` and `g/male`.
+
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 Fields must be non-empty.
 </div>
@@ -183,8 +192,9 @@ Examples:
 
 ```
 view g/female ra/chinese re/christian
-> Index: 15 Jane Doe 91234567 jane_doe@example.com, …
-> Index: 19 Jenette Doe 81234567 jenette_doe@example.com, …
+> 2 persons listed!
+> Jane Doe 91234567 jane_doe@example.com, …
+> Jenette Doe 81234567 jenette_doe@example.com, …
 ```
 
 

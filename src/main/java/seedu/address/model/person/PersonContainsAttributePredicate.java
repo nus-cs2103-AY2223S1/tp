@@ -1,11 +1,11 @@
 package seedu.address.model.person;
 
+import java.util.Arrays;
 import java.util.List;
-import java.util.Set;
-import java.util.function.Predicate;
 
-import seedu.address.commons.util.StringUtil;
-import seedu.address.model.tag.Tag;
+import java.util.function.Predicate;
+import java.util.stream.Collectors;
+
 
 /**
  * Tests that a {@code Person}'s attributes matches any of the keywords given for each attribute.
@@ -20,16 +20,16 @@ public class PersonContainsAttributePredicate implements Predicate<Person> {
     private final List<String> birthdateList;
     private final List<String> raceList;
     private final List<String> religionList;
-    private final Set<Survey> surveysList;
-    private final Set<Tag> tagsList;
+    private final List<String> surveysList;
+    private final List<String> tagsList;
 
     /**
      * Every field must be non-null.
      */
     public PersonContainsAttributePredicate(List<String> nameList, List<String> phoneList, List<String> emailList,
                                         List<String> addressList, List<String> genderList, List<String> birthdateList,
-                                        List<String> raceList, List<String> religionList, Set<Survey> surveysList,
-                                        Set<Tag> tagsList) {
+                                        List<String> raceList, List<String> religionList, List<String> surveysList,
+                                        List<String> tagsList) {
 
         this.nameList = nameList;
         this.phoneList = phoneList;
@@ -47,32 +47,48 @@ public class PersonContainsAttributePredicate implements Predicate<Person> {
     public boolean test(Person person) {
 
         boolean containsName = nameList.isEmpty() || nameList.stream()
-                .anyMatch(doesKeywordMatchWith(person.getName().fullName));
+                .anyMatch(containsIgnoreCase(person.getName().toString()));
         boolean containsPhone = phoneList.isEmpty() || phoneList.stream()
-                .anyMatch(doesKeywordMatchWith(person.getPhone().value));
+                .anyMatch(containsIgnoreCase(person.getPhone().toString()));
         boolean containsEmail = emailList.isEmpty() || emailList.stream()
-                .anyMatch(doesKeywordMatchWith(person.getEmail().value));
+                .anyMatch(email -> person.getEmail().toString().contains(email));
         boolean containsAddress = addressList.isEmpty() || addressList.stream()
-                .anyMatch(doesKeywordMatchWith(person.getAddress().value));
+                .anyMatch(containsIgnoreCase(person.getAddress().toString()));
         boolean containsGender = genderList.isEmpty() || genderList.stream()
-                .anyMatch(doesKeywordMatchWith(person.getGender().gender));
+                .anyMatch(containsIgnoreCase(person.getGender().toString()));
         boolean containsBirthdate = birthdateList.isEmpty() || birthdateList.stream()
-                .anyMatch(keyword -> person.getBirthdate().toString().contains(keyword));
+                .anyMatch(birthdate -> person.getBirthdate().toString().contains(birthdate));
         boolean containsRace = raceList.isEmpty() || raceList.stream()
-                .anyMatch(doesKeywordMatchWith(person.getRace().race));
+                .anyMatch(containsIgnoreCase(person.getRace().toString()));
         boolean containsReligion = religionList.isEmpty() || religionList.stream()
-                .anyMatch(doesKeywordMatchWith(person.getReligion().religion));
-
-        boolean containsSurvey = surveysList.isEmpty() || person.getSurveys().containsAll(surveysList);
-        boolean containsTags = tagsList.isEmpty() || person.getTags().containsAll(tagsList);
+                .anyMatch(containsIgnoreCase(person.getReligion().toString()));
+        boolean containsSurvey = surveysList.isEmpty() || surveysList.stream()
+                .anyMatch(keyword -> person.getSurveys().stream()
+                        .flatMap(survey -> {
+                            String surveyName = survey.toString()
+                                    .replaceAll("\\[", "")
+                                    .replaceAll("\\]", "");
+                            return Arrays.stream(surveyName.split("\\s+"));
+                        })
+                        .anyMatch(keyword::equalsIgnoreCase));
+        boolean containsTags = tagsList.isEmpty() || tagsList.stream()
+                .anyMatch(keyword -> person.getTags().stream()
+                        .flatMap(tag -> {
+                            String tagName = tag.toString()
+                                    .replaceAll("\\[", "")
+                                    .replaceAll("\\]", "");
+                            return Arrays.stream(tagName.split("\\s+"));
+                        })
+                        .anyMatch(keyword::equalsIgnoreCase));
 
         return (containsName && containsPhone && containsEmail && containsAddress && containsGender
                 && containsBirthdate && containsRace && containsReligion && containsSurvey
                 && containsTags);
     }
 
-    public Predicate<String> doesKeywordMatchWith(String targetString) {
-        return keyword -> StringUtil.containsWordIgnoreCase(targetString, keyword);
+    public static Predicate<String> containsIgnoreCase(String targetString) {
+        return keyword -> Arrays.stream(targetString.split("\\s+"))
+                .anyMatch(targetWord -> targetWord.equalsIgnoreCase(keyword));
     }
 
     @Override

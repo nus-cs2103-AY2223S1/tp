@@ -34,13 +34,13 @@ public class ViewCommandTest {
         PersonContainsAttributePredicate firstPredicate =
                 new PersonContainsAttributePredicate(new ArrayList<>(), new ArrayList<>(),
                         new ArrayList<>(), new ArrayList<>(), List.of("male"), new ArrayList<>(),
-                        new ArrayList<>(), new ArrayList<>(), new HashSet<>(),
-                        new HashSet<>());
+                        new ArrayList<>(), new ArrayList<>(), new ArrayList<>(),
+                        new ArrayList<>());
         PersonContainsAttributePredicate secondPredicate =
                 new PersonContainsAttributePredicate(new ArrayList<>(), new ArrayList<>(),
                         new ArrayList<>(), new ArrayList<>(), List.of("female"), new ArrayList<>(),
-                        new ArrayList<>(), new ArrayList<>(), new HashSet<>(),
-                        new HashSet<>());
+                        new ArrayList<>(), new ArrayList<>(), new ArrayList<>(),
+                        new ArrayList<>());
 
         ViewCommand viewFirstCommand = new ViewCommand(firstPredicate);
         ViewCommand viewSecondCommand = new ViewCommand(secondPredicate);
@@ -70,8 +70,8 @@ public class ViewCommandTest {
         PersonContainsAttributePredicate testPredicate =
                 new PersonContainsAttributePredicate(new ArrayList<>(), new ArrayList<>(),
                         new ArrayList<>(), new ArrayList<>(), List.of("r4nd0m_inV4l1d_g3nd3r"), new ArrayList<>(),
-                        new ArrayList<>(), new ArrayList<>(), new HashSet<>(),
-                        new HashSet<>());
+                        new ArrayList<>(), new ArrayList<>(), new ArrayList<>(),
+                        new ArrayList<>());
         ViewCommand command = new ViewCommand(testPredicate);
         expectedModel.updateFilteredPersonList(testPredicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
@@ -84,8 +84,8 @@ public class ViewCommandTest {
         PersonContainsAttributePredicate testPredicate =
                 new PersonContainsAttributePredicate(new ArrayList<>(), new ArrayList<>(),
                         new ArrayList<>(), new ArrayList<>(), List.of("female"), new ArrayList<>(),
-                        new ArrayList<>(), List.of("christian"), new HashSet<>(),
-                        new HashSet<>());
+                        new ArrayList<>(), List.of("christian"), new ArrayList<>(),
+                        new ArrayList<>());
         ViewCommand command = new ViewCommand(testPredicate);
         expectedModel.updateFilteredPersonList(testPredicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
