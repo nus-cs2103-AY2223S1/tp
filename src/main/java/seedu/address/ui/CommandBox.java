@@ -14,6 +14,7 @@ import seedu.address.logic.commands.DeleteCommand;
 import seedu.address.logic.commands.EditAppointmentCommand;
 import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.FindCommand;
+import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.commands.SortCommand;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
@@ -63,7 +64,9 @@ public class CommandBox extends UiPart<Region> {
             if (newValue.length() == 1) {
                 resultDisplay.setFeedbackToUser("");
             }
-            switch (newValue) {
+            String trimmedText = newValue.trim();
+            String commandWord =  trimmedText.contains(" ") ? trimmedText.split(" ")[0] : trimmedText;
+            switch (commandWord) {
             case AddCommand.COMMAND_WORD:
                 resultDisplay.setFeedbackToUser(AddCommand.MESSAGE_USAGE);
                 break;
@@ -75,6 +78,9 @@ public class CommandBox extends UiPart<Region> {
                 break;
             case FindCommand.COMMAND_WORD:
                 resultDisplay.setFeedbackToUser(FindCommand.MESSAGE_USAGE);
+                break;
+            case ListCommand.COMMAND_WORD:
+                resultDisplay.setFeedbackToUser(ListCommand.MESSAGE_USAGE);
                 break;
             case SortCommand.COMMAND_WORD:
                 resultDisplay.setFeedbackToUser(SortCommand.MESSAGE_USAGE);
