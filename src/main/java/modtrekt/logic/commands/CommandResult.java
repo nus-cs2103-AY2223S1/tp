@@ -14,15 +14,25 @@ public class CommandResult {
     /** Help information should be shown to the user. */
     private final boolean showHelp;
 
+    /** Done information */
+    private final boolean doneCommand;
+
+    /** Undone information */
+    private final boolean undoneCommand;
+
     /** The application should exit. */
     private final boolean exit;
 
     /**
-     * Constructs a {@code CommandResult} with the specified fields.
+     * Constructs a {@code CommandResult} with the specified fields,
+     * other fields set to default value.
      */
-    public CommandResult(String feedbackToUser, boolean showHelp, boolean exit) {
+    public CommandResult(String feedbackToUser, boolean showHelp,
+                         boolean doneCommand, boolean undoneCommand, boolean exit) {
         this.feedbackToUser = requireNonNull(feedbackToUser);
         this.showHelp = showHelp;
+        this.doneCommand = doneCommand;
+        this.undoneCommand = undoneCommand;
         this.exit = exit;
     }
 
@@ -31,7 +41,15 @@ public class CommandResult {
      * and other fields set to their default value.
      */
     public CommandResult(String feedbackToUser) {
-        this(feedbackToUser, false, false);
+        this(feedbackToUser, false, false, false, false);
+    }
+
+    /**
+     * Constructs a {@code CommandResult} with the specified {@code feedbackToUser},
+     * and other fields set to their default value.
+     */
+    public CommandResult(String feedbackToUser, boolean doneCommand, boolean undoneCommand) {
+        this(feedbackToUser, false, doneCommand, undoneCommand, false);
     }
 
     public String getFeedbackToUser() {
@@ -41,7 +59,12 @@ public class CommandResult {
     public boolean isShowHelp() {
         return showHelp;
     }
-
+    public boolean isDoneCommand() {
+        return doneCommand;
+    }
+    public boolean isUndoneCommand() {
+        return undoneCommand;
+    }
     public boolean isExit() {
         return exit;
     }
@@ -60,12 +83,14 @@ public class CommandResult {
         CommandResult otherCommandResult = (CommandResult) other;
         return feedbackToUser.equals(otherCommandResult.feedbackToUser)
                 && showHelp == otherCommandResult.showHelp
+                && doneCommand == otherCommandResult.doneCommand
+                && undoneCommand == otherCommandResult.undoneCommand
                 && exit == otherCommandResult.exit;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(feedbackToUser, showHelp, exit);
+        return Objects.hash(feedbackToUser, showHelp, doneCommand, undoneCommand, exit);
     }
 
 }

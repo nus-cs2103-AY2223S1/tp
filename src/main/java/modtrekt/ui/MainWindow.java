@@ -188,6 +188,13 @@ public class MainWindow extends UiPart<Stage> {
             CommandResult commandResult = logic.execute(commandText);
             logger.info("Result: " + commandResult.getFeedbackToUser());
             resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
+            if (commandResult.isDoneCommand()) {
+                profileSidePanel.refresh("Done");
+            }
+
+            if (commandResult.isUndoneCommand()) {
+                profileSidePanel.refresh("Undone");
+            }
 
             if (commandResult.isShowHelp()) {
                 handleHelp();

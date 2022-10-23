@@ -2,9 +2,12 @@ package modtrekt.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 
+import java.util.stream.Stream;
+
 import com.beust.jcommander.Parameter;
 import com.beust.jcommander.Parameters;
 
+import javafx.collections.ObservableList;
 import modtrekt.logic.commands.exceptions.CommandException;
 import modtrekt.logic.parser.converters.ModCodeConverter;
 import modtrekt.model.Model;
@@ -17,6 +20,7 @@ import modtrekt.model.module.Module;
 @Parameters(commandDescription = "Marks a module as done.")
 public class UndoneModuleCommand extends Command {
     public static final String COMMAND_WORD = "undone";
+    private static int totalCredits;
 
     @Parameter(names = "-c", description = "Module code of the module to mark undone",
             required = true, converter = ModCodeConverter.class)
@@ -62,6 +66,30 @@ public class UndoneModuleCommand extends Command {
 
         // Undone the module.
         model.setModule(target, target.undone());
-        return new CommandResult("Marked module as undone.");
+        // Sum up credits.
+        refresh(model);
+        return new CommandResult("Marked module as undone.", false, true);
+    }
+
+    /**
+     * Counting the number of MC Completed.
+     * @param model
+     * @return totalCredits
+     */
+    private void refresh(Model model) {
+        // Sum up credits.
+        ObservableList<Module> modules = model.getModuleList().getModuleList();
+        Stream<Module> doneModules = modules.stream().filter(x -> x.isDone());
+        int totalCreditsDone = doneModules.reduce(0, (creditsResult, mod) ->
+                creditsResult + mod.getCredits().getIntValue(), Integer::sum);
+        totalCredits = totalCreditsDone;
+    }
+
+    /**
+     * Getter method for totalCredits.
+     * @return totalCredits.
+     */
+    public static int getTotalCredits() {
+        return totalCredits;
     }
 }
