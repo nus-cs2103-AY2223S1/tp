@@ -77,9 +77,9 @@ public class UpdateCommandParser implements Parser<UpdateCommand> {
     }
 
     /**
-     * Parses {@code Collection<String> tags} into a {@code Set<Tag>} if {@code tags} is non-empty.
-     * If {@code tags} contain only one element which is an empty string, it will be parsed into a
-     * {@code Set<Tag>} containing zero tags.
+     * Parses {@code Collection<String> meetingTimes} into a {@code Set<MeetingTime>} if {@code meetingTimes} is
+     * non-empty. If {@code meetingTimes} contain only one element which is an empty string, it will be parsed into a
+     * {@code Set<MeetingTime>} containing zero meeting times.
      */
     private Optional<Set<MeetingTime>> parseMeetingTimesForEdit(Collection<String> meetingTimes) throws ParseException {
         assert meetingTimes != null;
