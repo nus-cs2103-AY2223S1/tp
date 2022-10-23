@@ -126,9 +126,10 @@ class JsonAdaptedStall {
             throw new IllegalValueException(Name.MESSAGE_CONSTRAINTS);
         }
         final Name modelStallName = new Name(name);
+        final Address modelStallAddress = new Address(address);
 
         for (JsonAdaptedReview review : reviews) {
-            modelReviews.add(review.toModelType(modelStallName));
+            modelReviews.add(review.toModelType(modelStallName, modelStallAddress));
         }
         return modelReviews;
     }

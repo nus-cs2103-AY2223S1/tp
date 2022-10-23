@@ -21,6 +21,7 @@ import foodwhere.model.review.Content;
 import foodwhere.model.review.Date;
 import foodwhere.model.review.Rating;
 import foodwhere.model.review.Review;
+import foodwhere.model.stall.Address;
 
 /**
  * Edits the details of an existing review in the address book.
@@ -87,12 +88,13 @@ public class REditCommand extends Command {
         assert reviewToEdit != null;
 
         Name name = reviewToEdit.getName();
+        Address address = reviewToEdit.getAddress();
         Date updatedDate = editReviewDescriptor.getDate().orElse(reviewToEdit.getDate());
         Content updatedContent = editReviewDescriptor.getContent().orElse(reviewToEdit.getContent());
         Rating updatedRating = editReviewDescriptor.getRating().orElse(reviewToEdit.getRating());
         Set<Tag> updatedTags = editReviewDescriptor.getTags().orElse(reviewToEdit.getTags());
 
-        return new Review(name, updatedDate, updatedContent, updatedRating, updatedTags);
+        return new Review(name, address, updatedDate, updatedContent, updatedRating, updatedTags);
     }
 
     @Override

@@ -78,7 +78,9 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     private Stall getStallOfReview(Review review) throws StallNotFoundException {
         for (Stall stall : stalls) {
-            if (stall.getName().equals(review.getName())) {
+            boolean isMatchingName = stall.getName().equals(review.getName());
+            boolean isMatchingAddress = stall.getAddress().equals(review.getAddress());
+            if (isMatchingName && isMatchingAddress) {
                 return stall;
             }
         }
@@ -171,6 +173,18 @@ public class AddressBook implements ReadOnlyAddressBook {
         Stall newStall = new StallBuilder(oldStall)
                 .addReview(review).build();
         setStall(oldStall, newStall);
+    }
+
+    /**
+     * Adds a review to a stall in the address book.
+     * The review must not already exist in the address book.
+     * The stall must exist in the address book.
+     */
+    public void addReviewToStall(Review review, Stall stall) {
+        requireNonNull(review);
+        Stall newStall = new StallBuilder(stall)
+                .addReview(review).build();
+        setStall(stall, newStall);
     }
 
     /**

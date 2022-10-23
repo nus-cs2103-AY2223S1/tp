@@ -16,6 +16,7 @@ import foodwhere.model.review.Content;
 import foodwhere.model.review.Date;
 import foodwhere.model.review.Rating;
 import foodwhere.model.review.Review;
+import foodwhere.model.stall.Address;
 import foodwhere.model.stall.Stall;
 
 /**
@@ -71,14 +72,15 @@ public class RAddCommand extends Command {
         Stall stall = lastShownList.get(stallIndex.getZeroBased());
 
         Name name = stall.getName();
+        Address address = stall.getAddress();
 
-        Review toAdd = new Review(name, date, content, rating, tagList);
+        Review toAdd = new Review(name, address, date, content, rating, tagList);
 
         if (model.hasReview(toAdd)) {
             throw new CommandException(MESSAGE_DUPLICATE_REVIEW);
         }
 
-        model.addReview(toAdd);
+        model.addReviewToStall(toAdd, stall);
 
         return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
     }

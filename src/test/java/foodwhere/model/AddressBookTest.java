@@ -1,6 +1,5 @@
 package foodwhere.model;
 
-import static foodwhere.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
 import static foodwhere.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static foodwhere.testutil.Assert.assertThrows;
 import static foodwhere.testutil.TypicalStalls.ALICE;
@@ -49,7 +48,7 @@ public class AddressBookTest {
     @Test
     public void resetData_withDuplicateStalls_throwsDuplicateStallException() {
         // Two stalls with the same identity fields
-        Stall editedAlice = new StallBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
+        Stall editedAlice = new StallBuilder(ALICE).withTags(VALID_TAG_HUSBAND)
                 .build();
         List<Stall> newStalls = Arrays.asList(ALICE, editedAlice);
         AddressBookStub newData = new AddressBookStub(newStalls);
@@ -76,7 +75,7 @@ public class AddressBookTest {
     @Test
     public void hasStall_stallWithSameIdentityFieldsInAddressBook_returnsTrue() {
         addressBook.addStall(ALICE);
-        Stall editedAlice = new StallBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
+        Stall editedAlice = new StallBuilder(ALICE).withTags(VALID_TAG_HUSBAND)
                 .build();
         assertTrue(addressBook.hasStall(editedAlice));
     }

@@ -30,8 +30,10 @@ public class RAddCommandTest {
         Index indexLastStall = Index.fromOneBased(model.getFilteredStallList().size());
         Stall lastStall = model.getFilteredStallList().get(indexLastStall.getZeroBased());
         String name = lastStall.getName().toString();
+        String address = lastStall.getAddress().toString();
 
-        Review review = new ReviewBuilder().withName(name).withTags(CommandTestUtil.VALID_TAG_FRIEND).build();
+        Review review = new ReviewBuilder().withName(name)
+                .withAddress(address).withTags(CommandTestUtil.VALID_TAG_FRIEND).build();
         RAddCommand rAddCommand = new RAddCommand(indexLastStall, review.getDate(),
                 review.getContent(), review.getRating(), review.getTags());
         String expectedMessage = String.format(RAddCommand.MESSAGE_SUCCESS, review);
@@ -47,8 +49,9 @@ public class RAddCommandTest {
         Index indexLastStall = Index.fromOneBased(model.getFilteredStallList().size());
         Stall lastStall = model.getFilteredStallList().get(indexLastStall.getZeroBased());
         String name = lastStall.getName().toString();
+        String address = lastStall.getAddress().toString();
 
-        Review review = new ReviewBuilder().withName(name).build();
+        Review review = new ReviewBuilder().withName(name).withAddress(address).build();
         RAddCommand rAddCommand = new RAddCommand(indexLastStall, review.getDate(),
                 review.getContent(), review.getRating(), review.getTags());
         String expectedMessage = String.format(RAddCommand.MESSAGE_SUCCESS, review);
@@ -67,8 +70,9 @@ public class RAddCommandTest {
         Stall stallInFilteredList =
                 model.getFilteredStallList().get(TypicalIndexes.INDEX_FIRST_STALL.getZeroBased());
         String name = stallInFilteredList.getName().toString();
+        String address = stallInFilteredList.getAddress().toString();
 
-        Review review = new ReviewBuilder().withName(name).build();
+        Review review = new ReviewBuilder().withName(name).withAddress(address).build();
 
         RAddCommand rAddCommand = new RAddCommand(TypicalIndexes.INDEX_FIRST_STALL, review.getDate(),
                 review.getContent(), review.getRating(), review.getTags());

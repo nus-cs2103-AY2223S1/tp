@@ -92,7 +92,10 @@ public class SEditCommand extends Command {
         Set<Review> updatedReviews = editStallDescriptor.getReviews()
                 .orElse(stallToEdit.getReviews())
                 .stream()
-                .map(review -> new ReviewBuilder(review).withName(updatedName.fullName).build())
+                .map(review -> new ReviewBuilder(review)
+                        .withName(updatedName.fullName)
+                        .withAddress(updatedAddress.value)
+                        .build())
                 .collect(Collectors.toSet());
         return new Stall(updatedName, updatedAddress, updatedTags, updatedReviews);
     }

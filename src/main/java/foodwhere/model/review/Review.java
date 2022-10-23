@@ -9,6 +9,7 @@ import java.util.Set;
 
 import foodwhere.model.commons.Name;
 import foodwhere.model.commons.Tag;
+import foodwhere.model.stall.Address;
 
 /**
  * Represents a Review in the address book.
@@ -19,6 +20,8 @@ public class Review {
     // Identity fields
     private final Name name;
 
+    private final Address address;
+
     // Data fields
     private final Date date;
     private final Content content;
@@ -28,9 +31,10 @@ public class Review {
     /**
      * Every field must be present and not null.
      */
-    public Review(Name name, Date date, Content content, Rating rating, Set<Tag> tags) {
+    public Review(Name name, Address address, Date date, Content content, Rating rating, Set<Tag> tags) {
         requireAllNonNull(name, date, content, tags);
         this.name = name;
+        this.address = address;
         this.date = date;
         this.content = content;
         this.rating = rating;
@@ -39,6 +43,10 @@ public class Review {
 
     public Name getName() {
         return name;
+    }
+
+    public Address getAddress() {
+        return address;
     }
 
     public Date getDate() {
@@ -92,24 +100,27 @@ public class Review {
             return false;
         }
 
-        Review otherStall = (Review) other;
-        return otherStall.getName().equals(getName())
-                && otherStall.getDate().equals(getDate())
-                && otherStall.getContent().equals(getContent())
-                && otherStall.getRating().equals(getRating())
-                && otherStall.getTags().equals(getTags());
+        Review otherReview = (Review) other;
+        return otherReview.getName().equals(getName())
+                && otherReview.getAddress().equals(getAddress())
+                && otherReview.getDate().equals(getDate())
+                && otherReview.getContent().equals(getContent())
+                && otherReview.getRating().equals(getRating())
+                && otherReview.getTags().equals(getTags());
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, date, content, rating, tags);
+        return Objects.hash(name, address, date, content, rating, tags);
     }
 
     @Override
     public String toString() {
         final StringBuilder builder = new StringBuilder();
         builder.append(getName())
+                .append("; Address: ")
+                .append(getAddress())
                 .append("; Date: ")
                 .append(getDate())
                 .append("; Content: ")
