@@ -24,8 +24,8 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.commands.student.EditCommand;
 import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
-import seedu.address.model.student.predicates.NameContainsKeywordsPredicate;
 import seedu.address.model.student.Student;
+import seedu.address.model.student.predicates.NameContainsKeywordsPredicate;
 import seedu.address.testutil.EditPersonDescriptorBuilder;
 
 /**
