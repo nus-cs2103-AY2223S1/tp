@@ -11,7 +11,9 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.model.person.Class;
 import seedu.address.model.person.Person;
+import seedu.address.model.timeRange.TimeRange;
 
 /**
  * Represents the in-memory model of the address book data.
@@ -110,8 +112,12 @@ public class ModelManager implements Model {
     @Override
     public void setPerson(Person target, Person editedPerson) {
         requireAllNonNull(target, editedPerson);
-
         teachersPet.setPerson(target, editedPerson);
+    }
+    @Override
+    public Class getAvailableClass(TimeRange timeRange) {
+        requireNonNull(timeRange);
+        return teachersPet.getAvailableClass(timeRange);
     }
 
     //=========== Filtered Person List Accessors =============================================================
