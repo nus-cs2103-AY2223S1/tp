@@ -316,12 +316,7 @@ public class AddressBook implements ReadOnlyAddressBook {
      * @param exam
      */
     public void unlinkTasksFromExam(Exam exam) {
-        this.tasks.forEach(task -> {
-            if (task.isLinked() && task.getExam().equals(exam)) {
-                Task unlinkedTask = task.unlinkTask();
-                replaceTask(task, unlinkedTask, true);
-            }
-        });
+        tasks.unlinkTasksFromExam(exam);
     }
 
     @Override
