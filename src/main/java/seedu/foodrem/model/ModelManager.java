@@ -161,7 +161,6 @@ public class ModelManager implements Model {
         sortedItems.setComparator(comparator);
     }
 
-
     //=========== Filtered Item List Accessors =============================================================
 
     /**
@@ -219,5 +218,4 @@ public class ModelManager implements Model {
     public ObservableList<Item> getFilteredSortedItemList() {
         return itemsList;
     }
-
 }

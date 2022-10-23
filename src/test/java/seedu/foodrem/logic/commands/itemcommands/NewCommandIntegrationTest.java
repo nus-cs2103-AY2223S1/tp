@@ -18,7 +18,6 @@ import seedu.foodrem.testutil.ItemBuilder;
  * Contains integration tests (interaction with the Model) for {@code AddCommand}.
  */
 public class NewCommandIntegrationTest {
-
     private Model model;
 
     @BeforeEach
@@ -42,5 +41,4 @@ public class NewCommandIntegrationTest {
         Item itemInList = model.getFoodRem().getItemList().get(0);
         assertCommandFailure(new NewCommand(itemInList), model, NewCommand.MESSAGE_DUPLICATE_ITEM);
     }
-
 }

@@ -19,7 +19,6 @@ import seedu.foodrem.model.item.exceptions.ItemNotFoundException;
 import seedu.foodrem.testutil.ItemBuilder;
 
 public class UniqueItemListTest {
-
     private final UniqueItemList uniqueItemList = new UniqueItemList();
 
     @Test

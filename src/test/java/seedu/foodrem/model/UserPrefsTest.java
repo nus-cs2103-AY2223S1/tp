@@ -5,7 +5,6 @@ import static seedu.foodrem.testutil.Assert.assertThrows;
 import org.junit.jupiter.api.Test;
 
 public class UserPrefsTest {
-
     @Test
     public void setGuiSettings_nullGuiSettings_throwsNullPointerException() {
         UserPrefs userPref = new UserPrefs();
@@ -17,5 +16,4 @@ public class UserPrefsTest {
         UserPrefs userPrefs = new UserPrefs();
         assertThrows(NullPointerException.class, () -> userPrefs.setFoodRemFilePath(null));
     }
-
 }

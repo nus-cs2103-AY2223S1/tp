@@ -12,7 +12,6 @@ import seedu.foodrem.commons.util.ValidationUtil;
  * Validation class for item dates.
  */
 public class ItemExpiryDateValidator implements Validator {
-
     // Validation for parsing
     private static final String MESSAGE_FOR_UNABLE_TO_PARSE_EXPIRY_DATE =
             "The item expiry date must follow the format dd-mm-yyyy.";

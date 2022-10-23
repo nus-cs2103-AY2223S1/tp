@@ -7,7 +7,6 @@ import org.junit.jupiter.api.function.Executable;
  * A set of assertion methods useful for writing tests.
  */
 public class Assert {
-
     /**
      * Asserts that the {@code executable} throws the {@code expectedType} Exception.
      * This is a wrapper method that invokes {@link Assertions#assertThrows(Class, Executable)}, to maintain consistency

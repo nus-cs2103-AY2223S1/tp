@@ -8,7 +8,6 @@ import java.util.Objects;
  * Represents the result of a command execution.
  */
 public class CommandResult {
-
     private final String feedbackToUser;
 
     private final String helpText;
@@ -52,7 +51,6 @@ public class CommandResult {
         this(feedbackToUser, "", false, false);
     }
 
-
     public String getFeedbackToUser() {
         return feedbackToUser;
     }
@@ -90,5 +88,4 @@ public class CommandResult {
     public int hashCode() {
         return Objects.hash(feedbackToUser, showHelp, exit);
     }
-
 }
