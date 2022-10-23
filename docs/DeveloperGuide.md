@@ -289,7 +289,7 @@ There are only 2 commands which can modify the Remark for a Person. These are th
 
 #### Implementation
 
-The `message` command provides an easy way for users to generate messages to send to clients, using pre-written message templates which contain the {name} keyword. Message templates are stored as an array of strings in the address book JSON file. 
+The `message` command provides an easy way for users to generate messages to send to clients, using pre-written message templates which contain the {name} keyword. Message templates are stored as an array of strings in the address book JSON file.
 
 The following commands are provided:
 
@@ -297,7 +297,7 @@ The following commands are provided:
 
 `delete`  — Delete the specified message template
 
-`generate`  — Using the specified message template and client, generate a message for client. 
+`generate`  — Using the specified message template and client, generate a message for client.
 
 Creation and deletion are exposed in the `Model` interface as `Model#createMessage`, `Model#deleteMessage`, while message generation is exposed in `Message` as `Message#generate`.
 
@@ -330,17 +330,17 @@ message delete 1
 #### Design considerations:
 
 - **Aspect: Allow editing**
-  
+
   - Alternative 1 (current choice): Don't allow editing
-    
+
     - Pros: Simpler command set, easier to implement, messages templates are not frequently edited
-    
+
     - Cons: Less convenient when user actually wants to edit message templates
-  
+
   - Alternative 2: Allow editing
-    
+
     - Pros: (Slightly) more convenient
-    
+
     - Cons: More complicated command set
 
 ### Tag command
@@ -381,7 +381,7 @@ We can also remove tags from a user using the `tag remove` command. For example,
         * `add` and `edit` commands will be slightly messier and may contain ambiguities.
         * Not user-friendly. The user will be forced to re-type all the current tags the client possesses if they
           wish to add or edit one of the many tags the client possesses.
-        
+
 ### \[Proposed\] Filter command
 =======
 ### Filter Command
@@ -491,15 +491,39 @@ tag friends
 #### Design considerations:
 - **Aspect: How to access the `TargetPerson`.**
   - Alternative 1 (current choice): Allow the index to not be specified
-      - Pros: 
+      - Pros:
         - The user does not have to provide an index (less to type).
       - Cons:
         - Implementation will have to account for no index provided for the various commands.
   - Alternative 2: Index 0 to denote `TargetPerson`
       - Pros:
         - (Slightly) Easier to implement.
-      - Cons: 
+      - Cons:
         - User has to provide an index (more to type).
+
+### Motivational quotes
+
+#### Implementation
+As an encouragement, Rapportbook will show a motivational quote on the starting page of Rapportbook. The quote is randomly selected from a list of 300 quotes, and will not change until Rapportbook is restarted.
+
+The following is the class diagram for this feature.
+![QuoteListClassDiagram](images/motivational-quote/QuoteListClassDiagram.svg)
+
+The quotes are stored as a static list, in the `QuoteList` class. As this class has only static variables and methods, it should not be instantiated and hence does not have a constructor. To access a quote, the class provides the `QuoteList#getRandomQuote()` method which will return a random quote from the quote list. Once the `getRandomQuote()` method has been called, the quote returend will be stored as a static variable, which will be used as the return value for subsequent calls.
+
+#### Design considerations:
+- **Aspect: How the quotes are stored.**
+  - Alternative 1 (current choice): Stored as a static variable in a class
+      - Pros:
+        - Easy to implement.
+      - Cons:
+        - Every quote will be loaded into memory even though only 1 quote is used.
+  - Alternative 2: Stored in a JSON file
+      - Pros:
+        - Reduces memory use.
+        - Allows users to add their own quotes.
+      - Cons:
+        - High effort for a small feature.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -600,7 +624,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 1. User [lists contacts](#use-case-list-contacts).
 2. User requests to edit a specific contact in the list by specifying fields and their updated values.
-3. Rapportbook edits the contact based on what the user specified. 
+3. Rapportbook edits the contact based on what the user specified.
    Use case ends.
 
 **Extensions**
@@ -733,6 +757,11 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * 2c. Contact already has at least one of the tag(s) specified.
     * 2c1. Rapportbook shows a message indicating which specified tag(s) the contact already has.
     * Use case resumes at step 2.
+
+#### Use case: View motivational quote
+1. User accesses the home page of Rapportbook.
+2. Rapportbook shows a motivational quote on the home page.
+   Use case ends.
 
 #### Use case: Request help manual
 1. User requests help for application usage.

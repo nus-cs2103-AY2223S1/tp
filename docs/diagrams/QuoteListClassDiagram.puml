@@ -1,0 +1,34 @@
+@startuml quotelist
+!include style.puml
+skinparam classAttributeIconSize 0
+skinparam arrowThickness 1.1
+skinparam arrowColor MODEL_COLOR
+skinparam classBackgroundColor MODEL_COLOR
+
+Class "<<interface>>\nModel" as Model {
+    getRandomQuote(): String
+}
+Class ModelManager {
+}
+
+Class QuoteList {
+    + {static} getRandomQuote(): String
+}
+
+Class Quote {
+    - message: String
+    - quotee: String
+}
+
+
+ModelManager .up.|> Model
+ModelManager ..> QuoteList
+
+QuoteList "1" ---> "randomQuote\n           0..1" Quote
+QuoteList "1     " ---> "quoteList\n300       " Quote
+
+show Model methods
+show QuoteList methods
+show Quote attributes
+
+@enduml

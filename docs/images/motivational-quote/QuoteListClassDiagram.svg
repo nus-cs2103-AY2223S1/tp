@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" contentStyleType="text/css" height="463px" preserveAspectRatio="none" style="width:203px;height:463px;background:#FFFFFF;" version="1.1" viewBox="0 0 203 463" width="203px" zoomAndPan="magnify"><defs/><g><!--MD5=[7e20e022571e30ec1001cf6eabd7f3e2]
+class Model--><g id="elem_Model"><rect codeLine="7" fill="#9D0012" height="66.2959" id="Model" rx="2.5" ry="2.5" style="stroke:#FFFFFF;stroke-width:1.0;" width="179" x="13.3224" y="7"/><text fill="#FFFFFF" font-family="Arial" font-size="14" lengthAdjust="spacing" textLength="87" x="59.3224" y="25.1318">&lt;&lt;interface&gt;&gt;</text><text fill="#FFFFFF" font-family="Arial" font-size="14" lengthAdjust="spacing" textLength="38" x="83.8224" y="41.2305">Model</text><line style="stroke:#FFFFFF;stroke-width:1.0;" x1="14.3224" x2="191.3224" y1="49.1973" y2="49.1973"/><text fill="#FFFFFF" font-family="Arial" font-size="14" lengthAdjust="spacing" textLength="167" x="19.3224" y="66.3291">getRandomQuote(): String</text></g><!--MD5=[0d23c233efb60477cf7e578633a93a45]
+class ModelManager--><g id="elem_ModelManager"><rect codeLine="10" fill="#9D0012" height="26.0986" id="ModelManager" rx="2.5" ry="2.5" style="stroke:#FFFFFF;stroke-width:1.0;" width="100" x="52.8224" y="133"/><text fill="#FFFFFF" font-family="Arial" font-size="14" lengthAdjust="spacing" textLength="94" x="55.8224" y="151.1318">ModelManager</text></g><!--MD5=[6082b3e1fa05c77c6b89692e7c045c9b]
+class QuoteList--><g id="elem_QuoteList"><rect codeLine="13" fill="#9D0012" height="50.1973" id="QuoteList" rx="2.5" ry="2.5" style="stroke:#FFFFFF;stroke-width:1.0;" width="187" x="9.3224" y="219"/><text fill="#FFFFFF" font-family="Arial" font-size="14" lengthAdjust="spacing" textLength="61" x="72.3224" y="237.1318">QuoteList</text><line style="stroke:#FFFFFF;stroke-width:1.0;" x1="10.3224" x2="195.3224" y1="245.0986" y2="245.0986"/><text fill="#FFFFFF" font-family="Arial" font-size="14" lengthAdjust="spacing" text-decoration="underline" textLength="175" x="15.3224" y="262.2305">+getRandomQuote(): String</text></g><!--MD5=[19db92a680528e4f3f642ddf82f32312]
+class Quote--><g id="elem_Quote"><rect codeLine="17" fill="#9D0012" height="66.2959" id="Quote" rx="2.5" ry="2.5" style="stroke:#FFFFFF;stroke-width:1.0;" width="119" x="43.3224" y="390"/><text fill="#FFFFFF" font-family="Arial" font-size="14" lengthAdjust="spacing" textLength="39" x="83.3224" y="408.1318">Quote</text><line style="stroke:#FFFFFF;stroke-width:1.0;" x1="44.3224" x2="161.3224" y1="416.0986" y2="416.0986"/><text fill="#FFFFFF" font-family="Arial" font-size="14" lengthAdjust="spacing" textLength="107" x="49.3224" y="433.2305">-message: String</text><text fill="#FFFFFF" font-family="Arial" font-size="14" lengthAdjust="spacing" textLength="94" x="49.3224" y="449.3291">-quotee: String</text></g><!--MD5=[b88a9fc704bcaab99a71844113667eb4]
+reverse link Model to ModelManager--><g id="link_Model_ModelManager"><path codeLine="23" d="M102.8224,93.26 C102.8224,108.16 102.8224,123.02 102.8224,132.97 " fill="none" id="Model-backto-ModelManager" style="stroke:#9D0012;stroke-width:1.1;stroke-dasharray:7.0,7.0;"/><polygon fill="none" points="95.8224,93.05,102.8224,73.05,109.8224,93.05,95.8224,93.05" style="stroke:#9D0012;stroke-width:1.1;"/></g><!--MD5=[5ab3b201ec32e6d3a19b50a46b830703]
+link ModelManager to QuoteList--><g id="link_ModelManager_QuoteList"><path codeLine="24" d="M102.8224,159.16 C102.8224,172.81 102.8224,195.45 102.8224,213.76 " fill="none" id="ModelManager-to-QuoteList" style="stroke:#9D0012;stroke-width:1.1;stroke-dasharray:7.0,7.0;"/><polygon fill="#9D0012" points="102.8224,218.8,106.8224,209.8,102.8224,213.8,98.8224,209.8,102.8224,218.8" style="stroke:#9D0012;stroke-width:1.1;"/></g><!--MD5=[a9cebe4b44a2ea7b51743fc4bbaf71e0]
+link QuoteList to Quote--><g id="link_QuoteList_Quote"><path codeLine="26" d="M93.7224,269.24 C89.4224,299.11 88.9224,350.17 92.2224,384.96 " fill="none" id="QuoteList-to-Quote" style="stroke:#9D0012;stroke-width:1.1;"/><polygon fill="#9D0012" points="92.7424,389.97,95.7978,380.6071,92.2293,384.9964,87.84,381.4279,92.7424,389.97" style="stroke:#9D0012;stroke-width:1.1;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="7" x="83.6511" y="290.8562">1</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="78" x="6" y="362.7679">randomQuote</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="22" x="56" y="379.1195">0..1</text></g><!--MD5=[a9cebe4b44a2ea7b51743fc4bbaf71e0]
+link QuoteList to Quote--><g id="link_QuoteList_Quote"><path codeLine="27" d="M112.4524,269.24 C117.0124,299.11 117.5424,350.17 114.0424,384.96 " fill="none" id="QuoteList-to-Quote-1" style="stroke:#9D0012;stroke-width:1.1;"/><polygon fill="#9D0012" points="113.5024,389.97,118.4557,381.4574,114.0451,384.9995,110.503,380.589,113.5024,389.97" style="stroke:#9D0012;stroke-width:1.1;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="7" x="118.0903" y="290.8562">1</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="53" x="120.1251" y="362.7679">quoteList</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="21" x="122.1251" y="379.1195">300</text></g><!--MD5=[2d69c70eb992a1118d4faf870f004f36]
+@startuml quotelist
+!include style.puml
+skinparam classAttributeIconSize 0
+skinparam arrowThickness 1.1
+skinparam arrowColor MODEL_COLOR
+skinparam classBackgroundColor MODEL_COLOR
+
+Class "<<interface>>\nModel" as Model {
+    getRandomQuote(): String
+}
+Class ModelManager {
+}
+
+Class QuoteList {
+    + {static} getRandomQuote(): String
+}
+
+Class Quote {
+    - message: String
+    - quotee: String
+}
+
+
+ModelManager .up.|> Model
+ModelManager ..> QuoteList
+
+QuoteList "1" - - -> "randomQuote\n           0..1" Quote
+QuoteList "1     " - - -> "quoteList\n300       " Quote
+
+show Model methods
+show QuoteList methods
+show Quote attributes
+
+@enduml
+
+@startuml quotelist
+
+
+
+
+
+
+
+
+skinparam BackgroundColor #FFFFFFF
+
+skinparam Shadowing false
+
+skinparam Class {
+    FontColor #FFFFFF
+    BorderThickness 1
+    BorderColor #FFFFFF
+    StereotypeFontColor #FFFFFF
+    FontName Arial
+}
+
+skinparam Actor {
+    BorderColor #000000
+    Color #000000
+    FontName Arial
+}
+
+skinparam Sequence {
+    MessageAlign center
+    BoxFontSize 15
+    BoxPadding 0
+    BoxFontColor #FFFFFF
+    FontName Arial
+}
+
+skinparam Participant {
+    FontColor #FFFFFFF
+    Padding 20
+}
+
+skinparam MinClassWidth 50
+skinparam ParticipantPadding 10
+skinparam Shadowing false
+skinparam DefaultTextAlignment center
+skinparam packageStyle Rectangle
+
+hide footbox
+hide members
+hide circle
+skinparam classAttributeIconSize 0
+skinparam arrowThickness 1.1
+skinparam arrowColor #9D0012
+skinparam classBackgroundColor #9D0012
+
+Class "<<interface>>\nModel" as Model {
+    getRandomQuote(): String
+}
+Class ModelManager {
+}
+
+Class QuoteList {
+    + {static} getRandomQuote(): String
+}
+
+Class Quote {
+    - message: String
+    - quotee: String
+}
+
+
+ModelManager .up.|> Model
+ModelManager ..> QuoteList
+
+QuoteList "1" - - -> "randomQuote\n           0..1" Quote
+QuoteList "1     " - - -> "quoteList\n300       " Quote
+
+show Model methods
+show QuoteList methods
+show Quote attributes
+
+@enduml
+
+PlantUML version 1.2022.7(Tue Aug 23 01:01:30 SGT 2022)
+(GPL source distribution)
+Java Runtime: Java(TM) SE Runtime Environment
+JVM: Java HotSpot(TM) 64-Bit Server VM
+Default Encoding: Cp1252
+Language: en
+Country: US
+--></g></svg>
