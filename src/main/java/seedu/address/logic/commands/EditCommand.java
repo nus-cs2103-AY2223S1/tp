@@ -74,6 +74,9 @@ public class EditCommand extends Command {
     private final Index index;
     private final EditPersonDescriptor editPersonDescriptor;
 
+    /**
+     * An empty constructor for EditCommand.
+     */
     public EditCommand() {
         this.index = null;
         this.editPersonDescriptor = null;
