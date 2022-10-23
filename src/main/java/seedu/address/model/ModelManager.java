@@ -352,4 +352,9 @@ public class ModelManager implements Model {
     public void setBillAsPaid(Bill bill) {
         this.addressBook.setBillAsPaid(bill);
     }
+    
+    @Overide
+    public void setBillAsUnpaid(Bill bill) {
+        this.addressBook.setBillAsUnpaid(bill);
+    }
 }
