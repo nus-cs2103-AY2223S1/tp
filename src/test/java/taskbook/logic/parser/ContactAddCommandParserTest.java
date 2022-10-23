@@ -83,7 +83,6 @@ public class ContactAddCommandParserTest {
 
     @Test
     public void parse_allOptionalFieldsMissing_success() {
-        // zero tags
         Person expectedPerson = new PersonBuilder(AMY)
                 .withAddress(Address.NO_ADDRESS_PROVIDED)
                 .withPhone(Phone.NO_PHONE_PROVIDED)
