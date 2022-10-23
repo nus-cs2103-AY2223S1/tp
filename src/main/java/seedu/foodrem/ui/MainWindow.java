@@ -147,7 +147,7 @@ public class MainWindow extends UiPart<Stage> {
      * Sets the default message to the general help message.
      */
     @FXML
-    public void handleHelp() {
+    private void handleHelp() {
         helpWindow.setMessageToDisplay(HelpCommand.getGeneralHelpMessage());
         handleHelpCommand();
     }
