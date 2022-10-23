@@ -74,7 +74,7 @@ public class DecrementCommand extends Command {
 
         model.setItem(itemToDecrement, decrementedItem);
         model.updateFilteredItemList(PREDICATE_SHOW_ALL_ITEMS);
-        return CommandResult.fromString(String.format(MESSAGE_SUCCESS, decrementedItem));
+        return CommandResult.from(String.format(MESSAGE_SUCCESS, decrementedItem));
     }
 
     public static String getUsage() {

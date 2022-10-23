@@ -36,7 +36,7 @@ public class DeleteCommand extends Command {
 
         Item itemToDelete = lastShownList.get(targetIndex.getZeroBased());
         model.deleteItem(itemToDelete);
-        return CommandResult.fromString(String.format(MESSAGE_SUCCESS, itemToDelete));
+        return CommandResult.from(String.format(MESSAGE_SUCCESS, itemToDelete));
     }
 
     public static String getUsage() {

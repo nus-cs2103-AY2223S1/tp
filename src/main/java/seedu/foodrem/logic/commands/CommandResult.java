@@ -7,16 +7,16 @@ import static java.util.Objects.requireNonNull;
  */
 public abstract class CommandResult<T> {
     /**
-     * Constructs a {@code CommandResult} with the specified message to display.
-     * @param feedbackToUser the message to display to the user.
-     * @return a {@code CommandResult} with the supplied string as a message.
+     * Constructs a {@code CommandResult} with the specified output.
+     * @param output the output to eventually display to the user.
+     * @return a {@code CommandResult} that holds the output.
      */
-    public static CommandResult<String> fromString(String feedbackToUser) {
-        requireNonNull(feedbackToUser);
+    public static <T> CommandResult<T> from(T output) {
+        requireNonNull(output);
         return new CommandResult<>() {
             @Override
-            public String getOutput() {
-                return feedbackToUser;
+            public T getOutput() {
+                return output;
             }
         };
     }

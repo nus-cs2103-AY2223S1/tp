@@ -33,7 +33,7 @@ public class SortCommand extends Command {
     public CommandResult execute(Model model) {
         requireNonNull(model);
         model.updateSortedItemList(comparator);
-        return CommandResult.fromString(
+        return CommandResult.from(
                 String.format(Messages.MESSAGE_ITEMS_SORTED_OVERVIEW, model.getSortedItemList().size()));
     }
 

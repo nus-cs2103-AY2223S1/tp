@@ -80,7 +80,7 @@ public class TagCommand extends Command {
         model.setItem(itemToTag, newTagSetItem);
         model.updateFilteredItemList(Model.PREDICATE_SHOW_ALL_ITEMS);
 
-        return CommandResult.fromString(String.format(MESSAGE_SUCCESS, newTagSetItem));
+        return CommandResult.from(String.format(MESSAGE_SUCCESS, newTagSetItem));
     }
 
     public static String getUsage() {

@@ -74,7 +74,7 @@ public class IncrementCommand extends Command {
 
         model.setItem(itemToIncrement, incrementedItem);
         model.updateFilteredItemList(PREDICATE_SHOW_ALL_ITEMS);
-        return CommandResult.fromString(String.format(MESSAGE_SUCCESS, incrementedItem));
+        return CommandResult.from(String.format(MESSAGE_SUCCESS, incrementedItem));
     }
 
     public static String getUsage() {
