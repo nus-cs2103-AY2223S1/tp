@@ -1,4 +1,4 @@
-Some code adapted from http://code.makery.ch/library/javafx-8-tutorial/ by Marco Jakob
+﻿Some code adapted from http://code.makery.ch/library/javafx-8-tutorial/ by Marco Jakob
 
 Copyright by Colton Wiscombe - https://mdi.bessarabov.com/icon/food-turkey
 - foodrem.png
