@@ -63,7 +63,7 @@ class EditTaskCommandTest {
         // Use second patient as the first patient in typical persons does not have a task
         Patient secondPatient = model.getFilteredPersonList().get(INDEX_SECOND_PERSON.getZeroBased());
 
-        Task initialTask = secondPatient.getTasks().get(INDEX_FIRST_TASK.getZeroBased());
+        Task initialTask = secondPatient.getTasks().get(INDEX_FIRST_ATTRIBUTE.getZeroBased());
         Task editedTask = new Task(TASK_STUB);
 
         Patient editedPatient = new PersonBuilder(secondPatient)
@@ -75,7 +75,7 @@ class EditTaskCommandTest {
         EditTaskCommand editTaskCommand = new EditTaskCommand(INDEX_SECOND_PERSON, INDEX_FIRST_ATTRIBUTE, editedTask);
 
         String expectedMessage = String.format(EditTaskCommand.MESSAGE_EDIT_TASK_SUCCESS,
-                INDEX_FIRST_TASK.getOneBased(), editedPatient.getName().toString(), initialTask, editedTask);
+                INDEX_FIRST_ATTRIBUTE.getOneBased(), editedPatient.getName().toString(), initialTask, editedTask);
 
         Model expectedModel = new ModelManager(new UninurseBook(model.getUninurseBook()), new UserPrefs());
         expectedModel.setPerson(secondPatient, editedPatient);

@@ -7,6 +7,7 @@ import static seedu.uninurse.logic.commands.CommandTestUtil.assertCommandFailure
 import static seedu.uninurse.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.uninurse.logic.commands.CommandTestUtil.showPersonAtIndex;
 import static seedu.uninurse.logic.commands.DeleteConditionCommand.DELETE_CONDITION_COMMAND_TYPE;
+import static seedu.uninurse.logic.commands.DeleteConditionCommand.MESSAGE_DELETE_CONDITION_SUCCESS;
 import static seedu.uninurse.testutil.Assert.assertThrows;
 import static seedu.uninurse.testutil.TypicalIndexes.INDEX_FIRST_ATTRIBUTE;
 import static seedu.uninurse.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
@@ -62,7 +63,7 @@ public class DeleteConditionCommandTest {
         DeleteConditionCommand deleteConditionCommand =
                 new DeleteConditionCommand(INDEX_THIRD_PERSON, INDEX_FIRST_ATTRIBUTE);
 
-        String expectedMessage = String.format(DeleteConditionCommand.MESSAGE_DELETE_CONDITION_SUCCESS,
+        String expectedMessage = String.format(MESSAGE_DELETE_CONDITION_SUCCESS, INDEX_FIRST_ATTRIBUTE.getOneBased(),
                 editedPatient.getName(), deletedCondition);
 
         Model expectedModel = new ModelManager(new UninurseBook(model.getUninurseBook()), new UserPrefs());
@@ -94,7 +95,7 @@ public class DeleteConditionCommandTest {
         DeleteConditionCommand deleteConditionCommand =
                 new DeleteConditionCommand(INDEX_FIRST_PERSON, INDEX_FIRST_ATTRIBUTE);
 
-        String expectedMessage = String.format(DeleteConditionCommand.MESSAGE_DELETE_CONDITION_SUCCESS,
+        String expectedMessage = String.format(MESSAGE_DELETE_CONDITION_SUCCESS, INDEX_FIRST_ATTRIBUTE.getOneBased(),
                 editedPatient.getName().toString(), deletedCondition);
 
         Model expectedModel = new ModelManager(new UninurseBook(model.getUninurseBook()), new UserPrefs());

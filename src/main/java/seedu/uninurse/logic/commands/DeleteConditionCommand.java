@@ -27,7 +27,7 @@ public class DeleteConditionCommand extends DeleteGenericCommand {
             + "CONDITION_INDEX (must be a positive integer)\n"
             + "Example: " + COMMAND_WORD + " 1 2";
 
-    public static final String MESSAGE_DELETE_CONDITION_SUCCESS = "Deleted condition from %1$s: %2$s";
+    public static final String MESSAGE_DELETE_CONDITION_SUCCESS = "Deleted condition %1$d from %2$s: %3$s";
 
     public static final CommandType DELETE_CONDITION_COMMAND_TYPE = CommandType.EDIT_PATIENT;
 
@@ -66,15 +66,13 @@ public class DeleteConditionCommand extends DeleteGenericCommand {
         ConditionList updatedConditionList = patientToEdit.getConditions().delete(conditionIndex.getZeroBased());
         Condition deletedCondition = initialConditionList.get(conditionIndex.getZeroBased());
 
-        Patient editedPerson = new Patient(
-                patientToEdit.getName(), patientToEdit.getPhone(), patientToEdit.getEmail(),
-                patientToEdit.getAddress(), updatedConditionList, patientToEdit.getTasks(), patientToEdit.getTags());
+        Patient editedPerson = new Patient(patientToEdit, updatedConditionList);
 
         model.setPerson(patientToEdit, editedPerson);
         model.updateFilteredPersonList(Model.PREDICATE_SHOW_ALL_PERSONS);
 
-        return new CommandResult(String.format(MESSAGE_DELETE_CONDITION_SUCCESS, editedPerson.getName(),
-                deletedCondition), DELETE_CONDITION_COMMAND_TYPE);
+        return new CommandResult(String.format(MESSAGE_DELETE_CONDITION_SUCCESS, conditionIndex.getOneBased(),
+                editedPerson.getName(), deletedCondition), DELETE_CONDITION_COMMAND_TYPE);
     }
 
     @Override
