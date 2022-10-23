@@ -1,6 +1,6 @@
 @startuml
 !include style.puml
-scale 557*544
+scale 938*475
 skinparam arrowThickness 1.1
 skinparam arrowColor STORAGE_COLOR
 skinparam classBackgroundColor STORAGE_COLOR
@@ -35,23 +35,31 @@ Class JsonAdaptedTag
 Class HiddenOutside #FFFFFF
 HiddenOutside ..> Storage
 
+Storage -up|> UserPrefsStorage
+Storage -right|> SoConnectStorage
+Storage -down|> TodoListStorage
+
 StorageManager .up.|> Storage
-StorageManager --> "1" UserPrefsStorage
-StorageManager --> "1" SoConnectStorage
-StorageManager --> "1" TodoListStorage
+StorageManager -up-> "1" UserPrefsStorage
+StorageManager -right-> "1" SoConnectStorage
+StorageManager -right-> "1" TodoListStorage
 
-Storage --|> UserPrefsStorage
-Storage --|> SoConnectStorage
-Storage --|> TodoListStorage
+SoConnectStorage -[hidden]-> TodoListStorage
+UserPrefsStorage -[hidden]-> SoConnectStorage
 
-JsonUserPrefsStorage .up.|> UserPrefsStorage
-JsonSoConnectStorage .up.|> SoConnectStorage
-JsonTodoListBookStorage .up.|> TodoListStorage
-JsonSoConnectStorage ..> JsonSerializableSoConnect
-JsonTodoListBookStorage ..> JsonSerializableTodoList
-JsonSerializableSoConnect --> "*" JsonAdaptedPerson
-JsonSerializableTodoList --> "*" JsonAdaptedTodo
-JsonAdaptedPerson --> "*" JsonAdaptedTag
-JsonAdaptedTodo --> "*" JsonAdaptedTag
+JsonUserPrefsStorage .left.|> UserPrefsStorage
+JsonSoConnectStorage .left.|> SoConnectStorage
+JsonTodoListBookStorage .left.|> TodoListStorage
+
+JsonSoConnectStorage .right.> JsonSerializableSoConnect
+JsonTodoListBookStorage .right.> JsonSerializableTodoList
+
+JsonSerializableSoConnect -right-> "*" JsonAdaptedPerson
+JsonSerializableTodoList -right-> "*" JsonAdaptedTodo
+
+JsonAdaptedPerson -right-> "*" JsonAdaptedTag
+JsonAdaptedTodo -up-> "*" JsonAdaptedTag
+
+
 
 @enduml

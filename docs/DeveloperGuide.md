@@ -123,8 +123,7 @@ How the parsing works:
 The `Model` component does the following:
 
 * Stores the SoConnect data, i.e., all `Person` objects and all `Todo` objects (which are contained in a `UniquePersonList` object and a `UniqueTodoList` object respectively).
-* Stores the currently 'selected' `Person` or `Todo` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList` that can be 'observed',
-e.g., the UI can be bound to this list so that the UI automatically updates when the data in the list change.
+* Stores the currently 'selected' `Person` or `Todo` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList` that can be 'observed' (e.g., the UI can be bound to this list so that the UI automatically updates when the data in the list change).
 * Stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
 * Does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components).
 
@@ -186,8 +185,7 @@ Given below is an example usage scenario and how the sorting mechanism behaves a
 
 Step 1. The user enters `sort t/!friend n/` command to perform a multi-level sort. `SortCommandParser` calls `ArgumentTokenizer#tokenizeToList()` to separate the parameters of `t/!friend` and `n/`. The separated parameters are stored in a list that preserves the order that the user entered them in. `SortCommandParser` checks the list to confirm that at least 1 valid parameter has been entered.
 
-Step 2. Each parameter is processed by `SortCommandParser#convertArguments`. They are checked for reversed sorting through the presence of `!`.
-The `friend` string is checked to see if it fulfils the requirements of the `Tag` class. If the user entered string values for non-`Tag` parameters (`n/NAME`, `p/PHONE`, `e/EMAIL`, `a/ADDRESS`), the string values are ignored and the command continues execution as per normal.
+Step 2. Each parameter is processed by `SortCommandParser#convertArguments`. They are checked for reversed sorting through the presence of `!`. The `friend` string is checked to see if it fulfils the requirements of the `Tag` class. If the user entered string values for non-`Tag` parameters (`n/NAME`, `p/PHONE`, `e/EMAIL`, `a/ADDRESS`), the string values are ignored and the command continues execution as per normal.
 
 Step 3. The `sort` command sorts the currently displayed list by **Name** first, calling `Model#sortByName(Boolean isReverse)` where `isReverse = false`.
 
