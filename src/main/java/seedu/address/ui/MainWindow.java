@@ -5,6 +5,7 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.logging.Logger;
 
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
@@ -20,6 +21,7 @@ import seedu.address.logic.Logic;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.message.Message;
 
 /**
  * The Main Window. Provides the basic application layout containing
@@ -41,6 +43,7 @@ public class MainWindow extends UiPart<Stage> {
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
     private WelcomePanel welcomePanel;
+    private MessageTemplatePanel messageTemplatePanel;
 
     @FXML
     private StackPane commandBoxPlaceholder;
@@ -104,6 +107,22 @@ public class MainWindow extends UiPart<Stage> {
 
         targetPersonPanel = new TargetPersonPanel(logic.getTargetPersonList(),
                 logic.getTargetPersonReminderListAsObservableList());
+
+        // TODO uncomment and replace the placeholder once the logic class implements that method
+        // messageTemplatePanel = new MessageTemplatePanel(logic.getMessageTemplates());
+        ObservableList<Message> messageTemplatesPlaceholder = FXCollections.observableArrayList(
+            new Message("Hello, {name}!"),
+            new Message("We haven't caught up in awhile {name}, how about we meet up for"
+                    + " lunch this week?"),
+            new Message("Hey {name}, I have a very exciting opportunity for you!"
+                    + " Our firm is proud to announce that we are providing a new financial"
+                    + " planning service. Let's meet up to discuss it!"),
+            new Message("Hi {name}, thank you for trusting us with your financial well-being!"
+                    + " We would be grateful if you could take a few minutes to write a quick"
+                    + " review for our firm. The feedback you provide will help others recognize"
+                    + " the value we bring and ensure the quality of our services.")
+        );
+        messageTemplatePanel = new MessageTemplatePanel(messageTemplatesPlaceholder);
 
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
@@ -187,11 +206,13 @@ public class MainWindow extends UiPart<Stage> {
         case WELCOME:
             mainPane.addColumn(1, welcomePanel.getRoot());
             break;
-        case HELP:
         case TARGET_PERSON:
             mainPane.addColumn(1, targetPersonPanel.getRoot());
             break;
         case MESSAGE_TEMPLATES:
+            mainPane.addColumn(1, messageTemplatePanel.getRoot());
+            break;
+        case HELP:
         default:
             break;
         }

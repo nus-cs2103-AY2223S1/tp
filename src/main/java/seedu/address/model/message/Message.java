@@ -18,7 +18,7 @@ public class Message {
      * A message should not be an empty string.
      */
     public static final String VALIDATION_REGEX = "^(?!\\s*$).+";
-    private static final String NAME_PLACEHOLDER = "{name}";
+    public static final String NAME_PLACEHOLDER = "{name}";
 
     private String message;
 
