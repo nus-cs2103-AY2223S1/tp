@@ -267,13 +267,13 @@ applications.
 
 #### About this feature
 
-The add internship application task feature allows users to add a task associated to an internship application 
+The add internship application task feature allows users to add a task associated to an internship application
 in the tracker via the command `addtask INDEX TASKNAME /at TASKTIME`, where `INDEX` must be a positive integer within
 the list, `TASKNAME` must not be an empty string, and `TASKTIME` must be in the format `dd-MM-yyyy HH:mm`.
 
 #### How it is implemented
 
-The `addtask` command is facilitated by the `AddTaskCommand` and `AddTaskCommandParser`. It uses the 
+The `addtask` command is facilitated by the `AddTaskCommand` and `AddTaskCommandParser`. It uses the
 `List#get(int index)` on the list of internship applications returned from the `Model#getFilteredInternshipList()` to
 get the target `Internship` object to be updated. A new `Internship` object is then created with the new `Task` updated
 in the `List<Task>`. The `InTrack#setInternship(Internship target, Internship editedInternship)` which is exposed in the
@@ -315,34 +315,34 @@ The following activity diagram shows what happens when a user executes a `addtas
 
 #### About this feature
 
-The find internship application by company name feature allows users to query the list of added internship applications 
-for applications that match the desired company name via the command `findn COMPANYNAME`, where `COMPANYNAME` must not 
+The find internship application by company name feature allows users to query the list of added internship applications
+for applications that match the desired company name via the command `findn COMPANYNAME`, where `COMPANYNAME` must not
 be an empty string.
 
 #### How it is implemented
 
-The `findn` command is facilitated by the `FindNameCommand`, `FindNameCommandParser` and the `NameContainsKeywordsPredicate`. 
-It uses `Model#updateFilteredInternshipList(Predicate<Internship> predicate)` to apply the `NameContainsKeywordsPredicate` 
+The `findn` command is facilitated by the `FindNameCommand`, `FindNameCommandParser` and the `NameContainsKeywordsPredicate`.
+It uses `Model#updateFilteredInternshipList(Predicate<Internship> predicate)` to apply the `NameContainsKeywordsPredicate`
 in order to produce a filtered list containing only entries whose names correspond to `COMPANYNAME`.
 
 #### Parsing user input
 
 1. The user inputs the `findn` command.
 2. The `InTrackParser` processes the input and creates a new `FindNameCommandParser`.
-3. The `FindNameCommandParser` then trims the input to remove whitespace. If the input is an empty string, a `ParseException` 
+3. The `FindNameCommandParser` then trims the input to remove whitespace. If the input is an empty string, a `ParseException`
 would be thrown.
 4. The `FindNameCommandParser` then creates the new `FindNameCommand` based on the processed input.
 
 #### Command execution
 
 1. The `LogicManager` executes the `FindNameCommand`.
-2. The `FindNameCommand` calls the `Model#updateFilteredInternshipList(Predicate<Internship> predicate)` to update the 
+2. The `FindNameCommand` calls the `Model#updateFilteredInternshipList(Predicate<Internship> predicate)` to update the
 current internship list to only show internship applications matching the provided `COMPANYNAME`.
 
 #### Displaying of result
 
-1. Finally, the `FindNameCommand` creates a `CommandResult` containing the number of matching internship applications 
-and returns it to the `LogicManager` to complete the command execution. The GUI would also be updated with the change in 
+1. Finally, the `FindNameCommand` creates a `CommandResult` containing the number of matching internship applications
+and returns it to the `LogicManager` to complete the command execution. The GUI would also be updated with the change in
 list.
 
 The following sequence diagram shows how the `findn` command works:
