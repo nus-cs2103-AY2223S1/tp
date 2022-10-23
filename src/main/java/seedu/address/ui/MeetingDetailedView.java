@@ -50,7 +50,7 @@ public class MeetingDetailedView extends UiPart<Region> {
         LocalDate dateFormattable = LocalDate.parse(dateUnformatted, formatter);
         String dateFormatted = dateFormattable.format(DateTimeFormatter.ofLocalizedDate(FormatStyle.MEDIUM));
         date.setText(dateFormatted);
-        time.setText(meeting.getMeetingTime().toString());
+        time.setText(meeting.getMeetingStartTime().toString() + " - " + meeting.getMeetingEndTime().toString());
         description.setText(meeting.getDescription().toString());
     }
 }

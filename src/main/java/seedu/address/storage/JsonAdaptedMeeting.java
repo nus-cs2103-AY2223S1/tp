@@ -22,7 +22,8 @@ class JsonAdaptedMeeting {
     @JsonProperty
     private String description;
     private String meetingDate;
-    private String meetingTime;
+    private String meetingStartTime;
+    private String meetingEndTime;
 
     /**
      * Converts a given {@code Meeting} into this class for Jackson use.
@@ -31,7 +32,8 @@ class JsonAdaptedMeeting {
         client = new JsonAdaptedClient(meeting.getClient(), this);
         description = meeting.getDescription().toString();
         meetingDate = meeting.getMeetingDate().toString();
-        meetingTime = meeting.getMeetingTime().toString();
+        meetingStartTime = meeting.getMeetingStartTime().toString();
+        meetingEndTime = meeting.getMeetingEndTime().toString();
     }
 
     /**
@@ -43,7 +45,8 @@ class JsonAdaptedMeeting {
         client = adaptedClient;
         description = meeting.getDescription().toString();
         meetingDate = meeting.getMeetingDate().toString();
-        meetingTime = meeting.getMeetingTime().toString();
+        meetingStartTime = meeting.getMeetingStartTime().toString();
+        meetingEndTime = meeting.getMeetingEndTime().toString();
     }
 
     /**
@@ -77,11 +80,11 @@ class JsonAdaptedMeeting {
     }
 
     public void setMeetingTime(String meetingTime) {
-        this.meetingTime = meetingTime;
+        this.meetingStartTime = meetingTime;
     }
 
     public String getMeetingTime() {
-        return meetingTime;
+        return meetingStartTime;
     }
 
     /**
@@ -92,8 +95,9 @@ class JsonAdaptedMeeting {
     public Meeting toModelType(Client client) throws IllegalValueException {
         Description modelDescription = new Description(description);
         MeetingDate modelMeetingDate = new MeetingDate(ParserUtil.parseDate(meetingDate, "meeting"));
-        MeetingTime modelMeetingTime = ParserUtil.parseTime(meetingTime);
-        return new Meeting(client, modelDescription, modelMeetingDate, modelMeetingTime);
+        MeetingTime modelMeetingStartTime = ParserUtil.parseTime(meetingStartTime);
+        MeetingTime modelMeetingEndTime = ParserUtil.parseTime(meetingEndTime);
+        return new Meeting(client, modelDescription, modelMeetingDate, modelMeetingStartTime, modelMeetingEndTime);
     }
 
 }

@@ -28,7 +28,7 @@ public class MeetingCondensedView extends UiPart<Region> {
         this.meeting = meeting;
         description.setText(meeting.getDescription().toString());
         date.setText(meeting.getMeetingDate().toString());
-        time.setText(meeting.getMeetingTime().toString());
+        time.setText(meeting.getMeetingStartTime().toString() + " - " + meeting.getMeetingEndTime().toString());
     }
 
     @Override

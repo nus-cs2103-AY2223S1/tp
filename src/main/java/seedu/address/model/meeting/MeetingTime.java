@@ -24,6 +24,14 @@ public class MeetingTime {
         time = meetingTime;
     }
 
+    public boolean isBefore(MeetingTime meetingTime) {
+        return this.time.isBefore(meetingTime.time);
+    }
+
+    public boolean isAfter(MeetingTime meetingTime) {
+        return this.time.isAfter(meetingTime.time);
+    }
+
     public String toString() {
         return time.format(DateTimeFormatter.ofPattern("HHmm"));
     }

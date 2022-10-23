@@ -69,7 +69,7 @@ public class ClientCard extends UiPart<Region> {
             numMeetings.setText(Integer.toString(clientMeetings.size()));
             for (Meeting meeting : clientMeetings) {
                 String meetingSummary = String.format("•  %s, %s - %s", meeting.getMeetingDate(),
-                        meeting.getMeetingTime(), meeting.getDescription());
+                        meeting.getMeetingStartTime(), meeting.getDescription());
                 Label label = new Label(meetingSummary);
                 label.getStyleClass().add("cell_small_label");
                 meetingsBox.getChildren().add(label);
