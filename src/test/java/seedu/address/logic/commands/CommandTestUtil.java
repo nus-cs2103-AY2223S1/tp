@@ -22,10 +22,7 @@ import seedu.address.model.PennyWise;
 import seedu.address.model.entry.Entry;
 import seedu.address.model.entry.NameContainsKeywordsPredicate;
 import seedu.address.testutil.EditEntryDescriptorBuilder;
-//import seedu.address.model.person.Person;
-//import seedu.address.testutil.EditEntryDescriptorBuilder;
-
-//import javax.print.DocFlavor;
+import seedu.address.testutil.ViewEntriesDescriptorBuilder;
 
 /**
  * Contains helper methods for testing commands.
@@ -64,13 +61,13 @@ public class CommandTestUtil {
     public static final String VALID_TAG_ALLOWANCE = "Allowance";
 
     public static final String VALID_GRAPH_MONTH = "m";
-
-    public static final String GRAPH_MONTH = " " + PREFIX_GRAPH + VALID_GRAPH_MONTH;
+    public static final String VALID_GRAPH_CATEGORY = "c";
 
     public static final String TYPE_INCOME = " " + PREFIX_TYPE + VALID_TYPE_INCOME;
     public static final String TYPE_EXPENDITURE = " " + PREFIX_TYPE + VALID_TYPE_EXPENDITURE;
     public static final String TYPE_MONTH = " " + PREFIX_MONTH + VALID_MONTH_MARCH;
-    public static final String TYPE_GRAPH = " " + PREFIX_GRAPH + VALID_GRAPH_MONTH;
+    public static final String TYPE_GRAPH_CATEGORY = " " + PREFIX_GRAPH + VALID_GRAPH_CATEGORY;
+    public static final String TYPE_GRAPH_MONTH = " " + PREFIX_GRAPH + VALID_GRAPH_MONTH;
 
     public static final String DESC_LUNCH = " " + PREFIX_DESCRIPTION + VALID_DESC_LUNCH;
     public static final String DESC_MOVIE = " " + PREFIX_DESCRIPTION + VALID_DESC_MOVIE;
@@ -103,6 +100,7 @@ public class CommandTestUtil {
     public static final String INVALID_DATE = " " + PREFIX_DATE + "32-32-3232 "; // only valid date strings allowed
     public static final String INVALID_TAG = " " + PREFIX_TAG + "tag* "; // '*' not allowed in tags
     public static final String INVALID_MONTH = " " + PREFIX_MONTH + "2022-00"; // only valid month and year allowed
+    public static final String INVALID_GRAPH = " " + PREFIX_GRAPH + "a"; // only 'c' and 'm' types allowed
 
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
@@ -116,6 +114,20 @@ public class CommandTestUtil {
         DINNER = new EditEntryDescriptorBuilder().withDescription(VALID_DESC_DINNER)
                 .withType(VALID_TYPE_EXPENDITURE).withAmount(VALID_AMT_DINNER).withDate(VALID_DATE_DINNER)
                 .build();
+    }
+
+    public static final ViewCommand.ViewEntriesDescriptor EXPENDITURE_BY_CATEGORY;
+    public static final ViewCommand.ViewEntriesDescriptor EXPENDITURE_BY_MONTH;
+    static {
+        EXPENDITURE_BY_CATEGORY = new ViewEntriesDescriptorBuilder().
+                withEntryType(VALID_TYPE_EXPENDITURE).
+                withGraphType(VALID_GRAPH_CATEGORY).
+                build();
+        EXPENDITURE_BY_MONTH = new ViewEntriesDescriptorBuilder().
+                withEntryType(VALID_TYPE_EXPENDITURE).
+                withGraphType(VALID_GRAPH_MONTH).
+                withMonth(VALID_MONTH_MARCH).
+                build();
     }
 
     /**

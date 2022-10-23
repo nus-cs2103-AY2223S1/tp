@@ -64,7 +64,7 @@ public class ViewCommand extends Command {
 
     /**
      * Stores the details to view entries. Each non-empty field value will replace the
-     * default value of the viwe configuration.
+     * default value of the view configuration.
      */
     public static class ViewEntriesDescriptor {
         private EntryType entryType;

@@ -21,10 +21,16 @@ public class GraphConfiguration {
         this.shouldUpdateGraph = shouldUpdateGraph;
     }
 
+    /**
+     * Constructs and returns a default configuration for the graph, where the entry type is specified
+     * as "Expenditure", graph type is specified as "Category" and the graph should be updated.
+     *
+     * @return Default construction of graph configuration.
+     */
     public static GraphConfiguration ofDefault() {
         EntryType expenditureEntryType = new EntryType(EntryType.ENTRY_TYPE_EXPENDITURE);
         GraphType categoryGraphType = new GraphType(GraphType.GRAPH_TYPE_CATEGORY);
-        return new GraphConfiguration(expenditureEntryType, categoryGraphType, false);
+        return new GraphConfiguration(expenditureEntryType, categoryGraphType, true);
     }
 
     public EntryType getEntryType() {
