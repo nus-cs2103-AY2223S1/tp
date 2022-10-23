@@ -4,8 +4,8 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.intrack.logic.commands.CommandTestUtil.VALID_ADDRESS_AAPL;
 import static seedu.intrack.logic.commands.CommandTestUtil.VALID_ADDRESS_MSFT;
-import static seedu.intrack.logic.commands.CommandTestUtil.VALID_EMAIL_MSFT;
 import static seedu.intrack.logic.commands.CommandTestUtil.VALID_EMAIL_AAPL;
+import static seedu.intrack.logic.commands.CommandTestUtil.VALID_EMAIL_MSFT;
 import static seedu.intrack.logic.commands.CommandTestUtil.VALID_NAME_AAPL;
 import static seedu.intrack.logic.commands.CommandTestUtil.VALID_NAME_MSFT;
 import static seedu.intrack.logic.commands.CommandTestUtil.VALID_PHONE_AAPL;
@@ -20,15 +20,16 @@ import static seedu.intrack.testutil.Assert.assertThrows;
 import static seedu.intrack.testutil.TypicalInternships.ALICE;
 import static seedu.intrack.testutil.TypicalInternships.MSFT;
 
-import org.junit.jupiter.api.Test;
-
-import seedu.intrack.model.tag.Tag;
-import seedu.intrack.testutil.InternshipBuilder;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+
+import org.junit.jupiter.api.Test;
+
+import seedu.intrack.model.tag.Tag;
+import seedu.intrack.testutil.InternshipBuilder;
 
 public class InternshipTest {
 
