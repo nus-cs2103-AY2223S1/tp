@@ -30,7 +30,7 @@ Model -> Model: updateFilteredPersonList()
 Model --> FilterCommand
 deactivate Model
 
-<-- FilterCommand
+<-- FilterCommand : commandResult
 deactivate FilterCommand
 
 

@@ -395,6 +395,9 @@ The following commands are provided:
 
 * `filter clear [n=NAME,...] [t=TAG,...]`  — Removes filters that were previously applied with the specified names or tags
 
+The command utilises the  `FilterCommandPredicate` class to aggregate the filters specified and handle the filtering. `FilterCommandPredicate` is created during parsing when `filter` commands are executed. The following is the sequence diagram for parsing of the `filter` command.
+![FilterParseSequenceDiagram](images/command-filter/FilterParseSequenceDiagram.svg)
+
 Adding and removing filters are exposed in the `Model` through the `Model#addNewFilterToFilteredPersonList` and `Model#removeFilterFromFilteredPersonList` methods. Addtionally, there is also the `Model#clearFiltersInFilteredPersonList` method to clear all filters.
 
 ![FilterClassDiagram](images/command-filter/FilterClassDiagram.svg)
@@ -403,7 +406,7 @@ Predicates of each type of filter (name and tags) are stored in separate sets in
 
 The following is a sequence diagram of a `filter` command. `filter clear` is similiar except that `Model#clearFiltersInFilteredPersonList` is called instead while `filter list` does not change the `FilteredList` of the model.
 
-![FilterSequenceDiagram](images/command-filter/FilterSequenceDiagram.svg)
+![FilterSequenceDiagram](images/command-filter/FilterParseSequenceDiagram.svg)
 
 **Given below is an example usage scenario of filtering**
 
