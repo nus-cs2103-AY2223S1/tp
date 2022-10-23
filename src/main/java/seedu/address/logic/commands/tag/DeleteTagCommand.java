@@ -26,6 +26,7 @@ import seedu.address.model.person.Remark;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.task.Deadline;
 import seedu.address.model.task.Description;
+import seedu.address.model.task.Id;
 import seedu.address.model.task.Task;
 
 /**
@@ -163,8 +164,10 @@ public class DeleteTagCommand extends Command {
         if (newTags.size() > 0) {
             updatedTags.removeAll(newTags);
         }
+        // Id cannot be updated
+        Id id = taskToEdit.getId();
 
-        return new Task(updatedDescription, updatedDeadline, updatedIsDone, updatedTags);
+        return new Task(updatedDescription, updatedDeadline, updatedIsDone, updatedTags, id);
     }
 
     @Override

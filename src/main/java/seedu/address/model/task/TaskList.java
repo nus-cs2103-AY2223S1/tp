@@ -3,6 +3,7 @@ package seedu.address.model.task;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.util.Comparator;
 import java.util.Iterator;
 import java.util.List;
 
@@ -15,9 +16,13 @@ import seedu.address.model.task.exceptions.TaskNotFoundException;
  * Represents the tasklist.
  */
 public class TaskList implements Iterable<Task> {
+    private static final Comparator<Task> DATE_COMPARATOR = Comparator.comparing(Task::getDeadline);
+    private static final Comparator<Task> ID_COMPARATOR = Comparator.comparing(Task::getId);
+
     private final ObservableList<Task> internalList = FXCollections.observableArrayList();
     private final ObservableList<Task> internalUnmodifiableList =
             FXCollections.unmodifiableObservableList(internalList);
+    private Boolean isSortByDeadline = false;
 
     /**
      * Returns the backing list as an unmodifiable {@code ObservableList}.
@@ -36,6 +41,10 @@ public class TaskList implements Iterable<Task> {
             throw new DuplicateTaskException();
         }
         internalList.add(task);
+
+        if (isSortByDeadline) {
+            sortByDeadline();
+        }
     }
 
     /**
@@ -67,6 +76,10 @@ public class TaskList implements Iterable<Task> {
         }
 
         internalList.set(index, editedTask);
+
+        if (isSortByDeadline) {
+            sortByDeadline();
+        }
     }
 
     public void setTasks(TaskList replacement) {
@@ -85,6 +98,26 @@ public class TaskList implements Iterable<Task> {
         }
 
         internalList.setAll(tasks);
+    }
+
+    /**
+     * Sorts the task list by deadline
+     */
+    public void sortByDeadline() {
+        isSortByDeadline = true;
+        internalList.sort(DATE_COMPARATOR);
+    }
+
+    /**
+     * Sorts the task list by id.
+     */
+    public void sortById() {
+        isSortByDeadline = false;
+        internalList.sort(ID_COMPARATOR);
+    }
+
+    public Boolean isSortByDeadline() {
+        return isSortByDeadline;
     }
 
     @Override

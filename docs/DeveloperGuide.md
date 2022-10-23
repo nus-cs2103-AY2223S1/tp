@@ -154,90 +154,232 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
-### \[Proposed\] Undo/redo feature
+### Add/delete tag feature
 
-#### Proposed Implementation
+#### Implementation
 
-The proposed undo/redo mechanism is facilitated by `VersionedAddressBook`. It extends `AddressBook` with an undo/redo history, stored internally as an `addressBookStateList` and `currentStatePointer`. Additionally, it implements the following operations:
+The add/delete tag mechanism operates for both contacts and tasks in YellowBook.
 
-* `VersionedAddressBook#commit()` — Saves the current address book state in its history.
-* `VersionedAddressBook#undo()` — Restores the previous address book state from its history.
-* `VersionedAddressBook#redo()` — Restores a previously undone address book state from its history.
+Every instance of AddTagCommand and DeleteTagCommand is created with two booleans.
+For AddTagCommand, they are addTagToTask and addTagToContact.
+For DeleteTagCommand, they are removeTagFromTask and removeTagFromContact.
+Only one of these booleans will be true. Otherwise, an exception is thrown.
 
-These operations are exposed in the `Model` interface as `Model#commitAddressBook()`, `Model#undoAddressBook()` and `Model#redoAddressBook()` respectively.
+Depending on the status of these booleans, an EditTaskDescriptor or EditPersonDescriptor is created respectively.
 
-Given below is an example usage scenario and how the undo/redo mechanism behaves at each step.
+This descriptor object is then used to modify the list of tags attached to the selected task/contact.
 
-Step 1. The user launches the application for the first time. The `VersionedAddressBook` will be initialized with the initial address book state, and the `currentStatePointer` pointing to that single address book state.
+A new contact/task is created, with all attributes copied over from the original person, except for the list of tags, where the modified version is used.
 
-![UndoRedoState0](images/UndoRedoState0.png)
+This contact/task then replaces the previous contact/task in the YellowBook via `AddressBook#setPerson()`.
 
-Step 2. The user executes `delete 5` command to delete the 5th person in the address book. The `delete` command calls `Model#commitAddressBook()`, causing the modified state of the address book after the `delete 5` command executes to be saved in the `addressBookStateList`, and the `currentStatePointer` is shifted to the newly inserted address book state.
+Given below is an example usage scenario and how the add/delete tag mechanism behaves at each step.
 
-![UndoRedoState1](images/UndoRedoState1.png)
+Step 1. The user executes `addL c/1 t/CS2103T` to add the tag "CS2103T" to the first contact in the contact list.
 
-Step 3. The user executes `add n/David …​` to add a new person. The `add` command also calls `Model#commitAddressBook()`, causing another modified address book state to be saved into the `addressBookStateList`.
-
-![UndoRedoState2](images/UndoRedoState2.png)
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If a command fails its execution, it will not call `Model#commitAddressBook()`, so the address book state will not be saved into the `addressBookStateList`.
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The above command will fail if the contact list is empty. An error message will be displayed informing the user.
 
 </div>
 
-Step 4. The user now decides that adding the person was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `Model#undoAddressBook()`, which will shift the `currentStatePointer` once to the left, pointing it to the previous address book state, and restores the address book to that state.
+Step 2. The user now decides that adding the tag was a mistake, and decides to undo that action by executing `deleteT c/1 l/CS2103T`.
 
-![UndoRedoState3](images/UndoRedoState3.png)
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index 0, pointing to the initial AddressBook state, then there are no previous AddressBook states to restore. The `undo` command uses `Model#canUndoAddressBook()` to check if this is the case. If so, it will return an error to the user rather
-than attempting to perform the undo.
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The tag provided in the `deleteL` command must be an exact match for that provided in the `addL` command. Matching is case-sensitive. Otherwise, YellowBook will display an error message stating that no such tag is present on the selected user.
 
 </div>
 
-The following sequence diagram shows how the undo operation works:
+The following sequence diagram shows how the add tag operation works:
 
-![UndoSequenceDiagram](images/UndoSequenceDiagram.png)
+![AddTagSequenceDiagram](images/AddTagSequenceDiagram.png)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `UndoCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
-
-</div>
-
-The `redo` command does the opposite — it calls `Model#redoAddressBook()`, which shifts the `currentStatePointer` once to the right, pointing to the previously undone state, and restores the address book to that state.
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index `addressBookStateList.size() - 1`, pointing to the latest address book state, then there are no undone AddressBook states to restore. The `redo` command uses `Model#canRedoAddressBook()` to check if this is the case. If so, it will return an error to the user rather than attempting to perform the redo.
-
-</div>
-
-Step 5. The user then decides to execute the command `list`. Commands that do not modify the address book, such as `list`, will usually not call `Model#commitAddressBook()`, `Model#undoAddressBook()` or `Model#redoAddressBook()`. Thus, the `addressBookStateList` remains unchanged.
-
-![UndoRedoState4](images/UndoRedoState4.png)
-
-Step 6. The user executes `clear`, which calls `Model#commitAddressBook()`. Since the `currentStatePointer` is not pointing at the end of the `addressBookStateList`, all address book states after the `currentStatePointer` will be purged. Reason: It no longer makes sense to redo the `add n/David …​` command. This is the behavior that most modern desktop applications follow.
-
-![UndoRedoState5](images/UndoRedoState5.png)
-
-The following activity diagram summarizes what happens when a user executes a new command:
-
-<img src="images/CommitActivityDiagram.png" width="250" />
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `AddTagCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 
 #### Design considerations:
 
-**Aspect: How undo & redo executes:**
+**Aspect: How add & delete tag executes:**
 
-* **Alternative 1 (current choice):** Saves the entire address book.
+* **Alternative 1 (current choice):** Implement a static class to edit tag list.
+  * Pros: Preserves immutability of Contact and Task.
+  * Cons: Longer code, requires writing a new class.
+
+* **Alternative 2:** Use the existing EditContact and EditTask classes.
+    * Pros: Requires no additional code.
+    * Cons: Increases coupling. Will fail if the associated classes stop working.
+
+### Add/delete task feature
+
+#### Proposed Implementation
+
+The proposed add/delete task mechanism is facilitated by `TaskList`. It extends `AddressBook` with a task list, stored internally as a TaskList `tasks`.
+
+Every instance of AddTaskCommand is created with a Task instance. If the Task instance is null, an exception is thrown.
+
+Every instance of DeleteTaskCommand is created with an Index instance.
+
+Additionally, it implements the following operations:
+
+* `TaskList#addTask()` — Adds a task to the task list.
+* `TaskList#remove()` — Removes the specified task from the task list.
+* `TaskList#setTask()` — Replaces the task in the list with an edited task.
+
+These operations are exposed in the `Model` interface as `Model#addTask()`, `Model#deleteTask()` and `Model#setTask()` respectively.
+
+Given below is an example usage scenario and how the add/delete task mechanism behaves at each step.
+
+Step 1. The user launches the application for the first time. The `TaskList` will be initialized and contains no tasks.
+
+Step 2. The user executes `addT d/buy milk D/12-09-2022` command to add a task to the task list. The `addT` command calls `Model#addTask()`, causing the task to be added to the task list.
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The addT command will fail its execution if its format is incorrect, and no task will be added to the task list. An error message will be displayed informing the user.
+
+</div>
+
+Step 3. The user now decides that adding that task was a mistake, and decides to remove that task by executing `deleteT 1` to delete the first task in the task list. The `delete` command calls `Model#deleteTask()`, causing the first task in the task list to be deleted.
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The deleteT command will fail its execution if the index provided is invalid, and no task will be removed from the task list. An error message will be displayed informing the user.
+
+</div>
+
+The following sequence diagram shows how the addT operation works:
+
+![AddTaskSequenceDiagram](images/AddTaskSequenceDiagram.png)
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `AddTaskCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+
+</div>
+
+The following activity diagram summarizes what happens when a user executes a new command:
+
+<img src="images/AddTaskActivityDiagram.png" width="250" />
+
+#### Design considerations:
+
+**Aspect: How add & delete task executes:**
+
+* **Alternative 1 (current choice):** Implement a TaskList class to handle the task list.
+    * Pros: Easy to implement.
+    * Cons: The code becomes longer as a new class must be implemented.
+
+* **Alternative 2:** Use the existing AddressBook class to store the Tasks.
+    * Pros: Does not require implementation of a new class.
+    * Cons: Increases complexity and length of code in AddressBook.
+
+### Find contact feature
+
+#### Implementation
+
+The sort mechanism is facilitated by `PersonContainsKeywordsPredicate`. It implements `Predicate<Person>`, which means it is a functional interface that tests a person object against a condition. The `test` method returns true if the person object contains all the keywords given by the user.
+
+Step 1. The user enters with findC command with one or more of the contact's fields as parameters (e.g. name, address, phone, email)
+
+Step 2. The `FindCommandParser` class parses the user input and creates a `PersonContainsKeywordsPredicate` object with the given parameters.
+
+Step 3. The `FindCommand` class then calls the `Model#updateFilteredPersonList()` method with the predicate object as the parameter.
+
+Step 4. The `Model` class then updates the filtered list of contacts in the `AddressBook` class.
+
+Given below is an example usage scenario and how the find mechanism behaves at each step.
+
+![FindContactSequenceDiagram](images/FindContactSequenceDiagram.png)
+
+#### Design considerations:
+
+**Aspect: How the paramters supplied are matched to contact fields:**
+
+* **Alternative 1 (current choice):** Matches individual words in the parameter to the contact fields (case insensitive)
+    * Pros: Users are able to make more generic searches as only one word needs to match.
+    * Cons: Results are less precise as users are unable to search multi-word strings.
+
+* **Alternative 2:** Allow users to specify which keywords are to be matched individually/multi-word strings
+    * Pros: Allow more precise searches.
+    * Cons: User needs to remember additional syntax.
+    * Cons: More complex implementation.
+
+### Mark/unmark task feature
+
+#### Implementation
+
+The mark/unmark task mechanism is facilitated by `TaskList` and updates a task's completion status to done and undone respectively.
+The task completion status is stored internally in each `Task` object as a boolean variable `isDone`.
+
+The mark/unmark mechanism makes use of the following operations:
+- `TaskList#setTask(Task target, Task editedTask)` — Replaces task in the list with edited task.
+
+This operation is exposed in the `Model` interface as `Model#setTask(Task target, Task editedTask)`.
+
+Given below is an example usage scenario and how the mark mechanism behaves at each step.
+
+Step 1. The user launches the application, which already has some tasks listed. The tasks' current completion status is as currently
+stored in the boolean `isDone`.
+
+Step 2. The user executes `markT 1` command to mark the 1st task in the address book's task list as done. The `markT` command
+calls `Model#setTask(Task target, Task editedTask)`, updating the 1st task's boolean variable `isDone` as true.
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The above command will fail if the task list is empty or the index given by the user is invalid.
+
+</div>
+
+The following sequence diagram shows how the mark task operation works:
+
+![MarkTaskSequenceDiagram](images/MarkTaskSequenceDiagram.png)
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `MarkTaskCommandParser` and `MarkTaskCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+
+</div>
+
+The `unmarkT` command indicates a task as not done, and is executed similarly to the above sequence diagram, although with `UnmarkTaskCommandParser` and `UnmarkTaskCommand` instead of
+`MarkTaskCommandParser` and `MarkTaskCommand` respectively.
+
+The following activity diagram summarizes what happens when a user executes a new command:
+
+<img src="images/MarkUnmarkTaskActivityDiagram.png" width="250" />
+
+### Design considerations:
+
+**Aspect: How mark & unmark task executes:**
+
+* **Alternative 1 (current choice):** Replaces task in tasklist.
+    * Pros: Reflects change in GUI immediately.
+    * Cons: May have performance issues in terms of creating unnecessary new `Task` objects and numerous method calls to change the TaskList instead of just changing the Task.
+
+* **Alternative 2:** Change the boolean variable of `Task` object directly.
+    * Pros: Will be more efficient without needing to create new `Task` object and only needing to update the `isDone` variable of `Task` object.
+    * Cons: GUI only reflects the change after the task list is update by another command.
+
+### Sort feature
+
+#### Implementation
+
+The sort mechanism is facilitated by `TaskList` with the sorting status stored internally as `isSortByDeadline`. It implements the following operations:
+
+* `TaskList#sortByDeadline()` — Sorts the task list by deadline.
+* `TaskList#sortById()` — Sorts the task list by id, which is the order the tasks were added in.
+
+The two operations are exposed in the `Model` interface as `Model#sortByDeadline()` and `Model#sortById()` respectively.
+
+Given below is an example usage scenario and how the sort mechanism behaves at each step.
+
+Step 1. The user launches the application with some tasks in the task list already.
+
+Step 2. The user executes `sortD` command to sort the task list by deadline. The `sortD` command calls `Model#sortByDeadline()`, causing the task list to sort by deadline.
+The following sequence diagram shows how the sort by deadline operation works:
+
+![SortByDeadlineSequenceDiagram](images/SortByDeadlineSequenceDiagram.png)
+
+Step 3. The user has seen the most urgent tasks to be completed but realises that there is one more task that has not been added. The user executes `addT d/do …` to add a new task.  The `addT` command eventually calls `TaskList#sortByDeadline()` to sort the task list after adding the new task.
+
+Step 4. The user now decides that the initial order of the task list looks much better after finding out the tasks to do. The user executes `sortI` to sort the task list by id. The `sortI` command calls `Model#sortById()` to sort the task list based on id.
+
+#### Design considerations:
+
+**Aspect: How the sort methods executes:**
+
+* **Alternative 1 (current choice):** Saves the sorting status after sorting
+  * Pros: Only need to enter sort command once for task list to permanently be sorted even when the task list is modified.
+  * Cons: Harder to implement as other task list need to be updated constantly to ensure sorting order.
+
+* **Alternative 2:** Don't save the sorting status and just sort once
   * Pros: Easy to implement.
-  * Cons: May have performance issues in terms of memory usage.
-
-* **Alternative 2:** Individual command knows how to undo/redo by
-  itself.
-  * Pros: Will use less memory (e.g. for `delete`, just save the person being deleted).
-  * Cons: We must ensure that the implementation of each individual command are correct.
-
-_{more aspects and alternatives to be added}_
-
-### \[Proposed\] Data archiving
-
-_{Explain here how the data archiving feature will be implemented}_
-
+  * Cons: Need to type a sort command each time the list is changed to preserve sorting order.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -265,7 +407,7 @@ _{Explain here how the data archiving feature will be implemented}_
 * prefers typing to mouse interactions
 * is reasonably comfortable using CLI apps
 
-**Value proposition**: 
+**Value proposition**:
 
 * manage project contacts and tasks faster than a typical mouse/GUI driven app
 * manage many group projects at the same time
@@ -278,41 +420,41 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 | Priority | As a …​                                    | I want to …​                     | So that I can…​                                                                      |
 | -------- | ------------------------------------------ | ------------------------------ | ------------------------------------------------------------------------------------ |
-| `* * *`  | technically competent student who prefers typing to clicking | have a CLI   | perform operations quickly | 
+| `* * *`  | technically competent student who prefers typing to clicking | have a CLI   | perform operations quickly |
 | `* * *`  | student who is part of many group projects | keep track of the contact information of my groupmates | communicate with my team |
 | `* * *`  | student who is part of many group projects | track the progress of each group towards its goals | know if everyone is putting in their share of work |
-| `* * *`  | student who often has to email others | store people’s emails    | remember their emails | 
+| `* * *`  | student who often has to email others | store people’s emails    | remember their emails |
 | `* * *`  | student who prefers calling                | see the person’s phone number  | call them |
 | `* * *`  | student who prefers visiting someone in person |  see the person’s address  | visit them |
 | `* * *`  | SWE student                                | save the github usernames of my contacts | view their repo |
-| `* * *`  | student                                    | edit the information on people’s profiles | update the information when necessary | 
+| `* * *`  | student                                    | edit the information on people’s profiles | update the information when necessary |
 | `* * *`  | student who pefers a compact social circle | delete contacts                | stop keeping old contacts |
 | `* * *`  | team leader                                | add and remove people from a project when forming the project group | know who is part of the project group |
 | `* * *`  | team leader                                | remove a project and the people associated with it once the project is done | avoid cluttering my workspace |
-| `* * *`  | team member                                | group contacts                 | know which people are involved in which projects | 
+| `* * *`  | team member                                | group contacts                 | know which people are involved in which projects |
 | `* * *`  | team member                                | give status updates on individual tasks | inform the group on my progress |
 | `* * *`  | forgetful student                          | keep track of my tasks         | know which tasks need to be completed |
-| `* * *`  | forgetful student                          | mark tasks as complete         | know if I have completed the task already | 
-| `* * *`  | forgetful student                          | note the deadline of my tasks  | complete my tasks on time | 
-| `* * *`  | forgetful person                           | save people’s profiles with photos | remember their names | 
-| `* * *`  | forgetful person                           | keep notes on the people I’ve met | remember important things about them | 
+| `* * *`  | forgetful student                          | mark tasks as complete         | know if I have completed the task already |
+| `* * *`  | forgetful student                          | note the deadline of my tasks  | complete my tasks on time |
+| `* * *`  | forgetful person                           | save people’s profiles with photos | remember their names |
+| `* * *`  | forgetful person                           | keep notes on the people I’ve met | remember important things about them |
 | `* *`    | team leader                                | see my team’s progress towards completing their assigned tasks | know if my team is on track |
 | `* *`    | team leader                                | assign tasks to my team members | divide the work efficiently |
 | `* *`    | team leader                                | archive a project and the people associated with it once the project is done | avoid cluttering my workspace|
-| `* *`    | team member                                | send reminders to other team members | remind them to do their work | 
-| `* *`    | team member                                | use an idea board | generate inspiration with my teammates | 
-| `* *`    | anxious student                            | see the percentage completion of the tasks | feel at ease | 
-| `* *`    | anxious student                            | see if I am on track with my deadlines | be assured that my tasks are not behind schedule | 
-| `* *`    | forgetful student                          | be reminded of upcoming deadlines | ensure that I won't miss them | 
-| `* *`    | artistic student                           | change the colour palette of my UI to my preference | enjoy looking at the UI | 
+| `* *`    | team member                                | send reminders to other team members | remind them to do their work |
+| `* *`    | team member                                | use an idea board | generate inspiration with my teammates |
+| `* *`    | anxious student                            | see the percentage completion of the tasks | feel at ease |
+| `* *`    | anxious student                            | see if I am on track with my deadlines | be assured that my tasks are not behind schedule |
+| `* *`    | forgetful student                          | be reminded of upcoming deadlines | ensure that I won't miss them |
+| `* *`    | artistic student                           | change the colour palette of my UI to my preference | enjoy looking at the UI |
 | `* *`    | student with color blindness               | have my software be composed of minimal colors | distinguish all elements |
-| `* *`    | student who does work late at night        | use dark mode                  | choose not to strain my eyes | 
+| `* *`    | student who does work late at night        | use dark mode                  | choose not to strain my eyes |
 | `*`      | student who struggles with remembering identities | add nicknames to my contacts | better identify them |
-| `*`      | student who prefers pen and paper          | print out my tasks             | annotate on it physically | 
+| `*`      | student who prefers pen and paper          | print out my tasks             | annotate on it physically |
 | `*`      | artistic student                           | have the software I use to look aesthetic | enjoy using them |
-| `*`      | student who is bad with names              | see the person’s first name emphasized | know how to address the person| 
-| `*`      | student with poor eyesight                 | ensure that my software have big fonts and large buttons | distinguish all elements | 
-| `*`      | animal loving person                       | have some cute animals in the background | feel entertained while managing my tasks | 
+| `*`      | student who is bad with names              | see the person’s first name emphasized | know how to address the person|
+| `*`      | student with poor eyesight                 | ensure that my software have big fonts and large buttons | distinguish all elements |
+| `*`      | animal loving person                       | have some cute animals in the background | feel entertained while managing my tasks |
 
 ### Use cases
 
@@ -322,56 +464,33 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1.  User request to add a contact
-2.  YellowBook adds the contact
+1. User request to add a contact
+2. YellowBook adds the contact
 
     Use case ends.
-    
+
 **Extensions**
 
 * 1a. The details of the contact are incomplete.
-     
+
     * 1a1. YellowBook shows an error message.
 
 	     Use case ends.
-    
+
 * 1b. The contact given already exists.
-	   
+
     * 1b1. YellowBook shows an error message.
-  
+
       Use case ends.
 
-**Use case: Delete a person**
+**Use case: Delete a contact**
 
 **MSS**
 
-1.  User requests to list persons
-2.  YellowBook shows a list of persons
-3.  User requests to delete a specific person in the list
-4.  AddressBook deletes the person
-
-    Use case ends.
-
-**Extensions**
-
-* 2a. The list is empty.
-
-  Use case ends.
-
-* 3a. The given index is invalid.
-
-    * 3a1. YellowBook shows an error message.
-
-      Use case resumes at step 2.
-
-**Use case: Add a task**
-
-**MSS**
-
-1.  User requests to list tasks
-2.  YellowBook shows a list of tasks
-3.  User requests to delete a specific task in the list
-4.  YellowBook deletes the task
+1.  User requests to list contacts
+2.  YellowBook shows a list of contacts
+3.  User requests to delete a specific contact in the list
+4.  YellowBook deletes the contact
 
     Use case ends.
 
@@ -503,7 +622,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 2.
 
-  
+
 *{More to be added}*
 
 ### Non-Functional Requirements
@@ -511,7 +630,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 1. Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
 2. Should be able to hold up to 30,000 persons without a _noticeable sluggishness_ in performance for typical usage.
 3. Should be able to hold up to 30,000 tasks without a _noticeable sluggishness_ in performance for typical usage.
-4. A user with _above average typing speed_ for _regular text_ should be able to accomplish 
+4. A user with _above average typing speed_ for _regular text_ should be able to accomplish
 most of the tasks faster using commands than using the mouse.
 5. Contact/task/tag names should contain alphanumeric characters and/or spaces and/or symbols.
 6. Contact/task/tag names should be case-insensitive.

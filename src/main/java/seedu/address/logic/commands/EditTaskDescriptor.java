@@ -9,6 +9,7 @@ import seedu.address.commons.util.CollectionUtil;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.task.Deadline;
 import seedu.address.model.task.Description;
+import seedu.address.model.task.Id;
 
 /**
  * Stores the details to edit the task with. Each non-empty field value will replace the
@@ -19,6 +20,7 @@ public class EditTaskDescriptor {
     private Deadline deadline;
     private boolean isDone;
     private Set<Tag> tags;
+    private Id id;
 
     public EditTaskDescriptor() {}
 
@@ -62,6 +64,14 @@ public class EditTaskDescriptor {
 
     public Optional<Boolean> getIsDone() {
         return Optional.ofNullable(isDone);
+    }
+
+    public void setId(Id id) {
+        this.id = id;
+    }
+
+    public Optional<Id> getId() {
+        return Optional.ofNullable(id);
     }
 
     /**

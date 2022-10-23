@@ -71,7 +71,7 @@ Format:  `addC n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [r/REMARK]`
 
 * The remark of a contact is optional.
 
-Examples: 
+Examples:
 
 * `addC n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
 
@@ -99,7 +99,7 @@ Examples:
 
 * `findC John` followed by `deleteC 1` deletes the first result of the `findC` command.
 
-## Editing a contact: `editC`
+### Editing a contact: `editC`
 
 Edits the information fields (e.g. name, mobile number, email address) of an existing contact in the address book.
 
@@ -117,32 +117,33 @@ Example:
 
 * `editC 1 n/John p/12345678` edits the first contact’s name to be John and phone number to be 12345678.
 
-### Locating contacts by name: `findC`
+### Find a contact: `findC`
 
-Finds contacts whose names contain any of the given keywords.
+Finds a contact using one or more information fields (e.g. name, mobile number, email, and/or address)
 
-Format: `findC KEYWORD [MORE_KEYWORDS]`
+Format: `findC [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS]`
+
+* At least one information field has to be provided.
 
 * The search is case-insensitive, e.g. `dr. doofenshmirtz` will match `Dr. Doofenshmirtz`.
 
-* The order of the keywords does not matter, e.e. `doofenshmirtz dr.` will match `Dr. Doofenshmirtz`.
+* The order of the keywords does not matter, e.g. `findC n/John p/91231234` will return the same result as `findC p/91231234 n/John`.
 
-* Only the name is searched.
+* Only full words will be matched. e.g. `John` will not match `Johnny`.
 
-* Only full words will be matched. e.g. `Doofenshmirt` will not match `Doofenshmirtz`.
-
-* Contacts matching at least one keyword will be returned. e.g. `Perry Dr.`
-  will match `Perry the Platypus` and `Dr. Doofenshmirtz`.
+* Contacts matching at least one keyword will be returned. e.g. `n/Perry Dr.`
+  will match contacts with name `Perry the Platypus` and `Dr. Doofenshmirtz`.
 
 Example:
 
-* `findC flynn` will return `Candace Flynn` and `Phineas Flynn`.
-* `findC Phineas Ferb` will return `Phineas Flynn` and  `Ferb Flynn`.
+* `findC n/john p/81113210 e/john@gmail.com a/123 kent ridge road` will return a contact whose name contains the word `john`, phone number `81113210`, email `john@gmail.com`, and address `123 kent ridge road`.
+
+* `findC n/flynn p/91231234 e/flynn@gmail.com` will return `Candace Flynn` and `Phineas Flynn`, provided they have the same phone and email.
+
 
 ### Filtering contacts by label: `filterC`
 
-Filters contacts whose labels contain any of the given keywords.
-Filters applied consecutively are stacked.
+Filters contacts whose label(s) contain any of the given keywords.
 
 Format: `filterC KEYWORD [MORE_KEYWORDS]`
 
@@ -160,7 +161,7 @@ Format: `filterC KEYWORD [MORE_KEYWORDS]`
 
 Example:
 
-* `filterC cs2103t` will return contacts with label `CS2103T Software Engineering`.
+* `filterC cs2103t` may return a contact with label `CS2103T Software Engineering`.
 
 ## Section 2: Tasks
 ### Listing all tasks: `listT`
@@ -171,8 +172,8 @@ Format: `listT`
 
 ### Adding Tasks: `addT`
 
-Adds a task to the task list. 
-The description and deadline of the task are not allowed to be empty. Newly added tasks are marked as not done. 
+Adds a task to the task list.
+The description and deadline of the task are not allowed to be empty. Newly added tasks are marked as not done.
 Throws an exception if the description of the task is empty.
 Throws an exception if the deadline of the task is empty.
 Throws an exception if the deadline of the task is not in dd-mm-yyyy format.
@@ -182,16 +183,6 @@ Format: `addT d/DESCRIPTION D/DEADLINE`
 Example:
 
 * `addT d/buy milk D/12-09-2022` will add the task "buy milk" with deadline 12 September 2022.
-
-### Removing Tasks: `deleteT`
-
-Removes the specified task from the task list. Throws an exception if task does not exist.
-
-Format: `deleteT INDEX`
-
-Example:
-
-* `deleteT 12` will delete the 12th task in the task list.
 
 ### Marking task as done: `markT`
 
@@ -224,32 +215,31 @@ Examples:
 * `listT` followed by `unmarkT 1` marks the first task in the displayed task list as undone.
 * `findT book` followed by `unmarkT 1` marks the first result of the `findT` command as undone.
 
-### Locating tasks by name: `findT`
+### Find a task: `findT`
 
-Finds labels whose names contain any of the given keywords.
+Finds a task using one or more information fields (e.g. description, and/or deadline)
 
-Format: `findT KEYWORD [MORE_KEYWORDS]`
+Format: `findT [d/DESCRIPTION] [D/DEADLINE (dd-mm-yyyy)]`
 
-* The search is case-insensitive, e.g. `cs2103t` will match `CS2103T`.
+* At least one information field has to be provided.
 
-* The order of the keywords does not matter, e.e. `software cs2103t` will match
-  `CS2103T Software Engineering`.
+* The search is case-insensitive, e.g. `homework` will match `HOMEWORK`.
 
-* Only the task's name is searched.
+* The order of the keywords does not matter, e.g. `math homework` will match
+  `homework math`.
 
-* Only full words will be matched. e.g. `cs2103t` will not match `cs2103`.
+* Only full words will be matched. e.g. `math` will not match `mathematics`.
 
-* Labels matching at least one keyword will be returned. e.g. `cs2103t cs2101` will match
-  `CS2103T Software Engineering` and `CS2101 Effective Communication for Computing Professionals`.
+* Task fields matching at least one keyword will be returned. e.g. `d/cs2103t cs2101` will match
+  `cs2103t tutorial` and `cs2101 reflection`.
 
 Example:
 
-* `findT cs2103t` will return tasks with label `CS2103T Software Engineering`.
+* `findT d/cs2103t D/25-12-2022` will return tasks with description containing `cs2103t` and deadline `25th December 2022`.
 
 ### Filtering tasks by label: `filterT`
 
-Filters tasks whose labels contain any of the given keywords.
-Filters applied consecutively are stacked.
+Filters tasks whose label(s) contain any of the given keywords.
 
 Format: `filterT KEYWORD [MORE_KEYWORDS]`
 
@@ -267,7 +257,7 @@ Format: `filterT KEYWORD [MORE_KEYWORDS]`
 
 Example:
 
-* `filterT cs2103t` will return tasks with label `CS2103T Software Engineering`.
+* `filterT cs2103t` may return a tasks with label `CS2103T Software Engineering`.
 
 ## Section 3: Labels
 ### Listing all labels: `listL`
@@ -312,14 +302,14 @@ Removes a label from an existing task in the address book. If contact is last re
 
 Format: `deleteL t/INDEX l/label_NAME`
 
-Example: 
+Example:
 
 * `deleteL t/14 l/CS2101` will remove the label "CS2101" from the 14th task on the task list.
 
 ## Automatic tab switching
 
-Depending on the command you enter, you will see the open tab in the GUI switch automatically. 
-For example, when using a task-related command, the tab switches to "Task" and the task list is displayed. 
+Depending on the command you enter, you will see the open tab in the GUI switch automatically.
+For example, when using a task-related command, the tab switches to "Task" and the task list is displayed.
 
 The result of the entered command is displayed.
 For example, after adding a new contact, the list shown on the GUI is the updated list with your new contact included.
@@ -352,7 +342,7 @@ If your changes to the data file makes its format invalid, YellowBook will disca
 |------------|--------------------------------------------------------------------------------------------------------------------------------------------------------|
 | **listC**   | `listC`                                                                                                                                                |
 | **addC**   | `addC n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [r/REMARK]` <br> e.g., `addC n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` |
-| **deleteC** | `deleteC INDEX` <br> e.g., `deleteC 1`                                                                                                                 | 
+| **deleteC** | `deleteC INDEX` <br> e.g., `deleteC 1`                                                                                                                 |
 | **editC**   | `editC INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [r/REMARK]` <br> e.g., `editC 1 n/John p/12345678`                                               |
 | **findC** | `findC KEYWORD [MORE_KEYWORDS]` <br> e.g., `findC Phineas Ferb`                                                                                        |
 | **filterC** | `filterC KEYWORD [MORE_KEYWORDS]` <br> e.g., `filterT cs2103t`                                                                                         |                                                                                                 |

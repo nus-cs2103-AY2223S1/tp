@@ -1,0 +1,77 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
+participant "mp:MarkTaskCommandParser" as MarkTaskCommandParser LOGIC_COLOR
+participant "mc:MarkTaskCommand" as MarkTaskCommand LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+participant ":AddressBook" as AddressBook MODEL_COLOR
+participant ":TaskList" as TaskList MODEL_COLOR
+end box
+
+[-> LogicManager : execute(markT)
+activate LogicManager
+
+LogicManager -> AddressBookParser : parseCommand(markT)
+activate AddressBookParser
+
+create MarkTaskCommandParser
+AddressBookParser -> MarkTaskCommandParser
+activate MarkTaskCommandParser
+
+MarkTaskCommandParser --> AddressBookParser
+deactivate MarkTaskCommandParser
+
+AddressBookParser -> MarkTaskCommandParser : parse(1)
+activate MarkTaskCommandParser
+
+
+create MarkTaskCommand
+MarkTaskCommandParser -> MarkTaskCommand
+activate MarkTaskCommand
+
+MarkTaskCommand --> MarkTaskCommandParser
+deactivate MarkTaskCommand
+
+MarkTaskCommandParser --> AddressBookParser : mc
+deactivate MarkTaskCommandParser
+MarkTaskCommandParser -[hidden]-> AddressBookParser: mc
+destroy MarkTaskCommandParser
+
+AddressBookParser --> LogicManager : mc
+deactivate AddressBookParser
+
+LogicManager -> MarkTaskCommand : execute()
+activate MarkTaskCommand
+
+MarkTaskCommand -> Model : setTask()
+activate Model
+
+Model -> AddressBook : setTask()
+activate AddressBook
+
+AddressBook -> TaskList : setTask()
+activate TaskList
+
+TaskList --> AddressBook
+deactivate TaskList
+
+AddressBook --> Model
+deactivate AddressBook
+
+Model --> MarkTaskCommand
+deactivate Model
+
+MarkTaskCommand --> LogicManager : result
+deactivate MarkTaskCommand
+MarkTaskCommand -[hidden]-> LogicManager : result
+destroy MarkTaskCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml
