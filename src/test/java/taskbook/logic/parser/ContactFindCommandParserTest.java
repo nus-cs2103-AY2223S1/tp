@@ -1,6 +1,5 @@
 package taskbook.logic.parser;
 
-import static taskbook.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static taskbook.logic.parser.CommandParserTestUtil.assertParseSuccess;
 
 import java.util.function.Predicate;
