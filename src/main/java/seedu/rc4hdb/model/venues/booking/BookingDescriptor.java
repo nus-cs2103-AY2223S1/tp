@@ -4,7 +4,7 @@ import java.util.Optional;
 
 import seedu.rc4hdb.commons.util.CollectionUtil;
 import seedu.rc4hdb.model.resident.Resident;
-import seedu.rc4hdb.model.venues.Venue;
+import seedu.rc4hdb.model.venues.VenueName;
 import seedu.rc4hdb.model.venues.booking.fields.Day;
 import seedu.rc4hdb.model.venues.booking.fields.HourPeriod;
 
@@ -14,10 +14,10 @@ import seedu.rc4hdb.model.venues.booking.fields.HourPeriod;
  */
 public class BookingDescriptor {
 
+    private VenueName venueName;
     private Resident resident;
     private HourPeriod hourPeriod;
     private Day dayOfWeek;
-    private Venue venue;
 
     public BookingDescriptor() {}
 
@@ -25,10 +25,10 @@ public class BookingDescriptor {
      * Copy constructor.
      */
     public BookingDescriptor(BookingDescriptor toCopy) {
+        setVenueName(toCopy.venueName);
         setResident(toCopy.resident);
         setHourPeriod(toCopy.hourPeriod);
         setDayOfWeek(toCopy.dayOfWeek);
-        setVenue(toCopy.venue);
     }
 
     /**
@@ -39,6 +39,14 @@ public class BookingDescriptor {
     }
 
     //=========== Start of Getters and Setters ===============================================================
+
+    public void setVenueName(VenueName venueName) {
+        this.venueName = venueName;
+    }
+
+    public Optional<VenueName> getVenueName() {
+        return Optional.of(venueName);
+    }
 
     public void setResident(Resident resident) {
         this.resident = resident;
@@ -64,14 +72,6 @@ public class BookingDescriptor {
         return Optional.ofNullable(dayOfWeek);
     }
 
-    public void setVenue(Venue venue) {
-        this.venue = venue;
-    }
-
-    public Optional<Venue> getVenue() {
-        return Optional.ofNullable(this.venue);
-    }
-
     //=========== End of Getters and Setters =================================================================
 
     @Override
@@ -91,7 +91,6 @@ public class BookingDescriptor {
 
         return getResident().equals(e.getResident())
                 && getHourPeriod().equals(e.getHourPeriod())
-                && getDayOfWeek().equals(e.getDayOfWeek())
-                && getVenue().equals(e.getVenue());
+                && getDayOfWeek().equals(e.getDayOfWeek());
     }
 }

@@ -17,7 +17,7 @@ import seedu.rc4hdb.model.resident.fields.Name;
 import seedu.rc4hdb.model.resident.fields.Phone;
 import seedu.rc4hdb.model.resident.fields.Room;
 import seedu.rc4hdb.model.resident.fields.Tag;
-import seedu.rc4hdb.model.venues.Venue;
+import seedu.rc4hdb.model.venues.VenueName;
 import seedu.rc4hdb.model.venues.booking.fields.Day;
 import seedu.rc4hdb.model.venues.booking.fields.HourPeriod;
 
@@ -177,16 +177,15 @@ public class ParserUtil {
     }
 
     /**
-     * Parses {@code String venue} into a {@code Venue}.
-     * currently only supports one venue: MEETING_ROOM
+     * Parses {@code String venueName} into a {@code VenueName}.
      */
-    public static Venue parseVenue(String venue) throws ParseException {
-        requireNonNull(venue);
-        String trimmedVenue = venue.trim();
-        if (!Venue.isValidVenue(trimmedVenue)) {
-            throw new ParseException(Venue.MESSAGE_CONSTRAINTS);
+    public static VenueName parseVenueName(String venueName) throws ParseException {
+        requireNonNull(venueName);
+        String trimmedVenueName = venueName.trim();
+        if (!VenueName.isValidVenueName(trimmedVenueName)) {
+            throw new ParseException(VenueName.MESSAGE_CONSTRAINTS);
         }
-        return Venue.MEETING_ROOM;
+        return new VenueName(trimmedVenueName);
     }
 
     /**
