@@ -65,7 +65,7 @@ public class JsonAdaptedEventTest {
     }
 
     @Test
-    public void toModelType_nullEndDateTime_throwsIllegalValueException() throws IllegalValueException {
+    public void toModelType_nullEndDateTime_throwsIllegalValueException() {
         JsonAdaptedEvent event = new JsonAdaptedEvent(VALID_TITLE, VALID_START, null, VALID_TAGS);
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, DateTime.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, event::toModelType);
