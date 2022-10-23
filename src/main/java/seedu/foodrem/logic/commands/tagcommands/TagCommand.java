@@ -53,6 +53,7 @@ public class TagCommand extends Command {
                 itemToTag.getBoughtDate(),
                 itemToTag.getExpiryDate(),
                 itemToTag.getPrice(),
+                itemToTag.getRemarks(),
                 newTagSet);
     }
 

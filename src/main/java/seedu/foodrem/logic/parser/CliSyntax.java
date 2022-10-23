@@ -11,5 +11,6 @@ public class CliSyntax {
     public static final Prefix PREFIX_ITEM_BOUGHT_DATE = new Prefix("bgt/");
     public static final Prefix PREFIX_ITEM_EXPIRY_DATE = new Prefix("exp/");
     public static final Prefix PREFIX_ITEM_PRICE = new Prefix("p/");
+    public static final Prefix PREFIX_ITEM_REMARKS = new Prefix("r/");
     public static final Prefix PREFIX_ID = new Prefix("id/");
 }

@@ -17,6 +17,7 @@ import seedu.foodrem.model.item.itemcomparators.ItemExpiryDateComparator;
 import seedu.foodrem.model.item.itemcomparators.ItemNameComparator;
 import seedu.foodrem.model.item.itemcomparators.ItemPriceComparator;
 import seedu.foodrem.model.item.itemcomparators.ItemQuantityComparator;
+import seedu.foodrem.model.item.itemcomparators.ItemRemarksComparator;
 import seedu.foodrem.model.item.itemcomparators.ItemUnitComparator;
 import seedu.foodrem.model.util.ChainComparator;
 
@@ -44,7 +45,8 @@ public class SortCommandParser implements Parser<SortCommand> {
                 CliSyntax.PREFIX_ITEM_BOUGHT_DATE,
                 CliSyntax.PREFIX_ITEM_EXPIRY_DATE,
                 CliSyntax.PREFIX_ITEM_UNIT,
-                CliSyntax.PREFIX_ITEM_PRICE);
+                CliSyntax.PREFIX_ITEM_PRICE,
+                CliSyntax.PREFIX_ITEM_REMARKS);
 
         if (argMultimap.getValue(CliSyntax.PREFIX_NAME).isPresent()) {
             comparators.add(new ItemNameComparator());
@@ -63,6 +65,9 @@ public class SortCommandParser implements Parser<SortCommand> {
         }
         if (argMultimap.getValue(CliSyntax.PREFIX_ITEM_PRICE).isPresent()) {
             comparators.add(new ItemPriceComparator());
+        }
+        if (argMultimap.getValue(CliSyntax.PREFIX_ITEM_REMARKS).isPresent()) {
+            comparators.add(new ItemRemarksComparator());
         }
         if (comparators.isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, SortCommand.getUsage()));

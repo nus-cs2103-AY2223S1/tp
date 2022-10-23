@@ -29,6 +29,7 @@ public class CommandTestUtil {
     public static final String VALID_ITEM_BOUGHT_DATE_POTATOES = "11-11-2022";
     public static final String VALID_ITEM_EXPIRY_DATE_POTATOES = "11-11-2022";
     public static final String VALID_ITEM_PRICE_POTATOES = "10.30";
+    public static final String VALID_ITEM_REMARKS_POTATOES = "For Mashed Potatoes";
 
     public static final String VALID_ITEM_NAME_CUCUMBERS = "Cucumbers";
     public static final String VALID_ITEM_QUANTITY_CUCUMBERS = "2000";
@@ -36,6 +37,7 @@ public class CommandTestUtil {
     public static final String VALID_ITEM_BOUGHT_DATE_CUCUMBERS = "12-12-2022";
     public static final String VALID_ITEM_EXPIRY_DATE_CUCUMBERS = "12-12-2022";
     public static final String VALID_ITEM_PRICE_CUCUMBERS = "8";
+    public static final String VALID_ITEM_REMARKS_CUCUMBERS = "For Salad";
 
     public static final String VALID_TAG_NAME_FRUITS = "fruits";
     public static final String VALID_TAG_NAME_FRUITS_WITH_WHITESPACES = "f r u i t s";
@@ -56,6 +58,8 @@ public class CommandTestUtil {
             + VALID_ITEM_EXPIRY_DATE_POTATOES;
     public static final String VALID_DESC_ITEM_PRICE_POTATOES = " " + CliSyntax.PREFIX_ITEM_PRICE
             + VALID_ITEM_PRICE_POTATOES;
+    public static final String VALID_DESC_ITEM_REMARKS_POTATOES = " " + CliSyntax.PREFIX_ITEM_REMARKS
+            + VALID_ITEM_REMARKS_POTATOES;
 
     public static final String VALID_DESC_ITEM_NAME_CUCUMBERS = " " + CliSyntax.PREFIX_NAME
             + VALID_ITEM_NAME_CUCUMBERS;
@@ -69,6 +73,8 @@ public class CommandTestUtil {
             + VALID_ITEM_EXPIRY_DATE_CUCUMBERS;
     public static final String VALID_DESC_ITEM_PRICE_CUCUMBERS = " " + CliSyntax.PREFIX_ITEM_PRICE
             + VALID_ITEM_PRICE_CUCUMBERS;
+    public static final String VALID_DESC_ITEM_REMARKS_CUCUMBERS = " " + CliSyntax.PREFIX_ITEM_REMARKS
+            + VALID_ITEM_REMARKS_CUCUMBERS;
 
     public static final String VALID_DESC_TAG_NAME_FRUITS = " " + CliSyntax.PREFIX_NAME
             + VALID_TAG_NAME_FRUITS;
@@ -93,6 +99,7 @@ public class CommandTestUtil {
     public static final String INVALID_ITEM_BOUGHT_DATE_CUCUMBERS = "12-12-202@2";
     public static final String INVALID_ITEM_EXPIRY_DATE_CUCUMBERS = "12-12-202@2";
     public static final String INVALID_ITEM_PRICE_CUCUMBERS = "1/2";
+    public static final String INVALID_ITEM_REMARKS_CUCUMBERS = "}|||///||";
 
     public static final String INVALID_TAG_NAME_DISALLOWED_PUNCTUATION = "Frui//ts";
     public static final String INVALID_TAG_NAME_EXCEED_CHAR_LIMIT =
@@ -111,6 +118,8 @@ public class CommandTestUtil {
             + INVALID_ITEM_EXPIRY_DATE_CUCUMBERS;
     public static final String INVALID_DESC_ITEM_PRICE_CUCUMBERS = " " + CliSyntax.PREFIX_ITEM_PRICE
             + INVALID_ITEM_PRICE_CUCUMBERS;
+    public static final String INVALID_DESC_ITEM_REMARKS_CUCUMBERS = " " + CliSyntax.PREFIX_ITEM_REMARKS
+            + INVALID_ITEM_REMARKS_CUCUMBERS;
 
     public static final String INVALID_DESC_ITEM_NAME_POTATOES = " " + CliSyntax.PREFIX_NAME
             + INVALID_ITEM_NAME_POTATOES;
@@ -145,6 +154,8 @@ public class CommandTestUtil {
                 .withItemUnit(VALID_ITEM_UNIT_POTATOES)
                 .withItemBoughtDate(VALID_ITEM_BOUGHT_DATE_POTATOES)
                 .withItemExpiryDate(VALID_ITEM_EXPIRY_DATE_POTATOES)
+                .withItemPrice(VALID_ITEM_PRICE_POTATOES)
+                .withItemRemarks(VALID_ITEM_REMARKS_POTATOES)
                 .build();
         DESC_CUCUMBERS = new EditItemDescriptorBuilder()
                 .withItemName(VALID_ITEM_NAME_CUCUMBERS)
@@ -152,6 +163,8 @@ public class CommandTestUtil {
                 .withItemUnit(VALID_ITEM_UNIT_CUCUMBERS)
                 .withItemBoughtDate(VALID_ITEM_BOUGHT_DATE_CUCUMBERS)
                 .withItemExpiryDate(VALID_ITEM_EXPIRY_DATE_CUCUMBERS)
+                .withItemPrice(VALID_ITEM_PRICE_CUCUMBERS)
+                .withItemRemarks(VALID_ITEM_REMARKS_CUCUMBERS)
                 .build();
     }
 

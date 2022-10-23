@@ -15,91 +15,102 @@ This User Guide provides an in-depth documentation to help integrate FoodRem int
 
 {% include toc.md header=true show-in-toc=true ordered=true %}
 
-## Features 
+## Features
+
 There are two core features that FoodRem provides: The Inventory Management System, and Inventory Analysis.
 
-TODO: Add links to e.g. name, bought date, expiry date, etc.
-### Inventory Management System
- FoodRem allows you to track your inventory during your daily operations.
+<!-- TODO: Add links to e.g. name, bought date, expiry date, etc. -->
 
- 1. Quickly **create, view, edit, and remove** your available inventory.
- 2. **Sort** and **filter** your inventory by name, bought date, expiry date, quantity, unit and cost.
- 3. **Tag** items in your inventory using an efficient tagging system where you can create, rename and delete existing tags. You can then filter and sort items according to these tags.
+### Inventory Management System
+
+FoodRem allows you to track your inventory during your daily operations.
+
+1. Quickly **create, view, edit, and remove** your available inventory.
+1. **Sort** and **filter** your inventory by name, bought date, expiry date, quantity, unit and cost.
+1. **Tag** items in your inventory using an efficient tagging system where you can create, rename and delete existing tags. You can then filter and sort items according to these tags.
 
 ### Inventory Analysis
+
 FoodRem tracks data that helps you streamline your business decisions through **statistics**.
+
 1. Track your **most expensive items**.
-2. View items that are **expiring** in the next 10 days.
-3. Find out how much **cost was incurred** due to food wastage.
+1. View items that are **expiring** in the next 10 days.
+1. Find out how much **cost was incurred** due to food wastage.
 
 ## How to use the User Guide
-To gain the most out from this User Guide, start off with the [Quick Start](#quick-start) section. This will give you a brief overview about how to use this application.
 
-It is **highly recommended** that you read through the User Guide in a **sequential order** up until the section
-[Features](#features) where you can find all the information you need for each command.
+Thank you for choosing FoodRem! We are delighted to have you as a user and aim to serve you well.
 
-[Items and Tags](#items-and-tags) :
+We **highly recommend** that you read through the User Guide in a **sequential order** up until the section [Features](#features), where you can find all the information you need before using all commands.
 
-* What FoodRem is capable of storing
+If this is your first time using FoodRem, start off with the [Quick Start](#quick-start) section. This guides you on how to install FoodRem.
 
-[Navigating around the application](#navigating-around-the-application):
+If you are a new user to FoodRem, you can head over to the section about [Using FoodRem](#using-foodrem) which will teach you the basics of FoodRem. This includes: 
 
-* Terminologies of different parts of the application
-* What you are expected to see.
+* Introducing you to the general [command format](#command-format).
+* [Flags](#flags) and [Placeholders](#placeholders) where you can find:
+  * Important syntax you will come across while reading the User Guide such as `n/`, `bgt/` or `INDEX`, `ITEM_NAME`.
+  *  The description of these syntax and how to use them
+* [Trying out](#trying-your-first-command) a command.
 
-[Flags](#flags) and [Placeholders](#placeholders):
+If you are an experienced user, you can refer to the [Command Summary](#command-summary) to get an overview of all the currently supported FoodRem commands.
 
-* Important syntax you will come across while reading the user
-  guide such as `n/`, `bgt/` or `INDEX`, `ITEM_NAME`.
-
-If you are confident, you can immediately refer to the [Command Summary](#command-summary) after completing the [Quick Start](#quick-start).
-
-Meaning of icons:
+Here are some icons you may encounter in FoodRem and what they mean:
 
 * ℹ️ : additional info
 * ❗ : warning
 
-If you are stuck, refer to [Troubleshooting](#troubleshooting) or [FAQ](#faq). There is also a [Glossary](#glossary) that contains definitions of what common words used in this application mean.
 
-It is time for you to unleash the potential of a command line application!
+If you are stuck, refer to [Troubleshooting](#troubleshooting) or [FAQ](#faq). You can refer to [Glossary](#glossary) that contains definitions of some commonly used words in FoodRem
+
 
 ## Quick Start
 
 {% include_relative _ug/QuickStart.md %}
 
-## Items and Tags
+## Using FoodRem
+Here is an overview of what FoodRem consists of and how you can perform a command.
+### Items and Tags
 
 {% include_relative _ug/ItemsTags.md %}
 
-## Navigating around the application
+### Command Format
 
-{Image of entire application}
+You will encounter FoodRem commands throughout this User Guide. Before you delve into the different commands in [Features](#features), let’s learn what a command consists of.
 
-| Name           | Description |
-|----------------|-------------|
-| Command Input  | {image}     |
-| Command result | {image}     |
-| List Component | {image}     |
-| View Component | {image}     |
+Here is an example:
+![CommandExample](images/CommandExample.png)
+A command consists of:
+1. Command Word to tell FoodRem what action you wish to execute. These actions are covered in [Commands](#commands)
+2. [Flags](#flags) to distinguish parameters
+3. [Placeholders](#placeholders) that you can replace with your parameter inputs
 
-## Flags
+
+### Flags
 
 Flags are delimiters that enable FoodRem to distinguish different parameters without ambiguity.
 
 | Flags | Related Placeholder   |
 |-------|-----------------------|
-| id/   | INDEX<br>INDEX_LIST   |
+| id/   | INDEX                 |
 | n/    | ITEM_NAME<br>TAG_NAME |
 | qty/  | QUANTITY              |
 | unit/ | UNIT                  |
 | buy/  | BOUGHT_DATE           |
-| exp/  | EXPIRY DATE           |
+| exp/  | EXPIRY_DATE           |
+| p/    | PRICE                 |
+| r/    | REMARKS               |
 
-## Placeholders
+
+### Placeholders
 
 Placeholders are words in UPPER_CASE to show you what parameters you can supply to a command.
 
 {% include_relative _ug/Placeholders.md %}
+
+### Trying your First Command
+
+{% include_relative _ug/TryingFirstCommand.md %}
 
 ## Commands
 
@@ -122,6 +133,7 @@ Placeholders are words in UPPER_CASE to show you what parameters you can supply 
 ## Troubleshooting
 
 <!-- TODO: Consider removing this section -->
+<!-- Added one issue that is referred to by Quick Start -->
 {% include_relative _ug/Troubleshooting.md %}
 
 ## FAQ

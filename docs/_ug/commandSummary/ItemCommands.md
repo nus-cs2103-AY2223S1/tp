@@ -12,15 +12,15 @@
 {% capture edit %}{% include_relative _ug/commandSummary/itemCommands/edit.md %}{% endcapture %}
 {% capture del %}{% include_relative _ug/commandSummary/itemCommands/del.md %}{% endcapture %}
 
-{% capture newexample %}{% include_relative _ug/commandSummary/itemCommandsExample/new.md %}{% endcapture %}
-{% capture listexample %}{% include_relative _ug/commandSummary/itemCommandsExample/list.md %}{% endcapture %}
-{% capture findexample %}{% include_relative _ug/commandSummary/itemCommandsExample/find.md %}{% endcapture %}
-{% capture sortexample %}{% include_relative _ug/commandSummary/itemCommandsExample/sort.md %}{% endcapture %}
-{% capture viewexample %}{% include_relative _ug/commandSummary/itemCommandsExample/view.md %}{% endcapture %}
-{% capture incexample %}{% include_relative _ug/commandSummary/itemCommandsExample/inc.md %}{% endcapture %}
-{% capture decexample %}{% include_relative _ug/commandSummary/itemCommandsExample/dec.md %}{% endcapture %}
-{% capture editexample %}{% include_relative _ug/commandSummary/itemCommandsExample/edit.md %}{% endcapture %}
-{% capture delexample %}{% include_relative _ug/commandSummary/itemCommandsExample/del.md %}{% endcapture %}
+{% capture newexample %}{% include_relative _ug/commandSummary/itemCommandsExamples/new.md %}{% endcapture %}
+{% capture listexample %}{% include_relative _ug/commandSummary/itemCommandsExamples/list.md %}{% endcapture %}
+{% capture findexample %}{% include_relative _ug/commandSummary/itemCommandsExamples/find.md %}{% endcapture %}
+{% capture sortexample %}{% include_relative _ug/commandSummary/itemCommandsExamples/sort.md %}{% endcapture %}
+{% capture viewexample %}{% include_relative _ug/commandSummary/itemCommandsExamples/view.md %}{% endcapture %}
+{% capture incexample %}{% include_relative _ug/commandSummary/itemCommandsExamples/inc.md %}{% endcapture %}
+{% capture decexample %}{% include_relative _ug/commandSummary/itemCommandsExamples/dec.md %}{% endcapture %}
+{% capture editexample %}{% include_relative _ug/commandSummary/itemCommandsExamples/edit.md %}{% endcapture %}
+{% capture delexample %}{% include_relative _ug/commandSummary/itemCommandsExamples/del.md %}{% endcapture %}
 <!-- markdownlint-restore -->
 
 <!-- ===== CREATE TABLE FORMATTING IN NORMAL+ MARKDOWN ===== -->
@@ -61,4 +61,3 @@
   | replace: ":editexample:", editexample
   | replace: ":delexample:", delexample
 }}
-

@@ -34,7 +34,7 @@ public class ItemName {
 
     /**
      * Compares two item names lexicographically. The method returns 0 if the string is equal to the other string.
-     * A value less than 0 is returned if the string is less than the other string (less characters) and
+     * A value less than 0 is returned if the string is less than the other string (fewer characters) and
      * a value greater than 0 if the string is greater than the other string (more characters).
      *
      * @param other The ItemName to compare this ItemName against.

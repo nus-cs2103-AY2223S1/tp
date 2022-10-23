@@ -37,7 +37,7 @@ public class IncrementCommand extends Command {
     }
 
     /**
-     * Creates and returns a {@code Item} with the quantity of {@code itemToEdit}
+     * Creates and returns an {@code Item} with the quantity of {@code itemToEdit}
      * incremented by {@code editItemDescriptor}.
      */
     private static Item createIncrementedItem(Item itemToIncrement, ItemQuantity quantity) {
@@ -56,7 +56,8 @@ public class IncrementCommand extends Command {
                 itemToIncrement.getUnit(),
                 itemToIncrement.getBoughtDate(),
                 itemToIncrement.getExpiryDate(),
-                itemToIncrement.getPrice());
+                itemToIncrement.getPrice(),
+                itemToIncrement.getRemarks());
     }
 
     @Override
