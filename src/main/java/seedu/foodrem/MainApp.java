@@ -69,9 +69,9 @@ public class MainApp extends Application {
     }
 
     /**
-     * Returns a {@code ModelManager} with the data from {@code storage}'s address book and {@code userPrefs}. <br>
-     * The data from the sample address book will be used instead if {@code storage}'s address book is not found,
-     * or an empty address book will be used instead if errors occur when reading {@code storage}'s address book.
+     * Returns a {@code ModelManager} with the data from {@code storage}'s foodRem and {@code userPrefs}. <br>
+     * The data from the sample foodRem will be used instead if {@code storage}'s foodRem is not found,
+     * or an empty foodRem will be used instead if errors occur when reading {@code storage}'s foodRem.
      */
     private Model initModelManager(Storage storage, ReadOnlyUserPrefs userPrefs) {
         Optional<ReadOnlyFoodRem> foodRemOptional;

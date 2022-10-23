@@ -11,7 +11,7 @@ import seedu.foodrem.model.tag.Tag;
 import seedu.foodrem.model.tag.UniqueTagList;
 
 /**
- * Wraps all data at the address-book level
+ * Wraps all data in FoodRem
  * Duplicates are not allowed (by .isSameItem comparison)
  */
 public class FoodRem implements ReadOnlyFoodRem {
@@ -36,7 +36,7 @@ public class FoodRem implements ReadOnlyFoodRem {
     }
 
     /**
-     * Creates an AddressBook using the Items in the {@code toBeCopied}
+     * Creates an FoodRem using the Items in the {@code toBeCopied}
      */
     public FoodRem(ReadOnlyFoodRem toBeCopied) {
         this();
@@ -62,7 +62,7 @@ public class FoodRem implements ReadOnlyFoodRem {
     }
 
     /**
-     * Resets the existing data of this {@code AddressBook} with {@code newData}.
+     * Resets the existing data of this {@code FoodRem} with {@code newData}.
      */
     public void resetData(ReadOnlyFoodRem newData) {
         requireNonNull(newData);
@@ -100,7 +100,7 @@ public class FoodRem implements ReadOnlyFoodRem {
     }
 
     /**
-     * Removes {@code key} from this {@code AddressBook}.
+     * Removes {@code key} from this {@code FoodRem}.
      * {@code key} must exist in FoodRem.
      */
     public void removeItem(Item key) {
@@ -110,7 +110,7 @@ public class FoodRem implements ReadOnlyFoodRem {
     //// tag-level methods
 
     /**
-     * Returns true if a tag with the same name as {@code tag} exists in the address book.
+     * Returns true if a tag with the same name as {@code tag} exists in the foodRem.
      */
     public boolean hasTag(Tag tag) {
         requireNonNull(tag);
@@ -118,8 +118,8 @@ public class FoodRem implements ReadOnlyFoodRem {
     }
 
     /**
-     * Adds a tag to the address book.
-     * The tag must not already exist in the address book.
+     * Adds a tag to the foodRem.
+     * The tag must not already exist in the foodRem.
      */
     public void addTag(Tag t) {
         tags.add(t);
@@ -127,8 +127,8 @@ public class FoodRem implements ReadOnlyFoodRem {
 
     /**
      * Replaces the given item {@code target} in the list with {@code editedTag}.
-     * {@code target} must exist in the address book.
-     * The tag in {@code editedTag} must not be the same as another existing tag in the address book.
+     * {@code target} must exist in the foodRem.
+     * The tag in {@code editedTag} must not be the same as another existing tag in the foodRem.
      */
     public void setTag(Tag target, Tag editedTag) {
         requireNonNull(editedTag);
@@ -137,8 +137,8 @@ public class FoodRem implements ReadOnlyFoodRem {
     }
 
     /**
-     * Removes {@code key} from this {@code AddressBook}.
-     * {@code key} must exist in the address book.
+     * Removes {@code key} from this {@code FoodRem}.
+     * {@code key} must exist in the foodRem.
      */
     public void removeTag(Tag key) {
         for (Item i : items) {

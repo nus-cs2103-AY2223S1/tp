@@ -146,7 +146,7 @@ public class ModelManager implements Model {
 
     /**
      * Returns an unmodifiable view of the list of {@code Item} backed by the internal list of
-     * {@code versionedAddressBook}
+     * {@code versionedFoodRem}
      */
     @Override
     public ObservableList<Item> getCurrentList() {
@@ -161,7 +161,7 @@ public class ModelManager implements Model {
 
     /**
      * Returns an unmodifiable view of the list of {@code Tag} backed by the internal list of
-     * {@code versionedAddressBook}
+     * {@code versionedFoodRem}
      */
     public ObservableList<Tag> getFilteredTagList() {
         return filteredTags;

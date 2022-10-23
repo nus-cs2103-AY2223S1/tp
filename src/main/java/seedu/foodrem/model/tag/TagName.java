@@ -4,7 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.foodrem.commons.util.AppUtil.checkArgument;
 
 /**
- * Represents a Tag's name in the address book.
+ * Represents a Tag's name in the FoodRem.
  * Guarantees: immutable; is valid as declared in {@link #isValidName(String)}
  */
 public class TagName {

@@ -46,13 +46,13 @@ public class HelpCommand extends Command {
         return HELP_FORMAT_GENERAL;
     }
 
-    public static String getUsage() {
-        return HELP_COMMAND.getUsage();
-    }
-
     @Override
     public CommandResult execute(Model model) {
         return new CommandResult(SHOWING_HELP_MESSAGE, message);
+    }
+
+    public static String getUsage() {
+        return HELP_COMMAND.getUsage();
     }
 
     @Override

@@ -17,6 +17,6 @@ class ExitCommandTest {
     @Test
     void execute() {
         assertEquals(new ExitCommand().execute(model),
-                     new CommandResult("Exiting Address Book as requested ...", false, true));
+                     new CommandResult("Exiting FoodRem as requested ...", false, true));
     }
 }

@@ -24,26 +24,26 @@ public interface Model {
     Predicate<Tag> PREDICATE_SHOW_ALL_TAGS = unused -> true;
 
     /**
-     * Returns true if a tag with the same name as {@code tag} exists in the address book.
+     * Returns true if a tag with the same name as {@code tag} exists in the foodRem.
      */
     boolean hasTag(Tag tag);
 
     /**
      * Deletes the given tag.
-     * The tag must exist in the address book.
+     * The tag must exist in the foodRem.
      */
     void deleteTag(Tag target);
 
     /**
      * Adds the given tag.
-     * {@code tag} must not already exist in the address book.
+     * {@code tag} must not already exist in the foodRem.
      */
     void addTag(Tag tag);
 
     /**
      * Replaces the given tag {@code target} with {@code editedTag}.
-     * {@code target} must exist in the address book.
-     * The tag name of {@code editedTag} must not be the same as another existing tag in the address book.
+     * {@code target} must exist in the foodRem.
+     * The tag name of {@code editedTag} must not be the same as another existing tag in the foodRem.
      */
     void setTag(Tag target, Tag editedTag);
 
@@ -80,24 +80,24 @@ public interface Model {
     void setGuiSettings(GuiSettings guiSettings);
 
     /**
-     * Returns the user prefs' address book file path.
+     * Returns the user prefs' foodRem file path.
      */
     Path getFoodRemFilePath();
 
     /**
-     * Sets the user prefs' address book file path.
+     * Sets the user prefs' foodRem file path.
      */
-    void setFoodRemFilePath(Path addressBookFilePath);
+    void setFoodRemFilePath(Path foodRemFilePath);
 
     /**
-     * Returns the AddressBook
+     * Returns the FoodRem
      */
     ReadOnlyFoodRem getFoodRem();
 
     /**
-     * Replaces address book data with the data in {@code addressBook}.
+     * Replaces foodRem data with the data in {@code foodRem}.
      */
-    void setFoodRem(ReadOnlyFoodRem addressBook);
+    void setFoodRem(ReadOnlyFoodRem foodRem);
 
     /**
      * Returns true if an item with the same identity as {@code Item} exists in FoodRem.
@@ -124,7 +124,7 @@ public interface Model {
     void setItem(Item target, Item editedItem);
 
     /**
-     * Returns an unmodifiable view of the sorted or filtered items in the list.
+     * Returns an unmodifiable view of the current items in the list.
      */
     ObservableList<Item> getCurrentList();
 

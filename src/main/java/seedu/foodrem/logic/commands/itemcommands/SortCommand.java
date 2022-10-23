@@ -30,10 +30,6 @@ public class SortCommand extends Command {
         this.comparator = comparator;
     }
 
-    public static String getUsage() {
-        return SORT_COMMAND.getUsage();
-    }
-
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);
@@ -42,12 +38,15 @@ public class SortCommand extends Command {
                 model.getCurrentList().size()));
     }
 
+    public static String getUsage() {
+        return SORT_COMMAND.getUsage();
+    }
+
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof SortCommand // instanceof handles nulls
-                && comparator.getClass()
-                .getSimpleName()
+                && comparator.getClass().getSimpleName()
                 .equals(((SortCommand) other).comparator.getClass().getSimpleName())); // state check
     }
 }
