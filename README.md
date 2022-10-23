@@ -5,7 +5,9 @@
 
 ![Ui](docs/images/Ui.png)
 
-* **Plannit** is a **unified desktop application** that aims to **help NUS students manage their academic details.**
+* **Plannit** is an **all-in-one application** that streamlines the execution of module
+  deliverables by **empowering NUS students** with the ability to manage **tasks**, **links** and 
+  **module-mates** (i.e., students in the same module) to increase their productivity.
 
 * Plannit will be the **go-to platform** for them to access all modules links and information without needing to tediously navigate through multiple websites.
 

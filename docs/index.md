@@ -13,12 +13,17 @@ title: Plannit
   assignments), **links** (e.g. learning management platforms, Zoom) and **module-mates** (i.e., 
   students in the same module) to increase their productivity.
 
-* While it has a GUI, most of 
-the user interactions happen using a CLI (Command Line Interface).
+[//]: # (@@author)
 
-* If you are interested in using Plannit, head over to the [_Quick Start_ section of the **User Guide**](UserGuide.html#quick-start).
+* While it has a GUI, most of the user interactions happen using a CLI (Command Line Interface).
+
+[//]: # (@@author cheeheng-reused)
+[//]: # (This part is reused from AB3 template with minor modifications)
+
+* If you are interested in using Plannit, head over to the [_Quick Start_ section of the **User Guide**](UserGuide.html#1-quick-start).
 * If you are interested about developing Plannit, the [**Developer Guide**](DeveloperGuide.html) is a good place to start.
 
+[//]: # (@@author)
 
 **Acknowledgements**
 
