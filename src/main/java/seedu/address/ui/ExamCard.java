@@ -49,7 +49,6 @@ public class ExamCard extends UiPart<Region> {
         moduleCode.setText(exam.getModule().getModuleCode().moduleCode);
         examDescription.setText(exam.getDescription().description);
         examDate.setText(exam.getExamDate().examDate);
-        
         if (!exam.hasTasks()) {
             percentageCompleted.setPrefWidth(0);
         }
