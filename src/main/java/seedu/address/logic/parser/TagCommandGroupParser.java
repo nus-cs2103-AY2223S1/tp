@@ -20,6 +20,10 @@ import seedu.address.model.tag.Tag;
  * in the TagCommandGroup, as indicated by the commandSpecifier.
  */
 public class TagCommandGroupParser implements Parser<TagCommandGroup> {
+    public static final String MESSAGE_USAGE = String.format("%s\n\n%s\n\n%s",
+                    CreateTagCommand.MESSAGE_USAGE,
+                    TagCommand.MESSAGE_USAGE,
+                    RemoveTagCommand.MESSAGE_USAGE);
 
     /**
      * Parses the given {@code String} of arguments in the context of the
@@ -30,12 +34,8 @@ public class TagCommandGroupParser implements Parser<TagCommandGroup> {
         requireNonNull(args);
         String trimmedArgs = args.trim();
         if (trimmedArgs.isEmpty()) {
-            String errorMessage = String.format("%s\n\n%s\n\n%s",
-                    CreateTagCommand.MESSAGE_USAGE,
-                    TagCommand.MESSAGE_USAGE,
-                    RemoveTagCommand.MESSAGE_USAGE);
             throw new ParseException(
-                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, errorMessage));
+                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, MESSAGE_USAGE));
         }
 
         String[] argArray = trimmedArgs.split("\\s+");

@@ -12,6 +12,8 @@ import seedu.address.logic.commands.FilterCommandPredicate;
 import seedu.address.model.message.Message;
 import seedu.address.model.person.Person;
 import seedu.address.model.quote.Quote;
+import seedu.address.model.reminder.ReadOnlyReminderList;
+import seedu.address.model.reminder.Reminder;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -174,4 +176,38 @@ public interface Model {
 
     /** Returns a random quote for the current session.*/
     Quote getQuote();
+
+    /** Returns list of reminders */
+    ReadOnlyReminderList getReminderList();
+
+    /** Returns an unmodifiable view of the list of reminders */
+    ObservableList<Reminder> getReminderListAsObservableList();
+
+    /** Returns an unmodifiable view of the list of reminders for target person */
+    ObservableList<Reminder> getTargetPersonReminderListAsObservableList();
+
+    /**
+     * Deletes the given reminder.
+     * The reminder must exist in the address book.
+     */
+    void deleteReminder(Reminder reminder);
+
+    /**
+     * Adds the given reminder.
+     * {@code Reminder} must not already exist in the address book.
+     */
+    void addReminder(Reminder reminder);
+
+    /** Returns {@code true} if reminder already exists, {@code false} otherwise */
+    boolean reminderExists(Reminder reminder);
+
+    /**
+     * Clears the currently displayed reminder list.
+     */
+    ObservableList<Reminder> getCurrentReminderList();
+
+    /**
+     * Clears the currently displayed reminder list.
+     */
+    void clearCurrentReminderList();
 }

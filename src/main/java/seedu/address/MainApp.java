@@ -21,10 +21,14 @@ import seedu.address.model.ModelManager;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.UserPrefs;
+import seedu.address.model.reminder.ReadOnlyReminderList;
+import seedu.address.model.reminder.ReminderList;
 import seedu.address.model.util.SampleDataUtil;
 import seedu.address.storage.AddressBookStorage;
 import seedu.address.storage.JsonAddressBookStorage;
+import seedu.address.storage.JsonReminderListStorage;
 import seedu.address.storage.JsonUserPrefsStorage;
+import seedu.address.storage.ReminderListStorage;
 import seedu.address.storage.Storage;
 import seedu.address.storage.StorageManager;
 import seedu.address.storage.UserPrefsStorage;
@@ -64,7 +68,8 @@ public class MainApp extends Application {
         UserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(config.getUserPrefsFilePath());
         UserPrefs userPrefs = initPrefs(userPrefsStorage);
         AddressBookStorage addressBookStorage = new JsonAddressBookStorage(userPrefs.getAddressBookFilePath());
-        storage = new StorageManager(addressBookStorage, userPrefsStorage);
+        ReminderListStorage reminderListStorage = new JsonReminderListStorage(userPrefs.getReminderListFilePath());
+        storage = new StorageManager(addressBookStorage, userPrefsStorage, reminderListStorage);
 
         initLogging(config);
 
@@ -81,28 +86,43 @@ public class MainApp extends Application {
      * or an empty address book will be used instead if errors occur when reading {@code storage}'s address book.
      */
     private Model initModelManager(Storage storage, ReadOnlyUserPrefs userPrefs) {
-        Optional<ReadOnlyAddressBook> addressBookOptional;
-        ReadOnlyAddressBook initialData;
+        launchMessage = WELCOME_MESSAGE;
+        ReadOnlyAddressBook addressBookData = readAddressBookFromStorage(storage);
+        ReadOnlyReminderList reminderListData = readReminderListFromStorage(storage);
+
+        return new ModelManager(addressBookData, userPrefs, reminderListData);
+    }
+
+    private ReadOnlyAddressBook readAddressBookFromStorage(Storage storage) {
         try {
-            addressBookOptional = storage.readAddressBook();
+            Optional<ReadOnlyAddressBook> addressBookOptional = storage.readAddressBook();
             if (!addressBookOptional.isPresent()) {
                 logger.info("Data file not found. Will be starting with a sample AddressBook");
                 launchMessage = WELCOME_MESSAGE_FIRST_LAUNCH;
-            } else {
-                launchMessage = WELCOME_MESSAGE;
             }
-            initialData = addressBookOptional.orElseGet(SampleDataUtil::getSampleAddressBook);
+            return addressBookOptional.orElseGet(SampleDataUtil::getSampleAddressBook);
         } catch (DataConversionException e) {
             logger.warning("Data file not in the correct format. Will be starting with an empty AddressBook");
-            launchMessage = MESSAGE_UNABLE_TO_READ_DATA;
-            initialData = new AddressBook();
         } catch (IOException e) {
             logger.warning("Problem while reading from the file. Will be starting with an empty AddressBook");
-            launchMessage = MESSAGE_UNABLE_TO_READ_DATA;
-            initialData = new AddressBook();
         }
+        launchMessage = MESSAGE_UNABLE_TO_READ_DATA;
+        return new AddressBook();
+    }
 
-        return new ModelManager(initialData, userPrefs);
+    private ReadOnlyReminderList readReminderListFromStorage(Storage storage) {
+        try {
+            Optional<ReadOnlyReminderList> reminderListOptional = storage.readReminderList();
+            if (reminderListOptional.isPresent()) {
+                return reminderListOptional.get();
+            }
+            logger.info("Data file not found. Will be starting with a sample ReminderList");
+        } catch (DataConversionException e) {
+            logger.warning("Data file not in the correct format. Will be starting with an empty ReminderList");
+        } catch (IOException e) {
+            logger.warning("Problem while reading from the file. Will be starting with an empty ReminderList");
+        }
+        return new ReminderList();
     }
 
     private void initLogging(Config config) {
