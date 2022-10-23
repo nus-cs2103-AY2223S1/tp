@@ -1,4 +1,4 @@
-package seedu.rc4hdb.logic;
+package seedu.rc4hdb.model;
 
 import java.nio.file.Path;
 import java.util.List;
@@ -6,11 +6,10 @@ import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.rc4hdb.commons.core.GuiSettings;
-import seedu.rc4hdb.model.Model;
-import seedu.rc4hdb.model.ReadOnlyResidentBook;
-import seedu.rc4hdb.model.ReadOnlyUserPrefs;
 import seedu.rc4hdb.model.resident.Resident;
 import seedu.rc4hdb.model.venues.Venue;
+import seedu.rc4hdb.model.venues.booking.Booking;
+import seedu.rc4hdb.model.venues.exceptions.VenueNotFoundException;
 
 /**
  * A default model stub where methods fail.
@@ -84,6 +83,31 @@ public class ModelStub implements Model {
 
     @Override
     public void updateFilteredResidentList(Predicate<Resident> predicate) {
+        throw new AssertionError("This method should not be called.");
+    }
+
+    @Override
+    public ReadOnlyVenueBook getVenueBook() {
+        throw new AssertionError("This method should not be called.");
+    }
+
+    @Override
+    public boolean hasVenue(Venue venue) {
+        throw new AssertionError("This method should not be called.");
+    }
+
+    @Override
+    public void deleteVenue(Venue target) {
+        throw new AssertionError("This method should not be called.");
+    }
+
+    @Override
+    public void addVenue(Venue venue) {
+        throw new AssertionError("This method should not be called.");
+    }
+
+    @Override
+    public void addBookingToVenueWithSameName(Venue venue, Booking booking) throws VenueNotFoundException {
         throw new AssertionError("This method should not be called.");
     }
 

@@ -97,11 +97,13 @@ public class ModelManagerTest {
     public void equals() {
         ResidentBook residentBook = new ResidentBookBuilder().withResident(ALICE).withResident(BENSON).build();
         ResidentBook differentResidentBook = new ResidentBook();
+        VenueBook venueBook = new VenueBook(); //Todo add venues to this venueBook
+        VenueBook differentVenueBook = new VenueBook();
         UserPrefs userPrefs = new UserPrefs();
 
         // same values -> returns true
-        modelManager = new ModelManager(residentBook, userPrefs);
-        ModelManager modelManagerCopy = new ModelManager(residentBook, userPrefs);
+        modelManager = new ModelManager(residentBook, venueBook, userPrefs);
+        ModelManager modelManagerCopy = new ModelManager(residentBook, venueBook, userPrefs);
         assertTrue(modelManager.equals(modelManagerCopy));
 
         // same object -> returns true
@@ -114,12 +116,17 @@ public class ModelManagerTest {
         assertFalse(modelManager.equals(5));
 
         // different residentBook -> returns false
-        assertFalse(modelManager.equals(new ModelManager(differentResidentBook, userPrefs)));
+        assertFalse(modelManager.equals(new ModelManager(differentResidentBook, venueBook, userPrefs)));
+
+        /* Todo comment out when differentVenueBook is different.
+        // different venueBook -> returns false
+        assertFalse(modelManager.equals(new ModelManager(residentBook, differentVenueBook, userPrefs)));
+         */
 
         // different filteredList -> returns false
         String[] keywords = ALICE.getName().value.split("\\s+");
         modelManager.updateFilteredResidentList(new NameContainsKeywordsPredicate(Arrays.asList(keywords)));
-        assertFalse(modelManager.equals(new ModelManager(residentBook, userPrefs)));
+        assertFalse(modelManager.equals(new ModelManager(residentBook, venueBook, userPrefs)));
 
         // resets modelManager to initial state for upcoming tests
         modelManager.updateFilteredResidentList(PREDICATE_SHOW_ALL_RESIDENTS);
@@ -127,6 +134,6 @@ public class ModelManagerTest {
         // different userPrefs -> returns false
         UserPrefs differentUserPrefs = new UserPrefs();
         differentUserPrefs.setResidentBookFilePath(Paths.get("differentFilePath"));
-        assertFalse(modelManager.equals(new ModelManager(residentBook, differentUserPrefs)));
+        assertFalse(modelManager.equals(new ModelManager(residentBook, venueBook, differentUserPrefs)));
     }
 }

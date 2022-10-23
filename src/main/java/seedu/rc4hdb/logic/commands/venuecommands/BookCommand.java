@@ -22,6 +22,7 @@ import seedu.rc4hdb.model.venues.booking.BookingDescriptor;
 import seedu.rc4hdb.model.venues.booking.RecurrentBooking;
 import seedu.rc4hdb.model.venues.booking.fields.Day;
 import seedu.rc4hdb.model.venues.booking.fields.HourPeriod;
+import seedu.rc4hdb.model.venues.exceptions.BookingClashesException;
 
 /**
  * Adds a booking to the Venue.
@@ -30,7 +31,6 @@ public class BookCommand implements ModelCommand {
 
     public static final String COMMAND_WORD = "book";
 
-    //to change
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a booking to RC4HDB. "
             + "Parameters: "
             + PREFIX_VENUE + "VENUE_NAME "
@@ -41,7 +41,6 @@ public class BookCommand implements ModelCommand {
             + PREFIX_TIME_PERIOD + "10-14 "
             + PREFIX_DAY + "TUE ";
 
-    //to change
     public static final String MESSAGE_SUCCESS = "New booking made: %1$s";
     public static final String MESSAGE_CLASHING_BOOKING = "This booking clashes with an existing booking.";
 
@@ -73,13 +72,12 @@ public class BookCommand implements ModelCommand {
         try {
             Booking toMake = createNewBooking();
             Venue venue = bookingDescriptor.getVenue().get();
-            if (venue.hasClashes(toMake)) {
-                throw new CommandException(MESSAGE_CLASHING_BOOKING);
-            }
-            venue.addBooking(toMake);
+            model.addBookingToVenueWithSameName(venue, toMake);
             return new CommandResult(String.format(MESSAGE_SUCCESS, toMake));
         } catch (NoSuchElementException e) {
             throw new CommandException(MESSAGE_USAGE, e);
+        } catch (BookingClashesException e) {
+            throw new CommandException(MESSAGE_CLASHING_BOOKING, e);
         }
     }
 

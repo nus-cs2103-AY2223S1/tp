@@ -1,4 +1,4 @@
-package seedu.rc4hdb.logic;
+package seedu.rc4hdb.storage;
 
 import java.io.IOException;
 import java.nio.file.Path;
@@ -9,7 +9,6 @@ import seedu.rc4hdb.commons.exceptions.DataConversionException;
 import seedu.rc4hdb.model.ReadOnlyResidentBook;
 import seedu.rc4hdb.model.ReadOnlyUserPrefs;
 import seedu.rc4hdb.model.UserPrefs;
-import seedu.rc4hdb.storage.Storage;
 
 /**
  * A default storage stub where all methods fail.

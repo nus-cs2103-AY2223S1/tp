@@ -20,14 +20,15 @@ import org.junit.jupiter.api.Test;
 import seedu.rc4hdb.model.Model;
 import seedu.rc4hdb.model.ModelManager;
 import seedu.rc4hdb.model.UserPrefs;
+import seedu.rc4hdb.model.VenueBook;
 import seedu.rc4hdb.model.resident.predicates.NameContainsKeywordsPredicate;
 
 /**
  * Contains integration tests (interaction with the Model) for {@code FindCommand}.
  */
 public class FindCommandTest {
-    private Model model = new ModelManager(getTypicalResidentBook(), new UserPrefs());
-    private Model expectedModel = new ModelManager(getTypicalResidentBook(), new UserPrefs());
+    private Model model = new ModelManager(getTypicalResidentBook(), new VenueBook(), new UserPrefs());
+    private Model expectedModel = new ModelManager(getTypicalResidentBook(), new VenueBook(), new UserPrefs());
 
     @Test
     public void equals() {

@@ -20,7 +20,7 @@ public abstract class Booking {
     /**
      * Constructor for a Booking instance.
      * @param resident The resident trying to book the venue.
-     * @param hourPeriod
+     * @param hourPeriod The period of time that the venue is to be booked.
      * @param venue The venue of the booking.
      */
     public Booking(Resident resident, HourPeriod hourPeriod, Day dayOfWeek, Venue venue) {

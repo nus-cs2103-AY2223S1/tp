@@ -15,6 +15,8 @@ import seedu.rc4hdb.commons.core.GuiSettings;
 import seedu.rc4hdb.commons.core.LogsCenter;
 import seedu.rc4hdb.model.resident.Resident;
 import seedu.rc4hdb.model.venues.Venue;
+import seedu.rc4hdb.model.venues.booking.Booking;
+import seedu.rc4hdb.model.venues.exceptions.VenueNotFoundException;
 
 /**
  * Represents the in-memory model of the resident book data.
@@ -23,6 +25,7 @@ public class ModelManager implements Model {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
 
     private final ResidentBook residentBook;
+    private final VenueBook venueBook;
     private final UserPrefs userPrefs;
     private final FilteredList<Resident> filteredResidents;
     private final ObservableList<String> observableFieldList;
@@ -31,11 +34,14 @@ public class ModelManager implements Model {
     /**
      * Initializes a ModelManager with the given residentBook and userPrefs.
      */
-    public ModelManager(ReadOnlyResidentBook residentBook, ReadOnlyUserPrefs userPrefs) {
+    public ModelManager(ReadOnlyResidentBook residentBook, ReadOnlyVenueBook venueBook, ReadOnlyUserPrefs userPrefs) {
         requireAllNonNull(residentBook, userPrefs);
+        //Todo add venue book when linked with storage
 
-        logger.fine("Initializing with resident book: " + residentBook + " and user prefs " + userPrefs);
+        logger.fine("Initializing with resident book: " + residentBook + ", user prefs " + userPrefs
+                + ", venue book: " + venueBook);
         this.residentBook = new ResidentBook(residentBook);
+        this.venueBook = new VenueBook(venueBook);
         this.userPrefs = new UserPrefs(userPrefs);
         filteredResidents = new FilteredList<>(this.residentBook.getResidentList());
         this.observableFieldList = FXCollections.observableArrayList();
@@ -43,7 +49,7 @@ public class ModelManager implements Model {
     }
 
     public ModelManager() {
-        this(new ResidentBook(), new UserPrefs());
+        this(new ResidentBook(), new VenueBook(), new UserPrefs());
     }
 
     //=========== UserPrefs ==================================================================================
@@ -112,7 +118,6 @@ public class ModelManager implements Model {
     @Override
     public void setResident(Resident target, Resident editedResident) {
         requireAllNonNull(target, editedResident);
-
         residentBook.setResident(target, editedResident);
     }
 
@@ -133,6 +138,43 @@ public class ModelManager implements Model {
         filteredResidents.setPredicate(predicate);
     }
 
+    //=========== Venue Book ==================================================================================
+
+    public void setVenueBook(ReadOnlyVenueBook venueBook) {
+        this.venueBook.resetData(venueBook);
+    }
+
+    @Override
+    public ReadOnlyVenueBook getVenueBook() {
+        return venueBook;
+    }
+
+    @Override
+    public boolean hasVenue(Venue venue) {
+        requireNonNull(venue);
+        return venueBook.hasVenue(venue);
+    }
+
+    @Override
+    public void deleteVenue(Venue target) {
+        requireNonNull(target);
+        venueBook.removeVenue(target);
+    }
+
+    @Override
+    public void addVenue(Venue venue) {
+        requireNonNull(venue);
+        venueBook.addVenue(venue);
+    }
+
+    @Override
+    public void addBookingToVenueWithSameName(Venue venue, Booking booking) throws VenueNotFoundException {
+        requireAllNonNull(venue, booking);
+        venueBook.addBookingToVenueWithSameName(venue, booking);
+    }
+
+    //=========== End of venue book methods =============================================
+
     @Override
     public boolean equals(Object obj) {
         // short circuit if same object
@@ -148,6 +190,7 @@ public class ModelManager implements Model {
         // state check
         ModelManager other = (ModelManager) obj;
         return residentBook.equals(other.residentBook)
+                && venueBook.equals(other.venueBook)
                 && userPrefs.equals(other.userPrefs)
                 && filteredResidents.equals(other.filteredResidents);
     }

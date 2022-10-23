@@ -8,6 +8,8 @@ import javafx.collections.ObservableList;
 import seedu.rc4hdb.commons.core.GuiSettings;
 import seedu.rc4hdb.model.resident.Resident;
 import seedu.rc4hdb.model.venues.Venue;
+import seedu.rc4hdb.model.venues.booking.Booking;
+import seedu.rc4hdb.model.venues.exceptions.VenueNotFoundException;
 
 /**
  * The API of the Model component.
@@ -87,6 +89,32 @@ public interface Model {
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredResidentList(Predicate<Resident> predicate);
+
+    /** Returns the VenueBook */
+    ReadOnlyVenueBook getVenueBook();
+
+    /**
+     * Returns true if a venue with the same identity as {@code venue} exists in the venue book.
+     */
+    boolean hasVenue(Venue venue);
+
+    /**
+     * Deletes the given venue.
+     * The venue must exist in the venue book.
+     */
+    void deleteVenue(Venue target);
+
+    /**
+     * Adds the given venue.
+     * {@code venue} must not already exist in the venue book.
+     */
+    void addVenue(Venue venue);
+
+    /**
+     * Adds a booking to the venue in the list with the same name as {@code otherVenue}.
+     * @throws VenueNotFoundException if the venue does not exist in the list.
+     */
+    void addBookingToVenueWithSameName(Venue venue, Booking booking) throws VenueNotFoundException;
 
     ObservableList<String> getObservableFields();
 

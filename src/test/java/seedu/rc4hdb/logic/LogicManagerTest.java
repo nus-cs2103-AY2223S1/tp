@@ -34,10 +34,12 @@ import seedu.rc4hdb.logic.commands.storagecommands.filecommands.jsonfilecommands
 import seedu.rc4hdb.logic.commands.storagecommands.filecommands.jsonfilecommands.FileSwitchCommand;
 import seedu.rc4hdb.logic.parser.exceptions.ParseException;
 import seedu.rc4hdb.model.Model;
+import seedu.rc4hdb.model.ModelStub;
 import seedu.rc4hdb.model.ReadOnlyResidentBook;
 import seedu.rc4hdb.model.ResidentBook;
 import seedu.rc4hdb.model.resident.Resident;
 import seedu.rc4hdb.storage.Storage;
+import seedu.rc4hdb.storage.StorageStub;
 
 public class LogicManagerTest {
 

@@ -11,6 +11,7 @@ import org.junit.jupiter.api.Test;
 import seedu.rc4hdb.model.Model;
 import seedu.rc4hdb.model.ModelManager;
 import seedu.rc4hdb.model.UserPrefs;
+import seedu.rc4hdb.model.VenueBook;
 
 public class HideCommandTest {
 
@@ -19,8 +20,8 @@ public class HideCommandTest {
 
     @BeforeEach
     public void setUp() {
-        model = new ModelManager(getTypicalResidentBook(), new UserPrefs());
-        expectedModel = new ModelManager(model.getResidentBook(), new UserPrefs());
+        model = new ModelManager(getTypicalResidentBook(), new VenueBook(), new UserPrefs());
+        expectedModel = new ModelManager(model.getResidentBook(), new VenueBook(), new UserPrefs());
     }
 
     @Test

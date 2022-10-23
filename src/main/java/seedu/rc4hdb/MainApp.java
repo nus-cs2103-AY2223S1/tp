@@ -19,9 +19,12 @@ import seedu.rc4hdb.model.Model;
 import seedu.rc4hdb.model.ModelManager;
 import seedu.rc4hdb.model.ReadOnlyResidentBook;
 import seedu.rc4hdb.model.ReadOnlyUserPrefs;
+import seedu.rc4hdb.model.ReadOnlyVenueBook;
 import seedu.rc4hdb.model.ResidentBook;
 import seedu.rc4hdb.model.UserPrefs;
+import seedu.rc4hdb.model.VenueBook;
 import seedu.rc4hdb.model.util.SampleDataUtil;
+import seedu.rc4hdb.model.venues.Venue;
 import seedu.rc4hdb.storage.JsonResidentBookStorage;
 import seedu.rc4hdb.storage.JsonUserPrefsStorage;
 import seedu.rc4hdb.storage.ResidentBookStorage;
@@ -75,22 +78,26 @@ public class MainApp extends Application {
      */
     private Model initModelManager(Storage storage, ReadOnlyUserPrefs userPrefs) {
         Optional<ReadOnlyResidentBook> residentBookOptional;
-        ReadOnlyResidentBook initialData;
+        ReadOnlyResidentBook initialResidentData;
+        ReadOnlyVenueBook initialVenueData;
         try {
             residentBookOptional = storage.readResidentBook();
             if (!residentBookOptional.isPresent()) {
                 logger.info("Data file not found. Will be starting with a sample ResidentBook");
             }
-            initialData = residentBookOptional.orElseGet(SampleDataUtil::getSampleResidentBook);
+            initialResidentData = residentBookOptional.orElseGet(SampleDataUtil::getSampleResidentBook);
         } catch (DataConversionException e) {
             logger.warning("Data file not in the correct format. Will be starting with an empty AddressBook");
-            initialData = new ResidentBook();
+            initialResidentData = new ResidentBook();
         } catch (IOException e) {
             logger.warning("Problem while reading from the file. Will be starting with an empty AddressBook");
-            initialData = new ResidentBook();
+            initialResidentData = new ResidentBook();
         }
 
-        return new ModelManager(initialData, userPrefs);
+        VenueBook temp = new VenueBook();
+        temp.addVenue(Venue.MEETING_ROOM);
+        initialVenueData = temp;
+        return new ModelManager(initialResidentData, initialVenueData, userPrefs);
     }
 
     private void initLogging(Config config) {
