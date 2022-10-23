@@ -30,9 +30,10 @@ import seedu.foodrem.logic.commands.tagcommands.TagCommand;
 import seedu.foodrem.logic.commands.tagcommands.UntagCommand;
 
 class HelpCommandParserTest {
-    private static final String EXPECTED_ALL_COMMANDS = "help, reset, exit, " // General commands
-            + "new, list, find, sort, view, inc, dec, edit, del, rmk, " // Item commands
-            + "newtag, listtag, renametag, tag, untag, deletetag"; // Tag commands
+    private static final String EXPECTED_ALL_COMMANDS = "exit, help, reset, " // General commands
+            + "dec, del, edit, find, inc, list, new, rmk, sort, view, " // Item commands
+            + "deletetag, listtag, newtag, renametag, tag, untag"; // Tag commands
+
 
     private final HelpCommandParser parser = new HelpCommandParser();
 
