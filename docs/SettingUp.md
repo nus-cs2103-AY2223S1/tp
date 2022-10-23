@@ -8,7 +8,7 @@ title: Setting up and getting started
 
 ---
 
-## Setting up the project in your computer
+## Setting Up The Project in Your Computer
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
 
@@ -29,7 +29,7 @@ If you plan to use Intellij IDEA (highly recommended):
 
 ---
 
-## Before writing code
+## Before Writing Code
 
 1. **Configure the coding style**
 
@@ -46,11 +46,6 @@ If you plan to use Intellij IDEA (highly recommended):
 
 1. **Learn the design**
 
-   When you are ready to start coding, we recommend that you get some sense of the overall design by reading about [AddressBook’s architecture](DeveloperGuide.md#architecture).
+   When you are ready to start coding, we recommend that you get some sense of the overall design by reading about [FoodRem’s architecture](DeveloperGuide.md#architecture).
 
-1. **Do the tutorials**
-   These tutorials will help you get acquainted with the codebase.
 
-   * [Tracing code](tutorials/TracingCode.md)
-   * [Adding a new command](tutorials/AddRemark.md)
-   * [Removing fields](tutorials/RemovingFields.md)
