@@ -1,11 +1,12 @@
 package seedu.rc4hdb.model.venues;
 
-import seedu.rc4hdb.model.resident.fields.Field;
+import static java.util.Objects.requireNonNull;
+import static seedu.rc4hdb.commons.util.AppUtil.checkArgument;
 
 import java.time.LocalTime;
 
-import static java.util.Objects.requireNonNull;
-import static seedu.rc4hdb.commons.util.AppUtil.checkArgument;
+import seedu.rc4hdb.model.resident.fields.Field;
+
 
 /**
  * Represents a Booking's start or end time in RC4HDB.

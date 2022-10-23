@@ -1,11 +1,11 @@
 package seedu.rc4hdb.model.venues;
 
+import static java.util.Objects.requireNonNull;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 import java.util.stream.Collectors;
-
-import static java.util.Objects.requireNonNull;
 
 /**
  * Represents a venue in RC4 that can be booked by residents.
@@ -60,6 +60,12 @@ public class Venue {
         this.bookings.add(booking);
     }
 
+    /**
+     * Checks whether a given booking has clashes with current bookings.
+     *
+     * @param booking The given booking to check against.
+     * @return whether the given booking clashes with current bookings.
+     */
     public boolean hasClashes(Booking booking) {
         requireNonNull(booking);
         for (Booking b : this.bookings) {

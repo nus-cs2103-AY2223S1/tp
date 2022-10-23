@@ -17,7 +17,13 @@ import seedu.rc4hdb.logic.commands.modelcommands.FilterCommand;
 import seedu.rc4hdb.logic.commands.modelcommands.FindCommand;
 import seedu.rc4hdb.logic.commands.modelcommands.ListCommand;
 import seedu.rc4hdb.logic.commands.venuecommands.BookCommand;
-import seedu.rc4hdb.logic.parser.commandparsers.*;
+import seedu.rc4hdb.logic.parser.commandparsers.AddCommandParser;
+import seedu.rc4hdb.logic.parser.commandparsers.BookCommandParser;
+import seedu.rc4hdb.logic.parser.commandparsers.DeleteCommandParser;
+import seedu.rc4hdb.logic.parser.commandparsers.EditCommandParser;
+import seedu.rc4hdb.logic.parser.commandparsers.FilterCommandParser;
+import seedu.rc4hdb.logic.parser.commandparsers.FindCommandParser;
+import seedu.rc4hdb.logic.parser.commandparsers.ListCommandParser;
 import seedu.rc4hdb.logic.parser.exceptions.ParseException;
 
 /**

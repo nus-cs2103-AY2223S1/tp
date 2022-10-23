@@ -2,10 +2,8 @@ package seedu.rc4hdb.model.venues;
 
 import java.time.DayOfWeek;
 import java.time.LocalTime;
-import java.util.Set;
 
 import seedu.rc4hdb.model.resident.Resident;
-import seedu.rc4hdb.model.tag.Tag;
 
 /**
  * Represents a recurrent booking for a venue.
@@ -19,7 +17,8 @@ public class RecurrentBooking extends Booking {
      * @param startTime The start time of the booking.
      * @param endTime The end time of the booking.
      */
-    public RecurrentBooking(Resident resident, DayOfWeek dayOfWeek, LocalTime startTime, LocalTime endTime, Venue venue) {
+    public RecurrentBooking(Resident resident, DayOfWeek dayOfWeek, LocalTime startTime,
+                            LocalTime endTime, Venue venue) {
         super(resident, startTime, endTime, venue);
         setDayOfWeek(dayOfWeek);
     }
