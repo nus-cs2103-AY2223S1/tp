@@ -169,7 +169,7 @@ public class Person {
     public int groupCompareTo(Person person) {
         int tagWeight = 10;
         int nameWeight = 1;
-        return tagWeight * this.getGroupNumber() -compareTo(person.getGroupNumber())
+        return tagWeight * (this.getGroupNumber() - person.getGroupNumber())
             + nameWeight * this.compareTo(person);
     }
 

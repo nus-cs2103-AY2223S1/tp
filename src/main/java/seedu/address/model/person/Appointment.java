@@ -353,10 +353,10 @@ public class Appointment {
         int personWeight = 10;
         int dateWeight = 1;
         if (key.equals(Key.TAG)) {
-            return tagWeight * this.getGroupNumber().compareTo(appointment.getGroupNumber())
+            return tagWeight * (this.getGroupNumber() - appointment.getGroupNumber())
                     + dateWeight * this.compareTo(appointment);
         } else {
-            return personWeight * this.getPatient().compareTo(appointment.getPatient())
+            return personWeight * this.getPatientName().compareTo(appointment.getPatientName())
                     + dateWeight + this.compareTo(appointment);
         }
     }
