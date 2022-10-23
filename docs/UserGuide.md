@@ -355,6 +355,8 @@ The following date formats are accepted:
 | **Sort Tasks**                | `task sort s/SORT`<br> e.g., `task sort s/a`                                                                                                                       |
 | **Mark Task**                 | `task mark i/INDEX`<br> e.g., `task mark i/3`                                                                                                                      |
 | **Unmark Task**               | `task unmark i/INDEX`<br> e.g., `task unmark i/3`                                                                                                                  |
-| **Quit**                      | `bye`                                                                                                                                                              |
+| **Undo**                      | `undo`                                                                                                                                                             |
+| **Redo**                      | `redo`                                                                                                                                                             |
+| **Exiting the program**       | `bye`                                                                                                                                                              |
 | **History: Previous Command** | `UP` arrow key                                                                                                                                                     |
 | **History: Next Command**     | `DOWN` arrow key                                                                                                                                                   |

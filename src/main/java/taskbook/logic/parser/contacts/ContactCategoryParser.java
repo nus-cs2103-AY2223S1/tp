@@ -13,6 +13,7 @@ import taskbook.logic.parser.exceptions.ParseException;
  */
 public class ContactCategoryParser {
     public static final String CATEGORY_WORD = "contact";
+    public static final String CATEGORY_WORD_SHORTCUT = "c";
 
     /**
      * Parses user input into command for execution.

@@ -7,7 +7,6 @@ import taskbook.commons.core.Messages;
 import taskbook.logic.commands.tasks.TaskSortAddedChronologicalCommand;
 import taskbook.logic.commands.tasks.TaskSortCommand;
 import taskbook.logic.commands.tasks.TaskSortDescriptionAlphabeticalCommand;
-import taskbook.logic.commands.tasks.TaskTodoCommand;
 import taskbook.logic.parser.ArgumentMultimap;
 import taskbook.logic.parser.ArgumentTokenizer;
 import taskbook.logic.parser.CliSyntax;
@@ -38,7 +37,7 @@ public class TaskSortCommandParser implements Parser<TaskSortCommand> {
         if (args.contains(CliSyntax.PREFIX_ASSIGN_FROM.getPrefix())
                 && args.contains(CliSyntax.PREFIX_ASSIGN_TO.getPrefix())) {
             throw new ParseException(
-                    String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT, TaskTodoCommand.MESSAGE_USAGE));
+                    String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT, TaskSortCommand.MESSAGE_USAGE));
         }
 
         if (CHRONOLOGICAL_ADDED.matcher(args).matches()) {
@@ -49,7 +48,7 @@ public class TaskSortCommandParser implements Parser<TaskSortCommand> {
             return parseWithPrefix(args, CliSyntax.PREFIX_SORT_TYPE);
         }
 
-        throw new ParseException(String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT, TaskTodoCommand.MESSAGE_USAGE));
+        throw new ParseException(String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT, TaskSortCommand.MESSAGE_USAGE));
     }
 
     private TaskSortCommand parseWithPrefix(String args, Prefix firstPrefix) throws ParseException {
@@ -68,7 +67,7 @@ public class TaskSortCommandParser implements Parser<TaskSortCommand> {
             return new TaskSortAddedChronologicalCommand();
         default:
             throw new ParseException(String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT,
-                    TaskTodoCommand.MESSAGE_USAGE));
+                    TaskSortCommand.MESSAGE_USAGE));
         }
     }
 
