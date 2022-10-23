@@ -6,6 +6,7 @@
       "email": "alice@example.com",
       "address": "123, Jurong West Ave 6, #08-111",
       "studentClass": "1A",
+      "attendance": "date/12-02-2022 attendance/1 %% date/13-02-2022 attendance/0",
       "remarks": [
         "friendly"
       ],
@@ -18,7 +19,8 @@
       "phone": "94351253",
       "email": "pauline@example.com",
       "address": "4th street",
-      "studentClass": "1A"
+      "studentClass": "1A",
+      "attendance": "date/12-02-2022 attendance/1 %% date/13-02-2022 attendance/0"
     }
   ]
 }

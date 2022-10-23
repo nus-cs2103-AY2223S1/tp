@@ -20,6 +20,7 @@ import seedu.address.commons.util.CollectionUtil;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.person.Address;
+import seedu.address.model.person.Attendance;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
@@ -82,13 +83,15 @@ public class EditCommand extends Command {
         Address updatedAddress = editPersonDescriptor.getAddress().orElse(personToEdit.getAddress());
         StudentClass updatedStudentClass =
             editPersonDescriptor.getStudentClass().orElse(personToEdit.getStudentClass());
+        Attendance updatedAttendance = editPersonDescriptor.getAttendance().orElse(personToEdit.getAttendance());
+
         Set<Remark> updatedRemarks = editPersonDescriptor.getRemarks().orElse(personToEdit.getRemarks());
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
 
         Set<Subject> updatedSubjects = editPersonDescriptor.getSubjects().orElse(personToEdit.getSubjectsTaken());
 
         return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedStudentClass,
-                          updatedRemarks, updatedSubjects, updatedTags);
+                          updatedAttendance, updatedRemarks, updatedSubjects, updatedTags);
     }
 
     @Override
@@ -140,6 +143,7 @@ public class EditCommand extends Command {
         private Email email;
         private Address address;
         private StudentClass studentClass;
+        private Attendance attendance;
         private Set<Remark> remarksList;
         private SubjectHandler subjectHandler;
         private Set<Tag> tags;
@@ -210,6 +214,14 @@ public class EditCommand extends Command {
 
         public void setStudentClass(StudentClass studentClass) {
             this.studentClass = studentClass;
+        }
+
+        public Optional<Attendance> getAttendance() {
+            return Optional.ofNullable(attendance);
+        }
+
+        public void setAttendance(Attendance attendance) {
+            this.attendance = attendance;
         }
 
         public Optional<Set<Remark>> getRemarks() {
