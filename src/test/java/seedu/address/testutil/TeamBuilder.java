@@ -27,7 +27,7 @@ public class TeamBuilder {
     }
 
     /**
-     * Creates a {@code PersonBuilder} with the details of teamToCopy.
+     * Creates a {@code TeamBuilder} with the details of teamToCopy.
      */
     public TeamBuilder(Team teamToCopy) {
         name = teamToCopy.getName();
