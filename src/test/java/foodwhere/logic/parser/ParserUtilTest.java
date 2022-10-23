@@ -25,6 +25,12 @@ public class ParserUtilTest {
     private static final String INVALID_TAG = "#friend";
 
     private static final String VALID_NAME = "Rachel Walker";
+    private static final String VALID_NAMELIST = "Rachel Bob";
+    private static final String VALID_NAMELIST_FIRST = "Rachel";
+    private static final String VALID_NAMELIST_SECOND = "Bob";
+    private static final String VALID_TAGLIST = "Rachel Bob";
+    private static final String VALID_TAGLIST_FIRST = "Rachel";
+    private static final String VALID_TAGLIST_SECOND = "Bob";
     private static final String VALID_ADDRESS = "123 Main Street #0505";
     private static final String VALID_TAG_1 = "friend";
     private static final String VALID_TAG_2 = "neighbour";
@@ -72,6 +78,23 @@ public class ParserUtilTest {
         String nameWithWhitespace = WHITESPACE + VALID_NAME + WHITESPACE;
         Name expectedName = new Name(VALID_NAME);
         assertEquals(expectedName, ParserUtil.parseName(nameWithWhitespace));
+    }
+    @Test
+    public void parseNameList_validValue_returnsNameSet() throws Exception {
+        String nameList = VALID_NAMELIST;
+        Set<Name> expectedNameList = new HashSet<Name>();
+        expectedNameList.add(new Name(VALID_NAMELIST_FIRST));
+        expectedNameList.add(new Name(VALID_NAMELIST_SECOND));
+        assertEquals(expectedNameList, ParserUtil.parseNameList(nameList));
+    }
+
+    @Test
+    public void parseTagList_validValue_returnsTagSet() throws Exception {
+        String tagList = VALID_TAGLIST;
+        Set<Tag> expectedTagList = new HashSet<Tag>();
+        expectedTagList.add(new Tag(VALID_TAGLIST_FIRST));
+        expectedTagList.add(new Tag(VALID_TAGLIST_SECOND));
+        assertEquals(expectedTagList, ParserUtil.parseTagList(tagList));
     }
 
     @Test

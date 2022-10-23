@@ -31,16 +31,15 @@ public class SFindCommandParserTest {
     public void parse_validArgs_returnsSFindCommand() {
         //both name and tag
         SFindCommand expectedSFindCommand =
-                new SFindCommand(new StallContainsKeywordsPredicate(Arrays.asList(new Name("Amy Bee")),
+                new SFindCommand(new StallContainsKeywordsPredicate(Arrays.asList(new Name("Amy"), new Name("Bee")),
                         Arrays.asList(new Tag("friend"))));
         assertParseSuccess(parser, NAME_DESC_AMY + TAG_DESC_FRIEND , expectedSFindCommand);
 
         //only name
         expectedSFindCommand =
-                new SFindCommand(new StallContainsKeywordsPredicate(Arrays.asList(new Name("Amy Bee")),
+                new SFindCommand(new StallContainsKeywordsPredicate(Arrays.asList(new Name("Amy"), new Name("Bee")),
                         Collections.emptyList()));
         assertParseSuccess(parser, NAME_DESC_AMY , expectedSFindCommand);
-
         //only tag
         expectedSFindCommand =
                 new SFindCommand(new StallContainsKeywordsPredicate(Collections.emptyList(),

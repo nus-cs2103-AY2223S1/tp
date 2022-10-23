@@ -2,6 +2,7 @@ package foodwhere.logic.parser;
 
 import static foodwhere.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 
+import java.util.HashSet;
 import java.util.Set;
 import java.util.stream.Stream;
 
@@ -34,8 +35,14 @@ public class RFindCommandParser implements Parser<RFindCommand> {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, RFindCommand.MESSAGE_USAGE));
         }
 
-        Set<Name> nameSet = ParserUtil.parseNameList(argMultimap.getAllValues(CliSyntax.PREFIX_NAME));
-        Set<Tag> tagSet = ParserUtil.parseTags(argMultimap.getAllValues(CliSyntax.PREFIX_TAG));
+        Set<Name> nameSet = new HashSet<>();
+        Set<Tag> tagSet = new HashSet<>();
+        if (arePrefixesPresent(argMultimap, CliSyntax.PREFIX_NAME)) {
+            nameSet = ParserUtil.parseNameList(argMultimap.getValue(CliSyntax.PREFIX_NAME).get());
+        }
+        if (arePrefixesPresent(argMultimap, CliSyntax.PREFIX_TAG)) {
+            tagSet = ParserUtil.parseTagList(argMultimap.getValue(CliSyntax.PREFIX_TAG).get());
+        }
 
         return new RFindCommand(new ReviewContainsKeywordsPredicate(nameSet, tagSet));
     }

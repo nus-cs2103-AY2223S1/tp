@@ -28,16 +28,16 @@ public class RFindCommandParserTest {
     private RFindCommandParser parser = new RFindCommandParser();
 
     @Test
-    public void parse_validArgs_returnsSFindCommand() {
+    public void parse_validArgs_returnsRFindCommand() {
         //both name and tag
         RFindCommand expectedRFindCommand =
-                new RFindCommand(new ReviewContainsKeywordsPredicate(Arrays.asList(new Name("Amy Bee")),
+                new RFindCommand(new ReviewContainsKeywordsPredicate(Arrays.asList(new Name("Amy"), new Name("Bee")),
                         Arrays.asList(new Tag("friend"))));
         assertParseSuccess(parser, NAME_DESC_AMY + TAG_DESC_FRIEND , expectedRFindCommand);
 
         //only name
         expectedRFindCommand =
-                new RFindCommand(new ReviewContainsKeywordsPredicate(Arrays.asList(new Name("Amy Bee")),
+                new RFindCommand(new ReviewContainsKeywordsPredicate(Arrays.asList(new Name("Amy"), new Name("Bee")),
                         Collections.emptyList()));
         assertParseSuccess(parser, NAME_DESC_AMY , expectedRFindCommand);
 

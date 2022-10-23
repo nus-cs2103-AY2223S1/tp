@@ -54,15 +54,29 @@ public class ParserUtil {
     }
 
     /**
-     * Parses {@code Collection<String> names} into a {@code Set<Names>}.
+     * Parses {@code String input} into a {@code Set<Names>}, where each name in input is separated by space.
      */
-    public static Set<Name> parseNameList(Collection<String> names) throws ParseException {
-        requireNonNull(names);
+    public static Set<Name> parseNameList(String input) throws ParseException {
+        requireNonNull(input);
+        String[] names = input.split(" ");
         final Set<Name> nameSet = new HashSet<>();
         for (String name : names) {
             nameSet.add(parseName(name));
         }
         return nameSet;
+    }
+
+    /**
+     * Parses {@code String input} into a {@code Set<Tag>}, where each Tag in input is separated by space.
+     */
+    public static Set<Tag> parseTagList(String input) throws ParseException {
+        requireNonNull(input);
+        String[] tags = input.split(" ");
+        final Set<Tag> tagSet = new HashSet<>();
+        for (String tag : tags) {
+            tagSet.add(parseTag(tag));
+        }
+        return tagSet;
     }
 
     /**
