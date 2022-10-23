@@ -170,7 +170,12 @@ Format: `exit`
 
 ### Saving the data
 
-FoodWhere data is saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
+FoodWhere data is saved in the hard disk automatically after any command that changes the data. There is no need to save manually. 
+
+<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
+If there are no commands entered, simply exiting the program will not generate a new JSON file if the file is not present.
+</div>
+
 
 ### Editing the data file
 
