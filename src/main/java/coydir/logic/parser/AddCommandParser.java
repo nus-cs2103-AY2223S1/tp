@@ -2,6 +2,7 @@ package coydir.logic.parser;
 
 import static coydir.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static coydir.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static coydir.logic.parser.CliSyntax.PREFIX_DEPARTMENT;
 import static coydir.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static coydir.logic.parser.CliSyntax.PREFIX_LEAVE;
 import static coydir.logic.parser.CliSyntax.PREFIX_NAME;
@@ -16,6 +17,7 @@ import java.util.stream.Stream;
 import coydir.logic.commands.AddCommand;
 import coydir.logic.parser.exceptions.ParseException;
 import coydir.model.person.Address;
+import coydir.model.person.Department;
 import coydir.model.person.Email;
 import coydir.model.person.EmployeeId;
 import coydir.model.person.Name;
@@ -37,15 +39,19 @@ public class AddCommandParser implements Parser<AddCommand> {
     public AddCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL,
-                        PREFIX_POSITION, PREFIX_ADDRESS, PREFIX_LEAVE, PREFIX_TAG);
+                        PREFIX_POSITION, PREFIX_DEPARTMENT, PREFIX_ADDRESS, PREFIX_LEAVE, PREFIX_TAG);
 
-        if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_POSITION)
+        if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_POSITION, PREFIX_DEPARTMENT)
                 || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
         }
 
+        // Set mandatory fields
         Name name = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());
         Position position = ParserUtil.parsePosition(argMultimap.getValue(PREFIX_POSITION).get());
+        Department department = ParserUtil.parseDepartment(argMultimap.getValue(PREFIX_DEPARTMENT).get());
+
+        // Set optional fields as default/null values
         Phone phone = new Phone().getNullPhone();
         Email email = new Email().getNullEmail();
         Address address = new Address().getNullAddress();
@@ -53,6 +59,7 @@ public class AddCommandParser implements Parser<AddCommand> {
         EmployeeId employeeId = new EmployeeId();
         int numberOfLeaves = 14;
 
+        // Set optional fields individually
         if (argMultimap.getValue(PREFIX_PHONE).isPresent()) {
             phone = ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONE).get());
         }
@@ -70,7 +77,7 @@ public class AddCommandParser implements Parser<AddCommand> {
         if (!argMultimap.getAllValues(PREFIX_LEAVE).isEmpty()) {
             numberOfLeaves = Integer.valueOf(ParserUtil.parseId(argMultimap.getValue(PREFIX_LEAVE).get()));
         }
-        Person person = new Person(name, employeeId, phone, email, position, address, tagList, numberOfLeaves);
+        Person person = new Person(name, employeeId, phone, email, position, department, address, tagList, numberOfLeaves);
 
         return new AddCommand(person);
     }
