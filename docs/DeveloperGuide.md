@@ -244,12 +244,7 @@ target `Internship` object with the updated one.
 
 #### Displaying of result
 
-<<<<<<< HEAD
-1. Finally, the `StatusCommand` creates a `CommandResult` with a success message and returns it to the `Logic Manager`
-=======
-1. Finally, the `StatusCommand` creates a `CommandResult` with a success message and returns it to the `LogicManager` 
->>>>>>> df34694b2161c051f8a9d2889c64f2cb72ef4b49
-to complete the command execution. The GUI would also be updated with the change of status.
+1. Finally, the `StatusCommand` creates a `CommandResult` with a success message and returns it to the `LogicManager`
 
 The following sequence diagram shows how the `status` command works:
 
