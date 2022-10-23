@@ -26,6 +26,8 @@ public class CliSyntax {
     public static final Prefix PREFIX_SKILLTAG = new Prefix(("st/"));
     public static final Prefix PREFIX_DEGREETAG = new Prefix(("dt/"));
     public static final Prefix PREFIX_JOBTYPETAG = new Prefix(("jtt/"));
+    //    public static final Prefix PREFIX_FILETYPE = new Prefix("ft/");
+    //    public static final Prefix PREFIX_PATH = new Prefix("path/");
     private static ArrayList<Prefix> prefixTags = new ArrayList<>(Arrays.asList(PREFIX_SKILLTAG, PREFIX_DEGREETAG,
             PREFIX_JOBTYPETAG));
     private static ArrayList<Prefix> prefixes = new ArrayList<>(Arrays.asList(PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL,
