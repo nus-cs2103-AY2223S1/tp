@@ -292,7 +292,7 @@ Step 4: In the `CommentCommand` execution, the `model#setTutor` is called upon w
 
 The following sequence diagram demonstrates the above operations (excluding the parsing details):
 
-![SortSequenceDiagram](./images/CommentSequenceDiagram.png)
+![CommentSequenceDiagram](./images/CommentSequenceDiagram.png)
 
 <ins>Design Considerations</ins>
 
