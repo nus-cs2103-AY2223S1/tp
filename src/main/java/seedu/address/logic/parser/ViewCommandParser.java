@@ -13,20 +13,15 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_SURVEY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
-import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import seedu.address.logic.commands.ViewCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.PersonContainsAttributePredicate;
-import seedu.address.model.person.Survey;
-import seedu.address.model.tag.Tag;
 
 /**
  * Parses input arguments and creates a new FindCommand object
@@ -82,16 +77,17 @@ public class ViewCommandParser implements Parser<ViewCommand> {
     }
 
     /**
-     * Parses the given {@code String} of a given prefix.
-     * @return A list of {@code String} of keywords associated to the given prefix, taking into account any quotation
-     * marks used.
+     * Parses the given {@code String} of a given prefix with quotation marks.
+     * @return A list of {@code String} of keywords associated to the given prefix, taking into account
+     *     quotation marks to parse exact phrases.
      */
     //Solution below adapted from https://stackoverflow.com/a/7804472
     private static List<String> parseWithQuotations(String input) {
         ArrayList<String> parsedArray = new ArrayList<>();
         Matcher m = Pattern.compile("\\s*([^\"]\\S*|\".+?\")\\s*").matcher(input);
-        while (m.find())
+        while (m.find()) {
             parsedArray.add(m.group(1).replace("\"", ""));
+        }
         return parsedArray;
     }
 

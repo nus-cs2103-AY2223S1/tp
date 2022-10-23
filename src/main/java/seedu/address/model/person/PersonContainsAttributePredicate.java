@@ -2,10 +2,7 @@ package seedu.address.model.person;
 
 import java.util.Arrays;
 import java.util.List;
-
 import java.util.function.Predicate;
-import java.util.stream.Collectors;
-
 
 /**
  * Tests that a {@code Person}'s attributes matches any of the keywords given for each attribute.
@@ -86,6 +83,10 @@ public class PersonContainsAttributePredicate implements Predicate<Person> {
                 && containsTags);
     }
 
+    /**
+     * Checks whether a given {@code String} contains a word (case-insensitive).
+     * @return A predicate for whether a string contains a word.
+     */
     public static Predicate<String> containsIgnoreCase(String targetString) {
         return keyword -> Arrays.stream(targetString.split("\\s+"))
                 .anyMatch(targetWord -> targetWord.equalsIgnoreCase(keyword));
