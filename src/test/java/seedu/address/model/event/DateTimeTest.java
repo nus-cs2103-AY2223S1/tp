@@ -58,6 +58,11 @@ public class DateTimeTest {
         // parses letters correctly
         assertEquals(LocalDate.parse("2022-10-10"), DateTime.parseDate("10 oct 2022"));
         assertEquals(LocalDate.parse("2022-07-04"), DateTime.parseDate("4 jUly 2022"));
+
+        // parses dd-mm
+        String year = String.valueOf(LocalDate.now().getYear());
+        assertEquals(LocalDate.parse(year + "-10-10"), DateTime.parseDate("10 oCt"));
+        assertEquals(LocalDate.parse(year + "-07-04"), DateTime.parseDate("4/7"));
     }
 
     @Test
