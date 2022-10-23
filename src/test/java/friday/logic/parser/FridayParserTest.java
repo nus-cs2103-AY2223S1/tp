@@ -37,7 +37,7 @@ import friday.testutil.StudentBuilder;
 import friday.testutil.StudentUtil;
 */
 
-public class MasteryCheckBookParserTest {
+public class FridayParserTest {
 
     private final FridayParser parser = new FridayParser();
     private final Model model = new ModelManager();
