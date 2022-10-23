@@ -13,7 +13,8 @@ public class Link {
             + "Blank links will be ignored.";
     public static final String VALIDATION_REGEX = "[\\p{Alnum}][\\p{Alnum} ]*";
 
-    public final String value;
+    public final String link;
+
 
     /**
      * Constructs a {@code link}.
@@ -22,19 +23,19 @@ public class Link {
      */
     public Link(String s) {
         requireNonNull(s);
-        value = s.trim();
+        link = s.trim();
     }
 
     @Override
     public String toString() {
-        return value;
+        return link;
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof Link // instanceof handles nulls
-                && value.equals(((Link) other).value)); // state check
+                && link.equals(((Link) other).link)); // state check
     }
 
     /**
@@ -46,7 +47,7 @@ public class Link {
 
     @Override
     public int hashCode() {
-        return value.hashCode();
+        return link.hashCode();
     }
 
 }

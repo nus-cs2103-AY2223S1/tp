@@ -2,23 +2,15 @@ package seedu.clinkedin.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.clinkedin.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.clinkedin.logic.parser.CliSyntax.PREFIX_ADDRESS;
-import static seedu.clinkedin.logic.parser.CliSyntax.PREFIX_EMAIL;
-import static seedu.clinkedin.logic.parser.CliSyntax.PREFIX_NAME;
-import static seedu.clinkedin.logic.parser.CliSyntax.PREFIX_NOTE;
-import static seedu.clinkedin.logic.parser.CliSyntax.PREFIX_PHONE;
-import static seedu.clinkedin.logic.parser.CliSyntax.PREFIX_STATUS;
+import static seedu.clinkedin.logic.parser.CliSyntax.*;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 import seedu.clinkedin.commons.core.index.Index;
 import seedu.clinkedin.logic.commands.EditCommand;
 import seedu.clinkedin.logic.commands.EditCommand.EditPersonDescriptor;
 import seedu.clinkedin.logic.parser.exceptions.ParseException;
+import seedu.clinkedin.model.link.Link;
 import seedu.clinkedin.model.person.UniqueTagTypeMap;
 
 /**
@@ -91,10 +83,28 @@ public class EditCommandParser implements Parser<EditCommand> {
         if (argMultimap.getValue(PREFIX_NOTE).isPresent()) {
             editPersonDescriptor.setNote(ParserUtil.parseNote(argMultimap.getValue(PREFIX_NOTE).get()));
         }
+
+        parseLinksForEdit(argMultimap.getAllValues(PREFIX_LINK)).ifPresent(editPersonDescriptor::setLinks);
+        System.out.println(editPersonDescriptor.getLinks());
         if (!editPersonDescriptor.isAnyFieldEdited()) {
             throw new ParseException(EditCommand.MESSAGE_NOT_EDITED);
         }
 
         return new EditCommand(index, editPersonDescriptor);
+    }
+
+    /**
+     * Parses {@code Collection<String> links} into a {@code Set<Link>} if {@code links} is non-empty.
+     * If {@code links} contain only one element which is an empty string, it will be parsed into a
+     * {@code Set<Link>} containing zero link.
+     */
+    private Optional<Set<Link>> parseLinksForEdit(Collection<String> links) throws ParseException {
+        assert links != null;
+
+        if (links.isEmpty()) {
+            return Optional.empty();
+        }
+        Collection<String> linkSet = links.size() == 1 && links.contains("") ? Collections.emptySet() : links;
+        return Optional.of(ParserUtil.parseLinks(linkSet));
     }
 }

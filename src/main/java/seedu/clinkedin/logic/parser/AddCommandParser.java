@@ -1,20 +1,17 @@
 package seedu.clinkedin.logic.parser;
 
 import static seedu.clinkedin.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.clinkedin.logic.parser.CliSyntax.PREFIX_ADDRESS;
-import static seedu.clinkedin.logic.parser.CliSyntax.PREFIX_EMAIL;
-import static seedu.clinkedin.logic.parser.CliSyntax.PREFIX_NAME;
-import static seedu.clinkedin.logic.parser.CliSyntax.PREFIX_NOTE;
-import static seedu.clinkedin.logic.parser.CliSyntax.PREFIX_PHONE;
-import static seedu.clinkedin.logic.parser.CliSyntax.PREFIX_STATUS;
+import static seedu.clinkedin.logic.parser.CliSyntax.*;
 
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 import java.util.stream.Stream;
 
 import seedu.clinkedin.logic.commands.AddCommand;
 import seedu.clinkedin.logic.parser.exceptions.ParseException;
+import seedu.clinkedin.model.link.Link;
 import seedu.clinkedin.model.person.Address;
 import seedu.clinkedin.model.person.Email;
 import seedu.clinkedin.model.person.Name;
@@ -54,8 +51,9 @@ public class AddCommandParser implements Parser<AddCommand> {
         UniqueTagTypeMap tagMap = ParserUtil.parseTags(prefToStrings);
         Status status = ParserUtil.parseStatus(argMultimap.getValue(PREFIX_STATUS).get());
         Note note = ParserUtil.parseNote(argMultimap.getValue(PREFIX_NOTE).orElse(""));
+        Set<Link> links = ParserUtil.parseLinks(argMultimap.getAllValues(PREFIX_LINK));
 
-        Person person = new Person(name, phone, email, address, tagMap, status, note);
+        Person person = new Person(name, phone, email, address, tagMap, status, note, links);
 
         return new AddCommand(person);
     }

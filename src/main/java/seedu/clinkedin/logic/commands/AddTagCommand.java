@@ -88,7 +88,8 @@ public class AddTagCommand extends Command {
         updatedTags.mergeTagTypeMap(editPersonDescriptor.getNewTagTypeMap().get());
 
         return new Person(personToEdit.getName(), personToEdit.getPhone(), personToEdit.getEmail(),
-                personToEdit.getAddress(), updatedTags, personToEdit.getStatus(), personToEdit.getNote());
+                personToEdit.getAddress(), updatedTags, personToEdit.getStatus(), personToEdit.getNote(),
+                personToEdit.getLinks());
     }
 
     @Override

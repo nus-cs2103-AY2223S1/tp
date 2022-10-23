@@ -13,6 +13,7 @@ import java.util.Set;
 import seedu.clinkedin.commons.core.index.Index;
 import seedu.clinkedin.commons.util.StringUtil;
 import seedu.clinkedin.logic.parser.exceptions.ParseException;
+import seedu.clinkedin.model.link.Link;
 import seedu.clinkedin.model.person.Address;
 import seedu.clinkedin.model.person.Email;
 import seedu.clinkedin.model.person.Name;
@@ -146,6 +147,33 @@ public class ParserUtil {
     public static Note parseNote(String note) throws ParseException {
         requireNonNull(note);
         return new Note(note.trim());
+    }
+
+    /**
+     * Parses a {@code String link} into a {@code Link}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code link} is invalid.
+     */
+    public static Link parseLink(String link) throws ParseException {
+        requireNonNull(link);
+        String trimmedLink = link.trim();
+        if (!Link.isValidLink(trimmedLink)) {
+            throw new ParseException(Link.MESSAGE_CONSTRAINTS);
+        }
+        return new Link(trimmedLink);
+    }
+
+    /**
+     * Parses {@code Collection<String> links} into a {@code Set<Link>}.
+     */
+    public static Set<Link> parseLinks(Collection<String> links) throws ParseException {
+        requireNonNull(links);
+        final Set<Link> linkSet = new HashSet<>();
+        for (String tagName : links) {
+            linkSet.add(parseLink(tagName));
+        }
+        return linkSet;
     }
 
     /**

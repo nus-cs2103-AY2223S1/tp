@@ -7,6 +7,7 @@ import java.util.stream.Collectors;
 import javafx.collections.ObservableMap;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
@@ -51,6 +52,9 @@ public class PersonCard extends UiPart<Region> {
     @FXML
     private Label status;
 
+    @FXML
+    private FlowPane links;
+
     /**
      * Creates a {@code PersonCode} with the given {@code Person} and index to display.
      */
@@ -80,6 +84,8 @@ public class PersonCard extends UiPart<Region> {
 
         status.setText(person.getStatus().status);
         note.setText(person.getNote().value.length() > 0 ? "Notes: " + person.getNote().value : "");
+        person.getLinks().stream().sorted(Comparator.comparing(link -> link.link))
+                .forEach(link -> links.getChildren().add(new Label(link.link)));
     }
 
     @Override

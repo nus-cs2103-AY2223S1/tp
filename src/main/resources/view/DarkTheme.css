@@ -363,10 +363,24 @@
 }
 
 #status {
-    -fx-background-color: derive(#90ccf4, -50%);
+    -fx-background-color: #90ccf4;
     -fx-background-radius: 2;
     -fx-padding: 1 3 1 3;
     -fx-border-radius: 2;
+    -fx-text-fill: #171923;
+    -fx-font-size: 11;
+}
+
+#links {
+    -fx-hgap: 7;
+    -fx-vgap: 3;
+}
+
+#links .label {
     -fx-text-fill: white;
+    -fx-background-color: #3e7b91;
+    -fx-padding: 1 3 1 3;
+    -fx-border-radius: 2;
+    -fx-background-radius: 2;
     -fx-font-size: 11;
 }

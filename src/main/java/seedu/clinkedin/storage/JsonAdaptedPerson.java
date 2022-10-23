@@ -1,9 +1,6 @@
 package seedu.clinkedin.storage;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.stream.Collectors;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
@@ -11,6 +8,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import javafx.collections.ObservableMap;
 import seedu.clinkedin.commons.exceptions.IllegalValueException;
+import seedu.clinkedin.model.link.Link;
 import seedu.clinkedin.model.person.Address;
 import seedu.clinkedin.model.person.Email;
 import seedu.clinkedin.model.person.Name;
@@ -38,6 +36,8 @@ class JsonAdaptedPerson {
     private final String status;
     private final String note;
 
+    private final List<JsonAdaptedLink> links = new ArrayList<>();
+
     /**
      * Constructs a {@code JsonAdaptedPerson} with the given person details.
      */
@@ -45,7 +45,7 @@ class JsonAdaptedPerson {
     public JsonAdaptedPerson(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
             @JsonProperty("email") String email, @JsonProperty("clinkedin") String address,
             @JsonProperty("tags") List<List<JsonAdaptedTag>> tags, @JsonProperty("status") String status,
-            @JsonProperty("note") String note) {
+            @JsonProperty("note") String note, @JsonProperty("links") List<JsonAdaptedLink> links) {
         this.name = name;
         this.phone = phone;
         this.email = email;
@@ -55,6 +55,9 @@ class JsonAdaptedPerson {
         }
         this.note = note;
         this.status = status;
+        if (links != null) {
+            this.links.addAll(links);
+        }
     }
 
     /**
@@ -76,6 +79,7 @@ class JsonAdaptedPerson {
         }
         status = source.getStatus().status;
         note = source.getNote().value;
+        links.addAll(source.getLinks().stream().map(JsonAdaptedLink::new).collect(Collectors.toList()));
     }
 
     /**
@@ -98,6 +102,11 @@ class JsonAdaptedPerson {
             UniqueTagList uniqueTagList = new UniqueTagList();
             uniqueTagList.setTags(tagList);
             personTags.put(t, uniqueTagList);
+        }
+
+        final List<Link> personLinks = new ArrayList<>();
+        for (JsonAdaptedLink link : links) {
+            personLinks.add(link.toModelType());
         }
 
         if (name == null) {
@@ -148,7 +157,10 @@ class JsonAdaptedPerson {
         }
         final Note modelNote = new Note(note);
 
-        return new Person(modelName, modelPhone, modelEmail, modelAddress, modelTags, modelStatus, modelNote);
+        final Set<Link> modelLinks = new HashSet<>(personLinks);
+
+        return new Person(modelName, modelPhone, modelEmail, modelAddress, modelTags, modelStatus, modelNote,
+                modelLinks);
     }
 
 }

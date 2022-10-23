@@ -92,7 +92,8 @@ public class DeleteTagCommand extends Command {
         updatedTags.removeTags(editPersonDescriptor.getNewTagTypeMap().get());
 
         return new Person(personToEdit.getName(), personToEdit.getPhone(), personToEdit.getEmail(),
-                personToEdit.getAddress(), updatedTags, personToEdit.getStatus(), personToEdit.getNote());
+                personToEdit.getAddress(), updatedTags, personToEdit.getStatus(), personToEdit.getNote(),
+                personToEdit.getLinks());
     }
 
     @Override
