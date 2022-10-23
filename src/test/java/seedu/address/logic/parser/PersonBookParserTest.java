@@ -33,7 +33,7 @@ import seedu.address.testutil.PersonUtil;
 
 public class PersonBookParserTest {
 
-    private final AddressBookParser parser = new AddressBookParser();
+    private final CobbParser parser = new CobbParser();
 
     @Test
     public void parseCommand_add() throws Exception {
