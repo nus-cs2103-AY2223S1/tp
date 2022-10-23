@@ -4,13 +4,22 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import javafx.application.Application;
+import javafx.application.HostServices;
 import javafx.collections.ObservableMap;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
+import javafx.stage.Stage;
+import seedu.clinkedin.commons.util.ImageUtil;
 import seedu.clinkedin.model.person.Person;
 import seedu.clinkedin.model.tag.Tag;
 import seedu.clinkedin.model.tag.TagType;
@@ -84,8 +93,38 @@ public class PersonCard extends UiPart<Region> {
 
         status.setText(person.getStatus().status);
         note.setText(person.getNote().value.length() > 0 ? "Notes: " + person.getNote().value : "");
-        person.getLinks().stream().sorted(Comparator.comparing(link -> link.link))
-                .forEach(link -> links.getChildren().add(new Label(link.link)));
+        person.getLinks().stream().sorted(Comparator.comparing(link -> link.platform))
+                .forEach(link -> {
+                    Button button = new Button();
+                    button.setOnAction(openBrowser(link.link));
+                    Image image = ImageUtil.getSocialIcon(link.platform);
+                    if (image == null) {
+                        button.setText(link.platform + " : " + link.link);
+                    } else {
+                        ImageView platformIcon = new ImageView(image);
+                        platformIcon.setFitHeight(20);
+                        platformIcon.setFitWidth(20);
+                        button.setGraphic(platformIcon);
+//                        button.setText(link.link);
+                    }
+                    links.getChildren().add(button);
+                });
+    }
+
+    private EventHandler<ActionEvent> openBrowser(final String url) {
+        Application a = new Application(){
+            @Override
+            public void start(Stage primaryStage) {
+            }
+        };
+        EventHandler<ActionEvent> e = new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                HostServices services = a.getHostServices();
+                services.showDocument(url);
+            }
+        };
+        return e;
     }
 
     @Override
