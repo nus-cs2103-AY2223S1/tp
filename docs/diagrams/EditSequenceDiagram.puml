@@ -1,0 +1,87 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":PennyWiseParser" as PennyWiseParser LOGIC_COLOR
+participant ":EditCommandParser" as EditCommandParser LOGIC_COLOR
+participant "editCommand:EditCommand" as EditCommand LOGIC_COLOR
+participant "editEntryDescriptor:EditEntryDescriptor" as EditEntryDescriptor LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+participant "<<class>>\nEditCommand" as EditCommandClass LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+
+[-> LogicManager : execute("edit 1 t/e d/LunchDeck")
+activate LogicManager
+
+LogicManager -> PennyWiseParser : parseCommand("edit 1 t/e d/LunchDeck)
+activate PennyWiseParser
+
+create EditCommandParser
+PennyWiseParser -> EditCommandParser
+activate EditCommandParser
+
+EditCommandParser --> PennyWiseParser
+deactivate EditCommandParser
+
+PennyWiseParser -> EditCommandParser : parse("1 t/e d/LunchDeck")
+activate EditCommandParser
+
+create EditEntryDescriptor
+EditCommandParser -> EditEntryDescriptor
+activate EditEntryDescriptor
+EditEntryDescriptor --> EditCommandParser : editEntryDescriptor
+deactivate EditEntryDescriptor
+
+create EditCommand
+EditCommandParser -> EditCommand: EditCommand(1, editEntryDescriptor)
+activate EditCommand
+EditCommand --> EditCommandParser: editCommand
+deactivate EditCommand
+
+EditCommandParser --> PennyWiseParser : editCommand
+deactivate EditCommandParser
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+EditCommandParser -[hidden]-> PennyWiseParser
+destroy EditCommandParser
+
+PennyWiseParser --> LogicManager : editCommand
+deactivate PennyWiseParser
+
+LogicManager -> EditCommand : execute(model)
+activate EditCommand
+
+EditCommand -> Model :getFilteredExpenditureList()
+
+EditCommand -> EditCommand: getEntryToEdit()
+activate EditCommand
+return entryToEdit
+
+EditCommand -> EditCommandClass :createdEditedEntry()
+activate EditCommandClass
+return editedEntry
+deactivate EditCommandClass
+
+EditCommand -> Model : setExpenditure()
+Model --> EditCommand
+
+EditCommand -> Model : updateFilteredExpenditureList()
+Model --> EditCommand
+
+create CommandResult
+EditCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> EditCommand
+deactivate CommandResult
+
+EditCommand --> LogicManager : result
+deactivate EditCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml

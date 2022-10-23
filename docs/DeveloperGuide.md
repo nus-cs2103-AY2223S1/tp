@@ -268,6 +268,39 @@ Step 10. The `AddCommand` then creates a `CommandResult` instance and returns it
   * Pros: Users can be more flexible in grouping their spending/incomes.
   * Cons: Possible dilution of categories, which would make the PieChart diagram not as useful.
 
+### Edit Entry
+
+The `edit` command is implemented by the `EditCommandParser` and `EditCommand` classes.
+
+`EditCommandParser` class is responsible for parsing the parameter received from the user.
+
+`EditCommand` class is responsible for editing an existing entry in the application.
+
+Below is a sequence diagram and explanation of how the EditCommand is executed.
+![Interactions Inside the Logic Component for the `edit 1 t/e d/LunchDeck` Command](images/EditSequenceDiagram.png)
+
+Step 1. The user enters `edit 1 t/e d/LunchDeck` command in the main window.
+
+Step 2. The command is handled by `LogicManager#execute` method, which then calls the `PennyWiseParser#parseCommand`method.
+
+Step 3. The `PennyWiseParser` matches the entry details in the string and extracts the argument string `1 t/e d/LunchDeck`.
+
+Step 4. The `PennyWiseParser` then calls `EditCommandParser#parse` method and the argument string is converted to a List.
+
+Step 5. The `EditCommandParser` then creates a new instance of the `EditEntryDescriptor` to describe the fields to be updated: `EntryType`, `Description`, `Amount`, `Date`, `Category`.
+
+Step 6. The `EditCommandParser` creates a new `EditCommand` instance with the `EditEntryDescriptor` instance and returns it to `PennyWiseParser`, which in turns returns to `LogicManager`.
+
+Step 7. The `LogicManager` calls the `EditCommand#execute` method.
+
+Step 8. The `EditCommand` calls the `Model#getFilteredExpenditureList` method to retrieve the list of expenditure entries.
+
+Step 9. The `EditCommand` invokes the `EditCommand#getEntryToEdit` method to get the entry to be edited, then creates a new instance of the edited entry using `EditCommand#createdEditedEntry`.
+
+Step 10. The `EditCommand` then calls the `Model#setExpenditure` method to update the expenditure and the `Model#updateFilteredExpenditureList` method to update the list of expenditure with the updated entry.
+
+Step 11. The `EditCommand` eventually creates a `CommandResult` instance and returns it to `LogicManager`.
+
 ### \[Proposed\] Undo/redo feature
 
 #### Proposed Implementation

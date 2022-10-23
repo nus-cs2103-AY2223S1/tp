@@ -44,7 +44,7 @@ public class EditCommand extends Command {
 
     public static final String MESSAGE_EDIT_ENTRY_SUCCESS = "Edited Entry: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
-    public static final String MESSAGE_DUPLICATE_ENTRY = "This entry already exists in the penny wise application.";
+    public static final String MESSAGE_DUPLICATE_ENTRY = "This entry already exists in the PennyWise application.";
 
     private final Index index;
     private final EditEntryDescriptor editEntryDescriptor;
@@ -61,6 +61,14 @@ public class EditCommand extends Command {
         this.index = index;
         this.editEntryDescriptor = new EditEntryDescriptor(editEntryDescriptor);
         this.entryType = editEntryDescriptor.getType().get();
+    }
+
+    private Entry getEntryToEdit(Index targetIndex, List<Entry> lastShownList)
+            throws CommandException {
+        if (targetIndex.getZeroBased() >= lastShownList.size()) {
+            throw new CommandException(Messages.MESSAGE_INVALID_ENTRY_DISPLAYED_INDEX);
+        }
+        return lastShownList.get(targetIndex.getZeroBased());
     }
 
     // TODO: Might have to edit
@@ -85,7 +93,7 @@ public class EditCommand extends Command {
             throw new CommandException(Messages.MESSAGE_INVALID_ENTRY_DISPLAYED_INDEX);
         }
 
-        Entry entryToEdit = lastShownList.get(index.getZeroBased());
+        Entry entryToEdit = getEntryToEdit(index, lastShownList);
         Entry editedEntry = createdEditedEntry(entryToEdit, editEntryDescriptor);
 
         if (!entryToEdit.isSameEntry(editedEntry) && model.hasExpenditure(editedEntry)) {
