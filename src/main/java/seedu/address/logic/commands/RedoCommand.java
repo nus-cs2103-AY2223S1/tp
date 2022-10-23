@@ -14,7 +14,7 @@ public class RedoCommand extends Command {
             new CommandWord("redo");
 
     public static final String MESSAGE_USAGE = COMMAND_WORD+ ": Redoes the last command\n"
-            + "Example: " + COMMAND_WORD + " ";
+            + "Example: " + COMMAND_WORD;
 
     public static final String MESSAGE_SUCCESS = "Redo successful";
 
