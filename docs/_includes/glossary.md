@@ -7,11 +7,14 @@
 ### {{ group.name }}
 {: .no_toc}
 
+<!-- markdownlint-disable-next-line no-inline-html -->
+<div markdown="1" class="glossary">
 {% for entry in group.items %}
 #### {{ entry.name }}
 {: .no_toc}
 
 {{ entry }}
 {% endfor %}
+</div>
 
 {% endfor %}

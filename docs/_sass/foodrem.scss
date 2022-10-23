@@ -220,3 +220,9 @@ article.post {
     list-style-type: lower-alpha;
   }
 }
+
+.glossary {
+  // Follows default blockquote style for now
+  border-left: 4px solid #e8e8e8;
+  padding-left: 15px;
+}
