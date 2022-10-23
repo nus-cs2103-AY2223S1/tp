@@ -3,6 +3,7 @@ package modtrekt.ui;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.Region;
+import modtrekt.logic.Logic;
 import modtrekt.logic.commands.DoneModuleCommand;
 import modtrekt.logic.commands.UndoneModuleCommand;
 
@@ -28,21 +29,22 @@ public class ProfileSidePanel extends UiPart<Region> {
     @FXML
     private Label semesterLabel;
 
-    public ProfileSidePanel() {
+    /**
+     * Creates a {@code ModuleListPanel} with the given {@code ObservableList}.
+     * @param logic
+     */
+    public ProfileSidePanel(Logic logic) {
         super(FXML);
+
+        DoneModuleCommand.refresh(logic.getModuleList().getModuleList());
+        refresh();
     }
 
     /**
      * Method to refresh user data.
-     * @param type
      */
-    public void refresh(String type) {
-        int totalCredits = 0;
-        if (type == "Done") {
-            totalCredits = DoneModuleCommand.getTotalCredits();
-        } else if (type == "Undone") {
-            totalCredits = UndoneModuleCommand.getTotalCredits();
-        }
+    public void refresh() {
+        int totalCredits = DoneModuleCommand.getTotalCredits();
         creditsCount.setText(totalCredits + " MCs");
     }
 }

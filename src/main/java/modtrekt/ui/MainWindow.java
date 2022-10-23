@@ -127,7 +127,7 @@ public class MainWindow extends UiPart<Stage> {
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
 
-        profileSidePanel = new ProfileSidePanel();
+        profileSidePanel = new ProfileSidePanel(logic);
         profileSidePanelPlaceholder.getChildren().add(profileSidePanel.getRoot());
 
         CommandBox commandBox = new CommandBox(this::executeCommand);
@@ -189,11 +189,7 @@ public class MainWindow extends UiPart<Stage> {
             logger.info("Result: " + commandResult.getFeedbackToUser());
             resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
             if (commandResult.isDoneCommand()) {
-                profileSidePanel.refresh("Done");
-            }
-
-            if (commandResult.isUndoneCommand()) {
-                profileSidePanel.refresh("Undone");
+                profileSidePanel.refresh();
             }
 
             if (commandResult.isShowHelp()) {

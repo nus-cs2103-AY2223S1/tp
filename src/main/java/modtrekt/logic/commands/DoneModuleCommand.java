@@ -67,18 +67,17 @@ public class DoneModuleCommand extends Command {
         // Done the module.
         model.setModule(target, target.done());
         // Sum up credits.
-        refresh(model);
-        return new CommandResult("Marked module as done.", true, false);
+        ObservableList<Module> modules = model.getModuleList().getModuleList();
+        refresh(modules);
+        return new CommandResult("Marked module as done.", true);
     }
 
     /**
      * Counting the number of MC Completed.
-     * @param model
-     * @return totalCredits
+     * @param modules module list.
      */
-    private void refresh(Model model) {
+    public static void refresh(ObservableList<Module> modules) {
         // Sum up credits.
-        ObservableList<Module> modules = model.getModuleList().getModuleList();
         Stream<Module> doneModules = modules.stream().filter(x -> x.isDone());
         int totalCreditsDone = doneModules.reduce(0, (creditsResult, mod) ->
                 creditsResult + mod.getCredits().getIntValue(), Integer::sum);
