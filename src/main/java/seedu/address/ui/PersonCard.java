@@ -49,11 +49,15 @@ public class PersonCard extends UiPart<Region> {
     @FXML
     private Label number;
     @FXML
+    private ImageView phoneImage;
+    @FXML
     private Label phone;
     @FXML
     private FlowPane moduleCodes;
     @FXML
     private ImageView gender;
+    @FXML
+    private ImageView emailImage;
     @FXML
     private Label email;
     @FXML
@@ -78,9 +82,11 @@ public class PersonCard extends UiPart<Region> {
         id.setText(displayedIndex + ". ");
         name.setText(person.getName().fullName);
         phone.setText(person.getPhone().value);
+        phoneImage.setImage(new Image(this.getClass().getResourceAsStream("/images/telephoneblack.png")));
         setUsername();
         gender.setImage(getGenderImage(person));
         email.setText(person.getEmail().value);
+        emailImage.setImage(new Image(this.getClass().getResourceAsStream("/images/email.png")));
         locationAt.setText(person.getLocation().value);
         person.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
