@@ -8,6 +8,7 @@ import java.util.List;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.collections.transformation.SortedList;
 import seedu.workbook.model.internship.exceptions.DuplicateInternshipException;
 import seedu.workbook.model.internship.exceptions.InternshipNotFoundException;
 
@@ -31,9 +32,18 @@ import seedu.workbook.model.internship.exceptions.InternshipNotFoundException;
  */
 public class UniqueInternshipList implements Iterable<Internship> {
 
+    // All updates should be performed only on internalList
     private final ObservableList<Internship> internalList = FXCollections.observableArrayList();
-    private final ObservableList<Internship> internalUnmodifiableList = FXCollections
-            .unmodifiableObservableList(internalList);
+
+    // wrapper on internalList, is automatically updated whenever
+    // internalList is updated, and is always in sorted order w.r.t
+    // InternshipComparator
+    private final SortedList<Internship> sortedInternalList = new SortedList<>(internalList,
+            new InternshipComparator());
+
+    // is observed by UI components/external objects
+    private final ObservableList<Internship> unmodifiableSortedInternalList = FXCollections
+            .unmodifiableObservableList(sortedInternalList);
 
     /**
      * Returns true if the list contains an equivalent internship as the given
@@ -108,10 +118,13 @@ public class UniqueInternshipList implements Iterable<Internship> {
     }
 
     /**
-     * Returns the backing list as an unmodifiable {@code ObservableList}.
+     * Returns the sorted list as an unmodifiable {@code ObservableList}.
+     *
+     * @see seedu.workbook.ui.MainWindow#fillInnerParts()
+     * @see seedu.workbook.storage.JsonSerializableWorkBook#JsonSerializableWorkBook(ReadOnlyWorkBook)
      */
     public ObservableList<Internship> asUnmodifiableObservableList() {
-        return internalUnmodifiableList;
+        return unmodifiableSortedInternalList;
     }
 
     @Override

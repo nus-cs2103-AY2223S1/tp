@@ -21,12 +21,13 @@ public class InternshipComparator implements Comparator<Internship> {
         }
 
         if (o1DateTime.isPast()) {
-            return o2DateTime.equals(DateTime.EMPTY_DATETIME) || !o1DateTime.isAfter(o2DateTime)
+            return o2DateTime.equals(DateTime.EMPTY_DATETIME) || o2DateTime.isAfter(o1DateTime)
                     ? 1
                     : -1;
         }
 
-        return o2DateTime.equals(DateTime.EMPTY_DATETIME) || o2DateTime.isAfter(o1DateTime)
+        return (o2DateTime.equals(DateTime.EMPTY_DATETIME) || o2DateTime.isPast())
+                    || o2DateTime.isAfter(o1DateTime)
                 ? -1
                 : 1;
     }
