@@ -160,7 +160,7 @@ Tag deleted: Veggies
 
 **Format**: `filtertag n/TAG_NAME`
 
-> Filters and show items that contain a specific tag.
+> Filters and shows items that contain a specific tag.
 
 **Example Input:**
 
