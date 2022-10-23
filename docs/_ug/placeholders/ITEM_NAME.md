@@ -1,5 +1,5 @@
 <!-- markdownlint-disable-file first-line-h1 -->
-The ITEM_NAME is the term we use to identify an item.
+The ITEM_NAME is the name we use to identify an item.
 
 **Note:**
 - ITEM_NAME is a short text

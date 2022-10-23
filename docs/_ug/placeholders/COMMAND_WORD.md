@@ -25,5 +25,5 @@ The COMMAND_WORD is a text indicating a command word of a command
 - tag
 - untag
 
-**Inalid Examples:**
+**Invalid Examples:**
 - Anything else
