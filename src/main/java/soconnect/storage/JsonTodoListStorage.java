@@ -14,6 +14,7 @@ import soconnect.commons.exceptions.DataConversionException;
 import soconnect.commons.exceptions.IllegalValueException;
 import soconnect.commons.util.FileUtil;
 import soconnect.commons.util.JsonUtil;
+import soconnect.model.ReadOnlySoConnect;
 import soconnect.model.ReadOnlyTodoList;
 import soconnect.model.tag.Tag;
 
@@ -35,20 +36,20 @@ public class JsonTodoListStorage implements TodoListStorage {
     }
 
     @Override
-    public Optional<ReadOnlyTodoList> readTodoList(List<Tag> tagList) throws DataConversionException {
-        return readTodoList(tagList, filePath);
+    public Optional<ReadOnlyTodoList> readTodoList(ReadOnlySoConnect readOnlySoConnect) throws DataConversionException {
+        return readTodoList(readOnlySoConnect, filePath);
     }
 
     /**
      * Returns {@code TodoList} data as a {@link ReadOnlyTodoList}.
      * Returns {@code Optional.empty()} if storage file is not found.
      *
-     * @param tagList The list of existing {@code Tag}s in {@code SoConnect}.
+     * @param readOnlySoConnect The list of existing {@code Tag}s in {@code SoConnect}.
      * @param filePath The path of the {@code TodoList} data file.
      * @throws DataConversionException If the data in storage is not in the expected format.
      */
     @Override
-    public Optional<ReadOnlyTodoList> readTodoList(List<Tag> tagList, Path filePath)
+    public Optional<ReadOnlyTodoList> readTodoList(ReadOnlySoConnect readOnlySoConnect, Path filePath)
             throws DataConversionException {
         requireNonNull(filePath);
 
@@ -59,7 +60,7 @@ public class JsonTodoListStorage implements TodoListStorage {
         }
 
         try {
-            return Optional.of(jsonTodoList.get().toModelType(tagList));
+            return Optional.of(jsonTodoList.get().toModelType(readOnlySoConnect));
         } catch (IllegalValueException ive) {
             logger.info("Illegal values found in " + filePath + ": " + ive.getMessage());
             throw new DataConversionException(ive);

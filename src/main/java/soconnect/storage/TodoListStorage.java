@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Optional;
 
 import soconnect.commons.exceptions.DataConversionException;
+import soconnect.model.ReadOnlySoConnect;
 import soconnect.model.ReadOnlyTodoList;
 import soconnect.model.tag.Tag;
 
@@ -23,22 +24,22 @@ public interface TodoListStorage {
      * Returns {@code TodoList} data as a {@link ReadOnlyTodoList}.
      * Returns {@code Optional.empty()} if storage file is not found.
      *
-     * @param tagList The list of existing {@code Tag}s in {@code SoConnect}.
+     * @param readOnlySoConnect The list of existing {@code Tag}s in {@code SoConnect}.
      * @throws DataConversionException If the data in storage is not in the expected format.
      * @throws IOException If there was any problem when reading from the storage.
      */
-    Optional<ReadOnlyTodoList> readTodoList(List<Tag> tagList) throws DataConversionException, IOException;
+    Optional<ReadOnlyTodoList> readTodoList(ReadOnlySoConnect readOnlySoConnect) throws DataConversionException, IOException;
 
     /**
      * Returns {@code TodoList} data as a {@link ReadOnlyTodoList}.
      * Returns {@code Optional.empty()} if storage file is not found.
      *
-     * @param tagList The list of existing {@code Tag}s in {@code SoConnect}.
+     * @param readOnlySoConnect The list of existing {@code Tag}s in {@code SoConnect}.
      * @param filePath The path of the {@code TodoList} data file.
      * @throws DataConversionException If the data in storage is not in the expected format.
      * @throws IOException If there was any problem when reading from the storage.
      */
-    Optional<ReadOnlyTodoList> readTodoList(List<Tag> tagList, Path filePath) throws DataConversionException,
+    Optional<ReadOnlyTodoList> readTodoList(ReadOnlySoConnect readOnlySoConnect, Path filePath) throws DataConversionException,
             IOException;
 
     /**

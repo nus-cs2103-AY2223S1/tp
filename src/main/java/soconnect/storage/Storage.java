@@ -36,7 +36,7 @@ public interface Storage extends SoConnectStorage, TodoListStorage, UserPrefsSto
     Path getTodoListFilePath();
 
     @Override
-    Optional<ReadOnlyTodoList> readTodoList(List<Tag> tagList) throws DataConversionException, IOException;
+    Optional<ReadOnlyTodoList> readTodoList(ReadOnlySoConnect readOnlySoConnect) throws DataConversionException, IOException;
 
     @Override
     void saveTodoList(ReadOnlyTodoList todoList) throws IOException;

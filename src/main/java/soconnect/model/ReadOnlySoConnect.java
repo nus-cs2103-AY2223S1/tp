@@ -21,4 +21,5 @@ public interface ReadOnlySoConnect {
      */
     ObservableList<Tag> getTagList();
 
+    void addTag(Tag tag);
 }

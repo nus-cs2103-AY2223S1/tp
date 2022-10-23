@@ -99,7 +99,7 @@ public class MainApp extends Application {
         }
 
         try {
-            todoListOptional = storage.readTodoList(initialSoConnectData.getTagList());
+            todoListOptional = storage.readTodoList(initialSoConnectData);
             if (todoListOptional.isEmpty()) {
                 logger.info("Data file not found. Will be starting with a sample TodoList");
             }
