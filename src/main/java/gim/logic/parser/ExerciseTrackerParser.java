@@ -15,6 +15,7 @@ import gim.logic.commands.ExitCommand;
 import gim.logic.commands.FindCommand;
 import gim.logic.commands.HelpCommand;
 import gim.logic.commands.ListCommand;
+import gim.logic.commands.RangeCommand;
 import gim.logic.parser.exceptions.ParseException;
 
 /**
@@ -67,6 +68,9 @@ public class ExerciseTrackerParser {
 
         case HelpCommand.COMMAND_WORD:
             return new HelpCommand();
+
+        case RangeCommand.COMMAND_WORD:
+            return new RangeCommandParser().parse(arguments);
 
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);

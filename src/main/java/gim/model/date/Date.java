@@ -69,6 +69,17 @@ public class Date {
         return date.getDayOfWeek().toString();
     }
 
+    /**
+     * Checks whether this Date instance is within a given range.
+     * Note that this method includes both start and end parameters.
+     * @param start starting date (inclusive)
+     * @param end ending date (inclusive)
+     * @return true or false depending on the check
+     */
+    public boolean checkWithinRange(Date start, Date end) {
+        return !this.date.isBefore(start.date) && !this.date.isAfter(end.date);
+    }
+
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
