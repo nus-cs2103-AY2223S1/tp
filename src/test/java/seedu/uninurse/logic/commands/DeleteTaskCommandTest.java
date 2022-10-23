@@ -8,9 +8,9 @@ import static seedu.uninurse.logic.commands.CommandTestUtil.assertCommandSuccess
 import static seedu.uninurse.logic.commands.CommandTestUtil.showPersonAtIndex;
 import static seedu.uninurse.testutil.Assert.assertThrows;
 import static seedu.uninurse.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
-import static seedu.uninurse.testutil.TypicalIndexes.INDEX_FIRST_TASK;
+import static seedu.uninurse.testutil.TypicalIndexes.INDEX_FIRST_ATTRIBUTE;
 import static seedu.uninurse.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
-import static seedu.uninurse.testutil.TypicalIndexes.INDEX_SECOND_TASK;
+import static seedu.uninurse.testutil.TypicalIndexes.INDEX_SECOND_ATTRIBUTE;
 import static seedu.uninurse.testutil.TypicalIndexes.INDEX_THIRD_PERSON;
 import static seedu.uninurse.testutil.TypicalPersons.getTypicalUninurseBook;
 
@@ -39,12 +39,12 @@ class DeleteTaskCommandTest {
 
     @Test
     public void constructor_nullPatientIndex_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> new DeleteTaskCommand(null, INDEX_FIRST_TASK));
+        assertThrows(NullPointerException.class, () -> new DeleteTaskCommand(null, INDEX_FIRST_ATTRIBUTE));
     }
 
     @Test
     public void execute_nullModel_throwsNullPointerException() {
-        DeleteTaskCommand deleteTaskCommand = new DeleteTaskCommand(INDEX_SECOND_PERSON, INDEX_FIRST_TASK);
+        DeleteTaskCommand deleteTaskCommand = new DeleteTaskCommand(INDEX_SECOND_PERSON, INDEX_FIRST_ATTRIBUTE);
         assertThrows(NullPointerException.class, () -> deleteTaskCommand.execute(null));
     }
 
@@ -53,9 +53,9 @@ class DeleteTaskCommandTest {
         // use third person in TypicalPersons since there is one task to delete
         Patient patientToDeleteTask = model.getFilteredPersonList().get(INDEX_THIRD_PERSON.getZeroBased());
         Patient editedPatient = new PersonBuilder(patientToDeleteTask).withTasks().build();
-        Task deletedTask = patientToDeleteTask.getTasks().get(INDEX_FIRST_TASK.getZeroBased());
+        Task deletedTask = patientToDeleteTask.getTasks().get(INDEX_FIRST_ATTRIBUTE.getZeroBased());
 
-        DeleteTaskCommand deleteTaskCommand = new DeleteTaskCommand(INDEX_THIRD_PERSON, INDEX_FIRST_TASK);
+        DeleteTaskCommand deleteTaskCommand = new DeleteTaskCommand(INDEX_THIRD_PERSON, INDEX_FIRST_ATTRIBUTE);
 
         String expectedMessage = String.format(DeleteTaskCommand.MESSAGE_DELETE_TASK_SUCCESS,
                 editedPatient.getName().toString(), deletedTask);
@@ -71,7 +71,7 @@ class DeleteTaskCommandTest {
     @Test
     void execute_invalidPatientIndexUnfilteredList_throwsCommandException() {
         Index outOfBoundPatientIndex = Index.fromOneBased(model.getFilteredPersonList().size() + 1);
-        DeleteTaskCommand deleteTaskCommand = new DeleteTaskCommand(outOfBoundPatientIndex, INDEX_FIRST_TASK);
+        DeleteTaskCommand deleteTaskCommand = new DeleteTaskCommand(outOfBoundPatientIndex, INDEX_FIRST_ATTRIBUTE);
 
         assertCommandFailure(deleteTaskCommand, model, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
     }
@@ -84,9 +84,9 @@ class DeleteTaskCommandTest {
         Patient patientToDeleteTask = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
         Patient editedPatient = new PersonBuilder(model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased()))
                 .withTasks().build();
-        Task deletedTask = patientToDeleteTask.getTasks().get(INDEX_FIRST_TASK.getZeroBased());
+        Task deletedTask = patientToDeleteTask.getTasks().get(INDEX_FIRST_ATTRIBUTE.getZeroBased());
 
-        DeleteTaskCommand deleteTaskCommand = new DeleteTaskCommand(INDEX_FIRST_PERSON, INDEX_FIRST_TASK);
+        DeleteTaskCommand deleteTaskCommand = new DeleteTaskCommand(INDEX_FIRST_PERSON, INDEX_FIRST_ATTRIBUTE);
 
         String expectedMessage = String.format(DeleteTaskCommand.MESSAGE_DELETE_TASK_SUCCESS,
                 editedPatient.getName().toString(), deletedTask);
@@ -107,7 +107,7 @@ class DeleteTaskCommandTest {
         // ensures that outOfBoundIndex is still in bounds of uninurse book list
         assertTrue(outOfBoundIndex.getZeroBased() < model.getUninurseBook().getPersonList().size());
 
-        DeleteTaskCommand deleteTaskCommand = new DeleteTaskCommand(outOfBoundIndex, INDEX_FIRST_TASK);
+        DeleteTaskCommand deleteTaskCommand = new DeleteTaskCommand(outOfBoundIndex, INDEX_FIRST_ATTRIBUTE);
 
         assertCommandFailure(deleteTaskCommand, model, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
     }
@@ -123,27 +123,27 @@ class DeleteTaskCommandTest {
 
     @Test
     public void equals() {
-        DeleteTaskCommand deleteTaskFirstCommand = new DeleteTaskCommand(INDEX_FIRST_PERSON, INDEX_FIRST_TASK);
-        DeleteTaskCommand deleteTaskSecondCommand = new DeleteTaskCommand(INDEX_SECOND_PERSON, INDEX_FIRST_TASK);
-        DeleteTaskCommand deleteTaskThirdCommand = new DeleteTaskCommand(INDEX_FIRST_PERSON, INDEX_SECOND_TASK);
+        DeleteTaskCommand deleteFirstPersonFirstTask = new DeleteTaskCommand(INDEX_FIRST_PERSON, INDEX_FIRST_ATTRIBUTE);
+        DeleteTaskCommand deleteSecondPersonFirstTask = new DeleteTaskCommand(INDEX_SECOND_PERSON, INDEX_FIRST_ATTRIBUTE);
+        DeleteTaskCommand deleteFirstPersonSecondTask = new DeleteTaskCommand(INDEX_FIRST_PERSON, INDEX_SECOND_ATTRIBUTE);
 
         // same object -> returns true
-        assertEquals(deleteTaskFirstCommand, deleteTaskFirstCommand);
+        assertEquals(deleteFirstPersonFirstTask, deleteFirstPersonFirstTask);
 
         // same values -> returns true
-        DeleteTaskCommand deleteTaskFirstCommandCopy = new DeleteTaskCommand(INDEX_FIRST_PERSON, INDEX_FIRST_TASK);
-        assertEquals(deleteTaskFirstCommand, deleteTaskFirstCommandCopy);
+        DeleteTaskCommand deleteFirstPersonFirstTaskCopy = new DeleteTaskCommand(INDEX_FIRST_PERSON, INDEX_FIRST_ATTRIBUTE);
+        assertEquals(deleteFirstPersonFirstTask, deleteFirstPersonFirstTaskCopy);
 
         // different types -> returns false
-        assertNotEquals(1, deleteTaskFirstCommand);
+        assertNotEquals(1, deleteFirstPersonFirstTask);
 
         // null -> returns false
-        assertNotEquals(null, deleteTaskFirstCommand);
+        assertNotEquals(null, deleteFirstPersonFirstTask);
 
         // different person index -> returns false
-        assertNotEquals(deleteTaskFirstCommand, deleteTaskSecondCommand);
+        assertNotEquals(deleteFirstPersonFirstTask, deleteSecondPersonFirstTask);
 
         // different task index -> returns false
-        assertNotEquals(deleteTaskFirstCommand, deleteTaskThirdCommand);
+        assertNotEquals(deleteFirstPersonFirstTask, deleteFirstPersonSecondTask);
     }
 }

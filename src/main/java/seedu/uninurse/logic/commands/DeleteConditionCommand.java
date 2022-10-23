@@ -72,7 +72,7 @@ public class DeleteConditionCommand extends DeleteGenericCommand {
         model.updateFilteredPersonList(Model.PREDICATE_SHOW_ALL_PERSONS);
 
         return new CommandResult(String.format(MESSAGE_DELETE_CONDITION_SUCCESS, editedPerson.getName(),
-                deletedCondition));
+                deletedCondition), CommandType.DELETE_CONDITION);
     }
 
     @Override

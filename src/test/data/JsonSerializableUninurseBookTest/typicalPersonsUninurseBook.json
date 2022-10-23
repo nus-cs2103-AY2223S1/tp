@@ -27,7 +27,7 @@
     "phone" : "95352563",
     "email" : "heinz@example.com",
     "address" : "wall street",
-    "conditions" : [ ],
+    "conditions" : [ "multiple sclerosis" ],
     "tasks" : [ {
       "taskDescription" : "Update health records",
       "dateTime": "28-10-2022 1730"

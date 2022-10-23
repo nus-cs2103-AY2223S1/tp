@@ -5,7 +5,7 @@ import static seedu.uninurse.logic.parser.CommandParserTestUtil.assertParseFailu
 import static seedu.uninurse.logic.parser.CommandParserTestUtil.assertParseSuccess;
 import static seedu.uninurse.testutil.Assert.assertThrows;
 import static seedu.uninurse.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
-import static seedu.uninurse.testutil.TypicalIndexes.INDEX_FIRST_TASK;
+import static seedu.uninurse.testutil.TypicalIndexes.INDEX_FIRST_ATTRIBUTE;
 
 import org.junit.jupiter.api.Test;
 
@@ -25,8 +25,8 @@ class DeleteTaskCommandParserTest {
 
     @Test
     public void parse_validArgs_success() {
-        assertParseSuccess(parser, "1 1", new DeleteTaskCommand(INDEX_FIRST_PERSON, INDEX_FIRST_TASK));
-        assertParseSuccess(parser, " 1 1 ", new DeleteTaskCommand(INDEX_FIRST_PERSON, INDEX_FIRST_TASK));
+        assertParseSuccess(parser, "1 1", new DeleteTaskCommand(INDEX_FIRST_PERSON, INDEX_FIRST_ATTRIBUTE));
+        assertParseSuccess(parser, " 1 1 ", new DeleteTaskCommand(INDEX_FIRST_PERSON, INDEX_FIRST_ATTRIBUTE));
     }
 
     @Test
