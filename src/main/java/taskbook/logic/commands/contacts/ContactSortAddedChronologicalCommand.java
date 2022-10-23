@@ -2,7 +2,6 @@ package taskbook.logic.commands.contacts;
 
 import taskbook.logic.commands.CommandResult;
 import taskbook.logic.commands.exceptions.CommandException;
-import taskbook.logic.commands.tasks.TaskSortAddedChronologicalCommand;
 import taskbook.model.Model;
 
 /**
