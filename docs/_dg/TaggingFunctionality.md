@@ -12,7 +12,7 @@ Tagging/untagging a `Tag` to an `Item` will add/remove the corresponding `Tag` o
 Given below is an UML diagram of `Tag` and the classes related to it:
 ![model_diagram](../images/BetterModelClassDiagram.png)
 
-#### Design considerations
+#### Design Considerations
 
 **Aspect: Storage of `Tag`**
 

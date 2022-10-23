@@ -28,9 +28,9 @@ There are two ways to run tests.
 
 This project has three types of tests:
 
-1. _Unit tests_ targeting the lowest level methods/classes.<br>
-   e.g. `seedu.foodrem.commons.StringUtilTest`
-1. _Integration tests_ that are checking the integration of multiple code units (those code units are assumed to be working).<br>
+1. **Unit tests** targeting the lowest level methods/classes.<br>
+   e.g. `seedu.foodrem.commons.util.StringUtilTest`
+1. **Integration tests** that are checking the integration of multiple code units (those code units are assumed to be working).<br>
    e.g. `seedu.foodrem.storage.StorageManagerTest`
-1. Hybrids of unit and integration tests. These test are checking multiple code units as well as how the are connected together.<br>
+1. **Hybrids of unit and integration tests.** <br> These test are checking multiple code units as well as how they are connected together.<br>
    e.g. `seedu.foodrem.logic.LogicManagerTest`
