@@ -1,21 +1,16 @@
 package seedu.foodrem.ui;
 
-import java.util.logging.Logger;
-
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.Region;
-import seedu.foodrem.commons.core.LogsCenter;
 import seedu.foodrem.model.item.Item;
 
 /**
  * Panel containing the list of items.
  */
 public class ItemListPanel extends UiPart<Region> {
-    private final Logger logger = LogsCenter.getLogger(ItemListPanel.class);
-
     @FXML
     private ListView<Item> itemListView;
 
