@@ -11,17 +11,23 @@ import java.util.Objects;
 public class Debt {
     private final Description description;
     private final Money money;
+    private final DebtDate date;
+    private final DebtTime time;
 
     /**
      * Every field must be present and not null.
      *
      * @param description The description of the debt.
      * @param money The money amount of the debt.
+     * @param date The date of the debt.
+     * @param time The time of the debt.
      */
-    public Debt(Description description, Money money) {
-        requireAllNonNull(description, money);
+    public Debt(Description description, Money money, DebtDate date, DebtTime time) {
+        requireAllNonNull(description, money, date, time);
         this.description = description;
         this.money = money;
+        this.date = date;
+        this.time = time;
     }
 
     public Description getDescription() {
@@ -32,11 +38,20 @@ public class Debt {
         return money;
     }
 
+    public DebtDate getDate() {
+        return date;
+    }
+
+    public DebtTime getTime() {
+        return time;
+    }
+
     /**
-     * Returns a Debt with the given description and money.
+     * Returns a Debt with the given description, money, date and time.
      */
-    public static Debt makeDebt(String description, String money) {
-        return new Debt(new Description(description), new Money(money));
+    public static Debt makeDebt(String description, String money, String date, String time) {
+        requireAllNonNull(description, money, date, time);
+        return new Debt(new Description(description), new Money(money), new DebtDate(date), new DebtTime(time));
     }
 
     /**
@@ -65,20 +80,26 @@ public class Debt {
         }
 
         Debt otherDebt = (Debt) other;
-        return otherDebt.getDescription().equals(getDescription())
-                && otherDebt.getMoney().equals(getMoney());
+        return otherDebt.getDescription().equals(this.getDescription())
+                && otherDebt.getMoney().equals(this.getMoney())
+                && otherDebt.getDate().equals(this.getDate())
+                && otherDebt.getTime().equals(this.getTime());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(description, money);
+        return Objects.hash(description, money, date, time);
     }
 
     @Override
     public String toString() {
         final StringBuilder builder = new StringBuilder();
-        builder.append(getDescription())
-                .append("; Money: $")
+        builder.append(getDate())
+                .append(" ")
+                .append(getTime())
+                .append(": ")
+                .append(getDescription())
+                .append("; $")
                 .append(getMoney());
 
         return builder.toString();

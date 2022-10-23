@@ -3,6 +3,7 @@ package paymelah.logic.commands;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static paymelah.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static paymelah.logic.parser.CliSyntax.PREFIX_DATE;
 import static paymelah.logic.parser.CliSyntax.PREFIX_DEBT;
 import static paymelah.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 import static paymelah.logic.parser.CliSyntax.PREFIX_EMAIL;
@@ -10,6 +11,7 @@ import static paymelah.logic.parser.CliSyntax.PREFIX_MONEY;
 import static paymelah.logic.parser.CliSyntax.PREFIX_NAME;
 import static paymelah.logic.parser.CliSyntax.PREFIX_PHONE;
 import static paymelah.logic.parser.CliSyntax.PREFIX_TAG;
+import static paymelah.logic.parser.CliSyntax.PREFIX_TIME;
 import static paymelah.testutil.Assert.assertThrows;
 
 import java.util.ArrayList;
@@ -22,6 +24,8 @@ import paymelah.logic.commands.exceptions.CommandException;
 import paymelah.model.AddressBook;
 import paymelah.model.Model;
 import paymelah.model.debt.Debt;
+import paymelah.model.debt.DebtDate;
+import paymelah.model.debt.DebtTime;
 import paymelah.model.debt.Description;
 import paymelah.model.debt.Money;
 import paymelah.model.person.NameContainsKeywordsPredicate;
@@ -43,18 +47,30 @@ public class CommandTestUtil {
     public static final String VALID_ADDRESS_BOB = "Block 123, Bobby Street 3";
     public static final String VALID_TAG_HUSBAND = "husband";
     public static final String VALID_TAG_FRIEND = "friend";
-    public static final String VALID_DEBT_KOI_DESC = "koi";
-    public static final String VALID_DEBT_KOI_AMOUNT = "4.0";
+
+    public static final String VALID_DEBT_KOI_DESCRIPTION = "koi";
+    public static final String VALID_DEBT_KOI_MONEY = "4.0";
+    public static final String VALID_DEBT_KOI_DATE = "2022-10-12";
+    public static final String VALID_DEBT_KOI_TIME = "12:34";
     public static final Debt VALID_DEBT_KOI =
-            new Debt(new Description(VALID_DEBT_KOI_DESC), new Money(VALID_DEBT_KOI_AMOUNT));
-    public static final String VALID_DEBT_PIZZA_DESC = "pizza";
-    public static final String VALID_DEBT_PIZZA_AMOUNT = "$5";
+            new Debt(new Description(VALID_DEBT_KOI_DESCRIPTION), new Money(VALID_DEBT_KOI_MONEY),
+                    new DebtDate(VALID_DEBT_KOI_DATE), new DebtTime(VALID_DEBT_KOI_TIME));
+
+    public static final String VALID_DEBT_PIZZA_DESCRIPTION = "pizza";
+    public static final String VALID_DEBT_PIZZA_MONEY = "$5";
+    public static final String VALID_DEBT_PIZZA_DATE = "2022-09-12";
+    public static final String VALID_DEBT_PIZZA_TIME = "00:00";
     public static final Debt VALID_DEBT_PIZZA =
-            new Debt(new Description(VALID_DEBT_PIZZA_DESC), new Money(VALID_DEBT_PIZZA_AMOUNT));
-    public static final String VALID_DEBT_KARAOKE_DESC = "karaoke";
-    public static final String VALID_DEBT_KARAOKE_AMOUNT = "7";
+            new Debt(new Description(VALID_DEBT_PIZZA_DESCRIPTION), new Money(VALID_DEBT_PIZZA_MONEY),
+                    new DebtDate(VALID_DEBT_PIZZA_DATE), new DebtTime(VALID_DEBT_PIZZA_TIME));
+
+    public static final String VALID_DEBT_KARAOKE_DESCRIPTION = "karaoke";
+    public static final String VALID_DEBT_KARAOKE_MONEY = "7";
+    public static final String VALID_DEBT_KARAOKE_DATE = "2022-08-10";
+    public static final String VALID_DEBT_KARAOKE_TIME = "10:24";
     public static final Debt VALID_DEBT_KARAOKE =
-            new Debt(new Description(VALID_DEBT_KARAOKE_DESC), new Money(VALID_DEBT_KARAOKE_AMOUNT));
+            new Debt(new Description(VALID_DEBT_KARAOKE_DESCRIPTION), new Money(VALID_DEBT_KARAOKE_MONEY),
+                    new DebtDate(VALID_DEBT_KARAOKE_DATE), new DebtTime(VALID_DEBT_KARAOKE_TIME));
 
     public static final String NAME_DESC_AMY = " " + PREFIX_NAME + VALID_NAME_AMY;
     public static final String NAME_DESC_BOB = " " + PREFIX_NAME + VALID_NAME_BOB;
@@ -77,6 +93,10 @@ public class CommandTestUtil {
     public static final String VALID_DESCRIPTION_SUPPER = "supper jio";
     public static final String VALID_MONEY_MCDONALDS = "10.80";
     public static final String VALID_MONEY_SUPPER = "$4.5";
+    public static final String VALID_DATE_MCDONALDS = "2022-10-11";
+    public static final String VALID_DATE_SUPPER = "2022-9-12";
+    public static final String VALID_TIME_MCDONALDS = "12:34";
+    public static final String VALID_TIME_SUPPER = "00:00";
 
     public static final String DESCRIPTION_DESC_MCDONALDS = " " + PREFIX_DESCRIPTION + VALID_DESCRIPTION_MCDONALDS;
     public static final String DESCRIPTION_DESC_SUPPER = " " + PREFIX_DESCRIPTION + VALID_DESCRIPTION_SUPPER;
@@ -85,8 +105,16 @@ public class CommandTestUtil {
     public static final String MONEY_DESC_SUPPER = " " + PREFIX_MONEY + VALID_MONEY_SUPPER;
     public static final String MONEY_DESC_TEN_DOLLARS = " " + PREFIX_MONEY + "10";
 
+    public static final String DATE_DESC_MCDONALDS = " " + PREFIX_DATE + VALID_DATE_MCDONALDS;
+    public static final String DATE_DESC_SUPPER = " " + PREFIX_DATE + VALID_DATE_SUPPER;
+
+    public static final String TIME_DESC_MCDONALDS = " " + PREFIX_TIME + VALID_TIME_MCDONALDS;
+    public static final String TIME_DESC_SUPPER = " " + PREFIX_TIME + VALID_TIME_SUPPER;
+
     public static final String INVALID_DESCRIPTION_DESC = " " + PREFIX_DESCRIPTION + " ";
     public static final String INVALID_MONEY_DESC = " " + PREFIX_MONEY + "one hundred";
+    public static final String INVALID_DATE_DESC = " " + PREFIX_DATE + "invalid date";
+    public static final String INVALID_TIME_DESC = " " + PREFIX_TIME + "invalid time";
 
     public static final String VALID_DEBT_INDEX = " " + PREFIX_DEBT + "1";
     public static final String VALID_DEBT_INDEXES = " " + PREFIX_DEBT + "1 2 3";
