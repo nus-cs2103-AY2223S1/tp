@@ -26,7 +26,7 @@ public class TeachingAssistant extends Position {
      */
     public TeachingAssistant() {
         super("TA");
-        availability = "available";
+        availability = "Available";
     }
 
     /**
