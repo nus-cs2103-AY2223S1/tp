@@ -9,6 +9,8 @@ import static seedu.address.testutil.Assert.assertThrows;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.HelpCommand;
+import seedu.address.logic.commands.task.AddTaskCommand;
+import seedu.address.logic.commands.task.ListTasksCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.task.Task;
 import seedu.address.testutil.TaskBuilder;

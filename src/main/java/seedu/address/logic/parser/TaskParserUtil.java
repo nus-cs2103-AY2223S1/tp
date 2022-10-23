@@ -90,7 +90,8 @@ public class TaskParserUtil {
             contactSet.add(new Contact(contactName));
         }
         return contactSet;
-        
+    }
+
     /**
      * Parses index inputs in {@code Collection<String> inputs} (that can contain index and non-index inputs)
      * into a {@code Set<Index>}.
