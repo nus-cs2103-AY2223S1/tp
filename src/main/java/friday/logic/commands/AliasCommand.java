@@ -65,7 +65,8 @@ public class AliasCommand extends Command {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof AliasCommand // instanceof handles nulls
-                && toAdd.equals(((AliasCommand) other).toAdd));
+                || ((other instanceof AliasCommand) // instanceof handles nulls
+                && toAdd.equals(((AliasCommand) other).toAdd)
+                && keyword.equals(((AliasCommand) other).keyword));
     }
 }

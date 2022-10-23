@@ -58,8 +58,8 @@ public class ReservedKeyword {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof friday.model.alias.ReservedKeyword // instanceof handles nulls
-                && value.equals(((friday.model.alias.ReservedKeyword) other).value)); // state check
+                || (other instanceof ReservedKeyword // instanceof handles nulls
+                && value.equals(((ReservedKeyword) other).value)); // state check
     }
 
     @Override

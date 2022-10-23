@@ -32,8 +32,8 @@ public class Alias {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof friday.model.alias.Alias // instanceof handles nulls
-                && value.equals(((friday.model.alias.Alias) other).value)); // state check
+                || (other instanceof Alias // instanceof handles nulls
+                && value.equals(((Alias) other).value)); // state check
     }
 
     @Override

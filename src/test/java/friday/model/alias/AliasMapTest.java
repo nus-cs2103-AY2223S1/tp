@@ -5,9 +5,9 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-import friday.logic.commands.ListCommand;
 import org.junit.jupiter.api.Test;
 
+import friday.logic.commands.ListCommand;
 import friday.model.alias.exceptions.AliasNotFoundException;
 import friday.model.alias.exceptions.DuplicateAliasException;
 
@@ -35,7 +35,8 @@ public class AliasMapTest {
 
     @Test
     public void add_nullAlias_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> aliasMap.add(null, new ReservedKeyword(ListCommand.COMMAND_WORD)));
+        assertThrows(NullPointerException.class, () -> aliasMap.add(null,
+                new ReservedKeyword(ListCommand.COMMAND_WORD)));
         assertThrows(NullPointerException.class, () -> aliasMap.add(new Alias(VALID_ALIAS), null));
     }
 
