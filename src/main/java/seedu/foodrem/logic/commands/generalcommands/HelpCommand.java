@@ -49,7 +49,23 @@ public class HelpCommand extends Command {
 
     @Override
     public CommandResult execute(Model model) {
-        return new CommandResult(SHOWING_HELP_MESSAGE, message);
+        return new CommandResult() {
+            @Override
+            public String getFeedbackToUser() {
+                return SHOWING_HELP_MESSAGE;
+            }
+
+            @Override
+            public boolean shouldShowHelp() {
+                return true;
+            }
+
+            @Override
+            public String getHelpText() {
+                assert message != null;
+                return message;
+            }
+        };
     }
 
     public static String getUsage() {

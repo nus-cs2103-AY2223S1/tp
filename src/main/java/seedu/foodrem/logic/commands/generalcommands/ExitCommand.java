@@ -14,7 +14,17 @@ public class ExitCommand extends Command {
 
     @Override
     public CommandResult execute(Model model) {
-        return new CommandResult(MESSAGE_SUCCESS, false, true);
+        return new CommandResult() {
+            @Override
+            public String getFeedbackToUser() {
+                return MESSAGE_SUCCESS;
+            }
+
+            @Override
+            public boolean shouldExit() {
+                return true;
+            }
+        };
     }
 
     public static String getUsage() {
