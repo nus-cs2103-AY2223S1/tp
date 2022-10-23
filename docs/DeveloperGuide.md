@@ -126,12 +126,6 @@ The `Model` component,
 * stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
 * does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `AddressBook`, which `Person` references. This allows `AddressBook` to only require one `Tag` object per unique tag, instead of each `Person` needing their own `Tag` objects.<br>
-
-<img src="images/BetterModelClassDiagram.png" width="450" />
-
-</div>
-
 
 ### Storage component
 
@@ -166,87 +160,10 @@ The sequence diagram below shows how a `DeleteCommand` with multiple inputs is e
 1. `DeleteCommandParser` now returns a `Set<Index>` instead of just a single `Index` to be used as arguments for the `DeleteCommand`constructor.
 2. If any of the inputs are invalid (out of bounds indexes or non-integer characters) a `ParseException` will be thrown, even if other inputs are valid.
 
+<div markdown="span" class="alert alert-info">
+:information_source: **Note:** The order of the inputs does not matter as the set is sorted in reverse order before creating the `DeleteCommand` object. This ensures that deletion of each entry in the `model` does not affect the deletion of the subsequent entries while the `for` loop is running.
+</div>
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The order of the inputs does not matter as the set is sorted in reverse order before creating the `DeleteCommand` object. This ensures that deletion of each entry in the `model` does not affect the deletion of the subsequent entries while the `for` loop is running.</div>
-
-### \[Proposed\] Undo/redo feature
-
-#### Proposed Implementation
-
-The proposed undo/redo mechanism is facilitated by `VersionedAddressBook`. It extends `AddressBook` with an undo/redo history, stored internally as an `addressBookStateList` and `currentStatePointer`. Additionally, it implements the following operations:
-
-* `VersionedAddressBook#commit()` — Saves the current address book state in its history.
-* `VersionedAddressBook#undo()` — Restores the previous address book state from its history.
-* `VersionedAddressBook#redo()` — Restores a previously undone address book state from its history.
-
-These operations are exposed in the `Model` interface as `Model#commitAddressBook()`, `Model#undoAddressBook()` and `Model#redoAddressBook()` respectively.
-
-Given below is an example usage scenario and how the undo/redo mechanism behaves at each step.
-
-Step 1. The user launches the application for the first time. The `VersionedAddressBook` will be initialized with the initial address book state, and the `currentStatePointer` pointing to that single address book state.
-
-![UndoRedoState0](images/UndoRedoState0.png)
-
-Step 2. The user executes `delete 5` command to delete the 5th person in the address book. The `delete` command calls `Model#commitAddressBook()`, causing the modified state of the address book after the `delete 5` command executes to be saved in the `addressBookStateList`, and the `currentStatePointer` is shifted to the newly inserted address book state.
-
-![UndoRedoState1](images/UndoRedoState1.png)
-
-Step 3. The user executes `add n/David …​` to add a new person. The `add` command also calls `Model#commitAddressBook()`, causing another modified address book state to be saved into the `addressBookStateList`.
-
-![UndoRedoState2](images/UndoRedoState2.png)
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If a command fails its execution, it will not call `Model#commitAddressBook()`, so the address book state will not be saved into the `addressBookStateList`.
-
-</div>
-
-Step 4. The user now decides that adding the person was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `Model#undoAddressBook()`, which will shift the `currentStatePointer` once to the left, pointing it to the previous address book state, and restores the address book to that state.
-
-![UndoRedoState3](images/UndoRedoState3.png)
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index 0, pointing to the initial AddressBook state, then there are no previous AddressBook states to restore. The `undo` command uses `Model#canUndoAddressBook()` to check if this is the case. If so, it will return an error to the user rather
-than attempting to perform the undo.
-
-</div>
-
-The following sequence diagram shows how the undo operation works:
-
-![UndoSequenceDiagram](images/UndoSequenceDiagram.png)
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `UndoCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
-
-</div>
-
-The `redo` command does the opposite — it calls `Model#redoAddressBook()`, which shifts the `currentStatePointer` once to the right, pointing to the previously undone state, and restores the address book to that state.
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index `addressBookStateList.size() - 1`, pointing to the latest address book state, then there are no undone AddressBook states to restore. The `redo` command uses `Model#canRedoAddressBook()` to check if this is the case. If so, it will return an error to the user rather than attempting to perform the redo.
-
-</div>
-
-Step 5. The user then decides to execute the command `list`. Commands that do not modify the address book, such as `list`, will usually not call `Model#commitAddressBook()`, `Model#undoAddressBook()` or `Model#redoAddressBook()`. Thus, the `addressBookStateList` remains unchanged.
-
-![UndoRedoState4](images/UndoRedoState4.png)
-
-Step 6. The user executes `clear`, which calls `Model#commitAddressBook()`. Since the `currentStatePointer` is not pointing at the end of the `addressBookStateList`, all address book states after the `currentStatePointer` will be purged. Reason: It no longer makes sense to redo the `add n/David …​` command. This is the behavior that most modern desktop applications follow.
-
-![UndoRedoState5](images/UndoRedoState5.png)
-
-The following activity diagram summarizes what happens when a user executes a new command:
-
-<img src="images/CommitActivityDiagram.png" width="250" />
-
-#### Design considerations:
-
-**Aspect: How undo & redo executes:**
-
-* **Alternative 1 (current choice):** Saves the entire address book.
-  * Pros: Easy to implement.
-  * Cons: May have performance issues in terms of memory usage.
-
-* **Alternative 2:** Individual command knows how to undo/redo by
-  itself.
-  * Pros: Will use less memory (e.g. for `delete`, just save the person being deleted).
-  * Cons: We must ensure that the implementation of each individual command are correct.
-
-_{more aspects and alternatives to be added}_
 
 
 ### Fast Template Feature
@@ -312,10 +229,6 @@ Step 4. The `GithubCommand` will then be executed using `GithubCommand#execute()
 
 Step 5. The `Model#openGithub()` method will be called and the githubProfile page associated to target address would be opened on the user's default browser using `java.awt.Desktop.getDesktop.browse(uri)`.
 
-<div markdown="span" class="alert alert-info">
-:information_source: **Note:** openGithub() checks if the url built is invalid. If url is invalid an exception would be thrown.
-</div>
-
 Step 6. A `CommandResult` indicating successful completion of the command will be returned.
 
 The following sequence diagram shows how the github feature works.
@@ -337,12 +250,6 @@ The following activity diagram summarizes what happens when a user executes a ne
 * **Alternative 2:** Opens github profile page through in-built browser.
     * Pros: Users will be able to see the github profile page from the app itself
     * Cons: Difficult to implement. (need to build browser on app, need to reserve UI space for it)
-
-
-
-### \[Proposed\] Data archiving
-
-_{Explain here how the data archiving feature will be implemented}_
 
 ### Find Contact
 
@@ -422,6 +329,84 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 ![SortCommandActivityDiagram](images/SortCommandActivityDiagram.png)
 
+### \[Proposed\] Undo/redo feature
+
+#### Proposed Implementation
+
+The proposed undo/redo mechanism is facilitated by `VersionedAddressBook`. It extends `AddressBook` with an undo/redo history, stored internally as an `addressBookStateList` and `currentStatePointer`. Additionally, it implements the following operations:
+
+* `VersionedAddressBook#commit()` — Saves the current address book state in its history.
+* `VersionedAddressBook#undo()` — Restores the previous address book state from its history.
+* `VersionedAddressBook#redo()` — Restores a previously undone address book state from its history.
+
+These operations are exposed in the `Model` interface as `Model#commitAddressBook()`, `Model#undoAddressBook()` and `Model#redoAddressBook()` respectively.
+
+Given below is an example usage scenario and how the undo/redo mechanism behaves at each step.
+
+Step 1. The user launches the application for the first time. The `VersionedAddressBook` will be initialized with the initial address book state, and the `currentStatePointer` pointing to that single address book state.
+
+![UndoRedoState0](images/UndoRedoState0.png)
+
+Step 2. The user executes `delete 5` command to delete the 5th person in the address book. The `delete` command calls `Model#commitAddressBook()`, causing the modified state of the address book after the `delete 5` command executes to be saved in the `addressBookStateList`, and the `currentStatePointer` is shifted to the newly inserted address book state.
+
+![UndoRedoState1](images/UndoRedoState1.png)
+
+Step 3. The user executes `add n/David …​` to add a new person. The `add` command also calls `Model#commitAddressBook()`, causing another modified address book state to be saved into the `addressBookStateList`.
+
+![UndoRedoState2](images/UndoRedoState2.png)
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** If a command fails its execution, it will not call `Model#commitAddressBook()`, so the address book state will not be saved into the `addressBookStateList`.
+
+</div>
+
+Step 4. The user now decides that adding the person was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `Model#undoAddressBook()`, which will shift the `currentStatePointer` once to the left, pointing it to the previous address book state, and restores the address book to that state.
+
+![UndoRedoState3](images/UndoRedoState3.png)
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index 0, pointing to the initial AddressBook state, then there are no previous AddressBook states to restore. The `undo` command uses `Model#canUndoAddressBook()` to check if this is the case. If so, it will return an error to the user rather
+than attempting to perform the undo.
+
+</div>
+
+The following sequence diagram shows how the undo operation works:
+
+![UndoSequenceDiagram](images/UndoSequenceDiagram.png)
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `UndoCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+
+</div>
+
+The `redo` command does the opposite — it calls `Model#redoAddressBook()`, which shifts the `currentStatePointer` once to the right, pointing to the previously undone state, and restores the address book to that state.
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index `addressBookStateList.size() - 1`, pointing to the latest address book state, then there are no undone AddressBook states to restore. The `redo` command uses `Model#canRedoAddressBook()` to check if this is the case. If so, it will return an error to the user rather than attempting to perform the redo.
+
+</div>
+
+Step 5. The user then decides to execute the command `list`. Commands that do not modify the address book, such as `list`, will usually not call `Model#commitAddressBook()`, `Model#undoAddressBook()` or `Model#redoAddressBook()`. Thus, the `addressBookStateList` remains unchanged.
+
+![UndoRedoState4](images/UndoRedoState4.png)
+
+Step 6. The user executes `clear`, which calls `Model#commitAddressBook()`. Since the `currentStatePointer` is not pointing at the end of the `addressBookStateList`, all address book states after the `currentStatePointer` will be purged. Reason: It no longer makes sense to redo the `add n/David …​` command. This is the behavior that most modern desktop applications follow.
+
+![UndoRedoState5](images/UndoRedoState5.png)
+
+The following activity diagram summarizes what happens when a user executes a new command:
+
+<img src="images/CommitActivityDiagram.png" width="250" />
+
+#### Design considerations:
+
+**Aspect: How undo & redo executes:**
+
+* **Alternative 1 (current choice):** Saves the entire address book.
+    * Pros: Easy to implement.
+    * Cons: May have performance issues in terms of memory usage.
+
+* **Alternative 2:** Individual command knows how to undo/redo by
+  itself.
+    * Pros: Will use less memory (e.g. for `delete`, just save the person being deleted).
+    * Cons: We must ensure that the implementation of each individual command are correct.
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Documentation, logging, testing, configuration, dev-ops**
@@ -453,13 +438,18 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                    | I want to …​                                     | So that I can…​                                       |
-|----------|--------------------------------------------|--------------------------------------------------|-------------------------------------------------------|
-| `* * *`  | Student                                    | Add contacts of my tutors/professor/ friends     | I can keep track of my social network                 |
-| `* * *`  | Student                                    | Remove unnecessary contacts from my address book | I can manage my social network                        |
-| `* * *`  | Student                                    | Find contacts based on name                      | I can look up a person’s contact easily               |
-| `* * *`  | Student                                    | Edit contacts in  address book                   | I can make changes if that a person’s contact changed |
-| `* * *`  | Student                                    | Display all the contacts in my list              | I can see all the contacts that I have added so far   |
+| Priority | As a …​   | I want to …​                                                            | So that I can…​                                                       |
+|----------|-----------|-------------------------------------------------------------------------|-----------------------------------------------------------------------|
+| `* * *`  | Student   | add contacts of my tutors/professors/friends                            | keep track of my social network                                       |
+| `* * *`  | Student   | remove unnecessary contacts from my address book                        | manage my social network                                              |
+| `* * *`  | Student   | find contacts based on name                                             | look up a person’s contact easily                                     |
+| `* * *`  | Student   | edit contacts in  address book                                          | make changes if that a person’s contact changed                       |
+| `* * *`  | Student   | display all the contacts in my list                                     | see all the contacts that I have added so far                         |
+| `* * *`  | New User  | clear all examples sample address                                       | start using the application quickly                                   |
+| `* * *`  | Student   | keep track of my tutors/professors/friend's github username             | find their github username easily                                     |
+| `* * *`  | Lazy User | open github profile page of my tutors/professor/ friends with a command | view my friends/Teaching Assistants/Professors github projects easily |
+| `* * *`  | Student   | keep track of professor's specialisation                                | know which professor to consult                                       |
+| `* * *`  | Student   | keep track of my fellow students' year                                  | know who I should approach for help                                   |
 
 
 *{More to be added}*
@@ -472,10 +462,10 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1.  User requests to list persons
-2.  AddressBook shows a list of persons
-3.  User requests to delete a specific person in the list
-4.  AddressBook deletes the person
+1.  User requests to list persons.
+2.  SoConnect shows a list of persons.
+3.  User requests to delete a specific person in the list.
+4.  SoConnect deletes the person.
 
     Use case ends.
 
@@ -487,11 +477,32 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 3a. The given index is invalid.
 
-    * 3a1. AddressBook shows an error message.
+    * 3a1. SoConnect shows an error message.
 
       Use case resumes at step 2.
 
-*{More to be added}*
+**Use case: Open a person's GitHub profile page**
+
+**MSS**
+
+1.  User requests to list persons.
+2.  SoConnect shows a list of persons.
+3.  User requests to open the GitHub profile page of a specific person in the list.
+4.  SoConnect opens the person's GitHub profile page on User's default browser.
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty.
+
+  Use case ends.
+
+* 3a. The given index is invalid or the person at given index does not have a GitHub username associated him/her.
+
+    * 3a1. AddressBook shows an error message.
+
+      Use case resumes at step 2.
 
 ### Non-Functional Requirements
 
@@ -513,9 +524,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 Given below are instructions to test the app manually.
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** These instructions only provide a starting point for testers to work on;
+<div markdown="span" class="alert alert-info">
+:information_source: **Note:** These instructions only provide a starting point for testers to work on;
 testers are expected to do more *exploratory* testing.
-
 </div>
 
 ### Launch and shutdown
@@ -533,8 +544,6 @@ testers are expected to do more *exploratory* testing.
    1. Re-launch the app by double-clicking the jar file.<br>
        Expected: The most recent window size and location is retained.
 
-1. _{ more test cases …​ }_
-
 ### Deleting a person
 
 1. Deleting a person while all persons are being shown
@@ -550,7 +559,23 @@ testers are expected to do more *exploratory* testing.
    1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
       Expected: Similar to previous.
 
-1. _{ more test cases …​ }_
+### Opening a person's GitHub Profile Page
+
+1. Opening a person's GitHub Profile Page while all persons are being shown
+
+    1. Prerequisites: List all persons using the `list` command. Multiple persons in the list. 1st person in list has an associated GitHub Username. 2nd person in list does not have an associated GitHub username.
+
+    2. Test case: `github 1`<br>
+       Expected: The person's GitHub profile page will be opened in user's default browser. Success message shown in status message
+
+    3. Test case: `github 0`<br>
+       Expected: No GitHub Profile page will be opened. Error details shown in the status message.
+
+    4. Test case: `github 2`<br>
+       Expected: No GitHub Profile page will be opened. Error details shown in the status message.
+
+    5. Other incorrect github commands to try: `github`, `github x`, `...` (where x is larger than the list size)<br>
+       Expected: Similar to previous.
 
 ### Saving data
 

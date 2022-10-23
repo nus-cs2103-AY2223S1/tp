@@ -150,7 +150,7 @@ class JsonAdaptedStudent extends JsonAdaptedPerson {
             modelYear = new Year(Year.EMPTY_YEAR, false);
         } else {
             if (!Year.isValidYear(getYear())) {
-                throw new IllegalValueException(GithubUsername.MESSAGE_CONSTRAINTS);
+                throw new IllegalValueException(Year.MESSAGE_CONSTRAINTS);
             }
             modelYear = new Year(getYear(), true);
         }
