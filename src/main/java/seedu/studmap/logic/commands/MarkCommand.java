@@ -92,7 +92,7 @@ public class MarkCommand extends EditStudentCommand<MarkCommand.MarkCommandStude
     }
 
     /**
-     * A static StudentEditor that adjusts Attendance for a given Student.
+     * A static StudentEditor that adjusts Attendance or Assignment for a given Student.
      */
     public static class MarkCommandStudentEditor implements StudentEditor {
 
