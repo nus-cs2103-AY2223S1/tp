@@ -6,7 +6,10 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_MODULE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TUTORIAL;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
+import java.util.function.Predicate;
 
 import seedu.address.commons.util.JsonUtil;
 import seedu.address.logic.commands.student.FindCommand;
@@ -15,6 +18,7 @@ import seedu.address.logic.parser.ArgumentTokenizer;
 import seedu.address.logic.parser.Parser;
 import seedu.address.logic.parser.ParserUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.student.Student;
 import seedu.address.model.student.predicates.NameContainsKeywordsPredicate;
 
 /**
@@ -36,7 +40,21 @@ public class FindCommandParser implements Parser<FindCommand> {
 
         String trimmedName = argMultimap.getValue(PREFIX_NAME).get().trim();
         String[] nameKeywords = trimmedName.split("\\s+");
-        return new FindCommand(new NameContainsKeywordsPredicate(Arrays.asList(nameKeywords)));
+
+        List<Predicate<Student>> predicates = new ArrayList<>();
+        predicates.add(new NameContainsKeywordsPredicate(Arrays.asList(nameKeywords)));
+        predicates.add(new NameContainsKeywordsPredicate(List.of(new String[]{"test"})));
+
+
+        Predicate<Student> chainedPredicates = student -> {
+            for (Predicate<Student> predicate : predicates) {
+                if (!predicate.test(student)) {
+                    return false;
+                }
+            }
+            return true;
+        };
+        return new FindCommand(chainedPredicates);
     }
 
 }
