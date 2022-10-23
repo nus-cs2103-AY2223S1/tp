@@ -184,7 +184,7 @@ public class MainWindow extends UiPart<Stage> {
             helpWindow.hide();
             helpWindow.setMessageToDisplay(commandResult.getHelpText());
 
-            if (commandResult.isShowHelp()) {
+            if (commandResult.shouldShowHelp()) {
                 handleHelpCommand();
             }
 

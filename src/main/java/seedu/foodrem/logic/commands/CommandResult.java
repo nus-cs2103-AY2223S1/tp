@@ -64,7 +64,7 @@ public class CommandResult {
         return helpText;
     }
 
-    public boolean isShowHelp() {
+    public boolean shouldShowHelp() {
         return showHelp;
     }
 
