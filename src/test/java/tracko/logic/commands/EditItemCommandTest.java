@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static tracko.logic.commands.CommandTestUtil.DESC_ERASER;
 import static tracko.logic.commands.CommandTestUtil.DESC_PEN;
 import static tracko.logic.commands.CommandTestUtil.VALID_ITEM_NAME_ERASER;
+import static tracko.logic.commands.CommandTestUtil.VALID_ITEM_NAME_PEN;
 import static tracko.logic.commands.CommandTestUtil.VALID_ITEM_QUANTITY_ERASER;
 import static tracko.logic.commands.CommandTestUtil.VALID_ITEM_SELL_PRICE_ERASER;
 import static tracko.logic.commands.CommandTestUtil.assertCommandFailure;
@@ -83,14 +84,14 @@ class EditItemCommandTest {
         showItemAtIndex(model, INDEX_FIRST);
 
         Item itemInFilteredList = model.getFilteredItemList().get(INDEX_FIRST.getZeroBased());
-        Item editedPerson = new ItemBuilder(itemInFilteredList).withItemName(VALID_ITEM_NAME_ERASER).build();
+        Item editedItem = new ItemBuilder(itemInFilteredList).withItemName(VALID_ITEM_NAME_PEN).build();
         EditItemCommand editItemCommand = new EditItemCommand(INDEX_FIRST,
-                new EditItemDescriptorBuilder().withItemName(VALID_ITEM_NAME_ERASER).build());
+                new EditItemDescriptorBuilder().withItemName(VALID_ITEM_NAME_PEN).build());
 
-        String expectedMessage = String.format(EditItemCommand.MESSAGE_EDIT_ITEM_SUCCESS, editedPerson);
+        String expectedMessage = String.format(EditItemCommand.MESSAGE_EDIT_ITEM_SUCCESS, editedItem);
 
         Model expectedModel = new ModelManager(new TrackO(model.getTrackO()), new UserPrefs());
-        expectedModel.setItem(model.getFilteredItemList().get(0), editedPerson);
+        expectedModel.setItem(model.getFilteredItemList().get(0), editedItem);
 
         assertCommandSuccess(editItemCommand, model, expectedMessage, expectedModel);
     }
@@ -126,9 +127,9 @@ class EditItemCommandTest {
     }
 
     /**
-     //     * Edit filtered list where index is larger than size of filtered list,
-     //     * but smaller than size of address book
-     //     */
+     * Edit filtered list where index is larger than size of filtered list,
+     * but smaller than size of address book
+     */
     @Test
     public void execute_invalidItemIndexFilteredList_failure() {
         showItemAtIndex(model, INDEX_FIRST);
