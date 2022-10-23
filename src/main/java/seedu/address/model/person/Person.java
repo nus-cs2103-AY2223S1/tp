@@ -55,9 +55,9 @@ public class Person {
         return email;
     }
 
-//    public Telegram getTelegram() {
-//        return telegram;
-//    }
+    // public Telegram getTelegram() {
+    //     return telegram;
+    // }
 
     public ModuleCode getModuleCode() {
         return moduleCode;
@@ -123,8 +123,8 @@ public class Person {
                 .append(getPhone())
                 .append("; Email: ")
                 .append(getEmail())
-//                .append("; Telegram: ")
-//                .append(getTelegram())
+                // .append("; Telegram: ")
+                // .append(getTelegram())
                 .append("; Module Code: ")
                 .append(getModuleCode());
 
