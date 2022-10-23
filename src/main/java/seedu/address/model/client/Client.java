@@ -46,6 +46,29 @@ public class Client implements ComparableByName<Client>, HasIntegerIdentifier<Cl
         this.clientId = clientId;
     }
 
+    /**
+     * Sets the client name to be as user input.
+     * @param name Name representing the new name of client
+     */
+    public void setName(Name name) {
+        this.name = name;
+    }
+
+    /**
+     * Sets the client email to be as user input.
+     * @param email ClientEmail representing the new email of client
+     */
+    public void setEmail(ClientEmail email) {
+        this.email = email;
+    }
+
+    /**
+     * Sets the client phone to be as user input.
+     * @param phone ClientPhone representing the new phone of client
+     */
+    public void setPhone(ClientPhone phone) {
+        this.phone = phone;
+    }
 
     /**
      * Constructs a client with inputs given by the user.
