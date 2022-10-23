@@ -9,11 +9,7 @@ import static java.util.Objects.requireNonNull;
  */
 public class Department {
 
-    public static final String MESSAGE_CONSTRAINTS =
-            "Input for department (case-insensitive) is invalid if it is not in this list: \n"
-            + Department.listValidDepartments();
-
-    private static final String[] VALID_DEPARTMENTS = new String[] {
+    private static final String[] VALID_DEPARTMENTS = {
         "Administration",
         "Board of Directors",
         "Customer Service",
@@ -31,6 +27,10 @@ public class Department {
         "Sales",
         "Technology"
         };
+
+    public static final String MESSAGE_CONSTRAINTS =
+            "Input for department (case-insensitive) is invalid if it is not in this list: \n"
+            + Department.listValidDepartments();
 
     public final String value;
 
@@ -50,7 +50,7 @@ public class Department {
      */
     public static boolean isValidDepartment(String test) {
         String department = findValidDepartment(test);
-        if (department == null) {
+        if (department.equals(null)) {
             return false;
         } else {
             return true;
@@ -60,7 +60,7 @@ public class Department {
     private static String findValidDepartment(String test) {
         String lowerCaseTest = test.toLowerCase();
         for (String department : VALID_DEPARTMENTS) {
-            if (lowerCaseTest == department.toLowerCase()) {
+            if (lowerCaseTest.equals(department.toLowerCase())) {
                 return department;
             }
         }
@@ -79,18 +79,18 @@ public class Department {
 
     @Override
     public String toString() {
-        return this.value;
+        return value;
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof Department // instanceof handles nulls
-                && this.value.equals(((Department) other).value)); // state check
+                && value.equals(((Department) other).value)); // state check
     }
 
     @Override
     public int hashCode() {
-        return this.value.hashCode();
+        return value.hashCode();
     }
 }
