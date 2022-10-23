@@ -70,14 +70,11 @@
             </HBox>
             <HBox alignment="CENTER" prefHeight="0.0" prefWidth="232.0" spacing="10.0">
                <children>
-      
               <Label fx:id="helpMessage" text="Label">
         </Label>
-      
               <Button fx:id="copyButton" mnemonicParsing="false" onAction="#copyUrl" text="Copy URL" />
                </children>
             </HBox>
-
       </VBox>
     </Scene>
   </scene>
