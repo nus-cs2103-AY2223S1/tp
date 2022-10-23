@@ -2,50 +2,28 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
-
-<VBox styleClass="profile-side-panel" stylesheets="@DarkTheme.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
-    <children>
-        <HBox alignment="CENTER_LEFT" spacing="4.0" VBox.vgrow="ALWAYS">
-            <Label fx:id="courseNameLabel" alignment="CENTER" contentDisplay="CENTER" styleClass="course-name" text="My Course" textFill="WHITE" wrapText="true" HBox.hgrow="ALWAYS" />
-        </HBox>
-        <HBox alignment="CENTER" prefHeight="50.0" prefWidth="131.0" style="-fx-border-color: transparent; -fx-padding: 0;" VBox.vgrow="ALWAYS">
-            <Label fx:id="inspirationalQuote" alignment="CENTER" contentDisplay="CENTER" prefHeight="47.0" prefWidth="120.0" styleClass="inspirational-quote" text="&quot;Strive for progress, not perfection.&quot;" textFill="WHITE" wrapText="true" HBox.hgrow="ALWAYS" />
-        </HBox>
-      <HBox prefHeight="100.0" prefWidth="200.0">
-         <children>
-              <VBox styleClass="progress-content">
-                  <Label fx:id="creditsCount" styleClass="credits-count" text="0 MCs" textFill="WHITE">
-                  <font>
-                     <Font name="Segoe UI" size="12.0" />
-                  </font>
-               </Label>
-               <Label styleClass="credits-count-completed" text="Completed" textFill="WHITE">
-                  <font>
-                     <Font name="Segoe UI" size="12.0" />
-                  </font>
-               </Label>
-              </VBox>
-            <VBox styleClass="progress-content">
-               <children>
-                  <Label fx:id="activeTasks" styleClass="credits-count" text="0" textFill="WHITE">
-                     <font>
-                        <Font name="Segoe UI" size="12.0" />
-                     </font>
-                  </Label>
-                  <Label styleClass="credits-count-completed" text="Active Tasks" textFill="WHITE">
-                     <font>
-                        <Font name="Segoe UI" size="12.0" />
-                     </font>
-                  </Label>
-               </children>
-            </VBox>
-         </children>
-      </HBox>
-    </children>
-   <padding>
-      <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
-   </padding>
+<VBox styleClass="profile-side-panel" stylesheets="@DarkTheme.css" xmlns="http://javafx.com/javafx/11"
+      xmlns:fx="http://javafx.com/fxml/1">
+    <padding>
+        <Insets bottom="2.0" left="2.0" right="2.0" top="2.0"/>
+    </padding>
+    <Label fx:id="courseNameLabel" styleClass="course-name" text="My Course" textFill="WHITE" wrapText="true"
+           HBox.hgrow="ALWAYS"/>
+    <Label fx:id="inspirationalQuote" styleClass="inspirational-quote"
+           text="&quot;Strive for progress, not perfection.&quot;" textFill="WHITE" wrapText="true"
+           HBox.hgrow="ALWAYS"/>
+    <VBox styleClass="progress-content" alignment="CENTER_LEFT">
+        <Label fx:id="creditsCount" styleClass="credits-count" text="0 MCs" textFill="WHITE" />
+        <Label styleClass="credits-count-completed" text="Completed" textFill="WHITE" />
+    </VBox>
+    <VBox styleClass="progress-content" alignment="CENTER_LEFT">
+        <Label fx:id="activeTasks" styleClass="credits-count" text="0" textFill="WHITE" />
+        <Label styleClass="credits-count-completed" text="Active Tasks" textFill="WHITE" />
+    </VBox>
 </VBox>

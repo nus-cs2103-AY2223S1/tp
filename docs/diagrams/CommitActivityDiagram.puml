@@ -8,7 +8,7 @@ start
 if () then ([command commits ModuleList])
     :Purge redundant states;
     :Save ModuleList to
-    addressBookStateList;
+    ModuleListStateList;
 else ([else])
 endif
 stop

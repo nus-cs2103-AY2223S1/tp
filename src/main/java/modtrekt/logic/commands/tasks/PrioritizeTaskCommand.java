@@ -18,7 +18,7 @@ import modtrekt.model.task.Task;
 /**
  * Sets the priority of a task to a specified level.
  */
-@Parameters(commandDescription = "Assigns a task a priority rating.")
+@Parameters(commandDescription = "Assigns a priority rating to a task in the task book.")
 public class PrioritizeTaskCommand extends Command {
     public static final String COMMAND_WORD = "prioritize";
 
@@ -57,7 +57,7 @@ public class PrioritizeTaskCommand extends Command {
         // Check that the task index is not out of bounds.
         // The 0-based index is guaranteed by the Index class invariant to be >= 0.
         if (index.getZeroBased() >= tasks.size()) {
-            throw new CommandException(String.format("Task index must an integer between 0 and %d.",
+            throw new CommandException(String.format("Task index must an integer between 1 and %d inclusive.",
                     tasks.size()));
         }
         Task target = tasks.get(index.getZeroBased());

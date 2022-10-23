@@ -5,17 +5,11 @@ skinparam arrowColor MODEL_COLOR
 skinparam classBackgroundColor MODEL_COLOR
 
 ModuleList *-right-> "1" UniqueModuleList
-ModuleList *-right-> "1" UniqueTagList
-UniqueTagList -[hidden]down- UniqueModuleList
-UniqueTagList -[hidden]down- UniqueModuleList
 
-UniqueTagList *-right-> "*" Tag
 UniqueModuleList -right-> Module
 
-Module -up-> "*" Tag
-
-Module *--> Name
-Module *--> Phone
-Module *--> Email
-Module *--> Address
+Module *--> ModCode
+Module *--> ModName
+Module *--> ModCredit
+Module *--> ModTaskCount
 @enduml

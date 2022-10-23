@@ -37,16 +37,16 @@ public class EditTaskCommand extends Command {
             required = true, converter = IndexConverter.class)
     private Index targetIndex;
 
-    @Parameter(names = "-c", description = "The module code that you want to change to",
+    @Parameter(names = "-c", description = "New module code for the task",
             converter = ModCodeConverter.class)
     private ModCode targetModule;
 
-    @Parameter(names = "-d", description = "The deadline that you want to change to",
+    @Parameter(names = "-d", description = "New deadline for the task",
             converter = DeadlineConverter.class)
     private LocalDate targetDeadline;
 
-    @Parameter(names = "-ds", description = "The description that you want to change to",
-            converter = DescriptionConverter.class, variableArity = true)
+    @Parameter(names = "-ds", description = "New description for the task, quoted if longer than one word",
+            converter = DescriptionConverter.class)
     private Description targetDescription;
 
     /**

@@ -6,8 +6,10 @@ import static modtrekt.logic.commands.utils.AddCommandMessages.MESSAGE_ADD_COMMA
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import com.beust.jcommander.IUsageFormatter;
 import com.beust.jcommander.JCommander;
 import com.beust.jcommander.ParameterException;
+import com.beust.jcommander.UnixStyleUsageFormatter;
 
 import modtrekt.commons.core.Messages;
 import modtrekt.commons.util.StringUtil;
@@ -26,9 +28,6 @@ import modtrekt.logic.commands.tasks.ListTasksCommand;
 import modtrekt.logic.commands.tasks.PrioritizeTaskCommand;
 import modtrekt.logic.commands.tasks.UnarchiveTaskCommand;
 import modtrekt.logic.parser.exceptions.ParseException;
-import modtrekt.logic.parser.tasks.ArchiveTaskCommandParser;
-import modtrekt.logic.parser.tasks.ListTasksCommandParser;
-import modtrekt.logic.parser.tasks.UnarchiveTaskCommandParser;
 
 /**
  * Parses user input.
@@ -52,7 +51,10 @@ public class ModtrektParser {
         }
         // devs: Instantiate your commands here by passing it to addCommand() -
         //       you don't need any CommandParser classes anymore.
-        JCommander jcommander = JCommander.newBuilder()
+        JCommander jcommander = JCommander.newBuilder().programName("")
+                .addCommand(ListTasksCommand.COMMAND_WORD, new ListTasksCommand())
+                .addCommand(ArchiveTaskCommand.COMMAND_WORD, new ArchiveTaskCommand())
+                .addCommand(UnarchiveTaskCommand.COMMAND_WORD, new UnarchiveTaskCommand())
                 .addCommand(PrioritizeTaskCommand.COMMAND_WORD, new PrioritizeTaskCommand())
                 .addCommand(EditTaskCommand.COMMAND_WORD, new EditTaskCommand())
                 .addCommand(DoneModuleCommand.COMMAND_WORD, new DoneModuleCommand())
@@ -62,21 +64,38 @@ public class ModtrektParser {
             // This takes care of invalid commands, as well as missing or invalid arguments
             // via the ParameterException.
             // Arguments with spaces MUST BE SURROUNDED BY QUOTES.
-            jcommander.parse(StringUtil.shellSplit(userInput.strip()));
+            String[] args = StringUtil.shellSplit(userInput.strip());
+            jcommander.parse(args);
             // This cast is safe since we only pass Command objects to jcommander::addCommand.
-            return (Command) jcommander.getCommands()
-                    .get(jcommander.getParsedCommand())
-                    .getObjects()
-                    .get(0);
+            return (Command) jcommander.getCommands().get(jcommander.getParsedCommand()).getObjects().get(0);
         } catch (ParameterException ex) {
             // Fallback to the legacy AB3 parser if the command is not recognized by JCommander.
             Command command = parseLegacyCommand(userInput);
             if (command != null) {
                 return command;
             }
+
+            // Discard the main parameter error message if present as it's not relevant to users.
+            String parsedCommand = jcommander.getParsedCommand();
+            if (parsedCommand == null) { // unknown command
+                throw new ParseException(ex.getMessage()); // JCommander has its own unknown command message
+            }
+            JCommander filteredJCommander = jcommander.getCommands().get(parsedCommand);
+            if (filteredJCommander == null) { // guarding against NPE in case JCommander internals change
+                throw new ParseException(ex.getMessage());
+            }
+
+            // Add the formatted usage message to the error message.
+            String message = ex.getMessage().endsWith("no main parameter was defined in your arg class")
+                    ? "Syntax error. If your command arguments contain spaces, surround them with quotes."
+                    : ex.getMessage();
+            IUsageFormatter usageFormatter = new UnixStyleUsageFormatter(filteredJCommander);
+            StringBuilder usageBuilder = new StringBuilder(message).append("\n\n");
+            usageFormatter.usage(usageBuilder);
+
             // Rethrow the JCommander unknown command ParameterException using ModtRekt's ParseException as
             // it displays the error message in the UI.
-            throw new ParseException(ex.getMessage());
+            throw new ParseException(usageBuilder.toString());
         }
     }
 
@@ -98,12 +117,6 @@ public class ModtrektParser {
             } else {
                 throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, MESSAGE_ADD_COMMAND_PREFIXES));
             }
-        case ListTasksCommand.COMMAND_WORD:
-            return new ListTasksCommandParser().parse(arguments);
-        case ArchiveTaskCommand.COMMAND_WORD:
-            return new ArchiveTaskCommandParser().parse(arguments);
-        case UnarchiveTaskCommand.COMMAND_WORD:
-            return new UnarchiveTaskCommandParser().parse(arguments);
         case ExitCommand.COMMAND_WORD:
             return new ExitCommand();
         case HelpCommand.COMMAND_WORD:

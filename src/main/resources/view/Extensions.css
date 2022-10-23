@@ -20,8 +20,12 @@
 }
 
 /* MODULE UI CSS */
-#code {
+#code, #module {
     -fx-text-fill: #94D8DA;
+}
+
+#id {
+    -fx-font-weight: bold;
 }
 
 #badges .label {

@@ -19,7 +19,6 @@ Class "<<interface>>\nModuleListStorage" as ModuleListStorage
 Class JsonModuleListStorage
 Class JsonSerializableModuleList
 Class JsonAdaptedModule
-Class JsonAdaptedTag
 }
 
 }
@@ -38,6 +37,4 @@ JsonUserPrefsStorage .up.|> UserPrefsStorage
 JsonModuleListStorage .up.|> ModuleListStorage
 JsonModuleListStorage ..> JsonSerializableModuleList
 JsonSerializableModuleList --> "*" JsonAdaptedModule
-JsonAdaptedModule --> "*" JsonAdaptedTag
-
 @enduml
