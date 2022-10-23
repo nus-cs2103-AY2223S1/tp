@@ -550,23 +550,29 @@ Note:
 
 Step 2. The user executes `customise order e/` as the user wants the emails appear right below the name.
 
-* Step 2a. `SoConnectParaser` processes the input and calls the parser `CustomiseCommandParser` to parse `" order e/"`.
-* Step 2b. `CustomiseCommandParser` processes the input and calls the parser `CustomiseOrderCommandParser` to parse `" e/"`.
-* Step 2c. `CustomiseOrderCommandParser` processes the input into a list of attributes. In this case, the list of attributes only contains `EMAIL` and is missing the attributes `TAGS`, `PHONE` and `ADDRESS`. The missing attributes are added to the list according to the default order mentioned above. The list of attributes now contains `EMAIL`, `TAGS`, `PHONE` and `ADDRESS`.
-* Step 2d. `CustomiseOrderCommandParser` creates a `CustomiseOrderCommand` with the list of attributes.
-* Step 2e. `CustomiseOrderCommandParser` returns the `CustomiseOrderCommand`.
-* Step 2f. `Logic` executes the `CustomiseOrderCommand`.
-* Step 2g. `CustomiseOrderCommand#execute()` calls `Model#setGuiSettings()` to save the new attribute order in `preferences.json`.
+Step 3. `SoConnectParaser` processes the input and calls the parser `CustomiseCommandParser` to parse `" order e/"`.
 
-The following sequence diagram illustrates Steps 2a to 2g:
+Step 4. `CustomiseCommandParser` processes the input and calls the parser `CustomiseOrderCommandParser` to parse `" e/"`.
+
+Step 5. `CustomiseOrderCommandParser` processes the input into a list of attributes. In this case, the list of attributes only contains `EMAIL` and is missing the attributes `TAGS`, `PHONE` and `ADDRESS`. The missing attributes are added to the list according to the default order mentioned above. The list of attributes now contains `EMAIL`, `TAGS`, `PHONE` and `ADDRESS`.
+
+Step 6. `CustomiseOrderCommandParser` creates a `CustomiseOrderCommand` with the list of attributes.
+
+Step 7. `CustomiseOrderCommandParser` returns the `CustomiseOrderCommand`.
+
+Step 8. `Logic` executes the `CustomiseOrderCommand`.
+
+Step 9. `CustomiseOrderCommand#execute()` calls `Model#setGuiSettings()` to save the new attribute order in `preferences.json`.
+
+The following sequence diagram illustrates Steps 3 to 9:
 
 ![CustomiseOrderSequenceDiagram](images/CustomiseOrderSequenceDiagram.png)
 
 Note:
 
-* The lifeline for `CustomiseOrderCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+* The lifeline for `CustomiseOrderCommandParser` and `CustomiseCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 
-Step 3. The user sees the new ordering after `PersonCard#setAttributes()` sets the attributes based of the new order in `preferences.json`.
+Step 10. The user sees the new ordering after `PersonCard#setAttributes()` sets the attributes based of the new order in `preferences.json`.
 
 Note:
 
