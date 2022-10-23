@@ -31,8 +31,9 @@ import seedu.foodrem.logic.commands.tagcommands.UntagCommand;
 
 class HelpCommandParserTest {
     private static final String EXPECTED_ALL_COMMANDS = "exit, help, reset, " // General commands
-            + "dec, del, edit, find, inc, list, new, sort, view, rmk, " // Item commands
+            + "dec, del, edit, find, inc, list, new, rmk, sort, view, " // Item commands
             + "deletetag, listtag, newtag, renametag, tag, untag"; // Tag commands
+
 
     private final HelpCommandParser parser = new HelpCommandParser();
 
@@ -95,7 +96,7 @@ class HelpCommandParserTest {
                         + "To receive help for a specific command, enter "
                         + "\"help COMMAND_WORD\" in the command box, where COMMAND_WORD is any one of the following:\n"
                         + EXPECTED_ALL_COMMANDS
-                        + "\n\nFor more information please head to:\n"
+                        + ".\n\nFor more information please head to:\n"
                         + "https://ay2223s1-cs2103t-w16-2.github.io/tp/UserGuide",
                 String.format(HelpCommand.NOT_A_COMMAND, "testing"));
     }
