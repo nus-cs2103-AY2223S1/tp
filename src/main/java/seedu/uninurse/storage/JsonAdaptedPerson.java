@@ -12,6 +12,8 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import seedu.uninurse.commons.exceptions.IllegalValueException;
 import seedu.uninurse.model.condition.Condition;
 import seedu.uninurse.model.condition.ConditionList;
+import seedu.uninurse.model.medication.Medication;
+import seedu.uninurse.model.medication.MedicationList;
 import seedu.uninurse.model.person.Address;
 import seedu.uninurse.model.person.Email;
 import seedu.uninurse.model.person.Name;
@@ -33,6 +35,7 @@ class JsonAdaptedPerson {
     private final String email;
     private final String address;
     private final List<JsonAdaptedCondition> conditions = new ArrayList<>();
+    private final List<JsonAdaptedMedication> medications = new ArrayList<>();
     private final List<JsonAdaptedTask> tasks = new ArrayList<>();
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
 
@@ -43,6 +46,7 @@ class JsonAdaptedPerson {
     public JsonAdaptedPerson(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
             @JsonProperty("email") String email, @JsonProperty("address") String address,
             @JsonProperty("conditions") List<JsonAdaptedCondition> conditions,
+            @JsonProperty("medications") List<JsonAdaptedMedication> medications,
             @JsonProperty("tasks") List<JsonAdaptedTask> tasks,
             @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
         this.name = name;
@@ -52,6 +56,10 @@ class JsonAdaptedPerson {
 
         if (conditions != null) {
             this.conditions.addAll(conditions);
+        }
+
+        if (medications != null) {
+            this.medications.addAll(medications);
         }
 
         if (tasks != null) {
@@ -74,6 +82,9 @@ class JsonAdaptedPerson {
         conditions.addAll(source.getConditions().getInternalList().stream()
                 .map(JsonAdaptedCondition::new)
                 .collect(Collectors.toList()));
+        medications.addAll(source.getMedications().getInternalList().stream()
+                .map(JsonAdaptedMedication::new)
+                .collect(Collectors.toList()));
         tasks.addAll(source.getTasks().getTasks().stream()
                 .map(JsonAdaptedTask::new)
                 .collect(Collectors.toList()));
@@ -91,6 +102,11 @@ class JsonAdaptedPerson {
         final List<Condition> personConditions = new ArrayList<>();
         for (JsonAdaptedCondition condition : conditions) {
             personConditions.add(condition.toModelType());
+        }
+
+        final List<Medication> personMedications = new ArrayList<>();
+        for (JsonAdaptedMedication medication : medications) {
+            personMedications.add(medication.toModelType());
         }
 
         final ArrayList<Task> personTasks = new ArrayList<>();
@@ -137,11 +153,13 @@ class JsonAdaptedPerson {
 
         final ConditionList modelConditions = new ConditionList(personConditions);
 
+        final MedicationList modelMedications = new MedicationList(personMedications);
+
         final TaskList modelTasks = new TaskList(personTasks);
 
         final Set<Tag> modelTags = new HashSet<>(personTags);
 
-        return new Patient(modelName, modelPhone, modelEmail, modelAddress, modelConditions, modelTasks, modelTags);
+        return new Patient(modelName, modelPhone, modelEmail, modelAddress, modelConditions, modelMedications, modelTasks, modelTags);
     }
 
 }
