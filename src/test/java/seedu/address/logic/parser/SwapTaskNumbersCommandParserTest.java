@@ -1,6 +1,7 @@
 package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_NUMBER_OF_TASK_NUMBERS_TO_SWAP;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_TASK_NUMBER;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_TASK_NUMBERS_TO_SWAP;
 import static seedu.address.logic.commands.CommandTestUtil.DESC_CS2106_SWAP_TASKS_ONE_AND_TWO;
@@ -20,6 +21,7 @@ import static seedu.address.logic.commands.CommandTestUtil.MODULE_TASKLIST_DESC_
 import static seedu.address.logic.commands.CommandTestUtil.MODULE_TASKLIST_DESC_SWAP_TWO_AND_THREE;
 import static seedu.address.logic.commands.CommandTestUtil.PREAMBLE_NON_EMPTY;
 import static seedu.address.logic.commands.CommandTestUtil.PREAMBLE_WHITESPACE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TASK_NUMBERS_TO_SWAP;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
 
@@ -105,20 +107,26 @@ public class SwapTaskNumbersCommandParserTest {
                 MODULE_CODE_DESC_MA2001 + INVALID_TASK_NUMBERS_DESC_ZERO,
                 MESSAGE_INVALID_TASK_NUMBER);
 
-        // invalid task number - only one number given
-        assertParseFailure(parser,
-                MODULE_CODE_DESC_MA2001 + INVALID_TASK_NUMBERS_DESC_ONLY_ONE_NUMBER,
-                MESSAGE_INVALID_TASK_NUMBERS_TO_SWAP);
-
-        // invalid task number - three numbers given
-        assertParseFailure(parser,
-                MODULE_CODE_DESC_MA2001 + INVALID_TASK_NUMBERS_DESC_THREE_NUMBERS,
-                MESSAGE_INVALID_TASK_NUMBERS_TO_SWAP);
-
         // invalid task number - same number given
         assertParseFailure(parser,
                 MODULE_CODE_DESC_MA2001 + INVALID_TASK_NUMBERS_DESC_SAME_NUMBER,
                 MESSAGE_INVALID_TASK_NUMBERS_TO_SWAP);
+
+        // invalid number of task numbers - no numbers given
+        String inputWithNoTaskNumbers =
+                MODULE_CODE_DESC_MA2001 + " " + PREFIX_TASK_NUMBERS_TO_SWAP;
+        assertParseFailure(parser, inputWithNoTaskNumbers,
+                MESSAGE_INVALID_NUMBER_OF_TASK_NUMBERS_TO_SWAP);
+
+        // invalid number of task numbers - only one number given
+        assertParseFailure(parser,
+                MODULE_CODE_DESC_MA2001 + INVALID_TASK_NUMBERS_DESC_ONLY_ONE_NUMBER,
+                MESSAGE_INVALID_NUMBER_OF_TASK_NUMBERS_TO_SWAP);
+
+        // invalid number of task numbers - three numbers given
+        assertParseFailure(parser,
+                MODULE_CODE_DESC_MA2001 + INVALID_TASK_NUMBERS_DESC_THREE_NUMBERS,
+                MESSAGE_INVALID_NUMBER_OF_TASK_NUMBERS_TO_SWAP);
 
 
         // both module code and task numbers are invalid - only

@@ -1,6 +1,7 @@
 package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_NUMBER_OF_TASK_NUMBERS_TO_SWAP;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_TASK_NUMBER;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_TASK_NUMBERS_TO_SWAP;
 
@@ -192,7 +193,7 @@ public class ParserUtil {
         String[] arrayOfTaskNumbers = trimmedNumbers.split(" ");
         Boolean hasOnlyTwoTaskNumbers = arrayOfTaskNumbers.length == 2;
         if (!hasOnlyTwoTaskNumbers) {
-            throw new ParseException(MESSAGE_INVALID_TASK_NUMBERS_TO_SWAP);
+            throw new ParseException(MESSAGE_INVALID_NUMBER_OF_TASK_NUMBERS_TO_SWAP);
         }
         String firstTaskNumberAsString = arrayOfTaskNumbers[0];
         String secondTaskNumberAsString = arrayOfTaskNumbers[1];
