@@ -1,7 +1,7 @@
 <!-- markdownlint-disable-file first-line-h1 -->
 There are two core features that FoodRem provides:
-*Inventory Management System
-*Inventory Analysis Tool
+* Inventory Management System
+* Inventory Analysis Tool
 
 <!-- TODO: Add links to e.g. name, bought date, expiry date, etc. -->
 
