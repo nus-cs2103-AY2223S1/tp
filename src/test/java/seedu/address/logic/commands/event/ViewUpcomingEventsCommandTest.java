@@ -11,15 +11,14 @@ import static seedu.address.logic.commands.event.ViewUpcomingEventsCommand.MESSA
 import static seedu.address.logic.commands.event.ViewUpcomingEventsCommand.MESSAGE_SUCCESS_UPCOMING_DAYS;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.util.Arrays;
 import java.util.Collections;
 
 import org.junit.jupiter.api.Test;
+
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
-import seedu.address.model.event.DateTime;
 import seedu.address.model.event.Event;
 import seedu.address.model.event.StartDateWithinTimeFramePredicate;
 import seedu.address.testutil.EventBuilder;
@@ -27,12 +26,15 @@ import seedu.address.testutil.TypicalAddressBook;
 
 public class ViewUpcomingEventsCommandTest {
     private static final int ONE_DAY = 1;
-    LocalDate currentDate = java.time.LocalDate.now();
-    LocalDate firstEndDate = currentDate.plusDays(ONE_DAY);
-    StartDateWithinTimeFramePredicate firstPredicate = new StartDateWithinTimeFramePredicate(currentDate, firstEndDate);
     private static final int FIVE_DAYS = 5;
-    LocalDate secondEndDate = currentDate.plusDays(FIVE_DAYS);
-    StartDateWithinTimeFramePredicate secondPredicate = new StartDateWithinTimeFramePredicate(currentDate, secondEndDate);
+
+    private LocalDate currentDate = java.time.LocalDate.now();
+    private LocalDate firstEndDate = currentDate.plusDays(ONE_DAY);
+    private StartDateWithinTimeFramePredicate firstPredicate =
+            new StartDateWithinTimeFramePredicate(currentDate, firstEndDate);
+    private LocalDate secondEndDate = currentDate.plusDays(FIVE_DAYS);
+    private StartDateWithinTimeFramePredicate secondPredicate =
+            new StartDateWithinTimeFramePredicate(currentDate, secondEndDate);
     private Model model = new ModelManager(TypicalAddressBook.getTypicalAddressBook(), new UserPrefs());
     private Model expectedModel = new ModelManager(TypicalAddressBook.getTypicalAddressBook(), new UserPrefs());
 
@@ -73,7 +75,8 @@ public class ViewUpcomingEventsCommandTest {
         model.addEvent(newEvent);
         expectedModel.addEvent(newEvent);
         expectedModel.updateFilteredEventList(firstPredicate);
-        assertCommandSuccess(command, model, MESSAGE_SUCCESS_SINGLE_EVENT + MESSAGE_SUCCESS_TOMORROW, expectedModel);
+        assertCommandSuccess(command, model, MESSAGE_SUCCESS_SINGLE_EVENT
+                + MESSAGE_SUCCESS_TOMORROW, expectedModel);
         assertEquals(Arrays.asList(newEvent), model.getFilteredEventList());
     }
 
@@ -89,7 +92,8 @@ public class ViewUpcomingEventsCommandTest {
         model.addEvent(secondNewEvent);
         expectedModel.addEvent(secondNewEvent);
         expectedModel.updateFilteredEventList(secondPredicate);
-        String successMessage = MESSAGE_SUCCESS_MULTIPLE_EVENTS + String.format(MESSAGE_SUCCESS_UPCOMING_DAYS, FIVE_DAYS);
+        String successMessage = MESSAGE_SUCCESS_MULTIPLE_EVENTS
+                + String.format(MESSAGE_SUCCESS_UPCOMING_DAYS, FIVE_DAYS);
         assertCommandSuccess(command, model, successMessage, expectedModel);
         assertEquals(Arrays.asList(firstNewEvent, secondNewEvent), model.getFilteredEventList());
     }
