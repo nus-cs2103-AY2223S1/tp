@@ -36,4 +36,6 @@ public interface Storage extends AddressBookStorage, UserPrefsStorage, CommandHi
 
     @Override
     void saveCommandHistory(ReadOnlyCommandHistory commandHistory) throws IOException;
+
+    void saveCommandHistory(ReadOnlyCommandHistory commandHistory, Path filePath) throws IOException;
 }

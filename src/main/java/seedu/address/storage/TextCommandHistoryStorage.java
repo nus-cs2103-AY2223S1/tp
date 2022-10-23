@@ -25,6 +25,11 @@ public class TextCommandHistoryStorage implements CommandHistoryStorage {
         this.filePath = filePath;
     }
 
+    @Override
+    public Path getCommandHistoryFilePath() {
+        return filePath;
+    }
+
     private File getFile() {
         requireNonNull(filePath);
         File file = new File(filePath.toString());
@@ -41,13 +46,17 @@ public class TextCommandHistoryStorage implements CommandHistoryStorage {
         return file;
     }
 
+    @Override
+    public ReadOnlyCommandHistory readCommandHistory() throws FileNotFoundException {
+        return readCommandHistory(filePath);
+    }
 
     /**
      *
      * @return
      */
     @Override
-    public ReadOnlyCommandHistory readCommandHistory() throws FileNotFoundException {
+    public ReadOnlyCommandHistory readCommandHistory(Path filePath) throws FileNotFoundException {
         File file = getFile();
         List<String> commandHistoryList = new ArrayList<>();
             Scanner sc = new Scanner(file);
@@ -61,15 +70,22 @@ public class TextCommandHistoryStorage implements CommandHistoryStorage {
         return commandHistory;
     }
 
+
     @Override
     public void saveCommandHistory(ReadOnlyCommandHistory commandHistory) throws IOException {
+        saveCommandHistory(commandHistory, filePath);
+    }
+
+    @Override
+    public void saveCommandHistory(ReadOnlyCommandHistory commandHistory, Path filePath) throws IOException {
         requireNonNull(commandHistory);
         requireNonNull(filePath);
-            List<String> commandHistoryList = commandHistory.getCommandHistoryList();
-            FileWriter fw = new FileWriter(filePath.toString());
-            for (int i = 0; i < commandHistoryList.size(); i++) {
-                fw.write(commandHistoryList.get(i) + "\n");
-            }
-            fw.close();
+        List<String> commandHistoryList = commandHistory.getCommandHistoryList();
+        FileWriter fw = new FileWriter(filePath.toString());
+        for (int i = 0; i < commandHistoryList.size(); i++) {
+            fw.write(commandHistoryList.get(i) + "\n");
+        }
+        fw.close();
     }
+
 }

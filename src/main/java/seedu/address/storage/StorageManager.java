@@ -8,7 +8,6 @@ import java.util.logging.Logger;
 
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.exceptions.DataConversionException;
-import seedu.address.model.CommandHistory;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyCommandHistory;
 import seedu.address.model.ReadOnlyUserPrefs;
@@ -81,15 +80,29 @@ public class StorageManager implements Storage {
         addressBookStorage.saveAddressBook(addressBook, filePath);
     }
 
+
     // ================ CommandHistory methods ==============================
     @Override
+    public Path getCommandHistoryFilePath() {
+        return commandHistoryStorage.getCommandHistoryFilePath();
+    }
+    @Override
     public ReadOnlyCommandHistory readCommandHistory() throws FileNotFoundException {
-        return commandHistoryStorage.readCommandHistory();
+        return readCommandHistory(commandHistoryStorage.getCommandHistoryFilePath());
+    }
+
+    @Override
+    public ReadOnlyCommandHistory readCommandHistory(Path filePath) throws FileNotFoundException {
+        return commandHistoryStorage.readCommandHistory(filePath);
     }
 
     @Override
     public void saveCommandHistory(ReadOnlyCommandHistory commandHistory) throws IOException {
-        commandHistoryStorage.saveCommandHistory(commandHistory);
+        saveCommandHistory(commandHistory, commandHistoryStorage.getCommandHistoryFilePath());
     }
 
+    @Override
+    public void saveCommandHistory(ReadOnlyCommandHistory commandHistory, Path filePath) throws IOException {
+        commandHistoryStorage.saveCommandHistory(commandHistory);
+    }
 }
