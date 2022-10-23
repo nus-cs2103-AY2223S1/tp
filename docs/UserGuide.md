@@ -96,7 +96,7 @@ Format: `task list`
 
 Adds a contact to the taskbook.
 
-Format: `contact add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…`
+Format: `contact add n/NAME [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…`
 
 Examples:
 * `contact add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
@@ -359,7 +359,7 @@ The following date formats are accepted:
 | **Help**                      | `help [c/COMMAND]`                                                                                                                                                 |
 | **View All Tasks**            | `task list`                                                                                                                                                        |
 | **View Contacts**             | `contact list`                                                                                                                                                     |
-| **Add Contact**               | `contact add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…` <br> e.g., `contact add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` |
+| **Add Contact**               | `contact add n/NAME [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…` <br> e.g., `contact add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` |
 | **Add Todo: Assignor**        | `task todo m/ASSIGNOR d/DESCRIPTION` <br> e.g., `task todo m/John d/Finish user guide`                                                                             |
 | **Add Todo: Assignee**        | `task todo o/ASSIGNEE d/DESCRIPTION` <br> e.g., `task todo o/Sam d/Finish the assignment`                                                                          |
 | **Add Deadline: Assignor**    | `task deadline m/ASSIGNOR d/DESCRIPTION t/DATE` <br> e.g., `task deadline m/John d/Finish user guide t/2022-12-31`                                                 |
@@ -379,3 +379,4 @@ The following date formats are accepted:
 | **Exiting the program**       | `bye`                                                                                                                                                              |
 | **History: Previous Command** | `UP` arrow key                                                                                                                                                     |
 | **History: Next Command**     | `DOWN` arrow key                                                                                                                                                   |
+
