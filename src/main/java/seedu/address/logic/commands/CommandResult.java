@@ -4,6 +4,8 @@ import static java.util.Objects.requireNonNull;
 
 import java.util.Objects;
 
+import seedu.address.model.GraphConfiguration;
+
 /**
  * Represents the result of a command execution.
  */
@@ -17,17 +19,17 @@ public class CommandResult {
     /** The application should exit. */
     private final boolean exit;
 
-    /** The application should update the graph. */
-    private final boolean showGraph;
+    /** The configuration for the graph. */
+    private final GraphConfiguration graphConfiguration;
 
     /**
      * Constructs a {@code CommandResult} with the specified fields.
      */
-    public CommandResult(String feedbackToUser, boolean showHelp, boolean exit, boolean showGraph) {
+    public CommandResult(String feedbackToUser, boolean showHelp, boolean exit, GraphConfiguration graphConfiguration) {
         this.feedbackToUser = requireNonNull(feedbackToUser);
         this.showHelp = showHelp;
         this.exit = exit;
-        this.showGraph = showGraph;
+        this.graphConfiguration = graphConfiguration;
     }
 
     /**
@@ -35,7 +37,7 @@ public class CommandResult {
      * and other fields set to their default value.
      */
     public CommandResult(String feedbackToUser) {
-        this(feedbackToUser, false, false, false);
+        this(feedbackToUser, false, false, GraphConfiguration.ofDefault());
     }
 
     public String getFeedbackToUser() {
@@ -50,8 +52,8 @@ public class CommandResult {
         return exit;
     }
 
-    public boolean isShowGraph() {
-        return showGraph;
+    public GraphConfiguration getGraphConfiguration() {
+        return graphConfiguration;
     }
 
     @Override
@@ -67,14 +69,14 @@ public class CommandResult {
 
         CommandResult otherCommandResult = (CommandResult) other;
         return feedbackToUser.equals(otherCommandResult.feedbackToUser)
-                && showHelp == otherCommandResult.showHelp
-                && exit == otherCommandResult.exit
-                && showGraph == otherCommandResult.showGraph;
+                && isShowHelp() == otherCommandResult.isShowHelp()
+                && isExit() == otherCommandResult.isExit()
+                && getGraphConfiguration().equals(otherCommandResult.getGraphConfiguration());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(feedbackToUser, showHelp, exit);
+        return Objects.hash(feedbackToUser, showHelp, exit, graphConfiguration);
     }
 
 }

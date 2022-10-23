@@ -16,6 +16,7 @@ import seedu.address.logic.Logic;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.GraphConfiguration;
 import seedu.address.model.entry.EntryType;
 import seedu.address.model.entry.GraphType;
 
@@ -165,42 +166,31 @@ public class MainWindow extends UiPart<Stage> {
     }
 
     /**
-     * Calls updateGraph method based on entry type and graph type.
+     * Updates the graph shown in the graph panel depending on the graph configuration associated with
+     * the provided command result.
+     *
+     * @param commandResult The provided command result.
      */
-    public void handleGraph(String commandResult) {
-        if (commandResult.contains("expenditure") && commandResult.contains("category")) {
-            updateGraph(new EntryType(EntryType.ENTRY_TYPE_EXPENDITURE), new GraphType(GraphType.GRAPH_TYPE_CATEGORY));
-        }
-
-        if (commandResult.contains("income") && commandResult.contains("category")) {
-            updateGraph(new EntryType(EntryType.ENTRY_TYPE_INCOME), new GraphType(GraphType.GRAPH_TYPE_CATEGORY));
-        }
-
-        if (commandResult.contains("expenditure") && commandResult.contains("month")) {
-            updateGraph(new EntryType(EntryType.ENTRY_TYPE_EXPENDITURE), new GraphType(GraphType.GRAPH_TYPE_MONTH));
-        }
-
-        if (commandResult.contains("income") && commandResult.contains("month")) {
-            updateGraph(new EntryType(EntryType.ENTRY_TYPE_INCOME), new GraphType(GraphType.GRAPH_TYPE_MONTH));
-        }
-    }
-
-    /**
-     * Updates the graph
-     */
-    public void updateGraph(EntryType entryType, GraphType graphType) {
+    private void updateGraph(CommandResult commandResult) {
         graphPanelPlaceholder.getChildren().clear();
+
+        GraphConfiguration graphConfiguration = commandResult.getGraphConfiguration();
+        if (!graphConfiguration.getShouldUpdateGraph()) {
+            return;
+        }
+
+        GraphType graphType = graphConfiguration.getGraphType();
+        EntryType entryType = graphConfiguration.getEntryType();
+
         switch (graphType.getGraphType()) {
         case CATEGORY:
             switch (entryType.getEntryType()) {
             case EXPENDITURE:
-                GraphPanel expenseGraphPanel = new GraphPanel(new EntryType(EntryType.ENTRY_TYPE_EXPENDITURE),
-                                                                       logic.getExpensePieChartData());
+                GraphPanel expenseGraphPanel = new GraphPanel(entryType, logic.getExpensePieChartData());
                 graphPanelPlaceholder.getChildren().add(expenseGraphPanel.getRoot());
                 break;
             case INCOME:
-                GraphPanel incomeGraphPanel = new GraphPanel(new EntryType(EntryType.ENTRY_TYPE_INCOME),
-                                                                      logic.getIncomePieChartData());
+                GraphPanel incomeGraphPanel = new GraphPanel(entryType, logic.getIncomePieChartData());
                 graphPanelPlaceholder.getChildren().add(incomeGraphPanel.getRoot());
                 break;
             default:
@@ -252,8 +242,9 @@ public class MainWindow extends UiPart<Stage> {
                 handleExit();
             }
 
-            if (commandResult.isShowGraph()) {
-                handleGraph(commandResult.getFeedbackToUser());
+            GraphConfiguration graphConfiguration = commandResult.getGraphConfiguration();
+            if (graphConfiguration.getShouldUpdateGraph()) {
+                updateGraph(commandResult);
             }
 
             return commandResult;

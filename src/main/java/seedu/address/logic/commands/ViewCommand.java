@@ -7,6 +7,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_TYPE;
 import java.util.Optional;
 
 import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.model.GraphConfiguration;
 import seedu.address.model.Model;
 import seedu.address.model.entry.EntryType;
 import seedu.address.model.entry.GraphType;
@@ -24,12 +25,6 @@ public class ViewCommand extends Command {
         COMMAND_WORD + ": View income/expenditure entries to PennyWise. " + "Parameters: " + PREFIX_TYPE + "TYPE " + "["
         + PREFIX_GRAPH + "GRAPH]\n" + "Example: " + COMMAND_WORD + " " + PREFIX_TYPE + "e " + PREFIX_GRAPH + "c ";
 
-    private static final String ENTRY_EXPENDITURE = "expenditures";
-    private static final String ENTRY_INCOME = "income";
-
-    private static final String GRAPH_CATEGORY = "category";
-    private static final String GRAPH_MONTH = "month";
-
     private final ViewEntriesDescriptor viewEntriesDescriptor;
 
     /**
@@ -46,38 +41,10 @@ public class ViewCommand extends Command {
 
         EntryType entryType = viewEntriesDescriptor.getEntryType();
         GraphType graphType = viewEntriesDescriptor.getGraphType();
+        GraphConfiguration graphConfiguration = new GraphConfiguration(entryType, graphType, true);
 
-        switch (entryType.getEntryType()) {
-        case EXPENDITURE:
-            switch (graphType.getGraphType()) {
-            case CATEGORY:
-                return new CommandResult(String.format(MESSAGE_SUCCESS, ENTRY_EXPENDITURE, GRAPH_CATEGORY), false,
-                                         false, true);
-            case MONTH:
-                // TODO: Add month
-                return null;
-            default:
-                //should never reach here
-                return null;
-            }
-
-        case INCOME:
-            switch (graphType.getGraphType()) {
-            case CATEGORY:
-                System.out.println("[ViewCommand] Show all income by categories");
-                return new CommandResult(String.format(MESSAGE_SUCCESS, ENTRY_INCOME, GRAPH_CATEGORY), false, false,
-                                         true);
-            case MONTH:
-                // TODO: Add month
-                return null;
-            default:
-                //should never reach here
-                return null;
-            }
-        default:
-            //should never reach here
-            return null;
-        }
+        return new CommandResult(
+                String.format(MESSAGE_SUCCESS, entryType, graphType), false, false, graphConfiguration);
     }
 
     @Override
