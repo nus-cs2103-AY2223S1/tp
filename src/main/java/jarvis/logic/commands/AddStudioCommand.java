@@ -1,6 +1,5 @@
 package jarvis.logic.commands;
 
-import static jarvis.commons.util.CollectionUtil.requireAllNonNull;
 import static jarvis.logic.parser.CliSyntax.PREFIX_END_DATE_TIME;
 import static jarvis.logic.parser.CliSyntax.PREFIX_LESSON;
 import static jarvis.logic.parser.CliSyntax.PREFIX_START_DATE_TIME;

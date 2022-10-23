@@ -1,7 +1,6 @@
 package jarvis.logic.parser;
 
 import static jarvis.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static jarvis.logic.parser.CliSyntax.PREFIX_DEADLINE;
 import static jarvis.logic.parser.CliSyntax.PREFIX_END_DATE_TIME;
 import static jarvis.logic.parser.CliSyntax.PREFIX_LESSON;
 import static jarvis.logic.parser.CliSyntax.PREFIX_START_DATE_TIME;

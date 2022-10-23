@@ -15,7 +15,6 @@ import javafx.scene.layout.Region;
 public class LessonCard extends UiPart<Region> {
 
     private static final String FXML = "LessonCard.fxml";
-    private static final String EMPTY_FIELD = "";
 
     /**
      * Note: Certain keywords such as "location" and "resources" are reserved keywords in JavaFX.
@@ -68,8 +67,10 @@ public class LessonCard extends UiPart<Region> {
             break;
         case STUDIO:
             lessonType.setText("Studio");
-            lessonAttendance.setText(EMPTY_FIELD);
+            lessonAttendance.setVisible(false);
             break;
+        default:
+            assert false : "There is only 3 types of lesson";
         }
         if (lesson.hasDesc()) {
             lessonDesc.setText("Description: " + lesson.getDesc().lessonDesc);
