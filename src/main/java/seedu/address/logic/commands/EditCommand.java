@@ -88,16 +88,18 @@ public class EditCommand extends Command {
         Entry entryToEdit = lastShownList.get(index.getZeroBased());
         Entry editedEntry = createdEditedEntry(entryToEdit, editEntryDescriptor);
 
-        if (!entryToEdit.isSameEntry(editedEntry) && model.hasExpenditure(editedEntry)) {
-            throw new CommandException(MESSAGE_DUPLICATE_ENTRY);
-        }
-
         switch (entryType.getEntryType()) {
         case EXPENDITURE:
+            if (!entryToEdit.isSameEntry(editedEntry) && model.hasExpenditure(editedEntry)) {
+                throw new CommandException(MESSAGE_DUPLICATE_ENTRY);
+            }
             model.setExpenditure(entryToEdit, editedEntry);
             model.updateFilteredExpenditureList(Model.PREDICATE_SHOW_ALL_ENTRIES);
             break;
         case INCOME:
+            if (!entryToEdit.isSameEntry(editedEntry) && model.hasIncome(editedEntry)) {
+                throw new CommandException(MESSAGE_DUPLICATE_ENTRY);
+            }
             model.setIncome(entryToEdit, editedEntry);
             model.updateFilteredIncomeList(Model.PREDICATE_SHOW_ALL_ENTRIES);
             break;
