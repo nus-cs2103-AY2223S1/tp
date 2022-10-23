@@ -22,7 +22,7 @@ guest management tasks done faster than traditional GUI apps.
 
 1. Copy the file to the folder you want to use as the _home folder_ for your GuestBook.
 
-1. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
+1. Double-click the file to start the app. The GUI similar to the image below should appear in a few seconds. Note how the app contains some sample data.<br>
    ![Ui](images/Ui.png)
 
 1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
@@ -30,9 +30,11 @@ guest management tasks done faster than traditional GUI apps.
 
    * **`list`** : Lists all guests.
 
-   * **`add`**`n/John Doe p/98765432 e/johnd@example.com rm/05-73 dr/13/09/22 - 15/09/22 ng/3`: Adds a guest named `John Doe` to the guest book.
+   * **`add`**`n/John Doe p/98765432 e/johnd@example.com rm/05-73 dr/13/09/22 - 15/09/22 ng/3 rq/Extra towels`: Adds a guest named `John Doe` to the guest book.
 
-   * **`edit`** `1` `n/Bob rc/no`: Edits the 3rd guest shown in the current list.
+   * **`edit`** `1` `n/Bob rc/no rq/Room Service`: Edits the 3rd guest shown in the current list.
+   
+   * **`find`** `James` : Finds all the guests where at least one of the fields contains James.
 
    * **`bill`** `2` `b/+99.99`: Adds 99.99 to the bill of the 2nd guest.
 
@@ -56,9 +58,9 @@ guest management tasks done faster than traditional GUI apps.
   e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
 
 [//]: # (Commented out as the features below are currently not in our application, but we can consider it)
-[//]: # (* Items in square brackets are optional.<br>)
+* Items in square brackets are optional.<br>
 
-[//]: # (  e.g `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.)
+  e.g `n/NAME [rq/REQUEST]` can be used as `n/John Doe rq/Extra towels` or as `n/John Doe`.
 
 [//]: # ()
 [//]: # (* Items with `…`​ after them can be used multiple times including zero times.<br>)
