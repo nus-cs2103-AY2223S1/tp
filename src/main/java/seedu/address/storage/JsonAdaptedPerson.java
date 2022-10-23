@@ -1,6 +1,7 @@
 package seedu.address.storage;
 
 import static seedu.address.logic.parser.ParserUtil.parseCap;
+import static seedu.address.commons.util.StringUtil.trimAndReplaceMultipleSpaces;
 
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -60,20 +61,20 @@ class JsonAdaptedPerson {
             @JsonProperty("cap") String cap,
             @JsonProperty("university") String university,
             @JsonProperty("major") String major,
-            @JsonProperty("id") String id,
+                             @JsonProperty("id") String id,
             @JsonProperty("title") String title,
             @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
-        this.name = name;
-        this.phone = phone;
-        this.email = email;
-        this.address = address;
-        this.gender = gender;
-        this.cap = cap;
-        this.graduationDate = graduationDate;
-        this.university = university;
-        this.major = major;
-        this.id = id;
-        this.title = title;
+        this.name = trimAndReplaceMultipleSpaces(name);
+        this.phone = trimAndReplaceMultipleSpaces(phone);
+        this.email = trimAndReplaceMultipleSpaces(email);
+        this.address = trimAndReplaceMultipleSpaces(address);
+        this.gender = trimAndReplaceMultipleSpaces(gender);
+        this.cap = trimAndReplaceMultipleSpaces(cap);
+        this.graduationDate = trimAndReplaceMultipleSpaces(graduationDate);
+        this.university = trimAndReplaceMultipleSpaces(university);
+        this.major = trimAndReplaceMultipleSpaces(major);
+        this.id = trimAndReplaceMultipleSpaces(id);
+        this.title = trimAndReplaceMultipleSpaces(title);
         if (tagged != null) {
             this.tagged.addAll(tagged);
         }
@@ -83,17 +84,17 @@ class JsonAdaptedPerson {
      * Converts a given {@code Person} into this class for Jackson use.
      */
     public JsonAdaptedPerson(Person source) {
-        name = source.getName().fullName;
-        phone = source.getPhone().value;
-        email = source.getEmail().value;
-        address = source.getAddress().value;
-        gender = source.getGender().value;
-        cap = source.getCap().toString();
-        graduationDate = source.getGraduationDate().value;
-        university = source.getUniversity().value;
-        major = source.getMajor().value;
-        id = source.getJob().getId().value;
-        title = source.getJob().getTitle().value;
+        name = trimAndReplaceMultipleSpaces(source.getName().fullName);
+        phone = trimAndReplaceMultipleSpaces(source.getPhone().value);
+        email = trimAndReplaceMultipleSpaces(source.getEmail().value);
+        address = trimAndReplaceMultipleSpaces(source.getAddress().value);
+        gender = trimAndReplaceMultipleSpaces(source.getGender().value);
+        cap = trimAndReplaceMultipleSpaces(source.getCap().toString());
+        graduationDate = trimAndReplaceMultipleSpaces(source.getGraduationDate().value);
+        university = trimAndReplaceMultipleSpaces(source.getUniversity().value);
+        major = trimAndReplaceMultipleSpaces(source.getMajor().value);
+        id = trimAndReplaceMultipleSpaces(source.getJob().getId().value);
+        title = trimAndReplaceMultipleSpaces(source.getJob().getTitle().value);
         tagged.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));

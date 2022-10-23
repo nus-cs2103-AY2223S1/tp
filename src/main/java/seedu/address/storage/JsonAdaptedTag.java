@@ -6,6 +6,8 @@ import com.fasterxml.jackson.annotation.JsonValue;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.tag.Tag;
 
+import static seedu.address.commons.util.StringUtil.trimAndReplaceMultipleSpaces;
+
 /**
  * Jackson-friendly version of {@link Tag}.
  */
@@ -18,14 +20,14 @@ class JsonAdaptedTag {
      */
     @JsonCreator
     public JsonAdaptedTag(String tagName) {
-        this.tagName = tagName;
+        this.tagName = trimAndReplaceMultipleSpaces(tagName);
     }
 
     /**
      * Converts a given {@code Tag} into this class for Jackson use.
      */
     public JsonAdaptedTag(Tag source) {
-        tagName = source.tagName;
+        tagName = trimAndReplaceMultipleSpaces(source.tagName);
     }
 
     @JsonValue
