@@ -33,12 +33,13 @@ public class ViewCommandParser implements Parser<ViewCommand> {
             if (argMultimap.getValue(PREFIX_GRAPH).isPresent()) {
                 viewEntriesDescriptor.setGraphType(
                         ParserUtil.parseGraphType(argMultimap.getValue(PREFIX_GRAPH).get()));
-            }
-            if (argMultimap.getValue(PREFIX_MONTH).isPresent()) {
+
                 GraphType graphType = viewEntriesDescriptor.getGraphType();
                 if (graphType.equals(new GraphType(GraphType.GRAPH_TYPE_MONTH))) {
-                    viewEntriesDescriptor.setMonth(
-                            ParserUtil.parseMonth(argMultimap.getValue(PREFIX_MONTH).get()));
+                    if (argMultimap.getValue(PREFIX_MONTH).isPresent()) {
+                        viewEntriesDescriptor.setMonth(
+                                ParserUtil.parseMonth(argMultimap.getValue(PREFIX_MONTH).get()));
+                    }
                 }
             }
         } catch (ParseException pe) {

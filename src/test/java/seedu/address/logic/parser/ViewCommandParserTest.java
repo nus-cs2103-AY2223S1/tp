@@ -36,7 +36,7 @@ public class ViewCommandParserTest {
         String validUserInputForExpenditureCategoryWithMonth = TYPE_EXPENDITURE + TYPE_GRAPH_CATEGORY + TYPE_MONTH;
         ViewEntriesDescriptor expenditureCategoryWithMonthDescriptor = new ViewEntriesDescriptorBuilder(
                 EXPENDITURE_BY_CATEGORY
-        ).withMonth(VALID_MONTH_MARCH).build();
+        ).build();
 
         assertParseSuccess(parser, validUserInputForExpenditureCategoryWithMonth,
                 new ViewCommand(expenditureCategoryWithMonthDescriptor));
