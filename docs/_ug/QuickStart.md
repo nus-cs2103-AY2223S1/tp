@@ -27,11 +27,8 @@ This table breaks down the different components of the UI.
 | Name               | Description                                      |
 |--------------------|--------------------------------------------------|
 | Command Input Box  | ![CommandInputBox](images/CommandInputBox.png)   |
-|
 | Command Output Box | ![CommandOutputBox](images/CommandOutputBox.png) |
-|
 | List Box           | ![FullUiImage](images/ListBox.png)               |
-|
 
 
 
