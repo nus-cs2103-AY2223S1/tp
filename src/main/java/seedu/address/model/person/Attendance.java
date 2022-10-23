@@ -3,7 +3,6 @@ package seedu.address.model.person;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -57,8 +56,14 @@ public class Attendance {
         return DateUtil.isValidDateString(date);
     }
 
+    /**
+     * Parses a given String into an HashMap.
+     * @param json the String (json) to be parsed
+     * @return A HashMap representing the attendance of the student
+     * @throws ParseException
+     */
     public static HashMap<String, Integer> parseAttendanceFromJson(String json)
-        throws ParseException {
+            throws ParseException {
         // For empty attendances
         if (json.isBlank()) {
             return new HashMap<>();

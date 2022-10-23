@@ -3,8 +3,6 @@ package seedu.address.model.person.subject;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
-import seedu.address.model.person.Attendance;
-
 /**
  * Represents a subject taken by the student
  */
