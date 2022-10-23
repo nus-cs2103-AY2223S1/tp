@@ -69,4 +69,8 @@ public class PaymentStatus {
     public int hashCode() {
         return status.hashCode();
     }
+
+    public void setAsUnpaid() {
+        this.status = Status.UNPAID;
+    }
 }

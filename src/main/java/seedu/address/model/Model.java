@@ -195,6 +195,12 @@ public interface Model {
     void sortAppointments(Comparator<Appointment> comparator, boolean isAscending);
 
     /**
+     * Sets the Status of PaymentStatus of the given bill to UNPAID.
+     * @param bill
+     */
+    void setBillAsUnpaid(Bill bill);
+
+    /**
      * Sorts the bills by the given {@code comparator}.
      * @throws NullPointerException if {@code comparator} is null.
      */
