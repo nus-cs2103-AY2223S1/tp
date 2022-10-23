@@ -40,7 +40,7 @@ public class LogicManager implements Logic {
         this.model = model;
         this.storage = storage;
         soConnectParser = new SoConnectParser();
-        autocomplete = new AutocompleteManager(model.getUniqueNames());
+        autocomplete = new AutocompleteManager(model.getSoConnect());
     }
 
     @Override
@@ -53,8 +53,8 @@ public class LogicManager implements Logic {
 
         try {
             storage.saveSoConnect(model.getSoConnect());
+            autocomplete.updateSoConnect(model.getSoConnect());
             storage.saveTodoList(model.getTodoList());
-            autocomplete.updateUniqueNames(model.getUniqueNames());
         } catch (IOException ioe) {
             throw new CommandException(FILE_OPS_ERROR_MESSAGE + ioe, ioe);
         }
