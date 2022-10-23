@@ -4,7 +4,6 @@ import static friday.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static friday.logic.parser.CliSyntax.PREFIX_ALIAS;
 import static java.util.Objects.requireNonNull;
 
-import friday.logic.commands.AliasCommand;
 import friday.logic.commands.UnaliasCommand;
 import friday.logic.parser.exceptions.ParseException;
 import friday.model.alias.Alias;
@@ -26,7 +25,7 @@ public class UnaliasCommandParser implements Parser<UnaliasCommand> {
         Alias alias;
 
         if (!argMultimap.getValue(PREFIX_ALIAS).isPresent()) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AliasCommand.MESSAGE_USAGE));
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, UnaliasCommand.MESSAGE_USAGE));
         }
 
         alias = ParserUtil.parseAlias(argMultimap.getValue(PREFIX_ALIAS).get());

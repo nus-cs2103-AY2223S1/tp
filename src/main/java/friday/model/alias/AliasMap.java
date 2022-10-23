@@ -1,8 +1,11 @@
 package friday.model.alias;
 
+import static friday.commons.util.CollectionUtil.requireAllNonNull;
 import static java.util.Objects.requireNonNull;
 
 import java.util.HashMap;
+import java.util.Map;
+import java.util.Set;
 
 import friday.model.alias.exceptions.AliasNotFoundException;
 import friday.model.alias.exceptions.DuplicateAliasException;
@@ -54,15 +57,39 @@ public class AliasMap {
         if (!contains(toRemove)) {
             throw new AliasNotFoundException();
         }
-        internalMap.remove(toRemove);
+        internalMap.remove(toRemove.toString());
     }
 
+    /**
+     * Gets the keyword mapping of an alias if it exists.
+     * If no existing mapping, return the same alias.
+     */
     public String getKeyword(String toFind) {
         requireNonNull(toFind);
         if (contains(toFind)) {
             return internalMap.get(toFind);
         }
         return toFind;
+    }
+
+    /**
+     * Returns a Set view of the mappings contained in alias map.
+     * This set will not contain any duplicate aliases.
+     */
+    public Set<Map.Entry<String, String>> entrySet() {
+        return internalMap.entrySet();
+    }
+
+    /**
+     * Replaces the contents of this map with alias, keyword pair.
+     */
+    public void setAliases(Set<Map.Entry<String, String>> aliases) {
+        requireAllNonNull(aliases);
+        for (Map.Entry<String, String> aliasKeywordPair : aliases) {
+            Alias alias = new Alias(aliasKeywordPair.getKey());
+            ReservedKeyword keyword = new ReservedKeyword(aliasKeywordPair.getValue());
+            add(alias, keyword);
+        }
     }
 
     @Override

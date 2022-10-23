@@ -3,6 +3,8 @@ package friday.model;
 import static java.util.Objects.requireNonNull;
 
 import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
 import friday.model.alias.Alias;
 import friday.model.alias.AliasMap;
@@ -54,12 +56,20 @@ public class Friday implements ReadOnlyFriday {
     }
 
     /**
+     * Replaces the contents of the alias map with alias, keyword pair.
+     */
+    public void setAliases(Set<Map.Entry<String, String>> aliases) {
+        this.aliases.setAliases(aliases);
+    }
+
+    /**
      * Resets the existing data of {@code FRIDAY} with {@code newData}.
      */
     public void resetData(ReadOnlyFriday newData) {
         requireNonNull(newData);
 
         setStudents(newData.getStudentList());
+        setAliases(newData.getAliasMap());
     }
 
     //// student-level operations
@@ -153,6 +163,11 @@ public class Friday implements ReadOnlyFriday {
     @Override
     public ObservableList<Student> getStudentList() {
         return students.asUnmodifiableObservableList();
+    }
+
+    @Override
+    public Set<Map.Entry<String, String>> getAliasMap() {
+        return aliases.entrySet();
     }
 
     @Override
