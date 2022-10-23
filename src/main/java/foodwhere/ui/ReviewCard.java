@@ -76,7 +76,7 @@ public class ReviewCard extends UiPart<Region> {
                     .collect(Collectors.joining(", "));
 
             tags.setText(assigneesNames);
-            tagsLabel.setText("Tag:");
+            tagsLabel.setText("Tags:");
         } else {
             removeRow(gridPane, GridPane.getRowIndex(tagsLabel));
         }
