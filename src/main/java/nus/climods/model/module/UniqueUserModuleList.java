@@ -15,8 +15,8 @@ import nus.climods.model.module.exceptions.UserModuleNotFoundException;
 /**
  * A list of modules that enforces uniqueness between its elements and does not allow nulls. A module is considered
  * unique by comparing using {@code Person#isSamePerson(Person)}. As such, adding and updating of modules uses
- * Person#isSamePerson(Person) for equality so as to ensure that the module being added or updated is unique in terms of
- * identity in the UniquePersonList. However, the removal of a module uses Person#equals(Object) so as to ensure that
+ * Person#isSamePerson(Person) for equality to ensure that the module being added or updated is unique in terms of
+ * identity in the UniquePersonList. However, the removal of a module uses Person#equals(Object) to ensure that
  * the module with exactly the same fields will be removed.
  * <p>
  * Supports a minimal set of list operations.
@@ -75,7 +75,7 @@ public class UniqueUserModuleList implements Iterable<UserModule> {
     public void remove(String toRemove) {
         requireNonNull(toRemove);
         Optional<UserModule> deleteMod = internalList.stream()
-                .filter(mod -> mod.getUserModuleCode().equals(toRemove.toUpperCase()))
+                .filter(mod -> mod.getCode().equals(toRemove.toUpperCase()))
                 .findFirst();
         if (deleteMod.isEmpty()) {
             throw new UserModuleNotFoundException();

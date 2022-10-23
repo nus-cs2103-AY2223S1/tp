@@ -3,6 +3,7 @@ package nus.climods.logic.parser;
 import nus.climods.logic.commands.AddCommand;
 import nus.climods.logic.parser.exceptions.ParseException;
 import nus.climods.logic.parser.parameters.ModuleCodeParameter;
+import nus.climods.logic.parser.parameters.SemesterTypeParameter;
 
 /**
  * Parses input arguments and creates a new AddCommand object
@@ -16,8 +17,8 @@ public class AddCommandParser implements Parser<AddCommand> {
      */
     public AddCommand parse(String args) throws ParseException {
         ModuleCodeParameter mcp = new ModuleCodeParameter(args);
-        String mc = mcp.getArgValue();
-        return new AddCommand(mc);
-    }
+        SemesterTypeParameter stp = new SemesterTypeParameter(args);
 
+        return new AddCommand(mcp.getArgValue(), stp.getArgValue());
+    }
 }

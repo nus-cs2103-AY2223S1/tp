@@ -78,12 +78,18 @@ View full details (e.g. description, workload) of a module via its module code.
 
 ### Add modules to user list: `add`
 
-Format: `add MODULE-CODE`
+Format: `add MODULE-CODE SEMESTER-CODE`
 
 Required Arguments:
 
 - `MODULE-CODE`
     - e.g. `CS2103`
+  
+- `SEMESTER-CODE`
+    - `s1`, Semester 1
+    - `s2`, Semester 2
+    - `st1`, Special Term 1
+    - `st2`, Special Term 2
 
 Add a module to the user's own list of modules.
 

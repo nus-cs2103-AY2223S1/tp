@@ -33,8 +33,8 @@ class JsonAdaptedUserModule {
      * Converts a given {@code UserModule} into this class for Jackson use.
      */
     public JsonAdaptedUserModule(UserModule source) {
-        this.moduleCode = source.getUserModuleCode();
-        this.selectedSemesters = source.getSelectedSemester();
+        this.moduleCode = source.getCode();
+        this.selectedSemesters = source.getSelectedSemester().name();
         this.tutorial = source.getTutorial();
         this.lecture = source.getLecture();
     }

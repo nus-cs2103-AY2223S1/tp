@@ -4,6 +4,8 @@ import java.util.Comparator;
 import java.util.Optional;
 import java.util.function.Predicate;
 
+import org.openapitools.client.model.SemestersEnum;
+
 import javafx.collections.ObservableList;
 import nus.climods.commons.core.GuiSettings;
 import nus.climods.model.module.Module;
@@ -16,11 +18,6 @@ import nus.climods.model.module.UserModule;
  * The API of the Model component.
  */
 public interface Model {
-    /**
-     * {@code Predicate} that always evaluate to true
-     */
-    Predicate<UserModule> PREDICATE_SHOW_ALL_MODULES = unused -> true;
-
     //=========== UserPrefs ==================================================================================
 
     /**
@@ -50,6 +47,8 @@ public interface Model {
     ReadOnlyModuleList getModuleList();
 
     boolean isModuleOffered(String moduleCode);
+
+    boolean isModuleOfferedInSemester(String moduleCode, SemestersEnum semester);
 
     Optional<Module> getModule(String moduleCode);
 

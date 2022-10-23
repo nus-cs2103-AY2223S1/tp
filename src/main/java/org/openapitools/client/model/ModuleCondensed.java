@@ -13,16 +13,13 @@
 
 package org.openapitools.client.model;
 
-import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
-import com.fasterxml.jackson.annotation.JsonValue;
 
 import io.swagger.annotations.ApiModelProperty;
 
@@ -170,45 +167,4 @@ public class ModuleCondensed {
         }
         return o.toString().replace("\n", "\n    ");
     }
-
-    /**
-     * Gets or Sets semesters
-     */
-    public enum SemestersEnum {
-        NUMBER_1(new BigDecimal("1")),
-
-        NUMBER_2(new BigDecimal("2")),
-
-        NUMBER_3(new BigDecimal("3")),
-
-        NUMBER_4(new BigDecimal("4"));
-
-        private BigDecimal value;
-
-        SemestersEnum(BigDecimal value) {
-            this.value = value;
-        }
-
-        @JsonCreator
-        public static SemestersEnum fromValue(BigDecimal value) {
-            for (SemestersEnum b : SemestersEnum.values()) {
-                if (b.value.equals(value)) {
-                    return b;
-                }
-            }
-            throw new IllegalArgumentException("Unexpected value '" + value + "'");
-        }
-
-        @JsonValue
-        public BigDecimal getValue() {
-            return value;
-        }
-
-        @Override
-        public String toString() {
-            return String.valueOf(value);
-        }
-    }
-
 }
-
