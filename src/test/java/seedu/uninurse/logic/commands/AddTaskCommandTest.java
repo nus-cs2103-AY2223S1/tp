@@ -68,7 +68,8 @@ public class AddTaskCommandTest {
         expectedModel.updateFilteredPersonList(patient -> patient.equals(editedPatient));
         expectedModel.setPatientOfInterest(editedPatient);
 
-        assertCommandSuccess(addTaskCommand, model, expectedMessage, CommandType.TASK, expectedModel);
+        assertCommandSuccess(addTaskCommand, model, expectedMessage,
+                AddTaskCommand.ADD_TASK_COMMAND_TYPE, expectedModel);
     }
 
     @Test
@@ -99,7 +100,8 @@ public class AddTaskCommandTest {
         expectedModel.updateFilteredPersonList(patient -> patient.equals(editedPatient));
         expectedModel.setPatientOfInterest(editedPatient);
 
-        assertCommandSuccess(addTaskCommand, model, expectedMessage, CommandType.TASK, expectedModel);
+        assertCommandSuccess(addTaskCommand, model, expectedMessage,
+                AddTaskCommand.ADD_TASK_COMMAND_TYPE, expectedModel);
     }
 
     @Test

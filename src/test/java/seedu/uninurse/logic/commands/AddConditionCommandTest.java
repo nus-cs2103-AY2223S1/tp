@@ -64,7 +64,8 @@ public class AddConditionCommandTest {
         Model expectedModel = new ModelManager(new UninurseBook(model.getUninurseBook()), new UserPrefs());
         expectedModel.setPerson(patientToAddCondition, editedPatient);
 
-        assertCommandSuccess(addConditionCommand, model, expectedMessage, expectedModel);
+        assertCommandSuccess(addConditionCommand, model, expectedMessage,
+                AddConditionCommand.ADD_CONDITION_COMMAND_TYPE, expectedModel);
     }
 
     @Test
@@ -93,7 +94,8 @@ public class AddConditionCommandTest {
         Model expectedModel = new ModelManager(new UninurseBook(model.getUninurseBook()), new UserPrefs());
         expectedModel.setPerson(patientToAddCondition, editedPatient);
 
-        assertCommandSuccess(addConditionCommand, model, expectedMessage, expectedModel);
+        assertCommandSuccess(addConditionCommand, model, expectedMessage,
+                AddConditionCommand.ADD_CONDITION_COMMAND_TYPE, expectedModel);
     }
 
     @Test
