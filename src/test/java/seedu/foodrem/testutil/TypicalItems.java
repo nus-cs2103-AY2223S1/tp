@@ -20,6 +20,7 @@ public class TypicalItems {
             .withItemBoughtDate("11-11-2022")
             .withItemExpiryDate("11-11-2022")
             .withItemPrice("10.30")
+            .withItemRemarks("For Mashed Potatoes")
             .withTags(VALID_TAG_NAME_VEGETABLES).build();
 
     public static final Item CUCUMBERS = new ItemBuilder()
@@ -29,6 +30,7 @@ public class TypicalItems {
             .withItemBoughtDate("12-12-2022")
             .withItemExpiryDate("12-12-2022")
             .withItemPrice("8")
+            .withItemRemarks("For Salad")
             .withTags(VALID_TAG_NAME_VEGETABLES).build();
 
     public static final Item CARROTS = new ItemBuilder()
@@ -42,6 +44,7 @@ public class TypicalItems {
             .withItemBoughtDate("11-11-2022")
             .withItemExpiryDate("11-11-2022")
             .withItemPrice("10.30")
+            .withItemRemarks("For Mashed Potatoes")
             .build();
 
     public static final Item CUCUMBERS_WITHOUT_TAG = new ItemBuilder()

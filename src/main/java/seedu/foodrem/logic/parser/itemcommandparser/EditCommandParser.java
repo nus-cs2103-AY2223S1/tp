@@ -33,7 +33,8 @@ public class EditCommandParser implements Parser<EditCommand> {
                         CliSyntax.PREFIX_ITEM_UNIT,
                         CliSyntax.PREFIX_ITEM_BOUGHT_DATE,
                         CliSyntax.PREFIX_ITEM_EXPIRY_DATE,
-                        CliSyntax.PREFIX_ITEM_PRICE);
+                        CliSyntax.PREFIX_ITEM_PRICE,
+                        CliSyntax.PREFIX_ITEM_REMARKS);
         Index index;
 
         try {
@@ -67,6 +68,10 @@ public class EditCommandParser implements Parser<EditCommand> {
             editItemDescriptor.setItemPrice(
                     ParserUtil.parsePrice(argMultimap.getPresentValue(CliSyntax.PREFIX_ITEM_PRICE)));
         }
+        if (argMultimap.isValuePresent(CliSyntax.PREFIX_ITEM_REMARKS)) {
+            editItemDescriptor.setItemRemarks(
+                    ParserUtil.parseRemarks(argMultimap.getPresentValue(CliSyntax.PREFIX_ITEM_REMARKS)));
+        }
 
         if (!editItemDescriptor.isAnyFieldEdited()) {
             throw new ParseException(EditCommand.MESSAGE_NOT_EDITED);
@@ -75,6 +80,7 @@ public class EditCommandParser implements Parser<EditCommand> {
         return new EditCommand(index, editItemDescriptor);
     }
 
+    // TODO: Check if we can delete this
     ///**
     // * Parses {@code Collection<String> tags} into a {@code Set<Tag>} if {@code tags} is non-empty.
     // * If {@code tags} contain only one element which is an empty string, it will be parsed into a

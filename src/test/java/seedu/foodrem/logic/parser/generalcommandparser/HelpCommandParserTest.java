@@ -19,6 +19,7 @@ import seedu.foodrem.logic.commands.itemcommands.FindCommand;
 import seedu.foodrem.logic.commands.itemcommands.IncrementCommand;
 import seedu.foodrem.logic.commands.itemcommands.ListCommand;
 import seedu.foodrem.logic.commands.itemcommands.NewCommand;
+import seedu.foodrem.logic.commands.itemcommands.RemarkCommand;
 import seedu.foodrem.logic.commands.itemcommands.SortCommand;
 import seedu.foodrem.logic.commands.itemcommands.ViewCommand;
 import seedu.foodrem.logic.commands.tagcommands.DeleteTagCommand;
@@ -30,8 +31,8 @@ import seedu.foodrem.logic.commands.tagcommands.UntagCommand;
 
 class HelpCommandParserTest {
     private static final String EXPECTED_ALL_COMMANDS = "help, reset, exit, " // General commands
-             + "new, list, find, sort, view, inc, dec, edit, del, " // Item commands
-             + "newtag, listtag, renametag, tag, untag, deletetag"; // Tag commands
+            + "new, list, find, sort, view, inc, dec, edit, del, rmk, " // Item commands
+            + "newtag, listtag, renametag, tag, untag, deletetag"; // Tag commands
 
     private final HelpCommandParser parser = new HelpCommandParser();
 
@@ -51,7 +52,7 @@ class HelpCommandParserTest {
 
         Thank you :D
         */
-        int numberOfCommands = 19; // equal to total number of commands + 1 for invalid command
+        int numberOfCommands = 20; // equal to total number of commands + 1 for invalid command
         assertEquals(numberOfCommands, CommandType.values().length);
     }
 
@@ -161,6 +162,8 @@ class HelpCommandParserTest {
                 new HelpCommand(getCommandHelpMessage(parseWord("sort"))));
         assertParseSuccess(parser, CommandType.VIEW_COMMAND.getCommandWord(),
                 new HelpCommand(getCommandHelpMessage(parseWord("view"))));
+        assertParseSuccess(parser, CommandType.REMARK_COMMAND.getCommandWord(),
+                new HelpCommand(getCommandHelpMessage(parseWord("rmk"))));
     }
 
     @Test
@@ -174,6 +177,7 @@ class HelpCommandParserTest {
         assertEquals(ListCommand.getUsage(), parseWord("list").getUsage());
         assertEquals(SortCommand.getUsage(), parseWord("sort").getUsage());
         assertEquals(ViewCommand.getUsage(), parseWord("view").getUsage());
+        assertEquals(RemarkCommand.getUsage(), parseWord("rmk").getUsage());
     }
 
     @Test

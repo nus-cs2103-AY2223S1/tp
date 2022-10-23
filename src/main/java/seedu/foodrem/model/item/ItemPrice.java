@@ -17,7 +17,7 @@ public class ItemPrice {
     private static final double DEFAULT_PRICE = 0;
 
     private final double itemPrice;
-
+    // TODO: Price to accept "$10" as a valid input rather than just "10"
     /**
      * {@inheritDoc}
      */

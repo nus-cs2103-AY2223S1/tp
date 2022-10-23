@@ -6,6 +6,8 @@
       "unit": "kg",
       "boughtDate": "11-11-2022",
       "expiryDate": "11-11-2022",
+      "price": "10.30",
+      "remarks" : "For Mashed Potatoes",
       "tags": ["vegetables"]
     },
     {
@@ -14,6 +16,8 @@
       "unit": "grams",
       "boughtDate": "11-11-2022",
       "expiryDate": "11-11-2022",
+      "price": "10.30",
+      "remarks" : "For Salad",
       "tags": ["vegetables"]
     }
   ],

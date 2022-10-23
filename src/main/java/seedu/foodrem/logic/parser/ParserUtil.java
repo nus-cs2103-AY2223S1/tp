@@ -12,6 +12,7 @@ import seedu.foodrem.model.item.ItemExpiryDate;
 import seedu.foodrem.model.item.ItemName;
 import seedu.foodrem.model.item.ItemPrice;
 import seedu.foodrem.model.item.ItemQuantity;
+import seedu.foodrem.model.item.ItemRemark;
 import seedu.foodrem.model.item.ItemUnit;
 import seedu.foodrem.model.tag.TagName;
 
@@ -106,6 +107,18 @@ public class ParserUtil {
         requireNonNull(price);
         String trimmedPrice = price.trim();
         return new ItemPrice(trimmedPrice);
+    }
+
+    /**
+     * Parses a {@code String price} into an {@link ItemRemark}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws IllegalArgumentException if the given {@code remarks} is invalid.
+     */
+    public static ItemRemark parseRemarks(String remarks) throws IllegalArgumentException {
+        requireNonNull(remarks);
+        String trimmedRemarks = remarks.trim();
+        return new ItemRemark(trimmedRemarks);
     }
 
     /**

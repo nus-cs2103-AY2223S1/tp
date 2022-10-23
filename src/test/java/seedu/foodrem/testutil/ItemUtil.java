@@ -21,7 +21,7 @@ public class ItemUtil {
      * Returns the part of command string for the given {@code item}'s details.
      */
     public static String getItemDetails(Item item) {
-        return String.format("%s%s %s%s %s%s %s%s %s%s %s%s",
+        return String.format("%s%s %s%s %s%s %s%s %s%s %s%s %s%s",
                 CliSyntax.PREFIX_NAME,
                 item.getName(),
                 CliSyntax.PREFIX_ITEM_QUANTITY,
@@ -33,7 +33,9 @@ public class ItemUtil {
                 CliSyntax.PREFIX_ITEM_EXPIRY_DATE,
                 item.getExpiryDate(),
                 CliSyntax.PREFIX_ITEM_PRICE,
-                item.getPrice());
+                item.getPrice(),
+                CliSyntax.PREFIX_ITEM_REMARKS,
+                item.getRemarks());
     }
 
     /**
@@ -53,6 +55,9 @@ public class ItemUtil {
                 .ifPresent(expiryDate -> sb.append(CliSyntax.PREFIX_ITEM_EXPIRY_DATE).append(expiryDate).append(" "));
         descriptor.getItemPrice()
                 .ifPresent(price -> sb.append(CliSyntax.PREFIX_ITEM_PRICE).append(price).append(" "));
+        descriptor.getItemRemarks()
+                .ifPresent(remarks -> sb.append(CliSyntax.PREFIX_ITEM_REMARKS).append(remarks).append(" "));
+        // TODO: Check if we can delete this.
         //if (descriptor.getTags().isPresent()) {
         //    Set<Tag> tags = descriptor.getTags().get();
         //    if (tags.isEmpty()) {

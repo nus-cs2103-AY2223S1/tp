@@ -19,6 +19,8 @@ import seedu.foodrem.model.util.ChainComparator;
  * - Unit
  * - Bought Date
  * - Expiry Date
+ * - Price
+ * - Remarks
  */
 public class SortCommand extends Command {
     private final ChainComparator<Item> comparator;

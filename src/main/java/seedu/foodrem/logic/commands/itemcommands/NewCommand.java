@@ -19,7 +19,7 @@ public class NewCommand extends Command {
     private final Item newItem;
 
     /**
-     * Creates an AddCommand to add the specified {@code Item}
+     * Creates a NewCommand to add the specified {@code Item}
      */
     public NewCommand(Item item) {
         requireNonNull(item);
