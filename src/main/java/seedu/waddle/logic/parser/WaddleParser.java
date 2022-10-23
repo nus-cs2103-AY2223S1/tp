@@ -22,6 +22,7 @@ import seedu.waddle.logic.commands.FindCommand;
 import seedu.waddle.logic.commands.HelpCommand;
 import seedu.waddle.logic.commands.HomeCommand;
 import seedu.waddle.logic.commands.ListCommand;
+import seedu.waddle.logic.commands.PlanCommand;
 import seedu.waddle.logic.commands.SelectCommand;
 import seedu.waddle.logic.commands.StageCommand;
 import seedu.waddle.logic.parser.exceptions.ParseException;
@@ -96,7 +97,7 @@ public class WaddleParser {
             return new ListCommand();
 
         case SelectCommand.COMMAND_WORD:
-            return new PlanCommandParser().parse(arguments);
+            return new SelectCommandParser().parse(arguments);
 
         case HomeCommand.COMMAND_WORD:
             return new HomeCommand();
@@ -142,6 +143,9 @@ public class WaddleParser {
 
         case DeleteItemCommand.COMMAND_WORD:
             return new DeleteItemCommandParser().parse(arguments);
+
+        case PlanCommand.COMMAND_WORD:
+            return new PlanCommandParser().parse(arguments);
 
         //TODO: help commands must change here
         case HelpCommand.COMMAND_WORD:

@@ -2,6 +2,7 @@ package seedu.waddle.model.itinerary;
 
 import static seedu.waddle.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
@@ -9,6 +10,7 @@ import java.util.Objects;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import seedu.waddle.commons.core.index.Index;
 import seedu.waddle.commons.core.index.MultiIndex;
 import seedu.waddle.logic.commands.exceptions.CommandException;
 import seedu.waddle.model.item.Day;
@@ -182,16 +184,19 @@ public class Itinerary {
     /**
      * Plan an item.
      * @param itemIndex Index of item in unscheduled list.
-     * @param dayIndex Day to include this item.
+     * @param dayNumber Day to include this item.
      * @param startTime startTime of the item.
+     * @return The planned item.
      * @throws CommandException When adding item to specific day leads to conflict in time.
      */
-    public void planItem(int itemIndex, int dayIndex, int startTime) throws CommandException {
-        Item item = this.unscheduledItemList.get(itemIndex);
-        Day day = this.days.get(dayIndex);
+    public Item planItem(Index itemIndex, DayNumber dayNumber, LocalTime startTime) throws CommandException {
+        Item item = this.unscheduledItemList.get(itemIndex.getZeroBased());
+        item.setStartTime(startTime);
+        Day day = this.days.get(dayNumber.dayNumber);
         day.addItem(item);
-        this.unscheduledItemList.remove(itemIndex);
+        this.unscheduledItemList.remove(itemIndex.getZeroBased());
         this.budget.updateSpending(item.getCost().getValue());
+        return item;
     }
 
     public Item getItem(MultiIndex index) {
