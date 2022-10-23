@@ -21,6 +21,7 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.logic.parser.EditAppointmentDescriptor;
 import seedu.address.logic.parser.ParserUtil;
 import seedu.address.model.AddressBook;
+import seedu.address.model.CommandHistory;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
@@ -34,7 +35,7 @@ public class EditAppointmentCommandTest {
     @Test
     public void execute_editAppointmnetBothFields_success() {
         // Create actualModel
-        Model actualModel = new ModelManager(new AddressBook(), new UserPrefs());
+        Model actualModel = new ModelManager(new AddressBook(), new UserPrefs(), new CommandHistory());
         Appointment appointmentToEdit = new AppointmentBuilder()
                                             .withDateTime(VALID_DATETIME_21_JAN_2023)
                                             .withLocation(VALID_LOCATION_NUS).build();
@@ -43,7 +44,7 @@ public class EditAppointmentCommandTest {
                     .build());
 
         // Create expectedModel
-        Model expectedModel = new ModelManager(new AddressBook(), new UserPrefs());
+        Model expectedModel = new ModelManager(new AddressBook(), new UserPrefs(), new CommandHistory());
         Appointment editedAppointment = new AppointmentBuilder()
                                             .withDateTime(VALID_DATETIME_23_JAN_2023)
                                             .withLocation(VALID_LOCATION_WESTMALL).build();
@@ -67,7 +68,7 @@ public class EditAppointmentCommandTest {
     @Test
     public void execute_editAppointmentLocationFieldOnly_success() {
         // Create actualModel
-        Model actualModel = new ModelManager(new AddressBook(), new UserPrefs());
+        Model actualModel = new ModelManager(new AddressBook(), new UserPrefs(), new CommandHistory());
         Appointment appointmentToEdit = new AppointmentBuilder()
                                             .withDateTime(VALID_DATETIME_21_JAN_2023)
                                             .withLocation(VALID_LOCATION_NUS).build();
@@ -76,7 +77,7 @@ public class EditAppointmentCommandTest {
                 .build());
 
         // Create expectedModel
-        Model expectedModel = new ModelManager(new AddressBook(), new UserPrefs());
+        Model expectedModel = new ModelManager(new AddressBook(), new UserPrefs(), new CommandHistory());
         Appointment editedAppointment = new AppointmentBuilder()
                 .withDateTime(VALID_DATETIME_21_JAN_2023)
                 .withLocation(VALID_LOCATION_WESTMALL).build();
@@ -100,7 +101,7 @@ public class EditAppointmentCommandTest {
     @Test
     public void execute_editAppointmentDateFieldOnly_success() {
         // Create actualModel
-        Model actualModel = new ModelManager(new AddressBook(), new UserPrefs());
+        Model actualModel = new ModelManager(new AddressBook(), new UserPrefs(), new CommandHistory());
         Appointment appointmentToEdit = new AppointmentBuilder()
                         .withDateTime(VALID_DATETIME_21_JAN_2023)
                         .withLocation(VALID_LOCATION_NUS).build();
@@ -109,7 +110,7 @@ public class EditAppointmentCommandTest {
                 .build());
 
         // Create expectedModel
-        Model expectedModel = new ModelManager(new AddressBook(), new UserPrefs());
+        Model expectedModel = new ModelManager(new AddressBook(), new UserPrefs(), new CommandHistory());
         Appointment editedAppointment = new AppointmentBuilder()
                 .withDateTime(VALID_DATETIME_23_JAN_2023)
                 .withLocation(VALID_LOCATION_NUS).build();
@@ -134,7 +135,7 @@ public class EditAppointmentCommandTest {
     @Test
     public void execute_editNonExistingAppointment_failure() {
         // Create testModel
-        Model testModel = new ModelManager(new AddressBook(), new UserPrefs());
+        Model testModel = new ModelManager(new AddressBook(), new UserPrefs(), new CommandHistory());
         Person testPerson = new PersonBuilder(MUSAB_WITH_NO_APPT).build();
         testModel.addPerson(testPerson);
 
@@ -152,7 +153,7 @@ public class EditAppointmentCommandTest {
 
     @Test
     public void execute_editAppointmentWithInvalidPersonIndex_failure() {
-        Model testModel = new ModelManager(new AddressBook(), new UserPrefs());
+        Model testModel = new ModelManager(new AddressBook(), new UserPrefs(), new CommandHistory());
 
         Index outOfBoundsPersonIndex =
                 Index.fromOneBased(testModel.getFilteredPersonList().size() + 1);
@@ -170,7 +171,7 @@ public class EditAppointmentCommandTest {
     }
     @Test
     public void execute_editAppointmentWithInvalidAppointmentIndex_failure() {
-        Model testModel = new ModelManager(new AddressBook(), new UserPrefs());
+        Model testModel = new ModelManager(new AddressBook(), new UserPrefs(), new CommandHistory());
         Person testPerson = new PersonBuilder(MUSAB_WITH_NO_APPT)
                 .withAppointment(new AppointmentBuilder()
                         .withDateTime(VALID_DATETIME_21_JAN_2023)
