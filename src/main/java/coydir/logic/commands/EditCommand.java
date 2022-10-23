@@ -175,7 +175,7 @@ public class EditCommand extends Command {
             if (totalNumberofLeaves > 0) {
                 temp = totalNumberofLeaves;
             }
-            return CollectionUtil.isAnyNonNull(name, phone, email, position, address, tags, temp);
+            return CollectionUtil.isAnyNonNull(name, phone, email, position, department, address, tags, temp);
         }
 
         public void setName(Name name) {

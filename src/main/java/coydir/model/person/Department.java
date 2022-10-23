@@ -10,18 +10,10 @@ import static java.util.Objects.requireNonNull;
 public class Department {
 
     public static final String MESSAGE_CONSTRAINTS =
-            "There are a select number of valid Departments. "
-            + "Input (case-insensitive) is invalid if it is not in this list: \n"
+            "Input for department (case-insensitive) is invalid if it is not in this list: \n"
             + Department.listValidDepartments();
 
-    /*
-     * The first character of the department must not be a whitespace.
-     * A second step is required, for checking against the list of valid departments.
-     * This second step is not conducted using the regex string.
-     */
-    public static final String VALIDATION_REGEX = "[^\\s].*";
-
-    private static final String[] VALID_DEPARTMENTS = {
+    private static final String[] VALID_DEPARTMENTS = new String[] {
         "Administration",
         "Board of Directors",
         "Customer Service",
@@ -57,11 +49,6 @@ public class Department {
      * Returns true if a given string is a valid department.
      */
     public static boolean isValidDepartment(String test) {
-        boolean hasNoWhitespacePrefix = test.matches(VALIDATION_REGEX);
-        if (!hasNoWhitespacePrefix) {
-            return false;
-        }
-
         String department = findValidDepartment(test);
         if (department == null) {
             return false;
@@ -82,10 +69,10 @@ public class Department {
     }
 
     private static String listValidDepartments() {
-        String allValidDepartments = "";
+        StringBuilder allValidDepartments = new StringBuilder();
         for (String department : VALID_DEPARTMENTS) {
             String toAdd = String.format("'%s', ", department);
-            allValidDepartments += toAdd;
+            allValidDepartments.append(toAdd);
         }
         return allValidDepartments.substring(0, allValidDepartments.length() - 2);
     }
@@ -106,5 +93,4 @@ public class Department {
     public int hashCode() {
         return this.value.hashCode();
     }
-
 }
