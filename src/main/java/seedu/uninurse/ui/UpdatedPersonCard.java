@@ -61,13 +61,13 @@ public class UpdatedPersonCard extends UiPart<Region> {
                 + "-fx-border-radius: 2;" + "-fx-border-color: black;");
         this.person = person;
 
-        name.setText(person.getName().fullName);
-        phone.setText(person.getPhone().value);
-        address.setText(person.getAddress().value);
-        email.setText(person.getEmail().value);
+        name.setText(person.getName().getValue());
+        phone.setText(person.getPhone().getValue());
+        address.setText(person.getAddress().getValue());
+        email.setText(person.getEmail().getValue());
         person.getTags().stream()
-                .sorted(Comparator.comparing(tag -> tag.tagName))
-                .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
+                .sorted(Comparator.comparing(tag -> tag.getValue()))
+                .forEach(tag -> tags.getChildren().add(new Label(tag.getValue())));
         header.setText(headerString);
         conditions.setText("Conditions:" + "\n" + "1. small syndrome with a really really long name"); //dummy values
         medications.setText("Medications:" + "\n" + "1. enlarger with also a really really long name"); //dummy values

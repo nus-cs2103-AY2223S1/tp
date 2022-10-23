@@ -8,12 +8,11 @@ import static seedu.uninurse.commons.util.AppUtil.checkArgument;
  * Guarantees: immutable; is valid as declared in {@link #isValidPhone(String)}
  */
 public class Phone {
-
-
     public static final String MESSAGE_CONSTRAINTS =
             "Phone numbers should only contain numbers, and it should be at least 3 digits long";
     public static final String VALIDATION_REGEX = "\\d{3,}";
-    public final String value;
+
+    private final String value;
 
     /**
      * Constructs a {@code Phone}.
@@ -23,7 +22,7 @@ public class Phone {
     public Phone(String phone) {
         requireNonNull(phone);
         checkArgument(isValidPhone(phone), MESSAGE_CONSTRAINTS);
-        value = phone;
+        this.value = phone;
     }
 
     /**
@@ -31,6 +30,10 @@ public class Phone {
      */
     public static boolean isValidPhone(String test) {
         return test.matches(VALIDATION_REGEX);
+    }
+
+    public String getValue() {
+        return value;
     }
 
     @Override
@@ -49,5 +52,4 @@ public class Phone {
     public int hashCode() {
         return value.hashCode();
     }
-
 }

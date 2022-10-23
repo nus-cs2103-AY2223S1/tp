@@ -58,13 +58,13 @@ public class PersonCard extends UiPart<Region> {
 
         this.patient = patient;
         id.setText(displayedIndex + ". ");
-        name.setText(patient.getName().fullName);
-        phone.setText(patient.getPhone().value);
-        address.setText(patient.getAddress().value);
-        email.setText(patient.getEmail().value);
+        name.setText(patient.getName().getValue());
+        phone.setText(patient.getPhone().getValue());
+        address.setText(patient.getAddress().getValue());
+        email.setText(patient.getEmail().getValue());
         patient.getTags().stream()
-                .sorted(Comparator.comparing(tag -> tag.tagName))
-                .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
+                .sorted(Comparator.comparing(tag -> tag.getValue()))
+                .forEach(tag -> tags.getChildren().add(new Label(tag.getValue())));
     }
 
     @Override

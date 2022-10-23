@@ -39,10 +39,10 @@ public class TruncatedPersonCard extends UiPart<Region> {
                 + "-fx-border-radius: 2;" + "-fx-border-color: black;");
         this.patient = patient;
         id.setText(displayedIndex + ". ");
-        name.setText(patient.getName().fullName);
+        name.setText(patient.getName().getValue());
         patient.getTags().stream()
-                .sorted(Comparator.comparing(tag -> tag.tagName))
-                .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
+                .sorted(Comparator.comparing(tag -> tag.getValue()))
+                .forEach(tag -> tags.getChildren().add(new Label(tag.getValue())));
     }
 
     @Override

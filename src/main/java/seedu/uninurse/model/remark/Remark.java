@@ -16,7 +16,7 @@ public class Remark {
      */
     public static final String VALIDATION_REGEX = "[^\\s].*";
 
-    public final String remark;
+    private final String remark;
 
     /**
      * Constructs a {@code Remark}.
@@ -34,6 +34,10 @@ public class Remark {
      */
     public static boolean isValidRemark(String remark) {
         return remark.matches(VALIDATION_REGEX);
+    }
+
+    public String getValue() {
+        return remark;
     }
 
     @Override
