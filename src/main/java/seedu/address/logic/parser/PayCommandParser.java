@@ -26,6 +26,8 @@ public class PayCommandParser implements Parser<PayCommand> {
         } catch (ParseException pe) {
             throw new ParseException(
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, PayCommand.MESSAGE_USAGE), pe);
+        } catch (ArrayIndexOutOfBoundsException e) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, PayCommand.MESSAGE_USAGE));
         }
     }
 

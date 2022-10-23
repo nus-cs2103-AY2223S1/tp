@@ -28,5 +28,11 @@ public class PayCommandParserTest {
 
         assertParseFailure(parser, "3 a",
                 String.format(MESSAGE_INVALID_COMMAND_FORMAT, PayCommand.MESSAGE_USAGE));
+
+        assertParseFailure(parser, "a 3",
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, PayCommand.MESSAGE_USAGE));
+
+        assertParseFailure(parser, "3",
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, PayCommand.MESSAGE_USAGE));
     }
 }
