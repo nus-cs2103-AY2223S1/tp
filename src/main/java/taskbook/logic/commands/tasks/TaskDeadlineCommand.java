@@ -12,7 +12,6 @@ import java.util.Set;
 
 import taskbook.logic.commands.CommandResult;
 import taskbook.logic.commands.exceptions.CommandException;
-import taskbook.logic.parser.CliSyntax;
 import taskbook.logic.parser.tasks.TaskCategoryParser;
 import taskbook.model.Model;
 import taskbook.model.person.Name;

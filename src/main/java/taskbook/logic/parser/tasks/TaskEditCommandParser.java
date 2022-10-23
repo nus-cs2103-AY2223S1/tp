@@ -8,6 +8,11 @@ import static taskbook.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 import static taskbook.logic.parser.CliSyntax.PREFIX_INDEX;
 import static taskbook.logic.parser.CliSyntax.PREFIX_TAG;
 
+import java.util.Collection;
+import java.util.Collections;
+import java.util.Optional;
+import java.util.Set;
+
 import taskbook.commons.core.Messages;
 import taskbook.commons.core.index.Index;
 import taskbook.logic.commands.tasks.TaskEditCommand;
@@ -19,11 +24,6 @@ import taskbook.logic.parser.exceptions.ParseException;
 import taskbook.model.tag.Tag;
 import taskbook.model.task.EditTaskDescriptor;
 import taskbook.model.task.enums.Assignment;
-
-import java.util.Collection;
-import java.util.Collections;
-import java.util.Optional;
-import java.util.Set;
 
 /**
  * Parses input arguments and creates a new TaskEditCommand object.
