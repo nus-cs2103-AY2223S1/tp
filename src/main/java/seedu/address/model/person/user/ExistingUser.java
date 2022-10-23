@@ -7,6 +7,7 @@ import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
+import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.module.CurrentModule;
 import seedu.address.model.module.Lesson;
 import seedu.address.model.module.PlannedModule;
@@ -103,6 +104,20 @@ public class ExistingUser extends User {
 
     public Set<Lesson> getLessons() {
         return Collections.unmodifiableSet(lessons);
+    }
+
+    /**
+     * Removes lesson from set of lessons.
+     *
+     * @param lesson to be removed.
+     * @throws CommandException No such lesson.
+     */
+    public void removeLesson(Lesson lesson) throws CommandException {
+        boolean isRemoved = lessons.remove(lesson);
+
+        if (!isRemoved) {
+            throw new CommandException("No such lesson exists!");
+        }
     }
 
     /**

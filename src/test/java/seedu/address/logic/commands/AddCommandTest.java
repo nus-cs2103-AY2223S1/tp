@@ -179,6 +179,11 @@ public class AddCommandTest {
         public void addLessonToUser(Lesson lesson) {
             throw new AssertionError("This method should not be called.");
         }
+
+        @Override
+        public void removeLessonToUser(Lesson lesson) {
+            throw new AssertionError("This method should not be called.");
+        }
     }
 
     /**
