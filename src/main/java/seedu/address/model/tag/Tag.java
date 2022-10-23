@@ -13,7 +13,7 @@ public class Tag {
     public static final String VALIDATION_REGEX = "\\p{Alnum}+";
 
     public final String tagName;
-    public int count;
+    private int count;
 
     /**
      * Constructs a {@code Tag}.
@@ -85,4 +85,7 @@ public class Tag {
         return '[' + tagName + ']';
     }
 
+    public int getCount() {
+        return count;
+    }
 }

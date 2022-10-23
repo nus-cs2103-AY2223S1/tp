@@ -2,7 +2,8 @@ package seedu.address.logic.commands.tag;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
-import static seedu.address.model.Model.*;
+import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
+import static seedu.address.model.Model.PREDICATE_SHOW_ALL_TASKS;
 
 import java.util.HashSet;
 import java.util.List;
@@ -126,6 +127,10 @@ public class DeleteTagCommand extends Command {
 
             model.setTask(taskToEdit, editedTask);
             model.updateFilteredTaskList(PREDICATE_SHOW_ALL_TASKS);
+            for (String string : tagStrings) {
+                Tag toDelete = new Tag(string);
+                model.decreaseTagCount(toDelete);
+            }
             return new CommandResult(String.format(MESSAGE_DELETE_TAG_SUCCESS,
                     editTaskDescriptor.getTags().orElse(new HashSet<>())));
         }

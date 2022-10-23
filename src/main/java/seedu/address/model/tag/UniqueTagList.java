@@ -137,6 +137,11 @@ public class UniqueTagList implements Iterable<Tag> {
         return true;
     }
 
+    /**
+     * Takes a given tag and looks for the matching tag in the list, then adds 1 to its count.
+     * Since tags are unique, there should only be 1 match.
+     * @param tag chosen tag
+     */
     public void addTagCount(Tag tag) {
         for (Tag currTag: internalList) {
             if (tag.equals(currTag)) {
@@ -146,11 +151,16 @@ public class UniqueTagList implements Iterable<Tag> {
         }
     }
 
+    /**
+     * Takes a given tag and looks for the matching tag in the list, then subtracts 1 from its count.
+     * Since tags are unique, there should only be 1 match.
+     * @param toDelete chosen tag
+     */
     public void decreaseTagCount(Tag toDelete) {
         for (Tag currTag: internalList) {
             if (toDelete.equals(currTag)) {
                 currTag.removeFromCount();
-                if (currTag.count == 0) {
+                if (currTag.getCount() == 0) {
                     remove(currTag);
                 }
                 break;
