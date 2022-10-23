@@ -262,6 +262,12 @@ public class ModelManager implements Model {
         addressBook.sortTaskList(criteria);
     }
 
+    @Override
+    public void unlinkTasksFromExam(Exam exam) {
+        requireNonNull(exam);
+        addressBook.unlinkTasksFromExam(exam);
+    }
+
 
     //================================Exam Commands=====================================
     @Override
