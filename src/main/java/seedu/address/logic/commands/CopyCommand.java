@@ -40,7 +40,6 @@ public class CopyCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
 
         List<Person> lastShownList = model.getFilteredPersonList();
-
         if (index.getZeroBased() >= lastShownList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
         }
@@ -50,12 +49,14 @@ public class CopyCommand extends Command {
         StringSelection stringSelection = new StringSelection(person.toClipboardString());
         Clipboard clipboard = Toolkit.getDefaultToolkit().getSystemClipboard();
         clipboard.setContents(stringSelection, null);
-        //final Clipboard clipboard = Clipboard.getSystemClipboard();
-        //final ClipboardContent url = new ClipboardContent();
-        //url.putString(person.toClipboardString());
-        //clipboard.setContent(url);
 
         return new CommandResult(String.format(COPY_MESSAGE_SUCCESS, person.getName()));
+    }
 
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || ((other instanceof CopyCommand // instanceof handles nulls
+                && index.equals(((CopyCommand) other).index))); //index check
     }
 }

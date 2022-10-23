@@ -27,5 +27,6 @@ public class CopyCommandParser implements Parser<CopyCommand> {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, CopyCommand.MESSAGE_USAGE), pe);
         }
     }
+
 }
 
