@@ -33,7 +33,7 @@ public class Team {
 
     /**
      * Creates a team with certain preset {@code task} and {@code member}.
-     * 
+     *
      * @param name A valid team name.
      * @param tasks A list with tasks.
      * @param members A list of team members.
@@ -46,7 +46,7 @@ public class Team {
 
     /**
      * Creates a team with certain preset {@code task} and {@code member}.
-     * 
+     *
      * @param name A valid team name.
      * @param tasks A UniqueTaskList.
      * @param members A UniquePersonList.
