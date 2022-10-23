@@ -22,7 +22,7 @@ import seedu.foodrem.testutil.MessageToUser;
 
 class DecrementCommandTest {
 
-    private static final String EXPECTED_SUCCESS_FORMAT = "Decremented Item: %1$s";
+    private static final String EXPECTED_SUCCESS_FORMAT = "Decremented Item:\n%1$s";
 
     private final Model model = new ModelManager(getTypicalFoodRem(), new UserPrefs());
 

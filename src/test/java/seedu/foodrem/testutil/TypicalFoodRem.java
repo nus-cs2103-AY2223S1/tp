@@ -1,9 +1,5 @@
 package seedu.foodrem.testutil;
 
-import static seedu.foodrem.testutil.TypicalItems.getTypicalItems;
-import static seedu.foodrem.testutil.TypicalItems.getTypicalItemsWithoutTags;
-import static seedu.foodrem.testutil.TypicalTags.getTypicalTags;
-
 import seedu.foodrem.model.FoodRem;
 import seedu.foodrem.model.item.Item;
 import seedu.foodrem.model.tag.Tag;
@@ -17,12 +13,12 @@ public class TypicalFoodRem {
      */
     public static FoodRem getTypicalFoodRem() {
         FoodRem foodRem = new FoodRem();
-        for (Item item : getTypicalItems()) {
+        for (Item item : TypicalItems.getTypicalItems()) {
             Item i = new ItemBuilder(item).build();
             foodRem.addItem(i);
         }
 
-        for (Tag tag : getTypicalTags()) {
+        for (Tag tag : TypicalTags.getTypicalTags()) {
             foodRem.addTag(tag);
         }
         return foodRem;
@@ -33,7 +29,7 @@ public class TypicalFoodRem {
      */
     public static FoodRem getFoodRemWithTypicalItems() {
         FoodRem foodRem = new FoodRem();
-        for (Item item : getTypicalItems()) {
+        for (Item item : TypicalItems.getTypicalItems()) {
             foodRem.addItem(item);
         }
 
@@ -45,7 +41,7 @@ public class TypicalFoodRem {
      */
     public static FoodRem getFoodRemWithTypicalTags() {
         FoodRem foodRem = new FoodRem();
-        for (Tag tag : getTypicalTags()) {
+        for (Tag tag : TypicalTags.getTypicalTags()) {
             foodRem.addTag(tag);
         }
 
@@ -57,7 +53,7 @@ public class TypicalFoodRem {
      */
     public static FoodRem getFoodRemWithTypicalItemsWithoutTags() {
         FoodRem foodRem = new FoodRem();
-        for (Item item : getTypicalItemsWithoutTags()) {
+        for (Item item : TypicalItems.getTypicalItemsWithoutTags()) {
             foodRem.addItem(item);
         }
 

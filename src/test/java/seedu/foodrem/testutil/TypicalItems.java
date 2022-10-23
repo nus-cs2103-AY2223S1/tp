@@ -1,11 +1,10 @@
 package seedu.foodrem.testutil;
 
-import static seedu.foodrem.logic.commands.CommandTestUtil.VALID_TAG_NAME_VEGETABLES;
-
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import seedu.foodrem.logic.commands.CommandTestUtil;
 import seedu.foodrem.model.item.Item;
 
 /**
@@ -21,7 +20,7 @@ public class TypicalItems {
             .withItemExpiryDate("11-11-2022")
             .withItemPrice("10.30")
             .withItemRemarks("For Mashed Potatoes")
-            .withTags(VALID_TAG_NAME_VEGETABLES).build();
+            .withTags(CommandTestUtil.VALID_TAG_NAME_VEGETABLES).build();
 
     public static final Item CUCUMBERS = new ItemBuilder()
             .withItemName("Cucumbers")
@@ -31,11 +30,11 @@ public class TypicalItems {
             .withItemExpiryDate("12-12-2022")
             .withItemPrice("8")
             .withItemRemarks("For Salad")
-            .withTags(VALID_TAG_NAME_VEGETABLES).build();
+            .withTags(CommandTestUtil.VALID_TAG_NAME_VEGETABLES).build();
 
     public static final Item CARROTS = new ItemBuilder()
             .withItemName("Carrots")
-            .withTags(VALID_TAG_NAME_VEGETABLES).build();
+            .withTags(CommandTestUtil.VALID_TAG_NAME_VEGETABLES).build();
 
     public static final Item POTATOES_WITHOUT_TAG = new ItemBuilder()
             .withItemName("Potatoes")

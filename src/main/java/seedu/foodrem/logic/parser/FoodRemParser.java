@@ -1,11 +1,9 @@
 package seedu.foodrem.logic.parser;
 
-import static seedu.foodrem.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.foodrem.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
-
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import seedu.foodrem.commons.core.Messages;
 import seedu.foodrem.commons.enums.CommandType;
 import seedu.foodrem.logic.commands.Command;
 import seedu.foodrem.logic.commands.generalcommands.ExitCommand;
@@ -50,7 +48,7 @@ public class FoodRemParser {
         final Matcher matcher = BASIC_COMMAND_FORMAT.matcher(userInput.trim());
 
         if (!matcher.matches()) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, HelpCommand.getUsage()));
+            throw new ParseException(String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT, HelpCommand.getUsage()));
         }
 
         final String commandWordString = matcher.group("commandWord");
@@ -97,7 +95,7 @@ public class FoodRemParser {
         case LIST_TAG_COMMAND:
             return new ListTagCommand();
         default:
-            throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
+            throw new ParseException(Messages.MESSAGE_UNKNOWN_COMMAND);
         }
     }
 }

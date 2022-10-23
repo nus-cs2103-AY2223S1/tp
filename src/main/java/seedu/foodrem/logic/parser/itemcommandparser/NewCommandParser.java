@@ -1,10 +1,10 @@
 package seedu.foodrem.logic.parser.itemcommandparser;
 
-import static seedu.foodrem.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.foodrem.logic.parser.ParserUtil.arePrefixesPresent;
 
 import java.util.HashSet;
 
+import seedu.foodrem.commons.core.Messages;
 import seedu.foodrem.logic.commands.itemcommands.NewCommand;
 import seedu.foodrem.logic.parser.ArgumentMultimap;
 import seedu.foodrem.logic.parser.ArgumentTokenizer;
@@ -45,7 +45,7 @@ public class NewCommandParser implements Parser<NewCommand> {
 
         if (!arePrefixesPresent(argMultimap, CliSyntax.PREFIX_NAME)
                 || !argMultimap.getPreamble().isEmpty()) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, NewCommand.getUsage()));
+            throw new ParseException(String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT, NewCommand.getUsage()));
         }
 
         ItemName name = ParserUtil.parseItemName(argMultimap.getValue(CliSyntax.PREFIX_NAME).get());

@@ -1,9 +1,8 @@
 package seedu.foodrem.logic.parser.itemcommandparser;
 
-import static seedu.foodrem.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-
 import java.util.Arrays;
 
+import seedu.foodrem.commons.core.Messages;
 import seedu.foodrem.logic.commands.itemcommands.FindCommand;
 import seedu.foodrem.logic.parser.Parser;
 import seedu.foodrem.logic.parser.exceptions.ParseException;
@@ -24,7 +23,7 @@ public class FindCommandParser implements Parser<FindCommand> {
         String trimmedArgs = args.trim();
         if (trimmedArgs.isEmpty()) {
             throw new ParseException(
-                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.getUsage()));
+                    String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.getUsage()));
         }
 
         String[] nameKeywords = trimmedArgs.split("\\s+");

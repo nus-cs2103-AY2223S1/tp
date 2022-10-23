@@ -2,7 +2,6 @@ package seedu.foodrem.logic.commands.itemcommands;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.foodrem.commons.enums.CommandType.INCREMENT_COMMAND;
-import static seedu.foodrem.model.Model.PREDICATE_SHOW_ALL_ITEMS;
 
 import java.util.List;
 
@@ -74,7 +73,7 @@ public class IncrementCommand extends Command {
         Item incrementedItem = createIncrementedItem(itemToIncrement, quantity);
 
         model.setItem(itemToIncrement, incrementedItem);
-        model.updateFilteredItemList(PREDICATE_SHOW_ALL_ITEMS);
+        model.updateFilteredItemList(Model.PREDICATE_SHOW_ALL_ITEMS);
         return new CommandResult(String.format(MESSAGE_SUCCESS, incrementedItem));
     }
 

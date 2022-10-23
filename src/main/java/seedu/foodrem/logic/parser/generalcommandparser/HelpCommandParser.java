@@ -1,9 +1,6 @@
 package seedu.foodrem.logic.parser.generalcommandparser;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.foodrem.logic.commands.generalcommands.HelpCommand.NOT_A_COMMAND;
-import static seedu.foodrem.logic.commands.generalcommands.HelpCommand.getCommandHelpMessage;
-import static seedu.foodrem.logic.commands.generalcommands.HelpCommand.getGeneralHelpMessage;
 
 import seedu.foodrem.commons.enums.CommandType;
 import seedu.foodrem.logic.commands.generalcommands.HelpCommand;
@@ -29,14 +26,14 @@ public class HelpCommandParser implements Parser<HelpCommand> {
         String commandWordString = argMultimap.getPreamble();
 
         if (commandWordString.isBlank()) {
-            return new HelpCommand(getGeneralHelpMessage());
+            return new HelpCommand(HelpCommand.getGeneralHelpMessage());
         }
 
         CommandType commandType = CommandType.parseWord(commandWordString);
         if (commandType.equals(CommandType.DEFAULT)) {
-            return new HelpCommand(String.format(NOT_A_COMMAND, commandWordString));
+            return new HelpCommand(String.format(HelpCommand.NOT_A_COMMAND, commandWordString));
         }
 
-        return new HelpCommand(getCommandHelpMessage(commandType));
+        return new HelpCommand(HelpCommand.getCommandHelpMessage(commandType));
     }
 }

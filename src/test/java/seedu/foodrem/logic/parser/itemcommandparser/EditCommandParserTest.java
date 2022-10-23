@@ -1,25 +1,23 @@
 package seedu.foodrem.logic.parser.itemcommandparser;
 
-import static seedu.foodrem.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.foodrem.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.foodrem.logic.parser.CommandParserTestUtil.assertParseSuccess;
-import static seedu.foodrem.testutil.TypicalIndexes.INDEX_FIRST_ITEM;
-import static seedu.foodrem.testutil.TypicalIndexes.INDEX_SECOND_ITEM;
-import static seedu.foodrem.testutil.TypicalIndexes.INDEX_THIRD_ITEM;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.foodrem.commons.core.Messages;
 import seedu.foodrem.commons.core.index.Index;
 import seedu.foodrem.logic.commands.CommandTestUtil;
 import seedu.foodrem.logic.commands.itemcommands.EditCommand;
 import seedu.foodrem.logic.commands.itemcommands.EditCommand.EditItemDescriptor;
 import seedu.foodrem.testutil.EditItemDescriptorBuilder;
 import seedu.foodrem.testutil.MessageToUser;
+import seedu.foodrem.testutil.TypicalIndexes;
 
 public class EditCommandParserTest {
 
     private static final String MESSAGE_INVALID_FORMAT =
-            String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditCommand.getUsage());
+            String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT, EditCommand.getUsage());
 
     private final EditCommandParser parser = new EditCommandParser();
 
@@ -100,7 +98,7 @@ public class EditCommandParserTest {
 
     @Test
     public void parse_allFieldsSpecified_success() {
-        Index targetIndex = INDEX_SECOND_ITEM;
+        Index targetIndex = TypicalIndexes.INDEX_SECOND_ITEM;
         String userInput = targetIndex.getOneBased()
                 + CommandTestUtil.VALID_DESC_ITEM_NAME_CUCUMBERS
                 + CommandTestUtil.VALID_DESC_ITEM_QUANTITY_CUCUMBERS
@@ -129,7 +127,7 @@ public class EditCommandParserTest {
 
     @Test
     public void parse_someFieldsSpecified_success() {
-        Index targetIndex = INDEX_FIRST_ITEM;
+        Index targetIndex = TypicalIndexes.INDEX_FIRST_ITEM;
         String userInput = targetIndex.getOneBased()
                 + CommandTestUtil.VALID_DESC_ITEM_NAME_CUCUMBERS
                 + CommandTestUtil.VALID_DESC_ITEM_QUANTITY_POTATOES;
@@ -144,7 +142,7 @@ public class EditCommandParserTest {
     @Test
     public void parse_oneFieldSpecified_success() {
         // name
-        Index targetIndex = INDEX_THIRD_ITEM;
+        Index targetIndex = TypicalIndexes.INDEX_THIRD_ITEM;
         String userInput = targetIndex.getOneBased() + CommandTestUtil.VALID_DESC_ITEM_NAME_POTATOES;
         EditItemDescriptor descriptor = new EditItemDescriptorBuilder()
                 .withItemName(CommandTestUtil.VALID_ITEM_NAME_POTATOES).build();
@@ -189,7 +187,7 @@ public class EditCommandParserTest {
 
     @Test
     public void parse_multipleRepeatedFields_acceptsLast() {
-        Index targetIndex = INDEX_FIRST_ITEM;
+        Index targetIndex = TypicalIndexes.INDEX_FIRST_ITEM;
         String userInput = targetIndex.getOneBased()
                 + CommandTestUtil.VALID_DESC_ITEM_NAME_CUCUMBERS
                 + CommandTestUtil.VALID_DESC_ITEM_QUANTITY_CUCUMBERS
@@ -219,7 +217,7 @@ public class EditCommandParserTest {
     @Test
     public void parse_invalidValueFollowedByValidValue_success() {
         // no other valid values specified
-        Index targetIndex = INDEX_FIRST_ITEM;
+        Index targetIndex = TypicalIndexes.INDEX_FIRST_ITEM;
         String userInput = targetIndex.getOneBased()
                 + CommandTestUtil.INVALID_DESC_ITEM_NAME_POTATOES
                 + CommandTestUtil.VALID_DESC_ITEM_NAME_POTATOES;
@@ -247,15 +245,4 @@ public class EditCommandParserTest {
         expectedCommand = new EditCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
     }
-
-    //@Test
-    //public void parse_resetTags_success() {
-    //    Index targetIndex = INDEX_THIRD_ITEM;
-    //    String userInput = targetIndex.getOneBased() + TAG_EMPTY;
-    //
-    //    EditItemDescriptor descriptor = new EditItemDescriptorBuilder().withTags().build();
-    //    EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
-    //
-    //    assertParseSuccess(parser, userInput, expectedCommand);
-    //}
 }

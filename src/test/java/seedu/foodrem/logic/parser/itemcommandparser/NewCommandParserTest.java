@@ -1,17 +1,17 @@
 package seedu.foodrem.logic.parser.itemcommandparser;
 
-import static seedu.foodrem.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.foodrem.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.foodrem.logic.parser.CommandParserTestUtil.assertParseSuccess;
-import static seedu.foodrem.testutil.TypicalItems.CUCUMBERS_WITHOUT_TAG;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.foodrem.commons.core.Messages;
 import seedu.foodrem.logic.commands.CommandTestUtil;
 import seedu.foodrem.logic.commands.itemcommands.NewCommand;
 import seedu.foodrem.model.item.Item;
 import seedu.foodrem.testutil.ItemBuilder;
 import seedu.foodrem.testutil.MessageToUser;
+import seedu.foodrem.testutil.TypicalItems;
 
 public class NewCommandParserTest {
 
@@ -19,7 +19,7 @@ public class NewCommandParserTest {
 
     @Test
     public void parse_allFieldsPresent_success() {
-        Item expectedItem = new ItemBuilder(CUCUMBERS_WITHOUT_TAG).build();
+        Item expectedItem = new ItemBuilder(TypicalItems.CUCUMBERS_WITHOUT_TAG).build();
 
         // whitespace only preamble
         assertParseSuccess(parser,
@@ -100,7 +100,7 @@ public class NewCommandParserTest {
 
     @Test
     public void parse_compulsoryFieldMissing_failure() {
-        String expectedMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, NewCommand.getUsage());
+        String expectedMessage = String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT, NewCommand.getUsage());
 
         // missing name prefix
         assertParseFailure(parser,
@@ -197,6 +197,6 @@ public class NewCommandParserTest {
                         + CommandTestUtil.VALID_DESC_ITEM_BOUGHT_DATE_CUCUMBERS
                         + CommandTestUtil.VALID_DESC_ITEM_EXPIRY_DATE_CUCUMBERS
                         + CommandTestUtil.VALID_DESC_ITEM_PRICE_CUCUMBERS,
-                String.format(MESSAGE_INVALID_COMMAND_FORMAT, NewCommand.getUsage()));
+                String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT, NewCommand.getUsage()));
     }
 }
