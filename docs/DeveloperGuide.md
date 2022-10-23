@@ -187,7 +187,7 @@ The status field, by default, will be set to `Progress`. The `InTrack#addInterns
 
 #### Displaying of result
 
-1. Finally, the `AddCommand` creates a `CommandResult` with a success message and returns it to the `Logic Manager`
+1. Finally, the `AddCommand` creates a `CommandResult` with a success message and returns it to the `LogicManager`
    to complete the command execution. The GUI would also be updated with the change of status.
 
 The following sequence diagram shows how the `add` command works:
@@ -244,7 +244,11 @@ target `Internship` object with the updated one.
 
 #### Displaying of result
 
+<<<<<<< HEAD
 1. Finally, the `StatusCommand` creates a `CommandResult` with a success message and returns it to the `Logic Manager`
+=======
+1. Finally, the `StatusCommand` creates a `CommandResult` with a success message and returns it to the `LogicManager` 
+>>>>>>> df34694b2161c051f8a9d2889c64f2cb72ef4b49
 to complete the command execution. The GUI would also be updated with the change of status.
 
 The following sequence diagram shows how the `status` command works:
@@ -263,6 +267,94 @@ each new `Internship` instead of requiring the user to provide one initially, sa
 a prefix for the `Status` field and the `edit` command will not work in this case. Having a separate `status` command
 allows for the format to be kept short and simple which further increases the ease of updating the status of internship
 applications.
+
+### Add internship application task feature
+
+#### About this feature
+
+The add internship application task feature allows users to add a task associated to an internship application 
+in the tracker via the command `addtask INDEX TASKNAME /at TASKTIME`, where `INDEX` must be a positive integer within
+the list, `TASKNAME` must not be an empty string, and `TASKTIME` must be in the format `dd-MM-yyyy HH:mm`.
+
+#### How it is implemented
+
+The `addtask` command is facilitated by the `AddTaskCommand` and `AddTaskCommandParser`. It uses the 
+`List#get(int index)` on the list of internship applications returned from the `Model#getFilteredInternshipList()` to
+get the target `Internship` object to be updated. A new `Internship` object is then created with the new `Task` updated
+in the `List<Task>`. The `InTrack#setInternship(Internship target, Internship editedInternship)` which is exposed in the
+`Model` interface as `Model#setInternship(Internship target, Internship editedInternship)` is called to replace the
+target `Internship` object with the updated one.
+
+#### Parsing user input
+
+1. The user inputs the `addtask` command.
+2. The `InTrackParser` processes the input and creates a new `AddTaskCommandParser`.
+3. The `AddTaskCommandParser` then calls `ParserUtil#parseIndex(String oneBasedIndex)` to check for the validity of
+`INDEX`. If `INDEX` is absent or invalid, a `ParseException` would be thrown.
+4. The `AddTaskCommandParser` then checks for the validity of `TASKNAME` and `TASKTIME`. If either `TASKNAME` or
+`TASKTIME` is absent or invalid, a `ParseException` would be thrown.
+5. The `AddTaskCommandParser` then creates the `AddTaskCommand` based on the processed input.
+
+#### Command execution
+
+1. The `LogicManager` executes the `AddTaskCommand`.
+2. The `AddTaskCommand` calls the `Model#getFilteredPersonList()` and `List#get(int index)` to get the target `Internship`
+   object to be updated based on the provided `INDEX`.
+3. The `AddTaskCommand` then creates a new `Internship` object with the same variables as the target and adds the new
+task to the `List<Task>`.
+4. The `AddTaskCommand` then calls `InTrack#setInternship(Internship target, Internship editedInternship)` to replace the
+   target `Internship` object with the updated one.
+
+#### Displaying of result
+
+1. Finally, the `AddTaskCommand` creates a `CommandResult` with a success message and returns it to the `LogicManager`
+   to complete the command execution. The GUI would also be updated with the new task added.
+
+The following sequence diagram shows how the `addtask` command works:
+![AddTaskSequenceDiagram](images/AddTaskSequenceDiagram.png)
+
+The following activity diagram shows what happens when a user executes a `addtask` command:
+![AddTaskActivityDiagram](images/AddTaskActivityDiagram.png)
+
+### Find internship application by company name feature
+
+#### About this feature
+
+The find internship application by company name feature allows users to query the list of added internship applications 
+for applications that match the desired company name via the command `findn COMPANYNAME`, where `COMPANYNAME` must not 
+be an empty string.
+
+#### How it is implemented
+
+The `findn` command is facilitated by the `FindNameCommand`, `FindNameCommandParser` and the `NameContainsKeywordsPredicate`. 
+It uses `Model#updateFilteredInternshipList(Predicate<Internship> predicate)` to apply the `NameContainsKeywordsPredicate` 
+in order to produce a filtered list containing only entries whose names correspond to `COMPANYNAME`.
+
+#### Parsing user input
+
+1. The user inputs the `findn` command.
+2. The `InTrackParser` processes the input and creates a new `FindNameCommandParser`.
+3. The `FindNameCommandParser` then trims the input to remove whitespace. If the input is an empty string, a `ParseException` 
+would be thrown.
+4. The `FindNameCommandParser` then creates the new `FindNameCommand` based on the processed input.
+
+#### Command execution
+
+1. The `LogicManager` executes the `FindNameCommand`.
+2. The `FindNameCommand` calls the `Model#updateFilteredInternshipList(Predicate<Internship> predicate)` to update the 
+current internship list to only show internship applications matching the provided `COMPANYNAME`.
+
+#### Displaying of result
+
+1. Finally, the `FindNameCommand` creates a `CommandResult` containing the number of matching internship applications 
+and returns it to the `LogicManager` to complete the command execution. The GUI would also be updated with the change in 
+list.
+
+The following sequence diagram shows how the `findn` command works:
+![FindNameSequenceDiagram](images/FindNameSequenceDiagram.png)
+
+The following activity diagram shows what happens when a user executes a `findn` command:
+![FindNameActivityDiagram](images/FindNameActivityDiagram.png)
 
 ### \[Proposed\] Undo/redo feature
 
