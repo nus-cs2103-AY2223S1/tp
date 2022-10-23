@@ -1,10 +1,10 @@
 package seedu.address.model.person;
 
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 import static seedu.address.testutil.Assert.assertThrows;
 
 import org.junit.jupiter.api.Test;
+import seedu.address.logic.commands.exceptions.CommandException;
 
 
 public class MoneyTest {
@@ -41,5 +41,45 @@ public class MoneyTest {
 
         Money moneyWithPositiveAmount = new Money(50);
         assertTrue(moneyWithPositiveAmount.isGreaterThanZero());
+    }
+
+    @Test
+    public void moneySummationTest() {
+        Money moneyWithZeroAmount = new Money(0);
+        Money moneyWithFiveAmount = new Money(5);
+        Money moneyWithTenAmount = new Money(10);
+        Money moneyWithMaximumValue = new Money(Integer.MAX_VALUE);
+
+        try {
+            Money zeroPlusFive = moneyWithZeroAmount.addTo(moneyWithFiveAmount);
+            Money tenPlusFive = moneyWithTenAmount.addTo(moneyWithFiveAmount);
+            assertEquals(new Money(5), zeroPlusFive);
+            assertEquals(new Money(15), tenPlusFive);
+        } catch (CommandException e) {
+            // Should not throw an error because 5 and 10 is still smaller than the maximum int value
+            assert false;
+        }
+
+        assertThrows(CommandException.class, () -> moneyWithMaximumValue.addTo(moneyWithFiveAmount));
+    }
+
+    @Test
+    public void moneySubtractionTest() {
+        Money moneyWithZeroAmount = new Money(0);
+        Money moneyWithFiveAmount = new Money(5);
+        Money moneyWithTenAmount = new Money(10);
+
+        try {
+            Money fiveSubtractZero = moneyWithFiveAmount.subtract(moneyWithZeroAmount);
+            Money tenSubtractFive = moneyWithTenAmount.subtract(moneyWithFiveAmount);
+            assertEquals(new Money(5), fiveSubtractZero);
+            assertEquals(new Money(5), tenSubtractFive);
+        } catch (CommandException e) {
+            // Should not throw an error
+            assert false;
+        }
+
+        // Expected to throw an error because -5 is negative
+        assertThrows(CommandException.class, () -> moneyWithZeroAmount.subtract(moneyWithFiveAmount));
     }
 }

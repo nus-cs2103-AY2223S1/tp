@@ -48,7 +48,7 @@ public class Money {
     }
 
     /**
-     * Computes the subtraction of a predefined value and the current value.
+     * Computes the sum of a predefined value and the current value.
      *
      * @param amountToAdd the money to be added.
      * @return Money that consists of the sum of the 2 amounts.
