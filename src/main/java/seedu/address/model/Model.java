@@ -6,6 +6,7 @@ import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.appointment.Appointment;
 import seedu.address.model.bill.Bill;
 import seedu.address.model.patient.Name;
@@ -199,4 +200,29 @@ public interface Model {
      * @throws NullPointerException if {@code comparator} is null.
      */
     void sortBills(Comparator<Bill> comparator, boolean isAscending);
+
+    /**
+     * Updates previous state of the address book.
+     */
+    void updateAddressBookHistory();
+
+    /**
+     * Updates state of the address book when undo command is executed.
+     */
+    void updateRedoAddressBookHistory();
+
+    /**
+     * Undo last change made to state of address book.
+     */
+    void undo() throws CommandException;
+
+    /**
+     * Redo last change made to state of address book.
+     */
+    void redo() throws CommandException;
+
+    /**
+     * Deletes latest addition in the ArrayList of AddressBook.
+     */
+    void deleteAddressBookHistory();
 }

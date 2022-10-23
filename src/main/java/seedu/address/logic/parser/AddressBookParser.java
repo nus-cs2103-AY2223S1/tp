@@ -22,12 +22,14 @@ import seedu.address.logic.commands.FindAppointmentCommand;
 import seedu.address.logic.commands.FindPatientCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
+import seedu.address.logic.commands.RedoCommand;
 import seedu.address.logic.commands.RemarkCommand;
 import seedu.address.logic.commands.SelectAppointmentCommand;
 import seedu.address.logic.commands.SelectPatientCommand;
 import seedu.address.logic.commands.SortAppointmentCommand;
 import seedu.address.logic.commands.SortBillCommand;
 import seedu.address.logic.commands.SortPatientCommand;
+import seedu.address.logic.commands.UndoCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 /**
@@ -56,7 +58,11 @@ public class AddressBookParser {
         final String commandWord = matcher.group("commandWord");
         final String arguments = matcher.group("arguments");
 
-        if (SortPatientCommand.COMMAND_WORD.matches(commandWord)) {
+        if (UndoCommand.COMMAND_WORD.matches(commandWord)) {
+            return new UndoCommandParser().parse(arguments);
+        } else if (RedoCommand.COMMAND_WORD.matches(commandWord)) {
+            return new RedoCommandParser().parse(arguments);
+        } else if (SortPatientCommand.COMMAND_WORD.matches(commandWord)) {
             return new SortPatientCommandParser().parse(arguments);
         } else if (SortAppointmentCommand.COMMAND_WORD.matches(commandWord)) {
             return new SortAppointmentCommandParser().parse(arguments);
