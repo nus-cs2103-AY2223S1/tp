@@ -1,2 +1,2 @@
 <!-- markdownlint-disable-file first-line-h1 -->
-`find KEYWORD [KEYWORD]...`
+`rmk 1 r/For Party`

@@ -1,2 +1,19 @@
 <!-- markdownlint-disable-file first-line-h1 -->
-The ITEM_NAME is the term we use to identify an item.<br>ITEM_NAME is a short text.<br/><br><strong>IMPORTANT</strong>: <br>Only English characters, numbers, space, and the following symbols are accepted:<br>~`!@#$%^&amp;*()_-+={}[]:;”’&lt;&gt;,.?<br>There is a limit of 150 characters. Below is a text that is 200 characters long:<br>“Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum vitae purus at nisi aliquet convallis. Aliquam scelerisque in erat ac sodales sed.”<br>ITEM_NAME is unique<br>ITEM_NAME cannot be blank <br>Leading and trailing spaces will be trimmed<br><br/><strong>Valid Examples</strong>:<br>Potatoes<br>Tomatoes! (Sauce :D)?<br>     <br><br/><strong>Invalid Examples:</strong><br>黃瓜<br>Carrots/Cucumbers<br>Carrots|Cucumbers<br>Carrots\Cucumbers
+The ITEM_NAME is the term we use to identify an item.
+
+**Note:**
+- ITEM_NAME is a short text
+- ITEM_NAME should only contain alphanumeric characters and spaces
+- ITEM_NAME has a limit of 200 characters
+- ITEM_NAME is unique and case-sensitive
+- ITEM_NAME will have leading and trailing spaces trimmed
+- ITEM_NAME cannot be blank
+
+**Valid Examples:**
+- Potatoes
+- Tomatoes 8 
+
+**Invalid Examples:**
+- 黃瓜
+- Carrots & Cucumbers
+- Carrot's

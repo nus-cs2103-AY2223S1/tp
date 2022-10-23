@@ -1,2 +1,20 @@
 <!-- markdownlint-disable-file first-line-h1 -->
-The BOUGHT_DATE is an optional date indicating when the item was bought.<br>BOUGHT_DATE is a date in one of the following formats:<br>yyyy-mm-dd<br>dd-mm-yyyy<br/><br><strong>IMPORTANT</strong>:<br>We only accept years less than 10000<br><br/><strong>Valid Examples</strong>:<br>2022-09-01<br>01-09-2022<br>1-9-2022<br><br/><strong>Invalid Examples:</strong><br>01-11-20222<br>01/09/2022<br>40-40-2022<br>1-9-22<br>1-nov-2202
+The BOUGHT_DATE is the date indicating when an item was bought.
+
+**Note:**
+- BOUGHT_DATE must be in the following format (dd-mm-yyyy)
+- BOUGHT_DATE can only have years between 1900 and 2300 inclusive
+
+**Valid Examples:**
+- 01-01-2022
+- 28-09-2022
+- 11-11-2022
+
+**Invalid Examples:**
+- 1-1-2022
+- 01-1-2022
+- 1-01-2022
+- 01/09/2022
+- 40-40-2022
+- 1-9-22
+- 1-nov-2202

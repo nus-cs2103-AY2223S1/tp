@@ -17,7 +17,9 @@ This User Guide provides an in-depth documentation to help integrate FoodRem int
 
 ## Features
 
-There are two core features that FoodRem provides: The Inventory Management System, and Inventory Analysis.
+There are two core features that FoodRem provides:
+- Inventory Management System
+- Inventory Analysis Tool
 
 <!-- TODO: Add links to e.g. name, bought date, expiry date, etc. -->
 
@@ -26,8 +28,9 @@ There are two core features that FoodRem provides: The Inventory Management Syst
 FoodRem allows you to track your inventory during your daily operations.
 
 1. Quickly **create, view, edit, and remove** your available inventory.
-1. **Sort** and **filter** your inventory by name, bought date, expiry date, quantity, unit and cost.
-1. **Tag** items in your inventory using an efficient tagging system where you can create, rename and delete existing tags. You can then filter and sort items according to these tags.
+1. **Sort** your inventory items by name, quantity, unit, bought date, expiry date, price and remarks.
+1. **Tag** items in your inventory using an efficient tagging system where you can create, rename and delete existing tags.
+1. **Filter** your inventory items by name and tag.
 
 ### Inventory Analysis
 
@@ -41,35 +44,37 @@ FoodRem tracks data that helps you streamline your business decisions through **
 
 Thank you for choosing FoodRem! We are delighted to have you as a user and aim to serve you well.
 
-We **highly recommend** that you read through the User Guide in a **sequential order** up until the section [Features](#features), where you can find all the information you need before using all commands.
+We **highly recommend** that you read through the User Guide in a **sequential order** up until the section [Features](#features), where you can find all the information you need before using any commands.
 
-If this is your first time using FoodRem, start off with the [Quick Start](#quick-start) section. This guides you on how to install FoodRem.
+If you have not installed FoodRem head over to the [Installation](#Installation) section.
 
-If you are a new user to FoodRem, you can head over to the section about [Using FoodRem](#using-foodrem) which will teach you the basics of FoodRem. This includes: 
+Once FoodRem is installed, you can head over to the section [Using FoodRem](#using-foodrem) which will share with you the basics of FoodRem. This includes: 
 
-* Introducing you to the general [command format](#command-format).
-* [Flags](#flags) and [Placeholders](#placeholders) where you can find:
-  * Important syntax you will come across while reading the User Guide such as `n/`, `bgt/` or `INDEX`, `ITEM_NAME`.
-  *  The description of these syntax and how to use them
-* [Trying out](#trying-your-first-command) a command.
+* Introducing you to the general [Command Format](#command-format).
+* [Flags](#flags) and [Placeholders](#placeholders):
+  *  Important syntax you will come across while reading the User Guide such as `n/`, `bgt/` or `INDEX`, `ITEM_NAME`.
+  *  The description of all syntax and how to use them.
+* [Trying out](#trying-your-first-command) your first command.
 
-If you are an experienced user, you can refer to the [Command Summary](#command-summary) to get an overview of all the currently supported FoodRem commands.
+If you are an experienced user, you can refer to the [Command Summary](#command-summary) to get an overview of all currently supported FoodRem commands.
 
 Here are some icons you may encounter in FoodRem and what they mean:
 
-* ℹ️ : additional info
-* ❗ : warning
+* ℹ️ : Additional Information
+* ❗ : Warning
 
+If you are stuck, refer to the section on [Troubleshooting](#troubleshooting) or [FAQ](#faq). 
 
-If you are stuck, refer to [Troubleshooting](#troubleshooting) or [FAQ](#faq). You can refer to [Glossary](#glossary) that contains definitions of some commonly used words in FoodRem
+You can also refer to the [Glossary](#glossary) for definitions of commonly used terms in FoodRem.
 
+## Installation
 
-## Quick Start
-
-{% include_relative _ug/QuickStart.md %}
+{% include_relative _ug/Installation.md %}
 
 ## Using FoodRem
-Here is an overview of what FoodRem consists of and how you can perform a command.
+
+Here is an overview of what FoodRem can do and how you can perform a command.
+
 ### Items and Tags
 
 {% include_relative _ug/ItemsTags.md %}
@@ -81,10 +86,9 @@ You will encounter FoodRem commands throughout this User Guide. Before you delve
 Here is an example:
 ![CommandExample](images/CommandExample.png)
 A command consists of:
-1. Command Word to tell FoodRem what action you wish to execute. These actions are covered in [Commands](#commands)
-2. [Flags](#flags) to distinguish parameters
-3. [Placeholders](#placeholders) that you can replace with your parameter inputs
-
+1. A Command Word to tell FoodRem what command you wish to execute. These commands are covered in [Commands](#commands).
+1. [Flags](#flags) to distinguish parameters from one another.
+1. [Placeholders](#placeholders) that you should replace with your item or tag information.
 
 ### Flags
 
@@ -92,10 +96,9 @@ Flags are delimiters that enable FoodRem to distinguish different parameters wit
 
 | Flags | Related Placeholder   |
 |-------|-----------------------|
-| id/   | INDEX                 |
 | n/    | ITEM_NAME<br>TAG_NAME |
 | qty/  | QUANTITY              |
-| unit/ | UNIT                  |
+| u/    | UNIT                  |
 | buy/  | BOUGHT_DATE           |
 | exp/  | EXPIRY_DATE           |
 | p/    | PRICE                 |
@@ -104,9 +107,13 @@ Flags are delimiters that enable FoodRem to distinguish different parameters wit
 
 ### Placeholders
 
-Placeholders are words in UPPER_CASE to show you what parameters you can supply to a command.
+Placeholders are words in UPPER_CASE to show you what information you can supply to a command.
 
 {% include_relative _ug/Placeholders.md %}
+
+### Layout
+
+{% include_relative _ug/Layout.md %}
 
 ### Trying your First Command
 

@@ -11,22 +11,25 @@
 {% capture EXPIRY_DATE %}{% include_relative _ug/placeholders/EXPIRY_DATE.md %}{% endcapture %}
 {% capture PRICE %}{% include_relative _ug/placeholders/PRICE.md %}{% endcapture %}
 {% capture REMARKS %}{% include_relative _ug/placeholders/REMARKS.md %}{% endcapture %}
+{% capture COMMAND_WORD %}{% include_relative _ug/placeholders/COMMAND_WORD.md %}{% endcapture %}
 <!-- markdownlint-restore -->
 
 <!-- ===== CREATE TABLE FORMATTING IN NORMAL+ MARKDOWN ===== -->
 <!-- WE USE :variable: FOR VALUES THAT ARE TO BE SUBSTITUTED -->
 {% capture TABLE %}
-| Placeholders | Related Flags | Description   |
-|--------------|---------------|---------------|
-| INDEX        | id/           | :INDEX:       |
-| ITEM_NAME    | n/            | :ITEM_NAME:   |
-| TAG_NAME     | n/            | :TAG_NAME:    |
-| QUANTITY     | qty/          | :QUANTITY:    |
-| UNIT         | unit/         | :UNIT:        |
-| BOUGHT_DATE  | bgt/          | :BOUGHT_DATE: |
-| EXPIRY_DATE  | exp/          | :EXPIRY_DATE: |
-| PRICE        | p/            | :PRICE:       |
-| REMARKS      | r/            | :REMARKS:     |
+| Placeholders | Related Flags | Description    |
+|--------------|---------------|----------------|
+| INDEX        |               | :INDEX:        |
+| ITEM_NAME    | n/            | :ITEM_NAME:    |
+| TAG_NAME     | n/            | :TAG_NAME:     |
+| QUANTITY     | qty/          | :QUANTITY:     |
+| UNIT         | u/            | :UNIT:         |
+| BOUGHT_DATE  | bgt/          | :BOUGHT_DATE:  |
+| EXPIRY_DATE  | exp/          | :EXPIRY_DATE:  |
+| PRICE        | p/            | :PRICE:        |
+| REMARKS      | r/            | :REMARKS:      |
+| COMMAND_WORD |               | :COMMAND_WORD: |
+| KEYWORD      |               | :KEYWORD:      |
 {% endcapture %}
 
 <!-- ===== RENDER THE ACTUAL TABLE ===== -->
@@ -41,4 +44,6 @@
   | replace: ":EXPIRY_DATE:", EXPIRY_DATE
   | replace: ":PRICE:", PRICE
   | replace: ":REMARKS:", REMARKS
+  | replace: ":COMMAND_WORD:", COMMAND_WORD
+  | replace: ":KEYWORD:", KEYWORD
 }}

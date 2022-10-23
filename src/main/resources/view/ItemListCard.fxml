@@ -2,12 +2,10 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.layout.ColumnConstraints?>
-<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.FlowPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Region?>
 <?import javafx.scene.layout.VBox?>
-<?import javafx.scene.layout.FlowPane?>
 <HBox xmlns:fx="http://javafx.com/fxml/1" id="cardPane" fx:id="cardPane" xmlns="http://javafx.com/javafx/8">
   <VBox alignment="CENTER_LEFT">
     <padding>
@@ -22,6 +20,7 @@
       </Label>
       <Label fx:id="name" text="\$first"/>
       <Label fx:id="quantityAndUnit" text="\$quantityAndUnit"/>
+      <Label fx:id="price" text="\$price"/>
       <Label fx:id="bought" text="\$bought"/>
       <Label fx:id="expiry" text="\$expiry"/>
     </HBox>

@@ -1,2 +1,2 @@
 <!-- markdownlint-disable-file first-line-h1 -->
-`new n/Potato qty/70 unit/kg bgt/22-02-11 exp/22-03/11`
+`new n/Potato qty/70 u/kg bgt/01-02-2022 exp/01-03-2022`
