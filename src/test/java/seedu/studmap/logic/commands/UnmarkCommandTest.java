@@ -39,7 +39,7 @@ class UnmarkCommandTest {
         attendanceSet.remove(attendance);
         Student unmarkedStudent = new StudentBuilder(studentToUnmark).setAttended(attendanceSet).build();
 
-        String expectedMessage = String.format(UnmarkCommand.MESSAGE_UNMARK_SUCCESS,
+        String expectedMessage = String.format(UnmarkCommand.MESSAGE_UNMARK_ATTENDANCE_SUCCESS,
                 attendance.className, unmarkedStudent);
 
         ModelManager expectedModel = new ModelManager(model.getStudMap(), new UserPrefs());
@@ -60,7 +60,7 @@ class UnmarkCommandTest {
         attendanceSet.remove(attendance);
         Student unmarkedStudent = new StudentBuilder(studentInFilteredList).setAttended(attendanceSet).build();
 
-        String expectedMessage = String.format(UnmarkCommand.MESSAGE_UNMARK_SUCCESS,
+        String expectedMessage = String.format(UnmarkCommand.MESSAGE_UNMARK_ATTENDANCE_SUCCESS,
                 attendance.className, unmarkedStudent);
 
         ModelManager expectedModel = new ModelManager(model.getStudMap(), new UserPrefs());

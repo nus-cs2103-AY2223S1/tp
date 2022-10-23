@@ -1,14 +1,10 @@
 package seedu.studmap.logic.parser;
 
 import static seedu.studmap.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.studmap.logic.parser.CliSyntax.PREFIX_CLASS;
 import static seedu.studmap.logic.parser.CliSyntax.PREFIX_ASSIGNMENT;
+import static seedu.studmap.logic.parser.CliSyntax.PREFIX_CLASS;
 import static seedu.studmap.logic.parser.ParserUtil.separatePreamble;
 
-import java.util.logging.Logger;
-
-import seedu.studmap.MainApp;
-import seedu.studmap.commons.core.LogsCenter;
 import seedu.studmap.commons.core.index.IndexListGenerator;
 import seedu.studmap.commons.exceptions.IllegalValueException;
 import seedu.studmap.logic.commands.EditStudentCommand;
@@ -57,8 +53,8 @@ public class MarkCommandParser extends EditStudentCommandParser<MarkCommand.Mark
 
         if (argMultimap.getValue(PREFIX_CLASS).isPresent()
                 && argMultimap.getValue(PREFIX_ASSIGNMENT).isPresent()) {
-                    throw new ParseException(MESSAGE_INVALID_DOUBLE_MARK);
-                }
+            throw new ParseException(MESSAGE_INVALID_DOUBLE_MARK);
+        }
 
         if (argMultimap.getValue(PREFIX_CLASS).isPresent()) {
             String className = ParserUtil.parseClassName(argMultimap.getValue(PREFIX_CLASS).orElse(""));
@@ -69,8 +65,8 @@ public class MarkCommandParser extends EditStudentCommandParser<MarkCommand.Mark
             String assignmentName = ParserUtil.parseAssignmentName(
                     argMultimap.getValue(PREFIX_ASSIGNMENT).orElse(""));
             Assignment.Status markingStatus = parseStatus(preamble[1]);
-                    Assignment assignment = new Assignment(assignmentName, markingStatus);
-                    editor = new MarkCommand.MarkCommandStudentEditor(assignment);
+            Assignment assignment = new Assignment(assignmentName, markingStatus);
+            editor = new MarkCommand.MarkCommandStudentEditor(assignment);
         }
 
         assert editor != null : "Only the attendance or the assignment can be mark in the same command";

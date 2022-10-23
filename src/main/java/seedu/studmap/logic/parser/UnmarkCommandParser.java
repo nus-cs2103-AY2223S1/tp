@@ -2,12 +2,14 @@ package seedu.studmap.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.studmap.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.studmap.logic.parser.CliSyntax.PREFIX_ASSIGNMENT;
 import static seedu.studmap.logic.parser.CliSyntax.PREFIX_CLASS;
 
 import seedu.studmap.commons.core.index.Index;
 import seedu.studmap.commons.exceptions.IllegalValueException;
 import seedu.studmap.logic.commands.UnmarkCommand;
 import seedu.studmap.logic.parser.exceptions.ParseException;
+import seedu.studmap.model.student.Assignment;
 import seedu.studmap.model.student.Attendance;
 
 /**
@@ -23,7 +25,7 @@ public class UnmarkCommandParser implements Parser<UnmarkCommand> {
     public UnmarkCommand parse(String args) throws ParseException {
         requireNonNull(args);
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args,
-                PREFIX_CLASS);
+                PREFIX_CLASS, PREFIX_ASSIGNMENT);
 
         Index index;
         try {
@@ -33,9 +35,14 @@ public class UnmarkCommandParser implements Parser<UnmarkCommand> {
                     UnmarkCommand.MESSAGE_USAGE));
         }
 
-        String className = ParserUtil.parseClassName(argMultimap.getValue(PREFIX_CLASS).orElse(""));
-        Attendance attendance = new Attendance(className, true);
-
-        return new UnmarkCommand(index, attendance);
+        if (argMultimap.getValue(PREFIX_CLASS).isPresent()) {
+            String className = ParserUtil.parseClassName(argMultimap.getValue(PREFIX_CLASS).get());
+            return new UnmarkCommand(index, new Attendance(className, true));
+        }
+        if (argMultimap.getValue(PREFIX_ASSIGNMENT).isPresent()) {
+            String assignmentName = ParserUtil.parseAssignmentName(argMultimap.getValue(PREFIX_ASSIGNMENT).get());
+            return new UnmarkCommand(index, new Assignment(assignmentName, Assignment.Status.NEW));
+        }
+        throw new ParseException(UnmarkCommand.MESSAGE_NO_EDIT);
     }
 }

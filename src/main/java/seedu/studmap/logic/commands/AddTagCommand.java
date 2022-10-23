@@ -9,7 +9,6 @@ import java.util.Optional;
 import java.util.Set;
 import java.util.logging.Logger;
 
-import seedu.studmap.MainApp;
 import seedu.studmap.commons.core.LogsCenter;
 import seedu.studmap.commons.core.index.IndexListGenerator;
 import seedu.studmap.logic.commands.commons.StudentEditor;

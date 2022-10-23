@@ -1,7 +1,7 @@
 package seedu.studmap.logic.commands;
 
-import static seedu.studmap.logic.parser.CliSyntax.PREFIX_CLASS;
 import static seedu.studmap.logic.parser.CliSyntax.PREFIX_ASSIGNMENT;
+import static seedu.studmap.logic.parser.CliSyntax.PREFIX_CLASS;
 
 import java.util.HashSet;
 import java.util.List;
@@ -46,7 +46,7 @@ public class MarkCommand extends EditStudentCommand<MarkCommand.MarkCommandStude
     public static final String MESSAGE_MARK_MULTI_SUCCESS_ASSIGNMENT =
             "Marked assignment %1$s as %2$s for %3$s students: ";
 
-    public static final String MESSAGE_NO_EDIT = "Attendance or assignment status must be provided.";
+    public static final String MESSAGE_NO_EDIT = "Attendance or Assignment must be provided.";
 
     public MarkCommand(IndexListGenerator indexListGenerator, MarkCommandStudentEditor studentEditor) {
         super(indexListGenerator, studentEditor);
@@ -167,6 +167,18 @@ public class MarkCommand extends EditStudentCommand<MarkCommand.MarkCommandStude
 
             // state check
             MarkCommand.MarkCommandStudentEditor e = (MarkCommand.MarkCommandStudentEditor) other;
+
+            if (getAttendance() == null && e.getAttendance() != null) {
+                return false;
+            } else if (getAttendance() == null && e.getAttendance() == null) {
+                return true;
+            }
+
+            if (getAssignment() == null && e.getAssignment() != null) {
+                return false;
+            } else if (getAssignment() == null && e.getAssignment() == null) {
+                return true;
+            }
 
             return getAttendance().equals(e.getAttendance()) && getAssignment().equals(e.getAssignment());
         }
