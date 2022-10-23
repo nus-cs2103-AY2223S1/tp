@@ -174,6 +174,18 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
+     * Adds a review to a stall in the address book.
+     * The review must not already exist in the address book.
+     * The stall must exist in the address book.
+     */
+    public void addReviewToStall(Review review, Stall stall) {
+        requireNonNull(review);
+        Stall newStall = new StallBuilder(stall)
+                .addReview(review).build();
+        setStall(stall, newStall);
+    }
+
+    /**
      * Replaces the given review {@code target} in the list with {@code editedReview}.
      * {@code target} must exist in the address book.
      * The review identity of {@code editedReview} must not be the same as another existing review in the address book.

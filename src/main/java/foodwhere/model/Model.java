@@ -104,6 +104,12 @@ public interface Model {
     void addReview(Review review);
 
     /**
+     * Adds the given review to the stall.
+     * {@code review} must not already exist in the address book.
+     */
+    void addReviewToStall(Review review, Stall stall);
+
+    /**
      * Replaces the given review {@code target} with {@code editedReview}.
      * {@code target} must exist in the address book.
      * The review identity of {@code editedReview} must not be the same as another existing review in the address book.

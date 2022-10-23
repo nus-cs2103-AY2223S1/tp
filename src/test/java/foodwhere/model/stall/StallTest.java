@@ -26,9 +26,24 @@ public class StallTest {
         // null -> returns false
         assertFalse(TypicalStalls.ALICE.isSameStall(null));
 
-        // same name, all other attributes different -> returns true
+        // same name, all other attributes different -> returns false
         Stall editedAlice = new StallBuilder(TypicalStalls.ALICE)
                 .withAddress(CommandTestUtil.VALID_ADDRESS_BOB)
+                .withTags(CommandTestUtil.VALID_TAG_HUSBAND)
+                .withReviews(TypicalReviews.BOB)
+                .build();
+        assertFalse(TypicalStalls.ALICE.isSameStall(editedAlice));
+
+        // same address, all other attributes different -> returns false
+        editedAlice = new StallBuilder(TypicalStalls.ALICE)
+                .withName(CommandTestUtil.VALID_NAME_BOB)
+                .withTags(CommandTestUtil.VALID_TAG_HUSBAND)
+                .withReviews(TypicalReviews.BOB)
+                .build();
+        assertFalse(TypicalStalls.ALICE.isSameStall(editedAlice));
+
+        // same address and name, all other attributes different -> returns true
+        editedAlice = new StallBuilder(TypicalStalls.ALICE)
                 .withTags(CommandTestUtil.VALID_TAG_HUSBAND)
                 .withReviews(TypicalReviews.BOB)
                 .build();

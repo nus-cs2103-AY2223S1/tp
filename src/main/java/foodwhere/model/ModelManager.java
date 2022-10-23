@@ -139,6 +139,13 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public void addReviewToStall(Review review, Stall stall) {
+        addressBook.addReviewToStall(review, stall);
+        updateFilteredReviewList(PREDICATE_SHOW_ALL_REVIEWS);
+        updateFilteredStallList(PREDICATE_SHOW_ALL_STALLS);
+    }
+
+    @Override
     public void setReview(Review target, Review editedStall) {
         requireAllNonNull(target, editedStall);
 
