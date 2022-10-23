@@ -126,8 +126,7 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public Person getPersonUsingName(Name nameOfPersonToGet,
-                                     boolean isFiltered) {
+    public Person getPersonUsingName(Name nameOfPersonToGet, boolean isFiltered) {
         requireAllNonNull(nameOfPersonToGet, isFiltered);
         Person personWithProvidedName = new Person(nameOfPersonToGet);
         boolean isPersonWithSameNameInFilteredList = hasPersonInFilteredList(personWithProvidedName);

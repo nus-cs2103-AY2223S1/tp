@@ -38,8 +38,7 @@ public class DeletePersonCommand extends Command {
 
         Person personToDelete = null;
         try {
-            personToDelete =
-                    model.getPersonUsingName(targetName, true);
+            personToDelete = model.getPersonUsingName(targetName, true);
         } catch (PersonNotFoundException e) {
             throw new CommandException(Messages.MESSAGE_NO_SUCH_PERSON);
         }

@@ -210,8 +210,7 @@ public class ModelManagerTest {
     }
 
     @Test
-    public void
-        getModuleUsingModuleCode_moduleExistButNotInFilteredListAndSearchInFilteredList_returnsModule() {
+    public void getModuleUsingModuleCode_moduleExistButNotInFilteredListAndSearchInFilteredList_returnsModule() {
         modelManager.addModule(CS2106);
         modelManager.updateFilteredModuleList(PREDICATE_SHOW_ZERO_MODULE);
         assertThrows(ModuleNotFoundException.class, () ->
@@ -300,7 +299,7 @@ public class ModelManagerTest {
 
     @Test
     public void
-        getPersonUsingName_personExistButNotInFilteredListAndSearchInFilteredList_throwsPersonNotFoundException() {
+            getPersonUsingName_personExistButNotInFilteredListAndSearchInFilteredList_throwsPersonNotFoundException() {
         Name nameToSearchFor = AMY.getName();
         modelManager.addPerson(AMY);
         modelManager.updateFilteredPersonList(PREDICATE_SHOW_ZERO_PERSON);
