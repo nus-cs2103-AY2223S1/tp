@@ -237,7 +237,7 @@ public class AddTutorialCommandTest {
         }
 
         @Override
-        public void clearConsultations() {
+        public void resetConsultations() {
             throw new AssertionError("This method should not be called.");
         }
 

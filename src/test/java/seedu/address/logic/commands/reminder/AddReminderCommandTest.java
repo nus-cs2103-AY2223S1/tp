@@ -236,7 +236,7 @@ public class AddReminderCommandTest {
         }
 
         @Override
-        public void clearConsultations() {
+        public void resetConsultations() {
             throw new AssertionError("This method should not be called.");
         }
 

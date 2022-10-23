@@ -23,7 +23,7 @@ public class ClearConsultationCommandTest {
     public void execute_nonEmptyAddressBook_success() {
         Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
         Model expectedModel = new ModelManager(getTypicalAddressBook(), new UserPrefs());
-        expectedModel.clearConsultations();
+        expectedModel.resetConsultations();
 
         assertCommandSuccess(new ClearConsultationCommand(), model, ClearConsultationCommand.MESSAGE_SUCCESS,
                 expectedModel);
