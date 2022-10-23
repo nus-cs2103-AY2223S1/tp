@@ -252,6 +252,11 @@ public class AddPatientCommandTest {
         public void deleteRelativeBills(Appointment appointment) {
             throw new AssertionError("This method should not be called.");
         }
+
+        @Override
+        public void setBillAsPaid(Bill bill) {
+            throw new AssertionError("This method should not be called.");
+        }
     }
 
     /**
