@@ -1,5 +1,6 @@
 package jarvis.logic.commands;
 
+import static jarvis.commons.util.CollectionUtil.requireAllNonNull;
 import static jarvis.logic.parser.CliSyntax.PREFIX_MATRIC_NUM;
 import static jarvis.logic.parser.CliSyntax.PREFIX_NAME;
 import static jarvis.model.Model.PREDICATE_SHOW_ALL_STUDENTS;
@@ -45,8 +46,7 @@ public class EditStudentCommand extends Command {
      * @param editStudentDescriptor details to edit the person with
      */
     public EditStudentCommand(Index index, EditStudentDescriptor editStudentDescriptor) {
-        requireNonNull(index);
-        requireNonNull(editStudentDescriptor);
+        requireAllNonNull(index, editStudentDescriptor);
 
         this.index = index;
         this.editStudentDescriptor = new EditStudentDescriptor(editStudentDescriptor);

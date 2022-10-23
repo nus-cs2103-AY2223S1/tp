@@ -90,16 +90,13 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String deadline} into a {@code Deadline}.
+     * Parses a {@code String deadline} into a {@code TaskDeadline}.
      * Leading and trailing whitespaces will be trimmed.
      *
-     * @throws ParseException if the given {@code name} is invalid.
+     * @throws ParseException if the given {@code deadline} is invalid.
      */
     public static TaskDeadline parseDeadline(String deadline) throws ParseException {
         requireNonNull(deadline);
-        if (deadline.isEmpty()) {
-            return new TaskDeadline(null);
-        }
         try {
             LocalDate trimmedDeadline = LocalDate.parse(deadline.trim());
             return new TaskDeadline(trimmedDeadline);
@@ -218,5 +215,23 @@ public class ParserUtil {
             throw new ParseException(Messages.MESSAGE_INVALID_STUDENT_DISPLAYED_INDEX);
         }
         return studentIndexSet;
+    }
+
+    /**
+     * Parses a {@code String participation} into an {@code int} indicating the participation amount.
+     *
+     * @throws ParseException if the given {@code participation} is invalid.
+     */
+    public static int parseParticipation(String participation) throws ParseException {
+        String trimmedParticipation = participation.trim();
+        try {
+            int participationValue = Integer.parseInt(trimmedParticipation);
+            if (participationValue < 0 || participationValue > 500) {
+                throw new ParseException(Messages.MESSAGE_INVALID_PARTICIPATION);
+            }
+            return participationValue;
+        } catch (NumberFormatException nfe) {
+            throw new ParseException(Messages.MESSAGE_INVALID_PARTICIPATION);
+        }
     }
 }

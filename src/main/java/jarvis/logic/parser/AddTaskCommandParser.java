@@ -4,6 +4,7 @@ import static jarvis.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static jarvis.logic.parser.CliSyntax.PREFIX_DEADLINE;
 import static jarvis.logic.parser.CliSyntax.PREFIX_TASK_DESC;
 
+import java.util.Optional;
 import java.util.stream.Stream;
 
 import jarvis.logic.commands.AddTaskCommand;
@@ -30,7 +31,8 @@ public class AddTaskCommandParser implements Parser<AddTaskCommand> {
         }
 
         TaskDesc taskDesc = ParserUtil.parseTaskDesc(argMultimap.getValue(PREFIX_TASK_DESC).get());
-        TaskDeadline taskDeadline = ParserUtil.parseDeadline(argMultimap.getValue(PREFIX_DEADLINE).orElse(""));
+        Optional<String> deadline = argMultimap.getValue(PREFIX_DEADLINE);
+        TaskDeadline taskDeadline = deadline.isPresent() ? ParserUtil.parseDeadline(deadline.get()) : null;
 
         Task task = new Task(taskDesc, taskDeadline);
 

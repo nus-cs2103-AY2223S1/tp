@@ -47,7 +47,7 @@ public class TaskCard extends UiPart<Region> {
             done.setText("[ ]");
         }
         taskDesc.setText(task.getDesc().taskDesc);
-        taskDeadline.setText(task.getDeadline().toString());
+        taskDeadline.setText(task.getDeadlineString());
     }
 
     @Override
