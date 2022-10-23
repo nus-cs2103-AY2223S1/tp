@@ -177,15 +177,28 @@ GREWZ data are saved as a JSON file `[JAR file location]/data/addressbook.json`.
 If your changes to the data file makes its format invalid, GREWZ will discard all data and start with an empty data file at the next run.
 </div>
 
-### Archiving data files `[coming in v2.0]`
+### Creating Assignment Tasks `[coming in v1.3]`
 
-_Details coming soon ..._
+Create assignment tasks with a list of students.
+
+Format: `task t/TITLE d/DESCRIPTION addStu/STUDENT_1, STUDENT_2`
+
+_More details coming soon ..._
+
+### Editing Tasks `[coming in v1.3]`
+
+Edits an existing tasks with a list of students.
+
+Format: `task t/TITLE d/DESCRIPTION addStu/STUDENT_1, STUDENT_2`
+
+_More details coming soon ..._
 
 --------------------------------------------------------------------------------------------------------------------
 
 ## FAQ
 
-Coming soon!
+**Q:** Do I have to retype the command every single time even if they are similar?
+**A:** You can use our [input history feature]() and simply use the UP and DOWN arror keys to  access your older commands.
 
 --------------------------------------------------------------------------------------------------------------------
 
