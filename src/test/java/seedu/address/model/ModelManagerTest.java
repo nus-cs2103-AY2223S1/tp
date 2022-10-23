@@ -7,6 +7,8 @@ import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PROJECTS;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalProjects.APPLE;
 import static seedu.address.testutil.TypicalProjects.BANANA;
+import static seedu.address.testutil.TypicalStaff.STAFF_1;
+import static seedu.address.testutil.TypicalTasks.TASK_1;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -94,8 +96,51 @@ public class ModelManagerTest {
     }
 
     @Test
+    public void hasStaff_nullStaff_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> modelManager.hasStaff(null));
+    }
+
+    @Test
+    public void hasStaff_staffNotInAddressBook_returnsFalse() {
+        assertFalse(modelManager.hasStaff(STAFF_1));
+    }
+
+    @Test
+    public void hasStaff_staffInAddressBook_returnsTrue() {
+        modelManager.addStaff(STAFF_1);
+        assertTrue(modelManager.hasStaff(STAFF_1));
+    }
+
+    @Test
+    public void getFilteredStaffList_modifyList_throwsUnsupportedOperationException() {
+        assertThrows(UnsupportedOperationException.class, () -> modelManager.getFilteredStaffList().remove(0));
+    }
+
+    @Test
+    public void hasTask_nullTask_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> modelManager.hasTask(null));
+    }
+
+    @Test
+    public void hasTask_taskNotInAddressBook_returnsFalse() {
+        assertFalse(modelManager.hasTask(TASK_1));
+    }
+
+    @Test
+    public void hasTask_taskInAddressBook_returnsTrue() {
+        modelManager.addTask(TASK_1);
+        assertTrue(modelManager.hasTask(TASK_1));
+    }
+
+    @Test
+    public void getFilteredTaskList_modifyList_throwsUnsupportedOperationException() {
+        assertThrows(UnsupportedOperationException.class, () -> modelManager.getFilteredTaskList().remove(0));
+    }
+
+    @Test
     public void equals() {
-        AddressBook addressBook = new AddressBookBuilder().withProject(APPLE).withProject(BANANA).build();
+        AddressBook addressBook = new AddressBookBuilder().withProject(APPLE)
+                .withProject(BANANA).withTask(TASK_1).withStaff(STAFF_1).build();
         AddressBook differentAddressBook = new AddressBook();
         UserPrefs userPrefs = new UserPrefs();
 
@@ -116,7 +161,7 @@ public class ModelManagerTest {
         // different addressBook -> returns false
         assertFalse(modelManager.equals(new ModelManager(differentAddressBook, userPrefs)));
 
-        // different filteredList -> returns false
+        // different project filteredList -> returns false
         String[] keywords = APPLE.getProjectName().fullName.split("\\s+");
         modelManager.updateFilteredProjectList(new ProjectNameContainsKeywordsPredicate(Arrays.asList(keywords)));
         assertFalse(modelManager.equals(new ModelManager(addressBook, userPrefs)));

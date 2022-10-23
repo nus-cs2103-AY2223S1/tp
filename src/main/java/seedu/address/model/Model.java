@@ -69,6 +69,8 @@ public interface Model {
      */
     ReadOnlyAddressBook getAddressBook();
 
+    //=========== Projects ================================================================================
+
     /**
      * Returns true if a project with the same identity as {@code project} exists in the address book.
      */
@@ -99,17 +101,6 @@ public interface Model {
      */
     void setProject(Project target, Project editedProject);
 
-    /** Sets the given project to be the target of the view command */
-    void setTargetProject(Project target);
-
-    /** Returns the project that is the target of the view command */
-    ArrayList<Project> getTargetProject();
-
-    /**
-     * Returns an unmodifiable view of the filtered project list
-     */
-    ObservableList<Project> getFilteredProjectList();
-
     /**
      * Updates the filter of the filtered project list to filter by the given {@code predicate}.
      *
@@ -117,6 +108,54 @@ public interface Model {
      */
     void updateFilteredProjectList(Predicate<Project> predicate);
 
+    /**
+     * Returns an unmodifiable view of the filtered project list
+     */
+    ObservableList<Project> getFilteredProjectList();
+
+    //=========== Staff ================================================================================
+
+    /**
+     * Returns an unmodifiable view of the filtered staff list
+     */
+    ObservableList<Staff> getFilteredStaffList();
+
+    /**
+     * Updates the filter of the filtered staff list to filter by the given {@code predicate}.
+     *
+     * @throws NullPointerException if {@code predicate} is null.
+     */
+    void updateFilteredStaffList(Predicate<Staff> predicate);
+
+    /** Sets filtered Staff list to be the staff list of {@code project} specified by the view command */
+    void setFilteredStaffList(Project project);
+
+    /**
+     * Returns true if a staff with the same identity as {@code staff} exists in the address book.
+     */
+    boolean hasStaff(Staff staff);
+
+    /**
+     * Deletes the given staff.
+     * The staff must exist in the address book.
+     */
+    void deleteStaff(Staff target);
+
+    /**
+     * Adds the given staff.
+     * {@code staff} must not already exist in the address book.
+     */
+    void addStaff(Staff staff);
+
+    /**
+     * Replaces the given staff {@code target} with {@code editedStaff}.
+     * {@code target} must exist in the address book.
+     * The staff identity of {@code editedStaff} must not be the same as
+     * another existing staff in the address book.
+     */
+    void setStaff(Staff target, Staff editedStaff);
+
+    //=========== Tasks ================================================================================
     /**
      * Returns true if a task with the same identity as {@code task} exists in the address book.
      */

@@ -40,7 +40,7 @@ public class ViewCommand extends Command {
         }
 
         Project projectToView = lastShownList.get(targetIndex.getZeroBased());
-        model.setTargetProject(projectToView);
+        model.setFilteredStaffList(projectToView);
         return new CommandResult(String.format(MESSAGE_SUCCESS, projectToView));
     }
 
