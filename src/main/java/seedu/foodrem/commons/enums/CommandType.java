@@ -156,12 +156,11 @@ public enum CommandType {
         }
     },
     SORT_COMMAND("sort") {
-        // TODO: Ensure remarks is added
         @Override
         public String getUsage() {
             return getCommandWord() + ": Sorts all items in FoodRem according to the specified criteria.\n"
                     + "Available criteria includes sorting by name, quantity, unit, bought date, expiry date "
-                    + "and price.\n\n"
+                    + "price and remarks.\n\n"
                     + "Format (Only one of the optional prefix should be present):\n"
                     + getCommandWord() + " "
                     + "[" + PREFIX_NAME + "] "
@@ -169,7 +168,8 @@ public enum CommandType {
                     + "[" + PREFIX_ITEM_UNIT + "] "
                     + "[" + PREFIX_ITEM_BOUGHT_DATE + "] "
                     + "[" + PREFIX_ITEM_EXPIRY_DATE + "] "
-                    + "[" + PREFIX_ITEM_PRICE + "]" + "\n\n"
+                    + "[" + PREFIX_ITEM_PRICE + "]"
+                    + "[" + PREFIX_ITEM_REMARKS + "]\n\n"
                     + "Examples:\n"
                     + getCommandWord() + " " + PREFIX_NAME + "\n"
                     + getCommandWord() + " " + PREFIX_ITEM_UNIT;

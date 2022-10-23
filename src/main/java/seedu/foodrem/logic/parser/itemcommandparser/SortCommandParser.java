@@ -1,6 +1,6 @@
 package seedu.foodrem.logic.parser.itemcommandparser;
 
-import java.util.ArrayList;
+import java.util.Comparator;
 
 import seedu.foodrem.commons.core.Messages;
 import seedu.foodrem.logic.commands.itemcommands.SortCommand;
@@ -9,15 +9,14 @@ import seedu.foodrem.logic.parser.ArgumentTokenizer;
 import seedu.foodrem.logic.parser.CliSyntax;
 import seedu.foodrem.logic.parser.Parser;
 import seedu.foodrem.logic.parser.exceptions.ParseException;
+import seedu.foodrem.model.item.Item;
 import seedu.foodrem.model.item.itemcomparators.ItemBoughtDateComparator;
-import seedu.foodrem.model.item.itemcomparators.ItemComparator;
 import seedu.foodrem.model.item.itemcomparators.ItemExpiryDateComparator;
 import seedu.foodrem.model.item.itemcomparators.ItemNameComparator;
 import seedu.foodrem.model.item.itemcomparators.ItemPriceComparator;
 import seedu.foodrem.model.item.itemcomparators.ItemQuantityComparator;
-import seedu.foodrem.model.item.itemcomparators.ItemRemarksComparator;
+import seedu.foodrem.model.item.itemcomparators.ItemRemarkComparator;
 import seedu.foodrem.model.item.itemcomparators.ItemUnitComparator;
-import seedu.foodrem.model.util.ChainComparator;
 
 /**
  * Parses input arguments and creates a new
@@ -34,46 +33,43 @@ public class SortCommandParser implements Parser<SortCommand> {
      */
     public SortCommand parse(String args) throws ParseException {
         String trimmedArgs = args.trim();
-        if (trimmedArgs.isEmpty()) {
-            throw new ParseException(
-                    String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT, SortCommand.getUsage()));
-        }
-        ArrayList<ItemComparator> comparators = new ArrayList<>();
-        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args,
-                CliSyntax.PREFIX_NAME,
-                CliSyntax.PREFIX_ITEM_QUANTITY,
-                CliSyntax.PREFIX_ITEM_BOUGHT_DATE,
-                CliSyntax.PREFIX_ITEM_EXPIRY_DATE,
-                CliSyntax.PREFIX_ITEM_UNIT,
-                CliSyntax.PREFIX_ITEM_PRICE,
-                CliSyntax.PREFIX_ITEM_REMARKS);
 
-        if (argMultimap.getValue(CliSyntax.PREFIX_NAME).isPresent()) {
-            comparators.add(new ItemNameComparator());
-        }
-        if (argMultimap.getValue(CliSyntax.PREFIX_ITEM_QUANTITY).isPresent()) {
-            comparators.add(new ItemQuantityComparator());
-        }
-        if (argMultimap.getValue(CliSyntax.PREFIX_ITEM_BOUGHT_DATE).isPresent()) {
-            comparators.add(new ItemBoughtDateComparator());
-        }
-        if (argMultimap.getValue(CliSyntax.PREFIX_ITEM_EXPIRY_DATE).isPresent()) {
-            comparators.add(new ItemExpiryDateComparator());
-        }
-        if (argMultimap.getValue(CliSyntax.PREFIX_ITEM_UNIT).isPresent()) {
-            comparators.add(new ItemUnitComparator());
-        }
-        if (argMultimap.getValue(CliSyntax.PREFIX_ITEM_PRICE).isPresent()) {
-            comparators.add(new ItemPriceComparator());
-        }
-        if (argMultimap.getValue(CliSyntax.PREFIX_ITEM_REMARKS).isPresent()) {
-            comparators.add(new ItemRemarksComparator());
-        }
-        if (comparators.isEmpty()) {
-            throw new ParseException(String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT,
-                    SortCommand.getUsage()));
+        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(trimmedArgs);
+
+        String preamble = argMultimap.getPreamble().trim();
+
+        if (preamble.isEmpty()) {
+            throw new ParseException(String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT, SortCommand.getUsage()));
         }
 
-        return new SortCommand(new ChainComparator<>(comparators));
+        Comparator<Item> comparator = null;
+
+        if (preamble.equals(CliSyntax.PREFIX_NAME.toString())) {
+            comparator = new ItemNameComparator();
+        }
+        if (preamble.equals(CliSyntax.PREFIX_ITEM_QUANTITY.toString())) {
+            comparator = new ItemQuantityComparator();
+        }
+        if (preamble.equals(CliSyntax.PREFIX_ITEM_BOUGHT_DATE.toString())) {
+            comparator = new ItemBoughtDateComparator();
+        }
+        if (preamble.equals(CliSyntax.PREFIX_ITEM_EXPIRY_DATE.toString())) {
+            comparator = new ItemExpiryDateComparator();
+        }
+        if (preamble.equals(CliSyntax.PREFIX_ITEM_UNIT.toString())) {
+            comparator = new ItemUnitComparator();
+        }
+        if (preamble.equals(CliSyntax.PREFIX_ITEM_PRICE.toString())) {
+            comparator = new ItemPriceComparator();
+        }
+        if (preamble.equals(CliSyntax.PREFIX_ITEM_REMARKS.toString())) {
+            comparator = new ItemRemarkComparator();
+        }
+
+        if (comparator == null) {
+            throw new ParseException(String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT, SortCommand.getUsage()));
+        }
+
+        return new SortCommand(comparator);
     }
 }

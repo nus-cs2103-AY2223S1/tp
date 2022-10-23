@@ -3,12 +3,13 @@ package seedu.foodrem.logic.commands.itemcommands;
 import static java.util.Objects.requireNonNull;
 import static seedu.foodrem.commons.enums.CommandType.SORT_COMMAND;
 
+import java.util.Comparator;
+
 import seedu.foodrem.commons.core.Messages;
 import seedu.foodrem.logic.commands.Command;
 import seedu.foodrem.logic.commands.CommandResult;
 import seedu.foodrem.model.Model;
 import seedu.foodrem.model.item.Item;
-import seedu.foodrem.model.util.ChainComparator;
 
 /**
  * Sorts a list of all items in FoodRem depending on the
@@ -23,18 +24,10 @@ import seedu.foodrem.model.util.ChainComparator;
  * - Remarks
  */
 public class SortCommand extends Command {
-    private final ChainComparator<Item> comparator;
+    private final Comparator<Item> comparator;
 
-    public SortCommand(ChainComparator<Item> comparator) {
+    public SortCommand(Comparator<Item> comparator) {
         this.comparator = comparator;
-    }
-
-    @Override
-    public CommandResult execute(Model model) {
-        requireNonNull(model);
-        model.updateSortedItemList(comparator);
-        return new CommandResult(
-                String.format(Messages.MESSAGE_ITEMS_SORTED_OVERVIEW, model.getSortedItemList().size()));
     }
 
     public static String getUsage() {
@@ -42,9 +35,19 @@ public class SortCommand extends Command {
     }
 
     @Override
+    public CommandResult execute(Model model) {
+        requireNonNull(model);
+        model.updateSortedItemList(comparator);
+        return new CommandResult(String.format(Messages.MESSAGE_ITEMS_SORTED_OVERVIEW,
+                model.getSortedItemList().size()));
+    }
+
+    @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof SortCommand // instanceof handles nulls
-                && comparator.equals(((SortCommand) other).comparator)); // state check
+                && comparator.getClass()
+                .getSimpleName()
+                .equals(((SortCommand) other).comparator.getClass().getSimpleName())); // state check
     }
 }
