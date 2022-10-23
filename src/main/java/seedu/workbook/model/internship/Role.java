@@ -52,6 +52,9 @@ public class Role {
                         && value.equals(((Role) other).value)); // state check
     }
 
+    /**
+     * Returns role name with first letter after every spacing capitalized.
+     */
     public String toUpperCase(String roleName) {
         char[] chars = roleName.toLowerCase().toCharArray();
         boolean isNotWhitespace = false;
@@ -59,8 +62,8 @@ public class Role {
             if (!isNotWhitespace && Character.isLetter(chars[i])) {
                 chars[i] = Character.toUpperCase(chars[i]);
                 isNotWhitespace = true;
-            }
-            else if (Character.isWhitespace(chars[i])) {
+
+            } else if (Character.isWhitespace(chars[i])) {
                 isNotWhitespace = false;
             }
         }

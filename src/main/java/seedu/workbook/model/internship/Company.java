@@ -53,17 +53,20 @@ public class Company {
                         && name.equals(((Company) other).name)); // state check
     }
 
+    /**
+     * Returns company name with first letter after every space capitalized.
+     */
     public String toUpperCase(String companyName) {
         char[] chars = companyName.toLowerCase().toCharArray();
         boolean isNotWhitespace = false;
         for (int i = 0; i < chars.length; i++) {
-           if (!isNotWhitespace && Character.isLetter(chars[i])) {
-               chars[i] = Character.toUpperCase(chars[i]);
-               isNotWhitespace = true;
-           }
-           else if (Character.isWhitespace(chars[i])) {
-               isNotWhitespace = false;
-           }
+            if (!isNotWhitespace && Character.isLetter(chars[i])) {
+                chars[i] = Character.toUpperCase(chars[i]);
+                isNotWhitespace = true;
+
+            } else if (Character.isWhitespace(chars[i])) {
+                isNotWhitespace = false;
+            }
         }
         return String.valueOf(chars);
     }
