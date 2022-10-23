@@ -1,10 +1,13 @@
 package tracko.logic.commands.order;
 
 import static java.util.Objects.requireNonNull;
+import static tracko.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static tracko.logic.parser.CliSyntax.PREFIX_ITEM;
 
 import tracko.commons.core.Messages;
 import tracko.logic.commands.Command;
 import tracko.logic.commands.CommandResult;
+import tracko.logic.parser.CliSyntax;
 import tracko.model.Model;
 import tracko.model.order.OrderContainsKeywordsPredicate;
 
@@ -16,10 +19,15 @@ public class FindOrderCommand extends Command {
 
     public static final String COMMAND_WORD = "findo";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all orders that contain any of "
-            + "the specified keywords (case-insensitive) and displays them as a list with index numbers.\n"
-            + "Parameters: KEYWORD [MORE_KEYWORDS]...\n"
-            + "Example: " + COMMAND_WORD + " keychain";
+    public static final String MESSAGE_USAGE = COMMAND_WORD
+            + ": Finds all orders that contain any of "
+            + "the specified keywords (case-insensitive) and displays them as a list with index numbers."
+            + "Keywords under the same prefix are separated by a semicolon (;).\n"
+            + "Parameters: "
+            + PREFIX_ITEM + "ITEM_KEYWORD; [MORE_ITEM_KEYWORDS]..."
+            + PREFIX_ADDRESS + "ADDRESS_KEYWORD; [MORE_ADDRESS_KEYWORDS]..."
+            + PREFIX_ITEM + "ITEM_KEYWORD; [MORE_ITEM_KEYWORDS]..."
+            + "Example: " + COMMAND_WORD + PREFIX_ITEM + " keychain" ;
 
     private final OrderContainsKeywordsPredicate predicate;
 

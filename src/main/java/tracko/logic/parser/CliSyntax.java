@@ -18,4 +18,6 @@ public class CliSyntax {
     public static final Prefix PREFIX_SELL_PRICE = new Prefix("sp/");
     public static final Flag FLAG_PAID = new Flag("-p");
     public static final Flag FLAG_DELIVERED = new Flag("-d");
+    public static final Flag FLAG_UNPAID = new Flag("-P");
+    public static final Flag FLAG_UNDELIVERED = new Flag("-D");
 }
