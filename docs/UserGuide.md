@@ -40,6 +40,7 @@ This section will explain the parameters and the format of commands.
 | e/     | EMAIL        | Email address of person                         |
 | m/     | MODULE       | Module that person is participating in          |
 | t/     | TAG          | Tag person (i.e tag as friend)                  |
+| r/     | RATING       | Rate person (on a scale of 0 to 5)              |
 | []()   | INDEX        | Index of item in the recent displayed item list |
 
 ## 1.2 Format
@@ -88,18 +89,58 @@ This section will explain the parameters and the format of commands.
 # 3. Features
 
 ## 3.1 Add-Related Commands
-The Add-Related commands include `student`, `prof` and `ta`. These are the commands related to adding new person to the database.
+The Add-Related commands include `student`, `prof` and `ta`. These are the commands related to adding a new person to the database.
 
 ### 3.1.1 Adding a new Student Contact: `student`<a id="311-add-student"></a>
-[coming soon]
-### 3.1.2 Add a new Prof Contact: `prof`<a id="312-add-prof"></a>
-[coming soon]
+
+Adds a new Student contact to your contacts list.
+
+Format: `student n/NAME [y/YEAR] m/MODULE_CODE... p/PHONE e/EMAIL g/GENDER [t/TAG]... [l/LOCATION] git/GITHUB_USERNAME`
+
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+A student can have multiple module codes and tags.
+</div>
+
+Examples:
+* `student n/John Doe y/1 m/CS4226 m/CS5242 p/98765432 e/JohnD@example.com g/M t/friends t/owesMoney l/UTown Residences git/johnnyd`
+* `add n/Betsy Crowe t/friend m/CS2100 e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal`
+
+### 3.1.2 Add a new Professor Contact: `prof`<a id="312-add-prof"></a>
+
+Adds a new Professor contact to your contacts list.
+
+Format: `prof n/NAME m/MODULE_CODE [s/SPECIALISATION] p/PHONE e/EMAIL g/GENDER [t/TAG]... l/LOCATION git/GITHUB_USERNAME [r/RATING]`
+
+Examples:
+* `prof n/Hartin Menz m/CS1101s s/Discrete Math p/98765432 e/HMenz@example.com g/M t/friends l/COM2 LT4 git/hartinmenz r/5 o/2-12:00-2`
+* `prof n/Koro Sensei m/CS3230 p/98663357 e/KoroSensei@gmail.com g/M t/wanted git/senseikoro`
+
 ### 3.1.3 Add a new TA Contact: `ta`<a id="313-add-ta"></a>
-[coming soon]
+
+Adds a new Teaching Assistant contact to your contacts list.
+
+Format: `ta n/NAME m/MODULE_CODE p/PHONE e/EMAIL g/GENDER [t/TAG]... l/LOCATION git/GITHUB_USERNAME [r/RATING]`
+
+Examples:
+* `ta n/Alice Doe m/CS2100 p/98765432 e/AliceD@example.com g/F t/friends t/owesMoney l/COM1-0203 git/alicyD r/5`
+* `ta n/Pablo Escobar m/CS2040 p/99982344 e/Pablo@hotmail.com g/M t/entrepreneur git/pabbyescobar` 
+
 --------------------------------------------------------------------------------------------------------------------
 ## 3.2 Editing-Related Commands
 ### 3.2.1 Delete a person<a id="321-delete-person"></a>
-[coming soon]
+
+Deletes one or more contacts from the contacts list.
+
+Format: `delete INDEX1 INDEX2...`
+
+* Deletes the person(s) at the specified `INDEX`.
+* Multiple contacts can be deleted at once by entering multiple indexes.
+* The indexes **must be a positive integer** 1, 2, 3...
+* The order of the indexes does not matter as long as they are valid i.e. they are not out of bounds.
+
+Example:
+* `Delete 1 2 3`
+
 ### 3.2.2 Edit contact<a id="322-edit-contact"></a>
 [coming soon]
 
