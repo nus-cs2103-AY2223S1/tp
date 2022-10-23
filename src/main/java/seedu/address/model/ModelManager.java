@@ -297,6 +297,10 @@ public class ModelManager implements Model {
         this.addressBook.sortBills(comparator, isAscending);
     }
 
+    /**
+     * Sets the bill in the address book data as UNPAID
+     * @param bill
+     */
     @Override
     public void setBillAsUnpaid(Bill bill) {
         this.addressBook.setBillAsUnpaid(bill);
