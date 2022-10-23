@@ -24,6 +24,10 @@ checkstyleMain {
     exclude("**/org/openapitools/client/**")
 }
 
+run {
+    enableAssertions = true
+}
+
 test {
     useJUnitPlatform()
     finalizedBy jacocoTestReport
