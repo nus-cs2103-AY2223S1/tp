@@ -45,7 +45,8 @@ public class ShowCommand extends Command {
         requireNonNull(personToShow);
         model.setTargetPerson(personToShow);
         return new CommandResult(
-                String.format(MESSAGE_SHOW_PERSON_SUCCESS, personToShow), SecondaryPaneState.TARGET_PERSON);
+                String.format(MESSAGE_SHOW_PERSON_SUCCESS, personToShow.getName().fullName),
+                SecondaryPaneState.TARGET_PERSON);
     }
 
     @Override
