@@ -14,6 +14,7 @@ import seedu.address.logic.Logic;
 
 /**
  * The manager of the UI component.
+ * Interacts with Logic
  */
 public class UiManager implements Ui {
 
