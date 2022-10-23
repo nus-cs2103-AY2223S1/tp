@@ -203,18 +203,18 @@ Attendance value is 0 for absent, 1 for present.
 </div>
 
 Examples:
-```attendance mark 1 l/1 m/1
-attendance mark 1 l/1 m/0```
+`attendance mark 1 l/1 m/1`
+`attendance mark 1 l/1 m/0`
 
 ### Deleting attendance to student: `attendance delete`
 
 Deletes entire attendance list of student in class list
 
-Format: attendance delete INDEX
+Format: `attendance delete INDEX`
 
 Examples:
-attendance delete 1
-attendance delete 2
+`attendance delete 1`
+`attendance delete 2`
 ### Clearing all entries : `clear`
 
 Clears all entries from the student list.
@@ -255,7 +255,8 @@ _Details coming soon ..._
 
 ## FAQ
 
-Coming soon!
+Q: How do I transfer my data into another computer?
+A: Install the app in the other computer. From your current computer, transfer the "data" folder from GREWZ to your new GREWZ folder.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -263,10 +264,20 @@ Coming soon!
 
 | Action     | Format, Examples                                                                                                                                                      |
 |------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Add**    | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague` |
+| **Add**    | `add n/NAME  i/STUDENT_ID [t/TAG] [e/EMAIL] [p/PHONE_NUMBER] [c/CLASS]…​` <br> e.g., `add n/James Ho i/e0823115 p/22224444 e/jamesho@example.com t/friend t/colleague` |
+| **Attendance Add** | `attendance add INDEX c/CLASS s/ATTENDANCESIZE` <br> e.g., `attendance add 1 c/CS2030 s/10`| 
+| **Attendance Delete** | `attendance delete INDEX` <br> e.g., `attendance delete 1`| 
+| **Attendance Mark** | `attendance mark INDEX l/LESSON m/ATTENDANCEVALUE` <br> e.g., `attendance mark 1 l/1 m/1`|
 | **Clear**  | `clear`                                                                                                                                                               |
 | **Delete** | `delete INDEX`<br> e.g., `delete 3`                                                                                                                                   |
-| **Edit**   | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`                                           |
+| **Edit**   | `edit INDEX [n/NAME] [i/STUDENT_ID] [p/PHONE_NUMBER] [e/EMAIL] [i/STUDENT_ID] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`                                           |
 | **Find**   | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`                                                                                                            |
 | **List**   | `list`                                                                                                                                                                |
 | **Help**   | `help`                                                                                                                                                                |
+| **Upload** | `upload-pic`| `upload-pic INDEX` <br> e.g., `upload-pic 1`|
+
+
+--------------------------------------------------------------------------------------------------------------------
+
+##Glossary
+
