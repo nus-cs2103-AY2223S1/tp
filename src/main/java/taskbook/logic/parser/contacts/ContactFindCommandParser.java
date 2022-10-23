@@ -17,8 +17,8 @@ import taskbook.logic.parser.exceptions.ParseException;
  */
 public class ContactFindCommandParser implements Parser<ContactFindCommand> {
     /**
-     * Parses the given {@code String} of arguments in the context of the TaskFindCommand
-     * and returns an TaskSortCommand object for execution.
+     * Parses the given {@code String} of arguments in the context of the ContactFindCommand
+     * and returns an ContactSortCommand object for execution.
      * @throws ParseException if the user input does not conform the expected format
      */
     @Override

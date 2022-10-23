@@ -13,7 +13,7 @@ import taskbook.model.Model;
 import taskbook.model.person.Person;
 
 /**
- * Finds all tasks matching a given query exactly in name or description.
+ * Finds all contacts matching a given query exactly in their names.
  * Query matching is case insensitive.
  */
 public class ContactFindCommand extends Command {
@@ -31,11 +31,12 @@ public class ContactFindCommand extends Command {
     private String query;
 
     /**
-     * Creates a TaskFindCommand to search for tasks with the specified {@code Predicate<Task> query}.
+     * Creates a ContactFindCommand to search for persons with the specified {@code Predicate<Person> query}.
      * @param query
      */
     public ContactFindCommand(Predicate<Person> predicate, String query) {
         requireNonNull(predicate);
+        requireNonNull(query);
         this.predicate = predicate;
         this.query = query;
     }
@@ -53,9 +54,6 @@ public class ContactFindCommand extends Command {
             return false;
         }
         ContactFindCommand command = (ContactFindCommand) other;
-        boolean sameQuery = this.query == null || command.query == null
-                ? this.query == command.query
-                : this.query.toUpperCase().equals(command.query.toUpperCase());
-        return sameQuery;
+        return this.query.toUpperCase().equals(command.query.toUpperCase());
     }
 }
