@@ -1,6 +1,7 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.logic.parser.CliSyntax.FLAG_FILTER_STR;
 import static seedu.address.model.team.TaskList.NO_TASKS;
 
 import seedu.address.logic.commands.exceptions.CommandException;
@@ -16,6 +17,8 @@ public class ListTasksCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
         + ": Lists all the tasks of the current team.\n"
+            + "To view only incomplete or completed tasks, add "
+            + "-" + FLAG_FILTER_STR + " i (for incomplete tasks) or c (for completed tasks) \n"
         + "Example: " + COMMAND_WORD;
 
     public static final String MESSAGE_LIST_TASK_SUCCESS = "Tasks: \n%1$s";
