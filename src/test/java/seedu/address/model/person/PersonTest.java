@@ -60,7 +60,6 @@ public class PersonTest {
         // different job ID, all other attributes same -> returns false
         editedAlice = new PersonBuilder(ALICE).withId(VALID_JOB_ID_BOB).build();
         assertFalse(ALICE.isSamePerson(editedAlice));
-
     }
 
     @Test

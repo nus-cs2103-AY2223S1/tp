@@ -52,6 +52,7 @@ public class SamePersonPredicateTest {
     public void test_isSamePerson_returnsTrue() {
         SamePersonPredicate firstPredicate = new SamePersonPredicate(AMY);
         SamePersonPredicate secondPredicate = new SamePersonPredicate(ALICE);
+        SamePersonPredicate thirdPredicate = new SamePersonPredicate(BOB);
 
         // same Person object
         assertTrue(firstPredicate.test(AMY));
@@ -86,5 +87,6 @@ public class SamePersonPredicateTest {
         // different job ID, all other attributes same
         editedAlice = new PersonBuilder(ALICE).withId(VALID_JOB_ID_BOB).build();
         assertFalse(secondPredicate.test(editedAlice));
+
     }
 }

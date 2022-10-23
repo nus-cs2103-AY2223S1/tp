@@ -20,6 +20,13 @@ public class UniversityTest {
     }
 
     @Test
+    public void isWithinLengthLimit() {
+        assertTrue(University.isWithinLengthLimit("A".repeat(University.LENGTH_LIMIT - 1)));
+        assertTrue(University.isWithinLengthLimit("A".repeat(University.LENGTH_LIMIT)));
+        assertFalse(University.isWithinLengthLimit("A".repeat(University.LENGTH_LIMIT + 1)));
+    }
+
+    @Test
     public void isValidUniversity() {
         // null university name
         assertThrows(NullPointerException.class, () -> University.isValidUniversity(null));

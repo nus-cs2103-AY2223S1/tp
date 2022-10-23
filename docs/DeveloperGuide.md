@@ -371,6 +371,50 @@ The following sequence diagram shows how the `export` command works:
           in JSON format or file already exists etc.
         * Users will not be able to save the files where they like.
 
+
+### Find Feature Improvements
+
+The `find` feature currently allows the user to search by name among all Persons in store by InternConnect. We want to improve onto this feature to allow Users to search by any possible field of choice, allow multiple field searches, as well as allow substring searches
+
+#### Implementation
+
+`findCommand` class is used in the execution of `find` command. The command is then parsed accordingly, with a `NameContainsKeywordsPredicate` as an argument to the command. We now want to extend this with 2 changes:
+
+1. Add a predicate for each appropriate attribute
+2. Modify the Parser to appropriately choose the predicates based on a set syntax for its arguments
+3. Allow user to choose if they want to do a _substring_ search, or _search all_
+
+Given below is an example success scenario and how the `find` mechanism behaves at each step.
+
+1. The user executes `find`.
+1. `LogicManager` calls `AddressBookParser#parseCommand()`.
+1. `AddressBookParser#parseCommand()` calls `FindCommand#execute()`.
+1. `FindCommand` iterates through list, checking for entries where the filtered predicate is true.
+1. `FindCommand` updates the `displayedList` from `model` by calling `Model#updateFilteredPersonList()`.
+
+The following sequence diagram shows how the `find` command works:
+
+![ExportSequenceDiagram](images/lulucopter.png)
+
+#### Design Considerations
+
+**Aspect: Usage of flags**
+* **Alternative 1 (current implementation)**: we create a new command for each type of search
+    * Pros:
+        * All commands current follow this design, allows for consistency in code structure, and follows current OOP design conventions.
+        * Naming format for all commands are fixed.
+    * Cons:
+        * Users will expect the `find` command to be under the same category/usage scenario as a `findAll` command and a `findSubstring` command
+* **Alternative 2**: flag is used within the find command to allow usage to select the type of search they want to perform
+    * Pros:
+        * Users who are already familiar with the `find` command can extend further its power and functionality with flags without "relearning" a new syntax for a different command.
+        * Users will find it intuitive that a `find` command is the main overlying command, and within its syntax they can change the way its used, similar to how current CLI commands are implemented
+        * Future commands which want to use flags can build onto the newly restructured code
+    * Cons:
+        * Harder to implement since a flag is a brand-new functionality which other commands do not have. Coupled classes have to be modified accordingly, such as the relevant parser classes and argumentTokenizer/Multimap
+        * Flags introduce the possibility for more input types to consider, and these affects the inputs that users can use in all commands
+        * Requires restructuring old code, which will increase testing time and possibility of introducing bugs into existing code
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Documentation, logging, testing, configuration, dev-ops**
