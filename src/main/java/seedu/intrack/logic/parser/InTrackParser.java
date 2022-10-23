@@ -13,6 +13,7 @@ import seedu.intrack.logic.commands.Command;
 import seedu.intrack.logic.commands.DeleteCommand;
 import seedu.intrack.logic.commands.EditCommand;
 import seedu.intrack.logic.commands.ExitCommand;
+import seedu.intrack.logic.commands.FilterCommand;
 import seedu.intrack.logic.commands.FindNameCommand;
 import seedu.intrack.logic.commands.FindPositionCommand;
 import seedu.intrack.logic.commands.HelpCommand;
@@ -91,6 +92,9 @@ public class InTrackParser {
 
         case SortCommand.COMMAND_WORD:
             return new SortCommandParser().parse(arguments);
+
+        case FilterCommand.COMMAND_WORD:
+            return new FilterCommandParser().parse(arguments);
 
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);

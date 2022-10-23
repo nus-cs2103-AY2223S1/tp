@@ -38,7 +38,7 @@ public class TypicalInternships {
             .withEmail("johnd@example.com").withAddress("311, Clementi Ave 2, #02-25")
             .withTasks("Application submitted /at 20-10-2022 12:00").withTags("owesMoney", "friends").build();
     public static final Internship CARL = new InternshipBuilder().withName("Carl Kurz")
-            .withPosition("Frontend Engineer").withStatus("Progress").withPhone("95352563")
+            .withPosition("Frontend Engineer").withStatus("Offered").withPhone("95352563")
             .withEmail("heinz@example.com").withAddress("wall street")
             .withTasks("Application submitted /at 19-10-2022 11:38").build();
     public static final Internship DANIEL = new InternshipBuilder().withName("Daniel Meier")
@@ -47,12 +47,12 @@ public class TypicalInternships {
             .withTasks("Application submitted /at 19-10-2022 11:38", "HR Interview /at 30-10-2022 09:00")
             .withTags("friends").build();
     public static final Internship ELLE = new InternshipBuilder().withName("Elle Meyer")
-            .withPosition("Full Stack Engineer").withStatus("Progress").withPhone("9482224")
+            .withPosition("Full Stack Engineer").withStatus("Offered").withPhone("9482224")
             .withEmail("werner@example.com").withAddress("michegan ave")
             .withTasks("Application submitted /at 25-10-2022 08:30", "Technical Interview /at 30-10-2022 09:00")
             .build();
     public static final Internship FIONA = new InternshipBuilder().withName("Fiona Kunz")
-            .withPosition("Cyber Security Analyst").withStatus("Progress").withPhone("9482427")
+            .withPosition("Cyber Security Analyst").withStatus("Offered").withPhone("9482427")
             .withEmail("lydia@example.com").withAddress("little tokyo")
             .withTasks("Application submitted /at 19-10-2022 11:38", "HR Interview /at 30-10-2022 09:00").build();
     public static final Internship GEORGE = new InternshipBuilder().withName("George Best")
