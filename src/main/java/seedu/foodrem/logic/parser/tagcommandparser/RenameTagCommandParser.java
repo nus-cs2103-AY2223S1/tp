@@ -41,6 +41,10 @@ public class RenameTagCommandParser implements Parser<RenameTagCommand> {
         final String originalName = matcher.group("originalName").trim();
         final String newName = matcher.group("newName").trim();
 
+        if (newName.equals(originalName)) {
+            throw new IllegalArgumentException(String.format("The tag name is already \"%s\".", newName));
+        }
+
         Tag originalTag = new Tag(originalName);
         Tag renamedTag = new Tag(newName);
 
