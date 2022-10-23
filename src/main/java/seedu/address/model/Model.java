@@ -5,6 +5,7 @@ import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.module.Lesson;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.user.User;
@@ -104,6 +105,8 @@ public interface Model {
     void setPerson(Person target, Person editedPerson);
 
     void addLessonToUser(Lesson lesson);
+
+    void removeLessonToUser(Lesson lesson) throws CommandException;
 
     /** Returns an unmodifiable view of the filtered person list */
     ObservableList<Person> getFilteredPersonList();

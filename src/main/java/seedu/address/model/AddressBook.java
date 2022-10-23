@@ -5,6 +5,7 @@ import static java.util.Objects.requireNonNull;
 import java.util.List;
 
 import javafx.collections.ObservableList;
+import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.module.Lesson;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.UniquePersonList;
@@ -94,6 +95,10 @@ public class AddressBook implements ReadOnlyAddressBook {
 
     public void addLessonToUser(Lesson lesson) {
         user.addLesson(lesson);
+    }
+
+    public void removeLessonToUser(Lesson lesson) throws CommandException {
+        user.removeLesson(lesson);
     }
 
     //// person-level operations

@@ -2,6 +2,7 @@ package seedu.address.model.person.user;
 
 import java.util.Set;
 
+import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.module.CurrentModule;
 import seedu.address.model.module.Lesson;
 import seedu.address.model.module.PlannedModule;
@@ -49,4 +50,11 @@ public abstract class User {
 
     public abstract Set<Lesson> getLessons();
 
+    /**
+     * Removes lesson from set of lessons.
+     *
+     * @param lesson to be removed.
+     * @throws CommandException No user or no such lesson.
+     */
+    public abstract void removeLesson(Lesson lesson) throws CommandException;
 }

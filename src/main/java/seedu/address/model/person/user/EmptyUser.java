@@ -2,6 +2,7 @@ package seedu.address.model.person.user;
 
 import java.util.Set;
 
+import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.module.CurrentModule;
 import seedu.address.model.module.Lesson;
 import seedu.address.model.module.PlannedModule;
@@ -98,6 +99,11 @@ public class EmptyUser extends User {
     @Override
     public void addLesson(Lesson lesson) {
 
+    }
+
+    @Override
+    public void removeLesson(Lesson lesson) throws CommandException {
+        throw new CommandException("No user created!");
     }
 
     @Override
