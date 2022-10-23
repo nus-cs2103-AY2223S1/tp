@@ -21,12 +21,12 @@ import seedu.rc4hdb.model.Model;
 import seedu.rc4hdb.model.ModelManager;
 import seedu.rc4hdb.model.ReadOnlyResidentBook;
 import seedu.rc4hdb.model.ResidentBook;
-import seedu.rc4hdb.storage.JsonResidentBookStorage;
-import seedu.rc4hdb.storage.JsonSerializableResidentBook;
 import seedu.rc4hdb.storage.JsonUserPrefsStorage;
 import seedu.rc4hdb.storage.Storage;
 import seedu.rc4hdb.storage.StorageManager;
 import seedu.rc4hdb.storage.StorageStub;
+import seedu.rc4hdb.storage.residentbook.JsonResidentBookStorage;
+import seedu.rc4hdb.storage.residentbook.JsonSerializableResidentBook;
 
 /**
  * Unit tests for {@link FileSwitchCommand}.

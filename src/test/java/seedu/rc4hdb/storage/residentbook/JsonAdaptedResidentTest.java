@@ -1,7 +1,7 @@
-package seedu.rc4hdb.storage;
+package seedu.rc4hdb.storage.residentbook;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static seedu.rc4hdb.storage.JsonAdaptedResident.MISSING_FIELD_MESSAGE_FORMAT;
+import static seedu.rc4hdb.storage.residentbook.JsonAdaptedResident.MISSING_FIELD_MESSAGE_FORMAT;
 import static seedu.rc4hdb.testutil.Assert.assertThrows;
 import static seedu.rc4hdb.testutil.TypicalResidents.BENSON;
 
@@ -20,6 +20,9 @@ import seedu.rc4hdb.model.resident.fields.Name;
 import seedu.rc4hdb.model.resident.fields.Phone;
 import seedu.rc4hdb.model.resident.fields.Room;
 
+/**
+ * Unit tests for {@link JsonAdaptedResident}.
+ */
 public class JsonAdaptedResidentTest {
     private static final String INVALID_NAME = "R@chel";
     private static final String INVALID_PHONE = "+651234";

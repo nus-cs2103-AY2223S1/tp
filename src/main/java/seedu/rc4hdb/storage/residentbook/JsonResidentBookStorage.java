@@ -1,4 +1,4 @@
-package seedu.rc4hdb.storage;
+package seedu.rc4hdb.storage.residentbook;
 
 import static java.util.Objects.requireNonNull;
 

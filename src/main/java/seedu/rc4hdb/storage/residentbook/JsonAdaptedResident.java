@@ -1,4 +1,4 @@
-package seedu.rc4hdb.storage;
+package seedu.rc4hdb.storage.residentbook;
 
 import java.util.ArrayList;
 import java.util.HashSet;

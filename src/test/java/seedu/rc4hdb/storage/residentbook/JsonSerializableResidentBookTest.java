@@ -1,4 +1,4 @@
-package seedu.rc4hdb.storage;
+package seedu.rc4hdb.storage.residentbook;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static seedu.rc4hdb.testutil.Assert.assertThrows;
@@ -13,6 +13,9 @@ import seedu.rc4hdb.commons.exceptions.IllegalValueException;
 import seedu.rc4hdb.commons.util.JsonUtil;
 import seedu.rc4hdb.model.ResidentBook;
 
+/**
+ * Unit tests for {@link JsonSerializableResidentBook}.
+ */
 public class JsonSerializableResidentBookTest {
 
     private static final Path TEST_DATA_FOLDER = Paths.get("src", "test", "data", "JsonSerializableResidentBookTest");
