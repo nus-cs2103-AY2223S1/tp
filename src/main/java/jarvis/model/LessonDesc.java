@@ -24,13 +24,6 @@ public class LessonDesc {
     }
 
     /**
-     * Constructs an empty {@code LessonDesc}.
-     */
-    public LessonDesc() {
-        lessonDesc = "";
-    }
-
-    /**
      * Returns true if a given string is a valid lesson description.
      */
     public static boolean isValidLessonDesc(String lessonDesc) {
