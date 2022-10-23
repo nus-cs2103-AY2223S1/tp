@@ -1,12 +1,17 @@
 package jarvis.logic.parser;
 
 import static jarvis.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static jarvis.logic.parser.CliSyntax.PREFIX_END_DATE_TIME;
+import static jarvis.logic.parser.CliSyntax.PREFIX_END_DATE;
+import static jarvis.logic.parser.CliSyntax.PREFIX_END_TIME;
 import static jarvis.logic.parser.CliSyntax.PREFIX_LESSON;
-import static jarvis.logic.parser.CliSyntax.PREFIX_START_DATE_TIME;
+import static jarvis.logic.parser.CliSyntax.PREFIX_NAME;
+import static jarvis.logic.parser.CliSyntax.PREFIX_START_DATE;
+import static jarvis.logic.parser.CliSyntax.PREFIX_START_TIME;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.Optional;
+import java.time.LocalTime;
 import java.util.stream.Stream;
 
 import jarvis.logic.commands.AddStudioCommand;
@@ -26,9 +31,9 @@ public class AddStudioCommandParser implements Parser<AddStudioCommand> {
      */
     public AddStudioCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_LESSON,
-                PREFIX_START_DATE_TIME, PREFIX_END_DATE_TIME);
+                PREFIX_START_DATE, PREFIX_START_TIME, PREFIX_END_DATE, PREFIX_END_TIME);
 
-        if (!arePrefixesPresent(argMultimap, PREFIX_START_DATE_TIME, PREFIX_END_DATE_TIME)
+        if (!arePrefixesPresent(argMultimap, PREFIX_START_DATE, PREFIX_START_TIME, PREFIX_END_TIME)
                 || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                     AddStudioCommand.MESSAGE_USAGE));
@@ -36,8 +41,17 @@ public class AddStudioCommandParser implements Parser<AddStudioCommand> {
 
         Optional<String> desc = argMultimap.getValue(PREFIX_LESSON);
         LessonDesc studioDesc = desc.isPresent() ? ParserUtil.parseLessonDesc(desc.get()) : null;
-        LocalDateTime startDateTime = ParserUtil.parseDateTime(argMultimap.getValue(PREFIX_START_DATE_TIME).get());
-        LocalDateTime endDateTime = ParserUtil.parseDateTime(argMultimap.getValue(PREFIX_END_DATE_TIME).get());
+        LocalDate startDate = ParserUtil.parseDate(argMultimap.getValue(PREFIX_START_DATE).get());
+        LocalDate endDate = startDate;
+        if (argMultimap.getValue(PREFIX_END_DATE).isPresent()) {
+            endDate = ParserUtil.parseDate(argMultimap.getValue(PREFIX_NAME).get());
+        }
+
+        LocalTime startTime = ParserUtil.parseTime(argMultimap.getValue(PREFIX_START_TIME).get());
+        LocalTime endTime = ParserUtil.parseTime(argMultimap.getValue(PREFIX_END_TIME).get());
+
+        LocalDateTime startDateTime = LocalDateTime.of(startDate, startTime);
+        LocalDateTime endDateTime = LocalDateTime.of(endDate, endTime);
 
         if (!startDateTime.isBefore(endDateTime)) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
