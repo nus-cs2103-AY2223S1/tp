@@ -1,7 +1,7 @@
 package seedu.address.storage;
 
-import static seedu.address.logic.parser.ParserUtil.parseCap;
 import static seedu.address.commons.util.StringUtil.trimAndReplaceMultipleSpaces;
+import static seedu.address.logic.parser.ParserUtil.parseCap;
 
 import java.util.ArrayList;
 import java.util.HashSet;

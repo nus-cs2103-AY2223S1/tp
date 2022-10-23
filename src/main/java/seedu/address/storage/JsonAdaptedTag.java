@@ -1,12 +1,12 @@
 package seedu.address.storage;
 
+import static seedu.address.commons.util.StringUtil.trimAndReplaceMultipleSpaces;
+
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.tag.Tag;
-
-import static seedu.address.commons.util.StringUtil.trimAndReplaceMultipleSpaces;
 
 /**
  * Jackson-friendly version of {@link Tag}.
