@@ -81,4 +81,8 @@ public class Bill {
     public int hashCode() {
         return Objects.hash(appointment, amount, billDate, paymentStatus);
     }
+
+    public void setBillAsPaid() {
+        this.paymentStatus.setAsPaid();
+    }
 }

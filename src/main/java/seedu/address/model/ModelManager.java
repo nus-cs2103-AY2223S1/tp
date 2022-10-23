@@ -347,5 +347,9 @@ public class ModelManager implements Model {
     public void deleteAddressBookHistory() {
         this.addressBookHistory.remove(addressBookHistory.size() - 1);
     }
-
+    
+    @Override
+    public void setBillAsPaid(Bill bill) {
+        this.addressBook.setBillAsPaid(bill);
+    }
 }

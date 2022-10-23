@@ -21,7 +21,7 @@ public class PaymentStatus {
 
     public static final String VALIDATION_REGEX = "PAID|UNPAID";
 
-    public final Status status;
+    private Status status;
 
     /**
      * Constructs a {@code Slot}.
@@ -47,6 +47,10 @@ public class PaymentStatus {
 
     public boolean isPaid() {
         return status.equals(Status.PAID);
+    }
+
+    public void setAsPaid() {
+        this.status = Status.PAID;
     }
 
     @Override
