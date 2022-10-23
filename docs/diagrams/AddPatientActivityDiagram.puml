@@ -1,0 +1,31 @@
+@startuml
+start
+:User executes add patient command;
+
+if () then ([all the compulsory field are present])
+    if () then ([all the field inputs are valid])
+        if () then ([multiple inputs for a field])
+            if () then ([isDateTime or isTag])
+            : All the inputs will be accepted;
+            else ([else])
+            : Only the last input for that field will be accepted;
+            endif
+        else ([else])
+        endif
+        if () then ([there is potential duplication])
+        : Show error message about the potential duplication;
+        else ([else])
+        :Add Patient into addressBook;
+        :Save the updated addressBook;
+        endif
+    else ([else])
+    :Show error message about the invalid user input;
+    endif
+else ([else])
+:Show error message about the missing field;
+
+endif
+stop
+@enduml
+
+
