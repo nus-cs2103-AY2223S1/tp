@@ -16,11 +16,6 @@ public class SuggestCommand extends Command {
 
     public static final String COMMAND_WORD = "suggest";
     public static final String DESCRIPTION = "Suggests a list of friends based on a given set of constraints.\n\n"
-            + "Provide some days of week (mon, tue...sun) and some times (0600, 2130, etc.) "
-
-
-    public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Suggests a list of friends based on a given set of constraints.\n\n"
             + "Provide some DayTimeInWeek (eg. mon@1930) "
             + "and they will be matched against the availability periods of the player.\n\n"
             + "Provide keywords, and they will be matched against all attributes "
