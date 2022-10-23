@@ -8,6 +8,7 @@ import java.util.regex.Pattern;
 
 import friday.logic.commands.AddCommand;
 import friday.logic.commands.AliasCommand;
+import friday.logic.commands.AliasListCommand;
 import friday.logic.commands.ClearCommand;
 import friday.logic.commands.Command;
 import friday.logic.commands.DeleteCommand;
@@ -95,6 +96,8 @@ public class FridayParser {
         case UnaliasCommand.COMMAND_WORD:
             return new UnaliasCommandParser().parse(arguments);
 
+        case AliasListCommand.COMMAND_WORD:
+            return new AliasListCommand();
 
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);

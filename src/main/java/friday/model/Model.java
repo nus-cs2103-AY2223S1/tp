@@ -122,4 +122,9 @@ public interface Model {
      * {@code key} must exist in FRIDAY.
      */
     String getKeyword(String key);
+
+    /**
+     * Returns the String representation of all aliases in FRIDAY.
+     */
+    String displayAliases();
 }

@@ -92,6 +92,20 @@ public class AliasMap {
         }
     }
 
+    /**
+     * Returns the String representation of all aliases in AliasMap.
+     */
+    public String displayAliases() {
+        String result = "";
+        Set<Map.Entry<String, String>> keyValuePairs = entrySet();
+        for (Map.Entry<String, String> keyValuePair : keyValuePairs) {
+            String key = keyValuePair.getKey();
+            String value = keyValuePair.getValue();
+            result = result + "\n" + key + " : " + value;
+        }
+        return result;
+    }
+
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object

@@ -143,6 +143,11 @@ public class ModelManager implements Model {
         return friday.getKeyword(key);
     }
 
+    @Override
+    public String displayAliases() {
+        return friday.displayAliases();
+    }
+
     //=========== Filtered Student List Accessors =============================================================
 
     /**

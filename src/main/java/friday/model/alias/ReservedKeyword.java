@@ -6,6 +6,7 @@ import java.util.List;
 
 import friday.logic.commands.AddCommand;
 import friday.logic.commands.AliasCommand;
+import friday.logic.commands.AliasListCommand;
 import friday.logic.commands.ClearCommand;
 import friday.logic.commands.DeleteCommand;
 import friday.logic.commands.EditCommand;
@@ -29,7 +30,7 @@ public class ReservedKeyword {
             AliasCommand.COMMAND_WORD, ClearCommand.COMMAND_WORD, DeleteCommand.COMMAND_WORD, EditCommand.COMMAND_WORD,
             ExitCommand.COMMAND_WORD, FindCommand.COMMAND_WORD, HelpCommand.COMMAND_WORD, ListCommand.COMMAND_WORD,
             MarkMasteryCheckCommand.COMMAND_WORD, RemarkCommand.COMMAND_WORD, SortCommand.COMMAND_WORD,
-            UgCommand.COMMAND_WORD, UnaliasCommand.COMMAND_WORD);
+            UgCommand.COMMAND_WORD, UnaliasCommand.COMMAND_WORD, AliasListCommand.COMMAND_WORD);
 
     public static final String MESSAGE_CONSTRAINTS = "Reserved keyword given is not in the list of reserved keywords";
 

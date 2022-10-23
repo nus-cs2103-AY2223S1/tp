@@ -167,6 +167,11 @@ public class SortCommandTest {
         public String getKeyword(String key) {
             throw new AssertionError("This method should not be called.");
         }
+
+        @Override
+        public String displayAliases() {
+            throw new AssertionError("This method should not be called.");
+        }
     }
 
     /**

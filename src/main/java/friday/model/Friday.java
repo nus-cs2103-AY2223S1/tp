@@ -152,6 +152,13 @@ public class Friday implements ReadOnlyFriday {
         return aliases.getKeyword(key);
     }
 
+    /**
+     * Returns the String representation of all aliases in FRIDAY.
+     */
+    public String displayAliases() {
+        return aliases.displayAliases();
+    }
+
     //// util methods
 
     @Override
