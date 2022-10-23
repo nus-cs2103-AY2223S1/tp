@@ -98,8 +98,6 @@ public interface Model {
 
     void addToCommandHistory(String commandInput);
 
-    void resetCommandHistoryIndex();
-
     String nextCommand();
 
     String prevCommand();

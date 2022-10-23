@@ -162,10 +162,6 @@ public class ModelManager implements Model {
         commandHistory.addToCommandHistory(validCommandInput);
     }
 
-    public void resetCommandHistoryIndex() {
-        commandHistory.resetCurrentIndexToBeyondMaxIndex();
-    }
-
     @Override
     public String nextCommand() {
         return commandHistory.getNextCommand();

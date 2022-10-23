@@ -173,11 +173,6 @@ public class AddCommandTest {
         }
 
         @Override
-        public void resetCommandHistoryIndex() {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
         public String nextCommand() {
             throw new AssertionError("This method should not be called.");
         }
