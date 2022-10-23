@@ -81,10 +81,9 @@ public class PersonCard extends UiPart<Region> {
             if (empty || appointment == null) {
                 setGraphic(null);
                 setText(null);
-                setPrefWidth(0);
                 setStyle(TRANSPARENT_BACKGROUND);
             } else {
-                setGraphic(new AppointmentFlowPane(getIndex() + 1, appointment));
+                setGraphic(new AppointmentHBox(getIndex() + 1, appointment));
                 setStyle(TRANSPARENT_BACKGROUND);
             }
         }
