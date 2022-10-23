@@ -28,6 +28,10 @@ public class AddItemCommandParser implements Parser<AddItemCommand> {
                 ArgumentTokenizer.tokenize(args, PREFIX_CURRENTSTOCK, PREFIX_MINIMUMSTOCK);
         Index index;
 
+        if (!arePrefixesPresent(argMultimap, PREFIX_CURRENTSTOCK, PREFIX_MINIMUMSTOCK)) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddItemCommand.MESSAGE_USAGE));
+        }
+
         try {
             index = ParserUtil.parseIndex(argMultimap.getPreamble());
         } catch (ParseException e) {
@@ -36,6 +40,10 @@ public class AddItemCommandParser implements Parser<AddItemCommand> {
 
         int currentStock = parseInt(argMultimap.getValue(PREFIX_CURRENTSTOCK).get());
         int minimumstock = parseInt(argMultimap.getValue(PREFIX_MINIMUMSTOCK).get());
+
+        if (currentStock < 0 || minimumstock < 0) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddItemCommand.MESSAGE_USAGE));
+        }
 
         return new AddItemCommand(index, currentStock, minimumstock);
     }

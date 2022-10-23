@@ -1,50 +1,50 @@
 {
   "_comment": "AddressBook save file which contains the same Person values as in TypicalPersons#getTypicalAddressBook()",
   "persons" : [ {
-    "name" : "Alice Pauline",
-    "phone" : "94351253",
+    "name" : "ABC Pte Ltd",
+    "phone" : "67089005",
     "price" : "$1.50",
     "item" : "Chicken",
     "address" : "123, Jurong West Ave 6, #08-111",
-    "tagged" : [ "friends" ]
+    "tagged" : [ "Supplier" ]
   }, {
-    "name" : "Benson Meier",
-    "phone" : "98765432",
+    "name" : "Ya Shu Egg",
+    "phone" : "63450864",
     "price" : "$3.50",
-    "item" : "Tuna",
+    "item" : "Egg",
     "address" : "311, Clementi Ave 2, #02-25",
-    "tagged" : [ "owesMoney", "friends" ]
+    "tagged" : [ "Supplier" ]
   }, {
-    "name" : "Carl Kurz",
-    "phone" : "95352563",
+    "name" : "KyEggs",
+    "phone" : "61240985",
     "price" : "$0.90",
-    "item" : "Rice",
-    "address" : "wall street",
+    "item" : "Egg",
+    "address" : "Blk 11 Ang Mo Kio Street 74, #11-04",
     "tagged" : [ ]
   }, {
-    "name" : "Daniel Meier",
-    "phone" : "87652533",
+    "name" : "Goh Supplies",
+    "phone" : "69008045",
     "price" : "$3.80",
     "item" : "Tonic Water",
     "address" : "10th street",
-    "tagged" : [ "friends" ]
+    "tagged" : [ "Supplier" ]
   }, {
-    "name" : "Elle Meyer",
-    "phone" : "9482224",
+    "name" : "Soho Singapore",
+    "phone" : "64300567",
     "price" : "$0.60",
     "item" : "Napkins",
     "address" : "michegan ave",
     "tagged" : [ ]
   }, {
-    "name" : "Fiona Kunz",
-    "phone" : "9482427",
+    "name" : "Balas Market",
+    "phone" : "62624417",
     "price" : "$1.10",
     "item" : "Cups",
     "address" : "little tokyo",
     "tagged" : [ ]
   }, {
-    "name" : "George Best",
-    "phone" : "9482442",
+    "name" : "Best Supplies",
+    "phone" : "65409876",
     "email" : "anna@example.com",
     "price" : "$0.80",
     "item" : "Noodles",
