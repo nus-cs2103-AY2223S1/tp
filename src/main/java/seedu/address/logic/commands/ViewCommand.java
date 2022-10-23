@@ -5,10 +5,13 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_GRAPH;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TYPE;
 
 import java.util.Optional;
+import java.util.function.Predicate;
 
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.GraphConfiguration;
 import seedu.address.model.Model;
+import seedu.address.model.entry.Entry;
+import seedu.address.model.entry.EntryInYearMonthPredicate;
 import seedu.address.model.entry.EntryType;
 import seedu.address.model.entry.GraphType;
 import seedu.address.model.entry.Month;
@@ -35,6 +38,22 @@ public class ViewCommand extends Command {
         this.viewEntriesDescriptor = viewEntriesDescriptor;
     }
 
+    private Predicate<Entry> predicateSelector(ViewEntriesDescriptor viewEntriesDescriptor) {
+        GraphType graphType = viewEntriesDescriptor.getGraphType();
+
+        // If the specified graph type is "Month", we select the predicate to check if the entry
+        // is in the corresponding month.
+        if (graphType.getGraphType().equals(GraphType.Type.MONTH)) {
+            Optional<Month> month = viewEntriesDescriptor.getMonth();
+            assert month.isPresent();
+
+            return new EntryInYearMonthPredicate(month.get());
+        }
+
+        // By default, show all entries in the entry list.
+        return Model.PREDICATE_SHOW_ALL_ENTRIES;
+    }
+
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
@@ -42,6 +61,20 @@ public class ViewCommand extends Command {
         EntryType entryType = viewEntriesDescriptor.getEntryType();
         GraphType graphType = viewEntriesDescriptor.getGraphType();
         GraphConfiguration graphConfiguration = new GraphConfiguration(entryType, graphType, true);
+
+
+        Predicate<Entry> predicate = predicateSelector(viewEntriesDescriptor);
+
+        switch (entryType.getEntryType()) {
+        case EXPENDITURE:
+            model.updateFilteredExpenditureList(predicate);
+            break;
+        case INCOME:
+            model.updateFilteredIncomeList(predicate);
+            break;
+        default:
+            break;
+        }
 
         return new CommandResult(
                 String.format(MESSAGE_SUCCESS, entryType, graphType), false, false, graphConfiguration);

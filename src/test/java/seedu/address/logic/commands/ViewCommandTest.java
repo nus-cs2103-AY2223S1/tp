@@ -7,33 +7,43 @@ import static seedu.address.logic.commands.CommandTestUtil.EXPENDITURE_BY_MONTH;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.testutil.TypicalEntry.getTypicalPennyWise;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.ViewCommand.ViewEntriesDescriptor;
 import seedu.address.model.GraphConfiguration;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
+import seedu.address.model.PennyWise;
 import seedu.address.model.UserPrefs;
+import seedu.address.model.entry.EntryInYearMonthPredicate;
 
 /**
  * Contains integration tests (interaction with the Model) and unit tests for ViewCommand.
  */
 public class ViewCommandTest {
 
-    private Model model = new ModelManager(getTypicalPennyWise(), new UserPrefs());
+    private Model model;
+
+    @BeforeEach
+    // We set the model before each test suite to prevent diffusion of the model contents as
+    // the ViewCommand has a side effect of modifying the contents of the model.
+    public void setModel() {
+        model = new ModelManager(getTypicalPennyWise(), new UserPrefs());
+    }
 
     @Test
-    public void execute_allFieldsSpecified_success() {
-        ViewCommand viewCommandExpenditureByCategory = new ViewCommand(EXPENDITURE_BY_CATEGORY);
-        String expectedMessageExpenditureByCategory = String.format(
+    public void execute_allFieldsSpecifiedForCategory_success() {
+        ViewCommand viewCommand = new ViewCommand(EXPENDITURE_BY_CATEGORY);
+        String expectedMessage = String.format(
                 ViewCommand.MESSAGE_SUCCESS,
                 EXPENDITURE_BY_CATEGORY.getEntryType(),
                 EXPENDITURE_BY_CATEGORY.getGraphType()
         );
         // Explicitly construct an expected command result because the ViewCommand has a side effect of modifying
         // the graph panel and thus cannot rely on the default graph configuration.
-        CommandResult expectedCommandResultExpenditureByCategory = new CommandResult(
-                expectedMessageExpenditureByCategory,
+        CommandResult expectedCommandResult = new CommandResult(
+                expectedMessage,
                 false,
                 false,
                 new GraphConfiguration(
@@ -43,20 +53,25 @@ public class ViewCommandTest {
                 )
         );
         assertCommandSuccess(
-                viewCommandExpenditureByCategory,
+                viewCommand,
                 model,
-                expectedCommandResultExpenditureByCategory,
+                expectedCommandResult,
                 model
         );
+    }
 
-        ViewCommand viewCommandExpenditureByMonth = new ViewCommand(EXPENDITURE_BY_MONTH);
-        String expectedMessageExpenditureByMonth = String.format(
+    @Test
+    public void execute_allFieldsSpecifiedForMonth_success() {
+        ViewCommand viewCommand = new ViewCommand(EXPENDITURE_BY_MONTH);
+        String expectedMessage = String.format(
                 ViewCommand.MESSAGE_SUCCESS,
                 EXPENDITURE_BY_MONTH.getEntryType(),
                 EXPENDITURE_BY_MONTH.getGraphType()
         );
-        CommandResult expectedCommandResultExpenditureByMonth = new CommandResult(
-                expectedMessageExpenditureByMonth,
+        // Explicitly construct an expected command result because the ViewCommand has a side effect of modifying
+        // the graph panel and thus cannot rely on the default graph configuration.
+        CommandResult expectedCommandResult = new CommandResult(
+                expectedMessage,
                 false,
                 false,
                 new GraphConfiguration(
@@ -65,7 +80,18 @@ public class ViewCommandTest {
                         true
                 )
         );
-        assertCommandSuccess(viewCommandExpenditureByMonth, model, expectedCommandResultExpenditureByMonth, model);
+
+        Model expectedModel = new ModelManager(new PennyWise(model.getPennyWise()), new UserPrefs());
+        assert EXPENDITURE_BY_MONTH.getMonth().isPresent();
+        expectedModel.updateFilteredExpenditureList(
+                new EntryInYearMonthPredicate(EXPENDITURE_BY_MONTH.getMonth().get())
+        );
+        assertCommandSuccess(
+                viewCommand,
+                model,
+                expectedCommandResult,
+                expectedModel
+        );
     }
 
     @Test

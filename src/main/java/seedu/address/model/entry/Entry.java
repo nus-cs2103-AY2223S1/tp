@@ -39,6 +39,10 @@ public class Entry {
         return date;
     }
 
+    public Month getYearMonth() {
+        return date.getYearMonth();
+    }
+
     public Amount getAmount() {
         return amount;
     }

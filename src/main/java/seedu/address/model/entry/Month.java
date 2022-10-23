@@ -3,6 +3,9 @@ package seedu.address.model.entry;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+
 /**
  * Represents an Entry's date in the penny wise application.
  * Guarantees: immutable; is valid as declared in {@link #isValidMonth(String)}
@@ -12,6 +15,7 @@ public class Month {
             "Months should be of the format yyyy-mm and it should only contain numbers";
     public static final String VALIDATION_REGEX =
             "^([0-9][0-9])?[0-9][0-9]-(0[1-9]||[1-9]||1[0-2])$";
+    public static final String VALIDATION_PATTERN = "yyyy-MM";
 
     public final String month;
 
@@ -24,6 +28,16 @@ public class Month {
         requireNonNull(month);
         checkArgument(isValidMonth(month), MESSAGE_CONSTRAINTS);
         this.month = month;
+    }
+
+    /**
+     * Constructs a {@code Month}.
+     *
+     * @param date A valid date.
+     */
+    public Month(LocalDate date) {
+        requireNonNull(date);
+        this.month = date.format(DateTimeFormatter.ofPattern(VALIDATION_PATTERN));
     }
 
     /**

@@ -37,6 +37,15 @@ public class Date {
         return test.matches(VALIDATION_REGEX);
     }
 
+    /**
+     * Returns the year-month of the date.
+     *
+     * @return Year-Month of the date.
+     */
+    public Month getYearMonth() {
+        return new Month(date);
+    }
+
     @Override
     public String toString() {
         return date.format(DateTimeFormatter.ofPattern(VALIDATION_PATTERN));
