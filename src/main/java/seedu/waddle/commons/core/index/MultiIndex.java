@@ -39,13 +39,6 @@ public class MultiIndex {
         }
     }
 
-    public Index getIndex(int pos) {
-        if (!isValidPos(pos)) {
-            throw new IndexOutOfBoundsException();
-        }
-        return indices.get(pos - 1);
-    }
-
     public Index getDayIndex() {
         if (this.indices.size() == 1) {
             return null;
@@ -60,7 +53,12 @@ public class MultiIndex {
         return getIndex(2);
     }
 
-
+    private Index getIndex(int pos) {
+        if (!isValidPos(pos)) {
+            throw new IndexOutOfBoundsException();
+        }
+        return indices.get(pos - 1);
+    }
 
     private boolean isValidPos(int pos) {
         if (pos < 1 || pos >= indices.size()) {
@@ -73,7 +71,7 @@ public class MultiIndex {
     public String toString() {
         StringBuilder sb = new StringBuilder();
         for (int i = 0; i < indices.size(); i++) {
-            sb.append(indices.get(i));
+            sb.append(indices.get(i).getOneBased());
             if (i != indices.size() - 1) {
                 sb.append('.');
             }
