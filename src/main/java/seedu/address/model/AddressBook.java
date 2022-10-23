@@ -8,6 +8,8 @@ import javafx.collections.ObservableList;
 import seedu.address.model.listing.Listing;
 import seedu.address.model.listing.ListingID;
 import seedu.address.model.listing.UniqueListingList;
+import seedu.address.model.meeting.Meeting;
+import seedu.address.model.meeting.UniqueMeetingList;
 import seedu.address.model.offer.Offer;
 import seedu.address.model.offer.UniqueOfferList;
 import seedu.address.model.person.Address;
@@ -27,6 +29,7 @@ public class AddressBook implements ReadOnlyAddressBook {
     private final UniquePersonList persons;
     private final UniqueListingList listings;
     private final UniqueOfferList offers;
+    private final UniqueMeetingList meetings;
 
     /*
      * The 'unusual' code block below is a non-static initialization block, sometimes used to avoid duplication
@@ -40,6 +43,7 @@ public class AddressBook implements ReadOnlyAddressBook {
         clients = new UniqueClientList();
         listings = new UniqueListingList();
         offers = new UniqueOfferList();
+        meetings = new UniqueMeetingList();
     }
 
     public AddressBook() {}
@@ -284,6 +288,40 @@ public class AddressBook implements ReadOnlyAddressBook {
         offers.remove(key);
     }
 
+    /**
+     * Returns true if a meeting with the same identity as {@code meeting} exists in the address book.
+     */
+    public boolean hasMeeting(Meeting meeting) {
+        requireNonNull(meeting);
+        return meetings.contains(meeting);
+    }
+
+    /**
+     * Removes {@code key} from this {@code AddressBook}.
+     * {@code key} must exist in the address book.
+     */
+    public void removeMeeting(Meeting meeting) {
+        meetings.remove(meeting);
+    }
+
+    /**
+     * Adds a meeting to the address book.
+     * The meeting must not already exist in the address book.
+     */
+    public void addMeeting(Meeting meeting) {
+        meetings.add(meeting);
+    }
+
+    /**
+     * Gets the meeting from the given name {@code name} and listing address {@code address}.
+     * @param name name of the person in meeting
+     * @param address listing address of meeting
+     * @return meeting with given name and listing address
+     */
+    public Meeting getMeeting(Name name, Address address) {
+        return meetings.getMeeting(name, address);
+    }
+
     //// util methods
 
     @Override
@@ -314,6 +352,11 @@ public class AddressBook implements ReadOnlyAddressBook {
     @Override
     public ObservableList<Offer> getOfferList() {
         return offers.asUnmodifiableObservableList();
+    }
+
+    @Override
+    public ObservableList<Meeting> getMeetingList() {
+        return meetings.asUnmodifiableObservableList();
     }
 
     @Override

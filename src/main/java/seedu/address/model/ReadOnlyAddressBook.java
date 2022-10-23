@@ -2,6 +2,7 @@ package seedu.address.model;
 
 import javafx.collections.ObservableList;
 import seedu.address.model.listing.Listing;
+import seedu.address.model.meeting.Meeting;
 import seedu.address.model.offer.Offer;
 import seedu.address.model.person.Client;
 import seedu.address.model.person.Person;
@@ -34,4 +35,10 @@ public interface ReadOnlyAddressBook {
      * This list will not contain any duplicate offers.
      */
     ObservableList<Offer> getOfferList();
+
+    /**
+     * Returns an unmodifaibale view of the meetings list.
+     * This list will not contain any duplicate meetings.
+     */
+    ObservableList<Meeting> getMeetingList();
 }

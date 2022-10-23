@@ -7,6 +7,7 @@ import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.listing.Listing;
 import seedu.address.model.listing.ListingID;
+import seedu.address.model.meeting.Meeting;
 import seedu.address.model.offer.Offer;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Client;
@@ -28,6 +29,9 @@ public interface Model {
 
     /** {@code Predicate} that always evaluate to true */
     Predicate<Offer> PREDICATE_SHOW_ALL_OFFERS = unused -> true;
+
+    /** {@code Predicate} that always evaluate to true */
+    Predicate<Meeting> PREDICATE_SHOW_ALL_MEETINGS = unused -> true;
 
     /**
      * Replaces user prefs data with the data in {@code userPrefs}.
@@ -189,6 +193,36 @@ public interface Model {
      */
     void updateFilteredOfferList(Predicate<Offer> predicate);
 
+    /**
+     * Returns true if a meeting with the same identity as {@code meeting} exists in the address book.
+     */
+    boolean hasMeeting(Meeting meeting);
+
+    /**
+     * Adds the given meeting.
+     * {@code meeting} must not already exist in the address book.
+     */
+    void addMeeting(Meeting meeting);
+
+    /**
+     * Deletes given meeting.
+     * {@code meeting} must not exist in the given address book.
+     */
+    void deleteMeeting(Meeting meeting);
+
+    /**
+     * Gets the meeting from the given name {@code name} and listing address {@code address}.
+     * @param name name of the client in meeting
+     * @param address listing address of meeting
+     * @return meeting with given name and listing address
+     */
+    public Meeting getMeeting(Name name, Address address);
+
+    /**
+     * Updates the filter of the filtered meeting list to filter by the given {@code predicate}.
+     * @throws NullPointerException if {@code predicate} is null.
+     */
+    void updateFilteredMeetingList(Predicate<Meeting> predicate);
 
     /**
      * Returns true if a client with the same identity as {@code client} exists in the address book.

@@ -4,8 +4,8 @@ import java.time.LocalDateTime;
 import java.util.HashSet;
 import java.util.Set;
 
-import seedu.address.model.listing.Listing;
-import seedu.address.model.person.Person;
+import seedu.address.model.listing.ListingID;
+import seedu.address.model.person.Name;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -20,11 +20,11 @@ public class Meeting implements Comparable<Meeting> {
     /**
      * Client involved in the meeting.
      */
-    private final Person client;
+    private final Name client;
     /**
      * Listing involved in the meeting.
      */
-    private final Listing listing;
+    private final ListingID listing;
 
     /**
      * Tag for type of Meeting.
@@ -37,7 +37,7 @@ public class Meeting implements Comparable<Meeting> {
      * @param listing Listing
      * @param dateTime dateTime
      */
-    public Meeting(Person client, Listing listing, LocalDateTime dateTime) {
+    public Meeting(Name client, ListingID listing, LocalDateTime dateTime) {
         this.client = client;
         this.listing = listing;
         this.dateTime = dateTime;
@@ -49,7 +49,7 @@ public class Meeting implements Comparable<Meeting> {
      * @param listing Listing
      * @param dateTime dateTime
      */
-    public Meeting(Person client, Listing listing, LocalDateTime dateTime, Set<Tag> tags) {
+    public Meeting(Name client, ListingID listing, LocalDateTime dateTime, Set<Tag> tags) {
         this.client = client;
         this.listing = listing;
         this.dateTime = dateTime;
@@ -60,7 +60,7 @@ public class Meeting implements Comparable<Meeting> {
      * Getter for client.
      * @return Person
      */
-    public Person getClient() {
+    public Name getClient() {
         return client;
     }
 
@@ -68,7 +68,7 @@ public class Meeting implements Comparable<Meeting> {
      * Getter for listing.
      * @return Listing
      */
-    public Listing getListing() {
+    public ListingID getListing() {
         return listing;
     }
 
@@ -118,7 +118,7 @@ public class Meeting implements Comparable<Meeting> {
      */
     @Override
     public String toString() {
-        return String.format("%s is meeting at %s on %s", client.getName(), listing.getAddress(), dateTime);
+        return String.format("%s is meeting at %s on %s", getClient(), getListing(), dateTime);
     }
 
 }
