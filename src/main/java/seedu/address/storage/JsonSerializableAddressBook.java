@@ -81,7 +81,6 @@ class JsonSerializableAddressBook {
             if (task.getExam() != null && !addressBook.hasExam(task.getExam())) {
                 throw new IllegalValueException(INVALID_EXAM_LINKED);
             }
-            addressBook.linkTaskToExam(task);
             addressBook.addTask(task);
         }
         return addressBook;

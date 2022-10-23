@@ -12,7 +12,7 @@ import seedu.address.model.exam.exceptions.DuplicateExamException;
 import seedu.address.model.exam.exceptions.ExamIdentityModifiedException;
 import seedu.address.model.exam.exceptions.ExamNotFoundException;
 import seedu.address.model.module.Module;
-import seedu.address.model.task.Task;
+import seedu.address.model.task.DistinctTaskList;
 
 /**
  * This class represents a list which contains Exam objects which are distinct from
@@ -93,22 +93,46 @@ public class DistinctExamList implements Iterable<Exam> {
     }
 
     /**
-     * Links task to exams in distinct exam list.
+     * Counts the number of tasks in {@code tasks} linked to {@code exam},
+     * and updates this number in {@code exam}.
+     * {@code exam} must exist in the exam list.
      *
-     * @param task Task which is being linked to exam.
+     * @param exam The exam to check for number of tasks.
+     * @param tasks The list of tasks to check with the exam.
      */
-    public void linkTaskToExams(Task task) {
-        requireNonNull(task);
-        for (Exam exam : examList) {
-            if (task.getExam() != null && exam.isSameExam(task.getExam())) {
-                exam.linkExam(task);
-                return;
-            }
-            assert task.getExam() == null
-                    || (task.getExam() != null && !exam.isSameExam(task.getExam()))
-                    : "The task should not have no exam linked to it or "
-                    + "the task is not linked to current exam";
+    public void updateTotalNumOfTasks(Exam exam, DistinctTaskList tasks) {
+        requireAllNonNull(exam, tasks);
+        int totalNumOfTasks = tasks.getTotalNumOfExamTasks(exam);
+
+        int index = examList.indexOf(exam);
+        if (index == -1) {
+            throw new ExamNotFoundException();
         }
+
+        Exam examToEdit = examList.get(index);
+        Exam updatedExam = examToEdit.setTotalNumOfTasks(totalNumOfTasks);
+        examList.set(index, updatedExam);
+    }
+
+    /**
+     * Counts the number of completed tasks in {@code tasks} linked to {@code exam},
+     * and updates this number in {@code exam}.
+     * {@code exam} must exist in the exam list.
+     *
+     * @param exam The exam to check for number of completed tasks.
+     * @param tasks The list of tasks to check with the exam.
+     */
+    public void updateNumOfCompletedTasks(Exam exam, DistinctTaskList tasks) {
+        requireAllNonNull(exam, tasks);
+        int numOfCompletedTasks = tasks.getNumOfCompletedExamTasks(exam);
+
+        int index = examList.indexOf(exam);
+        if (index == -1) {
+            throw new ExamNotFoundException();
+        }
+        Exam examToEdit = examList.get(index);
+        Exam updatedExam = examToEdit.setNumOfCompletedTasks(numOfCompletedTasks);
+        examList.set(index, updatedExam);
     }
 
     @Override

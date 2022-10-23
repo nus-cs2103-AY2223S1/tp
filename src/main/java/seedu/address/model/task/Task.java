@@ -190,7 +190,13 @@ public class Task {
 
         Module updatedModule = editTaskDescriptor.getModule().orElse(module);
         TaskDescription updatedDescription = editTaskDescriptor.getDescription().orElse(description);
-        return new Task(updatedModule, updatedDescription, status, priorityTag, deadlineTag);
+
+        if (editTaskDescriptor.getModule().isPresent()
+            && !editTaskDescriptor.getModule().get().equals(module)) {
+            return new Task(updatedModule, updatedDescription, status, priorityTag, deadlineTag);
+        }
+
+        return new Task(updatedModule, updatedDescription, status, priorityTag, deadlineTag, linkedExam);
     }
 
     /**

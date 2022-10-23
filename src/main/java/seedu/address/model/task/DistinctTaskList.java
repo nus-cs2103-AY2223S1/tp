@@ -10,6 +10,7 @@ import java.util.List;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.address.model.commons.Criteria;
+import seedu.address.model.exam.Exam;
 import seedu.address.model.module.Module;
 import seedu.address.model.task.exceptions.DuplicateTaskException;
 import seedu.address.model.task.exceptions.TaskNotFoundException;
@@ -99,15 +100,26 @@ public class DistinctTaskList implements Iterable<Task> {
         }
     }
 
-    public int getNumOfTasksCompleted(Module module) {
+    public int getNumOfCompletedModuleTasks(Module module) {
         requireNonNull(module);
         return (int) taskList.stream().filter(Task::isComplete).map(Task::getModule)
             .filter(module::isSameModule).count();
     }
 
-    public int getTotalNumOfTasks(Module module) {
+    public int getTotalNumOfModuleTasks(Module module) {
         requireNonNull(module);
         return (int) taskList.stream().map(Task::getModule).filter(module::isSameModule).count();
+    }
+
+    public int getNumOfCompletedExamTasks(Exam exam) {
+        requireNonNull(exam);
+        return (int) taskList.stream().filter(Task::isComplete).map(Task::getExam)
+            .filter(exam::isSameExam).count();
+    }
+
+    public int getTotalNumOfExamTasks(Exam exam) {
+        requireNonNull(exam);
+        return (int) taskList.stream().map(Task::getExam).filter(exam::isSameExam).count();
     }
 
     /**
