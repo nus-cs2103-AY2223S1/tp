@@ -18,7 +18,6 @@ public class UnaliasCommandTest {
     private static final Alias VALID_ALIAS = new Alias("ls");
     private static final Alias VALID_ALIAS_2 = new Alias("a");
     private static final ReservedKeyword VALID_KEYWORD = new ReservedKeyword(ListCommand.COMMAND_WORD);
-    private static final String INVALID_KEYWORD = "a";
     private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
 
     @Test
