@@ -10,6 +10,7 @@ import seedu.studmap.logic.commands.AddCommand;
 import seedu.studmap.logic.commands.AddTagCommand;
 import seedu.studmap.logic.commands.ClearCommand;
 import seedu.studmap.logic.commands.Command;
+import seedu.studmap.logic.commands.DelTagCommand;
 import seedu.studmap.logic.commands.DeleteCommand;
 import seedu.studmap.logic.commands.EditCommand;
 import seedu.studmap.logic.commands.ExitCommand;
@@ -72,6 +73,9 @@ public class StudMapParser {
 
         case AddTagCommand.COMMAND_WORD:
             return new AddTagCommandParser().parse(arguments);
+
+        case DelTagCommand.COMMAND_WORD:
+            return new DelTagCommandParser().parse(arguments);
 
         case HelpCommand.COMMAND_WORD:
             return new HelpCommand();
