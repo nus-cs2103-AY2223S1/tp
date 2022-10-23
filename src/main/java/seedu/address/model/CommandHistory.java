@@ -1,7 +1,5 @@
 package seedu.address.model;
 
-import static java.util.Objects.requireNonNull;
-
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -10,9 +8,9 @@ import java.util.List;
  * Represents User's command history.
  */
 public class CommandHistory implements ReadOnlyCommandHistory {
+    public static final int MAX_COMMAND_HISTORY_SIZE = 20;
     private List<String> commandHistoryList = new ArrayList<>();
     private int currentIndex = 0;
-    public static final int MAX_COMMAND_HISTORY_SIZE = 20;
 
     public CommandHistory() {
     }
@@ -37,6 +35,11 @@ public class CommandHistory implements ReadOnlyCommandHistory {
 
 
     // command level operations
+
+    /**
+     * Add latest valid command entered by user to CommandHistory
+     * @param commandInput latest valid command entered bu user
+     */
     public void addToCommandHistory(String commandInput) {
         if (commandHistoryList.size() >= MAX_COMMAND_HISTORY_SIZE) {
             commandHistoryList.remove(0);
@@ -69,6 +72,10 @@ public class CommandHistory implements ReadOnlyCommandHistory {
     }
 
     // util methods
+
+    /**
+     * Reset current index to its max index + 1
+     */
     public void resetCurrentIndexToBeyondMaxIndex() {
         // reset to max index + 1 to show empty string
         currentIndex = commandHistoryList.size();

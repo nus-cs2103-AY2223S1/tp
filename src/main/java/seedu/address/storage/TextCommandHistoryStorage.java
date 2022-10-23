@@ -16,6 +16,9 @@ import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.CommandHistory;
 import seedu.address.model.ReadOnlyCommandHistory;
 
+/**
+ * A class to access CommandHistory data stored as a text file on the hard disk.
+ */
 public class TextCommandHistoryStorage implements CommandHistoryStorage {
     private static final Logger logger = LogsCenter.getLogger(TextCommandHistoryStorage.class);
 
@@ -52,19 +55,21 @@ public class TextCommandHistoryStorage implements CommandHistoryStorage {
     }
 
     /**
-     *
-     * @return
+     * Similar to {@link #readCommandHistory()}.
+     * @param filePath location of the data. Cannot be null
+     * @return ReadOnlyCommandHistory that can only be copied and not be modified directly
+     * @throws FileNotFoundException if unable to find file
      */
     @Override
     public ReadOnlyCommandHistory readCommandHistory(Path filePath) throws FileNotFoundException {
         File file = getFile();
         List<String> commandHistoryList = new ArrayList<>();
-            Scanner sc = new Scanner(file);
-            while (sc.hasNextLine()) {
-                String commandString = sc.nextLine();
-                commandHistoryList.add(commandString);
-            }
-            sc.close();
+        Scanner sc = new Scanner(file);
+        while (sc.hasNextLine()) {
+            String commandString = sc.nextLine();
+            commandHistoryList.add(commandString);
+        }
+        sc.close();
         CommandHistory commandHistory = new CommandHistory();
         commandHistory.setCommandHistoryList(commandHistoryList);
         return commandHistory;
@@ -76,6 +81,11 @@ public class TextCommandHistoryStorage implements CommandHistoryStorage {
         saveCommandHistory(commandHistory, filePath);
     }
 
+    /**
+     * Similar to {@link #saveCommandHistory(ReadOnlyCommandHistory)}.
+     *
+     * @param filePath location of the data. Cannot be null.
+     */
     @Override
     public void saveCommandHistory(ReadOnlyCommandHistory commandHistory, Path filePath) throws IOException {
         requireNonNull(commandHistory);

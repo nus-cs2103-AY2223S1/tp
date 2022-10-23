@@ -97,7 +97,8 @@ public class ModelManagerTest {
 
     @Test
     public void getCommandHistoryList_modifyList_throwsUnsupportedOperationException() {
-        assertThrows(UnsupportedOperationException.class, () -> modelManager.getCommandHistory().getCommandHistoryList().remove(0));
+        assertThrows(UnsupportedOperationException.class, () -> modelManager.getCommandHistory()
+                                                                .getCommandHistoryList().remove(0));
     }
 
     @Test
@@ -108,7 +109,7 @@ public class ModelManagerTest {
         CommandHistory commandHistory = new CommandHistory();
         List<String> commandHistoryList = new ArrayList<>();
         commandHistoryList.add("list");
-        CommandHistory differentCommandHistory =  new CommandHistory();
+        CommandHistory differentCommandHistory = new CommandHistory();
         differentCommandHistory.setCommandHistoryList(commandHistoryList);
 
         // same values -> returns true
@@ -142,6 +143,7 @@ public class ModelManagerTest {
         // different userPrefs -> returns false
         UserPrefs differentUserPrefs = new UserPrefs();
         differentUserPrefs.setAddressBookFilePath(Paths.get("differentFilePath"));
-        assertFalse(modelManager.equals(new ModelManager(addressBook, differentUserPrefs,commandHistory)));
+        assertFalse(modelManager.equals(
+                new ModelManager(addressBook, differentUserPrefs, commandHistory)));
     }
 }

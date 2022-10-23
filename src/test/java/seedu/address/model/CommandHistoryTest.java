@@ -37,7 +37,7 @@ public class CommandHistoryTest {
     }
 
     @Test
-    public void addToEmptyCommandHistoryList_success() {
+    public void addToEmptyCommandHistoryList() {
         List<String> commandHistoryList = new ArrayList<>();
         commandHistoryList.add("list");
         CommandHistory expected = new CommandHistory();
@@ -49,7 +49,7 @@ public class CommandHistoryTest {
     }
 
     @Test
-    public void addToFullCommandHistoryList_success() {
+    public void addToFullCommandHistoryList() {
         List<String> commandHistoryList = new ArrayList<>();
         CommandHistory expected = new CommandHistory();
         for (int i = 1; i <= MAX_COMMAND_HISTORY_SIZE; i++) {
@@ -68,20 +68,20 @@ public class CommandHistoryTest {
     }
 
     @Test
-    public void getPrevCommand_onEmptyCommandList_success() {
+    public void getPrevCommand_onEmptyCommandList() {
         CommandHistory actual = new CommandHistory();
         assertEquals("", actual.getPrevCommand());
     }
 
     @Test
-    public void getNextCommand_onEmptyCommandList_success() {
+    public void getNextCommand_onEmptyCommandList() {
         CommandHistory actual = new CommandHistory();
         assertEquals("", actual.getNextCommand());
     }
 
     // Get previous and next commands when index is at/beyond limit of command history list
     @Test
-    public void getPrevCommand_atZeroIndex_onNonEmptyCommandList_success() {
+    public void getPrevCommand_atZeroIndex_onNonEmptyCommandList() {
         CommandHistory actual = new CommandHistory();
         List<String> commandHistoryList = new ArrayList<>();
         for (int i = 0; i < MAX_COMMAND_HISTORY_SIZE / 2; i++) {
@@ -127,8 +127,7 @@ public class CommandHistoryTest {
 
 
     // Get previous and next commands when index is not at limit of command history list
-
-   @Test
+    @Test
     public void getPrevCommand_atNonZeroIndex_onNonEmptyCommandList() {
         int testZeroBasedIndex = 5;
 

@@ -16,7 +16,6 @@ import seedu.address.commons.util.ConfigUtil;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.Logic;
 import seedu.address.logic.LogicManager;
-import seedu.address.logic.commands.Command;
 import seedu.address.model.AddressBook;
 import seedu.address.model.CommandHistory;
 import seedu.address.model.Model;
@@ -89,19 +88,20 @@ public class MainApp extends Application {
                 logger.info("Data file not found. Will be starting with a sample AddressBook");
             }
             initialAddressBookData = addressBookOptional.orElseGet(SampleDataUtil::getSampleAddressBook);
-        }catch (DataConversionException e) {
+        } catch (DataConversionException e) {
             logger.warning("Data file not in the correct format. Will be starting with an empty AddressBook");
             initialAddressBookData = new AddressBook();
-        }  catch (IOException e) {
+        } catch (IOException e) {
             logger.warning("Problem while reading from the file. Will be starting with an empty AddressBook");
             initialAddressBookData = new AddressBook();
         }
 
         ReadOnlyCommandHistory initialCommandHistoryData;
-        try{
+        try {
             initialCommandHistoryData = storage.readCommandHistory();
         } catch (FileNotFoundException fnfe) {
-            logger.warning("Problem while reading from the Command History file. Will be starting with an empty CommandHistory");
+            logger.warning("Problem while reading from the Command History file."
+                    + " Will be starting with an empty CommandHistory");
             initialCommandHistoryData = new CommandHistory();
         }
         return new ModelManager(initialAddressBookData, userPrefs, initialCommandHistoryData);

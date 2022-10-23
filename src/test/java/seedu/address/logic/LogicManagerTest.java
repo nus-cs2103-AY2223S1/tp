@@ -51,7 +51,8 @@ public class LogicManagerTest {
         JsonAddressBookStorage addressBookStorage =
                 new JsonAddressBookStorage(temporaryFolder.resolve("addressBook.json"));
         JsonUserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(temporaryFolder.resolve("userPrefs.json"));
-        TextCommandHistoryStorage commandHistoryStorage = new TextCommandHistoryStorage(temporaryFolder.resolve("commandhistory.txt"));
+        TextCommandHistoryStorage commandHistoryStorage =
+                new TextCommandHistoryStorage(temporaryFolder.resolve("commandhistory.txt"));
         StorageManager storage = new StorageManager(addressBookStorage, userPrefsStorage, commandHistoryStorage);
         logic = new LogicManager(model, storage);
     }

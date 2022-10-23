@@ -19,8 +19,6 @@ import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.commands.SortCommand;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.CommandHistory;
-import seedu.address.model.ReadOnlyCommandHistory;
 
 /**
  * The UI component that is responsible for receiving user command inputs.
@@ -69,6 +67,8 @@ public class CommandBox extends UiPart<Region> {
                 }
                 event.consume();
                 break;
+            default:
+                break;
             }
         });
     }
@@ -89,7 +89,7 @@ public class CommandBox extends UiPart<Region> {
                 resultDisplay.setFeedbackToUser("");
             }
             String trimmedText = newValue.trim();
-            String commandWord =  trimmedText.contains(" ") ? trimmedText.split(" ")[0] : trimmedText;
+            String commandWord = trimmedText.contains(" ") ? trimmedText.split(" ")[0] : trimmedText;
             switch (commandWord) {
             case AddCommand.COMMAND_WORD:
                 resultDisplay.setFeedbackToUser(AddCommand.MESSAGE_USAGE);

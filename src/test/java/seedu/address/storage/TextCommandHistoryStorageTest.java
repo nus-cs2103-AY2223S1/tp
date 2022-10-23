@@ -3,16 +3,15 @@ package seedu.address.storage;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static seedu.address.testutil.Assert.assertThrows;
 
-import java.io.File;
 import java.io.IOException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 
-import javafx.scene.text.Text;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
+
 import seedu.address.model.CommandHistory;
 import seedu.address.model.ReadOnlyCommandHistory;
 
@@ -31,7 +30,7 @@ public class TextCommandHistoryStorageTest {
 
     @Test
     public void read_missingFile() throws Exception {
-       assertEquals(readCommandHistory("NonExistentFile.txt"), new CommandHistory());
+        assertEquals(readCommandHistory("NonExistentFile.txt"), new CommandHistory());
     }
     @Test
     public void readAndSaveCommandHistory_allInOrder_success() throws Exception {

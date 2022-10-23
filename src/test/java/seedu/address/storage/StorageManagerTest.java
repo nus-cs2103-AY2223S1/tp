@@ -4,7 +4,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 
-import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.List;
@@ -72,7 +71,8 @@ public class StorageManagerTest {
         /*
          * Note: This is an integration test that verifies the StorageManager is properly wired to the
          * {@link TextCommandHistoryStorage} class.
-         * More extensive testing of CommandHistory saving/reading is done in {@link TextCommandHistoryStorageTest} class.
+         * More extensive testing of CommandHistory saving/reading
+         * is done in {@link TextCommandHistoryStorageTest} class.
          */
         CommandHistory original = new CommandHistory();
         List<String> commandHistoryList = new ArrayList<>();
