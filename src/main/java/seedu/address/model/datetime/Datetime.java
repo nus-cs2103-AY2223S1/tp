@@ -45,6 +45,13 @@ public class Datetime {
         return true;
     }
 
+    /**
+     * Creates a Datetime from a formatted string.
+     * Does not do any validation on input, may throw a DateTimeParseException
+     *
+     * @param datetimeString The formatted datetime
+     * @return A Datetime
+     */
     public static Datetime fromFormattedString(String datetimeString) {
         LocalDateTime datetime = LocalDateTime.parse(datetimeString, DATETIME_INPUT_FORMATTER);
         return new Datetime(datetime);
@@ -59,6 +66,11 @@ public class Datetime {
         return datetime.format(DATETIME_INPUT_FORMATTER);
     }
 
+    /**
+     * Converts this Datetime into a human-readable form.
+     *
+     * @return Human-readable representation of the Datetime
+     */
     @Override
     public String toString() {
         return datetime.format(DATETIME_READABLE_FORMATTER);

@@ -18,7 +18,6 @@ import java.util.Objects;
  * Represents a timeslot that repeats every week in ModQuik.
  * Guarantees: immutable
  */
-
 public class WeeklyTimeslot {
     public final DayOfWeek day;
     public final LocalTime startTime;
@@ -30,9 +29,9 @@ public class WeeklyTimeslot {
     /**
      * Constructs a {@code WeeklyTimeslot}.
      *
-     * @param dayString A day, represented by a number from 1 to 7 inclusive.
-     * @param startTimeString A validly formatted time for start.
-     * @param endTimeString A validly formatted time for end.
+     * @param day A DayOfWeek
+     * @param startTime A LocalTime representing start time
+     * @param endTime A LocalTime representing end time
      */
     public WeeklyTimeslot(DayOfWeek day, LocalTime startTime, LocalTime endTime) {
         requireNonNull(day);
@@ -79,6 +78,15 @@ public class WeeklyTimeslot {
         return !timeEndObj.isBefore(timeStartObj);
     }
 
+    /**
+     * Creates a WeeklyTimeslot from formatted strings.
+     * Does not do any validation on input, may throw a DateTimeParseException
+     *
+     * @param dayString The formatted day
+     * @param startTimeString The formatted start time
+     * @param endTimeString The formatted end time
+     * @return A WeeklyTimeslot
+     */
     public static WeeklyTimeslot fromFormattedString(String dayString, String startTimeString, String endTimeString) {
         DayOfWeek day = DayOfWeek.of(Integer.parseInt(dayString));
         LocalTime startTime = LocalTime.parse(startTimeString, TIME_FORMATTER);
@@ -124,6 +132,11 @@ public class WeeklyTimeslot {
         return dayOfWeekToReadable(day);
     }
 
+    /**
+     * Converts this WeeklyTimeslot into a human-readable form.
+     *
+     * @return Human-readable representation of the WeeklyTimeslot
+     */
     @Override
     public String toString() {
         return String.format("%s %s to %s", getDayOfWeekReadable(), startTime, endTime);

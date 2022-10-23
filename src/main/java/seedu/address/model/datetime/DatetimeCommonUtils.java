@@ -10,6 +10,9 @@ import java.time.format.TextStyle;
 import java.util.Locale;
 import java.util.Objects;
 
+/**
+ * Contains utilities for other datetime-related classes, including parsers.
+ */
 public class DatetimeCommonUtils {
 
     public static final String DATE_INPUT_FORMAT = "yyyy-MM-dd";
@@ -31,9 +34,6 @@ public class DatetimeCommonUtils {
     public static final String DAY_MESSAGE_CONSTRAINTS =
             "Day should only contain a number from 1 (Monday) to 7 (Sunday)";
 
-
-
-
     public static final String DATETIME_INPUT_FORMAT = DATE_INPUT_FORMAT + " " + TIME_FORMAT;
     public static final DateTimeFormatter DATETIME_INPUT_FORMATTER =
             DateTimeFormatter.ofPattern(DATETIME_INPUT_FORMAT);
@@ -48,25 +48,31 @@ public class DatetimeCommonUtils {
             "The start time should not be after the end time!";
 
     /**
-     * Checks whether the start time and end time is  valid
-     * @param timeStart
-     * @param timeEnd
-     * @return
+     * Checks whether the start time and end time is logically valid
+     * @param startTime Start time
+     * @param endTime End time
+     * @throws ParseException If the start time is after end time
      */
     public static void assertTimeRangeValid(LocalTime startTime, LocalTime endTime) throws ParseException {
         if (!endTime.isAfter(startTime)) {
             throw new ParseException(TIMESLOT_MESSAGE_CONSTRAINTS);
         }
     }
+
+    /**
+     * Converts a DayOfWeek to a readable form, e.g. Mon, Tue
+     * @param day A DayOfWeek to convert
+     * @return Human-readable day
+     */
     public static String dayOfWeekToReadable(DayOfWeek day) {
         return day.getDisplayName(TextStyle.SHORT, Locale.getDefault());
     }
 
     /**
-     * Parses a {@code String deadline} into a {@code ReminderDeadline}.
+     * Parses a {@code String datetimeString} into a {@code Datetime}.
      * Leading and trailing whitespaces will be trimmed.
      *
-     * @throws ParseException if the given {@code ReminderDeadline} is invalid.
+     * @throws ParseException if the given {@code datetimeString} is invalid.
      */
     public static Datetime parseDatetime(String datetimeString) throws ParseException {
         Objects.requireNonNull(datetimeString);
@@ -82,10 +88,10 @@ public class DatetimeCommonUtils {
     }
 
     /**
-     * Parses a {@code String deadline} into a {@code ReminderDeadline}.
+     * Parses a {@code String timeRange} into a {@code DatetimeRange}.
      * Leading and trailing whitespaces will be trimmed.
      *
-     * @throws ParseException if the given {@code ReminderDeadline} is invalid.
+     * @throws ParseException if the given {@code timeRange} is invalid.
      */
     public static DatetimeRange parseDatetimeRange(String date, String timeRange) throws ParseException {
         Objects.requireNonNull(date);
@@ -110,7 +116,7 @@ public class DatetimeCommonUtils {
     }
 
     /**
-     * Parses a {@code String timeslot} into a {@code TutorialTimeslot}.
+     * Parses a {@code String timeslot} into a {@code WeeklyTimeslot}.
      * Leading and trailing whitespaces will be trimmed.
      *
      * @throws ParseException if the given {@code timeslot} is invalid.
