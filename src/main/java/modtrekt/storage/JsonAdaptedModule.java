@@ -87,8 +87,7 @@ class JsonAdaptedModule {
 
         final boolean modelIsDone = isDone;
 
-        Module created = new Module(modelCode, modelName, modelCredit, modelTaskCount, modelIsDone);
-        return created;
+        return new Module(modelCode, modelName, modelCredit, modelTaskCount, modelIsDone);
     }
 
 }
