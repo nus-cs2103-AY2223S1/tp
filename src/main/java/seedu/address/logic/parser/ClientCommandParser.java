@@ -5,7 +5,6 @@ import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT
 import static seedu.address.commons.core.Messages.MESSAGE_MISSING_ARGUMENTS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.ClientCliSyntax.PREFIX_CLIENT_EMAIL;
-import static seedu.address.logic.parser.ClientCliSyntax.PREFIX_CLIENT_NAME;
 import static seedu.address.logic.parser.ClientCliSyntax.PREFIX_CLIENT_PHONE;
 import static seedu.address.logic.parser.ClientCliSyntax.PREFIX_PROJECT_ID;
 import static seedu.address.logic.parser.ProjectCliSyntax.PREFIX_CLIENT_ID;
@@ -246,16 +245,16 @@ public class ClientCommandParser implements Parser<ClientCommand> {
                     SortClientCommand.MESSAGE_USAGE));
         }
 
-        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(arguments, PREFIX_CLIENT_NAME);
+        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(arguments, PREFIX_NAME);
 
-        if (!anyPrefixesPresent(argMultimap, PREFIX_CLIENT_NAME)) {
+        if (!anyPrefixesPresent(argMultimap, PREFIX_NAME)) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                     SortClientCommand.MESSAGE_USAGE));
         }
 
-        if (arePrefixesPresent(argMultimap, PREFIX_CLIENT_NAME)) {
-            sortPrefix = PREFIX_CLIENT_NAME;
-            key = ParserUtil.parseClientNameSort(argMultimap.getValue(PREFIX_CLIENT_NAME).get());
+        if (arePrefixesPresent(argMultimap, PREFIX_NAME)) {
+            sortPrefix = PREFIX_NAME;
+            key = ParserUtil.parseClientNameSort(argMultimap.getValue(PREFIX_NAME).get());
         }
 
         return new SortClientCommand(sortPrefix, key);
