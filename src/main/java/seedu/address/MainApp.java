@@ -24,8 +24,8 @@ import seedu.address.model.ReadOnlyPropertyBook;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.util.SampleDataUtil;
-import seedu.address.storage.AddressBookStorage;
-import seedu.address.storage.JsonAddressBookStorage;
+import seedu.address.storage.JsonPersonBookStorage;
+import seedu.address.storage.PersonBookStorage;
 import seedu.address.storage.JsonPropertyBookStorage;
 import seedu.address.storage.JsonUserPrefsStorage;
 import seedu.address.storage.PropertyBookStorage;
@@ -60,9 +60,9 @@ public class MainApp extends Application {
 
         UserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(config.getUserPrefsFilePath());
         UserPrefs userPrefs = initPrefs(userPrefsStorage);
-        AddressBookStorage addressBookStorage = new JsonAddressBookStorage(userPrefs.getPersonBookFilePath());
+        PersonBookStorage personBookStorage = new JsonPersonBookStorage(userPrefs.getPersonBookFilePath());
         PropertyBookStorage propertyBookStorage = new JsonPropertyBookStorage(userPrefs.getPropertyBookFilePath());
-        storage = new StorageManager(addressBookStorage, propertyBookStorage, userPrefsStorage);
+        storage = new StorageManager(personBookStorage, propertyBookStorage, userPrefsStorage);
 
         initLogging(config);
 
@@ -85,7 +85,7 @@ public class MainApp extends Application {
         ReadOnlyPropertyBook propertyBook;
 
         try {
-            personBookOptional = storage.readAddressBook();
+            personBookOptional = storage.readPersonBook();
             if (!personBookOptional.isPresent()) {
                 logger.info("Data file not found. Will be starting with a sample PersonBook");
             }

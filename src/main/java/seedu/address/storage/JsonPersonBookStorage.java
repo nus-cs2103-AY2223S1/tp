@@ -17,32 +17,32 @@ import seedu.address.model.ReadOnlyPersonBook;
 /**
  * A class to access PersonBook data stored as a json file on the hard disk.
  */
-public class JsonAddressBookStorage implements AddressBookStorage {
+public class JsonPersonBookStorage implements PersonBookStorage {
 
-    private static final Logger logger = LogsCenter.getLogger(JsonAddressBookStorage.class);
+    private static final Logger logger = LogsCenter.getLogger(JsonPersonBookStorage.class);
 
     private Path filePath;
 
-    public JsonAddressBookStorage(Path filePath) {
+    public JsonPersonBookStorage(Path filePath) {
         this.filePath = filePath;
     }
 
-    public Path getAddressBookFilePath() {
+    public Path getPersonBookFilePath() {
         return filePath;
     }
 
     @Override
-    public Optional<ReadOnlyPersonBook> readAddressBook() throws DataConversionException {
-        return readAddressBook(filePath);
+    public Optional<ReadOnlyPersonBook> readPersonBook() throws DataConversionException {
+        return readPersonBook(filePath);
     }
 
     /**
-     * Similar to {@link #readAddressBook()}.
+     * Similar to {@link #readPersonBook()}.
      *
      * @param filePath location of the data. Cannot be null.
      * @throws DataConversionException if the file is not in the correct format.
      */
-    public Optional<ReadOnlyPersonBook> readAddressBook(Path filePath) throws DataConversionException {
+    public Optional<ReadOnlyPersonBook> readPersonBook(Path filePath) throws DataConversionException {
         requireNonNull(filePath);
 
         Optional<JsonSerializableAddressBook> jsonAddressBook = JsonUtil.readJsonFile(
@@ -60,16 +60,16 @@ public class JsonAddressBookStorage implements AddressBookStorage {
     }
 
     @Override
-    public void saveAddressBook(ReadOnlyPersonBook addressBook) throws IOException {
-        saveAddressBook(addressBook, filePath);
+    public void savePersonBook(ReadOnlyPersonBook addressBook) throws IOException {
+        savePersonBook(addressBook, filePath);
     }
 
     /**
-     * Similar to {@link #saveAddressBook(ReadOnlyPersonBook)}.
+     * Similar to {@link #savePersonBook(ReadOnlyPersonBook)}.
      *
      * @param filePath location of the data. Cannot be null.
      */
-    public void saveAddressBook(ReadOnlyPersonBook addressBook, Path filePath) throws IOException {
+    public void savePersonBook(ReadOnlyPersonBook addressBook, Path filePath) throws IOException {
         requireNonNull(addressBook);
         requireNonNull(filePath);
 

@@ -11,12 +11,12 @@ import seedu.address.model.ReadOnlyPersonBook;
 /**
  * Represents a storage for {@link PersonBook}.
  */
-public interface AddressBookStorage {
+public interface PersonBookStorage {
 
     /**
      * Returns the file path of the data file.
      */
-    Path getAddressBookFilePath();
+    Path getPersonBookFilePath();
 
     /**
      * Returns PersonBook data as a {@link ReadOnlyPersonBook}.
@@ -24,23 +24,23 @@ public interface AddressBookStorage {
      * @throws DataConversionException if the data in storage is not in the expected format.
      * @throws IOException if there was any problem when reading from the storage.
      */
-    Optional<ReadOnlyPersonBook> readAddressBook() throws DataConversionException, IOException;
+    Optional<ReadOnlyPersonBook> readPersonBook() throws DataConversionException, IOException;
 
     /**
-     * @see #getAddressBookFilePath()
+     * @see #getPersonBookFilePath()
      */
-    Optional<ReadOnlyPersonBook> readAddressBook(Path filePath) throws DataConversionException, IOException;
+    Optional<ReadOnlyPersonBook> readPersonBook(Path filePath) throws DataConversionException, IOException;
 
     /**
      * Saves the given {@link ReadOnlyPersonBook} to the storage.
      * @param addressBook cannot be null.
      * @throws IOException if there was any problem writing to the file.
      */
-    void saveAddressBook(ReadOnlyPersonBook addressBook) throws IOException;
+    void savePersonBook(ReadOnlyPersonBook addressBook) throws IOException;
 
     /**
-     * @see #saveAddressBook(ReadOnlyPersonBook)
+     * @see #savePersonBook(ReadOnlyPersonBook)
      */
-    void saveAddressBook(ReadOnlyPersonBook addressBook, Path filePath) throws IOException;
+    void savePersonBook(ReadOnlyPersonBook addressBook, Path filePath) throws IOException;
 
 }
