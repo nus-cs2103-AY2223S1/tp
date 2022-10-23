@@ -37,8 +37,8 @@ public class CommandTestUtil {
     public static final String VALID_EMAIL_BOB = "bob@example.com";
     public static final String VALID_ADDRESS_AMY = "Block 312, Amy Street 1";
     public static final String VALID_ADDRESS_BOB = "Block 123, Bobby Street 3";
-    public static final String VALID_REMARK_AMY = "Like skiing.";
-    public static final String VALID_REMARK_BOB = "Favourite pastime: Eating";
+    public static final String VALID_DESCRIPTION_AMY = "Like skiing.";
+    public static final String VALID_DESCRIPTION_BOB = "Favourite pastime: Eating";
     public static final String VALID_NETWORTH_AMY = "$1350";
     public static final String VALID_NETWORTH_BOB = "$53000";
     public static final String VALID_MEETING_TIME_AMY = "14-11-2022-23:30";

@@ -22,7 +22,7 @@ public class Person {
 
     // Data fields
     private final Address address;
-    private final Remark remark;
+    private final Description description;
     private NetWorth netWorth;
     private final Set<MeetingTime> meetingTimes = new HashSet<>();
     private final FilePath filePath;
@@ -31,14 +31,14 @@ public class Person {
     /**
      * Every field must be present and not null.
      */
-    public Person(Name name, Phone phone, Email email, Address address, Remark remark,
+    public Person(Name name, Phone phone, Email email, Address address, Description description,
                   NetWorth netWorth, Set<MeetingTime> meetingTimes, FilePath filePath, Set<Tag> tags) {
         requireAllNonNull(name, phone, email, address, netWorth, meetingTimes, filePath, tags);
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
-        this.remark = remark;
+        this.description = description;
         this.netWorth = netWorth;
         this.meetingTimes.addAll(meetingTimes);
         this.filePath = filePath;
@@ -46,7 +46,7 @@ public class Person {
     }
 
     /**
-     * Constructor with no remark, for CreateCommand only.
+     * Constructor with no description, for CreateCommand only.
      */
     public Person(Name name, Phone phone, Email email, Address address,
                   NetWorth netWorth, Set<MeetingTime> meetingTimes, FilePath filepath, Set<Tag> tags) {
@@ -55,7 +55,7 @@ public class Person {
         this.phone = phone;
         this.email = email;
         this.address = address;
-        this.remark = new Remark("");
+        this.description = new Description("");
         this.netWorth = netWorth;
         this.meetingTimes.addAll(meetingTimes);
         this.filePath = filepath;
@@ -63,7 +63,7 @@ public class Person {
     }
 
     /**
-     * Constructor with no remark and no filepath, for CreateCommand only.
+     * Constructor with no description and no filepath, for CreateCommand only.
      */
     public Person(Name name, Phone phone, Email email, Address address,
                   NetWorth netWorth, Set<MeetingTime> meetingTimes, Set<Tag> tags) {
@@ -72,7 +72,7 @@ public class Person {
         this.phone = phone;
         this.email = email;
         this.address = address;
-        this.remark = new Remark("");
+        this.description = new Description("");
         this.netWorth = netWorth;
         this.meetingTimes.addAll(meetingTimes);
         this.filePath = new FilePath("");
@@ -96,8 +96,8 @@ public class Person {
         return address;
     }
 
-    public Remark getRemark() {
-        return remark;
+    public Description getDescription() {
+        return description;
     }
 
     public NetWorth getNetWorth() {
@@ -131,7 +131,7 @@ public class Person {
 
         return otherPerson != null
                 && otherPerson.getName().equals(getName())
-                && (otherPerson.getPhone().equals(getPhone()) || otherPerson.getEmail().equals(getEmail()));
+                && otherPerson.getPhone().equals(getPhone());
     }
 
     /**
@@ -161,7 +161,7 @@ public class Person {
                 && otherPerson.getEmail().equals(getEmail())
                 && otherPerson.getAddress().equals(getAddress())
                 && otherPerson.getTags().equals(getTags())
-                && otherPerson.getRemark().equals(getRemark())
+                && otherPerson.getDescription().equals(getDescription())
                 && otherPerson.getNetWorth().equals(getNetWorth())
                 && otherPerson.getMeetingTimes().equals(getMeetingTimes())
                 && otherPerson.getFilePath().equals(getFilePath());
@@ -170,7 +170,7 @@ public class Person {
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, address, tags, remark, netWorth, meetingTimes, filePath);
+        return Objects.hash(name, phone, email, address, tags, description, netWorth, meetingTimes, filePath);
     }
 
     @Override
@@ -183,8 +183,8 @@ public class Person {
                 .append(getEmail())
                 .append(" Address: ")
                 .append(getAddress())
-                .append(" Remark: ")
-                .append(getRemark())
+                .append(" Description: ")
+                .append(getDescription())
                 .append(" Net Worth: ")
                 .append(getNetWorth())
                 .append(" Meeting time: ");

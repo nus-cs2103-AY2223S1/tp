@@ -28,10 +28,10 @@ public class TypicalPersons {
 
     public static final Person ALICE = new PersonBuilder().withName("Alice Pauline")
             .withAddress("123, Jurong West Ave 6, #08-111").withEmail("alice@example.com")
-            .withPhone("94351253").withRemark("").withNetWorth("$54400").withMeetingTimes("10-08-2022-15:00")
+            .withPhone("94351253").withDescription("").withNetWorth("$54400").withMeetingTimes("10-08-2022-15:00")
             .withFilePath("src/test/data/TestPDFs/Test_PDF.pdf").withTags("friends").build();
     public static final Person BENSON = new PersonBuilder().withName("Benson Meier")
-            .withAddress("311, Clementi Ave 2, #02-25").withRemark("He can't take beer!")
+            .withAddress("311, Clementi Ave 2, #02-25").withDescription("He can't take beer!")
             .withEmail("johnd@example.com").withPhone("98765432").withNetWorth("$1350")
             .withMeetingTimes("11-04-2022-11:00")
             .withFilePath("src/test/data/TestPDFs/Test_PDF2.pdf").withTags("owesMoney", "friends").build();

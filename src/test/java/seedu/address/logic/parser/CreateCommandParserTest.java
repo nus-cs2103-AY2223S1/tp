@@ -114,7 +114,7 @@ public class CreateCommandParserTest {
     @Test
     public void parse_optionalFieldsMissing_success() {
         // zero tags and no remark
-        Person expectedPerson = new PersonBuilder(AMY).withTags().buildNoRemarkAndFilePath();
+        Person expectedPerson = new PersonBuilder(AMY).withTags().buildNoDescriptionAndFilePath();
         assertParseSuccess(parser, NAME_DESC_AMY + PHONE_DESC_AMY + EMAIL_DESC_AMY + ADDRESS_DESC_AMY
                 + NETWORTH_DESC_AMY + MEETING_TIME_DESC_AMY , new CreateCommand(expectedPerson));
     }

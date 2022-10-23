@@ -39,7 +39,7 @@ public class PersonCard extends UiPart<Region> {
     @FXML
     private Label email;
     @FXML
-    private Label remark;
+    private Label description;
     @FXML
     private FlowPane tags;
     @FXML
@@ -58,7 +58,7 @@ public class PersonCard extends UiPart<Region> {
         phone.setText(person.getPhone().value);
         address.setText(person.getAddress().value);
         email.setText(person.getEmail().value);
-        remark.setText(person.getRemark().value);
+        description.setText(person.getDescription().value);
         netWorth.setText(person.getNetWorth().value);
         person.getMeetingTimes().stream()
                 .sorted(Comparator.comparing(meetingTime -> meetingTime.displayValue))
