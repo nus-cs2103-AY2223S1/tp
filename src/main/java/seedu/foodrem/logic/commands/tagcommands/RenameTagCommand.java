@@ -43,7 +43,7 @@ public class RenameTagCommand extends Command {
         }
 
         model.setTag(originalTag, renamedTag);
-        return new CommandResult(String.format(MESSAGE_SUCCESS, originalTag, renamedTag));
+        return CommandResult.fromString(String.format(MESSAGE_SUCCESS, originalTag, renamedTag));
     }
 
     public static String getUsage() {

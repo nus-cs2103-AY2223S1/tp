@@ -40,7 +40,7 @@ public class ViewCommand extends Command {
         }
         Item itemToDisplayInformation = lastShownList.get(index.getZeroBased());
 
-        return new CommandResult(itemToDisplayInformation.toString());
+        return CommandResult.fromString(itemToDisplayInformation.toString());
     }
 
     public static String getUsage() {

@@ -66,7 +66,7 @@ public class RemarkCommand extends Command {
 
         model.setItem(itemToRemark, remarkedItem);
         model.updateFilteredItemList(PREDICATE_SHOW_ALL_ITEMS);
-        return new CommandResult(String.format(MESSAGE_SUCCESS, remarkedItem));
+        return CommandResult.fromString(String.format(MESSAGE_SUCCESS, remarkedItem));
     }
 
     public static String getUsage() {

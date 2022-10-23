@@ -32,7 +32,7 @@ public class ListTagCommand extends Command {
 
         String tagList = allTagsList.toString();
 
-        return new CommandResult(tagList);
+        return CommandResult.fromString(tagList);
     }
 
     public static String getUsage() {

@@ -35,7 +35,7 @@ public class NewTagCommand extends Command {
         }
 
         model.addTag(toAdd);
-        return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
+        return CommandResult.fromString(String.format(MESSAGE_SUCCESS, toAdd));
     }
 
     public static String getUsage() {

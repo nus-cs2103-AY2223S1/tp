@@ -35,7 +35,7 @@ public class NewCommand extends Command {
         }
 
         model.addItem(newItem);
-        return new CommandResult(String.format(MESSAGE_SUCCESS, newItem));
+        return CommandResult.fromString(String.format(MESSAGE_SUCCESS, newItem));
     }
 
     public static String getUsage() {

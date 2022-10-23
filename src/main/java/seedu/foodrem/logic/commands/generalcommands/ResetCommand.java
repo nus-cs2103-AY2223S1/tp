@@ -18,7 +18,7 @@ public class ResetCommand extends Command {
     public CommandResult execute(Model model) {
         requireNonNull(model);
         model.setFoodRem(new FoodRem());
-        return new CommandResult(MESSAGE_SUCCESS);
+        return CommandResult.fromString(MESSAGE_SUCCESS);
     }
 
     public static String getUsage() {
