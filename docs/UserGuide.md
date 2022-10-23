@@ -107,6 +107,13 @@ you can try:
 
 * There must be a space separating a flag and an option.
 
+* All indices ***must be a positive integer*** 1, 2, 3, …
+
+* `PATIENT_INDEX` refers to the index number shown in the displayed patient list.
+
+* Indices for patient attributes (e.g. `TASK_INDEX`, `CONDITION_INDEX`, `TAG_INDEX`, etc.) refers to the index number shown in the attribute list of a patient.<br>
+  e.g. `TASK_INDEX` refers to the index number show in the task list of a patient.
+
 * Parameters in square brackets are optional.<br>
   e.g `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
 
@@ -187,7 +194,7 @@ Format: `list`
 
 ### Listing all patients for the day: `patientsToday`
 
-Shows a list of all patients with tasks due today
+Shows a list of all patients with tasks due today.
 
 Format: `patientsToday`
 
@@ -288,6 +295,50 @@ Suppose the following patients were added.
 * `viewTask 2` will display:
   * `Change dressing on left arm`
 
+### Adding a medical condition: `addCondition`
+
+_Command syntax to be updated ..._
+
+Format: `addCondition PATIENT_INDEX c/CONDITION`
+* Adds a medical condition to a patient at the specified `PATIENT_INDEX`.
+
+Examples:
+* `list` followed by `addCondition 1 c/Diabetes` adds a condition to the 1st patient in the patient list.
+* `find Betsy` followed by `addCondition 2 c/Alzhiemer's disease` adds a condition to the 2nd patient in the patient list.
+
+### Deleting a medical condition: `deleteCondition`
+
+_Command syntax to be updated ..._
+
+Format: `deleteCondition PATIENT_INDEX CONDITION_INDEX`
+* Deletes the medical condition at the specified `CONDITION_INDEX` of the patient at the specified `PATIENT_INDEX`.
+
+Examples:
+* `list` followed by `deleteCondition 2 3` deletes the 3rd condition of the 2nd patient in the patient list.
+* `find Betsy` followed by `deleteCondition 1 2` deletes the 2nd condition of the 1st patient in the patient list.
+
+### Adding a tag: `addTag`
+
+_Command syntax to be updated ..._
+
+Format: `addTag PATIENT_INDEX t/TAG`
+* Adds a tag to a patient at the specified `PATIENT_INDEX`.
+
+Examples:
+* `list` followed by `addTag 1 t/highRisk` adds a tag to the 1st patient in the patient list.
+* `find Betsy` followed by `addTag 2 t/elderly` adds a tag to the 2nd patient in the patient list.
+
+### Deleting a tag: `deleteTag`
+
+_Command syntax to be updated ..._
+
+Format: `deleteTag PATIENT_INDEX TAG_INDEX`
+* Deletes the tag at the specified `TAG_INDEX` of the patient at the specified `PATIENT_INDEX`.
+
+Examples:
+* `list` followed by `deleteTag 2 3` deletes the 3rd tag of the 2nd patient in the patient list.
+* `find Betsy` followed by `deleteTag 1 2` deletes the 2nd tag of the 1st patient in the patient list.
+
 ### Clearing all entries: `clear`
 
 Clears all patient entries in the displayed patient list.
@@ -360,6 +411,10 @@ the data of your previous UniNurse home folder.
 | **Delete task**                 | `delete -p PATIENT_INDEX -t TASK_INDEX`                                      |
 | **List all tasks**              | `listTask`                                                                   |
 | **View all tasks of a patient** | `viewTask INDEX`                                                             |
+| **Add condition**               | `addCondition PATIENT_INDEX c/CONDITION`                                     |
+| **Delete condition**            | `deleteCondition PATIENT_INDEX CONDITION_INDEX`                              |
+| **Add tag**                     | `addTag INDEX t/TAG`                                                         |
+| **Delete tag**                  | `deleteTag PATIENT_INDEX CONDITION_INDEX`                                    |                                                             
 | **Clear all patients**          | `clear`                                                                      |
 | **Undo last command**           | `undo`                                                                       |
 | **Reverse undo command**        | `redo`                                                                       |
