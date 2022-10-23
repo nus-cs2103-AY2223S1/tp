@@ -3,7 +3,8 @@ package seedu.address.logic.commands;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_CATEGORY;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE_AND_TIME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE_AND_SLOT;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE_AND_SLOT_INDEX;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_GENDER;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
@@ -27,7 +28,7 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.category.Category;
 import seedu.address.model.person.Address;
-import seedu.address.model.person.DateTime;
+import seedu.address.model.person.DateSlot;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Gender;
 import seedu.address.model.person.Name;
@@ -57,8 +58,10 @@ public class EditCommand extends Command {
             + "[" + PREFIX_EMAIL + "EMAIL] "
             + "[" + PREFIX_ADDRESS + "ADDRESS] "
             + "[" + PREFIX_TAG + "TAG]...\n"
-            + "Date and Time are only applicable to patient.\n"
-            + "[" + PREFIX_DATE_AND_TIME + "DATE_AND_TIME] \n"
+            + "Date and Slot are only applicable to patient and Date and Slot Index is used to indicate"
+            + "the specific date and slot to be edited. \n"
+            + "[" + PREFIX_DATE_AND_SLOT + "DATE_AND_SLOT] \n"
+            + "[" + PREFIX_DATE_AND_SLOT_INDEX + "DATE_AND_SLOT_INDEX \n"
             + "Example: " + COMMAND_WORD + PREFIX_UID + " 1 "
             + PREFIX_PHONE + "91234567 "
             + PREFIX_EMAIL + "johndoe@example.com";
@@ -66,14 +69,14 @@ public class EditCommand extends Command {
     public static final String MESSAGE_EDIT_PERSON_SUCCESS = "Edited %1$s: %2$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
     public static final String MESSAGE_DUPLICATE_PERSON = "This %1$s already exists in the address book.";
-    public static final String MESSAGE_NURSE_INVALID_DATETIME_EDIT = "This uid gives a nurse "
-            + "and there are no dates and times (and their indexes) for nurse. "
-            + "Please remove the date and time field and its index field.";
+    public static final String MESSAGE_NURSE_INVALID_DATESLOT_EDIT = "This uid gives a nurse "
+            + "and there are no dates and slot (and their indexes) for nurse. "
+            + "Please remove the date and slot field and its index field.";
 
-    public static final String MESSAGE_INVALID_NUMBERS_OF_DATETIME_AND_DATETIMEINDEX = "The dateTime index "
-            + "provided is more than the dateTime provided." + "Please remove the dateTime index or add more dateTime.";
+    public static final String MESSAGE_INVALID_NUMBERS_OF_DATESLOT_AND_DATESLOTINDEX = "The dateSlot index "
+            + "provided is more than the dateSlot provided." + "Please remove the dateSlot index or add more dateSlot.";
 
-    public static final String MESSAGE_OUT_OF_BOUND_DATETIMEINDEX = "The dateTime index given is out of bound "
+    public static final String MESSAGE_OUT_OF_BOUND_DATESLOTINDEX = "The dateSlot index given is out of bound "
             + "of the existing list." + "Please retype another index that is within the range or left it empty.";
 
     public static final String MESSAGE_NURSE_INVALID_VISITSTATUS_EDIT = "This uid gives a nurse "
@@ -84,8 +87,7 @@ public class EditCommand extends Command {
     private final EditPersonDescriptor editPersonDescriptor;
 
     /**
-     * @param targetUid            Uid of the person in the filtered person list to
-     *                             edit
+     * @param targetUid Uid of the person in the filtered person list to edit
      * @param editPersonDescriptor Details to edit the person with
      */
     public EditCommand(Uid targetUid, EditPersonDescriptor editPersonDescriptor) {
@@ -105,21 +107,25 @@ public class EditCommand extends Command {
         if (personToEdit.isEmpty()) {
             throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_UID);
         }
+
         Person confirmedPersonToEdit = personToEdit.get();
-        Person editedPerson = createEditedPerson(confirmedPersonToEdit, editPersonDescriptor);
 
-        boolean haveDatesTimes = editPersonDescriptor.getDatesTimes().isPresent();
-        boolean haveDateTimeIndexes = editPersonDescriptor.getDateTimeIndexes().isPresent();
+        boolean haveDatesSlots = editPersonDescriptor.getDatesSlots().isPresent();
+        boolean haveDateSlotIndexes = editPersonDescriptor.getDateSlotIndexes().isPresent();
         boolean haveVisitStatus = editPersonDescriptor.getVisitStatus().isPresent();
+        boolean isNurse = editPersonDescriptor.getCategory().equals("P") || confirmedPersonToEdit instanceof Nurse;
 
-        if (confirmedPersonToEdit.getCategory().equals("N")) {
-            if (haveDateTimeIndexes || haveDatesTimes) {
-                throw new CommandException(MESSAGE_NURSE_INVALID_DATETIME_EDIT);
+        if (isNurse) {
+            if (haveDateSlotIndexes || haveDatesSlots) {
+                throw new CommandException(MESSAGE_NURSE_INVALID_DATESLOT_EDIT);
             }
+
             if (haveVisitStatus) {
                 throw new CommandException(MESSAGE_NURSE_INVALID_VISITSTATUS_EDIT);
             }
         }
+
+        Person editedPerson = createEditedPerson(confirmedPersonToEdit, editPersonDescriptor);
 
         if (!confirmedPersonToEdit.isSamePerson(editedPerson) && model.hasPerson(editedPerson)) {
             throw new CommandException(String.format(MESSAGE_DUPLICATE_PERSON,
@@ -151,97 +157,106 @@ public class EditCommand extends Command {
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
 
         if (personToEdit instanceof Patient && updatedCategory.categoryName.equals("P")) {
-            List<DateTime> originalDateTime = ((Patient) personToEdit).getDatesTimes();
-            Optional<List<DateTime>> toBeUpdateDateTime = editPersonDescriptor.getDatesTimes();
-            Optional<List<Index>> toBeUpdateDateTimeIndexes = editPersonDescriptor.getDateTimeIndexes();
-            List<DateTime> updatedDateTime = createEditedDateTimeList(originalDateTime,
-                    toBeUpdateDateTime, toBeUpdateDateTimeIndexes);
+            List<DateSlot> originalDateSlot = ((Patient) personToEdit).getDatesSlots();
+            Optional<List<DateSlot>> toBeUpdateDateSlot = editPersonDescriptor.getDatesSlots();
+            Optional<List<Index>> toBeUpdateDateSlotIndexes = editPersonDescriptor.getDateSlotIndexes();
+
+            List<DateSlot> updatedDateSlot = createEditedDateSlotList(originalDateSlot,
+                    toBeUpdateDateSlot, toBeUpdateDateSlotIndexes);
             VisitStatus updatedVisitStatus = editPersonDescriptor.getVisitStatus()
                     .orElse(((Patient) personToEdit).getVisitStatus());
+
             return new Patient(uid, updatedName, updatedGender, updatedPhone, updatedEmail,
-                        updatedAddress, updatedTags, updatedDateTime, updatedVisitStatus);
+                        updatedAddress, updatedTags, updatedDateSlot, updatedVisitStatus);
+
         } else if (updatedCategory.categoryName.equals("P")) {
-            List<DateTime> updatedDateTime = editPersonDescriptor.getDatesTimes().orElse(null);
+
+            List<DateSlot> updatedDateSlot = editPersonDescriptor.getDatesSlots().orElse(null);
             VisitStatus updatedVisitStatus = editPersonDescriptor.getVisitStatus()
                     .orElse(((Patient) personToEdit).getVisitStatus());
+
             return new Patient(uid, updatedName, updatedGender, updatedPhone, updatedEmail,
-                    updatedAddress, updatedTags, updatedDateTime, updatedVisitStatus);
+                    updatedAddress, updatedTags, updatedDateSlot, updatedVisitStatus);
+
         } else if (updatedCategory.categoryName.equals("N")) {
+
             return new Nurse(uid, updatedName, updatedGender, updatedPhone, updatedEmail, updatedAddress, updatedTags);
+
         } else {
+
             throw new IllegalArgumentException(Category.MESSAGE_CONSTRAINTS);
         }
     }
 
-    private static List<DateTime> createEditedDateTimeList(List<DateTime> originalDateTime,
-                                                           Optional<List<DateTime>> toBeUpdateDateTimes,
-                                                           Optional<List<Index>> toBeUpdateDateTimesIndexes)
+    private static List<DateSlot> createEditedDateSlotList(List<DateSlot> originalDateSlot,
+                                                           Optional<List<DateSlot>> toBeUpdateDateSlots,
+                                                           Optional<List<Index>> toBeUpdateDateSlotsIndexes)
             throws CommandException {
-        List<DateTime> updatedDateTime = new ArrayList<>();
+        List<DateSlot> updatedDateSlot = new ArrayList<>();
 
-        boolean isDateTimeNull = toBeUpdateDateTimes.equals(Optional.empty());
-        boolean isDateTimeIndexesNull = toBeUpdateDateTimesIndexes.equals(Optional.empty());
-        List<DateTime> toBeUpdateDateTime = new ArrayList<>();
-        List<Index> toBeUpdateDateTimeIndexes = new ArrayList<>();
+        boolean isDateSlotNull = toBeUpdateDateSlots.equals(Optional.empty());
+        boolean isDateSlotIndexesNull = toBeUpdateDateSlotsIndexes.equals(Optional.empty());
+        List<DateSlot> toBeUpdateDateSlot = new ArrayList<>();
+        List<Index> toBeUpdateDateSlotIndexes = new ArrayList<>();
 
-        if (!isDateTimeNull) {
-            toBeUpdateDateTime = new ArrayList<>(toBeUpdateDateTimes.get());
+        if (!isDateSlotNull) {
+            toBeUpdateDateSlot = new ArrayList<>(toBeUpdateDateSlots.get());
         }
-        if (!isDateTimeIndexesNull) {
-            toBeUpdateDateTimeIndexes = new ArrayList<>(toBeUpdateDateTimesIndexes.get());
+        if (!isDateSlotIndexesNull) {
+            toBeUpdateDateSlotIndexes = new ArrayList<>(toBeUpdateDateSlotsIndexes.get());
 
             //If the indexNo given is out of bound of the existing list -> throw exception
-            for (Index indexNo : toBeUpdateDateTimeIndexes) {
+            for (Index indexNo : toBeUpdateDateSlotIndexes) {
 
-                if (indexNo.getZeroBased() >= originalDateTime.size()) {
-                    throw new CommandException(MESSAGE_OUT_OF_BOUND_DATETIMEINDEX);
+                if (indexNo.getZeroBased() >= originalDateSlot.size()) {
+                    throw new CommandException(MESSAGE_OUT_OF_BOUND_DATESLOTINDEX);
                 }
             }
         }
 
-        boolean isDateTimeEmpty = !isDateTimeNull && toBeUpdateDateTime.isEmpty();
-        boolean isDateTimeIndexesEmpty = !isDateTimeIndexesNull && toBeUpdateDateTimeIndexes.isEmpty();
+        boolean isDateSlotEmpty = !isDateSlotNull && toBeUpdateDateSlot.isEmpty();
+        boolean isDateSlotIndexesEmpty = !isDateSlotIndexesNull && toBeUpdateDateSlotIndexes.isEmpty();
 
         // [CASE 1]
         // 1. dateTime null and dateTimeIndex non-null but empty
         // 2. dateTimeIndex null and dateTime non-null but empty
         // 3. dateTime non-null but empty and dateTimeIndex non-null but empty ->
         // Deletes all the dateTime in the existing list
-        if ((isDateTimeNull && isDateTimeIndexesEmpty) || (isDateTimeIndexesNull && isDateTimeEmpty)
-                || (isDateTimeEmpty && isDateTimeIndexesEmpty)) {
+        if ((isDateSlotNull && isDateSlotIndexesEmpty) || (isDateSlotIndexesNull && isDateSlotEmpty)
+                || (isDateSlotEmpty && isDateSlotIndexesEmpty)) {
 
-            updatedDateTime = new ArrayList<>();
+            updatedDateSlot = new ArrayList<>();
 
         // [CASE 2]
         // 1. dateTime null and dateTimeIndex non-null and non-empty
         // 2. dateTime non-null but empty and dateTimeIndex non-null and non-empty ->
         // Deletes the dateTime at specific index in the existing list
-        } else if ((isDateTimeNull || isDateTimeEmpty) && !isDateTimeIndexesEmpty) {
+        } else if ((isDateSlotNull || isDateSlotEmpty) && !isDateSlotIndexesEmpty) {
 
-            updatedDateTime = new ArrayList<>(originalDateTime);
+            updatedDateSlot = new ArrayList<>(originalDateSlot);
 
             ReverseIndexComparator comp = new ReverseIndexComparator();
-            toBeUpdateDateTimeIndexes.sort(comp);
-            for (Index index: toBeUpdateDateTimeIndexes) {
-                updatedDateTime.remove(index.getZeroBased());
+            toBeUpdateDateSlotIndexes.sort(comp);
+            for (Index index: toBeUpdateDateSlotIndexes) {
+                updatedDateSlot.remove(index.getZeroBased());
             }
 
         // [CASE 3]
         // 1. dateTime null and dateTimeIndex null ->
         // Remain as original dateTime list, no changes made
-        } else if (isDateTimeNull && isDateTimeIndexesNull) {
+        } else if (isDateSlotNull && isDateSlotIndexesNull) {
 
-            updatedDateTime = new ArrayList<>(originalDateTime);
+            updatedDateSlot = new ArrayList<>(originalDateSlot);
 
         // [CASE 4]
         // 1. dateTime non-null and not empty but dateTimeIndex null
         // 2. dateTime non-null and not empty and dateTimeIndex non-null but empty   ->
         // Add the given dateTime to the existing list
-        } else if (!isDateTimeEmpty && (isDateTimeIndexesNull || isDateTimeIndexesEmpty)) {
+        } else if (!isDateSlotEmpty && (isDateSlotIndexesNull || isDateSlotIndexesEmpty)) {
 
-            updatedDateTime = new ArrayList<>(originalDateTime);
-            for (DateTime dateTime : toBeUpdateDateTime) {
-                updatedDateTime.add(dateTime);
+            updatedDateSlot = new ArrayList<>(originalDateSlot);
+            for (DateSlot dateTime : toBeUpdateDateSlot) {
+                updatedDateSlot.add(dateTime);
             }
 
         // [CASE 5]
@@ -249,27 +264,27 @@ public class EditCommand extends Command {
         // Change the dateTime at the specific index in the existing list to the given dateTime
         // If index given more than date time given  -> throws exception
         // If date time given more than index given -> the extra date time will be added to the existing list
-        } else if (!isDateTimeEmpty && !isDateTimeIndexesEmpty) {
+        } else if (!isDateSlotEmpty && !isDateSlotIndexesEmpty) {
 
-            updatedDateTime = new ArrayList<>(originalDateTime);
-            if (toBeUpdateDateTime.size() < toBeUpdateDateTimeIndexes.size()) {
-                throw new CommandException(MESSAGE_INVALID_NUMBERS_OF_DATETIME_AND_DATETIMEINDEX);
+            updatedDateSlot = new ArrayList<>(originalDateSlot);
+            if (toBeUpdateDateSlot.size() < toBeUpdateDateSlotIndexes.size()) {
+                throw new CommandException(MESSAGE_INVALID_NUMBERS_OF_DATESLOT_AND_DATESLOTINDEX);
             }
 
-            for (int i = 0; i < toBeUpdateDateTimeIndexes.size(); i++) {
-                int indexNoToBeUpdated = toBeUpdateDateTimeIndexes.get(i).getZeroBased();
-                DateTime dateTimeToBeUpdated = toBeUpdateDateTime.get(i);
-                updatedDateTime.set(indexNoToBeUpdated, dateTimeToBeUpdated);
+            for (int i = 0; i < toBeUpdateDateSlotIndexes.size(); i++) {
+                int indexNoToBeUpdated = toBeUpdateDateSlotIndexes.get(i).getZeroBased();
+                DateSlot dateSlotToBeUpdated = toBeUpdateDateSlot.get(i);
+                updatedDateSlot.set(indexNoToBeUpdated, dateSlotToBeUpdated);
             }
 
-            if (toBeUpdateDateTime.size() > toBeUpdateDateTimeIndexes.size()) {
-                for (int i = toBeUpdateDateTimeIndexes.size(); i < toBeUpdateDateTime.size(); i++) {
-                    updatedDateTime.add(toBeUpdateDateTime.get(i));
+            if (toBeUpdateDateSlot.size() > toBeUpdateDateSlotIndexes.size()) {
+                for (int i = toBeUpdateDateSlotIndexes.size(); i < toBeUpdateDateSlot.size(); i++) {
+                    updatedDateSlot.add(toBeUpdateDateSlot.get(i));
                 }
             }
 
         }
-        return updatedDateTime;
+        return updatedDateSlot;
 
     }
 
@@ -306,8 +321,8 @@ public class EditCommand extends Command {
         private Email email;
         private Address address;
         private Set<Tag> tags;
-        private List<DateTime> datesTimes;
-        private List<Index> dateTimeIndexes;
+        private List<DateSlot> datesSlots;
+        private List<Index> dateSlotIndexes;
         private VisitStatus visitStatus;
 
         public EditPersonDescriptor() {
@@ -326,8 +341,8 @@ public class EditCommand extends Command {
             setEmail(toCopy.email);
             setAddress(toCopy.address);
             setTags(toCopy.tags);
-            setDatesTimes(toCopy.datesTimes);
-            setDateTimeIndexes(toCopy.dateTimeIndexes);
+            setDatesSlots(toCopy.datesSlots);
+            setDateSlotIndexes(toCopy.dateSlotIndexes);
             setVisitStatus(toCopy.visitStatus);
         }
 
@@ -336,7 +351,7 @@ public class EditCommand extends Command {
          */
         public boolean isAnyFieldEdited() {
             return CollectionUtil.isAnyNonNull(category, name, gender, phone, email, address,
-                    tags, datesTimes, dateTimeIndexes);
+                    tags, datesSlots, dateSlotIndexes);
         }
 
         public void setCategory(Category category) {
@@ -420,38 +435,37 @@ public class EditCommand extends Command {
         }
 
         /**
-         * Sets {@code datesTimes} to this object's {@code datesTimes}.
+         * Sets {@code datesSlots} to this object's {@code datesSlots}.
          */
-        public void setDatesTimes(List<DateTime> datesTimes) {
-            this.datesTimes = (datesTimes != null) ? new ArrayList<DateTime>(datesTimes) : null;
+        public void setDatesSlots(List<DateSlot> datesSlots) {
+            this.datesSlots = (datesSlots != null) ? new ArrayList<DateSlot>(datesSlots) : null;
         }
 
         /**
-         * Returns a dateTime list
-         * Returns {@code Optional#empty()} if {@code dateTimes} is null.
+         * Returns a dateSlot list
+         * Returns {@code Optional#empty()} if {@code dateSlots} is null.
          */
-        public Optional<List<DateTime>> getDatesTimes() {
-            return (datesTimes != null) ? Optional.of(new ArrayList<DateTime>(datesTimes)) : Optional.empty();
+        public Optional<List<DateSlot>> getDatesSlots() {
+            return (datesSlots != null) ? Optional.of(new ArrayList<DateSlot>(datesSlots)) : Optional.empty();
         }
 
         /**
-         * Sets {@code dateTimeIndexes} to this object's {@code dateTimeIndexes}.
+         * Sets {@code dateSlotIndexes} to this object's {@code dateSlotIndexes}.
          */
-        public void setDateTimeIndexes(List<Index> dateTimeIndexes) {
-            this.dateTimeIndexes = (dateTimeIndexes != null) ? new ArrayList<Index>(dateTimeIndexes) : null;
+        public void setDateSlotIndexes(List<Index> dateSlotIndexes) {
+            this.dateSlotIndexes = (dateSlotIndexes != null) ? new ArrayList<Index>(dateSlotIndexes) : null;
         }
 
         /**
-         * Returns a dateTimeIndexes list
-         * Returns {@code Optional#empty()} if {@code dateTimeIndexes} is null.
+         * Returns a dateSlotIndexes list
+         * Returns {@code Optional#empty()} if {@code dateSlotIndexes} is null.
          */
-        public Optional<List<Index>> getDateTimeIndexes() {
-            return (dateTimeIndexes != null) ? Optional.of(new ArrayList<Index>(dateTimeIndexes)) : Optional.empty();
+        public Optional<List<Index>> getDateSlotIndexes() {
+            return (dateSlotIndexes != null) ? Optional.of(new ArrayList<Index>(dateSlotIndexes)) : Optional.empty();
         }
 
         /**
          * Sets {@code visitStatus} to this object's {@code visitStatus}.
-         * @return
          */
         public EditPersonDescriptor setVisitStatus(VisitStatus visitStatus) {
             this.visitStatus = visitStatus;
@@ -488,8 +502,8 @@ public class EditCommand extends Command {
                     && getPhone().equals(e.getPhone())
                     && getEmail().equals(e.getEmail())
                     && getAddress().equals(e.getAddress())
-                    && getDatesTimes().equals(e.getDatesTimes())
-                    && getDateTimeIndexes().equals(e.getDateTimeIndexes())
+                    && getDatesSlots().equals(e.getDatesSlots())
+                    && getDateSlotIndexes().equals(e.getDateSlotIndexes())
                     && getTags().equals(e.getTags())
                     && getVisitStatus().equals(e.getVisitStatus());
         }

@@ -16,7 +16,7 @@ import com.fasterxml.jackson.annotation.JsonTypeInfo.Id;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.category.Category;
 import seedu.address.model.person.Address;
-import seedu.address.model.person.DateTime;
+import seedu.address.model.person.DateSlot;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Gender;
 import seedu.address.model.person.Name;
@@ -42,7 +42,7 @@ class JsonAdaptedPerson {
     private final String phone;
     private final String email;
     private final String address;
-    private final List<JsonAdaptedDateTime> dateTimes = new ArrayList<>();
+    private final List<JsonAdaptedDateSlot> dateSlots = new ArrayList<>();
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
     private final String visitStatus;
 
@@ -54,7 +54,7 @@ class JsonAdaptedPerson {
             @JsonProperty("category") String category,
             @JsonProperty("gender") String gender, @JsonProperty("phone") String phone,
             @JsonProperty("email") String email, @JsonProperty("address") String address,
-            @JsonProperty("dateTimes") List<JsonAdaptedDateTime> dateTime,
+            @JsonProperty("dateSlot") List<JsonAdaptedDateSlot> dateSlot,
             @JsonProperty("tagged") List<JsonAdaptedTag> tagged,
             @JsonProperty("visit status") String visitStatus) {
         this.uid = uid;
@@ -65,8 +65,8 @@ class JsonAdaptedPerson {
         this.email = email;
         this.address = address;
 
-        if (dateTime != null) {
-            this.dateTimes.addAll(dateTime);
+        if (dateSlot != null) {
+            this.dateSlots.addAll(dateSlot);
         }
 
         if (tagged != null) {
@@ -84,10 +84,12 @@ class JsonAdaptedPerson {
         boolean isPatient = category.equals(PATIENT_SYMBOL);
 
         if (isPatient) {
-            dateTimes.addAll(((Patient) source).getDatesTimes().stream()
-                    .map(JsonAdaptedDateTime::new)
+            dateSlots.addAll(((Patient) source).getDatesSlots().stream()
+                    .map(JsonAdaptedDateSlot::new)
                     .collect(Collectors.toList()));
+
             visitStatus = ((Patient) source).getVisitStatus().getVisitStatusString();
+
         } else {
             visitStatus = null;
         }
@@ -117,9 +119,9 @@ class JsonAdaptedPerson {
         }
 
 
-        final List<DateTime> patientHomeVisitDatesTimes = new ArrayList<>();
-        for (JsonAdaptedDateTime dateTime : dateTimes) {
-            patientHomeVisitDatesTimes.add(dateTime.toModelType());
+        final List<DateSlot> patientHomeVisitDatesSlots = new ArrayList<>();
+        for (JsonAdaptedDateSlot dateSlot : dateSlots) {
+            patientHomeVisitDatesSlots.add(dateSlot.toModelType());
         }
 
         if (uid == null) {
@@ -170,7 +172,7 @@ class JsonAdaptedPerson {
 
         final Set<Tag> modelTags = new HashSet<>(personTags);
 
-        final List<DateTime> modelDatesTimes = patientHomeVisitDatesTimes;
+        final List<DateSlot> modelDatesSlots = patientHomeVisitDatesSlots;
 
         if (category == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
@@ -189,7 +191,7 @@ class JsonAdaptedPerson {
             }
             final VisitStatus modelVisitStatus = new VisitStatus(visitStatus);
             return new Patient(modelUid, modelName, modelGender, modelPhone, modelEmail,
-                    modelAddress, modelTags, modelDatesTimes, modelVisitStatus);
+                    modelAddress, modelTags, modelDatesSlots, modelVisitStatus);
         } else {
             throw new IllegalValueException(Category.MESSAGE_CONSTRAINTS);
         }

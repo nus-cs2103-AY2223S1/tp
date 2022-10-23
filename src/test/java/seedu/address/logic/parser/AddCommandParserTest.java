@@ -5,15 +5,15 @@ import static seedu.address.logic.commands.CommandTestUtil.ADDRESS_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.ADDRESS_DESC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.CATEGORY_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.CATEGORY_DESC_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.DATETIME_DESC_AMY;
-import static seedu.address.logic.commands.CommandTestUtil.DATETIME_DESC_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.DATESLOT_DESC_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.DATESLOT_DESC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.EMAIL_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.EMAIL_DESC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.GENDER_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.GENDER_DESC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_ADDRESS_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_CATEGORY_DESC;
-import static seedu.address.logic.commands.CommandTestUtil.INVALID_DATETIME_DESC;
+import static seedu.address.logic.commands.CommandTestUtil.INVALID_DATESLOT_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_EMAIL_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_GENDER_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_NAME_DESC;
@@ -29,8 +29,8 @@ import static seedu.address.logic.commands.CommandTestUtil.TAG_DESC_FRIEND;
 import static seedu.address.logic.commands.CommandTestUtil.TAG_DESC_HUSBAND;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_CATEGORY_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_DATETIME_AMY;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_DATETIME_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_DATESLOT_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_DATESLOT_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_GENDER_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
@@ -48,7 +48,7 @@ import org.junit.jupiter.api.Test;
 import seedu.address.logic.commands.AddCommand;
 import seedu.address.model.category.Category;
 import seedu.address.model.person.Address;
-import seedu.address.model.person.DateTime;
+import seedu.address.model.person.DateSlot;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Gender;
 import seedu.address.model.person.Name;
@@ -68,43 +68,43 @@ public class AddCommandParserTest {
         // whitespace only preamble
         assertParseSuccess(parser, PREAMBLE_WHITESPACE + CATEGORY_DESC_BOB + NAME_DESC_BOB
                 + GENDER_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
-                + ADDRESS_DESC_BOB + DATETIME_DESC_BOB + TAG_DESC_FRIEND, new AddCommand(expectedPerson));
+                + ADDRESS_DESC_BOB + DATESLOT_DESC_BOB + TAG_DESC_FRIEND, new AddCommand(expectedPerson));
 
         // multiple categories - last category accepted
         assertParseSuccess(parser, CATEGORY_DESC_AMY + CATEGORY_DESC_BOB + NAME_DESC_BOB
                 + GENDER_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
-                + ADDRESS_DESC_BOB + DATETIME_DESC_BOB + TAG_DESC_FRIEND, new AddCommand(expectedPerson));
+                + ADDRESS_DESC_BOB + DATESLOT_DESC_BOB + TAG_DESC_FRIEND, new AddCommand(expectedPerson));
 
         // multiple names - last name accepted
         assertParseSuccess(parser, CATEGORY_DESC_BOB + NAME_DESC_AMY + NAME_DESC_BOB
                 + GENDER_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
-                + ADDRESS_DESC_BOB + DATETIME_DESC_BOB + TAG_DESC_FRIEND, new AddCommand(expectedPerson));
+                + ADDRESS_DESC_BOB + DATESLOT_DESC_BOB + TAG_DESC_FRIEND, new AddCommand(expectedPerson));
 
         // multiple genders - last gender accepted
         assertParseSuccess(parser, CATEGORY_DESC_BOB + NAME_DESC_BOB
                 + GENDER_DESC_AMY + GENDER_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
-                + ADDRESS_DESC_BOB + DATETIME_DESC_BOB + TAG_DESC_FRIEND, new AddCommand(expectedPerson));
+                + ADDRESS_DESC_BOB + DATESLOT_DESC_BOB + TAG_DESC_FRIEND, new AddCommand(expectedPerson));
 
         // multiple phones - last phone accepted
         assertParseSuccess(parser, CATEGORY_DESC_BOB + NAME_DESC_BOB
                 + GENDER_DESC_BOB + PHONE_DESC_AMY + PHONE_DESC_BOB + EMAIL_DESC_BOB
-                + ADDRESS_DESC_BOB + DATETIME_DESC_BOB + TAG_DESC_FRIEND, new AddCommand(expectedPerson));
+                + ADDRESS_DESC_BOB + DATESLOT_DESC_BOB + TAG_DESC_FRIEND, new AddCommand(expectedPerson));
 
         // multiple emails - last email accepted
         assertParseSuccess(parser, CATEGORY_DESC_BOB + NAME_DESC_BOB + GENDER_DESC_BOB
                 + PHONE_DESC_BOB + EMAIL_DESC_AMY + EMAIL_DESC_BOB
-                + ADDRESS_DESC_BOB + DATETIME_DESC_BOB + TAG_DESC_FRIEND, new AddCommand(expectedPerson));
+                + ADDRESS_DESC_BOB + DATESLOT_DESC_BOB + TAG_DESC_FRIEND, new AddCommand(expectedPerson));
 
         // multiple addresses - last address accepted
         assertParseSuccess(parser, CATEGORY_DESC_BOB + NAME_DESC_BOB + GENDER_DESC_BOB
                 + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_AMY
-                + ADDRESS_DESC_BOB + DATETIME_DESC_BOB + TAG_DESC_FRIEND, new AddCommand(expectedPerson));
+                + ADDRESS_DESC_BOB + DATESLOT_DESC_BOB + TAG_DESC_FRIEND, new AddCommand(expectedPerson));
 
         // multiple dateTimes - all accepted
         Person expectedPersonMultipleDatesTimes = new PersonBuilder(BOB).withUniversalUid().withTags(VALID_TAG_FRIEND)
-                .withDatesTimes(VALID_DATETIME_BOB, VALID_DATETIME_AMY).build();
+                .withDatesSlots(VALID_DATESLOT_BOB, VALID_DATESLOT_AMY).build();
         assertParseSuccess(parser, CATEGORY_DESC_BOB + NAME_DESC_BOB + GENDER_DESC_BOB
-                + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_BOB + DATETIME_DESC_AMY + DATETIME_DESC_BOB
+                + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_BOB + DATESLOT_DESC_AMY + DATESLOT_DESC_BOB
                 + TAG_DESC_FRIEND, new AddCommand(expectedPersonMultipleDatesTimes));
 
         // multiple tags - all accepted
@@ -112,14 +112,14 @@ public class AddCommandParserTest {
                 .withTags(VALID_TAG_FRIEND, VALID_TAG_HUSBAND)
                 .build();
         assertParseSuccess(parser, CATEGORY_DESC_BOB + NAME_DESC_BOB + GENDER_DESC_BOB
-                + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_BOB + DATETIME_DESC_BOB + TAG_DESC_FRIEND
+                + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_BOB + DATESLOT_DESC_BOB + TAG_DESC_FRIEND
                 + TAG_DESC_HUSBAND, new AddCommand(expectedPersonMultipleTags));
     }
 
     @Test
     public void parse_optionalFieldsMissing_success() {
         // zero dateTimes
-        Person expectedPersonNoDatesTimes = new PersonBuilder(AMY).withDatesTimes().withUniversalUid().build();
+        Person expectedPersonNoDatesTimes = new PersonBuilder(AMY).withDatesSlots().withUniversalUid().build();
         assertParseSuccess(parser, CATEGORY_DESC_AMY + NAME_DESC_AMY + GENDER_DESC_AMY
                 + PHONE_DESC_AMY + EMAIL_DESC_AMY + ADDRESS_DESC_AMY + TAG_DESC_FRIEND + VISIT_STATUS_DESC_AMY,
                 new AddCommand(expectedPersonNoDatesTimes));
@@ -127,7 +127,7 @@ public class AddCommandParserTest {
         // zero tags
         Person expectedPersonNoTag = new PersonBuilder(AMY).withTags().withUniversalUid().build();
         assertParseSuccess(parser, CATEGORY_DESC_AMY + NAME_DESC_AMY + GENDER_DESC_AMY
-                + PHONE_DESC_AMY + EMAIL_DESC_AMY + ADDRESS_DESC_AMY + DATETIME_DESC_AMY + VISIT_STATUS_DESC_AMY,
+                + PHONE_DESC_AMY + EMAIL_DESC_AMY + ADDRESS_DESC_AMY + DATESLOT_DESC_AMY + VISIT_STATUS_DESC_AMY,
                 new AddCommand(expectedPersonNoTag));
     }
 
@@ -169,52 +169,52 @@ public class AddCommandParserTest {
 
         // invalid category
         assertParseFailure(parser, INVALID_CATEGORY_DESC + NAME_DESC_BOB + GENDER_DESC_BOB
-                + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_BOB + DATETIME_DESC_BOB + TAG_DESC_HUSBAND
+                + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_BOB + DATESLOT_DESC_BOB + TAG_DESC_HUSBAND
                 + TAG_DESC_FRIEND, Category.MESSAGE_CONSTRAINTS);
 
         // invalid name
         assertParseFailure(parser, CATEGORY_DESC_BOB + INVALID_NAME_DESC + GENDER_DESC_BOB
-                + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_BOB + DATETIME_DESC_BOB + TAG_DESC_HUSBAND
+                + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_BOB + DATESLOT_DESC_BOB + TAG_DESC_HUSBAND
                 + TAG_DESC_FRIEND, Name.MESSAGE_CONSTRAINTS);
 
         // invalid gender
         assertParseFailure(parser, CATEGORY_DESC_BOB + NAME_DESC_BOB + INVALID_GENDER_DESC
-                + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_BOB + DATETIME_DESC_BOB + TAG_DESC_HUSBAND
+                + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_BOB + DATESLOT_DESC_BOB + TAG_DESC_HUSBAND
                 + TAG_DESC_FRIEND, Gender.MESSAGE_CONSTRAINTS);
 
         // invalid phone
         assertParseFailure(parser, CATEGORY_DESC_BOB + NAME_DESC_BOB + GENDER_DESC_BOB
-                + INVALID_PHONE_DESC + EMAIL_DESC_BOB + ADDRESS_DESC_BOB + DATETIME_DESC_BOB + TAG_DESC_HUSBAND
+                + INVALID_PHONE_DESC + EMAIL_DESC_BOB + ADDRESS_DESC_BOB + DATESLOT_DESC_BOB + TAG_DESC_HUSBAND
                 + TAG_DESC_FRIEND, Phone.MESSAGE_CONSTRAINTS);
 
         // invalid email
         assertParseFailure(parser, CATEGORY_DESC_BOB + NAME_DESC_BOB + GENDER_DESC_BOB
-                + PHONE_DESC_BOB + INVALID_EMAIL_DESC + ADDRESS_DESC_BOB + DATETIME_DESC_BOB + TAG_DESC_HUSBAND
+                + PHONE_DESC_BOB + INVALID_EMAIL_DESC + ADDRESS_DESC_BOB + DATESLOT_DESC_BOB + TAG_DESC_HUSBAND
                 + TAG_DESC_FRIEND, Email.MESSAGE_CONSTRAINTS);
 
         // invalid address
         assertParseFailure(parser, CATEGORY_DESC_BOB + NAME_DESC_BOB + GENDER_DESC_BOB
-                + PHONE_DESC_BOB + EMAIL_DESC_BOB + INVALID_ADDRESS_DESC + DATETIME_DESC_BOB + TAG_DESC_HUSBAND
+                + PHONE_DESC_BOB + EMAIL_DESC_BOB + INVALID_ADDRESS_DESC + DATESLOT_DESC_BOB + TAG_DESC_HUSBAND
                 + TAG_DESC_FRIEND, Address.MESSAGE_CONSTRAINTS);
 
-        // invalid datesTimes
+        // invalid datesSlots
         assertParseFailure(parser, CATEGORY_DESC_BOB + NAME_DESC_BOB + GENDER_DESC_BOB
-                + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_BOB + INVALID_DATETIME_DESC + TAG_DESC_HUSBAND
-                + TAG_DESC_FRIEND, DateTime.MESSAGE_CONSTRAINTS);
+                + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_BOB + INVALID_DATESLOT_DESC + TAG_DESC_HUSBAND
+                + TAG_DESC_FRIEND, DateSlot.MESSAGE_CONSTRAINTS);
 
         // invalid tag
         assertParseFailure(parser, CATEGORY_DESC_BOB + NAME_DESC_BOB + GENDER_DESC_BOB
-                + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_BOB + DATETIME_DESC_BOB + INVALID_TAG_DESC
+                + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_BOB + DATESLOT_DESC_BOB + INVALID_TAG_DESC
                 + VALID_TAG_FRIEND, Tag.MESSAGE_CONSTRAINTS);
 
         // two invalid values, only first invalid value reported
         assertParseFailure(parser, CATEGORY_DESC_BOB + INVALID_NAME_DESC + GENDER_DESC_BOB
-                + PHONE_DESC_BOB + EMAIL_DESC_BOB + INVALID_ADDRESS_DESC + DATETIME_DESC_BOB,
+                + PHONE_DESC_BOB + EMAIL_DESC_BOB + INVALID_ADDRESS_DESC + DATESLOT_DESC_BOB,
                 Name.MESSAGE_CONSTRAINTS);
 
         // non-empty preamble
         assertParseFailure(parser, PREAMBLE_NON_EMPTY + CATEGORY_DESC_BOB + NAME_DESC_BOB
-                + GENDER_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_BOB + DATETIME_DESC_BOB
+                + GENDER_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_BOB + DATESLOT_DESC_BOB
                 + TAG_DESC_HUSBAND + TAG_DESC_FRIEND,
 
                 String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));

@@ -12,7 +12,7 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
 import seedu.address.model.category.Category;
 import seedu.address.model.person.Address;
-import seedu.address.model.person.DateTime;
+import seedu.address.model.person.DateSlot;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Gender;
 import seedu.address.model.person.Name;
@@ -51,8 +51,8 @@ public class EditPersonDescriptorBuilder {
         descriptor.setAddress(person.getAddress());
         descriptor.setTags(person.getTags());
         if (person.getCategory().categoryName.equals(PATIENT_SYMBOL)) {
-            descriptor.setDatesTimes(((Patient) person).getDatesTimes());
-            descriptor.setDateTimeIndexes(new ArrayList<Index>());
+            descriptor.setDatesSlots(((Patient) person).getDatesSlots());
+            descriptor.setDateSlotIndexes(new ArrayList<Index>());
         }
     }
 
@@ -115,26 +115,26 @@ public class EditPersonDescriptorBuilder {
     }
 
     /**
-     * Parses the {@code dateTimes} into a {@code List<DateTime>} and set it to the {@code EditPersonDescriptor}
+     * Parses the {@code dateSlots} into a {@code List<DateSlot>} and set it to the {@code EditPersonDescriptor}
      * that we are building.
      */
-    public EditPersonDescriptorBuilder withDatesTimes(String... datesTimes) {
-        List<DateTime> dateTimeList = Stream.of(datesTimes).map(DateTime::new).collect(Collectors.toList());
-        descriptor.setDatesTimes(dateTimeList);
+    public EditPersonDescriptorBuilder withDatesSlots(String... datesSlots) {
+        List<DateSlot> dateSlotList = Stream.of(datesSlots).map(DateSlot::new).collect(Collectors.toList());
+        descriptor.setDatesSlots(dateSlotList);
         return this;
     }
 
     /**
-     * Parses the {@code dateTimeIndexes} into a {@code List<Index>} and set it to the {@code EditPersonDescriptor}
+     * Parses the {@code dateSlotIndexes} into a {@code List<Index>} and set it to the {@code EditPersonDescriptor}
      * that we are building.
      */
-    public EditPersonDescriptorBuilder withDateTimeIndexes(String... dateTimeIndexes) {
-        List<Integer> dateTimeIndexesNoList = Stream.of(dateTimeIndexes).map(Integer::new).collect(Collectors.toList());
-        List<Index> dateTimeIndexesList = new ArrayList<>();
-        for (Integer integer: dateTimeIndexesNoList) {
-            dateTimeIndexesList.add(Index.fromOneBased(integer));
+    public EditPersonDescriptorBuilder withDateSlotIndexes(String... dateSlotIndexes) {
+        List<Integer> dateSlotIndexesNoList = Stream.of(dateSlotIndexes).map(Integer::new).collect(Collectors.toList());
+        List<Index> dateSlotIndexesList = new ArrayList<>();
+        for (Integer integer: dateSlotIndexesNoList) {
+            dateSlotIndexesList.add(Index.fromOneBased(integer));
         }
-        descriptor.setDateTimeIndexes(dateTimeIndexesList);
+        descriptor.setDateSlotIndexes(dateSlotIndexesList);
         return this;
     }
 

@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.Set;
 
 import seedu.address.model.person.Address;
-import seedu.address.model.person.DateTime;
+import seedu.address.model.person.DateSlot;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Gender;
 import seedu.address.model.person.Name;
@@ -39,7 +39,7 @@ public class PatientBuilder {
     private Phone phone;
     private Email email;
     private Address address;
-    private List<DateTime> dateTimes;
+    private List<DateSlot> dateSlots;
     private Set<Tag> tags;
     private VisitStatus visitStatus;
 
@@ -54,7 +54,7 @@ public class PatientBuilder {
         phone = new Phone(DEFAULT_PHONE);
         email = new Email(DEFAULT_EMAIL);
         address = new Address(DEFAULT_ADDRESS);
-        dateTimes = new ArrayList<>();
+        dateSlots = new ArrayList<>();
         tags = new HashSet<>();
         visitStatus = new VisitStatus(DEFAULT_VISITSTATUS);
     }
@@ -70,7 +70,7 @@ public class PatientBuilder {
         phone = patientToCopy.getPhone();
         email = patientToCopy.getEmail();
         address = patientToCopy.getAddress();
-        dateTimes = new ArrayList<>(((Patient) patientToCopy).getDatesTimes());
+        dateSlots = new ArrayList<>(((Patient) patientToCopy).getDatesSlots());
         tags = new HashSet<>(patientToCopy.getTags());
         visitStatus = ((Patient) patientToCopy).getVisitStatus();
     }
@@ -132,11 +132,11 @@ public class PatientBuilder {
     }
 
     /**
-     * Parses the {@code datesTimes} into a {@code Set<DateTime>} and
+     * Parses the {@code datesSlots} into a {@code Set<DateSlot>} and
      * set it to the {@code Patient} that we are building.
      */
-    public PatientBuilder withDatesTimes(String ... datesTimes) {
-        this.dateTimes = SampleDataUtil.getDatesTimesList(datesTimes);
+    public PatientBuilder withDatesSlots(String ... datesSlots) {
+        this.dateSlots = SampleDataUtil.getDatesSlotsList(datesSlots);
         return this;
     }
 
@@ -152,6 +152,6 @@ public class PatientBuilder {
      * Build a patient.
      */
     public Patient build() {
-        return new Patient(uid, name, gender, phone, email, address, tags, dateTimes, visitStatus);
+        return new Patient(uid, name, gender, phone, email, address, tags, dateSlots, visitStatus);
     }
 }

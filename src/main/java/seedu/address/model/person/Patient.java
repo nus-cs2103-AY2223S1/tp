@@ -15,18 +15,18 @@ import seedu.address.model.tag.Tag;
  */
 public class Patient extends Person {
 
-    private static final String MESSAGE_FOR_EMPTY_DATETIME = "Home Visit date and time has not been set yet.";
-    private final List<DateTime> dateTimes = new ArrayList<>();
+    private static final String MESSAGE_FOR_EMPTY_DATESLOT = "Home Visit date and slot has not been set yet.";
+    private final List<DateSlot> dateSlots = new ArrayList<>();
     private final VisitStatus visitStatus;
 
     /**
      * Every field must be present and not null.
      */
     public Patient(Uid uid, Name name, Gender gender, Phone phone, Email email, Address address,
-                   Set<Tag> tags, List<DateTime> dateTime, VisitStatus visitStatus) {
+                   Set<Tag> tags, List<DateSlot> dateTimeSlot, VisitStatus visitStatus) {
         super(uid, name, gender, phone, email, address, tags);
-        requireAllNonNull(dateTime);
-        this.dateTimes.addAll(dateTime);
+        requireAllNonNull(dateTimeSlot);
+        this.dateSlots.addAll(dateTimeSlot);
         this.visitStatus = visitStatus;
     }
 
@@ -41,34 +41,31 @@ public class Patient extends Person {
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return super.hashCode() + Objects.hash(dateTimes);
+        return super.hashCode() + Objects.hash(dateSlots);
     }
 
     /**
-     * Returns a sorted date and time list
+     * Returns a sorted date and slot list
      */
-    public List<DateTime> getDatesTimes() {
-        DateTimeComparator comp = new DateTimeComparator();
-        this.dateTimes.sort(comp);
-        return this.dateTimes;
+    public List<DateSlot> getDatesSlots() {
+        DateSlotComparator comp = new DateSlotComparator();
+        this.dateSlots.sort(comp);
+        return this.dateSlots;
     }
 
-    public String getDatesTimesInString() {
-        StringBuilder dateTimeListSB = new StringBuilder();
+    public String getDatesSlotsInString() {
+        StringBuilder dateSlotListSB = new StringBuilder();
 
-        if (this.dateTimes.isEmpty()) {
-            dateTimeListSB = new StringBuilder(MESSAGE_FOR_EMPTY_DATETIME);
-            return dateTimeListSB.toString();
+        if (this.dateSlots.isEmpty()) {
+            dateSlotListSB = new StringBuilder(MESSAGE_FOR_EMPTY_DATESLOT);
+            return dateSlotListSB.toString();
         }
 
-        DateTimeComparator comp = new DateTimeComparator();
-        this.dateTimes.sort(comp);
-
-        for (DateTime datetime : this.dateTimes) {
-            dateTimeListSB.append(datetime.toString()).append(" , ");
+        for (DateSlot dateslot : getDatesSlots()) {
+            dateSlotListSB.append(dateslot.toString()).append(" , ");
         }
 
-        return dateTimeListSB.toString();
+        return dateSlotListSB.toString();
     }
 
     public VisitStatus getVisitStatus() {
@@ -77,9 +74,9 @@ public class Patient extends Person {
 
     @Override
     public String toString() {
-        String dateTimeList = getDatesTimesInString();
+        String dateSlotList = getDatesSlotsInString();
         return "Category: P " + super.toString()
-                + "; Home Visits Date and Time:" + dateTimeList
+                + "; Home Visits Date and Time:" + dateSlotList
                 + "; Visit Status: " + getVisitStatus();
     }
 }

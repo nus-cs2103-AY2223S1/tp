@@ -4,8 +4,8 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_CATEGORY;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE_AND_TIME;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE_AND_TIME_INDEX;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE_AND_SLOT;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE_AND_SLOT_INDEX;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_GENDER;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
@@ -23,7 +23,7 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.person.DateTime;
+import seedu.address.model.person.DateSlot;
 import seedu.address.model.person.Uid;
 import seedu.address.model.tag.Tag;
 
@@ -42,8 +42,8 @@ public class EditCommandParser implements Parser<EditCommand> {
         requireNonNull(args);
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_UID, PREFIX_CATEGORY, PREFIX_NAME, PREFIX_GENDER,
-                        PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS, PREFIX_DATE_AND_TIME, PREFIX_TAG,
-                        PREFIX_DATE_AND_TIME_INDEX);
+                        PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS, PREFIX_DATE_AND_SLOT, PREFIX_TAG,
+                        PREFIX_DATE_AND_SLOT_INDEX);
 
         Uid uid;
 
@@ -73,11 +73,11 @@ public class EditCommandParser implements Parser<EditCommand> {
             editPersonDescriptor.setAddress(ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get()));
         }
 
-        parseDatesTimesForEdit(argMultimap.getAllValues(PREFIX_DATE_AND_TIME))
-                .ifPresent(editPersonDescriptor::setDatesTimes);
+        parseDatesSlotsForEdit(argMultimap.getAllValues(PREFIX_DATE_AND_SLOT))
+                .ifPresent(editPersonDescriptor::setDatesSlots);
 
-        parseDateTimeIndexesForEdit(argMultimap.getAllValues(PREFIX_DATE_AND_TIME_INDEX))
-                .ifPresent(editPersonDescriptor::setDateTimeIndexes);
+        parseDateSlotIndexesForEdit(argMultimap.getAllValues(PREFIX_DATE_AND_SLOT_INDEX))
+                .ifPresent(editPersonDescriptor::setDateSlotIndexes);
 
         parseTagsForEdit(argMultimap.getAllValues(PREFIX_TAG)).ifPresent(editPersonDescriptor::setTags);
 
@@ -106,35 +106,36 @@ public class EditCommandParser implements Parser<EditCommand> {
     }
 
     /**
-     * Parses {@code Collection<String> datesTimes} into a {@code List<DateTime>} if {@code dateTimes} is non-empty.
-     * If {@code datesTimes} contain only one element which is an empty string, it will be parsed into a
-     * {@code List<DateTime>} containing zero dateTime.
+     * Parses {@code Collection<String> datesSlots} into a {@code List<DateSlot>} if {@code dateSlots} is non-empty.
+     * If {@code datesSlots} contain only one element which is an empty string, it will be parsed into a
+     * {@code List<DateSlot>} containing zero dateTime.
      */
-    private Optional<List<DateTime>> parseDatesTimesForEdit(Collection<String> datesTimes) throws ParseException {
-        assert datesTimes != null;
+    private Optional<List<DateSlot>> parseDatesSlotsForEdit(Collection<String> datesSlots) throws ParseException {
+        assert datesSlots != null;
 
-        if (datesTimes.isEmpty()) {
+        if (datesSlots.isEmpty()) {
             return Optional.empty();
         }
-        Collection<String> dateTimeList = datesTimes.size() == 1 && datesTimes.contains("")
-                ? Collections.emptyList() : datesTimes;
-        return Optional.of(ParserUtil.parseDatesTimes(dateTimeList));
+        Collection<String> dateSlotList = datesSlots.size() == 1 && datesSlots.contains("")
+                ? Collections.emptyList() : datesSlots;
+
+        return Optional.of(ParserUtil.parseDatesSlots(dateSlotList));
     }
 
     /**
-     * Parses {@code Collection<String> dateTimeIndexes} into a {@code List<Integer>}
-     * if {@code dateTimeIndexes} is non-empty.
+     * Parses {@code Collection<String> dateSlotIndexes} into a {@code List<Integer>}
+     * if {@code dateSlotIndexes} is non-empty.
      */
-    private Optional<List<Index>> parseDateTimeIndexesForEdit(Collection<String> dateTimeIndexes)
+    private Optional<List<Index>> parseDateSlotIndexesForEdit(Collection<String> dateSlotIndexes)
             throws ParseException {
-        assert dateTimeIndexes != null;
+        assert dateSlotIndexes != null;
 
-        if (dateTimeIndexes.isEmpty()) {
+        if (dateSlotIndexes.isEmpty()) {
             return Optional.empty();
         }
-        Collection<String> dateTimeIndexList = dateTimeIndexes.size() == 1 && dateTimeIndexes.contains("")
-                ? Collections.emptyList() : dateTimeIndexes;
-        return Optional.of(ParserUtil.parseDateTimesIndexes(dateTimeIndexList));
+        Collection<String> dateSlotIndexList = dateSlotIndexes.size() == 1 && dateSlotIndexes.contains("")
+                ? Collections.emptyList() : dateSlotIndexes;
+        return Optional.of(ParserUtil.parseDateTimesIndexes(dateSlotIndexList));
     }
 
 }

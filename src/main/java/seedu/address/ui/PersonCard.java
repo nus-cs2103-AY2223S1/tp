@@ -75,7 +75,7 @@ public class PersonCard extends UiPart<Region> {
             visitStatus.setText(NOT_APPLICABLE);
             category.getChildren().add(new Label(NURSE_LABEL_TEXT));
         } else if (person instanceof Patient) {
-            dateTimes.setText(((Patient) person).getDatesTimesInString());
+            dateTimes.setText(((Patient) person).getDatesSlotsInString());
             visitStatus.setText(((Patient) person).getVisitStatus().toString());
             category.getChildren().add(new Label(PATIENT_LABEL_TEXT));
         } else {

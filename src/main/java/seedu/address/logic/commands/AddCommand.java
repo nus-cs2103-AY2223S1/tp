@@ -3,7 +3,7 @@ package seedu.address.logic.commands;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_CATEGORY;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE_AND_TIME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE_AND_SLOT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_GENDER;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
@@ -31,7 +31,7 @@ public class AddCommand extends Command {
             + PREFIX_ADDRESS + "ADDRESS "
             + "[" + PREFIX_TAG + "TAG]... \n"
             + "If add patient, you can choose to add details:  "
-            + PREFIX_DATE_AND_TIME + "HOME_VISIT_DATE_AND_TIME \n"
+            + PREFIX_DATE_AND_SLOT + "HOME_VISIT_DATE_AND_SLOT \n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_CATEGORY + "P "
             + PREFIX_NAME + "John Doe "
@@ -41,7 +41,7 @@ public class AddCommand extends Command {
             + PREFIX_ADDRESS + "311, Clementi Ave 2, #02-25 "
             + PREFIX_TAG + "friends "
             + PREFIX_TAG + "owesMoney "
-            + PREFIX_DATE_AND_TIME + "2022-11-11T12:30 ";
+            + PREFIX_DATE_AND_SLOT + "2022-11-11,2";
 
     public static final String MESSAGE_SUCCESS = "New %1$s added: %2$s";
     public static final String MESSAGE_DUPLICATE_PERSON = "This %1$s already exists in the address book";

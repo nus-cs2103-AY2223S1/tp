@@ -7,7 +7,7 @@ import java.util.Set;
 
 import seedu.address.model.category.Category;
 import seedu.address.model.person.Address;
-import seedu.address.model.person.DateTime;
+import seedu.address.model.person.DateSlot;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Gender;
 import seedu.address.model.person.Name;
@@ -31,7 +31,7 @@ public class PersonBuilder {
     public static final String DEFAULT_PHONE = "85355255";
     public static final String DEFAULT_EMAIL = "amy@gmail.com";
     public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
-    public static final String DEFAULT_DATE_AND_TIME = "2022-06-14T13:00";
+    public static final String DEFAULT_DATE_AND_SLOT = "2022-06-14,4";
     public static final String DEFAULT_VISIT_STATUS = "false";
 
     private Category category;
@@ -42,7 +42,7 @@ public class PersonBuilder {
     private Email email;
     private Address address;
     private Set<Tag> tags;
-    private List<DateTime> dateTimeList;
+    private List<DateSlot> dateSlotList;
     private VisitStatus visitStatus;
 
     /**
@@ -57,8 +57,8 @@ public class PersonBuilder {
         email = new Email(DEFAULT_EMAIL);
         address = new Address(DEFAULT_ADDRESS);
         tags = new HashSet<>();
-        dateTimeList = new ArrayList<>();
-        dateTimeList.add(new DateTime(DEFAULT_DATE_AND_TIME));
+        dateSlotList = new ArrayList<>();
+        dateSlotList.add(new DateSlot(DEFAULT_DATE_AND_SLOT));
         visitStatus = new VisitStatus(DEFAULT_VISIT_STATUS);
     }
 
@@ -75,7 +75,7 @@ public class PersonBuilder {
         address = personToCopy.getAddress();
         tags = new HashSet<>(personToCopy.getTags());
         if (personToCopy.getCategory().categoryName.equals("P")) {
-            dateTimeList = new ArrayList<>(((Patient) personToCopy).getDatesTimes());
+            dateSlotList = new ArrayList<>(((Patient) personToCopy).getDatesSlots());
             visitStatus = ((Patient) personToCopy).getVisitStatus();
         }
     }
@@ -146,12 +146,12 @@ public class PersonBuilder {
     }
 
     /**
-     * Parses the {@code datesTimes} into a {@code Set<DateTime>} and
+     * Parses the {@code datesSlots} into a {@code Set<DateSlot>} and
      * set it to the {@code Person} that we are building.
      * Applies only to Patient.
      */
-    public PersonBuilder withDatesTimes(String... datesTimes) {
-        this.dateTimeList = SampleDataUtil.getDatesTimesList(datesTimes);
+    public PersonBuilder withDatesSlots(String... datesSlots) {
+        this.dateSlotList = SampleDataUtil.getDatesSlotsList(datesSlots);
         return this;
     }
 
@@ -179,7 +179,7 @@ public class PersonBuilder {
         if (category.categoryName.equals("N")) {
             return new Nurse(uid, name, gender, phone, email, address, tags);
         } else if (this.category.categoryName.equals("P")) {
-            return new Patient(uid, name, gender, phone, email, address, tags, dateTimeList, visitStatus);
+            return new Patient(uid, name, gender, phone, email, address, tags, dateSlotList, visitStatus);
         }
         return new Person(uid, name, gender, phone, email, address, tags);
 

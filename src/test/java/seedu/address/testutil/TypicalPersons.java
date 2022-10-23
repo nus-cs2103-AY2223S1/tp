@@ -4,8 +4,8 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_CATEGORY_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_CATEGORY_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_DATETIME_AMY;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_DATETIME_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_DATESLOT_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_DATESLOT_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_GENDER_AMY;
@@ -37,7 +37,7 @@ public class TypicalPersons {
             .withAddress("123, Jurong West Ave 6, #08-111")
             .withEmail("alice@example.com")
             .withPhone("94351253")
-            .withDatesTimes("2022-11-11T12:00")
+            .withDatesSlots("2022-11-11,2")
             .withTags("friends")
             .withVisitStatus("false").build();
     public static final Person BENSON = new PersonBuilder()
@@ -46,14 +46,14 @@ public class TypicalPersons {
             .withAddress("311, Clementi Ave 2, #02-25")
             .withEmail("johnd@example.com")
             .withPhone("98765432")
-            .withDatesTimes("2022-10-23T10:00")
+            .withDatesSlots("2022-10-23,1")
             .withTags("owesMoney", "friends")
             .withVisitStatus("true").build();
     public static final Person CARL = new PersonBuilder()
             .withUid("3").withCategory("P")
             .withName("Carl Kurz").withGender("M")
             .withPhone("95352563")
-            .withDatesTimes("2022-11-10T15:00", "2022-12-10T14:00")
+            .withDatesSlots("2022-11-10,1", "2022-12-10,2")
             .withEmail("heinz@example.com")
             .withAddress("wall street")
             .withVisitStatus("false").build();
@@ -63,7 +63,7 @@ public class TypicalPersons {
             .withGender("M")
             .withPhone("87652533")
             .withEmail("cornelia@example.com")
-            .withDatesTimes("2022-11-10T15:00", "2022-09-10T14:00")
+            .withDatesSlots("2022-11-10,4", "2022-09-10,2")
             .withAddress("10th street")
             .withTags("friends")
             .withVisitStatus("true").build();
@@ -72,7 +72,7 @@ public class TypicalPersons {
             .withName("Elle Meyer").withGender("F")
             .withPhone("9482224")
             .withEmail("werner@example.com")
-            .withDatesTimes("2022-11-15T12:00")
+            .withDatesSlots("2022-11-15,4")
             .withAddress("michegan ave").build();
     public static final Person FIONA = new PersonBuilder()
             .withUid("6").withCategory("P")
@@ -80,7 +80,7 @@ public class TypicalPersons {
             .withGender("F")
             .withPhone("9482427")
             .withEmail("lydia@example.com")
-            .withDatesTimes("2022-10-15T12:00")
+            .withDatesSlots("2022-10-15,1")
             .withAddress("little tokyo")
             .withVisitStatus("false").build();
     public static final Person GEORGE = new PersonBuilder()
@@ -99,7 +99,7 @@ public class TypicalPersons {
             .withName("Hoon Meier")
             .withGender("M")
             .withPhone("8482424")
-            .withDatesTimes("2023-01-11T18:00")
+            .withDatesSlots("2023-01-11,2")
             .withEmail("stefan@example.com")
             .withAddress("little india")
             .withVisitStatus("false").build();
@@ -109,7 +109,7 @@ public class TypicalPersons {
             .withName("Ida Mueller")
             .withGender("F")
             .withPhone("8482131")
-            .withDatesTimes("2022-11-11T17:00")
+            .withDatesSlots("2022-11-11,3")
             .withEmail("hans@example.com")
             .withAddress("chicago ave")
             .withVisitStatus("false").build();
@@ -118,11 +118,11 @@ public class TypicalPersons {
     public static final Person AMY = new PersonBuilder()
             .withUid(VALID_UID_AMY).withCategory(VALID_CATEGORY_AMY).withName(VALID_NAME_AMY)
             .withGender(VALID_GENDER_AMY).withPhone(VALID_PHONE_AMY).withEmail(VALID_EMAIL_AMY)
-            .withAddress(VALID_ADDRESS_AMY).withDatesTimes((VALID_DATETIME_AMY)).withTags(VALID_TAG_FRIEND).build();
+            .withAddress(VALID_ADDRESS_AMY).withDatesSlots((VALID_DATESLOT_AMY)).withTags(VALID_TAG_FRIEND).build();
     public static final Person BOB = new PersonBuilder()
             .withUid(VALID_UID_BOB).withCategory(VALID_CATEGORY_BOB).withName(VALID_NAME_BOB)
             .withGender(VALID_GENDER_BOB).withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB)
-            .withAddress(VALID_ADDRESS_BOB).withDatesTimes(VALID_DATETIME_BOB)
+            .withAddress(VALID_ADDRESS_BOB).withDatesSlots(VALID_DATESLOT_BOB)
             .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).build();
     public static final String KEYWORD_MATCHING_MEIER = "Meier"; // A keyword that matches MEIER
 

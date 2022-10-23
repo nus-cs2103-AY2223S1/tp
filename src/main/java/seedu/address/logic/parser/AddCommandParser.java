@@ -3,7 +3,7 @@ package seedu.address.logic.parser;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_CATEGORY;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE_AND_TIME;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE_AND_SLOT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_GENDER;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
@@ -21,7 +21,7 @@ import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.category.Category;
 import seedu.address.model.person.Address;
-import seedu.address.model.person.DateTime;
+import seedu.address.model.person.DateSlot;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Gender;
 import seedu.address.model.person.Name;
@@ -45,7 +45,7 @@ public class AddCommandParser implements Parser<AddCommand> {
      */
     public AddCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_CATEGORY, PREFIX_NAME,
-                PREFIX_GENDER, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS, PREFIX_TAG, PREFIX_DATE_AND_TIME,
+                PREFIX_GENDER, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS, PREFIX_TAG, PREFIX_DATE_AND_SLOT,
                 PREFIX_VISIT_STATUS);
 
         if (!arePrefixesPresent(argMultimap, PREFIX_CATEGORY, PREFIX_NAME, PREFIX_GENDER,
@@ -61,7 +61,7 @@ public class AddCommandParser implements Parser<AddCommand> {
         Email email = ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get());
         Address address = ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get());
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
-        List<DateTime> dateTimeList = ParserUtil.parseDatesTimes(argMultimap.getAllValues(PREFIX_DATE_AND_TIME));
+        List<DateSlot> dateTimeSlotList = ParserUtil.parseDatesSlots(argMultimap.getAllValues(PREFIX_DATE_AND_SLOT));
 
         String categorySymbol = category.toString();
         Person person;
@@ -70,7 +70,7 @@ public class AddCommandParser implements Parser<AddCommand> {
             person = new Nurse(id, name, gender, phone, email, address, tagList);
         } else if (categorySymbol.equals(PATIENT_SYMBOL)) {
             VisitStatus visitStatus = ParserUtil.parseVisitStatus(argMultimap.getValue(PREFIX_VISIT_STATUS).get());
-            person = new Patient(id, name, gender, phone, email, address, tagList, dateTimeList, visitStatus);
+            person = new Patient(id, name, gender, phone, email, address, tagList, dateTimeSlotList, visitStatus);
         } else {
             throw new ParseException("Illegal category detected!");
         }

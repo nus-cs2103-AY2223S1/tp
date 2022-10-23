@@ -13,7 +13,7 @@ import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.category.Category;
 import seedu.address.model.person.Address;
-import seedu.address.model.person.DateTime;
+import seedu.address.model.person.DateSlot;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Gender;
 import seedu.address.model.person.Name;
@@ -91,33 +91,32 @@ public class ParserUtil {
         return dateTimeIndexList;
     }
 
-
     /**
-     * Parses a {@code String dateTime} into a {@code DateTime}.
+     * Parses a {@code String dateSlot} into a {@code DateSlot}.
      * Leading and trailing whitespaces will be trimmed.
      *
-     * @throws ParseException if the given {@code dateTime} is invalid.
+     * @throws ParseException if the given {@code dateSlot} is invalid.
      */
-    public static DateTime parseDateTime(String dateTime) throws ParseException {
-        requireNonNull(dateTime);
-        String trimmedDateTime = dateTime.trim();
+    public static DateSlot parseDateSlot(String dateSlot) throws ParseException {
+        requireNonNull(dateSlot);
+        String trimmedDateTimeSlot = dateSlot.trim();
 
-        if (!DateTime.isValidDateTime(trimmedDateTime)) {
-            throw new ParseException(DateTime.MESSAGE_CONSTRAINTS);
+        if (!DateSlot.isValidDateSlot(trimmedDateTimeSlot)) {
+            throw new ParseException(DateSlot.MESSAGE_CONSTRAINTS);
         }
-        return new DateTime(trimmedDateTime);
+        return new DateSlot(trimmedDateTimeSlot);
     }
 
     /**
-     * Parses {@code Collection<String> dateTime} into a {@code List<DateTime>}.
+     * Parses {@code Collection<String> dateSlot} into a {@code List<DateSlot>}.
      */
-    public static List<DateTime> parseDatesTimes(Collection<String> dateTimes) throws ParseException {
-        requireNonNull(dateTimes);
-        List<DateTime> dateTimeList = new ArrayList<DateTime>();
-        for (String dateTime : dateTimes) {
-            dateTimeList.add(parseDateTime(dateTime));
+    public static List<DateSlot> parseDatesSlots(Collection<String> dateSlots) throws ParseException {
+        requireNonNull(dateSlots);
+        List<DateSlot> dateTimeSlotList = new ArrayList<DateSlot>();
+        for (String dateSlot : dateSlots) {
+            dateTimeSlotList.add(parseDateSlot(dateSlot));
         }
-        return dateTimeList;
+        return dateTimeSlotList;
     }
 
     /**
