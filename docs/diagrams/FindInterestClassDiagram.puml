@@ -1,0 +1,35 @@
+@startuml
+skinparam classAttributeIconSize 0
+hide circle
+hide members
+show FindInterestCommandParser methods
+show FindInterestCommand methods
+show PersonContainsInterestPredicate methods
+show Person methods
+
+Class "<<interface>>\nParser" as Parser
+Class "<<interface>>\nPredicate" as Predicate
+Class "{abstract}\nCommand" as Command
+
+Class FindInterestCommandParser {
+  +parse(args: String): FindInterestCommand
+}
+Class PersonContainsInterestPredicate {
+  +test(person: Person): boolean
+}
+Class FindInterestCommand {
+  +execute(model: Model): CommandResult
+}
+Class Person {
+  +getInterests(): Set<Interest>
+}
+
+Parser <|.. FindInterestCommandParser
+PersonContainsInterestPredicate .right.|> Predicate
+FindInterestCommandParser -right-> PersonContainsInterestPredicate
+FindInterestCommandParser -right-> FindInterestCommand
+FindInterestCommand --> PersonContainsInterestPredicate
+FindInterestCommand -up-|> Command
+PersonContainsInterestPredicate -left-> Person
+
+@enduml

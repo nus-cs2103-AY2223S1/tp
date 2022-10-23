@@ -154,6 +154,38 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
+### Find Interest Feature
+
+#### Implementation
+
+The `FindInterestCommandParser` reads the specified interests entered by the student in `FindInterestCommandParser#parse`.
+The specified interests are then passed as a `PersonContainsInterestPredicate` predicate for execution in `FindInterestCommand#execute`.
+
+During execution, the interests of every batchmate will be tested against the aforementioned predicate.
+If all interests specified are found in the set of a batchmates' interests, that batchmate will then be filtered out and displayed.
+The result would be a list of all batchmates that are filtered out.
+
+The following (partial) class diagram shows how the different classes involved in the find interest operation interact with one another:
+
+![FindInterestClassDiagram](images/FindInterestClassDiagram.png)
+
+The following activity diagram summarises what happens when a student enters a `findInt` command, assuming the command is valid and no error occurs:
+
+![FindInterestActivityDiagram](images/FindInterestActivityDiagram.png)
+
+#### Design considerations:
+
+**Aspect: How `findInt` executes:**
+
+* **Alternative 1 (current choice):** Finds all batchmates whose interests match all interests specified (i.e. a superset of those specified).
+    * Pros: A specific search to find batchmates who have the same interests as the student. (Specifying `tennis` and `baking` will result in a batchmate whose interests are `tennis`, `baking` and `music` to be displayed)
+    * Cons: Search might be too narrow since it excludes batchmates that have some but not all the interests specified. (Specifying `tennis` and `baking` will not result in a batchmate whose only interest is `tennis` to be displayed)
+
+* **Alternative 2:** Finds all batchmates whose interests match at least one of the interests specified.
+    * Pros: A more general search might be useful for finding a greater number of batchmates who share some of the interests as the student.
+    * Cons: It diminishes the usefulness of being able to search for multiple interests at once if a general search is implemented. The purpose of specifying multiple interests is so that the search results would be specific.
+
+
 ### Mod mark feature
 
 #### Implementation
