@@ -40,10 +40,8 @@ public class MainApp extends Application {
     private static final Logger logger = LogsCenter.getLogger(MainApp.class);
 
     private Ui ui;
-    private Logic logic;
     private Storage storage;
     private Model model;
-    private Config config;
 
     @Override
     public void init() throws Exception {
@@ -51,7 +49,7 @@ public class MainApp extends Application {
         super.init();
 
         AppParameters appParameters = AppParameters.parse(getParameters());
-        config = initConfig(appParameters.getConfigPath());
+        Config config = initConfig(appParameters.getConfigPath());
 
         UserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(config.getUserPrefsFilePath());
         UserPrefs userPrefs = initPrefs(userPrefsStorage);
@@ -62,7 +60,7 @@ public class MainApp extends Application {
 
         model = initModelManager(storage, userPrefs);
 
-        logic = new LogicManager(model, storage);
+        Logic logic = new LogicManager(model, storage);
 
         ui = new UiManager(logic);
     }
