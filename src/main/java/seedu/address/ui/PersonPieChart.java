@@ -36,7 +36,7 @@ public class PersonPieChart extends UiPart<Region> {
         pieChart.setData(pieChartData);
         updatePieChart(personList);
         pieChart.setLegendVisible(false);
-        pieChart.setTitle("Your Contacts");
+        pieChart.setTitle("My Network");
     }
 
     /**
