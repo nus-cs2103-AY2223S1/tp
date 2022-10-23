@@ -35,12 +35,13 @@ public class HelpCommand extends Command {
             + "Example 1: " + COMMAND_WORD + "\n"
             + "Example 2: " + COMMAND_WORD + " " + PREFIX_HELP_COMMAND + CommandWord.CONTACT_DELETE;
     public static final String COMMANDS =
-         Arrays.stream(CommandWord.values())
+        Arrays.stream(CommandWord.values())
         .map(Enum::toString)
-        .collect(Collectors.joining(" | "));
+        .map(s -> "\n  * " + s) // prefix before each command
+        .collect(Collectors.joining());
     public static final String MESSAGE_GENERAL_USAGE = "Use "
         + COMMAND_WORD + " " + PREFIX_HELP_COMMAND + "COMMAND to find out more about a particular command.\n"
-        + "Available commands: " + COMMANDS + "\n";
+        + "Available commands: " + COMMANDS;
 
     private final CommandWord commandWord;
 
