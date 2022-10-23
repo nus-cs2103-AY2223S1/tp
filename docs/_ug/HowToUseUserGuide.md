@@ -9,8 +9,8 @@ If you are a new user to FoodRem, you can head over to the section about [Using 
 
 * Introducing you to the general [command format](#command-format).
 * [Flags](#flags) and [Placeholders](#placeholders) where you can find:
-    * Important syntax you will come across while reading the User Guide such as `n/`, `bgt/` or `INDEX`, `ITEM_NAME`.
-    *  The description of these syntax and how to use them
+  * Important syntax you will come across while reading the User Guide such as `n/`, `bgt/` or `INDEX`, `ITEM_NAME`.
+  * The description of these syntax and how to use them
 * [Trying out](#trying-your-first-command) a command.
 
 If you are an experienced user, you can refer to the [Command Summary](#command-summary) to get an overview of all the currently supported FoodRem commands.
@@ -19,6 +19,5 @@ Here are some icons you may encounter in FoodRem and what they mean:
 
 * ℹ️ : additional info
 * ❗ : warning
-
 
 If you are stuck, refer to [Troubleshooting](#troubleshooting) or [FAQ](#faq). You can refer to [Glossary](#glossary) that contains definitions of some commonly used words in FoodRem
