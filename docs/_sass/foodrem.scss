@@ -255,6 +255,11 @@ article.post {
       display: block;
       columns: 3 180px;
       padding: 1rem;
+
+      @media print {
+        // Bug in Chrome when having multiple columns for printing
+        columns: 1;
+      }
     }
 
     td {
