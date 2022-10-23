@@ -3,7 +3,14 @@ layout: page
 title: User Guide
 ---
 
-GREWZ is a **desktop app for managing student details, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, GREWZ can get your student management tasks done faster than traditional GUI apps.
+## Introduction
+Tired of opening multiple applications for your teaching needs? Look no further!
+
+GREWZ is your all-in-one **address book desktop application designed for university teaching assistants** to manage their personal homework and their students. It manages attendance of your students, organises your contacts and keeps track of your own homework! 
+
+GREWZ boasts a timeless, compartmentalised Graphical User Interface(GUI) while utilising a clean Command Line Interface(CLI) - this means that the faster you can type, the faster you can get your work done. 
+
+Hopefuly our application has grown on you! Jump over to [Quick start](#quick-start) to continue.
 
 * Table of Contents
 {:toc}
