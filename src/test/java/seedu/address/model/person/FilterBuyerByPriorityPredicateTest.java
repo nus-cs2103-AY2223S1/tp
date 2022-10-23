@@ -48,7 +48,7 @@ public class FilterBuyerByPriorityPredicateTest {
 
     @Test
     public void test_priorityDoesNotMatch_returnFalse() {
-        //No matching characteristics
+        //Different Priority
         FilterBuyerByPriorityPredicate predicate =
                 new FilterBuyerByPriorityPredicate(new Priority("normal"));
         assertFalse(predicate.test(new PersonBuilder().withPriority("high").build()));

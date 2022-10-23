@@ -15,8 +15,8 @@ public class PriorityTest {
 
     @Test
     public void constructor_invalidPriorityName_throwsIllegalArgumentException() {
-        String invalidTagName = "";
-        assertThrows(IllegalArgumentException.class, () -> new Priority(invalidTagName));
+        String invalidPriorityName = "";
+        assertThrows(IllegalArgumentException.class, () -> new Priority(invalidPriorityName));
     }
 
     @Test

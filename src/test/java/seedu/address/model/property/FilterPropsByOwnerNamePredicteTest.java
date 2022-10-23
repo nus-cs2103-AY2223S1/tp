@@ -34,7 +34,7 @@ public class FilterPropsByOwnerNamePredicteTest {
         // null -> returns false
         assertFalse(firstPredicate.equals(null));
 
-        // different property -> returns false
+        // different owner -> returns false
         assertFalse(firstPredicate.equals(secondPredicate));
     }
 
@@ -42,7 +42,6 @@ public class FilterPropsByOwnerNamePredicteTest {
     public void test_propertyOwnerNameMatch_returnsTrue() {
         Owner rickyTan = new Owner(new Name("Ricky Tan"), new Phone("1324019384"));
         Owner kim = new Owner(new Name("Kim"), new Phone("124801324"));
-
         // Owner Name matches
         FilterPropsByOwnerNamePredicate predicate =
                 new FilterPropsByOwnerNamePredicate(new Name("Ricky Tan"));

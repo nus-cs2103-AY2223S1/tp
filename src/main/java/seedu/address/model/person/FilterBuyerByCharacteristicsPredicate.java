@@ -25,7 +25,7 @@ public class FilterBuyerByCharacteristicsPredicate extends AbstractFilterBuyerPr
         if (p.getDesiredCharacteristics().isEmpty()) {
             return false;
         }
-        return p.getDesiredCharacteristics().get().containsAnyGivenCharacteristics(givenCharacteristics);
+        return p.getDesiredCharacteristics().get().containsAllGivenCharacteristics(givenCharacteristics);
     }
 
     @Override

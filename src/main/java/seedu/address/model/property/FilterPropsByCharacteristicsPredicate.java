@@ -25,7 +25,7 @@ public class FilterPropsByCharacteristicsPredicate extends AbstractFilterPropsPr
         if (p.getCharacteristics().isEmpty()) {
             return false;
         }
-        return p.getCharacteristics().get().containsAnyGivenCharacteristics(givenCharacteristics);
+        return p.getCharacteristics().get().containsAllGivenCharacteristics(givenCharacteristics);
     }
 
     @Override

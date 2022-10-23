@@ -50,10 +50,6 @@ public class FilterPropsByCharacteristicsPredicateTest {
         predicate = new FilterPropsByCharacteristicsPredicate(new Characteristics("HDB"));
         assertTrue(predicate.test(new PropertyBuilder().withCharacteristics("HDB ; 5-room").build()));
 
-        // Only match one characteristics
-        predicate = new FilterPropsByCharacteristicsPredicate(new Characteristics("HDB ; 5-room"));
-        assertTrue(predicate.test(new PropertyBuilder().withCharacteristics("HDB").build()));
-
         // Different Space
         predicate = new FilterPropsByCharacteristicsPredicate(new Characteristics("HDB;5-room"));
         assertTrue(predicate.test(new PropertyBuilder().withCharacteristics("HDB ; 5-room").build()));
@@ -73,6 +69,11 @@ public class FilterPropsByCharacteristicsPredicateTest {
         FilterPropsByCharacteristicsPredicate predicate =
                 new FilterPropsByCharacteristicsPredicate(new Characteristics("HDB"));
         assertFalse(predicate.test(new PropertyBuilder().withCharacteristics("Condo").build()));
+
+        // Only match one characteristics
+        predicate = new FilterPropsByCharacteristicsPredicate(new Characteristics("HDB ; 5-room"));
+        assertFalse(predicate.test(new PropertyBuilder().withCharacteristics("HDB").build()));
+
 
         // No characteristics
         predicate = new FilterPropsByCharacteristicsPredicate(new Characteristics("HDB ; 5-room"));

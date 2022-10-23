@@ -49,10 +49,6 @@ public class FilterBuyerByCharacteristicsPredicateTest {
         predicate = new FilterBuyerByCharacteristicsPredicate(new Characteristics("HDB"));
         assertTrue(predicate.test(new PersonBuilder().withDesiredCharacteristics("HDB ; 5-room").build()));
 
-        // Only match one characteristics
-        predicate = new FilterBuyerByCharacteristicsPredicate(new Characteristics("HDB ; 5-room"));
-        assertTrue(predicate.test(new PersonBuilder().withDesiredCharacteristics("HDB").build()));
-
         // Different Space
         predicate = new FilterBuyerByCharacteristicsPredicate(new Characteristics("HDB;5-room"));
         assertTrue(predicate.test(new PersonBuilder().withDesiredCharacteristics("HDB ; 5-room").build()));
@@ -72,6 +68,10 @@ public class FilterBuyerByCharacteristicsPredicateTest {
         FilterBuyerByCharacteristicsPredicate predicate =
                 new FilterBuyerByCharacteristicsPredicate(new Characteristics("HDB"));
         assertFalse(predicate.test(new PersonBuilder().withDesiredCharacteristics("Condo").build()));
+
+        // Only match one characteristics
+        predicate = new FilterBuyerByCharacteristicsPredicate(new Characteristics("HDB ; 5-room"));
+        assertFalse(predicate.test(new PersonBuilder().withDesiredCharacteristics("HDB").build()));
 
         // No characteristics
         predicate = new FilterBuyerByCharacteristicsPredicate(new Characteristics("HDB ; 5-room"));
