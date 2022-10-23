@@ -94,6 +94,7 @@ public class DistinctTaskList implements Iterable<Task> {
      * @param exam
      */
     public void unlinkTasksFromExam(Exam exam) {
+        requireNonNull(exam);
         taskList.forEach(task -> {
             if (task.isLinked() && task.getExam().equals(exam)) {
                 Task unlinkedTask = task.unlinkTask();
