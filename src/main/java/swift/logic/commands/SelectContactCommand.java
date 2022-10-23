@@ -17,7 +17,7 @@ import swift.model.person.Person;
 import swift.model.task.Task;
 
 /**
- * Deletes a task identified using it's displayed index from the address book.
+ * Selects a task identified using it's displayed index from the address book.
  */
 public class SelectContactCommand extends Command {
 
