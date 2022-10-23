@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-import com.sun.javafx.beans.event.AbstractNotifyListener;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -13,9 +12,6 @@ import javafx.scene.chart.PieChart;
 import javafx.scene.layout.Region;
 import javafx.scene.text.Text;
 import seedu.address.model.person.Person;
-
-import javax.print.attribute.IntegerSyntax;
-
 
 /**
  * A Ui component responsible for displaying the piechart used to visualise the spread of the different contacts in the
