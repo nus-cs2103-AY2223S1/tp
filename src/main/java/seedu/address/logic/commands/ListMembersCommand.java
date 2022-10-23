@@ -41,7 +41,4 @@ public class ListMembersCommand extends Command {
                 || (other instanceof ListMembersCommand); // instanceof handles nulls
     }
 
-    @Override
-    public void run() {
-    }
 }

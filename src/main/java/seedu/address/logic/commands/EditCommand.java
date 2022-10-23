@@ -120,10 +120,6 @@ public class EditCommand extends Command {
                 && editPersonDescriptor.equals(e.editPersonDescriptor);
     }
 
-    @Override
-    public void run() {
-
-    }
 
     /**
      * Stores the details to edit the person with. Each non-empty field value will replace the

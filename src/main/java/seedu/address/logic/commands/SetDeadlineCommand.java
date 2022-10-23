@@ -58,8 +58,4 @@ public class SetDeadlineCommand extends Command {
                 && deadline.equals(((SetDeadlineCommand) other).deadline); // state check
     }
 
-    @Override
-    public void run() {
-
-    }
 }

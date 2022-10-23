@@ -52,8 +52,4 @@ public class DeleteTaskCommand extends Command {
                 && targetIndex.equals(((DeleteTaskCommand) other).targetIndex)); // state check
     }
 
-    @Override
-    public void run() {
-
-    }
 }

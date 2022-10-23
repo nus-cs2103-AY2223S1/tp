@@ -30,7 +30,13 @@ public class AddressBookParser {
                 throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
             }
 
+            while (commandExecuted.subcommand() != null) {
+                commandExecuted = commandExecuted.subcommand();
+            }
+
             return (Command) commandExecuted.commandSpec().userObject();
+        } catch (CommandLine.UnmatchedArgumentException e) {
+            throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
         } catch (CommandLine.ParameterException e) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, e.getMessage()));
         }

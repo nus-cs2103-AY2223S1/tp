@@ -57,8 +57,4 @@ public class DeleteTeamCommand extends Command {
                 && targetTeam.equals(((DeleteTeamCommand) other).targetTeam)); // state check
     }
 
-    @Override
-    public void run() {
-
-    }
 }

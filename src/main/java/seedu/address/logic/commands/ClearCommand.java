@@ -21,7 +21,4 @@ public class ClearCommand extends Command {
         return new CommandResult(MESSAGE_SUCCESS);
     }
 
-    @Override
-    public void run() {
-    }
 }

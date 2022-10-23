@@ -52,7 +52,4 @@ public class DeleteMemberCommand extends Command {
                 && targetIndex.equals(((DeleteMemberCommand) other).targetIndex)); // state check
     }
 
-    @Override
-    public void run() {
-    }
 }

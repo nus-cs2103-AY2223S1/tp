@@ -40,7 +40,4 @@ public class FindCommand extends Command {
                 && predicate.equals(((FindCommand) other).predicate)); // state check
     }
 
-    @Override
-    public void run() {
-    }
 }

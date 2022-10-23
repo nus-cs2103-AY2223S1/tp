@@ -74,8 +74,4 @@ public class AssignTaskCommand extends Command {
                 && memberName == (((AssignTaskCommand) other).memberName); // state check
     }
 
-    @Override
-    public void run() {
-
-    }
 }

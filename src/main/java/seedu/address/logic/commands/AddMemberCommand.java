@@ -4,15 +4,18 @@ import static java.util.Objects.requireNonNull;
 
 import java.util.List;
 
+import picocli.CommandLine;
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.logic.parser.IndexConverter;
 import seedu.address.model.Model;
 import seedu.address.model.person.Person;
 
 /**
  * Adds a person identified using it's displayed index to the current team.
  */
+@CommandLine.Command(name = "member")
 public class AddMemberCommand extends Command {
 
     public static final String COMMAND_WORD = "add member";
@@ -25,7 +28,11 @@ public class AddMemberCommand extends Command {
     public static final String MESSAGE_ADD_MEMBER_SUCCESS = "Added Member: %1$s";
     public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the team";
 
-    private final Index targetIndex;
+    @CommandLine.Parameters(arity = "1", converter = IndexConverter.class)
+    private Index targetIndex;
+
+    public AddMemberCommand() {
+    }
 
     public AddMemberCommand(Index targetIndex) {
         this.targetIndex = targetIndex;
@@ -55,7 +62,4 @@ public class AddMemberCommand extends Command {
                 && targetIndex.equals(((AddMemberCommand) other).targetIndex)); // state check
     }
 
-    @Override
-    public void run() {
-    }
 }

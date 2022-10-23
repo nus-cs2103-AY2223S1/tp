@@ -48,7 +48,4 @@ public class AddTeamCommand extends Command {
                 && targetTeam.equals(((AddTeamCommand) other).targetTeam)); // state check
     }
 
-    @Override
-    public void run() {
-    }
 }

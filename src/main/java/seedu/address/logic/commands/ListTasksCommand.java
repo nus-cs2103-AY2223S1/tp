@@ -38,8 +38,4 @@ public class ListTasksCommand extends Command {
                 || (other instanceof ListTasksCommand); // instanceof handles nulls
     }
 
-    @Override
-    public void run() {
-
-    }
 }

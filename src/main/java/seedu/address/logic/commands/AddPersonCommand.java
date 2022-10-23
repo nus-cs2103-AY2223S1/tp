@@ -32,8 +32,8 @@ import seedu.address.model.tag.Tag;
 /**
  * Adds a person to the address book.
  */
-@CommandLine.Command(name = "add")
-public class AddPersonCommand extends Command implements Runnable {
+@CommandLine.Command(name = "person")
+public class AddPersonCommand extends Command {
     public static final String COMMAND_WORD = "add";
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a person to the address book. "
             + "Parameters: "
@@ -91,7 +91,7 @@ public class AddPersonCommand extends Command implements Runnable {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        
+
         Person toAdd = new Person(name, phone, email, address, tags);
 
         if (model.hasPerson(toAdd)) {
@@ -109,7 +109,4 @@ public class AddPersonCommand extends Command implements Runnable {
                 && toAdd.equals(((AddPersonCommand) other).toAdd));
     }
 
-    @Override
-    public void run() {
-    }
 }

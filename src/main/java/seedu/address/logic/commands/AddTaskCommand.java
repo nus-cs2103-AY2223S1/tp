@@ -52,8 +52,4 @@ public class AddTaskCommand extends Command {
                 && task.equals(((AddTaskCommand) other).task)); // state check
     }
 
-    @Override
-    public void run() {
-
-    }
 }
