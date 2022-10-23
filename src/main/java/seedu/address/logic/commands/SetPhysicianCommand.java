@@ -6,7 +6,6 @@ import java.util.List;
 import java.util.Optional;
 
 import seedu.address.commons.core.Messages;
-import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.category.Category;
@@ -16,6 +15,7 @@ import seedu.address.model.person.Patient;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.Physician;
+import seedu.address.model.person.Uid;
 
 /**
  * Represents the command to assign an attending physician to a patient.
@@ -26,17 +26,17 @@ public class SetPhysicianCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Adds contact details of the attending physician "
             + "to the selected patient. \n"
-            + "Parameters: INDEX (must be a positive integer) "
+            + "Parameters: id/ [UID]"
             + "n/ [PHYSICIAN NAME]\n"
             + "p/ [PHYSICIAN PHONE]\n"
             + "e/ [PHYSICIAN EMAIL]\n"
-            + "Example: " + COMMAND_WORD + " 1 "
+            + "Example: " + COMMAND_WORD + " id/3 "
             + "n/ John Doe p/ 81234567 e/ johndoe@example.com";
 
-    public static final String MESSAGE_ADD_PHYS_SUCCESS = "Added attending physician to patient at Index: %d, "
+    public static final String MESSAGE_ADD_PHYS_SUCCESS = "Added attending physician to patient with UID: %s, "
             + "Physician Name: %s ," + "Phone: %s, Email: %s";
 
-    private final Index index;
+    private final Uid uid;
 
     private final Name pName;
 
@@ -51,8 +51,8 @@ public class SetPhysicianCommand extends Command {
      * @param p physician's phone number
      * @param e physician's email
      */
-    public SetPhysicianCommand(Index i, Name n, Phone p, Email e) {
-        index = i;
+    public SetPhysicianCommand(Uid i, Name n, Phone p, Email e) {
+        uid = i;
         pName = n;
         pEmail = e;
         pPhone = p;
@@ -62,11 +62,8 @@ public class SetPhysicianCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         List<Person> lastShownList = model.getFilteredPersonList();
 
-        if (index.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
-        }
-
-        Person personToEdit = lastShownList.get(index.getZeroBased());
+        Person personToEdit = lastShownList.stream().filter(x -> x.getUid().equals(uid)).findAny()
+                .orElseThrow(() -> new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_UID));
         if (!personToEdit.getCategory().equals(new Category(Category.PATIENT_SYMBOL))) {
             throw new CommandException(Messages.MESSAGE_SETPHYS_INVALID_CATEGORY);
         }
@@ -81,7 +78,7 @@ public class SetPhysicianCommand extends Command {
         model.setPerson(personToEdit, editedPatient);
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
 
-        return new CommandResult(String.format(MESSAGE_ADD_PHYS_SUCCESS, index.getOneBased(), pName, pPhone, pEmail));
+        return new CommandResult(String.format(MESSAGE_ADD_PHYS_SUCCESS, uid, pName, pPhone, pEmail));
     }
 
     @Override
@@ -98,7 +95,7 @@ public class SetPhysicianCommand extends Command {
 
         // state check
         SetPhysicianCommand e = (SetPhysicianCommand) other;
-        return index.equals(e.index)
+        return uid.equals(e.uid)
                 && pName.equals(e.pName)
                 && pPhone.equals(e.pPhone)
                 && pEmail.equals(e.pEmail);
