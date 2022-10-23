@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Hyperlink?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.FlowPane?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<VBox maxHeight="-Infinity" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Region maxHeight="5.0" minHeight="5.0" prefHeight="5.0" style="-fx-background-color: #d9d9d9;" />
+      <HBox fx:id="cardPane" maxHeight="-Infinity" VBox.vgrow="ALWAYS">
+         <HBox maxHeight="1.7976931348623157E308" HBox.hgrow="ALWAYS">
+            <opaqueInsets>
+               <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+            </opaqueInsets>
+            <children>
+              <GridPane maxHeight="-Infinity" style="-fx-background-radius: 10; -fx-border-radius: 10;">
+                <columnConstraints>
+                  <ColumnConstraints hgrow="NEVER" maxWidth="180" minWidth="10.0" prefWidth="180" />
+                     <ColumnConstraints hgrow="NEVER" maxWidth="180" prefWidth="180" />
+                     <ColumnConstraints hgrow="SOMETIMES" maxWidth="180.0" minWidth="10.0" prefWidth="180.0" />
+                     <ColumnConstraints hgrow="SOMETIMES" maxWidth="180.0" minWidth="10.0" prefWidth="180.0" />
+                     <ColumnConstraints hgrow="SOMETIMES" maxWidth="180.0" minWidth="10.0" prefWidth="180.0" />
+                </columnConstraints>
+                  <rowConstraints>
+                     <RowConstraints maxHeight="-Infinity" percentHeight="95.0" vgrow="ALWAYS" />
+                  </rowConstraints>
+                  <HBox.margin>
+                     <Insets bottom="5.0" left="5.0" right="5.0" top="10.0" />
+                  </HBox.margin>
+                  <children>
+                   <VBox maxHeight="1.7976931348623157E308" minHeight="105" GridPane.columnSpan="2" GridPane.hgrow="NEVER" GridPane.vgrow="ALWAYS">
+                     <padding>
+                       <Insets bottom="5" left="15" right="5" top="5" />
+                     </padding>
+                     <HBox alignment="CENTER_LEFT" spacing="5" VBox.vgrow="SOMETIMES">
+                       <Label fx:id="id" styleClass="cell_big_label">
+                         <minWidth>
+                           <!-- Ensures that the label text is never truncated -->
+                           <Region fx:constant="USE_PREF_SIZE" />
+                         </minWidth>
+                       </Label>
+                       <Label fx:id="name" styleClass="cell_big_label" text="\$first" HBox.hgrow="ALWAYS">
+                              <font>
+                                 <Font name="System Bold" size="15.0" />
+                              </font>
+                           </Label>
+                           <VBox.margin>
+                              <Insets right="5.0" top="5.0" />
+                           </VBox.margin>
+                     </HBox>
+                     <Label fx:id="studentId" styleClass="cell_small_label" text="\$studentId" />
+                        <Region prefHeight="15.0" />
+                     <Label fx:id="projectName" styleClass="cell_medium_label" text="\$projectName">
+                           <font>
+                              <Font name="System Italic" size="13.0" />
+                           </font>
+                        </Label>
+                        <Region prefHeight="5.0" />
+                        <Hyperlink fx:id="email" VBox.vgrow="SOMETIMES">
+                           <graphic>
+                              <ImageView fx:id="emailImage" fitHeight="27.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true" />
+                           </graphic>
+                        </Hyperlink>
+                     <FlowPane fx:id="tags" minHeight="-Infinity" VBox.vgrow="ALWAYS" />
+                   </VBox>
+                     <VBox maxHeight="1.7976931348623157E308" minHeight="105" prefHeight="109.0" prefWidth="92.0" GridPane.columnIndex="2" GridPane.hgrow="NEVER" GridPane.vgrow="ALWAYS">
+                        <padding>
+                           <Insets bottom="5.0" left="15.0" right="5.0" top="5.0" />
+                        </padding>
+                        <children>
+                           <HBox alignment="CENTER_LEFT" spacing="5">
+                              <children>
+                                 <Label fx:id="projectStatus" style="-fx-background-radius: 20" text="\$projectStatus">
+                                    <font>
+                                       <Font name="System Bold" size="15.0" />
+                                    </font>
+                                    <padding>
+                                       <Insets bottom="4.0" left="8.0" right="8.0" top="4.0" />
+                                    </padding>
+                                 </Label>
+                              </children>
+                              <padding>
+                                 <Insets top="2.0" />
+                              </padding>
+                           </HBox>
+                        </children>
+                     </VBox>
+                     <VBox maxHeight="-Infinity" GridPane.columnIndex="3" GridPane.columnSpan="2" GridPane.valignment="TOP" GridPane.vgrow="ALWAYS">
+                        <padding>
+                           <Insets bottom="5" left="15" right="5" top="5" />
+                        </padding>
+                        <children>
+                           <HBox alignment="CENTER_LEFT" prefHeight="18.0" prefWidth="156.0" spacing="5" VBox.vgrow="NEVER">
+                              <children>
+                                 <Label alignment="TOP_LEFT" styleClass="cell_big_label" text="Deadlines" HBox.hgrow="NEVER">
+                                    <font>
+                                       <Font size="12.0" />
+                                    </font>
+                                    <padding>
+                                       <Insets top="4.0" />
+                                    </padding>
+                                 </Label>
+                              </children>
+                           </HBox>
+                            <FlowPane fx:id="deadlineList" VBox.vgrow="ALWAYS" />
+                        </children>
+                     </VBox>
+                  </children>
+              </GridPane>
+            </children>
+         </HBox>
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
+      </HBox>
+      <Region maxHeight="5.0" minHeight="5.0" prefHeight="5.0" style="-fx-background-color: #d9d9d9;" />
+   </children>
+</VBox>
