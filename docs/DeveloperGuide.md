@@ -14,7 +14,7 @@ show-toc: true
 
 ---
 
-## Setting up, Getting Started
+## Setting Up, Getting Started
 
 Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
