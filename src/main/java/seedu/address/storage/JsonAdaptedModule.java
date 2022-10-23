@@ -27,8 +27,8 @@ class JsonAdaptedModule {
 
     private final String moduleCode;
     private final String moduleTitle;
-    private final List<JsonAdaptedLink> linked = new ArrayList<>();
     private final List<JsonAdaptedTask> moduleTasks;
+    private final List<JsonAdaptedLink> moduleLinks;
     private final Set<JsonAdaptedPerson> modulePersons;
 
     /**
@@ -37,15 +37,13 @@ class JsonAdaptedModule {
     @JsonCreator
     public JsonAdaptedModule(@JsonProperty("moduleCode") String moduleCode,
                              @JsonProperty("moduleTitle") String moduleTitle,
-                             @JsonProperty("linked") List<JsonAdaptedLink> linked,
                              @JsonProperty("tasks") List<JsonAdaptedTask> tasks,
+                             @JsonProperty("linked") List<JsonAdaptedLink> linked,
                              @JsonProperty("persons") Set<JsonAdaptedPerson> persons) {
         this.moduleCode = moduleCode;
         this.moduleTitle = moduleTitle;
-        if (linked != null) {
-            this.linked.addAll(linked);
-        }
         this.moduleTasks = tasks;
+        this.moduleLinks = linked;
         this.modulePersons = persons;
     }
 
@@ -55,11 +53,11 @@ class JsonAdaptedModule {
     public JsonAdaptedModule(Module source) {
         moduleCode = source.getModuleCode().value;
         moduleTitle = source.getModuleTitle().value;
-        linked.addAll(source.getLinks().stream()
-                .map(JsonAdaptedLink::new)
-                .collect(Collectors.toList()));
         moduleTasks = source.getTasks().stream()
                 .map(JsonAdaptedTask::new)
+                .collect(Collectors.toList());
+        moduleLinks = source.getLinks().stream()
+                .map(JsonAdaptedLink::new)
                 .collect(Collectors.toList());
         modulePersons = source.getPersons().stream()
                 .map(JsonAdaptedPerson::new)
@@ -88,11 +86,14 @@ class JsonAdaptedModule {
         }
         final ModuleTitle modelModuleTitle = new ModuleTitle(moduleTitle);
 
-        final List<Link> moduleLinks = new ArrayList<>();
-        for (JsonAdaptedLink links : linked) {
-            moduleLinks.add(links.toModelType());
+        if (moduleLinks == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    Link.class.getSimpleName()));
         }
-        final Set<Link> modelModuleLinks = new HashSet<>(moduleLinks);
+        final Set<Link> modelModuleLinks = new HashSet<>();
+        for (JsonAdaptedLink links : moduleLinks) {
+            modelModuleLinks.add(links.toModelType());
+        }
 
         if (moduleTasks == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
