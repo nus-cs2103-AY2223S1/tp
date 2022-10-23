@@ -129,4 +129,12 @@ public class Person {
         return builder.toString();
     }
 
+    /**
+     * Compares this person and the other person to decide name alphabetical order.
+     * @param other input person.
+     * @return 1 if this person's name is alphabetically first, -1 otherwise.
+     */
+    public int compareByNameAlphabeticalTo(Person other) {
+        return this.getName().compareByAlphabeticalTo(other.getName());
+    }
 }

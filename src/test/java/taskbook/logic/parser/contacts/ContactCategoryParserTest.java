@@ -9,6 +9,7 @@ import taskbook.logic.commands.contacts.ContactAddCommand;
 import taskbook.logic.commands.contacts.ContactDeleteCommand;
 import taskbook.logic.commands.contacts.ContactEditCommand;
 import taskbook.logic.commands.contacts.ContactListCommand;
+import taskbook.logic.commands.contacts.ContactSortCommand;
 
 public class ContactCategoryParserTest {
 
@@ -40,5 +41,12 @@ public class ContactCategoryParserTest {
         String arguments = " i/1 n/Editing name";
         Command command = ContactCategoryParser.parseCommand(ContactEditCommand.COMMAND_WORD, arguments);
         assertTrue(command instanceof ContactEditCommand);
+    }
+
+    @Test
+    public void parseCommand_sort() throws Exception {
+        String arguments = " s/a";
+        Command command = ContactCategoryParser.parseCommand(ContactSortCommand.COMMAND_WORD, arguments);
+        assertTrue(command instanceof ContactSortCommand);
     }
 }

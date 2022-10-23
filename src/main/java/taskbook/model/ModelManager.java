@@ -26,6 +26,7 @@ public class ModelManager implements Model {
     private final VersionedTaskBook versionedTaskBook;
     private final UserPrefs userPrefs;
     private final FilteredList<Person> filteredPersons;
+    private final SortedList<Person> sortedPersons;
     private final FilteredList<Task> filteredTasks;
     private final SortedList<Task> sortedTasks;
 
@@ -40,6 +41,7 @@ public class ModelManager implements Model {
         versionedTaskBook = new VersionedTaskBook(new TaskBook(taskBook));
         this.userPrefs = new UserPrefs(userPrefs);
         filteredPersons = new FilteredList<>(versionedTaskBook.getPersonList());
+        sortedPersons = new SortedList<>(filteredPersons);
         filteredTasks = new FilteredList<>(versionedTaskBook.getTaskList());
         sortedTasks = new SortedList<>(filteredTasks);
     }
@@ -149,7 +151,7 @@ public class ModelManager implements Model {
     @Override
     public void addPerson(Person person) {
         versionedTaskBook.addPerson(person);
-        updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+        updateFilteredPersonListPredicate(PREDICATE_SHOW_ALL_PERSONS);
     }
 
     @Override
@@ -194,15 +196,25 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void updateFilteredPersonList(Predicate<Person> predicate) {
+    public void updateFilteredPersonListPredicate(Predicate<Person> predicate) {
         requireNonNull(predicate);
         filteredPersons.setPredicate(predicate);
     }
 
     @Override
-    public void updateFilteredTaskList(Predicate<Task> predicate) {
-        requireNonNull(predicate);
-        filteredTasks.setPredicate(predicate);
+    public ObservableList<Person> getSortedPersonList() {
+        return sortedPersons;
+    }
+
+    @Override
+    public void updateSortedPersonList(Comparator<Person> comparator) {
+        requireNonNull(comparator);
+        sortedPersons.setComparator(comparator);
+    }
+
+    @Override
+    public void resetSortedPersonList() {
+        sortedPersons.setComparator(null);
     }
 
     /**
@@ -219,6 +231,7 @@ public class ModelManager implements Model {
         requireNonNull(predicate);
         filteredTasks.setPredicate(predicate);
     }
+
 
     /**
      * Returns an unmodifiable view of the sorted list of {@code Task} backed by the internal list of
@@ -238,10 +251,6 @@ public class ModelManager implements Model {
     @Override
     public void resetSortedTaskList() {
         sortedTasks.setComparator(null);
-    }
-
-    @Override
-    public void updateSort(Comparator<Task> comparator) {
     }
 
     @Override

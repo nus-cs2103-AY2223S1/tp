@@ -24,7 +24,7 @@ public class TaskFindCommandTest {
         pred = pred.and(t -> t.isQueryInTask("ea"));
 
         Model expectedModel = new ModelManager(TypicalTaskBook.getTypicalTaskBook(), new UserPrefs());
-        expectedModel.updateFilteredTaskList(pred);
+        expectedModel.updateFilteredTaskListPredicate(pred);
         Model model = new ModelManager(TypicalTaskBook.getTypicalTaskBook(), new UserPrefs());
         TaskFindCommand command = new TaskFindCommand(pred, "ea", "TO", "X");
         assertCommandSuccess(command, model, String.format(TaskFindCommand.MESSAGE_SUCCESS), expectedModel);
@@ -52,7 +52,7 @@ public class TaskFindCommandTest {
         Predicate<Task> pred = (t -> t.isDone() == true);
 
         Model expectedModel = new ModelManager(TypicalTaskBook.getTypicalTaskBook(), new UserPrefs());
-        expectedModel.updateFilteredTaskList(pred);
+        expectedModel.updateFilteredTaskListPredicate(pred);
         Model model = new ModelManager(TypicalTaskBook.getTypicalTaskBook(), new UserPrefs());
         TaskFindCommand command = new TaskFindCommand(pred, null, null, "X");
         assertCommandSuccess(command, model, String.format(TaskFindCommand.MESSAGE_SUCCESS), expectedModel);
