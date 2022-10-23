@@ -43,15 +43,15 @@
         <!--Search bar-->
         <StackPane fx:id="commandBoxPlaceholder" styleClass="pane-with-border" VBox.vgrow="NEVER">
           <padding>
-            <Insets bottom="5" left="10" right="10" top="5" />
+            <Insets bottom="20" left="10" right="10" top="5" />
           </padding>
         </StackPane>
 
         <!--Search result-->
-        <StackPane fx:id="resultDisplayPlaceholder" maxHeight="100" minHeight="100" prefHeight="100"
+        <StackPane fx:id="resultDisplayPlaceholder" maxHeight="100" minHeight="50" prefHeight="50"
                    styleClass="pane-with-border" VBox.vgrow="NEVER">
           <padding>
-            <Insets bottom="5" left="10" right="10" top="5" />
+            <Insets bottom="25" left="10" right="10" top="0" />
           </padding>
         </StackPane>
 

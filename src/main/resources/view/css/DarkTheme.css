@@ -112,27 +112,33 @@
     -fx-background-insets: 0;
     -fx-padding: 0;
     -fx-background-color: white;
-    -fx-border-radius: 0.1;
 }
 
 .list-cell {
     -fx-label-padding: 0 0 0 0;
     -fx-graphic-text-gap : 0;
-    -fx-padding: 1 0 1 0;
+    -fx-padding: 0 0 0 0;
+}
+
+.list-cell:empty {
+    /*-fx-background-color: #dbdbdb;*/
+    -fx-background-color: white;
 }
 
 .list-cell:filled:even {
     -fx-background-color: #f7f7f7;
+    -fx-border-width: 0 0 1 0;
+    -fx-border-color: #d4d4d4;
 }
 
 .list-cell:filled:odd {
     -fx-background-color: #f7f7f7;
+    -fx-border-width: 0 0 1 0;
+    -fx-border-color: #d4d4d4;
 }
 
 .list-cell:filled:selected #cardPane {
     -fx-background-color: #b3d9ff;
-    -fx-border-color: #0072C6;
-    -fx-border-width: 0.1;
 }
 
 .list-cell .label {
@@ -143,6 +149,13 @@
     -fx-font-family: "Segoe UI Semibold";
     -fx-font-size: 16px;
     -fx-text-fill: #010504;
+}
+
+#modName, #modId {
+    -fx-font-family: "Segoe UI Semibold";
+    -fx-font-size: 16px;
+    -fx-text-fill: white;
+    -fx-opacity: 1;
 }
 
 .cell_small_label {
@@ -156,7 +169,6 @@
 }
 
 .pane-with-border {
-    /*outlook color*/
     -fx-background-color: #dbdbdb;
 }
 
@@ -168,7 +180,7 @@
     -fx-background-color: #f0f1f2;
     -fx-background-radius: 16px;
     -fx-font-family: "Segoe UI Light";
-    -fx-font-size: 13pt;
+    -fx-font-size: 12pt;
     -fx-text-fill: #5e5e5e;
     -fx-padding: 4px 4px 4px 4px;
 }
@@ -180,7 +192,7 @@
             linear-gradient(#020b02, #3a3a3a),
             linear-gradient(#9d9e9d 0%, #6b6a6b 20%, #343534 80%, #242424 100%),
             linear-gradient(#8a8a8a 0%, #6b6a6b 20%, #343534 80%, #262626 100%);
-    -fx-background-radius: 14 14 0 0;
+    -fx-background-radius: 12 12 0 0;
 }
 
 .result-display .label {
@@ -191,6 +203,7 @@
     -fx-font-family: "Helvetica Neue";
     -fx-font-size: 14;
     -fx-text-fill: white;
+    -fx-opacity: 1;
     -fx-padding: 2px;
 }
 
@@ -353,6 +366,10 @@
     -fx-border-width: 0;
 }
 
+#modCardPane {
+    -fx-background-color: linear-gradient(to right, #6f3c7c, #4c69c9);
+}
+
 #commandTypeLabel {
     -fx-font-size: 11px;
     -fx-text-fill: black;
@@ -394,6 +411,7 @@
 #modCategory {
     -fx-background-radius: 16, 16, 0, 0;
     -fx-alignment: center;
+    -fx-opacity: 1;
     -fx-text-fill: white;
     -fx-pref-width: 150px;
     -fx-font-size: 15;
@@ -402,6 +420,7 @@
 #takenStatus {
     -fx-background-radius: 16, 16, 0, 0;
     -fx-alignment: center;
+    -fx-opacity: 1;
     -fx-text-fill: white;
     -fx-pref-width: 70px;
     -fx-font-size: 14;
