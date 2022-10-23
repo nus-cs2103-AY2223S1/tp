@@ -19,6 +19,9 @@ public class ExportCommandParser implements Parser<ExportCommand> {
      * @throws ParseException If the user input does not conform the expected format.
      */
     public ExportCommand parse(String args) throws ParseException {
+        if (args.trim().length() == 0) {
+            return new ExportCommand();
+        }
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, CliSyntax.getPrefixes());
         if (!arePrefixesPresentAndUnique(argMultimap, PREFIX_PATH)
                 || !argMultimap.getPreamble().isEmpty()) {

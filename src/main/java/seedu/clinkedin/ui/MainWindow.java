@@ -208,6 +208,9 @@ public class MainWindow extends UiPart<Stage> {
             if (commandResult.isExit()) {
                 handleExit();
             }
+            if (commandResult.isExport()) {
+                handleExport();
+            }
 
             return commandResult;
         } catch (CommandException | ParseException e) {

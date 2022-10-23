@@ -27,9 +27,11 @@ public class ExportCommand extends Command {
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_PATH + "~/Desktop/data.csv";
     public static final String MESSAGE_SUCCESS = "PersonList exported successfully in %s";
+    public static final String MESSAGE_WINDOW = "Opening Export Window...";
 
     private String filePath;
     private FileType fileType;
+    private boolean onlyCommand;
 
     /**
      * Creates an ExportCommand to export the AddressBook
@@ -39,9 +41,19 @@ public class ExportCommand extends Command {
         this.fileType = fileType;
     }
 
+    /**
+     * Creates an ExportCommand to export the AddressBook
+     */
+    public ExportCommand() {
+        this.onlyCommand = true;
+    }
+
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
+        if (onlyCommand) {
+            return new CommandResult(MESSAGE_WINDOW, false, false, true);
+        }
         List<String[]> data = toCsvFormat(model.getFilteredPersonList());
 
         try {
