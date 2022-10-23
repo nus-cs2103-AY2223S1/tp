@@ -13,7 +13,6 @@ import seedu.foodrem.model.UserPrefs;
  * A class to access UserPrefs stored in the hard disk as a json file
  */
 public class JsonUserPrefsStorage implements UserPrefsStorage {
-
     private final Path filePath;
 
     public JsonUserPrefsStorage(Path filePath) {
@@ -44,5 +43,4 @@ public class JsonUserPrefsStorage implements UserPrefsStorage {
     public void saveUserPrefs(ReadOnlyUserPrefs userPrefs) throws IOException {
         JsonUtil.saveJsonFile(userPrefs, filePath);
     }
-
 }

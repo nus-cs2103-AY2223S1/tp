@@ -10,7 +10,6 @@ import java.nio.file.Paths;
  * Writes and reads files
  */
 public class FileUtil {
-
     private static final String CHARSET = "UTF-8";
 
     public static boolean isFileExists(Path file) {
@@ -18,8 +17,8 @@ public class FileUtil {
     }
 
     /**
-     * Returns true if {@code path} can be converted into a {@code Path} via {@link Paths#get(String, String...)},
-     * otherwise returns false.
+     * Returns {@code true} if {@code path} can be converted into a {@code Path} via
+     * {@link Paths#get(String, String...)}, otherwise returns {@code false}.
      *
      * @param path A string representing the file path. Cannot be null.
      */
@@ -81,5 +80,4 @@ public class FileUtil {
     public static void writeToFile(Path file, String content) throws IOException {
         Files.write(file, content.getBytes(CHARSET));
     }
-
 }

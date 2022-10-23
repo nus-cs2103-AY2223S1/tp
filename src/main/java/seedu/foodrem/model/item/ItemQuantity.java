@@ -7,13 +7,11 @@ import java.util.function.BiFunction;
 
 import seedu.foodrem.model.item.itemvalidators.ItemQuantityValidator;
 
-
 /**
  * Represents an item quantity in an {@link Item}.
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
 public class ItemQuantity {
-
     private static final DecimalFormat DECIMAL_FORMAT = new DecimalFormat("0.####");
     private static final double DEFAULT_QUANTITY = 0;
 

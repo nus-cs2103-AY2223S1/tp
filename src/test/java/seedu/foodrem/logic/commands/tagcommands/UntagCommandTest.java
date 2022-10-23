@@ -30,11 +30,8 @@ public class UntagCommandTest {
     private static final String ERROR_NOT_FOUND_TAG = "This tag does not exist";
     private static final String ERROR_NOT_FOUND_ITEM = "The item index does not exist";
 
-
-
     @Test
     public void execute_untagItem_success() {
-
         final Model model = new ModelManager(getTypicalFoodRem(), new UserPrefs());
 
         // Creating a copy of first item of model (with tag removed)
@@ -62,7 +59,6 @@ public class UntagCommandTest {
 
     @Test
     public void execute_untagItemWithoutExistingTagInModel_throwsCommandException() {
-
         final Model model = new ModelManager(getFoodRemWithTypicalItems(), new UserPrefs());
 
         Tag tag = new TagBuilder().withTagName(VALID_TAG_NAME_VEGETABLES).build();
