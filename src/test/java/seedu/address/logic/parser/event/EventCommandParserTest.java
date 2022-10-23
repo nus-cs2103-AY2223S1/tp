@@ -1,10 +1,14 @@
 package seedu.address.logic.parser.event;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_OPTION;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
+import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_EVENT;
 
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.Messages;
+import seedu.address.logic.commands.event.DeleteEventCommand;
 import seedu.address.logic.commands.event.EventCommand;
 
 public class EventCommandParserTest {
@@ -35,4 +39,11 @@ public class EventCommandParserTest {
                 EventCommand.OPTION_UNKNOWN + EventCommand.VALID_FLAGS);
     }
 
+    @Test
+    public void parse_deleteOption_success() throws Exception {
+        DeleteEventCommand command = (DeleteEventCommand) parser.parse(
+                " " + PREFIX_OPTION + DeleteEventCommand.COMMAND_OPTION + " "
+                + INDEX_FIRST_EVENT.getOneBased());
+        assertEquals(new DeleteEventCommand(INDEX_FIRST_EVENT), command);
+    }
 }
