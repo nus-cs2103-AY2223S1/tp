@@ -7,6 +7,8 @@ import java.util.List;
 import java.util.Locale;
 import java.util.stream.Collectors;
 
+import seedu.rc4hdb.model.venues.booking.Booking;
+
 /**
  * Represents a venue in RC4 that can be booked by residents.
  */

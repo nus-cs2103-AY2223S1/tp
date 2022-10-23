@@ -18,10 +18,10 @@ import seedu.rc4hdb.logic.parser.Parser;
 import seedu.rc4hdb.logic.parser.ParserUtil;
 import seedu.rc4hdb.logic.parser.Prefix;
 import seedu.rc4hdb.logic.parser.exceptions.ParseException;
-import seedu.rc4hdb.model.venues.BookingDescriptor;
-import seedu.rc4hdb.model.venues.Day;
-import seedu.rc4hdb.model.venues.Time;
 import seedu.rc4hdb.model.venues.Venue;
+import seedu.rc4hdb.model.venues.booking.BookingDescriptor;
+import seedu.rc4hdb.model.venues.booking.fields.Day;
+import seedu.rc4hdb.model.venues.booking.fields.Time;
 
 /**
  * Parses input arguments and creates a new BookCommand object

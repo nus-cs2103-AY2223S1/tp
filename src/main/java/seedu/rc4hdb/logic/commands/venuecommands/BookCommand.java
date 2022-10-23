@@ -19,17 +19,16 @@ import seedu.rc4hdb.logic.commands.exceptions.CommandException;
 import seedu.rc4hdb.logic.commands.modelcommands.ModelCommand;
 import seedu.rc4hdb.model.Model;
 import seedu.rc4hdb.model.resident.Resident;
-import seedu.rc4hdb.model.venues.AdHocBooking;
-import seedu.rc4hdb.model.venues.Booking;
-import seedu.rc4hdb.model.venues.BookingDescriptor;
-import seedu.rc4hdb.model.venues.RecurrentBooking;
 import seedu.rc4hdb.model.venues.Venue;
-
+import seedu.rc4hdb.model.venues.booking.AdHocBooking;
+import seedu.rc4hdb.model.venues.booking.Booking;
+import seedu.rc4hdb.model.venues.booking.BookingDescriptor;
+import seedu.rc4hdb.model.venues.booking.RecurrentBooking;
 
 /**
  * Adds a booking to the Venue.
  */
-public class BookCommand extends ModelCommand {
+public class BookCommand implements ModelCommand {
 
     public static final String COMMAND_WORD = "book";
 

@@ -21,9 +21,9 @@ Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
 ## **Design**
 
-RC4HDB aims to provide a complex set of features which are simple to use. Keeping this in mind, 
+RC4HDB aims to provide a complex set of features which are simple to use. Keeping this in mind,
 we are pursuing an iterative approach, adding new features and functionalities amidst the evolving requirements.
-This gives rise to the following main guiding principles for RC4HDB: 
+This gives rise to the following main guiding principles for RC4HDB:
 
 **Maintainability**
 
@@ -169,6 +169,236 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 ## **Implementation** (OUTDATED)
 
 This section describes some noteworthy details on how certain features are implemented.
+
+### The Resident Class
+`RC4HDB` seeks to serve as a housing management database, and as such, one of the first tasks at hand was to modify the
+existing `AddressBook` application to one that makes use of the `Resident` class, which contains much more useful
+information as compared to the current fields that are supported by `Person`. `Person` contained the fields `Name`,
+`Phone`, `Email`, `Address` and `Tags`. We decided to keep all of the above fields except `Address`. In addition,
+we added the additional fields `Room`, `House`, `Gender`, `MatricNumber`, all of which are crucial information for the
+housing management staff.
+
+<br>
+
+#### Refactoring of Classes
+Refactoring of classes to make use of `Resident` related fields and information was a priority for us in the intiial
+stages of development. With `Resident` not yet implemented, it was difficult for us to progress to other features that
+required the fields of said class. After this refactoring was done, all packages now fall under `seedu.rc4hdb`, the
+`Person` class was no longer needed, and `Resident` was able to replace it in all existing commands.  The example below
+shows the updated Sequence diagram for the executing of our `delete` command.
+<img src="images/DeleteSequenceDiagram2.png" />
+
+### TableView
+
+#### Changes in Data Representation
+In `AddressBook`, the Graphical User Interface (GUI) for displaying results from a command was implemented using
+`PersonListPanel` and `PersonCard`.
+
+<img src="images/UiClassDiagram.png" width="550" />
+
+Graphically, the `PersonListPanel` is a single-column list, with each row corresponding to a `PersonCard`. The
+`PersonCard` represents a `Person`, and contains all fields which belongs to that `Person`. These fields include,
+`Name`, `Phone`, `Email`, and `Tags`.
+
+In `RC4HDB`,`PersonListPanel` and `PersonCard` is replaced by `ResidentTableView` which reworks the entire layout
+for displaying results.
+
+<!-- CREATE NEW UICLASSDIAGRAM AND INSERT HERE -->
+
+As opposed to the prior implementation, `ResidentTableView` is a Table. Each row in the Table corresponds to a
+`Resident`, and each column corresponds to a Field in `Resident`.
+
+`ResidentTableView` is implemented via the `TableView` class of `JavaFX`. Collectively, the `ResidentTableView` is a
+single component, but it is logically separated into two distinct units. The first unit being the first column which
+is the `IndexColumn` and the second unit being all other columns, also known as `FieldColumns`.
+
+The main reason for this distinction is *how the values are obtained in relation to its dependence on `Resident`*.
+- The indices in the `IndexColumn` are generated independently to the `FieldColumns` as the fields within
+  `Resident` do not affect its position within the Table. The same `Resident` displayed could have different indices
+  in the results of two commands.
+- In contrast, in the generation of values for each cell in a `FieldColumn`, the values are obtained by iterating
+through the list of `Residents` and setting each cell to it. This process does not modify the ordering of `Residents`
+  in the list, and the same method can be used for other `FieldColumns`.
+
+As a result, the fields of a `Resident` will always collectively be together in the same row, though it may appear in
+two different indices in the results of two different commands.
+
+<br>
+
+#### Obtaining `Resident` fields
+
+From the [documentation](https://docs.oracle.com/javase/8/javafx/api/javafx/scene/control/TableColumn.html), a
+`TableView` is made up of a number of `TableColumn` instances. `TableColumn` provided us with a method to
+`setCellValueFactory` which allows us to iterate through the list of `Residents` and obtain the value dynamically.
+
+In using the `setCellValueFactory` method, we also used the `PropertyValueFactory` class. The implementation of
+`PropertyValueFactory` has enabled us to easily obtain fields due to its *method matching* [functionality](https://docs.oracle.com/javase/8/javafx/api/javafx/scene/control/cell/PropertyValueFactory.html).
+
+By constructing `nameCol.setCellValueFactory(new PropertyValueFactory<Resident, String>("name")`, the "name" string is
+used as a reference to an assumed `Resident::getName`. By fitting an appropriate parameter, we were able to get the
+fields with little effort.
+
+
+<br>
+
+#### Differences in Updating Data
+Another difference between `PersonListPanel` and `ResidentTableView` is the behavior in handling updates to a
+`Resident`. In `ResidentTableView` modifications to any fields of a `Resident` would not require explicit
+invocation of a method to update the Ui. This design was possible as `TableView` automatically adds an observer
+to the returned value from `setCellValueFactory` which was used to obtain the `Resident` fields as mentioned in the
+[section above](#obtaining-resident-fields). As a result, any updates to `ObservableList<Resident>` would be reflected
+immediately in all cells of the Table.
+
+The caveat to this is that in the implementation of `Resident` fields, we have to ensure the presence of a
+`Resident::getXXX` to enable method matching between the `PropertyValueFactory` and the `Resident` class.
+
+<br>
+
+### Show/hide feature for resident fields
+
+**Challenges faced with UI:**
+
+The original UI represented a `Person` field as a nested FXML `Label` within a `PersonCard`, which was used to populate the `ListView` panel. Calling `setVisible` on a `Label` resulted in blank gaps in the panel because the `Label` was ultimately still intact, just *invisible*. Hence, there was a need to find another method to hide and collapse rows/columns.
+
+**Gaps in** `ListView` **panel:**
+
+![ListViewMissingField](images/ListViewMissingField.png)
+
+To achieve this, we modified our UI to use a `TableView`, where using `setVisible` on a `TableColumn` allowed us to remove the specified columns as intended. One possible reason as to why this works is that `TableColumn` does not extend from `Node`, unlike `Label`. As suggested in this [thread](https://stackoverflow.com/questions/28558165/javafx-setvisible-hides-the-element-but-doesnt-rearrange-adjacent-nodes), `setVisible` in `TableColumn` probably has a different implementation from that in `Node`.
+
+<br>
+
+**Challenges faced with linking components:**
+
+The next challenge was linking up the `Model` with the `ResidentTableView` class, such that the list of fields to hide could be updated based on user commands. There is no equivalent of React Context in Java, and references from parent to child classes are unidirectional, so I had to get creative with the implementation. There were two field lists, one in `ModelManager` and one in `ResidentViewTable`, which had to be synchronized somehow.
+
+![MainWindowRelationships](images/MainWindowRelationships.png)
+
+The final design involved using a `ListChangeListener` to cascade the updates from one list to the other. Since `LogicManager` held a reference to a `ModelManager`, and `MainWindow` held a reference to both a `LogicManager` and the `ResidentTableView` class, I used a listener in `MainWindow` to track changes in the `Model` field list and updated the `ResidentTableView` field list accordingly. Finally, one more listener was used within `ResidentTableView` to update the column visibilities whenever the field list changed.
+
+<br>
+
+**Further improvements:**
+
+Currently, the commands for showing and hiding columns are extensions of the `list` command: `list /i <fields_to_include>` and `list /e <fields_to_exclude>`. While this syntax works as intended, we will be changing the command to use `show` and `hide` respectively for clarity.
+
+<br>
+
+### Filter feature to filter residents according to fields
+
+The previous AddressBook implementation only had a find command to search for specific residents according to the field.
+Thus, a new command has been implemented to have an additional feature to filter the list of residents using every field
+used to describe the resident.
+
+<br>
+
+#### Structure of the Command 
+A ```FilterCommand``` class and a ```FilterCommandParser``` class was implemented to follow the structure of the
+```Logic``` component of the application. ```FilterCommand``` implements ```ModelCommand``` and the 
+```FilterCommandParser``` implements ```FilterCommandParser```. This structure allows the new filter feature to be 
+added without changing any of the Logic class components other than adding the cases to create a ```FilterCommand``` 
+object
+
+<br>
+
+#### Creating a new ```ResidentDescriptor``` class
+
+Previously, the edit feature utilized an ```EditDescriptor``` class to create an object that will store the parsed
+information of the command to edit the specific Resident. Since the handler for the information was similar for the 
+filter feature, a new general ```ResidentDescriptor``` class was created which is used for both the edit and filter
+features.
+
+This makes it easier to update the features if there is a change in the structure of the fields or if there
+is a new field added for the ```Resident```.
+
+<br>
+
+#### Creating a new ```FilterSpecifier``` class
+
+There is a specifier after the filter keyword in the command that is used to select whether all or any of
+the fields should match the residents' information in the database. A ```FilterSpecifier``` class is  used to
+represent the specifier as a wrapper to make the transferring of the specifier across classes easier and less 
+prone to errors.
+
+<br>
+
+#### Creating new predicate classes for filter
+
+In order to check if the ```Resident``` objects passes matching the filter instructed by the user, a class
+implementing the ```Predicate``` class needs to be created to handle this. Thus, two new classes 
+```AttributesMatchAllKeywords``` and ```AttributesMatchAnyKeyword``` hae been implemented to handle the logic of the
+filtering for each type of specifier. Through this implementation, even more specifiers can be added during later cycles
+of this project if required without any major restructuring of the initial classes created in this cycle.
+
+<br>
+
+<img src="images/FilterCommandSequenceDiagram.png" width="600" />
+
+#### Considerations
+
+There was a choice to make the filter feature accept either only the exact string entered by the user or also
+accept a field that contains the filter attribute given by the user. It is clear that the filter command would be more 
+flexible id the contains option is implemented as the user can use a prefix or a suffix of the actual field to filter
+out residents. Thus, while keeping this advantage in mind, we have decided to make the filter feature accept fields
+that contain the attributes instead of having it exactly equal. 
+
+However, implementing contains for the tags feature may make the application a lot slower. It is not worth the cost
+considering that this additional benefit does not give our application a boost in usability. Thus, the substring 
+filtering has been omitted for the tags to accommodate for a faster filtering process. 
+
+<br>
+
+### Multiple data files
+
+#### Background
+
+In the original `AddressBook`, the `Storage` component was implemented with the intent of users only being able to use a single data file. However, in `RC4HDB`, our target users would potentially benefit from being able to store their data in multiple files. Thus, we have decided to implement **file commands** which will provide users a way to **create**, **delete** and **switch** data files.
+
+<br>
+
+#### Storage command
+
+The original `AddressBook` makes use of the [Command pattern](https://refactoring.guru/design-patterns/command), where the `Logic` component is in charge of executing commands. However, with the `AddressBook` implementation of the Command pattern, commands only have a reference to `Model`, which limits the command's ability to manipulate the `Storage`. Hence, in order to get around this, we came up with two different implementations which enable the manipulation of `Storage`, while retaining the ability of `Command` to manipulate `Model`.
+
+<br>
+
+##### Modifying the execute method for all commands
+
+This implementation involves altering `Command` class the `execute(Model)` method to `execute(Model, Storage)`. This implementation is simple to implement, however it does not adhere to the [separation of concerns principle](https://deviq.com/principles/separation-of-concerns), potentially decreasing cohesion and increasing coupling.
+
+<img src="images/StorageCommandImplementation1.png" width="550" />
+
+As seen from the diagram above, there will be associations between `Storage` and `Model` for all commands, allowing for commands, such as `AddCommand` which only modifies `Model` to be able to modify `Storage`. Due to the flaw in this design, we decided to think of a better implementation.
+
+<br>
+
+##### Splitting the general command into specialized commands
+
+This implementation involves splitting `Command` further into specialized `Command`s, which are only able to manipulate components that they are supposed to manipulate. After deliberation, we decided to split `Command` into `MiscCommand`, `ModelCommand`, `StorageCommand` and `StorageModelCommand`, which are only able to execute on their respective components, with `MiscCommand` executing on nothing. All of these specialized commands extend the base `Command`, which is kept for polymorphism purposes. Taking it a step further, we realized that `Command` only enforces the `execute` method in its subclasses, thus, we converted `Command` and the specialized commands into interfaces.
+
+<img src="images/StorageCommandImplementation2.png" width="550" />
+
+Comparing the diagram above with the diagram from the [other option](#modifying-the-execute-method-for-all-commands), `Command` is no longer associated with `Model` and `Storage`. Instead, `Model` and `Storage` are only associated with their respective specialized commands. While this effectively divides the responsibility of manipulating the `Model` and `Storage` amongst the specialized commands, it results in higher complexity. Weighing between our options, we decided to stick with this option due to it setting clear boundaries of what each command can and cannot do.
+
+<br>
+
+#### File commands
+
+With our earlier issue of a lack of `Storage` reference in `Command` resolved, along with our new implementation of specialized commands, we decided to create an abstract `FileCommand` class which encapsulates commands which deal with files. Such commands will require a file path to be provided by the user, thus, we included logic that would likely be used by all `FileCommand` subclasses, to avoid repetition of common logic. We then proceeded with implementing a command that creates a new data file, a command that deletes an existing data file and a command that switches the current data file to another existing data file.
+
+<br>
+
+#### Create and delete file commands
+
+Due to file creation and deletion not requiring an update to `Model`, but requiring access to `Storage`, we implement `FileCreateCommand` and `FileDeleteCommand` as storage commands. The file creation and deletion logic was then delegated to `Storage`, which saw new methods, `createResidentBookFile(Path)` and `deleteResidentBookFile(Path)` being implemented.
+
+<br>
+
+#### Switch file command
+
+Due to file switching requiring an update to not only `Storage`, but also `Model`, we implement `FileSwitchCommand` as a storage model command. Similarly, the `setResidentBookFilePath(Path)` method was implemented to support the switching of files. As for the manipulation of `Model`, we made use of existing methods to update the user preferences to use the data file that the user intends to switch to as the data file that the application will read from when it first starts up. Additionally, the `FileSwitchCommand` also results in the `Model` updating its old data with the data from the file the user intends to switch to.
+
+<br>
 
 ### \[Proposed\] Undo/redo feature
 
@@ -363,8 +593,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 3a1. RC4HDB shows an error message.
 
     Use case resumes at step 3.
-  
-  <br>
+
+<br>
 
 **Use case: UC3. Listing out information of all residents**
 
@@ -378,9 +608,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **Extensions**
 
 * 1a. The user wants to view only certain fields in the list.
-    
+
   * 1a1. The user specifies which fields he wants to see or hide.
-    
+
   Use case resumes at step 2.
 
 
@@ -405,7 +635,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 2a. There is no relevant category for that information.
   * 2a1. RC4HDB shows an error message.
-  
+
   Use case ends.
 
 
@@ -593,7 +823,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Glossary
 * **Command Line Interface (CLI)**: An area in the application interface for users to input commands
-* **Comma-Separated Values (CSV)**: A delimited text file that uses a comma to separate values and each line of the file is a data record 
+* **Comma-Separated Values (CSV)**: A delimited text file that uses a comma to separate values and each line of the file is a data record
 * **Display Window**: An area in the application interface for users to view the output of their commands
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
 * **NUS**: The National University of Singapore

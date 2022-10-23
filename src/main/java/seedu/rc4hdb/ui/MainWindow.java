@@ -1,7 +1,9 @@
 package seedu.rc4hdb.ui;
 
+import java.nio.file.Path;
 import java.util.logging.Logger;
 
+import javafx.beans.value.ChangeListener;
 import javafx.collections.ListChangeListener;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -39,12 +41,17 @@ public class MainWindow extends UiPart<Stage> {
     private VenueTableView venueTableView;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
+    private CommandBox commandBoxRegion;
+    private CurrentWorkingFileFooter statusBarFooter;
 
     @FXML
     private StackPane commandBoxPlaceholder;
 
     @FXML
     private MenuItem helpMenuItem;
+
+    @FXML
+    private MenuItem commandBoxRedirect;
 
     @FXML
     private TabPane tableViewPane;
@@ -77,6 +84,7 @@ public class MainWindow extends UiPart<Stage> {
         this.primaryStage = primaryStage;
         this.logic = logic;
         this.logic.getObservableFields().addListener(getListChangeListener());
+        this.logic.getObservableResidentBookFilePath().addListener(getFileChangeListener());
 
         // Configure the UI
         setWindowDefaultSize(logic.getGuiSettings());
@@ -92,6 +100,7 @@ public class MainWindow extends UiPart<Stage> {
 
     private void setAccelerators() {
         setAccelerator(helpMenuItem, KeyCombination.valueOf("F1"));
+        setAccelerator(commandBoxRedirect, KeyCombination.valueOf("F3"));
     }
 
     /**
@@ -142,10 +151,11 @@ public class MainWindow extends UiPart<Stage> {
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
 
-        StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getResidentBookFilePath());
+        statusBarFooter = new CurrentWorkingFileFooter(logic.getObservableResidentBookFilePath());
         statusbarPlaceholder.getChildren().add(statusBarFooter.getRoot());
 
         CommandBox commandBox = new CommandBox(this::executeCommand);
+        commandBoxRegion = commandBox;
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
     }
 
@@ -171,6 +181,13 @@ public class MainWindow extends UiPart<Stage> {
         } else {
             helpWindow.focus();
         }
+    }
+
+    /**
+     * Redirects the focus onto the text field of the command box.
+     */
+    public void handleRedirect() {
+        commandBoxRegion.focus();
     }
 
     void show() {
@@ -225,8 +242,14 @@ public class MainWindow extends UiPart<Stage> {
         return c -> residentTableView.setObservableFields(logic.getObservableFields());
     }
 
+    private ChangeListener<Path> getFileChangeListener() {
+        return (observableValue, oldValue, newValue) ->
+                statusBarFooter.updateFilePath(newValue);
+    }
+
     private void setTabLabels() {
         this.residentTab.setText("Residents");
         this.venueTab.setText("Venues");
     }
+
 }

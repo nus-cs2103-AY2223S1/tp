@@ -26,7 +26,7 @@ public class ModelManager implements Model {
     private final UserPrefs userPrefs;
     private final FilteredList<Resident> filteredResidents;
     private final ObservableList<String> observableFieldList;
-    private final ObservableList<Venue> observableVenueList; // added
+    private final ObservableList<Venue> observableVenueList;
 
     /**
      * Initializes a ModelManager with the given residentBook and userPrefs.

@@ -5,6 +5,8 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.rc4hdb.testutil.TypicalResidents.ALICE;
 
 import org.junit.jupiter.api.Test;
+import seedu.rc4hdb.model.venues.booking.AdHocBooking;
+import seedu.rc4hdb.model.venues.booking.RecurrentBooking;
 
 public class RecurrentBookingTest {
     private static final RecurrentBooking MONDAY_5_TO_6_PM = new RecurrentBooking(ALICE, "MONDAY", "17:00", "18:00");

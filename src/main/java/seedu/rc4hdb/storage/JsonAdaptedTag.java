@@ -4,7 +4,7 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 
 import seedu.rc4hdb.commons.exceptions.IllegalValueException;
-import seedu.rc4hdb.model.tag.Tag;
+import seedu.rc4hdb.model.resident.fields.Tag;
 
 /**
  * Jackson-friendly version of {@link Tag}.
@@ -25,7 +25,7 @@ class JsonAdaptedTag {
      * Converts a given {@code Tag} into this class for Jackson use.
      */
     public JsonAdaptedTag(Tag source) {
-        tagName = source.tagName;
+        tagName = source.value;
     }
 
     @JsonValue
