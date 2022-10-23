@@ -7,8 +7,8 @@ import gim.model.Model;
 import gim.model.exercise.DateWithinRangePredicate;
 
 /**
- * Finds and lists all exercises in exercise tracker whose name contains any of the argument keywords.
- * Keyword matching is case insensitive.
+ * Finds all exercises with dates that are within the specified start date
+ * and end date (both inclusive).
  */
 public class RangeCommand extends Command {
 
