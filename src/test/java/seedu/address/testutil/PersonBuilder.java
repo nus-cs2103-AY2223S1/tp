@@ -14,10 +14,10 @@ import seedu.address.model.person.MinecraftName;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
-import seedu.address.model.person.Social;
-import seedu.address.model.person.TimeInterval;
 import seedu.address.model.person.Server;
+import seedu.address.model.person.Social;
 import seedu.address.model.person.Tag;
+import seedu.address.model.person.TimeInterval;
 
 
 /**

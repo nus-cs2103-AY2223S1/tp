@@ -17,8 +17,8 @@ import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
 import seedu.address.model.person.GameType;
 import seedu.address.model.person.Person;
-import seedu.address.model.person.Social;
 import seedu.address.model.person.Server;
+import seedu.address.model.person.Social;
 import seedu.address.model.person.Tag;
 
 
