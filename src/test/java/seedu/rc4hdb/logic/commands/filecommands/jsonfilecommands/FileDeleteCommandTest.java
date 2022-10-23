@@ -1,8 +1,8 @@
-package seedu.rc4hdb.logic.commands.storagecommands.filecommands.jsonfilecommands;
+package seedu.rc4hdb.logic.commands.filecommands.jsonfilecommands;
 
-import static seedu.rc4hdb.logic.commands.storagecommands.StorageCommandTestUtil.assertCommandFailure;
-import static seedu.rc4hdb.logic.commands.storagecommands.StorageCommandTestUtil.assertCommandSuccess;
-import static seedu.rc4hdb.logic.commands.storagecommands.StorageCommandTestUtil.assertFileDoesNotExist;
+import static seedu.rc4hdb.logic.commands.StorageCommandTestUtil.assertCommandFailure;
+import static seedu.rc4hdb.logic.commands.StorageCommandTestUtil.assertCommandSuccess;
+import static seedu.rc4hdb.logic.commands.StorageCommandTestUtil.assertFileDoesNotExist;
 import static seedu.rc4hdb.testutil.Assert.assertThrows;
 
 import java.io.IOException;
@@ -14,7 +14,7 @@ import org.junit.jupiter.api.io.TempDir;
 
 import seedu.rc4hdb.commons.util.FileUtil;
 import seedu.rc4hdb.logic.commands.exceptions.CommandException;
-import seedu.rc4hdb.logic.commands.storagecommands.filecommands.FileCommand;
+import seedu.rc4hdb.logic.commands.filecommands.FileCommand;
 import seedu.rc4hdb.storage.JsonUserPrefsStorage;
 import seedu.rc4hdb.storage.Storage;
 import seedu.rc4hdb.storage.StorageManager;

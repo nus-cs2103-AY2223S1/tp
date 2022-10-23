@@ -1,4 +1,4 @@
-package seedu.rc4hdb.logic.commands.storagecommands.filecommands.jsonfilecommands;
+package seedu.rc4hdb.logic.commands.filecommands.jsonfilecommands;
 
 import static seedu.rc4hdb.commons.util.CollectionUtil.requireAllNonNull;
 

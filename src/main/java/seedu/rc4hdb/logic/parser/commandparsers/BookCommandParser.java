@@ -16,6 +16,7 @@ import seedu.rc4hdb.logic.parser.Parser;
 import seedu.rc4hdb.logic.parser.ParserUtil;
 import seedu.rc4hdb.logic.parser.Prefix;
 import seedu.rc4hdb.logic.parser.exceptions.ParseException;
+import seedu.rc4hdb.model.venues.VenueName;
 import seedu.rc4hdb.model.venues.booking.BookingDescriptor;
 
 /**
@@ -39,7 +40,10 @@ public class BookCommandParser implements Parser<BookCommand> {
 
         try {
             Index index = ParserUtil.parseIndex(argMultimap.getPreamble());
-            return new BookCommand(index, buildBookingDescriptor(argMultimap));
+            VenueName venueName = ParserUtil.parseVenueName(argMultimap.getValue(PREFIX_VENUE_NAME).get());
+            BookingDescriptor bookingDescriptor = buildBookingDescriptor(argMultimap);
+            bookingDescriptor.setVenueName(venueName);
+            return new BookCommand(index, venueName, bookingDescriptor);
         } catch (ParseException | NoSuchElementException e) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, BookCommand.MESSAGE_USAGE), e);
         }
@@ -51,7 +55,6 @@ public class BookCommandParser implements Parser<BookCommand> {
     private static BookingDescriptor buildBookingDescriptor(ArgumentMultimap argMultimap) throws ParseException {
         BookingDescriptor bookingDescriptor = new BookingDescriptor();
 
-        bookingDescriptor.setVenueName(ParserUtil.parseVenueName(argMultimap.getValue(PREFIX_VENUE_NAME).get()));
         bookingDescriptor.setHourPeriod(ParserUtil.parseHourPeriod(argMultimap.getValue(PREFIX_TIME_PERIOD).get()));
         bookingDescriptor.setDayOfWeek(ParserUtil.parseDay(argMultimap.getValue(PREFIX_DAY).get()));
         return bookingDescriptor;

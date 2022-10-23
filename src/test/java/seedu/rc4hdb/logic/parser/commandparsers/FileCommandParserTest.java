@@ -2,22 +2,22 @@ package seedu.rc4hdb.logic.parser.commandparsers;
 
 import static seedu.rc4hdb.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.rc4hdb.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
-import static seedu.rc4hdb.logic.commands.storagecommands.StorageCommandTestUtil.INVALID_FILE_NAME_BACKSLASH;
-import static seedu.rc4hdb.logic.commands.storagecommands.StorageCommandTestUtil.INVALID_FILE_NAME_FORWARD_SLASH;
-import static seedu.rc4hdb.logic.commands.storagecommands.StorageCommandTestUtil.INVALID_FILE_NAME_FULL_STOP;
-import static seedu.rc4hdb.logic.commands.storagecommands.StorageCommandTestUtil.INVALID_FILE_NAME_WHITESPACE;
-import static seedu.rc4hdb.logic.commands.storagecommands.StorageCommandTestUtil.VALID_FILE_NAME_STRING;
-import static seedu.rc4hdb.logic.commands.storagecommands.filecommands.FileCommand.MESSAGE_INVALID_FILE_NAME;
+import static seedu.rc4hdb.logic.commands.StorageCommandTestUtil.INVALID_FILE_NAME_BACKSLASH;
+import static seedu.rc4hdb.logic.commands.StorageCommandTestUtil.INVALID_FILE_NAME_FORWARD_SLASH;
+import static seedu.rc4hdb.logic.commands.StorageCommandTestUtil.INVALID_FILE_NAME_FULL_STOP;
+import static seedu.rc4hdb.logic.commands.StorageCommandTestUtil.INVALID_FILE_NAME_WHITESPACE;
+import static seedu.rc4hdb.logic.commands.StorageCommandTestUtil.VALID_FILE_NAME_STRING;
+import static seedu.rc4hdb.logic.commands.filecommands.FileCommand.MESSAGE_INVALID_FILE_NAME;
 import static seedu.rc4hdb.logic.parser.commandparsers.CommandParserTestUtil.assertParseFailure;
 import static seedu.rc4hdb.logic.parser.commandparsers.CommandParserTestUtil.assertParseSuccess;
 import static seedu.rc4hdb.logic.parser.commandparsers.FileCommandParser.DATA_DIR_PATH;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.rc4hdb.logic.commands.filecommands.jsonfilecommands.FileCreateCommand;
+import seedu.rc4hdb.logic.commands.filecommands.jsonfilecommands.FileDeleteCommand;
+import seedu.rc4hdb.logic.commands.filecommands.jsonfilecommands.FileSwitchCommand;
 import seedu.rc4hdb.logic.commands.misccommands.HelpCommand;
-import seedu.rc4hdb.logic.commands.storagecommands.filecommands.jsonfilecommands.FileCreateCommand;
-import seedu.rc4hdb.logic.commands.storagecommands.filecommands.jsonfilecommands.FileDeleteCommand;
-import seedu.rc4hdb.logic.commands.storagecommands.filecommands.jsonfilecommands.FileSwitchCommand;
 
 /**
  * Unit tests for {@link FileCommandParser}

@@ -12,12 +12,12 @@ import seedu.rc4hdb.commons.core.GuiSettings;
 import seedu.rc4hdb.commons.core.LogsCenter;
 import seedu.rc4hdb.logic.commands.Command;
 import seedu.rc4hdb.logic.commands.CommandResult;
+import seedu.rc4hdb.logic.commands.StorageCommand;
 import seedu.rc4hdb.logic.commands.StorageModelCommand;
 import seedu.rc4hdb.logic.commands.exceptions.CommandException;
 import seedu.rc4hdb.logic.commands.misccommands.MiscCommand;
 import seedu.rc4hdb.logic.commands.modelcommands.ModelCommand;
-import seedu.rc4hdb.logic.commands.storagecommands.StorageCommand;
-import seedu.rc4hdb.logic.parser.ResidentBookParser;
+import seedu.rc4hdb.logic.parser.Rc4hdbParser;
 import seedu.rc4hdb.logic.parser.exceptions.ParseException;
 import seedu.rc4hdb.model.Model;
 import seedu.rc4hdb.model.ReadOnlyResidentBook;
@@ -34,7 +34,7 @@ public class LogicManager implements Logic {
 
     private final Model model;
     private final Storage storage;
-    private final ResidentBookParser residentBookParser;
+    private final Rc4hdbParser residentBookParser;
 
     /**
      * Constructs a {@code LogicManager} with the given {@code Model} and {@code Storage}.
@@ -42,7 +42,7 @@ public class LogicManager implements Logic {
     public LogicManager(Model model, Storage storage) {
         this.model = model;
         this.storage = storage;
-        residentBookParser = new ResidentBookParser();
+        residentBookParser = new Rc4hdbParser();
     }
 
     @Override

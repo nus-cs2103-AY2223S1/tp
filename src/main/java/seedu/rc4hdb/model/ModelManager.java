@@ -17,6 +17,9 @@ import seedu.rc4hdb.model.resident.Resident;
 import seedu.rc4hdb.model.venues.Venue;
 import seedu.rc4hdb.model.venues.VenueName;
 import seedu.rc4hdb.model.venues.booking.Booking;
+import seedu.rc4hdb.model.venues.booking.exceptions.BookingNotFoundException;
+import seedu.rc4hdb.model.venues.booking.fields.Day;
+import seedu.rc4hdb.model.venues.booking.fields.HourPeriod;
 import seedu.rc4hdb.model.venues.exceptions.VenueNotFoundException;
 
 /**
@@ -172,6 +175,13 @@ public class ModelManager implements Model {
     public void addBookingToVenueWithSameName(VenueName venueName, Booking booking) throws VenueNotFoundException {
         requireAllNonNull(venueName, booking);
         venueBook.addBookingToVenueWithSameName(venueName, booking);
+    }
+
+    @Override
+    public void removeBookingFromVenueWithSameName(VenueName venueName, HourPeriod bookedPeriod, Day bookedDay)
+            throws VenueNotFoundException, BookingNotFoundException {
+        requireAllNonNull(venueName, bookedPeriod, bookedDay);
+        venueBook.removeBookingFromVenueWithSameName(venueName, bookedPeriod, bookedDay);
     }
 
     //=========== End of venue book methods =============================================

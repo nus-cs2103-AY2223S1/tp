@@ -20,15 +20,15 @@ import seedu.rc4hdb.model.venues.VenueName;
 import seedu.rc4hdb.model.venues.booking.Booking;
 import seedu.rc4hdb.model.venues.booking.BookingDescriptor;
 import seedu.rc4hdb.model.venues.booking.RecurrentBooking;
+import seedu.rc4hdb.model.venues.booking.exceptions.BookingClashesException;
 import seedu.rc4hdb.model.venues.booking.fields.Day;
 import seedu.rc4hdb.model.venues.booking.fields.HourPeriod;
-import seedu.rc4hdb.model.venues.exceptions.BookingClashesException;
 import seedu.rc4hdb.model.venues.exceptions.VenueNotFoundException;
 
 /**
  * Adds a booking to the Venue.
  */
-public class BookCommand implements ModelCommand {
+public class BookCommand extends VenueCommand implements ModelCommand {
 
     public static final String COMMAND_WORD = "book";
 
@@ -47,12 +47,13 @@ public class BookCommand implements ModelCommand {
     public static final String MESSAGE_VENUE_NOT_FOUND = "The following venue was not found: %s";
 
     private final BookingDescriptor bookingDescriptor;
-    private Index residentIndex;
+    private final Index residentIndex;
 
     /**
      * Creates an BookCommand to add the specified {@code Booking}
      */
-    public BookCommand(Index residentIndex, BookingDescriptor bookingDescriptor) {
+    public BookCommand(Index residentIndex, VenueName venueName, BookingDescriptor bookingDescriptor) {
+        super(venueName);
         requireAllNonNull(residentIndex, bookingDescriptor);
         this.residentIndex = residentIndex;
         this.bookingDescriptor = new BookingDescriptor(bookingDescriptor);

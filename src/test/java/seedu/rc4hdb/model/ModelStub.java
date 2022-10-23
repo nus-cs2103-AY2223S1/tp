@@ -10,6 +10,9 @@ import seedu.rc4hdb.model.resident.Resident;
 import seedu.rc4hdb.model.venues.Venue;
 import seedu.rc4hdb.model.venues.VenueName;
 import seedu.rc4hdb.model.venues.booking.Booking;
+import seedu.rc4hdb.model.venues.booking.exceptions.BookingNotFoundException;
+import seedu.rc4hdb.model.venues.booking.fields.Day;
+import seedu.rc4hdb.model.venues.booking.fields.HourPeriod;
 import seedu.rc4hdb.model.venues.exceptions.VenueNotFoundException;
 
 /**
@@ -109,6 +112,12 @@ public class ModelStub implements Model {
 
     @Override
     public void addBookingToVenueWithSameName(VenueName venueName, Booking booking) throws VenueNotFoundException {
+        throw new AssertionError("This method should not be called.");
+    }
+
+    @Override
+    public void removeBookingFromVenueWithSameName(VenueName venueName, HourPeriod bookedPeriod, Day bookedDay)
+            throws VenueNotFoundException, BookingNotFoundException {
         throw new AssertionError("This method should not be called.");
     }
 
