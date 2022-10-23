@@ -7,10 +7,10 @@
     "handle" : "alice",
     "username" : "alifur",
     "mods" : [ {
-      "modName" : "CS2100",
+      "modName" : "CS1231S",
       "hasTaken" : false
     }, {
-      "modName" : "CS1231S",
+      "modName" : "CS2100",
       "hasTaken" : true
     } ],
     "interests" : [ "tennis" ]
@@ -57,10 +57,10 @@
     "handle" : "ellie",
     "username" : "goldl8ol",
     "mods" : [ {
-      "modName" : "CS2100",
+      "modName" : "CS1231S",
       "hasTaken" : false
     }, {
-      "modName" : "CS1231S",
+      "modName" : "CS2100",
       "hasTaken" : false
     } ],
     "interests" : [ ]

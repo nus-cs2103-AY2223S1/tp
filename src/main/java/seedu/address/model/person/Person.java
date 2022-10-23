@@ -10,7 +10,9 @@ import java.util.stream.Collectors;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.collections.transformation.SortedList;
 import seedu.address.model.interest.Interest;
+import seedu.address.model.util.ModComparator;
 
 /**
  * Represents a Person in the address book.
@@ -88,11 +90,11 @@ public class Person {
     }
 
     /**
-     * Returns an immutable mods list, which throws {@code UnsupportedOperationException}
+     * Sorts then returns an immutable mods list, which throws {@code UnsupportedOperationException}
      * if modification is attempted.
      */
     public ObservableList<Mod> getMods() {
-        return FXCollections.unmodifiableObservableList(mods);
+        return FXCollections.unmodifiableObservableList(new SortedList<>(mods, new ModComparator()));
     }
 
     /**
@@ -208,7 +210,7 @@ public class Person {
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, handle, gitHub, interests, mods);
+        return Objects.hash(name, phone, email, handle, gitHub, interests, getMods());
     }
 
     @Override
@@ -225,13 +227,14 @@ public class Person {
                 .append(getEmail());
 
         Set<Interest> interestSet = getInterests();
+        ObservableList<Mod> sortedMods = getMods();
         if (!interestSet.isEmpty()) {
             builder.append("; Interests: ");
             interestSet.forEach(builder::append);
         }
-        if (!mods.isEmpty()) {
+        if (!sortedMods.isEmpty()) {
             builder.append("; Mods: ");
-            mods.forEach(builder::append);
+            sortedMods.forEach(builder::append);
         }
         return builder.toString();
     }
