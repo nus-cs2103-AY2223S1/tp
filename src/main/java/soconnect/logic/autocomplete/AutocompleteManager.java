@@ -155,48 +155,69 @@ public class AutocompleteManager implements Autocomplete {
                                                     String lastPrefixArgument) {
         String autocompleteString = SearchCommand.COMMAND_WORD + argsWithoutLastPrefixArgument;
 
-        String[] prefixArgument = lastPrefixArgument.split("/", 2);
-        String prefix = prefixArgument[0] + "/";
-        String argument = prefixArgument[1];
+        String[] lastPrefixArgumentList = lastPrefixArgument.split("/", 2);
+        String lastPrefix = lastPrefixArgumentList[0] + "/";
+        String lastArgument = lastPrefixArgumentList[1];
 
-        switch (prefix) {
+        switch (lastPrefix) {
         case INDICATOR_NAME:
-            return filteredPersons.stream()
-                    .filter(person -> startWithIgnoreCase(person.getName().fullName, argument))
-                    .limit(AUTOCOMPLETE_ENTRIES_LIMIT)
-                    .map(person -> autocompleteString + prefix + person.getName().fullName)
-                    .collect(Collectors.toList());
+            return autocompleteForName(autocompleteString, lastArgument);
         case INDICATOR_ADDRESS:
-            return filteredPersons.stream()
-                    .filter(person -> startWithIgnoreCase(person.getAddress().value, argument))
-                    .limit(AUTOCOMPLETE_ENTRIES_LIMIT)
-                    .map(person -> autocompleteString + prefix + person.getAddress().value)
-                    .collect(Collectors.toList());
+            return autocompleteForAddress(autocompleteString, lastArgument);
         case INDICATOR_EMAIL:
-            return filteredPersons.stream()
-                    .filter(person -> startWithIgnoreCase(person.getEmail().value, argument))
-                    .limit(AUTOCOMPLETE_ENTRIES_LIMIT)
-                    .map(person -> autocompleteString + prefix + person.getEmail().value)
-                    .collect(Collectors.toList());
+            return autocompleteForEmail(autocompleteString, lastArgument);
         case INDICATOR_PHONE:
-            return filteredPersons.stream()
-                    .filter(person -> startWithIgnoreCase(person.getPhone().value, argument))
-                    .limit(AUTOCOMPLETE_ENTRIES_LIMIT)
-                    .map(person -> autocompleteString + prefix + person.getPhone().value)
-                    .collect(Collectors.toList());
+            return autocompleteForPhone(autocompleteString, lastArgument);
         case INDICATOR_TAG:
-            return filteredPersons.stream()
-                    .map(person -> person.getTags().stream()
-                            .filter(tag -> startWithIgnoreCase(tag.tagName, argument))
-                            .map(tag -> autocompleteString + prefix + tag.tagName)
-                            .collect(Collectors.toList()))
-                    .flatMap(Collection::stream)
-                    .distinct()
-                    .limit(AUTOCOMPLETE_ENTRIES_LIMIT)
-                    .collect(Collectors.toList());
+            return autocompleteForTag(autocompleteString, lastArgument);
         default:
             return new ArrayList<>();
         }
+    }
+
+
+    private List<String> autocompleteForName(String autocompleteString, String lastArgument) {
+        return filteredPersons.stream()
+                .filter(person -> startWithIgnoreCase(person.getName().fullName, lastArgument))
+                .limit(AUTOCOMPLETE_ENTRIES_LIMIT)
+                .map(person -> autocompleteString + PREFIX_NAME + person.getName().fullName)
+                .collect(Collectors.toList());
+    }
+
+    private List<String> autocompleteForAddress(String autocompleteString, String lastArgument) {
+        return filteredPersons.stream()
+                .filter(person -> startWithIgnoreCase(person.getAddress().value, lastArgument))
+                .limit(AUTOCOMPLETE_ENTRIES_LIMIT)
+                .map(person -> autocompleteString + PREFIX_ADDRESS + person.getAddress().value)
+                .collect(Collectors.toList());
+    }
+
+    private List<String> autocompleteForEmail(String autocompleteString, String lastArgument) {
+        return filteredPersons.stream()
+                .filter(person -> startWithIgnoreCase(person.getEmail().value, lastArgument))
+                .limit(AUTOCOMPLETE_ENTRIES_LIMIT)
+                .map(person -> autocompleteString + PREFIX_EMAIL + person.getEmail().value)
+                .collect(Collectors.toList());
+    }
+
+    private List<String> autocompleteForPhone(String autocompleteString, String lastArgument) {
+        return filteredPersons.stream()
+                .filter(person -> startWithIgnoreCase(person.getPhone().value, lastArgument))
+                .limit(AUTOCOMPLETE_ENTRIES_LIMIT)
+                .map(person -> autocompleteString + PREFIX_PHONE + person.getPhone().value)
+                .collect(Collectors.toList());
+    }
+
+    private List<String> autocompleteForTag(String autocompleteString, String lastArgument) {
+        return filteredPersons.stream()
+                .map(person -> person.getTags().stream()
+                        .filter(tag -> startWithIgnoreCase(tag.tagName, lastArgument))
+                        .map(tag -> autocompleteString + PREFIX_TAG + tag.tagName)
+                        .collect(Collectors.toList()))
+                .flatMap(Collection::stream)
+                .distinct()
+                .limit(AUTOCOMPLETE_ENTRIES_LIMIT)
+                .collect(Collectors.toList());
     }
 
     @Override

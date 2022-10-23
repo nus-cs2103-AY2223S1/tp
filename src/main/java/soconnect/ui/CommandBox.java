@@ -80,7 +80,7 @@ public class CommandBox extends UiPart<Region> {
     }
 
     /**
-     * A Listener to execute autocomplete related actions.
+     * Activates a listener to execute autocomplete related actions.
      */
     private void setAutocompleteListener() {
         commandTextField.setOnKeyPressed(e -> {
@@ -98,6 +98,7 @@ public class CommandBox extends UiPart<Region> {
                 case DOWN:
                 case LEFT:
                 case RIGHT:
+                case SPACE:
                     break;
                 default:
                     autocompleteAction();
@@ -113,7 +114,7 @@ public class CommandBox extends UiPart<Region> {
     }
 
     /**
-     * The autocomplete action which will generate and display the autocomplete pop up.
+     * Generates and displays the autocomplete pop up.
      * Solution below adapted from https://stackoverflow.com/questions/36861056/javafx-textfield-auto-suggestions.
      */
     private void autocompleteAction() {
@@ -188,7 +189,7 @@ public class CommandBox extends UiPart<Region> {
     }
 
     /**
-     * A Listener to detect the change in the application size and changes the label width accordingly.
+     * Activates a listener to detect the change in the application size and changes the label width accordingly.
      *
      * @param label The label which the width will be changed.
      */

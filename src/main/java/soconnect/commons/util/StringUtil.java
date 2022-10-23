@@ -103,11 +103,11 @@ public class StringUtil {
     }
 
     /**
-     * Returns true if the {@code sentence} starts with the give {@code subString}, this ignores case.
+     * Returns true if the {@code sentence} starts with the given {@code subString}, this ignores case.
      *   <br>examples:<pre>
-     *       containsWordIgnoreCase("ABc def", "ab") == true
-     *       containsWordIgnoreCase("ABc def", "Bc") == false
-     *       containsWordIgnoreCase("ABc def", "de") == false
+     *       startWithIgnoreCase("ABc def", "ab") == true
+     *       startWithIgnoreCase("ABc def", "Bc") == false
+     *       startWithIgnoreCase("ABc def", "de") == false
      *       </pre>
      *
      * @param sentence Cannot be null.
@@ -118,7 +118,7 @@ public class StringUtil {
 
         String preppedSubString = subString.trim();
         checkArgument(!subString.isEmpty());
-        return sentence.toLowerCase().startsWith(preppedSubString);
+        return sentence.toLowerCase().startsWith(preppedSubString.toLowerCase());
     }
 
     /**
