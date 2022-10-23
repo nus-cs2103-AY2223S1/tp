@@ -1,3 +1,4 @@
+<!-- markdownlint-disable-file first-line-h1 -->
 Here is an overview of what FoodRem consists of and how you can perform a command.
 ### Items and Tags
 
