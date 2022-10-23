@@ -20,6 +20,8 @@ import seedu.address.logic.commands.FilterCommandPredicate;
 import seedu.address.model.message.Message;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.TargetPerson;
+import seedu.address.model.quote.Quote;
+import seedu.address.model.quote.QuoteList;
 import seedu.address.model.reminder.ReadOnlyReminderList;
 import seedu.address.model.reminder.Reminder;
 import seedu.address.model.reminder.ReminderList;
@@ -310,6 +312,11 @@ public class ModelManager implements Model {
         return targetPerson.get();
     }
 
+    // =========== Motivational Quotes =================================================================
+    @Override
+    public Quote getQuote() {
+        return QuoteList.getRandomQuote();
+    }
     // =========== Reminder ====================================================================
 
     @Override

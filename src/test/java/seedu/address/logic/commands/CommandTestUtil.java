@@ -27,6 +27,7 @@ import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.message.Message;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.person.Person;
+import seedu.address.model.quote.Quote;
 import seedu.address.model.reminder.ReadOnlyReminderList;
 import seedu.address.model.reminder.Reminder;
 import seedu.address.model.tag.Tag;
@@ -357,6 +358,11 @@ public class CommandTestUtil {
 
         @Override
         public Set<Predicate<Person>> getNameFilters() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public Quote getQuote() {
             throw new AssertionError("This method should not be called.");
         }
     }
