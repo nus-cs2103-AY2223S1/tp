@@ -1,19 +1,19 @@
 <!-- markdownlint-disable-file first-line-h1 -->
 
-### Receive help during usage
+#### Receive help during usage: `help`
 
-Command: `help [COMMAND_WORD]`
+**Format**: `help [COMMAND_WORD]`
 
-> Description: Displays a help message for this application.
+> Displays a help message for this application.
 
-Example:
+**Example Input:**
 ```text
 help
-help delete
-held help
+help del
+help help
 ```
 
-Output:
+**Example Output:**
 
 A new window will open showing instructions.
 
@@ -24,20 +24,38 @@ If a `COMMAND_WORD` was specified, additional help for that command will be prov
 
 --- 
 
-### Reset the application
+#### Reset the application: `reset`
+**Format**: `reset`
 
-### Exit the application
+> Resets FoodRem program by clearing all items and tags currently stored.
 
-Command: `bye`
+**Example Input:**
 
-> Description: Exits FoodRem program.
+```text
+reset
+```
+**Example Output:**
+
+Command Output Box:
+```text
+FoodRem has been reset!
+```
+___
+
+#### Exit the application: `exit`
+
+Command: `exit`
+
+> Exits FoodRem program.
 
 ---
 
-Example:
-
-Input
+**Example Input:**
 
 ```text
-bye
+exit
 ```
+
+**Example Output:**
+
+FoodRem application will close.
