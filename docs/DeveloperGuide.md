@@ -166,6 +166,17 @@ The following sequence diagram shows how the show grade command works.
 
 Given below is an example usage scenario and how the show grade mechanism behaves at each step.
 
+### Extract emails
+
+This feature allows a TA to easily mass email a selected group of students. A typical workflow is as such:
+1. Use the `find` command to show a selected group of students of interest.
+2. Use the `extract emails` command to generate a [mailto:](https://en.wikipedia.org/wiki/Mailto) link, which is copied to the clipboard
+3. Open mailto: link using a mail app, typically on the browser.
+
+#### Current Implementation
+The following sequence diagram shows how the extract emails command works.
+
+
 ### \[Proposed\] Undo/redo feature
 
 #### Proposed Implementation
