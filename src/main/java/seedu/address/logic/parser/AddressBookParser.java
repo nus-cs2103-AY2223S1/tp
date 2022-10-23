@@ -12,6 +12,7 @@ import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
+import seedu.address.model.team.Task;
 
 /**
  * Parses user input.
@@ -32,7 +33,8 @@ public class AddressBookParser {
                     .registerConverter(Email.class, new EmailConverter())
                     .registerConverter(Phone.class, new PhoneConverter())
                     .registerConverter(Address.class, new AddressConverter())
-                    .registerConverter(Index.class, new IndexConverter());
+                    .registerConverter(Index.class, new IndexConverter())
+                    .registerConverter(Task.class, new TaskConverter());
             CommandLine.ParseResult parseResult = commandLine.parseArgs(args);
             CommandLine.ParseResult commandExecuted = parseResult.subcommand();
 

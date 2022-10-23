@@ -2,6 +2,7 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 
+import picocli.CommandLine;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Model;
@@ -11,6 +12,7 @@ import seedu.address.model.team.Task;
 /**
  * Adds a task to the current team.
  */
+@CommandLine.Command(name = "task")
 public class AddTaskCommand extends Command {
     public static final String COMMAND_WORD = "add_task";
 
@@ -23,7 +25,11 @@ public class AddTaskCommand extends Command {
     public static final String MESSAGE_DUPLICATE_TASK = "This task already exists in the team";
     public static final String MESSAGE_TASK_NAME_FORMAT_ERROR = "Task name cannot be empty";
 
-    private final Task task;
+    @CommandLine.Parameters(arity = "1")
+    private Task task;
+
+    public AddTaskCommand() {
+    }
 
     /**
      * Returns a command that adds a task to the current team.

@@ -1,5 +1,7 @@
 package seedu.address.logic.commands;
 
+import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
+
 import picocli.CommandLine;
 import picocli.CommandLine.Command;
 
@@ -12,6 +14,6 @@ public class MainCommand implements Runnable {
     private CommandLine.Model.CommandSpec spec;
 
     public void run() {
-        throw new CommandLine.ParameterException(spec.commandLine(), "Missing required subcommand");
+        throw new CommandLine.ParameterException(spec.commandLine(), MESSAGE_UNKNOWN_COMMAND);
     }
 }
