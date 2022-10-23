@@ -14,7 +14,6 @@ import java.util.Set;
 import java.util.function.Supplier;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-import java.util.stream.Stream;
 
 import seedu.address.logic.commands.FilterClearCommand;
 import seedu.address.logic.commands.FilterCommand;
@@ -134,22 +133,13 @@ public class FilterCommandParser implements Parser<FilterCommand> {
         return arguments.length() != 0;
     }
 
-    /**
-     * Returns true if none of the prefixes contains empty {@code Optional} values in the given
-     * {@code ArgumentMultimap}.
-     */
-    private static boolean arePrefixesPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
-        return Stream.of(prefixes)
-                .allMatch(prefix -> argumentMultimap.getValue(prefix).isPresent());
-    }
-
     private static boolean hasEmptyStrings(List<String> values) {
         return values.stream()
                 .anyMatch((value) -> value.equals(""));
     }
 
     private List<String> extractPrefixValues(ArgumentMultimap argMultimap, Prefix prefix) throws ParseException {
-        if (!arePrefixesPresent(argMultimap, prefix) || !argMultimap.getPreamble().isEmpty()) {
+        if (!argMultimap.arePrefixesPresent(prefix) || !argMultimap.getPreamble().isEmpty()) {
             return null;
         }
         List<String> values = argMultimap.getAllValues(prefix);

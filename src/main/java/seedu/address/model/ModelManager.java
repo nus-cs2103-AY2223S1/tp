@@ -20,6 +20,9 @@ import seedu.address.logic.commands.FilterCommandPredicate;
 import seedu.address.model.message.Message;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.TargetPerson;
+import seedu.address.model.reminder.ReadOnlyReminderList;
+import seedu.address.model.reminder.Reminder;
+import seedu.address.model.reminder.ReminderList;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -30,6 +33,8 @@ public class ModelManager implements Model {
 
     private final AddressBook addressBook;
     private final UserPrefs userPrefs;
+    private final ReminderList reminderList;
+    private final ReminderList targetPersonReminderList;
     private final Set<Predicate<Person>> namePredicates;
     private final Set<Predicate<Person>> tagPredicates;
     private final FilteredList<Person> filteredPersons;
@@ -38,13 +43,17 @@ public class ModelManager implements Model {
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
      */
-    public ModelManager(ReadOnlyAddressBook addressBook, ReadOnlyUserPrefs userPrefs) {
+    public ModelManager(ReadOnlyAddressBook addressBook, ReadOnlyUserPrefs userPrefs,
+                        ReadOnlyReminderList reminderList) {
         requireAllNonNull(addressBook, userPrefs);
 
-        logger.fine("Initializing with address book: " + addressBook + " and user prefs " + userPrefs);
+        logger.fine("Initializing with address book: " + addressBook + " and user prefs "
+                + userPrefs + " and reminder list " + reminderList);
 
         this.addressBook = new AddressBook(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
+        this.reminderList = new ReminderList(reminderList);
+        this.targetPersonReminderList = new ReminderList();
         this.namePredicates = new HashSet<>();
         this.tagPredicates = new HashSet<>();
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
@@ -52,7 +61,7 @@ public class ModelManager implements Model {
     }
 
     public ModelManager() {
-        this(new AddressBook(), new UserPrefs());
+        this(new AddressBook(), new UserPrefs(), new ReminderList());
     }
 
     // =========== UserPrefs ======================================================================
@@ -112,6 +121,7 @@ public class ModelManager implements Model {
     @Override
     public void deletePerson(Person target) {
         addressBook.removePerson(target);
+        reminderList.deleteRemindersWithNameAndPhone(target.getName(), target.getPhone());
 
         if (isTargetPerson(target)) {
             clearTargetPerson();
@@ -128,6 +138,7 @@ public class ModelManager implements Model {
     public void setPerson(Person target, Person editedPerson) {
         requireAllNonNull(target, editedPerson);
         addressBook.setPerson(target, editedPerson);
+        updateReminderLists(target, editedPerson);
 
         if (isTargetPerson(target)) {
             setTargetPerson(editedPerson);
@@ -274,11 +285,14 @@ public class ModelManager implements Model {
     public void setTargetPerson(Person person) {
         requireNonNull(person);
         targetPerson.set(person);
+        targetPersonReminderList.setReminders(
+                reminderList.getRemindersWithNameAndPhone(person.getName(), person.getPhone()));
     }
 
     @Override
     public void clearTargetPerson() {
         targetPerson.clear();
+        targetPersonReminderList.clear();
     }
 
     @Override
@@ -294,5 +308,74 @@ public class ModelManager implements Model {
     @Override
     public Person getTargetPerson() {
         return targetPerson.get();
+    }
+
+    // =========== Reminder ====================================================================
+
+    @Override
+    public ReadOnlyReminderList getReminderList() {
+        return reminderList;
+    }
+
+    @Override
+    public ObservableList<Reminder> getReminderListAsObservableList() {
+        return reminderList.getAllReminders();
+    }
+
+    @Override
+    public ObservableList<Reminder> getTargetPersonReminderListAsObservableList() {
+        return targetPersonReminderList.getAllReminders();
+    }
+
+    private boolean isTargetPersonReminder(Reminder reminder) {
+        return hasTargetPerson()
+                && reminder.matchesNameAndPhone(targetPerson.get().getName(), targetPerson.get().getPhone());
+    }
+
+    @Override
+    public void deleteReminder(Reminder reminder) {
+        reminderList.delete(reminder);
+        if (isTargetPersonReminder(reminder)) {
+            targetPersonReminderList.delete(reminder);
+        }
+    }
+
+    @Override
+    public void addReminder(Reminder reminder) {
+        reminderList.add(reminder);
+        if (isTargetPersonReminder(reminder)) {
+            targetPersonReminderList.add(reminder);
+        }
+    }
+
+    @Override
+    public boolean reminderExists(Reminder reminder) {
+        return reminderList.contains(reminder);
+    }
+
+    @Override
+    public ObservableList<Reminder> getCurrentReminderList() {
+        if (targetPerson.isPresent()) {
+            return getTargetPersonReminderListAsObservableList();
+        } else {
+            return getReminderListAsObservableList();
+        }
+    }
+
+    @Override
+    public void clearCurrentReminderList() {
+        if (targetPerson.isPresent()) {
+            reminderList.deleteRemindersWithNameAndPhone(targetPerson.get().getName(), targetPerson.get().getPhone());
+            targetPersonReminderList.clear();
+        } else {
+            reminderList.clear();
+        }
+    }
+
+    private void updateReminderLists(Person target, Person editedPerson) {
+        reminderList.updateRemindersWithNewNameAndPhone(target.getName(), target.getPhone(),
+                editedPerson.getName(), editedPerson.getPhone());
+        targetPersonReminderList.updateRemindersWithNewNameAndPhone(target.getName(), target.getPhone(),
+                editedPerson.getName(), editedPerson.getPhone());
     }
 }

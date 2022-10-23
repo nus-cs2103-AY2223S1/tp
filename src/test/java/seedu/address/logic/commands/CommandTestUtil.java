@@ -27,6 +27,8 @@ import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.message.Message;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.person.Person;
+import seedu.address.model.reminder.ReadOnlyReminderList;
+import seedu.address.model.reminder.Reminder;
 import seedu.address.model.tag.Tag;
 import seedu.address.testutil.EditPersonDescriptorBuilder;
 
@@ -289,7 +291,22 @@ public class CommandTestUtil {
         }
 
         @Override
+        public ReadOnlyReminderList getReminderList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public ObservableList<Reminder> getReminderListAsObservableList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public List<Message> getMessages() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public ObservableList<Reminder> getTargetPersonReminderListAsObservableList() {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -299,7 +316,32 @@ public class CommandTestUtil {
         }
 
         @Override
+        public void deleteReminder(Reminder reminder) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public void deleteMessage(Message message) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void addReminder(Reminder reminder) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public boolean reminderExists(Reminder reminder) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public ObservableList<Reminder> getCurrentReminderList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void clearCurrentReminderList() {
             throw new AssertionError("This method should not be called.");
         }
 

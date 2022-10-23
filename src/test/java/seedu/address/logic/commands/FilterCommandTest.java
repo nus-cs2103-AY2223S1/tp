@@ -26,6 +26,7 @@ import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.person.TagMatchesQueryPredicate;
+import seedu.address.model.reminder.ReminderList;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -33,8 +34,8 @@ import seedu.address.model.tag.Tag;
  */
 public class FilterCommandTest {
     private static final String COMMA = "\\s*,\\s*";
-    private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
-    private Model expectedModel = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+    private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs(), new ReminderList());
+    private Model expectedModel = new ModelManager(getTypicalAddressBook(), new UserPrefs(), new ReminderList());
 
     @Test
     public void equals() {

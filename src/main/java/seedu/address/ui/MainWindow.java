@@ -73,7 +73,7 @@ public class MainWindow extends UiPart<Stage> {
         // Configure the UI
         setWindowDefaultSize(logic.getGuiSettings());
         setHelpShortcut();
-        welcomePanel = new WelcomePanel();
+        welcomePanel = new WelcomePanel(logic.getReminderListAsObservableList());
         mainPane.addColumn(1, welcomePanel.getRoot());
 
         helpWindow = new HelpWindow();
@@ -102,7 +102,8 @@ public class MainWindow extends UiPart<Stage> {
         personListPanel = new PersonListPanel(logic.getFilteredPersonList());
         personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
 
-        targetPersonPanel = new TargetPersonPanel(logic.getTargetPersonList());
+        targetPersonPanel = new TargetPersonPanel(logic.getTargetPersonList(),
+                logic.getTargetPersonReminderListAsObservableList());
 
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
