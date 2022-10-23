@@ -47,7 +47,7 @@ public class AddTaskCommandTest {
         assertEquals(String.format(AddTaskCommand.MESSAGE_SUCCESS, validTask), commandResult.getFeedbackToUser());
         assertEquals(Arrays.asList(validTask), modelStub.tasksAdded);
         assertEquals(Arrays.asList(new PersonTaskBridge(
-                UUID.fromString("47005f2b-9c40-4051-8c95-69ca601cb58d"),
+                UUID.fromString(PersonBuilder.DEFAULT_UUID),
                 modelStub.tasksAdded.get(0).getId())), modelStub.bridgesAdded);
     }
 
@@ -134,6 +134,7 @@ public class AddTaskCommandTest {
             throw new AssertionError("This method should not be called.");
         }
 
+
         @Override
         public ReadOnlyAddressBook getAddressBook() {
             throw new AssertionError("This method should not be called.");
@@ -201,6 +202,20 @@ public class AddTaskCommandTest {
 
         @Override
         public void addBridge(PersonTaskBridge bridge) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void hotUpdateAssociatedContacts() {
+        }
+
+        @Override
+        public void updateFilteredBridgeList(Predicate<PersonTaskBridge> predicate) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public ObservableList<PersonTaskBridge> getFilteredBridgeList() {
             throw new AssertionError("This method should not be called.");
         }
     }

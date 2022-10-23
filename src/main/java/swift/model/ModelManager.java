@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static swift.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
+import java.util.List;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
@@ -11,6 +12,9 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import swift.commons.core.GuiSettings;
 import swift.commons.core.LogsCenter;
+import swift.commons.core.index.Index;
+import swift.logic.commands.SelectContactCommand;
+import swift.logic.commands.exceptions.CommandException;
 import swift.model.bridge.PersonTaskBridge;
 import swift.model.person.Person;
 import swift.model.task.Task;
@@ -25,6 +29,7 @@ public class ModelManager implements Model {
     private final UserPrefs userPrefs;
     private final FilteredList<Person> filteredPersons;
     private final FilteredList<Task> filteredTasks;
+    private final FilteredList<PersonTaskBridge> filteredBridges;
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
@@ -38,6 +43,7 @@ public class ModelManager implements Model {
         this.userPrefs = new UserPrefs(userPrefs);
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
         filteredTasks = new FilteredList<>(this.addressBook.getTaskList());
+        filteredBridges = new FilteredList<>(this.addressBook.getBridgeList());
     }
 
     public ModelManager() {
@@ -105,7 +111,7 @@ public class ModelManager implements Model {
     @Override
     public void addPerson(Person person) {
         addressBook.addPerson(person);
-        updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+        updateFilteredPersonList(PREDICATE_SHOW_ALL_PEOPLE);
     }
 
     @Override
@@ -156,6 +162,17 @@ public class ModelManager implements Model {
         addressBook.addBridge(bridge);
     }
 
+    @Override
+    public void hotUpdateAssociatedContacts() throws CommandException {
+        List<Person> currentPersonList = this.getFilteredPersonList();
+        boolean isSelected = currentPersonList.size() == 1;
+        if (isSelected) {
+            int firstElement = 1;
+            Index index = Index.fromOneBased(firstElement);
+            new SelectContactCommand(index).execute(this);
+        }
+    }
+
     //=========== Filtered Task List Accessors =============================================================
     /**
      * Returns an unmodifiable view of the list of {@code Task} backed by the internal list of
@@ -170,6 +187,22 @@ public class ModelManager implements Model {
     public void updateFilteredTaskList(Predicate<Task> predicate) {
         requireNonNull(predicate);
         filteredTasks.setPredicate(predicate);
+    }
+
+    //=========== Filtered Bridge List Accessors =============================================================
+    /**
+     * Returns an unmodifiable view of the list of {@code Task} backed by the internal list of
+     * {@code versionedAddressBook}
+     */
+    @Override
+    public ObservableList<PersonTaskBridge> getFilteredBridgeList() {
+        return filteredBridges;
+    }
+
+    @Override
+    public void updateFilteredBridgeList(Predicate<PersonTaskBridge> predicate) {
+        requireNonNull(predicate);
+        filteredBridges.setPredicate(predicate);
     }
 
     //=========== Filtered Person List Accessors =============================================================

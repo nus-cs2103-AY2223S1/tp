@@ -3,7 +3,7 @@ package swift.model;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static swift.model.Model.PREDICATE_SHOW_ALL_PERSONS;
+import static swift.model.Model.PREDICATE_SHOW_ALL_PEOPLE;
 import static swift.testutil.Assert.assertThrows;
 import static swift.testutil.TypicalPersons.ALICE;
 import static swift.testutil.TypicalPersons.BENSON;
@@ -100,6 +100,11 @@ public class ModelManagerTest {
     }
 
     @Test
+    public void getFilteredBridgeList_modifyList_throwsUnsupportedOperationException() {
+        assertThrows(UnsupportedOperationException.class, () -> modelManager.getFilteredBridgeList().remove(0));
+    }
+
+    @Test
     public void hasTask_nullTask_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> modelManager.hasTask(null));
     }
@@ -179,7 +184,7 @@ public class ModelManagerTest {
         assertFalse(modelManager.equals(new ModelManager(addressBook, userPrefs)));
 
         // resets modelManager to initial state for upcoming tests
-        modelManager.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+        modelManager.updateFilteredPersonList(PREDICATE_SHOW_ALL_PEOPLE);
 
         // different userPrefs -> returns false
         UserPrefs differentUserPrefs = new UserPrefs();

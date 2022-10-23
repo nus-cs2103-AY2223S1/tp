@@ -57,6 +57,8 @@ public class AddTaskCommand extends Command {
             model.addBridge(model.getFilteredPersonList().get(index.getZeroBased()), toAdd);
         }
 
+        model.hotUpdateAssociatedContacts();
+
         return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
     }
 

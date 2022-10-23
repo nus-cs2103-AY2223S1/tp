@@ -5,6 +5,7 @@ import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import swift.commons.core.GuiSettings;
+import swift.logic.commands.exceptions.CommandException;
 import swift.model.bridge.PersonTaskBridge;
 import swift.model.person.Person;
 import swift.model.task.Task;
@@ -14,8 +15,11 @@ import swift.model.task.Task;
  */
 public interface Model {
     /** {@code Predicate} that always evaluate to true */
-    Predicate<Person> PREDICATE_SHOW_ALL_PERSONS = unused -> true;
+    Predicate<Person> PREDICATE_SHOW_ALL_PEOPLE = unused -> true;
+    Predicate<Person> PREDICATE_HIDE_ALL_PEOPLE = unused -> false;
     Predicate<Task> PREDICATE_SHOW_ALL_TASKS = unused -> true;
+    Predicate<Task> PREDICATE_HIDE_ALL_TASKS = unused -> false;
+    Predicate<PersonTaskBridge> PREDICATE_SHOW_ALL_BRIDGE = unused -> true;
 
     /**
      * Replaces user prefs data with the data in {@code userPrefs}.
@@ -46,6 +50,13 @@ public interface Model {
      * Sets the user prefs' address book file path.
      */
     void setAddressBookFilePath(Path addressBookFilePath);
+
+    /**
+     * Method that updates the associated contact list if it's unambiguous that a user has been selected.
+     *
+     * @throws CommandException
+     */
+    void hotUpdateAssociatedContacts() throws CommandException;
 
     /**
      * Replaces address book data with the data in {@code addressBook}.
@@ -90,6 +101,15 @@ public interface Model {
 
     /** Returns an unmodifiable view of the filtered task list */
     ObservableList<Task> getFilteredTaskList();
+
+    /**
+     * Updates the filter of the filtered person list to filter by the given {@code predicate}.
+     * @throws NullPointerException if {@code predicate} is null.
+     */
+    void updateFilteredBridgeList(Predicate<PersonTaskBridge> predicate);
+
+    /** Returns an unmodifiable view of the filtered task list */
+    ObservableList<PersonTaskBridge> getFilteredBridgeList();
 
     /**
      * Updates the filter of the filtered task list to filter by the given {@code predicate}.

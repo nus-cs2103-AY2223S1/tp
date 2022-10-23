@@ -195,6 +195,20 @@ public class AddCommandTest {
         public void addBridge(PersonTaskBridge bridge) {
             throw new AssertionError("This method should not be called.");
         }
+
+        @Override
+        public void hotUpdateAssociatedContacts() {
+        }
+
+        @Override
+        public void updateFilteredBridgeList(Predicate<PersonTaskBridge> predicate) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public ObservableList<PersonTaskBridge> getFilteredBridgeList() {
+            throw new AssertionError("This method should not be called.");
+        }
     }
 
     /**

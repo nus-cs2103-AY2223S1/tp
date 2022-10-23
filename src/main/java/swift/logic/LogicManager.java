@@ -15,12 +15,14 @@ import swift.logic.parser.exceptions.ParseException;
 import swift.model.Model;
 import swift.model.ReadOnlyAddressBook;
 import swift.model.person.Person;
+import swift.model.task.Task;
 import swift.storage.Storage;
 
 /**
  * The main LogicManager of the app.
  */
 public class LogicManager implements Logic {
+
     public static final String FILE_OPS_ERROR_MESSAGE = "Could not save data to file: ";
     private final Logger logger = LogsCenter.getLogger(LogicManager.class);
 
@@ -62,6 +64,11 @@ public class LogicManager implements Logic {
     @Override
     public ObservableList<Person> getFilteredPersonList() {
         return model.getFilteredPersonList();
+    }
+
+    @Override
+    public ObservableList<Task> getFilteredTaskList() {
+        return model.getFilteredTaskList();
     }
 
     @Override
