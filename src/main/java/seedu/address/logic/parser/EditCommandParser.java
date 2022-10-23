@@ -18,6 +18,7 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.EditCommand.EditInternshipDescriptor;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.internship.ApplicationStatus;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -63,6 +64,7 @@ public class EditCommandParser implements Parser<EditCommand> {
         if (argMultimap.getValue(PREFIX_INTERVIEW_DATE).isPresent()) {
             editInternshipDescriptor.setInterviewDate(ParserUtil.parseInterviewDate(
                     argMultimap.getValue(PREFIX_INTERVIEW_DATE).get()));
+            editInternshipDescriptor.setApplicationStatus(ApplicationStatus.Shortlisted);
         }
 
         parseTagsForEdit(argMultimap.getAllValues(PREFIX_TAG)).ifPresent(editInternshipDescriptor::setTags);

@@ -48,8 +48,6 @@ public class AddCommandParser implements Parser<AddCommand> {
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
 
         Internship internship = new Internship(company, link, description, applicationStatus, appliedDate, null, tagList);
-//        Internship internship = new Internship(company, link, description, applicationStatus, appliedDate, tagList);
-
 
         return new AddCommand(internship);
     }
