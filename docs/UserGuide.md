@@ -93,12 +93,29 @@ Shows a list of all students in the student list.
 
 Format: `list`
 
-### Uploading/ Changing student profile picture: `upload`
+### Adding a class field to a student: `class`
 
-Format: `upload INDEX pic/FILE_PATH`
+Add the class group to the specified student from the student list.
+
+Format: `class 1 c/CLASS`
+
+* Edits the student at the specified INDEX. The index refers to the index number shown in the displayed student list. The index must be a positive integer 1, 2, 3, …
+* Existing class group will be updated to the input values.
+* You can remove a student's class group by typing c/ without specifying any value after it.
+
+Examples:
+* ```class 1 c/CS2030S Lab 32``` Edits the class group of the 1st student in the list to be CS2030S Lab 32.
+* ```class 1 c/ ``` Clears the class group of the 1st student in the list.
+
+### Uploading/ Changing student profile picture: `upload-pic`
+
+GREWZ allows you to upload image of your students into your application. The following steps will help you upload photos of your students into the student list.
+
+Format: `upload-pic INDEX`
 
 * Uploads a picture for the student at the specified `INDEX`. The index refers to the index number shown in the displayed student list. The index **must be a positive integer** 1, 2, 3, …​
-* `FILE_PATH` **MUST** be a .jpg file.
+* A window will open to allow you to select a file from your computer. The file **must** be of .JPG format.
+* If no picture exists for the student specified, the selected picture will be assigned to the student.
 * Existing picture will be updated to the input file picture.
 
 
@@ -106,7 +123,7 @@ Format: `upload INDEX pic/FILE_PATH`
 
 Edits an existing student in the student list.
 
-Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [c/CLASS] [a/ADDRESS] [t/TAG]…​`
+Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [c/CLASS] [i/STUDENT_ID] [t/TAG]…​`
 
 * Edits the student at the specified `INDEX`. The index refers to the index number shown in the displayed student list. The index **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
@@ -122,20 +139,20 @@ Examples:
 
 ### Locating students by name: `find`
 
-Finds students whose names contain any of the given keywords.
+Finds students whose student details contain any of the given keywords.
 
-Format: `find KEYWORD [MORE_KEYWORDS]`
+Format: find KEYWORD [MORE_KEYWORDS]
 
-* The search is case-insensitive. e.g `hans` will match `Hans`
-* The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
-* All fields are searched.
-* Partial words will also be matched e.g. `Han` will match `Hans`
-* Students matching at least one keyword will be returned (i.e. `OR` search).
-  e.g. `Hans Bo` will return `Hans Gruber`, `Bo Yang`
+* The search is case-insensitive. e.g hans will match Hans
+* The order of the keywords does not matter. e.g. Hans Bo will match Bo Hans
+* All fields are searched - NAME, STUDENT_ID, PHONE, CLASS, EMAIL.
+* Partial words will also be matched e.g. Han will match Hans
+* Students matching at least one keyword will be returned (i.e. OR search).
+  e.g. Hans Bo will return Hans Gruber, Bo Yang
 
 Examples:
-* `find Jack` returns `jack tan` and `Jack Lee`
-* `find alex dav` returns `Wong Alex`, `David Lim`<br>
+* find Jack returns jack tan and Jack Lee
+* find alex dav returns Wong Alex, David Lim<br>
 
 
 
@@ -153,6 +170,44 @@ Examples:
 * `list` followed by `delete 2` deletes the 2nd student in the student list.
 * `find Betsy` followed by `delete 1` deletes the 1st student in the results of the `find` command.
 
+### Adding attendance to student: `attendance add`
+
+Adds an attendance to a student in the class list
+
+Format: `attendance add INDEX c/CLASS s/ATTENDANCESIZE`
+
+<div markdown="span" class="alert alert-primary">:bulb: **Additional information:**
+Maximum attendance list size is 12, if the size is 0, the attendance list will be N.A. 
+</div>
+
+Examples:
+```attendance add 1 c/CS2030 s/10```
+```attendance add 1 c/CS2040 s/1```
+
+### Marking attendance of student: `attendance mark`
+
+Marks attendance of given student in class list
+
+Format: `attendance mark INDEX l/LESSON m/ATTENDANCEVALUE`
+
+<div markdown="span" class="alert alert-primary">:bulb: **Additional information:**
+Lesson number starts from 1. 
+Attendance value is 0 for absent, 1 for present.
+</div>
+
+Examples:
+```attendance mark 1 l/1 m/1
+attendance mark 1 l/1 m/0```
+
+### Deleting attendance to student: `attendance delete`
+
+Deletes entire attendance list of student in class list
+
+Format: attendance delete INDEX
+
+Examples:
+attendance delete 1
+attendance delete 2
 ### Clearing all entries : `clear`
 
 Clears all entries from the student list.
@@ -164,6 +219,14 @@ Format: `clear`
 Exits the program.
 
 Format: `exit`
+
+### Navigating User Input History: `↑`, `↓`
+
+Adapted from [senior](https://github.com/AY2122S2-CS2103T-W13-3/tp)
+
+Allows user to quickly retrieve their previous inputs from current session by using the up and down arrow keys.
+
+Format: `↑`, `↓`
 
 ### Saving the data
 
