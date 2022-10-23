@@ -4,7 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.trackascholar.logic.commands.CommandTestUtil.VALID_SCHOLARSHIP_BOB;
-import static seedu.trackascholar.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
+import static seedu.trackascholar.logic.commands.CommandTestUtil.VALID_MAJOR_HUSBAND;
 import static seedu.trackascholar.testutil.Assert.assertThrows;
 import static seedu.trackascholar.testutil.TypicalApplicants.ALICE;
 import static seedu.trackascholar.testutil.TypicalApplicants.getTypicalTrackAScholar;
@@ -47,7 +47,7 @@ public class TrackAScholarTest {
     public void resetData_withDuplicateApplicants_throwsDuplicateApplicantException() {
         // Two applicants with the same identity fields
         Applicant editedAlice = new ApplicantBuilder(ALICE).withScholarship(VALID_SCHOLARSHIP_BOB)
-                .withTags(VALID_TAG_HUSBAND).build();
+                .withMajors(VALID_MAJOR_HUSBAND).build();
         List<Applicant> newApplicants = Arrays.asList(ALICE, editedAlice);
         TrackAScholarStub newData = new TrackAScholarStub(newApplicants);
 
@@ -74,7 +74,7 @@ public class TrackAScholarTest {
     public void hasApplicant_applicantWithSameIdentityFieldsInTrackAScholar_returnsTrue() {
         trackAScholar.addApplicant(ALICE);
         Applicant editedAlice = new ApplicantBuilder(ALICE).withScholarship(VALID_SCHOLARSHIP_BOB)
-                .withTags(VALID_TAG_HUSBAND).build();
+                .withMajors(VALID_MAJOR_HUSBAND).build();
         assertTrue(trackAScholar.hasApplicant(editedAlice));
     }
 

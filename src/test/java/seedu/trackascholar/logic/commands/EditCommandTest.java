@@ -6,7 +6,7 @@ import static seedu.trackascholar.logic.commands.CommandTestUtil.DESC_AMY;
 import static seedu.trackascholar.logic.commands.CommandTestUtil.DESC_BOB;
 import static seedu.trackascholar.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static seedu.trackascholar.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
-import static seedu.trackascholar.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
+import static seedu.trackascholar.logic.commands.CommandTestUtil.VALID_MAJOR_HUSBAND;
 import static seedu.trackascholar.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.trackascholar.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.trackascholar.logic.commands.CommandTestUtil.showApplicantAtIndex;
@@ -55,10 +55,10 @@ public class EditCommandTest {
 
         ApplicantBuilder applicantInList = new ApplicantBuilder(lastApplicant);
         Applicant editedApplicant = applicantInList.withName(VALID_NAME_BOB).withPhone(VALID_PHONE_BOB)
-                .withTags(VALID_TAG_HUSBAND).build();
+                .withMajors(VALID_MAJOR_HUSBAND).build();
 
         EditApplicantDescriptor descriptor = new EditApplicantDescriptorBuilder().withName(VALID_NAME_BOB)
-                .withPhone(VALID_PHONE_BOB).withTags(VALID_TAG_HUSBAND).build();
+                .withPhone(VALID_PHONE_BOB).withMajors(VALID_MAJOR_HUSBAND).build();
         EditCommand editCommand = new EditCommand(indexLastApplicant, descriptor);
 
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_APPLICANT_SUCCESS, editedApplicant);

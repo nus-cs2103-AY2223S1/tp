@@ -6,7 +6,7 @@ import static seedu.trackascholar.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.trackascholar.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.trackascholar.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.trackascholar.logic.parser.CliSyntax.PREFIX_SCHOLARSHIP;
-import static seedu.trackascholar.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.trackascholar.logic.parser.CliSyntax.PREFIX_MAJOR;
 import static seedu.trackascholar.model.Model.PREDICATE_SHOW_ALL_APPLICANTS;
 
 import java.util.Collections;
@@ -26,7 +26,7 @@ import seedu.trackascholar.model.applicant.Email;
 import seedu.trackascholar.model.applicant.Name;
 import seedu.trackascholar.model.applicant.Phone;
 import seedu.trackascholar.model.applicant.Scholarship;
-import seedu.trackascholar.model.tag.Tag;
+import seedu.trackascholar.model.major.Major;
 
 /**
  * Edits the details of an existing applicant in TrackAScholar.
@@ -44,7 +44,7 @@ public class EditCommand extends Command {
             + "[" + PREFIX_EMAIL + "EMAIL] "
             + "[" + PREFIX_SCHOLARSHIP + "SCHOLARSHIP] "
             + "[" + PREFIX_APPLICATION_STATUS + "APPLICATION_STATUS] "
-            + "[" + PREFIX_TAG + "TAG]...\n"
+            + "[" + PREFIX_MAJOR + "MAJOR]...\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_PHONE + "91234567 "
             + PREFIX_EMAIL + "johndoe@example.com";
@@ -104,10 +104,10 @@ public class EditCommand extends Command {
                 .orElse(applicantToEdit.getScholarship());
         ApplicationStatus updatedApplicationStatus = editApplicantDescriptor.getApplicationStatus()
                 .orElse(applicantToEdit.getApplicationStatus());
-        Set<Tag> updatedTags = editApplicantDescriptor.getTags().orElse(applicantToEdit.getTags());
+        Set<Major> updatedMajors = editApplicantDescriptor.getMajors().orElse(applicantToEdit.getMajors());
 
         return new Applicant(updatedName, updatedPhone, updatedEmail, updatedScholarship,
-                updatedApplicationStatus, updatedTags);
+                updatedApplicationStatus, updatedMajors);
     }
 
     @Override
@@ -138,13 +138,13 @@ public class EditCommand extends Command {
         private Email email;
         private Scholarship scholarship;
         private ApplicationStatus applicationStatus;
-        private Set<Tag> tags;
+        private Set<Major> majors;
 
         public EditApplicantDescriptor() {}
 
         /**
          * Copy constructor.
-         * A defensive copy of {@code tags} is used internally.
+         * A defensive copy of {@code majors} is used internally.
          */
         public EditApplicantDescriptor(EditApplicantDescriptor toCopy) {
             setName(toCopy.name);
@@ -152,14 +152,14 @@ public class EditCommand extends Command {
             setEmail(toCopy.email);
             setScholarship(toCopy.scholarship);
             setApplicationStatus(toCopy.applicationStatus);
-            setTags(toCopy.tags);
+            setMajors(toCopy.majors);
         }
 
         /**
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, phone, email, scholarship, applicationStatus, tags);
+            return CollectionUtil.isAnyNonNull(name, phone, email, scholarship, applicationStatus, majors);
         }
 
         public void setName(Name name) {
@@ -203,20 +203,20 @@ public class EditCommand extends Command {
         }
 
         /**
-         * Sets {@code tags} to this object's {@code tags}.
-         * A defensive copy of {@code tags} is used internally.
+         * Sets {@code majors} to this object's {@code majors}.
+         * A defensive copy of {@code majors} is used internally.
          */
-        public void setTags(Set<Tag> tags) {
-            this.tags = (tags != null) ? new HashSet<>(tags) : null;
+        public void setMajors(Set<Major> majors) {
+            this.majors = (majors != null) ? new HashSet<>(majors) : null;
         }
 
         /**
-         * Returns an unmodifiable tag set, which throws {@code UnsupportedOperationException}
+         * Returns an unmodifiable major set, which throws {@code UnsupportedOperationException}
          * if modification is attempted.
-         * Returns {@code Optional#empty()} if {@code tags} is null.
+         * Returns {@code Optional#empty()} if {@code majors} is null.
          */
-        public Optional<Set<Tag>> getTags() {
-            return (tags != null) ? Optional.of(Collections.unmodifiableSet(tags)) : Optional.empty();
+        public Optional<Set<Major>> getMajors() {
+            return (majors != null) ? Optional.of(Collections.unmodifiableSet(majors)) : Optional.empty();
         }
 
         @Override
@@ -239,7 +239,7 @@ public class EditCommand extends Command {
                     && getEmail().equals(e.getEmail())
                     && getScholarship().equals(e.getScholarship())
                     && getApplicationStatus().equals(e.getApplicationStatus())
-                    && getTags().equals(e.getTags());
+                    && getMajors().equals(e.getMajors());
         }
     }
 }

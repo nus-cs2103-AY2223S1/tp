@@ -12,7 +12,7 @@ import seedu.trackascholar.model.applicant.Email;
 import seedu.trackascholar.model.applicant.Name;
 import seedu.trackascholar.model.applicant.Phone;
 import seedu.trackascholar.model.applicant.Scholarship;
-import seedu.trackascholar.model.tag.Tag;
+import seedu.trackascholar.model.major.Major;
 
 /**
  * A utility class to help with building EditApplicantDescriptor objects.
@@ -39,7 +39,7 @@ public class EditApplicantDescriptorBuilder {
         descriptor.setEmail(applicant.getEmail());
         descriptor.setScholarship(applicant.getScholarship());
         descriptor.setApplicationStatus(applicant.getApplicationStatus());
-        descriptor.setTags(applicant.getTags());
+        descriptor.setMajors(applicant.getMajors());
     }
 
     /**
@@ -83,12 +83,12 @@ public class EditApplicantDescriptorBuilder {
     }
 
     /**
-     * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code EditApplicantDescriptor}
+     * Parses the {@code majors} into a {@code Set<Major>} and set it to the {@code EditApplicantDescriptor}
      * that we are building.
      */
-    public EditApplicantDescriptorBuilder withTags(String... tags) {
-        Set<Tag> tagSet = Stream.of(tags).map(Tag::new).collect(Collectors.toSet());
-        descriptor.setTags(tagSet);
+    public EditApplicantDescriptorBuilder withMajors(String... majors) {
+        Set<Major> majorSet = Stream.of(majors).map(Major::new).collect(Collectors.toSet());
+        descriptor.setMajors(majorSet);
         return this;
     }
 

@@ -41,10 +41,10 @@ TAS can get your scholarship applicant management tasks done faster than traditi
   e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
 
 * Items in square brackets are optional.<br>
-  e.g `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
+  e.g `n/NAME [m/MAJOR]` can be used as `n/John Doe t/friend` or as `n/John Doe`.
 
 * Items with `…`​ after them can be used multiple times including zero times.<br>
-  e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/friend`, `t/friend t/family` etc.
+  e.g. `[m/MAJOR]…​` can be used as ` ` (i.e. 0 times), `t/friend`, `t/friend t/family` etc.
 
 * Parameters can be in any order.<br>
   e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
@@ -70,10 +70,10 @@ Format: `help`
 
 Adds a scholarship application to the TrackAScholar
 
-Format: `add n/NAME p/PHONE_NUMBER e/EMAIL [t/TAG]…​`
+Format: `add n/NAME p/PHONE_NUMBER e/EMAIL [m/MAJOR]…​`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-An applicant can have any number of tags (including 0)
+An applicant can have any number of majors (including 0)
 </div>
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
@@ -94,19 +94,19 @@ Format: `list`
 
 Edits an existing scholarship application stored in TrackAScholar
 
-Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [t/TAG]…​`
+Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [m/MAJOR]…​`
 
 * Edits the scholarship application at the specified `INDEX`. The index refers to the index number shown in the displayed scholarship application list. The index **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
 * Existing values will be updated to the input values.
-* When editing tags, the existing tags of the scholarship application will be removed i.e adding of tags is not cumulative.
-* You can remove all the scholarship application’s tags by typing `t/` without
-  specifying any tags after it.
+* When editing majors, the existing majors of the scholarship application will be removed i.e adding of majors is not cumulative.
+* You can remove all the scholarship application’s majors by typing `m/` without
+  specifying any majors after it.
 
 Examples:
 *  `edit 1 n/John Cena e/johnCena@yahoo.com` Edits the name and email address of the 1st scholarship application to be `John Cena` and `johnCena@yahoo.com` respectively.
 
-*  `edit 2 n/Samuel Cheong t/` Edits the name of the 2nd applicant to be `Samuel Cheong` and clears all existing tags.
+*  `edit 2 n/Samuel Cheong m/` Edits the name of the 2nd applicant to be `Samuel Cheong` and clears all existing majors.
 
 ### Locating applicants by name : `find`
 
@@ -213,17 +213,17 @@ _Details coming soon ..._
 
 ## Command summary
 
-| Action     | Format, Examples                                            |
-|------------|-------------------------------------------------------------|
-| **Add**    | `add n/NAME e/EMAIL p/PHONE_NUMBER s/SCHOLARSHIP [t/TAG] …` |
-| **Clear**  | `clear`                                                     |
-| **Delete** | `delete INDEX`                                              |
-| **Edit**   | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [t/TAG]…​`  |
-| **Exit**   | `exit`                                                      |
-| **Find**   | `find KEYWORD [MORE_KEYWORDS]`                              |
-| **filter** | `filter as/APPLICATIONSTATUS`                               |
-| **Help**   | `help`                                                      |
-| **List**   | `list`                                                      |
-| **Remove** | `remove ACCEPTED/REJECTED`                                  |
-| **Sort**   | `sort NAME/SCHOLARSHIP/APPLICATION_STATUS`                  |
+| Action     | Format, Examples                                              |
+|------------|---------------------------------------------------------------|
+| **Add**    | `add n/NAME e/EMAIL p/PHONE_NUMBER s/SCHOLARSHIP [m/MAJOR] …` |
+| **Clear**  | `clear`                                                       |
+| **Delete** | `delete INDEX`                                                |
+| **Edit**   | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [m/MAJOR]…​`  |
+| **Exit**   | `exit`                                                        |
+| **Find**   | `find KEYWORD [MORE_KEYWORDS]`                                |
+| **filter** | `filter as/APPLICATIONSTATUS`                                 |
+| **Help**   | `help`                                                        |
+| **List**   | `list`                                                        |
+| **Remove** | `remove ACCEPTED/REJECTED`                                    |
+| **Sort**   | `sort NAME/SCHOLARSHIP/APPLICATION_STATUS`                    |
 

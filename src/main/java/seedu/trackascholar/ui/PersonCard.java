@@ -41,7 +41,7 @@ public class PersonCard extends UiPart<Region> {
     @FXML
     private Label email;
     @FXML
-    private FlowPane tags;
+    private FlowPane majors;
 
     /**
      * Creates a {@code PersonCode} with the given {@code Applicant} and index to display.
@@ -56,9 +56,9 @@ public class PersonCard extends UiPart<Region> {
         applicationStatus.setText(applicant.getApplicationStatus().applicationStatus);
         setApplicationStatusStyling(applicant.getApplicationStatus().applicationStatus);
         email.setText(applicant.getEmail().value);
-        applicant.getTags().stream()
-                .sorted(Comparator.comparing(tag -> tag.tagName))
-                .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
+        applicant.getMajors().stream()
+                .sorted(Comparator.comparing(major -> major.majorName))
+                .forEach(major -> majors.getChildren().add(new Label(major.majorName)));
     }
 
     @Override

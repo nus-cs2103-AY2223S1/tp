@@ -7,14 +7,14 @@ import static seedu.trackascholar.logic.commands.CommandTestUtil.INVALID_EMAIL_D
 import static seedu.trackascholar.logic.commands.CommandTestUtil.INVALID_NAME_DESC;
 import static seedu.trackascholar.logic.commands.CommandTestUtil.INVALID_PHONE_DESC;
 import static seedu.trackascholar.logic.commands.CommandTestUtil.INVALID_SCHOLARSHIP_DESC;
-import static seedu.trackascholar.logic.commands.CommandTestUtil.INVALID_TAG_DESC;
+import static seedu.trackascholar.logic.commands.CommandTestUtil.INVALID_MAJOR_DESC;
 import static seedu.trackascholar.logic.commands.CommandTestUtil.NAME_DESC_AMY;
 import static seedu.trackascholar.logic.commands.CommandTestUtil.PHONE_DESC_AMY;
 import static seedu.trackascholar.logic.commands.CommandTestUtil.PHONE_DESC_BOB;
 import static seedu.trackascholar.logic.commands.CommandTestUtil.SCHOLARSHIP_DESC_AMY;
 import static seedu.trackascholar.logic.commands.CommandTestUtil.SCHOLARSHIP_DESC_BOB;
-import static seedu.trackascholar.logic.commands.CommandTestUtil.TAG_DESC_FRIEND;
-import static seedu.trackascholar.logic.commands.CommandTestUtil.TAG_DESC_HUSBAND;
+import static seedu.trackascholar.logic.commands.CommandTestUtil.MAJOR_DESC_FRIEND;
+import static seedu.trackascholar.logic.commands.CommandTestUtil.MAJOR_DESC_HUSBAND;
 import static seedu.trackascholar.logic.commands.CommandTestUtil.VALID_EMAIL_AMY;
 import static seedu.trackascholar.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
 import static seedu.trackascholar.logic.commands.CommandTestUtil.VALID_NAME_AMY;
@@ -22,9 +22,9 @@ import static seedu.trackascholar.logic.commands.CommandTestUtil.VALID_PHONE_AMY
 import static seedu.trackascholar.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
 import static seedu.trackascholar.logic.commands.CommandTestUtil.VALID_SCHOLARSHIP_AMY;
 import static seedu.trackascholar.logic.commands.CommandTestUtil.VALID_SCHOLARSHIP_BOB;
-import static seedu.trackascholar.logic.commands.CommandTestUtil.VALID_TAG_FRIEND;
-import static seedu.trackascholar.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
-import static seedu.trackascholar.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.trackascholar.logic.commands.CommandTestUtil.VALID_MAJOR_FRIEND;
+import static seedu.trackascholar.logic.commands.CommandTestUtil.VALID_MAJOR_HUSBAND;
+import static seedu.trackascholar.logic.parser.CliSyntax.PREFIX_MAJOR;
 import static seedu.trackascholar.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.trackascholar.logic.parser.CommandParserTestUtil.assertParseSuccess;
 import static seedu.trackascholar.testutil.TypicalIndexes.INDEX_FIRST_APPLICANT;
@@ -40,12 +40,12 @@ import seedu.trackascholar.model.applicant.Email;
 import seedu.trackascholar.model.applicant.Name;
 import seedu.trackascholar.model.applicant.Phone;
 import seedu.trackascholar.model.applicant.Scholarship;
-import seedu.trackascholar.model.tag.Tag;
+import seedu.trackascholar.model.major.Major;
 import seedu.trackascholar.testutil.EditApplicantDescriptorBuilder;
 
 public class EditCommandParserTest {
 
-    private static final String TAG_EMPTY = " " + PREFIX_TAG;
+    private static final String MAJOR_EMPTY = " " + PREFIX_MAJOR;
 
     private static final String MESSAGE_INVALID_FORMAT =
             String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditCommand.MESSAGE_USAGE);
@@ -89,8 +89,8 @@ public class EditCommandParserTest {
         assertParseFailure(parser, "1" + INVALID_EMAIL_DESC, Email.MESSAGE_CONSTRAINTS);
         // invalid scholarship
         assertParseFailure(parser, "1" + INVALID_SCHOLARSHIP_DESC, Scholarship.MESSAGE_CONSTRAINTS);
-        // invalid tag
-        assertParseFailure(parser, "1" + INVALID_TAG_DESC, Tag.MESSAGE_CONSTRAINTS);
+        // invalid major
+        assertParseFailure(parser, "1" + INVALID_MAJOR_DESC, Major.MESSAGE_CONSTRAINTS);
 
         // invalid phone followed by valid email
         assertParseFailure(parser, "1" + INVALID_PHONE_DESC + EMAIL_DESC_AMY, Phone.MESSAGE_CONSTRAINTS);
@@ -99,11 +99,11 @@ public class EditCommandParserTest {
         // is tested at {@code parse_invalidValueFollowedByValidValue_success()}
         assertParseFailure(parser, "1" + PHONE_DESC_BOB + INVALID_PHONE_DESC, Phone.MESSAGE_CONSTRAINTS);
 
-        // while parsing {@code PREFIX_TAG} alone will reset the tags of the {@code Applicant} being edited,
-        // parsing it together with a valid tag results in error
-        assertParseFailure(parser, "1" + TAG_DESC_FRIEND + TAG_DESC_HUSBAND + TAG_EMPTY, Tag.MESSAGE_CONSTRAINTS);
-        assertParseFailure(parser, "1" + TAG_DESC_FRIEND + TAG_EMPTY + TAG_DESC_HUSBAND, Tag.MESSAGE_CONSTRAINTS);
-        assertParseFailure(parser, "1" + TAG_EMPTY + TAG_DESC_FRIEND + TAG_DESC_HUSBAND, Tag.MESSAGE_CONSTRAINTS);
+        // while parsing {@code PREFIX_MAJOR} alone will reset the tags of the {@code Applicant} being edited,
+        // parsing it together with a valid major results in error
+        assertParseFailure(parser, "1" + MAJOR_DESC_FRIEND + MAJOR_DESC_HUSBAND + MAJOR_EMPTY, Major.MESSAGE_CONSTRAINTS);
+        assertParseFailure(parser, "1" + MAJOR_DESC_FRIEND + MAJOR_EMPTY + MAJOR_DESC_HUSBAND, Major.MESSAGE_CONSTRAINTS);
+        assertParseFailure(parser, "1" + MAJOR_EMPTY + MAJOR_DESC_FRIEND + MAJOR_DESC_HUSBAND, Major.MESSAGE_CONSTRAINTS);
 
         // multiple invalid values, but only the first invalid value is captured
         assertParseFailure(parser, "1" + INVALID_NAME_DESC + INVALID_EMAIL_DESC + VALID_SCHOLARSHIP_AMY
@@ -113,12 +113,12 @@ public class EditCommandParserTest {
     @Test
     public void parse_allFieldsSpecified_success() {
         Index targetIndex = INDEX_SECOND_APPLICANT;
-        String userInput = targetIndex.getOneBased() + PHONE_DESC_BOB + TAG_DESC_HUSBAND
-                + EMAIL_DESC_AMY + SCHOLARSHIP_DESC_AMY + NAME_DESC_AMY + TAG_DESC_FRIEND;
+        String userInput = targetIndex.getOneBased() + PHONE_DESC_BOB + MAJOR_DESC_HUSBAND
+                + EMAIL_DESC_AMY + SCHOLARSHIP_DESC_AMY + NAME_DESC_AMY + MAJOR_DESC_FRIEND;
 
         EditCommand.EditApplicantDescriptor descriptor = new EditApplicantDescriptorBuilder().withName(VALID_NAME_AMY)
                 .withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_AMY).withScholarship(VALID_SCHOLARSHIP_AMY)
-                .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).build();
+                .withMajors(VALID_MAJOR_HUSBAND, VALID_MAJOR_FRIEND).build();
         EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
 
         assertParseSuccess(parser, userInput, expectedCommand);
@@ -164,8 +164,8 @@ public class EditCommandParserTest {
         assertParseSuccess(parser, userInput, expectedCommand);
 
         // tags
-        userInput = targetIndex.getOneBased() + TAG_DESC_FRIEND;
-        descriptor = new EditApplicantDescriptorBuilder().withTags(VALID_TAG_FRIEND).build();
+        userInput = targetIndex.getOneBased() + MAJOR_DESC_FRIEND;
+        descriptor = new EditApplicantDescriptorBuilder().withMajors(VALID_MAJOR_FRIEND).build();
         expectedCommand = new EditCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
     }
@@ -174,12 +174,12 @@ public class EditCommandParserTest {
     public void parse_multipleRepeatedFields_acceptsLast() {
         Index targetIndex = INDEX_FIRST_APPLICANT;
         String userInput = targetIndex.getOneBased() + PHONE_DESC_AMY + SCHOLARSHIP_DESC_AMY + EMAIL_DESC_AMY
-                + TAG_DESC_FRIEND + PHONE_DESC_AMY + SCHOLARSHIP_DESC_AMY + EMAIL_DESC_AMY + TAG_DESC_FRIEND
-                + PHONE_DESC_BOB + SCHOLARSHIP_DESC_BOB + EMAIL_DESC_BOB + TAG_DESC_HUSBAND;
+                + MAJOR_DESC_FRIEND + PHONE_DESC_AMY + SCHOLARSHIP_DESC_AMY + EMAIL_DESC_AMY + MAJOR_DESC_FRIEND
+                + PHONE_DESC_BOB + SCHOLARSHIP_DESC_BOB + EMAIL_DESC_BOB + MAJOR_DESC_HUSBAND;
 
         EditApplicantDescriptor descriptor = new EditApplicantDescriptorBuilder().withPhone(VALID_PHONE_BOB)
                 .withEmail(VALID_EMAIL_BOB)
-                .withScholarship(VALID_SCHOLARSHIP_BOB).withTags(VALID_TAG_FRIEND, VALID_TAG_HUSBAND)
+                .withScholarship(VALID_SCHOLARSHIP_BOB).withMajors(VALID_MAJOR_FRIEND, VALID_MAJOR_HUSBAND)
                 .build();
         EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
 
@@ -205,11 +205,11 @@ public class EditCommandParserTest {
     }
 
     @Test
-    public void parse_resetTags_success() {
+    public void parse_resetMajors_success() {
         Index targetIndex = INDEX_THIRD_APPLICANT;
-        String userInput = targetIndex.getOneBased() + TAG_EMPTY;
+        String userInput = targetIndex.getOneBased() + MAJOR_EMPTY;
 
-        EditApplicantDescriptor descriptor = new EditApplicantDescriptorBuilder().withTags().build();
+        EditApplicantDescriptor descriptor = new EditApplicantDescriptorBuilder().withMajors().build();
         EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
 
         assertParseSuccess(parser, userInput, expectedCommand);

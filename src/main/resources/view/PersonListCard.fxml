@@ -32,8 +32,8 @@
         <Label fx:id="name" styleClass="cell_big_label" text="\$first" />
       </HBox>
       <HBox alignment="CENTER_LEFT" spacing="10">
-        <Label styleClass="title_name" text="Skills:" />
-        <FlowPane fx:id="tags" />
+        <Label styleClass="title_name" text="Majors:" />
+        <FlowPane fx:id="majors" />
       </HBox>
       <HBox alignment="CENTER_LEFT" spacing="10">
         <Label styleClass="title_name" text="Application Status:"/>

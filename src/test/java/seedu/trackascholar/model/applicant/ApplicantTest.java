@@ -6,7 +6,7 @@ import static seedu.trackascholar.logic.commands.CommandTestUtil.VALID_EMAIL_BOB
 import static seedu.trackascholar.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static seedu.trackascholar.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
 import static seedu.trackascholar.logic.commands.CommandTestUtil.VALID_SCHOLARSHIP_BOB;
-import static seedu.trackascholar.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
+import static seedu.trackascholar.logic.commands.CommandTestUtil.VALID_MAJOR_HUSBAND;
 import static seedu.trackascholar.testutil.Assert.assertThrows;
 import static seedu.trackascholar.testutil.TypicalApplicants.ALICE;
 import static seedu.trackascholar.testutil.TypicalApplicants.BENSON;
@@ -24,7 +24,7 @@ public class ApplicantTest {
     @Test
     public void asObservableList_modifyList_throwsUnsupportedOperationException() {
         Applicant applicant = new ApplicantBuilder().build();
-        assertThrows(UnsupportedOperationException.class, () -> applicant.getTags().remove(0));
+        assertThrows(UnsupportedOperationException.class, () -> applicant.getMajors().remove(0));
     }
 
     @Test
@@ -37,7 +37,7 @@ public class ApplicantTest {
 
         // same name, all other attributes different -> returns true
         Applicant editedAlice = new ApplicantBuilder(ALICE).withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB)
-                .withScholarship(VALID_SCHOLARSHIP_BOB).withTags(VALID_TAG_HUSBAND).build();
+                .withScholarship(VALID_SCHOLARSHIP_BOB).withMajors(VALID_MAJOR_HUSBAND).build();
         assertTrue(ALICE.isSameApplicant(editedAlice));
 
         // different name, all other attributes same -> returns false
@@ -127,14 +127,14 @@ public class ApplicantTest {
         assertFalse(ALICE.equals(editedAlice));
 
         // different tags -> returns false
-        editedAlice = new ApplicantBuilder(ALICE).withTags(VALID_TAG_HUSBAND).build();
+        editedAlice = new ApplicantBuilder(ALICE).withMajors(VALID_MAJOR_HUSBAND).build();
         assertFalse(ALICE.equals(editedAlice));
     }
 
     @Test
     public void toStringTest() {
         String expectedString = "Benson Meier; Phone: 98765432; Email: johnd@example.com; "
-                + "Scholarship: Merit; Application Status: accepted; Tags: [owesMoney][friends]";
+                + "Scholarship: Merit; Application Status: accepted; Majors: [owesMoney][friends]";
         assertTrue(BENSON.toString().equals(expectedString));
 
     }

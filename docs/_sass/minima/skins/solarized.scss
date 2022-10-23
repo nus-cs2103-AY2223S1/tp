@@ -106,7 +106,7 @@ $table-border-color:    $sol-mono1 !default;
   .ne    { color: $sol-violet; font-weight: bold } // Name.Exception
   .nf    { color: $sol-blue; font-weight: bold } // Name.Function
   .nn    { color: $sol-mono00 } // Name.Namespace
-  .nt    { color: $sol-blue } // Name.Tag
+  .nt    { color: $sol-blue } // Name.Major
   .nv    { color: $sol-cyan } // Name.Variable
   .ow    { color: $sol-mono01; font-weight: bold } // Operator.Word
   .w     { color: $sol-mono1 } // Text.Whitespace
