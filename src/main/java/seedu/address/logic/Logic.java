@@ -10,6 +10,7 @@ import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.ReadOnlyMyInsuRec;
 import seedu.address.model.client.Client;
 import seedu.address.model.meeting.Meeting;
+import seedu.address.model.product.Product;
 
 /**
  * API of the Logic component
@@ -36,6 +37,8 @@ public interface Logic {
 
     /** Returns an unmodifiable view of the filtered list of meetings */
     ObservableList<Meeting> getFilteredMeetingList();
+    /** Returns an unmodifiable view of the filtered list of products */
+    ObservableList<Product> getFilteredProductList();
 
     /** Returns an unmodifiable view of the detailed list of clients */
     ObservableList<Client> getDetailedClientList();

@@ -51,7 +51,7 @@ public class CommandResult {
      * and other fields set to their default value.
      */
     public CommandResult(String feedbackToUser) {
-        this(feedbackToUser, false, false, null);
+        this(feedbackToUser, false, false, CommandSpecific.NONSPECIFIC);
     }
 
     public String getFeedbackToUser() {

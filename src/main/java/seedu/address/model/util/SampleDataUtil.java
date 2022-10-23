@@ -20,6 +20,17 @@ import seedu.address.model.product.Product;
  * Contains utility methods for populating {@code MyInsuRec} with sample data.
  */
 public class SampleDataUtil {
+    private static Product[] getSampleProducts() {
+        return new Product[] {
+            new Product("Product1"),
+            new Product("Product2"),
+            new Product("Product3"),
+            new Product("Product4"),
+            new Product("Product5"),
+            new Product("Product6")
+        };
+    }
+
     public static Client[] getSampleClients() {
         return new Client[] {
             new Client(new Name("Alex Yeoh"), new Phone("87438807"), Optional.of(new Email("alexyeoh@example.com")),
@@ -52,6 +63,9 @@ public class SampleDataUtil {
 
     public static ReadOnlyMyInsuRec getSampleMyInsuRec() {
         MyInsuRec sampleAb = new MyInsuRec();
+        for (Product sampleProduct : getSampleProducts()) {
+            sampleAb.addProduct(sampleProduct);
+        }
         for (Client sampleClient : getSampleClients()) {
             sampleAb.addClient(sampleClient);
         }

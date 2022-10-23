@@ -6,8 +6,8 @@
     "email" : "invalid@email!3e",
     "address" : "4th street",
     "birthday" : "",
-    "tagged" : [ ],
     "meetings" : [ ],
     "products": [ ]
-  } ]
+  } ],
+  "products" : []
 }

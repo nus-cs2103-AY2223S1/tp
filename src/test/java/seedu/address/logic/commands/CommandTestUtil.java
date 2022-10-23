@@ -23,6 +23,7 @@ import seedu.address.model.client.Client;
 import seedu.address.model.client.NameContainsKeywordsPredicate;
 import seedu.address.model.meeting.Meeting;
 import seedu.address.model.meeting.MeetingContainsClientPredicate;
+import seedu.address.model.product.Product;
 import seedu.address.testutil.EditClientDescriptorBuilder;
 
 /**
@@ -42,6 +43,7 @@ public class CommandTestUtil {
     public static final LocalDate VALID_BIRTHDAY_BOB = LocalDate.of(2000, 1, 1);
     public static final String VALID_PRODUCT_1 = "Product1";
     public static final String VALID_PRODUCT_2 = "Product2";
+    public static final String INVALID_PRODUCT_1 = "Unadded Product";
 
     public static final String VALID_DESCRIPTION_MEETING1 = "meeting1";
     public static final String VALID_DESCRIPTION_MEETING2 = "meeting2";
@@ -152,4 +154,16 @@ public class CommandTestUtil {
         assertEquals(1, model.getFilteredMeetingList().size());
     }
 
+    /**
+     * Updates {@code model}'s filtered product list to show only the product at the given {@code targetIndex} in the
+     * {@code model}'s MyInsuRec.
+     */
+    public static void showProductAtIndex(Model model, Index targetIndex) {
+        assertTrue(targetIndex.getZeroBased() < model.getFilteredClientList().size());
+
+        Product product = model.getFilteredProductList().get(targetIndex.getZeroBased());
+        model.updateFilteredProductList(item -> item.equals(product));
+
+        assertEquals(1, model.getFilteredProductList().size());
+    }
 }

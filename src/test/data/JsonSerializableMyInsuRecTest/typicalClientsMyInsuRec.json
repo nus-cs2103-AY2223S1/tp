@@ -8,7 +8,7 @@
     "address" : "123, Jurong West Ave 6, #08-111",
     "birthday" : "",
     "meetings": [ ],
-    "products" : [ "friends" ]
+    "products" : [ "Product1" ]
   }, {
     "@UUID" : "d4d3240e-589b-4d22-84ab-4c6bee1cca7b",
     "name" : "Benson Meier",
@@ -17,7 +17,7 @@
     "address" : "311, Clementi Ave 2, #02-25",
     "birthday" : "",
     "meetings" : [ ],
-    "products" : [ "owesMoney", "friends" ]
+    "products" : [ "Product1", "Product2" ]
   }, {
     "@UUID" : "2f2c94eb-834e-40d0-a22b-3eac6460f26e",
     "name" : "Carl Kurz",
@@ -64,5 +64,6 @@
     "birthday" : "",
     "meetings" : [ ],
     "products" : [ ]
-  } ]
+  } ],
+  "products" : ["Product1", "Product2"]
 }

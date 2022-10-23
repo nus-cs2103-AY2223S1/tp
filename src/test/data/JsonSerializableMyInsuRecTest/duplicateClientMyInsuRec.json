@@ -6,9 +6,8 @@
     "email" : "alice@example.com",
     "address" : "123, Jurong West Ave 6, #08-111",
     "birthday" : "",
-    "tagged" : [ "friends" ],
     "meetings" : [ ],
-    "products": [ "friends" ]
+    "products": [ "Product1" ]
   }, {
     "@UUID" : "c4fa6f3d-a49f-495d-a5eb-d282b344a37d",
     "name" : "Alice Pauline",
@@ -16,8 +15,8 @@
     "email" : "pauline@example.com",
     "address" : "4th street",
     "birthday" : "",
-    "tagged" : [ ],
     "meetings" : [ ],
-    "products": [ ]
-  } ]
+    "products": [ "Product1" ]
+  } ],
+  "products" : [ "Product1"]
 }
