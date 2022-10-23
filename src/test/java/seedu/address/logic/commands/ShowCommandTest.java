@@ -32,7 +32,8 @@ public class ShowCommandTest {
         Person personToShow = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
         ShowCommand showCommand = new ShowCommand(INDEX_FIRST_PERSON);
 
-        String expectedMessage = String.format(ShowCommand.MESSAGE_SHOW_PERSON_SUCCESS, personToShow);
+        String expectedMessage = String.format(ShowCommand.MESSAGE_SHOW_PERSON_SUCCESS,
+                personToShow.getName().fullName);
 
         Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs(), new ReminderList());
         expectedModel.setTargetPerson(personToShow);
@@ -55,7 +56,8 @@ public class ShowCommandTest {
         Person personToShow = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
         ShowCommand showCommand = new ShowCommand(INDEX_FIRST_PERSON);
 
-        String expectedMessage = String.format(ShowCommand.MESSAGE_SHOW_PERSON_SUCCESS, personToShow);
+        String expectedMessage = String.format(ShowCommand.MESSAGE_SHOW_PERSON_SUCCESS,
+                personToShow.getName().fullName);
 
         Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs(), new ReminderList());
         expectedModel.setTargetPerson(personToShow);
