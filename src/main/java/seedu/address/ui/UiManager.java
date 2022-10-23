@@ -88,10 +88,8 @@ public class UiManager implements Ui {
     }
 
     private void showHelpWindow() {
+        // Show help window at the start of the application if new user
         if (MainApp.isNewDataFileCreated()) {
-            HelpWindow helpWindow = new HelpWindow();
-            helpWindow.show();
-        } else {
             HelpWindow helpWindow = new HelpWindow();
             helpWindow.show();
         }

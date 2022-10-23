@@ -29,7 +29,7 @@ public class SuggestCommand extends Command {
             + PREFIX_DAY_TIME_OF_WEEK + "mon@1755 "
             + PREFIX_DAY_TIME_OF_WEEK + "fri@2355 "
             + PREFIX_KEYWORD + "sally tan " + PREFIX_KEYWORD + "sally.245\n"
-            + "Example: " + COMMAND_WORD + " "
+            + COMMAND_WORD + " "
             + PREFIX_KEYWORD + "91234567 "
             + PREFIX_KEYWORD + "sally.tan.454r33 "
             + PREFIX_KEYWORD + "sally.tan.454@gmail.com";
