@@ -314,7 +314,7 @@ Tags: {vegetables}
 
 Command: `del ITEM_INDEX`
 
-> Deletes the item at the specified index
+> Deletes the item at the specified index.
 
 **Example Input:**
 
