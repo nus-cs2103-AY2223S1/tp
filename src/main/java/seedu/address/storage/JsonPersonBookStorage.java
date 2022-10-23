@@ -45,8 +45,8 @@ public class JsonPersonBookStorage implements PersonBookStorage {
     public Optional<ReadOnlyPersonBook> readPersonBook(Path filePath) throws DataConversionException {
         requireNonNull(filePath);
 
-        Optional<JsonSerializableAddressBook> jsonAddressBook = JsonUtil.readJsonFile(
-                filePath, JsonSerializableAddressBook.class);
+        Optional<JsonSerializablePersonBook> jsonAddressBook = JsonUtil.readJsonFile(
+                filePath, JsonSerializablePersonBook.class);
         if (!jsonAddressBook.isPresent()) {
             return Optional.empty();
         }
@@ -74,7 +74,7 @@ public class JsonPersonBookStorage implements PersonBookStorage {
         requireNonNull(filePath);
 
         FileUtil.createIfMissing(filePath);
-        JsonUtil.saveJsonFile(new JsonSerializableAddressBook(addressBook), filePath);
+        JsonUtil.saveJsonFile(new JsonSerializablePersonBook(addressBook), filePath);
     }
 
 }
