@@ -219,6 +219,11 @@ article.post {
   .lower-alpha {
     list-style-type: lower-alpha;
   }
+
+  pre,
+  code {
+    border-color: #ccc;
+  }
 }
 
 .glossary {
