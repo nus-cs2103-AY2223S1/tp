@@ -47,6 +47,8 @@ public class OrderCard extends UiPart<Region> {
     private Label deliveryStatus;
     @FXML
     private VBox items;
+    @FXML
+    private HBox dateContainer;
 
     /**
      * Creates a {@code PersonCode} with the given {@code Person} and index to display.
