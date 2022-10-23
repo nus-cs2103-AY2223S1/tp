@@ -21,6 +21,7 @@ import java.util.stream.Stream;
 import javafx.beans.Observable;
 import javafx.beans.property.SimpleBooleanProperty;
 import javafx.beans.property.SimpleObjectProperty;
+import seedu.address.model.Key;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -30,7 +31,6 @@ public class Appointment {
     public static final String REASON_MESSAGE_CONSTRAINTS = "Reason should not be empty";
     public static final String DATE_MESSAGE_CONSTRAINTS = "Date should contain YYYY-MM-DD and HH:MM values";
     public static final String TIME_PERIOD_MESSAGE_CONSTRAINTS = "Time Period should contain valid Y M or D values";
-    public static final String TAG_QUANTITY_CONSTRAINTS = "Operation results in more than 1 tag in Appointment.";
     public static final DateTimeFormatter DATE_FORMATTER =
             new DateTimeFormatterBuilder().appendOptional(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm"))
                     .appendOptional(DateTimeFormatter.ofPattern("HH:mm yyyy-MM-dd")).toFormatter();
@@ -221,6 +221,7 @@ public class Appointment {
         return test.isEmpty() || matcher.matches();
     }
 
+
     public LocalDateTime getDateTime() {
         return dateTime;
     }
@@ -340,11 +341,17 @@ public class Appointment {
      *
      * @param appointment The other person to compare with.
      */
-    public int groupCompareTo(Appointment appointment) {
+    public int groupCompareTo(Appointment appointment, Key key) {
         int tagWeight = 10;
+        int personWeight = 10;
         int dateWeight = 1;
-        return tagWeight * this.getGroupNumber().compareTo(appointment.getGroupNumber())
-            + dateWeight * this.compareTo(appointment);
+        if (key.equals(Key.TAG)) {
+            return tagWeight * this.getGroupNumber().compareTo(appointment.getGroupNumber())
+                    + dateWeight * this.compareTo(appointment);
+        } else {
+            return personWeight * this.getPatient().compareTo(appointment.getPatient())
+                    + dateWeight + this.compareTo(appointment);
+        }
     }
 
     @Override

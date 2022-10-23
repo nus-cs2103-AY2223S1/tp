@@ -34,8 +34,11 @@ public interface Model {
     /** {@code Comparator} that group persons by their tags */
     Comparator<Person> COMPARATOR_GROUP_PATIENTS = (p1, p2) -> p1.groupCompareTo(p2);
 
-    /** {@code Predicate} that group appointments by their tags */
-    Comparator<Appointment> COMPARATOR_GROUP_APPOINTMENTS = (a1, a2) -> a2.groupCompareTo(a2);
+    /** {@code comparator} that group appointments by their tags */
+    Comparator<Appointment> COMPARATOR_GROUP_TAG_APPOINTMENTS = (a1, a2) -> a2.groupCompareTo(a2, Key.TAG);
+
+    /** {@code comparator} that group appointments by their patients */
+    Comparator<Appointment> COMPARATOR_GROUP_PATIENT_APPOINTMENTS = (a1, a2) -> a2.groupCompareTo(a2, Key.PATIENT);
 
     /**
      * Replaces user prefs data with the data in {@code userPrefs}.

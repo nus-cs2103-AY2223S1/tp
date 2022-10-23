@@ -14,6 +14,7 @@ import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Appointment;
 import seedu.address.model.person.Email;
+import seedu.address.model.Key;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
 import seedu.address.model.tag.Tag;
@@ -141,6 +142,21 @@ public class ParserUtil {
             throw new ParseException(Tag.MESSAGE_CONSTRAINTS);
         }
         return Tag.convertToTag(trimmedTag);
+    }
+
+    /**
+     * Parses a {@code String key} into a {@code String}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code tag} is invalid.
+     */
+    public static Key parseKey(String key) throws ParseException {
+        requireNonNull(key);
+        String trimmedKey = key.trim();
+        if (!Key.isValidKey(trimmedKey)) {
+            throw new ParseException(Key.MESSAGE_CONSTRAINTS);
+        }
+        return Key.convertToKey(trimmedKey);
     }
 
     /**
