@@ -1,9 +1,11 @@
 package coydir.model.person;
 
 import static coydir.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
+import static coydir.logic.commands.CommandTestUtil.VALID_DEPARTMENT_BOB;
 import static coydir.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
 import static coydir.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static coydir.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
+import static coydir.logic.commands.CommandTestUtil.VALID_POSITION_BOB;
 import static coydir.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static coydir.testutil.Assert.assertThrows;
 import static coydir.testutil.TypicalPersons.ALICE;
@@ -33,7 +35,8 @@ public class PersonTest {
 
         // same name, all other attributes different -> returns true
         Person editedAlice = new PersonBuilder(ALICE).withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB)
-                .withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND).build();
+                .withPosition(VALID_POSITION_BOB).withDepartment(VALID_ADDRESS_BOB).withAddress(VALID_ADDRESS_BOB)
+                .withTags(VALID_TAG_HUSBAND).build();
         assertTrue(ALICE.isSamePerson(editedAlice));
 
         // different name, all other attributes same -> returns false
@@ -78,6 +81,14 @@ public class PersonTest {
 
         // different email -> returns false
         editedAlice = new PersonBuilder(ALICE).withEmail(VALID_EMAIL_BOB).build();
+        assertFalse(ALICE.equals(editedAlice));
+
+        // different position -> returns false
+        editedAlice = new PersonBuilder(ALICE).withPosition(VALID_POSITION_BOB).build();
+        assertFalse(ALICE.equals(editedAlice));
+
+        // different department -> returns false
+        editedAlice = new PersonBuilder(ALICE).withDepartment(VALID_DEPARTMENT_BOB).build();
         assertFalse(ALICE.equals(editedAlice));
 
         // different address -> returns false
