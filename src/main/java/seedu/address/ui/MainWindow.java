@@ -19,6 +19,7 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.ui.schedule.ScheduleGridPanel;
 import seedu.address.ui.schedule.ScheduleListPanel;
+import seedu.address.ui.schedule.VerticalScheduleGridPanel;
 
 /**
  * The Main Window. Provides the basic application layout containing
@@ -47,6 +48,7 @@ public class MainWindow extends UiPart<Stage> {
     private ModulePanel modulePanel;
     private ScheduleListPanel scheduleListPanel;
     private ScheduleGridPanel scheduleGridPanel;
+    private VerticalScheduleGridPanel verticalScheduleGridPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
 
@@ -76,6 +78,9 @@ public class MainWindow extends UiPart<Stage> {
 
     @FXML
     private StackPane scheduleGridPanelPlaceholder;
+
+    @FXML
+    private StackPane verticalScheduleGridPanelPlaceholder;
     @FXML
     private StackPane resultDisplayPlaceholder;
 
@@ -154,9 +159,12 @@ public class MainWindow extends UiPart<Stage> {
         scheduleListPanel = new ScheduleListPanel(logic.getFilteredScheduleList());
         scheduleListPanelPlaceholder.getChildren().add(scheduleListPanel.getRoot());
 
-        scheduleGridPanel = new ScheduleGridPanel(logic.getAllScheduleList());
-        scheduleGridPanel.construct();
-        scheduleGridPanelPlaceholder.getChildren().add(scheduleGridPanel.getRoot());
+//        scheduleGridPanel = new ScheduleGridPanel(logic.getAllScheduleList());
+//        scheduleGridPanel.construct();
+//        scheduleGridPanelPlaceholder.getChildren().add(scheduleGridPanel.getRoot());
+        verticalScheduleGridPanel = new VerticalScheduleGridPanel(logic.getAllScheduleList());
+        verticalScheduleGridPanel.construct();
+        verticalScheduleGridPanelPlaceholder.getChildren().add(verticalScheduleGridPanel.getRoot());
 
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
@@ -262,6 +270,18 @@ public class MainWindow extends UiPart<Stage> {
         resultDisplay.setFeedbackToUser("Show the Timetable!");
     }
 
+    /**
+     * Switch to Vertical Timetable page with all schedules.
+     */
+    @FXML
+    public void handleShowTabVerticalScheduleGrid() {
+        verticalScheduleGridPanel = new VerticalScheduleGridPanel(logic.getAllScheduleList());
+        verticalScheduleGridPanel.construct();
+        verticalScheduleGridPanelPlaceholder.getChildren().add(verticalScheduleGridPanel.getRoot());
+        tabPane.getSelectionModel().select(TIMETABLE);
+        resultDisplay.setFeedbackToUser("Show the vertical Timetable!");
+    }
+
 
 
     /**
@@ -340,7 +360,7 @@ public class MainWindow extends UiPart<Stage> {
                 handleShowTabSchedule();
             }
             if (commandResult.isShowTimeTable()) {
-                handleShowTabScheduleGrid();
+                handleShowTabVerticalScheduleGrid();
             }
 
             return commandResult;

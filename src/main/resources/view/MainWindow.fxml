@@ -51,7 +51,7 @@
                       text="Schedules" />
           </Menu>
           <Menu mnemonicParsing="false" text="Timetable">
-            <MenuItem fx:id="tabTimetable" mnemonicParsing="false" onAction="#handleShowTabScheduleGrid"
+            <MenuItem fx:id="tabTimetable" mnemonicParsing="false" onAction="#handleShowTabVerticalScheduleGrid"
                       text="Timetable" />
           </Menu>
         </MenuBar>
@@ -122,11 +122,11 @@
 
             <Tab text="Timetable">
               <content>
-                <VBox fx:id="scheduleGrid" styleClass="pane-with-border" minWidth="340" prefWidth="340" VBox.vgrow="ALWAYS">
+                <VBox fx:id="verticalScheduleGrid" styleClass="pane-with-border" minWidth="340" prefWidth="340" VBox.vgrow="ALWAYS">
                   <padding>
                     <Insets top="10" right="10" bottom="10" left="10" />
                   </padding>
-                  <StackPane fx:id="scheduleGridPanelPlaceholder" VBox.vgrow="ALWAYS"/>
+                  <StackPane fx:id="verticalScheduleGridPanelPlaceholder" VBox.vgrow="ALWAYS"/>
                 </VBox>
               </content>
             </Tab>

@@ -30,7 +30,7 @@ public class ScheduleGridPanel extends UiPart<Region> {
     private static final int NUM_OF_COLUMNS = SCALE_FACTOR * (END_HOUR - START_HOUR) + ROW_SPAN;
     private final Logger logger = LogsCenter.getLogger(ScheduleGridPanel.class);
     private final ObservableList<Schedule> schedules;
-    @javafx.fxml.FXML
+    @FXML
     private ScrollPane scrollPane;
     @FXML
     private GridPane gridPane;
@@ -56,7 +56,12 @@ public class ScheduleGridPanel extends UiPart<Region> {
         }
     }
 
-    private int getColIndex(double hour) {
+    /**
+     * Get the index of slot's start time
+     * @param hour beginning hour
+     * @return the 0-based index
+     */
+    public static int getStartTimeIndex(double hour) {
         return (int) ((hour - START_HOUR) * SCALE_FACTOR + 1);
     }
 
@@ -64,7 +69,12 @@ public class ScheduleGridPanel extends UiPart<Region> {
         return (int) (duration * SCALE_FACTOR);
     }
 
-    private int getRowIndex(Weekdays weekday) {
+    /**
+     * Gets the index of weekday
+     * @param weekday
+     * @return the 0-based index
+     */
+    public static int getWeekdayIndex(Weekdays weekday) {
         switch (weekday) {
         case Monday:
             return 0;
@@ -128,8 +138,8 @@ public class ScheduleGridPanel extends UiPart<Region> {
             double startHour = schedule.getHour(schedule.getStartTime());
             double duration = schedule.getDuration();
             Weekdays weekday = schedule.getWeekday();
-            rowIndex = getRowIndex(weekday);
-            colIndex = getColIndex(startHour);
+            rowIndex = getWeekdayIndex(weekday);
+            colIndex = getStartTimeIndex(startHour);
             SlotContainer slot = createSlot(schedule);
             gridPane.add(slot.getRoot(), colIndex, rowIndex, getColumnSpan(duration), ROW_SPAN);
         }

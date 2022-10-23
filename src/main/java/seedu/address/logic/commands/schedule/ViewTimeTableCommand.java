@@ -11,6 +11,8 @@ public class ViewTimeTableCommand extends Command {
 
     public static final String COMMAND_WORD = "tview";
 
+    public static final String MODEL = String.valueOf('v');
+
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Views the timetable. \n"
             + "Format: tview \n";
 
@@ -18,9 +20,16 @@ public class ViewTimeTableCommand extends Command {
 
     @Override
     public CommandResult execute(Model model) {
-        return new CommandResult(String.format(SHOWING_TIMETABLE_MESSAGE),
-                false, false, false, false,
-                false, false, true);
+        if (MODEL.equals('v')) {
+            return new CommandResult(String.format(SHOWING_TIMETABLE_MESSAGE),
+                    false, false, false, false,
+                    false, false, true);
+        } else {
+            return new CommandResult(String.format(SHOWING_TIMETABLE_MESSAGE),
+                    false, false, false, false,
+                    false, false, true);
+        }
+
     }
 
 }
