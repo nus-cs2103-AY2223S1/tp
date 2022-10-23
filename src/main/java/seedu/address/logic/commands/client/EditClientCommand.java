@@ -23,9 +23,9 @@ public class EditClientCommand extends ClientCommand {
 
     public static final String COMMAND_FLAG = "-e";
 
-    public static final String MESSAGE_SUCCESS = "Edited Client: %1$s";
+    public static final String MESSAGE_SUCCESS = "Client %1$s has been edited";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits a project in the address book. "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits a client in the address book. "
             + "Parameters: "
             + PREFIX_NAME + "NAME "
             + PREFIX_CLIENT_EMAIL + "CLIENT EMAIL "
