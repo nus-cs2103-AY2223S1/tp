@@ -114,8 +114,8 @@ Here are the other classes in `Logic` (omitted from the class diagram above) tha
 
 How the parsing works:
 
-* When called upon to parse a user command, the `FoodRemParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddCommand`) which the `FoodRemParser` returns back as a `Command` object.
-* All `XYZCommandParser` classes (e.g., `AddCommandParser`, `DeleteCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
+* When called upon to parse a user command, the `FoodRemParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `NewCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `NewCommand`) which the `FoodRemParser` returns back as a `Command` object.
+* All `XYZCommandParser` classes (e.g., `NewCommandParser`, `DeleteCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
 
 ### Model Component
 
@@ -158,36 +158,6 @@ Classes used by multiple components are in the `seedu.foodrem.commons` package.
 ## Implementation
 
 {% include_relative _dg/Implementation.md %}
-
-<!-- Everyone adds at least 5 comment lines into this document for Week 10 DG Update for bot to detect. Will be deleted later-->
-Eugene:
-Line 1
-Line 2
-Line 3
-Line 4
-Line 5
-
-Yi Xian:
-Line 1
-Line 2
-Line 3
-Line 4
-Line 5
-
-Ting Kai:
-Line 1
-Line 2
-Line 3
-Line 4
-Line 5
-
-Richard:
-Line 1
-Line 2
-Line 3
-Line 4
-Line 5
-Line 6
 
 ### \[Proposed\] Undo/redo feature
 
