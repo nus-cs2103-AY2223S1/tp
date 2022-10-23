@@ -1,18 +1,17 @@
 package seedu.uninurse.model.person;
 
+import static java.util.Objects.requireNonNull;
 import static seedu.uninurse.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Objects;
 
 import seedu.uninurse.model.tag.TagList;
 
-
 /**
  * Represents a Person in the uninurse book.
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
 public class Person {
-
     // Identity fields
     private final Name name;
     private final Phone phone;
@@ -32,6 +31,18 @@ public class Person {
         this.email = email;
         this.address = address;
         this.tags = tags;
+    }
+
+    /**
+     * Used to return a new immutable {@code Person} when provided with a {@code Person}.
+     */
+    public Person(Person person) {
+        requireNonNull(person);
+        this.name = person.name;
+        this.phone = person.phone;
+        this.email = person.email;
+        this.address = person.address;
+        this.tags.addAll(person.tags);
     }
 
     public Name getName() {

@@ -58,9 +58,7 @@ public class AddConditionCommand extends AddGenericCommand {
 
         Patient patientToEdit = lastShownList.get(index.getZeroBased());
         ConditionList updatedConditionList = patientToEdit.getConditions().add(condition);
-        Patient editedPatient = new Patient(
-                patientToEdit.getName(), patientToEdit.getPhone(), patientToEdit.getEmail(),
-                patientToEdit.getAddress(), updatedConditionList, patientToEdit.getTasks(), patientToEdit.getTags());
+        Patient editedPatient = new Patient(patientToEdit, updatedConditionList);
 
         model.setPerson(patientToEdit, editedPatient);
         model.updateFilteredPersonList(Model.PREDICATE_SHOW_ALL_PERSONS);
