@@ -146,7 +146,6 @@ public class SetCommandParserTest {
 
     @Test
     public void parse_onlyAddressSpecified_success() {
-        // address
         String userInput = ADDRESS_DESC_AMY;
         SetPersonDescriptor descriptor = new SetPersonDescriptorBuilder()
                 .withAddress(VALID_ADDRESS_AMY)
@@ -157,7 +156,6 @@ public class SetCommandParserTest {
 
     @Test
     public void parse_onlyRoleSpecified_success() {
-        // role
         String userInput = ROLE_DESC_AMY;
         SetPersonDescriptor descriptor = new SetPersonDescriptorBuilder()
                 .withRole(VALID_ROLE_AMY)
@@ -168,7 +166,6 @@ public class SetCommandParserTest {
 
     @Test
     public void parse_onlyTimezoneSpecified_success() {
-        // timezone
         String userInput = TIMEZONE_DESC_AMY;
         SetPersonDescriptor descriptor = new SetPersonDescriptorBuilder()
                 .withTimezone(VALID_TIMEZONE_AMY)
@@ -179,7 +176,6 @@ public class SetCommandParserTest {
 
     @Test
     public void parse_onlyTagsSpecified_success() {
-        // tags
         String userInput = TAG_DESC_FRIEND;
         SetPersonDescriptor descriptor = new SetPersonDescriptorBuilder()
                 .withTags(VALID_TAG_FRIEND)
@@ -190,7 +186,6 @@ public class SetCommandParserTest {
 
     @Test
     public void parse_onlyTelegramSpecified_success() {
-        // telegram
         String userInput = TELEGRAM_DESC_AMY;
         SetPersonDescriptor descriptor = new SetPersonDescriptorBuilder()
                 .withContact(ContactType.TELEGRAM, VALID_TELEGRAM_AMY)
@@ -201,7 +196,6 @@ public class SetCommandParserTest {
 
     @Test
     public void parse_onlyEmailSpecified_success() {
-        // email
         String userInput = EMAIL_DESC_AMY;
         SetPersonDescriptor descriptor = new SetPersonDescriptorBuilder()
                 .withContact(ContactType.EMAIL, VALID_EMAIL_AMY)
@@ -212,7 +206,6 @@ public class SetCommandParserTest {
 
     @Test
     public void parse_onlyPhoneSpecified_success() {
-        // phone
         String userInput = PHONE_DESC_AMY;
         SetPersonDescriptor descriptor = new SetPersonDescriptorBuilder()
                 .withContact(ContactType.PHONE, VALID_PHONE_AMY)
@@ -223,7 +216,6 @@ public class SetCommandParserTest {
 
     @Test
     public void parse_onlySlackSpecified_success() {
-        // slack
         String userInput = SLACK_DESC_AMY;
         SetPersonDescriptor descriptor = new SetPersonDescriptorBuilder()
                 .withContact(ContactType.SLACK, VALID_SLACK_AMY)
