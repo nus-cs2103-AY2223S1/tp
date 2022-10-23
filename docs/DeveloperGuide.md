@@ -131,6 +131,23 @@ How the parsing works:
 * When called upon to parse a user command, the `AddressBookParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddCommand`) which the `AddressBookParser` returns back as a `Command` object.
 * All `XYZCommandParser` classes (e.g., `AddCommandParser`, `DeleteCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
 
+#### Tasks
+
+Commands for tasks (e.g., `AddTaskCommand`, `MarkTaskCommand`, ...) follow a similar sequence of interactions within
+the `Logic` component as the other commands described above.
+
+However, during execution, tasks commands may update the context of the current tasks of a team. To understand tasks better,
+it should be understood that Tasks are an attribute of a Teams object, which is used to indicate if a tasks is done (also known as marked),
+or not (also known as unmarked).
+
+
+The Sequence Diagram below shows the interaction between `Logic` and `Model` components when `execute("at ..")` is called.
+
+[insert Sequence Diagram]
+
+This way of implementation of maintains abstraction of details of the `Logic` component, in the `Model` component.
+
+
 ### Model component
 **API** : [`Model.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/model/Model.java)
 
