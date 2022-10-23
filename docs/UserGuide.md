@@ -308,24 +308,24 @@ The following date formats are accepted:
 
 ## Command summary
 
-| Action                   | Format, Examples                                                                                                                                                  |
-|--------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **View All Tasks**       | `task list`                                                                                                                                                       |
-| **View Contacts**        | `contact list`                                                                                                                                                    |
-| **Add Contact**          | `contact add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [#TAG]…` <br> e.g., `contact add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` |
-| **Add Todo: Assignor**   | `task todo m/ASSIGNOR d/DESCRIPTION [#TAG]…` <br> e.g., `task todo m/John d/Finish user guide #cs2103 #homework`                                                  |
-| **Add Todo: Assignee**   | `task todo o/ASSIGNEE d/DESCRIPTION [#TAG]…` <br> e.g., `task todo o/Sam d/Finish the assignment #compulsory`                                                     |
-| **Add Deadline: Assignor** | `task deadline m/ASSIGNOR d/DESCRIPTION t/DATE [#TAG]…` <br> e.g., `task deadline m/John d/Finish user guide t/2022-12-31 #cs2103 #homework`                      |
-| **Add Deadline: Assignee** | `task deadline o/ASSIGNEE d/DESCRIPTION t/DATE [#TAG]…` <br> e.g., `task deadline o/Sam d/Finish the assignment t/Jan 31 2022 #compulsory`                        |
-| **Add Event: Assignor**  | `task event m/ASSIGNOR d/DESCRIPTION t/DATE [#TAG]…` <br> e.g., `task event m/John d/Finish user guide t/2022-12-31 #cs2103 #homework`                                             |
-| **Add Event: Assignee**  | `task event o/ASSIGNEE d/DESCRIPTION t/DATE [#TAG]…` <br> e.g., `task event o/Sam d/Finish the assignment t/Jan 31 2022 #compulsory`                              |
-| **Edit Contact**         | `contact edit i/INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [#TAG]…`<br> e.g.,`contact edit i/2 n/James Lee e/jameslee@example.com #friend`             |
-| **Edit Task**            | `task edit i/INDEX [m/NAME] [o/NAME] [d/DESCRIPTION] [t/DATE] [#TAG]…`<br> e.g.,`task edit i/2 o/James Lee #classmate`                                            |
-| **Delete Contact**       | `contact delete i/INDEX`<br> e.g., `contact delete i/3`                                                                                                           |
-| **Delete Task**          | `task delete i/INDEX`<br> e.g., `task delete i/3`                                                                                                                 |
-| **Sort Tasks**           | `task sort s/SORT`<br> e.g., `task sort s/a`                                                                                                                      |
-| **Mark Task**            | `task mark i/INDEX`<br> e.g., `task mark i/3`                                                                                                                     |
-| **Unmark Task**          | `task unmark i/INDEX`<br> e.g., `task unmark i/3`                                                                                                                 |
-| **Quit**                 | `bye`                                                                                                                                                             |
+| Action                        | Format, Examples                                                                                                                                                  |
+|-------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **View All Tasks**            | `task list`                                                                                                                                                       |
+| **View Contacts**             | `contact list`                                                                                                                                                    |
+| **Add Contact**               | `contact add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [#TAG]…` <br> e.g., `contact add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` |
+| **Add Todo: Assignor**        | `task todo m/ASSIGNOR d/DESCRIPTION [#TAG]…` <br> e.g., `task todo m/John d/Finish user guide #cs2103 #homework`                                                  |
+| **Add Todo: Assignee**        | `task todo o/ASSIGNEE d/DESCRIPTION [#TAG]…` <br> e.g., `task todo o/Sam d/Finish the assignment #compulsory`                                                     |
+| **Add Deadline: Assignor**    | `task deadline m/ASSIGNOR d/DESCRIPTION t/DATE [#TAG]…` <br> e.g., `task deadline m/John d/Finish user guide t/2022-12-31 #cs2103 #homework`                      |
+| **Add Deadline: Assignee**    | `task deadline o/ASSIGNEE d/DESCRIPTION t/DATE [#TAG]…` <br> e.g., `task deadline o/Sam d/Finish the assignment t/Jan 31 2022 #compulsory`                        |
+| **Add Event: Assignor**       | `task event m/ASSIGNOR d/DESCRIPTION t/DATE [#TAG]…` <br> e.g., `task event m/John d/Finish user guide t/2022-12-31 #cs2103 #homework`                            |
+| **Add Event: Assignee**       | `task event o/ASSIGNEE d/DESCRIPTION t/DATE [#TAG]…` <br> e.g., `task event o/Sam d/Finish the assignment t/Jan 31 2022 #compulsory`                              |
+| **Edit Contact**              | `contact edit i/INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [#TAG]…`<br> e.g.,`contact edit i/2 n/James Lee e/jameslee@example.com #friend`             |
+| **Edit Task**                 | `task edit i/INDEX [m/NAME] [o/NAME] [d/DESCRIPTION] [t/DATE] [#TAG]…`<br> e.g.,`task edit i/2 o/James Lee #classmate`                                            |
+| **Delete Contact**            | `contact delete i/INDEX`<br> e.g., `contact delete i/3`                                                                                                           |
+| **Delete Task**               | `task delete i/INDEX`<br> e.g., `task delete i/3`                                                                                                                 |
+| **Sort Tasks**                | `task sort s/SORT`<br> e.g., `task sort s/a`                                                                                                                      |
+| **Mark Task**                 | `task mark i/INDEX`<br> e.g., `task mark i/3`                                                                                                                     |
+| **Unmark Task**               | `task unmark i/INDEX`<br> e.g., `task unmark i/3`                                                                                                                 |
+| **Quit**                      | `bye`                                                                                                                                                             |
 | **History: Previous Command** | `UP` arrow key                                                                                                                                                    |
-| **History: Next Command** | `DOWN` arrow key                                                                                                                                                  |
+| **History: Next Command**     | `DOWN` arrow key                                                                                                                                                  |
