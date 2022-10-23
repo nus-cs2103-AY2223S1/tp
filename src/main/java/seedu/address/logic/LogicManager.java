@@ -6,6 +6,7 @@ import java.util.logging.Logger;
 
 import javafx.collections.ObservableList;
 import javafx.scene.chart.PieChart;
+import javafx.scene.chart.XYChart;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.commons.exceptions.DataConversionException;
@@ -83,6 +84,16 @@ public class LogicManager implements Logic {
     @Override
     public ObservableList<PieChart.Data> getExpensePieChartData() {
         return model.getExpensePieChartData();
+    }
+
+    @Override
+    public XYChart.Series<String, Number> getExpenseLineChartData() {
+        return model.getExpenseLineChartData();
+    }
+
+    @Override
+    public XYChart.Series<String, Number> getIncomeLineChartData() {
+        return model.getIncomeLineChartData();
     }
 
     @Override

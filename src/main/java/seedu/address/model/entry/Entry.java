@@ -2,6 +2,7 @@ package seedu.address.model.entry;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.time.format.DateTimeFormatter;
 import java.util.Objects;
 
 import seedu.address.model.tag.Tag;
@@ -39,8 +40,16 @@ public class Entry {
         return date;
     }
 
+    public String getFormattedDate(DateTimeFormatter formatter) {
+        return date.getLocalDate().format(formatter);
+    }
+
     public Amount getAmount() {
         return amount;
+    }
+
+    public Double getAmountValue() {
+        return amount.getValue();
     }
 
     /**

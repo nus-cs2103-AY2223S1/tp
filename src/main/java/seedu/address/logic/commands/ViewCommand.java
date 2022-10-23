@@ -4,6 +4,8 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_GRAPH;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TYPE;
 
+import java.time.YearMonth;
+
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.entry.EntryType;
@@ -31,6 +33,8 @@ public class ViewCommand extends Command {
     private final Month month;
     private final GraphType graphType;
 
+    // private final YearMonth month;
+
     /**
      * Creates a ViewCommand to view the specified {@code entryType}.
      */
@@ -48,23 +52,24 @@ public class ViewCommand extends Command {
         requireNonNull(entryType);
         requireNonNull(month);
         this.entryType = entryType;
-        this.month = month;
         this.graphType = graphType;
+        this.month = month;
     }
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
+        // model.setMonthForChart(month);
+
         switch (entryType.getEntryType()) {
         case EXPENDITURE:
             switch (graphType.getGraphType()) {
             case CATEGORY:
-                System.out.println("[ViewCommand] Show all expenditure by categories");
                 return new CommandResult(String.format(MESSAGE_SUCCESS, ENTRY_EXPENDITURE, GRAPH_CATEGORY), false,
                                          false, true);
             case MONTH:
-                // TODO: Add month
-                return null;
+                return new CommandResult(String.format(MESSAGE_SUCCESS, ENTRY_EXPENDITURE, GRAPH_MONTH), false,
+                        false, true);
             default:
                 //should never reach here
                 return null;
@@ -73,13 +78,11 @@ public class ViewCommand extends Command {
         case INCOME:
             switch (graphType.getGraphType()) {
             case CATEGORY:
-
-                System.out.println("[ViewCommand] Show all income by categories");
                 return new CommandResult(String.format(MESSAGE_SUCCESS, ENTRY_INCOME, GRAPH_CATEGORY), false, false,
                                          true);
             case MONTH:
-                // TODO: Add month
-                return null;
+                return new CommandResult(String.format(MESSAGE_SUCCESS, ENTRY_INCOME, GRAPH_MONTH), false, false,
+                        true);
             default:
                 //should never reach here
                 return null;

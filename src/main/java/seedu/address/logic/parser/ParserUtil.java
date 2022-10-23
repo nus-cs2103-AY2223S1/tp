@@ -2,6 +2,9 @@ package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 
+import java.time.YearMonth;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 import java.util.stream.Stream;
 
 import seedu.address.commons.core.index.Index;
@@ -21,6 +24,7 @@ import seedu.address.model.tag.Tag;
 public class ParserUtil {
 
     public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero unsigned integer.";
+    public static final String MESSAGE_INVALID_YEARMONTH = "Month should be a valid month and in the form of MM-yyyy.";
 
     /**
      * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading and trailing whitespaces will be
@@ -148,17 +152,21 @@ public class ParserUtil {
         return new Tag(type, trimmedTag);
     }
 
-    ///**
-    // * Parses {@code Collection<String> tags} into a {@code Set<Tag>}.
-    // */
-    //public static Set<Tag> parseTags(Collection<String> tags) throws ParseException {
-    //    requireNonNull(tags);
-    //    final Set<Tag> tagSet = new HashSet<>();
-    //    for (String tagName : tags) {
-    //        tagSet.add(parseTag(tagName));
-    //    }
-    //    return tagSet;
-    //}
+    /**
+     * Parses a {@code String yearMonth} into a {@code YearMonth}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code yearMonth} is invalid.
+     */
+    public static YearMonth parseYearMonth(String yearMonth) throws ParseException {
+        requireNonNull(yearMonth);
+        String trimmedYearMonth = yearMonth.trim();
+        try {
+            return YearMonth.parse(trimmedYearMonth, DateTimeFormatter.ofPattern("MM-yyyy"));
+        } catch (DateTimeParseException e) {
+            throw new ParseException(MESSAGE_INVALID_YEARMONTH);
+        }
+    }
 
     /**
      * Returns true if none of the prefixes contains empty {@code Optional} values in the given

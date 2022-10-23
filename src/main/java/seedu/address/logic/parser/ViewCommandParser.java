@@ -39,6 +39,7 @@ public class ViewCommandParser implements Parser<ViewCommand> {
         }
 
         GraphType graphType = ParserUtil.parseGraphType(argMultimap.getValue(PREFIX_GRAPH).get());
+        // YearMonth month = ParserUtil.parseYearMonth(argMultimap.getValue(PREFIX_MONTH).get());
 
         if (argMultimap.getValue(PREFIX_MONTH).isPresent()) {
             try {
