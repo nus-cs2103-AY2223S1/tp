@@ -8,15 +8,15 @@ import seedu.address.logic.parser.Prefix;
 /**
  * Represents userinput command is missing some prefixes.
  */
-public class MissingPrefixesException extends ParseException {
+public class AllPrefixesMissingException extends ParseException {
     /**
      * Creates an instance.
      *
      * @param prefixes The list of prefixes that are missing in the userinput
      */
-    public MissingPrefixesException(Prefix[] prefixes) {
+    public AllPrefixesMissingException(Prefix[] prefixes) {
         super(String.format(
-                Messages.MESSAGE_MISSING_PREFIXES, Arrays.toString(prefixes), ""
+                Messages.MESSAGE_MISSING_PREFIXES_ALL, Arrays.toString(prefixes), ""
         ));
     }
 }

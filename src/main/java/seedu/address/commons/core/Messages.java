@@ -8,7 +8,8 @@ public class Messages {
     /* Failure messages */
     public static final String MESSAGE_UNKNOWN_COMMAND = "Unknown command";
     public static final String MESSAGE_INVALID_COMMAND_FORMAT = "Invalid command format! \n%1$s";
-    public static final String MESSAGE_MISSING_PREFIXES = "This command is missing the following prefixes: %s\n%s";
+    public static final String MESSAGE_MISSING_PREFIXES_ALL = "This command is missing all of the following prefixes: %s\n%s";
+    public static final String MESSAGE_MISSING_PREFIXES_SOME = "This command requires at least one of the following prefixes: %s\n%s";
     public static final String MESSAGE_INVALID_PERSON_DISPLAYED_INDEX = "The person index provided is invalid";
     public static final String MESSAGE_INVALID_TUTORIAL_DISPLAYED_INDEX = "The tutorial index provided is invalid";
     public static final String MESSAGE_INVALID_REMINDER_DISPLAYED_INDEX = "The reminder index provided is invalid";
