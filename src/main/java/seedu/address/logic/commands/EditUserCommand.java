@@ -67,12 +67,15 @@ public class EditUserCommand extends EditCommand {
         Email updatedEmail = editUserDescriptor.getEmail().orElse(userToEdit.getEmail());
         Address updatedAddress = editUserDescriptor.getAddress().orElse(userToEdit.getAddress());
         Github updatedGithub = editUserDescriptor.getGithub().orElse(userToEdit.getGithub());
-        Set<CurrentModule> currentModules = userToEdit.getCurrModules();
-        Set<PreviousModule> previousModules = userToEdit.getPrevModules();
-        Set<PlannedModule> plannedModules = userToEdit.getPlanModules();
+        Set<CurrentModule> updatedCurrentModules = editUserDescriptor.getCurrModules()
+                .orElse(userToEdit.getCurrModules());
+        Set<PreviousModule> updatedPreviousModules = editUserDescriptor.getPrevModules()
+                .orElse(userToEdit.getPrevModules());
+        Set<PlannedModule> updatedPlannedModules = editUserDescriptor.getPlanModules()
+                .orElse(userToEdit.getPlanModules());
 
         return new ExistingUser(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedGithub,
-                currentModules, previousModules, plannedModules);
+                updatedCurrentModules, updatedPreviousModules, updatedPlannedModules);
     }
 
     @Override

@@ -15,7 +15,6 @@ public class CliSyntax {
     public static final Prefix PREFIX_CURRENTMOD = new Prefix("curr/");
     public static final Prefix PREFIX_PREVIOUSMOD = new Prefix("prev/");
     public static final Prefix PREFIX_PLANNEDMOD = new Prefix("plan/");
-    public static final Prefix PREFIX_REMOVEMOD = new Prefix("rm/");
     public static final Prefix PREFIX_LESSON = new Prefix("l/");
     public static final Prefix PREFIX_MOD = new Prefix("m/");
     public static final Prefix PREFIX_DAY = new Prefix("d/");
