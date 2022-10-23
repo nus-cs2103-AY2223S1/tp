@@ -45,29 +45,29 @@ public interface Model {
     void setGuiSettings(GuiSettings guiSettings);
 
     /**
-     * Returns the user prefs' person model file path.
+     * Returns the user prefs' person book file path.
      */
     Path getPersonModelFilePath();
 
     /**
-     * Sets the user prefs' person model file path.
+     * Sets the user prefs' person book file path.
      */
     void setPersonModelFilePath(Path addressBookFilePath);
 
     /**
-     * Returns the user prefs' property model file path.
+     * Returns the user prefs' property book file path.
      */
     Path getPropertyModelFilePath();
 
     /**
-     * Sets the user prefs' property model file path.
+     * Sets the user prefs' property book file path.
      */
     void setPropertyModelFilePath(Path addressBookFilePath);
 
     //=========== PersonBook ================================================================================
 
     /**
-     * Replaces person model data with the data in {@code personBook}.
+     * Replaces person book data with the data in {@code personBook}.
      */
     void setPersonModel(ReadOnlyPersonBook personBook);
 
@@ -117,7 +117,7 @@ public interface Model {
     //=========== PropertyBook ================================================================================
 
     /**
-     * Replaces property model data with the data in {@code propertyBook}.
+     * Replaces property book data with the data in {@code propertyBook}.
      */
     void setPropertyModel(ReadOnlyPropertyBook propertyBook);
 

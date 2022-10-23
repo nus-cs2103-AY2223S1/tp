@@ -59,7 +59,7 @@ public class PropertyBook implements ReadOnlyPropertyBook {
     //// property-level operations
 
     /**
-     * Returns true if a property with the same identity as {@code property} exists in the property model.
+     * Returns true if a property with the same identity as {@code property} exists in the property book.
      */
     public boolean hasProperty(Property property) {
         requireNonNull(property);
@@ -67,8 +67,8 @@ public class PropertyBook implements ReadOnlyPropertyBook {
     }
 
     /**
-     * Adds a property to the property model.
-     * The property must not already exist in the property model.
+     * Adds a property to the property book.
+     * The property must not already exist in the property book.
      */
     public void addProperty(Property p) {
         properties.add(p);
@@ -76,9 +76,9 @@ public class PropertyBook implements ReadOnlyPropertyBook {
 
     /**
      * Replaces the given property {@code target} in the list with {@code editedProperty}.
-     * {@code target} must exist in the property model.
+     * {@code target} must exist in the property book.
      * The property identity of {@code editedProperty} must not be the same as another existing property in the
-     * property model.
+     * property book.
      */
     public void setProperty(Property target, Property editedProperty) {
         requireNonNull(editedProperty);
@@ -88,7 +88,7 @@ public class PropertyBook implements ReadOnlyPropertyBook {
 
     /**
      * Removes {@code key} from this {@code PropertyBook}.
-     * {@code key} must exist in the property model.
+     * {@code key} must exist in the property book.
      */
     public void removeProperty(Property key) {
         properties.remove(key);
