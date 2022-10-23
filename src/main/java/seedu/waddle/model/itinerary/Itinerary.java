@@ -192,7 +192,7 @@ public class Itinerary {
     public Item planItem(Index itemIndex, DayNumber dayNumber, LocalTime startTime) throws CommandException {
         Item item = this.unscheduledItemList.get(itemIndex.getZeroBased());
         item.setStartTime(startTime);
-        Day day = this.days.get(dayNumber.dayNumber);
+        Day day = this.days.get(dayNumber.dayNumber.getZeroBased());
         day.addItem(item);
         this.unscheduledItemList.remove(itemIndex.getZeroBased());
         this.budget.updateSpending(item.getCost().getValue());

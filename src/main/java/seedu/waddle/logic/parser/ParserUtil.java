@@ -48,7 +48,10 @@ public class ParserUtil {
      */
     public static MultiIndex parseMultiIndex(String oneBasedMultiIndex) throws ParseException {
         String trimmedMultiIndex = oneBasedMultiIndex.trim();
-        String[] oneBasedIndexList = trimmedMultiIndex.split(".", 2);
+        if (!MultiIndex.isValidMultiIndex(trimmedMultiIndex)) {
+            throw new ParseException(MultiIndex.MESSAGE_CONSTRAINTS);
+        }
+        String[] oneBasedIndexList = trimmedMultiIndex.split("\\.", 2);
         MultiIndex multiIndex = new MultiIndex();
         for (String oneBasedIndex : oneBasedIndexList) {
             Index index = parseIndex(oneBasedIndex);

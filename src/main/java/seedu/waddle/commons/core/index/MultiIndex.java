@@ -7,6 +7,9 @@ import java.util.List;
  * Represents a series of Index objects.
  */
 public class MultiIndex {
+    public static final String MESSAGE_CONSTRAINTS =
+            "Index should only contain positive integers separated by a decimal point";
+    public static final String VALIDATION_REGEX = "\\d+\\.\\d+";
     private List<Index> indices;
 
     public MultiIndex() {
@@ -60,8 +63,15 @@ public class MultiIndex {
         return indices.get(pos - 1);
     }
 
+    /**
+     * Returns true if a given string is a valid multi index.
+     */
+    public static boolean isValidMultiIndex(String test) {
+        return test.matches(VALIDATION_REGEX);
+    }
+
     private boolean isValidPos(int pos) {
-        if (pos < 1 || pos >= indices.size()) {
+        if (pos < 1 || pos > indices.size()) {
             return false;
         }
         return true;

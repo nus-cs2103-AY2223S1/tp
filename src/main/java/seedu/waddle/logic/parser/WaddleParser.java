@@ -25,6 +25,7 @@ import seedu.waddle.logic.commands.ListCommand;
 import seedu.waddle.logic.commands.PlanCommand;
 import seedu.waddle.logic.commands.SelectCommand;
 import seedu.waddle.logic.commands.StageCommand;
+import seedu.waddle.logic.commands.UnplanCommand;
 import seedu.waddle.logic.parser.exceptions.ParseException;
 
 /**
@@ -146,6 +147,9 @@ public class WaddleParser {
 
         case PlanCommand.COMMAND_WORD:
             return new PlanCommandParser().parse(arguments);
+
+        case UnplanCommand.COMMAND_WORD:
+            return new UnplanCommandParser().parse(arguments);
 
         //TODO: help commands must change here
         case HelpCommand.COMMAND_WORD:
