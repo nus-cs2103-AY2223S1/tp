@@ -52,7 +52,8 @@ public class TaskFindCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         model.updateFilteredTaskListPredicate(predicate);
-        return new CommandResult(String.format(MESSAGE_SUCCESS));
+        return new CommandResult(String.format(MESSAGE_SUCCESS + "\n"
+                                + model.getFilteredTaskList().size() + " tasks listed."));
     }
 
     @Override

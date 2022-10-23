@@ -10,6 +10,7 @@ import taskbook.logic.commands.CommandResult;
 import taskbook.logic.commands.contacts.ContactAddCommand;
 import taskbook.logic.commands.contacts.ContactDeleteCommand;
 import taskbook.logic.commands.contacts.ContactEditCommand;
+import taskbook.logic.commands.contacts.ContactFindCommand;
 import taskbook.logic.commands.contacts.ContactListCommand;
 import taskbook.logic.commands.contacts.ContactSortCommand;
 import taskbook.logic.commands.tasks.TaskDeadlineCommand;
@@ -87,6 +88,8 @@ public class HelpCommand extends Command {
             return ContactDeleteCommand.MESSAGE_USAGE;
         case TASK_DELETE:
             return TaskDeleteCommand.MESSAGE_USAGE;
+        case CONTACT_FIND:
+            return ContactFindCommand.MESSAGE_USAGE;
         case TASK_FIND:
             return TaskFindCommand.MESSAGE_USAGE;
         case CONTACT_SORT:
@@ -138,6 +141,7 @@ public class HelpCommand extends Command {
         TASK_EDIT(TaskCategoryParser.CATEGORY_WORD, TaskEditCommand.COMMAND_WORD),
         CONTACT_DELETE(ContactCategoryParser.CATEGORY_WORD, ContactDeleteCommand.COMMAND_WORD),
         TASK_DELETE(TaskCategoryParser.CATEGORY_WORD, TaskDeleteCommand.COMMAND_WORD),
+        CONTACT_FIND(ContactCategoryParser.CATEGORY_WORD, ContactFindCommand.COMMAND_WORD),
         TASK_FIND(TaskCategoryParser.CATEGORY_WORD, TaskFindCommand.COMMAND_WORD),
         CONTACT_SORT(ContactCategoryParser.CATEGORY_WORD, ContactSortCommand.COMMAND_WORD),
         TASK_SORT(TaskCategoryParser.CATEGORY_WORD, TaskSortCommand.COMMAND_WORD),

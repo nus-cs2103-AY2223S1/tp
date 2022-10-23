@@ -125,7 +125,7 @@ public abstract class Task {
 
     /**
      * Searches this task to find if input query exists anywhere in the description or name.
-     * @param query input word.
+     * @param query input query.
      * @return true if the query exists exactly in this task, false otherwise.
      */
     public boolean isQueryInTask(String query) {

@@ -20,18 +20,18 @@ public class TaskFindCommandParserTest {
     private TaskFindCommand control = new TaskFindCommand(dummy, "test", "FROM", "X");
 
     @Test
-    public void parse_allFieldsPresent_success() throws ParseException {
+    public void parse_allFieldsPresent_success() {
         assertParseSuccess(parser, " q/test x/X a/FROM", control);
     }
 
     @Test
-    public void parse_allFieldsPresent_failure() throws ParseException {
+    public void parse_allFieldsPresent_failure() {
         TaskFindCommand test = new TaskFindCommand(dummy, "testy", "FROM", "X");
         assert !control.equals(test);
     }
 
     @Test
-    public void parse_onlyOneField_success() throws ParseException {
+    public void parse_onlyOneField_success() {
         TaskFindCommand test = new TaskFindCommand(dummy, "test", null, null);
         assertParseSuccess(parser, " q/test", test);
     }
