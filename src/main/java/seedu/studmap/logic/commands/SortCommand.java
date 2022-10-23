@@ -37,10 +37,22 @@ public class SortCommand extends Command {
      * @param sortOrder Order to sort the list in
      */
     public SortCommand(Comparator<Student> comparator, String attributeType, Order sortOrder) {
-        this.attributeType = attributeType;
         this.comparator = comparator;
+        this.attributeType = attributeType;
         this.sortOrder = sortOrder;
     }
+
+//    /**
+//     * Sorts the working list by the comparator in ascending or descending order.
+//     *
+//     * @param comparator The comparator to sort the list by
+//     * @param sortOrder Order to sort the list in
+//     */
+//    public SortCommand(Comparator<Student> comparator, String attributeType, Order sortOrder) {
+//        this.attributeType = attributeType;
+//        this.comparator = comparator;
+//        this.sortOrder = sortOrder;
+//    }
 
     @Override
     public CommandResult execute(Model model) {

@@ -16,7 +16,6 @@ import javafx.collections.transformation.FilteredList;
 import seedu.studmap.commons.core.GuiSettings;
 import seedu.studmap.commons.core.LogsCenter;
 import seedu.studmap.commons.core.index.Index;
-import seedu.studmap.model.attribute.Attribute;
 import seedu.studmap.model.order.Order;
 import seedu.studmap.model.student.Student;
 
@@ -132,13 +131,6 @@ public class ModelManager implements Model {
     @Override
     public void sortFilteredStudentList(Comparator<Student> comparator, Order order) {
         this.studMap.sort(comparator, order);
-    public List<Index> getFilteredStudentIndices() {
-        return IntStream.range(0, filteredStudents.size()).mapToObj(Index::fromZeroBased).collect(Collectors.toList());
-    }
-
-    @Override
-    public void sortFilteredStudentList(Attribute attribute, Order order) {
-        this.studMap.sort(attribute, order);
     }
 
     @Override
@@ -170,6 +162,10 @@ public class ModelManager implements Model {
         return studMap.equals(other.studMap)
                 && userPrefs.equals(other.userPrefs)
                 && filteredStudents.equals(other.filteredStudents);
+    }
+
+    public List<Index> getFilteredStudentIndices() {
+        return IntStream.range(0, filteredStudents.size()).mapToObj(Index::fromZeroBased).collect(Collectors.toList());
     }
 
 }

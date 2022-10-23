@@ -5,6 +5,7 @@ import static seedu.studmap.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT
 import static seedu.studmap.logic.parser.CliSyntax.PREFIX_ATTRIBUTE;
 
 import java.util.Comparator;
+import java.util.Locale;
 
 import seedu.studmap.logic.commands.SortCommand;
 import seedu.studmap.logic.parser.exceptions.ParseException;
@@ -12,10 +13,6 @@ import seedu.studmap.model.attribute.Attribute;
 import seedu.studmap.model.attribute.AttributeType;
 import seedu.studmap.model.order.Order;
 import seedu.studmap.model.student.Student;
-import seedu.studmap.logic.commands.SortCommand;
-import seedu.studmap.logic.parser.exceptions.ParseException;
-import seedu.studmap.model.attribute.Attribute;
-import seedu.studmap.model.order.Order;
 
 /**
  * Parses input arguments and creates a new EditCommand object
@@ -46,7 +43,7 @@ public class SortCommandParser implements Parser<SortCommand> {
                 throw new ParseException("Caused by: No attribute specified\n");
             }
             if (Attribute.isValidAttributeType(attributeType)) {
-                comparator = Attribute.getAttributeComparator(AttributeType.valueOf(attributeType));
+                comparator = Attribute.getAttributeComparator(AttributeType.valueOf(attributeType.toUpperCase(Locale.ROOT)));
             } else {
                 throw new ParseException("Caused by: Invalid attribute\n");
             }
@@ -55,15 +52,6 @@ public class SortCommandParser implements Parser<SortCommand> {
                     pe.getMessage() + SortCommand.MESSAGE_USAGE), pe);
         }
         return new SortCommand(comparator, attributeType, order);
-        Attribute attribute;
-
-        try {
-            order = ParserUtil.parseOrder(argMultimap.getPreamble());
-            attribute = new Attribute(argMultimap.getValue(PREFIX_ATTRIBUTE).get());
-        } catch (ParseException pe) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, SortCommand.MESSAGE_USAGE), pe);
-        }
-        return new SortCommand(attribute, order);
     }
 
 }
