@@ -7,16 +7,13 @@ FinBook is a desktop app for managing clients, optimized for use via a Command L
 the benefits of a Graphical User Interface (GUI). If you can type fast, FinBook can get your contact management tasks
 done faster and more securely than traditional GUI apps.
 
-* Table of Contents
-  {:toc}
-
---------------------------------------------------------------------------------------------------------------------
-
+## Table of Contents
 - [Quick Start](#quick-start)
 - [Features](#features)
     * [Adding a client: `add`](#adding-a-client-add)
     * [Editing a client: `edit`](#editing-a-client--edit)
     * [Deleting a client: `delete`](#deleting-a-client--delete)
+    * [Copying a client's data: `copy`](#copying-a-clients-data--copy)
     * [Listing all clients: `list`](#listing-all-clients-list)
     * [Exiting the application: `exit`](#exiting-the-application--exit)
     * [Saving the data](#saving-the-data)
@@ -27,6 +24,8 @@ done faster and more securely than traditional GUI apps.
 
 - [FAQ](#faq)
 - [Command Summary](#command-summary)
+
+--------------------------------------------------------------------------------------------------------------------
 
 ## Quick start
 
@@ -192,6 +191,26 @@ Format: `delete all`
 Examples:
 
 * `list` followed by `delete all` deletes the all clients in the FinBook.
+
+---
+
+### Copying a client's data : `copy`
+
+Copies the data of an existing client in the FinBook into your Computer's clipboard.
+
+Format: `copy INDEX`
+
+Example: `copy 1` with the sample data will result a copied output of:
+```
+Name: Alex Yeoh
+Phone: 87438807
+Email: alexyeoh@example.com
+Address: Blk 30 Geylang Street 29, #06-40
+Income: $1000
+Meeting date: 12 Nov 2022
+Tags: friends
+```
+* Press `Ctrl-V` to paste the copied text.
 
 ---
 
