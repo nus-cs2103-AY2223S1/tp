@@ -1,6 +1,5 @@
 package seedu.address.model.event;
 
-import static java.lang.Integer.parseInt;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
@@ -90,9 +89,10 @@ public class DateTime {
     private static LocalTime generateLocalTime(String hours, String minutes,
                                                String seconds) throws DateTimeParseException {
         if (seconds == null) {
-            return LocalTime.of(parseInt(hours), parseInt(minutes));
+            return LocalTime.parse(hours + ":" + minutes, DateTimeFormatter.ofPattern("HH:mm"));
         }
-        return LocalTime.of(parseInt(hours), parseInt(minutes), parseInt(seconds));
+        return LocalTime.parse(hours + ":" + minutes + ":" + seconds,
+                DateTimeFormatter.ofPattern("HH:mm:ss"));
     }
 
     /**
