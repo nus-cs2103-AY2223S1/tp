@@ -23,7 +23,6 @@ public class CommandHistory implements ReadOnlyCommandHistory {
     public CommandHistory(ReadOnlyCommandHistory toBeCopied) {
         this();
         setCommandHistoryList(new ArrayList<>(toBeCopied.getCommandHistoryList()));
-        currentIndex = commandHistoryList.size();
     }
 
     //// list overwrite operations
@@ -33,6 +32,7 @@ public class CommandHistory implements ReadOnlyCommandHistory {
      */
     public void setCommandHistoryList(List<String> commandHistoryList) {
         this.commandHistoryList = commandHistoryList;
+        resetCurrentIndexToLatest();
     }
 
 

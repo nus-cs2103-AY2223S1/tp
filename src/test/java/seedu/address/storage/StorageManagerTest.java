@@ -65,7 +65,6 @@ public class StorageManagerTest {
         assertEquals(original, new AddressBook(retrieved));
     }
 
-    // TODO
     @Test
     public void commandHistoryReadSave() throws Exception {
         /*
@@ -80,7 +79,8 @@ public class StorageManagerTest {
         original.setCommandHistoryList(commandHistoryList);
         storageManager.saveCommandHistory(original);
         ReadOnlyCommandHistory retrieved = storageManager.readCommandHistory();
-        assertEquals(original, retrieved);
+        System.out.println(original.equals(new CommandHistory(retrieved)));
+        assertEquals(original, new CommandHistory(retrieved));
     }
 
     @Test
