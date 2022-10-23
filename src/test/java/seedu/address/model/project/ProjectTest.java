@@ -41,9 +41,9 @@ public class ProjectTest {
         editedApple = new ProjectBuilder(APPLE).withName(VALID_NAME_BOB).build();
         assertFalse(APPLE.isSameProject(editedApple));
 
-        // name differs in case, all other attributes same -> returns false
+        // name differs in case, all other attributes same -> returns true
         Project editedBob = new ProjectBuilder(BOB).withName(VALID_NAME_BOB.toLowerCase()).build();
-        assertFalse(BOB.isSameProject(editedBob));
+        assertTrue(BOB.isSameProject(editedBob));
 
         // name has trailing spaces, all other attributes same -> returns false
         String nameWithTrailingSpaces = VALID_NAME_BOB + " ";

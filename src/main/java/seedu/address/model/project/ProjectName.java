@@ -46,7 +46,7 @@ public class ProjectName {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof ProjectName // instanceof handles nulls
-                && fullName.equals(((ProjectName) other).fullName)); // state check
+                && fullName.equalsIgnoreCase(((ProjectName) other).fullName)); // state check
     }
 
     @Override
