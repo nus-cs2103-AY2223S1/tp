@@ -94,7 +94,7 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     public boolean hasEvent(Event event) {
         requireNonNull(event);
-        return bucketList.contains(event);
+        return allEventsList.contains(event);
     }
 
     /**
