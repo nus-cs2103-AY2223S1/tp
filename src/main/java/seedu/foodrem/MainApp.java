@@ -170,7 +170,7 @@ public class MainApp extends Application {
 
     @Override
     public void stop() {
-        logger.info("============================ [ Stopping Food Rem ] =============================");
+        logger.info("============================ [ Stopping FoodRem ] =============================");
         try {
             storage.saveUserPrefs(model.getUserPrefs());
         } catch (IOException e) {
