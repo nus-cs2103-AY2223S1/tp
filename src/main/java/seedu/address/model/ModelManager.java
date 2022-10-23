@@ -137,6 +137,11 @@ public class ModelManager implements Model {
         addressBook.setStudent(target, editedStudent);
     }
 
+    @Override
+    public void clearStudentPictures() {
+        ImageStorage.empty();
+    }
+
     //=========== TaskBook ================================================================================
 
     @Override
