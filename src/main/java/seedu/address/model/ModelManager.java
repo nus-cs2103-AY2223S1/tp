@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
+import java.util.ArrayList;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
@@ -270,8 +271,8 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void clearConsultations() {
-        addressBook.clearConsultations();
+    public void resetConsultations() {
+        addressBook.setConsultations(new ArrayList<>());
     }
     @Override
     public void deleteConsultation(Consultation target) {
