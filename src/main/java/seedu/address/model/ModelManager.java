@@ -23,7 +23,7 @@ import seedu.address.model.person.Student;
  */
 public class ModelManager implements Model {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
-    private final AddressBook addressBook;
+    private final ProfNus profNus;
     private final UserPrefs userPrefs;
     private final FilteredList<Person> filteredPersons;
     private final FilteredList<Module> filteredModules;
@@ -31,23 +31,23 @@ public class ModelManager implements Model {
     private FilteredList<Schedule> filteredSchedule;
 
     /**
-     * Initializes a ModelManager with the given addressBook and userPrefs.
+     * Initializes a ModelManager with the given profNus and userPrefs.
      */
     public ModelManager(ReadOnlyAddressBook addressBook, ReadOnlyUserPrefs userPrefs) {
         requireAllNonNull(addressBook, userPrefs);
 
         logger.fine("Initializing with address book: " + addressBook + " and user prefs " + userPrefs);
 
-        this.addressBook = new AddressBook(addressBook);
+        this.profNus = new ProfNus(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
-        filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
-        filteredTutors = new FilteredList<>(this.addressBook.getTutorList());
-        filteredModules = new FilteredList<>(this.addressBook.getModuleList());
-        filteredSchedule = new FilteredList<>(this.addressBook.getScheduleList());
+        filteredPersons = new FilteredList<>(this.profNus.getPersonList());
+        filteredTutors = new FilteredList<>(this.profNus.getTutorList());
+        filteredModules = new FilteredList<>(this.profNus.getModuleList());
+        filteredSchedule = new FilteredList<>(this.profNus.getScheduleList());
     }
 
     public ModelManager() {
-        this(new AddressBook(), new UserPrefs());
+        this(new ProfNus(), new UserPrefs());
     }
 
     //=========== UserPrefs ==================================================================================
@@ -85,129 +85,129 @@ public class ModelManager implements Model {
         userPrefs.setAddressBookFilePath(addressBookFilePath);
     }
 
-    //=========== AddressBook ================================================================================
+    //=========== ProfNus ================================================================================
 
     @Override
     public void setAddressBook(ReadOnlyAddressBook addressBook) {
-        this.addressBook.resetData(addressBook);
+        this.profNus.resetData(addressBook);
     }
 
     @Override
     public ReadOnlyAddressBook getAddressBook() {
-        return addressBook;
+        return profNus;
     }
 
     @Override
     public boolean hasPerson(Person person) {
         requireNonNull(person);
-        return addressBook.hasPerson(person);
+        return profNus.hasPerson(person);
     }
 
     @Override
     public boolean hasTutor(Student tutor) {
         requireNonNull(tutor);
-        return addressBook.hasTutor(tutor);
+        return profNus.hasTutor(tutor);
     }
 
     @Override
     public boolean hasModule(Module module) {
         requireNonNull(module);
-        return addressBook.hasModule(module);
+        return profNus.hasModule(module);
     }
 
     @Override
     public boolean conflictSchedule(Schedule schedule) {
         requireNonNull(schedule);
-        return addressBook.conflictSchedule(schedule);
+        return profNus.conflictSchedule(schedule);
     }
 
     @Override
     public boolean conflictScheduleWithTarget(Schedule schedule, Schedule target) {
         requireNonNull(schedule);
-        return addressBook.conflictScheduleWithTarget(schedule, target);
+        return profNus.conflictScheduleWithTarget(schedule, target);
     }
 
     @Override
     public void deletePerson(Person target) {
-        addressBook.removePerson(target);
+        profNus.removePerson(target);
     }
 
     @Override
     public void deleteTutor(Student target) {
-        addressBook.removeTutor(target);
+        profNus.removeTutor(target);
     }
 
     @Override
     public void deleteModule(Module target) {
-        addressBook.removeModule(target);
+        profNus.removeModule(target);
     }
 
     @Override
     public void addModule(Module module) {
-        addressBook.addModule(module);
+        profNus.addModule(module);
         updateFilteredModuleList(PREDICATE_SHOW_ALL_MODULES);
     }
 
     @Override
     public Module getModuleByModuleCode(String moduleCode) {
-        return addressBook.getModuleByModuleCode(moduleCode);
+        return profNus.getModuleByModuleCode(moduleCode);
     }
 
     @Override
     public void addPerson(Person person) {
-        addressBook.addPerson(person);
+        profNus.addPerson(person);
         updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
     }
 
     @Override
     public void addTutor(Student tutor) {
-        addressBook.addTutor(tutor);
+        profNus.addTutor(tutor);
         updateFilteredTutorList(PREDICATE_SHOW_ALL_TUTORS);
     }
 
     @Override
     public void addSchedule(Schedule schedule) {
-        addressBook.addSchedule(schedule);
+        profNus.addSchedule(schedule);
         updateFilteredScheduleList(PREDICATE_SHOW_ALL_SCHEDULES);
     }
 
     @Override
     public void setSchedule(Schedule target, Schedule editedSchedule) {
         requireAllNonNull(target, editedSchedule);
-        addressBook.setSchedule(target, editedSchedule);
+        profNus.setSchedule(target, editedSchedule);
         updateFilteredScheduleList(PREDICATE_SHOW_ALL_SCHEDULES);
     }
 
     @Override
     public void deleteSchedule(Schedule target) {
         requireNonNull(target);
-        addressBook.removeSchedule(target);
+        profNus.removeSchedule(target);
         updateFilteredScheduleList(PREDICATE_SHOW_ALL_SCHEDULES);
     }
 
     @Override
     public void clearSchedules(ArrayList<ModuleCode> modulesToClear) {
-        addressBook.clearSchedules(modulesToClear);
+        profNus.clearSchedules(modulesToClear);
         updateFilteredScheduleList((PREDICATE_SHOW_ALL_SCHEDULES));
     }
 
     @Override
     public void setPerson(Person target, Person editedPerson) {
         requireAllNonNull(target, editedPerson);
-        addressBook.setPerson(target, editedPerson);
+        profNus.setPerson(target, editedPerson);
     }
 
     @Override
     public void setTutor(Student target, Student editedTutor) {
         requireAllNonNull(target, editedTutor);
 
-        addressBook.setTutor(target, editedTutor);
+        profNus.setTutor(target, editedTutor);
     }
 
     @Override
     public void setModule(Module target, Module editedModule) {
         requireAllNonNull(target, editedModule);
-        addressBook.setModule(target, editedModule);
+        profNus.setModule(target, editedModule);
     }
 
 
@@ -225,7 +225,7 @@ public class ModelManager implements Model {
 
     @Override
     public ObservableList<Person> getAllPersonList() {
-        return new FilteredList<>(this.addressBook.getPersonList());
+        return new FilteredList<>(this.profNus.getPersonList());
     }
 
     @Override
@@ -273,7 +273,7 @@ public class ModelManager implements Model {
 
     @Override
     public ObservableList<Module> getAllModuleList() {
-        return new FilteredList<>(this.addressBook.getModuleList());
+        return new FilteredList<>(this.profNus.getModuleList());
     }
 
     @Override
@@ -291,13 +291,13 @@ public class ModelManager implements Model {
 
     @Override
     public ObservableList<Schedule> getAllScheduleList() {
-        return new FilteredList<>(this.addressBook.getScheduleList());
+        return new FilteredList<>(this.profNus.getScheduleList());
 
     }
 
     @Override
     public void updateFilteredScheduleList(Predicate<Schedule> predicate) {
-        filteredSchedule = new FilteredList<>(addressBook.getScheduleList());
+        filteredSchedule = new FilteredList<>(profNus.getScheduleList());
         requireNonNull(predicate);
         filteredSchedule.setPredicate(predicate);
     }
@@ -316,7 +316,7 @@ public class ModelManager implements Model {
 
         // state check
         ModelManager other = (ModelManager) obj;
-        return addressBook.equals(other.addressBook)
+        return profNus.equals(other.profNus)
                 && userPrefs.equals(other.userPrefs)
                 && filteredPersons.equals(other.filteredPersons);
     }

@@ -18,7 +18,7 @@ import org.junit.jupiter.api.Test;
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.EditStuCommand.EditStudentDescriptor;
-import seedu.address.model.AddressBook;
+import seedu.address.model.ProfNus;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
@@ -45,7 +45,7 @@ public class EditStuCommandTest {
                 false, false, false,
                 true, false, false);
 
-        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
+        Model expectedModel = new ModelManager(new ProfNus(model.getAddressBook()), new UserPrefs());
         expectedModel.setPerson(model.getFilteredPersonList().get(0), editedStudent);
 
         assertCommandSuccess(editStuCommand, model, expectedCommandResult, expectedModel);
@@ -69,7 +69,7 @@ public class EditStuCommandTest {
                 false, false, false,
                 true, false, false);
 
-        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
+        Model expectedModel = new ModelManager(new ProfNus(model.getAddressBook()), new UserPrefs());
         expectedModel.setPerson(lastStudent, editedStudent);
 
         assertCommandSuccess(editStuCommand, model, expectedCommandResult, expectedModel);
@@ -85,7 +85,7 @@ public class EditStuCommandTest {
                 false, false, false,
                 true, false, false);
 
-        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
+        Model expectedModel = new ModelManager(new ProfNus(model.getAddressBook()), new UserPrefs());
 
         assertCommandSuccess(editStuCommand, model, expectedCommandResult, expectedModel);
     }
@@ -104,7 +104,7 @@ public class EditStuCommandTest {
                 false, false, false,
                 true, false, false);
 
-        Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
+        Model expectedModel = new ModelManager(new ProfNus(model.getAddressBook()), new UserPrefs());
         expectedModel.setPerson(model.getFilteredPersonList().get(0), editedStudent);
 
         assertCommandSuccess(editStuCommand, model, expectedCommandResult, expectedModel);

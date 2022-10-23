@@ -9,14 +9,14 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonRootName;
 
 import seedu.address.commons.exceptions.IllegalValueException;
-import seedu.address.model.AddressBook;
+import seedu.address.model.ProfNus;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.module.Module;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Student;
 
 /**
- * An Immutable AddressBook that is serializable to JSON format.
+ * An Immutable ProfNus that is serializable to JSON format.
  */
 @JsonRootName(value = "addressbook")
 class JsonSerializableAddressBook {
@@ -52,40 +52,40 @@ class JsonSerializableAddressBook {
     }
 
     /**
-     * Converts this address book into the model's {@code AddressBook} object.
+     * Converts this address book into the model's {@code ProfNus} object.
      * Polymorphism occurs.
      *
      * @throws IllegalValueException if there were any data constraints violated.
      */
-    public AddressBook toModelType() throws IllegalValueException {
-        AddressBook addressBook = new AddressBook();
+    public ProfNus toModelType() throws IllegalValueException {
+        ProfNus profNus = new ProfNus();
         for (JsonAdaptedPerson jsonAdaptedPerson : persons) {
             Person person = jsonAdaptedPerson.toModelType();
-            if (addressBook.hasPerson(person)) {
+            if (profNus.hasPerson(person)) {
                 throw new IllegalValueException(MESSAGE_DUPLICATE_PERSON);
             }
-            addressBook.addPerson(person);
+            profNus.addPerson(person);
         }
         for (JsonAdaptedPerson jsonAdaptedPerson : persons) {
             Person person = jsonAdaptedPerson.toModelType();
             if (person instanceof Student) {
                 Student student = (Student) person;
                 if (student.isTeachingAssistant()) {
-                    if (addressBook.hasTutor(student)) {
+                    if (profNus.hasTutor(student)) {
                         throw new IllegalValueException(MESSAGE_DUPLICATE_PERSON);
                     }
-                    addressBook.addTutor(student);
+                    profNus.addTutor(student);
                 }
             }
         }
         for (JsonAdaptedModule jsonAdaptedModule : modules) {
             Module module = jsonAdaptedModule.toModelType();
-            if (addressBook.hasModule(module)) {
+            if (profNus.hasModule(module)) {
                 throw new IllegalValueException(MESSAGE_DUPLICATE_MODULE);
             }
-            addressBook.addModule(module);
+            profNus.addModule(module);
         }
-        return addressBook;
+        return profNus;
     }
 
 }
