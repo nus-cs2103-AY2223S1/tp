@@ -46,8 +46,8 @@ public class Patient extends Person {
         requireAllNonNull(dateTime);
         this.dateTimes.addAll(dateTime);
         this.visitStatus = visitStatus;
-        attendingPhysician = Optional.of(p);
-        nextOfKin = Optional.of(n);
+        attendingPhysician = Optional.ofNullable(p);
+        nextOfKin = Optional.ofNullable(n);
     }
 
     /**

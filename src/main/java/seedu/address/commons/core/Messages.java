@@ -10,6 +10,6 @@ public class Messages {
     public static final String MESSAGE_INVALID_PERSON_DISPLAYED_INDEX = "The patient/nurse index provided is invalid";
     public static final String MESSAGE_INVALID_PERSON_DISPLAYED_UID = "The patient/nurse uid provided is invalid";
     public static final String MESSAGE_PERSONS_LISTED_OVERVIEW = "%1$d patients and nurses listed!";
-
+    public static final String MESSAGE_SETPHYS_INVALID_CATEGORY = "Attending physician can only be set for patients.";
 
 }

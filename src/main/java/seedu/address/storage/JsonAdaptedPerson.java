@@ -3,10 +3,7 @@ package seedu.address.storage;
 import static seedu.address.model.category.Category.NURSE_SYMBOL;
 import static seedu.address.model.category.Category.PATIENT_SYMBOL;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 import java.util.stream.Collectors;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
@@ -15,17 +12,7 @@ import com.fasterxml.jackson.annotation.JsonTypeInfo.Id;
 
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.category.Category;
-import seedu.address.model.person.Address;
-import seedu.address.model.person.DateTime;
-import seedu.address.model.person.Email;
-import seedu.address.model.person.Gender;
-import seedu.address.model.person.Name;
-import seedu.address.model.person.Nurse;
-import seedu.address.model.person.Patient;
-import seedu.address.model.person.Person;
-import seedu.address.model.person.Phone;
-import seedu.address.model.person.Uid;
-import seedu.address.model.person.VisitStatus;
+import seedu.address.model.person.*;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -45,6 +32,9 @@ class JsonAdaptedPerson {
     private final List<JsonAdaptedDateTime> dateTimes = new ArrayList<>();
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
     private final String visitStatus;
+    private final String pName;
+    private final String pPhone;
+    private final String pEmail;
 
     /**
      * Constructs a {@code JsonAdaptedPerson} with the given person details.
@@ -56,6 +46,9 @@ class JsonAdaptedPerson {
             @JsonProperty("email") String email, @JsonProperty("address") String address,
             @JsonProperty("dateTimes") List<JsonAdaptedDateTime> dateTime,
             @JsonProperty("tagged") List<JsonAdaptedTag> tagged,
+            @JsonProperty("phys name") String pName,
+            @JsonProperty("phys phone") String pPhone,
+            @JsonProperty("phys email") String pEmail,
             @JsonProperty("visit status") String visitStatus) {
         this.uid = uid;
         this.name = name;
@@ -64,6 +57,10 @@ class JsonAdaptedPerson {
         this.phone = phone;
         this.email = email;
         this.address = address;
+
+        this.pName = Objects.requireNonNullElse(pName, "NA");
+        this.pPhone = Objects.requireNonNullElse(pPhone, "NA");
+        this.pEmail = Objects.requireNonNullElse(pEmail, "NA");
 
         if (dateTime != null) {
             this.dateTimes.addAll(dateTime);
@@ -88,8 +85,21 @@ class JsonAdaptedPerson {
                     .map(JsonAdaptedDateTime::new)
                     .collect(Collectors.toList()));
             visitStatus = ((Patient) source).getVisitStatus().getVisitStatusString();
+
+            String[] physNameArr = new String[]{"NA"};
+            ((Patient) source).getAttendingPhysician().ifPresent(x -> physNameArr[0] = x.getName().fullName);
+            pName = physNameArr[0];
+            String[] physEmailArr = new String[]{"NA"};
+            ((Patient) source).getAttendingPhysician().ifPresent(x -> physEmailArr[0] = x.getEmail().value);
+            pEmail = physEmailArr[0];
+            String[] physPhoneArr = new String[]{"NA"};
+            ((Patient) source).getAttendingPhysician().ifPresent(x -> physPhoneArr[0] = x.getPhone().value);
+            pPhone = physPhoneArr[0];
         } else {
             visitStatus = null;
+            pName = "NA";
+            pPhone = "NA";
+            pEmail = "NA";
         }
 
         uid = source.getUid().uid;

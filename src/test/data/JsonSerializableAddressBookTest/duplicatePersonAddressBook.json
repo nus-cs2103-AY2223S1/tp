@@ -9,7 +9,10 @@
     "address": "123, Jurong West Ave 6, #08-111",
     "dateTimes": [ ],
     "tagged": [ "friends" ],
-    "visit status" : "false"
+    "visit status" : "false",
+    "phys name" : "john doe",
+    "phys email" : "johndoe@example.com",
+    "phys phone" : "81234567"
   }, {
     "category": "P",
     "uid": "1",
@@ -20,6 +23,9 @@
     "address": "4th street",
     "dateTimes": [ ],
     "tagged": [  ],
-    "visit status" : "false"
+    "visit status" : "false",
+    "phys name" : "john doe",
+    "phys email" : "johndoe@example.com",
+    "phys phone" : "81234567"
   } ]
 }
