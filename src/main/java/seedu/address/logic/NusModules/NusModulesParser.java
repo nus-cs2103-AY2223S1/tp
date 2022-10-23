@@ -10,6 +10,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 /**
  * Class to parse NusModule json file
  */
+//TODO to throw error when module not available
 public class NusModulesParser {
     private final File nusModuleJson = new File("src/main/java/seedu/address/logic/NUSModules/NUSModules.json");
     private ObjectMapper mapper = new ObjectMapper();
@@ -22,14 +23,29 @@ public class NusModulesParser {
     }
 
     /**
-     * Queries module title based on given module code
+     * Query module title based on given module code
      *
      * @param moduleCode Module Code to query
+     * @return NusModule Title if module is present, null if not
+     */
+    public String getModuleTitle(String moduleCode) {
+        for (NusModule nusModule : nusModuleLists) {
+            if (nusModule.getModuleCode().equals(moduleCode)) {
+                return nusModule.getModuleTitle();
+            }
+        }
+        return null;
+    }
+
+    /**
+     * Query module object based on module code
+     *
+     * @param moduleCode Module code to query
      * @return NusModule object if module is present, null if not
      */
-    public NusModule getModuleTitle(String moduleCode) {
+    public NusModule getModule(String moduleCode) {
         for (NusModule nusModule : nusModuleLists) {
-            if (nusModule.getModuleTitle().equals(moduleCode)) {
+            if (nusModule.getModuleCode().equals(moduleCode)) {
                 return nusModule;
             }
         }
@@ -37,15 +53,15 @@ public class NusModulesParser {
     }
 
     /**
-     * Queries module code based on given module title
+     * Query semester offered based on module code
      *
-     * @param moduleTitle Module Title to query
-     * @return NusModule object if title is present, null if not
+     * @param moduleCode Module code to query
+     * @return Array of integer of modules offered if module is present, null if not.
      */
-    public NusModule getModuleCode(String moduleTitle) {
+    public int[] getSemesterOffered(String moduleCode) {
         for (NusModule nusModule : nusModuleLists) {
-            if (nusModule.getModuleCode().equals(moduleTitle)) {
-                return nusModule;
+            if (nusModule.getModuleTitle().equals(moduleCode)) {
+                return nusModule.getSemesterOffered();
             }
         }
         return null;
