@@ -72,23 +72,23 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public Path getPersonModelFilePath() {
+    public Path getPersonBookFilePath() {
         return userPrefs.getPersonBookFilePath();
     }
 
     @Override
-    public void setPersonModelFilePath(Path personBookFilePath) {
+    public void setPersonBookFilePath(Path personBookFilePath) {
         requireNonNull(personBookFilePath);
         userPrefs.setPersonBookFilePath(personBookFilePath);
     }
 
     @Override
-    public Path getPropertyModelFilePath() {
+    public Path getPropertyBookFilePath() {
         return userPrefs.getPropertyBookFilePath();
     }
 
     @Override
-    public void setPropertyModelFilePath(Path propertyBookFilePath) {
+    public void setPropertyBookFilePath(Path propertyBookFilePath) {
         requireNonNull(propertyBookFilePath);
         userPrefs.setPropertyBookFilePath(propertyBookFilePath);
     }
@@ -96,12 +96,12 @@ public class ModelManager implements Model {
     //=========== PersonBook ================================================================================
 
     @Override
-    public void setPersonModel(ReadOnlyPersonBook personBook) {
+    public void setPersonBook(ReadOnlyPersonBook personBook) {
         this.personBook.resetData(personBook);
     }
 
     @Override
-    public ReadOnlyPersonBook getPersonModel() {
+    public ReadOnlyPersonBook getPersonBook() {
         return personBook;
     }
 
@@ -147,12 +147,12 @@ public class ModelManager implements Model {
     //=========== PropertyBook ================================================================================
 
     @Override
-    public void setPropertyModel(ReadOnlyPropertyBook propertyBook) {
+    public void setPropertyBook(ReadOnlyPropertyBook propertyBook) {
         this.propertyBook.resetData(propertyBook);
     }
 
     @Override
-    public ReadOnlyPropertyBook getPropertyModel() {
+    public ReadOnlyPropertyBook getPropertyBook() {
         return propertyBook;
     }
 

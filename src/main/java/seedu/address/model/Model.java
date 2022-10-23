@@ -47,34 +47,34 @@ public interface Model {
     /**
      * Returns the user prefs' person book file path.
      */
-    Path getPersonModelFilePath();
+    Path getPersonBookFilePath();
 
     /**
      * Sets the user prefs' person book file path.
      */
-    void setPersonModelFilePath(Path addressBookFilePath);
+    void setPersonBookFilePath(Path addressBookFilePath);
 
     /**
      * Returns the user prefs' property book file path.
      */
-    Path getPropertyModelFilePath();
+    Path getPropertyBookFilePath();
 
     /**
      * Sets the user prefs' property book file path.
      */
-    void setPropertyModelFilePath(Path addressBookFilePath);
+    void setPropertyBookFilePath(Path addressBookFilePath);
 
     //=========== PersonBook ================================================================================
 
     /**
      * Replaces person book data with the data in {@code personBook}.
      */
-    void setPersonModel(ReadOnlyPersonBook personBook);
+    void setPersonBook(ReadOnlyPersonBook personBook);
 
     /**
      * Returns the PersonBook
      */
-    ReadOnlyPersonBook getPersonModel();
+    ReadOnlyPersonBook getPersonBook();
 
     /**
      * Returns true if a person with the same identity as {@code person} exists in the address book.
@@ -119,12 +119,12 @@ public interface Model {
     /**
      * Replaces property book data with the data in {@code propertyBook}.
      */
-    void setPropertyModel(ReadOnlyPropertyBook propertyBook);
+    void setPropertyBook(ReadOnlyPropertyBook propertyBook);
 
     /**
      * Returns the PropertyBook
      */
-    ReadOnlyPropertyBook getPropertyModel();
+    ReadOnlyPropertyBook getPropertyBook();
 
     /**
      * Returns true if a property with the same identity as {@code property} exists in the address book.

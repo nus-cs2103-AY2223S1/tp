@@ -31,8 +31,8 @@ public class ModelManagerTest {
     public void constructor() {
         assertEquals(new UserPrefs(), modelManager.getUserPrefs());
         assertEquals(new GuiSettings(), modelManager.getGuiSettings());
-        assertEquals(new PersonBook(), new PersonBook(modelManager.getPersonModel()));
-        assertEquals(new PropertyBook(), new PropertyBook(modelManager.getPropertyModel()));
+        assertEquals(new PersonBook(), new PersonBook(modelManager.getPersonBook()));
+        assertEquals(new PropertyBook(), new PropertyBook(modelManager.getPropertyBook()));
     }
 
     @Test
@@ -68,14 +68,14 @@ public class ModelManagerTest {
 
     @Test
     public void setAddressBookFilePath_nullPath_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> modelManager.setPersonModelFilePath(null));
+        assertThrows(NullPointerException.class, () -> modelManager.setPersonBookFilePath(null));
     }
 
     @Test
     public void setAddressBookFilePath_validPath_setsAddressBookFilePath() {
         Path path = Paths.get("address/book/file/path");
-        modelManager.setPersonModelFilePath(path);
-        assertEquals(path, modelManager.getPersonModelFilePath());
+        modelManager.setPersonBookFilePath(path);
+        assertEquals(path, modelManager.getPersonBookFilePath());
     }
 
     @Test
@@ -101,14 +101,14 @@ public class ModelManagerTest {
 
     @Test
     public void setPropertyModelFilePath_nullPath_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> modelManager.setPropertyModelFilePath(null));
+        assertThrows(NullPointerException.class, () -> modelManager.setPropertyBookFilePath(null));
     }
 
     @Test
     public void setPropertyModelFilePath_validPath_setsPropertyModelFilePath() {
         Path path = Paths.get("address/book/file/path");
-        modelManager.setPropertyModelFilePath(path);
-        assertEquals(path, modelManager.getPropertyModelFilePath());
+        modelManager.setPropertyBookFilePath(path);
+        assertEquals(path, modelManager.getPropertyBookFilePath());
     }
 
     @Test

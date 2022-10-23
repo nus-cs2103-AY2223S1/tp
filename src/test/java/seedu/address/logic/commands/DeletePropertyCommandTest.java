@@ -35,7 +35,7 @@ public class DeletePropertyCommandTest {
         String expectedMessage = String.format(DeletePropertyCommand.MESSAGE_DELETE_PROPERTY_SUCCESS, propertyToDelete);
 
         ModelManager expectedModel =
-                new ModelManager(model.getPersonModel(), model.getPropertyModel(), new UserPrefs());
+                new ModelManager(model.getPersonBook(), model.getPropertyBook(), new UserPrefs());
         expectedModel.deleteProperty(propertyToDelete);
 
         assertCommandSuccess(deletePropertyCommand, model, expectedMessage, expectedModel);
@@ -58,7 +58,7 @@ public class DeletePropertyCommandTest {
 
         String expectedMessage = String.format(DeletePropertyCommand.MESSAGE_DELETE_PROPERTY_SUCCESS, propertyToDelete);
 
-        Model expectedModel = new ModelManager(model.getPersonModel(), model.getPropertyModel(), new UserPrefs());
+        Model expectedModel = new ModelManager(model.getPersonBook(), model.getPropertyBook(), new UserPrefs());
         expectedModel.deleteProperty(propertyToDelete);
         showNoProperty(expectedModel);
 
@@ -71,7 +71,7 @@ public class DeletePropertyCommandTest {
 
         Index outOfBoundIndex = INDEX_SECOND_ITEM;
         // ensures that outOfBoundIndex is still in bounds of address book list
-        assertTrue(outOfBoundIndex.getZeroBased() < model.getPropertyModel().getPropertyList().size());
+        assertTrue(outOfBoundIndex.getZeroBased() < model.getPropertyBook().getPropertyList().size());
 
         DeletePropertyCommand deletePropertyCommand = new DeletePropertyCommand(outOfBoundIndex);
 

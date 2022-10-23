@@ -30,7 +30,7 @@ public class AddPersonCommandIntegrationTest {
     public void execute_newPerson_success() {
         Person validPerson = new PersonBuilder().build();
 
-        Model expectedModel = new ModelManager(model.getPersonModel(), model.getPropertyModel(), new UserPrefs());
+        Model expectedModel = new ModelManager(model.getPersonBook(), model.getPropertyBook(), new UserPrefs());
         expectedModel.addPerson(validPerson);
 
         assertCommandSuccess(new AddPersonCommand(validPerson), model,
@@ -39,7 +39,7 @@ public class AddPersonCommandIntegrationTest {
 
     @Test
     public void execute_duplicatePerson_throwsCommandException() {
-        Person personInList = model.getPersonModel().getPersonList().get(0);
+        Person personInList = model.getPersonBook().getPersonList().get(0);
         assertCommandFailure(new AddPersonCommand(personInList), model, AddPersonCommand.MESSAGE_DUPLICATE_PERSON);
     }
 

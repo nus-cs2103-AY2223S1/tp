@@ -128,11 +128,11 @@ public class BuyerCommandTestUtil {
     public static void assertCommandFailure(Command command, Model actualModel, String expectedMessage) {
         // we are unable to defensively copy the model for comparison later, so we can
         // only do so by copying its components.
-        PersonBook expectedPersonBook = new PersonBook(actualModel.getPersonModel());
+        PersonBook expectedPersonBook = new PersonBook(actualModel.getPersonBook());
         List<Person> expectedFilteredList = new ArrayList<>(actualModel.getFilteredPersonList());
 
         assertThrows(CommandException.class, expectedMessage, () -> command.execute(actualModel));
-        assertEquals(expectedPersonBook, actualModel.getPersonModel());
+        assertEquals(expectedPersonBook, actualModel.getPersonBook());
         assertEquals(expectedFilteredList, actualModel.getFilteredPersonList());
     }
 
@@ -145,11 +145,11 @@ public class BuyerCommandTestUtil {
     public static void assertPropertyCommandFailure(Command command, Model actualModel, String expectedMessage) {
         // we are unable to defensively copy the model for comparison later, so we can
         // only do so by copying its components.
-        PropertyBook expectedPropertyBook = new PropertyBook(actualModel.getPropertyModel());
+        PropertyBook expectedPropertyBook = new PropertyBook(actualModel.getPropertyBook());
         List<Property> expectedFilteredList = new ArrayList<>(actualModel.getFilteredPropertyList());
 
         assertThrows(CommandException.class, expectedMessage, () -> command.execute(actualModel));
-        assertEquals(expectedPropertyBook, actualModel.getPropertyModel());
+        assertEquals(expectedPropertyBook, actualModel.getPropertyBook());
         assertEquals(expectedFilteredList, actualModel.getFilteredPropertyList());
     }
 
