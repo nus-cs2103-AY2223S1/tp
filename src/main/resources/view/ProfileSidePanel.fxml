@@ -19,7 +19,7 @@
            text="&quot;Strive for progress, not perfection.&quot;" textFill="WHITE" wrapText="true"
            HBox.hgrow="ALWAYS"/>
     <VBox styleClass="progress-content" alignment="CENTER_LEFT">
-        <Label fx:id="creditsCount" styleClass="credits-count" text="0 of 0 MCs" textFill="WHITE" />
+        <Label fx:id="creditsCount" styleClass="credits-count" text="0 MCs" textFill="WHITE" />
         <Label styleClass="credits-count-completed" text="Completed" textFill="WHITE" />
     </VBox>
     <VBox styleClass="progress-content" alignment="CENTER_LEFT">
