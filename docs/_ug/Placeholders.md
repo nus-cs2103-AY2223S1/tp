@@ -3,7 +3,6 @@
 <!-- ===== DECLARE VARIABLES ===== -->
 <!-- markdownlint-disable -->
 {% capture INDEX %}{% include_relative _ug/placeholders/INDEX.md %}{% endcapture %}
-{% capture INDEX_LIST %}{% include_relative _ug/placeholders/INDEX_LIST.md %}{% endcapture %}
 {% capture ITEM_NAME %}{% include_relative _ug/placeholders/ITEM_NAME.md %}{% endcapture %}
 {% capture TAG_NAME %}{% include_relative _ug/placeholders/TAG_NAME.md %}{% endcapture %}
 {% capture QUANTITY %}{% include_relative _ug/placeholders/QUANTITY.md %}{% endcapture %}
