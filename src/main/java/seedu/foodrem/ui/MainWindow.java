@@ -182,12 +182,11 @@ public class MainWindow extends UiPart<Stage> {
             uiView.viewFrom(commandResult.getFeedbackToUser());
             // We need to hide the window to ensure it resizes on changing message to display.
             helpWindow.hide();
-            helpWindow.setMessageToDisplay(commandResult.getHelpText());
 
             if (commandResult.shouldShowHelp()) {
+                helpWindow.setMessageToDisplay(commandResult.getHelpText());
                 handleHelpCommand();
             }
-
             if (commandResult.shouldExit()) {
                 handleExit();
             }
