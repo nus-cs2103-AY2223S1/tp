@@ -34,6 +34,7 @@ public class AddCommand extends Command {
             + PREFIX_CAP + "CAP "
             + PREFIX_GENDER + "GENDER "
             + PREFIX_UNIVERSITY + "UNIVERSITY "
+            + PREFIX_GRADUATION_DATE + "GRADUATION_DATE "
             + PREFIX_MAJOR + "MAJOR "
             + PREFIX_JOB_ID + "ID "
             + PREFIX_JOB_TITLE + "TITLE "
@@ -53,7 +54,7 @@ public class AddCommand extends Command {
             + PREFIX_TAG + "rejected "
             + PREFIX_TAG + "KIV";
 
-    public static final String MESSAGE_SUCCESS = "New person added: %1$s";
+    public static final String MESSAGE_SUCCESS = "New person added";
     public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the address book";
 
     private final Person toAdd;
@@ -75,7 +76,7 @@ public class AddCommand extends Command {
         }
 
         model.addPerson(toAdd);
-        return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
+        return new CommandResult(MESSAGE_SUCCESS);
     }
 
     @Override

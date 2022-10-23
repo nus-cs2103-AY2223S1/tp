@@ -11,6 +11,13 @@ public class Tag {
 
     public static final String MESSAGE_CONSTRAINTS = "Tag should be alphabets or spaces "
             + "and it should not be blank or spaces only";
+            
+    public static final int LENGTH_LIMIT = 30;
+
+    public static final String MESSAGE_LENGTH_LIMIT_EXCEEDED = "After trimming leading and trailing whitespaces, and "
+            + "replacing multiple spaces with a single space, "
+            + "Tags can only be of length max " + LENGTH_LIMIT;
+
     public static final String VALIDATION_REGEX = "[a-zA-Z ]+";
 
     public final String tagName;
@@ -24,6 +31,13 @@ public class Tag {
         requireNonNull(tagName);
         checkArgument(isValidTagName(tagName), MESSAGE_CONSTRAINTS);
         this.tagName = tagName;
+    }
+
+    /**
+     * Returns true if the length of a given string is within the length limit
+     */
+    public static boolean isWithinLengthLimit(String test) {
+        return test.length() <= LENGTH_LIMIT;
     }
 
     /**
