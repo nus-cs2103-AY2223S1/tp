@@ -75,7 +75,7 @@ public class LessonCard extends UiPart<Region> {
         if (lesson.hasDesc()) {
             lessonDesc.setText("Description: " + lesson.getDesc().lessonDesc);
         } else {
-            lessonDesc.setText("Description: ");
+            lessonDesc.setText("{No description}");
         }
         timePeriod.setText(lesson.getTimePeriod().toString());
     }
