@@ -130,7 +130,7 @@ public class Person {
     }
 
     /**
-     * Compares this personn and the person task to decide name alphabetical order.
+     * Compares this person and the other person to decide name alphabetical order.
      * @param other input person.
      * @return 1 if this person's name is alphabetically first, -1 otherwise.
      */
