@@ -11,7 +11,6 @@ import seedu.uninurse.logic.commands.exceptions.CommandException;
 import seedu.uninurse.model.Model;
 import seedu.uninurse.model.condition.Condition;
 import seedu.uninurse.model.condition.ConditionList;
-import seedu.uninurse.model.condition.exceptions.ConditionNotFoundException;
 import seedu.uninurse.model.condition.exceptions.DuplicateConditionException;
 import seedu.uninurse.model.person.Patient;
 
@@ -63,7 +62,7 @@ public class AddConditionCommand extends AddGenericCommand {
 
         try {
             updatedConditionList = patientToEdit.getConditions().add(condition);
-        } catch(DuplicateConditionException exception) {
+        } catch (DuplicateConditionException exception) {
             throw new CommandException(exception.getMessage());
         }
 
