@@ -203,7 +203,7 @@ public class MainApp extends Application {
     private static ReadOnlyTodoList syncTags(ReadOnlySoConnect initialSoConnectData) {
         List<Tag> tagList = List.of(SampleDataUtil.getSampleTagList());
         for (int i = 0; i < tagList.size(); i++) {
-            if (!initialSoConnectData.getTagList().contains(tagList.get(i))) {
+            if (!initialSoConnectData.hasTag(tagList.get(i))) {
                 initialSoConnectData.addTag(tagList.get(i));
             }
         }
