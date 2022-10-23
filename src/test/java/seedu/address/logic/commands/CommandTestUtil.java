@@ -33,6 +33,7 @@ public class CommandTestUtil {
     public static final String VALID_TYPE_EXPENDITURE = "e";
 
     public static final String VALID_MONTH_MARCH = "2022-03";
+    public static final String VALID_MONTH_APRIL = "2022-04";
 
     public static final String VALID_DESC_LUNCH = "Lunch";
     public static final String VALID_DESC_MOVIE = "Movie";
@@ -107,6 +108,9 @@ public class CommandTestUtil {
 
     public static final EditCommand.EditEntryDescriptor LUNCH;
     public static final EditCommand.EditEntryDescriptor DINNER;
+    public static final ViewCommand.ViewEntriesDescriptor EXPENDITURE_BY_CATEGORY;
+    public static final ViewCommand.ViewEntriesDescriptor EXPENDITURE_BY_MONTH;
+
     static {
         LUNCH = new EditEntryDescriptorBuilder().withDescription(VALID_DESC_LUNCH)
                 .withType(VALID_TYPE_EXPENDITURE).withAmount(VALID_AMT_LUNCH).withDate(VALID_DATE_LUNCH)
@@ -116,18 +120,16 @@ public class CommandTestUtil {
                 .build();
     }
 
-    public static final ViewCommand.ViewEntriesDescriptor EXPENDITURE_BY_CATEGORY;
-    public static final ViewCommand.ViewEntriesDescriptor EXPENDITURE_BY_MONTH;
     static {
-        EXPENDITURE_BY_CATEGORY = new ViewEntriesDescriptorBuilder().
-                withEntryType(VALID_TYPE_EXPENDITURE).
-                withGraphType(VALID_GRAPH_CATEGORY).
-                build();
-        EXPENDITURE_BY_MONTH = new ViewEntriesDescriptorBuilder().
-                withEntryType(VALID_TYPE_EXPENDITURE).
-                withGraphType(VALID_GRAPH_MONTH).
-                withMonth(VALID_MONTH_MARCH).
-                build();
+        EXPENDITURE_BY_CATEGORY = new ViewEntriesDescriptorBuilder()
+                .withEntryType(VALID_TYPE_EXPENDITURE)
+                .withGraphType(VALID_GRAPH_CATEGORY)
+                .build();
+        EXPENDITURE_BY_MONTH = new ViewEntriesDescriptorBuilder()
+                .withEntryType(VALID_TYPE_EXPENDITURE)
+                .withGraphType(VALID_GRAPH_MONTH)
+                .withMonth(VALID_MONTH_MARCH)
+                .build();
     }
 
     /**
@@ -173,6 +175,7 @@ public class CommandTestUtil {
         assertEquals(expectedPennyWise, actualModel.getPennyWise());
         assertEquals(expectedFilteredList, actualModel.getFilteredExpenditureList());
     }
+
     /**
      * Updates {@code model}'s filtered list to show only the expenditure at the given {@code targetIndex} in the
      * {@code model}'s address book.

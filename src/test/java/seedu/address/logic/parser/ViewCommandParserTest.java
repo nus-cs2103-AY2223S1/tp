@@ -19,7 +19,7 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.ViewCommand;
 import seedu.address.logic.commands.ViewCommand.ViewEntriesDescriptor;
-import seedu.address.model.entry.Month;
+import seedu.address.testutil.ViewEntriesDescriptorBuilder;
 
 public class ViewCommandParserTest {
 
@@ -34,10 +34,9 @@ public class ViewCommandParserTest {
         assertParseSuccess(parser, validUserInputForExpenditureCategory, new ViewCommand(EXPENDITURE_BY_CATEGORY));
 
         String validUserInputForExpenditureCategoryWithMonth = TYPE_EXPENDITURE + TYPE_GRAPH_CATEGORY + TYPE_MONTH;
-        ViewEntriesDescriptor expenditureCategoryWithMonthDescriptor = new ViewEntriesDescriptor(
+        ViewEntriesDescriptor expenditureCategoryWithMonthDescriptor = new ViewEntriesDescriptorBuilder(
                 EXPENDITURE_BY_CATEGORY
-        );
-        expenditureCategoryWithMonthDescriptor.setMonth(new Month(VALID_MONTH_MARCH));
+        ).withMonth(VALID_MONTH_MARCH).build();
 
         assertParseSuccess(parser, validUserInputForExpenditureCategoryWithMonth,
                 new ViewCommand(expenditureCategoryWithMonthDescriptor));

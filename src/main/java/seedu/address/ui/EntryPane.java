@@ -47,11 +47,17 @@ public class EntryPane extends UiPart<Region> {
         incomeEntryPlaceholder.getChildren().add(incomeEntry.getRoot());
     }
 
+    /**
+     * Switches the UI tab pane to the Expense entry panel.
+     */
     public void showExpenseEntryPanel() {
         logger.info("Showing expenses entry panel");
         tabPane.getSelectionModel().select(expenses);
     }
 
+    /**
+     * Switches the UI tab pane to the Income entry panel.
+     */
     public void showIncomeEntryPanel() {
         logger.info("Showing income entry panel");
         tabPane.getSelectionModel().select(income);

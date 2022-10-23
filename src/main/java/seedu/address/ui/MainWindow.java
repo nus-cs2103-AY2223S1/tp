@@ -1,7 +1,5 @@
 package seedu.address.ui;
 
-import static seedu.address.model.entry.EntryType.Type.EXPENDITURE;
-
 import java.util.logging.Logger;
 
 import javafx.event.ActionEvent;
@@ -32,13 +30,13 @@ public class MainWindow extends UiPart<Stage> {
 
     private final Logger logger = LogsCenter.getLogger(getClass());
 
-    private Stage primaryStage;
-    private Logic logic;
+    private final Stage primaryStage;
+    private final Logic logic;
 
     // Independent Ui parts residing in this Ui container
     private EntryPane entryPane;
     private ResultDisplay resultDisplay;
-    private HelpWindow helpWindow;
+    private final HelpWindow helpWindow;
 
     @FXML
     private StackPane commandBoxPlaceholder;
@@ -118,7 +116,7 @@ public class MainWindow extends UiPart<Stage> {
     /**
      * Fills up all the placeholders of this window.
      */
-     public void fillInnerParts() {
+    public void fillInnerParts() {
         EntryListPanel expenseEntryPanel = new EntryListPanel(logic.getFilteredExpenditureList());
         EntryListPanel incomeEntryPanel = new EntryListPanel(logic.getFilteredIncomeList());
 
@@ -135,7 +133,7 @@ public class MainWindow extends UiPart<Stage> {
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
 
         GraphPanel graphPanel = new GraphPanel(new EntryType(EntryType.ENTRY_TYPE_EXPENDITURE),
-                                                        logic.getExpensePieChartData());
+                logic.getExpensePieChartData());
         graphPanelPlaceholder.getChildren().add(graphPanel.getRoot());
     }
 
@@ -215,7 +213,7 @@ public class MainWindow extends UiPart<Stage> {
     @FXML
     private void handleExit() {
         GuiSettings guiSettings = new GuiSettings(primaryStage.getWidth(), primaryStage.getHeight(),
-                                                  (int) primaryStage.getX(), (int) primaryStage.getY());
+                (int) primaryStage.getX(), (int) primaryStage.getY());
         logic.setGuiSettings(guiSettings);
         helpWindow.hide();
         primaryStage.hide();
@@ -255,6 +253,8 @@ public class MainWindow extends UiPart<Stage> {
                 break;
             case INCOME:
                 entryPane.showIncomeEntryPanel();
+                break;
+            default:
                 break;
             }
 

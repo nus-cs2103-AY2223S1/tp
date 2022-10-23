@@ -42,7 +42,12 @@ public class ViewCommandTest {
                         true
                 )
         );
-        assertCommandSuccess(viewCommandExpenditureByCategory, model, expectedCommandResultExpenditureByCategory, model);
+        assertCommandSuccess(
+                viewCommandExpenditureByCategory,
+                model,
+                expectedCommandResultExpenditureByCategory,
+                model
+        );
 
         ViewCommand viewCommandExpenditureByMonth = new ViewCommand(EXPENDITURE_BY_MONTH);
         String expectedMessageExpenditureByMonth = String.format(

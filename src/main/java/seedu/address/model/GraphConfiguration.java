@@ -1,7 +1,5 @@
 package seedu.address.model;
 
-import seedu.address.logic.commands.ViewCommand;
-import seedu.address.model.entry.Entry;
 import seedu.address.model.entry.EntryType;
 import seedu.address.model.entry.GraphType;
 
@@ -15,6 +13,14 @@ public class GraphConfiguration {
     /** Whether the graph should be updated or not. */
     private final boolean shouldUpdateGraph;
 
+    /**
+     * Constructs a {@code GraphConfiguration} with the specified {@code entryType}, {@code graphType}
+     * and {@code shouldUpdateGraph}.
+     *
+     * @param entryType The type of the entry to be displayed on the graph.
+     * @param graphType The type of the graph.
+     * @param shouldUpdateGraph If true, the graph will be updated when the command is executed.
+     */
     public GraphConfiguration(EntryType entryType, GraphType graphType, boolean shouldUpdateGraph) {
         this.entryType = entryType;
         this.graphType = graphType;
