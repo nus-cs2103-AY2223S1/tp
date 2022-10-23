@@ -14,12 +14,12 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.TextFlow?>
 
-<HBox id="cardPane" fx:id="cardPane" xmlns="http://javafx.com/javafx/11" xmlns:fx="http://javafx.com/fxml/1" VBox.vgrow="ALWAYS">
+<HBox styleClass="target-person-card" id="cardPane" fx:id="cardPane" xmlns="http://javafx.com/javafx/11" xmlns:fx="http://javafx.com/fxml/1" VBox.vgrow="ALWAYS">
   <VBox alignment="CENTER_LEFT" minHeight="-Infinity" maxHeight="Infinity" HBox.hgrow="ALWAYS" VBox.vgrow="ALWAYS">
     <padding>
       <Insets bottom="5" left="15" right="5" top="5" />
     </padding>
-    <Label fx:id="showingInfoFor" styleClass="target-person-header" text="Showing information for" />
+    <Label fx:id="showingInfoFor" styleClass="pane-header" text="Showing information for" />
     <HBox alignment="CENTER_LEFT" spacing="5">
       <Label fx:id="name" styleClass="target-person-name" text="\$first" />
     </HBox>
@@ -69,8 +69,7 @@
 
     <Label fx:id="remark" styleClass="target-person-details" text="\$remark" />
 
-    <Label fx:id="reminderHeader" styleClass="target-person-header-2" text="Reminders" />
-
+    <Label fx:id="reminderHeader" styleClass="pane-header-2" text="Reminders" />
     <StackPane VBox.vgrow="ALWAYS">
       <ListView styleClass="reminder-view" fx:id="reminderView" VBox.vgrow="ALWAYS" minHeight="-Infinity" maxHeight="Infinity"/>
     </StackPane>
