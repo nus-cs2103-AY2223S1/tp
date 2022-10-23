@@ -5,7 +5,7 @@ box Logic LOGIC_COLOR_T1
 participant ":LogicManager" as LogicManager LOGIC_COLOR
 participant ":SoConnectParser" as SoConnectParser LOGIC_COLOR
 participant ":SortCommandParser" as SortCommandParser LOGIC_COLOR
-participant "d:SortCommand" as SortCommand LOGIC_COLOR
+participant "s:SortCommand" as SortCommand LOGIC_COLOR
 participant ":CommandResult" as CommandResult LOGIC_COLOR
 end box
 
@@ -26,7 +26,7 @@ activate SortCommandParser
 SortCommandParser --> SoConnectParser
 deactivate SortCommandParser
 
-SoConnectParser -> SortCommandParser : parse("t/!friend n/")
+SoConnectParser -> SortCommandParser : parse(" t/!friend n/")
 activate SortCommandParser
 
 create SortCommand

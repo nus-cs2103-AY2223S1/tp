@@ -3,10 +3,7 @@ layout: page
 title: User Guide
 ---
 
-SoConnect is a **desktop app for managing contacts and tasks**. It aims to help NUS SoC students stay
-better connected to their school life, in terms of social connections and school tasks. SoConnect is also
-**optimized for use via a Command Line Interface (CLI)** while still having the benefits of a Graphical User Interface (GUI).
-If you can type fast, SoConnect can **get your contact and task management done faster than traditional GUI apps.**
+SoConnect is a **desktop app for managing contacts and tasks**. It aims to help NUS SoC students stay better connected to their school life, in terms of social connections and school tasks. SoConnect is also **optimized for use via a Command Line Interface (CLI)** while still having the benefits of a Graphical User Interface (GUI). If you can type fast, SoConnect can **get your contact and task management done faster than traditional GUI apps.**
 
 * Table of Contents
 {:toc}
@@ -200,7 +197,7 @@ Example:
 * `search n/An` will show a list of names that start with `An`.
 * `search t/fa` will show a list of tags that start with `fa`.
 
-### Deleting a person : `delete`
+### Deleting a contact : `delete`
 
 Deletes the specified contact from your SoConnect.
 
@@ -331,8 +328,8 @@ SoConnect data are saved in the hard disk automatically after any command that c
 
 ### Editing the data file
 
-SoConnect contacts data are saved as a JSON file `[JAR file location]/data/soconnect.json`.
-SoConnect todos data are saved as a JSON file `[JAR file location]/data/todolist.json`.
+SoConnect contacts data are saved as a JSON file `[JAR file location]/data/soconnect.json`.<br>
+SoConnect todos data are saved as a JSON file `[JAR file location]/data/todolist.json`.<br>
 Advanced users are welcome to update data directly by editing these data file.
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**

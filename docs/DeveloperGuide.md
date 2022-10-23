@@ -10,8 +10,7 @@ title: Developer Guide
 ## **Acknowledgements**
 
 * This product is adapted from [AddressBook Level-3](https://nus-cs2103-ay2223s1.github.io/tp/).
-* Libraries used: [JavaFX](https://openjfx.io/),
-[Jackson](https://github.com/FasterXML/jackson), [JUnit5](https://github.com/junit-team/junit5).
+* Libraries used: [JavaFX](https://openjfx.io/), [Jackson](https://github.com/FasterXML/jackson), [JUnit5](https://github.com/junit-team/junit5).
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -38,8 +37,7 @@ Given below is a quick overview of main components and how they interact with ea
 
 **Main components of the architecture**
 
-**`Main`** has two classes called [`Main`](https://github.com/AY2223S1-CS2103T-W15-1/tp/blob/master/src/main/java/soconnect/Main.java)
-and [`MainApp`](https://github.com/AY2223S1-CS2103T-W15-1/tp/blob/master/src/main/java/soconnect/MainApp.java). It is responsible for:
+**`Main`** has two classes called [`Main`](https://github.com/AY2223S1-CS2103T-W15-1/tp/blob/master/src/main/java/soconnect/Main.java) and [`MainApp`](https://github.com/AY2223S1-CS2103T-W15-1/tp/blob/master/src/main/java/soconnect/MainApp.java). It is responsible for:
 * At app launch: Initializes the components in the correct sequence and connects them up with each other.
 * At shut down: Shuts down the components and invokes cleanup methods where necessary.
 
@@ -63,9 +61,7 @@ Each of the four main components will:
 * Define its *API* in an `interface` with the same name as the Component.
 * Implement its functionality using a concrete `{Component Name}Manager` class, which follows the corresponding API `interface` mentioned in the previous point.
 
-For example, the `Logic` component defines its API in the `Logic.java` interface and implements its functionality using the `LogicManager.java` class which follows the `Logic` interface.
-Other components interact with a given component through its interface rather than the concrete class.
-This is to prevent the outside component being coupled to the implementation of a component, as illustrated in the partial class diagram below.
+For example, the `Logic` component defines its API in the `Logic.java` interface and implements its functionality using the `LogicManager.java` class which follows the `Logic` interface. Other components interact with a given component through its interface rather than the concrete class. This is to prevent the outside component being coupled to the implementation of a component, as illustrated in the partial class diagram below.
 
 <img src="images/ComponentManagers.png" width="300" />
 
@@ -77,11 +73,9 @@ The **API** of this component is specified in [`Ui.java`](https://github.com/AY2
 
 ![Structure of the UI Component](images/UiClassDiagram.png)
 
-The UI consists of a `MainWindow` that is made up of parts, e.g.,`CommandBox`, `ResultDisplay`, `PersonListPanel`, `StatusBarFooter`, etc.
-All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
+The UI consists of a `MainWindow` that is made up of parts, e.g.,`CommandBox`, `ResultDisplay`, `PersonListPanel`, `StatusBarFooter`, etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
 
-The `UI` component uses the [JavaFX](https://openjfx.io/) UI framework. The layout of these UI parts are defined in matching `.fxml` files that are present in the `src/main/resources/view` folder.
-For example, the layout of the [`MainWindow`](https://github.com/AY2223S1-CS2103T-W15-1/tp/blob/master/src/main/java/soconnect/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/AY2223S1-CS2103T-W15-1/tp/blob/master/src/main/resources/view/MainWindow.fxml)
+The `UI` component uses the [JavaFX](https://openjfx.io/) UI framework. The layout of these UI parts are defined in matching `.fxml` files that are present in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/AY2223S1-CS2103T-W15-1/tp/blob/master/src/main/java/soconnect/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/AY2223S1-CS2103T-W15-1/tp/blob/master/src/main/resources/view/MainWindow.fxml)
 
 The `UI` component does the following:
 
@@ -100,16 +94,15 @@ Below is a partial class diagram of the `Logic` component.
 
 How the `Logic` component works:
 1. When `Logic` is called upon to execute a command, it uses the `SoConnectParser` class to parse the user command.
-1. This results in a `Command` object (more precisely, an object of one of its subclasses e.g., `AddCommand`) which is executed by the `LogicManager`.
-1. The command can communicate with the `Model` when it is executed (e.g., to add a person).
-1. The result of the command execution is encapsulated as a `CommandResult` object which is returned from `Logic`.
+2. This results in a `Command` object (more precisely, an object of one of its subclasses e.g., `AddCommand`) which is executed by the `LogicManager`.
+3. The command can communicate with the `Model` when it is executed (e.g., to add a contact).
+4. The result of the command execution is encapsulated as a `CommandResult` object which is returned from `Logic`.
 
 The Sequence Diagram below illustrates the interactions within the `Logic` component for the `execute("delete 1")` API call.
 
 ![Interactions Inside the Logic Component for the `delete 1` Command](images/DeleteSequenceDiagram.png)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteCommandParser` should end at the destroy marker (X),
-but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteCommandParser` should end at the destroy marker (X), but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
 
 Here are the other classes in `Logic` (omitted from the class diagram above) that are used for parsing a user command:
@@ -176,7 +169,7 @@ This section describes some noteworthy details on how certain features are imple
 
 #### Implementation
 
-The sorting mechanism is facilitated by `SortCommand` and `SortCommandParser`.
+The sorting mechanism is facilitated by `SortCommand` and `SortCommandParser`.<br>
 Additionally, the mechanism utilises the following operations in `UniquePersonList` to carry out sorting:
 
 * `UniquePersonList#sortByName(Boolean isReverse)` — Sorts the list of contacts by **Name** in alphabetical order.
@@ -191,12 +184,10 @@ These operations are exposed in the `Model` interface under the same method sign
 
 Given below is an example usage scenario and how the sorting mechanism behaves at each step.
 
-Step 1. The user enters `sort t/!friend n/` command to perform a multi-level sort. `SortCommandParser` calls `ArgumentTokenizer#tokenizeToList()` to separate the parameters of `t/!friend` and `n/`.
-The separated parameters are stored in a list that preserves the order that the user entered them in. `SortCommandParser` checks the list to confirm that at least 1 valid parameter has been entered.
+Step 1. The user enters `sort t/!friend n/` command to perform a multi-level sort. `SortCommandParser` calls `ArgumentTokenizer#tokenizeToList()` to separate the parameters of `t/!friend` and `n/`. The separated parameters are stored in a list that preserves the order that the user entered them in. `SortCommandParser` checks the list to confirm that at least 1 valid parameter has been entered.
 
 Step 2. Each parameter is processed by `SortCommandParser#convertArguments`. They are checked for reversed sorting through the presence of `!`.
-The `friend` string is checked to see if it fulfils the requirements of the `Tag` class. If the user entered string values for non-`Tag` parameters (`n/NAME`, `p/PHONE`, `e/EMAIL`, `a/ADDRESS`),
-the string values are ignored and the command continues execution as per normal.
+The `friend` string is checked to see if it fulfils the requirements of the `Tag` class. If the user entered string values for non-`Tag` parameters (`n/NAME`, `p/PHONE`, `e/EMAIL`, `a/ADDRESS`), the string values are ignored and the command continues execution as per normal.
 
 Step 3. The `sort` command sorts the currently displayed list by **Name** first, calling `Model#sortByName(Boolean isReverse)` where `isReverse = false`.
 
@@ -393,11 +384,11 @@ Step 1. The user launches the application for the first time. The `VersionedSoCo
 
 ![UndoRedoState0](images/UndoRedoState0.png)
 
-Step 2. The user executes `delete 5` command to delete the 5th person in the address book. The `delete` command calls `Model#commitSoConnect()`, causing the modified state of the address book after the `delete 5` command executes to be saved in the `SoConnectStateList`, and the `currentStatePointer` is shifted to the newly inserted address book state.
+Step 2. The user executes `delete 5` command to delete the 5th contact in the address book. The `delete` command calls `Model#commitSoConnect()`, causing the modified state of the address book after the `delete 5` command executes to be saved in the `SoConnectStateList`, and the `currentStatePointer` is shifted to the newly inserted address book state.
 
 ![UndoRedoState1](images/UndoRedoState1.png)
 
-Step 3. The user executes `add n/David …​` to add a new person. The `add` command also calls `Model#commitSoConnect()`, causing another modified address book state to be saved into the `SoConnectStateList`.
+Step 3. The user executes `add n/David …​` to add a new contact. The `add` command also calls `Model#commitSoConnect()`, causing another modified address book state to be saved into the `SoConnectStateList`.
 
 ![UndoRedoState2](images/UndoRedoState2.png)
 
@@ -405,7 +396,7 @@ Step 3. The user executes `add n/David …​` to add a new person. The `add` co
 
 </div>
 
-Step 4. The user now decides that adding the person was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `Model#undoSoConnect()`, which will shift the `currentStatePointer` once to the left, pointing it to the previous address book state, and restores the address book to that state.
+Step 4. The user now decides that adding the contact was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `Model#undoSoConnect()`, which will shift the `currentStatePointer` once to the left, pointing it to the previous address book state, and restores the address book to that state.
 
 ![UndoRedoState3](images/UndoRedoState3.png)
 
@@ -450,7 +441,7 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 * **Alternative 2:** Individual command knows how to undo/redo by
   itself.
-  * Pros: Will use less memory (e.g. for `delete`, just save the person being deleted).
+  * Pros: Will use less memory (e.g. for `delete`, just save the contact being deleted).
   * Cons: We must ensure that the implementation of each individual command are correct.
 
 _{more aspects and alternatives to be added}_
@@ -469,18 +460,18 @@ These operations are exposed in the `Model` interface under the same method name
 
 Given below is an example usage scenario and how the tag adding mechanism behaves at each step.
 
-Step 1. The user executes `tag add 1 t/friend` command to add the tag, `friend`, to the person indicated by the `INDEX`, 1.
+Step 1. The user executes `tag add 1 t/friend` command to add the tag, `friend`, to the contact indicated by the `INDEX`, 1.
 `TagAddCommandParser` calls  `ArgumentTokenizer#tokenizeToList()` to separate the parameters of `1` and `t/friend`.
 
-Step 2. The `tag add` command collects the list of persons shown, containing them in `Model#getFilteredPersonList()`.
+Step 2. The `tag add` command collects the list of contacts shown, containing them in `Model#getFilteredPersonList()`.
 
 Step 3. The `tag add` command checks if the index is valid, calling `Index#getZeroBased()`.
 
-Step 4. The `tag add` command receives the person indicated by the index, containing it in `List#get(int index)`.
+Step 4. The `tag add` command receives the contact indicated by the index, containing it in `List#get(int index)`.
 
-Step 5. The `tag add` command creates the same person with the new tag included, containing it in `TagAddCommand#createEditedPerson(Person personToEdit, Tag tag)`.
+Step 5. The `tag add` command creates the same contact with the new tag included, containing it in `TagAddCommand#createEditedPerson(Person personToEdit, Tag tag)`.
 
-Step 6. The `tag add` command replaces the old person with the new, updated person, calling `Model#setPerson(Person target, Person editedPerson)`.
+Step 6. The `tag add` command replaces the old contact with the new, updated contact, calling `Model#setPerson(Person target, Person editedPerson)`.
 
 The following activity diagram summarizes what happens when a user executes a tag add command:
 
@@ -490,13 +481,13 @@ The following activity diagram summarizes what happens when a user executes a ta
 
 **Aspect: How to implement tag add:**
 
-* **Alternative 1 (current choice):** Creates a new person with the tag included.
-    * Pros: Prevents direct access into the tags of a person.
+* **Alternative 1 (current choice):** Creates a new contact with the tag included.
+    * Pros: Prevents direct access into the tags of a contact.
     * Cons: Potential error occurs if some form of duplication is allowed.
 
-* **Alternative 2:** Directly add the tag into the person .
+* **Alternative 2:** Directly add the tag into the contact .
     * Pros: Easy to implement.
-    * Cons: Easy to access into the tags of a person. Could cause accidental bugs.
+    * Cons: Easy to access into the tags of a contact. Could cause accidental bugs.
 
 _{Explain here how the data archiving feature will be implemented}_
 
@@ -522,7 +513,7 @@ Step 1. The user executes `tag edit t/friend t/bestFriend` command to edit the o
 
 Step 2. The `tag edit` command edits the old tag with the new tag, calling `Model#editTag(oldTag, newTag)`.
 
-Step 3. The old tag on every person and every task is now replaced with the new tag for display.
+Step 3. The old tag on every contact and every task is now replaced with the new tag for display.
 
 The following activity diagram summarizes what happens when a user executes a tag add command:
 
@@ -534,7 +525,7 @@ The following activity diagram summarizes what happens when a user executes a ta
 
 * **Alternative 1 (current choice):** Creates a new tag and replaces the old tag with the new one.
     * Pros: Prevents direct access into the information of a tag.
-    * Cons: Tedious. Necessary to manually change the old tag in every person and every task.
+    * Cons: Tedious. Necessary to manually change the old tag in every contact and every task.
 
 * **Alternative 2:** Change the tag's name.
     * Pros: Easy to implement.
@@ -669,14 +660,14 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 (For all use cases below, the **System** is the `SoConnect` and the **Actor** is the `user`, unless specified otherwise)
 
-**Use case: Delete a person**
+**Use case: Delete a contact**
 
 **MSS**
 
-1.  User requests to list persons.
-2.  SoConnect shows a list of persons.
-3.  User requests to delete a specific person in the list.
-4.  SoConnect deletes the person.
+1.  User requests to list contacts.
+2.  SoConnect shows a list of contacts.
+3.  User requests to delete a specific contact in the list.
+4.  SoConnect deletes the contact.
 
     Use case ends.
 
@@ -697,7 +688,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **MSS**
 
 1.  User requests to search a specific word in the list.
-2.  SoConnect shows a list of persons related to the word.
+2.  SoConnect shows a list of contacts related to the word.
 
     Use case ends.
 
@@ -708,7 +699,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 3a. There is no input after search.
 
-    * 3a1. SoConnect shows the same list of persons.
+    * 3a1. SoConnect shows the same list of contacts.
 
       Use case ends.
 
@@ -805,7 +796,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 ### Non-Functional Requirements
 
 1. Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
-2. Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
+2. Should be able to hold up to 1000 contacts and todos without a noticeable sluggishness in performance for typical usage.
 3. A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
 4. Should be for a single user i.e. (not a multi-user product).
 5. Should have its data stored locally and the data should be in a human editable text file.
@@ -858,7 +849,7 @@ testers are expected to do more *exploratory* testing.
 
 1. _{ more test cases …​ }_
 
-### Deleting a person
+### Deleting a contact
 
 1. Deleting a contact while all contacts are being shown
 

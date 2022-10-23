@@ -1,5 +1,6 @@
 @startuml
 !include style.puml
+scale 546*263
 skinparam arrowThickness 1.1
 skinparam arrowColor MODEL_COLOR
 skinparam classBackgroundColor MODEL_COLOR
