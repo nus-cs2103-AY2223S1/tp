@@ -73,6 +73,10 @@ public class Deadline {
         return deadline.format(WRITE_FORMATTER);
     }
 
+    public String deadlineString() {
+        return deadline.format(READ_FORMATTER);
+    }
+
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object

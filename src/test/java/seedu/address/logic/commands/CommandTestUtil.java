@@ -24,6 +24,7 @@ import seedu.address.model.person.Person;
 import seedu.address.model.task.Task;
 import seedu.address.model.task.TaskContainsKeywordsPredicate;
 import seedu.address.testutil.EditPersonDescriptorBuilder;
+import seedu.address.testutil.EditTaskDescriptorBuilder;
 
 /**
  * Contains helper methods for testing commands.
@@ -70,13 +71,14 @@ public class CommandTestUtil {
     public static final String VALID_DEADLINE_LAB_2 = "2022-02-02 23:59";
     public static final String VALID_MODULE_LAB_2 = "CS2030S";
 
-    public static final String TASK_NAME_DESC_FINISH_TP = VALID_TASK_NAME_FINISH_TP;
+    public static final String TASK_NAME_DESC_FINISH_TP = " " + PREFIX_NAME + VALID_TASK_NAME_FINISH_TP;
     public static final String MODULE_DESC_FINISH_TP = " " + PREFIX_MODULE + VALID_MODULE_FINISH_TP;
     public static final String DEADLINE_DESC_FINISH_TP = " " + PREFIX_DEADLINE + VALID_DEADLINE_FINISH_TP;
-    public static final String TASK_NAME_DESC_LAB_2 = VALID_TASK_NAME_LAB_2;
+    public static final String TASK_NAME_DESC_LAB_2 = " " + PREFIX_NAME + VALID_TASK_NAME_LAB_2;
     public static final String MODULE_DESC_LAB_2 = " " + PREFIX_MODULE + VALID_MODULE_LAB_2;
     public static final String DEADLINE_DESC_LAB_2 = " " + PREFIX_DEADLINE + VALID_DEADLINE_LAB_2;
     public static final String INVALID_TASK_NAME_DESC = "John\nEvelyn\tTan";
+    public static final String INVALID_TASK_NAME_PREF = " " + PREFIX_NAME + " ";
     public static final String INVALID_MODULE_DESC = " " + PREFIX_MODULE + "Software Engineering";
     public static final String INVALID_DEADLINE_DESC = " " + PREFIX_DEADLINE + "foobar";
 
@@ -86,6 +88,9 @@ public class CommandTestUtil {
     public static final EditContactCommand.EditPersonDescriptor DESC_AMY;
     public static final EditContactCommand.EditPersonDescriptor DESC_BOB;
 
+    public static final EditTaskCommand.EditTaskDescriptor DESC_FINISH_TP;
+    public static final EditTaskCommand.EditTaskDescriptor DESC_LAB_2;
+
     static {
         DESC_AMY = new EditPersonDescriptorBuilder().withName(VALID_NAME_AMY)
                 .withPhone(VALID_PHONE_AMY).withEmail(VALID_EMAIL_AMY).withAddress(VALID_ADDRESS_AMY)
@@ -93,6 +98,10 @@ public class CommandTestUtil {
         DESC_BOB = new EditPersonDescriptorBuilder().withName(VALID_NAME_BOB)
                 .withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB).withAddress(VALID_ADDRESS_BOB)
                 .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).withModules(VALID_MODULE_CS2030S).build();
+        DESC_FINISH_TP = new EditTaskDescriptorBuilder().withName(VALID_TASK_NAME_FINISH_TP)
+                .withModule(VALID_MODULE_FINISH_TP).withDeadline(VALID_DEADLINE_FINISH_TP).build();
+        DESC_LAB_2 = new EditTaskDescriptorBuilder().withName(VALID_TASK_NAME_LAB_2)
+                .withModule(VALID_MODULE_LAB_2).withDeadline(VALID_DEADLINE_LAB_2).build();
     }
 
     /**

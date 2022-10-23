@@ -1,5 +1,14 @@
 package seedu.address.logic.commands;
 
+import static java.util.Objects.requireNonNull;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DEADLINE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_MODULE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.address.model.Model.PREDICATE_SHOW_ALL_TASKS;
+
+import java.util.List;
+import java.util.Optional;
+
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.CollectionUtil;
@@ -10,12 +19,6 @@ import seedu.address.model.task.Deadline;
 import seedu.address.model.task.Status;
 import seedu.address.model.task.Task;
 import seedu.address.model.task.TaskName;
-
-import java.util.*;
-
-import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.parser.CliSyntax.*;
-import static seedu.address.model.Model.PREDICATE_SHOW_ALL_TASKS;
 
 /**
  * Edits the details of an existing person in the address book.
@@ -169,7 +172,7 @@ public class EditTaskCommand extends Command {
         public Optional<Status> getStatus() {
             return Optional.ofNullable(status);
         }
-        
+
         @Override
         public boolean equals(Object other) {
             // short circuit if same object

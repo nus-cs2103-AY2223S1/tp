@@ -8,7 +8,6 @@ import static seedu.address.logic.commands.CommandTestUtil.INVALID_MODULE_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_TASK_NAME_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.MODULE_DESC_FINISH_TP;
 import static seedu.address.logic.commands.CommandTestUtil.MODULE_DESC_LAB_2;
-import static seedu.address.logic.commands.CommandTestUtil.TASK_NAME_DESC_FINISH_TP;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_DEADLINE_FINISH_TP;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_MODULE_FINISH_TP;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TASK_NAME_FINISH_TP;
@@ -32,18 +31,18 @@ public class AddTaskCommandParserTest {
         Task expectedTask = FINISH_TP;
 
         // Typical usage example
-        assertParseSuccess(parser, TASK_NAME_DESC_FINISH_TP + DEADLINE_DESC_FINISH_TP + MODULE_DESC_FINISH_TP,
+        assertParseSuccess(parser, VALID_TASK_NAME_FINISH_TP + DEADLINE_DESC_FINISH_TP + MODULE_DESC_FINISH_TP,
                 new AddTaskCommand(expectedTask));
 
         // multiple modules - last module accepted
         assertParseSuccess(parser,
-                TASK_NAME_DESC_FINISH_TP + MODULE_DESC_LAB_2 + DEADLINE_DESC_FINISH_TP + MODULE_DESC_FINISH_TP,
-                new AddTaskCommand(expectedTask));
+                VALID_TASK_NAME_FINISH_TP + MODULE_DESC_LAB_2 + DEADLINE_DESC_FINISH_TP
+                        + MODULE_DESC_FINISH_TP, new AddTaskCommand(expectedTask));
 
         // multiple deadlines - last deadline accepted
         assertParseSuccess(parser,
-                TASK_NAME_DESC_FINISH_TP + DEADLINE_DESC_LAB_2 + DEADLINE_DESC_FINISH_TP + MODULE_DESC_FINISH_TP,
-                new AddTaskCommand(expectedTask));
+                VALID_TASK_NAME_FINISH_TP + DEADLINE_DESC_LAB_2 + DEADLINE_DESC_FINISH_TP
+                        + MODULE_DESC_FINISH_TP, new AddTaskCommand(expectedTask));
     }
 
     @Test
@@ -55,11 +54,11 @@ public class AddTaskCommandParserTest {
                 expectedMessage);
 
         // missing deadline prefix
-        assertParseFailure(parser, TASK_NAME_DESC_FINISH_TP + VALID_DEADLINE_FINISH_TP + MODULE_DESC_FINISH_TP,
+        assertParseFailure(parser, VALID_TASK_NAME_FINISH_TP + VALID_DEADLINE_FINISH_TP + MODULE_DESC_FINISH_TP,
                 expectedMessage);
 
         // missing module prefix
-        assertParseFailure(parser, TASK_NAME_DESC_FINISH_TP + DEADLINE_DESC_FINISH_TP + VALID_MODULE_FINISH_TP,
+        assertParseFailure(parser, VALID_TASK_NAME_FINISH_TP + DEADLINE_DESC_FINISH_TP + VALID_MODULE_FINISH_TP,
                 expectedMessage);
 
         // all prefixes missing
@@ -74,11 +73,11 @@ public class AddTaskCommandParserTest {
                 TaskName.MESSAGE_CONSTRAINTS);
 
         // invalid deadline
-        assertParseFailure(parser, TASK_NAME_DESC_FINISH_TP + INVALID_DEADLINE_DESC + MODULE_DESC_FINISH_TP,
+        assertParseFailure(parser, VALID_TASK_NAME_FINISH_TP + INVALID_DEADLINE_DESC + MODULE_DESC_FINISH_TP,
                 Deadline.MESSAGE_CONSTRAINTS);
 
         // invalid module
-        assertParseFailure(parser, TASK_NAME_DESC_FINISH_TP + DEADLINE_DESC_FINISH_TP + INVALID_MODULE_DESC,
+        assertParseFailure(parser, VALID_TASK_NAME_FINISH_TP + DEADLINE_DESC_FINISH_TP + INVALID_MODULE_DESC,
                 Module.MESSAGE_CONSTRAINTS);
 
         // two invalid values, only first invalid value reported
