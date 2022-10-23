@@ -22,6 +22,7 @@ public class MarkCommand extends Command {
     public static final String MESSAGE_MARK_SUCCESS = "Marked as complete: [x] %1$s";
     public static final String MESSAGE_TASK_INDEX_OUT_OF_BOUNDS = "This task does not exist. "
             + "There are less than %1$s tasks in your list.";
+    public static final String MESSAGE_ALREADY_MARKED = "This task has already been marked as complete.";
     private final int taskIndex;
 
     /**
@@ -38,6 +39,9 @@ public class MarkCommand extends Command {
         List<Task> taskList = model.getTeam().getTaskList();
         if (taskIndex >= taskList.size()) {
             throw new CommandException(String.format(MESSAGE_TASK_INDEX_OUT_OF_BOUNDS, taskIndex + 1));
+        }
+        if (taskList.get(taskIndex).isComplete()) {
+            throw new CommandException(MESSAGE_ALREADY_MARKED);
         }
         taskList.get(taskIndex).mark(true);
         return new CommandResult(String.format(MESSAGE_MARK_SUCCESS,

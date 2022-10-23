@@ -22,6 +22,7 @@ public class UnmarkCommand extends Command {
     public static final String MESSAGE_MARK_SUCCESS = "Marked as incomplete: [ ] %1$s";
     public static final String MESSAGE_TASK_INDEX_OUT_OF_BOUNDS = "This task does not exist. "
             + "There are less than %1$s tasks in your list.";
+    public static final String MESSAGE_ALREADY_UNMARKED = "This task has not been marked as done.";
     private final int taskIndex;
 
     /**
@@ -38,6 +39,9 @@ public class UnmarkCommand extends Command {
         List<Task> taskList = model.getTeam().getTaskList();
         if (taskIndex >= taskList.size()) {
             throw new CommandException(String.format(MESSAGE_TASK_INDEX_OUT_OF_BOUNDS, taskIndex + 1));
+        }
+        if (!taskList.get(taskIndex).isComplete()) {
+            throw new CommandException(MESSAGE_ALREADY_UNMARKED);
         }
         taskList.get(taskIndex).mark(false);
         return new CommandResult(String.format(MESSAGE_MARK_SUCCESS,

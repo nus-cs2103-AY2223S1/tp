@@ -1,6 +1,7 @@
 package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_TASK_DISPLAYED_INDEX;
 
 import seedu.address.logic.commands.MarkCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
@@ -20,7 +21,11 @@ public class MarkCommandParser implements Parser<MarkCommand> {
     public MarkCommand parse(String args) throws ParseException {
         try {
             int index = Integer.parseInt(args.trim());
-            return new MarkCommand(index - 1);
+            if (index > 0) {
+                return new MarkCommand(index - 1);
+            } else {
+                throw new ParseException(MESSAGE_INVALID_TASK_DISPLAYED_INDEX);
+            }
         } catch (NumberFormatException pe) {
             throw new ParseException(
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, MarkCommand.MESSAGE_USAGE), pe);

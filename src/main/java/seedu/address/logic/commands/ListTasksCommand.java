@@ -40,9 +40,10 @@ public class ListTasksCommand extends Command {
         }
         if (filter.equals("complete") || filter.equals("c")) {
             return new CommandResult(String.format(MESSAGE_LIST_TASK_SUCCESS, completedTasks));
-        }
-        if (filter.equals("incomplete") || filter.equals("i")) {
+        } else if (filter.equals("incomplete") || filter.equals("i")) {
             return new CommandResult(String.format(MESSAGE_LIST_TASK_SUCCESS, incompleteTasks));
+        } else if (!filter.equals("")) {
+            return new CommandResult("Invalid command format!" + MESSAGE_USAGE);
         }
         return new CommandResult(String.format(MESSAGE_LIST_TASK_SUCCESS, tasks));
     }
