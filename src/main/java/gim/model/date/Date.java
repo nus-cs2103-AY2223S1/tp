@@ -60,6 +60,15 @@ public class Date {
         return test.matches(VALIDATION_REGEX);
     }
 
+    /**
+     * Obtains the day of week.
+     * Example: 21/08/2022 is a Friday
+     * @return string representing the day of week
+     */
+    public String getDayString() {
+        return date.getDayOfWeek().toString();
+    }
+
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object

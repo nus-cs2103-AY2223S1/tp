@@ -51,7 +51,13 @@ public class ExerciseCard extends UiPart<Region> {
         weight.setText("Weight: " + exercise.getWeight().value + "kg");
         reps.setText("Reps: " + exercise.getReps().value);
         sets.setText("Sets: " + exercise.getSets().value);
-        dates.getChildren().add(new Label(exercise.getDateString()));
+
+        String dayString = exercise.getDate().getDayString();
+        // Convert "SATURDAY" to "Saturday"
+        dayString = dayString.charAt(0) + dayString.substring(1).toLowerCase();
+        String dayDateString = dayString + ", " + exercise.getDateString();
+
+        dates.getChildren().add(new Label(dayDateString));
     }
 
     @Override
