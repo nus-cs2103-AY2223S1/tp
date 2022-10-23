@@ -12,6 +12,34 @@
   > *:last-child {
     margin-bottom: 0;
   }
+
+  // Border colors from https://www.schemecolor.com/pastel-rainbow.php
+  // Other colors from https://docusaurus.io/docs/markdown-features/admonitions
+
+  &.admonition-type-note {
+    border-color: gray;
+    background-color: #f8f8f9;
+  }
+
+  &.admonition-type-tip {
+    border-color: #9ee09e;
+    background-color: #e6f5e6;
+  }
+
+  &.admonition-type-info {
+    border-color: #9ec1cf;
+    background-color: #eef9fc;
+  }
+
+  &.admonition-type-warning {
+    border-color: #feb144;
+    background-color: #fff8e6;
+  }
+
+  &.admonition-type-danger {
+    border-color: #ff6663;
+    background-color: #ffebec;
+  }
 }
 
 .admonition-title {
