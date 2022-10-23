@@ -29,15 +29,15 @@ public class ModelManager implements Model {
     /**
      * Initializes a ModelManager with the given personBook and userPrefs.
      */
-    public ModelManager(ReadOnlyPersonBook personModel, ReadOnlyPropertyBook propertyModel,
+    public ModelManager(ReadOnlyPersonBook personBook, ReadOnlyPropertyBook propertyBook,
                         ReadOnlyUserPrefs userPrefs) {
-        requireAllNonNull(personModel, propertyModel, userPrefs);
+        requireAllNonNull(personBook, propertyBook, userPrefs);
 
-        logger.fine("Initializing with person model: " + personModel + " and property model: " + propertyModel
+        logger.fine("Initializing with person book: " + personBook + " and property book: " + propertyBook
                 + " and user prefs " + userPrefs);
 
-        this.personBook = new PersonBook(personModel);
-        this.propertyBook = new PropertyBook(propertyModel);
+        this.personBook = new PersonBook(personBook);
+        this.propertyBook = new PropertyBook(propertyBook);
         this.userPrefs = new UserPrefs(userPrefs);
         filteredPersons = new FilteredList<>(this.personBook.getPersonList());
         filteredProperties = new FilteredList<>(this.propertyBook.getPropertyList());
@@ -77,9 +77,9 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void setPersonModelFilePath(Path personModelFilePath) {
-        requireNonNull(personModelFilePath);
-        userPrefs.setPersonBookFilePath(personModelFilePath);
+    public void setPersonModelFilePath(Path personBookFilePath) {
+        requireNonNull(personBookFilePath);
+        userPrefs.setPersonBookFilePath(personBookFilePath);
     }
 
     @Override
@@ -88,16 +88,16 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void setPropertyModelFilePath(Path propertyModelFilePath) {
-        requireNonNull(propertyModelFilePath);
-        userPrefs.setPropertyBookFilePath(propertyModelFilePath);
+    public void setPropertyModelFilePath(Path propertyBookFilePath) {
+        requireNonNull(propertyBookFilePath);
+        userPrefs.setPropertyBookFilePath(propertyBookFilePath);
     }
 
     //=========== PersonBook ================================================================================
 
     @Override
-    public void setPersonModel(ReadOnlyPersonBook personModel) {
-        this.personBook.resetData(personModel);
+    public void setPersonModel(ReadOnlyPersonBook personBook) {
+        this.personBook.resetData(personBook);
     }
 
     @Override
@@ -147,8 +147,8 @@ public class ModelManager implements Model {
     //=========== PropertyBook ================================================================================
 
     @Override
-    public void setPropertyModel(ReadOnlyPropertyBook propertyModel) {
-        this.propertyBook.resetData(propertyModel);
+    public void setPropertyModel(ReadOnlyPropertyBook propertyBook) {
+        this.propertyBook.resetData(propertyBook);
     }
 
     @Override

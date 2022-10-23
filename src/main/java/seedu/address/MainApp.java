@@ -81,23 +81,23 @@ public class MainApp extends Application {
      * or an empty address book will be used instead if errors occur when reading {@code storage}'s address book.
      */
     private Model initModelManager(Storage storage, ReadOnlyUserPrefs userPrefs) {
-        Optional<ReadOnlyPersonBook> personModelOptional;
-        ReadOnlyPersonBook personModel;
+        Optional<ReadOnlyPersonBook> personBookOptional;
+        ReadOnlyPersonBook personBook;
         Optional<ReadOnlyPropertyBook> propertyBookOptional;
         ReadOnlyPropertyBook propertyBook;
 
         try {
-            personModelOptional = storage.readAddressBook();
-            if (!personModelOptional.isPresent()) {
+            personBookOptional = storage.readAddressBook();
+            if (!personBookOptional.isPresent()) {
                 logger.info("Data file not found. Will be starting with a sample PersonBook");
             }
-            personModel = personModelOptional.orElseGet(SampleDataUtil::getSamplePersonModel);
+            personBook = personBookOptional.orElseGet(SampleDataUtil::getSamplePersonModel);
         } catch (DataConversionException e) {
             logger.warning("Data file not in the correct format. Will be starting with an empty PersonBook");
-            personModel = new PersonBook();
+            personBook = new PersonBook();
         } catch (IOException e) {
             logger.warning("Problem while reading from the file. Will be starting with an empty PersonBook");
-            personModel = new PersonBook();
+            personBook = new PersonBook();
         }
 
         try {
@@ -114,7 +114,7 @@ public class MainApp extends Application {
             propertyBook = new PropertyBook();
         }
 
-        return new ModelManager(personModel, propertyBook, userPrefs);
+        return new ModelManager(personBook, propertyBook, userPrefs);
     }
 
     private void initLogging(Config config) {

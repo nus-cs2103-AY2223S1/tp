@@ -30,11 +30,11 @@ public class PropertyBook implements ReadOnlyPropertyBook {
     public PropertyBook() {}
 
     /**
-     * Creates a PropertyBook using the Properties in the {@code propertyModel}
+     * Creates a PropertyBook using the Properties in the {@code propertyBook}
      */
-    public PropertyBook(ReadOnlyPropertyBook propertyModel) {
+    public PropertyBook(ReadOnlyPropertyBook propertyBook) {
         this();
-        resetData(propertyModel);
+        resetData(propertyBook);
     }
 
     //// list overwrite operations

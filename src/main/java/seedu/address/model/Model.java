@@ -67,9 +67,9 @@ public interface Model {
     //=========== PersonBook ================================================================================
 
     /**
-     * Replaces person model data with the data in {@code personModel}.
+     * Replaces person model data with the data in {@code personBook}.
      */
-    void setPersonModel(ReadOnlyPersonBook personModel);
+    void setPersonModel(ReadOnlyPersonBook personBook);
 
     /**
      * Returns the PersonBook
@@ -117,9 +117,9 @@ public interface Model {
     //=========== PropertyBook ================================================================================
 
     /**
-     * Replaces property model data with the data in {@code propertyModel}.
+     * Replaces property model data with the data in {@code propertyBook}.
      */
-    void setPropertyModel(ReadOnlyPropertyBook propertyModel);
+    void setPropertyModel(ReadOnlyPropertyBook propertyBook);
 
     /**
      * Returns the PropertyBook
