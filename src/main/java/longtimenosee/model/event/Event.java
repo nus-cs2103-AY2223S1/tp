@@ -1,10 +1,12 @@
 package longtimenosee.model.event;
 
+
 import static longtimenosee.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Comparator;
 import java.util.List;
 
+import longtimenosee.model.person.Name;
 /**
  * Represents an Event in the address book.
  * Guarantees: details are present and not null, field values are validated, immutable.
@@ -24,13 +26,13 @@ public class Event {
         }
     };
     private final Description description;
-    private final PersonName personName; //There can only be one!
+    private final Name personName; //There can only be one!
     private final Date date;
     private final Duration duration; //Consists of 2 durations: Start Time, End Time
     /**
      * Every field must be present and not null.
      */
-    public Event(Description description, PersonName personName, Date date, Duration duration) {
+    public Event(Description description, Name personName, Date date, Duration duration) {
         requireAllNonNull(description, personName, date, duration);
         this.description = description;
         this.personName = personName;
@@ -76,7 +78,7 @@ public class Event {
         return this.duration;
     }
     //TODO: Check if a person currently exists in the UniquePersonList for verification
-    public PersonName getPersonName() {
+    public Name getPersonName() {
         return this.personName;
     }
 
