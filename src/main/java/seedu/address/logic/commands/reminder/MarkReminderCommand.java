@@ -23,7 +23,7 @@ public class MarkReminderCommand extends Command {
             + "Parameters: INDEX (must be a positive integer)\n"
             + "Example: " + COMMAND_WORD + " 1";
 
-    public static final String MESSAGE_MARK_REMINDER_SUCCESS = "Reminder done: %1$s";
+    public static final String MESSAGE_MARK_REMINDER_SUCCESS = "Reminder is marked as done: %1$s";
     public static final String MESSAGE_REMINDER_ALREADY_MARKED = "You have already completed this reminder.";
 
     private final Index targetIndex;

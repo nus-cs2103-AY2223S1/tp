@@ -23,8 +23,9 @@ public class UnmarkReminderCommand extends Command {
             + "Parameters: INDEX (must be a positive integer)\n"
             + "Example: " + COMMAND_WORD + " 1";
 
-    public static final String MESSAGE_UNMARK_REMINDER_SUCCESS = "Reminder not done: %1$s";
-    public static final String MESSAGE_REMINDER_ALREADY_UNMARKED = "This reminder has not been done.";
+    public static final String MESSAGE_UNMARK_REMINDER_SUCCESS = "Reminder is unmarked as not done: %1$s";
+    public static final String MESSAGE_REMINDER_ALREADY_UNMARKED = "Reminder is yet to be done. " +
+            "There is nothing to unmark.";
 
     private final Index targetIndex;
 
