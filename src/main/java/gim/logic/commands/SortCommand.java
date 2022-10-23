@@ -6,7 +6,7 @@ import static java.util.Objects.requireNonNull;
 import gim.model.Model;
 
 /**
- * Lists all exercises in the exercise tracker to the user.
+ * Sorts the exercises displayed according to the date of exercises done.
  */
 public class SortCommand extends Command {
 
