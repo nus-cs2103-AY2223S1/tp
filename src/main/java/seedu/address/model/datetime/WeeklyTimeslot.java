@@ -2,6 +2,8 @@ package seedu.address.model.datetime;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
+import static seedu.address.model.datetime.DatetimeCommonUtils.DAY_FORMAT_REGEX;
+import static seedu.address.model.datetime.DatetimeCommonUtils.TIME_FORMATTER;
 
 import java.time.DayOfWeek;
 import java.time.LocalTime;
@@ -17,14 +19,6 @@ import java.util.Objects;
  */
 
 public class WeeklyTimeslot {
-    public static final String MESSAGE_CONSTRAINTS_TIMES =
-            "Times should be in HH:mm format, e.g. 08:00";
-    public static final String MESSAGE_CONSTRAINTS_DAY =
-            "Days should only contain numbers from 1 (Monday) to 7 (Sunday)";
-    public static final String MESSAGE_INVALID_DURATION = "The start time should be before end time.";
-    public static final String VALIDATION_REGEX = "[1-7]";
-    private static final DateTimeFormatter TIME_FORMAT = DateTimeFormatter.ofPattern("HH:mm");
-
     public final DayOfWeek day;
     public final LocalTime startTime;
     public final LocalTime endTime;
@@ -53,12 +47,12 @@ public class WeeklyTimeslot {
      */
     public static boolean isValidDay(String dayString) {
 
-        return dayString.matches(VALIDATION_REGEX);
+        return dayString.matches(DAY_FORMAT_REGEX);
     }
 
     private static boolean isValidTime(String datetime) {
         try {
-            LocalTime.parse(datetime, TIME_FORMAT);
+            LocalTime.parse(datetime, TIME_FORMATTER);
         } catch (DateTimeParseException ex) {
             return false;
         }
@@ -79,15 +73,15 @@ public class WeeklyTimeslot {
         if (!isValidTime(timeStart) || !isValidTime(timeEnd)) {
             return false;
         }
-        LocalTime timeStartObj = LocalTime.parse(timeStart, TIME_FORMAT);
-        LocalTime timeEndObj = LocalTime.parse(timeEnd, TIME_FORMAT);
+        LocalTime timeStartObj = LocalTime.parse(timeStart, TIME_FORMATTER);
+        LocalTime timeEndObj = LocalTime.parse(timeEnd, TIME_FORMATTER);
         return !timeEndObj.isBefore(timeStartObj);
     }
 
     public static WeeklyTimeslot fromFormattedString(String dayString, String startTimeString, String endTimeString) {
         DayOfWeek day = DayOfWeek.of(Integer.parseInt(dayString));
-        LocalTime startTime = LocalTime.parse(startTimeString, DatetimeCommonUtils.TIME_FORMATTER);
-        LocalTime endTime = LocalTime.parse(endTimeString, DatetimeCommonUtils.TIME_FORMATTER);
+        LocalTime startTime = LocalTime.parse(startTimeString, TIME_FORMATTER);
+        LocalTime endTime = LocalTime.parse(endTimeString, TIME_FORMATTER);
         return new WeeklyTimeslot(day, startTime, endTime);
     }
 
@@ -107,7 +101,7 @@ public class WeeklyTimeslot {
      * @return Formatted start time
      */
     public String getStartTimeFormatted() {
-        return startTime.format(TIME_FORMAT);
+        return startTime.format(TIME_FORMATTER);
     }
 
     /**
@@ -116,7 +110,7 @@ public class WeeklyTimeslot {
      * @return Formatted end time
      */
     public String getEndTimeFormatted() {
-        return endTime.format(TIME_FORMAT);
+        return endTime.format(TIME_FORMATTER);
     }
 
 

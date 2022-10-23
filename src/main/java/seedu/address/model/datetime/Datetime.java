@@ -2,6 +2,7 @@ package seedu.address.model.datetime;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
+import static seedu.address.model.datetime.DatetimeCommonUtils.DATETIME_FORMATTER;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -13,9 +14,6 @@ import java.time.format.DateTimeParseException;
  */
 
 public class Datetime {
-    public static final String MESSAGE_CONSTRAINTS =
-            "Date and time should be in yyyy-MM-dd HH:mm format, e.g. 2022-01-01 08:00";
-    private static final DateTimeFormatter DATE_TIME_FORMAT = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
     public final LocalDateTime datetime;
 
 
@@ -39,7 +37,7 @@ public class Datetime {
      */
     public static boolean isValidDatetime(String datetimeString) {
         try {
-            LocalDateTime.parse(datetimeString, DATE_TIME_FORMAT);
+            LocalDateTime.parse(datetimeString, DATETIME_FORMATTER);
         } catch (DateTimeParseException ex) {
             return false;
         }
@@ -47,7 +45,7 @@ public class Datetime {
     }
 
     public static Datetime fromFormattedString(String datetimeString) {
-        LocalDateTime datetime = LocalDateTime.parse(datetimeString, DatetimeCommonUtils.DATETIME_FORMATTER);
+        LocalDateTime datetime = LocalDateTime.parse(datetimeString, DATETIME_FORMATTER);
         return new Datetime(datetime);
     }
 
@@ -57,7 +55,7 @@ public class Datetime {
      * @return Formatted datetime
      */
     public String toFormatted() {
-        return datetime.format(DATE_TIME_FORMAT);
+        return datetime.format(DATETIME_FORMATTER);
     }
 
     @Override

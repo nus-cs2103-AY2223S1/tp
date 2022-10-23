@@ -7,6 +7,7 @@ import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.datetime.Datetime;
 
 import static seedu.address.model.datetime.Datetime.fromFormattedString;
+import static seedu.address.model.datetime.DatetimeCommonUtils.DATETIME_MESSAGE_CONSTRAINTS;
 
 /**
  * Jackson-friendly version of {@link Datetime}.
@@ -43,7 +44,7 @@ public class JsonAdaptedDatetime {
                     String.format(MISSING_FIELD_MESSAGE_FORMAT, Datetime.class.getSimpleName()));
         }
         if (!Datetime.isValidDatetime(datetime)) {
-            throw new IllegalValueException(Datetime.MESSAGE_CONSTRAINTS);
+            throw new IllegalValueException(DATETIME_MESSAGE_CONSTRAINTS);
         }
         return fromFormattedString(datetime);
     }

@@ -51,14 +51,14 @@ public class JsonAdaptedWeeklyTimeslot {
                     String.format(MISSING_FIELD_MESSAGE_FORMAT, WeeklyTimeslot.class.getSimpleName()));
         }
         if (!WeeklyTimeslot.isValidDay(day)) {
-            throw new IllegalValueException(WeeklyTimeslot.MESSAGE_CONSTRAINTS_DAY);
+            throw new IllegalValueException("Invalid day");
         }
         if (startTime == null || endTime == null) {
             throw new IllegalValueException(
                     String.format(MISSING_FIELD_MESSAGE_FORMAT, WeeklyTimeslot.class.getSimpleName()));
         }
         if (!WeeklyTimeslot.isValidTimeRange(startTime, endTime)) {
-            throw new IllegalValueException(WeeklyTimeslot.MESSAGE_CONSTRAINTS_TIMES);
+            throw new IllegalValueException("Invalid time");
         }
         return fromFormattedString(day, startTime, endTime);
     }

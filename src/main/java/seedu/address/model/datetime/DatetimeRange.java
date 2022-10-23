@@ -2,6 +2,8 @@ package seedu.address.model.datetime;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
+import static seedu.address.model.datetime.DatetimeCommonUtils.DATETIME_FORMAT;
+import static seedu.address.model.datetime.DatetimeCommonUtils.DATETIME_FORMATTER;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -16,10 +18,6 @@ import java.util.Objects;
  */
 
 public class DatetimeRange {
-    public static final String MESSAGE_CONSTRAINTS =
-            "Date and time should be in yyyy-MM-dd HH:mm format, e.g. 2022-01-01 08:00";
-    public static final String MESSAGE_INVALID_DURATION = "The start time should be before end time.";
-    private static final DateTimeFormatter DATE_TIME_FORMAT = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
     public final LocalDateTime startDatetime;
     public final LocalDateTime endDatetime;
 
@@ -49,8 +47,8 @@ public class DatetimeRange {
     }
 
     public static DatetimeRange fromFormattedString(String startDatetimeString, String endDatetimeString) {
-        LocalDateTime startDatetime = LocalDateTime.parse(startDatetimeString, DatetimeCommonUtils.DATETIME_FORMATTER);
-        LocalDateTime endDatetime = LocalDateTime.parse(endDatetimeString, DatetimeCommonUtils.DATETIME_FORMATTER);
+        LocalDateTime startDatetime = LocalDateTime.parse(startDatetimeString, DATETIME_FORMATTER);
+        LocalDateTime endDatetime = LocalDateTime.parse(endDatetimeString, DATETIME_FORMATTER);
         return new DatetimeRange(startDatetime, endDatetime);
     }
 
@@ -61,7 +59,7 @@ public class DatetimeRange {
      * @return Formatted start datetime
      */
     public String getStartDatetimeFormatted() {
-        return startDatetime.format(DATE_TIME_FORMAT);
+        return startDatetime.format(DATETIME_FORMATTER);
     }
 
     /**
@@ -70,7 +68,7 @@ public class DatetimeRange {
      * @return Formatted end datetime
      */
     public String getEndDatetimeFormatted() {
-        return endDatetime.format(DATE_TIME_FORMAT);
+        return endDatetime.format(DATETIME_FORMATTER);
     }
 
     @Override
