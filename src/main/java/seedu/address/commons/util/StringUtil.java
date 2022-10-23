@@ -57,11 +57,9 @@ public class StringUtil {
         requireNonNull(word);
 
         String preppedWord = word.trim();
-        System.out.println(preppedWord);
         checkArgument(!preppedWord.isEmpty(), "Word parameter cannot be empty");
         checkArgument(preppedWord.split("\\s+").length == 1, "Word parameter should be a single word");
 
-        //String preppedSentence = sentence.replace("[^a-zA-Z]", " ");
         String preppedSentence = sentence.replaceAll("[^a-zA-Z0-9]", " ");
         System.out.println(preppedSentence);
         String[] wordsInPreppedSentence = preppedSentence.split("\\s+");
