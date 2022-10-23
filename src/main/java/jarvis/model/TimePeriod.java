@@ -41,7 +41,7 @@ public class TimePeriod {
     }
 
     /**
-     * Checks if start date and end date falls on the same day.
+     * Returns true if start date and end date falls on the same day.
      */
     public boolean isOnSameDay() {
         LocalDate startDate = start.toLocalDate();
