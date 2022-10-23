@@ -11,7 +11,6 @@ import static seedu.address.logic.commands.CommandTestUtil.TYPE_GRAPH_CATEGORY;
 import static seedu.address.logic.commands.CommandTestUtil.TYPE_GRAPH_MONTH;
 import static seedu.address.logic.commands.CommandTestUtil.TYPE_INCOME;
 import static seedu.address.logic.commands.CommandTestUtil.TYPE_MONTH;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_MONTH_MARCH;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
 
