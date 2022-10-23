@@ -2,7 +2,6 @@ package soconnect.storage;
 
 import java.io.IOException;
 import java.nio.file.Path;
-import java.util.List;
 import java.util.Optional;
 import java.util.logging.Logger;
 
@@ -12,7 +11,6 @@ import soconnect.model.ReadOnlySoConnect;
 import soconnect.model.ReadOnlyTodoList;
 import soconnect.model.ReadOnlyUserPrefs;
 import soconnect.model.UserPrefs;
-import soconnect.model.tag.Tag;
 
 /**
  * Manages storage of SoConnect contact data and todo data in local storage.
