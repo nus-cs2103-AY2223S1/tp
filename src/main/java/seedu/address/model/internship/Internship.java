@@ -23,19 +23,21 @@ public class Internship {
 
     // Data fields
     private final AppliedDate appliedDate;
+    private final InterviewDate interviewDate;
     private final Set<Tag> tags = new HashSet<>();
 
     /**
      * Every field must be present and not null.
      */
     public Internship(Company company, Link link, Description description, ApplicationStatus applicationStatus,
-                      AppliedDate appliedDate, Set<Tag> tags) {
+                      AppliedDate appliedDate, InterviewDate interviewDate, Set<Tag> tags) {
         requireAllNonNull(company, link, description, appliedDate, tags);
         this.company = company;
         this.link = link;
         this.description = description;
         this.applicationStatus = applicationStatus;
         this.appliedDate = appliedDate;
+        this.interviewDate = interviewDate;
         this.tags.addAll(tags);
     }
 
@@ -57,6 +59,10 @@ public class Internship {
 
     public AppliedDate getAppliedDate() {
         return appliedDate;
+    }
+
+    public InterviewDate getInterviewDate() {
+        return interviewDate;
     }
 
     /**
@@ -125,8 +131,14 @@ public class Internship {
                 .append(getDescription())
                 .append("; Application Status: ")
                 .append(getApplicationStatus())
-                .append("; AppliedDate: ")
+                .append("; Applied Date: ")
                 .append(getAppliedDate());
+
+        InterviewDate interviewDate = getInterviewDate();
+        if (interviewDate != null) {
+            builder.append("; Interview Date: ")
+                    .append(getInterviewDate());
+        }
 
         Set<Tag> tags = getTags();
         if (!tags.isEmpty()) {

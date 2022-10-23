@@ -13,6 +13,7 @@ import seedu.address.model.internship.ApplicationStatus;
 import seedu.address.model.internship.AppliedDate;
 import seedu.address.model.internship.Company;
 import seedu.address.model.internship.Description;
+import seedu.address.model.internship.InterviewDate;
 import seedu.address.model.internship.Link;
 import seedu.address.model.tag.Tag;
 
@@ -79,6 +80,22 @@ public class ParserUtil {
             throw new ParseException(AppliedDate.MESSAGE_CONSTRAINTS);
         }
         return new AppliedDate(trimmedAppliedDate);
+    }
+
+
+    /**
+     * Parses a {@code String interviewDate} into an {@code InterviewDate}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code interviewDate} is invalid.
+     */
+    public static InterviewDate parseInterviewDate(String date) throws ParseException {
+        requireNonNull(date);
+        String trimmedInterviewDate = date.trim();
+        if (!InterviewDate.isValidInterviewDate(trimmedInterviewDate)) {
+            throw new ParseException(InterviewDate.MESSAGE_CONSTRAINTS);
+        }
+        return new InterviewDate(trimmedInterviewDate);
     }
 
     /**

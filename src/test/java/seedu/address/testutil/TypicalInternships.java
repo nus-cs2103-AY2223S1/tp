@@ -27,37 +27,37 @@ public class TypicalInternships {
 
     public static final Internship ALIBABA = new InternshipBuilder().withCompany("Alibaba")
             .withAppliedDate("30 Oct 2022").withDescription("Software Engineering Intern")
-            .withLink("https://careers.alibaba.com/positionDetail")
+            .withInterviewDate("30 Nov 2022").withLink("https://careers.alibaba.com/positionDetail")
             .withApplicationStatus(ApplicationStatus.Applied)
             .withTags("Ecommerce").build();
     public static final Internship BINANCE = new InternshipBuilder().withCompany("Binance")
-            .withAppliedDate("5 Oct 2022")
-            .withDescription("Software Engineering Internship (6 months)")
-            .withLink("https://careers.binance.com/positionDetail")
+            .withAppliedDate("5 Oct 2022").withDescription("Software Engineering Internship (6 months)")
+            .withInterviewDate("5 Nov 2022").withLink("https://careers.binance.com/positionDetail")
             .withApplicationStatus(ApplicationStatus.Interviewed)
             .withTags("Crypto").build();
     public static final Internship CITADEL = new InternshipBuilder().withCompany("Citadel")
-            .withLink("https://careers.Citadel.com/positionDetail")
-            .withDescription("Software Engineer Intern").withAppliedDate("23 Oct 2022")
+            .withAppliedDate("23 Oct 2022").withDescription("Software Engineer Intern")
+            .withInterviewDate("30 Nov 2022").withLink("https://careers.Citadel.com/positionDetail")
             .withApplicationStatus(ApplicationStatus.Rejected)
             .withTags("Backend").build();
     public static final Internship DELL = new InternshipBuilder().withCompany("Dell")
-            .withLink("https://careers.Dell.com/positionDetail")
-            .withDescription("Software Developer Intern").withAppliedDate("30 Sep 2022")
-            .withApplicationStatus(ApplicationStatus.Applied).withTags("Backend").build();
+            .withAppliedDate("30 Sep 2022").withDescription("Software Developer Intern")
+            .withInterviewDate("30 Oct 2022").withLink("https://careers.Dell.com/positionDetail")
+            .withApplicationStatus(ApplicationStatus.Applied)
+            .withTags("Backend").build();
     public static final Internship EBAY = new InternshipBuilder().withCompany("Ebay")
-            .withLink("https://careers.Ebay.com/positionDetail")
-            .withDescription("Software Engineer Intern 2023").withAppliedDate("27 Oct 2022")
+            .withAppliedDate("27 Oct 2022").withDescription("Software Engineer Intern 2023")
+            .withInterviewDate("27 Nov 2022").withLink("https://careers.Ebay.com/positionDetail")
             .withApplicationStatus(ApplicationStatus.Rejected)
             .withTags("Ecommerce").build();
     public static final Internship FACEBOOK = new InternshipBuilder().withCompany("Facebook")
-            .withLink("https://careers.Facebook.com/positionDetail")
-            .withDescription("Software Engineer Intern - Mobile (Flutter)").withAppliedDate("3 Nov 2022")
+            .withAppliedDate("3 Nov 2022").withDescription("Software Engineer Intern - Mobile (Flutter)")
+            .withInterviewDate("3 Dec 2022").withLink("https://careers.Facebook.com/positionDetail")
             .withApplicationStatus(ApplicationStatus.Applied)
             .withTags("Frontend").build();
     public static final Internship GOLDMAN = new InternshipBuilder().withCompany("Goldman Sachs")
-            .withLink("https://careers.GoldmanSachs.com/positionDetail")
-            .withDescription("Software Engineer Program - Summer Analyst").withAppliedDate("21 Oct 2022")
+            .withAppliedDate("21 Oct 2022").withDescription("Software Engineer Program - Summer Analyst")
+            .withInterviewDate("21 Nov 2022").withLink("https://careers.GoldmanSachs.com/positionDetail")
             .withApplicationStatus(ApplicationStatus.Accepted)
             .withTags("Backend").build();
 

@@ -15,6 +15,7 @@ import seedu.address.model.internship.AppliedDate;
 import seedu.address.model.internship.Company;
 import seedu.address.model.internship.Description;
 import seedu.address.model.internship.Internship;
+import seedu.address.model.internship.InterviewDate;
 import seedu.address.model.internship.Link;
 import seedu.address.model.tag.Tag;
 
@@ -30,6 +31,7 @@ class JsonAdaptedInternship {
     private final String description;
     private final String applicationStatus;
     private final String appliedDate;
+    private final String interviewDate;
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
 
     /**
@@ -40,12 +42,14 @@ class JsonAdaptedInternship {
                                  @JsonProperty("description") String description,
                                  @JsonProperty("applicationStatus") String applicationStatus,
                                  @JsonProperty("appliedDate") String appliedDate,
+                                 @JsonProperty("interviewDate") String interviewDate,
                                  @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
         this.company = company;
         this.link = link;
         this.description = description;
         this.applicationStatus = applicationStatus;
         this.appliedDate = appliedDate;
+        this.interviewDate = interviewDate;
         if (tagged != null) {
             this.tagged.addAll(tagged);
         }
@@ -60,6 +64,13 @@ class JsonAdaptedInternship {
         description = source.getDescription().value;
         applicationStatus = source.getApplicationStatus().toString().toLowerCase();
         appliedDate = source.getAppliedDate().value;
+
+        if (source.getInterviewDate() == null) {
+            interviewDate = "";
+        } else {
+            interviewDate = source.getInterviewDate().value;
+        }
+
         tagged.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
@@ -119,8 +130,22 @@ class JsonAdaptedInternship {
         final AppliedDate modelAppliedDate = new AppliedDate(appliedDate);
 
         final Set<Tag> modelTags = new HashSet<>(internshipTags);
-        return new Internship(modelCompany, modelLink, modelDescription,
-                modelApplicationStatus, modelAppliedDate, modelTags);
+
+        if (interviewDate == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    InterviewDate.class.getSimpleName()));
+        }
+
+        if (interviewDate == "") {
+            return new Internship(modelCompany, modelLink, modelDescription,
+                modelApplicationStatus, modelAppliedDate, null, modelTags);
+        } else if (!InterviewDate.isValidInterviewDate(interviewDate)) {
+            throw new IllegalValueException(InterviewDate.MESSAGE_CONSTRAINTS);
+        } else {
+            final InterviewDate modelInterviewDate = new InterviewDate(interviewDate);
+            return new Internship(modelCompany, modelLink, modelDescription,
+                    modelApplicationStatus, modelAppliedDate, modelInterviewDate, modelTags);
+        }
     }
 
 }

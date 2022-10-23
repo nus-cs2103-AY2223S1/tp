@@ -47,7 +47,9 @@ public class AddCommandParser implements Parser<AddCommand> {
         AppliedDate appliedDate = ParserUtil.parseAppliedDate(argMultimap.getValue(PREFIX_APPLIED_DATE).get());
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
 
-        Internship internship = new Internship(company, link, description, applicationStatus, appliedDate, tagList);
+        Internship internship = new Internship(company, link, description, applicationStatus, appliedDate, null, tagList);
+//        Internship internship = new Internship(company, link, description, applicationStatus, appliedDate, tagList);
+
 
         return new AddCommand(internship);
     }
