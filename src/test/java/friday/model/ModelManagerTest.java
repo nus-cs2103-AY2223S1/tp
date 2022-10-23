@@ -10,11 +10,11 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Arrays;
 
+import friday.testutil.FridayBuilder;
 import org.junit.jupiter.api.Test;
 
 import friday.commons.core.GuiSettings;
 import friday.model.student.NameContainsKeywordsPredicate;
-import friday.testutil.AddressBookBuilder;
 import friday.testutil.TypicalStudents;
 
 public class ModelManagerTest {
@@ -94,7 +94,7 @@ public class ModelManagerTest {
 
     @Test
     public void equals() {
-        Friday addressBook = new AddressBookBuilder().withStudent(TypicalStudents.ALICE)
+        Friday addressBook = new FridayBuilder().withStudent(TypicalStudents.ALICE)
                 .withStudent(TypicalStudents.BENSON).build();
         Friday differentAddressBook = new Friday();
         UserPrefs userPrefs = new UserPrefs();

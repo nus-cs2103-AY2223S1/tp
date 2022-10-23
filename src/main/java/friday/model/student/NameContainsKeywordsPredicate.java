@@ -23,6 +23,7 @@ public class NameContainsKeywordsPredicate implements Predicate<Student> {
                         || StringUtil.containsWordIgnoreCase(student.getTelegramHandle().value, keyword)
                         || StringUtil.containsWordIgnoreCase(student.getMasteryCheck().toString(), keyword)
                         || StringUtil.containsWordIgnoreCase(student.getConsultation().toString(), keyword)
+                        || StringUtil.containsWordIgnoreCase(student.getRemark().value, keyword)
                         || student.getTags().stream().anyMatch(tagword ->
                         StringUtil.containsWordIgnoreCase(tagword.toSearchString(), keyword)));
     }

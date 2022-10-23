@@ -16,7 +16,7 @@ import friday.model.student.Student;
 /**
  * An Immutable Friday that is serializable to JSON format.
  */
-@JsonRootName(value = "addressbook")
+@JsonRootName(value = "friday")
 class JsonSerializableFriday {
 
     public static final String MESSAGE_DUPLICATE_STUDENT = "Students list contains duplicate student(s).";
