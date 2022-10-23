@@ -33,7 +33,7 @@ public class AddCommand extends Command {
             + PREFIX_EMAIL + "johnd@example.com "
             + PREFIX_SCHOLARSHIP + "NUS Global Merit Scholarship "
             + PREFIX_APPLICATION_STATUS + "pending "
-            + PREFIX_MAJOR + "friends "
+            + PREFIX_MAJOR + "Medicine "
             + PREFIX_MAJOR + "computerScience ";
 
     public static final String MESSAGE_SUCCESS = "New applicant added: %1$s";

@@ -41,10 +41,10 @@ TAS can get your scholarship applicant management tasks done faster than traditi
   e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
 
 * Items in square brackets are optional.<br>
-  e.g `n/NAME [m/MAJOR]` can be used as `n/John Doe m/Buisness` or as `n/John Doe`.
+  e.g `n/NAME [m/MAJOR]` can be used as `n/John Doe m/Business` or as `n/John Doe`.
 
 * Items with `…`​ after them can be used multiple times including zero times.<br>
-  e.g. `[m/MAJOR]…​` can be used as ` ` (i.e. 0 times), `m/Buisness`, `m/Medicine m/Dentistry` etc.
+  e.g. `[m/MAJOR]…​` can be used as ` ` (i.e. 0 times), `m/Business`, `m/Medicine m/Dentistry` etc.
 
 * Parameters can be in any order.<br>
   e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.

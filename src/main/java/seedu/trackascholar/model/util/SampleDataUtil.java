@@ -22,22 +22,22 @@ public class SampleDataUtil {
         return new Applicant[] {
             new Applicant(new Name("Alex Yeoh"), new Phone("87438807"), new Email("alexyeoh@example.com"),
                 new Scholarship("NUS Global Merit Scholarship"), new ApplicationStatus("pending"),
-                getMajorSet("friends")),
+                getMajorSet("medicine")),
             new Applicant(new Name("Bernice Yu"), new Phone("99272758"), new Email("berniceyu@example.com"),
                 new Scholarship("NUS Merit Scholarship"),
-                new ApplicationStatus("pending"), getMajorSet("colleagues", "friends")),
+                new ApplicationStatus("pending"), getMajorSet("business", "accountancy")),
             new Applicant(new Name("Charlotte Oliveiro"), new Phone("93210283"), new Email("charlotte@example.com"),
                 new Scholarship("NUS Sports Scholarship"),
-                new ApplicationStatus("accepted"), getMajorSet("neighbours")),
+                new ApplicationStatus("accepted"), getMajorSet("physiotherapy")),
             new Applicant(new Name("David Li"), new Phone("91031282"), new Email("lidavid@example.com"),
                 new Scholarship("NUS Performing & Visual Arts Scholarship"),
-                new ApplicationStatus("rejected"), getMajorSet("family")),
+                new ApplicationStatus("rejected"), getMajorSet("psychology")),
             new Applicant(new Name("Irfan Ibrahim"), new Phone("92492021"), new Email("irfan@example.com"),
                 new Scholarship("NUS Merit Scholarship"), new ApplicationStatus("pending"),
-                getMajorSet("classmates")),
+                getMajorSet("engineering")),
             new Applicant(new Name("Roy Balakrishnan"), new Phone("92624417"), new Email("royb@example.com"),
                 new Scholarship("NUS Performing & Visual Arts Scholarship"), new ApplicationStatus("rejected"),
-                getMajorSet("colleagues"))
+                getMajorSet("philosophy"))
         };
     }
 
