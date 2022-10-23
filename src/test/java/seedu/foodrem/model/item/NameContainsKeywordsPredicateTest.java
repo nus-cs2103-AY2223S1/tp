@@ -13,7 +13,6 @@ import seedu.foodrem.testutil.ItemBuilder;
 
 
 public class NameContainsKeywordsPredicateTest {
-
     @Test
     public void equals() {
         List<String> firstPredicateKeywordList = Collections.singletonList("first");

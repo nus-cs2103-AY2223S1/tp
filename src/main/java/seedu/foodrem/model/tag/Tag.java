@@ -30,7 +30,7 @@ public class Tag {
     }
 
     /**
-     * Returns true if a given string is a valid tag name.
+     * Returns {@code true} if a given string is a valid tag name.
      */
     public static boolean isValidTagName(String test) {
         requireNonNull(test);
@@ -56,5 +56,4 @@ public class Tag {
     public String toString() {
         return tagName.toString();
     }
-
 }

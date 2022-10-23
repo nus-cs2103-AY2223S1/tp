@@ -9,7 +9,6 @@ import seedu.foodrem.MainApp;
  * A container for App specific utility functions
  */
 public class AppUtil {
-
     /**
      * Gets an {@code Image} from the specified path.
      */

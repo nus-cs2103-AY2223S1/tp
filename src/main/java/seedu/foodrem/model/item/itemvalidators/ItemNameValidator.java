@@ -6,7 +6,6 @@ import static seedu.foodrem.commons.util.AppUtil.checkArgument;
  * Validation class for item names.
  */
 public class ItemNameValidator implements Validator {
-
     // Validation for characters in name
     private static final String VALIDATION_REGEX = "[A-Za-z0-9 ]*";
     private static final String MESSAGE_FOR_INVALID_CHARACTERS_IN_NAME =

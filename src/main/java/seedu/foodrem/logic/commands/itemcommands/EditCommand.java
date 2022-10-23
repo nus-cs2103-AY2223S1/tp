@@ -151,7 +151,7 @@ public class EditCommand extends Command {
         }
 
         /**
-         * Returns true if at least one field is edited.
+         * Returns {@code true} if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
             return CollectionUtil.isAnyNonNull(name, quantity, unit, boughtDate, expiryDate, price, remarks);

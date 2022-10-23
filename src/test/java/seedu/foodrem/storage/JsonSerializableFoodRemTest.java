@@ -13,7 +13,6 @@ import seedu.foodrem.model.FoodRem;
 import seedu.foodrem.testutil.TypicalFoodRem;
 
 public class JsonSerializableFoodRemTest {
-
     private static final Path TEST_DATA_FOLDER = Paths
             .get("src", "test", "data", "JsonSerializableFoodRemTest");
     private static final Path TYPICAL_ITEMS_FILE = TEST_DATA_FOLDER

@@ -4,13 +4,11 @@ import static java.util.Objects.requireNonNull;
 
 import seedu.foodrem.model.item.itemvalidators.ItemUnitValidator;
 
-
 /**
  * Represents an item unit in an {@link Item}.
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
 public class ItemUnit {
-
     private final String itemUnit;
 
     /**

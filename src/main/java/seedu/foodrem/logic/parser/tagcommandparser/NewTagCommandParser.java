@@ -15,7 +15,6 @@ import seedu.foodrem.model.tag.Tag;
  * Parses input arguments and creates a new AddTagCommand object
  */
 public class NewTagCommandParser implements Parser<NewTagCommand> {
-
     /**
      * Parses the given {@code String} of arguments in the context of the AddTagCommand
      * and returns an AddTagCommand object for execution.

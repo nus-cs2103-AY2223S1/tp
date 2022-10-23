@@ -14,7 +14,6 @@ import java.util.Optional;
  * can be inserted multiple times for the same prefix.
  */
 public class ArgumentMultimap {
-
     /**
      * Prefixes mapped to their respective arguments
      **/
@@ -42,7 +41,7 @@ public class ArgumentMultimap {
     }
 
     /**
-     * Returns true if there is a value of {@code prefix}.
+     * Returns {@code true} if there is a value of {@code prefix}.
      */
     public boolean isValuePresent(Prefix prefix) {
         return getValue(prefix).isPresent();

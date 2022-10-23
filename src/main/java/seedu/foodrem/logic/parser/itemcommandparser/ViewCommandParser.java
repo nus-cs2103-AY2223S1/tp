@@ -13,7 +13,6 @@ import seedu.foodrem.logic.parser.exceptions.ParseException;
  * Parses input arguments and creates a ViewCommand object.
  */
 public class ViewCommandParser implements Parser<ViewCommand> {
-
     /**
      * Parses the given {@code String} of arguments in the context of the ViewCommand
      * and returns an ViewCommand object for execution.

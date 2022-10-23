@@ -29,5 +29,4 @@ public class TagNameContainsKeywordsPredicate implements Predicate<Tag> {
                 // state check
                 && keywords.equals(((TagNameContainsKeywordsPredicate) other).keywords));
     }
-
 }

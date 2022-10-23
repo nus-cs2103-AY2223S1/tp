@@ -17,7 +17,6 @@ import seedu.foodrem.commons.core.Config;
 import seedu.foodrem.commons.exceptions.DataConversionException;
 
 public class ConfigUtilTest {
-
     private static final Path TEST_DATA_FOLDER = Paths.get("src", "test", "data", "ConfigUtilTest");
 
     @TempDir
@@ -40,7 +39,6 @@ public class ConfigUtilTest {
 
     @Test
     public void read_fileInOrder_successfullyRead() throws DataConversionException {
-
         Config expected = getTypicalConfig();
 
         Config actual = read("TypicalConfig.json").get();
@@ -111,6 +109,4 @@ public class ConfigUtilTest {
                                   ? TEST_DATA_FOLDER.resolve(configFileInTestDataFolder)
                                   : null;
     }
-
-
 }
