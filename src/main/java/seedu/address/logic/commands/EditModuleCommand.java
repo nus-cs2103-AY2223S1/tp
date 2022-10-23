@@ -5,6 +5,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_MODULE_CODE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MODULE_TITLE;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_MODULES;
 
+import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
 
@@ -89,7 +90,7 @@ public class EditModuleCommand extends Command {
                 editModuleDescriptor.getModuleTitle().orElse(moduleToEdit.getModuleTitle());
 
         return new Module(updatedModuleCode, updatedModuleTitle, moduleToEdit.getTasks(),
-                moduleToEdit.getLinks());
+                moduleToEdit.getLinks(), new HashSet<>());
     }
 
     @Override
