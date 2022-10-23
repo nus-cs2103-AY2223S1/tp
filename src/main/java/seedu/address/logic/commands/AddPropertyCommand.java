@@ -20,7 +20,7 @@ public class AddPropertyCommand extends Command {
 
     public static final String COMMAND_WORD = "addprop";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a property to the address book. "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a property to Cobb. "
             + "Parameters: "
             + PREFIX_NAME + " NAME "
             + PREFIX_PRICE + " PRICE "
@@ -39,7 +39,7 @@ public class AddPropertyCommand extends Command {
             + PREFIX_PHONE + " 80001000 ";
 
     public static final String MESSAGE_SUCCESS = "New property added: %1$s";
-    public static final String MESSAGE_DUPLICATE_PROPERTY = "This property already exists in the address book";
+    public static final String MESSAGE_DUPLICATE_PROPERTY = "This property already exists in Cobb";
 
     private final Property property;
 

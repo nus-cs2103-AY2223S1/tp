@@ -20,7 +20,7 @@ public class AddPersonCommand extends Command {
 
     public static final String COMMAND_WORD = "addbuyer";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a buyer to the address book. "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a buyer to Cobb. "
             + "Parameters: "
             + PREFIX_NAME + " NAME "
             + PREFIX_PHONE + " PHONE "
@@ -38,7 +38,7 @@ public class AddPersonCommand extends Command {
             + PREFIX_PRIORITY + " high ";
 
     public static final String MESSAGE_SUCCESS = "New buyer added: %1$s";
-    public static final String MESSAGE_DUPLICATE_PERSON = "This buyer already exists in the address book";
+    public static final String MESSAGE_DUPLICATE_PERSON = "This buyer already exists in Cobb";
 
     private final Person toAdd;
 
