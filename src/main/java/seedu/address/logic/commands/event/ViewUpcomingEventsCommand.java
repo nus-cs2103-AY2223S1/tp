@@ -36,14 +36,16 @@ public class ViewUpcomingEventsCommand extends EventCommand {
     private final int days;
     private final LocalDate currentDate;
     private final LocalDate endDate;
+    private final StartDateWithinTimeFramePredicate predicate;
 
     /**
      * Constructor for ViewUpcomingEventsCommand
      */
-    public ViewUpcomingEventsCommand(int days) {
+    public ViewUpcomingEventsCommand(int days, StartDateWithinTimeFramePredicate predicate) {
         this.days = days;
         this.currentDate = java.time.LocalDate.now();
         this.endDate = currentDate.plusDays(days);
+        this.predicate = predicate;
     }
 
     @Override

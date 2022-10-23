@@ -3,9 +3,12 @@ package seedu.address.logic.parser.event;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
 
+import java.time.LocalDate;
+
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.event.ViewUpcomingEventsCommand;
+import seedu.address.model.event.StartDateWithinTimeFramePredicate;
 
 public class ViewUpcomingEventsCommandParserTest {
     private ViewUpcomingEventsCommandParser parser = new ViewUpcomingEventsCommandParser();
@@ -20,7 +23,11 @@ public class ViewUpcomingEventsCommandParserTest {
     @Test
     public void parse_validArgs_returnsViewUpcomingEventsCommand() {
         // no leading and trailing whitespace
-        ViewUpcomingEventsCommand expectedViewUpcomingEventsCommand = new ViewUpcomingEventsCommand(1);
+        final int days = 1;
+        LocalDate currentDate = java.time.LocalDate.now();
+        LocalDate endDate = currentDate.plusDays(days);
+        ViewUpcomingEventsCommand expectedViewUpcomingEventsCommand =
+                new ViewUpcomingEventsCommand(days, new StartDateWithinTimeFramePredicate(currentDate, endDate));
         assertParseSuccess(parser, "1", expectedViewUpcomingEventsCommand);
 
         // multiple whitespaces

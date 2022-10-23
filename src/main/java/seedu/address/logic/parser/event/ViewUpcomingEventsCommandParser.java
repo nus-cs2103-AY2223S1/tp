@@ -2,12 +2,15 @@ package seedu.address.logic.parser.event;
 
 import static seedu.address.logic.parser.CliSyntax.PREFIX_OPTION;
 
+import java.time.LocalDate;
+
 import seedu.address.logic.commands.event.ViewUpcomingEventsCommand;
 import seedu.address.logic.parser.ArgumentMultimap;
 import seedu.address.logic.parser.ArgumentTokenizer;
 import seedu.address.logic.parser.Parser;
 import seedu.address.logic.parser.ParserUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.event.StartDateWithinTimeFramePredicate;
 
 /**
  * Parses input arguments and creates a new ViewUpcomingEventCommand object
@@ -29,7 +32,10 @@ public class ViewUpcomingEventsCommandParser implements Parser<ViewUpcomingEvent
 
         try {
             int days = ParserUtil.parseDays(daysInput);
-            return new ViewUpcomingEventsCommand(days);
+            LocalDate currentDate = java.time.LocalDate.now();
+            LocalDate endDate = currentDate.plusDays(days);
+            StartDateWithinTimeFramePredicate predicate = new StartDateWithinTimeFramePredicate(currentDate, endDate);
+            return new ViewUpcomingEventsCommand(days, predicate);
         } catch (ParseException pe) {
             throw new ParseException(
                     String.format(ViewUpcomingEventsCommand.MESSAGE_INVALID_EVENT_UPCOMING_DAYS,
