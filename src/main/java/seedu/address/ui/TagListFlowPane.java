@@ -3,6 +3,7 @@ package seedu.address.ui;
 import java.util.Comparator;
 import java.util.logging.Logger;
 
+import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
@@ -27,8 +28,19 @@ public class TagListFlowPane extends UiPart<Region> {
      */
     public TagListFlowPane(ObservableList<Tag> tagList) {
         super(FXML);
+        tagList.addListener(new ListChangeListener<Tag>() {
+            @Override
+            public void onChanged(Change<? extends Tag> c) {
+                RefreshFlowPane(tagList);
+            }
+        });
+    }
+
+    private void RefreshFlowPane(ObservableList<Tag> tagList) {
+        tags.getChildren().clear();
         tagList.stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
     }
+
 }
