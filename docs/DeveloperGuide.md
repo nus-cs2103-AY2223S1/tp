@@ -45,7 +45,7 @@ Given below is a quick overview of main components and how they interact with ea
 
 **Main components of the architecture**
 
-**`Main`** has two classes called [`Main`](https://github.com/AY2223S1-CS2103T-W10-3/tp/blob/master/src/main/java/seedu/address/Main.java) and [`MainApp`](https://github.com/AY2223S1-CS2103T-W10-3/tp/blob/master/src/main/java/seedu/address/MainApp.java). It is responsible for,
+**`Main`** has two classes called [`Main`](https://github.com/AY2223S1-CS2103T-W10-3/tp/blob/master/src/main/java/seedu/trackascholar/Main.java) and [`MainApp`](https://github.com/AY2223S1-CS2103T-W10-3/tp/blob/master/src/main/java/seedu/trackascholar/MainApp.java). It is responsible for,
 * At app launch: Initializes the components in the correct sequence, and connects them up with each other.
 * At shut down: Shuts down the components and invokes cleanup methods where necessary.
 
@@ -80,13 +80,13 @@ The sections below give more details of each component.
 
 ### UI component
 
-The **API** of this component is specified in [`Ui.java`](https://github.com/AY2223S1-CS2103T-W10-3/tp/blob/master/src/main/java/seedu/address/ui/Ui.java)
+The **API** of this component is specified in [`Ui.java`](https://github.com/AY2223S1-CS2103T-W10-3/tp/blob/master/src/main/java/seedu/trackascholar/ui/Ui.java)
 
 ![Structure of the UI Component](images/UiClassDiagram.png)
 
 The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `PersonListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
 
-The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/AY2223S1-CS2103T-W10-3/tp/blob/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/AY2223S1-CS2103T-W10-3/tp/blob/master/src/main/resources/view/MainWindow.fxml)
+The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/AY2223S1-CS2103T-W10-3/tp/blob/master/src/main/java/seedu/trackascholar/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/AY2223S1-CS2103T-W10-3/tp/blob/master/src/main/resources/view/MainWindow.fxml)
 
 The `UI` component,
 
@@ -99,7 +99,7 @@ The `UI` component,
 
 ### Logic component
 
-**API** : [`Logic.java`](https://github.com/AY2223S1-CS2103T-W10-3/tp/blob/master/src/main/java/seedu/address/logic/Logic.java)
+**API** : [`Logic.java`](https://github.com/AY2223S1-CS2103T-W10-3/tp/blob/master/src/main/java/seedu/trackascholar/logic/Logic.java)
 
 Here's a (partial) class diagram of the `Logic` component:
 
@@ -129,7 +129,7 @@ How the parsing works:
 --------------------------------------------------------------------------------------------------------------------
 
 ### Model component
-**API** : [`Model.java`](https://github.com/AY2223S1-CS2103T-W10-3/tp/blob/master/src/main/java/seedu/address/model/Model.java)
+**API** : [`Model.java`](https://github.com/AY2223S1-CS2103T-W10-3/tp/blob/master/src/main/java/seedu/trackascholar/model/Model.java)
 
 <img src="images/ModelClassDiagram.png" width="450" />
 
@@ -151,7 +151,7 @@ The `Model` component,
 
 ### Storage component
 
-**API** : [`Storage.java`](https://github.com/AY2223S1-CS2103T-W10-3/tp/blob/master/src/main/java/seedu/address/storage/Storage.java)
+**API** : [`Storage.java`](https://github.com/AY2223S1-CS2103T-W10-3/tp/blob/master/src/main/java/seedu/trackascholar/storage/Storage.java)
 
 <img src="images/StorageClassDiagram.png" width="550" />
 
@@ -241,6 +241,41 @@ The following activity diagram summarizes what happens when a user executes a fi
 
 --------------------------------------------------------------------------------------------------------------------
 
+### Sort applicants by name, scholarship or status feature.
+
+#### Implementation
+
+The sort operation is facilitated by `SortCommand`. It extends `Command` and implements the `Command#execute` operation.
+
+Given below is an example usage scenario and how the sort operation is handled by TrackAScholar:
+
+1. The user enters `sort name`, for example, to sort all applicants by name in ascending lexicographic order.
+   This invokes `LogicManager#execute()`, which calls `TrackAScholarParser#parseCommand()` to separate the command word `sort` and
+   the argument `name`.
+
+2. `TrackAScholarParser` identifies the `sort` command and `SortCommandParser` will be instantiated which calls `SortCommandParser#parse()`
+   which checks if the arguments have the valid parameter name and flag by calling `List#contains()` and `SortCommandParser#checkInputSizeAndReverseFlag()` respectively.
+
+3. After passing the check, `SortCommandParser#parse()` creates a new `Comparator<Applicant>` with the argument before finally initializing and returning a `SortCommand`
+   with the new `Comparator<Applicant>` as an argument.
+
+4. `LogicManager#execute()` now calls `SortCommand#execute()`, which invokes `Model#updateFilteredApplicantList()` to filter out the list of
+   applicants with the matching application status. When the operation has concluded, `Model#getFilteredApplicantList()`
+   is called to retrieve the filtered list, such that TrackAScholar can count the total number of applicants in that particular list.
+
+5. `SortCommand#execute()` finishes with returning a `CommandResult` containing the newly sorted applicant list according to the input parameters.
+
+The following sequence diagram shows how the sort operation works:
+######(sequence diagram and activity diagram to be done replaced by jie hui)
+
+![Interactions Inside the Logic Component for the `filter` Command example](images/FilterSequenceDiagram.png)
+
+The following activity diagram summarizes what happens when a user executes a sort command:
+
+![Filter command activity diagram](images/FilterCommandActivityDiagram.png)
+
+--------------------------------------------------------------------------------------------------------------------
+
 ### Remove applicants by application status feature
 
 #### Implementation
@@ -276,6 +311,61 @@ is abstracted out as this sequence diagram aims only to demonstrate the interact
 The following activity diagram summarizes what happens when a user executes a remove command:
 
 ![Remove command activity diagram](images/RemoveCommandActivityDiagram.png)
+
+--------------------------------------------------------------------------------------------------------------------
+### Find applicant by find name feature
+
+#### Implementation
+
+The find operation is facilitated by `FindCommand`. It extends `Command` and implements the `Command#execute` operation.
+
+Given below is an example usage scenario and how the find command operates in TrackAScholar:
+
+1. The user enters `find john`.The application searches the data for all the applicants with the name that matches
+
+2. `TrackAScholarParser` identifies the person and displays it to the user.
+
+--------------------------------------------------------------------------------------------------------------------
+### Edit applicant feature
+
+#### Implementation
+
+The edit operation is facilitated by `EditCommand`. It extends `Command` and implements the `Command#execute` operation.
+
+Given below is an example usage scenario and how the edit operation is handled by TrackAScholar:
+
+1. The user enters `edit 1 n/Sam p/91234567 e/samnew@example.com s/NUS Sports Scholarship as/accepted`, for example, to edit an existing applicant at index 1 in the list.
+   This invokes `LogicManager#execute()`, which calls `TrackAScholarParser#parseCommand()` to separate the command word `edit` and
+   the arguments `1 n/Sam p/91234567 e/samnew@example.com s/NUS Sports Scholarship as/accepted`.
+
+2. `TrackAScholarParser` identifies the `edit` command and `EditCommandParser` will be instantiated which calls `EditCommandParser#parse()`
+   to map the various arguments via their prefixes (e.g. `Sam` is mapped using prefix `n/`).
+
+3. `EditCommandParser#parse()` will then call `Optional#isPresent()` to check if a prefix is present
+   in the user input, to identify which inputs need to be changed.
+
+4. `EditCommandParser#parse()` creates an `EditApplicantDescriptor` object with the various attributes to be changed before 
+   initializing and returning an `EditCommand` with the `EditApplicantDescriptor` as an argument.
+
+5. `EditCommandParser#parse()` throws a `ParseException` if index is not a positive integer and a `CommandException` if index 
+   is larger than the list size.
+
+6. `LogicManager#execute()` now calls `EditCommand#execute()`, which creates a new `Applicant` object with the updated applicant fields.
+    `Model#setApplicant` is used to update the current applicant with the new applicant. 
+
+7. `EditCommand#execute()` finishes with returning a `CommandResult` containing details about the applicant's successful edit and the applicant's details in TrackAScholar.
+
+
+[//]: # (The following sequence diagram shows how the edit operation works:)
+
+[//]: # ()
+[//]: # (![Interactions Inside the Logic Component for the `edit` Command example]&#40;images/EditSequenceDiagram.png&#41;)
+
+[//]: # ()
+[//]: # (The following activity diagram summarizes what happens when a user executes a edit command:)
+
+[//]: # ()
+[//]: # (![Edit command activity diagram]&#40;images/EditCommandActivityDiagram.png&#41;)
 
 --------------------------------------------------------------------------------------------------------------------
 
