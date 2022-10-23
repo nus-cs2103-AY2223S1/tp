@@ -3,7 +3,6 @@ package seedu.foodrem.logic.parser.itemcommandparser;
 import static seedu.foodrem.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import seedu.foodrem.logic.commands.itemcommands.SortCommand;
 import seedu.foodrem.logic.parser.ArgumentMultimap;
@@ -39,7 +38,7 @@ public class SortCommandParser implements Parser<SortCommand> {
             throw new ParseException(
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, SortCommand.getUsage()));
         }
-        List<ItemComparator> comparators = new ArrayList<>();
+        ArrayList<ItemComparator> comparators = new ArrayList<>();
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args,
                 CliSyntax.PREFIX_NAME,
                 CliSyntax.PREFIX_ITEM_QUANTITY,

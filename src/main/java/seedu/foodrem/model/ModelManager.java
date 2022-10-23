@@ -84,7 +84,7 @@ public class ModelManager implements Model {
         userPrefs.setFoodRemFilePath(foodRemFilePath);
     }
 
-    //=========== AddressBook ================================================================================
+    //=========== FoodRem ================================================================================
 
     @Override
     public ReadOnlyFoodRem getFoodRem() {
