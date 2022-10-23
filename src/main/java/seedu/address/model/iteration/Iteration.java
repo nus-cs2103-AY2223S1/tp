@@ -2,6 +2,7 @@ package seedu.address.model.iteration;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.nio.file.Path;
 import java.util.Objects;
 
 /**
@@ -14,7 +15,7 @@ public class Iteration {
     private final Date date;
     private final IterationDescription description;
 
-    private final ImagePath imagePath;
+    private final Path imagePath;
 
     // TODO Optional fields (feedback is currently required)
     private final Feedback feedback;
@@ -27,7 +28,7 @@ public class Iteration {
      * @param date The creation date of the iteration.
      * @param description The description of the iteration.
      */
-    public Iteration(Date date, IterationDescription description, ImagePath imagePath, Feedback feedback) {
+    public Iteration(Date date, IterationDescription description, Path imagePath, Feedback feedback) {
         requireAllNonNull(date, description, imagePath, feedback);
         this.date = date;
         this.description = description;
@@ -43,7 +44,7 @@ public class Iteration {
         return description;
     }
 
-    public ImagePath getImagePath() {
+    public Path getImagePath() {
         return imagePath;
     }
 

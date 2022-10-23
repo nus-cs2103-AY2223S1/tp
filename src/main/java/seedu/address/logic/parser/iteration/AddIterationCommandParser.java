@@ -7,6 +7,8 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_ITERATION_FEEDBACK;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ITERATION_IMAGEPATH;
 import static seedu.address.logic.parser.ParserUtil.arePrefixesPresent;
 
+import java.nio.file.Path;
+
 import seedu.address.logic.commands.iteration.AddIterationCommand;
 import seedu.address.logic.parser.ArgumentMultimap;
 import seedu.address.logic.parser.ArgumentTokenizer;
@@ -15,7 +17,6 @@ import seedu.address.logic.parser.ParserUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.iteration.Date;
 import seedu.address.model.iteration.Feedback;
-import seedu.address.model.iteration.ImagePath;
 import seedu.address.model.iteration.Iteration;
 import seedu.address.model.iteration.IterationDescription;
 
@@ -43,7 +44,7 @@ public class AddIterationCommandParser implements Parser<AddIterationCommand> {
         Date date = ParserUtil.parseDate(argMultimap.getValue(PREFIX_ITERATION_DATE).get());
         IterationDescription description =
                 ParserUtil.parseIterationDescription(argMultimap.getValue(PREFIX_ITERATION_DESCRIPTION).get());
-        ImagePath imagePath =
+        Path imagePath =
                 ParserUtil.parseImagePath(argMultimap.getValue(PREFIX_ITERATION_IMAGEPATH).get());
         Feedback feedback = ParserUtil.parseFeedback(argMultimap.getValue(PREFIX_ITERATION_FEEDBACK).get());
 

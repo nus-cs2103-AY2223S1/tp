@@ -29,6 +29,7 @@ import seedu.address.model.UserPrefs;
 import seedu.address.model.customer.Customer;
 import seedu.address.storage.JsonAddressBookStorage;
 import seedu.address.storage.JsonUserPrefsStorage;
+import seedu.address.storage.SimpleImageStorage;
 import seedu.address.storage.StorageManager;
 import seedu.address.testutil.CustomerBuilder;
 
@@ -46,7 +47,8 @@ public class LogicManagerTest {
         JsonAddressBookStorage addressBookStorage =
                 new JsonAddressBookStorage(temporaryFolder.resolve("addressBook.json"));
         JsonUserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(temporaryFolder.resolve("userPrefs.json"));
-        StorageManager storage = new StorageManager(addressBookStorage, userPrefsStorage);
+        SimpleImageStorage imageStorage = new SimpleImageStorage(temporaryFolder.resolve(""));
+        StorageManager storage = new StorageManager(addressBookStorage, userPrefsStorage, imageStorage);
         logic = new LogicManager(model, storage);
     }
 
@@ -75,7 +77,8 @@ public class LogicManagerTest {
                 new JsonAddressBookIoExceptionThrowingStub(temporaryFolder.resolve("ioExceptionAddressBook.json"));
         JsonUserPrefsStorage userPrefsStorage =
                 new JsonUserPrefsStorage(temporaryFolder.resolve("ioExceptionUserPrefs.json"));
-        StorageManager storage = new StorageManager(addressBookStorage, userPrefsStorage);
+        SimpleImageStorage imageStorage = new SimpleImageStorage(temporaryFolder.resolve(""));
+        StorageManager storage = new StorageManager(addressBookStorage, userPrefsStorage, imageStorage);
         logic = new LogicManager(model, storage);
 
         // Execute add command

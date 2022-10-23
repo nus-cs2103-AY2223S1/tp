@@ -1,5 +1,7 @@
 package seedu.address.model;
 
+import java.awt.image.BufferedImage;
+import java.io.IOException;
 import java.nio.file.Path;
 import java.util.Optional;
 
@@ -24,12 +26,6 @@ public class StorageStub implements Storage {
     public Path getUserPrefsFilePath() {
         throw new AssertionError("This method should not be called.");
     }
-
-    @Override
-    public String saveIterationImage(String src) {
-        throw new AssertionError("This method should not be called.");
-    }
-
     @Override
     public void saveAddressBook(ReadOnlyAddressBook addressBook) {
         throw new AssertionError("This method should not be called.");
@@ -53,6 +49,36 @@ public class StorageStub implements Storage {
 
     @Override
     public Path getAddressBookFilePath() {
+        throw new AssertionError("This method should not be called.");
+    }
+
+    @Override
+    public Path getBaseDirectoryPath() {
+        throw new AssertionError("This method should not be called.");
+    }
+
+    @Override
+    public Path getRandomImagePath() {
+        throw new AssertionError("This method should not be called.");
+    }
+
+    @Override
+    public boolean isPathInBaseDirectory(Path path) {
+        throw new AssertionError("This method should not be called.");
+    }
+
+    @Override
+    public boolean isValidImage(Path path) {
+        throw new AssertionError("This method should not be called.");
+    }
+
+    @Override
+    public BufferedImage getImage(Path path) throws IOException {
+        throw new AssertionError("This method should not be called.");
+    }
+
+    @Override
+    public void saveImage(BufferedImage image, Path path) {
         throw new AssertionError("This method should not be called.");
     }
 }

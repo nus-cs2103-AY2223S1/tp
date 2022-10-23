@@ -2,11 +2,11 @@ package seedu.address.testutil;
 
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ITERATION_IMAGEPATH_FINALISE;
 
+import java.nio.file.Path;
 import java.time.LocalDate;
 
 import seedu.address.model.iteration.Date;
 import seedu.address.model.iteration.Feedback;
-import seedu.address.model.iteration.ImagePath;
 import seedu.address.model.iteration.Iteration;
 import seedu.address.model.iteration.IterationDescription;
 
@@ -22,7 +22,7 @@ public class IterationBuilder {
     private Date date;
     private IterationDescription description;
     private Feedback feedback;
-    private ImagePath imagePath;
+    private Path imagePath;
 
     /**
      * Creates a {@code IterationBuilder} with the default details.
@@ -31,7 +31,7 @@ public class IterationBuilder {
         date = new Date(DEFAULT_DATE);
         description = new IterationDescription(DEFAULT_DESCRIPTION);
         feedback = new Feedback(DEFAULT_FEEDBACK);
-        imagePath = new ImagePath(DEFAULT_IMAGE_PATH);
+        imagePath = Path.of(DEFAULT_IMAGE_PATH);
     }
 
     /**
@@ -72,7 +72,7 @@ public class IterationBuilder {
      * Sets the {@code ImagePath} of the {@code Iteration} that we are building.
      */
     public IterationBuilder withImagePath(String imagePath) {
-        this.imagePath = new ImagePath(imagePath);
+        this.imagePath = Path.of(imagePath);
         return this;
     }
 

@@ -7,6 +7,7 @@ import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalCommissions.CAT_PRODUCER;
 import static seedu.address.testutil.TypicalCustomers.getTypicalAddressBook;
 
+import java.awt.image.BufferedImage;
 import java.util.function.Supplier;
 
 import org.junit.jupiter.api.BeforeEach;
@@ -40,18 +41,23 @@ public class AddIterationCommandIntegrationTest {
 
     @Test
     public void execute_selectedCommissionAddNewIteration_success() throws CommandException {
-        Iteration validIteration = new IterationBuilder().build();
+        StorageWithImageStub storage = new StorageWithImageStub();
+        Iteration validIteration = new IterationBuilder()
+                .withImagePath(storage.getCurrentPath().toString()).build();
 
         Model expectedModel = getSetUpModelManager();
+        BufferedImage tempImage = new BufferedImage(1, 1, 1);
         expectedModel.getSelectedCommission().getValue().addIteration(validIteration);
         AddIterationCommand addIterationCommand = new AddIterationCommand(validIteration);
+        storage.saveImage(tempImage, validIteration.getImagePath());
 
-        assertEquals(String.format(
-                AddIterationCommand.MESSAGE_ADD_ITERATION_SUCCESS, validIteration, CAT_COMMISSION_TITLE),
-                addIterationCommand.execute(model, new StorageWithImageStub()).getFeedbackToUser());
+        String actualResponse = addIterationCommand.execute(model, storage).getFeedbackToUser();
+        Iteration expectedIteration = new IterationBuilder(validIteration)
+                .withImagePath(storage.getCurrentPath().toString()).build();
+        String expectedResponse = String.format(AddIterationCommand.MESSAGE_ADD_ITERATION_SUCCESS,
+                expectedIteration, CAT_COMMISSION_TITLE);
+        assertEquals(expectedResponse, actualResponse);
         assertEquals(expectedModel, model);
-        assertEquals(expectedModel.getSelectedCommission().getValue().getIterations(),
-                model.getSelectedCommission().getValue().getIterations());
     }
 
     @Test
@@ -81,6 +87,7 @@ public class AddIterationCommandIntegrationTest {
         Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
         model.selectCustomer(emily);
         model.selectCommission(emilyCatCommission);
+
         return model;
     }
 }

@@ -1,20 +1,21 @@
 package seedu.address.logic.commands.iteration;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalIterations.ADD_COLOR;
 import static seedu.address.testutil.TypicalIterations.FINALISED;
 import static seedu.address.testutil.TypicalIterations.REMOVE_CHARACTER;
 
-import java.util.Collections;
+import java.awt.image.BufferedImage;
 
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.model.iteration.Iteration;
+import seedu.address.testutil.IterationBuilder;
 
 /**
  * Contains unit tests for {@code AddIterationCommandTest}.
@@ -30,21 +31,26 @@ public class AddIterationCommandTest {
     public void execute_modelNoSelectedCommission_throwsCommandException() {
         AddIterationCommand addIterationCommand = new AddIterationCommand(FINALISED);
         assertThrows(CommandException.class, Messages.MESSAGE_NO_ACTIVE_COMMISSION, () ->
-                addIterationCommand.execute(new ModelStubWithoutCommission(), new StorageWithImageStub()));
+            addIterationCommand.execute(new ModelStubWithoutCommission(), new StorageWithImageStub()));
     }
 
     @Test
     public void execute_validIterationAcceptedByModel_addSuccessful() throws CommandException {
         CommissionStubWithIteration selectedCommission = new CommissionStubWithIteration();
         ModelStubWithCommission modelStub = new ModelStubWithCommission(selectedCommission);
+        StorageWithImageStub storage = new StorageWithImageStub();
+        BufferedImage tempImage = new BufferedImage(1, 1, 1);
 
-        CommandResult commandResult = new AddIterationCommand(ADD_COLOR).execute(modelStub,
-                new StorageWithImageStub());
+        storage.saveImage(tempImage, ADD_COLOR.getImagePath());
+
+        CommandResult commandResult = new AddIterationCommand(ADD_COLOR).execute(modelStub, storage);
+        String path = storage.getCurrentPath().toString();
+        Iteration expectedIteration = new IterationBuilder(ADD_COLOR).withImagePath(path).build();
 
         assertEquals(String.format(AddIterationCommand.MESSAGE_ADD_ITERATION_SUCCESS,
-                        ADD_COLOR, selectedCommission.getTitle()),
-                commandResult.getFeedbackToUser());
-        assertEquals(Collections.singletonList(ADD_COLOR), selectedCommission.getIterationsAsList());
+                expectedIteration, selectedCommission.getTitle()),
+            commandResult.getFeedbackToUser());
+        assertEquals(expectedIteration, selectedCommission.getIterationsAsList().get(0));
     }
 
     @Test
@@ -54,10 +60,9 @@ public class AddIterationCommandTest {
         ModelStubWithCommission modelStub = new ModelStubWithCommission(selectedCommission);
 
         AddIterationCommand addIterationCommand = new AddIterationCommand(REMOVE_CHARACTER);
-        assertThrows(CommandException.class,
-                String.format(AddIterationCommand.MESSAGE_DUPLICATE_ITERATION,
-                        selectedCommission.getTitle()), () -> addIterationCommand.execute(modelStub,
-                            new StorageWithImageStub()));
+        assertThrows(CommandException.class, String.format(AddIterationCommand.MESSAGE_DUPLICATE_ITERATION,
+                selectedCommission.getTitle()), () -> addIterationCommand.execute(modelStub,
+                    new StorageWithImageStub()));
     }
 
     @Test
@@ -66,19 +71,19 @@ public class AddIterationCommandTest {
         AddIterationCommand secondAddIterationCommand = new AddIterationCommand(ADD_COLOR);
 
         // same object -> returns true
-        assertTrue(firstAddIterationCommand.equals(firstAddIterationCommand));
+        assertEquals(firstAddIterationCommand, firstAddIterationCommand);
 
         // same values -> returns true
         AddIterationCommand firstAddIterationCommandCopy = new AddIterationCommand(FINALISED);
-        assertTrue(firstAddIterationCommand.equals(firstAddIterationCommandCopy));
+        assertEquals(firstAddIterationCommand, firstAddIterationCommandCopy);
 
         // different types -> returns false
-        assertFalse(firstAddIterationCommand.equals(1));
+        assertNotEquals(1, firstAddIterationCommand);
 
         // null -> returns false
-        assertFalse(firstAddIterationCommand.equals(null));
+        assertNotEquals(null, firstAddIterationCommand);
 
         // different fields -> returns false
-        assertFalse(firstAddIterationCommand.equals(secondAddIterationCommand));
+        assertNotEquals(firstAddIterationCommand, secondAddIterationCommand);
     }
 }
