@@ -46,6 +46,11 @@ public class SampleDataUtil {
         };
     }
 
+    /**
+     * Generates sample {@code Todo}s for first time users.
+     *
+     * @return Array of sample {@code Todo}s.
+     */
     public static Todo[] getSampleTodos() {
         return new Todo[] {
             new Todo(new Description("Watch recorded lecture videos"), new Priority("high"),
@@ -70,6 +75,11 @@ public class SampleDataUtil {
         return sampleSC;
     }
 
+    /**
+     * Generates sample {@code TodoList} for first time users.
+     *
+     * @return Sample {@code TodoList}.
+     */
     public static ReadOnlyTodoList getSampleTodoList() {
         TodoList sampleTodoList = new TodoList();
         for (Todo sampleTodo : getSampleTodos()) {

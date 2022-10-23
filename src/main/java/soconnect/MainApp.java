@@ -2,6 +2,8 @@ package soconnect;
 
 import java.io.IOException;
 import java.nio.file.Path;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 import java.util.logging.Logger;
 
@@ -23,15 +25,10 @@ import soconnect.model.ReadOnlyUserPrefs;
 import soconnect.model.SoConnect;
 import soconnect.model.TodoList;
 import soconnect.model.UserPrefs;
+import soconnect.model.tag.Tag;
+import soconnect.model.todo.Todo;
 import soconnect.model.util.SampleDataUtil;
-import soconnect.storage.JsonSoConnectStorage;
-import soconnect.storage.JsonTodoListStorage;
-import soconnect.storage.JsonUserPrefsStorage;
-import soconnect.storage.SoConnectStorage;
-import soconnect.storage.Storage;
-import soconnect.storage.StorageManager;
-import soconnect.storage.TodoListStorage;
-import soconnect.storage.UserPrefsStorage;
+import soconnect.storage.;
 import soconnect.ui.Ui;
 import soconnect.ui.UiManager;
 
@@ -79,40 +76,57 @@ public class MainApp extends Application {
      * data files will be used instead if errors occur when reading.
      */
     private Model initModelManager(Storage storage, ReadOnlyUserPrefs userPrefs) {
+        ReadOnlySoConnect initialSoConnectData = initSoConnect(storage);
+        ReadOnlyTodoList initialTodoListData = initTodoList(storage, initialSoConnectData);
+
+        return new ModelManager(initialSoConnectData, initialTodoListData, userPrefs);
+    }
+
+    private ReadOnlySoConnect initSoConnect(Storage storage) {
         Optional<ReadOnlySoConnect> soConnectOptional;
-        ReadOnlySoConnect initialSoConnectData;
-        Optional<ReadOnlyTodoList> todoListOptional;
-        ReadOnlyTodoList initialTodoListData;
 
         try {
             soConnectOptional = storage.readSoConnect();
             if (soConnectOptional.isEmpty()) {
                 logger.info("Data file not found. Will be starting with a sample SoConnect");
             }
-            initialSoConnectData = soConnectOptional.orElseGet(SampleDataUtil::getSampleSoConnect);
+            return soConnectOptional.orElseGet(SampleDataUtil::getSampleSoConnect);
         } catch (DataConversionException e) {
             logger.warning("Data file not in the correct format. Will be starting with an empty SoConnect");
-            initialSoConnectData = new SoConnect();
+            return new SoConnect();
         } catch (IOException e) {
             logger.warning("Problem while reading from the file. Will be starting with an empty SoConnect");
-            initialSoConnectData = new SoConnect();
+            return new SoConnect();
         }
+    }
 
+    private ReadOnlyTodoList initTodoList(Storage storage, ReadOnlySoConnect initialSoConnectData) {
+        Optional<ReadOnlyTodoList> todoListOptional;
         try {
             todoListOptional = storage.readTodoList(initialSoConnectData);
             if (todoListOptional.isEmpty()) {
                 logger.info("Data file not found. Will be starting with a sample TodoList");
             }
-            initialTodoListData = todoListOptional.orElseGet(SampleDataUtil::getSampleTodoList);
+            return todoListOptional.orElseGet(() ->
+            {
+                for (int i = 0; i < SampleDataUtil.getSampleTodos().length; i++) {
+                    Todo todo = SampleDataUtil.getSampleTodos()[i];
+                    List<Tag> todoTags = new ArrayList<>(todo.getTags());
+                    for (int j = 0; j < todoTags.size(); j++) {
+                        if (!initialSoConnectData.getTagList().contains(todoTags.get(j))) {
+                            initialSoConnectData.addTag(todoTags.get(j));
+                        }
+                    }
+                }
+                return SampleDataUtil.getSampleTodoList();
+            });
         } catch (DataConversionException e) {
             logger.warning("Data file not in the correct format. Will be starting with an empty TodoList");
-            initialTodoListData = new TodoList();
+            return new TodoList();
         } catch (IOException e) {
             logger.warning("Problem while reading from the file. Will be starting with an empty TodoList");
-            initialTodoListData = new TodoList();
+            return new TodoList();
         }
-
-        return new ModelManager(initialSoConnectData, initialTodoListData, userPrefs);
     }
 
     private void initLogging(Config config) {

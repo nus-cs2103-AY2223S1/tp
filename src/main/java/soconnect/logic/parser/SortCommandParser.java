@@ -19,14 +19,14 @@ import soconnect.logic.parser.exceptions.ParseException;
 import soconnect.model.tag.Tag;
 
 /**
- * Parses input arguments and creates a new SortCommand object.
+ * Parses input arguments and creates a new {@code SortCommand} object.
  */
 public class SortCommandParser implements Parser<SortCommand> {
     /**
-     * Parses the given {@code String} of arguments in the context of the SortCommand
-     * and returns an SortCommand object for execution.
+     * Parses the given {@code String} of arguments in the context of the {@code SortCommand}
+     * and returns an {@code SortCommand} object for execution.
      *
-     * @throws ParseException If the user input does not conform the expected format.
+     * @throws ParseException If the user input does not conform with the expected format.
      */
     public SortCommand parse(String args) throws ParseException {
         List<PrefixArgument> argList =
@@ -49,21 +49,21 @@ public class SortCommandParser implements Parser<SortCommand> {
     }
 
     /**
-     * Converts a list of PrefixArgument to a list of SortArgument.
-     * First dummy PrefixArgument in the list, which represents the preamble, is excluded.
+     * Converts a list of {@code PrefixArgument} to a list of {@code SortArgument}.
+     * First dummy {@code PrefixArgument} in the list, which represents the preamble, is excluded.
      *
-     * @param argList List of PrefixArgument.
-     * @return        List of SortArgument.
+     * @param argList List of {@code PrefixArgument}.
+     * @return        List of {@code SortArgument}.
      */
     private List<SortArgument> convertPrefixArgToSortArg(List<PrefixArgument> argList) {
         return argList.subList(1, argList.size()).stream().map(this::convertArguments).collect(Collectors.toList());
     }
 
     /**
-     * Converts a PrefixArgument to a SortArgument.
+     * Converts a {@code PrefixArgument} to a {@code SortArgument}.
      *
-     * @param prefixArg PrefixArgument to convert.
-     * @return          SortArgument.
+     * @param prefixArg {@code PrefixArgument} to convert.
+     * @return          {@code SortArgument}.
      */
     private SortArgument convertArguments(PrefixArgument prefixArg) {
         Prefix prefix = prefixArg.getPrefix();

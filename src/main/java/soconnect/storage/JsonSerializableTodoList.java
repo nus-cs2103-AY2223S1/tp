@@ -69,9 +69,7 @@ class JsonSerializableTodoList {
 
             }
             Set<Tag> updatedTags = new HashSet<>(todoTags);
-            Todo newTodo = new Todo(todo.getDescription(),
-                todo.getPriority(),
-                updatedTags);
+            Todo newTodo = new Todo(todo.getDescription(), todo.getPriority(), updatedTags);
             todoList.addTodo(newTodo);
         }
         return todoList;

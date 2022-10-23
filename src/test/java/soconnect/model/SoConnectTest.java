@@ -176,6 +176,11 @@ public class SoConnectTest {
         public ObservableList<Tag> getTagList() {
             return tags;
         }
+
+        @Override
+        public void addTag(Tag tag) {
+            tags.add(tag);
+        }
     }
 
 }

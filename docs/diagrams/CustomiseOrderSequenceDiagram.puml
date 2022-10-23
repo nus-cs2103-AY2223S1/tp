@@ -1,0 +1,105 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":SoConnectParser" as SoConnectParser LOGIC_COLOR
+participant ":CustomiseCommandParser" as CustomiseCommandParser LOGIC_COLOR
+participant ":CustomiseOrderCommandParser" as CustomiseOrderCommandParser LOGIC_COLOR
+participant "u:CustomiseOrderCommand" as CustomiseOrderCommand LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+participant ":UserPrefs" as UserPrefs MODEL_COLOR
+end box
+
+box Commons STORAGE_COLOR_T1
+participant ":GuiSettings" as GuiSettings STORAGE_COLOR
+end box
+
+[-> LogicManager : execute("customise order e/")
+activate LogicManager
+
+LogicManager -> SoConnectParser : parseCommand("customise order e/")
+activate SoConnectParser
+
+create CustomiseCommandParser
+SoConnectParser -> CustomiseCommandParser
+activate CustomiseCommandParser
+
+CustomiseCommandParser --> SoConnectParser
+deactivate CustomiseCommandParser
+
+SoConnectParser -> CustomiseCommandParser : parse(" order e/")
+activate CustomiseCommandParser
+
+create CustomiseOrderCommandParser
+CustomiseCommandParser -> CustomiseOrderCommandParser
+activate CustomiseOrderCommandParser
+
+CustomiseOrderCommandParser --> CustomiseCommandParser
+deactivate CustomiseOrderCommandParser
+
+CustomiseCommandParser -> CustomiseOrderCommandParser : parse(" e/")
+activate CustomiseOrderCommandParser
+
+create CustomiseOrderCommand
+CustomiseOrderCommandParser -> CustomiseOrderCommand
+activate CustomiseOrderCommand
+
+CustomiseOrderCommand --> CustomiseOrderCommandParser
+deactivate CustomiseOrderCommand
+
+CustomiseOrderCommandParser --> CustomiseCommandParser
+deactivate CustomiseOrderCommandParser
+
+CustomiseCommandParser --> SoConnectParser
+deactivate CustomiseCommandParser
+
+SoConnectParser --> LogicManager
+deactivate SoConnectParser
+
+LogicManager -> CustomiseOrderCommand : execute()
+activate CustomiseOrderCommand
+
+CustomiseOrderCommand -> Model : getGuiSettings()
+activate Model
+
+Model -> UserPrefs : getGuiSettings()
+activate UserPrefs
+
+UserPrefs --> Model
+deactivate UserPrefs
+
+Model --> CustomiseOrderCommand
+deactivate Model
+
+create GuiSettings
+CustomiseOrderCommand -> GuiSettings
+activate GuiSettings
+
+GuiSettings --> CustomiseOrderCommand
+deactivate GuiSettings
+
+CustomiseOrderCommand -> Model : setGuiSettings()
+activate Model
+
+Model -> UserPrefs : setGuiSettings()
+activate UserPrefs
+
+UserPrefs --> Model
+deactivate UserPrefs
+
+Model --> CustomiseOrderCommand
+deactivate Model
+
+CustomiseOrderCommand --> LogicManager : result
+deactivate CustomiseOrderCommand
+
+CustomiseOrderCommand -[hidden]-> LogicManager : result
+destroy CustomiseOrderCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml

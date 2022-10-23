@@ -5,7 +5,6 @@ import static soconnect.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.io.IOException;
 import java.nio.file.Path;
-import java.util.List;
 import java.util.Optional;
 import java.util.logging.Logger;
 
@@ -16,7 +15,6 @@ import soconnect.commons.util.FileUtil;
 import soconnect.commons.util.JsonUtil;
 import soconnect.model.ReadOnlySoConnect;
 import soconnect.model.ReadOnlyTodoList;
-import soconnect.model.tag.Tag;
 
 /**
  * A class to access {@code TodoList} data stored as a json file on the hard disk.

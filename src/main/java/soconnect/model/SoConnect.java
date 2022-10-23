@@ -74,7 +74,7 @@ public class SoConnect implements ReadOnlySoConnect {
     /// sorting operations
 
     /**
-     * Sorts the SoConnect by name in alphabetical order.
+     * Sorts the SoConnect by {@code Name} in alphabetical order.
      *
      * @param isReverse Whether the sorting should be in reverse order.
      */
@@ -83,7 +83,7 @@ public class SoConnect implements ReadOnlySoConnect {
     }
 
     /**
-     * Sorts the SoConnect by phone number in increasing order.
+     * Sorts the SoConnect by {@code Phone} in increasing order.
      *
      * @param isReverse Whether the sorting should be in reverse order.
      */
@@ -92,7 +92,7 @@ public class SoConnect implements ReadOnlySoConnect {
     }
 
     /**
-     * Sorts the SoConnect by email in alphabetical order.
+     * Sorts the SoConnect by {@code Email} in alphabetical order.
      *
      * @param isReverse Whether the sorting should be in reverse order.
      */
@@ -101,7 +101,7 @@ public class SoConnect implements ReadOnlySoConnect {
     }
 
     /**
-     * Sorts the SoConnect by address in alphabetical order.
+     * Sorts the SoConnect by {@code Address} in alphabetical order.
      *
      * @param isReverse Whether the sorting should be in reverse order.
      */
@@ -110,10 +110,10 @@ public class SoConnect implements ReadOnlySoConnect {
     }
 
     /**
-     * Sorts the SoConnect by a tag.
-     * Contacts with the tag appear before those without the tag.
+     * Sorts the SoConnect by a {@code Tag}.
+     * Contacts with the {@code Tag} appear before those without the {@code Tag}.
      *
-     * @param tag       The tag to sort with.
+     * @param tag       The {@code Tag} to sort with.
      * @param isReverse Whether the sorting should be in reverse order.
      */
     public void sortByTag(Tag tag, Boolean isReverse) {
