@@ -26,54 +26,31 @@ public class ViewCommand extends Command {
 
     private static final String ENTRY_EXPENDITURE = "expenditures";
     private static final String ENTRY_INCOME = "income";
+
     private static final String GRAPH_CATEGORY = "category";
     private static final String GRAPH_MONTH = "month";
 
-    private final EntryType entryType;
-    private final Month month;
-    private final GraphType graphType;
+    private final ViewEntriesDescriptor viewEntriesDescriptor;
 
     /**
      * Creates a ViewCommand to view the specified {@code entryType}.
      */
-    public ViewCommand(EntryType entryType, GraphType graphType) {
-        requireNonNull(entryType);
-        this.entryType = entryType;
-        this.month = null;
-        this.graphType = graphType;
-    }
-
-    /**
-     * Creates a ViewCommand to view the specified {@code entryType} at the specified {@code month}.
-     */
-    public ViewCommand(EntryType entryType, Month month, GraphType graphType) {
-        requireNonNull(entryType);
-        requireNonNull(month);
-        this.entryType = entryType;
-        this.month = month;
-        this.graphType = graphType;
-    }
-
-    public EntryType getEntryType() {
-        return entryType;
-    }
-
-    public GraphType getGraphType() {
-        return graphType;
-    }
-
-    public Optional<Month> getMonth() {
-        return Optional.ofNullable(month);
+    public ViewCommand(ViewEntriesDescriptor viewEntriesDescriptor) {
+        requireNonNull(viewEntriesDescriptor);
+        this.viewEntriesDescriptor = viewEntriesDescriptor;
     }
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
+
+        EntryType entryType = viewEntriesDescriptor.getEntryType();
+        GraphType graphType = viewEntriesDescriptor.getGraphType();
+
         switch (entryType.getEntryType()) {
         case EXPENDITURE:
             switch (graphType.getGraphType()) {
             case CATEGORY:
-                System.out.println("[ViewCommand] Show all expenditure by categories");
                 return new CommandResult(String.format(MESSAGE_SUCCESS, ENTRY_EXPENDITURE, GRAPH_CATEGORY), false,
                                          false, true);
             case MONTH:
@@ -87,7 +64,6 @@ public class ViewCommand extends Command {
         case INCOME:
             switch (graphType.getGraphType()) {
             case CATEGORY:
-
                 System.out.println("[ViewCommand] Show all income by categories");
                 return new CommandResult(String.format(MESSAGE_SUCCESS, ENTRY_INCOME, GRAPH_CATEGORY), false, false,
                                          true);
@@ -109,15 +85,106 @@ public class ViewCommand extends Command {
         if (other == this) {
             return true;
         }
+        if (other == null) {
+            return false;
+        }
         if (!(other instanceof ViewCommand)) {
             return false;
         }
         ViewCommand otherViewCommand = (ViewCommand) other;
-        if (month == null) {
-            return entryType.equals(otherViewCommand.entryType);
+        return viewEntriesDescriptor.equals(otherViewCommand.viewEntriesDescriptor);
+    }
+
+    /**
+     * Stores the details to view entries. Each non-empty field value will replace the
+     * default value of the viwe configuration.
+     */
+    public static class ViewEntriesDescriptor {
+        private EntryType entryType;
+        private Month month;
+        private GraphType graphType;
+
+        public ViewEntriesDescriptor() {
         }
-        return getEntryType().equals(otherViewCommand.getEntryType())
-                && getMonth().equals(otherViewCommand.getMonth())
-                && getGraphType().equals(otherViewCommand.getGraphType());
+
+        /**
+         * Copy constructor.
+         */
+        public ViewEntriesDescriptor(ViewEntriesDescriptor toCopy) {
+            setEntryType(toCopy.entryType);
+            setGraphType(toCopy.graphType);
+            setMonth(toCopy.month);
+        }
+
+        public void setEntryType(EntryType entryType) {
+            // Defensive approach to guard against null entry types
+            assert entryType != null;
+            this.entryType = entryType;
+        }
+
+        public EntryType getEntryType() {
+            return entryType;
+        }
+
+        public void setMonth(Month month) {
+            this.month = month;
+        }
+
+        public Optional<Month> getMonth() {
+            return Optional.ofNullable(month);
+        }
+
+        public void setGraphType(GraphType graphType) {
+            this.graphType = graphType;
+        }
+
+        public GraphType getGraphType() {
+            return graphType;
+        }
+
+        /**
+         * Returns true if and only if the provided view parameter configurations are valid. The
+         * view parameter configurations are valid if:
+         *
+         * <ul>
+         * <li>Entry type must be specified</li>
+         * <li>Graph type must be specified</li>
+         * <li>If graph type is 'm' (month), then month must be specified. Otherwise, month is ignored.</li>
+         * </ul>
+         *
+         * @return True if and only if the provided view parameter configurations are valid.
+         */
+        public boolean isValid() {
+            if (getEntryType() == null || getGraphType() == null) {
+                return false;
+            }
+            GraphType graphTypeMonth = new GraphType(GraphType.GRAPH_TYPE_MONTH);
+            if (getGraphType().equals(graphTypeMonth) && getMonth().isEmpty()) {
+                return false;
+            }
+            return true;
+        }
+
+        @Override
+        public boolean equals(Object other) {
+            // short circuit if same object
+            if (other == this) {
+                return true;
+            }
+            if (other == null) {
+                return false;
+            }
+            // instanceof handles nulls
+            if (!(other instanceof ViewEntriesDescriptor)) {
+                return false;
+            }
+
+            // state check
+            ViewEntriesDescriptor otherEntriesDescriptor = (ViewEntriesDescriptor) other;
+
+            return getEntryType().equals(otherEntriesDescriptor.getEntryType())
+                    && getGraphType().equals(otherEntriesDescriptor.getGraphType())
+                    && getMonth().equals(otherEntriesDescriptor.getMonth());
+        }
     }
 }

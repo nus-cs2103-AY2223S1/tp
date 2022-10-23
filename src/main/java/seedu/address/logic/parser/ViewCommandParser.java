@@ -1,5 +1,6 @@
 package seedu.address.logic.parser;
 
+import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_GRAPH;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MONTH;
@@ -7,9 +8,6 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_TYPE;
 
 import seedu.address.logic.commands.ViewCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.entry.EntryType;
-import seedu.address.model.entry.GraphType;
-import seedu.address.model.entry.Month;
 
 /**
  * Parses input arguments and creates a new ViewCommand object
@@ -22,35 +20,33 @@ public class ViewCommandParser implements Parser<ViewCommand> {
      * @throws ParseException if the user input does not conform the expected format
      */
     public ViewCommand parse(String args) throws ParseException {
+        requireNonNull(args);
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_TYPE, PREFIX_MONTH, PREFIX_GRAPH);
 
-        if (argMultimap.getValue(PREFIX_TYPE).isEmpty()) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, ViewCommand.MESSAGE_USAGE));
-        }
-
-        EntryType entryType;
-        Month month;
-
+        ViewCommand.ViewEntriesDescriptor viewEntriesDescriptor = new ViewCommand.ViewEntriesDescriptor();
         try {
-            entryType = ParserUtil.parseEntryType(argMultimap.getValue(PREFIX_TYPE).get());
+            if (argMultimap.getValue(PREFIX_TYPE).isPresent()) {
+                viewEntriesDescriptor.setEntryType(
+                        ParserUtil.parseEntryType(argMultimap.getValue(PREFIX_TYPE).get()));
+            }
+            if (argMultimap.getValue(PREFIX_GRAPH).isPresent()) {
+                viewEntriesDescriptor.setGraphType(
+                        ParserUtil.parseGraphType(argMultimap.getValue(PREFIX_GRAPH).get()));
+            }
+            if (argMultimap.getValue(PREFIX_MONTH).isPresent()) {
+                viewEntriesDescriptor.setMonth(
+                        ParserUtil.parseMonth(argMultimap.getValue(PREFIX_MONTH).get()));
+            }
         } catch (ParseException pe) {
             throw new ParseException(
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, ViewCommand.MESSAGE_USAGE), pe);
         }
 
-        GraphType graphType = ParserUtil.parseGraphType(argMultimap.getValue(PREFIX_GRAPH).get());
-
-        if (argMultimap.getValue(PREFIX_MONTH).isPresent()) {
-            try {
-                month = ParserUtil.parseMonth(argMultimap.getValue(PREFIX_MONTH).get());
-            } catch (ParseException pe) {
-                throw new ParseException(
-                        String.format(MESSAGE_INVALID_COMMAND_FORMAT, ViewCommand.MESSAGE_USAGE), pe);
-            }
-            return new ViewCommand(entryType, month, graphType);
+        if (!viewEntriesDescriptor.isValid()) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, ViewCommand.MESSAGE_USAGE));
         }
 
-        return new ViewCommand(entryType, graphType);
+        return new ViewCommand(viewEntriesDescriptor);
     }
 
 }
