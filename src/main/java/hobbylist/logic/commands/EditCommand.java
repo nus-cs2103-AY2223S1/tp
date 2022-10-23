@@ -18,6 +18,7 @@ import hobbylist.model.Model;
 import hobbylist.model.activity.Activity;
 import hobbylist.model.activity.Description;
 import hobbylist.model.activity.Name;
+import hobbylist.model.activity.Status;
 import hobbylist.model.date.Date;
 import hobbylist.model.tag.Tag;
 
@@ -92,7 +93,8 @@ public class EditCommand extends Command {
                 .orElse(activityToEdit.getDescription());
         Set<Tag> updatedTags = editActivityDescriptor.getTags().orElse(activityToEdit.getTags());
         List<Date> date = editActivityDescriptor.getDate().orElse(activityToEdit.getDate());
-        return new Activity(updatedName, updatedDescription, updatedTags, date);
+        Status updatedStatus = editActivityDescriptor.getStatus().orElse(activityToEdit.getStatus());
+        return new Activity(updatedName, updatedDescription, updatedTags, date, updatedStatus);
     }
 
     @Override
@@ -122,6 +124,7 @@ public class EditCommand extends Command {
         private Description description;
         private Set<Tag> tags;
         private List<Date> date;
+        private Status status;
 
         public EditActivityDescriptor() {}
 
@@ -134,13 +137,14 @@ public class EditCommand extends Command {
             setDescription(toCopy.description);
             setTags(toCopy.tags);
             setDate(toCopy.date);
+            setStatus(toCopy.status);
         }
 
         /**
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, description, tags, date);
+            return CollectionUtil.isAnyNonNull(name, description, tags, date, status);
         }
 
         public void setName(Name name) {
@@ -181,6 +185,15 @@ public class EditCommand extends Command {
         public Optional<List<Date>> getDate() {
             return (date != null) ? Optional.of(Collections.unmodifiableList(date)) : Optional.empty();
         }
+
+        public void setStatus(Status status) {
+            this.status = status;
+        }
+
+        public Optional<Status> getStatus() {
+            return Optional.ofNullable(status);
+        }
+
         @Override
         public boolean equals(Object other) {
             // short circuit if same object
