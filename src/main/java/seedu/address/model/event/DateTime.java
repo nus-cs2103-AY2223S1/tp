@@ -37,7 +37,8 @@ public class DateTime {
     public static final String REGEX_HOURS = "(?<hoursGroup>\\d{2})";
     public static final String REGEX_TIME_COLON =
             "(" + REGEX_HOURS + ":" + REGEX_MINUTES + "(:" + REGEX_SECONDS + ")?)";
-    public static final String REGEX_TIME_NO_SPACE = "(" + REGEX_HOURS + REGEX_MINUTES + REGEX_SECONDS + ")";
+    public static final String REGEX_TIME_NO_SPACE =
+            "(" + REGEX_HOURS + REGEX_MINUTES + "(" + REGEX_SECONDS + ")?)";
 
     public static final HashSet<String> REGEX_DATES = new LinkedHashSet<>() {
         {
