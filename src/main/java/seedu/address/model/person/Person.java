@@ -8,9 +8,6 @@ import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
-import seedu.address.model.server.Server;
-import seedu.address.model.tag.Tag;
-
 /**
  * Represents a Person in the address book.
  * Guarantees: details are present and not null, field values are validated, immutable.
@@ -165,10 +162,7 @@ public class Person {
         builder.append("Phone: ").append(getFieldOrElse(getPhone().toString())).append("\n");
         builder.append("Email: ").append(getFieldOrElse(getEmail().toString())).append("\n");
         builder.append("Address: ").append(getFieldOrElse(getAddress().toString())).append("\n");
-        builder.append("Servers: ").append(getFieldOrElse(getServers())).append("\n");
         builder.append("Country: ").append(getFieldOrElse(getCountry().toString())).append("\n");
-        builder.append("Preferred Game Types: ").append(getFieldOrElse(getGameType().toString())).append("\n");
-        builder.append("Socials: ").append(getFieldOrElse(getSocials())).append("\n");
         builder.append("Available timings: ").append(getFieldOrElse(getTimesAvailable())).append("\n");
 
         return builder.toString();

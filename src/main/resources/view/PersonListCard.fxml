@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 
-<HBox id="cardPane" fx:id="cardPane" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
+<HBox id="cardPane" fx:id="cardPane" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
   <GridPane HBox.hgrow="ALWAYS">
     <columnConstraints>
       <ColumnConstraints hgrow="SOMETIMES" minWidth="10" prefWidth="150" />
@@ -29,23 +29,23 @@
             <Label fx:id="minecraftName" styleClass="cell_big_label" text="\$mcName" />
         <Label fx:id="name" styleClass="cell_big_label" text="\$first" />
       </HBox>
-      <FlowPane fx:id="tags" styleClass="tagged">
+      <FlowPane fx:id="servers" styleClass="tagged">
             <VBox.margin>
-               <Insets top="2.0" />
+               <Insets />
             </VBox.margin></FlowPane>
-         <FlowPane fx:id="servers" styleClass="tagged">
+         <FlowPane fx:id="gameTypes" styleClass="tagged">
             <VBox.margin>
-               <Insets top="2.0" />
+               <Insets />
             </VBox.margin>
          </FlowPane>
          <FlowPane fx:id="socials" styleClass="tagged">
             <VBox.margin>
-               <Insets top="2.0" />
+               <Insets />
             </VBox.margin>
          </FlowPane>
-        <FlowPane fx:id="gameTypes" styleClass="tagged">
+        <FlowPane fx:id="tags" styleClass="tagged">
             <VBox.margin>
-                <Insets top="2.0" />
+                <Insets />
             </VBox.margin>
         </FlowPane>
          <Label fx:id="information" text="Label" wrapText="true">

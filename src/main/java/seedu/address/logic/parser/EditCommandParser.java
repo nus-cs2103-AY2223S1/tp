@@ -25,9 +25,9 @@ import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.GameType;
 import seedu.address.model.person.ITimesAvailable;
+import seedu.address.model.person.Server;
 import seedu.address.model.person.Social;
-import seedu.address.model.server.Server;
-import seedu.address.model.tag.Tag;
+import seedu.address.model.person.Tag;
 
 /**
  * Parses input arguments and creates a new EditCommand object
