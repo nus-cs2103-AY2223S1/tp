@@ -2,11 +2,13 @@ package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.FLAG_UNKNOWN_COMMAND;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.commons.core.Messages.MESSAGE_MISSING_ARGUMENTS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.ClientCliSyntax.PREFIX_CLIENT_EMAIL;
 import static seedu.address.logic.parser.ClientCliSyntax.PREFIX_CLIENT_NAME;
 import static seedu.address.logic.parser.ClientCliSyntax.PREFIX_CLIENT_PHONE;
 import static seedu.address.logic.parser.ClientCliSyntax.PREFIX_PROJECT_ID;
+import static seedu.address.logic.parser.ProjectCliSyntax.PREFIX_CLIENT_ID;
 
 import java.util.ArrayList;
 import java.util.stream.Stream;
@@ -26,6 +28,7 @@ import seedu.address.logic.commands.client.find.FindClientCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Name;
 import seedu.address.model.client.ClientEmail;
+import seedu.address.model.client.ClientId;
 import seedu.address.model.client.ClientPhone;
 import seedu.address.model.client.ClientWithoutModel;
 import seedu.address.model.client.predicates.EmailContainsKeywordsPredicate;
@@ -74,14 +77,6 @@ public class ClientCommandParser implements Parser<ClientCommand> {
      */
     private static boolean arePrefixesPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
         return Stream.of(prefixes).allMatch(prefix -> argumentMultimap.getValue(prefix).isPresent());
-    }
-
-    /**
-     * Returns true if any of the prefixes contains empty {@code Optional} values in the given
-     * {@code ArgumentMultimap}.
-     */
-    private static boolean anyPrefixesPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
-        return Stream.of(prefixes).anyMatch(prefix -> argumentMultimap.getValue(prefix).isPresent());
     }
 
     /**
@@ -136,15 +131,45 @@ public class ClientCommandParser implements Parser<ClientCommand> {
      * Parse a string of arguments for an edit client command
      * From original AB3 code
      *
-     * @param args a string of arguments
+     * @param arguments a string of arguments
      * @return an EditClientCommand object
      * @throws ParseException
      */
-    private EditClientCommand parseEditClientCommand(String args) throws ParseException {
-        return null;
+    private EditClientCommand parseEditClientCommand(String arguments) throws ParseException {
+        ArgumentMultimap argMultimap =
+                ArgumentTokenizer.tokenize(arguments, PREFIX_CLIENT_ID, PREFIX_NAME,
+                        PREFIX_CLIENT_EMAIL, PREFIX_CLIENT_PHONE);
+
+        if (!arePrefixesPresent(argMultimap, PREFIX_CLIENT_ID) || !argMultimap.getPreamble().isEmpty()) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                    EditClientCommand.MESSAGE_USAGE));
+        }
+        Name newName = null;
+        ClientEmail newEmail = null;
+        ClientPhone newPhone = null;
+        ClientId newClientId = ParserUtil.parseClientId(argMultimap.getValue(PREFIX_CLIENT_ID).get());
+
+        if (!anyPrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_CLIENT_EMAIL, PREFIX_CLIENT_PHONE)) {
+            throw new ParseException(String.format(MESSAGE_MISSING_ARGUMENTS,
+                    EditClientCommand.MESSAGE_USAGE));
+        }
+
+        if (anyPrefixesPresent(argMultimap, PREFIX_NAME)) {
+            newName = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());
+        }
+
+        if (anyPrefixesPresent(argMultimap, PREFIX_CLIENT_PHONE)) {
+            newPhone = ParserUtil.parsePhone(argMultimap.getValue(PREFIX_CLIENT_PHONE).get());
+        }
+
+        if (anyPrefixesPresent(argMultimap, PREFIX_CLIENT_EMAIL)) {
+            newEmail = ParserUtil.parseEmail(argMultimap.getValue(PREFIX_CLIENT_EMAIL).get());
+        }
+
+        return new EditClientCommand(newClientId, newName, newEmail, newPhone);
     }
 
-    // TODO: revise syntax
+
 
     /**
      * Parses the given {@code String} of arguments in the context of the DeleteCommand
@@ -234,5 +259,13 @@ public class ClientCommandParser implements Parser<ClientCommand> {
         }
 
         return new SortClientCommand(sortPrefix, key);
+    }
+
+    /**
+     * Returns true if any of the prefixes contains empty {@code Optional} values in the given
+     * {@code ArgumentMultimap}.
+     */
+    private static boolean anyPrefixesPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
+        return Stream.of(prefixes).anyMatch(prefix -> argumentMultimap.getValue(prefix).isPresent());
     }
 }
