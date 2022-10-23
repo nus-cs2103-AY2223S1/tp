@@ -181,6 +181,7 @@ public class ParserUtil {
         if (!Medication.isValidMedication(trimmedMedicationType, trimmedMedicationDosage)) {
             throw new ParseException(Medication.MESSAGE_CONSTRAINTS);
         }
+
         return new Medication(trimmedMedicationType, trimmedMedicationDosage);
     }
 
