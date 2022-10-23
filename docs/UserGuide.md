@@ -63,12 +63,20 @@ TaskBook is a **desktop app for managing contacts and tasks, optimized for use v
 * If a parameter is expected only once in the command but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>
   e.g. if you specify `p/12341234 p/56785678`, only `p/56785678` will be taken.
 
-* Extraneous parameters for commands that do not take in parameters (such as `help`, `task list`, `contact list` and `exit`) will be ignored.<br>
-  e.g. if the command specifies `help 123`, it will be interpreted as `help`.
+* Extraneous parameters for commands that do not take in parameters (such as `task list`, `contact list` and `exit`) will be ignored.<br>
+  e.g. if the command specifies `exit 123`, it will be interpreted as `exit`.
 
 </div>
 
-### Viewing help : `help` [coming soon]
+### Viewing help : `help`
+
+Shows either the list of commands available or information about a particular command.
+
+Format: `help [c/COMMAND]`
+
+Examples:
+* `help` shows the list of commands available.
+* `help c/contact delete` shows the information about the `command delete` command.
 
 ### Listing all Contacts : `contact list`
 
@@ -348,6 +356,7 @@ The following date formats are accepted:
 
 | Action                        | Format, Examples                                                                                                                                                   |
 |-------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Help**                      | `help [c/COMMAND]`                                                                                                                                                 |
 | **View All Tasks**            | `task list`                                                                                                                                                        |
 | **View Contacts**             | `contact list`                                                                                                                                                     |
 | **Add Contact**               | `contact add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…` <br> e.g., `contact add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01` |
