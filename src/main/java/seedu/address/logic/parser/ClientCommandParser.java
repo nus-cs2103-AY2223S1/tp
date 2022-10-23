@@ -108,8 +108,6 @@ public class ClientCommandParser implements Parser<ClientCommand> {
         return new AddClientCommand(clientWithoutModel, projectId);
     }
 
-    // TODO: revise syntax
-
     /**
      * Parse a string of arguments for an edit client command
      * From original AB3 code
@@ -218,7 +216,7 @@ public class ClientCommandParser implements Parser<ClientCommand> {
     public FindClientCommand parseFindClientCommands(String flag, String arguments) throws ParseException {
         return parseFindClientCommand(arguments);
     }
-    
+
     /**
      * Returns true if none of the prefixes contains empty {@code Optional} values in the given
      * {@code ArgumentMultimap}.
