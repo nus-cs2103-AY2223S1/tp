@@ -32,12 +32,16 @@ public class Task {
         return taskDesc;
     }
 
+    public boolean hasDeadline() {
+        return taskDeadline != null;
+    }
+
     public LocalDate getDeadline() {
-        return taskDeadline == null ? null : taskDeadline.deadline;
+        return hasDeadline() ? taskDeadline.deadline : null;
     }
 
     public String getDeadlineString() {
-        return taskDeadline == null ? "" : taskDeadline.toString();
+        return hasDeadline() ? taskDeadline.toString() : "";
     }
 
     public boolean isDone() {
@@ -79,11 +83,10 @@ public class Task {
             return false;
         }
 
-
         Task otherTask = (Task) other;
 
         boolean taskDeadlineEquality;
-        if (taskDeadline == null) {
+        if (!hasDeadline()) {
             taskDeadlineEquality = otherTask.taskDeadline == null;
         } else {
             taskDeadlineEquality = taskDeadline.equals(otherTask.taskDeadline);
@@ -102,13 +105,8 @@ public class Task {
     @Override
     public String toString() {
         final StringBuilder builder = new StringBuilder();
-        if (isDone) {
-            builder.append("[X] ");
-        } else {
-            builder.append("[ ] ");
-        }
         builder.append(getDesc());
-        if (taskDeadline != null) {
+        if (hasDeadline()) {
             builder.append("\nDeadline: ").append(taskDeadline);
         }
         return builder.toString();

@@ -29,7 +29,14 @@ public class Consult extends Lesson {
         }
 
         Consult otherConsult = (Consult) other;
-        return otherConsult.getDesc().equals(getDesc())
+
+        boolean consultDescEquality;
+        if (hasDesc()) {
+            consultDescEquality = getDesc().equals(otherConsult.getDesc());
+        } else {
+            consultDescEquality = otherConsult.getDesc() == null;
+        }
+        return consultDescEquality
                 && otherConsult.startTime().equals(startTime())
                 && otherConsult.endTime().equals(endTime())
                 && otherConsult.getAttendance().equals(getAttendance());
@@ -43,5 +50,10 @@ public class Consult extends Lesson {
     @Override
     public String toString() {
         return "Consult at " + getTimePeriod();
+    }
+
+    @Override
+    public LessonType getLessonType() {
+        return LessonType.CONSULT;
     }
 }

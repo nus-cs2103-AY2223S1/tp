@@ -6,6 +6,8 @@ import jarvis.commons.core.GuiSettings;
 import jarvis.logic.commands.CommandResult;
 import jarvis.logic.commands.exceptions.CommandException;
 import jarvis.logic.parser.exceptions.ParseException;
+import jarvis.model.Lesson;
+import jarvis.model.ReadOnlyLessonBook;
 import jarvis.model.ReadOnlyStudentBook;
 import jarvis.model.ReadOnlyTaskBook;
 import jarvis.model.Student;
@@ -54,6 +56,21 @@ public interface Logic {
      * Returns the user prefs' task book file path.
      */
     Path getTaskBookFilePath();
+
+    /**
+     * Returns the LessonBook.
+     *
+     * @see jarvis.model.Model#getLessonBook()
+     */
+    ReadOnlyLessonBook getLessonBook();
+
+    /** Returns an unmodifiable view of the filtered list of lessons */
+    ObservableList<Lesson> getFilteredLessonList();
+
+    /**
+     * Returns the user prefs' lesson book file path.
+     */
+    Path getLessonBookFilePath();
 
     /**
      * Returns the user prefs' GUI settings.

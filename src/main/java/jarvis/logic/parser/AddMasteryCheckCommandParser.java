@@ -7,6 +7,7 @@ import static jarvis.logic.parser.CliSyntax.PREFIX_START_DATE_TIME;
 import static jarvis.logic.parser.CliSyntax.PREFIX_STUDENT_INDEX;
 
 import java.time.LocalDateTime;
+import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Stream;
 
@@ -30,13 +31,14 @@ public class AddMasteryCheckCommandParser implements Parser<AddMasteryCheckComma
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_LESSON, PREFIX_START_DATE_TIME,
                 PREFIX_END_DATE_TIME, PREFIX_STUDENT_INDEX);
 
-        if (!arePrefixesPresent(argMultimap, PREFIX_LESSON, PREFIX_START_DATE_TIME, PREFIX_END_DATE_TIME,
+        if (!arePrefixesPresent(argMultimap, PREFIX_START_DATE_TIME, PREFIX_END_DATE_TIME,
                 PREFIX_STUDENT_INDEX) || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                     AddMasteryCheckCommand.MESSAGE_USAGE));
         }
 
-        LessonDesc masteryCheckDesc = ParserUtil.parseLessonDesc(argMultimap.getValue(PREFIX_LESSON).get());
+        Optional<String> desc = argMultimap.getValue(PREFIX_LESSON);
+        LessonDesc masteryCheckDesc = desc.isPresent() ? ParserUtil.parseLessonDesc(desc.get()) : null;
         LocalDateTime startDateTime = ParserUtil.parseDateTime(argMultimap.getValue(PREFIX_START_DATE_TIME).get());
         LocalDateTime endDateTime = ParserUtil.parseDateTime(argMultimap.getValue(PREFIX_END_DATE_TIME).get());
 

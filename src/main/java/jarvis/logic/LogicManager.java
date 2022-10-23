@@ -11,7 +11,9 @@ import jarvis.logic.commands.CommandResult;
 import jarvis.logic.commands.exceptions.CommandException;
 import jarvis.logic.parser.JarvisParser;
 import jarvis.logic.parser.exceptions.ParseException;
+import jarvis.model.Lesson;
 import jarvis.model.Model;
+import jarvis.model.ReadOnlyLessonBook;
 import jarvis.model.ReadOnlyStudentBook;
 import jarvis.model.ReadOnlyTaskBook;
 import jarvis.model.Student;
@@ -86,6 +88,22 @@ public class LogicManager implements Logic {
     public Path getTaskBookFilePath() {
         return model.getTaskBookFilePath();
     }
+
+    @Override
+    public ReadOnlyLessonBook getLessonBook() {
+        return model.getLessonBook();
+    }
+
+    @Override
+    public ObservableList<Lesson> getFilteredLessonList() {
+        return model.getFilteredLessonList();
+    }
+
+    @Override
+    public Path getLessonBookFilePath() {
+        return model.getLessonBookFilePath();
+    }
+
 
     @Override
     public GuiSettings getGuiSettings() {
