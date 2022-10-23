@@ -20,6 +20,13 @@ public class TitleTest {
     }
 
     @Test
+    public void isWithinLengthLimit() {
+        assertTrue(Title.isWithinLengthLimit("A".repeat(Title.LENGTH_LIMIT - 1)));
+        assertTrue(Title.isWithinLengthLimit("A".repeat(Title.LENGTH_LIMIT)));
+        assertFalse(Title.isWithinLengthLimit("A".repeat(Title.LENGTH_LIMIT + 1)));
+    }
+
+    @Test
     public void isValidTitle() {
         // null title
         assertThrows(NullPointerException.class, () -> Title.isValidTitle(null));

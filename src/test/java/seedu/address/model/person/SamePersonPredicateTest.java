@@ -52,6 +52,7 @@ public class SamePersonPredicateTest {
     public void test_isSamePerson_returnsTrue() {
         SamePersonPredicate firstPredicate = new SamePersonPredicate(AMY);
         SamePersonPredicate secondPredicate = new SamePersonPredicate(ALICE);
+        SamePersonPredicate thirdPredicate = new SamePersonPredicate(BOB);
 
         // same Person object
         assertTrue(firstPredicate.test(AMY));
@@ -68,6 +69,14 @@ public class SamePersonPredicateTest {
                 .withTitle(VALID_JOB_TITLE_BOB)
                 .withTags(VALID_TAG_KIV).build();
         assertTrue(secondPredicate.test(editedAlice));
+
+        // name differs in case, all other attributes same
+        Person editedBob = new PersonBuilder(BOB).withName(VALID_NAME_BOB.toLowerCase()).build();
+        assertTrue(thirdPredicate.test(editedBob));
+
+        // email differs in case, all other attributes same
+        editedBob = new PersonBuilder(BOB).withEmail(VALID_EMAIL_BOB.toUpperCase()).build();
+        assertTrue(thirdPredicate.test(editedBob));
     }
 
     @Test
@@ -83,21 +92,13 @@ public class SamePersonPredicateTest {
         Person editedAlice = new PersonBuilder(ALICE).withName(VALID_NAME_BOB).build();
         assertFalse(secondPredicate.test(editedAlice));
 
-        // name differs in case, all other attributes same
-        Person editedBob = new PersonBuilder(BOB).withName(VALID_NAME_BOB.toLowerCase()).build();
-        assertFalse(thirdPredicate.test(editedBob));
-
         // name with trailing spaces, all other attributes same
         String nameWithTrailingSpaces = VALID_NAME_BOB + " ";
-        editedBob = new PersonBuilder(BOB).withName(nameWithTrailingSpaces).build();
+        Person editedBob = new PersonBuilder(BOB).withName(nameWithTrailingSpaces).build();
         assertFalse(thirdPredicate.test(editedBob));
 
         // different email, all other attributes same
         editedAlice = new PersonBuilder(ALICE).withEmail(VALID_EMAIL_BOB).build();
         assertFalse(secondPredicate.test(editedAlice));
-
-        // email differs in case, all other attributes same
-        editedBob = new PersonBuilder(BOB).withEmail(VALID_EMAIL_BOB.toUpperCase()).build();
-        assertFalse(thirdPredicate.test(editedBob));
     }
 }

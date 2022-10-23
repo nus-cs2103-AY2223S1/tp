@@ -52,26 +52,13 @@ public class PersonTest {
                 .withTags(VALID_TAG_KIV).build();
         assertTrue(ALICE.isSamePerson(editedAlice));
 
-        // different name, all other attributes same -> returns false
-        editedAlice = new PersonBuilder(ALICE).withName(VALID_NAME_BOB).build();
-        assertFalse(ALICE.isSamePerson(editedAlice));
-
-        // name differs in case, all other attributes same -> returns false
-        Person editedBob = new PersonBuilder(BOB).withName(VALID_NAME_BOB.toLowerCase()).build();
-        assertFalse(BOB.isSamePerson(editedBob));
-
-        // name has trailing spaces, all other attributes same -> returns false
-        String nameWithTrailingSpaces = VALID_NAME_BOB + " ";
-        editedBob = new PersonBuilder(BOB).withName(nameWithTrailingSpaces).build();
-        assertFalse(BOB.isSamePerson(editedBob));
-
         // different email, all other attributes same -> returns false
         editedAlice = new PersonBuilder(ALICE).withEmail(VALID_EMAIL_BOB).build();
         assertFalse(ALICE.isSamePerson(editedAlice));
 
-        // email differs in case, all other attributes same -> returns false
-        editedBob = new PersonBuilder(BOB).withEmail(VALID_EMAIL_BOB.toUpperCase()).build();
-        assertFalse(BOB.isSamePerson(editedBob));
+        // different job ID, all other attributes same -> returns false
+        editedAlice = new PersonBuilder(ALICE).withId(VALID_JOB_ID_BOB).build();
+        assertFalse(ALICE.isSamePerson(editedAlice));
     }
 
     @Test

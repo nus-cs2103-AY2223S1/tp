@@ -9,6 +9,12 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  */
 public class Address {
 
+    public static final int LENGTH_LIMIT = 100;
+
+    public static final String MESSAGE_LENGTH_LIMIT_EXCEEDED = "After trimming leading and trailing whitespaces, and "
+            + "replacing multiple spaces with a single space, "
+            + "Addresses can only be of length max " + LENGTH_LIMIT;
+
     public static final String MESSAGE_CONSTRAINTS = "Addresses can take any values, and it should not be blank";
 
     /*
@@ -28,6 +34,13 @@ public class Address {
         requireNonNull(address);
         checkArgument(isValidAddress(address), MESSAGE_CONSTRAINTS);
         value = address;
+    }
+
+    /**
+     * Returns true if the length of a given string is within the length limit
+     */
+    public static boolean isWithinLengthLimit(String test) {
+        return test.length() <= LENGTH_LIMIT;
     }
 
     /**

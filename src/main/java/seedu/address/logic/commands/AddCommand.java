@@ -34,6 +34,7 @@ public class AddCommand extends Command {
             + PREFIX_CAP + "CAP "
             + PREFIX_GENDER + "GENDER "
             + PREFIX_UNIVERSITY + "UNIVERSITY "
+            + PREFIX_GRADUATION_DATE + "GRADUATION_DATE "
             + PREFIX_MAJOR + "MAJOR "
             + PREFIX_JOB_ID + "ID "
             + PREFIX_JOB_TITLE + "TITLE "

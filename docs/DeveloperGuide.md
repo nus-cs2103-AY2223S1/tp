@@ -116,7 +116,7 @@ How the parsing works:
 ### Model component
 **API** : [`Model.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/model/Model.java)
 
-<img src="images/ModelClassDiagram.png" width="450" />
+<img src="images/ModelClassDiagram.png" />
 
 
 The `Model` component,
@@ -128,7 +128,7 @@ The `Model` component,
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `AddressBook`, which `Person` references. This allows `AddressBook` to only require one `Tag` object per unique tag, instead of each `Person` needing their own `Tag` objects.<br>
 
-<img src="images/BetterModelClassDiagram.png" width="450" />
+<img src="images/BetterModelClassDiagram.png" />
 
 </div>
 
@@ -238,6 +238,182 @@ _{more aspects and alternatives to be added}_
 
 _{Explain here how the data archiving feature will be implemented}_
 
+### \[Proposed\] Branch feature
+
+#### Proposed Implementation
+
+The proposed branching mechanism is facilitated by `BranchStorage`. It extends `Storage` with a branch history,
+stored internally as an `branchList` and `currentBranchPointer`. Additionally, it implements the following operations:
+
+* `BranchStorage#create()` — Creates a new branch in its branch list.
+* `BranchStorage#checkout()` — Sets a branch as the current branch.
+* `BranchStorage#reset()` — Sets the default branch as the current branch.
+
+These operations are exposed in the `Model` interface as `Model#createBranch()`, `Model#checkoutBranch()` and
+`Model#resetBranch()` respectively.
+
+Given below is an example usage scenario and how the branching mechanism behaves at each step.
+
+Step 1. The user launches the application for the first time. The `BranchStorage` will be initialized with the
+default branch, and the `currentBranchPointer` pointing to that single branch.
+
+![BranchState0](images/BranchState0.png)
+
+Step 2. The user executes `checkout june-2022` command to load the JSON `june-2022.json` to the storage.
+The `checkout` command calls `Model#checkoutBranch()`, which checks if the branch exists, which in turn calls
+`Model#createBranch()` if it does not exist. The non-existent branch `june-2022` will then be created.
+The call then returns to `Model#checkoutBranch()` and the `currentBranchPointer` is shifted to the newly created branch.
+
+![BranchState1](images/BranchState1.png)
+
+Step 3. The user executes `checkout master` command to load the default JSON `addressbook.json` to the storage.
+The `checkout` command calls `Model#checkoutBranch()` and the `currentBranchPointer` is shifted to the default branch.
+
+![BranchState2](images/BranchState2.png)
+
+The following sequence diagram shows how the branch operation works:
+
+![BranchSequenceDiagram](images/deeyonn.png)
+
+The following activity diagram summarizes what happens when a user executes a checkout command:
+
+![BranchActivityDiagram](images/deeyonn.png)
+
+#### Design considerations
+
+**Aspect: How checkout executes:**
+
+* **Alternative 1 (preferred choice):** Tell the Storage instance to load the specified json branch.
+    * Pros: Will use less memory (e.g. for each branch, just reuse the current instance of Storage to load the json).
+    * Cons: We must ensure that the application reloads properly after we set the designated json to be loaded.
+
+* **Alternative 2 (current choice):** Create a new Storage instance that loads the specified json branch
+  and set it to be used by the application.
+    * Pros: Faster to switch between branches since they are already loaded into memory.
+    * Cons: May have performance issues in terms of memory usage because a new instance of Storage is created for every
+      new branch.
+
+_{more aspects and alternatives to be added}_
+
+### View Feature
+
+#### Implementation
+
+To facilitate users to view the details of an applicant, a new class `ViewCommand` is added that extends `Command`.
+
+It implements the following operations:
+
+- `ViewCommand#execute()` — Executes the command to view a particular person in the address book based on the `index` that was parsed from the user input using the `parse` method of `ViewCommandParser`.
+- `ViewCommand#equals()` — Checks whether an instance of a `ViewCommand` is equal to another, by checking:
+    - Whether they are the same instance
+    - Whether the viewed person is the same in two different instances
+
+#### Design considerations
+
+**Aspect: How the UI window is split to show a panel of list of all persons and another panel to view details of a person:**
+
+- **Alternative 1 (current choice):** Window is splitted into half below the ResultDisplay box.
+    - Pros: Symmetrical and looks more regular.
+    - Cons: Pane to view details of a person is smaller.
+- **Alternative 2:** Window is splitted from the top, so both CommandTextField and ResultDisplay boxes are halved.
+    - Pros: Can have a larger pane to view details of a person.
+    - Cons: Need to scroll more to see typed command and result displayed.
+
+### export Feature
+
+The `export` feature allows the user to export the displayed list in InternConnect to a JSON file.
+
+#### Implementation
+
+`exportCommand` class is used in the execution of `export` command. 
+`Storage#saveDisplayedList()` is called to save the JSON file in `data/export/` folder.
+
+Given below is an example success scenario and how the `export` mechanism behaves at each step.
+
+1. The user executes `export`.
+1. `LogicManager` calls `AddressBookParser#parseCommand()`.
+1. `AddressBookParser#parseCommand()` calls `ExportCommand#execute()`.
+1. `ExportCommand` gets current DateTime and use it for the output JSON file path.
+1. `ExportCommand` retrieves the `displayedList` from `model` by calling `Model#getFilteredPersonList()`.
+1. `ExportCommand` calls `Storage#saveDisplayedList()`
+1. The displayedList is stored as a JSON file in `data/export/<currentDateTime>.json`.
+
+The following sequence diagram shows how the `export` command works:
+
+![ExportSequenceDiagram](images/ExportSequenceDiagram.png)
+   
+#### Design Considerations
+
+**Aspect: Where to save the exported JSON file**
+* **Alternative 1 (current implementation)**: We save the files in the `data/export/` folder and 
+  use `<currentDateTime>.json` as the file name.
+    * Pros:
+        * Location for all exported JSON files is in a single folder.
+        * Naming format for all exported JSON files is fixed.
+    * Cons:
+        * Users will not be able to save the files where they like.
+        * Users will be able to name the JSON file as they wish.
+* **Alternative 2**: User specifies where to save the JSON file and what to name the file.
+    * Pros:
+        * Users will be able to save the JSON file where they like.
+        * Users will be able to name the JSON file as they wish.
+    * Cons:
+        * Harder to implement since there will be a lot of cases to cover, e.g. if the specified path is not 
+          in JSON format or not a valid file path or file already exists etc.
+        * Quite messy since the users can specify a completely different file path/directory everytime they 
+          execute `export` command.
+* **Alternative 3**: We save the files in the `data/export/` folder and user specifies only the file name.
+    * Pros:
+        * Location for all exported JSON files is in a single folder.
+        * Users will be able to name the JSON file as they wish.
+    * Cons:
+        * Harder to implement since there will be a lot of cases to cover, e.g. if the specified file name is not
+          in JSON format or file already exists etc.
+        * Users will not be able to save the files where they like.
+
+
+### Find Feature Improvements
+
+The `find` feature currently allows the user to search by name among all Persons in store by InternConnect. We want to improve onto this feature to allow Users to search by any possible field of choice, allow multiple field searches, as well as allow substring searches
+
+#### Implementation
+
+`findCommand` class is used in the execution of `find` command. The command is then parsed accordingly, with a `NameContainsKeywordsPredicate` as an argument to the command. We now want to extend this with 2 changes:
+
+1. Add a predicate for each appropriate attribute
+2. Modify the Parser to appropriately choose the predicates based on a set syntax for its arguments
+3. Allow user to choose if they want to do a _substring_ search, or _search all_
+
+Given below is an example success scenario and how the `find` mechanism behaves at each step.
+
+1. The user executes `find`.
+1. `LogicManager` calls `AddressBookParser#parseCommand()`.
+1. `AddressBookParser#parseCommand()` calls `FindCommand#execute()`.
+1. `FindCommand` iterates through list, checking for entries where the filtered predicate is true.
+1. `FindCommand` updates the `displayedList` from `model` by calling `Model#updateFilteredPersonList()`.
+
+The following sequence diagram shows how the `find` command works:
+
+![ExportSequenceDiagram](images/lulucopter.png)
+
+#### Design Considerations
+
+**Aspect: Usage of flags**
+* **Alternative 1 (current implementation)**: we create a new command for each type of search
+    * Pros:
+        * All commands current follow this design, allows for consistency in code structure, and follows current OOP design conventions.
+        * Naming format for all commands are fixed.
+    * Cons:
+        * Users will expect the `find` command to be under the same category/usage scenario as a `findAll` command and a `findSubstring` command
+* **Alternative 2**: flag is used within the find command to allow usage to select the type of search they want to perform
+    * Pros:
+        * Users who are already familiar with the `find` command can extend further its power and functionality with flags without "relearning" a new syntax for a different command.
+        * Users will find it intuitive that a `find` command is the main overlying command, and within its syntax they can change the way its used, similar to how current CLI commands are implemented
+        * Future commands which want to use flags can build onto the newly restructured code
+    * Cons:
+        * Harder to implement since a flag is a brand-new functionality which other commands do not have. Coupled classes have to be modified accordingly, such as the relevant parser classes and argumentTokenizer/Multimap
+        * Flags introduce the possibility for more input types to consider, and these affects the inputs that users can use in all commands
+        * Requires restructuring old code, which will increase testing time and possibility of introducing bugs into existing code
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -276,44 +452,44 @@ focus on what matters more: matching the right people for the right job.
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
 | Priority | As a …​                           | I want to …​                                                                             | So that I can…​                                                                                                                  |
-|----------|-----------------------------------|------------------------------------------------------------------------------------------|----------------------------------------------------------------------------------------------------------------------------------|
-| `* * *`  | potential user exploring the app  | see the sample data                                                                      | easily play around and understand how the app works                                                                              |
-| `* * *`  | new user                          | see the list of available things I can do with the app                                   | learn how to use the app fully                                                                                                   |
-| `* * *`  | new user                          | read the user guide                                                                      | I understand all the commands and features available in the app before using it                                                  |
-| `* * *`  | user                              | delete fields and data                                                                   |                                                                                                                                  | 
-| `* * *`  | user                              | add applicants                                                                           |                                                                                                                                  |
-| `* * *`  | user                              | mass add applicants' data                                                                | conveniently import my data quickly and without hassle                                                                           |
-| `* * *`  | user                              | view all details of my selected Applicant                                                | avoid opening and working with multiple files                                                                                    |
-| `* * *`  | user                              | see the summary statistics of my data                                                    | have a higher-level view of the data                                                                                             |
-| `* * *`  | user ready to start using the app | clear all current data                                                                   | get rid of sample/experimental data I used for exploring the app                                                                 |
-| `* * *`  | user                              | close the app by inputing "exit" command                                                 |                                                                                                                                  |
-| `* * *`  | user                              | add an additional value to the field I am inserting                                      | if my value is currently not in the list (e.g. list of Universities, list of Majors) so that I can enter my data more accurately |
-| `* * *`  | user                              | delete the existing values in a field                                                    | so that I easily modify and customise my value for a field (e.g. Major, University)                                              |
-| `* *`    | user                              | add an open Role                                                                         | keep track of who applied to the role                                                                                            |
-| `* * *`  | user                              | search for applicants by name                                                            | quickly find what I need                                                                                                         |
-| `* *`    | user                              | filter applicants based on certain fields/criteria/categories                            | obtain filtered data based on the criteria that I want                                                                           |
-| `* *`    | user                              | archive old data                                                                         | see the last few months/years data only                                                                                          |
-| `* * `   | user                              | auto-archive applicants data and store the updated one when they applied to another role | see only the updated data of the applicant and all the roles the applied to                                                      |
-| `* * `   | user                              | see the archived data                                                                    | see how the applicants progress over the time                                                                                    |
-| `* *`    | user                              | see the summary statistics of a particular applicant's details                           | see how they progress over the time                                                                                              |
-| `*`      | user                              | give KIV tag to applicants                                                               |                                                                                                                                  |
-| `*`      | user                              | customize my UI/UX settings e.g., Colour settings, font size                             | cater the application to my needs                                                                                                |
-| `*`      | user                              | add references to external documents to my records                                       | keep things related to each other easily accessible                                                                              |
-| `* *`    | user                              | have different key views which contain important related data                            | package and declutter unneeded data and focus on what's at hand                                                                  |
-| `* * *`  | user                              | modify current fields                                                                    | keep my data up to date                                                                                                          |
-| `*`      | user                              | make and customize my own views                                                          | get to decide what groups of data matter to my, and empower myself on what I care about                                          |
-| `* * *`  | user                               | edit my data manually just by inputting a command to the query                          | so that I can modify it in a shorter time in case of a typo.                                                                     |
-| `* *  `  | user                               | edit key information that I care about conveniently from my high-level view             | so that I can keep my focus to do what matters                                                                                   |
-| `* * *`  | user                               | update my data for existing applicants                                                  | so that I can view their latest details in case of reapplication                                                                 |
-| `*    `  | user                               | delete applicants that I note as unqualified                                            | so that I do not waste too much space                                                                                            |
-| `* *  `  | user                               | create new applicant attributes                                                         | so that I can easily describe applicants based on my preference                                                                  |
-| `*    `  | user                               | view a data visualization/dashboard                                                     | so that I can easily and visually get the key information I need and care about                                                  |
-| `* *  `  | user                               | customize my UI/UX settings e.g., Color settings, font size                             | so that the application can cater to my needs                                                                                    |
-| `*    `  | user                               | make my own pseudo commands/macros                                                      | so that I can improve my efficiency with the app                                                                                 |
-| `* * *`  | user                               | import data from others                                                                 | so that I can receive resources from other users                                                                                 |
-| `* * *`  | user                               | export my data                                                                          | so that I can share resources with others                                                                                        |
-| `* *  `  | user                               | add a custom field to my data                                                           | so that I can have more flexible records                                                                                         |
-| `*    `  | user                               | add profile pictures to my records                                                      | so that I can see who I’m looking at                                                                                             |
+|---------|-----------------------------------|------------------------------------------------------------------------------------------|----------------------------------------------------------------------------------------------------------------------------------|
+| `* * *` | potential user exploring the app  | see the sample data                                                                      | easily play around and understand how the app works                                                                              |
+| `* * *` | new user                          | see the list of available things I can do with the app                                   | learn how to use the app fully                                                                                                   |
+| `* * *` | new user                          | read the user guide                                                                      | I understand all the commands and features available in the app before using it                                                  |
+| `* * *` | user                              | delete fields and data                                                                   |                                                                                                                                  | 
+| `* * *` | user                              | add applicants                                                                           |                                                                                                                                  |
+| `* * *` | user                              | mass add applicants' data                                                                | conveniently import my data quickly and without hassle                                                                           |
+| `* * *` | user                              | view all details of my selected Applicant                                                | avoid opening and working with multiple files                                                                                    |
+| `* * *` | user                              | see the summary statistics of my data                                                    | have a higher-level view of the data                                                                                             |
+| `* * *` | user ready to start using the app | clear all current data                                                                   | get rid of sample/experimental data I used for exploring the app                                                                 |
+| `* * *` | user                              | close the app by inputing "exit" command                                                 |                                                                                                                                  |
+| `* * *` | user                              | add an additional value to the field I am inserting                                      | if my value is currently not in the list (e.g. list of Universities, list of Majors) so that I can enter my data more accurately |
+| `* * *` | user                              | delete the existing values in a field                                                    | so that I easily modify and customise my value for a field (e.g. Major, University)                                              |
+| `* *`   | user                              | add an open Role                                                                         | keep track of who applied to the role                                                                                            |
+| `* * *` | user                              | search for applicants by name                                                            | quickly find what I need                                                                                                         |
+| `* *`   | user                              | filter applicants based on certain fields/criteria/categories                            | obtain filtered data based on the criteria that I want                                                                           |
+| `* *`   | user                              | archive old data                                                                         | see the last few months/years data only                                                                                          |
+| `* * `  | user                              | auto-archive applicants data and store the updated one when they applied to another role | see only the updated data of the applicant and all the roles the applied to                                                      |
+| `* * `  | user                              | see the archived data                                                                    | see how the applicants progress over the time                                                                                    |
+| `* *`   | user                              | see the summary statistics of a particular applicant's details                           | see how they progress over the time                                                                                              |
+| `*`     | user                              | give KIV tag to applicants                                                               |                                                                                                                                  |
+| `*`     | user                              | customize my UI/UX settings e.g., Colour settings, font size                             | cater the application to my needs                                                                                                |
+| `*`     | user                              | add references to external documents to my records                                       | keep things related to each other easily accessible                                                                              |
+| `* *`   | user                              | have different key views which contain important related data                            | package and declutter unneeded data and focus on what's at hand                                                                  |
+| `* * *` | user                              | modify current fields                                                                    | keep my data up to date                                                                                                          |
+| `*`     | user                              | make and customize my own views                                                          | get to decide what groups of data matter to my, and empower myself on what I care about                                          |
+| `* * *` | user                               | edit my data manually just by inputting a command to the query                          | so that I can modify it in a shorter time in case of a typo.                                                                     |
+| `* *  ` | user                               | edit key information that I care about conveniently from my high-level view             | so that I can keep my focus to do what matters                                                                                   |
+| `* * *` | user                               | update my data for existing applicants                                                  | so that I can view their latest details in case of reapplication                                                                 |
+| `*    ` | user                               | delete applicants that I note as unqualified                                            | so that I do not waste too much space                                                                                            |
+| `* *  ` | user                               | create new applicant attributes                                                         | so that I can easily describe applicants based on my preference                                                                  |
+| `*    ` | user                               | view a data visualization/dashboard                                                     | so that I can easily and visually get the key information I need and care about                                                  |
+| `* *  ` | user                               | customize my UI/UX settings e.g., Color settings, font size                             | so that the application can cater to my needs                                                                                    |
+| `*    ` | user                               | make my own pseudo commands/macros                                                      | so that I can improve my efficiency with the app                                                                                 |
+| `* * *` | user                               | import data from others                                                                 | so that I can receive resources from other users                                                                                 |
+| `* * *` | user                               | export my data                                                                          | so that I can share resources with others                                                                                        |
+| `* *  ` | user                               | add a custom field to my data                                                           | so that I can have more flexible records                                                                                         |
+| `*    ` | user                               | add profile pictures to my records                                                      | so that I can see who I’m looking at                                                                                             |
 
 *{More to be added}*
 
@@ -403,6 +579,30 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * 1a. The given index number is invalid.
 
     * 1a1. InternConnect shows an error message.
+
+      Use case ends.
+
+**Use case: Import applicants from an external json file**
+
+**MSS**
+
+1.  User requests to import applicants from a json file
+2.  InternConnect adds all applicants
+3.  InternConnect shows the updated list of applicants
+
+    Use case ends.
+
+**Extensions**
+
+* 1a. The given file path is invalid or is not a json file.
+
+    * 1a1. InternConnect shows an error message.
+
+      Use case ends.
+
+* 1b. The given file has invalid value, incorrect format, and/or duplicate persons.
+
+    * 1b1. InternConnect shows an error message.
 
       Use case ends.
 
