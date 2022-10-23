@@ -21,6 +21,6 @@ public class ListContactCommand extends Command {
         requireNonNull(model);
         model.updateFilteredTaskList(PREDICATE_HIDE_ALL_TASKS);
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PEOPLE);
-        return new CommandResult(MESSAGE_SUCCESS, false, false, true, false);
+        return new CommandResult(MESSAGE_SUCCESS, false, false, true, false, false);
     }
 }

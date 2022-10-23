@@ -27,7 +27,7 @@ public class ListTaskCommand extends Command {
         model.updateFilteredTaskList(PREDICATE_SHOW_ALL_TASKS);
         return new CommandResult(
                 String.format(Messages.MESSAGE_TASKS_LISTED_OVERVIEW, model.getFilteredTaskList().size()),
-                false, false, false, true);
+                false, false, false, true, false);
     }
 
     @Override

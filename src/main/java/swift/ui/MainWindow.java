@@ -219,7 +219,7 @@ public class MainWindow extends UiPart<Stage> {
                 handleContactTab();
             }
 
-            if (commandResult.isListTask()) {
+            if (commandResult.isListTask() || commandResult.isAddTask()) {
                 handleTaskTab();
             }
 

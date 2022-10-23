@@ -17,21 +17,26 @@ public class CommandResult {
     /** The application should exit. */
     private final boolean exit;
 
-    /** The applciation should switch to contacts tab. */
-    private final boolean listContact;
+    /** The application should switch to contacts tab. */
+    private final boolean isListContact;
 
     /** The application should switch to tasks tab. */
-    private final boolean listTask;
+    private final boolean isListTask;
+
+    /** The application should display all tasks with associated contacts. */
+    private final boolean isAddTask;
 
     /**
      * Constructs a {@code CommandResult} with the specified fields.
      */
-    public CommandResult(String feedbackToUser, boolean showHelp, boolean exit, boolean listContact, boolean listTask) {
+    public CommandResult(String feedbackToUser, boolean showHelp, boolean exit, boolean isListContact,
+                         boolean isListTask, boolean isAddTask) {
         this.feedbackToUser = requireNonNull(feedbackToUser);
         this.showHelp = showHelp;
         this.exit = exit;
-        this.listContact = listContact;
-        this.listTask = listTask;
+        this.isListContact = isListContact;
+        this.isListTask = isListTask;
+        this.isAddTask = isAddTask;
     }
 
     /**
@@ -39,7 +44,7 @@ public class CommandResult {
      * and other fields set to their default value.
      */
     public CommandResult(String feedbackToUser) {
-        this(feedbackToUser, false, false, false, false);
+        this(feedbackToUser, false, false, false, false, false);
     }
 
     public String getFeedbackToUser() {
@@ -55,11 +60,15 @@ public class CommandResult {
     }
 
     public boolean isListContact() {
-        return listContact;
+        return isListContact;
     }
 
     public boolean isListTask() {
-        return listTask;
+        return isListTask;
+    }
+
+    public boolean isAddTask() {
+        return isAddTask;
     }
 
     @Override
@@ -77,8 +86,8 @@ public class CommandResult {
         return feedbackToUser.equals(otherCommandResult.feedbackToUser)
                 && showHelp == otherCommandResult.showHelp
                 && exit == otherCommandResult.exit
-                && listContact == otherCommandResult.listContact
-                && listTask == otherCommandResult.listTask;
+                && isListContact == otherCommandResult.isListContact
+                && isListTask == otherCommandResult.isListTask;
     }
 
     @Override

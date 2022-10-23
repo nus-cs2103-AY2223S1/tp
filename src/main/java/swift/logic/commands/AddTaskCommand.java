@@ -59,7 +59,7 @@ public class AddTaskCommand extends Command {
 
         model.hotUpdateAssociatedContacts();
 
-        return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
+        return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd), false, false, false, false, true);
     }
 
     @Override
