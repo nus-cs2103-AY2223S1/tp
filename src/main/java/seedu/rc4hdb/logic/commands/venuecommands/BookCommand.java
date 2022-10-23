@@ -23,6 +23,7 @@ import seedu.rc4hdb.model.venues.booking.RecurrentBooking;
 import seedu.rc4hdb.model.venues.booking.fields.Day;
 import seedu.rc4hdb.model.venues.booking.fields.HourPeriod;
 import seedu.rc4hdb.model.venues.exceptions.BookingClashesException;
+import seedu.rc4hdb.model.venues.exceptions.VenueNotFoundException;
 
 /**
  * Adds a booking to the Venue.
@@ -43,6 +44,7 @@ public class BookCommand implements ModelCommand {
 
     public static final String MESSAGE_SUCCESS = "New booking made: %1$s";
     public static final String MESSAGE_CLASHING_BOOKING = "This booking clashes with an existing booking.";
+    public static final String MESSAGE_VENUE_NOT_FOUND = "The following venue was not found: %s";
 
     private final BookingDescriptor bookingDescriptor;
     private Index residentIndex;
@@ -76,6 +78,9 @@ public class BookCommand implements ModelCommand {
             return new CommandResult(String.format(MESSAGE_SUCCESS, toMake));
         } catch (NoSuchElementException e) {
             throw new CommandException(MESSAGE_USAGE, e);
+        } catch (VenueNotFoundException e) {
+            Venue venue = bookingDescriptor.getVenue().get();
+            throw new CommandException(String.format(MESSAGE_VENUE_NOT_FOUND, venue));
         } catch (BookingClashesException e) {
             throw new CommandException(MESSAGE_CLASHING_BOOKING, e);
         }
