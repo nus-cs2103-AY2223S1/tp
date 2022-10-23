@@ -3,6 +3,7 @@ package seedu.uninurse.model;
 import java.util.List;
 
 import seedu.uninurse.logic.commands.CommandResult;
+import seedu.uninurse.logic.commands.CommandType;
 import seedu.uninurse.model.person.Patient;
 
 /**
@@ -17,7 +18,7 @@ public class UninurseBookSnapshot {
      */
     public UninurseBookSnapshot(ReadOnlyUninurseBook toBeCopied) {
         this.uninurseBook = new UninurseBook(toBeCopied);
-        this.commandResult = new CommandResult("");
+        this.commandResult = new CommandResult("", CommandType.EMPTY);
     }
 
     /**

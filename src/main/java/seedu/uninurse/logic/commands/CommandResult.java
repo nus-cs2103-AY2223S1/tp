@@ -11,27 +11,24 @@ public class CommandResult {
 
     private final String feedbackToUser;
 
-    /** Help information should be shown to the user. */
-    private final boolean showHelp;
 
-    /** The application should exit. */
-    private final boolean exit;
+    ///** Help information should be shown to the user. */
+    //private final boolean showHelp;
+
+    ///** The application should exit. */
+    //private final boolean exit;
+
+    private final CommandType commandType;
+
 
     /**
      * Constructs a {@code CommandResult} with the specified fields.
      */
-    public CommandResult(String feedbackToUser, boolean showHelp, boolean exit) {
-        this.feedbackToUser = requireNonNull(feedbackToUser);
-        this.showHelp = showHelp;
-        this.exit = exit;
-    }
-
-    /**
-     * Constructs a {@code CommandResult} with the specified {@code feedbackToUser},
-     * and other fields set to their default value.
-     */
-    public CommandResult(String feedbackToUser) {
-        this(feedbackToUser, false, false);
+    public CommandResult(String feedbackToUser, CommandType commandType) {
+        requireNonNull(feedbackToUser);
+        requireNonNull(commandType);
+        this.feedbackToUser = feedbackToUser;
+        this.commandType = commandType;
     }
 
     public String getFeedbackToUser() {
@@ -39,12 +36,33 @@ public class CommandResult {
     }
 
     public boolean isShowHelp() {
-        return showHelp;
+        return this.commandType == CommandType.HELP;
     }
 
     public boolean isExit() {
-        return exit;
+        return this.commandType == CommandType.EXIT;
     }
+
+    public boolean isTaskRelated() {
+        return this.commandType == CommandType.TASK;
+    }
+
+    public boolean isAddPatient() {
+        return this.commandType == CommandType.ADD_PATIENT;
+    }
+
+    public boolean isEditPatient() {
+        return this.commandType == CommandType.EDIT_PATIENT;
+    }
+
+    public boolean isDeletePatient() {
+        return this.commandType == CommandType.DELETE_PATIENT;
+    }
+
+    public boolean isSchedule() {
+        return this.commandType == CommandType.SCHEDULE;
+    }
+
 
     @Override
     public boolean equals(Object other) {
@@ -59,13 +77,13 @@ public class CommandResult {
 
         CommandResult otherCommandResult = (CommandResult) other;
         return feedbackToUser.equals(otherCommandResult.feedbackToUser)
-                && showHelp == otherCommandResult.showHelp
-                && exit == otherCommandResult.exit;
+                && this.commandType == otherCommandResult.commandType;
+
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(feedbackToUser, showHelp, exit);
+        return Objects.hash(feedbackToUser, commandType);
     }
 
 }
