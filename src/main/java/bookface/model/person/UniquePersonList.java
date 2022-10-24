@@ -2,6 +2,7 @@ package bookface.model.person;
 
 import static java.util.Objects.requireNonNull;
 
+import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
 
@@ -142,9 +143,9 @@ public class UniquePersonList implements Iterable<Person> {
     /**
      * Loans to a person {@code person} a book {@code book} .
      */
-    public void loan(Person person, Book book) {
-        CollectionUtil.requireAllNonNull(person, book);
-        person.addLoanedBook(book);
+    public void loan(Person person, Book book, Date returnDate) {
+        CollectionUtil.requireAllNonNull(person, book, returnDate);
+        person.addLoanedBook(book, returnDate);
         int index = internalList.indexOf(person);
         internalList.set(index, person);
     }

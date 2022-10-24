@@ -7,6 +7,7 @@ import static org.junit.jupiter.api.Assertions.assertNotEquals;
 
 import java.nio.file.Path;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.function.Predicate;
 
@@ -176,7 +177,7 @@ public class AddUserCommandTest {
         }
 
         @Override
-        public void loan(Person person, Book book) {
+        public void loan(Person person, Book book, Date returnDate) {
             throw new AssertionError("This method should not be called.");
         }
 

@@ -1,6 +1,7 @@
 package bookface.storage;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -51,7 +52,7 @@ class JsonSerializableBookFace {
     }
 
     /**
-     * Converts this address book into the model's {@code BookFace} object.
+     * Converts bookFace into the model's {@code BookFace} object.
      *
      * @throws IllegalValueException if there were any data constraints violated.
      */
@@ -66,7 +67,8 @@ class JsonSerializableBookFace {
             if (person.hasBooksOnLoan()) {
                 Set<Book> loanedBooks = person.getLoanedBooksSet();
                 for (Book book : loanedBooks) {
-                    book.loanTo(person);
+                    Date returnDate = book.getReturnDate();
+                    book.loanTo(person, returnDate);
                     bookFace.addBook(book);
                 }
             }

@@ -1,6 +1,7 @@
 package bookface.model;
 
 import java.nio.file.Path;
+import java.util.Date;
 import java.util.function.Predicate;
 
 import bookface.commons.core.GuiSettings;
@@ -92,7 +93,7 @@ public interface Model {
      * Loans to given person {@code person} from {@code book}.
      * {@code person} and {@code book} must exist in BookFace.
      */
-    void loan(Person person, Book book);
+    void loan(Person person, Book book, Date returnDate);
 
     /**
      * Returns the {@code book} loan.

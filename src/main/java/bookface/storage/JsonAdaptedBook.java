@@ -1,9 +1,13 @@
 package bookface.storage;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import bookface.commons.exceptions.IllegalValueException;
+import bookface.logic.parser.exceptions.ParseException;
 import bookface.model.book.Author;
 import bookface.model.book.Book;
 import bookface.model.book.Title;
@@ -18,13 +22,16 @@ class JsonAdaptedBook {
     private final String title;
     private final String author;
 
+    private final String returnDate;
+
     /**
      * Constructs a {@code JsonAdaptedBook} with the given book details.
      */
     @JsonCreator
-    public JsonAdaptedBook(@JsonProperty("title") String title, @JsonProperty("author") String author) {
+    public JsonAdaptedBook(@JsonProperty("title") String title, @JsonProperty("author") String author, @JsonProperty("returnDate") String returnDate) {
         this.title = title;
         this.author = author;
+        this.returnDate = returnDate;
     }
 
     /**
@@ -33,6 +40,8 @@ class JsonAdaptedBook {
     public JsonAdaptedBook(Book source) {
         title = source.getTitle().bookTitle;
         author = source.getAuthor().bookAuthor;
+        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+        returnDate = formatter.format(source.getReturnDate());
     }
 
     /**
@@ -57,7 +66,12 @@ class JsonAdaptedBook {
         }
         final Author modelAuthor = new Author(author);
 
-        return new Book(modelTitle, modelAuthor);
+        try {
+            final Date modelDate = new SimpleDateFormat("yyyy-MM-dd").parse(returnDate);
+            return new Book(modelTitle, modelAuthor, modelDate);
+        } catch (java.text.ParseException pe) {
+            throw new ParseException(String.valueOf(pe));
+        }
     }
 }
 
