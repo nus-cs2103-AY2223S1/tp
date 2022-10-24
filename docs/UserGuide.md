@@ -173,7 +173,7 @@ the same convention as [adding a student](#adding-a-student-add).
 
 2. Class Date:
     - Class date can be left empty.
-    - Formats: `dt` must be followed by either one of the below options.
+    - Formats: `dt/` must be followed by either one of the below options.
         1. `yyyy-MM-dd 0000-2359`
         2. `Day-of-Week 0000-2359`
     - Examples: `2022-10-29 1100-1230`, `MON 1100-1230`, `Mon 1100-1230`
@@ -201,7 +201,7 @@ Note: Amount Owed and Amount Paid can only be between $0 and $2147483647.
     - Use `nt-a/` to append the additional notes.
 ```yaml
 Note: Using both nt/ and nt-a/ in a single command will set the content
-      of Additional Notes to the content behind both nt/ and nt-a/ prefixes.
+      of Additional Notes to the content behind both nt/ and nt-a/ parameters.
 ```
 
 ```yaml
@@ -361,10 +361,11 @@ A: Install the app in the other computer and overwrite the empty data file it cr
 ---
 ## Glossary
 
-| Terms       | Definition                                             |
-|-------------|--------------------------------------------------------|
-| Class Date  | The 1-1 tutoring time slot of a student                |
-| Day-of-Week | 3-letter Abbreviation; case-insensitive e.g., Mon, MON |
+| Terms       | Definition                                                   |
+|-------------|--------------------------------------------------------------|
+| Class Date  | The 1-1 tutoring time slot of a student                      |
+| Day-of-Week | 3-letter Abbreviation; case-insensitive e.g., Mon, MON       |
+| INDEX       | The number beside the student's name on the left-panel list. |
 
 
 ## Command Summary
