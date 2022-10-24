@@ -91,9 +91,10 @@ public class PersonCard extends UiPart<Region> {
             person.getTags().stream()
                     .sorted(Comparator.comparing(tag -> tag.tagName))
                     .forEach(tag -> flowpanes[3].getChildren().add((new Label(tag.tagName))));
-            flowpanes[3].getChildren().forEach(label -> label.setStyle("-fx-background-color: #3e7b91;"
-                    + "-fx-font-size: 12;-fx-background-radius: 2;-fx-font-family: \"Karla\";"
-                    + "-fx-border-radius: 2;-fx-padding: 1 3 1 3; -fx-text-fill: #FFDFEA;"));
+            flowpanes[3].getChildren().forEach(label -> label.setStyle("-fx-background-color: #3142D3;"
+                    + "-fx-font-size: 12; -fx-label-padding: 3 7 3 7; -fx-background-radius: 15;"
+                    + "-fx-font-family: \"Karla\"; -fx-border-radius: 2;"
+                    + "-fx-padding: 1 3 1 3; -fx-text-fill: #FFDFEA;"));
         }
     }
 
