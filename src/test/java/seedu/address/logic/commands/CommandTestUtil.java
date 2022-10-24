@@ -302,7 +302,7 @@ public class CommandTestUtil {
         }
 
         @Override
-        public List<Message> getMessages() {
+        public ObservableList<Message> getMessages() {
             throw new AssertionError("This method should not be called.");
         }
 
