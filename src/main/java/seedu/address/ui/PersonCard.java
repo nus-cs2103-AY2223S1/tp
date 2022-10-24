@@ -8,6 +8,7 @@ import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import seedu.address.model.person.Person;
+import seedu.address.model.task.Task;
 
 /**
  * An UI component that displays information of a {@code Person}.
@@ -41,6 +42,9 @@ public class PersonCard extends UiPart<Region> {
     @FXML
     private FlowPane tags;
 
+    @FXML
+    private Label taskAssigned;
+
     /**
      * Creates a {@code PersonCode} with the given {@code Person} and index to display.
      */
@@ -56,6 +60,13 @@ public class PersonCard extends UiPart<Region> {
         person.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
+
+        StringBuilder tasks = new StringBuilder("Assigned : ");
+
+        for(Task task : person.getTasks()) {
+            tasks.append(task.getName().toString()).append(", ");
+        }
+        taskAssigned.setText(tasks.substring(0,tasks.length()-2));
     }
 
     @Override
