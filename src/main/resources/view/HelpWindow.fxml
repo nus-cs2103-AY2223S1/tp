@@ -16,29 +16,19 @@
   </icons>
    <scene>
       <Scene>
-          <AnchorPane>
-            <children>
-               <HBox alignment="CENTER" prefHeight="100.0" prefWidth="219.0">
-                  <children>
-                     <ImageView fitHeight="739.0" fitWidth="511.0" pickOnBounds="true" preserveRatio="true">
-                        <image>
-                           <Image url="@../images/command_summary_table.png" />
-                        </image>
-                     </ImageView>
-                  </children>
-               </HBox>
-               <VBox layoutY="516.0" prefHeight="12.0" prefWidth="511.0">
-                  <children>
-                     <HBox alignment="CENTER" prefHeight="60.0" prefWidth="511.0">
-                        <children>
-                           <Label fx:id="helpMessage" text="Label" />
-                           <Button mnemonicParsing="false" text="Copy URL" />
-                        </children>
-                     </HBox>
-                  </children>
-               </VBox>
-            </children>
-         </AnchorPane>
+          <AnchorPane prefHeight="702.0" prefWidth="511.0">
+              <HBox alignment="CENTER" prefHeight="100.0" prefWidth="219.0">
+                  <ImageView fitHeight="667.0" fitWidth="511.0" pickOnBounds="true" preserveRatio="true">
+                      <Image url="@../images/command_summary_table.png" />
+                  </ImageView>
+              </HBox>
+              <VBox layoutY="641.0" prefHeight="69.0" prefWidth="511.0">
+                  <HBox alignment="CENTER" prefHeight="75.0" prefWidth="511.0">
+                      <Label fx:id="helpMessage" text="Label" />
+                      <Button fx:id="copyButton" mnemonicParsing="false" onAction="#copyUrl" text="Copy URL" />
+                  </HBox>
+              </VBox>
+          </AnchorPane>
       </Scene>
    </scene>
 </fx:root>
