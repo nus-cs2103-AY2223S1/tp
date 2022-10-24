@@ -73,7 +73,6 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     public void resetData(ReadOnlyAddressBook newData) {
         requireNonNull(newData);
-        assert !newData.getTripList().isEmpty();
         setAllEventsList(newData.getAllEventList());
         setTrips(newData.getTripList());
         setEvents(newData.getEventList());
@@ -157,6 +156,9 @@ public class AddressBook implements ReadOnlyAddressBook {
      * {@code key} must exist in the address book.
      */
     public void removeTrip(Trip key) {
+        for (Event event : key.getEvents()) {
+            bucketList.add(event);
+        }
         trips.remove(key);
     }
 

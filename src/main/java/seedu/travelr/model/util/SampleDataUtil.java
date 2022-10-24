@@ -40,6 +40,9 @@ public class SampleDataUtil {
         AddressBook sampleAb = new AddressBook();
         for (Trip sampleTrip : getSampleTrips()) {
             sampleAb.addTrip(sampleTrip);
+            for (Event e : sampleTrip.getEvents()) {
+                sampleAb.addEventToAllEventsList(e);
+            }
         }
         return sampleAb;
     }

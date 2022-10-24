@@ -183,6 +183,11 @@ public class AddCommandTest {
         }
 
         @Override
+        public ObservableList<Event> getBucketList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public void updateFilteredTripList(Predicate<Trip> predicate) {
             throw new AssertionError("This method should not be called.");
         }

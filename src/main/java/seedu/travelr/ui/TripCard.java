@@ -1,10 +1,7 @@
 package seedu.travelr.ui;
 
-import java.util.Comparator;
-
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
-import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import seedu.travelr.model.trip.Trip;
@@ -35,7 +32,11 @@ public class TripCard extends UiPart<Region> {
     @FXML
     private Label description;
     @FXML
-    private FlowPane events;
+    private Label eventCount;
+    @FXML
+    private Label tripLocation;
+    @FXML
+    private Label tripDate;
 
     /**
      * Creates a {@code PersonCode} with the given {@code Person} and index to display.
@@ -46,9 +47,14 @@ public class TripCard extends UiPart<Region> {
         id.setText(displayedIndex + ". ");
         title.setText(trip.getTitle().fullTitle);
         description.setText(trip.getDescription().value);
-        trip.getEvents().stream()
-                .sorted(Comparator.comparing(event -> event.title.toString()))
-                .forEach(event -> events.getChildren().add(new Label(event.title.toString())));
+        eventCount.setText("Events: " + trip.getEvents().size());
+        // location is a reserved keyword in FXML
+        tripLocation.setText(trip.getLocation().isDefaultValue()
+                ? "No location set"
+                : trip.getLocation().locationName);
+        tripDate.setText(trip.getDateField().isDefaultValue()
+                ? "No date set"
+                : trip.getDateField().toString());
     }
 
     @Override
