@@ -69,7 +69,7 @@ public class IssueContainsKeywordsPredicate implements Predicate<Issue> {
             return true;
         } else {
             return statusKeywords.stream().anyMatch(
-                    pr -> testStatus(pr, issue.getStatus().toString()));
+                    pr -> testStatus(pr, issue.getStatus().getCompletionStatus()));
         }
     }
 
@@ -78,7 +78,7 @@ public class IssueContainsKeywordsPredicate implements Predicate<Issue> {
             return true;
         } else {
             return projectNameKeywords.stream().anyMatch(
-                    pr -> testStatus(pr, issue.getProject().getProjectName().toString()));
+                    pr -> testProjectName(pr, issue.getProject().getProjectName().toString()));
         }
     }
 
