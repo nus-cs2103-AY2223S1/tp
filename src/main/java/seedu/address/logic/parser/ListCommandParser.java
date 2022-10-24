@@ -3,6 +3,7 @@ package seedu.address.logic.parser;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 
 import seedu.address.logic.commands.ListCommand;
+import seedu.address.logic.commands.SortCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 /**
@@ -15,21 +16,32 @@ public class ListCommandParser implements Parser<ListCommand> {
             return new ListCommand(ListCommand.LIST_EMPTY);
         }
         userInput = userInput.trim().toUpperCase();
-        switch (userInput) {
-        case "BUYER":
+
+        if (SortCommand.isValidParameter(SortCommand.ACCEPTABLE_BUYER_PARAMETER, userInput)) {
             return new ListCommand(ListCommand.LIST_BUYER);
-        case "SUPPLIER":
-            return new ListCommand(ListCommand.LIST_SUPPLIER);
-        case "DELIVERER":
-            return new ListCommand(ListCommand.LIST_DELIVERER);
-        case "ORDER":
-            return new ListCommand(ListCommand.LIST_ORDER);
-        case "PET":
-            return new ListCommand(ListCommand.LIST_PET);
-        case "ALL":
-            return new ListCommand(ListCommand.LIST_ALL);
-        default:
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, ListCommand.MESSAGE_USAGE));
         }
+
+        if (SortCommand.isValidParameter(SortCommand.ACCEPTABLE_SUPPLIER_PARAMETER, userInput)) {
+            return new ListCommand(ListCommand.LIST_SUPPLIER);
+        }
+
+        if (SortCommand.isValidParameter(SortCommand.ACCEPTABLE_DELIVERER_PARAMETER, userInput)) {
+            return new ListCommand(ListCommand.LIST_DELIVERER);
+        }
+
+        if (SortCommand.isValidParameter(SortCommand.ACCEPTABLE_ORDER_PARAMETER, userInput)) {
+            return new ListCommand(ListCommand.LIST_ORDER);
+        }
+
+        if (SortCommand.isValidParameter(SortCommand.ACCEPTABLE_PET_PARAMETER, userInput)) {
+            return new ListCommand(ListCommand.LIST_PET);
+        }
+
+        if (SortCommand.isValidParameter(SortCommand.ACCEPTABLE_ALL_PARAMETER, userInput)) {
+            return new ListCommand(ListCommand.LIST_ALL);
+        }
+
+        throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, ListCommand.MESSAGE_USAGE));
+
     }
 }

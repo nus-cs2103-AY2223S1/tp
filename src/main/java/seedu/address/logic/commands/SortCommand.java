@@ -22,6 +22,7 @@ public abstract class SortCommand extends Command {
     public static final String[] ACCEPTABLE_ORDER_PARAMETER = new String[]{"ORDERS", "ORDER", "O", "-O", "/O"};
 
     public static final String[] ACCEPTABLE_PET_PARAMETER = new String[]{"PETS", "PET", "P", "-P", "/P"};
+    public static final String[] ACCEPTABLE_ALL_PARAMETER = new String[]{"ALL", "A", "-A", "/A"};
 
     public static final String[] ACCEPTABLE_SORT_ORDER_SIZE_PARAMETER = new String[]{
         "ORDERS", "ORDER", "O", "-O", "/O"};
