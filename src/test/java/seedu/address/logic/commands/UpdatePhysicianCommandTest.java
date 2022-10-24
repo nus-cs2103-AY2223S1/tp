@@ -23,7 +23,7 @@ import seedu.address.model.person.Phone;
 import seedu.address.model.person.Physician;
 import seedu.address.model.person.Uid;
 
-class SetPhysicianCommandTest {
+class UpdatePhysicianCommandTest {
 
     private Model model;
     private Model expectedModel;
@@ -46,17 +46,17 @@ class SetPhysicianCommandTest {
                 expectedPerson.getVisitStatus(), Optional.of(physicianToAssign), Optional.empty());
         expectedModel.setPerson(expectedPerson, expectedPatientEdited);
 
-        Command setPhysCommand = new SetPhysicianCommand(new Uid(3L), new Name(DEFAULT_PHYS_NAME),
+        Command setPhysCommand = new UpdatePhysicianCommand(new Uid(3L), new Name(DEFAULT_PHYS_NAME),
                 new Phone(DEFAULT_PHYS_PHONE), new Email(DEFAULT_PHYS_EMAIL));
 
         assertCommandSuccess(setPhysCommand,
-                model, String.format(SetPhysicianCommand.MESSAGE_ADD_PHYS_SUCCESS, 3, DEFAULT_PHYS_NAME,
+                model, String.format(UpdatePhysicianCommand.MESSAGE_ADD_PHYS_SUCCESS, 3, DEFAULT_PHYS_NAME,
                         DEFAULT_PHYS_PHONE, DEFAULT_PHYS_EMAIL), expectedModel);
     }
 
     @Test
     void execute_setPhysicianOnNurse_fail() {
-        Command setPhysCommand = new SetPhysicianCommand(new Uid(5L), new Name(DEFAULT_PHYS_NAME),
+        Command setPhysCommand = new UpdatePhysicianCommand(new Uid(5L), new Name(DEFAULT_PHYS_NAME),
                 new Phone(DEFAULT_PHYS_PHONE), new Email(DEFAULT_PHYS_EMAIL));
 
         assertCommandFailure(setPhysCommand,
@@ -65,7 +65,7 @@ class SetPhysicianCommandTest {
 
     @Test
     void execute_setPhysicianOnInvalidUid_fail() {
-        Command setPhysCommand = new SetPhysicianCommand(new Uid(9999L), new Name(DEFAULT_PHYS_NAME),
+        Command setPhysCommand = new UpdatePhysicianCommand(new Uid(9999L), new Name(DEFAULT_PHYS_NAME),
                 new Phone(DEFAULT_PHYS_PHONE), new Email(DEFAULT_PHYS_EMAIL));
 
         assertCommandFailure(setPhysCommand,

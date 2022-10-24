@@ -9,7 +9,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_UID;
 
 import java.util.function.Supplier;
 
-import seedu.address.logic.commands.SetPhysicianCommand;
+import seedu.address.logic.commands.UpdatePhysicianCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
@@ -19,16 +19,16 @@ import seedu.address.model.person.Uid;
 /**
  * Parses user input for the set physician command.
  */
-public class SetPhysicianCommandParser implements Parser<SetPhysicianCommand> {
+public class SetPhysicianCommandParser implements Parser<UpdatePhysicianCommand> {
 
     @Override
-    public SetPhysicianCommand parse(String args) throws ParseException {
+    public UpdatePhysicianCommand parse(String args) throws ParseException {
         requireNonNull(args);
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args,
                 PREFIX_UID, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL);
 
         Supplier<ParseException> exceptionSupplier = () ->
-                new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, SetPhysicianCommand.MESSAGE_USAGE));
+                new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, UpdatePhysicianCommand.MESSAGE_USAGE));
 
         Uid uid;
         Name pName;
@@ -40,6 +40,6 @@ public class SetPhysicianCommandParser implements Parser<SetPhysicianCommand> {
         pPhone = ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONE).orElseThrow(exceptionSupplier));
         pEmail = ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).orElseThrow(exceptionSupplier));
 
-        return new SetPhysicianCommand(uid, pName, pPhone, pEmail);
+        return new UpdatePhysicianCommand(uid, pName, pPhone, pEmail);
     }
 }

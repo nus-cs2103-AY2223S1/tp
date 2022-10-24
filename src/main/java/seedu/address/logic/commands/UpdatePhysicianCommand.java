@@ -20,8 +20,8 @@ import seedu.address.model.person.Uid;
 /**
  * Represents the command to assign an attending physician to a patient.
  */
-public class SetPhysicianCommand extends Command {
-    public static final String COMMAND_WORD = "setphys";
+public class UpdatePhysicianCommand extends Command {
+    public static final String COMMAND_WORD = "updatephys";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Adds contact details of the attending physician "
@@ -45,13 +45,13 @@ public class SetPhysicianCommand extends Command {
     private final Email pEmail;
 
     /**
-     * Create a new SetPhysicianCommand.
+     * Create a new UpdatePhysicianCommand.
      * @param i index
      * @param n physician's name
      * @param p physician's phone number
      * @param e physician's email
      */
-    public SetPhysicianCommand(Uid i, Name n, Phone p, Email e) {
+    public UpdatePhysicianCommand(Uid i, Name n, Phone p, Email e) {
         uid = i;
         pName = n;
         pEmail = e;
@@ -89,12 +89,12 @@ public class SetPhysicianCommand extends Command {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof SetPhysicianCommand)) {
+        if (!(other instanceof UpdatePhysicianCommand)) {
             return false;
         }
 
         // state check
-        SetPhysicianCommand e = (SetPhysicianCommand) other;
+        UpdatePhysicianCommand e = (UpdatePhysicianCommand) other;
         return uid.equals(e.uid)
                 && pName.equals(e.pName)
                 && pPhone.equals(e.pPhone)
