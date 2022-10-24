@@ -19,10 +19,16 @@ public class FindCommand extends Command {
 
     public static final String COMMAND_WORD = "find";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all persons whose names contain any of "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds buyers, deliverers or suppliers "
+            + "who match the specified attributes. "
             + "the specified keywords (case-insensitive) and displays them as a list with index numbers.\n"
             + "Parameters: PREFIX/[KEYWORDS]...\n"
-            + "Example: " + COMMAND_WORD + " n/Bernice";
+            + "For Address, use the prefix 'a' \n"
+            + "For Email, use the prefix 'e' \n"
+            + "For Location, use the prefix 'l' \n"
+            + "For Name, use the prefix 'n' \n"
+            + "For Phone, use the prefix 'p' \n"
+            + "Example: " + COMMAND_WORD + " e/berniceYu@gmail.com n/Bernice";
 
     private final Predicate<Buyer> buyerPredicate;
 
