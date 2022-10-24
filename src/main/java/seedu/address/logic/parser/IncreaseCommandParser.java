@@ -31,7 +31,7 @@ public class IncreaseCommandParser implements Parser<IncreaseCommand> {
 
         try {
             incrementReward = argMultimap.getPreamble();
-            if (Integer.parseInt(incrementReward) < 0) {
+            if (incrementReward.isEmpty() || Integer.parseInt(incrementReward) < 0) {
                 throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, IncreaseCommand.MESSAGE_USAGE));
             }
             if (!(firstPrefix.equals(PREFIX_PHONE) || firstPrefix.equals(PREFIX_EMAIL))) {

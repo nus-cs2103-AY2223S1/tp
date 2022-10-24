@@ -27,6 +27,10 @@ public class TypicalPersons {
             .withReward("123").withEmail("alice@example.com")
             .withPhone("94351253")
             .withTags("friends").build();
+    public static final Person ALICE_INCREMENT = new PersonBuilder().withName("Alice Pauline")
+            .withReward("223").withEmail("alice@example.com")
+            .withPhone("94351253")
+            .withTags("friends").build();
     public static final Person BENSON = new PersonBuilder().withName("Benson Meier")
             .withReward("456")
             .withEmail("johnd@example.com").withPhone("98765432")

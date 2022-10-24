@@ -4,6 +4,7 @@ import static java.util.Objects.isNull;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
+import seedu.address.commons.core.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.ParserUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
@@ -11,6 +12,8 @@ import seedu.address.model.Model;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.Reward;
+
+import java.util.NoSuchElementException;
 
 /**
  * Decreases the reward points of an existing Customer in bobaBot.
@@ -62,18 +65,22 @@ public class DecreaseCommand extends Command {
         requireNonNull(model);
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
 
-        Reward currentReward = isNull(phoneIdentifier)
-                ? model.getCurrentReward(emailIdentifier)
-                : model.getCurrentReward(phoneIdentifier);
-        int newReward = Integer.parseInt(currentReward.value) - Integer.parseInt(decrementReward);
-        if (newReward < 0) {
-            throw new ParseException(Reward.MESSAGE_CONSTRAINTS);
+        try {
+            Reward currentReward = isNull(phoneIdentifier)
+                    ? model.getCurrentReward(emailIdentifier)
+                    : model.getCurrentReward(phoneIdentifier);
+            int newReward = Integer.parseInt(currentReward.value) - Integer.parseInt(decrementReward);
+            if (newReward < 0) {
+                throw new ParseException(Reward.MESSAGE_CONSTRAINTS);
+            }
+            editPersonDescriptor.setReward(ParserUtil.parseReward(String.valueOf(newReward)));
+            EditCommand editCommand = isNull(phoneIdentifier)
+                    ? new EditCommand(emailIdentifier, editPersonDescriptor)
+                    : new EditCommand(phoneIdentifier, editPersonDescriptor);
+            return editCommand.execute(model);
+        } catch (NoSuchElementException e) {
+            throw new CommandException(Messages.MESSAGE_INVALID_PERSON_INFORMATION);
         }
-        editPersonDescriptor.setReward(ParserUtil.parseReward(String.valueOf(newReward)));
-        EditCommand editCommand = isNull(phoneIdentifier)
-                ? new EditCommand(emailIdentifier, editPersonDescriptor)
-                : new EditCommand(phoneIdentifier, editPersonDescriptor);
-        return editCommand.execute(model);
     }
 
     @Override
