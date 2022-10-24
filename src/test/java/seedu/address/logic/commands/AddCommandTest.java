@@ -172,7 +172,6 @@ public class AddCommandTest {
         public Reward getCurrentReward(Phone phone) {
             throw new AssertionError("This method should not be called.");
         }
-        
         @Override
         public Reward getCurrentReward(Email email) {
             throw new AssertionError("This method should not be called.");

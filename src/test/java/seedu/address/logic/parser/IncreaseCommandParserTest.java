@@ -1,17 +1,17 @@
 package seedu.address.logic.parser;
 
-import org.junit.jupiter.api.Test;
-import seedu.address.logic.commands.IncreaseCommand;
-
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_EMAIL_DESC;
-import static seedu.address.logic.commands.CommandTestUtil.INVALID_PHONE_DESC;;
+import static seedu.address.logic.commands.CommandTestUtil.INVALID_PHONE_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.PHONE_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_AMY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.testutil.TypicalPhones.PHONE_FIRST_PERSON;
+
+import org.junit.jupiter.api.Test;
+
+import seedu.address.logic.commands.IncreaseCommand;
 
 public class IncreaseCommandParserTest {
 
@@ -45,7 +45,7 @@ public class IncreaseCommandParserTest {
     }
 
     @Test
-    public void parse_InvalidIdentifier_failure() {
+    public void parse_invalidIdentifier_failure() {
         assertParseFailure(parser, " " + INVALID_PHONE_DESC,
                 MESSAGE_INVALID_FORMAT); // invalid phone
         assertParseFailure(parser, " " + INVALID_EMAIL_DESC,

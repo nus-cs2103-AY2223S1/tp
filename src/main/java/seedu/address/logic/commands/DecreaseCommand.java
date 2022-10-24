@@ -4,6 +4,8 @@ import static java.util.Objects.isNull;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
+import java.util.NoSuchElementException;
+
 import seedu.address.commons.core.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.ParserUtil;
@@ -12,8 +14,6 @@ import seedu.address.model.Model;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.Reward;
-
-import java.util.NoSuchElementException;
 
 /**
  * Decreases the reward points of an existing Customer in bobaBot.
