@@ -224,6 +224,11 @@ public class EditScheduleCommandTest {
         }
 
         @Override
+        public ObservableList<Student> getAllTutorList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public ObservableList<Module> getFilteredModuleList() {
             throw new AssertionError("This method should not be called.");
         }

@@ -254,6 +254,11 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public ObservableList<Student> getAllTutorList() {
+        return new FilteredList<>(this.profNus.getTutorList());
+    }
+
+    @Override
     public void updateFilteredTutorList(Predicate<Student> predicate) {
         requireNonNull(predicate);
         filteredTutors.setPredicate(predicate);

@@ -124,7 +124,7 @@
 }
 
 .list-cell .label {
-    -fx-text-fill: white;
+    -fx-text-fill: black;
 }
 
 .cell_big_label {
@@ -401,13 +401,19 @@
 }
 
 .student-cardPane {
-    -fx-background-color: #395B64;
+    -fx-background-color: #E5EBB2;
     -fx-opacity: 0.8;
+    -fx-text-fill: black;
+    -fx-border-radius: 10;
+    -fx-background-radius: 10;
 }
 
 .tutor-cardPane {
-    -fx-background-color: #3B5249;
+    -fx-background-color: #BCE29E;
     -fx-opacity: 0.8;
+    -fx-text-fill: black;
+    -fx-border-radius: 10;
+    -fx-background-radius: 10;
 }
 
 .scheduleHeader {

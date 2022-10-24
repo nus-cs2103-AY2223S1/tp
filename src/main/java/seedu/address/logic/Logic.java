@@ -42,6 +42,9 @@ public interface Logic {
     /** Returns an unmodifiable view of the filtered list of tutors */
     ObservableList<Student> getFilteredTutorList();
 
+    /** Returns an unmodifiable view of the whole list of tutors */
+    ObservableList<Student> getAllTutorList();
+
     /** Returns an unmodifiable view of the filtered list of modules */
     ObservableList<Module> getFilteredModuleList();
 
