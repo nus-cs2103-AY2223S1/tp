@@ -78,10 +78,10 @@ public class StallContainsKeywordsPredicateTest {
     public void test_nameAndTagsContainsKeywords_returnsTrue() {
         //contains name and tag keywords
         StallContainsKeywordsPredicate predicate =
-                new StallContainsKeywordsPredicate(Collections.singleton(new Name("Alice")),
+                new StallContainsKeywordsPredicate(Collections.singleton(new Name("Alice Bob")),
                         Collections.singleton(new Tag("Bob")));
 
-        assertTrue(predicate.test(new StallBuilder().withName("Alice").withTags("Bob").build()));
+        assertTrue(predicate.test(new StallBuilder().withName("Alice Bob").withTags("Bob").build()));
 
         //contains only name keywords
         predicate =
