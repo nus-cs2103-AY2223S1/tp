@@ -102,7 +102,7 @@ public class AddressBookParser {
             return new MarkTaskCommandParser().parse(arguments);
 
         case UnmarkTaskCommand.COMMAND_WORD:
-             return new UnmarkTaskCommandParser().parse(arguments);
+            return new UnmarkTaskCommandParser().parse(arguments);
 
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);

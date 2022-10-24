@@ -1,17 +1,20 @@
 package seedu.address.logic.commands;
 
+import static java.util.Objects.requireNonNull;
+
+import java.util.List;
+
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.task.Task;
 
-import java.util.List;
-
-import static java.util.Objects.requireNonNull;
-
+/**
+ * Marks the task at the specified index to be completed.
+ */
 public class MarkTaskCommand extends Command {
-    public final static String COMMAND_WORD = "marktask";
+    public static final String COMMAND_WORD = "marktask";
 
     public static final String MESSAGE_MARK_TASK_SUCCESS = "Task at %1$s set as completed!";
 
