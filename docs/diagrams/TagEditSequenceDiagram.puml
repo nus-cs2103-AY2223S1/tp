@@ -1,0 +1,70 @@
+@startuml
+!include style.puml
+scale 1600*561
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":SoConnectParser" as SoConnectParser LOGIC_COLOR
+participant ":TagEditCommandParser" as TagEditCommandParser LOGIC_COLOR
+participant "te:TagEditCommand" as TagEditCommand LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+
+[-> LogicManager : execute("tag edit t/friend t/bestFriends")
+activate LogicManager
+
+LogicManager -> SoConnectParser : parseCommand("tag edit t/friend t/bestFriends")
+activate SoConnectParser
+
+create TagEditCommandParser
+SoConnectParser -> TagEditCommandParser
+activate TagEditCommandParser
+
+TagEditCommandParser --> SoConnectParser
+deactivate TagEditCommandParser
+
+SoConnectParser -> TagEditCommandParser : parse("t/friend t/bestFriends)
+activate TagEditCommandParser
+
+create TagEditCommand
+TagEditCommandParser -> TagEditCommand
+activate TagEditCommand
+
+TagEditCommand --> TagEditCommandParser : te
+deactivate TagEditCommand
+
+TagEditCommandParser --> SoConnectParser : te
+deactivate TagEditCommandParser
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+TagEditCommandParser -[hidden]-> SoConnectParser
+destroy TagEditCommandParser
+
+SoConnectParser --> LogicManager : te
+deactivate SoConnectParser
+
+LogicManager -> TagEditCommand : execute()
+activate TagEditCommand
+
+TagEditCommand -> Model : editTag(friend, bestFriends)
+activate Model
+
+Model --> TagEditCommand
+deactivate Model
+
+create CommandResult
+TagEditCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> TagEditCommand
+deactivate CommandResult
+
+TagEditCommand --> LogicManager : result
+deactivate TagEditCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml

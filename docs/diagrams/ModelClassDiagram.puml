@@ -16,6 +16,7 @@ Class ModelManager
 Class UserPrefs
 
 Class UniquePersonList
+Class UniqueTagList
 Class Person
 Class Address
 Class Email
@@ -51,6 +52,9 @@ Person *--> Phone
 Person *--> Email
 Person *--> Address
 Person *--> "*" Tag
+
+SoConnect *--> "1" UniqueTagList
+UniqueTagList --> "*" Tag
 
 TodoList *--> "1" UniqueTodoList
 UniqueTodoList --> "~* all" Todo
