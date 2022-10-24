@@ -20,9 +20,9 @@ public class Reward {
     public final String value;
 
     /**
-     * Constructs an {@code Address}.
+     * Constructs an {@code Reward}.
      *
-     * @param reward A valid address.
+     * @param reward A valid reward.
      */
     public Reward(String reward) {
         requireNonNull(reward);
