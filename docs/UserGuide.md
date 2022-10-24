@@ -62,11 +62,11 @@ Displays a list of commands and a link to the user guide.
 Format: `help`
 
 
-### Adding a person: `addp`
+### Adding a person: `add -p`
 
 Adds a person to InterNUS.
 
-Format: `addp n/NAME p/PHONE_NUMBER e/EMAIL [t/TAG]…​ [l/LINK_INDEX]`
+Format: `add -p n/NAME p/PHONE_NUMBER e/EMAIL [t/TAG]…​ [l/LINK_INDEX]`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 A person can have any number of tags (including 0). Link index is optional.
@@ -74,8 +74,8 @@ The link index refers to the index number shown in the internship list.
 </div>
 
 Examples:
-* `addp n/John Doe e/johnd@example.com p/98765432 l/1`
-* `addp n/Betsy Crowe t/friend e/betsycrowe@example.com`
+* `add -p n/John Doe e/johnd@example.com p/98765432 l/1`
+* `add -p n/Betsy Crowe t/friend e/betsycrowe@example.com`
 
 ### Adding an Internship: `addi`
 
