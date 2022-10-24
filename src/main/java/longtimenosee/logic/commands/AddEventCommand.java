@@ -4,7 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static longtimenosee.logic.parser.CliSyntax.PREFIX_DATE;
 import static longtimenosee.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 import static longtimenosee.logic.parser.CliSyntax.PREFIX_END_TIME;
-import static longtimenosee.logic.parser.CliSyntax.PREFIX_PERSON_NAME;
+import static longtimenosee.logic.parser.CliSyntax.PREFIX_NAME;
 import static longtimenosee.logic.parser.CliSyntax.PREFIX_START_TIME;
 
 import java.util.List;
@@ -32,14 +32,14 @@ public class AddEventCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds an Event to the address book. "
             + "Parameters: "
             + PREFIX_DESCRIPTION + "Description "
-            + PREFIX_PERSON_NAME + "Person Name "
+            + PREFIX_NAME + "Person Name "
             + PREFIX_DATE + "Date "
             + PREFIX_START_TIME + "Start time "
             + PREFIX_END_TIME + "End time "
 
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_DESCRIPTION + "Meet Clement at Noon "
-            + PREFIX_PERSON_NAME + "Clement Tan "
+            + PREFIX_NAME + "Clement Tan "
             + PREFIX_DATE + "2022-10-10 "
             + PREFIX_START_TIME + "12:00 "
             + PREFIX_END_TIME + "13:00 ";
@@ -72,7 +72,7 @@ public class AddEventCommand extends Command {
                     + Event.viewEvents(eventsOnTheSameDay));
         }
         try {
-            model.addEvent(toAdd, toAdd.getPersonName().personName);
+            model.addEvent(toAdd, toAdd.getPersonName().fullName);
         } catch (PersonNotFoundException e) {
             throw new CommandException(MESSAGE_PERSON_NOT_FOUND);
         } catch (OverlapEventException e) {

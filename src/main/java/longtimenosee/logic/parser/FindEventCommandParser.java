@@ -4,7 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static longtimenosee.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static longtimenosee.logic.parser.CliSyntax.PREFIX_DATE;
 import static longtimenosee.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
-import static longtimenosee.logic.parser.CliSyntax.PREFIX_PERSON_NAME;
+import static longtimenosee.logic.parser.CliSyntax.PREFIX_NAME;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -30,9 +30,9 @@ public class FindEventCommandParser implements Parser<FindEventCommand> {
     public FindEventCommand parse(String args) throws ParseException {
         requireNonNull(args);
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_DESCRIPTION, PREFIX_PERSON_NAME, PREFIX_DATE);
+                ArgumentTokenizer.tokenize(args, PREFIX_DESCRIPTION, PREFIX_NAME, PREFIX_DATE);
 
-        if (!isAtLeastOnePrefixesPresent(argMultimap, PREFIX_DESCRIPTION, PREFIX_PERSON_NAME, PREFIX_DATE)
+        if (!isAtLeastOnePrefixesPresent(argMultimap, PREFIX_DESCRIPTION, PREFIX_NAME, PREFIX_DATE)
                 || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindEventCommand.MESSAGE_USAGE));
         }
@@ -45,9 +45,8 @@ public class FindEventCommandParser implements Parser<FindEventCommand> {
             predicates.add(new DescriptionContainsKeywordsPredicate(trimmedDescription));
         }
 
-        if (argMultimap.getValue(PREFIX_PERSON_NAME).isPresent()) {
-            String trimmedArgs = ParserUtil.parsePersonName(argMultimap.getValue(PREFIX_PERSON_NAME).get())
-                    .personName.trim();
+        if (argMultimap.getValue(PREFIX_NAME).isPresent()) {
+            String trimmedArgs = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get()).fullName.trim();
             String[] nameKeywords = trimmedArgs.split("\\s+");
             predicates.add(new NameInEventContainsKeywordsPredicate(List.of(nameKeywords)));
         }

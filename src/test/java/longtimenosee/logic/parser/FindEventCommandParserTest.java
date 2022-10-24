@@ -12,10 +12,10 @@ import org.junit.jupiter.api.Test;
 import longtimenosee.logic.commands.FindEventCommand;
 import longtimenosee.model.event.Date;
 import longtimenosee.model.event.Description;
-import longtimenosee.model.event.PersonName;
 import longtimenosee.model.event.predicate.DescriptionContainsKeywordsPredicate;
 import longtimenosee.model.event.predicate.EventDateMatchesInputPredicate;
 import longtimenosee.model.event.predicate.NameInEventContainsKeywordsPredicate;
+import longtimenosee.model.person.Name;
 
 public class FindEventCommandParserTest {
     private final FindEventCommandParser parser = new FindEventCommandParser();
@@ -75,23 +75,23 @@ public class FindEventCommandParserTest {
         // no leading and trailing whitespaces
         FindEventCommand expectedFindEventCommand =
                 new FindEventCommand(List.of(new NameInEventContainsKeywordsPredicate(Arrays.asList("Alice", "Bob"))));
-        assertParseSuccess(parser, " pName/Alice Bob", expectedFindEventCommand);
+        assertParseSuccess(parser, " n/Alice Bob", expectedFindEventCommand);
 
         // multiple whitespaces between keywords
-        assertParseSuccess(parser, " pName/ Alice  Bob  ", expectedFindEventCommand);
+        assertParseSuccess(parser, " n/ Alice  Bob  ", expectedFindEventCommand);
 
         // alphanumeric input
         FindEventCommand alphanumericExpectedFindEventCommand =
                 new FindEventCommand(List.of(new NameInEventContainsKeywordsPredicate(Arrays.asList("Alice", "123"))));
-        assertParseSuccess(parser, " pName/ Alice 123 ", alphanumericExpectedFindEventCommand);
+        assertParseSuccess(parser, " n/ Alice 123 ", alphanumericExpectedFindEventCommand);
     }
 
     @Test
     public void parse_invalidNameArgs_throwsParseException() {
         // empty name input
-        assertParseFailure(parser, " pName/", PersonName.MESSAGE_CONSTRAINTS);
+        assertParseFailure(parser, " n/", Name.MESSAGE_CONSTRAINTS);
 
         // symbol input
-        assertParseFailure(parser, " pName/!", PersonName.MESSAGE_CONSTRAINTS);
+        assertParseFailure(parser, " n/!", Name.MESSAGE_CONSTRAINTS);
     }
 }

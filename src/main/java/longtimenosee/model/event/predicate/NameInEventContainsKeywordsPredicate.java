@@ -19,7 +19,7 @@ public class NameInEventContainsKeywordsPredicate implements Predicate<Event> {
     @Override
     public boolean test(Event event) {
         for (String keyword : keywords) {
-            if (StringUtil.containsWordIgnoreCase(event.getPersonName().personName, keyword)) {
+            if (StringUtil.containsWordIgnoreCase(event.getPersonName().fullName, keyword)) {
                 return true;
             }
         }

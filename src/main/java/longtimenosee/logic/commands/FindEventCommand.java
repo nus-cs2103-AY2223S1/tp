@@ -3,7 +3,7 @@ package longtimenosee.logic.commands;
 import static java.util.Objects.requireNonNull;
 import static longtimenosee.logic.parser.CliSyntax.PREFIX_DATE;
 import static longtimenosee.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
-import static longtimenosee.logic.parser.CliSyntax.PREFIX_PERSON_NAME;
+import static longtimenosee.logic.parser.CliSyntax.PREFIX_NAME;
 
 import java.util.List;
 import java.util.function.Predicate;
@@ -23,9 +23,9 @@ public class FindEventCommand extends Command {
             + "and displays them as a list with index numbers.\n"
             + "Parameters: "
             + "[" + PREFIX_DESCRIPTION + "DESCRIPTION] "
-            + "[" + PREFIX_PERSON_NAME + "PERSON_NAME] "
+            + "[" + PREFIX_NAME + "PERSON_NAME] "
             + "[" + PREFIX_DATE + "DATE]…\n"
-            + "Example: " + COMMAND_WORD + " desc/meeting pName/Alice";
+            + "Example: " + COMMAND_WORD + " desc/meeting n/Alice";
 
     private final List<Predicate<Event>> predicates;
 
