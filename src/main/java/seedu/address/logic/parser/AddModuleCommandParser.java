@@ -44,11 +44,11 @@ public class AddModuleCommandParser implements Parser<AddModuleCommand> {
         }
 
         ModuleCode moduleCode = ParserUtil.parseModuleCode(argMultimap.getValue(PREFIX_MODULE).get());
-        LectureDetails lecture = ParserUtil.parseLectureDetails(argMultimap.getValue(PREFIX_LECTURE).orElse(""));
+        LectureDetails lecture = ParserUtil.parseLectureDetails(argMultimap.getValue(PREFIX_LECTURE).orElse(null));
         TutorialDetails tutorial = ParserUtil.parseTutorialDetails(argMultimap.getValue(PREFIX_TUTORIAL)
-                .orElse(""));
-        ZoomLink lectureZoom = ParserUtil.parseZoomLink(argMultimap.getValue(PREFIX_LECTURE_ZOOM).orElse(""));
-        ZoomLink tutorialZoom = ParserUtil.parseZoomLink(argMultimap.getValue(PREFIX_TUTORIAL_ZOOM).orElse(""));
+                .orElse(null));
+        ZoomLink lectureZoom = ParserUtil.parseZoomLink(argMultimap.getValue(PREFIX_LECTURE_ZOOM).orElse(null));
+        ZoomLink tutorialZoom = ParserUtil.parseZoomLink(argMultimap.getValue(PREFIX_TUTORIAL_ZOOM).orElse(null));
         Set<AssignmentDetails> assignmentList =
             ParserUtil.parseAssignmentDetails(argMultimap.getAllValues(PREFIX_ASSIGNMENT));
 

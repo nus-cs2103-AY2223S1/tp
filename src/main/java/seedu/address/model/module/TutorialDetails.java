@@ -10,6 +10,7 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 public class TutorialDetails {
 
     public static final String MESSAGE_CONSTRAINTS = "Tutorial Details can take any values";
+    public static final String EMPTY_TUTORIAL_DETAILS = "";
 
     /*
      * The first character of the address must not be a whitespace,
@@ -25,16 +26,20 @@ public class TutorialDetails {
      * @param tutorialDetails Valid tutorial details.
      */
     public TutorialDetails(String tutorialDetails) {
-        requireNonNull(tutorialDetails);
-        checkArgument(areValidTutorialDetails(tutorialDetails));
-        value = tutorialDetails;
+        if (tutorialDetails == null) {
+            value = EMPTY_TUTORIAL_DETAILS;
+        } else {
+            checkArgument(areValidTutorialDetails(tutorialDetails));
+            value = tutorialDetails;
+        }
+
     }
 
     /**
      * Returns true if a given string is a valid tutorial detail.
      */
     public static boolean areValidTutorialDetails(String test) {
-        return true;
+        return test.matches(VALIDATION_REGEX);
     }
 
     @Override

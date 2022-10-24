@@ -9,7 +9,8 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  */
 public class LectureDetails {
 
-    public static final String MESSAGE_CONSTRAINTS = "Lecture Details can take any values";
+    public static final String MESSAGE_CONSTRAINTS = "Lecture Details can take any value";
+    public static final String EMPTY_LECTURE_DETAILS = "";
 
     /*
      * The first character of the address must not be a whitespace,
@@ -25,9 +26,12 @@ public class LectureDetails {
      * @param lectureDetails Valid lecture details
      */
     public LectureDetails(String lectureDetails) {
-        requireNonNull(lectureDetails);
-        checkArgument(areValidLectureDetails(lectureDetails));
-        value = lectureDetails;
+        if (lectureDetails == null) {
+            value = EMPTY_LECTURE_DETAILS;
+        } else {
+            checkArgument(areValidLectureDetails(lectureDetails));
+            value = lectureDetails;
+        }
     }
 
     /**
