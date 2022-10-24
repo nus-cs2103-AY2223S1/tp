@@ -3,13 +3,11 @@ package seedu.address.ui;
 import java.util.Comparator;
 
 import javafx.fxml.FXML;
-import javafx.scene.Group;
-import javafx.scene.Scene;
 import javafx.scene.chart.BarChart;
 import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.Region;
-import javafx.stage.Stage;
+import javafx.scene.layout.StackPane;
 import seedu.address.commons.util.ChartUtil;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.position.Student;
@@ -44,7 +42,7 @@ public class InfoDisplay extends UiPart<Region> {
     @FXML
     private Label misc;
     @FXML
-    private BarChart chart;
+    private StackPane placeHolder;
     @FXML
     private Label address;
     @FXML
@@ -71,13 +69,13 @@ public class InfoDisplay extends UiPart<Region> {
         remark.setText("Remarks: " + person.getRemark().value);
         if (person.getPosition() instanceof Student) {
             Student s = (Student) person.getPosition();
-            chart = ChartUtil.createBarChart("Results", "Assignments", "Score", s.getAssignmentAndGrade(),
+            BarChart<String, Number> chart = ChartUtil.createBarChart("Results",
+                    "Assignments", "Score", s.getAssignmentAndGrade(),
                     s.getAssignmentAndMaximumGrade());
-            Group root = new Group(chart);
-            Scene scene = new Scene(root, 600, 400);
-            Stage stage = new Stage();
-            stage.setScene(scene);
-            stage.show();
+            chart.setAnimated(false);
+            placeHolder.getChildren().add(chart);
+        } else {
+            placeHolder.getChildren().clear();
         }
     }
 
