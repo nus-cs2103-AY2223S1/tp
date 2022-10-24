@@ -27,7 +27,7 @@ public class ListTaskCommandTest {
 
     @Test
     public void execute_listIsNotFiltered_showsSameList() {
-        assertCommandSuccess(new ListTaskCommand(), model, ListTaskCommand.MESSAGE_SUCCESS, expectedModel);
+        assertCommandSuccess(new ListTaskCommand(null), model, ListTaskCommand.MESSAGE_SUCCESS, expectedModel);
     }
 
 }

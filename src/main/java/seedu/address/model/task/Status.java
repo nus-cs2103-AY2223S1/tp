@@ -8,12 +8,12 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  */
 public class Status {
 
-    public static final String MESSAGE_CONSTRAINTS = "String should only be either \"true\" or \"false\".";
+    public static final String MESSAGE_CONSTRAINTS = "String should only be either \"Complete\" or \"Not complete\".";
 
     private static final String completedSymbol = "\u2713";
     private static final String incompleteSymbol = "\u2716";
-    private static final String completedString = "true";
-    private static final String incompleteString = "false";
+    private static final String completedString = "Complete";
+    private static final String incompleteString = "Not complete";
 
     private final boolean isComplete;
 
