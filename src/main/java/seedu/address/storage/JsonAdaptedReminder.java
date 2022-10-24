@@ -8,6 +8,8 @@ import seedu.address.model.reminder.Reminder;
 import seedu.address.model.reminder.ReminderDeadline;
 import seedu.address.model.reminder.ReminderDescription;
 import seedu.address.model.reminder.ReminderName;
+import seedu.address.model.reminder.ReminderPriority;
+import seedu.address.model.reminder.ReminderStatus;
 
 /**
  * Jackson-friendly version of {@link Reminder}.
@@ -18,16 +20,22 @@ class JsonAdaptedReminder {
     private final String name;
     private final String deadline;
     private final String description;
+    private final String priority;
+    private final boolean isDone;
 
     /**
-     * Constructs a {@code JsonAdaptedPerson} with the given reminder details.
+     * Constructs a {@code JsonAdaptedReminder} with the given reminder details.
      */
     @JsonCreator
     public JsonAdaptedReminder(@JsonProperty("name") String name, @JsonProperty("deadline") String deadline,
-                               @JsonProperty("description") String description) {
+                               @JsonProperty("priority") String priority,
+                               @JsonProperty("description") String description,
+                               @JsonProperty("status") boolean isDone) {
         this.name = name;
         this.deadline = deadline;
         this.description = description;
+        this.priority = priority;
+        this.isDone = isDone;
     }
 
     /**
@@ -36,7 +44,9 @@ class JsonAdaptedReminder {
     public JsonAdaptedReminder(Reminder source) {
         name = source.getName().fullName;
         deadline = source.getDeadline().deadline;
+        priority = source.getPriority().priority;
         description = source.getDescription().description;
+        isDone = source.getStatus();
     }
 
     /**
@@ -63,8 +73,15 @@ class JsonAdaptedReminder {
         }
         final ReminderDeadline modelDeadline = new ReminderDeadline(deadline);
 
+        if (!ReminderPriority.isValidPriority(priority)) {
+            throw new IllegalValueException(ReminderPriority.MESSAGE_CONSTRAINTS);
+        }
+        final ReminderPriority modelPriority = new ReminderPriority(priority);
+
         final ReminderDescription modelDescription = new ReminderDescription(description);
 
-        return new Reminder(modelName, modelDeadline, modelDescription);
+        final ReminderStatus modelStatus = new ReminderStatus(isDone);
+
+        return new Reminder(modelName, modelDeadline, modelPriority, modelDescription, modelStatus);
     }
 }

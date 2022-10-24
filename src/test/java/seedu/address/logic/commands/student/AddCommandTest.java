@@ -262,6 +262,21 @@ public class AddCommandTest {
         public void resetStudents() {
             throw new AssertionError("This method should not be called.");
         }
+
+        @Override
+        public void markReminder(Reminder reminderToMark) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public boolean reminderIsMarked(Reminder reminderToMark) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void unmarkReminder(Reminder reminderToUnmark) {
+            throw new AssertionError("This method should not be called.");
+        }
     }
 
     /**

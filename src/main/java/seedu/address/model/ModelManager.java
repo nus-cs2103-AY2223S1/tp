@@ -201,6 +201,20 @@ public class ModelManager implements Model {
         addressBook.setReminders(new ArrayList<>());
     }
 
+    public void markReminder(Reminder target) {
+        addressBook.markReminder(target);
+    }
+
+    @Override
+    public boolean reminderIsMarked(Reminder reminderToMark) {
+        return reminderToMark.getStatus();
+    }
+
+    @Override
+    public void unmarkReminder(Reminder target) {
+        addressBook.unmarkReminder(target);
+    }
+
     //=========== Filtered Reminder List Accessors =============================================================
 
     /**

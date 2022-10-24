@@ -202,5 +202,9 @@ public interface Model {
      */
     void resetReminders();
 
+    void markReminder(Reminder reminderToMark);
 
+    boolean reminderIsMarked(Reminder reminderToMark);
+
+    void unmarkReminder(Reminder reminderToUnmark);
 }

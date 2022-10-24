@@ -16,6 +16,7 @@ import seedu.address.model.reminder.Reminder;
 import seedu.address.model.reminder.ReminderDeadline;
 import seedu.address.model.reminder.ReminderDescription;
 import seedu.address.model.reminder.ReminderName;
+import seedu.address.model.reminder.ReminderPriority;
 import seedu.address.model.student.Attendance;
 import seedu.address.model.student.Email;
 import seedu.address.model.student.Grade;
@@ -87,11 +88,11 @@ public class SampleDataUtil {
     public static Reminder[] getSampleReminders() {
         return new Reminder[] {
             new Reminder(new ReminderName("Mark Midterms"), new ReminderDeadline("20:00"),
-                        new ReminderDescription("300 papers to mark")),
+                    new ReminderPriority("HIGH"), new ReminderDescription("300 papers to mark")),
             new Reminder(new ReminderName("Send email to TAs"), new ReminderDeadline("21:00"),
-                        new ReminderDescription("Erratum in midterms")),
+                    new ReminderPriority("MEDIUM"), new ReminderDescription("Erratum in midterms")),
             new Reminder(new ReminderName("Meeting with Prof Lee"), new ReminderDeadline("22:00"),
-                        new ReminderDescription("Discuss incoming finals for CS2201")),
+                    new ReminderPriority("LOW"), new ReminderDescription("Discuss incoming finals for CS2201")),
         };
     }
 
