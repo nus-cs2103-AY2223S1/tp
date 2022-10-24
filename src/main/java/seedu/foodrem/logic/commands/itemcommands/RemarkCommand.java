@@ -14,12 +14,13 @@ import seedu.foodrem.logic.commands.exceptions.CommandException;
 import seedu.foodrem.model.Model;
 import seedu.foodrem.model.item.Item;
 import seedu.foodrem.model.item.ItemRemark;
+import seedu.foodrem.viewmodels.ItemWithMessage;
 
 /**
  * Adds a remark to an item in FoodRem.
  */
 public class RemarkCommand extends Command {
-    private static final String MESSAGE_SUCCESS = "Remark added:\n%1$s";
+    private static final String MESSAGE_SUCCESS = "Remark has been updated. View the updated item below:";
 
     private final Index index;
     private final ItemRemark remark;
@@ -53,7 +54,7 @@ public class RemarkCommand extends Command {
     }
 
     @Override
-    public CommandResult<String> execute(Model model) throws CommandException {
+    public CommandResult<ItemWithMessage> execute(Model model) throws CommandException {
         requireNonNull(model);
         List<Item> lastShownList = model.getFilteredItemList();
 
@@ -66,7 +67,7 @@ public class RemarkCommand extends Command {
 
         model.setItem(itemToRemark, remarkedItem);
         model.updateFilteredItemList(PREDICATE_SHOW_ALL_ITEMS);
-        return CommandResult.from(String.format(MESSAGE_SUCCESS, remarkedItem));
+        return CommandResult.from(new ItemWithMessage(remarkedItem, MESSAGE_SUCCESS));
     }
 
     public static String getUsage() {

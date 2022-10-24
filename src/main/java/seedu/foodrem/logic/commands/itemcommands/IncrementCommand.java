@@ -14,12 +14,13 @@ import seedu.foodrem.logic.commands.exceptions.CommandException;
 import seedu.foodrem.model.Model;
 import seedu.foodrem.model.item.Item;
 import seedu.foodrem.model.item.ItemQuantity;
+import seedu.foodrem.viewmodels.ItemWithMessage;
 
 /**
  * Increments the quantity of an item by a specified amount.
  */
 public class IncrementCommand extends Command {
-    public static final String MESSAGE_SUCCESS = "Incremented Item:\n%1$s";
+    public static final String MESSAGE_SUCCESS = "Incremented successfully and updated item as follows:";
 
     private final Index index;
     private final ItemQuantity quantity;
@@ -61,7 +62,7 @@ public class IncrementCommand extends Command {
     }
 
     @Override
-    public CommandResult<String> execute(Model model) throws CommandException {
+    public CommandResult<ItemWithMessage> execute(Model model) throws CommandException {
         requireNonNull(model);
         List<Item> lastShownList = model.getFilteredItemList();
 
@@ -74,7 +75,7 @@ public class IncrementCommand extends Command {
 
         model.setItem(itemToIncrement, incrementedItem);
         model.updateFilteredItemList(PREDICATE_SHOW_ALL_ITEMS);
-        return CommandResult.from(String.format(MESSAGE_SUCCESS, incrementedItem));
+        return CommandResult.from(new ItemWithMessage(incrementedItem, MESSAGE_SUCCESS));
     }
 
     public static String getUsage() {

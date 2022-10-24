@@ -12,12 +12,13 @@ import seedu.foodrem.logic.commands.CommandResult;
 import seedu.foodrem.logic.commands.exceptions.CommandException;
 import seedu.foodrem.model.Model;
 import seedu.foodrem.model.item.Item;
+import seedu.foodrem.viewmodels.ItemWithMessage;
 
 /**
  * Deletes an item identified using it's displayed index from FoodRem.
  */
 public class DeleteCommand extends Command {
-    private static final String MESSAGE_SUCCESS = "Deleted Item:\n%1$s";
+    private static final String MESSAGE_SUCCESS = "Successfully deleted the following item:";
 
     private final Index targetIndex;
 
@@ -26,7 +27,7 @@ public class DeleteCommand extends Command {
     }
 
     @Override
-    public CommandResult<String> execute(Model model) throws CommandException {
+    public CommandResult<ItemWithMessage> execute(Model model) throws CommandException {
         requireNonNull(model);
         List<Item> lastShownList = model.getFilteredItemList();
 
@@ -36,7 +37,7 @@ public class DeleteCommand extends Command {
 
         Item itemToDelete = lastShownList.get(targetIndex.getZeroBased());
         model.deleteItem(itemToDelete);
-        return CommandResult.from(String.format(MESSAGE_SUCCESS, itemToDelete));
+        return CommandResult.from(new ItemWithMessage(itemToDelete, MESSAGE_SUCCESS));
     }
 
     public static String getUsage() {
