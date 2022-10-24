@@ -49,7 +49,8 @@ public class TaskListPanel extends UiPart<Region> {
         private ObservableList<PersonTaskBridge> personTaskBridgeList;
         private ObservableList<Person> personList;
 
-        protected TaskListViewCell(ObservableList<PersonTaskBridge> personTaskBridgeList, ObservableList<Person> personList) {
+        protected TaskListViewCell(ObservableList<PersonTaskBridge> personTaskBridgeList,
+                                   ObservableList<Person> personList) {
             this.personTaskBridgeList = personTaskBridgeList;
             this.personList = personList;
         }

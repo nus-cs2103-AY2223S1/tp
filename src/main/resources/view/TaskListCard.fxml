@@ -12,14 +12,8 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<HBox id="cardPane" fx:id="cardPane" maxWidth="800.0" minWidth="800.0" prefHeight="110.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
-   <Pane prefHeight="200.0" prefWidth="10.0" />
-   <Pane prefHeight="200.0" prefWidth="1.0">
-<!--      <children>-->
-<!--         <Circle layoutY="36.0" radius="3.0" styleClass="task_cell_deco_circle"/>-->
-<!--         <Line endY="90.0" styleClass="task_cell_deco_line" />-->
-<!--      </children>-->
-   </Pane>
+<HBox id="cardPane" fx:id="cardPane" minWidth="750.0" prefHeight="95.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
+   <Pane prefHeight="200.0" prefWidth="1.0"/>
     <GridPane HBox.hgrow="ALWAYS">
         <columnConstraints>
             <ColumnConstraints hgrow="SOMETIMES" minWidth="10" prefWidth="150" />
