@@ -12,8 +12,8 @@ public class ThemeCommand extends Command {
     public static final String COMMAND_WORD = "theme";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Changes the theme to the specified theme.\n"
-            + "Parameters: THEME (only light or dark)\n"
-            + "Example: " + COMMAND_WORD + " \"dark\" OR " + COMMAND_WORD + " \"light\"";
+            + "Parameters: THEME (only \"light\" or \"dark\")\n"
+            + "Example: " + COMMAND_WORD + " dark OR " + COMMAND_WORD + " light";
 
     public static final String CHANGE_THEME_MESSAGE = "Changed theme.";
 
