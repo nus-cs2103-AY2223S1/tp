@@ -33,7 +33,7 @@ import seedu.address.testutil.PersonBuilder;
 
 public class EditAppointmentCommandTest {
     @Test
-    public void execute_editAppointmnetBothFields_success() {
+    public void execute_editAppointmentBothFields_success() {
         // Create actualModel
         Model actualModel = new ModelManager(new AddressBook(), new UserPrefs(), new CommandHistory());
         Appointment appointmentToEdit = new AppointmentBuilder()
@@ -87,7 +87,6 @@ public class EditAppointmentCommandTest {
 
         // Create editAppointmentCommand
         EditAppointmentDescriptor descriptor = new EditAppointmentDescriptor();
-        descriptor.setDateTime(ParserUtil.parseDateTime(VALID_DATETIME_21_JAN_2023));
         descriptor.setLocation(new Location(VALID_LOCATION_WESTMALL));
         EditAppointmentCommand editAppointmentCommand =
                 new EditAppointmentCommand(INDEX_FIRST_PERSON, INDEX_FIRST_APPOINTMENT, descriptor);
@@ -122,7 +121,6 @@ public class EditAppointmentCommandTest {
         // Create editAppointmentCommand
         EditAppointmentDescriptor descriptor = new EditAppointmentDescriptor();
         descriptor.setDateTime(ParserUtil.parseDateTime(VALID_DATETIME_23_JAN_2023));
-        descriptor.setLocation(new Location(VALID_LOCATION_NUS));
         EditAppointmentCommand editAppointmentCommand =
                 new EditAppointmentCommand(INDEX_FIRST_PERSON, INDEX_FIRST_APPOINTMENT, descriptor);
 

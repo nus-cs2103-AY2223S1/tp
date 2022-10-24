@@ -90,7 +90,8 @@ public class EditAppointmentCommand extends Command {
         }
 
         Appointment editedAppointment = createEditedAppointment(appointmentToEdit, editAppointmentDescriptor);
-        if (appointmentSet.contains(editedAppointment) || appointmentToEdit.equals(editedAppointment)) {
+        if (editAppointmentDescriptor.getDateTime().isPresent()
+                && model.hasPersonWithSameAppointmentDateTime(editedAppointment)) {
             throw new CommandException(MESSAGE_DUPLICATE_APPOINTMENT_DATE_TIME);
         }
 
