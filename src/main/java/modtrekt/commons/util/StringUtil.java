@@ -104,7 +104,7 @@ public class StringUtil {
      * Python's shlex for Java.
      * Source: https://stackoverflow.com/questions/1082953/shlex-alternative-for-java
      */
-    public static String[] shellSplit(CharSequence string) {
+    public static List<String> shellSplit(CharSequence string) {
         requireNonNull(string);
         List<String> tokens = new ArrayList<>();
         boolean escaping = false;
@@ -137,6 +137,6 @@ public class StringUtil {
         if (current.length() > 0 || lastCloseQuoteIndex == (string.length() - 1)) {
             tokens.add(current.toString());
         }
-        return tokens.toArray(new String[0]);
+        return tokens;
     }
 }

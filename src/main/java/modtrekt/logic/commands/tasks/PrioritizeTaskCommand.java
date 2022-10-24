@@ -18,7 +18,7 @@ import modtrekt.model.task.Task;
 /**
  * Sets the priority of a task to a specified level.
  */
-@Parameters(commandDescription = "Assigns a task a priority rating.")
+@Parameters(commandDescription = "Assigns a priority rating to a task in the task book.")
 public class PrioritizeTaskCommand extends Command {
     public static final String COMMAND_WORD = "prioritize";
 

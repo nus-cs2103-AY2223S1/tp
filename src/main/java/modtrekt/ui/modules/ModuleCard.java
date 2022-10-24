@@ -39,6 +39,12 @@ public class ModuleCard extends UiPart<Region> {
         // Add the task count badge, pluralizing `task` if necessary.
         Label taskBadge = new Label(StringUtil.pluralize(module.getTaskCountInt(), "task"));
         this.badges.getChildren().add(taskBadge);
+
+        if (module.isDone()) {
+            // Add the `done` badge if the module is done.
+            Label doneBadge = new Label("DONE");
+            this.badges.getChildren().add(doneBadge);
+        }
     }
 
     @Override

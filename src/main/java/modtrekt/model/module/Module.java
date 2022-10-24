@@ -10,7 +10,23 @@ public class Module {
     private final ModCode code;
     private final ModName name;
     private final ModCredit credits;
+    private final boolean isDone;
     private ModTaskCount taskCount;
+
+    /**
+     * Creates a Module with the given code, name, credits and tasks.
+     *
+     * @param code    the module code
+     * @param name    the module name
+     * @param credits the number of credits for the module
+     */
+    public Module(ModCode code, ModName name, ModCredit credits, ModTaskCount taskCount, boolean isDone) {
+        this.code = code;
+        this.name = name;
+        this.credits = credits;
+        this.taskCount = taskCount;
+        this.isDone = isDone;
+    }
 
     /**
      * Creates a Module with the given code, name, credits and tasks.
@@ -24,6 +40,7 @@ public class Module {
         this.name = name;
         this.credits = credits;
         this.taskCount = taskCount;
+        this.isDone = false;
     }
 
     /**
@@ -38,6 +55,7 @@ public class Module {
         this.name = new ModName(name);
         this.credits = new ModCredit(credits);
         this.taskCount = new ModTaskCount(taskCount);
+        this.isDone = false;
     }
 
     public ModName getName() {
@@ -59,6 +77,18 @@ public class Module {
         return Integer.parseInt(taskCount.toString());
     }
 
+    public boolean isDone() {
+        return this.isDone;
+    }
+
+    public Module done() {
+        return new Module(this.code, this.name, this.credits, this.taskCount, true);
+    }
+
+    public Module undone() {
+        return new Module(this.code, this.name, this.credits, this.taskCount, false);
+    }
+
     /**
      * Updates the number of tasks the module has.
      *
@@ -78,7 +108,8 @@ public class Module {
         }
 
         return otherModule != null
-                && otherModule.getName().equals(getName());
+                && otherModule.getName().equals(getName())
+                && otherModule.isDone() == this.isDone();
     }
 
     /**
@@ -108,7 +139,8 @@ public class Module {
         Module otherModule = (Module) other;
         return otherModule.getName().equals(getName())
                 && otherModule.getCode().equals(getCode())
-                && otherModule.getCredits() == getCredits();
+                && otherModule.getCredits() == getCredits()
+                && otherModule.isDone() == this.isDone();
     }
 
     @Override
@@ -119,6 +151,6 @@ public class Module {
 
     @Override
     public String toString() {
-        return getName() + ", Code: " + getCode() + ", Credits: " + getCredits();
+        return getName() + ", Code: " + getCode() + ", Credits: " + getCredits() + (isDone ? "(DONE)" : "");
     }
 }

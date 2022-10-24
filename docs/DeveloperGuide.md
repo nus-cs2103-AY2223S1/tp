@@ -2,8 +2,35 @@
 layout: page
 title: Developer Guide
 ---
-1. Table of Contents
-{:toc}
+# Table of Contents 
+1. [Acknowledgements](#acknowledgements)
+2. [Setting up, getting started](#setting-up-getting-started)
+3. [Design](#design)
+   - [Architecture](#architecture)
+   - [UI component](#ui-component)
+   - [Logic component](#logic-component)
+   - [Model component](#model-component)
+   - [Storage component](#storage-component)
+   - [Common classes](#common-classes)
+4. [Implementation](#implementation)
+   - [Module Features](#module-features)
+     - [Add Module](#add-module)
+     - [Remove Module](#remove-module)
+     - [Navigation](#navigation)
+   - [Task/Deadline Features](#taskdeadline-features)
+     - [Add Task](#add-task)
+     - [Remove Task](#remove-task)
+     - [Edit Task](#edit-task)
+     - [Task Archival](#task-archival)
+     - [Task Listing](#task-listing)
+5. [Documentation, logging, testing, configuration, dev-ops](#documentation-logging-testing-configuration-dev-ops)
+6. [Appendix: Requirements](#appendix-requirements)
+   - [Product Scope](#product-scope)
+   - [User Stories](#user-stories)
+   - [Use Cases](#use-cases)
+   - [Non-Functional Requirements](#non-functional-requirements)
+   - [Glossary](#glossary)
+7. [Appendix: Instructions for manual testing](#appendix-instructions-for-manual-testing)
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -52,7 +79,9 @@ The rest of the App consists of four components.
 
 **How the architecture components interact with each other**
 
-The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues the command `delete 1`.
+The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues the command `delete -m 1` to remove the module with index `1`.
+
+Note that while our program has both tasks and modules, the flow of logic for doing operations (i.e. delete, add etc.) on them are similar. Therefore, although the following sections only illustrate the components in the context of modules, they are similar when applied in the context of tasks as well.
 
 <img src="images/ArchitectureSequenceDiagram.png" width="574" />
 
@@ -65,7 +94,7 @@ For example, the `Logic` component defines its API in the `Logic.java` interface
 
 <img src="images/ComponentManagers.png" width="300" />
 
-The sections below give more details of each component.
+The sections below give more details of each component. As stated above, tasks are omitted in place of modules in the following sections due to the similarity between them.
 
 ### UI component
 
@@ -164,16 +193,16 @@ Here's a (partial) class diagram of the `Logic` component:
 <img src="images/LogicClassDiagram.png" width="550"/>
 
 How the `Logic` component works:
-1. When `Logic` is called upon to execute a command, it uses the `ModuleListParser` class to parse the user command.
+1. When `Logic` is called upon to execute a command, it uses the `ModtrektParser` class to parse the user command.
 1. This results in a `Command` object (more precisely, an object of one of its subclasses e.g., `AddCommand`) which is executed by the `LogicManager`.
-1. The command can communicate with the `Model` when it is executed (e.g. to add a person).
+1. The command can communicate with the `Model` when it is executed (e.g. to add or remove a module).
 1. The result of the command execution is encapsulated as a `CommandResult` object which is returned back from `Logic`.
 
-The Sequence Diagram below illustrates the interactions within the `Logic` component for the `execute("delete 1")` API call.
+The Sequence Diagram below illustrates the interactions within the `Logic` component for the `execute("delete -m 1")` API call.
 
-![Interactions Inside the Logic Component for the `delete 1` Command](images/DeleteSequenceDiagram.png)
+![Interactions Inside the Logic Component for the `delete -m 1` Command](images/DeleteSequenceDiagram.png)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `RemoveCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
 
 Here are the other classes in `Logic` (omitted from the class diagram above) that are used for parsing a user command:
@@ -181,11 +210,11 @@ Here are the other classes in `Logic` (omitted from the class diagram above) tha
 <img src="images/ParserClasses.png" width="600"/>
 
 How the parsing works:
-* When called upon to parse a user command, the `ModuleListParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddCommand`) which the `ModuleListParser` returns back as a `Command` object.
-* All `XYZCommandParser` classes (e.g., `AddCommandParser`, `DeleteCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
+* When called upon to parse a user command, the `ModtrektParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddCommand`) which the `ModtrektParser` returns back as a `Command` object.
+* All `XYZCommandParser` classes (e.g., `AddCommandParser`, `RemoveCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
 
 ### Model component
-**API** : [`Model.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/model/Model.java)
+**API** : [`Model.java`](https://github.com/AY2223S1-CS2103T-W10-4/tp/blob/master/src/main/java/modtrekt/model/Model.java)
 
 <img src="images/ModelClassDiagram.png" width="450" />
 
@@ -206,7 +235,7 @@ The `Model` component,
 
 ### Storage component
 
-**API** : [`Storage.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/storage/Storage.java)
+**API** : [`Storage.java`](https://github.com/AY2223S1-CS2103T-W10-4/tp/blob/master/src/main/java/modtrekt/storage/Storage.java)
 
 <img src="images/StorageClassDiagram.png" width="550" />
 
@@ -217,7 +246,7 @@ The `Storage` component,
 
 ### Common classes
 
-Classes used by multiple components are in the `seedu.addressbook.commons` package.
+Classes used by multiple components are in the `modtrekt.commons` package.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -225,7 +254,10 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
+
 ### Module Features
+
+Section by : [Ho Jun Hao](https://github.com/hojunhao2000)
 
 ### Add module
 
@@ -337,6 +369,8 @@ first obtain the `Module` using the index. Then it would remove the `Module` fro
 
 ### Navigation
 
+Section by : [David](https://github.com/vvidday)
+
 #### Change Current Module
 
 The `cd` command allows users to set a module as the **current module**, which accomplishes two things:
@@ -384,6 +418,8 @@ In the diagram, the predicates `modulePredicate` and `taskPredicate` are the cus
 ### Tasks
 
 ### Task/Deadline Features
+
+Section by : [Dominic](https://github.com/domoberzin)
 
 ### Add task
 
@@ -538,6 +574,8 @@ task details in the list.
 
 ### Task archival
 
+Section by : [Jonathan](https://github.com/jontmy)
+
 Task archival allows users to selectively hide tasks that they have completed.
 
 Every task in the task book will be in either the archived or unarchived state.
@@ -598,6 +636,8 @@ with "unarchive", and vice versa.
 
 ### Task listing
 
+Section by : [Jonathan](https://github.com/jontmy)
+
 Task listing allows users to view the tasks they have created which belong to a module.
 
 The relevant commands for this section are:
@@ -650,18 +690,28 @@ for the`ls` and `ls -a` commands:
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Category         | Priority | As a ...                         | I want to ...                                 | So that I can ...                                                                                    |
-|------------------|----------|----------------------------------|-----------------------------------------------|------------------------------------------------------------------------------------------------------|
-| Onboarding       | `***`    | first time user learning the app | see the basic commands in the welcome message | start adding modules and tasks immediately                                                           |
-| Module Planning  | `***`    | user                             | view the modules I need to take               | figure out my study plan ahead of time                                                               |
-| Module Planning  | `***`    | user                             | add/mark the modules that I plan to take      | organize my study plan                                                                               |
-| Module Planning  | `***`    | user                             | delete the modules that I added               | fix my mistakes if needed                                                                            |
-| Tasks / Deadline | `***`    | user                             | add a task                                    | keep track of the things I need to do (without any deadlines) for a module I am taking this semester |
-| Tasks / Deadline | `***`    | user                             | add a deadline                                | keep track of the assignments I have to submit soon                                                  |
-| Tasks / Deadline | `***`    | user                             | view my tasks and deadlines per module        | see my tasks and deadlines in an organized manner                                                    |
-| Tasks / Deadline | `***`    | clumsy user                      | delete tasks and deadlines                    | ensure my homepage is not cluttered with unused items                                                |                                              |
-
-*{More to be added}*
+| Category         | Priority | As a ...                           | I want to ...                                                                             | So that I can ...                                                 |
+|------------------|----------|------------------------------------|-------------------------------------------------------------------------------------------|-------------------------------------------------------------------|
+| Onboarding       | `***`    | first time user learning the app   | see the basic commands in the welcome message                                             | start adding modules and tasks immediately                        |
+| Onboarding       | `***`    | first time user exploring the app  | see the app working with sample data                                                      | see how the app looks in action                                   |
+| UI/UX            | `**`     | impatient user                     | utilise commands to quickly be reminded of deadlines                                      | save time locating my deadlines                                   |
+| UI/UX            | `***`    | advanced user                      | use shortcuts or shorthand commands to add tasks and deadlines                            | accomplish these tasks in a shorter amount of time                |
+| UI/UX            | `***`    | experienced user                   | quickly add and filter out all my tasks and deadlines using the commands instead of a GUI | these actions are much faster                                     |
+| UI/UX            | `***`    | novice user                        | use a help command to get a summary of the available commands and how to use them         | learn which commands to use                                       |
+| UI/UX            | `***`    | beginner user                      | see clear and complete error messages when I provide invalid input                        | correct my mistakes                                               |
+| Module Planning  | `***`    | NUS freshie                        | add/mark the modules that I plan to take                                                  | organize my study plan                                            |
+| Module Planning  | `***`    | user                               | delete the modules that I added                                                           | fix my mistakes if needed                                         |
+| Tasks / Deadline | `**`     | student overwhelmed by assignments | sort my deadlines                                                                         | prioritise the ones that are due the soonest                      |
+| Tasks / Deadline | `**`     | student overwhelmed by tasks       | assign priority ratings to various tasks                                                  | prioritise the ones that I deem are more important                |
+| Tasks / Deadline | `**`     | student overwhelmed by tasks       | sort tasks via priority ratings                                                           | figure out which ones to work on first                            |
+| Tasks / Deadline | `***`    | second time user                   | add a task                                                                                | so that I can keep track of the things I need to do for a module  |
+| Tasks / Deadline | `***`    | second time user                   | add a deadline                                                                            | so that I can keep track of tasks with a due date                 |
+| Tasks / Deadline | `***`    | user                               | choose which modules to add my tasks and deadlines to                                     | organise my tasks and deadlines according to modules              |
+| Tasks / Deadline | `***`    | user                               | view my tasks and deadlines per module                                                    | see my tasks and deadlines in an organised manner                 |
+| Tasks / Deadline | `***`    | user                               | change the module of a specific task or deadline                                          | move my tasks and deadlines around if I make a mistake            |
+| Tasks / Deadline | `***`    | clumsy user                        | delete tasks and deadlines                                                                | ensure my homepage is not cluttered with unused items             |
+| Tasks / Deadline | `**`     | novice user                        | archive tasks and deadlines that are completed                                            | refer to them in future                                           |
+| Tasks / Deadline | `***`    | novice user                        | change a deadline that I had created                                                      | adjust the due date accordingly in the event the deadline changes |
 
 ### Use cases
 
@@ -680,7 +730,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 2a. The list is empty.
 
-  * 2a.1 ModtRekt displays "No active tasks or deadlines".
+  * 2a.1 ModtRekt displays an empty list.
 
     Use case ends
 
@@ -688,64 +738,62 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1.  User requests to add a task
-2.  ModtRekt shows a list of modules
-3.  User requests to add a task to specific module in the list
-4.  ModtRekt adds the task
+1. User requests to add a task and specifies the module for the task
+2. ModtRekt adds the task
+3. Task count of the module is updated, and the task is added to the displayed list
 
     Use case ends.
 
 **Extensions**
 
-* 2a. The module list is empty.
+* 2a. The module list is empty
+  * 2a1. ModtRekt shows an error message when the command is entered
+  
+     Use case ends.
 
-  Use case ends.
+* 3a. The given module code is invalid
 
-* 3a. The given index is invalid.
+    * 3a1. ModtRekt shows an error message when the command is entered
 
-    * 3a1. ModtRekt shows an error message.
-
-      Use case resumes at step 2.
+      Use case resumes at step 1.
 
 **Use case: Add a deadline**
 
 **MSS**
 
-1.  User requests to add a deadline
-2.  ModtRekt shows a list of modules
-3.  User requests to add a deadline to specific module in the list
-4.  ModtRekt adds the deadline
+1. User requests to add a deadline and specifies the module for the deadline
+2. ModtRekt adds the deadline
+3. Task count of the module is updated, and the deadline is added to the displayed list
 
     Use case ends.
 
 **Extensions**
 
-* 2a. The module list is empty.
+* 2a. The module list is empty
+    * 2a1. ModtRekt shows an error message when the command is entered
 
-  Use case ends.
+      Use case ends.
 
-* 3a. The given index is invalid.
+* 3a. The given module code is invalid
 
-    * 3a1. ModtRekt shows an error message.
+    * 3a1. ModtRekt shows an error message when the command is entered
 
-      Use case resumes at step 2.
+      Use case resumes at step 1.
 
 **Use case: Remove a task**
 
 **MSS**
 
 1. User requests to remove a task
-2. ModtRekt shows a list of modules
-3. User requests to remove a task from specific module in the list
-4. ModtRekt shows a list of tasks in that module
-5. User requests to remove a specific task of the module in the list
-6. ModtRekt removes the task
+2. ModtRekt shows a list of tasks
+3. User requests to remove a specific task via index
+4. ModtRekt removes the task
 
     Use case ends.
 
 **Extensions**
 
-* 2a. The module list is empty.
+* 2a. The task list is empty.
 
   Use case ends.
 
@@ -754,33 +802,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 3a1. ModtRekt shows an error message.
 
       Use case resumes at step 2.
-
-* 4a. The task list is empty.
-
-  Use case ends.
-
-* 5a. The given index is invalid.
-
-    * 5a1. ModtRekt shows an error message.
-
-      Use case resumes at step 4.
-
-**Use case: View modules remaining for graduation**
-
-**MSS**
-
-1.  User requests to view what modules he has left for graduation
-2.  ModtRekt shows a list of modules, categorised into each requirement
-
-    Use case ends.
-
-**Extensions**
-
-* 2a. All the requirements are met.
-
-    * 2a1. ModtRekt congratulates user.
-
-      Use case ends.
+    
 
 
 *{More to be added}*
@@ -833,19 +855,19 @@ testers are expected to do more *exploratory* testing.
 
 1. _{ more test cases …​ }_
 
-### Deleting a person
+### Removing a task
 
-1. Deleting a person while all persons are being shown
+1. Removing a task while all tasks are being shown
 
-    1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
+    1. Prerequisites: All tasks (archived and active) are shown, and user is not currently cd-ed into a module.
 
-    1. Test case: `delete 1`<br>
-       Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
+    1. Test case: `remove -t 1`<br>
+       Expected: First task is deleted from the list. Details of the deleted task shown in the status message.
 
-    1. Test case: `delete 0`<br>
-       Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
+    1. Test case: `remove -t 0`<br>
+       Expected: No task is deleted. Error details shown in the status message. Status bar remains the same.
 
-    1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
+    1. Other incorrect remove commands to try: `remove`, `remove -t x`, `...` (where x is larger than the list size)<br>
        Expected: Similar to previous.
 
 1. _{ more test cases …​ }_

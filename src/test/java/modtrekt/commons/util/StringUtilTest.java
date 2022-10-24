@@ -151,48 +151,49 @@ public class StringUtilTest {
 
     @Test
     public void shellSplit_emptyInput_returnsEmptyArray() {
-        assertEquals(0, StringUtil.shellSplit("").length);
+        assertEquals(0, StringUtil.shellSplit("").size());
     }
 
     @Test
     public void shellSplit_blankInput_returnsEmptyArray() {
-        assertEquals(0, StringUtil.shellSplit(" \n \r  \r\n ").length);
+        assertEquals(0, StringUtil.shellSplit(" \n \r  \r\n ").size());
     }
 
     @Test
     public void shellSplit_validInputsWithoutSpaces_returnsCorrectArray() {
-        assertArrayEquals(new String[]{"test"}, StringUtil.shellSplit("test"));
-        assertArrayEquals(new String[]{"test", "-a"}, StringUtil.shellSplit("test -a"));
-        assertArrayEquals(new String[]{"test", "-a"}, StringUtil.shellSplit("test      -a"));
-        assertArrayEquals(new String[]{"test", "-a", "abc"}, StringUtil.shellSplit("test -a abc"));
-        assertArrayEquals(new String[]{"test", "-a", "abc", "-b", "xyz"}, StringUtil.shellSplit("test -a abc -b xyz"));
+        assertArrayEquals(new String[]{"test"}, StringUtil.shellSplit("test").toArray());
+        assertArrayEquals(new String[]{"test", "-a"}, StringUtil.shellSplit("test -a").toArray());
+        assertArrayEquals(new String[]{"test", "-a"}, StringUtil.shellSplit("test      -a").toArray());
+        assertArrayEquals(new String[]{"test", "-a", "abc"}, StringUtil.shellSplit("test -a abc").toArray());
+        assertArrayEquals(new String[]{"test", "-a", "abc", "-b", "xyz"},
+                StringUtil.shellSplit("test -a abc -b xyz").toArray());
     }
 
     @Test
     public void shellSplit_validInputsWithSpaces_returnsCorrectArray() {
         assertArrayEquals(
                 new String[]{"test", "-a", "abc", "def", "ghi"},
-                StringUtil.shellSplit("test -a abc def ghi")
+                StringUtil.shellSplit("test -a abc def ghi").toArray()
         );
         assertArrayEquals(
                 new String[]{"test", "-a", "abc def ghi"},
-                StringUtil.shellSplit("test -a \"abc def ghi\"")
+                StringUtil.shellSplit("test -a \"abc def ghi\"").toArray()
         );
         assertArrayEquals(
                 new String[]{"test", "-a", "abc def ghi", "-b", "w", "x", "y", "z"},
-                StringUtil.shellSplit("test -a \"abc def ghi\" -b w x y z")
+                StringUtil.shellSplit("test -a \"abc def ghi\" -b w x y z").toArray()
         );
         assertArrayEquals(
                 new String[]{"test", "-b", "w", "x", "y", "z", "-a", "abc def ghi"},
-                StringUtil.shellSplit("test -b w x y z -a \"abc def ghi\"")
+                StringUtil.shellSplit("test -b w x y z -a \"abc def ghi\"").toArray()
         );
         assertArrayEquals(
                 new String[]{"test", "-a", "abc def ghi", "-b", "w x y z"},
-                StringUtil.shellSplit("test -a \"abc def ghi\" -b \"w x y z\"")
+                StringUtil.shellSplit("test -a \"abc def ghi\" -b \"w x y z\"").toArray()
         );
         assertArrayEquals(
                 new String[]{"test", "-a", "a b  c   d     e\nf"},
-                StringUtil.shellSplit("test -a \"a b  c   d     e\nf\"")
+                StringUtil.shellSplit("test -a \"a b  c   d     e\nf\"").toArray()
         );
     }
 }

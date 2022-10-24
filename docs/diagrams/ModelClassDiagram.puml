@@ -14,12 +14,10 @@ Class UserPrefs
 
 Class UniqueModuleList
 Class Module
-Class Address
-Class Email
-Class Name
-Class Phone
-Class Tag
-
+Class ModCode
+Class ModName
+Class ModTaskCount
+Class ModCredit
 }
 
 Class HiddenOutside #FFFFFF
@@ -36,15 +34,10 @@ UserPrefs .up.|> ReadOnlyUserPrefs
 
 ModuleList *--> "1" UniqueModuleList
 UniqueModuleList --> "~* all" Module
-Module *--> Name
-Module *--> Phone
-Module *--> Email
-Module *--> Address
-Module *--> "*" Tag
-
-Name -[hidden]right-> Phone
-Phone -[hidden]right-> Address
-Address -[hidden]right-> Email
+Module *--> ModTaskCount
+Module *--> ModCredit
+Module *--> ModName
+Module *--> ModCode
 
 ModuleManager -->"~* filtered" Module
 @enduml
