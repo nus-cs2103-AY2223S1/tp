@@ -127,7 +127,7 @@ public class EditAppointmentCommand extends SelectAppointmentCommand {
         private String reason;
         private LocalDateTime dateTime;
         private List<Integer> timePeriod;
-        private Set<Tag> tags = new HashSet<>();
+        private Set<Tag> tags;
         public EditAppointmentDescriptor() {}
 
         /**
@@ -143,7 +143,7 @@ public class EditAppointmentCommand extends SelectAppointmentCommand {
         }
 
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(reason, dateTime, timePeriod) || !tags.isEmpty();
+            return CollectionUtil.isAnyNonNull(reason, dateTime, timePeriod, tags);
         }
 
         public void setReason(String reason) {
