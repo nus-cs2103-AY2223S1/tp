@@ -34,25 +34,26 @@ contains some sample data.<br>
 
 ### 1.1. Command summary
 
-| Action                                              | Format                                                                  | Short Description                                                               |
-|-----------------------------------------------------|-------------------------------------------------------------------------|---------------------------------------------------------------------------------|
-| [`add-module`](#211-add-module)                     | `add-module      m/MODULE_CODE [t/MODULE_TITLE]`                        | Add module with a module code and optional module title                         |
-| [`delete-module`](#212-delete-module)               | `delete-module   m/MODULE_CODE`                                         | Delete module by module code                                                    |
-| [`find-module`](#213-find-module)                   | `find-module     KEYWORD`                                               | Find module that starts with specified keyword in home page                     |
-| [`list-module`](#214-list-module)                   | `list-module`                                                           | List all modules in home page after finding                                     |
-| [`add-task`](#221-add-task)                         | `add-task        m/MODULE_CODE td/TASK_DESCRIPTION`                     | Add task with specified module code and task description                        |
-| [`delete-task`](#222-delete-task)                   | `delete-task     m/MODULE_CODE tn/TASK_NUMBER`                          | Delete task corresponding to specified task number of specified module code     |
-| [`swap-task`](#223-reorder-tasks-swap)              | `swap-task       m/MODULE_CODE ts/FIRST_TASK_NUMBER SECOND_TASK_NUMBER` | Swaps the order of tasks in the task list of a specified module                 |
-| [`add-link`](#231-add-link)                         | `add-link        INDEX l/LINK_URL`                                      | Add link URL to a module by its displayed index                                 |
-| [`delete-link`](#232-delete-link)                   | `delete-link     INDEX l/LINK_URL`                                      | Delete link URL from a module by its displayed index                            |
-| [`add-contact`](#241-add-contact)                   | `add-contact     n/NAME    e/EMAIL    p/PHONE_NUMBER`                   | Add contact with specified name, email, and phone number                        |
-| [`delete-contact`](#242-delete-contact-coming-soon) | `delete-contact  n/NAME`                                                | Delete contact belonging to the specified name                                  |
-| [`edit-contact`](#243-edit-contact)                 | `edit-contact    INDEX ([n/NAME] [e/EMAIL]  [p/PHONE_NUMBER])`          | Edit contact belonging to the specified index currently displayed on the screen |
-| [`find-contact`](#244-find-contact)                 | `find-contact KEYWORD`                                                  | Find contacts that starts with specified keyword                                |
-| [`list-contact`](#245-list-contact)                 | `list-contact`                                                          | List all contacts                                                               |
-| [`home`](#251-navigate-to-home)                     | `home`                                                                  | Navigate to the home page                                                       |
-| [`goto`](#252-navigate-between-modules)             | `goto MODULE_CODE`                                                      | Navigate to specified module page                                               |
-| [`exit`](#26-exiting-the-program)                   | `exit`                                                                  | Exit the program                                                                |
+
+| Action                                  | Format                                                                  | Short Description                                                               |
+|-----------------------------------------|-------------------------------------------------------------------------|---------------------------------------------------------------------------------|
+| [`add-module`](#211-add-module)         | `add-module      m/MODULE_CODE [t/MODULE_TITLE]`                        | Add module with a module code and optional module title                         |
+| [`delete-module`](#212-delete-module)   | `delete-module   m/MODULE_CODE`                                         | Delete module by module code                                                    |
+| [`find-module`](#213-find-module)       | `find-module     KEYWORD`                                               | Find module that starts with specified keyword in home page                     |
+| [`list-module`](#214-list-module)       | `list-module`                                                           | List all modules in home page after finding                                     |
+| [`add-task`](#221-add-task)             | `add-task        m/MODULE_CODE td/TASK_DESCRIPTION`                     | Add task with specified module code and task description                        |
+| [`delete-task`](#222-delete-task)       | `delete-task     m/MODULE_CODE tn/TASK_NUMBER`                          | Delete task corresponding to specified task number of specified module code     |
+| [`swap-task`](#223-reorder-tasks-swap)  | `swap-task       m/MODULE_CODE ts/FIRST_TASK_NUMBER SECOND_TASK_NUMBER` | Swaps the order of tasks in the task list of a specified module                 |
+| [`add-link`](#231-add-link)             | `add-link        INDEX l/LINK_URL`                                      | Add link URL to a module by its displayed index                                 |
+| [`delete-link`](#232-delete-link)       | `delete-link     INDEX l/LINK_URL`                                      | Delete link URL from a module by its displayed index                            |
+| [`add-person`](#241-add-person)         | `add-person      n/NAME    e/EMAIL    p/PHONE_NUMBER`                   | Add contact with specified name, email, and phone number                        |
+| [`delete-person`](#242-delete-person)   | `delete-person   n/NAME`                                                | Delete contact belonging to the specified name                                  |
+| [`edit-person`](#243-edit-person)       | `edit-person     INDEX ([n/NAME] [e/EMAIL]  [p/PHONE_NUMBER])`          | Edit contact belonging to the specified index currently displayed on the screen |
+| [`find-person`](#244-find-person)       | `find-person     KEYWORD`                                               | Find contacts that starts with specified keyword                                |
+| [`list-person`](#245-list-person)       | `list-person`                                                           | List all contacts                                                               |
+| [`home`](#251-navigate-to-home)         | `home`                                                                  | Navigate to the home page                                                       |
+| [`goto`](#252-navigate-between-modules) | `goto MODULE_CODE`                                                      | Navigate to specified module page                                               |
+| [`exit`](#26-exiting-the-program)       | `exit`                                                                  | Exit the program                                                                |
 
 ## 2. Features
 
@@ -80,7 +81,7 @@ the parameter will be taken.<br>
   e.g. if you specify `p/81234123 p/99999999`, only `p/99999999` will be taken.
 
 * Extraneous parameters for commands that do not take in parameters (such as
-  `home`, `list-module`, `list-contact` and `exit`) will be ignored.<br>
+  `home`, `list-module`, `list-person` and `exit`) will be ignored.<br>
   e.g. if the command specifies `home 123`, it will be interpreted as `home`.
 
 </div>
@@ -284,97 +285,97 @@ from the module with the displayed index of `2`.
 <br>
 
 ### 2.4. Contacts
-#### 2.4.1. Add contact
-You may add a contact using the `add-contact` command.
+#### 2.4.1. Add person
+You may add a contact using the `add-person` command.
 
 This command will require two flags, and one optional flag:
 * `n/`: To be followed by the to-be-added contact name.
 * `e/`: To be followed by the email of the new contact.
 * `p/`: To be followed by the phone number of the new contact.
 
-Format: `add-contact n/NAME e/EMAIL p/PHONE_NUMBER`
+Format: `add-person n/NAME e/EMAIL p/PHONE_NUMBER`
 * You cannot add a duplicate name into Plannit.
 * You cannot specify any country code for phone number.
 * You cannot specify a non-8-digit phone number.
 
 Example:
 ```
-add-contact n/Dinosaur Lim e/dinosaurlim@gmail.com p/91234567
+add-person n/Dinosaur Lim e/dinosaurlim@gmail.com p/91234567
 ```
 In the above example, we are adding a contact with name `Dinosaur Lim`, email `dinosaurlim@gmail.com`, and phone number
 `91234567` into Plannit.
 
-#### 2.4.2. Delete contact (coming soon)
-You may delete a contact using the `delete-contact` command.
+#### 2.4.2. Delete person
+You may delete a contact using the `delete-person` command.
 
 This command will require one flag:
 * `n/`: To be followed by the to-be-deleted contact name.
 
-Format: `delete-contact n/NAME`
+Format: `delete-person n/NAME`
 * You cannot delete a non-existent contact.
 
 Example:
 ```
-delete-contact n/Dinosaur Lim
+delete-person n/Dinosaur Lim
 ```
 In the above example, we are deleting a contact with name `Dinosaur Lim` from Plannit.
 
-#### 2.4.3. Edit contact
-You may edit a contact using the `edit-contact` command.
+#### 2.4.3. Edit person
+You may edit a contact using the `edit-person` command.
 
 This command will require an index and minimally any of the three flags:
 * `n/`: To be followed by the new contact name.
 * `e/`: To be followed by the new email of the contact.
 * `p/`: To be followed by the new phone number of the contact.
 
-Format: `edit-contact INDEX ([n/NAME] [e/EMAIL] [p/PHONE_NUMBER])`
+Format: `edit-person INDEX ([n/NAME] [e/EMAIL] [p/PHONE_NUMBER])`
 * `INDEX` is the currently displayed index number of the contact you are editing for on the screen.
 * You cannot specify any country code for phone number.
 * You cannot specify a non-8-digit phone number.
 
 Examples:
 ```
-edit-contact 1 n/Dinosaur Lim
+edit-person 1 n/Dinosaur Lim
 ```
 In the above example, we are editing the contact with a displayed-index number of '1' on the screen to now have the name
 `Dinosaur Lim` in Plannit.
 ```
-edit-contact 1 e/dinosaurlim@gmail.com
+edit-person 1 e/dinosaurlim@gmail.com
 ```
 In the above example, we are editing the contact with a displayed-index number of '1' on the screen to now have the
 email `dinosaurlim@gmail.com`in Plannit.
 ```
-edit-contact 1 n/Dinosaur Lim e/dinosaurlim@gmail.com p/91234567
+edit-person 1 n/Dinosaur Lim e/dinosaurlim@gmail.com p/91234567
 ```
 In the above example, we are editing the contact with a displayed-index number of '1' on the screen to now have the name
 `Dinosaur Lim`, email `dinosaurlim@gmail.com`, and phone number `91234567` in Plannit.
 
 
-#### 2.4.4. Find contact
+#### 2.4.4. Find person
 You can find all contacts in Plannit whose name starts with a specific keyword.
 
-Format: `find-contact KEYWORD`
+Format: `find-person KEYWORD`
 * The KEYWORD is case-insensitive.
 
 Examples:
 ```
-find-contact alex
+find-person alex
 ```
 OR
 ```
-find-contact Alex
+find-person Alex
 ```
 In either of the above examples, we find every contact with names starting with Alex from Plannit.
 
-#### 2.4.5. List contact
+#### 2.4.5. List person
 Show a list of all contacts in Plannit after finding contacts.
 
-Format: `list-contact`
+Format: `list-person`
 
 Example:
 
 ```
-list-contact
+list-person
 ```
 In the above example, we list every contact in Plannit.
 

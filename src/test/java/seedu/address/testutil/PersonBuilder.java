@@ -10,9 +10,9 @@ import seedu.address.model.person.Phone;
  */
 public class PersonBuilder {
 
-    public static final String DEFAULT_NAME = "Amy Bee";
-    public static final String DEFAULT_EMAIL = "amy@gmail.com";
-    public static final String DEFAULT_PHONE = "85355255";
+    public static final String DEFAULT_NAME = "Dinosaur Lee";
+    public static final String DEFAULT_EMAIL = "dinosaur@gmail.com";
+    public static final String DEFAULT_PHONE = "88888888";
 
     private Name name;
     private Email email;
