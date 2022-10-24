@@ -12,6 +12,9 @@ public class TagUtil {
             put("assm", "assignment");
             put("pres", "presentation");
             put("lec", "lecture");
+            put("prof", "professor");
+            put("ta", "tutor");
+            put("rec", "recitation");
         }};
 
     // to prevent instantiation
