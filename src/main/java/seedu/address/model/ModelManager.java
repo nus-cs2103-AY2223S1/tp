@@ -7,8 +7,10 @@ import java.nio.file.Path;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
+import javafx.scene.chart.PieChart;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.event.Event;
@@ -25,6 +27,12 @@ public class ModelManager implements Model {
     private final UserPrefs userPrefs;
     private final FilteredList<Person> filteredPersons;
     private final FilteredList<Event> filteredEvents;
+    private final ObservableList<PieChart.Data> data = FXCollections.observableArrayList(
+        new PieChart.Data("Grapefruit", 13),
+        new PieChart.Data("Oranges", 25),
+        new PieChart.Data("Plums", 10),
+        new PieChart.Data("Pears", 22),
+        new PieChart.Data("Apples", 30));
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
@@ -43,6 +51,8 @@ public class ModelManager implements Model {
     public ModelManager() {
         this(new AddressBook(), new UserPrefs());
     }
+
+
 
     //=========== UserPrefs ==================================================================================
 
@@ -170,6 +180,16 @@ public class ModelManager implements Model {
         filteredEvents.setPredicate(predicate);
     }
 
+    @Override
+    public ObservableList<PieChart.Data> getPieChartData() {
+        return data;
+    }
+
+    @Override
+    public void setData(ObservableList<PieChart.Data> newData) {
+        requireNonNull(newData);
+        this.data.setAll(newData);
+    }
 
     @Override
     public boolean equals(Object obj) {

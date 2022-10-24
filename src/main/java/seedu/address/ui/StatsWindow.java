@@ -44,6 +44,10 @@ public class StatsWindow extends UiPart<Stage> {
         this(new Stage());
     }
 
+    public void setPieChart(ObservableList<PieChart.Data> newData) {
+        chart.setData(newData);
+    }
+
     /**
      * Shows the stats window.
      * @throws IllegalStateException
