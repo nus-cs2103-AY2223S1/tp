@@ -1,4 +1,4 @@
-package seedu.rc4hdb.logic.commands.filecommands.csvfilecommands;
+package seedu.rc4hdb.logic.commands.filecommands;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static seedu.rc4hdb.commons.core.FilePostfixes.CSV_POSTFIX;
@@ -21,7 +21,6 @@ import seedu.rc4hdb.commons.exceptions.DataConversionException;
 import seedu.rc4hdb.logic.commands.CommandResult;
 import seedu.rc4hdb.logic.commands.StorageCommand;
 import seedu.rc4hdb.logic.commands.exceptions.CommandException;
-import seedu.rc4hdb.logic.commands.filecommands.ImportCommand;
 import seedu.rc4hdb.model.ReadOnlyResidentBook;
 import seedu.rc4hdb.model.ResidentBook;
 import seedu.rc4hdb.storage.Storage;
@@ -135,4 +134,5 @@ public class ImportCommandTest {
             throw new FileAlreadyExistsException(filePath.toString());
         }
     }
+
 }

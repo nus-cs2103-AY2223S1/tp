@@ -1,4 +1,4 @@
-package seedu.rc4hdb.logic.commands.filecommands.jsonfilecommands;
+package seedu.rc4hdb.logic.commands.filecommands;
 
 import static seedu.rc4hdb.logic.commands.StorageCommandTestUtil.assertCommandFailure;
 import static seedu.rc4hdb.logic.commands.StorageCommandTestUtil.assertCommandSuccess;
@@ -14,16 +14,12 @@ import org.junit.jupiter.api.io.TempDir;
 
 import seedu.rc4hdb.commons.util.FileUtil;
 import seedu.rc4hdb.logic.commands.exceptions.CommandException;
-import seedu.rc4hdb.logic.commands.filecommands.FileCommand;
-import seedu.rc4hdb.logic.commands.filecommands.FileCreateCommand;
 import seedu.rc4hdb.storage.DataStorageManager;
-import seedu.rc4hdb.storage.userprefs.JsonUserPrefsStorage;
 import seedu.rc4hdb.storage.Storage;
 import seedu.rc4hdb.storage.StorageManager;
 import seedu.rc4hdb.storage.StorageStub;
+import seedu.rc4hdb.storage.userprefs.JsonUserPrefsStorage;
 import seedu.rc4hdb.storage.userprefs.UserPrefsStorage;
-import seedu.rc4hdb.storage.residentbook.JsonResidentBookStorage;
-import seedu.rc4hdb.storage.residentbook.ResidentBookStorage;
 
 /**
  * Unit tests for {@link FileCreateCommand}.
@@ -37,9 +33,9 @@ public class FileCreateCommandTest {
 
     @BeforeEach
     public void setUp() {
-        JsonResidentBookStorage residentBookStorage = new JsonResidentBookStorage(getTempFilePath("test.json"));
+        DataStorageManager dataStorageManager = new DataStorageManager(getTempFilePath("test.json"));
         JsonUserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(getTempFilePath("testPrefs.json"));
-        storage = new StorageManager(residentBookStorage, userPrefsStorage);
+        storage = new StorageManager(dataStorageManager, userPrefsStorage);
     }
 
     private Path getTempFilePath(String fileName) {
@@ -48,13 +44,12 @@ public class FileCreateCommandTest {
 
     @Test
     public void execute_fileDoesNotExist_fileCreated() {
-        ResidentBookStorage expectedResidentBookStorage =
-                new JsonResidentBookStorage(storage.getResidentBookFilePath());
+        DataStorageManager expectedDataStorage = new DataStorageManager(storage.getDataStorageFilePath());
         UserPrefsStorage expectedUserPrefsStorage = new JsonUserPrefsStorage(storage.getUserPrefsFilePath());
-        Storage expectedStorage = new StorageManager(expectedResidentBookStorage, expectedUserPrefsStorage);
-        String expectedMessage = String.format(FileCreateCommand.MESSAGE_SUCCESS, "DoesNotExist.json");
+        Storage expectedStorage = new StorageManager(expectedDataStorage, expectedUserPrefsStorage);
+        String expectedMessage = String.format(FileCreateCommand.MESSAGE_SUCCESS, "DoesNotExist");
 
-        Path targetFilePath = getTempFilePath("DoesNotExist.json");
+        Path targetFilePath = getTempFilePath("DoesNotExist");
         String targetFileName = "DoesNotExist";
         FileCreateCommand fileCreateCommand = new FileCreateCommand(testFolder, targetFileName);
 
@@ -99,23 +94,23 @@ public class FileCreateCommandTest {
 
     /**
      * A storage stub class that throws an {@code IOException} when the
-     * @see #createResidentBookFile(Path) method is invoked.
+     * @see #createDataFile(Path) method is invoked.
      */
     private static class StorageStubThrowsIoException extends StorageStub {
         public static final IOException DUMMY_IO_EXCEPTION = new IOException("dummy exception");
 
         @Override
-        public void createResidentBookFile(Path filePath) throws IOException {
+        public void createDataFile(Path filePath) throws IOException {
             throw DUMMY_IO_EXCEPTION;
         }
 
         @Override
-        public Path getResidentBookFilePath() {
+        public Path getUserPrefsFilePath() {
             return null;
         }
 
         @Override
-        public Path getUserPrefsFilePath() {
+        public Path getDataStorageFilePath() {
             return null;
         }
     }

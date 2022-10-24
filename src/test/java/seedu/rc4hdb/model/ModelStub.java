@@ -91,6 +91,11 @@ public class ModelStub implements Model {
     }
 
     @Override
+    public void setVenueBook(ReadOnlyVenueBook venueBook) {
+        throw new AssertionError("This method should not be called.");
+    }
+
+    @Override
     public ReadOnlyVenueBook getVenueBook() {
         throw new AssertionError("This method should not be called.");
     }
@@ -138,6 +143,16 @@ public class ModelStub implements Model {
 
     @Override
     public void setObservableVenues(List<Venue> modifiableVenues) {
+        throw new AssertionError("This method should not be called.");
+    }
+
+    @Override
+    public ObservableList<Booking> getObservableBookings() {
+        throw new AssertionError("This method should not be called.");
+    }
+
+    @Override
+    public void setObservableBookings(VenueName venueName) {
         throw new AssertionError("This method should not be called.");
     }
 

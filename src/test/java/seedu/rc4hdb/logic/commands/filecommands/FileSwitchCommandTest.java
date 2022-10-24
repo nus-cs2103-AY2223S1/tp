@@ -1,4 +1,4 @@
-package seedu.rc4hdb.logic.commands.filecommands.jsonfilecommands;
+package seedu.rc4hdb.logic.commands.filecommands;
 
 import static seedu.rc4hdb.logic.commands.StorageModelCommandTestUtil.assertCommandFailure;
 import static seedu.rc4hdb.logic.commands.StorageModelCommandTestUtil.assertCommandSuccess;
@@ -16,18 +16,16 @@ import seedu.rc4hdb.commons.exceptions.DataConversionException;
 import seedu.rc4hdb.commons.util.FileUtil;
 import seedu.rc4hdb.commons.util.JsonUtil;
 import seedu.rc4hdb.logic.commands.exceptions.CommandException;
-import seedu.rc4hdb.logic.commands.filecommands.FileCommand;
-import seedu.rc4hdb.logic.commands.filecommands.FileSwitchCommand;
 import seedu.rc4hdb.model.Model;
 import seedu.rc4hdb.model.ModelManager;
 import seedu.rc4hdb.model.ReadOnlyResidentBook;
 import seedu.rc4hdb.model.ResidentBook;
-import seedu.rc4hdb.storage.userprefs.JsonUserPrefsStorage;
+import seedu.rc4hdb.storage.DataStorageManager;
 import seedu.rc4hdb.storage.Storage;
 import seedu.rc4hdb.storage.StorageManager;
 import seedu.rc4hdb.storage.StorageStub;
-import seedu.rc4hdb.storage.residentbook.JsonResidentBookStorage;
 import seedu.rc4hdb.storage.residentbook.JsonSerializableResidentBook;
+import seedu.rc4hdb.storage.userprefs.JsonUserPrefsStorage;
 
 /**
  * Unit tests for {@link FileSwitchCommand}.
@@ -42,9 +40,9 @@ public class FileSwitchCommandTest {
 
     @BeforeEach
     public void setUp() {
-        JsonResidentBookStorage residentBookStorage = new JsonResidentBookStorage(getTempFilePath("test.json"));
+        DataStorageManager dataStorage = new DataStorageManager(getTempFilePath("test.json"));
         JsonUserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(getTempFilePath("testPrefs.json"));
-        storage = new StorageManager(residentBookStorage, userPrefsStorage);
+        storage = new StorageManager(dataStorage, userPrefsStorage);
         model = new ModelManager();
     }
 
@@ -60,7 +58,7 @@ public class FileSwitchCommandTest {
 
         String expectedMessage = String.format(FileSwitchCommand.MESSAGE_SUCCESS, "target.json");
         Storage expectedStorage = new StorageManager(
-                new JsonResidentBookStorage(targetFilePath), new JsonUserPrefsStorage(userPrefPath));
+                new DataStorageManager(targetFilePath), new JsonUserPrefsStorage(userPrefPath));
         Model expectedModel = new ModelManager();
         expectedModel.setUserPrefDataFilePath(targetFilePath);
 
@@ -142,11 +140,6 @@ public class FileSwitchCommandTest {
         }
 
         @Override
-        public Path getResidentBookFilePath() {
-            return null;
-        }
-
-        @Override
         public Path getUserPrefsFilePath() {
             return null;
         }
@@ -162,11 +155,6 @@ public class FileSwitchCommandTest {
         @Override
         public Optional<ReadOnlyResidentBook> readResidentBook(Path filePath) throws IOException {
             throw DUMMY_IO_EXCEPTION;
-        }
-
-        @Override
-        public Path getResidentBookFilePath() {
-            return null;
         }
 
         @Override

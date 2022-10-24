@@ -9,12 +9,12 @@ import java.nio.file.Path;
 
 import seedu.rc4hdb.commons.util.FileUtil;
 import seedu.rc4hdb.logic.commands.exceptions.CommandException;
-import seedu.rc4hdb.storage.userprefs.JsonUserPrefsStorage;
+import seedu.rc4hdb.storage.DataStorage;
+import seedu.rc4hdb.storage.DataStorageManager;
 import seedu.rc4hdb.storage.Storage;
 import seedu.rc4hdb.storage.StorageManager;
+import seedu.rc4hdb.storage.userprefs.JsonUserPrefsStorage;
 import seedu.rc4hdb.storage.userprefs.UserPrefsStorage;
-import seedu.rc4hdb.storage.residentbook.JsonResidentBookStorage;
-import seedu.rc4hdb.storage.residentbook.ResidentBookStorage;
 
 /**
  * Contains helper methods for testing storage commands.
@@ -65,10 +65,9 @@ public class StorageCommandTestUtil {
     public static void assertCommandFailure(StorageCommand command, Storage actualStorage, String expectedMessage) {
         // we are unable to defensively copy the storage for comparison later, so we can
         // only do so by copying its components.
-        ResidentBookStorage expectedResidentBookStorage =
-                new JsonResidentBookStorage(actualStorage.getResidentBookFilePath());
+        DataStorage expectedDataStorage = new DataStorageManager(actualStorage.getDataStorageFilePath());
         UserPrefsStorage expectedUserPrefsStorage = new JsonUserPrefsStorage(actualStorage.getUserPrefsFilePath());
-        Storage expectedStorage = new StorageManager(expectedResidentBookStorage, expectedUserPrefsStorage);
+        Storage expectedStorage = new StorageManager(expectedDataStorage, expectedUserPrefsStorage);
 
         assertThrows(CommandException.class, expectedMessage, () -> command.execute(actualStorage));
         assertEquals(expectedStorage, actualStorage);

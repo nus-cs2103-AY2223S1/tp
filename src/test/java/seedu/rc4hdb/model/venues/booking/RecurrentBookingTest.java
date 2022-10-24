@@ -7,7 +7,6 @@ import static seedu.rc4hdb.testutil.TypicalResidents.BOB;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.rc4hdb.model.venues.Venue;
 import seedu.rc4hdb.model.venues.VenueName;
 import seedu.rc4hdb.model.venues.booking.fields.Day;
 import seedu.rc4hdb.model.venues.booking.fields.HourPeriod;
@@ -21,7 +20,7 @@ public class RecurrentBookingTest {
     private static final HourPeriod HP_6_TO_7PM = new HourPeriod("18-19");
     private static final HourPeriod HP_5_TO_7PM = new HourPeriod("17-19");
 
-    private static final VenueName VENUE_NAME = new VenueName(Venue.MEETING_ROOM.toString());
+    private static final VenueName VENUE_NAME = new VenueName("Hall");
 
     private static final Day MONDAY = new Day("MON");
     private static final Day TUESDAY = new Day("TUE");
