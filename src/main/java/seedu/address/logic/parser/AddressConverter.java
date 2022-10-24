@@ -1,14 +1,16 @@
 package seedu.address.logic.parser;
 
 import picocli.CommandLine;
+import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Address;
 
 public class AddressConverter implements CommandLine.ITypeConverter<Address> {
     @Override
     public Address convert(String value) throws Exception {
-        if (!Address.isValidAddress(value)) {
-            throw new CommandLine.TypeConversionException(Address.MESSAGE_CONSTRAINTS);
+        try {
+            return ParserUtil.parseAddress(value);
+        } catch (ParseException e) {
+            throw new CommandLine.TypeConversionException(e.getMessage());
         }
-        return new Address(value);
     }
 }

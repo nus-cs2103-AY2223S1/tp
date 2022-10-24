@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 
 import java.util.List;
 
+import picocli.CommandLine;
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
@@ -13,6 +14,7 @@ import seedu.address.model.person.Person;
 /**
  * Deletes a member identified using it's displayed index from the member list.
  */
+@CommandLine.Command(name = "member")
 public class DeleteMemberCommand extends Command {
 
     public static final String COMMAND_WORD = "delete_member";
@@ -25,7 +27,11 @@ public class DeleteMemberCommand extends Command {
 
     public static final String MESSAGE_DELETE_PERSON_SUCCESS = "Deleted Member: %1$s";
 
-    private final Index targetIndex;
+    @CommandLine.Parameters(arity = "1")
+    private Index targetIndex;
+
+    public DeleteMemberCommand() {
+    }
 
     public DeleteMemberCommand(Index targetIndex) {
         this.targetIndex = targetIndex;

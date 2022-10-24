@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 
 import java.util.List;
 
+import picocli.CommandLine;
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
@@ -13,6 +14,7 @@ import seedu.address.model.team.Task;
 /**
  * Deletes a task identified using it's displayed index from the task list.
  */
+@CommandLine.Command(name = "task")
 public class DeleteTaskCommand extends Command {
 
     public static final String COMMAND_WORD = "delete_task";
@@ -25,7 +27,11 @@ public class DeleteTaskCommand extends Command {
 
     public static final String MESSAGE_DELETE_TASK_SUCCESS = "Deleted Task: %1$s";
 
-    private final Index targetIndex;
+    @CommandLine.Parameters(arity = "1")
+    private Index targetIndex;
+
+    public DeleteTaskCommand() {
+    }
 
     public DeleteTaskCommand(Index targetIndex) {
         this.targetIndex = targetIndex;

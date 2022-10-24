@@ -8,7 +8,14 @@ import picocli.CommandLine.Command;
 /**
  * Main command used to set up subcommands being used in TruthTable.
  */
-@Command(name = "", subcommands = {AddCommand.class, HelpCommand.class})
+@Command(name = "", subcommands = {
+    AddCommand.class,
+    EditCommand.class,
+    DeleteCommand.class,
+    AssignTaskCommand.class,
+    ClearCommand.class,
+    HelpCommand.class
+})
 public class MainCommand implements Runnable {
     @CommandLine.Spec
     private CommandLine.Model.CommandSpec spec;

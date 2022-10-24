@@ -2,13 +2,13 @@ package seedu.address.logic.parser;
 
 import picocli.CommandLine;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.person.Phone;
+import seedu.address.model.team.Url;
 
-public class PhoneConverter implements CommandLine.ITypeConverter<Phone> {
+public class UrlConverter implements CommandLine.ITypeConverter<Url> {
     @Override
-    public Phone convert(String value) throws Exception {
+    public Url convert(String value) throws Exception {
         try {
-            return ParserUtil.parsePhone(value);
+            return ParserUtil.parseUrl(value);
         } catch (ParseException e) {
             throw new CommandLine.TypeConversionException(e.getMessage());
         }

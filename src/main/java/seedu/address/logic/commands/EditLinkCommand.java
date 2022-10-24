@@ -2,12 +2,15 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.FLAG_NAME_STR;
+import static seedu.address.logic.parser.CliSyntax.FLAG_NAME_STR_LONG;
 import static seedu.address.logic.parser.CliSyntax.FLAG_URL_STR;
+import static seedu.address.logic.parser.CliSyntax.FLAG_URL_STR_LONG;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_LINKS;
 
 import java.util.List;
 import java.util.Optional;
 
+import picocli.CommandLine;
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.CollectionUtil;
@@ -20,6 +23,7 @@ import seedu.address.model.team.Url;
 /**
  * Edits the details of an existing link in TruthTable.
  */
+@CommandLine.Command(name = "link")
 public class EditLinkCommand extends Command {
     public static final String COMMAND_WORD = "edit_link";
 
@@ -33,8 +37,16 @@ public class EditLinkCommand extends Command {
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
     public static final String MESSAGE_DUPLICATE_LINK = "This link already exists in the address book.";
 
-    private final Index index;
-    private final EditLinkDescriptor editLinkDescriptor;
+    @CommandLine.Parameters(arity = "1", index = "0")
+    private Index index;
+
+    @CommandLine.ArgGroup(exclusive = false, multiplicity = "1")
+    private Arguments arguments;
+
+    private EditLinkDescriptor editLinkDescriptor;
+
+    public EditLinkCommand() {
+    }
 
     /**
      * Creates an EditLinkCommand to edit a {@code Link}.
@@ -72,6 +84,15 @@ public class EditLinkCommand extends Command {
         }
 
         Link linkToEdit = lastShownList.get(index.getZeroBased());
+        EditLinkDescriptor editLinkDescriptor = new EditLinkDescriptor();
+
+        if (arguments.name != null) {
+            editLinkDescriptor.setName(arguments.name);
+        }
+        if (arguments.url != null) {
+            editLinkDescriptor.setUrl(arguments.url);
+        }
+
         Link editedLink = createEditedLink(linkToEdit, editLinkDescriptor);
 
         if (!linkToEdit.isSameLink(editedLink) && model.hasLink(editedLink)) {
@@ -99,6 +120,14 @@ public class EditLinkCommand extends Command {
         // state check
         EditLinkCommand e = (EditLinkCommand) other;
         return index.equals(e.index) && editLinkDescriptor.equals(e.editLinkDescriptor);
+    }
+
+    private static class Arguments {
+        @CommandLine.Option(names = {FLAG_NAME_STR, FLAG_NAME_STR_LONG})
+        private Name name;
+
+        @CommandLine.Option(names = {FLAG_URL_STR, FLAG_URL_STR_LONG})
+        private Url url;
     }
 
     /**

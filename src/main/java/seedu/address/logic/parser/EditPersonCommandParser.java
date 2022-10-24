@@ -8,33 +8,33 @@ import java.util.List;
 
 import picocli.CommandLine;
 import seedu.address.commons.core.index.Index;
-import seedu.address.logic.commands.EditCommand;
-import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
+import seedu.address.logic.commands.EditPersonCommand;
+import seedu.address.logic.commands.EditPersonCommand.EditPersonDescriptor;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 /**
- * Parses input arguments and creates a new EditCommand object
+ * Parses input arguments and creates a new EditPersonCommand object
  */
-public class EditCommandParser implements Parser<EditCommand> {
+public class EditPersonCommandParser implements Parser<EditPersonCommand> {
     /**
-     * Creates an EditCommandParser with default arguments
+     * Creates an EditPersonCommandParser with default arguments
      */
-    public EditCommandParser() {
+    public EditPersonCommandParser() {
 
     }
 
     /**
-     * Parses the given {@code String} of arguments in the context of the EditCommand
-     * and returns an EditCommand object for execution.
+     * Parses the given {@code String} of arguments in the context of the EditPersonCommand
+     * and returns an EditPersonCommand object for execution.
      *
      * @throws ParseException if the user input does not conform to the expected
      *                        format
      */
-    public EditCommand parse(String args) throws ParseException {
+    public EditPersonCommand parse(String args) throws ParseException {
         try {
             List<String> argsList = new ArrayList<>(List.of(ArgumentTokenizer.tokenize(args)));
             if (argsList.size() == 0) {
-                throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditCommand.MESSAGE_USAGE));
+                throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditPersonCommand.MESSAGE_USAGE));
             }
 
             if (!argsList.get(0).equals(FLAG_INDEX_STR)) {
@@ -47,7 +47,7 @@ public class EditCommandParser implements Parser<EditCommand> {
 //            try {
 //                index = ParserUtil.parseIndex(String.valueOf(arguments.index));
 //            } catch (ParseException | IndexOutOfBoundsException e) {
-//                throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditCommand.MESSAGE_USAGE), e);
+//                throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditPersonCommand.MESSAGE_USAGE), e);
 //            }
 //
 //            if (arguments.name != null) {
@@ -71,16 +71,16 @@ public class EditCommandParser implements Parser<EditCommand> {
 //            }
 
             if (!editPersonDescriptor.isAnyFieldEdited()) {
-                throw new ParseException(EditCommand.MESSAGE_NOT_EDITED);
+                throw new ParseException(EditPersonCommand.MESSAGE_NOT_EDITED);
             }
-            return new EditCommand(index, editPersonDescriptor);
+            return new EditPersonCommand(index, editPersonDescriptor);
         } catch (CommandLine.ParameterException e) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditCommand.MESSAGE_USAGE), e);
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditPersonCommand.MESSAGE_USAGE), e);
         }
     }
 
     /**
-     * Command arguments for the EditCommand
+     * Command arguments for the EditPersonCommand
      */
     private static class EditCommandArguments {
 //        @Parameter(names = {FLAG_INDEX_STR, FLAG_INDEX_STR_LONG}, required = true, description = "Index of person")
