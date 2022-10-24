@@ -4,8 +4,8 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_EVENT_DISPLAYED_INDEX;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PERSONS;
-import static seedu.address.model.Model.PREDICATE_SHOW_ALL_EVENTS;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import seedu.address.commons.core.index.Index;
@@ -24,10 +24,9 @@ public class UntagEventCommand extends Command {
             + ": Untags 1 or more persons to an event in the address book "
             + "by the index number used in the displayed person and event lists. "
             + "Parameters: "
-            + "EVENT INDEX (must be a positive integer) "
-            + PREFIX_PERSONS + "PERSON INDEX 1 (must be a positive integer) "
-            + "[PERSON INDEX 2 (must be a positive integer) "
-            + "PERSON INDEX 3 (must be a positive integer) ...]\n"
+            + "EVENT_INDEX (must be a positive integer) "
+            + PREFIX_PERSONS + "PERSON_INDEX_1 (must be a positive integer) "
+            + "[PERSON_INDEX_2 PERSON_INDEX_3 ...]\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_PERSONS + "1 3 4";
     public static final String MESSAGE_UNTAG_EVENT_SUCCESS = "Untagged Persons: %s to Event: %s";
@@ -56,7 +55,7 @@ public class UntagEventCommand extends Command {
         }
         Event eventToUntag = lastShownEventList.get(eventIndex.getZeroBased());
         UidList uids = eventToUntag.getUids();
-        String personNames = "";
+        List<String> personNamesUntagged = new ArrayList<>();
         // loop through personIndexes, raise exceptions if any (invalid index or duplicated person)
         for (Index personIndex : personIndexes) {
             if (personIndex.getZeroBased() >= lastShownPersonList.size()) { // index is invalid
@@ -70,15 +69,14 @@ public class UntagEventCommand extends Command {
         }
         for (Index personIndex : personIndexes) {
             Person person = lastShownPersonList.get(personIndex.getZeroBased());
-            personNames += String.format("%s, ", person.getName());
+            personNamesUntagged.add(person.getName().toString());
             uids.remove(person.getUid());
         }
         // create editedEvent, set event, update event list
         Event untaggedEvent = new Event(eventToUntag, uids);
         model.setEvent(eventToUntag, untaggedEvent);
-        model.updateFilteredEventList(PREDICATE_SHOW_ALL_EVENTS);
         model.updateEventPersonReference();
         return new CommandResult(String.format(MESSAGE_UNTAG_EVENT_SUCCESS,
-                personNames.substring(0, personNames.length() - 2), untaggedEvent.getEventTitle()));
+                String.join(", ", personNamesUntagged), untaggedEvent.getEventTitle()));
     }
 }

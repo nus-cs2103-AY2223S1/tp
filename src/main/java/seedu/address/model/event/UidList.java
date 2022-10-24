@@ -51,7 +51,7 @@ public class UidList implements Iterable<Uid> {
         internalList.add(toAdd);
     }
     /**
-     * Removes the equivalent person from the list.
+     * Removes the person associated with the given {@code Uid toRemove} from the list.
      * The person must exist in the list.
      */
     public void remove(Uid toRemove) {
@@ -67,24 +67,6 @@ public class UidList implements Iterable<Uid> {
     public ObservableList<Uid> asUnmodifiableObservableList() {
         return internalUnmodifiableList;
     }
-
-    @Override
-    public Iterator<Uid> iterator() {
-        return internalList.iterator();
-    }
-
-    @Override
-    public boolean equals(Object other) {
-        return other == this // short circuit if same object
-                || (other instanceof UidList // instanceof handles nulls
-                && internalList.equals(((UidList) other).internalList));
-    }
-
-    @Override
-    public int hashCode() {
-        return internalList.hashCode();
-    }
-
     /**
      * Update personNames corresponding to the UidList with new string of person names.
      * This method is called after editPerson, tagEvent, untagEvent commands.
@@ -109,5 +91,21 @@ public class UidList implements Iterable<Uid> {
     }
     public String getPersonNames() {
         return this.personNames;
+    }
+    @Override
+    public Iterator<Uid> iterator() {
+        return internalList.iterator();
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof UidList // instanceof handles nulls
+                && internalList.equals(((UidList) other).internalList));
+    }
+
+    @Override
+    public int hashCode() {
+        return internalList.hashCode();
     }
 }

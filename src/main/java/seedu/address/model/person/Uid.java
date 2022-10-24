@@ -1,8 +1,11 @@
 package seedu.address.model.person;
 
+import static java.util.Objects.requireNonNull;
+
 import java.util.UUID;
+
 /**
- * Uid that uniquely defines a person.
+ * Uid that uniquely identifies a person.
  * Uid is an unmodifiable field that is created every time with the creation of a new Person.
  */
 public class Uid {
@@ -10,22 +13,23 @@ public class Uid {
     public final String value;
 
     /**
-     * constructor that creates an Uid Object.
+     * Constructor that creates a Uid Object.
      */
     public Uid() {
         this.value = String.valueOf(UUID.randomUUID());
     }
     /**
-     * Overloaded constructor that creates an Uid Object.
+     * Overloaded constructor that creates a Uid Object.
      */
     public Uid(String value) {
+        requireNonNull(value);
         this.value = value;
     }
     public String getUid() {
         return value;
     }
     /**
-     * Returns true if both uids have the same name. This method should always return false value.
+     * Returns true if both uids have the same value. This method should always return false value.
      */
     public boolean isSameUid(Uid otherUid) {
         if (otherUid == this) {

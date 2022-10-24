@@ -181,7 +181,7 @@ public class ModelManager implements Model {
     }
 
     /**
-     * Updates the reference between Event and the persons it is tagged with.
+     * Updates the reference between an {@code Event} and the persons it is tagged with.
      * This method is used after editPerson, deletePerson and tagEvent commands to provide timely GUI update.
      */
     @Override
