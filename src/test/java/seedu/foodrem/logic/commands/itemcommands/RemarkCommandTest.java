@@ -1,7 +1,6 @@
 package seedu.foodrem.logic.commands.itemcommands;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.foodrem.logic.commands.CommandTestUtil.assertCommandFailure;
@@ -103,7 +102,7 @@ public class RemarkCommandTest {
         // null -> returns false
         assertNotEquals(null, standardCommand);
         // different types -> returns false
-        assertFalse(standardCommand.equals(new ResetCommand()));
+        assertNotEquals(standardCommand, new ResetCommand());
         // different index -> returns false
         assertNotEquals(standardCommand, new RemarkCommand(INDEX_SECOND_ITEM, itemRemark));
         // different remark -> returns false
