@@ -1,6 +1,8 @@
 package seedu.address.logic.commands;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.testutil.TypicalPersons.ELLE;
@@ -30,6 +32,12 @@ public class SortCommandTest {
         }
     }
 
+    @Test
+    public void testGetApptThrowsRuntimeException() {
+        Throwable exception = assertThrows(RuntimeException.class,
+                () -> MUSAB_WITH_NO_APPT.getAppointments().get(0));
+        assertEquals("Index 0 out of bounds for length 0", exception.getMessage());
+    }
 
     @Test
     public void equals() {
@@ -42,6 +50,7 @@ public class SortCommandTest {
 
         // same object -> returns true
         assertTrue(sortByNameCommand.equals(sortByNameCommand));
+        assertTrue(sortByAppointmentCommand.equals(sortByAppointmentCommand));
 
         // null -> returns false
         assertFalse(sortByAppointment.equals(null));
