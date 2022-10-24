@@ -49,11 +49,15 @@ public interface Logic {
      */
     void setGuiSettings(GuiSettings guiSettings);
 
-    ObservableList<String> getObservableFields();
-
     ObservableValue<Path> getObservableResidentBookFilePath();
 
-    public ObservableList<String> getVisibleFields();
+    /**
+     * Returns an observable list of the fields to be shown when invoking {@code show}.
+     */
+    ObservableList<String> getVisibleFields();
 
-    public ObservableList<String> getHiddenFields();
+    /**
+     * Returns an observable list of the fields to be hidden when invoking {@code hide}.
+     */
+    ObservableList<String> getHiddenFields();
 }

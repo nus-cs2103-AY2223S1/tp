@@ -112,11 +112,6 @@ public class LogicManager implements Logic {
     }
 
     @Override
-    public ObservableList<String> getObservableFields() {
-        return model.getObservableFields();
-    }
-
-    @Override
     public ObservableValue<Path> getObservableResidentBookFilePath() {
         return storage.getObservableResidentBookFilePath();
     }
