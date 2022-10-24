@@ -22,7 +22,7 @@ public class UiView {
     private void viewFrom(Item item) {
         requireNonNull(item);
         display.clear();
-        // TODO: Implement this
+        display.place(ItemView.from(item));
     }
 
     // TODO: Use a less hacky method
