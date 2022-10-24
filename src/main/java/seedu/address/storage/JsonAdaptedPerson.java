@@ -41,7 +41,7 @@ class JsonAdaptedPerson {
     private final String criticalIllnessInsurance;
     private final String lifeInsurance;
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
-    private final String reminders;
+    private final List<JsonAdaptedReminder> reminders = new ArrayList<>();
 
     /**
      * Constructs a {@code JsonAdaptedPerson} with the given person details.
@@ -54,7 +54,7 @@ class JsonAdaptedPerson {
                              @JsonProperty("disabilityInsurance") String disabilityInsurance,
                              @JsonProperty("criticalIllnessInsurance") String criticalIllnessInsurance,
                              @JsonProperty("lifeInsurance") String lifeInsurance,
-                             @JsonProperty("reminders") String reminders,
+                             @JsonProperty("reminders") List<JsonAdaptedReminder> reminders,
                              @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
         this.name = name;
         this.phone = phone;
@@ -68,7 +68,9 @@ class JsonAdaptedPerson {
         if (tagged != null) {
             this.tagged.addAll(tagged);
         }
-        this.reminders = reminders;
+        if (reminders != null) {
+            this.reminders.addAll(reminders);
+        }
     }
 
     /**
@@ -79,14 +81,16 @@ class JsonAdaptedPerson {
         phone = source.getPhone().value;
         email = source.getEmail().value;
         address = source.getAddress().value;
-        birthday = source.getBirthday().value;
+        birthday = source.getBirthday().toString();
         healthInsurance = Boolean.toString(source.getHealthInsurance().getHasInsurance());
         disabilityInsurance = Boolean.toString(source.getDisabilityInsurance().getHasInsurance());
         criticalIllnessInsurance = Boolean.toString(source.getCriticalIllnessInsurance().getHasInsurance());
         lifeInsurance = Boolean.toString(source.getLifeInsurance().getHasInsurance());
-        reminders = source.getReminders().task;
         tagged.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
+                .collect(Collectors.toList()));
+        reminders.addAll(source.getReminders().stream()
+                .map(JsonAdaptedReminder::new)
                 .collect(Collectors.toList()));
     }
 
@@ -99,6 +103,11 @@ class JsonAdaptedPerson {
         final List<Tag> personTags = new ArrayList<>();
         for (JsonAdaptedTag tag : tagged) {
             personTags.add(tag.toModelType());
+        }
+
+        final List<Reminder> personReminders = new ArrayList<>();
+        for (JsonAdaptedReminder reminder : reminders) {
+            personReminders.add(reminder.toModelType());
         }
 
         if (name == null) {
@@ -133,6 +142,9 @@ class JsonAdaptedPerson {
         }
         final Address modelAddress = new Address(address);
 
+        if (!Birthday.isValidBirthday(birthday)) {
+            throw new IllegalValueException(Birthday.MESSAGE_CONSTRAINTS);
+        }
         final Birthday modelBirthday = new Birthday(birthday);
 
         final Insurance modelHealthInsurance = new HealthInsurance(Boolean.valueOf(healthInsurance));
@@ -142,7 +154,8 @@ class JsonAdaptedPerson {
         final Insurance modelLifeInsurance = new LifeInsurance(Boolean.valueOf(lifeInsurance));
 
         final Set<Tag> modelTags = new HashSet<>(personTags);
-        final Reminder modelReminder = new Reminder(reminders);
+        final Set<Reminder> modelReminder = new HashSet<>(personReminders);
+
         return new Person(modelName, modelPhone, modelEmail, modelAddress, modelBirthday,
                 modelHealthInsurance, modelDisabilityInsurance, modelCriticalIllnessInsurance,
                 modelLifeInsurance, modelReminder, modelTags);

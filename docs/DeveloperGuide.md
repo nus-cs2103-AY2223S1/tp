@@ -240,6 +240,54 @@ _{more aspects and alternatives to be added}_
 
 _{Explain here how the data archiving feature will be implemented}_
 
+### Insurance feature
+
+#### Implementation
+The Insurance mechanism is facilitated by `InsuranceCommand` and `InsuranceCommandParser`. It allows users to store whether a contact in their contact list has the four main types of insurance.
+The four main types of insurances are modelled by the classes `LifeInsurance`, `DisabilityInsurance`, CriticalIllnessInsurance and `HealthInsurance` which inherit from the abstract `Insurance` class.
+
+The types of insurances are specified by prefixes inputted by the user:
+* li/ - Life Insurance
+* di/ - Disability Insurance
+* ci/ - Critical Illness Insurance
+* hi/ - Health Insurance
+
+`Insurance` fields are stored in the `Person` class, and consist of the boolean `hasInsurance` which is set to true if `Person` object has the type of insurance.
+
+Below is an example usage scenario.
+
+#### Example Usage
+
+Step 1: The user inputs `insurance 1 li/ di/`. This indicates that the user wants to update the first contact in the displayed contact list such that he only has life insurance and disability insurance.
+
+Step 2: `LogicManager` calls `AddressBookParser` with the user input.
+
+Step 3: `AddressBookParser` will parse the command word and create a new `InsuranceCommandParser` and call its function `parse` with the rest of the user input as the arguments.
+
+Step 4: The `InsuranceCommandParser#parse` will then parse the insurance prefixes to create a new `EditInsuranceDescriptor` object.
+
+Step 5: The `InsuranceCommandParser#parse` will then create a new `InsuranceCommand` object using the index and the `EditInsuranceDescriptor` object.
+
+Step 5: The `LogicManager` then calls `InsuranceCommand#execute` with the `Model` object.
+
+Step 6: The `InsuranceCommand` calls `Model#getFilteredPersonList` to get the filtered `List` of `Person` objects.
+
+Step 7: The `InsuranceCommand` gets the `Person` to be edited from the `List`
+
+Step 8: The `InsuranceCommand` calls its `createEditedPerson` method with the `Person` to be edited and the `EditInsuranceDescriptor` which returns the new edited `Person` .
+
+Step 9: The `InsuranceCommand` calls the `setPerson` method of the `Model` object to replace the existing `Person` object with the new edited one.
+
+Step 10: The `InsuranceCommand` calls the `updateFilteredPersonList` method of the `Model` object to update the filtered list.
+
+Step 11: The `InsuranceCommand` then returns a new `CommandResult` object with the result of the execution.
+
+Step 12: The `LogicManager` then returns the `CommandResult` object.
+
+![Sequence diagram for the Insurance Command](images/InsuranceSequenceDiagram.png)
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `InsuranceCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+</div>
 
 ### Delete feature
 
@@ -276,12 +324,36 @@ The following activity diagram summarizes what happens when a user executes the 
 
 #### Implementation
 
-To be added: Reminder implementation
+The remind mechanism is facilitated by `RemindCommand` and `RemindCommandParser`. It allows users to set a reminder message and date, for a contact from the contact list.
 
 The `Reminder` objects for each `Person` is stored in the `Person` object as a `SortedList` where the predicate for sorting is based on the `date` attribute in `Reminder`.
 
 The `UI` component then displays all the `Reminder` for all `Person` objects in `AddressBook.persons` in the `ReminderListPanel`.
 
+#### Example Usage
+
+Step 1: The user inputs `remind 1 r/zoom call d/2023-10-10` to create a reminder for the 2nd person in the displayed contact list.
+
+Step 2: `LogicManager` calls `AddressBookParser` with the user input.
+
+Step 3: `AddressBookParser` will parse the command word and create a new `ReminderCommandParser` and call its function `parse` with the rest of the user input as the arguments.
+
+Step 4: The `ReminderCommandParser#parse` will then parse the index, task and date to create a new `ReminderCommand` object.
+
+Step 5: The `LogicManager` then calls `ReminderCommand#execute`.
+
+Step 6: The `ReminderCommand` calls `Model#getFilteredPersonList` to get the filtered `List` of `Person` objects.
+
+Step 7: The `ReminderCommand` gets the `Person` to be edited from the `List`
+
+Step 8: The `ReminderCommand` creates a new edited `Person`, with the given `Reminder`
+
+Step 9: `ReminderCommand` then returns a new `CommandResult` with the result of the execution.
+
+![Sequence diagram for the Remind Command](images/ReminderSequenceDiagram.png)
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `ReminderCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+</div>
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -349,16 +421,16 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Use cases
 
-(For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is the `Friendnancial` and the **Actor** is the `user`, unless specified otherwise)
 
 **Use case: Delete a person**
 
 **MSS**
 
 1.  User requests to list persons
-2.  AddressBook shows a list of persons
+2.  Friendnancial shows a list of persons
 3.  User requests to delete a specific person in the list
-4.  AddressBook deletes the person
+4.  Friendnancial deletes the person
 
     Use case ends.
 
@@ -370,7 +442,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 3a. The given index is invalid.
 
-    * 3a1. AddressBook shows an error message.
+    * 3a1. Friendnancial shows an error message.
 
       Use case resumes at step 2.
 
@@ -379,9 +451,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **MSS**
 
 1.  User requests to list persons
-2.  AddressBook shows a list of persons
+2.  Friendnancial shows a list of persons
 3.  User requests to edit a specific person in the list
-4.  AddressBook edits the information of the person
+4.  Friendnancial edits the information of the person
 
     Use case ends.
 
@@ -391,9 +463,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
   Use case ends.
 
-* 3a. The given index is invalid.
-
-    * 3a1. AddressBook shows an error message.
+* 3a. Friendnancial detects an error in the request.
+    * 3a1. Friendnancial shows an error message.
 
       Use case resumes at step 2.
 
@@ -402,9 +473,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **MSS**
 
 1.  User requests to list persons
-2.  AddressBook shows a list of persons
+2.  Friendnancial shows a list of persons
 3.  User requests to set a reminder for a specific person in the list
-4.  AddressBook reminds user when it is time to do so
+4.  User can view all reminders in the reminder list, sorted by date (from earliest to latest)
 
     Use case ends.
 
@@ -416,23 +487,27 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 3a. The given index is invalid.
 
-    * 3a1. AddressBook shows an error message
+    * 3a1. Friendnancial shows an error message
 
       Use case resumes at step 2.
-    * 3b. The user requests to remove the reminder
-      * 3b1 AddressBook removes the reminder
+* 3b. The user requests to remove the reminder
+  * 3b1 Friendnancial removes the reminder
 
-        Use case ends.
+    Use case ends.
 
 
 **Use case: Filter contacts**
 
 **MSS**
 
-1.  User requests to filter contacts based off a criteria
-2.  AddressBook shows the list of people that match the criteria
+1. User requests to filter contacts based off a given field
+2. Friendnancial shows the list of people that match the criteria
 
     Use case ends.
+
+**Extensions**
+* 1a. The given prefix is invalid.
+  * 1a1. Friendnancial shows an error message
 
 
 ### Non-Functional Requirements
@@ -507,3 +582,33 @@ testers are expected to do more *exploratory* testing.
    1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
 
 1. _{ more test cases …​ }_
+
+--------------------------------------------------------------------------------------------------------------------
+
+## **Appendix: Automated GUI Testing**
+
+The application makes use of the [TestFX](https://github.com/TestFX/TestFX) library to carry out automated tests for
+the GUI. Below are common issues when trying to carry out GUI tests.
+
+#### **Problem: Keyboard and Mouse movements are not simulated in macOS systems, resulting in GUI tests failure**
+
+* Reason: From macOS Mojave onwards, applications that do not have `Accessibility` permissions cannot simulate
+such keyboard and mouse movements. Therefore, the GUI tests that require simulation of keyboard and mouse movements
+to test the GUI cannot function properly and fail.
+* Solution: Open `System Preferences`, click `Security and Privacy`, then `Privacy`, and then `Accessibility`.
+Then check the box beside `IntelliJ IDEA`. The figure below shows `Accessibility` permission being granted to
+`IntelliJ IDEA`.
+
+<img src="images/TroubleshootingGUiTestMacos.png" width="500px">
+
+#### **Problem: GitHub Actions Ubuntu environment cannot run GUI tests, resulting in Continuous Integration tests failure**
+
+* Reason: The automated GUI tests require tools on different Linux distributions to run properly as they need to
+display a GUI. The environment that GitHub Actions provides does not have these. Therefore, the GUI tests are
+getting stuck and taking very long to build with no success and this is causing Continuous Integration checks to
+fail.
+* Solution: Update the [`gradle.yml`](../.github/workflows/gradle.yml) file to make use of an additional [action](https://github.com/marketplace/actions/gabrielbb-xvfb-action)
+on GitHub actions that installs [XVFB](http://elementalselenium.com/tips/38-headless) and runs headless tests with
+it. The figure below shows the new actions used to enable the CI environment to run the GUI tests properly.
+
+<img src="images/GitHubActionsCIFixGUI.png" width="500px">

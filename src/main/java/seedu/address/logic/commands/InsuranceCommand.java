@@ -95,7 +95,6 @@ public class InsuranceCommand extends Command {
         Email email = personToEdit.getEmail();
         Address address = personToEdit.getAddress();
         Birthday birthday = personToEdit.getBirthday();
-        Reminder reminders = personToEdit.getReminders();
         Insurance updatedHealthInsurance = editInsuranceDescriptor
                 .getHealthInsurance().orElse(new HealthInsurance(false));
         Insurance updatedDisabilityInsurance = editInsuranceDescriptor.getDisabilityInsurance()
@@ -105,6 +104,7 @@ public class InsuranceCommand extends Command {
         Insurance updatedLifeInsurance = editInsuranceDescriptor.getLifeInsurance()
                 .orElse(new LifeInsurance(false));
         Set<Tag> tags = personToEdit.getTags();
+        Set<Reminder> reminders = personToEdit.getReminders();
 
         return new Person(name, phone, email, address, birthday,
                 updatedHealthInsurance, updatedDisabilityInsurance, updatedCriticalIllnessInsurance,

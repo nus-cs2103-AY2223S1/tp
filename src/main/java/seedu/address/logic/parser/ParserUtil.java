@@ -102,9 +102,12 @@ public class ParserUtil {
      * Leading and trailing whitespaces will be trimmed.
      *
      */
-    public static Birthday parseBirthday(String birthday) {
+    public static Birthday parseBirthday(String birthday) throws ParseException {
         requireNonNull(birthday);
         String trimmedBirthday = birthday.trim();
+        if (!Birthday.isValidBirthday(trimmedBirthday)) {
+            throw new ParseException(Birthday.MESSAGE_CONSTRAINTS);
+        }
         return new Birthday(trimmedBirthday);
     }
 
@@ -141,9 +144,11 @@ public class ParserUtil {
      *
      * @throws ParseException if the given {@code email} is invalid.
      */
-    public static Reminder parseReminders(String reminder) throws ParseException {
+    public static Set<Reminder> parseReminders(String reminder, String date) throws ParseException {
         requireNonNull(reminder);
         String trimmedReminder = reminder.trim();
-        return new Reminder(trimmedReminder);
+        Set<Reminder> reminderArrayList = new HashSet<>();
+        reminderArrayList.add(new Reminder(trimmedReminder, date));
+        return reminderArrayList;
     }
 }
