@@ -39,6 +39,7 @@ public class DateTest {
         String invalidDateFormatFive = "31-04-2022";
         String invalidDateFormatSix = "2022/02/02";
         String invalidDateFormatSeven = "20 October 2022";
+        String invalidDateFormatEight = "32/01/2022";
         assertThrows(IllegalArgumentException.class, () -> new Date(invalidDateEmptyString));
         assertThrows(IllegalArgumentException.class, () -> new Date(invalidDateWhitespaces));
         assertThrows(IllegalArgumentException.class, () -> new Date(invalidDateFormatOne));
@@ -48,6 +49,7 @@ public class DateTest {
         assertThrows(IllegalArgumentException.class, () -> new Date(invalidDateFormatFive));
         assertThrows(IllegalArgumentException.class, () -> new Date(invalidDateFormatSix));
         assertThrows(IllegalArgumentException.class, () -> new Date(invalidDateFormatSeven));
+        assertThrows(IllegalArgumentException.class, () -> new Date(invalidDateFormatEight));
     }
 
     /**
@@ -56,8 +58,19 @@ public class DateTest {
      */
     @Test
     public void constructor_nonExistentDate_throwsDateTimeParseException() {
-        String nonExistentDate = "31/02/2022";
-        assertThrows(DateTimeParseException.class, () -> new Date(nonExistentDate));
+        String nonExistentDateOne = "31/02/2022";
+        String nonExistentDateTwo = "29/02/2022"; // 2022 is a non-leap year
+        String nonExistentDateThree = "31/04/2022";
+
+        assertThrows(DateTimeParseException.class, () -> new Date(nonExistentDateOne));
+        assertThrows(DateTimeParseException.class, () -> new Date(nonExistentDateTwo));
+        assertThrows(DateTimeParseException.class, () -> new Date(nonExistentDateThree));
+    }
+
+    @Test
+    public void constructor_validLeapYearDate_success() {
+        String validDate = "29/02/2020"; // 2020 is a leap year
+        assertEquals(new Date(validDate), new Date(validDate)); // no DateTimeParseException should be thrown
     }
 
     @Test
