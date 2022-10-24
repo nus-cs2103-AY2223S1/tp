@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 
 import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
+import seedu.address.ui.SecondaryPaneState;
 
 /**
  * Clears the address book.
@@ -20,6 +21,6 @@ public class ClearCommand extends Command {
         model.clearTargetPerson();
         model.clearAllReminders();
         model.setAddressBook(new AddressBook());
-        return new CommandResult(MESSAGE_SUCCESS);
+        return new CommandResult(MESSAGE_SUCCESS, SecondaryPaneState.WELCOME);
     }
 }
