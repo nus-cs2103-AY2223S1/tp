@@ -72,7 +72,6 @@ public class UniqueVenueList implements Iterable<Venue> {
             throws VenueNotFoundException, BookingClashesException {
         requireAllNonNull(otherVenueName, booking);
         getVenueWithName(otherVenueName).addBooking(booking);
-        throw new VenueNotFoundException();
     }
 
     /**

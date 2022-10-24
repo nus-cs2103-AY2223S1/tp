@@ -23,8 +23,6 @@ import seedu.rc4hdb.storage.userprefs.UserPrefsStorage;
  */
 public class StorageManager implements Storage {
 
-    private static final Logger logger = LogsCenter.getLogger(StorageManager.class);
-
     private DataStorage dataStorage;
     private UserPrefsStorage userPrefsStorage;
     private CsvFileManager csvManager = new CsvFileManager();
@@ -205,7 +203,6 @@ public class StorageManager implements Storage {
 
     @Override
     public Optional<ReadOnlyResidentBook> readCsvFile(Path filePath) throws IOException, DataConversionException {
-        logger.fine("Attempting to read data from csv file: " + filePath);
         return csvManager.readCsvFile(filePath);
     }
 

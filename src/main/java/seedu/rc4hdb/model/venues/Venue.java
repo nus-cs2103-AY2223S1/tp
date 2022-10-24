@@ -24,11 +24,6 @@ public class Venue implements BookingField {
     public static final String MESSAGE_CONSTRAINTS =
             "Venue should only consist of: 'meeting' ";
 
-    public static final String VALID_ROOM = "meeting";
-
-    //IMPORTANT: Venue is a singleton with just one Venue, Meeting Room as of now
-    public static final Venue MEETING_ROOM = new Venue(new VenueName("Meeting Room"));
-
     private ObservableList<Booking> bookings = FXCollections.observableArrayList();
     private final VenueName venueName;
 

@@ -10,6 +10,7 @@ import seedu.rc4hdb.model.resident.Resident;
 import seedu.rc4hdb.model.venues.Venue;
 import seedu.rc4hdb.model.venues.VenueName;
 import seedu.rc4hdb.model.venues.booking.Booking;
+import seedu.rc4hdb.model.venues.booking.exceptions.BookingClashesException;
 import seedu.rc4hdb.model.venues.booking.exceptions.BookingNotFoundException;
 import seedu.rc4hdb.model.venues.booking.fields.Day;
 import seedu.rc4hdb.model.venues.booking.fields.HourPeriod;
@@ -129,7 +130,7 @@ public interface Model {
      * Adds a booking to the venue in the list with the name {@code venueName}.
      * @throws VenueNotFoundException if the venue does not exist in the list.
      */
-    void addBooking(VenueName venueName, Booking booking) throws VenueNotFoundException;
+    void addBooking(VenueName venueName, Booking booking) throws VenueNotFoundException, BookingClashesException;
 
     /**
      * Removes a booking corresponding to {@code bookedPeriod} and {@code bookedDay} from the venue in the list with
@@ -149,4 +150,8 @@ public interface Model {
     ObservableList<Venue> getObservableVenues();
 
     void setObservableVenues(List<Venue> modifiableVenues);
+
+    ObservableList<Booking> getObservableBookings();
+
+    void setObservableBookings(List<Booking> modifiableBookings);
 }

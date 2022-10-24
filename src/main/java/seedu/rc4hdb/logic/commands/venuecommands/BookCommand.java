@@ -67,7 +67,6 @@ public class BookCommand extends VenueCommand implements ModelCommand {
             List<Resident> lastShownList = model.getFilteredResidentList();
             Resident resident = lastShownList.get(residentIndex.getZeroBased());
             Booking toMake = createNewBooking(resident);
-            VenueName venueName = bookingDescriptor.getVenueName().get();
             model.addBooking(venueName, toMake);
             return new CommandResult(String.format(MESSAGE_SUCCESS, toMake));
         } catch (IndexOutOfBoundsException e) {
@@ -75,8 +74,6 @@ public class BookCommand extends VenueCommand implements ModelCommand {
         } catch (NoSuchElementException e) {
             throw new CommandException(MESSAGE_USAGE, e);
         } catch (VenueNotFoundException e) {
-            // NoSuchElementException will not be thrown as it is caught above.
-            VenueName venueName = bookingDescriptor.getVenueName().get();
             throw new CommandException(String.format(MESSAGE_VENUE_NOT_FOUND, venueName));
         } catch (BookingClashesException e) {
             throw new CommandException(MESSAGE_CLASHING_BOOKING, e);
@@ -88,7 +85,6 @@ public class BookCommand extends VenueCommand implements ModelCommand {
      */
     private Booking createNewBooking(Resident resident) throws NoSuchElementException {
         assert bookingDescriptor != null && resident != null;
-        VenueName venueName = bookingDescriptor.getVenueName().get();
         HourPeriod hourPeriod = bookingDescriptor.getHourPeriod().get();
         Day dayOfWeek = bookingDescriptor.getDayOfWeek().get();
         return new RecurrentBooking(venueName, resident, hourPeriod, dayOfWeek);

@@ -16,6 +16,7 @@ import seedu.rc4hdb.commons.util.FileUtil;
 import seedu.rc4hdb.logic.commands.exceptions.CommandException;
 import seedu.rc4hdb.logic.commands.filecommands.FileCommand;
 import seedu.rc4hdb.logic.commands.filecommands.FileCreateCommand;
+import seedu.rc4hdb.storage.DataStorageManager;
 import seedu.rc4hdb.storage.userprefs.JsonUserPrefsStorage;
 import seedu.rc4hdb.storage.Storage;
 import seedu.rc4hdb.storage.StorageManager;
@@ -75,7 +76,7 @@ public class FileCreateCommandTest {
 
     @Test
     public void execute_fileAlreadyExists_throwsCommandException() throws IOException {
-        String expectedMessage = String.format(FileCreateCommand.MESSAGE_FILE_EXISTS, "AlreadyExists.json");
+        String expectedMessage = String.format(DataStorageManager.MESSAGE_FOLDER_ALREADY_EXIST, "AlreadyExists.json");
 
         Path filePath = getTempFilePath("AlreadyExists.json");
         String targetFileName = "AlreadyExists";

@@ -4,5 +4,5 @@
 <?import javafx.scene.layout.*?>
 
 <VBox xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
-    <TableView fx:id="venueTableView" VBox.vgrow="ALWAYS" />
+    <TableView fx:id="bookingTableView" VBox.vgrow="ALWAYS" />
 </VBox>

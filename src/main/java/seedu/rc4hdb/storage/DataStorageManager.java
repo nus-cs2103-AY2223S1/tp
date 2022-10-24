@@ -4,11 +4,16 @@ import static java.util.Objects.requireNonNull;
 import static seedu.rc4hdb.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.io.IOException;
+import java.nio.file.FileAlreadyExistsException;
+import java.nio.file.NoSuchFileException;
 import java.nio.file.Path;
 import java.util.Optional;
+import java.util.logging.Logger;
 
 import javafx.beans.value.ObservableValue;
+import seedu.rc4hdb.commons.core.LogsCenter;
 import seedu.rc4hdb.commons.exceptions.DataConversionException;
+import seedu.rc4hdb.commons.util.FileUtil;
 import seedu.rc4hdb.model.ReadOnlyResidentBook;
 import seedu.rc4hdb.model.ReadOnlyVenueBook;
 import seedu.rc4hdb.storage.residentbook.JsonResidentBookStorage;
@@ -21,6 +26,11 @@ import seedu.rc4hdb.ui.ObservableItem;
  * Manages storage of Resident and Venue data in local storage.
  */
 public class DataStorageManager implements DataStorage {
+
+    public static final String MESSAGE_FOLDER_ALREADY_EXIST = "%s folder already exists";
+    public static final String MESSAGE_FOLDER_DOES_NOT_EXIST = "%s folder does not exist.";
+
+    private static final Logger logger = LogsCenter.getLogger(DataStorageManager.class);
 
     private ObservableItem<Path> folderPath;
     private ResidentBookStorage residentBookStorage = new JsonResidentBookStorage();
@@ -45,6 +55,7 @@ public class DataStorageManager implements DataStorage {
     @Override
     public void setDataStorageFilePath(Path folderPath) {
         requireNonNull(folderPath);
+        logger.info(String.format("Updating current working folder to: %s", folderPath));
         this.folderPath.setValue(folderPath);
     }
 
@@ -59,8 +70,22 @@ public class DataStorageManager implements DataStorage {
     @Override
     public void deleteDataFile(Path folderPath) throws IOException {
         requireNonNull(folderPath);
-        residentBookStorage.deleteResidentBookFile(folderPath);
-        venueBookStorage.deleteVenueBookFile(folderPath);
+        logger.info(String.format("Attempting to delete folder: %s", folderPath));
+        if (!FileUtil.isFolderExists(folderPath)) {
+            logger.warning(String.format("Folder does not exist: %s", folderPath));
+            throw new NoSuchFileException(String.format(MESSAGE_FOLDER_DOES_NOT_EXIST, folderPath.getFileName()));
+        }
+        try {
+            residentBookStorage.deleteResidentBookFile(folderPath);
+        } catch (IOException e) {
+            logger.info(String.format("Resident data file not found in %s folder", folderPath));
+        }
+        try {
+            venueBookStorage.deleteVenueBookFile(folderPath);
+        } catch (IOException e) {
+            logger.info(String.format("Venue data file not found in %s folder", folderPath));
+        }
+        FileUtil.deleteFile(folderPath);
     }
 
     /**
@@ -72,6 +97,12 @@ public class DataStorageManager implements DataStorage {
     @Override
     public void createDataFile(Path folderPath) throws IOException {
         requireNonNull(folderPath);
+        logger.info(String.format("Attempting to create folder: %s", folderPath));
+        if (FileUtil.isFolderExists(folderPath)) {
+            logger.warning(String.format("Folder already exists: %s", folderPath));
+            throw new FileAlreadyExistsException(
+                    String.format(MESSAGE_FOLDER_ALREADY_EXIST, folderPath.getFileName()));
+        }
         residentBookStorage.createResidentBookFile(folderPath);
         venueBookStorage.createVenueBookFile(folderPath);
     }

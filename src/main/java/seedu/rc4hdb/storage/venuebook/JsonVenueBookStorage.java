@@ -41,10 +41,12 @@ public class JsonVenueBookStorage implements VenueBookStorage {
     public Optional<ReadOnlyVenueBook> readVenueBook(Path folderPath) throws DataConversionException {
         requireNonNull(folderPath);
         Path filePath = getVenueBookFilePath(folderPath);
+        logger.info(String.format("Attempting to read venue file data from: %s", filePath));
 
         Optional<JsonSerializableVenueBook> jsonVenueBook = JsonUtil.readJsonFile(
                 filePath, JsonSerializableVenueBook.class);
         if (!jsonVenueBook.isPresent()) {
+            logger.warning(String.format("No venue file found at %s", filePath));
             return Optional.empty();
         }
 
@@ -65,6 +67,7 @@ public class JsonVenueBookStorage implements VenueBookStorage {
     public void saveVenueBook(ReadOnlyVenueBook venueBook, Path folderPath) throws IOException {
         requireAllNonNull(venueBook, folderPath);
         Path filePath = getVenueBookFilePath(folderPath);
+        logger.info(String.format("Attempting to save venue file data to: %s", filePath));
         FileUtil.createIfMissing(filePath);
         JsonUtil.saveJsonFile(new JsonSerializableVenueBook(venueBook), filePath);
     }
@@ -76,7 +79,9 @@ public class JsonVenueBookStorage implements VenueBookStorage {
      */
     public void deleteVenueBookFile(Path folderPath) throws IOException {
         requireNonNull(folderPath);
-        FileUtil.deleteFile(getVenueBookFilePath(folderPath));
+        Path filePath = getVenueBookFilePath(folderPath);
+        logger.info(String.format("Attempting to delete venue file data at: %s", filePath));
+        FileUtil.deleteFile(filePath);
     }
 
     /**
@@ -87,6 +92,7 @@ public class JsonVenueBookStorage implements VenueBookStorage {
     public void createVenueBookFile(Path folderPath) throws IOException {
         requireNonNull(folderPath);
         Path filePath = getVenueBookFilePath(folderPath);
+        logger.info(String.format("Attempting to save venue file data to: %s", filePath));
         FileUtil.createFile(filePath);
         JsonUtil.saveJsonFile(new JsonSerializableVenueBook(new VenueBook()), filePath);
     }

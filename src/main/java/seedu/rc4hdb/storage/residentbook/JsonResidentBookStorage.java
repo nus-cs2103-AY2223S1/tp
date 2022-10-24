@@ -41,10 +41,12 @@ public class JsonResidentBookStorage implements ResidentBookStorage {
     public Optional<ReadOnlyResidentBook> readResidentBook(Path folderPath) throws DataConversionException {
         requireNonNull(folderPath);
         Path filePath = getResidentBookFilePath(folderPath);
+        logger.info(String.format("Attempting to read resident file data from: %s", filePath));
 
         Optional<JsonSerializableResidentBook> jsonResidentBook = JsonUtil.readJsonFile(
                 filePath, JsonSerializableResidentBook.class);
         if (!jsonResidentBook.isPresent()) {
+            logger.info(String.format("No resident file found at %s", filePath));
             return Optional.empty();
         }
 
@@ -65,6 +67,7 @@ public class JsonResidentBookStorage implements ResidentBookStorage {
     public void saveResidentBook(ReadOnlyResidentBook residentBook, Path folderPath) throws IOException {
         requireAllNonNull(residentBook, folderPath);
         Path filePath = getResidentBookFilePath(folderPath);
+        logger.info(String.format("Attempting to save resident file data to: %s", filePath));
         FileUtil.createIfMissing(filePath);
         JsonUtil.saveJsonFile(new JsonSerializableResidentBook(residentBook), filePath);
     }
@@ -76,7 +79,9 @@ public class JsonResidentBookStorage implements ResidentBookStorage {
      */
     public void deleteResidentBookFile(Path folderPath) throws IOException {
         requireNonNull(folderPath);
-        FileUtil.deleteFile(getResidentBookFilePath(folderPath));
+        Path filePath = getResidentBookFilePath(folderPath);
+        logger.info(String.format("Attempting to delete resident file data at: %s", filePath));
+        FileUtil.deleteFile(filePath);
     }
 
     /**
@@ -87,6 +92,7 @@ public class JsonResidentBookStorage implements ResidentBookStorage {
     public void createResidentBookFile(Path folderPath) throws IOException {
         requireNonNull(folderPath);
         Path filePath = getResidentBookFilePath(folderPath);
+        logger.info(String.format("Attempting to save resident file data to: %s", filePath));
         FileUtil.createFile(filePath);
         JsonUtil.saveJsonFile(new JsonSerializableResidentBook(new ResidentBook()), filePath);
     }

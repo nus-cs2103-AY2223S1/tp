@@ -17,6 +17,10 @@ public class FileUtil {
         return Files.exists(file) && Files.isRegularFile(file);
     }
 
+    public static boolean isFolderExists(Path file) {
+        return Files.exists(file) && Files.isDirectory(file);
+    }
+
     /**
      * Returns true if {@code path} can be converted into a {@code Path} via {@link Paths#get(String, String...)},
      * otherwise returns false.

@@ -56,8 +56,8 @@ public class SampleDataUtil {
 
     public static Venue[] getSampleVenues() {
         return new Venue[] {
-            new Venue(new VenueName("Meeting Room")),
-            new Venue(new VenueName("Hall"))
+            new Venue(new VenueName("Hall")),
+            new Venue(new VenueName("Meeting Room"))
         };
     }
 

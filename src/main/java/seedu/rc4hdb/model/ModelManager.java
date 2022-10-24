@@ -17,6 +17,7 @@ import seedu.rc4hdb.model.resident.Resident;
 import seedu.rc4hdb.model.venues.Venue;
 import seedu.rc4hdb.model.venues.VenueName;
 import seedu.rc4hdb.model.venues.booking.Booking;
+import seedu.rc4hdb.model.venues.booking.exceptions.BookingClashesException;
 import seedu.rc4hdb.model.venues.booking.exceptions.BookingNotFoundException;
 import seedu.rc4hdb.model.venues.booking.fields.Day;
 import seedu.rc4hdb.model.venues.booking.fields.HourPeriod;
@@ -32,15 +33,16 @@ public class ModelManager implements Model {
     private final VenueBook venueBook;
     private final UserPrefs userPrefs;
     private final FilteredList<Resident> filteredResidents;
+
     private final ObservableList<String> observableFieldList;
     private final ObservableList<Venue> observableVenueList;
+    private final ObservableList<Booking> observableBookingList;
 
     /**
      * Initializes a ModelManager with the given residentBook and userPrefs.
      */
     public ModelManager(ReadOnlyResidentBook residentBook, ReadOnlyVenueBook venueBook, ReadOnlyUserPrefs userPrefs) {
-        requireAllNonNull(residentBook, userPrefs);
-        //Todo add venue book when linked with storage
+        requireAllNonNull(residentBook, venueBook, userPrefs);
 
         logger.fine("Initializing with resident book: " + residentBook + ", user prefs " + userPrefs
                 + ", venue book: " + venueBook);
@@ -48,8 +50,10 @@ public class ModelManager implements Model {
         this.venueBook = new VenueBook(venueBook);
         this.userPrefs = new UserPrefs(userPrefs);
         filteredResidents = new FilteredList<>(this.residentBook.getResidentList());
+
         this.observableFieldList = FXCollections.observableArrayList();
-        this.observableVenueList = FXCollections.observableArrayList(); // to be modified after linking with storage
+        this.observableVenueList = FXCollections.observableArrayList();
+        this.observableBookingList = FXCollections.observableArrayList();
     }
 
     public ModelManager() {
@@ -172,7 +176,8 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void addBooking(VenueName venueName, Booking booking) throws VenueNotFoundException {
+    public void addBooking(VenueName venueName, Booking booking)
+            throws VenueNotFoundException, BookingClashesException {
         requireAllNonNull(venueName, booking);
         venueBook.addBooking(venueName, booking);
     }
@@ -229,4 +234,15 @@ public class ModelManager implements Model {
     public void setObservableVenues(List<Venue> modifiableFields) {
         this.observableVenueList.setAll(modifiableFields);
     }
+
+    //=========== Observable Booking List Accessors =============================================================
+    @Override
+    public ObservableList<Booking> getObservableBookings() {
+        return this.observableBookingList;
+    }
+    @Override
+    public void setObservableBookings(List<Booking> modifiableFields) {
+        this.observableBookingList.setAll(modifiableFields);
+    }
+
 }

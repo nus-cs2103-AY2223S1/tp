@@ -16,8 +16,6 @@ public class FileCreateCommand extends FileCommand implements StorageCommand {
 
     public static final String COMMAND_WORD = "create";
 
-    public static final String MESSAGE_FILE_EXISTS = "%s already exists.";
-
     public static final String MESSAGE_SUCCESS = "%s successfully created.";
 
     public FileCreateCommand(Path dataDir, String subDirName) {
@@ -33,7 +31,7 @@ public class FileCreateCommand extends FileCommand implements StorageCommand {
             storage.createDataFile(folderPath);
             return new CommandResult(String.format(MESSAGE_SUCCESS, folderName));
         } catch (FileAlreadyExistsException e) {
-            throw new CommandException(String.format(MESSAGE_FILE_EXISTS, folderName), e);
+            throw new CommandException(e.getMessage(), e);
         } catch (IOException e) {
             throw new CommandException(String.format(MESSAGE_FAILED, "creating"), e);
         }

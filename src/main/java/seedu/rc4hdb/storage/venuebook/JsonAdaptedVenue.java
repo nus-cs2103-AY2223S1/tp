@@ -22,14 +22,15 @@ public class JsonAdaptedVenue {
 
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "Venue's %s field is missing!";
 
-    private List<JsonAdaptedBooking> bookings = new ArrayList<>();
+    private List<JsonAdaptedRecurrentBooking> bookings = new ArrayList<>();
     private String venueName;
 
     /**
      * Constructs a {@code JsonAdaptedBooking} with the given {@code bookings}, {@code venueName}.
      */
     @JsonCreator
-    public JsonAdaptedVenue(@JsonProperty List<JsonAdaptedBooking> bookings, @JsonProperty String venueName) {
+    public JsonAdaptedVenue(@JsonProperty("bookings") List<JsonAdaptedRecurrentBooking> bookings,
+                            @JsonProperty("venueName") String venueName) {
         if (bookings != null) {
             this.bookings = bookings;
         }
@@ -42,7 +43,7 @@ public class JsonAdaptedVenue {
     public JsonAdaptedVenue(Venue source) {
         // to be updated with logic that builds other types of bookings when other types of bookings are added.
         bookings.addAll(source.getObservableBookings()
-                .stream().map((booking) -> new JsonAdaptedRecurrentBooking((RecurrentBooking) booking))
+                .stream().map(booking -> new JsonAdaptedRecurrentBooking((RecurrentBooking) booking))
                 .collect(Collectors.toList()));
         venueName = source.getVenueName().value;
     }
