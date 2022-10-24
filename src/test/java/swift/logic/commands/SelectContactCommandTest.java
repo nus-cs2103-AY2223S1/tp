@@ -41,8 +41,6 @@ public class SelectContactCommandTest {
         expectedModel.updateFilteredTaskList((t) -> t.getId().equals(UUID.fromString(TASK3_UUID)));
         expectedModel.updateFilteredBridgeList((b) -> b.getPersonId().equals(UUID.fromString(PERSON2_UUID)));
 
-        Model currModel = model;
-
         assertCommandSuccess(selectContactCommand, model, expectedMessage, expectedModel);
     }
 

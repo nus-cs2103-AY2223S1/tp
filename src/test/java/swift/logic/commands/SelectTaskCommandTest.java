@@ -41,9 +41,6 @@ public class SelectTaskCommandTest {
         expectedModel.updateFilteredTaskList((t) -> t.getId().equals(UUID.fromString(TASK3_UUID)));
         expectedModel.updateFilteredBridgeList((b) -> b.getTaskId().equals(UUID.fromString(TASK3_UUID)));
 
-        Model currModel = model;
-        System.out.println(model);
-
         assertCommandSuccess(selectTaskCommand, model, expectedMessage, expectedModel);
     }
 
@@ -66,9 +63,6 @@ public class SelectTaskCommandTest {
         expectedModel.updateFilteredPersonList(p -> p.getId().equals(UUID.fromString(PERSON1_UUID)));
         expectedModel.updateFilteredTaskList(t -> t.getId().equals(UUID.fromString(TASK1_UUID)));
         expectedModel.updateFilteredBridgeList(b -> b.getTaskId().equals(UUID.fromString(TASK1_UUID)));
-
-        Model currModel = model;
-        System.out.println(model);
 
         assertCommandSuccess(selectTaskCommand, model, expectedMessage, expectedModel);
     }
