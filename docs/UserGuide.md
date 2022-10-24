@@ -200,14 +200,14 @@ Format: `patientsToday`
 
 ### Listing all tasks for a particular day: `tasksOn`
 
-Shows a list of all tasks on a particular day
+Shows a list of all tasks on a particular day.
 
 Format: `tasksOn DATE`
 
 * The DATE **must be of the specified format** dd-MM-yyyy
 
 Examples:
-* `tasksOn 25-12-2022` lists the tasks on 25th december 2022
+* `tasksOn 25-12-2022` lists the tasks on 25th December 2022
 
 ### Finding patient by name: `find`
 
