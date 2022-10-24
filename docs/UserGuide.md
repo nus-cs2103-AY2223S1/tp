@@ -123,10 +123,12 @@ The scores are optional, but there should be at least one parameter.
 
 View a particular student's details.
 
-Format: `find n/STUDENT_NAME`
+Format: `find k/Keywords`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 Use student name/telegram handle/consultation/mastery check date/remark to search up a particular student.
+Note: Multiple keywords can be entered.
+Note: when searching for exam grade use format `find [ra1:RA1_SCORE] [ra2:RA2_SCORE]`
 </div>
 
 ### Viewing all students: `list`
