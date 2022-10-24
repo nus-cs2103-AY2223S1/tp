@@ -2,32 +2,23 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.layout.StackPane?>
 
-<?import javafx.scene.layout.VBox?>
-<?import javafx.scene.control.Label?>
+
 <HBox xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
 
       <VBox fx:id="contacts" styleClass="pane-without-border" HBox.hgrow="ALWAYS">
-
-            <Label styleClass="label-header" text="Contacts" textAlignment="CENTER">
-
-            </Label>
-
-
-         <StackPane fx:id="personListPanelPlaceholder" prefWidth="420" minWidth="100.0" HBox.hgrow="ALWAYS" VBox.vgrow="ALWAYS" />
-
+          <Label styleClass="label-header" text="Contacts" textAlignment="CENTER"/>
+          <StackPane fx:id="personListPanelPlaceholder"
+                     prefWidth="420" minWidth="100.0" HBox.hgrow="ALWAYS" VBox.vgrow="ALWAYS" />
       </VBox>
 
       <VBox fx:id="reminders" styleClass="pane-without-border" HBox.hgrow="ALWAYS">
-
-            <Label styleClass="label-header" text="Reminders">
-
-            </Label>
-
-
-         <StackPane fx:id="reminderListPanelPlaceholder" minWidth="100.0" HBox.hgrow="ALWAYS" VBox.vgrow="ALWAYS"/>
-
+          <Label styleClass="label-header" text="Reminders"/>
+          <StackPane fx:id="reminderListPanelPlaceholder"
+                     minWidth="100.0" HBox.hgrow="ALWAYS" VBox.vgrow="ALWAYS"/>
       </VBox>
 
 </HBox>
