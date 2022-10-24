@@ -8,9 +8,6 @@ import java.util.List;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import seedu.address.model.student.Student;
-import seedu.address.model.student.exceptions.DuplicateStudentException;
-import seedu.address.model.student.exceptions.StudentNotFoundException;
 import seedu.address.model.task.exceptions.TaskNotFoundException;
 
 

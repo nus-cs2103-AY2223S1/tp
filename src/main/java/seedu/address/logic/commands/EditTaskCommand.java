@@ -1,5 +1,15 @@
 package seedu.address.logic.commands;
 
+import static java.util.Objects.requireNonNull;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ASSIGNMENT_ADD_STUDENTS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DEADLINE_DATE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TASK_DESCRIPTION;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TASK_TITLE;
+import static seedu.address.model.Model.PREDICATE_SHOW_ALL_STUDENTS;
+
+import java.util.List;
+import java.util.Optional;
+
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.CollectionUtil;
@@ -12,16 +22,6 @@ import seedu.address.model.task.Task;
 import seedu.address.model.task.TaskDescription;
 import seedu.address.model.task.TaskTitle;
 import seedu.address.model.task.ToDo;
-
-import java.util.List;
-import java.util.Optional;
-
-import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_ASSIGNMENT_ADD_STUDENTS;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_DEADLINE_DATE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TASK_DESCRIPTION;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TASK_TITLE;
-import static seedu.address.model.Model.PREDICATE_SHOW_ALL_STUDENTS;
 
 /**
  * Edits the details of an existing task in the task book.
@@ -43,8 +43,8 @@ public class EditTaskCommand extends Command {
 
     public static final String MESSAGE_EDIT_TASK_SUCCESS = "Edited Task: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
-    public static final String MESSAGE_WRONG_TASK_TYPE = "You are adding an invalid field to the task." +
-            "Create a task of the correct type to add relevant field";
+    public static final String MESSAGE_WRONG_TASK_TYPE = "You are adding an invalid field to the task."
+            + "Create a task of the correct type to add relevant field";
 
     private final Index index;
     private final EditTaskDescriptor editTaskDescriptor;
@@ -94,7 +94,7 @@ public class EditTaskCommand extends Command {
         } else if (taskToEdit instanceof Deadline) {
             Deadline deadlineTaskToEdit = (Deadline) taskToEdit;
             FormatDate updatedDate = editTaskDescriptor.getDate().orElse(deadlineTaskToEdit.getDate());
-            return new Deadline(updatedTitle,updatedDescription, updatedDate);
+            return new Deadline(updatedTitle, updatedDescription, updatedDate);
         } else {
             Assignment assignmentTaskToEdit = (Assignment) taskToEdit;
             if (editTaskDescriptor.getStudentsToAdd().isPresent()) {
