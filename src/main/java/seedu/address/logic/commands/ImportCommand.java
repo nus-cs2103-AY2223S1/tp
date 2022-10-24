@@ -37,7 +37,7 @@ public class ImportCommand extends Command {
     public static final Path VALID_DATA_FORMAT_PATH = Paths.get("data", "template", "template.json");
     public static final String MESSAGE_CONSTRAINTS_UNSATISFIED_TEMPLATE =
             "The specified file contains incorrect format, invalid value and/or duplicate persons.\n"
-            + "Please refer to the template file in" + VALID_DATA_FORMAT_PATH + ".\n"
+            + "Please refer to the template file in " + VALID_DATA_FORMAT_PATH.toString() + ".\n"
             + "You can add more person to the persons list in the file.";
 
     private static final String VALID_DATA_FORMAT = "{\n"
