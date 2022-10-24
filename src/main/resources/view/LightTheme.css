@@ -413,18 +413,14 @@
     -fx-font-family: "Roboto";
     -fx-font-weight: 700;
     -fx-font-size: 36px;
-    -fx-padding: 10 0;
+    -fx-padding: 0 0 10 0;
 }
 
 .pane-header-2 {
     -fx-font-family: "Roboto";
     -fx-font-weight: 400;
     -fx-font-size: 24px;
-    -fx-padding: 10 0;
-}
-
-.target-person-card {
-    -fx-background-color: #f8f8f8 !important;
+    -fx-padding: 0 0 10 0;
 }
 
 .target-person-name {
@@ -470,4 +466,14 @@
 .message-name-placeholder {
     -fx-font-style: italic;
     -fx-fill: #0009a6;
+}
+
+.placeholder {
+    -fx-font-style: italic;
+    -fx-fill: #505050;
+}
+
+.motivational-quote {
+    -fx-font-style: italic;
+    -fx-padding: 0 0 6 0;
 }

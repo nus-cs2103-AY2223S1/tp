@@ -5,12 +5,11 @@ import static seedu.address.logic.commands.ListMessageCommand.MESSAGE_SUCCESS;
 import static seedu.address.testutil.TypicalMessages.VALID_MESSAGE_HAPPY_BIRTHDAY;
 import static seedu.address.testutil.TypicalMessages.VALID_MESSAGE_RECOMMEND_PRODUCT;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.message.Message;
 
@@ -57,7 +56,7 @@ class ListMessageCommandTest {
     }
 
     private class ModelStubListCommand extends CommandTestUtil.ModelStub {
-        private List<Message> messagesAdded = new ArrayList<>();
+        private ObservableList<Message> messagesAdded = FXCollections.observableArrayList();
 
         @Override
         public void createMessage(Message message) {
@@ -65,7 +64,7 @@ class ListMessageCommandTest {
         }
 
         @Override
-        public List<Message> getMessages() {
+        public ObservableList<Message> getMessages() {
             return messagesAdded;
         }
     }

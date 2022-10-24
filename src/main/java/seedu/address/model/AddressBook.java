@@ -227,10 +227,9 @@ public class AddressBook implements ReadOnlyAddressBook {
      * Returns the list of messages as an unmodifiable {@code UnmodifiableList}
      */
     @Override
-    public List<Message> getMessageTemplates() {
+    public ObservableList<Message> getMessageTemplates() {
         return messages.asUnmodifiableList();
     }
-
 
     @Override
     public boolean equals(Object other) {

@@ -7,7 +7,6 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import java.nio.file.Path;
 import java.util.Collection;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
@@ -199,7 +198,7 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public List<Message> getMessages() {
+    public ObservableList<Message> getMessages() {
         return addressBook.getMessageTemplates();
     }
 
@@ -279,8 +278,8 @@ public class ModelManager implements Model {
 
     // =========== Target Person Accessors =============================================================
     @Override
-    public ObservableList<Person> getTargetPersonAsObservableList() {
-        return targetPerson.getAsObservableList();
+    public TargetPerson getObservableTargetPerson() {
+        return targetPerson;
     }
 
     @Override

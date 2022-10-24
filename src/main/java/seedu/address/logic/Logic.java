@@ -8,7 +8,9 @@ import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.message.Message;
 import seedu.address.model.person.Person;
+import seedu.address.model.person.TargetPerson;
 import seedu.address.model.quote.Quote;
 import seedu.address.model.reminder.Reminder;
 
@@ -36,13 +38,16 @@ public interface Logic {
     ObservableList<Person> getFilteredPersonList();
 
     /** Returns an unmodifiable view of the list of target person */
-    ObservableList<Person> getTargetPersonList();
+    TargetPerson getTargetPerson();
 
     /** Returns an unmodifiable view of the list of reminders */
     ObservableList<Reminder> getReminderListAsObservableList();
 
     /** Returns an unmodifiable view of the list of reminders for target person */
     ObservableList<Reminder> getTargetPersonReminderListAsObservableList();
+
+    /** Returns an unmodifiable view of the list of message templates */
+    ObservableList<Message> getMessageTemplates();
 
     /**
      * Returns the user prefs' address book file path.

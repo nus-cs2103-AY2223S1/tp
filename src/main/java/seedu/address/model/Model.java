@@ -2,7 +2,6 @@ package seedu.address.model;
 
 import java.nio.file.Path;
 import java.util.Collection;
-import java.util.List;
 import java.util.Set;
 import java.util.function.Predicate;
 
@@ -11,6 +10,7 @@ import seedu.address.commons.core.GuiSettings;
 import seedu.address.logic.commands.FilterCommandPredicate;
 import seedu.address.model.message.Message;
 import seedu.address.model.person.Person;
+import seedu.address.model.person.TargetPerson;
 import seedu.address.model.quote.Quote;
 import seedu.address.model.reminder.ReadOnlyReminderList;
 import seedu.address.model.reminder.Reminder;
@@ -125,7 +125,7 @@ public interface Model {
     /**
      * Returns an unmodifiable view of messages.
      */
-    List<Message> getMessages();
+    ObservableList<Message> getMessages();
 
     /** Returns an unmodifiable view of the filtered person list */
     ObservableList<Person> getFilteredPersonList();
@@ -152,8 +152,8 @@ public interface Model {
     /** Returns the list of name filters applied. */
     Set<Predicate<Person>> getNameFilters();
 
-    /** Returns an unmodifiable view of the list of target person */
-    ObservableList<Person> getTargetPersonAsObservableList();
+    /** Returns the target person */
+    TargetPerson getObservableTargetPerson();
 
     /**
      * Set the given person as target.
