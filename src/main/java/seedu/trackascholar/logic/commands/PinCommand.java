@@ -9,7 +9,13 @@ import seedu.trackascholar.commons.core.Messages;
 import seedu.trackascholar.commons.core.index.Index;
 import seedu.trackascholar.logic.commands.exceptions.CommandException;
 import seedu.trackascholar.model.Model;
-import seedu.trackascholar.model.applicant.*;
+import seedu.trackascholar.model.applicant.Applicant;
+import seedu.trackascholar.model.applicant.ApplicationStatus;
+import seedu.trackascholar.model.applicant.Email;
+import seedu.trackascholar.model.applicant.Name;
+import seedu.trackascholar.model.applicant.Phone;
+import seedu.trackascholar.model.applicant.Pin;
+import seedu.trackascholar.model.applicant.Scholarship;
 import seedu.trackascholar.model.tag.Tag;
 
 /**
