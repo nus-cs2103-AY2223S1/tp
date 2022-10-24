@@ -98,6 +98,26 @@ Format: `add-et n/EVENT NAME T/TRIP NAME`
 Examples:
 - `add -et 2 3` adds the 2nd event in the events list to the 3rd trip in the trips list.
 
+### Sorting trips: `sort by/FACTOR r/`
+Sorts the trips according to the provided factor.
+
+Format: `sort by/FACTOR r/`
+- Sorts the trip according to provided FACTOR.
+- Order of sort reversed when the `r/` prefix is provided.
+- The parameters for this command are optional. 
+- The trips will be sorted by their title in alphabetical order by default.
+- A valid FACTOR must be provided if the `by/` prefix is provided.
+- Extraneous parameters for `r/` prefix will be ignored and treated as just `r/`.
+
+| FACTOR | Description |
+| --- | --- |
+| nothing | Default sort will be used |
+| `title` | Sort by trips' title in alphabetical order |
+| `time` | Sort by trip's date in chronological order |
+| `location` | Sort by trips' location in alphabetical order |
+| `eventcount` | Sort by trips' number of events in ascending order |
+| `mark` | Shift the marked trips to the bottom of unmarked trips. |
+
 ### Saving data
 Travelr data are saved locally automatically after any command that changes the data. There is no need to save manually.
 
