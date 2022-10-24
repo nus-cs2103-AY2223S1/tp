@@ -132,13 +132,13 @@ Examples:
 * `list m/CS2103T` followed by `delete 3` deletes the 3rd student in the CS2103T module.
 * `find Betsy` followed by `delete 1` deletes the 1st student in the results of the `find` command.
 
-### Adding a tutorial : `add tut`
+### Adding a tutorial : `add tutorial`
 
 Adds a tutorial to the tutorial database.
 
 Format: `add tutorial m/MODULE t/TIMESLOT v/VENUE n/NAME`
 
-### Deleting a tutorial : `delete tut`
+### Deleting a tutorial : `delete tutorial`
 
 Deletes a specified tutorial from the tutorial database.
 
@@ -148,7 +148,7 @@ Format: `delete tutorial INDEX`
 * The index refers to the index number shown in the displayed tutorial list.
 * The index **must be a positive integer** 1, 2, 3, …
 
-### Clearing all tutorials : `clear tut`
+### Clearing all tutorials : `clear tutorial`
 
 Clears all tutorials in a specified module.
 
@@ -238,13 +238,16 @@ Action | Format, Examples
 **Edit Student** | `edit student INDEX [n/NAME] [m/MODULE] [p/PHONE_NUMBER] [e/EMAIL] [t/TAG]…`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
 **Find Student** | `find [n/NAME] [i/STUDENTID] [m/MODULE] [l/TUTORIAL]`<br> e.g., `find student n/john m/CS2103T`
 **Delete Student** | `delete student INDEX [m/MODULE] [r/ROLE]`<br> e.g., `delete student 2 m/CS2103T r/ta`
-**Add Tutorial** | `add tut m/MODULE t/TIMESLOT v/VENUE n/NAME` <br> e.g., `add tut m/CS2103T t/1800-2000 v/COM1-0205 n/JohnFoo`
-**Delete Tutorial** | `delete tutorial INDEX` <br> e.g., `delete tut 3`
-**Clear Tutorial** | `clear tutorial [m/MODULE]` <br> e.g., `clear tut m/CS2105`
+**Add Tutorial** | `add tutorial m/MODULE t/TIMESLOT v/VENUE n/NAME` <br> e.g., `add tutorial m/CS2103T t/1800-2000 v/COM1-0205 n/JohnFoo`
+**Delete Tutorial** | `delete tutorial INDEX` <br> e.g., `delete tutorial 3`
+**Clear Tutorial** | `clear tutorial [m/MODULE]` <br> e.g., `clear tutorial m/CS2105`
 **Add Consultations** | `add consultation n/NAME m/MODULE v/VENUE D/DATE T/TIMESLOT [d/DESCRIPTION]` <br> e.g., `add consultation t/18:00-20:00 v/COM1-0205 m/CS2103T n/JakeKim d/testing`
 **Delete Consultations** | `delete consultation INDEX` <br> e.g., `delete consult 3`
 **Clear Consultations** | `clear consult` <br> e.g., `clear consult`
-**Add Reminders** | `add rem r/DESCRIPTION [d/DEADLINE]` <br> e.g., `add reminder r/mark assignment 1`
-**Delete Reminders** | `delete rem INDEX` <br> e.g., `delete rem 3`
-**Clear Reminders** | `clear rem` <br> e.g., `clear rem`
+**Add Reminder** | `add reminder n/NAME T/DEADLINE p/PRIORITY d/DESCRIPTION` <br> e.g., `add reminder n/mark assignment 1 T/2000-03-21 p/HIGH d/ 300 papers to mark`
+**Delete Reminder** | `delete reminder INDEX` <br> e.g., `delete reminder 3`
+**Mark Reminder** | `mark reminder INDEX` <br> e.g., `mark reminder 3`
+**Unmark Reminder** | `unmark reminder INDEX` <br> e.g., `unmark reminder 3`
+**Sort Reminder** | `sort reminder` <br> e.g., `sort reminder`
+**Clear Reminder** | `clear reminder` <br> e.g., `clear reminder`
 **Help** | `help`
