@@ -18,6 +18,9 @@ public abstract class ColumnManipulatorCommand implements ModelCommand {
 
     public static final String AT_LEAST_ONE_VISIBLE_COLUMN = "You must have at least one column visible at all times!";
 
+    public static final String INVALID_SUBSET = "Please enter columns to show or hide that are currently in the"
+            + " table view.\n To display columns outside of the current view, use the list /i command instead.";
+
     public static final List<String> ALL_FIELDS = ResidentField.LOWERCASE_FIELDS;
     protected final List<String> fieldsToShow;
     protected final List<String> fieldsToHide;
@@ -26,17 +29,6 @@ public abstract class ColumnManipulatorCommand implements ModelCommand {
         requireAllNonNull(fieldsToShow, fieldsToHide);
         this.fieldsToShow = fieldsToShow;
         this.fieldsToHide = fieldsToHide;
-    }
-
-    @Override
-    public CommandResult execute(Model model) throws CommandException {
-        requireNonNull(model);
-
-        model.setVisibleFields(fieldsToShow);
-        model.setHiddenFields(fieldsToHide);
-
-        requireAtLeastOneVisibleColumn(this.fieldsToShow);
-        return new CommandResult(String.format(MESSAGE_SUCCESS_FORMAT, getCommandVerbs()));
     }
 
     public abstract String getCommandVerbs();
@@ -67,20 +59,34 @@ public abstract class ColumnManipulatorCommand implements ModelCommand {
         return false;
     }
 
-    public static List<String> getAlreadyVisibleFields(Model model) {
+    private static List<String> getAlreadyVisibleFields(Model model) {
         return model.getVisibleFields();
     }
 
-    public static List<String> getAlreadyHiddenFields(Model model) {
+    private static List<String> getAlreadyHiddenFields(Model model) {
         return model.getHiddenFields();
     }
 
-    public static boolean isValidSubsetOfAlreadyVisibleFields(Model model, List<String> inputList) {
+    private static boolean isValidSubsetOfAlreadyVisibleFields(Model model, List<String> inputList) {
         List<String> alreadyVisibleFields = getAlreadyVisibleFields(model);
         return alreadyVisibleFields.containsAll(inputList);
     }
 
     public static void requireAtLeastOneVisibleColumn(List<String> fieldsToShow) throws CommandException {
-        throw new CommandException(AT_LEAST_ONE_VISIBLE_COLUMN);
+        if (fieldsToShow.isEmpty()) {
+            throw new CommandException(AT_LEAST_ONE_VISIBLE_COLUMN);
+        }
+    }
+
+    public static void requireValidList(Model model, List<String> inputList) throws CommandException {
+        if (!isValidSubsetOfAlreadyVisibleFields(model, inputList)) {
+            throw new CommandException(INVALID_SUBSET);
+        }
+    }
+
+    public static List<String> getUnionOfFieldsToHideAndAlreadyHiddenFields(Model model, List<String> inputList) {
+        List<String> unionList = new ArrayList<>(getAlreadyHiddenFields(model));
+        unionList.addAll(inputList);
+        return unionList;
     }
 }
