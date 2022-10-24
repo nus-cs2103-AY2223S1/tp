@@ -10,6 +10,7 @@ import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.module.Module;
 import seedu.address.model.module.ModuleCode;
+import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 
 /**
@@ -67,12 +68,22 @@ public class ModelStub implements Model {
     }
 
     @Override
+    public boolean hasPersonInFilteredList(Person person) {
+        throw new AssertionError("This method should not be called.");
+    }
+
+    @Override
     public void deletePerson(Person target) {
         throw new AssertionError("This method should not be called.");
     }
 
     @Override
     public void setPerson(Person target, Person editedPerson) {
+        throw new AssertionError("This method should not be called.");
+    }
+
+    @Override
+    public Person getPersonUsingName(Name nameOfPersonToGet, boolean isFiltered) {
         throw new AssertionError("This method should not be called.");
     }
 

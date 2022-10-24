@@ -3,6 +3,8 @@
   "modules": [ {
     "moduleCode": "(CS2103T)",
     "moduleTitle": "Software Engineering",
-    "tasks" : [ "Submit quiz" ]
+    "tasks" : [ "Submit quiz" ],
+    "links" : [],
+    "persons" : [ ]
   } ]
 }

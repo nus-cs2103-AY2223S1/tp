@@ -50,8 +50,6 @@ public class DeleteLinkCommandParserTest {
                 Link.MESSAGE_CONSTRAINTS_ALIAS);
     }
 
-    //Specific testing of link alias validity performed at ParserUtilTest and LinkTest ==========
-    //Integration testing of DeleteLinkCommandParser with ParserUtil
     @Test
     public void parse_invalidArgsOnlyWhiteSpace_throwsParseException() {
         assertParseFailure(parser, " " + PREFIX_MODULE_CODE + VALID_MODULE_CODE + " "
@@ -59,6 +57,7 @@ public class DeleteLinkCommandParserTest {
                 Link.MESSAGE_CONSTRAINTS_ALIAS);
     }
 
+    //Specific testing of link alias validity performed at ParserUtilTest and LinkTest ==========
     //Integration testing of DeleteLinkCommandParser with ParserUtil
     @Test
     public void parse_links_success() {

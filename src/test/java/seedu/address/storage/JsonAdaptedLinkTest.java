@@ -36,6 +36,13 @@ public class JsonAdaptedLinkTest {
     }
 
     @Test
+    public void toModelType_missingDelimiter_throwsIllegalValueException() {
+        JsonAdaptedLink invalidLink = new JsonAdaptedLink (VALID_MODULE_LINK_ALIAS + VALID_MODULE_LINK_URL);
+        String expectedMessage = AddLinkCommandParser.MESSAGE_CONSTRAINTS;
+        assertThrows(IllegalValueException.class, expectedMessage,invalidLink::toModelType);
+    }
+
+    @Test
     public void toModelType_validLinkAliasAndUrl_returnsLink() throws Exception {
         JsonAdaptedLink validLink = new JsonAdaptedLink(VALID_LINK);
         assertEquals(VALID_LINK, validLink.toModelType());

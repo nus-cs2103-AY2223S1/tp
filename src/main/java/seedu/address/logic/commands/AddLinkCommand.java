@@ -10,7 +10,6 @@ import java.util.List;
 import java.util.Set;
 
 import seedu.address.logic.commands.exceptions.CommandException;
-import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.Model;
 import seedu.address.model.module.link.Link;
 import seedu.address.model.module.Module;
@@ -18,6 +17,7 @@ import seedu.address.model.module.ModuleCode;
 import seedu.address.model.module.ModuleTitle;
 import seedu.address.model.module.exceptions.ModuleNotFoundException;
 import seedu.address.model.module.task.Task;
+import seedu.address.model.person.Person;
 
 /**
  * Adds a link to an existing module in Plannit.
@@ -85,6 +85,7 @@ public class AddLinkCommand extends Command {
         ModuleTitle moduleTitle = moduleToEdit.getModuleTitle();
         List<Task> moduleTasks = moduleToEdit.getTasks();
         Set<Link> updatedLinks = moduleToEdit.copyLinks();
+        Set<Person> modulePersons = moduleToEdit.getPersons();
 
         for (Link newLink : linksToAdd) {
             boolean isExistingLinkAlias = updatedLinks.stream()
@@ -101,7 +102,7 @@ public class AddLinkCommand extends Command {
             }
             updatedLinks.add(newLink);
         }
-        return new Module(moduleCode, moduleTitle, moduleTasks, updatedLinks);
+        return new Module(moduleCode, moduleTitle, moduleTasks, updatedLinks, modulePersons);
     }
 
     @Override

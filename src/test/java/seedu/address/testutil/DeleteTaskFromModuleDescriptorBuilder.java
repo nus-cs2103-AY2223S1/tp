@@ -1,7 +1,5 @@
 package seedu.address.testutil;
 
-import static seedu.address.testutil.TypicalModules.CS2103T;
-
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.DeleteTaskCommand.DeleteTaskFromModuleDescriptor;
 import seedu.address.model.module.Module;
@@ -10,22 +8,13 @@ import seedu.address.model.module.Module;
  * A utility class to help with building {@code DeleteTaskFromModuleDescriptor} objects.
  */
 public class DeleteTaskFromModuleDescriptorBuilder {
-    public static final Module DEFAULT_MODULE = CS2103T;
     public static final Index TASK_INDEX_ONE = Index.fromOneBased(1);
 
     private DeleteTaskFromModuleDescriptor descriptor;
 
-    public DeleteTaskFromModuleDescriptorBuilder() {
-        descriptor = new DeleteTaskFromModuleDescriptor();
-    }
-
-    public DeleteTaskFromModuleDescriptorBuilder(DeleteTaskFromModuleDescriptor descriptor) {
-        this.descriptor = new DeleteTaskFromModuleDescriptor(descriptor);
-    }
-
     /**
-     * Returns an {@code DeleteTaskFromModuleDescriptor} with fields containing
-     * {@code module}'s details.
+     * Returns a {@code DeleteTaskFromModuleDescriptor} with the given
+     * {@code module} as the target module.
      */
     public DeleteTaskFromModuleDescriptorBuilder(Module module) {
         descriptor = new DeleteTaskFromModuleDescriptor();
@@ -34,8 +23,9 @@ public class DeleteTaskFromModuleDescriptorBuilder {
     }
 
     /**
-     * Returns an {@code DeleteTaskFromModuleDescriptor} with fields containing
-     * {@code module}'s details and the specified task number.
+     * Returns a {@code DeleteTaskFromModuleDescriptor} with the given
+     * {@code module} as the target module and the specified task number as
+     * the task to delete.
      */
     public DeleteTaskFromModuleDescriptorBuilder(Module module,
                                                  Index taskNumber) {

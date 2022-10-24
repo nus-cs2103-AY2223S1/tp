@@ -29,25 +29,30 @@ import seedu.address.model.module.Module;
 import seedu.address.model.module.ModuleCode;
 import seedu.address.model.module.ModuleTitle;
 import seedu.address.model.module.task.Task;
+import seedu.address.model.person.Person;
 
 /**
  * Contains integration tests (interaction with the Model) and unit tests for DeleteLinkCommand.
  */
 public class DeleteLinkCommandTest {
     private static final String MODULE_CODE_WITH_LINK = VALID_GE3238_MODULE_CODE;
-    private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+    private final Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
 
     @Test
     public void execute_deleteLinkCommandFilteredList_success() {
         Model expectedModel = new ModelManager(getTypicalAddressBook(), new UserPrefs());
         Module moduleToEdit = expectedModel.getModuleUsingModuleCode(new ModuleCode(MODULE_CODE_WITH_LINK), true);
+
         ModuleCode moduleCode = moduleToEdit.getModuleCode();
         ModuleTitle moduleTitle = moduleToEdit.getModuleTitle();
         List<Task> moduleTasks = moduleToEdit.getTasks();
         Set<String> moduleLinksToDelete = moduleToEdit.copyLinks().stream()
                 .map(link -> link.linkAlias).collect(Collectors.toSet());
         Set<Link> moduleLinksEmpty = new HashSet<Link>();
-        Module moduleToDeleteLink = new Module(moduleCode, moduleTitle, moduleTasks, moduleLinksEmpty);
+        Set<Person> modulePersons = moduleToEdit.getPersons();
+
+        Module moduleToDeleteLink = new Module(moduleCode, moduleTitle,
+                moduleTasks, moduleLinksEmpty, modulePersons);
 
         DeleteLinkCommand deleteLinkCommand = new DeleteLinkCommand(
                 new ModuleCode(MODULE_CODE_WITH_LINK), moduleLinksToDelete);

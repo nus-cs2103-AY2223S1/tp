@@ -34,27 +34,31 @@ import seedu.address.model.module.Module;
 import seedu.address.model.module.ModuleCode;
 import seedu.address.model.module.ModuleTitle;
 import seedu.address.model.module.task.Task;
+import seedu.address.model.person.Person;
 
 /**
  * Contains integration tests (interaction with the Model) and unit tests for AddLinkCommand.
  */
 public class AddLinkCommandTest {
-    private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
     private static final String MODULE_CODE_WITH_LINK = VALID_GE3238_MODULE_CODE;
+    private final Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
 
     @Test
     public void execute_addLinkCommandFilteredList_success() {
         Model expectedModel = new ModelManager(getTypicalAddressBook(), new UserPrefs());
         Set<Link> linksToAdd = new HashSet<Link>(Arrays.asList(
                 new Link(VALID_MODULE_LINK_ALIAS, VALID_MODULE_LINK_URL)));
-
         Module moduleToEdit = expectedModel.getModuleUsingModuleCode(new ModuleCode(VALID_CS2106_MODULE_CODE), true);
+
         ModuleCode moduleCode = moduleToEdit.getModuleCode();
         ModuleTitle moduleTitle = moduleToEdit.getModuleTitle();
         List<Task> moduleTasks = moduleToEdit.getTasks();
         Set<Link> moduleLinks = moduleToEdit.copyLinks();
+        Set<Person> modulePersons = moduleToEdit.getPersons();
+
         moduleLinks.addAll(linksToAdd);
-        Module moduleToAddLink = new Module(moduleCode, moduleTitle, moduleTasks, moduleLinks);
+        Module moduleToAddLink = new Module(moduleCode, moduleTitle,
+                moduleTasks, moduleLinks, modulePersons);
 
         AddLinkCommand addLinkCommand = new AddLinkCommand(new ModuleCode(VALID_CS2106_MODULE_CODE), linksToAdd);
         expectedModel.setModule(moduleToEdit, moduleToAddLink);
