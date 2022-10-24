@@ -3,6 +3,7 @@ package seedu.address.ui;
 
 import java.util.Comparator;
 
+import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
@@ -34,25 +35,47 @@ public class TaskCard extends UiPart<Region> {
     @FXML
     private Label id;
     @FXML
-    private Label statusIcon;
-    @FXML
     private Label deadline;
+    @FXML
+    private Label status;
     @FXML
     private FlowPane tags;
 
     /**
-     * Creates a {@code TaskCode} with the given {@code Task} and index to display.
+     * Creates a {@code TaskCard} with the given {@code Task} and index to display.
      */
     public TaskCard(Task task, int displayedIndex) {
         super(FXML);
         this.task = task;
         id.setText(displayedIndex + ". ");
         description.setText(task.getDescription().toString());
-        statusIcon.setText(task.getStatusIcon());
         deadline.setText(task.getDeadline().toString());
         task.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
+
+        //Reused from
+        //https://stackoverflow.com/questions/56104276/javafx-how-can-i-change-a-texts-color-in-a-textfield-depending-on-the-validit
+        //with minor modifications
+        status.textProperty().addListener((ObservableValue<? extends String> st, String old, String curr) ->
+        {
+            if (!isStatusComplete(curr)) {
+                status.setStyle("-fx-text-fill: #D7504D;");
+            } else {
+                status.setStyle("-fx-text-fill: #96D294;");
+            }
+        });
+        status.setText(task.getStatusForDisplay());
+    }
+
+    /**
+     * Checks if task status is completed.
+     * @param status task status.
+     * @return true if task is completed, false if task is incomplete.
+     */
+    public boolean isStatusComplete(String status) {
+        assert(status.equals("completed") || status.equals("incomplete"));
+        return status.equals("completed");
     }
 
     @Override
