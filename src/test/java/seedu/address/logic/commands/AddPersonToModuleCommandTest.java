@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_CS2106_MODULE_CODE;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_CS9999_MODULE_CODE_NOT_IN_TYPICAL_ADDRESS_BOOK;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_MA2001_MODULE_CODE;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
@@ -20,8 +21,10 @@ import seedu.address.commons.core.Messages;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.module.Module;
 import seedu.address.model.module.ModuleCode;
+import seedu.address.model.module.exceptions.ModuleNotFoundException;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
+import seedu.address.model.person.exceptions.PersonNotFoundException;
 import seedu.address.testutil.ModelStub;
 import seedu.address.testutil.ModuleBuilder;
 import seedu.address.testutil.PersonBuilder;
@@ -100,6 +103,24 @@ public class AddPersonToModuleCommandTest {
     }
 
     @Test
+    public void execute_nonexistentModule_throwsCommandException() {
+        Person validPerson = new PersonBuilder().build();
+        Module validModule = new ModuleBuilder().build();
+        Name validName = validPerson.getName();
+
+        Module nonExistentModule = new ModuleBuilder()
+                .withModuleCode(VALID_CS9999_MODULE_CODE_NOT_IN_TYPICAL_ADDRESS_BOOK).build();
+        ModuleCode nonExistentModuleCode = nonExistentModule.getModuleCode();
+
+        AddPersonToModuleCommand addPersonToModuleCommand =
+                new AddPersonToModuleCommand(nonExistentModuleCode, validName);
+        ModelStubWithModuleAndPerson modelStub = new ModelStubWithModuleAndPerson(validModule, validPerson);
+
+        assertThrows(CommandException.class, Messages.MESSAGE_NO_SUCH_MODULE,
+                () -> addPersonToModuleCommand.execute(modelStub));
+    }
+
+    @Test
     public void equals() {
         ModuleCode cs2106ModuleCode = new ModuleCode(VALID_CS2106_MODULE_CODE);
         ModuleCode ma2001ModuleCode = new ModuleCode(VALID_MA2001_MODULE_CODE);
@@ -161,14 +182,18 @@ public class AddPersonToModuleCommandTest {
         @Override
         public Module getModuleUsingModuleCode(ModuleCode moduleCode, boolean isFiltered) {
             requireNonNull(moduleCode);
-            assertEquals(module.getModuleCode(), moduleCode);
+            if (!module.getModuleCode().equals(moduleCode)) {
+                throw new ModuleNotFoundException();
+            }
             return module;
         }
 
         @Override
         public Person getPersonUsingName(Name nameOfPersonToGet, boolean isFiltered) {
             requireNonNull(nameOfPersonToGet);
-            assertEquals(person.getName(), nameOfPersonToGet);
+            if (!person.getName().equals(nameOfPersonToGet)) {
+                throw new PersonNotFoundException();
+            }
             return person;
         }
 
