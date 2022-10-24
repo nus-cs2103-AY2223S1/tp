@@ -59,8 +59,6 @@ public class FilterCommandParser implements Parser<FilterCommand> {
         }
         if (commandSpecifier.equals(FilterListCommand.COMMAND_SPECIFIER)
                 || commandSpecifier.equals(FilterListCommand.COMMAND_SPECIFIER_ALIAS)) {
-
-            System.out.println(commandSpecifier);
             return new FilterListCommand();
         }
         return hasArguments(arguments)
