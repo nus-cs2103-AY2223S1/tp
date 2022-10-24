@@ -7,7 +7,6 @@ import static soconnect.logic.parser.ArgumentTokenizer.tokenizeToList;
 import static soconnect.logic.parser.CliSyntax.*;
 import static soconnect.model.Model.PREDICATE_SHOW_ALL_TODOS;
 
-import java.time.LocalDate;
 import java.util.List;
 
 import soconnect.logic.commands.todo.TodoShowCommand;
@@ -33,12 +32,11 @@ public class TodoShowCommandParser implements Parser<TodoShowCommand> {
         requireNonNull(args);
 
         String trimmedArgs = args.trim();
-        List<PrefixArgument> argList = tokenizeToList(trimmedArgs, PREFIX_DATE, PREFIX_PRIORITY,
+        List<PrefixArgument> argList = tokenizeToList(args, PREFIX_DATE, PREFIX_PRIORITY,
             PREFIX_TAG);
 
         PrefixArgument preambleCondition;
 
-        System.out.println(argList.get(0).getArgument() + " " +  argList.get(0).getPrefix());
         switch (argList.size()) {
         case 1: // Only contains preamble and it's argument
             preambleCondition = argList.get(0);
@@ -70,8 +68,7 @@ public class TodoShowCommandParser implements Parser<TodoShowCommand> {
 
         switch (arg) {
         case TodoShowCommand.EMPTY_CONDITION:
-            Date currentDate = new Date(LocalDate.now());
-            TodoContainsDatePredicate datePredicate = new TodoContainsDatePredicate(currentDate);
+            TodoContainsDatePredicate datePredicate = TodoContainsDatePredicate.currentDate();
             return new TodoShowCommand(datePredicate);
         case TodoShowCommand.ALL_CONDITION:
             return new TodoShowCommand(PREDICATE_SHOW_ALL_TODOS);
@@ -93,7 +90,7 @@ public class TodoShowCommandParser implements Parser<TodoShowCommand> {
 
         switch (prefix.getPrefix()) {
         case INDICATOR_DATE:
-            parseShowDateCondition(arg);
+            return parseShowDateCondition(arg);
         case INDICATOR_PRIORITY:
             Priority priority = ParserUtil.parsePriority(arg);
             TodoContainsPriorityPredicate priorityPredicate = new TodoContainsPriorityPredicate(priority);
@@ -117,7 +114,7 @@ public class TodoShowCommandParser implements Parser<TodoShowCommand> {
      * @throws ParseException If the given {@code dateArg} is invalid.
      */
     private TodoShowCommand parseShowDateCondition(String dateArg) throws ParseException {
-        String[] dateList = dateArg.split("-", 2);
+        String[] dateList = dateArg.split("to", 2);
         switch (dateList.length) {
         case 1:
             Date date = ParserUtil.parseDate(dateList[0]);

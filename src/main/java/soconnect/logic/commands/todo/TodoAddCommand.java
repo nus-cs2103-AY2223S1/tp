@@ -25,10 +25,10 @@ public class TodoAddCommand extends TodoCommand {
         + "[" + PREFIX_TAG + "TAG]...\n"
         + "Example: " + COMMAND_WORD + " " + SUB_COMMAND_WORD + " "
         + PREFIX_DESCRIPTION + "Watch latest math lecture "
-        + PREFIX_DATE + "25/03/2022 " + PREFIX_PRIORITY + "low\n"
+        + PREFIX_DATE + "25-03-2022 " + PREFIX_PRIORITY + "low\n"
         + COMMAND_WORD + " " + SUB_COMMAND_WORD + " " + PREFIX_DESCRIPTION
         + "Submit project deliverables for week 10 "
-        + PREFIX_DATE + "21/11/2022" + PREFIX_PRIORITY + "high " + PREFIX_TAG + "CS2103T";
+        + PREFIX_DATE + "21-11-2022" + PREFIX_PRIORITY + "high " + PREFIX_TAG + "CS2103T";
 
     public static final String MESSAGE_SUCCESS = "New Todo added: %1$s";
     public static final String MESSAGE_DUPLICATE_TODO = "This Todo already exists in SoConnect!";

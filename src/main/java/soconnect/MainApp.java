@@ -23,6 +23,7 @@ import soconnect.model.ReadOnlyUserPrefs;
 import soconnect.model.SoConnect;
 import soconnect.model.TodoList;
 import soconnect.model.UserPrefs;
+import soconnect.model.todo.TodoContainsDatePredicate;
 import soconnect.model.util.SampleDataUtil;
 import soconnect.storage.JsonSoConnectStorage;
 import soconnect.storage.JsonTodoListStorage;
@@ -196,6 +197,7 @@ public class MainApp extends Application {
     public void start(Stage primaryStage) {
         logger.info("Starting SoConnect " + MainApp.VERSION);
         ui.start(primaryStage);
+        model.updateFilteredTodoList(TodoContainsDatePredicate.currentDate());
     }
 
     @Override

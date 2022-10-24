@@ -1,8 +1,10 @@
 package soconnect.model.todo;
 
-import java.util.List;
 import java.util.function.Predicate;
 
+/**
+ * Tests that a {@code Todo} is within the given date range (inclusive).
+ */
 public class TodoContainsDateRangePredicate implements Predicate<Todo> {
 
     private final Date startDate;

@@ -12,10 +12,12 @@ import java.time.format.DateTimeFormatter;
  * Guarantees: is valid as declared in {@link #isValidDate(String)}.
  */
 public class Date {
-    public static final String MESSAGE_CONSTRAINS = "Date should be of the format dd/MM/yyyy";
+    public static final String MESSAGE_CONSTRAINS = "Date should be of the format dd-MM-yyyy.";
 
-    public static final String MESSAGE_INVALID_DATE_RANGE = "The date range should be of the format "
-            + "dd/MM/yyyy - dd/MM/yyyy, and the first date should be before or same as the second date.";
+    public static final String MESSAGE_INVALID_DATE_RANGE = MESSAGE_CONSTRAINS + "\n"
+            + "Date range should be of the format "
+            + "dd-MM-yyyy to dd-MM-yyyy.\n"
+            + "For date range, the first date should not be latter than the second date.";
 
     public static final DateTimeFormatter DATE_FORMATTER = DateTimeFormatter.ofPattern("dd-MM-yyyy");
 

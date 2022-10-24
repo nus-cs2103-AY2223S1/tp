@@ -3,13 +3,11 @@ package soconnect.logic.commands.todo;
 import static java.util.Objects.requireNonNull;
 import static soconnect.commons.util.CollectionUtil.requireAllNonNull;
 import static soconnect.logic.parser.CliSyntax.*;
-import static soconnect.model.Model.PREDICATE_SHOW_ALL_TODOS;
 
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 
-import javax.swing.text.html.Option;
 import soconnect.commons.core.Messages;
 import soconnect.commons.core.index.Index;
 import soconnect.commons.util.CollectionUtil;
@@ -19,10 +17,7 @@ import soconnect.logic.commands.tagcommands.TagCommand;
 import soconnect.logic.commands.tagcommands.TagCreateCommand;
 import soconnect.model.Model;
 import soconnect.model.tag.Tag;
-import soconnect.model.todo.Date;
-import soconnect.model.todo.Description;
-import soconnect.model.todo.Priority;
-import soconnect.model.todo.Todo;
+import soconnect.model.todo.*;
 
 /**
  * Edits the details of an existing {@code Todo} in the {@code TodoList}.
@@ -87,7 +82,7 @@ public class TodoEditCommand extends TodoCommand {
         }
 
         model.setTodo(todoToEdit, editedTodo);
-        model.updateFilteredTodoList(PREDICATE_SHOW_ALL_TODOS);
+        model.updateFilteredTodoList(TodoContainsDatePredicate.currentDate());
         return new CommandResult(String.format(MESSAGE_EDIT_TODO_SUCCESS, editedTodo));
     }
 
