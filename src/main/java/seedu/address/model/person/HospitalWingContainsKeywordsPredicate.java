@@ -2,8 +2,6 @@ package seedu.address.model.person;
 import java.util.List;
 import java.util.function.Predicate;
 
-import seedu.address.commons.util.StringUtil;
-
 /**
  * Tests that a {@code Person}'s {@code Hospital Wing} matches any of the keywords given.
  */
@@ -25,7 +23,7 @@ public class HospitalWingContainsKeywordsPredicate implements Predicate<Person> 
      */
     @Override
     public boolean test(Person person) {
-        Boolean isInpatient =  person.getPatientType().value.equals(PatientType.PatientTypes.INPATIENT);
+        Boolean isInpatient = person.getPatientType().value.equals(PatientType.PatientTypes.INPATIENT);
         if (isInpatient) {
             return hospitalWings.stream()
                     .anyMatch(hospitalWing -> person.getHospitalWing().get().value.equals(hospitalWing));
