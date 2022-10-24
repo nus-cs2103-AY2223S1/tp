@@ -17,7 +17,8 @@ import java.util.Arrays;
 
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.person.NameContainsKeywordsPredicate;
+import seedu.address.model.person.predicate.ClassContainsKeywordsPredicate;
+import seedu.address.model.person.predicate.NameContainsKeywordsPredicate;
 
 /**
  * Parses input arguments and creates a new FindCommand object
@@ -27,7 +28,8 @@ public class FindCommandParser implements Parser<FindCommand> {
     /**
      * Parses the given {@code String} of arguments in the context of the FindCommand
      * and returns a FindCommand object for execution.
-     * @throws ParseException if the user input does not conform the expected format
+     *
+     * @throws ParseException If the user input does not conform the expected format.
      */
     public FindCommand parse(String args) throws ParseException {
         requireNonNull(args);
@@ -64,9 +66,8 @@ public class FindCommandParser implements Parser<FindCommand> {
             throw new ParseException("a/ search not implemented yet.");
 
         } else if (argMultimap.getValue(PREFIX_CLASS_DATE_TIME).isPresent()) {
-
-            // TODO: Implement date search here, remove the exception below
-            throw new ParseException("dt/ search not implemented yet.");
+            String dateToFind = ParserUtil.parseDate(argMultimap.getValue(PREFIX_CLASS_DATE_TIME).get()).toString();
+            return new FindCommand(new ClassContainsKeywordsPredicate(Arrays.asList(dateToFind)));
 
         } else {
             // Other prefixes that are not supported by the search system, or no prefix found.

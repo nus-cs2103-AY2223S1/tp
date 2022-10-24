@@ -197,7 +197,7 @@ public class ParserUtil {
     /**
      * Helper method to parse {@code date} as part of {@code parseClass}.
      */
-    private static LocalDate parseDate(String date) throws ParseException {
+    public static LocalDate parseDate(String date) throws ParseException {
         LocalDate result;
         try {
             result = LocalDate.parse(date);
