@@ -138,8 +138,6 @@ class JsonAdaptedInternship {
                     InterviewDateTime.class.getSimpleName()));
         }
 
-        System.out.println("interviewDateTime" + interviewDateTime);
-        System.out.println("appliedDateTime" + appliedDate);
 
         if (interviewDateTime == "") {
             return new Internship(modelCompany, modelLink, modelDescription,
