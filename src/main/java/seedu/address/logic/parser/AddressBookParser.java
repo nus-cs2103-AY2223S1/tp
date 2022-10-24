@@ -20,6 +20,7 @@ import seedu.address.logic.commands.DeleteExamCommand;
 import seedu.address.logic.commands.DeleteModuleCommand;
 import seedu.address.logic.commands.DeleteTaskCommand;
 import seedu.address.logic.commands.EditCommand;
+import seedu.address.logic.commands.EditExamCommand;
 import seedu.address.logic.commands.EditModuleCommand;
 import seedu.address.logic.commands.EditTagCommand;
 import seedu.address.logic.commands.EditTaskCommand;
@@ -38,8 +39,6 @@ import seedu.address.logic.commands.MarkCommand;
 import seedu.address.logic.commands.SortTaskCommand;
 import seedu.address.logic.commands.UnlinkExamCommand;
 import seedu.address.logic.commands.UnmarkCommand;
-import seedu.address.logic.commands.EditExamCommand;
-
 import seedu.address.logic.parser.exceptions.ParseException;
 
 

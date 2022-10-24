@@ -91,12 +91,16 @@ public class Exam {
     }
 
 
+    /**
+     * Creates and returns a {@code Exam} with the details of {@code this}
+     * edited with {@code editExamDescriptor}.
+     */
     public Exam edit(EditExamCommand.EditExamDescriptor editExamDescriptor) {
         requireNonNull(editExamDescriptor);
         Module updatedModule = editExamDescriptor.getModule().orElse(module);
         ExamDescription updatedDescription = editExamDescriptor.getDescription().orElse(examDescription);
         ExamDate updatedExamDate = editExamDescriptor.getExamDate().orElse(examDate);
-        return new Exam(updatedModule, updatedDescription,updatedExamDate);
+        return new Exam(updatedModule, updatedDescription, updatedExamDate);
     }
 
     @Override

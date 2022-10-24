@@ -132,23 +132,6 @@ public class AddressBook implements ReadOnlyAddressBook {
         return tasks.contains(task);
     }
 
-
-    /**
-     * Replaces task by changing its given exam field from {@code previousExam}
-     * to {@code newExam} for tasks that have their exam field as {@code previousExam}.
-     * @param previousExam The exam in the task's exam field.
-     * @param newExam The new exam which will replace the previous exam in the task's exam field.
-     */
-    public void updateExamFieldForTask(Exam previousExam, Exam newExam) {
-        requireAllNonNull(previousExam, newExam);
-        this.tasks.forEach(task-> {
-            if(task.isLinked() && task.getExam().equals(previousExam)) {
-                Task editedTask = task.linkTask(newExam);
-                replaceTask(task, editedTask, true);
-            }
-        });
-    }
-
     public boolean hasTaskWithModule(Module module) {
         return tasks.containsModule(module);
     }
@@ -334,6 +317,17 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     public void unlinkTasksFromExam(Exam exam) {
         tasks.unlinkTasksFromExam(exam);
+    }
+
+    /**
+     * Replaces task by changing its given exam field from {@code previousExam}
+     * to {@code newExam} for tasks that have their exam field as {@code previousExam}.
+     * @param previousExam The exam in the task's exam field.
+     * @param newExam The new exam which will replace the previous exam in the task's exam field.
+     */
+    public void updateExamFieldForTask(Exam previousExam, Exam newExam) {
+        requireAllNonNull(previousExam, newExam);
+        tasks.updateExamFieldForTask(previousExam, newExam);
     }
 
     @Override

@@ -1,19 +1,18 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.commons.core.Messages.*;
+import static seedu.address.commons.core.Messages.MESSAGE_DUPLICATE_EXAM;
+import static seedu.address.commons.core.Messages.MESSAGE_INVALID_EXAM_DISPLAYED_INDEX;
+import static seedu.address.commons.core.Messages.MESSAGE_MODULE_NOT_FOUND;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
-import static seedu.address.logic.parser.CliSyntax.*;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_EXAM_DATE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_EXAM_DESCRIPTION;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_MOD_CODE;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_EXAMS;
-import static seedu.address.model.Model.PREDICATE_SHOW_ALL_TASKS;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
 
-import javafx.collections.transformation.FilteredList;
-import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.CollectionUtil;
 import seedu.address.logic.commands.exceptions.CommandException;
@@ -23,9 +22,6 @@ import seedu.address.model.exam.ExamDate;
 import seedu.address.model.exam.ExamDescription;
 import seedu.address.model.exam.exceptions.DuplicateExamException;
 import seedu.address.model.module.Module;
-import seedu.address.model.task.Task;
-import seedu.address.model.task.TaskDescription;
-import seedu.address.model.task.exceptions.DuplicateTaskException;
 
 /**
  * Edits the exam with the specified index number in the displayed exam list.
@@ -83,12 +79,12 @@ public class EditExamCommand extends Command {
         }
 
         try {
-            if(!examToEdit.getModule().isSameModule(editedExam.getModule())) {
+            if (!examToEdit.getModule().isSameModule(editedExam.getModule())) {
                 model.unlinkTasksFromExam(examToEdit);
             } else {
                 model.updateExamFieldForTask(examToEdit, editedExam);
             }
-            model.replaceExam(examToEdit,editedExam,false);
+            model.replaceExam(examToEdit, editedExam, false);
 
         } catch (DuplicateExamException e) {
             throw new CommandException(MESSAGE_DUPLICATE_EXAM);
@@ -130,7 +126,7 @@ public class EditExamCommand extends Command {
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(module, description,examDate);
+            return CollectionUtil.isAnyNonNull(module, description, examDate);
         }
 
         public void setModule(Module module) {

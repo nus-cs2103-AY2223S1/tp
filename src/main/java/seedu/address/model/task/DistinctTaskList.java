@@ -104,6 +104,22 @@ public class DistinctTaskList implements Iterable<Task> {
     }
 
     /**
+     * Replaces task by changing its given exam field from {@code previousExam}
+     * to {@code newExam} for tasks that have their exam field as {@code previousExam}.
+     * @param previousExam The exam in the task's exam field.
+     * @param newExam The new exam which will replace the previous exam in the task's exam field.
+     */
+    public void updateExamFieldForTask(Exam previousExam, Exam newExam) {
+        requireAllNonNull(previousExam, newExam);
+        taskList.forEach(task-> {
+            if (task.isLinked() && task.getExam().equals(previousExam)) {
+                Task editedTask = task.linkTask(newExam);
+                replaceTask(task, editedTask, true);
+            }
+        });
+    }
+
+    /**
      * Removes the equivalent task from the tasklist.
      * The task must exist in the list.
      */
