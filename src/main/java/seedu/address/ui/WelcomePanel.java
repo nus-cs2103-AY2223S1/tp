@@ -42,7 +42,7 @@ public class WelcomePanel extends UiPart<Region> {
 
     /**
      * Sets the welcome message to be displayed.
-     * @param message
+     * @param message Message to be displayed.
      */
     public void setWelcomeMessage(String message) {
         welcomeMessage.setText(message);
@@ -50,7 +50,7 @@ public class WelcomePanel extends UiPart<Region> {
 
     /**
      * Sets the motiviation quote to be displayed.
-     * @param quote
+     * @param quote Quote to be displayed.
      */
     public void setMotivationalQuote(String quote) {
         motivationalQuote.setText(quote);
