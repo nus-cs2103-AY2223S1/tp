@@ -55,7 +55,7 @@ public class TodoParser {
             return new TodoShowCommandParser().parse(arguments);
 
         default:
-            throw new ParseException(Messages.MESSAGE_UNKNOWN_COMMAND);
+            throw new ParseException(Messages.MESSAGE_UNKNOWN_COMMAND + "\n" + TodoCommand.MESSAGE_USAGE);
         }
     }
 

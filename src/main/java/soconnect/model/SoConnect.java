@@ -186,23 +186,13 @@ public class SoConnect implements ReadOnlySoConnect {
     //// tag-level operations
 
     /**
-     * Returns true if tag already does exists.
+     * Deletes the tag from the tagList.
      *
-     * @param tag The tag added.
-     * @return True if tag exists. False if otherwise.
+     * @param tag The tag to be deleted.
      */
-    public boolean hasTag(Tag tag) {
-        requireNonNull(tag);
-        return tags.hasTag(tag);
-    }
-
-    /**
-     * Adds the tag to the tagList.
-     *
-     * @param tag The tag to be added.
-     */
-    public void addTag(Tag tag) {
-        tags.addTagToList(tag);
+    public void deleteTag(Tag tag) {
+        tags.deleteTag(tag);
+        persons.removeRelevantPersonTag(tag);
     }
 
     /**
@@ -217,16 +207,6 @@ public class SoConnect implements ReadOnlySoConnect {
     }
 
     /**
-     * Deletes the tag from the tagList.
-     *
-     * @param tag The tag to be deleted.
-     */
-    public void deleteTag(Tag tag) {
-        tags.deleteTag(tag);
-        persons.removeRelevantPersonTag(tag);
-    }
-
-    /**
      * Gets the tag from the tagList.
      *
      * @param tag The reference tag.
@@ -234,6 +214,27 @@ public class SoConnect implements ReadOnlySoConnect {
      */
     public Tag getTagFromList(Tag tag) {
         return tags.getTag(tag);
+    }
+
+    @Override
+    public Tag getTagFromList(int index) {
+        return tags.asUnmodifiableObservableList().get(index);
+    }
+
+    @Override
+    public boolean hasTag(Tag tag) {
+        requireNonNull(tag);
+        return tags.hasTag(tag);
+    }
+
+    @Override
+    public void addTag(Tag tag) {
+        tags.addTagToList(tag);
+    }
+
+    @Override
+    public int getTagReference(Tag tag) {
+        return tags.getTagReference(tag);
     }
 
     //// util methods

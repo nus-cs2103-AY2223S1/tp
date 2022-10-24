@@ -10,7 +10,6 @@ import soconnect.logic.commands.Command;
 import soconnect.logic.commands.DeleteCommand;
 import soconnect.logic.commands.EditCommand;
 import soconnect.logic.commands.ExitCommand;
-import soconnect.logic.commands.FindCommand;
 import soconnect.logic.commands.HelpCommand;
 import soconnect.logic.commands.ListCommand;
 import soconnect.logic.commands.SearchCommand;
@@ -70,9 +69,6 @@ public class SoConnectParser {
 
         case SortCommand.COMMAND_WORD:
             return new SortCommandParser().parse(arguments);
-
-        case FindCommand.COMMAND_WORD:
-            return new FindCommandParser().parse(arguments);
 
         case ListCommand.COMMAND_WORD:
             return new ListCommand();

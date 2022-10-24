@@ -5,7 +5,6 @@ import static soconnect.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.io.IOException;
 import java.nio.file.Path;
-import java.util.List;
 import java.util.Optional;
 import java.util.logging.Logger;
 
@@ -14,8 +13,8 @@ import soconnect.commons.exceptions.DataConversionException;
 import soconnect.commons.exceptions.IllegalValueException;
 import soconnect.commons.util.FileUtil;
 import soconnect.commons.util.JsonUtil;
+import soconnect.model.ReadOnlySoConnect;
 import soconnect.model.ReadOnlyTodoList;
-import soconnect.model.tag.Tag;
 
 /**
  * A class to access {@code TodoList} data stored as a json file on the hard disk.
@@ -35,12 +34,20 @@ public class JsonTodoListStorage implements TodoListStorage {
     }
 
     @Override
-    public Optional<ReadOnlyTodoList> readTodoList(List<Tag> tagList) throws DataConversionException {
-        return readTodoList(tagList, filePath);
+    public Optional<ReadOnlyTodoList> readTodoList(ReadOnlySoConnect readOnlySoConnect) throws DataConversionException {
+        return readTodoList(readOnlySoConnect, filePath);
     }
 
+    /**
+     * Returns {@code TodoList} data as a {@link ReadOnlyTodoList}.
+     * Returns {@code Optional.empty()} if storage file is not found.
+     *
+     * @param readOnlySoConnect The existing {@code ReadOnlySoConnect} in {@code SoConnect}.
+     * @param filePath The path of the {@code TodoList} data file.
+     * @throws DataConversionException If the data in storage is not in the expected format.
+     */
     @Override
-    public Optional<ReadOnlyTodoList> readTodoList(List<Tag> tagList, Path filePath)
+    public Optional<ReadOnlyTodoList> readTodoList(ReadOnlySoConnect readOnlySoConnect, Path filePath)
             throws DataConversionException {
         requireNonNull(filePath);
 
@@ -51,7 +58,7 @@ public class JsonTodoListStorage implements TodoListStorage {
         }
 
         try {
-            return Optional.of(jsonTodoList.get().toModelType(tagList));
+            return Optional.of(jsonTodoList.get().toModelType(readOnlySoConnect));
         } catch (IllegalValueException ive) {
             logger.info("Illegal values found in " + filePath + ": " + ive.getMessage());
             throw new DataConversionException(ive);
