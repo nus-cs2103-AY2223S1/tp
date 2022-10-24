@@ -19,7 +19,9 @@ public class ListCommandParser implements Parser<ListCommand> {
     public static final char EXCLUDE_SPECIFIER = 'e';
 
     public static final String INTENDED_USAGE = "Please include a specifier [/i] or [/e]"
-            + " followed by the fields to include or exclude";
+            + " followed by at least one field to include or exclude.";
+
+    public static final String MUST_HAVE_ONE_COLUMN_VISIBLE = "You must have at least one column visible at all times.";
 
     @Override
     public ListCommand parse(String args) throws ParseException {
@@ -30,22 +32,23 @@ public class ListCommandParser implements Parser<ListCommand> {
         if (hasInvalidSpecifier(args)) {
             throw new ParseException(INTENDED_USAGE);
         }
-
-        // Process global list of fields into lowercase list first
-        List<String> allFields = ResidentFields.FIELDS.stream().map(String::toLowerCase).collect(Collectors.toList());
+        if (hasEmptyFieldBody(args)) {
+            throw new ParseException(INTENDED_USAGE);
+        }
 
         // Create one list for each specifier
-        List<String> fieldsToIncludeFromHiding = new ArrayList<>(allFields);
-        List<String> fieldsToExcludeFromShowing = new ArrayList<>();
+        List<String> fieldsToInclude = new ArrayList<>();
+        List<String> fieldsToExclude = new ArrayList<>(ResidentFields.LOWERCASE_FIELDS);
 
-        String[] specifiedFields = getSpecifiedFields(args);
-
-        populateFieldLists(specifiedFields, fieldsToIncludeFromHiding, fieldsToExcludeFromShowing, allFields);
+        populateFieldLists(args, fieldsToInclude, fieldsToExclude);
+        if (fieldsToExclude.isEmpty()) {
+            throw new ParseException(MUST_HAVE_ONE_COLUMN_VISIBLE);
+        }
 
         if (getListSpecifier(args) == INCLUDE_SPECIFIER) {
-            return new ListCommand(fieldsToIncludeFromHiding);
+            return new ListCommand(fieldsToInclude, fieldsToExclude);
         } else {
-            return new ListCommand(fieldsToExcludeFromShowing);
+            return new ListCommand(fieldsToExclude, fieldsToInclude);
         }
     }
 
@@ -77,12 +80,16 @@ public class ListCommandParser implements Parser<ListCommand> {
         return fieldsString.split(" ");
     }
 
-    private void populateFieldLists(String[] specifiedFields, List<String> fieldsToInclude,
-                                    List<String> fieldsToExclude, List<String> allFields) {
+    private boolean hasEmptyFieldBody(String args) {
+        return getSpecifiedFields(args).length == 0;
+    }
+
+    private void populateFieldLists(String args, List<String> fieldsToInclude, List<String> fieldsToExclude) {
+        String[] specifiedFields = getSpecifiedFields(args);
         for (String field : specifiedFields) {
-            fieldsToInclude.remove(field);
-            if (allFields.contains(field)) {
-                fieldsToExclude.add(field);
+            if (ResidentFields.LOWERCASE_FIELDS.contains(field)) {
+                fieldsToInclude.add(field);
+                fieldsToExclude.remove(field);
             }
         }
     }
