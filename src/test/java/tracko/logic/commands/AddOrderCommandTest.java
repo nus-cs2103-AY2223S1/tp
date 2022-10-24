@@ -52,7 +52,7 @@ public class AddOrderCommandTest {
     // public void execute_duplicatePerson_throwsCommandException() {
     //     Person validPerson = new OrderBuilder().build();
     //     AddOrderCommand addOrderCommand = new AddOrderCommand(validPerson);
-    //     ModelStub modelStub = new ModeulStubWithOrder(validPerson);
+    //     ModelStub modelStub = new ModelStubWithOrder(validPerson);
     //     assertThrows(CommandException.class, AddOrderCommand.MESSAGE_DUPLICATE_PERSON,
     //         () -> addOrderCommand.execute(modelStub));
     // }

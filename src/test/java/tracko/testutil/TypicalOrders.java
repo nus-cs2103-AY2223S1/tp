@@ -67,25 +67,32 @@ public class TypicalOrders {
 
     public static final Order ORDER_1 = new OrderBuilder().withName("Alice Pauline")
             .withAddress("123, Jurong West Ave 6, #08-111").withEmail("alice@example.com")
-            .withPhone("94351253").withItemList(List.of(DEFAULT_PAIR, PAIR_1)).build();
+            .withPhone("94351253").withItemList(List.of(DEFAULT_PAIR, PAIR_1))
+            .withDefaultTimeCreated().build();
     public static final Order ORDER_2 = new OrderBuilder().withName("Benson Meier")
             .withAddress("311, Clementi Ave 2, #02-25").withEmail("johnd@example.com")
-            .withPhone("98765432").withItemList(List.of(DEFAULT_PAIR, PAIR_2)).build();
+            .withPhone("98765432").withItemList(List.of(DEFAULT_PAIR, PAIR_2))
+            .withDefaultTimeCreated().build();
     public static final Order ORDER_3 = new OrderBuilder().withName("Carl Kurz")
             .withPhone("95352563").withEmail("heinz@example.com")
-            .withAddress("wall street").withItemList(List.of(DEFAULT_PAIR, PAIR_3)).build();
+            .withAddress("wall street").withItemList(List.of(DEFAULT_PAIR, PAIR_3))
+            .withDefaultTimeCreated().build();
     public static final Order ORDER_4 = new OrderBuilder().withName("Daniel Meier")
             .withPhone("87652533").withEmail("cornelia@example.com")
-            .withAddress("10th street").withItemList(List.of(DEFAULT_PAIR, PAIR_4)).build();
+            .withAddress("10th street").withItemList(List.of(DEFAULT_PAIR, PAIR_4))
+            .withDefaultTimeCreated().build();
     public static final Order ORDER_5 = new OrderBuilder().withName("Elle Meyer")
             .withPhone("9482224").withEmail("werner@example.com")
-            .withAddress("michegan ave").withItemList(List.of(DEFAULT_PAIR, PAIR_5)).build();
+            .withAddress("michegan ave").withItemList(List.of(DEFAULT_PAIR, PAIR_5))
+            .withDefaultTimeCreated().build();
     public static final Order ORDER_6 = new OrderBuilder().withName("Fiona Kunz")
             .withPhone("9482427").withEmail("lydia@example.com")
-            .withAddress("little tokyo").withItemList(List.of(DEFAULT_PAIR, PAIR_6)).build();
+            .withAddress("little tokyo").withItemList(List.of(DEFAULT_PAIR, PAIR_6))
+            .withDefaultTimeCreated().build();
     public static final Order ORDER_7 = new OrderBuilder().withName("George Best")
             .withPhone("9482442").withEmail("anna@example.com")
-            .withAddress("4th street").withItemList(List.of(DEFAULT_PAIR, PAIR_7)).build();
+            .withAddress("4th street").withItemList(List.of(DEFAULT_PAIR, PAIR_7))
+            .withDefaultTimeCreated().build();
 
     // Manually added
     public static final Order ORDER_8 = new OrderBuilder().withName("Hoon Meier")

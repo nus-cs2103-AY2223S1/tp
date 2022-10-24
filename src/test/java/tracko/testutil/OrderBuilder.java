@@ -94,6 +94,14 @@ public class OrderBuilder {
     }
 
     /**
+     * Sets the {@code LocalDateTime} of the {@code Order} that we are building.
+     */
+    public OrderBuilder withDefaultTimeCreated() {
+        this.timeCreated = DEFAULT_TIME_CREATED;
+        return this;
+    }
+
+    /**
      * Sets the {@code Email} of the {@code Order} that we are building.
      */
     public OrderBuilder withEmail(String email) {
