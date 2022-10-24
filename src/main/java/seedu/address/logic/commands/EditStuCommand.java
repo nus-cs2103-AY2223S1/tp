@@ -110,7 +110,7 @@ public class EditStuCommand extends Command {
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_STUDENTS);
         return new CommandResult(String.format(MESSAGE_EDIT_STUDENT_SUCCESS, editedStudent),
                 false, false, false,
-                true, false, false);
+                true, false, false, false);
     }
 
     /**

@@ -295,6 +295,13 @@ Shows the list of some selected schedules/all schedules from the ProfNUS.
 
 <img src="images/userguide/view.png" alt="sdelete" style="zoom:67%;" width="1000px/">
 
+### View your teaching schedule: `tview`
+
+Shows the timetable of all schedules from the ProfNUS.
+
+**Format**: `tview`
+**Example**: `tview`
+
 
 ### Finding a student
 

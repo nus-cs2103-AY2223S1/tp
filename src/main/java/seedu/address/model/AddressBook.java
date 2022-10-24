@@ -208,6 +208,7 @@ public class AddressBook implements ReadOnlyAddressBook {
         target.setEndTime(editedSchedule.getEndTime());
         target.setWeekday(editedSchedule.getWeekday());
         target.setClassType(editedSchedule.getClassType());
+        target.setClassGroup(editedSchedule.getClassGroup());
     }
 
     /**

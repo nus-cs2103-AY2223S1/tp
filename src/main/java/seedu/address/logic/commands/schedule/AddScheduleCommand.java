@@ -2,6 +2,7 @@ package seedu.address.logic.commands.schedule;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_CLASS_CATEGORY;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_CLASS_GROUP;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_CLASS_TIME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_CLASS_VENUE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MODULE_OF_SCHEDULE;
@@ -29,12 +30,14 @@ public class AddScheduleCommand extends Command {
             + PREFIX_WEEKDAY + "WEEKDAY "
             + PREFIX_CLASS_TIME + "TIME PERIOD "
             + PREFIX_CLASS_CATEGORY + "CLASS CATEGORY "
+            + PREFIX_CLASS_GROUP + "CLASS GROUP "
             + PREFIX_CLASS_VENUE + "CLASS VENUE \n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_MODULE_OF_SCHEDULE + "CS2103T "
             + PREFIX_WEEKDAY + "Friday "
             + PREFIX_CLASS_TIME + "16:00-18:00 "
             + PREFIX_CLASS_CATEGORY + "lec "
+            + PREFIX_CLASS_GROUP + "L1 "
             + PREFIX_CLASS_VENUE + "I3-AUD ";
 
     public static final String MESSAGE_SUCCESS = "New schedule added: %1$s";
@@ -68,6 +71,6 @@ public class AddScheduleCommand extends Command {
         logger.fine("AddScheduleCommand executes successfully.");
         return new CommandResult(String.format(MESSAGE_SUCCESS, scheduleToAdd),
                 false, false, false,
-                false, false, true);
+                false, false, true, false);
     }
 }
