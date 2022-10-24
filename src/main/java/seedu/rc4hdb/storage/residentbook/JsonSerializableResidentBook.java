@@ -9,8 +9,10 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.rc4hdb.commons.exceptions.IllegalValueException;
 import seedu.rc4hdb.model.ReadOnlyResidentBook;
+import seedu.rc4hdb.model.ReadOnlyVenueBook;
 import seedu.rc4hdb.model.ResidentBook;
 import seedu.rc4hdb.model.resident.Resident;
+import seedu.rc4hdb.storage.venuebook.JsonAdaptedVenue;
 
 /**
  * An Immutable ResidentBook that is serializable to JSON format.
@@ -35,7 +37,8 @@ public class JsonSerializableResidentBook {
      * @param source future changes to this will not affect the created {@code JsonSerializableResidentBook}.
      */
     public JsonSerializableResidentBook(ReadOnlyResidentBook source) {
-        residents.addAll(source.getResidentList().stream().map(JsonAdaptedResident::new).collect(Collectors.toList()));
+        residents.addAll(source.getResidentList()
+                .stream().map(JsonAdaptedResident::new).collect(Collectors.toList()));
     }
 
     /**

@@ -37,14 +37,14 @@ public class ModelManagerTest {
     @Test
     public void setUserPrefs_validUserPrefs_copiesUserPrefs() {
         UserPrefs userPrefs = new UserPrefs();
-        userPrefs.setResidentBookFilePath(Paths.get("rc4hdb/book/file/path"));
+        userPrefs.setDataStorageFilePath(Paths.get("rc4hdb/book/file/path"));
         userPrefs.setGuiSettings(new GuiSettings(1, 2, 3, 4));
         modelManager.setUserPrefs(userPrefs);
         assertEquals(userPrefs, modelManager.getUserPrefs());
 
         // Modifying userPrefs should not modify modelManager's userPrefs
         UserPrefs oldUserPrefs = new UserPrefs(userPrefs);
-        userPrefs.setResidentBookFilePath(Paths.get("new/rc4hdb/book/file/path"));
+        userPrefs.setDataStorageFilePath(Paths.get("new/rc4hdb/book/file/path"));
         assertEquals(oldUserPrefs, modelManager.getUserPrefs());
     }
 
@@ -133,7 +133,7 @@ public class ModelManagerTest {
 
         // different userPrefs -> returns false
         UserPrefs differentUserPrefs = new UserPrefs();
-        differentUserPrefs.setResidentBookFilePath(Paths.get("differentFilePath"));
+        differentUserPrefs.setDataStorageFilePath(Paths.get("differentFilePath"));
         assertFalse(modelManager.equals(new ModelManager(residentBook, venueBook, differentUserPrefs)));
     }
 }

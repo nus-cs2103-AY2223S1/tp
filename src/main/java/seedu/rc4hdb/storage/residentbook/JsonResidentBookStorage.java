@@ -1,13 +1,13 @@
 package seedu.rc4hdb.storage.residentbook;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.rc4hdb.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.io.IOException;
 import java.nio.file.Path;
 import java.util.Optional;
 import java.util.logging.Logger;
 
-import javafx.beans.value.ObservableValue;
 import seedu.rc4hdb.commons.core.LogsCenter;
 import seedu.rc4hdb.commons.exceptions.DataConversionException;
 import seedu.rc4hdb.commons.exceptions.IllegalValueException;
@@ -15,43 +15,32 @@ import seedu.rc4hdb.commons.util.FileUtil;
 import seedu.rc4hdb.commons.util.JsonUtil;
 import seedu.rc4hdb.model.ReadOnlyResidentBook;
 import seedu.rc4hdb.model.ResidentBook;
-import seedu.rc4hdb.ui.ObservableItem;
 
 /**
  * A class to access ResidentBook data stored as a json file on the hard disk.
  */
 public class JsonResidentBookStorage implements ResidentBookStorage {
 
+    public static final String RESIDENT_DATA_PATH = "resident_data.json";
+
     private static final Logger logger = LogsCenter.getLogger(JsonResidentBookStorage.class);
 
-    private ObservableItem<Path> filePath;
-
-    public JsonResidentBookStorage(Path filePath) {
-        this.filePath = new ObservableItem<>(filePath);
-    }
-
-    public Path getResidentBookFilePath() {
-        return filePath.getValue();
-    }
-
-    @Override
-    public ObservableValue<Path> getObservableResidentBookFilePath() {
-        return filePath;
-    }
-
-    @Override
-    public Optional<ReadOnlyResidentBook> readResidentBook() throws DataConversionException {
-        return readResidentBook(filePath.getValue());
+    /**
+     * Convenience method to generate the resident book file path.
+     */
+    private Path getResidentBookFilePath(Path filePath) {
+        return filePath.resolve(RESIDENT_DATA_PATH);
     }
 
     /**
-     * Similar to {@link #readResidentBook()}.
+     * Reads the resident book file data and returns a {@code ReadOnlyResidentBook}.
      *
-     * @param filePath location of the data. Cannot be null.
+     * @param folderPath location of the directory which holds the data. Cannot be null.
      * @throws DataConversionException if the file is not in the correct format.
      */
-    public Optional<ReadOnlyResidentBook> readResidentBook(Path filePath) throws DataConversionException {
-        requireNonNull(filePath);
+    public Optional<ReadOnlyResidentBook> readResidentBook(Path folderPath) throws DataConversionException {
+        requireNonNull(folderPath);
+        Path filePath = getResidentBookFilePath(folderPath);
 
         Optional<JsonSerializableResidentBook> jsonResidentBook = JsonUtil.readJsonFile(
                 filePath, JsonSerializableResidentBook.class);
@@ -67,65 +56,39 @@ public class JsonResidentBookStorage implements ResidentBookStorage {
         }
     }
 
-    public void saveResidentBook(ReadOnlyResidentBook residentBook) throws IOException {
-        saveResidentBook(residentBook, filePath.getValue());
-    }
-
     /**
-     * Similar to {@link #saveResidentBook(ReadOnlyResidentBook)}.
+     * Saves the data in {@code residentBook} to the resident_data.json file in the directory with path
+     * {@code folderPath}.
      *
-     * @param filePath location of the data. Cannot be null.
+     * @param folderPath location of the directory which holds the data. Cannot be null.
      */
-    public void saveResidentBook(ReadOnlyResidentBook residentBook, Path filePath) throws IOException {
-        requireNonNull(residentBook);
-        requireNonNull(filePath);
-
+    public void saveResidentBook(ReadOnlyResidentBook residentBook, Path folderPath) throws IOException {
+        requireAllNonNull(residentBook, folderPath);
+        Path filePath = getResidentBookFilePath(folderPath);
         FileUtil.createIfMissing(filePath);
         JsonUtil.saveJsonFile(new JsonSerializableResidentBook(residentBook), filePath);
     }
 
     /**
-     * Deletes the resident book data file corresponding to {@code filePath}.
+     * Deletes the resident book data file that is in the directory with path {@code folderPath}.
      *
-     * @param filePath path of the data file to be deleted. Cannot be null.
+     * @param folderPath location of the directory which holds the data. Cannot be null.
      */
-    public void deleteResidentBookFile(Path filePath) throws IOException {
-        requireNonNull(filePath);
-        FileUtil.deleteFile(filePath);
+    public void deleteResidentBookFile(Path folderPath) throws IOException {
+        requireNonNull(folderPath);
+        FileUtil.deleteFile(getResidentBookFilePath(folderPath));
     }
 
     /**
-     * Creates the resident book data file corresponding to {@code filePath}.
+     * Creates an empty resident book data file that is in the directory with path {@code folderPath}.
      *
-     * @param filePath path of the data file to be created. Cannot be null.
+     * @param folderPath location of the directory which holds the data. Cannot be null.
      */
-    public void createResidentBookFile(Path filePath) throws IOException {
-        requireNonNull(filePath);
+    public void createResidentBookFile(Path folderPath) throws IOException {
+        requireNonNull(folderPath);
+        Path filePath = getResidentBookFilePath(folderPath);
         FileUtil.createFile(filePath);
         JsonUtil.saveJsonFile(new JsonSerializableResidentBook(new ResidentBook()), filePath);
-    }
-
-    @Override
-    public void setResidentBookFilePath(Path filePath) {
-        requireNonNull(filePath);
-        this.filePath.setValue(filePath);
-    }
-
-    @Override
-    public boolean equals(Object obj) {
-        // short circuit if same object
-        if (obj == this) {
-            return true;
-        }
-
-        // instanceof handles nulls
-        if (!(obj instanceof JsonResidentBookStorage)) {
-            return false;
-        }
-
-        // state check
-        JsonResidentBookStorage other = (JsonResidentBookStorage) obj;
-        return filePath.equals(other.filePath);
     }
 
 }

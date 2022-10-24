@@ -82,13 +82,13 @@ public class ModelManager implements Model {
 
     @Override
     public Path getResidentBookFilePath() {
-        return userPrefs.getResidentBookFilePath();
+        return userPrefs.getDataStorageFilePath();
     }
 
     @Override
     public void setResidentBookFilePath(Path residentBookFilePath) {
         requireNonNull(residentBookFilePath);
-        userPrefs.setResidentBookFilePath(residentBookFilePath);
+        userPrefs.setDataStorageFilePath(residentBookFilePath);
     }
 
     //=========== ResidentBook ===============================================================================
