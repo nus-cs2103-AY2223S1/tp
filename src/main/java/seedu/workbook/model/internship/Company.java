@@ -3,6 +3,8 @@ package seedu.workbook.model.internship;
 import static java.util.Objects.requireNonNull;
 import static seedu.workbook.commons.util.AppUtil.checkArgument;
 
+import seedu.workbook.commons.util.StringUtil;
+
 /**
  * Represents an Internship's company in WorkBook.
  * Guarantees: immutable; is valid as declared in
@@ -30,7 +32,8 @@ public class Company {
     public Company(String name) {
         requireNonNull(name);
         checkArgument(isValidCompany(name), MESSAGE_CONSTRAINTS);
-        this.name = name;
+        String modifiedName = StringUtil.toPascalCase(name);
+        this.name = modifiedName;
     }
 
     /**
@@ -51,6 +54,7 @@ public class Company {
                 || (other instanceof Company // instanceof handles nulls
                         && name.equals(((Company) other).name)); // state check
     }
+
 
     @Override
     public int hashCode() {

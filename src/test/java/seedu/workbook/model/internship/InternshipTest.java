@@ -38,9 +38,9 @@ public class InternshipTest {
         editedAlice = new InternshipBuilder(ALICE).withCompany(VALID_COMPANY_BOB).build();
         assertFalse(ALICE.isSameInternship(editedAlice));
 
-        // company differs in case, all other attributes same -> returns false
+        // company differs in case, all other attributes same -> returns true
         Internship editedBob = new InternshipBuilder(BOB).withCompany(VALID_COMPANY_BOB.toLowerCase()).build();
-        assertFalse(BOB.isSameInternship(editedBob));
+        assertTrue(BOB.isSameInternship(editedBob));
 
         // company has trailing spaces, all other attributes same -> returns false
         String companyWithTrailingSpaces = VALID_COMPANY_BOB + " ";

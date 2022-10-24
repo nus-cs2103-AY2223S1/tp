@@ -3,6 +3,8 @@ package seedu.workbook.model.internship;
 import static java.util.Objects.requireNonNull;
 import static seedu.workbook.commons.util.AppUtil.checkArgument;
 
+import seedu.workbook.commons.util.StringUtil;
+
 /**
  * Represents an Internship's role in WorkBook.
  * Guarantees: immutable; is valid as declared in {@link #isValidRole(String)}
@@ -29,7 +31,8 @@ public class Role {
     public Role(String role) {
         requireNonNull(role);
         checkArgument(isValidRole(role), MESSAGE_CONSTRAINTS);
-        value = role;
+        String modifiedRole = StringUtil.toPascalCase(role);
+        value = modifiedRole;
     }
 
     /**
@@ -50,6 +53,7 @@ public class Role {
                 || (other instanceof Role // instanceof handles nulls
                         && value.equals(((Role) other).value)); // state check
     }
+
 
     @Override
     public int hashCode() {
