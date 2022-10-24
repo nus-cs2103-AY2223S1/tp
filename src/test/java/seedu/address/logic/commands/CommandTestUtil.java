@@ -2,7 +2,9 @@ package seedu.address.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ASSIGNMENT_ADD_STUDENTS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_CLASS_GROUP;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DEADLINE_DATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ID;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
@@ -10,7 +12,6 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TASK_DESCRIPTION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TASK_TITLE;
-//import static seedu.address.logic.parser.CliSyntax.PREFIX_MARK;
 import static seedu.address.testutil.Assert.assertThrows;
 
 import java.util.ArrayList;
@@ -71,12 +72,16 @@ public class CommandTestUtil {
 
     public static final EditCommand.EditStudentDescriptor DESC_AMY;
     public static final EditCommand.EditStudentDescriptor DESC_BOB;
+
     public static final EditTaskCommand.EditTaskDescriptor DESC_TODO;
     public static final EditTaskCommand.EditTaskDescriptor DESC_DEADLINE;
 
     public static final String VALID_TASK_TITLE = "Grade assignments";
     public static final String VALID_TASK_DESCRIPTION = "Complete by tonight";
     public static final String VALID_DEADLINE_DATE = "2022-09-09";
+    public static final String VALID_ASSIGNMENT_STUDENTS = "Adam, Ben, Charles";
+    public static final String VALID_ASSIGNMENT_STUDENT_ADAM = "Adam";
+    public static final String VALID_ASSIGNMENT_STUDENT_BEN = "Ben";
 
     public static final String INVALID_TASK_TITLE = "invalid title#";
     public static final String INVALID_TASK_DESCRIPTION = "invalid description?";
@@ -84,6 +89,9 @@ public class CommandTestUtil {
 
     public static final String TASK_TITLE_DESC = " " + PREFIX_TASK_TITLE + VALID_TASK_TITLE;
     public static final String TASK_DESCRIPTION_DESC = " " + PREFIX_TASK_DESCRIPTION + VALID_TASK_DESCRIPTION;
+    public static final String DEADLINE_DATE_DESC = " " + PREFIX_DEADLINE_DATE + VALID_DEADLINE_DATE;
+    public static final String ASSIGNMENT_ADD_STUDENTS_DESC =
+            " " + PREFIX_ASSIGNMENT_ADD_STUDENTS + VALID_ASSIGNMENT_STUDENTS;
 
     static {
         DESC_AMY = new EditStudentDescriptorBuilder().withName(VALID_NAME_AMY)
