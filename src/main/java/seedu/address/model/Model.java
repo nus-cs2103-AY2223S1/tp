@@ -11,6 +11,7 @@ import seedu.address.commons.core.GuiSettings;
 import seedu.address.logic.commands.FilterCommandPredicate;
 import seedu.address.model.message.Message;
 import seedu.address.model.person.Person;
+import seedu.address.model.person.TargetPerson;
 import seedu.address.model.quote.Quote;
 import seedu.address.model.reminder.ReadOnlyReminderList;
 import seedu.address.model.reminder.Reminder;
@@ -152,8 +153,8 @@ public interface Model {
     /** Returns the list of name filters applied. */
     Set<Predicate<Person>> getNameFilters();
 
-    /** Returns an unmodifiable view of the list of target person */
-    ObservableList<Person> getTargetPersonAsObservableList();
+    /** Returns the target person */
+    TargetPerson getObservableTargetPerson();
 
     /**
      * Set the given person as target.

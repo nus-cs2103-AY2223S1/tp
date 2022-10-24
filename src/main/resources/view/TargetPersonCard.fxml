@@ -68,10 +68,10 @@
     </TextFlow>
 
     <Label fx:id="remark" styleClass="target-person-details" text="\$remark" />
-
+<!-- 
     <Label fx:id="reminderHeader" styleClass="pane-header-2" text="Reminders" />
     <StackPane VBox.vgrow="ALWAYS">
       <ListView styleClass="reminder-view" fx:id="reminderView" VBox.vgrow="ALWAYS" minHeight="-Infinity" maxHeight="Infinity"/>
-    </StackPane>
+    </StackPane> -->
   </VBox>
 </HBox>

@@ -105,7 +105,7 @@ public class MainWindow extends UiPart<Stage> {
         personListPanel = new PersonListPanel(logic.getFilteredPersonList());
         personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
 
-        targetPersonPanel = new TargetPersonPanel(logic.getTargetPersonList(),
+        targetPersonPanel = new TargetPersonPanel(logic.getTargetPerson(),
                 logic.getTargetPersonReminderListAsObservableList());
 
         // TODO uncomment and replace the placeholder once the logic class implements that method
