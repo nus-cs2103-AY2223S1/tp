@@ -24,6 +24,7 @@ import seedu.address.model.Model;
 import seedu.address.model.student.Student;
 import seedu.address.model.student.StudentContainsKeywordsPredicate;
 import seedu.address.testutil.EditStudentDescriptorBuilder;
+import seedu.address.testutil.EditTaskDescriptorBuilder;
 
 /**
  * Contains helper methods for testing commands.
@@ -70,11 +71,16 @@ public class CommandTestUtil {
 
     public static final EditCommand.EditStudentDescriptor DESC_AMY;
     public static final EditCommand.EditStudentDescriptor DESC_BOB;
+    public static final EditTaskCommand.EditTaskDescriptor DESC_TODO;
+    public static final EditTaskCommand.EditTaskDescriptor DESC_DEADLINE;
 
     public static final String VALID_TASK_TITLE = "Grade assignments";
     public static final String VALID_TASK_DESCRIPTION = "Complete by tonight";
+    public static final String VALID_DEADLINE_DATE = "2022-09-09";
+
     public static final String INVALID_TASK_TITLE = "invalid title#";
     public static final String INVALID_TASK_DESCRIPTION = "invalid description?";
+    public static final String INVALID_DEADLINE_DATE = "09-09-2002";
 
     public static final String TASK_TITLE_DESC = " " + PREFIX_TASK_TITLE + VALID_TASK_TITLE;
     public static final String TASK_DESCRIPTION_DESC = " " + PREFIX_TASK_DESCRIPTION + VALID_TASK_DESCRIPTION;
@@ -86,6 +92,10 @@ public class CommandTestUtil {
         DESC_BOB = new EditStudentDescriptorBuilder().withName(VALID_NAME_BOB)
                 .withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB).withClassGroup(VALID_CLASS_GROUP_BOB)
                 .withStudentId(VALID_STUDENTID_BOB).withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).build();
+        DESC_TODO = new EditTaskDescriptorBuilder().withTitle(VALID_TASK_TITLE)
+                .withDescription(VALID_TASK_DESCRIPTION).build();
+        DESC_DEADLINE = new EditTaskDescriptorBuilder().withTitle(VALID_TASK_TITLE)
+                .withDescription(VALID_TASK_DESCRIPTION).withDate(VALID_DEADLINE_DATE).build();
     }
 
     /**
