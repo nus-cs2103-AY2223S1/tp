@@ -467,3 +467,8 @@
     -fx-font-style: italic;
     -fx-fill: #505050;
 }
+
+.motivational-quote {
+    -fx-font-style: italic;
+    -fx-padding: 0 0 6 0;
+}

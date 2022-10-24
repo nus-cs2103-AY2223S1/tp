@@ -23,6 +23,8 @@ public class WelcomePanel extends UiPart<Region> {
     @FXML
     private Label welcomeMessage;
     @FXML
+    private Label motivationalQuote;
+    @FXML
     private ListView<Reminder> reminderView;
 
     /**
@@ -38,8 +40,20 @@ public class WelcomePanel extends UiPart<Region> {
         reminderView.setPlaceholder(reminderPlaceholder);
     }
 
+    /**
+     * Sets the welcome message to be displayed.
+     * @param message
+     */
     public void setWelcomeMessage(String message) {
         welcomeMessage.setText(message);
+    }
+
+    /**
+     * Sets the motiviation quote to be displayed.
+     * @param quote
+     */
+    public void setMotivationalQuote(String quote) {
+        motivationalQuote.setText(quote);
     }
 }
 

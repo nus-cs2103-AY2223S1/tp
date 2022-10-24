@@ -43,7 +43,8 @@ public class UiManager implements Ui {
             mainWindow = new MainWindow(primaryStage, logic);
             mainWindow.show(); // This should be called before creating other UI parts
             mainWindow.fillInnerParts();
-            mainWindow.setWelcomeMessage(appendMotivationalQuote(launchMessage));
+            mainWindow.setWelcomeMessage(launchMessage);
+            mainWindow.setMotivationalQuote(logic.getQuote());
         } catch (Throwable e) {
             logger.severe(StringUtil.getDetails(e));
             showFatalErrorDialogAndShutdown("Fatal error during initializing", e);
@@ -89,10 +90,4 @@ public class UiManager implements Ui {
         Platform.exit();
         System.exit(1);
     }
-
-    private String appendMotivationalQuote(String message) {
-        return message + "\n\n"
-                + logic.getQuote();
-    }
-
 }

@@ -22,6 +22,7 @@ import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.message.Message;
+import seedu.address.model.quote.Quote;
 
 /**
  * The Main Window. Provides the basic application layout containing
@@ -193,6 +194,15 @@ public class MainWindow extends UiPart<Stage> {
     public void setWelcomeMessage(String message) {
         requireAllNonNull(welcomePanel, message);
         welcomePanel.setWelcomeMessage(message);
+    }
+
+    /**
+     * Sets the motivational quote within welcomePanel
+     * @param quote
+     */
+    public void setMotivationalQuote(Quote quote) {
+        requireAllNonNull(welcomePanel, quote);
+        welcomePanel.setMotivationalQuote(quote.toString());
     }
 
     /**
