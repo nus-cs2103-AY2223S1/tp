@@ -30,7 +30,7 @@ public class SampleDataUtil {
             new Internship(new Name("TikTok"), new Phone("99272758"), new Email("berniceyu@example.com"),
                 new Remark("One Raffles Quay, Level 26 South Tower, Singapore 048583"), new Position("Frontend Intern"),
                 new ApplicationProcess("offer"), new Date("25-10-2022"),
-                new Website("https://careers.tiktok.com/"), getTagSet("ATAP","Summer")),
+                new Website("https://careers.tiktok.com/"), getTagSet("ATAP", "Summer")),
             new Internship(new Name("Amazon"), new Phone("93210283"), new Email("charlotte@example.com"),
                 new Remark("Behavioural Interview"), new Position("Fullstack Intern"),
                 new ApplicationProcess("assessment"), new Date("27-10-2022"),
