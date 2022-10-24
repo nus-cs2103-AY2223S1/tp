@@ -79,8 +79,8 @@ public class VenueBook implements ReadOnlyVenueBook {
      * Adds a booking to the venue in the list with the name {@code venueName}.
      * @throws VenueNotFoundException if the venue does not exist in the list.
      */
-    public void addBookingToVenueWithSameName(VenueName venueName, Booking booking) throws VenueNotFoundException {
-        venues.addBookingToVenueWithSameName(venueName, booking);
+    public void addBooking(VenueName venueName, Booking booking) throws VenueNotFoundException {
+        venues.addBooking(venueName, booking);
     }
 
     /**
@@ -89,9 +89,9 @@ public class VenueBook implements ReadOnlyVenueBook {
      * @throws VenueNotFoundException if the venue does not exist in the list.
      * @throws BookingNotFoundException if the venue is not booked during the specified period and day.
      */
-    public void removeBookingFromVenueWithSameName(VenueName venueName, HourPeriod bookingPeriod , Day bookedDay)
+    public void removeBooking(VenueName venueName, HourPeriod bookingPeriod , Day bookedDay)
             throws VenueNotFoundException, BookingNotFoundException {
-        venues.removeBookingFromVenueWithSameName(venueName, bookingPeriod, bookedDay);
+        venues.removeBooking(venueName, bookingPeriod, bookedDay);
     }
 
     //// util methods

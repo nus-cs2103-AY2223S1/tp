@@ -172,16 +172,16 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void addBookingToVenueWithSameName(VenueName venueName, Booking booking) throws VenueNotFoundException {
+    public void addBooking(VenueName venueName, Booking booking) throws VenueNotFoundException {
         requireAllNonNull(venueName, booking);
-        venueBook.addBookingToVenueWithSameName(venueName, booking);
+        venueBook.addBooking(venueName, booking);
     }
 
     @Override
-    public void removeBookingFromVenueWithSameName(VenueName venueName, HourPeriod bookedPeriod, Day bookedDay)
+    public void removeBooking(VenueName venueName, HourPeriod bookedPeriod, Day bookedDay)
             throws VenueNotFoundException, BookingNotFoundException {
         requireAllNonNull(venueName, bookedPeriod, bookedDay);
-        venueBook.removeBookingFromVenueWithSameName(venueName, bookedPeriod, bookedDay);
+        venueBook.removeBooking(venueName, bookedPeriod, bookedDay);
     }
 
     //=========== End of venue book methods =============================================
