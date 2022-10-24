@@ -174,7 +174,12 @@ Format: `exit`
 
 ### Saving the data
 
-FoodWhere data is saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
+FoodWhere data is saved in the hard disk automatically after any command that changes the data. There is no need to save manually. 
+
+<div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
+If there are no commands entered, simply exiting the program will not generate a new JSON file if the file is not present.
+</div>
+
 
 ### Editing the data file
 
@@ -197,14 +202,15 @@ If your changes to the data file make its format invalid, FoodWhere will discard
 
 | Action    | Format, Examples                                                                                         |
 |-----------|----------------------------------------------------------------------------------------------------------|
-| **Exit**  | `exit`                                                                                                   |
-| **Help**  | `help`                                                                                                   |
-| **Clear** | `clear`                                                                                                  |
-| **rAdd**  | `radd s/STALL_INDEX d/DATE c/CONTENT r/RATING [t/TAGS]…`<br> e.g., `radd s/3 d/2022-09-20 c/Great food!` |
-| **rDel**  | `rdel INDEX`                                                                                             |
-| **rList** | `rlist`                                                                                                  |
-| **rFind** | `rfind n/NAME_KEYWORD [MORE_KEYWORDS]… t/TAG_KEYWORD [MORE_KEYWORDS]…`                                   |
-| **sAdd**  | `sadd n/NAME a/ADDRESS [t/TAGS]…`<br> e.g., `sadd n/John Chicken Rice a/Blk 123 Bedok South t/veryNice`  |
-| **sDel**  | `sdel INDEX`                                                                                             |
-| **sList** | `slist`                                                                                                  |
-| **sFind** | `sfind n/NAME_KEYWORD [MORE_KEYWORDS]… t/TAG_KEYWORD [MORE_KEYWORDS]…`                                   |
+| **exit**  | `exit`                                                                                                   |
+| **help**  | `help`                                                                                                   |
+| **clear** | `clear`                                                                                                  |
+| **radd**  | `radd s/STALL_INDEX d/DATE c/CONTENT r/RATING [t/TAGS]…`<br> e.g., `radd s/3 d/2022-09-20 c/Great food!` |
+| **rdel**  | `rdel INDEX`                                                                                             |
+| **rlist** | `rlist`                                                                                                  |
+| **rfind** | `rfind n/NAME_KEYWORD [MORE_KEYWORDS]… t/TAG_KEYWORD [MORE_KEYWORDS]…`                                                                         |
+| **sadd**  | `sadd n/NAME a/ADDRESS [t/TAGS]…`<br> e.g., `sadd n/John Chicken Rice a/Blk 123 Bedok South t/veryNice`  |
+| **sdel**  | `sdel INDEX`                                                                                             |
+| **slist** | `slist`                                                                                                  |
+| **sfind** | `sfind n/NAME_KEYWORD [MORE_KEYWORDS]… t/TAG_KEYWORD [MORE_KEYWORDS]…`                                                                         |
+
