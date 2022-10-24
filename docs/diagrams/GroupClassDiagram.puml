@@ -1,0 +1,16 @@
+@startuml
+!include style.puml
+skinparam arrowThickness 1.1
+skinparam arrowColor MODEL_COLOR
+skinparam classBackgroundColor MODEL_COLOR
+
+AddressBook *-right-> "1" UniquePersonList
+AddressBook *-right-> "1" UniqueGroupList
+UniqueGroupList -[hidden]down- UniquePersonList
+
+UniqueGroupList  -right-> "*" Group
+UniquePersonList -right-> Person
+
+Group -down-> "*" Person
+Group *-right-> "1" GroupName
+@enduml

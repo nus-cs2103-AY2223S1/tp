@@ -118,28 +118,46 @@ How the parsing works:
 ### Model component
 **API** : [`Model.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/model/Model.java)
 
-<img src="images/ModelClassDiagram.png" width="450" />
+<img src="images/ModelClassDiagramNew.png" width="450" />
 
 
 The `Model` component,
 
-* stores the address book data i.e., all `Person` objects (which are contained in a `UniquePersonList` object).
-* stores the currently 'selected' `Person` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Person>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
+* stores the address book data:
+  * all `Person` objects (which are contained in a `UniquePersonList` object).
+  * all `Group` objects (which are contained in a `UniqueGroupList` object).
+* stores the currently 'selected' `Person` or `Group` objects (e.g., results of a search query) as separate _filtered_ lists which are exposed to outsiders as 
+  unmodifiable `ObservableList<Person>` and `ObservableList<Group>`that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the lists change.
 * stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
 * does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `AddressBook`, which `Person` references. This allows `AddressBook` to only require one `Tag` object per unique tag, instead of each `Person` needing their own `Tag` objects.<br>
+**Person** : [`Person.java`](https://github.com/Tan-Jin-Waye/tp/blob/master/src/main/java/seedu/address/model/person/Person.java)
 
+The `Person` component in relation to `Addressbook` and `UniquePersonList` is given in further detail here.
 <img src="images/BetterModelClassDiagram.png" width="450" />
 
-</div>
+The `Person` component,
+
+* is composed of `Name`, `Phone`, `Email`, `Address` mandatory attributes
+* references any number of `Tags` from the `UniqueTagList` in `Addressbook`. This allows `AddressBook` to only require one `Tag` object per unique tag, instead of each `Person` needing their own `Tag` objects.
+
+**Group** : [`Group.java`](https://github.com/Tan-Jin-Waye/tp/blob/master/src/main/java/seedu/address/model/group/Group.java)
+
+The `Group` component in relation to `Addressbook` and `UniqueGroupList` is given in further detail here.
+<img src="images/GroupClassDiagram.png" width="450" />
+
+The `Group` component,
+* is composed of `GroupName` mandatory attribute
+* references any number of `Persons` from the `UniquePersonList` in Addressbook. This allows `AddressBook` to only require one `Person` object per unique person, instead of each `Group` needing their own `Person` objects.
+
+
 
 
 ### Storage component
 
 **API** : [`Storage.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/storage/Storage.java)
 
-<img src="images/StorageClassDiagram.png" width="550" />
+<img src="images/StorageClassDiagramNew.png" width="550" />
 
 The `Storage` component,
 * can save both address book data and user preference data in json format, and read them back into corresponding objects.
@@ -154,6 +172,57 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 ## **Implementation**
 
 This section describes some noteworthy details on how certain features are implemented.
+
+### **\[Developed\] Add/Delete Group feature**
+
+#### **Implementation**
+This feature allows groups to be added to and deleted from TABS, facilitated by the `UniqueGroupList`. 
+It is achieved by the following operations: 
+
+- `Model#addGroup(GroupName)` - Adds a group to TABS with the input name.
+- `Model#deleteGroup(GroupName)` - Deletes the group with the input name, and removes any members and assignments associated.
+
+Given below is an example usage scenario and how groups are added/deleted at each stage.
+
+**Step 1.** 
+The user launches the application for the first time. Presuming they have not made changes to the default persons,
+the `AddressBook` model looks like this:
+<!-- Diagram 1 -->
+
+**Step 2.**
+User executes `addgroup g/CS2103T`. This causes a new group with `GroupName` "CS2103T" and no members to be
+added to the `AddressBook` model, reflected below:
+<!-- Diagram 2 -->
+
+**Note:** The associated parser `AddGroupCommandParser` checks that the entered group name is valid, following same
+conventions as naming a `Person`, and the command itself `AddGroupCommand` checks that a group of the same name does
+not already exist in the app. Below is an activity diagram reflecting this:
+<!-- Add Group Activity Diagram -->
+
+As a detailed overview, the `addgroup` command operates via the following sequence diagram: 
+<!-- Add Group Sequence Diagram -->
+
+**Step 3.**
+Suppose now the user adds `Alice` and `Bob` as members of the CS2103T, and assigns `Alice` a task under the group.
+The `AddressBook` model now looks like this:
+<!-- Diagram 3 -->
+
+**Step 4.**
+User executes `deletegroup g/CS2103T`. This deletes the group with `GroupName` "CS2103T" and additionally:
+- Removes any members of the group e.g. `Alice` and `Bob` in this instance
+- Removes any tasks associated with the group e.g. `Alice`'s task.
+The `AddressBook` model now looks like this:
+<!-- Diagram 4 -->
+
+**Note:** The associated parser `DeleteGroupCommandParser` checks that the entered group name is valid, following same
+conventions as naming a `Person`, and the command itself `DeleteGroupCommand` checks that a group with this name exists
+in the app. Below is an activity diagram reflecting this:
+<img src="images/DeleteGroupActivityDiagram.png" width="550" />
+
+As a detailed overview, the `deletegroup` command operates via the following sequence diagram:
+<img src="images/DeleteGroupSequenceDiagram.png" width="700" />
+
+-----
 
 ### **\[Developed\] Display Group feature**
 
@@ -191,54 +260,6 @@ The user flow can be illustrated in the Activity Diagram as shown below.
 <img src="images/DisplayGroupActivityDiagram.png" width="550" />
 
 -------
-
-### **\[Developed\] Delete Group feature**
-
-#### **Implementation**
-
-This feature allows an existing group to be deleted from TABS, using the `deletegroup` command. Tasks assigned to the
-members will be deleted and existing members will be removed from the specified group. This is facilitated by the `DeleteGroupCommand` and `DeleteGroupCommandParser` classes.
-
-The `DeleteGroupCommandParser` class parses the input entered by the user, which is the group name the user wants to delete from TABS.
-
-The details of the members in the specified group will be updated as such:
-- Each member will have their assignments associated with the group removed.
-- Each member will be updated such that they are no longer associated with the target group.
-- Other details of the members will remain the same.
-
-A new `Person` with the edited fields above is created for each member, and `Model#setPerson()` will be called to update in TABS.
-
-`Model#deleteGroup(GroupName)` is called to remove the group from TABS, and `Model#updateFilteredPersonList(Predicate)` is called to display the new result in the GUI after deletion.
-
-**Steps**
-
-Step 1. The user enters `deletegroup [NAME OF GROUP]` command
-
-Step 2. The `DeleteGroupCommandParser` class parses the group name input and returns a `DeleteGroupCommand` object with a single `Group` attribute.
-
-Step 3. The `DisplayGroupCommand` object is executed. This group can be retrieved by calling `ObservableList#getGroupWithName()` method.
-
-Step 4. If no groups show up in the ObservableList, a CommandException is thrown where the group is not found in TABS. Otherwise, members of the group are retrieved with the `getMembers()` method in `Group` class.
-
-Step 5. For each member, `getAssignments()` and `getPersonGroups` methods from `Person` class are called to aid in removal of the tasks and associated group.
-
-Step 6. A new Person object is created with the edited fields and `Model#setPerson(Person)` is called to update the new details for each member, with the new `editedPerson` passed in as an argument.
-
-Step 7. The `Group` invoked is deleted from TABS. A CommandResult is then returned, which provides a feedback to user that the specified group has been successfully deleted.
-
-**Activity Diagram**
-
-The user flow can be illustrated in the Activity Diagram as shown below.
-
-<img src="images/DeleteGroupActivityDiagram.png" width="550" />
-
-**Sequence Diagram**
-
-The sequence diagram for DeleteGroup command is as shown below.
-
-<img src="images/DeleteGroupSequenceDiagram.png" width="550" />
-
-----------------------------
 
 ### **\[Developed\] Add Group Member feature**
 
