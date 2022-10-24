@@ -23,7 +23,7 @@ public class EmailMatchesInputPredicate implements Predicate<Person> {
 
     @Override
     public boolean test(Person person) {
-        return person.getEmail().value.equals(input);
+        return person.getEmail().value.equalsIgnoreCase(input);
     }
 
     @Override
