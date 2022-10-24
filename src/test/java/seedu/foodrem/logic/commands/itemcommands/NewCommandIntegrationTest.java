@@ -13,11 +13,15 @@ import seedu.foodrem.model.ModelManager;
 import seedu.foodrem.model.UserPrefs;
 import seedu.foodrem.model.item.Item;
 import seedu.foodrem.testutil.ItemBuilder;
+import seedu.foodrem.viewmodels.ItemWithMessage;
 
 /**
  * Contains integration tests (interaction with the Model) for {@code AddCommand}.
  */
 public class NewCommandIntegrationTest {
+    private static final String EXPECTED_SUCCESS_MESSAGE = "New item added as follows:";
+    private static final String EXPECTED_FAILURE_DUPLICATE_ITEM = "This item already exists in FoodRem";
+
     private Model model;
 
     @BeforeEach
@@ -33,12 +37,12 @@ public class NewCommandIntegrationTest {
         expectedModel.addItem(validItem);
 
         assertCommandSuccess(new NewCommand(validItem), model,
-                String.format(NewCommand.MESSAGE_SUCCESS, validItem), expectedModel);
+                new ItemWithMessage(validItem, EXPECTED_SUCCESS_MESSAGE), expectedModel);
     }
 
     @Test
     public void execute_duplicateItem_throwsCommandException() {
         Item itemInList = model.getFoodRem().getItemList().get(0);
-        assertCommandFailure(new NewCommand(itemInList), model, NewCommand.MESSAGE_DUPLICATE_ITEM);
+        assertCommandFailure(new NewCommand(itemInList), model, EXPECTED_FAILURE_DUPLICATE_ITEM);
     }
 }
