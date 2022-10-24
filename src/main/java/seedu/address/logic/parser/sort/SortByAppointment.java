@@ -27,13 +27,12 @@ public class SortByAppointment implements Comparator<Person> {
 
         // if 1 person has no appointments and 1 has, the guy with the appointment
         // should be placed in front of the guy with no appointments.
+        // if both person do not have appointments, order remains, no swap needed.
         if (p1.getAppointments().isEmpty() && !p2.getAppointments().isEmpty()) {
             return 1;
         } else if (p2.getAppointments().isEmpty() && !p1.getAppointments().isEmpty()) {
             return 0;
-        }
-        // if both person do not have appointments, order remains, no swap needed.
-        else if (p1.getAppointments().isEmpty() && p2.getAppointments().isEmpty()) {
+        } else if (p1.getAppointments().isEmpty() && p2.getAppointments().isEmpty()) {
             return 0;
         } else {
             // sort in descending order if user parse in "desc"
