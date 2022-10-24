@@ -5,11 +5,6 @@ import static seedu.address.logic.parser.CliSyntax.FLAG_DESCRIPTION_LONG;
 import static seedu.address.logic.parser.CliSyntax.FLAG_DESCRIPTION_STR;
 import static seedu.address.logic.parser.CliSyntax.FLAG_NAME_STR;
 import static seedu.address.logic.parser.CliSyntax.FLAG_NAME_STR_LONG;
-import static seedu.address.logic.parser.CliSyntax.FLAG_TAG_STR;
-import static seedu.address.logic.parser.CliSyntax.FLAG_URL_STR;
-
-
-import java.util.ArrayList;
 
 import org.apache.commons.cli.CommandLine;
 import org.apache.commons.cli.CommandLineParser;
@@ -18,13 +13,10 @@ import org.apache.commons.cli.MissingArgumentException;
 import org.apache.commons.cli.Option;
 import org.apache.commons.cli.Options;
 
-import seedu.address.logic.commands.AddLinkCommand;
 import seedu.address.logic.commands.AddTeamCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Name;
-import seedu.address.model.team.Link;
 import seedu.address.model.team.Team;
-import seedu.address.model.team.Url;
 
 /**
  * Parses input arguments and creates a new AddTeamCommand object.

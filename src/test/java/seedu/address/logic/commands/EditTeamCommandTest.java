@@ -5,7 +5,6 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.DESC_FIRST_TEAM;
 import static seedu.address.logic.commands.CommandTestUtil.DESC_SECOND_TEAM;
 
-
 import org.junit.jupiter.api.Test;
 
 class EditTeamCommandTest {

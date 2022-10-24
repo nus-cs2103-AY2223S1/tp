@@ -60,8 +60,12 @@ public class Team {
         this.links.setLinks(links);
     }
 
+    /**
+     * This method creates a default team in TruthTable.
+     */
     public static Team createDefaultTeam() {
-        return new Team("default", "A default team created just for you!", new ArrayList<>(), new ArrayList<>(), new ArrayList<>());
+        return new Team("default", "A default team created just for you!",
+                new ArrayList<>(), new ArrayList<>(), new ArrayList<>());
     }
 
     public String getTeamName() {

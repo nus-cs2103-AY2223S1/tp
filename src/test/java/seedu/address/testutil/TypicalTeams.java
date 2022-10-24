@@ -18,6 +18,6 @@ public class TypicalTeams {
 
     public static final Team FIRST = new Team("first", "No description added");
     public static final Team FIRST_DUPLICATE = new Team("first" , "No description added");
-    public static final Team SECOND = new Team("second","No description added", TYPICAL_MEMBERS, TYPICAL_TASKS, new ArrayList<>());
-
+    public static final Team SECOND = new Team("second",
+            "No description added", TYPICAL_MEMBERS, TYPICAL_TASKS, new ArrayList<>());
 }

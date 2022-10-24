@@ -24,6 +24,9 @@ import seedu.address.model.person.Name;
 public class EditTeamCommandParser implements Parser<EditTeamCommand> {
     private final Options options;
 
+    /**
+     * Creates an EditTeamCommandParser with default options.
+     */
     public EditTeamCommandParser() {
         Options options = new Options();
         options.addOption(FLAG_NAME_STR, FLAG_NAME_STR_LONG, true, "Name of team");

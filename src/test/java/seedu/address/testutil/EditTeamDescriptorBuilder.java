@@ -3,6 +3,9 @@ package seedu.address.testutil;
 import seedu.address.logic.commands.EditTeamCommand.EditTeamDescriptor;
 import seedu.address.model.team.Team;
 
+/**
+ * A utility class to help with building EditTeamDescriptor objects.
+ */
 public class EditTeamDescriptorBuilder {
     private EditTeamDescriptor descriptor;
 

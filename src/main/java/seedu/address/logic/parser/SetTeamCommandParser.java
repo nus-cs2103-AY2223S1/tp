@@ -1,7 +1,5 @@
 package seedu.address.logic.parser;
 
-import java.util.ArrayList;
-
 import seedu.address.logic.commands.SetTeamCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.team.Team;

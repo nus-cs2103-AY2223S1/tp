@@ -89,6 +89,6 @@ public class JsonAdaptedTeam {
         if (teamName == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Team.class.getSimpleName()));
         }
-        return new Team(teamName, description,  modelMembers, modelTasks, modelLinks);
+        return new Team(teamName, description, modelMembers, modelTasks, modelLinks);
     }
 }
