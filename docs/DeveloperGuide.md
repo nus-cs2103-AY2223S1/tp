@@ -54,7 +54,7 @@ The rest of the App consists of four components:
 
 The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues the command `delete 1`.
 
-<img src="images/ArchitectureSequenceDiagram.png" width="574" />
+<img src="images/ArchitectureSequenceDiagram.png"/>
 
 Each of the four main components will:
 
@@ -63,7 +63,7 @@ Each of the four main components will:
 
 For example, the `Logic` component defines its API in the `Logic.java` interface and implements its functionality using the `LogicManager.java` class which follows the `Logic` interface. Other components interact with a given component through its interface rather than the concrete class. This is to prevent the outside component being coupled to the implementation of a component, as illustrated in the partial class diagram below.
 
-<img src="images/ComponentManagers.png" width="300" />
+<img src="images/ComponentManagers.png"/>
 
 The sections below give more details of each component.
 
@@ -90,7 +90,7 @@ The `UI` component does the following:
 
 Below is a partial class diagram of the `Logic` component.
 
-<img src="images/LogicClassDiagram.png" width="550"/>
+<img src="images/LogicClassDiagram.png"/>
 
 How the `Logic` component works:
 1. When `Logic` is called upon to execute a command, it uses the `SoConnectParser` class to parse the user command.
@@ -107,7 +107,7 @@ The Sequence Diagram below illustrates the interactions within the `Logic` compo
 
 Here are the other classes in `Logic` (omitted from the class diagram above) that are used for parsing a user command:
 
-<img src="images/ParserClasses.png" width="600"/>
+<img src="images/ParserClasses.png"/>
 
 How the parsing works:
 
@@ -117,7 +117,7 @@ How the parsing works:
 ### Model component
 **API** : [`Model.java`](https://github.com/AY2223S1-CS2103T-W15-1/tp/blob/master/src/main/java/soconnect/model/Model.java)
 
-<img src="images/ModelClassDiagram.png" width="450" />
+<img src="images/ModelClassDiagram.png"/>
 
 
 The `Model` component does the following:
@@ -129,7 +129,7 @@ The `Model` component does the following:
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `SoConnect`, which `Person` references. This allows `SoConnect` to only require one `Tag` object per unique tag, instead of each `Person` needing their own `Tag` objects. <br>
 
-<img src="images/BetterModelClassDiagram.png" width="450" />
+<img src="images/BetterModelClassDiagram.png"/>
 
 </div>
 
@@ -138,7 +138,7 @@ The `Model` component does the following:
 
 **API** : [`Storage.java`](https://github.com/AY2223S1-CS2103T-W15-1/tp/blob/master/src/main/java/soconnect/storage/Storage.java)
 
-<img src="images/StorageClassDiagram.png" width="550" />
+<img src="images/StorageClassDiagram.png"/>
 
 The `Storage` component does the following:
 * Saves both SoConnect data and user preference data in `json` format, and read them back into corresponding objects.
@@ -442,8 +442,6 @@ The following activity diagram summarizes what happens when a user executes a ne
   * Pros: Will use less memory (e.g. for `delete`, just save the contact being deleted).
   * Cons: We must ensure that the implementation of each individual command are correct.
 
-_{more aspects and alternatives to be added}_
-
 ### Tag adding feature
 
 #### Implementation
@@ -486,12 +484,6 @@ The following activity diagram summarizes what happens when a user executes a ta
 * **Alternative 2:** Directly add the tag into the contact .
     * Pros: Easy to implement.
     * Cons: Easy to access into the tags of a contact. Could cause accidental bugs.
-
-_{Explain here how the data archiving feature will be implemented}_
-
-### \[Proposed\] Data archiving
-
-_{Explain here how the data archiving feature will be implemented}_
 
 ### Tag editing feature
 
@@ -550,23 +542,29 @@ Note:
 
 Step 2. The user executes `customise order e/` as the user wants the emails appear right below the name.
 
-* Step 2a. `SoConnectParaser` processes the input and calls the parser `CustomiseCommandParser` to parse `" order e/"`.
-* Step 2b. `CustomiseCommandParser` processes the input and calls the parser `CustomiseOrderCommandParser` to parse `" e/"`.
-* Step 2c. `CustomiseOrderCommandParser` processes the input into a list of attributes. In this case, the list of attributes only contains `EMAIL` and is missing the attributes `TAGS`, `PHONE` and `ADDRESS`. The missing attributes are added to the list according to the default order mentioned above. The list of attributes now contains `EMAIL`, `TAGS`, `PHONE` and `ADDRESS`.
-* Step 2d. `CustomiseOrderCommandParser` creates a `CustomiseOrderCommand` with the list of attributes.
-* Step 2e. `CustomiseOrderCommandParser` returns the `CustomiseOrderCommand`.
-* Step 2f. `Logic` executes the `CustomiseOrderCommand`.
-* Step 2g. `CustomiseOrderCommand#execute()` calls `Model#setGuiSettings()` to save the new attribute order in `preferences.json`.
+Step 3. `SoConnectParaser` processes the input and calls the parser `CustomiseCommandParser` to parse `" order e/"`.
 
-The following sequence diagram illustrates Steps 2a to 2g:
+Step 4. `CustomiseCommandParser` processes the input and calls the parser `CustomiseOrderCommandParser` to parse `" e/"`.
+
+Step 5. `CustomiseOrderCommandParser` processes the input into a list of attributes. In this case, the list of attributes only contains `EMAIL` and is missing the attributes `TAGS`, `PHONE` and `ADDRESS`. The missing attributes are added to the list according to the default order mentioned above. The list of attributes now contains `EMAIL`, `TAGS`, `PHONE` and `ADDRESS`.
+
+Step 6. `CustomiseOrderCommandParser` creates a `CustomiseOrderCommand` with the list of attributes.
+
+Step 7. `CustomiseOrderCommandParser` returns the `CustomiseOrderCommand`.
+
+Step 8. `Logic` executes the `CustomiseOrderCommand`.
+
+Step 9. `CustomiseOrderCommand#execute()` calls `Model#setGuiSettings()` to save the new attribute order in `preferences.json`.
+
+The following sequence diagram illustrates Steps 3 to 9:
 
 ![CustomiseOrderSequenceDiagram](images/CustomiseOrderSequenceDiagram.png)
 
 Note:
 
-* The lifeline for `CustomiseOrderCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+* The lifeline for `CustomiseOrderCommandParser` and `CustomiseCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 
-Step 3. The user sees the new ordering after `PersonCard#setAttributes()` sets the attributes based of the new order in `preferences.json`.
+Step 10. The user sees the new ordering after `PersonCard#setAttributes()` sets the attributes based of the new order in `preferences.json`.
 
 Note:
 
@@ -580,7 +578,6 @@ Note:
 * **Alternative 2:** Have 24 different FXML files and use the one that is in the required order.
   * Pros: Easy to implement.
   * Cons: Harder to maintain and make changes.
-
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -637,8 +634,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* *`    | user                    | search with multiple tags                              | narrow my search results to only contacts that have all the specified tags |
 | `* *`    | user                    | search with multiple tags                              | broaden my result results to contacts that have any of the specified tags  |
 | `* *`    | user                    | view contacts related to my search query               | find contacts even when I mistype their name                               |
-| `* *`    | user                    | hide private contact details                           | minimize chance of someone else seeing them by accident                    |
-| `* *`    | user                    | show private contact details                           | view them when I need to                                                   |
+| `* *`    | user                    | hide contact details                                   | focus on certain information of each contact                               |
+| `* *`    | user                    | show contact details                                   | view certain information of each contact                                   |
 | `* *`    | user                    | have an autocomplete for my current search query       | search faster by names and minimize the chance of an unsuccessful search   |
 | `* *`    | user with many contacts | specify the default order of my contacts               | avoid re-sorting the list everytime                                        |
 | `* *`    | user with many contacts | sort contacts by name, email, phone number, or address | organise my contacts list                                                  |
@@ -649,10 +646,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* *`    | user                    | edit a todo                                            | update it or correct my mistakes                                           |
 | `* *`    | user                    | clear all my todos                                     | save time on deleting them one by one                                      |
 | `* *`    | user                    | filter the list of todos shown                         | only view the portion of list I need at the moment                         |
-| `*`      | user                    | change the order of information for contacts           | view more important information before others                              |
-| `*`      | user                    | customise the theme of the app                         | adjust it to my comfort and liking                                         |
-
-*{More to be added}*
+| `*`      | user                    | customise the order of information for contacts        | view more important information before others                              |
 
 ### Use cases
 
@@ -803,8 +797,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 8. Should not depend on a remote server.
 9. Should not cause any resolution-related inconveniences to the user.
 10. Should be packaged in a single JAR file and its size should not exceed 100MB.
-11. Should not have hard-to-test features or features that make the product hard-to-test,
-i.e., features that require creating user accounts, login, logout etc., audio-related features and Features that depend heavily on remote APIs.
+11. Should not have hard-to-test features or features that make the product hard-to-test, i.e., features that require creating user accounts, login, logout etc., audio-related features and Features that depend heavily on remote APIs.
 
 ### Glossary
 
