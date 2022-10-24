@@ -16,9 +16,7 @@ public class UiView {
     private void viewFrom(String message) {
         requireNonNull(message);
         display.clear();
-        final TextArea textArea = new TextArea(message);
-        textArea.setEditable(false);
-        display.place(textArea);
+        display.place(StringView.from(message));
     }
 
     private void viewFrom(Item item) {
