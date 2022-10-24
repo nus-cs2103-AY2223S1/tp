@@ -9,7 +9,9 @@ import static seedu.studmap.commons.util.AppUtil.checkArgument;
  */
 public class Order {
 
-    public static final String MESSAGE_CONSTRAINTS = "Order can only be asc for ascending or dsc for descending";
+    public static final String MESSAGE_CONSTRAINTS = "Order can only be asc for ascending or dsc for descending\n";
+    public static final Order ORDER_ASC = new Order("asc");
+    public static final Order ORDER_DSC = new Order("dsc");
 
     public final String orderName;
 
@@ -18,7 +20,7 @@ public class Order {
      *
      * @param orderName A valid order.
      */
-    public Order(String orderName) {
+    private Order(String orderName) {
         requireNonNull(orderName);
         checkArgument(isValidOrderName(orderName), MESSAGE_CONSTRAINTS);
         this.orderName = orderName;
@@ -35,7 +37,7 @@ public class Order {
      * Returns true if a given order is descending order.
      */
     public boolean isDescending() {
-        return this.orderName.matches("dsc");
+        return this.equals(ORDER_DSC);
     }
 
     @Override

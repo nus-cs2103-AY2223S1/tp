@@ -15,14 +15,15 @@ import static seedu.studmap.testutil.TypicalStudents.GEORGE;
 import static seedu.studmap.testutil.TypicalStudents.getTypicalStudMap;
 
 import java.util.Arrays;
+import java.util.Comparator;
 
 import org.junit.jupiter.api.Test;
 
 import seedu.studmap.model.Model;
 import seedu.studmap.model.ModelManager;
 import seedu.studmap.model.UserPrefs;
-import seedu.studmap.model.attribute.Attribute;
 import seedu.studmap.model.order.Order;
+import seedu.studmap.model.student.Student;
 
 /**
  * Contains integration tests (interaction with the Model) for {@code SortCommand}.
@@ -33,14 +34,17 @@ public class SortCommandTest {
 
     @Test
     public void equals() {
-        SortCommand sortFirstCommand = new SortCommand(new Attribute("name"), new Order("asc"));
-        SortCommand sortSecondCommand = new SortCommand(new Attribute("name"), new Order("dsc"));
+        SortCommand sortFirstCommand = new SortCommand(Comparator.comparing(Student::getNameString),
+                "name",
+                Order.ORDER_ASC);
+        SortCommand sortFirstCommandCopy = new SortCommand(Comparator.comparing(Student::getNameString),
+                "name",
+                Order.ORDER_ASC);
 
         // same object -> returns true
         assertTrue(sortFirstCommand.equals(sortFirstCommand));
 
         // same values -> returns true
-        SortCommand sortFirstCommandCopy = new SortCommand(new Attribute("name"), new Order("asc"));
         assertTrue(sortFirstCommand.equals(sortFirstCommandCopy));
 
         // different types -> returns false
@@ -48,16 +52,15 @@ public class SortCommandTest {
 
         // null -> returns false
         assertFalse(sortFirstCommand.equals(null));
-
-        // different student -> returns false
-        assertFalse(sortFirstCommand.equals(sortSecondCommand));
     }
 
     @Test
     public void execute_nameAscending_success() {
-        String expectedMessage = String.format(MESSAGE_SORT_SUCCESS, "[name]", "ascending");
-        SortCommand sortCommand = new SortCommand(new Attribute("name"), new Order("asc"));
-        expectedModel.sortFilteredStudentList(new Attribute("name"), new Order("asc"));
+        String expectedMessage = String.format(MESSAGE_SORT_SUCCESS, "name", "ascending");
+        SortCommand sortCommand = new SortCommand(Comparator.comparing(Student::getNameString),
+                "name",
+                Order.ORDER_ASC);
+        expectedModel.sortFilteredStudentList(Comparator.comparing(Student::getNameString), Order.ORDER_ASC);
         assertCommandSuccess(sortCommand, model, expectedMessage, expectedModel);
         assertEquals(Arrays.asList(ALICE, BENSON, CARL, DANIEL, ELLE, FIONA, GEORGE),
                 model.getFilteredStudentList());
@@ -65,9 +68,11 @@ public class SortCommandTest {
 
     @Test
     public void execute_nameDescending_success() {
-        String expectedMessage = String.format(MESSAGE_SORT_SUCCESS, "[name]", "descending");
-        SortCommand sortCommand = new SortCommand(new Attribute("name"), new Order("dsc"));
-        expectedModel.sortFilteredStudentList(new Attribute("name"), new Order("dsc"));
+        String expectedMessage = String.format(MESSAGE_SORT_SUCCESS, "name", "descending");
+        SortCommand sortCommand = new SortCommand(Comparator.comparing(Student::getNameString),
+                "name",
+                Order.ORDER_DSC);
+        expectedModel.sortFilteredStudentList(Comparator.comparing(Student::getNameString), Order.ORDER_DSC);
         assertCommandSuccess(sortCommand, model, expectedMessage, expectedModel);
         assertEquals(Arrays.asList(GEORGE, FIONA, ELLE, DANIEL, CARL, BENSON, ALICE),
                 model.getFilteredStudentList());
@@ -75,9 +80,12 @@ public class SortCommandTest {
 
     @Test
     public void execute_phoneAscending_success() {
-        String expectedMessage = String.format(MESSAGE_SORT_SUCCESS, "[phone]", "ascending");
-        SortCommand sortCommand = new SortCommand(new Attribute("phone"), new Order("asc"));
-        expectedModel.sortFilteredStudentList(new Attribute("phone"), new Order("asc"));
+        String expectedMessage = String.format(MESSAGE_SORT_SUCCESS, "phone", "ascending");
+        SortCommand sortCommand = new SortCommand(Comparator.comparing(Student::getPhoneString),
+                "phone",
+                Order.ORDER_ASC);
+        expectedModel.sortFilteredStudentList(Comparator.comparing(Student::getPhoneString),
+                Order.ORDER_ASC);
         assertCommandSuccess(sortCommand, model, expectedMessage, expectedModel);
         assertEquals(Arrays.asList(DANIEL, ALICE, ELLE, FIONA, GEORGE, CARL, BENSON),
                 model.getFilteredStudentList());
@@ -85,9 +93,12 @@ public class SortCommandTest {
 
     @Test
     public void execute_phoneDescending_success() {
-        String expectedMessage = String.format(MESSAGE_SORT_SUCCESS, "[phone]", "descending");
-        SortCommand sortCommand = new SortCommand(new Attribute("phone"), new Order("dsc"));
-        expectedModel.sortFilteredStudentList(new Attribute("phone"), new Order("dsc"));
+        String expectedMessage = String.format(MESSAGE_SORT_SUCCESS, "phone", "descending");
+        SortCommand sortCommand = new SortCommand(Comparator.comparing(Student::getPhoneString),
+                "phone",
+                Order.ORDER_DSC);
+        expectedModel.sortFilteredStudentList(Comparator.comparing(Student::getPhoneString),
+                Order.ORDER_DSC);
         assertCommandSuccess(sortCommand, model, expectedMessage, expectedModel);
         assertEquals(Arrays.asList(BENSON, CARL, GEORGE, FIONA, ELLE, ALICE, DANIEL),
                 model.getFilteredStudentList());
