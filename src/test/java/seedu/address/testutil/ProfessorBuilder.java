@@ -14,7 +14,7 @@ public class ProfessorBuilder extends PersonBuilder {
     public static final String DEFAULT_MODULE_CODE = "CS1231S";
     public static final String DEFAULT_RATING = "5";
     public static final String DEFAULT_SPECIALISATION = "Computer Graphics";
-    public static final String DEFAULT_OFFICE_HOUR = "TUESDAY: 6:00 PM to 9:00 PM";
+    public static final String DEFAULT_OFFICE_HOUR = "TUESDAY, 06:00 PM - 09:00 PM";
     private ModuleCode moduleCode;
     private Rating rating;
     private Specialisation field;
