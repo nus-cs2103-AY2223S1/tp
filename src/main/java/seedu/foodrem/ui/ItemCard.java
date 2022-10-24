@@ -39,7 +39,7 @@ public class ItemCard extends UiPart<Region> {
     public ItemCard(Item item, int displayedIndex) {
         super("ItemListCard.fxml");
         this.item = item;
-        id.setText(String.valueOf(displayedIndex) + ".");
+        id.setText(displayedIndex + ".");
         name.setText(item.getName().toString());
         bought.setText(String.format("Bought: %s", ItemView.buildBoughtDateStringFrom(item)));
         expires.setText(String.format("Expires: %s", ItemView.buildExpiryDateStringFrom(item)));
