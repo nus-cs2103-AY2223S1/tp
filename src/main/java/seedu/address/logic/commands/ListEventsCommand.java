@@ -15,7 +15,7 @@ public class ListEventsCommand extends Command {
     public static final String COMMAND_WORD = "listEvents";
 
     // MESSAGE_USAGE is currently unused
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Lists all events in the address book."
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Lists all events in the address book. "
             + "Parameters: " + "[" + PREFIX_SORT + "FIELD] (must be n, N, d or D)\n"
             + "Example: " + COMMAND_WORD + " " + PREFIX_SORT + "n";
 

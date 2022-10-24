@@ -13,7 +13,7 @@ import java.util.Objects;
  */
 public class EventSortField {
 
-    public static final String MESSAGE_CONSTRAINTS = "Sort field must either be n, N, d or D.";
+    public static final String MESSAGE_CONSTRAINTS = "Event sort field must either be n, N, d or D.";
 
     // Accept exactly one upper or lower case n or d
     public static final String VALIDATION_REGEX = "[nNdD]{1}";
@@ -87,7 +87,7 @@ public class EventSortField {
 
 
     /**
-     * Return true if the given {@code String} is a valid sort field.
+     * Returns true if the given {@code String} is a valid sort field.
      *
      * @param test {@code String} to test.
      * @return boolean result of test.
@@ -98,7 +98,7 @@ public class EventSortField {
 
 
     /**
-     * Map the given sort field letter to its corresponding {@code EventSortFieldType}.
+     * Maps the given sort field letter to its corresponding {@code EventSortFieldType}.
      *
      * @param sortFieldLetter letter to map to {@code EventSortFieldType}.
      * @return {@code EventSortField} representing the sort field letter.

@@ -13,7 +13,7 @@ import java.util.Objects;
  */
 public class PersonSortField {
 
-    public static final String MESSAGE_CONSTRAINTS = "Sort field must either be n, N, d, D, g or G.";
+    public static final String MESSAGE_CONSTRAINTS = "Person sort field must either be n, N, d, D, g or G.";
 
     // Accept exactly one upper or lower case n, d or g
     public static final String VALIDATION_REGEX = "[nNdDgG]{1}";
@@ -80,7 +80,7 @@ public class PersonSortField {
 
 
     /**
-     * Map the given sort field letter to its corresponding {@code PersonSortFieldType}.
+     * Maps the given sort field letter to its corresponding {@code PersonSortFieldType}.
      *
      * @param sortFieldLetter letter to map to {@code PersonSortFieldType}.
      * @return {@code PersonSortField} representing the sort field letter.

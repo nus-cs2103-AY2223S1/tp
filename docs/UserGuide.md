@@ -314,7 +314,7 @@ _Details coming soon ..._
 | **Delete**      | `delete INDEX`<br> e.g., `delete 3`                                                                                                                                                    |
 | **Edit**        | `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [g/GENDER] [d/DOB] [t/TAG]`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`                                                  |
 | **Find**        | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`                                                                                                                             |
-| **ListPersons**        | `listPersons  [s/FIELD]` <br> e.g., `listPersons s/n`                                                                                                                                                |
+| **ListPersons**        | `listPersons [s/FIELD]` <br> e.g., `listPersons s/n`                                                                                                                                                |
 | **AddEvent**    | `addEvent n/EVENT_TITLE d/DATE t/TIME p/PURPOSE`<br> e.g.,`addEvent n/Shoe Sale 30% d/30-05-2022 t/11:00 p/Discount on all shoes for up to 30%`                                        |
 | **DeleteEvent** | `deleteEvent INDEX`<br> e.g., `deleteEvent 2`                                                                                                                                          |
 | **ListEvents**  | `listEvents [s/FIELD]`<br> e.g., `listEvents s/n`                                                                                                                                                                           |
