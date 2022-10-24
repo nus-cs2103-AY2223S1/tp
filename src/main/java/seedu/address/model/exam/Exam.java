@@ -5,6 +5,7 @@ import static java.util.Objects.requireNonNull;
 import java.util.ArrayList;
 import java.util.List;
 
+import seedu.address.logic.commands.EditExamCommand;
 import seedu.address.model.module.Module;
 import seedu.address.model.task.Task;
 
@@ -89,6 +90,14 @@ public class Exam {
         return new Exam(module, examDescription, examDate, tasksLinked);
     }
 
+
+    public Exam edit(EditExamCommand.EditExamDescriptor editExamDescriptor) {
+        requireNonNull(editExamDescriptor);
+        Module updatedModule = editExamDescriptor.getModule().orElse(module);
+        ExamDescription updatedDescription = editExamDescriptor.getDescription().orElse(examDescription);
+        ExamDate updatedExamDate = editExamDescriptor.getExamDate().orElse(examDate);
+        return new Exam(updatedModule, updatedDescription,updatedExamDate);
+    }
 
     @Override
     public boolean equals(Object other) {

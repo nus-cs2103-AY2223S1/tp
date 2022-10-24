@@ -6,34 +6,7 @@ import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import seedu.address.logic.commands.AddCommand;
-import seedu.address.logic.commands.AddExamCommand;
-import seedu.address.logic.commands.AddModuleCommand;
-import seedu.address.logic.commands.AddTagCommand;
-import seedu.address.logic.commands.AddTaskCommand;
-import seedu.address.logic.commands.ClearCommand;
-import seedu.address.logic.commands.ClearModulesCommand;
-import seedu.address.logic.commands.ClearTasksCommand;
-import seedu.address.logic.commands.Command;
-import seedu.address.logic.commands.DeleteCommand;
-import seedu.address.logic.commands.DeleteModuleCommand;
-import seedu.address.logic.commands.DeleteTaskCommand;
-import seedu.address.logic.commands.EditCommand;
-import seedu.address.logic.commands.EditModuleCommand;
-import seedu.address.logic.commands.EditTaskCommand;
-import seedu.address.logic.commands.ExitCommand;
-import seedu.address.logic.commands.FilterTasksCommand;
-import seedu.address.logic.commands.FindCommand;
-import seedu.address.logic.commands.FindModulesCommand;
-import seedu.address.logic.commands.FindTasksCommand;
-import seedu.address.logic.commands.HelpCommand;
-import seedu.address.logic.commands.LinkExamCommand;
-import seedu.address.logic.commands.ListCommand;
-import seedu.address.logic.commands.ListModulesCommand;
-import seedu.address.logic.commands.ListTasksCommand;
-import seedu.address.logic.commands.MarkCommand;
-import seedu.address.logic.commands.SortTaskCommand;
-import seedu.address.logic.commands.UnmarkCommand;
+import seedu.address.logic.commands.*;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 
@@ -143,7 +116,9 @@ public class AddressBookParser {
             return new FilterTasksCommandParser().parse(arguments);
         case AddExamCommand.COMMAND_WORD:
             return new AddExamCommandParser().parse(arguments);
-        default:
+        case EditExamCommand.COMMAND_WORD:
+            return new EditExamCommandParser().parse(arguments);
+            default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
         }
     }

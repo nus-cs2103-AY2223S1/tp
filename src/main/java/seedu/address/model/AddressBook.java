@@ -132,6 +132,36 @@ public class AddressBook implements ReadOnlyAddressBook {
         return tasks.contains(task);
     }
 
+    /**
+     * Unlinks all tasks that are currently linked to {@code exam}.
+     * @param exam
+     */
+    public void unlinkTasksFromExam(Exam exam) {
+        requireAllNonNull(exam);
+        this.tasks.forEach(task -> {
+            if (task.isLinked() && task.getExam().equals(exam)) {
+                Task unlinkedTask = task.unlinkTask();
+                replaceTask(task, unlinkedTask, true);
+            }
+        });
+    }
+
+    /**
+     * Replaces task by changing its given exam field from {@code previousExam}
+     * to {@code newExam} for tasks that have their exam field as {@code previousExam}.
+     * @param previousExam The exam in the task's exam field.
+     * @param newExam The new exam which will replace the previous exam in the task's exam field.
+     */
+    public void updateExamFieldForTask(Exam previousExam, Exam newExam) {
+        requireAllNonNull(previousExam, newExam);
+        this.tasks.forEach(task-> {
+            if(task.isLinked() && task.getExam().equals(previousExam)) {
+                Task editedTask = task.linkTask(newExam);
+                replaceTask(task, editedTask, true);
+            }
+        });
+    }
+
     public boolean hasTaskWithModule(Module module) {
         return tasks.containsModule(module);
     }
