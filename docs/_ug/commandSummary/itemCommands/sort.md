@@ -1,2 +1,2 @@
 <!-- markdownlint-disable-file first-line-h1 -->
-`sort [n/] [qty/] [unit/] [bgt/] [exp/]`
+`sort [n/] [qty/] [u/] [bgt/] [exp/] [p/] [r/]`

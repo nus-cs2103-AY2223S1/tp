@@ -1,2 +1,17 @@
 <!-- markdownlint-disable-file first-line-h1 -->
-The UNIT is an optional text indicating the unit of an item.<br>UNIT is a short text.<br/><br><strong>IMPORTANT</strong>:<br>Only English characters, numbers, space, and the following symbols are accepted: <br>~`!@#$%^&amp;*()_-+={}[]:;”’&lt;&gt;,.?<br>There is a limit of 20 characters in a UNIT.<br>Leading and trailing spaces will be trimmed<br><br/><strong>Valid Examples</strong>:<br>kg<br>Packets<br><br/><strong>Invalid Examples:</strong><br>Containers (1000 grams)<br>Containers/grams<br>Containers|grams<br>Containers\grams
+The UNIT is a text indicating the unit of an item.
+
+**Note:**
+- UNIT is a short text
+- UNIT should only contain alphanumeric characters and spaces
+- UNIT has a limit of 50 characters
+- UNIT will have leading and trailing spaces trimmed
+
+**Valid Examples:**
+- Kg
+- Packets 8
+
+**Invalid Examples:**
+- キロ
+- Kg & Grams
+- Kilogram's

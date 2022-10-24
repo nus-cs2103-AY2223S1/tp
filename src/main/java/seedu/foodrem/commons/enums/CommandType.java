@@ -36,7 +36,8 @@ public enum CommandType {
     RESET_COMMAND("reset") {
         @Override
         public String getUsage() {
-            return getCommandWord() + ": Clears all data in FoodRem.\n\n"
+            return getCommandWord() + ": Clears all data in FoodRem. "
+                    + "This includes all items and tags currently stored.\n\n"
                     + "Example:\n"
                     + getCommandWord();
         }
@@ -125,7 +126,8 @@ public enum CommandType {
         // TODO: Ensure remarks is added
         @Override
         public String getUsage() {
-            return getCommandWord() + ": Creates a new item in FoodRem.\n\n"
+            return getCommandWord() + ": Creates a new item with the provided item name. "
+                    + "All fields apart from ITEM_NAME are optional.\n\n"
                     + "Format:\n"
                     + getCommandWord() + " "
                     + PREFIX_NAME + "NAME "
@@ -149,7 +151,7 @@ public enum CommandType {
     REMARK_COMMAND("rmk") {
         @Override
         public String getUsage() {
-            return getCommandWord() + ": Adds a remark to an Item\n"
+            return getCommandWord() + ": Adds a remark to " + THE_ITEM_IN_LIST
                     + "Parameters: "
                     + PREFIX_ITEM_REMARKS
                     + "Example: " + getCommandWord() + " 1" + PREFIX_ITEM_REMARKS + "For oranges";
@@ -277,7 +279,7 @@ public enum CommandType {
     };
 
     private static final String THE_ITEM_IN_LIST =
-            "the item identified by the index number used in the displayed item list.\n";
+            "the item at the specified index.\n";
 
     private final String commandWord;
 

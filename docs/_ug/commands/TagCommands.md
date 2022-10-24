@@ -4,7 +4,8 @@
 #### Create a new tag: `newtag`
 
 **Format**: `newtag n/TAG_NAME`
-> Creates a new tag with the provided TAG_NAME.
+
+> Creates a new tag with the provided tag name.
 
 **Example Input:**
 
@@ -26,7 +27,7 @@ New tag added: Vegetables
 
 **Format**: `listtag`
 
-> Lists all the tags that are currently in FoodRem.
+> List all tags in FoodRem
 
 **Example Input:**
 
@@ -41,11 +42,16 @@ Command Output Box:
 ```text
 Listed all tags:
 Vegetables
+Carrots
 ```
 
 ---
 
 #### Tag an item: `tag`
+
+**Format**: `tag INDEX n/TAG_NAME `
+
+> Tags the item at the specified index
 
 **Format**: `tag n/TAG_NAME id/INDEX`
 > Tags an item (based on its index on the list) with a tag that exists in FoodRem.
@@ -53,7 +59,7 @@ Vegetables
 **Example Input:**
 
 ```text
-tag n/Vegetables id/1
+tag 1 n/Vegetables
 ```
 
 **Example Output:**
@@ -61,7 +67,14 @@ tag n/Vegetables id/1
 Command Output Box:
 
 ```text
-Item tagged succesfully
+Item tagged successfully.
+Name: Onions
+Quantity: 8 kg
+Bought Date: 10-10-2022
+Expiry Date: 10-11-2022
+Price: $6
+Remarks: No Remarks
+Tags: {Vegetables}
 ```
 
 ---
@@ -69,12 +82,13 @@ Item tagged succesfully
 #### Untag an item: `untag`
 
 **Format**: `untag n/TAG_NAME id/INDEX`
-> Untags an item (based on its index on the list) from a tag that it is previously tagged to in FoodRem.
+
+> Untags the item at the specified index
 
 **Example Input:**
 
 ```text
-untag n/Vegetables id/1
+untag 1 n/Vegetables
 ```
 
 **Example Output:**
@@ -82,7 +96,14 @@ untag n/Vegetables id/1
 Command Output Box:
 
 ```text
-Item untagged succesfully
+Item untagged successfully
+Name: Onions
+Quantity: 8 kg
+Bought Date: 10-10-2022
+Expiry Date: 10-11-2022
+Price: $6
+Remarks: No Remarks
+Tags: {}
 ```
 
 ---
@@ -90,9 +111,11 @@ Item untagged succesfully
 #### Rename a tag: `renametag`
 
 **Format**: `renametag n/TAG_NAME n/TAG_NAME`
+
 > Renames a tag currently in FoodRem.
 
-❗ Note: The first TAG_NAME in the command refers to the current tag you wish to rename while the second TAG_NAME refers to the new name you wish to rename the current tag to.
+**Note:**
+* The first `TAG_NAME` in the command refers to the current tag you wish to rename while the second `TAG_NAME` refers to the new name you wish to rename the current tag to.
 
 **Example Input:**
 
@@ -105,6 +128,7 @@ renametag n/Vegetables n/Veggies
 Command Output Box:
 
 ```text
+Original tag: Vegetables
 Renamed tag: Veggies
 ```
 
@@ -113,6 +137,7 @@ Renamed tag: Veggies
 #### Delete a tag: `deletetag`
 
 **Format**: `deletetag n/TAG_NAME`
+
 > Deletes a tag that exists in FoodRem.
 
 **Example Input:**
@@ -134,7 +159,8 @@ Tag deleted: Veggies
 #### Filter by a tag: `filtertag`
 
 **Format**: `filtertag n/TAG_NAME`
-> Filters and show items that contains a specific tag.
+
+> Filters and shows items that contain a specific tag.
 
 **Example Input:**
 
