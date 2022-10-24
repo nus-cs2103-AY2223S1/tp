@@ -19,7 +19,7 @@ public class Title {
             "Job title should be alphanumeric or spaces or some allowed punctuations "
             + "- # , : & ( ) \" ' / [ ]";
 
-    public static final String VALIDATION_REGEX = "[A-Za-z0-9 \\-#,:&()\"'/\\[\\]]+";
+    public static final String VALIDATION_REGEX = "[A-Za-z0-9\\-#,:&()\"'/\\[\\]][A-Za-z0-9 \\-#,:&()\"'/\\[\\]]*";
 
     public final String value;
 
