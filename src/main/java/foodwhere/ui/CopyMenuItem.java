@@ -75,7 +75,7 @@ public class CopyMenuItem<T> extends MenuItem {
             case FIELDS_TAG:
                 return reviewItem.getTags().toString();
             case FIELDS_ADDRESS:
-                // fallthrough
+                return reviewItem.getAddress().toString();
             default:
                 CopyMenuItem.throwRunTimeError(action, tag, reviewItem.getClass().getName());
                 break;
