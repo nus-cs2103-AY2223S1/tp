@@ -345,6 +345,6 @@ _Details coming soon ..._
 | **DeleteEvent** | `deleteEvent INDEX`<br> e.g., `deleteEvent 2`                                                                                                                                      |
 | **ListEvents**  | `listEvents`                                                                                                                                                                       |
 | **TagEvent**    | `tagEvent EVENT_INDEX PERSON_INDEX_1 [PERSON_INDEX_2 PERSON_INDEX_3 ...]` <br> e.g., `tagEvent 2 p/1 3`                                                                            |
-| **TagEvent**    | `untagEvent EVENT_INDEX PERSON_INDEX_1 [PERSON_INDEX_2 PERSON_INDEX_3 ...]` <br> e.g., `untagEvent 3 p/4 5`                                                                        |
+| **UntagEvent**  | `untagEvent EVENT_INDEX PERSON_INDEX_1 [PERSON_INDEX_2 PERSON_INDEX_3 ...]` <br> e.g., `untagEvent 3 p/4 5`                                                                        |
 | **MailEvent**   | `mailEvent EVENT_INDEX` <br> e.g., `mailEvent 3`                                                                                                                                   |
 | **Help**        | `help`                                                                                                                                                                             |
