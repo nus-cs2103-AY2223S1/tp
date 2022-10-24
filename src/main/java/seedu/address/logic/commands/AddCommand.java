@@ -12,9 +12,13 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_RELIGION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_SURVEY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
+import java.util.HashSet;
+import java.util.Set;
+
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.person.Person;
+import seedu.address.model.person.Survey;
 
 /**
  * Adds a person to the address book.
@@ -49,10 +53,20 @@ public class AddCommand extends Command {
         requireNonNull(model);
 
         if (model.hasPerson(toAdd)) {
-            throw new CommandException(MESSAGE_DUPLICATE_PERSON);
+            Person person = model.getPerson(toAdd).orElseThrow(() -> new CommandException(MESSAGE_DUPLICATE_PERSON));
+            if (person.getSurveys().equals(toAdd.getSurveys())) {
+                throw new CommandException(MESSAGE_DUPLICATE_PERSON);
+            }
+            Set<Survey> surveySet = new HashSet<>();
+            surveySet.addAll(person.getSurveys());
+            surveySet.addAll(toAdd.getSurveys());
+            Person newPerson = new Person(toAdd.getName(), toAdd.getPhone(), toAdd.getEmail(), toAdd.getAddress(),
+                    toAdd.getGender(), toAdd.getBirthdate(), toAdd.getRace(), toAdd.getReligion(), surveySet,
+                    toAdd.getTags());
+            model.setPerson(person, newPerson);
+        } else {
+            model.addPerson(toAdd);
         }
-
-        model.addPerson(toAdd);
         model.commitAddressBook();
         return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
     }
