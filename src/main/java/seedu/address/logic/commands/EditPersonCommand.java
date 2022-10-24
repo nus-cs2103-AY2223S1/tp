@@ -2,10 +2,15 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.FLAG_ADDRESS_STR;
+import static seedu.address.logic.parser.CliSyntax.FLAG_ADDRESS_STR_LONG;
 import static seedu.address.logic.parser.CliSyntax.FLAG_EMAIL_STR;
+import static seedu.address.logic.parser.CliSyntax.FLAG_EMAIL_STR_LONG;
 import static seedu.address.logic.parser.CliSyntax.FLAG_NAME_STR;
+import static seedu.address.logic.parser.CliSyntax.FLAG_NAME_STR_LONG;
 import static seedu.address.logic.parser.CliSyntax.FLAG_PHONE_STR;
+import static seedu.address.logic.parser.CliSyntax.FLAG_PHONE_STR_LONG;
 import static seedu.address.logic.parser.CliSyntax.FLAG_TAG_STR;
+import static seedu.address.logic.parser.CliSyntax.FLAG_TAG_STR_LONG;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
 import java.util.Collections;
@@ -14,10 +19,12 @@ import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 
+import picocli.CommandLine;
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.CollectionUtil;
 import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.logic.parser.TagsConverter;
 import seedu.address.model.Model;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
@@ -29,6 +36,7 @@ import seedu.address.model.tag.Tag;
 /**
  * Edits the details of an existing person in the address book.
  */
+@CommandLine.Command(name = "person")
 public class EditPersonCommand extends Command {
 
     public static final String COMMAND_WORD = "edit";
@@ -50,8 +58,15 @@ public class EditPersonCommand extends Command {
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
     public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the address book.";
 
-    private final Index index;
-    private final EditPersonDescriptor editPersonDescriptor;
+    @CommandLine.Parameters(arity = "1")
+    private Index index;
+    @CommandLine.ArgGroup(exclusive = false, multiplicity = "1")
+    private Arguments arguments;
+
+    private EditPersonDescriptor editPersonDescriptor;
+
+    public EditPersonCommand() {
+    }
 
     /**
      * @param index                of the person in the filtered person list to edit
@@ -91,6 +106,21 @@ public class EditPersonCommand extends Command {
         }
 
         Person personToEdit = lastShownList.get(index.getZeroBased());
+        EditPersonDescriptor editPersonDescriptor = new EditPersonDescriptor();
+
+        if (arguments.name != null) {
+            editPersonDescriptor.name = arguments.name;
+        }
+        if (arguments.address != null) {
+            editPersonDescriptor.address = arguments.address;
+        }
+        if (arguments.email != null) {
+            editPersonDescriptor.email = arguments.email;
+        }
+        if (arguments.tags != null) {
+            editPersonDescriptor.tags = arguments.tags;
+        }
+
         Person editedPerson = createEditedPerson(personToEdit, editPersonDescriptor);
 
         if (!personToEdit.isSamePerson(editedPerson) && model.hasPerson(editedPerson)) {
@@ -120,6 +150,23 @@ public class EditPersonCommand extends Command {
                 && editPersonDescriptor.equals(e.editPersonDescriptor);
     }
 
+    private static class Arguments {
+        @CommandLine.Option(names = {FLAG_NAME_STR, FLAG_NAME_STR_LONG}, description = "Name of person")
+        private Name name;
+
+        @CommandLine.Option(names = {FLAG_PHONE_STR, FLAG_PHONE_STR_LONG}, description = "Phone of person")
+        private Phone phone;
+
+        @CommandLine.Option(names = {FLAG_EMAIL_STR, FLAG_EMAIL_STR_LONG}, description = "Email of person")
+        private Email email;
+
+        @CommandLine.Option(names = {FLAG_ADDRESS_STR, FLAG_ADDRESS_STR_LONG}, description = "Address of person")
+        private Address address;
+
+        @CommandLine.Option(names = {FLAG_TAG_STR, FLAG_TAG_STR_LONG}, description = "Tags of person",
+                parameterConsumer = TagsConverter.class, arity = "*")
+        private Set<Tag> tags;
+    }
 
     /**
      * Stores the details to edit the person with. Each non-empty field value will replace the

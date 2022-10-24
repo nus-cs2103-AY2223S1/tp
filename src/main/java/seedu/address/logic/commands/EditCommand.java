@@ -6,7 +6,10 @@ import picocli.CommandLine;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 
-@CommandLine.Command(name = "edit", subcommands = {EditLinkCommand.class})
+@CommandLine.Command(name = "edit", subcommands = {
+    EditLinkCommand.class,
+    EditPersonCommand.class,
+})
 public class EditCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {

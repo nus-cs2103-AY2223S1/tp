@@ -1,10 +1,12 @@
 package seedu.address.logic.commands;
 
+import picocli.CommandLine;
 import seedu.address.model.Model;
 
 /**
  * Terminates the program.
  */
+@CommandLine.Command(name = "exit")
 public class ExitCommand extends Command {
 
     public static final String COMMAND_WORD = "exit";
