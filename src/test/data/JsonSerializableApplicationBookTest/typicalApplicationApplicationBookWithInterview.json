@@ -1,0 +1,37 @@
+{
+  "_comment": "ApplicationBook save file which contains the same Application values as in TypicalApplications#getTypicalApplicationBook()",
+  "applications" : [ {
+    "company": "Shopee",
+    "contact": "94201239",
+    "email": "shopee@example.com",
+    "position": "Frontend Engineer",
+    "date": "2022-12-31",
+    "tagged": ["consumerTech"],
+    "round": "Manager interview",
+    "interviewDate": "2023-10-19",
+    "interviewTime": "1145",
+    "location": "Zoom"
+  }, {
+    "company": "ByteDance",
+    "contact": "83920382",
+    "email": "bytedance@example.com",
+    "position": "Backend Engineer",
+    "date": "2022-08-01",
+    "tagged": ["BytePlus", "TikTok"],
+    "round": "Online assessment",
+    "interviewDate": "2025-09-08",
+    "interviewTime": "1400",
+    "location": "Bytedance HQ"
+  }, {
+    "company": "Jane Street",
+    "contact": "91420834",
+    "email": "janestreet@example.com",
+    "position": "Software Engineer",
+    "date": "2022-01-01",
+    "tagged": ["fintech"],
+    "round": "Technical interview 2",
+    "interviewDate": "2024-08-14",
+    "interviewTime": "1300",
+    "location": "Skype"
+  }]
+}

@@ -24,7 +24,7 @@ public class TypicalInterviews {
             .withInterviewDate("2023-10-19").withInterviewTime("1145").withLocation("Zoom")
             .build();
     public static final Interview INTERVIEW_BYTEDANCE = new InterviewBuilder().withRound("Online assessment")
-            .withInterviewDate("2023-09-08").withInterviewTime("1400").withLocation("Bytedance HQ").build();
+            .withInterviewDate("2025-09-08").withInterviewTime("1400").withLocation("Bytedance HQ").build();
 
     // Manually added
     public static final Interview INTERVIEW_JANE_STREET = new InterviewBuilder().withRound("Technical interview 2")

@@ -86,15 +86,18 @@ public class EditCommand extends Command {
             throw new CommandException(MESSAGE_DUPLICATE_APPLICATION);
         }
 
-        Optional<Interview> interview = applicationToEdit.getInterview();
+        Optional<Interview> interview = editedApplication.getInterview();
         if (interview.isPresent()) {
             Application editedApplicationWithInterview = new Application(editedApplication, interview.get());
             model.setApplication(applicationToEdit, editedApplicationWithInterview);
+            model.updateApplicationListWithInterview();
+            return new CommandResult(String.format(MESSAGE_EDIT_APPLICATION_SUCCESS, editedApplicationWithInterview));
         } else {
             model.setApplication(applicationToEdit, editedApplication);
+            model.updateApplicationListWithInterview();
+            return new CommandResult(String.format(MESSAGE_EDIT_APPLICATION_SUCCESS, editedApplication));
         }
-        model.updateApplicationListWithInterview();
-        return new CommandResult(String.format(MESSAGE_EDIT_APPLICATION_SUCCESS, editedApplication));
+
     }
 
     /**

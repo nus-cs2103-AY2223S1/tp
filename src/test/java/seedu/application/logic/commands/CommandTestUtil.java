@@ -81,8 +81,7 @@ public class CommandTestUtil {
     public static final String INVALID_TAG_DESC = " " + PREFIX_TAG + "senior referral"; // space not allowed in tags
 
     //Invalid Interview fields
-    public static final String INVALID_ROUND_DESC = " " + PREFIX_ROUND
-            + "Google&"; // empty string not allowed for rounds
+    public static final String INVALID_ROUND_DESC = " " + PREFIX_ROUND + "     "; // empty string not allowed for rounds
     public static final String INVALID_INTERVIEW_DATE_DESC = " " + PREFIX_INTERVIEW_DATE
             + "01/09/2022"; // invalid date format
     public static final String INVALID_INTERVIEW_TIME_DESC = " " + PREFIX_INTERVIEW_TIME + "5678"; //invalid time format
