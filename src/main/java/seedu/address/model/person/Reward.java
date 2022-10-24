@@ -9,8 +9,8 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  */
 public class Reward {
 
-    public static final String MESSAGE_CONSTRAINTS = "Reward points can take any NON-NEGATIVE values" +
-            ", and it should not be blank";
+    public static final String MESSAGE_CONSTRAINTS = "Reward points can take any NON-NEGATIVE values"
+            + ", and it should not be blank";
 
     /*
      * The first character of the reward must not be a whitespace,

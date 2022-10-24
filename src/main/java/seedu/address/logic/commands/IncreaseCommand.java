@@ -1,5 +1,9 @@
 package seedu.address.logic.commands;
 
+import static java.util.Objects.isNull;
+import static java.util.Objects.requireNonNull;
+import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
+
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.ParserUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
@@ -8,10 +12,6 @@ import seedu.address.model.person.Email;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.Reward;
 
-import static java.util.Objects.isNull;
-import static java.util.Objects.requireNonNull;
-import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
-
 /**
  * Increases the reward points of an existing Customer in bobaBot.
  */
@@ -19,7 +19,8 @@ public class IncreaseCommand extends Command {
 
     public static final String COMMAND_WORD = "incr";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Increases the reward points of the Customer identified "
+    public static final String MESSAGE_USAGE = COMMAND_WORD
+            + ": Increases the reward points of the Customer identified "
             + "by the phone number/ email address used to register for membership. "
             + "Existing reward points will be overwritten by the input values.\n"
             + "Parameters: REWARD (must be a POSITIVE integer) "
