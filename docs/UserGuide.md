@@ -75,9 +75,12 @@ This guides aims to:
 **:exclamation: Warning: Important messages**
 </div>
 
-**Highlights**
+**Highlights** <br>
 `commands` or `PARAMETERS`
 
+## Navigating the GUI
+
+## Command Format
 <div markdown="block" class="alert alert-info">
 **:information_source: Notes about the command format:**<br>
 
@@ -100,9 +103,6 @@ This guides aims to:
   e.g. if the command specifies `help 123`, it will be interpreted as `help`.
 
 </div>
-
-## Navigating the GUI
-
 
 ## Features
 
@@ -162,6 +162,9 @@ Examples:
 * `list c/date true`
 * `list c/position false`
 
+<div markdown="block" class="alert alert-info">
+**:information_source: Info:** `DESCENDING` parameter will always default to `false` if the input is misspelt
+</div>
 
 ### Locating internships by: `find`
 
