@@ -462,3 +462,8 @@
     -fx-font-style: italic;
     -fx-fill: #0009a6;
 }
+
+.placeholder {
+    -fx-font-style: italic;
+    -fx-fill: #505050;
+}

@@ -58,8 +58,18 @@ public class TargetPersonPanel extends UiPart<Region> {
         remark.setStyle("-fx-font-style: italic");
         targetPerson.getRemarkProperty().addListener(remarkListener());
 
+        initializeReminderView(reminderList);
+    }
+
+    /**
+     * Initializes the reminder list view.
+    */
+    private void initializeReminderView(ObservableList<Reminder> reminderList) {
         reminderView.setItems(reminderList);
         reminderView.setCellFactory(listView -> new ReminderListViewCell());
+        Label reminderPlaceholder = new Label("No upcoming reminders.");
+        reminderPlaceholder.getStyleClass().add("placeholder");
+        reminderView.setPlaceholder(reminderPlaceholder);
     }
 
     /**
