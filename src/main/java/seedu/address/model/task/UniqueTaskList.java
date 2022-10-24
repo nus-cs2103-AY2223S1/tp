@@ -82,7 +82,7 @@ public class UniqueTaskList implements Iterable<Task> {
         }
     }
 
-    public void setStudents(UniqueTaskList replacement) {
+    public void setTasks(UniqueTaskList replacement) {
         requireNonNull(replacement);
         internalList.setAll(replacement.internalList);
         sortByDeadline();

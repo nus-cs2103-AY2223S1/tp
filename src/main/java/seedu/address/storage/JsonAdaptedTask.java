@@ -10,7 +10,6 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
-import seedu.address.model.student.Name;
 import seedu.address.model.student.Student;
 import seedu.address.model.task.Task;
 import seedu.address.model.task.TaskDeadline;
@@ -74,7 +73,7 @@ class JsonAdaptedTask {
             ));
         }
         if (!TaskName.isValidName(taskName)) {
-            throw new IllegalValueException(Name.MESSAGE_CONSTRAINTS);
+            throw new IllegalValueException(TaskName.MESSAGE_CONSTRAINTS);
         }
         final TaskName modelName = new TaskName(taskName);
 
