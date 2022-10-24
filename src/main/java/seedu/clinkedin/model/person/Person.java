@@ -88,6 +88,10 @@ public class Person {
         return status;
     }
 
+    public int getTagCount() {
+        return tagTypeMap.getTagCount();
+    }
+
     /**
      * Returns true if both persons have the same name.
      * This defines a weaker notion of equality between two persons.
