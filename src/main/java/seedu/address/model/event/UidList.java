@@ -32,6 +32,12 @@ public class UidList implements Iterable<Uid> {
         return internalList.stream().anyMatch(toCheck::isSameUid);
     }
     /**
+     * Returns the size of the uid list.
+     */
+    public int size() {
+        return internalList.size();
+    }
+    /**
      * Adds a new uid to the list of uids it stores in its list.
      *
      * @param toAdd uid to be added to the list.
