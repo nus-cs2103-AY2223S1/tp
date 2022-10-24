@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.uninurse.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
+import java.util.List;
 import java.util.Optional;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
@@ -14,7 +15,6 @@ import seedu.uninurse.commons.core.GuiSettings;
 import seedu.uninurse.commons.core.LogsCenter;
 import seedu.uninurse.model.exceptions.PatientOfInterestNotFoundException;
 import seedu.uninurse.model.person.Patient;
-import seedu.uninurse.model.person.PatientPair;
 
 /**
  * Represents the in-memory model of the uninurse book data.
@@ -28,7 +28,7 @@ public class ModelManager implements Model {
     private final FilteredList<Patient> filteredPersons;
 
     private Optional<Patient> patientOfInterest;
-    private PatientPair savedPair;
+    private PatientListTracker savedPair;
 
     /**
      * Initializes a ModelManager with the given uninurseBook and userPrefs.
@@ -42,7 +42,7 @@ public class ModelManager implements Model {
         this.persistentUninurseBook = new PersistentUninurseBook(uninurseBook);
         this.filteredPersons = new FilteredList<>(this.persistentUninurseBook.getWorkingCopy().getPersonList());
         this.patientOfInterest = Optional.empty();
-        this.savedPair = new PatientPair(Optional.empty(), Optional.empty());
+        this.savedPair = new PatientListTracker();
     }
 
     public ModelManager() {
@@ -105,13 +105,21 @@ public class ModelManager implements Model {
     @Override
     public void deletePerson(Patient target) {
         persistentUninurseBook.getWorkingCopy().removePerson(target);
-        makeSnapshot(new PatientPair(target, null));
+        makeSnapshot(new PatientListTracker(null, target));
+    }
+
+    @Override
+    public void clearPersons(List<Patient> targets) {
+        for (Patient target : targets) {
+            persistentUninurseBook.getWorkingCopy().removePerson(target);
+        }
+        makeSnapshot(new PatientListTracker(null, targets));
     }
 
     @Override
     public void addPerson(Patient person) {
         persistentUninurseBook.getWorkingCopy().addPerson(person);
-        makeSnapshot(new PatientPair(null, person));
+        makeSnapshot(new PatientListTracker(person, null));
         updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
     }
 
@@ -119,7 +127,7 @@ public class ModelManager implements Model {
     public void setPerson(Patient target, Patient editedPerson) {
         requireAllNonNull(target, editedPerson);
         persistentUninurseBook.getWorkingCopy().setPerson(target, editedPerson);
-        makeSnapshot(new PatientPair(target, editedPerson));
+        makeSnapshot(new PatientListTracker(editedPerson, target));
     }
 
     //=========== Filtered Patient List Accessors =============================================================
@@ -152,12 +160,12 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void saveCurrentPatientPair() {
+    public void saveCurrentPatientListTracker() {
         this.savedPair = persistentUninurseBook.getCurrentPair();
     }
 
     @Override
-    public PatientPair getSavedPatientPair() {
+    public PatientListTracker getSavedPatientListTracker() {
         return this.savedPair;
     }
 
@@ -184,8 +192,8 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void makeSnapshot(PatientPair patientPair) {
-        persistentUninurseBook.makeSnapshot(patientPair);
+    public void makeSnapshot(PatientListTracker patientListTracker) {
+        persistentUninurseBook.makeSnapshot(patientListTracker);
     }
 
     @Override

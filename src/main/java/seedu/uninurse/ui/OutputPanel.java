@@ -3,8 +3,8 @@ package seedu.uninurse.ui;
 import javafx.fxml.FXML;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.StackPane;
+import seedu.uninurse.model.PatientListTracker;
 import seedu.uninurse.model.person.Patient;
-import seedu.uninurse.model.person.PatientPair;
 
 /**
  *
@@ -81,20 +81,20 @@ public class OutputPanel extends UiPart<Region> {
     }
 
     /**
-     * Updates the outputView panel accordingly with {@code patientPair} if executed command is Undo.
+     * Updates the outputView panel accordingly with {@code patientListTracker} if executed command is Undo.
      */
-    public void handleUndo(PatientPair patientPair) {
+    public void handleUndo(PatientListTracker patientListTracker) {
         outputView.getChildren().clear();
-        UndoCard undoCard = new UndoCard(patientPair);
+        UndoCard undoCard = new UndoCard(patientListTracker);
         outputView.getChildren().add(undoCard.getRoot());
     }
 
     /**
-     * Updates the outputView panel accordingly with {@code patientPair} if executed command is Redo.
+     * Updates the outputView panel accordingly with {@code patientListTracker} if executed command is Redo.
      */
-    public void handleRedo(PatientPair patientPair) {
+    public void handleRedo(PatientListTracker patientListTracker) {
         outputView.getChildren().clear();
-        RedoCard redoCard = new RedoCard(patientPair);
+        RedoCard redoCard = new RedoCard(patientListTracker);
         outputView.getChildren().add(redoCard.getRoot());
     }
 

@@ -235,11 +235,11 @@ public class MainWindow extends UiPart<Stage> {
             }
 
             if (commandResult.isUndo()) {
-                outputPanel.handleUndo(logic.getSavedPatientPair());
+                outputPanel.handleUndo(logic.getSavedPatientListTracker());
             }
 
             if (commandResult.isRedo()) {
-                outputPanel.handleRedo(logic.getSavedPatientPair());
+                outputPanel.handleRedo(logic.getSavedPatientListTracker());
             }
 
             return commandResult;

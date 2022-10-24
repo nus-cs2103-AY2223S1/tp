@@ -1,12 +1,12 @@
 package seedu.uninurse.model;
 
 import java.nio.file.Path;
+import java.util.List;
 import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.uninurse.commons.core.GuiSettings;
 import seedu.uninurse.model.person.Patient;
-import seedu.uninurse.model.person.PatientPair;
 
 /**
  * The API of the Model component.
@@ -70,6 +70,12 @@ public interface Model {
     void deletePerson(Patient target);
 
     /**
+     * Deletes the given persons.
+     * The persons must exist in the uninurse book.
+     */
+    void clearPersons(List<Patient> targets);
+
+    /**
      * Adds the given person.
      * {@code person} must not already exist in the uninurse book.
      */
@@ -106,15 +112,15 @@ public interface Model {
     Patient getPatientOfInterest();
 
     /**
-     * Gets the saved PatientPair.
+     * Gets the saved PatientListTracker.
      * @return saved patient pair.
      */
-    PatientPair getSavedPatientPair();
+    PatientListTracker getSavedPatientListTracker();
 
     /**
-     * Saves the current PatientPair in the UninurseBook.
+     * Saves the PatientListTracker in the current snapshot.
      */
-    void saveCurrentPatientPair();
+    void saveCurrentPatientListTracker();
 
     /**
      * Returns whether you can revert to an earlier version of UninurseBook.
@@ -139,5 +145,5 @@ public interface Model {
     /**
      * Makes a snapshot of the current UninurseBook.
      */
-    void makeSnapshot(PatientPair patientPair);
+    void makeSnapshot(PatientListTracker patientListTracker);
 }
