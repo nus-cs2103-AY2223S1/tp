@@ -131,6 +131,7 @@ public class HelpWindow extends UiPart<Stage> {
     }
 
     private void setChoiceBox() {
+        choiceBox.setStyle("-fx-font-family: 'Minecraft';");
         choiceBox.getItems().addAll("Add", "Delete", "Edit", "Find", "List", "Help", "Clear", "Suggest", "Exit");
         setTextAutoWrap();
         choiceBox.setOnAction(e -> {
