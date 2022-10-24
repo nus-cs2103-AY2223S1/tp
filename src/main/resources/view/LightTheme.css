@@ -111,15 +111,6 @@
     -fx-background-color: #54BAB9;
 }
 
-.list-cell:filled:selected {
-    -fx-background-color: #424d5f;
-}
-
-.list-cell:filled:selected #cardPane {
-    -fx-border-color: #E9DAC1;
-    -fx-border-width: 1;
-}
-
 .list-cell .label {
     -fx-text-fill: black;
 }
