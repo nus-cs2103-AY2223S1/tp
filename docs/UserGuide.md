@@ -216,6 +216,8 @@ Format: `mark INDEX`
 Example:
 - `mark 2` marks the 2nd person in the Schedule panel.
 
+![UiMark](images/UG-screenshots/UiMark.png)
+
 ```yaml
 Tip: If you want to charge the student for missing the class, you can do so by the `mark` command. This increases the amount owed but frees up that time slot for another student.
 ```
