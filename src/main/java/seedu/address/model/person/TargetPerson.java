@@ -2,9 +2,9 @@ package seedu.address.model.person;
 
 import java.util.Optional;
 
-import javafx.beans.property.SimpleSetProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
+import javafx.collections.ObservableSet;
 import seedu.address.model.person.exceptions.PersonNotFoundException;
 import seedu.address.model.tag.Tag;
 
@@ -18,7 +18,7 @@ public class TargetPerson {
     private SimpleStringProperty address;
     private SimpleStringProperty email;
     private SimpleStringProperty remark;
-    private SimpleSetProperty<Tag> tags;
+    private ObservableSet<Tag> tags;
 
     /**
      * Initialises a TargetPerson object.
@@ -30,7 +30,7 @@ public class TargetPerson {
         address = new SimpleStringProperty("");
         email = new SimpleStringProperty("");
         remark = new SimpleStringProperty("");
-        tags = new SimpleSetProperty<>(FXCollections.observableSet());
+        tags = FXCollections.observableSet();
     }
 
     public SimpleStringProperty getNameProperty() {
@@ -53,7 +53,7 @@ public class TargetPerson {
         return remark;
     }
 
-    public SimpleSetProperty<Tag> getTagsProperty() {
+    public ObservableSet<Tag> getTagsProperty() {
         return tags;
     }
 
