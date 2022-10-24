@@ -45,10 +45,10 @@ public class EventCard extends UiPart<Region> {
         super(FXML);
         this.event = event;
         id.setText(displayedIndex + ". ");
-        eventTitle.setText(event.getEventTitle());
+        eventTitle.setText(event.getEventTitle().toString());
         date.setText(event.getStartDate().toString());
         time.setText(event.getStartTime().toString());
-        purpose.setText(event.getPurpose());
+        purpose.setText(event.getPurpose().toString());
     }
 
     @Override
