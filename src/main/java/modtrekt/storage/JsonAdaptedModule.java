@@ -21,6 +21,7 @@ class JsonAdaptedModule {
     private final String code;
     private final String credit;
     private final String taskCount;
+    private final boolean isDone;
 
     /**
      * Constructs a {@code JsonAdaptedModule} with the given module details.
@@ -28,11 +29,13 @@ class JsonAdaptedModule {
     @JsonCreator
     public JsonAdaptedModule(@JsonProperty("name") String name, @JsonProperty("code") String code,
                              @JsonProperty("credit") String credit,
-                             @JsonProperty("taskCount") String taskCount) {
+                             @JsonProperty("taskCount") String taskCount,
+                             @JsonProperty("isDone") boolean isDone) {
         this.name = name;
         this.credit = credit;
         this.code = code;
         this.taskCount = taskCount;
+        this.isDone = isDone;
     }
 
     /**
@@ -43,6 +46,7 @@ class JsonAdaptedModule {
         code = source.getCode().getValue();
         credit = source.getCredits().toString();
         taskCount = source.getTaskCountStr();
+        isDone = source.isDone();
     }
 
     /**
@@ -81,8 +85,9 @@ class JsonAdaptedModule {
         }
         final ModTaskCount modelTaskCount = new ModTaskCount(taskCount);
 
-        Module created = new Module(modelCode, modelName, modelCredit, modelTaskCount);
-        return created;
+        final boolean modelIsDone = isDone;
+
+        return new Module(modelCode, modelName, modelCredit, modelTaskCount, modelIsDone);
     }
 
 }
