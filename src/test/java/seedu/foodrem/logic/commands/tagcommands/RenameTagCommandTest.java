@@ -48,6 +48,15 @@ public class RenameTagCommandTest {
     }
 
     @Test
+    public void execute_sameTagName_failure() {
+        Tag originalTag = new TagBuilder().withTagName(VALID_TAG_NAME_FRUITS).build();
+        Tag renamedTag = new TagBuilder().withTagName(VALID_TAG_NAME_FRUITS).build();
+        RenameTagCommand renameTagCommand = new RenameTagCommand(originalTag, renamedTag);
+
+        assertCommandFailure(renameTagCommand, model, EXPECTED_ERROR_DUPLICATE);
+    }
+
+    @Test
     public void execute_tagNotFound_failure() {
         Tag originalTag = new TagBuilder().withTagName("NONE").build();
         Tag renamedTag = new TagBuilder().withTagName("test").build();

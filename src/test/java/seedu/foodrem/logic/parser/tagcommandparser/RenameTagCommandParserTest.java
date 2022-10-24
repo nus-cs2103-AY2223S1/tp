@@ -30,15 +30,14 @@ public class RenameTagCommandParserTest {
         assertParseSuccess(parser,
                 VALID_DESC_TAG_NAME_FRUITS + VALID_DESC_TAG_NAME_FRUITS_WITH_WHITESPACES,
                 new RenameTagCommand(fruitTag, fruitWithWhitespaceTag));
+
+        assertParseSuccess(parser,
+                VALID_DESC_TAG_NAME_FRUITS + VALID_DESC_TAG_NAME_FRUITS,
+                new RenameTagCommand(fruitTag, fruitTag));
     }
 
     @Test
     public void parse_invalidValue_failure() {
-        // same tag
-        assertParseFailure(parser,
-                           VALID_DESC_TAG_NAME_FRUITS + VALID_DESC_TAG_NAME_FRUITS,
-                           "The tag name is already \"fruits\".");
-
         // invalid renamed tag
         assertParseFailure(parser,
                 VALID_DESC_TAG_NAME_FRUITS + INVALID_DESC_TAG_NAME_DISALLOWED_PUNCTUATION,
@@ -52,7 +51,7 @@ public class RenameTagCommandParserTest {
         // both tags invalid
         assertParseFailure(parser,
                 INVALID_DESC_TAG_NAME_DISALLOWED_PUNCTUATION + INVALID_DESC_TAG_NAME_DISALLOWED_PUNCTUATION,
-                           "The tag name is already \"Frui//ts\".");
+                MESSAGE_CONSTRAINTS);
 
         // invalid args
         assertParseFailure(parser,

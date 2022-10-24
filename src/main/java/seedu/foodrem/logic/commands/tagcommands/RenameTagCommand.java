@@ -38,7 +38,7 @@ public class RenameTagCommand extends Command {
             throw new CommandException(ERROR_NOT_FOUND);
         }
 
-        if (originalTag.equals(renamedTag) || model.hasTag(renamedTag)) {
+        if (model.hasTag(renamedTag)) {
             throw new CommandException(ERROR_DUPLICATE);
         }
 
