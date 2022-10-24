@@ -6,6 +6,7 @@ import gim.commons.core.LogsCenter;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextArea;
 import javafx.scene.input.Clipboard;
 import javafx.scene.input.ClipboardContent;
 import javafx.stage.Stage;
@@ -18,6 +19,15 @@ public class HelpWindow extends UiPart<Stage> {
     public static final String USERGUIDE_URL = "https://ay2223s1-cs2103t-t15-4.github.io/tp/";
     public static final String HELP_MESSAGE = "Refer to the user guide: " + USERGUIDE_URL;
 
+    public static final String HELP_PARA = "Hi there, welcome to GIM! Here is a list of supported commands and their uses.\n" +
+            "1) :a\n" +
+            "2) :d\n" +
+            "3) :sort\n" +
+            "4) :gen\n" +
+            "5) :ls\n" +
+            "6) :find\n" +
+            "Simply type the command without parameters and example usages will appear in the result box.\n " +
+            "If you have any more questions, feel free to visit our user guide below.";
     private static final Logger logger = LogsCenter.getLogger(HelpWindow.class);
     private static final String FXML = "HelpWindow.fxml";
 
@@ -27,6 +37,9 @@ public class HelpWindow extends UiPart<Stage> {
     @FXML
     private Label helpMessage;
 
+    @FXML
+    private TextArea helpPara;
+
     /**
      * Creates a new HelpWindow.
      *
@@ -35,6 +48,7 @@ public class HelpWindow extends UiPart<Stage> {
     public HelpWindow(Stage root) {
         super(FXML, root);
         helpMessage.setText(HELP_MESSAGE);
+        helpPara.setText(HELP_PARA);
     }
 
     /**
