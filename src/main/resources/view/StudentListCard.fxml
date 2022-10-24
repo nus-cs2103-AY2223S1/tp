@@ -68,7 +68,7 @@
             <Label text="Grades" GridPane.columnSpan="2" />
             <Label text="RA1:" GridPane.rowIndex="1" />
             <Label text="RA2:" GridPane.rowIndex="2" />
-            <Label text="Mid-Term:" GridPane.rowIndex="3" />
+            <Label text="Midterm:" GridPane.rowIndex="3" />
             <Label text="Practical:" GridPane.rowIndex="4" />
             <Label text="Finals:" GridPane.rowIndex="5" />
             <Label fx:id="ra1" styleClass="cell_small_label" text="\$ra1" GridPane.columnIndex="1" GridPane.rowIndex="1" />

@@ -23,44 +23,45 @@ fast, FRIDAY can get your contact management tasks done faster than traditional 
    4. Dates of Mastery Checks
    5. Grades
    6. Remarks
-3. Find individual student details
-4. View all students
-5. Sort students
-6. Edit grades of students
+3. Edit grades of students
+4. Find individual student details
+5. View all students
+6. Sort students
+
 
 --------------------------------------------------------------------------------------------------------------------
 
 ## Commands
 
-[comment]: <> (<div markdown="block" class="alert alert-info">)
+<div markdown="block" class="alert alert-info">
 
-[comment]: <> (**:information_source: Notes about the command format:**<br>)
+**:information_source: Notes about the command format:**<br>
 
-[comment]: <> (* Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>)
+* Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
 
-[comment]: <> (  e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.)
+  e.g. in `add n/NAME`, `NAME` is a parameter which can be used as `add n/John Doe`.
 
-[comment]: <> (* Items in square brackets are optional.<br>)
+* Items in square brackets are optional.<br>
 
-[comment]: <> (  e.g `n/NAME [t/TAG]` can be used as `n/John Doe t/friend` or as `n/John Doe`.)
+  e.g `n/NAME [t/TELEGRAM_HANDLE]` can be used as `n/John Doe t/johndoe` or as `n/John Doe`.
 
-[comment]: <> (* Items with `…`​ after them can be used multiple times including zero times.<br>)
+* Items with `…`​ after them can be used multiple times including zero times.<br>
 
-[comment]: <> (  e.g. `[t/TAG]…​` can be used as ` ` &#40;i.e. 0 times&#41;, `t/friend`, `t/friend t/family` etc.)
+  e.g. `[tag/TAG]…​` can be used as ` ` (i.e. 0 times), `tag/fast learner`, `tag/fast learner tag/good at recursion` etc.
 
-[comment]: <> (* Parameters can be in any order.<br>)
+* Parameters can be in any order.<br>
 
-[comment]: <> (  e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.)
+  e.g. if the command specifies `n/NAME t/TELEGRAM_HANDLE`, `p/TELEGRAM_HANDLE n/NAME` is also acceptable.
 
-[comment]: <> (* If a parameter is expected only once in the command but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>)
+* If a parameter is expected only once in the command, but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>
 
-[comment]: <> (  e.g. if you specify `p/12341234 p/56785678`, only `p/56785678` will be taken.)
+  e.g. if you specify `t/johndoe t/johndoe123`, only `t/johndoe123` will be taken.
 
-[comment]: <> (* Extraneous parameters for commands that do not take in parameters &#40;such as `help`, `list`, `exit` and `clear`&#41; will be ignored.<br>)
+* Extraneous parameters for commands that do not take in parameters (such as `help`, `list`, `exit` and `clear`) will be ignored.<br>
 
-[comment]: <> (  e.g. if the command specifies `help 123`, it will be interpreted as `help`.)
+  e.g. if the command specifies `help 123`, it will be interpreted as `help`.
 
-[comment]: <> (</div>)
+</div>
 
 ### Adding a student: `add`
 
@@ -114,7 +115,7 @@ Format: `grade INDEX [ra1/RA1_SCORE] [ra2/RA2_SCORE] [pa/PRACTICAL_SCORE] [mt/MI
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 The index of the student can be seen from the student list.<br>
-The scores of the assessments, Reading Assessment 1 (RA1), Reading Assessment 2 (RA2), Practical Assessment (PA), Mid-Term Test, and Final Examination, are in percentages from 0% to 100% inclusive, with decimals allowed.<br>
+The scores of the assessments, Reading Assessment 1 (RA1), Reading Assessment 2 (RA2), Practical Assessment (PA), Midterm Test, and Final Examination, are in percentages from 0% to 100% inclusive, with decimals allowed.<br>
 The scores are optional, but there should be at least one parameter.
 </div>
 

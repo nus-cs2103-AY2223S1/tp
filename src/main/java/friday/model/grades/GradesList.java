@@ -11,7 +11,7 @@ import java.util.Map;
 public class GradesList {
 
     // Names of assessments and exams
-    public static final String[] EXAMS = {"RA1", "RA2", "Mid-Term", "Practical", "Finals"};
+    public static final String[] EXAMS = {"RA1", "RA2", "Midterm", "Practical", "Finals"};
     public static final int EXAMS_COUNT = 5;
 
     public final Map<String, Grade> gradesMap;
@@ -55,7 +55,7 @@ public class GradesList {
         List<Grade> gradesList = new ArrayList<>();
         gradesList.add(gradesMap.get("RA1"));
         gradesList.add(gradesMap.get("RA2"));
-        gradesList.add(gradesMap.get("Mid-Term"));
+        gradesList.add(gradesMap.get("Midterm"));
         gradesList.add(gradesMap.get("Practical"));
         gradesList.add(gradesMap.get("Finals"));
         return gradesList;
@@ -76,7 +76,7 @@ public class GradesList {
         StringBuilder builder = new StringBuilder();
         builder.append(gradesMap.get("RA1"))
                 .append(gradesMap.get("RA2"))
-                .append(gradesMap.get("Mid-Term"))
+                .append(gradesMap.get("Midterm"))
                 .append(gradesMap.get("Practical"))
                 .append(gradesMap.get("Finals"));
         return builder.toString();

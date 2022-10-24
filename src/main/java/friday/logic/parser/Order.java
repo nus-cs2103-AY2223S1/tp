@@ -6,7 +6,11 @@ import static friday.commons.util.AppUtil.checkArgument;
  * The order for sorting students. Can be ascending or descending.
  */
 public class Order {
-    public static final String MESSAGE_CONSTRAINTS = "Order should only be 'asc' or 'desc', and it should not be blank";
+    public static final String ASCENDING_WORD = "asc";
+    public static final String DESCENDING_WORD = "desc";
+
+    public static final String MESSAGE_CONSTRAINTS = "Order should only be '" + ASCENDING_WORD + "' or '"
+            + DESCENDING_WORD + "', and it should not be blank";
 
     private final String order;
 
@@ -29,7 +33,7 @@ public class Order {
     }
 
     public static boolean isValidOrder(String order) {
-        return order.equals("asc") || order.equals("desc");
+        return order.equals(ASCENDING_WORD) || order.equals(DESCENDING_WORD);
     }
 
     @Override
