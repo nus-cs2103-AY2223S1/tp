@@ -29,25 +29,27 @@ public class Module {
     // Data fields
     private final ModuleTitle moduleTitle;
     private final TaskList tasks;
-    private final Set<Link> links = new HashSet<>();
-    private final Set<Person> persons = new HashSet<>();
+    private final Set<Link> links;
+    private final Set<Person> persons;
 
     /**
      * Every field must be present and not null.
      */
     public Module(ModuleCode moduleCode, ModuleTitle moduleTitle,
                   List<Task> tasks,
-                  Set<Link> links) {
+                  Set<Link> links,
+                  Set<Person> persons) {
         requireAllNonNull(moduleCode, moduleTitle, tasks, links);
         this.moduleCode = moduleCode;
         this.moduleTitle = moduleTitle;
         this.tasks = new TaskList(tasks);
-        this.links.addAll(links);
+        this.links = new HashSet<>(links);
+        this.persons = new HashSet<>(persons);
     }
 
     /**
      * Adds a {@code Module} with module code, title and links but without
-     * any tasks.
+     * any tasks and persons.
      */
     public Module(ModuleCode moduleCode, ModuleTitle moduleTitle,
                   Set<Link> links) {
@@ -55,12 +57,13 @@ public class Module {
         this.moduleCode = moduleCode;
         this.moduleTitle = moduleTitle;
         this.tasks = new TaskList();
-        this.links.addAll(links);
+        this.links = new HashSet<>(links);
+        this.persons = new HashSet<>();
     }
 
     /**
      * Adds a {@code Module} with module code, without module title and without any
-     * associated tasks and links.
+     * associated tasks, links and persons.
      */
     public Module(ModuleCode moduleCode) {
         this(moduleCode, new ModuleTitle(EMPTY_MODULE_TITLE), new HashSet<>());
@@ -68,7 +71,7 @@ public class Module {
 
     /**
      * Adds a {@code Module} with module code and module title but without any
-     * associated tasks and links.
+     * associated tasks, links and persons.
      */
     public Module(ModuleCode moduleCode, ModuleTitle moduleTitle) {
         this(moduleCode, moduleTitle, new HashSet<>());
@@ -146,6 +149,25 @@ public class Module {
 
         return otherModule != null
                 && otherModule.getModuleCode().equals(getModuleCode());
+    }
+
+    /**
+     * Returns a boolean indicating if the specified person is contained in the module.
+     *
+     * @param person The person that is being checked for.
+     * @return Boolean indicating if the specified person is contained in the module.
+     */
+    public boolean containsPerson(Person person) {
+        return persons.contains(person);
+    }
+
+    /**
+     * Removes the specified person from the module's set of persons.
+     *
+     * @param person The person to be removed from the module's set of persons.
+     */
+    public void removePerson(Person person) {
+        persons.remove(person);
     }
 
     /**

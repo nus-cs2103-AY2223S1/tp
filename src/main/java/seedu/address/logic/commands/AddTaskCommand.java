@@ -18,6 +18,7 @@ import seedu.address.model.module.ModuleTitle;
 import seedu.address.model.module.exceptions.ModuleNotFoundException;
 import seedu.address.model.module.task.Task;
 import seedu.address.model.module.task.TaskList;
+import seedu.address.model.person.Person;
 
 /**
  * Adds a task to an existing module in Plannit.
@@ -27,11 +28,10 @@ public class AddTaskCommand extends Command {
     public static final String COMMAND_WORD = "add-task";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a task "
-            + "to the module identified by the module code. "
-            + "Existing values will be overwritten by the input values.\n"
+            + "to the module identified by the module code.\n"
             + "Parameters: "
-            + PREFIX_MODULE_CODE + "MODULE CODE "
-            + PREFIX_TASK_DESCRIPTION + "TASK DESCRIPTION \n"
+            + PREFIX_MODULE_CODE + "MODULE_CODE "
+            + PREFIX_TASK_DESCRIPTION + "TASK_DESCRIPTION \n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_MODULE_CODE + "CS3230 "
             + PREFIX_TASK_DESCRIPTION + "Complete programming assignment";
@@ -55,7 +55,6 @@ public class AddTaskCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        List<Module> lastShownList = model.getFilteredModuleList();
         ModuleCode moduleCodeOfModuleToAddTaskTo =
                 addTaskToModuleDescriptor.moduleCode;
         Module moduleToAddTaskTo = null;
@@ -95,6 +94,8 @@ public class AddTaskCommand extends Command {
         ModuleTitle moduleTitle = moduleToAddTaskTo.getModuleTitle();
         Set<Link> moduleLinks = moduleToAddTaskTo.getLinks();
         ObservableList<Task> moduleTasks = moduleToAddTaskTo.getTasks();
+        Set<Person> modulePersons = moduleToAddTaskTo.getPersons();
+
         TaskList updatedTasks = new TaskList(moduleTasks);
         Task taskToAdd = addTaskToModuleDescriptor.getTask();
         // Add new task to the list.
@@ -102,7 +103,7 @@ public class AddTaskCommand extends Command {
         List<Task> updatedTasksAsList =
                 updatedTasks.asUnmodifiableObservableList();
         return new Module(moduleCode, moduleTitle, updatedTasksAsList,
-                moduleLinks);
+                moduleLinks, modulePersons);
     }
 
     @Override
@@ -140,16 +141,15 @@ public class AddTaskCommand extends Command {
         }
 
         /**
-         * Sets {@code indexOfTaskToDelete} to this object's {@code
-         * indexOfTaskToDelete}.
-         * A defensive copy of {@code indexOfTaskToDelete} is used internally.
+         * Sets {@code moduleCode} to the given {@code ModuleCode}.
+         * A defensive copy of {@code moduleCode} is used internally.
          */
         public void setModuleCodeOfModuleToAddTaskTo(ModuleCode moduleCodeOfModuleToAddTaskTo) {
             this.moduleCode = moduleCodeOfModuleToAddTaskTo;
         }
 
         /**
-         * Sets {@code newTask} to this object's {@code newTask}.
+         * Sets {@code newTask} to the given {@code Task}.
          * A defensive copy of {@code newTask} is used internally.
          */
         public void setNewTask(Task newTask) {

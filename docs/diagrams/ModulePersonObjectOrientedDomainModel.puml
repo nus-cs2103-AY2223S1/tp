@@ -1,0 +1,45 @@
+/'
+@@author cheeheng-reused
+Reused from AB3 model code with some modifications.
+'/
+@startuml
+!include style.puml
+skinparam arrowThickness 1.1
+skinparam arrowColor MODEL_COLOR
+skinparam classBackgroundColor MODEL_COLOR
+
+Package ModulePersonRelationship <<Rectangle>>{
+Class Module
+Class Person
+
+'Module class attributes
+Class ModuleCode
+Class ModuleTitle
+Class Link
+Class Task
+
+'Person class attributes
+Class Name
+Class Phone
+Class Email
+}
+
+Module "*" -left- "*" Person :< takes
+
+Module *-- "1" ModuleCode
+Module *-- "0..1" ModuleTitle
+Module *-- "*" Link
+Module *-- "*" Task
+
+Person *-- "1" Name
+Person *-- "1" Phone
+Person *-- "1" Email
+
+Name -[hidden]right- Phone
+Phone -[hidden]right- Email
+
+ModuleCode -[hidden]right- ModuleTitle
+ModuleTitle -[hidden]right- Link
+Link -[hidden]right- Task
+@enduml
+'@@author

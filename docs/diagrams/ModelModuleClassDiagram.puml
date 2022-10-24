@@ -1,0 +1,41 @@
+/'
+@@author cheeheng-reused
+Reused from AB3 model code with some modifications.
+'/
+@startuml
+!include style.puml
+skinparam arrowThickness 1.1
+skinparam arrowColor MODEL_COLOR
+skinparam classBackgroundColor MODEL_COLOR
+
+Package Model(Module) <<Rectangle>>{
+Class AddressBook
+Class ModelManager
+
+Class UniqueModuleList
+Class Module
+Class ModuleCode
+Class ModuleTitle
+Class Link
+Class TaskList
+Class Task
+}
+
+ModelManager -left-> "1" AddressBook
+
+AddressBook *-down-> "1" UniqueModuleList
+UniqueModuleList -right-> "all ~*" Module
+Module *--> "1" ModuleCode
+Module *--> "0..1" ModuleTitle
+Module *--> "*" Link
+Module *--> "1" TaskList
+
+ModuleCode -[hidden]right-> ModuleTitle
+ModuleTitle -[hidden]right-> Link
+Link -[hidden]right-> TaskList
+
+TaskList -down-> "*" Task
+
+ModelManager --> "filtered ~*" Module
+@enduml
+'@@author

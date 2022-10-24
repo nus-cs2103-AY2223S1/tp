@@ -11,7 +11,7 @@ We are a team based in the [School of Computing, National University of Singapor
 
 <img src="./images/bluesky0911.png" width="200px">
 
-[github](https://github.com/bluesky0911) | 
+[github](https://github.com/bluesky0911) |
 [portfolio](team/bluesky0911.md)
 
 * Role: Project Advisor, Head Tutor (CS2103T)
@@ -61,13 +61,13 @@ We are a team based in the [School of Computing, National University of Singapor
 * Role: Developer
 * Responsibilities:
   * Implement homepage and module navigation
-  
+
 ### Teo Yu Qi
 
 
 <img src="./images/teoyuqi.png" width="200px">
 
-[github](http://github.com/teoyuqi) | 
+[github](http://github.com/teoyuqi) |
 [portfolio](team/teoyuqi.md)
 * Developer
 * Responsibilities:

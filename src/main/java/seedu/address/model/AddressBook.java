@@ -10,6 +10,7 @@ import seedu.address.model.module.UniqueModuleList;
 import seedu.address.model.module.exceptions.ModuleNotFoundException;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.UniquePersonList;
+import seedu.address.model.person.exceptions.PersonNotFoundException;
 
 /**
  * Wraps all data at the address-book level
@@ -100,11 +101,24 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
-     * Removes {@code key} from this {@code AddressBook}.
-     * {@code key} must exist in the address book.
+     * Returns the {@code Person} in {@code persons} with the matching name as the given {@code person}.
+     *
+     * @param person Person with the name which we would like to search for.
+     * @return {@code Person} with the same name as the given {@code person} argument.
      */
-    public void removePerson(Person key) {
-        persons.remove(key);
+    public Person getPerson(Person person) throws PersonNotFoundException {
+        requireNonNull(person);
+        return persons.getPerson(person);
+    }
+
+    /**
+     * Removes {@code person} from every module that contains {@code person} inside
+     * and also removes {@code person} from this {@code AddressBook}.
+     * {@code person} must exist in the address book.
+     */
+    public void removePerson(Person person) {
+        modules.removePersonFromModules(person);
+        persons.remove(person);
     }
 
     //// module-level operations

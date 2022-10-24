@@ -1,6 +1,7 @@
 package seedu.address.model.module;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static seedu.address.logic.commands.CommandTestUtil.EMPTY_STRING;
 import static seedu.address.testutil.Assert.assertThrows;
 
 import org.junit.jupiter.api.Test;
@@ -15,7 +16,7 @@ public class LinkTest {
 
     @Test
     public void constructor_invalidLinkName_throwsIllegalArgumentException() {
-        String invalidLinkName = "";
+        String invalidLinkName = EMPTY_STRING;
         assertThrows(IllegalArgumentException.class, () -> new Link(invalidLinkName));
     }
 

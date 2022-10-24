@@ -48,6 +48,9 @@ public class TypicalPersons {
     public static final Person IDA = new PersonBuilder().withName("Ida Mueller")
             .withEmail("hans@example.com")
             .withPhone("84821311").build();
+    public static final Person JON_NOT_IN_TYPICAL_ADDRESS_BOOK = new PersonBuilder().withName("Jon")
+            .withEmail("jon@gmail.com")
+            .withPhone("84848484").build();
 
     // Manually added - Person's details found in {@code CommandTestUtil}
     public static final Person AMY = new PersonBuilder().withName(VALID_NAME_AMY)
