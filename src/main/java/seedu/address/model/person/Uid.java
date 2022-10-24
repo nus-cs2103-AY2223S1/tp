@@ -16,7 +16,7 @@ public class Uid {
         this.value = String.valueOf(UUID.randomUUID());
     }
     /**
-     * Overloaded constructor that creates an Uid Object.
+     * Overloaded constructor that creates a Uid Object.
      */
     public Uid(String value) {
         this.value = value;
