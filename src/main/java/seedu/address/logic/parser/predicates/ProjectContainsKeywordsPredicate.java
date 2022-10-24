@@ -1,5 +1,6 @@
 package seedu.address.logic.parser.predicates;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.function.Predicate;
 
@@ -19,14 +20,31 @@ public class ProjectContainsKeywordsPredicate implements Predicate<Project> {
         this.nameKeywords = nameKeywords;
         this.repositoryKeywords = repositoryKeywords;
     }
+
+    public boolean testName(String namePresent, String nameGiven) {
+        return Arrays.stream(namePresent.trim().split("\\s+"))
+                .anyMatch(words -> StringUtil.containsWordIgnoreCase(nameGiven, words));
+    }
+
+    public boolean testRepository(String repoPresent, String repoGiven) {
+        return Arrays.stream(repoPresent.trim().split("\\s+"))
+                .anyMatch(words -> StringUtil.containsWordIgnoreCase(repoGiven, words));
+    }
+
     public boolean testName(Project project) {
-        return nameKeywords.isEmpty() ? true : nameKeywords.stream()
-                .anyMatch(keyword -> StringUtil.containsWordIgnoreCase(project.getProjectName().toString(), keyword));
+        if (nameKeywords.isEmpty()) {
+            return true;
+        } else {
+            return nameKeywords.stream().anyMatch(name -> testName(name, project.getProjectName().toString()));
+        }
     }
 
     public boolean testRepository(Project project) {
-        return repositoryKeywords.isEmpty() ? true :repositoryKeywords.stream()
-                .anyMatch(keyword -> StringUtil.containsWordIgnoreCase(project.getRepository().toString(), keyword));
+        if (repositoryKeywords.isEmpty()) {
+            return true;
+        } else {
+            return repositoryKeywords.stream().anyMatch(name -> testName(name, project.getRepository().toString()));
+        }
     }
 
     @Override

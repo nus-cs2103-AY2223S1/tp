@@ -59,6 +59,20 @@ public class ParserUtil {
     }
 
     /**
+     * Parses a {@code String name} to check if it is valid.
+     * Leading and trailing whitespaces will be trimmed.
+     * It is an overloaded method that doesn't create a Name object.
+     * @throws ParseException if the given {@code name} is invalid.
+     */
+    public static void parseNameValidity(String name) throws ParseException {
+        requireNonNull(name);
+        String trimmedName = name.trim();
+        if (!Name.isValidName(trimmedName)) {
+            throw new ParseException(Name.MESSAGE_CONSTRAINTS);
+        }
+    }
+
+    /**
      * Parses a {@code String name} into a {@code Name}.
      * Leading and trailing whitespaces will be trimmed.
      *
@@ -113,6 +127,7 @@ public class ParserUtil {
         return new Deadline(trimmedDeadline);
     }
 
+
     /**
      * Parses a {@code String phone} into a {@code ClientPhone}.
      * Leading and trailing whitespaces will be trimmed.
@@ -129,6 +144,20 @@ public class ParserUtil {
     }
 
     /**
+     * Parses a {@code String phone} to check if it is valid.
+     * Leading and trailing whitespaces will be trimmed.
+     * It is an overloaded method that doesn't create a ClientPhone object.
+     * @throws ParseException if the given {@code phone} is invalid.
+     */
+    public static void parsePhoneValidity(String phone) throws ParseException {
+        requireNonNull(phone);
+        String trimmedPhone = phone.trim();
+        if (!ClientPhone.isValidClientPhone(trimmedPhone)) {
+            throw new ParseException(ClientPhone.MESSAGE_CONSTRAINTS);
+        }
+    }
+
+    /**
      * Parses a {@code String email} into an {@code ClientEmail}.
      * Leading and trailing whitespaces will be trimmed.
      *
@@ -141,6 +170,20 @@ public class ParserUtil {
             throw new ParseException(ClientEmail.MESSAGE_CONSTRAINTS);
         }
         return new ClientEmail(trimmedEmail);
+    }
+
+    /**
+     * Parses a {@code String email} to check if it is valid.
+     * Leading and trailing whitespaces will be trimmed.
+     * It is an overloaded method that doesn't create a ClientEmail object.
+     * @throws ParseException if the given {@code email} is invalid.
+     */
+    public static void parseEmailValidity(String email) throws ParseException {
+        requireNonNull(email);
+        String trimmedEmail = email.trim();
+        if (!ClientEmail.isValidEmail(trimmedEmail)) {
+            throw new ParseException(ClientEmail.MESSAGE_CONSTRAINTS);
+        }
     }
 
     /**

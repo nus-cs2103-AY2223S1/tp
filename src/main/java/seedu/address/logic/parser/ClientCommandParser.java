@@ -8,7 +8,12 @@ import static seedu.address.logic.parser.ClientCliSyntax.PREFIX_CLIENT_EMAIL;
 import static seedu.address.logic.parser.ClientCliSyntax.PREFIX_CLIENT_NAME;
 import static seedu.address.logic.parser.ClientCliSyntax.PREFIX_CLIENT_PHONE;
 import static seedu.address.logic.parser.ClientCliSyntax.PREFIX_PROJECT_ID;
+import static seedu.address.logic.parser.ParserUtil.parseEmail;
+import static seedu.address.logic.parser.ParserUtil.parseEmailValidity;
 import static seedu.address.logic.parser.ParserUtil.parseName;
+import static seedu.address.logic.parser.ParserUtil.parseNameValidity;
+import static seedu.address.logic.parser.ParserUtil.parsePhone;
+import static seedu.address.logic.parser.ParserUtil.parsePhoneValidity;
 import static seedu.address.logic.parser.ProjectCliSyntax.PREFIX_CLIENT_ID;
 import static seedu.address.model.Name.isValidName;
 import static seedu.address.model.client.ClientPhone.isValidClientPhone;
@@ -28,6 +33,7 @@ import seedu.address.logic.commands.client.FindClientCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.logic.parser.predicates.ClientContainsKeywordsPredicate;
 import seedu.address.model.Name;
+import seedu.address.model.client.Client;
 import seedu.address.model.client.ClientEmail;
 import seedu.address.model.client.ClientId;
 import seedu.address.model.client.ClientPhone;
@@ -91,12 +97,12 @@ public class ClientCommandParser implements Parser<ClientCommand> {
 
         ClientPhone phone = ClientPhone.EmptyClientPhone.EMPTY_PHONE;
         if (arePrefixesPresent(argMultimap, PREFIX_CLIENT_PHONE)) {
-            phone = ParserUtil.parsePhone(argMultimap.getValue(PREFIX_CLIENT_PHONE).get());
+            phone = parsePhone(argMultimap.getValue(PREFIX_CLIENT_PHONE).get());
         }
 
         ClientEmail email = ClientEmail.EmptyEmail.EMPTY_EMAIL;
         if (arePrefixesPresent(argMultimap, PREFIX_CLIENT_EMAIL)) {
-            email = ParserUtil.parseEmail(argMultimap.getValue(PREFIX_CLIENT_EMAIL).get());
+            email = parseEmail(argMultimap.getValue(PREFIX_CLIENT_EMAIL).get());
         }
 
         ClientWithoutModel clientWithoutModel = new ClientWithoutModel(name, phone, email, new ArrayList<>());
@@ -137,11 +143,11 @@ public class ClientCommandParser implements Parser<ClientCommand> {
         }
 
         if (anyPrefixesPresent(argMultimap, PREFIX_CLIENT_PHONE)) {
-            newPhone = ParserUtil.parsePhone(argMultimap.getValue(PREFIX_CLIENT_PHONE).get());
+            newPhone = parsePhone(argMultimap.getValue(PREFIX_CLIENT_PHONE).get());
         }
 
         if (anyPrefixesPresent(argMultimap, PREFIX_CLIENT_EMAIL)) {
-            newEmail = ParserUtil.parseEmail(argMultimap.getValue(PREFIX_CLIENT_EMAIL).get());
+            newEmail = parseEmail(argMultimap.getValue(PREFIX_CLIENT_EMAIL).get());
         }
 
         return new EditClientCommand(newClientId, newName, newEmail, newPhone);
@@ -186,9 +192,25 @@ public class ClientCommandParser implements Parser<ClientCommand> {
                         EditClientCommand.MESSAGE_USAGE));
             }
 
+            //check for validity of arguments
+
+            if (anyPrefixesPresent(argMultimap, PREFIX_NAME)) {
+                parseNameValidity(argMultimap.getValue(PREFIX_NAME).get());
+            }
+
+            if (anyPrefixesPresent(argMultimap, PREFIX_CLIENT_PHONE)) {
+                parsePhoneValidity(argMultimap.getValue(PREFIX_CLIENT_PHONE).get());
+            }
+
+            if (anyPrefixesPresent(argMultimap, PREFIX_CLIENT_EMAIL)) {
+                parseEmailValidity(argMultimap.getValue(PREFIX_CLIENT_EMAIL).get());
+            }
+
             ClientContainsKeywordsPredicate predicate =
                     new ClientContainsKeywordsPredicate(argMultimap.getAllValues(PREFIX_CLIENT_NAME),
-                            argMultimap.getAllValues(PREFIX_CLIENT_EMAIL), argMultimap.getAllValues(PREFIX_CLIENT_PHONE));
+                            argMultimap.getAllValues(PREFIX_CLIENT_EMAIL),
+                            argMultimap.getAllValues(PREFIX_CLIENT_PHONE));
+
 
             return new FindClientCommand(predicate);
     }
