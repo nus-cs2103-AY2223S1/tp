@@ -3,7 +3,9 @@ package seedu.uninurse.model.task;
 import static java.util.Objects.requireNonNull;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
+import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
 import seedu.uninurse.model.GenericList;
@@ -14,12 +16,14 @@ import seedu.uninurse.model.GenericList;
  */
 public class TaskList implements GenericList<Task> {
     private ArrayList<Task> internalTaskList;
+    private ArrayList<Task> filteredTaskLists;
 
     /**
      * Constructs an empty {@code TaskList}.
      */
     public TaskList() {
         internalTaskList = new ArrayList<>();
+        filteredTaskLists = new ArrayList<>();
     }
 
     /**
@@ -28,6 +32,7 @@ public class TaskList implements GenericList<Task> {
     public TaskList(ArrayList<Task> tasks) {
         requireNonNull(tasks);
         internalTaskList = tasks;
+        filteredTaskLists = new ArrayList<>(tasks);
     }
 
     /**
@@ -51,6 +56,7 @@ public class TaskList implements GenericList<Task> {
      */
     @Override
     public TaskList edit(int index, Task task) {
+        assert(index >= 0 && index <= this.size());
         ArrayList<Task> updatedTasks = new ArrayList<>(internalTaskList);
         updatedTasks.set(index, task);
         return new TaskList(updatedTasks);
@@ -64,6 +70,7 @@ public class TaskList implements GenericList<Task> {
      */
     @Override
     public TaskList delete(int index) {
+        assert(index >= 0 && index <= this.size());
         ArrayList<Task> updatedTasks = new ArrayList<>(internalTaskList);
         updatedTasks.remove(index);
         return new TaskList(updatedTasks);
@@ -73,6 +80,7 @@ public class TaskList implements GenericList<Task> {
      * @return the task at the specified index.
      */
     public Task get(int index) {
+        assert(index >= 0 && index <= this.size());
         return internalTaskList.get(index);
     }
 
@@ -95,13 +103,13 @@ public class TaskList implements GenericList<Task> {
     /**
      * Returns the internal task list.
      */
-    public ArrayList<Task> getTasks() {
-        return internalTaskList;
+    public List<Task> getTasks() {
+        return filteredTaskLists;
     }
 
     @Override
     public List<Task> getInternalList() {
-        return internalTaskList;
+        return Collections.unmodifiableList(internalTaskList);
     }
 
     /**
@@ -118,11 +126,19 @@ public class TaskList implements GenericList<Task> {
         return !this.getAllTasksToday().isEmpty();
     }
 
+    public void filterTasks(Predicate<Task> filter) {
+        filteredTaskLists = (ArrayList<Task>) internalTaskList.stream().filter(filter).collect(Collectors.toList());
+    }
+
+    public void showAllTasks() {
+        filterTasks(t -> true);
+    }
+
     @Override
     public String toString() {
         final StringBuilder builder = new StringBuilder();
-        for (int index = 0; index < internalTaskList.size(); index++) {
-            Task t = internalTaskList.get(index);
+        for (int index = 0; index < filteredTaskLists.size(); index++) {
+            Task t = filteredTaskLists.get(index);
             if (index == 0) {
                 builder.append(index + 1)
                         .append(". ")
