@@ -6,7 +6,10 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_OPTION;
 import seedu.address.commons.core.Messages;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.model.Model;
+import seedu.address.model.event.Event;
 import seedu.address.model.event.TitleContainsKeywordsPredicate;
+
+import java.util.function.Predicate;
 
 /**
  * Finds and lists all events in address book whose name contains any of the argument keywords.
@@ -19,18 +22,20 @@ public class FindEventCommand extends EventCommand {
     public static final String MESSAGE_NO_MATCH = "There are no matching results!";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + " " + PREFIX_OPTION + COMMAND_OPTION
-            + ": Finds all events whose names contain any of "
-            + "the specified keywords (case-insensitive) and displays them as a list with index numbers.\n"
+            + ": Finds all events whose start dates contain any of "
+            + "the specified dates (if dates are provided) or events whose title "
+            + "contains any of the specified keywords (case-insensitive) "
+            + "and displays them as a list with index numbers.\n"
             + "Parameters: KEYWORD [MORE_KEYWORDS]...\n"
             + "Example: " + COMMAND_WORD + " " + PREFIX_OPTION + COMMAND_OPTION + " alice bob charlie";
 
-    public static final String MESSAGE_HELP = "Finds events matching the keywords. "
-            + "Case insensitive and will return partial matches.\n"
-            + "Format: " + COMMAND_WORD + " " + PREFIX_OPTION + COMMAND_OPTION + " KEYWORDS [MORE KEYWORDS]";
+    public static final String MESSAGE_HELP = "Finds events matching the dates or keywords. "
+            + "Keywords are case-insensitive and will return partial matches.\n"
+            + "Format: " + COMMAND_WORD + " " + PREFIX_OPTION + COMMAND_OPTION + " KEYWORDS_OR_DATE [MORE]";
 
-    private final TitleContainsKeywordsPredicate predicate;
+    private final Predicate<Event> predicate;
 
-    public FindEventCommand(TitleContainsKeywordsPredicate predicate) {
+    public FindEventCommand(Predicate<Event> predicate) {
         this.predicate = predicate;
     }
 

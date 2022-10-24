@@ -2,13 +2,17 @@ package seedu.address.logic.parser.event;
 
 import static seedu.address.logic.parser.CliSyntax.PREFIX_OPTION;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 
 import seedu.address.logic.commands.event.FindEventCommand;
 import seedu.address.logic.parser.ArgumentMultimap;
 import seedu.address.logic.parser.ArgumentTokenizer;
 import seedu.address.logic.parser.Parser;
+import seedu.address.logic.parser.ParserUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.event.DateTime;
+import seedu.address.model.event.StartDateTimeContainsDatePredicate;
 import seedu.address.model.event.TitleContainsKeywordsPredicate;
 
 /**
@@ -34,7 +38,15 @@ public class FindEventCommandParser implements Parser<FindEventCommand> {
 
         String[] titleKeywords = trimmedArgs.split("\\s+");
 
-        return new FindEventCommand(new TitleContainsKeywordsPredicate(Arrays.asList(titleKeywords)));
+        try {
+            ArrayList<DateTime> dateTimes = new ArrayList<>();
+            for (String titleKeyword : titleKeywords) {
+                dateTimes.add(ParserUtil.parseDateTime(titleKeyword));
+            }
+            return new FindEventCommand(new StartDateTimeContainsDatePredicate(dateTimes));
+        } catch (ParseException e) {
+            return new FindEventCommand(new TitleContainsKeywordsPredicate(Arrays.asList(titleKeywords)));
+        }
     }
 
 }
