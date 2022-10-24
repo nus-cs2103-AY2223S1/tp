@@ -189,7 +189,7 @@ public class ClientCommandParser implements Parser<ClientCommand> {
             if (noPrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_CLIENT_EMAIL, PREFIX_CLIENT_PHONE)
                     || !argMultimap.getPreamble().isEmpty()) {
                 throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                        EditClientCommand.MESSAGE_USAGE));
+                        FindClientCommand.MESSAGE_FIND_CLIENT_USAGE));
             }
 
             //check for validity of arguments

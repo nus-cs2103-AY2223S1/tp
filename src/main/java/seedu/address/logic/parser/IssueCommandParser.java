@@ -3,15 +3,29 @@ package seedu.address.logic.parser;
 import static seedu.address.commons.core.Messages.FLAG_UNKNOWN_COMMAND;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.commons.core.Messages.MESSAGE_MISSING_ARGUMENTS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.address.logic.parser.ClientCliSyntax.PREFIX_CLIENT_EMAIL;
+import static seedu.address.logic.parser.ClientCliSyntax.PREFIX_CLIENT_NAME;
+import static seedu.address.logic.parser.ClientCliSyntax.PREFIX_CLIENT_PHONE;
 import static seedu.address.logic.parser.IssueCliSyntax.PREFIX_DEADLINE;
 import static seedu.address.logic.parser.IssueCliSyntax.PREFIX_DESCRIPTION;
 import static seedu.address.logic.parser.IssueCliSyntax.PREFIX_ISSUE_ID;
 import static seedu.address.logic.parser.IssueCliSyntax.PREFIX_PRIORITY;
 import static seedu.address.logic.parser.IssueCliSyntax.PREFIX_PROJECT_ID;
+import static seedu.address.logic.parser.IssueCliSyntax.PREFIX_PROJECT_NAME;
+import static seedu.address.logic.parser.IssueCliSyntax.PREFIX_STATUS;
+import static seedu.address.logic.parser.ParserUtil.parseDescriptionValidity;
+import static seedu.address.logic.parser.ParserUtil.parseEmailValidity;
+import static seedu.address.logic.parser.ParserUtil.parseNameValidity;
+import static seedu.address.logic.parser.ParserUtil.parsePhoneValidity;
+import static seedu.address.logic.parser.ParserUtil.parsePriorityValidity;
+import static seedu.address.logic.parser.ParserUtil.parseStatusValidity;
 
 import java.util.stream.Stream;
 
 import seedu.address.commons.core.index.Index;
+import seedu.address.logic.commands.client.EditClientCommand;
+import seedu.address.logic.commands.client.FindClientCommand;
 import seedu.address.logic.commands.issue.AddIssueCommand;
 import seedu.address.logic.commands.issue.DeleteIssueCommand;
 import seedu.address.logic.commands.issue.EditIssueCommand;
@@ -23,6 +37,8 @@ import seedu.address.logic.commands.issue.SortIssueCommand;
 import seedu.address.logic.commands.issue.UnmarkIssueCommand;
 import seedu.address.logic.commands.issue.FindIssueCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.logic.parser.predicates.ClientContainsKeywordsPredicate;
+import seedu.address.logic.parser.predicates.IssueContainsKeywordsPredicate;
 import seedu.address.model.Deadline;
 import seedu.address.model.issue.Description;
 import seedu.address.model.issue.IssueId;
@@ -164,7 +180,42 @@ public class IssueCommandParser implements Parser<IssueCommand> {
     }
 
     private FindIssueCommand parseFindIssueCommand(String arguments) throws ParseException {
-        return null;
+        ArgumentMultimap argMultimap =
+                ArgumentTokenizer.tokenize(arguments, PREFIX_PROJECT_NAME, PREFIX_DESCRIPTION,
+                        PREFIX_STATUS, PREFIX_PRIORITY);
+
+        if (noPrefixesPresent(argMultimap, PREFIX_PROJECT_NAME, PREFIX_DESCRIPTION, PREFIX_STATUS, PREFIX_PRIORITY)
+                || !argMultimap.getPreamble().isEmpty()) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                    FindIssueCommand.MESSAGE_FIND_ISSUE_USAGE));
+        }
+
+        //check for validity of arguments
+
+        if (anyPrefixesPresent(argMultimap, PREFIX_DESCRIPTION)) {
+            parseDescriptionValidity(argMultimap.getValue(PREFIX_DESCRIPTION).get());
+        }
+
+        if (anyPrefixesPresent(argMultimap, PREFIX_PROJECT_NAME)) {
+            parseNameValidity(argMultimap.getValue(PREFIX_PROJECT_NAME).get());
+        }
+
+        if (anyPrefixesPresent(argMultimap, PREFIX_PRIORITY)) {
+            parsePriorityValidity(argMultimap.getValue(PREFIX_PRIORITY).get());
+        }
+
+        if (anyPrefixesPresent(argMultimap, PREFIX_STATUS)) {
+            parseStatusValidity(argMultimap.getValue(PREFIX_STATUS).get());
+        }
+
+        IssueContainsKeywordsPredicate predicate =
+                new IssueContainsKeywordsPredicate(argMultimap.getAllValues(PREFIX_DESCRIPTION),
+                        argMultimap.getAllValues(PREFIX_STATUS),
+                        argMultimap.getAllValues(PREFIX_PRIORITY),
+                        argMultimap.getAllValues(PREFIX_PROJECT_NAME));
+
+
+        return new FindIssueCommand(predicate);
     }
 
     private FindIssueCommand parseFindIssueCommand(String flag, String arguments) throws ParseException {
@@ -241,5 +292,12 @@ public class IssueCommandParser implements Parser<IssueCommand> {
     private IssueCommand parseSetIssueDefaultViewCommand(String arguments) {
         return new SetIssueDefaultViewCommand();
 
+    }
+
+    /**
+     * Returns true if there are no prefixes present in the given {@code ArgumentMultimap}.
+     */
+    private static boolean noPrefixesPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
+        return Stream.of(prefixes).allMatch(prefix -> argumentMultimap.getValue(prefix).isEmpty());
     }
 }
