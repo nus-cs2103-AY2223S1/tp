@@ -16,6 +16,7 @@ import longtimenosee.logic.commands.DeleteEventCommand;
 import longtimenosee.logic.commands.EditCommand;
 import longtimenosee.logic.commands.ExitCommand;
 import longtimenosee.logic.commands.FindCommand;
+import longtimenosee.logic.commands.FindEventCommand;
 import longtimenosee.logic.commands.FindPolicyCommand;
 import longtimenosee.logic.commands.HelpCommand;
 import longtimenosee.logic.commands.ListCommand;
@@ -76,6 +77,9 @@ public class AddressBookParser {
 
         case FindCommand.COMMAND_WORD:
             return new FindCommandParser().parse(arguments);
+
+        case FindEventCommand.COMMAND_WORD:
+            return new FindEventCommandParser().parse(arguments);
 
         case FindPolicyCommand.COMMAND_WORD:
             return new FindPolicyCommandParser().parse(arguments);
