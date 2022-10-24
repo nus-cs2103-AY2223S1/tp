@@ -9,6 +9,8 @@ import java.util.Set;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.event.EventTitle;
+import seedu.address.model.event.Purpose;
 import seedu.address.model.event.StartDate;
 import seedu.address.model.event.StartTime;
 import seedu.address.model.person.Address;
@@ -183,10 +185,13 @@ public class ParserUtil {
     /**
      * Returns the String eventTitle passed to it.
      */
-    public static String parseEventTitle(String eventTitle) {
+    public static EventTitle parseEventTitle(String eventTitle) throws ParseException {
         requireNonNull(eventTitle);
-
-        return eventTitle;
+        String trimmedEventTitle = eventTitle.trim();
+        if (!EventTitle.isValidEventTitle(trimmedEventTitle)) {
+            throw new ParseException(EventTitle.MESSAGE_CONSTRAINTS);
+        }
+        return new EventTitle(trimmedEventTitle);
     }
 
     /**
@@ -218,9 +223,12 @@ public class ParserUtil {
     /**
      * Returns the String purpose passed to it.
      */
-    public static String parsePurpose(String purpose) {
+    public static Purpose parsePurpose(String purpose) throws ParseException {
         requireNonNull(purpose);
-
-        return purpose;
+        String trimmedPurpose = purpose.trim();
+        if (!Purpose.isValidPurpose(trimmedPurpose)) {
+            throw new ParseException(Purpose.MESSAGE_CONSTRAINTS);
+        }
+        return new Purpose(trimmedPurpose);
     }
 }
