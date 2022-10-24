@@ -66,7 +66,7 @@ public class AddressBookParser {
             return new FindContactCommandParser().parse(arguments);
 
         case "saveme":
-            return new FindContactCommandParser().parse("");
+            return FindContactCommand.withoutArgs();
 
         case FindTaskCommand.COMMAND_WORD:
             return new FindTaskCommandParser().parse(arguments);

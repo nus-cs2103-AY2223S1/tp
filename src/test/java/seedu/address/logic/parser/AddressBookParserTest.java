@@ -26,6 +26,8 @@ import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListContactCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.module.Module;
+import seedu.address.model.person.CanHelpWithTaskPredicate;
+import seedu.address.model.person.ModuleTakenPredicate;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.person.Person;
 import seedu.address.model.task.TaskContainsKeywordsPredicate;
@@ -77,11 +79,30 @@ public class AddressBookParserTest {
     }
 
     @Test
-    public void parseCommand_find() throws Exception {
-        List<String> keywords = Arrays.asList("foo", "bar", "baz");
+    public void parseCommand_findContactByName() throws Exception {
+        List<String> keywords = Arrays.asList("Jacob", "Alex", "Alice");
         FindContactCommand command = (FindContactCommand) parser.parseCommand(
-                FindContactCommand.COMMAND_WORD + " " + keywords.stream().collect(Collectors.joining(" ")));
+                FindContactCommand.COMMAND_WORD + " n/ "
+                        + keywords.stream().collect(Collectors.joining(" ")));
         assertEquals(new FindContactCommand(new NameContainsKeywordsPredicate(keywords)), command);
+    }
+
+    @Test
+    public void parseCommand_findContactByModule() throws Exception {
+        List<String> moduleNames = Arrays.asList("CS1101S", "MA1521", "IS1103");
+        FindContactCommand command = (FindContactCommand) parser.parseCommand(
+                FindContactCommand.COMMAND_WORD + " m/ "
+                        + moduleNames.stream().collect(Collectors.joining(" ")));
+        List<Module> modules = moduleNames.stream()
+                .map(moduleName -> new Module(moduleName)).collect(Collectors.toList());
+        assertEquals(new FindContactCommand(new ModuleTakenPredicate(modules)), command);
+    }
+
+    @Test
+    public void parseCommand_findContactByTask() throws Exception {
+        FindContactCommand command = (FindContactCommand) parser.parseCommand(
+                FindContactCommand.COMMAND_WORD + " ts/ 3");
+        assertEquals(new FindContactCommand(new CanHelpWithTaskPredicate(3)), command);
     }
 
     @Test

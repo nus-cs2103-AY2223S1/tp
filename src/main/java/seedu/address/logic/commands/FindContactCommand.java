@@ -6,8 +6,7 @@ import java.util.function.Predicate;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.model.Model;
-import seedu.address.model.person.ModuleTakenPredicate;
-import seedu.address.model.person.NameContainsKeywordsPredicate;
+import seedu.address.model.person.CanHelpWithTaskPredicate;
 import seedu.address.model.person.Person;
 
 
@@ -27,16 +26,17 @@ public class FindContactCommand extends Command {
      */
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all persons matching a given filter.\n"
-            + "Parameters: [type_prefix] [key_1]\n"
+            + "Parameters: [type_prefix] [key_1] ...\n"
             + "Example 1: " + COMMAND_WORD + " n/ Jacob n/ Alice";
-
-    public static final String VALID_ARGUMENTS = COMMAND_WORD + " can only search for a single type at a time.\n"
-            + "ie. If searching for module with m/, you cannot simultaneously search for a name with n/.";
 
     private final Predicate<Person> predicate;
 
     public FindContactCommand(Predicate<Person> predicate) {
         this.predicate = predicate;
+    }
+
+    public static FindContactCommand withoutArgs() {
+        return new FindContactCommand(new CanHelpWithTaskPredicate(1));
     }
 
     @Override

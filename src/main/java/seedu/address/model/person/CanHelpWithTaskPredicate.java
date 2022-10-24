@@ -1,11 +1,14 @@
 package seedu.address.model.person;
 
-import seedu.address.model.module.Module;
-import seedu.address.model.task.Task;
-
 import java.util.Set;
 import java.util.function.Predicate;
 
+import seedu.address.model.module.Module;
+import seedu.address.model.task.Task;
+
+/**
+ * Tests if a {@code Person}'s {@code Module}s matches that of the given task.
+ */
 public class CanHelpWithTaskPredicate implements Predicate<Person> {
     private final int taskIndex;
     private Task task;
@@ -38,9 +41,10 @@ public class CanHelpWithTaskPredicate implements Predicate<Person> {
 
     @Override
     public boolean equals(Object other) {
+        System.out.println(other);
         return other == this // short circuit if same instance
                 || (other instanceof CanHelpWithTaskPredicate
-                && task.equals(((CanHelpWithTaskPredicate) other).task));
+                && taskIndex == ((CanHelpWithTaskPredicate) other).taskIndex);
     }
 
 }

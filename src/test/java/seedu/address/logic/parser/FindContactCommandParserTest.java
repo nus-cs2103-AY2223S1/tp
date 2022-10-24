@@ -22,14 +22,22 @@ public class FindContactCommandParserTest {
     }
 
     @Test
+    public void parse_invalidArgs_throwsParseException() {
+        // multiple search prefixes (e.g. both n/ and m/)
+        assertParseFailure(parser, " n/Alice m/CS1101S",
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindContactCommand.MESSAGE_USAGE));
+    }
+
+    @Test
     public void parse_validArgs_returnsFindCommand() {
         // no leading and trailing whitespaces
         FindContactCommand expectedFindContactCommand =
                 new FindContactCommand(new NameContainsKeywordsPredicate(Arrays.asList("Alice", "Bob")));
-        assertParseSuccess(parser, "Alice Bob", expectedFindContactCommand);
 
+        assertParseSuccess(parser, " n/Alice n/Bob", expectedFindContactCommand);
+        assertParseSuccess(parser, " n/Alice Bob", expectedFindContactCommand);
         // multiple whitespaces between keywords
-        assertParseSuccess(parser, " \n Alice \n \t Bob  \t", expectedFindContactCommand);
+        assertParseSuccess(parser, " n/\n Alice \n \t Bob  \t", expectedFindContactCommand);
     }
 
 }
