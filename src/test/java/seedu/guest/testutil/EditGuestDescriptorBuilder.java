@@ -8,6 +8,7 @@ import seedu.guest.model.guest.IsRoomClean;
 import seedu.guest.model.guest.Name;
 import seedu.guest.model.guest.NumberOfGuests;
 import seedu.guest.model.guest.Phone;
+import seedu.guest.model.guest.Request;
 import seedu.guest.model.guest.Room;
 
 /**
@@ -37,6 +38,7 @@ public class EditGuestDescriptorBuilder {
         descriptor.setDateRange(guest.getDateRange());
         descriptor.setNumberOfGuests(guest.getNumberOfGuests());
         descriptor.setIsRoomClean(guest.getIsRoomClean());
+        descriptor.setRequest(guest.getRequest());
     }
 
     /**
@@ -92,6 +94,14 @@ public class EditGuestDescriptorBuilder {
      */
     public EditGuestDescriptorBuilder withIsRoomClean(String isRoomClean) {
         descriptor.setIsRoomClean(new IsRoomClean(isRoomClean));
+        return this;
+    }
+
+    /**
+     * Sets the {@code Request} of the {@code EditGuestDescriptor} that we are building.
+     */
+    public EditGuestDescriptorBuilder withRequest(String request) {
+        descriptor.setRequest(new Request(request));
         return this;
     }
 
