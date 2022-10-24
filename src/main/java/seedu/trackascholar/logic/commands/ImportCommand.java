@@ -2,7 +2,6 @@ package seedu.trackascholar.logic.commands;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.NoSuchElementException;
 import java.util.Optional;
 
 import javafx.collections.ObservableList;
