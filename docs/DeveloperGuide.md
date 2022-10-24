@@ -82,7 +82,7 @@ The `UI` component,
 * executes user commands using the `Logic` component.
 * listens for changes to `Model` data so that the UI can be updated with the modified data.
 * keeps a reference to the `Logic` component, because the `UI` relies on the `Logic` to execute commands.
-* depends on some classes in the `Model` component, as it displays `Person` object residing in the `Model`.
+* depends on some classes in the `Model` component, as it displays `Internship` object residing in the `Model`.
 
 ### Logic component
 
@@ -95,7 +95,7 @@ Here's a (partial) class diagram of the `Logic` component:
 How the `Logic` component works:
 1. When `Logic` is called upon to execute a command, it uses the `AddressBookParser` class to parse the user command.
 1. This results in a `Command` object (more precisely, an object of one of its subclasses e.g., `AddCommand`) which is executed by the `LogicManager`.
-1. The command can communicate with the `Model` when it is executed (e.g. to add a person).
+1. The command can communicate with the `Model` when it is executed (e.g. to add an internship).
 1. The result of the command execution is encapsulated as a `CommandResult` object which is returned back from `Logic`.
 
 The Sequence Diagram below illustrates the interactions within the `Logic` component for the `execute("delete 1")` API call.
@@ -342,17 +342,20 @@ _{Explain here how the data archiving feature will be implemented}_
 
 ### Product scope
 
-**Target user profile**:
+**Target user profile**: Our target user is a computer science student who:
 
-* computer science students
-* has a need to keep track of the list of internships application and their status
+* has a need to keep track a large number of internship applications and their status
 * prefer desktop apps over other types
 * can type fast
 * prefers typing to mouse interactions
 * is reasonably comfortable using CLI apps
 
-**Value proposition**: manage contacts faster than a typical mouse/GUI driven app
+**Value proposition**:
 
+* Consolidate all critical information related to an internship application in one app.
+* Organize internship applications easily (e.g. sort applications by date, find applications at interview stage).
+* See upcoming deadlines and overall application status at a glance.
+* Manage internship applications faster than a typical mouse/GUI driven app.
 
 ### User stories
 
@@ -380,6 +383,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *`  | Advanced user   | Delete many internships                                                   |                                                  |
 | `* *  `  | Visual user     | View my internship application process tag with color                     | I can easily identify which stage I have reached |
 | `*   `   | Visual user     | View the count of internships application at each stages                  | See the success rate of my applications          |
+
 *{More to be added}*
 
 ### Use cases
@@ -390,7 +394,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1.  User request to add an internship application.
+1.  User request to add an internship application to track.
 2.  System adds the internship application.
 3.  System displays the success message.
 
@@ -398,17 +402,17 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Extensions**
 
-* 1a. The given parameters is invalid.
+* 1a. The given parameters by the user is invalid.
 
     * 1a1. System shows an error message.
 
-    Use case ends.
+    Use case resumes at step 1.
 
-* 1b. The given parameters does not include all required parameters.
+* 1b. The user did not specify the company name and/or position.
 
     * 1b1. System shows an error message.
 
-  Use case ends.
+    Use case resumes at step 1.
 
 **Use case: List internship(s)**
 
@@ -527,8 +531,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1.  User request to view help message
-2.  System displays command summary and link to user guide
+1.  User request to view help message.
+2.  System displays command summary and link to user guide.
 
     Use case ends.
 
@@ -574,6 +578,43 @@ testers are expected to do more *exploratory* testing.
        Expected: The most recent window size and location is retained.
 
 1. _{ more test cases …​ }_
+
+### Adding an internship
+
+1. Adding an internship
+
+   1. Test case: `dd n/Google p/Backend Intern pr/APPLY d/11-12-2022 ph/98765432 e/johnd@example.com web/https://careers.google.com/jobs r/offer for Y2 summer break t/high t/java` <br>
+      Expected: An internship application is added to PHU internship list, with company name `Google`, position `Backend Intern`,
+      date being `11 Dec 2022`, arnd application process `OFFER`, phone `98765432`, email `johnd@example.com`, 
+      website `https://careers.google.com/jobs`, remark `offer for Y2 summer break`, and 2 tags: `high` and `java`. 
+      A success message is shown with the details of the added internship. The entire application list is displayed.
+   
+   2. Test case: `add n/Google p/Backend Intern`<br>
+      Expected: An internship application is added to PHU internship list, with company name `Google`, position `Backend Intern`,
+      date being today's date (by default), arnd application process `APPLY` (by default), phone `NA` (by default),
+      email `NA` (by default), website `NA` (by default), and empty remark. A success message is shown with the details
+      of the added internship. The entire application list is displayed.
+
+   3. Test case: `add n/Google`<br>
+      Expected: An error message is shown as the compulsory field `Position` is not specified.
+   
+   4. Test case: `add n/Backend Intern`<br>
+      Expected: An error message is shown as the compulsory field `Name` is not specified.
+
+   5. Test case: `add n/Google p/Backend Intern d/11-12-22`<br>
+      Expected: An error message is shown as `Date` is not in dd-mm-yyyy format.
+
+   6. Test case: `add n/Google p/Backend Intern ph/321aaaaa`<br>
+      Expected: An error message is shown as `Phone` should only contain numbers, and it should be at least 3 digits long.
+
+   7. Test case: `add n/Google p/Backend Intern e/johnd@`<br>
+      Expected: An error message is shown as `Email` is not in the specified format.
+
+   8. Test case: `add n/Google p/Backend Intern web/careers.google.com/jobs` <br>
+      Expected: An error message is shown as `Website` is not in the specified format.
+
+   9. Test case: `add n/Google p/Backend Intern t/C+` <br>
+      Expected: An error message is shown as `Tag` should be alphanumeric.
 
 ### List internship(s)
 
@@ -687,6 +728,13 @@ testers are expected to do more *exploratory* testing.
 
     3. Test case: `view 0`<br>
        Expected: No internship is viewed. Error details shown in the status message.
+
+### View help message
+
+1. Viewing help message
+
+   1. Test case: `help`<br>
+      Expected: The help window pop-up, showing the command summary and a link to the User Guide.
 
 ### Saving data
 
