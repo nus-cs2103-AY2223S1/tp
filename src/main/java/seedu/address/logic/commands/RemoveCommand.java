@@ -4,13 +4,9 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ATTENDANCE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_GRADEPROGRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_HOMEWORK;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_LESSON_PLAN;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_SESSION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
@@ -19,7 +15,6 @@ import java.util.Set;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
-import seedu.address.commons.util.CollectionUtil;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.person.Attendance;
@@ -30,7 +25,6 @@ import seedu.address.model.person.Homework;
 import seedu.address.model.person.HomeworkList;
 import seedu.address.model.person.LessonPlan;
 import seedu.address.model.person.Name;
-import seedu.address.model.person.NameIsKeywordsPredicate;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.Session;
@@ -38,41 +32,35 @@ import seedu.address.model.person.SessionList;
 import seedu.address.model.tag.Tag;
 
 /**
- * Edits the details of an existing person in the address book.
+ * Removes the details of an existing person in the address book.
  */
-public class EditCommand extends Command {
+public class RemoveCommand extends Command {
 
-    public static final String COMMAND_WORD = "edit";
+    public static final String COMMAND_WORD = "remove";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the person identified "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Removes the details of the person identified "
             + "by the index number used in the displayed person list. "
-            + "Existing values will be overwritten by the input values.\n"
-            + "Parameters: INDEX (must be a positive integer) "
-            + "[" + PREFIX_NAME + "NAME] "
-            + "[" + PREFIX_PHONE + "PHONE] "
-            + "[" + PREFIX_LESSON_PLAN + "LESSON PLAN] "
+            + "Parameters: "
             + "[" + PREFIX_HOMEWORK + "INDEX HOMEWORK]"
             + "[" + PREFIX_ATTENDANCE + "INDEX ATTENDANCE]"
             + "[" + PREFIX_SESSION + "INDEX SESSION]"
             + "[" + PREFIX_GRADEPROGRESS + "INDEX GRADE PROGRESS]"
             + "[" + PREFIX_TAG + "TAG]...\n"
-            + "Example: " + COMMAND_WORD + " 1 "
-            + PREFIX_PHONE + "91234567 ";
+            + "Example: PERSON_INDEX " + COMMAND_WORD + " " + PREFIX_HOMEWORK + " 1 ";
 
-    public static final String MESSAGE_EDIT_PERSON_SUCCESS = "Edited Person: %1$s";
-    public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
-    public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the address book.";
-    public static final String MESSAGE_NOT_VIEW_MODE = "You need to be in full view mode to edit a person.";
+    public static final String MESSAGE_REMOVED_PERSON_SUCCESS = "Removed Person Detail: %1$s";
+    public static final String MESSAGE_NOT_VIEW_MODE =
+            "You need to be in full view mode to remove a person's details.";
 
-    private final EditPersonDescriptor editPersonDescriptor;
+    private final RemovePersonDescriptor removePersonDescriptor;
 
     /**
-     * @param editPersonDescriptor details to edit the person with
+     * @param removePersonDescriptor details to remove person details with
      */
-    public EditCommand(EditPersonDescriptor editPersonDescriptor) {
-        requireNonNull(editPersonDescriptor);
+    public RemoveCommand(RemovePersonDescriptor removePersonDescriptor) {
+        requireNonNull(removePersonDescriptor);
 
-        this.editPersonDescriptor = new EditPersonDescriptor(editPersonDescriptor);
+        this.removePersonDescriptor = removePersonDescriptor;
     }
 
     @Override
@@ -90,135 +78,88 @@ public class EditCommand extends Command {
         }
 
         Person personToEdit = lastShownList.get(index.getZeroBased());
-        Person editedPerson = createEditedPerson(personToEdit, editPersonDescriptor);
-        String newName = editedPerson.getName().fullName;
+        Person editedPerson = createRemovedPerson(personToEdit, removePersonDescriptor);
 
-        if (!personToEdit.isSamePerson(editedPerson) && model.hasPerson(editedPerson)) {
-            throw new CommandException(MESSAGE_DUPLICATE_PERSON);
-        }
-
-        String[] newNameKeywords = {newName};
-        model.updateFilteredPersonList(new NameIsKeywordsPredicate(Arrays.asList(newNameKeywords)));
         model.setPerson(personToEdit, editedPerson);
-        return new CommandResult(String.format(MESSAGE_EDIT_PERSON_SUCCESS, editedPerson));
+        return new CommandResult(String.format(MESSAGE_REMOVED_PERSON_SUCCESS, editedPerson));
+
     }
 
-    /**
-     * Creates and returns a {@code Person} with the details of {@code personToEdit}
-     * edited with {@code editPersonDescriptor}.
-     */
-    private static Person createEditedPerson(Person personToEdit, EditPersonDescriptor editPersonDescriptor)
+    private static Person createRemovedPerson(Person personToEdit, RemovePersonDescriptor removePersonDescriptor)
             throws CommandException {
-        assert personToEdit != null;
+        Name name = personToEdit.getName();
+        Phone phone = personToEdit.getPhone();
+        LessonPlan lessonPlan = personToEdit.getLessonPlan();
+        HomeworkList updatedHomeworkList = getUpdatedHomeworkList(personToEdit, removePersonDescriptor);
+        AttendanceList updatedAttendanceList = getUpdatedAttendanceList(personToEdit, removePersonDescriptor);
+        GradeProgressList updatedGradeProgressList = getUpdatedGradeProgressList(personToEdit, removePersonDescriptor);
+        SessionList updatedSessionList = getUpdatedSessionList(personToEdit, removePersonDescriptor);
+        Set<Tag> updatedTags = removePersonDescriptor.getTags().orElse(personToEdit.getTags());
 
-        Name updatedName = editPersonDescriptor.getName().orElse(personToEdit.getName());
-        Phone updatedPhone = editPersonDescriptor.getPhone().orElse(personToEdit.getPhone());
-        LessonPlan updatedLessonPlan = editPersonDescriptor.getLessonPlan()
-                .orElse(personToEdit.getLessonPlan());
-        HomeworkList updatedHomeworkList = getUpdatedHomeworkList(personToEdit, editPersonDescriptor);
-        AttendanceList updatedAttendanceList = getUpdatedAttendanceList(personToEdit, editPersonDescriptor);
-        GradeProgressList updatedGradeProgressList = getUpdatedGradeProgressList(personToEdit, editPersonDescriptor);
-        SessionList updatedSessionList = getUpdatedSessionList(personToEdit, editPersonDescriptor);
-        Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
-
-        return new Person(updatedName, updatedPhone, updatedLessonPlan,
-                updatedHomeworkList, updatedAttendanceList, updatedSessionList, updatedGradeProgressList, updatedTags);
+        return new Person(name, phone, lessonPlan, updatedHomeworkList,
+                updatedAttendanceList, updatedSessionList, updatedGradeProgressList, updatedTags);
     }
 
-    /**
-     * Returns the updated {@code HomeworkList} if edited, or the original list if not.
-     */
-    public static HomeworkList getUpdatedHomeworkList(Person personToEdit, EditPersonDescriptor editPersonDescriptor)
-            throws CommandException {
+    public static HomeworkList getUpdatedHomeworkList(Person personToEdit,
+            RemovePersonDescriptor removePersonDescriptor) throws CommandException {
         HomeworkList updatedHomeworkList = personToEdit.getHomeworkList();
-        Optional<Homework> homework = editPersonDescriptor.getHomework();
-        Optional<Index> homeworkIndex = editPersonDescriptor.getHomeworkIndex();
-        if (homeworkIndex.isEmpty() || homework.isEmpty()) {
+        Optional<Index> homeworkIndex = removePersonDescriptor.getHomeworkIndex();
+        if (homeworkIndex.isEmpty()) {
             return updatedHomeworkList;
         }
         if (!updatedHomeworkList.isValidIndex(homeworkIndex.get())) {
             throw new CommandException(HomeworkList.MESSAGE_INVALID_HOMEWORK_INDEX);
         }
-        updatedHomeworkList.editAtIndex(homeworkIndex.get(), homework.get());
+        updatedHomeworkList.removeAtIndex(homeworkIndex.get());
         return updatedHomeworkList;
     }
 
-    /**
-     * Returns the updated {@code AttendanceList} if edited, or the original list if not.
-     */
-    public static AttendanceList getUpdatedAttendanceList(
-            Person personToEdit, EditPersonDescriptor editPersonDescriptor) throws CommandException {
+    public static AttendanceList getUpdatedAttendanceList(Person personToEdit,
+            RemovePersonDescriptor removePersonDescriptor) throws CommandException {
         AttendanceList updatedAttendanceList = personToEdit.getAttendanceList();
-        Optional<Attendance> attendance = editPersonDescriptor.getAttendance();
-        Optional<Index> attendanceIndex = editPersonDescriptor.getAttendanceIndex();
-        if (attendanceIndex.isEmpty() || attendance.isEmpty()) {
+        Optional<Index> attendanceIndex = removePersonDescriptor.getAttendanceIndex();
+        if (attendanceIndex.isEmpty()) {
             return updatedAttendanceList;
         }
         if (!updatedAttendanceList.isValidIndex(attendanceIndex.get())) {
             throw new CommandException(AttendanceList.MESSAGE_INVALID_ATTENDANCE_INDEX);
         }
-        updatedAttendanceList.editAtIndex(attendanceIndex.get(), attendance.get());
+        updatedAttendanceList.removeAtIndex(attendanceIndex.get());
         return updatedAttendanceList;
     }
 
-    /**
-     * Returns the updated {@code SessionList} if edited, or the original list if not.
-     */
     public static SessionList getUpdatedSessionList(Person personToEdit,
-            EditPersonDescriptor editPersonDescriptor) throws CommandException {
+            RemovePersonDescriptor removePersonDescriptor) throws CommandException {
         SessionList updatedSessionList = personToEdit.getSessionList();
-        Optional<Session> session = editPersonDescriptor.getSession();
-        Optional<Index> sessionIndex = editPersonDescriptor.getSessionIndex();
-        if (sessionIndex.isEmpty() || session.isEmpty()) {
+        Optional<Index> sessionIndex = removePersonDescriptor.getSessionIndex();
+        if (sessionIndex.isEmpty()) {
             return updatedSessionList;
         }
         if (!updatedSessionList.isValidIndex(sessionIndex.get())) {
             throw new CommandException(SessionList.MESSAGE_INVALID_SESSION_INDEX);
         }
-        updatedSessionList.editAtIndex(sessionIndex.get(), session.get());
+        updatedSessionList.removeAtIndex(sessionIndex.get());
         return updatedSessionList;
     }
 
-    /**
-     * Returns the updated {@code GradeProgressList} if edited, or the original list if not.
-     */
-    public static GradeProgressList getUpdatedGradeProgressList(
-            Person personToEdit, EditPersonDescriptor editPersonDescriptor) throws CommandException {
+    public static GradeProgressList getUpdatedGradeProgressList(Person personToEdit,
+            RemovePersonDescriptor removePersonDescriptor) throws CommandException {
         GradeProgressList updatedGradeProgressList = personToEdit.getGradeProgressList();
-        Optional<GradeProgress> gradeProgress = editPersonDescriptor.getGradeProgress();
-        Optional<Index> gradeProgressIndex = editPersonDescriptor.getGradeProgressIndex();
-        if (gradeProgressIndex.isEmpty() || gradeProgress.isEmpty()) {
+        Optional<Index> gradeProgressIndex = removePersonDescriptor.getGradeProgressIndex();
+        if (gradeProgressIndex.isEmpty()) {
             return updatedGradeProgressList;
         }
         if (!updatedGradeProgressList.isValidIndex(gradeProgressIndex.get())) {
             throw new CommandException(GradeProgressList.MESSAGE_INVALID_GRADE_PROGRESS_INDEX);
         }
-        updatedGradeProgressList.editAtIndex(gradeProgressIndex.get(), gradeProgress.get());
+        updatedGradeProgressList.removeAtIndex(gradeProgressIndex.get());
         return updatedGradeProgressList;
     }
 
-    @Override
-    public boolean equals(Object other) {
-        // short circuit if same object
-        if (other == this) {
-            return true;
-        }
-
-        // instanceof handles nulls
-        if (!(other instanceof EditCommand)) {
-            return false;
-        }
-
-        // state check
-        EditCommand e = (EditCommand) other;
-        return editPersonDescriptor.equals(e.editPersonDescriptor);
-    }
-
     /**
-     * Stores the details to edit the person with. Each non-empty field value will replace the
-     * corresponding field value of the person.
+     * Stores the details to edit the person with.
      */
-    public static class EditPersonDescriptor {
+    public static class RemovePersonDescriptor {
         private Name name;
         private Phone phone;
         private LessonPlan lessonPlan;
@@ -232,14 +173,13 @@ public class EditCommand extends Command {
         private Session session;
         private Set<Tag> tags;
 
-        public EditPersonDescriptor() {
-        }
+        public RemovePersonDescriptor() { }
 
         /**
          * Copy constructor.
          * A defensive copy of {@code tags} is used internally.
          */
-        public EditPersonDescriptor(EditPersonDescriptor toCopy) {
+        public RemovePersonDescriptor(RemovePersonDescriptor toCopy) {
             setName(toCopy.name);
             setPhone(toCopy.phone);
             setLessonPlan(toCopy.lessonPlan);
@@ -252,14 +192,6 @@ public class EditCommand extends Command {
             setSessionIndex(toCopy.sessionIndex);
             setSession(toCopy.session);
             setTags(toCopy.tags);
-        }
-
-        /**
-         * Returns true if at least one field is edited.
-         */
-        public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, phone, lessonPlan, homework,
-                    gradeProgress, attendance, session, tags);
         }
 
         public void setName(Name name) {
@@ -358,34 +290,8 @@ public class EditCommand extends Command {
             this.tags = (tags != null) ? new HashSet<>(tags) : null;
         }
 
-        /**
-         * Returns an unmodifiable tag set, which throws {@code UnsupportedOperationException}
-         * if modification is attempted.
-         * Returns {@code Optional#empty()} if {@code tags} is null.
-         */
         public Optional<Set<Tag>> getTags() {
             return (tags != null) ? Optional.of(Collections.unmodifiableSet(tags)) : Optional.empty();
-        }
-
-        @Override
-        public boolean equals(Object other) {
-            // short circuit if same object
-            if (other == this) {
-                return true;
-            }
-
-            // instanceof handles nulls
-            if (!(other instanceof EditPersonDescriptor)) {
-                return false;
-            }
-
-            // state check
-            EditPersonDescriptor e = (EditPersonDescriptor) other;
-
-            return getName().equals(e.getName())
-                    && getPhone().equals(e.getPhone())
-                    && getLessonPlan().equals(e.getLessonPlan())
-                    && getTags().equals(e.getTags());
         }
     }
 }

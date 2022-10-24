@@ -58,6 +58,18 @@ public class GradeProgressList {
     }
 
     /**
+     * Removes the grade at the given index.
+     * @param index of grade to be removed
+     */
+    public void removeAtIndex(Index index) {
+        int indexToEdit = index.getZeroBased();
+        if (indexToEdit >= gradeProgressList.size()) {
+            throw new IllegalArgumentException(MESSAGE_INVALID_GRADE_PROGRESS_INDEX);
+        }
+        gradeProgressList.remove(indexToEdit);
+    }
+
+    /**
      * Returns true if a given {@code Index} is a valid index in the list.
      */
     public boolean isValidIndex(Index index) {
