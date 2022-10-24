@@ -7,6 +7,7 @@ import static seedu.guest.logic.parser.CliSyntax.PREFIX_IS_ROOM_CLEAN;
 import static seedu.guest.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.guest.logic.parser.CliSyntax.PREFIX_NUMBER_OF_GUESTS;
 import static seedu.guest.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.guest.logic.parser.CliSyntax.PREFIX_REQUEST;
 import static seedu.guest.logic.parser.CliSyntax.PREFIX_ROOM;
 import static seedu.guest.model.Model.PREDICATE_SHOW_ALL_GUESTS;
 
@@ -46,7 +47,8 @@ public class EditCommand extends Command {
             + "[" + PREFIX_ROOM + "ROOM] "
             + "[" + PREFIX_DATE_RANGE + "DATE_RANGE] "
             + "[" + PREFIX_NUMBER_OF_GUESTS + "NUMBER_OF_GUESTS] "
-            + "[" + PREFIX_IS_ROOM_CLEAN + "IS_ROOM_CLEAN]\n"
+            + "[" + PREFIX_IS_ROOM_CLEAN + "IS_ROOM_CLEAN]"
+            + "[" + PREFIX_REQUEST + "REQUEST]\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_PHONE + "91234567 "
             + PREFIX_EMAIL + "johndoe@example.com";
@@ -107,7 +109,7 @@ public class EditCommand extends Command {
                 .orElse(guestToEdit.getNumberOfGuests());
         IsRoomClean updatedIsRoomClean = editGuestDescriptor.getIsRoomClean().orElse(guestToEdit.getIsRoomClean());
         Bill updatedBill = guestToEdit.getBill();
-        Request updatedRequest = guestToEdit.getRequest();
+        Request updatedRequest = editGuestDescriptor.getRequest().orElse(guestToEdit.getRequest());
         return new Guest(updatedName, updatedPhone, updatedEmail, updatedRoom, updatedDateRange,
                 updatedNumberOfGuests, updatedIsRoomClean, updatedBill, updatedRequest);
     }
@@ -142,6 +144,7 @@ public class EditCommand extends Command {
         private DateRange dateRange;
         private NumberOfGuests numberOfGuests;
         private IsRoomClean isRoomClean;
+        private Request request;
 
         public EditGuestDescriptor() {}
 
@@ -156,13 +159,15 @@ public class EditCommand extends Command {
             setDateRange(toCopy.dateRange);
             setNumberOfGuests(toCopy.numberOfGuests);
             setIsRoomClean(toCopy.isRoomClean);
+            setRequest(toCopy.request);
         }
 
         /**
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, phone, email, room, dateRange, numberOfGuests, isRoomClean);
+            return CollectionUtil.isAnyNonNull(name, phone, email, room, dateRange,
+                    numberOfGuests, isRoomClean, request);
         }
 
         public void setName(Name name) {
@@ -221,6 +226,14 @@ public class EditCommand extends Command {
             return Optional.ofNullable(isRoomClean);
         }
 
+        public void setRequest(Request request) {
+            this.request = request;
+        }
+
+        public Optional<Request> getRequest() {
+            return Optional.ofNullable(request);
+        }
+
         @Override
         public boolean equals(Object other) {
             // short circuit if same object
@@ -242,7 +255,8 @@ public class EditCommand extends Command {
                     && getRoom().equals(e.getRoom())
                     && getDateRange().equals(e.getDateRange())
                     && getNumberOfGuests().equals(e.getNumberOfGuests())
-                    && getIsRoomClean().equals(e.getIsRoomClean());
+                    && getIsRoomClean().equals(e.getIsRoomClean())
+                    && getRequest().equals(e.getRequest());
         }
     }
 }
