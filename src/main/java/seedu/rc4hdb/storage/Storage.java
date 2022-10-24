@@ -41,4 +41,5 @@ public interface Storage extends ResidentBookStorage, UserPrefsStorage {
     @Override
     void createResidentBookFile(Path filePath) throws IOException;
 
+    Optional<ReadOnlyResidentBook> readCsvFile(Path filePath) throws IOException, DataConversionException;
 }

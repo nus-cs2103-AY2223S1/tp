@@ -11,6 +11,7 @@ import java.util.regex.Pattern;
 
 import seedu.rc4hdb.logic.commands.misccommands.HelpCommand;
 import seedu.rc4hdb.logic.commands.storagecommands.filecommands.FileCommand;
+import seedu.rc4hdb.logic.commands.storagecommands.filecommands.csvfilecommands.ImportCommand;
 import seedu.rc4hdb.logic.commands.storagecommands.filecommands.jsonfilecommands.FileCreateCommand;
 import seedu.rc4hdb.logic.commands.storagecommands.filecommands.jsonfilecommands.FileDeleteCommand;
 import seedu.rc4hdb.logic.commands.storagecommands.filecommands.jsonfilecommands.FileSwitchCommand;
@@ -48,6 +49,9 @@ public class FileCommandParser implements CommandParser<FileCommand> {
 
         case FileDeleteCommand.COMMAND_WORD:
             return new FileDeleteCommand(DATA_DIR_PATH, fileName);
+
+        case ImportCommand.COMMAND_WORD:
+            return new ImportCommand(DATA_DIR_PATH, fileName);
 
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
