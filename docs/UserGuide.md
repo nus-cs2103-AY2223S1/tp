@@ -150,6 +150,101 @@ Examples:
 * `filter t/cat`
 * `filter t/dog t/second-hand`
 
+### Filter orders : `filter-o`
+
+Filter display only Orders based on the given attribute(s). There are three possible attributes to filter: Additional requests, Order status, Price range.
+
+| Attribute           | Prefix | Format                     | Example         |
+|---------------------|--------|----------------------------|-----------------|
+| Additional requests | ar | ar/KEYWORD                 | ar/non-shedding |
+| Order Status | os | os/KEYWORD                 | os/Negotating   |
+| Price Range | pr | pr/LOWER_PRICE-UPPER_PRICE | pr/100-456      |
+
+
+Format: `filter-o [PREFIX]/INPUT`
+
+Examples:
+* `filter-o os/Pending`
+* `filter-o as/Negotiating p/90-900`
+* `filter-o ar/good with children os/Delivering p/80-100`
+
+### Filter Pets : `filter-p`
+
+Filter display only Pets based on the given attributes. There are five possible attributes to filter: Color, Name, Price, Species, Vaccination status.
+
+| Attribute | Prefix | Format             | Example         |
+|-----------|--------|--------------------|-----------------|
+| Color | c | c/KEYWORD          | c/pink          |
+| Name | n | n/KEYWORD          | n/nyanko-sensei |
+| Price | p | p/PRICE            | p/209           |
+| Species | s | s/KEYWORD          | s/ostrich       |
+| Vaccination Status | v | v/KEYWORD |  v/false        |
+
+Format: `filter-p [PREFIX]/INPUT`
+
+Examples:
+* `filter-p c/white`
+* `filter-p c/black v/true`
+* `filter-p c/black n/doraemon p/50 s/cat v/true`
+
+### Find Persons : `find`
+
+Find displays all persons who match ONE on specific attribute. There are five possible attributes to filter: Address, Email, Location, Name, Phone.
+
+| Attribute | Prefix | Format    | Example                |
+|-----------|--------|-----------|------------------------|
+| Address | a      | a/KEYWORD | a/Wall Street          |
+| Email | e      | e/KEYWORD | e/whereisamy@gmail.com |
+|Location | l      | l/KEYWORD | l/Nova Scotia          |
+| Name | n      | n/KEYWORD | n/Amy Toh              |
+| Phone | p      | p/NUMBER  | p/999                  |
+
+Format: `find [PREFIX]/INPUT`
+
+Examples:
+* `find a/6th College Ave. West`
+* `find e/blackball@furry.com`
+* `find p/98986668`
+
+### Find Buyers : `find-b`
+
+Find displays all buyers who match ONE on specific attribute. There are five possible attributes to filter: Address, Email, Location, Name, Phone.
+
+To find corresponding prefixes to each attribute (ie. Address), please refer to the table in the "Find" Command user guide above.
+
+Format: `find-b [PREFIX]/INPUT`
+
+Examples:
+* `find-b a/6th College Ave. West`
+* `find-b e/blackball@furry.com`
+* `find-b p/98986668`
+
+### Find Deliverers : `find-d`
+
+Find displays all deliverers who match ONE on specific attribute. There are five possible attributes to filter: Address, Email, Location, Name, Phone.
+
+To find corresponding prefixes to each attribute (ie. Address), please refer to the table in the "Find" Command user guide above.
+
+Format: `find-d [PREFIX]/INPUT`
+
+Examples:
+* `find-d a/6th College Ave. West`
+* `find-d e/blackball@furry.com`
+* `find-d p/98986668`
+
+### Find Suppliers : `find-s`
+
+Find displays all suppliers who match ONE on specific attribute. There are five possible attributes to filter: Address, Email, Location, Name, Phone.
+
+To find corresponding prefixes to each attribute (ie. Address), please refer to the table in the "Find" Command user guide above.
+
+Format: `find-s [PREFIX]/INPUT`
+
+Examples:
+* `find-s a/6th College Ave. West`
+* `find-s e/blackball@furry.com`
+* `find-s p/98986668`
+
 ### Sort contacts : `sort`
 
 Sort the contacts based on given tag(s) and order(s).
@@ -202,14 +297,19 @@ _Details coming soon ..._
 
 ## Command summary
 
-| Action     | Format, Examples                                                                                                                                                                                             |
-|------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Add**    | `add r/ROLE n/NAME b/BREED p/PHONE_NUMBER e/EMAIL a/ADDRESS i/ADDITIONAL_INFORMATION [t/TAG]…​` <br> e.g., `add buyer n/Hongyi b/ragdoll p/11223344 e/email@u.nus.edu a/UTR 138600 i/colou:blue t/Singapore` |
-| **Delete** | `delete c/PERSON_CATEGORY i/INDEX` e.g., `delete c/Buyer i/1`                                                                                                                                                |
-| **Edit**   | `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`                                                                                         |
-| **Find**   | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`                                                                                                                                                   |
-| **Filter** | `filter t/INPUT`<br> e.g., `filter t/dog t/second-hand`                                                                                                                                                      |
-| **Sort**   | `Sort t/TAG Asc/Desc, [t/TAG] [Asc/Desc]…​`<br> e.g., `Sort t/priority Desc, t/country Desc`                                                                                                                 |
-| **List**   | `list buyers`, `list suppliers`, `list delivery`                                                                                                                                                             |
-| **Clear**  | `clear`                                                                                                                                                                                                      |
-| **Help**   | `help`                                                                                                                                                                                                       |
+| Action             | Format, Examples                                                                                                                                                                                             |
+|--------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Add**            | `add r/ROLE n/NAME b/BREED p/PHONE_NUMBER e/EMAIL a/ADDRESS i/ADDITIONAL_INFORMATION [t/TAG]…​` <br> e.g., `add buyer n/Hongyi b/ragdoll p/11223344 e/email@u.nus.edu a/UTR 138600 i/colou:blue t/Singapore` |
+| **Delete**         | `delete c/PERSON_CATEGORY i/INDEX` e.g., `delete c/Buyer i/1`                                                                                                                                                |
+| **Edit**           | `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`                                                                                         |
+| **Find**           | `find PREFIX/KEYWORD` <br> e.g., `find n/James Jake`                                                                                                                                                         |
+| **Find Buyer**     | `find-b PREFIX/KEYWORD` <br> e.g., `find-b n/James Jake`                                                                                                                                                     |
+| **Find Deliverer** | `find-d PREFIX/KEYWORD` <br> e.g., `find-d n/James Jake`                                                                                                                                                     |
+| **Find Supplier**  | `find-s PREFIX/KEYWORD` <br> e.g., `find-s n/James Jake`                                                                                                                                                     |
+| **Filter**         | `filter t/INPUT`<br> e.g., `filter t/dog t/second-hand`                                                                                                                                                      |
+| **Filter Orders**  | `filter-o PREFIX/KEYWORD`<br> e.g., `filter-o ar/good with children pr/10-100`                                                                                                                               |
+| **Filter Pets**    | `filter-p PREFIX/KEYWORD`<br> e.g., `filter-p c/white s/capybara`                                                                                                                                            |
+| **Sort**           | `Sort t/TAG Asc/Desc, [t/TAG] [Asc/Desc]…​`<br> e.g., `Sort t/priority Desc, t/country Desc`                                                                                                                 |
+| **List**           | `list buyers`, `list suppliers`, `list delivery`                                                                                                                                                             |
+| **Clear**          | `clear`                                                                                                                                                                                                      |
+| **Help**           | `help`                                                                                                                                                                                                       |
