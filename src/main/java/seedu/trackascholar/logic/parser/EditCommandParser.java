@@ -4,10 +4,10 @@ import static java.util.Objects.requireNonNull;
 import static seedu.trackascholar.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.trackascholar.logic.parser.CliSyntax.PREFIX_APPLICATION_STATUS;
 import static seedu.trackascholar.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.trackascholar.logic.parser.CliSyntax.PREFIX_MAJOR;
 import static seedu.trackascholar.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.trackascholar.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.trackascholar.logic.parser.CliSyntax.PREFIX_SCHOLARSHIP;
-import static seedu.trackascholar.logic.parser.CliSyntax.PREFIX_TAG;
 
 import java.util.Collection;
 import java.util.Collections;
@@ -17,7 +17,7 @@ import java.util.Set;
 import seedu.trackascholar.commons.core.index.Index;
 import seedu.trackascholar.logic.commands.EditCommand;
 import seedu.trackascholar.logic.parser.exceptions.ParseException;
-import seedu.trackascholar.model.tag.Tag;
+import seedu.trackascholar.model.major.Major;
 
 /**
  * Parses input arguments and creates a new EditCommand object
@@ -33,7 +33,7 @@ public class EditCommandParser implements Parser<EditCommand> {
         requireNonNull(args);
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE,
-                        PREFIX_EMAIL, PREFIX_SCHOLARSHIP, PREFIX_APPLICATION_STATUS, PREFIX_TAG);
+                        PREFIX_EMAIL, PREFIX_SCHOLARSHIP, PREFIX_APPLICATION_STATUS, PREFIX_MAJOR);
 
         Index index;
 
@@ -61,7 +61,7 @@ public class EditCommandParser implements Parser<EditCommand> {
             editApplicantDescriptor.setApplicationStatus(ParserUtil
                     .parseApplicationStatus(argMultimap.getValue(PREFIX_APPLICATION_STATUS).get()));
         }
-        parseTagsForEdit(argMultimap.getAllValues(PREFIX_TAG)).ifPresent(editApplicantDescriptor::setTags);
+        parseMajorsForEdit(argMultimap.getAllValues(PREFIX_MAJOR)).ifPresent(editApplicantDescriptor::setMajors);
 
         if (!editApplicantDescriptor.isAnyFieldEdited()) {
             throw new ParseException(EditCommand.MESSAGE_NOT_EDITED);
@@ -71,18 +71,18 @@ public class EditCommandParser implements Parser<EditCommand> {
     }
 
     /**
-     * Parses {@code Collection<String> tags} into a {@code Set<Tag>} if {@code tags} is non-empty.
-     * If {@code tags} contain only one element which is an empty string, it will be parsed into a
-     * {@code Set<Tag>} containing zero tags.
+     * Parses {@code Collection<String> majors} into a {@code Set<Major>} if {@code majors} is non-empty.
+     * If {@code majors} contain only one element which is an empty string, it will be parsed into a
+     * {@code Set<Major>} containing zero majors.
      */
-    private Optional<Set<Tag>> parseTagsForEdit(Collection<String> tags) throws ParseException {
-        assert tags != null;
+    private Optional<Set<Major>> parseMajorsForEdit(Collection<String> majors) throws ParseException {
+        assert majors != null;
 
-        if (tags.isEmpty()) {
+        if (majors.isEmpty()) {
             return Optional.empty();
         }
-        Collection<String> tagSet = tags.size() == 1 && tags.contains("") ? Collections.emptySet() : tags;
-        return Optional.of(ParserUtil.parseTags(tagSet));
+        Collection<String> majorSet = majors.size() == 1 && majors.contains("") ? Collections.emptySet() : majors;
+        return Optional.of(ParserUtil.parseMajors(majorSet));
     }
 
 }

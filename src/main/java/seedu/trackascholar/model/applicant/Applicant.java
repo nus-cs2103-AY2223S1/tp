@@ -8,7 +8,7 @@ import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
-import seedu.trackascholar.model.tag.Tag;
+import seedu.trackascholar.model.major.Major;
 
 /**
  * Represents an Applicant in TrackAScholar.
@@ -24,20 +24,20 @@ public class Applicant {
     // Data fields
     private final ApplicationStatus applicationStatus;
     private final Scholarship scholarship;
-    private final Set<Tag> tags = new HashSet<>();
+    private final Set<Major> majors = new HashSet<>();
 
     /**
      * Every field must be present and not null.
      */
     public Applicant(Name name, Phone phone, Email email, Scholarship scholarship,
-                     ApplicationStatus applicationStatus, Set<Tag> tags) {
-        requireAllNonNull(name, phone, email, scholarship, applicationStatus, tags);
+                     ApplicationStatus applicationStatus, Set<Major> majors) {
+        requireAllNonNull(name, phone, email, scholarship, applicationStatus, majors);
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.scholarship = scholarship;
         this.applicationStatus = applicationStatus;
-        this.tags.addAll(tags);
+        this.majors.addAll(majors);
     }
 
     public Name getName() {
@@ -61,11 +61,11 @@ public class Applicant {
     }
 
     /**
-     * Returns an immutable tag set, which throws {@code UnsupportedOperationException}
+     * Returns an immutable major set, which throws {@code UnsupportedOperationException}
      * if modification is attempted.
      */
-    public Set<Tag> getTags() {
-        return Collections.unmodifiableSet(tags);
+    public Set<Major> getMajors() {
+        return Collections.unmodifiableSet(majors);
     }
 
     /**
@@ -161,13 +161,13 @@ public class Applicant {
                 && otherApplicant.getEmail().equals(getEmail())
                 && otherApplicant.getScholarship().equals(getScholarship())
                 && otherApplicant.getApplicationStatus().equals(getApplicationStatus())
-                && otherApplicant.getTags().equals(getTags());
+                && otherApplicant.getMajors().equals(getMajors());
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, scholarship, applicationStatus, tags);
+        return Objects.hash(name, phone, email, scholarship, applicationStatus, majors);
     }
 
     @Override
@@ -183,10 +183,10 @@ public class Applicant {
                 .append("; Application Status: ")
                 .append(getApplicationStatus());
 
-        Set<Tag> tags = getTags();
-        if (!tags.isEmpty()) {
-            builder.append("; Tags: ");
-            tags.forEach(builder::append);
+        Set<Major> majors = getMajors();
+        if (!majors.isEmpty()) {
+            builder.append("; Majors: ");
+            majors.forEach(builder::append);
         }
         return builder.toString();
     }

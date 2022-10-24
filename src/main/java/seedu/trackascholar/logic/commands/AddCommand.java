@@ -3,10 +3,10 @@ package seedu.trackascholar.logic.commands;
 import static java.util.Objects.requireNonNull;
 import static seedu.trackascholar.logic.parser.CliSyntax.PREFIX_APPLICATION_STATUS;
 import static seedu.trackascholar.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.trackascholar.logic.parser.CliSyntax.PREFIX_MAJOR;
 import static seedu.trackascholar.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.trackascholar.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.trackascholar.logic.parser.CliSyntax.PREFIX_SCHOLARSHIP;
-import static seedu.trackascholar.logic.parser.CliSyntax.PREFIX_TAG;
 
 import seedu.trackascholar.logic.commands.exceptions.CommandException;
 import seedu.trackascholar.model.Model;
@@ -26,15 +26,15 @@ public class AddCommand extends Command {
             + PREFIX_EMAIL + "EMAIL "
             + PREFIX_SCHOLARSHIP + "SCHOLARSHIP "
             + PREFIX_APPLICATION_STATUS + "APPLICATION STATUS "
-            + "[" + PREFIX_TAG + "TAG]...\n"
+            + "[" + PREFIX_MAJOR + "MAJOR]...\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_NAME + "John Doe "
             + PREFIX_PHONE + "98765432 "
             + PREFIX_EMAIL + "johnd@example.com "
             + PREFIX_SCHOLARSHIP + "NUS Global Merit Scholarship "
             + PREFIX_APPLICATION_STATUS + "pending "
-            + PREFIX_TAG + "friends "
-            + PREFIX_TAG + "computerScience ";
+            + PREFIX_MAJOR + "Medicine "
+            + PREFIX_MAJOR + "computerScience ";
 
     public static final String MESSAGE_SUCCESS = "New applicant added: %1$s";
     public static final String MESSAGE_DUPLICATE_APPLICANT = "This applicant already exists in TrackAScholar";

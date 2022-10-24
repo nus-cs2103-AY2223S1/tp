@@ -9,7 +9,7 @@ import seedu.trackascholar.model.applicant.Email;
 import seedu.trackascholar.model.applicant.Name;
 import seedu.trackascholar.model.applicant.Phone;
 import seedu.trackascholar.model.applicant.Scholarship;
-import seedu.trackascholar.model.tag.Tag;
+import seedu.trackascholar.model.major.Major;
 import seedu.trackascholar.model.util.SampleDataUtil;
 
 /**
@@ -30,7 +30,7 @@ public class ApplicantBuilder {
 
     private Scholarship scholarship;
     private ApplicationStatus applicationStatus;
-    private Set<Tag> tags;
+    private Set<Major> majors;
 
     /**
      * Creates a {@code ApplicantBuilder} with the default details.
@@ -41,7 +41,7 @@ public class ApplicantBuilder {
         email = new Email(DEFAULT_EMAIL);
         scholarship = new Scholarship(DEFAULT_SCHOLARSHIP);
         applicationStatus = new ApplicationStatus(DEFAULT_APPLICATION_STATUS);
-        tags = new HashSet<>();
+        majors = new HashSet<>();
     }
 
     /**
@@ -53,7 +53,7 @@ public class ApplicantBuilder {
         email = applicantToCopy.getEmail();
         scholarship = applicantToCopy.getScholarship();
         applicationStatus = applicantToCopy.getApplicationStatus();
-        tags = new HashSet<>(applicantToCopy.getTags());
+        majors = new HashSet<>(applicantToCopy.getMajors());
     }
 
     /**
@@ -65,10 +65,10 @@ public class ApplicantBuilder {
     }
 
     /**
-     * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code Applicant} that we are building.
+     * Parses the {@code majors} into a {@code Set<Major>} and set it to the {@code Applicant} that we are building.
      */
-    public ApplicantBuilder withTags(String ... tags) {
-        this.tags = SampleDataUtil.getTagSet(tags);
+    public ApplicantBuilder withMajors(String ... majors) {
+        this.majors = SampleDataUtil.getMajorSet(majors);
         return this;
     }
 
@@ -105,7 +105,7 @@ public class ApplicantBuilder {
     }
 
     public Applicant build() {
-        return new Applicant(name, phone, email, scholarship, applicationStatus, tags);
+        return new Applicant(name, phone, email, scholarship, applicationStatus, majors);
     }
 
 }

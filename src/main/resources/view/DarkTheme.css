@@ -387,12 +387,12 @@
     -fx-background-radius: 0;
 }
 
-#tags {
+#majors {
     -fx-hgap: 7;
     -fx-vgap: 3;
 }
 
-#tags .label {
+#majors .label {
     -fx-text-fill: #343148FF;
     -fx-background-color: #D7C49EFF;
     -fx-padding: 1 3 1 3;
