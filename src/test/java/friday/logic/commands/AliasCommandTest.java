@@ -1,12 +1,11 @@
 package friday.logic.commands;
 
+import static friday.logic.commands.CommandTestUtil.assertCommandFailure;
 import static friday.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static friday.testutil.Assert.assertThrows;
 import static friday.testutil.TypicalStudents.getTypicalAddressBook;
 
 import org.junit.jupiter.api.Test;
 
-import friday.logic.commands.exceptions.CommandException;
 import friday.model.Model;
 import friday.model.ModelManager;
 import friday.model.UserPrefs;
@@ -40,7 +39,7 @@ public class AliasCommandTest {
         AliasCommand aliasCommand = new AliasCommand(alias, keyword);
         model.addAlias(alias, keyword);
 
-        assertThrows(CommandException.class, AliasCommand.MESSAGE_DUPLICATE_ALIAS, () -> aliasCommand.execute(model));
+        assertCommandFailure(aliasCommand, model, AliasCommand.MESSAGE_DUPLICATE_ALIAS);
     }
 
     @Test
@@ -49,7 +48,7 @@ public class AliasCommandTest {
         ReservedKeyword keyword = new ReservedKeyword(ListCommand.COMMAND_WORD);
         AliasCommand aliasCommand = new AliasCommand(alias, keyword);
 
-        assertThrows(CommandException.class, AliasCommand.MESSAGE_INVALID_ALIAS, () -> aliasCommand.execute(model));
+        assertCommandFailure(aliasCommand, model, AliasCommand.MESSAGE_INVALID_ALIAS);
     }
 
     @Test
@@ -58,6 +57,6 @@ public class AliasCommandTest {
         ReservedKeyword keyword = new ReservedKeyword(INVALID_KEYWORD);
         AliasCommand aliasCommand = new AliasCommand(alias, keyword);
 
-        assertThrows(CommandException.class, AliasCommand.MESSAGE_INVALID_KEYWORD, () -> aliasCommand.execute(model));
+        assertCommandFailure(aliasCommand, model, AliasCommand.MESSAGE_INVALID_KEYWORD);
     }
 }

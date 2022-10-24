@@ -1,12 +1,11 @@
 package friday.logic.commands;
 
+import static friday.logic.commands.CommandTestUtil.assertCommandFailure;
 import static friday.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static friday.testutil.Assert.assertThrows;
 import static friday.testutil.TypicalStudents.getTypicalAddressBook;
 
 import org.junit.jupiter.api.Test;
 
-import friday.logic.commands.exceptions.CommandException;
 import friday.model.Model;
 import friday.model.ModelManager;
 import friday.model.UserPrefs;
@@ -36,7 +35,6 @@ public class UnaliasCommandTest {
         model.addAlias(VALID_ALIAS, VALID_KEYWORD);
         UnaliasCommand unaliasCommand = new UnaliasCommand(VALID_ALIAS_2);
 
-        assertThrows(CommandException.class,
-                UnaliasCommand.MESSAGE_ALIAS_NOT_FOUND, () -> unaliasCommand.execute(model));
+        assertCommandFailure(unaliasCommand, model, UnaliasCommand.MESSAGE_ALIAS_NOT_FOUND);
     }
 }
