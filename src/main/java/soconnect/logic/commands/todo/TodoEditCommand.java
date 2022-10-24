@@ -2,15 +2,14 @@ package soconnect.logic.commands.todo;
 
 import static java.util.Objects.requireNonNull;
 import static soconnect.commons.util.CollectionUtil.requireAllNonNull;
-import static soconnect.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
-import static soconnect.logic.parser.CliSyntax.PREFIX_PRIORITY;
-import static soconnect.logic.parser.CliSyntax.PREFIX_TAG;
+import static soconnect.logic.parser.CliSyntax.*;
 import static soconnect.model.Model.PREDICATE_SHOW_ALL_TODOS;
 
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 
+import javax.swing.text.html.Option;
 import soconnect.commons.core.Messages;
 import soconnect.commons.core.index.Index;
 import soconnect.commons.util.CollectionUtil;
@@ -20,6 +19,7 @@ import soconnect.logic.commands.tagcommands.TagCommand;
 import soconnect.logic.commands.tagcommands.TagCreateCommand;
 import soconnect.model.Model;
 import soconnect.model.tag.Tag;
+import soconnect.model.todo.Date;
 import soconnect.model.todo.Description;
 import soconnect.model.todo.Priority;
 import soconnect.model.todo.Todo;
@@ -36,6 +36,7 @@ public class TodoEditCommand extends TodoCommand {
         + "Existing values will be overwritten by the input values. Tags are overwritten as a group.\n"
         + "Parameters: INDEX (must be a positive integer) "
         + "[" + PREFIX_DESCRIPTION + "DESCRIPTION] "
+        + "[" + PREFIX_DATE + "DATE] "
         + "[" + PREFIX_PRIORITY + "PRIORITY] "
         + "[" + PREFIX_TAG + "TAG]...\n"
         + "Example: " + COMMAND_WORD + " " + SUB_COMMAND_WORD + " 1 "
@@ -98,10 +99,11 @@ public class TodoEditCommand extends TodoCommand {
         assert todoToEdit != null;
 
         Description updatedDescription = editTodoDescriptor.getDescription().orElse(todoToEdit.getDescription());
+        Date updatedDate = editTodoDescriptor.getDate().orElse(todoToEdit.getDate());
         Priority updatedPriority = editTodoDescriptor.getPriority().orElse(todoToEdit.getPriority());
         Set<Tag> updatedTags = editTodoDescriptor.getTags().orElse(todoToEdit.getTags());
 
-        return new Todo(updatedDescription, updatedPriority, updatedTags);
+        return new Todo(updatedDescription, updatedDate, updatedPriority, updatedTags);
     }
 
     @Override
@@ -128,6 +130,7 @@ public class TodoEditCommand extends TodoCommand {
      */
     public static class EditTodoDescriptor {
         private Description description;
+        private Date date;
         private Priority priority;
         private Set<Tag> tagSet;
 
@@ -141,6 +144,7 @@ public class TodoEditCommand extends TodoCommand {
          */
         public EditTodoDescriptor(EditTodoDescriptor toCopy) {
             setDescription(toCopy.description);
+            setDate(toCopy.date);
             setPriority(toCopy.priority);
             setTags(toCopy.tagSet);
         }
@@ -149,7 +153,7 @@ public class TodoEditCommand extends TodoCommand {
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(description, priority, tagSet);
+            return CollectionUtil.isAnyNonNull(description, date, priority, tagSet);
         }
 
         public void setDescription(Description description) {
@@ -158,6 +162,14 @@ public class TodoEditCommand extends TodoCommand {
 
         public Optional<Description> getDescription() {
             return Optional.ofNullable(description);
+        }
+
+        public void setDate(Date date) {
+            this.date = date;
+        }
+
+        public Optional<Date> getDate() {
+            return Optional.of(date);
         }
 
         public void setPriority(Priority priority) {
@@ -192,6 +204,7 @@ public class TodoEditCommand extends TodoCommand {
             EditTodoDescriptor e = (EditTodoDescriptor) other;
 
             return getDescription().equals(e.getDescription())
+                    && getDate().equals(e.getDate())
                     && getPriority().equals(e.getPriority())
                     && getTags().equals(e.getTags());
         }

@@ -37,7 +37,7 @@
                     <Label fx:id="description" styleClass="cell_big_label_todo" text="\$first" />
                     <HBox alignment="CENTER_LEFT" spacing="20">
                         <Region id="calendarIcon" styleClass="icon-button" />
-                        <Label fx:id="datetime" styleClass="cell_small_label_todo" text="\$second" />
+                        <Label fx:id="date" styleClass="cell_small_label_todo" text="\$second" />
                     </HBox>
                     <HBox alignment="CENTER_LEFT" spacing="20">
                         <Region id="dotIcon" styleClass="icon-button" />

@@ -1,9 +1,7 @@
 package soconnect.logic.commands.todo;
 
 import static java.util.Objects.requireNonNull;
-import static soconnect.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
-import static soconnect.logic.parser.CliSyntax.PREFIX_PRIORITY;
-import static soconnect.logic.parser.CliSyntax.PREFIX_TAG;
+import static soconnect.logic.parser.CliSyntax.*;
 
 import soconnect.logic.commands.CommandResult;
 import soconnect.logic.commands.exceptions.CommandException;
@@ -22,12 +20,15 @@ public class TodoAddCommand extends TodoCommand {
     public static final String MESSAGE_USAGE = COMMAND_WORD + " " + SUB_COMMAND_WORD + ": Adds a Todo to SoConnect. \n"
         + "Parameters: "
         + PREFIX_DESCRIPTION + "DESCRIPTION "
+        + PREFIX_DATE + "DATE "
         + PREFIX_PRIORITY + "PRIORITY "
         + "[" + PREFIX_TAG + "TAG]...\n"
         + "Example: " + COMMAND_WORD + " " + SUB_COMMAND_WORD + " "
-        + PREFIX_DESCRIPTION + "Watch latest math lecture " + PREFIX_PRIORITY + "low\n"
+        + PREFIX_DESCRIPTION + "Watch latest math lecture "
+        + PREFIX_DATE + "25/03/2022 " + PREFIX_PRIORITY + "low\n"
         + COMMAND_WORD + " " + SUB_COMMAND_WORD + " " + PREFIX_DESCRIPTION
-        + "Submit project deliverables for week 10 " + PREFIX_PRIORITY + "high " + PREFIX_TAG + "CS2103T";
+        + "Submit project deliverables for week 10 "
+        + PREFIX_DATE + "21/11/2022" + PREFIX_PRIORITY + "high " + PREFIX_TAG + "CS2103T";
 
     public static final String MESSAGE_SUCCESS = "New Todo added: %1$s";
     public static final String MESSAGE_DUPLICATE_TODO = "This Todo already exists in SoConnect!";

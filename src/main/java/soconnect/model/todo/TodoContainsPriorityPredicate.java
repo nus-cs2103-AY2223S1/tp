@@ -1,9 +1,11 @@
 package soconnect.model.todo;
 
+import java.time.LocalDate;
 import java.util.function.Predicate;
 
 /**
- * Tests that a {@code Todo} is of a certain {@code Priority}.
+ * Tests that a {@code Todo} is of a certain {@code Priority} and
+ * the {@code Date} of the {@code Todo} should not be earlier than the current date.
  */
 public class TodoContainsPriorityPredicate implements Predicate<Todo> {
 
@@ -15,7 +17,9 @@ public class TodoContainsPriorityPredicate implements Predicate<Todo> {
 
     @Override
     public boolean test(Todo todo) {
-        return todo.getPriority().equals(priority);
+        Date now = new Date(LocalDate.now());
+
+        return !todo.isBefore(now) && todo.getPriority().equals(priority);
     }
 
     @Override

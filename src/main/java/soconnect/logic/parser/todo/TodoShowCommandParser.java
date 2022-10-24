@@ -4,14 +4,10 @@ import static java.util.Objects.requireNonNull;
 import static soconnect.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static soconnect.logic.parser.ArgumentTokenizer.PrefixArgument;
 import static soconnect.logic.parser.ArgumentTokenizer.tokenizeToList;
-import static soconnect.logic.parser.CliSyntax.INDICATOR_ALL;
-import static soconnect.logic.parser.CliSyntax.INDICATOR_PRIORITY;
-import static soconnect.logic.parser.CliSyntax.INDICATOR_TAG;
-import static soconnect.logic.parser.CliSyntax.PREFIX_ALL;
-import static soconnect.logic.parser.CliSyntax.PREFIX_PRIORITY;
-import static soconnect.logic.parser.CliSyntax.PREFIX_TAG;
+import static soconnect.logic.parser.CliSyntax.*;
 import static soconnect.model.Model.PREDICATE_SHOW_ALL_TODOS;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import soconnect.logic.commands.todo.TodoShowCommand;
@@ -20,9 +16,7 @@ import soconnect.logic.parser.ParserUtil;
 import soconnect.logic.parser.Prefix;
 import soconnect.logic.parser.exceptions.ParseException;
 import soconnect.model.tag.Tag;
-import soconnect.model.todo.Priority;
-import soconnect.model.todo.TodoContainsPriorityPredicate;
-import soconnect.model.todo.TodoContainsTagPredicate;
+import soconnect.model.todo.*;
 
 /**
  * Parses input arguments and creates a new {@code TodoShowCommand} object.
@@ -39,36 +33,67 @@ public class TodoShowCommandParser implements Parser<TodoShowCommand> {
         requireNonNull(args);
 
         String trimmedArgs = args.trim();
-        if (trimmedArgs.isEmpty()) {
-            throw new ParseException(
-                String.format(MESSAGE_INVALID_COMMAND_FORMAT, TodoShowCommand.MESSAGE_USAGE));
-        }
-
-        List<PrefixArgument> argList = tokenizeToList(args, PREFIX_ALL, PREFIX_PRIORITY,
+        List<PrefixArgument> argList = tokenizeToList(trimmedArgs, PREFIX_DATE, PREFIX_PRIORITY,
             PREFIX_TAG);
 
-        // We only expect 2 arguments from the user: First is the preamble, Second is the filter condition
-        int expectedNumberOfArguments = 2;
-        if (argList.size() != expectedNumberOfArguments) {
-            throw new ParseException(
-                String.format(MESSAGE_INVALID_COMMAND_FORMAT, TodoShowCommand.MESSAGE_USAGE));
-        }
+        PrefixArgument preambleCondition;
 
-        PrefixArgument condition = argList.get(1);
-        return parseShowCondition(condition);
+        System.out.println(argList.get(0).getArgument() + " " +  argList.get(0).getPrefix());
+        switch (argList.size()) {
+        case 1: // Only contains preamble and it's argument
+            preambleCondition = argList.get(0);
+            return parseShowPreambleCondition(preambleCondition);
+        case 2: // First argument is the preamble. Second is the prefix argument
+            preambleCondition = argList.get(0);
+            String preambleArg = preambleCondition.getArgument();
+            if (!preambleArg.isEmpty()) {
+                throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, TodoShowCommand.MESSAGE_USAGE));
+            }
+
+            PrefixArgument prefixCondition = argList.get(1);
+            return parseShowPrefixCondition(prefixCondition);
+        default: // Only accept one condition, either preamble or prefix
+            throw new ParseException(
+                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, TodoShowCommand.MESSAGE_USAGE));
+        }
     }
 
     /**
-     * Parses the filter condition in {@code prefixArg} into a {@code TodoShowCommand}.
+     * Parses the preamble filter condition in {@code prefixArg} into a {@code TodoShowCommand}.
+     *
+     * @param preambleCondition The preamble prefix argument.
+     * @return The {@code TodoShowCommand} with the preamble filter condition.
+     * @throws ParseException If the given {@code prefixArg} is invalid.
      */
-    private TodoShowCommand parseShowCondition(PrefixArgument prefixArg) throws ParseException {
-        Prefix prefix = prefixArg.getPrefix();
-        String arg = prefixArg.getArgument();
+    private TodoShowCommand parseShowPreambleCondition(PrefixArgument preambleCondition) throws ParseException {
+        String arg = preambleCondition.getArgument();
+
+        switch (arg) {
+        case TodoShowCommand.EMPTY_CONDITION:
+            Date currentDate = new Date(LocalDate.now());
+            TodoContainsDatePredicate datePredicate = new TodoContainsDatePredicate(currentDate);
+            return new TodoShowCommand(datePredicate);
+        case TodoShowCommand.ALL_CONDITION:
+            return new TodoShowCommand(PREDICATE_SHOW_ALL_TODOS);
+        default:
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, TodoShowCommand.MESSAGE_USAGE));
+        }
+    }
+
+    /**
+     * Parses the prefix filter condition in {@code prefixArg} into a {@code TodoShowCommand}.
+     *
+     * @param prefixCondition The prefix argument.
+     * @return The {@code TodoShowCommand} with the prefix filter condition.
+     * @throws ParseException If the given {@code prefixArg} is invalid.
+     */
+    private TodoShowCommand parseShowPrefixCondition(PrefixArgument prefixCondition) throws ParseException {
+        Prefix prefix = prefixCondition.getPrefix();
+        String arg = prefixCondition.getArgument();
 
         switch (prefix.getPrefix()) {
-        case INDICATOR_ALL:
-            return new TodoShowCommand(PREDICATE_SHOW_ALL_TODOS);
-
+        case INDICATOR_DATE:
+            parseShowDateCondition(arg);
         case INDICATOR_PRIORITY:
             Priority priority = ParserUtil.parsePriority(arg);
             TodoContainsPriorityPredicate priorityPredicate = new TodoContainsPriorityPredicate(priority);
@@ -84,4 +109,27 @@ public class TodoShowCommandParser implements Parser<TodoShowCommand> {
         }
     }
 
+    /**
+     * Parses the date filter condition in {@code dateArg} into a {@code TodoShowCommand}.
+     *
+     * @param dateArg The argument containing either a date or a date range.
+     * @return The {@code TodoShowCommand} with the date filter condition.
+     * @throws ParseException If the given {@code dateArg} is invalid.
+     */
+    private TodoShowCommand parseShowDateCondition(String dateArg) throws ParseException {
+        String[] dateList = dateArg.split("-", 2);
+        switch (dateList.length) {
+        case 1:
+            Date date = ParserUtil.parseDate(dateList[0]);
+            TodoContainsDatePredicate datePredicate = new TodoContainsDatePredicate(date);
+            return new TodoShowCommand(datePredicate);
+        case 2:
+            List<Date> validDateRange = ParserUtil.parseDateRange(dateList[0], dateList[1]);
+            TodoContainsDateRangePredicate dateRangePredicate = new TodoContainsDateRangePredicate(
+                    validDateRange.get(0), validDateRange.get(1));
+            return new TodoShowCommand(dateRangePredicate);
+        default:
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, TodoShowCommand.MESSAGE_USAGE));
+        }
+    }
 }

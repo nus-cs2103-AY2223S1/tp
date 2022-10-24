@@ -1,8 +1,7 @@
 package soconnect.logic.commands.todo;
 
 import static java.util.Objects.requireNonNull;
-import static soconnect.logic.parser.CliSyntax.PREFIX_PRIORITY;
-import static soconnect.logic.parser.CliSyntax.PREFIX_TAG;
+import static soconnect.logic.parser.CliSyntax.*;
 
 import java.util.function.Predicate;
 
@@ -17,14 +16,19 @@ import soconnect.model.todo.Todo;
 public class TodoShowCommand extends TodoCommand {
 
     public static final String SUB_COMMAND_WORD = "show";
-    public static final String NO_CONDITION = "all";
+
+    public static final String ALL_CONDITION = "all";
+
+    public static final String EMPTY_CONDITION = "";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + " " + SUB_COMMAND_WORD
-        + ": Filters the shown Todo List based on the condition set.\n"
-        + "Conditions (only able to use one at a time): all, " + PREFIX_PRIORITY + "PRIORITY, " + PREFIX_TAG + "TAG\n"
-        + "Parameters: CONDITION\n"
-        + "Example: " + COMMAND_WORD + " " + SUB_COMMAND_WORD + " " + NO_CONDITION
-        + "\n" + COMMAND_WORD + " " + SUB_COMMAND_WORD + " " + PREFIX_PRIORITY + "low";
+        + ": Filters the Todo List based on the condition set, condition can be empty.\n"
+        + "Conditions (at most one condition at a time): " + ALL_CONDITION + ", " + PREFIX_DATE + "DATE, "
+        + PREFIX_DATE + "DATE - DATE, " + PREFIX_PRIORITY + "PRIORITY, " + PREFIX_TAG + "TAG\n"
+        + "Parameters: [CONDITION]\n"
+        + "Example: " + COMMAND_WORD + " " + SUB_COMMAND_WORD + "\n"
+        + COMMAND_WORD + " " + SUB_COMMAND_WORD + " " + PREFIX_DATE + "21/10/2022 - 28/10/2022"
+        + COMMAND_WORD + " " + SUB_COMMAND_WORD + " " + PREFIX_PRIORITY + "low";
 
     private final Predicate<Todo> predicate;
 

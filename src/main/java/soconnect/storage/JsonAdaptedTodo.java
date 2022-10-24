@@ -11,6 +11,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import soconnect.commons.exceptions.IllegalValueException;
 import soconnect.model.tag.Tag;
+import soconnect.model.todo.Date;
 import soconnect.model.todo.Description;
 import soconnect.model.todo.Priority;
 import soconnect.model.todo.Todo;
@@ -23,6 +24,7 @@ class JsonAdaptedTodo {
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "Todo's %s field is missing!";
 
     private final String description;
+    private final String date;
     private final String priority;
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
 
@@ -30,9 +32,11 @@ class JsonAdaptedTodo {
      * Constructs a {@code JsonAdaptedTodo} with the given details.
      */
     @JsonCreator
-    public JsonAdaptedTodo(@JsonProperty("description") String description, @JsonProperty("priority") String priority,
+    public JsonAdaptedTodo(@JsonProperty("description") String description,@JsonProperty("date") String date,
+                           @JsonProperty("priority") String priority,
                            @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
         this.description = description;
+        this.date = date;
         this.priority = priority;
         if (tagged != null) {
             this.tagged.addAll(tagged);
@@ -44,6 +48,7 @@ class JsonAdaptedTodo {
      */
     public JsonAdaptedTodo(Todo source) {
         description = source.getDescription().value;
+        date = source.getDate().date.format(Date.DATE_FORMATTER);
         priority = source.getPriority().priority;
         tagged.addAll(source.getTags().stream()
             .map(JsonAdaptedTag::new)
@@ -62,11 +67,13 @@ class JsonAdaptedTodo {
         }
 
         isDescriptionValid();
+        isDateValid();
         isPriorityValid();
         final Description modelDescription = new Description(description);
+        final Date modelDate = new Date(date);
         final Priority modelPriority = new Priority(priority);
         final Set<Tag> modelTags = new HashSet<>(personTags);
-        return new Todo(modelDescription, modelPriority, modelTags);
+        return new Todo(modelDescription,modelDate, modelPriority, modelTags);
     }
 
     private void isDescriptionValid() throws IllegalValueException {
@@ -76,6 +83,16 @@ class JsonAdaptedTodo {
         }
         if (!Description.isValidDescription(description)) {
             throw new IllegalValueException(Description.MESSAGE_CONSTRAINTS);
+        }
+    }
+
+    private void isDateValid() throws IllegalValueException {
+        if (date == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Date.class.getSimpleName()));
+        }
+
+        if (!Date.isValidDate(date)) {
+            throw new IllegalValueException(Date.MESSAGE_CONSTRAINS);
         }
     }
 
