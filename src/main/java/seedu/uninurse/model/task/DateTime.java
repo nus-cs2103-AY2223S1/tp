@@ -62,4 +62,20 @@ public class DateTime {
     public String toString() {
         return dateTime.format(FORMATTER);
     }
+
+    @Override
+    public boolean equals(Object other) {
+        if (other == this) {
+            return true;
+        }
+
+        if (!(other instanceof DateTime)) {
+            return false;
+        }
+
+        DateTime o = (DateTime) other;
+
+        return this.dateTime.getYear() == o.dateTime.getYear()
+                && this.dateTime.getDayOfYear() == o.dateTime.getDayOfYear();
+    }
 }

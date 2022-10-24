@@ -5,12 +5,14 @@ import static seedu.uninurse.logic.parser.CliSyntax.PREFIX_TASK_DESCRIPTION;
 import static seedu.uninurse.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.uninurse.logic.parser.CommandParserTestUtil.assertParseSuccess;
 import static seedu.uninurse.testutil.Assert.assertThrows;
+import static seedu.uninurse.testutil.TypicalDateTime.DATE_TIME_STRING;
 import static seedu.uninurse.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static seedu.uninurse.testutil.TypicalIndexes.INDEX_FIRST_TASK;
 
 import org.junit.jupiter.api.Test;
 
 import seedu.uninurse.logic.commands.EditTaskCommand;
+import seedu.uninurse.model.task.DateTime;
 import seedu.uninurse.model.task.Task;
 
 /**
@@ -29,10 +31,12 @@ class EditTaskCommandParserTest {
     @Test
     public void parse_patientIndexSpecifiedTaskIndexSpecified_success() {
         String userInput = INDEX_FIRST_PERSON.getOneBased() + " " + INDEX_FIRST_TASK.getOneBased() + " "
-                + PREFIX_TASK_DESCRIPTION + nonEmptyTask;
+                + PREFIX_TASK_DESCRIPTION + nonEmptyTask + " | " + DATE_TIME_STRING;
+
+        System.out.println(userInput);
 
         EditTaskCommand expectedCommand = new EditTaskCommand(INDEX_FIRST_PERSON, INDEX_FIRST_TASK,
-                new Task(nonEmptyTask));
+                new Task(nonEmptyTask, new DateTime(DATE_TIME_STRING)));
 
         assertParseSuccess(parser, userInput, expectedCommand);
     }

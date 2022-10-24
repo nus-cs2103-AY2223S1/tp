@@ -28,6 +28,8 @@ public class AddTaskCommand extends AddGenericCommand {
 
     public static final String MESSAGE_ADD_TASK_SUCCESS = "New task added to %1$s: %2$s";
 
+    public static final String MESSAGE_DUPLICATE_TASK = "This task already exists for this patient";
+
     private final Index index;
     private final Task task;
 
@@ -53,6 +55,11 @@ public class AddTaskCommand extends AddGenericCommand {
         }
 
         Patient personToEdit = lastShownList.get(index.getZeroBased());
+
+        if (personToEdit.getTasks().hasTask(task)) {
+            throw new CommandException(MESSAGE_DUPLICATE_TASK);
+        }
+
         TaskList updatedTaskList = personToEdit.getTasks().add(task);
         Patient editedPerson = new Patient(
                 personToEdit.getName(), personToEdit.getPhone(), personToEdit.getEmail(), personToEdit.getAddress(),

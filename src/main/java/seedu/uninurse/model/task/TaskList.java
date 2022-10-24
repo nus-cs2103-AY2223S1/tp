@@ -118,6 +118,10 @@ public class TaskList implements GenericList<Task> {
         return !this.getAllTasksToday().isEmpty();
     }
 
+    public boolean hasTask(Task task) {
+        return internalTaskList.contains(task);
+    }
+
     @Override
     public String toString() {
         final StringBuilder builder = new StringBuilder();
