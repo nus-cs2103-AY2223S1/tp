@@ -18,8 +18,8 @@ import seedu.address.model.team.Team;
  */
 public class JsonAdaptedTeam {
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "Team's %s field is missing!";
-
     private final String teamName;
+    private final String description;
     private final List<JsonAdaptedPerson> members = new ArrayList<>();
     private final List<JsonAdaptedLink> links = new ArrayList<>();
     private final List<JsonAdaptedTask> taskList = new ArrayList<>();
@@ -29,10 +29,12 @@ public class JsonAdaptedTeam {
      */
     @JsonCreator
     public JsonAdaptedTeam(@JsonProperty("teamName") String teamName,
+                           @JsonProperty("description") String description,
                            @JsonProperty("members") List<JsonAdaptedPerson> members,
                            @JsonProperty("taskList") List<JsonAdaptedTask> taskList,
                            @JsonProperty("links") List<JsonAdaptedLink> links) {
         this.teamName = teamName;
+        this.description = description;
 
         if (members != null) {
             this.members.addAll(members);
@@ -52,6 +54,7 @@ public class JsonAdaptedTeam {
      */
     public JsonAdaptedTeam(Team source) {
         teamName = source.getTeamName();
+        description = source.getDescription();
         members.addAll(source.getTeamMembers().stream()
             .map(JsonAdaptedPerson::new)
             .collect(Collectors.toList()));
@@ -86,6 +89,6 @@ public class JsonAdaptedTeam {
         if (teamName == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Team.class.getSimpleName()));
         }
-        return new Team(teamName, modelMembers, modelTasks, modelLinks);
+        return new Team(teamName, description,  modelMembers, modelTasks, modelLinks);
     }
 }

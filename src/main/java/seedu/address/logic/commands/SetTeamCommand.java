@@ -45,8 +45,9 @@ public class SetTeamCommand extends Command {
         if (currentTeam.equals(targetTeam)) {
             throw new CommandException(MESSAGE_TEAM_ALREADY_SET);
         }
-        model.setTeam(teamList.get(teamIndex));
-        return new CommandResult(String.format(MESSAGE_SET_TEAM_SUCCESS, targetTeam));
+        Team existingTeam = teamList.get(teamIndex);
+        model.setTeam(existingTeam);
+        return new CommandResult(String.format(MESSAGE_SET_TEAM_SUCCESS, existingTeam));
     }
 
     @Override
