@@ -1,6 +1,5 @@
 package seedu.address.logic.parser;
 
-import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE;
 
 import java.util.stream.Stream;
@@ -21,17 +20,14 @@ public class SummaryCommandParser implements Parser<SummaryCommand> {
      */
     @Override
     public SummaryCommand parse(String args) throws ParseException {
-        if (args.isEmpty()) {
-            return new SummaryCommand();
-        }
+
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_DATE);
 
-        if (!argMultimap.getPreamble().isEmpty()) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, SummaryCommand.MESSAGE_USAGE));
+        if (arePrefixesPresent(argMultimap, PREFIX_DATE)) {
+            Date date = ParserUtil.parseDate(argMultimap.getValue(PREFIX_DATE).get());
+            return new SummaryCommand(date);
         }
-
-        Date date = ParserUtil.parseDate(argMultimap.getValue(PREFIX_DATE).get());
-        return new SummaryCommand(date);
+        return new SummaryCommand();
     }
 
     /**
