@@ -104,6 +104,13 @@ public class UniquePersonList implements Iterable<Person> {
         return internalUnmodifiableList;
     }
 
+//    /**
+//     * Returns the sorted backing list as an unmodifiable {@code ObservableList}
+//     */
+//    public ObservableList<Person> asSortedUnmodifiableObservableList() {
+//        internalUnmodifiableList.sorted();
+//    }
+
     @Override
     public Iterator<Person> iterator() {
         return internalList.iterator();

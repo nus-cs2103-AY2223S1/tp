@@ -3,15 +3,18 @@ package seedu.address.model;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.fail;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalPersons.ALICE;
+import static seedu.address.testutil.TypicalPersons.BOB;
 import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
+import java.util.Iterator;
 import java.util.List;
 
 import org.junit.jupiter.api.Test;
@@ -19,6 +22,7 @@ import org.junit.jupiter.api.Test;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.address.model.person.Person;
+import seedu.address.model.person.UniquePersonList;
 import seedu.address.model.person.exceptions.DuplicatePersonException;
 import seedu.address.testutil.PersonBuilder;
 
@@ -28,7 +32,7 @@ public class AddressBookTest {
 
     @Test
     public void constructor() {
-        assertEquals(Collections.emptyList(), addressBook.getPersonList());
+        assertEquals(Collections.emptyList(), addressBook.getSortedPersonList());
     }
 
     @Test
@@ -80,7 +84,37 @@ public class AddressBookTest {
 
     @Test
     public void getPersonList_modifyList_throwsUnsupportedOperationException() {
-        assertThrows(UnsupportedOperationException.class, () -> addressBook.getPersonList().remove(0));
+        assertThrows(UnsupportedOperationException.class, () -> addressBook.getSortedPersonList().remove(0));
+    }
+
+    @Test
+    public void getPersonList_modifyList_listIsSorted() {
+        assertSorted(addressBook.getSortedPersonList());
+
+        addressBook.addPerson(ALICE);
+        assertSorted(addressBook.getSortedPersonList());
+
+        addressBook.addPerson(BOB);
+        assertSorted(addressBook.getSortedPersonList());
+
+        addressBook.removePerson(ALICE);
+        assertSorted(addressBook.getSortedPersonList());
+    }
+
+    private void assertSorted(ObservableList<Person> list) {
+        Iterator<Person> iterator = list.iterator();
+        Person prev = null;
+        while (iterator.hasNext()) {
+            if (prev == null) {
+                prev = iterator.next();
+                continue;
+            }
+
+            Person current = iterator.next();
+            if (current.compareTo(prev) < 0) {
+                fail("List is not sorted.");
+            }
+        }
     }
 
     /**
@@ -94,7 +128,7 @@ public class AddressBookTest {
         }
 
         @Override
-        public ObservableList<Person> getPersonList() {
+        public ObservableList<Person> getSortedPersonList() {
             return persons;
         }
     }
