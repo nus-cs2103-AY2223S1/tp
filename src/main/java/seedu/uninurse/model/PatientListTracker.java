@@ -5,7 +5,6 @@ import java.util.List;
 import java.util.Optional;
 
 import seedu.uninurse.model.person.Patient;
-import seedu.uninurse.ui.PersonCard;
 
 /**
  * Represents the patients added and deleted in an undoable command.
