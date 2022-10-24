@@ -32,6 +32,10 @@ public class DatetimeCommonUtils {
     public static final String TIMERANGE_FORMAT_REGEX = TIME_FORMAT_REGEX + "-" + TIME_FORMAT_REGEX;
     public static final String TIMERANGE_MESSAGE_CONSTRAINTS =
             "Time range should be in HH:mm-HH:mm format, e.g. 08:00-09:00";
+    public static final String TIMERANGE_MESSAGE_CONSTRAINTS_NONSENSICAL =
+            "Time range should be in HH:mm-HH:mm format, and it must be valid!";
+    public static final String TIMERANGE_MESSAGE_CONSTRAINTS_START_END =
+            "Time range is invalid as the start time should not be after the end time!";
 
     public static final String DAY_FORMAT = "d";
     public static final String DAY_FORMAT_REGEX = "[1-7]";
@@ -48,20 +52,7 @@ public class DatetimeCommonUtils {
     public static final String DATETIME_MESSAGE_CONSTRAINTS =
             "Datetime should be in yyyy-MM-dd HH:mm format, e.g. 2022-01-01 08:00";
 
-    public static final String TIMESLOT_MESSAGE_CONSTRAINTS =
-            "The start time should not be after the end time!";
 
-    /**
-     * Checks whether the start time and end time is logically valid
-     * @param startTime Start time
-     * @param endTime End time
-     * @throws ParseException If the start time is after end time
-     */
-    public static void assertTimeRangeValid(LocalTime startTime, LocalTime endTime) throws ParseException {
-        if (!endTime.isAfter(startTime)) {
-            throw new ParseException(TIMESLOT_MESSAGE_CONSTRAINTS);
-        }
-    }
 
     /**
      * Converts a DayOfWeek to a readable form, e.g. Mon, Tue
@@ -70,6 +61,41 @@ public class DatetimeCommonUtils {
      */
     public static String dayOfWeekToReadable(DayOfWeek day) {
         return day.getDisplayName(TextStyle.SHORT, Locale.getDefault());
+    }
+
+    /**
+     * Splits a time range string by the hyphen "-".
+     * Checks whether the start time and end time is logically valid
+     *
+     * @param timeRangeString  String to be split
+     * @throws ParseException If the string does not appear to be a time range
+     */
+    public static String[] splitTimeRangeString(String timeRangeString) throws ParseException {
+        if (!timeRangeString.matches(TIMERANGE_FORMAT_REGEX)) {
+            throw new ParseException(TIMERANGE_MESSAGE_CONSTRAINTS);
+        }
+        return timeRangeString.trim().split("-");
+    }
+
+    /**
+     * Checks whether the time range strings are valid.
+     * The strings must be parsable by LocalTime, and the start time must not be after end time.
+     *
+     * @param startTimeString Start time
+     * @param endTimeString End time
+     * @throws ParseException If the time range is invalid.
+     */
+    public static void assertTimeRangeValid(String startTimeString, String endTimeString) throws ParseException {
+        LocalTime startTime, endTime;
+        try {
+            startTime = LocalTime.parse(startTimeString, TIME_FORMATTER);
+            endTime = LocalTime.parse(endTimeString, TIME_FORMATTER);
+        } catch (Exception er) {
+            throw new ParseException(TIMERANGE_MESSAGE_CONSTRAINTS_NONSENSICAL);
+        }
+        if (!endTime.isAfter(startTime)) {
+            throw new ParseException(TIMERANGE_MESSAGE_CONSTRAINTS_START_END);
+        }
     }
 
     /**
@@ -105,15 +131,8 @@ public class DatetimeCommonUtils {
             throw new ParseException(DATE_MESSAGE_CONSTRAINTS);
         }
 
-        if (!timeRange.matches(TIMERANGE_FORMAT_REGEX)) {
-            throw new ParseException(TIMERANGE_MESSAGE_CONSTRAINTS);
-        }
-        String[] times = timeRange.trim().split("-");
-
-        LocalTime startTime = LocalTime.parse(times[0], TIME_FORMATTER);
-        LocalTime endTime = LocalTime.parse(times[1], TIME_FORMATTER);
-        assertTimeRangeValid(startTime, endTime);
-
+        String[] times = splitTimeRangeString(timeRange);
+        assertTimeRangeValid(times[0], times[1]);
         return DatetimeRange.fromFormattedString(date, times[0], times[1]);
     }
 
@@ -131,15 +150,8 @@ public class DatetimeCommonUtils {
             throw new ParseException(DAY_MESSAGE_CONSTRAINTS);
         }
 
-        if (!timeslot.matches(TIMERANGE_FORMAT_REGEX)) {
-            throw new ParseException(TIMERANGE_MESSAGE_CONSTRAINTS);
-        }
-        String[] times = timeslot.trim().split("-");
-
-        LocalTime startTime = LocalTime.parse(times[0], TIME_FORMATTER);
-        LocalTime endTime = LocalTime.parse(times[1], TIME_FORMATTER);
-        assertTimeRangeValid(startTime, endTime);
-
+        String[] times = splitTimeRangeString(timeslot);
+        assertTimeRangeValid(times[0], times[1]);
         return WeeklyTimeslot.fromFormattedString(dayString, times[0], times[1]);
     }
 }
