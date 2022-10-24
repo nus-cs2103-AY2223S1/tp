@@ -27,6 +27,7 @@ import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.message.Message;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.person.Person;
+import seedu.address.model.person.TargetPerson;
 import seedu.address.model.quote.Quote;
 import seedu.address.model.reminder.ReadOnlyReminderList;
 import seedu.address.model.reminder.Reminder;
@@ -262,7 +263,7 @@ public class CommandTestUtil {
         }
 
         @Override
-        public ObservableList<Person> getTargetPersonAsObservableList() {
+        public TargetPerson getObservableTargetPerson() {
             throw new AssertionError("This method should not be called.");
         }
 

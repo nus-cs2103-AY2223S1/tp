@@ -138,12 +138,6 @@ public class ModelManagerTest {
     }
 
     @Test
-    public void getTargetPersonAsObservableList_modifyList_throwsUnsupportedOperationException() {
-        assertThrows(UnsupportedOperationException.class, () ->
-                modelManager.getTargetPersonAsObservableList().remove(0));
-    }
-
-    @Test
     public void setTargetPerson_setPersonAsTarget_personIsSetAsTargetPerson() {
         modelManager.setTargetPerson(ALICE);
         assertTrue(modelManager.isTargetPerson(ALICE));
