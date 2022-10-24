@@ -18,9 +18,9 @@ import seedu.address.logic.commands.AddTaskCommand;
  */
 public class AddTaskCommandParserTest {
 
-    String[] assignees = {};
     private static final String PLACEHOLDER_TASK = "-n \"Test task\"";
     private static final String PLACEHOLDER_TASK_NAME = "Test task";
+    private String[] assignees = {};
 
     private AddTaskCommandParser parser = new AddTaskCommandParser();
 
