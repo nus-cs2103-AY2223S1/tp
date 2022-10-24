@@ -86,10 +86,6 @@ public class AddCommandParserTest {
         assertParseFailure(parser, NAME_DESC_BETA + VALID_MODULE_BETA + DEADLINE_DESC_BETA,
                 expectedMessage);
 
-        // missing deadline prefix
-        assertParseFailure(parser, NAME_DESC_BETA + MODULE_DESC_BETA + VALID_DEADLINE_BETA,
-                expectedMessage);
-
         // all prefixes missing
         assertParseFailure(parser, VALID_NAME_TASK_BETA + VALID_MODULE_BETA + VALID_DEADLINE_BETA,
                 expectedMessage);

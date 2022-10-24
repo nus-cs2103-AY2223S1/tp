@@ -51,7 +51,7 @@ class JsonAdaptedPerson {
     public JsonAdaptedPerson(Task source) {
         name = source.getName().fullName;
         module = source.getModule().fullName;
-        deadline = source.getDeadline().date;
+        deadline = source.getDeadline().value;
         tagged.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));

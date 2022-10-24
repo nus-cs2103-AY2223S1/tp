@@ -31,7 +31,7 @@ public class PersonUtil {
         StringBuilder sb = new StringBuilder();
         sb.append(PREFIX_NAME + task.getName().fullName + " ");
         sb.append(PREFIX_MODULE + task.getModule().fullName + " ");
-        sb.append(PREFIX_DEADLINE + task.getDeadline().date + " ");
+        sb.append(PREFIX_DEADLINE + task.getDeadline().value + " ");
         task.getTags().stream().forEach(
             s -> sb.append(PREFIX_TAG + s.tagName + " ")
         );
@@ -45,7 +45,7 @@ public class PersonUtil {
         StringBuilder sb = new StringBuilder();
         descriptor.getName().ifPresent(name -> sb.append(PREFIX_NAME).append(name.fullName).append(" "));
         descriptor.getModule().ifPresent(module -> sb.append(PREFIX_MODULE).append(module.fullName).append(" "));
-        descriptor.getDeadline().ifPresent(deadline -> sb.append(PREFIX_DEADLINE).append(deadline.date).append(" "));
+        descriptor.getDeadline().ifPresent(deadline -> sb.append(PREFIX_DEADLINE).append(deadline.value).append(" "));
         if (descriptor.getTags().isPresent()) {
             Set<Tag> tags = descriptor.getTags().get();
             if (tags.isEmpty()) {
