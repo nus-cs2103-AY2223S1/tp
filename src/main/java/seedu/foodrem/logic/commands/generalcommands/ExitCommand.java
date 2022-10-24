@@ -36,7 +36,12 @@ public class ExitCommand extends Command {
                 }
 
                 CommandResult<?> asType = (CommandResult<?>) other;
-                return super.equals(asType);
+                try {
+                    return getOutput().equals(asType.getOutput())
+                            && super.equals(asType);
+                } catch (UnsupportedOperationException e) {
+                    return false;
+                }
             }
         };
     }
