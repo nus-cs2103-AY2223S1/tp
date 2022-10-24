@@ -2,6 +2,7 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_CLASS_GROUP;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_HANDLE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ID;
@@ -42,7 +43,9 @@ public class AddStuCommand extends Command {
             + PREFIX_TAG + "owesMoney "
             + PREFIX_ID + "A0123456G "
             + PREFIX_HANDLE + "@good_student "
-            + PREFIX_MODULE_CODE + "CS1101S ";
+            + PREFIX_MODULE_CODE + "CS2030S "
+            + PREFIX_STUDENT_TA + "CS1101S "
+            + PREFIX_CLASS_GROUP + "CS2030S:Tut07";
 
     public static final String MESSAGE_SUCCESS = "New student added: %1$s";
     public static final String MESSAGE_DUPLICATE_STUDENT = "This student already exists in profNus";

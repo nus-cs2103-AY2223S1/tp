@@ -18,6 +18,8 @@ public class Student extends Person {
     private final TelegramHandle telegramHandle;
     private final Set<ModuleCode> studentModuleInfo = new HashSet<>();
     private final Set<ModuleCode> teachingAssistantInfo = new HashSet<>();
+    private final Set<String> classGroups = new HashSet<>();
+
     /**
      * Every field must be present and not null.
      *
@@ -26,16 +28,22 @@ public class Student extends Person {
      * @param email
      * @param address
      * @param tags
+     * @param id
+     * @param telegramHandle
+     * @param studentModuleInfo
+     * @param teachingAssistantInfo
+     * @param classGroups
      */
     public Student(Name name, Phone phone, Email email, Address address, Set<Tag> tags, StudentId id,
                    TelegramHandle telegramHandle, Set<ModuleCode> studentModuleInfo,
-                   Set<ModuleCode> teachingAssistantInfo) {
+                   Set<ModuleCode> teachingAssistantInfo, Set<String> classGroups) {
         super(name, phone, email, address, tags);
         requireAllNonNull(id, telegramHandle, studentModuleInfo);
         this.id = id;
         this.telegramHandle = telegramHandle;
         this.studentModuleInfo.addAll(studentModuleInfo);
         this.teachingAssistantInfo.addAll(teachingAssistantInfo);
+        this.classGroups.addAll(classGroups);
     }
 
     public StudentId getId() {
@@ -56,6 +64,10 @@ public class Student extends Person {
 
     public Set<ModuleCode> getTeachingAssistantInfo() {
         return Collections.unmodifiableSet(teachingAssistantInfo);
+    }
+
+    public Set<String> getClassGroups() {
+        return Collections.unmodifiableSet(classGroups);
     }
 
     /**
@@ -105,6 +117,11 @@ public class Student extends Person {
         if (!taInfo.isEmpty()) {
             builder.append("; Teaching Assistant Info: ");
             taInfo.forEach(builder::append);
+        }
+        Set<String> classGroups = getClassGroups();
+        if (!classGroups.isEmpty()) {
+            builder.append("; Class groups: ");
+            classGroups.forEach(builder::append);
         }
         return builder.toString();
     }

@@ -26,6 +26,7 @@ public class JsonAdaptedStudent extends JsonAdaptedPerson {
     private final String handle;
     private final List<JsonAdaptedModuleCode> info = new ArrayList<>();
     private final List<JsonAdaptedModuleCode> teaching = new ArrayList<>();
+    private final List<String> classGroups = new ArrayList<>();
 
     /**
      * Constructs a {@code JsonAdaptedStudent} with the given student details.
@@ -41,7 +42,8 @@ public class JsonAdaptedStudent extends JsonAdaptedPerson {
                               @JsonProperty("tagged") List<JsonAdaptedTag> tagged,
                               @JsonProperty("ID") String id, @JsonProperty("handle") String handle,
                               @JsonProperty("info") List<JsonAdaptedModuleCode> info,
-                              @JsonProperty("teaching") List<JsonAdaptedModuleCode> teaching) {
+                              @JsonProperty("teaching") List<JsonAdaptedModuleCode> teaching,
+                              @JsonProperty("classGroups") List<String> classGroups) {
         super(name, phone, email, address, tagged);
         this.id = id;
         this.handle = handle;
@@ -50,6 +52,9 @@ public class JsonAdaptedStudent extends JsonAdaptedPerson {
         }
         if (teaching != null) {
             this.teaching.addAll(teaching);
+        }
+        if (classGroups != null) {
+            this.classGroups.addAll(classGroups);
         }
     }
 
@@ -67,6 +72,8 @@ public class JsonAdaptedStudent extends JsonAdaptedPerson {
                 .collect(Collectors.toList()));
         teaching.addAll(((Student) source).getTeachingAssistantInfo().stream()
                 .map(JsonAdaptedModuleCode::new)
+                .collect(Collectors.toList()));
+        classGroups.addAll(((Student) source).getClassGroups().stream()
                 .collect(Collectors.toList()));
     }
 
@@ -108,9 +115,15 @@ public class JsonAdaptedStudent extends JsonAdaptedPerson {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, "TA"));
         }
 
+        if (classGroups == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, "Class Group"));
+        }
+
         final Set<ModuleCode> modelCodes = new HashSet<>(moduleCodes);
         final Set<ModuleCode> modelModuleCodes = new HashSet<>(moduleTeachingCodes);
+        final Set<String> modelClassGroups = new HashSet<>(classGroups);
         return new Student(person.getName(), person.getPhone(), person.getEmail(), person.getAddress(),
-                person.getTags(), modelStudentId, modelTelegramHandle, modelCodes, modelModuleCodes);
+                person.getTags(), modelStudentId, modelTelegramHandle, modelCodes, modelModuleCodes,
+                modelClassGroups);
     }
 }

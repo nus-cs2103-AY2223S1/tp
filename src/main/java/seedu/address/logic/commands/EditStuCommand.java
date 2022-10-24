@@ -132,9 +132,12 @@ public class EditStuCommand extends Command {
                 .orElse(studentToEdit.getStudentModuleInfo());
         Set<ModuleCode> updatedTeachingAssistantInfo = editStudentDescriptor.getTeachingAssistantInfo()
                 .orElse(studentToEdit.getTeachingAssistantInfo());
+        Set<String> updatedClassGroups = editStudentDescriptor.getClassGroups()
+                .orElse(studentToEdit.getClassGroups());
 
         return new Student(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTags,
-                updatedId, updatedHandle, updatedStudentModuleInformation, updatedTeachingAssistantInfo);
+                updatedId, updatedHandle, updatedStudentModuleInformation, updatedTeachingAssistantInfo,
+                updatedClassGroups);
     }
 
     @Override
@@ -169,6 +172,7 @@ public class EditStuCommand extends Command {
         private TelegramHandle telegramHandle;
         private Set<ModuleCode> studentModuleInfo;
         private Set<ModuleCode> teachingAssistantInfo;
+        private Set<String> classGroups;
 
         public EditStudentDescriptor() {}
 
@@ -186,6 +190,7 @@ public class EditStuCommand extends Command {
             setTelegramHandle(toCopy.telegramHandle);
             setStudentModuleInfo(toCopy.studentModuleInfo);
             setTeachingAssistantInfo(toCopy.teachingAssistantInfo);
+            setClassGroups(toCopy.classGroups);
         }
 
         /**
@@ -193,7 +198,7 @@ public class EditStuCommand extends Command {
          */
         public boolean isAnyFieldEdited() {
             return CollectionUtil.isAnyNonNull(name, phone, email, address, tags, id,
-                    telegramHandle, studentModuleInfo, teachingAssistantInfo);
+                    telegramHandle, studentModuleInfo, teachingAssistantInfo, classGroups);
         }
 
         public void setName(Name name) {
@@ -288,13 +293,31 @@ public class EditStuCommand extends Command {
         }
 
         /**
-         * Returns an unmodifiable tag set, which throws {@code UnsupportedOperationException}
+         * Returns an unmodifiable ModuleCode set, which throws {@code UnsupportedOperationException}
          * if modification is attempted.
          * Returns {@code Optional#empty()} if {@code studentModuleInfo} is null.
          */
         public Optional<Set<ModuleCode>> getTeachingAssistantInfo() {
             return (teachingAssistantInfo != null)
                     ? Optional.of(Collections.unmodifiableSet(teachingAssistantInfo)) : Optional.empty();
+        }
+
+        /**
+         * Sets {@code classGroups} to this object's {@code teachingAssistantInfo}.
+         * A defensive copy of {@code moduleCodes} is used internally.
+         */
+        public void setClassGroups(Set<String> classGroups) {
+            this.classGroups = (classGroups != null) ? new HashSet<>(classGroups) : null;
+        }
+
+        /**
+         * Returns an unmodifiable String set, which throws {@code UnsupportedOperationException}
+         * if modification is attempted.
+         * Returns {@code Optional#empty()} if {@code classGroups} is null.
+         */
+        public Optional<Set<String>> getClassGroups() {
+            return (classGroups != null)
+                    ? Optional.of(Collections.unmodifiableSet(classGroups)) : Optional.empty();
         }
 
         @Override

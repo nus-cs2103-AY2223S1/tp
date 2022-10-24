@@ -3,6 +3,7 @@ package seedu.address.logic.parser;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_CLASS_GROUP;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_HANDLE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ID;
@@ -39,7 +40,7 @@ public class EditTaParser implements Parser<EditTeachingAssistantCommand> {
         requireNonNull(args);
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS, PREFIX_TAG,
-                        PREFIX_ID, PREFIX_HANDLE, PREFIX_MODULE_CODE, PREFIX_STUDENT_TA);
+                        PREFIX_ID, PREFIX_HANDLE, PREFIX_MODULE_CODE, PREFIX_STUDENT_TA, PREFIX_CLASS_GROUP);
 
         Index index;
 
@@ -74,6 +75,8 @@ public class EditTaParser implements Parser<EditTeachingAssistantCommand> {
                 .ifPresent(editStudentDescriptor::setStudentModuleInfo);
         parseTeachingAssistantInfoForEdit(argMultimap.getAllValues(PREFIX_STUDENT_TA))
                 .ifPresent(editStudentDescriptor::setTeachingAssistantInfo);
+        parseClassGroupsForEdit(argMultimap.getAllValues(PREFIX_CLASS_GROUP))
+                .ifPresent(editStudentDescriptor::setClassGroups);
 
         if (!editStudentDescriptor.isAnyFieldEdited()) {
             throw new ParseException(EditStuCommand.MESSAGE_NOT_EDITED);
@@ -131,4 +134,20 @@ public class EditTaParser implements Parser<EditTeachingAssistantCommand> {
         return Optional.of(ParserUtil.parseTeachingAssistantInfo(moduleSet));
     }
 
+    /**
+     * Parses {@code Collection<String> classGroups} into a {@code Set<String>} if {@code classGroup} is non-empty.
+     * If {@code classGroup} contain only one element which is an empty string, it will be parsed into a
+     * {@code Set<String>} containing zero tags.
+     */
+    private Optional<Set<String>> parseClassGroupsForEdit(Collection<String> classGroups)
+            throws ParseException {
+        assert classGroups != null;
+
+        if (classGroups.isEmpty()) {
+            return Optional.empty();
+        }
+        Collection<String> classGroupsSet = classGroups.size() == 1
+                && classGroups.contains("") ? Collections.emptySet() : classGroups;
+        return Optional.of(ParserUtil.parseClassGroups(classGroupsSet));
+    }
 }
