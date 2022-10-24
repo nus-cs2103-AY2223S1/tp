@@ -16,14 +16,14 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.stage.Stage?>
 
-<fx:root minHeight="550.0" minWidth="950.0" onCloseRequest="#handleExit" title="myStudent" type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
+<fx:root maxHeight="610.0" maxWidth="950.0" minHeight="610.0" minWidth="950.0" onCloseRequest="#handleExit" title="myStudent" type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
     <icons>
         <Image url="@/images/address_book_32.png" />
     </icons>
     <scene>
         <Scene>
 
-            <VBox minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="950.0" styleClass="background">
+            <VBox minHeight="-Infinity" minWidth="-Infinity" prefHeight="580.0" prefWidth="950.0" styleClass="background">
                 <MenuBar fx:id="menuBar" VBox.vgrow="NEVER">
                     <Menu mnemonicParsing="false" text="    File    ">
                   <MenuItem mnemonicParsing="false" onAction="#handleExport" text="Export" />
@@ -67,7 +67,7 @@
                               <Insets />
                            </VBox.margin>
                         </VBox>
-                        <StackPane id="entityDescriptionPanel" fx:id="entityDescriptionPlaceholder" minHeight="-Infinity" minWidth="-Infinity" prefHeight="240.0" prefWidth="500.0">
+                        <StackPane id="entityDescriptionPanel" fx:id="entityDescriptionPlaceholder" minHeight="-Infinity" minWidth="-Infinity" prefHeight="310.0" prefWidth="500.0">
                            <padding>
                               <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                            </padding>
@@ -112,7 +112,7 @@
                                     </Button>
                                         </children>
                                  <padding>
-                                    <Insets left="30.0" right="10.0" top="10.0" />
+                                    <Insets left="15.0" right="10.0" top="10.0" />
                                  </padding>
                                     </HBox>
                                 </children>
@@ -120,7 +120,7 @@
                               <Insets />
                            </VBox.margin>
                             </StackPane>
-                                  <VBox id="entityList" fx:id="personList" minWidth="-Infinity" prefHeight="460.0" prefWidth="390.0">
+                                  <VBox id="entityList" fx:id="personList" minWidth="-Infinity" prefHeight="483.0" prefWidth="390.0">
                                 <padding>
                                     <Insets bottom="10" left="10" right="10" top="10" />
                                 </padding>

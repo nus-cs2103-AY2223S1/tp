@@ -30,6 +30,12 @@
             <FlowPane fx:id="tags" />
             </children>
          </HBox>
+         <HBox prefHeight="0.0" prefWidth="130.0" spacing="5.0">
+            <children>
+               <Label styleClass="prefix-label" text="Class:" />
+               <FlowPane fx:id="classes" orientation="VERTICAL" prefHeight="0.0" prefWidth="130.0" />
+            </children>
+         </HBox>
          <HBox alignment="CENTER_LEFT" spacing="5">
             <children>
                <Label styleClass="prefix-label" text="Phone:" />
@@ -60,12 +66,16 @@
             <Label fx:id="school" styleClass="cell_small_label" text="\$school" />
             </children>
          </HBox>
-         <Label styleClass="prefix-label" text="Class:" />
-         <StackPane fx:id="belongedClassListPlaceholder" VBox.vgrow="ALWAYS">
+         <Label prefHeight="17.0" prefWidth="85.0" styleClass="prefix-label" text="Next Of Kin:" />
+         <HBox prefHeight="0.0" prefWidth="130.0">
             <children>
-               <FlowPane fx:id="classes" prefHeight="0.0" prefWidth="130.0" />
+               <StackPane id="nextOfKinEmpty" fx:id="nextOfKinPlaceholder" prefHeight="0.0" prefWidth="130.0">
+                  <children>
+                     <Label alignment="CENTER" contentDisplay="CENTER" minHeight="-Infinity" minWidth="-Infinity" prefHeight="95.0" prefWidth="270.0" text="Next of Kin to Be Added" textAlignment="CENTER" />
+                  </children>
+               </StackPane>
             </children>
-         </StackPane>
+         </HBox>
     </VBox>
       <rowConstraints>
          <RowConstraints />

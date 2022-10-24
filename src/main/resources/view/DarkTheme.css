@@ -144,11 +144,6 @@
     -fx-background-color: #515658;
 }
 
-.list-cell:filled:selected {
-    -fx-background-insets: 5;
-    -fx-background-color: #424d5f;
-}
-
 .list-cell .label {
     -fx-text-fill: white;
 }
@@ -281,33 +276,33 @@
  */
 .button {
     -fx-font-family: "Segoe UI", Helvetica, Arial, sans-serif;
-    -fx-background-color: #3a3a3a;
+    -fx-background-color: derive(#1d1d1d, 20%);
     -fx-font-size: 11pt;
     -fx-text-fill: #d8d8d8;
 }
 
 .button:hover {
-    -fx-background-color: derive(#1d1d1d, 50%);
+    -fx-background-color: derive(#1d1d1d, 20%);
 }
 
 .button:pressed, .button:default:hover:pressed {
-  -fx-background-color: derive(#1d1d1d, 50%);
+  -fx-background-color: derive(#1d1d1d, 20%);
   -fx-text-fill: #1d1d1d;
 }
 
 .button:disabled, .button:default:disabled {
     -fx-opacity: 0.4;
-    -fx-background-color: #1d1d1d;
+    -fx-background-color: derive(#1d1d1d, 20%);
     -fx-text-fill: white;
 }
 
 .button:default {
-    -fx-background-color: -fx-focus-color;
+    -fx-background-color: derive(#1d1d1d, 20%);
     -fx-text-fill: #ffffff;
 }
 
 .button:default:hover {
-    -fx-background-color: derive(-fx-focus-color, 30%);
+    -fx-background-color: derive(-fx-focus-color, 20%);
 }
 
 .dialog-pane {
@@ -373,12 +368,45 @@
 
 #entityDescription .label {
     -fx-text-fill: white;
-    -fx-alignment: center-left;
 }
 
 #entityList {
     -fx-background-color: derive(#1d1d1d, 15%);
+    -fx-background-radius: 10;
+}
+
+
+#nextOfKinDescription {
+    -fx-background-color: derive(#1d1d1d, 10%);
     -fx-background-radius: 5;
+}
+
+#nextOfKinDescription .label {
+    -fx-font-family: "Segoe UI Light";
+    -fx-text-fill: white;
+    -fx-font-size: 12px;
+}
+
+#nextOfKinEmpty {
+    -fx-background-color: derive(#1d1d1d, 10%);
+    -fx-background-radius: 5;
+}
+
+#nextOfKinEmpty .label {
+    -fx-font-family: "Segoe UI Light";
+    -fx-text-fill: white;
+    -fx-font-size: 12px;
+}
+
+#nokTags {
+    -fx-hgap: 5;
+    -fx-vgap: 0;
+}
+
+#nokTags .label {
+    -fx-font-family: "Segoe UI Light";
+    -fx-text-fill: white;
+    -fx-font-size: 12px;
 }
 
 #cardPane {
@@ -398,7 +426,7 @@
     -fx-font-family: "Segoe UI Light";
     -fx-font-size: 11pt;
     -fx-text-fill: white;
-    -fx-accent: derive(#1d1d1d, 50%);
+    -fx-accent: derive(#1d1d1d, 60%);
 }
 
 #commandBox {
