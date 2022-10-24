@@ -40,7 +40,7 @@ public class OfficeHour {
 
     /**
      * @param officeHour A valid office hour.
-     * @param isPresent Whether prefix was present in user input.
+     * @param isPresent  Whether prefix was present in user input.
      */
     public OfficeHour(String officeHour, boolean isPresent) {
         requireNonNull(officeHour);
@@ -54,6 +54,7 @@ public class OfficeHour {
 
     /**
      * Returns true if a given string is a valid office hour.
+     *
      * @param test target string
      * @return true if test is a valid officeHour
      */
@@ -63,6 +64,7 @@ public class OfficeHour {
 
     /**
      * Returns true if a given string matches instruction format.
+     *
      * @param test target string
      * @return true if a given string is a correct instruction
      */
@@ -81,20 +83,25 @@ public class OfficeHour {
                 || (other instanceof OfficeHour
                 && value.equals(((OfficeHour) other).value));
     }
+
     @Override
     public int hashCode() {
         return value.hashCode();
     }
 
     public String getUserInput() throws ParseException {
-        String[] seperateDay = value.split(", ");
-        int dayofWeek = DayOfWeek.valueOf(seperateDay[0]).getValue();
-        String[] seperateTime = seperateDay[1].split(" - ");
-        DateFormat formatter = new SimpleDateFormat("hh:mm a");
-        Date date1 = formatter.parse(seperateTime[0]);
-        Date date2 = formatter.parse(seperateTime[1]);
-        long difference = (date2.getTime() - date1.getTime())/ 3600000;
-        String startTime = new SimpleDateFormat("kk:mm").format(date1);
-        return String.format("%s-%s-%o", dayofWeek, startTime, difference);
+        if (!value.isEmpty()) {
+            String[] seperateDay = value.split(", ");
+            int dayofWeek = DayOfWeek.valueOf(seperateDay[0]).getValue();
+            String[] seperateTime = seperateDay[1].split(" - ");
+            DateFormat formatter = new SimpleDateFormat("hh:mm a");
+            Date date1 = formatter.parse(seperateTime[0]);
+            Date date2 = formatter.parse(seperateTime[1]);
+            long difference = (date2.getTime() - date1.getTime()) / 3600000;
+            String startTime = new SimpleDateFormat("kk:mm").format(date1);
+            return String.format("%s-%s-%o", dayofWeek, startTime, difference);
+        } else {
+            return "";
+        }
     }
 }
