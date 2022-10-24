@@ -86,8 +86,17 @@ public interface Model {
 
     void updateFilteredPersonList(Predicate<Task> predicate);
 
+    /**
+     * Updates filter status of the tasklist view.
+     * @param filter status of the tasklist view.
+     */
     void updateFilterStatus(String filter);
 
+    /**
+     * Updates filter status of the tasklist view.
+     * @param filter status of the tasklist view.
+     * @param newFilterSet to reset filter set.
+     */
     void updateFilterStatus(String filter, boolean newFilterSet);
 
     /**
@@ -95,9 +104,4 @@ public interface Model {
      * @return Returns filter status of the tasklist.
      */
     String getFilterStatus();
-
-    /**
-     * Updates filter status of the tasklist view.
-     * @param filter status of the tasklist view.
-     */
 }
