@@ -7,8 +7,8 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_DATETIME_22_JAN
 import static seedu.address.logic.commands.CommandTestUtil.VALID_DATETIME_30_MAR_2024;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_LOCATION_NUS;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_LOCATION_JURONGPOINT;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_LOCATION_NUS;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_LOCATION_WESTMALL;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_MONTHLY_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_MONTHLY_BOB;
