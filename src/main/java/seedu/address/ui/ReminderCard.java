@@ -43,7 +43,24 @@ public class ReminderCard extends UiPart<Region> {
         name.setText(reminder.getName().fullName);
         deadline.setText(reminder.getDeadline().deadline);
         priority.setText(reminder.getPriority().priority);
+        setPriorityStyle(reminder.getPriority().priority);
         description.setText(reminder.getDescription().description);
+    }
+
+    public void setPriorityStyle(String priorityType) {
+        switch (priorityType) {
+        case "HIGH":
+            priority.getStyleClass().add("cell_priority_high");
+            break;
+        case "MEDIUM":
+            priority.getStyleClass().add("cell_priority_medium");
+            break;
+        case "LOW":
+            priority.getStyleClass().add("cell_priority_low");
+            break;
+        default:
+            break;
+        }
     }
 
     @Override

@@ -26,10 +26,10 @@
           </minWidth>
         </Label>
         <Label fx:id="name" text="\$first" styleClass="cell_big_label" />
+        <Label fx:id="priority" styleClass="cell_with_rounded_border" text="\$priority" />
       </HBox>
       <FlowPane fx:id="tags" />
       <Label fx:id="deadline" styleClass="cell_small_label" text="\$deadline" />
-      <Label fx:id="priority" styleClass="cell_small_label" text="\$priority" />
       <Label fx:id="description" styleClass="cell_small_label" text="\$address" />
     </VBox>
   </GridPane>

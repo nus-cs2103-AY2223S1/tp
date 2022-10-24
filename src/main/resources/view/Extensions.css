@@ -18,3 +18,37 @@
 .tooltip-text {
     -fx-text-fill: white;
 }
+
+.chart-pie-label-line {
+    -fx-stroke: #8b4513;
+    -fx-fill: #8b4513;
+}
+
+.chart-pie-label {
+    -fx-fill: #8b4513;
+    -fx-font-size: 11pt;
+}
+.chart-legend {
+   -fx-background-color:  #fafad2;
+   -fx-stroke: #daa520;
+}
+
+.cell_with_rounded_border {
+    -fx-font-family: "Segoe UI";
+    -fx-font-size: 10px;
+    -fx-padding: 2 10 2 10;
+    -fx-border-radius: 20;
+    -fx-border-width: 1px;
+}
+
+.cell_priority_high {
+    -fx-border-color: #ea7644;
+}
+
+.cell_priority_medium {
+    -fx-border-color: #fbca04;
+}
+
+.cell_priority_low {
+    -fx-border-color: #56ebac;
+}
