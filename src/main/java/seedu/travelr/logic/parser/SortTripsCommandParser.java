@@ -3,6 +3,10 @@ package seedu.travelr.logic.parser;
 import static seedu.travelr.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.travelr.logic.parser.CliSyntax.PREFIX_REVERSE_ORDER;
 import static seedu.travelr.logic.parser.CliSyntax.PREFIX_SORTBY;
+import static seedu.travelr.model.trip.TripComparators.COMPARE_BY_COMPLETION;
+import static seedu.travelr.model.trip.TripComparators.COMPARE_BY_LOCATION;
+import static seedu.travelr.model.trip.TripComparators.COMPARE_BY_NUM_EVENTS;
+import static seedu.travelr.model.trip.TripComparators.COMPARE_BY_TIME;
 import static seedu.travelr.model.trip.TripComparators.COMPARE_BY_TITLE;
 
 import java.util.Comparator;
@@ -31,11 +35,24 @@ public class SortTripsCommandParser implements Parser<SortTripsCommand> {
         String sortBy = argMultimap.getValue(PREFIX_SORTBY).orElse("").toLowerCase();
         boolean reverse = argMultimap.getValue(PREFIX_REVERSE_ORDER).map(x -> true).orElse(false);
 
-        Comparator<Trip> comp = COMPARE_BY_TITLE;
+        Comparator<Trip> comp;
 
         switch (sortBy) {
         case "":
         case "title":
+            comp = COMPARE_BY_TITLE;
+            break;
+        case "time":
+            comp = COMPARE_BY_TIME;
+            break;
+        case "location":
+            comp = COMPARE_BY_LOCATION;
+            break;
+        case "eventcount":
+            comp = COMPARE_BY_NUM_EVENTS;
+            break;
+        case "mark":
+            comp = COMPARE_BY_COMPLETION;
             break;
         default:
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, SortTripsCommand.MESSAGE_USAGE));
