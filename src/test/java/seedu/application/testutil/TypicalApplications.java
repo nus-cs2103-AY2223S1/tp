@@ -40,6 +40,10 @@ public class TypicalApplications {
             .withEmail("janestreet@example.com").withPosition("Software Engineer").withTags("fintech").build();
     //.withInterview(INTERVIEW_JANE_STREET).build();
 
+    public static final Application INTEL = new ApplicationBuilder().withCompany("Intel")
+            .withContact("84893063").withDate("2022-05-06").withEmail("intel@recruitment.com")
+            .withPosition("Software Developer").withArchiveStatus(true).build();
+
     // Manually added - Application's details found in {@code CommandTestUtil}
     public static final Application GOOGLE = new ApplicationBuilder().withCompany(VALID_COMPANY_GOOGLE)
             .withContact(VALID_CONTACT_GOOGLE).withDate(VALID_DATE_GOOGLE)
@@ -65,7 +69,19 @@ public class TypicalApplications {
         return ab;
     }
 
+    public static ApplicationBook getTypicalApplicationBookWithArchive() {
+        ApplicationBook ab = new ApplicationBook();
+        for (Application application : getTypicalApplicationsWithArchive()) {
+            ab.addApplication(application);
+        }
+        return ab;
+    }
+
     public static List<Application> getTypicalApplications() {
         return new ArrayList<>(Arrays.asList(SHOPEE, BYTEDANCE, JANE_STREET));
+    }
+
+    public static List<Application> getTypicalApplicationsWithArchive() {
+        return new ArrayList<>(Arrays.asList(SHOPEE, BYTEDANCE, JANE_STREET, INTEL));
     }
 }

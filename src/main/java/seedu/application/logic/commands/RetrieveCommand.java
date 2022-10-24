@@ -26,7 +26,7 @@ public class RetrieveCommand extends Command {
             + "Example: 1) " + ListArchiveCommand.COMMAND_WORD + "\n"
             + "              2) " + COMMAND_WORD + " 1";
 
-    public static final String MESSAGE_ARCHIVE_APPLICATION_SUCCESS = "Retrieved Application: %1$s";
+    public static final String MESSAGE_RETRIEVE_APPLICATION_SUCCESS = "Retrieved Application: %1$s";
 
     private final Index targetIndex;
 
@@ -44,7 +44,7 @@ public class RetrieveCommand extends Command {
         List<Application> lastShownList = model.getFilteredApplicationList();
 
         if (targetIndex.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_ARCHIVE_APPLICATION_DISPLAYED_INDEX);
+            throw new CommandException(Messages.MESSAGE_INVALID_APPLICATION_DISPLAYED_INDEX);
         }
 
         Application applicationToRetrieve = lastShownList.get(targetIndex.getZeroBased());
@@ -54,7 +54,7 @@ public class RetrieveCommand extends Command {
         }
         model.retrieveApplication(applicationToRetrieve);
         model.updateApplicationListWithInterview();
-        return new CommandResult(String.format(MESSAGE_ARCHIVE_APPLICATION_SUCCESS, applicationToRetrieve));
+        return new CommandResult(String.format(MESSAGE_RETRIEVE_APPLICATION_SUCCESS, applicationToRetrieve));
     }
 
     @Override

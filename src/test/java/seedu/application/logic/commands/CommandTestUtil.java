@@ -1,6 +1,7 @@
 package seedu.application.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.application.logic.parser.CliSyntax.PREFIX_COMPANY;
 import static seedu.application.logic.parser.CliSyntax.PREFIX_CONTACT;
@@ -12,6 +13,8 @@ import static seedu.application.logic.parser.CliSyntax.PREFIX_LOCATION;
 import static seedu.application.logic.parser.CliSyntax.PREFIX_POSITION;
 import static seedu.application.logic.parser.CliSyntax.PREFIX_ROUND;
 import static seedu.application.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.application.model.Model.HIDE_ARCHIVE_IN_LIST;
+import static seedu.application.model.Model.SHOW_ARCHIVE_ONLY;
 import static seedu.application.testutil.Assert.assertThrows;
 
 import java.util.ArrayList;
@@ -165,6 +168,28 @@ public class CommandTestUtil {
         model.updateFilteredApplicationList(new PositionContainsKeywordsPredicate(Arrays.asList(splitPosition[0])));
 
         assertEquals(1, model.getFilteredApplicationList().size());
+    }
+
+    /**
+     * Updates {@code model}'s filtered list to show only the application at the given {@code archiveStatus} in the
+     * {@code model}'s application book.
+     */
+    public static void showApplicationByArchiveStatus(Model model, boolean isListRequiredArchived) {
+        if (isListRequiredArchived) {
+            model.updateFilteredApplicationList(SHOW_ARCHIVE_ONLY);
+            for (Application app : model.getFilteredApplicationList()) {
+                //filtered list should not have unarchived applications
+                assertTrue(app.isArchived());
+            }
+        } else {
+            model.updateFilteredApplicationList(HIDE_ARCHIVE_IN_LIST);
+            for (Application app : model.getFilteredApplicationList()) {
+                //filtered list should not have archived applications
+                assertFalse(app.isArchived());
+            }
+        }
+        //ensure filtered application has at least one application for testing
+        assert model.getFilteredApplicationList().size() != 0;
     }
 
     /**

@@ -15,6 +15,7 @@ import java.util.List;
 import org.junit.jupiter.api.Test;
 
 import seedu.application.logic.commands.AddCommand;
+import seedu.application.logic.commands.ArchiveCommand;
 import seedu.application.logic.commands.ClearCommand;
 import seedu.application.logic.commands.DeleteCommand;
 import seedu.application.logic.commands.EditCommand;
@@ -22,8 +23,10 @@ import seedu.application.logic.commands.EditCommand.EditApplicationDescriptor;
 import seedu.application.logic.commands.ExitCommand;
 import seedu.application.logic.commands.FindCommand;
 import seedu.application.logic.commands.HelpCommand;
+import seedu.application.logic.commands.ListArchiveCommand;
 import seedu.application.logic.commands.ListCommand;
 import seedu.application.logic.commands.RedoCommand;
+import seedu.application.logic.commands.RetrieveCommand;
 import seedu.application.logic.commands.SortByPositionCommand;
 import seedu.application.logic.commands.SortCommand;
 import seedu.application.logic.commands.UndoCommand;
@@ -104,6 +107,12 @@ public class ApplicationBookParserTest {
     }
 
     @Test
+    public void parseCommand_listArchive() throws Exception {
+        assertTrue(parser.parseCommand(ListArchiveCommand.COMMAND_WORD) instanceof ListArchiveCommand);
+        assertTrue(parser.parseCommand(ListArchiveCommand.COMMAND_WORD + " 3") instanceof ListArchiveCommand);
+    }
+
+    @Test
     public void parseCommand_undo() throws Exception {
         assertTrue(parser.parseCommand(UndoCommand.COMMAND_WORD) instanceof UndoCommand);
         assertTrue(parser.parseCommand(UndoCommand.COMMAND_WORD + " 3") instanceof UndoCommand);
@@ -113,6 +122,20 @@ public class ApplicationBookParserTest {
     public void parseCommand_redo() throws Exception {
         assertTrue(parser.parseCommand(RedoCommand.COMMAND_WORD) instanceof RedoCommand);
         assertTrue(parser.parseCommand(RedoCommand.COMMAND_WORD + " 3") instanceof RedoCommand);
+    }
+
+    @Test
+    public void parseCommand_archive() throws Exception {
+        ArchiveCommand command = (ArchiveCommand) parser.parseCommand(
+                ArchiveCommand.COMMAND_WORD + " " + INDEX_FIRST_APPLICATION.getOneBased());
+        assertEquals(new ArchiveCommand(INDEX_FIRST_APPLICATION), command);
+    }
+
+    @Test
+    public void parseCommand_retrieve() throws Exception {
+        RetrieveCommand command = (RetrieveCommand) parser.parseCommand(
+                RetrieveCommand.COMMAND_WORD + " " + INDEX_FIRST_APPLICATION.getOneBased());
+        assertEquals(new RetrieveCommand(INDEX_FIRST_APPLICATION), command);
     }
 
     @Test
