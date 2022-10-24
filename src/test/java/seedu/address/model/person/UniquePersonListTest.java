@@ -45,15 +45,16 @@ public class UniquePersonListTest {
 
     @Test
     public void containsPersonWithSameDateTimeAppointment_personInList_returnsTrue() {
+        UniquePersonList testUniquePersonList = new UniquePersonList();
         Appointment aliceAppointment = new AppointmentBuilder()
                                         .withDateTime(VALID_DATETIME_21_JAN_2023)
                                         .withLocation(VALID_LOCATION_NUS).build();
         ALICE.getAppointments().add(aliceAppointment);
-        uniquePersonList.add(ALICE);
+        testUniquePersonList.add(ALICE);
         Appointment duplicateAppointment = new AppointmentBuilder()
                 .withDateTime(VALID_DATETIME_21_JAN_2023)
                 .withLocation(VALID_LOCATION_WESTMALL).build();
-        assertTrue(uniquePersonList.containsPersonWithSameAppointmentDateTime(duplicateAppointment));
+        assertTrue(testUniquePersonList.containsPersonWithSameAppointmentDateTime(duplicateAppointment));
     }
 
     @Test
