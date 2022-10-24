@@ -21,7 +21,7 @@ import tracko.model.TrackO;
 import tracko.model.item.Item;
 import tracko.model.item.ItemContainsKeywordsPredicate;
 import tracko.model.order.Order;
-import tracko.model.order.OrderContainsKeywordsPredicate;
+import tracko.model.order.OrderMatchesFlagsAndPrefixPredicate;
 
 /**
  * Contains helper methods for testing commands.
@@ -129,7 +129,7 @@ public class CommandTestUtil {
         Order order = model.getOrderList().get(targetIndex.getZeroBased());
         // Index is at 1 because at 0, every order is initialized to have a keychain.
         final String[] splitName = order.getItemList().get(1).getItemName().split("\\s+");
-        model.updateFilteredOrderList(new OrderContainsKeywordsPredicate(Collections.singletonList(splitName[0])));
+        model.updateFilteredOrderList(new OrderMatchesFlagsAndPrefixPredicate(Collections.singletonList(splitName[0])));
 
         assertEquals(1, model.getFilteredOrderList().size());
     }

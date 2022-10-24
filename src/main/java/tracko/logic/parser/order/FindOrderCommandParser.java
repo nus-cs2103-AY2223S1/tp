@@ -1,18 +1,14 @@
 package tracko.logic.parser.order;
 
-import static tracko.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static tracko.logic.parser.CliSyntax.*;
 
 import java.util.Arrays;
-import java.util.List;
 import java.util.stream.Stream;
 
-import com.sun.jdi.connect.Connector;
 import tracko.logic.commands.order.FindOrderCommand;
 import tracko.logic.parser.*;
 import tracko.logic.parser.exceptions.ParseException;
-import tracko.model.order.OrderContainsKeywordsPredicate;
-import tracko.model.order.OrderDeliveredOrPaidPredicate;
+import tracko.model.order.OrderMatchesFlagsAndPrefixPredicate;
 
 /**
  * Parses input arguments and creates a new FindOrderCommand object
@@ -50,15 +46,6 @@ public class FindOrderCommandParser implements Parser<FindOrderCommand> {
         String [] nameKeywords =  splitKeywords(nameKeywordsString);
         String[] addressKeywords = splitKeywords(addressKeywordsString);
         String[] itemKeywords = splitKeywords(itemKeywordsString);
-        OrderContainsKeywordsPredicate prefixPredicate = new OrderContainsKeywordsPredicate(Arrays.asList(nameKeywords),
-                Arrays.asList(addressKeywords),
-                Arrays.asList(itemKeywords));
-
-        // if -d => delivered only
-        // if -p => paid only
-        // if -D => undelivered only
-        // if -P => unpaid only
-        // by the end of parsing, need to have 4 booleans
 
         boolean isPaid = flagMultimap.getValue(FLAG_PAID).orElse("false").equals("true");
         boolean isDelivered = flagMultimap.getValue(FLAG_DELIVERED).orElse("false").equals("true");
@@ -68,10 +55,12 @@ public class FindOrderCommandParser implements Parser<FindOrderCommand> {
         boolean isFilteringByPaid = isPaid || isUnpaid;
         boolean isFilterByDelivered = isDelivered || isUndelivered;
 
-        OrderDeliveredOrPaidPredicate flagPredicate = new OrderDeliveredOrPaidPredicate(isFilteringByPaid,
+        OrderMatchesFlagsAndPrefixPredicate predicate = new OrderMatchesFlagsAndPrefixPredicate(Arrays.asList(nameKeywords),
+                Arrays.asList(addressKeywords),
+                Arrays.asList(itemKeywords), isFilteringByPaid,
                 isFilterByDelivered, isPaid, isDelivered);
 
-        return new FindOrderCommand(prefixPredicate, flagPredicate);
+        return new FindOrderCommand(predicate);
     }
 
     private static boolean isAnyPrefixPresent(ArgumentMultimap prefixMap, Prefix... prefixes) {

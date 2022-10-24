@@ -10,8 +10,7 @@ import org.junit.jupiter.api.Test;
 
 import tracko.logic.commands.order.FindOrderCommand;
 import tracko.logic.parser.order.FindOrderCommandParser;
-import tracko.model.order.OrderContainsKeywordsPredicate;
-import tracko.model.order.OrderDeliveredOrPaidPredicate;
+import tracko.model.order.OrderMatchesFlagsAndPrefixPredicate;
 
 public class FindOrderCommandParserTest {
     // TODO: Update test cases according to new implementations
@@ -28,8 +27,7 @@ public class FindOrderCommandParserTest {
     public void parse_validArgs_returnsFindCommand() {
         // no leading and trailing whitespaces
         FindOrderCommand expectedFindOrderCommand =
-                new FindOrderCommand(new OrderContainsKeywordsPredicate(Arrays.asList("Alice", "Bob")),
-                        new OrderDeliveredOrPaidPredicate(true, true, true, true));
+                new FindOrderCommand(new OrderMatchesFlagsAndPrefixPredicate(Arrays.asList("Alice", "Bob")));
         assertParseSuccess(parser, "Alice Bob", expectedFindOrderCommand);
 
         // multiple whitespaces between keywords
