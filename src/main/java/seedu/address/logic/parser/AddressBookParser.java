@@ -22,6 +22,7 @@ import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.commands.ListTaskCommand;
 import seedu.address.logic.commands.SortTaskDeadlineCommand;
+import seedu.address.logic.commands.SortTaskPriorityCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 /**
@@ -96,6 +97,9 @@ public class AddressBookParser {
 
         case SortTaskDeadlineCommand.COMMAND_WORD:
             return new SortTaskDeadlineParser().parse(arguments);
+
+        case SortTaskPriorityCommand.COMMAND_WORD:
+            return new SortTaskPriorityParser().parse(arguments);
 
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
