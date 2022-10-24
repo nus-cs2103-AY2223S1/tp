@@ -30,7 +30,7 @@ public class Book {
     }
 
     public Book(Title title, Author author, Date returnDate) {
-        CollectionUtil.requireAllNonNull(title, author);
+        CollectionUtil.requireAllNonNull(title, author, returnDate);
         this.title = title;
         this.author = author;
         this.returnDate = returnDate;
@@ -83,9 +83,7 @@ public class Book {
      */
     public void loanTo(Person loanee, Date returnDate) {
         this.loanee = loanee;
-        if (this.returnDate == null) {
-            this.returnDate = returnDate;
-        }
+        this.returnDate = returnDate;
     }
 
 

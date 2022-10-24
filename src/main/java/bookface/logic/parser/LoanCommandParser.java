@@ -26,7 +26,6 @@ public class LoanCommandParser implements Parser<LoanCommand> {
     @Override
     public LoanCommand parse(String args) throws ParseException {
         String trimmedArgs = args.trim();
-        System.out.println(trimmedArgs);
         if (trimmedArgs.isEmpty()) {
             throw new ParseException(
                     String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT, LoanCommand.MESSAGE_USAGE));
@@ -70,7 +69,6 @@ public class LoanCommandParser implements Parser<LoanCommand> {
                 for (int i = 2; i < nameKeywords.length; i++) {
                     stringbuilder.append(nameKeywords[i]);
                     stringbuilder.append(" ");
-                    System.out.println(stringbuilder);
                 }
                 String parsedString = stringbuilder.toString().trim();
                 List<Date> parsedReturnDate = new PrettyTimeParser().parse(parsedString);
