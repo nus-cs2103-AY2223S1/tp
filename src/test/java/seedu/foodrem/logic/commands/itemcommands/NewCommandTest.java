@@ -28,6 +28,8 @@ import seedu.foodrem.viewmodels.ItemWithMessage;
 
 public class NewCommandTest {
     private static final String EXPECTED_SUCCESS_MESSAGE = "New item added as follows:";
+    private static final String EXPECTED_FAILURE_DUPLICATE_ITEM = "This item already exists in FoodRem";
+
     @Test
     public void constructor_nullItem_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> new NewCommand(null));
@@ -49,7 +51,7 @@ public class NewCommandTest {
         NewCommand newCommand = new NewCommand(validItem);
         ModelStub modelStub = new ModelStubWithItem(validItem);
 
-        assertThrows(CommandException.class, NewCommand.MESSAGE_DUPLICATE_ITEM, () -> newCommand.execute(modelStub));
+        assertThrows(CommandException.class, EXPECTED_FAILURE_DUPLICATE_ITEM, () -> newCommand.execute(modelStub));
     }
 
     @Test
