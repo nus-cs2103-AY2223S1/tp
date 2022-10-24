@@ -7,7 +7,6 @@ import static seedu.phu.testutil.TypicalIndexes.INDEXES_FIRST_INTERNSHIP;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.phu.logic.commands.CopyCommand;
 import seedu.phu.logic.commands.ViewCommand;
 
 public class ViewCommandParserTest {
