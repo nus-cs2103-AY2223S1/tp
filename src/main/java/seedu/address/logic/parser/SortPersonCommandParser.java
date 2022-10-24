@@ -23,6 +23,10 @@ public class SortPersonCommandParser implements Parser<SortPersonCommand> {
             throw new ParseException(
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, SortPersonCommand.MESSAGE_USAGE));
         }
+        if (trimmedArgs.length() > 2) {
+            throw new ParseException(
+                    String.format(SortPersonCommand.MESSAGE_TOO_MANY_ARGUMENTS));
+        }
         if (trimmedArgs.startsWith(PREFIX_NAME.getPrefix())) {
             return new SortPersonCommand(SortPersonCommand.Criteria.NAME);
         }
