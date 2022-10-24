@@ -134,7 +134,7 @@ Format: `sfind n/NAME_KEYWORD [MORE_KEYWORDS]â€¦ t/TAG_KEYWORD [MORE_KEYWORDS]â€
 
 * The search is case-insensitive. e.g. `eatery` will match `Eatery`
 * The order of the keywords does not matter. e.g. `John's Eatery` will match `Eatery John's`
-* Using n/ and t/ will search name and tag fields of stall respectively
+* Using `n/` and `t/`will search name and tag fields of stall respectively
 * Only full words will be matched e.g. `Joh` will not match `John`
 * Stalls matching at least one keyword in each respective field will be returned (i.e. OR search) e.g. `n/ John Doe` will return `John Eatery`, `Doe Restaurant`
 
@@ -151,9 +151,9 @@ Format: `rfind n/NAME_KEYWORD [MORE_KEYWORDS]â€¦ t/TAG_KEYWORD [MORE_KEYWORDS]â€
 
 * The search is case-insensitive. e.g. `eatery` will match `Eatery`
 * The order of the keywords does not matter. e.g. `John's Eatery` will match `Eatery John's`
-* Using n/ and t/ will search name and tag fields of stall respectively
+* Using `n/` and `t/` will search name and tag fields of review respectively
 * Only full words will be matched e.g. `Joh` will not match `John`
-* Stalls matching at least one keyword in each respective field will be returned (i.e. OR search) e.g. `n/ John Doe` will return `John Eatery`, `Doe Restaurant`
+* Reviews matching at least one keyword in each respective field will be returned (i.e. OR search) e.g. `n/ John Doe` will return `John Eatery`, `Doe Restaurant`
 
 Example:
 * `rfind n/eatery` returns reviews `John's eatery` and `Doe eatery`
