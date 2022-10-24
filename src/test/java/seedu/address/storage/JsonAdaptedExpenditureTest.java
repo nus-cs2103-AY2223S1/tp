@@ -26,7 +26,7 @@ public class JsonAdaptedExpenditureTest {
 
 
     @Test
-    public void toModelType_validExpendioturenDetails_returnsExpenditure() throws Exception {
+    public void toModelType_validExpenditureDetails_returnsExpenditure() throws Exception {
         JsonAdaptedExpenditure expenditure = new JsonAdaptedExpenditure(LUNCH);
 
         assertEquals(LUNCH, expenditure.toModelType());
