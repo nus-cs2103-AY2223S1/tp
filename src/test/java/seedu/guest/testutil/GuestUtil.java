@@ -6,6 +6,7 @@ import static seedu.guest.logic.parser.CliSyntax.PREFIX_IS_ROOM_CLEAN;
 import static seedu.guest.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.guest.logic.parser.CliSyntax.PREFIX_NUMBER_OF_GUESTS;
 import static seedu.guest.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.guest.logic.parser.CliSyntax.PREFIX_REQUEST;
 import static seedu.guest.logic.parser.CliSyntax.PREFIX_ROOM;
 
 import seedu.guest.logic.commands.AddCommand;
@@ -53,6 +54,8 @@ public class GuestUtil {
                 .append(numberOfGuests.value).append(" "));
         descriptor.getIsRoomClean().ifPresent(isRoomClean -> sb.append(PREFIX_IS_ROOM_CLEAN)
                 .append(isRoomClean.value).append(" "));
+        descriptor.getRequest().ifPresent(request -> sb.append(PREFIX_REQUEST)
+                .append(request.value).append(" "));
         return sb.toString();
     }
 }
