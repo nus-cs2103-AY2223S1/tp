@@ -18,8 +18,8 @@ public class TaskContainsKeywordsPredicate implements Predicate<Patient> {
 
     @Override
     public boolean test(Patient person) {
-        return keywords.stream().anyMatch(keyword -> keyword.isEmpty()
-                || person.getTasks().getInternalList().stream().anyMatch(
+        return keywords.stream().anyMatch(keyword ->
+                person.getTasks().getInternalList().stream().anyMatch(
                     task -> StringUtil.containsIgnoreCase(task.toString(), keyword)));
     }
 
