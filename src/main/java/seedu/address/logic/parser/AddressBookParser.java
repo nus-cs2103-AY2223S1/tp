@@ -10,13 +10,13 @@ import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.CreateCommand;
 import seedu.address.logic.commands.DeleteCommand;
+import seedu.address.logic.commands.DescriptionCommand;
 import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.commands.OpenPersonFileCommand;
 import seedu.address.logic.commands.RedoCommand;
-import seedu.address.logic.commands.RemarkCommand;
 import seedu.address.logic.commands.SetPersonFileCommand;
 import seedu.address.logic.commands.UndoCommand;
 import seedu.address.logic.commands.UpdateCommand;
@@ -80,8 +80,8 @@ public class AddressBookParser {
         case HelpCommand.COMMAND_WORD:
             return new HelpCommand();
 
-        case RemarkCommand.COMMAND_WORD:
-            return new RemarkCommandParser().parse(arguments);
+        case DescriptionCommand.COMMAND_WORD:
+            return new DescriptionCommandParser().parse(arguments);
 
         case UndoCommand.COMMAND_WORD:
             return new UndoCommand();

@@ -3,6 +3,7 @@ package seedu.address.logic.parser;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MEETING_TIME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
@@ -19,6 +20,8 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.UpdateCommand;
 import seedu.address.logic.commands.UpdateCommand.EditPersonDescriptor;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.person.Description;
+import seedu.address.model.person.MeetingTime;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -35,8 +38,8 @@ public class UpdateCommandParser implements Parser<UpdateCommand> {
         requireNonNull(args);
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(
-                        args, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS, PREFIX_NETWORTH,
-                        PREFIX_MEETING_TIME, PREFIX_TAG);
+                        args, PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS, PREFIX_DESCRIPTION,
+                        PREFIX_NETWORTH, PREFIX_MEETING_TIME, PREFIX_TAG);
 
         Index index;
 
@@ -59,13 +62,16 @@ public class UpdateCommandParser implements Parser<UpdateCommand> {
         if (argMultimap.getValue(PREFIX_ADDRESS).isPresent()) {
             editPersonDescriptor.setAddress(ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get()));
         }
+        if (argMultimap.getValue(PREFIX_DESCRIPTION).isPresent()) {
+            editPersonDescriptor.setDescription(new Description(argMultimap.getValue(PREFIX_DESCRIPTION).get().trim()));
+        }
         if (argMultimap.getValue(PREFIX_NETWORTH).isPresent()) {
             editPersonDescriptor.setNetWorth(ParserUtil.parseNetWorth(argMultimap.getValue(PREFIX_NETWORTH).get()));
         }
-        if (argMultimap.getValue(PREFIX_MEETING_TIME).isPresent()) {
-            editPersonDescriptor.setMeetingTime(ParserUtil.parseMeetingTime(argMultimap.getValue(PREFIX_MEETING_TIME)
-                    .get()));
-        }
+
+        parseMeetingTimesForEdit(argMultimap.getAllValues(PREFIX_MEETING_TIME))
+                .ifPresent(editPersonDescriptor::setMeetingTimes);
+
         parseTagsForEdit(argMultimap.getAllValues(PREFIX_TAG)).ifPresent(editPersonDescriptor::setTags);
 
         if (!editPersonDescriptor.isAnyFieldEdited()) {
@@ -73,6 +79,23 @@ public class UpdateCommandParser implements Parser<UpdateCommand> {
         }
 
         return new UpdateCommand(index, editPersonDescriptor);
+    }
+
+    /**
+     * Parses {@code Collection<String> meetingTimes} into a {@code Set<MeetingTime>} if {@code meetingTimes} is
+     * non-empty. If {@code meetingTimes} contain only one element which is an empty string, it will be parsed into a
+     * {@code Set<MeetingTime>} containing zero meeting times.
+     */
+    private Optional<Set<MeetingTime>> parseMeetingTimesForEdit(Collection<String> meetingTimes) throws ParseException {
+        assert meetingTimes != null;
+
+        if (meetingTimes.isEmpty()) {
+            return Optional.empty();
+        }
+        Collection<String> meetingTimeSet = meetingTimes.size() == 1 && meetingTimes.contains("")
+                ? Collections.emptySet()
+                : meetingTimes;
+        return Optional.of(ParserUtil.parseMeetingTimes(meetingTimeSet));
     }
 
     /**

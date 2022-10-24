@@ -4,19 +4,20 @@
     "phone": "94351253",
     "email": "alice@example.com",
     "address": "123, Jurong West Ave 6, #08-111",
-    "remark" : "",
+    "description" : "",
     "netWorth" : "$54400",
-    "meetingTime" : "10-08-2022 15:00",
+    "meetingTime" : [ "10-08-2022-15:00" ],
     "filePath" : "src/test/data/TestPDFs/Test_PDF.pdf",
-    "tagged": [ "friends" ]
+    "tagged": [ "POTENTIAL" ]
   }, {
     "name": "Alice Pauline",
     "phone": "94351253",
     "email": "pauline@example.com",
     "address": "4th street",
-    "remark" : "",
+    "description" : "",
     "netWorth" : "$54400",
-    "meetingTime" : "10-08-2022 15:00",
-    "filePath" : "src/test/data/TestPDFs/Test_PDF.pdf"
+    "meetingTime" : [ "10-08-2022-15:00" ],
+    "filePath" : "src/test/data/TestPDFs/Test_PDF.pdf",
+    "tagged": [ "POTENTIAL" ]
   } ]
 }
