@@ -8,6 +8,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
@@ -25,6 +26,9 @@ import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.tag.Tag;
+import seedu.address.model.task.AssignedToContactsPredicate;
+import seedu.address.model.task.Contact;
+import seedu.address.model.task.Task;
 
 /**
  * Edits the details of an existing person in the address book.
@@ -46,7 +50,8 @@ public class EditCommand extends Command {
             + PREFIX_PHONE + "91234567 "
             + PREFIX_EMAIL + "johndoe@example.com";
 
-    public static final String MESSAGE_EDIT_PERSON_SUCCESS = "Edited Person: %1$s";
+    public static final String MESSAGE_EDIT_PERSON_SUCCESS = "Edited Person: %1$s"
+            + "\nThe following tasks' assigned contacts have been modified:";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
     public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the address book.";
 
@@ -81,9 +86,27 @@ public class EditCommand extends Command {
             throw new CommandException(MESSAGE_DUPLICATE_PERSON);
         }
 
+        updateTasksAssignedContacts(model, personToEdit, editedPerson);
         model.setPerson(personToEdit, editedPerson);
+
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
         return new CommandResult(String.format(MESSAGE_EDIT_PERSON_SUCCESS, editedPerson));
+    }
+
+    private void updateTasksAssignedContacts(Model model, Person personToEdit,
+                                             Person editedPerson) throws CommandException {
+        Contact contactToEdit = new Contact(personToEdit.getName().fullName);
+        Contact editedContact = new Contact(editedPerson.getName().fullName);
+        model.updateFilteredTaskList(new AssignedToContactsPredicate(contactToEdit));
+        List<Task> lastShownTaskList = new ArrayList<>(model.getFilteredTaskList());
+        for (Task task : lastShownTaskList) {
+            Set<Contact> newAssignedContactList = new HashSet<>(task.getAssignedContacts());
+            newAssignedContactList.remove(contactToEdit);
+            newAssignedContactList.add(editedContact);
+            model.setTask(task, new Task(task.getTitle(), task.getCompleted(), task.getDeadline(),
+                    newAssignedContactList));
+        }
+        model.updateFilteredTaskList(new AssignedToContactsPredicate(editedContact));
     }
 
     /**
