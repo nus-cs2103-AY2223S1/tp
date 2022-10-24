@@ -18,10 +18,10 @@ import seedu.foodrem.viewmodels.ItemWithMessage;
  * Deletes an item identified using it's displayed index from FoodRem.
  */
 public class DeleteCommand extends Command {
-    private final Index targetIndex;
+    private final Index index;
 
-    public DeleteCommand(Index targetIndex) {
-        this.targetIndex = targetIndex;
+    public DeleteCommand(Index index) {
+        this.index = index;
     }
 
     @Override
@@ -29,11 +29,11 @@ public class DeleteCommand extends Command {
         requireNonNull(model);
         List<Item> lastShownList = model.getFilteredItemList();
 
-        if (targetIndex.getZeroBased() >= lastShownList.size()) {
+        if (index.getZeroBased() >= lastShownList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_ITEMS_DISPLAYED_INDEX);
         }
 
-        Item itemToDelete = lastShownList.get(targetIndex.getZeroBased());
+        Item itemToDelete = lastShownList.get(index.getZeroBased());
         model.deleteItem(itemToDelete);
         return CommandResult.from(new ItemWithMessage(itemToDelete,
                 "Successfully deleted the following item:"));
@@ -47,6 +47,6 @@ public class DeleteCommand extends Command {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof DeleteCommand // instanceof handles nulls
-                && targetIndex.equals(((DeleteCommand) other).targetIndex)); // state check
+                && index.equals(((DeleteCommand) other).index)); // state check
     }
 }
