@@ -60,6 +60,10 @@ public class AppliedDate {
      * Returns true if a given string is a valid appliedDate.
      */
     public static boolean isValidAppliedDate(String appliedDate) {
+        if (appliedDate.isEmpty()) {
+            return false;
+        }
+
         try {
             INPUT_DATE_FORMAT.parse(appliedDate);
             return true;

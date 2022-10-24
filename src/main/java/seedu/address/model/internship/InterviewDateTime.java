@@ -66,6 +66,10 @@ public class InterviewDateTime {
      * @return true if it is valid.
      */
     public static boolean isValidInterviewDateTime(String interviewDateTime) {
+        if (interviewDateTime.isEmpty()) {
+            return false;
+        }
+
         try {
             INPUT_DATE_FORMAT.parse(interviewDateTime);
             return true;
