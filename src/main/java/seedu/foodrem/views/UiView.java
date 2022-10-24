@@ -1,6 +1,5 @@
 package seedu.foodrem.views;
 
-import javafx.scene.control.TextArea;
 import seedu.foodrem.model.item.Item;
 import seedu.foodrem.ui.ResultDisplay;
 
