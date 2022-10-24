@@ -52,21 +52,9 @@ public class ItemExpiryDate {
      */
     @Override
     public boolean equals(Object other) {
-        if (other == this) {
-            return true;
-        }
-
-        if (!(other instanceof ItemExpiryDate)) {
-            return false;
-        }
-
-        ItemExpiryDate date = (ItemExpiryDate) other;
-
-        if (date.expiryDate == null && expiryDate == null) {
-            return true;
-        }
-
-        return expiryDate.equals(((ItemExpiryDate) other).expiryDate);
+        return other == this // short circuit if same object
+                || (other instanceof ItemExpiryDate // instanceof handles nulls
+                && expiryDate.equals(((ItemExpiryDate) other).expiryDate)); // state check
     }
 
     /**

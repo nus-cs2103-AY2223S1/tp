@@ -52,15 +52,9 @@ public class ItemBoughtDate {
      */
     @Override
     public boolean equals(Object other) {
-        if (other == this) {
-            return true;
-        }
-
-        if (!(other instanceof ItemBoughtDate)) {
-            return false;
-        }
-
-        return boughtDate.equals(((ItemBoughtDate) other).boughtDate);
+        return other == this // short circuit if same object
+                || (other instanceof ItemBoughtDate // instanceof handles nulls
+                && boughtDate.equals(((ItemBoughtDate) other).boughtDate)); // state check
     }
 
     /**
