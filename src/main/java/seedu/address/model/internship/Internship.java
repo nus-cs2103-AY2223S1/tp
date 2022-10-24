@@ -7,7 +7,7 @@ import java.util.Objects;
 import seedu.address.model.person.PersonId;
 
 /**
- * Represents an Internship in the address book.
+ * Represents an Internship in InterNUS.
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
 public class Internship {

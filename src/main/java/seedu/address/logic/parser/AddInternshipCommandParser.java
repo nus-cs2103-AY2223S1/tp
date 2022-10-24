@@ -18,13 +18,13 @@ import seedu.address.model.internship.InternshipStatus;
 import seedu.address.model.internship.InterviewDate;
 
 /**
- * Parses input arguments and creates a new AddCommand object
+ * Parses input arguments and creates a new AddInternshipCommand object
  */
 public class AddInternshipCommandParser implements Parser<AddInternshipCommand> {
 
     /**
-     * Parses the given {@code String} of arguments in the context of the AddCommand
-     * and returns an AddCommand object for execution.
+     * Parses the given {@code String} of arguments in the context of the AddInternshipCommand
+     * and returns an AddInternshipCommand object for execution.
      *
      * @throws ParseException if the user input does not conform the expected format
      */

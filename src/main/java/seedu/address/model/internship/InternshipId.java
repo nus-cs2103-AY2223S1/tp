@@ -4,7 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
 /**
- * Represents an Internship's unique id in the address book.
+ * Represents an Internship's unique id in InterNUS.
  * Guarantees: immutable; is valid as declared in {@link #isValidId(String)}
  */
 public class InternshipId implements Comparable<InternshipId> {

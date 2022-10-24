@@ -12,8 +12,8 @@ import seedu.address.logic.parser.exceptions.ParseException;
  */
 public class SortPersonCommandParser implements Parser<SortPersonCommand> {
     /**
-     * Parses the given {@code String} of arguments in the context of the SortCommand
-     * and returns a SortCommand object for execution.
+     * Parses the given {@code String} of arguments in the context of the SortPersonCommand
+     * and returns a SortPersonCommand object for execution.
      *
      * @throws ParseException if the user input does not conform the expected format
      */

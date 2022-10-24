@@ -26,7 +26,7 @@ public interface Logic {
     CommandResult execute(String commandText) throws CommandException, ParseException;
 
     /**
-     * Returns the AddressBook.
+     * Returns the instance of InterNUS.
      *
      * @see seedu.address.model.Model#getAddressBook()
      */
@@ -43,7 +43,7 @@ public interface Logic {
     ObservableList<Internship> getFilteredInternshipList();
 
     /**
-     * Returns the user prefs' address book file path.
+     * Returns the user prefs' InterNUS file path.
      */
     Path getAddressBookFilePath();
 
