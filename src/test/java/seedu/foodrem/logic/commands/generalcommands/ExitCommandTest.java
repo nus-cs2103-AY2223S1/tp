@@ -1,6 +1,8 @@
 package seedu.foodrem.logic.commands.generalcommands;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
 
@@ -16,7 +18,10 @@ class ExitCommandTest {
 
     @Test
     void execute() {
-        assertEquals(new ExitCommand().execute(model),
-                     new CommandResult("Exiting FoodRem as requested ...", false, true));
+        CommandResult commandResult = new ExitCommand().execute(model);
+
+        assertFalse(commandResult.isShowHelp());
+        assertTrue(commandResult.isExit());
+        assertEquals(commandResult.getFeedbackToUser(), "Exiting FoodRem as requested ...");
     }
 }

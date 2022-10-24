@@ -1,6 +1,7 @@
 package seedu.foodrem.logic.commands.itemcommands;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 
 import org.junit.jupiter.api.Test;
@@ -23,7 +24,7 @@ public class EditItemDescriptorTest {
         assertNotEquals(null, CommandTestUtil.DESC_POTATOES);
 
         // different types -> returns false
-        assertNotEquals(5, CommandTestUtil.DESC_POTATOES);
+        assertFalse(CommandTestUtil.DESC_POTATOES.equals(5));
 
         // different values -> returns false
         assertNotEquals(CommandTestUtil.DESC_POTATOES, CommandTestUtil.DESC_CUCUMBERS);

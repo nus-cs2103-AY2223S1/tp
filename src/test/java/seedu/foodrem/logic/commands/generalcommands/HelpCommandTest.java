@@ -2,6 +2,7 @@ package seedu.foodrem.logic.commands.generalcommands;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
 
@@ -43,7 +44,10 @@ class HelpCommandTest {
 
     @Test
     void execute() {
-        assertEquals(new HelpCommand("Test").execute(model), new CommandResult("Opened help window.", "Test"));
+        CommandResult commandResult = new HelpCommand("Test").execute(model);
+        assertEquals(commandResult.getHelpText(), "Test");
+        assertTrue(commandResult.isShowHelp());
+        assertEquals(commandResult.getFeedbackToUser(), "Opened help window.");
     }
 
     @Test
