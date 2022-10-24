@@ -133,6 +133,14 @@ public class ModelManagerTest {
     }
 
     @Test
+    public void calculateCalorieIntakeProgress() {
+        ModelManager modelManager = new ModelManager();
+        modelManager.addFood(APPLE);
+        modelManager.setCalorieTarget(new Calorie("2500"));
+        assertEquals(0.8, modelManager.calculateCalorieIntakeProgress());
+    }
+
+    @Test
     public void equals() {
         NutriGoals nutriGoals = new NutriGoalsBuilder().withFood(APPLE).withFood(BREAD).build();
         NutriGoals differentNutriGoals = new NutriGoals();
@@ -172,5 +180,4 @@ public class ModelManagerTest {
         modelManager.updateFilteredFoodList(new IsFoodAddedOnThisDatePredicate(dateTime));
         assertFalse(modelManager.equals(new ModelManager(nutriGoals, userPrefs)));
     }
-
 }

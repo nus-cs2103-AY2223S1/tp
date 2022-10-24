@@ -11,6 +11,7 @@ import java.util.function.Predicate;
 
 import org.junit.jupiter.api.Test;
 
+import javafx.beans.property.DoubleProperty;
 import javafx.collections.ObservableList;
 import seedu.nutrigoals.commons.core.GuiSettings;
 import seedu.nutrigoals.logic.commands.exceptions.CommandException;
@@ -188,6 +189,16 @@ public class ProfileCommandTest {
 
         @Test
         public Map<Name, Calorie> getFoodCalorieList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Test
+        public double calculateCalorieIntakeProgress() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Test
+        public DoubleProperty getCalorieIntakeProgress() {
             throw new AssertionError("This method should not be called.");
         }
     }

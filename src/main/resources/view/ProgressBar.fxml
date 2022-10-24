@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.control.ProgressBar?>
+<?import java.net.URL?>
+<?import javafx.scene.control.Label?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.layout.HBox?>
+
+<StackPane xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+    <stylesheets>
+        <URL value="@ProgressBar.css" />
+    </stylesheets>
+    <ProgressBar fx:id="progressBar" styleClass="progress-bar" maxWidth="Infinity"/>
+    <HBox>
+        <Label fx:id="progressBarLabel" styleClass="progress-bar-label" minWidth="175" prefWidth="175" maxWidth="175">
+            <padding>
+                <Insets top="3" right="3" bottom="3" left="3" />
+            </padding>
+        </Label>
+        <Label fx:id="progressPercentage" styleClass="progress-percentage" maxWidth="Infinity" HBox.hgrow="ALWAYS" alignment="CENTER_RIGHT">
+            <padding>
+                <Insets top="3" right="3" bottom="3" left="3" />
+            </padding>
+        </Label>
+    </HBox>
+</StackPane>

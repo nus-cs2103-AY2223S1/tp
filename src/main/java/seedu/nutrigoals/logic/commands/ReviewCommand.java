@@ -2,6 +2,7 @@ package seedu.nutrigoals.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 
+import seedu.nutrigoals.model.Calorie;
 import seedu.nutrigoals.model.Model;
 import seedu.nutrigoals.model.meal.DateTime;
 import seedu.nutrigoals.model.meal.IsFoodAddedOnThisDatePredicate;
@@ -12,13 +13,13 @@ import seedu.nutrigoals.model.meal.IsFoodAddedOnThisDatePredicate;
 public class ReviewCommand extends Command {
     public static final String COMMAND_WORD = "review";
 
-    public static final String MESSAGE_REVIEW_DETAILS = "Your calorie intake for today: %1$d\n"
-            + "Your calorie target for today: %2$d\n"
+    public static final String MESSAGE_REVIEW_DETAILS = "Your calorie intake for today: %1$s\n"
+            + "Your calorie target for today: %2$s\n"
             + "%3$s";
 
-    public static final String MESSAGE_CALORIE_DEFICIENCY = "You should consume %1$d more calorie(s) to reach your "
+    public static final String MESSAGE_CALORIE_DEFICIENCY = "You should consume %1$d more calories to reach your "
             + "calorie target for today!";
-    public static final String MESSAGE_CALORIE_EXCESS = "You have consumed %1$d more calorie(s) than your calorie "
+    public static final String MESSAGE_CALORIE_EXCESS = "You have consumed %1$d more calories than your calorie "
             + "target for today!";
     public static final String MESSAGE_CALORIE_SUFFICIENCY = "You have reached your calorie target for today!";
 
@@ -27,9 +28,9 @@ public class ReviewCommand extends Command {
         requireNonNull(model);
         DateTime today = new DateTime();
         model.updateFilteredFoodList(new IsFoodAddedOnThisDatePredicate(today));
-        int calorieCount = model.getTotalCalorie().getCalorieValue();
+        Calorie calorieCount = model.getTotalCalorie();
+        Calorie calorieTarget = model.getCalorieTarget();
         int difference = model.getCalorieDifference();
-        int calorieTarget = model.getCalorieTarget().getCalorieValue();
 
         String calorieStatus;
         if (difference > 0) {

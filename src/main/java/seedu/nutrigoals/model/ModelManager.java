@@ -9,6 +9,9 @@ import java.util.Map;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
+import javafx.beans.property.DoubleProperty;
+import javafx.beans.property.SimpleDoubleProperty;
+import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.nutrigoals.commons.core.GuiSettings;
@@ -28,6 +31,7 @@ public class ModelManager implements Model {
     private final NutriGoals nutriGoals;
     private final UserPrefs userPrefs;
     private final FilteredList<Food> filteredFoods;
+    private final DoubleProperty calorieIntakeProgress;
 
     private IsFoodAddedOnThisDatePredicate currentDatePredicate;
 
@@ -43,6 +47,12 @@ public class ModelManager implements Model {
         filteredFoods = new FilteredList<>(this.nutriGoals.getFoodList());
         currentDatePredicate = new IsFoodAddedOnThisDatePredicate(new DateTime());
         updateFilteredFoodList(currentDatePredicate);
+        calorieIntakeProgress = new SimpleDoubleProperty(calculateCalorieIntakeProgress());
+        filteredFoods.addListener((ListChangeListener<Food>) change -> {
+            if (currentDatePredicate.getDate().equals(new DateTime().getDate())) {
+                calorieIntakeProgress.set(calculateCalorieIntakeProgress());
+            }
+        });
     }
 
     public ModelManager() {
@@ -103,6 +113,7 @@ public class ModelManager implements Model {
     public void setCalorieTarget(Calorie calorieTarget) {
         requireNonNull(calorieTarget);
         nutriGoals.setCalorieTarget(calorieTarget);
+        calorieIntakeProgress.set(calculateCalorieIntakeProgress());
     }
 
     /**
@@ -126,9 +137,9 @@ public class ModelManager implements Model {
 
     @Override
     public void addFood(Food food) {
-        nutriGoals.addFood(food);
         IsFoodAddedOnThisDatePredicate predicate = new IsFoodAddedOnThisDatePredicate(new DateTime());
         updateFilteredFoodList(predicate);
+        nutriGoals.addFood(food);
     }
 
     @Override
@@ -155,11 +166,10 @@ public class ModelManager implements Model {
     @Override
     public void updateFilteredFoodList(Predicate<Food> predicate) {
         requireNonNull(predicate);
-        filteredFoods.setPredicate(predicate);
-
         if (predicate instanceof IsFoodAddedOnThisDatePredicate) {
             currentDatePredicate = (IsFoodAddedOnThisDatePredicate) predicate;
         }
+        filteredFoods.setPredicate(predicate);
     }
 
     /**
@@ -208,9 +218,7 @@ public class ModelManager implements Model {
     @Override
     public int getCalorieDifference() {
         Calorie target = nutriGoals.getCalorieTarget();
-        Calorie actual = filteredFoods.stream()
-                .map(Food::getCalorie)
-                .reduce(new Calorie("0"), Calorie::addCalorie);
+        Calorie actual = getTotalCalorie();
         return target.calculateDifference(actual);
     }
 
@@ -224,6 +232,18 @@ public class ModelManager implements Model {
     @Override
     public Map<Name, Calorie> getFoodCalorieList() {
         return nutriGoals.getFoodCalorieList();
+    }
+
+    @Override
+    public double calculateCalorieIntakeProgress() {
+        Calorie totalCalorie = getTotalCalorie();
+        Calorie calorieTarget = getCalorieTarget();
+        return totalCalorie.calculateProportion(calorieTarget);
+    }
+
+    @Override
+    public DoubleProperty getCalorieIntakeProgress() {
+        return calorieIntakeProgress;
     }
 
     @Override
@@ -243,6 +263,7 @@ public class ModelManager implements Model {
         return nutriGoals.equals(other.nutriGoals)
             && userPrefs.equals(other.userPrefs)
             && filteredFoods.equals(other.filteredFoods)
+            && calorieIntakeProgress.getValue().equals(other.calorieIntakeProgress.getValue())
             && currentDatePredicate.equals(other.currentDatePredicate);
     }
 }

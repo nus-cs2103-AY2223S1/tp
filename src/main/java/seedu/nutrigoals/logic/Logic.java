@@ -2,6 +2,7 @@ package seedu.nutrigoals.logic;
 
 import java.nio.file.Path;
 
+import javafx.beans.property.DoubleProperty;
 import javafx.collections.ObservableList;
 import seedu.nutrigoals.commons.core.GuiSettings;
 import seedu.nutrigoals.logic.commands.CommandResult;
@@ -47,4 +48,9 @@ public interface Logic {
      * Set the user prefs' GUI settings.
      */
     void setGuiSettings(GuiSettings guiSettings);
+
+    /**
+     * Returns a {@code DoubleProperty} of the user's daily calorie intake in proportion to the calorie target.
+     */
+    DoubleProperty getCalorieIntakeProgress();
 }

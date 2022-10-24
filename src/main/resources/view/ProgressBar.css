@@ -1,0 +1,29 @@
+.progress-bar {
+    -fx-accent: #c6f0ad;
+}
+
+.progress-bar .bar {
+    -fx-padding: 12px;
+    -fx-background-insets: 1px;
+    -fx-background-radius: 0;
+}
+
+.progress-bar > .track {
+    -fx-border-width: 1px;
+    -fx-border-color: black;
+    -fx-control-inner-background: white;
+    -fx-border-radius: 0;
+    -fx-background-radius: 0;
+}
+
+.progress-percentage {
+    -fx-font-size: 10pt;
+    -fx-font-family: "Segoe UI";
+    -fx-text-fill: black;
+}
+
+.progress-bar-label {
+    -fx-font-size: 10pt;
+    -fx-font-family: "Segoe UI";
+    -fx-text-fill: black;
+}
