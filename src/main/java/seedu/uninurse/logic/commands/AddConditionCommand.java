@@ -30,7 +30,7 @@ public class AddConditionCommand extends AddGenericCommand {
             + " 2 " + PREFIX_CONDITION + "Hypertension";
 
     public static final String MESSAGE_ADD_CONDITION_SUCCESS = "New condition added to %1$s: %2$s";
-    public static final String MESSAGE_DUPLICATE_CONDITION = "This condition already exists in the condition list";
+    public static final String MESSAGE_DUPLICATE_CONDITION = "This condition already exists in %1$s's condition list";
     public static final CommandType ADD_CONDITION_COMMAND_TYPE = CommandType.EDIT_PATIENT;
 
     private final Index index;
@@ -63,7 +63,7 @@ public class AddConditionCommand extends AddGenericCommand {
         try {
             updatedConditionList = patientToEdit.getConditions().add(condition);
         } catch (DuplicateConditionException exception) {
-            throw new CommandException(MESSAGE_DUPLICATE_CONDITION);
+            throw new CommandException(String.format(MESSAGE_DUPLICATE_CONDITION, patientToEdit.getName()));
         }
 
         Patient editedPatient = new Patient(patientToEdit, updatedConditionList);
