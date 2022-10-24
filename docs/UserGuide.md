@@ -150,6 +150,44 @@ Examples:
 * `filter t/cat`
 * `filter t/dog t/second-hand`
 
+### Filter orders : `filter-o`
+
+Filter display only Orders based on the given attribute(s). There are three possible attributes to filter: Additional requests, Order status, Price range.
+
+For Additional requests, use the prefix 'ar'.
+
+For Order status, use the prefix 'os'.
+
+For Price range, use the prefix 'pr' followed by '/' and use '-' to indicate the range.
+
+Format: `filter-o [prefix]/INPUT`
+
+Examples:
+* `filter-o os/Pending`
+* `filter-o as/Negotiating p/90-900`
+* `filter-o ar/good with children os/Delivering p/80-100`
+
+### Filter Pets : `filter-p`
+
+Filter display only Pets based on the given attributes. There are five possible attributes to filter: Color, Name, Price, Species, Vaccination status.
+
+For Color, use the prefix 'c'.
+
+For Name, use the prefix 'n'.
+
+For Price, use the prefix 'p'.
+
+For Species, use the prefix 's'.
+
+For Vaccination Status, use the prefix 'v'.
+
+Format: `filter-p [prefix]/INPUT`
+
+Examples:
+* `filter-p c/white`
+* `filter-p c/black v/true`
+* `filter-p c/black n/doraemon p/50 s/cat v/true`
+
 ### Sort contacts : `sort`
 
 Sort the contacts based on given tag(s) and order(s).
