@@ -12,16 +12,12 @@ public class CommandResultTest {
 
         // same values -> returns true
         assertEquals(commandResult, CommandResult.from("feedback"));
-
         // same object -> returns true
         assertEquals(commandResult, commandResult);
-
         // null -> returns false
         assertNotEquals(null, commandResult);
-
         // different types -> returns false
         assertNotEquals(0.5f, commandResult);
-
         // different feedbackToUser value -> returns false
         assertNotEquals(commandResult, CommandResult.from("different"));
     }
