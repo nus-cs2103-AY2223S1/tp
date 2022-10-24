@@ -180,6 +180,14 @@ public class DateTime {
         return Optional.ofNullable(generateLocalTime(hours, minutes, seconds));
     }
 
+    public LocalDate getDate() {
+        return this.date;
+    }
+
+    public Optional<LocalTime> getTime() {
+        return this.time;
+    }
+
     @Override
     public String toString() {
         return date.format(DateTimeFormatter.ofPattern(RECOMMENDED_DATE_FORMAT))
