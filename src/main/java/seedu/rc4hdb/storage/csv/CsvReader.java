@@ -85,7 +85,8 @@ public class CsvReader {
     }
 
     /**
-     * Cleans up the BOM that exists in some UTF-8 files.
+     * Cleans up the BOM that exists in some UTF-8 files. The BOM is a hidden character that appears in UTF-8 encoded
+     * files, which signals that the file is encoded in UTF-8.
      * Code was adapted from https://mkyong.com/java/java-how-to-add-and-remove-bom-from-utf-8-file/.
      */
     private String cleanBom(Path filePath) throws IOException {
