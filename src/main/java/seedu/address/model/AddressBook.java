@@ -8,6 +8,7 @@ import javafx.collections.ObservableList;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
+import seedu.address.model.person.Reward;
 import seedu.address.model.person.UniquePersonList;
 import seedu.address.model.person.exceptions.PersonNotFoundException;
 
@@ -141,5 +142,25 @@ public class AddressBook implements ReadOnlyAddressBook {
      */
     public int findEmail(Email email) throws PersonNotFoundException {
         return persons.findEmail(email);
+    }
+
+    /**
+     * Returns the current Reward points of a Customer
+     *
+     * @param phone Phone number of the Customer of interest
+     * @return the current Reward points of a Customer
+     */
+    public Reward getCurrentReward(Phone phone) {
+        return persons.getCurrentReward(phone);
+    }
+
+    /**
+     * Returns the current Reward points of a Customer
+     *
+     * @param email Email of the Customer of interest
+     * @return the current Reward points of a Customer
+     */
+    public Reward getCurrentReward(Email email) {
+        return persons.getCurrentReward(email);
     }
 }

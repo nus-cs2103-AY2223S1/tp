@@ -14,6 +14,7 @@ import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
+import seedu.address.model.person.Reward;
 import seedu.address.model.person.exceptions.PersonNotFoundException;
 
 /**
@@ -138,6 +139,30 @@ public class ModelManager implements Model {
     public int findEmail(Email email) throws PersonNotFoundException {
         requireNonNull(email);
         return addressBook.findEmail(email);
+    }
+
+    /**
+     * Returns the current Reward points of a Customer
+     *
+     * @param phone Phone number of the Customer of interest
+     * @return the current Reward points of a Customer
+     */
+    @Override
+    public Reward getCurrentReward(Phone phone) {
+        requireAllNonNull(phone);
+        return addressBook.getCurrentReward(phone);
+    }
+
+    /**
+     * Returns the current Reward points of a Customer
+     *
+     * @param email Email of the Customer of interest
+     * @return the current Reward points of a Customer
+     */
+    @Override
+    public Reward getCurrentReward(Email email) {
+        requireAllNonNull(email);
+        return addressBook.getCurrentReward(email);
     }
 
     //=========== Filtered Person List Accessors =============================================================
