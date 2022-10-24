@@ -334,4 +334,6 @@ public class Appointment {
     public Observable[] getProperties() {
         return new Observable[] {isMarked, patient};
     }
+
+
 }

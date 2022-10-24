@@ -5,6 +5,7 @@ import static seedu.address.model.Model.PREDICATE_SHOW_ALL_APPOINTMENTS;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
 import seedu.address.model.Model;
+import seedu.address.model.person.HiddenPredicateSingleton;
 
 /**
  * Lists all persons in the address book to the user.
@@ -31,10 +32,12 @@ public class ListCommand extends Command {
         if (this.type.equals("patients")) {
             requireNonNull(model);
             model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+            HiddenPredicateSingleton.clearHiddenPatients();
             return new CommandResult(MESSAGE_SUCCESS_PATIENTS);
         } else {
             requireNonNull(model);
             model.updateFilteredAppointmentList(PREDICATE_SHOW_ALL_APPOINTMENTS);
+            HiddenPredicateSingleton.clearHiddenAppts();
             return new CommandResult(MESSAGE_SUCCESS_APPOINTMENTS);
         }
     }

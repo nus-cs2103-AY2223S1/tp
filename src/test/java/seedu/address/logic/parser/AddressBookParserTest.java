@@ -37,12 +37,16 @@ import seedu.address.logic.commands.EditPatientCommand.EditPersonDescriptor;
 import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.HelpCommand;
+import seedu.address.logic.commands.HideAppointmentsCommand;
+import seedu.address.logic.commands.HidePatientsCommand;
 import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.commands.MarkCommand;
 import seedu.address.logic.commands.UnmarkCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Appointment;
+import seedu.address.model.person.HideAppointmentPredicate;
 import seedu.address.model.person.Person;
+import seedu.address.model.person.TagContainsKeywordsPredicate;
 import seedu.address.model.person.predicates.CombinedAppointmentPredicate;
 import seedu.address.model.person.predicates.CombinedPersonPredicate;
 import seedu.address.testutil.AppointmentUtil;
@@ -171,6 +175,22 @@ public class AddressBookParserTest {
     public void parseCommand_help() throws ParseException {
         assertTrue(parser.parseCommand(HelpCommand.COMMAND_WORD) instanceof HelpCommand);
         assertTrue(parser.parseCommand(HelpCommand.COMMAND_WORD + " 3") instanceof HelpCommand);
+    }
+
+    @Test
+    public void parseCommand_hidePatients() throws ParseException {
+        HidePatientsCommand command = (HidePatientsCommand) parser.parseCommand(
+                HidePatientsCommand.COMMAND_WORD + " patients" + " t/tag1 tag2");
+        assertEquals(new HidePatientsCommand(new TagContainsKeywordsPredicate("tag1 tag2")), command);
+    }
+
+    @Test
+    public void parseCommand_hideAppointments() throws ParseException {
+        HideAppointmentsCommand command = (HideAppointmentsCommand) parser.parseCommand(
+                HideAppointmentsCommand.COMMAND_WORD + " appts" + " r/ear nose");
+        assertEquals(new HideAppointmentsCommand(
+                new HideAppointmentPredicate(
+                        HideAppointmentPredicate.HideBy.KEYWORD, "ear nose")), command);
     }
 
     @Test

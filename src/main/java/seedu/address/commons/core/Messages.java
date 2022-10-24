@@ -17,6 +17,6 @@ public class Messages {
     public static final String MESSAGE_INVALID_APPOINTMENT_DISPLAYED_INDEX =
             "The appointment index provided is invalid";
 
-    public static final String MESSAGE_RESULTS_LISTED_OVERVIEW = "%1$d persons and %2$d appointments listed!";
+    public static final String MESSAGE_RESULTS_LISTED_OVERVIEW = "%1$d person(s) and %2$d appointment(s) listed!";
 
 }
