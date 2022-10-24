@@ -2,6 +2,8 @@ package seedu.rc4hdb.model.resident.fields;
 
 import static seedu.rc4hdb.commons.util.AppUtil.checkArgument;
 
+import seedu.rc4hdb.commons.util.StringUtil;
+
 /**
  * Represents a Resident's house in RC4HDB.
  * Guarantees: immutable; is valid as declared in {@link #isValidHouse(String)}
@@ -32,13 +34,12 @@ public class House extends ResidentField {
         return test.matches(VALIDATION_REGEX);
     }
 
-<<<<<<< HEAD
     /**
      * Returns the house string as a full word.
      * @return the house string as a full word.
      */
     public String asFullWord() {
-        switch (house) {
+        switch (value) {
         case "D":
             return "Draco";
         case "U":
@@ -56,7 +57,7 @@ public class House extends ResidentField {
 
     @Override
     public String toString() {
-        return house;
+        return value;
     }
 
     /**
@@ -65,21 +66,18 @@ public class House extends ResidentField {
      * @return true if the given house is a substring of house
      */
     public boolean contains(String house) {
-        return StringUtil.containsWordIgnoreCase(this.house, house);
+        return StringUtil.containsWordIgnoreCase(this.value, house);
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof House // instanceof handles nulls
-                && house.equals(((House) other).house)); // state check
+                && value.equals(((House) other).value)); // state check
     }
 
     @Override
     public int hashCode() {
-        return house.hashCode();
+        return value.hashCode();
     }
-
-=======
->>>>>>> 47176a1127d97c46122938c8dc467a3711185ff9
 }

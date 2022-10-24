@@ -14,12 +14,8 @@ import java.util.Set;
 import seedu.rc4hdb.logic.commands.modelcommands.AddCommand;
 import seedu.rc4hdb.model.resident.Resident;
 import seedu.rc4hdb.model.resident.ResidentDescriptor;
-<<<<<<< HEAD
 import seedu.rc4hdb.model.resident.ResidentStringDescriptor;
-import seedu.rc4hdb.model.tag.Tag;
-=======
 import seedu.rc4hdb.model.resident.fields.Tag;
->>>>>>> 47176a1127d97c46122938c8dc467a3711185ff9
 
 /**
  * A utility class for Resident.
