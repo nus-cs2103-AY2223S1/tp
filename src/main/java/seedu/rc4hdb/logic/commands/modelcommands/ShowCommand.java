@@ -2,11 +2,12 @@ package seedu.rc4hdb.logic.commands.modelcommands;
 
 import static java.util.Objects.requireNonNull;
 
+import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 import seedu.rc4hdb.logic.commands.CommandResult;
 import seedu.rc4hdb.logic.commands.exceptions.CommandException;
+import seedu.rc4hdb.logic.parser.exceptions.ParseException;
 import seedu.rc4hdb.model.Model;
 import seedu.rc4hdb.model.resident.fields.ResidentFields;
 
@@ -23,10 +24,13 @@ public class ShowCommand implements ModelCommand {
             + "Example: " + COMMAND_WORD + " name phone email";
 
     public static final String MESSAGE_SUCCESS = "Showing only the specified columns.\n"
+            + "Use the list command to restore all columns.\n";
+
+    public static final String INVALID_SUBSET = "Please only specify columns that are present in the current table.\n"
             + "Use the list command to restore all columns.";
 
-    public static final String INVALID_SUBSET = "Please enter columns to show based on the current table.\n"
-            + "(Note: You must exclude at least one of the current columns from your specified columns to show)";
+    public static final String LAST_COLUMN_REACHED = "(Please note that you have reached your last column. You must"
+            + " have at least one column visible at all times)";
 
     /**
      * The list of fields to pass to the TableView for hiding.
@@ -52,17 +56,20 @@ public class ShowCommand implements ModelCommand {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
 
-        if (!isValidSubsetOfVisibleFields(model, fieldsToShow)) {
+        if (!isValidList(fieldsToShow, model)) {
             throw new CommandException(INVALID_SUBSET);
         }
 
-        List<String> complement = getComplementOfVisibleFields(fieldsToShow);
+        List<String> hiddenFields = getHiddenFields();
 
-        model.setObservableFields(complement);
-        model.setHiddenFields(complement);
+        model.setHiddenFields(hiddenFields);
         model.setVisibleFields(fieldsToShow);
 
-        return new CommandResult(MESSAGE_SUCCESS);
+        if (isShowingLastColumn()) {
+            return new CommandResult(MESSAGE_SUCCESS + LAST_COLUMN_REACHED);
+        } else {
+            return new CommandResult(MESSAGE_SUCCESS);
+        }
     }
 
     /**
@@ -84,18 +91,31 @@ public class ShowCommand implements ModelCommand {
         return false;
     }
 
-    private List<String> getComplementOfVisibleFields(List<String> fieldsToShow) {
-        List<String> complement = ResidentFields.FIELDS.stream().map(String::toLowerCase).collect(Collectors.toList());
-        complement.removeAll(fieldsToShow);
-        return complement;
+    /**
+     * Returns the list of fields to be set to hidden by taking the complement of the updated {@code fieldsToShow}.
+     * @return The updated list of hidden fields
+     */
+    private List<String> getHiddenFields() {
+        List<String> allFields = new ArrayList<>(ResidentFields.LOWERCASE_FIELDS);
+        allFields.removeAll(fieldsToShow);
+        return allFields;
     }
 
-    private boolean isValidSubsetOfVisibleFields(Model model, List<String> fieldsToShow) {
-        List<String> lowerCaseVisibleFieldList = model.getVisibleFields()
-                .stream()
-                .map(String::toLowerCase)
-                .collect(Collectors.toList());
-        return lowerCaseVisibleFieldList.containsAll(fieldsToShow)
-                && !fieldsToShow.containsAll(lowerCaseVisibleFieldList);
+    /**
+     * Checks if the given fieldsToShow list is valid, i.e. if it is a subset of the current visible field list.
+     * @param fieldsToShow The restricted list of fields to show
+     * @return True if valid
+     */
+    private boolean isValidList(List<String> fieldsToShow, Model model) {
+        List<String> visibleFields = model.getVisibleFields();
+        return visibleFields.containsAll(fieldsToShow);
+    }
+
+    /**
+     * Checks if there is currently only one column being shown.
+     * @return True if there is only column being shown.
+     */
+    private boolean isShowingLastColumn() {
+        return fieldsToShow.size() == 1;
     }
 }

@@ -6,7 +6,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import java.util.stream.Collectors;
 
 import seedu.rc4hdb.logic.commands.modelcommands.ShowCommand;
 import seedu.rc4hdb.logic.parser.Parser;
@@ -18,13 +17,13 @@ import seedu.rc4hdb.model.resident.fields.ResidentFields;
  */
 public class ShowCommandParser implements Parser<ShowCommand> {
 
-    public static final String INTENDED_USAGE = "Please (only) enter some fields after the show command\n"
+    public static final String INTENDED_USAGE = "Please enter at least one field after the show command.\n"
             + "Example: show name phone email";
 
     public static final String ERROR_MESSAGE = "Please only specify fields that correspond to resident data, "
             + "or check if you have made a typo.";
 
-    private static Logger logger = Logger.getLogger("ShowCommandParser");
+    private static final Logger logger = Logger.getLogger("ShowCommandParser");
 
     /**
      * Implements the parse method in the Parser interface.
@@ -42,29 +41,35 @@ public class ShowCommandParser implements Parser<ShowCommand> {
             throw new ParseException(INTENDED_USAGE);
         }
 
-        // Process global list of fields into lowercase list first
-        List<String> allFields = ResidentFields.FIELDS.stream().map(String::toLowerCase).collect(Collectors.toList());
-
-        // Create result list
         List<String> fieldsToShow = new ArrayList<>();
 
-        String[] specifiedFields = getSpecifiedFields(args);
-
-        populateFieldLists(specifiedFields, fieldsToShow, allFields);
+        // Performs input validation and updates fieldsToShow if all fields are valid
+        populateFieldList(args, fieldsToShow);
 
         logger.log(Level.INFO, "Parsing completed, returning ShowCommand");
+
         return new ShowCommand(fieldsToShow);
     }
 
+    /**
+     * Splits the given string into an array of lowercase fields.
+     * @param args The string of arguments provided by ResidentBookParser
+     * @return A {@code String} array of lowercase fields
+     */
     private String[] getSpecifiedFields(String args) {
         return args.trim().toLowerCase().split(" ");
     }
 
-    private void populateFieldLists(String[] specifiedFields,
-                                    List<String> fieldsToShow,
-                                    List<String> allFields) throws ParseException {
+    /**
+     * Adds fields to the list of fields to be shown.
+     * @param args The {@code String} of user input obtained from ResidentBookParser
+     * @param fieldsToShow The list of fields to be returned to the
+     * @throws ParseException If any inputs are invalid.
+     */
+    private void populateFieldList(String args, List<String> fieldsToShow) throws ParseException {
+        String[] specifiedFields = getSpecifiedFields(args);
         for (String field : specifiedFields) {
-            if (!allFields.contains(field)) {
+            if (!ResidentFields.LOWERCASE_FIELDS.contains(field)) {
                 throw new ParseException(ERROR_MESSAGE);
             }
             fieldsToShow.add(field);
