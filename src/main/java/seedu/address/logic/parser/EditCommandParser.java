@@ -78,11 +78,16 @@ public class EditCommandParser implements Parser<EditCommand> {
             }
         }
         if (argMultimap.getValue(PREFIX_REWARD).isPresent()) {
-            int newReward = Integer.parseInt(argMultimap.getValue(PREFIX_REWARD).get());
-            if (newReward < 0) {
+            try {
+                int newReward = Integer.parseInt(argMultimap.getValue(PREFIX_REWARD).get());
+                if (newReward < 0) {
+                    throw new ParseException(Reward.MESSAGE_CONSTRAINTS);
+                }
+                editPersonDescriptor.setReward(ParserUtil.parseReward(String.valueOf(newReward)));
+            } catch (NumberFormatException e) {
                 throw new ParseException(Reward.MESSAGE_CONSTRAINTS);
             }
-            editPersonDescriptor.setReward(ParserUtil.parseReward(String.valueOf(newReward)));
+
         }
         parseTagsForEdit(argMultimap.getAllValues(PREFIX_TAG)).ifPresent(editPersonDescriptor::setTags);
 
