@@ -3,11 +3,14 @@ package tracko.logic.commands;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static tracko.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static tracko.logic.parser.CliSyntax.PREFIX_COST_PRICE;
+import static tracko.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 import static tracko.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static tracko.logic.parser.CliSyntax.PREFIX_ITEM;
 import static tracko.logic.parser.CliSyntax.PREFIX_NAME;
 import static tracko.logic.parser.CliSyntax.PREFIX_PHONE;
 import static tracko.logic.parser.CliSyntax.PREFIX_QUANTITY;
+import static tracko.logic.parser.CliSyntax.PREFIX_SELL_PRICE;
 import static tracko.testutil.Assert.assertThrows;
 
 import java.util.ArrayList;
@@ -52,10 +55,10 @@ public class CommandTestUtil {
     public static final String ADDRESS_DESC_AMY = " " + PREFIX_ADDRESS + VALID_ADDRESS_AMY;
     public static final String ADDRESS_DESC_BOB = " " + PREFIX_ADDRESS + VALID_ADDRESS_BOB;
 
-    public static final String ITEM_NAME_AMY = " " + PREFIX_ITEM + VALID_NAME_AMY;
-    public static final String QUANTITY_AMY = " " + PREFIX_QUANTITY + VALID_ITEM_QUANTITY_AMY;
-    public static final String ITEM_NAME_BOB = " " + PREFIX_ITEM + VALID_ITEM_NAME_BOB;
-    public static final String QUANTITY_BOB = " " + PREFIX_QUANTITY + VALID_ITEM_QUANTITY_BOB;
+    public static final String ITEM_NAME_DESC_AMY = " " + PREFIX_ITEM + VALID_NAME_AMY;
+    public static final String QUANTITY_DESC_AMY = " " + PREFIX_QUANTITY + VALID_ITEM_QUANTITY_AMY;
+    public static final String ITEM_NAME_DESC_BOB = " " + PREFIX_ITEM + VALID_ITEM_NAME_BOB;
+    public static final String QUANTITY_DESC_BOB = " " + PREFIX_QUANTITY + VALID_ITEM_QUANTITY_BOB;
 
     public static final String INVALID_NAME_DESC = " " + PREFIX_NAME + "James&"; // '&' not allowed in names
     public static final String INVALID_PHONE_DESC = " " + PREFIX_PHONE + "911a"; // 'a' not allowed in phones
@@ -63,6 +66,31 @@ public class CommandTestUtil {
     public static final String INVALID_ADDRESS_DESC = " " + PREFIX_ADDRESS; // empty string not allowed for addresses
     public static final String INVALID_ITEM_NAME_DESC = " " + PREFIX_ITEM;
     public static final String INVALID_QUANTITY_DESC = " " + PREFIX_QUANTITY + "-3";
+    public static final String INVALID_DESCRIPTION_DESC = " " + PREFIX_DESCRIPTION + " ";
+    public static final String INVALID_SELL_PRICE_DESC = " " + PREFIX_SELL_PRICE + -33.00;
+    public static final String INVALID_COST_PRICE_DESC = " " + PREFIX_COST_PRICE + 33.333;
+
+    public static final String VALID_DEFAULT_ITEM_NAME = "Chair";
+    public static final String VALID_DEFAULT_DESCRIPTION = "This is a wooden dining chair.";
+    public static final String VALID_SECOND_DESCRIPTION = "This set of furniture require some DIY.";
+
+    public static final Integer VALID_DEFAULT_QUANTITY = 300;
+
+    public static final Double VALID_DEFAULT_SELL_PRICE = 60.00;
+    public static final Double VALID_SECOND_SELL_PRICE = 10.00;
+
+    public static final Double VALID_DEFAULT_COST_PRICE = 45.00;
+    public static final Double VALID_SECOND_COST_PRICE = 15.00;
+
+    public static final String ITEM_NAME_DESC_DEFAULT = " " + PREFIX_ITEM + VALID_DEFAULT_ITEM_NAME;
+    public static final String QUANTITY_DESC_DEFAULT = " " + PREFIX_QUANTITY + VALID_DEFAULT_QUANTITY;
+    public static final String ITEM_DESCRIPTION_DESC_DEFAULT = " " + PREFIX_DESCRIPTION + VALID_DEFAULT_DESCRIPTION;
+    public static final String ITEM_DESCRIPTION_DESC_SECOND = " " + PREFIX_DESCRIPTION + VALID_SECOND_DESCRIPTION;
+    public static final String SELL_PRICE_DESC_DEFAULT = " " + PREFIX_SELL_PRICE + VALID_DEFAULT_SELL_PRICE;
+    public static final String SELL_PRICE_DESC_SECOND = " " + PREFIX_SELL_PRICE + VALID_SECOND_SELL_PRICE;
+    public static final String COST_PRICE_DESC_DEFAULT = " " + PREFIX_COST_PRICE + VALID_DEFAULT_COST_PRICE;
+    public static final String COST_PRICE_DESC_SECOND = " " + PREFIX_COST_PRICE + VALID_SECOND_COST_PRICE;
+
 
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
