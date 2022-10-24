@@ -23,7 +23,7 @@ public class StartDateWithinTimeFramePredicate implements Predicate<Event> {
      */
     @Override
     public boolean test(Event event) {
-        LocalDate eventStartDate = event.getStartDateTime().dateTime.toLocalDate();
+        LocalDate eventStartDate = event.getStartDateTime().date;
         return startDate.isBefore(eventStartDate)
                 && (endDate.isAfter(eventStartDate) || endDate.isEqual(eventStartDate));
     }
