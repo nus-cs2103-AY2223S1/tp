@@ -9,7 +9,6 @@ import seedu.foodrem.model.item.Item;
  * {@code FoodRem foodRem = new FoodRemBuilder().withItem("Potatoes", "Carrots").build();}
  */
 public class FoodRemBuilder {
-
     private final FoodRem foodRem;
 
     public FoodRemBuilder() {

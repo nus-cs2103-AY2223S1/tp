@@ -12,7 +12,6 @@ import seedu.foodrem.commons.core.GuiSettings;
  * Represents User's preferences.
  */
 public class UserPrefs implements ReadOnlyUserPrefs {
-
     private GuiSettings guiSettings = new GuiSettings();
     private Path foodRemFilePath = Paths.get("data", "foodrem.json");
 
@@ -81,5 +80,4 @@ public class UserPrefs implements ReadOnlyUserPrefs {
     public String toString() {
         return "Gui Settings : " + guiSettings + "\nLocal data file location : " + foodRemFilePath;
     }
-
 }

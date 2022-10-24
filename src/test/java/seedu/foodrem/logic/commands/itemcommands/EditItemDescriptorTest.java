@@ -10,7 +10,6 @@ import seedu.foodrem.logic.commands.itemcommands.EditCommand.EditItemDescriptor;
 import seedu.foodrem.testutil.EditItemDescriptorBuilder;
 
 public class EditItemDescriptorTest {
-
     @Test
     public void equals() {
         // same values -> returns true

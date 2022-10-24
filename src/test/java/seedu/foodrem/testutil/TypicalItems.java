@@ -11,7 +11,6 @@ import seedu.foodrem.model.item.Item;
  * A utility class containing a list of {@code item} objects to be used in tests.
  */
 public class TypicalItems {
-
     public static final Item POTATOES = new ItemBuilder()
             .withItemName("Potatoes")
             .withItemQuantity("10")

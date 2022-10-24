@@ -10,11 +10,11 @@ show-toc: true
 
 ## Acknowledgements
 
-* {list here sources of all reused/adapted ideas, code, documentation, and third-party libraries -- include links to the original source as well}
+* Libraries used: [Jackson](https://github.com/FasterXML/jackson), [JavaFX](https://openjfx.io/), [Jekyll](https://jekyllrb.com/), [JUnit5](https://github.com/junit-team/junit5), [PlantUML](https://plantuml.com/)
 
 ---
 
-## Setting up, getting started
+## Setting Up, Getting Started
 
 Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
@@ -54,7 +54,7 @@ The rest of the App consists of four components.
 
 **How the architecture components interact with each other**
 
-The _Sequence Diagram_ below shows how the components interact with each other for the scenario where the user issues the command `delete 1`.
+The _Sequence Diagram_ below shows how the components interact with each other for the scenario where the user issues the command `del 1`. This deletes the first item from the List Box. 
 
 <img src="images/ArchitectureSequenceDiagram.png" width="574" />
 
@@ -69,7 +69,7 @@ For example, the `Logic` component defines its API in the `Logic.java` interface
 
 The sections below give more details of each component.
 
-### UI component
+### UI Component
 
 The **API** of this component is specified in [`Ui.java`]({{ page.master_branch }}/{{ page.main_src }}/ui/Ui.java)
 
@@ -86,7 +86,7 @@ The `UI` component,
 * keeps a reference to the `Logic` component, because the `UI` relies on the `Logic` to execute commands.
 * depends on some classes in the `Model` component, as it displays `Item` object residing in the `Model`.
 
-### Logic component
+### Logic Component
 
 **API** : [`Logic.java`]({{ page.master_branch }}/{{ page.main_src }}/logic/Logic.java)
 
@@ -97,13 +97,13 @@ Here's a (partial) class diagram of the `Logic` component:
 How the `Logic` component works:
 
 1. When `Logic` is called upon to execute a command, it uses the `FoodRemParser` class to parse the user command.
-1. This results in a `Command` object (more precisely, an object of one of its subclasses e.g., `AddCommand`) which is executed by the `LogicManager`.
+1. This results in a `Command` object (more precisely, an object of one of its subclasses e.g., `NewCommand`) which is executed by the `LogicManager`.
 1. The command can communicate with the `Model` when it is executed (e.g. to add an item).
 1. The result of the command execution is encapsulated as a `CommandResult` object which is returned from `Logic`.
 
-The Sequence Diagram below illustrates the interactions within the `Logic` component for the `execute("delete 1")` API call.
+The Sequence Diagram below illustrates the interactions within the `Logic` component for the `execute("del 1")` API call.
 
-![Interactions Inside the Logic Component for the `delete 1` Command](images/DeleteSequenceDiagram.png)
+![Interactions Inside the Logic Component for the `del 1` Command](images/DeleteSequenceDiagram.png)
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `DeleteCommandParser` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
 </div>
@@ -114,10 +114,10 @@ Here are the other classes in `Logic` (omitted from the class diagram above) tha
 
 How the parsing works:
 
-* When called upon to parse a user command, the `FoodRemParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddCommand`) which the `FoodRemParser` returns back as a `Command` object.
-* All `XYZCommandParser` classes (e.g., `AddCommandParser`, `DeleteCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
+* When called upon to parse a user command, the `FoodRemParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `NewCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `NewCommand`) which the `FoodRemParser` returns back as a `Command` object.
+* All `XYZCommandParser` classes (e.g., `NewCommandParser`, `DeleteCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
 
-### Model component
+### Model Component
 
 **API** : [`Model.java`]({{ page.master_branch }}/{{ page.main_src }}/model/Model.java)
 
@@ -137,7 +137,7 @@ The `Model` component,
 </div>
 {% include_relative _dg/ModelComponent.md %}
 
-### Storage component
+### Storage Component
 
 **API** : [`Storage.java`]({{ page.master_branch }}/{{ page.main_src }}/storage/Storage.java)
 
@@ -149,7 +149,7 @@ The `Storage` component,
 * inherits from both `FoodRemStorage` and `UserPrefStorage`, which means it can be treated as either one (if only the functionality of only one is needed).
 * depends on some classes in the `Model` component (because the `Storage` component's job is to save/retrieve objects that belong to the `Model`)
 
-### Common classes
+### Common Classes
 
 Classes used by multiple components are in the `seedu.foodrem.commons` package.
 
@@ -159,123 +159,9 @@ Classes used by multiple components are in the `seedu.foodrem.commons` package.
 
 {% include_relative _dg/Implementation.md %}
 
-<!-- Everyone adds at least 5 comment lines into this document for Week 10 DG Update for bot to detect. Will be deleted later-->
-Eugene:
-Line 1
-Line 2
-Line 3
-Line 4
-Line 5
+___
 
-Yi Xian:
-Line 1
-Line 2
-Line 3
-Line 4
-Line 5
-
-Ting Kai:
-Line 1
-Line 2
-Line 3
-Line 4
-Line 5
-
-Richard:
-Line 1
-Line 2
-Line 3
-Line 4
-Line 5
-Line 6
-
-### \[Proposed\] Undo/redo feature
-
-#### Proposed Implementation
-
-The proposed undo/redo mechanism is facilitated by `VersionedFoodRem`. It extends `FoodRem` with an undo/redo history, stored internally as an `foodRemStateList` and `currentStatePointer`. Additionally, it implements the following operations:
-
-* `VersionedFoodRem#commit()` — Saves the current FoodRem state in its history.
-* `VersionedFoodRem#undo()` — Restores the previous FoodRem state from its history.
-* `VersionedFoodRem#redo()` — Restores a previously undone FoodRem state from its history.
-
-These operations are exposed in the `Model` interface as `Model#commitFoodRem()`, `Model#undoFoodRem()` and `Model#redoFoodRem()` respectively.
-
-Given below is an example usage scenario and how the undo/redo mechanism behaves at each step.
-
-Step 1. The user launches the application for the first time. The `VersionedFoodRem` will be initialized with the initial FoodRem state, and the `currentStatePointer` pointing to that single FoodRem state.
-
-![UndoRedoState0](images/UndoRedoState0.png)
-
-Step 2. The user executes `delete 5` command to delete the 5th item in the FoodRem. The `delete` command calls `Model#commitFoodRem()`, causing the modified state of the FoodRem after the `delete 5` command executes to be saved in the `foodRemStateList`, and the `currentStatePointer` is shifted to the newly inserted FoodRem state.
-
-![UndoRedoState1](images/UndoRedoState1.png)
-
-Step 3. The user executes `add n/Potatoes …​` to add a new item. The `add` command also calls `Model#commitFoodRem()`, causing another modified FoodRem state to be saved into the `foodRemStateList`.
-
-![UndoRedoState2](images/UndoRedoState2.png)
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If a command fails its execution, it will not call `Model#commitFoodRem()`, so the FoodRem state will not be saved into the `foodRemStateList`.
-
-</div>
-
-Step 4. The user now decides that adding the item was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `Model#undoFoodRem()`, which will shift the `currentStatePointer` once to the left, pointing it to the previous FoodRem state, and restores the FoodRem to that state.
-
-![UndoRedoState3](images/UndoRedoState3.png)
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index 0, pointing to the initial FoodRem state, then there are no previous FoodRem states to restore. The `undo` command uses `Model#canUndoFoodRem()` to check if this is the case. If so, it will return an error to the user rather than attempting to perform the undo.
-
-</div>
-
-The following sequence diagram shows how the undo operation works:
-
-![UndoSequenceDiagram](images/UndoSequenceDiagram.png)
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `UndoCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
-
-</div>
-
-The `redo` command does the opposite — it calls `Model#redoFoodRem()`, which shifts the `currentStatePointer` once to the right, pointing to the previously undone state, and restores the FoodRem to that state.
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index `foodRemStateList.size() - 1`, pointing to the latest FoodRem state, then there are no undone FoodRem states to restore. The `redo` command uses `Model#canRedoFoodRem()` to check if this is the case. If so, it will return an error to the user rather than attempting to perform the redo.
-
-</div>
-
-Step 5. The user then decides to execute the command `list`. Commands that do not modify the FoodRem, such as `list`, will usually not call `Model#commitFoodRem()`, `Model#undoFoodRem()` or `Model#redoFoodRem()`. Thus, the `foodRemStateList` remains unchanged.
-
-![UndoRedoState4](images/UndoRedoState4.png)
-
-Step 6. The user executes `clear`, which calls `Model#commitFoodRem()`. Since the `currentStatePointer` is not pointing at the end of the `foodRemStateList`, all FoodRem states after the `currentStatePointer` will be purged. Reason: It no longer makes sense to redo the `add n/David …​` command. This is the behavior that most modern desktop applications follow.
-
-![UndoRedoState5](images/UndoRedoState5.png)
-
-The following activity diagram summarizes what happens when a user executes a new command:
-
-<img src="images/CommitActivityDiagram.png" width="250" />
-
-#### Design considerations
-
-**Aspect: How undo & redo executes:**
-
-* **Alternative 1 (current choice):** Saves the entire FoodRem.
-
-  * Pros: Easy to implement.
-  * Cons: May have performance issues in terms of memory usage.
-
-* **Alternative 2:** Individual command knows how to undo/redo by
-  itself.
-  * Pros: Will use less memory (e.g. for `delete`, just save the item being deleted).
-  * Cons: We must ensure that the implementation of each individual command are correct.
-
-_{more aspects and alternatives to be added}_
-
-### \[Proposed\] Data archiving
-
-_{Explain here how the data archiving feature will be implemented}_
-
----
-
-## Documentation, logging, testing, configuration, dev-ops
+## Documentation, Logging, Testing, Configuration, Dev-Ops
 
 * [Documentation guide](Documentation.md)
 * [Testing guide](Testing.md)
@@ -287,18 +173,17 @@ _{Explain here how the data archiving feature will be implemented}_
 
 ## Appendix: Requirements
 
-### Product scope
+### Product Scope
 
 **Target user profile**: Purchasing managers who are proficient with typing for small F&B businesses
 
-**Value proposition**: This application will help small businesses to manage perishable goods within a single inventory
-(no support for multiple inventories).
+**Value proposition**: FoodRem empowers small food and beverage (F&B) restaurants to manage inventory and obtain insights from inventory data.
 
-### User stories
+### User Stories
 
 {% include_relative _dg/UserStories.md %}
 
-### Use cases
+### Use Cases
 
 {% include_relative _dg/UseCases.md %}
 
@@ -312,52 +197,8 @@ _{Explain here how the data archiving feature will be implemented}_
 
 ---
 
-## Appendix: Instructions for manual testing
+## Appendix: Instructions for Manual Testing
 
-Given below are instructions to test the app manually.
+{% include_relative _dg/InstructionsForManualTesting.md %}
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** These instructions only provide a starting point for testers to work on; testers are expected to do more *exploratory* testing.
 
-</div>
-
-### Launch and shutdown
-
-1. Initial launch
-
-   1. Download the jar file and copy into an empty folder
-
-   1. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
-
-1. Saving window preferences
-
-   1. Resize the window to an optimum size. Move the window to a different location. Close the window.
-
-   1. Re-launch the app by double-clicking the jar file.<br>
-      Expected: The most recent window size and location is retained.
-
-1. _{ more test cases …​ }_
-
-### Deleting an item
-
-1. Deleting an item while all items are being shown
-
-   1. Prerequisites: List all items using the `list` command. Multiple items in the list.
-
-   1. Test case: `delete 1`<br>
-      Expected: First contact is deleted from the list. Details of the deleted food item shown in the status message. Timestamp in the status bar is updated.
-
-   1. Test case: `delete 0`<br>
-      Expected: No item is deleted. Error details shown in the status message. Status bar remains the same.
-
-   1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
-      Expected: Similar to previous.
-
-1. _{ more test cases …​ }_
-
-### Saving data
-
-1. Dealing with missing/corrupted data files
-
-   1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
-
-1. _{ more test cases …​ }_

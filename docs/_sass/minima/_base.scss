@@ -154,7 +154,6 @@ blockquote {
   color: $brand-color;
   border-left: 4px solid $brand-color-light;
   padding-left: $spacing-unit / 2;
-  @include relative-font-size(1.125);
   font-style: italic;
 
   > :last-child {
@@ -252,6 +251,9 @@ table {
   border-collapse: collapse;
   border: 1px solid $table-border-color;
   tr {
+    &:nth-child(odd) {
+      background-color: white;
+    }
     &:nth-child(even) {
       background-color: $table-zebra-color;
     }

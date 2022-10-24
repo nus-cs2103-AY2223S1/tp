@@ -15,7 +15,6 @@ import seedu.foodrem.testutil.MessageToUser;
 import seedu.foodrem.testutil.TypicalIndexes;
 
 public class EditCommandParserTest {
-
     private static final String MESSAGE_INVALID_FORMAT =
             String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT, EditCommand.getUsage());
 

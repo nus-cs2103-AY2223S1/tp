@@ -43,9 +43,7 @@ import seedu.foodrem.testutil.TagBuilder;
 import seedu.foodrem.testutil.TagUtil;
 import seedu.foodrem.testutil.TypicalIndexes;
 
-
 public class FoodRemParserTest {
-
     private final FoodRemParser parser = new FoodRemParser();
 
     // General Commands

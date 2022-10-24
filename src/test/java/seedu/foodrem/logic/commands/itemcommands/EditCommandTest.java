@@ -25,7 +25,6 @@ import seedu.foodrem.testutil.ItemBuilder;
 import seedu.foodrem.testutil.TypicalFoodRem;
 import seedu.foodrem.testutil.TypicalIndexes;
 
-
 /**
  * Contains integration tests (interaction with the Model) and unit tests for EditCommand.
  */
@@ -181,5 +180,4 @@ public class EditCommandTest {
         assertNotEquals(standardCommand, new EditCommand(TypicalIndexes.INDEX_FIRST_ITEM,
                 CommandTestUtil.DESC_CUCUMBERS));
     }
-
 }

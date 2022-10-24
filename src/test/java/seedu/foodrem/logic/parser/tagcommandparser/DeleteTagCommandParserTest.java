@@ -11,7 +11,6 @@ import seedu.foodrem.logic.commands.tagcommands.DeleteTagCommand;
 import seedu.foodrem.testutil.TypicalTags;
 
 public class DeleteTagCommandParserTest {
-
     private final DeleteTagCommandParser parser = new DeleteTagCommandParser();
 
     @Test

@@ -17,7 +17,6 @@ import seedu.foodrem.model.ReadOnlyFoodRem;
  * A class to access FoodRem data stored as a json file on the hard disk.
  */
 public class JsonFoodRemStorage implements FoodRemStorage {
-
     private static final Logger logger = LogsCenter.getLogger(JsonFoodRemStorage.class);
 
     private final Path filePath;
@@ -75,5 +74,4 @@ public class JsonFoodRemStorage implements FoodRemStorage {
         FileUtil.createIfMissing(filePath);
         JsonUtil.saveJsonFile(new JsonSerializableFoodRem(foodRem), filePath);
     }
-
 }

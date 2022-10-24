@@ -13,17 +13,17 @@ import seedu.foodrem.model.item.ItemQuantity;
 import seedu.foodrem.model.item.ItemUnit;
 
 public class ParserUtilTest {
-    public static final String VALID_ITEM_NAME = "Potatoes";
-    public static final String VALID_ITEM_QUANTITY = "10";
-    public static final String VALID_ITEM_UNIT = "kg";
-    public static final String VALID_ITEM_BOUGHT_DATE = "11-11-2022";
-    public static final String VALID_ITEM_EXPIRY_DATE = "11-11-2022";
+    private static final String VALID_ITEM_NAME = "Potatoes";
+    private static final String VALID_ITEM_QUANTITY = "10";
+    private static final String VALID_ITEM_UNIT = "kg";
+    private static final String VALID_ITEM_BOUGHT_DATE = "11-11-2022";
+    private static final String VALID_ITEM_EXPIRY_DATE = "11-11-2022";
 
-    public static final String INVALID_ITEM_NAME = "Potatoes|/";
-    public static final String INVALID_ITEM_QUANTITY = "10|/";
-    public static final String INVALID_ITEM_UNIT = "kg|/";
-    public static final String INVALID_ITEM_BOUGHT_DATE = "11-11-2022|/";
-    public static final String INVALID_ITEM_EXPIRY_DATE = "11-11-2022|/";
+    private static final String INVALID_ITEM_NAME = "Potatoes|/";
+    private static final String INVALID_ITEM_QUANTITY = "10|/";
+    private static final String INVALID_ITEM_UNIT = "kg|/";
+    private static final String INVALID_ITEM_BOUGHT_DATE = "11-11-2022|/";
+    private static final String INVALID_ITEM_EXPIRY_DATE = "11-11-2022|/";
 
     private static final String WHITESPACE = " \t\r\n";
 

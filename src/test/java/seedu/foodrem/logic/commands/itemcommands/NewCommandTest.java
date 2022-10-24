@@ -26,7 +26,6 @@ import seedu.foodrem.model.tag.Tag;
 import seedu.foodrem.testutil.ItemBuilder;
 
 public class NewCommandTest {
-
     @Test
     public void constructor_nullItem_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> new NewCommand(null));
@@ -227,5 +226,4 @@ public class NewCommandTest {
             return new FoodRem();
         }
     }
-
 }

@@ -21,7 +21,6 @@ import seedu.foodrem.testutil.EditItemDescriptorBuilder;
  * Contains helper methods for testing commands.
  */
 public class CommandTestUtil {
-
     public static final String VALID_ITEM_NAME_CARROTS = "Carrots";
 
     public static final String VALID_ITEM_NAME_POTATOES = "Potatoes";

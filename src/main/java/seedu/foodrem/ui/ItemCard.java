@@ -8,12 +8,12 @@ import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import seedu.foodrem.model.item.Item;
+import seedu.foodrem.model.tag.Tag;
 
 /**
  * A UI component that displays information of a {@code Item}.
  */
 public class ItemCard extends UiPart<Region> {
-
     private static final String FXML = "ItemListCard.fxml";
 
     /**
@@ -55,7 +55,7 @@ public class ItemCard extends UiPart<Region> {
         expiry.setText(String.format("(Expiry Date: %s)",
                 String.valueOf(item.getExpiryDate()).isBlank() ? "Not Set" : item.getExpiryDate()));
         item.getTagSet().stream()
-                .sorted(Comparator.comparing(tag -> tag.getName()))
+                .sorted(Comparator.comparing(Tag::getName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.getName())));
 
     }

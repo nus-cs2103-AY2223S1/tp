@@ -24,7 +24,6 @@ import seedu.foodrem.model.tag.Tag;
  * Jackson-friendly version of {@link Item}.
  */
 class JsonAdaptedItem {
-
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "Item's %s field is missing!";
 
     private final String name;
@@ -78,7 +77,6 @@ class JsonAdaptedItem {
      * @throws IllegalArgumentException if there were any data constraints violated in the adapted item.
      */
     public Item toModelType() throws IllegalArgumentException {
-
         if (name == null) {
             throw new IllegalArgumentException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
                     ItemName.class.getSimpleName()));
@@ -136,5 +134,4 @@ class JsonAdaptedItem {
                 modelItemRemark,
                 modelTags);
     }
-
 }

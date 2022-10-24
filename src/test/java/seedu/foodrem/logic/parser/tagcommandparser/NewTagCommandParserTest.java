@@ -16,7 +16,6 @@ import seedu.foodrem.logic.commands.tagcommands.NewTagCommand;
 import seedu.foodrem.model.tag.Tag;
 import seedu.foodrem.testutil.TagBuilder;
 
-
 public class NewTagCommandParserTest {
     private final NewTagCommandParser parser = new NewTagCommandParser();
 

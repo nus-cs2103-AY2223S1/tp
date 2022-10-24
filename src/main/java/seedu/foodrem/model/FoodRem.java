@@ -15,7 +15,6 @@ import seedu.foodrem.model.tag.UniqueTagList;
  * Duplicates are not allowed (by .isSameItem comparison)
  */
 public class FoodRem implements ReadOnlyFoodRem {
-
     private final UniqueItemList items;
     private final UniqueTagList tags;
 
@@ -36,7 +35,7 @@ public class FoodRem implements ReadOnlyFoodRem {
     }
 
     /**
-     * Creates an FoodRem using the Items in the {@code toBeCopied}
+     * Creates a FoodRem using the Items in the {@code toBeCopied}
      */
     public FoodRem(ReadOnlyFoodRem toBeCopied) {
         this();
@@ -74,7 +73,7 @@ public class FoodRem implements ReadOnlyFoodRem {
     //// item-level operations
 
     /**
-     * Returns true if an item with the same identity as {@code item} exists in FoodRem.
+     * Returns {@code true} if an item with the same identity as {@code item} exists in FoodRem.
      */
     public boolean hasItem(Item item) {
         requireNonNull(item);
@@ -110,7 +109,7 @@ public class FoodRem implements ReadOnlyFoodRem {
     //// tag-level methods
 
     /**
-     * Returns true if a tag with the same name as {@code tag} exists in the foodRem.
+     * Returns {@code true} if a tag with the same name as {@code tag} exists in foodRem.
      */
     public boolean hasTag(Tag tag) {
         requireNonNull(tag);

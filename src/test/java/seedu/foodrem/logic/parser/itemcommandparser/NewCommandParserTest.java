@@ -14,7 +14,6 @@ import seedu.foodrem.testutil.MessageToUser;
 import seedu.foodrem.testutil.TypicalItems;
 
 public class NewCommandParserTest {
-
     private final NewCommandParser parser = new NewCommandParser();
 
     @Test
@@ -69,7 +68,6 @@ public class NewCommandParserTest {
                         + CommandTestUtil.VALID_DESC_ITEM_BOUGHT_DATE_CUCUMBERS
                         + CommandTestUtil.VALID_DESC_ITEM_EXPIRY_DATE_CUCUMBERS
                         + CommandTestUtil.VALID_DESC_ITEM_PRICE_CUCUMBERS, new NewCommand(expectedItem));
-
 
         // multiple expiry dates - last expiry date accepted
         assertParseSuccess(parser,

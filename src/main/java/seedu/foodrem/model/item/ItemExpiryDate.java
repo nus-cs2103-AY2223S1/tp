@@ -12,7 +12,6 @@ import seedu.foodrem.model.item.itemvalidators.ItemExpiryDateValidator;
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
 public class ItemExpiryDate {
-
     // Remember to change relevant messages displayed to users when changing the regex.
     public static final String EXPIRY_DATE_PATTERN_REGEX = "dd-MM-uuuu";
     public static final DateTimeFormatter EXPIRY_DATE_FORMATTER = DateTimeFormatter
@@ -36,7 +35,7 @@ public class ItemExpiryDate {
     }
 
     /**
-     * Returns true if both {@link ItemExpiryDate#expiryDate} have the same date by
+     * Returns {@code true} if both {@link ItemExpiryDate#expiryDate} have the same date by
      * {@link LocalDate#equals(Object)}.
      */
     @Override
@@ -57,7 +56,6 @@ public class ItemExpiryDate {
 
         return expiryDate.equals(((ItemExpiryDate) other).expiryDate);
     }
-
 
     /**
      * Compares two item expiry dates. The method returns 0 if the bought date is equal to the other

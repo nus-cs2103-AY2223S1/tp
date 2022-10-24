@@ -7,7 +7,6 @@ import org.junit.jupiter.api.Test;
 import seedu.foodrem.logic.commands.CommandTestUtil;
 
 public class TagTest {
-
     @Test
     public void constructor_null_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> new Tag(null));
@@ -28,5 +27,4 @@ public class TagTest {
         // null tag name
         assertThrows(NullPointerException.class, () -> Tag.isValidTagName(null));
     }
-
 }

@@ -23,7 +23,6 @@ import seedu.foodrem.model.tag.Tag;
 import seedu.foodrem.testutil.ItemBuilder;
 
 public class FoodRemTest {
-
     private final FoodRem foodRem = new FoodRem();
 
     @Test
@@ -106,5 +105,4 @@ public class FoodRemTest {
             return tags;
         }
     }
-
 }

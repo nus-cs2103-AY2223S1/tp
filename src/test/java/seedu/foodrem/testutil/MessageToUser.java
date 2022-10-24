@@ -4,7 +4,6 @@ package seedu.foodrem.testutil;
  * A utility class for validating messages to users.
  */
 public class MessageToUser {
-
     // Item name validation
     public static final String MESSAGE_FOR_NAME_IS_BLANK =
             "The item name should not be blank.";

@@ -20,7 +20,6 @@ import seedu.foodrem.model.item.NameContainsKeywordsPredicate;
 import seedu.foodrem.testutil.FoodRemBuilder;
 
 public class ModelManagerTest {
-
     private ModelManager modelManager = new ModelManager();
 
     @Test

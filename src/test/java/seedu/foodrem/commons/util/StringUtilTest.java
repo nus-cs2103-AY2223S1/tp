@@ -9,12 +9,10 @@ import java.io.FileNotFoundException;
 import org.junit.jupiter.api.Test;
 
 public class StringUtilTest {
-
     //---------------- Tests for isNonZeroUnsignedInteger --------------------------------------
 
     @Test
     public void isNonZeroUnsignedInteger() {
-
         // EP: empty strings
         assertFalse(StringUtil.isNonZeroUnsignedInteger("")); // Boundary value
         assertFalse(StringUtil.isNonZeroUnsignedInteger("  "));
@@ -44,7 +42,6 @@ public class StringUtilTest {
         assertTrue(StringUtil.isNonZeroUnsignedInteger("1")); // Boundary value
         assertTrue(StringUtil.isNonZeroUnsignedInteger("10"));
     }
-
 
     //---------------- Tests for containsWordIgnoreCase --------------------------------------
 
@@ -103,7 +100,6 @@ public class StringUtilTest {
 
     @Test
     public void containsWordIgnoreCase_validInputs_correctResult() {
-
         // Empty sentence
         assertFalse(StringUtil.containsWordIgnoreCase("", "abc")); // Boundary case
         assertFalse(StringUtil.containsWordIgnoreCase("    ", "123"));
@@ -139,5 +135,4 @@ public class StringUtilTest {
     public void getDetails_nullGiven_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> StringUtil.getDetails(null));
     }
-
 }

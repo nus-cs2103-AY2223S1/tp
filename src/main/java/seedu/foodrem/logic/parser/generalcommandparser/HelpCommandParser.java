@@ -13,7 +13,6 @@ import seedu.foodrem.logic.parser.exceptions.ParseException;
  * Parses input arguments and creates a new HelpCommand object
  */
 public class HelpCommandParser implements Parser<HelpCommand> {
-
     /**
      * Parses the given {@code String} of arguments in the context of the HelpCommand
      * and returns a HelpCommand object for execution.

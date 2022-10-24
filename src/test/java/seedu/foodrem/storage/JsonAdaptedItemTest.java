@@ -21,7 +21,6 @@ import seedu.foodrem.testutil.TypicalItems;
 import seedu.foodrem.testutil.TypicalTags;
 
 public class JsonAdaptedItemTest {
-
     private static final String MESSAGE_FOR_INVALID_CHARACTERS_IN_UNIT =
             "The item unit should only contain alphanumeric characters and spaces.";
     private static final String MESSAGE_FOR_QUANTITY_NOT_A_NUMBER =
@@ -280,5 +279,4 @@ public class JsonAdaptedItemTest {
                 invalidTags);
         assertThrows(IllegalArgumentException.class, item::toModelType);
     }
-
 }

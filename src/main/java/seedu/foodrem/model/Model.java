@@ -24,7 +24,7 @@ public interface Model {
     Predicate<Tag> PREDICATE_SHOW_ALL_TAGS = unused -> true;
 
     /**
-     * Returns true if a tag with the same name as {@code tag} exists in the foodRem.
+     * Returns {@code true} if a tag with the same name as {@code tag} exists in foodRem.
      */
     boolean hasTag(Tag tag);
 
@@ -100,7 +100,7 @@ public interface Model {
     void setFoodRem(ReadOnlyFoodRem foodRem);
 
     /**
-     * Returns true if an item with the same identity as {@code Item} exists in FoodRem.
+     * Returns {@code true} if an item with the same identity as {@code Item} exists in FoodRem.
      */
     boolean hasItem(Item item);
 
