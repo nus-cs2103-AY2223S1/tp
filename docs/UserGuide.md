@@ -228,13 +228,14 @@ _Details coming soon ..._
 
 ## Command summary
 
-| Action                  | Format, Examples                                                                                                                                                    |
-| ----------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Action                  | Format, Examples                                                                                                                                                   |
+|-------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | **Add**                 | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague` |
-| **Clear**               | `clear`                                                                                                                                                             |
-| **Delete**              | `delete INDEX`<br> e.g., `delete 3`                                                                                                                                 |
-| **Delete by attribute** | `delete [ra/RACE] [re/RELIGION]`<br> e.g. `delete ra/Chinese`,                                                                                                      |
-| **Edit**                | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`                                           |
-| **Find**                | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`                                                                                                          |
-| **List**                | `list`                                                                                                                                                              |
-| **Help**                | `help`                                                                                                                                                              |
+| **Clear**               | `clear`                                                                                                                                                            |
+| **Delete**              | `delete INDEX`<br> e.g., `delete 3`                                                                                                                                |
+| **Delete by attribute** | `delete [ra/RACE] [re/RELIGION]`<br> e.g. `delete ra/Chinese`,                                                                                                     |
+| **Edit**                | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`                                          |
+| **Find**                | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`                                                                                                         |
+| **Clone**               | `clone INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL]` <br> e.g., `clone 1 n/James Lee p/91234567 e/jameslee@example.com`                                                |
+| **List**                | `list`                                                                                                                                                             |
+| **Help**                | `help`                                                                                                                                                             |
