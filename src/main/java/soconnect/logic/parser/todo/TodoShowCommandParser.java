@@ -69,9 +69,9 @@ public class TodoShowCommandParser implements Parser<TodoShowCommand> {
         switch (arg) {
         case TodoShowCommand.EMPTY_CONDITION:
             TodoContainsDatePredicate datePredicate = TodoContainsDatePredicate.currentDate();
-            return new TodoShowCommand(datePredicate);
+            return new TodoShowCommand(datePredicate, TodoShowCommand.TODAY_HEADER);
         case TodoShowCommand.ALL_CONDITION:
-            return new TodoShowCommand(PREDICATE_SHOW_ALL_TODOS);
+            return new TodoShowCommand(PREDICATE_SHOW_ALL_TODOS, TodoShowCommand.ALL_CONDITION);
         default:
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, TodoShowCommand.MESSAGE_USAGE));
         }
@@ -94,12 +94,12 @@ public class TodoShowCommandParser implements Parser<TodoShowCommand> {
         case INDICATOR_PRIORITY:
             Priority priority = ParserUtil.parsePriority(arg);
             TodoContainsPriorityPredicate priorityPredicate = new TodoContainsPriorityPredicate(priority);
-            return new TodoShowCommand(priorityPredicate);
+            return new TodoShowCommand(priorityPredicate, priority.toString().toUpperCase());
 
         case INDICATOR_TAG:
             Tag tag = ParserUtil.parseTag(arg);
             TodoContainsTagPredicate tagPredicate = new TodoContainsTagPredicate(tag);
-            return new TodoShowCommand(tagPredicate);
+            return new TodoShowCommand(tagPredicate, tag.toString().toUpperCase());
 
         default:
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, TodoShowCommand.MESSAGE_USAGE));
@@ -119,12 +119,13 @@ public class TodoShowCommandParser implements Parser<TodoShowCommand> {
         case 1:
             Date date = ParserUtil.parseDate(dateList[0]);
             TodoContainsDatePredicate datePredicate = new TodoContainsDatePredicate(date);
-            return new TodoShowCommand(datePredicate);
+            return new TodoShowCommand(datePredicate, date.toString());
         case 2:
             List<Date> validDateRange = ParserUtil.parseDateRange(dateList[0], dateList[1]);
             TodoContainsDateRangePredicate dateRangePredicate = new TodoContainsDateRangePredicate(
                     validDateRange.get(0), validDateRange.get(1));
-            return new TodoShowCommand(dateRangePredicate);
+            String dateRangeHeader = validDateRange.get(0) + " to " + validDateRange.get(1);
+            return new TodoShowCommand(dateRangePredicate, dateRangeHeader);
         default:
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, TodoShowCommand.MESSAGE_USAGE));
         }

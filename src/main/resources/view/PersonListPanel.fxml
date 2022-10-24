@@ -5,6 +5,6 @@
 <?import javafx.scene.layout.VBox?>
 
 <VBox xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
-  <Label styleClass="people-heading" text="People" />
+  <Label styleClass="people-heading" text="PEOPLE" />
   <ListView fx:id="personListView" VBox.vgrow="ALWAYS" />
 </VBox>

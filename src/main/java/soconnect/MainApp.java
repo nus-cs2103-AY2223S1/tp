@@ -15,6 +15,7 @@ import soconnect.commons.util.ConfigUtil;
 import soconnect.commons.util.StringUtil;
 import soconnect.logic.Logic;
 import soconnect.logic.LogicManager;
+import soconnect.logic.commands.todo.TodoShowCommand;
 import soconnect.model.Model;
 import soconnect.model.ModelManager;
 import soconnect.model.ReadOnlySoConnect;
@@ -198,6 +199,7 @@ public class MainApp extends Application {
         logger.info("Starting SoConnect " + MainApp.VERSION);
         ui.start(primaryStage);
         model.updateFilteredTodoList(TodoContainsDatePredicate.currentDate());
+        model.updateTodoListHeader(TodoShowCommand.TODAY_HEADER);
     }
 
     @Override

@@ -4,6 +4,8 @@ import java.nio.file.Path;
 import java.util.TreeSet;
 import java.util.function.Predicate;
 
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.ObservableList;
 import soconnect.commons.core.GuiSettings;
 import soconnect.model.person.Person;
@@ -237,6 +239,18 @@ public interface Model {
      */
     void updateFilteredTodoList(Predicate<Todo> predicate);
 
+    /**
+     * Returns the header to be displayed on the {@code TodoListPanel}.
+     * @return
+     */
+    SimpleStringProperty getTodoListHeader();
+
+    /**
+     * Updates the header of the {@code TodoListPanel}.
+     *
+     * @param header The new header
+     */
+    void updateTodoListHeader(String header);
     /**
      * Returns true if tag exists.
      *

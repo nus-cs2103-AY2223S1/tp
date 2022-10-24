@@ -8,6 +8,8 @@ import java.util.TreeSet;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import soconnect.commons.core.GuiSettings;
@@ -28,6 +30,7 @@ public class ModelManager implements Model {
     private final FilteredList<Person> filteredPersons;
     private final FilteredList<Todo> filteredTodos;
     private final ObservableList<Tag> tags;
+    private final SimpleStringProperty todoListHeader;
 
     /**
      * Initializes a ModelManager with the given {@code soConnect}, {@code todoList}, and {@code userPrefs}.
@@ -43,6 +46,7 @@ public class ModelManager implements Model {
         filteredPersons = new FilteredList<>(this.soConnect.getPersonList());
         filteredTodos = new FilteredList<>(this.todoList.getTodoList());
         this.tags = this.soConnect.getTagList();
+        this.todoListHeader = new SimpleStringProperty("");
     }
 
     public ModelManager() {
@@ -285,6 +289,16 @@ public class ModelManager implements Model {
     public void updateFilteredTodoList(Predicate<Todo> predicate) {
         requireNonNull(predicate);
         filteredTodos.setPredicate(predicate);
+    }
+
+    @Override
+    public SimpleStringProperty getTodoListHeader() {
+        return this.todoListHeader;
+    }
+
+    @Override
+    public void updateTodoListHeader(String header) {
+        this.todoListHeader.set(header);
     }
 
     @Override

@@ -1,14 +1,12 @@
 package soconnect.ui;
 
-import java.util.logging.Logger;
-
+import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.Region;
-import soconnect.commons.core.LogsCenter;
 import soconnect.model.todo.Todo;
 
 /**
@@ -16,7 +14,6 @@ import soconnect.model.todo.Todo;
  */
 public class TodoListPanel extends UiPart<Region> {
     private static final String FXML = "TodoListPanel.fxml";
-    private final Logger logger = LogsCenter.getLogger(TodoListPanel.class);
 
     @FXML
     private Label header;
@@ -26,9 +23,9 @@ public class TodoListPanel extends UiPart<Region> {
     /**
      * Creates a {@code TodoListPanel} with the given todoHeader and {@code ObservableList}.
      */
-    public TodoListPanel(String todoHeader, ObservableList<Todo> todoList) {
+    public TodoListPanel(SimpleStringProperty todoListHeader, ObservableList<Todo> todoList) {
         super(FXML);
-        header.setText(todoHeader);
+        header.textProperty().bind(todoListHeader);
         todoListView.setItems(todoList);
         todoListView.setCellFactory(listView -> new TodoListViewCell());
     }

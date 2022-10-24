@@ -2,6 +2,8 @@ package soconnect.logic;
 
 import java.nio.file.Path;
 
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.ObservableList;
 import soconnect.commons.core.GuiSettings;
 import soconnect.logic.autocomplete.Autocomplete;
@@ -53,11 +55,9 @@ public interface Logic {
     ObservableList<Todo> getFilteredTodoList();
 
     /**
-     * Stub - this depends on the search query,
-     * e.g if the user search todo by Tag, the header is the name of the tag,
-     * if the user search todo by date, the header will be the give date.
+     * Returns the header of the {@code TodoListPanel}.
      */
-    String getTodoHeader();
+    SimpleStringProperty getTodoListHeader();
 
     /**
      * Returns the user prefs' SoConnect file path.
