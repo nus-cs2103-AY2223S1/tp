@@ -8,7 +8,7 @@ import java.util.List;
 import seedu.rc4hdb.logic.commands.modelcommands.ListCommand;
 import seedu.rc4hdb.logic.parser.Parser;
 import seedu.rc4hdb.logic.parser.exceptions.ParseException;
-import seedu.rc4hdb.model.resident.fields.ResidentFields;
+import seedu.rc4hdb.model.resident.fields.ResidentField;
 
 /**
  * Parses input arguments and creates a new ListCommand object
@@ -31,13 +31,14 @@ public class ListCommandParser implements Parser<ListCommand> {
         if (hasInvalidSpecifier(args)) {
             throw new ParseException(INTENDED_USAGE);
         }
+
         if (hasEmptyFieldBody(args)) {
             throw new ParseException(INTENDED_USAGE);
         }
 
         // Create one list for each specifier
         List<String> fieldsToInclude = new ArrayList<>();
-        List<String> fieldsToExclude = new ArrayList<>(ResidentFields.LOWERCASE_FIELDS);
+        List<String> fieldsToExclude = new ArrayList<>(ResidentField.LOWERCASE_FIELDS);
 
         populateFieldLists(args, fieldsToInclude, fieldsToExclude);
         if (fieldsToExclude.isEmpty()) {
@@ -88,7 +89,7 @@ public class ListCommandParser implements Parser<ListCommand> {
                                     List<String> fieldsToExclude) throws ParseException {
         String[] specifiedFields = getSpecifiedFields(args);
         for (String field : specifiedFields) {
-            if (ResidentFields.LOWERCASE_FIELDS.contains(field)) {
+            if (ResidentField.LOWERCASE_FIELDS.contains(field)) {
                 fieldsToInclude.add(field);
                 fieldsToExclude.remove(field);
             } else {

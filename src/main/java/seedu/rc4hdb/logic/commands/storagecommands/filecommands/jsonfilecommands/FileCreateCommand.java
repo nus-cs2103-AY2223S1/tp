@@ -1,4 +1,4 @@
-package seedu.rc4hdb.logic.commands.storagecommands.filecommands;
+package seedu.rc4hdb.logic.commands.storagecommands.filecommands.jsonfilecommands;
 
 import java.io.IOException;
 import java.nio.file.FileAlreadyExistsException;
@@ -12,7 +12,7 @@ import seedu.rc4hdb.storage.Storage;
 /**
  * Creates a new data file corresponding to the arguments provided.
  */
-public class FileCreateCommand extends FileCommand implements StorageCommand {
+public class FileCreateCommand extends JsonFileCommand implements StorageCommand {
 
     public static final String COMMAND_WORD = "create";
 
@@ -20,8 +20,8 @@ public class FileCreateCommand extends FileCommand implements StorageCommand {
 
     public static final String MESSAGE_SUCCESS = "%s successfully created.";
 
-    public FileCreateCommand(Path filePath) {
-        super(filePath);
+    public FileCreateCommand(Path dir, String fileName) {
+        super(dir, fileName);
     }
 
     @Override

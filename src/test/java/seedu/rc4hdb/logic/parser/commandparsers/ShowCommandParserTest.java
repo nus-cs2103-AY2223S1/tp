@@ -9,7 +9,7 @@ import java.util.List;
 import org.junit.jupiter.api.Test;
 
 import seedu.rc4hdb.logic.commands.modelcommands.ShowCommand;
-import seedu.rc4hdb.model.resident.fields.ResidentFields;
+import seedu.rc4hdb.model.resident.fields.ResidentField;
 
 public class ShowCommandParserTest {
     private final ShowCommandParser parser = new ShowCommandParser();
@@ -52,7 +52,7 @@ public class ShowCommandParserTest {
 
     @Test
     public void parse_allFields_returnsShowCommandWithGlobalFieldList() {
-        List<String> fieldsToShow = new ArrayList<>(ResidentFields.LOWERCASE_FIELDS);
+        List<String> fieldsToShow = new ArrayList<>(ResidentField.LOWERCASE_FIELDS);
         ShowCommand expectedCommand = new ShowCommand(fieldsToShow);
         assertParseSuccess(parser, "index name phone email room gender house matric tags", expectedCommand);
     }

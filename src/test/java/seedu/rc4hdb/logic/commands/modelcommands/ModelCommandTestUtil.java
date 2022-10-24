@@ -79,6 +79,9 @@ public class ModelCommandTestUtil {
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
 
+    public static final String VALID_ANY_SPECIFIER_DESC = " " + "/any";
+    public static final String VALID_ALL_SPECIFIER_DESC = " " + "/all";
+
     public static final ResidentDescriptor DESC_AMY;
     public static final ResidentDescriptor DESC_BOB;
 
@@ -144,7 +147,7 @@ public class ModelCommandTestUtil {
         assertTrue(targetIndex.getZeroBased() < model.getFilteredResidentList().size());
 
         Resident resident = model.getFilteredResidentList().get(targetIndex.getZeroBased());
-        final String[] splitName = resident.getName().fullName.split("\\s+");
+        final String[] splitName = resident.getName().value.split("\\s+");
         model.updateFilteredResidentList(new NameContainsKeywordsPredicate(Arrays.asList(splitName[0])));
 
         assertEquals(1, model.getFilteredResidentList().size());

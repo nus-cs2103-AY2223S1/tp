@@ -16,7 +16,7 @@ import seedu.rc4hdb.model.resident.fields.MatricNumber;
 import seedu.rc4hdb.model.resident.fields.Name;
 import seedu.rc4hdb.model.resident.fields.Phone;
 import seedu.rc4hdb.model.resident.fields.Room;
-import seedu.rc4hdb.model.tag.Tag;
+import seedu.rc4hdb.model.resident.fields.Tag;
 
 /**
  * Contains utility methods used for parsing strings in the various *Parser classes.
@@ -24,6 +24,9 @@ import seedu.rc4hdb.model.tag.Tag;
 public class ParserUtil {
 
     public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero unsigned integer.";
+    public static final String MESSAGE_INVALID_SPECIFIER = "Specifier should be either /any or /all";
+    public static final String VALID_ALL_SPECIFIER = "/all";
+    public static final String VALID_ANY_SPECIFIER = "/any";
 
     /**
      * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading and trailing whitespaces will be
@@ -169,4 +172,5 @@ public class ParserUtil {
         }
         return tagSet;
     }
+
 }

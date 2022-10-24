@@ -10,7 +10,7 @@ import java.util.logging.Logger;
 import seedu.rc4hdb.logic.commands.modelcommands.HideCommand;
 import seedu.rc4hdb.logic.parser.Parser;
 import seedu.rc4hdb.logic.parser.exceptions.ParseException;
-import seedu.rc4hdb.model.resident.fields.ResidentFields;
+import seedu.rc4hdb.model.resident.fields.ResidentField;
 
 /**
  * Parses input arguments and creates a new HideCommand object.
@@ -68,7 +68,7 @@ public class HideCommandParser implements Parser<HideCommand> {
     private void populateFieldList(String args, List<String> fieldsToHide) throws ParseException {
         String[] specifiedFields = getSpecifiedFields(args);
         for (String field : specifiedFields) {
-            if (!ResidentFields.LOWERCASE_FIELDS.contains(field)) {
+            if (!ResidentField.LOWERCASE_FIELDS.contains(field)) {
                 throw new ParseException(ERROR_MESSAGE);
             }
             fieldsToHide.add(field);
