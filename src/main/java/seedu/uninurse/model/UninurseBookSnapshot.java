@@ -43,6 +43,7 @@ public class UninurseBookSnapshot {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof UninurseBookSnapshot // instanceof handles nulls
-                && uninurseBook.equals(((UninurseBookSnapshot) other).uninurseBook));
+                && uninurseBook.equals(((UninurseBookSnapshot) other).uninurseBook))
+                && patientListTracker.equals(((UninurseBookSnapshot) other).patientListTracker);
     }
 }

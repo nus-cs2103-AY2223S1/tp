@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Optional;
 
 import seedu.uninurse.model.person.Patient;
+import seedu.uninurse.ui.PersonCard;
 
 /**
  * Represents the patients added and deleted in an undoable command.
@@ -45,14 +46,30 @@ public class PatientListTracker {
         this.deletedPatients = (deletedPatient == null) ? Optional.empty() : Optional.of(Arrays.asList(deletedPatient));
     }
 
-
-
     public Optional<List<Patient>> getAddedPatients() {
         return this.addedPatients;
     }
 
     public Optional<List<Patient>> getDeletedPatients() {
         return this.deletedPatients;
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        // short circuit if same object
+        if (other == this) {
+            return true;
+        }
+
+        // instanceof handles nulls
+        if (!(other instanceof PatientListTracker)) {
+            return false;
+        }
+
+        // state check
+        PatientListTracker tracker = (PatientListTracker) other;
+        return this.addedPatients.equals(tracker.addedPatients)
+                && this.deletedPatients.equals(tracker.deletedPatients);
     }
 }
 
