@@ -7,7 +7,7 @@ public class CommandUtil {
     public static final String[] ACCEPTABLE_BUYER_PARAMETER = new String[]{"BUYERS", "BUYER", "B", "-B", "/B"};
 
     public static final String[] ACCEPTABLE_DELIVERER_PARAMETER = new String[]{
-            "DELIVERERS", "DELIVERER", "D", "-D", "/D"};
+        "DELIVERERS", "DELIVERER", "D", "-D", "/D"};
 
     public static final String[] ACCEPTABLE_SUPPLIER_PARAMETER = new String[]{"SUPPLIERS", "SUPPLIER", "S", "-S", "/S"};
 
@@ -17,7 +17,7 @@ public class CommandUtil {
     public static final String[] ACCEPTABLE_ALL_PARAMETER = new String[]{"ALL", "A", "-A", "/A"};
 
     public static final String[] ACCEPTABLE_SORT_ORDER_SIZE_PARAMETER = new String[]{
-            "ORDERS", "ORDER", "O", "-O", "/O"};
+        "ORDERS", "ORDER", "O", "-O", "/O"};
 
     public static final String[] ACCEPTABLE_SORT_PET_LIST_SIZE_PARAMETER = new String[]{"PETS", "PET"};
 
@@ -32,26 +32,26 @@ public class CommandUtil {
     public static final String[] ACCEPTABLE_SORT_PHONE_PARAMETER = new String[]{"PHONE", "PH", "P", "-P", "/P"};
 
     public static final String[] ACCEPTABLE_SORT_PRICE_RANGE_PARAMETER = new String[]{"PRICERANGE", "PRANGE", "PRICER",
-            "PR", "-PR", "/PR"};
+        "PR", "-PR", "/PR"};
     public static final String[] ACCEPTABLE_SORT_DUE_DATE_PARAMETER = new String[]{"DUEDATE", "DUE", "BY", "DATE",
-            "BYDATE", "D", "-D", "/D"};
+        "BYDATE", "D", "-D", "/D"};
     public static final String[] ACCEPTABLE_SORT_PRICE_PARAMETER = new String[]{"PRICE", "P", "-P", "/P"};
     public static final String[] ACCEPTABLE_SORT_STATUS_PARAMETER = new String[]{"ORDERSTATUS", "STATUS", "OS", "S",
-            "-S", "/S"};
+        "-S", "/S"};
     public static final String[] ACCEPTABLE_SORT_COLOR_PARAMETER = new String[]{"COLOR", "C", "-C", "/C"};
     public static final String[] ACCEPTABLE_SORT_COLOR_PATTERN_PARAMETER = new String[]{"COLORPATTERN", "CPATTERN",
-            "COLORP", "CP", "-CP", "/CP"};
+        "COLORP", "CP", "-CP", "/CP"};
     public static final String[] ACCEPTABLE_SORT_BIRTH_DATE_PARAMETER = new String[]{"BIRTHDATE", "BDATE", "BIRTHD",
-            "DATE", "-BD", "/BD", "BD"};
+        "DATE", "-BD", "/BD", "BD"};
     public static final String[] ACCEPTABLE_SORT_SPECIES_PARAMETER = new String[]{"SPECIES", "S", "-S", "/S"};
     public static final String[] ACCEPTABLE_SORT_HEIGHT_PARAMETER = new String[]{"HEIGHT", "H", "-H", "/H"};
     public static final String[] ACCEPTABLE_SORT_WEIGHT_PARAMETER = new String[]{"WEIGHT", "W", "-W", "/W"};
     public static final String[] ACCEPTABLE_SORT_VACCINATION_STATUS_PARAMETER = new String[]{"VACCINATIONSTATUS",
-            "VSTATUS", "-VS", "/VS", "VS"};
+        "VSTATUS", "-VS", "/VS", "VS"};
     public static final String[] ACCEPTABLE_SORT_TAGS_PARAMETER = new String[]{"CHARACTERISTICS", "CHARA", "CHA", "CH",
-            "-CH", "/CH"};
+        "-CH", "/CH"};
     public static final String[] ACCEPTABLE_SORT_CERTIFICATES_PARAMETER = new String[]{"CERTIFICATE", "CERT", "-CERT",
-            "/CERT"};
+        "/CERT"};
 
     /**
      * Checks if a given parameter matches any parameter in a given parameter array.

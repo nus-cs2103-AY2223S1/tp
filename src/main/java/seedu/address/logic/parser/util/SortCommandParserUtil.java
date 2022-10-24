@@ -3,7 +3,6 @@ package seedu.address.logic.parser.util;
 import java.util.Comparator;
 
 import seedu.address.logic.commands.SortBuyerCommand;
-import seedu.address.logic.commands.SortCommand;
 import seedu.address.logic.commands.SortDelivererCommand;
 import seedu.address.logic.commands.SortOrderCommand;
 import seedu.address.logic.commands.SortPetCommand;
