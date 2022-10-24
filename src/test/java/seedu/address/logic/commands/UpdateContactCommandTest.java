@@ -49,7 +49,8 @@ class UpdateContactCommandTest {
         expectedModel.setPerson(expectedPerson, expectedPatientEdited);
 
         Command setPhysCommand = new UpdateContactCommand(new Uid(3L), new Name(DEFAULT_CONTACT_NAME),
-                new Phone(DEFAULT_CONTACT_PHONE), new Email(DEFAULT_CONTACT_EMAIL), new Category(Category.PHYSICIAN_SYMBOL));
+                new Phone(DEFAULT_CONTACT_PHONE), new Email(DEFAULT_CONTACT_EMAIL),
+                new Category(Category.PHYSICIAN_SYMBOL));
 
         assertCommandSuccess(setPhysCommand,
                 model, String.format(UpdateContactCommand.MESSAGE_UPDATE_CONTACT_SUCCESS, 3, DEFAULT_CONTACT_NAME,
@@ -59,7 +60,8 @@ class UpdateContactCommandTest {
     @Test
     void execute_setPhysicianOnNurse_fail() {
         Command setPhysCommand = new UpdateContactCommand(new Uid(5L), new Name(DEFAULT_CONTACT_NAME),
-                new Phone(DEFAULT_CONTACT_PHONE), new Email(DEFAULT_CONTACT_EMAIL), new Category(Category.PHYSICIAN_SYMBOL));
+                new Phone(DEFAULT_CONTACT_PHONE), new Email(DEFAULT_CONTACT_EMAIL),
+                new Category(Category.PHYSICIAN_SYMBOL));
 
         assertCommandFailure(setPhysCommand,
                 model, Messages.MESSAGE_UPDATECONTACT_INVALID_CATEGORY);
@@ -68,7 +70,8 @@ class UpdateContactCommandTest {
     @Test
     void execute_setPhysicianOnInvalidUid_fail() {
         Command setPhysCommand = new UpdateContactCommand(new Uid(9999L), new Name(DEFAULT_CONTACT_NAME),
-                new Phone(DEFAULT_CONTACT_PHONE), new Email(DEFAULT_CONTACT_EMAIL), new Category(Category.PHYSICIAN_SYMBOL));
+                new Phone(DEFAULT_CONTACT_PHONE), new Email(DEFAULT_CONTACT_EMAIL),
+                new Category(Category.PHYSICIAN_SYMBOL));
 
         assertCommandFailure(setPhysCommand,
                 model, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_UID);
@@ -87,7 +90,8 @@ class UpdateContactCommandTest {
         expectedModel.setPerson(expectedPatient, expectedPatientEdited);
 
         Command command = new UpdateContactCommand(new Uid(3L), new Name(DEFAULT_CONTACT_NAME),
-                new Phone(DEFAULT_CONTACT_PHONE), new Email(DEFAULT_CONTACT_EMAIL), new Category(Category.NEXTOFKIN_SYMBOL));
+                new Phone(DEFAULT_CONTACT_PHONE), new Email(DEFAULT_CONTACT_EMAIL),
+                new Category(Category.NEXTOFKIN_SYMBOL));
 
         assertCommandSuccess(command,
                 model, String.format(UpdateContactCommand.MESSAGE_UPDATE_CONTACT_SUCCESS, 3, DEFAULT_CONTACT_NAME,
@@ -97,7 +101,8 @@ class UpdateContactCommandTest {
     @Test
     void execute_setNokOnNurse_fail() {
         Command setPhysCommand = new UpdateContactCommand(new Uid(5L), new Name(DEFAULT_CONTACT_NAME),
-                new Phone(DEFAULT_CONTACT_PHONE), new Email(DEFAULT_CONTACT_EMAIL), new Category(Category.NEXTOFKIN_SYMBOL));
+                new Phone(DEFAULT_CONTACT_PHONE), new Email(DEFAULT_CONTACT_EMAIL),
+                new Category(Category.NEXTOFKIN_SYMBOL));
 
         assertCommandFailure(setPhysCommand,
                 model, Messages.MESSAGE_UPDATECONTACT_INVALID_CATEGORY);
@@ -106,7 +111,8 @@ class UpdateContactCommandTest {
     @Test
     void execute_setNokOnInvalidUid_fail() {
         Command setPhysCommand = new UpdateContactCommand(new Uid(9999L), new Name(DEFAULT_CONTACT_NAME),
-                new Phone(DEFAULT_CONTACT_PHONE), new Email(DEFAULT_CONTACT_EMAIL), new Category(Category.NEXTOFKIN_SYMBOL));
+                new Phone(DEFAULT_CONTACT_PHONE), new Email(DEFAULT_CONTACT_EMAIL),
+                new Category(Category.NEXTOFKIN_SYMBOL));
 
         assertCommandFailure(setPhysCommand,
                 model, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_UID);
