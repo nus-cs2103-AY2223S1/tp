@@ -33,7 +33,7 @@ public class Session implements Identity<Session> {
         requireNonNull(sessionName);
         checkArgument(isValidSessionName(sessionName), MESSAGE_CONSTRAINTS);
         this.sessionName = sessionName;
-        this.date = new Date(LocalDate.EPOCH);
+        this.date = new Date(LocalDate.now());
     }
 
     /**

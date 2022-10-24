@@ -94,7 +94,7 @@ public class GradeCommand extends Command {
                 || (other instanceof GradeCommand // instanceof handles nulls
                 && indices.equals(((GradeCommand) other).indices)
                 && grade == ((GradeCommand) other).grade
-                && session.isSame(((GradeCommand) other).session));
+                && session.equals(((GradeCommand) other).session));
     }
 
 }
