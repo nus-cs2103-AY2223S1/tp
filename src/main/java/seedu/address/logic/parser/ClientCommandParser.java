@@ -10,6 +10,8 @@ import static seedu.address.logic.parser.ClientCliSyntax.PREFIX_CLIENT_PHONE;
 import static seedu.address.logic.parser.ClientCliSyntax.PREFIX_PROJECT_ID;
 import static seedu.address.logic.parser.ParserUtil.parseName;
 import static seedu.address.logic.parser.ProjectCliSyntax.PREFIX_CLIENT_ID;
+import static seedu.address.model.Name.isValidName;
+import static seedu.address.model.client.ClientPhone.isValidClientPhone;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -179,31 +181,15 @@ public class ClientCommandParser implements Parser<ClientCommand> {
             ArgumentMultimap argMultimap =
                     ArgumentTokenizer.tokenize(arguments, PREFIX_NAME, PREFIX_CLIENT_EMAIL, PREFIX_CLIENT_PHONE);
 
-
-            if (!arePrefixesPresent(argMultimap, PREFIX_NAME) && !arePrefixesPresent(argMultimap, PREFIX_CLIENT_EMAIL)
-            && !arePrefixesPresent(argMultimap, PREFIX_CLIENT_PHONE)) {
-                throw new ParseException(String.format(MESSAGE_MISSING_ARGUMENTS,
-                        FindClientCommand.MESSAGE_FIND_CLIENT_USAGE));
+            if (noPrefixesPresent(argMultimap, PREFIX_CLIENT_PHONE) && noPrefixesPresent(argMultimap,
+                    PREFIX_CLIENT_NAME) && noPrefixesPresent(argMultimap, PREFIX_CLIENT_EMAIL)) {
+                throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                       FindClientCommand.MESSAGE_FIND_CLIENT_USAGE));
             }
-
-            if (arePrefixesPresent(argMultimap, PREFIX_NAME)) {
-                Name findName = parseName(argMultimap.getValue(PREFIX_NAME).get());
-            }
-
-            if (arePrefixesPresent(argMultimap, PREFIX_CLIENT_PHONE)) {
-                ClientPhone findPhone = ParserUtil.parsePhone(argMultimap.getValue(PREFIX_CLIENT_PHONE).get());
-            }
-
-            if (arePrefixesPresent(argMultimap, PREFIX_CLIENT_EMAIL)) {
-                ClientEmail findEmail = ParserUtil.parseEmail(argMultimap.getValue(PREFIX_CLIENT_EMAIL).get());
-            }
-
-            List<String> nameKeywords = argMultimap.getAllValues(PREFIX_NAME);
-            List<String> phoneKeywords = argMultimap.getAllValues(PREFIX_CLIENT_PHONE);
-            List<String> emailKeywords = argMultimap.getAllValues(PREFIX_CLIENT_EMAIL);
 
             return new FindClientCommand(new ClientContainsKeywordsPredicate(
-                    nameKeywords, emailKeywords, phoneKeywords));
+                    argMultimap.getAllValues(PREFIX_NAME), argMultimap.getAllValues(PREFIX_CLIENT_EMAIL),
+                    argMultimap.getAllValues(PREFIX_CLIENT_PHONE)));
 
         } catch (ParseException pe) {
             throw new ParseException(
@@ -222,6 +208,14 @@ public class ClientCommandParser implements Parser<ClientCommand> {
      */
     private static boolean arePrefixesPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
         return Stream.of(prefixes).allMatch(prefix -> argumentMultimap.getValue(prefix).isPresent());
+    }
+
+    /**
+     * Returns true if there are no prefixes present and/or they all contain empty values in the
+     * given {@code ArgumentMultimap}.
+     */
+    private static boolean noPrefixesPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
+        return Stream.of(prefixes).allMatch(prefix -> argumentMultimap.getValue(prefix).isEmpty());
     }
 
     /**
