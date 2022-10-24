@@ -38,7 +38,7 @@ public class DeleteConditionCommandParserTest {
     }
 
     @Test
-    public void parse_invalidTaskIndex_failure() {
+    public void parse_invalidConditionIndex_failure() {
         assertParseFailure(parser, "1 a",
                 String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteConditionCommand.MESSAGE_USAGE));
         assertParseFailure(parser, "1 0",
