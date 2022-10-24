@@ -8,14 +8,14 @@ import seedu.address.commons.util.StringUtil;
  * Tests that a {@code Person}'s {@code Hospital Wing} matches any of the keywords given.
  */
 public class HospitalWingContainsKeywordsPredicate implements Predicate<Person> {
-    private final List<String> keywords;
+    private final List<String> hospitalWings;
 
     /**
      * Constructor for HospitalWingContainsKeywordsPredicate.
      * @param keywords patients' hospital wings
      */
     public HospitalWingContainsKeywordsPredicate(List<String> keywords) {
-        this.keywords = keywords;
+        this.hospitalWings = keywords;
     }
 
     /**
@@ -25,8 +25,12 @@ public class HospitalWingContainsKeywordsPredicate implements Predicate<Person> 
      */
     @Override
     public boolean test(Person person) {
-        return keywords.stream()
-                .anyMatch(keyword -> StringUtil.containsWordIgnoreCase(person.getHospitalWing().get().value, keyword));
+        Boolean isInpatient =  person.getPatientType().value.equals(PatientType.PatientTypes.INPATIENT);
+        if (isInpatient) {
+            return hospitalWings.stream()
+                    .anyMatch(hospitalWing -> person.getHospitalWing().get().value.equals(hospitalWing));
+        }
+        return false;
     }
 
     /**
@@ -38,7 +42,7 @@ public class HospitalWingContainsKeywordsPredicate implements Predicate<Person> 
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof HospitalWingContainsKeywordsPredicate // instanceof handles nulls
-                && keywords.equals(((HospitalWingContainsKeywordsPredicate) other).keywords)); // state check
+                && hospitalWings.equals(((HospitalWingContainsKeywordsPredicate) other).hospitalWings)); // state check
     }
 
 }
