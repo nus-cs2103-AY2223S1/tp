@@ -12,7 +12,7 @@ import seedu.address.model.team.Task;
  */
 public class TaskCard extends UiPart<Region> {
 
-    private static final String FXML = "TaskCard.fxml";
+    private static final String FXML = "TaskListCard.fxml";
 
     /**
      * Note: Certain keywords such as "location" and "resources" are reserved keywords in JavaFX.
@@ -27,18 +27,19 @@ public class TaskCard extends UiPart<Region> {
     @javafx.fxml.FXML
     private HBox cardPane;
     @FXML
-    private Label name;
+    private Label taskName;
     @FXML
     private Label id;
 
     /**
-     * Creates a {@code PersonCode} with the given {@code Person} and index to display.
+     * Creates a {@code TaskCard} with the given {@code Task} and index to display.
      */
     public TaskCard(Task task, int displayedIndex) {
         super(FXML);
         this.task = task;
         id.setText(displayedIndex + ". ");
-        name.setText(task.getName());
+        taskName.setText(task.getName());
+        taskName.setWrapText(true);
     }
 
     @Override

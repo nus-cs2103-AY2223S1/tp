@@ -17,8 +17,8 @@ public class SetDeadlineCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Sets a deadline to the specified existing task.\n"
-            + "Parameters: INDEX of task (must be a positive integer) \n"
-            + "Parameters: Deadline (format: YYYY-MM-DD HH:mm) \n"
+            + "Parameters: TASK_INDEX (must be a positive integer) \n"
+            + "Parameters: DEADLINE (format: YYYY-MM-DD HH:mm) \n"
             + "Example: " + COMMAND_WORD + " 1" + " 2023-02-25 23:59";
 
     public static final String MESSAGE_SET_DEADLINE_SUCCESS = "Set Deadline: %1$s %2$s";
@@ -47,7 +47,7 @@ public class SetDeadlineCommand extends Command {
         }
         taskList.get(taskIndex).setDeadline(deadline);
         return new CommandResult(String.format(MESSAGE_SET_DEADLINE_SUCCESS,
-                taskList.get(taskIndex).getName(), taskList.get(taskIndex).getDeadline()));
+                taskList.get(taskIndex).getName(), taskList.get(taskIndex).getDeadlineAsString()));
     }
 
     @Override
@@ -57,5 +57,4 @@ public class SetDeadlineCommand extends Command {
                 && taskIndex == (((SetDeadlineCommand) other).taskIndex))
                 && deadline.equals(((SetDeadlineCommand) other).deadline); // state check
     }
-
 }

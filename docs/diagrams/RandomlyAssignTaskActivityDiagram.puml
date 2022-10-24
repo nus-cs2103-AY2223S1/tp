@@ -1,0 +1,23 @@
+@startuml
+start
+
+title Activity Diagram for Randomly Assign Task
+
+if () then ([else])
+    if () then ([else])
+        :Retrieve task at given index;
+        if () then ([else])
+            :Assign task to randomly chosen
+            team member that has not been
+            assigned this task yet;
+        else ([all team members are already assigned to this task])
+            :Throw CommandException;
+        endif
+    else ([task index is out of bounds])
+            :Throw CommandException;
+    endif
+else ([task index is invalid])
+    :Throw ParseException;
+endif
+stop
+@enduml

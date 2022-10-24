@@ -3,7 +3,9 @@ package seedu.address.model.team;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.Objects;
 
 import javafx.collections.ObservableList;
@@ -22,6 +24,7 @@ public class Team {
     private final String teamName;
     private final UniquePersonList teamMembers = new UniquePersonList();
     private final TaskList taskList = new TaskList();
+    private final UniqueLinkList links = new UniqueLinkList();
 
     /**
      * Constructs a {@code Team}.
@@ -58,6 +61,23 @@ public class Team {
     }
 
     /**
+     * Constructs a {@code Team}
+     *
+     * @param teamName    A valid team name
+     * @param teamMembers A list of persons to be added as members
+     * @param tasks       A list of tasks for the team to do
+     * @param links       A list of links that the team should keep track of
+     */
+    public Team(String teamName, List<Person> teamMembers, List<Task> tasks, List<Link> links) {
+        this(teamName, teamMembers, tasks);
+        this.links.setLinks(links);
+    }
+
+    public static Team createDefaultTeam() {
+        return new Team("default", new ArrayList<>(), new ArrayList<>(), new ArrayList<>());
+    }
+
+    /**
      * Returns true if a given string is a valid tag name.
      */
     public static boolean isValidTeamName(String test) {
@@ -72,7 +92,7 @@ public class Team {
      * Returns an immutable team set, which throws {@code UnsupportedOperationException}
      * if modification is attempted.
      */
-    public List<Person> getTeamMembers() {
+    public ObservableList<Person> getTeamMembers() {
         return teamMembers.asUnmodifiableObservableList();
     }
 
@@ -129,6 +149,28 @@ public class Team {
         task.assignTo(person);
     }
 
+    //// link related operations
+    public boolean hasLink(Link link) {
+        return links.contains(link);
+    }
+
+    public void addLink(Link link) {
+        links.add(link);
+    }
+
+    public void setLink(Link target, Link editedLink) {
+        requireNonNull(editedLink);
+        links.setLink(target, editedLink);
+    }
+
+    public void deleteLink(Link link) {
+        links.remove(link);
+    }
+
+    public ObservableList<Link> getLinkList() {
+        return links.asUnmodifiableObservableList();
+    }
+
     /**
      * Returns true if both teams have the same name.
      */
@@ -167,6 +209,23 @@ public class Team {
      */
     public String getTasksAsString() {
         return taskList.toString();
+    }
+
+    public String getCompletedTasksAsString() {
+        return taskList.getCompletedTasksString();
+    }
+
+    public String getIncompleteTasksAsString() {
+        return taskList.getIncompleteTasksString();
+    }
+
+    /**
+     * Returns a map representing the number of tasks assigned to each person.
+     *
+     * @return Map of person to number of tasks assigned
+     */
+    public Map<Person, Integer> getTasksPerPerson() {
+        return taskList.getTasksPerPerson();
     }
 
     /**

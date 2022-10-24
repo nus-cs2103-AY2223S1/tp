@@ -1,0 +1,15 @@
+@startuml
+start
+if () then ([else])
+    :Retrieve task at given index;
+    if () then ([else])
+        :Update task status to done;
+        :Displays success message to user;
+    else ([task already marked as done])
+        :Throw CommandException;
+    endif
+else ([index is invalid])
+    :Throw ParseException;
+endif
+stop
+@enduml

@@ -6,6 +6,7 @@ import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.Region;
 import seedu.address.model.team.Team;
+
 /**
  * Panel containing the list of teams.
  */
@@ -14,6 +15,7 @@ public class TeamListPanel extends UiPart<Region> {
 
     @FXML
     private ListView<Team> teamListView;
+
     /**
      * Creates a {@code TeamListPanel} with the given {@code ObservableList}.
      */
@@ -27,7 +29,7 @@ public class TeamListPanel extends UiPart<Region> {
     /**
      * Custom {@code ListCell} that displays the graphics of a {@code Team} using a {@code TeamCard}.
      */
-    class TeamListViewCell extends ListCell<Team> {
+    private static class TeamListViewCell extends ListCell<Team> {
         @Override
         protected void updateItem(Team team, boolean empty) {
             super.updateItem(team, empty);

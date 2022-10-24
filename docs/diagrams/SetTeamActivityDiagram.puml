@@ -1,0 +1,20 @@
+@startuml
+'https://plantuml.com/activity-diagram-beta
+
+start
+if () then ([else])
+    :Finds an existing team with the same name;
+    if () then ([team does not exist] / [team already set to target team] )
+        :Throw CommandException;
+    else ()
+        :Set team to target team;
+        :Display success message to user;
+    endif
+else ([team name is invalid])
+    :Throw ParseException;
+endif
+
+stop
+
+
+@enduml

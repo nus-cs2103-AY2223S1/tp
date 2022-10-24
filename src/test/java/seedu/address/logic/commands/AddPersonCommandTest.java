@@ -22,6 +22,7 @@ import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.person.Person;
+import seedu.address.model.team.Link;
 import seedu.address.model.team.Team;
 import seedu.address.testutil.PersonBuilder;
 
@@ -172,12 +173,47 @@ public class AddPersonCommandTest {
         }
 
         @Override
+        public ObservableList<Person> getFilteredPersonList(Predicate<Person> predicate) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public void updateFilteredPersonList(Predicate<Person> predicate) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
         public ObjectProperty<Team> getTeamAsProperty() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public boolean hasLink(Link link) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void addLink(Link link) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void setLink(Link target, Link editedLink) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void deleteLink(Link link) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public ObservableList<Link> getFilteredLinkList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void updateFilteredLinkList(Predicate<Link> predicate) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -221,7 +257,7 @@ public class AddPersonCommandTest {
 
         @Override
         public ReadOnlyAddressBook getAddressBook() {
-            return new AddressBook();
+            return AddressBook.createNewAddressBook();
         }
     }
 

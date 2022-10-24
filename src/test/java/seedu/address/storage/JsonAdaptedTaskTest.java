@@ -3,6 +3,8 @@ package seedu.address.storage;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
+import java.util.List;
+
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.exceptions.IllegalValueException;
@@ -19,7 +21,7 @@ class JsonAdaptedTaskTest {
 
     @Test
     void toModelType_invalidTask_throwsException() {
-        JsonAdaptedTask task = new JsonAdaptedTask(" ");
+        JsonAdaptedTask task = new JsonAdaptedTask(" ", List.of(), "false", "2022-12-12T23:59");
         assertThrows(IllegalValueException.class, () -> task.toModelType());
     }
 }

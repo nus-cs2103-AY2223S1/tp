@@ -1,0 +1,29 @@
+@startuml
+!include style.puml
+skinparam ClassFontColor #000000
+skinparam ClassBorderColor #000000
+
+title After second command "assign_task_rand 1"
+
+skinparam object {
+    BackgroundColor<<Team>> Business
+    BackgroundColor<<Person>> APPLICATION
+    BackgroundColor<<TaskTYpe>> PHYSICAL
+}
+
+hide stereotype
+
+object "__:Team__" as Team <<Team>>
+object "__person1:Person__" as Person1 <<Person>>
+object "__person2:Person__" as Person2 <<Person>>
+object "__person3:Person__" as Person3 <<Person>>
+object "__:Task__" as Task <<TaskType>>
+
+Team --> Person1
+Team --> Person2
+Team --> Person3
+Team --> Task
+Task --> Person2
+Task --> Person3
+
+@end

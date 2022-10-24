@@ -20,12 +20,12 @@ TruthTable is a **desktop app for managing software engineering teams, optimized
 3. Copy the file to the folder you want to use as the _home folder_ for your TruthTable.
 
 4. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how the
-app contains some sample data.<br>
-![Ui](images/Ui.png)
+   app contains some sample data.<br>
+   ![Ui](images/Ui.png)
 
 5. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will
-open the help window.<br>
-Some example commands you can try:
+   open the help window.<br>
+   Some example commands you can try:
 
     * `list_members`
     * `list_tasks`
@@ -85,13 +85,13 @@ Examples:
 
 ### Adding a new member to the team `add_member`
 
-Add a new team member to the user’s team. Will throw an error if the member already exists in the team.
+Add a new team member to the user’s currently selected team. Will throw an error if the member already exists in the team.
 
 Format:
 * `add_member TASK_INDEX`
 
 Examples:
-* `add_member 1` will add the first person in the list of people as a member of the current team. 
+* `add_member 1` will add the first person in the list of people as a member of the current team.
 
 ### Delete a member from team `delete_member`
 
@@ -113,14 +113,14 @@ Examples:
 
 View all the members currently in the team, in the form of a list.
 
-Format: 
+Format:
 * `list_members`
 
 ### Add task to team : `add_task`
 
 Add a new task to the current team.
 
-Format: 
+Format:
 * `add_task TASK_NAME`
 
 Examples:
@@ -138,9 +138,21 @@ Examples:
 * `assign_task 1 Alex` will assign the first task on the task list to a member in the team named Alex.
 * `assign_task 2 Bernice` will assign the second task on the task list to a member in the team named Bernice.
 
+### Assign task to random team member: `assign_task_rand`
+
+Assign an existing task to a random team member in the user’s team. Will display an error message if either the task is
+not found in the user’s team or if there are no team members to assign the task to (if the team is empty, or if the task
+has already been assigned to all members of the team.
+
+Format: `assign_task_rand TASK_INDEX`
+
+Examples:
+* `assign_task_rand 1` will assign the first task on the task list to a random team member.
+
+
 ### Set Deadline for task: `set_deadline`
 
-Set a deadline for an existing task. Will display an error message if task is not found in the user’s team. If 
+Set a deadline for an existing task. Will display an error message if task is not found in the user’s team. If
 deadline has been set for the task before, a new deadline will be set if command is run again. The deadline must be specified in YYYY-MM-DD HH:MM format.
 
 Format: `set_deadline TASK_INDEX DEADLINE`
@@ -152,7 +164,7 @@ Examples:
 
 Delete an existing task from the team given the task's index. Will display an error message if the task is not found in the user’s team, i.e., when the index exceeds the number of tasks.
 
-Format: 
+Format:
 * `delete_task TASK_INDEX`
 
 Examples:
@@ -160,23 +172,73 @@ Examples:
 
 ### List tasks in team: `list_tasks`
 
-View all the tasks currently in the user’s team in the form of a list.
+View all the tasks currently in the user’s team in the form of a list. List can also be filtered based on complete
+or remaining tasks.
 
-Format: 
+Format:
 * `list_tasks` will list all the tasks of the current team.
+* `list_tasks -f i` will list all the incomplete tasks of the current team.
+* `list_tasks -f c` will list all the completed tasks of the current team.
+
+### Mark tasks as done: `mark`
+
+Mark a specified task as done.
+
+Format:
+* `mark INDEX`
+
+Examples:
+* `mark 1` will mark the first task in the team as done.
+
+### View summary of task assignments in team: `summary`
+
+View the number of tasks assigned to each user in the team.
+
+Format:
+* `summary`
+
+### Add a new link : `add_link`
+
+Add a new link to the user's currently selected team.
+
+Format:
+* `add_link -n NAME -l URL`
+
+Examples:
+* `add_link -n google -l "https://google.com`
+
+### Edit an existing link : `edit_link`
+
+Edit an exisitng link in the user's currently selected team.
+
+Format:
+* `edit_link INDEX [-n NAME] [-l URL]`
+
+Examples:
+* `edit_link 1 -n facebook -l "https://facebook.com`
+
+* ### Delete an existing link : `delete_link`
+
+Delete the specified link from the user's currently selected team.
+
+Format:
+* `delete_link INDEX`
+
+Examples:
+* `delete_link 1`
 
 ### Clearing all entries : `clear`
 
 Deletes all the people from the application.
 
-Format: 
+Format:
 * `clear`
 
 ### Exiting the program : `exit`
 
 Exits the program.
 
-Format: 
+Format:
 * `exit`
 
 ### Saving the data

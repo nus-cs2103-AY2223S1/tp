@@ -7,6 +7,7 @@ import javafx.beans.property.ObjectProperty;
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.person.Person;
+import seedu.address.model.team.Link;
 import seedu.address.model.team.Team;
 
 /**
@@ -16,47 +17,33 @@ public interface Model {
     /** {@code Predicate} that always evaluate to true */
     Predicate<Person> PREDICATE_SHOW_ALL_PERSONS = unused -> true;
 
-    /**
-     * Replaces user prefs data with the data in {@code userPrefs}.
-     */
+    Predicate<Link> PREDICATE_SHOW_ALL_LINKS = unused -> true;
+
+    /** Replaces user prefs data with the data in {@code userPrefs}. */
     void setUserPrefs(ReadOnlyUserPrefs userPrefs);
 
-    /**
-     * Returns the user prefs.
-     */
+    /** Returns the user prefs. */
     ReadOnlyUserPrefs getUserPrefs();
 
-    /**
-     * Returns the user prefs' GUI settings.
-     */
+    /** Returns the user prefs' GUI settings. */
     GuiSettings getGuiSettings();
 
-    /**
-     * Sets the user prefs' GUI settings.
-     */
+    /** Sets the user prefs' GUI settings. */
     void setGuiSettings(GuiSettings guiSettings);
 
-    /**
-     * Returns the user prefs' address book file path.
-     */
+    /** Returns the user prefs' address book file path. */
     Path getAddressBookFilePath();
 
-    /**
-     * Sets the user prefs' address book file path.
-     */
+    /** Sets the user prefs' address book file path. */
     void setAddressBookFilePath(Path addressBookFilePath);
 
-    /**
-     * Replaces address book data with the data in {@code addressBook}.
-     */
+    /** Replaces address book data with the data in {@code addressBook}. */
     void setAddressBook(ReadOnlyAddressBook addressBook);
 
     /** Returns the AddressBook */
     ReadOnlyAddressBook getAddressBook();
 
-    /**
-     * Returns true if a person with the same identity as {@code person} exists in the address book.
-     */
+    /** Returns true if a person with the same identity as {@code person} exists in the address book. */
     boolean hasPerson(Person person);
 
     /**
@@ -96,11 +83,26 @@ public interface Model {
     /** Returns an unmodifiable view of the filtered person list */
     ObservableList<Person> getFilteredPersonList();
 
+    ObservableList<Person> getFilteredPersonList(Predicate<Person> pred);
+
     /**
      * Updates the filter of the filtered person list to filter by the given {@code predicate}.
+     *
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredPersonList(Predicate<Person> predicate);
 
     ObjectProperty<Team> getTeamAsProperty();
+
+    boolean hasLink(Link link);
+
+    void addLink(Link link);
+
+    void setLink(Link target, Link editedLink);
+
+    void deleteLink(Link link);
+
+    ObservableList<Link> getFilteredLinkList();
+
+    void updateFilteredLinkList(Predicate<Link> predicate);
 }

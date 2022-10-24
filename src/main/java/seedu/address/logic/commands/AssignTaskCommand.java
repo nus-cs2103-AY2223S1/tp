@@ -17,14 +17,14 @@ public class AssignTaskCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Assigns a task to the specified member in the team.\n"
-            + "Parameters: name of task \n"
+            + "Parameters: index of task \n"
             + "Parameters: name of person \n"
-            + "Example: " + COMMAND_WORD + " Review PR" + " Bernice Yu";
+            + "Example: " + COMMAND_WORD + " 1" + " Bernice Yu";
 
     public static final String MESSAGE_ASSIGN_TASK_SUCCESS = "Assigned Task: %1$s assigned to %2$s";
     public static final String MESSAGE_DUPLICATE_ASSIGNMENT = "This task has already been assigned to %1$s";
     public static final String MESSAGE_TASK_INDEX_OUT_OF_BOUNDS = "This task does not exist."
-            + "There are less than %1$s tasks in your list.";
+        + "There are less than %1$s tasks in your list.";
     public static final String MESSAGE_MEMBER_DOES_NOT_EXIST = "This member does not exist.";
     private final int taskIndex;
     private final String memberName;
@@ -32,7 +32,7 @@ public class AssignTaskCommand extends Command {
     /**
      * Returns a command that assigns a task to the specified member in the team.
      *
-     * @param taskIndex  the index of the task to be added.
+     * @param taskIndex the index of the task to be added.
      * @param memberName the name of the member that the task is assigned to.
      */
     public AssignTaskCommand(int taskIndex, String memberName) {
@@ -69,9 +69,8 @@ public class AssignTaskCommand extends Command {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof AssignTaskCommand // instanceof handles nulls
-                && taskIndex == (((AssignTaskCommand) other).taskIndex)) // state check
+            || (other instanceof AssignTaskCommand // instanceof handles nulls
+            && taskIndex == (((AssignTaskCommand) other).taskIndex)) // state check
                 && memberName == (((AssignTaskCommand) other).memberName); // state check
     }
-
 }

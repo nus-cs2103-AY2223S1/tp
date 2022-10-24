@@ -1,0 +1,20 @@
+@startuml
+'https://plantuml.com/activity-diagram-beta
+
+start
+if () then ([else])
+    :Create a new Team;
+    if () then ([else])
+        :Add team to team list;
+        :Display success message to user;
+    else ([team already exists in team list])
+        :Throw CommandException;
+    endif
+else ([team name is invalid])
+    :Throw ParseException;
+endif
+
+stop
+
+
+@enduml
