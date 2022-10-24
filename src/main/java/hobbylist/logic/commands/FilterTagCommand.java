@@ -12,7 +12,7 @@ import hobbylist.model.activity.TagMatchesKeywordPredicate;
  */
 public class FilterTagCommand extends Command {
 
-    public static final String COMMAND_WORD = "filter";
+    public static final String COMMAND_WORD = "filterTag";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all activities whose tags match"
             + "the specified keywords (case-insensitive) and displays them as a list with index numbers.\n"
