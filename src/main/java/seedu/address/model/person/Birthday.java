@@ -22,12 +22,12 @@ public class Birthday {
      */
     public Birthday(String birthday) {
         requireNonNull(birthday);
-        value = LocalDate.parse(birthday, DateTimeFormatter.ofPattern("dd-MM-yyyy"));
+        value = LocalDate.parse(birthday, DateTimeFormatter.ofPattern("d-MM-yyyy"));
     }
 
     @Override
     public String toString() {
-        return value.format(DateTimeFormatter.ofPattern("dd-MM-yyyy"));
+        return value.format(DateTimeFormatter.ofPattern("d-MM-yyyy"));
     }
 
     @Override
@@ -45,9 +45,9 @@ public class Birthday {
     /**
      * Returns if a given string is a valid Birthday.
      */
-    public static boolean isValidBirthday(String test) {
+    public static boolean isValidDate(String test) {
         try {
-            LocalDate.parse(test, DateTimeFormatter.ofPattern("dd-MM-yyyy"));
+            LocalDate.parse(test, DateTimeFormatter.ofPattern("d-MM-yyyy"));
         } catch (DateTimeParseException e) {
             return false;
         }
