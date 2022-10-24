@@ -65,26 +65,6 @@ public class Task {
     }
 
     /**
-     * Returns the Boolean representation of isDone.
-     *
-     * @param isDone in String form.
-     * @return isDone in Boolean form.
-     */
-    public static Boolean covertIsDoneFromStringToBoolean(String isDone) {
-        return isDone == IS_DONE_TRUE_STRING;
-    }
-
-    /**
-     * Returns true if test String is a valid isDone.
-     *
-     * @param test String to test.
-     * @return Whether the String is a valid isDone value.
-     */
-    public static boolean isValidIsDone(String test) {
-        return test == IS_DONE_TRUE_STRING || test == IS_DONE_FALSE_STRING;
-    }
-
-    /**
      * Setter method for whether this Task has been completed.
      *
      * @param isDone true if this Task is done, and false otherwise
@@ -310,7 +290,6 @@ public class Task {
      *
      * @return a copy of the task.
      */
-     
     public Task copy() {
         TaskName copyName = new TaskName(this.name.toString());
         TaskCategory copyCat = new TaskCategory(this.category.getLevel(), this.category.getTaskCategoryType());
@@ -321,7 +300,7 @@ public class Task {
         Boolean copyIsDone = this.isDone;
         Task copy = new Task(copyName, copyDescription, copyPrioirty, copyCat, copyDeadline, copyPerson, copyIsDone);
         return copy;
-     }
+    }
 
     public static String convertIsDoneFromBooleanToString(boolean isDone) {
         return isDone ? IS_DONE_TRUE_STRING : IS_DONE_FALSE_STRING;

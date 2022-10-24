@@ -216,7 +216,7 @@ public class EditTaskCommand extends Command {
 
         public void setPerson(Person person) {
             this.person = person;
-         }
+        }
 
         public Optional<Person> getPerson() {
             return ofNullable(person);
