@@ -2,7 +2,7 @@
 
 ![Ui](docs/images/Ui.png)
 
-* This is **NotioNUS**, a desktop application built for students to track their tasks for modules in University.<br>
+* This is **NotionUS**, a desktop application built for students to track their tasks for modules in University.<br>
   Example usages:
   * Add new task under module CS2103T.
   * Mark a non-urgent tagged task under CS2100 as done/undone.
