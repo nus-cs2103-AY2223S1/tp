@@ -2,6 +2,10 @@ package seedu.trackascholar.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 
+import static seedu.trackascholar.logic.parser.CliSyntax.PREFIX_MAJOR;
+import static seedu.trackascholar.logic.parser.CliSyntax.PREFIX_NAME;
+import static seedu.trackascholar.logic.parser.CliSyntax.PREFIX_SCHOLARSHIP;
+
 import java.util.function.Predicate;
 
 import seedu.trackascholar.commons.core.Messages;
@@ -16,10 +20,17 @@ public class FindCommand extends Command {
 
     public static final String COMMAND_WORD = "find";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all applicants whose names contain any of "
-            + "the specified keywords (case-insensitive) and displays them as a list with index numbers.\n"
-            + "Parameters: KEYWORD [MORE_KEYWORDS]...\n"
-            + "Example: " + COMMAND_WORD + " alice bob charlie";
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all applicants who contain any of the "
+            + "specified attribute keywords (case-insensitive) and displays them as a list with index numbers.\n"
+            + "Parameters: must contain at least one prefix "
+            + "[" + PREFIX_NAME + "NAME]... "
+            + "[" + PREFIX_SCHOLARSHIP + "JOB]... "
+            + "[" + PREFIX_MAJOR + "ROUND]... \n"
+            + "Example: " + COMMAND_WORD + " "
+            + PREFIX_NAME + "Sam "
+            + PREFIX_SCHOLARSHIP + " Software Engineer "
+            + PREFIX_MAJOR + "Software Engineering "
+            + PREFIX_MAJOR + "Mathematics";
 
     private final Predicate<Applicant> predicate;
 

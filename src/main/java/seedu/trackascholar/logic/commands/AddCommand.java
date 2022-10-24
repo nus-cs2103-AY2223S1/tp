@@ -34,7 +34,7 @@ public class AddCommand extends Command {
             + PREFIX_SCHOLARSHIP + "NUS Global Merit Scholarship "
             + PREFIX_APPLICATION_STATUS + "pending "
             + PREFIX_MAJOR + "Medicine "
-            + PREFIX_MAJOR + "computerScience ";
+            + PREFIX_MAJOR + "Computer Science";
 
     public static final String MESSAGE_SUCCESS = "New applicant added: %1$s";
     public static final String MESSAGE_DUPLICATE_APPLICANT = "This applicant already exists in TrackAScholar";
