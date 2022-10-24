@@ -30,9 +30,12 @@ import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSucces
 import static seedu.address.testutil.TypicalModules.CS2100;
 import static seedu.address.testutil.TypicalModules.CS2103T;
 
+import java.io.IOException;
+
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.AddModuleCommand;
+import seedu.address.logic.nusmodules.NusModulesParser;
 import seedu.address.model.assignmentdetails.AssignmentDetails;
 import seedu.address.model.module.LectureDetails;
 import seedu.address.model.module.Module;
@@ -42,7 +45,10 @@ import seedu.address.model.module.ZoomLink;
 import seedu.address.testutil.ModuleBuilder;
 
 public class AddModuleCommandParserTest {
-    private AddModuleCommandParser parser = new AddModuleCommandParser();
+    private AddModuleCommandParser parser = new AddModuleCommandParser(new NusModulesParser());
+
+    public AddModuleCommandParserTest() throws IOException {
+    }
 
     @Test
     public void parse_allFieldsPresent_success() {

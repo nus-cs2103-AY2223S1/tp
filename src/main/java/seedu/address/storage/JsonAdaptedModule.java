@@ -25,6 +25,7 @@ public class JsonAdaptedModule {
 
     private final String lectureDetails;
     private final String moduleCode;
+    private final String moduleTitle;
     private final String tutorialDetails;
     private final String zoomLink;
     private final List<JsonAdaptedAssignmentDetails> assignmentDetails = new ArrayList<>();
@@ -35,11 +36,13 @@ public class JsonAdaptedModule {
     @JsonCreator
     public JsonAdaptedModule(@JsonProperty("lectureDetails") String lectureDetails,
                              @JsonProperty("moduleCode") String moduleCode,
+                             @JsonProperty("moduleTitle") String moduleTitle,
                              @JsonProperty("tutorialDetails") String tutorialDetails,
                              @JsonProperty("zoomLink") String zoomLink,
                              @JsonProperty("assignmentDetails") List<JsonAdaptedAssignmentDetails> assignmentDetails) {
         this.lectureDetails = lectureDetails;
         this.moduleCode = moduleCode;
+        this.moduleTitle = moduleTitle;
         this.tutorialDetails = tutorialDetails;
         this.zoomLink = zoomLink;
         if (assignmentDetails != null) {
@@ -53,6 +56,7 @@ public class JsonAdaptedModule {
     public JsonAdaptedModule(Module source) {
         lectureDetails = source.getLectureDetails().value;
         moduleCode = source.getModuleCode().moduleCode;
+        moduleTitle = source.getModuleCode().getModuleTitle();
         tutorialDetails = source.getTutorialDetails().value;
         zoomLink = source.getZoomLink().zoomLink;
         assignmentDetails.addAll(source.getAssignmentDetails().stream()
@@ -87,6 +91,7 @@ public class JsonAdaptedModule {
             throw new IllegalValueException(ModuleCode.MESSAGE_CONSTRAINTS);
         }
         final ModuleCode modelModuleCode = new ModuleCode(moduleCode);
+        modelModuleCode.setModuleTitle(moduleTitle);
 
         if (tutorialDetails == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,

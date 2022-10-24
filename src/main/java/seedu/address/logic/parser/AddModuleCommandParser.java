@@ -11,6 +11,7 @@ import java.util.Set;
 import java.util.stream.Stream;
 
 import seedu.address.logic.commands.AddModuleCommand;
+import seedu.address.logic.nusmodules.NusModulesParser;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.assignmentdetails.AssignmentDetails;
 import seedu.address.model.module.LectureDetails;
@@ -25,6 +26,10 @@ import seedu.address.model.module.ZoomLink;
  */
 public class AddModuleCommandParser implements Parser<AddModuleCommand> {
 
+    private NusModulesParser nusModulesParser;
+    public AddModuleCommandParser(NusModulesParser nusModulesParser) {
+        this.nusModulesParser = nusModulesParser;
+    }
     /**
      * Parses the given {@code String} of arguments in the context of the AddCommand
      * and returns an AddCommand object for execution.
@@ -44,6 +49,8 @@ public class AddModuleCommandParser implements Parser<AddModuleCommand> {
         }
 
         ModuleCode moduleCode = ParserUtil.parseModuleCode(argMultimap.getValue(PREFIX_MODULE).get());
+        String moduleTitle = nusModulesParser.getModuleTitle(moduleCode.moduleCode);
+        moduleCode.setModuleTitle(moduleTitle);
         LectureDetails lecture = ParserUtil.parseLectureDetails(argMultimap.getValue(PREFIX_LECTURE).get());
         TutorialDetails tutorial = ParserUtil.parseTutorialDetails(argMultimap.getValue(PREFIX_TUTORIAL).get());
         ZoomLink zoom = ParserUtil.parseZoomLink(argMultimap.getValue(PREFIX_ZOOM).get());

@@ -1,4 +1,4 @@
-package seedu.address.logic.NusModules;
+package seedu.address.logic.nusmodules;
 
 import java.util.Arrays;
 
