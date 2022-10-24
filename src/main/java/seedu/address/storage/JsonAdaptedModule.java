@@ -67,7 +67,7 @@ public class JsonAdaptedModule {
             throw new IllegalValueException(ModuleCredit.MODULE_CREDIT_CONSTRAINTS);
         }
         if (!ModuleCredit.isValidModuleCredit(integerModuleCredit)) {
-            throw new ParseException(ModuleCredit.MODULE_CREDIT_CONSTRAINTS);
+            throw new IllegalValueException(ModuleCredit.MODULE_CREDIT_CONSTRAINTS);
         }
         final ModuleCode modCode = new ModuleCode(moduleCode);
         final ModuleName modName = new ModuleName(moduleName);

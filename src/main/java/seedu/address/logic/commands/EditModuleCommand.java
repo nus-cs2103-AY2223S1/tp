@@ -44,7 +44,7 @@ public class EditModuleCommand extends Command {
     public static final String MESSAGE_EDIT_MODULE_SUCCESS = "Edited Module: %1$s, Edited Name: %2$s, "
             + "Edited Credit: %3$s";
     public static final String MESSAGE_MODULE_NOT_EDITED = "The provided fields are the same as the current module";
-    public static final String MESSAGE_NO_FIELDS_PROVIDED = "At module name to edit must be provided.";
+    public static final String MESSAGE_NO_FIELDS_PROVIDED = "The module name to edit must be provided.";
 
     private final Index index;
     private final EditModuleDescriptor editModuleDescriptor;
