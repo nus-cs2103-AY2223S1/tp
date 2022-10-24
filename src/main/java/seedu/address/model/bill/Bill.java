@@ -43,6 +43,10 @@ public class Bill {
         return paymentStatus;
     }
 
+    public void setBillAsUnpaid() {
+        this.paymentStatus.setAsUnpaid();
+    }
+
     public boolean isSameBill(Bill bill) {
         return !(bill == null) && this.appointment.equals(bill.getAppointment());
     }
@@ -80,5 +84,9 @@ public class Bill {
     @Override
     public int hashCode() {
         return Objects.hash(appointment, amount, billDate, paymentStatus);
+    }
+
+    public void setBillAsPaid() {
+        this.paymentStatus.setAsPaid();
     }
 }

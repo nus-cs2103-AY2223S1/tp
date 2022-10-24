@@ -277,6 +277,88 @@ Alternatives:
     - Pros: Easy to remember
     - Cons: May be confusing to the user
 
+###Delete Feature
+
+####Current Implementation
+
+The delete mechanism deletes a patient, appointment or bill identified by their index in the list. The deletion is done
+through the `deletePatient`, `deleteAppointment` and `deleteBill` functions in `ModelManager`. 
+
+Given below is an example usage scenario and how the delete mechanism behaves at each step.
+
+Step 1. The user launches the application. All patients, appointments and bills are shown on different sections
+of the application as indexed lists.
+
+Step 2. The user executes `deletePatient 2` command to delete the patient at index 2 in the list.
+The `delete` command calls `Model#deletePatient` to delete the patient from the list of patients.
+
+The delete feature is now seperated for the patients, appointments and bills sections. Deleting a patient also deletes 
+related appointments.
+
+
+### Select Feature
+
+#### Current Implementation
+
+The select commands simulates a click on the 'PatientCard' or 'AppointmentCard' in the UI.
+
+The select methods are separated for patients and appointments, with command word 'selectpatient'
+and 'selectappointment' respectively. 
+
+The select commands make use of the index of a patient or an appointment in the 'FilteredList's
+to identify whose appointments and bills to show.
+
+The 'SelectPatientCommandParser' and 'SelectAppointmentCommandParser' convert
+input String containing target index to the SelectCommand objects.
+
+On execution, the SelectPatientCommand will invoke the selectPatient() and selectAppointment() in the Model to
+update the FilteredAppointmentList and FilteredBillList to contain selected patient's information only.
+
+Given below is an example usage scenario and how the find mechanism behaves at each step.
+
+Step 1. The user executes `selectpatient 1` command to show all appointments and bills 
+tied to the first listed patient.
+The `SelectPatient` command calls `Model#selectPatient(index)` to update the list of appointments
+and bills in the application.
+
+Step 2. The application displays the list of appointments and bills with the name equals to
+the first patient on the patient list panel.
+
+The select feature is now seperated for the patients and appointments sections.
+
+Design considerations:
+1. Length of command word
+
+Alternatives:
+
+1. Use a shorter command word (e.g. slp instead of selectpatient, sla instead of selectappointment)
+    - Pros: Easy to type
+    - Cons: Easier to type the wrong short-form command as they differ by 1 letter
+
+
+
+### Sort Feature
+
+#### Current Implementation
+
+The sort feature allows the user to sort the list of patients, appointments and bills in the application. 
+
+The sort feature is now separated for the patients, appointments and bills sections.
+
+#### Design considerations:
+
+**Aspect: How sort executes:**
+
+* **Alternative 1 (current choice):** Saves the entire address book.
+  * Pros: Easy to implement.
+  * Cons: May have performance issues in terms of memory usage.
+* **Alternative 2:** Individual command knows how to sort by itself.
+  * Pros: Will use less memory (e.g. for `delete`, just save the patient being deleted).
+  * Cons: We must ensure that the implementation of each individual command are correct.
+
+_{more aspects and alternatives to be added}_
+
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Documentation, logging, testing, configuration, dev-ops**
@@ -328,7 +410,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 (For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
 
-**Use case: Edit a patient**
+**Use case: Editing a patient**
 
 **MSS**
 
@@ -353,7 +435,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 2.
 
-**Use case: Add a patient**
+**Use case: Adding a patient**
 
 **MSS**
 
@@ -372,6 +454,63 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * 3a. The format for add command is not followed.
 
     * 3a1. AddressBook shows an error message.
+
+      Use case resumes at step 2.
+
+
+
+**Use case: Adding a bill to an appointment**
+
+**MSS**
+
+1. User requests to add a bill to an appointment.
+2. AddressBook requests for details of the bill to add to the appointment.
+3. User enters the requested details.
+4. AddressBook adds the bill to the appointment.
+
+    Use case ends.
+
+
+**Extensions**
+
+
+* 3a. The format for AddBillCommand is not followed.
+
+    * 3a.1 AddressBook shows an error message.
+
+      Use case resumes at step 2.
+
+* 3b. The bill for an appointment already exists.
+
+    * 3b.1 AddressBook shows an error message.
+
+      Use case resumes at step 2.
+
+
+
+**Use case: Editing a bill of an appointment**
+
+**MSS**
+
+1. User requests to edit a bill of an appointment.
+2. AddressBook requests for details of the bill to be edited.
+3. User enters the requested details.
+4. AddressBook edits the bill.
+
+    Use case ends.
+
+
+**Extensions**
+
+* 3a. The format for EditBillCommand is not followed.
+    
+    * 3a.1 AddressBook shows an error message.
+
+      Use case resumes at step 2.
+
+* 3b. Index of the edited bill is not allowed.
+
+    * 3b.1 AddressBook shows an error message.
 
       Use case resumes at step 2.
 

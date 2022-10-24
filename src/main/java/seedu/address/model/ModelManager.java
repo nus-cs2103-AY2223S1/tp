@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
+import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 import java.util.function.Predicate;
@@ -14,6 +15,7 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.appointment.Appointment;
 import seedu.address.model.bill.Bill;
 import seedu.address.model.patient.Name;
@@ -30,6 +32,8 @@ public class ModelManager implements Model {
     private final FilteredList<Patient> filteredPatients;
     private final FilteredList<Appointment> filteredAppointments;
     private final FilteredList<Bill> filteredBills;
+    private final ArrayList<ReadOnlyAddressBook> addressBookHistory;
+    private final ArrayList<ReadOnlyAddressBook> redoAddressBookHistory;
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
@@ -44,6 +48,8 @@ public class ModelManager implements Model {
         filteredPatients = new FilteredList<>(this.addressBook.getPatientList());
         filteredAppointments = new FilteredList<>(this.addressBook.getAppointmentList());
         filteredBills = new FilteredList<>(this.addressBook.getBillList());
+        this.addressBookHistory = new ArrayList<>();
+        this.redoAddressBookHistory = new ArrayList<>();
     }
 
     public ModelManager() {
@@ -297,8 +303,63 @@ public class ModelManager implements Model {
         this.addressBook.sortBills(comparator, isAscending);
     }
 
+    /**
+     * Sets the bill in the address book data as UNPAID
+     * @param bill
+     */
+    @Override
+    public void setBillAsUnpaid(Bill bill) {
+        this.addressBook.setBillAsUnpaid(bill);
+    }
+
     @Override
     public void sortAppointments(Comparator<Appointment> comparator, boolean isAscending) {
         this.addressBook.sortAppointments(comparator, isAscending);
     }
+
+    @Override
+    public void updateAddressBookHistory() {
+        this.addressBookHistory.add(new AddressBook(this.addressBook));
+    }
+
+    @Override
+    public void updateRedoAddressBookHistory() {
+        this.redoAddressBookHistory.add(new AddressBook(this.addressBook));
+    }
+
+    @Override
+    public void undo() throws CommandException {
+        try {
+            this.updateRedoAddressBookHistory();
+            setAddressBook(this.addressBookHistory.get(this.addressBookHistory.size() - 2));
+            this.addressBookHistory.remove(this.addressBookHistory.size() - 1);
+            this.addressBookHistory.remove(this.addressBookHistory.size() - 1);
+        } catch (IndexOutOfBoundsException e) {
+            this.redoAddressBookHistory.remove(this.redoAddressBookHistory.size() - 1);
+            throw new CommandException("Undo cannot be done as there was no previous action");
+        }
+
+    }
+
+    @Override
+    public void redo() throws CommandException {
+        try {
+            setAddressBook(this.redoAddressBookHistory.get(this.redoAddressBookHistory.size() - 1));
+            this.redoAddressBookHistory.remove(this.redoAddressBookHistory.size() - 1);
+        } catch (IndexOutOfBoundsException e) {
+            throw new CommandException("Redo cannot be done as there was no previous action");
+        }
+
+    }
+
+    @Override
+    public void deleteAddressBookHistory() {
+        this.addressBookHistory.remove(addressBookHistory.size() - 1);
+    }
+
+    @Override
+    public void setBillAsPaid(Bill bill) {
+        this.addressBook.setBillAsPaid(bill);
+    }
+
 }

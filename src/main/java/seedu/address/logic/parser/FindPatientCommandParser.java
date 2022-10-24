@@ -9,8 +9,8 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_REMARK;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
-import java.util.Arrays;
 import java.util.function.Predicate;
+import java.util.stream.Stream;
 
 import seedu.address.logic.commands.FindPatientCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
@@ -23,7 +23,7 @@ import seedu.address.model.patient.RemarkContainsKeywordsPredicate;
 import seedu.address.model.patient.TagContainsKeywordPredicate;
 
 /**
- * Parses input arguments and creates a new FilterCommand object
+ * Parses input arguments and creates a new FindPatientCommand object
  */
 public class FindPatientCommandParser implements Parser<FindPatientCommand> {
 
@@ -39,6 +39,11 @@ public class FindPatientCommandParser implements Parser<FindPatientCommand> {
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_NAME, PREFIX_PHONE,
                         PREFIX_EMAIL, PREFIX_ADDRESS, PREFIX_TAG, PREFIX_REMARK);
+
+        if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_ADDRESS, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_TAG,
+                PREFIX_REMARK) || !argMultimap.getPreamble().isEmpty()) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindPatientCommand.MESSAGE_USAGE));
+        }
 
         if (argMultimap.getValue(PREFIX_NAME).isPresent()) {
             String trimmedArgs = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get()).toString().trim();
@@ -63,9 +68,7 @@ public class FindPatientCommandParser implements Parser<FindPatientCommand> {
                         String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindPatientCommand.MESSAGE_USAGE));
             }
 
-            String[] numbers = trimmedArgs.split("\\s+");
-
-            this.predicate = new PhoneContainsNumbersPredicate(Arrays.asList(numbers));
+            this.predicate = new PhoneContainsNumbersPredicate(trimmedArgs);
         }
         if (argMultimap.getValue(PREFIX_EMAIL).isPresent()) {
             String trimmedArgs = argMultimap.getValue(PREFIX_EMAIL).get().trim();
@@ -74,11 +77,11 @@ public class FindPatientCommandParser implements Parser<FindPatientCommand> {
                         String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindPatientCommand.MESSAGE_USAGE));
             }
 
-            String[] nameKeywords = trimmedArgs.split("\\s+");
+            String[] keywords = trimmedArgs.split("\\s+");
 
-            String predicateEmail = nameKeywords[0];
-            for (int i = 1; i < nameKeywords.length; i++) {
-                predicateEmail += " " + nameKeywords[i];
+            String predicateEmail = keywords[0];
+            for (int i = 1; i < keywords.length; i++) {
+                predicateEmail += " " + keywords[i];
             }
 
             this.predicate = new EmailContainsKeywordsPredicate(predicateEmail);
@@ -129,4 +132,13 @@ public class FindPatientCommandParser implements Parser<FindPatientCommand> {
         return new FindPatientCommand(this.predicate);
 
     }
+
+    /**
+     * Returns true if any of the prefixes contains non-empty {@code Optional} values in the given
+     * {@code ArgumentMultimap}.
+     */
+    private static boolean arePrefixesPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
+        return Stream.of(prefixes).anyMatch(prefix -> argumentMultimap.getValue(prefix).isPresent());
+    }
+
 }
