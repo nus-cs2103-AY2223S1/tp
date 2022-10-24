@@ -1,9 +1,11 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MODULE_CODE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -37,7 +39,7 @@ public class AddPersonToModuleCommand extends Command {
             + PREFIX_MODULE_CODE + "CS3230 "
             + PREFIX_NAME + "John Doe";
 
-    public static final String MESSAGE_ADD_PERSON_TO_MODULE_SUCCESS = "Added person %1$s to module %2$s";
+    public static final String MESSAGE_ADD_PERSON_TO_MODULE_SUCCESS = "Added person %2$s to module %1$s";
     public static final String MESSAGE_PERSON_ALREADY_EXISTS_IN_MODULE = "The module %1$s already "
             + "has the person %2$s tagged to it.";
 
@@ -51,6 +53,7 @@ public class AddPersonToModuleCommand extends Command {
      * @param targetName The person to be added to the module.
      */
     public AddPersonToModuleCommand(ModuleCode targetModuleCode, Name targetName) {
+        requireAllNonNull(targetModuleCode, targetName);
         this.targetModuleCode = targetModuleCode;
         this.targetName = targetName;
     }
@@ -72,11 +75,13 @@ public class AddPersonToModuleCommand extends Command {
 
         assert moduleToAddPersonTo != null;
         assert personToAddToModule != null;
-        Module moduleWithPersonAdded = null;
+        Module moduleWithPersonAdded;
         try {
             moduleWithPersonAdded = createModuleWithAddedPerson(moduleToAddPersonTo, personToAddToModule);
         } catch (PersonAlreadyExistsInModuleException e) {
-            throw new CommandException(MESSAGE_PERSON_ALREADY_EXISTS_IN_MODULE);
+            throw new CommandException(String.format(MESSAGE_PERSON_ALREADY_EXISTS_IN_MODULE,
+                    moduleToAddPersonTo.getModuleCode(),
+                    personToAddToModule.getName()));
         }
 
         assert moduleWithPersonAdded != null;
@@ -107,7 +112,7 @@ public class AddPersonToModuleCommand extends Command {
         ModuleTitle moduleTitle = moduleToAddPersonTo.getModuleTitle();
         List<Task> moduleTasks = moduleToAddPersonTo.getTasks();
         Set<Link> moduleLinks = moduleToAddPersonTo.getLinks();
-        Set<Person> modulePersons = moduleToAddPersonTo.getPersons();
+        Set<Person> modulePersons = new HashSet<>(moduleToAddPersonTo.getPersons());
 
         if (!modulePersons.add(personToAddInModule)) {
             throw new PersonAlreadyExistsInModuleException();

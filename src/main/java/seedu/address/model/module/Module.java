@@ -220,6 +220,12 @@ public class Module {
             tasks.forEach(builder::append);
         }
 
+        Set<Person> persons = getPersons();
+        if (!persons.isEmpty()) {
+            builder.append("; Persons: ");
+            tasks.forEach(builder::append);
+        }
+
         return builder.toString();
     }
 
