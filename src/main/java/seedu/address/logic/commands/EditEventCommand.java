@@ -48,9 +48,9 @@ public class EditEventCommand extends Command {
     private final EditEventDescriptor editEventDescriptor;
 
     /**
-     * Constructor of the EditEventCommand class
-     * @param index of the event to be edited in the filtered event list
-     * @param editEventDescriptor details to edit the event with
+     * Constructor of the EditEventCommand class.
+     * @param index of the event to be edited in the filtered event list.
+     * @param editEventDescriptor details to edit the event with.
      */
     public EditEventCommand(Index index, EditEventDescriptor editEventDescriptor) {
         requireNonNull(index);
@@ -85,7 +85,7 @@ public class EditEventCommand extends Command {
 
     /**
      * Creates and returns a {@code Event} with the details of {@code eventToEdit} that is edited
-     * with details of {@code editEventDescriptor}
+     * with details of {@code editEventDescriptor}.
      */
     private static Event createEditedEvent(Event eventToEdit, EditEventDescriptor editEventDescriptor) {
         assert eventToEdit != null;
@@ -125,7 +125,7 @@ public class EditEventCommand extends Command {
         public EditEventDescriptor() {}
 
         /**
-         * Constructor to create a {@code EditEventDescriptor} object
+         * Constructor to create a {@code EditEventDescriptor} object.
          */
         public EditEventDescriptor(EditEventDescriptor copy) {
             setEventTitle(copy.eventTitle);
