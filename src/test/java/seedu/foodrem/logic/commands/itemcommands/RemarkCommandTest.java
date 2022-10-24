@@ -1,6 +1,8 @@
 package seedu.foodrem.logic.commands.itemcommands;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.foodrem.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.foodrem.logic.commands.CommandTestUtil.assertCommandSuccess;
@@ -97,18 +99,14 @@ public class RemarkCommandTest {
         final RemarkCommand standardCommand = new RemarkCommand(INDEX_FIRST_ITEM, new ItemRemark("test"));
 
         // same object -> returns true
-        assertTrue(standardCommand.equals(standardCommand));
-
+        assertEquals(standardCommand, standardCommand);
         // null -> returns false
-        assertFalse(standardCommand.equals(null));
-
+        assertNotEquals(null, standardCommand);
         // different types -> returns false
         assertFalse(standardCommand.equals(new ResetCommand()));
-
         // different index -> returns false
-        assertFalse(standardCommand.equals(new RemarkCommand(INDEX_SECOND_ITEM, itemRemark)));
-
+        assertNotEquals(standardCommand, new RemarkCommand(INDEX_SECOND_ITEM, itemRemark));
         // different remark -> returns false
-        assertFalse(standardCommand.equals(new RemarkCommand(INDEX_FIRST_ITEM, new ItemRemark("DIFFERENT"))));
+        assertNotEquals(standardCommand, new RemarkCommand(INDEX_FIRST_ITEM, new ItemRemark("DIFFERENT")));
     }
 }
