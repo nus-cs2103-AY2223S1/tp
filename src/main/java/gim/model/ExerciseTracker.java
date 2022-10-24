@@ -29,7 +29,7 @@ public class ExerciseTracker implements ReadOnlyExerciseTracker {
 
     /**
      * Creates an ExerciseTracker using a given HashMap {@code ehm}
-     * @param ehm
+     * @param ehm ExerciseHashMap
      */
     public ExerciseTracker(ExerciseHashMap ehm) {
         exerciseList = new ExerciseList();
