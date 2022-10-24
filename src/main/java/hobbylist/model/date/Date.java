@@ -75,7 +75,7 @@ public class Date {
      * Return yyyy-mm format of this date.
      */
     public String yearMonthDescrption() {
-        String temp[] = this.getOrginString().split("-");
+        String[] temp = this.getOrginString().split("-");
         return temp[0] + "-" + temp[1];
     }
     /**
