@@ -6,18 +6,15 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.geometry.Point2D;
 import javafx.scene.control.Button;
-import javafx.scene.layout.Region;
 import javafx.stage.Stage;
 import seedu.address.model.calendar.CalendarEvent;
 
 /**
  * Button that contains a CalendarEvent.
  */
-public class EventButton extends UiPart<Region> {
+public class EventButton extends CalendarButton {
     private static final String FXML = "EventButton.fxml";
     private static final String EVENT_BUTTON_STYLE = "-fx-font-size: 8pt; -fx-border-radius: 5; -fx-min-width: 100;";
-    private static final String GREY_BORDER = "-fx-border-color: grey;";
-    private static final String ORANGE_BORDER = "-fx-border-color: orange;";
     private static final double ORIGIN = 0.0;
     private static final int TOOLTIP_OFFSET = 15;
     private Stage primaryStage;
@@ -50,15 +47,15 @@ public class EventButton extends UiPart<Region> {
         primaryStage.widthProperty().addListener(stageSizeListener);
     }
 
-    @FXML
-    private void handleOnAction(ActionEvent event) {
+    @FXML @Override
+    protected void handleOnAction(ActionEvent event) {
         if (!calendarPopup.getRoot().isShowing()) {
             displayToolTip();
         }
     }
 
-    @FXML
-    private void handleFocusedEvent(Observable observable) {
+    @FXML @Override
+    protected void handleFocusedEvent(Observable observable) {
         if (!calendarPopup.getRoot().isShowing() && eventButton.isFocused()) {
             eventButton.setStyle(EVENT_BUTTON_STYLE + ORANGE_BORDER);
             displayToolTip();

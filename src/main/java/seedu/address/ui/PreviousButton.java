@@ -1,19 +1,19 @@
 package seedu.address.ui;
 
 
+import javafx.beans.Observable;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
-import javafx.scene.layout.Region;
 import seedu.address.logic.CalendarLogic;
 
 /**
  * A button that displays the previous month's CalendarEvents
  * when interacted with.
  */
-public class PreviousButton extends UiPart<Region> {
+public class PreviousButton extends CalendarButton {
     private static final String FXML = "PreviousButton.fxml";
     private CalendarLogic calendarLogic;
     @FXML
@@ -26,6 +26,7 @@ public class PreviousButton extends UiPart<Region> {
         super(FXML);
         this.calendarLogic = calendarLogic;
         previousButton.setText(content);
+        previousButton.focusedProperty().addListener(this::handleFocusedEvent);
     }
 
     @FXML
@@ -43,7 +44,16 @@ public class PreviousButton extends UiPart<Region> {
     }
 
     @FXML
-    private void handleOnAction(ActionEvent event) {
+    protected void handleFocusedEvent(Observable observable) {
+        if (previousButton.isFocused()) {
+            previousButton.setStyle(CALENDAR_BUTTON_STYLE + ORANGE_BORDER);
+        } else {
+            previousButton.setStyle(CALENDAR_BUTTON_STYLE + GREY_BORDER);
+        }
+    }
+
+    @FXML
+    protected void handleOnAction(ActionEvent event) {
         calendarLogic.previous();
     }
 }
