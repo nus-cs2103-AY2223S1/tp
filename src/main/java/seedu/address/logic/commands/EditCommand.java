@@ -74,7 +74,8 @@ public class EditCommand extends Command {
     public static final String MESSAGE_EDIT_PERSON_SUCCESS = "Edited Person: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
     public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the address book.";
-
+    public static final String MULTIPLE_MODULE_CODES =
+            "The Person you are trying to edit can only have one module code";
     private final Index index;
     private final EditPersonDescriptor editPersonDescriptor;
 
@@ -258,7 +259,7 @@ public class EditCommand extends Command {
          */
         public boolean isAnyFieldEdited() {
             return CollectionUtil.isAnyNonNull(name, phone, email, gender, tags, location, githubUsername, rating,
-                    year, specialisation, officeHour);
+                    year, specialisation, officeHour, moduleCodes);
         }
 
         public void setName(Name name) {
