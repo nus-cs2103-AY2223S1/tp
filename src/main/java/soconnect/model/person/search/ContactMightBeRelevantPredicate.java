@@ -36,36 +36,56 @@ public class ContactMightBeRelevantPredicate implements Predicate<Person> {
             List<String> keywords = argMultimap.getAllValues(prefix);
             switch (prefixCommand) {
             case NAME:
-                isNameContained = keywords.stream()
-                        .anyMatch(keyword -> StringUtil
-                                .containsSomeKeywordsIgnoreCase(person.getName().fullName, keyword));
+                isNameContained = keywordsContainName(keywords, person);
                 break;
             case ADDRESS:
-                isAddressContained = keywords.stream()
-                        .anyMatch(keyword -> StringUtil
-                                .containsSomeKeywordsIgnoreCase(person.getAddress().value, keyword));
+                isAddressContained = keywordsContainAddress(keywords, person);
                 break;
             case EMAIL:
-                isEmailContained = keywords.stream()
-                        .anyMatch(keyword -> StringUtil
-                                .containsSomeKeywordsIgnoreCase(person.getEmail().value, keyword));
+                isEmailContained = keywordsContainEmail(keywords, person);
                 break;
             case PHONE:
-                isPhoneContained = keywords.stream()
-                        .anyMatch(keyword -> StringUtil
-                                .containsSomeKeywordsIgnoreCase(person.getPhone().value, keyword));
+                isPhoneContained = keywordsContainPhone(keywords, person);
                 break;
             case TAG:
-                isTagContained = keywords.stream()
-                        .anyMatch(keyword -> person.getTags().stream()
-                                .anyMatch(tag -> StringUtil
-                                        .containsSomeKeywordsIgnoreCase(tag.tagName, keyword)));
+                isTagContained = keywordsContainTag(keywords, person);
                 break;
             default:
                 break;
             }
         }
         return isNameContained || isAddressContained || isEmailContained || isPhoneContained || isTagContained;
+    }
+
+    private boolean keywordsContainName(List<String> keywords, Person person) {
+        return keywords.stream()
+                .anyMatch(keyword -> StringUtil
+                        .containsSomeKeywordsIgnoreCase(person.getName().fullName, keyword));
+    }
+
+    private boolean keywordsContainAddress(List<String> keywords, Person person) {
+        return keywords.stream()
+                .anyMatch(keyword -> StringUtil
+                        .containsSomeKeywordsIgnoreCase(person.getAddress().value, keyword));
+    }
+
+    private boolean keywordsContainEmail(List<String> keywords, Person person) {
+        return keywords.stream()
+                .anyMatch(keyword -> StringUtil
+                        .containsSomeKeywordsIgnoreCase(person.getEmail().value, keyword));
+    }
+
+    private boolean keywordsContainPhone(List<String> keywords, Person person) {
+        return keywords.stream()
+                .anyMatch(keyword -> StringUtil
+                        .containsSomeKeywordsIgnoreCase(person.getPhone().value, keyword));
+    }
+
+    private boolean keywordsContainTag(List<String> keywords, Person person) {
+        return keywords.stream()
+                .anyMatch(keyword -> person.getTags().stream()
+                        .anyMatch(tag -> StringUtil
+                                .containsSomeKeywordsIgnoreCase(tag.tagName, keyword)));
     }
 
     @Override
