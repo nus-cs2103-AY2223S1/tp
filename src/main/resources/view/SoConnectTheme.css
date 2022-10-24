@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Karla:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600&display=swap');
 
 .root {
-    -fx-base: derive(#3b2c72, 20%);
+    -fx-base: transparent;
 }
 
 .background {
@@ -73,7 +73,7 @@
  * It is a placeholder for texts like "Unknown command." #3519D3
  */
 .result-display {
-    -fx-background-color: transparent;
+    -fx-background-color: #3519D3;
     -fx-background-radius: 10px;
     -fx-border-color: #94A6FF;
     -fx-border-width: 2px;
@@ -82,18 +82,14 @@
     -fx-text-fill: white;
 }
 
-.text-area #resultDisplay {
-    -fx-background-color: transparent;
-}
-
 #resultDisplay .content {
-    -fx-background-color: #3519D3;
-    -fx-background-radius: 10px;
+    -fx-background-color: transparent;
     -fx-wrap-text: true;
 }
 
 .result-display .label {
     -fx-text-fill: #060959 !important;
+    -fx-background-radius: 10px;
 }
 
 /* This is the styling for two equally split containers for Contact and Todo. */
@@ -221,6 +217,67 @@
     -fx-opacity: 1;
 }
 
+/* Handles style of Person List Card */
+.people-heading {
+    -fx-font-size: 28pt;
+    -fx-font-family: "Karla";
+    -fx-text-fill: #FFDFF6;
+    -fx-font-weight: 900;
+    -fx-opacity: 1;
+    -fx-padding: 2px;
+}
+
+.cell_big_label_person {
+    -fx-font-family: "Karla";
+    -fx-font-size: 22px;
+    -fx-font-weight: 700;
+    -fx-text-fill: #FFDFEA;
+}
+
+#attributeA {
+    -fx-hgap: 10;
+    -fx-vgap: 10;
+}
+
+#attributeB {
+    -fx-hgap: 10;
+    -fx-vgap: 10;
+}
+
+#attributeC {
+    -fx-hgap: 10;
+    -fx-vgap: 10;
+}
+
+#attributeD {
+    -fx-hgap: 10;
+    -fx-vgap: 10;
+}
+
+/* Handles style of Todo List Card */
+.todo-heading {
+    -fx-font-size: 28pt;
+    -fx-font-family: "Karla";
+    -fx-text-fill: #CAEFFF;
+    -fx-font-weight: 900;
+    -fx-opacity: 1;
+    -fx-padding: 2px;
+}
+
+.cell_big_label_todo {
+    -fx-font-family: "Karla";
+    -fx-font-size: 22px;
+    -fx-font-weight: 700;
+    -fx-text-fill: #C3E0FF;
+}
+
+.cell_small_label_todo {
+    -fx-font-family: "Karla";
+    -fx-font-size: 15px;
+    -fx-font-weight: 600;
+    -fx-text-fill: #C3E0FF;
+}
+
 /* This is the styling for scrolling vertical bar beside Command Result Display, Contact and Todo. */
 .scroll-bar {
     -fx-background-color: #060959;
@@ -248,67 +305,6 @@
 
 .scroll-bar:horizontal .increment-arrow, .scroll-bar:horizontal .decrement-arrow {
     -fx-padding: 8 1 8 1;
-}
-
-#attributeA {
-    -fx-hgap: 7;
-    -fx-vgap: 3;
-}
-
-#attributeB {
-    -fx-hgap: 7;
-    -fx-vgap: 3;
-}
-
-#attributeC {
-    -fx-hgap: 7;
-    -fx-vgap: 3;
-}
-
-#attributeD {
-    -fx-hgap: 7;
-    -fx-vgap: 3;
-}
-
-/* Handles style of Person List Card */
-.people-heading {
-    -fx-font-size: 28pt;
-    -fx-font-family: "Karla";
-    -fx-text-fill: #FFDFF6;
-    -fx-font-weight: 900;
-    -fx-opacity: 1;
-    -fx-padding: 2px;
-}
-
-.cell_big_label_person {
-    -fx-font-family: "Karla";
-    -fx-font-size: 22px;
-    -fx-font-weight: 700;
-    -fx-text-fill: #FFDFEA;
-}
-
-/* Handles style of Todo List Card */
-.todo-heading {
-    -fx-font-size: 28pt;
-    -fx-font-family: "Karla";
-    -fx-text-fill: #CAEFFF;
-    -fx-font-weight: 900;
-    -fx-opacity: 1;
-    -fx-padding: 2px;
-}
-
-.cell_big_label_todo {
-    -fx-font-family: "Karla";
-    -fx-font-size: 22px;
-    -fx-font-weight: 700;
-    -fx-text-fill: #C3E0FF;
-}
-
-.cell_small_label_todo {
-    -fx-font-family: "Karla";
-    -fx-font-size: 15px;
-    -fx-font-weight: 600;
-    -fx-text-fill: #C3E0FF;
 }
 
 /* Handles style of icons */
