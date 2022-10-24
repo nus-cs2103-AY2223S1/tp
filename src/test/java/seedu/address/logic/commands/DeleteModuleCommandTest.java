@@ -117,13 +117,4 @@ public class DeleteModuleCommandTest {
         // different person -> returns false
         assertFalse(deleteCsCommand.equals(deleteMaCommand));
     }
-
-    /**
-     * Updates {@code model}'s filtered list to show no one.
-     */
-    private void showNoModule(Model model) {
-        model.updateFilteredModuleList(p -> false);
-
-        assertTrue(model.getFilteredModuleList().isEmpty());
-    }
 }
