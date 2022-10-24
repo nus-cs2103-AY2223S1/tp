@@ -1,11 +1,17 @@
 package seedu.address.model.person.testutil;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Map;
 import java.util.Set;
+import java.util.TreeMap;
 
+import javafx.scene.control.Label;
 import seedu.address.model.assignment.Assignment;
+import seedu.address.model.assignment.Workload;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
@@ -103,14 +109,14 @@ public class PersonBuilder {
 
     /**
      * Parses the {@code Assignments} into a {@code HashMap<String, ArrayList<Assignment>>}
-     * and set it to the {@code Person} that we are building.
+     * and set it to the {@code Person} that we are building. Makes workload to be LOW by default.
      */
     public PersonBuilder withAssignments(String[] group, String[][] assignment) {
         this.assignments = new HashMap<>();
         for (int i = 0; i < group.length; i++) {
             ArrayList<Assignment> assignmentList = new ArrayList<>();
             for (int j = 0; j < assignment[i].length; j++) {
-                assignmentList.add(new Assignment(assignment[i][j]));
+                assignmentList.add(new Assignment(assignment[i][j], Workload.LOW));
             }
             this.assignments.put(group[i], assignmentList);
         }

@@ -88,9 +88,9 @@ public class Assignment implements Comparable<Assignment> {
     @Override
     public String toString() {
         if (getDeadline() != null && getWorkload() != null) {
-            return value + " (" + workload + ") by: " + deadline.getDeadlineString() + "\n";
+            return value + " (" + workload + ") by: " + deadline.getDeadlineString();
         } else if (getWorkload() != null) {
-            return value + " (" + workload + ")\n";
+            return value + " (" + workload + ")";
         } else {
             return value;
         }

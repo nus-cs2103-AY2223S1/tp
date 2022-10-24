@@ -26,6 +26,7 @@ import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.assignment.Assignment;
+import seedu.address.model.assignment.Workload;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.testutil.PersonBuilder;
@@ -46,15 +47,16 @@ public class DeleteTaskCommandTest {
 
         String groupName = "Alpha";
         String assignmentName = "Team A";
+        Assignment assignmentToAssign = new Assignment(assignmentName, Workload.LOW);
         DeleteTaskCommand deleteTaskCommand = new DeleteTaskCommand(
                 ELLE.getName(),
                 groupName,
-                new Assignment(assignmentName)
+                assignmentToAssign
                 );
 
         String expectedMessage = String.format(DeleteTaskCommand.MESSAGE_DELETE_TASK_SUCCESS + "\n"
                 + DeleteTaskCommand.MESSAGE_ARGUMENTS,
-                ELLE.getName(), groupName, assignmentName);
+                ELLE.getName(), groupName, assignmentToAssign);
         Model expectedModel = new ModelManager(new AddressBook(model.getAddressBook()), new UserPrefs());
         model.setPerson(personToDeleteTask, editedPerson);
 
@@ -100,10 +102,11 @@ public class DeleteTaskCommandTest {
 
         String groupName = "InvalidGroup";
         String assignmentName = "Team A";
+        Assignment assignmentToAssign = new Assignment(assignmentName, Workload.LOW);
         DeleteTaskCommand deleteTaskCommand = new DeleteTaskCommand(
                 new Name("ABC"),
                 groupName,
-                new Assignment(assignmentName)
+                assignmentToAssign
         );
 
         model.setPerson(personToDeleteTask, editedPerson);
@@ -125,10 +128,11 @@ public class DeleteTaskCommandTest {
 
         String groupName = "InvalidGroup";
         String assignmentName = "Team A";
+        Assignment assignmentToAssign = new Assignment(assignmentName, Workload.LOW);
         DeleteTaskCommand deleteTaskCommand = new DeleteTaskCommand(
                 ELLE.getName(),
                 groupName,
-                new Assignment(assignmentName)
+                assignmentToAssign
         );
 
         model.setPerson(personToDeleteTask, editedPerson);
@@ -149,10 +153,11 @@ public class DeleteTaskCommandTest {
 
         String groupName = "Alpha";
         String assignmentName = "InvalidTask";
+        Assignment assignmentToAssign = new Assignment(assignmentName, Workload.LOW);
         DeleteTaskCommand deleteTaskCommand = new DeleteTaskCommand(
                 ELLE.getName(),
                 groupName,
-                new Assignment(assignmentName)
+                assignmentToAssign
         );
 
         model.setPerson(personToDeleteTask, editedPerson);
@@ -174,10 +179,11 @@ public class DeleteTaskCommandTest {
 
         String groupName = ORAL_PRESENTATION.getName().toString();
         String assignmentName = "InvalidTask";
+        Assignment assignmentToAssign = new Assignment(assignmentName, Workload.LOW);
         DeleteTaskCommand deleteTaskCommand = new DeleteTaskCommand(
                 ELLE.getName(),
                 groupName,
-                new Assignment(assignmentName)
+                assignmentToAssign
         );
 
         model.setPerson(personToDeleteTask, editedPerson);
@@ -195,10 +201,12 @@ public class DeleteTaskCommandTest {
 
         String groupName = TEAM_PROJECT.getName().toString();
         String assignmentName = "InvalidTask";
+        Assignment assignmentToAssign = new Assignment(assignmentName, Workload.LOW);
+
         DeleteTaskCommand deleteTaskCommand = new DeleteTaskCommand(
                 ELLE.getName(),
                 groupName,
-                new Assignment(assignmentName)
+                assignmentToAssign
         );
 
         model.setPerson(personToDeleteTask, editedPerson);

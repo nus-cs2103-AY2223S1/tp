@@ -1,8 +1,7 @@
 package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_GROUP;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TASK;
+import static seedu.address.logic.parser.CliSyntax.*;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
 import static seedu.address.model.person.testutil.Assert.assertThrows;
@@ -26,33 +25,47 @@ public class AssignTaskCommandParserTest {
     @Test
     public void parse_invalidInput_throwsParseException() {
         // no name
-        assertParseFailure(parser, "" + PREFIX_GROUP + "Group" + " " + PREFIX_TASK + "Task",
+        assertParseFailure(parser, "" + PREFIX_GROUP + "Group" + " " + PREFIX_TASK + "Task" + " "
+                + PREFIX_WORKLOAD + "low",
                 String.format(MESSAGE_INVALID_COMMAND_FORMAT, AssignTaskCommand.MESSAGE_USAGE));
 
         // empty name
-        assertParseFailure(parser, " " + PREFIX_GROUP + "Group" + " " + PREFIX_TASK + "Task",
+        assertParseFailure(parser, " " + PREFIX_GROUP + "Group" + " " + PREFIX_TASK + "Task" + " "
+                + PREFIX_WORKLOAD + "low",
                 String.format(MESSAGE_INVALID_COMMAND_FORMAT, AssignTaskCommand.MESSAGE_USAGE));
 
         // no group
-        assertParseFailure(parser, " " + "Alex Yeoh" + " " + PREFIX_TASK + "Task",
+        assertParseFailure(parser, " " + "Alex Yeoh" + " " + PREFIX_TASK + "Task" + " "
+                + PREFIX_WORKLOAD + "low",
                 String.format(MESSAGE_INVALID_COMMAND_FORMAT, AssignTaskCommand.MESSAGE_USAGE));
 
         // invalid group
         assertParseFailure(parser, " " + "Alex Yeoh" + " "
-                        + PREFIX_GROUP + " " + " " + PREFIX_TASK + "Task",
+                        + PREFIX_GROUP + " " + " " + PREFIX_TASK + "Task" + " " + PREFIX_WORKLOAD + "low",
                 String.format(MESSAGE_INVALID_COMMAND_FORMAT, GroupName.MESSAGE_CONSTRAINTS));
 
         // no group prefix
-        assertParseFailure(parser, " " + "Alex Yeoh" + " " + "Group" + " " + PREFIX_TASK + "Task",
+        assertParseFailure(parser, " " + "Alex Yeoh" + " " + "Group" + " " + PREFIX_TASK + "Task" + " "
+                        + PREFIX_WORKLOAD + "low",
                 String.format(MESSAGE_INVALID_COMMAND_FORMAT, AssignTaskCommand.MESSAGE_USAGE));
 
         // no task
+        assertParseFailure(parser, " " + "Alex Yeoh" + " " + PREFIX_GROUP + "Group" + " "
+                        + PREFIX_WORKLOAD + "low",
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, AssignTaskCommand.MESSAGE_USAGE));
+
+        // no workload
         assertParseFailure(parser, " " + "Alex Yeoh" + " " + PREFIX_GROUP + "Group",
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, AssignTaskCommand.MESSAGE_USAGE));
+
+        //invalid workload
+        assertParseFailure(parser, " " + "Alex Yeoh" + " " + PREFIX_GROUP + "Group" + " "
+                        + PREFIX_WORKLOAD + "very high",
                 String.format(MESSAGE_INVALID_COMMAND_FORMAT, AssignTaskCommand.MESSAGE_USAGE));
 
         // invalid task
         assertParseFailure(parser, " " + "Alex Yeoh" + " "
-                        + PREFIX_GROUP + "Group" + " " + PREFIX_TASK + " ",
+                        + PREFIX_GROUP + "Group" + " " + PREFIX_TASK + " " + PREFIX_WORKLOAD + "low",
                 String.format(MESSAGE_INVALID_COMMAND_FORMAT, Assignment.MESSAGE_CONSTRAINTS));
 
         // no task prefix
@@ -63,7 +76,7 @@ public class AssignTaskCommandParserTest {
     @Test
     public void parse_validInput_commandParseSuccess() {
         assertParseSuccess(parser, " " + "Alex Yeoh" + " "
-                        + PREFIX_GROUP + "Group" + " " + PREFIX_TASK + "Task",
+                        + PREFIX_GROUP + "Group" + " " + PREFIX_TASK + "Task" + " " + PREFIX_WORKLOAD + "low",
                 new AssignTaskCommand(new Name("Alex Yeoh"), "Group", new Assignment("Task")));
     }
 }

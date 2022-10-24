@@ -46,7 +46,7 @@ public class AssignmentCard extends UiPart<Region> {
                     String input = "";
                     int a = 1;
                     for (int i = 0; i < value.size(); i++) {
-                        input += a + ". " + value.get(i);
+                        input += a + ". " + value.get(i) + "\n";
                         a++;
                     }
                     String assignmentString = key + ": \n" + input;
