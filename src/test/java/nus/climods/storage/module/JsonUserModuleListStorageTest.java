@@ -66,9 +66,9 @@ class JsonUserModuleListStorageTest {
     public void saveAndReadUserModuleList_success() throws Exception {
         Path filePath = testFolder.resolve("TempUserModuleList1.json");
         UniqueUserModuleList data = new UniqueUserModuleList();
-        data.add(new UserModule("CS2103", "Friday 1400-1500", "Friday 1600-1700", "Semester 1"));
-        data.add(new UserModule("CS2030S", "Friday 1400-1500", "Monday 1600-1700", "Semester 2"));
-        data.add(new UserModule("CS2040S", "Tuesday 1400-1500", "Monday 1600-1700", "Special Term 2"));
+        data.add(new UserModule("CS2103", "Friday 1400-1500", "Friday 1600-1700", "S1"));
+        data.add(new UserModule("CS2030S", "Friday 1400-1500", "Monday 1600-1700", "S1"));
+        data.add(new UserModule("CS2040S", "Tuesday 1400-1500", "Monday 1600-1700", "ST2"));
 
         JsonUserModuleListStorage jsonUserModuleListStorage = new JsonUserModuleListStorage(filePath);
 
