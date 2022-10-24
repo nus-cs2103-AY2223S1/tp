@@ -15,7 +15,6 @@ import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.internship.AppliedDate;
 import seedu.address.model.internship.Company;
 import seedu.address.model.internship.Description;
-import seedu.address.model.internship.InterviewDateTime;
 import seedu.address.model.internship.Link;
 
 public class JsonAdaptedInternshipTest {
