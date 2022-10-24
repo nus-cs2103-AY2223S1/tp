@@ -33,6 +33,7 @@
 }
 
 /** Accordion css adapted from https://stackoverflow.com/questions/21451386/titled-pane-css-settings **/
+/** Accordion css adapted from https://community.oracle.com/tech/developers/discussion/2296114/how-to-replace-the-arrow-with-a-custom-graphic-on-a-titledpane **/
 
 .accordion {
     -fx-background-color: white
@@ -107,6 +108,7 @@
 
 .commands {
     -fx-padding: 10;
+    -fx-underline: true;
 }
 
 .help-container {

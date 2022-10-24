@@ -66,7 +66,6 @@ public class HelpWindow extends UiPart<Stage> {
             HBox usageBox = new HBox(commandUsage);
             usageBox.setAlignment(Pos.CENTER_LEFT);
             TitledPane pane = new TitledPane(commandWord, usageBox);
-            pane.setPrefWidth(400);
             instructions.getPanes().add(pane);
         });
     }
