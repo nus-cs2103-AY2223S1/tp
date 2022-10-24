@@ -1,7 +1,5 @@
 package seedu.foodrem.viewmodels;
 
-import java.util.Objects;
-
 import seedu.foodrem.model.item.Item;
 
 /**
