@@ -11,6 +11,7 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import seedu.clinkedin.model.person.Person;
+import seedu.clinkedin.model.person.Rating;
 import seedu.clinkedin.model.tag.Tag;
 import seedu.clinkedin.model.tag.TagType;
 import seedu.clinkedin.model.tag.UniqueTagList;
@@ -82,7 +83,7 @@ public class PersonCard extends UiPart<Region> {
 
         status.setText(person.getStatus().status);
         note.setText(person.getNote().value.length() > 0 ? "Notes: " + person.getNote().value : "");
-        rating.setText(person.getRating().toString().length() > 0 ? "Rating: " + person.getRating().toString() : "");
+        rating.setText(person.getRating().equals(new Rating("0")) ? "" : "Rating: " + person.getRating().toString());
     }
 
     @Override

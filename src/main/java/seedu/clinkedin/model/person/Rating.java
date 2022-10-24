@@ -29,8 +29,9 @@ public class Rating {
      * Returns true if a given string can be parsed into an integer and is between 1 and 10 inclusive.
      */
     public static boolean isValidRatingStr(String test) {
-        return test.equals("0") || test.equals("1") || test.equals("2") || test.equals("3") || test.equals("4") || test.equals("5")
-                || test.equals("6") || test.equals("7") || test.equals("8") || test.equals("9") || test.equals("10");
+        return test.equals("0") || test.equals("1") || test.equals("2") || test.equals("3") || test.equals("4")
+                || test.equals("5") || test.equals("6") || test.equals("7") || test.equals("8") || test.equals("9")
+                || test.equals("10");
     }
 
     @Override
