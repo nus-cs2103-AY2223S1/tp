@@ -1,18 +1,23 @@
 package seedu.address.model;
 
 import java.nio.file.Path;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.person.Appointment;
+import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 
 /**
  * The API of the Model component.
  */
 public interface Model {
+    ArrayList<Name> CURRENT_NAMES = new ArrayList<>();
+    Predicate<Person> CURRENT_PREDICATE = (person) -> CURRENT_NAMES.contains(person.getName());
+
     /** {@code Predicate} that always evaluate to true */
     Predicate<Person> PREDICATE_SHOW_ALL_PERSONS = unused -> true;
 

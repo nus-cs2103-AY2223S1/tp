@@ -14,6 +14,6 @@ Code contributed: [RepoSense link](https://github.com/Guanzhou03/tp)
 * Cancel appointments command Feature + JUnit test
 * Hide patients command (by tags/name) + JUnit tests
 * Hide appointments command (by tags/keywords) + Junit tests
-* Enhance delete feature 
+* Enhance delete feature
 
 * _{you can add/remove categories in the list above}_
