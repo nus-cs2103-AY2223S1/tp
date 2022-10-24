@@ -1,8 +1,5 @@
 package seedu.uninurse.testutil;
 
-import java.util.HashSet;
-import java.util.Set;
-
 import seedu.uninurse.model.condition.ConditionList;
 import seedu.uninurse.model.medication.Medication;
 import seedu.uninurse.model.medication.MedicationList;
@@ -11,7 +8,7 @@ import seedu.uninurse.model.person.Email;
 import seedu.uninurse.model.person.Name;
 import seedu.uninurse.model.person.Patient;
 import seedu.uninurse.model.person.Phone;
-import seedu.uninurse.model.tag.Tag;
+import seedu.uninurse.model.tag.TagList;
 import seedu.uninurse.model.task.Task;
 import seedu.uninurse.model.task.TaskList;
 import seedu.uninurse.model.util.SampleDataUtil;
@@ -30,10 +27,10 @@ public class PersonBuilder {
     private Phone phone;
     private Email email;
     private Address address;
+    private TagList tags;
     private ConditionList conditions;
     private MedicationList medications;
     private TaskList tasks;
-    private Set<Tag> tags;
 
     /**
      * Creates a {@code PersonBuilder} with the default details.
@@ -43,10 +40,10 @@ public class PersonBuilder {
         this.phone = new Phone(DEFAULT_PHONE);
         this.email = new Email(DEFAULT_EMAIL);
         this.address = new Address(DEFAULT_ADDRESS);
+        this.tags = new TagList();
         this.conditions = new ConditionList();
         this.medications = new MedicationList();
         this.tasks = new TaskList();
-        this.tags = new HashSet<>();
     }
 
     /**
@@ -57,10 +54,10 @@ public class PersonBuilder {
         this.phone = personToCopy.getPhone();
         this.email = personToCopy.getEmail();
         this.address = personToCopy.getAddress();
+        this.tags = personToCopy.getTags();
         this.conditions = personToCopy.getConditions();
         this.medications = personToCopy.getMedications();
         this.tasks = personToCopy.getTasks();
-        this.tags = new HashSet<>(personToCopy.getTags());
     }
 
     /**
@@ -98,10 +95,10 @@ public class PersonBuilder {
     }
 
     /**
-     * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code Patient} that we are building.
+     * Parses the {@code tags} into a {@code TagList} and set it to the {@code Patient} that we are building.
      */
     public PersonBuilder withTags(String ... tags) {
-        this.tags = SampleDataUtil.getTagSet(tags);
+        this.tags = SampleDataUtil.getTagList(tags);
         return this;
     }
 
@@ -130,7 +127,7 @@ public class PersonBuilder {
     }
 
     public Patient build() {
-        return new Patient(name, phone, email, address, conditions, medications, tasks, tags);
+        return new Patient(name, phone, email, address, tags, conditions, medications, tasks);
     }
 
 }

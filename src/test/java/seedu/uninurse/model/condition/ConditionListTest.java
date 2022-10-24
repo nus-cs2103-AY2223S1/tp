@@ -7,6 +7,8 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.uninurse.testutil.Assert.assertThrows;
 import static seedu.uninurse.testutil.TypicalConditions.CONDITION_DIABETES;
 import static seedu.uninurse.testutil.TypicalConditions.CONDITION_OSTEOPOROSIS;
+import static seedu.uninurse.testutil.TypicalConditions.TYPICAL_CONDITION_DIABETES;
+import static seedu.uninurse.testutil.TypicalConditions.TYPICAL_CONDITION_OSTEOPOROSIS;
 
 import java.util.Arrays;
 import java.util.List;
@@ -38,6 +40,12 @@ public class ConditionListTest {
     }
 
     @Test
+    public void add_validCondition_success() {
+        ConditionList updatedConditionList = emptyConditionList.add(CONDITION_DIABETES);
+        assertEquals(updatedConditionList, conditionListDiabetes);
+    }
+
+    @Test
     public void delete_emptyList_throwsConditionNotFoundException() {
         assertThrows(ConditionNotFoundException.class, () -> emptyConditionList.delete(0));
     }
@@ -45,6 +53,12 @@ public class ConditionListTest {
     @Test
     public void delete_invalidIndex_throwsConditionNotFoundException() {
         assertThrows(ConditionNotFoundException.class, () -> emptyConditionList.delete(-1));
+    }
+
+    @Test
+    public void delete_validIndex_success() {
+        ConditionList updatedConditionList = conditionListDiabetes.delete(0);
+        assertEquals(updatedConditionList, emptyConditionList);
     }
 
     @Test
@@ -110,7 +124,7 @@ public class ConditionListTest {
 
     @Test
     public void toString_nonEmptyList_returnsIndexedStrings() {
-        String expectedString = "1. " + CONDITION_DIABETES + "\n2. " + CONDITION_OSTEOPOROSIS;
+        String expectedString = "1. " + TYPICAL_CONDITION_DIABETES + "\n2. " + TYPICAL_CONDITION_OSTEOPOROSIS;
         assertEquals(conditionList.toString(), expectedString);
     }
 

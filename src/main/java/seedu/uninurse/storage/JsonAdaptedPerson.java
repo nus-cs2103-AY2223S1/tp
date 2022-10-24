@@ -1,9 +1,7 @@
 package seedu.uninurse.storage;
 
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 import java.util.stream.Collectors;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
@@ -20,6 +18,7 @@ import seedu.uninurse.model.person.Name;
 import seedu.uninurse.model.person.Patient;
 import seedu.uninurse.model.person.Phone;
 import seedu.uninurse.model.tag.Tag;
+import seedu.uninurse.model.tag.TagList;
 import seedu.uninurse.model.task.Task;
 import seedu.uninurse.model.task.TaskList;
 
@@ -88,7 +87,7 @@ class JsonAdaptedPerson {
         tasks.addAll(source.getTasks().getTasks().stream()
                 .map(JsonAdaptedTask::new)
                 .collect(Collectors.toList()));
-        tagged.addAll(source.getTags().stream()
+        tagged.addAll(source.getTags().getInternalList().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
     }
@@ -157,9 +156,9 @@ class JsonAdaptedPerson {
 
         final TaskList modelTasks = new TaskList(personTasks);
 
-        final Set<Tag> modelTags = new HashSet<>(personTags);
+        final TagList modelTags = new TagList(personTags);
 
-        return new Patient(modelName, modelPhone, modelEmail, modelAddress,
-                modelConditions, modelMedications, modelTasks, modelTags);
+        return new Patient(modelName, modelPhone, modelEmail, modelAddress, modelTags, modelConditions,
+                modelMedications, modelTasks);
     }
 }

@@ -91,7 +91,7 @@ public class MedicationTest {
 
     @Test
     public void testToString() {
-        String expectedMedicationString = TypicalMedications.TYPICAL_MEDICATION_AMOXICILLIN + " \\| "
+        String expectedMedicationString = TypicalMedications.TYPICAL_MEDICATION_AMOXICILLIN + " | "
                 + TypicalMedications.TYPICAL_DOSAGE_AMOXICILLIN;
         assertEquals(TypicalMedications.MEDICATION_AMOXICILLIN.toString(), expectedMedicationString);
     }
