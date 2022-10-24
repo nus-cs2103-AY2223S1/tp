@@ -97,6 +97,13 @@ public class Profile {
     }
 
     /**
+     * Returns true if both profiles have the same telegram and field is not empty.
+     */
+    public boolean isSameTelegramNotEmpty(Profile otherProfile) {
+        return isSameTelegram(otherProfile) && !this.getTelegram().isEmpty();
+    }
+
+    /**
      * Returns true if both profiles have the same identity and data fields.
      * This defines a stronger notion of equality between two profiles.
      */

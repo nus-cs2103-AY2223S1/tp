@@ -4,12 +4,14 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_AMY;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_TELEGRAM_AMY;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalProfiles.ALICE;
 import static seedu.address.testutil.TypicalProfiles.AMY;
 import static seedu.address.testutil.TypicalProfiles.BENSON;
+import static seedu.address.testutil.TypicalProfiles.BOB;
 import static seedu.address.testutil.TypicalProfiles.getTypicalAddressBook;
 
 import java.util.Arrays;
@@ -47,30 +49,36 @@ public class AddressBookTest {
     }
 
     @Test
-    public void resetData_withSimilarNames_throwsSimilarProfileException() {
-        // Two profiles with similar name
-        Profile editedAlice = new ProfileBuilder(ALICE).withTags(VALID_TAG_HUSBAND)
-                .build();
-        List<Profile> newProfiles = Arrays.asList(ALICE, editedAlice);
-        AddressBookStub newData = new AddressBookStub(newProfiles);
-
-        assertThrows(SimilarProfileException.class, () -> addressBook.resetData(newData));
-    }
-
-    @Test
     public void resetData_withSimilarEmails_throwsSimilarProfileException() {
-        // Two profiles with the similar email (different name)
-        Profile editedAliceName = new ProfileBuilder(ALICE).withName(VALID_NAME_AMY).withTags(VALID_TAG_HUSBAND)
+        // Two profiles with the similar email
+        Profile bobWithAmyEmail = new ProfileBuilder(BOB).withEmail(VALID_EMAIL_AMY).withTags(VALID_TAG_HUSBAND)
                 .build();
-        List<Profile> newProfiles = Arrays.asList(ALICE, editedAliceName);
+        List<Profile> newProfiles = Arrays.asList(AMY, bobWithAmyEmail);
         AddressBookStub newData = new AddressBookStub(newProfiles);
 
         assertThrows(SimilarProfileException.class, () -> addressBook.resetData(newData));
     }
 
     @Test
-    public void hasName_nullName_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> addressBook.hasName(null));
+    public void resetData_withSimilarPhones_throwsSimilarProfileException() {
+        // Two profiles with the similar phone
+        Profile bobWithAmyPhone = new ProfileBuilder(BOB).withPhone(VALID_PHONE_AMY).withTags(VALID_TAG_HUSBAND)
+                .build();
+        List<Profile> newProfiles = Arrays.asList(AMY, bobWithAmyPhone);
+        AddressBookStub newData = new AddressBookStub(newProfiles);
+
+        assertThrows(SimilarProfileException.class, () -> addressBook.resetData(newData));
+    }
+
+    @Test
+    public void resetData_withSimilarTelegrams_throwsSimilarProfileException() {
+        // Two profiles with the similar telegram
+        Profile bobWithAmyTelegram = new ProfileBuilder(BOB).withTelegram(VALID_TELEGRAM_AMY).withTags(VALID_TAG_HUSBAND)
+                .build();
+        List<Profile> newProfiles = Arrays.asList(AMY, bobWithAmyTelegram);
+        AddressBookStub newData = new AddressBookStub(newProfiles);
+
+        assertThrows(SimilarProfileException.class, () -> addressBook.resetData(newData));
     }
 
     @Test
@@ -79,14 +87,13 @@ public class AddressBookTest {
     }
 
     @Test
-    public void hasName_nameNotInAddressBook_returnsFalse() {
-        assertFalse(addressBook.hasName(ALICE));
+    public void hasPhone_nullEmail_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> addressBook.hasPhone(null));
     }
 
     @Test
-    public void hasName_nameInAddressBook_returnsTrue() {
-        addressBook.addProfile(ALICE);
-        assertTrue(addressBook.hasName(ALICE));
+    public void hasTelegram_nullEmail_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> addressBook.hasTelegram(null));
     }
 
     @Test
@@ -101,11 +108,25 @@ public class AddressBookTest {
     }
 
     @Test
-    public void hasProfile_profileWithSameNameFieldsInAddressBook_returnsTrue() {
+    public void hasPhone_phoneNotInAddressBook_returnsFalse() {
+        assertFalse(addressBook.hasPhone(ALICE));
+    }
+
+    @Test
+    public void hasPhone_phoneInAddressBook_returnsTrue() {
         addressBook.addProfile(ALICE);
-        Profile editedAlice = new ProfileBuilder(ALICE).withTags(VALID_TAG_HUSBAND)
-                .build();
-        assertTrue(addressBook.hasName(editedAlice));
+        assertTrue(addressBook.hasPhone(ALICE));
+    }
+
+    @Test
+    public void hasTelegram_telegramNotInAddressBook_returnsFalse() {
+        assertFalse(addressBook.hasTelegram(ALICE));
+    }
+
+    @Test
+    public void hasTelegram_telegramInAddressBook_returnsTrue() {
+        addressBook.addProfile(ALICE);
+        assertTrue(addressBook.hasTelegram(ALICE));
     }
 
     @Test
@@ -114,6 +135,22 @@ public class AddressBookTest {
         Profile editedBenson = new ProfileBuilder(BENSON).withEmail(VALID_EMAIL_AMY)
                 .build();
         assertTrue(addressBook.hasEmail(editedBenson));
+    }
+
+    @Test
+    public void hasProfile_profileWithSamePhoneFieldsInAddressBook_returnsTrue() {
+        addressBook.addProfile(AMY);
+        Profile editedBenson = new ProfileBuilder(BENSON).withPhone(VALID_PHONE_AMY)
+                .build();
+        assertTrue(addressBook.hasPhone(editedBenson));
+    }
+
+    @Test
+    public void hasProfile_profileWithSameTelegramFieldsInAddressBook_returnsTrue() {
+        addressBook.addProfile(AMY);
+        Profile editedBenson = new ProfileBuilder(BENSON).withTelegram(VALID_TELEGRAM_AMY)
+                .build();
+        assertTrue(addressBook.hasTelegram(editedBenson));
     }
 
     @Test

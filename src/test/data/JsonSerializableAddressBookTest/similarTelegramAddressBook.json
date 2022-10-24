@@ -1,13 +1,13 @@
 {
   "profiles": [ {
-    "name": "Alice Pauline",
-    "phone": "94351253",
+    "name": "Alice Paul",
+    "phone": "98342909",
     "email": "alice@example.com",
-    "telegram": ""
+    "telegram": "alicepaul"
   }, {
     "name": "Alice Pauline",
     "phone": "94351253",
     "email": "pauline@example.com",
-    "telegram": ""
+    "telegram": "alicepaul"
   } ]
 }

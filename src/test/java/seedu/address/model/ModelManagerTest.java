@@ -73,22 +73,6 @@ public class ModelManagerTest {
     }
 
     @Test
-    public void hasName_nullName_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> modelManager.hasName(null));
-    }
-
-    @Test
-    public void hasName_nameNotInAddressBook_returnsFalse() {
-        assertFalse(modelManager.hasName(ALICE));
-    }
-
-    @Test
-    public void hasName_nameInAddressBook_returnsTrue() {
-        modelManager.addProfile(ALICE);
-        assertTrue(modelManager.hasName(ALICE));
-    }
-
-    @Test
     public void hasEmail_nullEmail_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> modelManager.hasEmail(null));
     }
@@ -102,6 +86,38 @@ public class ModelManagerTest {
     public void hasEmail_emailInAddressBook_returnsTrue() {
         modelManager.addProfile(ALICE);
         assertTrue(modelManager.hasEmail(ALICE));
+    }
+
+    @Test
+    public void hasPhone_nullPhone_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> modelManager.hasPhone(null));
+    }
+
+    @Test
+    public void hasPhone_phoneNotInAddressBook_returnsFalse() {
+        assertFalse(modelManager.hasPhone(ALICE));
+    }
+
+    @Test
+    public void hasPhone_phoneInAddressBook_returnsTrue() {
+        modelManager.addProfile(ALICE);
+        assertTrue(modelManager.hasPhone(ALICE));
+    }
+
+    @Test
+    public void hasTelegram_nullTelegram_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> modelManager.hasTelegram(null));
+    }
+
+    @Test
+    public void hasTelegram_telegramNotInAddressBook_returnsFalse() {
+        assertFalse(modelManager.hasTelegram(ALICE));
+    }
+
+    @Test
+    public void hasTelegram_telegramInAddressBook_returnsTrue() {
+        modelManager.addProfile(ALICE);
+        assertTrue(modelManager.hasTelegram(ALICE));
     }
 
     @Test

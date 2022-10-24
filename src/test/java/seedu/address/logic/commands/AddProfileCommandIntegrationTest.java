@@ -3,6 +3,7 @@ package seedu.address.logic.commands;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.testutil.TypicalProfiles.AMY;
+import static seedu.address.testutil.TypicalProfiles.FIRST_INDEX_TELEGRAM;
 import static seedu.address.testutil.TypicalProfiles.getTypicalAddressBook;
 
 import org.junit.jupiter.api.BeforeEach;
@@ -39,16 +40,6 @@ public class AddProfileCommandIntegrationTest {
     }
 
     @Test
-    public void execute_similarName_throwsCommandException() {
-        Profile profileInList = model.getAddressBook().getProfileList().get(0);
-        assertCommandFailure(
-                new AddProfileCommand(profileInList),
-                model,
-                AddProfileCommand.MESSAGE_SIMILAR_NAME
-        );
-    }
-
-    @Test
     public void execute_similarEmail_throwsCommandException() {
         Profile profileInList = model.getAddressBook().getProfileList().get(0);
         Profile newProfile = new ProfileBuilder(AMY).withEmail(profileInList.getEmail().toString())
@@ -57,6 +48,30 @@ public class AddProfileCommandIntegrationTest {
                 new AddProfileCommand(newProfile),
                 model,
                 AddProfileCommand.MESSAGE_SIMILAR_EMAIL
+        );
+    }
+
+    @Test
+    public void execute_similarPhone_throwsCommandException() {
+        Profile profileInList = model.getAddressBook().getProfileList().get(0);
+        Profile newProfile = new ProfileBuilder(AMY).withPhone(profileInList.getPhone().toString())
+                .build();
+        assertCommandFailure(
+                new AddProfileCommand(newProfile),
+                model,
+                AddProfileCommand.MESSAGE_SIMILAR_PHONE
+        );
+    }
+
+    @Test
+    public void execute_similarTelegram_throwsCommandException() {
+        Profile profileInList = model.getAddressBook().getProfileList().get(0);
+        Profile newProfile = new ProfileBuilder(AMY).withTelegram(FIRST_INDEX_TELEGRAM)
+                .build();
+        assertCommandFailure(
+                new AddProfileCommand(newProfile),
+                model,
+                AddProfileCommand.MESSAGE_SIMILAR_TELEGRAM
         );
     }
 

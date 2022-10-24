@@ -1,12 +1,17 @@
 package seedu.address.model.profile;
 
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_TELEGRAM_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_TELEGRAM_BOB;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalProfiles.ALICE;
 import static seedu.address.testutil.TypicalProfiles.AMY;
@@ -27,38 +32,6 @@ public class UniqueProfileListTest {
     private final UniqueProfileList uniqueProfileList = new UniqueProfileList();
 
     @Test
-    public void contains_nullName_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> uniqueProfileList.containsName(null));
-    }
-
-    @Test
-    public void contains_nameNotInList_returnsFalse() {
-        assertFalse(uniqueProfileList.containsName(ALICE));
-    }
-
-    @Test
-    public void contains_nameInList_returnsTrue() {
-        uniqueProfileList.add(ALICE);
-        assertTrue(uniqueProfileList.containsName(ALICE));
-    }
-
-    @Test
-    public void contains_profileWithSameNameFieldsInList_returnsTrue() {
-        uniqueProfileList.add(ALICE);
-        Profile editedAliceSameName = new ProfileBuilder(ALICE).withTags(VALID_TAG_HUSBAND)
-                .build();
-        Profile editedAliceSameEmail = new ProfileBuilder(ALICE).withName(VALID_NAME_BOB)
-                .build();
-        assertTrue(uniqueProfileList.containsName(editedAliceSameName));
-    }
-
-    @Test
-    public void add_similarName_throwsSimilarProfileException() {
-        uniqueProfileList.add(ALICE);
-        assertThrows(SimilarProfileException.class, () -> uniqueProfileList.add(ALICE));
-    }
-
-    @Test
     public void contains_nullEmail_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> uniqueProfileList.containsEmail(null));
     }
@@ -71,9 +44,7 @@ public class UniqueProfileListTest {
     @Test
     public void contains_emailInList_returnsTrue() {
         uniqueProfileList.add(AMY);
-        Profile editedBob = new ProfileBuilder(BOB).withEmail(VALID_EMAIL_AMY)
-                .build();
-        assertTrue(uniqueProfileList.containsEmail(editedBob));
+        assertTrue(uniqueProfileList.containsEmail(AMY));
     }
 
     @Test
@@ -88,6 +59,70 @@ public class UniqueProfileListTest {
     public void add_similarEmail_throwsSimilarProfileException() {
         uniqueProfileList.add(AMY);
         Profile editedBob = new ProfileBuilder(BOB).withEmail(VALID_EMAIL_AMY)
+                .build();
+        assertThrows(SimilarProfileException.class, () -> uniqueProfileList.add(editedBob));
+    }
+
+    @Test
+    public void contains_nullPhone_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> uniqueProfileList.containsPhone(null));
+    }
+
+    @Test
+    public void contains_phoneNotInList_returnsFalse() {
+        assertFalse(uniqueProfileList.containsPhone(ALICE));
+    }
+
+    @Test
+    public void contains_phoneInList_returnsTrue() {
+        uniqueProfileList.add(AMY);
+        assertTrue(uniqueProfileList.containsPhone(AMY));
+    }
+
+    @Test
+    public void contains_profileWithSamePhoneFieldsInList_returnsTrue() {
+        uniqueProfileList.add(AMY);
+        Profile editedBob = new ProfileBuilder(BOB).withPhone(VALID_PHONE_AMY)
+                .build();
+        assertTrue(uniqueProfileList.containsPhone(editedBob));
+    }
+
+    @Test
+    public void add_similarPhone_throwsSimilarProfileException() {
+        uniqueProfileList.add(AMY);
+        Profile editedBob = new ProfileBuilder(BOB).withPhone(VALID_PHONE_AMY)
+                .build();
+        assertThrows(SimilarProfileException.class, () -> uniqueProfileList.add(editedBob));
+    }
+
+    @Test
+    public void contains_nullTelegram_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> uniqueProfileList.containsTelegram(null));
+    }
+
+    @Test
+    public void contains_telegramNotInList_returnsFalse() {
+        assertFalse(uniqueProfileList.containsTelegram(ALICE));
+    }
+
+    @Test
+    public void contains_telegramInList_returnsTrue() {
+        uniqueProfileList.add(AMY);
+        assertTrue(uniqueProfileList.containsTelegram(AMY));
+    }
+
+    @Test
+    public void contains_profileWithSameTelegramFieldsInList_returnsTrue() {
+        uniqueProfileList.add(AMY);
+        Profile editedBob = new ProfileBuilder(BOB).withTelegram(VALID_TELEGRAM_AMY)
+                .build();
+        assertTrue(uniqueProfileList.containsTelegram(editedBob));
+    }
+
+    @Test
+    public void add_similarTelegram_throwsSimilarProfileException() {
+        uniqueProfileList.add(AMY);
+        Profile editedBob = new ProfileBuilder(BOB).withTelegram(VALID_TELEGRAM_AMY)
                 .build();
         assertThrows(SimilarProfileException.class, () -> uniqueProfileList.add(editedBob));
     }
@@ -142,17 +177,28 @@ public class UniqueProfileListTest {
     }
 
     @Test
-    public void setProfile_editedProfileHasNonUniqueName_throwsSimilarProfileException() {
-        uniqueProfileList.add(ALICE);
-        uniqueProfileList.add(BOB);
-        assertThrows(SimilarProfileException.class, () -> uniqueProfileList.setProfile(ALICE, BOB));
-    }
-
-    @Test
     public void setProfile_editedProfileHasNonUniqueEmail_throwsSimilarProfileException() {
         uniqueProfileList.add(ALICE);
         uniqueProfileList.add(BOB);
         Profile editedAlice = new ProfileBuilder(ALICE).withEmail(VALID_EMAIL_BOB)
+                .build();
+        assertThrows(SimilarProfileException.class, () -> uniqueProfileList.setProfile(ALICE, editedAlice));
+    }
+
+    @Test
+    public void setProfile_editedProfileHasNonUniquePhone_throwsSimilarProfileException() {
+        uniqueProfileList.add(ALICE);
+        uniqueProfileList.add(BOB);
+        Profile editedAlice = new ProfileBuilder(ALICE).withPhone(VALID_PHONE_BOB)
+                .build();
+        assertThrows(SimilarProfileException.class, () -> uniqueProfileList.setProfile(ALICE, editedAlice));
+    }
+
+    @Test
+    public void setProfile_editedProfileHasNonUniqueTelegram_throwsSimilarProfileException() {
+        uniqueProfileList.add(ALICE);
+        uniqueProfileList.add(BOB);
+        Profile editedAlice = new ProfileBuilder(ALICE).withTelegram(VALID_TELEGRAM_BOB)
                 .build();
         assertThrows(SimilarProfileException.class, () -> uniqueProfileList.setProfile(ALICE, editedAlice));
     }
@@ -205,17 +251,27 @@ public class UniqueProfileListTest {
     }
 
     @Test
-    public void setProfiles_listWithSimilarNames_throwsSimilarProfileException() {
-        List<Profile> listWithSimilarNames = Arrays.asList(ALICE, ALICE);
-        assertThrows(SimilarProfileException.class, () -> uniqueProfileList.setProfiles(listWithSimilarNames));
-    }
-
-    @Test
     public void setProfiles_listWithSimilarEmails_throwsSimilarProfileException() {
         Profile editedBob = new ProfileBuilder(BOB).withEmail(VALID_EMAIL_AMY)
                 .build();
         List<Profile> listWithSimilarEmails = Arrays.asList(AMY, editedBob);
         assertThrows(SimilarProfileException.class, () -> uniqueProfileList.setProfiles(listWithSimilarEmails));
+    }
+
+    @Test
+    public void setProfiles_listWithSimilarPhones_throwsSimilarProfileException() {
+        Profile editedBob = new ProfileBuilder(BOB).withPhone(VALID_PHONE_AMY)
+                .build();
+        List<Profile> listWithSimilarPhones = Arrays.asList(AMY, editedBob);
+        assertThrows(SimilarProfileException.class, () -> uniqueProfileList.setProfiles(listWithSimilarPhones));
+    }
+
+    @Test
+    public void setProfiles_listWithSimilarTelegrams_throwsSimilarProfileException() {
+        Profile editedBob = new ProfileBuilder(BOB).withTelegram(VALID_TELEGRAM_AMY)
+                .build();
+        List<Profile> listWithSimilarTelegrams = Arrays.asList(AMY, editedBob);
+        assertThrows(SimilarProfileException.class, () -> uniqueProfileList.setProfiles(listWithSimilarTelegrams));
     }
 
     @Test

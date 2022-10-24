@@ -22,11 +22,14 @@ import seedu.address.model.profile.Profile;
  * A utility class containing a list of {@code Profile} objects to be used in tests.
  */
 public class TypicalProfiles {
+    public static final String FIRST_INDEX_TELEGRAM = "pauline";
+    public static final String SECOND_INDEX_TELEGRAM = "benson_meier";
 
     public static final Profile ALICE = new ProfileBuilder().withName("Alice Pauline")
-            .withEmail("alice@example.com").withPhone("94351253").withTags("friends").build();
+            .withEmail("alice@example.com").withPhone("94351253").withTelegram(FIRST_INDEX_TELEGRAM)
+            .withTags("friends").build();
     public static final Profile BENSON = new ProfileBuilder().withName("Benson Meier")
-            .withEmail("johnd@example.com").withPhone("98765432").withTelegram("benson_meier")
+            .withEmail("johnd@example.com").withPhone("98765432").withTelegram(SECOND_INDEX_TELEGRAM)
             .withTags("owesMoney", "friends").build();
     public static final Profile CARL = new ProfileBuilder().withName("Carl Kurz").withPhone("95352563")
             .withEmail("heinz@example.com").build();

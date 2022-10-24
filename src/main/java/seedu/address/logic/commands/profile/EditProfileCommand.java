@@ -89,7 +89,7 @@ public class EditProfileCommand extends ProfileCommand {
             throw new CommandException(MESSAGE_SIMILAR_PHONE);
         }
 
-        if (!profileToEdit.isSameTelegram(editedProfile) && model.hasTelegram(editedProfile)) {
+        if (!profileToEdit.isSameTelegramNotEmpty(editedProfile) && model.hasTelegram(editedProfile)) {
             throw new CommandException(MESSAGE_SIMILAR_TELEGRAM);
         }
 

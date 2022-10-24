@@ -2,7 +2,7 @@ package seedu.address.model.profile.exceptions;
 
 /**
  * Signals that the operation will result in similar Profiles (Profiles are similar if they have the same
- * name or email).
+ * email, phone or telegram).
  */
 public class SimilarProfileException extends RuntimeException {
     public SimilarProfileException() {

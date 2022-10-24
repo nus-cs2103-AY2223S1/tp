@@ -25,7 +25,7 @@ import seedu.address.model.profile.exceptions.SimilarProfileException;
  *
  * @see Profile#isSameEmail(Profile)
  * @see Profile#isSamePhone(Profile)
- * @see Profile#isSameTelegram(Profile)
+ * @see Profile#isSameTelegramNotEmpty(Profile)
  */
 public class UniqueProfileList implements Iterable<Profile> {
 
@@ -54,7 +54,7 @@ public class UniqueProfileList implements Iterable<Profile> {
      */
     public boolean containsTelegram(Profile toCheck) {
         requireNonNull(toCheck);
-        return internalList.stream().anyMatch(toCheck::isSameTelegram);
+        return internalList.stream().anyMatch(toCheck::isSameTelegramNotEmpty);
     }
 
     /**
@@ -85,7 +85,7 @@ public class UniqueProfileList implements Iterable<Profile> {
 
         if ((!target.isSameEmail(editedProfile) && containsEmail(editedProfile))
                 || (!target.isSamePhone(editedProfile) && containsPhone(editedProfile))
-                || (!target.isSameTelegram(editedProfile) && containsTelegram(editedProfile))) {
+                || (!target.isSameTelegramNotEmpty(editedProfile) && containsTelegram(editedProfile))) {
             throw new SimilarProfileException();
         }
 
@@ -155,7 +155,7 @@ public class UniqueProfileList implements Iterable<Profile> {
                 Profile otherProfile = profiles.get(j);
                 if (currentProfile.isSameEmail(otherProfile)
                         || currentProfile.isSamePhone(otherProfile)
-                        || currentProfile.isSameTelegram(otherProfile)) {
+                        || currentProfile.isSameTelegramNotEmpty(otherProfile)) {
                     return false;
                 }
 
