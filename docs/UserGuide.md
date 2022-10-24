@@ -59,11 +59,12 @@ Examples:
 
 ### Listing all patients/appointments : `list`
 
-Shows a list of all patients or appointments, depending on the parameter given.
+Shows a list of all patients and/or appointments, depending on the parameter given.
 
 Format:
 * `list patients`
 * `list appts`
+* `list all`
 
 
 ### Editing a patient : `edit patients`
