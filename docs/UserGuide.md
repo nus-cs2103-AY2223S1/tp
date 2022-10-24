@@ -152,37 +152,37 @@ Format: `delete tutorial INDEX`
 
 Clears all tutorials in a specified module.
 
-Format: `clear tut [m/MODULE]`
+Format: `clear tutorial [m/MODULE]`
 
-### Adding a consultation : `add consult`
+### Adding a consultation : `add consultation`
 
 Adds a consultation to the consultation database.
 
-Format: `add consult t/TIMESLOT v/VENUE [m/MODULE] [n/NAME] [r/DESCRIPTION]`
+Format: `add consultation t/TIMESLOT v/VENUE [m/MODULE] [n/NAME] [r/DESCRIPTION]`
 
-### Deleting a consultation : `delete consult`
+### Deleting a consultation : `delete consultation`
 
 Deletes a specified consultation from the consultation database.
 
-Format: `delete consult INDEX`
+Format: `delete consultation INDEX`
 
 * Deletes the consultation at the specified `INDEX`.
 * The index refers to the index number shown in the displayed consultation list.
 * The index **must be a positive integer** 1, 2, 3, …
 
-### Clearing all consultations : `clear consult`
+### Clearing all consultations : `clear consultation`
 
 Clears all consultations.
 
-Format: `clear consult`
+Format: `clear consultation`
 
-### Adding a reminder : `add rem`
+### Adding a reminder : `add reminder`
 
 Adds a reminder to the list of reminders.
 
 Format: `add reminder r/DESCRIPTION [d/DEADLINE]`
 
-### Deleting a reminder : `delete rem`
+### Deleting a reminder : `delete reminder`
 
 Deletes the specified reminder from the list of reminders.
 
@@ -192,7 +192,19 @@ Format: `delete reminder INDEX`
 * The index refers to the index number shown in the displayed reminder list.
 * The index **must be a positive integer** 1, 2, 3, …
 
-### Clearing all reminders: `clear rem`
+### Mark reminder : `mark reminder`
+
+Marks a reminder as completed.
+
+Format: `mark reminder INDEX`
+
+### Unmark reminder : `unmark reminder`
+
+Unmarks a reminder as not completed.
+
+Format: `unmark reminder INDEX`
+
+### Clearing all reminders: `clear reminder`
 
 Clears all reminders.
 
@@ -242,8 +254,8 @@ Action | Format, Examples
 **Delete Tutorial** | `delete tutorial INDEX` <br> e.g., `delete tutorial 3`
 **Clear Tutorial** | `clear tutorial [m/MODULE]` <br> e.g., `clear tutorial m/CS2105`
 **Add Consultation** | `add consultation n/NAME m/MODULE v/VENUE D/DATE T/TIMESLOT [d/DESCRIPTION]` <br> e.g., `add consultation t/18:00-20:00 v/COM1-0205 m/CS2103T n/JakeKim d/testing`
-**Delete Consultation** | `delete consultation INDEX` <br> e.g., `delete consult 3`
-**Clear Consultation** | `clear consult` <br> e.g., `clear consult`
+**Delete Consultation** | `delete consultation INDEX` <br> e.g., `delete consultation 3`
+**Clear Consultation** | `clear consultation` <br> e.g., `clear consultation`
 **Add Reminder** | `add reminder n/NAME T/DEADLINE p/PRIORITY d/DESCRIPTION` <br> e.g., `add reminder n/mark assignment 1 T/2000-03-21 p/HIGH d/ 300 papers to mark`
 **Delete Reminder** | `delete reminder INDEX` <br> e.g., `delete reminder 3`
 **Mark Reminder** | `mark reminder INDEX` <br> e.g., `mark reminder 3`
