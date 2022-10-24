@@ -64,6 +64,19 @@ public class HomeworkList {
     }
 
     /**
+     * Homework object of the specified index in the Homework list will be marked
+     *
+     * @param index index in the Homework list to be marked
+     */
+    public void markAtIndex(Index index) {
+        int indexToMark = index.getZeroBased();
+        if (indexToMark >= homeworkList.size()) {
+            throw new IllegalArgumentException(MESSAGE_INVALID_HOMEWORK_INDEX);
+        }
+        homeworkList.get(indexToMark).markAsDone();
+    }
+
+    /**
      * Returns true if a given {@code Index} is a valid index in the list.
      */
     public boolean isValidIndex(Index index) {
@@ -89,11 +102,39 @@ public class HomeworkList {
         return description.toString();
     }
 
+    /**
+     * Returns an integer of the total number of completed homework in the list
+     *
+     * @return total number of completed homework in the list
+     */
+    public int totalCompletedHw() {
+        int totalNumberOfCompletedHw = 0;
+        for (Homework hw : homeworkList) {
+            if (hw.getIsCompleted()) {
+                totalNumberOfCompletedHw++;
+            }
+        }
+        return totalNumberOfCompletedHw;
+    }
+
+    /**
+     * @return the size of the list
+     */
+    public int size() {
+        return homeworkList.size();
+    }
+
     @Override
     public String toString() {
         StringBuilder description = new StringBuilder();
         if (homeworkList.isEmpty()) {
             description.append("No homework found!\n");
+        } else {
+            description.append(totalCompletedHw())
+                    .append("/")
+                    .append(size())
+                    .append(" Completed!")
+                    .append("\n");
         }
         for (int i = 0; i < homeworkList.size(); i++) {
             description.append(i + 1).append(". ").append(homeworkList.get(i)).append("\n");
