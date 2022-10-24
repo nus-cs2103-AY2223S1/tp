@@ -42,9 +42,9 @@ public class ModuleInfoCard extends UiPart<Region> {
     public ModuleInfoCard(Module module) {
         super(FXML);
         this.module = module;
-        moduleName.setText("Module name: " + module.getName().fullName);
-        moduleCode.setText("Module code: " + module.getCode().fullCode);
-        moduleDescription.setText("Description: " + module.getDescription().fullDescription);
+        moduleName.setText(module.getName().fullName);
+        moduleCode.setText(module.getCode().fullCode);
+        moduleDescription.setText(module.getDescription().fullDescription);
         module.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));

@@ -148,7 +148,7 @@ public class MainWindow extends UiPart<Stage> {
         personListPanel = new PersonListPanel(logic.getFilteredPersonList());
         personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
 
-        moduleListPanel = new ModuleListPanel(logic.getFilteredModuleList());
+        moduleListPanel = new ModuleListPanel(logic.getFilteredModuleList(), logic.getFilteredScheduleList());
         moduleListPanelPlaceholder.getChildren().add(moduleListPanel.getRoot());
 
         scheduleListPanel = new ScheduleListPanel(logic.getFilteredScheduleList());
@@ -219,7 +219,7 @@ public class MainWindow extends UiPart<Stage> {
      */
     @FXML
     public void handleShowTabModules() {
-        moduleListPanel = new ModuleListPanel(logic.getFilteredModuleList());
+        moduleListPanel = new ModuleListPanel(logic.getFilteredModuleList(), logic.getFilteredScheduleList());
         moduleListPanelPlaceholder.getChildren().add(moduleListPanel.getRoot());
         tabPane.getSelectionModel().select(MODULELIST);
     }
@@ -229,7 +229,7 @@ public class MainWindow extends UiPart<Stage> {
      */
     @FXML
     public void handleShowTabAllModules() {
-        moduleListPanel = new ModuleListPanel(logic.getAllModuleList());
+        moduleListPanel = new ModuleListPanel(logic.getAllModuleList(), logic.getFilteredScheduleList());
         moduleListPanelPlaceholder.getChildren().add(moduleListPanel.getRoot());
         tabPane.getSelectionModel().select(MODULELIST);
         resultDisplay.setFeedbackToUser("Show all modules!");
