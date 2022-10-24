@@ -30,8 +30,6 @@ public class DateTimeTest {
         assertFalse(DateTime.isValidDate("20-Oct-2022 18-00")); // hyphen when putting in time
         assertFalse(DateTime.isValidDate("20Oct2022 18:00")); // missing hyphens in the date
         assertFalse(DateTime.isValidDate("20-Ja-2022 17:00")); // only two letters in month
-        assertFalse(DateTime.isValidDate(" peterjack@example.com")); // leading space
-        assertFalse(DateTime.isValidDate("peterjack@example.com ")); // trailing space
         assertFalse(DateTime.isValidDate("20--Oct-2022 19:00")); // double '-' symbol
         assertFalse(DateTime.isValidDate("20--Oct-2022-19:00")); // '-' symbol used in the wrong part
         assertFalse(DateTime.isValidDate("-20-Oct-2022 19:00")); // date starts with a hyphen

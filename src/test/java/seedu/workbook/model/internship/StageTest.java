@@ -28,13 +28,13 @@ public class StageTest {
         assertFalse(Stage.isValidStage("")); // empty string
         assertFalse(Stage.isValidStage(" ")); // spaces only
         assertFalse(Stage.isValidStage("^")); // only non-alphanumeric characters
-        assertFalse(Stage.isValidStage("meta*")); // contains non-alphanumeric characters
+        assertFalse(Stage.isValidStage("Interview*")); // contains non-alphanumeric characters
 
         // valid name
-        assertTrue(Stage.isValidStage("Engineer")); // alphabets only
+        assertTrue(Stage.isValidStage("Phone Interview")); // alphabets only
         assertTrue(Stage.isValidStage("12345")); // numbers only
-        assertTrue(Stage.isValidStage("5th Engineer")); // alphanumeric characters
-        assertTrue(Stage.isValidStage("Backend Developer")); // with capital letters
-        assertTrue(Stage.isValidStage("Backend Developer Software Engineer Quant Trader CEO")); // long names
+        assertTrue(Stage.isValidStage("3rd Technical Interview")); // alphanumeric characters
+        assertTrue(Stage.isValidStage("BEHAVIOURAL INTERVIEW")); // with capital letters
+        assertTrue(Stage.isValidStage("Coding with the CTO of the company intense interview")); // long names
     }
 }

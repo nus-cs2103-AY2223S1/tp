@@ -28,7 +28,7 @@ public class RoleTest {
         assertFalse(Role.isValidRole("")); // empty string
         assertFalse(Role.isValidRole(" ")); // spaces only
         assertFalse(Role.isValidRole("^")); // only non-alphanumeric characters
-        assertFalse(Role.isValidRole("meta*")); // contains non-alphanumeric characters
+        assertFalse(Role.isValidRole("frontend engineer*")); // contains non-alphanumeric characters
 
         // valid name
         assertTrue(Role.isValidRole("Engineer")); // alphabets only

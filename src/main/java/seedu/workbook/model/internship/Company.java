@@ -3,6 +3,8 @@ package seedu.workbook.model.internship;
 import static java.util.Objects.requireNonNull;
 import static seedu.workbook.commons.util.AppUtil.checkArgument;
 
+import seedu.workbook.commons.util.StringUtil;
+
 /**
  * Represents an Internship's company in WorkBook.
  * Guarantees: immutable; is valid as declared in
@@ -30,7 +32,7 @@ public class Company {
     public Company(String name) {
         requireNonNull(name);
         checkArgument(isValidCompany(name), MESSAGE_CONSTRAINTS);
-        String modifiedName = toUpperCase(name);
+        String modifiedName = StringUtil.toUpperCase(name);
         this.name = modifiedName;
     }
 
@@ -53,23 +55,6 @@ public class Company {
                         && name.equals(((Company) other).name)); // state check
     }
 
-    /**
-     * Returns company name with first letter after every space capitalized.
-     */
-    public String toUpperCase(String companyName) {
-        char[] chars = companyName.toLowerCase().toCharArray();
-        boolean isNotWhitespace = false;
-        for (int i = 0; i < chars.length; i++) {
-            if (!isNotWhitespace && Character.isLetter(chars[i])) {
-                chars[i] = Character.toUpperCase(chars[i]);
-                isNotWhitespace = true;
-
-            } else if (Character.isWhitespace(chars[i])) {
-                isNotWhitespace = false;
-            }
-        }
-        return String.valueOf(chars);
-    }
 
     @Override
     public int hashCode() {

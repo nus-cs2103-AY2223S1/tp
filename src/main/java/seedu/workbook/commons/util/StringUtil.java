@@ -65,4 +65,22 @@ public class StringUtil {
             return false;
         }
     }
+
+    /**
+     * Returns role name with first letter after every spacing capitalized.
+     */
+    public static String toUpperCase(String roleName) {
+        char[] chars = roleName.toLowerCase().toCharArray();
+        boolean isNotWhitespace = false;
+        for (int i = 0; i < chars.length; i++) {
+            if (!isNotWhitespace && Character.isLetter(chars[i])) {
+                chars[i] = Character.toUpperCase(chars[i]);
+                isNotWhitespace = true;
+
+            } else if (Character.isWhitespace(chars[i])) {
+                isNotWhitespace = false;
+            }
+        }
+        return String.valueOf(chars);
+    }
 }
