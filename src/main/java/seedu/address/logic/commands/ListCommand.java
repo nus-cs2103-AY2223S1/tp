@@ -14,6 +14,8 @@ public class ListCommand extends Command {
 
     public static final String MESSAGE_SUCCESS = "Listed all persons";
 
+    public static final String MESSAGE_USAGE = "list: List all persons in the address book."
+            + "\nExample: list";
 
     @Override
     public CommandResult execute(Model model) {

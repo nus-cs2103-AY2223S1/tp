@@ -21,6 +21,7 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
 import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.ReadOnlyCommandHistory;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.calendar.CalendarEvent;
 import seedu.address.model.person.Person;
@@ -158,6 +159,26 @@ public class AddCommandTest {
 
         @Override
         public ObservableList<CalendarEvent> getFilteredCalendarEventList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public ReadOnlyCommandHistory getCommandHistory() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void addToCommandHistory(String commandInput) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public String nextCommand() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public String prevCommand() {
             throw new AssertionError("This method should not be called.");
         }
 

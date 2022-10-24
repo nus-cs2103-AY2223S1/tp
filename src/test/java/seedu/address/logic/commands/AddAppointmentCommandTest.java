@@ -21,6 +21,7 @@ import org.junit.jupiter.api.Test;
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.model.AddressBook;
+import seedu.address.model.CommandHistory;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
@@ -31,7 +32,7 @@ import seedu.address.testutil.PersonBuilder;
 
 public class AddAppointmentCommandTest {
 
-    private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+    private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs(), new CommandHistory());
 
     @Test
     public void constructor_nullPerson_throwsNullPointerException() {
@@ -41,11 +42,11 @@ public class AddAppointmentCommandTest {
     @Test
     public void execute_validAppointmentUnfilteredList_success() {
         // Create actualModel
-        Model actualModel = new ModelManager(new AddressBook(), new UserPrefs());
+        Model actualModel = new ModelManager(new AddressBook(), new UserPrefs(), new CommandHistory());
         actualModel.addPerson(new PersonBuilder().build());
 
         // Create expectedModel
-        Model expectedModel = new ModelManager(new AddressBook(), new UserPrefs());
+        Model expectedModel = new ModelManager(new AddressBook(), new UserPrefs(), new CommandHistory());
         expectedModel.addPerson(new PersonBuilder().build());
         Person expectedPerson = expectedModel.getFilteredPersonList().get(0);
         expectedPerson.getAppointments().add(new AppointmentBuilder()
@@ -66,13 +67,13 @@ public class AddAppointmentCommandTest {
     @Test
     public void execute_validAppointmentFilteredList_success() {
         // Create actualModel
-        Model actualModel = new ModelManager(new AddressBook(), new UserPrefs());
+        Model actualModel = new ModelManager(new AddressBook(), new UserPrefs(), new CommandHistory());
         actualModel.addPerson(new PersonBuilder().build());
         actualModel.addPerson(new PersonBuilder(MUSAB_WITH_NO_APPT).build());
         showPersonAtIndex(model, INDEX_FIRST_PERSON);
 
         // Create expectedModel
-        Model expectedModel = new ModelManager(new AddressBook(), new UserPrefs());
+        Model expectedModel = new ModelManager(new AddressBook(), new UserPrefs(), new CommandHistory());
         expectedModel.addPerson(new PersonBuilder().build());
         expectedModel.addPerson(new PersonBuilder(MUSAB_WITH_NO_APPT).build());
         Person expectedPerson = expectedModel.getFilteredPersonList().get(0);
@@ -94,7 +95,7 @@ public class AddAppointmentCommandTest {
     @Test
     public void execute_addDuplicateAppointmentUnfilteredList_failure() {
         // Create testModel
-        Model testModel = new ModelManager(new AddressBook(), new UserPrefs());
+        Model testModel = new ModelManager(new AddressBook(), new UserPrefs(), new CommandHistory());
         testModel.addPerson(new PersonBuilder().build());
         Person testPerson = testModel.getFilteredPersonList().get(0);
         testPerson.getAppointments().add(new AppointmentBuilder()
@@ -114,7 +115,7 @@ public class AddAppointmentCommandTest {
     @Test
     public void execute_addDuplicateAppointmentFilteredList_failure() {
         // Create testModel
-        Model testModel = new ModelManager(new AddressBook(), new UserPrefs());
+        Model testModel = new ModelManager(new AddressBook(), new UserPrefs(), new CommandHistory());
         testModel.addPerson(new PersonBuilder().build());
         testModel.addPerson(new PersonBuilder(MUSAB_WITH_NO_APPT).build());
         showPersonAtIndex(model, INDEX_FIRST_PERSON);
