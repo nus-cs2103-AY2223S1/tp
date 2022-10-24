@@ -13,7 +13,7 @@
 
 <!--This line here deals with the titla and icons of the app -->
 <fx:root type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1"
-         title="Friendnancial" minWidth="450" minHeight="600" onCloseRequest="#handleExit">
+         title="Friendnancial" minWidth="1200" minHeight="700" onCloseRequest="#handleExit">
 
   <icons>
     <Image url="@/images/friendnancial1.png" />

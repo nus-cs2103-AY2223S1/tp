@@ -10,7 +10,7 @@
     <items>
       <TextField fx:id="commandTextField" onAction="#handleCommandEntered" promptText="Enter command here..."/>
       <Button fx:id="sendButton" id="sendButton" mnemonicParsing="false" onAction="#handleCommandEntered"
-              prefHeight="30.0" prefWidth="100.0" text="Send" StackPane.alignment="CENTER_RIGHT"/>
+              prefHeight="30.0" prefWidth="100.0" minWidth="80.0" text="Send" StackPane.alignment="CENTER_RIGHT"/>
     </items>
   </SplitPane>
 </StackPane>
