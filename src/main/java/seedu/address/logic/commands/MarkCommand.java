@@ -4,6 +4,8 @@ import static java.util.Objects.requireNonNull;
 
 import java.util.List;
 
+import picocli.CommandLine;
+import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.team.Task;
@@ -11,6 +13,7 @@ import seedu.address.model.team.Task;
 /**
  * Marks a specified task as complete.
  */
+@CommandLine.Command(name = "mark")
 public class MarkCommand extends Command {
     public static final String COMMAND_WORD = "mark";
 
@@ -23,29 +26,34 @@ public class MarkCommand extends Command {
     public static final String MESSAGE_TASK_INDEX_OUT_OF_BOUNDS = "This task does not exist. "
             + "There are less than %1$s tasks in your list.";
     public static final String MESSAGE_ALREADY_MARKED = "This task has already been marked as complete.";
-    private final int taskIndex;
+
+    @CommandLine.Parameters(arity = "1")
+    private Index taskIndex;
+
+    public MarkCommand() {
+    }
 
     /**
      * Returns a command that adds a task to the current team.
      * @param taskIndex The index of the task to be added.
      */
     public MarkCommand(int taskIndex) {
-        this.taskIndex = taskIndex;
+        this.taskIndex = Index.fromZeroBased(taskIndex);
     }
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
         List<Task> taskList = model.getTeam().getTaskList();
-        if (taskIndex >= taskList.size()) {
-            throw new CommandException(String.format(MESSAGE_TASK_INDEX_OUT_OF_BOUNDS, taskIndex + 1));
+        if (taskIndex.getZeroBased() >= taskList.size()) {
+            throw new CommandException(String.format(MESSAGE_TASK_INDEX_OUT_OF_BOUNDS, taskIndex.getOneBased()));
         }
-        if (taskList.get(taskIndex).isComplete()) {
+        if (taskList.get(taskIndex.getZeroBased()).isComplete()) {
             throw new CommandException(MESSAGE_ALREADY_MARKED);
         }
-        taskList.get(taskIndex).mark(true);
+        taskList.get(taskIndex.getZeroBased()).mark(true);
         return new CommandResult(String.format(MESSAGE_MARK_SUCCESS,
-                taskList.get(taskIndex).getName()));
+                taskList.get(taskIndex.getZeroBased()).getName()));
     }
 
     @Override

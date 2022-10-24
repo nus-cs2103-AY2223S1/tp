@@ -13,10 +13,14 @@ import picocli.CommandLine.Command;
     EditCommand.class,
     DeleteCommand.class,
     ListCommand.class,
-    AssignTaskCommand.class,
+    AssignCommand.class,
+    SetCommand.class,
+    TasksSummaryCommand.class,
     ClearCommand.class,
     ExitCommand.class,
     FindCommand.class,
+    MarkCommand.class,
+    UnmarkCommand.class,
     HelpCommand.class
 })
 public class MainCommand implements Runnable {

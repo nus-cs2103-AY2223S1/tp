@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 
 import java.util.List;
 
+import picocli.CommandLine;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.team.Team;
@@ -11,6 +12,7 @@ import seedu.address.model.team.Team;
 /**
  * Sets the current team to an existing team.
  */
+@CommandLine.Command(name = "team")
 public class SetTeamCommand extends Command {
     public static final String COMMAND_WORD = "set_team";
 
@@ -25,7 +27,13 @@ public class SetTeamCommand extends Command {
 
     public static final String MESSAGE_TEAM_NOT_EXISTS = "This team you are trying to set does not exist!";
 
-    private final Team targetTeam;
+    private Team targetTeam;
+
+    @CommandLine.Parameters(arity = "1")
+    private String targetTeamName;
+
+    public SetTeamCommand() {
+    }
 
     public SetTeamCommand(Team targetTeam) {
         this.targetTeam = targetTeam;
@@ -36,7 +44,7 @@ public class SetTeamCommand extends Command {
         requireNonNull(model);
         List<Team> teamList = model.getTeamList();
         Team currentTeam = model.getTeam();
-        int teamIndex = teamList.indexOf(targetTeam);
+        int teamIndex = teamList.indexOf(new Team(targetTeamName));
 
         if (teamIndex == -1) {
             throw new CommandException(MESSAGE_TEAM_NOT_EXISTS);

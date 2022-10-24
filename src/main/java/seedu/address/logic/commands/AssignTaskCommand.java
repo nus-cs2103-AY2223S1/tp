@@ -19,7 +19,7 @@ import seedu.address.model.team.Task;
 /**
  * Assigns a task to a specific member in the team.
  */
-@CommandLine.Command(name = "assign")
+@CommandLine.Command(name = "task")
 public class AssignTaskCommand extends Command {
     public static final String COMMAND_WORD = "assign_task";
 
@@ -62,6 +62,7 @@ public class AssignTaskCommand extends Command {
         List<Person> memberList = model.getTeam().getTeamMembers();
         Person currentPerson = null;
         for (Person person : memberList) {
+            System.out.println(person.getName() + " " + memberName);
             if (person.getName().equals(memberName)) {
                 currentPerson = person;
                 break;
