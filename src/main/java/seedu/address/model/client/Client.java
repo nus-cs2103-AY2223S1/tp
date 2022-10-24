@@ -97,6 +97,10 @@ public class Client {
         meetings.remove(meeting);
     }
 
+    public boolean hasProduct(Product product) {
+        return products.contains(product);
+    }
+
     /**
      * Returns an immutable product set, which throws {@code UnsupportedOperationException}
      * if modification is attempted.

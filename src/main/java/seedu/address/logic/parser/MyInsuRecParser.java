@@ -68,7 +68,7 @@ public class MyInsuRecParser {
             return new FindCommandParser().parse(arguments);
 
         case ListClientCommand.COMMAND_WORD:
-            return new ListClientCommand();
+            return new ListClientCommandParser().parse(arguments);
 
         case ViewMeetingCommand.COMMAND_WORD:
             return new ViewMeetingCommandParser().parse(arguments);

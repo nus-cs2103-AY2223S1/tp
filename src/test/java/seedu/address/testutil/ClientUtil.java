@@ -50,11 +50,11 @@ public class ClientUtil {
         descriptor.getEmail().ifPresent(email -> sb.append(PREFIX_EMAIL).append(email.value).append(" "));
         descriptor.getAddress().ifPresent(address -> sb.append(PREFIX_ADDRESS).append(address.value).append(" "));
         if (descriptor.getProducts().isPresent()) {
-            Set<Product> Products = descriptor.getProducts().get();
-            if (Products.isEmpty()) {
+            Set<Product> products = descriptor.getProducts().get();
+            if (products.isEmpty()) {
                 sb.append(PREFIX_PRODUCT);
             } else {
-                Products.forEach(s -> sb.append(PREFIX_PRODUCT).append(s.productName).append(" "));
+                products.forEach(s -> sb.append(PREFIX_PRODUCT).append(s.productName).append(" "));
             }
         }
         return sb.toString();

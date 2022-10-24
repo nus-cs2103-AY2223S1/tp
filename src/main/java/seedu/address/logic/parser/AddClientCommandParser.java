@@ -47,9 +47,9 @@ public class AddClientCommandParser implements Parser<AddClientCommand> {
         Address address = argMultimap.getValue(PREFIX_ADDRESS).isPresent()
                 ? ParserUtil.parseAddress(argMultimap.getValue(PREFIX_ADDRESS).get())
                 : new Address("");
-        Set<Product> product = ParserUtil.parseProducts(argMultimap.getAllValues(PREFIX_PRODUCT));
+        Set<Product> products = ParserUtil.parseProducts(argMultimap.getAllValues(PREFIX_PRODUCT));
 
-        Client client = new Client(name, phone, email, address, product);
+        Client client = new Client(name, phone, email, address, products);
         return new AddClientCommand(client);
     }
 
