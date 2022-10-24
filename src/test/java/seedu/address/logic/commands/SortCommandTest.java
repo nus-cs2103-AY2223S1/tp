@@ -49,7 +49,7 @@ public class SortCommandTest {
 
         // same object -> returns true
         assertTrue(sortByNameCommand.equals(sortByNameCommand));
-        assertTrue(sortByAppointmentCommand.equals(sortByAppointmentCommand));
+        assertEquals(sortByAppointmentCommand, sortByAppointmentCommand);
 
         // null -> returns false
         assertFalse(sortByAppointment.equals(null));
