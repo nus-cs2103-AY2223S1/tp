@@ -65,7 +65,7 @@ public class TagCommand extends Command {
             throw new CommandException(ERROR_NOT_FOUND_TAG);
         }
 
-        List<Item> lastShownList = model.getFilteredItemList();
+        List<Item> lastShownList = model.getCurrentList();
         if (index.getZeroBased() >= lastShownList.size()) {
             throw new CommandException(ERROR_NOT_FOUND_ITEM);
         }
@@ -78,8 +78,6 @@ public class TagCommand extends Command {
         Item newTagSetItem = createTaggedItem(itemToTag, tag);
 
         model.setItem(itemToTag, newTagSetItem);
-        model.updateFilteredItemList(Model.PREDICATE_SHOW_ALL_ITEMS);
-
         return new CommandResult(String.format(MESSAGE_SUCCESS, newTagSetItem));
     }
 

@@ -2,7 +2,6 @@ package seedu.foodrem.logic.commands.tagcommands;
 
 import static java.util.Objects.requireNonNull;
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static seedu.foodrem.testutil.Assert.assertThrows;
 
@@ -72,7 +71,7 @@ public class NewTagCommandTest {
         assertEquals(addFruitsTag, addFruitsTagCopy);
 
         // different types -> returns false
-        assertFalse(addFruitsTag.equals(1));
+        assertNotEquals(1, addFruitsTag);
 
         // null -> returns false
         assertNotEquals(null, addFruitsTag);
@@ -107,16 +106,6 @@ public class NewTagCommandTest {
 
         @Override
         public ObservableList<Tag> getFilteredTagList() {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public ObservableList<Item> getFilteredSortedItemList() {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public ObservableList<Item> getSortedItemList() {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -191,7 +180,7 @@ public class NewTagCommandTest {
         }
 
         @Override
-        public ObservableList<Item> getFilteredItemList() {
+        public ObservableList<Item> getCurrentList() {
             throw new AssertionError("This method should not be called.");
         }
 

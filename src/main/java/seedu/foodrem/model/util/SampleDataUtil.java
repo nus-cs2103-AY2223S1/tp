@@ -1,5 +1,7 @@
 package seedu.foodrem.model.util;
 
+import java.util.HashSet;
+
 import seedu.foodrem.model.FoodRem;
 import seedu.foodrem.model.ReadOnlyFoodRem;
 import seedu.foodrem.model.item.Item;
@@ -18,19 +20,21 @@ public class SampleDataUtil {
     public static Item[] getSampleItems() {
         return new Item[]{
             new Item(new ItemName("Potatoes"),
-                     new ItemQuantity("10"),
-                     new ItemUnit("kg"),
-                     ItemBoughtDate.of("11-11-2022"),
-                     ItemExpiryDate.of("11-11-2022"),
-                     new ItemPrice("10.20"),
-                     new ItemRemark("For Mashed Potatoes")),
+                    new ItemQuantity("10"),
+                    new ItemUnit("kg"),
+                    ItemBoughtDate.of("11-11-2022"),
+                    ItemExpiryDate.of("11-11-2022"),
+                    new ItemPrice("10.20"),
+                    new ItemRemark("For Mashed Potatoes"),
+                    new HashSet<>()),
             new Item(new ItemName("Cucumbers"),
-                     new ItemQuantity("2000"),
-                     new ItemUnit("grams"),
-                     ItemBoughtDate.of("12-12-2022"),
-                     ItemExpiryDate.of("12-12-2022"),
-                     new ItemPrice("10"),
-                     new ItemRemark("For Salad"))
+                    new ItemQuantity("2000"),
+                    new ItemUnit("grams"),
+                    ItemBoughtDate.of("12-12-2022"),
+                    ItemExpiryDate.of("12-12-2022"),
+                    new ItemPrice("10"),
+                    new ItemRemark("For Salad"),
+                    new HashSet<>())
         };
     }
 
