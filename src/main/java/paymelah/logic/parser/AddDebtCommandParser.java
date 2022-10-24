@@ -6,6 +6,7 @@ import static paymelah.logic.parser.CliSyntax.PREFIX_DATE;
 import static paymelah.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
 import static paymelah.logic.parser.CliSyntax.PREFIX_MONEY;
 import static paymelah.logic.parser.CliSyntax.PREFIX_TIME;
+import static paymelah.model.debt.DebtTime.DEFAULT_TIME;
 
 import paymelah.commons.core.index.Index;
 import paymelah.logic.commands.AddDebtCommand;
@@ -20,8 +21,6 @@ import paymelah.model.debt.Money;
  * Parses input arguments and creates a new AddDebtCommand object
  */
 public class AddDebtCommandParser implements Parser<AddDebtCommand> {
-    public static final String DEFAULT_TIME = "00:00";
-
     /**
      * Parses the given {@code String} of arguments in the context of the AddDebtCommand
      * and returns an AddDebtCommand object for execution.
