@@ -18,10 +18,10 @@ public class SortTaskDeadlineCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Sorts tasks by deadline.\n"
-            + "Parameters: [" + PREFIX_ORDER + "ORDER (asc/desc, default: asc)]\n"
+            + "Parameters: [" + PREFIX_ORDER + "ORDER (asc/desc)]\n"
             + "Example: " + COMMAND_WORD + " " + PREFIX_ORDER + "asc";
 
-    Comparator<Task> comparator;
+    private Comparator<Task> comparator;
 
     public SortTaskDeadlineCommand(Comparator<Task> comparator) {
         this.comparator = comparator;
