@@ -56,6 +56,7 @@ public class DeleteTagCommand extends Command {
     private final EditTaskDescriptor editTaskDescriptor;
     private final boolean deleteTagFromContact;
     private final boolean deleteTagFromTask;
+    private final List<String> tagStrings;
 
     /**
      * @param contactIndex of the person in the filtered person list to edit
@@ -67,7 +68,7 @@ public class DeleteTagCommand extends Command {
      */
     public DeleteTagCommand(Index contactIndex, Index taskIndex, EditPersonDescriptor editPersonDescriptor,
                             EditTaskDescriptor editTaskDescriptor, boolean deleteTagFromContact,
-                            boolean deleteTagFromTask) {
+                            boolean deleteTagFromTask, List<String> tagStrings) {
         requireNonNull(contactIndex);
         requireNonNull(taskIndex);
         requireNonNull(editPersonDescriptor);
@@ -79,11 +80,16 @@ public class DeleteTagCommand extends Command {
         this.deleteTagFromContact = deleteTagFromContact;
         this.deleteTagFromTask = deleteTagFromTask;
         this.editTaskDescriptor = new EditTaskDescriptor(editTaskDescriptor);
+        this.tagStrings = tagStrings;
     }
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
+
+        if (!deleteTagFromContact && !deleteTagFromTask) {
+            throw new CommandException(MESSAGE_MISSING_INDEX);
+        }
 
         if (deleteTagFromContact) {
             List<Person> lastShownList = model.getFilteredPersonList();
@@ -95,14 +101,17 @@ public class DeleteTagCommand extends Command {
             Person personToEdit = lastShownList.get(contactIndex.getZeroBased());
             Person editedPerson = createEditedPerson(personToEdit, editPersonDescriptor);
 
-            if (personToEdit.getTags().equals(editedPerson.getTags())) {
+            if (!personToEdit.getTags().containsAll(editPersonDescriptor.getTags().orElse(new HashSet<>()))) {
                 throw new CommandException(MESSAGE_TAGS_DO_NOT_EXIST);
             }
 
             model.setPerson(personToEdit, editedPerson);
             model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
-            return new CommandResult(String.format(MESSAGE_DELETE_TAG_SUCCESS,
-                    editPersonDescriptor.getTags().orElse(new HashSet<>())));
+
+            for (String string : tagStrings) {
+                Tag toDelete = new Tag(string);
+                model.decreaseTagCount(toDelete);
+            }
         }
         if (deleteTagFromTask) {
             List<Task> lastShownTaskList = model.getFilteredTaskList();
@@ -114,16 +123,19 @@ public class DeleteTagCommand extends Command {
             Task taskToEdit = lastShownTaskList.get(taskIndex.getZeroBased());
             Task editedTask = createEditedTask(taskToEdit, editTaskDescriptor);
 
-            if (taskToEdit.getTags().equals(editedTask.getTags())) {
+            if (!taskToEdit.getTags().containsAll(editTaskDescriptor.getTags().orElse(new HashSet<>()))) {
                 throw new CommandException(MESSAGE_TAGS_DO_NOT_EXIST);
             }
 
             model.setTask(taskToEdit, editedTask);
             model.updateFilteredTaskList(PREDICATE_SHOW_ALL_TASKS);
-            return new CommandResult(String.format(MESSAGE_DELETE_TAG_SUCCESS,
-                    editTaskDescriptor.getTags().orElse(new HashSet<>())));
+            for (String string : tagStrings) {
+                Tag toDelete = new Tag(string);
+                model.decreaseTagCount(toDelete);
+            }
         }
-        throw new CommandException(MESSAGE_MISSING_INDEX);
+        return new CommandResult(String.format(MESSAGE_DELETE_TAG_SUCCESS,
+                editPersonDescriptor.getTags().orElse(new HashSet<>())));
     }
 
     /**
