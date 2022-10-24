@@ -41,7 +41,9 @@ public class PersonListPanel extends UiPart<Region> {
                 setGraphic(null);
                 setText(null);
             } else {
-                setGraphic(new PersonCard(person, getIndex() + 1).getRoot());
+                int index = getIndex() + 1;
+                PersonCard card = new PersonCard(person, index);
+                setGraphic(card.getRoot());
             }
         }
     }

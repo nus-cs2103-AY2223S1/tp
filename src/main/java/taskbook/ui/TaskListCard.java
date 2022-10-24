@@ -4,14 +4,18 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
+import taskbook.model.task.Deadline;
 import taskbook.model.task.Task;
+import taskbook.model.task.Todo;
 
 /**
  * An UI component that displays information of a {@code TaskList}.
  */
 public class TaskListCard extends UiPart<Region> {
 
-    private static final String FXML = "TaskListCard.fxml"; //TODO: ADD THIS
+    private static final String FXMLTODO = "TaskListCard.fxml";
+    private static final String FXMLDEADLINE = "TaskListDeadlineCard.fxml";
+    private static final String FXMLEVENT = "TaskListEventCard.fxml";
 
     /**
      * Note: Certain keywords such as "location" and "resources" are reserved keywords in JavaFX.
@@ -40,7 +44,7 @@ public class TaskListCard extends UiPart<Region> {
      * Creates a {@code TaskListCode} with the given {@code TaskList} and index to display.
      */
     public TaskListCard(Task task, int displayedIndex) {
-        super(FXML);
+        super(task instanceof Todo ? FXMLTODO : task instanceof Deadline ? FXMLDEADLINE : FXMLEVENT);
         this.task = task;
         this.relatedParty.setText(task.getName().fullName);
         this.description.setText(task.getDescription().toString());
