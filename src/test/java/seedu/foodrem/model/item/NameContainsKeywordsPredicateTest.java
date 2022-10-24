@@ -1,6 +1,8 @@
 package seedu.foodrem.model.item;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.Arrays;
@@ -22,20 +24,20 @@ public class NameContainsKeywordsPredicateTest {
         NameContainsKeywordsPredicate secondPredicate = new NameContainsKeywordsPredicate(secondPredicateKeywordList);
 
         // same object -> returns true
-        assertTrue(firstPredicate.equals(firstPredicate));
+        assertEquals(firstPredicate, firstPredicate);
 
         // same values -> returns true
         NameContainsKeywordsPredicate firstPredicateCopy = new NameContainsKeywordsPredicate(firstPredicateKeywordList);
-        assertTrue(firstPredicate.equals(firstPredicateCopy));
+        assertEquals(firstPredicate, firstPredicateCopy);
 
         // different types -> returns false
-        assertFalse(firstPredicate.equals(1));
+        assertNotEquals(1, firstPredicate);
 
         // null -> returns false
-        assertFalse(firstPredicate.equals(null));
+        assertNotEquals(null, firstPredicate);
 
         // different items -> returns false
-        assertFalse(firstPredicate.equals(secondPredicate));
+        assertNotEquals(firstPredicate, secondPredicate);
     }
 
     @Test
@@ -65,7 +67,7 @@ public class NameContainsKeywordsPredicateTest {
         assertFalse(predicate.test(new ItemBuilder().withItemName("Potato").build()));
 
         // Non-matching keyword
-        predicate = new NameContainsKeywordsPredicate(Arrays.asList("Carrots"));
+        predicate = new NameContainsKeywordsPredicate(List.of("Carrots"));
         assertFalse(predicate.test(new ItemBuilder().withItemName("Potato Cucumber").build()));
 
         // Keywords match quantity, bought date and expiry date, but does not match name

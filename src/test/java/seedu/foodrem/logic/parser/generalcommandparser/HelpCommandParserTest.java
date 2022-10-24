@@ -61,35 +61,7 @@ class HelpCommandParserTest {
     void parse_text() {
         assertEquals("Please refer to the user guide.", HelpCommand.DEFAULT_HELP_MESSAGE);
 
-        // // Commented out pending reevaluation of usefulness of test case
-        // assertEquals("https://se-education.org/addressbook-level3/UserGuide.html",
-        //         HelpCommand.USER_GUIDE_URL);
-
-        // // Commented out pending reevaluation of usefulness of test case
-        // assertEquals("For more information please head to:\n"
-        //         + "https://se-education.org/addressbook-level3/UserGuide.html", HelpCommand.MORE_INFORMATION);
-
         assertEquals(EXPECTED_ALL_COMMANDS, CommandType.listAllCommandWords());
-
-        // // Commented out pending reevaluation of usefulness of test case
-        // assertEquals("To receive help for a specific command, enter "
-        //                 + "\"help COMMAND_WORD\" in the command box, where COMMAND_WORD is any "
-        //                 + "one of the following:\n"
-        //                 + "help\nreset\nexit\nnew\nlist\nfind\nedit\ninc"
-        //                 + "\ndec\nsort\ndel\nview\nnewtag\nrenametag\ntag\nuntag\ndeletetag\nlisttag\n\n"
-        //                 + "For more information please head to:\n"
-        //                 + "https://se-education.org/addressbook-level3/UserGuide.html",
-        //         HelpCommand.HELP_FORMAT_GENERAL);
-
-        // // Commented out pending reevaluation of usefulness of test case
-        // assertEquals("hehe\n\nTo receive help for a specific command, enter "
-        //                 + "\"help COMMAND_WORD\" in the command box, "
-        //                 + "where COMMAND_WORD is any one of the following:\n"
-        //                 + "help\nreset\nexit\nnew\nlist\nfind\nedit\ninc"
-        //                 + "\ndec\nsort\ndel\nview\nnewtag\nrenametag\ntag\nuntag\ndeletetag\nlisttag\n\n"
-        //                 + "For more information please head to:\n"
-        //                 + "https://se-education.org/addressbook-level3/UserGuide.html",
-        //         String.format(HelpCommand.HELP_FOR_SPECIFIC_COMMAND, "hehe"));
 
         // Not a command constant
         assertEquals("\"testing\" is not a valid command\n\n"

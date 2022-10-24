@@ -15,6 +15,7 @@ import org.junit.jupiter.api.Test;
 import seedu.foodrem.commons.core.Messages;
 import seedu.foodrem.commons.core.index.Index;
 import seedu.foodrem.logic.commands.CommandTestUtil;
+import seedu.foodrem.logic.commands.exceptions.CommandException;
 import seedu.foodrem.logic.commands.generalcommands.ResetCommand;
 import seedu.foodrem.model.FoodRem;
 import seedu.foodrem.model.Model;
@@ -37,40 +38,42 @@ public class RemarkCommandTest {
 
     @Test
     public void execute_remarksSpecified_success() {
-        Item originalItem = model.getFilteredItemList().get(INDEX_FIRST_ITEM.getZeroBased());
+        Item originalItem = model.getCurrentList().get(INDEX_FIRST_ITEM.getZeroBased());
         Item remarkedItem = new ItemBuilder(originalItem).withItemRemarks(remarkString).build();
 
         RemarkCommand remarkCommand = new RemarkCommand(INDEX_FIRST_ITEM, itemRemark);
 
         Model expectedModel = new ModelManager(new FoodRem(model.getFoodRem()), new UserPrefs());
-        expectedModel.setItem(model.getFilteredItemList().get(0), remarkedItem);
+        expectedModel.setItem(model.getCurrentList().get(0), remarkedItem);
 
         assertCommandSuccess(remarkCommand, model,
                 new ItemWithMessage(remarkedItem, EXPECTED_SUCCESS_MESSAGE), expectedModel);
     }
 
     @Test
-    public void execute_filteredList_success() {
+    public void execute_filteredList_success() throws CommandException {
         showItemAtIndex(model, INDEX_FIRST_ITEM);
 
-        Item itemInFilteredList = model.getFilteredItemList().get(INDEX_FIRST_ITEM.getZeroBased());
+        Item itemInFilteredList = model.getCurrentList().get(INDEX_FIRST_ITEM.getZeroBased());
         Item remarkedItem = new ItemBuilder(itemInFilteredList)
                 .withTags(CommandTestUtil.VALID_TAG_NAME_VEGETABLES)
                 .withItemRemarks(remarkString)
                 .build();
 
-        RemarkCommand remarkCommand = new RemarkCommand(INDEX_FIRST_ITEM, itemRemark);
-
         Model expectedModel = new ModelManager(new FoodRem(model.getFoodRem()), new UserPrefs());
-        expectedModel.setItem(model.getFilteredItemList().get(0), remarkedItem);
+        expectedModel.setItem(model.getCurrentList().get(0), remarkedItem);
 
+        RemarkCommand remarkCommand = new RemarkCommand(INDEX_FIRST_ITEM, itemRemark);
+        remarkCommand.execute(expectedModel);
+
+        assertEquals(remarkedItem, expectedModel.getCurrentList().get(0));
         assertCommandSuccess(remarkCommand, model,
                 new ItemWithMessage(remarkedItem, EXPECTED_SUCCESS_MESSAGE), expectedModel);
     }
 
     @Test
     public void execute_invalidItemIndexUnfilteredList_failure() {
-        Index outOfBoundIndex = Index.fromOneBased(model.getFilteredItemList().size() + 1);
+        Index outOfBoundIndex = Index.fromOneBased(model.getCurrentList().size() + 1);
 
         RemarkCommand remarkCommand = new RemarkCommand(outOfBoundIndex, itemRemark);
 

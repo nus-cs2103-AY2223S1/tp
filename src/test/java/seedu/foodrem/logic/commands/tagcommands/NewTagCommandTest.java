@@ -2,7 +2,6 @@ package seedu.foodrem.logic.commands.tagcommands;
 
 import static java.util.Objects.requireNonNull;
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static seedu.foodrem.logic.commands.itemcommands.NewCommandTest.ModelStub;
 import static seedu.foodrem.testutil.Assert.assertThrows;
@@ -65,7 +64,7 @@ public class NewTagCommandTest {
         assertEquals(addFruitsTag, addFruitsTagCopy);
 
         // different types -> returns false
-        assertFalse(addFruitsTag.equals(1));
+        assertNotEquals(1, addFruitsTag);
 
         // null -> returns false
         assertNotEquals(null, addFruitsTag);

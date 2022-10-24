@@ -39,7 +39,7 @@ public class DeleteTagCommandTest {
 
         assertCommandSuccess(deleteTagCommand, model, expectedMessage, expectedModel);
 
-        for (Item item : model.getFilteredItemList()) {
+        for (Item item : model.getCurrentList()) {
             assertFalse(item.containsTag(tagToDelete));
         }
     }
@@ -50,7 +50,7 @@ public class DeleteTagCommandTest {
         DeleteTagCommand deleteTagCommand = new DeleteTagCommand(tagToDelete);
 
         // True before deletion
-        for (Item item : model.getFilteredItemList()) {
+        for (Item item : model.getCurrentList()) {
             assertTrue(item.containsTag(tagToDelete));
         }
 
@@ -62,7 +62,7 @@ public class DeleteTagCommandTest {
         assertCommandSuccess(deleteTagCommand, model, expectedMessage, expectedModel);
 
         // Tag should be deleted from all items
-        for (Item item : model.getFilteredItemList()) {
+        for (Item item : model.getCurrentList()) {
             assertFalse(item.containsTag(tagToDelete));
         }
     }

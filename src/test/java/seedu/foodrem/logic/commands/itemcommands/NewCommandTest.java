@@ -104,16 +104,6 @@ public class NewCommandTest {
         }
 
         @Override
-        public ObservableList<Item> getFilteredSortedItemList() {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
-        public ObservableList<Item> getSortedItemList() {
-            throw new AssertionError("This method should not be called.");
-        }
-
-        @Override
         public void updateSortedItemList(Comparator<Item> comparator) {
             throw new AssertionError("This method should not be called.");
         }
@@ -184,7 +174,7 @@ public class NewCommandTest {
         }
 
         @Override
-        public ObservableList<Item> getFilteredItemList() {
+        public ObservableList<Item> getCurrentList() {
             throw new AssertionError("This method should not be called.");
         }
 

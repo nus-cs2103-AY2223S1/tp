@@ -102,7 +102,7 @@ public class MainWindow extends UiPart<Stage> {
      * Fills up all the placeholders of this window.
      */
     void fillInnerParts() {
-        itemListPanel = new ItemListPanel(logic.getFilteredSortedItemList());
+        itemListPanel = new ItemListPanel(logic.getCurrentList());
         place(itemListPanelPlaceholder, itemListPanel);
 
         resultDisplay = new ResultDisplay();

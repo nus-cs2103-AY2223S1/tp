@@ -43,7 +43,6 @@ public class UntagCommand extends Command {
         Item newTagSetItem = Item.createUntaggedItem(itemToUntag, tag);
 
         model.setItem(itemToUntag, newTagSetItem);
-        model.updateFilteredItemList(Model.PREDICATE_SHOW_ALL_ITEMS);
 
         return CommandResult.from(new ItemWithMessage(newTagSetItem, MESSAGE_SUCCESS));
     }
