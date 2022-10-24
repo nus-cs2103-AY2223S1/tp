@@ -33,7 +33,7 @@ section. We suggest using our table of contents to jump around and access inform
 
 Before you begin reading, here are some special notations to help you along the way!
 
-#### Tips
+**Tips**
 
 Tips are useful bits of information that will help you have a better experience with Class-ify.
 
@@ -41,7 +41,7 @@ Tips are useful bits of information that will help you have a better experience 
 **Tip:** Tips are useful!
 </div><br>
 
-#### Notes
+**Notes**
 
 Notes are here to provide you with extra information that you may find helpful when using Class-ify.
 
@@ -49,7 +49,7 @@ Notes are here to provide you with extra information that you may find helpful w
 **Note:** Take notes when you see this icon!
 </div><br>
 
-#### Caution
+**Caution**
 
 Cautions are around to warn you of potential pitfalls that new users may encounter. For example, commands like `clear`
 will delete all data stored locally and this action is irreversible. You will lose your data permanently.
@@ -64,25 +64,25 @@ will delete all data stored locally and this action is irreversible. You will lo
 
 1. Ensure you have Java `11` or above installed in your Computer.
 
-1. Download the latest `classify.jar` from [here](https://github.com/AY2223S1-CS2103T-T15-2/tp/releases).
+2. Download the latest `classify.jar` from [here](https://github.com/AY2223S1-CS2103T-T15-2/tp/releases).
 
-1. Copy the file to the folder you want to use as the **home folder** for *Class-ify*.
+3. Copy the file to the folder you want to use as the **home folder** for *Class-ify*.
 
-1. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
+4. Double-click the file to start the app. The GUI similar to the below should appear in a few seconds. Note how the app contains some sample data.<br>
    ![Ui](images/Ui.png)
 
-1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
+5. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
 
-   * **`viewAll`** : Lists all student records.
+   * **`addstud`**`nm/John Doe id/928C class/1A pn/Bob Doe hp/98765432 exam/CA1 90` : Adds a new student named `Bob Doe` with his details to *Class-ify*.
 
-   * **`addstud`**`nm/John Doe id/928C pn/Bob Doe hp/98765432 ad/311, Clementi Ave 2, #02-25` : Adds a new student named `Jonathan Tan` with his details to *Class-ify*.
+   * **`viewAll`** : Shows a list of all student records.
 
    * **`delete`**`n/Jonathan Tan` : Deletes the student record with name of student as 'Jonathan Tan'.
 
-   * **`clear`** : Deletes all student records.
+   * **`clear`** : Clears all student records.
 
-   * **`exit`** : Exits the app.
+   * **`exit`** : Exits the application.
 
 Click <a href="#top">here</a> to return to the top.
 
@@ -90,7 +90,7 @@ Click <a href="#top">here</a> to return to the top.
 
 ## 3. **Features**
 
-### 3.1 Creating a new student record : `addstud`
+### 3.1 Adding a new student record : `addstud`
 
 Creates a new student record with the name of the student and other relevant details such as:
 
@@ -110,17 +110,17 @@ Examples:
 * `addstud nm/John Doe id/928C pn/Bob Doe hp/98765432 ad/311, Clementi Ave 2, #02-25 t/Peanut-Allergy t/No-Seafood`
 * `addstud nm/Alex Yeoh id/123A pn/Bernice Yu hp/99272758 ad/Blk 30 Lorong 3 Serangoon Gardens, #07-18`
 
-### 3.2 Listing all students : `viewAll`
+### 3.2 Viewing all student records : `viewAll`
 
 Shows a list of all students in the class.
 For each student in the list, only the Student's Name and Student's ID are displayed.
 
 :bulb: Note: The other details of a student are hidden to reduce cluttering.
-To view the full record of a student, use the `view` command instead.   
+To view the full record of a student, use the `view` command instead.
 
 Format: `viewAll`
 
-### 3.3 Listing students in a class : `viewClass`
+### 3.3 Viewing student records from a class : `viewClass`
 
 Shows a list of all students in the specified class.
 
@@ -132,7 +132,7 @@ Examples:
 * `viewClass 2A`
 * `viewClass Loyalty1`
 
-### 3.4 Editing a student : `edit`
+### 3.4 Editing a student record : `edit`
 
 Edits the respective details of an existing student in the class list.
 
@@ -148,7 +148,17 @@ Examples:
 *  `edit 1 pn/91234567 a/8 College Ave East` Edits the parent phone number and address of the 1st student to be `91234567` and `8 College Ave East` respectively.
 *  `edit 2 n/Jacob Teo` Edits the name of the 2nd student to be `Jacob Teo`.
 
-### 3.5 Listing a single student: `view`
+### 3.5 Deleting a student record : `delete`
+
+Deletes an existing student record from the class list, using the student’s name or the student’s ID.
+
+Format: `delete nm/[name of student]` or `delete id/[id of student]`
+
+Examples:
+* `delete nm/Jonathan Tan` deletes student record with student name as 'Jonathan Tan'.
+* `delete id/123A` deletes student record with student ID as '123A'.
+
+### 3.6 Finding a student record : `find`
 
 Shows a full record, including all stored details, using the input student's name or student's id. Search for multiple 
 students by including more keywords
@@ -163,29 +173,29 @@ Examples:
 * `view nm/John` returns the record for the student named `john`
 * `view nm/john alice` returns the records for the students named `John` and the student named `Alice`.
 
-### 3.6 Deleting individual student record : `delete`
+### 3.7 Toggling view : `toggleView`
 
-Deletes an existing student record from the class list, using the student’s name or the student’s ID.
+*To be updated*
 
-Format: `delete nm/[name of student]` or `delete id/[id of student]`
-
-Examples:
-* `delete nm/Jonathan Tan` deletes student record with student name as 'Jonathan Tan'.
-* `delete id/123A` deletes student record with student ID as '123A'.
-
-### 3.7 Clearing all student records : `clear`
+### 3.8 Clearing all student records : `clear`
 
 Clears all student records from local storage.
 
 Format: `clear`
 
-### 3.8 Exiting the program : `exit`
+### 3.9 Help : `help`
 
-Exits the program.
+Shows a summary of all commands available.
+
+Format: `help`
+
+### 3.10 Exiting the application : `exit`
+
+Exits the application.
 
 Format: `exit`
 
-### 3.9 Saving the data
+### 3.11 Saving the data
 
 Student records are saved locally after any command that changes the data. There is no need to save manually.
 
@@ -209,16 +219,18 @@ Click <a href="#top">here</a> to return to the top.
 
 ## 5. **Command summary**
 
-|                Action                 | Format                                                                                                                          | Example                                                                                               |  
-|:-------------------------------------:|:--------------------------------------------------------------------------------------------------------------------------------|:------------------------------------------------------------------------------------------------------|
-|        Add individual student         | `addstud nm/[name of student] id/[id of student] pn/[name of parent] hp/[mobile number of parent] ad/[home address] [t/[tags]]` | _addstud nm/Alex Yeoh id/123A pn/Bernice Yu hp/99272758 ad/Blk 30 Lorong 3 Serangoon Gardens, #07-18_ |
-|     View all student information      | `viewAll`                                                                                                                       | _viewAll_                                                                                             |
-|       View students in a class        | `viewClass [class name]`                                                                                                        | _viewClass 1A_                                                                                        |
-|  View individual student information  | `view nm/[name]` or `view id/[id]`                                                                                              | _view nm/Jonathan Tan_                                                                                |
-| Update individual student information | `update [index] nm/[name] id/[id] pn/[name of parent] a/[home address] hp/[mobile number of parent]`                            | _update 1 a/Kent Ridge View_                                                                          |
-|       Delete individual student       | `delete nm/[name]` or `delete id/[id]`                                                                                          | _delete nm/Jonathan Tan or delete id/123A_                                                            |
-|       Clear all student records       | `clear`                                                                                                                         | _clear_                                                                                               |
-|             Exit program              | `exit`                                                                                                                          | _exit_                                                                                                |
+|              Action               | Format                                                                                                                                                    | Example                                                                      |  
+|:---------------------------------:|:----------------------------------------------------------------------------------------------------------------------------------------------------------|:-----------------------------------------------------------------------------|
+|     Add a new student record      | `addstud nm/[name of student] id/[id of student] class/[class of student] pn/[name of parent] hp/[mobile number of parent] exam/[name of exam and score]` | _addstud nm/Alex Yeoh id/123A class/1A pn/Bernice Yu hp/99272758 exam/CA1 90 |
+|     View all student records      | `viewAll`                                                                                                                                                 | _viewAll_                                                                    |
+| View student records from a class | `viewClass [class name]`                                                                                                                                  | _viewClass 1A_                                                               |
+|       Edit a student record       | `edit [index] nm/[name] id/[id] class/[class] pn/[name of parent] hp/[mobile number of parent] exam/[name of exam and score]`                             | _edit 1 nm/Alexander Yeoh_                                                   |
+|      Delete a student record      | `delete nm/[name]` or `delete id/[id]`                                                                                                                    | _delete nm/Jonathan Tan or delete id/123A_                                   |
+|       Find a student record       | `find nm/[name]` or `find id/[id]`                                                                                                                        | _find nm/Jonathan Tan or find id/123A_                                       |
+|            Toggle view            | `toggleView`                                                                                                                                              | _toggleView_                                                                 |
+|     Clear all student records     | `clear`                                                                                                                                                   | _clear_                                                                      |
+|    View command summary table     | `help`                                                                                                                                                    | _help_                                                                       |
+|         Exit application          | `exit`                                                                                                                                                    | _exit_                                                                       |
 
 Click <a href="#top">here</a> to return to the top.
 
