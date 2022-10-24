@@ -41,7 +41,7 @@ public class AddContactCommandParser implements Parser<AddContactCommand> {
                         PREFIX_MODULE, PREFIX_GITHUB, PREFIX_TELEGRAM);
 
         if (!arePrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_ADDRESS, PREFIX_PHONE, PREFIX_EMAIL,
-                PREFIX_GITHUB, PREFIX_TELEGRAM)
+                                PREFIX_GITHUB, PREFIX_TELEGRAM)
                 || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddContactCommand.MESSAGE_USAGE));
         }

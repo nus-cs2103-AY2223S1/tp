@@ -10,7 +10,7 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 public class Github {
 
     public static final String MESSAGE_CONSTRAINTS = "Github profiles can take any values "
-            + "(whether name or link to Github profile page, and it should not be blank";
+            + "(whether name or link to Github profile page, and it should not be blank)";
 
     /*
      * The first character of the address must not be a whitespace,
