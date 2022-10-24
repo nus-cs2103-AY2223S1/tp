@@ -155,22 +155,22 @@ public class EditCommandParserTest {
 
         // grade progress
         userInput = GRADE_PROGRESS_DESC_AMY;
-        descriptor = new EditPersonDescriptorBuilder().withHomeworkIndex(INDEX_FIRST_ITEM)
-                .withHomework(VALID_GRADE_PROGRESS_AMY).build();
+        descriptor = new EditPersonDescriptorBuilder().withGradeProgressIndex(INDEX_FIRST_ITEM)
+                .withGradeProgress(VALID_GRADE_PROGRESS_AMY).build();
         expectedCommand = new EditCommand(descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
 
         // attendance
         userInput = ATTENDANCE_DESC_AMY;
-        descriptor = new EditPersonDescriptorBuilder().withHomeworkIndex(INDEX_FIRST_ITEM)
-                .withHomework(VALID_ATTENDANCE_AMY).build();
+        descriptor = new EditPersonDescriptorBuilder().withAttendanceIndex(INDEX_FIRST_ITEM)
+                .withAttendance(VALID_ATTENDANCE_AMY).build();
         expectedCommand = new EditCommand(descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
 
         // session
         userInput = SESSION_DESC_AMY;
-        descriptor = new EditPersonDescriptorBuilder().withHomeworkIndex(INDEX_FIRST_ITEM)
-                .withHomework(VALID_SESSION_AMY).build();
+        descriptor = new EditPersonDescriptorBuilder().withSessionIndex(INDEX_FIRST_ITEM)
+                .withSession(VALID_SESSION_AMY).build();
         expectedCommand = new EditCommand(descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
 
