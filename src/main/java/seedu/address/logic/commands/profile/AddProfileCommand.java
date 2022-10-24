@@ -52,12 +52,16 @@ public class AddProfileCommand extends ProfileCommand {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
 
-        if (model.hasName(toAdd)) {
-            throw new CommandException(MESSAGE_SIMILAR_NAME);
-        }
-
         if (model.hasEmail(toAdd)) {
             throw new CommandException(MESSAGE_SIMILAR_EMAIL);
+        }
+
+        if (model.hasPhone(toAdd)) {
+            throw new CommandException(MESSAGE_SIMILAR_PHONE);
+        }
+
+        if (model.hasTelegram(toAdd)) {
+            throw new CommandException(MESSAGE_SIMILAR_TELEGRAM);
         }
 
         model.addProfile(toAdd);

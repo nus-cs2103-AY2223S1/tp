@@ -81,12 +81,16 @@ public class EditProfileCommand extends ProfileCommand {
         Profile profileToEdit = lastShownList.get(index.getZeroBased());
         Profile editedProfile = createEditedProfile(profileToEdit, editProfileDescriptor);
 
-        if (!profileToEdit.isSameName(editedProfile) && model.hasName(editedProfile)) {
-            throw new CommandException(MESSAGE_SIMILAR_NAME);
-        }
-
         if (!profileToEdit.isSameEmail(editedProfile) && model.hasEmail(editedProfile)) {
             throw new CommandException(MESSAGE_SIMILAR_EMAIL);
+        }
+
+        if (!profileToEdit.isSamePhone(editedProfile) && model.hasPhone(editedProfile)) {
+            throw new CommandException(MESSAGE_SIMILAR_PHONE);
+        }
+
+        if (!profileToEdit.isSameTelegram(editedProfile) && model.hasTelegram(editedProfile)) {
+            throw new CommandException(MESSAGE_SIMILAR_TELEGRAM);
         }
 
         model.setProfile(profileToEdit, editedProfile);

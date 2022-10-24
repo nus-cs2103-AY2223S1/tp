@@ -29,6 +29,7 @@ public abstract class ProfileCommand extends Command {
     public static final String OPTION_WRONG_ORDER_NO_MULTIPLE =
             "Only one option flag should be specified in front.\n" + PROFILE_FORMAT;
 
-    public static final String MESSAGE_SIMILAR_NAME = "A similar name already exists in the address book";
-    public static final String MESSAGE_SIMILAR_EMAIL = "A similar email already exists in the address book";
+    public static final String MESSAGE_SIMILAR_EMAIL = "The email is in use already.";
+    public static final String MESSAGE_SIMILAR_PHONE = "The phone number is in use already.";
+    public static final String MESSAGE_SIMILAR_TELEGRAM = "The telegram handle is in use already.";
 }
