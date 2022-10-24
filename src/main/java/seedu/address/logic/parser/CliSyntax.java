@@ -15,5 +15,6 @@ public class CliSyntax {
     public static final Prefix PREFIX_TAG = new Prefix("t/");
     public static final Prefix PREFIX_RISK = new Prefix("r/");
     public static final Prefix PREFIX_PLAN = new Prefix("pl/");
-
+    public static final Prefix PREFIX_OLD_PASSWORD = new Prefix("old/");
+    public static final Prefix PREFIX_NEW_PASSWORD = new Prefix("new/");
 }
