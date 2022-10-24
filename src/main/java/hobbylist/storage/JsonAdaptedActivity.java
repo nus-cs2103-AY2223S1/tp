@@ -3,6 +3,7 @@ package hobbylist.storage;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -13,6 +14,7 @@ import hobbylist.commons.exceptions.IllegalValueException;
 import hobbylist.model.activity.Activity;
 import hobbylist.model.activity.Description;
 import hobbylist.model.activity.Name;
+import hobbylist.model.activity.Review;
 import hobbylist.model.activity.Status;
 import hobbylist.model.date.Date;
 import hobbylist.model.tag.Tag;
@@ -30,7 +32,7 @@ class JsonAdaptedActivity {
     private final List<JsonAdaptedDate> date = new ArrayList<>();
     private final int rating;
     private final String status;
-
+    private final String review;
 
     /**
      * Constructs a {@code JsonAdaptedActivity} with the given activity details.
@@ -40,7 +42,8 @@ class JsonAdaptedActivity {
                                @JsonProperty("tagged") List<JsonAdaptedTag> tagged,
                                @JsonProperty("date") List<JsonAdaptedDate> date,
                                @JsonProperty("rating") int rating,
-                               @JsonProperty("status") String status) {
+                               @JsonProperty("status") String status,
+                               @JsonProperty("review") String review) {
 
         this.name = name;
         this.description = description;
@@ -52,6 +55,7 @@ class JsonAdaptedActivity {
         }
         this.rating = rating;
         this.status = status;
+        this.review = review;
     }
 
     /**
@@ -70,6 +74,7 @@ class JsonAdaptedActivity {
             date.add(new JsonAdaptedDate(source.getDate().get(0)));
         }
         status = source.getStatus().toString();
+        review = source.getReview().isPresent() ? source.getReview().get().toString() : null;
     }
 
     /**
@@ -114,7 +119,14 @@ class JsonAdaptedActivity {
             modelStatus = new Status(status);
         }
 
-        return new Activity(modelName, modelDescription, modelTags, activityDate, rating, modelStatus);
+        final Optional<Review> modelReview;
+        if (review == null) {
+            modelReview = Optional.empty();
+        } else {
+            modelReview = Optional.of(new Review(review));
+        }
+
+        return new Activity(modelName, modelDescription, modelTags, activityDate, rating, modelStatus, modelReview);
 
     }
 

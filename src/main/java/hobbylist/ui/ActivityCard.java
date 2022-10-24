@@ -9,6 +9,7 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
+import javafx.scene.layout.VBox;
 
 /**
  * An UI component that displays information of a {@code Activity}.
@@ -41,6 +42,8 @@ public class ActivityCard extends UiPart<Region> {
     private FlowPane date;
     @FXML
     private Label status;
+    @FXML
+    private Label review;
 
     /**
      * Creates a {@code ActivityCard} with the given {@code Activity} and index to display.
@@ -62,6 +65,8 @@ public class ActivityCard extends UiPart<Region> {
             tagLabel.setStyle("-fx-background-color: " + intToHexColor(tagLabel.getText()));
         });
 
+        setStatusLabel(status, activity.getStatus());
+        tags.getChildren().add(status);
 
         if (activity.getRating() != 0) {
             Label ratingLabel = new Label(
@@ -70,7 +75,12 @@ public class ActivityCard extends UiPart<Region> {
             tags.getChildren().add(ratingLabel);
         }
 
-        setStatusLabel(status, activity.getStatus());
+        if (activity.getReview().isPresent()) {
+            review.setText("Review: " + activity.getReview().get().value);
+        } else {
+            VBox parent = (VBox) review.getParent();
+            parent.getChildren().remove(review);
+        }
     }
 
     private String intToHexColor(String tag) {

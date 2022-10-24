@@ -94,7 +94,8 @@ public class EditCommand extends Command {
         Set<Tag> updatedTags = editActivityDescriptor.getTags().orElse(activityToEdit.getTags());
         List<Date> date = editActivityDescriptor.getDate().orElse(activityToEdit.getDate());
         Status updatedStatus = editActivityDescriptor.getStatus().orElse(activityToEdit.getStatus());
-        return new Activity(updatedName, updatedDescription, updatedTags, date, updatedStatus);
+        return new Activity(updatedName, updatedDescription, updatedTags, date, updatedStatus,
+                activityToEdit.getReview());
     }
 
     @Override

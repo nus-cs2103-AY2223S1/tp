@@ -20,12 +20,12 @@ public class TypicalActivities {
 
     public static final Activity ACTIVITY_A = new ActivityBuilder().withName("And Then There Were None")
             .withDescription("Mystery novel by Agatha Christie")
-            .withTags("book").build();
+            .withTags("book").withReview("Interesting story with an \"unsolvable\" mystery").build();
     public static final Activity ACTIVITY_B = new ActivityBuilder().withName("Battlefield 4")
             .withDescription("First person shooter by EA")
-            .withTags("video_game").build();
+            .withTags("video_game").withReview("decent game").build();
     public static final Activity ACTIVITY_C = new ActivityBuilder().withName("Charlotte")
-            .withDescription("Comedy drama anime").build();
+            .withDescription("Comedy drama anime").withReview("decent anime with weird ending").build();
     public static final Activity ACTIVITY_D = new ActivityBuilder().withName("Despicable Me 3")
         .withDescription("Comedy film directed by Pierre Coffin and Kyle Balda").withTags("movie").build();
     public static final Activity ACTIVITY_E = new ActivityBuilder().withName("Exercise")

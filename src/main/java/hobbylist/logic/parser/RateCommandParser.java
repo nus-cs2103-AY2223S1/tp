@@ -4,9 +4,12 @@ import static hobbylist.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static hobbylist.commons.core.Messages.MESSAGE_INVALID_RATING;
 import static java.util.Objects.requireNonNull;
 
+import java.util.Optional;
+
 import hobbylist.commons.core.index.Index;
 import hobbylist.logic.commands.RateCommand;
 import hobbylist.logic.parser.exceptions.ParseException;
+import hobbylist.model.activity.Review;
 
 /**
  * Parses input arguments and creates a new FindCommand object
@@ -21,7 +24,7 @@ public class RateCommandParser implements Parser<RateCommand> {
     public RateCommand parse(String args) throws ParseException {
         requireNonNull(args);
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, CliSyntax.PREFIX_RATING);
+                ArgumentTokenizer.tokenize(args, CliSyntax.PREFIX_RATING, CliSyntax.PREFIX_REVIEW);
 
         int rating;
         if (argMultimap.getValue(CliSyntax.PREFIX_RATING).isPresent()) {
@@ -33,6 +36,13 @@ public class RateCommandParser implements Parser<RateCommand> {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, RateCommand.MESSAGE_USAGE));
         }
 
+        Optional<Review> review;
+        if (argMultimap.getValue(CliSyntax.PREFIX_REVIEW).isPresent()) {
+            review = Optional.of(new Review(argMultimap.getValue(CliSyntax.PREFIX_REVIEW).get()));
+        } else {
+            review = Optional.empty();
+        }
+
         Index index;
         try {
             index = ParserUtil.parseIndex(argMultimap.getPreamble());
@@ -40,7 +50,7 @@ public class RateCommandParser implements Parser<RateCommand> {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, RateCommand.MESSAGE_USAGE), pe);
         }
 
-        return new RateCommand(index, rating);
+        return new RateCommand(index, rating, review);
     }
 
 }

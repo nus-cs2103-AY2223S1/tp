@@ -3,11 +3,13 @@ package hobbylist.testutil;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Optional;
 import java.util.Set;
 
 import hobbylist.model.activity.Activity;
 import hobbylist.model.activity.Description;
 import hobbylist.model.activity.Name;
+import hobbylist.model.activity.Review;
 import hobbylist.model.activity.Status;
 import hobbylist.model.date.Date;
 import hobbylist.model.tag.Tag;
@@ -26,6 +28,7 @@ public class ActivityBuilder {
     private Set<Tag> tags;
     private List<Date> dateList;
     private Status status;
+    private Optional<Review> review;
 
     /**
      * Creates a {@code ActivityBuilder} with the default details.
@@ -36,6 +39,7 @@ public class ActivityBuilder {
         tags = new HashSet<>();
         dateList = new ArrayList<>();
         status = new Status();
+        review = Optional.empty();
     }
 
     /**
@@ -72,12 +76,18 @@ public class ActivityBuilder {
         this.description = new Description(description);
         return this;
     }
+
+    public ActivityBuilder withReview(String review) {
+        this.review = Optional.of(new Review(review));
+        return this;
+    }
+
     /**
      * Try to build an activity for test.
      */
     public Activity build() {
 
-        return new Activity(name, description, tags, dateList, status);
+        return new Activity(name, description, tags, dateList, status, review);
     }
 
 }

@@ -5,6 +5,7 @@ import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Objects;
+import java.util.Optional;
 import java.util.Set;
 
 import hobbylist.commons.util.CollectionUtil;
@@ -26,24 +27,28 @@ public class Activity {
     private final List<Date> listDate = new ArrayList<>();
     private int rating = 0;
     private final Status status;
+    private final Optional<Review> review;
 
     /**
      * Constructor without rating. Every field except rating must be present and not null.
      */
-    public Activity(Name name, Description description, Set<Tag> tags, List<Date> listDate, Status status) {
+    public Activity(Name name, Description description, Set<Tag> tags, List<Date> listDate, Status status,
+                    Optional<Review> review) {
         CollectionUtil.requireAllNonNull(name, description, tags, listDate);
         this.name = name;
         this.description = description;
         this.tags.addAll(tags);
         this.listDate.addAll(listDate);
         this.status = status;
+        this.review = review;
     }
 
 
     /**
      * Constructor with rating. Every field must be present and not null.
      */
-    public Activity(Name name, Description description, Set<Tag> tags, List<Date> listDate, int rating, Status status) {
+    public Activity(Name name, Description description, Set<Tag> tags, List<Date> listDate, int rating, Status status,
+                    Optional<Review> review) {
         CollectionUtil.requireAllNonNull(name, description, tags, listDate, rating);
         this.name = name;
         this.description = description;
@@ -51,6 +56,7 @@ public class Activity {
         this.listDate.addAll(listDate);
         this.rating = rating;
         this.status = status;
+        this.review = review;
     }
 
     public Name getName() {
@@ -78,6 +84,10 @@ public class Activity {
 
     public Status getStatus() {
         return status;
+    }
+
+    public Optional<Review> getReview() {
+        return review;
     }
 
     public boolean hasStatus() {
@@ -116,7 +126,11 @@ public class Activity {
         Activity otherActivity = (Activity) other;
         return otherActivity.getName().equals(getName())
                 && otherActivity.getDescription().equals(getDescription())
-                && otherActivity.getTags().equals(getTags());
+                && otherActivity.getTags().equals(getTags())
+                && otherActivity.getDate().equals(getDate())
+                && otherActivity.getRating() == getRating()
+                && otherActivity.getStatus().equals(getStatus())
+                && otherActivity.getReview().equals(getReview());
     }
 
     @Override
@@ -147,7 +161,8 @@ public class Activity {
         }
         builder.append("; Status: ")
                 .append(getStatus());
-
+        review.ifPresent(value -> builder.append("; Review: ")
+                .append(value));
         return builder.toString();
     }
 
