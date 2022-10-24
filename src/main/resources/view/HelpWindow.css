@@ -1,11 +1,11 @@
 #copyButton {
-  -fx-background-color: #F1E4C2;
-  -fx-border-color: black
+  -fx-background-color: #f1e4c2;
+  -fx-border-color: black;
   -fx-border-radius: 10px;
 }
 
 #copyButton:hover {
-  -fx-background-color: #0096C9;
+  -fx-background-color: #0096c9;
   -fx-text-fill: #ffffff;
 }
 
