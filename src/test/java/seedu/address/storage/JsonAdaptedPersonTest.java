@@ -141,8 +141,8 @@ public class JsonAdaptedPersonTest {
 
     @Test
     public void toModelType_invalidTimezone_throwsIllegalValueException() {
-        JsonAdaptedPerson person =
-                new JsonAdaptedPerson(VALID_NAME, VALID_ADDRESS, VALID_TAGS, VALID_CONTACTS, VALID_ROLE, INVALID_TIMEZONE);
+        JsonAdaptedPerson person = new JsonAdaptedPerson(
+                VALID_NAME, VALID_ADDRESS, VALID_TAGS, VALID_CONTACTS, VALID_ROLE, INVALID_TIMEZONE);
         assertThrows(IllegalValueException.class, person::toModelType);
     }
 
