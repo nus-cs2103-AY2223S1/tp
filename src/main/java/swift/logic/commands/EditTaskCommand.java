@@ -83,7 +83,7 @@ public class EditTaskCommand extends Command {
         assert taskToEdit != null;
 
         UUID updatedId = taskToEdit.getId();
-        TaskName updatedTaskName = editTaskDescriptor.getTaskName().orElse(taskToEdit.getTaskName());
+        TaskName updatedTaskName = editTaskDescriptor.getTaskName().orElse(taskToEdit.getName());
 
         return new Task(updatedId, updatedTaskName);
     }

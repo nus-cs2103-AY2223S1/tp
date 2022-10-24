@@ -33,7 +33,7 @@ class JsonAdaptedTask {
      */
     public JsonAdaptedTask(Task source) {
         id = source.getId().toString();
-        taskName = source.taskName.fullName;
+        taskName = source.name.fullName;
     }
 
     /**

@@ -29,7 +29,7 @@ public class TaskBuilder {
      */
     public TaskBuilder(Task taskToCopy) {
         id = taskToCopy.getId();
-        taskName = taskToCopy.taskName;
+        taskName = taskToCopy.name;
     }
 
     /**

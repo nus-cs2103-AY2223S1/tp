@@ -8,47 +8,48 @@ import java.util.UUID;
 /**
  * Represents a Task in the address book.
  */
-public class Task {
-    public final TaskName taskName;
+public abstract class Task {
+    public final TaskName name;
 
     private final UUID id;
 
     /**
      * Constructs a {@code Task}.
      *
-     * @param id       A unique identifier for the task.
-     * @param taskName A valid task name.
+     * @param id   A unique identifier for the task.
+     * @param name A valid task name.
      */
-    public Task(UUID id, TaskName taskName) {
-        requireAllNonNull(id, taskName);
+    public Task(UUID id, TaskName name) {
+        requireAllNonNull(id, name);
         this.id = id;
-        this.taskName = taskName;
+        this.name = name;
     }
 
     public UUID getId() {
         return id;
     }
 
-    public TaskName getTaskName() {
-        return taskName;
+    public TaskName getName() {
+        return name;
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this
                 || (other instanceof Task
-                && taskName.equals(((Task) other).taskName));
+                && name.equals(((Task) other).name));
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, taskName);
+        return Objects.hash(id, name);
     }
 
     /**
      * Format state as text for viewing.
      */
+    @Override
     public String toString() {
-        return '[' + taskName.toString() + ']';
+        return '[' + name.toString() + ']';
     }
 }

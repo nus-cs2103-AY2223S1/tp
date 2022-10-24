@@ -24,7 +24,7 @@ public class EditTaskDescriptorBuilder {
      */
     public EditTaskDescriptorBuilder(Task task) {
         descriptor = new EditTaskDescriptor();
-        descriptor.setTaskName(task.getTaskName());
+        descriptor.setTaskName(task.getName());
     }
 
     /**

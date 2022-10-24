@@ -37,7 +37,7 @@ public class PersonTaskCard extends UiPart<Region> {
         super(FXML);
         this.task = task;
         id.setText(displayedIndex + ". ");
-        this.name.setText(task.getTaskName().toString());
+        this.name.setText(task.getName().toString());
     }
 
     @Override
