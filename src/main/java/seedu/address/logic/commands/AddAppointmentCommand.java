@@ -32,8 +32,8 @@ public class AddAppointmentCommand extends Command {
             + PREFIX_APPOINTMENT_LOCATION + "Jurong Point, Starbucks";
 
     public static final String MESSAGE_SUCCESS = "New appointment added: %1$s";
-    public static final String MESSAGE_DUPLICATE_APPOINTMENT = "You have already scheduled this "
-                                                                + "appointment for the client";
+    public static final String MESSAGE_DUPLICATE_APPOINTMENT_DATE_TIME = "You already have an appointment "
+                                                                        + "scheduled on this date and time";
     public static final String MESSAGE_DATE_FIELD_NOT_INCLUDED = "Date field must be provided.";
     public static final String MESSAGE_MAXIMUM_NUMBER_OF_APPOINTMENTS = "You have already reached the "
             + "maximum number of appointments (" + MAXIMUM_NUM_OF_APPOINTMENTS + ") for this client";
@@ -62,8 +62,8 @@ public class AddAppointmentCommand extends Command {
         Person personWithAppointmentToAdd = lastShownList.get(index.getZeroBased());
         MaximumSortedList<Appointment> appointmentSet = personWithAppointmentToAdd.getAppointments();
 
-        if (appointmentSet.contains(appointment)) {
-            throw new CommandException(MESSAGE_DUPLICATE_APPOINTMENT);
+        if (model.hasPersonWithSameAppointmentDateTime(appointment)) {
+            throw new CommandException(MESSAGE_DUPLICATE_APPOINTMENT_DATE_TIME);
         }
 
         if (appointmentSet.size() == MAXIMUM_NUM_OF_APPOINTMENTS) {

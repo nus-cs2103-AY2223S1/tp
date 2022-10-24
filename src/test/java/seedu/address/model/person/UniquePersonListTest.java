@@ -4,6 +4,9 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_DATETIME_21_JAN_2023;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_LOCATION_NUS;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_LOCATION_WESTMALL;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalPersons.ALICE;
@@ -17,6 +20,7 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.model.person.exceptions.DuplicatePersonException;
 import seedu.address.model.person.exceptions.PersonNotFoundException;
+import seedu.address.testutil.AppointmentBuilder;
 import seedu.address.testutil.PersonBuilder;
 
 public class UniquePersonListTest {
@@ -39,6 +43,26 @@ public class UniquePersonListTest {
         assertTrue(uniquePersonList.contains(ALICE));
     }
 
+    @Test
+    public void containsPersonWithSameDateTimeAppointment_personInList_returnsTrue() {
+        Appointment aliceAppointment = new AppointmentBuilder()
+                                        .withDateTime(VALID_DATETIME_21_JAN_2023)
+                                        .withLocation(VALID_LOCATION_NUS).build();
+        ALICE.getAppointments().add(aliceAppointment);
+        uniquePersonList.add(ALICE);
+        Appointment duplicateAppointment = new AppointmentBuilder()
+                .withDateTime(VALID_DATETIME_21_JAN_2023)
+                .withLocation(VALID_LOCATION_WESTMALL).build();
+        assertTrue(uniquePersonList.containsPersonWithSameAppointmentDateTime(duplicateAppointment));
+    }
+
+    @Test
+    public void containsPersonWithSameDateTimeAppointment_personNotInList_returnsFalse() {
+        Appointment uniqueAppointment = new AppointmentBuilder()
+                .withDateTime("01-Jan-1880 12:00 AM")
+                .withLocation(VALID_LOCATION_NUS).build();
+        assertFalse(uniquePersonList.containsPersonWithSameAppointmentDateTime(uniqueAppointment));
+    }
     @Test
     public void contains_personWithSameIdentityFieldsInList_returnsTrue() {
         uniquePersonList.add(ALICE);

@@ -4,6 +4,9 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_DATETIME_21_JAN_2023;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_LOCATION_JURONGPOINT;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_LOCATION_NUS;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalPersons.ALICE;
@@ -18,8 +21,10 @@ import org.junit.jupiter.api.Test;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import seedu.address.model.person.Appointment;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.exceptions.DuplicatePersonException;
+import seedu.address.testutil.AppointmentBuilder;
 import seedu.address.testutil.PersonBuilder;
 
 public class AddressBookTest {
@@ -76,6 +81,34 @@ public class AddressBookTest {
         Person editedAlice = new PersonBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
                 .build();
         assertTrue(addressBook.hasPerson(editedAlice));
+    }
+
+    @Test
+    public void hasPersonWithSameAppointmentDateTime_nullAppointment_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> addressBook.hasPersonWithSameAppointmentDateTime(null));
+    }
+
+    @Test
+    public void hasPersonWithSameAppointmentDateTime_personNotInAddressBook_returnsFalse() {
+        assertFalse(addressBook.hasPersonWithSameAppointmentDateTime(new AppointmentBuilder()
+                                                    .withDateTime("01-Jan-1800 12:00 AM")
+                                                    .withLocation("UniqueLocation").build()));
+    }
+
+    @Test
+    public void hasPersonWithSameAppointmentDateTime_personInAddressBook_returnsTrue() {
+        AddressBook testAddressBook = new AddressBook();
+        Person editedAlice = new PersonBuilder(ALICE).build();
+        Appointment aliceAppointment = new AppointmentBuilder()
+                        .withDateTime(VALID_DATETIME_21_JAN_2023)
+                        .withLocation(VALID_LOCATION_NUS).build();
+        editedAlice.getAppointments().add(aliceAppointment);
+        testAddressBook.addPerson(editedAlice);
+
+        Appointment appointmentWithSameDateTime =  new AppointmentBuilder()
+                        .withDateTime(VALID_DATETIME_21_JAN_2023)
+                        .withLocation(VALID_LOCATION_JURONGPOINT).build();
+        assertTrue(testAddressBook.hasPersonWithSameAppointmentDateTime(appointmentWithSameDateTime));
     }
 
     @Test

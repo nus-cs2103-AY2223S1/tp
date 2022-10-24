@@ -2,7 +2,7 @@ package seedu.address.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.logic.commands.AddAppointmentCommand.MESSAGE_DUPLICATE_APPOINTMENT;
+import static seedu.address.logic.commands.AddAppointmentCommand.MESSAGE_DUPLICATE_APPOINTMENT_DATE_TIME;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_DATETIME_21_JAN_2023;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_DATETIME_22_JAN_2023;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_LOCATION_NUS;
@@ -13,6 +13,8 @@ import static seedu.address.logic.commands.CommandTestUtil.showPersonAtIndex;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
+import static seedu.address.testutil.TypicalPersons.ALICE;
+import static seedu.address.testutil.TypicalPersons.BOB;
 import static seedu.address.testutil.TypicalPersons.MUSAB_WITH_NO_APPT;
 import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 
@@ -70,7 +72,7 @@ public class AddAppointmentCommandTest {
         Model actualModel = new ModelManager(new AddressBook(), new UserPrefs(), new CommandHistory());
         actualModel.addPerson(new PersonBuilder().build());
         actualModel.addPerson(new PersonBuilder(MUSAB_WITH_NO_APPT).build());
-        showPersonAtIndex(model, INDEX_FIRST_PERSON);
+        showPersonAtIndex(actualModel, INDEX_FIRST_PERSON);
 
         // Create expectedModel
         Model expectedModel = new ModelManager(new AddressBook(), new UserPrefs(), new CommandHistory());
@@ -93,7 +95,7 @@ public class AddAppointmentCommandTest {
     }
 
     @Test
-    public void execute_addDuplicateAppointmentUnfilteredList_failure() {
+    public void execute_addDuplicateAppointmentWithSameDateTimeUnfilteredList_failure() {
         // Create testModel
         Model testModel = new ModelManager(new AddressBook(), new UserPrefs(), new CommandHistory());
         testModel.addPerson(new PersonBuilder().build());
@@ -109,16 +111,16 @@ public class AddAppointmentCommandTest {
         AddAppointmentCommand addAppointmentCommand =
                 new AddAppointmentCommand(INDEX_FIRST_PERSON, duplicateAppointmentToAdd);
 
-        assertCommandFailure(addAppointmentCommand, testModel, MESSAGE_DUPLICATE_APPOINTMENT);
+        assertCommandFailure(addAppointmentCommand, testModel, MESSAGE_DUPLICATE_APPOINTMENT_DATE_TIME);
     }
 
     @Test
-    public void execute_addDuplicateAppointmentFilteredList_failure() {
+    public void execute_addDuplicateAppointmentWithSameDateTimeFilteredList_failure() {
         // Create testModel
         Model testModel = new ModelManager(new AddressBook(), new UserPrefs(), new CommandHistory());
         testModel.addPerson(new PersonBuilder().build());
         testModel.addPerson(new PersonBuilder(MUSAB_WITH_NO_APPT).build());
-        showPersonAtIndex(model, INDEX_FIRST_PERSON);
+        showPersonAtIndex(testModel, INDEX_FIRST_PERSON);
         Person testPerson = testModel.getFilteredPersonList().get(0);
         testPerson.getAppointments().add(new AppointmentBuilder()
                 .withDateTime(VALID_DATETIME_21_JAN_2023)
@@ -131,10 +133,12 @@ public class AddAppointmentCommandTest {
         AddAppointmentCommand addAppointmentCommand =
                 new AddAppointmentCommand(INDEX_FIRST_PERSON, duplicateAppointmentToAdd);
 
-        assertCommandFailure(addAppointmentCommand, testModel, MESSAGE_DUPLICATE_APPOINTMENT);
+        assertCommandFailure(addAppointmentCommand, testModel, MESSAGE_DUPLICATE_APPOINTMENT_DATE_TIME);
     }
 
+    @Test
     public void execute_invalidPersonIndexUnfilteredList_failure() {
+        Model testModel = new ModelManager(new AddressBook(), new UserPrefs(), new CommandHistory());
         Index outOfBoundIndex = INDEX_SECOND_PERSON;
 
         Appointment appointmentToAdd = new AppointmentBuilder()
@@ -143,7 +147,7 @@ public class AddAppointmentCommandTest {
         AddAppointmentCommand addAppointmentCommand =
                 new AddAppointmentCommand(outOfBoundIndex, appointmentToAdd);
 
-        assertCommandFailure(addAppointmentCommand, model, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+        assertCommandFailure(addAppointmentCommand, testModel, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
     }
     /**
      * Edit filtered list where index is larger than size of filtered list,
@@ -151,10 +155,13 @@ public class AddAppointmentCommandTest {
      */
     @Test
     public void execute_invalidPersonIndexFilteredList_failure() {
-        showPersonAtIndex(model, INDEX_FIRST_PERSON);
+        Model testModel = new ModelManager(new AddressBook(), new UserPrefs(), new CommandHistory());
+        testModel.addPerson(ALICE);
+        testModel.addPerson(BOB);
+        showPersonAtIndex(testModel, INDEX_FIRST_PERSON);
         Index outOfBoundIndex = INDEX_SECOND_PERSON;
         // ensures that outOfBoundIndex is still in bounds of address book list
-        assertTrue(outOfBoundIndex.getZeroBased() < model.getAddressBook().getPersonList().size());
+        assertTrue(outOfBoundIndex.getZeroBased() < testModel.getAddressBook().getPersonList().size());
 
         Appointment appointmentToAdd = new AppointmentBuilder()
                 .withDateTime(VALID_DATETIME_21_JAN_2023)
@@ -162,7 +169,7 @@ public class AddAppointmentCommandTest {
         AddAppointmentCommand addAppointmentCommand =
                 new AddAppointmentCommand(outOfBoundIndex, appointmentToAdd);
 
-        assertCommandFailure(addAppointmentCommand, model, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+        assertCommandFailure(addAppointmentCommand, testModel, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
     }
 
     @Test
