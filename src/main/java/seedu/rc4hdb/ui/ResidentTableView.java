@@ -34,7 +34,7 @@ public class ResidentTableView extends UiPart<Region> {
 
     @FXML
     private TableView<Resident> residentTableView;
-    private ObservableList<String> observableFields = FXCollections.observableArrayList();
+    private final ObservableList<String> observableFields = FXCollections.observableArrayList();
     private final ObservableList<String> visibleFields = FXCollections.observableArrayList();
     private final ObservableList<String> hiddenFields = FXCollections.observableArrayList();
 
