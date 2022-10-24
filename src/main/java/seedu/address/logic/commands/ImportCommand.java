@@ -21,7 +21,7 @@ import seedu.address.storage.JsonAddressBookStorage;
 public class ImportCommand extends Command {
 
     public static final String COMMAND_WORD = "import";
-    
+
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Adds one or more persons to the address book from an external json source. "
             + "Parameters: FILE_PATH\n"
