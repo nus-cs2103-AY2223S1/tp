@@ -59,18 +59,7 @@ public class TagCommand extends Command {
 
     @Override
     public CommandResult<String> execute(Model model) throws CommandException {
-        requireNonNull(model);
-
-        if (!model.hasTag(tag)) {
-            throw new CommandException(ERROR_NOT_FOUND_TAG);
-        }
-
-        List<Item> lastShownList = model.getFilteredItemList();
-        if (index.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(ERROR_NOT_FOUND_ITEM);
-        }
-
-        Item itemToTag = lastShownList.get(index.getZeroBased());
+        Item itemToTag = validateAndGetTargetItem(model, tag, ERROR_NOT_FOUND_TAG, index, ERROR_NOT_FOUND_ITEM);;
         if (itemToTag.containsTag(tag)) {
             throw new CommandException(ERROR_DUPLICATE);
         }
@@ -81,6 +70,21 @@ public class TagCommand extends Command {
         model.updateFilteredItemList(Model.PREDICATE_SHOW_ALL_ITEMS);
 
         return CommandResult.from(String.format(MESSAGE_SUCCESS, newTagSetItem));
+    }
+
+    static Item validateAndGetTargetItem(Model model, Tag tag, String errorNotFoundTag, Index index, String errorNotFoundItem) throws CommandException {
+        requireNonNull(model);
+
+        if (!model.hasTag(tag)) {
+            throw new CommandException(errorNotFoundTag);
+        }
+
+        List<Item> lastShownList = model.getFilteredItemList();
+        if (index.getZeroBased() >= lastShownList.size()) {
+            throw new CommandException(errorNotFoundItem);
+        }
+
+        return lastShownList.get(index.getZeroBased());
     }
 
     public static String getUsage() {

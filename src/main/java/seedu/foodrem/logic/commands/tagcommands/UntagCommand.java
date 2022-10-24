@@ -3,8 +3,6 @@ package seedu.foodrem.logic.commands.tagcommands;
 import static java.util.Objects.requireNonNull;
 import static seedu.foodrem.commons.enums.CommandType.UNTAG_COMMAND;
 
-import java.util.List;
-
 import seedu.foodrem.commons.core.index.Index;
 import seedu.foodrem.logic.commands.Command;
 import seedu.foodrem.logic.commands.CommandResult;
@@ -38,18 +36,7 @@ public class UntagCommand extends Command {
 
     @Override
     public CommandResult<String> execute(Model model) throws CommandException {
-        requireNonNull(model);
-
-        if (!model.hasTag(tag)) {
-            throw new CommandException(ERROR_NOT_FOUND_TAG);
-        }
-
-        List<Item> lastShownList = model.getFilteredItemList();
-        if (index.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(ERROR_NOT_FOUND_ITEM);
-        }
-
-        Item itemToUntag = lastShownList.get(index.getZeroBased());
+        Item itemToUntag = TagCommand.validateAndGetTargetItem(model, tag, ERROR_NOT_FOUND_TAG, index, ERROR_NOT_FOUND_ITEM);
         if (!itemToUntag.containsTag(tag)) {
             throw new CommandException(ERROR_ITEM_DOES_NOT_CONTAIN_TAG);
         }
