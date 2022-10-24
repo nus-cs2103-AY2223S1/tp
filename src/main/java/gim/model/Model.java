@@ -5,6 +5,7 @@ import java.util.function.Predicate;
 
 import gim.commons.core.GuiSettings;
 import gim.model.exercise.Exercise;
+import gim.model.exercise.ExerciseHashMap;
 import javafx.collections.ObservableList;
 
 /**
@@ -79,6 +80,8 @@ public interface Model {
 
     /** Returns an unmodifiable view of the filtered exercise list */
     ObservableList<Exercise> getFilteredExerciseList();
+    /** Returns a copy of the hashmap of Exercises stored. */
+    ExerciseHashMap getExerciseHashMap();
 
     /**
      * Updates the filter of the filtered exercise list to filter by the given {@code predicate}.
@@ -95,5 +98,4 @@ public interface Model {
      * Resets the displayed exercise list to the default ordering.
      */
     void resetDisplayedList();
-
 }

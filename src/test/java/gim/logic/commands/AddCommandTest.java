@@ -19,6 +19,7 @@ import gim.model.Model;
 import gim.model.ReadOnlyExerciseTracker;
 import gim.model.ReadOnlyUserPrefs;
 import gim.model.exercise.Exercise;
+import gim.model.exercise.ExerciseHashMap;
 import gim.testutil.ExerciseBuilder;
 import javafx.collections.ObservableList;
 
@@ -146,6 +147,10 @@ public class AddCommandTest {
 
         @Override
         public void resetDisplayedList() {
+            throw new AssertionError("This method should not be called.");
+        }
+        
+        public ExerciseHashMap getExerciseHashMap() {
             throw new AssertionError("This method should not be called.");
         }
     }

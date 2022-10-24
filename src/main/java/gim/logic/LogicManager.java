@@ -14,6 +14,7 @@ import gim.logic.parser.exceptions.ParseException;
 import gim.model.Model;
 import gim.model.ReadOnlyExerciseTracker;
 import gim.model.exercise.Exercise;
+import gim.model.exercise.ExerciseHashMap;
 import gim.storage.Storage;
 import javafx.collections.ObservableList;
 
@@ -77,5 +78,9 @@ public class LogicManager implements Logic {
     @Override
     public void setGuiSettings(GuiSettings guiSettings) {
         model.setGuiSettings(guiSettings);
+    }
+
+    public ExerciseHashMap getExerciseHashmap() {
+        return model.getExerciseHashMap();
     }
 }

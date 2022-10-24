@@ -17,14 +17,24 @@ import javafx.collections.ObservableList;
 public class ExerciseTracker implements ReadOnlyExerciseTracker {
 
     private final ExerciseList exerciseList;
-    private final ExerciseHashMap exerciseHashMap;
+    private ExerciseHashMap exerciseHashMap;
 
-    {
+    /**
+     * Creates an ExerciseTracker
+     */
+    public ExerciseTracker() {
         exerciseList = new ExerciseList();
         exerciseHashMap = new ExerciseHashMap();
     }
 
-    public ExerciseTracker() {}
+    /**
+     * Creates an ExerciseTracker using a given HashMap {@code ehm}
+     * @param ehm ExerciseHashMap
+     */
+    public ExerciseTracker(ExerciseHashMap ehm) {
+        exerciseList = new ExerciseList();
+        exerciseHashMap = ehm;
+    }
 
     /**
      * Creates an ExerciseTracker using the Exercises in the {@code toBeCopied}
@@ -133,4 +143,9 @@ public class ExerciseTracker implements ReadOnlyExerciseTracker {
     public int hashCode() {
         return exerciseList.hashCode();
     }
+
+    public ExerciseHashMap getExerciseHashMap() {
+        return exerciseHashMap;
+    }
+
 }

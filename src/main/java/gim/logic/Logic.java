@@ -8,6 +8,7 @@ import gim.logic.commands.exceptions.CommandException;
 import gim.logic.parser.exceptions.ParseException;
 import gim.model.ReadOnlyExerciseTracker;
 import gim.model.exercise.Exercise;
+import gim.model.exercise.ExerciseHashMap;
 import javafx.collections.ObservableList;
 
 /**
@@ -30,8 +31,15 @@ public interface Logic {
      */
     ReadOnlyExerciseTracker getExerciseTracker();
 
-    /** Returns an unmodifiable view of the filtered list of exercises */
+    /**
+     * Returns an unmodifiable view of the filtered list of exercises.
+     */
     ObservableList<Exercise> getFilteredExerciseList();
+
+    /**
+     * Returns a copy of the hashmap of exercises stored.
+     */
+    ExerciseHashMap getExerciseHashmap();
 
     /**
      * Returns the user prefs' exercise tracker file path.
@@ -47,4 +55,5 @@ public interface Logic {
      * Set the user prefs' GUI settings.
      */
     void setGuiSettings(GuiSettings guiSettings);
+
 }
