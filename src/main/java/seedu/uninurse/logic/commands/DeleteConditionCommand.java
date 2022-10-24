@@ -64,7 +64,7 @@ public class DeleteConditionCommand extends DeleteGenericCommand {
         }
 
         // ConditionNotFoundException not caught here since the above handles the same error
-        ConditionList updatedConditionList = patientToEdit.getConditions().delete(conditionIndex.getZeroBased());
+        ConditionList updatedConditionList = initialConditionList.delete(conditionIndex.getZeroBased());
         Condition deletedCondition = initialConditionList.get(conditionIndex.getZeroBased());
 
         Patient editedPatient = new Patient(patientToEdit, updatedConditionList);
