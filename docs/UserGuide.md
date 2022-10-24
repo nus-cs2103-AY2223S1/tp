@@ -24,6 +24,9 @@ ConnectNUS is a **desktop app for managing contacts, optimised for use via a Com
   - [Listing modules](#listing-modules)
   - [Deleting modules](#deleting-modules)
   - [Deleting plans](#deleting-plans)
+  - [Adding lessons](#adding-lessons)
+  - [Listing lessons / Viewing timetable](#listing-lessons--viewing-timetable)
+  - [Deleting lessons](#deleting-lessons)
   - [Exiting the program](#exiting-the-program--exit)
 - [Command Summary](#command-summary)
 
