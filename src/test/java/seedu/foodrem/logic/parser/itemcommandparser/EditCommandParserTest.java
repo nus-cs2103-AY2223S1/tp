@@ -106,21 +106,15 @@ public class EditCommandParserTest {
                 + CommandTestUtil.VALID_DESC_ITEM_UNIT_CUCUMBERS
                 + CommandTestUtil.VALID_DESC_ITEM_BOUGHT_DATE_CUCUMBERS
                 + CommandTestUtil.VALID_DESC_ITEM_EXPIRY_DATE_CUCUMBERS
-                + CommandTestUtil.VALID_DESC_ITEM_PRICE_CUCUMBERS
-                + CommandTestUtil.VALID_DESC_ITEM_NAME_POTATOES
-                + CommandTestUtil.VALID_DESC_ITEM_QUANTITY_POTATOES
-                + CommandTestUtil.VALID_DESC_ITEM_UNIT_POTATOES
-                + CommandTestUtil.VALID_DESC_ITEM_BOUGHT_DATE_POTATOES
-                + CommandTestUtil.VALID_DESC_ITEM_EXPIRY_DATE_POTATOES
-                + CommandTestUtil.VALID_DESC_ITEM_PRICE_POTATOES;
+                + CommandTestUtil.VALID_DESC_ITEM_PRICE_CUCUMBERS;
 
         EditItemDescriptor descriptor = new EditItemDescriptorBuilder()
-                .withItemName(CommandTestUtil.VALID_ITEM_NAME_POTATOES)
-                .withItemQuantity(CommandTestUtil.VALID_ITEM_QUANTITY_POTATOES)
-                .withItemUnit(CommandTestUtil.VALID_ITEM_UNIT_POTATOES)
-                .withItemBoughtDate(CommandTestUtil.VALID_ITEM_BOUGHT_DATE_POTATOES)
-                .withItemExpiryDate(CommandTestUtil.VALID_ITEM_EXPIRY_DATE_POTATOES)
-                .withItemPrice(CommandTestUtil.VALID_ITEM_PRICE_POTATOES).build();
+                .withItemName(CommandTestUtil.VALID_ITEM_NAME_CUCUMBERS)
+                .withItemQuantity(CommandTestUtil.VALID_ITEM_QUANTITY_CUCUMBERS)
+                .withItemUnit(CommandTestUtil.VALID_ITEM_UNIT_CUCUMBERS)
+                .withItemBoughtDate(CommandTestUtil.VALID_ITEM_BOUGHT_DATE_CUCUMBERS)
+                .withItemExpiryDate(CommandTestUtil.VALID_ITEM_EXPIRY_DATE_CUCUMBERS)
+                .withItemPrice(CommandTestUtil.VALID_ITEM_PRICE_CUCUMBERS).build();
         EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
 
         assertParseSuccess(parser, userInput, expectedCommand);
