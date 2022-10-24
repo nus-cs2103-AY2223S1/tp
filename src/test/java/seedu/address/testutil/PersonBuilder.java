@@ -34,9 +34,9 @@ public class PersonBuilder {
     public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
     public static final String DEFAULT_DATE_AND_TIME = "2022-06-14T13:00";
     public static final String DEFAULT_VISIT_STATUS = "false";
-    public static final String DEFAULT_PHYS_NAME = "John Doe";
-    public static final String DEFAULT_PHYS_EMAIL = "johndoe@example.com";
-    public static final String DEFAULT_PHYS_PHONE = "81234567";
+    public static final String DEFAULT_CONTACT_NAME = "John Doe";
+    public static final String DEFAULT_CONTACT_EMAIL = "johndoe@example.com";
+    public static final String DEFAULT_CONTACT_PHONE = "81234567";
 
     private Category category;
     private Uid uid;
@@ -65,8 +65,8 @@ public class PersonBuilder {
         dateTimeList = new ArrayList<>();
         dateTimeList.add(new DateTime(DEFAULT_DATE_AND_TIME));
         visitStatus = new VisitStatus(DEFAULT_VISIT_STATUS);
-        physician = new Physician(new Name(DEFAULT_PHYS_NAME), new Phone(DEFAULT_PHYS_PHONE),
-                new Email(DEFAULT_PHYS_EMAIL));
+        physician = new Physician(new Name(DEFAULT_CONTACT_NAME), new Phone(DEFAULT_CONTACT_PHONE),
+                new Email(DEFAULT_CONTACT_EMAIL));
     }
 
     /**
