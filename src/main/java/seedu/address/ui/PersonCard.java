@@ -34,6 +34,8 @@ public class PersonCard extends UiPart<Region> {
     @FXML
     private Label id;
     @FXML
+    private Label workload;
+    @FXML
     private Label phone;
     @FXML
     private Label address;
@@ -60,6 +62,7 @@ public class PersonCard extends UiPart<Region> {
         super(FXML);
         this.person = person;
         id.setText(displayedIndex + ". ");
+        workload.setText("Workload: " + person.getWorkloadScore());
         name.setText(person.getName().fullName);
         phone.setText(person.getPhone().value);
         address.setText(person.getAddress().value);
