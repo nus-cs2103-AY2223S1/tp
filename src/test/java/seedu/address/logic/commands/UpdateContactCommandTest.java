@@ -16,6 +16,7 @@ import seedu.address.commons.core.Messages;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
+import seedu.address.model.category.Category;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Patient;
@@ -23,7 +24,7 @@ import seedu.address.model.person.Phone;
 import seedu.address.model.person.Physician;
 import seedu.address.model.person.Uid;
 
-class UpdatePhysicianCommandTest {
+class UpdateContactCommandTest {
 
     private Model model;
     private Model expectedModel;
@@ -46,27 +47,27 @@ class UpdatePhysicianCommandTest {
                 expectedPerson.getVisitStatus(), Optional.of(physicianToAssign), Optional.empty());
         expectedModel.setPerson(expectedPerson, expectedPatientEdited);
 
-        Command setPhysCommand = new UpdatePhysicianCommand(new Uid(3L), new Name(DEFAULT_PHYS_NAME),
-                new Phone(DEFAULT_PHYS_PHONE), new Email(DEFAULT_PHYS_EMAIL));
+        Command setPhysCommand = new UpdateContactCommand(new Uid(3L), new Name(DEFAULT_PHYS_NAME),
+                new Phone(DEFAULT_PHYS_PHONE), new Email(DEFAULT_PHYS_EMAIL), new Category(Category.PHYSICIAN_SYMBOL));
 
         assertCommandSuccess(setPhysCommand,
-                model, String.format(UpdatePhysicianCommand.MESSAGE_ADD_PHYS_SUCCESS, 3, DEFAULT_PHYS_NAME,
-                        DEFAULT_PHYS_PHONE, DEFAULT_PHYS_EMAIL), expectedModel);
+                model, String.format(UpdateContactCommand.MESSAGE_UPDATE_CONTACT_SUCCESS, 3, DEFAULT_PHYS_NAME,
+                        DEFAULT_PHYS_PHONE, DEFAULT_PHYS_EMAIL, Category.PHYSICIAN_SYMBOL), expectedModel);
     }
 
     @Test
     void execute_setPhysicianOnNurse_fail() {
-        Command setPhysCommand = new UpdatePhysicianCommand(new Uid(5L), new Name(DEFAULT_PHYS_NAME),
-                new Phone(DEFAULT_PHYS_PHONE), new Email(DEFAULT_PHYS_EMAIL));
+        Command setPhysCommand = new UpdateContactCommand(new Uid(5L), new Name(DEFAULT_PHYS_NAME),
+                new Phone(DEFAULT_PHYS_PHONE), new Email(DEFAULT_PHYS_EMAIL), new Category(Category.PHYSICIAN_SYMBOL));
 
         assertCommandFailure(setPhysCommand,
-                model, Messages.MESSAGE_SETPHYS_INVALID_CATEGORY);
+                model, Messages.MESSAGE_UPDATECONTACT_INVALID_CATEGORY);
     }
 
     @Test
     void execute_setPhysicianOnInvalidUid_fail() {
-        Command setPhysCommand = new UpdatePhysicianCommand(new Uid(9999L), new Name(DEFAULT_PHYS_NAME),
-                new Phone(DEFAULT_PHYS_PHONE), new Email(DEFAULT_PHYS_EMAIL));
+        Command setPhysCommand = new UpdateContactCommand(new Uid(9999L), new Name(DEFAULT_PHYS_NAME),
+                new Phone(DEFAULT_PHYS_PHONE), new Email(DEFAULT_PHYS_EMAIL), new Category(Category.PHYSICIAN_SYMBOL));
 
         assertCommandFailure(setPhysCommand,
                 model, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_UID);
