@@ -16,7 +16,8 @@ public class CliSyntax {
     public static final Prefix PREFIX_MODULE = new Prefix("m/");
     public static final Prefix PREFIX_LECTURE = new Prefix("l/");
     public static final Prefix PREFIX_TUTORIAL = new Prefix("t/");
-    public static final Prefix PREFIX_ZOOM = new Prefix("z/");
+    public static final Prefix PREFIX_LECTURE_ZOOM = new Prefix("lz/");
+    public static final Prefix PREFIX_TUTORIAL_ZOOM = new Prefix("tz/");
     public static final Prefix PREFIX_ASSIGNMENT = new Prefix("a/");
 
     /* Command Types*/

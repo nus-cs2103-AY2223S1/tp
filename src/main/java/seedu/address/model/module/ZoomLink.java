@@ -3,6 +3,7 @@ package seedu.address.model.module;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
+import java.util.Optional;
 import java.util.regex.Pattern;
 
 /**
@@ -21,7 +22,7 @@ public class ZoomLink {
             "^https?:\\/\\/(?:www\\.)?[-a-zA-Z0-9@:%._\\+~#=]"
                     + "{1,256}\\.[a-zA-Z0-9()]{1,6}\\b(?:[-a-zA-Z0-9()@:%_\\+.~#?&\\/=]*)$";
 
-    public final String zoomLink;
+    public final Optional<String> zoomLink;
 
     /**
      * Constructs a {@code ZoomLink}.
@@ -30,8 +31,12 @@ public class ZoomLink {
      */
     public ZoomLink(String zoomLinkUrl) {
         requireNonNull(zoomLinkUrl);
-        checkArgument(isValidUrl(zoomLinkUrl), MESSAGE_CONSTRAINTS);
-        zoomLink = zoomLinkUrl;
+        if (zoomLinkUrl.isEmpty()) {
+            zoomLink = Optional.empty();
+        } else {
+            checkArgument(isValidUrl(zoomLinkUrl), MESSAGE_CONSTRAINTS);
+            zoomLink = Optional.of(zoomLinkUrl);
+        }
     }
 
     /**
@@ -43,10 +48,19 @@ public class ZoomLink {
                 .find();
     }
 
+    /**
+     * Returns true if a given string is a valid to be added as Zoom Link.
+     */
+    public static boolean isValidZoomLink(String test) {
+        if (test.isEmpty()) {
+            return true;
+        }
+        return isValidUrl(test);
+    }
 
     @Override
     public String toString() {
-        return zoomLink;
+        return zoomLink.orElse("");
     }
 
     @Override

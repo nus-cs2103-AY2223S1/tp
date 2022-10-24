@@ -13,11 +13,6 @@ public class ZoomLinkTest {
         assertThrows(NullPointerException.class, () -> new ZoomLink(null));
     }
 
-    @Test
-    public void constructor_invalidZoomLink_throwsIllegalArgumentException() {
-        String invalidZoomLink = "";
-        assertThrows(IllegalArgumentException.class, () -> new ZoomLink(invalidZoomLink));
-    }
 
     @Test
     public void isValidZoomLink() {

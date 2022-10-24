@@ -4,9 +4,10 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ASSIGNMENT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_LECTURE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_LECTURE_ZOOM;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MODULE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TUTORIAL;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_ZOOM;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TUTORIAL_ZOOM;
 
 import java.util.Collection;
 import java.util.Collections;
@@ -35,7 +36,8 @@ public class EditModuleCommandParser implements Parser<EditModuleCommand> {
         requireNonNull(args);
         ArgumentMultimap argMultimap =
             ArgumentTokenizer
-                .tokenize(args, PREFIX_MODULE, PREFIX_LECTURE, PREFIX_TUTORIAL, PREFIX_ZOOM, PREFIX_ASSIGNMENT);
+                .tokenize(args, PREFIX_MODULE, PREFIX_LECTURE, PREFIX_TUTORIAL,
+                        PREFIX_LECTURE_ZOOM, PREFIX_TUTORIAL_ZOOM, PREFIX_ASSIGNMENT);
 
         Index index;
 
@@ -57,8 +59,12 @@ public class EditModuleCommandParser implements Parser<EditModuleCommand> {
             editModuleDescriptor.setTutorial(
                 ParserUtil.parseTutorialDetails(argMultimap.getValue(PREFIX_TUTORIAL).get()));
         }
-        if (argMultimap.getValue(PREFIX_ZOOM).isPresent()) {
-            editModuleDescriptor.setZoomLink(ParserUtil.parseZoomLink(argMultimap.getValue(PREFIX_ZOOM).get()));
+        if (argMultimap.getValue(PREFIX_LECTURE_ZOOM).isPresent()) {
+            editModuleDescriptor.setZoomLink(ParserUtil.parseZoomLink(argMultimap.getValue(PREFIX_LECTURE_ZOOM).get()));
+        }
+        if (argMultimap.getValue(PREFIX_TUTORIAL_ZOOM).isPresent()) {
+            editModuleDescriptor.setZoomLink(ParserUtil.parseZoomLink(
+                    argMultimap.getValue(PREFIX_TUTORIAL_ZOOM).get()));
         }
         parseAssignmentsForEdit(argMultimap
             .getAllValues(PREFIX_ASSIGNMENT)).ifPresent(editModuleDescriptor::setAssignments);

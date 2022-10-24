@@ -3,9 +3,10 @@ package seedu.address.logic.parser;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ASSIGNMENT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_LECTURE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_LECTURE_ZOOM;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MODULE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TUTORIAL;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_ZOOM;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TUTORIAL_ZOOM;
 
 import java.util.Set;
 import java.util.stream.Stream;
@@ -34,23 +35,24 @@ public class AddModuleCommandParser implements Parser<AddModuleCommand> {
     public AddModuleCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
             ArgumentTokenizer.tokenize(args,
-                PREFIX_MODULE, PREFIX_LECTURE, PREFIX_TUTORIAL, PREFIX_ZOOM, PREFIX_ASSIGNMENT);
+                PREFIX_MODULE, PREFIX_LECTURE, PREFIX_TUTORIAL,
+                    PREFIX_LECTURE_ZOOM, PREFIX_TUTORIAL_ZOOM, PREFIX_ASSIGNMENT);
 
-        if (!arePrefixesPresent(argMultimap,
-            //can remove zoom here to make optional
-            PREFIX_MODULE, PREFIX_LECTURE, PREFIX_TUTORIAL, PREFIX_ZOOM)
+        if (!arePrefixesPresent(argMultimap, PREFIX_MODULE)
             || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddModuleCommand.MESSAGE_USAGE));
         }
 
         ModuleCode moduleCode = ParserUtil.parseModuleCode(argMultimap.getValue(PREFIX_MODULE).get());
-        LectureDetails lecture = ParserUtil.parseLectureDetails(argMultimap.getValue(PREFIX_LECTURE).get());
-        TutorialDetails tutorial = ParserUtil.parseTutorialDetails(argMultimap.getValue(PREFIX_TUTORIAL).get());
-        ZoomLink zoom = ParserUtil.parseZoomLink(argMultimap.getValue(PREFIX_ZOOM).get());
+        LectureDetails lecture = ParserUtil.parseLectureDetails(argMultimap.getValue(PREFIX_LECTURE).orElse(""));
+        TutorialDetails tutorial = ParserUtil.parseTutorialDetails(argMultimap.getValue(PREFIX_TUTORIAL)
+                .orElse(""));
+        ZoomLink lectureZoom = ParserUtil.parseZoomLink(argMultimap.getValue(PREFIX_LECTURE_ZOOM).orElse(""));
+        ZoomLink tutorialZoom = ParserUtil.parseZoomLink(argMultimap.getValue(PREFIX_TUTORIAL_ZOOM).orElse(""));
         Set<AssignmentDetails> assignmentList =
             ParserUtil.parseAssignmentDetails(argMultimap.getAllValues(PREFIX_ASSIGNMENT));
 
-        Module module = new Module(moduleCode, lecture, tutorial, zoom, assignmentList);
+        Module module = new Module(moduleCode, lecture, tutorial, lectureZoom, tutorialZoom, assignmentList);
 
         return new AddModuleCommand(module);
     }

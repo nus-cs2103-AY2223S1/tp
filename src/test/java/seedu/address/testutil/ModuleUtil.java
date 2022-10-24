@@ -3,12 +3,13 @@ package seedu.address.testutil;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_LECTURE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_LECTURE_ZOOM;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MODULE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TUTORIAL;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_ZOOM;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TUTORIAL_ZOOM;
 
 import java.util.Set;
 
@@ -16,7 +17,6 @@ import seedu.address.logic.commands.AddModuleCommand;
 import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
 import seedu.address.model.module.Module;
 import seedu.address.model.tag.Tag;
-
 
 
 /**
@@ -39,7 +39,8 @@ public class ModuleUtil {
         sb.append(PREFIX_MODULE + module.getModuleCode().moduleCode + " ");
         sb.append(PREFIX_LECTURE + module.getLectureDetails().value + " ");
         sb.append(PREFIX_TUTORIAL + module.getTutorialDetails().value + " ");
-        sb.append(PREFIX_ZOOM + module.getZoomLink().zoomLink + " ");
+        sb.append(PREFIX_LECTURE_ZOOM + module.getLectureZoomLink().zoomLink.orElse("") + " ");
+        sb.append(PREFIX_TUTORIAL_ZOOM + module.getTutorialZoomLink().zoomLink.orElse("") + " ");
         module.getAssignmentDetails().stream().forEach(
             s -> sb.append(PREFIX_ADDRESS + s.assignmentDetails + " ")
         );

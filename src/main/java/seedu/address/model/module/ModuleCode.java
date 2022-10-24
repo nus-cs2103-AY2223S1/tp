@@ -47,7 +47,7 @@ public class ModuleCode {
     public boolean equals(Object other) {
         return other == this
             || (other instanceof ModuleCode
-            && moduleCode.equals(((ModuleCode) other).moduleCode));
+            && moduleCode.equalsIgnoreCase(((ModuleCode) other).moduleCode));
     }
 
     @Override

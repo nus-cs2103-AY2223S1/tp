@@ -4,9 +4,10 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.COMMAND_IDENTIFIER_MODULE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ASSIGNMENT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_LECTURE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_LECTURE_ZOOM;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MODULE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TUTORIAL;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_ZOOM;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TUTORIAL_ZOOM;
 
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
@@ -25,13 +26,15 @@ public class AddModuleCommand extends Command {
         + PREFIX_MODULE + "MODULE "
         + PREFIX_LECTURE + "LECTURE "
         + PREFIX_TUTORIAL + "TUTORIAL "
-        + PREFIX_ZOOM + "ZOOM "
+        + PREFIX_LECTURE_ZOOM + "LECTURE ZOOM "
+        + PREFIX_TUTORIAL_ZOOM + "TUTORIAL ZOOM "
         + "[" + PREFIX_ASSIGNMENT + "ASSIGNMENT]...\n"
         + "Example: " + COMMAND_WORD + " "
         + PREFIX_MODULE + "CS2100 "
         + PREFIX_LECTURE + "Monday, 10am "
         + PREFIX_TUTORIAL + "Thursday, 12pm "
-        + PREFIX_ZOOM + "https://nus-sg.zoom.us/j/82167158590 "
+        + PREFIX_LECTURE_ZOOM + "https://nus-sg.zoom.us/j/82167158590 "
+        + PREFIX_TUTORIAL_ZOOM + "https://nus-sg.zoom.us/j/82167158591 "
         + PREFIX_ASSIGNMENT + "Tutorial1 "
         + PREFIX_ASSIGNMENT + "Lab1";
 
