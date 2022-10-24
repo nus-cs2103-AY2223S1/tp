@@ -78,6 +78,13 @@ public abstract class Task {
     }
 
     /**
+     * Returns true if task is self-assigned.
+     */
+    public boolean isSelfAssigned() {
+        return name == Name.SELF;
+    }
+
+    /**
      * Creates an edited task based on the provided edits.
      *
      * @throws CommandException when editing a field that does not exist for that task type.

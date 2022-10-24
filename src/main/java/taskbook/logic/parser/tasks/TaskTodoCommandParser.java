@@ -50,7 +50,7 @@ public class TaskTodoCommandParser implements Parser<TaskTodoCommand> {
             return parseWithPrefix(args, CliSyntax.PREFIX_ASSIGN_FROM);
         }
 
-        throw new ParseException(String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT, TaskTodoCommand.MESSAGE_USAGE));
+        return parseWithoutPrefix(args);
     }
 
     private TaskTodoCommand parseWithPrefix(String args, Prefix firstPrefix) throws ParseException {
@@ -70,6 +70,20 @@ public class TaskTodoCommandParser implements Parser<TaskTodoCommand> {
                 : Assignment.TO;
 
         return new TaskTodoCommand(name, description, assignment);
+    }
+
+    private TaskTodoCommand parseWithoutPrefix(String args) throws ParseException {
+        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, CliSyntax.PREFIX_DESCRIPTION);
+
+        if (!arePrefixesPresent(argMultimap, CliSyntax.PREFIX_DESCRIPTION)
+                || !argMultimap.getPreamble().isEmpty()) {
+            throw new ParseException(String.format(
+                    Messages.MESSAGE_INVALID_COMMAND_FORMAT, TaskTodoCommand.MESSAGE_USAGE));
+        }
+
+        Description description = ParserUtil.parseDescription(argMultimap.getValue(CliSyntax.PREFIX_DESCRIPTION).get());
+
+        return new TaskTodoCommand(Name.SELF, description, Assignment.TO);
     }
 
     /**
