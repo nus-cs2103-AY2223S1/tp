@@ -60,6 +60,10 @@ public class ItemView {
         HBox.setHgrow(col1, Priority.ALWAYS);
         row1.setSpacing(SPACING_UNIT);
 
+        final Label remarks = new Label(
+                String.valueOf(item.getRemarks()).isBlank() ? "-" : item.getRemarks().toString());
+        remarks.setWrapText(true);
+
         // Combine everything
         final VBox itemView = new VBox(
                 row1,
@@ -69,7 +73,7 @@ public class ItemView {
                 new Label("Expiry Date: " + buildExpiryDateStringFrom(item)),
                 new Separator(),
                 new Label("Remarks:"),
-                new Label(String.valueOf(item.getRemarks()).isBlank() ? "-" : item.getRemarks().toString()));
+                remarks);
         itemView.setSpacing(SPACING_UNIT);
         return itemView;
     }
