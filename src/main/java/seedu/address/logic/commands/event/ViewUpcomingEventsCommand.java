@@ -23,7 +23,7 @@ public class ViewUpcomingEventsCommand extends EventCommand {
     public static final String MESSAGE_SUCCESS_MULTIPLE_EVENTS = "You have these upcoming events ";
     public static final String MESSAGE_SUCCESS_SINGLE_EVENT = "You have 1 event ";
     public static final String MESSAGE_SUCCESS_NO_EVENTS = "You have no upcoming events ";
-    public static final String MESSAGE_SUCCESS_TOMORROW = " tomorrow!\n";
+    public static final String MESSAGE_SUCCESS_TOMORROW = "tomorrow!\n";
     public static final String MESSAGE_SUCCESS_UPCOMING_DAYS = "in the next %1$s days!";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + " " + PREFIX_OPTION + COMMAND_OPTION
