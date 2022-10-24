@@ -85,12 +85,12 @@ public class EditEventCommand extends EventCommand {
             throw new CommandException(MESSAGE_DUPLICATE_EVENT);
         }
 
-        if (!editedEvent.isValidStartEnd()) {
-            throw new CommandException(Messages.MESSAGE_EVENTS_INVALID_START_END);
-        }
-
         if (!editedEvent.isHasTimeEqual()) {
             throw new CommandException(Messages.MESSAGE_EVENTS_HAS_TIME);
+        }
+
+        if (!editedEvent.isValidStartEnd()) {
+            throw new CommandException(Messages.MESSAGE_EVENTS_INVALID_START_END);
         }
 
         model.setEvent(eventToEdit, editedEvent);
