@@ -30,7 +30,7 @@ public class Lecture extends Lesson {
      * Format state as text for viewing.
      */
     public String toString() {
-        return type + super.toString();
+        return super.getModule() + " " + typeToString() + " " + super.getStartTime() + " to " + super.getEndTime();
     }
 
 }
