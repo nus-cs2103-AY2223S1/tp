@@ -9,9 +9,6 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  */
 public class BirthdayMonth {
 
-    private static final String[] monthStrings = {"JAN", "FEB", "MAR", "APR", "MAY", "JUN",
-                                                    "JUL", "AUG", "SEP", "OCT", "NOV", "DEC"};
-
     public static final String MESSAGE_CONSTRAINTS = "Birthday month should not be blank. It should be between 1 - 12.";
 
     /*
@@ -19,6 +16,9 @@ public class BirthdayMonth {
      * otherwise " " (a blank string) becomes a valid input.
      */
     public static final String VALIDATION_REGEX = "[^\\s].*";
+
+    private static final String[] monthStrings = {"JAN", "FEB", "MAR", "APR", "MAY", "JUN",
+        "JUL", "AUG", "SEP", "OCT", "NOV", "DEC"};
 
     public final String value;
     public final String monthString;
