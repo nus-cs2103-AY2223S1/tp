@@ -63,10 +63,10 @@ class JsonAdaptedPerson {
         email = source.getEmail().value;
         dob = source.getDob().toLogFormat();
         address = source.getAddress().value;
+        gender = source.getGender().value.toString();
         tagged.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
-        gender = source.getGender().value.toString();
     }
 
     /**
@@ -103,7 +103,14 @@ class JsonAdaptedPerson {
             throw new IllegalValueException(Email.MESSAGE_CONSTRAINTS);
         }
         final Email modelEmail = new Email(email);
-
+        if (dob == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    DateOfBirth.class.getSimpleName()));
+        }
+        if (!DateOfBirth.isValidDateOfBirth(dob)) {
+            throw new IllegalValueException(DateOfBirth.MESSAGE_CONSTRAINTS);
+        }
+        final DateOfBirth modelDob = new DateOfBirth(dob);
         if (address == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Address.class.getSimpleName()));
         }
@@ -111,7 +118,6 @@ class JsonAdaptedPerson {
             throw new IllegalValueException(Address.MESSAGE_CONSTRAINTS);
         }
         final Address modelAddress = new Address(address);
-        
         if (gender == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Gender.class.getSimpleName()));
         }
@@ -119,17 +125,6 @@ class JsonAdaptedPerson {
             throw new IllegalValueException(Gender.MESSAGE_CONSTRAINTS);
         }
         final Gender modelGender = new Gender(gender);
-        
-        if (dob == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
-                     DateOfBirth.class.getSimpleName()));
-        }
-
-        if (!DateOfBirth.isValidDateOfBirth(dob)) {
-            throw new IllegalValueException(DateOfBirth.MESSAGE_CONSTRAINTS);
-        }
-
-        final DateOfBirth modelDob = new DateOfBirth(dob);
 
         final Set<Tag> modelTags = new HashSet<>(personTags);
         return new Person(modelName, modelPhone, modelEmail, modelDob, modelAddress, modelTags, modelGender);

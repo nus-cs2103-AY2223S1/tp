@@ -19,11 +19,9 @@ public class Person {
     private final Name name;
     private final Phone phone;
     private final Email email;
-    private final DateOfBirth dob;
-
-    // Data fields
     private final Address address;
-    private final Gender gender; // add gender attribute for person
+    private final Gender gender;
+    private final DateOfBirth dob;
     private final Set<Tag> tags = new HashSet<>();
 
     /**
@@ -34,10 +32,10 @@ public class Person {
         this.name = name;
         this.phone = phone;
         this.email = email;
-        this.dob = dob;
         this.address = address;
-        this.tags.addAll(tags);
+        this.dob = dob;
         this.gender = gender;
+        this.tags.addAll(tags);
     }
 
     public Name getName() {
@@ -52,16 +50,15 @@ public class Person {
         return email;
     }
 
-    public DateOfBirth getDob() {
-        return dob;
-    }
-
     public Address getAddress() {
         return address;
     }
 
     public Gender getGender() {
         return gender;
+    }
+    public DateOfBirth getDob() {
+        return dob;
     }
 
     /**
@@ -103,10 +100,10 @@ public class Person {
         return otherPerson.getName().equals(getName())
                 && otherPerson.getPhone().equals(getPhone())
                 && otherPerson.getEmail().equals(getEmail())
-                && otherPerson.getDob().equals(getDob())
                 && otherPerson.getAddress().equals(getAddress())
-                && otherPerson.getTags().equals(getTags())
-                && otherPerson.getGender().equals(getGender()); // add gender field for comparison
+                && otherPerson.getDob().equals(getDob())
+                && otherPerson.getGender().equals(getGender())
+                && otherPerson.getTags().equals(getTags());
     }
 
     @Override

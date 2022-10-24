@@ -39,12 +39,11 @@ public class PersonCard extends UiPart<Region> {
     @FXML
     private Label email;
     @FXML
+    private Label gender;
+    @FXML
     private Label dob;
     @FXML
     private FlowPane tags;
-
-    @FXML
-    private Label gender;
 
     /**
      * Creates a {@code PersonCard} with the given {@code Person} and index to display.
