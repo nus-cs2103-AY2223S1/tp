@@ -144,5 +144,24 @@ public class EditMedicationCommand extends EditGenericCommand {
         public Optional<String> getDosage() {
             return medicationDosage;
         }
+
+        @Override
+        public boolean equals(Object other) {
+            // short circuit if same object
+            if (other == this) {
+                return true;
+            }
+
+            // instanceof handles nulls
+            if (!(other instanceof EditMedicationDescriptor)) {
+                return false;
+            }
+
+            // state check
+            EditMedicationDescriptor e = (EditMedicationDescriptor) other;
+
+            return getType().equals(e.getType())
+                    && getDosage().equals(e.getDosage());
+        }
     }
 }

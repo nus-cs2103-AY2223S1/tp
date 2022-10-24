@@ -1,7 +1,7 @@
 package seedu.uninurse.model.medication;
 
-import static java.util.Objects.requireNonNull;
 import static seedu.uninurse.commons.util.AppUtil.checkArgument;
+import static seedu.uninurse.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Optional;
 
@@ -32,8 +32,7 @@ public class Medication {
      * @param medicationDosage A valid dosage amount.
      */
     public Medication(String medicationType, String medicationDosage) {
-        requireNonNull(medicationType);
-        requireNonNull(medicationDosage);
+        requireAllNonNull(medicationType, medicationDosage);
         checkArgument(isValidMedication(medicationType, medicationDosage), MESSAGE_CONSTRAINTS);
         this.medicationType = medicationType;
         this.medicationDosage = medicationDosage;
