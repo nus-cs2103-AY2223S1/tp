@@ -176,11 +176,11 @@ public class Trip {
                 .append("; Description: ")
                 .append(getDescription());
 
-        Set<Event> events = getEvents();
-        if (!events.isEmpty()) {
-            builder.append("; Events: ");
-            events.forEach(builder::append);
-        }
+        //        Set<Event> events = getEvents();
+        //        if (!events.isEmpty()) {
+        //            builder.append("; Events: ");
+        //            events.forEach(builder::append);
+        //        }
 
         if (!getLocation().isDefaultValue()) {
             builder.append("; Location: ");

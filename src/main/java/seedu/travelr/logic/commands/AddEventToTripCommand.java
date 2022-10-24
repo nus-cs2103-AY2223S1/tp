@@ -11,7 +11,6 @@ import seedu.travelr.logic.commands.exceptions.CommandException;
 import seedu.travelr.model.Model;
 import seedu.travelr.model.component.Description;
 import seedu.travelr.model.component.Title;
-import seedu.travelr.model.event.AllInBucketListPredicate;
 import seedu.travelr.model.event.Event;
 import seedu.travelr.model.trip.Trip;
 
@@ -31,7 +30,9 @@ public class AddEventToTripCommand extends Command {
             + PREFIX_TITLE + "Swim "
             + PREFIX_TRIP + "Honeymoon ";
 
-    public static final String MESSAGE_SUCCESS = "Event added to trip: %1$s";
+    public static final String MESSAGE_SUCCESS = "Event added to trip: %1$s "
+            + "\nThe specified event has been removed "
+            + "from the bucket list. Current bucket list:";
     public static final String MESSAGE_DUPLICATE_TRIP = "This event already exists in the specified trip";
 
     private final Title eventToAdd;
@@ -63,8 +64,7 @@ public class AddEventToTripCommand extends Command {
         Trip toAddInto = model.getTrip(new Trip(tripToAddInto, new Description("random"), new HashSet<>()));
         model.removeFromBucketList(event);
         toAddInto.addEvent(event);
-        AllInBucketListPredicate predicate = model.getBucketPredicate();
-        model.updateFilteredEventList(predicate);
+        model.updateFilteredEventList(model.getBucketPredicate());
         model.sortTripsByComparator(DO_NOTHING);
         return new CommandResult(String.format(MESSAGE_SUCCESS, event));
     }
