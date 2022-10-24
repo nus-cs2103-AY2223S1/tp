@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import seedu.uninurse.commons.core.Config;
-import seedu.uninurse.logic.commands.CommandResult;
+import seedu.uninurse.model.person.PatientPair;
 
 /**
  * Versions of UninurseBookSnapshot after every command.
@@ -73,16 +73,20 @@ public class PersistentUninurseBook {
     /**
      * Makes a snapshot of the current UninurseBook.
      */
-    public void makeSnapshot(CommandResult commandResult) {
+    public void makeSnapshot(PatientPair patientPair) {
         while (uninurseBookVersions.size() > currentVersion + 1) {
             uninurseBookVersions.remove(uninurseBookVersions.size() - 1);
         }
         while (uninurseBookVersions.size() > Config.UNDO_LIMIT) {
             uninurseBookVersions.remove(0);
         }
-        uninurseBookVersions.add(new UninurseBookSnapshot(workingCopy, commandResult));
+        uninurseBookVersions.add(new UninurseBookSnapshot(workingCopy, patientPair));
         currentVersion = uninurseBookVersions.size() - 1;
         handleChange();
+    }
+
+    public PatientPair getCurrentPair() {
+        return uninurseBookVersions.get(currentVersion).getPatientPair();
     }
 
     @Override

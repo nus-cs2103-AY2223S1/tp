@@ -5,8 +5,8 @@ import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.uninurse.commons.core.GuiSettings;
-import seedu.uninurse.logic.commands.CommandResult;
 import seedu.uninurse.model.person.Patient;
+import seedu.uninurse.model.person.PatientPair;
 
 /**
  * The API of the Model component.
@@ -95,8 +95,7 @@ public interface Model {
     void updateFilteredPersonList(Predicate<Patient> predicate);
 
     /**
-     * Updates the patient of interest to be accessed by UI components.
-     * @param patient patient of interest.
+     * Updates the patient of interest  with {@code patient} to be accessed by UI components.
      */
     void setPatientOfInterest(Patient patient);
 
@@ -105,6 +104,17 @@ public interface Model {
      * @return patient of interest.
      */
     Patient getPatientOfInterest();
+
+    /**
+     * Gets the saved PatientPair.
+     * @return saved patient pair.
+     */
+    PatientPair getSavedPatientPair();
+
+    /**
+     * Saves the current PatientPair in the UninurseBook.
+     */
+    void saveCurrentPatientPair();
 
     /**
      * Returns whether you can revert to an earlier version of UninurseBook.
@@ -129,5 +139,5 @@ public interface Model {
     /**
      * Makes a snapshot of the current UninurseBook.
      */
-    void makeSnapshot(CommandResult commandResult);
+    void makeSnapshot(PatientPair patientPair);
 }

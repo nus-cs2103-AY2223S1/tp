@@ -15,6 +15,7 @@ import seedu.uninurse.logic.parser.exceptions.ParseException;
 import seedu.uninurse.model.Model;
 import seedu.uninurse.model.ReadOnlyUninurseBook;
 import seedu.uninurse.model.person.Patient;
+import seedu.uninurse.model.person.PatientPair;
 import seedu.uninurse.storage.Storage;
 
 /**
@@ -47,9 +48,6 @@ public class LogicManager implements Logic {
 
         try {
             storage.saveUninurseBook(model.getUninurseBook());
-            if (command.isUndoable()) {
-                model.makeSnapshot(commandResult);
-            }
         } catch (IOException ioe) {
             throw new CommandException(FILE_OPS_ERROR_MESSAGE + ioe, ioe);
         }
@@ -85,5 +83,10 @@ public class LogicManager implements Logic {
     @Override
     public Patient getPatientOfInterest() {
         return model.getPatientOfInterest();
+    }
+
+    @Override
+    public PatientPair getSavedPatientPair() {
+        return model.getSavedPatientPair();
     }
 }

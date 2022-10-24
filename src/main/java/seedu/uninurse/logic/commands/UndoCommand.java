@@ -22,7 +22,7 @@ public class UndoCommand extends Command {
         if (!model.canUndo()) {
             throw new CommandException(MESSAGE_FAILURE);
         }
-
+        model.saveCurrentPatientPair();
         model.undo();
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
         return new CommandResult(MESSAGE_SUCCESS, UNDO_COMMAND_TYPE);

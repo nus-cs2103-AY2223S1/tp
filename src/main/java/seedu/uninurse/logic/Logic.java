@@ -9,6 +9,7 @@ import seedu.uninurse.logic.commands.exceptions.CommandException;
 import seedu.uninurse.logic.parser.exceptions.ParseException;
 import seedu.uninurse.model.ReadOnlyUninurseBook;
 import seedu.uninurse.model.person.Patient;
+import seedu.uninurse.model.person.PatientPair;
 
 /**
  * API of the Logic component
@@ -52,4 +53,9 @@ public interface Logic {
      * Returns the patient of interest.
      */
     Patient getPatientOfInterest();
+
+    /**
+     * Returns the saved PatientPair.
+     */
+    public PatientPair getSavedPatientPair();
 }

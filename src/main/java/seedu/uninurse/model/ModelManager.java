@@ -12,9 +12,9 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.uninurse.commons.core.GuiSettings;
 import seedu.uninurse.commons.core.LogsCenter;
-import seedu.uninurse.logic.commands.CommandResult;
 import seedu.uninurse.model.exceptions.PatientOfInterestNotFoundException;
 import seedu.uninurse.model.person.Patient;
+import seedu.uninurse.model.person.PatientPair;
 
 /**
  * Represents the in-memory model of the uninurse book data.
@@ -28,6 +28,7 @@ public class ModelManager implements Model {
     private final FilteredList<Patient> filteredPersons;
 
     private Optional<Patient> patientOfInterest;
+    private PatientPair savedPair;
 
     /**
      * Initializes a ModelManager with the given uninurseBook and userPrefs.
@@ -41,6 +42,7 @@ public class ModelManager implements Model {
         this.persistentUninurseBook = new PersistentUninurseBook(uninurseBook);
         this.filteredPersons = new FilteredList<>(this.persistentUninurseBook.getWorkingCopy().getPersonList());
         this.patientOfInterest = Optional.empty();
+        this.savedPair = new PatientPair(Optional.empty(), Optional.empty());
     }
 
     public ModelManager() {
@@ -103,19 +105,21 @@ public class ModelManager implements Model {
     @Override
     public void deletePerson(Patient target) {
         persistentUninurseBook.getWorkingCopy().removePerson(target);
+        makeSnapshot(new PatientPair(target, null));
     }
 
     @Override
     public void addPerson(Patient person) {
         persistentUninurseBook.getWorkingCopy().addPerson(person);
+        makeSnapshot(new PatientPair(null, person));
         updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
     }
 
     @Override
     public void setPerson(Patient target, Patient editedPerson) {
         requireAllNonNull(target, editedPerson);
-
         persistentUninurseBook.getWorkingCopy().setPerson(target, editedPerson);
+        makeSnapshot(new PatientPair(target, editedPerson));
     }
 
     //=========== Filtered Patient List Accessors =============================================================
@@ -147,6 +151,16 @@ public class ModelManager implements Model {
         return this.patientOfInterest.orElseThrow(() -> new PatientOfInterestNotFoundException());
     }
 
+    @Override
+    public void saveCurrentPatientPair() {
+        this.savedPair = persistentUninurseBook.getCurrentPair();
+    }
+
+    @Override
+    public PatientPair getSavedPatientPair() {
+        return this.savedPair;
+    }
+
     //=========== Undo and Redo =============================================================
 
     @Override
@@ -170,8 +184,8 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void makeSnapshot(CommandResult commandResult) {
-        persistentUninurseBook.makeSnapshot(commandResult);
+    public void makeSnapshot(PatientPair patientPair) {
+        persistentUninurseBook.makeSnapshot(patientPair);
     }
 
     @Override

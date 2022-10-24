@@ -20,6 +20,7 @@ import seedu.uninurse.model.ReadOnlyUninurseBook;
 import seedu.uninurse.model.ReadOnlyUserPrefs;
 import seedu.uninurse.model.UninurseBook;
 import seedu.uninurse.model.person.Patient;
+import seedu.uninurse.model.person.PatientPair;
 import seedu.uninurse.testutil.PersonBuilder;
 
 public class AddPatientCommandTest {
@@ -178,7 +179,17 @@ public class AddPatientCommandTest {
         }
 
         @Override
-        public void makeSnapshot(CommandResult commandResult) {
+        public void makeSnapshot(PatientPair patientPair) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void saveCurrentPatientPair() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public PatientPair getSavedPatientPair() {
             throw new AssertionError("This method should not be called.");
         }
     }

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="319.0" prefWidth="564.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Label fx:id="oldlabel" alignment="CENTER" contentDisplay="CENTER" prefHeight="22.0" prefWidth="600.0" text="\$old" textAlignment="CENTER" />
+      <StackPane fx:id="oldPersonPlaceholder" prefHeight="150.0" prefWidth="200.0" />
+      <Separator fx:id="horizontalSeparator" prefWidth="200.0" style="-fx-background-radius: 5; -fx-border-insets: 5; -fx-border-width: 3;">
+         <padding>
+            <Insets bottom="2.0" top="2.0" />
+         </padding></Separator>
+      <Label fx:id="newlabel" alignment="CENTER" prefHeight="22.0" prefWidth="600.0" text="\$new" textAlignment="CENTER" />
+      <StackPane fx:id="newPersonPlaceholder" prefHeight="150.0" prefWidth="200.0" />
+   </children>
+</VBox>

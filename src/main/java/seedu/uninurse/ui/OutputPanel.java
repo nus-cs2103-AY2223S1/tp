@@ -1,10 +1,10 @@
 package seedu.uninurse.ui;
 
-
 import javafx.fxml.FXML;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.StackPane;
 import seedu.uninurse.model.person.Patient;
+import seedu.uninurse.model.person.PatientPair;
 
 /**
  *
@@ -28,8 +28,7 @@ public class OutputPanel extends UiPart<Region> {
     }
 
     /**
-     * Updates the outputView panel accordingly if commandResult is task related.
-     * @param patient patient of interest.
+     * Updates the outputView panel accordingly with {@code patient} if commandResult is task related.
      */
     public void handleTask(Patient patient) {
         TaskListPanel taskListPanel = new TaskListPanel(patient);
@@ -41,41 +40,36 @@ public class OutputPanel extends UiPart<Region> {
     }
 
     /**
-     * Updates the outputView panel accordingly if executed command is ViewPatient.
-     * @param patient patient of interest.
+     * Updates the outputView panel accordingly with {@code patient} if executed command is ViewPatient.
      */
     public void handleViewPatient(Patient patient) {
         handlePatient(patient, "Patient:");
     }
 
     /**
-     * Updates the outputView panel accordingly if executed command is AddPatient.
-     * @param patient patient of interest.
+     * Updates the outputView panel accordingly with {@code patient} if executed command is AddPatient.
      */
     public void handleAddPatient(Patient patient) {
         handlePatient(patient, "Added Patient:");
     }
 
     /**
-     * Updates the outputView panel accordingly if executed command is EditPatient.
-     * @param patient patient of interest.
+     * Updates the outputView panel accordingly with {@code patient} if executed command is EditPatient.
      */
     public void handleEditPatient(Patient patient) {
         handlePatient(patient, "Edited Patient:");
     }
 
     /**
-     * Updates the outputView panel accordingly if executed command is DeletePatient.
-     * @param patient patient of interest.
+     * Updates the outputView panel accordingly with {@code patient} if executed command is DeletePatient.
      */
     public void handleDeletePatient(Patient patient) {
         handlePatient(patient, "Deleted Patient:");
     }
 
     /**
-     * Private method that updates the outputView panel accordingly if executed command is patient related.
-     * @param patient patient of interest.
-     * @param headerString string of type of patient related command.
+     * Private method that updates the outputView panel
+     * accordingly with {@code patient} and {@code headerString} if executed command is patient related.
      */
     private void handlePatient(Patient patient, String headerString) {
         UpdatedPatientCard updatedPersonCard = new UpdatedPatientCard(patient, headerString);
@@ -85,4 +79,23 @@ public class OutputPanel extends UiPart<Region> {
         outputView.getChildren().clear();
         outputView.getChildren().add(updatedPersonCard.getRoot());
     }
+
+    /**
+     * Updates the outputView panel accordingly with {@code patientPair} if executed command is Undo.
+     */
+    public void handleUndo(PatientPair patientPair) {
+        outputView.getChildren().clear();
+        UndoCard undoCard = new UndoCard(patientPair);
+        outputView.getChildren().add(undoCard.getRoot());
+    }
+
+    /**
+     * Updates the outputView panel accordingly with {@code patientPair} if executed command is Redo.
+     */
+    public void handleRedo(PatientPair patientPair) {
+        outputView.getChildren().clear();
+        RedoCard redoCard = new RedoCard(patientPair);
+        outputView.getChildren().add(redoCard.getRoot());
+    }
+
 }
