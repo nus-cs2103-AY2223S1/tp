@@ -15,6 +15,7 @@ import seedu.address.model.internship.AppliedDate;
 import seedu.address.model.internship.Company;
 import seedu.address.model.internship.Description;
 import seedu.address.model.internship.Internship;
+import seedu.address.model.internship.InterviewDateTime;
 import seedu.address.model.internship.Link;
 import seedu.address.model.tag.Tag;
 
@@ -83,10 +84,11 @@ public class MarkCommand extends Command {
         Link updatedLink = internshipToMark.getLink();
         Description updatedDescription = internshipToMark.getDescription();
         AppliedDate updatedAppliedDate = internshipToMark.getAppliedDate();
+        InterviewDateTime updatedInterviewDateTime = internshipToMark.getInterviewDateTime();
         Set<Tag> updatedTags = internshipToMark.getTags();
 
         return new Internship(updatedCompany, updatedLink, updatedDescription,
-                updatedApplicationStatus, updatedAppliedDate, updatedTags);
+                updatedApplicationStatus, updatedAppliedDate, updatedInterviewDateTime, updatedTags);
     }
 
     @Override

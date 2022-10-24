@@ -37,6 +37,9 @@
         <Label styleClass="cell_small_label" text="Applied:" />
         <Label fx:id="appliedDate" styleClass="cell_small_label" text="\$appliedDate" />
       </HBox>
+      <HBox spacing="5" alignment="CENTER_LEFT">
+        <Label fx:id="interviewDateTime" styleClass="cell_small_label" text="\$interviewDateTime" />
+      </HBox>
     </VBox>
   </GridPane>
 </HBox>

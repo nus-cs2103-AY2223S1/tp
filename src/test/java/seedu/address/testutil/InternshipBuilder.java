@@ -8,6 +8,7 @@ import seedu.address.model.internship.AppliedDate;
 import seedu.address.model.internship.Company;
 import seedu.address.model.internship.Description;
 import seedu.address.model.internship.Internship;
+import seedu.address.model.internship.InterviewDateTime;
 import seedu.address.model.internship.Link;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.util.SampleDataUtil;
@@ -22,12 +23,14 @@ public class InternshipBuilder {
     public static final String DEFAULT_DESCRIPTION = "Software Engineering Intern, BS, Summer 2023";
     public static final ApplicationStatus DEFAULT_APPLICATION_STATUS = ApplicationStatus.Applied;
     public static final String DEFAULT_APPLIED_DATE = "25 Oct 2022";
+    public static final String DEFAULT_INTERVIEW_DATE_TIME = "30 Dec 2022 09:00";
 
     private Company company;
     private Link link;
     private Description description;
     private ApplicationStatus applicationStatus;
     private AppliedDate appliedDate;
+    private InterviewDateTime interviewDateTime;
     private Set<Tag> tags;
 
     /**
@@ -39,6 +42,7 @@ public class InternshipBuilder {
         description = new Description(DEFAULT_DESCRIPTION);
         applicationStatus = DEFAULT_APPLICATION_STATUS;
         appliedDate = new AppliedDate(DEFAULT_APPLIED_DATE);
+        interviewDateTime = new InterviewDateTime(DEFAULT_INTERVIEW_DATE_TIME);
         tags = new HashSet<>();
     }
 
@@ -51,6 +55,7 @@ public class InternshipBuilder {
         description = internshipToCopy.getDescription();
         applicationStatus = internshipToCopy.getApplicationStatus();
         appliedDate = internshipToCopy.getAppliedDate();
+        interviewDateTime = internshipToCopy.getInterviewDateTime();
         tags = new HashSet<>(internshipToCopy.getTags());
     }
 
@@ -79,6 +84,14 @@ public class InternshipBuilder {
     }
 
     /**
+     * Sets the {@code InterviewDateTime} of the {@code Internship} that we are building.
+     */
+    public InternshipBuilder withInterviewDateTime(String interviewDate) {
+        this.interviewDateTime = new InterviewDateTime(interviewDate);
+        return this;
+    }
+
+    /**
      * Sets the {@code Link} of the {@code Internship} that we are building.
      */
     public InternshipBuilder withLink(String link) {
@@ -103,7 +116,7 @@ public class InternshipBuilder {
     }
 
     public Internship build() {
-        return new Internship(company, link, description, applicationStatus, appliedDate, tags);
+        return new Internship(company, link, description, applicationStatus, appliedDate, interviewDateTime, tags);
     }
 
 }

@@ -10,10 +10,11 @@ public enum ApplicationStatus {
     Accepted("accepted"),
     Applied("applied"),
     Interviewed("interviewed"),
+    Shortlisted("shortlisted"),
     Rejected("rejected");
 
-    public static final String MESSAGE_CONSTRAINTS = "Application status can be Accepted, Applied, Interviewed"
-            + " or Rejected ";
+    public static final String MESSAGE_CONSTRAINTS = "Application status can be Accepted, Applied, Shortlisted,"
+            + " Interviewed or Rejected. ";
 
     private final String status;
 

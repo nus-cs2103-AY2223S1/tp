@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_APPLIED_DATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_COMPANY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_INTERVIEW_DATE_TIME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_LINK;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_INTERNSHIPS;
@@ -24,6 +25,7 @@ import seedu.address.model.internship.AppliedDate;
 import seedu.address.model.internship.Company;
 import seedu.address.model.internship.Description;
 import seedu.address.model.internship.Internship;
+import seedu.address.model.internship.InterviewDateTime;
 import seedu.address.model.internship.Link;
 import seedu.address.model.tag.Tag;
 
@@ -42,6 +44,7 @@ public class EditCommand extends Command {
             + "[" + PREFIX_LINK + "LINK] "
             + "[" + PREFIX_DESCRIPTION + "DESCRIPTION] "
             + "[" + PREFIX_APPLIED_DATE + "APPLIED_DATE] "
+            + "[" + PREFIX_INTERVIEW_DATE_TIME + "INTERVIEW_DATE_TIME] "
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_LINK + "https://careers.tiktok.com/position/7132807469026117902/detail "
@@ -101,6 +104,8 @@ public class EditCommand extends Command {
                 .orElse(internshipToEdit.getDescription());
         AppliedDate updatedAppliedDate = editInternshipDescriptor.getAppliedDate()
                 .orElse(internshipToEdit.getAppliedDate());
+        InterviewDateTime updatedInterviewDateTime = editInternshipDescriptor.getInterviewDateTime()
+                .orElse(internshipToEdit.getInterviewDateTime());
         ApplicationStatus updatedApplicationStatus =
                 editInternshipDescriptor.getApplicationStatus()
                         .orElse(internshipToEdit.getApplicationStatus());
@@ -108,7 +113,7 @@ public class EditCommand extends Command {
                 .orElse(internshipToEdit.getTags());
 
         return new Internship(updatedCompany, updatedLink, updatedDescription,
-                updatedApplicationStatus, updatedAppliedDate, updatedTags);
+                updatedApplicationStatus, updatedAppliedDate, updatedInterviewDateTime, updatedTags);
     }
 
     @Override
@@ -138,6 +143,7 @@ public class EditCommand extends Command {
         private Link link;
         private Description description;
         private AppliedDate appliedDate;
+        private InterviewDateTime interviewDateTime;
         private ApplicationStatus applicationStatus;
         private Set<Tag> tags;
 
@@ -152,6 +158,7 @@ public class EditCommand extends Command {
             setLink(toCopy.link);
             setDescription(toCopy.description);
             setAppliedDate(toCopy.appliedDate);
+            setInterviewDate(toCopy.interviewDateTime);
             setApplicationStatus(toCopy.applicationStatus);
             setTags(toCopy.tags);
         }
@@ -160,7 +167,7 @@ public class EditCommand extends Command {
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(company, link, description, appliedDate, tags);
+            return CollectionUtil.isAnyNonNull(company, link, description, appliedDate, interviewDateTime, tags);
         }
 
         public void setCompany(Company company) {
@@ -193,6 +200,14 @@ public class EditCommand extends Command {
 
         public Optional<AppliedDate> getAppliedDate() {
             return Optional.ofNullable(appliedDate);
+        }
+
+        public void setInterviewDate(InterviewDateTime interviewDateTime) {
+            this.interviewDateTime = interviewDateTime;
+        }
+
+        public Optional<InterviewDateTime> getInterviewDateTime() {
+            return Optional.ofNullable(interviewDateTime);
         }
 
         public void setApplicationStatus(ApplicationStatus applicationStatus) {
@@ -239,6 +254,7 @@ public class EditCommand extends Command {
                     && getLink().equals(e.getLink())
                     && getDescription().equals(e.getDescription())
                     && getAppliedDate().equals(e.getAppliedDate())
+                    && getInterviewDateTime().equals(e.getInterviewDateTime())
                     && getApplicationStatus().equals(e.getApplicationStatus())
                     && getTags().equals(e.getTags());
         }

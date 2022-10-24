@@ -36,6 +36,7 @@ public class EditInternshipDescriptorBuilder {
         descriptor.setLink(internship.getLink());
         descriptor.setDescription(internship.getDescription());
         descriptor.setAppliedDate(internship.getAppliedDate());
+        descriptor.setInterviewDate(internship.getInterviewDateTime());
         descriptor.setTags(internship.getTags());
     }
 

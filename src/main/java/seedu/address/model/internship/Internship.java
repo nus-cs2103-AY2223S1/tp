@@ -23,19 +23,21 @@ public class Internship {
 
     // Data fields
     private final AppliedDate appliedDate;
+    private final InterviewDateTime interviewDateTime;
     private final Set<Tag> tags = new HashSet<>();
 
     /**
      * Every field must be present and not null.
      */
     public Internship(Company company, Link link, Description description, ApplicationStatus applicationStatus,
-                      AppliedDate appliedDate, Set<Tag> tags) {
+                      AppliedDate appliedDate, InterviewDateTime interviewDateTime, Set<Tag> tags) {
         requireAllNonNull(company, link, description, appliedDate, tags);
         this.company = company;
         this.link = link;
         this.description = description;
         this.applicationStatus = applicationStatus;
         this.appliedDate = appliedDate;
+        this.interviewDateTime = interviewDateTime;
         this.tags.addAll(tags);
     }
 
@@ -59,6 +61,10 @@ public class Internship {
         return appliedDate;
     }
 
+    public InterviewDateTime getInterviewDateTime() {
+        return interviewDateTime;
+    }
+
     /**
      * Returns an immutable tag set, which throws {@code UnsupportedOperationException}
      * if modification is attempted.
@@ -76,10 +82,6 @@ public class Internship {
         if (otherInternship == this) {
             return true;
         }
-
-        //Backup for original code
-        //   return otherInternship != null
-        //        && otherInternship.getCompany().equals(getCompany());
 
         return otherInternship != null
                 && otherInternship.getCompany().equals(getCompany())
@@ -125,8 +127,14 @@ public class Internship {
                 .append(getDescription())
                 .append("; Application Status: ")
                 .append(getApplicationStatus())
-                .append("; AppliedDate: ")
+                .append("; Applied Date: ")
                 .append(getAppliedDate());
+
+        InterviewDateTime interviewDateTime = getInterviewDateTime();
+        if (interviewDateTime != null) {
+            builder.append("; Interview Date: ")
+                    .append(getInterviewDateTime());
+        }
 
         Set<Tag> tags = getTags();
         if (!tags.isEmpty()) {
