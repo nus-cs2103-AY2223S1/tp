@@ -4,6 +4,8 @@ import static java.util.Objects.requireNonNull;
 
 import java.util.Objects;
 
+import seedu.address.commons.core.Themes.Theme;
+
 /**
  * Represents the result of a command execution.
  */
@@ -17,13 +19,29 @@ public class CommandResult {
     /** The application should exit. */
     private final boolean exit;
 
+    /** The theme to change to, null if no change. */
+    private final Theme theme;
+
     /**
      * Constructs a {@code CommandResult} with the specified fields.
+     * and other fields set to their default value.
+     */
+    public CommandResult(String feedbackToUser, Theme theme) {
+        this.feedbackToUser = requireNonNull(feedbackToUser);
+        this.theme = theme;
+        this.showHelp = false;
+        this.exit = false;
+    }
+
+    /**
+     * Constructs a {@code CommandResult} with the specified fields.
+     * and Optional fields set to empty
      */
     public CommandResult(String feedbackToUser, boolean showHelp, boolean exit) {
         this.feedbackToUser = requireNonNull(feedbackToUser);
         this.showHelp = showHelp;
         this.exit = exit;
+        theme = null;
     }
 
     /**
@@ -44,6 +62,18 @@ public class CommandResult {
 
     public boolean isExit() {
         return exit;
+    }
+
+    /**
+     * Returns true if theme is not null. Meaning there is a call to change the theme.
+     * @return true if theme is not null.
+     */
+    public boolean isThemeChange() {
+        return theme != null;
+    }
+
+    public Theme getTheme() {
+        return theme;
     }
 
     @Override

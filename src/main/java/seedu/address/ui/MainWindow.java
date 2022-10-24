@@ -1,5 +1,7 @@
 package seedu.address.ui;
 
+import static seedu.address.logic.commands.ThemeCommand.CHANGE_THEME_ERROR;
+
 import java.util.logging.Logger;
 
 import javafx.event.ActionEvent;
@@ -12,6 +14,7 @@ import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.commons.core.Themes.Theme;
 import seedu.address.logic.Logic;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
@@ -44,7 +47,7 @@ public class MainWindow extends UiPart<Stage> {
     private HelpWindow helpWindow;
 
     private boolean isExpanded;
-    private boolean isLightTheme;
+    private Theme currentTheme;
 
     @FXML
     private StackPane commandBoxPlaceholder;
@@ -86,7 +89,7 @@ public class MainWindow extends UiPart<Stage> {
 
         isExpanded = false;
         compactExpandItem.setText(EXPAND_MENUITEM_TEXT);
-        isLightTheme = true;
+        currentTheme = Theme.LIGHT;
         lightDarkThemeItem.setText(DARK_THEME_MENUITEM_TEXT);
     }
 
@@ -190,25 +193,37 @@ public class MainWindow extends UiPart<Stage> {
      */
     @FXML
     private void handleLightDarkTheme() {
-        if (isLightTheme) {
+        if (currentTheme.equals(Theme.LIGHT)) {
             logger.info("Switching to dark theme...");
-            isLightTheme = false;
+            currentTheme = Theme.DARK;
             lightDarkThemeItem.setText(LIGHT_THEME_MENUITEM_TEXT);
+            primaryStage.getScene().getStylesheets().clear();
             primaryStage.getScene().getStylesheets().add(darkTheme);
             primaryStage.getScene().getStylesheets().add(extensionsDark);
-            primaryStage.getScene().getStylesheets().remove(lightTheme);
-            primaryStage.getScene().getStylesheets().remove(extensionsLight);
             helpWindow.setDarkTheme();
-        } else {
+        } else if (currentTheme.equals(Theme.DARK)) {
             logger.info("Switching to light theme...");
-            isLightTheme = true;
+            currentTheme = Theme.LIGHT;
             lightDarkThemeItem.setText(DARK_THEME_MENUITEM_TEXT);
+            primaryStage.getScene().getStylesheets().clear();
             primaryStage.getScene().getStylesheets().add(lightTheme);
             primaryStage.getScene().getStylesheets().add(extensionsLight);
-            primaryStage.getScene().getStylesheets().remove(darkTheme);
-            primaryStage.getScene().getStylesheets().remove(extensionsDark);
             helpWindow.setLightTheme();
         }
+    }
+
+    /**
+     * Handles theme change from the ThemeCommand.
+     * Takes in {@code Theme} that will specify the new theme to change to.
+     * Throws a {@code CommandException} if theme to change to is same as current theme.
+     * @param theme specifies the theme to change to
+     * @throws CommandException if theme to change to is same as current theme
+     */
+    private void handleThemeCommand(Theme theme) throws CommandException {
+        if (theme.equals(currentTheme)) {
+            throw new CommandException(CHANGE_THEME_ERROR);
+        }
+        handleLightDarkTheme();
     }
 
     /**
@@ -246,11 +261,18 @@ public class MainWindow extends UiPart<Stage> {
             logger.info("Result: " + commandResult.getFeedbackToUser());
             resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
 
+            if (commandResult.isThemeChange()) {
+                assert !commandResult.isShowHelp() && !commandResult.isExit();
+                handleThemeCommand(commandResult.getTheme());
+            }
+
             if (commandResult.isShowHelp()) {
+                assert !commandResult.isThemeChange() && !commandResult.isExit();
                 handleHelp();
             }
 
             if (commandResult.isExit()) {
+                assert !commandResult.isThemeChange() && !commandResult.isShowHelp();
                 handleExit();
             }
 
