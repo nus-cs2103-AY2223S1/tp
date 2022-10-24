@@ -35,12 +35,14 @@ public class SortCommandTest {
 
     @Test
     public void testCompare() {
+        // this is to test the result of compare() in SortByAppointment
         SortByAppointment sortByAppointment = new SortByAppointment("asc");
         int result = sortByAppointment.compare(MUSAB_WITH_NO_APPT, ELLE);
         int result2 = sortByAppointment.compare(MUSAB_WITH_NO_APPT, AMY);
         assertTrue(result == 1);
         assertTrue(result2 == 0);
     }
+
     @Test
     public void testGetApptThrowsRuntimeException() {
         Throwable exception = assertThrows(RuntimeException.class, () -> MUSAB_WITH_NO_APPT.getAppointments().get(0));
