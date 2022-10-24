@@ -5,6 +5,7 @@ import static nus.climods.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Iterator;
 import java.util.List;
+import java.util.Optional;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -14,8 +15,8 @@ import nus.climods.model.module.exceptions.UserModuleNotFoundException;
 /**
  * A list of modules that enforces uniqueness between its elements and does not allow nulls. A module is considered
  * unique by comparing using {@code Person#isSamePerson(Person)}. As such, adding and updating of modules uses
- * Person#isSamePerson(Person) for equality so as to ensure that the module being added or updated is unique in terms of
- * identity in the UniquePersonList. However, the removal of a module uses Person#equals(Object) so as to ensure that
+ * Person#isSamePerson(Person) for equality to ensure that the module being added or updated is unique in terms of
+ * identity in the UniquePersonList. However, the removal of a module uses Person#equals(Object) to ensure that
  * the module with exactly the same fields will be removed.
  * <p>
  * Supports a minimal set of list operations.
@@ -35,6 +36,7 @@ public class UniqueUserModuleList implements Iterable<UserModule> {
         requireNonNull(toCheck);
         return internalList.stream().anyMatch(toCheck::isSameUserModule);
     }
+
 
     /**
      * Adds a module to the list. The module must not already exist in the list.
@@ -70,10 +72,15 @@ public class UniqueUserModuleList implements Iterable<UserModule> {
     /**
      * Removes the equivalent module from the list. The module must exist in the list.
      */
-    public void remove(UserModule toRemove) {
+    public void remove(String toRemove) {
         requireNonNull(toRemove);
-        if (!internalList.remove(toRemove)) {
+        Optional<UserModule> deleteMod = internalList.stream()
+                .filter(mod -> mod.getCode().equals(toRemove.toUpperCase()))
+                .findFirst();
+        if (deleteMod.isEmpty()) {
             throw new UserModuleNotFoundException();
+        } else {
+            internalList.remove(deleteMod.get());
         }
     }
 

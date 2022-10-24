@@ -4,11 +4,12 @@ import static java.util.Objects.requireNonNull;
 
 import java.util.Objects;
 
+import nus.climods.model.Model;
+
 /**
  * Represents the result of a command execution.
  */
 public class CommandResult {
-
     private final String feedbackToUser;
 
     /**
@@ -21,6 +22,9 @@ public class CommandResult {
      */
     private final boolean exit;
 
+    /* The application should save userModuleList */
+    private boolean isSave;
+
     /**
      * Constructs a {@code CommandResult} with the specified fields.
      */
@@ -28,14 +32,26 @@ public class CommandResult {
         this.feedbackToUser = requireNonNull(feedbackToUser);
         this.showHelp = showHelp;
         this.exit = exit;
+        isSave = false;
     }
 
     /**
      * Constructs a {@code CommandResult} with the specified {@code feedbackToUser}, and other fields set to their
      * default value.
      */
-    public CommandResult(String feedbackToUser) {
+    public CommandResult(String feedbackToUser, String commandWord,
+                         Model model) {
         this(feedbackToUser, false, false);
+
+        switch (commandWord) {
+        case (AddCommand.COMMAND_WORD):
+
+        case (DeleteCommand.COMMAND_WORD):
+            isSave = true;
+            break;
+        default:
+            isSave = false;
+        }
     }
 
     public String getFeedbackToUser() {
@@ -50,6 +66,8 @@ public class CommandResult {
         return exit;
     }
 
+    public boolean isSave() { return isSave; }
+
     @Override
     public boolean equals(Object other) {
         if (other == this) {
@@ -63,13 +81,13 @@ public class CommandResult {
 
         CommandResult otherCommandResult = (CommandResult) other;
         return feedbackToUser.equals(otherCommandResult.feedbackToUser)
-            && showHelp == otherCommandResult.showHelp
-            && exit == otherCommandResult.exit;
+            && showHelp == otherCommandResult.isShowHelp()
+            && exit == otherCommandResult.isExit()
+            && isSave == otherCommandResult.isSave();
     }
 
     @Override
     public int hashCode() {
         return Objects.hash(feedbackToUser, showHelp, exit);
     }
-
 }

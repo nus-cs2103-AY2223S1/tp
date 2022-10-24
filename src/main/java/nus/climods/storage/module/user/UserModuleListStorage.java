@@ -5,12 +5,13 @@ import java.nio.file.Path;
 import java.util.Optional;
 
 import nus.climods.commons.exceptions.DataConversionException;
-import nus.climods.model.ReadOnlyAddressBook;
+import nus.climods.model.module.UniqueUserModuleList;
+import nus.climods.storage.exceptions.StorageException;
 
 // TODO: Rename all "ReadOnlyAddressBook" to "ReadOnlyUserModuleList"
 
 /**
- * Represents a storage for {@link nus.climods.model.AddressBook}.
+ * Represents a storage for {@link nus.climods.model.module.UniqueUserModuleList}
  */
 public interface UserModuleListStorage {
 
@@ -20,30 +21,30 @@ public interface UserModuleListStorage {
     Path getUserModuleListFilePath();
 
     /**
-     * Returns user module list data as a {@link ReadOnlyAddressBook}. Returns {@code Optional.empty()} if storage file
-     * is not found.
+     * Returns user module list data as a {@link nus.climods.model.module.UniqueUserModuleList}.
+     * Returns {@code Optional.empty()} if storage file is not found.
      *
      * @throws DataConversionException if the data in storage is not in the expected format.
      * @throws IOException             if there was any problem when reading from the storage.
      */
-    Optional<ReadOnlyAddressBook> readUserModuleList() throws DataConversionException, IOException;
+    Optional<UniqueUserModuleList> readUserModuleList() throws DataConversionException;
 
     /**
      * @see #getUserModuleListFilePath()
      */
-    Optional<ReadOnlyAddressBook> readUserModuleList(Path filePath) throws DataConversionException, IOException;
+    Optional<UniqueUserModuleList> readUserModuleList(Path filePath) throws DataConversionException;
 
     /**
-     * Saves the given {@link ReadOnlyAddressBook} to the storage.
+     * Saves the given {@link UniqueUserModuleList} to the storage.
      *
      * @param userModuleList cannot be null.
      * @throws IOException if there was any problem writing to the file.
      */
-    void saveUserModuleList(ReadOnlyAddressBook userModuleList) throws IOException;
+    void saveUserModuleList(UniqueUserModuleList userModuleList) throws StorageException;
 
     /**
-     * @see #saveUserModuleList(ReadOnlyAddressBook)
+     * @see #saveUserModuleList(UniqueUserModuleList)
      */
-    void saveUserModuleList(ReadOnlyAddressBook userModuleList, Path filePath) throws IOException;
+    void saveUserModuleList(UniqueUserModuleList userModuleList, Path filePath) throws IOException;
 
 }

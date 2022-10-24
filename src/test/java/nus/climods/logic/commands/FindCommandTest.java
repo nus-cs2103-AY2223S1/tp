@@ -18,7 +18,6 @@ import nus.climods.model.module.Module;
 import nus.climods.model.module.ModuleList;
 import nus.climods.model.module.UniqueUserModuleList;
 
-
 class FindCommandTest {
 
     private static final String testAcademicYear = "2022-2023";
@@ -58,6 +57,14 @@ class FindCommandTest {
         assertEquals(commandResult.getFeedbackToUser(), expectedMessage);
         assertEquals(model.getFilteredModuleList().stream().map(Module::getCode).collect(Collectors.toList()),
             Arrays.asList("CS2100", "CS2101", "CS2102", "CS2103"));
+    }
+
+    @Test
+    public void execute_regexKeywords_correctSortOrder() {
+        FindCommand command = new FindCommand(prepareSearchRegexes("software engineering"));
+        command.execute(model);
+
+        assertEquals(model.getFilteredModuleList().get(0).getCode(), "CS2103");
     }
 
     /**

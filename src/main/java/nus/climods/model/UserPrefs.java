@@ -14,6 +14,8 @@ import nus.climods.commons.core.GuiSettings;
 public class UserPrefs implements ReadOnlyUserPrefs {
 
     private GuiSettings guiSettings = new GuiSettings();
+    private final Path userModuleListFilePath = Paths.get("data", "userModuleList.json");
+
     private Path addressBookFilePath = Paths.get("data", "addressbook.json");
     private String academicYear = "2022-2023";
 
@@ -47,6 +49,15 @@ public class UserPrefs implements ReadOnlyUserPrefs {
     public void setGuiSettings(GuiSettings guiSettings) {
         requireNonNull(guiSettings);
         this.guiSettings = guiSettings;
+    }
+
+    public Path getUserModuleListFilePath() {
+        return userModuleListFilePath;
+    }
+
+    public void setUserModuleListFilePath(Path userModuleListFilePath) {
+        requireNonNull(userModuleListFilePath);
+        this.addressBookFilePath = userModuleListFilePath;
     }
 
     public Path getAddressBookFilePath() {

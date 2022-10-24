@@ -9,7 +9,8 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import nus.climods.model.module.Module;
 import nus.climods.ui.UiPart;
-import nus.climods.ui.common.Pill;
+import nus.climods.ui.module.components.ModuleCreditsPill;
+import nus.climods.ui.module.components.SemesterPill;
 
 /**
  * A UI component that displays information of a {@code Module}.
@@ -17,21 +18,6 @@ import nus.climods.ui.common.Pill;
 public class ModuleCard extends UiPart<Region> {
 
     private static final String FXML = "ModuleListCard.fxml";
-
-    private static final String MODULE_CREDITS_BG_COLOR = "#61AFEF";
-    private static final String MODULE_CREDITS_TEXT_COLOR = "#FFFFFF";
-    private static final int MODULE_CREDITS_FONT_SIZE = 13;
-
-    private static final String SEMESTER_BG_COLOR = "#C678DD";
-    private static final String SEMESTER_TEXT_COLOR = "#000000";
-    private static final int SEMESTER_FONT_SIZE = 13;
-
-    /**
-     * Note: Certain keywords such as "location" and "resources" are reserved keywords in JavaFX. As a consequence, UI
-     * elements' variable names cannot be set to such keywords or an exception will be thrown by JavaFX during runtime.
-     *
-     * @see <a href="https://github.com/se-edu/addressbook-level4/issues/336">The issue on AddressBook level 4</a>
-     */
 
     public final Module module;
 
@@ -57,29 +43,8 @@ public class ModuleCard extends UiPart<Region> {
         title.setText(module.getTitle());
         department.setText(module.getDepartment());
         moduleInfo.getChildren()
-            .addAll(module.getSemesters().stream().map(this::createSemesterPill).collect(Collectors.toList()));
-        moduleInfo.getChildren().add(createModuleCreditsPill(module.getModuleCredit()));
-    }
-    private Pill createSemesterPill(int semesterNum) {
-        String semesterText;
-        switch (semesterNum) {
-        case 3:
-            semesterText = "Special Term I";
-            break;
-        case 4:
-            semesterText = "Special Term II";
-            break;
-        default:
-            semesterText = String.format("Semester %s", semesterNum);
-        }
-
-        return new Pill(semesterText, SEMESTER_BG_COLOR, SEMESTER_TEXT_COLOR,
-            SEMESTER_FONT_SIZE);
-    }
-
-    private Pill createModuleCreditsPill(String moduleCredits) {
-        return new Pill(String.format("%s MCs", moduleCredits), MODULE_CREDITS_BG_COLOR, MODULE_CREDITS_TEXT_COLOR,
-            MODULE_CREDITS_FONT_SIZE);
+            .addAll(module.getSemesters().stream().map(SemesterPill::new).collect(Collectors.toList()));
+        moduleInfo.getChildren().add(new ModuleCreditsPill(module.getModuleCredit()));
     }
 
     @Override
@@ -95,8 +60,7 @@ public class ModuleCard extends UiPart<Region> {
         }
 
         // state check
-        ModuleCard card = (ModuleCard) other;
-        return moduleCode.getText().equals(card.moduleCode.getText())
-            && module.equals(card.module);
+        ModuleCard otherCard = (ModuleCard) other;
+        return module.equals(otherCard.module);
     }
 }

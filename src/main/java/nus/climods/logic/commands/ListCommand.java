@@ -8,6 +8,7 @@ import java.util.Optional;
 import nus.climods.logic.parser.parameters.FacultyCodeParameter;
 import nus.climods.logic.parser.parameters.UserFlagParameter;
 import nus.climods.model.Model;
+import nus.climods.model.module.predicate.CodeContainsKeywordsPredicate;
 
 /**
  * Lists all modules in NUS to the user.
@@ -26,8 +27,9 @@ public class ListCommand extends Command {
 
     /**
      * Used for list command containing predicates
+     *
      * @param faculty optional argument to specify the faculty
-     * @param faculty
+     * @param hasUser
      */
     public ListCommand(FacultyCodeParameter faculty, UserFlagParameter hasUser) {
         this.facultyCode = faculty.getOptionalArgValue();
@@ -37,8 +39,12 @@ public class ListCommand extends Command {
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);
-        model.updateFilteredModuleList(facultyCode, hasUser);
+        // TODO: Implement filtering for saved modules
+        // Support for --user flag
+        model.setFilteredModuleList(new CodeContainsKeywordsPredicate(facultyCode));
+
         return new CommandResult(String.format(MESSAGE_MODULES_LISTED_OVERVIEW,
-                model.getFilteredModuleList().size()));
+                model.getFilteredModuleList().size()),
+                COMMAND_WORD, model);
     }
 }

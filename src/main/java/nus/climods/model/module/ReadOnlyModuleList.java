@@ -16,10 +16,13 @@ public interface ReadOnlyModuleList {
      */
     ObservableList<Module> getModules();
 
+    boolean hasModule(String moduleCode);
+
     /**
-     * Get reference to list module in module list
+     * Get reference to module in module list
+     *
      * @param moduleCode Module code to check for
      * @return Optional of corresponding Module in list if it exists, else empty Optional
      */
-    Optional<Module> getListModule(String moduleCode);
+    Optional<Module> getModule(String moduleCode);
 }

@@ -5,6 +5,8 @@ import java.util.List;
 import java.util.Optional;
 import java.util.regex.Pattern;
 
+import org.openapitools.client.model.SemestersEnum;
+
 /**
  * Contains utility methods used for parsing strings in the various *Parser classes.
  */
@@ -99,6 +101,7 @@ public class ParserUtil {
      *               String
      */
     public static Optional<String> parseLessonType(String input) {
+        //TODO: Change to enum
         List<String> acceptedLessonType = Arrays.asList("LECTURE", "TUTORIAL", "RECITATION", "LAB", "SEMINAR");
 
         if (!acceptedLessonType.contains(input.trim().toUpperCase())) {
@@ -106,5 +109,21 @@ public class ParserUtil {
         }
 
         return Optional.of(input);
+    }
+    /**
+     * Parse semester details according to user input
+     * @param input Input string from user containing semester details
+     * @return Optional of String representing semester number. Returns empty Optional if user input is not a valid
+     *      semester.
+     */
+    public static Optional<SemestersEnum> parseSemesterType(String input) {
+        String toCheck = input.trim().toUpperCase();
+
+        try {
+            SemestersEnum s1 = SemestersEnum.fromValue(toCheck);
+            return Optional.of(s1);
+        } catch (IllegalArgumentException e) {
+            return Optional.empty();
+        }
     }
 }

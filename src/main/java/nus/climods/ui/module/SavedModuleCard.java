@@ -7,7 +7,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import nus.climods.model.module.UserModule;
 import nus.climods.ui.UiPart;
-import nus.climods.ui.common.Pill;
+import nus.climods.ui.module.components.SemesterPill;
 
 /**
  * An UI component that displays information of a {@code Module}.
@@ -16,16 +16,9 @@ public class SavedModuleCard extends UiPart<Region> {
 
     private static final String FXML = "SavedModuleListCard.fxml";
 
-    /**
-     * Note: Certain keywords such as "location" and "resources" are reserved keywords in JavaFX. As a consequence, UI
-     * elements' variable names cannot be set to such keywords or an exception will be thrown by JavaFX during runtime.
-     *
-     * @see <a href="https://github.com/se-edu/addressbook-level4/issues/336">The issue on AddressBook level 4</a>
-     */
-
     private static final String AY_SEMESTER_BG_COLOR = "#E5C07B";
-
     private static final String AY_SEMESTER_TEXT_COLOR = "#2E333D";
+
     public final UserModule module;
 
     @FXML
@@ -45,10 +38,11 @@ public class SavedModuleCard extends UiPart<Region> {
     public SavedModuleCard(UserModule module) {
         super(FXML);
         this.module = module;
-        moduleCode.setText(module.getUserModuleCode());
+        moduleCode.setText(module.getCode());
         tutorial.setText(module.getTutorial());
         lecture.setText(module.getLecture());
-        ayData.getChildren().add(new Pill(module.getSelectedSemester(), AY_SEMESTER_BG_COLOR, AY_SEMESTER_TEXT_COLOR));
+        ayData.getChildren()
+            .add(new SemesterPill(module.getSelectedSemester(), AY_SEMESTER_BG_COLOR, AY_SEMESTER_TEXT_COLOR));
     }
 
     @Override

@@ -4,10 +4,10 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.Region;
-import nus.climods.logic.Logic;
-import nus.climods.logic.commands.CommandResult;
+import nus.climods.commons.core.CommandSession;
 import nus.climods.logic.commands.exceptions.CommandException;
 import nus.climods.logic.parser.exceptions.ParseException;
+import nus.climods.storage.exceptions.StorageException;
 import nus.climods.ui.UiPart;
 
 /**
@@ -18,7 +18,7 @@ public class CommandBox extends UiPart<Region> {
     public static final String ERROR_STYLE_CLASS = "error";
     private static final String FXML = "CommandBox.fxml";
 
-    private final CommandExecutor commandExecutor;
+    private final CommandSession commandSession;
 
     @FXML
     private TextField commandTextField;
@@ -26,11 +26,27 @@ public class CommandBox extends UiPart<Region> {
     /**
      * Creates a {@code CommandBox} with the given {@code CommandExecutor}.
      */
-    public CommandBox(CommandExecutor commandExecutor) {
+    public CommandBox(CommandSession commandSession) {
         super(FXML);
-        this.commandExecutor = commandExecutor;
+        this.commandSession = commandSession;
         // calls #setStyleToDefault() whenever there is a change to the text of the command box.
         commandTextField.textProperty().addListener((unused1, unused2, unused3) -> setStyleToDefault());
+        commandTextField.setOnKeyPressed(event -> {
+            if (!commandTextField.isFocused()) {
+                return;
+            }
+
+            switch (event.getCode()) {
+            case UP:
+                commandTextField.setText(commandSession.getPreviousCommand());
+                break;
+            case DOWN:
+                commandTextField.setText(commandSession.getNextCommand());
+                break;
+            default:
+                break;
+            }
+        });
     }
 
     /**
@@ -44,9 +60,9 @@ public class CommandBox extends UiPart<Region> {
         }
 
         try {
-            commandExecutor.execute(commandText);
+            commandSession.execute(commandText);
             commandTextField.setText("");
-        } catch (CommandException | ParseException e) {
+        } catch (CommandException | ParseException | StorageException e) {
             setStyleToIndicateCommandFailure();
         }
     }
@@ -70,19 +86,4 @@ public class CommandBox extends UiPart<Region> {
 
         styleClass.add(ERROR_STYLE_CLASS);
     }
-
-    /**
-     * Represents a function that can execute commands.
-     */
-    @FunctionalInterface
-    public interface CommandExecutor {
-
-        /**
-         * Executes the command and returns the result.
-         *
-         * @see Logic#execute(String)
-         */
-        CommandResult execute(String commandText) throws CommandException, ParseException;
-    }
-
 }

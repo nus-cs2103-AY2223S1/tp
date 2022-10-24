@@ -134,7 +134,7 @@ public class AddressBook implements ReadOnlyAddressBook {
     /**
      * Removes {@code key} from this {@code AddressBook}. {@code key} must exist in the address book.
      */
-    public void removeUserModule(UserModule key) {
+    public void removeUserModule(String key) {
         modules.remove(key);
     }
 

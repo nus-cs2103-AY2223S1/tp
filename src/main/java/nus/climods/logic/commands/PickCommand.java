@@ -3,6 +3,7 @@ package nus.climods.logic.commands;
 import nus.climods.logic.commands.exceptions.CommandException;
 import nus.climods.model.Model;
 import nus.climods.model.module.UserModule;
+import org.openapitools.client.model.SemestersEnum;
 
 import java.util.Locale;
 
@@ -29,7 +30,7 @@ public class PickCommand extends Command {
      */
     public PickCommand(String toPick, String lessonType, String classNo) {
         requireNonNull(toPick);
-        this.toPick = toPick;
+        this.toPick = toPick.toUpperCase();
         this.lessonType = lessonType;
         this.classNo = classNo;
     }
@@ -37,15 +38,19 @@ public class PickCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        UserModule moduleToPick = new UserModule(toPick, model);
 
-        if (!model.filteredListhasUserModule(moduleToPick)) {
+        //TODO: Figure out how to update module data without need to ask user to key in sem
+        UserModule moduleToPick = new UserModule(toPick, SemestersEnum.S1);
+
+        if (!model.hasUserModule(moduleToPick)) {
             throw new CommandException(MESSAGE_MODULE_MISSING);
         }
 
+        //TODO: Update lesson details for correct UserModule in the list
         model.getFilteredModuleList();
         String addedDetails = String.format("%s %s %s", toPick, lessonType, classNo);
-        return new CommandResult(String.format(MESSAGE_SUCCESS, addedDetails.toUpperCase()));
+        return new CommandResult(String.format(MESSAGE_SUCCESS, addedDetails.toUpperCase()),
+                COMMAND_WORD, model);
     }
 
     @Override

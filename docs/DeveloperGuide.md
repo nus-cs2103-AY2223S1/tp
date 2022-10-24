@@ -93,7 +93,7 @@ Here's a (partial) class diagram of the `Logic` component:
 <img src="images/LogicClassDiagram.png" width="550"/>
 
 How the `Logic` component works:
-1. When `Logic` is called upon to execute a command, it uses the `AddressBookParser` class to parse the user command.
+1. When `Logic` is called upon to execute a command, it uses the `CliModsParser` class to parse the user command.
 1. This results in a `Command` object (more precisely, an object of one of its subclasses e.g., `AddCommand`) which is executed by the `LogicManager`.
 1. The command can communicate with the `Model` when it is executed (e.g. to add a person).
 1. The result of the command execution is encapsulated as a `CommandResult` object which is returned back from `Logic`.
@@ -110,7 +110,7 @@ Here are the other classes in `Logic` (omitted from the class diagram above) tha
 <img src="images/ParserClasses.png" width="600"/>
 
 How the parsing works:
-* When called upon to parse a user command, the `AddressBookParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddCommand`) which the `AddressBookParser` returns back as a `Command` object.
+* When called upon to parse a user command, the `CliModsParser` class creates an `XYZCommandParser` (`XYZ` is a placeholder for the specific command name e.g., `AddCommandParser`) which uses the other classes shown above to parse the user command and create a `XYZCommand` object (e.g., `AddCommand`) which the `CliModsParser` returns back as a `Command` object.
 * All `XYZCommandParser` classes (e.g., `AddCommandParser`, `DeleteCommandParser`, ...) inherit from the `Parser` interface so that they can be treated similarly where possible e.g, during testing.
 
 ### Model component
@@ -121,12 +121,12 @@ How the parsing works:
 
 The `Model` component,
 
-* stores the address book data i.e., all `Person` objects (which are contained in a `UniquePersonList` object).
+* stores the module list data i.e., all `Person` objects (which are contained in a `UniquePersonList` object).
 * stores the currently 'selected' `Person` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Person>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
 * stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
 * does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `AddressBook`, which `Person` references. This allows `AddressBook` to only require one `Tag` object per unique tag, instead of each `Person` needing their own `Tag` objects.<br>
+<div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `CliMods`, which `Person` references. This allows `CliMods` to only require one `Tag` object per unique tag, instead of each `Person` needing their own `Tag` objects.<br>
 
 <img src="images/BetterModelClassDiagram.png" width="450" />
 
@@ -140,8 +140,8 @@ The `Model` component,
 <img src="images/StorageClassDiagram.png" width="550" />
 
 The `Storage` component,
-* can save both address book data and user preference data in json format, and read them back into corresponding objects.
-* inherits from both `AddressBookStorage` and `UserPrefStorage`, which means it can be treated as either one (if only the functionality of only one is needed).
+* can save both module list data and user preference data in json format, and read them back into corresponding objects.
+* inherits from both `CliModsStorage` and `UserPrefStorage`, which means it can be treated as either one (if only the functionality of only one is needed).
 * depends on some classes in the `Model` component (because the `Storage` component's job is to save/retrieve objects that belong to the `Model`)
 
 ### Common classes
@@ -154,41 +154,119 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
+### \[Proposed\] Add Module with Semester Feature
+
+#### Proposed Implementation
+
+The proposed add command allows the user to add for a particular `UserModule` together with `SemesterData`. 
+It is facilitated by `AddCommand`.
+It extends the `Command` class.
+
+Users can add their `UserModule` with the Command:
+- `add <MODULE_CODE> <SEMESTER_CODE>`
+- e.g. `add CS1101S s1`
+
+#### Parsing of commands 
+`PositionalParameter` manages parsing and error handling for parameters expected to be at a certain index in the 
+list of arguments. New parameter classes can extend from `PositionalParameter` to support repeated parameters across 
+commands, e.g module code.
+
+`ModuleCodeParameter` checks if the user's input fits the module code format. An exception is thrown
+if the module code supplied had an incorrect format.
+
+`SemesterParameter` will check for valid semester code input.
+An exception will be thrown if semester code is invalid.
+
+#### Design Considerations:
+
+- Create a `SemesterParameter` class
+- Modify `AddCommand` class
+
+// Keep this part for future reference
+
+### Command History - `<Up>/<Down>` command
+
+The command history feature allows user to traverse and scroll through the command history that is
+recorded when he/she uses `CliMods`. The goal is to mirror the behavior of a terminal/shell
+interface where user can easily access his/her previous command by using the up and down arrow keys.
+
+#### Implementation
+
+The command history is facilitated by `CommandSession`. The aim of `CommandSession` is to act as a
+lightweight wrapper around the command execution process, handling the reading and writing to and
+from the command history.
+
+Within `CommandSession`, we make use of a `ListIterator` to keep track of which position the user is
+currently at in the command history. Additionally, the use of `ListIterator` allows us to create a
+generator-like method to update and retrieve the user position in the command history.
+
+- `CommandSession::getPreviousCommand()`
+    - Retrieves the previous command in the command history, and updates the internal `ListIterator`
+      to the next position (upward) in the command history.
+
+- `CommandSession::getNextCommand()`
+    - Retrieves the next command in the command history, and updates the internal `ListIterator` to
+      the next position (downwards) in the command history.
+
+> Note that both of these operations are not pure, since the internal `ListIterator`
+> is updated after an invocation of either operations.t p
+
+#### Design considerations
+
+Depending on the shell, the behavior of how command history is being stored is different. For
+example, all commands are recorded in `bash`, while in `zsh`, no consecutive duplicate commands will
+be recorded.
+
+`CLiMods` chose to emulate the `zsh` behavior instead as it reduces clutter in the command history.
+We also hope that this would improve user experience as it aims to also speed up the traversal of
+the command history.
+
+### UserGuide - `help` command
+The `help` command displays our User Guide in a new window, using javafx WebViewer.  It acts as a browser, so we prevent
+the user from connecting to other websites that is not within our control.
+
+It is added this way because the user guide website is automatically built from our markdown file.
+This makes it easier to maintain changes in the user guide or developer guide.
+We do not control other websites, and we want the user to only view the user guide and other information on our website.
+
+We also considered just displaying the link with a `Copy URL` button.  However, the user has to copy the link into
+their web browser, making the user experience not smooth.  
+
 ### \[Proposed\] Undo/redo feature
 
 #### Proposed Implementation
 
-The proposed undo/redo mechanism is facilitated by `VersionedAddressBook`. It extends `AddressBook` with an undo/redo history, stored internally as an `addressBookStateList` and `currentStatePointer`. Additionally, it implements the following operations:
+The proposed undo/redo mechanism is facilitated by `VersionedCliMods`. It extends `CliMods` with an undo/redo history, stored internally as an `CliModsStateList` and `currentStatePointer`. Additionally, it implements the following operations:
 
-* `VersionedAddressBook#commit()` — Saves the current address book state in its history.
-* `VersionedAddressBook#undo()` — Restores the previous address book state from its history.
-* `VersionedAddressBook#redo()` — Restores a previously undone address book state from its history.
+* `VersionedCliMods#commit()` — Saves the current module list state in its history.
+* `VersionedCliMods#undo()` — Restores the previous module list state from its history.
+* `VersionedCliMods#redo()` — Restores a previously undone module list state from its history.
 
-These operations are exposed in the `Model` interface as `Model#commitAddressBook()`, `Model#undoAddressBook()` and `Model#redoAddressBook()` respectively.
+These operations are exposed in the `Model` interface as `Model#commitCliMods()`, `Model#undoCliMods()` and `Model#redoCliMods()` respectively.
 
 Given below is an example usage scenario and how the undo/redo mechanism behaves at each step.
 
-Step 1. The user launches the application for the first time. The `VersionedAddressBook` will be initialized with the initial address book state, and the `currentStatePointer` pointing to that single address book state.
+Step 1. The user launches the application for the first time. The `VersionedCliMods` will be initialized with the initial module list state, and the `currentStatePointer` pointing to that single module list state.
 
 ![UndoRedoState0](images/UndoRedoState0.png)
 
-Step 2. The user executes `delete 5` command to delete the 5th person in the address book. The `delete` command calls `Model#commitAddressBook()`, causing the modified state of the address book after the `delete 5` command executes to be saved in the `addressBookStateList`, and the `currentStatePointer` is shifted to the newly inserted address book state.
+Step 2. The user executes `delete 5` command to delete the 5th person in the module list. The `delete` command calls `Model#commitCliMods()`, causing the modified state of the module list after the `delete 5` command executes to be saved in the `CliModsStateList`, and the `currentStatePointer` is shifted to the newly inserted module list state.
 
 ![UndoRedoState1](images/UndoRedoState1.png)
 
-Step 3. The user executes `add n/David …​` to add a new person. The `add` command also calls `Model#commitAddressBook()`, causing another modified address book state to be saved into the `addressBookStateList`.
+Step 3. The user executes `add n/David …​` to add a new person. The `add` command also calls `Model#commitCliMods()`, causing another modified module list state to be saved into the `CliModsStateList`.
 
 ![UndoRedoState2](images/UndoRedoState2.png)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If a command fails its execution, it will not call `Model#commitAddressBook()`, so the address book state will not be saved into the `addressBookStateList`.
+<div markdown="span" class="alert alert-info">:information_source: **Note:** If a command fails its execution, it will not call `Model#commitCliMods()`, so the module list state will not be saved into the `CliModsStateList`.
 
 </div>
 
-Step 4. The user now decides that adding the person was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `Model#undoAddressBook()`, which will shift the `currentStatePointer` once to the left, pointing it to the previous address book state, and restores the address book to that state.
+Step 4. The user now decides that adding the person was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `Model#undoCliMods()`, which will shift the `currentStatePointer` once to the left, pointing it to the previous module list state, and restores the module list to that state.
 
 ![UndoRedoState3](images/UndoRedoState3.png)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index 0, pointing to the initial AddressBook state, then there are no previous AddressBook states to restore. The `undo` command uses `Model#canUndoAddressBook()` to check if this is the case. If so, it will return an error to the user rather
+<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index 0, pointing to the initial CliMods state, then there are no previous CliMods states to restore. The `undo` command uses `Model#canUndoCliMods()` to check if this is the case. If so, it will return an error to the user rather
 than attempting to perform the undo.
 
 </div>
@@ -201,17 +279,17 @@ The following sequence diagram shows how the undo operation works:
 
 </div>
 
-The `redo` command does the opposite — it calls `Model#redoAddressBook()`, which shifts the `currentStatePointer` once to the right, pointing to the previously undone state, and restores the address book to that state.
+The `redo` command does the opposite — it calls `Model#redoCliMods()`, which shifts the `currentStatePointer` once to the right, pointing to the previously undone state, and restores the module list to that state.
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index `addressBookStateList.size() - 1`, pointing to the latest address book state, then there are no undone AddressBook states to restore. The `redo` command uses `Model#canRedoAddressBook()` to check if this is the case. If so, it will return an error to the user rather than attempting to perform the redo.
+<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index `CliModsStateList.size() - 1`, pointing to the latest module list state, then there are no undone CliMods states to restore. The `redo` command uses `Model#canRedoCliMods()` to check if this is the case. If so, it will return an error to the user rather than attempting to perform the redo.
 
 </div>
 
-Step 5. The user then decides to execute the command `list`. Commands that do not modify the address book, such as `list`, will usually not call `Model#commitAddressBook()`, `Model#undoAddressBook()` or `Model#redoAddressBook()`. Thus, the `addressBookStateList` remains unchanged.
+Step 5. The user then decides to execute the command `list`. Commands that do not modify the module list, such as `list`, will usually not call `Model#commitCliMods()`, `Model#undoCliMods()` or `Model#redoCliMods()`. Thus, the `CliModsStateList` remains unchanged.
 
 ![UndoRedoState4](images/UndoRedoState4.png)
 
-Step 6. The user executes `clear`, which calls `Model#commitAddressBook()`. Since the `currentStatePointer` is not pointing at the end of the `addressBookStateList`, all address book states after the `currentStatePointer` will be purged. Reason: It no longer makes sense to redo the `add n/David …​` command. This is the behavior that most modern desktop applications follow.
+Step 6. The user executes `clear`, which calls `Model#commitCliMods()`. Since the `currentStatePointer` is not pointing at the end of the `CliModsStateList`, all module list states after the `currentStatePointer` will be purged. Reason: It no longer makes sense to redo the `add n/David …​` command. This is the behavior that most modern desktop applications follow.
 
 ![UndoRedoState5](images/UndoRedoState5.png)
 
@@ -223,7 +301,7 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 **Aspect: How undo & redo executes:**
 
-* **Alternative 1 (current choice):** Saves the entire address book.
+* **Alternative 1 (current choice):** Saves the entire module list.
   * Pros: Easy to implement.
   * Cons: May have performance issues in terms of memory usage.
 
@@ -408,19 +486,20 @@ testers are expected to do more *exploratory* testing.
 
 1. _{ more test cases …​ }_
 
-### Deleting a person
+### Deleting a User Module
 
-1. Deleting a person while all persons are being shown
+1. Deleting a module while all User Modules are being shown
 
-   1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
+   0. Prerequisites: Open CLImods and add CS2103 using `add cs2103`. 
 
-   1. Test case: `delete 1`<br>
-      Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
+   1. Test case: `rm cs2103`<br>
+   Expected: CS2103 is deleted and removed from `My Modules`.
+   A success message of "Deleted Module: CS2103" should be displayed.
 
-   1. Test case: `delete 0`<br>
-      Expected: No person is deleted. Error details shown in the status message. Status bar remains the same.
+   3. Test case: `rm cs2103`<br>
+      Expected: No module is deleted. Error details shown in the status message. Status bar remains the same.
 
-   1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
+   4. Other incorrect delete commands to try: `rm`, `rm x`, `...` (where x is an invalid module code)<br>
       Expected: Similar to previous.
 
 1. _{ more test cases …​ }_
