@@ -18,13 +18,13 @@ import seedu.rc4hdb.model.resident.fields.ResidentFields;
  */
 public class HideCommandParser implements Parser<HideCommand> {
 
-    public static final String INTENDED_USAGE = "Please (only) enter some fields after the hide command\n"
+    public static final String INTENDED_USAGE = "Please enter at least one field after the hide command.\n"
             + "Example: hide room gender matric";
 
     public static final String ERROR_MESSAGE = "Please only specify fields that correspond to resident data, "
             + "or check if you have made a typo.";
 
-    private static Logger logger = Logger.getLogger("HideCommandParser");
+    private static final Logger logger = Logger.getLogger("HideCommandParser");
 
     /**
      * Implements the parse method in the Parser interface.
@@ -42,29 +42,34 @@ public class HideCommandParser implements Parser<HideCommand> {
             throw new ParseException(INTENDED_USAGE);
         }
 
-        // Process global list of fields into lowercase list first
-        List<String> allFields = ResidentFields.FIELDS.stream().map(String::toLowerCase).collect(Collectors.toList());
-
-        // Create result list
         List<String> fieldsToHide = new ArrayList<>();
 
-        String[] specifiedFields = getSpecifiedFields(args);
-
-        populateFieldLists(specifiedFields, fieldsToHide, allFields);
+        // Performs input validation and updates fieldsToHide if all fields are valid
+        populateFieldList(args, fieldsToHide);
 
         logger.log(Level.INFO, "Parsing completed, returning HideCommand");
         return new HideCommand(fieldsToHide);
     }
 
+    /**
+     * Splits the given string into an array of lowercase fields.
+     * @param args The string of arguments provided by ResidentBookParser
+     * @return A {@code String} array of lowercase fields
+     */
     private String[] getSpecifiedFields(String args) {
         return args.trim().toLowerCase().split(" ");
     }
 
-    private void populateFieldLists(String[] specifiedFields,
-                                    List<String> fieldsToHide,
-                                    List<String> allFields) throws ParseException {
+    /**
+     * Adds fields to the list of fields to be shown.
+     * @param args The {@code String} of user input obtained from ResidentBookParser
+     * @param fieldsToHide The list of fields to be returned to the
+     * @throws ParseException If any inputs are invalid.
+     */
+    private void populateFieldList(String args, List<String> fieldsToHide) throws ParseException {
+        String[] specifiedFields = getSpecifiedFields(args);
         for (String field : specifiedFields) {
-            if (!allFields.contains(field)) {
+            if (!ResidentFields.LOWERCASE_FIELDS.contains(field)) {
                 throw new ParseException(ERROR_MESSAGE);
             }
             fieldsToHide.add(field);

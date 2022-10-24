@@ -2,6 +2,7 @@ package seedu.rc4hdb.logic.commands.modelcommands;
 
 import static java.util.Objects.requireNonNull;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -22,11 +23,17 @@ public class HideCommand implements ModelCommand {
             + "Parameters: FIELD [MORE_FIELDS]...\n"
             + "Example: " + COMMAND_WORD + " room gender matric";
 
-    public static final String MESSAGE_SUCCESS = "Hidden some columns from the table view. "
+    public static final String MESSAGE_SUCCESS = "Hidden some columns from the table view.\n"
+            + "Use the list command to restore all columns.\n";
+
+    public static final String INVALID_SUBSET = "Please only specify columns that are present in the current table.\n"
             + "Use the list command to restore all columns.";
 
-    public static final String INVALID_SUBSET = "Please enter columns to hide based on the current table.\n"
-            + "(Note: You must exclude at least one of the current columns from your specified columns to hide)";
+    public static final String LAST_COLUMN_REACHED = "(Please note that you have reached your last column. You must"
+            + " have at least one column visible at all times)";
+
+    public static final String CANNOT_HIDE_ALL_COLUMNS = "(Please note that you must have at least"
+            + " one column visible at all times)";
 
     /**
      * The list of fields to pass to the TableView for hiding.
@@ -52,20 +59,27 @@ public class HideCommand implements ModelCommand {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
 
-        if (!isValidSubsetOfVisibleFields(model, fieldsToHide)) {
+        if (!isValidList(fieldsToHide, model)) {
             throw new CommandException(INVALID_SUBSET);
         }
 
+        // Take the union of the newly specified fieldsToHide and the existing fieldsToHide in Model
         fieldsToHide.addAll(model.getHiddenFields());
+        if (isHidingAllColumns()) {
+            throw new CommandException(CANNOT_HIDE_ALL_COLUMNS);
+        }
 
-        List<String> visibleFields = getComplementOfHiddenFieldsInModel(model);
-        visibleFields.removeAll(fieldsToHide);
+        // Take the complement of the updated fieldsToHide
+        List<String> visibleFields = getVisibleFields();
 
-        model.setObservableFields(fieldsToHide);
         model.setVisibleFields(visibleFields);
         model.setHiddenFields(fieldsToHide);
 
-        return new CommandResult(MESSAGE_SUCCESS);
+        if (isShowingLastColumn(visibleFields)) {
+            return new CommandResult(MESSAGE_SUCCESS + LAST_COLUMN_REACHED);
+        } else {
+            return new CommandResult(MESSAGE_SUCCESS);
+        }
     }
 
     /**
@@ -87,14 +101,35 @@ public class HideCommand implements ModelCommand {
         return false;
     }
 
-    private List<String> getComplementOfHiddenFieldsInModel(Model model) {
-        List<String> allFields = ResidentFields.FIELDS.stream().map(String::toLowerCase).collect(Collectors.toList());
-        allFields.removeAll(model.getHiddenFields());
+    /**
+     * Returns the list of fields to be set to visible by taking the complement of the updated {@code fieldsToHide}.
+     * @return The updated list of visible fields
+     */
+    private List<String> getVisibleFields() {
+        List<String> allFields = new ArrayList<>(ResidentFields.LOWERCASE_FIELDS);
+        allFields.removeAll(fieldsToHide);
         return allFields;
     }
 
-    private boolean isValidSubsetOfVisibleFields(Model model, List<String> fieldsToHide) {
-        List<String> visibleFields = getComplementOfHiddenFieldsInModel(model);
-        return visibleFields.containsAll(fieldsToHide) && !fieldsToHide.containsAll(visibleFields);
+    /**
+     * Checks if the given fieldsToHide list is valid, i.e. if it is a subset of the current visible field list.
+     * @param fieldsToHide The list of additional fields to hide
+     * @return True if valid
+     */
+    private boolean isValidList(List<String> fieldsToHide, Model model) {
+        List<String> visibleFields = model.getVisibleFields();
+        return visibleFields.containsAll(fieldsToHide);
+    }
+
+    /**
+     * Checks if there is currently only one column being shown.
+     * @return True if there is only column being shown.
+     */
+    private boolean isShowingLastColumn(List<String> visibleFields) {
+        return visibleFields.size() == 1;
+    }
+
+    private boolean isHidingAllColumns() {
+        return fieldsToHide.size() == ResidentFields.LOWERCASE_FIELDS.size();
     }
 }
