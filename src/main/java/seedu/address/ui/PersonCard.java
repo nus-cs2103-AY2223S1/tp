@@ -62,15 +62,19 @@ public class PersonCard extends UiPart<Region> {
         phone.setText("\uD83D\uDCDE\t" + person.getPhone().value);
         address.setText("\uD83C\uDFE0\t" + person.getAddress().value);
         email.setText("\uD83D\uDCE7\t" + person.getEmail().value);
+
         // replace birthday and insurance once implemented.
         // insurance.setText("\uD83D\uDCC4\t" + "something something");
-        healthInsurance.setText("\uD83D\uDCDE\t" + (person.getHealthInsurance().getHasInsurance() ? "yes" : "no"));
-        disabilityInsurance.setText("\uD83D\uDCDE\t"
-                + (person.getDisabilityInsurance().getHasInsurance() ? "yes" : "no"));
-        criticalIllnessInsurance.setText("\uD83D\uDCDE\t"
-                + (person.getCriticalIllnessInsurance().getHasInsurance() ? "yes" : "no"));
-        lifeInsurance.setText("\uD83D\uDCDE\t" + (person.getLifeInsurance().getHasInsurance() ? "yes" : "no"));
-        birthday.setText("\uD83C\uDF82\t" + person.getBirthday().value);
+        healthInsurance.setText("Health               "
+                + (person.getHealthInsurance().getHasInsurance() ? "\u2705" : "\u274e"));
+        disabilityInsurance.setText("Disability           "
+                + (person.getDisabilityInsurance().getHasInsurance() ? "\u2705" : "\u274e"));
+        criticalIllnessInsurance.setText("Critical Illness    "
+                + (person.getCriticalIllnessInsurance().getHasInsurance() ? "\u2705" : "\u274e"));
+        lifeInsurance.setText("Life                    "
+                + (person.getLifeInsurance().getHasInsurance() ? "\u2705" : "\u274e"));
+        birthday.setText("\uD83C\uDF82\t"
+                + person.getBirthday().value);
         person.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));

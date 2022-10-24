@@ -22,19 +22,22 @@
             <!-- Ensures that the label text is never truncated -->
             <Region fx:constant="USE_PREF_SIZE" />
           </minWidth>
+
           <padding>
             <Insets bottom="5.0" left="15.0" right="5.0" top="5.0" />
           </padding>
         </Label>
+
         <VBox alignment="CENTER_LEFT" minHeight="105">
           <padding>
             <Insets bottom="5" left="15" right="5" top="5" />
           </padding>
           <HBox alignment="CENTER_LEFT" spacing="5">
             <Label fx:id="name" styleClass="cell_big_label" text="\$first">
-              <HBox.margin>
-                <Insets />
-              </HBox.margin>
+              <minWidth>
+                <!-- Ensures that the label text is never truncated -->
+                <Region fx:constant="USE_PREF_SIZE" />
+              </minWidth>
             </Label>
             <opaqueInsets>
               <Insets />
@@ -57,22 +60,25 @@
           </padding>
           <children>
             <HBox alignment="CENTER_LEFT" spacing="5">
-              <opaqueInsets>
-                <Insets />
-              </opaqueInsets>
-              <children>
-                <Label fx:id="healthInsurance" styleClass="cell_small_label" text="\$healthInsurance" >
-                <Label fx:id="disabilityInsurance" styleClass="cell_small_label" text="\$disabilityInsurance" >
-                <Label fx:id="criticalIllnessInsurance" styleClass="cell_small_label" text="\$criticalIllnessInsurance" >
-                <Label fx:id="lifeInsurance" styleClass="cell_small_label" text="\$lifeInsurance" >
-                  <HBox.margin>
-                    <Insets />
-                  </HBox.margin>
+
+              <VBox>
+                <Label styleClass="cell_big_label" text="Insurance">
+                  <minWidth>
+                    <!-- Ensures that the label text is never truncated -->
+                    <Region fx:constant="USE_PREF_SIZE" />
+                  </minWidth>
+                  <padding>
+                    <Insets bottom="15" left="15" right="5" top="0" />
+                  </padding>
                 </Label>
-                </Label>
-                </Label>
-                </Label>
-              </children>
+
+                <Label fx:id="healthInsurance" styleClass="cell_small_label" text="\$healthInsurance" />
+                <Label fx:id="disabilityInsurance" styleClass="cell_small_label" text="\$disabilityInsurance" />
+                <Label fx:id="criticalIllnessInsurance" styleClass="cell_small_label" text="\$criticalIllnessInsurance" />
+                <Label fx:id="lifeInsurance" styleClass="cell_small_label" text="\$lifeInsurance" />
+              </VBox>
+
+
             </HBox>
             <FlowPane fx:id="tags1">
               <padding>
