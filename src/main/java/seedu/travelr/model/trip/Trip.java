@@ -199,4 +199,15 @@ public class Trip {
         return title.compareTo(trip.title);
     }
 
+    public int compareTime(Trip trip) {
+        return dateField.compareTo(trip.dateField);
+    }
+
+    public int compareLocation(Trip trip) {
+        return location.compareTo(trip.location);
+    }
+
+    public int compareNumberOfEvents(Trip trip) {
+        return events.getAmountOfEvents() - trip.events.getAmountOfEvents();
+    }
 }

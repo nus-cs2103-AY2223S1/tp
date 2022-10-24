@@ -201,5 +201,9 @@ public class Itineraries extends EventList {
     public void removeEvent(Event event) {
         events.remove(event);
     }
+    
+    public int getAmountOfEvents() {
+        return events.size();
+    }
 
 }
