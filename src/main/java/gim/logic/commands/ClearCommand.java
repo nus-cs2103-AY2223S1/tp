@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 
 import gim.model.ExerciseTracker;
 import gim.model.Model;
+import gim.model.exercise.ExerciseHashMap;
 
 /**
  * Clears the exercise tracker.
@@ -17,7 +18,8 @@ public class ClearCommand extends Command {
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);
-        model.setExerciseTracker(new ExerciseTracker());
+        ExerciseHashMap cleared = model.getExerciseHashMap().clearExerciseHashMap();
+        model.setExerciseTracker(new ExerciseTracker(cleared));
         return new CommandResult(MESSAGE_SUCCESS);
     }
 }

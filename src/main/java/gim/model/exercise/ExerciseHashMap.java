@@ -4,10 +4,15 @@ import static gim.commons.util.CollectionUtil.requireAllNonNull;
 import static java.util.Objects.requireNonNull;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Set;
+import java.util.logging.Logger;
 
+import gim.commons.core.LogsCenter;
 import gim.model.exercise.exceptions.ExerciseNotFoundException;
+import gim.ui.Observer;
 
 /**
  * An Exercise HashMap to categorise Exercises, with the same Name, together. For instance, if a user adds an
@@ -18,10 +23,45 @@ import gim.model.exercise.exceptions.ExerciseNotFoundException;
  */
 public class ExerciseHashMap {
 
+    private static final Logger logger = LogsCenter.getLogger(ExerciseHashMap.class);
     private final HashMap<Name, ArrayList<Exercise>> exerciseHashMap;
 
+    private final ArrayList<Observer> observerArrayList;
+
+    /**
+     * Constructs a {@code ExerciseHashMap}.
+     */
     public ExerciseHashMap() {
+        logger.info("Initialising new Exercise Hashmap");
         exerciseHashMap = new HashMap<>();
+        observerArrayList = new ArrayList<Observer>();
+    }
+
+    /**
+     * Constructs a {@code ExerciseHashMap} with a given ArrayList of Observers
+     * @param arrL
+     */
+    public ExerciseHashMap(ArrayList<Observer> arrL) {
+        logger.info("Initialising new Exercise Hashmap with given ArrayList");
+        this.exerciseHashMap = new HashMap<>();
+        this.observerArrayList = arrL;
+    }
+
+    /**
+     * Notifies observers who have 'subscribed' whenever there are changes in the state of the ExerciseHashMap
+     */
+    public void notifyObservers() {
+        for (Observer o: observerArrayList) {
+            o.update();
+        }
+    }
+
+    /**
+     * Allows an Observer object to 'subscribe' to changes in the state of the ExerciseHashMap.
+     * @param o Observer object
+     */
+    public void addUi(Observer o) {
+        observerArrayList.add(o);
     }
 
     /**
@@ -39,6 +79,7 @@ public class ExerciseHashMap {
      */
     public Exercise add(Exercise toAdd) {
         requireNonNull(toAdd);
+
         Name toStoreName = toAdd.getName();
         if (!contains(toAdd)) {
             exerciseHashMap.put(toAdd.getName(), new ArrayList<>()); // Initialise key with empty ArrayList<Exercise>
@@ -47,6 +88,7 @@ public class ExerciseHashMap {
         }
         toAdd = new Exercise(toStoreName, toAdd.getWeight(), toAdd.getSets(), toAdd.getReps(), toAdd.getDate());
         exerciseHashMap.get(toStoreName).add(toAdd); // add Exercise to arraylist
+        this.notifyObservers();
         return toAdd;
     }
 
@@ -63,6 +105,7 @@ public class ExerciseHashMap {
             if (exerciseHashMap.get(toRemove.getName()).isEmpty()) { // Remove Exercise from hashmap
                 exerciseHashMap.remove(toRemove.getName()); // If no more Exercises in key's ArrayList, delete key
             }
+            this.notifyObservers();
         }
     }
 
@@ -83,6 +126,7 @@ public class ExerciseHashMap {
                     exercise.getReps(), exercise.getDate());
             exerciseHashMap.get(toStoreName).add(exercise); // add Exercise to arraylist
         }
+        this.notifyObservers();
     }
 
     /**
@@ -111,6 +155,45 @@ public class ExerciseHashMap {
     @Override
     public int hashCode() {
         return exerciseHashMap.hashCode();
+    }
+
+
+    /**
+     * Returns an Alphabetically sorted ArrayList of all key values in ExerciseHashMap
+     * @return Returns ArrayList of String
+     */
+    public ArrayList<String> getAllKeys() {
+        Set<Name> keySet = exerciseHashMap.keySet();
+        ArrayList<String> toReturn = new ArrayList<>();
+        if (keySet.isEmpty()) {
+            return toReturn;
+        }
+        for (Name keyName: keySet) {
+            toReturn.add(keyName.toString());
+        }
+        Collections.sort(toReturn);
+        return toReturn;
+    }
+
+    /**
+     * Returns the hashmap but all keys and values associated to keys are cleared.
+     * @return ExerciseHashMap
+     */
+    public ExerciseHashMap clearExerciseHashMap() {
+        this.exerciseHashMap.clear();
+        return this;
+    }
+
+    /**
+     * Returns the number of elements in a hashmap
+     * @return integer value
+     */
+    public int numOfValues() {
+        int result = 0;
+        for (ArrayList<Exercise> arrL : exerciseHashMap.values()) {
+            result += arrL.size();
+        }
+        return result;
     }
 
 }
