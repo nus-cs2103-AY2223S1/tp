@@ -123,11 +123,12 @@ class EditTaskCommandTest {
     public void execute_duplicateTask_throwsCommandException() {
         Patient secondPatient = model.getFilteredPersonList().get(INDEX_SECOND_PERSON.getZeroBased());
 
-        Task initialTask = secondPatient.getTasks().get(INDEX_FIRST_TASK.getZeroBased());
+        Task initialTask = secondPatient.getTasks().get(0);
 
         Task duplicateTask = new Task(initialTask.getTaskDescription(), initialTask.getDateTime());
 
-        EditTaskCommand editTaskCommand = new EditTaskCommand(INDEX_SECOND_PERSON, INDEX_FIRST_TASK, duplicateTask);
+        EditTaskCommand editTaskCommand = new EditTaskCommand(INDEX_SECOND_PERSON, Index.fromOneBased(1),
+                duplicateTask);
 
         assertCommandFailure(editTaskCommand, model, Messages.MESSAGE_DUPLICATE_TASK);
     }

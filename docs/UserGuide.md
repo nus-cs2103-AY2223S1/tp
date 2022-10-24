@@ -41,13 +41,13 @@ If you are an **experienced user**, you can refer to the [Command Summary](#comm
 ### Table of Contents
 
 * Table of Contents
-{:toc}
+  {:toc}
 
 --------------------------------------------------------------------------------------------------------------------
 
 ## Quick start
 
-1. Ensure you have [Java 11](https://www.oracle.com/sg/java/technologies/javase/jdk11-archive-downloads.html) or above 
+1. Ensure you have [Java 11](https://www.oracle.com/sg/java/technologies/javase/jdk11-archive-downloads.html) or above
    installed on your computer. To check your Java version, open a Command Prompt or Terminal window and type:
 
 ```
@@ -64,17 +64,17 @@ java -version
 
 </div>
 
-  ![Ui](images/Ui.png)
+![Ui](images/Ui.png)
 
 5. Type your command in the command box and hit `Enter` to execute the command. Here are some example commands
-you can try:
-   * **`help`**: Opens the help window.
-   * **`add`**`n/Jane Doe p/91234567 e/janed@example.com a/20 Anderson Road, block 123, #01-01`: Adds a
-     patient named `Jane Doe` to your contacts.
-   * **`delete`**`3`: Deletes the 3rd contact shown in the current list.
-   * **`list`**: Lists all contacts.
-   * **`clear`**: Deletes all contacts.
-   * **`exit`**: Exits from UniNurse.
+   you can try:
+    * **`help`**: Opens the help window.
+    * **`add`**`n/Jane Doe p/91234567 e/janed@example.com a/20 Anderson Road, block 123, #01-01`: Adds a
+      patient named `Jane Doe` to your contacts.
+    * **`delete`**`3`: Deletes the 3rd contact shown in the current list.
+    * **`list`**: Lists all contacts.
+    * **`clear`**: Deletes all contacts.
+    * **`exit`**: Exits from UniNurse.
 6. Refer to the [Features](#features) below for details of each command. Alternatively, you may refer to the
    [Command Summary](#command-summary) at the end of this guide.
 --------------------------------------------------------------------------------------------------------------------
@@ -144,14 +144,17 @@ _Help window displayed after running the `help` command_
 
 Adds a patient to the patient list.
 
-Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [d/TASK_DESCRIPTION | DATE TIME]… [t/TAG]…`
+Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [d/TASK_DESCRIPTION | DATE_AND_TIME | FREQUENCY]… [t/TAG]…`
 
-* Date and time should be in the format like 16-10-2022 1030
-* If not date and time is provided, then a default date and time of 24 hours from creation will be set
+* `DATE_AND_TIME` should be in the format like 16-10-2022 1030
+* If no `DATE_AND_TIME` is provided, then a default date and time of 24 hours from creation will be set
+* Frequency can be `daily`, `weekly` or `monthly` or empty if it's a one off task, however a `DATE_AND_TIME` must be provided inorder to set a recurring task.
+* Note that capitalization does not matter for frequency.
 
 Examples:
-* `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 d/Administer 3ml of example medicine | 16-10-2022 10:30 t/Severe`
+* `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01 d/Administer 3ml of example medicine | 16-10-2022 1030 t/Severe`
 * `add n/Betsy Crowe p/87901234 e/betsy@example.com a/Jane street blk 420 #01-69 d/Change dressing on left arm t/Low Risk`
+* `add n/Tom pitt p/90904213 e/pitts@example.com a/Bourvard street blk 341 #04-17 d/Moniter blood pressure | 23-10-2022 1200 | daily`
 
 ### Editing a patient’s details : `edit -p`
 
@@ -229,36 +232,46 @@ Examples:
 
 ### Adding a task: `add -p`
 
-Adds a task associated with a patient.
+Adds a task or recurring task to a patient.
 
-Format: `add -p PATIENT_INDEX d/TASK_DESCRIPTION`
+Format: `add -p PATIENT_INDEX d/TASK_DESCRIPTION | DATE_AND_TIME | FREQUENCY`
 
 * Adds a task to a patient at the specified `PATIENT_INDEX`.
 * The patient index refers to the index number shown in the displayed patient list.
 * The index **must be a positive integer** 1, 2, 3, …
+* `DATE_AND_TIME` should be in the format like 16-10-2022 1030
+* If no `DATE_AND_TIME` is provided, then a default date and time of 24 hours from creation will be set
+* Frequency is an optional tag that is used to specify recurring tasks, the valid values for this field are `daily`, `weekly` and `monthly`. Capitalisation does not matter
+* If a frequency is not specified, it's a normal task
+* Note that both `DATE_AND_TIME` and `FREQUENCY` are optional fields, however to have a recurring task both of them are required, while you can have a normal task with date time not be recurring, i.e `FREQUENCY` not required
 
 Examples:
 * `list` followed by `add -p 1 d/Administer 3ml of example medicine` adds a task to the 1st patient in the patient list.
-* `find Betsy` followed by `add -p 2 d/Change dressing on left arm` adds a task to the 2nd patient in results of the `find` command.
+* `find Betsy` followed by `add -p 2 d/Change dressing on left arm | 12-07-2022` adds a task to the 2nd patient in results of the `find` command, on 12th July 2022 .
 
 ### Editing a task: `edit -p -t`
 
-Edits the specified task associated with a patient.
+Edits the specified task or recurring task associated with a patient.
 
-Format: `edit -p PATIENT_INDEX -t TASK_INDEX d/TASK_DESCRIPTION`
+Format: `edit -p PATIENT_INDEX -t TASK_INDEX d/TASK_DESCRIPTION | DATE_AND_TIME | FREQUENCY`
 
 * Edits the task at the specified `TASK_INDEX` of the patient at the specified `PATIENT_INDEX`.
 * The task index refers to the index number shown in the task list of a patient.
 * The patient index refers to the index number shown in the displayed patient list.
 * The index **must be a positive integer** 1, 2, 3, …
+* `DATE_AND_TIME` should be in the format like 16-10-2022 1030
+* `FREQUENCY` should either be `daily`. `weekly` or `monthly`. Capitalisation does not matter.
+* If no new `DATE_AND_TIME` or `FREQUENCY` are provided, then original values will be used or in the case of `FREQUENCY` nothing will change i.e it will remain a normal task
+* If a `FREQUENCY` is provided for what was originally a non recurring task, the edit will transform it into a recurring one based on the given frequency
+* To keep the original task description and edit only the `DATE_AND_TIME` or `FREQUENCY` fields, simply copy the task description and only change the desired `DATE_AND_TIME` or `FREQUENCY` field
 
 Examples:
-* `list` followed by `edit -p 1 -t 1 d/Administer 3ml of example medicine` edits the description of the 1st task of the 1st patient in the patient list to `Administer 3ml of example medicine`.
-* `find Betsy` followed by `edit -p 2 -t 3 d/Change dressing on left arm` edits the description of the 3rd task of the 2nd patient in results of the `find` command to `Change dressing on left arm`.
+* `list` followed by `edit -p 1 -t 1 d/Administer 3ml of example medicine` edits the description of the 1st task of the 1st patient in the patient list to `Administer 3ml of example medicine`, while retaining the original date and time for the task.
+* `find Betsy` followed by `edit -p 2 -t 3 d/Change dressing on left arm | 23-10-2022` edits the description of the 3rd task of the 2nd patient in results of the `find` command to `Change dressing on left arm` and also changes the date and time for the task to 23rd October 2022.
 
 ### Deleting a task: `delete -p -t`
 
-Deletes the specified task associated with a patient.
+Deletes the specified task or recurring task associated with a patient.
 
 Format: `delete -p PATIENT_INDEX -t TASK_INDEX`
 
@@ -285,9 +298,9 @@ Suppose the following patients were added.
 
 `add n/Betsy Crowe d/Change dressing on left arm`
 * `listTask` will display:
-  * `Administer 3ml of example medicine FOR John Doe`
-  * `Change dressing on left arm FOR Betsy Crowe`
-  
+    * `Administer 3ml of example medicine FOR John Doe`
+    * `Change dressing on left arm FOR Betsy Crowe`
+
 ### View all tasks associated with a patient: `viewTask`
 
 Shows all the tasks that are associated with the specified patient.
@@ -302,9 +315,9 @@ Suppose the following patients were added.
 
 `add n/Betsy Crowe d/Change dressing on left arm`
 * `viewTask 1` will display:
-  * `Administer 3ml of example medicine`
+    * `Administer 3ml of example medicine`
 * `viewTask 2` will display:
-  * `Change dressing on left arm`
+    * `Change dressing on left arm`
 
 ### Adding a medical condition: `addCondition`
 
@@ -376,7 +389,7 @@ Format: `exit`
 
 ### Saving the data
 
-UniNurse data are saved in the hard disk automatically after any command that changes the data. 
+UniNurse data are saved in the hard disk automatically after any command that changes the data.
 There is no need to save manually.
 
 ### Editing the data file
@@ -388,9 +401,6 @@ Advanced users are welcome to update data directly by editing that data file.
 If your changes to the data file makes its format invalid, UniNurse will discard all data and start with an empty
 data file at the next run.
 </div>
-
-### Adding recurring tasks `[coming in v1.3]`
-_Details coming soon ..._
 
 ### Archiving data files `[coming in v2.0]`
 
@@ -408,26 +418,32 @@ the data of your previous UniNurse home folder.
 
 ## Command summary
 
-| Action                          | Format                                                                       |
-|---------------------------------|------------------------------------------------------------------------------|
-| **Help**                        | `help`                                                                       |
-| **Add patient**                 | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [d/TASK_DESCRIPTION]… [t/TAG]…` |
-| **Edit patient**                | `edit -p INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…`     |
-| **Delete patient**              | `delete -p INDEX`                                                            |
-| **List all patients**           | `list`                                                                       |
-| **List all patients today**     | `patientsToday`                                                              |
-| **Find patient**                | `find KEYWORD [MORE_KEYWORDS]`                                               |
-| **Add task**                    | `add -p PATIENT_INDEX d/TASK_DESCRIPTION`                                    |
-| **Edit task**                   | `edit -p PATIENT_INDEX -t TASK_INDEX d/TASK_DESCRIPTION`                     |
-| **Delete task**                 | `delete -p PATIENT_INDEX -t TASK_INDEX`                                      |
-| **List all tasks**              | `listTask`                                                                   |
-| **View all tasks of a patient** | `viewTask INDEX`                                                             |
-| **Add condition**               | `addCondition PATIENT_INDEX c/CONDITION`                                     |
-| **Delete condition**            | `deleteCondition PATIENT_INDEX CONDITION_INDEX`                              |
-| **Add tag**                     | `addTag INDEX t/TAG`                                                         |
-| **Delete tag**                  | `deleteTag PATIENT_INDEX CONDITION_INDEX`                                    |                                                             
-| **Clear all patients**          | `clear`                                                                      |
-| **Undo last command**           | `undo`                                                                       |
-| **Reverse undo command**        | `redo`                                                                       |
-| **Exit**                        | `exit`                                                                       |
+| Action                          | Format                                                                   |
+|---------------------------------|--------------------------------------------------------------------------|
+| **Help**                        | `help`                                                                   |
+| **Add patient**                 | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [d/TASK]`                   |
+| **Edit patient**                | `edit -p INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…` |
+| **Delete patient**              | `delete -p INDEX`                                                        |
+| **List all patients**           | `list`                                                                   |
+| **List all patients today**     | `patientsToday`                                                          |
+| **Find patient**                | `find KEYWORD [MORE_KEYWORDS]`                                           |
+| **Add task**                    | `add -p PATIENT_INDEX d/TASK`                                            |
+| **Edit task**                   | `edit -p PATIENT_INDEX -t TASK_INDEX d/TASK`                             |
+| **Delete task**                 | `delete -p PATIENT_INDEX -t TASK_INDEX`                                  |
+| **List all tasks**              | `listTask`                                                               |
+| **View all tasks of a patient** | `viewTask INDEX`                                                         |
+| **Add condition**               | `addCondition PATIENT_INDEX c/CONDITION`                                 |
+| **Delete condition**            | `deleteCondition PATIENT_INDEX CONDITION_INDEX`                          |
+| **Add tag**                     | `addTag INDEX t/TAG`                                                     |
+| **Delete tag**                  | `deleteTag PATIENT_INDEX CONDITION_INDEX`                                |                                                             
+| **Clear all patients**          | `clear`                                                                  |
+| **Undo last command**           | `undo`                                                                   |
+| **Reverse undo command**        | `redo`                                                                   |
+| **Exit**                        | `exit`                                                                   |
 
+* Note that `TASK` is composed of `TASK_DESCRIPTION | DATE_AND_TIME | FREQUENCY`
+* `DATE_AND_TIME` should be in the format like 16-10-2022 1030
+* If no `DATE_AND_TIME` is provided, then a default date and time of 24 hours from creation will be set
+* Frequency is an optional tag that is used to specify recurring tasks, the valid values for this field are `daily`, `weekly` and `monthly`. Capitalisation does not matter
+* If a frequency is not specified, it's a normal task
+* Note that both `DATE_AND_TIME` and `FREQUENCY` are optional fields, however to have a recurring task both of them are required, while you can have a normal task with date time not be recurring, i.e `FREQUENCY` not required
