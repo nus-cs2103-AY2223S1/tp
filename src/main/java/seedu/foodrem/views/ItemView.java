@@ -6,7 +6,6 @@ import javafx.scene.control.Label;
 import javafx.scene.control.Separator;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Priority;
-import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.TextAlignment;
 import seedu.foodrem.model.item.Item;
@@ -37,7 +36,7 @@ public class ItemView {
         final List<Node> tagsList = new ArrayList<>();
         tagsList.add(new Label("Tags: "));
         item.getTagSet().stream().sorted(Comparator.comparing(Tag::getName))
-                .forEach(tag -> tagsList.add(tagViewFrom(tag.getName())));
+                .forEach(tag -> tagsList.add(buildTagNodeFrom(tag.getName())));
         if (tagsList.size() == 1) {
             tagsList.add(new Label("-"));
         }
@@ -47,8 +46,7 @@ public class ItemView {
 
         final Label quantityLabel = new Label("Quantity\nRemaining:");
         quantityLabel.setTextAlignment(TextAlignment.RIGHT);
-        final String unit = String.valueOf(item.getUnit()).isBlank() ? "" : " " + item.getUnit().toString();
-        final Label quantityAndUnit = new Label(String.format("%s%s", item.getQuantity(), unit));
+        final Label quantityAndUnit = new Label(buildItemQuantityAndUnitStringFrom(item));
         quantityAndUnit.getStyleClass().add("item-detail-quantity");
         final VBox quantityBox = new VBox(quantityLabel, quantityAndUnit);
         quantityBox.setAlignment(Pos.CENTER_RIGHT);
@@ -77,9 +75,14 @@ public class ItemView {
         return itemView;
     }
 
-    private static Node tagViewFrom(String tagName) {
+    private static Node buildTagNodeFrom(String tagName) {
         final Label label = new Label(tagName);
         label.getStyleClass().add("item-detail-tag");
         return label;
+    }
+
+    private static String buildItemQuantityAndUnitStringFrom(Item item) {
+        final String unit = String.valueOf(item.getUnit()).isBlank() ? "" : " " + item.getUnit().toString();
+        return String.format("%s%s", item.getQuantity(), unit);
     }
 }
