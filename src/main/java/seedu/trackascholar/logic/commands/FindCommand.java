@@ -2,9 +2,11 @@ package seedu.trackascholar.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 
+import java.util.function.Predicate;
+
 import seedu.trackascholar.commons.core.Messages;
 import seedu.trackascholar.model.Model;
-import seedu.trackascholar.model.applicant.NameContainsKeywordsPredicate;
+import seedu.trackascholar.model.applicant.Applicant;
 
 /**
  * Finds and lists all applicants in TrackAScholar whose name contains any of the argument keywords.
@@ -19,9 +21,9 @@ public class FindCommand extends Command {
             + "Parameters: KEYWORD [MORE_KEYWORDS]...\n"
             + "Example: " + COMMAND_WORD + " alice bob charlie";
 
-    private final NameContainsKeywordsPredicate predicate;
+    private final Predicate<Applicant> predicate;
 
-    public FindCommand(NameContainsKeywordsPredicate predicate) {
+    public FindCommand(Predicate<Applicant> predicate) {
         this.predicate = predicate;
     }
 
