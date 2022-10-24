@@ -20,6 +20,8 @@ import friday.model.Friday;
 import friday.model.Model;
 import friday.model.ReadOnlyFriday;
 import friday.model.ReadOnlyUserPrefs;
+import friday.model.alias.Alias;
+import friday.model.alias.ReservedKeyword;
 import friday.model.student.Student;
 import friday.testutil.StudentBuilder;
 import javafx.collections.ObservableList;
@@ -151,6 +153,36 @@ public class AddCommandTest {
 
         @Override
         public void updateSortedStudentList(Comparator<Student> comparator) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public boolean hasAlias(Alias alias) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public boolean hasAlias(String key) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void addAlias(Alias alias, ReservedKeyword keyword) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void removeAlias(Alias target) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public String getKeyword(String key) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public String displayAliases() {
             throw new AssertionError("This method should not be called.");
         }
     }

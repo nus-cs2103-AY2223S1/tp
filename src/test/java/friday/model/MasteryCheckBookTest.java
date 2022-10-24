@@ -9,6 +9,8 @@ import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
 import org.junit.jupiter.api.Test;
 
@@ -98,6 +100,11 @@ public class MasteryCheckBookTest {
         @Override
         public ObservableList<Student> getStudentList() {
             return students;
+        }
+
+        @Override
+        public Set<Map.Entry<String, String>> getAliasMap() {
+            throw new AssertionError("This method should not be called.");
         }
     }
 

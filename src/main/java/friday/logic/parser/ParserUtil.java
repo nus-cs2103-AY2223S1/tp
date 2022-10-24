@@ -10,6 +10,8 @@ import java.util.Set;
 import friday.commons.core.index.Index;
 import friday.commons.util.StringUtil;
 import friday.logic.parser.exceptions.ParseException;
+import friday.model.alias.Alias;
+import friday.model.alias.ReservedKeyword;
 import friday.model.grades.Grade;
 import friday.model.student.Consultation;
 import friday.model.student.MasteryCheck;
@@ -68,10 +70,10 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String address} into an {@code MasteryCheck}.
+     * Parses a {@code String desiredDate} into an {@code MasteryCheck}.
      * Leading and trailing whitespaces will be trimmed.
      *
-     * @throws ParseException if the given {@code address} is invalid.
+     * @throws ParseException if the given {@code desiredDate} is invalid.
      */
     public static MasteryCheck parseMasteryCheck(String desiredDate) throws ParseException {
         requireNonNull(desiredDate);
@@ -156,5 +158,31 @@ public class ParserUtil {
             throw new ParseException(Order.MESSAGE_CONSTRAINTS);
         }
         return new Order(trimmedOrder);
+    }
+
+    /**
+     * Parses a {@code String reservedKeyword} into a {@code ReservedKeyword}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code reservedKeyword} is invalid.
+     */
+    public static ReservedKeyword parseReservedKeyword(String reservedKeyword) throws ParseException {
+        requireNonNull(reservedKeyword);
+        String trimmedReservedKeyword = reservedKeyword.trim();
+        if (!ReservedKeyword.isValidReservedKeyword(reservedKeyword)) {
+            throw new ParseException(ReservedKeyword.MESSAGE_CONSTRAINTS);
+        }
+        return new ReservedKeyword(trimmedReservedKeyword);
+    }
+
+    /**
+     * Parses a {@code String alias} into an {@code Alias}.
+     * Leading and trailing whitespaces will be trimmed.
+     */
+    public static Alias parseAlias(String alias) {
+        requireNonNull(alias);
+        String trimmedAlias = alias.trim();
+
+        return new Alias(trimmedAlias);
     }
 }

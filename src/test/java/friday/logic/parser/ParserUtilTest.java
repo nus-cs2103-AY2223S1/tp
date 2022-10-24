@@ -15,6 +15,8 @@ import java.util.Set;
 import org.junit.jupiter.api.Test;
 
 import friday.logic.parser.exceptions.ParseException;
+import friday.model.alias.Alias;
+import friday.model.alias.ReservedKeyword;
 import friday.model.student.Consultation;
 import friday.model.student.MasteryCheck;
 import friday.model.student.Name;
@@ -32,6 +34,9 @@ public class ParserUtilTest {
     private static final LocalDate VALID_CONSULTATION = LocalDate.parse("2022-08-17");
     private static final String VALID_TAG_1 = "friend";
     private static final String VALID_TAG_2 = "neighbour";
+    private static final String INVALID_RESERVED_KEYWORD = "a";
+    private static final String VALID_RESERVED_KEYWORD = "add";
+    private static final String VALID_ALIAS = "ls";
 
     private static final String WHITESPACE = " \t\r\n";
 
@@ -152,5 +157,24 @@ public class ParserUtilTest {
         Set<Tag> expectedTagSet = new HashSet<Tag>(Arrays.asList(new Tag(VALID_TAG_1), new Tag(VALID_TAG_2)));
 
         assertEquals(expectedTagSet, actualTagSet);
+    }
+
+    @Test
+    public void parseReservedKeywords_invalidValue_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseReservedKeyword(INVALID_RESERVED_KEYWORD));
+    }
+
+    @Test
+    public void parseReservedKeywords_validValue_returnsReservedKeyword() throws Exception {
+        ReservedKeyword actualKeyword = ParserUtil.parseReservedKeyword(VALID_RESERVED_KEYWORD);
+        ReservedKeyword expectedKeyword = new ReservedKeyword(VALID_RESERVED_KEYWORD);
+        assertEquals(expectedKeyword, actualKeyword);
+    }
+
+    @Test
+    public void parseAlias_validValue_returnsAlias() {
+        Alias actualAlias = ParserUtil.parseAlias(VALID_ALIAS);
+        Alias expectedAlias = new Alias(VALID_ALIAS);
+        assertEquals(expectedAlias, actualAlias);
     }
 }
