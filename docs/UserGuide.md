@@ -337,7 +337,7 @@ Frequently used commands have aliases that are short so that you can perform act
 | **[Reminder deletion](#deleting-of-a-client-delete)**                | `reminder delete`  | r d   |
 | **[Reminder clear](#clearing-reminders-reminder-clear)**             | `reminder clear`   | r c   |
 | **[Message creation](#creating-a-message-template--message-create)** | `message create`   | m c   |
-| **[Message list](#listing-message-templates--message list)**         | `message list`     | m l   |
+| **[Message list](#listing-message-templates--message-list)**         | `message list`     | m l   |
 | **[Message generation](#generating-messages--message-generate)**     | `message generate` | m g   |
 | **[Message deletion](#deleting-message-templates--message-delete)**  | `message delete`   | m d   |
 
