@@ -5,7 +5,6 @@ import static java.util.Objects.requireNonNull;
 import com.beust.jcommander.Parameter;
 import com.beust.jcommander.Parameters;
 
-import javafx.collections.ObservableList;
 import modtrekt.logic.commands.exceptions.CommandException;
 import modtrekt.logic.parser.converters.ModCodeConverter;
 import modtrekt.model.Model;
