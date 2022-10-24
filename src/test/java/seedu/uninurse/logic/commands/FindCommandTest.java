@@ -54,13 +54,13 @@ public class FindCommandTest {
     }
 
     @Test
-    public void execute_zeroKeywords_noPersonFound() {
-        String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 0);
+    public void execute_zeroKeywords_allPersonFound() {
+        String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 7);
         PatientMatchPredicate predicate = preparePredicate(" ");
         FindCommand command = new FindCommand(predicate);
         expectedModel.updateFilteredPersonList(predicate);
         assertCommandSuccess(command, model, expectedMessage, FindCommand.FIND_COMMAND_TYPE, expectedModel);
-        assertEquals(Collections.emptyList(), model.getFilteredPersonList());
+        assertNotEquals(Collections.emptyList(), model.getFilteredPersonList());
     }
 
     @Test

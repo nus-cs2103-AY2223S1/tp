@@ -16,4 +16,9 @@ public class CliSyntax {
     public static final Prefix PREFIX_OPTION_PATIENT_INDEX = new Prefix("-p");
     public static final Prefix PREFIX_OPTION_TASK_INDEX = new Prefix("-t");
     public static final Prefix PREFIX_OPTION_CONDITION_INDEX = new Prefix("-c");
+
+    public static final Prefix[] PREFIXES_PATIENT_ALL = {
+        PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ADDRESS,
+        PREFIX_TASK_DESCRIPTION, PREFIX_TAG, PREFIX_CONDITION
+    };
 }
