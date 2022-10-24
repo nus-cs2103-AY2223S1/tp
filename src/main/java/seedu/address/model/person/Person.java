@@ -147,12 +147,9 @@ public class Person {
                 .append("; Email: ")
                 .append(getEmail())
                 .append("; Address: ")
-                .append(getAddress());
-
-        if (!getDob().isEmpty()) { //Need check if DateOfBirth is empty
-            builder.append("; Date of Birth: ")
+                .append(getAddress())
+                .append("; Date of birth: ")
                 .append(getDob());
-        }
 
         Set<Tag> tags = getTags();
         if (!tags.isEmpty()) {
