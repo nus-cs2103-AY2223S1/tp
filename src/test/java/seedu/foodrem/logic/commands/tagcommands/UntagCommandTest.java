@@ -23,9 +23,10 @@ import seedu.foodrem.model.tag.Tag;
 import seedu.foodrem.testutil.ItemBuilder;
 import seedu.foodrem.testutil.TagBuilder;
 import seedu.foodrem.testutil.TypicalTags;
+import seedu.foodrem.viewmodels.ItemWithMessage;
 
 public class UntagCommandTest {
-    private static final String MESSAGE_SUCCESS = "Item untagged successfully.\n%1$s";
+    private static final String EXPECTED_SUCCESS_MESSAGE = "Item untagged successfully. View updated item below:";
     private static final String ERROR_ITEM_DOES_NOT_CONTAIN_TAG = "This item is not tagged with this tag";
     private static final String ERROR_NOT_FOUND_TAG = "This tag does not exist";
     private static final String ERROR_NOT_FOUND_ITEM = "The item index does not exist";
@@ -41,8 +42,6 @@ public class UntagCommandTest {
         //The initial model does not have the tag in its UniqueTagList
         //model.addTag(tag);
 
-        String expectedMessage = String.format(MESSAGE_SUCCESS, editedItem);
-
         //Creating an expected model to compare to
         Model expectedModel = new ModelManager(new FoodRem(model.getFoodRem()), new UserPrefs());
 
@@ -52,7 +51,7 @@ public class UntagCommandTest {
         //Run  tag command on original model
         UntagCommand untagItemCommand = new UntagCommand(tag.getName(), INDEX_FIRST_ITEM);
 
-        assertCommandSuccess(untagItemCommand, model, expectedMessage, expectedModel);
+        assertCommandSuccess(untagItemCommand, model, new ItemWithMessage(editedItem, EXPECTED_SUCCESS_MESSAGE), expectedModel);
         assertFalse(model.getCurrentList().get(0).containsTag(tag));
 
     }
