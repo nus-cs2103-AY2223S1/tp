@@ -5,6 +5,7 @@ import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Iterator;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 import javafx.collections.FXCollections;
@@ -67,6 +68,20 @@ public class UniquePersonList implements Iterable<Person> {
             throw new PersonNotFoundException();
         }
         return index;
+    }
+
+    public Reward getCurrentReward(Phone phone) {
+        requireNonNull(phone);
+        Optional<Reward> currentReward = internalList.stream().filter(person -> person.getPhone().equals(phone))
+                .map(Person::getReward).findFirst();
+        return currentReward.get();
+    }
+
+    public Reward getCurrentReward(Email email) {
+        requireNonNull(email);
+        Optional<Reward> currentReward = internalList.stream().filter(person -> person.getEmail().equals(email))
+                .map(Person::getReward).findFirst();
+        return currentReward.get();
     }
 
     /**

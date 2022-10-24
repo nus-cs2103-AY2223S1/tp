@@ -8,6 +8,7 @@ import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
+import seedu.address.model.person.Reward;
 import seedu.address.model.person.exceptions.PersonNotFoundException;
 
 /**
@@ -105,4 +106,8 @@ public interface Model {
      * @throws PersonNotFoundException if no person with corresponding email found
      */
     int findEmail(Email email) throws PersonNotFoundException;
+
+    Reward getCurrentReward(Phone phone);
+
+    Reward getCurrentReward(Email email);
 }
