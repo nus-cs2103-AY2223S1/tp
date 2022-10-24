@@ -28,18 +28,6 @@ public class Team {
     private final TaskList taskList = new TaskList();
     private final UniqueLinkList links = new UniqueLinkList();
 
-//    /**
-//     * Constructor with of an empty team only with its name.
-//     *
-//     * @param teamName A valid team name.
-//     */
-//    public Team(String teamName) {
-//        requireNonNull(teamName);
-//        checkArgument(isValidTeamName(teamName), MESSAGE_CONSTRAINTS);
-//        this.teamName = teamName;
-//        this.description = "No description";
-//    }
-
     /**
      * Constructor with of an empty team with its name and description.
      *

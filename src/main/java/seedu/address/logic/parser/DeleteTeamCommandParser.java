@@ -18,6 +18,6 @@ public class DeleteTeamCommandParser implements Parser<DeleteTeamCommand> {
      */
     @Override
     public DeleteTeamCommand parse(String args) throws ParseException {
-        return new DeleteTeamCommand(new Team(args.trim() , "alphanumeric"));
+        return new DeleteTeamCommand(new Team(args.trim() , "No description added"));
     }
 }

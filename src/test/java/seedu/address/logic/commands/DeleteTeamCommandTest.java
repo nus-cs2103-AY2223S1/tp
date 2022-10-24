@@ -20,7 +20,7 @@ class DeleteTeamCommandTest {
 
     @Test
     void execute_deleteTeamNotExist_throwsCommandException() {
-        Team newTeam = new Team("newTeam" , new ArrayList<>(), new ArrayList<>());
+        Team newTeam = new Team("newTeam", "No description added");
 
         assertTrue(!model.getTeamList().contains(newTeam));
         DeleteTeamCommand deleteTeamCommand = new DeleteTeamCommand(newTeam);
@@ -30,7 +30,7 @@ class DeleteTeamCommandTest {
     @Test
     void testEquals() {
         Team exitingTeam = model.getTeam();
-        Team anotherTeam = new Team("first", new ArrayList<>(), new ArrayList<>());
+        Team anotherTeam = new Team("first", "No description added");
         DeleteTeamCommand deleteTeamCommand = new DeleteTeamCommand(exitingTeam);
         DeleteTeamCommand deleteTeamCommandDuplicate = new DeleteTeamCommand(exitingTeam);
         DeleteTeamCommand deleteTeamCommandAnotherTeam = new DeleteTeamCommand(anotherTeam);

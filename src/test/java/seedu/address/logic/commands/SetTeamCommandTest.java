@@ -27,7 +27,7 @@ class SetTeamCommandTest {
     @Test
     void testEquals() {
         Team exitingTeam = model.getTeam();
-        Team anotherTeam = new Team("first", new ArrayList<>(), new ArrayList<>());
+        Team anotherTeam = new Team("first", "No description added");
         SetTeamCommand setTeamCommand = new SetTeamCommand(exitingTeam);
         SetTeamCommand setTeamCommandDuplicate = new SetTeamCommand(exitingTeam);
         SetTeamCommand setTeamCommandAnotherTeam = new SetTeamCommand(anotherTeam);

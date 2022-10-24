@@ -15,6 +15,7 @@ import java.util.List;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.EditLinkCommand.EditLinkDescriptor;
+import seedu.address.logic.commands.EditTeamCommand.EditTeamDescriptor;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
@@ -22,6 +23,7 @@ import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.person.Person;
 import seedu.address.testutil.EditLinkDescriptorBuilder;
 import seedu.address.testutil.EditPersonDescriptorBuilder;
+import seedu.address.testutil.EditTeamDescriptorBuilder;
 
 /**
  * Contains helper methods for testing commands.
@@ -74,6 +76,9 @@ public class CommandTestUtil {
 
     public static final EditLinkDescriptor DESC_FACEBOOK;
 
+    public static final EditTeamDescriptor DESC_FIRST_TEAM;
+    public static final EditTeamDescriptor DESC_SECOND_TEAM;
+
     static {
         DESC_AMY = new EditPersonDescriptorBuilder().withName(VALID_NAME_AMY).withPhone(VALID_PHONE_AMY)
                 .withEmail(VALID_EMAIL_AMY).withAddress(VALID_ADDRESS_AMY).withTags(VALID_TAG_FRIEND).build();
@@ -83,6 +88,8 @@ public class CommandTestUtil {
         DESC_GOOGLE = new EditLinkDescriptorBuilder().withName(VALID_NAME_GOOGLE).withUrl(VALID_URL_GOOGLE).build();
         DESC_FACEBOOK =
                 new EditLinkDescriptorBuilder().withName(VALID_NAME_FACEBOOK).withUrl(VALID_URL_FACEBOOK).build();
+        DESC_FIRST_TEAM = new EditTeamDescriptorBuilder().withName("first").withDescription("first").build();
+        DESC_SECOND_TEAM = new EditTeamDescriptorBuilder().withName("second").withDescription("second").build();
     }
 
     /**
