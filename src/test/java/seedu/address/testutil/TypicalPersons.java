@@ -4,7 +4,7 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_DATETIME_21_JAN_2023;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_DATETIME_22_JAN_2023;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_DATETIME_30_MAR_2024;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_DATETIME_23_MAR_2024;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_LOCATION_JURONGPOINT;
@@ -104,7 +104,7 @@ public class TypicalPersons {
             .withMonthly("$500")
             .withRiskTag("HIGH")
             .withAppointment(new AppointmentBuilder()
-                    .withDateTime(VALID_DATETIME_30_MAR_2024)
+                    .withDateTime(VALID_DATETIME_23_MAR_2024)
                     .withLocation(VALID_LOCATION_WESTMALL).build())
             .build();
     public static final Person GEORGE = new PersonBuilder()
@@ -117,7 +117,7 @@ public class TypicalPersons {
                     .withDateTime(VALID_DATETIME_21_JAN_2023)
                     .withLocation(VALID_LOCATION_NUS).build())
             .withAppointment(new AppointmentBuilder()
-                    .withDateTime(VALID_DATETIME_30_MAR_2024)
+                    .withDateTime(VALID_DATETIME_23_MAR_2024)
                     .withLocation(VALID_LOCATION_NUS).build())
             .build();
 
