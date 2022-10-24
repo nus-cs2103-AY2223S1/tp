@@ -17,6 +17,7 @@ public abstract class EventCommand extends Command {
             + PREFIX_OPTION + AddEventCommand.COMMAND_OPTION + ", "
             + PREFIX_OPTION + DeleteEventCommand.COMMAND_OPTION + ", "
             + PREFIX_OPTION + EditEventCommand.COMMAND_OPTION + ", "
+            + PREFIX_OPTION + ViewUpcomingEventsCommand.COMMAND_OPTION + ", "
             + PREFIX_OPTION + ViewEventsCommand.COMMAND_OPTION + ".";
 
     public static final String OPTION_UNKNOWN = "That is not a valid option flag.\n";

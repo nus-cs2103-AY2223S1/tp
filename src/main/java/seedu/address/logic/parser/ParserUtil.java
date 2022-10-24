@@ -23,6 +23,7 @@ import seedu.address.model.tag.Tag;
  */
 public class ParserUtil {
     public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero unsigned integer.";
+    public static final String MESSAGE_INVALID_DAYS = "Days provided is not a non-zero unsigned integer";
 
     /**
      * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading and trailing whitespaces will be
@@ -129,6 +130,21 @@ public class ParserUtil {
         } catch (DateTimeParseException e) {
             throw new ParseException(DateTime.MESSAGE_INVALID_DATETIME);
         }
+    }
+
+    /**
+     * Parses a {@code String days} into an int.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code days} is invalid.
+     */
+    public static int parseDays(String days) throws ParseException {
+        requireNonNull(days);
+        String trimmedDays = days.trim();
+        if (!StringUtil.isNonZeroUnsignedInteger(trimmedDays)) {
+            throw new ParseException(MESSAGE_INVALID_DAYS);
+        }
+        return Integer.parseInt(trimmedDays);
     }
 
     /**
