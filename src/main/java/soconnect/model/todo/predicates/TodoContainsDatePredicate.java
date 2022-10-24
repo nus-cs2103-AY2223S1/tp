@@ -2,6 +2,7 @@ package soconnect.model.todo.predicates;
 
 import java.time.LocalDate;
 import java.util.function.Predicate;
+
 import soconnect.model.todo.Date;
 import soconnect.model.todo.Todo;
 

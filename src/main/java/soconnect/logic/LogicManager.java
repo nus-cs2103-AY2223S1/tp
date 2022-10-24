@@ -5,7 +5,6 @@ import java.nio.file.Path;
 import java.util.logging.Logger;
 
 import javafx.beans.property.SimpleStringProperty;
-import javafx.beans.value.ObservableValue;
 import javafx.collections.ObservableList;
 import soconnect.commons.core.GuiSettings;
 import soconnect.commons.core.LogsCenter;

@@ -1,7 +1,10 @@
 package soconnect.logic.commands.todo;
 
 import static java.util.Objects.requireNonNull;
-import static soconnect.logic.parser.CliSyntax.*;
+import static soconnect.logic.parser.CliSyntax.PREFIX_DATE;
+import static soconnect.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
+import static soconnect.logic.parser.CliSyntax.PREFIX_PRIORITY;
+import static soconnect.logic.parser.CliSyntax.PREFIX_TAG;
 
 import soconnect.logic.commands.CommandResult;
 import soconnect.logic.commands.exceptions.CommandException;
@@ -9,7 +12,6 @@ import soconnect.logic.commands.tagcommands.TagCommand;
 import soconnect.logic.commands.tagcommands.TagCreateCommand;
 import soconnect.model.Model;
 import soconnect.model.todo.Todo;
-import soconnect.ui.TodoListPanel;
 
 /**
  * Adds a {@code Todo} to the {@code TodoList}.

@@ -102,7 +102,7 @@ public class Date {
      *
      * @param other The other {@code Date}.
      * @return Negative if this {@code Date} is earlier and positive if this {@code Date} is latter than the
-     * other {@code Date}, otherwise 0.
+     *     other {@code Date}, otherwise 0.
      */
     public int compareTo(Date other) {
         return date.compareTo(other.date);

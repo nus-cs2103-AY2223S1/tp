@@ -8,7 +8,6 @@ import java.util.function.Predicate;
 import java.util.logging.Logger;
 
 import javafx.beans.property.SimpleStringProperty;
-import javafx.beans.value.ObservableValue;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import soconnect.commons.core.GuiSettings;

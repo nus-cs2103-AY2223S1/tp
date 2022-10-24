@@ -1,7 +1,10 @@
 package soconnect.logic.parser.todo;
 
 import static java.util.Objects.requireNonNull;
-import static soconnect.logic.parser.CliSyntax.*;
+import static soconnect.logic.parser.CliSyntax.PREFIX_DATE;
+import static soconnect.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
+import static soconnect.logic.parser.CliSyntax.PREFIX_PRIORITY;
+import static soconnect.logic.parser.CliSyntax.PREFIX_TAG;
 
 import soconnect.commons.core.Messages;
 import soconnect.commons.core.index.Index;

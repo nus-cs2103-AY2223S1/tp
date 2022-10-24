@@ -1,6 +1,7 @@
 package soconnect.model.todo.predicates;
 
 import java.util.function.Predicate;
+
 import soconnect.model.todo.Priority;
 import soconnect.model.todo.Todo;
 

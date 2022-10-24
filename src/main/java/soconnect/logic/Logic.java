@@ -3,7 +3,6 @@ package soconnect.logic;
 import java.nio.file.Path;
 
 import javafx.beans.property.SimpleStringProperty;
-import javafx.beans.value.ObservableValue;
 import javafx.collections.ObservableList;
 import soconnect.commons.core.GuiSettings;
 import soconnect.logic.autocomplete.Autocomplete;

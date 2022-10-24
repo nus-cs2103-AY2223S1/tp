@@ -32,7 +32,8 @@ class JsonAdaptedTodo {
      * Constructs a {@code JsonAdaptedTodo} with the given details.
      */
     @JsonCreator
-    public JsonAdaptedTodo(@JsonProperty("description") String description,@JsonProperty("date") String date,
+    public JsonAdaptedTodo(@JsonProperty("description") String description,
+                           @JsonProperty("date") String date,
                            @JsonProperty("priority") String priority,
                            @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
         this.description = description;
@@ -73,7 +74,7 @@ class JsonAdaptedTodo {
         final Date modelDate = new Date(date);
         final Priority modelPriority = new Priority(priority);
         final Set<Tag> modelTags = new HashSet<>(personTags);
-        return new Todo(modelDescription,modelDate, modelPriority, modelTags);
+        return new Todo(modelDescription, modelDate, modelPriority, modelTags);
     }
 
     private void isDescriptionValid() throws IllegalValueException {

@@ -1,6 +1,9 @@
 package soconnect.logic.parser.todo;
 
-import static soconnect.logic.parser.CliSyntax.*;
+import static soconnect.logic.parser.CliSyntax.PREFIX_DATE;
+import static soconnect.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
+import static soconnect.logic.parser.CliSyntax.PREFIX_PRIORITY;
+import static soconnect.logic.parser.CliSyntax.PREFIX_TAG;
 
 import java.util.Set;
 import java.util.stream.Stream;

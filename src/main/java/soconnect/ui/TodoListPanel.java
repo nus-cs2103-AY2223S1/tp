@@ -13,11 +13,11 @@ import soconnect.model.todo.Todo;
  * Panel containing the list of todos.
  */
 public class TodoListPanel extends UiPart<Region> {
-    private static final String FXML = "TodoListPanel.fxml";
-
     public static final String TODAY_HEADER = "TODAY";
 
     public static final String ALL_HEADER = "ALL";
+
+    private static final String FXML = "TodoListPanel.fxml";
 
     @FXML
     private Label header;

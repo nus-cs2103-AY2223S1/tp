@@ -1,7 +1,9 @@
 package soconnect.logic.commands.todo;
 
 import static java.util.Objects.requireNonNull;
-import static soconnect.logic.parser.CliSyntax.*;
+import static soconnect.logic.parser.CliSyntax.PREFIX_DATE;
+import static soconnect.logic.parser.CliSyntax.PREFIX_PRIORITY;
+import static soconnect.logic.parser.CliSyntax.PREFIX_TAG;
 
 import java.util.function.Predicate;
 
