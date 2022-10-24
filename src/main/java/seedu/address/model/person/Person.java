@@ -100,7 +100,7 @@ public class Person {
         }
 
         boolean isSameName = otherPerson != null
-                && otherPerson.getName().equals(getName());
+                && otherPerson.getName().getLowerCaseName().equals(getName().getLowerCaseName());
         boolean isSameAddress = otherPerson != null
                 && otherPerson.getAddress().equals(getAddress());
 
