@@ -6,6 +6,7 @@ import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
+import seedu.address.commons.core.index.Index;
 import seedu.address.model.project.Project;
 import seedu.address.model.staff.Staff;
 import seedu.address.model.task.Task;
@@ -199,5 +200,22 @@ public interface Model {
      */
     void updateFilteredTaskList(Predicate<Task> predicate);
 
+    /**
+     * Updates the
+     */
     void filterTask();
+
+    /**
+     * Update the task of the filtered task list to set it to be a completed task.
+     *
+     * @param targetIndex The index of the task in the filtered task list.
+     */
+    void markTask(Index targetIndex);
+
+    /**
+     * Update the task of the filtered task list to set it to be a uncompleted task.
+     *
+     * @param targetIndex The index of the task in the filtered task list.
+     */
+    void unmarkTask(Index targetIndex);
 }

@@ -12,10 +12,14 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.commons.core.index.Index;
+import seedu.address.model.deadline.Deadline;
 import seedu.address.model.project.Project;
 import seedu.address.model.staff.Staff;
 import seedu.address.model.staff.UniqueStaffList;
 import seedu.address.model.task.Task;
+import seedu.address.model.task.TaskDescription;
+import seedu.address.model.task.TaskMark;
 
 /**
  * Represents the in-memory model of the address book data.
@@ -198,6 +202,27 @@ public class ModelManager implements Model {
     @Override
     public void filterTask() {
         addressBook.filterTask();
+    }
+
+    @Override
+    public void markTask(Index index) {
+        Task task = getFilteredTaskList().get(index.getZeroBased());
+        TaskDescription taskDescription = task.getTaskDescription();
+        Deadline deadline = task.getTaskDeadline();
+        TaskMark newTaskMark = new TaskMark("true");
+        Task newTask = new Task(deadline, taskDescription, newTaskMark);
+        setTask(task, newTask);
+    }
+
+    @Override
+    public void unmarkTask(Index index) {
+        Task task = getFilteredTaskList().get(index.getZeroBased());
+        TaskDescription taskDescription = task.getTaskDescription();
+        Deadline deadline = task.getTaskDeadline();
+        TaskMark newTaskMark = new TaskMark("false");
+        Task newTask = new Task(deadline, taskDescription, newTaskMark);
+        setTask(task, newTask);
+
     }
 
     //=========== Filtered Project List Accessors =============================================================

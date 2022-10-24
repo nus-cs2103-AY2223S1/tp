@@ -234,7 +234,6 @@ public class AddressBook implements ReadOnlyAddressBook {
     public void filterTask() {
         tasks.filterTask();
     }
-
     //// util methods
 
     @Override
