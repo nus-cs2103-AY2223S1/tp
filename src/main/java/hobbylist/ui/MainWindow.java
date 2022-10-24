@@ -12,6 +12,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextInputControl;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCombination;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.StackPane;
@@ -49,6 +50,8 @@ public class MainWindow extends UiPart<Stage> {
 
     @FXML
     private StackPane statusbarPlaceholder;
+    @FXML
+    private ImageView img;
 
     /**
      * Creates a {@code MainWindow} with the given {@code Stage} and {@code Logic}.
@@ -110,6 +113,7 @@ public class MainWindow extends UiPart<Stage> {
      * Fills up all the placeholders of this window.
      */
     void fillInnerParts() {
+
         activityListPanel = new ActivityListPanel(logic.getFilteredActivityList());
         activityListPanelPlaceholder.getChildren().add(activityListPanel.getRoot());
 
@@ -121,6 +125,7 @@ public class MainWindow extends UiPart<Stage> {
 
         CommandBox commandBox = new CommandBox(this::executeCommand);
         commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
+
     }
 
     /**
@@ -129,6 +134,8 @@ public class MainWindow extends UiPart<Stage> {
     private void setWindowDefaultSize(GuiSettings guiSettings) {
         primaryStage.setHeight(guiSettings.getWindowHeight());
         primaryStage.setWidth(guiSettings.getWindowWidth());
+        primaryStage.setResizable(false);
+        primaryStage.getScene().getStylesheets().add("view/StarTheme.css");
         if (guiSettings.getWindowCoordinates() != null) {
             primaryStage.setX(guiSettings.getWindowCoordinates().getX());
             primaryStage.setY(guiSettings.getWindowCoordinates().getY());
@@ -146,8 +153,52 @@ public class MainWindow extends UiPart<Stage> {
             helpWindow.focus();
         }
     }
+    /**
+     * Change primaryStage to star theme.
+     */
+    @FXML
+    public void handleStar() {
+        primaryStage.getScene().getStylesheets()
+                .removeAll("view/SkyTheme.css", "view/DarkTheme.css",
+                        "view/LightTheme.css", "view/StarTheme.css");
+        primaryStage.getScene().getStylesheets().add("view/StarTheme.css");
+    }
+    /**
+     * Change primaryStage to dark theme.
+     */
+    @FXML
+    public void handleDark() {
+        primaryStage.getScene().getStylesheets()
+                .removeAll("view/StarTheme.css", "view/SkyTheme.css",
+                        "view/LightTheme.css", "view/DarkTheme.css");
+        primaryStage.getScene().getStylesheets().add("view/DarkTheme.css");
+
+    }
+    /**
+     * Change primaryStage to sky theme.
+     */
+    @FXML
+    public void handleSky() {
+        primaryStage.getScene().getStylesheets()
+                .removeAll("view/StarTheme.css", "view/DarkTheme.css",
+                        "view/LightTheme.css", "view/SkyTheme.css");
+        primaryStage.getScene().getStylesheets().add("view/SkyTheme.css");
+
+    }
+    /**
+     * Change primaryStage to light theme.
+     */
+    @FXML
+    public void handleLight() {
+        primaryStage.getScene().getStylesheets()
+                .removeAll("view/StarTheme.css", "view/DarkTheme.css",
+                        "view/SkyTheme.css", "view/LightTheme.css");
+        primaryStage.getScene().getStylesheets().add("view/LightTheme.css");
+
+    }
 
     void show() {
+
         primaryStage.show();
     }
 
@@ -185,7 +236,6 @@ public class MainWindow extends UiPart<Stage> {
             if (commandResult.isExit()) {
                 handleExit();
             }
-
             return commandResult;
         } catch (CommandException | ParseException e) {
             logger.info("Invalid command: " + commandText);
