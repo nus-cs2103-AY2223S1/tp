@@ -8,7 +8,11 @@ layout: default
   </header>
 
   <div class="post-content">
-    {{ content }}
+    {% if site.enable_admonitions %}
+      {% include admonitions.liquid html=content %}
+    {% else %}
+      {{ content }}
+    {% endif %}
   </div>
 
 </article>

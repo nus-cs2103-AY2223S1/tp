@@ -7,3 +7,7 @@ Copyright by Colton Wiscombe - https://mdi.bessarabov.com/icon/food-turkey
 Copyright by Jan Jan Kovařík - http://glyphicons.com/
 - calendar.png
 - edit.png
+
+Website:
+- Fonts by Google Fonts - https://fonts.google.com/
+- Icons from Font Awesome - https://fontawesome.com/
