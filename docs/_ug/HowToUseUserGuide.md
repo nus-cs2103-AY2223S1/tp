@@ -2,7 +2,7 @@ Thank you for choosing FoodRem! We are delighted to have you as a user and aim t
 
 We **highly recommend** that you read through the User Guide in a **sequential order** up until the section [Features](#features), where you can find all the information you need before using any commands.
 
-If you have not installed FoodRem head over to the [Installation](#Installation) section.
+If you have not installed FoodRem head over to the [Installation](#installation) section.
 
 Once FoodRem is installed, you can head over to the section [Using FoodRem](#using-foodrem) which will share with you the basics of FoodRem. This includes:
 

@@ -21,6 +21,7 @@
 {% assign inc = inc | markdownify %}
 {% assign dec = dec | markdownify %}
 {% assign edit = edit | markdownify %}
+{% assign rmk = rmk | markdownify %}
 {% assign del = del | markdownify %}
 
 {% capture newexample %}{% include_relative _ug/commandSummary/itemCommandsExamples/new.md %}{% endcapture %}
@@ -42,6 +43,7 @@
 {% assign incexample = incexample | markdownify %}
 {% assign decexample = decexample | markdownify %}
 {% assign editexample = editexample | markdownify %}
+{% assign rmkexample = rmkexample | markdownify %}
 {% assign delexample = delexample | markdownify %}
 <!-- markdownlint-restore -->
 
