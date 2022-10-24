@@ -1,9 +1,9 @@
 package seedu.foodrem.views;
 
+import static java.util.Objects.requireNonNull;
+
 import seedu.foodrem.model.item.Item;
 import seedu.foodrem.ui.ResultDisplay;
-
-import static java.util.Objects.requireNonNull;
 
 public class UiView {
     private final ResultDisplay display;

@@ -1,5 +1,9 @@
 package seedu.foodrem.views;
 
+import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.List;
+
 import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.control.Label;
@@ -10,10 +14,6 @@ import javafx.scene.layout.VBox;
 import javafx.scene.text.TextAlignment;
 import seedu.foodrem.model.item.Item;
 import seedu.foodrem.model.tag.Tag;
-
-import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.List;
 
 /**
  * @author Richard Dominick
