@@ -22,7 +22,7 @@ public class RemarkCommand extends Command {
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Creates a remark and links to Client. "
             + "Parameters: "
             + "INDEX (must be a positive integer) "
-            + "REMARK"
+            + "REMARK\n"
             + "Example: " + COMMAND_WORD + " 2 "
             + "Fast buyer";
 
@@ -36,8 +36,8 @@ public class RemarkCommand extends Command {
     private final Remark remark;
 
     /**
-     * @param index of the client in the client list to add the Remark to
-     * @param remark to be added
+     * @param index of the client in the client list to add the Remark to.
+     * @param remark to be added.
      */
     public RemarkCommand(Index index, Remark remark) {
         requireNonNull(index);
