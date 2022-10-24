@@ -43,10 +43,10 @@ public class CsvAdaptedPerson {
     @CsvBindAndSplitByName(column = "tags",
             elementType = Tag.class, splitOn = ",", converter = StringToTag.class, writeDelimiter = ",")
     private final List<Tag> tagged = new ArrayList<>();
-    @CsvBindByName(column = "risk", required = true)
+    @CsvBindByName(column = "risk")
     private final String risk;
-    @CsvBindAndSplitByName(column = "plans", required = true,
-            elementType = Plan.class, splitOn = ",", converter = StringToPlan.class)
+    @CsvBindAndSplitByName(column = "plans",
+            elementType = Plan.class, splitOn = ",", converter = StringToPlan.class, writeDelimiter = ",")
     private final List<Plan> planned = new ArrayList<>();
 
     /**
@@ -126,7 +126,9 @@ public class CsvAdaptedPerson {
 
         final List<Plan> personPlans = new ArrayList<>();
         for (Plan plan : planned) {
-            personPlans.add(plan);
+            if (!plan.value.equals("null")) {
+                personPlans.add(plan);
+            }
         }
 
         if (name == null) {
