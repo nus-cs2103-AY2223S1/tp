@@ -3,8 +3,11 @@ package seedu.address.ui;
 import java.util.Stack;
 import java.util.logging.Logger;
 
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.MenuItem;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 import seedu.address.commons.core.GuiSettings;
@@ -71,6 +74,8 @@ public class MainWindow extends UiPart<Stage> {
 
         helpPanel = new HelpPanel();
         detailHelpPanel = new DetailHelpPanel();
+
+        setupUserInteraction();
     }
 
     public Stage getPrimaryStage() {
@@ -151,6 +156,14 @@ public class MainWindow extends UiPart<Stage> {
 
         mainPanelPlaceholder.getChildren().clear();
         mainPanelPlaceholder.getChildren().add(panelToSwitch.getRoot());
+    }
+
+    private void setupUserInteraction() {
+        this.getRoot().addEventHandler(KeyEvent.KEY_PRESSED, event -> {
+            if (event.getCode() == KeyCode.ESCAPE) {
+                handleBack();
+            }
+        });
     }
 
     /**
