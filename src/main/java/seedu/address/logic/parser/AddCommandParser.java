@@ -7,6 +7,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_REMARK;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_STUDENTCLASS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_SUBJECT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
 import java.util.Set;
@@ -22,6 +23,7 @@ import seedu.address.model.person.Phone;
 import seedu.address.model.person.Remark;
 import seedu.address.model.person.StudentClass;
 import seedu.address.model.person.subject.Subject;
+import seedu.address.model.person.subject.SubjectHandler;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -63,9 +65,10 @@ public class AddCommandParser implements Parser<AddCommand> {
         // New fields
         StudentClass studentClass = ParserUtil.parseStudentClass(argMultimap.getValue(PREFIX_STUDENTCLASS).get());
         Set<Remark> remarksList = ParserUtil.parseRemarks(argMultimap.getAllValues(PREFIX_REMARK));
-        Set<Subject> subjectList = ParserUtil.parseSubjects(argMultimap.getAllValues(PREFIX_TAG));
+        Set<Subject> subjectList = ParserUtil.parseSubjects(argMultimap.getAllValues(PREFIX_SUBJECT));
+        SubjectHandler subjectHandler = new SubjectHandler(subjectList);
 
-        Person person = new Person(name, phone, email, address, studentClass, remarksList, subjectList, tagList);
+        Person person = new Person(name, phone, email, address, studentClass, remarksList, subjectHandler, tagList);
 
         return new AddCommand(person);
     }

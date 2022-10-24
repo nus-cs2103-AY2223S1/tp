@@ -101,7 +101,7 @@ public class Subject {
     public String dataString() {
         String str = "";
         str += subjectName + ": ";
-        str += grades.dataString() + "\n";
+        str += grades.dataString() + " %%";
         return str;
     }
 

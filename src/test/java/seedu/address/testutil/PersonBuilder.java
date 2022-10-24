@@ -13,6 +13,7 @@ import seedu.address.model.person.StudentClass;
 import seedu.address.model.person.subject.Attendance;
 import seedu.address.model.person.subject.Grades;
 import seedu.address.model.person.subject.Subject;
+import seedu.address.model.person.subject.SubjectHandler;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.util.SampleDataUtil;
 
@@ -28,6 +29,8 @@ public class PersonBuilder {
     public static final String DEFAULT_EMAIL = "amy@gmail.com";
     public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
     public static final String DEFAULT_STUDENTCLASS = "1.3";
+    public static final String DEFAULT_SUBJECTHANDLER = "english: CA1:[80.0, 100.0, 0.2, 1.0], "
+                                                        + "CA2:[30.0, 56.0, 0.4, 2.0]";
     public static final String DEFAULT_PERSONALITY = "Hardworking";
     public static final String DEFAULT_ATTENDANCE = "9/10";
     public static final String DEFAULT_SUBJECT = "Math";
@@ -38,6 +41,7 @@ public class PersonBuilder {
     private Email email;
     private Address address;
     private StudentClass studentClass;
+    private SubjectHandler subjectHandler;
     private Set<Remark> remarks;
     private Attendance attendance;
     private Set<Subject> subjects;
@@ -53,6 +57,7 @@ public class PersonBuilder {
         email = new Email(DEFAULT_EMAIL);
         address = new Address(DEFAULT_ADDRESS);
         studentClass = new StudentClass(DEFAULT_STUDENTCLASS);
+        subjectHandler = new SubjectHandler(DEFAULT_SUBJECTHANDLER);
         remarks = new HashSet<>();
         subjects = new HashSet<>();
         tags = new HashSet<>();
@@ -68,6 +73,7 @@ public class PersonBuilder {
         address = personToCopy.getAddress();
         studentClass = personToCopy.getStudentClass();
         remarks = new HashSet<>(personToCopy.getRemarks());
+        subjectHandler = personToCopy.getSubjectHandler();
         subjects = personToCopy.getSubjectsTaken();
         tags = new HashSet<>(personToCopy.getTags());
     }
@@ -121,6 +127,14 @@ public class PersonBuilder {
     }
 
     /**
+     * Sets the {@code Clazz} of the {@code Person} that we are building.
+     */
+    public PersonBuilder withSubjectHandler(String withSubjectHandler) {
+        this.subjectHandler = new SubjectHandler(withSubjectHandler);
+        return this;
+    }
+
+    /**
      * Sets the {@code Remark} of the {@code Person} that we are building.
      */
     public PersonBuilder withRemarks(String... remarks) {
@@ -132,7 +146,7 @@ public class PersonBuilder {
      * Builds a person object given the attributes
      */
     public Person build() {
-        return new Person(name, phone, email, address, studentClass, remarks,
-                          subjects, tags);
+        return new Person(name, phone, email, address, studentClass, remarks, subjectHandler,
+                          tags);
     }
 }

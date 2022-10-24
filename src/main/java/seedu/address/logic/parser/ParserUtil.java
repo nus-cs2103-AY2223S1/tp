@@ -16,6 +16,7 @@ import seedu.address.model.person.Phone;
 import seedu.address.model.person.Remark;
 import seedu.address.model.person.StudentClass;
 import seedu.address.model.person.subject.Subject;
+import seedu.address.model.person.subject.SubjectHandler;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -100,7 +101,7 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String clazz} into an {@code Clazz}.
+     * Parses a {@code String studentClass} into an {@code StudentClass}.
      * Leading and trailing whitespaces will be trimmed.
      *
      * @throws ParseException if the given {@code clazz} is invalid.
@@ -112,6 +113,16 @@ public class ParserUtil {
             throw new ParseException(StudentClass.MESSAGE_CONSTRAINTS);
         }
         return new StudentClass(trimmedStudentClass);
+    }
+
+    /**
+     * Parses a {@code String subjectHandler} into an {@code SubjectHandler}.
+     * Leading and trailing whitespaces will be trimmed.
+     */
+    public static SubjectHandler parseSubjectHandler(String subjectHandler) {
+        requireNonNull(subjectHandler);
+        String trimmedsubjectHandler = subjectHandler.trim();
+        return new SubjectHandler(trimmedsubjectHandler);
     }
 
     /**

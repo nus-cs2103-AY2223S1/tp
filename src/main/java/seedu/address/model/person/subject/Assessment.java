@@ -82,7 +82,7 @@ public class Assessment {
     }
 
     public double[] getScoreArray() {
-        return new double[]{assessmentScore, assessmentTotalScore, assessmentWeightage};
+        return new double[]{assessmentScore, assessmentTotalScore, assessmentWeightage, assessmentDifficulty};
     }
 
     @Override

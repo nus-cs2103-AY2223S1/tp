@@ -30,6 +30,14 @@ public class SubjectHandler {
     }
 
     /**
+     * Constructs a {@code SubjectHandler} with a String data from json.
+     */
+    public SubjectHandler(String subjectData) {
+        subjectsTaken = new HashMap<>();
+        dataToSubject(subjectData);
+    }
+
+    /**
      * Adds a subject to the list of subjects taken by the student
      *
      * @param subject the subject to be added
@@ -72,6 +80,56 @@ public class SubjectHandler {
         return false;
     }
 
+    /**
+     * Converts the String datatype stored in json into subjects.
+     *
+     * @param subjectData String data of the subjects taken by Person.
+     */
+    public void dataToSubject(String subjectData) {
+        String dataString = subjectData;
+        //System.out.println(dataString + "start");
+        while (!dataString.isEmpty()) {
+            String subjectName;
+            if (dataString.contains(":")) {
+                subjectName = dataString.substring(0, dataString.indexOf(":"));
+                dataString = dataString.substring(dataString.indexOf(":") + 2); //dataString without the subject name
+            } else {
+                subjectName = dataString;
+                dataString = "";
+            }
+            //System.out.println(dataString + "after subjectname");
+            Subject subject = new Subject(subjectName);
+            while (!dataString.isEmpty() && dataString.length() != 1 && dataString.charAt(0) != '%') {
+                String assessmentName = dataString.substring(0, dataString.indexOf(":"));
+                dataString = dataString.substring(dataString.indexOf(":") + 2);
+                //System.out.println(dataString + "after assessName");
+                Double assessmentScore = Double.parseDouble(dataString.substring(0, dataString.indexOf(",")));
+                dataString = dataString.substring(dataString.indexOf(",") + 2);
+                //System.out.println(dataString + "after assessScore");
+                Double assessmentTotalScore = Double.parseDouble(dataString.substring(0, dataString.indexOf(",")));
+                dataString = dataString.substring(dataString.indexOf(",") + 2);
+                //System.out.println(dataString + "after assessTotalScore");
+                Double assessmentWeightage = Double.parseDouble(dataString.substring(0, dataString.indexOf(",")));
+                dataString = dataString.substring(dataString.indexOf(",") + 2);
+                //System.out.println(dataString + "after assessWeightage");
+                Double assessmentDifficulty = Double.parseDouble(dataString.substring(0, dataString.indexOf("]")));
+                if (dataString.substring(dataString.indexOf("]")).length() > 2) {
+                    dataString = dataString.substring(dataString.indexOf("]") + 3);
+                } else {
+                    dataString = "";
+                }
+                Assessment assessment = new Assessment(assessmentName, assessmentScore, assessmentTotalScore,
+                        assessmentWeightage, assessmentDifficulty);
+                subject.updateGradeAssessment(assessment);
+                //System.out.println(dataString + "after assess");
+            }
+            while (!dataString.isEmpty() && dataString.charAt(0) == '%') {
+                dataString = dataString.substring(1);
+            }
+            subjectsTaken.put(subjectName, subject);
+        }
+    }
+
     @Override
     public boolean equals(Object obj) {
         if (obj instanceof SubjectHandler) {
@@ -92,6 +150,7 @@ public class SubjectHandler {
             Subject keyValue = subjectsTaken.get(key);
             str += keyValue.dataString();
         }
+        str = str.substring(0, str.length() - 2);
         return str;
     }
 
