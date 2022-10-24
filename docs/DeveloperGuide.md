@@ -295,6 +295,22 @@ Step 4. This then iterates through the list of `Person` objects returned by the 
 
 Step 5. The list of `Person` objects is then returned, and is passed to the `UiManager` to be displayed on the user interface.
 
+### View feature
+
+This section explains the implementation of the `view` feature. The command takes in one parameter which is the index. Executing the command leads to the more detailed information of the specific employee to be shown on the right panel.
+
+Below is a sequence diagram and explanation of how `view` is executed.
+
+<img src="images/ViewCommandUML.png" width="550" />
+
+Step 1. The use enters the command `view 1`.
+
+Step 2. User input is parsed by `ViewCommandParser` which created the `ViewCommand` object, then the method `LogicManager#execute` is called to create the `ViewCommand` object.
+
+Step 3. The `execute` method of `ViewCommand` is then called on the object, which returns a `CommandResult` object.
+
+Step 4. This finds the `person` from the list from the `model#getFilteredPersonList` by its index which is `1` in this case. If there does not exist a `person` object with index `1`, a `CommandException` will be thrown and a messafe indicating invalid index given will be shown. If the `person` object exists, then the `MainWindow#handleView` will be trigger, which results in the panel being updated with the correct `person` information.
+
 ### BatchAdd
 
 This feature is created for users to add multiple entries at once.
@@ -453,6 +469,23 @@ _{More to be added}_
 - 2a. There is no such person in the list
 
   - 2a1. Coydir shows an error message
+
+    Use case ends.
+
+**Use case: View details of a person**
+
+**MSS**
+
+1. User request to view details of a specific person in the list
+2. Coydir shows the details of the specific person
+    
+    Use case ends.
+
+**Extensions**
+
+- 1a. The given index is invalid.
+
+  - 1a1. Coydir shows an error message.
 
     Use case ends.
 
