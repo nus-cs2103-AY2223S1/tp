@@ -26,6 +26,9 @@ public class ModelManager implements Model {
     private final FilteredList<Resident> filteredResidents;
     private final ObservableList<String> observableFieldList;
 
+    private final ObservableList<String> visibleFields;
+    private final ObservableList<String> hiddenFields;
+
     /**
      * Initializes a ModelManager with the given residentBook and userPrefs.
      */
@@ -37,6 +40,9 @@ public class ModelManager implements Model {
         this.userPrefs = new UserPrefs(userPrefs);
         filteredResidents = new FilteredList<>(this.residentBook.getResidentList());
         this.observableFieldList = FXCollections.observableArrayList();
+
+        this.visibleFields = FXCollections.observableArrayList();
+        this.hiddenFields = FXCollections.observableArrayList();
     }
 
     public ModelManager() {
@@ -159,5 +165,25 @@ public class ModelManager implements Model {
     @Override
     public void setObservableFields(List<String> modifiableFields) {
         this.observableFieldList.setAll(modifiableFields);
+    }
+
+    @Override
+    public ObservableList<String> getVisibleFields() {
+        return this.visibleFields;
+    }
+
+    @Override
+    public void setVisibleFields(ObservableList<String> fieldsToShow) {
+        this.visibleFields.setAll(fieldsToShow);
+    }
+
+    @Override
+    public void setHiddenFields(ObservableList<String> fieldsToHide) {
+        this.hiddenFields.setAll(fieldsToHide);
+    }
+
+    @Override
+    public ObservableList<String> getHiddenFields() {
+        return this.hiddenFields;
     }
 }
