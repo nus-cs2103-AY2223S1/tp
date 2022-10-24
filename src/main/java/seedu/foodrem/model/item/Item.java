@@ -196,14 +196,14 @@ public class Item {
         }
 
         Item otherItem = (Item) other;
-        return otherItem.getName().equals(name)
-                && otherItem.getQuantity().equals(quantity)
-                && otherItem.getUnit().equals(unit)
-                && otherItem.getBoughtDate().equals(boughtDate)
-                && otherItem.getExpiryDate().equals(expiryDate)
-                && otherItem.getPrice().equals(price)
-                && otherItem.getRemarks().equals(remarks)
-                && otherItem.getTagSet().equals(tagSet);
+        return otherItem.name.equals(name)
+                && otherItem.quantity.equals(quantity)
+                && otherItem.unit.equals(unit)
+                && otherItem.boughtDate.equals(boughtDate)
+                && otherItem.expiryDate.equals(expiryDate)
+                && otherItem.price.equals(price)
+                && otherItem.remarks.equals(remarks)
+                && otherItem.tagSet.equals(tagSet);
     }
 
     /**
