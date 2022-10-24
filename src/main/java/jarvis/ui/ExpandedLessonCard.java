@@ -21,9 +21,8 @@ import javafx.scene.layout.Region;
  */
 public class ExpandedLessonCard extends UiPart<Region> {
 
-    public static final double TABLE_VIEW_HEIGHT_CONSULT = 250;
-    public static final double TABLE_VIEW_HEIGHT_MC = 200;
-    public static final double TABLE_VIEW_HEIGHT_STUDIO = 500;
+    public static final double LESSON_CARD_BASE_HEIGHT = 100;
+    public static final double TABLE_VIEW_ROW_HEIGHT = 48;
 
     private static final String FXML = "ExpandedLessonCard.fxml";
 
@@ -83,15 +82,12 @@ public class ExpandedLessonCard extends UiPart<Region> {
         switch(lesson.getLessonType()) {
         case MASTERY_CHECK:
             lessonType.setText("Mastery Check");
-            tableView.setPrefHeight(TABLE_VIEW_HEIGHT_MC);
             break;
         case CONSULT:
             lessonType.setText("Consult");
-            tableView.setPrefHeight(TABLE_VIEW_HEIGHT_CONSULT);
             break;
         case STUDIO:
             lessonType.setText("Studio");
-            tableView.setPrefHeight(TABLE_VIEW_HEIGHT_STUDIO);
             // Set participation column for studio
             studentParticipation.setVisible(true);
             studentParticipation.setCellValueFactory(s -> new ReadOnlyObjectWrapper<>((
@@ -109,6 +105,7 @@ public class ExpandedLessonCard extends UiPart<Region> {
         generalNotes.setText(lesson.getGeneralNotes());
 
         ObservableList<Student> list = FXCollections.observableArrayList(lesson.getAttendance().getAllStudents());
+        tableView.setPrefHeight(LESSON_CARD_BASE_HEIGHT + list.size() * TABLE_VIEW_ROW_HEIGHT);
         studentIndex.setCellValueFactory(s -> new ReadOnlyObjectWrapper<>(
                 tableView.getItems().indexOf(s.getValue()) + 1));
         studentNames.setCellValueFactory(s -> new ReadOnlyStringWrapper(s.getValue().getName().toString()));
