@@ -14,7 +14,7 @@ import seedu.intrack.model.internship.Internship;
 import seedu.intrack.model.internship.Remark;
 
 /**
- * Changes the remark of an existing internship in the intrack book.
+ * Changes the remark of an existing internship in the tracker.
  */
 public class RemarkCommand extends Command {
 

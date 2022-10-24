@@ -106,4 +106,12 @@ public interface Model {
      */
     void descendSort();
 
+    /** Returns an unmodifiable view of the selected internship list */
+    ObservableList<Internship> getSelectedInternship();
+
+    /**
+     * Updates the filter of the selected internship list to show only the selected internship.
+     * @param predicate filter to be applied
+     */
+    void updateSelectedInternship(Predicate<Internship> predicate);
 }

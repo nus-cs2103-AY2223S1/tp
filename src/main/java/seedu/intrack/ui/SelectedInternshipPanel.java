@@ -13,8 +13,8 @@ import seedu.intrack.model.internship.Internship;
 /**
  * Panel containing the list of internships.
  */
-public class InternshipListPanel extends UiPart<Region> {
-    private static final String FXML = "InternshipListPanel.fxml";
+public class SelectedInternshipPanel extends UiPart<Region> {
+    private static final String FXML = "SelectedInternshipPanel.fxml";
     private final Logger logger = LogsCenter.getLogger(InternshipListPanel.class);
 
     @FXML
@@ -23,7 +23,7 @@ public class InternshipListPanel extends UiPart<Region> {
     /**
      * Creates a {@code InternshipListPanel} with the given {@code ObservableList}.
      */
-    public InternshipListPanel(ObservableList<Internship> internshipList) {
+    public SelectedInternshipPanel(ObservableList<Internship> internshipList) {
         super(FXML);
         internshipListView.setItems(internshipList);
         internshipListView.setCellFactory(listView -> new InternshipListViewCell());
@@ -41,7 +41,7 @@ public class InternshipListPanel extends UiPart<Region> {
                 setGraphic(null);
                 setText(null);
             } else {
-                setGraphic(new InternshipCard(internship, getIndex() + 1).getRoot());
+                setGraphic(new SelectedInternshipCard(internship).getRoot());
             }
         }
     }
