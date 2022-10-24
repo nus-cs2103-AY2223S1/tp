@@ -11,5 +11,10 @@ public class Messages {
     public static final String MESSAGE_CANNOT_UNDO = "CLInkedIn cannot undo any further!";
     public static final String MESSAGE_CANNOT_REDO = "CLInkedIn cannot redo any further!";
     public static final String MESSAGE_PERSONS_LISTED_OVERVIEW = "%1$d persons listed!";
-
+    public static final String MESSAGE_STATS_DISPLAYED_OVERVIEW = "Statistics displayed!\n"
+            + "Number of persons used to calculate statistics: %5$d\n"
+            + "Average tags per person: %1$.2f\n"
+            + "Highest number of tags a single person has: %2$.0f\n"
+            + "Lowest number of tags a single person has: %3$.0f\n"
+            + "Total number of tags added to displayed persons: %4$.0f";
 }

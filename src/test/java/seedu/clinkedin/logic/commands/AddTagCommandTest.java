@@ -7,6 +7,7 @@ import static seedu.clinkedin.testutil.Assert.assertThrows;
 
 import java.nio.file.Path;
 import java.util.ArrayList;
+import java.util.DoubleSummaryStatistics;
 import java.util.function.Predicate;
 
 import org.junit.jupiter.api.Test;
@@ -182,6 +183,11 @@ public class AddTagCommandTest {
 
         @Override
         public int getFilteredNumberOfPersons() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public DoubleSummaryStatistics setStats() {
             throw new AssertionError("This method should not be called.");
         }
     }

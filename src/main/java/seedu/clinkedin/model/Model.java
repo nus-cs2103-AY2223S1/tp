@@ -1,6 +1,7 @@
 package seedu.clinkedin.model;
 
 import java.nio.file.Path;
+import java.util.DoubleSummaryStatistics;
 import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
@@ -93,6 +94,11 @@ public interface Model {
      * existing person in the clinkedin book.
      */
     void setPerson(Person target, Person editedPerson);
+
+    /**
+     * Returns a summary of the statistics of the persons in the clinkedin book.
+     */
+    DoubleSummaryStatistics setStats();
 
     /** Returns an unmodifiable view of the filtered person list */
     ObservableList<Person> getFilteredPersonList();

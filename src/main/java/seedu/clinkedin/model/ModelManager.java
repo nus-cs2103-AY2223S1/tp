@@ -5,6 +5,7 @@ import static seedu.clinkedin.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
 import java.util.ArrayList;
+import java.util.DoubleSummaryStatistics;
 import java.util.List;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
@@ -159,6 +160,19 @@ public class ModelManager implements Model {
     @Override
     public int getTotalNumberOfPersons() {
         return addressBook.getCount();
+    }
+
+    /**
+     * Returns a summary of the statistics of the persons' tags in the user's ClInkedIn using the
+     * DoubleSummaryStatistics class.
+     * @return a DoubleSummaryStatistics object containing the tag statistics of the persons in the user's ClInkedIn.
+     */
+    @Override
+    public DoubleSummaryStatistics setStats() {
+        DoubleSummaryStatistics stats = filteredPersons.stream().mapToDouble(Person::getTagCount).collect(
+                DoubleSummaryStatistics::new, DoubleSummaryStatistics::accept, DoubleSummaryStatistics::combine);
+        logger.fine("Stats: " + stats);
+        return stats;
     }
 
     // =========== Filtered Person List Accessors

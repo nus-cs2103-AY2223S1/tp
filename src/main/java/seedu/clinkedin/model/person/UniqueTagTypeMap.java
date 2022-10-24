@@ -215,6 +215,15 @@ public class UniqueTagTypeMap implements Iterable<TagType> {
         return internalMap.size();
     }
 
+    public int getTagCount() {
+        int count = 0;
+        for (TagType t: this) {
+            assert this.getTagList(t) != null;
+            count += this.getTagList(t).getCount();
+        }
+        return count;
+    }
+
     /**
      * Returns the backing list as an unmodifiable {@code ObservableList}.
      */
