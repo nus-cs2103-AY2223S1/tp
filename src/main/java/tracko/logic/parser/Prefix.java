@@ -4,7 +4,7 @@ package tracko.logic.parser;
  * A prefix that marks the beginning of an argument in an arguments string.
  * E.g. 't/' in 'add James t/ friend'.
  */
-public class Prefix {
+public class Prefix extends ArgumentToken {
     private final String prefix;
 
     public Prefix(String prefix) {

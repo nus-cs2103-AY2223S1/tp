@@ -16,7 +16,7 @@ import tracko.model.tag.Tag;
 public class Item {
     private ItemName itemName;
     private Description description;
-    private Quantity quantity;
+    private Quantity totalQuantity;
     private Price sellPrice;
     private Price costPrice;
     private Set<Tag> tags = new HashSet<>();
@@ -35,7 +35,7 @@ public class Item {
         requireAllNonNull(itemName, description, tags, sellPrice, costPrice);
         this.itemName = itemName;
         this.description = description;
-        this.quantity = quantity;
+        this.totalQuantity = quantity;
         this.tags.addAll(tags);
         this.sellPrice = sellPrice;
         this.costPrice = costPrice;
@@ -49,8 +49,12 @@ public class Item {
         return description;
     }
 
-    public Quantity getQuantity() {
-        return quantity;
+    public Quantity getTotalQuantity() {
+        return totalQuantity;
+    }
+
+    public Integer getTotalQuantityValue() {
+        return totalQuantity.getQuantity();
     }
 
     public Set<Tag> getTags() {
@@ -66,13 +70,24 @@ public class Item {
     }
 
     /**
+     * Decreases the stock quantity of the item by the delivered amount.
+     * @param deliveredQuantity quantity of the item that has been delivered
+     */
+    public void reduceItem(Integer deliveredQuantity) {
+        Quantity newQuantity = new Quantity(this.totalQuantity.getQuantity() - deliveredQuantity);
+        this.totalQuantity = newQuantity;
+    }
+
+    /**
      * Updates the invoked {@code Item} reference with the given {@code Item}'s data.
      */
     public void updateData(Item toCopy) {
         this.itemName = toCopy.itemName;
         this.description = toCopy.description;
-        this.quantity = toCopy.quantity;
+        this.totalQuantity = toCopy.totalQuantity;
         this.tags = toCopy.tags;
+        this.sellPrice = toCopy.sellPrice;
+        this.costPrice = toCopy.costPrice;
     }
 
     /**
@@ -112,7 +127,7 @@ public class Item {
         Item otherItem = (Item) other;
         return otherItem.getItemName().equals(getItemName())
                 && otherItem.getDescription().equals(getDescription())
-                && otherItem.getQuantity().equals(getQuantity())
+                && otherItem.getTotalQuantity().equals(getTotalQuantity())
                 && otherItem.getTags().equals(getTags())
                 && otherItem.getCostPrice().equals(getCostPrice())
                 && otherItem.getSellPrice().equals(getSellPrice());
@@ -121,7 +136,7 @@ public class Item {
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(itemName, description, quantity, tags, sellPrice, costPrice);
+        return Objects.hash(itemName, description, totalQuantity, tags, sellPrice, costPrice);
     }
 
     @Override
@@ -133,7 +148,7 @@ public class Item {
                 .append("Description: ")
                 .append(getDescription() + "\n")
                 .append("Quantity: ")
-                .append(getQuantity() + "\n")
+                .append(getTotalQuantity() + "\n")
                 .append("Sell Price: ")
                 .append(getSellPrice() + "\n")
                 .append("Cost Price: ")

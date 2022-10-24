@@ -73,6 +73,10 @@ public interface Model {
      */
     void deleteOrder(Order order);
 
+    void setOrder(Order orderToEdit, Order editedOrder);
+
+    void markOrder(Order orderToMark, boolean isPaid, boolean isDelivered);
+
     /**
      * Returns the order list.
      */
@@ -153,8 +157,6 @@ public interface Model {
      * Returns the item list.
      */
     ObservableList<Item> getInventoryList();
-
-    void setOrder(Order orderToEdit, Order editedOrder);
 
     void refreshData();
 }
