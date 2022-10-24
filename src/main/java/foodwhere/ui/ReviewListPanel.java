@@ -50,6 +50,8 @@ public class ReviewListPanel extends UiPart<Region> {
 
             CopyMenuItem<Review> copyReviewName = new CopyMenuItem<>("Copy Name",
                     selectedReview, clipboard, CopyMenuItem.Action.FIELDS_NAME);
+            CopyMenuItem<Review> copyReviewAddress = new CopyMenuItem<>("Copy Address",
+                    selectedReview, clipboard, CopyMenuItem.Action.FIELDS_ADDRESS);
             CopyMenuItem<Review> copyReviewDate = new CopyMenuItem<>("Copy Date",
                     selectedReview, clipboard, CopyMenuItem.Action.FIELDS_DATE);
             CopyMenuItem<Review> copyReviewContent = new CopyMenuItem<>("Copy Content",
@@ -57,7 +59,8 @@ public class ReviewListPanel extends UiPart<Region> {
             CopyMenuItem<Review> copyReviewRating = new CopyMenuItem<>("Copy Rating",
                     selectedReview, clipboard, CopyMenuItem.Action.FIELDS_RATING);
 
-            contextMenuItems.addAll(copyReviewName, copyReviewDate, copyReviewContent, copyReviewRating);
+            contextMenuItems.addAll(copyReviewName, copyReviewAddress,
+                    copyReviewDate, copyReviewContent, copyReviewRating);
 
             if (!selectedReview.getTags().isEmpty()) {
                 CopyMenuItem<Review> copyReviewTag = new CopyMenuItem<>("Copy Tag",
