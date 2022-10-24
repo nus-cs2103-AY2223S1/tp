@@ -14,7 +14,7 @@ public class InternshipComparator implements Comparator<Internship> {
 
         if (o1DateTime.equals(DateTime.EMPTY_DATETIME)) {
             return o2DateTime.equals(DateTime.EMPTY_DATETIME)
-                    ? 0
+                    ? o1.getCompany().name.compareTo(o2.getCompany().name)
                     : o2DateTime.isPast()
                             ? -1
                             : 1;

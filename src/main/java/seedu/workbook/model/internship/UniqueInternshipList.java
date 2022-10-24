@@ -136,7 +136,7 @@ public class UniqueInternshipList implements Iterable<Internship> {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof UniqueInternshipList // instanceof handles nulls
-                        && internalList.equals(((UniqueInternshipList) other).internalList));
+                        && sortedInternalList.equals(((UniqueInternshipList) other).sortedInternalList));
     }
 
     @Override
