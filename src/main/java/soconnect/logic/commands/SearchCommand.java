@@ -47,7 +47,7 @@ public class SearchCommand extends Command {
         requireNonNull(model);
         try {
             model.updateFilteredPersonList(predicate);
-        } catch (NullPointerException | IllegalArgumentException e ) {
+        } catch (NullPointerException | IllegalArgumentException e) {
             throw new CommandException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, SearchCommand.MESSAGE_USAGE));
         }
         if (model.isFilteredPersonListEmpty()) {
