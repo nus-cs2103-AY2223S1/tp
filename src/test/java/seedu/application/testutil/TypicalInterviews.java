@@ -4,6 +4,10 @@ import static seedu.application.logic.commands.CommandTestUtil.VALID_INTERVIEW_D
 import static seedu.application.logic.commands.CommandTestUtil.VALID_INTERVIEW_TIME_GOOGLE;
 import static seedu.application.logic.commands.CommandTestUtil.VALID_LOCATION_GOOGLE;
 import static seedu.application.logic.commands.CommandTestUtil.VALID_ROUND_GOOGLE;
+import static seedu.application.logic.commands.CommandTestUtil.VALID_INTERVIEW_DATE_FACEBOOK;
+import static seedu.application.logic.commands.CommandTestUtil.VALID_INTERVIEW_TIME_FACEBOOK;
+import static seedu.application.logic.commands.CommandTestUtil.VALID_LOCATION_FACEBOOK;
+import static seedu.application.logic.commands.CommandTestUtil.VALID_ROUND_FACEBOOK;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -30,6 +34,10 @@ public class TypicalInterviews {
     public static final Interview INTERVIEW_GOOGLE = new InterviewBuilder().withRound(VALID_ROUND_GOOGLE)
             .withInterviewDate(VALID_INTERVIEW_DATE_GOOGLE)
             .withInterviewTime(VALID_INTERVIEW_TIME_GOOGLE).withLocation(VALID_LOCATION_GOOGLE).build();
+    
+    public static final Interview INTERVIEW_FACEBOOK = new InterviewBuilder().withRound(VALID_ROUND_FACEBOOK)
+            .withInterviewDate(VALID_INTERVIEW_DATE_FACEBOOK)
+            .withInterviewTime(VALID_INTERVIEW_TIME_FACEBOOK).withLocation(VALID_LOCATION_FACEBOOK).build();
 
     public static final String KEYWORD_MATCHING_GOOGLE = "Google"; // A keyword that matches GOOGLE
 
@@ -46,12 +54,12 @@ public class TypicalInterviews {
         }
         return ab;
     }
-
+    
      */
 
 
+
     public static List<Interview> getTypicalInterviews() {
-        return new ArrayList<>(Arrays.asList(INTERVIEW_SHOPEE, INTERVIEW_BYTEDANCE, INTERVIEW_JANE_STREET,
-                INTERVIEW_GOOGLE));
+        return new ArrayList<>(Arrays.asList(INTERVIEW_SHOPEE, INTERVIEW_BYTEDANCE, INTERVIEW_JANE_STREET));
     }
 }

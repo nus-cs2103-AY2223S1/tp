@@ -12,14 +12,13 @@ import seedu.application.model.application.interview.Round;
  */
 public class InterviewBuilder {
 
-    public static final String DEFAULT_ROUND = "Google";
-    public static final String DEFAULT_INTERVIEW_DATE = "85355255";
-    public static final String DEFAULT_INTERVIEW_TIME = "google@gmail.com";
-    public static final String DEFAULT_LOCATION = "Software Engineer";
+    public static final String DEFAULT_ROUND = "Technical interview 1";
+    public static final String DEFAULT_INTERVIEW_DATE = "2023-08-23";
+    public static final String DEFAULT_INTERVIEW_TIME = "1545";
+    public static final String DEFAULT_LOCATION = "11, Kallang Way 27, #03-14, 116546";
 
     private Round round;
     private InterviewDate interviewDate;
-    private Date date;
     private InterviewTime interviewTime;
     private Location location;
 
