@@ -2,9 +2,13 @@ package seedu.address.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_ATTENDANCE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_GRADEPROGRESS;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_HOMEWORK;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_LESSON_PLAN;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_SESSION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.testutil.Assert.assertThrows;
 
@@ -55,6 +59,18 @@ public class CommandTestUtil {
     public static final String INVALID_NAME_DESC = " " + PREFIX_NAME + "James&"; // '&' not allowed in names
     public static final String INVALID_PHONE_DESC = " " + PREFIX_PHONE + "911a"; // 'a' not allowed in phones
     public static final String INVALID_TAG_DESC = " " + PREFIX_TAG + "hubby*"; // '*' not allowed in tags
+
+    // used in edit, hence index is included
+    public static final String HOMEWORK_DESC_AMY = " " + PREFIX_HOMEWORK + "1 " + VALID_HOMEWORK_AMY;
+    public static final String GRADE_PROGRESS_DESC_AMY = " " + PREFIX_GRADEPROGRESS
+            + "1 " + VALID_GRADE_PROGRESS_AMY;
+    public static final String ATTENDANCE_DESC_AMY = " " + PREFIX_ATTENDANCE + "1 " + VALID_ATTENDANCE_AMY;
+    public static final String SESSION_DESC_AMY = " " + PREFIX_SESSION + "1 " + VALID_SESSION_AMY;
+
+    public static final String INVALID_ATTENDANCE_DESC = " "
+            + PREFIX_ATTENDANCE + "1 5 June 2022"; // date format not uuuu-mm-dd
+    public static final String INVALID_SESSION_DESC =
+            " " + PREFIX_SESSION + "1 Monday 09:00"; // "Monday" should be "Mon"
 
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
