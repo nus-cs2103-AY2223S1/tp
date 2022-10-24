@@ -13,10 +13,11 @@ import seedu.address.logic.commands.task.DeadlineTaskCommand;
 import seedu.address.model.task.Deadline;
 
 public class DeadlineTaskCommandParserTest {
-    private DeadlineTaskCommandParser parser = new DeadlineTaskCommandParser();
+
+    private final DeadlineTaskCommandParser parser = new DeadlineTaskCommandParser();
 
     @Test
-    public void parse_validArgs_returnsAssignTaskCommand() {
+    public void parse_validArgs_returnsDeadlineTaskCommand() {
         LocalDate date = LocalDate.of(2023, 9, 19);
         assertParseSuccess(
                 parser,
@@ -47,7 +48,7 @@ public class DeadlineTaskCommandParserTest {
         assertParseFailure(
                 parser,
                 "1 by/ blahblah",
-                DeadlineTaskCommandParser.MESSAGE_DATE_PARSE_FAILURE
+                Deadline.MESSAGE_PARSE_FAILURE
         );
     }
 

@@ -7,15 +7,13 @@ import java.time.LocalDate;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.logic.parser.exceptions.ParseException;
-
 public class DeadlineTest {
 
     @Test
-    public void constructor_invalidDateString_throwsParseException() {
-        assertThrows(ParseException.class, () -> Deadline.of(""));
-        assertThrows(ParseException.class, () -> Deadline.of("2022-10-10"));
-        assertThrows(ParseException.class, () -> Deadline.of("10/10/2022"));
+    public void constructor_invalidDateString_throwsIllegalArgumentException() {
+        assertThrows(IllegalArgumentException.class, () -> Deadline.of(" "));
+        assertThrows(IllegalArgumentException.class, () -> Deadline.of("2022-10-10"));
+        assertThrows(IllegalArgumentException.class, () -> Deadline.of("10/10/2022"));
     }
     @Test
     public void formatForUi_withinCurrentYear_shouldNotDisplayYear() {

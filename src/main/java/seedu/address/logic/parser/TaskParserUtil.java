@@ -2,9 +2,15 @@ package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 
+import java.time.LocalDate;
+import java.time.ZoneId;
 import java.util.Collection;
+import java.util.Date;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
+
+import org.ocpsoft.prettytime.nlp.PrettyTimeParser;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
@@ -47,7 +53,18 @@ public class TaskParserUtil {
         if (!Deadline.isValidDeadline(trimmedDeadline)) {
             throw new ParseException(Deadline.MESSAGE_CONSTRAINTS);
         }
-        return Deadline.of(trimmedDeadline);
+
+        if (trimmedDeadline.equals("?") || trimmedDeadline.equals(Deadline.UNSPECIFIED_DEADLINE_IDENTIFIER)) {
+            return Deadline.UNSPECIFIED;
+        }
+
+        List<Date> parseResult = new PrettyTimeParser().parse(trimmedDeadline);
+
+        if (!parseResult.isEmpty()) {
+            return Deadline.of(TaskParserUtil.convertToLocalDate(parseResult.get(0)));
+        } else {
+            throw new ParseException(Deadline.MESSAGE_PARSE_FAILURE);
+        }
     }
 
     /**
@@ -82,7 +99,7 @@ public class TaskParserUtil {
     /**
      * Parses {@code Collection<String> contacts} into a {@code Set<Contact>}.
      */
-    public static Set<Contact> parseContacts(Collection<String> contacts) throws ParseException {
+    public static Set<Contact> parseContacts(Collection<String> contacts) {
         requireNonNull(contacts);
         final Set<Contact> contactSet = new HashSet<>();
         for (String contactName : contacts) {
@@ -125,6 +142,25 @@ public class TaskParserUtil {
             }
         }
         return textSet;
+    }
+
+    /**
+     * Convert given Date object to LocalDate object.
+     */
+    public static LocalDate convertToLocalDate(Date date) {
+        return date.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+    }
+
+    /**
+     * Parses string to LocalDate object. Used for initialising TypicalTasks so the string given is always in
+     * correct format.
+     */
+    public static LocalDate convertStringToLocalDate(String date) {
+        List<Date> result = new PrettyTimeParser().parse(date);
+        if (date.trim().equals("?") || date.trim().equals(Deadline.UNSPECIFIED_DEADLINE_IDENTIFIER)) {
+            return Deadline.UNSPECIFIED.getDate();
+        }
+        return TaskParserUtil.convertToLocalDate(result.get(0));
     }
 
 }

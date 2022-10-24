@@ -1,5 +1,7 @@
 package seedu.address.testutil;
 
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DEADLINE;
+
 import seedu.address.logic.commands.task.AddTaskCommand;
 import seedu.address.logic.commands.task.ListTasksCommand;
 import seedu.address.model.task.Task;
@@ -28,7 +30,8 @@ public class TaskUtil {
      */
     public static String getTaskDetails(Task task) {
         StringBuilder sb = new StringBuilder();
-        sb.append(task.getTitle().value + " ");
+        sb.append(task.getTitle().toString() + " ");
+        sb.append(PREFIX_DEADLINE + task.getDeadline().toString() + " ");
         return sb.toString();
     }
 }

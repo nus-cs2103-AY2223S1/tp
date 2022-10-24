@@ -6,14 +6,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
 import java.time.LocalDate;
-import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
-import java.util.Date;
-import java.util.List;
-
-import org.ocpsoft.prettytime.nlp.PrettyTimeParser;
-
-import seedu.address.logic.parser.exceptions.ParseException;
 
 /**
  * Represents a deadline for a task.
@@ -24,12 +17,13 @@ public class Deadline {
 
     public static final String UNSPECIFIED_DEADLINE_IDENTIFIER = "UNSPECIFIED";
     public static final String MESSAGE_CONSTRAINTS = "Deadline should only contain letters or numbers";
+    public static final String MESSAGE_PARSE_FAILURE = "Provided date could not be parsed";
     public static final DateTimeFormatter READABLE_FORMATTER_WITH_YEAR =
             DateTimeFormatter.ofPattern("EEE, dd MMM yyyy");
     public static final DateTimeFormatter READABLE_FORMATTER_WITHOUT_YEAR =
             DateTimeFormatter.ofPattern("EEE, dd MMM");
     private static final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
-    private static final String VALIDATION_REGEX = "^[a-zA-Z0-9 ]+$";
+    private static final String VALIDATION_REGEX = "^[a-zA-Z0-9 ?]+$";
 
     private final LocalDate date;
 
@@ -52,29 +46,8 @@ public class Deadline {
      *
      * @param date the string to be converted into a deadline
      */
-    public static Deadline of(String date) throws ParseException {
-        List<Date> parseResult = new PrettyTimeParser().parse(date);
-
-        if (!parseResult.isEmpty()) {
-            return Deadline.of(parseResult.get(0));
-        } else if (date.trim().equals("?")) {
-            return Deadline.UNSPECIFIED;
-        }
-
+    public static Deadline of(String date) {
         return new Deadline(date);
-    }
-
-    /**
-     * Creates a Deadline with a given date object.
-     * @param date the date to be converted into a Deadline
-     */
-    public static Deadline of(Date date) {
-        LocalDate localDate =
-                date.toInstant()
-                    .atZone(ZoneId.systemDefault())
-                    .toLocalDate();
-
-        return new Deadline(localDate);
     }
 
     public static Deadline of(LocalDate date) {
@@ -85,7 +58,7 @@ public class Deadline {
      * Returns true if a given string is a valid deadline.
      */
     public static boolean isValidDeadline(String test) {
-        return test.matches(VALIDATION_REGEX);
+        return !test.isBlank() && test.matches(VALIDATION_REGEX);
     }
 
     /**
