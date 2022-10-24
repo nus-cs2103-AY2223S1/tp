@@ -201,10 +201,6 @@ public class DateTime {
         return this.date;
     }
 
-    public Optional<LocalTime> getTime() {
-        return this.time;
-    }
-
     @Override
     public String toString() {
         return date.format(DateTimeFormatter.ofPattern(RECOMMENDED_DATE_FORMAT))
