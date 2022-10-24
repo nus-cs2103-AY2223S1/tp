@@ -389,7 +389,7 @@ Frequently used commands have aliases that are short so that you can perform act
 | **[Filter clear](#clearing-filters--filter-clear)**                  | `filter clear n=NAME1,[NAME2],…,[NAMEN] [t=TAG1,[TAG2],…,[TAGN]]`<br> `filter [n=NAME1,[NAME2],…,[NAMEN]] t=TAG1,[TAG2],…,[TAGN]` |
 | **[Filter list](#lists-the-filter-parameters--filter-list)**         | `filter list`                                                                                                                     |
 | **[Reminder creation](#creating-reminders--reminder)**               | `reminder [INDEX] d=DESCRIPTION dt=YY-M-D H:m`                                                                                    |
-| **[Reminder deletion](#deleting-reminders--reminder-delete)**        | `reminder delete INDEX`                     <br/>                                                                                      |
+| **[Reminder deletion](#deleting-reminders--reminder-delete)**        | `reminder delete INDEX`                     <br/>                                                                                 |
 | **[Reminder clear](#clearing-reminders--reminder-clear)**            | `reminder clear`                                                                                                                  |
 | **[Message creation](#creating-a-message-template--message-create)** | `message create MESSAGE`                                                                                                          |
 | **[Message list](#listing-message-templates--message-list)**         | `message list`                                                                                                                    |
