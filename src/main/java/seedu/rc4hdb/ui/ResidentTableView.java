@@ -34,38 +34,23 @@ public class ResidentTableView extends UiPart<Region> {
 
     @FXML
     private TableView<Resident> residentTableView;
-    private final ObservableList<String> observableFields = FXCollections.observableArrayList();
-    private final ObservableList<String> visibleFields = FXCollections.observableArrayList();
+    private final ObservableList<String> visibleFields = FXCollections.observableArrayList(
+            ResidentFields.LOWERCASE_FIELDS);
     private final ObservableList<String> hiddenFields = FXCollections.observableArrayList();
 
     /**
      * Creates a {@code ResidentTableView} with the given {@code ObservableList}.
      */
-    public ResidentTableView(ObservableList<Resident> residentList, ObservableList<String> observableFields) {
+    public ResidentTableView(ObservableList<Resident> residentList,
+                             ObservableList<String> visibleFields,
+                             ObservableList<String> hiddenFields) {
         super(FXML);
-        requireAllNonNull(residentList, observableFields);
+        requireAllNonNull(residentList, visibleFields, hiddenFields);
 
         this.residentTableView.setItems(residentList);
         addColumns();
         populateRows();
         configureTableProperties();
-
-        this.observableFields.setAll(observableFields);
-        this.observableFields.addListener(getListChangeListener());
-    }
-
-    public ResidentTableView(ObservableList<Resident> residentList, ObservableList<String> observableFields,
-                             ObservableList<String> visibleFields, ObservableList<String> hiddenFields) {
-        super(FXML);
-        requireAllNonNull(residentList, observableFields);
-
-        this.residentTableView.setItems(residentList);
-        addColumns();
-        populateRows();
-        configureTableProperties();
-
-        this.observableFields.setAll(observableFields);
-        this.observableFields.addListener(getListChangeListener());
 
         this.visibleFields.setAll(visibleFields);
         this.visibleFields.addListener(showColumnsOnChange());
@@ -151,58 +136,58 @@ public class ResidentTableView extends UiPart<Region> {
         matricColumn.setPrefWidth(140);
     }
 
-
-
-    private ListChangeListener<String> getListChangeListener() {
-        return c -> {
-            // Reset column visibilities
-            residentTableView.getColumns().forEach(column -> column.setVisible(true));
-
-            // Filter all columns (including index column) to obtain required columns
-            // Recall that column headers is in title-case, i.e. first letter is capitalised
-            residentTableView.getColumns().stream()
-                    .filter(column -> this.observableFields.contains(column.getText().toLowerCase()))
-                    .forEach(column -> column.setVisible(false));
-        };
-    }
-
+    /**
+     * Returns a listener that sets the TableColumns corresponding to the columns
+     * in {@code visibleFields} to visible when the list changes.
+     */
     private ListChangeListener<String> showColumnsOnChange() {
-        System.out.println("Inside listener for show command.");
         return c -> {
             // Reset column visibilities to false
             residentTableView.getColumns().forEach(column -> column.setVisible(false));
 
             // Filter all columns (including index column) to obtain the columns to show
             // Recall that column headers is in title-case, i.e. first letter is capitalised
-            residentTableView.getColumns().stream()
+            residentTableView.getColumns()
+                    .stream()
                     .filter(column -> this.visibleFields.contains(column.getText().toLowerCase()))
                     .forEach(column -> column.setVisible(true));
+
+            indexColumn.setCellFactory(this::populateIndexColumn);
         };
     }
 
+    /**
+     * Returns a listener that sets the TableColumns corresponding to the columns
+     * in {@code hiddenFields} to not visible when the list changes.
+     */
     private ListChangeListener<String> hideColumnsOnChange() {
-        System.out.println("Inside listener for hide command.");
         return c -> {
-
             // Reset column visibilities to true
             residentTableView.getColumns().forEach(column -> column.setVisible(true));
 
             // Filter all columns (including index column) to obtain the columns to hide
             // Recall that column headers is in title-case, i.e. first letter is capitalised
-            residentTableView.getColumns().stream()
+            residentTableView.getColumns()
+                    .stream()
                     .filter(column -> this.hiddenFields.contains(column.getText().toLowerCase()))
                     .forEach(column -> column.setVisible(false));
+
+            indexColumn.setCellFactory(this::populateIndexColumn);
         };
     }
 
-    public void setObservableFields(ObservableList<String> list) {
-        this.observableFields.setAll(list);
-    }
-
+    /**
+     * Updates the list of fields to be shown when invoking {@code show}.
+     * @param fieldsToShow The list of fields to be shown
+     */
     public void setVisibleFields(ObservableList<String> fieldsToShow) {
         this.visibleFields.setAll(fieldsToShow);
     }
 
+    /**
+     * Updates the list of fields to be hidden when invoking {@code hide}.
+     * @param fieldsToHide The list of fields to be hidden
+     */
     public void setHiddenFields(ObservableList<String> fieldsToHide) {
         this.hiddenFields.setAll(fieldsToHide);
     }

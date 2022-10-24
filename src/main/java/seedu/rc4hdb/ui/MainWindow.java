@@ -68,7 +68,6 @@ public class MainWindow extends UiPart<Stage> {
         // Set dependencies
         this.primaryStage = primaryStage;
         this.logic = logic;
-        this.logic.getObservableFields().addListener(getListChangeListener());
 
         this.logic.getVisibleFields().addListener(updateVisibleFieldsOnChange());
         this.logic.getHiddenFields().addListener(updateHiddenFieldsOnChange());
@@ -126,8 +125,9 @@ public class MainWindow extends UiPart<Stage> {
      * Fills up all the placeholders of this window.
      */
     void fillInnerParts() {
-        residentTableView = new ResidentTableView(logic.getFilteredResidentList(), logic.getObservableFields(),
-                logic.getVisibleFields(), logic.getHiddenFields());
+        residentTableView = new ResidentTableView(logic.getFilteredResidentList(),
+                logic.getVisibleFields(),
+                logic.getHiddenFields());
         residentTableViewPlaceholder.getChildren().add(residentTableView.getRoot());
 
         resultDisplay = new ResultDisplay();
@@ -219,16 +219,18 @@ public class MainWindow extends UiPart<Stage> {
         }
     }
 
-    private ListChangeListener<String> getListChangeListener() {
-        // Update the observable field list within the logic attribute
-        return c -> residentTableView.setObservableFields(logic.getObservableFields());
-    }
-
+    /**
+     * Returns a listener which propagates the changes in the visibleFields list in Model
+     * (and hence Logic) to the corresponding observable list in ResidentTableView.
+     */
     private ListChangeListener<String> updateVisibleFieldsOnChange() {
-        // Update the observable field list within the logic attribute
         return c -> residentTableView.setVisibleFields(logic.getVisibleFields());
     }
 
+    /**
+     * Returns a listener which propagates the changes in the hiddenFields list in Model
+     * (and hence Logic) to the corresponding observable list in ResidentTableView.
+     */
     private ListChangeListener<String> updateHiddenFieldsOnChange() {
         // Update the observable field list within the logic attribute
         return c -> residentTableView.setHiddenFields(logic.getHiddenFields());
