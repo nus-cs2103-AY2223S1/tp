@@ -1,4 +1,4 @@
-package seedu.rc4hdb.logic.commands.storagecommands.filecommands;
+package seedu.rc4hdb.logic.commands.storagecommands.filecommands.jsonfilecommands;
 
 import static seedu.rc4hdb.commons.util.CollectionUtil.requireAllNonNull;
 
@@ -17,7 +17,7 @@ import seedu.rc4hdb.storage.Storage;
 /**
  * Switches the current working file to the file corresponding to the arguments provided.
  */
-public class FileSwitchCommand extends FileCommand implements StorageModelCommand {
+public class FileSwitchCommand extends JsonFileCommand implements StorageModelCommand {
 
     public static final String COMMAND_WORD = "switch";
 
@@ -28,8 +28,8 @@ public class FileSwitchCommand extends FileCommand implements StorageModelComman
     public static final String MESSAGE_INVALID_FILE_DATA = "%s contains invalid data."
             + " Please make sure it is a proper JSON file.";
 
-    public FileSwitchCommand(Path filePath) {
-        super(filePath);
+    public FileSwitchCommand(Path dir, String fileName) {
+        super(dir, fileName);
     }
 
     @Override

@@ -20,8 +20,13 @@ import seedu.rc4hdb.logic.parser.ArgumentTokenizer;
 import seedu.rc4hdb.logic.parser.FilterSpecifier;
 import seedu.rc4hdb.logic.parser.Parser;
 import seedu.rc4hdb.logic.parser.exceptions.ParseException;
+<<<<<<< HEAD
 import seedu.rc4hdb.model.resident.ResidentStringDescriptor;
 
+=======
+import seedu.rc4hdb.model.resident.ResidentDescriptor;
+import seedu.rc4hdb.model.resident.fields.Tag;
+>>>>>>> 47176a1127d97c46122938c8dc467a3711185ff9
 
 /**
  * Parses input arguments and creates a new FilterCommand object

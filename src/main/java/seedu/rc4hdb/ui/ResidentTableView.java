@@ -2,6 +2,9 @@ package seedu.rc4hdb.ui;
 
 import static seedu.rc4hdb.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.util.Set;
+import java.util.stream.Collectors;
+
 import javafx.collections.FXCollections;
 import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
@@ -12,8 +15,15 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.Region;
 import seedu.rc4hdb.model.resident.Resident;
-import seedu.rc4hdb.model.resident.fields.Field;
-import seedu.rc4hdb.model.resident.fields.ResidentFields;
+import seedu.rc4hdb.model.resident.fields.Email;
+import seedu.rc4hdb.model.resident.fields.Gender;
+import seedu.rc4hdb.model.resident.fields.House;
+import seedu.rc4hdb.model.resident.fields.MatricNumber;
+import seedu.rc4hdb.model.resident.fields.Name;
+import seedu.rc4hdb.model.resident.fields.Phone;
+import seedu.rc4hdb.model.resident.fields.ResidentField;
+import seedu.rc4hdb.model.resident.fields.Room;
+import seedu.rc4hdb.model.resident.fields.Tag;
 
 /**
  * Panel containing the list of persons.
@@ -22,15 +32,15 @@ public class ResidentTableView extends UiPart<Region> {
 
     private static final String FXML = "ResidentTableView.fxml";
 
-    private final TableColumn<Resident, Field> emailColumn = new TableColumn<>(ResidentFields.EMAIL);
-    private final TableColumn<Resident, Field> genderColumn = new TableColumn<>(ResidentFields.GENDER);
-    private final TableColumn<Resident, Field> houseColumn = new TableColumn<>(ResidentFields.HOUSE);
-    private final TableColumn<Resident, Field> indexColumn = new TableColumn<>(ResidentFields.INDEX);
-    private final TableColumn<Resident, Field> matricColumn = new TableColumn<>(ResidentFields.MATRIC);
-    private final TableColumn<Resident, Field> nameColumn = new TableColumn<>(ResidentFields.NAME);
-    private final TableColumn<Resident, Field> phoneColumn = new TableColumn<>(ResidentFields.PHONE);
-    private final TableColumn<Resident, Field> roomColumn = new TableColumn<>(ResidentFields.ROOM);
-    private final TableColumn<Resident, Field> tagColumn = new TableColumn<>(ResidentFields.TAG);
+    private final TableColumn<Resident, ResidentField> emailColumn = new TableColumn<>(Email.IDENTIFIER);
+    private final TableColumn<Resident, ResidentField> genderColumn = new TableColumn<>(Gender.IDENTIFIER);
+    private final TableColumn<Resident, ResidentField> houseColumn = new TableColumn<>(House.IDENTIFIER);
+    private final TableColumn<Resident, ResidentField> indexColumn = new TableColumn<>(ResidentField.INDEX_IDENTIFIER);
+    private final TableColumn<Resident, ResidentField> matricColumn = new TableColumn<>(MatricNumber.IDENTIFIER);
+    private final TableColumn<Resident, ResidentField> nameColumn = new TableColumn<>(Name.IDENTIFIER);
+    private final TableColumn<Resident, ResidentField> phoneColumn = new TableColumn<>(Phone.IDENTIFIER);
+    private final TableColumn<Resident, ResidentField> roomColumn = new TableColumn<>(Room.IDENTIFIER);
+    private final TableColumn<Resident, Set<Tag>> tagColumn = new TableColumn<>(Tag.IDENTIFIER);
 
     @FXML
     private TableView<Resident> residentTableView;
@@ -71,22 +81,43 @@ public class ResidentTableView extends UiPart<Region> {
      * Populates the columns with data from the given {@code ObservableList}.
      */
     private void populateRows() {
-        nameColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
-        phoneColumn.setCellValueFactory(new PropertyValueFactory<>("phone"));
-        emailColumn.setCellValueFactory(new PropertyValueFactory<>("email"));
-        roomColumn.setCellValueFactory(new PropertyValueFactory<>("room"));
+        nameColumn.setCellValueFactory(new PropertyValueFactory<>(Name.IDENTIFIER.toLowerCase()));
+        phoneColumn.setCellValueFactory(new PropertyValueFactory<>(Phone.IDENTIFIER.toLowerCase()));
+        emailColumn.setCellValueFactory(new PropertyValueFactory<>(Email.IDENTIFIER.toLowerCase()));
+        roomColumn.setCellValueFactory(new PropertyValueFactory<>(Room.IDENTIFIER.toLowerCase()));
         indexColumn.setCellFactory(this::populateIndexColumn);
-        genderColumn.setCellValueFactory(new PropertyValueFactory<>("gender"));
-        houseColumn.setCellValueFactory(new PropertyValueFactory<>("house"));
+        genderColumn.setCellValueFactory(new PropertyValueFactory<>(Gender.IDENTIFIER.toLowerCase()));
+        houseColumn.setCellValueFactory(new PropertyValueFactory<>(House.IDENTIFIER.toLowerCase()));
         matricColumn.setCellValueFactory(new PropertyValueFactory<>("matricNumber"));
-        tagColumn.setCellValueFactory(new PropertyValueFactory<>("tags"));
+        tagColumn.setCellValueFactory(new PropertyValueFactory<>(Tag.IDENTIFIER.toLowerCase()));
+        tagColumn.setCellFactory(this::populateTagColumn);
+    }
+
+    /**
+     * Code referenced from:
+     * https://stackoverflow.com/questions/31126123/how-to-show-a-list-on-table-column-with-few-fields-of-list-items
+     */
+    private TableCell<Resident, Set<Tag>> populateTagColumn(TableColumn<Resident, Set<Tag>> column) {
+        return new TableCell<>() {
+            @Override
+            public void updateItem(Set<Tag> tags, boolean empty) {
+                super.updateItem(tags, empty);
+                if (empty) {
+                    setText(null);
+                } else {
+                    String tagsString = tags.stream().map(Tag::toString)
+                            .collect(Collectors.joining(", "));
+                    setText(tagsString);
+                }
+            }
+        };
     }
 
     /**
      * Code referenced from:
      * https://stackoverflow.com/questions/33353014/creating-a-row-index-column-in-javafx
      */
-    private TableCell<Resident, Field> populateIndexColumn(TableColumn<Resident, Field> column) {
+    private TableCell<Resident, ResidentField> populateIndexColumn(TableColumn<Resident, ResidentField> column) {
         return new TableCell<>() {
             @Override
             public void updateIndex(int index) {

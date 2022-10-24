@@ -11,15 +11,18 @@ import java.util.regex.Pattern;
 
 import seedu.rc4hdb.logic.commands.misccommands.HelpCommand;
 import seedu.rc4hdb.logic.commands.storagecommands.filecommands.FileCommand;
-import seedu.rc4hdb.logic.commands.storagecommands.filecommands.FileCreateCommand;
-import seedu.rc4hdb.logic.commands.storagecommands.filecommands.FileDeleteCommand;
-import seedu.rc4hdb.logic.commands.storagecommands.filecommands.FileSwitchCommand;
+import seedu.rc4hdb.logic.commands.storagecommands.filecommands.csvfilecommands.ImportCommand;
+import seedu.rc4hdb.logic.commands.storagecommands.filecommands.jsonfilecommands.FileCreateCommand;
+import seedu.rc4hdb.logic.commands.storagecommands.filecommands.jsonfilecommands.FileDeleteCommand;
+import seedu.rc4hdb.logic.commands.storagecommands.filecommands.jsonfilecommands.FileSwitchCommand;
 import seedu.rc4hdb.logic.parser.exceptions.ParseException;
 
 /**
  * Parses input arguments and creates a new FileCommand object.
  */
 public class FileCommandParser implements CommandParser<FileCommand> {
+
+    public static final Path DATA_DIR_PATH = Paths.get("data");
 
     private static final Pattern FILE_COMMAND_FORMAT = Pattern.compile("(?<secondCommandWord>\\S+) (?<arguments>.+)");
 
@@ -35,18 +38,20 @@ public class FileCommandParser implements CommandParser<FileCommand> {
         if (!FileCommand.isValidPath(fileName)) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, MESSAGE_INVALID_FILE_NAME));
         }
-        final Path jsonPath = Paths.get("data", fileName + ".json");
 
         switch (secondCommandWord) {
 
         case FileSwitchCommand.COMMAND_WORD:
-            return new FileSwitchCommand(jsonPath);
+            return new FileSwitchCommand(DATA_DIR_PATH, fileName);
 
         case FileCreateCommand.COMMAND_WORD:
-            return new FileCreateCommand(jsonPath);
+            return new FileCreateCommand(DATA_DIR_PATH, fileName);
 
         case FileDeleteCommand.COMMAND_WORD:
-            return new FileDeleteCommand(jsonPath);
+            return new FileDeleteCommand(DATA_DIR_PATH, fileName);
+
+        case ImportCommand.COMMAND_WORD:
+            return new ImportCommand(DATA_DIR_PATH, fileName);
 
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);

@@ -25,6 +25,7 @@ public class AttributesMatchAllKeywordsPredicate implements Predicate<Resident> 
     @Override
     public boolean test(Resident resident) {
         assert resident != null : "Resident object is null";
+<<<<<<< HEAD
         return descriptor.getName().map(name -> resident.getName().contains(name)).orElse(true)
                 && descriptor.getPhone().map(phone -> resident.getPhone().contains(phone)).orElse(true)
                 && descriptor.getEmail().map(email -> resident.getEmail().contains(email)).orElse(true)
@@ -48,6 +49,16 @@ public class AttributesMatchAllKeywordsPredicate implements Predicate<Resident> 
             newTags.add(newTag);
         }
         return newTags;
+=======
+        return descriptor.getName().map(name -> resident.getName().containsIgnoreCase(name)).orElse(true)
+                && descriptor.getPhone().map(phone -> resident.getPhone().containsIgnoreCase(phone)).orElse(true)
+                && descriptor.getEmail().map(email -> resident.getEmail().containsIgnoreCase(email)).orElse(true)
+                && descriptor.getRoom().map(room -> resident.getRoom().containsIgnoreCase(room)).orElse(true)
+                && descriptor.getGender().map(gender -> resident.getGender().containsIgnoreCase(gender)).orElse(true)
+                && descriptor.getHouse().map(house -> resident.getHouse().containsIgnoreCase(house)).orElse(true)
+                && descriptor.getMatricNumber().map(matric -> resident.getMatricNumber().containsIgnoreCase(matric))
+                .orElse(true) && resident.getTags().containsAll(descriptor.getTags().orElse(resident.getTags()));
+>>>>>>> 47176a1127d97c46122938c8dc467a3711185ff9
     }
 
     @Override

@@ -1,32 +1,28 @@
 package seedu.rc4hdb.model.resident.fields;
 
-import static java.util.Objects.requireNonNull;
 import static seedu.rc4hdb.commons.util.AppUtil.checkArgument;
-
-import seedu.rc4hdb.commons.util.StringUtil;
 
 /**
  * Represents a Resident's house in RC4HDB.
  * Guarantees: immutable; is valid as declared in {@link #isValidHouse(String)}
  */
-public class House extends Field {
+public class House extends ResidentField {
+
+    public static final String IDENTIFIER = "House";
 
     public static final String MESSAGE_CONSTRAINTS =
             "House should only contain the following characters: 'D', 'U', 'L', 'A' or 'N'";
 
     public static final String VALIDATION_REGEX = "^[DULAN]$";
 
-    public final String house;
-
     /**
      * Constructs a {@code House}.
      *
-     * @param house A valid house.
+     * @param house A valid house string.
      */
     public House(String house) {
-        requireNonNull(house);
+        super(house);
         checkArgument(isValidHouse(house), MESSAGE_CONSTRAINTS);
-        this.house = house;
     }
 
     /**
@@ -36,6 +32,7 @@ public class House extends Field {
         return test.matches(VALIDATION_REGEX);
     }
 
+<<<<<<< HEAD
     /**
      * Returns the house string as a full word.
      * @return the house string as a full word.
@@ -83,4 +80,6 @@ public class House extends Field {
         return house.hashCode();
     }
 
+=======
+>>>>>>> 47176a1127d97c46122938c8dc467a3711185ff9
 }

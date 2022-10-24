@@ -26,8 +26,21 @@ import static seedu.rc4hdb.testutil.TypicalSpecifiers.ALL_SPECIFIER;
 import org.junit.jupiter.api.Test;
 
 import seedu.rc4hdb.logic.commands.modelcommands.FilterCommand;
+<<<<<<< HEAD
 import seedu.rc4hdb.model.resident.ResidentStringDescriptor;
 import seedu.rc4hdb.testutil.ResidentStringDescriptorBuilder;
+=======
+import seedu.rc4hdb.model.resident.ResidentDescriptor;
+import seedu.rc4hdb.model.resident.fields.Email;
+import seedu.rc4hdb.model.resident.fields.Gender;
+import seedu.rc4hdb.model.resident.fields.House;
+import seedu.rc4hdb.model.resident.fields.MatricNumber;
+import seedu.rc4hdb.model.resident.fields.Name;
+import seedu.rc4hdb.model.resident.fields.Phone;
+import seedu.rc4hdb.model.resident.fields.Room;
+import seedu.rc4hdb.model.resident.fields.Tag;
+import seedu.rc4hdb.testutil.ResidentDescriptorBuilder;
+>>>>>>> 47176a1127d97c46122938c8dc467a3711185ff9
 
 public class FilterCommandParserTest {
 
