@@ -1,0 +1,25 @@
+* {
+  -main-background: #fafafa;
+  -second-background: #d2d3db;
+  -text: #484b6a;
+}
+
+#copyButton, #helpMessage {
+    -fx-text-fill: -text;
+}
+
+#copyButton {
+    -fx-background-color: -main-background;
+}
+
+#copyButton:hover {
+    -fx-background-color: -second-background;
+}
+
+#copyButton:armed {
+    -fx-background-color: -main-background;
+}
+
+#helpMessageContainer {
+    -fx-background-color: -main-background;
+}

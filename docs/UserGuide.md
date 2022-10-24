@@ -24,6 +24,8 @@ done faster and more securely than traditional GUI apps.
     * [Exporting data: `export`](#exporting-data--export)
     * [Locking the application: `lock`](#locking-the-application--lock)
     * [Setting or updating the password: `password`](#setting-or-updating-the-password--password)
+    * [Changing Light/Dark mode](#changing-lightdark-mode)
+
 - [FAQ](#faq)
 - [Command Summary](#command-summary)
 
@@ -300,6 +302,15 @@ Examples:
 
 * `password new/foobar` sets the password to `foobar`, given that a password has not yet been set
 * `password old/foobar new/barfoo` updates the password to `barfoo`, given that the current password is `foobar`.
+
+---
+
+### Changing Light/Dark mode
+
+Toggle the theme of FinBook by clicking on the `sun` or `moon` icon on the top right of the application.
+
+* If icon is a `sun` FinBook is in Light mode.
+* If icon is a `moon` FinBook is in Dark mode.
 
 --------------------------------------------------------------------------------------------------------------------
 

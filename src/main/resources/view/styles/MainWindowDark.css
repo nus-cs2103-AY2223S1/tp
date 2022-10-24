@@ -1,3 +1,9 @@
+* {
+  -main-background: #13315C;
+  -second-background: #0B2545;
+  -contrast-background: #8DA9C4;
+  -text: #738979;
+}
 
 .background {
     -fx-background-color: #13315C;
@@ -156,12 +162,12 @@
 }
 
 .stack-pane {
-     -fx-background-color: #13315C;
+     -fx-background-color: -main-background;
 }
 
 .pane-with-border {
-     -fx-background-color: #13315C;
-     -fx-border-color: #13315C;
+     -fx-background-color: -main-background;
+     -fx-border-color: -main-background;
      -fx-border-top-width: 1px;
 }
 
@@ -170,7 +176,7 @@
 }
 
 .result-display {
-    -fx-background-color: #13315C;
+    -fx-background-color: -main-background;
     -fx-font-family: "Segoe UI Light";
     -fx-font-size: 13pt;
     -fx-text-fill: white;
@@ -188,7 +194,7 @@
 }
 
 .status-bar-with-border {
-    -fx-background-color: #13315C;
+    -fx-background-color: -main-background;
     -fx-border-color: derive(#1d1d1d, 25%);
     -fx-border-width: 1px;
 }
@@ -208,7 +214,7 @@
 }
 
 .context-menu {
-    -fx-background-color: #13315C;
+    -fx-background-color: -main-background;
 }
 
 .context-menu .label {
@@ -216,7 +222,7 @@
 }
 
 .menu-bar {
-    -fx-background-color: #13315C;
+    -fx-background-color: -main-background;
 }
 
 .menu-bar .label {
@@ -238,10 +244,10 @@
  */
 .button {
     -fx-padding: 5 22 5 22;
-    -fx-border-color: #0B2545;
+    -fx-border-color: -second-background;
     -fx-border-width: 2;
     -fx-background-radius: 0;
-    -fx-background-color: #0B2545;
+    -fx-background-color: -second-background;
     -fx-font-family: "Segoe UI", Helvetica, Arial, sans-serif;
     -fx-font-size: 11pt;
     -fx-text-fill: #D9D9D9;
@@ -253,12 +259,12 @@
 }
 
 .button:pressed, .button:default:hover:pressed {
-  -fx-background-color: #0B2545;
+  -fx-background-color: -second-background;
   -fx-text-fill: derive(-fx-focus-color, 30%);
 }
 
 .button:focused {
-    -fx-border-color: white, white;
+    -fx-border-color: -main-background, -main-background;
     -fx-border-width: 1, 1;
     -fx-border-style: solid, segments(1, 1);
     -fx-border-radius: 0, 0;
@@ -306,7 +312,7 @@
 }
 
 .scroll-bar {
-    -fx-background-color: #13315C;
+    -fx-background-color: -main-background;
 }
 
 .scroll-bar .thumb {
@@ -332,7 +338,7 @@
 }
 
 #cardPane {
-    -fx-background-color: #0B2545;
+    -fx-background-color: -second-background;
     -fx-border-width: 0;
     -fx-padding: 3 5 3 5;
 }
@@ -340,11 +346,11 @@
 #commandTypeLabel {
     -fx-font-size: 11px;
     -fx-text-fill: #F70D1A;
-    -fx-background-color: #0B2545;
+    -fx-background-color: -second-background;
 }
 
 #commandTextField {
-    -fx-background-color: #0B2545;
+    -fx-background-color: -second-background;
     -fx-background-insets: 0;
     -fx-font-family: "Segoe UI Light";
     -fx-font-size: 13pt;
@@ -360,7 +366,7 @@
 }
 
 #resultDisplay .content {
-    -fx-background-color: #0B2545;
+    -fx-background-color: -second-background;
     -fx-background-radius: 0;
 
 }
@@ -372,7 +378,7 @@
 
 #tags .label {
     -fx-text-fill: #0B2545;
-    -fx-background-color: #8DA9C4;
+    -fx-background-color: -contrast-background;
     -fx-padding: 3 5 3 5;
     -fx-border-radius: 7;
     -fx-background-radius: 7;
@@ -380,18 +386,16 @@
 }
 
 #commandBoxPlaceholder, #resultDisplayPlaceholder, #personListPanelPlaceholder, #statusBarFooter {
-    -fx-background-color: #13315C;
+    -fx-background-color: -main-background;
 }
 
 #placeHolder {
-    -fx-background-color: #13315C;
+    -fx-background-color: -main-background;
 }
 
 #personListViewBackground {
-    -fx-background-color: #13315C;
+    -fx-background-color: -main-background;
 }
-
-
 
 #address, #email, #income, #meetingDate {
      -fx-font-family: "Segoe UI Semibold";
@@ -417,6 +421,15 @@
     -fx-border-radius: 15;
 }
 
+#personListView, #hbox{
+    -fx-background-color: -main-background;
+}
+
+#btnChangeTheme {
+    -fx-background-color: -main-background;
+    -fx-background-color: -main-background;
+}
+
 .cell_label_tags {
     -fx-hgap: 7;
     -fx-vgap: 3;
@@ -424,7 +437,7 @@
 
 .cell_label_tags .label{
     -fx-text-fill: #0B2545;
-    -fx-background-color: #8DA9C4;
+    -fx-background-color: -contrast-background;
     -fx-padding: 3 5 3 5;
     -fx-background-radius: 7;
     -fx-font-size: 14;

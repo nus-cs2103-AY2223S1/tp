@@ -1,14 +1,22 @@
 package seedu.address.ui;
 
 import java.util.logging.Logger;
+import java.util.prefs.Preferences;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.MenuBar;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextInputControl;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCombination;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.Priority;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 import seedu.address.commons.core.GuiSettings;
@@ -39,10 +47,19 @@ public class MainWindow extends UiPart<Stage> {
     private LockWindow lockWindow;
 
     @FXML
+    private Scene parent;
+
+    @FXML
     private StackPane commandBoxPlaceholder;
 
     @FXML
     private MenuItem helpMenuItem;
+
+    @FXML
+    private MenuBar menuBar;
+
+    @FXML
+    private HBox hbox;
 
     @FXML
     private StackPane personListPanelPlaceholder;
@@ -56,6 +73,12 @@ public class MainWindow extends UiPart<Stage> {
     @FXML
     private Label totalClient;
 
+    @FXML
+    private Button btnChangeTheme;
+
+    @FXML
+    private ImageView imageTheme;
+
     /**
      * Creates a {@code MainWindow} with the given {@code Stage} and {@code Logic}.
      */
@@ -68,11 +91,66 @@ public class MainWindow extends UiPart<Stage> {
 
         // Configure the UI
         setWindowDefaultSize(logic.getGuiSettings());
-
         setAccelerators();
         getTotalClient();
         helpWindow = new HelpWindow();
         lockWindow = new LockWindow(new Stage(), this);
+
+        // Set the layout of menuBar
+        HBox.setHgrow(menuBar, Priority.ALWAYS);
+        HBox.setHgrow(btnChangeTheme, Priority.NEVER);
+
+        Preferences pref = Preferences.userRoot().node(this.getClass().getName());
+        initializeTheme(pref);
+        // Toggle the theme with each mouse click on button
+        btnChangeTheme.setOnMouseClicked(event -> {
+            int mode = pref.getInt("mode", 0);
+            if (mode == 0) { //dark change to light
+                setLightTheme(pref);
+            } else { //light change to dark
+                setDarkTheme(pref);
+            }
+        });
+    }
+
+    /**
+     * Sets FinBook to light mode if user set his/her preference as light mode (mode == 1).
+     * FinBook's default theme is dark mode. (mode == 0)
+     * @param pref Stored preference of application theme.
+     */
+    void initializeTheme(Preferences pref) {
+        int mode = pref.getInt("mode", 0);
+        if (mode == 1) {
+            setLightTheme(pref);
+        }
+    }
+
+    /**
+     * Sets FinBook UI to light mode by changing MainWindow, HelpWindow and LockWindow stylesheet to their
+     * respective light stylesheet and sets the button to sun icon.
+     * @param pref Stored preference of application theme.
+     */
+    void setLightTheme(Preferences pref) {
+        pref.putInt("mode", 1);
+        parent.getStylesheets().add("view/styles/MainWindowLight.css");
+        parent.getStylesheets().remove("view/styles/MainWindowDark.css");
+        imageTheme.setImage(new Image("images/sun.png"));
+        helpWindow.setLightTheme();
+        lockWindow.setLightTheme();
+    }
+
+    /**
+     * Sets FinBook UI to dark mode by changing MainWindow, HelpWindow and LockWindow stylesheet to their
+     * respective dark stylesheet and sets the button to moon icon.
+     * @param pref Stored preference of application theme.
+     */
+    void setDarkTheme(Preferences pref) {
+        pref.putInt("mode", 0);
+        parent.getStylesheets().add("view/styles/MainWindowDark.css");
+        parent.getStylesheets().remove("view/styles/MainWindowLight.css");
+        imageTheme.setImage(new Image("images/moon.png"));
+        helpWindow.setDarkTheme();
+        lockWindow.setDarkTheme();
     }
 
     public Stage getPrimaryStage() {

@@ -14,17 +14,15 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.stage.Stage?>
 
-<fx:root resizable="false" title="FinBook (Locked)" type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/18"
+<fx:root resizable="false" title="FinBook (Locked)" type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/8"
          xmlns:fx="http://javafx.com/fxml/1">
     <icons>
         <Image url="@/images/lock_icon.png"/>
     </icons>
     <scene>
-        <Scene>
-            <stylesheets>
-                <URL value="@DarkTheme.css"/>
-            </stylesheets>
-            <StackPane xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
+        <Scene fx:id="parent" stylesheets="@styles/LockWindowDark.css">
+            <StackPane fx:id="lockWindowBackground" xmlns="http://javafx.com/javafx/18"
+                       xmlns:fx="http://javafx.com/fxml/1">
                 <padding>
                     <Insets bottom="10.0" left="10.0" right="10.0" top="10.0"/>
                 </padding>
@@ -41,16 +39,18 @@
                                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
                                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
                             </rowConstraints>
-                            <Label text="Welcome back to FinBook!" GridPane.columnIndex="0"
+                            <Label fx:id="headerText" text="Welcome back to FinBook!" GridPane.columnIndex="0"
                                    GridPane.columnSpan="2147483647" GridPane.halignment="CENTER" GridPane.rowIndex="0"/>
-                            <Label text="Password:" GridPane.columnIndex="0" GridPane.rowIndex="1"/>
+                            <Label fx:id="passwordText" text="Password:" GridPane.columnIndex="0"
+                                   GridPane.rowIndex="1"/>
                             <PasswordField fx:id="password" GridPane.columnIndex="1" GridPane.rowIndex="1"/>
                         </GridPane>
                         <StackPane>
                             <VBox alignment="CENTER" spacing="10.0">
                                 <Label fx:id="error" visible="false"/>
-                                <Button alignment="CENTER" defaultButton="true" mnemonicParsing="false"
-                                        onAction="#unlock" text="Unlock"/>
+                                <Button fx:id="unlockBtn" alignment="CENTER" defaultButton="true"
+                                        mnemonicParsing="false" onAction="#unlock" text="Unlock"
+                                        StackPane.alignment="CENTER"/>
                             </VBox>
                         </StackPane>
                     </VBox>
