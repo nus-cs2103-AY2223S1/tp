@@ -209,15 +209,16 @@ public class Applicant {
                 .append("; Scholarship: ")
                 .append(getScholarship())
                 .append("; Application Status: ")
-                .append(getApplicationStatus());
+                .append(getApplicationStatus())
+                .append("; hasPinned: ")
+                .append(getPin().getHasPinned());
 
         Set<Tag> tags = getTags();
         if (!tags.isEmpty()) {
             builder.append("; Tags: ");
             tags.forEach(builder::append);
         }
-        builder.append("; hasPinned: ")
-                .append(getPin().getHasPinned());
+
         return builder.toString();
     }
 
