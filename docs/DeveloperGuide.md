@@ -314,6 +314,10 @@ The sort feature is implemented by `SortCommand` which extends the abstract `Com
 
 This operation is exposed in the `Model` interface as `sortFilteredStudentList()`.
 
+The following sequence diagram shows how the sort operation works:
+
+![SortSequenceDiagram](images/SortCommandSequenceDiagram.png)
+
 Given below is an example usage scenario and how the sort mechanism behaves at each step.
 
 Step 1. The user executes `sort asc a/name` to sort the students in the address book by their names in ascending order.
@@ -329,12 +333,6 @@ Step 5. Note that StudMap stores the student list in a `UniqueStudentList`. `Uni
 Step 6. The `internalList` stored in the `UniqueStudentList` is an `FXCollections.observableArrayList` which will then be sorted using the `Comparator`. The ordering of the list is reversed using `FXCollections#reverse()` if `isDescending` is true.
 
 Step 5. The sorted list is displayed to the user.
-
-The following sequence diagram shows how the sort operation works:
-
-_{sequence diagram to be inserted here}_
-
-
 
 #### Design considerations:
 

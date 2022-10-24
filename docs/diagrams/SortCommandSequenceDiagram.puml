@@ -10,9 +10,6 @@ end box
 
 box Model MODEL_COLOR_T1
 participant ":Model" as Model MODEL_COLOR
-participant ":StudMap" as StudMap MODEL_COLOR
-participant ":UniqueStudentList" as UniqueStudentList MODEL_COLOR
-participant ":ObservableList" as ObservableList MODEL_COLOR
 end box
 
 [-> LogicManager : execute("sort asc a/name")
@@ -41,24 +38,6 @@ activate SortCommand
 
 SortCommand -> Model : sortFilteredStudentList(comparator, sortOrder)
 activate Model
-
-Model -> StudMap : sort(comparator, order)
-activate StudMap
-
-StudMap -> UniqueStudentList : sort(comparator, isDescending)
-activate UniqueStudentList
-
-UniqueStudentList -> ObservableList : sort(comparator)
-activate ObservableList
-
-ObservableList --> UniqueStudentList
-deactivate ObservableList
-
-UniqueStudentList --> StudMap
-deactivate UniqueStudentList
-
-StudMap --> Model
-deactivate StudMap
 
 Model --> SortCommand
 deactivate Model
