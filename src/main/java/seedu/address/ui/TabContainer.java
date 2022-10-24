@@ -38,7 +38,7 @@ public class TabContainer extends UiPart<Region> {
      * @param id the unique id of the tab to be shown.
      */
     public void toggleTabs(int id) {
-        if (id >= 0 && id < 4) {
+        if (id >= 0 && id < 3) {
             selectionModel.select(id);
         }
     }
