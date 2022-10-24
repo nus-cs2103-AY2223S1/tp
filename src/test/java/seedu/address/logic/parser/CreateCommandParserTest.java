@@ -7,9 +7,11 @@ import static seedu.address.logic.commands.CommandTestUtil.DESCRIPTION_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.DESCRIPTION_DESC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.EMAIL_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.EMAIL_DESC_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.EMPTY_ADDRESS;
+import static seedu.address.logic.commands.CommandTestUtil.EMPTY_DESCRIPTION;
+import static seedu.address.logic.commands.CommandTestUtil.EMPTY_EMAIL;
 import static seedu.address.logic.commands.CommandTestUtil.EMPTY_FILEPATH;
-import static seedu.address.logic.commands.CommandTestUtil.FILEPATH_DESC_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.INVALID_ADDRESS_DESC;
+import static seedu.address.logic.commands.CommandTestUtil.EMPTY_NETWORTH;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_EMAIL_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_MEETING_TIME;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_NAME_DESC;
@@ -43,7 +45,6 @@ import static seedu.address.testutil.TypicalPersons.BOB;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.CreateCommand;
-import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.MeetingTime;
 import seedu.address.model.person.Name;
@@ -105,10 +106,48 @@ public class CreateCommandParserTest {
 
     @Test
     public void parse_optionalFieldsMissing_success() {
-        // zero tags and no remark
+
+        // missing address prefix
+        Person noAddressPerson = new PersonBuilder(AMY).withAddress(EMPTY_ADDRESS).buildNoFilePath();
+        assertParseSuccess(parser, NAME_DESC_AMY + PHONE_DESC_AMY + EMAIL_DESC_AMY
+                        + DESCRIPTION_DESC_AMY + NETWORTH_DESC_AMY + MEETING_TIME_DESC_AMY + TAG_DESC_SECURED,
+                new CreateCommand(noAddressPerson));
+
+        // missing email prefix
+        Person noEmailPerson = new PersonBuilder(AMY).withEmail(EMPTY_EMAIL).buildNoFilePath();
+        assertParseSuccess(parser, NAME_DESC_AMY + PHONE_DESC_AMY + ADDRESS_DESC_AMY
+                + DESCRIPTION_DESC_AMY + NETWORTH_DESC_AMY + MEETING_TIME_DESC_AMY + TAG_DESC_SECURED,
+                new CreateCommand(noEmailPerson));
+
+        // missing description prefix
+        Person noDescriptionPerson = new PersonBuilder(AMY).withDescription(EMPTY_DESCRIPTION).buildNoFilePath();
+        assertParseSuccess(parser, NAME_DESC_AMY + PHONE_DESC_AMY + EMAIL_DESC_AMY + ADDRESS_DESC_AMY
+                        + NETWORTH_DESC_AMY + MEETING_TIME_DESC_AMY + TAG_DESC_SECURED,
+                new CreateCommand(noDescriptionPerson));
+
+        // missing networth prefix
+        Person noNetworthPerson = new PersonBuilder(AMY).withNetWorth(EMPTY_NETWORTH).buildNoFilePath();
+        assertParseSuccess(parser, NAME_DESC_AMY + PHONE_DESC_AMY + EMAIL_DESC_AMY + ADDRESS_DESC_AMY
+                        + DESCRIPTION_DESC_AMY + MEETING_TIME_DESC_AMY + TAG_DESC_SECURED,
+                new CreateCommand(noNetworthPerson));
+
+        // missing meeting time prefix
+        Person noMeetingTimePerson = new PersonBuilder(AMY).withMeetingTimes().buildNoFilePath();
+        assertParseSuccess(parser, NAME_DESC_AMY + PHONE_DESC_AMY + EMAIL_DESC_AMY + ADDRESS_DESC_AMY
+                        + DESCRIPTION_DESC_AMY + NETWORTH_DESC_AMY + TAG_DESC_SECURED,
+                new CreateCommand(noMeetingTimePerson));
+
+        // zero tags and no filepath
         Person expectedPerson = new PersonBuilder(AMY).withTags().buildNoFilePath();
         assertParseSuccess(parser, NAME_DESC_AMY + PHONE_DESC_AMY + EMAIL_DESC_AMY + ADDRESS_DESC_AMY
                 + NETWORTH_DESC_AMY + MEETING_TIME_DESC_AMY + DESCRIPTION_DESC_AMY, new CreateCommand(expectedPerson));
+
+        // missing every optional field
+        Person noNothingPerson = new PersonBuilder(AMY).withEmail(EMPTY_EMAIL).withDescription(EMPTY_DESCRIPTION)
+                .withMeetingTimes().withTags().withAddress(EMPTY_ADDRESS).withNetWorth(EMPTY_NETWORTH)
+                .buildNoFilePath();
+        assertParseSuccess(parser, NAME_DESC_AMY + PHONE_DESC_AMY, new CreateCommand(noNothingPerson));
+
     }
 
     @Test
@@ -121,14 +160,6 @@ public class CreateCommandParserTest {
 
         // missing phone prefix
         assertParseFailure(parser, NAME_DESC_BOB + VALID_PHONE_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_BOB,
-                expectedMessage);
-
-        // missing email prefix
-        assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + VALID_EMAIL_BOB + ADDRESS_DESC_BOB,
-                expectedMessage);
-
-        // missing address prefix
-        assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + VALID_ADDRESS_BOB,
                 expectedMessage);
 
         // all prefixes missing
@@ -153,11 +184,6 @@ public class CreateCommandParserTest {
                 + DESCRIPTION_DESC_BOB + NETWORTH_DESC_BOB + MEETING_TIME_DESC_BOB + TAG_DESC_POTENTIAL,
                 Email.MESSAGE_CONSTRAINTS);
 
-        // invalid address
-        assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + INVALID_ADDRESS_DESC
-                + DESCRIPTION_DESC_BOB + NETWORTH_DESC_BOB + MEETING_TIME_DESC_BOB + FILEPATH_DESC_BOB
-                + TAG_DESC_POTENTIAL, Address.MESSAGE_CONSTRAINTS);
-
         // invalid networth
         assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_BOB
                 + DESCRIPTION_DESC_BOB + INVALID_NETWORTH_DESC + MEETING_TIME_DESC_BOB + TAG_DESC_POTENTIAL
@@ -174,7 +200,7 @@ public class CreateCommandParserTest {
                 Tag.MESSAGE_CONSTRAINTS);
 
         // two invalid values, only first invalid value reported
-        assertParseFailure(parser, INVALID_NAME_DESC + PHONE_DESC_BOB + EMAIL_DESC_BOB + INVALID_ADDRESS_DESC
+        assertParseFailure(parser, INVALID_NAME_DESC + PHONE_DESC_BOB + INVALID_EMAIL_DESC + ADDRESS_DESC_BOB
                 + DESCRIPTION_DESC_BOB + NETWORTH_DESC_BOB + MEETING_TIME_DESC_BOB , Name.MESSAGE_CONSTRAINTS);
 
         // non-empty preamble

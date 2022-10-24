@@ -16,6 +16,7 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_NETWORTH_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_POTENTIAL;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_SECURED;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -73,7 +74,7 @@ public class TypicalPersons {
     public static final Person AMY = new PersonBuilder().withName(VALID_NAME_AMY).withPhone(VALID_PHONE_AMY)
             .withEmail(VALID_EMAIL_AMY).withAddress(VALID_ADDRESS_AMY).withNetWorth(VALID_NETWORTH_AMY)
             .withDescription(VALID_DESCRIPTION_AMY).withMeetingTimes(VALID_MEETING_TIME_AMY)
-            .withFilePath(EMPTY_FILEPATH).withTags(VALID_TAG_POTENTIAL).build();
+            .withFilePath(EMPTY_FILEPATH).withTags(VALID_TAG_SECURED).build();
     public static final Person BOB = new PersonBuilder().withName(VALID_NAME_BOB).withPhone(VALID_PHONE_BOB)
             .withEmail(VALID_EMAIL_BOB).withAddress(VALID_ADDRESS_BOB).withNetWorth(VALID_NETWORTH_BOB)
             .withDescription(VALID_DESCRIPTION_BOB).withMeetingTimes(VALID_MEETING_TIME_BOB)

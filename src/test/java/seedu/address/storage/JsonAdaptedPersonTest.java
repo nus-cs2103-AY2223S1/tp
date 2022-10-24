@@ -23,7 +23,6 @@ import seedu.address.model.person.Phone;
 public class JsonAdaptedPersonTest {
     private static final String INVALID_NAME = "R@chel";
     private static final String INVALID_PHONE = "+651234";
-    private static final String INVALID_ADDRESS = " ";
     private static final String INVALID_EMAIL = "example.com";
     private static final String INVALID_NETWORTH = "€12";
     private static final String INVALID_FILEPATH = "src/main/resources/misc/Test_PDF.wowzers";
@@ -104,16 +103,6 @@ public class JsonAdaptedPersonTest {
                 VALID_DESCRIPTION, VALID_NETWORTH, VALID_MEETING_TIMES, VALID_FILEPATH, VALID_TAGS);
 
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Email.class.getSimpleName());
-        assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
-    }
-
-    @Test
-    public void toModelType_invalidAddress_throwsIllegalValueException() {
-        JsonAdaptedPerson person =
-                new JsonAdaptedPerson(VALID_NAME, VALID_PHONE, VALID_EMAIL, INVALID_ADDRESS,
-                        VALID_DESCRIPTION, VALID_NETWORTH, VALID_MEETING_TIMES, VALID_FILEPATH, VALID_TAGS);
-
-        String expectedMessage = Address.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, person::toModelType);
     }
 
