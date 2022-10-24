@@ -17,7 +17,7 @@ import seedu.address.model.person.Person;
 @CommandLine.Command(name = "member")
 public class DeleteMemberCommand extends Command {
 
-    public static final String COMMAND_WORD = "delete_member";
+    public static final String COMMAND_WORD = "delete member";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Deletes the person identified by the index number used in the members list.\n"

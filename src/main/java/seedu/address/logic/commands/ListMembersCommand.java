@@ -14,7 +14,7 @@ import seedu.address.model.person.TeamPredicate;
  */
 @CommandLine.Command(name = "members")
 public class ListMembersCommand extends Command {
-    public static final String COMMAND_WORD = "list_members";
+    public static final String COMMAND_WORD = "list members";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Lists all the members of the current team.\n"

@@ -14,7 +14,7 @@ import seedu.address.model.team.Task;
  */
 @CommandLine.Command(name = "task")
 public class AddTaskCommand extends Command {
-    public static final String COMMAND_WORD = "add_task";
+    public static final String COMMAND_WORD = "add task";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
         + ": Adds a task to the current team.\n"

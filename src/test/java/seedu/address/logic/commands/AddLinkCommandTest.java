@@ -21,8 +21,8 @@ class AddLinkCommandTest {
     void execute_linkAlreadyExist_throwsCommandException() {
         Link googleLink = new Link(new Name("Google"), new Url("https://google.com"));
         model.addLink(googleLink);
-        AddLinkCommand addLinkCommand = new AddLinkCommand(googleLink);
-        assertCommandFailure(addLinkCommand, model, addLinkCommand.MESSAGE_DUPLICATE_LINK);
+        AddLinkCommand addLinkCommand = new AddLinkCommand();
+        assertCommandFailure(addLinkCommand, model, AddLinkCommand.MESSAGE_DUPLICATE_LINK);
     }
 
     @Test

@@ -16,7 +16,7 @@ import seedu.address.model.team.Link;
  */
 @CommandLine.Command(name = "link")
 public class DeleteLinkCommand extends Command {
-    public static final String COMMAND_WORD = "delete_link";
+    public static final String COMMAND_WORD = "delete link";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Deletes an existing link identified by the index number used in the displayed link list.\n"

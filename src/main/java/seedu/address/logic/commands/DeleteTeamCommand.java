@@ -14,7 +14,7 @@ import seedu.address.model.team.Team;
  */
 @CommandLine.Command(name = "team")
 public class DeleteTeamCommand extends Command {
-    public static final String COMMAND_WORD = "delete_team";
+    public static final String COMMAND_WORD = "delete team";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Delete an existing team \n"

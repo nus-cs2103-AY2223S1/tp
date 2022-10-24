@@ -14,7 +14,7 @@ import seedu.address.model.team.Team;
  */
 @CommandLine.Command(name = "team")
 public class AddTeamCommand extends Command {
-    public static final String COMMAND_WORD = "add_team";
+    public static final String COMMAND_WORD = "add team";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Adds a new team \n"

@@ -25,7 +25,7 @@ import seedu.address.model.team.Url;
  */
 @CommandLine.Command(name = "link")
 public class EditLinkCommand extends Command {
-    public static final String COMMAND_WORD = "edit_link";
+    public static final String COMMAND_WORD = "edit link";
 
     public static final String MESSAGE_USAGE =
             COMMAND_WORD + ": Edits a current link identified by the index number used in the displayed link list. \n"

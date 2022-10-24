@@ -18,7 +18,7 @@ import seedu.address.model.Model;
  */
 @CommandLine.Command(name = "tasks")
 public class ListTasksCommand extends Command {
-    public static final String COMMAND_WORD = "list_tasks";
+    public static final String COMMAND_WORD = "list tasks";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Lists all the tasks of the current team.\n"

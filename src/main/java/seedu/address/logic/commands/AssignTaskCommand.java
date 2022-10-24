@@ -21,7 +21,7 @@ import seedu.address.model.team.Task;
  */
 @CommandLine.Command(name = "task")
 public class AssignTaskCommand extends Command {
-    public static final String COMMAND_WORD = "assign_task";
+    public static final String COMMAND_WORD = "assign task";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Assigns a task to the specified member in the team.\n"
