@@ -7,8 +7,8 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeFormatterBuilder;
 import java.time.format.DateTimeParseException;
-import java.time.format.FormatStyle;
 import java.time.temporal.ChronoField;
+import java.util.Comparator;
 
 /**
  * Represents an Internship's applied date in the address book.
@@ -16,14 +16,8 @@ import java.time.temporal.ChronoField;
  */
 public class AppliedDate {
 
-    public static final String MESSAGE_CONSTRAINTS = "Date should be in the format [d MMM yyyy] or [d/M/yyyy].\n"
+    public static final String MESSAGE_CONSTRAINTS = "Date should be in the format [d MM yyyy] or [d/M/yyyy].\n"
             + "Year can be omitted to default to current year.";
-
-    /*
-     * The first character of the address must not be a whitespace,
-     * otherwise " " (a blank string) becomes a valid input.
-     */
-    public static final String VALIDATION_REGEX = "[0-3][0-9]/[0-3][0-9]/(?:[0-9][0-9])?[0-9][0-9]$";
 
     /*
      * For the date 23/10/2022, the following formats are accepted:
@@ -51,7 +45,7 @@ public class AppliedDate {
         requireNonNull(appliedDate);
         checkArgument(isValidAppliedDate(appliedDate), MESSAGE_CONSTRAINTS);
         this.appliedDate = LocalDate.parse(appliedDate, DATE_FORMAT);
-        value = this.appliedDate.format(DateTimeFormatter.ofLocalizedDate(FormatStyle.MEDIUM));
+        value = this.appliedDate.format(DateTimeFormatter.ofPattern("d MMM yyyy"));
     }
 
     /**
@@ -81,6 +75,21 @@ public class AppliedDate {
     @Override
     public int hashCode() {
         return value.hashCode();
+    }
+
+    public static Comparator<Internship> getComparator() {
+        return (i1, i2) -> {
+            AppliedDate t1 = i1.getAppliedDate();
+            AppliedDate t2 = i2.getAppliedDate();
+            if (t1 == null && t2 == null) {
+                return 0;
+            } else if (t1 == null) {
+                return 1;
+            } else if (t2 == null) {
+                return -1;
+            }
+            return -t1.appliedDate.compareTo(t2.appliedDate);
+        };
     }
 
 }

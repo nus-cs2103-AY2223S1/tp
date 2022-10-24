@@ -243,90 +243,6 @@ The following activity diagram summarizes what happens when a user executes a ma
     - Pros: Allow easy filtering by `ApplicationStatus`
     - Cons: Fixed variation of `applicationStatus`
 
-### \[Proposed\] Undo/redo feature
-
-#### Proposed Implementation
-
-The proposed undo/redo mechanism is facilitated by `VersionedAddressBook`. It extends `AddressBook` with an undo/redo history, stored internally as an `addressBookStateList` and `currentStatePointer`. Additionally, it implements the following operations:
-
-* `VersionedAddressBook#commit()` — Saves the current address book state in its history.
-* `VersionedAddressBook#undo()` — Restores the previous address book state from its history.
-* `VersionedAddressBook#redo()` — Restores a previously undone address book state from its history.
-
-These operations are exposed in the `Model` interface as `Model#commitAddressBook()`, `Model#undoAddressBook()` and `Model#redoAddressBook()` respectively.
-
-Given below is an example usage scenario and how the undo/redo mechanism behaves at each step.
-
-Step 1. The user launches the application for the first time. The `VersionedAddressBook` will be initialized with the initial address book state, and the `currentStatePointer` pointing to that single address book state.
-
-![UndoRedoState0](images/UndoRedoState0.png)
-
-Step 2. The user executes `delete 5` command to delete the 5th internship in the address book. The `delete` command calls `Model#commitAddressBook()`, causing the modified state of the address book after the `delete 5` command executes to be saved in the `addressBookStateList`, and the `currentStatePointer` is shifted to the newly inserted address book state.
-
-![UndoRedoState1](images/UndoRedoState1.png)
-
-Step 3. The user executes `add n/David …​` to add a new internship. The `add` command also calls `Model#commitAddressBook()`, causing another modified address book state to be saved into the `addressBookStateList`.
-
-![UndoRedoState2](images/UndoRedoState2.png)
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If a command fails its execution, it will not call `Model#commitAddressBook()`, so the address book state will not be saved into the `addressBookStateList`.
-
-</div>
-
-Step 4. The user now decides that adding the internship was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `Model#undoAddressBook()`, which will shift the `currentStatePointer` once to the left, pointing it to the previous address book state, and restores the address book to that state.
-
-![UndoRedoState3](images/UndoRedoState3.png)
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index 0, pointing to the initial AddressBook state, then there are no previous AddressBook states to restore. The `undo` command uses `Model#canUndoAddressBook()` to check if this is the case. If so, it will return an error to the user rather
-than attempting to perform the undo.
-
-</div>
-
-The following sequence diagram shows how the undo operation works:
-
-![UndoSequenceDiagram](images/UndoSequenceDiagram.png)
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `UndoCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
-
-</div>
-
-The `redo` command does the opposite — it calls `Model#redoAddressBook()`, which shifts the `currentStatePointer` once to the right, pointing to the previously undone state, and restores the address book to that state.
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index `addressBookStateList.size() - 1`, pointing to the latest address book state, then there are no undone AddressBook states to restore. The `redo` command uses `Model#canRedoAddressBook()` to check if this is the case. If so, it will return an error to the user rather than attempting to perform the redo.
-
-</div>
-
-Step 5. The user then decides to execute the command `list`. Commands that do not modify the address book, such as `list`, will usually not call `Model#commitAddressBook()`, `Model#undoAddressBook()` or `Model#redoAddressBook()`. Thus, the `addressBookStateList` remains unchanged.
-
-![UndoRedoState4](images/UndoRedoState4.png)
-
-Step 6. The user executes `clear`, which calls `Model#commitAddressBook()`. Since the `currentStatePointer` is not pointing at the end of the `addressBookStateList`, all address book states after the `currentStatePointer` will be purged. Reason: It no longer makes sense to redo the `add n/David …​` command. This is the behavior that most modern desktop applications follow.
-
-![UndoRedoState5](images/UndoRedoState5.png)
-
-The following activity diagram summarizes what happens when a user executes a new command:
-
-<img src="images/CommitActivityDiagram.png" width="250" />
-
-#### Design considerations:
-
-**Aspect: How undo & redo executes:**
-
-* **Alternative 1 (current choice):** Saves the entire address book.
-  * Pros: Easy to implement.
-  * Cons: May have performance issues in terms of memory usage.
-
-* **Alternative 2:** Individual command knows how to undo/redo by
-  itself.
-  * Pros: Will use less memory (e.g. for `delete`, just save the internship being deleted).
-  * Cons: We must ensure that the implementation of each individual command are correct.
-
-_{more aspects and alternatives to be added}_
-
-### \[Proposed\] Data archiving
-
-_{Explain here how the data archiving feature will be implemented}_
-
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -360,15 +276,16 @@ _{Explain here how the data archiving feature will be implemented}_
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​      | I want to …​                                                                   | So that I can…​                                      |
-| ------ |--------------|--------------------------------------------------------------------------------|------------------------------------------------------|
-| `* * *` | new user     | utilise the help function                                                      | see the instructions on how to use the app           |
-| `* * *` | student      | mark the internship as rejected, interviewed, applied or rejected              | know the status of the internship application        |
-| `* * *` | user         | automatically save any edits made                                              | save edits even if I accidentally close the app      |
-| `* * *` | busy student | add internship applications quickly using CLI                                  | have more time for other things                      |
-| `* *`  | lazy student | search for a specific internship using keywords                                | get matching results more quickly                    |
-| `* *`  | student      | filter the internships that I have applied to by application status            | easily view the statuses of my applications          |
-| `* *`  | student      | sort the internships based on a sort criteria (applied date or interview date) | easily view my applications in a chronological order |
+| Priority | As a …​      | I want to …​                                                                   | So that I can…​                                              |
+| ------ |--------------|--------------------------------------------------------------------------------|--------------------------------------------------------------|
+| `* * *` | new user     | utilise the help function                                                      | see the instructions on how to use the app                   |
+| `* * *` | busy student | add internship applications quickly using CLI                                  | have more time for other things                              |
+| `* * *` | student      | mark the internship as rejected, interviewed, applied or rejected              | know the status of the internship application                |
+| `* * *` | user         | edit an internship application                                                 | update the details of an internship application              |
+| `* * *` | user         | automatically save any edits made                                              | save edits even if I accidentally close the app              |
+| `* *`  | lazy student | search for a specific internship using keywords                                | get matching results more quickly                            |
+| `* *`  | student      | filter the internships that I have applied to by application status            | easily view the statuses of my applications                  |
+| `* *`  | student      | sort the internships based on a sort criteria (applied date or interview date) | easily view my applications in a reverse chronological order |
 
 
 
@@ -400,7 +317,28 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 <br />
 
-**Use Case: UC2 - Mark status of internship application**
+**Use Case: UC2 - Edit an internship application**
+
+**MSS**:
+1. User requests to edit an internship application in the tracker.
+2. FindMyIntern updates the details of the internship application in the tracker.
+
+   Use case ends.
+
+**Extensions**:
+* 2a. User enters an invalid index.
+    * 2a1. FindMyIntern shows an error message.
+
+      Use case ends.
+
+* 2b. User enters the details in the wrong format.
+    * 2b1. FindMyIntern shows an error message.
+
+      Use case ends.
+
+<br />
+
+**Use Case: UC3 - Mark status of internship application**
 
 **MSS**:
 1. User requests to mark the status of a specific internship application in the tracker.
@@ -415,7 +353,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 <br />
 
-**Use Case: UC3 - Search for internship applications using keywords**
+**Use Case: UC4 - Search for internship applications using keywords**
 
 **MSS**:
 1. User wants to search for internship applications stored in the tracker.
@@ -429,15 +367,14 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
   * 2a1. FindMyIntern shows an error message.
 
     Use case ends.
-
-
+  
 * 3a. There were no internship applications that matched the keywords.
   * 3a1. FindMyIntern shows an empty list.
     Use case ends.
 
 <br />
 
-**Use Case: UC4 - Filter internship applications by application status**
+**Use Case: UC5 - Filter internship applications by application status**
 
 **MSS**:
 1. User wants to filter internship applications by application status.
@@ -451,18 +388,17 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
   * 2a1. FindMyIntern shows an error message.
 
     Use case ends.
-
-
+  
 * 3a. There were no internship applications that contained the desired application status.
   * 3a1. FindMyIntern shows an empty list.
 
     Use case ends.
 
-**Use Case: UC5 - Sort internship applications by sort criteria**
+**Use Case: UC6 - Sort internship applications by sort criteria**
 
 **MSS**:
 1. User wants to sort internship applications by sort criteria.
-2. User enters the desired sort criteria (applied date or interview date).
+2. User enters the desired sort criteria (applied or interview).
 3. FindMyIntern shows a list of internship applications sorted by the desired sort criteria.
 
    Use case ends.
@@ -472,9 +408,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 2a1. FindMyIntern shows an error message.
 
       Use case ends.
-
-
-* 3a. There were no internship applications that could be sorted by the sort criteria (interview date).
+    
+* 3a. There were no internship applications that could be sorted by the sort criteria (interview).
     * 3a1. FindMyIntern shows the list of internship applications in the original order.
 
       Use case ends.

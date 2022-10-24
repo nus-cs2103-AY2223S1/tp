@@ -23,15 +23,15 @@ public class ApplicationStatusTest {
 
     @Test
     public void isValidApplicationStatus() {
-        // null address
+        // null application status
         assertThrows(NullPointerException.class, () -> ApplicationStatus.isValidApplicationStatus(null));
 
-        // invalid addresses
+        // invalid application status
         assertFalse(ApplicationStatus.isValidApplicationStatus("")); // empty string
         assertFalse(ApplicationStatus.isValidApplicationStatus(" ")); // spaces only
         assertFalse(ApplicationStatus.isValidApplicationStatus("passed")); // invalid status
 
-        // valid addresses
+        // valid application status
         assertTrue(ApplicationStatus.isValidApplicationStatus("applied"));
         assertTrue(ApplicationStatus.isValidApplicationStatus("accepted"));
     }
