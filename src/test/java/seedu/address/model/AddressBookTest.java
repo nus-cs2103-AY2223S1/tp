@@ -105,7 +105,7 @@ public class AddressBookTest {
         editedAlice.getAppointments().add(aliceAppointment);
         testAddressBook.addPerson(editedAlice);
 
-        Appointment appointmentWithSameDateTime =  new AppointmentBuilder()
+        Appointment appointmentWithSameDateTime = new AppointmentBuilder()
                         .withDateTime(VALID_DATETIME_21_JAN_2023)
                         .withLocation(VALID_LOCATION_JURONGPOINT).build();
         assertTrue(testAddressBook.hasPersonWithSameAppointmentDateTime(appointmentWithSameDateTime));

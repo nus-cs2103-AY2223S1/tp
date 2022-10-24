@@ -60,6 +60,9 @@ public class AddressBook implements ReadOnlyAddressBook {
 
     //// person-level operations
 
+    /**
+     * Returns true if a person has an appointment with the same datetime as {@code person} exists in the address book.
+     */
     public boolean hasPersonWithSameAppointmentDateTime(Appointment appointment) {
         requireNonNull(appointment);
         return persons.containsPersonWithSameAppointmentDateTime(appointment);

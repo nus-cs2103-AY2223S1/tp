@@ -37,9 +37,12 @@ public class UniquePersonList implements Iterable<Person> {
         return internalList.stream().anyMatch(toCheck::isSamePerson);
     }
 
+    /**
+     * Returns true if the list contains a person with an appointment with the same date time as the given argument.
+     */
     public boolean containsPersonWithSameAppointmentDateTime(Appointment toCheck) {
         requireNonNull(toCheck);
-        for(Person person:internalUnmodifiableList){
+        for (Person person:internalUnmodifiableList) {
             for (Appointment appointment: person.getAppointments().getObservableList()) {
                 if (appointment.getDateTime().equals(toCheck.getDateTime())) {
                     return true;
