@@ -42,14 +42,15 @@ public enum Workload {
 
     public static final String MESSAGE_CONSTRAINTS = "Workload must be either low, medium or high!";
 
-    public int workloadValue() {
-        return 0;
-    }
-
     private static final int LOW_WORKLOAD_VALUE = 1;
 
     private static final int MEDIUM_WORKLOAD_VALUE = 3;
 
     private static final int HIGH_WORKLOAD_VALUE = 5;
+
+    public int workloadValue() {
+        return 0;
+    }
+
 
 }
