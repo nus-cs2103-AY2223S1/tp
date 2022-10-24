@@ -20,7 +20,7 @@ public class TypicalActivities {
 
     public static final Activity ACTIVITY_A = new ActivityBuilder().withName("And Then There Were None")
             .withDescription("Mystery novel by Agatha Christie")
-            .withTags("book").withReview("Interesting story with an \"unsolvable\" mystery").build();
+            .withTags("book").build();
     public static final Activity ACTIVITY_B = new ActivityBuilder().withName("Battlefield 4")
             .withDescription("First person shooter by EA")
             .withTags("video_game").withReview("decent game").build();

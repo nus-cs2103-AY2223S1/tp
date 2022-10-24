@@ -6,6 +6,7 @@ import hobbylist.logic.commands.AddCommand;
 import hobbylist.logic.commands.EditCommand;
 import hobbylist.logic.parser.CliSyntax;
 import hobbylist.model.activity.Activity;
+import hobbylist.model.activity.Status;
 import hobbylist.model.tag.Tag;
 
 /**
@@ -44,11 +45,21 @@ public class ActivityUtil {
         if (descriptor.getTags().isPresent()) {
             Set<Tag> tags = descriptor.getTags().get();
             if (tags.isEmpty()) {
-                sb.append(CliSyntax.PREFIX_TAG);
+                sb.append(CliSyntax.PREFIX_TAG).append(" ");
             } else {
                 tags.forEach(s -> sb.append(CliSyntax.PREFIX_TAG).append(s.tagName).append(" "));
             }
         }
+        descriptor.getDate().ifPresent(dates -> {
+            if (dates.size() > 0) {
+                sb.append(CliSyntax.PREFIX_DATE).append(dates.get(0)).append(" ");
+            }
+        });
+        descriptor.getStatus().ifPresent(status -> {
+            if (status.status != Status.State.NONE) {
+                sb.append(CliSyntax.PREFIX_STATUS).append(status).append(" ");
+            }
+        });
         return sb.toString();
     }
 }

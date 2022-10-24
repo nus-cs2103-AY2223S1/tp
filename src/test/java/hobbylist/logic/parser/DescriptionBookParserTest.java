@@ -59,6 +59,7 @@ public class DescriptionBookParserTest {
         EditCommand command = (EditCommand) parser.parseCommand(EditCommand.COMMAND_WORD + " "
                 + TypicalIndexes.INDEX_FIRST_ACTIVITY.getOneBased() + " "
                 + ActivityUtil.getEditActivityDescriptorDetails(descriptor));
+        EditCommand test = new EditCommand(TypicalIndexes.INDEX_FIRST_ACTIVITY, descriptor);
         assertEquals(new EditCommand(TypicalIndexes.INDEX_FIRST_ACTIVITY, descriptor), command);
     }
 

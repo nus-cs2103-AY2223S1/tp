@@ -136,7 +136,7 @@ public class Activity {
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, description, tags);
+        return Objects.hash(name, description, tags, listDate, status, rating, review);
     }
 
     @Override

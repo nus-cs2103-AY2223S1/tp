@@ -7,11 +7,13 @@
   }, {
     "name" : "Battlefield 4",
     "description" : "First person shooter by EA",
-    "tagged" : [ "video_game" ]
+    "tagged" : [ "video_game" ],
+    "review" : "decent game"
   }, {
     "name" : "Charlotte",
     "description" : "Comedy drama anime",
-    "tagged" : [ ]
+    "tagged" : [ ],
+    "review" : "decent anime with weird ending"
   }, {
     "name" : "Despicable Me 3",
     "description" : "Comedy film directed by Pierre Coffin and Kyle Balda",

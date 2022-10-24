@@ -51,6 +51,7 @@ public class ActivityBuilder {
         tags = new HashSet<>(activityToCopy.getTags());
         dateList = new ArrayList<>(activityToCopy.getDate());
         status = activityToCopy.getStatus();
+        review = activityToCopy.getReview();
     }
 
     /**
@@ -77,6 +78,9 @@ public class ActivityBuilder {
         return this;
     }
 
+    /**
+     * Sets the {@Code Review} of the {@code Activity} that we are building.
+     */
     public ActivityBuilder withReview(String review) {
         this.review = Optional.of(new Review(review));
         return this;

@@ -152,7 +152,6 @@ public class EditCommand extends Command {
             this.name = name;
         }
 
-
         public Optional<Name> getName() {
             return Optional.ofNullable(name);
         }
@@ -213,7 +212,8 @@ public class EditCommand extends Command {
             return getName().equals(e.getName())
                     && getDescription().equals(e.getDescription())
                     && getTags().equals(e.getTags())
-                    && getDate().equals((e.getDate()));
+                    && getDate().equals(e.getDate())
+                    && getStatus().equals(e.getStatus());
         }
     }
 }
