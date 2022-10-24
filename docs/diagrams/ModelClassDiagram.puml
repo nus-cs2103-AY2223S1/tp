@@ -45,7 +45,7 @@ TaskList *--> "1" UniqueTaskList
 
 UniqueTaskList -r-> "all ~* " Task : \t
 
-Task -|> Comparable
+Task ..right|> Comparable : "   "
 
 Task *--> "1" Name
 Task *--> "1 " Module
