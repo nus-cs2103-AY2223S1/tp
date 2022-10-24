@@ -155,6 +155,50 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
+### Appointment feature
+
+This feature represents an appointment between a user and a client. An appointment consists of a DateTime and a Location. 
+
+Overview of implementation for Appointment:
+
+* `Appointment`- This is a class that stores information regarding an appointment of a specific client, such as the `DateTime` and `Location`.
+* `DateTime`- This is a class that stores the Date and Time of an `Appointment`. It has a format of `d-MMM-yyyy hh:mm a` as a `String`.
+* `Location`- This is a class that stores the location of an `Appointment`. It can take any `String` values, but it must not be blank.
+* `JsonAdaptedAppointment`- This is a class that acts as a bridge between the `Appointment` class and `Storage` layer. It specifies how an `Appointment` object is converted to a JSON and vice versa.
+* `AddAppointmentCommandParser`- This is a class that parses user input from a `String` to an `AddAppointmentCommand` object. Validation for the user's input is performed in this class.
+* `AddAppointmentCommand`- This is a class where the logic for the Add Appointment command is specified and the `execute` method is called. It will access the `Model` layer to ensure that there will not be a duplicate `Appointment` and the maximum number of `Appointments` for the client has not been reached, followed by adding the `Appointment` to the `Model`.
+* `MaximumSortedList`- This is an abstraction that represents the list of `Appointments` for a specific client. It ensures that the `Appointments` are in sorted order according to chronological order, ensures that there is a maximum number, 3, of `Appointments` for each client and ensures that there are no duplicate `Appointments` for each client. 
+
+The appointment feature currently supports 3 different commands.
+1. `add appointment`
+2. `edit appointment`
+3. `delete appointment`
+
+#### Add Appointment Command
+
+Step 1. When the user inputs an appropriate command `String` into the `CommandBox`, `LogicManager##execute(commandText)` is called. The command `String` is logged and then passed to `AddressBookParser##parseCommand(userInput)` which parses the command.
+Step 2. If the user input matches the format for the command word for the `AddAppointmentCommand`, `AddressBookParser` will create an `AddAppointmentCommandParser` and will call the `AddAppointmentCommandParser##parse(args)` to parse the command.
+Step 3. Validation for the user input is performed, such as validating the client's `Index`, the format of the `DateTime` and `Location`.
+Step 4. If the user input is valid, a new `AddAppointmentCommand` object is created and returned to the `LogicManager`. 
+Step 5. `LogicManager` will call `AddAppointmentCommand##execute(model)` method. Further validation is performed, such as checking whether a duplicate `Appointment` exists and whether the user has already scheduled the maximum number, 3, of `Appointments` for the specified client.
+Step 6. If the command is valid, the `add` method of the `MaximumSortedList` containing the client's `Appointments` is called, which will update the `Person` and `Model`.
+Step 7. `AddAppointmentCommand` will create a `CommandResult` object and will return this created object back to `LogicManager`.
+
+This is shown in the diagram below:
+
+![Add Appointment Sequence Diagram](images/AddAppointmentCommandSequenceDiagram.png)
+<br> *Figure xx: Add Appointment Command Sequence Diagram*
+
+#### Design Considerations
+**Aspect: How many `Appointments` can be added for each command**
+* **Alternative 1 (current choice):** Add only one `Appointment` in each command.
+  * Pros: Simpler input validation and length of user input is shorter, as the presence of multiple `DateTime` and `Location` fields has the potential to be very lengthy
+  * Cons: User has to execute the `aa` command multiple times to add all their desired `Appointments`
+* **Alternative 2**: Multiple `Appointments` can be added in each command
+  * Pros: Lower number of commands needed to be executed to add all the desired `Appointments`
+  * Cons: Complex input validation as unique `DateTimes` and `Locations` must be enforced within the command and alongside the existing `Appointments`. The maximum number of `Appointments` must also be enforced. Also, length of user input may be very long
+
+
 ### \[Proposed\] Undo/redo feature
 
 #### Proposed Implementation
