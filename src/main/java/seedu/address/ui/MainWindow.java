@@ -1,5 +1,9 @@
 package seedu.address.ui;
 
+import java.awt.Desktop;
+import java.io.IOException;
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.util.logging.Logger;
 
 import javafx.event.ActionEvent;
@@ -32,6 +36,7 @@ public class MainWindow extends UiPart<Stage> {
 
     // Independent Ui parts residing in this Ui container
     private ProfileListPanel profileListPanel;
+    private EventListPanel eventListPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
 
@@ -42,7 +47,19 @@ public class MainWindow extends UiPart<Stage> {
     private MenuItem helpMenuItem;
 
     @FXML
+    private MenuItem linkedinMenuItem;
+
+    @FXML
+    private MenuItem canvasMenuItem;
+
+    @FXML
+    private MenuItem edurecMenuItem;
+
+    @FXML
     private StackPane profileListPanelPlaceholder;
+
+    @FXML
+    private StackPane eventListPanelPlaceholder;
 
     @FXML
     private StackPane resultDisplayPlaceholder;
@@ -113,6 +130,9 @@ public class MainWindow extends UiPart<Stage> {
         profileListPanel = new ProfileListPanel(logic.getFilteredProfileList());
         profileListPanelPlaceholder.getChildren().add(profileListPanel.getRoot());
 
+        eventListPanel = new EventListPanel(logic.getFilteredEventList());
+        eventListPanelPlaceholder.getChildren().add(eventListPanel.getRoot());
+
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
 
@@ -145,6 +165,30 @@ public class MainWindow extends UiPart<Stage> {
         } else {
             helpWindow.focus();
         }
+    }
+
+    /**
+     * Opens the Luminus URL.
+     */
+    @FXML
+    public void handleLuminusClick() {
+        openBrowserUrl("https://luminus.nus.edu.sg");
+    }
+
+    /**
+     * Opens the Canvas URL.
+     */
+    @FXML
+    public void handleCanvasClick() {
+        openBrowserUrl("http://canvas.nus.edu.sg");
+    }
+
+    /**
+     * Opens the EduRec URL.
+     */
+    @FXML
+    public void handleEdurecClick() {
+        openBrowserUrl("https://myedurec.nus.edu.sg");
     }
 
     void show() {
@@ -193,4 +237,18 @@ public class MainWindow extends UiPart<Stage> {
             throw e;
         }
     }
+
+    /**
+     * Opens the given url in default browser.
+     */
+    public static void openBrowserUrl(String url) {
+        Desktop desktop = java.awt.Desktop.getDesktop();
+        try {
+            URI uri = new URI(url);
+            desktop.browse(uri);
+        } catch (URISyntaxException | IOException e) {
+            e.printStackTrace();
+        }
+    }
+
 }

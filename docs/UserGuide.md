@@ -80,9 +80,9 @@ A profile can have 0 or more tags
 </div>
 
 Examples:
-* `profile -a n/John Doe p/98765432 e/johnd@example.com t/friend`
-* `profile -a n/Jane Smith e/jane_s@example.com p/91234580 tg/jane_s`
-* `profile -a n/Betsy Crowe e/betsycrowe@example.com p/1234567 t/professor t/lecturer`
+* `profile -a n/John Doe p/98765432 e/johnd@u.nus.edu t/friend`
+* `profile -a n/Jane Smith e/jane_s@u.nus.edu p/91234580 tg/jane_s`
+* `profile -a n/Betsy Crowe e/betsycrowe@u.nus.edu p/1234567 t/professor t/lecturer`
 
 ### Viewing all profiles: `profile -v`
 
@@ -104,9 +104,9 @@ Format: `profile -e INDEX [n/NAME] [p/PHONE] [e/EMAIL] [tg/TELEGRAM_USERNAME] [t
 * You can remove all the profile’s tags by typing `t/` without specifying any tags after it.
 
 Examples:
-* `profile -e 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st profile to be `91234567` and `johndoe@example.com` respectively.
+* `profile -e 1 p/91234567 e/johndoe@u.nus.edu` Edits the phone number and email address of the 1st profile to be `91234567` and `johndoe@u.nus.edu` respectively.
 * `profile -e 2 n/Betsy Crower t/` Edits the name of the 2nd profile to be `Betsy Crower` and clears all existing tags.
-* `profile -e 3 tg/ t/` Clears the telegram username and tags of the 3rd profile. 
+* `profile -e 3 tg/ t/` Clears the telegram username and tags of the 3rd profile.
 
 ### Finding profiles by name: `profile -f KEYWORD [MORE_KEYWORDS]`
 

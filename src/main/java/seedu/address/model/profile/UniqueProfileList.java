@@ -3,20 +3,22 @@ package seedu.address.model.profile;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.util.Comparator;
 import java.util.Iterator;
 import java.util.List;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.collections.transformation.SortedList;
 import seedu.address.model.profile.exceptions.ProfileNotFoundException;
 import seedu.address.model.profile.exceptions.SimilarProfileException;
 
 /**
  * A list of profiles that enforces uniqueness between its elements and does not allow nulls.
  * A profile is unique by comparing using {@code Profile#isSameEmail(Profile)}, {@code Profile#isSamePhone(Profile)}
- * and {@code Profile#isSameTelegram(Profile)}.
+ * and {@code Profile#isSameTelegramNotEmpty(Profile)}.
  * As such, adding and updating of profiles uses {@code Profile#isSameEmail(Profile)},
- * {@code Profile#isSamePhone(Profile)} and {@code Profile#isSameTelegram(Profile)} for equality so as to ensure
+ * {@code Profile#isSamePhone(Profile)} and {@code Profile#isSameTelegramNotEmpty(Profile)} for equality so as to ensure
  * that the profile being added or updated is unique in terms of identity in the UniqueProfileList. However,
  * removal of a profile uses Profile#equals(Object) so as to ensure that the profile with exactly the same
  * fields will be removed.
@@ -32,6 +34,13 @@ public class UniqueProfileList implements Iterable<Profile> {
     private final ObservableList<Profile> internalList = FXCollections.observableArrayList();
     private final ObservableList<Profile> internalUnmodifiableList =
             FXCollections.unmodifiableObservableList(internalList);
+    private final SortedList<Profile> unmodifiableSortedList = internalUnmodifiableList.sorted(
+            new Comparator<Profile>() {
+                @Override
+                public int compare(Profile p1, Profile p2) {
+                    return p1.compareTo(p2);
+                }
+            });
 
     /**
      * Returns true if the list contains a profile with an equivalent email as the given argument.
@@ -125,7 +134,7 @@ public class UniqueProfileList implements Iterable<Profile> {
      * Returns the backing list as an unmodifiable {@code ObservableList}.
      */
     public ObservableList<Profile> asUnmodifiableObservableList() {
-        return internalUnmodifiableList;
+        return unmodifiableSortedList;
     }
 
     @Override

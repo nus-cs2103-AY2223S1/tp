@@ -2,6 +2,7 @@ package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 
+import java.time.format.DateTimeParseException;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
@@ -9,6 +10,8 @@ import java.util.Set;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.event.DateTime;
+import seedu.address.model.event.Title;
 import seedu.address.model.profile.Email;
 import seedu.address.model.profile.Name;
 import seedu.address.model.profile.Phone;
@@ -19,8 +22,8 @@ import seedu.address.model.tag.Tag;
  * Contains utility methods used for parsing strings in the various *Parser classes.
  */
 public class ParserUtil {
-
     public static final String MESSAGE_INVALID_INDEX = "Index is not a non-zero unsigned integer.";
+    public static final String MESSAGE_INVALID_DAYS = "Days provided is not a non-zero unsigned integer";
 
     /**
      * Parses {@code oneBasedIndex} into an {@code Index} and returns it. Leading and trailing whitespaces will be
@@ -93,6 +96,55 @@ public class ParserUtil {
             throw new ParseException(Telegram.MESSAGE_CONSTRAINTS);
         }
         return new Telegram(trimmedUsername);
+    }
+
+    /**
+     * Parses a {@code String title} into an {@code Title}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code title} is invalid.
+     */
+    public static Title parseTitle(String title) throws ParseException {
+        requireNonNull(title);
+        String trimmedTitle = title.trim();
+        if (!Title.isValidTitle(trimmedTitle)) {
+            throw new ParseException(Title.MESSAGE_CONSTRAINTS);
+        }
+        return new Title(trimmedTitle);
+    }
+
+    /**
+     * Parses a {@code String dateTime} into an {@code DateTime}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code dateTime} is invalid.
+     */
+    public static DateTime parseDateTime(String dateTime) throws ParseException {
+        requireNonNull(dateTime);
+        String trimmedDateTime = dateTime.trim();
+        if (!DateTime.isValidDateTime(trimmedDateTime)) {
+            throw new ParseException(DateTime.MESSAGE_CONSTRAINTS);
+        }
+        try {
+            return new DateTime(trimmedDateTime);
+        } catch (DateTimeParseException e) {
+            throw new ParseException(DateTime.MESSAGE_INVALID_DATETIME);
+        }
+    }
+
+    /**
+     * Parses a {@code String days} into an int.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code days} is invalid.
+     */
+    public static int parseDays(String days) throws ParseException {
+        requireNonNull(days);
+        String trimmedDays = days.trim();
+        if (!StringUtil.isNonZeroUnsignedInteger(trimmedDays)) {
+            throw new ParseException(MESSAGE_INVALID_DAYS);
+        }
+        return Integer.parseInt(trimmedDays);
     }
 
     /**

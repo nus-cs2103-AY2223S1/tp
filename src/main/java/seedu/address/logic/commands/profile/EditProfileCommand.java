@@ -47,11 +47,18 @@ public class EditProfileCommand extends ProfileCommand {
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " " + PREFIX_OPTION + COMMAND_OPTION + " 1 "
             + PREFIX_PHONE + "91234567 "
-            + PREFIX_EMAIL + "johndoe@example.com "
+            + PREFIX_EMAIL + "johndoe@u.nus.edu "
             + PREFIX_TELEGRAM + "johndoe "
             + PREFIX_TAG + "CS2103T";
 
     public static final String MESSAGE_EDIT_PROFILE_SUCCESS = "Edited Profile:\n%1$s";
+    public static final String MESSAGE_HELP = "Edits an existing profile in NUScheduler.\n"
+            + "Format: " + COMMAND_WORD + " " + PREFIX_OPTION + COMMAND_OPTION + " INDEX "
+            + "[" + PREFIX_NAME + "NAME] "
+            + "[" + PREFIX_PHONE + "PHONE] "
+            + "[" + PREFIX_EMAIL + "EMAIL] "
+            + "[" + PREFIX_TELEGRAM + "TELEGRAM USERNAME] "
+            + "[" + PREFIX_TAG + "TAG]...\n";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
 
     private final Index index;

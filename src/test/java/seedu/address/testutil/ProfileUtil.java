@@ -23,7 +23,7 @@ public class ProfileUtil {
      * Returns an add command string for adding the {@code profile}.
      */
     public static String getAddProfileCommand(Profile profile) {
-        return AddProfileCommand.COMMAND_WORD + " " + PREFIX_OPTION + AddProfileCommand.COMMAND_OPTION
+        return " " + PREFIX_OPTION + AddProfileCommand.COMMAND_OPTION
                 + " " + getProfileDetails(profile);
     }
 
@@ -50,6 +50,7 @@ public class ProfileUtil {
         descriptor.getName().ifPresent(name -> sb.append(PREFIX_NAME).append(name.fullName).append(" "));
         descriptor.getPhone().ifPresent(phone -> sb.append(PREFIX_PHONE).append(phone.value).append(" "));
         descriptor.getEmail().ifPresent(email -> sb.append(PREFIX_EMAIL).append(email.value).append(" "));
+        descriptor.getTelegram().ifPresent(telegram -> sb.append(PREFIX_TELEGRAM).append(telegram.value).append(" "));
         if (descriptor.getTags().isPresent()) {
             Set<Tag> tags = descriptor.getTags().get();
             if (tags.isEmpty()) {

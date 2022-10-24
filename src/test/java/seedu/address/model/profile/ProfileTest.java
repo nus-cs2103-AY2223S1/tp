@@ -43,7 +43,8 @@ public class ProfileTest {
         assertFalse(ALICE.isSameEmail(editedAlice));
 
         // email differs in case -> returns false
-        Profile editedBob = new ProfileBuilder(BOB).withEmail(VALID_EMAIL_BOB.toUpperCase()).build();
+        Profile Bob = new ProfileBuilder(BOB).withEmail("bob@u.nus.edu").build();
+        Profile editedBob = new ProfileBuilder(BOB).withEmail("BOB@u.nus.edu").build();
         assertFalse(BOB.isSameEmail(editedBob));
     }
 

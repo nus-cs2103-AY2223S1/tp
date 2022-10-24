@@ -4,6 +4,7 @@ import java.util.logging.Logger;
 
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.Region;
@@ -18,6 +19,8 @@ public class ProfileListPanel extends UiPart<Region> {
     private final Logger logger = LogsCenter.getLogger(ProfileListPanel.class);
 
     @FXML
+    private Label profileListTitle;
+    @FXML
     private ListView<Profile> profileListView;
 
     /**
@@ -25,6 +28,7 @@ public class ProfileListPanel extends UiPart<Region> {
      */
     public ProfileListPanel(ObservableList<Profile> profileList) {
         super(FXML);
+        profileListTitle.setText("Profiles");
         profileListView.setItems(profileList);
         profileListView.setCellFactory(listView -> new ProfileListViewCell());
     }

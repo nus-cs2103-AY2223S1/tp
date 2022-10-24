@@ -5,15 +5,18 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_CCA;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TELEGRAM_AMY;
 import static seedu.address.testutil.Assert.assertThrows;
+import static seedu.address.testutil.TypicalAddressBook.getTypicalAddressBook;
+import static seedu.address.testutil.TypicalEvents.PRESENTATION;
 import static seedu.address.testutil.TypicalProfiles.ALICE;
 import static seedu.address.testutil.TypicalProfiles.AMY;
 import static seedu.address.testutil.TypicalProfiles.BENSON;
 import static seedu.address.testutil.TypicalProfiles.BOB;
-import static seedu.address.testutil.TypicalProfiles.getTypicalAddressBook;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
@@ -23,8 +26,11 @@ import org.junit.jupiter.api.Test;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import seedu.address.model.event.Event;
+import seedu.address.model.event.exceptions.DuplicateEventException;
 import seedu.address.model.profile.Profile;
 import seedu.address.model.profile.exceptions.SimilarProfileException;
+import seedu.address.testutil.EventBuilder;
 import seedu.address.testutil.ProfileBuilder;
 
 public class AddressBookTest {
@@ -54,7 +60,8 @@ public class AddressBookTest {
         Profile bobWithAmyEmail = new ProfileBuilder(BOB).withEmail(VALID_EMAIL_AMY).withTags(VALID_TAG_HUSBAND)
                 .build();
         List<Profile> newProfiles = Arrays.asList(AMY, bobWithAmyEmail);
-        AddressBookStub newData = new AddressBookStub(newProfiles);
+        List<Event> emptyEvents = new ArrayList<>();
+        AddressBookStub newData = new AddressBookStub(newProfiles, emptyEvents);
 
         assertThrows(SimilarProfileException.class, () -> addressBook.resetData(newData));
     }
@@ -65,7 +72,8 @@ public class AddressBookTest {
         Profile bobWithAmyPhone = new ProfileBuilder(BOB).withPhone(VALID_PHONE_AMY).withTags(VALID_TAG_HUSBAND)
                 .build();
         List<Profile> newProfiles = Arrays.asList(AMY, bobWithAmyPhone);
-        AddressBookStub newData = new AddressBookStub(newProfiles);
+        List<Event> emptyEvents = new ArrayList<>();
+        AddressBookStub newData = new AddressBookStub(newProfiles, emptyEvents);
 
         assertThrows(SimilarProfileException.class, () -> addressBook.resetData(newData));
     }
@@ -73,12 +81,24 @@ public class AddressBookTest {
     @Test
     public void resetData_withSimilarTelegrams_throwsSimilarProfileException() {
         // Two profiles with the similar telegram
-        Profile bobWithAmyTelegram = new ProfileBuilder(BOB).withTelegram(VALID_TELEGRAM_AMY).withTags(VALID_TAG_HUSBAND)
-                .build();
+        Profile bobWithAmyTelegram = new ProfileBuilder(BOB).withTelegram(VALID_TELEGRAM_AMY)
+                .withTags(VALID_TAG_HUSBAND).build();
         List<Profile> newProfiles = Arrays.asList(AMY, bobWithAmyTelegram);
-        AddressBookStub newData = new AddressBookStub(newProfiles);
+        List<Event> emptyEvents = new ArrayList<>();
+        AddressBookStub newData = new AddressBookStub(newProfiles, emptyEvents);
 
         assertThrows(SimilarProfileException.class, () -> addressBook.resetData(newData));
+    }
+
+    @Test
+    public void resetData_withDuplicateEvents_throwsDuplicateEventException() {
+        // Two profiles with the same identity fields
+        Event editedPresentation = new EventBuilder(PRESENTATION)
+                .withTags(VALID_TAG_CCA).build();
+        List<Event> newEvents = Arrays.asList(PRESENTATION, editedPresentation);
+        List<Profile> emptyProfiles = new ArrayList<>();
+        AddressBookStub newData = new AddressBookStub(emptyProfiles, newEvents);
+        assertThrows(DuplicateEventException.class, () -> addressBook.resetData(newData));
     }
 
     @Test
@@ -94,6 +114,11 @@ public class AddressBookTest {
     @Test
     public void hasTelegram_nullEmail_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> addressBook.hasTelegram(null));
+    }
+
+    @Test
+    public void hasEvent_nullEvent_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> addressBook.hasEvent(null));
     }
 
     @Test
@@ -130,6 +155,17 @@ public class AddressBookTest {
     }
 
     @Test
+    public void hasEvent_eventNotInAddressBook_returnsFalse() {
+        assertFalse(addressBook.hasEvent(PRESENTATION));
+    }
+
+    @Test
+    public void hasEvent_eventInAddressBook_returnsTrue() {
+        addressBook.addEvent(PRESENTATION);
+        assertTrue(addressBook.hasEvent(PRESENTATION));
+    }
+
+    @Test
     public void hasProfile_profileWithSameEmailFieldsInAddressBook_returnsTrue() {
         addressBook.addProfile(AMY);
         Profile editedBenson = new ProfileBuilder(BENSON).withEmail(VALID_EMAIL_AMY)
@@ -154,8 +190,21 @@ public class AddressBookTest {
     }
 
     @Test
+    public void hasEvent_eventWithSameIdentityFieldsInAddressBook_returnsTrue() {
+        addressBook.addEvent(PRESENTATION);
+        Event editedPresentation = new EventBuilder(PRESENTATION).withTags(VALID_TAG_HUSBAND)
+                .build();
+        assertTrue(addressBook.hasEvent(editedPresentation));
+    }
+
+    @Test
     public void getProfileList_modifyList_throwsUnsupportedOperationException() {
         assertThrows(UnsupportedOperationException.class, () -> addressBook.getProfileList().remove(0));
+    }
+
+    @Test
+    public void getEventList_modifyList_throwsUnsupportedOperationException() {
+        assertThrows(UnsupportedOperationException.class, () -> addressBook.getEventList().remove(0));
     }
 
     /**
@@ -163,15 +212,23 @@ public class AddressBookTest {
      */
     private static class AddressBookStub implements ReadOnlyAddressBook {
         private final ObservableList<Profile> profiles = FXCollections.observableArrayList();
+        private final ObservableList<Event> events = FXCollections.observableArrayList();
 
-        AddressBookStub(Collection<Profile> profiles) {
+        AddressBookStub(Collection<Profile> profiles, Collection<Event> events) {
             this.profiles.setAll(profiles);
+            this.events.setAll(events);
         }
 
         @Override
         public ObservableList<Profile> getProfileList() {
             return profiles;
         }
+
+        @Override
+        public ObservableList<Event> getEventList() {
+            return events;
+        }
+
     }
 
 }
