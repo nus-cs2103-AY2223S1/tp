@@ -13,28 +13,24 @@ import seedu.intrack.model.internship.Status;
 
 public class StatusCommandParserTest {
     private StatusCommandParser parser = new StatusCommandParser();
-    private final String VALID_STATUS_OFFERED = "o";
-    private final String VALID_STATUS_PROGRESS = "p";
-    private final String VALID_STATUS_REJECTED = "r";
-
 
     @Test
     public void parse_indexSpecified_success() {
         // status present
         Index targetIndex = INDEX_FIRST_INTERNSHIP;
-        String userInputOffered = " " + targetIndex.getOneBased() + " " + VALID_STATUS_OFFERED;
+        String userInputOffered = " " + targetIndex.getOneBased() + " " + "o";
         StatusCommand expectedCommandOffered = new StatusCommand(INDEX_FIRST_INTERNSHIP, new Status("Offered"));
         assertParseSuccess(parser, userInputOffered, expectedCommandOffered);
-/*
-        String userInputProgress = targetIndex.getOneBased() + " " + VALID_STATUS_PROGRESS;
+
+        String userInputProgress = " " + targetIndex.getOneBased() + " " + "p";
         StatusCommand expectedCommandProgress = new StatusCommand(INDEX_FIRST_INTERNSHIP, new Status("Progress"));
         assertParseSuccess(parser, userInputProgress, expectedCommandProgress);
 
-        String userInputRejected = targetIndex.getOneBased() + " " + VALID_STATUS_REJECTED;
+        String userInputRejected = " " + targetIndex.getOneBased() + " " + "r";
         StatusCommand expectedCommandRejected = new StatusCommand(INDEX_FIRST_INTERNSHIP, new Status("Rejected"));
         assertParseSuccess(parser, userInputRejected, expectedCommandRejected);
 
- */
+
     }
 
     @Test
@@ -46,8 +42,8 @@ public class StatusCommandParserTest {
         assertParseFailure(parser, StatusCommand.COMMAND_WORD, expectedMessage);
 
         // no index
-        assertParseFailure(parser, StatusCommand.COMMAND_WORD + " " + VALID_STATUS_OFFERED, expectedMessage);
-        assertParseFailure(parser, StatusCommand.COMMAND_WORD + " " + VALID_STATUS_PROGRESS, expectedMessage);
-        assertParseFailure(parser, StatusCommand.COMMAND_WORD + " " + VALID_STATUS_REJECTED, expectedMessage);
+        assertParseFailure(parser, StatusCommand.COMMAND_WORD + " " + "o", expectedMessage);
+        assertParseFailure(parser, StatusCommand.COMMAND_WORD + " " + "p", expectedMessage);
+        assertParseFailure(parser, StatusCommand.COMMAND_WORD + " " + "r", expectedMessage);
     }
 }
