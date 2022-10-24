@@ -25,7 +25,6 @@ public class ModelManager implements Model {
     private final ResidentBook residentBook;
     private final UserPrefs userPrefs;
     private final FilteredList<Resident> filteredResidents;
-    private final ObservableList<String> observableFieldList;
 
     private final ObservableList<String> visibleFields;
     private final ObservableList<String> hiddenFields;
@@ -40,9 +39,8 @@ public class ModelManager implements Model {
         this.residentBook = new ResidentBook(residentBook);
         this.userPrefs = new UserPrefs(userPrefs);
         filteredResidents = new FilteredList<>(this.residentBook.getResidentList());
-        this.observableFieldList = FXCollections.observableArrayList();
 
-        this.visibleFields = FXCollections.observableArrayList(ResidentFields.FIELDS);
+        this.visibleFields = FXCollections.observableArrayList(ResidentFields.LOWERCASE_FIELDS);
         this.hiddenFields = FXCollections.observableArrayList();
     }
 
@@ -159,16 +157,6 @@ public class ModelManager implements Model {
     //=========== Observable Field List Accessors =============================================================
 
     @Override
-    public ObservableList<String> getObservableFields() {
-        return this.observableFieldList;
-    }
-
-    @Override
-    public void setObservableFields(List<String> modifiableFields) {
-        this.observableFieldList.setAll(modifiableFields);
-    }
-
-    @Override
     public ObservableList<String> getVisibleFields() {
         return this.visibleFields;
     }
@@ -179,12 +167,12 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void setHiddenFields(List<String> fieldsToHide) {
-        this.hiddenFields.setAll(fieldsToHide);
+    public ObservableList<String> getHiddenFields() {
+        return this.hiddenFields;
     }
 
     @Override
-    public ObservableList<String> getHiddenFields() {
-        return this.hiddenFields;
+    public void setHiddenFields(List<String> fieldsToHide) {
+        this.hiddenFields.setAll(fieldsToHide);
     }
 }
