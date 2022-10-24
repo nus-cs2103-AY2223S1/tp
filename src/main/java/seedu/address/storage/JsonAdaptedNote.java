@@ -1,5 +1,10 @@
 package seedu.address.storage;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Set;
+import java.util.stream.Collectors;
+
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
@@ -8,11 +13,6 @@ import seedu.address.model.note.Content;
 import seedu.address.model.note.Note;
 import seedu.address.model.note.Title;
 import seedu.address.model.tag.Tag;
-
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Set;
-import java.util.stream.Collectors;
 
 /**
  * Jackson-friendly version of {@link Note}.
@@ -82,5 +82,5 @@ public class JsonAdaptedNote {
 
         return new Note(modelTitle, modelContent, modelTags);
     }
-    
+
 }
