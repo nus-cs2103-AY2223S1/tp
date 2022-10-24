@@ -70,7 +70,7 @@ public class UpdatedPatientCard extends UiPart<Region> {
                 .forEach(tag -> tags.getChildren().add(new Label(tag.getValue())));
         header.setText(headerString);
         conditions.setText("Conditions:" + "\n" + patient.getConditions().toString());
-        medications.setText("Medications:" + "\n" + "1. enlarger with also a really really long name"); //dummy values
+        medications.setText("Medications:" + "\n" + patient.getMedications().toString());
         taskheader.setText("Tasks:");
         tasklist.setText(patient.getTasks().toString());
     }
