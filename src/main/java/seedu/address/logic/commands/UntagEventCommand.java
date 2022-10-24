@@ -24,10 +24,9 @@ public class UntagEventCommand extends Command {
             + ": Untags 1 or more persons to an event in the address book "
             + "by the index number used in the displayed person and event lists. "
             + "Parameters: "
-            + "EVENT INDEX (must be a positive integer) "
-            + PREFIX_PERSONS + "PERSON INDEX 1 (must be a positive integer) "
-            + "[PERSON INDEX 2 (must be a positive integer) "
-            + "PERSON INDEX 3 (must be a positive integer) ...]\n"
+            + "EVENT_INDEX (must be a positive integer) "
+            + PREFIX_PERSONS + "PERSON_INDEX_1 (must be a positive integer) "
+            + "[PERSON_INDEX_2 PERSON_INDEX_3 ...]\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_PERSONS + "1 3 4";
     public static final String MESSAGE_UNTAG_EVENT_SUCCESS = "Untagged Persons: %s to Event: %s";
