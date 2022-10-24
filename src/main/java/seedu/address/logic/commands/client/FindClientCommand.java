@@ -13,7 +13,7 @@ import seedu.address.ui.Ui;
 
 
 /**
- * Represents an abstract class to find and filter client list.
+ * Represent a class to find and filter client list.
  */
 public class FindClientCommand extends ClientCommand {
 
@@ -32,7 +32,7 @@ public class FindClientCommand extends ClientCommand {
             + PREFIX_CLIENT_EMAIL + "john@gmail.com "
             + PREFIX_CLIENT_PHONE + "12345678 ";
 
-    public final ClientContainsKeywordsPredicate predicate;
+    private final ClientContainsKeywordsPredicate predicate;
     public FindClientCommand(ClientContainsKeywordsPredicate predicate) {
         this.predicate = predicate;
     }

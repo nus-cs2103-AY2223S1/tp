@@ -18,7 +18,7 @@ import seedu.address.model.Model;
 import seedu.address.ui.Ui;
 
 /**
- * Represents an abstract class to find and filter issue list.
+ * Represents a class to find and filter issue list.
  */
 public class FindIssueCommand extends IssueCommand {
 
@@ -41,7 +41,7 @@ public class FindIssueCommand extends IssueCommand {
             + PREFIX_PRIORITY + "HIGH "
             + PREFIX_PROJECT_NAME + "DevEnable ";
 
-    public final IssueContainsKeywordsPredicate predicate;
+    private final IssueContainsKeywordsPredicate predicate;
 
     public FindIssueCommand(IssueContainsKeywordsPredicate predicate) {
         this.predicate = predicate;
