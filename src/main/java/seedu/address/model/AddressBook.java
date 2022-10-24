@@ -235,6 +235,13 @@ public class AddressBook implements ReadOnlyAddressBook {
         tasks.filterTask();
     }
 
+    /**
+     * Sorts the projects according to deadline.
+     */
+    public void sortTasks() {
+        tasks.sortTasks();
+    }
+
     //// util methods
 
     @Override

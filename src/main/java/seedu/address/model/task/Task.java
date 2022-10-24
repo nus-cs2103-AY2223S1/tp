@@ -10,7 +10,7 @@ import seedu.address.model.deadline.Deadline;
  * Represents a Task in the TaskList.
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
-public class Task {
+public class Task implements Comparable<Task> {
 
     // Identity fields
     private final Deadline deadline;
@@ -88,6 +88,15 @@ public class Task {
                 .append(getTaskMark());
 
         return builder.toString();
+    }
+
+    /**
+     * Compares tasks by deadline.
+     * @param other
+     */
+    @Override
+    public int compareTo(Task other) {
+        return this.getTaskDeadline().compareTo(other.getTaskDeadline());
     }
 
 }

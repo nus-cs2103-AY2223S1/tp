@@ -184,6 +184,11 @@ public class AddTaskCommandTest {
         }
 
         @Override
+        public void sortTasks() {
+            throw new AssertionError(("This method should not be called."));
+        }
+
+        @Override
         public ObservableList<Project> getFilteredProjectList() {
             throw new AssertionError("This method should not be called.");
         }
