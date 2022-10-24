@@ -9,10 +9,9 @@ import java.util.Set;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.event.StartDate;
+import seedu.address.model.date.Date;
 import seedu.address.model.event.StartTime;
 import seedu.address.model.person.Address;
-import seedu.address.model.person.DateOfBirth;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Gender;
 import seedu.address.model.person.Name;
@@ -87,21 +86,6 @@ public class ParserUtil {
             throw new ParseException(Phone.MESSAGE_CONSTRAINTS);
         }
         return new Phone(trimmedPhone);
-    }
-
-    /**
-     * Parses a {@code String dob} into a {@code DateOfBirth}.
-     * Leading and trailing whitespaces will be trimmed.
-     *
-     * @throws ParseException if the given {@code dob} is invalid.
-     */
-    public static DateOfBirth parseDob(String dob) throws ParseException {
-        requireNonNull(dob);
-        String trimmedDob = dob.trim();
-        if (!DateOfBirth.isValidDateOfBirth(dob)) {
-            throw new ParseException(DateOfBirth.MESSAGE_CONSTRAINTS);
-        }
-        return new DateOfBirth(trimmedDob);
     }
 
     /**
@@ -190,16 +174,16 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String startDate} into a {@code StartDate}.
+     * Parses a {@code String Date} into a {@code Date}.
      * Leading and trailing whitespaces will be trimmed.
      */
-    public static StartDate parseStartDate(String startDate) throws ParseException {
-        requireNonNull(startDate);
-        String trimmedStartDate = startDate.trim();
-        if (!StartDate.isValidStartDate(startDate)) {
-            throw new ParseException(StartDate.MESSAGE_CONSTRAINTS);
+    public static Date parseDate(String date) throws ParseException {
+        requireNonNull(date);
+        String trimmedDate = date.trim();
+        if (!Date.isValidDate(date)) {
+            throw new ParseException(Date.MESSAGE_CONSTRAINTS);
         }
-        return new StartDate(trimmedStartDate);
+        return new Date(trimmedDate);
     }
 
     /**

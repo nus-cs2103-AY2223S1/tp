@@ -10,8 +10,8 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
+import seedu.address.model.date.Date;
 import seedu.address.model.person.Address;
-import seedu.address.model.person.DateOfBirth;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Gender;
 import seedu.address.model.person.Name;
@@ -114,14 +114,14 @@ class JsonAdaptedPerson {
 
         if (dob == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
-                     DateOfBirth.class.getSimpleName()));
+                     Date.class.getSimpleName()));
         }
 
-        if (!DateOfBirth.isValidDateOfBirth(dob)) {
-            throw new IllegalValueException(DateOfBirth.MESSAGE_CONSTRAINTS);
+        if (!Date.isValidDate(dob)) {
+            throw new IllegalValueException(Date.MESSAGE_CONSTRAINTS);
         }
 
-        final DateOfBirth modelDob = new DateOfBirth(dob);
+        final Date modelDob = new Date(dob);
 
         // add in optional field gender
         Gender modelGender;

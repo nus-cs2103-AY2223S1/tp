@@ -7,6 +7,7 @@ import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
+import seedu.address.model.date.Date;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -19,7 +20,7 @@ public class Person {
     private final Name name;
     private final Phone phone;
     private final Email email;
-    private final DateOfBirth dob;
+    private final Date dob;
 
     // Data fields
     private final Address address;
@@ -29,7 +30,7 @@ public class Person {
     /**
      * Overloaded constructor that takes in optional parameter gender
      */
-    public Person(Name name, Phone phone, Email email, DateOfBirth dob, Address address, Set<Tag> tags, Gender gender) {
+    public Person(Name name, Phone phone, Email email, Date dob, Address address, Set<Tag> tags, Gender gender) {
         requireAllNonNull(name, phone, email, address, tags, gender);
         this.name = name;
         this.phone = phone;
@@ -44,7 +45,7 @@ public class Person {
      * Every field must be present and not null.
      * Gender field is added at the end of each method.
      */
-    public Person(Name name, Phone phone, Email email, DateOfBirth dob, Address address, Set<Tag> tags) {
+    public Person(Name name, Phone phone, Email email, Date dob, Address address, Set<Tag> tags) {
         requireAllNonNull(name, phone, email, address, tags);
         this.name = name;
         this.phone = phone;
@@ -67,7 +68,7 @@ public class Person {
         return email;
     }
 
-    public DateOfBirth getDob() {
+    public Date getDob() {
         return dob;
     }
 

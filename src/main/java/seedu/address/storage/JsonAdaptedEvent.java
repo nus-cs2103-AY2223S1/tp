@@ -4,8 +4,8 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
+import seedu.address.model.date.Date;
 import seedu.address.model.event.Event;
-import seedu.address.model.event.StartDate;
 import seedu.address.model.event.StartTime;
 
 /**
@@ -61,10 +61,10 @@ public class JsonAdaptedEvent {
         if (this.startDate == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, "Start Date"));
         }
-        if (!StartDate.isValidStartDate(startDate)) {
-            throw new IllegalValueException(StartDate.MESSAGE_CONSTRAINTS);
+        if (!Date.isValidDate(startDate)) {
+            throw new IllegalValueException(Date.MESSAGE_CONSTRAINTS);
         }
-        final StartDate modelStartDate = new StartDate(startDate);
+        final Date modelStartDate = new Date(startDate);
 
         if (this.startTime == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, "Start Time"));

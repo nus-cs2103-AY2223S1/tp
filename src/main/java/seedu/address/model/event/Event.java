@@ -1,11 +1,13 @@
 package seedu.address.model.event;
 
+import seedu.address.model.date.Date;
+
 /**
  * Event represents a marketing events in the application.
  */
 public class Event {
     private final String eventTitle;
-    private final StartDate startDate;
+    private final Date startDate;
     private final StartTime startTime;
     private final String purpose;
 
@@ -17,7 +19,7 @@ public class Event {
      * @param startTime time when marketing event begins
      * @param purpose summary of what the marketing is about
      */
-    public Event(String eventTitle, StartDate startDate, StartTime startTime, String purpose) {
+    public Event(String eventTitle, Date startDate, StartTime startTime, String purpose) {
         this.eventTitle = eventTitle;
         this.startDate = startDate;
         this.startTime = startTime;
@@ -28,7 +30,7 @@ public class Event {
         return this.eventTitle;
     }
 
-    public StartDate getStartDate() {
+    public Date getStartDate() {
         return this.startDate;
     }
 
