@@ -3,15 +3,27 @@ package seedu.address.logic.parser;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.commands.CommandTestUtil.ADDRESS_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.ADDRESS_DESC_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.EMAIL_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_ADDRESS_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_NAME_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_TAG_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.NAME_DESC_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.PHONE_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.TAG_DESC_FRIEND;
 import static seedu.address.logic.commands.CommandTestUtil.TAG_DESC_HUSBAND;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_DATE;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_DATE_WITH_PREFIX;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_GOODS;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_GOODS_BUY_ORANGE;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_PRICE;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_PRICE_BUY_ORANGE;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_QUANTITY;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_QUANTITY_BUY_ORANGE;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_FRIEND;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
@@ -26,10 +38,12 @@ import org.junit.jupiter.api.Test;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.EditClientCommand;
 import seedu.address.logic.commands.EditCommand;
+import seedu.address.logic.commands.EditTransactionCommand;
 import seedu.address.model.client.Address;
 import seedu.address.model.client.Name;
 import seedu.address.model.tag.Tag;
 import seedu.address.testutil.EditClientDescriptorBuilder;
+import seedu.address.testutil.EditTransactionDescriptorBuilder;
 
 public class EditCommandParserTest {
 
@@ -117,6 +131,21 @@ public class EditCommandParserTest {
         expectedCommand = new EditClientCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
 
+        // phone
+        userInput = targetIndex.getOneBased() + " m/client" + PHONE_DESC_AMY;
+        descriptor = new EditClientDescriptorBuilder()
+                .withPhone(VALID_PHONE_AMY).build();
+        expectedCommand = new EditClientCommand(targetIndex, descriptor);
+        assertParseSuccess(parser, userInput, expectedCommand);
+
+        // email
+        userInput = targetIndex.getOneBased() + " m/client" + EMAIL_DESC_AMY;
+        descriptor = new EditClientDescriptorBuilder()
+                .withEmail(VALID_EMAIL_AMY).build();
+        expectedCommand = new EditClientCommand(targetIndex, descriptor);
+        assertParseSuccess(parser, userInput, expectedCommand);
+
+
         // tags
         userInput = targetIndex.getOneBased() + " m/client" + TAG_DESC_FRIEND;
         descriptor = new EditClientDescriptorBuilder().withTags(VALID_TAG_FRIEND).build();
@@ -124,6 +153,40 @@ public class EditCommandParserTest {
         assertParseSuccess(parser, userInput, expectedCommand);
     }
 
+    @Test
+    public void parse_oneFieldSpecifiedTransaction_success() {
+        // goods
+        Index targetIndex = INDEX_FIRST_CLIENT;
+        String userInput = targetIndex.getOneBased() + " m/transaction" + VALID_GOODS;
+        EditTransactionCommand.EditTransactionDescriptor descriptor = new EditTransactionDescriptorBuilder()
+                .withGoods(VALID_GOODS_BUY_ORANGE).build();
+        EditTransactionCommand expectedCommand = new EditTransactionCommand(targetIndex, descriptor);
+        assertParseSuccess(parser, userInput, expectedCommand);
+
+        // quantity
+        userInput = targetIndex.getOneBased() + " m/transaction" + VALID_QUANTITY;
+        descriptor = new EditTransactionDescriptorBuilder().withQuantity(VALID_QUANTITY_BUY_ORANGE).build();
+        expectedCommand = new EditTransactionCommand(targetIndex, descriptor);
+        assertParseSuccess(parser, userInput, expectedCommand);
+
+        // price
+        userInput = targetIndex.getOneBased() + " m/transaction" + VALID_PRICE;
+        descriptor = new EditTransactionDescriptorBuilder()
+                .withPrice(VALID_PRICE_BUY_ORANGE).build();
+        expectedCommand = new EditTransactionCommand(targetIndex, descriptor);
+        assertParseSuccess(parser, userInput, expectedCommand);
+
+        // date
+        userInput = targetIndex.getOneBased() + " m/transaction" + VALID_DATE_WITH_PREFIX;
+        descriptor = new EditTransactionDescriptorBuilder()
+                .withDate(VALID_DATE).build();
+        expectedCommand = new EditTransactionCommand(targetIndex, descriptor);
+        assertParseSuccess(parser, userInput, expectedCommand);
+
+        // No fields
+        userInput = targetIndex.getOneBased() + " m/transaction";
+        assertParseFailure(parser, userInput, EditClientCommand.MESSAGE_NOT_EDITED);
+    }
     @Test
     public void parse_multipleRepeatedFields_acceptsLast() {
         Index targetIndex = INDEX_FIRST_CLIENT;
