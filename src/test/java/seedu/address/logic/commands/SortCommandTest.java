@@ -6,10 +6,12 @@ import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.testutil.TypicalPersons.AMY;
 import static seedu.address.testutil.TypicalPersons.BOB;
 import static seedu.address.testutil.TypicalPersons.ELLE;
+import static seedu.address.testutil.TypicalPersons.MUSAB_WITH_NO_APPT;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import seedu.address.logic.parser.sort.SortByAppointment;
 import seedu.address.logic.parser.sort.SortByName;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
@@ -22,7 +24,7 @@ public class SortCommandTest {
     @BeforeEach
     public void setModel() {
         this.model = new ModelManager();
-        Person[] persons = {ELLE, AMY, BOB};
+        Person[] persons = {ELLE, AMY, BOB, MUSAB_WITH_NO_APPT};
         for (Person p: persons) {
             model.addPerson(p);
         }
@@ -35,12 +37,14 @@ public class SortCommandTest {
         SortCommand sortByNameCommand = new SortCommand(sortByName, "name");
         SortByName sortByNameDesc = new SortByName("desc");
         SortCommand sortByNameDescCommand = new SortCommand(sortByNameDesc, "name");
+        SortByAppointment sortByAppointment = new SortByAppointment("asc");
+        SortCommand sortByAppointmentCommand = new SortCommand(sortByAppointment, "appt");
 
         // same object -> returns true
         assertTrue(sortByNameCommand.equals(sortByNameCommand));
 
         // null -> returns false
-        assertFalse(sortByNameCommand.equals(null));
+        assertFalse(sortByAppointment.equals(null));
 
         // same values -> return true
         SortCommand sortByNameCommandClone = new SortCommand(sortByName, "name");
@@ -58,7 +62,7 @@ public class SortCommandTest {
     @Test
     public void execute_sortByName_success() {
         this.expectedModel = new ModelManager();
-        Person[] persons = {AMY, BOB, ELLE};
+        Person[] persons = {AMY, BOB, ELLE, MUSAB_WITH_NO_APPT};
         for (Person p: persons) {
             expectedModel.addPerson(p);
         }
@@ -71,13 +75,39 @@ public class SortCommandTest {
     @Test
     public void execute_sortByNameDesc_success() {
         this.expectedModel = new ModelManager();
-        Person[] persons = {ELLE, BOB, AMY};
+        Person[] persons = {MUSAB_WITH_NO_APPT, ELLE, BOB, AMY};
         for (Person p: persons) {
             expectedModel.addPerson(p);
         }
 
         String expectedMessage = String.format(SortCommand.MESSAGE_SUCCESS, "name");
         SortCommand sortCommand = new SortCommand(new SortByName("desc"), "name");
+        assertCommandSuccess(sortCommand, model, expectedMessage, expectedModel);
+    }
+
+    @Test
+    public void execute_sortByAppt_success() {
+        this.expectedModel = new ModelManager();
+        Person[] persons = {BOB, ELLE, AMY, MUSAB_WITH_NO_APPT};
+        for (Person p: persons) {
+            expectedModel.addPerson(p);
+        }
+
+        String expectedMessage = String.format(SortCommand.MESSAGE_SUCCESS, "appt");
+        SortCommand sortCommand = new SortCommand(new SortByAppointment("asc"), "appt");
+        assertCommandSuccess(sortCommand, model, expectedMessage, expectedModel);
+    }
+
+    @Test
+    public void execute_sortByApptDesc_success() {
+        this.expectedModel = new ModelManager();
+        Person[] persons = {AMY, ELLE, BOB, MUSAB_WITH_NO_APPT};
+        for (Person p: persons) {
+            expectedModel.addPerson(p);
+        }
+
+        String expectedMessage = String.format(SortCommand.MESSAGE_SUCCESS, "appt");
+        SortCommand sortCommand = new SortCommand(new SortByAppointment("desc"), "appt");
         assertCommandSuccess(sortCommand, model, expectedMessage, expectedModel);
     }
 }

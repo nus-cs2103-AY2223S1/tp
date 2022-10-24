@@ -54,6 +54,8 @@ public class CommandTestUtil {
     public static final String VALID_DATETIME_21_JAN_2023 = "21-Jan-2023 01:00 AM";
     public static final String VALID_DATETIME_22_JAN_2023 = "22-Jan-2023 01:00 AM";
     public static final String VALID_DATETIME_23_JAN_2023 = "23-Jan-2023 01:00 AM";
+
+    public static final String VALID_DATETIME_30_MAR_2024 = "23-Mar-2024 01:00 AM";
     public static final String INVALID_DATETIME_210_JAN_2023 = "210-Jan-2023 01:00 AM";
 
     public static final String VALID_LOCATION_NUS = "NUS";

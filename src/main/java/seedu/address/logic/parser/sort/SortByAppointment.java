@@ -36,7 +36,7 @@ public class SortByAppointment implements Comparator<Person> {
         else if (p1.getAppointments().isEmpty() && p2.getAppointments().isEmpty()) {
             return 0;
         } else {
-
+            // sort in descending order if user parse in "desc"
             if (this.order.equals("desc")) {
                 try {
                     return p2.getAppointments().get(0).getDateTime()
@@ -45,6 +45,7 @@ public class SortByAppointment implements Comparator<Person> {
                     throw new RuntimeException(e);
                 }
             } else {
+                // default sorting order is ascending
                 try {
                     return p1.getAppointments().get(0).getDateTime()
                             .compareTo(p2.getAppointments().get(0).getDateTime());
