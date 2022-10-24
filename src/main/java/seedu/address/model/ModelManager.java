@@ -27,7 +27,7 @@ public class ModelManager implements Model {
     private final AddressBook addressBook;
     private final UserPrefs userPrefs;
     private final SortedList<Person> filteredPersons;
-    private final FilteredList<Internship> filteredInternships;
+    private final SortedList<Internship> filteredInternships;
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
@@ -40,7 +40,7 @@ public class ModelManager implements Model {
         this.addressBook = new AddressBook(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
         filteredPersons = new SortedList<>(new FilteredList<>(this.addressBook.getPersonList()));
-        filteredInternships = new FilteredList<>(this.addressBook.getInternshipList());
+        filteredInternships = new SortedList<>(new FilteredList<>(this.addressBook.getInternshipList()));
     }
 
     public ModelManager() {
@@ -132,6 +132,9 @@ public class ModelManager implements Model {
     @Override
     public void updateFilteredPersonList(Predicate<Person> predicate) {
         requireNonNull(predicate);
+        // Since we are just swapping between 2 observable lists and they are wrappers around
+        // the source list, it is safe to swap between SortedList and FilteredList.
+        @SuppressWarnings("unchecked")
         FilteredList<Person> personList = (FilteredList<Person>) filteredPersons.getSource();
         personList.setPredicate(predicate);
     }
@@ -168,13 +171,20 @@ public class ModelManager implements Model {
     @Override
     public void updateFilteredInternshipList(Predicate<Internship> predicate) {
         requireNonNull(predicate);
-        filteredInternships.setPredicate(predicate);
+        FilteredList<Internship> internshipList = (FilteredList<Internship>) filteredInternships.getSource();
+        internshipList.setPredicate(predicate);
     }
 
     @Override
     public void sortPersonList(Comparator<Person> comparator) {
         requireNonNull(comparator);
         filteredPersons.setComparator(comparator);
+    }
+
+    @Override
+    public void sortInternshipList(Comparator<Internship> comparator) {
+        requireNonNull(comparator);
+        filteredInternships.setComparator(comparator);
     }
 
     @Override

@@ -12,7 +12,7 @@ import seedu.address.model.person.Person;
  */
 public class SortPersonCommand extends Command {
 
-    public static final String COMMAND_WORD = "sortp";
+    public static final String COMMAND_WORD = "sort -p";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Sorts all persons based on name or company name"
             + "Parameters: KEYWORD [c/] [n/]\n"
@@ -25,7 +25,7 @@ public class SortPersonCommand extends Command {
      */
     public enum Criteria { NAME, COMPANY_NAME }
 
-    private Criteria criteria;
+    private final Criteria criteria;
 
     public SortPersonCommand(Criteria c) {
         this.criteria = c;

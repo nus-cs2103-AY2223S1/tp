@@ -21,6 +21,7 @@ import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.LinkCommand;
 import seedu.address.logic.commands.ListInternshipCommand;
 import seedu.address.logic.commands.ListPersonCommand;
+import seedu.address.logic.commands.SortInternshipCommand;
 import seedu.address.logic.commands.SortPersonCommand;
 import seedu.address.logic.commands.UnlinkCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
@@ -106,6 +107,9 @@ public class AddressBookParser {
 
         case SortPersonCommand.COMMAND_WORD:
             return new SortPersonCommandParser().parse(arguments);
+
+        case SortInternshipCommand.COMMAND_WORD:
+            return new SortInternshipCommandParser().parse(arguments);
 
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
