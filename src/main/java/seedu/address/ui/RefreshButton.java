@@ -1,34 +1,49 @@
 package seedu.address.ui;
 
 
+import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.layout.Region;
 import seedu.address.logic.CalendarLogic;
 
 /**
  * A button that refreshes the Calendar
  * when interacted with.
  */
-public class RefreshButton extends Button {
-    private static final String switchButtonStyle = "-fx-border-color: grey; -fx-border-radius: 5;";
+public class RefreshButton extends UiPart<Region> {
+    private static final String FXML = "RefreshButton.fxml";
     private CalendarLogic calendarLogic;
+    @FXML
+    private Button refreshButton;
 
     /**
-     * Creates a {@code RefreshButton} with the given {@code String} and {@code CalendarLogic}.
+     * Creates a {@code PreviousButton} with the given {@code String} and {@code CalendarLogic}.
      */
     public RefreshButton(String content, CalendarLogic calendarLogic) {
-        super(content);
+        super(FXML);
         this.calendarLogic = calendarLogic;
-        setStyle(switchButtonStyle);
-        setOnAction(e -> calendarLogic.refresh());
-        setOnKeyPressed(e -> refresh(e));
+        refreshButton.setText(content);
     }
 
-    private void refresh(KeyEvent event) {
+    @FXML
+    private void handleOnKeyPressed(KeyEvent event) {
         if (event.getCode().equals(KeyCode.ENTER) || event.getCode().equals(KeyCode.R)) {
             calendarLogic.refresh();
-            this.requestFocus();
+            refreshButton.requestFocus();
+        } else if (event.getCode().equals(KeyCode.N)) {
+            calendarLogic.next();
+            refreshButton.requestFocus();
+        } else if (event.getCode().equals(KeyCode.B)) {
+            calendarLogic.previous();
+            refreshButton.requestFocus();
         }
+    }
+
+    @FXML
+    private void handleOnAction(ActionEvent event) {
+        calendarLogic.refresh();
     }
 }

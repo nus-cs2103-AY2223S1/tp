@@ -36,6 +36,9 @@ public class NextButton extends UiPart<Region> {
         } else if (event.getCode().equals(KeyCode.B)) {
             calendarLogic.previous();
             nextButton.requestFocus();
+        } else if (event.getCode().equals(KeyCode.R)) {
+            calendarLogic.refresh();
+            nextButton.requestFocus();
         }
     }
 
