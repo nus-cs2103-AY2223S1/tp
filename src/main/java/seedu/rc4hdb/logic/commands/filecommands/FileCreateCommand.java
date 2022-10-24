@@ -1,4 +1,4 @@
-package seedu.rc4hdb.logic.commands.filecommands.jsonfilecommands;
+package seedu.rc4hdb.logic.commands.filecommands;
 
 import java.io.IOException;
 import java.nio.file.FileAlreadyExistsException;
@@ -12,7 +12,7 @@ import seedu.rc4hdb.storage.Storage;
 /**
  * Creates a new data file corresponding to the arguments provided.
  */
-public class FileCreateCommand extends JsonFileCommand implements StorageCommand {
+public class FileCreateCommand extends FileCommand implements StorageCommand {
 
     public static final String COMMAND_WORD = "create";
 
@@ -20,20 +20,20 @@ public class FileCreateCommand extends JsonFileCommand implements StorageCommand
 
     public static final String MESSAGE_SUCCESS = "%s successfully created.";
 
-    public FileCreateCommand(Path dir, String fileName) {
-        super(dir, fileName);
+    public FileCreateCommand(Path dataDir, String subDirName) {
+        super(dataDir.resolve(subDirName));
     }
 
     @Override
     public CommandResult execute(Storage storage) throws CommandException {
-        if (filePath.equals(storage.getResidentBookFilePath())) {
-            throw new CommandException(String.format(MESSAGE_TRYING_TO_EXECUTE_ON_CURRENT_FILE, fileName));
+        if (folderPath.equals(storage.getDataStorageFilePath())) {
+            throw new CommandException(String.format(MESSAGE_TRYING_TO_EXECUTE_ON_CURRENT_FILE, folderName));
         }
         try {
-            storage.createResidentBookFile(filePath);
-            return new CommandResult(String.format(MESSAGE_SUCCESS, fileName));
+            storage.createDataFile(folderPath);
+            return new CommandResult(String.format(MESSAGE_SUCCESS, folderName));
         } catch (FileAlreadyExistsException e) {
-            throw new CommandException(String.format(MESSAGE_FILE_EXISTS, fileName), e);
+            throw new CommandException(String.format(MESSAGE_FILE_EXISTS, folderName), e);
         } catch (IOException e) {
             throw new CommandException(String.format(MESSAGE_FAILED, "creating"), e);
         }

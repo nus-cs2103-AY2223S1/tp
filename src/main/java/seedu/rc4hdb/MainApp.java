@@ -24,13 +24,12 @@ import seedu.rc4hdb.model.ResidentBook;
 import seedu.rc4hdb.model.UserPrefs;
 import seedu.rc4hdb.model.VenueBook;
 import seedu.rc4hdb.model.util.SampleDataUtil;
-import seedu.rc4hdb.model.venues.Venue;
 import seedu.rc4hdb.storage.DataStorage;
 import seedu.rc4hdb.storage.DataStorageManager;
-import seedu.rc4hdb.storage.JsonUserPrefsStorage;
 import seedu.rc4hdb.storage.Storage;
 import seedu.rc4hdb.storage.StorageManager;
-import seedu.rc4hdb.storage.UserPrefsStorage;
+import seedu.rc4hdb.storage.userprefs.JsonUserPrefsStorage;
+import seedu.rc4hdb.storage.userprefs.UserPrefsStorage;
 import seedu.rc4hdb.ui.Ui;
 import seedu.rc4hdb.ui.UiManager;
 
@@ -78,27 +77,45 @@ public class MainApp extends Application {
      * or an empty resident book will be used instead if errors occur when reading {@code storage}'s resident book.
      */
     private Model initModelManager(Storage storage, ReadOnlyUserPrefs userPrefs) {
-        Optional<ReadOnlyResidentBook> residentBookOptional;
-        ReadOnlyResidentBook initialResidentData;
-        ReadOnlyVenueBook initialVenueData;
-        try {
-            residentBookOptional = storage.readResidentBook();
-            if (!residentBookOptional.isPresent()) {
-                logger.info("Data file not found. Will be starting with a sample ResidentBook");
-            }
-            initialResidentData = residentBookOptional.orElseGet(SampleDataUtil::getSampleResidentBook);
-        } catch (DataConversionException e) {
-            logger.warning("Data file not in the correct format. Will be starting with an empty AddressBook");
-            initialResidentData = new ResidentBook();
-        } catch (IOException e) {
-            logger.warning("Problem while reading from the file. Will be starting with an empty AddressBook");
-            initialResidentData = new ResidentBook();
-        }
-
-        VenueBook temp = new VenueBook();
-        temp.addVenue(Venue.MEETING_ROOM);
-        initialVenueData = temp;
+        ReadOnlyResidentBook initialResidentData = fetchResidentData(storage);
+        ReadOnlyVenueBook initialVenueData = fetchVenueData(storage);
         return new ModelManager(initialResidentData, initialVenueData, userPrefs);
+    }
+
+    /**
+     * Fetches the resident data from the resident data file.
+     */
+    private ReadOnlyResidentBook fetchResidentData(Storage storage) {
+        try {
+            return storage.readResidentBook().orElseGet(() -> {
+                logger.info("Data file not found. Will be starting with a sample VenueBook");
+                return SampleDataUtil.getSampleResidentBook();
+            });
+        } catch (DataConversionException e) {
+            logger.warning("Data file not in the correct format. Will be starting with an empty data file");
+            return new ResidentBook();
+        } catch (IOException e) {
+            logger.warning("Problem while reading from the file. Will be starting with an empty data file");
+            return new ResidentBook();
+        }
+    }
+
+    /**
+     * Fetches the venue data from the venue data file.
+     */
+    private ReadOnlyVenueBook fetchVenueData(Storage storage) {
+        try {
+            return storage.readVenueBook().orElseGet(() -> {
+                logger.info("Data file not found. Will be starting with a sample VenueBook");
+                return SampleDataUtil.getSampleVenueBook();
+            });
+        } catch (DataConversionException e) {
+            logger.warning("Data file not in the correct format. Will be starting with an empty data file");
+            return new VenueBook();
+        } catch (IOException e) {
+            logger.warning("Problem while reading from the file. Will be starting with an empty data file");
+            return new VenueBook();
+        }
     }
 
     private void initLogging(Config config) {

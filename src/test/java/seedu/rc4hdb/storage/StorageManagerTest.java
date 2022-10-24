@@ -22,6 +22,7 @@ import seedu.rc4hdb.model.ReadOnlyResidentBook;
 import seedu.rc4hdb.model.ResidentBook;
 import seedu.rc4hdb.model.UserPrefs;
 import seedu.rc4hdb.storage.residentbook.JsonResidentBookStorage;
+import seedu.rc4hdb.storage.userprefs.JsonUserPrefsStorage;
 
 /**
  * Unit test for {@link StorageManager}.

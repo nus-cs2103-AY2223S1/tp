@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.nio.file.Path;
 import java.util.Optional;
 
+import javafx.beans.value.ObservableValue;
 import seedu.rc4hdb.commons.exceptions.DataConversionException;
 import seedu.rc4hdb.model.ReadOnlyResidentBook;
 import seedu.rc4hdb.model.ReadOnlyVenueBook;
@@ -21,6 +22,11 @@ public interface DataStorage extends ResidentBookStorage, VenueBookStorage {
      * Returns the file path of the data file.
      */
     Path getDataStorageFilePath();
+
+    /**
+     * Returns the folder path wrapped by ObservableValue.
+     */
+    ObservableValue<Path> getObservableFolderPath();
 
     /**
      * Sets the file path to the {@code folderPath}.
@@ -50,7 +56,7 @@ public interface DataStorage extends ResidentBookStorage, VenueBookStorage {
     /**
      * Reads the current resident data file.
      */
-    Optional<ReadOnlyResidentBook> readResidentBook() throws IOException, DataConversionException;
+    Optional<ReadOnlyResidentBook> readResidentBook() throws DataConversionException, IOException;
 
 
     /**
@@ -63,7 +69,7 @@ public interface DataStorage extends ResidentBookStorage, VenueBookStorage {
     /**
      * Reads the current venue data file.
      */
-    Optional<ReadOnlyVenueBook> readVenueBook() throws DataConversionException;
+    Optional<ReadOnlyVenueBook> readVenueBook() throws DataConversionException, IOException;
 
     /**
      * Saves the data from {@code venueBook} onto the current venue data file.

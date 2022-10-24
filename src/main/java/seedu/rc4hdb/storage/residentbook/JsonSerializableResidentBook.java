@@ -9,10 +9,8 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.rc4hdb.commons.exceptions.IllegalValueException;
 import seedu.rc4hdb.model.ReadOnlyResidentBook;
-import seedu.rc4hdb.model.ReadOnlyVenueBook;
 import seedu.rc4hdb.model.ResidentBook;
 import seedu.rc4hdb.model.resident.Resident;
-import seedu.rc4hdb.storage.venuebook.JsonAdaptedVenue;
 
 /**
  * An Immutable ResidentBook that is serializable to JSON format.

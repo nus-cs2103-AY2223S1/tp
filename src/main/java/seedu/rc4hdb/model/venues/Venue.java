@@ -54,9 +54,9 @@ public class Venue implements BookingField {
      * Removes expired bookings from the list of bookings.
      */
     public void clearExpiredBookings() {
-        this.bookings = (ObservableList<Booking>) this.bookings.stream()
+        this.bookings = FXCollections.observableArrayList(this.bookings.stream()
                 .filter(b -> !b.hasExpired())
-                .collect(Collectors.toList());
+                .collect(Collectors.toList()));
     }
 
     /**

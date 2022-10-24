@@ -15,11 +15,12 @@ import org.junit.jupiter.api.io.TempDir;
 import seedu.rc4hdb.commons.util.FileUtil;
 import seedu.rc4hdb.logic.commands.exceptions.CommandException;
 import seedu.rc4hdb.logic.commands.filecommands.FileCommand;
-import seedu.rc4hdb.storage.JsonUserPrefsStorage;
+import seedu.rc4hdb.logic.commands.filecommands.FileDeleteCommand;
+import seedu.rc4hdb.storage.userprefs.JsonUserPrefsStorage;
 import seedu.rc4hdb.storage.Storage;
 import seedu.rc4hdb.storage.StorageManager;
 import seedu.rc4hdb.storage.StorageStub;
-import seedu.rc4hdb.storage.UserPrefsStorage;
+import seedu.rc4hdb.storage.userprefs.UserPrefsStorage;
 import seedu.rc4hdb.storage.residentbook.JsonResidentBookStorage;
 import seedu.rc4hdb.storage.residentbook.ResidentBookStorage;
 

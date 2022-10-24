@@ -7,6 +7,7 @@ import java.io.IOException;
 import java.nio.file.Path;
 import java.util.Optional;
 
+import javafx.beans.value.ObservableValue;
 import seedu.rc4hdb.commons.exceptions.DataConversionException;
 import seedu.rc4hdb.model.ReadOnlyResidentBook;
 import seedu.rc4hdb.model.ReadOnlyVenueBook;
@@ -34,6 +35,11 @@ public class DataStorageManager implements DataStorage {
     @Override
     public Path getDataStorageFilePath() {
         return folderPath.getValue();
+    }
+
+    @Override
+    public ObservableValue<Path> getObservableFolderPath() {
+        return folderPath;
     }
 
     @Override
@@ -76,7 +82,7 @@ public class DataStorageManager implements DataStorage {
      * Reads the current resident data file.
      */
     @Override
-    public Optional<ReadOnlyResidentBook> readResidentBook() throws IOException, DataConversionException {
+    public Optional<ReadOnlyResidentBook> readResidentBook() throws DataConversionException, IOException {
         return residentBookStorage.readResidentBook(folderPath.getValue());
     }
 
@@ -134,7 +140,7 @@ public class DataStorageManager implements DataStorage {
      * Reads the current venue data file.
      */
     @Override
-    public Optional<ReadOnlyVenueBook> readVenueBook() throws DataConversionException {
+    public Optional<ReadOnlyVenueBook> readVenueBook() throws DataConversionException, IOException {
         return venueBookStorage.readVenueBook(folderPath.getValue());
     }
 
@@ -143,7 +149,7 @@ public class DataStorageManager implements DataStorage {
      * @see VenueBookStorage#readVenueBook(Path)
      */
     @Override
-    public Optional<ReadOnlyVenueBook> readVenueBook(Path folderPath) throws DataConversionException {
+    public Optional<ReadOnlyVenueBook> readVenueBook(Path folderPath) throws DataConversionException, IOException {
         requireNonNull(folderPath);
         return venueBookStorage.readVenueBook(folderPath);
     }

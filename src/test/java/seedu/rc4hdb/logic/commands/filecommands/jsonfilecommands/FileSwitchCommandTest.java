@@ -17,11 +17,12 @@ import seedu.rc4hdb.commons.util.FileUtil;
 import seedu.rc4hdb.commons.util.JsonUtil;
 import seedu.rc4hdb.logic.commands.exceptions.CommandException;
 import seedu.rc4hdb.logic.commands.filecommands.FileCommand;
+import seedu.rc4hdb.logic.commands.filecommands.FileSwitchCommand;
 import seedu.rc4hdb.model.Model;
 import seedu.rc4hdb.model.ModelManager;
 import seedu.rc4hdb.model.ReadOnlyResidentBook;
 import seedu.rc4hdb.model.ResidentBook;
-import seedu.rc4hdb.storage.JsonUserPrefsStorage;
+import seedu.rc4hdb.storage.userprefs.JsonUserPrefsStorage;
 import seedu.rc4hdb.storage.Storage;
 import seedu.rc4hdb.storage.StorageManager;
 import seedu.rc4hdb.storage.StorageStub;
@@ -61,7 +62,7 @@ public class FileSwitchCommandTest {
         Storage expectedStorage = new StorageManager(
                 new JsonResidentBookStorage(targetFilePath), new JsonUserPrefsStorage(userPrefPath));
         Model expectedModel = new ModelManager();
-        expectedModel.setResidentBookFilePath(targetFilePath);
+        expectedModel.setUserPrefDataFilePath(targetFilePath);
 
         FileSwitchCommand fileSwitchCommand = new FileSwitchCommand(testFolder, fileName);
         createEmptyJsonFile(targetFilePath);
@@ -85,7 +86,7 @@ public class FileSwitchCommandTest {
     public void execute_targetFileDoesNotExist_throwsCommandException() {
         String targetFileName = "target";
 
-        String expectedMessage = String.format(FileSwitchCommand.MESSAGE_FILE_DOES_NOT_EXIST, "target.json");
+        String expectedMessage = String.format(FileSwitchCommand.MESSAGE_FOLDER_DOES_NOT_EXIST, "target.json");
 
         FileSwitchCommand fileSwitchCommand = new FileSwitchCommand(testFolder, targetFileName);
 

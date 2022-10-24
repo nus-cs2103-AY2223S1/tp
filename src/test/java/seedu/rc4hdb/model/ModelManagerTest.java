@@ -62,14 +62,14 @@ public class ModelManagerTest {
 
     @Test
     public void setResidentBookFilePath_nullPath_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> modelManager.setResidentBookFilePath(null));
+        assertThrows(NullPointerException.class, () -> modelManager.setUserPrefDataFilePath(null));
     }
 
     @Test
     public void setResidentBookFilePath_validPath_setsResidentBookFilePath() {
         Path path = Paths.get("rc4hdb/book/file/path");
-        modelManager.setResidentBookFilePath(path);
-        assertEquals(path, modelManager.getResidentBookFilePath());
+        modelManager.setUserPrefDataFilePath(path);
+        assertEquals(path, modelManager.getUserPrefDataFilePath());
     }
 
     @Test

@@ -8,6 +8,7 @@ import java.nio.file.Path;
 import java.util.Optional;
 import java.util.logging.Logger;
 
+import javafx.beans.value.ObservableValue;
 import seedu.rc4hdb.commons.core.LogsCenter;
 import seedu.rc4hdb.commons.exceptions.DataConversionException;
 import seedu.rc4hdb.model.ReadOnlyResidentBook;
@@ -15,6 +16,7 @@ import seedu.rc4hdb.model.ReadOnlyUserPrefs;
 import seedu.rc4hdb.model.ReadOnlyVenueBook;
 import seedu.rc4hdb.model.UserPrefs;
 import seedu.rc4hdb.storage.csv.CsvFileManager;
+import seedu.rc4hdb.storage.userprefs.UserPrefsStorage;
 
 /**
  * Manages storage of RC4HDB data in local storage.
@@ -40,6 +42,11 @@ public class StorageManager implements Storage {
     @Override
     public Path getDataStorageFilePath() {
         return dataStorage.getDataStorageFilePath();
+    }
+
+    @Override
+    public ObservableValue<Path> getObservableFolderPath() {
+        return dataStorage.getObservableFolderPath();
     }
 
     @Override
@@ -146,7 +153,7 @@ public class StorageManager implements Storage {
      * @see DataStorage#readVenueBook()
      */
     @Override
-    public Optional<ReadOnlyVenueBook> readVenueBook() throws DataConversionException {
+    public Optional<ReadOnlyVenueBook> readVenueBook() throws DataConversionException, IOException {
         return dataStorage.readVenueBook();
     }
 
@@ -154,7 +161,7 @@ public class StorageManager implements Storage {
      * @see DataStorage#readVenueBook(Path)
      */
     @Override
-    public Optional<ReadOnlyVenueBook> readVenueBook(Path folderPath) throws DataConversionException {
+    public Optional<ReadOnlyVenueBook> readVenueBook(Path folderPath) throws DataConversionException, IOException {
         return dataStorage.readVenueBook(folderPath);
     }
 

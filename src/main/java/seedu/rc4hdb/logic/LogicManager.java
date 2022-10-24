@@ -54,6 +54,7 @@ public class LogicManager implements Logic {
 
         try {
             storage.saveResidentBook(model.getResidentBook());
+            storage.saveVenueBook(model.getVenueBook());
         } catch (IOException ioe) {
             throw new CommandException(FILE_OPS_ERROR_MESSAGE + ioe, ioe);
         }
@@ -98,11 +99,6 @@ public class LogicManager implements Logic {
     }
 
     @Override
-    public Path getUserPrefsResidentBookFilePath() {
-        return model.getResidentBookFilePath();
-    }
-
-    @Override
     public GuiSettings getGuiSettings() {
         return model.getGuiSettings();
     }
@@ -118,12 +114,13 @@ public class LogicManager implements Logic {
     }
 
     @Override
-    public ObservableValue<Path> getObservableResidentBookFilePath() {
-        return storage.getObservableResidentBookFilePath();
-    }
-
-    @Override
     public ObservableList<Venue> getObservableVenues() {
         return model.getObservableVenues();
     }
+
+    @Override
+    public ObservableValue<Path> getObservableFolderPath() {
+        return storage.getObservableFolderPath();
+    }
+
 }

@@ -84,7 +84,7 @@ public class MainWindow extends UiPart<Stage> {
         this.primaryStage = primaryStage;
         this.logic = logic;
         this.logic.getObservableFields().addListener(getListChangeListener());
-        this.logic.getObservableResidentBookFilePath().addListener(getFileChangeListener());
+        this.logic.getObservableFolderPath().addListener(getFileChangeListener());
 
         // Configure the UI
         setWindowDefaultSize(logic.getGuiSettings());
@@ -151,7 +151,7 @@ public class MainWindow extends UiPart<Stage> {
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
 
-        statusBarFooter = new CurrentWorkingFileFooter(logic.getObservableResidentBookFilePath());
+        statusBarFooter = new CurrentWorkingFileFooter(logic.getObservableFolderPath());
         statusbarPlaceholder.getChildren().add(statusBarFooter.getRoot());
 
         CommandBox commandBox = new CommandBox(this::executeCommand);

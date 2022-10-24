@@ -27,8 +27,8 @@ import javafx.collections.transformation.FilteredList;
 import seedu.rc4hdb.logic.commands.CommandResult;
 import seedu.rc4hdb.logic.commands.exceptions.CommandException;
 import seedu.rc4hdb.logic.commands.filecommands.FileCommand;
-import seedu.rc4hdb.logic.commands.filecommands.jsonfilecommands.FileCreateCommand;
-import seedu.rc4hdb.logic.commands.filecommands.jsonfilecommands.FileSwitchCommand;
+import seedu.rc4hdb.logic.commands.filecommands.FileCreateCommand;
+import seedu.rc4hdb.logic.commands.filecommands.FileSwitchCommand;
 import seedu.rc4hdb.logic.commands.misccommands.HelpCommand;
 import seedu.rc4hdb.logic.commands.modelcommands.AddCommand;
 import seedu.rc4hdb.logic.commands.modelcommands.ListCommand;
@@ -159,7 +159,7 @@ public class LogicManagerTest {
         }
 
         @Override
-        public void setResidentBookFilePath(Path filePath) {
+        public void setUserPrefDataFilePath(Path filePath) {
             // does nothing
         }
     }

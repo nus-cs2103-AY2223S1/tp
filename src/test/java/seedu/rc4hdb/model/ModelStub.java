@@ -41,12 +41,12 @@ public class ModelStub implements Model {
     }
 
     @Override
-    public Path getResidentBookFilePath() {
+    public Path getUserPrefDataFilePath() {
         throw new AssertionError("This method should not be called.");
     }
 
     @Override
-    public void setResidentBookFilePath(Path residentBookFilePath) {
+    public void setUserPrefDataFilePath(Path residentBookFilePath) {
         throw new AssertionError("This method should not be called.");
     }
 

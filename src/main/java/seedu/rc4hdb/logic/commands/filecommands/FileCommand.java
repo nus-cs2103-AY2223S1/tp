@@ -11,6 +11,8 @@ import seedu.rc4hdb.logic.commands.Command;
  */
 public abstract class FileCommand implements Command {
 
+    public static final String JSON_POST_FIX = ".json";
+
     public static final String COMMAND_WORD = "file";
 
     public static final String MESSAGE_FAILED = "Something unexpected occurred while %s your file.";
@@ -28,17 +30,17 @@ public abstract class FileCommand implements Command {
             " ", ".", "/", "\\"
     );
 
-    protected Path filePath;
+    protected final Path folderPath;
 
-    protected String fileName;
+    protected final String folderName;
 
     /**
      * Base constructor for all file commands.
-     * @param filePath the path of the file to be executed on.
+     * @param subDir the path of the file to be executed on.
      */
-    public FileCommand(Path filePath) {
-        this.filePath = filePath;
-        fileName = filePath.getFileName().toString();
+    public FileCommand(Path subDir) {
+        this.folderPath = subDir;
+        folderName = subDir.getFileName().toString();
     }
 
     /**
@@ -56,7 +58,7 @@ public abstract class FileCommand implements Command {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof FileCommand // instanceof handles nulls
-                && filePath.equals(((FileCommand) other).filePath));
+                && folderPath.equals(((FileCommand) other).folderPath));
     }
 
 }

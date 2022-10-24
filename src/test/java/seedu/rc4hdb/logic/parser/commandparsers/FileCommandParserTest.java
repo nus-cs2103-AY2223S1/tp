@@ -15,9 +15,9 @@ import static seedu.rc4hdb.logic.parser.commandparsers.FileCommandParser.DATA_DI
 import org.junit.jupiter.api.Test;
 
 import seedu.rc4hdb.logic.commands.filecommands.csvfilecommands.ImportCommand;
-import seedu.rc4hdb.logic.commands.filecommands.jsonfilecommands.FileCreateCommand;
-import seedu.rc4hdb.logic.commands.filecommands.jsonfilecommands.FileDeleteCommand;
-import seedu.rc4hdb.logic.commands.filecommands.jsonfilecommands.FileSwitchCommand;
+import seedu.rc4hdb.logic.commands.filecommands.FileCreateCommand;
+import seedu.rc4hdb.logic.commands.filecommands.FileDeleteCommand;
+import seedu.rc4hdb.logic.commands.filecommands.FileSwitchCommand;
 import seedu.rc4hdb.logic.commands.misccommands.HelpCommand;
 
 /**

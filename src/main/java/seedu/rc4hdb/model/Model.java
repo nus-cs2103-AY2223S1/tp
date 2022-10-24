@@ -22,6 +22,8 @@ public interface Model {
     /** {@code Predicate} that always evaluate to true */
     Predicate<Resident> PREDICATE_SHOW_ALL_RESIDENTS = unused -> true;
 
+    //=================== User prefs methods ============================
+
     /**
      * Replaces user prefs data with the data in {@code userPrefs}.
      */
@@ -43,14 +45,16 @@ public interface Model {
     void setGuiSettings(GuiSettings guiSettings);
 
     /**
-     * Returns the user prefs' resident book file path.
+     * Returns the user prefs' data file path.
      */
-    Path getResidentBookFilePath();
+    Path getUserPrefDataFilePath();
 
     /**
-     * Sets the user prefs' resident book file path.
+     * Sets the user prefs' data file path.
      */
-    void setResidentBookFilePath(Path residentBookFilePath);
+    void setUserPrefDataFilePath(Path dataFilePath);
+
+    //=================== Resident Book methods ============================
 
     /**
      * Replaces resident book data with the data in {@code residentBook}.
@@ -94,6 +98,13 @@ public interface Model {
      */
     void updateFilteredResidentList(Predicate<Resident> predicate);
 
+    //=================== Venue book methods ============================
+
+    /**
+     * Replaces venue book data with the data in {@code venueBook}.
+     */
+    void setVenueBook(ReadOnlyVenueBook venueBook);
+
     /** Returns the VenueBook */
     ReadOnlyVenueBook getVenueBook();
 
@@ -128,6 +139,8 @@ public interface Model {
      */
     void removeBooking(VenueName venueName, HourPeriod bookedPeriod, Day bookedDay)
             throws VenueNotFoundException, BookingNotFoundException;
+
+    //=================== UI population methods ============================
 
     ObservableList<String> getObservableFields();
 

@@ -36,7 +36,8 @@ public class JsonSerializableVenueBook {
      */
     public JsonSerializableVenueBook(ReadOnlyVenueBook source) {
         venues.addAll(source.getVenueList()
-                .stream().map(JsonAdaptedVenue::new).collect(Collectors.toList()));
+                .stream().map(JsonAdaptedVenue::new)
+                .collect(Collectors.toList()));
     }
 
     /**

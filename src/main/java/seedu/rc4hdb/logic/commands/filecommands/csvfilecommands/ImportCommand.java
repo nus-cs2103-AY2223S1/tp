@@ -1,7 +1,6 @@
 package seedu.rc4hdb.logic.commands.filecommands.csvfilecommands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.rc4hdb.logic.commands.filecommands.jsonfilecommands.JsonFileCommand.JSON_POSTFIX;
 
 import java.io.IOException;
 import java.nio.file.FileAlreadyExistsException;
@@ -40,7 +39,7 @@ public class ImportCommand extends CsvFileCommand implements StorageCommand {
      */
     public ImportCommand(Path dir, String fileName) {
         super(dir, fileName);
-        newJsonFilePath = dir.resolve(fileName + JSON_POSTFIX);
+        newJsonFilePath = dir.resolve(fileName + JSON_POST_FIX);
     }
 
     @Override
@@ -48,16 +47,16 @@ public class ImportCommand extends CsvFileCommand implements StorageCommand {
         requireNonNull(storage);
 
         try {
-            ReadOnlyResidentBook residentBook = storage.readCsvFile(filePath).get();
+            ReadOnlyResidentBook residentBook = storage.readCsvFile(folderPath).get();
             storage.createResidentBookFile(newJsonFilePath);
             storage.saveResidentBook(residentBook, newJsonFilePath);
-            return new CommandResult(String.format(MESSAGE_SUCCESS, fileName));
+            return new CommandResult(String.format(MESSAGE_SUCCESS, folderName));
         } catch (FileAlreadyExistsException e) {
             throw new CommandException(String.format(MESSAGE_FILE_EXISTS, newJsonFilePath.getFileName()), e);
         } catch (NoSuchElementException e) {
-            throw new CommandException(String.format(MESSAGE_FILE_DOES_NOT_EXIST, fileName), e);
+            throw new CommandException(String.format(MESSAGE_FILE_DOES_NOT_EXIST, folderName), e);
         } catch (DataConversionException e) {
-            throw new CommandException(String.format(MESSAGE_INVALID_FILE_DATA, fileName, e.getMessage()), e);
+            throw new CommandException(String.format(MESSAGE_INVALID_FILE_DATA, folderName, e.getMessage()), e);
         } catch (IOException e) {
             throw new CommandException(String.format(MESSAGE_FAILED, "importing"), e);
         }

@@ -1,5 +1,6 @@
 package seedu.rc4hdb.storage.venuebook;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -21,7 +22,7 @@ public class JsonAdaptedVenue {
 
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "Venue's %s field is missing!";
 
-    private List<JsonAdaptedBooking> bookings;
+    private List<JsonAdaptedBooking> bookings = new ArrayList<>();
     private String venueName;
 
     /**

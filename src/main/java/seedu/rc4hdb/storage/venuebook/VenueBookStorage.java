@@ -18,7 +18,7 @@ public interface VenueBookStorage {
      * @param folderPath location of the directory which holds the data. Cannot be null.
      * @throws DataConversionException if the file is not in the correct format.
      */
-    Optional<ReadOnlyVenueBook> readVenueBook(Path folderPath) throws DataConversionException;
+    Optional<ReadOnlyVenueBook> readVenueBook(Path folderPath) throws DataConversionException, IOException;
 
     /**
      * Saves the data in {@code venueBook} to the venue_data.json file in the directory with path
