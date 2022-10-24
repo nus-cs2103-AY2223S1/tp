@@ -13,7 +13,7 @@ import seedu.intrack.model.Model;
 import seedu.intrack.model.internship.Internship;
 
 /**
- * Adds an internship to the address book.
+ * Adds an internship to the tracker.
  */
 public class AddCommand extends Command {
 
@@ -37,7 +37,7 @@ public class AddCommand extends Command {
 
     public static final String MESSAGE_SUCCESS = "New internship added: %1$s";
 
-    public static final String MESSAGE_DUPLICATE_INTERNSHIP = "This internship already exists in the tracker";
+    public static final String MESSAGE_DUPLICATE_INTERNSHIP = "This internship already exists in the tracker.";
 
     private final Internship toAdd;
 
@@ -65,7 +65,7 @@ public class AddCommand extends Command {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof AddCommand // instanceof handles nulls
-                && toAdd.equals(((AddCommand) other).toAdd));
+                && toAdd.equals(((AddCommand) other).toAdd)); // state check
     }
 
 }

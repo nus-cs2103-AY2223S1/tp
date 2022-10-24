@@ -164,6 +164,7 @@ public class Internship {
             builder.append("; Tags: ");
             tags.forEach(builder::append);
         }
+
         builder.append(" Remark: ")
                 .append(getRemark());
 

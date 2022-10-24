@@ -82,7 +82,7 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String address} into an {@code Website}.
+     * Parses a {@code String website} into an {@code Website}.
      * Leading and trailing whitespaces will be trimmed.
      *
      * @throws ParseException if the given {@code website} is invalid.

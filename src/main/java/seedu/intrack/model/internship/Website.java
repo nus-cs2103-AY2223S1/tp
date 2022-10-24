@@ -9,10 +9,10 @@ import static seedu.intrack.commons.util.AppUtil.checkArgument;
  */
 public class Website {
 
-    public static final String MESSAGE_CONSTRAINTS = "Addresses can take any values, and it should not be blank";
+    public static final String MESSAGE_CONSTRAINTS = "Websites can take any values, but should not be blank";
 
     /*
-     * These website name could have these following components:
+     * The website name could have these following components:
      * - ftp or http or https (optional)
      * - www (optional)
      * - url name

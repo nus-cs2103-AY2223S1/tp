@@ -9,13 +9,13 @@ import seedu.intrack.logic.parser.exceptions.ParseException;
 import seedu.intrack.model.internship.PositionContainsKeywordsPredicate;
 
 /**
- * Parses input arguments and creates a new FindPositionCommand object
+ * Parses input arguments and creates a new {@code FindPositionCommand} object
  */
 public class FindPositionCommandParser implements Parser<FindPositionCommand> {
 
     /**
-     * Parses the given {@code String} of arguments in the context of the FindPositionCommand
-     * and returns a FindPositionCommand object for execution.
+     * Parses the given {@code String} of arguments in the context of the {@code FindPositionCommand}
+     * and returns a {@code FindPositionCommand} object for execution.
      * @throws ParseException if the user input does not conform the expected format
      */
     public FindPositionCommand parse(String args) throws ParseException {

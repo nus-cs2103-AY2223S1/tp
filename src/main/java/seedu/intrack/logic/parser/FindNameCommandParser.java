@@ -9,13 +9,13 @@ import seedu.intrack.logic.parser.exceptions.ParseException;
 import seedu.intrack.model.internship.NameContainsKeywordsPredicate;
 
 /**
- * Parses input arguments and creates a new FindNameCommand object
+ * Parses input arguments and creates a new {@code FindNameCommand}  object
  */
 public class FindNameCommandParser implements Parser<FindNameCommand> {
 
     /**
-     * Parses the given {@code String} of arguments in the context of the FindNameCommand
-     * and returns a FindNameCommand object for execution.
+     * Parses the given {@code String} of arguments in the context of the {@code FindNameCommand}
+     * and returns a {@code FindNameCommand}  object for execution.
      * @throws ParseException if the user input does not conform the expected format
      */
     public FindNameCommand parse(String args) throws ParseException {

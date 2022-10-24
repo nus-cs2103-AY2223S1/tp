@@ -93,4 +93,13 @@ public interface Model {
      * @throws NullPointerException if {@code predicate} is null.
      */
     int getFilteredStatusInternshipListSize(Predicate<Internship> predicate);
+
+    /** Returns an unmodifiable view of the selected internship list */
+    ObservableList<Internship> getSelectedInternship();
+
+    /**
+     * Updates the filter of the selected internship list to show only the selected internship.
+     * @param predicate filter to be applied
+     */
+    void updateSelectedInternship(Predicate<Internship> predicate);
 }
