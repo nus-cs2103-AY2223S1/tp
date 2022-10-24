@@ -1,7 +1,6 @@
 package seedu.address.model.datetime;
 
 import java.time.DayOfWeek;
-import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
@@ -21,39 +20,49 @@ public class DatetimeCommonUtils {
     public static final String DATE_FORMAT_REGEX = "\\d{4}-\\d{2}-\\d{2}";
     public static final String DATE_READABLE_FORMAT = "yyyy MMM dd";
     public static final DateTimeFormatter DATE_READABLE_FORMATTER = DateTimeFormatter.ofPattern(DATE_READABLE_FORMAT);
+    public static final String DATE_MESSAGE_CONSTRAINTS_BASE = String.format(
+            "Date should be in %s format", DATE_INPUT_FORMAT);
     public static final String DATE_MESSAGE_CONSTRAINTS =
-            "Date should be in yyyy-MM-dd format, e.g. 2022-01-01";
-    public static final String DATE_MESSAGE_CONSTRAINTS_NONSENSICAL =
-            "Date should be in yyyy-MM-dd format, and it must be valid!";
+            DATE_MESSAGE_CONSTRAINTS_BASE + ", e.g. 2022-01-01";
+    public static final String DATE_MESSAGE_CONSTRAINTS_UNPARSABLE =
+            DATE_MESSAGE_CONSTRAINTS_BASE + "and it must be valid!";
 
-    public static final String TIME_FORMAT = "HH:mm";
-    public static final DateTimeFormatter TIME_FORMATTER = DateTimeFormatter.ofPattern(TIME_FORMAT);
+    public static final String TIME_INPUT_FORMAT = "HH:mm";
+    public static final DateTimeFormatter TIME_FORMATTER = DateTimeFormatter.ofPattern(TIME_INPUT_FORMAT);
     public static final String TIME_FORMAT_REGEX = "\\d{2}:\\d{2}";
+    public static final String TIME_MESSAGE_CONSTRAINTS_BASE = String.format(
+            "Time should be in %s format", TIME_INPUT_FORMAT);
     public static final String TIME_MESSAGE_CONSTRAINTS =
-            "Time should be in HH:mm format, e.g. 08:00";
+            TIME_MESSAGE_CONSTRAINTS_BASE + ", e.g. 08:00";
 
     public static final String TIMERANGE_FORMAT_REGEX = TIME_FORMAT_REGEX + "-" + TIME_FORMAT_REGEX;
+    public static final String TIMERANGE_MESSAGE_CONSTRAINTS_BASE = String.format(
+            "Time range should be in %s-%s format", TIME_INPUT_FORMAT, TIME_INPUT_FORMAT);
     public static final String TIMERANGE_MESSAGE_CONSTRAINTS =
-            "Time range should be in HH:mm-HH:mm format, e.g. 08:00-09:00";
-    public static final String TIMERANGE_MESSAGE_CONSTRAINTS_NONSENSICAL =
-            "Time range should be in HH:mm-HH:mm format, and it must be valid!";
+            TIMERANGE_MESSAGE_CONSTRAINTS_BASE + ", e.g. 08:00-09:00";
+    public static final String TIMERANGE_MESSAGE_CONSTRAINTS_UNPARSABLE =
+            TIMERANGE_MESSAGE_CONSTRAINTS_BASE + ", and it must be valid!";
     public static final String TIMERANGE_MESSAGE_CONSTRAINTS_START_END =
-            "Time range is invalid as the start time should not be after the end time!";
+            TIMERANGE_MESSAGE_CONSTRAINTS_BASE + ", and start time should not be after end time!";
 
     public static final String DAY_FORMAT = "d";
     public static final String DAY_FORMAT_REGEX = "[1-7]";
     public static final String DAY_MESSAGE_CONSTRAINTS =
             "Day should only contain a number from 1 (Monday) to 7 (Sunday)";
 
-    public static final String DATETIME_INPUT_FORMAT = DATE_INPUT_FORMAT + " " + TIME_FORMAT;
+    public static final String DATETIME_INPUT_FORMAT = DATE_INPUT_FORMAT + " " + TIME_INPUT_FORMAT;
     public static final DateTimeFormatter DATETIME_INPUT_FORMATTER =
             DateTimeFormatter.ofPattern(DATETIME_INPUT_FORMAT);
     public static final String DATETIME_FORMAT_REGEX = DATE_FORMAT_REGEX + " " + TIME_FORMAT_REGEX;
-    public static final String DATETIME_READABLE_FORMAT = DATE_READABLE_FORMAT + " " + TIME_FORMAT;
+    public static final String DATETIME_READABLE_FORMAT = DATE_READABLE_FORMAT + " " + TIME_INPUT_FORMAT;
     public static final DateTimeFormatter DATETIME_READABLE_FORMATTER =
             DateTimeFormatter.ofPattern(DATETIME_READABLE_FORMAT);
+    public static final String DATETIME_MESSAGE_CONSTRAINTS_BASE = String.format(
+            "Datetime should be in %s %s format", DATE_INPUT_FORMAT, TIME_INPUT_FORMAT);
     public static final String DATETIME_MESSAGE_CONSTRAINTS =
-            "Datetime should be in yyyy-MM-dd HH:mm format, e.g. 2022-01-01 08:00";
+            DATETIME_MESSAGE_CONSTRAINTS_BASE + ", e.g. 2022-01-01 08:00";
+    public static final String DATETIME_MESSAGE_CONSTRAINTS_UNPARSABLE =
+            DATETIME_MESSAGE_CONSTRAINTS_BASE + ", and it must be valid!";
 
 
 
@@ -91,7 +100,7 @@ public class DatetimeCommonUtils {
         try {
             LocalTime.parse(dateString, DATE_INPUT_FORMATTER);
         } catch (DateTimeParseException ex) {
-            throw new ParseException(DATE_MESSAGE_CONSTRAINTS);
+            throw new ParseException(DATE_MESSAGE_CONSTRAINTS_UNPARSABLE);
         }
     }
 
@@ -106,7 +115,7 @@ public class DatetimeCommonUtils {
         try {
             LocalTime.parse(datetimeString, DATETIME_INPUT_FORMATTER);
         } catch (DateTimeParseException ex) {
-            throw new ParseException(DATETIME_MESSAGE_CONSTRAINTS);
+            throw new ParseException(DATETIME_MESSAGE_CONSTRAINTS_UNPARSABLE);
         }
     }
 
@@ -124,7 +133,7 @@ public class DatetimeCommonUtils {
             startTime = LocalTime.parse(startTimeString, TIME_FORMATTER);
             endTime = LocalTime.parse(endTimeString, TIME_FORMATTER);
         } catch (DateTimeParseException ex) {
-            throw new ParseException(TIMERANGE_MESSAGE_CONSTRAINTS_NONSENSICAL);
+            throw new ParseException(TIMERANGE_MESSAGE_CONSTRAINTS_UNPARSABLE);
         }
         if (!endTime.isAfter(startTime)) {
             throw new ParseException(TIMERANGE_MESSAGE_CONSTRAINTS_START_END);
