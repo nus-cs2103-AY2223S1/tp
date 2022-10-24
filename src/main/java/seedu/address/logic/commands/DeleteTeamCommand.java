@@ -32,10 +32,6 @@ public class DeleteTeamCommand extends Command {
     public DeleteTeamCommand() {
     }
 
-    public DeleteTeamCommand(Team targetTeam) {
-        this.targetTeam = targetTeam;
-    }
-
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);

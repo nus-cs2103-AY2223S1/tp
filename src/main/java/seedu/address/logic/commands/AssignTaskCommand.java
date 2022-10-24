@@ -44,17 +44,6 @@ public class AssignTaskCommand extends Command {
     public AssignTaskCommand() {
     }
 
-    /**
-     * Returns a command that assigns a task to the specified member in the team.
-     *
-     * @param taskIndex  the index of the task to be added.
-     * @param memberName the name of the member that the task is assigned to.
-     */
-    public AssignTaskCommand(int taskIndex, String memberName) {
-        this.taskIndex = Index.fromZeroBased(taskIndex);
-        this.memberName = new Name(memberName);
-    }
-
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
@@ -86,7 +75,7 @@ public class AssignTaskCommand extends Command {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof AssignTaskCommand // instanceof handles nulls
-                && taskIndex == (((AssignTaskCommand) other).taskIndex)) // state check
-                && memberName == (((AssignTaskCommand) other).memberName); // state check
+                && taskIndex.equals(((AssignTaskCommand) other).taskIndex)) // state check
+                && memberName.equals(((AssignTaskCommand) other).memberName); // state check
     }
 }

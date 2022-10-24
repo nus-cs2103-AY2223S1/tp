@@ -38,17 +38,6 @@ public class SetDeadlineCommand extends Command {
     public SetDeadlineCommand() {
     }
 
-    /**
-     * Returns a command that adds a task to the current team.
-     *
-     * @param taskIndex The index of the task to be added.
-     * @param deadline  Deadline of task
-     */
-    public SetDeadlineCommand(int taskIndex, LocalDateTime deadline) {
-        this.taskIndex = Index.fromZeroBased(taskIndex);
-        this.deadline = deadline;
-    }
-
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
@@ -66,7 +55,7 @@ public class SetDeadlineCommand extends Command {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof SetDeadlineCommand // instanceof handles nulls
-                && taskIndex == (((SetDeadlineCommand) other).taskIndex))
+                && taskIndex.equals(((SetDeadlineCommand) other).taskIndex))
                 && deadline.equals(((SetDeadlineCommand) other).deadline); // state check
     }
 }

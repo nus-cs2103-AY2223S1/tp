@@ -33,14 +33,6 @@ public class MarkCommand extends Command {
     public MarkCommand() {
     }
 
-    /**
-     * Returns a command that adds a task to the current team.
-     * @param taskIndex The index of the task to be added.
-     */
-    public MarkCommand(int taskIndex) {
-        this.taskIndex = Index.fromZeroBased(taskIndex);
-    }
-
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
@@ -60,6 +52,6 @@ public class MarkCommand extends Command {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
             || (other instanceof MarkCommand // instanceof handles nulls
-            && taskIndex == (((MarkCommand) other).taskIndex)); // state check
+            && taskIndex.equals(((MarkCommand) other).taskIndex)); // state check
     }
 }

@@ -2,8 +2,6 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 
-import java.util.List;
-
 import picocli.CommandLine;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
@@ -29,15 +27,6 @@ public class AddTaskCommand extends Command {
     private Task task;
 
     public AddTaskCommand() {
-    }
-
-    /**
-     * Creates an AddTaskCommand to add a {@code Task} to the current {@code Team}.
-     *
-     * @param taskName the name of the task to be added.
-     */
-    public AddTaskCommand(String taskName) {
-        this.task = new Task(taskName, List.of(), false, null);
     }
 
     @Override

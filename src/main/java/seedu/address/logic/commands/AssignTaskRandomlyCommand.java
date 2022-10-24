@@ -36,15 +36,6 @@ public class AssignTaskRandomlyCommand extends Command {
     public AssignTaskRandomlyCommand() {
     }
 
-    /**
-     * Returns a command that assigns a task to the specified member in the team.
-     *
-     * @param taskIndex  the index of the task to be added.
-     */
-    public AssignTaskRandomlyCommand(int taskIndex) {
-        this.taskIndex = Index.fromZeroBased(taskIndex);
-    }
-
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
@@ -77,6 +68,6 @@ public class AssignTaskRandomlyCommand extends Command {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof AssignTaskRandomlyCommand // instanceof handles nulls
-                && taskIndex == (((AssignTaskRandomlyCommand) other).taskIndex)); // state check
+                && taskIndex.equals(((AssignTaskRandomlyCommand) other).taskIndex)); // state check
     }
 }

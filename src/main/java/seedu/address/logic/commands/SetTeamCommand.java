@@ -27,16 +27,10 @@ public class SetTeamCommand extends Command {
 
     public static final String MESSAGE_TEAM_NOT_EXISTS = "This team you are trying to set does not exist!";
 
-    private Team targetTeam;
-
     @CommandLine.Parameters(arity = "1")
     private String targetTeamName;
 
     public SetTeamCommand() {
-    }
-
-    public SetTeamCommand(Team targetTeam) {
-        this.targetTeam = targetTeam;
     }
 
     @Override
@@ -44,7 +38,8 @@ public class SetTeamCommand extends Command {
         requireNonNull(model);
         List<Team> teamList = model.getTeamList();
         Team currentTeam = model.getTeam();
-        int teamIndex = teamList.indexOf(new Team(targetTeamName));
+        Team targetTeam = new Team(targetTeamName);
+        int teamIndex = teamList.indexOf(targetTeam);
 
         if (teamIndex == -1) {
             throw new CommandException(MESSAGE_TEAM_NOT_EXISTS);
@@ -61,7 +56,7 @@ public class SetTeamCommand extends Command {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof SetTeamCommand // instanceof handles nulls
-                && targetTeam.equals(((SetTeamCommand) other).targetTeam)); // state check
+                && targetTeamName.equals(((SetTeamCommand) other).targetTeamName)); // state check
     }
 
 }

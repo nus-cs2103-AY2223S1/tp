@@ -30,13 +30,6 @@ public class DeleteLinkCommand extends Command {
     public DeleteLinkCommand() {
     }
 
-    /**
-     * Creates a DeleteLinkCommand to delete a {@code Link} at the specified index.
-     */
-    public DeleteLinkCommand(Index targetIndex) {
-        this.targetIndex = targetIndex;
-    }
-
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);

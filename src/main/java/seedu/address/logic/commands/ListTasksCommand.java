@@ -28,19 +28,13 @@ public class ListTasksCommand extends Command {
 
     public static final String MESSAGE_LIST_TASK_SUCCESS = "Tasks: \n%1$s";
 
-    private String filter;
-
     @CommandLine.Option(names = {FLAG_COMPLETE_TASKS_STR, FLAG_COMPLETE_TASKS_STR_LONG})
-    private boolean complete;
+    private Boolean complete;
 
     @CommandLine.Option(names = {FLAG_INCOMPLETE_TASKS_STR, FLAG_INCOMPLETE_TASKS_STR_LONG})
-    private boolean incomplete;
+    private Boolean incomplete;
 
     public ListTasksCommand() {
-    }
-
-    public ListTasksCommand(String filter) {
-        this.filter = filter;
     }
 
     @Override
@@ -67,6 +61,8 @@ public class ListTasksCommand extends Command {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof ListTasksCommand); // instanceof handles nulls
+                || (other instanceof ListTasksCommand
+                && complete.equals(((ListTasksCommand) other).complete)
+                && incomplete.equals(((ListTasksCommand) other).incomplete)); // instanceof handles nulls
     }
 }

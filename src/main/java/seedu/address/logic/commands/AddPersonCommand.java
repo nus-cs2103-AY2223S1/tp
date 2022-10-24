@@ -49,8 +49,6 @@ public class AddPersonCommand extends Command {
     public static final String MESSAGE_SUCCESS = "New person added: %1$s";
     public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the address book";
 
-    private Person toAdd;
-
     @CommandLine.Option(names = {FLAG_NAME_STR, FLAG_NAME_STR_LONG}, required = true, description = "Name of person")
     private Name name;
 
@@ -68,18 +66,7 @@ public class AddPersonCommand extends Command {
             parameterConsumer = TagsConverter.class, arity = "*")
     private Set<Tag> tags = new HashSet<>();
 
-    @CommandLine.Spec
-    private CommandLine.Model.CommandSpec spec;
-
     public AddPersonCommand() {
-    }
-
-    /**
-     * Creates an AddPersonCommand to add the specified {@code Person}
-     */
-    public AddPersonCommand(Person person) {
-        requireNonNull(person);
-        toAdd = person;
     }
 
     @Override
@@ -98,9 +85,23 @@ public class AddPersonCommand extends Command {
 
     @Override
     public boolean equals(Object other) {
-        return other == this // short circuit if same object
-                || (other instanceof AddPersonCommand // instanceof handles nulls
-                && toAdd.equals(((AddPersonCommand) other).toAdd));
+        // short circuit if same object
+        if (other == this) {
+            return true;
+        }
+
+        // instanceof handles nulls
+        if (!(other instanceof AddPersonCommand)) {
+            return false;
+        }
+
+        // state check
+        AddPersonCommand o = (AddPersonCommand) other;
+        return name.equals(o.name)
+                && phone.equals(o.phone)
+                && email.equals(o.email)
+                && address.equals(o.address)
+                && tags.equals(o.tags);
     }
 
 }

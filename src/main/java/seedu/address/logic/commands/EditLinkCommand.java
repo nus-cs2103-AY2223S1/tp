@@ -43,22 +43,10 @@ public class EditLinkCommand extends Command {
     @CommandLine.ArgGroup(exclusive = false, multiplicity = "1")
     private Arguments arguments;
 
-    private EditLinkDescriptor editLinkDescriptor;
+    private final EditLinkDescriptor editLinkDescriptor;
 
     public EditLinkCommand() {
-    }
-
-    /**
-     * Creates an EditLinkCommand to edit a {@code Link}.
-     *
-     * @param index              of the link in the filtered link list to edit
-     * @param editLinkDescriptor details to edit the link with
-     */
-    public EditLinkCommand(Index index, EditLinkDescriptor editLinkDescriptor) {
-        requireNonNull(index);
-        requireNonNull(editLinkDescriptor);
-        this.index = index;
-        this.editLinkDescriptor = editLinkDescriptor;
+        this.editLinkDescriptor = new EditLinkDescriptor();
     }
 
     /**
@@ -84,7 +72,6 @@ public class EditLinkCommand extends Command {
         }
 
         Link linkToEdit = lastShownList.get(index.getZeroBased());
-        EditLinkDescriptor editLinkDescriptor = new EditLinkDescriptor();
 
         if (arguments.name != null) {
             editLinkDescriptor.setName(arguments.name);

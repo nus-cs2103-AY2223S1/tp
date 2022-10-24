@@ -64,21 +64,10 @@ public class EditPersonCommand extends Command {
     @CommandLine.ArgGroup(exclusive = false, multiplicity = "1")
     private Arguments arguments;
 
-    private EditPersonDescriptor editPersonDescriptor;
+    private final EditPersonDescriptor editPersonDescriptor;
 
     public EditPersonCommand() {
-    }
-
-    /**
-     * @param index                of the person in the filtered person list to edit
-     * @param editPersonDescriptor details to edit the person with
-     */
-    public EditPersonCommand(Index index, EditPersonDescriptor editPersonDescriptor) {
-        requireNonNull(index);
-        requireNonNull(editPersonDescriptor);
-
-        this.index = index;
-        this.editPersonDescriptor = new EditPersonDescriptor(editPersonDescriptor);
+        this.editPersonDescriptor = new EditPersonDescriptor();
     }
 
     /**
@@ -107,7 +96,6 @@ public class EditPersonCommand extends Command {
         }
 
         Person personToEdit = lastShownList.get(index.getZeroBased());
-        EditPersonDescriptor editPersonDescriptor = new EditPersonDescriptor();
 
         if (arguments.name != null) {
             editPersonDescriptor.name = arguments.name;

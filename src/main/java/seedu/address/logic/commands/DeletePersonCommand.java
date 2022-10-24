@@ -28,10 +28,7 @@ public class DeletePersonCommand extends Command {
     @CommandLine.Parameters(arity = "1")
     private Index targetIndex;
 
-    public DeletePersonCommand() {}
-
-    public DeletePersonCommand(Index targetIndex) {
-        this.targetIndex = targetIndex;
+    public DeletePersonCommand() {
     }
 
     @Override

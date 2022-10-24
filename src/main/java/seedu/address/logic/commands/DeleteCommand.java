@@ -6,6 +6,9 @@ import picocli.CommandLine;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 
+/**
+ * Command that contains all subcommands starting with delete.
+ */
 @CommandLine.Command(name = "delete", subcommands = {
     DeleteLinkCommand.class,
     DeleteMemberCommand.class,

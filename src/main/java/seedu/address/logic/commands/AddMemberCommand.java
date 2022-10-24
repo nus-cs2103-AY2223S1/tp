@@ -35,14 +35,6 @@ public class AddMemberCommand extends Command {
     public AddMemberCommand() {
     }
 
-    /**
-     * Creates an AddMemberCommand to add the {@code Person} with the specified {@code Name} to the current {@code Team}
-     */
-    public AddMemberCommand(Name targetPersonName) {
-        requireNonNull(targetPersonName);
-        this.targetPersonName = targetPersonName;
-    }
-
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);

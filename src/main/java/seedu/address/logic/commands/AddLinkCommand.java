@@ -39,17 +39,7 @@ public class AddLinkCommand extends Command {
     @CommandLine.Option(names = {FLAG_URL_STR, FLAG_URL_STR_LONG}, required = true)
     private Url url;
 
-    private Link toAdd;
-
     public AddLinkCommand() {
-    }
-
-    /**
-     * Creates an AddLinkCommand to add the specified {@code Link}.
-     */
-    public AddLinkCommand(Link link) {
-        requireNonNull(link);
-        this.toAdd = link;
     }
 
     @Override
@@ -68,6 +58,7 @@ public class AddLinkCommand extends Command {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof AddLinkCommand // instanceof handles nulls
-                && toAdd.equals(((AddLinkCommand) other).toAdd));
+                && name.equals(((AddLinkCommand) other).name))
+                && url.equals(((AddLinkCommand) other).url);
     }
 }

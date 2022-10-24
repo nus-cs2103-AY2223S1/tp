@@ -33,14 +33,6 @@ public class UnmarkCommand extends Command {
     public UnmarkCommand() {
     }
 
-    /**
-     * Returns a command that adds a task to the current team.
-     * @param taskIndex The index of the task to be added.
-     */
-    public UnmarkCommand(int taskIndex) {
-        this.taskIndex = Index.fromZeroBased(taskIndex);
-    }
-
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);

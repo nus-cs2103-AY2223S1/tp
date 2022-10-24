@@ -36,8 +36,7 @@ public class ListMembersCommand extends Command {
 
     @Override
     public boolean equals(Object other) {
-        return other == this // short circuit if same object
-                || (other instanceof ListMembersCommand); // instanceof handles nulls
+        return (other instanceof ListMembersCommand); // instanceof handles nulls
     }
 
 }

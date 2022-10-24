@@ -6,7 +6,7 @@ import picocli.CommandLine;
 import picocli.CommandLine.Command;
 
 /**
- * Main command used to set up subcommands being used in TruthTable.
+ * Main command which contains all commands used in TruthTable.
  */
 @Command(name = "", subcommands = {
     AddCommand.class,
