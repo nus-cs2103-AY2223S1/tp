@@ -234,29 +234,29 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 #### Proposed Implementation
 
-The proposed timetable feature is an extension of `CurrentModule` to allow users to see upcoming classes with the common 
+The proposed timetable feature is an extension of `CurrentModule` to allow users to see upcoming classes with the common
 class types in School of Computing such as lab, lecture, recitation and tutorial.
 
 
-In NUS School of Computing, every module generally has lab, lecture, recitation and tutorial slots which sometimes makes 
-it difficult for students to keep track of especially when students take several “CS” coded modules in a semester. With 
+In NUS School of Computing, every module generally has lab, lecture, recitation and tutorial slots which sometimes makes
+it difficult for students to keep track of especially when students take several “CS” coded modules in a semester. With
 this feature, users will be able to collate all different class types as well as the lesson timings.
-The user will also be able to keep track of his/her friend’s timetable to know when they will be free in situations 
+The user will also be able to keep track of his/her friend’s timetable to know when they will be free in situations
 where they would need to decide on a timing to meet up to do group projects, such as in CS2103/T.
 
-As such, the user can conveniently view his/her upcoming classes as well as his/her friends to easily keep track of 
+As such, the user can conveniently view his/her upcoming classes as well as his/her friends to easily keep track of
 schedules
 
 Additionally, the following classes and methods are implemented to support adding Lessons:
 
-We implemented an abstract `Lesson` class and the classes `Lab`, `Lecture`, `Recitation` and `Tutorial` that inherits from it. 
+We implemented an abstract `Lesson` class and the classes `Lab`, `Lecture`, `Recitation` and `Tutorial` that inherits from it.
 Each of the class types have the class fields, `type`, `module`, `day`, `startTime`, and `endTime`.
 
 The following class diagram illustrates the class diagram of the `Lesson` class and subclasses.
 
 ![LessonClassDiagram](images/LessonClassDiagram-0.png)
 
-The command has the prefix `lesson` and has the parameters 
+The command has the prefix `lesson` and has the parameters
 `user / INDEX (must be a positive integer) [l/TYPE] [m/MODULE] [d/DAY] [start/START TIME] [end/END TIME]`
 
 Given below are some examples of a user command to add a `Lesson`
@@ -278,8 +278,8 @@ Given below is an activity diagram to illustrate the behaviour of adding a Lesso
 
 Possible Extensions:
 
-1. Adding a `Link` field to allow Users to keep track of important links such as Coursemology, Microsoft Teams, Zoom 
-lecture and project documents (ie. Google Docs) for each module to increase accessibility and convenience since there 
+1. Adding a `Link` field to allow Users to keep track of important links such as Coursemology, Microsoft Teams, Zoom
+lecture and project documents (ie. Google Docs) for each module to increase accessibility and convenience since there
 are many links to keep track off.
 
 2. Allow User to sort his/her classes from all modules in chronological order or by modules depending on the User's

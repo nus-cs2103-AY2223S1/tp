@@ -7,6 +7,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.stage.Stage;
 import seedu.address.commons.core.LogsCenter;
+import seedu.address.model.Timetable;
 import seedu.address.model.module.Lesson;
 
 /**
@@ -27,7 +28,6 @@ public class TimetableWindow extends UiPart<Stage> {
      */
     public TimetableWindow(Stage root) {
         super(FXML, root);
-        System.out.println("constructor called");
         timetableMessage.setText("yet to intialise!");
     }
 
@@ -89,6 +89,6 @@ public class TimetableWindow extends UiPart<Stage> {
      * @param lessons set of lessons to show - from user or contact
      */
     public void setTimetableMessage(Set<Lesson> lessons) {
-        this.timetableMessage.setText(lessons.toString());
+        this.timetableMessage.setText(new Timetable(lessons).toString());
     }
 }
