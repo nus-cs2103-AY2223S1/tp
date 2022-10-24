@@ -39,7 +39,7 @@ public class JsonAdaptedPersonTest {
     private static final String VALID_NOTE = BENSON.getNote().toString();
     private static final String VALID_STATUS = BENSON.getStatus().toString();
 
-    private static final List<JsonAdaptedLink> VALID_LINKS =  BENSON.getLinks().stream()
+    private static final List<JsonAdaptedLink> VALID_LINKS = BENSON.getLinks().stream()
             .map(JsonAdaptedLink::new).collect(Collectors.toList());
 
     @Test

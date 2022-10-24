@@ -1,5 +1,8 @@
 package seedu.clinkedin.testutil;
 
+import java.util.HashSet;
+import java.util.Set;
+
 import seedu.clinkedin.model.link.Link;
 import seedu.clinkedin.model.person.Address;
 import seedu.clinkedin.model.person.Email;
@@ -10,9 +13,6 @@ import seedu.clinkedin.model.person.Phone;
 import seedu.clinkedin.model.person.Status;
 import seedu.clinkedin.model.person.UniqueTagTypeMap;
 import seedu.clinkedin.model.util.SampleDataUtil;
-
-import java.util.HashSet;
-import java.util.Set;
 
 /**
  * A utility class to help with building Person objects.
