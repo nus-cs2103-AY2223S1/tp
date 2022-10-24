@@ -23,6 +23,8 @@ public class WelcomePanel extends UiPart<Region> {
     @FXML
     private Label welcomeMessage;
     @FXML
+    private Label motivationalQuote;
+    @FXML
     private ListView<Reminder> reminderView;
 
     /**
@@ -32,10 +34,26 @@ public class WelcomePanel extends UiPart<Region> {
         super(FXML);
         reminderView.setItems(reminderList);
         reminderView.setCellFactory(listView -> new ReminderListViewCell());
+
+        Label reminderPlaceholder = new Label("No upcoming reminders.");
+        reminderPlaceholder.getStyleClass().add("placeholder");
+        reminderView.setPlaceholder(reminderPlaceholder);
     }
 
+    /**
+     * Sets the welcome message to be displayed.
+     * @param message Message to be displayed.
+     */
     public void setWelcomeMessage(String message) {
         welcomeMessage.setText(message);
+    }
+
+    /**
+     * Sets the motiviation quote to be displayed.
+     * @param quote Quote to be displayed.
+     */
+    public void setMotivationalQuote(String quote) {
+        motivationalQuote.setText(quote);
     }
 }
 
@@ -43,7 +61,6 @@ public class WelcomePanel extends UiPart<Region> {
  * Custom {@code ListCell} that displays the graphics of a {@code Reminder} using a {@code ReminderCard}.
  */
 class ReminderListViewCell extends ListCell<Reminder> {
-    private static final String PLACEHOLDER_TEXT = "PLACEHOLDER REMINDER";
     private final StackPane pane;
 
     // code adapted from https://ciruman.wordpress.com/2015/04/08/javafx-listview-without-horizontal-scroll/

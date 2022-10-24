@@ -10,6 +10,7 @@ import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.ReadOnlyAddressBook;
 import seedu.address.model.message.Message;
 import seedu.address.model.person.Person;
+import seedu.address.model.person.TargetPerson;
 import seedu.address.model.quote.Quote;
 import seedu.address.model.reminder.Reminder;
 
@@ -37,7 +38,7 @@ public interface Logic {
     ObservableList<Person> getFilteredPersonList();
 
     /** Returns an unmodifiable view of the list of target person */
-    ObservableList<Person> getTargetPersonList();
+    TargetPerson getTargetPerson();
 
     /** Returns an unmodifiable view of the list of reminders */
     ObservableList<Reminder> getReminderListAsObservableList();

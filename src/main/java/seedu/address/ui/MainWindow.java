@@ -20,6 +20,7 @@ import seedu.address.logic.Logic;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.quote.Quote;
 
 /**
  * The Main Window. Provides the basic application layout containing
@@ -103,7 +104,7 @@ public class MainWindow extends UiPart<Stage> {
         personListPanel = new PersonListPanel(logic.getFilteredPersonList());
         personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
 
-        targetPersonPanel = new TargetPersonPanel(logic.getTargetPersonList(),
+        targetPersonPanel = new TargetPersonPanel(logic.getTargetPerson(),
                 logic.getTargetPersonReminderListAsObservableList());
 
         messageTemplatePanel = new MessageTemplatePanel(logic.getMessageTemplates());
@@ -172,7 +173,7 @@ public class MainWindow extends UiPart<Stage> {
 
     /**
      * Sets the welcome message within welcomePanel.
-     * @param message
+     * @param message Message to be displayed.
      */
     public void setWelcomeMessage(String message) {
         requireAllNonNull(welcomePanel, message);
@@ -180,8 +181,17 @@ public class MainWindow extends UiPart<Stage> {
     }
 
     /**
+     * Sets the motivational quote within welcomePanel
+     * @param quote quote to be displayed.
+     */
+    public void setMotivationalQuote(Quote quote) {
+        requireAllNonNull(welcomePanel, quote);
+        welcomePanel.setMotivationalQuote(quote.toString());
+    }
+
+    /**
      * Sets the secondary pane to specified pane.
-     * @param secondaryPaneState
+     * @param secondaryPaneState Secondary Pane to be set.
      */
     public void setSecondaryPaneState(SecondaryPaneState secondaryPaneState) {
         requireNonNull(mainPane);

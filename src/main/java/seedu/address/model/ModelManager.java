@@ -278,8 +278,8 @@ public class ModelManager implements Model {
 
     // =========== Target Person Accessors =============================================================
     @Override
-    public ObservableList<Person> getTargetPersonAsObservableList() {
-        return targetPerson.getAsObservableList();
+    public TargetPerson getObservableTargetPerson() {
+        return targetPerson;
     }
 
     @Override

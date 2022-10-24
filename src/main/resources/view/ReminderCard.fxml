@@ -6,8 +6,8 @@
 <VBox xmlns="http://javafx.com/javafx/11" xmlns:fx="http://javafx.com/fxml/1" styleClass="reminder-card  ">
    <children>
       <Label styleClass="reminder-description" fx:id="description" text="Text" wrapText="true" />
-      <Label styleClass="reminder-name" fx:id="name" text="Text" wrapText="true" />
-      <Label styleClass="reminder-phone" fx:id="phone" text="Text" wrapText="true" />
+      <Label styleClass="reminder-with" fx:id="name" text="Text" wrapText="true" />
+      <Label styleClass="reminder-with" fx:id="phone" text="Text" wrapText="true" />
       <Label styleClass="reminder-date" fx:id="dateText" text="Text" wrapText="true" />
    </children>
 </VBox>
