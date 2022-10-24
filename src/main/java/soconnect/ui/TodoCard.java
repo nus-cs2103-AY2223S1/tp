@@ -1,10 +1,13 @@
 package soconnect.ui;
 
+import java.util.Comparator;
+import java.util.Set;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
+import soconnect.model.tag.Tag;
 import soconnect.model.todo.Date;
 import soconnect.model.todo.Description;
 import soconnect.model.todo.Priority;
@@ -27,7 +30,9 @@ public class TodoCard extends UiPart<Region> {
     @FXML
     private Label date;
     @FXML
-    private FlowPane priority;
+    private Label priority;
+    @FXML
+    private FlowPane todoTags;
 
     /**
      * Creates a {@code TodoCard} with the given {@code Todo} and index to display.
@@ -40,10 +45,12 @@ public class TodoCard extends UiPart<Region> {
         Description newDescription = todo.getDescription();
         Date newDate = todo.getDate();
         Priority newPriority = todo.getPriority();
+        Set<Tag> newTag = todo.getTags();
 
         setDescription(newDescription);
         setDate(newDate);
         setPriority(newPriority);
+        setTags(newTag);
     }
 
     private void setDescription(Description newDescription) {
@@ -55,7 +62,16 @@ public class TodoCard extends UiPart<Region> {
     }
 
     private void setPriority(Priority newPriority) {
-        priority.getChildren().add(new Label(newPriority.priority));
+        priority.setText(newPriority.priority.toUpperCase());
+    }
+
+    private void setTags(Set<Tag> newTag) {
+        newTag.stream()
+                .sorted(Comparator.comparing(tag -> tag.tagName))
+                .forEach(tag -> todoTags.getChildren().add(new Label(tag.tagName)));
+        todoTags.getChildren().forEach(label -> label.setStyle("-fx-background-color: #9867C5;"
+                + "-fx-font-size: 12;-fx-background-radius: 2;-fx-font-family: \"Karla\";"
+                + "-fx-border-radius: 2;-fx-padding: 1 3 1 3;"));
     }
 
     @Override

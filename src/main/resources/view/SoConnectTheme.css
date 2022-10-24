@@ -407,6 +407,12 @@
     -fx-text-fill: #C3E0FF;
 }
 
+
+#todoTags {
+    -fx-hgap: 7;
+    -fx-vgap: 3;
+}
+
 /* Handles style of icons */
 .icon-button {
     -icon-paint: #D9DCFF;

@@ -1,6 +1,8 @@
-package soconnect.model.todo;
+package soconnect.model.todo.predicates;
 
 import java.util.function.Predicate;
+import soconnect.model.todo.Date;
+import soconnect.model.todo.Todo;
 
 /**
  * Tests that a {@code Todo} is within the given date range (inclusive).

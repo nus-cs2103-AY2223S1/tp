@@ -16,6 +16,11 @@ import soconnect.logic.parser.Prefix;
 import soconnect.logic.parser.exceptions.ParseException;
 import soconnect.model.tag.Tag;
 import soconnect.model.todo.*;
+import soconnect.model.todo.predicates.TodoContainsDatePredicate;
+import soconnect.model.todo.predicates.TodoContainsDateRangePredicate;
+import soconnect.model.todo.predicates.TodoContainsPriorityPredicate;
+import soconnect.model.todo.predicates.TodoContainsTagPredicate;
+import soconnect.ui.TodoListPanel;
 
 /**
  * Parses input arguments and creates a new {@code TodoShowCommand} object.
@@ -68,10 +73,9 @@ public class TodoShowCommandParser implements Parser<TodoShowCommand> {
 
         switch (arg) {
         case TodoShowCommand.EMPTY_CONDITION:
-            TodoContainsDatePredicate datePredicate = TodoContainsDatePredicate.currentDate();
-            return new TodoShowCommand(datePredicate, TodoShowCommand.TODAY_HEADER);
-        case TodoShowCommand.ALL_CONDITION:
-            return new TodoShowCommand(PREDICATE_SHOW_ALL_TODOS, TodoShowCommand.ALL_CONDITION);
+            return new TodoShowCommand(PREDICATE_SHOW_ALL_TODOS, TodoListPanel.ALL_HEADER);
+        case TodoShowCommand.TODAY_CONDITION:
+            return new TodoShowCommand(TodoContainsDatePredicate.currentDate(), TodoListPanel.TODAY_HEADER);
         default:
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, TodoShowCommand.MESSAGE_USAGE));
         }

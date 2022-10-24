@@ -17,7 +17,10 @@ import soconnect.logic.commands.tagcommands.TagCommand;
 import soconnect.logic.commands.tagcommands.TagCreateCommand;
 import soconnect.model.Model;
 import soconnect.model.tag.Tag;
-import soconnect.model.todo.*;
+import soconnect.model.todo.Date;
+import soconnect.model.todo.Description;
+import soconnect.model.todo.Priority;
+import soconnect.model.todo.Todo;
 
 /**
  * Edits the details of an existing {@code Todo} in the {@code TodoList}.
@@ -82,7 +85,6 @@ public class TodoEditCommand extends TodoCommand {
         }
 
         model.setTodo(todoToEdit, editedTodo);
-        model.updateFilteredTodoList(TodoContainsDatePredicate.currentDate());
         return new CommandResult(String.format(MESSAGE_EDIT_TODO_SUCCESS, editedTodo));
     }
 
@@ -164,7 +166,7 @@ public class TodoEditCommand extends TodoCommand {
         }
 
         public Optional<Date> getDate() {
-            return Optional.of(date);
+            return Optional.ofNullable(date);
         }
 
         public void setPriority(Priority priority) {

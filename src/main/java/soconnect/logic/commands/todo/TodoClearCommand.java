@@ -5,6 +5,7 @@ import static java.util.Objects.requireNonNull;
 import soconnect.logic.commands.CommandResult;
 import soconnect.model.Model;
 import soconnect.model.TodoList;
+import soconnect.ui.TodoListPanel;
 
 /**
  * Clears the {@code TodoList}.
@@ -18,6 +19,7 @@ public class TodoClearCommand extends TodoCommand {
     public CommandResult execute(Model model) {
         requireNonNull(model);
         model.setTodoList(new TodoList());
+        model.updateTodoListHeader(TodoListPanel.ALL_HEADER);
         return new CommandResult(MESSAGE_SUCCESS);
     }
 

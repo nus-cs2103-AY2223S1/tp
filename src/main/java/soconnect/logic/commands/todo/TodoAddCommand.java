@@ -9,6 +9,7 @@ import soconnect.logic.commands.tagcommands.TagCommand;
 import soconnect.logic.commands.tagcommands.TagCreateCommand;
 import soconnect.model.Model;
 import soconnect.model.todo.Todo;
+import soconnect.ui.TodoListPanel;
 
 /**
  * Adds a {@code Todo} to the {@code TodoList}.

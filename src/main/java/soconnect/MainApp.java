@@ -16,7 +16,6 @@ import soconnect.commons.util.ConfigUtil;
 import soconnect.commons.util.StringUtil;
 import soconnect.logic.Logic;
 import soconnect.logic.LogicManager;
-import soconnect.logic.commands.todo.TodoShowCommand;
 import soconnect.model.Model;
 import soconnect.model.ModelManager;
 import soconnect.model.ReadOnlySoConnect;
@@ -25,7 +24,7 @@ import soconnect.model.ReadOnlyUserPrefs;
 import soconnect.model.SoConnect;
 import soconnect.model.TodoList;
 import soconnect.model.UserPrefs;
-import soconnect.model.todo.TodoContainsDatePredicate;
+import soconnect.model.todo.predicates.TodoContainsDatePredicate;
 import soconnect.model.tag.Tag;
 import soconnect.model.util.SampleDataUtil;
 import soconnect.storage.JsonSoConnectStorage;
@@ -36,6 +35,7 @@ import soconnect.storage.Storage;
 import soconnect.storage.StorageManager;
 import soconnect.storage.TodoListStorage;
 import soconnect.storage.UserPrefsStorage;
+import soconnect.ui.TodoListPanel;
 import soconnect.ui.Ui;
 import soconnect.ui.UiManager;
 
@@ -217,7 +217,7 @@ public class MainApp extends Application {
         logger.info("Starting SoConnect " + MainApp.VERSION);
         ui.start(primaryStage);
         model.updateFilteredTodoList(TodoContainsDatePredicate.currentDate());
-        model.updateTodoListHeader(TodoShowCommand.TODAY_HEADER);
+        model.updateTodoListHeader(TodoListPanel.TODAY_HEADER);
     }
 
     @Override

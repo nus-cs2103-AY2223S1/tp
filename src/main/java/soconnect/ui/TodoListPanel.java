@@ -15,6 +15,10 @@ import soconnect.model.todo.Todo;
 public class TodoListPanel extends UiPart<Region> {
     private static final String FXML = "TodoListPanel.fxml";
 
+    public static final String TODAY_HEADER = "TODAY";
+
+    public static final String ALL_HEADER = "ALL";
+
     @FXML
     private Label header;
     @FXML

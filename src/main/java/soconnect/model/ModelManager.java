@@ -237,7 +237,6 @@ public class ModelManager implements Model {
     @Override
     public void addTodo(Todo todo) {
         todoList.addTodo(todo);
-        updateFilteredTodoList(PREDICATE_SHOW_ALL_TODOS);
     }
 
     @Override

@@ -1,9 +1,9 @@
-package soconnect.model.todo;
+package soconnect.model.todo.predicates;
 
-import java.time.LocalDate;
 import java.util.function.Predicate;
 
 import soconnect.model.tag.Tag;
+import soconnect.model.todo.Todo;
 
 /**
  * Tests that a {@code Todo} contains a certain {@code Tag} and
@@ -19,9 +19,7 @@ public class TodoContainsTagPredicate implements Predicate<Todo> {
 
     @Override
     public boolean test(Todo todo) {
-        Date now = new Date(LocalDate.now());
-
-        return !todo.isBefore(now) && todo.getTags().contains(tag);
+        return todo.getTags().contains(tag);
     }
 
     @Override
