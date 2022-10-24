@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
 
+import jarvis.model.exceptions.NoteNotFoundException;
 import jarvis.model.exceptions.StudentNotFoundException;
 
 /**
@@ -45,6 +46,37 @@ public class LessonNotes {
             throw new StudentNotFoundException();
         }
         studentNotes.get(student).add(notes);
+    }
+
+    /**
+     * Deletes note at given index from overall notes.
+     *
+     * @param index Index of the note according to the list of overall notes.
+     * @return String of the deleted note.
+     */
+    public String deleteNote(int index) {
+        if (index >= overallNotes.size()) {
+            throw new NoteNotFoundException();
+        }
+        return overallNotes.remove(index);
+    }
+
+    /**
+     * Deletes note at given index of from a specific student's notes.
+     *
+     * @param student Student to delete notes from.
+     * @param index Index of the note according to the list of student notes.
+     * @return String of the deleted note.
+     */
+    public String deleteNote(Student student, int index) {
+        if (!studentNotes.containsKey(student)) {
+            throw new StudentNotFoundException();
+        }
+        ArrayList<String> specifiedStudentNotes = studentNotes.get(student);
+        if (index >= specifiedStudentNotes.size()) {
+            throw new NoteNotFoundException();
+        }
+        return specifiedStudentNotes.remove(index);
     }
 
     public String getNotes() {

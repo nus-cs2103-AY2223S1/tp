@@ -17,4 +17,8 @@ public class Messages {
     public static final String MESSAGE_INVALID_PARTICIPATION = "The participation value provided should be an "
             + "integer from 0 to 500";
     public static final String MESSAGE_STUDENT_NOT_FOUND = "Student %1$s cannot be found in lesson %2$s";
+    public static final String MESSAGE_OVERALL_NOTE_NOT_FOUND = "The overall note at index %1$d for %2$s cannot be "
+            + "found";
+    public static final String MESSAGE_STUDENT_NOTE_NOT_FOUND = "The student note at index %1$d for %2$s in %3$s "
+            + "cannot be found";
 }

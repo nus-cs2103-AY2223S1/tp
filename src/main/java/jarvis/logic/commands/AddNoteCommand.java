@@ -76,7 +76,7 @@ public class AddNoteCommand extends Command {
     }
 
     private String executeAddOverallNote(Lesson lessonToAdd) {
-        lessonToAdd.addOverallNotes(note);
+        lessonToAdd.addOverallNote(note);
         return String.format(MESSAGE_ADD_OVERALL_NOTE_SUCCESS, lessonToAdd, note);
     }
 
@@ -87,7 +87,7 @@ public class AddNoteCommand extends Command {
         }
         Student studentToAdd = lastShownStudentList.get(studentIndex.getZeroBased());
         try {
-            lessonToAdd.addStudentNotes(note, studentToAdd);
+            lessonToAdd.addStudentNote(note, studentToAdd);
         } catch (StudentNotFoundException snfe) {
             throw new CommandException(String.format(Messages.MESSAGE_STUDENT_NOT_FOUND, studentToAdd, lessonToAdd));
         }
