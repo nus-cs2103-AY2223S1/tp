@@ -4,6 +4,8 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
+import javafx.scene.paint.Color;
+import javafx.scene.shape.Rectangle;
 import seedu.address.model.reminder.Reminder;
 
 /**
@@ -27,6 +29,8 @@ public class ReminderCard extends UiPart<Region> {
     private Label priority;
     @FXML
     private Label description;
+    @FXML
+    private Rectangle statusBar;
 
     /**
      * Creates a {@code ReminderCode} with the given {@code Reminder} and index to display.
@@ -36,10 +40,12 @@ public class ReminderCard extends UiPart<Region> {
         this.reminder = reminder;
         if (!reminder.getStatus()) {
             id.setText(displayedIndex + ". ");
-
+            statusBar.setFill(Color.ORANGE);
         } else {
             id.setText("✓" + displayedIndex + ". ");
+            statusBar.setFill(Color.DARKGREEN);
         }
+        statusBar.heightProperty().bind(this.getRoot().heightProperty());
         name.setText(reminder.getName().fullName);
         deadline.setText(reminder.getDeadline().deadline);
         priority.setText(reminder.getPriority().priority);
