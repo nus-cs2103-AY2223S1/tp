@@ -26,8 +26,8 @@ public class FindEventCommand extends EventCommand {
             + "the specified dates (if dates are provided) or events whose title "
             + "contains any of the specified keywords (case-insensitive) "
             + "and displays them as a list with index numbers.\n"
-            + "Parameters: KEYWORD [MORE_KEYWORDS]...\n"
-            + "Example: " + COMMAND_WORD + " " + PREFIX_OPTION + COMMAND_OPTION + " alice bob charlie";
+            + "Parameters: KEYWORD_OR_DATE [MORE]...\n"
+            + "Example: " + COMMAND_WORD + " " + PREFIX_OPTION + COMMAND_OPTION + " 11/10 12/10";
 
     public static final String MESSAGE_HELP = "Finds all events matching the dates or keywords.\n"
             + "Keywords are case-insensitive and will return partial matches.\n"
