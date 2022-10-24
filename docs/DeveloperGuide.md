@@ -442,8 +442,6 @@ The following activity diagram summarizes what happens when a user executes a ne
   * Pros: Will use less memory (e.g. for `delete`, just save the contact being deleted).
   * Cons: We must ensure that the implementation of each individual command are correct.
 
-_{more aspects and alternatives to be added}_
-
 ### Tag adding feature
 
 #### Implementation
@@ -486,12 +484,6 @@ The following activity diagram summarizes what happens when a user executes a ta
 * **Alternative 2:** Directly add the tag into the contact .
     * Pros: Easy to implement.
     * Cons: Easy to access into the tags of a contact. Could cause accidental bugs.
-
-_{Explain here how the data archiving feature will be implemented}_
-
-### \[Proposed\] Data archiving
-
-_{Explain here how the data archiving feature will be implemented}_
 
 ### Tag editing feature
 
@@ -587,7 +579,6 @@ Note:
   * Pros: Easy to implement.
   * Cons: Harder to maintain and make changes.
 
-
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Documentation, logging, testing, configuration, dev-ops**
@@ -643,8 +634,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* *`    | user                    | search with multiple tags                              | narrow my search results to only contacts that have all the specified tags |
 | `* *`    | user                    | search with multiple tags                              | broaden my result results to contacts that have any of the specified tags  |
 | `* *`    | user                    | view contacts related to my search query               | find contacts even when I mistype their name                               |
-| `* *`    | user                    | hide contact details                                   | focus on certain information                                               |
-| `* *`    | user                    | show contact details                                   | view certain information                                                   |
+| `* *`    | user                    | hide contact details                                   | focus on certain information of each contact                               |
+| `* *`    | user                    | show contact details                                   | view certain information of each contact                                   |
 | `* *`    | user                    | have an autocomplete for my current search query       | search faster by names and minimize the chance of an unsuccessful search   |
 | `* *`    | user with many contacts | specify the default order of my contacts               | avoid re-sorting the list everytime                                        |
 | `* *`    | user with many contacts | sort contacts by name, email, phone number, or address | organise my contacts list                                                  |
@@ -656,8 +647,6 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* *`    | user                    | clear all my todos                                     | save time on deleting them one by one                                      |
 | `* *`    | user                    | filter the list of todos shown                         | only view the portion of list I need at the moment                         |
 | `*`      | user                    | customise the order of information for contacts        | view more important information before others                              |
-
-*{More to be added}*
 
 ### Use cases
 
@@ -808,8 +797,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 8. Should not depend on a remote server.
 9. Should not cause any resolution-related inconveniences to the user.
 10. Should be packaged in a single JAR file and its size should not exceed 100MB.
-11. Should not have hard-to-test features or features that make the product hard-to-test,
-i.e., features that require creating user accounts, login, logout etc., audio-related features and Features that depend heavily on remote APIs.
+11. Should not have hard-to-test features or features that make the product hard-to-test, i.e., features that require creating user accounts, login, logout etc., audio-related features and Features that depend heavily on remote APIs.
 
 ### Glossary
 
