@@ -10,6 +10,7 @@ import static seedu.foodrem.testutil.TypicalTags.NUMBERS;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.foodrem.commons.core.Messages;
 import seedu.foodrem.logic.commands.CommandTestUtil;
 import seedu.foodrem.logic.commands.tagcommands.NewTagCommand;
 import seedu.foodrem.model.tag.Tag;
@@ -42,6 +43,11 @@ public class NewTagCommandParserTest {
 
     @Test
     public void parse_invalidValue_failure() {
+        // blank
+        assertParseFailure(parser,
+                "",
+                String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT, NewTagCommand.getUsage()));
+
         // invalid name
         assertParseFailure(parser,
                 CommandTestUtil.INVALID_DESC_TAG_NAME_DISALLOWED_PUNCTUATION,

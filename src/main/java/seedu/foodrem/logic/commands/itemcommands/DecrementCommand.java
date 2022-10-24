@@ -2,7 +2,6 @@ package seedu.foodrem.logic.commands.itemcommands;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.foodrem.commons.enums.CommandType.DECREMENT_COMMAND;
-import static seedu.foodrem.model.Model.PREDICATE_SHOW_ALL_ITEMS;
 
 import java.util.List;
 
@@ -40,7 +39,7 @@ public class DecrementCommand extends Command {
      * Creates and returns an {@code Item} with the quantity of {@code itemToEdit}
      * decremented by {@code editItemDescriptor}.
      */
-    private static Item createDecrementedItem(Item itemToDecrement, ItemQuantity quantity) {
+    private static Item createDecrementedItem(Item itemToDecrement, ItemQuantity quantity) throws CommandException {
         assert itemToDecrement != null;
 
         ItemQuantity decrementedQuantity;
@@ -48,7 +47,7 @@ public class DecrementCommand extends Command {
             decrementedQuantity = ItemQuantity.performArithmeticOperation(
                     itemToDecrement.getQuantity(), quantity, (x, y) -> x - y);
         } catch (IllegalArgumentException e) {
-            throw new IllegalArgumentException("(Final Quantity) " + e.getMessage());
+            throw new CommandException("(Final Quantity) " + e.getMessage());
         }
 
         return new Item(itemToDecrement.getName(),
@@ -57,13 +56,14 @@ public class DecrementCommand extends Command {
                 itemToDecrement.getBoughtDate(),
                 itemToDecrement.getExpiryDate(),
                 itemToDecrement.getPrice(),
-                itemToDecrement.getRemarks());
+                itemToDecrement.getRemarks(),
+                itemToDecrement.getTagSet());
     }
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        List<Item> lastShownList = model.getFilteredItemList();
+        List<Item> lastShownList = model.getCurrentList();
 
         if (index.getZeroBased() >= lastShownList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_ITEMS_DISPLAYED_INDEX);
@@ -73,8 +73,15 @@ public class DecrementCommand extends Command {
         Item decrementedItem = createDecrementedItem(itemToDecrement, quantity);
 
         model.setItem(itemToDecrement, decrementedItem);
-        model.updateFilteredItemList(PREDICATE_SHOW_ALL_ITEMS);
         return new CommandResult(String.format(MESSAGE_SUCCESS, decrementedItem));
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof DecrementCommand // instanceof handles nulls
+                && index.equals(((DecrementCommand) other).index)
+                && quantity.equals(((DecrementCommand) other).quantity)); // state check
     }
 
     public static String getUsage() {

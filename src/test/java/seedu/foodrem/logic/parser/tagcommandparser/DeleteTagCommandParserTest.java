@@ -1,4 +1,4 @@
-package seedu.foodrem.logic.parser;
+package seedu.foodrem.logic.parser.tagcommandparser;
 
 import static seedu.foodrem.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.foodrem.logic.commands.CommandTestUtil.VALID_DESC_TAG_NAME_FRUITS;
@@ -8,7 +8,6 @@ import static seedu.foodrem.logic.parser.CommandParserTestUtil.assertParseSucces
 import org.junit.jupiter.api.Test;
 
 import seedu.foodrem.logic.commands.tagcommands.DeleteTagCommand;
-import seedu.foodrem.logic.parser.tagcommandparser.DeleteTagCommandParser;
 import seedu.foodrem.testutil.TypicalTags;
 
 public class DeleteTagCommandParserTest {

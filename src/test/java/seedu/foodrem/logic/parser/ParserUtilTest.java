@@ -1,7 +1,6 @@
 package seedu.foodrem.logic.parser;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static seedu.foodrem.logic.parser.ParserUtil.MESSAGE_INVALID_INDEX;
 import static seedu.foodrem.testutil.Assert.assertThrows;
 import static seedu.foodrem.testutil.TypicalIndexes.INDEX_FIRST_ITEM;
 
@@ -35,7 +34,7 @@ public class ParserUtilTest {
 
     @Test
     public void parseIndex_outOfRangeInput_throwsIllegalArgumentException() {
-        assertThrows(IllegalArgumentException.class, MESSAGE_INVALID_INDEX, ()
+        assertThrows(IllegalArgumentException.class, ParserUtil.MESSAGE_INVALID_INDEX, ()
                 -> ParserUtil.parseIndex(Long.toString(Integer.MAX_VALUE + 1)));
     }
 

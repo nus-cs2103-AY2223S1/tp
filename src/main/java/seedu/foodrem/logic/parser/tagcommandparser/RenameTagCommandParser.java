@@ -1,12 +1,11 @@
 package seedu.foodrem.logic.parser.tagcommandparser;
 
-import static seedu.foodrem.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.foodrem.logic.parser.CliSyntax.PREFIX_NAME;
-
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import seedu.foodrem.commons.core.Messages;
 import seedu.foodrem.logic.commands.tagcommands.RenameTagCommand;
+import seedu.foodrem.logic.parser.CliSyntax;
 import seedu.foodrem.logic.parser.Parser;
 import seedu.foodrem.logic.parser.exceptions.ParseException;
 import seedu.foodrem.model.tag.Tag;
@@ -22,7 +21,7 @@ public class RenameTagCommandParser implements Parser<RenameTagCommand> {
      * by any character. The validation checking of tag names is done within {@link Tag} itself.
      */
     private static final Pattern RENAME_TAG_COMMAND_FORMAT = Pattern.compile(
-            String.format("%s(?<originalName>.+)\\s+%s(?<newName>.+)", PREFIX_NAME, PREFIX_NAME));
+            String.format("%s(?<originalName>.+)\\s+%s(?<newName>.+)", CliSyntax.PREFIX_NAME, CliSyntax.PREFIX_NAME));
 
     /**
      * Parses the given {@code String} of arguments in the context of the RenameTagCommand
@@ -34,7 +33,7 @@ public class RenameTagCommandParser implements Parser<RenameTagCommand> {
         final Matcher matcher = RENAME_TAG_COMMAND_FORMAT.matcher(args.trim());
 
         if (!matcher.matches()) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+            throw new ParseException(String.format(Messages.MESSAGE_INVALID_COMMAND_FORMAT,
                     RenameTagCommand.getUsage()));
         }
 

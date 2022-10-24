@@ -84,7 +84,7 @@ public class ModelManager implements Model {
         userPrefs.setFoodRemFilePath(foodRemFilePath);
     }
 
-    //=========== AddressBook ================================================================================
+    //=========== FoodRem ================================================================================
 
     @Override
     public ReadOnlyFoodRem getFoodRem() {
@@ -110,13 +110,11 @@ public class ModelManager implements Model {
     @Override
     public void addItem(Item item) {
         foodRem.addItem(item);
-        updateFilteredItemList(PREDICATE_SHOW_ALL_ITEMS);
     }
 
     @Override
     public void setItem(Item target, Item editedItem) {
         requireAllNonNull(target, editedItem);
-
         foodRem.setItem(target, editedItem);
     }
 
@@ -144,15 +142,15 @@ public class ModelManager implements Model {
         foodRem.setTag(target, editedTag);
     }
 
-    //=========== Sorted Item List Accessors =============================================================
+    //=========== Item List Accessors =============================================================
 
     /**
      * Returns an unmodifiable view of the list of {@code Item} backed by the internal list of
-     * {@code versionedAddressBook} according to a Comparator.
+     * {@code versionedFoodRem}
      */
     @Override
-    public ObservableList<Item> getSortedItemList() {
-        return sortedItems;
+    public ObservableList<Item> getCurrentList() {
+        return itemsList;
     }
 
     @Override
@@ -161,20 +159,9 @@ public class ModelManager implements Model {
         sortedItems.setComparator(comparator);
     }
 
-    //=========== Filtered Item List Accessors =============================================================
-
-    /**
-     * Returns an unmodifiable view of the list of {@code Item} backed by the internal list of
-     * {@code versionedAddressBook}
-     */
-    @Override
-    public ObservableList<Item> getFilteredItemList() {
-        return filteredItems;
-    }
-
     /**
      * Returns an unmodifiable view of the list of {@code Tag} backed by the internal list of
-     * {@code versionedAddressBook}
+     * {@code versionedFoodRem}
      */
     public ObservableList<Tag> getFilteredTagList() {
         return filteredTags;
@@ -212,10 +199,5 @@ public class ModelManager implements Model {
                 && filteredTags.equals(other.filteredTags)
                 && sortedItems.equals(other.sortedItems)
                 && itemsList.equals(other.itemsList);
-    }
-
-    @Override
-    public ObservableList<Item> getFilteredSortedItemList() {
-        return itemsList;
     }
 }

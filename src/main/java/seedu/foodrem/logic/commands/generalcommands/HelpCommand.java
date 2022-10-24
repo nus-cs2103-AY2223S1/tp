@@ -39,7 +39,6 @@ public class HelpCommand extends Command {
     }
 
     public static String getCommandHelpMessage(CommandType command) {
-        // TODO: Create tests for this method
         return String.format(HELP_FORMAT_SPECIFIC, command.getUsage());
     }
 

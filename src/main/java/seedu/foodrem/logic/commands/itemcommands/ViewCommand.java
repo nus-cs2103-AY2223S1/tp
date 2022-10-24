@@ -34,13 +34,20 @@ public class ViewCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
 
-        List<Item> lastShownList = model.getFilteredItemList();
+        List<Item> lastShownList = model.getCurrentList();
         if (index.getZeroBased() >= lastShownList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_ITEMS_DISPLAYED_INDEX);
         }
         Item itemToDisplayInformation = lastShownList.get(index.getZeroBased());
 
         return new CommandResult(itemToDisplayInformation.toString());
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof ViewCommand // instanceof handles nulls
+                && index.equals(((ViewCommand) other).index)); // state check
     }
 
     public static String getUsage() {

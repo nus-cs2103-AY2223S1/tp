@@ -2,7 +2,6 @@ package seedu.foodrem.logic.commands.tagcommands;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.foodrem.commons.enums.CommandType.LIST_TAG_COMMAND;
-import static seedu.foodrem.model.Model.PREDICATE_SHOW_ALL_TAGS;
 
 import java.util.List;
 
@@ -20,7 +19,7 @@ public class ListTagCommand extends Command {
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);
-        model.updateFilteredTagList(PREDICATE_SHOW_ALL_TAGS);
+        model.updateFilteredTagList(Model.PREDICATE_SHOW_ALL_TAGS);
         List<Tag> allTags = model.getFilteredTagList();
 
         StringBuilder allTagsList = new StringBuilder(MESSAGE_SUCCESS);
