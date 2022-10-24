@@ -44,7 +44,8 @@ public class GetAppointmentByDateCommandTest {
         assertTrue(getFirstAppointmentByDateCommand.equals(getFirstAppointmentByDateCommand));
 
         // same values -> returns true
-        GetAppointmentByDateCommand getFirstAppointmentByDateCommandCopy = new GetAppointmentByDateCommand(firstPredicate);
+        GetAppointmentByDateCommand getFirstAppointmentByDateCommandCopy
+                = new GetAppointmentByDateCommand(firstPredicate);
         assertTrue(getFirstAppointmentByDateCommand.equals(getFirstAppointmentByDateCommandCopy));
 
         // different types -> returns false
@@ -70,7 +71,7 @@ public class GetAppointmentByDateCommandTest {
     @Test
     public void execute_multiplePersonsFound() {
         String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 3);
-        AppointmentByDatePredicate predicate = preparePredicate(LocalDate.of(2022,Month.APRIL,12).toString());
+        AppointmentByDatePredicate predicate = preparePredicate(LocalDate.of(2022, Month.APRIL, 12).toString());
         GetAppointmentByDateCommand command = new GetAppointmentByDateCommand(predicate);
         expectedModel.updateFilteredPersonList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
