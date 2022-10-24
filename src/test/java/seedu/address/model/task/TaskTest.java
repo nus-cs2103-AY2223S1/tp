@@ -27,14 +27,14 @@ public class TaskTest {
         Task editedTask1 = new TaskBuilder(TASK_1).withDeadline(VALID_TASKDEADLINE_BRAVO).build();
         assertTrue(TASK_1.isSameTask(editedTask1));
 
-        // different name, all other attributes same -> returns false
+        // different description, all other attributes same -> returns false
         editedTask1 = new TaskBuilder(TASK_1).withDescription(VALID_TASKDESCRIPTION_BRAVO).build();
         assertFalse(TASK_1.isSameTask(editedTask1));
 
-        // name differs in case, all other attributes same -> returns false
+        // name differs in case, all other attributes same -> returns true
         Task editedAlpha = new TaskBuilder(TASK_ALPHA)
                                 .withDescription(VALID_TASKDESCRIPTION_ALPHA.toLowerCase()).build();
-        assertFalse(TASK_ALPHA.isSameTask(editedAlpha));
+        assertTrue(TASK_ALPHA.isSameTask(editedAlpha));
 
         // name has trailing spaces, all other attributes same -> returns false
         String descriptionWithTrailingSpaces = VALID_TASKDESCRIPTION_ALPHA + " ";

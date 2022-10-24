@@ -231,6 +231,10 @@ public class AddressBook implements ReadOnlyAddressBook {
         tasks.remove(key);
     }
 
+    public void filterTask() {
+        tasks.filterTask();
+    }
+
     //// util methods
 
     @Override
