@@ -1,18 +1,13 @@
 package seedu.address.logic.commands.issue;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.IssueCliSyntax.PREFIX_DESCRIPTION;
 import static seedu.address.logic.parser.IssueCliSyntax.PREFIX_PRIORITY;
-import static seedu.address.logic.parser.IssueCliSyntax.PREFIX_PROJECT_ID;
 import static seedu.address.logic.parser.IssueCliSyntax.PREFIX_PROJECT_NAME;
 import static seedu.address.logic.parser.IssueCliSyntax.PREFIX_STATUS;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.logic.commands.CommandResult;
-import seedu.address.logic.commands.client.FindClientCommand;
-import seedu.address.logic.commands.issue.IssueCommand;
-import seedu.address.logic.parser.predicates.ClientContainsKeywordsPredicate;
 import seedu.address.logic.parser.predicates.IssueContainsKeywordsPredicate;
 import seedu.address.model.Model;
 import seedu.address.ui.Ui;

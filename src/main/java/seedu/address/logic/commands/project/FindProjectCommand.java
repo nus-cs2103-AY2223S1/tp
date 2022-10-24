@@ -6,9 +6,6 @@ import static seedu.address.logic.parser.ProjectCliSyntax.PREFIX_REPOSITORY;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.logic.commands.CommandResult;
-import seedu.address.logic.commands.issue.FindIssueCommand;
-import seedu.address.logic.commands.project.ProjectCommand;
-import seedu.address.logic.parser.predicates.IssueContainsKeywordsPredicate;
 import seedu.address.logic.parser.predicates.ProjectContainsKeywordsPredicate;
 import seedu.address.model.Model;
 import seedu.address.ui.Ui;

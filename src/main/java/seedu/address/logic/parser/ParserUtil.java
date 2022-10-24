@@ -268,7 +268,7 @@ public class ParserUtil {
                 trimmedPriority.equalsIgnoreCase("completed")
                         || trimmedPriority.equalsIgnoreCase("incomplete");
         if (!isValidStringCounterpart) {
-            throw new ParseException(Status.MESSAGE_STRING_REPRESENTATION_CONSTRAINTS);
+            throw new ParseException(Status.MESSAGE_STRING_CONSTRAINTS);
         }
     }
 
@@ -287,7 +287,7 @@ public class ParserUtil {
                         || trimmedPriority.equalsIgnoreCase("medium")
                         || trimmedPriority.equalsIgnoreCase("none");
         if (!isValidStringCounterpart) {
-            throw new ParseException(Priority.MESSAGE_STRING_REPRESENTATION_CONSTRAINTS);
+            throw new ParseException(Priority.MESSAGE_STRING_CONSTRAINTS);
         }
     }
 

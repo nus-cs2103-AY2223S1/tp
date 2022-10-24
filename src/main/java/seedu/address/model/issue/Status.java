@@ -7,7 +7,7 @@ import static java.lang.Boolean.parseBoolean;
  */
 public class Status {
 
-    public static String MESSAGE_STRING_REPRESENTATION_CONSTRAINTS = "Status should be completed or incomplete.";
+    public static final String MESSAGE_STRING_CONSTRAINTS = "Status should be completed or incomplete.";
     /**
      * Represents and empty Issue status.
      */

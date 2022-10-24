@@ -9,8 +9,8 @@ public enum Priority {
     NONE, LOW, MEDIUM, HIGH;
 
     public static final String MESSAGE_CONSTRAINTS = "Priority should be an integer 0, 1 or 2";
-    public static final String MESSAGE_STRING_REPRESENTATION_CONSTRAINTS = "Priority should be High, Low, Medium or " +
-            "None.";
+    public static final String MESSAGE_STRING_CONSTRAINTS = "Priority should be High, Low, Medium or "
+            + "None.";
 
     /**
      * Checks if the priority integer string is valid.
