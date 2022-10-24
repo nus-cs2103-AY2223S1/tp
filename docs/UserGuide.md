@@ -121,11 +121,22 @@ Format:
 Add a new task to the current team.
 
 Format:
-* `add_task TASK_NAME`
+* `add_task -n TASK_NAME -a ASSIGNEES -d DEADLINE`
 
 Examples:
-*  `add_task bake with butter` will add a task with the name "bake with butter" to the current team's task list.
-*  `add_task fry` will add a task with the name "fry" to the current team's task list.
+* `add_task -n "Merge PR" -a "Alex Yeoh" -d "2023-12-12 23:59""` will add a task with the name "Merge PR", assignee
+"Alex Yeoh" and deadline "2023-12-12 23:59" to the current team's task list.
+
+### Edit task in team : `edit_task`
+
+Edits a specified task in the current team. Fields are optional and will be overwritten accordingly.
+
+Format:
+* `edit_task TASK_INDEX -n TASK_NAME -a ASSIGNEES -d DEADLINE`
+
+Examples:
+* `edit_task 1 -n "Merge PR" -a "Alex Yeoh" -d "2023-12-12 23:59""` will edit the first task in the current team's task
+list, setting the name as "Merge PR", assignee as "Alex Yeoh" and deadline as "2023-12-12 23:59".
 
 ### Assign task to team member: `assign_task`
 
