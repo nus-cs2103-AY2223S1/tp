@@ -12,6 +12,7 @@ import java.util.logging.Logger;
 import seedu.studmap.MainApp;
 import seedu.studmap.commons.core.LogsCenter;
 import seedu.studmap.commons.core.index.IndexListGenerator;
+import seedu.studmap.commons.util.CollectionUtil;
 import seedu.studmap.logic.commands.commons.StudentEditor;
 import seedu.studmap.model.student.Student;
 import seedu.studmap.model.student.StudentData;
@@ -49,29 +50,17 @@ public class DelTagCommand extends EditStudentCommand<DelTagCommand.DelTagComman
         super(indexListGenerator, editor);
     }
 
-    /**
-     * Formats the tag set to be more user-friendly string.
-     *
-     * @param tags set to be formatted.
-     * @return the fomatted list of tags/
-     */
-    public static String tagSetToString(Set<Tag> tags) {
-        String res = "";
-        for (Tag tag : tags) {
-            res += tag.toString() + ", ";
-        }
-        return res.substring(0, res.length() - 2);
-    }
-
     @Override
     public String getSingleEditSuccessMessage(Student editedStudent) {
-        return String.format(MESSAGE_SINGLE_DEL_TAGS_SUCCESS, tagSetToString(studentEditor.tags),
+        return String.format(MESSAGE_SINGLE_DEL_TAGS_SUCCESS, CollectionUtil.collectionToString(studentEditor.tags),
                 editedStudent.getName());
     }
 
     @Override
     public String getMultiEditSuccessMessage(List<Student> editedStudents) {
-        return String.format(MESSAGE_MULTI_DEL_TAGS_SUCCESS, tagSetToString(studentEditor.tags), editedStudents.size());
+        return String.format(MESSAGE_MULTI_DEL_TAGS_SUCCESS,
+                CollectionUtil.collectionToString(studentEditor.tags),
+                editedStudents.size());
     }
 
     @Override

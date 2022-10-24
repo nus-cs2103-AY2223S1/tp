@@ -22,6 +22,7 @@ import seedu.studmap.commons.core.Messages;
 import seedu.studmap.commons.core.index.AllIndexGenerator;
 import seedu.studmap.commons.core.index.Index;
 import seedu.studmap.commons.core.index.SingleIndexGenerator;
+import seedu.studmap.commons.util.CollectionUtil;
 import seedu.studmap.model.Model;
 import seedu.studmap.model.ModelManager;
 import seedu.studmap.model.StudMap;
@@ -76,7 +77,7 @@ public class AddTagCommandTest {
         expectedModel.setStudent(lastStudent, editedStudentExpected);
         String expectedMessage = String.format(
                 AddTagCommand.MESSAGE_SINGLE_ADD_TAGS_SUCCESS,
-                AddTagCommand.tagSetToString(singleTagSet),
+                CollectionUtil.collectionToString(singleTagSet),
                 editedStudentBase.getName());
 
         assertCommandSuccess(addTagCommand, baseModel, expectedMessage, expectedModel);
@@ -101,7 +102,7 @@ public class AddTagCommandTest {
         expectedModel.setStudent(lastStudent, editedStudentExpected);
         String expectedMessage = String.format(
                 AddTagCommand.MESSAGE_SINGLE_ADD_TAGS_SUCCESS,
-                AddTagCommand.tagSetToString(multiTagSet),
+                CollectionUtil.collectionToString(multiTagSet),
                 editedStudentBase.getName());
 
         assertCommandSuccess(addTagCommand, baseModel, expectedMessage, expectedModel);
@@ -118,7 +119,7 @@ public class AddTagCommandTest {
 
         String expectedMessage = String.format(
                 AddTagCommand.MESSAGE_MULTI_ADD_TAGS_SUCCESS,
-                AddTagCommand.tagSetToString(singleTagSet),
+                CollectionUtil.collectionToString(singleTagSet),
                 model.getFilteredStudentList().size());
 
         for (Student student : model.getFilteredStudentList()) {
@@ -144,7 +145,7 @@ public class AddTagCommandTest {
 
         String expectedMessage = String.format(
                 AddTagCommand.MESSAGE_MULTI_ADD_TAGS_SUCCESS,
-                AddTagCommand.tagSetToString(multiTagSet),
+                CollectionUtil.collectionToString(multiTagSet),
                 model.getFilteredStudentList().size());
 
         for (Student student : model.getFilteredStudentList()) {
@@ -178,7 +179,7 @@ public class AddTagCommandTest {
         expectedModel.setStudent(lastStudent, editedStudentModel);
         String expectedMessage = String.format(
                 AddTagCommand.MESSAGE_SINGLE_ADD_TAGS_SUCCESS,
-                AddTagCommand.tagSetToString(multiTagSet),
+                CollectionUtil.collectionToString(multiTagSet),
                 editedStudentBase.getName());
 
         assertCommandSuccess(addTagCommand, baseModel, expectedMessage, expectedModel);
@@ -202,7 +203,7 @@ public class AddTagCommandTest {
         expectedModel.setStudent(lastStudent, editedStudentModel);
         String expectedMessage = String.format(
                 AddTagCommand.MESSAGE_SINGLE_ADD_TAGS_SUCCESS,
-                AddTagCommand.tagSetToString(singleTagSet),
+                CollectionUtil.collectionToString(singleTagSet),
                 editedStudentBase.getName());
 
         assertCommandSuccess(addTagCommand, baseModel, expectedMessage, expectedModel);
@@ -220,7 +221,7 @@ public class AddTagCommandTest {
 
         String expectedMessage = String.format(
                 AddTagCommand.MESSAGE_SINGLE_ADD_TAGS_SUCCESS,
-                AddTagCommand.tagSetToString(singleTagSet),
+                CollectionUtil.collectionToString(singleTagSet),
                 model.getFilteredStudentList().get(0).getName());
 
         for (Student student : model.getFilteredStudentList()) {
@@ -253,7 +254,7 @@ public class AddTagCommandTest {
         expectedModel.setStudent(lastStudent, editedStudentExpected);
         String expectedMessage = String.format(
                 AddTagCommand.MESSAGE_SINGLE_ADD_TAGS_SUCCESS,
-                AddTagCommand.tagSetToString(singleTagSet),
+                CollectionUtil.collectionToString(singleTagSet),
                 editedStudentBase.getName());
 
         showStudentAtIndex(baseModel, INDEX_SECOND_STUDENT);
