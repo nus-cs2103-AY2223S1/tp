@@ -40,18 +40,18 @@ class JsonAdaptedPerson {
      */
     @JsonCreator
     public JsonAdaptedPerson(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
-            @JsonProperty("email") String email,
-            @JsonProperty("dob") String dob, @JsonProperty("address") String address,
-            @JsonProperty("tagged") List<JsonAdaptedTag> tagged, @JsonProperty("gender") String gender) {
+            @JsonProperty("email") String email, @JsonProperty("address") String address,
+            @JsonProperty("gender") String gender, @JsonProperty("dob") String dob,
+            @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
         this.name = name;
         this.phone = phone;
         this.email = email;
-        this.dob = dob;
         this.address = address;
+        this.gender = gender;
+        this.dob = dob;
         if (tagged != null) {
             this.tagged.addAll(tagged);
         }
-        this.gender = gender;
     }
 
     /**
