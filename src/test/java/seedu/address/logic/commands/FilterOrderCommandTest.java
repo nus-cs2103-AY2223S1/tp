@@ -116,7 +116,7 @@ public class FilterOrderCommandTest {
         String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 1);
 
         AdditionalRequestPredicate<Order> additionalRequestPredicate = new AdditionalRequestPredicate<>(
-                Arrays.asList("fluffy"));
+                Arrays.asList("Good with children"));
         Predicate<Order> defaultPredicate = new Predicate<Order>() {
             @Override
             public boolean test(Order order) {
@@ -133,7 +133,7 @@ public class FilterOrderCommandTest {
 
     @Test
     public void generatePredicate_matchingOrderStatus_twoOrdersFound() {
-        String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 2);
+        String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 1);
 
         OrderStatusPredicate<Order> orderStatusPredicate = new OrderStatusPredicate<>(OrderStatus.PENDING);
         Predicate<Order> defaultPredicate = new Predicate<Order>() {
@@ -146,14 +146,14 @@ public class FilterOrderCommandTest {
         FilterOrderCommand command = new FilterOrderCommand(defaultPredicate, orderStatusPredicate, defaultPredicate);
         oExpectedModel.updateFilteredOrderList(command.generatePredicate());
         assertCommandSuccess(command, oModel, expectedMessage, oExpectedModel);
-        assertEquals(Arrays.asList(TypicalOrders.ORDER_1, TypicalOrders.ORDER_2), oModel.getFilteredOrderList());
+        assertEquals(Arrays.asList(TypicalOrders.ORDER_1), oModel.getFilteredOrderList());
     }
 
     @Test
     public void generatePredicate_exactMatchingPriceRange_oneOrderFound() {
         String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 1);
 
-        PriceRangePredicate<Order> priceRangePredicate = new PriceRangePredicate<>(new Price(60.6), new Price(150.4));
+        PriceRangePredicate<Order> priceRangePredicate = new PriceRangePredicate<>(new Price(200.00), new Price(400.00));
         Predicate<Order> defaultPredicate = new Predicate<Order>() {
             @Override
             public boolean test(Order order) {
@@ -171,7 +171,7 @@ public class FilterOrderCommandTest {
     public void generatePredicate_widePriceRange_twoOrdersFound() {
         String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 2);
 
-        PriceRangePredicate<Order> priceRangePredicate = new PriceRangePredicate<>(new Price(1), new Price(1500.4));
+        PriceRangePredicate<Order> priceRangePredicate = new PriceRangePredicate<>(new Price(200), new Price(800));
         Predicate<Order> defaultPredicate = new Predicate<Order>() {
             @Override
             public boolean test(Order order) {
