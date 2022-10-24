@@ -22,10 +22,8 @@ public class ImportCommandParser implements Parser<ImportCommand> {
     public ImportCommand parse(String args) throws ParseException {
         String trimmedArgs = args.toLowerCase().trim();
         switch (trimmedArgs) {
-        case(ImportCommand.REPLACE):
-            return new ImportCommand(ImportCommand.REPLACE);
-        case(ImportCommand.KEEP):
-            return new ImportCommand(ImportCommand.KEEP);
+        case(ImportCommand.REPLACE): case(ImportCommand.KEEP):
+            return new ImportCommand(trimmedArgs);
         default:
             throw new ParseException(
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, ImportCommand.MESSAGE_USAGE));

@@ -47,7 +47,7 @@ public class ImportCommand extends Command {
             Optional<ReadOnlyTrackAScholar> trackAScholar =
                     jsonTrackAScholarStorage.readTrackAScholar(importedFilePath);
             if (trackAScholar.isEmpty()) {
-                return new CommandResult(String.format(NO_FILE_ERROR));
+                throw new CommandException(NO_FILE_ERROR);
             }
             ObservableList<Applicant> applicantList = trackAScholar.get().getApplicantList();
             if (str.equals(REPLACE)) {
@@ -56,10 +56,7 @@ public class ImportCommand extends Command {
                 model.importWithoutReplace(applicantList);
             }
         } catch (DataConversionException e) {
-            return new CommandResult(String.format("%s: %s", e, NO_FILE_ERROR));
-
-        } catch (NoSuchElementException e) {
-            return new CommandResult(String.format("%s: %s", e, NO_FILE_ERROR));
+            throw new CommandException(NO_FILE_ERROR);
         }
         return new CommandResult(String.format(MESSAGE_SUCCESS));
 
