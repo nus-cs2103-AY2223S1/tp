@@ -7,7 +7,7 @@ import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.NameStartsWithKeywordPredicate;
 
 /**
- * Parses input arguments and creates a new FindPersonCommand object
+ * Parses input arguments and creates a new FindPersonCommand object.
  */
 public class FindPersonCommandParser implements Parser<FindPersonCommand> {
     /**

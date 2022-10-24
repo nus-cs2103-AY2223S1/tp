@@ -2,7 +2,7 @@ package seedu.address.model.module;
 
 /**
  * Represents a {@code Module}'s title (optional field) in Plannit.
- * Guarantees: immutable
+ * Guarantees: immutable.
  */
 public class ModuleTitle {
 

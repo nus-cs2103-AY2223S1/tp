@@ -7,7 +7,7 @@ import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.module.ModuleCodeStartsWithKeywordPredicate;
 
 /**
- * Parses input arguments and creates a new FindModuleCommand object
+ * Parses input arguments and creates a new FindModuleCommand object.
  */
 public class FindModuleCommandParser implements Parser<FindModuleCommand> {
     /**

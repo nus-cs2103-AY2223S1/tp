@@ -9,7 +9,7 @@ import seedu.address.model.Model;
 import seedu.address.model.module.ModuleCodeStartsWithKeywordPredicate;
 
 /**
- * Finds and lists all modules in Plannit whose module code starts with any of the argument keywords.
+ * Finds and lists all modules in Plannit whose module code starts with the argument keywords.
  * Keyword matching is case-insensitive.
  */
 public class FindModuleCommand extends Command {

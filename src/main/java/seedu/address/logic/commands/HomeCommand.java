@@ -7,7 +7,7 @@ import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 import seedu.address.model.Model;
 
 /**
- * Navigates the user back to homepage
+ * Navigates the user back to home page.
  */
 public class HomeCommand extends Command {
 
@@ -24,6 +24,7 @@ public class HomeCommand extends Command {
     }
 
     private void updateFilteredList(Model model) {
+        requireNonNull(model);
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
         model.updateFilteredModuleList(PREDICATE_SHOW_ALL_MODULES);
     }

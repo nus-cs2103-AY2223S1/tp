@@ -9,7 +9,7 @@ import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.module.ModuleCode;
 
 /**
- * Parses input arguments and creates a new DeleteModuleCommand object
+ * Parses input arguments and creates a new DeleteModuleCommand object.
  */
 public class DeleteModuleCommandParser implements Parser<DeleteModuleCommand> {
 

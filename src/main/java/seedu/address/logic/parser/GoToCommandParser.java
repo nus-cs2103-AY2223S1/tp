@@ -8,7 +8,7 @@ import seedu.address.model.module.ModuleCode;
 import seedu.address.model.module.ModuleCodeMatchesKeywordPredicate;
 
 /**
- * Parses input arguments and creates a new GoToCommand object
+ * Parses input arguments and creates a new GoToCommand object.
  */
 public class GoToCommandParser implements Parser<GoToCommand> {
     /**

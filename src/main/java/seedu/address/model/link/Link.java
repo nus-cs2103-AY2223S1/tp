@@ -5,7 +5,7 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
 
 /**
  * Represents a Link in the address book.
- * Guarantees: immutable; name is valid as declared in {@link #isValidLinkName(String)}
+ * Guarantees: immutable; name is valid as declared in {@link #isValidLinkName(String)}.
  */
 public class Link {
 

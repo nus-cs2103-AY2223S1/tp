@@ -15,7 +15,7 @@ import seedu.address.model.person.Person;
 import seedu.address.model.person.PersonIsInModulePredicate;
 
 /**
- * Go to the exact module in Plannit whose module code is the argument keywords.
+ * Go to the exact module in Plannit whose module code is the argument keyword.
  * Keyword matching is case-insensitive.
  */
 public class GoToCommand extends Command {
