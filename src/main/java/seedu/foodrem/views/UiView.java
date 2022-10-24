@@ -13,26 +13,20 @@ public class UiView {
         this.display = display;
     }
 
-    private void viewFrom(String message) {
-        requireNonNull(message);
-        display.clear();
-        display.place(StringView.from(message));
-    }
-
-    private void viewFrom(Item item) {
-        requireNonNull(item);
-        display.clear();
-        display.place(ItemView.from(item));
-    }
-
     // TODO: Use a less hacky method
     public void viewFrom(Object object) {
+        requireNonNull(object);
+        display.clear();
         if (object instanceof String) {
-            viewFrom((String) object);
-        } else if (object instanceof Item) {
-            viewFrom((Item) object);
-        } else {
-            throw new UnsupportedOperationException();
+            display.place(StringView.from((String) object));
+            return;
         }
+        if (object instanceof Item) {
+            display.place(ItemView.from((Item) object));
+            return;
+        }
+
+        // Code should not reach here unless there is programmer error
+        throw new UnsupportedOperationException();
     }
 }
