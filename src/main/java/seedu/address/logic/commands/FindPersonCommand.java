@@ -37,20 +37,20 @@ public class FindPersonCommand extends Command {
         requireNonNull(model);
         //filter by name first
         model.updateFilteredPersonList(new NameContainsKeywordsPredicate(keywords));
-        int current_filter = 1;
+        int current_Filter = 1;
         //while filtered list is still empty, keep trying new field
-        while(current_filter < 4) {
-            if(model.getFilteredPersonList().size() != 0) {
+        while (current_Filter < 4) {
+            if (model.getFilteredPersonList().size() != 0) {
                 break;
-            } else if(current_filter == 1) {
+            } else if (current_Filter == 1) {
                 model.updateFilteredPersonList(new PersonModuleCodeContainsKeywordsPredicate(keywords));
-                current_filter++;
-            } else if(current_filter == 2){
+                current_Filter++;
+            } else if (current_Filter == 2) {
                 model.updateFilteredPersonList(new EmailContainsKeywordsPredicate(keywords));
-                current_filter++;
+                current_Filter++;
             } else {
                 model.updateFilteredPersonList(new PhoneContainsKeywordsPredicate(keywords));
-                current_filter++;
+                current_Filter++;
             }
         }
         return new CommandResult(

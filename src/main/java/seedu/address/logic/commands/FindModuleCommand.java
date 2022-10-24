@@ -36,17 +36,17 @@ public class FindModuleCommand extends Command {
         requireNonNull(model);
         //filter by name first
         model.updateFilteredModuleList(new ModuleCodeContainsKeywordsPredicate(keywords));
-        int current_filter = 1;
+        int current_Filter = 1;
         //while filtered list is still empty, keep trying new field
-        while(current_filter < 3) {
-            if(model.getFilteredModuleList().size() != 0) {
+        while (current_Filter < 3) {
+            if (model.getFilteredModuleList().size() != 0) {
                 break;
-            } else if(current_filter == 1) {
+            } else if (current_Filter == 1) {
                 model.updateFilteredModuleList(new LectureDetailsContainsKeywordsPredicate(keywords));
-                current_filter++;
+                current_Filter++;
             } else {
                 model.updateFilteredModuleList(new TutorialDetailsContainsKeywordsPredicate(keywords));
-                current_filter++;
+                current_Filter++;
             }
         }
         return new CommandResult(

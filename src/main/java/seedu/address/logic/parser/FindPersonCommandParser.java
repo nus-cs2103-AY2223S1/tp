@@ -24,9 +24,9 @@ public class FindPersonCommandParser implements Parser<FindPersonCommand> {
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindPersonCommand.MESSAGE_USAGE));
         }
 
-        String[] Keywords = trimmedArgs.split("\\s+");
+        String[] keywords = trimmedArgs.split("\\s+");
 
-        return new FindPersonCommand(Arrays.asList(Keywords));
+        return new FindPersonCommand(Arrays.asList(keywords));
     }
 
 }

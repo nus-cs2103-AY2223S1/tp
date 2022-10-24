@@ -24,9 +24,9 @@ public class FindModuleCommandParser implements Parser<FindModuleCommand> {
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindModuleCommand.MESSAGE_USAGE));
         }
 
-        String[] Keywords = trimmedArgs.split("\\s+");
+        String[] keywords = trimmedArgs.split("\\s+");
 
-        return new FindModuleCommand(Arrays.asList(Keywords));
+        return new FindModuleCommand(Arrays.asList(keywords));
     }
 
 }
