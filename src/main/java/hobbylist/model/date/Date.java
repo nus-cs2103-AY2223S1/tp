@@ -8,7 +8,7 @@ import hobbylist.commons.util.AppUtil;
 
 /**
  * Represents a Date of an activity.
- * Guarantees: immutable; name is valid as declared in {@link #isValidTagName(String)}
+ * Guarantees: immutable; name is valid as declared in {@link #isValidDateString(String)}
  */
 public class Date {
 
@@ -38,6 +38,9 @@ public class Date {
         return this.date;
     }
 
+    /**
+     * Returns origin description of the date (yyyy-mm-dd)
+     */
     public String getOrginString() {
         return orginString;
     }
@@ -67,6 +70,19 @@ public class Date {
     public String toString() {
         return '[' + this.date.format(DateTimeFormatter.ofPattern("MMM d yyyy")) + ']';
 
+    }
+    /**
+     * Return yyyy-mm format of this date.
+     */
+    public String yearMonthDescrption() {
+        String temp[] = this.getOrginString().split("-");
+        return temp[0] + "-" + temp[1];
+    }
+    /**
+     * Return yyyy format of this date.
+     */
+    public String yearDescription() {
+        return this.getOrginString().split("-")[0];
     }
 
 }
