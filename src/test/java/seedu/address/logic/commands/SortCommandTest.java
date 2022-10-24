@@ -34,8 +34,7 @@ public class SortCommandTest {
 
     @Test
     public void testGetApptThrowsRuntimeException() {
-        Throwable exception = assertThrows(RuntimeException.class,
-                () -> MUSAB_WITH_NO_APPT.getAppointments().get(0));
+        Throwable exception = assertThrows(RuntimeException.class, () -> MUSAB_WITH_NO_APPT.getAppointments().get(0));
         assertEquals("Index 0 out of bounds for length 0", exception.getMessage());
     }
 
