@@ -26,8 +26,8 @@ public class RangeCommand extends Command {
             + "Parameters: \nKEYWORD l/VAL\n\n"
             + "Example: \n" + COMMAND_WORD + " l/7";
 
-    private final DateWithinRangePredicate predicate;
     public final boolean isAdvanced;
+    private final DateWithinRangePredicate predicate;
 
     /**
      * Default constructor for basic version.

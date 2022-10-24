@@ -13,8 +13,7 @@ public class Messages {
     /**
      * Specific messages for the {@RangeCommand} feature.
      */
-    public static final String MESSAGE_RANGE_COMMAND_ADVANCED
-            = "Exercises from the last %1$d days listed!";
+    public static final String MESSAGE_RANGE_COMMAND_ADVANCED = "Exercises from the last %1$d days listed!";
     public static final String MESSAGE_RANGE_COMMAND_ADVANCED_TODAY = "Exercises from today listed!";
     public static final String MESSAGE_RANGE_COMMAND_ADVANCED_YESTERDAY = "Exercises since yesterday listed!";
     public static final String MESSAGE_RANGE_COMMAND_ADVANCED_WEEK =
