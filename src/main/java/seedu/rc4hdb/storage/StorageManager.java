@@ -15,14 +15,20 @@ import seedu.rc4hdb.model.ReadOnlyUserPrefs;
 import seedu.rc4hdb.model.UserPrefs;
 import seedu.rc4hdb.storage.csv.CsvFileManager;
 import seedu.rc4hdb.storage.residentbook.ResidentBookStorage;
+import seedu.rc4hdb.storage.venuebook.VenueBookStorage;
+
 
 /**
- * Manages storage of AddressBook data in local storage.
+ * Manages storage of RC4HDB data in local storage.
  */
 public class StorageManager implements Storage {
 
     private static final Logger logger = LogsCenter.getLogger(StorageManager.class);
+
+    private ResidentVenueStorage residentVenueStorage; // to replace resident book storage and venue book storage
     private ResidentBookStorage residentBookStorage;
+    private VenueBookStorage venueBookStorage;
+
     private UserPrefsStorage userPrefsStorage;
     private CsvFileManager csvManager;
 
@@ -102,7 +108,7 @@ public class StorageManager implements Storage {
         residentBookStorage.createResidentBookFile(filePath);
     }
 
-    //================ Start of CsvResidentBookStorage methods ====================
+    //================ CsvResidentBookStorage methods =====================
 
     @Override
     public Optional<ReadOnlyResidentBook> readCsvFile(Path filePath) throws IOException, DataConversionException {
@@ -110,7 +116,7 @@ public class StorageManager implements Storage {
         return csvManager.readCsvFile(filePath);
     }
 
-    //================ End of CsvResidentBookStorage methods ======================
+    //================ CsvResidentBookStorage methods ======================
 
     @Override
     public boolean equals(Object obj) {

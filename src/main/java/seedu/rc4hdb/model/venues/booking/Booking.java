@@ -56,6 +56,26 @@ public abstract class Booking {
                 && this.dayOfWeek.equals(bookingDay);
     }
 
+    //====================== Start of getters ===============================
+
+    public VenueName getVenueName() {
+        return venueName;
+    }
+
+    public Resident getResident() {
+        return resident;
+    }
+
+    public HourPeriod getHourPeriod() {
+        return hourPeriod;
+    }
+
+    public Day getDayOfWeek() {
+        return dayOfWeek;
+    }
+
+    //====================== End of getters =================================
+
     @Override
     public String toString() {
         final StringBuilder builder = new StringBuilder();
