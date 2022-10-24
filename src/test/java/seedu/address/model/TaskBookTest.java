@@ -5,7 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalToDos.FIRST;
-import static seedu.address.testutil.TypicalToDos.getTypicalTaskBook;
+import static seedu.address.testutil.TypicalToDos.getTypicalTaskBookWithToDos;
 
 import java.util.Collections;
 
@@ -27,7 +27,7 @@ public class TaskBookTest {
 
     @Test
     public void resetData_withValidReadOnlyTaskBook_replacesData() {
-        TaskBook newData = getTypicalTaskBook();
+        TaskBook newData = getTypicalTaskBookWithToDos();
         taskBook.resetData(newData);
         assertEquals(newData, taskBook);
     }

@@ -1,7 +1,7 @@
 package seedu.address.logic.commands;
 
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
-import static seedu.address.testutil.TypicalToDos.getTypicalTaskBook;
+import static seedu.address.testutil.TypicalToDos.getTypicalTaskBookWithToDos;
 
 import org.junit.jupiter.api.Test;
 
@@ -21,7 +21,7 @@ public class UploadPictureCommandTest {
     public void executeUploadIndexOutOfBounds_failure() {
         AddressBook ab = TypicalStudents.getTypicalAddressBook();
         int size = ab.getStudentList().size();
-        model = new ModelManager(ab, getTypicalTaskBook(), new UserPrefs());
+        model = new ModelManager(ab, getTypicalTaskBookWithToDos(), new UserPrefs());
         UploadPictureCommand command = new UploadPictureCommand(Index.fromOneBased(size + 1));
 
         assertCommandFailure(command, model, Messages.MESSAGE_INVALID_STUDENT_DISPLAYED_INDEX);
