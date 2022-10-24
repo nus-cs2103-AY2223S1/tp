@@ -1,6 +1,7 @@
 package seedu.foodrem.logic.commands.itemcommands;
 
-import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.foodrem.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.foodrem.logic.commands.CommandTestUtil.assertCommandSuccess;
@@ -153,21 +154,16 @@ public class EditCommandTest {
         // same values -> returns true
         EditItemDescriptor copyDescriptor = new EditItemDescriptor(CommandTestUtil.DESC_POTATOES);
         EditCommand commandWithSameValues = new EditCommand(INDEX_FIRST_ITEM, copyDescriptor);
-        assertTrue(standardCommand.equals(commandWithSameValues));
-
+        assertEquals(standardCommand, commandWithSameValues);
         // same object -> returns true
-        assertTrue(standardCommand.equals(standardCommand));
-
+        assertEquals(standardCommand, standardCommand);
         // null -> returns false
-        assertFalse(standardCommand.equals(null));
-
+        assertNotEquals(null, standardCommand);
         // different types -> returns false
-        assertFalse(standardCommand.equals(new ResetCommand()));
-
+        assertNotEquals(standardCommand, new ResetCommand());
         // different index -> returns false
-        assertFalse(standardCommand.equals(new EditCommand(INDEX_SECOND_ITEM, CommandTestUtil.DESC_POTATOES)));
-
+        assertNotEquals(standardCommand, new EditCommand(INDEX_SECOND_ITEM, CommandTestUtil.DESC_POTATOES));
         // different descriptor -> returns false
-        assertFalse(standardCommand.equals(new EditCommand(INDEX_FIRST_ITEM, CommandTestUtil.DESC_CUCUMBERS)));
+        assertNotEquals(standardCommand, new EditCommand(INDEX_FIRST_ITEM, CommandTestUtil.DESC_CUCUMBERS));
     }
 }
