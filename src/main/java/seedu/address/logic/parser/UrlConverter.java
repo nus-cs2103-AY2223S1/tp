@@ -4,6 +4,9 @@ import picocli.CommandLine;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.team.Url;
 
+/**
+ * Converter from {@code String} to {@code Url}.
+ */
 public class UrlConverter implements CommandLine.ITypeConverter<Url> {
     @Override
     public Url convert(String value) throws Exception {

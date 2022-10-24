@@ -4,6 +4,9 @@ import picocli.CommandLine;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Name;
 
+/**
+ * Converter from {@code String} to {@code Name}.
+ */
 public class NameConverter implements CommandLine.ITypeConverter<Name> {
     @Override
     public Name convert(String value) throws Exception {

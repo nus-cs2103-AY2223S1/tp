@@ -8,6 +8,9 @@ import picocli.CommandLine;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.team.Task;
 
+/**
+ * Converter from {@code String} to {@code Task}.
+ */
 public class TaskConverter implements CommandLine.ITypeConverter<Task> {
     @Override
     public Task convert(String value) throws Exception {

@@ -8,6 +8,9 @@ import java.util.Stack;
 import picocli.CommandLine;
 import seedu.address.logic.commands.SetDeadlineCommand;
 
+/**
+ * Converter from {@code String} arguments to {@code LocalDateTime}.
+ */
 public class LocalDateTimeConverter implements CommandLine.IParameterConsumer {
     @Override
     public void consumeParameters(Stack<String> args, CommandLine.Model.ArgSpec argSpec,

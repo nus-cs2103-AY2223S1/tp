@@ -3,6 +3,9 @@ package seedu.address.logic.parser;
 import picocli.CommandLine;
 import seedu.address.commons.core.index.Index;
 
+/**
+ * Converter from {@code String} to {@code Index}.
+ */
 public class IndexConverter implements CommandLine.ITypeConverter<Index> {
     @Override
     public Index convert(String value) throws Exception {

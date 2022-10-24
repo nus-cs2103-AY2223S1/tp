@@ -7,7 +7,11 @@ import java.util.List;
 import picocli.CommandLine;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 
-public class NameContainsKeywordsPredicateConverter implements CommandLine.ITypeConverter<NameContainsKeywordsPredicate> {
+/**
+ * Converter from {@code String} to {@code NameContainsKeywordsPredicate}.
+ */
+public class NameContainsKeywordsPredicateConverter implements
+        CommandLine.ITypeConverter<NameContainsKeywordsPredicate> {
     @Override
     public NameContainsKeywordsPredicate convert(String value) throws Exception {
         String trimmedArgs = value.trim();
