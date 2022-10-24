@@ -58,7 +58,8 @@ public class DeleteMedicationCommandTest {
         // use second person in TypicalPersons since there is one medication to delete
         Patient patientToDeleteMedication = model.getFilteredPersonList().get(INDEX_SECOND_PERSON.getZeroBased());
         Patient editedPatient = new PersonBuilder(patientToDeleteMedication).withMedications().build();
-        Medication deletedMedication = patientToDeleteMedication.getMedications().get(INDEX_FIRST_ATTRIBUTE.getZeroBased());
+        Medication deletedMedication = patientToDeleteMedication.getMedications().get(
+                INDEX_FIRST_ATTRIBUTE.getZeroBased());
 
         DeleteMedicationCommand deleteMedicationCommand =
                 new DeleteMedicationCommand(INDEX_SECOND_PERSON, INDEX_FIRST_ATTRIBUTE);
@@ -91,7 +92,8 @@ public class DeleteMedicationCommandTest {
         Patient patientToDeleteMedication = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
         Patient editedPatient = new PersonBuilder(model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased()))
                 .withMedications().build();
-        Medication deletedMedication = patientToDeleteMedication.getMedications().get(INDEX_FIRST_ATTRIBUTE.getZeroBased());
+        Medication deletedMedication = patientToDeleteMedication.getMedications().get(
+                INDEX_FIRST_ATTRIBUTE.getZeroBased());
 
         DeleteMedicationCommand deleteMedicationCommand =
                 new DeleteMedicationCommand(INDEX_FIRST_PERSON, INDEX_FIRST_ATTRIBUTE);
