@@ -58,6 +58,7 @@ public class PersonCard extends UiPart<Region> {
      */
     public PersonCard(Person person, int displayedIndex) {
         super(FXML);
+        this.cardPane.setStyle(String.format("-fx-border-color:%s ; -fx-border-width: 0 0 0 5;", "#123456"));
         this.person = person;
         id.setText(displayedIndex + ". ");
         name.setText(person.getName().fullName);
