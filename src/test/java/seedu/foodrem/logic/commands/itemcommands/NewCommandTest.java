@@ -79,7 +79,7 @@ public class NewCommandTest {
     /**
      * A default model stub that have all the methods failing.
      */
-    private static class ModelStub implements Model {
+    public static class ModelStub implements Model {
         @Override
         public boolean hasTag(Tag tag) {
             throw new AssertionError("This method should not be called.");
