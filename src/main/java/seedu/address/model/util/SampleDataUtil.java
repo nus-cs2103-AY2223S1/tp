@@ -6,7 +6,11 @@ import java.util.stream.Collectors;
 
 import seedu.address.model.AddressBook;
 import seedu.address.model.ReadOnlyAddressBook;
-import seedu.address.model.event.*;
+import seedu.address.model.event.Event;
+import seedu.address.model.event.EventTitle;
+import seedu.address.model.event.Purpose;
+import seedu.address.model.event.StartDate;
+import seedu.address.model.event.StartTime;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.DateOfBirth;
 import seedu.address.model.person.Email;
@@ -45,12 +49,18 @@ public class SampleDataUtil {
 
     public static Event[] getSampleEvents() {
         return new Event[] {
-            new Event(new EventTitle("2/2 Sale"), new StartDate("2/2/2022"), new StartTime("02:00"), new Purpose("For football fans")),
-            new Event(new EventTitle("4/4 Sale"), new StartDate("4/4/2022"), new StartTime("16:00"), new Purpose("For computer scientists")),
-            new Event(new EventTitle("6/6 Sale") , new StartDate("6/6/2022"), new StartTime("06:00"), new Purpose("For car enthusiasts")),
-            new Event(new EventTitle("8/8 Sale") , new StartDate("8/8/2022"), new StartTime("20:00"), new Purpose("For bread lovers")),
-            new Event(new EventTitle("10/10 Sale") , new StartDate("10/10/2022"), new StartTime("10:00"), new Purpose("For watch hobbyists")),
-            new Event(new EventTitle("12/12 Sale") , new StartDate("12/12/2022"), new StartTime("12:00"), new Purpose("For stationery buyers"))
+            new Event(new EventTitle("2/2 Sale"), new StartDate("2/2/2022"), new StartTime("02:00"),
+                    new Purpose("For football fans")),
+            new Event(new EventTitle("4/4 Sale"), new StartDate("4/4/2022"), new StartTime("16:00"),
+                    new Purpose("For computer scientists")),
+            new Event(new EventTitle("6/6 Sale") , new StartDate("6/6/2022"), new StartTime("06:00"),
+                    new Purpose("For car enthusiasts")),
+            new Event(new EventTitle("8/8 Sale") , new StartDate("8/8/2022"), new StartTime("20:00"),
+                    new Purpose("For bread lovers")),
+            new Event(new EventTitle("10/10 Sale") , new StartDate("10/10/2022"), new StartTime("10:00"),
+                    new Purpose("For watch hobbyists")),
+            new Event(new EventTitle("12/12 Sale") , new StartDate("12/12/2022"), new StartTime("12:00"),
+                    new Purpose("For stationery buyers"))
         };
     }
 

@@ -4,7 +4,11 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
-import seedu.address.model.event.*;
+import seedu.address.model.event.Event;
+import seedu.address.model.event.EventTitle;
+import seedu.address.model.event.Purpose;
+import seedu.address.model.event.StartDate;
+import seedu.address.model.event.StartTime;
 
 /**
  * Jackson-friendly version of Event
