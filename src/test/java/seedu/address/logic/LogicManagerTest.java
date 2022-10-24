@@ -8,7 +8,6 @@ import static seedu.address.logic.commands.CommandTestUtil.COMPANY_DESC_GOOGLE;
 import static seedu.address.logic.commands.CommandTestUtil.DESCRIPTION_DESC_GOOGLE;
 import static seedu.address.logic.commands.CommandTestUtil.LINK_DESC_GOOGLE;
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalInternships.GOOGLE;
 import static seedu.address.testutil.TypicalInternships.GOOGLE_NO_INTERVIEW;
 
 import java.io.IOException;

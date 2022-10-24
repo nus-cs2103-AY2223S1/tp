@@ -26,7 +26,8 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_BACKEND;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_FRONTEND;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
-import static seedu.address.testutil.TypicalInternships.*;
+import static seedu.address.testutil.TypicalInternships.GOOGLE_NO_INTERVIEW;
+import static seedu.address.testutil.TypicalInternships.TIKTOK_NO_INTERVIEW;
 
 import org.junit.jupiter.api.Test;
 

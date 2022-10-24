@@ -69,9 +69,15 @@ public class InterviewDateTime {
         }
     }
 
-    public static boolean BothNullOrEqual(InterviewDateTime interviewDateTime1, InterviewDateTime interviewDateTime2) {
+    /**
+     * Checks if two interviewDateTime objects are equal, even if both are null, and returns the result.
+     * @param interviewDateTime1 First InterviewDateTime.
+     * @param interviewDateTime2 Second InterviewDateTime.
+     * @return true if both are equal.
+     */
+    public static boolean bothNullOrEqual(InterviewDateTime interviewDateTime1, InterviewDateTime interviewDateTime2) {
         if (interviewDateTime1 == null) {
-            return interviewDateTime1 == interviewDateTime2;
+            return null == interviewDateTime2;
         } else {
             return interviewDateTime1.equals(interviewDateTime2);
         }

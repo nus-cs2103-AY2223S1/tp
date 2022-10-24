@@ -109,7 +109,7 @@ public class Internship {
                 && otherInternship.getDescription().equals(getDescription())
                 && otherInternship.getApplicationStatus().equals(getApplicationStatus())
                 && otherInternship.getAppliedDate().equals(getAppliedDate())
-                && InterviewDateTime.BothNullOrEqual(getInterviewDateTime(), otherInternship.getInterviewDateTime())
+                && InterviewDateTime.bothNullOrEqual(getInterviewDateTime(), otherInternship.getInterviewDateTime())
                 && otherInternship.getTags().equals(getTags());
     }
 
