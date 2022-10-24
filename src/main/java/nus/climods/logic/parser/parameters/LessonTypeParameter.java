@@ -2,6 +2,9 @@ package nus.climods.logic.parser.parameters;
 
 import nus.climods.logic.parser.ParserUtil;
 
+/**
+ * Represents Lesson Type Parameter
+ */
 public class LessonTypeParameter extends PositionalParameter<String> {
     public static final String INVALID_INPUT_MESSAGE = "Lesson type should not be empty!";
     public static final String PARSE_EXCEPTION_MESSAGE = "Invalid lesson type: %s";

@@ -1,11 +1,11 @@
 package nus.climods.logic.parser;
 
+import java.util.Arrays;
+
 import nus.climods.logic.commands.PickCommand;
 import nus.climods.logic.parser.exceptions.ParseException;
 import nus.climods.logic.parser.parameters.LessonTypeParameter;
 import nus.climods.logic.parser.parameters.ModuleCodeParameter;
-
-import java.util.Arrays;
 
 /**
  * Parses input arguments and creates a new PickCommand object

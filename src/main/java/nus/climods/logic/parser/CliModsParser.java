@@ -6,7 +6,14 @@ import static nus.climods.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import nus.climods.logic.commands.*;
+import nus.climods.logic.commands.AddCommand;
+import nus.climods.logic.commands.Command;
+import nus.climods.logic.commands.DeleteCommand;
+import nus.climods.logic.commands.ExitCommand;
+import nus.climods.logic.commands.FindCommand;
+import nus.climods.logic.commands.HelpCommand;
+import nus.climods.logic.commands.ListCommand;
+import nus.climods.logic.commands.PickCommand;
 import nus.climods.logic.parser.exceptions.ParseException;
 
 /**
