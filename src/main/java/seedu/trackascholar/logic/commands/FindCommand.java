@@ -1,7 +1,6 @@
 package seedu.trackascholar.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-
 import static seedu.trackascholar.logic.parser.CliSyntax.PREFIX_MAJOR;
 import static seedu.trackascholar.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.trackascholar.logic.parser.CliSyntax.PREFIX_SCHOLARSHIP;
