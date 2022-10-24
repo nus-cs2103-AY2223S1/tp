@@ -20,8 +20,8 @@ class ExitCommandTest {
     void execute() {
         CommandResult commandResult = new ExitCommand().execute(model);
 
-        assertFalse(commandResult.isShowHelp());
-        assertTrue(commandResult.isExit());
-        assertEquals(commandResult.getFeedbackToUser(), "Exiting FoodRem as requested ...");
+        assertFalse(commandResult.shouldShowHelp());
+        assertTrue(commandResult.shouldExit());
+        assertEquals(commandResult.getOutput(), "Exiting FoodRem as requested ...");
     }
 }

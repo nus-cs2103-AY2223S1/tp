@@ -46,8 +46,8 @@ class HelpCommandTest {
     void execute() {
         CommandResult commandResult = new HelpCommand("Test").execute(model);
         assertEquals(commandResult.getHelpText(), "Test");
-        assertTrue(commandResult.isShowHelp());
-        assertEquals(commandResult.getFeedbackToUser(), "Opened help window.");
+        assertTrue(commandResult.shouldShowHelp());
+        assertEquals(commandResult.getOutput(), "Opened help window.");
     }
 
     @Test

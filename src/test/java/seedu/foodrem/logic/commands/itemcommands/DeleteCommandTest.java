@@ -30,8 +30,8 @@ public class DeleteCommandTest {
 
     @Test
     public void execute_validIndexUnfilteredList_success() {
-        Item itemToDelete = model.getFilteredItemList().get(INDEX_FIRST_ITEM.getZeroBased());
-        DeleteCommand deleteCommand = new DeleteCommand(INDEX_FIRST_ITEM);
+        Item itemToDelete = model.getCurrentList().get(TypicalIndexes.INDEX_FIRST_ITEM.getZeroBased());
+        DeleteCommand deleteCommand = new DeleteCommand(TypicalIndexes.INDEX_FIRST_ITEM);
 
         ModelManager expectedModel = new ModelManager(model.getFoodRem(), new UserPrefs());
         expectedModel.deleteItem(itemToDelete);
