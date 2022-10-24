@@ -126,12 +126,6 @@ The `Model` component,
 * stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
 * does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `AddressBook`, which `Person` references. This allows `AddressBook` to only require one `Tag` object per unique tag, instead of each `Person` needing their own `Tag` objects.<br>
-
-<img src="images/BetterModelClassDiagram.png" width="450" />
-
-</div>
-
 
 ### Storage component
 
@@ -158,7 +152,7 @@ This section describes some noteworthy details on how certain features are imple
 
 `DeleteCommand` now accepts multiple inputs and allows multiple `Person` to be deleted from the `Model` in a single command.
 
-The sequence diagram below shows how a `DeleteCommand` with multiple inputs is executed. 
+The sequence diagram below shows how a `DeleteCommand` with multiple inputs is executed.
 
 <img src="images/DeleteMultipleSequenceDiagram.png" >
 
@@ -166,7 +160,174 @@ The sequence diagram below shows how a `DeleteCommand` with multiple inputs is e
 1. `DeleteCommandParser` now returns a `Set<Index>` instead of just a single `Index` to be used as arguments for the `DeleteCommand`constructor.
 2. If any of the inputs are invalid (out of bounds indexes or non-integer characters) a `ParseException` will be thrown, even if other inputs are valid.
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The order of the inputs does not matter as the set is sorted in reverse order before creating the `DeleteCommand` object. This ensures that deletion of each entry in the `model` does not affect the deletion of the subsequent entries while the `for` loop is running. >
+<div markdown="span" class="alert alert-info">
+:information_source: **Note:** The order of the inputs does not matter as the set is sorted in reverse order before creating the `DeleteCommand` object. This ensures that deletion of each entry in the `model` does not affect the deletion of the subsequent entries while the `for` loop is running.
+</div>
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The order of the inputs does not matter as the set is sorted in reverse order before creating the `DeleteCommand` object. This ensures that deletion of each entry in the `model` does not affect the deletion of the subsequent entries while the `for` loop is running.</div>
+
+
+### Fast Template Feature
+
+#### Implementation
+
+The Fast Template Feature is facilitated by `TemplateCommand`. It extends 'Command' with a String`personChosen` class field that stores the chosen Person. The chosen Person refers to the Person that the User wants the template of, i.e. `prof / ta / student`. Additonally, it implements the following operations:
+- TemplateCommand#execute() - Executes the template command, whose command word is `tt`.
+- TemplateCommand#isValidPerson(String p) - Returns the boolean indicating whether the string p refers to a valid person. I.e. is a command word for a Person
+
+Given below is an example usage scenario and how the template operation mechanism behaves at each step.
+
+Step 1. The user types `tt prof` and presses enter.
+
+Step 2. The `tt prof ` will be parsed by `AddressBook#parseCommand()` which will return a `TemplateCommandParser`.
+
+Step 3. The `TemplateCommandParser` will parse `prof` using `parse()`. This will return a `TemplateCommand` since `prof` is a valid command word for a Person, in this case Professor.
+
+Step 4. The `TemplateCommand` will then be executed using `TemplateCommand#execute()`.
+
+Step 5. A `CommandResult` will be returned. It has the field `personTemplateString` that is set to `"prof"`.
+
+Step 6. The UI will call `hasPersonTemplate()` from the CommandResult.
+
+Step 7. If the previous step is true, the UI will update itself accordingly, i.e. paste the appropriate Person's template on the CLI, by calling `handleTemplate()`.
+
+The following sequence diagram shows how the github feature works.
+
+![ttCommandSequenceDiagram](images/ttCommandSequenceDiagram.png)
+
+#### Design considerations:
+
+**Aspect: How the template is provided to User:**
+
+* **Current Implementation:** Pastes the template directly into the CLI where the User types commands
+    * Pros: More intuitive
+    * Cons: More complicated to implement, need to click or press tab + left arrow to get to CLI.
+
+* **Alternative:** Copies the template into the User's clipboard
+    * Pros: Easier to implement, can access CLI directly after pasting
+    * Cons: Less intuitive, less technically competent users may not understand what a clipboard is.
+
+### Open Github Profile Page Feature
+
+#### Implementation
+
+The Open Github Profile Page Feature is facilitated by `GithubCommand`. It extends 'Command' with an `Index` class field that stores the target index. The target index refers to the index of the Address that users want to execute the Github command on. Additonally, it implements the following operations:
+- GithubCommand#execute() - Executes the github command.
+
+Given below is an example usage scenario and how the github operation mechanism behaves at each step.
+
+Step 1. The user types `github 1` and presses enter.
+
+Step 2. The `github 1 ` will be parsed by `AddressBook#parseCommand()` which will return a `GithubCommandParser`.
+
+Step 3. The `GithubCommandParser` will parse `1` using `parse()`. This will return a `GithubCommand`
+
+Step 4. The `GithubCommand` will then be executed using `GithubCommand#execute()`.
+
+<div markdown="span" class="alert alert-info">
+:information_source: **Note:** executes() checks if the github username field of target person is empty. If it is empty an exception will be thrown.
+</div>
+
+Step 5. The `Model#openGithub()` method will be called and the githubProfile page associated to target address would be opened on the user's default browser using `java.awt.Desktop.getDesktop.browse(uri)`.
+
+Step 6. A `CommandResult` indicating successful completion of the command will be returned.
+
+The following sequence diagram shows how the github feature works.
+
+![GithubSequenceDiagram](images/GithubCommandSequenceDiagram.png)
+
+The following activity diagram summarizes what happens when a user executes a new Github command:
+
+![GithubSequenceDiagram](images/GithubCommandActivityDiagram.png)
+
+#### Design considerations:
+
+**Aspect: How open github profile page feature executes:**
+
+* **Alternative 1 (current choice):** Opens github profile page through user's default browser.
+    * Pros: Easy to implement.
+    * Cons: Users will be redirected to their default browser.
+
+* **Alternative 2:** Opens github profile page through in-built browser.
+    * Pros: Users will be able to see the github profile page from the app itself
+    * Cons: Difficult to implement. (need to build browser on app, need to reserve UI space for it)
+
+### Find Contact
+
+#### Implementation
+
+The Find Contact Feature is facilitated by `FindCommand`. It extends `Command` with a `PersonMatchesPredicate` field (which extends the `Predicate` interface) that is used to filter persons to produce the desirable list of contacts.
+
+Given below is an example usage scenario and how the find command mechanism behaves at each step.
+
+Step 1. The user types `find n/bob` and presses enter.
+
+Step 2. The `find n/bob` will be parsed by `AddressBook#parseCommand()` which will return a `FindCommandParser` which also creates a `PersonMatchesPredicate`.
+
+Step 3. The `FindCommandParser` will parse `n/bob` using `parse()` and then set the `namesList` of the `PersonMatchesPredicate` to a list of strings containing `bob`.
+
+<div markdown="span" class="alert alert-info">
+:information_source: **Note:** `FindCommand` supports an "all fields matched" mode and "any fields matched" for module codes and tags. This means the setting of the modulesList and tagsList works differently than the other fields.
+</div>
+
+Step 5. `FindCommandParser` then creates a `FindCommand` by passing the `PersonMatchesPredicate` to its constructor.
+
+Step 4. The `FindCommand` will then be executed using `FindCommand#execute()`.
+
+Step 5. The `Model#updateFilteredPersonList(predicate);` method will be called and the list of persons will be filtered according to the `PersonMatchesPredicate`.
+
+Step 6. A `CommandResult` indicating successful completion of the command will be returned.
+
+Step 7. A list of contacts, if any, will be displayed to the user.
+
+The following sequence diagram shows how the find contact feature works.
+
+![FindCommandSequenceDiagram](images/FindCommandSequenceDiagram.png)
+
+#### Design considerations:
+
+**Aspect: How open github profile page feature executes:**
+
+* **Alternative 1 (current choice):** Use a class that implements the `Predicate` interface to filter contacts.
+    * Pros: Easily extendable for future enhancements of find command.
+    * Pros: Less of the codebase needs to be changed.
+
+* **Alternative 2:** Create a generic contact class through the fields provided and match with other contacts to filter.
+    * Cons: Difficult to implement / bad runtime and memory usage when multiple values are provided for a single field. e.g. `find n/bob anne` will mean 2 contacts are created with names `bob` and `anne` respectively. Current contacts will then need to be compared with both of these.
+
+### Sort List Feature
+
+#### Implementation
+
+The proposed sort mechanism is facilitated by `SortCommand`. It extends `Command` which alters the `UniquePersonList`
+stored within `AddressBook` to display the list on the UI in a sorted order according to the users specification. The
+`Order` class is used to specify the arrangement of the list in either `Order.ASCENDING` or `Order.DESCENDING`.
+
+Given below is an example usage scenario and how the sort command mechanism behaves at each step.
+
+Step 1. The user types `sort A-Z n/name` and presses enter.
+
+Step 2. The `sort A-Z n/name` will be parsed by `AddressBook#parseCommand()` which will return a `SortCommandParser` and a `SortPersonListDescriptor`
+
+Step 3. The `FindCommandParser` will parse `A-Z` and `n/name` using `parse()` and then create an `Order` based on `A-Z` and also set the `isSortByName` and
+`isSortByModuleCode` attributes of the `SortPersonListDescriptor`.
+
+Step 4. `SortCommandParser` then creates a `SortCommand` by passing the `Order` and `SortPersonListDescriptor` to its constructor.
+
+Step 5. The `SortCommand` will then be executed using `SortCommand#execute()`.
+
+Step 6. The `Model#sort(order, isSortByName, isSortByModuleCode);` method will be called and the list of persons will be sorted according to the `order`, `isSortByName` and `isSortByModuleCode`.
+
+Step 7. A `CommandResult` indicating successful completion of the command will be returned.
+
+Step 8. A list of contacts in a sorted order, if any, will be displayed to the user.
+
+The following sequence diagram shows how the sort feature works.
+
+![SortCommandSequenceDiagram](images/SortCommandSequenceDiagram.png)
+
+The following activity diagram summarizes what happens when a user executes a new sort command:
+
+![SortCommandActivityDiagram](images/SortCommandActivityDiagram.png)
 
 ### \[Proposed\] Undo/redo feature
 
@@ -238,155 +399,14 @@ The following activity diagram summarizes what happens when a user executes a ne
 **Aspect: How undo & redo executes:**
 
 * **Alternative 1 (current choice):** Saves the entire address book.
-  * Pros: Easy to implement.
-  * Cons: May have performance issues in terms of memory usage.
+    * Pros: Easy to implement.
+    * Cons: May have performance issues in terms of memory usage.
 
 * **Alternative 2:** Individual command knows how to undo/redo by
   itself.
-  * Pros: Will use less memory (e.g. for `delete`, just save the person being deleted).
-  * Cons: We must ensure that the implementation of each individual command are correct.
+    * Pros: Will use less memory (e.g. for `delete`, just save the person being deleted).
+    * Cons: We must ensure that the implementation of each individual command are correct.
 
-_{more aspects and alternatives to be added}_
-
-
-### Fast Template Feature
-
-#### Implementation
-
-The Fast Template Feature is facilitated by `TemplateCommand`. It extends 'Command' with a String`personChosen` class field that stores the chosen Person. The chosen Person refers to the Person that the User wants the template of, i.e. `prof / ta / student`. Additonally, it implements the following operations:
-- TemplateCommand#execute() - Executes the template command, whose command word is `tt`.
-- TemplateCommand#isValidPerson(String p) - Returns the boolean indicating whether the string p refers to a valid person. I.e. is a command word for a Person
-
-Given below is an example usage scenario and how the template operation mechanism behaves at each step.
-
-Step 1. The user types `tt prof` and presses enter.
-
-Step 2. The `tt prof ` will be parsed by `AddressBook#parseCommand()` which will return a `TemplateCommandParser`.
-
-Step 3. The `TemplateCommandParser` will parse `prof` using `parse()`. This will return a `TemplateCommand` since `prof` is a valid command word for a Person, in this case Professor.
-
-Step 4. The `TemplateCommand` will then be executed using `TemplateCommand#execute()`.
-
-Step 5. A `CommandResult` will be returned. It has the field `personTemplateString` that is set to `"prof"`.
-
-Step 6. The UI will call `hasPersonTemplate()` from the CommandResult.
-
-Step 7. If the previous step is true, the UI will update itself accordingly, i.e. paste the appropriate Person's template on the CLI, by calling `handleTemplate()`.
-
-The following sequence diagram shows how the github feature works.
-
-![ttCommandSequenceDiagram](images/ttCommandSequenceDiagram.png)
-
-#### Design considerations:
-
-**Aspect: How the template is provided to User:**
-
-* **Current Implementation:** Pastes the template directly into the CLI where the User types commands
-    * Pros: More intuitive
-    * Cons: More complicated to implement, need to click or press tab + left arrow to get to CLI.
-
-* **Alternative:** Copies the template into the User's clipboard
-    * Pros: Easier to implement, can access CLI directly after pasting 
-    * Cons: Less intuitive, less technically competent users may not understand what a clipboard is.
-
-### Open Github Profile Page Feature
-
-#### Implementation
-
-The Open Github Profile Page Feature is facilitated by `GithubCommand`. It extends 'Command' with an `Index` class field that stores the target index. The target index refers to the index of the Address that users want to execute the Github command on. Additonally, it implements the following operations:
-- GithubCommand#execute() - Executes the github command.
-
-Given below is an example usage scenario and how the github operation mechanism behaves at each step.
-
-Step 1. The user types `github 1` and presses enter.
-
-Step 2. The `github 1 ` will be parsed by `AddressBook#parseCommand()` which will return a `GithubCommandParser`.
-
-Step 3. The `GithubCommandParser` will parse `1` using `parse()`. This will return a `GithubCommand`
-
-Step 4. The `GithubCommand` will then be executed using `GithubCommand#execute()`.
-
-<div markdown="span" class="alert alert-info">
-:information_source: **Note:** executes() checks if the github username field of target person is empty. If it is empty an exception will be thrown.
-</div>
-
-Step 5. The `Model#openGithub()` method will be called and the githubProfile page associated to target address would be opened on the user's default browser using `java.awt.Desktop.getDesktop.browse(uri)`.
-
-<div markdown="span" class="alert alert-info">
-:information_source: **Note:** openGithub() checks if the url built is invalid. If url is invalid an exception would be thrown.
-</div>
-
-Step 6. A `CommandResult` indicating successful completion of the command will be returned.
-
-The following sequence diagram shows how the github feature works.
-
-![GithubSequenceDiagram](images/GithubCommandSequenceDiagram.png)
-
-The following activity diagram summarizes what happens when a user executes a new Github command:
-
-![GithubSequenceDiagram](images/GithubCommandActivityDiagram.png)
-
-#### Design considerations:
-
-**Aspect: How open github profile page feature executes:**
-
-* **Alternative 1 (current choice):** Opens github profile page through user's default browser.
-    * Pros: Easy to implement.
-    * Cons: Users will be redirected to their default browser.
-
-* **Alternative 2:** Opens github profile page through in-built browser.
-    * Pros: Users will be able to see the github profile page from the app itself
-    * Cons: Difficult to implement. (need to build browser on app, need to reserve UI space for it)
-
-
-
-### \[Proposed\] Data archiving
-
-_{Explain here how the data archiving feature will be implemented}_
-
-### Find Contact
-
-#### Implementation
-
-The Find Contact Feature is facilitated by `FindCommand`. It extends `Command` with a `PersonMatchesPredicate` field (which extends the `Predicate` interface) that is used to filter persons to produce the desirable list of contacts.
-
-Given below is an example usage scenario and how the find command mechanism behaves at each step.
-
-Step 1. The user types `find n/bob` and presses enter.
-
-Step 2. The `find n/bob` will be parsed by `AddressBook#parseCommand()` which will return a `FindCommandParser` which also creates a `PersonMatchesPredicate`.
-
-Step 3. The `FindCommandParser` will parse `n/bob` using `parse()` and then set the `namesList` of the `PersonMatchesPredicate` to a list of strings containing `bob`.
-
-<div markdown="span" class="alert alert-info">
-:information_source: **Note:** `FindCommand` supports an "all fields matched" mode and "any fields matched" for module codes and tags. This means the setting of the modulesList and tagsList works differently than the other fields.
-</div>
-
-Step 5. `FindCommandParser` then creates a `FindCommand` by passing the `PersonMatchesPredicate` to its constructor.
-
-Step 4. The `FindCommand` will then be executed using `FindCommand#execute()`.
-
-Step 5. The `Model#updateFilteredPersonList(predicate);` method will be called and the list of persons will be filtered according to the `PersonMatchesPredicate`.
-
-Step 6. A `CommandResult` indicating successful completion of the command will be returned.
-
-Step 7. A list of contacts, if any, will be displayed to the user.
-
-The following sequence diagram shows how the find contact feature works.
-
-![FindCommandSequenceDiagram](images/FindCommandSequenceDiagram.png)
-
-#### Design considerations:
-
-**Aspect: How open github profile page feature executes:**
-
-* **Alternative 1 (current choice):** Use a class that implements the `Predicate` interface to filter contacts.
-    * Pros: Easily extendable for future enhancements of find command.
-    * Pros: Less of the codebase needs to be changed.
-
-* **Alternative 2:** Create a generic contact class through the fields provided and match with other contacts to filter.
-    * Cons: Difficult to implement / bad runtime and memory usage when multiple values are provided for a single field. e.g. `find n/bob anne` will mean 2 contacts are created with names `bob` and `anne` respectively. Current contacts will then need to be compared with both of these.
-    
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Documentation, logging, testing, configuration, dev-ops**
@@ -418,13 +438,18 @@ The following sequence diagram shows how the find contact feature works.
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                    | I want to …​                                     | So that I can…​                                       |
-|----------|--------------------------------------------|--------------------------------------------------|-------------------------------------------------------|
-| `* * *`  | Student                                    | Add contacts of my tutors/professor/ friends     | I can keep track of my social network                 |
-| `* * *`  | Student                                    | Remove unnecessary contacts from my address book | I can manage my social network                        |
-| `* * *`  | Student                                    | Find contacts based on name                      | I can look up a person’s contact easily               |
-| `* * *`  | Student                                    | Edit contacts in  address book                   | I can make changes if that a person’s contact changed |
-| `* * *`  | Student                                    | Display all the contacts in my list              | I can see all the contacts that I have added so far   |
+| Priority | As a …​   | I want to …​                                                            | So that I can…​                                                       |
+|----------|-----------|-------------------------------------------------------------------------|-----------------------------------------------------------------------|
+| `* * *`  | Student   | add contacts of my tutors/professors/friends                            | keep track of my social network                                       |
+| `* * *`  | Student   | remove unnecessary contacts from my address book                        | manage my social network                                              |
+| `* * *`  | Student   | find contacts based on name                                             | look up a person’s contact easily                                     |
+| `* * *`  | Student   | edit contacts in  address book                                          | make changes if that a person’s contact changed                       |
+| `* * *`  | Student   | display all the contacts in my list                                     | see all the contacts that I have added so far                         |
+| `* * *`  | New User  | clear all examples sample address                                       | start using the application quickly                                   |
+| `* * *`  | Student   | keep track of my tutors/professors/friend's github username             | find their github username easily                                     |
+| `* * *`  | Lazy User | open github profile page of my tutors/professor/ friends with a command | view my friends/Teaching Assistants/Professors github projects easily |
+| `* * *`  | Student   | keep track of professor's specialisation                                | know which professor to consult                                       |
+| `* * *`  | Student   | keep track of my fellow students' year                                  | know who I should approach for help                                   |
 
 
 *{More to be added}*
@@ -437,10 +462,10 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1.  User requests to list persons
-2.  AddressBook shows a list of persons
-3.  User requests to delete a specific person in the list
-4.  AddressBook deletes the person
+1.  User requests to list persons.
+2.  SoConnect shows a list of persons.
+3.  User requests to delete a specific person in the list.
+4.  SoConnect deletes the person.
 
     Use case ends.
 
@@ -452,11 +477,32 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 3a. The given index is invalid.
 
-    * 3a1. AddressBook shows an error message.
+    * 3a1. SoConnect shows an error message.
 
       Use case resumes at step 2.
 
-*{More to be added}*
+**Use case: Open a person's GitHub profile page**
+
+**MSS**
+
+1.  User requests to list persons.
+2.  SoConnect shows a list of persons.
+3.  User requests to open the GitHub profile page of a specific person in the list.
+4.  SoConnect opens the person's GitHub profile page on User's default browser.
+
+    Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty.
+
+  Use case ends.
+
+* 3a. The given index is invalid or the person at given index does not have a GitHub username associated him/her.
+
+    * 3a1. AddressBook shows an error message.
+
+      Use case resumes at step 2.
 
 ### Non-Functional Requirements
 
@@ -478,9 +524,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 Given below are instructions to test the app manually.
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** These instructions only provide a starting point for testers to work on;
+<div markdown="span" class="alert alert-info">
+:information_source: **Note:** These instructions only provide a starting point for testers to work on;
 testers are expected to do more *exploratory* testing.
-
 </div>
 
 ### Launch and shutdown
@@ -498,8 +544,6 @@ testers are expected to do more *exploratory* testing.
    1. Re-launch the app by double-clicking the jar file.<br>
        Expected: The most recent window size and location is retained.
 
-1. _{ more test cases …​ }_
-
 ### Deleting a person
 
 1. Deleting a person while all persons are being shown
@@ -515,7 +559,23 @@ testers are expected to do more *exploratory* testing.
    1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
       Expected: Similar to previous.
 
-1. _{ more test cases …​ }_
+### Opening a person's GitHub Profile Page
+
+1. Opening a person's GitHub Profile Page while all persons are being shown
+
+    1. Prerequisites: List all persons using the `list` command. Multiple persons in the list. 1st person in list has an associated GitHub Username. 2nd person in list does not have an associated GitHub username.
+
+    2. Test case: `github 1`<br>
+       Expected: The person's GitHub profile page will be opened in user's default browser. Success message shown in status message
+
+    3. Test case: `github 0`<br>
+       Expected: No GitHub Profile page will be opened. Error details shown in the status message.
+
+    4. Test case: `github 2`<br>
+       Expected: No GitHub Profile page will be opened. Error details shown in the status message.
+
+    5. Other incorrect github commands to try: `github`, `github x`, `...` (where x is larger than the list size)<br>
+       Expected: Similar to previous.
 
 ### Saving data
 

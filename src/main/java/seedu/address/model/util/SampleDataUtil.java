@@ -47,7 +47,7 @@ public class SampleDataUtil {
                 new Gender("M"),
                 getTagSet("family"), new Location("COM2 LT4"), new GithubUsername("Wongwong", true),
                 new Rating("5"), new Specialisation("Discrete Math"),
-                new OfficeHour("MONDAY, 3:00 PM to 5:00 PM", true)),
+                new OfficeHour("MONDAY, 03:00 PM - 05:00 PM", true)),
             new TeachingAssistant(new Name("Irfan Ibrahim"), new ModuleCode("CS2100"), new Phone("92492021"),
                 new Email("irfan@example.com"),
                 new Gender("M"),

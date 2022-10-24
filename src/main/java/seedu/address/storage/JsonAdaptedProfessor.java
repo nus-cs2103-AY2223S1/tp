@@ -173,9 +173,9 @@ class JsonAdaptedProfessor extends JsonAdaptedPerson {
         if (getOfficeHour().equals(OfficeHour.EMPTY_OFFICE_HOUR)) {
             modelOfficeHour = new OfficeHour(getOfficeHour(), false);
         } else {
-            //if (!OfficeHour.isValidOfficeHour(getOfficeHour())) {
-            //throw new IllegalValueException(OfficeHour.MESSAGE_CONSTRAINTS);
-            //}
+            if (!OfficeHour.isValidOfficeHour(getOfficeHour())) {
+                throw new IllegalValueException(OfficeHour.MESSAGE_CONSTRAINTS);
+            }
             modelOfficeHour = new OfficeHour(getOfficeHour(), true);
         }
 
