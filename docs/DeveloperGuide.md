@@ -515,7 +515,7 @@ Step 3. The old tag on every contact and every task is now replaced with the new
 
 The following activity diagram summarizes what happens when a user executes a tag add command:
 
-(insert activity diagram here)
+![TagEditSequenceDiagram](images/TagEditSequenceDiagram.png)
 
 #### Design consideration
 
