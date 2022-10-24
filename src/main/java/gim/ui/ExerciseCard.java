@@ -41,7 +41,7 @@ public class ExerciseCard extends UiPart<Region> {
     private FlowPane dates;
 
     /**
-     * Creates a {@code ExerciseCode} with the given {@code Exercise} and index to display.
+     * Creates a {@code ExerciseCard} with the given {@code Exercise} and index to display.
      */
     public ExerciseCard(Exercise exercise, int displayedIndex) {
         super(FXML);

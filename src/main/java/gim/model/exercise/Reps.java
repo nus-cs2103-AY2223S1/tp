@@ -9,7 +9,8 @@ import static java.util.Objects.requireNonNull;
  */
 public class Reps {
 
-    public static final String MESSAGE_CONSTRAINTS = "Reps can only take positive integer values, up to 3 digits";
+    public static final String MESSAGE_CONSTRAINTS = "Reps can only take positive integer values, up to 3 digits, "
+            + "leading zeros are not allowed";
 
     /*
      * The first character of the Reps must not be a whitespace,
