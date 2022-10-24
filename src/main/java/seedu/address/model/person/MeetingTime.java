@@ -17,7 +17,7 @@ public class MeetingTime {
             + "YYYY: Any 4 digits\n"
             + "HH:MM: Range from 00:00-23:59\n";
     public static final String VALIDATION_REGEX =
-            "^([0][1-9]|([012][0-9])|(3[01]))\\-([0][1-9]|1[012])\\-\\d\\d\\d\\d\\-([0-1]?[0-9]|2?[0-3]):([0-5]\\d)$";
+            "^([0][1-9]|([12][0-9])|(3[01]))\\-([0][1-9]|1[012])\\-\\d\\d\\d\\d\\-([0-1]?[0-9]|2?[0-3]):([0-5]\\d)$";
     public final String value;
     public final String displayValue;
 
