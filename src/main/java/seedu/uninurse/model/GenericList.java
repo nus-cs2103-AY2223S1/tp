@@ -44,7 +44,8 @@ public interface GenericList<T> {
     boolean isEmpty();
 
     /**
-     * Returns the internal task list.
+     * Returns an immutable copy of the internal list, which throws {@code UnsupportedOperationException}
+     * if modification is attempted.
      */
     List<T> getInternalList();
 }

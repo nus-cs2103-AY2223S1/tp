@@ -12,7 +12,7 @@ import seedu.uninurse.model.condition.Condition;
 
 public class JsonAdaptedConditionTest {
 
-    private static final JsonAdaptedCondition condition = new JsonAdaptedCondition(TYPICAL_CONDITION_DIABETES);
+    private static final JsonAdaptedCondition JSON_CONDITION = new JsonAdaptedCondition(TYPICAL_CONDITION_DIABETES);
     private static final String INVALID_CONDITION = " ";
 
     @Test
@@ -23,7 +23,7 @@ public class JsonAdaptedConditionTest {
 
     @Test
     public void getCondition() {
-        assertEquals(condition.getCondition(), TYPICAL_CONDITION_DIABETES);
+        assertEquals(JSON_CONDITION.getCondition(), TYPICAL_CONDITION_DIABETES);
     }
 
     @Test

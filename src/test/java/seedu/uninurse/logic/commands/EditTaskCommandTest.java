@@ -8,8 +8,8 @@ import static seedu.uninurse.logic.commands.CommandTestUtil.assertCommandSuccess
 import static seedu.uninurse.logic.commands.CommandTestUtil.showPersonAtIndex;
 import static seedu.uninurse.testutil.Assert.assertThrows;
 import static seedu.uninurse.testutil.TypicalDateTime.DATE_TIME_ONE;
+import static seedu.uninurse.testutil.TypicalIndexes.INDEX_FIRST_ATTRIBUTE;
 import static seedu.uninurse.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
-import static seedu.uninurse.testutil.TypicalIndexes.INDEX_FIRST_TASK;
 import static seedu.uninurse.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
 import static seedu.uninurse.testutil.TypicalPersons.getTypicalUninurseBook;
 import static seedu.uninurse.testutil.TypicalTasks.TASK_CARE_PLAN;
@@ -37,7 +37,7 @@ class EditTaskCommandTest {
     @Test
     public void constructor_nullPatientIndex_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () ->
-                new EditTaskCommand(null, INDEX_FIRST_TASK, TASK_CARE_PLAN));
+                new EditTaskCommand(null, INDEX_FIRST_ATTRIBUTE, TASK_CARE_PLAN));
     }
 
     @Test
@@ -49,12 +49,13 @@ class EditTaskCommandTest {
     @Test
     public void constructor_nullTask_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () ->
-                new EditTaskCommand(INDEX_FIRST_PERSON, INDEX_FIRST_TASK, null));
+                new EditTaskCommand(INDEX_FIRST_PERSON, INDEX_FIRST_ATTRIBUTE, null));
     }
 
     @Test
     public void execute_nullModel_throwsNullPointerException() {
-        EditTaskCommand editTaskCommand = new EditTaskCommand(INDEX_FIRST_PERSON, INDEX_FIRST_TASK, TASK_CARE_PLAN);
+        EditTaskCommand editTaskCommand = new EditTaskCommand(INDEX_FIRST_PERSON, INDEX_FIRST_ATTRIBUTE,
+                TASK_CARE_PLAN);
         assertThrows(NullPointerException.class, () -> editTaskCommand.execute(null));
     }
 
@@ -63,19 +64,19 @@ class EditTaskCommandTest {
         // Use second patient as the first patient in typical persons does not have a task
         Patient secondPatient = model.getFilteredPersonList().get(INDEX_SECOND_PERSON.getZeroBased());
 
-        Task initialTask = secondPatient.getTasks().get(INDEX_FIRST_TASK.getZeroBased());
+        Task initialTask = secondPatient.getTasks().get(INDEX_FIRST_ATTRIBUTE.getZeroBased());
         Task editedTask = new Task(TASK_STUB);
 
         Patient editedPatient = new PersonBuilder(secondPatient)
-                .withTasks(secondPatient.getTasks().edit(INDEX_FIRST_TASK.getZeroBased(), editedTask)
+                .withTasks(secondPatient.getTasks().edit(INDEX_FIRST_ATTRIBUTE.getZeroBased(), editedTask)
                         .getInternalList().toArray(Task[]::new))
                 // to convert the TaskList into an array of string representation of tasks
                 .build();
 
-        EditTaskCommand editTaskCommand = new EditTaskCommand(INDEX_SECOND_PERSON, INDEX_FIRST_TASK, editedTask);
+        EditTaskCommand editTaskCommand = new EditTaskCommand(INDEX_SECOND_PERSON, INDEX_FIRST_ATTRIBUTE, editedTask);
 
         String expectedMessage = String.format(EditTaskCommand.MESSAGE_EDIT_TASK_SUCCESS,
-                INDEX_FIRST_TASK.getOneBased(), editedPatient.getName().toString(), initialTask, editedTask);
+                INDEX_FIRST_ATTRIBUTE.getOneBased(), editedPatient.getName().toString(), initialTask, editedTask);
 
         Model expectedModel = new ModelManager(new UninurseBook(model.getUninurseBook()), new UserPrefs());
         expectedModel.setPerson(secondPatient, editedPatient);
@@ -89,7 +90,8 @@ class EditTaskCommandTest {
     @Test
     public void execute_invalidPersonIndexUnfilteredList_failure() {
         Index outOfBoundIndex = Index.fromOneBased(model.getFilteredPersonList().size() + 1);
-        EditTaskCommand editTaskCommand = new EditTaskCommand(outOfBoundIndex, INDEX_FIRST_TASK, new Task(TASK_STUB));
+        EditTaskCommand editTaskCommand = new EditTaskCommand(outOfBoundIndex, INDEX_FIRST_ATTRIBUTE,
+                new Task(TASK_STUB));
 
         assertCommandFailure(editTaskCommand, model, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
     }
@@ -101,7 +103,8 @@ class EditTaskCommandTest {
 
         assertTrue(outOfBoundIndex.getZeroBased() < model.getUninurseBook().getPersonList().size());
 
-        EditTaskCommand editTaskCommand = new EditTaskCommand(outOfBoundIndex, INDEX_FIRST_TASK, new Task(TASK_STUB));
+        EditTaskCommand editTaskCommand = new EditTaskCommand(outOfBoundIndex, INDEX_FIRST_ATTRIBUTE,
+                new Task(TASK_STUB));
 
         assertCommandFailure(editTaskCommand, model, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
     }
@@ -131,12 +134,13 @@ class EditTaskCommandTest {
 
     @Test
     public void equals() {
-        final EditTaskCommand standardCommand = new EditTaskCommand(INDEX_FIRST_PERSON, INDEX_FIRST_TASK,
+        final EditTaskCommand standardCommand = new EditTaskCommand(INDEX_FIRST_PERSON, INDEX_FIRST_ATTRIBUTE,
                 new Task(TASK_STUB, DATE_TIME_ONE));
 
         // same values -> returns true
-        EditTaskCommand commandWithSameValues = new EditTaskCommand(INDEX_FIRST_PERSON, INDEX_FIRST_TASK,
+        EditTaskCommand commandWithSameValues = new EditTaskCommand(INDEX_FIRST_PERSON, INDEX_FIRST_ATTRIBUTE,
                 new Task(TASK_STUB, DATE_TIME_ONE));
+
         assertEquals(standardCommand, commandWithSameValues);
 
         // same object -> returns true
@@ -146,11 +150,11 @@ class EditTaskCommandTest {
         assertNotEquals(null, standardCommand);
 
         // different index -> returns false
-        assertNotEquals(standardCommand, new EditTaskCommand(INDEX_SECOND_PERSON, INDEX_FIRST_TASK,
+        assertNotEquals(standardCommand, new EditTaskCommand(INDEX_SECOND_PERSON, INDEX_FIRST_ATTRIBUTE,
                 new Task(TASK_STUB)));
 
         // different task -> returns false
-        assertNotEquals(standardCommand, new EditTaskCommand(INDEX_FIRST_PERSON, INDEX_FIRST_TASK,
+        assertNotEquals(standardCommand, new EditTaskCommand(INDEX_FIRST_PERSON, INDEX_FIRST_ATTRIBUTE,
                 new Task("not task stub")));
     }
 }

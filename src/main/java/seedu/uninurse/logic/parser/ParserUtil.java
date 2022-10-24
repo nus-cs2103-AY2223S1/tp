@@ -5,11 +5,9 @@ import static java.util.Objects.requireNonNull;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
-import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Optional;
-import java.util.Set;
 
 import seedu.uninurse.commons.core.index.Index;
 import seedu.uninurse.commons.util.StringUtil;
@@ -23,6 +21,7 @@ import seedu.uninurse.model.person.Email;
 import seedu.uninurse.model.person.Name;
 import seedu.uninurse.model.person.Phone;
 import seedu.uninurse.model.tag.Tag;
+import seedu.uninurse.model.tag.TagList;
 import seedu.uninurse.model.task.DateTime;
 import seedu.uninurse.model.task.Task;
 import seedu.uninurse.model.task.TaskList;
@@ -267,15 +266,15 @@ public class ParserUtil {
     }
 
     /**
-     * Parses {@code Collection<String> tags} into a {@code Set<Tag>}.
+     * Parses {@code Collection<String> tags} into a {@code TagList}.
      */
-    public static Set<Tag> parseTags(Collection<String> tags) throws ParseException {
+    public static TagList parseTags(Collection<String> tags) throws ParseException {
         requireNonNull(tags);
-        final Set<Tag> tagSet = new HashSet<>();
+        final List<Tag> tagList = new ArrayList<>();
         for (String tagName : tags) {
-            tagSet.add(parseTag(tagName));
+            tagList.add(parseTag(tagName));
         }
-        return tagSet;
+        return new TagList(tagList);
     }
 
     /**
