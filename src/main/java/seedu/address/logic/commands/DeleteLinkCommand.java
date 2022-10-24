@@ -25,15 +25,15 @@ public class DeleteLinkCommand extends Command {
     public static final String COMMAND_WORD = "delete-link";
     public static final String MESSAGE_USAGE = "[" + COMMAND_WORD + "]: Deletes link/s from a module "
             + "using its module code and user-defined alias.\n"
-            + "A 'm/' flag should be appended to the front the module code ...\n"
-            + "A 'la/' flag should be appended to the front of each link alias) ...\n"
+            + "A 'm/' flag should be appended to the front the module code;\n"
+            + "A 'la/' flag should be appended to the front of each link alias).\n"
             + "Example: " + COMMAND_WORD + " " + PREFIX_MODULE_CODE + "GEA1000 "
             + PREFIX_MODULE_LINK_URL + "coursemology.org";
 
     public static final String MESSAGE_DELETE_LINK_SUCCESS = "Successfully deleted link/s from module code [%1$s]";
     public static final String MESSAGE_NOT_EDITED = "At least one link must be deleted.";
     public static final String MESSAGE_MISSING_LINK_ALIAS = "This link alias [%1$s] does not currently exist"
-            + " in the module with module code [";
+            + " in the module with module code [%2$s]";
 
     private final ModuleCode moduleCode;
     private final Set<String> linkAliases;
@@ -92,10 +92,10 @@ public class DeleteLinkCommand extends Command {
             throws CommandException {
         for (String linkAlias : linkAliasesToRemove) {
             Link linkToRemove = originalLinksCopy.stream()
-                    .filter(link -> link.linkAlias.equals(linkAlias))
+                    .filter(link -> link.hasLinkAlias(linkAlias))
                     .findFirst()
-                    .orElseThrow(() -> new CommandException(String.format(MESSAGE_MISSING_LINK_ALIAS
-                            + moduleCode.getModuleCodeAsUpperCaseString() + "]", linkAlias)));
+                    .orElseThrow(() -> new CommandException(String.format(MESSAGE_MISSING_LINK_ALIAS,
+                            linkAlias, moduleCode.getModuleCodeAsUpperCaseString())));
             originalLinksCopy.remove(linkToRemove);
         }
         return originalLinksCopy;

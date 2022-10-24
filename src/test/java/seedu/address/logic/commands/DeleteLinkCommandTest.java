@@ -63,9 +63,8 @@ public class DeleteLinkCommandTest {
         DeleteLinkCommand deleteLinkCommand = new DeleteLinkCommand(new ModuleCode(VALID_CS2106_MODULE_CODE),
                 new HashSet<>(Arrays.asList(VALID_MODULE_LINK_ALIAS_2)));
         assertCommandFailure(deleteLinkCommand, model,
-                String.format(DeleteLinkCommand.MESSAGE_MISSING_LINK_ALIAS
-                        + new ModuleCode(VALID_CS2106_MODULE_CODE).getModuleCodeAsUpperCaseString()
-                        + "]", VALID_MODULE_LINK_ALIAS_2));
+                String.format(DeleteLinkCommand.MESSAGE_MISSING_LINK_ALIAS, VALID_MODULE_LINK_ALIAS_2,
+                        new ModuleCode(VALID_CS2106_MODULE_CODE).getModuleCodeAsUpperCaseString()));
     }
 
     @Test

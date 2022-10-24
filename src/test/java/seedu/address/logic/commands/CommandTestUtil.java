@@ -56,6 +56,7 @@ public class CommandTestUtil {
     public static final String VALID_MODULE_LINK_ALIAS_3 = "wow";
     public static final String VALID_MODULE_LINK_ALIAS_URL = "2103T;https://nus-cs2103-ay2223s1.github.io/website/";
     public static final String VALID_MODULE_LINK_URL = "https://nus-cs2103-ay2223s1.github.io/website/";
+    public static final String VALID_MODULE_LINK_URL_WITHOUT_HTTPS = "nus-cs2103-ay2223s1.github.io/website/";
     public static final String VALID_MODULE_LINK_URL_2 = "https://nusmods.com/timetable/sem-1";
     public static final String VALID_MODULE_LINK_URL_3 = "haxball.com";
     // Module code cannot have brackets

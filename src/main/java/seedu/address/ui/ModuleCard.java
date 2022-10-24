@@ -1,5 +1,8 @@
 package seedu.address.ui;
 
+import static seedu.address.model.module.link.Link.LINK_HEADER_PROTOCOL_HTTP;
+import static seedu.address.model.module.link.Link.LINK_HEADER_PROTOCOL_HTTPS;
+
 import java.awt.Desktop;
 import java.io.IOException;
 import java.net.URI;
@@ -26,8 +29,6 @@ public class ModuleCard extends UiPart<Region> {
     private static final Desktop desktop = Desktop.getDesktop();
     private static final String FXML = "ModuleListCard.fxml";
     private static final String MESSAGE_LINK_LAUNCH_FAILURE = "Error: Link cannot be launched by your desktop";
-    private static final String LINK_HEADER_PLAIN_TEXT = "http";
-    private static final String LINK_HEADER_TEXT_WITH_SLASH = "https://";
     private static final String LINK_TEXT_COLOR = "-fx-text-fill: #FFCC66"; //Light Yellow
 
 
@@ -78,13 +79,15 @@ public class ModuleCard extends UiPart<Region> {
     }
 
     private static Hyperlink createHyperLinkNode(String linkAlias, String linkUrl) {
-        Hyperlink node = new Hyperlink(linkAlias);
-        node.setStyle(LINK_TEXT_COLOR);
-        if (!linkUrl.startsWith(LINK_HEADER_PLAIN_TEXT)) {
-            linkUrl = LINK_HEADER_TEXT_WITH_SLASH + linkUrl;
+        Hyperlink hyperLinkNode = new Hyperlink(linkAlias);
+        hyperLinkNode.setStyle(LINK_TEXT_COLOR);
+        boolean isLinkUrlPaddedWithHttps = linkUrl.startsWith(LINK_HEADER_PROTOCOL_HTTPS);
+        boolean isLinkUrlPaddedWithHttp = linkUrl.startsWith(LINK_HEADER_PROTOCOL_HTTP);
+        if (!(isLinkUrlPaddedWithHttps || isLinkUrlPaddedWithHttp)) {
+            linkUrl = LINK_HEADER_PROTOCOL_HTTP + linkUrl;
         }
         final String finalLinkUrl = linkUrl;
-        node.setOnAction(e -> {
+        hyperLinkNode.setOnAction(e -> {
             try {
                 desktop.browse(URI.create(finalLinkUrl));
             } catch (IOException ex) {
@@ -96,8 +99,8 @@ public class ModuleCard extends UiPart<Region> {
         final Tooltip linkUrlHint = new Tooltip();
         linkUrlHint.setText(linkUrl);
         linkUrlHint.setShowDelay(Duration.seconds(0.5));
-        node.setTooltip(linkUrlHint);
-        return node;
+        hyperLinkNode.setTooltip(linkUrlHint);
+        return hyperLinkNode;
     }
 
     @Override

@@ -64,7 +64,7 @@ public class Module {
      * associated tasks and links.
      */
     public Module(ModuleCode moduleCode) {
-        this(moduleCode, new ModuleTitle(EMPTY_MODULE_TITLE), new HashSet<>());
+        this(moduleCode, new ModuleTitle(EMPTY_MODULE_TITLE), new TreeSet<>());
     }
 
     /**
@@ -72,7 +72,7 @@ public class Module {
      * associated tasks and links.
      */
     public Module(ModuleCode moduleCode, ModuleTitle moduleTitle) {
-        this(moduleCode, moduleTitle, new HashSet<>());
+        this(moduleCode, moduleTitle, new TreeSet<>());
     }
 
     public ModuleCode getModuleCode() {

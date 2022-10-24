@@ -13,6 +13,7 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_MA2001_MODULE_C
 import static seedu.address.logic.commands.CommandTestUtil.VALID_MODULE_LINK_URL;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_MODULE_LINK_URL_2;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_MODULE_LINK_URL_3;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_MODULE_LINK_URL_WITHOUT_HTTPS;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.testutil.TypicalAddressBook.getTypicalAddressBook;
@@ -70,9 +71,8 @@ public class AddLinkCommandTest {
         AddLinkCommand addLinkCommand = new AddLinkCommand(new ModuleCode(MODULE_CODE_WITH_LINK), links);
 
         assertCommandFailure(addLinkCommand, model,
-                String.format(AddLinkCommand.MESSAGE_DUPLICATE_LINK
-                        + new ModuleCode(MODULE_CODE_WITH_LINK).getModuleCodeAsUpperCaseString() + "]",
-                        links.iterator().next()));
+                String.format(AddLinkCommand.MESSAGE_DUPLICATE_LINK_ALIAS, links.iterator().next().linkAlias,
+                        new ModuleCode(MODULE_CODE_WITH_LINK).getModuleCodeAsUpperCaseString()));
     }
 
     @Test
@@ -82,9 +82,8 @@ public class AddLinkCommandTest {
         AddLinkCommand addLinkCommand = new AddLinkCommand(new ModuleCode(MODULE_CODE_WITH_LINK), links);
 
         assertCommandFailure(addLinkCommand, model,
-                String.format(AddLinkCommand.MESSAGE_DUPLICATE_LINK
-                        + new ModuleCode(MODULE_CODE_WITH_LINK).getModuleCodeAsUpperCaseString() + "]",
-                        new Link(VALID_MODULE_LINK_ALIAS, VALID_MODULE_LINK_URL_3)));
+                String.format(AddLinkCommand.MESSAGE_DUPLICATE_LINK_ALIAS, VALID_MODULE_LINK_ALIAS,
+                        new ModuleCode(MODULE_CODE_WITH_LINK).getModuleCodeAsUpperCaseString()));
     }
 
     @Test
@@ -94,9 +93,21 @@ public class AddLinkCommandTest {
         AddLinkCommand addLinkCommand = new AddLinkCommand(new ModuleCode(MODULE_CODE_WITH_LINK), links);
 
         assertCommandFailure(addLinkCommand, model,
-                String.format(AddLinkCommand.MESSAGE_DUPLICATE_LINK
-                        + new ModuleCode(MODULE_CODE_WITH_LINK).getModuleCodeAsUpperCaseString() + "]",
-                        new Link(VALID_MODULE_LINK_ALIAS_3, VALID_MODULE_LINK_URL)));
+                String.format(AddLinkCommand.MESSAGE_DUPLICATE_LINK_URL, VALID_MODULE_LINK_URL,
+                        new ModuleCode(MODULE_CODE_WITH_LINK).getModuleCodeAsUpperCaseString(),
+                        VALID_MODULE_LINK_ALIAS_3));
+    }
+
+    @Test
+    public void execute_duplicateModuleLinkUrlIgnoreProtocolFilteredList_failure() {
+        Set<Link> links = new HashSet<Link>(Arrays.asList(
+                new Link(VALID_MODULE_LINK_ALIAS_3, VALID_MODULE_LINK_URL_WITHOUT_HTTPS )));
+        AddLinkCommand addLinkCommand = new AddLinkCommand(new ModuleCode(MODULE_CODE_WITH_LINK), links);
+
+        assertCommandFailure(addLinkCommand, model,
+                String.format(AddLinkCommand.MESSAGE_DUPLICATE_LINK_URL, VALID_MODULE_LINK_URL_WITHOUT_HTTPS,
+                        new ModuleCode(MODULE_CODE_WITH_LINK).getModuleCodeAsUpperCaseString(),
+                        VALID_MODULE_LINK_ALIAS_3));
     }
 
     @Test

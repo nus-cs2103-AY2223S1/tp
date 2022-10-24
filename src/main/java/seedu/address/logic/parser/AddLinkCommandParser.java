@@ -34,6 +34,11 @@ public class AddLinkCommandParser implements Parser<AddLinkCommand> {
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_MODULE_CODE,
                 PREFIX_MODULE_LINK_ALIAS, PREFIX_MODULE_LINK_URL);
 
+        boolean isPreambleEmpty = argMultimap.getPreamble().isEmpty();
+        if (!isPreambleEmpty) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddLinkCommand.MESSAGE_USAGE));
+        }
+
         String moduleCodeStringToEdit = argMultimap.getValue(PREFIX_MODULE_CODE)
                 .orElseThrow(() -> new ParseException(
                         String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddLinkCommand.MESSAGE_USAGE)));

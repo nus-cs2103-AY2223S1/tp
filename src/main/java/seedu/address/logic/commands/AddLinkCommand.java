@@ -27,16 +27,18 @@ public class AddLinkCommand extends Command {
     public static final String COMMAND_WORD = "add-link";
     public static final String MESSAGE_USAGE = "[" + COMMAND_WORD + "]: Add link/s to a the module "
             + "using its module code, link URL, and a user-defined alias.\n"
-            + "A 'm/' flag should be appended to the front the module code ...\n"
-            + "A 'l/' flag should be appended to the front of each link URL ...\n"
-            + "A 'la/' flag should be appended to the front of each link alias) ...\n"
+            + "A 'm/' flag should be appended to the front the module code;\n"
+            + "a 'l/' flag should be appended to the front of each link URL;\n"
+            + "a 'la/' flag should be appended to the front of each link alias).\n"
             + "Example: " + COMMAND_WORD + " " + PREFIX_MODULE_CODE + "GEA1000 "
             + PREFIX_MODULE_LINK_URL + "coursemology.org";
 
     public static final String MESSAGE_ADD_LINK_SUCCESS = "Successfully added link/s to module code [%1$s]";
     public static final String MESSAGE_NOT_EDITED = "At least one link must be added.";
-    public static final String MESSAGE_DUPLICATE_LINK = "The link %1$s already exists"
-            + " in the module with module code [";
+    public static final String MESSAGE_DUPLICATE_LINK_ALIAS = "The link alias [%1$s] already exists"
+            + " in the module with module code [%2$s].";
+    public static final String MESSAGE_DUPLICATE_LINK_URL = "The link URL [%1$s] already exists"
+            + " in the module with module code [%2$s] under the alias [%3$s].";
 
     private final ModuleCode moduleCode;
     private final Set<Link> links;
@@ -85,12 +87,17 @@ public class AddLinkCommand extends Command {
         Set<Link> updatedLinks = moduleToEdit.copyLinks();
 
         for (Link newLink : linksToAdd) {
-            boolean isExistingLink = updatedLinks.stream()
-                    .anyMatch(link -> (link.linkAlias.equals(newLink.linkAlias) ||
-                            link.linkUrl.equals(newLink.linkUrl)));
-            if (isExistingLink) {
-                throw new CommandException(String.format(MESSAGE_DUPLICATE_LINK +
-                        moduleCode.getModuleCodeAsUpperCaseString() + "]", newLink));
+            boolean isExistingLinkAlias = updatedLinks.stream()
+                    .anyMatch(link -> (link.isSameLinkAlias(newLink)));
+            if (isExistingLinkAlias) {
+                throw new CommandException(String.format(MESSAGE_DUPLICATE_LINK_ALIAS,
+                        newLink.linkAlias, moduleCode.getModuleCodeAsUpperCaseString()));
+            }
+            boolean isExistingLinkUrl = updatedLinks.stream()
+                    .anyMatch(link -> (link.isSameLinkUrlIgnoreProtocol(newLink)));
+            if (isExistingLinkUrl) {
+                throw new CommandException(String.format(MESSAGE_DUPLICATE_LINK_URL,
+                        newLink.linkUrl, moduleCode.getModuleCodeAsUpperCaseString(), newLink.linkAlias));
             }
             updatedLinks.add(newLink);
         }

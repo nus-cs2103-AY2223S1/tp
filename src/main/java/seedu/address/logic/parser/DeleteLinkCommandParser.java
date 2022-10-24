@@ -9,6 +9,7 @@ import java.util.Collection;
 import java.util.Optional;
 import java.util.Set;
 
+import seedu.address.logic.commands.AddLinkCommand;
 import seedu.address.logic.commands.DeleteLinkCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.module.ModuleCode;
@@ -26,6 +27,11 @@ public class DeleteLinkCommandParser implements Parser<DeleteLinkCommand> {
         requireNonNull(args);
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_MODULE_CODE,
                 PREFIX_MODULE_LINK_ALIAS);
+
+        boolean isPreambleEmpty = argMultimap.getPreamble().isEmpty();
+        if (!isPreambleEmpty) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteLinkCommand.MESSAGE_USAGE));
+        }
 
         String moduleCodeStringToEdit = argMultimap.getValue(PREFIX_MODULE_CODE)
                 .orElseThrow(() -> new ParseException(
