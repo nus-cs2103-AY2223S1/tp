@@ -6,6 +6,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_APPLICATION_STATUS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_APPLIED_DATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_COMPANY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_INTERVIEW_DATE_TIME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_LINK;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.testutil.Assert.assertThrows;
@@ -43,8 +44,9 @@ public class CommandTestUtil {
     public static final String VALID_TAG_BACKEND = "Backend";
     public static final String VALID_TAG_ECOMMERCE = "Ecommerce";
     public static final String VALID_TAG_AI = "AI";
-    public static final String VALID_APPLICATION_STATUS_APPLIED = "applied";
     public static final String VALID_APPLICATION_STATUS_ACCEPTED = "accepted";
+    public static final String VALID_APPLICATION_STATUS_APPLIED = "applied";
+    public static final String VALID_APPLICATION_STATUS_SHORTLISTED = "shortlisted";
     public static final String VALID_APPLICATION_STATUS_INTERVIEWED = "interviewed";
     public static final String VALID_APPLICATION_STATUS_REJECTED = "rejected";
 
@@ -57,13 +59,19 @@ public class CommandTestUtil {
     public static final String DESCRIPTION_DESC_TIKTOK = " " + PREFIX_DESCRIPTION + VALID_DESCRIPTION_TIKTOK;
     public static final String APPLIED_DATE_DESC_GOOGLE = " " + PREFIX_APPLIED_DATE + VALID_APPLIED_DATE_GOOGLE;
     public static final String APPLIED_DATE_DESC_TIKTOK = " " + PREFIX_APPLIED_DATE + VALID_APPLIED_DATE_TIKTOK;
+    public static final String INTERVIEW_DATE_TIME_DESC_GOOGLE = " " + PREFIX_INTERVIEW_DATE_TIME
+            + VALID_INTERVIEW_DATE_TIME_GOOGLE;
+    public static final String INTERVIEW_DATE_TIME_DESC_TIKTOK = " " + PREFIX_INTERVIEW_DATE_TIME
+            + VALID_INTERVIEW_DATE_TIME_GOOGLE;
     public static final String TAG_DESC_FRONTEND = " " + PREFIX_TAG + VALID_TAG_FRONTEND;
     public static final String TAG_DESC_BACKEND = " " + PREFIX_TAG + VALID_TAG_BACKEND;
     public static final String TAG_DESC_AI = " " + PREFIX_TAG + VALID_TAG_AI;
-    public static final String APPLICATION_STATUS_APPLIED = " " + PREFIX_APPLICATION_STATUS
-            + VALID_APPLICATION_STATUS_APPLIED;
     public static final String APPLICATION_STATUS_ACCEPTED = " " + PREFIX_APPLICATION_STATUS
             + VALID_APPLICATION_STATUS_ACCEPTED;
+    public static final String APPLICATION_STATUS_APPLIED = " " + PREFIX_APPLICATION_STATUS
+            + VALID_APPLICATION_STATUS_APPLIED;
+    public static final String APPLICATION_STATUS_SHORTLISTED = " " + PREFIX_APPLICATION_STATUS
+            + VALID_APPLICATION_STATUS_SHORTLISTED;
     public static final String APPLICATION_STATUS_INTERVIEWED = " " + PREFIX_APPLICATION_STATUS
             + VALID_APPLICATION_STATUS_INTERVIEWED;
     public static final String APPLICATION_STATUS_REJECTED = " " + PREFIX_APPLICATION_STATUS
@@ -74,6 +82,8 @@ public class CommandTestUtil {
     public static final String INVALID_LINK_DESC = " " + PREFIX_LINK + "abc.."; // invalid format
     public static final String INVALID_DESCRIPTION_DESC = " " + PREFIX_DESCRIPTION + ""; // empty string not allowed
     public static final String INVALID_APPLIED_DATE_DESC = " " + PREFIX_APPLIED_DATE + "03 Oct 22"; // invalid format
+    public static final String INVALID_INTERVIEW_DATE_TIME_DESC = " " + PREFIX_INTERVIEW_DATE_TIME
+            + "03 Oct 2022"; // missing time
     public static final String INVALID_TAG_DESC = " " + PREFIX_TAG + "Frontend*"; // '*' not allowed in tags
 
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
@@ -85,10 +95,12 @@ public class CommandTestUtil {
     static {
         DESC_GOOGLE = new EditInternshipDescriptorBuilder().withCompany(VALID_COMPANY_GOOGLE)
                 .withLink(VALID_LINK_GOOGLE).withDescription(VALID_DESCRIPTION_GOOGLE)
-                .withAppliedDate(VALID_APPLIED_DATE_GOOGLE).withTags(VALID_TAG_FRONTEND).build();
+                .withAppliedDate(VALID_APPLIED_DATE_GOOGLE).withInterviewDateTime(VALID_INTERVIEW_DATE_TIME_GOOGLE)
+                .withTags(VALID_TAG_FRONTEND).build();
         DESC_TIKTOK = new EditInternshipDescriptorBuilder().withCompany(VALID_COMPANY_TIKTOK)
                 .withLink(VALID_LINK_TIKTOK).withDescription(VALID_DESCRIPTION_TIKTOK)
-                .withAppliedDate(VALID_APPLIED_DATE_TIKTOK).withTags(VALID_TAG_BACKEND, VALID_TAG_AI).build();
+                .withAppliedDate(VALID_APPLIED_DATE_TIKTOK).withInterviewDateTime(VALID_INTERVIEW_DATE_TIME_TIKTOK)
+                .withTags(VALID_TAG_BACKEND, VALID_TAG_AI).build();
     }
 
     /**

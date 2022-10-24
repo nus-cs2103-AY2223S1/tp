@@ -6,9 +6,11 @@ import static seedu.address.logic.commands.CommandTestUtil.APPLIED_DATE_DESC_TIK
 import static seedu.address.logic.commands.CommandTestUtil.COMPANY_DESC_GOOGLE;
 import static seedu.address.logic.commands.CommandTestUtil.DESCRIPTION_DESC_GOOGLE;
 import static seedu.address.logic.commands.CommandTestUtil.DESCRIPTION_DESC_TIKTOK;
+import static seedu.address.logic.commands.CommandTestUtil.INTERVIEW_DATE_TIME_DESC_GOOGLE;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_APPLIED_DATE_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_COMPANY_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_DESCRIPTION_DESC;
+import static seedu.address.logic.commands.CommandTestUtil.INVALID_INTERVIEW_DATE_TIME_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_LINK_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_TAG_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.LINK_DESC_GOOGLE;
@@ -20,6 +22,7 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_APPLIED_DATE_TI
 import static seedu.address.logic.commands.CommandTestUtil.VALID_COMPANY_GOOGLE;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_DESCRIPTION_GOOGLE;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_DESCRIPTION_TIKTOK;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_INTERVIEW_DATE_TIME_GOOGLE;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_LINK_GOOGLE;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_LINK_TIKTOK;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_BACKEND;
@@ -39,6 +42,7 @@ import seedu.address.logic.commands.EditCommand.EditInternshipDescriptor;
 import seedu.address.model.internship.AppliedDate;
 import seedu.address.model.internship.Company;
 import seedu.address.model.internship.Description;
+import seedu.address.model.internship.InterviewDateTime;
 import seedu.address.model.internship.Link;
 import seedu.address.model.tag.Tag;
 import seedu.address.testutil.EditInternshipDescriptorBuilder;
@@ -81,16 +85,17 @@ public class EditCommandParserTest {
 
     @Test
     public void parse_invalidValue_failure() {
-        assertParseFailure(parser, "1" + INVALID_COMPANY_DESC, Company.MESSAGE_CONSTRAINTS); // invalid name
-        assertParseFailure(parser, "1" + INVALID_LINK_DESC, Link.MESSAGE_CONSTRAINTS); // invalid phone
-        assertParseFailure(parser, "1" + INVALID_DESCRIPTION_DESC, Description.MESSAGE_CONSTRAINTS); // invalid email
-        assertParseFailure(parser, "1" + INVALID_APPLIED_DATE_DESC, AppliedDate.MESSAGE_CONSTRAINTS); // invalid address
+        assertParseFailure(parser, "1" + INVALID_COMPANY_DESC, Company.MESSAGE_CONSTRAINTS); // invalid company
+        assertParseFailure(parser, "1" + INVALID_LINK_DESC, Link.MESSAGE_CONSTRAINTS); // invalid link
+        assertParseFailure(parser, "1" + INVALID_DESCRIPTION_DESC, Description.MESSAGE_CONSTRAINTS); // invalid description
+        assertParseFailure(parser, "1" + INVALID_APPLIED_DATE_DESC, AppliedDate.MESSAGE_CONSTRAINTS); // invalid applied date
+        assertParseFailure(parser, "1" + INVALID_INTERVIEW_DATE_TIME_DESC, InterviewDateTime.MESSAGE_CONSTRAINTS); // invalid interview date time
         assertParseFailure(parser, "1" + INVALID_TAG_DESC, Tag.MESSAGE_CONSTRAINTS); // invalid tag
 
-        // invalid phone followed by valid email
+        // invalid link followed by valid description
         assertParseFailure(parser, "1" + INVALID_LINK_DESC + DESCRIPTION_DESC_GOOGLE, Link.MESSAGE_CONSTRAINTS);
 
-        // valid phone followed by invalid phone. The test case for invalid phone followed by valid phone
+        // valid link followed by invalid link. The test case for invalid link followed by valid link
         // is tested at {@code parse_invalidValueFollowedByValidValue_success()}
         assertParseFailure(parser, "1" + LINK_DESC_TIKTOK + INVALID_LINK_DESC, Link.MESSAGE_CONSTRAINTS);
 
@@ -109,13 +114,13 @@ public class EditCommandParserTest {
     @Test
     public void parse_allFieldsSpecified_success() {
         Index targetIndex = INDEX_SECOND_INTERNSHIP;
-        String userInput = targetIndex.getOneBased() + LINK_DESC_TIKTOK + TAG_DESC_BACKEND
-                + DESCRIPTION_DESC_GOOGLE + APPLIED_DATE_DESC_GOOGLE + COMPANY_DESC_GOOGLE + TAG_DESC_FRONTEND;
+        String userInput = targetIndex.getOneBased() + LINK_DESC_TIKTOK + TAG_DESC_BACKEND + DESCRIPTION_DESC_GOOGLE
+                + APPLIED_DATE_DESC_GOOGLE + INTERVIEW_DATE_TIME_DESC_GOOGLE + COMPANY_DESC_GOOGLE + TAG_DESC_FRONTEND;
 
         EditCommand.EditInternshipDescriptor descriptor =
                 new EditInternshipDescriptorBuilder().withCompany(VALID_COMPANY_GOOGLE)
                 .withLink(VALID_LINK_TIKTOK).withDescription(VALID_DESCRIPTION_GOOGLE)
-                        .withAppliedDate(VALID_APPLIED_DATE_GOOGLE)
+                .withAppliedDate(VALID_APPLIED_DATE_GOOGLE).withInterviewDateTime(VALID_INTERVIEW_DATE_TIME_GOOGLE)
                 .withTags(VALID_TAG_FRONTEND, VALID_TAG_BACKEND).build();
         EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
 
@@ -162,6 +167,12 @@ public class EditCommandParserTest {
         expectedCommand = new EditCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
 
+        // interview date time
+        userInput = targetIndex.getOneBased() + INTERVIEW_DATE_TIME_DESC_GOOGLE;
+        descriptor = new EditInternshipDescriptorBuilder().withInterviewDateTime(VALID_INTERVIEW_DATE_TIME_GOOGLE).build();
+        expectedCommand = new EditCommand(targetIndex, descriptor);
+        assertParseSuccess(parser, userInput, expectedCommand);
+
         // tags
         userInput = targetIndex.getOneBased() + TAG_DESC_BACKEND;
         descriptor = new EditInternshipDescriptorBuilder().withTags(VALID_TAG_BACKEND).build();
@@ -173,14 +184,13 @@ public class EditCommandParserTest {
     public void parse_multipleRepeatedFields_acceptsLast() {
         Index targetIndex = INDEX_FIRST_INTERNSHIP;
         String userInput = targetIndex.getOneBased() + LINK_DESC_GOOGLE + APPLIED_DATE_DESC_GOOGLE
-                + DESCRIPTION_DESC_GOOGLE + TAG_DESC_FRONTEND + LINK_DESC_GOOGLE + APPLIED_DATE_DESC_GOOGLE
-                + DESCRIPTION_DESC_GOOGLE + TAG_DESC_FRONTEND
-                + LINK_DESC_TIKTOK + APPLIED_DATE_DESC_TIKTOK + DESCRIPTION_DESC_TIKTOK + TAG_DESC_BACKEND;
+                + DESCRIPTION_DESC_GOOGLE + TAG_DESC_FRONTEND + LINK_DESC_GOOGLE  + APPLIED_DATE_DESC_GOOGLE
+                + DESCRIPTION_DESC_GOOGLE + TAG_DESC_FRONTEND + LINK_DESC_TIKTOK + APPLIED_DATE_DESC_TIKTOK
+                + DESCRIPTION_DESC_TIKTOK + TAG_DESC_BACKEND;
 
         EditInternshipDescriptor descriptor = new EditInternshipDescriptorBuilder().withLink(VALID_LINK_TIKTOK)
                 .withDescription(VALID_DESCRIPTION_TIKTOK).withAppliedDate(VALID_APPLIED_DATE_TIKTOK)
-                .withTags(VALID_TAG_BACKEND, VALID_TAG_FRONTEND)
-                .build();
+                .withTags(VALID_TAG_BACKEND, VALID_TAG_FRONTEND).build();
         EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
 
         assertParseSuccess(parser, userInput, expectedCommand);

@@ -15,6 +15,7 @@ import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.internship.AppliedDate;
 import seedu.address.model.internship.Company;
 import seedu.address.model.internship.Description;
+import seedu.address.model.internship.InterviewDateTime;
 import seedu.address.model.internship.Link;
 
 public class JsonAdaptedInternshipTest {
@@ -61,7 +62,7 @@ public class JsonAdaptedInternshipTest {
     }
 
     @Test
-    public void toModelType_invalidPhone_throwsIllegalValueException() {
+    public void toModelType_invalidLink_throwsIllegalValueException() {
         JsonAdaptedInternship internship =
                 new JsonAdaptedInternship(VALID_COMPANY, INVALID_LINK, VALID_DESCRIPTION, VALID_APPLICATION_STATUS,
                         VALID_APPLIED_DATE, VALID_INTERVIEW_DATE_TIME, VALID_TAGS);
@@ -78,7 +79,7 @@ public class JsonAdaptedInternshipTest {
     }
 
     @Test
-    public void toModelType_invalidEmail_throwsIllegalValueException() {
+    public void toModelType_invalidDescription_throwsIllegalValueException() {
         JsonAdaptedInternship internship =
                 new JsonAdaptedInternship(VALID_COMPANY, VALID_LINK, INVALID_DESCRIPTION,
                         VALID_APPLICATION_STATUS, VALID_APPLIED_DATE, VALID_INTERVIEW_DATE_TIME, VALID_TAGS);
@@ -95,7 +96,7 @@ public class JsonAdaptedInternshipTest {
     }
 
     @Test
-    public void toModelType_invalidAddress_throwsIllegalValueException() {
+    public void toModelType_invalidAppliedDate_throwsIllegalValueException() {
         JsonAdaptedInternship internship =
                 new JsonAdaptedInternship(VALID_COMPANY, VALID_LINK, VALID_DESCRIPTION,
                         VALID_APPLICATION_STATUS, INVALID_APPLIED_DATE, VALID_INTERVIEW_DATE_TIME, VALID_TAGS);
@@ -108,6 +109,23 @@ public class JsonAdaptedInternshipTest {
         JsonAdaptedInternship internship = new JsonAdaptedInternship(VALID_COMPANY, VALID_LINK, VALID_DESCRIPTION,
                 VALID_APPLICATION_STATUS, null, VALID_INTERVIEW_DATE_TIME, VALID_TAGS);
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, AppliedDate.class.getSimpleName());
+        assertThrows(IllegalValueException.class, expectedMessage, internship::toModelType);
+    }
+
+    @Test
+    public void toModelType_invalidInterviewDateTime_throwsIllegalValueException() {
+        JsonAdaptedInternship internship =
+                new JsonAdaptedInternship(VALID_COMPANY, VALID_LINK, VALID_DESCRIPTION,
+                        VALID_APPLICATION_STATUS, VALID_APPLIED_DATE, INVALID_INTERVIEW_DATE_TIME, VALID_TAGS);
+        String expectedMessage = InterviewDateTime.MESSAGE_CONSTRAINTS;
+        assertThrows(IllegalValueException.class, expectedMessage, internship::toModelType);
+    }
+
+    @Test
+    public void toModelType_nullInterviewDateTime_throwsIllegalValueException() {
+        JsonAdaptedInternship internship = new JsonAdaptedInternship(VALID_COMPANY, VALID_LINK, VALID_DESCRIPTION,
+                VALID_APPLICATION_STATUS, VALID_APPLIED_DATE, null, VALID_TAGS);
+        String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, InterviewDateTime.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, internship::toModelType);
     }
 

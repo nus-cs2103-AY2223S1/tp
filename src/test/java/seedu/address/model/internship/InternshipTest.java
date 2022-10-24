@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_APPLIED_DATE_TIKTOK;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_COMPANY_TIKTOK;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_DESCRIPTION_TIKTOK;
+// import static seedu.address.logic.commands.CommandTestUtil.VALID_INTERVIEW_DATE_TIME_TIKTOK;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_LINK_TIKTOK;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_ECOMMERCE;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_FRONTEND;
@@ -32,31 +33,31 @@ public class InternshipTest {
         // null -> returns false
         assertFalse(ALIBABA.isSameInternship(null));
 
-        // same name and tags, all other attributes different -> returns true
+        // same company and tags, all other attributes different -> returns true
         Internship editedAlibaba =
                 new InternshipBuilder(ALIBABA).withLink(VALID_LINK_TIKTOK).withDescription(VALID_DESCRIPTION_TIKTOK)
                 .withAppliedDate(VALID_APPLIED_DATE_TIKTOK).withTags(VALID_TAG_ECOMMERCE).build();
         assertTrue(ALIBABA.isSameInternship(editedAlibaba));
 
-        // different name, all other attributes same -> returns false
+        // different company, all other attributes same -> returns false
         editedAlibaba = new InternshipBuilder(ALIBABA).withCompany(VALID_COMPANY_TIKTOK).build();
         assertFalse(ALIBABA.isSameInternship(editedAlibaba));
 
-        // name differs in case, all other attributes same -> returns false
+        // company differs in case, all other attributes same -> returns false
         Internship editedTiktok = new InternshipBuilder(TIKTOK).withCompany(VALID_COMPANY_TIKTOK.toLowerCase()).build();
         assertFalse(TIKTOK.isSameInternship(editedTiktok));
 
-        // name has trailing spaces, all other attributes same -> returns false
-        String nameWithTrailingSpaces = VALID_COMPANY_TIKTOK + " ";
-        editedTiktok = new InternshipBuilder(TIKTOK).withCompany(nameWithTrailingSpaces).build();
+        // company has trailing spaces, all other attributes same -> returns false
+        String companyWithTrailingSpaces = VALID_COMPANY_TIKTOK + " ";
+        editedTiktok = new InternshipBuilder(TIKTOK).withCompany(companyWithTrailingSpaces).build();
         assertFalse(TIKTOK.isSameInternship(editedTiktok));
     }
 
     @Test
     public void equals() {
         // same values -> returns true
-        Internship aliceCopy = new InternshipBuilder(ALIBABA).build();
-        assertTrue(ALIBABA.equals(aliceCopy));
+        Internship alibabaCopy = new InternshipBuilder(ALIBABA).build();
+        assertTrue(ALIBABA.equals(alibabaCopy));
 
         // same object -> returns true
         assertTrue(ALIBABA.equals(ALIBABA));
@@ -71,23 +72,29 @@ public class InternshipTest {
         assertFalse(ALIBABA.equals(TIKTOK));
 
         // different company -> returns false
-        Internship editedAlice = new InternshipBuilder(ALIBABA).withCompany(VALID_COMPANY_TIKTOK).build();
-        assertFalse(ALIBABA.equals(editedAlice));
+        Internship editedAlibaba = new InternshipBuilder(ALIBABA).withCompany(VALID_COMPANY_TIKTOK).build();
+        assertFalse(ALIBABA.equals(editedAlibaba));
 
         // different link -> returns false
-        editedAlice = new InternshipBuilder(ALIBABA).withLink(VALID_LINK_TIKTOK).build();
-        assertFalse(ALIBABA.equals(editedAlice));
+        editedAlibaba = new InternshipBuilder(ALIBABA).withLink(VALID_LINK_TIKTOK).build();
+        assertFalse(ALIBABA.equals(editedAlibaba));
 
         // different description -> returns false
-        editedAlice = new InternshipBuilder(ALIBABA).withDescription(VALID_DESCRIPTION_TIKTOK).build();
-        assertFalse(ALIBABA.equals(editedAlice));
+        editedAlibaba = new InternshipBuilder(ALIBABA).withDescription(VALID_DESCRIPTION_TIKTOK).build();
+        assertFalse(ALIBABA.equals(editedAlibaba));
 
-        // different address -> returns false
-        editedAlice = new InternshipBuilder(ALIBABA).withAppliedDate(VALID_APPLIED_DATE_TIKTOK).build();
-        assertFalse(ALIBABA.equals(editedAlice));
+        // different applied date -> returns false
+        editedAlibaba = new InternshipBuilder(ALIBABA).withAppliedDate(VALID_APPLIED_DATE_TIKTOK).build();
+        assertFalse(ALIBABA.equals(editedAlibaba));
+
+        /* To fix
+        // different interview date -> returns false
+        editedAlibaba = new InternshipBuilder(ALIBABA).withInterviewDateTime(VALID_INTERVIEW_DATE_TIME_TIKTOK).build();
+        assertFalse(ALIBABA.equals(editedAlibaba));
+         */
 
         // different tags -> returns false
-        editedAlice = new InternshipBuilder(ALIBABA).withTags(VALID_TAG_FRONTEND).build();
-        assertFalse(ALIBABA.equals(editedAlice));
+        editedAlibaba = new InternshipBuilder(ALIBABA).withTags(VALID_TAG_FRONTEND).build();
+        assertFalse(ALIBABA.equals(editedAlibaba));
     }
 }

@@ -18,6 +18,7 @@ import seedu.address.model.internship.ApplicationStatus;
 import seedu.address.model.internship.AppliedDate;
 import seedu.address.model.internship.Company;
 import seedu.address.model.internship.Description;
+import seedu.address.model.internship.InterviewDateTime;
 import seedu.address.model.internship.Link;
 import seedu.address.model.tag.Tag;
 
@@ -26,12 +27,14 @@ public class ParserUtilTest {
     private static final String INVALID_LINK = "www.exampl e.";
     private static final String INVALID_APPLIED_DATE = "03 Oct 22";
     private static final String INVALID_DESCRIPTION = "";
+    private static final String INVALID_INTERVIEW_DATE_TIME = "03 Oct 22";
     private static final String INVALID_TAG = "#Frontend";
     private static final String INVALID_APPLICATION_STATUS = "waiting";
     private static final String VALID_COMPANY = "Alibaba";
     private static final String VALID_LINK = "https://careers.alibaba.com/positionDetail";
     private static final String VALID_APPLIED_DATE = "5 Oct 2022";
     private static final String VALID_DESCRIPTION = "Software Engineering Intern";
+    private static final String VALID_INTERVIEW_DATE_TIME = "03 Oct 2022 11:30";
     private static final String VALID_TAG_1 = "Frontend";
     private static final String VALID_TAG_2 = "Backend";
     private static final String VALID_APPLICATION_STATUS = "accepted";
@@ -75,9 +78,9 @@ public class ParserUtilTest {
 
     @Test
     public void parseCompany_validValueWithWhitespace_returnsTrimmedCompany() throws Exception {
-        String nameWithWhitespace = WHITESPACE + VALID_COMPANY + WHITESPACE;
+        String companyWithWhitespace = WHITESPACE + VALID_COMPANY + WHITESPACE;
         Company expectedCompany = new Company(VALID_COMPANY);
-        assertEquals(expectedCompany, ParserUtil.parseCompany(nameWithWhitespace));
+        assertEquals(expectedCompany, ParserUtil.parseCompany(companyWithWhitespace));
     }
 
     @Test
@@ -98,9 +101,9 @@ public class ParserUtilTest {
 
     @Test
     public void parseLink_validValueWithWhitespace_returnsTrimmedLink() throws Exception {
-        String phoneWithWhitespace = WHITESPACE + VALID_LINK + WHITESPACE;
+        String linkWithWhitespace = WHITESPACE + VALID_LINK + WHITESPACE;
         Link expectedLink = new Link(VALID_LINK);
-        assertEquals(expectedLink, ParserUtil.parseLink(phoneWithWhitespace));
+        assertEquals(expectedLink, ParserUtil.parseLink(linkWithWhitespace));
     }
 
     @Test
@@ -121,9 +124,32 @@ public class ParserUtilTest {
 
     @Test
     public void parseAppliedDate_validValueWithWhitespace_returnsTrimmedAppliedDate() throws Exception {
-        String addressWithWhitespace = WHITESPACE + VALID_APPLIED_DATE + WHITESPACE;
+        String appliedDateWithWhitespace = WHITESPACE + VALID_APPLIED_DATE + WHITESPACE;
         AppliedDate expectedAppliedDate = new AppliedDate(VALID_APPLIED_DATE);
-        assertEquals(expectedAppliedDate, ParserUtil.parseAppliedDate(addressWithWhitespace));
+        assertEquals(expectedAppliedDate, ParserUtil.parseAppliedDate(appliedDateWithWhitespace));
+    }
+
+    @Test
+    public void parseInterviewDateTime_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseInterviewDateTime((String) null));
+    }
+
+    @Test
+    public void parseInterviewDateTime_invalidValue_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseInterviewDateTime(INVALID_INTERVIEW_DATE_TIME));
+    }
+
+    @Test
+    public void parseInterviewDateTime_validValueWithoutWhitespace_returnsInterviewDateTime() throws Exception {
+        InterviewDateTime expectedInterviewDateTime = new InterviewDateTime(VALID_INTERVIEW_DATE_TIME);
+        assertEquals(expectedInterviewDateTime, ParserUtil.parseInterviewDateTime(VALID_INTERVIEW_DATE_TIME));
+    }
+
+    @Test
+    public void parseInterviewDateTime_validValueWithWhitespace_returnsInterviewDateTime() throws Exception {
+        String interviewDateTimeWithWhitespace = WHITESPACE + VALID_INTERVIEW_DATE_TIME + WHITESPACE;
+        InterviewDateTime expectedInterviewDateTime = new InterviewDateTime(VALID_INTERVIEW_DATE_TIME);
+        assertEquals(expectedInterviewDateTime, ParserUtil.parseInterviewDateTime(interviewDateTimeWithWhitespace));
     }
 
     @Test
@@ -143,9 +169,9 @@ public class ParserUtilTest {
 
     @Test
     public void parseDescription_validValueWithWhitespace_returnsTrimmedDescription() throws Exception {
-        String emailWithWhitespace = WHITESPACE + VALID_DESCRIPTION + WHITESPACE;
+        String descriptionWithWhitespace = WHITESPACE + VALID_DESCRIPTION + WHITESPACE;
         Description expectedDescription = new Description(VALID_DESCRIPTION);
-        assertEquals(expectedDescription, ParserUtil.parseDescription(emailWithWhitespace));
+        assertEquals(expectedDescription, ParserUtil.parseDescription(descriptionWithWhitespace));
     }
 
     @Test
@@ -212,8 +238,8 @@ public class ParserUtilTest {
 
     @Test
     public void parseApplicationStatus_validValueWithWhitespace_returnsTrimmedApplicationStatus() throws Exception {
-        String nameWithWhitespace = WHITESPACE + VALID_APPLICATION_STATUS + WHITESPACE;
+        String applicationStatusWithWhitespace = WHITESPACE + VALID_APPLICATION_STATUS + WHITESPACE;
         ApplicationStatus expectedApplicationStatus = ApplicationStatus.parse(VALID_APPLICATION_STATUS);
-        assertEquals(expectedApplicationStatus, ParserUtil.parseApplicationStatus(VALID_APPLICATION_STATUS));
+        assertEquals(expectedApplicationStatus, ParserUtil.parseApplicationStatus(applicationStatusWithWhitespace));
     }
 }

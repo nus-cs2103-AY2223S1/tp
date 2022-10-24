@@ -158,7 +158,7 @@ public class EditCommand extends Command {
             setLink(toCopy.link);
             setDescription(toCopy.description);
             setAppliedDate(toCopy.appliedDate);
-            setInterviewDate(toCopy.interviewDateTime);
+            setInterviewDateTime(toCopy.interviewDateTime);
             setApplicationStatus(toCopy.applicationStatus);
             setTags(toCopy.tags);
         }
@@ -202,7 +202,7 @@ public class EditCommand extends Command {
             return Optional.ofNullable(appliedDate);
         }
 
-        public void setInterviewDate(InterviewDateTime interviewDateTime) {
+        public void setInterviewDateTime(InterviewDateTime interviewDateTime) {
             this.interviewDateTime = interviewDateTime;
         }
 

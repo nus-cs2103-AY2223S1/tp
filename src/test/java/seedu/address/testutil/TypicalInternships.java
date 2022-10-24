@@ -39,7 +39,7 @@ public class TypicalInternships {
             .withTags("Crypto").build();
     public static final Internship CITADEL = new InternshipBuilder().withCompany("Citadel")
             .withAppliedDate("23 Oct 2022").withDescription("Software Engineer Intern")
-            .withInterviewDateTime("30 Nov 2022 09:00").withLink("https://careers.Citadel.com/positionDetail")
+            .withInterviewDateTime("23 Nov 2022 09:00").withLink("https://careers.Citadel.com/positionDetail")
             .withApplicationStatus(ApplicationStatus.Rejected)
             .withTags("Backend").build();
     public static final Internship DELL = new InternshipBuilder().withCompany("Dell")
