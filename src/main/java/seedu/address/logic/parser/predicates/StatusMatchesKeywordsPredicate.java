@@ -1,4 +1,4 @@
-package seedu.address.model.issue.predicates;
+package seedu.address.logic.parser.predicates;
 
 import java.util.List;
 import java.util.function.Predicate;

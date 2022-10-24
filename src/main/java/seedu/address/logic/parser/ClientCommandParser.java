@@ -29,9 +29,9 @@ import seedu.address.model.client.ClientEmail;
 import seedu.address.model.client.ClientId;
 import seedu.address.model.client.ClientPhone;
 import seedu.address.model.client.ClientWithoutModel;
-import seedu.address.model.client.predicates.EmailContainsKeywordsPredicate;
-import seedu.address.model.client.predicates.NameContainsKeywordsPredicate;
-import seedu.address.model.client.predicates.PhoneContainsKeywordsPredicate;
+import seedu.address.logic.parser.predicates.EmailContainsKeywordsPredicate;
+import seedu.address.logic.parser.predicates.NameContainsKeywordsPredicate;
+import seedu.address.logic.parser.predicates.PhoneContainsKeywordsPredicate;
 import seedu.address.model.project.ProjectId;
 
 /**

@@ -35,10 +35,10 @@ import seedu.address.model.issue.IssueId;
 import seedu.address.model.issue.IssueWithoutModel;
 import seedu.address.model.issue.Priority;
 import seedu.address.model.issue.Status;
-import seedu.address.model.issue.predicates.DescriptionContainsKeywordsPredicate;
-import seedu.address.model.issue.predicates.PriorityMatchesKeywordsPredicate;
-import seedu.address.model.issue.predicates.ProjectContainsKeywordsPredicate;
-import seedu.address.model.issue.predicates.StatusMatchesKeywordsPredicate;
+import seedu.address.logic.parser.predicates.DescriptionContainsKeywordsPredicate;
+import seedu.address.logic.parser.predicates.PriorityMatchesKeywordsPredicate;
+import seedu.address.logic.parser.predicates.ProjectContainsKeywordsPredicate;
+import seedu.address.logic.parser.predicates.StatusMatchesKeywordsPredicate;
 import seedu.address.model.project.ProjectId;
 
 /**

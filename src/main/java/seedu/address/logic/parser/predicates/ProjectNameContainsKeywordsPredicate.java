@@ -1,4 +1,4 @@
-package seedu.address.model.project.predicates;
+package seedu.address.logic.parser.predicates;
 
 import java.util.List;
 import java.util.function.Predicate;
@@ -9,10 +9,10 @@ import seedu.address.model.project.Project;
 /**
  * Tests that a {@code Project}'s {@code Name} matches any of the keywords given.
  */
-public class NameContainsKeywordsPredicate implements Predicate<Project> {
+public class ProjectNameContainsKeywordsPredicate implements Predicate<Project> {
     private final List<String> keywords;
 
-    public NameContainsKeywordsPredicate(List<String> keywords) {
+    public ProjectNameContainsKeywordsPredicate(List<String> keywords) {
         this.keywords = keywords;
     }
 
@@ -26,7 +26,7 @@ public class NameContainsKeywordsPredicate implements Predicate<Project> {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof NameContainsKeywordsPredicate // instanceof handles nulls
-                && keywords.equals(((NameContainsKeywordsPredicate) other).keywords)); // state check
+                || (other instanceof ProjectNameContainsKeywordsPredicate // instanceof handles nulls
+                && keywords.equals(((ProjectNameContainsKeywordsPredicate) other).keywords)); // state check
     }
 }

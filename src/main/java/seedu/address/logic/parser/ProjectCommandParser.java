@@ -33,8 +33,8 @@ import seedu.address.model.issue.Issue;
 import seedu.address.model.project.ProjectId;
 import seedu.address.model.project.ProjectWithoutModel;
 import seedu.address.model.project.Repository;
-import seedu.address.model.project.predicates.NameContainsKeywordsPredicate;
-import seedu.address.model.project.predicates.RepositoryContainsKeywordsPredicate;
+import seedu.address.logic.parser.predicates.ProjectNameContainsKeywordsPredicate;
+import seedu.address.logic.parser.predicates.RepositoryContainsKeywordsPredicate;
 
 
 /**
@@ -244,7 +244,7 @@ public class ProjectCommandParser implements Parser<ProjectCommand> {
 
 
             if (arePrefixesPresent(argMultimap, PREFIX_NAME)) {
-                return new FindProjectByNameCommand(new NameContainsKeywordsPredicate(
+                return new FindProjectByNameCommand(new ProjectNameContainsKeywordsPredicate(
                         argMultimap.getAllValues(PREFIX_NAME)));
             }
 

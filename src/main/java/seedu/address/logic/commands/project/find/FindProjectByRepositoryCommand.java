@@ -5,7 +5,7 @@ import static java.util.Objects.requireNonNull;
 import seedu.address.commons.core.Messages;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.model.Model;
-import seedu.address.model.project.predicates.RepositoryContainsKeywordsPredicate;
+import seedu.address.logic.parser.predicates.RepositoryContainsKeywordsPredicate;
 import seedu.address.ui.Ui;
 
 /**

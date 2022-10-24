@@ -5,7 +5,7 @@ import static java.util.Objects.requireNonNull;
 import seedu.address.commons.core.Messages;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.model.Model;
-import seedu.address.model.project.predicates.NameContainsKeywordsPredicate;
+import seedu.address.logic.parser.predicates.ProjectNameContainsKeywordsPredicate;
 import seedu.address.ui.Ui;
 
 /**
@@ -13,9 +13,9 @@ import seedu.address.ui.Ui;
  */
 public class FindProjectByNameCommand extends FindProjectCommand {
 
-    private final NameContainsKeywordsPredicate predicate;
+    private final ProjectNameContainsKeywordsPredicate predicate;
 
-    public FindProjectByNameCommand(NameContainsKeywordsPredicate predicate) {
+    public FindProjectByNameCommand(ProjectNameContainsKeywordsPredicate predicate) {
         this.predicate = predicate;
     }
 
