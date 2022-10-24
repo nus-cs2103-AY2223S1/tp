@@ -62,7 +62,6 @@ public class Profile {
 
     /**
      * Returns true if both profiles have the same name.
-     * This defines a weaker notion of equality between two profiles.
      */
     public boolean isSameName(Profile otherProfile) {
         if (otherProfile == this) {
@@ -75,7 +74,6 @@ public class Profile {
 
     /**
      * Returns true if both profiles have the same email.
-     * This defines a weaker notion of equality between two profiles.
      */
     public boolean isSameEmail(Profile otherProfile) {
         if (otherProfile == this) {
@@ -84,6 +82,30 @@ public class Profile {
 
         return otherProfile != null
                 && otherProfile.getEmail().equals(getEmail());
+    }
+
+    /**
+     * Returns true if both profiles have the same phone.
+     */
+    public boolean isSamePhone(Profile otherProfile) {
+        if (otherProfile == this) {
+            return true;
+        }
+
+        return otherProfile != null
+                && otherProfile.getPhone().equals(getPhone());
+    }
+
+    /**
+     * Returns true if both profiles have the same telegram.
+     */
+    public boolean isSameTelegram(Profile otherProfile) {
+        if (otherProfile == this) {
+            return true;
+        }
+
+        return otherProfile != null
+                && otherProfile.getTelegram().equals(getTelegram());
     }
 
     /**

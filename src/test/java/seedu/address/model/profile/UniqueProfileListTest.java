@@ -32,32 +32,14 @@ public class UniqueProfileListTest {
     }
 
     @Test
-    public void contains_nullEmail_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> uniqueProfileList.containsEmail(null));
-    }
-
-    @Test
     public void contains_nameNotInList_returnsFalse() {
         assertFalse(uniqueProfileList.containsName(ALICE));
-    }
-
-    @Test
-    public void contains_emailNotInList_returnsFalse() {
-        assertFalse(uniqueProfileList.containsEmail(ALICE));
     }
 
     @Test
     public void contains_nameInList_returnsTrue() {
         uniqueProfileList.add(ALICE);
         assertTrue(uniqueProfileList.containsName(ALICE));
-    }
-
-    @Test
-    public void contains_emailInList_returnsTrue() {
-        uniqueProfileList.add(AMY);
-        Profile editedBob = new ProfileBuilder(BOB).withEmail(VALID_EMAIL_AMY)
-                .build();
-        assertTrue(uniqueProfileList.containsEmail(editedBob));
     }
 
     @Test
@@ -71,6 +53,30 @@ public class UniqueProfileListTest {
     }
 
     @Test
+    public void add_similarName_throwsSimilarProfileException() {
+        uniqueProfileList.add(ALICE);
+        assertThrows(SimilarProfileException.class, () -> uniqueProfileList.add(ALICE));
+    }
+
+    @Test
+    public void contains_nullEmail_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> uniqueProfileList.containsEmail(null));
+    }
+
+    @Test
+    public void contains_emailNotInList_returnsFalse() {
+        assertFalse(uniqueProfileList.containsEmail(ALICE));
+    }
+
+    @Test
+    public void contains_emailInList_returnsTrue() {
+        uniqueProfileList.add(AMY);
+        Profile editedBob = new ProfileBuilder(BOB).withEmail(VALID_EMAIL_AMY)
+                .build();
+        assertTrue(uniqueProfileList.containsEmail(editedBob));
+    }
+
+    @Test
     public void contains_profileWithSameEmailFieldsInList_returnsTrue() {
         uniqueProfileList.add(ALICE);
         Profile editedAliceSameEmail = new ProfileBuilder(ALICE).withName(VALID_NAME_BOB)
@@ -79,22 +85,16 @@ public class UniqueProfileListTest {
     }
 
     @Test
-    public void add_nullProfile_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> uniqueProfileList.add(null));
-    }
-
-    @Test
-    public void add_similarName_throwsSimilarProfileException() {
-        uniqueProfileList.add(ALICE);
-        assertThrows(SimilarProfileException.class, () -> uniqueProfileList.add(ALICE));
-    }
-
-    @Test
     public void add_similarEmail_throwsSimilarProfileException() {
         uniqueProfileList.add(AMY);
         Profile editedBob = new ProfileBuilder(BOB).withEmail(VALID_EMAIL_AMY)
                 .build();
         assertThrows(SimilarProfileException.class, () -> uniqueProfileList.add(editedBob));
+    }
+
+    @Test
+    public void add_nullProfile_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> uniqueProfileList.add(null));
     }
 
     @Test

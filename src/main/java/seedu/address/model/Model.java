@@ -63,6 +63,16 @@ public interface Model {
     boolean hasName(Profile profile);
 
     /**
+     * Returns true if a profile with the same phone as {@code profile} exists in the address book.
+     */
+    boolean hasPhone(Profile profile);
+
+    /**
+     * Returns true if a profile with the same telegram as {@code profile} exists in the address book.
+     */
+    boolean hasTelegram(Profile profile);
+
+    /**
      * Deletes the given profile.
      * The profile must exist in the address book.
      */
