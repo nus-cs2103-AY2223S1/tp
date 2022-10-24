@@ -29,16 +29,16 @@ public interface Model {
     Comparator<Person> COMPARATOR_UNGROUP_PATIENTS = (p1, p2) -> p1.compareTo(p2);
 
     /** {@code Predicate} that ungroup appointments by their tags */
-    Comparator<Appointment> COMPARATOR_UNGROUP_APPOINTMENTS = (a1, a2) -> a2.compareTo(a2);
+    Comparator<Appointment> COMPARATOR_UNGROUP_APPOINTMENTS = (a1, a2) -> a1.compareTo(a2);
 
     /** {@code Comparator} that group persons by their tags */
     Comparator<Person> COMPARATOR_GROUP_PATIENTS = (p1, p2) -> p1.groupCompareTo(p2);
 
     /** {@code comparator} that group appointments by their tags */
-    Comparator<Appointment> COMPARATOR_GROUP_TAG_APPOINTMENTS = (a1, a2) -> a2.groupCompareTo(a2, Key.TAG);
+    Comparator<Appointment> COMPARATOR_GROUP_TAG_APPOINTMENTS = (a1, a2) -> a1.groupCompareTo(a2, Key.TAG);
 
     /** {@code comparator} that group appointments by their patients */
-    Comparator<Appointment> COMPARATOR_GROUP_PATIENT_APPOINTMENTS = (a1, a2) -> a2.groupCompareTo(a2, Key.PATIENT);
+    Comparator<Appointment> COMPARATOR_GROUP_PATIENT_APPOINTMENTS = (a1, a2) -> a1.groupCompareTo(a2, Key.PATIENT);
 
     /**
      * Replaces user prefs data with the data in {@code userPrefs}.

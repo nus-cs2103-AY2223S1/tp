@@ -8,7 +8,7 @@ import static seedu.address.commons.util.AppUtil.checkArgument;
  * Guarantees: immutable; name is valid as declared in {@link #isValidKey(String)}
  */
 public enum Key {
-    PATIENT("Patient"), TAG("tag");
+    PATIENT("Patient"), TAG("Tag");
 
     public static final String MESSAGE_CONSTRAINTS = "Key should be either tag or patient.";
     private String keyContent;
@@ -27,11 +27,12 @@ public enum Key {
     /**
      * Checks whether the given string is a valid key.
      *
-     * @param key The string to test.
+     * @param keyContent The string to test.
      * @return The result of the equals test.
      */
-    public static boolean isValidKey(String key) {
-        return !key.equals("patient") || !key.equals("tag");
+    public static boolean isValidKey(String keyContent) {
+        return keyContent.equalsIgnoreCase("patient")
+                || keyContent.equalsIgnoreCase("tag");
     }
 
     /**

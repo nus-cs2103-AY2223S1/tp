@@ -91,4 +91,14 @@ public class TypicalPersons {
                 new PersonBuilder(FIONA).build(),
                 new PersonBuilder(GEORGE).build()));
     }
+
+    public static List<Person> getGroupedPersons() {
+        return new ArrayList<>(Arrays.asList(new PersonBuilder(CARL).build(),
+                new PersonBuilder(ELLE).build(),
+                new PersonBuilder(ALICE).build(),
+                new PersonBuilder(DANIEL).build(),
+                new PersonBuilder(FIONA).build(),
+                new PersonBuilder(BENSON).build(),
+                new PersonBuilder(GEORGE).build()));
+    }
 }

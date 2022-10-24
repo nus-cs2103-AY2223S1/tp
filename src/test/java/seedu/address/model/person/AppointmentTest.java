@@ -6,11 +6,15 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalAppointments.APPOINTMENT_BENSON;
 import static seedu.address.testutil.TypicalAppointments.APPOINTMENT_CARL;
-import static seedu.address.testutil.TypicalAppointments.APPOINTMENT_DAVID;
+import static seedu.address.testutil.TypicalAppointments.APPOINTMENT_DANIEL;
+import static seedu.address.testutil.TypicalAppointments.APPOINTMENT_ELLE;
+import static seedu.address.testutil.TypicalAppointments.APPOINTMENT_GEORGE;
 import static seedu.address.testutil.TypicalAppointments.SECOND_APPOINTMENT_CARL;
+import static seedu.address.testutil.TypicalAppointments.SECOND_APPOINTMENT_GEORGE;
 
 import org.junit.jupiter.api.Test;
 
+import seedu.address.model.Key;
 
 public class AppointmentTest {
     @Test
@@ -38,7 +42,7 @@ public class AppointmentTest {
     }
 
     @Test
-    public void yearCompares() {
+    public void isYearCompareToCorrect() {
         // 2010-12-31 23:45 < 2019-12-10 16:30
         assertEquals(APPOINTMENT_CARL.compareTo(APPOINTMENT_BENSON), -1);
 
@@ -50,7 +54,7 @@ public class AppointmentTest {
     }
 
     @Test
-    public void compares() {
+    public void isSecondCompareToCorrect() {
         // 2010-12-31 23:45 < 2019-12-10 16:30
         assertEquals(APPOINTMENT_CARL.compareTo(APPOINTMENT_BENSON), -1);
 
@@ -61,6 +65,41 @@ public class AppointmentTest {
         assertEquals(APPOINTMENT_BENSON.compareTo(APPOINTMENT_CARL), 1);
 
         // 2010-12-31 23:45 < 2010-12-31 23:46
-        assertEquals(APPOINTMENT_CARL.compareTo(APPOINTMENT_DAVID), -1);
+        assertEquals(APPOINTMENT_CARL.compareTo(APPOINTMENT_DANIEL), -1);
+    }
+
+    @Test
+    public void isCompareToCorrect() {
+        // APPOINTMENT_CARL < APPOINTMENT_BENSON
+        assertEquals(APPOINTMENT_CARL.compareTo(APPOINTMENT_BENSON), -1);
+
+        // APPOINTMENT_BENSON == APPOINTMENT_BENSON
+        assertEquals(APPOINTMENT_BENSON.compareTo(APPOINTMENT_BENSON), 0);
+
+        // APPOINTMENT_BENSON > APPOINTMENT_DAVID
+        assertEquals(APPOINTMENT_BENSON.compareTo(APPOINTMENT_DANIEL), 1);
+    }
+
+    @Test
+    public void isGetGroupNumberCorrect() {
+        assertEquals(SECOND_APPOINTMENT_GEORGE.getGroupNumber(), 1);
+        assertEquals(APPOINTMENT_GEORGE.getGroupNumber(), 4);
+        assertEquals(APPOINTMENT_DANIEL.getGroupNumber(), 0);
+    }
+
+    @Test
+    public void isGroupCompareToCorrect() {
+        // Same tag group
+        assertEquals(APPOINTMENT_ELLE.groupCompareTo(APPOINTMENT_GEORGE, Key.TAG), -1);
+
+        // Single tag vs no tag
+        assertEquals(APPOINTMENT_DANIEL.groupCompareTo(SECOND_APPOINTMENT_GEORGE, Key.TAG), -9);
+
+        // Single tag vs single tag
+        assertEquals(SECOND_APPOINTMENT_GEORGE.groupCompareTo(SECOND_APPOINTMENT_GEORGE, Key.TAG), 0);
+
+        // Single tag vs double tag
+        assertEquals(SECOND_APPOINTMENT_GEORGE.groupCompareTo(APPOINTMENT_GEORGE, Key.TAG), -31);
+
     }
 }

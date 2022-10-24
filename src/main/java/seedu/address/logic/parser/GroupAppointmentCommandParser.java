@@ -1,13 +1,12 @@
 package seedu.address.logic.parser;
 
-import seedu.address.logic.commands.EditAppointmentCommand;
-import seedu.address.logic.commands.GroupAppointmentCommand;
-import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.Key;
-
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_KEY;
+
+import seedu.address.logic.commands.GroupAppointmentCommand;
+import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.Key;
 
 /**
  * Parses input arguments and creates a new GroupAppointmentCommand object
@@ -22,14 +21,12 @@ public class GroupAppointmentCommandParser implements Parser<GroupAppointmentCom
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                     GroupAppointmentCommand.MESSAGE_USAGE));
         }
-        try {
-            String keyName = argMultimap.getValue(PREFIX_KEY).get();
-            key = ParserUtil.parseKey(keyName);
-        }
-        catch (ParseException pe) {
+        String keyName = argMultimap.getValue(PREFIX_KEY).get();
+        if (!Key.isValidKey(keyName)) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                    GroupAppointmentCommand.MESSAGE_USAGE), pe);
+                    GroupAppointmentCommand.MESSAGE_USAGE));
         }
+        key = ParserUtil.parseKey(keyName);
         return new GroupAppointmentCommand(key);
     }
 }

@@ -1,7 +1,6 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_KEY;
 import static seedu.address.model.Model.COMPARATOR_GROUP_PATIENTS;
 
 import seedu.address.model.Model;

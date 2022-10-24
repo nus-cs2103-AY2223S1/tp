@@ -278,7 +278,8 @@ public class Appointment {
 
     @Override
     public String toString() {
-        return getStatus() + " " + getFormattedDateTime() + " for " + reason + getRecurringStatus();
+        return getStatus() + " " + getFormattedDateTime() + " for " + reason
+                + getRecurringStatus();
     }
 
     private String getStateIcon() {
@@ -394,6 +395,4 @@ public class Appointment {
     public Observable[] getProperties() {
         return new Observable[] {isMarked, patient};
     }
-
-
 }

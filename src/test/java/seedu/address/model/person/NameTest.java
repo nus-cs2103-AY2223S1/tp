@@ -40,14 +40,14 @@ public class NameTest {
     }
 
     @Test
-    public void compares() {
+    public void isCompareToCorrect() {
         // ALICE < BOB
-        assertEquals(new Name("Alice").compareTo(new Name("Bob")), -1);
+        assertEquals(new Name("Alice").compareTo(new Name("Elle")), -4);
 
         // ALICE == ALICE
         assertEquals(new Name("Alice").compareTo(new Name("Alice")), 0);
 
         // BOB > ALICE
-        assertEquals(new Name("Bob").compareTo(new Name("Alice")), 1);
+        assertEquals(new Name("Carl").compareTo(new Name("Alice")), 2);
     }
 }

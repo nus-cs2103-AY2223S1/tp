@@ -38,13 +38,13 @@ public class GroupAppointmentCommand extends Command {
         } else {
             model.updateAppointmentComparator(COMPARATOR_GROUP_PATIENT_APPOINTMENTS);
         }
-        return new CommandResult(String.format(MESSAGE_SUCCESS_APPOINTMENTS, key));
+        return new CommandResult(String.format(MESSAGE_SUCCESS_APPOINTMENTS, key.toString().toLowerCase()));
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof GroupPatientCommand // instanceof handles nulls
+                || (other instanceof GroupAppointmentCommand // instanceof handles nulls
                 && key.equals(((GroupAppointmentCommand) other).key)); // state check
     }
 }

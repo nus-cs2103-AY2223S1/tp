@@ -10,8 +10,12 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_EAR;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalPersons.ALICE;
+import static seedu.address.testutil.TypicalPersons.BENSON;
 import static seedu.address.testutil.TypicalPersons.BOB;
+import static seedu.address.testutil.TypicalPersons.CARL;
 import static seedu.address.testutil.TypicalPersons.DANIEL;
+import static seedu.address.testutil.TypicalPersons.ELLE;
+import static seedu.address.testutil.TypicalPersons.GEORGE;
 
 import org.junit.jupiter.api.Test;
 
@@ -92,7 +96,7 @@ public class PersonTest {
     }
 
     @Test
-    public void compares() {
+    public void isCompareToCorrect() {
         // ALICE < BOB
         assertEquals(ALICE.compareTo(BOB), -1);
 
@@ -104,7 +108,25 @@ public class PersonTest {
     }
 
     @Test
-    public void groupCompares() {
+    public void isGetGroupNumberCorrect() {
+        assertEquals(ALICE.getGroupNumber(), 2);
+        assertEquals(CARL.getGroupNumber(), 0);
+        assertEquals(GEORGE.getGroupNumber(), 4);
+    }
+
+    @Test
+    public void isGroupCompareToCorrect() {
+        // Same tag group
         assertEquals(ALICE.groupCompareTo(DANIEL), -1);
+        assertEquals(BENSON.groupCompareTo(GEORGE), -1);
+
+        // Single tag vs no tag
+        assertEquals(CARL.groupCompareTo(ELLE), -11);
+
+        // Single tag vs single tag
+        assertEquals(ALICE.groupCompareTo(ELLE), 9);
+
+        // Single tag vs double tag
+        assertEquals(BENSON.groupCompareTo(ELLE), 29);
     }
 }
