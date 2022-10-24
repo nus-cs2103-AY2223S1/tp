@@ -96,7 +96,7 @@ public class VersionedWorkBook extends WorkBook {
     }
 
     public boolean internshipHasNoTips(Internship internship) {
-        return !Stage.hasTips(internship.getStage());
+        return Stage.hasNoTips(internship.getStage());
     }
 
     /**

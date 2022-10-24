@@ -102,7 +102,7 @@ public class WorkBook implements ReadOnlyWorkBook {
     //// util methods
 
     public boolean internshipStageHasNoTips(Internship internship) {
-        return !Stage.hasTips(internship.getStage());
+        return Stage.hasNoTips(internship.getStage());
     }
 
     @Override

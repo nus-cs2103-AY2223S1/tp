@@ -45,7 +45,7 @@ public interface Model {
     boolean hasInternship(Internship internship);
 
     /**
-     * Returns true if an Internship stage has no tips.
+     * Returns true if an Internship stage has tips.
      */
     boolean internshipStageHasNoTips(Internship internship);
 

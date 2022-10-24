@@ -1,25 +1,14 @@
 package seedu.workbook.model.internship;
 
-import java.util.Arrays;
-import java.util.List;
-
 import static java.util.Objects.requireNonNull;
 import static seedu.workbook.commons.util.AppUtil.checkArgument;
+import static seedu.workbook.model.internship.util.StageUtil.stageWithTips;
 
 /**
  * Represents an Internship's application stage in WorkBook.
  * Guarantees: immutable; is valid as declared in {@link #isValidStage(String)}
  */
 public class Stage {
-
-    private static final List<String> stageWithTips = Arrays.asList(
-            "Application Sent",
-            "Online Assessment",
-            "Technical Interview",
-            "Behavioral Interview",
-            "Phone Interview",
-            "Rejected"
-    );
 
     // CHECKSTYLE.OFF: LineLength
     public static final String MESSAGE_CONSTRAINTS = "Stage should only contain alphanumeric characters and spaces, and it should not be blank";
@@ -54,8 +43,8 @@ public class Stage {
     /**
      * Returns true if a given stage has curated tips.
      */
-    public static boolean hasTips(Stage stage) {
-        return stageWithTips.contains(stage.toString());
+    public static boolean hasNoTips(Stage stage) {
+        return !stageWithTips.contains(stage);
     }
 
     /**
