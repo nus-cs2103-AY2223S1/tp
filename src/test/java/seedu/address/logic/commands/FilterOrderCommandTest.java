@@ -128,7 +128,7 @@ public class FilterOrderCommandTest {
                 defaultPredicate);
         oExpectedModel.updateFilteredOrderList(command.generatePredicate());
         assertCommandSuccess(command, oModel, expectedMessage, oExpectedModel);
-        assertEquals(Arrays.asList(TypicalOrders.ORDER_ONE), oModel.getFilteredOrderList());
+        assertEquals(Arrays.asList(TypicalOrders.ORDER_1), oModel.getFilteredOrderList());
     }
 
     @Test
@@ -146,7 +146,7 @@ public class FilterOrderCommandTest {
         FilterOrderCommand command = new FilterOrderCommand(defaultPredicate, orderStatusPredicate, defaultPredicate);
         oExpectedModel.updateFilteredOrderList(command.generatePredicate());
         assertCommandSuccess(command, oModel, expectedMessage, oExpectedModel);
-        assertEquals(Arrays.asList(TypicalOrders.ORDER_ONE, TypicalOrders.ORDER_TWO), oModel.getFilteredOrderList());
+        assertEquals(Arrays.asList(TypicalOrders.ORDER_1, TypicalOrders.ORDER_2), oModel.getFilteredOrderList());
     }
 
     @Test
@@ -164,7 +164,7 @@ public class FilterOrderCommandTest {
         FilterOrderCommand command = new FilterOrderCommand(defaultPredicate, defaultPredicate, priceRangePredicate);
         oExpectedModel.updateFilteredOrderList(command.generatePredicate());
         assertCommandSuccess(command, oModel, expectedMessage, oExpectedModel);
-        assertEquals(Arrays.asList(TypicalOrders.ORDER_ONE), oModel.getFilteredOrderList());
+        assertEquals(Arrays.asList(TypicalOrders.ORDER_1), oModel.getFilteredOrderList());
     }
 
     @Test
@@ -182,6 +182,6 @@ public class FilterOrderCommandTest {
         FilterOrderCommand command = new FilterOrderCommand(defaultPredicate, defaultPredicate, priceRangePredicate);
         oExpectedModel.updateFilteredOrderList(command.generatePredicate());
         assertCommandSuccess(command, oModel, expectedMessage, oExpectedModel);
-        assertEquals(Arrays.asList(TypicalOrders.ORDER_ONE, TypicalOrders.ORDER_TWO), oModel.getFilteredOrderList());
+        assertEquals(Arrays.asList(TypicalOrders.ORDER_1, TypicalOrders.ORDER_2), oModel.getFilteredOrderList());
     }
 }

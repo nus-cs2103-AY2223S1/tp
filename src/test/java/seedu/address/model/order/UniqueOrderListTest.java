@@ -25,13 +25,13 @@ public class UniqueOrderListTest {
 
     @Test
     public void contains_orderNotInList_returnsFalse() {
-        assertFalse(uniqueOrderList.contains(TypicalOrders.ORDER_ONE));
+        assertFalse(uniqueOrderList.contains(TypicalOrders.ORDER_1));
     }
 
     @Test
     public void contains_orderInList_returnsTrue() {
-        uniqueOrderList.add(TypicalOrders.ORDER_ONE);
-        assertTrue(uniqueOrderList.contains(TypicalOrders.ORDER_ONE));
+        uniqueOrderList.add(TypicalOrders.ORDER_1);
+        assertTrue(uniqueOrderList.contains(TypicalOrders.ORDER_1));
     }
 
     @Test
@@ -41,59 +41,59 @@ public class UniqueOrderListTest {
 
     @Test
     public void add_duplicateOrder_throwsDuplicateOrderException() {
-        uniqueOrderList.add(TypicalOrders.ORDER_ONE);
-        assertThrows(DuplicateOrderException.class, () -> uniqueOrderList.add(TypicalOrders.ORDER_ONE));
+        uniqueOrderList.add(TypicalOrders.ORDER_1);
+        assertThrows(DuplicateOrderException.class, () -> uniqueOrderList.add(TypicalOrders.ORDER_1));
     }
 
     @Test
     public void setOrder_nullTargetOrder_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> uniqueOrderList.setOrder(null, TypicalOrders.ORDER_ONE));
+        assertThrows(NullPointerException.class, () -> uniqueOrderList.setOrder(null, TypicalOrders.ORDER_1));
     }
 
     @Test
     public void setOrder_nullEditedOrder_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> uniqueOrderList.setOrder(TypicalOrders.ORDER_ONE, null));
+        assertThrows(NullPointerException.class, () -> uniqueOrderList.setOrder(TypicalOrders.ORDER_1, null));
     }
 
     @Test
     public void setOrder_targetOrderNotInList_throwsOrderNotFoundException() {
-        assertThrows(OrderNotFoundException.class, () -> uniqueOrderList.setOrder(TypicalOrders.ORDER_ONE,
-                TypicalOrders.ORDER_TWO));
+        assertThrows(OrderNotFoundException.class, () -> uniqueOrderList.setOrder(TypicalOrders.ORDER_1,
+                TypicalOrders.ORDER_2));
     }
 
     @Test
     public void setOrder_editedOrderIsSameOrder_success() {
-        uniqueOrderList.add(TypicalOrders.ORDER_ONE);
-        uniqueOrderList.setOrder(TypicalOrders.ORDER_ONE, TypicalOrders.ORDER_ONE);
+        uniqueOrderList.add(TypicalOrders.ORDER_1);
+        uniqueOrderList.setOrder(TypicalOrders.ORDER_1, TypicalOrders.ORDER_1);
         UniqueOrderList expectedUniqueOrderList = new UniqueOrderList();
-        expectedUniqueOrderList.add(TypicalOrders.ORDER_ONE);
+        expectedUniqueOrderList.add(TypicalOrders.ORDER_1);
         assertEquals(expectedUniqueOrderList, uniqueOrderList);
     }
 
     @Test
     public void setOrder_editedOrderHasSameIdentity_success() {
-        uniqueOrderList.add(TypicalOrders.ORDER_ONE);
-        uniqueOrderList.setOrder(TypicalOrders.ORDER_ONE, TypicalOrders.ORDER_TWO);
+        uniqueOrderList.add(TypicalOrders.ORDER_1);
+        uniqueOrderList.setOrder(TypicalOrders.ORDER_1, TypicalOrders.ORDER_2);
         UniqueOrderList expectedUniqueOrderList = new UniqueOrderList();
-        expectedUniqueOrderList.add(TypicalOrders.ORDER_TWO);
+        expectedUniqueOrderList.add(TypicalOrders.ORDER_2);
         assertEquals(uniqueOrderList, expectedUniqueOrderList);
     }
 
     @Test
     public void setOrder_editedOrderHasDifferentIdentity_success() {
-        uniqueOrderList.add(TypicalOrders.ORDER_ONE);
-        uniqueOrderList.setOrder(TypicalOrders.ORDER_ONE, TypicalOrders.ORDER_TWO);
+        uniqueOrderList.add(TypicalOrders.ORDER_1);
+        uniqueOrderList.setOrder(TypicalOrders.ORDER_1, TypicalOrders.ORDER_2);
         UniqueOrderList expectedUniqueOrderList = new UniqueOrderList();
-        expectedUniqueOrderList.add(TypicalOrders.ORDER_TWO);
+        expectedUniqueOrderList.add(TypicalOrders.ORDER_2);
         assertEquals(expectedUniqueOrderList, uniqueOrderList);
     }
 
     @Test
     public void setOrder_editedOrderHasNonUniqueIdentity_throwsDuplicateOrderException() {
-        uniqueOrderList.add(TypicalOrders.ORDER_ONE);
-        uniqueOrderList.add(TypicalOrders.ORDER_TWO);
-        assertThrows(DuplicateOrderException.class, () -> uniqueOrderList.setOrder(TypicalOrders.ORDER_ONE,
-                TypicalOrders.ORDER_TWO));
+        uniqueOrderList.add(TypicalOrders.ORDER_1);
+        uniqueOrderList.add(TypicalOrders.ORDER_2);
+        assertThrows(DuplicateOrderException.class, () -> uniqueOrderList.setOrder(TypicalOrders.ORDER_1,
+                TypicalOrders.ORDER_2));
     }
 
     @Test
@@ -103,13 +103,13 @@ public class UniqueOrderListTest {
 
     @Test
     public void remove_orderDoesNotExist_throwsOrderNotFoundException() {
-        assertThrows(OrderNotFoundException.class, () -> uniqueOrderList.remove(TypicalOrders.ORDER_ONE));
+        assertThrows(OrderNotFoundException.class, () -> uniqueOrderList.remove(TypicalOrders.ORDER_1));
     }
 
     @Test
     public void remove_existingOrder_removesOrder() {
-        uniqueOrderList.add(TypicalOrders.ORDER_ONE);
-        uniqueOrderList.remove(TypicalOrders.ORDER_ONE);
+        uniqueOrderList.add(TypicalOrders.ORDER_1);
+        uniqueOrderList.remove(TypicalOrders.ORDER_1);
         UniqueOrderList expectedUniqueOrderList = new UniqueOrderList();
         assertEquals(expectedUniqueOrderList, uniqueOrderList);
     }
@@ -121,9 +121,9 @@ public class UniqueOrderListTest {
 
     @Test
     public void setOrder_uniqueOrderList_replacesOwnListWithProvidedUniqueOrderList() {
-        uniqueOrderList.add(TypicalOrders.ORDER_ONE);
+        uniqueOrderList.add(TypicalOrders.ORDER_1);
         UniqueOrderList expectedUniqueOrderList = new UniqueOrderList();
-        expectedUniqueOrderList.add(TypicalOrders.ORDER_ONE);
+        expectedUniqueOrderList.add(TypicalOrders.ORDER_1);
         uniqueOrderList.setOrders(expectedUniqueOrderList);
         assertEquals(uniqueOrderList, expectedUniqueOrderList);
     }
@@ -135,17 +135,17 @@ public class UniqueOrderListTest {
 
     @Test
     public void setOrder_list_replacesOwnListWithProvidedList() {
-        uniqueOrderList.add(TypicalOrders.ORDER_ONE);
-        List<Order> orderList = Collections.singletonList(TypicalOrders.ORDER_ONE);
+        uniqueOrderList.add(TypicalOrders.ORDER_1);
+        List<Order> orderList = Collections.singletonList(TypicalOrders.ORDER_1);
         uniqueOrderList.setOrders(orderList);
         UniqueOrderList expectedUniqueOrderList = new UniqueOrderList();
-        expectedUniqueOrderList.add(TypicalOrders.ORDER_ONE);
+        expectedUniqueOrderList.add(TypicalOrders.ORDER_1);
         assertEquals(uniqueOrderList, expectedUniqueOrderList);
     }
 
     @Test
     public void setOrders_listWithDuplicateOrders_throwsDuplicateOrderException() {
-        List<Order> listWithDuplicateOrders = Arrays.asList(TypicalOrders.ORDER_ONE, TypicalOrders.ORDER_ONE);
+        List<Order> listWithDuplicateOrders = Arrays.asList(TypicalOrders.ORDER_1, TypicalOrders.ORDER_1);
         assertThrows(DuplicateOrderException.class, () -> uniqueOrderList.setOrders(listWithDuplicateOrders));
     }
 
