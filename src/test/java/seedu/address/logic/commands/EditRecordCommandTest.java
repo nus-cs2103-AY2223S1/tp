@@ -43,6 +43,7 @@ public class EditRecordCommandTest {
 
         String expectedMessage = String.format(EditRecordCommand.MESSAGE_EDIT_RECORD_SUCCESS, editedRecord);
 
+        expectedModel.setRecord(model.getFilteredRecordList().get(indexLastRecord.getZeroBased()), editedRecord);
         assertCommandSuccess(editRecordCommand, model, expectedMessage, expectedModel);
     }
 

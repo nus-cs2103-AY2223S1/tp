@@ -1,5 +1,7 @@
 package seedu.address.logic.commands;
 
+import static seedu.address.logic.commands.Command.MESSAGE_LIST_COMMAND_PREREQUISITE;
+import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.logic.commands.CommandTestUtil.showPersonAtIndex;
 import static seedu.address.testutil.TypicalIndexes.FIRST_INDEX;
@@ -17,23 +19,33 @@ import seedu.address.model.UserPrefs;
  */
 public class ListCommandTest {
 
-    private Model model;
+    private Model modelShowingRecordList;
+    private Model modelShowingPatientList;
     private Model expectedModel;
 
     @BeforeEach
     public void setUp() {
-        model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
-        expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
+        modelShowingRecordList = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+        modelShowingPatientList = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+        expectedModel = new ModelManager(modelShowingRecordList.getAddressBook(), new UserPrefs());
+
+        modelShowingRecordList.setRecordListDisplayed(true);
+        expectedModel.setRecordListDisplayed(true);
+    }
+
+    @Test
+    public void execute_listWhileRecordListNotDisplayed_throwCommandException() {
+        assertCommandFailure(new ListCommand(), modelShowingPatientList, MESSAGE_LIST_COMMAND_PREREQUISITE);
     }
 
     @Test
     public void execute_listIsNotFiltered_showsSameList() {
-        assertCommandSuccess(new ListCommand(), model, ListCommand.MESSAGE_SUCCESS, expectedModel);
+        assertCommandSuccess(new ListCommand(), modelShowingRecordList, ListCommand.MESSAGE_SUCCESS, expectedModel);
     }
 
     @Test
     public void execute_listIsFiltered_showsEverything() {
-        showPersonAtIndex(model, FIRST_INDEX);
-        assertCommandSuccess(new ListCommand(), model, ListCommand.MESSAGE_SUCCESS, expectedModel);
+        showPersonAtIndex(modelShowingRecordList, FIRST_INDEX);
+        assertCommandSuccess(new ListCommand(), modelShowingRecordList, ListCommand.MESSAGE_SUCCESS, expectedModel);
     }
 }

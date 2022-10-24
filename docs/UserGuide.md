@@ -33,6 +33,8 @@ If you can type fast, OmniHealth can get your patient management tasks done fast
 
    * **`clear`** : Deletes all patients.
 
+   * **`rlist 1`** : Lists all the records of the 1st patient shown in the current list.
+
    * **`exit`** : Exits the app.
 
 1. Refer to the [Features](#features) below for details of each command.
@@ -78,23 +80,23 @@ Format: `help`
 
 Adds a patient to the patient record database.
 
-Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
+Format: `add n/NAME b/BIRTHDATE p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 A person can have any number of tags (including 0)
 </div>
 
 Examples:
-* `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
-* `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal`
+* `add n/John Doe b/08-08-1988 p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
+* `add n/Betsy Crowe b/16-06-1996 t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal`
 
-### Adding a record: `addR`
+### Adding a record: `radd`
 
 Adds a new record to a given patient.
 
-Format: `addR d/DATE r/DATA [m/MEDICATION]…` 
+Format: `radd d/DATE r/DATA [m/MEDICATION]…` 
 
-* The command is only valid after using `listR PATIENT_INDEX`.
+* The command is only valid after using `rlist PATIENT_INDEX`.
 * Adds a new record to the patient with given `DATE`, `DATA` and `MEDICATION` information.
 
 * 
@@ -103,8 +105,8 @@ Dates must be given in DD-MM-YYYY HHmm format!
 </div>
 
 Examples:
-* `addR d/11-09-2001 1200 r/Patient tested negative for COVID-19 m/Paracetomol 500mg m/Dextromethorphan`
-* `addR d/28-02-2024 2030 r/Patient experienced vomitting`
+* `radd d/11-09-2001 1200 r/Patient tested negative for COVID-19 m/Paracetomol 500mg m/Dextromethorphan`
+* `radd d/28-02-2024 2030 r/Patient experienced vomitting`
 
 ### Deleting a patient: `delete`
 
@@ -120,18 +122,18 @@ Examples:
 * `list` followed by `delete 2` deletes the 2nd patient in the address book.
 * `find Betsy` followed by `delete 1` deletes the 1st patient in the results of the find command.
 
-### Deleting a record: `deleteR`
+### Deleting a record: `rdelete`
 
 Deletes the specified record from the currently viewed patient’s records.
 
-Format: `deleteR RECORD_INDEX`
+Format: `rdelete RECORD_INDEX`
 
-* The command is only valid after using `listR PATIENT_INDEX`.
+* The command is only valid after using `rlist PATIENT_INDEX`.
 * Deletes the record of the currently viewed patient at the specified `RECORD_INDEX`.
 * The record index must be a positive integer 1, 2, 3, …​
 
 Examples:
-* `listR 1` then `deleteR 2` deletes the 2nd record from the 1st patient’s listed records.
+* `rlist 1` then `rdelete 2` deletes the 2nd record from the 1st patient’s listed records.
 
 ### Listing all patients: `list`
 
@@ -139,11 +141,11 @@ Shows a list of all patients in the patient database.
 
 Format: `list`
 
-### Listing all record(s) for the specified patient : `listR`
+### Listing all record(s) for the specified patient : `rlist
 
 Shows a list of all records for the specified patient.
 
-Format: `listR PATIENT_INDEX`
+Format: `rlist PATIENT_INDEX`
 
 * The command is only valid after using `list`.
 * Lists all records of the patient at the specified `PATIENT_INDEX`.
@@ -151,14 +153,14 @@ Format: `listR PATIENT_INDEX`
 * The index **must be a positive integer** 1, 2, 3, …​
 
 Examples:
-* `listR 1` displays all records of the 1st patient in the displayed patient list.
-* `find Betsy` followed by `listR 1` displays all records of the 1st patient in the results of the find command.
+* `rlist 1` displays all records of the 1st patient in the displayed patient list.
+* `find Betsy` followed by `rlist 1` displays all records of the 1st patient in the results of the find command.
 
 ### Editing a person : `edit`
 
 Edits an existing person in the address book.
 
-Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
+Format: `edit INDEX [n/NAME] [b/BIRTHDATE] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
 
 * Edits the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** 1, 2, 3, …​
 * At least one of the optional fields must be provided.
@@ -170,6 +172,23 @@ Format: `edit INDEX [n/NAME] [p/PHONE] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`
 Examples:
 *  `edit 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st person to be `91234567` and `johndoe@example.com` respectively.
 *  `edit 2 n/Betsy Crower t/` Edits the name of the 2nd person to be `Betsy Crower` and clears all existing tags.
+
+### Editing a record : `redit`
+
+Edits an existing record in the record list.
+
+Format: `redit INDEX [d/DATE] [r/DATA] [m/MEDICATION]…​`
+
+* Edits the record at the specified `INDEX`. The index refers to the index number shown in the displayed record list. The index **must be a positive integer** 1, 2, 3, …​
+* At least one of the optional fields must be provided.
+* Existing values will be updated to the input values.
+* When editing medication, the existing medication in the record will be removed i.e adding of tags is not cumulative.
+* You can remove all the specific record’s medications by typing `t/` without
+  specifying any tags after it.
+
+Examples:
+*  `redit 1 d/12-12-2012 1200` Edits the date of the 1st record to be `12-12-2012 1200`.
+*  `redit 2 r/Fever m/` Edits the data of the 2nd record to be `Fever` and clears all existing medication.
 
 ### Locating persons by name: `find`
 
@@ -190,11 +209,11 @@ Examples:
   ![result for 'find alex david'](images/findAlexDavidResult.png)
 
 
-### Locating records by keyword: `findR`
+### Locating records by keyword: `rfind`
 
-Finds records with a description that matches the keyword(s) specified in the records database. This command is only valid after using the listR command to list out the records for a specified patient.
+Finds records with a description that matches the keyword(s) specified in the records database. This command is only valid after using the rlist command to list out the records for a specified patient.
 
-Format: `findR KEYWORD [MORE_KEYWORDS]`
+Format: `rfind KEYWORD [MORE_KEYWORDS]`
 * The search is case-insensitive. e.g `hello` will `match HELLO`
 * The order of the keywords does not matter. e.g. `Hello World` will match `World Hello`
 * Only the description of the record will be searched.
@@ -202,8 +221,8 @@ Format: `findR KEYWORD [MORE_KEYWORDS]`
 * Records with a description matching at least one keyword will be returned (i.e. OR search). e.g. `Hello World` will return `Hello Hello`, `World World`.
 
 Examples:
-* `findR hello` returns `hello` and `Hello World`
-* `findR foo bar` returns `foo bar`, `bar null`
+* `rfind hello` returns `hello` and `Hello World`
+* `rfind foo bar` returns `foo bar`, `bar null`
 
 
 ### Clearing all entries : `clear`
@@ -212,11 +231,11 @@ Clears all patients from Omnihealth.
 
 Format: `clear`
 
-### Clearing all patient records : `clearR`
+### Clearing all patient records : `rclear`
 
 Clears all records of a specific patient from Omnihealth.
 
-Format: `clearR`
+Format: `rclear`
 
 ### Adding an appointment : `appt`
 
@@ -274,12 +293,15 @@ _Details coming soon ..._
 | Action            | Format, Examples                                                                                                                                                      |
 |-------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | **Add Patient**   | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague` |
-| **Add Record**    | `addR INDEX d/DATE r/DESCRIPTION` <br> e.g., `e.g., addR 1 d/2022-09-11 r/Patient tested negative for COVID-19`                                                       |
+| **Add Record**    | `radd INDEX d/DATE r/DESCRIPTION` <br> e.g., `e.g., radd 1 d/2022-09-11 r/Patient tested negative for COVID-19`                                                       |
 | **Clear**         | `clear`                                                                                                                                                               |
-| **Clear Record**  | `clearR`                                                                                                                                                              |
+| **Clear Records** | `rclear`                                                                                                                                                              |
 | **Delete**        | `delete INDEX`<br> e.g., `delete 3`                                                                                                                                   |
-| **Delete Record** | `deleteR INDEX`                                                                                                                                                       |
+| **Delete Record** | `rdelete INDEX`                                                                                                                                                       |
 | **Edit**          | `edit INDEX [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [a/ADDRESS] [t/TAG]…​`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`                                           |
+| **Edit Record**   | `redit INDEX [d/DATE] [r/DATA] [m/MEDICATION]…​`<br> e.g.,`redit 2 d/12-12-2012 1200 r/Fever`                                                                         |
 | **Find**          | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find James Jake`                                                                                                            |
+| **Find Record**   | `rfind KEYWORD [MORE_KEYWORDS]`<br> e.g., `rfind foo bar`                                                                                                             |
 | **List**          | `list`                                                                                                                                                                |
+| **List Records**  | `rlist`                                                                                                                                                               |
 | **Help**          | `help`                                                                                                                                                                |

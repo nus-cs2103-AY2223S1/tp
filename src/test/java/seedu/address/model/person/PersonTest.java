@@ -1,5 +1,6 @@
 package seedu.address.model.person;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
@@ -9,7 +10,11 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalPersons.ALICE;
+import static seedu.address.testutil.TypicalPersons.BENSON;
 import static seedu.address.testutil.TypicalPersons.BOB;
+import static seedu.address.testutil.TypicalPersons.CARL;
+import static seedu.address.testutil.TypicalPersons.DANIEL;
+import static seedu.address.testutil.TypicalPersons.ELLE;
 
 import org.junit.jupiter.api.Test;
 
@@ -48,6 +53,24 @@ public class PersonTest {
         String nameWithTrailingSpaces = VALID_NAME_BOB + " ";
         editedBob = new PersonBuilder(BOB).withName(nameWithTrailingSpaces).build();
         assertFalse(BOB.isSamePerson(editedBob));
+    }
+
+    @Test
+    public void getAge() {
+        assertEquals(78, ALICE.getAge());
+        assertEquals(34, BENSON.getAge());
+        assertEquals(20, CARL.getAge());
+        assertEquals(26, DANIEL.getAge());
+        assertEquals(29, ELLE.getAge());
+    }
+
+    @Test
+    public void displayBirthdate() {
+        assertEquals("4 Apr 1944", ALICE.displayBirthdate());
+        assertEquals("8 Aug 1988", BENSON.displayBirthdate());
+        assertEquals("2 Feb 2002", CARL.displayBirthdate());
+        assertEquals("6 Jun 1996", DANIEL.displayBirthdate());
+        assertEquals("13 Mar 1993", ELLE.displayBirthdate());
     }
 
     @Test

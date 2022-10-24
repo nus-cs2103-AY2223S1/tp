@@ -154,6 +154,55 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
+### \[Implemented\] Add record feature
+
+#### Patient Records
+OmniHealth manages patient records generated during patient consultations.  Each `Patient` holds a list of 
+medical records that the user is able to modify and edit. The `Record` class encapsulates a medical
+record that comprises a date, medical information and medicine prescribed (if any).
+
+#### Implementation
+
+Following the command execution pathway, the implementation of adding records uses the exposed `Model#addRecord(Record)`
+operation in the `Model` API which operates through a `DisplayedPerson` which encapsulates the current patient whose list of records is being 
+displayed to the user. Record operations are performed through the displayed person, for example,`DisplayedPerson#addRecord(Record)`.
+The current patient can be set by `DisplayedPerson#setPerson(Person, AddressBook)`.
+
+The parsing of user input is facilitated by `AddRecordCommandParser`. `AddRecordCommandParser#parse()` parses user 
+input string to return a `AddRecordCommand` object with a `Record` derived from the given inputs.
+
+Given below is an example usage scenario.
+
+Precondition. User should be current viewing a specific patient's record list using the `rlist` command. The current
+patient is set using `DisplayedPerson#setPerson(Person, AddressBook)`.
+
+Execution. User executes `radd d/01-02-2013 1230 r/Patient developed fever. m/Paracetamol` to add a new record containing 
+the date/time of `01-02-2013 1230`, medication remark of `Patient developed fever.` and medication prescription of
+`Paracetamol` into the current displayed person's record list. The `radd` command calls `Model#addRecord(Record)` 
+which performs the adding of records to the `DisplayedPerson` held by the `Model`.
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The medication field is an optional input
+</div>
+
+The following sequence diagram shows how the add record operation works:
+
+![AddRecordCommand](images/AddRecordCommandSequenceDiagram.png)
+
+
+#### Design considerations:
+
+**Aspect: Model-Person Interaction:**
+
+* **Alternative 1 (current choice):** Use DisplayedPerson as a wrapper class.
+    * Pros: Maintain immutability within Person and Model classes, Easy to set current person whose record list is being
+displayed
+    * Cons: Longer command execution pathway as DisplayedPerson acts as an intermediary class between Model and Person.
+  
+* **Alternative 2:** Allow model to directly interact with Person's record list.
+  * Pros: Easy to implement, simpler command execution pathway.
+  * Cons: Potentially violates OOP.
+  
+
 ### \[Proposed\] Undo/redo feature
 
 #### Proposed Implementation
@@ -238,6 +287,116 @@ _{more aspects and alternatives to be added}_
 
 _{Explain here how the data archiving feature will be implemented}_
 
+### \[Implemented\] Find Records
+
+#### Implementation: 
+The find record command mechanism is facilitated by `RecordContainsKeywordPredicate` and `FindRecordCommandParser`
+which extends `Predicate` and `AddressbookParser` respectively. 
+
+`FindRecordCommandParser` implements the following operations:
+* `FindRecordCommandParser#parse()` - Parses the input arguments by storing each prefix and its respective
+values as an `ArgumentMultimap`.
+
+`RecordContainsKeywordPredicate` implements the following operations:
+* `RecordContainsKeywordPredicate#test()` - Tests whether the record under testing contains any of the keywords
+in the correct fields.
+
+Only `FindRecordCommandParser#parse` is exposed in the Parser interface as Parser#parse().
+
+Given below is an example usage and how the find record mechanism works at each step.
+
+### \[Implemented\] List Records feature
+
+#### Implementation:
+
+The implemented list record mechanism is facilitated by `ListRecordCommandParser`, which extends `AddressBookParser`. `ListRecordCommandParser` implements the following operations:
+- `ListRecordCommandParser#parse()` - Parses the input argument into an `Index` and creates a new `ListRecordCommand` object with the parsed `Index`.
+
+The `ListRecordCommand` object then communicates with the `Model` API when it is executed, more specifically, by calling the following methods that are implemented in `ModelManager`:
+- `Model#setPersonWithRecords(Person)` - Sets the person whose record list is being displayed (`ModelManager#personWithRecords`) to the given `Person`, so that the displayed record list can be manipulated by calling methods such as `Model#addRecord()` and `Model#deleteRecord()`.
+- `Model#setRecordListDisplayed(boolean)` - Setter for a flag to determine if a record list is being displayed; set to `true`.
+- `Model#setFilteredRecordList(Person)` - Sets the *filtered list* of records (`ModelManager#filteredRecords`) to the record list of the given Person.
+- `Model#updateFilteredRecordList(Predicate)` - Updates the filter of the *filtered list* of records to the filter given by the predicate; an `always true` predicate is given so that all records will be included in the *filtered list*.
+
+At the final step of the execution of the `ListRecordCommand` object, a `CommandResult` object is returned.
+
+The Sequence Diagram below shows how the list record operation works:
+
+![ListRecordCommand](images/ListRecordSequenceDiagram.png)
+
+Example usage scenario:
+- Precondition: The user should be viewing the patient list by using the `list` command.
+- Execution: The user executes `rlist 1` to list the records of the 1st patient in the displayed patient list.
+
+### \[Implemented\] Clear Records
+
+The clear record command `rclear` allows the application to clear all the existing records in the current active record
+list.
+
+#### Implementation:
+
+Given below is an example usage scenario for the command.
+
+**Step 1:** The user launches the application.
+
+**Step 2:** The user executes the `rlist INDEX` command to show the record list of a specified patient. 
+
+**Step 3:** The user executes the `rclear` command to clear all existing records in the record list.
+
+### \[Implemented\] Add appointment
+
+The add appointment feature allows Omnihealth to manage future appointments for patients. Each `Patient` holds an appointment
+reference for record keeping that the user is able to edit and clear.
+
+#### Implementation:
+The add appointment command mechanism is facilitated by the `AddAppointmentCommandParser` class which extends the `AddressbookParser`.
+
+`AddAppointmentParser` implements the following operations:
+* `AddAppointmentParser#parse()` - Parses the input arguments by storing the index and the prefix of its respective values as 
+an `ArgumentMultimap.`
+
+`AddAppointmentParser#parse()` is exposed in the Parser interface as Parser#parse().
+
+Given below is an example usage scenario for the command.
+
+**Step 1:** The user launches the application.
+
+**Step 2:** The user executes the `appt INDEX d/ dd-MM-yyyy` command in the CLI.
+
+**Step 3:** An appointment will be assigned to the patient specified with the index input.
+
+### \[Implemented\] Clear appointment
+
+#### Implementation:
+The add appointment mechanism is facilitated by `ClearAppointmentCommandParser`  which extends `AddressbookParser`.
+
+`ClearAppointmentParser` implements the following operations:
+* `ClearAppointmentParser#parse()` - Parses the input arguments by storing the index and the prefix of its respective values as
+  an `ArgumentMultimap.`
+
+`ClearAppointmentParser#parse()` is exposed in the Parser interface as Parser#parse().
+
+Given below is an example usage scenario for the command.
+
+**Step 1:** The user launches the application.
+
+**Step 2:** The user executes the `apptcl INDEX ` command in the CLI.
+
+**Step 3:** The patient's appointment(if any) will be cleared. 
+
+###\[Proposed\] Upcoming appointment tracker
+
+The proposed upcoming appointment feature will be a display to show upcoming appointments for the user upon application start.
+
+####Proposed Implementation
+The proposed implementation is facilitated by `AppointmentWindow`. It extends `UiPart<Stage>` with a new window.
+
+Given below is an example usage scenario for the command.
+
+**Step 1:** The user launches the application.
+
+**Step 2:** A additional window appears, showing the current upcoming appointments.
+
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -263,7 +422,7 @@ _{Explain here how the data archiving feature will be implemented}_
 
 **Value proposition**:
 * provide doctors with a place to **store and centrally manage their patients’ information**
-* allows doctors to schedule appointments, send appointment reminders and other notifications (eg. medication, payment
+* allow doctors to schedule appointments, send appointment reminders and other notifications (eg. medication, payment
   information) to patients using their stored contact information.
 
 
@@ -271,16 +430,21 @@ _{Explain here how the data archiving feature will be implemented}_
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​   | I want to …​                            | So that I can…​                                                                           |
-| -------- |-----------|-----------------------------------------|-------------------------------------------------------------------------------------------|
-| `* * *`  | new user  | view the user guide easily              | learn more about the product usage                                                        |
-| `* * *`  | user      | add a new patient and their details     | save them for later viewing                                                               |
-| `* * *`  | user      | view an existing patient's full details | know more about the patient                                                               |
-| `* * *`  | user      | delete a patient's records              | clear a particular patient's medical records upon request. (E.g. due to privacy reasons)  |
-| `* * *`  | user      | clear the all of a patient's records    | save time by not deleting one by one                                                      |
-| `*`      | user      | view the entire list of patients        | see all my patients I have added.                                                         |
-| `* * *`  | user      | search for a specific patient’s records | view one patient's record                                                                 |
-| `* * *`  | user      | exit the program                        |                                                                                           |
+| Priority | As a …​                | I want to …​                             | So that I can…​                                                                           |
+|----------|------------------------|------------------------------------------|-------------------------------------------------------------------------------------------|
+| `* * *`  | new user               | view the user guide easily               | learn more about the product usage                                                        |
+| `* * *`  | user                   | add a new patient and their details      | save them for later viewing                                                               |
+| `* * *`  | user                   | view an existing patient's full details  | know more about the patient                                                               |
+| `* * *`  | user                   | delete a patient's records               | remove a particular patient's medical records upon request. (E.g. due to privacy reasons) |
+| `* * *`  | user                   | clear all of a patient's records         | save time by not deleting one by one                                                      |
+| `* * *`  | user                   | view the entire list of patients         | see all my patients I have added.                                                         |
+| `* * *`  | user                   | view a specific patient’s records        | remember past visits recorded                                                             |
+| `* * *`  | user                   | exit the program                         |                                                                                           |
+| `* *`    | schedule-oriented user | add appointments scheduled for a patient | keep track of my appointments                                                             |
+| `* *`    | user                   | edit a patient's record                  | change details of a record in the future                                                  |
+
+
+
 
 *{More to be added}*
 
@@ -330,10 +494,8 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1.  User requests to list patients
-2.  OmniHealth shows a list of patients
-3.  User requests to delete a specific patient in the list
-4.  OmniHealth deletes the person
+1. User requests to delete a specific patient in the list
+2. OmniHealth deletes the person
 
     Use case ends.
 
@@ -372,7 +534,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **Extensions**
 
-* 3a. The list is empty.
+* 3a. The record list is empty.
 
     * 3a1. OmniHealth shows an error message.
 
@@ -384,7 +546,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case ends.
 
-* *a. Patient attempts to delete a record before listing records.
+* *a. User attempts to delete a record before listing records.
 
     * *a1. OmniHealth shows an error message.
 
@@ -555,12 +717,67 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **Extensions**
 * 1a. Patient list is empty
     * 1a1. OmniHealth displays an error message
-    * 
+
     Use case ends
 * 1b. Patient index does not exist
     * 1b1. OmniHealth displays an error message.
     
     Use Case ends
+
+**Use Case: UC14 - Edit a patient's record**
+
+**MSS**
+
+1. User !!requests to list patients (UC05).!!
+2. User !!requests to display record list of specific patient (UC06).!!
+3. User requests to edit a record
+4. OmniHealth replaces the record in the record list with a new edited one
+
+**Extensions**
+* 3a. The record list is empty.
+
+    * 3a1. OmniHealth shows an error message.
+
+      Use case ends.
+
+* 3b. The given index is invalid.
+
+    * 3b1. OmniHealth shows an error message.
+
+      Use case ends.
+
+* *a. User attempts to edit a record before listing records.
+
+    * *a1. OmniHealth shows an error message.
+
+      Use case ends.
+
+**Use Case: UC15 - Edit a patient's details**
+
+**MSS**
+
+1. User !!requests to list patients (UC05).!!
+2. User requests to edit a patient's details
+3. OmniHealth replaces the patient in the patient database with a new edited one
+
+**Extensions**
+* 2a. The patient list is empty.
+
+    * 3a1. OmniHealth shows an error message.
+
+      Use case ends.
+
+* 2b. The given index is invalid.
+
+    * 3b1. OmniHealth shows an error message.
+
+      Use case ends.
+
+* *a. User attempts to edit a patient before listing patients.
+
+    * *a1. OmniHealth shows an error message.
+
+      Use case ends.
 
 *{More to be added}*
 

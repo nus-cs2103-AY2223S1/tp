@@ -82,7 +82,7 @@ public class AddressBookParserTest {
     public void parseCommand_findR() throws Exception {
         List<String> keywords = Arrays.asList("foo", "bar", "baz");
         FindRecordCommand command = (FindRecordCommand) parser.parseCommand(
-                FindRecordCommand.COMMAND_WORD + " " + keywords.stream().collect(Collectors.joining(" ")));
+                FindRecordCommand.COMMAND_WORD + " r/" + keywords.stream().collect(Collectors.joining(" ")));
         assertEquals(new FindRecordCommand(new RecordContainsKeywordsPredicate(keywords)), command);
     }
 

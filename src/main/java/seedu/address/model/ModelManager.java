@@ -3,6 +3,7 @@ package seedu.address.model;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 import static seedu.address.model.person.Person.DEFAULT_ADDRESS;
+import static seedu.address.model.person.Person.DEFAULT_BIRTHDATE;
 import static seedu.address.model.person.Person.DEFAULT_EMAIL;
 import static seedu.address.model.person.Person.DEFAULT_NAME;
 import static seedu.address.model.person.Person.DEFAULT_PHONE;
@@ -20,6 +21,7 @@ import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Appointment;
+import seedu.address.model.person.Birthdate;
 import seedu.address.model.person.DisplayedPerson;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
@@ -54,6 +56,7 @@ public class ModelManager implements Model {
         this.addressBook = new AddressBook(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
         Person placeholderPerson = new Person(new Name(DEFAULT_NAME),
+                new Birthdate(DEFAULT_BIRTHDATE),
                 new Phone(DEFAULT_PHONE),
                 new Email(DEFAULT_EMAIL),
                 new Address(DEFAULT_ADDRESS),
@@ -242,7 +245,8 @@ public class ModelManager implements Model {
         ModelManager other = (ModelManager) obj;
         return addressBook.equals(other.addressBook)
                 && userPrefs.equals(other.userPrefs)
-                && filteredPersons.equals(other.filteredPersons);
+                && filteredPersons.equals(other.filteredPersons)
+                && filteredRecords.equals(other.filteredRecords);
     }
 
 }
