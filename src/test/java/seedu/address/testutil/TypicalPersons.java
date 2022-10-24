@@ -103,6 +103,9 @@ public class TypicalPersons {
             .withIncome("$1000")
             .withMonthly("$500")
             .withRiskTag("HIGH")
+            .withAppointment(new AppointmentBuilder()
+                    .withDateTime(VALID_DATETIME_30_MAR_2024)
+                    .withLocation(VALID_LOCATION_WESTMALL).build())
             .build();
     public static final Person GEORGE = new PersonBuilder()
             .withName("George Best")
@@ -136,9 +139,6 @@ public class TypicalPersons {
             .withIncome("$1000")
             .withMonthly("$200")
             .withRiskTag("HIGH")
-            .withAppointment(new AppointmentBuilder()
-                    .withDateTime(VALID_DATETIME_30_MAR_2024)
-                    .withLocation(VALID_LOCATION_WESTMALL).build())
             .build();
 
     // Manually added - Person's details found in {@code CommandTestUtil}
