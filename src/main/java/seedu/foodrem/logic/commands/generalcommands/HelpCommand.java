@@ -78,7 +78,8 @@ public class HelpCommand extends Command {
 
                 CommandResult<?> asType = (CommandResult<?>) other;
                 try {
-                    return getHelpText().equals(asType.getHelpText())
+                    return getOutput().equals(asType.getOutput())
+                            && getHelpText().equals(asType.getHelpText())
                             && super.equals(asType);
                 } catch (UnsupportedOperationException e) {
                     return false;
