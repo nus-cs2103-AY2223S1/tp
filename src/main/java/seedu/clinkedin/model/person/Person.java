@@ -138,7 +138,7 @@ public class Person {
                 && otherPerson.getTags().equals(getTags())
                 && otherPerson.getNote().equals(getNote())
                 && otherPerson.getStatus().equals(getStatus())
-                && otherPerson.getLinks().equals(getTags());
+                && otherPerson.getLinks().equals(getLinks());
     }
 
     @Override

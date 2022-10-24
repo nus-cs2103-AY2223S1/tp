@@ -99,7 +99,6 @@ public class EditCommandParser implements Parser<EditCommand> {
         }
 
         parseLinksForEdit(argMultimap.getAllValues(PREFIX_LINK)).ifPresent(editPersonDescriptor::setLinks);
-        System.out.println(editPersonDescriptor.getLinks());
         if (!editPersonDescriptor.isAnyFieldEdited()) {
             throw new ParseException(EditCommand.MESSAGE_NOT_EDITED);
         }

@@ -1,7 +1,9 @@
 package seedu.clinkedin.model.util;
 
+import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 import seedu.clinkedin.logic.parser.Prefix;
 import seedu.clinkedin.model.AddressBook;
@@ -73,4 +75,12 @@ public class SampleDataUtil {
         return tags;
     }
 
+    /**
+     * Returns a link set containing the list of strings given.
+     */
+    public static Set<Link> getLinkSet(String... strings) {
+        return Arrays.stream(strings)
+                .map(Link::new)
+                .collect(Collectors.toSet());
+    }
 }
