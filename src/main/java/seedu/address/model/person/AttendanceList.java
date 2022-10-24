@@ -74,6 +74,18 @@ public class AttendanceList {
     }
 
     /**
+     * Removes the attendance at the given index.
+     * @param index of attendance to be removed
+     */
+    public void removeAtIndex(Index index) {
+        int indexToRemove = index.getZeroBased();
+        if (indexToRemove >= attendanceList.size()) {
+            throw new IllegalArgumentException(MESSAGE_INVALID_ATTENDANCE_INDEX);
+        }
+        attendanceList.remove(indexToRemove);
+    }
+
+    /**
      * Returns true if a given {@code Index} is a valid index in the list.
      */
     public boolean isValidIndex(Index index) {
