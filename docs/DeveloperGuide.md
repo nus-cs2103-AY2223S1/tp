@@ -322,7 +322,7 @@ There are only 2 commands which can modify the Remark for a Person. These are th
 
 #### Implementation
 
-The `message` command provides an easy way for users to generate messages to send to clients, using pre-written message templates which contain the {name} keyword. Message templates are stored as an array of strings in the address book JSON file. 
+The `message` command provides an easy way for users to generate messages to send to clients, using pre-written message templates which contain the {name} keyword. Message templates are stored as an array of strings in the address book JSON file.
 
 The following commands are provided:
 
@@ -330,7 +330,7 @@ The following commands are provided:
 
 `delete`  — Delete the specified message template
 
-`generate`  — Using the specified message template and client, generate a message for client. 
+`generate`  — Using the specified message template and client, generate a message for client.
 
 Creation and deletion are exposed in the `Model` interface as `Model#createMessage`, `Model#deleteMessage`, while message generation is exposed in `Message` as `Message#generate`.
 
@@ -363,17 +363,17 @@ message delete 1
 #### Design considerations:
 
 - **Aspect: Allow editing**
-  
+
   - Alternative 1 (current choice): Don't allow editing
-    
+
     - Pros: Simpler command set, easier to implement, messages templates are not frequently edited
-    
+
     - Cons: Less convenient when user actually wants to edit message templates
-  
+
   - Alternative 2: Allow editing
-    
+
     - Pros: (Slightly) more convenient
-    
+
     - Cons: More complicated command set
 
 ### Tag command
@@ -414,41 +414,32 @@ We can also remove tags from a user using the `tag remove` command. For example,
         * `add` and `edit` commands will be slightly messier and may contain ambiguities.
         * Not user-friendly. The user will be forced to re-type all the current tags the client possesses if they
           wish to add or edit one of the many tags the client possesses.
-        
-### \[Proposed\] Filter command
-=======
+
 ### Filter Command
-**Aspect: How tags can be implemented:**
->>>>>>> ad384bb8de0efdc505c9ded5adb05374915a7164
-
-* **Alternative 1 (current choice):** Using a separate set of commands labelled `tag`.
-    * Pros:
-        * A cleaner design as tags, unlike remarks are elements of a set, rather than a String.
-    * Cons:
-        * Forces the creation of a few unique commands. Not user-friendly as the user is expected
-          to memorise all commands.
-
-* **Alternative 2:** Building on top of the `add` and `edit` commands.
-    * Pros:
-        * It allows a more concise set of operations.
-    * Cons:
-        * `add` and `edit` commands will be slightly messier and may contain ambiguities.
-        * Not user-friendly. The user will be forced to re-type all the current tags the client possesses if they
-          wish to add or edit one of the many tags the client possesses.
-
 #### Implementation
 
 The `filter`command provides a way for users to search for clients in Rapportbook. It extends from the `Command` class and results in an update of the `FilteredList<Person>` filtered list of the model.
 
 The following commands are provided:
 
+* `filter list` — Lists all applied filters
+
 * `filter [n=NAME,...] [t=TAG,...]`  — Filter for clients with the specified names and tags
 
 * `filter clear [n=NAME,...] [t=TAG,...]`  — Removes filters that were previously applied with the specified names or tags
 
+The command utilises the  `FilterCommandPredicate` class to aggregate the filters specified and handle the filtering. `FilterCommandPredicate` is created during parsing when `filter` commands are executed. The following is the sequence diagram for parsing of the `filter` command.
+![FilterParseSequenceDiagram](images/command-filter/FilterParseSequenceDiagram.svg)
+
 Adding and removing filters are exposed in the `Model` through the `Model#addNewFilterToFilteredPersonList` and `Model#removeFilterFromFilteredPersonList` methods. Addtionally, there is also the `Model#clearFiltersInFilteredPersonList` method to clear all filters.
 
+![FilterClassDiagram](images/command-filter/FilterClassDiagram.svg)
+
 Predicates of each type of filter (name and tags) are stored in separate sets in the `ModelManager` class. Adding a filter will add predicates to the sets and removing filters will remove them from the sets. To update the `FilteredList` with the updated filters, each set of predicate will be reduced with an `OR` operation, and the resulting predicate from each set will be reduced with an `AND` operation.
+
+The following is a sequence diagram of a `filter` command. `filter clear` is similiar except that `Model#clearFiltersInFilteredPersonList` is called instead while `filter list` does not change the `FilteredList` of the model.
+
+![FilterSequenceDiagram](images/command-filter/FilterParseSequenceDiagram.svg)
 
 **Given below is an example usage scenario of filtering**
 
@@ -524,14 +515,14 @@ tag friends
 #### Design considerations:
 - **Aspect: How to access the `TargetPerson`.**
   - Alternative 1 (current choice): Allow the index to not be specified
-      - Pros: 
+      - Pros:
         - The user does not have to provide an index (less to type).
       - Cons:
         - Implementation will have to account for no index provided for the various commands.
   - Alternative 2: Index 0 to denote `TargetPerson`
       - Pros:
         - (Slightly) Easier to implement.
-      - Cons: 
+      - Cons:
         - User has to provide an index (more to type).
 
 --------------------------------------------------------------------------------------------------------------------
@@ -633,7 +624,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 1. User [lists contacts](#use-case-list-contacts).
 2. User requests to edit a specific contact in the list by specifying fields and their updated values.
-3. Rapportbook edits the contact based on what the user specified. 
+3. Rapportbook edits the contact based on what the user specified.
    Use case ends.
 
 **Extensions**
@@ -656,29 +647,43 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * Rapportbook shows an error message.
     * Use case resumes at step 2.
 
-#### Use case: Filter contacts
+#### Use case: List filters applied
 
 **MSS**
 
-1. User requests to filter contacts of a certain tag and/or name.
-2. Rapportbook shows a list of contacts that contains the tag **and** name specified in the filter query.
+1. User requests to show a list of filters already applied.
+2. Rapporbook displays a list of filters applied.
+
+    Use case ends
+**Extensions**
+
+* 1a. No filters are applied.
+* 2a1. Rapportbook shows a message to indicate there are no filters applied.
+#### Use case: Filter clients
+
+**MSS**
+
+1. User requests to filter clients of a certain tag and/or name.
+2. Rapportbook shows a list of clients that contains the tag **and** name specified in the filter query.
 
    Use case ends.
 
 
-#### Use case: Clearing filters
+#### Use case: Clear filters
 
 **MSS**
 
-1. User requests to clear filters that were originally applied.
-2. Rapportbook shows a list of contacts that without the filters applied.
+1. User requests to show a [list of filters already applied](#use-case-list-filters-applied).
+2. Rapporbook displays a list of filters applied.
+3. User requests to clear filters that were originally applied.
+4. Rapportbook shows a list of contacts without the filters applied.
 
    Use case ends.
 
 **Extensions**
 
-* 1a. Some filters specified were not previously applied.
-* 1a1. Rapportbook only clears the filters that were applied.
+* 3a. Some filters specified were not previously applied.
+* 3a1. Rapportbook only clears the filters that were applied.
 
 
 #### Use case: Show contact

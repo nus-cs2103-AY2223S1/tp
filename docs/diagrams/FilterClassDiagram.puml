@@ -1,0 +1,39 @@
+@startuml filter-class
+!include style.puml
+skinparam classAttributeIconSize 0
+skinparam arrowThickness 1.1
+skinparam arrowColor MODEL_COLOR
+skinparam classBackgroundColor MODEL_COLOR
+skinparam classFontColor #00000
+
+package {
+    Class FilterCommand LOGIC_COLOR {
+        +exceute(Model)
+    }
+
+    Class FilterCommandPredicate LOGIC_COLOR
+}
+package {
+    Class "<<interface>>\nModel" as Model {
+        addFilterToFilteredPersonList()
+        removeFilterFromFilteredPersonList()
+        getNameFilters()
+        getTagFilters()
+    }
+    Class ModelManager
+}
+
+Class "<<interface>>\nPredicate" as Predicate MODEL_COLOR_T1
+
+ModelManager .up.|> Model
+ModelManager .left.> FilterCommandPredicate
+ModelManager --> "~* namePreds"Predicate
+ModelManager --> "~* tagPreds" Predicate
+
+FilterCommand .> Model
+FilterCommand *-down-> "1" FilterCommandPredicate
+
+
+show Model methods
+show FilterCommand methods
+@enduml
