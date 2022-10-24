@@ -21,7 +21,6 @@
   <scene>
     <Scene>
       <stylesheets>
-<!--          consider using a @LightTheme.css by renaming and editing the css-->
         <URL value="@LightTheme2.css" />
         <URL value="@Extensions.css" />
       </stylesheets>

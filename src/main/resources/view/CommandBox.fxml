@@ -6,7 +6,7 @@
 <?import javafx.scene.layout.StackPane?>
 
 <StackPane styleClass="stack-pane" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
-  <SplitPane dividerPositions="0.8, 0.9">
+  <SplitPane dividerPositions="0.8">
     <items>
       <TextField fx:id="commandTextField" onAction="#handleCommandEntered" promptText="Enter command here..."/>
       <Button fx:id="sendButton" id="sendButton" mnemonicParsing="false" onAction="#handleCommandEntered"
