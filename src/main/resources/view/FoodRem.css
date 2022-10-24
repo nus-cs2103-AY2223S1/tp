@@ -118,3 +118,8 @@
 .item-listview-data {
   -fx-font-size: 9pt;
 }
+
+.lined-separator {
+  -fx-border-width: 0 0 1px 0;
+  -fx-border-color: lightgray;
+}
