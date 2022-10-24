@@ -15,7 +15,7 @@ import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.internship.AppliedDate;
 import seedu.address.model.internship.Company;
 import seedu.address.model.internship.Description;
-import seedu.address.model.internship.InterviewDate;
+import seedu.address.model.internship.InterviewDateTime;
 import seedu.address.model.internship.Link;
 
 public class JsonAdaptedInternshipTest {
@@ -31,7 +31,7 @@ public class JsonAdaptedInternshipTest {
     private static final String VALID_DESCRIPTION = BINANCE.getDescription().toString();
     private static final String VALID_APPLICATION_STATUS = BINANCE.getApplicationStatus().toString();
     private static final String VALID_APPLIED_DATE = BINANCE.getAppliedDate().toString();
-    private static final String VALID_INTERVIEW_DATE = BINANCE.getInterviewDate().toString();
+    private static final String VALID_INTERVIEW_DATE = BINANCE.getInterviewDateTime().toString();
     private static final List<JsonAdaptedTag> VALID_TAGS = BINANCE.getTags().stream()
             .map(JsonAdaptedTag::new)
             .collect(Collectors.toList());
@@ -116,7 +116,7 @@ public class JsonAdaptedInternshipTest {
     public void toModelType_nullInterviewDate_throwsIllegalValueException() {
         JsonAdaptedInternship internship = new JsonAdaptedInternship(VALID_COMPANY, VALID_LINK, VALID_DESCRIPTION,
                 VALID_APPLICATION_STATUS, VALID_APPLIED_DATE, null, VALID_TAGS);
-        String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, InterviewDate.class.getSimpleName());
+        String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, InterviewDateTime.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, internship::toModelType);
     }
 

@@ -8,7 +8,7 @@ import seedu.address.model.internship.AppliedDate;
 import seedu.address.model.internship.Company;
 import seedu.address.model.internship.Description;
 import seedu.address.model.internship.Internship;
-import seedu.address.model.internship.InterviewDate;
+import seedu.address.model.internship.InterviewDateTime;
 import seedu.address.model.internship.Link;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.util.SampleDataUtil;
@@ -30,7 +30,7 @@ public class InternshipBuilder {
     private Description description;
     private ApplicationStatus applicationStatus;
     private AppliedDate appliedDate;
-    private InterviewDate interviewDate;
+    private InterviewDateTime interviewDateTime;
     private Set<Tag> tags;
 
     /**
@@ -42,7 +42,7 @@ public class InternshipBuilder {
         description = new Description(DEFAULT_DESCRIPTION);
         applicationStatus = DEFAULT_APPLICATION_STATUS;
         appliedDate = new AppliedDate(DEFAULT_APPLIED_DATE);
-        interviewDate = new InterviewDate(DEFAULT_INTERVIEW_DATE);
+        interviewDateTime = new InterviewDateTime(DEFAULT_INTERVIEW_DATE);
         tags = new HashSet<>();
     }
 
@@ -55,7 +55,7 @@ public class InternshipBuilder {
         description = internshipToCopy.getDescription();
         applicationStatus = internshipToCopy.getApplicationStatus();
         appliedDate = internshipToCopy.getAppliedDate();
-        interviewDate = internshipToCopy.getInterviewDate();
+        interviewDateTime = internshipToCopy.getInterviewDateTime();
         tags = new HashSet<>(internshipToCopy.getTags());
     }
 
@@ -87,7 +87,7 @@ public class InternshipBuilder {
      * Sets the {@code InterviewDate} of the {@code Internship} that we are building.
      */
     public InternshipBuilder withInterviewDate(String interviewDate) {
-        this.interviewDate = new InterviewDate(interviewDate);
+        this.interviewDateTime = new InterviewDateTime(interviewDate);
         return this;
     }
 
@@ -116,7 +116,7 @@ public class InternshipBuilder {
     }
 
     public Internship build() {
-        return new Internship(company, link, description, applicationStatus, appliedDate, interviewDate, tags);
+        return new Internship(company, link, description, applicationStatus, appliedDate, interviewDateTime, tags);
     }
 
 }

@@ -15,7 +15,7 @@ import seedu.address.model.internship.AppliedDate;
 import seedu.address.model.internship.Company;
 import seedu.address.model.internship.Description;
 import seedu.address.model.internship.Internship;
-import seedu.address.model.internship.InterviewDate;
+import seedu.address.model.internship.InterviewDateTime;
 import seedu.address.model.internship.Link;
 import seedu.address.model.tag.Tag;
 
@@ -31,7 +31,7 @@ class JsonAdaptedInternship {
     private final String description;
     private final String applicationStatus;
     private final String appliedDate;
-    private final String interviewDate;
+    private final String interviewDateTime;
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
 
     /**
@@ -42,14 +42,14 @@ class JsonAdaptedInternship {
                                  @JsonProperty("description") String description,
                                  @JsonProperty("applicationStatus") String applicationStatus,
                                  @JsonProperty("appliedDate") String appliedDate,
-                                 @JsonProperty("interviewDate") String interviewDate,
+                                 @JsonProperty("interviewDateTime") String interviewDateTime,
                                  @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
         this.company = company;
         this.link = link;
         this.description = description;
         this.applicationStatus = applicationStatus;
         this.appliedDate = appliedDate;
-        this.interviewDate = interviewDate;
+        this.interviewDateTime = interviewDateTime;
         if (tagged != null) {
             this.tagged.addAll(tagged);
         }
@@ -59,16 +59,18 @@ class JsonAdaptedInternship {
      * Converts a given {@code Internship} into this class for Jackson use.
      */
     public JsonAdaptedInternship(Internship source) {
+
+
         company = source.getCompany().value;
         link = source.getLink().value;
         description = source.getDescription().value;
         applicationStatus = source.getApplicationStatus().toString().toLowerCase();
         appliedDate = source.getAppliedDate().value;
 
-        if (source.getInterviewDate() == null) {
-            interviewDate = "";
+        if (source.getInterviewDateTime() == null) {
+            interviewDateTime = "";
         } else {
-            interviewDate = source.getInterviewDate().value;
+            interviewDateTime = source.getInterviewDateTime().value;
         }
 
         tagged.addAll(source.getTags().stream()
@@ -131,20 +133,23 @@ class JsonAdaptedInternship {
 
         final Set<Tag> modelTags = new HashSet<>(internshipTags);
 
-        if (interviewDate == null) {
+        if (interviewDateTime == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
-                    InterviewDate.class.getSimpleName()));
+                    InterviewDateTime.class.getSimpleName()));
         }
 
-        if (interviewDate == "") {
+        System.out.println("interviewDateTime" + interviewDateTime);
+        System.out.println("appliedDateTime" + appliedDate);
+
+        if (interviewDateTime == "") {
             return new Internship(modelCompany, modelLink, modelDescription,
                 modelApplicationStatus, modelAppliedDate, null, modelTags);
-        } else if (!InterviewDate.isValidInterviewDate(interviewDate)) {
-            throw new IllegalValueException(InterviewDate.MESSAGE_CONSTRAINTS);
+        } else if (!InterviewDateTime.isValidInterviewDateTime(interviewDateTime)) {
+            throw new IllegalValueException(InterviewDateTime.MESSAGE_CONSTRAINTS);
         } else {
-            final InterviewDate modelInterviewDate = new InterviewDate(interviewDate);
+            final InterviewDateTime modelInterviewDateTime = new InterviewDateTime(interviewDateTime);
             return new Internship(modelCompany, modelLink, modelDescription,
-                    modelApplicationStatus, modelAppliedDate, modelInterviewDate, modelTags);
+                    modelApplicationStatus, modelAppliedDate, modelInterviewDateTime, modelTags);
         }
     }
 

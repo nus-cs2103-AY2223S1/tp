@@ -13,7 +13,7 @@ import seedu.address.model.internship.ApplicationStatus;
 import seedu.address.model.internship.AppliedDate;
 import seedu.address.model.internship.Company;
 import seedu.address.model.internship.Description;
-import seedu.address.model.internship.InterviewDate;
+import seedu.address.model.internship.InterviewDateTime;
 import seedu.address.model.internship.Link;
 import seedu.address.model.tag.Tag;
 
@@ -89,13 +89,13 @@ public class ParserUtil {
      *
      * @throws ParseException if the given {@code interviewDate} is invalid.
      */
-    public static InterviewDate parseInterviewDate(String date) throws ParseException {
+    public static InterviewDateTime parseInterviewDate(String date) throws ParseException {
         requireNonNull(date);
         String trimmedInterviewDate = date.trim();
-        if (!InterviewDate.isValidInterviewDate(trimmedInterviewDate)) {
-            throw new ParseException(InterviewDate.MESSAGE_CONSTRAINTS);
+        if (!InterviewDateTime.isValidInterviewDateTime(trimmedInterviewDate)) {
+            throw new ParseException(InterviewDateTime.MESSAGE_CONSTRAINTS);
         }
-        return new InterviewDate(trimmedInterviewDate);
+        return new InterviewDateTime(trimmedInterviewDate);
     }
 
     /**

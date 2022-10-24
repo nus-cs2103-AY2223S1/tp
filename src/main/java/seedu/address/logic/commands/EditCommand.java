@@ -25,7 +25,7 @@ import seedu.address.model.internship.AppliedDate;
 import seedu.address.model.internship.Company;
 import seedu.address.model.internship.Description;
 import seedu.address.model.internship.Internship;
-import seedu.address.model.internship.InterviewDate;
+import seedu.address.model.internship.InterviewDateTime;
 import seedu.address.model.internship.Link;
 import seedu.address.model.tag.Tag;
 
@@ -104,8 +104,8 @@ public class EditCommand extends Command {
                 .orElse(internshipToEdit.getDescription());
         AppliedDate updatedAppliedDate = editInternshipDescriptor.getAppliedDate()
                 .orElse(internshipToEdit.getAppliedDate());
-        InterviewDate updatedInterviewDate = editInternshipDescriptor.getInterviewDate()
-                .orElse(internshipToEdit.getInterviewDate());
+        InterviewDateTime updatedInterviewDateTime = editInternshipDescriptor.getInterviewDate()
+                .orElse(internshipToEdit.getInterviewDateTime());
         ApplicationStatus updatedApplicationStatus =
                 editInternshipDescriptor.getApplicationStatus()
                         .orElse(internshipToEdit.getApplicationStatus());
@@ -113,7 +113,7 @@ public class EditCommand extends Command {
                 .orElse(internshipToEdit.getTags());
 
         return new Internship(updatedCompany, updatedLink, updatedDescription,
-                updatedApplicationStatus, updatedAppliedDate, updatedInterviewDate, updatedTags);
+                updatedApplicationStatus, updatedAppliedDate, updatedInterviewDateTime, updatedTags);
     }
 
     @Override
@@ -143,7 +143,7 @@ public class EditCommand extends Command {
         private Link link;
         private Description description;
         private AppliedDate appliedDate;
-        private InterviewDate interviewDate;
+        private InterviewDateTime interviewDateTime;
         private ApplicationStatus applicationStatus;
         private Set<Tag> tags;
 
@@ -158,7 +158,7 @@ public class EditCommand extends Command {
             setLink(toCopy.link);
             setDescription(toCopy.description);
             setAppliedDate(toCopy.appliedDate);
-            setInterviewDate(toCopy.interviewDate);
+            setInterviewDate(toCopy.interviewDateTime);
             setApplicationStatus(toCopy.applicationStatus);
             setTags(toCopy.tags);
         }
@@ -167,7 +167,7 @@ public class EditCommand extends Command {
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(company, link, description, appliedDate, interviewDate,  tags);
+            return CollectionUtil.isAnyNonNull(company, link, description, appliedDate, interviewDateTime,  tags);
         }
 
         public void setCompany(Company company) {
@@ -202,12 +202,12 @@ public class EditCommand extends Command {
             return Optional.ofNullable(appliedDate);
         }
 
-        public void setInterviewDate(InterviewDate interviewDate) {
-            this.interviewDate = interviewDate;
+        public void setInterviewDate(InterviewDateTime interviewDateTime) {
+            this.interviewDateTime = interviewDateTime;
         }
 
-        public Optional<InterviewDate> getInterviewDate() {
-            return Optional.ofNullable(interviewDate);
+        public Optional<InterviewDateTime> getInterviewDate() {
+            return Optional.ofNullable(interviewDateTime);
         }
 
         public void setApplicationStatus(ApplicationStatus applicationStatus) {

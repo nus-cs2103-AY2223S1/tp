@@ -37,7 +37,7 @@ public class InternshipCard extends UiPart<Region> {
     @FXML
     private Label appliedDate;
     @FXML
-    private Label interviewDate;
+    private Label interviewDateTime;
     @FXML
     private Label applicationStatus;
     @FXML
@@ -54,10 +54,10 @@ public class InternshipCard extends UiPart<Region> {
         id.setText(displayedIndex + ". ");
         company.setText(internship.getCompany().value);
         link.setText(internship.getLink().value);
-        if (internship.getInterviewDate() == null) {
-            interviewDate.setText("");
+        if (internship.getInterviewDateTime() == null) {
+            interviewDateTime.setText("");
         } else {
-            interviewDate.setText("Interview date: " + internship.getInterviewDate().value);
+            interviewDateTime.setText("Interview date and time: " + internship.getInterviewDateTime().value);
         }
 
         appliedDate.setText(internship.getAppliedDate().value);
