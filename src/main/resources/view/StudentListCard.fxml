@@ -37,7 +37,6 @@
                </padding>
             </Label>
       </HBox>
-      <FlowPane fx:id="tags" prefWidth="130.0" />
       <Label fx:id="className" alignment="CENTER" styleClass="cell_big_label" text="\$className">
             <graphic>
                <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="cell_big_text" text="Class:" />
@@ -51,44 +50,11 @@
                <Insets top="5.0" />
             </VBox.margin>
          </Text>
-         <HBox alignment="CENTER_LEFT">
-            <children>
-               <Label fx:id="ca1" alignment="CENTER" styleClass="cell_small_label" text="\$ca1">
-                  <graphic>
-                     <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="cell_small_text" text="CA1:" />
-                  </graphic></Label>
-                <Label fx:id="sa1" alignment="CENTER" styleClass="cell_small_label" text="\$sa1">
-                  <graphic>
-                     <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="cell_small_text" text="SA1:" />
-                  </graphic>
-                  <padding>
-                     <Insets left="35.0" />
-                  </padding></Label>
-                <Label fx:id="ca2" alignment="CENTER" styleClass="cell_small_label" text="\$ca2">
-                  <graphic>
-                     <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="cell_small_text" text="CA2:" />
-                  </graphic>
-                  <padding>
-                     <Insets left="35.0" />
-                  </padding></Label>
-                <Label fx:id="sa2" alignment="CENTER" styleClass="cell_small_label" text="\$sa2">
-                  <graphic>
-                     <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="cell_small_text" text="SA2:" />
-                  </graphic>
-                  <HBox.margin>
-                     <Insets />
-                  </HBox.margin>
-                  <padding>
-                     <Insets left="35.0" />
-                  </padding></Label>
-            </children>
-            <VBox.margin>
-               <Insets />
-            </VBox.margin>
+        <FlowPane fx:id="exams" prefWidth="130.0">
             <padding>
-               <Insets top="2.0" />
+                <Insets top="4.0" />
             </padding>
-         </HBox>
+        </FlowPane>
          <VBox fx:id="parentDetailsContainer">
             <children>
                <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="cell_small_text" text="Parent Details" underline="true" />
