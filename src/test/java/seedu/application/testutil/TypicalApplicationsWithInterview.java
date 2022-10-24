@@ -1,12 +1,5 @@
 package seedu.application.testutil;
 
-import seedu.application.model.ApplicationBook;
-import seedu.application.model.application.Application;
-
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-
 import static seedu.application.logic.commands.CommandTestUtil.VALID_COMPANY_FACEBOOK;
 import static seedu.application.logic.commands.CommandTestUtil.VALID_COMPANY_GOOGLE;
 import static seedu.application.logic.commands.CommandTestUtil.VALID_CONTACT_FACEBOOK;
@@ -23,9 +16,15 @@ import static seedu.application.testutil.TypicalInterviews.INTERVIEW_BYTEDANCE;
 import static seedu.application.testutil.TypicalInterviews.INTERVIEW_GOOGLE;
 import static seedu.application.testutil.TypicalInterviews.INTERVIEW_JANE_STREET;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
+import seedu.application.model.ApplicationBook;
+import seedu.application.model.application.Application;
 
 /**
- * A utility class containing a list of {@code Application} objects to be used in tests.
+ * A utility class containing a list of {@code Application} objects with {@code Interview}to be used in tests.
  */
 public class TypicalApplicationsWithInterview {
 
@@ -44,22 +43,23 @@ public class TypicalApplicationsWithInterview {
             .withEmail("janestreet@example.com").withPosition("Software Engineer").withTags("fintech")
             .withInterview(INTERVIEW_JANE_STREET).build();
 
-    // Manually added - Application's details found in {@code CommandTestUtil}
+    // Manually added - Application and Interview's details found in {@code CommandTestUtil} and
+    // {@code TypicalInterviews}.
     public static final Application GOOGLE = new ApplicationBuilder().withCompany(VALID_COMPANY_GOOGLE)
             .withContact(VALID_CONTACT_GOOGLE).withDate(VALID_DATE_GOOGLE)
-            .withEmail(VALID_EMAIL_GOOGLE).withPosition(VALID_POSITION_GOOGLE).withTags(VALID_TAG_TECH_COMPANY).build();
-    //.withInterview(INTERVIEW_GOOGLE).build();
+            .withEmail(VALID_EMAIL_GOOGLE).withPosition(VALID_POSITION_GOOGLE).withTags(VALID_TAG_TECH_COMPANY)
+            .withInterview(INTERVIEW_GOOGLE).build();
+
     public static final Application FACEBOOK = new ApplicationBuilder().withCompany(VALID_COMPANY_FACEBOOK)
             .withContact(VALID_CONTACT_FACEBOOK).withDate(VALID_DATE_FACEBOOK)
             .withEmail(VALID_EMAIL_FACEBOOK).withPosition(VALID_POSITION_FACEBOOK)
-            .withTags(VALID_TAG_PREFERRED, VALID_TAG_TECH_COMPANY).build();
-
-    public static final String KEYWORD_MATCHING_GOOGLE = "Google"; // A keyword that matches GOOGLE
+            .withTags(VALID_TAG_PREFERRED, VALID_TAG_TECH_COMPANY)
+            .build();
 
     private TypicalApplicationsWithInterview() {} // prevents instantiation
 
     /**
-     * Returns an {@code ApplicationBook} with all the typical applications.
+     * Returns an {@code ApplicationBook} with all the typical applications with interviews.
      */
     public static ApplicationBook getTypicalApplicationBookWithInterview() {
         ApplicationBook ab = new ApplicationBook();

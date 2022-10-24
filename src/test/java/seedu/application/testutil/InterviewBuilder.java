@@ -1,6 +1,5 @@
 package seedu.application.testutil;
 
-import seedu.application.model.application.Date;
 import seedu.application.model.application.interview.Interview;
 import seedu.application.model.application.interview.InterviewDate;
 import seedu.application.model.application.interview.InterviewTime;

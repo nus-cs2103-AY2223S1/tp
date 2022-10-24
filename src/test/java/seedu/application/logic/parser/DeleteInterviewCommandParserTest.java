@@ -1,12 +1,13 @@
 package seedu.application.logic.parser;
 
-import org.junit.jupiter.api.Test;
-import seedu.application.logic.commands.DeleteInterviewCommand;
-
 import static seedu.application.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.application.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.application.logic.parser.CommandParserTestUtil.assertParseSuccess;
 import static seedu.application.testutil.TypicalIndexes.INDEX_FIRST_APPLICATION;
+
+import org.junit.jupiter.api.Test;
+
+import seedu.application.logic.commands.DeleteInterviewCommand;
 
 /**
  * As we are only doing white-box testing, our test cases do not cover path variations

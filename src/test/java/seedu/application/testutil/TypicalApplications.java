@@ -12,9 +12,6 @@ import static seedu.application.logic.commands.CommandTestUtil.VALID_POSITION_FA
 import static seedu.application.logic.commands.CommandTestUtil.VALID_POSITION_GOOGLE;
 import static seedu.application.logic.commands.CommandTestUtil.VALID_TAG_PREFERRED;
 import static seedu.application.logic.commands.CommandTestUtil.VALID_TAG_TECH_COMPANY;
-import static seedu.application.testutil.TypicalInterviews.INTERVIEW_BYTEDANCE;
-import static seedu.application.testutil.TypicalInterviews.INTERVIEW_JANE_STREET;
-import static seedu.application.testutil.TypicalInterviews.INTERVIEW_SHOPEE;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -47,7 +44,7 @@ public class TypicalApplications {
     public static final Application GOOGLE = new ApplicationBuilder().withCompany(VALID_COMPANY_GOOGLE)
             .withContact(VALID_CONTACT_GOOGLE).withDate(VALID_DATE_GOOGLE)
             .withEmail(VALID_EMAIL_GOOGLE).withPosition(VALID_POSITION_GOOGLE).withTags(VALID_TAG_TECH_COMPANY).build();
-    //.withInterview(INTERVIEW_GOOGLE).build();
+
     public static final Application FACEBOOK = new ApplicationBuilder().withCompany(VALID_COMPANY_FACEBOOK)
             .withContact(VALID_CONTACT_FACEBOOK).withDate(VALID_DATE_FACEBOOK)
             .withEmail(VALID_EMAIL_FACEBOOK).withPosition(VALID_POSITION_FACEBOOK)

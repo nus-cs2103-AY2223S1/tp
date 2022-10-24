@@ -1,19 +1,21 @@
 package seedu.application.logic.commands;
 
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.application.logic.commands.CommandTestUtil.assertCommandFailure;
+import static seedu.application.logic.commands.CommandTestUtil.assertCommandSuccess;
+import static seedu.application.testutil.TypicalApplicationsWithInterview.getTypicalApplicationBookWithInterview;
+import static seedu.application.testutil.TypicalIndexes.INDEX_FIRST_APPLICATION;
+import static seedu.application.testutil.TypicalIndexes.INDEX_SECOND_APPLICATION;
+
 import org.junit.jupiter.api.Test;
+
 import seedu.application.commons.core.Messages;
 import seedu.application.commons.core.index.Index;
 import seedu.application.model.Model;
 import seedu.application.model.ModelManager;
 import seedu.application.model.UserPrefs;
 import seedu.application.model.application.Application;
-
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.application.logic.commands.CommandTestUtil.*;
-import static seedu.application.testutil.TypicalApplicationsWithInterview.getTypicalApplicationBookWithInterview;
-import static seedu.application.testutil.TypicalIndexes.INDEX_FIRST_APPLICATION;
-import static seedu.application.testutil.TypicalIndexes.INDEX_SECOND_APPLICATION;
 
 /**
  * Contains integration tests (interaction with the Model) and unit tests for
@@ -29,10 +31,12 @@ public class DeleteInterviewCommandTest {
                 .get(INDEX_FIRST_APPLICATION.getZeroBased());
         DeleteInterviewCommand deleteCommand = new DeleteInterviewCommand(INDEX_FIRST_APPLICATION);
 
-        String expectedMessage = String.format(DeleteInterviewCommand.MESSAGE_DELETE_APPLICATION_SUCCESS, applicationWithInterviewToDelete.getInterview().get());
+        String expectedMessage = String.format(DeleteInterviewCommand.MESSAGE_DELETE_APPLICATION_SUCCESS,
+                applicationWithInterviewToDelete.getInterview().get());
 
         ModelManager expectedModel = new ModelManager(model.getApplicationBook(), new UserPrefs());
-        expectedModel.setApplication(applicationWithInterviewToDelete, new Application(applicationWithInterviewToDelete));
+        expectedModel.setApplication(applicationWithInterviewToDelete,
+                new Application(applicationWithInterviewToDelete));
 
         assertCommandSuccess(deleteCommand, model, expectedMessage, expectedModel);
     }
@@ -68,5 +72,5 @@ public class DeleteInterviewCommandTest {
         // different interview -> returns false
         assertFalse(deleteFirstCommand.equals(deleteSecondCommand));
     }
-    
+
 }

@@ -1,15 +1,8 @@
 package seedu.application.logic.commands;
 
-import org.junit.jupiter.api.Test;
-import seedu.application.commons.core.Messages;
-import seedu.application.commons.core.index.Index;
-import seedu.application.logic.commands.exceptions.CommandException;
-import seedu.application.model.*;
-import seedu.application.model.application.Application;
-import seedu.application.model.application.interview.Interview;
-import seedu.application.testutil.InterviewBuilder;
-
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.application.testutil.Assert.assertThrows;
 import static seedu.application.testutil.TypicalApplications.getTypicalApplicationBook;
 import static seedu.application.testutil.TypicalApplicationsWithInterview.getTypicalApplicationBookWithInterview;
@@ -17,14 +10,26 @@ import static seedu.application.testutil.TypicalIndexes.INDEX_FIRST_APPLICATION;
 import static seedu.application.testutil.TypicalIndexes.INDEX_SECOND_APPLICATION;
 import static seedu.application.testutil.TypicalInterviews.INTERVIEW_JANE_STREET;
 
+import org.junit.jupiter.api.Test;
+
+import seedu.application.commons.core.Messages;
+import seedu.application.commons.core.index.Index;
+import seedu.application.logic.commands.exceptions.CommandException;
+import seedu.application.model.Model;
+import seedu.application.model.ModelManager;
+import seedu.application.model.UserPrefs;
+import seedu.application.model.application.Application;
+import seedu.application.model.application.interview.Interview;
+import seedu.application.testutil.InterviewBuilder;
+
 public class AddInterviewCommandTest {
-    private final String INTERVIEW_DATE_BEFORE_APPLICATION = "1988-01-09";
+    private static final String INTERVIEW_DATE_BEFORE_APPLICATION = "1988-01-09";
     private Model model = new ModelManager(getTypicalApplicationBookWithInterview(), new UserPrefs());
     private Model modelWithoutInterview = new ModelManager(getTypicalApplicationBook(), new UserPrefs());
 
     @Test
     public void constructor_nullInterview_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> new AddInterviewCommand(null,null));
+        assertThrows(NullPointerException.class, () -> new AddInterviewCommand(null, null));
     }
 
     @Test
@@ -32,9 +37,11 @@ public class AddInterviewCommandTest {
         Index indexLastApplication = Index.fromOneBased(model.getFilteredApplicationList().size());
         Application lastApplication = model.getFilteredApplicationList().get(indexLastApplication.getZeroBased());
 
-        CommandResult commandResult = new AddInterviewCommand(indexLastApplication, INTERVIEW_JANE_STREET).execute(model);
+        CommandResult commandResult = new AddInterviewCommand(indexLastApplication, INTERVIEW_JANE_STREET)
+                .execute(model);
 
-        assertEquals(String.format(AddInterviewCommand.MESSAGE_SUCCESS, lastApplication), commandResult.getFeedbackToUser());
+        assertEquals(String.format(AddInterviewCommand.MESSAGE_SUCCESS, lastApplication),
+                commandResult.getFeedbackToUser());
     }
 
 
@@ -51,7 +58,8 @@ public class AddInterviewCommandTest {
     @Test
     public void execute_duplicateInterviewInModelWithoutInterview_throwsCommandException() throws Exception {
         Interview validInterview = new InterviewBuilder().build();
-        CommandResult addCommandFirst = new AddInterviewCommand(INDEX_FIRST_APPLICATION, validInterview).execute(modelWithoutInterview);
+        CommandResult addCommandFirst = new AddInterviewCommand(INDEX_FIRST_APPLICATION, validInterview)
+                .execute(modelWithoutInterview);
         AddInterviewCommand addCommandSecond = new AddInterviewCommand(INDEX_SECOND_APPLICATION, validInterview);
 
         assertThrows(CommandException.class,
@@ -61,7 +69,8 @@ public class AddInterviewCommandTest {
     @Test
     public void execute_invalidApplication_throwsCommandException() {
         Interview validInterview = new InterviewBuilder().build();
-        AddInterviewCommand addCommand = new AddInterviewCommand(Index.fromZeroBased(Integer.MAX_VALUE), validInterview);
+        AddInterviewCommand addCommand = new AddInterviewCommand(Index.fromZeroBased(Integer.MAX_VALUE),
+                validInterview);
 
         assertThrows(CommandException.class,
                 Messages.MESSAGE_INVALID_APPLICATION_DISPLAYED_INDEX, () -> addCommand.execute(model));
@@ -69,7 +78,8 @@ public class AddInterviewCommandTest {
 
     @Test
     public void execute_invalidInterview_throwsCommandException() throws Exception {
-        Interview invalidInterview = new InterviewBuilder().withInterviewDate(INTERVIEW_DATE_BEFORE_APPLICATION).build();
+        Interview invalidInterview = new InterviewBuilder().withInterviewDate(INTERVIEW_DATE_BEFORE_APPLICATION)
+                .build();
         AddInterviewCommand addCommandSecond = new AddInterviewCommand(INDEX_SECOND_APPLICATION, invalidInterview);
 
         assertThrows(CommandException.class,

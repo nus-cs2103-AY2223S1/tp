@@ -1,25 +1,21 @@
 package seedu.application.model.application.interview;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.application.logic.commands.CommandTestUtil.VALID_INTERVIEW_DATE_FACEBOOK;
+import static seedu.application.logic.commands.CommandTestUtil.VALID_INTERVIEW_TIME_FACEBOOK;
+import static seedu.application.logic.commands.CommandTestUtil.VALID_LOCATION_FACEBOOK;
+import static seedu.application.logic.commands.CommandTestUtil.VALID_ROUND_FACEBOOK;
+import static seedu.application.testutil.TypicalInterviews.INTERVIEW_FACEBOOK;
+import static seedu.application.testutil.TypicalInterviews.INTERVIEW_GOOGLE;
+
 import org.junit.jupiter.api.Test;
-import seedu.application.model.application.interview.Interview;
+
 import seedu.application.testutil.InterviewBuilder;
 
-import static org.junit.jupiter.api.Assertions.*;
-import static seedu.application.logic.commands.CommandTestUtil.*;
-import static seedu.application.testutil.Assert.assertThrows;
-import static seedu.application.testutil.TypicalInterviews.INTERVIEW_GOOGLE;
-import static seedu.application.testutil.TypicalInterviews.INTERVIEW_FACEBOOK;
-
 public class InterviewTest {
-
-    /*
-    @Test
-    public void asObservableList_modifyList_throwsUnsupportedOperationException() {
-        Interview interview = new InterviewBuilder().build();
-        assertThrows(UnsupportedOperationException.class, () -> interview.getTags().remove(0));
-    }
-    
-     */
 
     @Test
     public void isOnSameTime() {

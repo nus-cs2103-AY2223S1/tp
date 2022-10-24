@@ -1,21 +1,35 @@
 package seedu.application.logic.parser;
 
-import org.junit.jupiter.api.Test;
-import seedu.application.commons.core.index.Index;
-import seedu.application.logic.commands.AddInterviewCommand;
-import seedu.application.model.application.interview.*;
-import seedu.application.testutil.InterviewBuilder;
-
 import static seedu.application.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.application.logic.commands.CommandTestUtil.*;
-import static seedu.application.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.application.logic.commands.CommandTestUtil.INTERVIEW_DATE_DESC_GOOGLE;
+import static seedu.application.logic.commands.CommandTestUtil.INTERVIEW_TIME_DESC_GOOGLE;
+import static seedu.application.logic.commands.CommandTestUtil.INVALID_INTERVIEW_DATE_DESC;
+import static seedu.application.logic.commands.CommandTestUtil.INVALID_INTERVIEW_TIME_DESC;
+import static seedu.application.logic.commands.CommandTestUtil.INVALID_LOCATION_DESC;
+import static seedu.application.logic.commands.CommandTestUtil.INVALID_ROUND_DESC;
+import static seedu.application.logic.commands.CommandTestUtil.LOCATION_DESC_GOOGLE;
+import static seedu.application.logic.commands.CommandTestUtil.ROUND_DESC_GOOGLE;
+import static seedu.application.logic.commands.CommandTestUtil.VALID_INTERVIEW_DATE_GOOGLE;
+import static seedu.application.logic.commands.CommandTestUtil.VALID_INTERVIEW_TIME_GOOGLE;
+import static seedu.application.logic.commands.CommandTestUtil.VALID_LOCATION_GOOGLE;
+import static seedu.application.logic.commands.CommandTestUtil.VALID_ROUND_GOOGLE;
 import static seedu.application.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.application.logic.parser.CommandParserTestUtil.assertParseSuccess;
-import static seedu.application.testutil.TypicalIndexes.*;
+import static seedu.application.testutil.TypicalIndexes.INDEX_FIRST_APPLICATION;
+import static seedu.application.testutil.TypicalIndexes.INDEX_SECOND_APPLICATION;
+
+import org.junit.jupiter.api.Test;
+
+import seedu.application.commons.core.index.Index;
+import seedu.application.logic.commands.AddInterviewCommand;
+import seedu.application.model.application.interview.Interview;
+import seedu.application.model.application.interview.InterviewDate;
+import seedu.application.model.application.interview.InterviewTime;
+import seedu.application.model.application.interview.Location;
+import seedu.application.model.application.interview.Round;
+import seedu.application.testutil.InterviewBuilder;
 
 public class AddInterviewCommandParserTest {
-
-    private static final String TAG_EMPTY = " " + PREFIX_TAG;
 
     private static final String MESSAGE_INVALID_FORMAT =
             String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddInterviewCommand.MESSAGE_USAGE);
@@ -24,7 +38,7 @@ public class AddInterviewCommandParserTest {
 
     @Test
     public void parse_missingParts_failure() {
-        String userInput = ROUND_DESC_GOOGLE+ INTERVIEW_DATE_DESC_GOOGLE
+        String userInput = ROUND_DESC_GOOGLE + INTERVIEW_DATE_DESC_GOOGLE
                 + INTERVIEW_TIME_DESC_GOOGLE + LOCATION_DESC_GOOGLE;
 
         // no index specified
@@ -40,7 +54,7 @@ public class AddInterviewCommandParserTest {
 
     @Test
     public void parse_invalidPreamble_failure() {
-        String userInput = ROUND_DESC_GOOGLE+ INTERVIEW_DATE_DESC_GOOGLE
+        String userInput = ROUND_DESC_GOOGLE + INTERVIEW_DATE_DESC_GOOGLE
                 + INTERVIEW_TIME_DESC_GOOGLE + LOCATION_DESC_GOOGLE;
 
         // negative index

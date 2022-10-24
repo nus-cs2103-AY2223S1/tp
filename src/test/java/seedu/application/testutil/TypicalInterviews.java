@@ -1,13 +1,13 @@
 package seedu.application.testutil;
 
-import static seedu.application.logic.commands.CommandTestUtil.VALID_INTERVIEW_DATE_GOOGLE;
-import static seedu.application.logic.commands.CommandTestUtil.VALID_INTERVIEW_TIME_GOOGLE;
-import static seedu.application.logic.commands.CommandTestUtil.VALID_LOCATION_GOOGLE;
-import static seedu.application.logic.commands.CommandTestUtil.VALID_ROUND_GOOGLE;
 import static seedu.application.logic.commands.CommandTestUtil.VALID_INTERVIEW_DATE_FACEBOOK;
+import static seedu.application.logic.commands.CommandTestUtil.VALID_INTERVIEW_DATE_GOOGLE;
 import static seedu.application.logic.commands.CommandTestUtil.VALID_INTERVIEW_TIME_FACEBOOK;
+import static seedu.application.logic.commands.CommandTestUtil.VALID_INTERVIEW_TIME_GOOGLE;
 import static seedu.application.logic.commands.CommandTestUtil.VALID_LOCATION_FACEBOOK;
+import static seedu.application.logic.commands.CommandTestUtil.VALID_LOCATION_GOOGLE;
 import static seedu.application.logic.commands.CommandTestUtil.VALID_ROUND_FACEBOOK;
+import static seedu.application.logic.commands.CommandTestUtil.VALID_ROUND_GOOGLE;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -34,7 +34,7 @@ public class TypicalInterviews {
     public static final Interview INTERVIEW_GOOGLE = new InterviewBuilder().withRound(VALID_ROUND_GOOGLE)
             .withInterviewDate(VALID_INTERVIEW_DATE_GOOGLE)
             .withInterviewTime(VALID_INTERVIEW_TIME_GOOGLE).withLocation(VALID_LOCATION_GOOGLE).build();
-    
+
     public static final Interview INTERVIEW_FACEBOOK = new InterviewBuilder().withRound(VALID_ROUND_FACEBOOK)
             .withInterviewDate(VALID_INTERVIEW_DATE_FACEBOOK)
             .withInterviewTime(VALID_INTERVIEW_TIME_FACEBOOK).withLocation(VALID_LOCATION_FACEBOOK).build();
@@ -42,22 +42,6 @@ public class TypicalInterviews {
     public static final String KEYWORD_MATCHING_GOOGLE = "Google"; // A keyword that matches GOOGLE
 
     private TypicalInterviews() {} // prevents instantiation
-
-    /*
-    /**
-     * Returns an {@code ApplicationBook} with all the typical interviews.
-
-    public static ApplicationBook getTypicalInterviewBook() {
-        ApplicationBook ab = new ApplicationBook();
-        for (Interview interview : getTypicalInterviews()) {
-            ab.addInterview(interview);
-        }
-        return ab;
-    }
-    
-     */
-
-
 
     public static List<Interview> getTypicalInterviews() {
         return new ArrayList<>(Arrays.asList(INTERVIEW_SHOPEE, INTERVIEW_BYTEDANCE, INTERVIEW_JANE_STREET));
