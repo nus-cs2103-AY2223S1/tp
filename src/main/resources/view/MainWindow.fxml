@@ -55,18 +55,18 @@
           <StackPane fx:id="eventsTextField" HBox.hgrow="ALWAYS"/>
         </HBox>
         <StackPane fx:id="overlayPane">
-          <HBox fx:id="summaryPanelPlaceholder" styleClass="pane-with-border" minWidth="340" prefWidth="340" VBox.vgrow="ALWAYS">
-            <padding>
-              <Insets top="10" right="10" bottom="10" left="10" />
-            </padding>
-            <StackPane fx:id="completedTripListPanelPlaceholder" HBox.hgrow="ALWAYS"/>
-          </HBox>
           <HBox fx:id="personList" styleClass="pane-with-border" minWidth="340" prefWidth="340" VBox.vgrow="ALWAYS">
             <padding>
               <Insets top="10" right="10" bottom="10" left="10" />
             </padding>
             <StackPane fx:id="tripListPanelPlaceholder" HBox.hgrow="ALWAYS"/>
             <StackPane fx:id="eventListPanelPlaceholder" HBox.hgrow="ALWAYS"/>
+          </HBox>
+          <HBox fx:id="summaryPanelPlaceholder" styleClass="pane-with-border" minWidth="340" prefWidth="340" VBox.vgrow="ALWAYS">
+            <padding>
+              <Insets top="10" right="10" bottom="10" left="10" />
+            </padding>
+            <StackPane fx:id="completedTripListPanelPlaceholder" HBox.hgrow="ALWAYS"/>
           </HBox>
         </StackPane>
         <StackPane fx:id="statusbarPlaceholder" VBox.vgrow="NEVER" />
