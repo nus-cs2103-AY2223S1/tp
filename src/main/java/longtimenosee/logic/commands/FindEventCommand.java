@@ -24,7 +24,7 @@ public class FindEventCommand extends Command {
             + "Parameters: "
             + "[" + PREFIX_DESCRIPTION + "DESCRIPTION] "
             + "[" + PREFIX_NAME + "PERSON_NAME] "
-            + "[" + PREFIX_DATE + "DATE]…\n"
+            + "[" + PREFIX_DATE + "DATE]\n"
             + "Example: " + COMMAND_WORD + " desc/meeting n/Alice";
 
     private final List<Predicate<Event>> predicates;
