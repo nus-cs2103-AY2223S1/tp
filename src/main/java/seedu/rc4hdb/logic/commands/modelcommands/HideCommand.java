@@ -45,7 +45,7 @@ public class HideCommand implements ModelCommand {
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);
-        model.setObservableFields(fieldsToHide);
+        model.setHiddenFields(fieldsToHide);
 
         return new CommandResult(MESSAGE_SUCCESS);
     }

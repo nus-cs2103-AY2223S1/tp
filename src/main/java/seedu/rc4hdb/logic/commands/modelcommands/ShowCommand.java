@@ -25,15 +25,15 @@ public class ShowCommand implements ModelCommand {
     /**
      * The list of fields to pass to the TableView for hiding.
      */
-    public final List<String> fieldsToHide;
+    public final List<String> fieldsToShow;
 
     /**
      * Constructor for a ShowCommand instance.
-     * @param fieldsToHide The list of fields to hide in the table
+     * @param fieldsToShow The list of fields to hide in the table
      */
-    public ShowCommand(List<String> fieldsToHide) {
-        requireNonNull(fieldsToHide);
-        this.fieldsToHide = fieldsToHide;
+    public ShowCommand(List<String> fieldsToShow) {
+        requireNonNull(fieldsToShow);
+        this.fieldsToShow = fieldsToShow;
     }
 
     /**
@@ -45,7 +45,7 @@ public class ShowCommand implements ModelCommand {
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);
-        model.setObservableFields(fieldsToHide);
+        model.setVisibleFields(fieldsToShow);
 
         return new CommandResult(MESSAGE_SUCCESS);
     }
@@ -63,8 +63,8 @@ public class ShowCommand implements ModelCommand {
         }
         if (other instanceof ShowCommand) {
             ShowCommand otherCommand = (ShowCommand) other;
-            return this.fieldsToHide.containsAll(otherCommand.fieldsToHide)
-                    && otherCommand.fieldsToHide.containsAll(this.fieldsToHide);
+            return this.fieldsToShow.containsAll(otherCommand.fieldsToShow)
+                    && otherCommand.fieldsToShow.containsAll(this.fieldsToShow);
         }
         return false;
     }

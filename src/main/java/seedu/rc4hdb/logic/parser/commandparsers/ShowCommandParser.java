@@ -46,14 +46,14 @@ public class ShowCommandParser implements Parser<ShowCommand> {
         List<String> allFields = ResidentFields.FIELDS.stream().map(String::toLowerCase).collect(Collectors.toList());
 
         // Create result list
-        List<String> fieldsToHide = new ArrayList<>(allFields);
+        List<String> fieldsToShow = new ArrayList<>();
 
         String[] specifiedFields = getSpecifiedFields(args);
 
-        populateFieldLists(specifiedFields, fieldsToHide, allFields);
+        populateFieldLists(specifiedFields, fieldsToShow, allFields);
 
         logger.log(Level.INFO, "Parsing completed, returning ShowCommand");
-        return new ShowCommand(fieldsToHide);
+        return new ShowCommand(fieldsToShow);
     }
 
     private String[] getSpecifiedFields(String args) {
@@ -61,13 +61,13 @@ public class ShowCommandParser implements Parser<ShowCommand> {
     }
 
     private void populateFieldLists(String[] specifiedFields,
-                                    List<String> fieldsToHide,
+                                    List<String> fieldsToShow,
                                     List<String> allFields) throws ParseException {
         for (String field : specifiedFields) {
             if (!allFields.contains(field)) {
                 throw new ParseException(ERROR_MESSAGE);
             }
-            fieldsToHide.remove(field);
+            fieldsToShow.add(field);
         }
     }
 }
