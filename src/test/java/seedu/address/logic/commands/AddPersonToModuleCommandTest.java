@@ -81,8 +81,7 @@ public class AddPersonToModuleCommandTest {
 
         assertThrows(CommandException.class,
                 String.format(AddPersonToModuleCommand.MESSAGE_PERSON_ALREADY_EXISTS_IN_MODULE,
-                        validModuleCode, validName),
-                () -> addPersonToModuleCommand.execute(modelStub));
+                        validModuleCode, validName), () -> addPersonToModuleCommand.execute(modelStub));
     }
 
     @Test
@@ -98,8 +97,8 @@ public class AddPersonToModuleCommandTest {
                 new AddPersonToModuleCommand(validModuleCode, nonExistentName);
         ModelStubWithModuleAndPerson modelStub = new ModelStubWithModuleAndPerson(validModule, validPerson);
 
-        assertThrows(CommandException.class, Messages.MESSAGE_NO_SUCH_PERSON,
-                () -> addPersonToModuleCommand.execute(modelStub));
+        assertThrows(CommandException.class,
+                Messages.MESSAGE_NO_SUCH_PERSON, () -> addPersonToModuleCommand.execute(modelStub));
     }
 
     @Test
@@ -116,8 +115,8 @@ public class AddPersonToModuleCommandTest {
                 new AddPersonToModuleCommand(nonExistentModuleCode, validName);
         ModelStubWithModuleAndPerson modelStub = new ModelStubWithModuleAndPerson(validModule, validPerson);
 
-        assertThrows(CommandException.class, Messages.MESSAGE_NO_SUCH_MODULE,
-                () -> addPersonToModuleCommand.execute(modelStub));
+        assertThrows(CommandException.class,
+                Messages.MESSAGE_NO_SUCH_MODULE, () -> addPersonToModuleCommand.execute(modelStub));
     }
 
     @Test
@@ -158,8 +157,8 @@ public class AddPersonToModuleCommandTest {
      * A mutable Model stub that contains a single module and a single person.
      */
     private class ModelStubWithModuleAndPerson extends ModelStub {
-        Module module;
-        final Person person;
+        private Module module;
+        private final Person person;
 
         ModelStubWithModuleAndPerson(Module module, Person person) {
             requireNonNull(module);
