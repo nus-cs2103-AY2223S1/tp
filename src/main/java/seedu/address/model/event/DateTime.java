@@ -184,8 +184,13 @@ public class DateTime {
      * Returns true if a start DateTime is before or equal another DateTime.
      * Otherwise, returns false
      */
-    public boolean isBeforeOrEqual(DateTime dateTime) {
-        return !this.dateTime.isAfter(dateTime.dateTime);
+    public boolean isBeforeOrEqual(DateTime other) {
+        if (this.time.isEmpty()) {
+            return !this.date.isAfter(other.date);
+        }
+        return this.date.isEqual(other.date)
+                ? !this.time.get().isAfter(other.time.get())
+                : !this.date.isAfter(other.date);
     }
 
     @Override

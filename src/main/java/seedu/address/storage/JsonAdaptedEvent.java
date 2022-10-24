@@ -94,7 +94,7 @@ class JsonAdaptedEvent {
 
         final Set<Tag> modelTags = new HashSet<>(eventTags);
 
-        if (modelStart.isBeforeOrEqual(modelEnd)) {
+        if (!modelStart.isBeforeOrEqual(modelEnd)) {
             throw new IllegalValueException(Messages.MESSAGE_EVENTS_INVALID_START_END);
         }
 
