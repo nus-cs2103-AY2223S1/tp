@@ -1,22 +1,18 @@
 package seedu.intrack.logic.parser;
 
 import static seedu.intrack.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.intrack.logic.commands.CommandTestUtil.ADDRESS_DESC_AAPL;
-import static seedu.intrack.logic.commands.CommandTestUtil.ADDRESS_DESC_MSFT;
 import static seedu.intrack.logic.commands.CommandTestUtil.EMAIL_DESC_AAPL;
 import static seedu.intrack.logic.commands.CommandTestUtil.EMAIL_DESC_MSFT;
-import static seedu.intrack.logic.commands.CommandTestUtil.INVALID_ADDRESS_DESC;
 import static seedu.intrack.logic.commands.CommandTestUtil.INVALID_EMAIL_DESC;
 import static seedu.intrack.logic.commands.CommandTestUtil.INVALID_NAME_DESC;
 import static seedu.intrack.logic.commands.CommandTestUtil.INVALID_PHONE_DESC;
 import static seedu.intrack.logic.commands.CommandTestUtil.INVALID_TAG_DESC;
+import static seedu.intrack.logic.commands.CommandTestUtil.INVALID_WEBSITE_DESC;
 import static seedu.intrack.logic.commands.CommandTestUtil.NAME_DESC_AAPL;
 import static seedu.intrack.logic.commands.CommandTestUtil.PHONE_DESC_AAPL;
 import static seedu.intrack.logic.commands.CommandTestUtil.PHONE_DESC_MSFT;
 import static seedu.intrack.logic.commands.CommandTestUtil.TAG_DESC_REMOTE;
 import static seedu.intrack.logic.commands.CommandTestUtil.TAG_DESC_URGENT;
-import static seedu.intrack.logic.commands.CommandTestUtil.VALID_ADDRESS_AAPL;
-import static seedu.intrack.logic.commands.CommandTestUtil.VALID_ADDRESS_MSFT;
 import static seedu.intrack.logic.commands.CommandTestUtil.VALID_EMAIL_AAPL;
 import static seedu.intrack.logic.commands.CommandTestUtil.VALID_EMAIL_MSFT;
 import static seedu.intrack.logic.commands.CommandTestUtil.VALID_NAME_AAPL;
@@ -24,6 +20,10 @@ import static seedu.intrack.logic.commands.CommandTestUtil.VALID_PHONE_AAPL;
 import static seedu.intrack.logic.commands.CommandTestUtil.VALID_PHONE_MSFT;
 import static seedu.intrack.logic.commands.CommandTestUtil.VALID_TAG_REMOTE;
 import static seedu.intrack.logic.commands.CommandTestUtil.VALID_TAG_URGENT;
+import static seedu.intrack.logic.commands.CommandTestUtil.VALID_WEBSITE_AAPL;
+import static seedu.intrack.logic.commands.CommandTestUtil.VALID_WEBSITE_MSFT;
+import static seedu.intrack.logic.commands.CommandTestUtil.WEBSITE_DESC_AAPL;
+import static seedu.intrack.logic.commands.CommandTestUtil.WEBSITE_DESC_MSFT;
 import static seedu.intrack.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.intrack.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.intrack.logic.parser.CommandParserTestUtil.assertParseSuccess;
@@ -36,10 +36,10 @@ import org.junit.jupiter.api.Test;
 import seedu.intrack.commons.core.index.Index;
 import seedu.intrack.logic.commands.EditCommand;
 import seedu.intrack.logic.commands.EditCommand.EditInternshipDescriptor;
-import seedu.intrack.model.internship.Address;
 import seedu.intrack.model.internship.Email;
 import seedu.intrack.model.internship.Name;
 import seedu.intrack.model.internship.Phone;
+import seedu.intrack.model.internship.Website;
 import seedu.intrack.model.tag.Tag;
 import seedu.intrack.testutil.EditInternshipDescriptorBuilder;
 
@@ -84,7 +84,7 @@ public class EditCommandParserTest {
         assertParseFailure(parser, "1" + INVALID_NAME_DESC, Name.MESSAGE_CONSTRAINTS); // invalid name
         assertParseFailure(parser, "1" + INVALID_PHONE_DESC, Phone.MESSAGE_CONSTRAINTS); // invalid phone
         assertParseFailure(parser, "1" + INVALID_EMAIL_DESC, Email.MESSAGE_CONSTRAINTS); // invalid email
-        assertParseFailure(parser, "1" + INVALID_ADDRESS_DESC, Address.MESSAGE_CONSTRAINTS); // invalid address
+        assertParseFailure(parser, "1" + INVALID_WEBSITE_DESC, Website.MESSAGE_CONSTRAINTS); // invalid website
         assertParseFailure(parser, "1" + INVALID_TAG_DESC, Tag.MESSAGE_CONSTRAINTS); // invalid tag
 
         // invalid phone followed by valid email
@@ -101,7 +101,7 @@ public class EditCommandParserTest {
         assertParseFailure(parser, "1" + TAG_EMPTY + TAG_DESC_REMOTE + TAG_DESC_URGENT, Tag.MESSAGE_CONSTRAINTS);
 
         // multiple invalid values, but only the first invalid value is captured
-        assertParseFailure(parser, "1" + INVALID_NAME_DESC + INVALID_EMAIL_DESC + VALID_ADDRESS_AAPL + VALID_PHONE_AAPL,
+        assertParseFailure(parser, "1" + INVALID_NAME_DESC + INVALID_EMAIL_DESC + VALID_WEBSITE_AAPL + VALID_PHONE_AAPL,
                 Name.MESSAGE_CONSTRAINTS);
     }
 
@@ -109,10 +109,10 @@ public class EditCommandParserTest {
     public void parse_allFieldsSpecified_success() {
         Index targetIndex = INDEX_SECOND_INTERNSHIP;
         String userInput = targetIndex.getOneBased() + PHONE_DESC_MSFT + TAG_DESC_URGENT
-                + EMAIL_DESC_AAPL + ADDRESS_DESC_AAPL + NAME_DESC_AAPL + TAG_DESC_REMOTE;
+                + EMAIL_DESC_AAPL + WEBSITE_DESC_AAPL + NAME_DESC_AAPL + TAG_DESC_REMOTE;
 
         EditInternshipDescriptor descriptor = new EditInternshipDescriptorBuilder().withName(VALID_NAME_AAPL)
-                .withPhone(VALID_PHONE_MSFT).withEmail(VALID_EMAIL_AAPL).withAddress(VALID_ADDRESS_AAPL)
+                .withPhone(VALID_PHONE_MSFT).withEmail(VALID_EMAIL_AAPL).withWebsite(VALID_WEBSITE_AAPL)
                 .withTags(VALID_TAG_URGENT, VALID_TAG_REMOTE).build();
         EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
 
@@ -152,9 +152,9 @@ public class EditCommandParserTest {
         expectedCommand = new EditCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
 
-        // address
-        userInput = targetIndex.getOneBased() + ADDRESS_DESC_AAPL;
-        descriptor = new EditInternshipDescriptorBuilder().withAddress(VALID_ADDRESS_AAPL).build();
+        // website
+        userInput = targetIndex.getOneBased() + WEBSITE_DESC_AAPL;
+        descriptor = new EditInternshipDescriptorBuilder().withWebsite(VALID_WEBSITE_AAPL).build();
         expectedCommand = new EditCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
 
@@ -168,12 +168,12 @@ public class EditCommandParserTest {
     @Test
     public void parse_multipleRepeatedFields_acceptsLast() {
         Index targetIndex = INDEX_FIRST_INTERNSHIP;
-        String userInput = targetIndex.getOneBased() + PHONE_DESC_AAPL + ADDRESS_DESC_AAPL + EMAIL_DESC_AAPL
-                + TAG_DESC_REMOTE + PHONE_DESC_AAPL + ADDRESS_DESC_AAPL + EMAIL_DESC_AAPL + TAG_DESC_REMOTE
-                + PHONE_DESC_MSFT + ADDRESS_DESC_MSFT + EMAIL_DESC_MSFT + TAG_DESC_URGENT;
+        String userInput = targetIndex.getOneBased() + PHONE_DESC_AAPL + WEBSITE_DESC_AAPL + EMAIL_DESC_AAPL
+                + TAG_DESC_REMOTE + PHONE_DESC_AAPL + WEBSITE_DESC_AAPL + EMAIL_DESC_AAPL + TAG_DESC_REMOTE
+                + PHONE_DESC_MSFT + WEBSITE_DESC_MSFT + EMAIL_DESC_MSFT + TAG_DESC_URGENT;
 
         EditInternshipDescriptor descriptor = new EditInternshipDescriptorBuilder().withPhone(VALID_PHONE_MSFT)
-                .withEmail(VALID_EMAIL_MSFT).withAddress(VALID_ADDRESS_MSFT)
+                .withEmail(VALID_EMAIL_MSFT).withWebsite(VALID_WEBSITE_MSFT)
                 .withTags(VALID_TAG_REMOTE, VALID_TAG_URGENT)
                 .build();
         EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
@@ -191,10 +191,10 @@ public class EditCommandParserTest {
         assertParseSuccess(parser, userInput, expectedCommand);
 
         // other valid values specified
-        userInput = targetIndex.getOneBased() + EMAIL_DESC_MSFT + INVALID_PHONE_DESC + ADDRESS_DESC_MSFT
+        userInput = targetIndex.getOneBased() + EMAIL_DESC_MSFT + INVALID_PHONE_DESC + WEBSITE_DESC_MSFT
                 + PHONE_DESC_MSFT;
         descriptor = new EditInternshipDescriptorBuilder().withPhone(VALID_PHONE_MSFT).withEmail(VALID_EMAIL_MSFT)
-                .withAddress(VALID_ADDRESS_MSFT).build();
+                .withWebsite(VALID_WEBSITE_MSFT).build();
         expectedCommand = new EditCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
     }

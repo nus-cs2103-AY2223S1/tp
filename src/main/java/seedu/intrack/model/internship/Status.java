@@ -3,7 +3,6 @@ package seedu.intrack.model.internship;
 import static java.util.Objects.requireNonNull;
 import static seedu.intrack.commons.util.AppUtil.checkArgument;
 
-import java.util.Objects;
 
 /**
  * Represents an Internship's application status.
@@ -30,17 +29,7 @@ public class Status {
         requireNonNull(status);
         checkArgument(isValidStatus(status), MESSAGE_CONSTRAINTS);
 
-        switch (status.toUpperCase()) {
-        case "OFFERED":
-            this.value = "Offered";
-            break;
-        case "REJECTED":
-            this.value = "Rejected";
-            break;
-        case "PROGRESS":
-        default:
-            this.value = "Progress";
-        }
+        this.value = status;
     }
 
     /**

@@ -18,7 +18,7 @@ public class StatsCommandTest {
         Model model = new ModelManager();
         Model expectedModel = new ModelManager();
 
-        String expectedMessage = String.format(MESSAGE_INTERNSHIPS_STATS_OVERVIEW, 0, 0, 0);
+        String expectedMessage = String.format(MESSAGE_INTERNSHIPS_STATS_OVERVIEW, 0, 0.00, 0, 0.00, 0, 0.00);
 
         assertCommandSuccess(new StatsCommand(), model, expectedMessage, expectedModel);
     }
@@ -32,8 +32,15 @@ public class StatsCommandTest {
         int progress = model.getFilteredStatusInternshipListSize(new StatusIsKeywordPredicate("Progress"));
         int rejected = model.getFilteredStatusInternshipListSize(new StatusIsKeywordPredicate("Rejected"));
 
+        int total = offered + progress + rejected;
+
+        float offeredPercentage = (float) offered / total * 100;
+        float progressPercentage = (float) progress / total * 100;
+        float rejectedPercentage = (float) rejected / total * 100;
+
         String expectedMessage = String.format(
-                MESSAGE_INTERNSHIPS_STATS_OVERVIEW, offered, progress, rejected);
+                MESSAGE_INTERNSHIPS_STATS_OVERVIEW, offered, offeredPercentage, progress, progressPercentage,
+                rejected, rejectedPercentage);
 
         assertCommandSuccess(new StatsCommand(), model, expectedMessage, expectedModel);
     }

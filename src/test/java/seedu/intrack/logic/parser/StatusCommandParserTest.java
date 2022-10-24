@@ -17,28 +17,37 @@ public class StatusCommandParserTest {
     private final String VALID_STATUS_PROGRESS = "p";
     private final String VALID_STATUS_REJECTED = "r";
 
-    @Test
-    public void parse_indexSpecified_offered_success() {
-        // remark present
-        Index targetIndex = INDEX_FIRST_INTERNSHIP;
-        String userInput = targetIndex.getOneBased() + " " + VALID_STATUS_OFFERED;
-        StatusCommand expectedCommand = new StatusCommand(INDEX_FIRST_INTERNSHIP, new Status("Offered"));
-        assertParseSuccess(parser, userInput, expectedCommand);
 
-        // remark not present
-        userInput = targetIndex.getOneBased() + " " + PREFIX_REMARK;
-        expectedCommand = new RemarkCommand(INDEX_FIRST_INTERNSHIP, new Remark(""));
-        assertParseSuccess(parser, userInput, expectedCommand);
+    @Test
+    public void parse_indexSpecified_success() {
+        // status present
+        Index targetIndex = INDEX_FIRST_INTERNSHIP;
+        String userInputOffered = " " + targetIndex.getOneBased() + " " + VALID_STATUS_OFFERED;
+        StatusCommand expectedCommandOffered = new StatusCommand(INDEX_FIRST_INTERNSHIP, new Status("Offered"));
+        assertParseSuccess(parser, userInputOffered, expectedCommandOffered);
+/*
+        String userInputProgress = targetIndex.getOneBased() + " " + VALID_STATUS_PROGRESS;
+        StatusCommand expectedCommandProgress = new StatusCommand(INDEX_FIRST_INTERNSHIP, new Status("Progress"));
+        assertParseSuccess(parser, userInputProgress, expectedCommandProgress);
+
+        String userInputRejected = targetIndex.getOneBased() + " " + VALID_STATUS_REJECTED;
+        StatusCommand expectedCommandRejected = new StatusCommand(INDEX_FIRST_INTERNSHIP, new Status("Rejected"));
+        assertParseSuccess(parser, userInputRejected, expectedCommandRejected);
+
+ */
     }
 
     @Test
     public void parse_invalidStatus_failure() {
-        String expectedMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, RemarkCommand.MESSAGE_USAGE);
+
+        String expectedMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, StatusCommand.MESSAGE_USAGE);
 
         // no parameters
-        assertParseFailure(parser, RemarkCommand.COMMAND_WORD, expectedMessage);
+        assertParseFailure(parser, StatusCommand.COMMAND_WORD, expectedMessage);
 
         // no index
-        assertParseFailure(parser, RemarkCommand.COMMAND_WORD + " " + nonEmptyRemark, expectedMessage);
+        assertParseFailure(parser, StatusCommand.COMMAND_WORD + " " + VALID_STATUS_OFFERED, expectedMessage);
+        assertParseFailure(parser, StatusCommand.COMMAND_WORD + " " + VALID_STATUS_PROGRESS, expectedMessage);
+        assertParseFailure(parser, StatusCommand.COMMAND_WORD + " " + VALID_STATUS_REJECTED, expectedMessage);
     }
 }

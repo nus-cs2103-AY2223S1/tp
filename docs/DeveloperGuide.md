@@ -154,6 +154,204 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
+### Add internship application feature
+
+#### About this feature
+
+The add internship application feature allows users to quickly add an internship application  in the tracker via the 
+command `add n/NAME p/POSITION hp/PHONE e/EMAIL a/ADDRESS [t/TAG]...`.
+
+#### How it is implemented
+
+The `add` command is facilitated by the `AddCommand` and the `AddCommandParser`. It uses the `ArgumentTokenizer#tokenize(String argString, Prefix... prefixes)`
+to extract the relevant inputs for each field. A new `Internship` object is then created with the corresponding name, position, phone, email, address and tag.
+The status field, by default, will be set to `Progress`. The `InTrack#addInternship(Internship target)` which is exposed in the `Model` interface as
+`Model#addInternship(Internship target, Internship editedInternship)` is called to add the new `Internship` object to the list of internship applications.
+
+#### Parsing user input
+
+1. The user inputs the `add` command.
+2. The `InTrackParser` processes the input and creates a new `AddCommandParser`.
+3. The `AddCommandParser` then calls `ArgumentTokenizer#tokenize(String argString, Prefix... prefixes)` to extract the relevant inputs for each field.
+   If any prefix is absent but compulsory or invalid, a `ParseException` would be thrown.
+4. The respective `Name`, `Position`, `Phone`, `Email`, `Address` and `Tag` constructors then check for the validity of parsed inputs. 
+   If any of the parsed inputs are absent but compulsory or invalid, a `ParseException` would be thrown.
+5. The `AddCommandParser` then creates the `AddCommand` based on the processed input.
+
+#### Command execution
+
+1. The `LogicManager` executes the `AddCommand`.
+2. The `AddCommand` then creates a new `Internship` object with the corresponding parsed inputs for each field.
+3. The `AddCommand` then calls `InTrack#addInternship(Internship target, Internship editedInternship)` to add the
+   new `Internship` object to the list of internship applications.
+
+#### Displaying of result
+
+1. Finally, the `AddCommand` creates a `CommandResult` with a success message and returns it to the `LogicManager`
+   to complete the command execution. The GUI would also be updated with the change of status.
+
+The following sequence diagram shows how the `add` command works:
+
+![StatusSequenceDiagram](images/AddSequenceDiagram.png)
+
+The following activity diagram shows what happens when a user executes a `add` command:
+
+![StatusActivityDiagram](images/AddActivityDiagram.png)
+
+#### Design considerations
+
+**Aspect: Command to add status of an internship application**
+Most internship applications added by users would still be in progress, so a default "Progress" status is provided for
+each new `Internship` instead of requiring the user to provide one initially, saving time. As such, there is no need for
+a prefix for the `Status` field.
+
+### Update internship application status feature
+
+#### About this feature
+
+The update internship application status feature allows users to quickly update the status of an internship application
+in the tracker via the command `status INDEX STATUS`, where `INDEX` must be a positive integer within the list and 
+`STATUS` must be either `o` (for **O**ffered), `p` (for in **P**rogress) or `r` (for **R**ejected).
+
+#### How it is implemented
+
+The `status` command is facilitated by the `StatusCommand` and the `StatusCommandParser`. It uses the `List#get(int index)`
+on the list of internship applications returned from the `Model#getFilteredInternshipList()` to get the target `Internship` 
+object to be updated. A new `Internship` object is then created with the new status. The 
+`InTrack#setInternship(Internship target, Internship editedInternship)` which is exposed in the `Model` interface as 
+`Model#setInternship(Internship target, Internship editedInternship)` is called to replace the target `Internship` object
+with the updated one.
+
+#### Parsing user input
+
+1. The user inputs the `status` command.
+2. The `InTrackParser` processes the input and creates a new `StatusCommandParser`.
+3. The `StatusCommandParser` then calls `ParserUtil#parseIndex(String oneBasedIndex)` to check for the validity of INDEX. 
+If `INDEX` is absent or invalid, a `ParseException` would be thrown.
+4. The `StatusCommandParser` then checks for the validity of STATUS. If `STATUS` is absent or invalid, a `ParseException` 
+would be thrown.
+5. The `StatusCommandParser` then creates the `StatusCommand` based on the processed input.
+
+#### Command execution
+
+1. The `LogicManager` executes the `StatusCommand`.
+2. The `StatusCommand` calls the `Model#getFilteredPersonList()` and `List#get(int index)` to get the target `Internship` 
+object to be updated based on the provided `INDEX`.
+3. The `StatusCommand` then creates a new `Internship` object with the same variables as the target one except with the 
+new status.
+4. The `StatusCommand` then calls `InTrack#setInternship(Internship target, Internship editedInternship)` to replace the 
+target `Internship` object with the updated one.
+
+#### Displaying of result
+
+1. Finally, the `StatusCommand` creates a `CommandResult` with a success message and returns it to the `LogicManager` 
+to complete the command execution. The GUI would also be updated with the change of status.
+
+The following sequence diagram shows how the `status` command works:
+
+![StatusSequenceDiagram](images/StatusSequenceDiagram.png)
+
+The following activity diagram shows what happens when a user executes a `status` command:
+
+![StatusActivityDiagram](images/StatusActivityDiagram.png)
+
+#### Design considerations
+
+**Aspect: Command to update status of an internship application**
+Most internship applications added by users would still be in progress, so a default "Progress" status is provided for 
+each new `Internship` instead of requiring the user to provide one initially, saving time. As such, there is no need for 
+a prefix for the `Status` field and the `edit` command will not work in this case. Having a separate `status` command 
+allows for the format to be kept short and simple which further increases the ease of updating the status of internship
+applications.
+
+### Add internship application task feature
+
+#### About this feature
+
+The add internship application task feature allows users to add a task associated to an internship application 
+in the tracker via the command `addtask INDEX TASKNAME /at TASKTIME`, where `INDEX` must be a positive integer within
+the list, `TASKNAME` must not be an empty string, and `TASKTIME` must be in the format `dd-MM-yyyy HH:mm`.
+
+#### How it is implemented
+
+The `addtask` command is facilitated by the `AddTaskCommand` and `AddTaskCommandParser`. It uses the 
+`List#get(int index)` on the list of internship applications returned from the `Model#getFilteredInternshipList()` to
+get the target `Internship` object to be updated. A new `Internship` object is then created with the new `Task` updated
+in the `List<Task>`. The `InTrack#setInternship(Internship target, Internship editedInternship)` which is exposed in the
+`Model` interface as `Model#setInternship(Internship target, Internship editedInternship)` is called to replace the
+target `Internship` object with the updated one.
+
+#### Parsing user input
+
+1. The user inputs the `addtask` command.
+2. The `InTrackParser` processes the input and creates a new `AddTaskCommandParser`.
+3. The `AddTaskCommandParser` then calls `ParserUtil#parseIndex(String oneBasedIndex)` to check for the validity of
+`INDEX`. If `INDEX` is absent or invalid, a `ParseException` would be thrown.
+4. The `AddTaskCommandParser` then checks for the validity of `TASKNAME` and `TASKTIME`. If either `TASKNAME` or
+`TASKTIME` is absent or invalid, a `ParseException` would be thrown.
+5. The `AddTaskCommandParser` then creates the `AddTaskCommand` based on the processed input.
+
+#### Command execution
+
+1. The `LogicManager` executes the `AddTaskCommand`.
+2. The `AddTaskCommand` calls the `Model#getFilteredPersonList()` and `List#get(int index)` to get the target `Internship`
+   object to be updated based on the provided `INDEX`.
+3. The `AddTaskCommand` then creates a new `Internship` object with the same variables as the target and adds the new
+task to the `List<Task>`.
+4. The `AddTaskCommand` then calls `InTrack#setInternship(Internship target, Internship editedInternship)` to replace the
+   target `Internship` object with the updated one.
+
+#### Displaying of result
+
+1. Finally, the `AddTaskCommand` creates a `CommandResult` with a success message and returns it to the `LogicManager`
+   to complete the command execution. The GUI would also be updated with the new task added.
+
+The following sequence diagram shows how the `addtask` command works:
+![AddTaskSequenceDiagram](images/AddTaskSequenceDiagram.png)
+
+The following activity diagram shows what happens when a user executes a `addtask` command:
+![AddTaskActivityDiagram](images/AddTaskActivityDiagram.png)
+
+### Find internship application by company name feature
+
+#### About this feature
+
+The find internship application by company name feature allows users to query the list of added internship applications 
+for applications that match the desired company name via the command `findn COMPANYNAME`, where `COMPANYNAME` must not 
+be an empty string.
+
+#### How it is implemented
+
+The `findn` command is facilitated by the `FindNameCommand`, `FindNameCommandParser` and the `NameContainsKeywordsPredicate`. 
+It uses `Model#updateFilteredInternshipList(Predicate<Internship> predicate)` to apply the `NameContainsKeywordsPredicate` 
+in order to produce a filtered list containing only entries whose names correspond to `COMPANYNAME`.
+
+#### Parsing user input
+
+1. The user inputs the `findn` command.
+2. The `InTrackParser` processes the input and creates a new `FindNameCommandParser`.
+3. The `FindNameCommandParser` then trims the input to remove whitespace. If the input is an empty string, a `ParseException` 
+would be thrown.
+4. The `FindNameCommandParser` then creates the new `FindNameCommand` based on the processed input.
+
+#### Command execution
+
+1. The `LogicManager` executes the `FindNameCommand`.
+2. The `FindNameCommand` calls the `Model#updateFilteredInternshipList(Predicate<Internship> predicate)` to update the 
+current internship list to only show internship applications matching the provided `COMPANYNAME`.
+
+#### Displaying of result
+
+1. Finally, the `FindNameCommand` creates a `CommandResult` containing the number of matching internship applications 
+and returns it to the `LogicManager` to complete the command execution. The GUI would also be updated with the change in 
+list.
+
+The following sequence diagram shows how the `findn` command works:
+![FindNameSequenceDiagram](images/FindNameSequenceDiagram.png)
+
+The following activity diagram shows what happens when a user executes a `findn` command:
+![FindNameActivityDiagram](images/FindNameActivityDiagram.png)
+
 ### \[Proposed\] Undo/redo feature
 
 #### Proposed Implementation
@@ -239,7 +437,69 @@ _{more aspects and alternatives to be added}_
 _{Explain here how the data archiving feature will be implemented}_
 
 
+
+
+
+### \[Implemented\] Add internship remark feature
+
+#### About Add internship remark feature
+The add internship remark feature allows users to add a remark to his/her internship information via the command
+`remark` `INDEX` `r/`.
+
+###How it is implemented
+The implemented `remark` command is facilitated by `RemarkCommand` and `RemarkCommandParser`. It enables users to add a Remark to their internship information.
+It uses the `get(int INDEX)` on the list of internships received from `getFilteredInternshipList()` which is exposed to the `Model` interface as `Model#getFilteredInternshipList()` to
+get an Internship Object. A new Internship object is then created with the new remark. Then the`InTrack#setInternship(Internship target, Internship editedInternship)` which is exposed in the Model interface as
+`Model#setInternship(Internship target, Internship editedInternship)`, is used to replace the old Internship panel with the new one.
+
+
+Given below is how the remark mechanism behaves at each step.
+
+####Parsing
+Step 1. The user inputs the `remark` command  and provide the `INDEX` of the internship the user wants to add the remark to, the `r/` prefix and finally the `REMARK_CONTENT`
+that he/she wants to add.
+
+Step 2. The 'InTrackParser' then parses the user input and checks if the command word and arguments are correct before creating a new
+`RemarkCommandParser`.
+
+Step 3. The `RemarkCommandParser` then parses the user input and checks if the input variables are correct by checking for the presence of
+the prefixes. It also checks whether the command is in the correct format. The correct format of the input is `r/REMARK_CONTENT`.
+
+A `ParseException` will be thrown if the format is incorrect.
+
+Step 4. If the format is correct, `RemarkCommandParser` will create a `RemarkCommand` based on the given inputs.
+
+####Command execution
+
+Step 5. The `LogicManager` executes the `RemarkCommand`.
+
+Step 6. The `RemarkCommand` obtains a list of `Internship`s via the `getFilteredInternshipList()` method
+which is exposed to the `Model` interface as `Model#getFilteredInternshipList()`
+
+Step 7. The `RemarkCommand` obtains the `Internship` object that the user wants to add the remark to via the
+`get(int INDEX)` method from list of `Internship`s.
+
+Step 8. The `RemarkCommand` then creates a new `Internship` object with the same variables as the old `Internship` except for the
+`REMARK_CONTENT` that the user has input.
+
+Step 9. `RemarkCommand` then call the `Model#setInternship(internshipToEdit, editedInternship)` to replace the old `Internship` with the new `Internship` with the new `Remark`
+
+####Display
+
+Step 10. Finally, the `RemarkCommand` creates a `CommandResult` with a succsess message and returns it to the `LogicManager` to complete the command execution. The
+GUI would also be updated on this change in the internship list and update the display of the `Internship` respectively.
+
+The following sequence diagram shows how the `remark` command works:
+
+![RemarkSequenceDiagram](images/RemarkSequenceDiagram.png)
+
+The following activity diagram summarises what happens when a user executes the `remark` command:
+
+![RemarkActivityDiagram](images/RemarkActivityDiagram.png)
+
+
 --------------------------------------------------------------------------------------------------------------------
+
 
 ## **Documentation, logging, testing, configuration, dev-ops**
 

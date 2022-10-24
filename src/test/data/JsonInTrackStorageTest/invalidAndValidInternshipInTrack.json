@@ -2,16 +2,16 @@
   "internships": [ {
     "name": "Valid Internship",
     "position": "Valid Position",
+    "status": "Progress",
     "phone": "9482424",
     "email": "hans@example.com",
-    "status": "Offered",
     "address": "4th street"
   }, {
     "name": "Internship With Invalid Phone Field",
-    "position": "V@lid Position",
+    "position": "Valid Position",
+    "status": "Progress",
     "phone": "948asdf2424",
     "email": "hans@example.com",
-    "status": "Offered",
     "address": "4th street"
   } ]
 }

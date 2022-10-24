@@ -1,0 +1,75 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":InTrackParser" as InTrackParser LOGIC_COLOR
+participant ":RemarkCommandParser" as RemarkCommandParser LOGIC_COLOR
+participant "d:RemarkCommand" as RemarkCommand LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+
+[-> LogicManager : execute("remark 1 r/example")
+activate LogicManager
+
+LogicManager -> InTrackParser : parseCommand("remark 1 r/example")
+activate InTrackParser
+
+create RemarkCommandParser
+InTrackParser -> RemarkCommandParser
+activate RemarkCommandParser
+
+RemarkCommandParser --> InTrackParser
+deactivate RemarkCommandParser
+
+InTrackParser -> RemarkCommandParser : parse("1 r/example")
+activate RemarkCommandParser
+
+create RemarkCommand
+RemarkCommandParser -> RemarkCommand
+activate RemarkCommand
+
+RemarkCommand --> RemarkCommandParser : d
+deactivate
+
+RemarkCommandParser --> InTrackParser : d
+deactivate
+
+InTrackParser --> LogicManager : d
+deactivate
+
+destroy RemarkCommandParser
+
+LogicManager -> RemarkCommand : execute()
+activate RemarkCommand
+
+RemarkCommand -> Model : getFilteredInternshipList()
+activate Model
+
+Model --> RemarkCommand
+deactivate
+
+RemarkCommand -> Model : setInternship(internToEdit, editedIntern);
+activate Model
+
+Model --> RemarkCommand
+deactivate
+
+create CommandResult
+RemarkCommand ->CommandResult
+activate CommandResult
+
+CommandResult --> RemarkCommand : result
+deactivate
+
+RemarkCommand --> LogicManager : result
+deactivate
+
+[<--LogicManager
+deactivate LogicManager
+@enduml
+@enduml

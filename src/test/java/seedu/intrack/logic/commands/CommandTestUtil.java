@@ -2,13 +2,13 @@ package seedu.intrack.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.intrack.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.intrack.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.intrack.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.intrack.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.intrack.logic.parser.CliSyntax.PREFIX_POSITION;
 import static seedu.intrack.logic.parser.CliSyntax.PREFIX_REMARK;
 import static seedu.intrack.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.intrack.logic.parser.CliSyntax.PREFIX_WEBSITE;
 import static seedu.intrack.testutil.Assert.assertThrows;
 
 import java.time.LocalDateTime;
@@ -35,22 +35,22 @@ public class CommandTestUtil {
     public static final String VALID_NAME_MSFT = "Microsoft";
     public static final String VALID_POSITION_AAPL = "Software Engineer";
     public static final String VALID_POSITION_MSFT = "Frontend Developer";
+    public static final String VALID_STATUS_AAPL = "Offered";
+    public static final String VALID_STATUS_MSFT = "Progress";
     public static final String VALID_PHONE_AAPL = "11111111";
     public static final String VALID_PHONE_MSFT = "22222222";
     public static final String VALID_EMAIL_AAPL = "hr@apple.com";
     public static final String VALID_EMAIL_MSFT = "hr@microsoft.com";
-    public static final String VALID_ADDRESS_AAPL = "Apple Park";
-    public static final String VALID_ADDRESS_MSFT = "Microsoft Campus";
-    public static final String VALID_STATUS_AAPL = "Offered";
-    public static final String VALID_STATUS_MSFT = "Progress";
+    public static final String VALID_WEBSITE_AAPL = "https://www.apple.com/careers/sg/";
+    public static final String VALID_WEBSITE_MSFT = "https://careers.microsoft.com/us/en";
     public static final String VALID_TASK_AAPL = "Application submitted /at "
             + LocalDateTime.now().truncatedTo(ChronoUnit.MINUTES).format(Task.FORMATTER);
     public static final String VALID_TASK_MSFT = "Application submitted /at "
             + LocalDateTime.now().truncatedTo(ChronoUnit.MINUTES).format(Task.FORMATTER);
     public static final String VALID_TAG_REMOTE = "Remote";
     public static final String VALID_TAG_URGENT = "Urgent";
-    public static final String VALID_REMARK_AAPL = "Forgot how to invert a binary tree";
-    public static final String VALID_REMARK_MSFT = "Revise graphs";
+    public static final String VALID_REMARK_AAPL = "Revise Trees";
+    public static final String VALID_REMARK_MSFT = "Revise Graphs";
 
     public static final String NAME_DESC_AAPL = " " + PREFIX_NAME + VALID_NAME_AAPL;
     public static final String NAME_DESC_MSFT = " " + PREFIX_NAME + VALID_NAME_MSFT;
@@ -60,8 +60,8 @@ public class CommandTestUtil {
     public static final String PHONE_DESC_MSFT = " " + PREFIX_PHONE + VALID_PHONE_MSFT;
     public static final String EMAIL_DESC_AAPL = " " + PREFIX_EMAIL + VALID_EMAIL_AAPL;
     public static final String EMAIL_DESC_MSFT = " " + PREFIX_EMAIL + VALID_EMAIL_MSFT;
-    public static final String ADDRESS_DESC_AAPL = " " + PREFIX_ADDRESS + VALID_ADDRESS_AAPL;
-    public static final String ADDRESS_DESC_MSFT = " " + PREFIX_ADDRESS + VALID_ADDRESS_MSFT;
+    public static final String WEBSITE_DESC_AAPL = " " + PREFIX_WEBSITE + VALID_WEBSITE_AAPL;
+    public static final String WEBSITE_DESC_MSFT = " " + PREFIX_WEBSITE + VALID_WEBSITE_MSFT;
     public static final String TAG_DESC_REMOTE = " " + PREFIX_TAG + VALID_TAG_REMOTE;
     public static final String TAG_DESC_URGENT = " " + PREFIX_TAG + VALID_TAG_URGENT;
     public static final String REMARK_DESC_AAPL = " " + PREFIX_REMARK + VALID_REMARK_AAPL;
@@ -71,7 +71,7 @@ public class CommandTestUtil {
     public static final String INVALID_POSITION_DESC = " " + PREFIX_POSITION; // empty string not allowed in positions
     public static final String INVALID_PHONE_DESC = " " + PREFIX_PHONE + "11111111a"; // 'a' not allowed in phones
     public static final String INVALID_EMAIL_DESC = " " + PREFIX_EMAIL + "hr!apple"; // missing '@' symbol
-    public static final String INVALID_ADDRESS_DESC = " " + PREFIX_ADDRESS; // empty string not allowed for addresses
+    public static final String INVALID_WEBSITE_DESC = " " + PREFIX_WEBSITE; // empty string not allowed for websites
     public static final String INVALID_TAG_DESC = " " + PREFIX_TAG + "remote*"; // '*' not allowed in tags
 
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
@@ -82,10 +82,10 @@ public class CommandTestUtil {
 
     static {
         DESC_AAPL = new EditInternshipDescriptorBuilder().withName(VALID_NAME_AAPL)
-                .withPhone(VALID_PHONE_AAPL).withEmail(VALID_EMAIL_AAPL).withAddress(VALID_ADDRESS_AAPL)
+                .withPhone(VALID_PHONE_AAPL).withEmail(VALID_EMAIL_AAPL).withWebsite(VALID_WEBSITE_AAPL)
                 .withTags(VALID_TAG_REMOTE).build();
         DESC_MSFT = new EditInternshipDescriptorBuilder().withName(VALID_NAME_MSFT)
-                .withPhone(VALID_PHONE_MSFT).withEmail(VALID_EMAIL_MSFT).withAddress(VALID_ADDRESS_MSFT)
+                .withPhone(VALID_PHONE_MSFT).withEmail(VALID_EMAIL_MSFT).withWebsite(VALID_WEBSITE_MSFT)
                 .withTags(VALID_TAG_REMOTE, VALID_TAG_URGENT).build();
     }
 
@@ -95,7 +95,7 @@ public class CommandTestUtil {
      * - the {@code actualModel} matches {@code expectedModel}
      */
     public static void assertCommandSuccess(Command command, Model actualModel, CommandResult expectedCommandResult,
-            Model expectedModel) {
+                                            Model expectedModel) {
         try {
             CommandResult result = command.execute(actualModel);
             assertEquals(expectedCommandResult, result);
@@ -110,7 +110,7 @@ public class CommandTestUtil {
      * that takes a string {@code expectedMessage}.
      */
     public static void assertCommandSuccess(Command command, Model actualModel, String expectedMessage,
-            Model expectedModel) {
+                                            Model expectedModel) {
         CommandResult expectedCommandResult = new CommandResult(expectedMessage);
         assertCommandSuccess(command, actualModel, expectedCommandResult, expectedModel);
     }

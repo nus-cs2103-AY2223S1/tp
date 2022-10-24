@@ -56,9 +56,8 @@ public class StatusCommand extends Command {
         }
 
         Internship internshipToEdit = lastShownList.get(index.getZeroBased());
-        Internship editedInternship = new Internship(internshipToEdit.getName(),
-                internshipToEdit.getPosition(), internshipToEdit.getPhone(),
-                internshipToEdit.getEmail(), status, internshipToEdit.getAddress(),
+        Internship editedInternship = new Internship(internshipToEdit.getName(), internshipToEdit.getPosition(),
+                status, internshipToEdit.getPhone(), internshipToEdit.getEmail(), internshipToEdit.getWebsite(),
                 internshipToEdit.getTasks(), internshipToEdit.getTags(), internshipToEdit.getRemark());
 
         model.setInternship(internshipToEdit, editedInternship);
