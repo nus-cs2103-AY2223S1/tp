@@ -1,3 +1,8 @@
+* {
+    -fx-primary-color: #9837d8;
+    -fx-secondary-color: #4737d9;
+}
+
 .background {
     -fx-background-color: #fff;
     background-color: #fff; /* Used in the default.html file */
@@ -196,7 +201,7 @@
 }
 
 .menu-bar {
-    -fx-background-color: derive(#9837d9, 20%);
+    -fx-background-color: derive(-fx-primary-color, 20%);
 }
 
 .menu-bar-nav-button {
@@ -354,7 +359,7 @@
 
 #tags .label {
     -fx-text-fill: white;
-    -fx-background-color: #4737d9;
+    -fx-background-color: -fx-secondary-color;
     -fx-padding: 2 3 2 3;
     -fx-border-radius: 3;
     -fx-background-radius: 3;
