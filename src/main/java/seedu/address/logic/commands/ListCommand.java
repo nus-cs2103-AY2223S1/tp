@@ -47,8 +47,8 @@ public class ListCommand extends Command {
             HiddenPredicateSingleton.clearHiddenAppts();
             return new CommandResult(MESSAGE_SUCCESS_APPOINTMENTS);
         default:
-            assert false : "Input should be either all, patients, appt; shouldn't reach here";
-            return null;
+            assert false : "Input should be either 'all', 'patients' or 'appt'; shouldn't reach here";
+            return new CommandResult("Unrecognised list keyword");
         }
     }
 
