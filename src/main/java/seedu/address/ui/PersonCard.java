@@ -63,7 +63,13 @@ public class PersonCard extends UiPart<Region> {
     @FXML
     private FlowPane tags;
     @FXML
+    private ImageView locationImage;
+    @FXML
     private Label locationAt;
+    @FXML
+    private HBox gitHubPanel;
+    @FXML
+    private ImageView githubImage;
     @FXML
     private Label githubUsername;
     @FXML
@@ -88,6 +94,9 @@ public class PersonCard extends UiPart<Region> {
         email.setText(person.getEmail().value);
         emailImage.setImage(new Image(this.getClass().getResourceAsStream("/images/email.png")));
         locationAt.setText(person.getLocation().value);
+        locationImage.setImage(new Image(this.getClass().getResourceAsStream("/images/locationbig.png"),
+                16, 16, true, true));
+
         person.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
@@ -143,10 +152,11 @@ public class PersonCard extends UiPart<Region> {
     private void setUsername() {
         String username = person.getUsername().value;
         if (!username.equals(GithubUsername.DEFAULT_USERNAME)) {
-            officeHour.setManaged(true);
+            gitHubPanel.setManaged(true);
+            githubImage.setImage(new Image(this.getClass().getResourceAsStream("/images/GitHub.png")));
             githubUsername.setText("@" + person.getUsername().value);
         } else {
-            githubUsername.setManaged(false);
+            gitHubPanel.setManaged(false);
         }
     }
 
