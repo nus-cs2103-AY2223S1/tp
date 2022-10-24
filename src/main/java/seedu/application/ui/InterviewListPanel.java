@@ -38,7 +38,7 @@ public class InterviewListPanel extends UiPart<Region> {
         protected void updateItem(Application application, boolean empty) {
             super.updateItem(application, empty);
 
-            if (empty || application == null) {
+            if (empty || application == null || !application.hasInterview()) {
                 setGraphic(null);
                 setText(null);
             } else {

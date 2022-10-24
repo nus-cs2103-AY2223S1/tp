@@ -127,6 +127,10 @@ public class Application {
         return isArchived;
     }
 
+    public boolean hasInterview() {
+        return interview.isPresent();
+    }
+
     /**
      * Returns an immutable tag set, which throws {@code UnsupportedOperationException}
      * if modification is attempted.
