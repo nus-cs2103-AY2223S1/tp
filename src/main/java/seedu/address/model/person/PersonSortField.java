@@ -69,7 +69,7 @@ public class PersonSortField {
 
 
     /**
-     * Return true if the given {@code String} is a valid sort field.
+     * Returns true if the given {@code String} is a valid sort field.
      *
      * @param test {@code String} to test.
      * @return boolean result of test.

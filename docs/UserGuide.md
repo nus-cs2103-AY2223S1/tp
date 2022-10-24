@@ -113,6 +113,7 @@ __Additional Parameter 2: Date of Birth__
 
 - Adds date of birth to a person in the contact list. Date format accepted is: dd/mm/yyyy.
 
+
 ### Listing all persons : `listPersons`
 
 Shows a list of all persons in the application.
@@ -126,7 +127,6 @@ Format: `listPersons [s/FIELD]`
 
 * It is optional to specify the field to sort by. If no field is specified, no sorting is performed.
 * At most one field can be specified. i.e. Cannot specify 2nd or 3rd criteria to sort by.
-* Persons with an empty field that is being used to sort will be placed at the top of the list.
 
 
 <div markdown="span" class="alert alert-info">
