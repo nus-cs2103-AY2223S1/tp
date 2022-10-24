@@ -15,11 +15,8 @@ import static seedu.address.logic.parser.ParserUtil.parseNameValidity;
 import static seedu.address.logic.parser.ParserUtil.parsePhone;
 import static seedu.address.logic.parser.ParserUtil.parsePhoneValidity;
 import static seedu.address.logic.parser.ProjectCliSyntax.PREFIX_CLIENT_ID;
-import static seedu.address.model.Name.isValidName;
-import static seedu.address.model.client.ClientPhone.isValidClientPhone;
 
 import java.util.ArrayList;
-import java.util.List;
 import java.util.stream.Stream;
 
 import seedu.address.commons.core.index.Index;
@@ -33,7 +30,6 @@ import seedu.address.logic.commands.client.FindClientCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.logic.parser.predicates.ClientContainsKeywordsPredicate;
 import seedu.address.model.Name;
-import seedu.address.model.client.Client;
 import seedu.address.model.client.ClientEmail;
 import seedu.address.model.client.ClientId;
 import seedu.address.model.client.ClientPhone;
@@ -183,36 +179,35 @@ public class ClientCommandParser implements Parser<ClientCommand> {
     }
     private FindClientCommand parseFindClientCommand(String arguments) throws ParseException {
 
-            ArgumentMultimap argMultimap =
-                    ArgumentTokenizer.tokenize(arguments, PREFIX_NAME, PREFIX_CLIENT_EMAIL, PREFIX_CLIENT_PHONE);
+        ArgumentMultimap argMultimap =
+                ArgumentTokenizer.tokenize(arguments, PREFIX_NAME, PREFIX_CLIENT_EMAIL, PREFIX_CLIENT_PHONE);
 
-            if (noPrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_CLIENT_EMAIL, PREFIX_CLIENT_PHONE)
-                    || !argMultimap.getPreamble().isEmpty()) {
-                throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                        FindClientCommand.MESSAGE_FIND_CLIENT_USAGE));
-            }
+        if (noPrefixesPresent(argMultimap, PREFIX_NAME, PREFIX_CLIENT_EMAIL, PREFIX_CLIENT_PHONE)
+                || !argMultimap.getPreamble().isEmpty()) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                    FindClientCommand.MESSAGE_FIND_CLIENT_USAGE));
+        }
 
-            //check for validity of arguments
+        //check for validity of arguments
 
-            if (anyPrefixesPresent(argMultimap, PREFIX_NAME)) {
-                parseNameValidity(argMultimap.getValue(PREFIX_NAME).get());
-            }
+        if (anyPrefixesPresent(argMultimap, PREFIX_NAME)) {
+            parseNameValidity(argMultimap.getValue(PREFIX_NAME).get());
+        }
 
-            if (anyPrefixesPresent(argMultimap, PREFIX_CLIENT_PHONE)) {
-                parsePhoneValidity(argMultimap.getValue(PREFIX_CLIENT_PHONE).get());
-            }
+        if (anyPrefixesPresent(argMultimap, PREFIX_CLIENT_PHONE)) {
+            parsePhoneValidity(argMultimap.getValue(PREFIX_CLIENT_PHONE).get());
+        }
 
-            if (anyPrefixesPresent(argMultimap, PREFIX_CLIENT_EMAIL)) {
-                parseEmailValidity(argMultimap.getValue(PREFIX_CLIENT_EMAIL).get());
-            }
+        if (anyPrefixesPresent(argMultimap, PREFIX_CLIENT_EMAIL)) {
+            parseEmailValidity(argMultimap.getValue(PREFIX_CLIENT_EMAIL).get());
+        }
 
-            ClientContainsKeywordsPredicate predicate =
-                    new ClientContainsKeywordsPredicate(argMultimap.getAllValues(PREFIX_CLIENT_NAME),
-                            argMultimap.getAllValues(PREFIX_CLIENT_EMAIL),
-                            argMultimap.getAllValues(PREFIX_CLIENT_PHONE));
+        ClientContainsKeywordsPredicate predicate =
+                new ClientContainsKeywordsPredicate(argMultimap.getAllValues(PREFIX_CLIENT_NAME),
+                        argMultimap.getAllValues(PREFIX_CLIENT_EMAIL),
+                        argMultimap.getAllValues(PREFIX_CLIENT_PHONE));
 
-
-            return new FindClientCommand(predicate);
+        return new FindClientCommand(predicate);
     }
 
     public FindClientCommand parseFindClientCommands(String flag, String arguments) throws ParseException {
