@@ -27,7 +27,7 @@ public class DepartmentTest {
         // invalid departments
         assertFalse(Department.isValidDepartment("")); // empty string
         assertFalse(Department.isValidDepartment(" ")); // spaces only
-        assertFalse(Department.isValidDepartment("Not a Department")); // spaces only
+        assertFalse(Department.isValidDepartment("Not a Department")); // not in list
         assertFalse(Department.isValidDepartment("Logistics")); // not in list
 
         // valid departments
