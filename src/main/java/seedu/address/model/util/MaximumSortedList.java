@@ -1,4 +1,4 @@
-package seedu.address.logic.util;
+package seedu.address.model.util;
 
 import static java.util.Objects.requireNonNull;
 
@@ -7,7 +7,7 @@ import java.util.stream.Stream;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import seedu.address.logic.util.exceptions.SortedListException;
+import seedu.address.model.util.exceptions.SortedListException;
 
 /**
  * A list of Comparable Objects that enforces uniqueness between its elements and does not allow nulls.

@@ -1,4 +1,4 @@
-package seedu.address.logic.util.exceptions;
+package seedu.address.model.util.exceptions;
 
 /**
  * Represents an error encountered by a SortedList.

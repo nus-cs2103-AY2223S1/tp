@@ -1,4 +1,4 @@
-package seedu.address.logic.util;
+package seedu.address.model.util;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
@@ -11,7 +11,8 @@ import org.junit.jupiter.api.Test;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import seedu.address.logic.util.exceptions.SortedListException;
+import seedu.address.model.util.MaximumSortedList;
+import seedu.address.model.util.exceptions.SortedListException;
 
 public class MaximumSortedListTest {
     private class ComparableStub implements Comparable<ComparableStub> {
