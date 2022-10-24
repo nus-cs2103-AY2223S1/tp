@@ -9,6 +9,7 @@ import static seedu.address.testutil.Assert.assertThrows;
 import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Optional;
 import java.util.function.Predicate;
 
 import org.junit.jupiter.api.Test;
@@ -129,6 +130,11 @@ public class AddCommandTest {
         }
 
         @Override
+        public Optional<Person> getPerson(Person person) {
+            throw new AssertionError("This methoud should not be called");
+        }
+
+        @Override
         public void deletePerson(Person target) {
             throw new AssertionError("This method should not be called.");
         }
@@ -179,6 +185,11 @@ public class AddCommandTest {
         public boolean hasPerson(Person person) {
             requireNonNull(person);
             return this.person.isSamePerson(person);
+        }
+
+        @Override
+        public Optional<Person> getPerson(Person person) {
+            return Optional.of(person);
         }
     }
 
