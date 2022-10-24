@@ -15,8 +15,12 @@ public class FloorNumberPredicate implements Predicate<Person> {
 
     @Override
     public boolean test(Person person) {
-        return floorNumbers.stream()
-                .anyMatch(floorNumber -> person.getFloorNumber().get().value.equals(floorNumber));
+        Boolean isInpatient = person.getPatientType().value.equals(PatientType.PatientTypes.INPATIENT);
+        if (isInpatient) {
+            return floorNumbers.stream()
+                    .anyMatch(floorNumber -> person.getHospitalWing().get().value.equals(floorNumber));
+        }
+        return false;
     }
 
     @Override
