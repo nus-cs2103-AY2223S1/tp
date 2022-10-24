@@ -50,7 +50,6 @@ public class EditCommandParser implements Parser<EditCommand> {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                     EditClientCommand.MESSAGE_USAGE), pe);
         }
-
         String mode = argMultimap.getValue(PREFIX_MODE).orElse("");
 
         switch (mode) {

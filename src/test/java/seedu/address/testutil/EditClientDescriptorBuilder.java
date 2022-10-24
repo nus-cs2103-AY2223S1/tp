@@ -35,6 +35,8 @@ public class EditClientDescriptorBuilder {
         descriptor.setName(client.getName());
         descriptor.setAddress(client.getAddress());
         descriptor.setTags(client.getTags());
+        descriptor.setEmail(client.getEmail());
+        descriptor.setPhone(client.getPhone());
     }
 
     /**
@@ -77,7 +79,6 @@ public class EditClientDescriptorBuilder {
         descriptor.setPhone(new ClientPhone(phone));
         return this;
     }
-
 
     public EditClientCommand.EditClientDescriptor build() {
         return descriptor;

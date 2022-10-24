@@ -145,7 +145,6 @@ public class EditCommandParserTest {
         expectedCommand = new EditClientCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
 
-
         // tags
         userInput = targetIndex.getOneBased() + " m/client" + TAG_DESC_FRIEND;
         descriptor = new EditClientDescriptorBuilder().withTags(VALID_TAG_FRIEND).build();

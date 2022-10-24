@@ -23,5 +23,6 @@ public abstract class EditCommand extends Command {
             + "[" + PREFIX_EMAIL + "EMAIL] "
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " 1 " + PREFIX_ADDRESS + "Blk 221 Yishun St 81";
+
 }
 
