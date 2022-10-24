@@ -1,7 +1,5 @@
 package seedu.address.testutil;
 
-import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
 import seedu.address.commons.core.index.Index;
@@ -25,8 +23,7 @@ public class RemarkUtil {
      */
     public static String getRemarkDetails(Remark remark) {
         StringBuilder sb = new StringBuilder();
-        sb.append(PREFIX_NAME + remark.getName().fullName + " ");
-        sb.append(PREFIX_ADDRESS + remark.getAddress().value + " ");
+        sb.append(remark.getText() + " ");
         remark.getTags().stream().forEach(
                 s -> sb.append(PREFIX_TAG + s.tagName + " ")
         );

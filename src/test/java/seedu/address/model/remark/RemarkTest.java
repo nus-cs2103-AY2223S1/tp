@@ -3,13 +3,12 @@ package seedu.address.model.remark;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_AMY;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_TEXT_BAD_BUYER;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_TEXT_GOOD_BUYER;
 import static seedu.address.testutil.Assert.assertThrows;
-import static seedu.address.testutil.TypicalRemark.ALICE;
-import static seedu.address.testutil.TypicalRemark.BOB;
+import static seedu.address.testutil.TypicalRemark.GOOD_BUYER;
+import static seedu.address.testutil.TypicalRemark.SHORT_REMARK;
 
 import org.junit.jupiter.api.Test;
 
@@ -26,66 +25,61 @@ public class RemarkTest {
     @Test
     public void isSameRemark() {
         // same object -> returns true
-        assertTrue(ALICE.isSameRemark(ALICE));
+        assertTrue(SHORT_REMARK.isSameRemark(SHORT_REMARK));
 
         // null -> returns false
-        assertFalse(ALICE.isSameRemark(null));
+        assertFalse(SHORT_REMARK.isSameRemark(null));
 
-        // same name, all other attributes different -> returns true
-        Remark editedAlice = new RemarkBuilder(ALICE).withAddress(VALID_ADDRESS_AMY)
+        // same text, all other attributes different -> returns true
+        Remark editedRemark = new RemarkBuilder(GOOD_BUYER)
                 .withTags(VALID_TAG_HUSBAND).build();
-        assertTrue(ALICE.isSameRemark(editedAlice));
+        assertTrue(GOOD_BUYER.isSameRemark(editedRemark));
 
-        // different name, all other attributes same -> returns false
-        editedAlice = new RemarkBuilder(ALICE).withName(VALID_NAME_BOB).build();
-        assertFalse(ALICE.isSameRemark(editedAlice));
+        // different text, all other attributes same -> returns false
+        editedRemark = new RemarkBuilder(GOOD_BUYER).withText(VALID_TEXT_BAD_BUYER).build();
+        assertFalse(GOOD_BUYER.isSameRemark(editedRemark));
 
         // name differs in case, all other attributes same -> returns false
-        Remark editedBob = new RemarkBuilder(BOB).withName(VALID_NAME_BOB.toLowerCase()).build();
-        assertFalse(BOB.isSameRemark(editedBob));
+        editedRemark = new RemarkBuilder(GOOD_BUYER).withText(VALID_TEXT_GOOD_BUYER.toLowerCase()).build();
+        assertFalse(GOOD_BUYER.isSameRemark(editedRemark));
 
         // name has trailing spaces, all other attributes same -> returns false
-        String nameWithTrailingSpaces = VALID_NAME_BOB + " ";
-        editedBob = new RemarkBuilder(BOB).withName(nameWithTrailingSpaces).build();
-        assertFalse(BOB.isSameRemark(editedBob));
+        String nameWithTrailingSpaces = VALID_TEXT_GOOD_BUYER + " ";
+        editedRemark = new RemarkBuilder(GOOD_BUYER).withText(nameWithTrailingSpaces).build();
+        assertFalse(GOOD_BUYER.isSameRemark(editedRemark));
     }
 
     @Test
     public void equals() {
         // same values -> returns true
-        Remark aliceCopy = new RemarkBuilder(ALICE).build();
-        assertTrue(ALICE.equals(aliceCopy));
+        Remark aliceCopy = new RemarkBuilder(GOOD_BUYER).build();
+        assertTrue(GOOD_BUYER.equals(aliceCopy));
 
         // same object -> returns true
-        assertTrue(ALICE.equals(ALICE));
+        assertTrue(GOOD_BUYER.equals(GOOD_BUYER));
 
         // null -> returns false
-        assertFalse(ALICE.equals(null));
+        assertFalse(GOOD_BUYER.equals(null));
 
         // different type -> returns false
-        assertFalse(ALICE.equals(5));
+        assertFalse(GOOD_BUYER.equals(5));
 
         // different Remark -> returns false
-        assertFalse(ALICE.equals(BOB));
+        assertFalse(GOOD_BUYER.equals(SHORT_REMARK));
 
         // different name -> returns false
-        Remark editedAlice = new RemarkBuilder(ALICE).withName(VALID_NAME_BOB).build();
-        assertFalse(ALICE.equals(editedAlice));
-
-        // different address -> returns false
-        editedAlice = new RemarkBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).build();
-        assertFalse(ALICE.equals(editedAlice));
+        Remark editedRemark = new RemarkBuilder(GOOD_BUYER).withText(VALID_TEXT_BAD_BUYER).build();
+        assertFalse(GOOD_BUYER.equals(editedRemark));
 
         // different tags -> returns false
-        editedAlice = new RemarkBuilder(ALICE).withTags(VALID_TAG_HUSBAND).build();
-        assertFalse(ALICE.equals(editedAlice));
+        editedRemark = new RemarkBuilder(GOOD_BUYER).withTags(VALID_TAG_HUSBAND).build();
+        assertFalse(GOOD_BUYER.equals(editedRemark));
     }
 
     @Test
     public void toString_remark_returnsValueInRemark() {
-        Remark remark = new RemarkBuilder().withName("Alice Pauline")
-                .withAddress("WCP Macs")
+        Remark remark = new RemarkBuilder().withText("This is a long remark that should be shortened")
                 .withTags("friends").build();
-        assertEquals(remark.toString(), "Alice Pauline; Address: WCP Macs; Tags: [friends]");
+        assertEquals(remark.toString(), "This is a long ...; Tags: [friends]");
     }
 }

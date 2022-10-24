@@ -4,8 +4,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 import seedu.address.model.remark.Remark;
-import seedu.address.model.remark.RemarkAddress;
-import seedu.address.model.remark.RemarkName;
+import seedu.address.model.remark.Text;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.util.SampleDataUtil;
 
@@ -14,18 +13,15 @@ import seedu.address.model.util.SampleDataUtil;
  */
 public class RemarkBuilder {
 
-    public static final String DEFAULT_NAME = "Amy Bee";
-    public static final String DEFAULT_ADDRESS = "Bedok Mall";
-    private RemarkName name;
-    private RemarkAddress address;
+    public static final String DEFAULT_TEXT = "Fast dealer";
+    private Text text;
     private Set<Tag> tags;
 
     /**
      * Creates a {@code RemarkBuilder} with the default details.
      */
     public RemarkBuilder() {
-        name = new RemarkName(DEFAULT_NAME);
-        address = new RemarkAddress(DEFAULT_ADDRESS);
+        text = new Text(DEFAULT_TEXT);
         tags = new HashSet<>();
     }
 
@@ -33,17 +29,8 @@ public class RemarkBuilder {
      * Initializes the RemarkBuilder with the data of {@code remarkToCopy}.
      */
     public RemarkBuilder(Remark remarkToCopy) {
-        name = remarkToCopy.getName();
-        address = remarkToCopy.getAddress();
+        text = remarkToCopy.getText();
         tags = new HashSet<>(remarkToCopy.getTags());
-    }
-
-    /**
-     * Sets the {@code Name} of the {@code Remark} that we are building.
-     */
-    public RemarkBuilder withName(String name) {
-        this.name = new RemarkName(name);
-        return this;
     }
 
     /**
@@ -55,15 +42,15 @@ public class RemarkBuilder {
     }
 
     /**
-     * Sets the {@code Address} of the {@code Remark} that we are building.
+     * Sets the {@code Text} of the {@code Remark} that we are building.
      */
-    public RemarkBuilder withAddress(String address) {
-        this.address = new RemarkAddress(address);
+    public RemarkBuilder withText(String text) {
+        this.text = new Text(text);
         return this;
     }
 
     public Remark build() {
-        return new Remark(name, address, tags);
+        return new Remark(text, tags);
     }
 
 }

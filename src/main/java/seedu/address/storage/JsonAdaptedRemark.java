@@ -11,7 +11,6 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.remark.Remark;
-import seedu.address.model.remark.RemarkName;
 import seedu.address.model.remark.Text;
 import seedu.address.model.tag.Tag;
 

@@ -6,7 +6,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.DeleteRemarkCommand.MESSAGE_DELETE_REMARK_SUCCESS;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalClients.ALICE;
-import static seedu.address.testutil.TypicalRemark.FIONA;
+import static seedu.address.testutil.TypicalRemark.LONG_REMARK;
 
 import java.nio.file.Path;
 import java.util.function.Predicate;
@@ -30,7 +30,7 @@ import seedu.address.testutil.ClientBuilder;
  * {@code DeleteRemarkCommand}.
  */
 public class DeleteRemarkCommandTest {
-    private static final Remark remarkToAdd = FIONA;
+    private static final Remark remarkToAdd = LONG_REMARK;
 
     @Test
     public void execute_validIndex_success() throws Exception {
@@ -48,7 +48,8 @@ public class DeleteRemarkCommandTest {
     public void execute_invalidIndex_throwsCommandException() {
         Model modelStub = new ModelStub(new ClientBuilder().build());
 
-        assertThrows(CommandException.class, () -> new DeleteRemarkCommand(Index.fromOneBased(2)).execute(modelStub));
+        assertThrows(CommandException.class, () ->
+                new DeleteRemarkCommand(Index.fromOneBased(2)).execute(modelStub));
     }
 
     @Test
@@ -56,7 +57,8 @@ public class DeleteRemarkCommandTest {
         Model modelStub = new ModelStub(new ClientBuilder().build());
         modelStub.addClient(ALICE);
 
-        assertThrows(CommandException.class, () -> new DeleteRemarkCommand(Index.fromOneBased(1)).execute(modelStub));
+        assertThrows(CommandException.class, () ->
+                new DeleteRemarkCommand(Index.fromOneBased(1)).execute(modelStub));
     }
 
     @Test

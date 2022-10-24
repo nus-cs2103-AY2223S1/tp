@@ -11,9 +11,9 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalClients.ALICE;
 import static seedu.address.testutil.TypicalClients.BOB;
-import static seedu.address.testutil.TypicalRemark.AMY;
-import static seedu.address.testutil.TypicalRemark.BENSON;
-import static seedu.address.testutil.TypicalRemark.ELLE;
+import static seedu.address.testutil.TypicalRemark.BAD_BUYER;
+import static seedu.address.testutil.TypicalRemark.BAD_SELLER;
+import static seedu.address.testutil.TypicalRemark.GOOD_BUYER;
 import static seedu.address.testutil.TypicalTransaction.BUY_BURGERS;
 import static seedu.address.testutil.TypicalTransaction.BUY_ORANGE;
 import static seedu.address.testutil.TypicalTransaction.SELL_PANTS;
@@ -34,7 +34,6 @@ import seedu.address.model.transaction.TransactionLog;
 import seedu.address.testutil.ClientBuilder;
 import seedu.address.testutil.RemarkBuilder;
 import seedu.address.testutil.TypicalClients;
-import seedu.address.testutil.TypicalRemark;
 
 public class ClientTest {
 
@@ -60,7 +59,7 @@ public class ClientTest {
 
     @Test
     public void constructor_nullIndex_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> new RemarkCommand(null, TypicalRemark.ALICE));
+        assertThrows(NullPointerException.class, () -> new RemarkCommand(null, GOOD_BUYER));
     }
 
     @Test
@@ -99,20 +98,20 @@ public class ClientTest {
     @Test
     public void addRemark() {
         Client aliceCopy = new ClientBuilder(ALICE).build();
-        Remark elleCopy = new RemarkBuilder(ELLE).build();
-        aliceCopy.addRemark(elleCopy);
-        assertTrue(aliceCopy.getRemarks().contains(elleCopy));
+        Remark badBuyerCopy = new RemarkBuilder(BAD_BUYER).build();
+        aliceCopy.addRemark(badBuyerCopy);
+        assertTrue(aliceCopy.getRemarks().contains(badBuyerCopy));
 
-        assertFalse(aliceCopy.getRemarks().contains(AMY));
+        assertFalse(aliceCopy.getRemarks().contains(GOOD_BUYER));
     }
 
     @Test
     public void containsRemark() {
         Client client = new ClientBuilder(TypicalClients.BENSON).build();
-        assertTrue(client.hasRemark(BENSON));
+        assertTrue(client.hasRemark(BAD_BUYER));
 
         // Invalid Remark
-        assertFalse(client.hasRemark(AMY));
+        assertFalse(client.hasRemark(BAD_SELLER));
     }
 
     @Test
@@ -183,6 +182,6 @@ public class ClientTest {
 
         assertEquals(client.toString(), "Benson Meier; Address: 311, Clementi Ave 2, "
                 + "#02-25; Phone: 12112121; Email: ben@gmail.com; "
-                + "Tags: [owesMoney][friends]; Remarks: Benson Meier; Total transactions: -$423.0");
+                + "Tags: [owesMoney][friends]; Remarks: Bad Buyer; Total transactions: -$423.0");
     }
 }

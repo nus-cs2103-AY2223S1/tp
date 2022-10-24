@@ -15,9 +15,8 @@
     "email": "ben@gmail.com",
     "tagged" : [ "owesMoney", "friends" ],
     "remarks" : [ {
-      "name" : "Benson Meier",
-      "address" : "Bedok Mall",
-      "tagged" : [ "owesMoney", "friends" ]
+      "text" : "hi",
+      "tagged" : [ ]
     } ],
     "transactions" : [ {
       "goods" : "Books",

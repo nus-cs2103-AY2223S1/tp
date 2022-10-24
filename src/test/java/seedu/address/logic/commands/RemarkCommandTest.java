@@ -6,9 +6,9 @@ import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalClients.getTypicalJeeqTracker;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_CLIENT;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_CLIENT;
-import static seedu.address.testutil.TypicalRemark.ALICE;
-import static seedu.address.testutil.TypicalRemark.AMY;
-import static seedu.address.testutil.TypicalRemark.BOB;
+import static seedu.address.testutil.TypicalRemark.BAD_BUYER;
+import static seedu.address.testutil.TypicalRemark.BAD_SELLER;
+import static seedu.address.testutil.TypicalRemark.LONG_REMARK;
 
 import java.nio.file.Path;
 import java.util.function.Predicate;
@@ -39,51 +39,53 @@ class RemarkCommandTest {
 
     @Test
     public void constructor_nullIndex_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> new RemarkCommand(null, ALICE));
+        assertThrows(NullPointerException.class, () -> new RemarkCommand(null, BAD_BUYER));
     }
 
     @Test
     public void execute_nullModel_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> new RemarkCommand(INDEX_FIRST_CLIENT, ALICE).execute(null));
+        assertThrows(NullPointerException.class, () ->
+                new RemarkCommand(INDEX_FIRST_CLIENT, BAD_BUYER).execute(null));
     }
 
     @Test
     public void execute_invalidClientIndex_failure() {
         assertThrows(CommandException.class, () -> new RemarkCommand(Index.fromZeroBased(
-                model.getFilteredClientList().size() + 10), ALICE).execute(model));
+                model.getFilteredClientList().size() + 10), BAD_BUYER).execute(model));
 
         Client validClient = new ClientBuilder().build();
         Model modelStub = new ModelStub(validClient);
 
         assertThrows(CommandException.class, () -> new RemarkCommand(Index.fromZeroBased(
-                modelStub.getFilteredClientList().size() + 10), ALICE).execute(model));
+                modelStub.getFilteredClientList().size() + 10), BAD_BUYER).execute(model));
     }
 
     @Test
     public void execute_duplicateRemark_failure() {
         Client validClient = new ClientBuilder().build();
-        validClient.addRemark(AMY);
+        validClient.addRemark(BAD_SELLER);
         Model modelStub = new ModelStub(validClient);
 
-        assertThrows(CommandException.class, () -> new RemarkCommand(INDEX_FIRST_CLIENT, AMY).execute(modelStub));
+        assertThrows(CommandException.class, () ->
+                new RemarkCommand(INDEX_FIRST_CLIENT, BAD_SELLER).execute(modelStub));
     }
 
     @Test
     public void execute_addRemark_success() throws Exception {
         Client validClient = new ClientBuilder().build();
         Model modelStub = new ModelStub(validClient);
-        RemarkCommand createCommand = new RemarkCommand(INDEX_FIRST_CLIENT, AMY);
+        RemarkCommand createCommand = new RemarkCommand(INDEX_FIRST_CLIENT, BAD_SELLER);
         createCommand.execute(modelStub);
-        assertTrue(modelStub.getFilteredClientList().get(0).hasRemark(AMY));
+        assertTrue(modelStub.getFilteredClientList().get(0).hasRemark(BAD_SELLER));
     }
 
 
     @Test
     public void equals() {
-        RemarkCommand createCommand = new RemarkCommand(INDEX_FIRST_CLIENT, ALICE);
+        RemarkCommand createCommand = new RemarkCommand(INDEX_FIRST_CLIENT, LONG_REMARK);
 
         // same values -> returns true
-        RemarkCommand createCommandCopy = new RemarkCommand(INDEX_FIRST_CLIENT, ALICE);
+        RemarkCommand createCommandCopy = new RemarkCommand(INDEX_FIRST_CLIENT, LONG_REMARK);
         assertTrue(createCommand.equals(createCommandCopy));
 
         // same object -> returns true
@@ -96,10 +98,10 @@ class RemarkCommandTest {
         assertFalse(createCommand.equals(new ClearCommand()));
 
         // different index -> returns false
-        assertFalse(createCommand.equals(new RemarkCommand(INDEX_SECOND_CLIENT, ALICE)));
+        assertFalse(createCommand.equals(new RemarkCommand(INDEX_SECOND_CLIENT, LONG_REMARK)));
 
         // different Remark -> returns false
-        assertFalse(createCommand.equals(new RemarkCommand(INDEX_FIRST_CLIENT, BOB)));
+        assertFalse(createCommand.equals(new RemarkCommand(INDEX_FIRST_CLIENT, BAD_SELLER)));
     }
 
     /**

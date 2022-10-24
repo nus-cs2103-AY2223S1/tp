@@ -18,7 +18,6 @@ import seedu.address.model.client.Address;
 import seedu.address.model.client.ClientEmail;
 import seedu.address.model.client.ClientPhone;
 import seedu.address.model.client.Name;
-import seedu.address.model.remark.RemarkName;
 import seedu.address.model.tag.Tag;
 
 public class ParserUtilTest {
@@ -33,13 +32,14 @@ public class ParserUtilTest {
     private static final String INVALID_QUANTITY = "100h";
 
     private static final String INVALID_PRICE = "1213a";
+    private static final String INVALID_TEXT = " ";
     private static final String VALID_NAME = "Rachel Walker";
     private static final String VALID_PHONE = "123456";
     private static final String VALID_ADDRESS = "123 Main Street #0505";
     private static final String VALID_EMAIL = "rachel@example.com";
     private static final String VALID_TAG_1 = "friend";
     private static final String VALID_TAG_2 = "neighbour";
-
+    private static final String VALID_TEXT = "Good buyer";
     private static final String WHITESPACE = " \t\r\n";
 
     @Test
@@ -251,56 +251,14 @@ public class ParserUtilTest {
         assertThrows(ParseException.class, () -> ParserUtil.parseDate(INVALID_DATE));
     }
 
-
     @Test
-    public void parseRemarkAddress_null_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> ParserUtil.parseRemarkAddress((String) null));
+    public void parseText_invalidValue_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseText(INVALID_TEXT));
     }
 
     @Test
-    public void parseRemarkAddress_invalidValue_throwsParseException() {
-        assertThrows(ParseException.class, () -> ParserUtil.parseAddress(INVALID_ADDRESS));
+    public void parseText_null_throwsParseException() {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseText(null));
     }
 
-    @Test
-    public void parseRemarkAddress_validValueWithoutWhitespace_returnsAddress() throws Exception {
-        RemarkAddress expectedAddress = new RemarkAddress(VALID_ADDRESS);
-        assertEquals(expectedAddress, ParserUtil.parseRemarkAddress(VALID_ADDRESS));
-    }
-
-    @Test
-    public void parseRemarkAddress_validValueWithWhitespace_returnsTrimmedAddress() throws Exception {
-        String addressWithWhitespace = WHITESPACE + VALID_ADDRESS + WHITESPACE;
-        RemarkAddress expectedAddress = new RemarkAddress(VALID_ADDRESS);
-        assertEquals(expectedAddress, ParserUtil.parseRemarkAddress(addressWithWhitespace));
-    }
-
-    @Test
-    public void parseInvalidRemarkName_throwsParseException() {
-        assertThrows(ParseException.class, RemarkName.MESSAGE_CONSTRAINTS, ()
-                -> ParserUtil.parseRemarkName("%$&^"));
-    }
-
-    @Test
-    public void parseRemarkName_null_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> ParserUtil.parseRemarkName((String) null));
-    }
-
-    @Test
-    public void parseRemarkName_invalidValue_throwsParseException() {
-        assertThrows(ParseException.class, () -> ParserUtil.parseRemarkName(INVALID_NAME));
-    }
-
-    @Test
-    public void parseRemarkName_validValueWithoutWhitespace_returnsName() throws Exception {
-        RemarkName expectedName = new RemarkName(VALID_NAME);
-        assertEquals(expectedName, ParserUtil.parseRemarkName(VALID_NAME));
-    }
-
-    @Test
-    public void parseRemarkName_validValueWithWhitespace_returnsTrimmedName() throws Exception {
-        String nameWithWhitespace = WHITESPACE + VALID_NAME + WHITESPACE;
-        RemarkName expectedName = new RemarkName(VALID_NAME);
-        assertEquals(expectedName, ParserUtil.parseRemarkName(nameWithWhitespace));
-    }
 }

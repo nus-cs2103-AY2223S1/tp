@@ -10,7 +10,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_PRICE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_QUANTITY;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_CLIENT;
-import static seedu.address.testutil.TypicalRemark.ALICE;
+import static seedu.address.testutil.TypicalRemark.BAD_SELLER;
 
 import java.util.Arrays;
 import java.util.List;
@@ -115,10 +115,10 @@ public class JeeqTrackerParserTest {
     }
 
     @Test
-    public void parseCommand_create() throws Exception {
+    public void parseCommand_remark() throws Exception {
         RemarkCommand command = (RemarkCommand) parser.parseCommand(
-                RemarkUtil.getRemarkCommand(ALICE, INDEX_FIRST_CLIENT));
-        assertEquals(new RemarkCommand(INDEX_FIRST_CLIENT, ALICE), command);
+                RemarkUtil.getRemarkCommand(BAD_SELLER, INDEX_FIRST_CLIENT));
+        assertEquals(new RemarkCommand(INDEX_FIRST_CLIENT, BAD_SELLER), command);
     }
 
     @Test
