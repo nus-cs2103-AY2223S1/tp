@@ -20,8 +20,6 @@ import seedu.foodrem.viewmodels.ItemWithMessage;
  * Adds a remark to an item in FoodRem.
  */
 public class RemarkCommand extends Command {
-    private static final String MESSAGE_SUCCESS = "Remark has been updated. View the updated item below:";
-
     private final Index index;
     private final ItemRemark remark;
 
@@ -67,7 +65,8 @@ public class RemarkCommand extends Command {
 
         model.setItem(itemToRemark, remarkedItem);
         model.updateFilteredItemList(PREDICATE_SHOW_ALL_ITEMS);
-        return CommandResult.from(new ItemWithMessage(remarkedItem, MESSAGE_SUCCESS));
+        return CommandResult.from(new ItemWithMessage(remarkedItem,
+                "Remark has been updated. View the updated item below:"));
     }
 
     public static String getUsage() {

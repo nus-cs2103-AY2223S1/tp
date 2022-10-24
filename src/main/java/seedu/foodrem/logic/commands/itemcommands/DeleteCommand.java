@@ -18,8 +18,6 @@ import seedu.foodrem.viewmodels.ItemWithMessage;
  * Deletes an item identified using it's displayed index from FoodRem.
  */
 public class DeleteCommand extends Command {
-    private static final String MESSAGE_SUCCESS = "Successfully deleted the following item:";
-
     private final Index targetIndex;
 
     public DeleteCommand(Index targetIndex) {
@@ -37,7 +35,8 @@ public class DeleteCommand extends Command {
 
         Item itemToDelete = lastShownList.get(targetIndex.getZeroBased());
         model.deleteItem(itemToDelete);
-        return CommandResult.from(new ItemWithMessage(itemToDelete, MESSAGE_SUCCESS));
+        return CommandResult.from(new ItemWithMessage(itemToDelete,
+                "Successfully deleted the following item:"));
     }
 
     public static String getUsage() {

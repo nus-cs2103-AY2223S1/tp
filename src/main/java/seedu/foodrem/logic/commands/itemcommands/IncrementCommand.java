@@ -20,8 +20,6 @@ import seedu.foodrem.viewmodels.ItemWithMessage;
  * Increments the quantity of an item by a specified amount.
  */
 public class IncrementCommand extends Command {
-    public static final String MESSAGE_SUCCESS = "Incremented successfully and updated item as follows:";
-
     private final Index index;
     private final ItemQuantity quantity;
 
@@ -75,7 +73,8 @@ public class IncrementCommand extends Command {
 
         model.setItem(itemToIncrement, incrementedItem);
         model.updateFilteredItemList(PREDICATE_SHOW_ALL_ITEMS);
-        return CommandResult.from(new ItemWithMessage(incrementedItem, MESSAGE_SUCCESS));
+        return CommandResult.from(new ItemWithMessage(incrementedItem,
+                "Incremented successfully and updated item as follows:"));
     }
 
     public static String getUsage() {

@@ -35,7 +35,6 @@ public class EditCommand extends Command {
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
     // TODO: FIX ME: Make this implementation detail private
     public static final String MESSAGE_DUPLICATE_ITEM = "This item already exists in the FoodRem.";
-    private static final String MESSAGE_EDIT_ITEM_SUCCESS = "Item successfully edited with the following values:";
 
     private final EditItemDescriptor editItemDescriptor;
     private final Index index;
@@ -96,7 +95,8 @@ public class EditCommand extends Command {
 
         model.setItem(itemToEdit, editedItem);
         model.updateFilteredItemList(PREDICATE_SHOW_ALL_ITEMS);
-        return CommandResult.from(new ItemWithMessage(editedItem, MESSAGE_EDIT_ITEM_SUCCESS));
+        return CommandResult.from(new ItemWithMessage(editedItem,
+                "Item successfully edited with the following values:"));
     }
 
     public static String getUsage() {
