@@ -188,6 +188,90 @@ Examples:
 * `filter-p c/black v/true`
 * `filter-p c/black n/doraemon p/50 s/cat v/true`
 
+### Find Persons : `find`
+
+Find displays all persons who match ONE on specific attribute. There are five possible attributes to filter: Address, Email, Location, Name, Phone.
+
+For Address, use the prefix 'a'.
+
+For Email, use the prefix 'e'.
+
+For Location, use the prefix 'l'.
+
+For Name, use the prefix 'n'.
+
+For Phone, use the prefix 'p'.
+
+Format: `find [prefix]/INPUT`
+
+Examples:
+* `find a/6th College Ave. West`
+* `find e/blackball@furry.com`
+* `find p/98986668`
+
+### Find Buyers : `find-b`
+
+Find displays all buyers who match ONE on specific attribute. There are five possible attributes to filter: Address, Email, Location, Name, Phone.
+
+For Address, use the prefix 'a'.
+
+For Email, use the prefix 'e'.
+
+For Location, use the prefix 'l'.
+
+For Name, use the prefix 'n'.
+
+For Phone, use the prefix 'p'.
+
+Format: `find-b [prefix]/INPUT`
+
+Examples:
+* `find-b a/6th College Ave. West`
+* `find-b e/blackball@furry.com`
+* `find-b p/98986668`
+
+### Find Deliverers : `find-d`
+
+Find displays all deliverers who match ONE on specific attribute. There are five possible attributes to filter: Address, Email, Location, Name, Phone.
+
+For Address, use the prefix 'a'.
+
+For Email, use the prefix 'e'.
+
+For Location, use the prefix 'l'.
+
+For Name, use the prefix 'n'.
+
+For Phone, use the prefix 'p'.
+
+Format: `find-d [prefix]/INPUT`
+
+Examples:
+* `find-d a/6th College Ave. West`
+* `find-d e/blackball@furry.com`
+* `find-d p/98986668`
+
+### Find Suppliers : `find-s`
+
+Find displays all suppliers who match ONE on specific attribute. There are five possible attributes to filter: Address, Email, Location, Name, Phone.
+
+For Address, use the prefix 'a'.
+
+For Email, use the prefix 'e'.
+
+For Location, use the prefix 'l'.
+
+For Name, use the prefix 'n'.
+
+For Phone, use the prefix 'p'.
+
+Format: `find-s [prefix]/INPUT`
+
+Examples:
+* `find-s a/6th College Ave. West`
+* `find-s e/blackball@furry.com`
+* `find-s p/98986668`
+
 ### Sort contacts : `sort`
 
 Sort the contacts based on given tag(s) and order(s).
