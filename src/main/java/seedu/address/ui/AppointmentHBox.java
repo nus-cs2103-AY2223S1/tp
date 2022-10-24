@@ -14,11 +14,10 @@ import seedu.address.model.person.Appointment;
 public class AppointmentHBox extends HBox {
     private static final String INDEX_STYLE = "-fx-padding: 0 10 0 0; -fx-font-size: 20px; "
             + "-fx-font-weight: bold; -fx-text-fill: #FFC600;";
-    private static final String INDEX_FIRST_STYLE = "-fx-padding: 0 13 0 0; -fx-font-size: 20px; "
-            + "-fx-font-weight: bold; -fx-text-fill: #FFC600;";
 
     private static final String DATE_PADDING = "-fx-padding: 0 10 0 10";
     private static final String TIME_PADDING = "-fx-padding: 0 10 0 10";
+    private static final String LOCATION_PADDING = "-fx-padding: 0 10 0 10";
     private static final String HBOX_PADDING = "-fx-padding: 0 0 5 0";
     private static final Image CALENDAR_IMAGE = new Image(MainApp.class.getResourceAsStream("/images/calendar.png"));
     private static final Image CLOCK_IMAGE = new Image(MainApp.class.getResourceAsStream("/images/clock.png"));
@@ -31,16 +30,16 @@ public class AppointmentHBox extends HBox {
     public AppointmentHBox(int index, Appointment appointment) {
         Label indexLabel = new Label(String.valueOf(index));
         indexLabel.setStyle(INDEX_STYLE);
-        if (index == 1) {
-            // Line of code is here because first appointment always misaligned with the rest of the appointments
-            indexLabel.setStyle(INDEX_FIRST_STYLE);
-        }
+        indexLabel.setMinWidth(26);
+
         Label dateLabel = new Label(appointment.getDate().toString());
+        dateLabel.setMinWidth(110);
         dateLabel.setStyle(DATE_PADDING);
         Label timeLabel = new Label(appointment.getTime().toString());
+        timeLabel.setMinWidth(82);
         timeLabel.setStyle(TIME_PADDING);
         Label locationLabel = new Label(appointment.getLocation().toString());
-        locationLabel.setStyle(TIME_PADDING);
+        locationLabel.setStyle(LOCATION_PADDING);
         getChildren().addAll(
                 indexLabel,
                 new ImageView(CALENDAR_IMAGE),
