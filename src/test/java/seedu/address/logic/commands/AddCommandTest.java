@@ -22,6 +22,7 @@ import javafx.collections.ObservableMap;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.AddCommandParser;
+import seedu.address.logic.parser.AddNoteCommandParser;
 import seedu.address.logic.parser.CliSyntax;
 import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
@@ -31,6 +32,7 @@ import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.note.Note;
 import seedu.address.model.person.Person;
 import seedu.address.model.tag.Tag;
+import seedu.address.testutil.NoteBuilder;
 import seedu.address.testutil.PersonBuilder;
 
 public class AddCommandTest {
@@ -93,6 +95,33 @@ public class AddCommandTest {
         Model model = new ModelManager();
         String tagName = "Operations";
         model.addTag(new Tag(tagName));
+
+        assertAll(() -> new AddCommandParser(model).parse(" "
+                        + CliSyntax.PREFIX_NAME + PersonBuilder.DEFAULT_NAME + " "
+                        + CliSyntax.PREFIX_PHONE + PersonBuilder.DEFAULT_PHONE + " "
+                        + CliSyntax.PREFIX_EMAIL + PersonBuilder.DEFAULT_EMAIL + " "
+                        + CliSyntax.PREFIX_ADDRESS + PersonBuilder.DEFAULT_ADDRESS + " "
+                        + CliSyntax.PREFIX_TAG + tagName + " ")
+                .execute(model));
+
+        List<Tag> listOfTagsFromPerson = new ArrayList<>(model.getAddressBook().getPersonList().get(0).getTags());
+        Tag tagFromPerson = listOfTagsFromPerson.get(0);
+        Tag tagFromTagMapping = model.getTagMapping().get(tagName);
+
+        assertSame(tagFromTagMapping, tagFromPerson);
+    }
+
+    // Tag being added already exists in UniqueTagMapping because a Note has it
+    @Test
+    public void execute_addPersonWithTag_tagAlreadyExistsInTagMappingDueToNote() throws Exception {
+        Model model = new ModelManager();
+        String tagName = "Operations";
+
+        assertAll(() -> new AddNoteCommandParser(model).parse(" "
+                        + CliSyntax.PREFIX_NOTES_TITLE + NoteBuilder.DEFAULT_TITLE + " "
+                        + CliSyntax.PREFIX_NOTES_CONTENT + NoteBuilder.DEFAULT_CONTENT + " "
+                        + CliSyntax.PREFIX_NOTES_TAG + tagName)
+                .execute(model));
 
         assertAll(() -> new AddCommandParser(model).parse(" "
                         + CliSyntax.PREFIX_NAME + PersonBuilder.DEFAULT_NAME + " "
