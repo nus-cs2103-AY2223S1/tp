@@ -12,12 +12,8 @@ import seedu.address.model.tag.Tag;
 public class StringToPlan extends AbstractCsvConverter {
     @Override
     public Object convertToRead(String value) {
-        if (!Plan.isValidPlan(value)) {
-            try {
-                throw new IllegalValueException(Tag.MESSAGE_CONSTRAINTS);
-            } catch (IllegalValueException e) {
-                throw new RuntimeException(e);
-            }
+        if (value.equals("")) {
+            return new Plan("null");
         }
         return new Plan(value);
     }

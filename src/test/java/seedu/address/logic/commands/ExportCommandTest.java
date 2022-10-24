@@ -48,7 +48,7 @@ public class ExportCommandTest {
         try {
             importCommand.execute(importedModel);
         } catch (CommandException e) {
-            fail();
+            fail(e.getMessage());
         }
         assertEquals(model, importedModel);
         new File(validCsvPath.toUri()).delete();
