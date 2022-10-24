@@ -76,6 +76,9 @@ public class SampleDataUtil {
         for (Person samplePerson : getSamplePersons()) {
             sampleSC.addPerson(samplePerson);
         }
+        for (Tag sampleTag : getSampleTagList()) {
+            sampleSC.addTag(sampleTag);
+        }
         return sampleSC;
     }
 
@@ -91,6 +94,21 @@ public class SampleDataUtil {
         }
         return sampleTodoList;
     }
+
+    public static Tag[] getSampleTagList() {
+        return new Tag[] {
+            new Tag("friends"),
+            new Tag("colleagues"),
+            new Tag("neighbours"),
+            new Tag("family"),
+            new Tag("classmates"),
+            new Tag("math"),
+            new Tag("english"),
+            new Tag("chinese")
+        };
+    }
+
+
 
     /**
      * Returns a tag set containing the list of strings given.

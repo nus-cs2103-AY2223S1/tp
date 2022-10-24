@@ -11,6 +11,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonRootName;
 
 import soconnect.commons.exceptions.IllegalValueException;
+import soconnect.model.ReadOnlySoConnect;
 import soconnect.model.ReadOnlyTodoList;
 import soconnect.model.TodoList;
 import soconnect.model.tag.Tag;
@@ -23,7 +24,6 @@ import soconnect.model.todo.Todo;
 class JsonSerializableTodoList {
 
     public static final String MESSAGE_DUPLICATE_TODO = "Todo List contains an identical todo.";
-    public static final String MESSAGE_TAG_NOT_FOUND = "Todo contains tags not found in the Tags list.";
 
     private final List<JsonAdaptedTodo> todos = new ArrayList<>();
 
@@ -49,7 +49,7 @@ class JsonSerializableTodoList {
      *
      * @throws IllegalValueException If there were any data constraints violated.
      */
-    public TodoList toModelType(List<Tag> tagList) throws IllegalValueException {
+    public TodoList toModelType(ReadOnlySoConnect readOnlySoConnect) throws IllegalValueException {
         TodoList todoList = new TodoList();
 
         for (JsonAdaptedTodo jsonAdaptedTodo : todos) {
@@ -60,11 +60,11 @@ class JsonSerializableTodoList {
 
             List<Tag> todoTags = new ArrayList<>(todo.getTags());
             for (int i = 0; i < todoTags.size(); i++) {
-                if (!tagList.contains(todoTags.get(i))) {
-                    throw new IllegalValueException(MESSAGE_TAG_NOT_FOUND);
+                if (!readOnlySoConnect.hasTag(todoTags.get(i))) {
+                    readOnlySoConnect.addTag(todoTags.get(i));
                 }
-                int index = tagList.indexOf(todoTags.get(i));
-                todoTags.set(i, tagList.get(index));
+                int index = readOnlySoConnect.getTagReference(todoTags.get(i));
+                todoTags.set(i, readOnlySoConnect.getTagFromList(index));
 
             }
             Set<Tag> updatedTags = new HashSet<>(todoTags);

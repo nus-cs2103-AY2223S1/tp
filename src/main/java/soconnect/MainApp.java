@@ -2,6 +2,7 @@ package soconnect;
 
 import java.io.IOException;
 import java.nio.file.Path;
+import java.util.List;
 import java.util.Optional;
 import java.util.logging.Logger;
 
@@ -25,6 +26,7 @@ import soconnect.model.SoConnect;
 import soconnect.model.TodoList;
 import soconnect.model.UserPrefs;
 import soconnect.model.todo.TodoContainsDatePredicate;
+import soconnect.model.tag.Tag;
 import soconnect.model.util.SampleDataUtil;
 import soconnect.storage.JsonSoConnectStorage;
 import soconnect.storage.JsonTodoListStorage;
@@ -108,11 +110,11 @@ public class MainApp extends Application {
     private ReadOnlyTodoList initTodoList(Storage storage, ReadOnlySoConnect initialSoConnectData) {
         Optional<ReadOnlyTodoList> todoListOptional;
         try {
-            todoListOptional = storage.readTodoList(initialSoConnectData.getTagList());
+            todoListOptional = storage.readTodoList(initialSoConnectData);
             if (todoListOptional.isEmpty()) {
                 logger.info("Data file not found. Will be starting with a sample TodoList");
             }
-            return todoListOptional.orElseGet(SampleDataUtil::getSampleTodoList);
+            return todoListOptional.orElseGet(() -> MainApp.syncTags(initialSoConnectData));
         } catch (DataConversionException e) {
             logger.warning("Data file not in the correct format. Will be starting with an empty TodoList");
             return new TodoList();
@@ -192,6 +194,22 @@ public class MainApp extends Application {
         }
 
         return initializedPrefs;
+    }
+
+    /**
+     * Ensures that the tags from todo are synced with the tagList.
+     *
+     * @param initialSoConnectData The existing ReadOnlySoConnect in SoConnect.
+     * @return The ReadOnlyTodoList for Todo.
+     */
+    private static ReadOnlyTodoList syncTags(ReadOnlySoConnect initialSoConnectData) {
+        List<Tag> tagList = List.of(SampleDataUtil.getSampleTagList());
+        for (int i = 0; i < tagList.size(); i++) {
+            if (!initialSoConnectData.hasTag(tagList.get(i))) {
+                initialSoConnectData.addTag(tagList.get(i));
+            }
+        }
+        return SampleDataUtil.getSampleTodoList();
     }
 
     @Override

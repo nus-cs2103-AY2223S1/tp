@@ -14,7 +14,13 @@ import javafx.scene.control.ContextMenu;
 import javafx.scene.control.CustomMenuItem;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Region;
+import javafx.scene.paint.Color;
+import javafx.scene.text.Text;
+import javafx.scene.text.TextFlow;
 import soconnect.logic.Logic;
 import soconnect.logic.autocomplete.Autocomplete;
 import soconnect.logic.commands.CommandResult;
@@ -28,6 +34,8 @@ public class CommandBox extends UiPart<Region> {
 
     public static final String ERROR_STYLE_CLASS = "error";
     private static final String FXML = "CommandBox.fxml";
+    private static final double LABEL_PREFERRED_HEIGHT = 20;
+    private static final int AUTOCOMPLETE_ENTRY_START_POSITION = -1;
 
     private final CommandExecutor commandExecutor;
 
@@ -72,63 +80,137 @@ public class CommandBox extends UiPart<Region> {
     }
 
     /**
-     * Displays a list of autocomplete entries.
-     * Solution below adapted from https://stackoverflow.com/questions/36861056/javafx-textfield-auto-suggestions.
+     * Activates a listener to execute autocomplete related actions.
      */
     private void setAutocompleteListener() {
-        commandTextField.textProperty().addListener(new ChangeListener<String>() {
+        commandTextField.setOnKeyPressed(e -> {
+            // Change focus to the autocomplete popup
+            if (e.getCode() == KeyCode.DOWN && autocompletePopup.isShowing()) {
+                autocompletePopup.getSkin().getNode().lookup(".menu-item").requestFocus();
+            }
+        });
+
+        commandTextField.setOnKeyReleased(new EventHandler<KeyEvent>() {
             @Override
-            public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
-                String searchValue = commandTextField.getText();
-
-                // Only show autocomplete field for find command.
-                if (!searchValue.startsWith(autocomplete.AUTOCOMPLETE_COMMAND_WORD)) {
-                    autocompletePopup.hide();
-                } else {
-                    String namePrefix = searchValue.substring(autocomplete.AUTOCOMPLETE_COMMAND_WORD.length());
-                    // Get the list of names that matches the namePrefix.
-                    List<String> searchResult = autocomplete.getAutocompleteEntries(namePrefix);
-                    if (searchResult.size() == 0) {
-                        autocompletePopup.hide();
-                    }
-                    // Build the autocomplete dropdown menu
-                    populatePopup(searchResult);
-                    if (!autocompletePopup.isShowing()) {
-                        autocompletePopup.show(commandTextField, Side.BOTTOM, 0, 0);
-
-                    }
+            public void handle(KeyEvent event) {
+                switch (event.getCode()) {
+                case UP:
+                case DOWN:
+                case LEFT:
+                case RIGHT:
+                case SPACE:
+                    break;
+                default:
+                    autocompleteAction();
                 }
+            }
+        });
+        commandTextField.setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                autocompleteAction();
             }
         });
     }
 
     /**
-     * Generates a list of autocomplete entries with the given search result.
+     * Generates and displays the autocomplete pop up.
+     * Solution below adapted from https://stackoverflow.com/questions/36861056/javafx-textfield-auto-suggestions.
+     */
+    private void autocompleteAction() {
+        String commandText = commandTextField.getText().trim();
+        List<String> autocompleteEntries = autocomplete.getAutocompleteEntries(commandText);
+        if (autocompleteEntries.isEmpty()) {
+            autocompletePopup.getItems().clear();
+            autocompletePopup.hide();
+        } else {
+            // force the originalSearchInput to be the first item
+            autocompleteEntries.remove(commandText);
+            autocompleteEntries.add(0, commandText);
+
+            populatePopup(autocompleteEntries, commandText);
+
+            if (!autocompletePopup.isShowing()) {
+                autocompletePopup.show(commandTextField, Side.BOTTOM, 0, 0);
+            }
+        }
+    }
+
+    /**
+     * Generates a list of autocomplete entries in the {@code contextMenu}.
      * Solution below adapted from https://stackoverflow.com/questions/36861056/javafx-textfield-auto-suggestions.
      *
-     * @param searchResult The list of matching strings.
+     * @param autocompleteEntries The list of matching strings.
+     * @param originalSearchInput The original search input entered by the user.
      */
-    private void populatePopup(List<String> searchResult) {
+    private void populatePopup(List<String> autocompleteEntries, String originalSearchInput) {
+        assert !autocompleteEntries.isEmpty();
+
         List<CustomMenuItem> menuItems = new LinkedList<>();
-        for (int i = 0; i < searchResult.size(); i++) {
-            final String result = autocomplete.AUTOCOMPLETE_COMMAND_WORD + searchResult.get(i);
-            Label entryLabel = new Label(result);
+        for (String autocompleteEntry : autocompleteEntries) {
+            Label entryLabel = new Label();
+            entryLabel.setGraphic(buildTextFlow(originalSearchInput, autocompleteEntry));
+            entryLabel.setPrefSize(getLabelPreferredWidth(), LABEL_PREFERRED_HEIGHT);
+            labelWidthChangeListener(entryLabel);
+
             CustomMenuItem item = new CustomMenuItem(entryLabel, true);
             // Whenever an item is selected, set text field to the selected text, execute the command and close pop up.
             item.setOnAction(new EventHandler<ActionEvent>() {
                 @Override
                 public void handle(ActionEvent event) {
-                    commandTextField.setText(result);
+                    commandTextField.setText(autocompleteEntry);
                     handleCommandEntered();
                     autocompletePopup.hide();
                 }
             });
+
             menuItems.add(item);
         }
 
         // Update the autocomplete pop up.
         autocompletePopup.getItems().clear();
         autocompletePopup.getItems().addAll(menuItems);
+    }
+
+    /**
+     * Builds the {@code TextFlow} to style the given {@code originalSearchInput} in the {@code autocompleteEntry}.
+     * The {@code autocompleteEntry} must start with {@code originalSearchInput}.
+     * Solution below adapted from https://stackoverflow.com/questions/36861056/javafx-textfield-auto-suggestions.
+     *
+     * @param originalSearchInput The original search input entered by the user.
+     * @param autocompleteEntry The autocomplete entry generated by the original search input.
+     * @return A {@code TextFlow} with the originalSearchInput being styled.
+     */
+    private TextFlow buildTextFlow(String originalSearchInput, String autocompleteEntry) {
+        Text textBefore = new Text(autocompleteEntry.substring(0, originalSearchInput.length()));
+        Text textAfter = new Text(autocompleteEntry.substring(originalSearchInput.length()));
+        textBefore.setFill(Color.ORANGE);
+        return new TextFlow(textBefore, textAfter);
+    }
+
+    /**
+     * Activates a listener to detect the change in the application size and changes the label width accordingly.
+     *
+     * @param label The label which the width will be changed.
+     */
+    private void labelWidthChangeListener(Label label) {
+        commandTextField.widthProperty().addListener(new ChangeListener<Number>() {
+            @Override
+            public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
+                label.setPrefWidth(getLabelPreferredWidth());
+            }
+        });
+    }
+
+    /**
+     * Gets the label's preferred width.
+     *
+     * @return Label's preferred width.
+     */
+    private double getLabelPreferredWidth() {
+        // The length of the width to be minus so the label's width matches the white line on commandTextField
+        double widthFromEndOfCommandTextField = 13;
+        return commandTextField.getWidth() - widthFromEndOfCommandTextField;
     }
 
     /**

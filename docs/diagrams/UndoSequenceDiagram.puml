@@ -1,44 +1,44 @@
 @startuml
 !include style.puml
-
+scale 938*475
 box Logic LOGIC_COLOR_T1
 participant ":LogicManager" as LogicManager LOGIC_COLOR
-participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
+participant ":SoConnectParser" as SoConnectParser LOGIC_COLOR
 participant "u:UndoCommand" as UndoCommand LOGIC_COLOR
 end box
 
 box Model MODEL_COLOR_T1
 participant ":Model" as Model MODEL_COLOR
-participant ":VersionedAddressBook" as VersionedAddressBook MODEL_COLOR
+participant ":VersionedSoConnect" as VersionedSoConnect MODEL_COLOR
 end box
 [-> LogicManager : execute(undo)
 activate LogicManager
 
-LogicManager -> AddressBookParser : parseCommand(undo)
-activate AddressBookParser
+LogicManager -> SoConnectParser : parseCommand(undo)
+activate SoConnectParser
 
 create UndoCommand
-AddressBookParser -> UndoCommand
+SoConnectParser -> UndoCommand
 activate UndoCommand
 
-UndoCommand --> AddressBookParser
+UndoCommand --> SoConnectParser
 deactivate UndoCommand
 
-AddressBookParser --> LogicManager : u
-deactivate AddressBookParser
+SoConnectParser --> LogicManager : u
+deactivate SoConnectParser
 
 LogicManager -> UndoCommand : execute()
 activate UndoCommand
 
-UndoCommand -> Model : undoAddressBook()
+UndoCommand -> Model : undoSoConnect()
 activate Model
 
-Model -> VersionedAddressBook : undo()
-activate VersionedAddressBook
+Model -> VersionedSoConnect : undo()
+activate VersionedSoConnect
 
-VersionedAddressBook -> VersionedAddressBook :resetData(ReadOnlyAddressBook)
-VersionedAddressBook --> Model :
-deactivate VersionedAddressBook
+VersionedSoConnect -> VersionedSoConnect :resetData(ReadOnlySoConnect)
+VersionedSoConnect --> Model :
+deactivate VersionedSoConnect
 
 Model --> UndoCommand
 deactivate Model
