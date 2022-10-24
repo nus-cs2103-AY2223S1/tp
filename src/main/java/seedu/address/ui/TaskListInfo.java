@@ -23,8 +23,8 @@ public class TaskListInfo extends UiPart<Region> {
      */
     public TaskListInfo() {
         super(FXML);
-        this.sortInfoLabel.setText(new SortInfo("none").toString());
-        this.filterInfoLabel.setText(new FilterInfo("none").toString());
+        this.sortInfoLabel.setText(new SortInfo().toString());
+        this.filterInfoLabel.setText(new FilterInfo().toString());
     }
 
     public void setSortInfo(SortInfo sortInfo) {

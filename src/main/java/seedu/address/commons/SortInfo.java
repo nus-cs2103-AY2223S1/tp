@@ -15,6 +15,13 @@ public class SortInfo {
         this.info = info;
     }
 
+    /**
+     * Creates a {@code SortInfo} for an unsorted task list.
+     */
+    public SortInfo() {
+        this.info = "none";
+    }
+
     @Override
     public String toString() {
         return SORT_INFO_PREFIX + info;

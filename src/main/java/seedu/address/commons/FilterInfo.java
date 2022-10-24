@@ -15,6 +15,13 @@ public class FilterInfo {
         this.info = info;
     }
 
+    /**
+     * Creates a {@code FilterInfo} for an unfiltered task list.
+     */
+    public FilterInfo() {
+        this.info = "none";
+    }
+
     @Override
     public String toString() {
         return FILTER_INFO_PREFIX + info;
