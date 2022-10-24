@@ -101,7 +101,8 @@ public class Event {
     @Override
     public String toString() {
         final StringBuilder builder = new StringBuilder();
-        builder.append(getTitle())
+        builder.append("Title: ")
+                .append(getTitle())
                 .append("; Start: ")
                 .append(getStartDateTime())
                 .append("; End: ")
