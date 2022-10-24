@@ -12,6 +12,7 @@ import seedu.address.logic.commands.event.DeleteEventCommand;
 import seedu.address.logic.commands.event.EditEventCommand;
 import seedu.address.logic.commands.event.EventCommand;
 import seedu.address.logic.commands.event.ViewEventsCommand;
+import seedu.address.logic.commands.event.ViewUpcomingEventsCommand;
 import seedu.address.logic.parser.CliSyntax;
 import seedu.address.logic.parser.Parser;
 import seedu.address.logic.parser.exceptions.ParseException;
@@ -58,6 +59,8 @@ public class EventCommandParser implements Parser<EventCommand> {
             return new DeleteEventCommandParser().parse(args);
         case EditEventCommand.COMMAND_OPTION:
             return new EditEventCommandParser().parse(args);
+        case ViewUpcomingEventsCommand.COMMAND_OPTION:
+            return new ViewUpcomingEventsCommandParser().parse(args);
         case ViewEventsCommand.COMMAND_OPTION:
             return new ViewEventsCommandParser().parse(args);
         default:
@@ -79,6 +82,8 @@ public class EventCommandParser implements Parser<EventCommand> {
                         EditEventCommand.MESSAGE_HELP);
                 put(EventCommand.COMMAND_WORD + " " + CliSyntax.PREFIX_OPTION + ViewEventsCommand.COMMAND_OPTION,
                         ViewEventsCommand.MESSAGE_HELP);
+                put(EventCommand.COMMAND_WORD + " " + CliSyntax.PREFIX_OPTION
+                        + ViewUpcomingEventsCommand.COMMAND_OPTION, ViewUpcomingEventsCommand.MESSAGE_HELP);
             }
         };
     }
