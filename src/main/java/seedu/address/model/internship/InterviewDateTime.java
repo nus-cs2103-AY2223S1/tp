@@ -33,6 +33,7 @@ public class InterviewDateTime {
     public static final DateTimeFormatter DATE_FORMAT = new DateTimeFormatterBuilder()
             .parseCaseInsensitive()
             .appendPattern("[d/M/yyyy HH:mm]")
+            .appendPattern("[d MMM yyyy HH:mm]")
             .appendPattern("[d MMM yyyy, h:mm a]")
             .appendPattern("[d MMM HH:mm]")
             .appendPattern("[d/M/yyyy HH:mm]")

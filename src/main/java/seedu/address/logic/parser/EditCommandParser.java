@@ -5,7 +5,7 @@ import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT
 import static seedu.address.logic.parser.CliSyntax.PREFIX_APPLIED_DATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_COMPANY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_INTERVIEW_DATE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_INTERVIEW_DATE_TIME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_LINK;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
@@ -35,7 +35,7 @@ public class EditCommandParser implements Parser<EditCommand> {
         requireNonNull(args);
         ArgumentMultimap argMultimap =
                 ArgumentTokenizer.tokenize(args, PREFIX_COMPANY, PREFIX_LINK, PREFIX_DESCRIPTION,
-                        PREFIX_APPLIED_DATE, PREFIX_INTERVIEW_DATE, PREFIX_TAG);
+                        PREFIX_APPLIED_DATE, PREFIX_INTERVIEW_DATE_TIME, PREFIX_TAG);
 
         Index index;
 
@@ -61,9 +61,9 @@ public class EditCommandParser implements Parser<EditCommand> {
                     argMultimap.getValue(PREFIX_APPLIED_DATE).get()));
         }
 
-        if (argMultimap.getValue(PREFIX_INTERVIEW_DATE).isPresent()) {
-            editInternshipDescriptor.setInterviewDate(ParserUtil.parseInterviewDate(
-                    argMultimap.getValue(PREFIX_INTERVIEW_DATE).get()));
+        if (argMultimap.getValue(PREFIX_INTERVIEW_DATE_TIME).isPresent()) {
+            editInternshipDescriptor.setInterviewDate(ParserUtil.parseInterviewDateTime(
+                    argMultimap.getValue(PREFIX_INTERVIEW_DATE_TIME).get()));
             editInternshipDescriptor.setApplicationStatus(ApplicationStatus.Shortlisted);
         }
 

@@ -37,6 +37,8 @@ public class CommandTestUtil {
     public static final String VALID_APPLICATION_STATUS_TIKTOK = "applied";
     public static final String VALID_APPLIED_DATE_GOOGLE = "30 Oct 2022";
     public static final String VALID_APPLIED_DATE_TIKTOK = "2 Nov 2022";
+    public static final String VALID_INTERVIEW_DATE_TIME_GOOGLE = "5 Oct 2022 09:00";
+    public static final String VALID_INTERVIEW_DATE_TIME_TIKTOK = "9 Oct 2022 09:00";
     public static final String VALID_TAG_FRONTEND = "Frontend";
     public static final String VALID_TAG_BACKEND = "Backend";
     public static final String VALID_TAG_ECOMMERCE = "Ecommerce";

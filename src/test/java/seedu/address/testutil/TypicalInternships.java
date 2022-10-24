@@ -6,6 +6,8 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_COMPANY_GOOGLE;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_COMPANY_TIKTOK;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_DESCRIPTION_GOOGLE;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_DESCRIPTION_TIKTOK;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_INTERVIEW_DATE_TIME_GOOGLE;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_INTERVIEW_DATE_TIME_TIKTOK;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_LINK_GOOGLE;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_LINK_TIKTOK;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_AI;
@@ -27,37 +29,37 @@ public class TypicalInternships {
 
     public static final Internship ALIBABA = new InternshipBuilder().withCompany("Alibaba")
             .withAppliedDate("30 Oct 2022").withDescription("Software Engineering Intern")
-            .withInterviewDate("30 Nov 2022").withLink("https://careers.alibaba.com/positionDetail")
+            .withInterviewDateTime("30 Nov 2022 09:00").withLink("https://careers.alibaba.com/positionDetail")
             .withApplicationStatus(ApplicationStatus.Applied)
             .withTags("Ecommerce").build();
     public static final Internship BINANCE = new InternshipBuilder().withCompany("Binance")
             .withAppliedDate("5 Oct 2022").withDescription("Software Engineering Internship (6 months)")
-            .withInterviewDate("5 Nov 2022").withLink("https://careers.binance.com/positionDetail")
+            .withInterviewDateTime("5 Nov 2022 09:00").withLink("https://careers.binance.com/positionDetail")
             .withApplicationStatus(ApplicationStatus.Interviewed)
             .withTags("Crypto").build();
     public static final Internship CITADEL = new InternshipBuilder().withCompany("Citadel")
             .withAppliedDate("23 Oct 2022").withDescription("Software Engineer Intern")
-            .withInterviewDate("30 Nov 2022").withLink("https://careers.Citadel.com/positionDetail")
+            .withInterviewDateTime("30 Nov 2022 09:00").withLink("https://careers.Citadel.com/positionDetail")
             .withApplicationStatus(ApplicationStatus.Rejected)
             .withTags("Backend").build();
     public static final Internship DELL = new InternshipBuilder().withCompany("Dell")
             .withAppliedDate("30 Sep 2022").withDescription("Software Developer Intern")
-            .withInterviewDate("30 Oct 2022").withLink("https://careers.Dell.com/positionDetail")
+            .withInterviewDateTime("30 Oct 2022 09:00").withLink("https://careers.Dell.com/positionDetail")
             .withApplicationStatus(ApplicationStatus.Applied)
             .withTags("Backend").build();
     public static final Internship EBAY = new InternshipBuilder().withCompany("Ebay")
             .withAppliedDate("27 Oct 2022").withDescription("Software Engineer Intern 2023")
-            .withInterviewDate("27 Nov 2022").withLink("https://careers.Ebay.com/positionDetail")
+            .withInterviewDateTime("27 Nov 2022 09:00").withLink("https://careers.Ebay.com/positionDetail")
             .withApplicationStatus(ApplicationStatus.Rejected)
             .withTags("Ecommerce").build();
     public static final Internship FACEBOOK = new InternshipBuilder().withCompany("Facebook")
             .withAppliedDate("3 Nov 2022").withDescription("Software Engineer Intern - Mobile (Flutter)")
-            .withInterviewDate("3 Dec 2022").withLink("https://careers.Facebook.com/positionDetail")
+            .withInterviewDateTime("3 Dec 2022 09:00").withLink("https://careers.Facebook.com/positionDetail")
             .withApplicationStatus(ApplicationStatus.Applied)
             .withTags("Frontend").build();
     public static final Internship GOLDMAN = new InternshipBuilder().withCompany("Goldman Sachs")
             .withAppliedDate("21 Oct 2022").withDescription("Software Engineer Program - Summer Analyst")
-            .withInterviewDate("21 Nov 2022").withLink("https://careers.GoldmanSachs.com/positionDetail")
+            .withInterviewDateTime("21 Nov 2022 09:00").withLink("https://careers.GoldmanSachs.com/positionDetail")
             .withApplicationStatus(ApplicationStatus.Accepted)
             .withTags("Backend").build();
 
@@ -74,11 +76,12 @@ public class TypicalInternships {
     // Manually added - Internship's details found in {@code CommandTestUtil}
     public static final Internship GOOGLE = new InternshipBuilder().withCompany(VALID_COMPANY_GOOGLE)
             .withLink(VALID_LINK_GOOGLE).withDescription(VALID_DESCRIPTION_GOOGLE)
-            .withAppliedDate(VALID_APPLIED_DATE_GOOGLE).withTags(VALID_TAG_FRONTEND).build();
+            .withAppliedDate(VALID_APPLIED_DATE_GOOGLE).withInterviewDateTime(VALID_INTERVIEW_DATE_TIME_GOOGLE)
+            .withTags(VALID_TAG_FRONTEND).build();
     public static final Internship TIKTOK = new InternshipBuilder().withCompany(VALID_COMPANY_TIKTOK)
             .withLink(VALID_LINK_TIKTOK).withDescription(VALID_DESCRIPTION_TIKTOK)
-            .withAppliedDate(VALID_APPLIED_DATE_TIKTOK).withTags(VALID_TAG_BACKEND, VALID_TAG_AI)
-            .build();
+            .withAppliedDate(VALID_APPLIED_DATE_TIKTOK).withInterviewDateTime(VALID_INTERVIEW_DATE_TIME_TIKTOK)
+            .withTags(VALID_TAG_BACKEND, VALID_TAG_AI).build();
 
     public static final String KEYWORD_MATCHING_MEIER = "Meier"; // A keyword that matches MEIER
 

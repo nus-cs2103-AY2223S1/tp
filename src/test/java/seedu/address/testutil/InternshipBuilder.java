@@ -23,7 +23,7 @@ public class InternshipBuilder {
     public static final String DEFAULT_DESCRIPTION = "Software Engineering Intern, BS, Summer 2023";
     public static final ApplicationStatus DEFAULT_APPLICATION_STATUS = ApplicationStatus.Applied;
     public static final String DEFAULT_APPLIED_DATE = "25 Oct 2022";
-    public static final String DEFAULT_INTERVIEW_DATE = "30 Dec 2022";
+    public static final String DEFAULT_INTERVIEW_DATE_TIME = "30 Dec 2022 09:00";
 
     private Company company;
     private Link link;
@@ -42,7 +42,7 @@ public class InternshipBuilder {
         description = new Description(DEFAULT_DESCRIPTION);
         applicationStatus = DEFAULT_APPLICATION_STATUS;
         appliedDate = new AppliedDate(DEFAULT_APPLIED_DATE);
-        interviewDateTime = new InterviewDateTime(DEFAULT_INTERVIEW_DATE);
+        interviewDateTime = new InterviewDateTime(DEFAULT_INTERVIEW_DATE_TIME);
         tags = new HashSet<>();
     }
 
@@ -84,9 +84,9 @@ public class InternshipBuilder {
     }
 
     /**
-     * Sets the {@code InterviewDate} of the {@code Internship} that we are building.
+     * Sets the {@code InterviewDateTime} of the {@code Internship} that we are building.
      */
-    public InternshipBuilder withInterviewDate(String interviewDate) {
+    public InternshipBuilder withInterviewDateTime(String interviewDate) {
         this.interviewDateTime = new InterviewDateTime(interviewDate);
         return this;
     }

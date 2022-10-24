@@ -4,7 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_APPLIED_DATE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_COMPANY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_INTERVIEW_DATE;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_INTERVIEW_DATE_TIME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_LINK;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_INTERNSHIPS;
@@ -44,7 +44,7 @@ public class EditCommand extends Command {
             + "[" + PREFIX_LINK + "LINK] "
             + "[" + PREFIX_DESCRIPTION + "DESCRIPTION] "
             + "[" + PREFIX_APPLIED_DATE + "APPLIED_DATE] "
-            + "[" + PREFIX_INTERVIEW_DATE + "INTERVIEW_DATE] "
+            + "[" + PREFIX_INTERVIEW_DATE_TIME + "INTERVIEW_DATE] "
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_LINK + "https://careers.tiktok.com/position/7132807469026117902/detail "
@@ -104,7 +104,7 @@ public class EditCommand extends Command {
                 .orElse(internshipToEdit.getDescription());
         AppliedDate updatedAppliedDate = editInternshipDescriptor.getAppliedDate()
                 .orElse(internshipToEdit.getAppliedDate());
-        InterviewDateTime updatedInterviewDateTime = editInternshipDescriptor.getInterviewDate()
+        InterviewDateTime updatedInterviewDateTime = editInternshipDescriptor.getInterviewDateTime()
                 .orElse(internshipToEdit.getInterviewDateTime());
         ApplicationStatus updatedApplicationStatus =
                 editInternshipDescriptor.getApplicationStatus()
@@ -206,7 +206,7 @@ public class EditCommand extends Command {
             this.interviewDateTime = interviewDateTime;
         }
 
-        public Optional<InterviewDateTime> getInterviewDate() {
+        public Optional<InterviewDateTime> getInterviewDateTime() {
             return Optional.ofNullable(interviewDateTime);
         }
 
@@ -254,7 +254,7 @@ public class EditCommand extends Command {
                     && getLink().equals(e.getLink())
                     && getDescription().equals(e.getDescription())
                     && getAppliedDate().equals(e.getAppliedDate())
-                    && getInterviewDate().equals(e.getInterviewDate())
+                    && getInterviewDateTime().equals(e.getInterviewDateTime())
                     && getApplicationStatus().equals(e.getApplicationStatus())
                     && getTags().equals(e.getTags());
         }

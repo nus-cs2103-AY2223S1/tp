@@ -84,12 +84,12 @@ public class ParserUtil {
 
 
     /**
-     * Parses a {@code String interviewDate} into an {@code InterviewDate}.
+     * Parses a {@code String interviewDateTime} into an {@code InterviewDateTime}.
      * Leading and trailing whitespaces will be trimmed.
      *
-     * @throws ParseException if the given {@code interviewDate} is invalid.
+     * @throws ParseException if the given {@code interviewDateTime} is invalid.
      */
-    public static InterviewDateTime parseInterviewDate(String date) throws ParseException {
+    public static InterviewDateTime parseInterviewDateTime(String date) throws ParseException {
         requireNonNull(date);
         String trimmedInterviewDate = date.trim();
         if (!InterviewDateTime.isValidInterviewDateTime(trimmedInterviewDate)) {

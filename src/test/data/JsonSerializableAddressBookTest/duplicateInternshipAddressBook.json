@@ -4,7 +4,7 @@
     "description" : "Global E-commerce",
     "applicationStatus" : "applied",
     "appliedDate" : "5 Oct 2022",
-    "interviewDate": "5 Nov 2022",
+    "interviewDateTime": "5 Nov 2022 09:00",
     "tagged" : [ "Frontend" ],
     "company" : "Tiktok"
   }, {
@@ -12,7 +12,7 @@
     "description" : "Global E-commerce",
     "applicationStatus" : "applied",
     "appliedDate" : "8 Oct 2022",
-    "interviewDate": "8 Nov 2022",
+    "interviewDateTime": "8 Nov 2022 09:00",
     "tagged" : [ "Frontend" ],
     "company" : "Tiktok"
   } ]
