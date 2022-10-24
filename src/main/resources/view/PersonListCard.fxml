@@ -3,6 +3,7 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.ColumnConstraints?>
@@ -19,62 +20,95 @@
       <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="150.0" />
          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="150.0" />
     </columnConstraints>
-    <VBox alignment="CENTER_LEFT" minHeight="105" GridPane.columnIndex="0">
-      <padding>
-        <Insets bottom="5" left="15" right="5" top="5" />
-      </padding>
-      <HBox alignment="CENTER_LEFT" spacing="5.0">
-        <Label fx:id="id" styleClass="cell_big_label" textFill="WHITE">
-          <minWidth>
-            <!-- Ensures that the label text is never truncated -->
-            <Region fx:constant="USE_PREF_SIZE" />
-          </minWidth>
-        </Label>
-        <Label fx:id="name" styleClass="cell_big_label" text="\$first" textFill="WHITE" />
-      </HBox>
-        <FlowPane fx:id="specialTags" />
-      <FlowPane fx:id="tags" />
-      <Label fx:id="phone" styleClass="cell_small_label" text="\$phone" textFill="WHITE">
-            <graphic>
-               <ImageView fitHeight="17.0" fitWidth="51.0" pickOnBounds="true" preserveRatio="true">
-                  <image>
-                     <Image url="@../images/phone.png" />
-                  </image>
-               </ImageView>
-            </graphic></Label>
-      <Label fx:id="address" styleClass="cell_small_label" text="\$address" textFill="WHITE">
-            <graphic>
-               <ImageView fitHeight="17.0" fitWidth="51.0" pickOnBounds="true" preserveRatio="true">
-                  <image>
-                     <Image url="@../images/home.png" />
-                  </image>
-               </ImageView>
-            </graphic></Label>
-      <Label fx:id="email" styleClass="cell_small_label" text="\$email" textFill="WHITE">
-            <graphic>
-               <ImageView fitHeight="17.0" fitWidth="51.0" pickOnBounds="true" preserveRatio="true">
-                  <image>
-                     <Image url="@../images/email.png" />
-                  </image>
-               </ImageView>
-            </graphic></Label>
-        <Label fx:id="income" styleClass="cell_small_label" text="\$address" textFill="WHITE">
-            <graphic>
-                <ImageView fitHeight="17.0" fitWidth="51.0" pickOnBounds="true" preserveRatio="true">
-                    <image>
-                        <Image url="@../images/dollar.png" />
-                    </image>
-                </ImageView>
-            </graphic></Label>
-    <Label fx:id="monthly" styleClass="cell_small_label" text="\$monthly" textFill="WHITE">
-        <graphic>
-            <ImageView fitHeight="17.0" fitWidth="51.0" pickOnBounds="true" preserveRatio="true">
-                <image>
-                    <Image url="@../images/monthly.png" />
-                </image>
-            </ImageView>
-        </graphic></Label>
-    </VBox>
+      <ScrollPane fitToHeight="true" fitToWidth="true" style="-fx-background: transparent; -fx-background-color: transparent;">
+         <content>
+          <VBox alignment="CENTER_LEFT" minHeight="105">
+            <padding>
+              <Insets bottom="5" left="15" right="5" top="5" />
+            </padding>
+            <HBox alignment="CENTER_LEFT" maxHeight="Infinity" maxWidth="Infinity" prefWidth="Infinity" spacing="5.0">
+              <Label fx:id="id" styleClass="cell_big_label" textFill="WHITE">
+                <minWidth>
+                  <!-- Ensures that the label text is never truncated -->
+                  <Region fx:constant="USE_PREF_SIZE" />
+                </minWidth>
+              </Label>
+                  <FlowPane>
+                     <children>
+                    <Label fx:id="name" styleClass="cell_big_label" text="\$first" textFill="WHITE" />
+                     </children>
+                  </FlowPane>
+            </HBox>
+              <FlowPane fx:id="specialTags" maxWidth="Infinity" />
+            <FlowPane fx:id="tags" maxWidth="Infinity" />
+               <FlowPane>
+                  <children>
+                  <Label fx:id="phone" styleClass="cell_small_label" text="\$phone" textFill="WHITE">
+                        <graphic>
+                           <ImageView fitHeight="17.0" fitWidth="51.0" pickOnBounds="true" preserveRatio="true">
+                              <image>
+                                 <Image url="@../images/phone.png" />
+                              </image>
+                           </ImageView>
+                        </graphic>
+                     </Label>
+                  </children>
+               </FlowPane>
+               <FlowPane>
+                  <children>
+                  <Label fx:id="address" styleClass="cell_small_label" text="\$address" textFill="WHITE">
+                        <graphic>
+                           <ImageView fitHeight="17.0" fitWidth="51.0" pickOnBounds="true" preserveRatio="true">
+                              <image>
+                                 <Image url="@../images/home.png" />
+                              </image>
+                           </ImageView>
+                        </graphic>
+                     </Label>
+                  </children>
+               </FlowPane>
+               <FlowPane>
+                  <children>
+                  <Label fx:id="email" styleClass="cell_small_label" text="\$email" textFill="WHITE">
+                        <graphic>
+                           <ImageView fitHeight="17.0" fitWidth="51.0" pickOnBounds="true" preserveRatio="true">
+                              <image>
+                                 <Image url="@../images/email.png" />
+                              </image>
+                           </ImageView>
+                        </graphic>
+                     </Label>
+                  </children>
+               </FlowPane>
+               <FlowPane>
+                  <children>
+                    <Label fx:id="income" maxWidth="1.7976931348623157E308" styleClass="cell_small_label" text="\$address" textFill="WHITE">
+                        <graphic>
+                            <ImageView fitHeight="17.0" fitWidth="51.0" pickOnBounds="true" preserveRatio="true">
+                                <image>
+                                    <Image url="@../images/dollar.png" />
+                                </image>
+                            </ImageView>
+                        </graphic>
+                     </Label>
+                  </children>
+               </FlowPane>
+               <FlowPane>
+                  <children>
+                <Label fx:id="monthly" styleClass="cell_small_label" text="\$monthly" textFill="WHITE">
+                    <graphic>
+                        <ImageView fitHeight="17.0" fitWidth="51.0" pickOnBounds="true" preserveRatio="true">
+                            <image>
+                                <Image url="@../images/monthly.png" />
+                            </image>
+                        </ImageView>
+                    </graphic>
+                     </Label>
+                  </children>
+               </FlowPane>
+          </VBox>
+         </content>
+      </ScrollPane>
       <VBox minHeight="105.0" GridPane.columnIndex="1">
          <children>
             <HBox alignment="CENTER_LEFT" prefHeight="19.0" prefWidth="129.0" spacing="5">
