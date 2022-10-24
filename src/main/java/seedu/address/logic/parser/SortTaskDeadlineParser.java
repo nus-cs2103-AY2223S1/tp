@@ -5,6 +5,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_ORDER;
 
 import java.util.Comparator;
 
+import seedu.address.commons.SortInfo;
 import seedu.address.logic.commands.SortTaskDeadlineCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.task.SortByDeadline;
@@ -32,23 +33,28 @@ public class SortTaskDeadlineParser implements Parser<SortTaskDeadlineCommand> {
         }
 
         Comparator<Task> comparator = new SortByDeadline();
+        StringBuilder sortInfo = new StringBuilder("deadline ");
 
         if (argMultimap.getValue(PREFIX_ORDER).isPresent()) {
             switch (argMultimap.getValue(PREFIX_ORDER).get().toLowerCase()) {
             case "a":
             case "asc":
+                sortInfo.append("(ascending)");
                 break;
             case "d":
             case "desc":
                 comparator = comparator.reversed();
+                sortInfo.append("(descending)");
                 break;
             default:
                 throw new ParseException(
                         String.format(MESSAGE_INVALID_COMMAND_FORMAT, SortTaskDeadlineCommand.MESSAGE_USAGE));
             }
+        } else {
+            sortInfo.append("(ascending)");
         }
 
-        return new SortTaskDeadlineCommand(comparator);
+        return new SortTaskDeadlineCommand(comparator, new SortInfo(sortInfo.toString()));
     }
 
 }

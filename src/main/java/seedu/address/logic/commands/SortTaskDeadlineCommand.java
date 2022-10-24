@@ -5,6 +5,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_ORDER;
 
 import java.util.Comparator;
 
+import seedu.address.commons.SortInfo;
 import seedu.address.commons.core.Messages;
 import seedu.address.model.Model;
 import seedu.address.model.task.Task;
@@ -21,10 +22,16 @@ public class SortTaskDeadlineCommand extends Command {
             + "Parameters: [" + PREFIX_ORDER + "ORDER (asc/desc)]\n"
             + "Example: " + COMMAND_WORD + " " + PREFIX_ORDER + "asc";
 
-    private Comparator<Task> comparator;
+    private final Comparator<Task> comparator;
+    private final SortInfo sortInfo;
 
-    public SortTaskDeadlineCommand(Comparator<Task> comparator) {
+    /**
+     * @param comparator
+     * @param sortInfo   to show in the TaskListInfo
+     */
+    public SortTaskDeadlineCommand(Comparator<Task> comparator, SortInfo sortInfo) {
         this.comparator = comparator;
+        this.sortInfo = sortInfo;
     }
 
     @Override
@@ -32,7 +39,7 @@ public class SortTaskDeadlineCommand extends Command {
         requireNonNull(model);
         model.updateFilteredTaskList(comparator);
         return new CommandResult(
-                String.format(Messages.MESSAGE_TASK_LISTED_OVERVIEW, model.getFilteredTaskList().size()));
+                String.format(Messages.MESSAGE_TASK_LISTED_OVERVIEW, model.getFilteredTaskList().size()), sortInfo);
     }
 
     @Override

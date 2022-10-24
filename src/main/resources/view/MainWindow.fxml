@@ -26,14 +26,14 @@
             </stylesheets>
 
             <VBox>
-<!--                <MenuBar fx:id="menuBar" VBox.vgrow="NEVER">-->
-<!--                    <Menu mnemonicParsing="false" text="File">-->
-<!--                        <MenuItem mnemonicParsing="false" onAction="#handleExit" text="Exit" />-->
-<!--                    </Menu>-->
-<!--                    <Menu mnemonicParsing="false" text="Help">-->
-<!--                        <MenuItem fx:id="helpMenuItem" mnemonicParsing="false" onAction="#handleHelp" text="Help" />-->
-<!--                    </Menu>-->
-<!--                </MenuBar>-->
+                <!--                <MenuBar fx:id="menuBar" VBox.vgrow="NEVER">-->
+                <!--                    <Menu mnemonicParsing="false" text="File">-->
+                <!--                        <MenuItem mnemonicParsing="false" onAction="#handleExit" text="Exit" />-->
+                <!--                    </Menu>-->
+                <!--                    <Menu mnemonicParsing="false" text="Help">-->
+                <!--                        <MenuItem fx:id="helpMenuItem" mnemonicParsing="false" onAction="#handleHelp" text="Help" />-->
+                <!--                    </Menu>-->
+                <!--                </MenuBar>-->
 
                 <StackPane VBox.vgrow="NEVER" fx:id="commandBoxPlaceholder" styleClass="pane-with-border">
                     <padding>
@@ -48,7 +48,7 @@
                     </padding>
                 </StackPane>
 
-                <TabPane fx:id="tabPane">
+                <TabPane fx:id="tabPane" VBox.vgrow="ALWAYS">
                     <tabs>
                         <Tab text="Contacts" fx:id="tab1">
                             <VBox fx:id="personList" styleClass="pane-with-border" minWidth="340" prefWidth="340" VBox.vgrow="ALWAYS">

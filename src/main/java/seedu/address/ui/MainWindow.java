@@ -199,6 +199,14 @@ public class MainWindow extends UiPart<Stage> {
             logger.info("Result: " + commandResult.getFeedbackToUser());
             resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
 
+            if (commandResult.getSortInfo() != null) {
+                taskListPanel.setSortInfo(commandResult.getSortInfo());
+            }
+
+            if (commandResult.getFilterInfo() != null) {
+                taskListPanel.setFilterInfo(commandResult.getFilterInfo());
+            }
+
             if (commandResult.isShowHelp()) {
                 handleHelp();
             }
