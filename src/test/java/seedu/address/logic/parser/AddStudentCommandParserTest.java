@@ -1,7 +1,7 @@
 package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.commons.core.Messages.MESSAGE_MISSING_PREFIXES;
+import static seedu.address.commons.core.Messages.MESSAGE_MISSING_PREFIXES_ALL;
 import static seedu.address.logic.commands.CommandTestUtil.ATTENDANCE_DESC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.EMAIL_DESC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.GRADE_DESC_BOB;
@@ -108,22 +108,22 @@ public class AddStudentCommandParserTest {
         // missing name prefix
         assertParseFailure(parser, VALID_NAME_BOB + ID_DESC_BOB
                         + PHONE_DESC_BOB + EMAIL_DESC_BOB + TELEGRAM_DESC_BOB + MODULE_DESC_BOB + TUTORIAL_DESC_BOB,
-                String.format(MESSAGE_MISSING_PREFIXES, Arrays.toString(new Prefix[]{CliSyntax.PREFIX_NAME}), ""));
+                String.format(MESSAGE_MISSING_PREFIXES_ALL, Arrays.toString(new Prefix[]{CliSyntax.PREFIX_NAME}), ""));
 
         // missing phone prefix
         assertParseFailure(parser, NAME_DESC_BOB + ID_DESC_BOB
                         + VALID_PHONE_BOB + EMAIL_DESC_BOB + TELEGRAM_DESC_BOB + MODULE_DESC_BOB + TUTORIAL_DESC_BOB,
-                String.format(MESSAGE_MISSING_PREFIXES, Arrays.toString(new Prefix[]{CliSyntax.PREFIX_PHONE}), ""));
+                String.format(MESSAGE_MISSING_PREFIXES_ALL, Arrays.toString(new Prefix[]{CliSyntax.PREFIX_PHONE}), ""));
 
         // missing email prefix
         assertParseFailure(parser, NAME_DESC_BOB + ID_DESC_BOB
                         + PHONE_DESC_BOB + VALID_EMAIL_BOB + TELEGRAM_DESC_BOB + MODULE_DESC_BOB + TUTORIAL_DESC_BOB,
-                String.format(MESSAGE_MISSING_PREFIXES, Arrays.toString(new Prefix[]{CliSyntax.PREFIX_EMAIL}), ""));
+                String.format(MESSAGE_MISSING_PREFIXES_ALL, Arrays.toString(new Prefix[]{CliSyntax.PREFIX_EMAIL}), ""));
 
         // all prefixes missing
         assertParseFailure(parser, VALID_NAME_BOB + VALID_ID_BOB
                         + VALID_PHONE_BOB + VALID_EMAIL_BOB + VALID_TELEGRAM_BOB + VALID_MODULE_TUT1 + VALID_NAME_TUT1,
-                String.format(MESSAGE_MISSING_PREFIXES, Arrays.toString(new Prefix[]{
+                String.format(MESSAGE_MISSING_PREFIXES_ALL, Arrays.toString(new Prefix[]{
                     CliSyntax.PREFIX_NAME, CliSyntax.PREFIX_ID, CliSyntax.PREFIX_PHONE, CliSyntax.PREFIX_EMAIL,
                     CliSyntax.PREFIX_TELEGRAM, CliSyntax.PREFIX_MODULE, CliSyntax.PREFIX_TUTORIAL
                 }), ""));

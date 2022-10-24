@@ -8,16 +8,18 @@ import java.util.regex.Pattern;
 import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.Command;
 import seedu.address.logic.commands.ExitCommand;
-import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.commands.consultation.AddConsultationCommand;
 import seedu.address.logic.commands.consultation.DeleteConsultationCommand;
 import seedu.address.logic.commands.reminder.AddReminderCommand;
 import seedu.address.logic.commands.reminder.DeleteReminderCommand;
+import seedu.address.logic.commands.reminder.MarkReminderCommand;
+import seedu.address.logic.commands.reminder.UnmarkReminderCommand;
 import seedu.address.logic.commands.student.AddCommand;
 import seedu.address.logic.commands.student.DeleteCommand;
 import seedu.address.logic.commands.student.EditCommand;
+import seedu.address.logic.commands.student.FindCommand;
 import seedu.address.logic.commands.student.ShowGradeCommand;
 import seedu.address.logic.commands.tutorial.AddTutorialCommand;
 import seedu.address.logic.commands.tutorial.DeleteTutorialCommand;
@@ -27,9 +29,12 @@ import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.logic.parser.exceptions.UnknownPreambleException;
 import seedu.address.logic.parser.reminder.AddReminderCommandParser;
 import seedu.address.logic.parser.reminder.DeleteReminderCommandParser;
+import seedu.address.logic.parser.reminder.MarkReminderCommandParser;
+import seedu.address.logic.parser.reminder.UnmarkReminderCommandParser;
 import seedu.address.logic.parser.student.AddStudentCommandParser;
 import seedu.address.logic.parser.student.DeleteStudentCommandParser;
 import seedu.address.logic.parser.student.EditStudentCommandParser;
+import seedu.address.logic.parser.student.FindCommandParser;
 import seedu.address.logic.parser.tutorial.AddTutorialCommandParser;
 import seedu.address.logic.parser.tutorial.DeleteTutorialCommandParser;
 
@@ -94,6 +99,12 @@ public class AddressBookParser {
 
         case DeleteReminderCommand.COMMAND_WORD:
             return new DeleteReminderCommandParser().parse(arguments);
+
+        case MarkReminderCommand.COMMAND_WORD:
+            return new MarkReminderCommandParser().parse(arguments);
+
+        case UnmarkReminderCommand.COMMAND_WORD:
+            return new UnmarkReminderCommandParser().parse(arguments);
 
         case AddTutorialCommand.COMMAND_WORD:
             return new AddTutorialCommandParser().parse(arguments);

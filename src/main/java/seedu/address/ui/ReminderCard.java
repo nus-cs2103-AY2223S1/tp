@@ -24,6 +24,8 @@ public class ReminderCard extends UiPart<Region> {
     @FXML
     private Label deadline;
     @FXML
+    private Label priority;
+    @FXML
     private Label description;
 
     /**
@@ -32,9 +34,15 @@ public class ReminderCard extends UiPart<Region> {
     public ReminderCard(Reminder reminder, int displayedIndex) {
         super(FXML);
         this.reminder = reminder;
-        id.setText(displayedIndex + ". ");
+        if (!reminder.getStatus()) {
+            id.setText(displayedIndex + ". ");
+
+        } else {
+            id.setText("✓" + displayedIndex + ". ");
+        }
         name.setText(reminder.getName().fullName);
         deadline.setText(reminder.getDeadline().toString());
+        priority.setText(reminder.getPriority().priority);
         description.setText(reminder.getDescription().description);
     }
 

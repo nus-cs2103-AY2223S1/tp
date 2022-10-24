@@ -5,6 +5,7 @@ import java.util.Objects;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.reminder.ReminderDescription;
 import seedu.address.model.reminder.ReminderName;
+import seedu.address.model.reminder.ReminderPriority;
 
 /**
  * Contains utility methods used for parsing Reminder and related subclasses.
@@ -33,4 +34,17 @@ public class ReminderParserUtil {
         String trimmedDescription = description.trim();
         return new ReminderDescription(trimmedDescription);
     }
+
+    /**
+     * Parses a {@code String priority} into a {@code ReminderPriority}.
+     * Leading and trailing whitespaces will be trimmed. Input will also be converted to upper case.
+     */
+    public static ReminderPriority parseReminderPriority(String priority) throws ParseException {
+        String trimmedPriority = priority.trim().toUpperCase();
+        if (!ReminderPriority.isValidPriority(trimmedPriority)) {
+            throw new ParseException(ReminderPriority.MESSAGE_CONSTRAINTS);
+        }
+        return new ReminderPriority(trimmedPriority);
+    }
+
 }
