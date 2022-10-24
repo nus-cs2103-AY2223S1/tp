@@ -179,7 +179,7 @@ the same convention as [adding a student](#adding-a-student-add).
     - Examples: `2022-10-29 1100-1230`, `MON 1100-1230`, `Mon 1100-1230`
    
 ```yaml
-Caution: If a chosen date is occupied by another student, a class conflict error will arise.
+❗Caution: If a chosen date is occupied by another student, a class conflict error will arise.
 ```
 
 4. Amount Paid:
@@ -246,9 +246,8 @@ Format: `list`
 
 ### Finding one or more students: `find`
 
-#### Find by Name
+#### Find by Name: `find n/`
 
----
 Finds one or more students whose names contain any of the given keywords.
 
 Format: `find n/KEYWORD [MORE_KEYWORDS]`
@@ -267,9 +266,8 @@ Example:
 
 [Back to top](#table-of-contents)
 
-#### Find by Class Date
+#### Find by Class Date: `find dt/`
 
----
 Finds all students with classes on a particular date.
 
 Format: `find dt/yyyy-MM-dd`
