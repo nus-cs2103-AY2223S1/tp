@@ -132,3 +132,9 @@ Format:
 
 Examples:
 * `listc`
+
+## Acknowledgements
+
+We use the following libraries in CodeConnect:
+
+* [JChronic](https://mvnrepository.com/artifact/com.rubiconproject.oss/jchronic)

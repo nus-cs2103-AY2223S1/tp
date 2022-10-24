@@ -19,7 +19,7 @@ Given below are my contributions to the project.
   * Add / delete task commands
 
 * **Enhancements to existing features**:
-  * Natural date parsing for task deadlines
+  * Natural date parsing for task deadlines (using [JChronic](https://mvnrepository.com/artifact/com.rubiconproject.oss/jchronic))
 
 * **Documentation**:
   * User Guide:
