@@ -32,7 +32,7 @@ public class Company {
     public Company(String name) {
         requireNonNull(name);
         checkArgument(isValidCompany(name), MESSAGE_CONSTRAINTS);
-        String modifiedName = StringUtil.toUpperCase(name);
+        String modifiedName = StringUtil.toPascalCase(name);
         this.name = modifiedName;
     }
 

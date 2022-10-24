@@ -67,9 +67,9 @@ public class StringUtil {
     }
 
     /**
-     * Returns role name with first letter after every spacing capitalized.
+     * Converts a String to PascalCase but with whitespace preserved.
      */
-    public static String toUpperCase(String roleName) {
+    public static String toPascalCase(String roleName) {
         char[] chars = roleName.toLowerCase().toCharArray();
         boolean isNotWhitespace = false;
         for (int i = 0; i < chars.length; i++) {

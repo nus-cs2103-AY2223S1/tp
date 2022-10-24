@@ -31,7 +31,7 @@ public class Role {
     public Role(String role) {
         requireNonNull(role);
         checkArgument(isValidRole(role), MESSAGE_CONSTRAINTS);
-        String modifiedRole = StringUtil.toUpperCase(role);
+        String modifiedRole = StringUtil.toPascalCase(role);
         value = modifiedRole;
     }
 
