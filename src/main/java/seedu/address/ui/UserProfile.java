@@ -3,7 +3,10 @@ package seedu.address.ui;
 import java.util.Comparator;
 
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.input.Clipboard;
+import javafx.scene.input.ClipboardContent;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
@@ -16,9 +19,12 @@ import seedu.address.model.person.user.User;
 public class UserProfile extends UiPart<Region> {
 
     private static final String FXML = "UserProfile.fxml";
+    public final String githubUrl;
 
     private User user;
 
+    @FXML
+    private Button copyButton;
     @FXML
     private HBox userProfilePane;
     @FXML
@@ -76,6 +82,7 @@ public class UserProfile extends UiPart<Region> {
         } else {
             userLabel.setText("User details have not been added.");
         }
+        githubUrl = "https://github.com/" + user.getGithub().value;
     }
 
     /**
@@ -118,6 +125,17 @@ public class UserProfile extends UiPart<Region> {
             planModulesTags.getChildren().clear();
             prevModulesTags.getChildren().clear();
         }
+    }
+
+    /**
+     * Copies the URL to the github profile to the clipboard.
+     */
+    @FXML
+    private void copyUrl() {
+        final Clipboard clipboard = Clipboard.getSystemClipboard();
+        final ClipboardContent url = new ClipboardContent();
+        url.putString(githubUrl);
+        clipboard.setContent(url);
     }
 
     @Override

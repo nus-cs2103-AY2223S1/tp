@@ -3,7 +3,10 @@ package seedu.address.ui;
 import java.util.Comparator;
 
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.input.Clipboard;
+import javafx.scene.input.ClipboardContent;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
@@ -25,7 +28,10 @@ public class PersonCard extends UiPart<Region> {
      */
 
     public final Person person;
+    public final String githubUrl;
 
+    @FXML
+    private Button copyButton;
     @FXML
     private HBox cardPane;
     @FXML
@@ -84,6 +90,18 @@ public class PersonCard extends UiPart<Region> {
         person.getPlanModules().stream()
                 .sorted(Comparator.comparing(mod -> mod.moduleName))
                 .forEach(mod -> planModulesTags.getChildren().add(new Label(mod.moduleName)));
+        githubUrl = "https://github.com/" + person.getGithub().value;
+    }
+
+    /**
+     * Copies the URL to the github profile to the clipboard.
+     */
+    @FXML
+    private void copyUrl() {
+        final Clipboard clipboard = Clipboard.getSystemClipboard();
+        final ClipboardContent url = new ClipboardContent();
+        url.putString(githubUrl);
+        clipboard.setContent(url);
     }
 
     @Override

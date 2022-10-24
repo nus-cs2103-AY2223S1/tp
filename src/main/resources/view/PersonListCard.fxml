@@ -2,6 +2,7 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.FlowPane?>
 <?import javafx.scene.layout.GridPane?>
@@ -57,4 +58,9 @@
       </HBox>
     </VBox>
   </GridPane>
+  <Button fx:id="copyButton" mnemonicParsing="false" onAction="#copyUrl" prefHeight="11.0" prefWidth="198.0" text="Copy Github Profile URL">
+    <HBox.margin>
+      <Insets left="5.0" />
+    </HBox.margin>
+  </Button>
 </HBox>
