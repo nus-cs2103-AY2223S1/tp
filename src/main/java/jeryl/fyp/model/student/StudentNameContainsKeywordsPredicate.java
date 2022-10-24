@@ -18,8 +18,8 @@ public class StudentNameContainsKeywordsPredicate implements Predicate<Student> 
     @Override
     public boolean test(Student student) {
         return keywords.stream()
-                .anyMatch(keyword -> StringUtil.containsPartialWordIgnoreCase(student
-                        .getStudentName().fullStudentName, keyword));
+                .anyMatch(keyword -> StringUtil.containsPartialWordIgnoreCase(
+                        student.getStudentName().fullStudentName, keyword));
     }
 
     @Override

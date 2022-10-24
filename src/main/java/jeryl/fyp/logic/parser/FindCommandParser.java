@@ -7,6 +7,7 @@ import java.util.Arrays;
 import jeryl.fyp.logic.commands.FindCommand;
 import jeryl.fyp.logic.parser.exceptions.ParseException;
 import jeryl.fyp.model.student.ProjectNameContainsKeywordsPredicate;
+import jeryl.fyp.model.student.TagsContainKeywordsPredicate;
 
 /**
  * Parses input arguments and creates a new FindCommand object
@@ -30,7 +31,7 @@ public class FindCommandParser implements Parser<FindCommand> {
                 .filter(keyword -> !keyword.equals(""))
                 .toArray(size -> new String[size]); // split by "/" then trim each
 
-        return new FindCommand(new ProjectNameContainsKeywordsPredicate(Arrays.asList(nameKeywords)));
+        return new FindCommand(new ProjectNameContainsKeywordsPredicate(Arrays.asList(nameKeywords)),
+                new TagsContainKeywordsPredicate(Arrays.asList(nameKeywords)));
     }
-
 }
