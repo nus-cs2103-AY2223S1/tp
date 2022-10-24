@@ -41,23 +41,23 @@ public class ModuleListPanel extends UiPart<Region> {
         moduleListView.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
-                Module moduleInterested = moduleListView.getSelectionModel().getSelectedItem();
-                ObservableList<Module> list = FXCollections.observableArrayList();
-                ObservableList<Schedule> schedules = FXCollections.observableArrayList();
-                list.add(moduleInterested);
-                moduleInterested.getSchedules().forEach(x -> schedules.add(x));
-                targetModuleView.setItems(list);
-                targetModuleView.setCellFactory(listView ->
-                        new ModulePanel.ModuleViewCell());
-                scheduleListView.setItems(schedules);
-                scheduleListView.setCellFactory(listView ->
-                        new ScheduleListPanel.ScheduleListViewCell());
+                try {
+                    Module moduleInterested = moduleListView.getSelectionModel().getSelectedItem();
+                    ObservableList<Module> list = FXCollections.observableArrayList();
+                    ObservableList<Schedule> schedules = FXCollections.observableArrayList();
+                    list.add(moduleInterested);
+                    moduleInterested.getSchedules().forEach(x -> schedules.add(x));
+                    targetModuleView.setItems(list);
+                    targetModuleView.setCellFactory(listView ->
+                            new ModulePanel.ModuleViewCell());
+                    scheduleListView.setItems(schedules);
+                    scheduleListView.setCellFactory(listView ->
+                            new ScheduleListPanel.ScheduleListViewCell());
+                } catch (NullPointerException e) {
+                    logger.info("=================[Invalid module selected]=================");
+                }
             }
         });
-    }
-
-    @FXML
-    public void handleMouseClick(MouseEvent me) {
     }
 
     /**
@@ -65,15 +65,6 @@ public class ModuleListPanel extends UiPart<Region> {
      */
     class ModuleListViewCell extends ListCell<Module> {
 
-        private EventHandler<MouseEvent> oneClickHandler;
-        public ModuleListViewCell() {
-            oneClickHandler = new EventHandler<MouseEvent>() {
-                // Prevents the list from being updated upon clicking on null area
-                @Override
-                public void handle(MouseEvent event) {
-                }
-            };
-        }
         @Override
         protected void updateItem(Module module, boolean empty) {
             super.updateItem(module, empty);

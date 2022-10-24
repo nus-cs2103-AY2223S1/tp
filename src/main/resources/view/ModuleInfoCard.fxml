@@ -9,11 +9,10 @@
 <?import javafx.scene.layout.VBox?>
 
 <HBox id="modulePane" fx:id="modulePane" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1">
-    <HBox HBox.hgrow="SOMETIMES">
-        <VBox alignment="CENTER_LEFT" minHeight="105" >
-            <FlowPane fx:id="tags" alignment="CENTER_LEFT" prefWidth="100" />
+    <HBox HBox.hgrow="SOMETIMES" prefWidth ="300">
+        <VBox alignment="CENTER_LEFT" minHeight="50" >
             <HBox alignment="CENTER_LEFT" spacing="5">
-                <Label fx:id="moduleName" styleClass="cell_big_label" text="\$moduleName">
+                <Label fx:id="moduleName" styleClass="cell_big_label_name" text="\$moduleName">
                     <padding>
                         <Insets bottom="5" left="10" right="10" top="5" />
                     </padding>
@@ -33,15 +32,23 @@
                         <Region fx:constant="USE_PREF_SIZE" />
                     </minWidth>
                 </Label>
+                <padding>
+                    <Insets left = "0" bottom="0" right="100" top="0"/>
+                </padding>
+                <FlowPane fx:id="tags" alignment="CENTER_RIGHT" prefWidth="100" />
             </HBox>
-            <VBox alignment="CENTER_LEFT" spacing="10" VBox.vgrow="SOMETIMES">
-                <Label fx:id="moduleDescription" styleClass="cell_small_label" text="\$moduleDescription" />
+            <HBox alignment="CENTER_LEFT" spacing="10" VBox.vgrow="SOMETIMES">
+                <Label fx:id="moduleDescription" styleClass="cell_big_label" text="\$moduleDescription" />
                 <padding>
                     <Insets bottom="5" left="10" right="10" top="5" />
                 </padding>
-            </VBox>
+                <minWidth>
+                    <!-- Ensures that the label text is never truncated -->
+                    <Region fx:constant="USE_PREF_SIZE" />
+                </minWidth>
+            </HBox>
             <padding>
-                <Insets bottom="50" left="0" right="0" top="50" />
+                <Insets bottom="10" left="0" right="0" top="10" />
             </padding>
         </VBox>
     </HBox>

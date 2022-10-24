@@ -133,6 +133,12 @@
     -fx-text-fill: #010504;
 }
 
+.cell_big_label_name {
+    -fx-font-family: "Segoe UI Semibold";
+    -fx-font-size: 20px;
+    -fx-text-fill: #010504;
+}
+
 .cell_small_label {
     -fx-font-family: "Segoe UI";
     -fx-font-size: 13px;
@@ -394,5 +400,13 @@
 .tutor-cardPane {
     -fx-background-color: #3B5249;
     -fx-opacity: 0.8;
+}
+
+.scheduleHeader {
+    -fx-fill: white;
+    -fx-font-family: "Segoe UI Semibold";
+    -fx-font-weight: bold;
+    -fx-font-size: 25px;
+    -fx-font-style: italic;
 }
 

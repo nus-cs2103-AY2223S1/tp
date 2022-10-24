@@ -4,14 +4,15 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.geometry.Insets?>
-<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.text.TextFlow?>
+<?import javafx.scene.text.Text?>
 <HBox minWidth="300" prefWidth="300" >
 
     <VBox xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" styleClass="pane-with-border">
         <padding>
             <Insets top="10" right="10" bottom="10" left="10" />
         </padding>
-        <ListView fx:id="moduleListView" VBox.vgrow="ALWAYS" onMouseClicked="#handleMouseClick" />
+        <ListView fx:id="moduleListView" VBox.vgrow="ALWAYS" />
     </VBox>
 
     <VBox xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1"
@@ -20,8 +21,9 @@
             <Insets top="10" right="10" bottom="10" left="10" />
         </padding>
         <ListView fx:id="targetModuleView" />
-        <BorderPane>
-        </BorderPane>
+        <TextFlow textAlignment="CENTER">
+            <Text styleClass="scheduleHeader" text="Schedules" ></Text>
+        </TextFlow>
         <ListView fx:id="scheduleListView" style="list-cell"/>
         <padding>
             <Insets top="10" right="10" bottom="10" left="10" />
