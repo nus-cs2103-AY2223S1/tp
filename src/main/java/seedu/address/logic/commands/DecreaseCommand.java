@@ -13,13 +13,13 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
 /**
- * Increases the reward points of an existing Customer in bobaBot.
+ * Decreases the reward points of an existing Customer in bobaBot.
  */
-public class IncreaseCommand extends Command {
+public class DecreaseCommand extends Command {
 
-    public static final String COMMAND_WORD = "incr";
+    public static final String COMMAND_WORD = "decr";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Increases the reward points of the Customer identified "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Decreases the reward points of the Customer identified "
             + "by the phone number/ email address used to register for membership. "
             + "Existing reward points will be overwritten by the input values.\n"
             + "Parameters: REWARD (must be a POSITIVE integer) "
@@ -27,7 +27,7 @@ public class IncreaseCommand extends Command {
             + "Example: " + COMMAND_WORD + " 1000" + " p/98349032  or  "
             + COMMAND_WORD + " 500" + " e/example@gmail.com";
 
-    private String incrementReward;
+    private String decrementReward;
 
     private Phone phoneIdentifier = null;
     private Email emailIdentifier = null;
@@ -36,24 +36,24 @@ public class IncreaseCommand extends Command {
 
     /**
      * @param phoneIdentifier current phone number of the person
-     * @param rewardPoints amount of reward points to increment by
+     * @param rewardPoints amount of reward points to decrement by
      */
-    public IncreaseCommand(Phone phoneIdentifier, String rewardPoints) {
+    public DecreaseCommand(Phone phoneIdentifier, String rewardPoints) {
         requireNonNull(phoneIdentifier);
 
         this.phoneIdentifier = phoneIdentifier;
-        this.incrementReward = rewardPoints;
+        this.decrementReward = rewardPoints;
     }
 
     /**
      * @param emailIdentifier current email address of the person
-     * @param rewardPoints amount of reward points to increment by
+     * @param rewardPoints amount of reward points to decrement by
      */
-    public IncreaseCommand(Email emailIdentifier, String rewardPoints) {
+    public DecreaseCommand(Email emailIdentifier, String rewardPoints) {
         requireNonNull(emailIdentifier);
 
         this.emailIdentifier = emailIdentifier;
-        this.incrementReward = rewardPoints;
+        this.decrementReward = rewardPoints;
     }
 
     @Override
@@ -64,9 +64,11 @@ public class IncreaseCommand extends Command {
         Reward currentReward = isNull(phoneIdentifier)
                 ? model.getCurrentReward(emailIdentifier)
                 : model.getCurrentReward(phoneIdentifier);
-
-        editPersonDescriptor.setReward(ParserUtil.parseReward(
-                String.valueOf(Integer.parseInt(currentReward.value) + Integer.parseInt(incrementReward))));
+        int newReward = Integer.parseInt(currentReward.value) - Integer.parseInt(decrementReward);
+        if (newReward < 0) {
+            throw new ParseException(Reward.MESSAGE_CONSTRAINTS);
+        }
+        editPersonDescriptor.setReward(ParserUtil.parseReward(String.valueOf(newReward)));
         EditCommand editCommand = isNull(phoneIdentifier)
                 ? new EditCommand(emailIdentifier, editPersonDescriptor)
                 : new EditCommand(phoneIdentifier, editPersonDescriptor);
@@ -81,15 +83,15 @@ public class IncreaseCommand extends Command {
         }
 
         // instanceof handles nulls
-        if (!(other instanceof IncreaseCommand)) {
+        if (!(other instanceof DecreaseCommand)) {
             return false;
         }
 
         // state check
-        IncreaseCommand e = (IncreaseCommand) other;
+        DecreaseCommand e = (DecreaseCommand) other;
         return (isNull(emailIdentifier) && phoneIdentifier.equals(e.phoneIdentifier)
                 || isNull(phoneIdentifier) && emailIdentifier.equals(e.emailIdentifier))
-                && incrementReward.equals(e.incrementReward)
+                && decrementReward.equals(e.decrementReward)
                 && editPersonDescriptor.equals(e.editPersonDescriptor);
     }
 }

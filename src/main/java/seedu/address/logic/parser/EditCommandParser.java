@@ -18,6 +18,7 @@ import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Phone;
+import seedu.address.model.person.Reward;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -77,7 +78,11 @@ public class EditCommandParser implements Parser<EditCommand> {
             }
         }
         if (argMultimap.getValue(PREFIX_REWARD).isPresent()) {
-            editPersonDescriptor.setReward(ParserUtil.parseReward(argMultimap.getValue(PREFIX_REWARD).get()));
+            int newReward = Integer.parseInt(argMultimap.getValue(PREFIX_REWARD).get());
+            if (newReward < 0) {
+                throw new ParseException(Reward.MESSAGE_CONSTRAINTS);
+            }
+            editPersonDescriptor.setReward(ParserUtil.parseReward(String.valueOf(newReward)));
         }
         parseTagsForEdit(argMultimap.getAllValues(PREFIX_TAG)).ifPresent(editPersonDescriptor::setTags);
 
