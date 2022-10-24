@@ -463,17 +463,15 @@ Step 1. The user executes `tag add 1 t/friend` command to add the tag, `friend`,
 
 Step 2. The `tag add` command collects the list of contacts shown, containing them in `Model#getFilteredPersonList()`.
 
-Step 3. The `tag add` command checks if the index is valid, calling `Index#getZeroBased()`.
+Step 3. The `tag add` command creates the same contact with the new tag included, containing it in `TagAddCommand#createEditedPerson(Person personToEdit, Tag tag)`.
 
-Step 4. The `tag add` command receives the contact indicated by the index, containing it in `List#get(int index)`.
+Step 4. The `tag add` command replaces the old contact with the new, updated contact, calling `Model#setPerson(Person target, Person editedPerson)`.
 
-Step 5. The `tag add` command creates the same contact with the new tag included, containing it in `TagAddCommand#createEditedPerson(Person personToEdit, Tag tag)`.
-
-Step 6. The `tag add` command replaces the old contact with the new, updated contact, calling `Model#setPerson(Person target, Person editedPerson)`.
+Step 5. The contact indicated by `INDEX` now has the `friend` tag.
 
 The following activity diagram summarizes what happens when a user executes a tag add command:
 
-(insert activity diagram here)
+![TagAddSequenceDiagram](images/TagAddSequenceDiagram.png)
 
 #### Design consideration
 
