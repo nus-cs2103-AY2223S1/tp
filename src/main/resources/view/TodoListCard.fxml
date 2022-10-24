@@ -41,7 +41,7 @@
                     </HBox>
                     <HBox alignment="CENTER_LEFT" spacing="20">
                         <Region id="dotIcon" styleClass="icon-button" />
-                        <FlowPane fx:id="priority" styleClass="cell_small_label_todo" />
+                        <Label fx:id="priority" styleClass="cell_small_label_todo" text="\$third" />
                     </HBox>
                 </VBox>
             </HBox>

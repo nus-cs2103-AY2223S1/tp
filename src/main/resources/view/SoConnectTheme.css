@@ -9,6 +9,10 @@
     background-color: #3b2c72;
 }
 
+/**
+Any instance of label will get this default styling, unless overridden by specific styling in each instance.
+For example, attribute phone number, tag, priority, etc. get this default styling if not specified.
+ */
 .label {
     -fx-font-size: 11pt;
     -fx-font-family: "Karla";
