@@ -56,10 +56,11 @@ Format:
 Add a new team to the user's list of teams. Will throw an error there is already an existing team with the same name.
 
 Format:
-* `add_team TEAM_NAME`
+* `add_team -n TEAM_NAME [-d TEAM_DESCRIPTION]`
 
 Examples:
-* `add_team CS2103` will create a new team by the name of "CS2103"
+* `add_team -n CS2103` will create a new team by the name of "CS2103"
+* `add_team -n CS2102 -d "Database Systems"` will create a new team by the name of "CS2102" and "Database Systems" as description
 
 ### Set a new team `set_team`
 
@@ -70,6 +71,15 @@ Format:
 
 Examples:
 * `set_team CS2103` will change the current working team to be the "CS2103" team.
+
+### Edit current team `edit_team`
+
+Format:
+* `edit_team [-n TEAM_NAME] [-d TEAM_DESCRIPTION]`
+* 
+Examples:
+* `edit_team -n CS2103 -d "Software Engineering"` will edit the name of the current team to CS2103 and description to "Software Engineering"
+
 
 ### Delete an existing team `delete_team`
 
