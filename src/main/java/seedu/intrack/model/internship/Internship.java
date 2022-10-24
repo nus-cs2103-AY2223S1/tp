@@ -114,17 +114,33 @@ public class Internship {
     }
 
     /**
-     * Returns the date and time of the task with the nearest date and time
+     * Returns the date and time of the task with the nearest date and time before the current date
      * @return LocalDateTime of the nearest date and time
      */
     public LocalDateTime getNearestTaskDate() {
+        int i = 0;
         Collections.sort(tasksDates);
-        LocalDateTime nearestDate = tasksDates.get(0);
+        LocalDateTime currentDate = LocalDateTime.now();
+        LocalDateTime nearestDate = tasksDates.get(i);
+        while (nearestDate.isAfter(currentDate)) {
+            if (i == tasksDates.size() - 1) {
+                //just gets the latest task u got, even if expired
+                nearestDate = tasksDates.get(i);
+                break;
+            }
+            if (nearestDate.isAfter(currentDate)) {
+                //once gets nearest time, breaks
+                nearestDate = tasksDates.get(i);
+                break;
+            }
+            i++;
+
+        }
         return nearestDate;
     }
 
     /**
-     * Returns the date and time of the task with the furthest date and time
+     * Returns the date and time of the task with the furthest date and time to the current time
      * @return LocalDateTime of the furthest date and time
      */
     public LocalDateTime getFurthestTaskDate() {
