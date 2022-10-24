@@ -8,6 +8,8 @@ import java.util.regex.Pattern;
 
 import jarvis.logic.commands.AddConsultCommand;
 import jarvis.logic.commands.AddMasteryCheckCommand;
+import jarvis.logic.commands.AddNoteCommand;
+import jarvis.logic.commands.AddParticipationCommand;
 import jarvis.logic.commands.AddStudentCommand;
 import jarvis.logic.commands.AddStudioCommand;
 import jarvis.logic.commands.AddTaskCommand;
@@ -19,11 +21,17 @@ import jarvis.logic.commands.DeleteTaskCommand;
 import jarvis.logic.commands.EditStudentCommand;
 import jarvis.logic.commands.ExitCommand;
 import jarvis.logic.commands.FindStudentCommand;
+import jarvis.logic.commands.GradeCommand;
 import jarvis.logic.commands.HelpCommand;
+import jarvis.logic.commands.ListAllCommand;
 import jarvis.logic.commands.ListStudentCommand;
 import jarvis.logic.commands.ListTaskCommand;
+import jarvis.logic.commands.MarkLessonCommand;
+import jarvis.logic.commands.MarkStudentCommand;
 import jarvis.logic.commands.MarkTaskCommand;
 import jarvis.logic.commands.MasteryCheckCommand;
+import jarvis.logic.commands.UnmarkLessonCommand;
+import jarvis.logic.commands.UnmarkStudentCommand;
 import jarvis.logic.commands.UnmarkTaskCommand;
 import jarvis.logic.parser.exceptions.ParseException;
 
@@ -69,6 +77,12 @@ public class JarvisParser {
         case AddConsultCommand.COMMAND_WORD:
             return new AddConsultCommandParser().parse(arguments);
 
+        case AddNoteCommand.COMMAND_WORD:
+            return new AddNoteCommandParser().parse(arguments);
+
+        case AddParticipationCommand.COMMAND_WORD:
+            return new AddParticipationCommandParser().parse(arguments);
+
         case EditStudentCommand.COMMAND_WORD:
             return new EditStudentCommandParser().parse(arguments);
 
@@ -87,11 +101,17 @@ public class JarvisParser {
         case FindStudentCommand.COMMAND_WORD:
             return new FindStudentCommandParser().parse(arguments);
 
+        case GradeCommand.COMMAND_WORD:
+            return new GradeCommandParser().parse(arguments);
+
         case ListStudentCommand.COMMAND_WORD:
             return new ListStudentCommand();
 
         case ListTaskCommand.COMMAND_WORD:
             return new ListTaskCommand();
+
+        case ListAllCommand.COMMAND_WORD:
+            return new ListAllCommand();
 
         case MasteryCheckCommand.COMMAND_WORD:
             return new MasteryCheckCommandParser().parse(arguments);
@@ -99,8 +119,20 @@ public class JarvisParser {
         case MarkTaskCommand.COMMAND_WORD:
             return new MarkTaskCommandParser().parse(arguments);
 
+        case MarkStudentCommand.COMMAND_WORD:
+            return new MarkStudentCommandParser().parse(arguments);
+
+        case MarkLessonCommand.COMMAND_WORD:
+            return new MarkLessonCommandParser().parse(arguments);
+
         case UnmarkTaskCommand.COMMAND_WORD:
             return new UnmarkTaskCommandParser().parse(arguments);
+
+        case UnmarkStudentCommand.COMMAND_WORD:
+            return new UnmarkStudentCommandParser().parse(arguments);
+
+        case UnmarkLessonCommand.COMMAND_WORD:
+            return new UnmarkLessonCommandParser().parse(arguments);
 
         case ExitCommand.COMMAND_WORD:
             return new ExitCommand();

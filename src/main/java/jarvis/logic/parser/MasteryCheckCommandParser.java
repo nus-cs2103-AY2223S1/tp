@@ -3,13 +3,14 @@ package jarvis.logic.parser;
 import static jarvis.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static jarvis.logic.parser.CliSyntax.PREFIX_MC_NUM;
 import static jarvis.logic.parser.CliSyntax.PREFIX_MC_RES;
+import static java.util.Objects.requireNonNull;
 
 import java.util.stream.Stream;
 
 import jarvis.commons.core.index.Index;
 import jarvis.logic.commands.MasteryCheckCommand;
 import jarvis.logic.parser.exceptions.ParseException;
-import jarvis.model.MasteryCheckResult;
+import jarvis.model.Assessment;
 
 /**
  * Parses input arguments and creates a new MasteryCheckCommand object
@@ -22,6 +23,7 @@ public class MasteryCheckCommandParser implements Parser<MasteryCheckCommand> {
      * @throws ParseException if the user input does not conform the expected format
      */
     public MasteryCheckCommand parse(String args) throws ParseException {
+        requireNonNull(args);
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_MC_NUM, PREFIX_MC_RES);
 
         if (!arePrefixesPresent(argMultimap, PREFIX_MC_NUM, PREFIX_MC_RES) || argMultimap.getPreamble().isEmpty()) {
@@ -29,19 +31,17 @@ public class MasteryCheckCommandParser implements Parser<MasteryCheckCommand> {
         }
 
         Index index;
-        MasteryCheckResult mcResult;
 
         try {
             index = ParserUtil.parseIndex(argMultimap.getPreamble());
-            int mcNumber = ParserUtil.parseMcNum(argMultimap.getValue(PREFIX_MC_NUM).get());
+            Assessment mc = ParserUtil.parseMcNum(argMultimap.getValue(PREFIX_MC_NUM).get());
             boolean isPass = ParserUtil.parseMcResult(argMultimap.getValue(PREFIX_MC_RES).get());
-            mcResult = new MasteryCheckResult(mcNumber, isPass);
+            return new MasteryCheckCommand(index, mc, isPass);
+
         } catch (ParseException pe) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, MasteryCheckCommand.MESSAGE_USAGE),
                     pe);
         }
-
-        return new MasteryCheckCommand(index, mcResult);
     }
 
     /**

@@ -52,7 +52,15 @@ public class Studio extends Lesson {
         }
 
         Studio otherStudio = (Studio) other;
-        return otherStudio.getDesc().equals(getDesc())
+
+        boolean studioDescEquality;
+        if (hasDesc()) {
+            studioDescEquality = getDesc().equals(otherStudio.getDesc());
+        } else {
+            studioDescEquality = otherStudio.getDesc() == null;
+        }
+
+        return studioDescEquality
                 && otherStudio.startTime().equals(startTime())
                 && otherStudio.endTime().equals(endTime())
                 && otherStudio.getAttendance().equals(getAttendance())
@@ -70,14 +78,7 @@ public class Studio extends Lesson {
     }
 
     @Override
-    public String getType() {
-        return "studio";
-    }
-
-    @Override
-    public JsonAdaptedStudio toJson() {
-        return new JsonAdaptedStudio(this.getDesc().lessonDesc,
-                new JsonAdaptedTimePeriod(this.getTimePeriod()), this.getAttendance(),
-                this.getNotes(), this.isCompleted(), this.getParticipation());
+    public LessonType getLessonType() {
+        return LessonType.STUDIO;
     }
 }

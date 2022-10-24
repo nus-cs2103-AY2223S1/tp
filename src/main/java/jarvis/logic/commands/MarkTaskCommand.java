@@ -27,7 +27,11 @@ public class MarkTaskCommand extends Command {
 
     private final Index targetIndex;
 
+    /**
+     * Creates a MarkTaskCommand to mark the task at the specified index as done.
+     */
     public MarkTaskCommand(Index targetIndex) {
+        requireNonNull(targetIndex);
         this.targetIndex = targetIndex;
     }
 

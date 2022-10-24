@@ -26,7 +26,7 @@ public abstract class Lesson {
      * Every field must be present and not null.
      */
     public Lesson(LessonDesc lessonDesc, TimePeriod timePeriod, LessonAttendance attendance, LessonNotes notes) {
-        requireAllNonNull(lessonDesc, timePeriod, attendance, notes);
+        requireAllNonNull(timePeriod, attendance, notes);
         this.lessonDesc = lessonDesc;
         this.timePeriod = timePeriod;
         this.attendance = attendance;
@@ -47,6 +47,10 @@ public abstract class Lesson {
 
     public Set<Student> getStudents() {
         return attendance.getAllStudents();
+    }
+
+    public String getStudentsName() {
+        return attendance.getAllStudentsName();
     }
 
     public boolean isPresent(Student student) {
@@ -72,8 +76,13 @@ public abstract class Lesson {
     public boolean isCompleted() {
         return isCompleted;
     }
+
+    public boolean hasDesc() {
+        return lessonDesc != null;
+    }
+
     public LessonDesc getDesc() {
-        return lessonDesc;
+        return hasDesc() ? lessonDesc : null;
     }
 
     public TimePeriod getTimePeriod() {
@@ -88,7 +97,13 @@ public abstract class Lesson {
         return notes;
     }
 
-    public abstract String getType();
+    public abstract LessonType getLessonType();
 
-    public abstract JsonAdaptedLesson toJson();
+    public void addOverallNotes(String overallNotes) {
+        notes.addNote(overallNotes);
+    }
+
+    public void addStudentNotes(String studentNotes, Student student) {
+        notes.addNote(student, studentNotes);
+    }
 }

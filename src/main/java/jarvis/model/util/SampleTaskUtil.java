@@ -15,7 +15,7 @@ public class SampleTaskUtil {
     public static Task[] getSampleTasks() {
         return new Task[] {
             new Task(new TaskDesc("Prepare tutorial slides"), new TaskDeadline(LocalDate.parse("2022-11-01"))),
-            new Task(new TaskDesc("Mark missions"), new TaskDeadline(null)),
+            new Task(new TaskDesc("Mark missions"), null),
             new Task(new TaskDesc("Consultation"), new TaskDeadline(LocalDate.parse("2022-11-01")))
         };
     }

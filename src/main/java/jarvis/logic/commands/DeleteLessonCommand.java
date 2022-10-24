@@ -26,7 +26,11 @@ public class DeleteLessonCommand extends Command {
 
     private final Index targetIndex;
 
+    /**
+     * Creates a DeleteLessonCommand to delete the lesson at the specified index.
+     */
     public DeleteLessonCommand(Index targetIndex) {
+        requireNonNull(targetIndex);
         this.targetIndex = targetIndex;
     }
 
@@ -41,8 +45,7 @@ public class DeleteLessonCommand extends Command {
 
         Lesson lessonToDelete = lastShownList.get(targetIndex.getZeroBased());
         model.deleteLesson(lessonToDelete);
-        return new CommandResult(String.format(MESSAGE_DELETE_LESSON_SUCCESS, lessonToDelete),
-                true, false);
+        return new CommandResult(String.format(MESSAGE_DELETE_LESSON_SUCCESS, lessonToDelete));
     }
 
     @Override

@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 
-<HBox id="cardPane" fx:id="cardPane" xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml">
+<HBox id="cardPane" fx:id="cardPane" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
   <GridPane HBox.hgrow="ALWAYS">
     <columnConstraints>
       <ColumnConstraints hgrow="SOMETIMES" minWidth="10" prefWidth="150" />
@@ -28,7 +28,6 @@
         <Label fx:id="studentName" styleClass="cell_big_label" text="\$studentName" />
       </HBox>
         <Label fx:id="matricNum" text="\$matricNum" />
-        <Label fx:id="mcResult" text="\$mcResult" />
     </VBox>
       <rowConstraints>
          <RowConstraints />

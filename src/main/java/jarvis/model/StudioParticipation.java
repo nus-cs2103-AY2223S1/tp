@@ -71,4 +71,19 @@ public class StudioParticipation {
     public int hashCode() {
         return participation.hashCode();
     }
+
+    public HashMap<Student, Integer> getParticipation() {
+        return participation;
+    }
+
+    public String toFullString() {
+        StringBuilder sb = new StringBuilder();
+        for (Map.Entry<Student, Integer> entry : participation.entrySet()) {
+            sb.append(entry.getKey().toFullString());
+            sb.append(": ");
+            sb.append(entry.getValue());
+            sb.append("\n");
+        }
+        return sb.toString();
+    }
 }

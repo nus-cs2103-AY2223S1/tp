@@ -3,11 +3,13 @@ package jarvis.ui;
 import jarvis.model.Task;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 
 /**
- * An UI component that displays information of a {@code Person}.
+ * An UI component that displays the basic information of a {@code Task}.
  */
 public class TaskCard extends UiPart<Region> {
 
@@ -28,11 +30,14 @@ public class TaskCard extends UiPart<Region> {
     @FXML
     private Label id;
     @FXML
-    private Label done;
+    private ImageView checkbox;
     @FXML
     private Label taskDesc;
     @FXML
     private Label taskDeadline;
+
+    private Image tick = new Image(getClass().getResourceAsStream("/images/tick.png"));
+    private Image cross = new Image(getClass().getResourceAsStream("/images/cross.png"));
 
     /**
      * Creates a {@code TaskCard} with the given {@code Task} and index to display.
@@ -42,12 +47,12 @@ public class TaskCard extends UiPart<Region> {
         this.task = task;
         id.setText(displayedIndex + ". ");
         if (task.isDone()) {
-            done.setText("[X]");
+            checkbox.setImage(tick);
         } else {
-            done.setText("[ ]");
+            checkbox.setImage(cross);
         }
         taskDesc.setText(task.getDesc().taskDesc);
-        taskDeadline.setText(task.getDeadline().toString());
+        taskDeadline.setText(task.getDeadlineString());
     }
 
     @Override

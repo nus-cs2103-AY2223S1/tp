@@ -26,7 +26,11 @@ public class DeleteStudentCommand extends Command {
 
     private final Index targetIndex;
 
+    /**
+     * Creates a DeleteStudentCommand to delete the student at the specified index.
+     */
     public DeleteStudentCommand(Index targetIndex) {
+        requireNonNull(targetIndex);
         this.targetIndex = targetIndex;
     }
 
@@ -41,8 +45,7 @@ public class DeleteStudentCommand extends Command {
 
         Student studentToDelete = lastShownList.get(targetIndex.getZeroBased());
         model.deleteStudent(studentToDelete);
-        return new CommandResult(String.format(MESSAGE_DELETE_STUDENT_SUCCESS, studentToDelete),
-                true, false);
+        return new CommandResult(String.format(MESSAGE_DELETE_STUDENT_SUCCESS, studentToDelete));
     }
 
     @Override

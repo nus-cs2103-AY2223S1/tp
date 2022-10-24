@@ -4,6 +4,8 @@ import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+
 import jarvis.model.exceptions.StudentNotFoundException;
 
 /**
@@ -22,6 +24,15 @@ public class LessonNotes {
         for (Student stu : students) {
             studentNotes.put(stu, new StringBuilder());
         }
+    }
+
+    /**
+     * Creates the notes for a lesson with the specified student notes.
+     *
+     * @param studentNotes The specified student notes.
+     */
+    public LessonNotes(HashMap<Student, StringBuilder> studentNotes) {
+        this.studentNotes = studentNotes;
     }
 
     /**
@@ -46,8 +57,15 @@ public class LessonNotes {
         studentNotes.get(student).append("\n");
     }
 
-    public String getNotes() {
-        return overallNotes.toString();
+    public String getOverallNotes() {
+        if (overallNotes.length() < 14) {
+            return "";
+        }
+        return overallNotes.toString().substring(14);   // header not included
+    }
+
+    public HashMap<Student, StringBuilder> getStudentNotes() {
+        return studentNotes;
     }
 
     public String getNotes(Student student) {
@@ -62,6 +80,18 @@ public class LessonNotes {
         sb.append("\nNotes for individual students:\n");
         for (Map.Entry<Student, StringBuilder> entry : studentNotes.entrySet()) {
             sb.append(entry.getKey());
+            sb.append(":\n");
+            sb.append(entry.getValue());
+            sb.append("\n");
+        }
+        return sb.toString();
+    }
+
+    public String toFullString() {
+        StringBuilder sb = new StringBuilder(overallNotes);
+        sb.append("\nNotes for individual students:\n");
+        for (Map.Entry<Student, StringBuilder> entry : studentNotes.entrySet()) {
+            sb.append(entry.getKey().toFullString());
             sb.append(":\n");
             sb.append(entry.getValue());
             sb.append("\n");

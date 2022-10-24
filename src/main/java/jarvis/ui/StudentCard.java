@@ -7,7 +7,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 
 /**
- * An UI component that displays information of a {@code Student}.
+ * An UI component that displays the basic information of a {@code Student}.
  */
 public class StudentCard extends UiPart<Region> {
 
@@ -31,11 +31,9 @@ public class StudentCard extends UiPart<Region> {
     private Label id;
     @FXML
     private Label matricNum;
-    @FXML
-    private Label mcResult;
 
     /**
-     * Creates a {@code PersonCode} with the given {@code Person} and index to display.
+     * Creates a {@code StudentCard} with the given {@code Student} and index to display.
      */
     public StudentCard(Student student, int displayedIndex) {
         super(FXML);
@@ -43,7 +41,6 @@ public class StudentCard extends UiPart<Region> {
         id.setText(displayedIndex + ". ");
         studentName.setText(student.getName().fullName);
         matricNum.setText(student.getMatricNum().value);
-        mcResult.setText(student.getMcStatus().toString());
     }
 
     @Override

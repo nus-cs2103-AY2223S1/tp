@@ -25,6 +25,10 @@ public class LessonAttendance {
         }
     }
 
+    public LessonAttendance(HashMap<Student, Boolean> lessonAttendance) {
+        attendance = lessonAttendance;
+    }
+
     /**
      * Marks a student as present for that lesson.
      * @param student Student to mark as present.
@@ -55,6 +59,23 @@ public class LessonAttendance {
         return attendance.keySet();
     }
 
+    public String getAllStudentsName() {
+        StringBuilder studentsNameBuilder = new StringBuilder();
+        studentsNameBuilder.append("Students: ");
+        Set<Student> students = getAllStudents();
+        assert !students.isEmpty();
+
+        for (Student student : students) {
+            studentsNameBuilder.append(student.getName() + ", ");
+        }
+        studentsNameBuilder.deleteCharAt(studentsNameBuilder.length() - 2); //remove the last ','
+        return studentsNameBuilder.toString();
+    }
+
+    public HashMap<Student, Boolean> getMap() {
+        return attendance;
+    }
+
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder("Attendance:\n");
@@ -62,6 +83,17 @@ public class LessonAttendance {
             sb.append(entry.getKey());
             sb.append(": ");
             sb.append(entry.getValue() ? "PRESENT" : "ABSENT");
+            sb.append("\n");
+        }
+        return sb.toString();
+    }
+
+    public String toFullString() {
+        StringBuilder sb = new StringBuilder();
+        for (Map.Entry<Student, Boolean> entry : attendance.entrySet()) {
+            sb.append(entry.getKey().toFullString());
+            sb.append(": ");
+            sb.append(entry.getValue());
             sb.append("\n");
         }
         return sb.toString();
@@ -84,5 +116,9 @@ public class LessonAttendance {
     @Override
     public int hashCode() {
         return attendance.hashCode();
+    }
+
+    public HashMap<Student, Boolean> getAttendance() {
+        return attendance;
     }
 }
