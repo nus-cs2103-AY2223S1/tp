@@ -1,5 +1,7 @@
 package seedu.address.model.datetime;
 
+import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
+
 import java.time.DayOfWeek;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
@@ -128,7 +130,8 @@ public class DatetimeCommonUtils {
      * @throws ParseException If the time range is invalid.
      */
     public static void assertTimeRangeValid(String startTimeString, String endTimeString) throws ParseException {
-        LocalTime startTime, endTime;
+        LocalTime startTime;
+        LocalTime endTime;
         try {
             startTime = LocalTime.parse(startTimeString, TIME_FORMATTER);
             endTime = LocalTime.parse(endTimeString, TIME_FORMATTER);
@@ -166,8 +169,7 @@ public class DatetimeCommonUtils {
      * @throws ParseException if the given {@code timeRange} is invalid.
      */
     public static DatetimeRange parseDatetimeRange(String date, String timeRange) throws ParseException {
-        Objects.requireNonNull(date);
-        Objects.requireNonNull(timeRange);
+        requireAllNonNull(date, timeRange);
 
         if (!date.matches(DATE_FORMAT_REGEX)) {
             throw new ParseException(DATE_MESSAGE_CONSTRAINTS);
@@ -186,8 +188,7 @@ public class DatetimeCommonUtils {
      * @throws ParseException if the given {@code timeslot} is invalid.
      */
     public static WeeklyTimeslot parseWeeklyTimeslot(String dayString, String timeslot) throws ParseException {
-        Objects.requireNonNull(dayString);
-        Objects.requireNonNull(timeslot);
+        requireAllNonNull(dayString, timeslot);
 
         if (!dayString.matches(DAY_FORMAT_REGEX)) {
             throw new ParseException(DAY_MESSAGE_CONSTRAINTS);
