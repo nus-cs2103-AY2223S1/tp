@@ -1,8 +1,8 @@
 package seedu.foodrem.viewmodels;
 
-import seedu.foodrem.model.item.Item;
-
 import java.util.Objects;
+
+import seedu.foodrem.model.item.Item;
 
 /**
  * A view model for generating a view with an item as well as a message.
