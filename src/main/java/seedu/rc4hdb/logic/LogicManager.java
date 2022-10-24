@@ -120,4 +120,24 @@ public class LogicManager implements Logic {
     public ObservableValue<Path> getObservableResidentBookFilePath() {
         return storage.getObservableResidentBookFilePath();
     }
+
+    @Override
+    public ObservableList<String> getVisibleFields() {
+        return model.getVisibleFields();
+    }
+
+    @Override
+    public void setVisibleFields(ObservableList<String> fieldsToShow) {
+        model.setVisibleFields(fieldsToShow);
+    }
+
+    @Override
+    public void setHiddenFields(ObservableList<String> fieldsToHide) {
+        model.setHiddenFields(fieldsToHide);
+    }
+
+    @Override
+    public ObservableList<String> getHiddenFields() {
+        return model.getHiddenFields();
+    }
 }

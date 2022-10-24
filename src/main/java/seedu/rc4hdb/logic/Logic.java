@@ -52,4 +52,12 @@ public interface Logic {
     ObservableList<String> getObservableFields();
 
     ObservableValue<Path> getObservableResidentBookFilePath();
+
+    public ObservableList<String> getVisibleFields();
+
+    public void setVisibleFields(ObservableList<String> fieldsToShow);
+
+    public void setHiddenFields(ObservableList<String> fieldsToHide);
+
+    public ObservableList<String> getHiddenFields();
 }
