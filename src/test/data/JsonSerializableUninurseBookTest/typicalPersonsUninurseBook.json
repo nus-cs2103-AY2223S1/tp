@@ -32,7 +32,7 @@
     "phone" : "95352563",
     "email" : "heinz@example.com",
     "address" : "wall street",
-    "conditions" : [ ],
+    "conditions" : [ "multiple sclerosis" ],
     "medications" : [ ],
     "tasks" : [ {
       "taskDescription" : "Update health records",
