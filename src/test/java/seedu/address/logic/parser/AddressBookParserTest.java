@@ -28,7 +28,9 @@ import seedu.address.logic.commands.FilterTaskCommand;
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
+import seedu.address.logic.commands.MarkTaskCommand;
 import seedu.address.logic.commands.SortCommand;
+import seedu.address.logic.commands.UnmarkTaskCommand;
 import seedu.address.logic.commands.ViewCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.project.Project;
@@ -148,6 +150,20 @@ public class AddressBookParserTest {
     public void parseCommand_list() throws Exception {
         assertTrue(parser.parseCommand(ListCommand.COMMAND_WORD) instanceof ListCommand);
         assertTrue(parser.parseCommand(ListCommand.COMMAND_WORD + " 3") instanceof ListCommand);
+    }
+
+    @Test
+    public void parseCommand_markTask() throws Exception {
+        MarkTaskCommand command = (MarkTaskCommand) parser.parseCommand(
+                MarkTaskCommand.COMMAND_WORD + " " + INDEX_FIRST_TASK.getOneBased());
+        assertEquals(new MarkTaskCommand(INDEX_FIRST_TASK), command);
+    }
+
+    @Test
+    public void parseCommand_unmarkTask() throws Exception {
+        UnmarkTaskCommand command = (UnmarkTaskCommand) parser.parseCommand(
+                UnmarkTaskCommand.COMMAND_WORD + " " + INDEX_FIRST_TASK.getOneBased());
+        assertEquals(new UnmarkTaskCommand(INDEX_FIRST_TASK), command);
     }
 
     @Test

@@ -40,5 +40,11 @@ public class MarkTaskCommand extends Command {
         return new CommandResult(String.format(MESSAGE_MARK_TASK_SUCCESS, targetIndex.getOneBased()));
     }
 
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof MarkTaskCommand // instanceof handles nulls
+                && targetIndex.equals(((MarkTaskCommand) other).targetIndex)); // state check
+    }
 
 }

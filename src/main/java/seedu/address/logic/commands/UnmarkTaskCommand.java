@@ -41,4 +41,11 @@ public class UnmarkTaskCommand extends Command{
         return new CommandResult(String.format(MESSAGE_UNMARK_TASK_SUCCESS, targetIndex.getOneBased()));
     }
 
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof UnmarkTaskCommand // instanceof handles nulls
+                && targetIndex.equals(((UnmarkTaskCommand) other).targetIndex)); // state check
+    }
+
 }
