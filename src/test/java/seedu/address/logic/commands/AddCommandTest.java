@@ -7,6 +7,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
 
 import java.nio.file.Path;
+import java.time.YearMonth;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.function.Predicate;
@@ -15,6 +16,7 @@ import org.junit.jupiter.api.Test;
 
 import javafx.collections.ObservableList;
 import javafx.scene.chart.PieChart;
+import javafx.scene.chart.XYChart;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
@@ -24,7 +26,6 @@ import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.entry.Entry;
 import seedu.address.model.entry.EntryType;
 import seedu.address.testutil.ExpenditureBuilder;
-
 
 public class AddCommandTest {
 
@@ -190,6 +191,16 @@ public class AddCommandTest {
         }
 
         @Override
+        public XYChart.Series<String, Number> getExpenseLineChartData() {
+            return null;
+        }
+
+        @Override
+        public XYChart.Series<String, Number> getIncomeLineChartData() {
+            return null;
+        }
+
+        @Override
         public void updateFilteredEntryList(Predicate<Entry> predicate) {
             throw new AssertionError("This method should not be called.");
         }
@@ -202,6 +213,11 @@ public class AddCommandTest {
         @Override
         public void updateFilteredIncomeList(Predicate<Entry> predicate) {
             throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void setMonthForChart(YearMonth month) {
+
         }
     }
 

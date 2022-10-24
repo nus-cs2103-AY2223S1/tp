@@ -26,6 +26,7 @@ import seedu.address.logic.commands.CommandTestUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.entry.Entry;
 import seedu.address.model.entry.EntryType;
+import seedu.address.model.entry.GraphType;
 import seedu.address.model.entry.NameContainsKeywordsPredicate;
 import seedu.address.testutil.EditEntryDescriptorBuilder;
 import seedu.address.testutil.ExpenditureBuilder;
@@ -93,6 +94,25 @@ public class PennyWiseParserTest {
     public void parseCommand_list() throws Exception {
         assertTrue(parser.parseCommand(ListCommand.COMMAND_WORD) instanceof ListCommand);
         assertTrue(parser.parseCommand(ListCommand.COMMAND_WORD + " 3") instanceof ListCommand);
+    }
+
+    @Test
+    public void parseCommand_summary() throws Exception {
+        assertTrue(parser.parseCommand(SummaryCommand.COMMAND_WORD) instanceof SummaryCommand);
+    }
+
+    @Test
+    public void parseCommand_view() throws Exception {
+        ViewCommand viewCommand = new ViewCommand(
+                new EntryType(EntryType.ENTRY_TYPE_EXPENDITURE),
+                new GraphType(GraphType.GRAPH_TYPE_CATEGORY));
+        assertEquals(parser.parseCommand(
+                ViewCommand.COMMAND_WORD
+                        + " "
+                        + CliSyntax.PREFIX_TYPE
+                        + EntryType.ENTRY_TYPE_EXPENDITURE
+                        + " " + CliSyntax.PREFIX_GRAPH
+                        + GraphType.GRAPH_TYPE_CATEGORY), viewCommand);
     }
 
     @Test

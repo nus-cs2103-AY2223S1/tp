@@ -1,9 +1,9 @@
 package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.logic.commands.CommandTestUtil.INVALID_TYPE;
 import static seedu.address.logic.commands.CommandTestUtil.TYPE_EXPENDITURE;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TYPE_EXPENDITURE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TYPE;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_ENTRY;
@@ -42,7 +42,7 @@ public class DeleteCommandParserTest {
 
     @Test
     public void parse_invalidEntryType_throwsParseException() {
-        String invalidUserInput = "i " + PREFIX_TYPE + "c";
+        String invalidUserInput = "1 " + INVALID_TYPE;
         assertParseFailure(
                 parser,
                 invalidUserInput,

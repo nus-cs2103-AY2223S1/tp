@@ -8,6 +8,7 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.entry.EntryType;
 import seedu.address.model.entry.GraphType;
+import seedu.address.model.entry.Month;
 
 /**
  * View income/expenditure entries to the application.
@@ -20,7 +21,6 @@ public class ViewCommand extends Command {
     public static final String MESSAGE_USAGE =
         COMMAND_WORD + ": View income/expenditure entries to PennyWise. " + "Parameters: " + PREFIX_TYPE + "TYPE " + "["
         + PREFIX_GRAPH + "GRAPH]\n" + "Example: " + COMMAND_WORD + " " + PREFIX_TYPE + "e " + PREFIX_GRAPH + "c ";
-    public static final String MESSAGE_INVALID_ENTRY_TYPE = "Entry type is invalid.";
 
     private static final String ENTRY_EXPENDITURE = "expenditures";
     private static final String ENTRY_INCOME = "income";
@@ -28,53 +28,83 @@ public class ViewCommand extends Command {
     private static final String GRAPH_MONTH = "month";
 
     private final EntryType entryType;
-
+    private final Month month;
     private final GraphType graphType;
 
+    // private final YearMonth month;
+
     /**
-     * Creates a ViewCommand to view the specified {@code entryType}
+     * Creates a ViewCommand to view the specified {@code entryType}.
      */
     public ViewCommand(EntryType entryType, GraphType graphType) {
         requireNonNull(entryType);
         this.entryType = entryType;
+        this.month = null;
         this.graphType = graphType;
+    }
+
+    /**
+     * Creates a ViewCommand to view the specified {@code entryType} at the specified {@code month}.
+     */
+    public ViewCommand(EntryType entryType, Month month, GraphType graphType) {
+        requireNonNull(entryType);
+        requireNonNull(month);
+        this.entryType = entryType;
+        this.graphType = graphType;
+        this.month = month;
     }
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
+        // model.setMonthForChart(month);
+
         switch (entryType.getEntryType()) {
         case EXPENDITURE:
             switch (graphType.getGraphType()) {
             case CATEGORY:
-                System.out.println("[ViewCommand] Show all expenditure by categories");
                 return new CommandResult(String.format(MESSAGE_SUCCESS, ENTRY_EXPENDITURE, GRAPH_CATEGORY), false,
                                          false, true);
             case MONTH:
-                break;
+                return new CommandResult(String.format(MESSAGE_SUCCESS, ENTRY_EXPENDITURE, GRAPH_MONTH), false,
+                        false, true);
             default:
-                break;
+                //should never reach here
+                return null;
             }
-            break;
 
         case INCOME:
             switch (graphType.getGraphType()) {
             case CATEGORY:
-
-                System.out.println("[ViewCommand] Show all income by categories");
                 return new CommandResult(String.format(MESSAGE_SUCCESS, ENTRY_INCOME, GRAPH_CATEGORY), false, false,
                                          true);
             case MONTH:
-                break;
+                return new CommandResult(String.format(MESSAGE_SUCCESS, ENTRY_INCOME, GRAPH_MONTH), false, false,
+                        true);
             default:
-                break;
+                //should never reach here
+                return null;
             }
-            break;
         default:
             //should never reach here
-            break;
+            return null;
         }
+    }
 
-        throw new CommandException(MESSAGE_INVALID_ENTRY_TYPE);
+    @Override
+    public boolean equals(Object other) {
+        if (other == this) {
+            return true;
+        }
+        if (!(other instanceof ViewCommand)) {
+            return false;
+        }
+        ViewCommand otherViewCommand = (ViewCommand) other;
+        if (this.month == null) {
+            return this.entryType.equals(otherViewCommand.entryType);
+        }
+        return this.entryType.equals(otherViewCommand.entryType)
+                && this.month.equals(otherViewCommand.month)
+                && this.graphType.equals(otherViewCommand.graphType);
     }
 }
