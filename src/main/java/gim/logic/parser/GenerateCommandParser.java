@@ -1,6 +1,10 @@
 package gim.logic.parser;
 
+import static gim.commons.core.Messages.MESSAGE_INCORRECT_INDEX_FORMAT;
 import static gim.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static gim.commons.core.Messages.MESSAGE_INVALID_EXERCISE_DISPLAYED_INDEX;
+import static gim.commons.core.Messages.MESSAGE_INVALID_LEVEL;
+import static gim.commons.core.Messages.MESSAGE_MISSING_LEVEL;
 import static gim.logic.parser.CliSyntax.PREFIX_LEVEL;
 
 import java.util.ArrayList;
@@ -25,10 +29,11 @@ public class GenerateCommandParser implements Parser<GenerateCommand> {
     /**
      * Parses the given {@code String} of arguments in the context of the {@code RemarkCommand}
      * and returns a {@code RemarkCommand} object for execution.
-     * @throws ParseException if the user input does not conform the expected format
+     * @throws ParseException if the user input does not conform to the expected format.
      */
     public GenerateCommand parse(String args) throws ParseException {
         String trimmedArgs = args.trim();
+
         if (trimmedArgs.isEmpty()) {
             throw new ParseException(
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, GenerateCommand.MESSAGE_USAGE));
@@ -45,7 +50,7 @@ public class GenerateCommandParser implements Parser<GenerateCommand> {
     private ArrayList<Index> validateIndices(String indicesAsString) throws ParseException {
         if (!indicesAsString.matches(INDEX_VALIDATION_REGEX)) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                    GenerateCommand.MESSAGE_USAGE) + "\nIncorrect format for index(es)");
+                    GenerateCommand.MESSAGE_USAGE + "\n\n" + MESSAGE_INCORRECT_INDEX_FORMAT));
         }
         try {
             ArrayList<Index> indices = new ArrayList<>();
@@ -57,7 +62,7 @@ public class GenerateCommandParser implements Parser<GenerateCommand> {
             return indices;
         } catch (IllegalValueException ive) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                    GenerateCommand.MESSAGE_USAGE + "\nInvalid index"), ive);
+                    GenerateCommand.MESSAGE_USAGE + "\n\n" + MESSAGE_INVALID_EXERCISE_DISPLAYED_INDEX), ive);
         }
     }
 
@@ -65,7 +70,7 @@ public class GenerateCommandParser implements Parser<GenerateCommand> {
     private ValidLevel validateLevel(String level) throws ParseException {
         if (level.isBlank()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                    GenerateCommand.MESSAGE_USAGE) + "\nNo difficulty level selected!");
+                    GenerateCommand.MESSAGE_USAGE + "\n\n" + MESSAGE_MISSING_LEVEL));
         }
         for (ValidLevel validLevel : ValidLevel.values()) {
             if (validLevel.name().equalsIgnoreCase(level)) {
@@ -73,7 +78,7 @@ public class GenerateCommandParser implements Parser<GenerateCommand> {
             }
         }
         throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-                GenerateCommand.MESSAGE_USAGE) + "\nDifficulty level not supported!");
+                GenerateCommand.MESSAGE_USAGE + "\n\n" + MESSAGE_INVALID_LEVEL));
     }
 
 }

@@ -2,6 +2,7 @@ package gim.logic.commands;
 
 import static gim.commons.util.CollectionUtil.requireAllNonNull;
 import static gim.logic.parser.CliSyntax.PREFIX_LEVEL;
+import static java.util.Objects.requireNonNull;
 
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -57,7 +58,7 @@ public class GenerateCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         List<Exercise> lastShownList = model.getFilteredExerciseList();
-        StringBuilder suggestion = new StringBuilder();
+        StringBuilder fullSuggestion = new StringBuilder();
         HashSet<Name> nameSet = new HashSet<>();
         for (Index index : indices) {
             if (index.getZeroBased() >= lastShownList.size()) {
@@ -70,10 +71,10 @@ public class GenerateCommand extends Command {
             }
             nameSet.add(exerciseName);
             Generator generator = GeneratorFactory.getGenerator(exerciseName, level);
-            assert generator != null;
-            suggestion.append(generator.suggest()).append("\n");
+            String suggestion = requireNonNull(generator).suggest();
+            fullSuggestion.append(suggestion).append("\n");
         }
-        return new CommandResult(suggestion.toString());
+        return new CommandResult(fullSuggestion.toString());
     }
 
     @Override

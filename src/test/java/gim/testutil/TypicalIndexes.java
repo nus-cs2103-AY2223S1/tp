@@ -16,4 +16,7 @@ public class TypicalIndexes {
 
     public static final ArrayList<Index> INDEX_LIST_FIRST_SECOND = new ArrayList<>(
             List.of(INDEX_FIRST_EXERCISE, INDEX_SECOND_EXERCISE));
+
+    public static final ArrayList<Index> INDEX_LIST_SECOND_THIRD = new ArrayList<>(
+            List.of(INDEX_SECOND_EXERCISE, INDEX_THIRD_EXERCISE));
 }
