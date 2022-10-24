@@ -26,7 +26,7 @@ ModQuik is a desktop app for NUS CS Professors, optimised for use via a Command 
 
    * **`list student`** : Lists all students.
 
-   * **`add student`**`n/John Doe r/student m/CS2105 p/98765432 e/johnd@example.com` : Adds a student named `John Doe` to CS2103T module.
+   * **`add student`**`n/John Doe i/A0232123X p/98765432 e/johnd@example.com h/john_fu m/CS2103 l/T23` : Adds a student named `John Doe` to CS2103T module.
 
    * **`delete student`**`3` : Deletes the 3rd student shown in the current list.
 
@@ -54,7 +54,7 @@ ModQuik is a desktop app for NUS CS Professors, optimised for use via a Command 
   e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/friend`, `t/friend t/family` etc.
 
 * Parameters can be in any order.<br>
-  e.g. if the command specifies `n/NAME p/PHONE_NUMBER`, `p/PHONE_NUMBER n/NAME` is also acceptable.
+  e.g. if the command specifies `n/NAME p/PHONE`, `p/PHONE n/NAME` is also acceptable.
 
 * If a parameter is expected only once in the command but you specified it multiple times, only the last occurrence of the parameter will be taken.<br>
   e.g. if you specify `p/12341234 p/56785678`, only `p/56785678` will be taken.
@@ -67,7 +67,7 @@ ModQuik is a desktop app for NUS CS Professors, optimised for use via a Command 
 
 Adds a student to the specified module.
 
-Format: `add student n/NAME i/STUDENT_ID p/PHONE_NUMBER e/EMAIL h/TELEGRAM_HANDLE m/MODULE l/TUTORIAL [g/GRADE] [a/ATTENDANCE] [c/PARTICIPATION] [t/TAG]…​`
+Format: `add student n/NAME i/STUDENT_ID p/PHONE e/EMAIL h/TELEGRAM_HANDLE m/MODULE l/TUTORIAL [g/GRADE] [a/ATTENDANCE] [c/PARTICIPATION] [t/TAG]…​`
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 A student can have any number of tags (including 0)
 </div>
@@ -76,7 +76,7 @@ A student can have any number of tags (including 0)
 
 Examples:
 * `add student n/John Doe i/A0000000J p/98765432 e/johnd@example.com h/johnDoe m/CS2103T l/W17`
-* `add student n/Betsy Crowe i/A0000000B t/friend e/betsycrowe@example.com p/1234567 h/betsy_crowe m/CS2105 l/G03 g/C a/3 c/1 t/criminal`
+* `add student n/Betsy Crowe i/A0000000B t/friend e/betsycrowe@example.com p/91234567 h/betsy_crowe m/CS2105 l/G03 g/C a/3 c/1 t/criminal`
 
 ### Listing all students : `list student`
 
@@ -98,14 +98,14 @@ Format: `edit student INDEX [n/NAME] [m/MODULE] [p/PHONE] [e/EMAIL] [t/TAG]…`
     specifying any tags after it.
 
 Examples:
-*  `edit student 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st student to be `91234567` and `johndoe@example.com` respectively.
+*  `edit student 1 p/91234567 e/jameslee@example.com` Edits the phone number and email address of the 1st student to be `91234567` and `jameslee@example.com` respectively.
 *  `edit student 2 n/Betsy Crower t/` Edits the name of the 2nd student to be `Betsy Crower` and clears all existing tags.
 
-### Locating students by name and other attributes: `find student`
+### Locating students by name and other attributes : `find student`
 
 Finds students by names, student ID, module or tutorial. by checking if respective attribute contains any of the given keywords.
 
-Format: `find [n/NAME] [i/STUDENTID] [m/MODULE] [l/TUTORIAL]`
+Format: `find [n/NAME] [i/STUDENT_ID] [m/MODULE] [l/TUTORIAL]`
 
 * The search is case-insensitive. e.g `hans` will match `Hans`
 * The order of the keywords does not matter. e.g. `Hans Bo` will match `Bo Hans`
@@ -121,7 +121,7 @@ Examples:
 
 Deletes the specified student from the list of people.
 
-Format: `delete student INDEX [m/MODULE] [r/ROLE]`
+Format: `delete student INDEX [m/MODULE]`
 
 * Deletes the student at the specified `INDEX`.
 * The index refers to the index number shown in the displayed student list.
@@ -132,13 +132,16 @@ Examples:
 * `list m/CS2103T` followed by `delete 3` deletes the 3rd student in the CS2103T module.
 * `find Betsy` followed by `delete 1` deletes the 1st student in the results of the `find` command.
 
-### Adding a tutorial : `add tut`
+### Adding a tutorial : `add tutorial`
 
 Adds a tutorial to the tutorial database.
 
-Format: `add tutorial m/MODULE t/TIMESLOT v/VENUE n/NAME`
+Format: `add tutorial n/NAME m/MODULE v/VENUE T/TIMESLOT D/DAY`
 
-### Deleting a tutorial : `delete tut`
+Examples:
+* `add tutorial n/T23 m/CS2103T v/COM1-0205 T/1800-2000 D/1`
+
+### Deleting a tutorial : `delete tutorial`
 
 Deletes a specified tutorial from the tutorial database.
 
@@ -148,41 +151,50 @@ Format: `delete tutorial INDEX`
 * The index refers to the index number shown in the displayed tutorial list.
 * The index **must be a positive integer** 1, 2, 3, …
 
-### Clearing all tutorials : `clear tut`
+Examples:
+* `delete tutorial 3`
+
+### Clearing all tutorials : `clear tutorial`
 
 Clears all tutorials in a specified module.
 
-Format: `clear tut [m/MODULE]`
+Format: `clear tutorial [m/MODULE]`
 
-### Adding a consultation : `add consult`
+### Adding a consultation : `add consultation`
 
 Adds a consultation to the consultation database.
 
-Format: `add consult t/TIMESLOT v/VENUE [m/MODULE] [n/NAME] [r/DESCRIPTION]`
+Format: `add consultation D/DATE t/TIMESLOT v/VENUE [m/MODULE] [n/NAME] [d/DESCRIPTION]`
 
-### Deleting a consultation : `delete consult`
+Examples:
+* `add consultation D/2022-10-24 t/18:00-20:00 v/COM1-0205 m/CS2103T n/JakeKim d/past year papers`
+
+### Deleting a consultation : `delete consultation`
 
 Deletes a specified consultation from the consultation database.
 
-Format: `delete consult INDEX`
+Format: `delete consultation INDEX`
 
 * Deletes the consultation at the specified `INDEX`.
 * The index refers to the index number shown in the displayed consultation list.
 * The index **must be a positive integer** 1, 2, 3, …
 
-### Clearing all consultations : `clear consult`
+Examples:
+* `delete consultation 3`
+
+### Clearing all consultations : `clear consultation`
 
 Clears all consultations.
 
-Format: `clear consult`
+Format: `clear consultation`
 
-### Adding a reminder : `add rem`
+### Adding a reminder : `add reminder`
 
 Adds a reminder to the list of reminders.
 
-Format: `add reminder r/DESCRIPTION [d/DEADLINE]`
+Format: `add reminder n/NAME T/DEADLINE p/PRIORITY d/DESCRIPTION`
 
-### Deleting a reminder : `delete rem`
+### Deleting a reminder : `delete reminder`
 
 Deletes the specified reminder from the list of reminders.
 
@@ -192,7 +204,34 @@ Format: `delete reminder INDEX`
 * The index refers to the index number shown in the displayed reminder list.
 * The index **must be a positive integer** 1, 2, 3, …
 
-### Clearing all reminders: `clear rem`
+Examples:
+* `delete reminder 3`
+
+### Mark a reminder : `mark reminder`
+
+Marks a reminder as completed.
+
+Format: `mark reminder INDEX`
+
+Examples:
+* `mark reminder 3`
+
+### Unmark a reminder : `unmark reminder`
+
+Unmarks a reminder as not completed.
+
+Format: `unmark reminder INDEX`
+
+Examples:
+* `unmark reminder 3`
+ 
+### Sort reminders by priority : `sort reminder`
+
+Sort reminders by their priority.
+
+Format: `sort reminder`
+
+### Clearing all reminders: `clear reminder`
 
 Clears all reminders.
 
@@ -233,18 +272,21 @@ _Details coming soon ..._
 
 Action | Format, Examples
 --------|------------------
-**Add Student** | `add student n/NAME i/STUDENT_ID p/PHONE_NUMBER e/EMAIL h/TELEGRAM_HANDLE m/MODULE l/TUTORIAL [t/TAG]…` <br> e.g., `add n/James Ho i/A0000000L p/91234567 e/jamesho@example.com t/jamesiscool m/CS2102 t/W11`
+**Add Student** | `add student n/NAME i/STUDENT_ID p/PHONE e/EMAIL h/TELEGRAM_HANDLE m/MODULE l/TUTORIAL [t/TAG]…` <br> e.g., `add student n/John Doe i/A0000000J p/98765432 e/johnd@example.com h/johnDoe m/CS2103T l/W17`
 **List All Students** | `list`<br> e.g., `list`
-**Edit Student** | `edit student INDEX [n/NAME] [m/MODULE] [p/PHONE_NUMBER] [e/EMAIL] [t/TAG]…`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
-**Find Student** | `find [n/NAME] [i/STUDENTID] [m/MODULE] [l/TUTORIAL]`<br> e.g., `find student n/john m/CS2103T`
-**Delete Student** | `delete student INDEX [m/MODULE] [r/ROLE]`<br> e.g., `delete student 2 m/CS2103T r/ta`
-**Add Tutorial** | `add tut m/MODULE t/TIMESLOT v/VENUE n/NAME` <br> e.g., `add tut m/CS2103T t/1800-2000 v/COM1-0205 n/JohnFoo`
-**Delete Tutorial** | `delete tutorial INDEX` <br> e.g., `delete tut 3`
-**Clear Tutorial** | `clear tutorial [m/MODULE]` <br> e.g., `clear tut m/CS2105`
-**Add Consultations** | `add consultation n/NAME m/MODULE v/VENUE D/DATE T/TIMESLOT [d/DESCRIPTION]` <br> e.g., `add consultation t/18:00-20:00 v/COM1-0205 m/CS2103T n/JakeKim d/testing`
-**Delete Consultations** | `delete consultation INDEX` <br> e.g., `delete consult 3`
-**Clear Consultations** | `clear consult` <br> e.g., `clear consult`
-**Add Reminders** | `add rem r/DESCRIPTION [d/DEADLINE]` <br> e.g., `add reminder r/mark assignment 1`
-**Delete Reminders** | `delete rem INDEX` <br> e.g., `delete rem 3`
-**Clear Reminders** | `clear rem` <br> e.g., `clear rem`
+**Edit Student** | `edit student INDEX [n/NAME] [m/MODULE] [p/PHONE] [e/EMAIL] [t/TAG]…`<br> e.g.,`edit student 1 p/91234567 e/jameslee@example.com`
+**Find Student** | `find [n/NAME] [i/STUDENT_ID] [m/MODULE] [l/TUTORIAL]`<br> e.g., `find student n/john m/CS2103T`
+**Delete Student** | `delete student INDEX [m/MODULE]`<br> e.g., `delete student 2 m/CS2103T`
+**Add Tutorial** | `add tutorial n/NAME m/MODULE v/VENUE T/TIMESLOT D/DAY` <br> e.g., `add tutorial n/T23 m/CS2103T v/COM1-0205 T/1800-2000 D/1`
+**Delete Tutorial** | `delete tutorial INDEX` <br> e.g., `delete tutorial 3`
+**Clear Tutorial** | `clear tutorial [m/MODULE]` <br> e.g., `clear tutorial m/CS2105`
+**Add Consultation** | `add consultation t/TIMESLOT v/VENUE [m/MODULE] [n/NAME] [r/DESCRIPTION]` <br> e.g., `add consultation D/2022-10-24 t/18:00-20:00 v/COM1-0205 m/CS2103T n/JakeKim d/past year papers`
+**Delete Consultation** | `delete consultation INDEX` <br> e.g., `delete consultation 3`
+**Clear Consultation** | `clear consultation` <br> e.g., `clear consultation`
+**Add Reminder** | `add reminder n/NAME T/DEADLINE p/PRIORITY d/DESCRIPTION` <br> e.g., `add reminder n/mark T/2022-03-21 p/HIGH d/300 papers to mark`
+**Delete Reminder** | `delete reminder INDEX` <br> e.g., `delete reminder 3`
+**Mark Reminder** | `mark reminder INDEX` <br> e.g., `mark reminder 3`
+**Unmark Reminder** | `unmark reminder INDEX` <br> e.g., `unmark reminder 3`
+**Sort Reminder** | `sort reminder` <br> e.g., `sort reminder`
+**Clear Reminder** | `clear reminder` <br> e.g., `clear reminder`
 **Help** | `help`
