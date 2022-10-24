@@ -56,21 +56,24 @@ public class UniquePersonListTest {
     public void contains_personWithSameIdentityFieldsInList_returnsTrue() {
         uniquePersonList.add(ALICE);
         Person editedAlice = new PersonBuilder(ALICE)
+                .withName(VALID_NAME_BOB)
                 .withPhone(VALID_PHONE_BOB)
                 .withAddress(VALID_ADDRESS_BOB)
                 .withGender(VALID_GENDER_BOB)
                 .withGraduationDate(VALID_GRADUATION_DATE_BOB)
                 .withUniversity(VALID_UNIVERSITY_BOB)
                 .withMajor(VALID_MAJOR_BOB)
+                .withTitle(VALID_JOB_TITLE_BOB)
                 .withCap(VALID_CAP_VALUE_BOB, VALID_MAXIMUM_CAP_VALUE_BOB)
                 .withTags(VALID_TAG_KIV).build();
         assertTrue(uniquePersonList.contains(editedAlice));
     }
 
     @Test
-    public void contains_personWithSameNameEmailInList_returnsFalse() {
+    public void contains_personWithSameEmailInList_returnsFalse() {
         uniquePersonList.add(ALICE);
         Person editedAlice = new PersonBuilder(ALICE)
+                .withName(VALID_NAME_BOB)
                 .withPhone(VALID_PHONE_BOB)
                 .withAddress(VALID_ADDRESS_BOB)
                 .withGender(VALID_GENDER_BOB)
@@ -85,7 +88,7 @@ public class UniquePersonListTest {
     }
 
     @Test
-    public void contains_personWithSameJobInList_returnsFalse() {
+    public void contains_personWithSameJobIdInList_returnsFalse() {
         uniquePersonList.add(ALICE);
         Person editedAlice = new PersonBuilder(ALICE)
                 .withName(VALID_NAME_BOB)
@@ -154,6 +157,7 @@ public class UniquePersonListTest {
     public void add_personWithSameIdentityFields_throwsDuplicatePersonException() {
         uniquePersonList.add(ALICE);
         Person editedAlice = new PersonBuilder(ALICE)
+                .withName(VALID_NAME_BOB)
                 .withPhone(VALID_PHONE_BOB)
                 .withAddress(VALID_ADDRESS_BOB)
                 .withGender(VALID_GENDER_BOB)
@@ -166,9 +170,10 @@ public class UniquePersonListTest {
     }
 
     @Test
-    public void add_personWithSameEmailName_success() {
+    public void add_personWithSameEmail_success() {
         uniquePersonList.add(ALICE);
         Person editedAlice = new PersonBuilder(ALICE)
+                .withName(VALID_NAME_BOB)
                 .withPhone(VALID_PHONE_BOB)
                 .withAddress(VALID_ADDRESS_BOB)
                 .withGender(VALID_GENDER_BOB)
@@ -183,7 +188,7 @@ public class UniquePersonListTest {
     }
 
     @Test
-    public void add_personWithSameJob_success() {
+    public void add_personWithSameJobId_success() {
         uniquePersonList.add(ALICE);
         Person editedAlice = new PersonBuilder(ALICE)
                 .withName(VALID_NAME_BOB)
@@ -227,6 +232,7 @@ public class UniquePersonListTest {
     public void setPerson_editedPersonHasSameIdentity_success() {
         uniquePersonList.add(ALICE);
         Person editedAlice = new PersonBuilder(ALICE)
+                .withName(VALID_NAME_BOB)
                 .withPhone(VALID_PHONE_BOB)
                 .withAddress(VALID_ADDRESS_BOB)
                 .withGender(VALID_GENDER_BOB)
