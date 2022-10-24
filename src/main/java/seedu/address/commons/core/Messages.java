@@ -11,6 +11,6 @@ public class Messages {
     public static final String MESSAGE_INVALID_CLIENT_DISPLAYED_INDEX = "The client index provided is invalid";
     public static final String MESSAGE_INVALID_LISTING_ID = "The listing ID provided is invalid";
     public static final String MESSAGE_PERSONS_LISTED_OVERVIEW = "%1$d persons listed!";
+    public static final String MESSAGE_INVALID_OFFER_DISPLAYED_INDEX = "The offer index provided is invalid";
     public static final String MESSAGE_CLIENTS_LISTED_OVERVIEW = "%1$d clients listed!";
-
 }
