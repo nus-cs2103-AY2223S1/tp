@@ -33,7 +33,7 @@ You can reach us at the email `seer[at]comp.nus.edu.sg`
 
 <img src="images/agarwal-anjali.png" width="200px">
 
-[[github](http://github.com/agarwal-anjali)] 
+[[github](http://github.com/agarwal-anjali)]
 [[portfolio](team/agarwal-anjali.md)]
 
 * Role: Developer

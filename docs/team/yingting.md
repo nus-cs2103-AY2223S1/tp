@@ -5,7 +5,7 @@ title: Tan Ying Ting' Project Portfolio Page
 
 ### Project: CLInkedIn
 
-CLInkedIn is a Java application made for recruiters to manage their of candidates.  
+CLInkedIn is a Java application made for recruiters to manage their of candidates.
 CLInkedIn operates mainly using a Command Line Interface (CLI), but still has a Graphical User Interface (GUI) made with JavaFX for improved user experience.
 
 Given below are my contributions to the project.
@@ -26,10 +26,10 @@ Given below are my contributions to the project.
     * Developer Guide:
         - Added Glossary
         - Added Non-functional requirements
-      
+
     * User Guide:
         - Added documentation for the `find` feature
-      
+  
 * **Community**:
 
 
