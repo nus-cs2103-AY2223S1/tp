@@ -33,7 +33,7 @@ public class ScheduleListPanel extends UiPart<Region> {
     /**
      * Custom {@code ListCell} that displays the graphics of a {@code Schedule} using a {@code ScheduleCard}.
      */
-    static class ScheduleListViewCell extends ListCell<Schedule> {
+    public static class ScheduleListViewCell extends ListCell<Schedule> {
         @Override
         protected void updateItem(Schedule schedule, boolean empty) {
             super.updateItem(schedule, empty);

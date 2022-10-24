@@ -11,7 +11,7 @@
 <HBox id="modulePane" fx:id="modulePane" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1">
     <HBox HBox.hgrow="SOMETIMES">
         <VBox alignment="CENTER_LEFT" minHeight="105" >
-            <FlowPane fx:id="tags" />
+            <FlowPane fx:id="tags" alignment="CENTER_LEFT" prefWidth="100" />
             <HBox alignment="CENTER_LEFT" spacing="5">
                 <Label fx:id="moduleName" styleClass="cell_big_label" text="\$moduleName">
                     <padding>

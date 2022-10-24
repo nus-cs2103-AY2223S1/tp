@@ -13,6 +13,8 @@ import javafx.scene.layout.Region;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.module.Module;
 import seedu.address.model.module.schedule.Schedule;
+import seedu.address.ui.schedule.ScheduleListPanel;
+
 
 /**
  * Panel containing the list of modules.

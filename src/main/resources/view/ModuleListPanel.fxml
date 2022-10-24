@@ -4,6 +4,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.layout.BorderPane?>
 <HBox minWidth="300" prefWidth="300" >
 
     <VBox xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" styleClass="pane-with-border">
@@ -19,9 +20,11 @@
             <Insets top="10" right="10" bottom="10" left="10" />
         </padding>
         <ListView fx:id="targetModuleView" />
-            <padding>
-                <Insets top="10" right="10" bottom="10" left="10" />
-            </padding>
-        <ListView fx:id="scheduleListView" />
+        <BorderPane>
+        </BorderPane>
+        <ListView fx:id="scheduleListView" style="list-cell"/>
+        <padding>
+            <Insets top="10" right="10" bottom="10" left="10" />
+        </padding>
     </VBox>
 </HBox>
