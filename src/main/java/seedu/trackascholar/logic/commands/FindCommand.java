@@ -28,7 +28,7 @@ public class FindCommand extends Command {
             + "[" + PREFIX_MAJOR + "ROUND]... \n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_NAME + "Sam "
-            + PREFIX_SCHOLARSHIP + " Software Engineer "
+            + PREFIX_SCHOLARSHIP + "NUS Merit Scholarship "
             + PREFIX_MAJOR + "Software Engineering "
             + PREFIX_MAJOR + "Mathematics";
 
