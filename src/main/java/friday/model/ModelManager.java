@@ -10,6 +10,8 @@ import java.util.logging.Logger;
 
 import friday.commons.core.GuiSettings;
 import friday.commons.core.LogsCenter;
+import friday.model.alias.Alias;
+import friday.model.alias.ReservedKeyword;
 import friday.model.student.Student;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
@@ -112,6 +114,38 @@ public class ModelManager implements Model {
         requireAllNonNull(target, editedStudent);
 
         friday.setStudent(target, editedStudent);
+    }
+
+    @Override
+    public boolean hasAlias(String alias) {
+        requireNonNull(alias);
+        return friday.hasAlias(alias);
+    }
+
+    @Override
+    public boolean hasAlias(Alias alias) {
+        requireNonNull(alias);
+        return friday.hasAlias(alias);
+    }
+
+    @Override
+    public void addAlias(Alias toAdd, ReservedKeyword keyword) {
+        friday.addAlias(toAdd, keyword);
+    }
+
+    @Override
+    public void removeAlias(Alias key) {
+        friday.removeAlias(key);
+    }
+
+    @Override
+    public String getKeyword(String key) {
+        return friday.getKeyword(key);
+    }
+
+    @Override
+    public String displayAliases() {
+        return friday.displayAliases();
     }
 
     //=========== Filtered Student List Accessors =============================================================

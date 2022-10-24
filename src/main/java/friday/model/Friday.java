@@ -3,7 +3,12 @@ package friday.model;
 import static java.util.Objects.requireNonNull;
 
 import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
+import friday.model.alias.Alias;
+import friday.model.alias.AliasMap;
+import friday.model.alias.ReservedKeyword;
 import friday.model.student.Student;
 import friday.model.student.UniqueStudentList;
 import javafx.collections.ObservableList;
@@ -16,6 +21,7 @@ public class Friday implements ReadOnlyFriday {
 
 
     private final UniqueStudentList students;
+    private final AliasMap aliases;
 
     /*
      * The 'unusual' code block below is a non-static initialization block, sometimes used to avoid duplication
@@ -26,6 +32,7 @@ public class Friday implements ReadOnlyFriday {
      */
     {
         students = new UniqueStudentList();
+        aliases = new AliasMap();
     }
 
     public Friday() {}
@@ -49,12 +56,20 @@ public class Friday implements ReadOnlyFriday {
     }
 
     /**
+     * Replaces the contents of the alias map with alias, keyword pair.
+     */
+    public void setAliases(Set<Map.Entry<String, String>> aliases) {
+        this.aliases.setAliases(aliases);
+    }
+
+    /**
      * Resets the existing data of {@code FRIDAY} with {@code newData}.
      */
     public void resetData(ReadOnlyFriday newData) {
         requireNonNull(newData);
 
         setStudents(newData.getStudentList());
+        setAliases(newData.getAliasMap());
     }
 
     //// student-level operations
@@ -94,6 +109,56 @@ public class Friday implements ReadOnlyFriday {
         students.remove(key);
     }
 
+    //// alias-level operations
+
+    /**
+     * Returns true if an alias with the same identity as {@code alias} exists in FRIDAY.
+     */
+    public boolean hasAlias(String alias) {
+        requireNonNull(alias);
+        return aliases.contains(alias);
+    }
+
+    /**
+     * Returns true if an alias with the same identity as {@code alias} exists in FRIDAY.
+     */
+    public boolean hasAlias(Alias alias) {
+        requireNonNull(alias);
+        return aliases.contains(alias.toString());
+    }
+
+    /**
+     * Adds an alias that maps to keyword to FRIDAY.
+     * The alias must not already exist in FRIDAY.
+     * The keyword must be a valid reserved keyword.
+     */
+    public void addAlias(Alias toAdd, ReservedKeyword keyword) {
+        aliases.add(toAdd, keyword);
+    }
+
+    /**
+     * Removes {@code key} from this {@code FRIDAY}.
+     * {@code key} must exist in FRIDAY.
+     */
+    public void removeAlias(Alias key) {
+        aliases.remove(key);
+    }
+
+    /**
+     * Returns the keyword map by a {@code key}.
+     * {@code key} must exist in FRIDAY.
+     */
+    public String getKeyword(String key) {
+        return aliases.getKeyword(key);
+    }
+
+    /**
+     * Returns the String representation of all aliases in FRIDAY.
+     */
+    public String displayAliases() {
+        return aliases.displayAliases();
+    }
+
     //// util methods
 
     @Override
@@ -108,10 +173,16 @@ public class Friday implements ReadOnlyFriday {
     }
 
     @Override
+    public Set<Map.Entry<String, String>> getAliasMap() {
+        return aliases.entrySet();
+    }
+
+    @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof Friday // instanceof handles nulls
-                && students.equals(((Friday) other).students));
+                && students.equals(((Friday) other).students)
+                && aliases.equals(((Friday) other).aliases));
     }
 
     @Override

@@ -12,6 +12,8 @@ public class CliSyntax {
     public static final Prefix PREFIX_MASTERYCHECK = new Prefix("m/");
     public static final Prefix PREFIX_REMARK = new Prefix("r/");
     public static final Prefix PREFIX_TAG = new Prefix("tag/");
+    public static final Prefix PREFIX_ALIAS = new Prefix("a/");
+    public static final Prefix PREFIX_RESERVED_KEYWORD = new Prefix("k/");
     public static final Prefix PREFIX_RA1 = new Prefix("ra1/");
     public static final Prefix PREFIX_RA2 = new Prefix("ra2/");
     public static final Prefix PREFIX_PRACTICAL = new Prefix("pa/");
