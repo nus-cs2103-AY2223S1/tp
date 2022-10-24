@@ -5,6 +5,7 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
+import seedu.address.model.person.BirthdayMonth;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
@@ -64,7 +65,15 @@ public class EditPersonDescriptorBuilder {
     }
 
     /**
-     * Sets the {@code Address} of the {@code EditPersonDescriptor} that we are building.
+     * Sets the {@code BirthdayMonth} of the {@code EditPersonDescriptor} that we are building.
+     */
+    public EditPersonDescriptorBuilder withBirthdayMonth(String birthdayMonth) {
+        descriptor.setBirthdayMonth(new BirthdayMonth(birthdayMonth));
+        return this;
+    }
+
+    /**
+     * Sets the {@code Reward} of the {@code EditPersonDescriptor} that we are building.
      */
     public EditPersonDescriptorBuilder withReward(String address) {
         descriptor.setReward(new Reward(address));

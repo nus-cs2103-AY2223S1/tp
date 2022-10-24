@@ -43,12 +43,22 @@ public class BirthdayMonth {
      * Returns true if a given string is a valid birthdayMonth.
      */
     public static boolean isValidBirthdayMonth(String test) {
-        return test.matches(VALIDATION_REGEX) && Integer.valueOf(test) > 0 && Integer.valueOf(test) < 13;
+        return test.matches(VALIDATION_REGEX) && isNumeric(test)
+            && Integer.valueOf(test) > 0 && Integer.valueOf(test) < 13;
+    }
+
+    private static boolean isNumeric(String str) {
+        try {
+            Integer.parseInt(str);
+            return true;
+        } catch (NumberFormatException e){
+            return false;
+        }
     }
 
     @Override
     public String toString() {
-        return monthString;
+        return value;
     }
 
     @Override

@@ -9,6 +9,7 @@ import java.util.Set;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.person.BirthdayMonth;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
@@ -66,10 +67,25 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String address} into an {@code Address}.
+     * Parses a {@code String birthdayMonth} into an {@code BirthdayMonth}.
      * Leading and trailing whitespaces will be trimmed.
      *
-     * @throws ParseException if the given {@code address} is invalid.
+     * @throws ParseException if the given {@code birthdayMonth} is invalid.
+     */
+    public static BirthdayMonth parseBirthdayMonth(String birthdayMonth) throws ParseException {
+        requireNonNull(birthdayMonth);
+        String trimmedBirthdayMonth = birthdayMonth.trim();
+        if (!BirthdayMonth.isValidBirthdayMonth(trimmedBirthdayMonth)) {
+            throw new ParseException(BirthdayMonth.MESSAGE_CONSTRAINTS);
+        }
+        return new BirthdayMonth(trimmedBirthdayMonth);
+    }
+
+    /**
+     * Parses a {@code String reward} into an {@code Reward}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code reward} is invalid.
      */
     public static Reward parseReward(String reward) throws ParseException {
         requireNonNull(reward);
