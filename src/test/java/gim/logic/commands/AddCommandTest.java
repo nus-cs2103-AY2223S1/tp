@@ -149,7 +149,8 @@ public class AddCommandTest {
         public void resetDisplayedList() {
             throw new AssertionError("This method should not be called.");
         }
-        
+
+        @Override
         public ExerciseHashMap getExerciseHashMap() {
             throw new AssertionError("This method should not be called.");
         }

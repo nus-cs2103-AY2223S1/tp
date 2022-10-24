@@ -78,9 +78,14 @@ public interface Model {
      */
     void setExercise(Exercise target, Exercise editedExercise);
 
-    /** Returns an unmodifiable view of the filtered exercise list */
+    /**
+     * Returns an unmodifiable view of the filtered exercise list.
+     */
     ObservableList<Exercise> getFilteredExerciseList();
-    /** Returns a copy of the hashmap of Exercises stored. */
+
+    /**
+     * Returns a copy of the hashmap of Exercises stored.
+     */
     ExerciseHashMap getExerciseHashMap();
 
     /**
