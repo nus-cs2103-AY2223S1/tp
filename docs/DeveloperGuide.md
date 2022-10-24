@@ -91,7 +91,7 @@ The `LoginWindow` is a separate window that is displayed when the user first sta
 The `LoginWindow` is responsible for authenticating the user and retrieving the user's data from the `Storage` component.
 The `LoginWindow` will then pass the user's data to the `MainWindow` so that the `MainWindow` can display the user's data.
 
-`LoginWindow` inherits from the abstract `UiPart` class, just like the `MainWindow`. 
+`LoginWindow` inherits from the abstract `UiPart` class, just like the `MainWindow`.
 As of 20/10/2022, it consists of 2 `TextBox` FXML components and a "submit" `Button` FXML component.
 
 We plan to add a new UI component in our implementation: the `ImportCSVButton`.
@@ -171,6 +171,21 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 ## **Implementation**
 
 This section describes some noteworthy details on how certain features are implemented.
+
+### \[Proposed\] Sort feature
+
+#### Proposed Implementation
+
+The proposed sort command consists of these following classes:
+
+- `SortCommand` which extends `Command`
+- `SortCommandParser` which extends `Parser<SortCommand>`
+  
+As with all other commands, the sort command has a `Parser` subclass that goes through the `AddressBookParser` and a `Command` subclass that returns an appropriate new `CommandResult` Object. It sorts the list of students by their grades or attendance.
+
+Primarily there are two proposed cases for this command,
+- sort by grade - e.g.`sort g`
+- sort by attendance - e.g. `sort a`
 
 ### \[Proposed\] Undo/redo feature
 
@@ -288,14 +303,14 @@ _{Explain here how the data archiving feature will be implemented}_
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                | I can …​                                     | So that…​                                               |
-| -------- | -------------------------------------- | -------------------------------------------- | ------------------------------------------------------- | --- | --- | --- |
+| Priority | As a ... | I want to ... | so that I can ... |
+| -------- | -------------------------------------- | -------------------------------------------- | ------------------------------------------------------- | 
 | `* * *`  | policeman                              | find a person using part of their ID or name | I can retrieve the person's details quickly             |
 | `* * *`  | backend law enforcement staff          | add people and their details into Sherlock   | these information can be quickly and easily accessible  |
 | `* * *`  | policeman                              | see a person's full criminal history         |                                                         |
 | `* * *`  | detective                              | edit a person's details in Sherlock          | I can update the system with new information            |
 | `* *`    | law enforcement security officer       | allow only specific users into the system    | the information stored in Sherlock remains confidential |
-| `*`      | law enforcement administrative officer | import information from existing databases   | I can set up Sherlock quickly                           |     |     |     |
+| `*`      | law enforcement administrative officer | import information from existing databases   | I can set up Sherlock quickly                           | 
 
 _{User Stories to be updated according to new project direction}_
 
@@ -395,14 +410,29 @@ testers are expected to do more *exploratory* testing.
 
     1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
 
-    1. Test case: `findSubject math`<br>
+    2. Test case: `findSubject math`<br>
        Expected: All persons that have the subject `math` in the list will be shown in a new list. Timestamp in the status bar is updated.
 
-    1. Test case: `findSubject engrish`<br>
+    3. Test case: `findSubject engrish`<br>
        Expected: No person will be shown in a new list. Status bar remains the same.
 
-    1. Other incorrect delete commands to try: `findSubject`, `findSubject x`, `...` (where x is a misspelled subject)<br>
+    4. Other incorrect delete commands to try: `findSubject`, `findSubject x`, `...` (where x is a misspelled subject)<br>
        Expected: Similar to previous.
+2. Finding persons that belongs in the same class.
+
+    1. Prerequisites: List all persons using the `list` command. Multiple persons in the list.
+
+    2. Test case 1: `find c/1A`<br>
+        Expected: All persons that are in class 1A will be shown in a new list. Timestamp in the status bar is updated.
+
+    3. Test case 2: `find c/1a`<br>
+       Expected: Same result as Test case 1. Keywords given by user after `c/` are not case sensitive.
+
+    4. Test case 3: `find c/2b`<br>
+       Expected: No person will be shown in a new list as no one is in class 2B. Status bar remains the same.
+
+    5. Other incorrect find commands to try: `find c/`, `find c/ `, `find c/x` (where x is a non-existent class)<br>
+       Expected: Similar to Test case 3.
 
 ### Deleting a person
 

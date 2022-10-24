@@ -22,6 +22,8 @@ public class SubjectContainsKeywordsPredicate implements Predicate<Person> {
     }
 
     private boolean arrayListContainsWord(ArrayList<String> arrayList, String keyword) {
+        assert arrayList != null : "List cannot be null";
+        assert keyword != null : "Keyword cannot be null";
         for (String string : arrayList) {
             if (string.equals(keyword)) {
                 return true;

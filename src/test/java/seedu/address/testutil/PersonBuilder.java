@@ -3,16 +3,17 @@ package seedu.address.testutil;
 import java.util.HashSet;
 import java.util.Set;
 
+import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Address;
+import seedu.address.model.person.Attendance;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.person.Remark;
 import seedu.address.model.person.StudentClass;
-import seedu.address.model.person.subject.Attendance;
 import seedu.address.model.person.subject.Grades;
-import seedu.address.model.person.subject.SubjectHandler;
+import seedu.address.model.person.subject.Subject;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.util.SampleDataUtil;
 
@@ -40,7 +41,7 @@ public class PersonBuilder {
     private StudentClass studentClass;
     private Set<Remark> remarks;
     private Attendance attendance;
-    private SubjectHandler subjectHandler;
+    private Set<Subject> subjects;
     private Grades grades;
     private Set<Tag> tags;
 
@@ -53,8 +54,9 @@ public class PersonBuilder {
         email = new Email(DEFAULT_EMAIL);
         address = new Address(DEFAULT_ADDRESS);
         studentClass = new StudentClass(DEFAULT_STUDENTCLASS);
+        attendance = new Attendance();
         remarks = new HashSet<>();
-        subjectHandler = new SubjectHandler();
+        subjects = new HashSet<>();
         tags = new HashSet<>();
     }
 
@@ -67,8 +69,9 @@ public class PersonBuilder {
         email = personToCopy.getEmail();
         address = personToCopy.getAddress();
         studentClass = personToCopy.getStudentClass();
+        attendance = personToCopy.getAttendance();
         remarks = new HashSet<>(personToCopy.getRemarks());
-        subjectHandler = personToCopy.getSubjectHandler();
+        subjects = personToCopy.getSubjectsTaken();
         tags = new HashSet<>(personToCopy.getTags());
     }
 
@@ -121,6 +124,18 @@ public class PersonBuilder {
     }
 
     /**
+     * Sets the {@code Clazz} of the {@code Person} that we are building.
+     */
+    public PersonBuilder withAttendance(String withAttendance) {
+        try {
+            this.attendance = new Attendance(Attendance.parseAttendanceFromJson(withAttendance));
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        return this;
+    }
+
+    /**
      * Sets the {@code Remark} of the {@code Person} that we are building.
      */
     public PersonBuilder withRemarks(String... remarks) {
@@ -132,7 +147,7 @@ public class PersonBuilder {
      * Builds a person object given the attributes
      */
     public Person build() {
-        return new Person(name, phone, email, address, studentClass, remarks,
-                          subjectHandler, tags);
+        return new Person(name, phone, email, address, studentClass, attendance, remarks,
+                          subjects, tags);
     }
 }

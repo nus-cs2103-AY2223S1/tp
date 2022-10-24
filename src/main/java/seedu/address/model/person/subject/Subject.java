@@ -18,9 +18,6 @@ public class Subject {
     public static final String VALIDATION_REGEX = "^[a-zA-Z]*$";
 
     public final String subjectName;
-
-    private final Attendance attendance;
-
     private final Grades grades;
 
     /**
@@ -33,7 +30,6 @@ public class Subject {
         checkArgument(isValidSubject(subjectName), MESSAGE_CONSTRAINTS);
 
         this.subjectName = subjectName;
-        this.attendance = new Attendance();
         this.grades = new Grades();
     }
 
@@ -61,20 +57,12 @@ public class Subject {
      * @param assessmentName the assessment to get the grade for
      * @return the grade for the assessment specified
      */
-    public double getGradeForAssessment(String assessmentName) {
+    public double[] getGradeForAssessment(String assessmentName) {
         return grades.getGradeForAssessment(assessmentName);
     }
 
-    /**
-     * Gets the attendance for this subject object
-     * @return the Attendance object for this subject
-     */
-    public Attendance getAttendance() {
-        return attendance;
-    }
-
-    public void updateAttendance(String updatedAttendance) {
-        attendance.updateAttendance(updatedAttendance);
+    public Grades getGrades() {
+        return grades;
     }
 
     @Override
@@ -93,5 +81,4 @@ public class Subject {
     public String toString() {
         return subjectName;
     }
-
 }
