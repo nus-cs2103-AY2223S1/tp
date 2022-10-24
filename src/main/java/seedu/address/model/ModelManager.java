@@ -5,17 +5,17 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
+import java.util.Comparator;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
+import javafx.collections.transformation.SortedList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.person.Person;
 import seedu.address.model.task.Task;
-
-
 
 
 /**
@@ -28,6 +28,7 @@ public class ModelManager implements Model {
     private final UserPrefs userPrefs;
     private final FilteredList<Person> filteredPersons;
     private final FilteredList<Task> filteredTasks;
+    private final SortedList<Task> sortedTasks;
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
@@ -40,7 +41,8 @@ public class ModelManager implements Model {
         this.addressBook = new AddressBook(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
         filteredPersons = new FilteredList<>(this.addressBook.getPersonList());
-        filteredTasks = new FilteredList<>(this.addressBook.getTaskList());
+        sortedTasks = new SortedList<>(this.addressBook.getTaskList());
+        filteredTasks = new FilteredList<>(sortedTasks);
     }
 
     public ModelManager() {
@@ -138,7 +140,6 @@ public class ModelManager implements Model {
     @Override
     public void setTask(Task target, Task editedTask) {
         requireAllNonNull(target, editedTask);
-
         addressBook.setTask(target, editedTask);
     }
 
@@ -174,6 +175,12 @@ public class ModelManager implements Model {
     public void updateFilteredTaskList(Predicate<Task> predicate) {
         requireNonNull(predicate);
         filteredTasks.setPredicate(predicate);
+    }
+
+    @Override
+    public void updateFilteredTaskList(Comparator<Task> comparator) {
+        requireNonNull(comparator);
+        sortedTasks.setComparator(comparator);
     }
 
     @Override
