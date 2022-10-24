@@ -368,17 +368,28 @@ Clears all patient entries in the displayed patient list.
 
 Format: `clear`
 
+Examples:
+* `list` followed by `clear` will delete all patients.
+* `find Betsy` followed by `clear` deletes all patients in the results of the `find` command.
+
 ### Undo last command: `undo`
 
 Undoes the last command which modifies the patient or task list, which includes `add`, `edit`, `delete`, and `clear` commands.
 
 Format: `undo`
 
+Examples:
+* `delete -p 2` followed by `undo` has the same effect as not doing the `delete` command.
+* `delete -p 2` followed by `list`, then followed by `undo` will undo the `delete` command.
+
 ### Reverse undo command: `redo`
 
 Undoes the last `undo` command.
 
 Format: `redo`
+
+Example:
+* `undo` followed by `redo` has the same effect as not doing the `undo` command.
 
 ### Exiting the program: `exit`
 
