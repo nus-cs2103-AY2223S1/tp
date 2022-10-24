@@ -211,4 +211,14 @@ public class EditCommandParserTest {
 
         assertParseSuccess(parser, userInput, expectedCommand);
     }
+
+    @Test
+    public void parse_noModeTag_invalidCommand() {
+        Index targetIndex = INDEX_THIRD_CLIENT;
+        String userInput = targetIndex.getOneBased() + VALID_PRICE;
+
+        String expectedMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditCommand.MESSAGE_USAGE);
+
+        assertParseFailure(parser, userInput, expectedMessage);
+    }
 }
