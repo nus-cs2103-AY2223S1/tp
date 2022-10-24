@@ -6,7 +6,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.phu.testutil.Assert.assertThrows;
 
 import org.junit.jupiter.api.Test;
-import seedu.phu.logic.commands.CommandResult;
+
 
 public class UserPrefsTest {
 
