@@ -49,9 +49,28 @@
     -fx-border-radius: 10px;
 }
 
+/* This is the styling of text inside "Enter command here..." box. */
+#commandTypeLabel {
+    -fx-font-size: 11px;
+    -fx-text-fill: #F70D1A;
+}
+
+#commandTextField {
+    -fx-background-color: transparent;
+    -fx-background-insets: 0;
+    -fx-background-radius: 10px;
+    -fx-border-color: transparent;
+    -fx-border-insets: 0;
+    -fx-border-radius: 10px;
+    -fx-border-width: 1;
+    -fx-font-family: "Karla";
+    -fx-font-size: 13pt;
+    -fx-text-fill: white;
+}
+
 /*
  * This is the styling for the result description after entering command.
- * It is a placeholder for texts like "Unknown command."
+ * It is a placeholder for texts like "Unknown command." #3519D3
  */
 .result-display {
     -fx-background-color: transparent;
@@ -61,6 +80,16 @@
     -fx-border-radius: 10px;
     -fx-font-size: 13pt;
     -fx-text-fill: white;
+}
+
+.text-area #resultDisplay {
+    -fx-background-color: transparent;
+}
+
+#resultDisplay .content {
+    -fx-background-color: #3519D3;
+    -fx-background-radius: 10px;
+    -fx-wrap-text: true;
 }
 
 .result-display .label {
@@ -195,6 +224,7 @@
 /* This is the styling for scrolling vertical bar beside Command Result Display, Contact and Todo. */
 .scroll-bar {
     -fx-background-color: #060959;
+    -fx-background-radius: 10px;
     -fx-border-color: transparent;
 }
 
@@ -218,38 +248,6 @@
 
 .scroll-bar:horizontal .increment-arrow, .scroll-bar:horizontal .decrement-arrow {
     -fx-padding: 8 1 8 1;
-}
-
-#cardPane {
-    -fx-background-color: transparent;
-    -fx-border-width: 0;
-}
-
-#commandTypeLabel {
-    -fx-font-size: 11px;
-    -fx-text-fill: #F70D1A;
-}
-
-#commandTextField {
-    -fx-background-color: transparent;
-    -fx-background-insets: 0;
-    -fx-background-radius: 10px;
-    -fx-border-color: transparent;
-    -fx-border-insets: 0;
-    -fx-border-radius: 10px;
-    -fx-border-width: 1;
-    -fx-font-family: "Karla";
-    -fx-font-size: 13pt;
-    -fx-text-fill: white;
-}
-
-#filterField, #personListPanel, #personWebpage {
-    -fx-effect: innershadow(gaussian, #060959, 10, 0, 0, 0);
-}
-
-#resultDisplay .content {
-    -fx-background-color: #3519D3;
-    -fx-wrap-text: true;
 }
 
 #attributeA {
@@ -450,4 +448,13 @@
     -fx-font-style: italic;
     -fx-fill: white;
     -fx-text-fill: white;
+}
+
+#cardPane {
+    -fx-background-color: transparent;
+    -fx-border-width: 0;
+}
+
+#filterField, #personListPanel, #personWebpage {
+    -fx-effect: innershadow(gaussian, #060959, 10, 0, 0, 0);
 }
