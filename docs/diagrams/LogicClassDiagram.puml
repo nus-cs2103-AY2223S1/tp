@@ -6,14 +6,18 @@ skinparam classBackgroundColor LOGIC_COLOR
 
 package Logic {
 
-Class AddressBookParser
-Class XYZCommand
+Class LogicManager
+Class NuSchedulerParser
+Class XCommandParser
+Class ZXCommandParser
+Class ZXCommand
+Class YCommand
+Class XCommand
 Class CommandResult
 Class "{abstract}\nCommand" as Command
 
 
 Class "<<interface>>\nLogic" as Logic
-Class LogicManager
 }
 
 package Model{
@@ -27,10 +31,16 @@ Class HiddenOutside #FFFFFF
 HiddenOutside ..> Logic
 
 LogicManager .right.|> Logic
-LogicManager -right->"1" AddressBookParser
-AddressBookParser ..> XYZCommand : creates >
+LogicManager --->"1" NuSchedulerParser
+NuSchedulerParser ..> XCommandParser : creates >
+XCommandParser ..> ZXCommandParser : creates >
+ZXCommandParser ..> ZXCommand : creates >
 
-XYZCommand -up-|> Command
+NuSchedulerParser ..> YCommand : creates >
+
+XCommand -up-|> Command
+ZXCommand -up-|> XCommand
+YCommand -up-|> Command
 LogicManager .left.> Command : executes >
 
 LogicManager --> Model
@@ -38,7 +48,9 @@ LogicManager --> Storage
 Storage --[hidden] Model
 Command .[hidden]up.> Storage
 Command .right.> Model
-note right of XYZCommand: XYZCommand = AddCommand, \nFindCommand, etc
+note right of ZXCommand: ZXCommand = AddProfileCommand, \nFindEventCommand, etc
+note right of YCommand: YCommand = ClearCommand, \nExitCommand, etc
+note right of XCommand: XCommand = ProfileCommand, \nEventCommand, etc
 
 Logic ..> CommandResult
 LogicManager .down.> CommandResult

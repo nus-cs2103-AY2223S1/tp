@@ -163,6 +163,7 @@ public class ParserUtilTest {
     @Test
     public void parseDateTime_validValueWithoutWhitespace_returnsDateTime() throws Exception {
         DateTime expectedDateTime = new DateTime(VALID_DATETIME);
+        ParserUtil.parseDateTime(VALID_DATETIME);
         assertEquals(expectedDateTime, ParserUtil.parseDateTime(VALID_DATETIME));
     }
 
