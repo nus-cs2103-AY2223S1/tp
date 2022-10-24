@@ -13,8 +13,13 @@ public class CommandSuggestorTest {
     private final CommandSuggestor commandSuggestor = new CommandSuggestor();
 
     @Test
-    public void autocomplete_emptyString_failure() {
+    public void suggestCommand_emptyString_failure() {
         assertThrows(AssertionError.class, () -> commandSuggestor.suggestCommand(""));
+    }
+
+    @Test
+    public void suggestCommand_null_failure() {
+        assertThrows(AssertionError.class, () -> commandSuggestor.suggestCommand(null));
     }
 
     @Test
