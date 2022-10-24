@@ -54,8 +54,8 @@
 }
 
 .result-placeholder {
-  -fx-min-height: 100;
-  -fx-pref-height: 100;
+  -fx-min-height: 300;
+  -fx-pref-height: 300;
 }
 
 .command-box > TextField,
