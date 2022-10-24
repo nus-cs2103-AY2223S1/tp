@@ -140,7 +140,7 @@ public class Person {
      * by its tags.
      *
      */
-    public Integer getGroupNumber() {
+    public int getGroupNumber() {
         Set<Tag> tags = this.getTags();
         if (tags.isEmpty()) {
             return 0;
