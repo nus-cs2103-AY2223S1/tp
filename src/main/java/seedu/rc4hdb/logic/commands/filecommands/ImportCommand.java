@@ -1,6 +1,7 @@
-package seedu.rc4hdb.logic.commands.filecommands.csvfilecommands;
+package seedu.rc4hdb.logic.commands.filecommands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.rc4hdb.commons.core.FilePostfixes.CSV_POSTFIX;
 
 import java.io.IOException;
 import java.nio.file.FileAlreadyExistsException;
@@ -18,7 +19,7 @@ import seedu.rc4hdb.storage.Storage;
  * Converts the CSV file data into JSON format and create a new JSON file, with the same name as the original CSV file,
  * with the data from the CSV file, in JSON format.
  */
-public class ImportCommand extends CsvFileCommand implements StorageCommand {
+public class ImportCommand extends FileCommand implements StorageCommand {
 
     public static final String COMMAND_WORD = "import";
 
@@ -30,16 +31,18 @@ public class ImportCommand extends CsvFileCommand implements StorageCommand {
 
     public static final String MESSAGE_INVALID_FILE_DATA = "Failed to import from %s.\n%s";
 
-    private Path newJsonFilePath;
+    private final Path csvFilePath;
+    private final String csvFileName;
 
     /**
      * Constructs an ImportCommand.
-     * @param dir the directory to work in.
-     * @param fileName the name of the file to be imported.
+     * @param dataDir the directory to work in.
+     * @param csvFileName the name of the file to be imported.
      */
-    public ImportCommand(Path dir, String fileName) {
-        super(dir, fileName);
-        newJsonFilePath = dir.resolve(fileName + JSON_POST_FIX);
+    public ImportCommand(Path dataDir, String csvFileName) {
+        super(dataDir.resolve(csvFileName));
+        this.csvFileName = csvFileName + CSV_POSTFIX;
+        csvFilePath = dataDir.resolve(csvFileName);
     }
 
     @Override
@@ -47,16 +50,16 @@ public class ImportCommand extends CsvFileCommand implements StorageCommand {
         requireNonNull(storage);
 
         try {
-            ReadOnlyResidentBook residentBook = storage.readCsvFile(folderPath).get();
-            storage.createResidentBookFile(newJsonFilePath);
-            storage.saveResidentBook(residentBook, newJsonFilePath);
-            return new CommandResult(String.format(MESSAGE_SUCCESS, folderName));
+            ReadOnlyResidentBook residentBook = storage.readCsvFile(csvFilePath).get();
+            storage.createDataFile(folderPath);
+            storage.saveResidentBook(residentBook, folderPath);
+            return new CommandResult(String.format(MESSAGE_SUCCESS, csvFileName));
         } catch (FileAlreadyExistsException e) {
-            throw new CommandException(String.format(MESSAGE_FILE_EXISTS, newJsonFilePath.getFileName()), e);
+            throw new CommandException(String.format(MESSAGE_FILE_EXISTS, folderName), e);
         } catch (NoSuchElementException e) {
-            throw new CommandException(String.format(MESSAGE_FILE_DOES_NOT_EXIST, folderName), e);
+            throw new CommandException(String.format(MESSAGE_FILE_DOES_NOT_EXIST, csvFileName), e);
         } catch (DataConversionException e) {
-            throw new CommandException(String.format(MESSAGE_INVALID_FILE_DATA, folderName, e.getMessage()), e);
+            throw new CommandException(String.format(MESSAGE_INVALID_FILE_DATA, csvFileName, e.getMessage()), e);
         } catch (IOException e) {
             throw new CommandException(String.format(MESSAGE_FAILED, "importing"), e);
         }

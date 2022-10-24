@@ -1,6 +1,7 @@
 package seedu.rc4hdb.storage.residentbook;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.rc4hdb.commons.core.FilePostfixes.JSON_POSTFIX;
 import static seedu.rc4hdb.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.io.IOException;
@@ -21,7 +22,7 @@ import seedu.rc4hdb.model.ResidentBook;
  */
 public class JsonResidentBookStorage implements ResidentBookStorage {
 
-    public static final String RESIDENT_DATA_PATH = "resident_data.json";
+    public static final String RESIDENT_DATA_PATH = "resident_data" + JSON_POSTFIX;
 
     private static final Logger logger = LogsCenter.getLogger(JsonResidentBookStorage.class);
 
@@ -68,7 +69,6 @@ public class JsonResidentBookStorage implements ResidentBookStorage {
         requireAllNonNull(residentBook, folderPath);
         Path filePath = getResidentBookFilePath(folderPath);
         logger.info(String.format("Attempting to save resident file data to: %s", filePath));
-        FileUtil.createIfMissing(filePath);
         JsonUtil.saveJsonFile(new JsonSerializableResidentBook(residentBook), filePath);
     }
 

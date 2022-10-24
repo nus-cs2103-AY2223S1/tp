@@ -13,7 +13,7 @@ import seedu.rc4hdb.logic.commands.filecommands.FileCommand;
 import seedu.rc4hdb.logic.commands.filecommands.FileCreateCommand;
 import seedu.rc4hdb.logic.commands.filecommands.FileDeleteCommand;
 import seedu.rc4hdb.logic.commands.filecommands.FileSwitchCommand;
-import seedu.rc4hdb.logic.commands.filecommands.csvfilecommands.ImportCommand;
+import seedu.rc4hdb.logic.commands.filecommands.ImportCommand;
 import seedu.rc4hdb.logic.commands.misccommands.HelpCommand;
 import seedu.rc4hdb.logic.parser.exceptions.ParseException;
 

@@ -1,13 +1,13 @@
 package seedu.rc4hdb.logic.commands.filecommands.csvfilecommands;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static seedu.rc4hdb.commons.core.FilePostfixes.CSV_POSTFIX;
+import static seedu.rc4hdb.commons.core.FilePostfixes.JSON_POSTFIX;
 import static seedu.rc4hdb.logic.commands.filecommands.FileCommand.MESSAGE_FAILED;
-import static seedu.rc4hdb.logic.commands.filecommands.csvfilecommands.CsvFileCommand.CSV_POSTFIX;
-import static seedu.rc4hdb.logic.commands.filecommands.csvfilecommands.ImportCommand.MESSAGE_FILE_DOES_NOT_EXIST;
-import static seedu.rc4hdb.logic.commands.filecommands.csvfilecommands.ImportCommand.MESSAGE_FILE_EXISTS;
-import static seedu.rc4hdb.logic.commands.filecommands.csvfilecommands.ImportCommand.MESSAGE_INVALID_FILE_DATA;
-import static seedu.rc4hdb.logic.commands.filecommands.csvfilecommands.ImportCommand.MESSAGE_SUCCESS;
-import static seedu.rc4hdb.logic.commands.filecommands.jsonfilecommands.JsonFileCommand.JSON_POSTFIX;
+import static seedu.rc4hdb.logic.commands.filecommands.ImportCommand.MESSAGE_FILE_DOES_NOT_EXIST;
+import static seedu.rc4hdb.logic.commands.filecommands.ImportCommand.MESSAGE_FILE_EXISTS;
+import static seedu.rc4hdb.logic.commands.filecommands.ImportCommand.MESSAGE_INVALID_FILE_DATA;
+import static seedu.rc4hdb.logic.commands.filecommands.ImportCommand.MESSAGE_SUCCESS;
 import static seedu.rc4hdb.testutil.Assert.assertThrows;
 
 import java.io.IOException;
@@ -21,6 +21,7 @@ import seedu.rc4hdb.commons.exceptions.DataConversionException;
 import seedu.rc4hdb.logic.commands.CommandResult;
 import seedu.rc4hdb.logic.commands.StorageCommand;
 import seedu.rc4hdb.logic.commands.exceptions.CommandException;
+import seedu.rc4hdb.logic.commands.filecommands.ImportCommand;
 import seedu.rc4hdb.model.ReadOnlyResidentBook;
 import seedu.rc4hdb.model.ResidentBook;
 import seedu.rc4hdb.storage.Storage;

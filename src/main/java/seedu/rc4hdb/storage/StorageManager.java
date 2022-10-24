@@ -6,10 +6,8 @@ import static seedu.rc4hdb.commons.util.CollectionUtil.requireAllNonNull;
 import java.io.IOException;
 import java.nio.file.Path;
 import java.util.Optional;
-import java.util.logging.Logger;
 
 import javafx.beans.value.ObservableValue;
-import seedu.rc4hdb.commons.core.LogsCenter;
 import seedu.rc4hdb.commons.exceptions.DataConversionException;
 import seedu.rc4hdb.model.ReadOnlyResidentBook;
 import seedu.rc4hdb.model.ReadOnlyUserPrefs;

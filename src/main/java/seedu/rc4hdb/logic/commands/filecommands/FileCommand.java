@@ -11,8 +11,6 @@ import seedu.rc4hdb.logic.commands.Command;
  */
 public abstract class FileCommand implements Command {
 
-    public static final String JSON_POST_FIX = ".json";
-
     public static final String COMMAND_WORD = "file";
 
     public static final String MESSAGE_FAILED = "Something unexpected occurred while %s your file.";

@@ -36,7 +36,8 @@ public class JsonSerializableResidentBook {
      */
     public JsonSerializableResidentBook(ReadOnlyResidentBook source) {
         residents.addAll(source.getResidentList()
-                .stream().map(JsonAdaptedResident::new).collect(Collectors.toList()));
+                .stream().map(JsonAdaptedResident::new)
+                .collect(Collectors.toList()));
     }
 
     /**

@@ -1,6 +1,7 @@
 package seedu.rc4hdb.storage.venuebook;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.rc4hdb.commons.core.FilePostfixes.JSON_POSTFIX;
 import static seedu.rc4hdb.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.io.IOException;
@@ -21,7 +22,7 @@ import seedu.rc4hdb.model.VenueBook;
  */
 public class JsonVenueBookStorage implements VenueBookStorage {
 
-    public static final String VENUE_DATA_PATH = "venue_data.json";
+    public static final String VENUE_DATA_PATH = "venue_data" + JSON_POSTFIX;
 
     private static final Logger logger = LogsCenter.getLogger(JsonVenueBookStorage.class);
 

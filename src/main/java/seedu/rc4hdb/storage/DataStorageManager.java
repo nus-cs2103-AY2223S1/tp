@@ -144,7 +144,7 @@ public class DataStorageManager implements DataStorage {
     @Override
     public void saveResidentBook(ReadOnlyResidentBook residentBook, Path folderPath) throws IOException {
         requireAllNonNull(residentBook, folderPath);
-        residentBookStorage.saveResidentBook(residentBook, this.folderPath.getValue());
+        residentBookStorage.saveResidentBook(residentBook, folderPath);
     }
 
     /**
