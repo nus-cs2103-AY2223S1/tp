@@ -172,12 +172,22 @@ public class AddCommandTest {
         }
 
         @Override
+        public ObservableList<Application> getFilteredApplicationsWithUpcomingInterviewList() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public ObservableList<Application> getApplicationListWithInterview() {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
         public void updateFilteredApplicationList(Predicate<Application> predicate) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void updateFilteredApplicationsWithUpcomingInterviewList(Predicate<Application> predicate) {
             throw new AssertionError("This method should not be called.");
         }
 
