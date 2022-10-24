@@ -9,8 +9,7 @@ MSS:
 1. User adds an item to the inventory.
    @@ -15,10 +16,11 @@ Extensions:
 * 1a. If the item name already exists in the inventory, FoodRem will throw an error.
-  * 1a1. User will re-enter command until the new item is correct.
-    Use case resumes from Step 2.
+  * 1a1. User will re-enter command until the new item is correct. <br> Use case resumes from Step 2.
 ---
 #### UC2: Update Item in Inventory
 
@@ -22,7 +21,7 @@ MSS:
    @@ -30,10 +32,11 @@ Extensions:
 * 1a. If the item does not exist in the inventory, FoodRem will throw an error.
   * 1a1. User will re-enter command until the correct item is given (i.e item exists in inventory).
-    Use case resumes from Step 2.
+  <br>Use case resumes from Step 2.
 ---
 #### UC3: Delete Item from Inventory
 
@@ -33,8 +32,7 @@ MSS:
 1. User deletes an item from inventory.
    @@ -45,10 +48,11 @@ Extensions:
 * 1a. Item does not exist in inventory.
-  * 1a1. FoodRem displays error to user that item does not exist in inventory.
-    Use case resumes from step 1.
+  * 1a1. FoodRem displays error to user that item does not exist in inventory.<br> Use case resumes from step 1.
 ---
 #### UC4: Create Tag
 
@@ -45,8 +43,7 @@ MSS:
 1. User creates a tag.
    @@ -58,51 +62,57 @@ Extensions:
 * 1a. Tag already exists.
-  * 1a1. FoodRem displays error warning to user.
-    Use case resumes from step 1.
+  * 1a1. FoodRem displays error warning to user.<br>Use case resumes from step 1.
 ---
 #### UC5: Find Item
 
@@ -79,9 +76,7 @@ Extensions:
 * 3a. FoodRem detects that there is an issue with the command entered.
   * 3a1. FoodRem requests for the command to be entered again.
   * 3a2. User re-enters the command.
-  * Steps 3a1-3a2 are repeated until the command entered is correct.
-
-    Use case resumes from step 4.
+  * Steps 3a1-3a2 are repeated until the command entered is correct. <br> Use case resumes from step 4.
 ---
 #### UC7: Rename a tag
 
@@ -103,8 +98,7 @@ Extensions:
 * 3a. FoodRem detects that the new tag name already exist.
   @@ -117,52 +127,59 @@ Extensions:
   * 3b2. User re-enters the command to rename the desired tag.
-  * Steps 3b1-3b2 are repeated until the command entered is correct.
-    Use case resumes from step 4.
+  * Steps 3b1-3b2 are repeated until the command entered is correct.<br> Use case resumes from step 4.
 ---
 #### UC8: Removing a tag from an item
 
@@ -126,8 +120,7 @@ Extensions:
 * 3a. FoodRem detects that there is an issue with the command entered.
   * 3a1. FoodRem requests for the command to be entered again.
   * 3a2. User re-enters the command.
-  * Steps 3a1-3a2 are repeated until the command entered is correct.
-    Use case resumes from step 4.
+  * Steps 3a1-3a2 are repeated until the command entered is correct. <br>Use case resumes from step 4.
 ---
 #### UC9: Increment/Decrement Quantity of Item
 
