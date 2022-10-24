@@ -29,7 +29,7 @@ public class FindEventCommand extends EventCommand {
             + "Parameters: KEYWORD [MORE_KEYWORDS]...\n"
             + "Example: " + COMMAND_WORD + " " + PREFIX_OPTION + COMMAND_OPTION + " alice bob charlie";
 
-    public static final String MESSAGE_HELP = "Finds events matching the dates or keywords. "
+    public static final String MESSAGE_HELP = "Finds all events matching the dates or keywords.\n"
             + "Keywords are case-insensitive and will return partial matches.\n"
             + "Format: " + COMMAND_WORD + " " + PREFIX_OPTION + COMMAND_OPTION + " KEYWORDS_OR_DATE [MORE]";
 
