@@ -14,8 +14,8 @@ import seedu.address.logic.parser.exceptions.ParseException;
  */
 public class UntagEventCommandParser implements Parser<UntagEventCommand> {
     /**
-     * Parses the given {@code String} of arguments in the context of the TagPersonsToEventCommand
-     * and returns an TagPersonsToEventCommand object for execution.
+     * Parses the given {@code String} of arguments in the context of the UntagEventCommand
+     * and returns an UntagEventCommand object for execution.
      * @throws ParseException if the user input does not conform the expected format
      */
     public UntagEventCommand parse(String args) throws ParseException {
