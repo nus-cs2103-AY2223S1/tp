@@ -109,6 +109,7 @@ public class AssignTaskAllCommand extends Command {
                     personToAssignTask.getAddress(), personToAssignTask.getTags(), assignments,
                     personToAssignTask.getPersonGroups());
 
+            editedPerson.setWorkloadScore();
             model.setPerson(personToAssignTask, editedPerson);
             successfullyAdded.add(editedPerson);
         }

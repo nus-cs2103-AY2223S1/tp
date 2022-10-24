@@ -31,11 +31,26 @@
         <Label fx:id="name" text="\$first" styleClass="cell_big_label" />
       </HBox>
 
+
       <HBox>
         <padding>
           <Insets top="3" bottom="3" />
         </padding>
         <FlowPane fx:id="tags" />
+      </HBox>
+
+      <HBox fx:id="workloadContainer" alignment="CENTER_LEFT">
+        <padding>
+          <Insets top="2" right="0" bottom="2" left="-3" />
+        </padding>
+        <children>
+          <HBox>
+            <padding>
+              <Insets top="3" right="1" bottom="1" left="0" />
+            </padding>
+            <Label fx:id="workload" styleClass="cell_small_label" wrapText="true" />
+          </HBox>
+        </children>
       </HBox>
 
       <HBox fx:id="phoneContainer" alignment="CENTER_LEFT">

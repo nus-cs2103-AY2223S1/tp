@@ -3,6 +3,7 @@ package seedu.address.model.person;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -29,6 +30,8 @@ public class Person {
     private final Set<Tag> tags = new HashSet<>();
     private final HashMap<String, ArrayList<Assignment>> assignments = new HashMap<>();
     private final ArrayList<PersonGroup> personGroups = new ArrayList<>();
+    private int workloadScore = 0;
+
     /**
      * Every field must be present and not null.
      */
@@ -59,6 +62,23 @@ public class Person {
 
     public Address getAddress() {
         return address;
+    }
+
+    public void setWorkloadScore() {
+        int totalWorkload = 0;
+        Collection<ArrayList<Assignment>> arrayListCollection = this.assignments.values();
+        for (ArrayList<Assignment> assignmentList : arrayListCollection) {
+            for (Assignment assignment : assignmentList) {
+                totalWorkload += assignment.getWorkload().workloadValue();
+            }
+        }
+        this.workloadScore = totalWorkload;
+    }
+
+    public int getWorkloadScore() {
+        //Ensure that workload is correctly calculated with existing assignments
+        setWorkloadScore();
+        return workloadScore;
     }
 
     /**
