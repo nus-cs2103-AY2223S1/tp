@@ -4,29 +4,41 @@ import java.util.List;
 import java.util.function.Predicate;
 
 import seedu.address.commons.util.StringUtil;
-import seedu.address.model.issue.Issue;
+import seedu.address.model.project.Project;
 
 /**
- * Tests that a {@code Issue}'s {@code Project} matches any of the keywords given.
+ * Tests that a Project object matches any of the keywords given.
  */
-public class ProjectContainsKeywordsPredicate implements Predicate<Issue> {
-    private final List<String> keywords;
+public class ProjectContainsKeywordsPredicate implements Predicate<Project> {
 
-    public ProjectContainsKeywordsPredicate(List<String> keywords) {
-        this.keywords = keywords;
+    private final List<String> nameKeywords;
+
+    private final List<String> repositoryKeywords;
+
+    public ProjectContainsKeywordsPredicate(List<String> nameKeywords, List<String> repositoryKeywords) {
+        this.nameKeywords = nameKeywords;
+        this.repositoryKeywords = repositoryKeywords;
+    }
+    public boolean testName(Project project) {
+        return nameKeywords.isEmpty() ? true : nameKeywords.stream()
+                .anyMatch(keyword -> StringUtil.containsWordIgnoreCase(project.getProjectName().toString(), keyword));
     }
 
+    public boolean testRepository(Project project) {
+        return repositoryKeywords.isEmpty() ? true :repositoryKeywords.stream()
+                .anyMatch(keyword -> StringUtil.containsWordIgnoreCase(project.getRepository().toString(), keyword));
+    }
 
     @Override
-    public boolean test(Issue issue) {
-        return keywords.stream()
-                .anyMatch(keyword -> StringUtil.containsWordIgnoreCase(issue.getProject().toString(), keyword));
+    public boolean test(Project project) {
+        return testName(project) && testRepository(project);
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof ProjectContainsKeywordsPredicate // instanceof handles nulls
-                && keywords.equals(((ProjectContainsKeywordsPredicate) other).keywords)); // state check
+                && nameKeywords.equals(((ProjectContainsKeywordsPredicate) other).nameKeywords) //state checks
+                && repositoryKeywords.equals(((ProjectContainsKeywordsPredicate) other).repositoryKeywords));
     }
 }

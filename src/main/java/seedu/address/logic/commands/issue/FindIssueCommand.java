@@ -1,4 +1,4 @@
-package seedu.address.logic.commands.issue.find;
+package seedu.address.logic.commands.issue;
 
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.IssueCliSyntax.PREFIX_DESCRIPTION;
