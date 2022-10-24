@@ -83,8 +83,8 @@ public class JsonAdaptedPet {
     public JsonAdaptedPet(Pet source) {
         name = source.getName().toString();
         supplier = new JsonAdaptedSupplier(source.getSupplier());
-        color = source.getColor().toString();
-        colorPattern = source.getColorPattern().toString();
+        color = source.getColor().getValue();
+        colorPattern = source.getColorPattern().getValue();
         dateOfBirth = source.getDateOfBirth().getPreferredDateInString();
         species = source.getSpecies().getValue();
         weight = source.getWeight().getValue();

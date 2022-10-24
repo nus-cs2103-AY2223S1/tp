@@ -1,6 +1,7 @@
 package seedu.address.model;
 
 import java.nio.file.Path;
+import java.util.Comparator;
 import java.util.List;
 import java.util.function.Predicate;
 
@@ -101,6 +102,32 @@ public interface Model {
     void setDeliverer(Deliverer target, Deliverer editedDeliverer);
     void setPet(Pet target, Pet editedPet);
     void setOrder(Order target, Order editedOrder);
+
+    /**
+     * Sorts the buyer list using the specified comparator.
+     * @param comparator The specified comparator.
+     */
+    void sortBuyer(Comparator<Buyer> comparator);
+    /**
+     * Sorts the supplier list using the specified comparator.
+     * @param comparator The specified comparator.
+     */
+    void sortSupplier(Comparator<Supplier> comparator);
+    /**
+     * Sorts the deliverer list using the specified comparator.
+     * @param comparator The specified comparator.
+     */
+    void sortDeliverer(Comparator<Deliverer> comparator);
+    /**
+     * Sorts the order list using the specified comparator.
+     * @param comparator The specified comparator.
+     */
+    void sortOrder(Comparator<Order> comparator);
+    /**
+     * Sorts the pet list using the specified comparator.
+     * @param comparator The specified comparator.
+     */
+    void sortPet(Comparator<Pet> comparator);
 
     /** Returns an unmodifiable view of the filtered person list */
     ObservableList<Buyer> getFilteredBuyerList();

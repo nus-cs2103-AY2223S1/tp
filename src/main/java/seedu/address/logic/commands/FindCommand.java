@@ -76,7 +76,7 @@ public class FindCommand extends Command {
                 || (other instanceof FindCommand // instanceof handles nulls
                 && buyerPredicate.equals(((FindCommand) other).buyerPredicate) // state checck
                 && delivererPredicate.equals(((FindCommand) other).delivererPredicate)
-                && supplierPredicate.equals(((FindCommand) other).supplierPredicate)
+                && supplierPredicate.equals(((FindCommand) other).supplierPredicate
                 && type.equals(((FindCommand) other).type));
     }
 }

@@ -353,4 +353,18 @@ public class Pet {
         return this.id.equals(id);
     }
 
+    /**
+     * Compares two pets based on the number of tags.
+     */
+    public int compareTag(Pet pet) {
+        return Integer.compare(this.tags.size(), pet.tags.size());
+    }
+
+    /**
+     * Compares two pets based on the number of certificates.
+     */
+    public int compareCertificate(Pet pet) {
+        return Integer.compare(this.certificates.size(), pet.certificates.size());
+    }
+
 }

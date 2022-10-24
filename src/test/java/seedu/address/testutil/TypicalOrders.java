@@ -17,24 +17,34 @@ import seedu.address.model.pet.ColorPattern;
 import seedu.address.model.pet.Species;
 
 /**
- * A utility class containing a list of {@code Orders} objects to be used in tests.
+ * A utility class containing a list of {@code Order} objects to be used in tests.
  */
 public class TypicalOrders {
-    public static final Order ORDER_ONE = new Order(TypicalBuyers.ALICE,
-            new PriceRange(new Price(60.6), new Price(150.4)),
-            new Request(new Age(2), new Color("white"), new ColorPattern("stripes"),
-                    new Species("cat")),
-            new AdditionalRequests("fluffy"),
-            LocalDate.parse("2020-10-10"),
-            new Price(100.2));
 
-    public static final Order ORDER_TWO = new Order(TypicalBuyers.CARL,
-            new PriceRange(new Price(40.55), new Price(300.4)),
-            new Request(new Age(2), new Color("black"), new ColorPattern("polka-dots"),
-                    new Species("cat")),
-            new AdditionalRequests("fat"),
-            LocalDate.parse("2021-09-10"),
-            new Price(150.2));
+    public static final Order ORDER_1 = new OrderBuilder().withBuyer(TypicalBuyers.ALICE)
+            .withRequestedPriceRange(200.00, 400.00)
+            .withRequest(new Age(1), new Color("Black"), new ColorPattern("Striped"),
+                    new Species("European shorthair"))
+            .withAdditionalRequests("Vaccinated", "Good with children")
+            .withByDate(2022, 12, 20)
+            .withSettledPrice(400.00)
+            .withStatus("Pending").build();
+    public static final Order ORDER_2 = new OrderBuilder().withBuyer(TypicalBuyers.BENSON)
+            .withRequestedPriceRange(300.00, 700.00)
+            .withRequest(new Age(2), new Color("White"), new ColorPattern("None"),
+                    new Species("Shiba Inu"))
+            .withAdditionalRequests("Vaccinated")
+            .withByDate(2022, 11, 13)
+            .withSettledPrice(640.00)
+            .withStatus("Delivering").build();
+    public static final Order ORDER_3 = new OrderBuilder().withBuyer(TypicalBuyers.CARL)
+            .withRequestedPriceRange(450.00, 1000.00)
+            .withRequest(new Age(1), new Color("Mixed"), new ColorPattern("Spotted"),
+                    new Species("Calico"))
+            .withAdditionalRequests("On regular flea medication")
+            .withByDate(2023, 1, 2)
+            .withSettledPrice(950.00)
+            .withStatus("Negotiating").build();
 
     private TypicalOrders() {}
 
@@ -50,6 +60,6 @@ public class TypicalOrders {
     }
 
     public static List<Order> getTypicalOrders() {
-        return new ArrayList<>(Arrays.asList(ORDER_ONE, ORDER_TWO));
+        return new ArrayList<>(Arrays.asList(ORDER_1, ORDER_2, ORDER_3));
     }
 }
