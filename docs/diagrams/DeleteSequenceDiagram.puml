@@ -64,6 +64,12 @@ deactivate CommandResult
 DeleteCommand --> LogicManager : result
 deactivate DeleteCommand
 
+LogicManager -> Model : makeSnapshot(result)
+activate Model
+
+Model --> LogicManager
+deactivate Model
+
 [<--LogicManager
 deactivate LogicManager
 @enduml

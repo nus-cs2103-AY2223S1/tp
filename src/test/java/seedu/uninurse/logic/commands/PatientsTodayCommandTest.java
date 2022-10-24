@@ -28,7 +28,8 @@ class PatientsTodayCommandTest {
     @Test
     public void execute_noPatientsToday_showsNoPatients() {
         expectedModel.updateFilteredPersonList(Model.PREDICATE_SHOW_PATIENTS_FOR_TODAY);
-        assertCommandSuccess(new PatientsTodayCommand(), model, PatientsTodayCommand.MESSAGE_SUCCESS, expectedModel);
+        assertCommandSuccess(new PatientsTodayCommand(), model, PatientsTodayCommand.MESSAGE_SUCCESS,
+                PatientsTodayCommand.PATIENTS_TODAY_COMMAND_TYPE, expectedModel);
     }
 
     @Test
@@ -39,6 +40,7 @@ class PatientsTodayCommandTest {
         CommandResult addCommand = new AddPatientCommand(patientForToday).execute(model);
         CommandResult addCommand2 = new AddPatientCommand(patientForToday).execute(expectedModel);
         expectedModel.updateFilteredPersonList(Model.PREDICATE_SHOW_PATIENTS_FOR_TODAY);
-        assertCommandSuccess(new PatientsTodayCommand(), model, PatientsTodayCommand.MESSAGE_SUCCESS, expectedModel);
+        assertCommandSuccess(new PatientsTodayCommand(), model, PatientsTodayCommand.MESSAGE_SUCCESS,
+                PatientsTodayCommand.PATIENTS_TODAY_COMMAND_TYPE, expectedModel);
     }
 }

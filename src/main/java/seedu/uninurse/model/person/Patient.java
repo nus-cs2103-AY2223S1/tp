@@ -5,25 +5,55 @@ import static seedu.uninurse.commons.util.CollectionUtil.requireAllNonNull;
 import java.util.Objects;
 import java.util.Set;
 
+import seedu.uninurse.model.condition.ConditionList;
 import seedu.uninurse.model.tag.Tag;
 import seedu.uninurse.model.task.TaskList;
 
 
 /**
- * Represents a Patient in the uninurse book.
+ * Represents a Patient in the Uninurse book.
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
 public class Patient extends Person {
     // Data fields
+    private final ConditionList conditions;
     private final TaskList tasks;
 
     /**
      * Every field must be present and not null.
      */
-    public Patient(Name name, Phone phone, Email email, Address address, TaskList tasks, Set<Tag> tags) {
+    public Patient(Name name, Phone phone, Email email, Address address, ConditionList conditions, TaskList tasks,
+                   Set<Tag> tags) {
         super(name, phone, email, address, tags);
-        requireAllNonNull(name, phone, email, address, tasks, tags);
+        requireAllNonNull(name, phone, email, address, conditions, tasks, tags);
+        this.conditions = conditions;
         this.tasks = tasks;
+    }
+
+    /**
+     * Used to return a new immutable {@code Patient} when {@code ConditionList} is updated.
+     * @param patient the patient to be updated
+     * @param updatedConditions the updated conditions.
+     */
+    public Patient(Patient patient, ConditionList updatedConditions) {
+        super(patient);
+        this.conditions = updatedConditions;
+        this.tasks = patient.tasks;
+    }
+
+    /**
+     * Used to return a new immutable {@code Patient} when {@code TaskList} is updated.
+     * @param patient the patient to be updated
+     * @param updatedTasks the updated tasks.
+     */
+    public Patient(Patient patient, TaskList updatedTasks) {
+        super(patient);
+        this.conditions = patient.conditions;
+        this.tasks = updatedTasks;
+    }
+
+    public ConditionList getConditions() {
+        return conditions;
     }
 
     public TaskList getTasks() {
@@ -62,6 +92,7 @@ public class Patient extends Person {
                 && otherPerson.getPhone().equals(getPhone())
                 && otherPerson.getEmail().equals(getEmail())
                 && otherPerson.getAddress().equals(getAddress())
+                && otherPerson.getConditions().equals(getConditions())
                 && otherPerson.getTasks().equals(getTasks())
                 && otherPerson.getTags().equals(getTags());
     }
@@ -69,7 +100,7 @@ public class Patient extends Person {
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(super.hashCode(), tasks);
+        return Objects.hash(super.hashCode(), conditions, tasks);
     }
 
     @Override
@@ -82,6 +113,12 @@ public class Patient extends Person {
                 .append(getEmail())
                 .append("\nAddress: ")
                 .append(getAddress());
+
+        ConditionList conditions = getConditions();
+        if (!conditions.isEmpty()) {
+            builder.append("\nConditions:\n")
+                    .append(conditions);
+        }
 
         TaskList tasks = getTasks();
         if (!tasks.isEmpty()) {
@@ -96,5 +133,4 @@ public class Patient extends Person {
         }
         return builder.toString();
     }
-
 }

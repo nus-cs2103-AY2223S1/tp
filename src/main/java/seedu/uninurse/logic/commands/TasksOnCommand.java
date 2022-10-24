@@ -13,6 +13,8 @@ public class TasksOnCommand extends Command {
 
     public static final String COMMAND_WORD = "tasksOn";
 
+    public static final CommandType COMMAND_TYPE = CommandType.TASK;
+
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Shows a list of tasks for that day";
 
@@ -35,9 +37,9 @@ public class TasksOnCommand extends Command {
         model.updateFilteredPersonList(Model.PREDICATE_SHOW_ALL_PERSONS);
         model.getFilteredPersonList()
                 .forEach(p -> p.getTasks().filterTasks(t -> t.isTaskOnDay(dayToCheck)));
-        model.updateFilteredPersonListWithTasks(p -> !p.getTasks().getTasks().isEmpty());
+        model.updateFilteredPersonList(p -> !p.getTasks().getTasks().isEmpty());
 
-        return new CommandResult(String.format(MESSAGE_SUCCESS, dayToCheck.getDate()));
+        return new CommandResult(String.format(MESSAGE_SUCCESS, dayToCheck.getDate()), COMMAND_TYPE);
     }
 
     @Override

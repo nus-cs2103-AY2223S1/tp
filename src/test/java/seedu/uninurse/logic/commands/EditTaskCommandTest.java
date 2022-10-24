@@ -29,7 +29,6 @@ import seedu.uninurse.testutil.PersonBuilder;
  * Contains integration tests (interaction with the Model) and unit tests for {@code EditTaskCommand}.
  */
 class EditTaskCommandTest {
-
     private static final String TASK_STUB = "Some task";
 
     private final Model model = new ModelManager(getTypicalUninurseBook(), new UserPrefs());
@@ -60,10 +59,12 @@ class EditTaskCommandTest {
 
     @Test
     public void execute_editTask_success() {
-        Task editedTask = new Task(TASK_STUB);
-
         // Use second patient as the first patient in typical persons does not have a task
         Patient secondPatient = model.getFilteredPersonList().get(INDEX_SECOND_PERSON.getZeroBased());
+
+        Task initialTask = secondPatient.getTasks().get(INDEX_FIRST_TASK.getZeroBased());
+        Task editedTask = new Task(TASK_STUB);
+
         Patient editedPatient = new PersonBuilder(secondPatient)
                 .withTasks(secondPatient.getTasks().edit(INDEX_FIRST_TASK.getZeroBased(), editedTask)
                         .getInternalList().toArray(Task[]::new))
@@ -72,12 +73,16 @@ class EditTaskCommandTest {
 
         EditTaskCommand editTaskCommand = new EditTaskCommand(INDEX_SECOND_PERSON, INDEX_FIRST_TASK, editedTask);
 
-        String expectedMessage = String.format(EditTaskCommand.MESSAGE_EDIT_TASK_SUCCESS, editedPatient);
+        String expectedMessage = String.format(EditTaskCommand.MESSAGE_EDIT_TASK_SUCCESS,
+                INDEX_FIRST_TASK.getOneBased(), editedPatient.getName().toString(), initialTask, editedTask);
 
         Model expectedModel = new ModelManager(new UninurseBook(model.getUninurseBook()), new UserPrefs());
         expectedModel.setPerson(secondPatient, editedPatient);
+        expectedModel.updateFilteredPersonList(patient -> patient.equals(editedPatient));
+        expectedModel.setPatientOfInterest(editedPatient);
 
-        assertCommandSuccess(editTaskCommand, model, expectedMessage, expectedModel);
+        assertCommandSuccess(editTaskCommand, model, expectedMessage,
+                EditTaskCommand.EDIT_TASK_COMMAND_TYPE, expectedModel);
     }
 
     @Test

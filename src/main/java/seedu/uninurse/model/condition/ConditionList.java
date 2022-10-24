@@ -36,20 +36,10 @@ public class ConditionList implements GenericList<Condition> {
         internalConditionList = conditions;
     }
 
-    /**
-     * Checks if the list already contains a given condition.
-     * @param toCheck The condition to be checked.
-     * @return Returns true if the list contains an equivalent condition as the given argument.
-     */
-    public boolean contains(Condition toCheck) {
-        requireNonNull(toCheck);
-        return internalConditionList.stream().anyMatch(toCheck::equals);
-    }
-
     @Override
     public ConditionList add(Condition condition) {
         requireNonNull(condition);
-        if (contains(condition)) {
+        if (internalConditionList.contains(condition)) {
             throw new DuplicateConditionException();
         }
 
@@ -95,7 +85,7 @@ public class ConditionList implements GenericList<Condition> {
 
     @Override
     public List<Condition> getInternalList() {
-        // returns a copy of the internal list to prevent modification to original one
+        // returns an immutable condition list to prevent modification to original one
         return Collections.unmodifiableList(internalConditionList);
     }
 
@@ -111,6 +101,7 @@ public class ConditionList implements GenericList<Condition> {
             } else {
                 builder.append("\n")
                         .append(index + 1)
+                        .append(". ")
                         .append(c);
             }
         });

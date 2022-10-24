@@ -19,6 +19,7 @@ import seedu.uninurse.commons.core.index.Index;
 import seedu.uninurse.commons.util.CollectionUtil;
 import seedu.uninurse.logic.commands.exceptions.CommandException;
 import seedu.uninurse.model.Model;
+import seedu.uninurse.model.condition.ConditionList;
 import seedu.uninurse.model.person.Address;
 import seedu.uninurse.model.person.Email;
 import seedu.uninurse.model.person.Name;
@@ -47,6 +48,8 @@ public class EditPatientCommand extends EditGenericCommand {
     public static final String MESSAGE_EDIT_PATIENT_SUCCESS = "Edited Patient: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
     public static final String MESSAGE_DUPLICATE_PATIENT = "This patient already exists in the uninurse book.";
+
+    public static final CommandType EDIT_PATIENT_COMMAND_TYPE = CommandType.EDIT_PATIENT;
 
     private final Index index;
     private final EditPatientDescriptor editPatientDescriptor;
@@ -81,7 +84,9 @@ public class EditPatientCommand extends EditGenericCommand {
 
         model.setPerson(patientToEdit, editedPatient);
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
-        return new CommandResult(String.format(MESSAGE_EDIT_PATIENT_SUCCESS, editedPatient));
+        model.setPatientOfInterest(editedPatient);
+        return new CommandResult(String.format(MESSAGE_EDIT_PATIENT_SUCCESS, editedPatient),
+                EDIT_PATIENT_COMMAND_TYPE);
     }
 
     /**
@@ -95,10 +100,12 @@ public class EditPatientCommand extends EditGenericCommand {
         Phone updatedPhone = editPatientDescriptor.getPhone().orElse(patientToEdit.getPhone());
         Email updatedEmail = editPatientDescriptor.getEmail().orElse(patientToEdit.getEmail());
         Address updatedAddress = editPatientDescriptor.getAddress().orElse(patientToEdit.getAddress());
+        ConditionList updatedConditions = patientToEdit.getConditions(); // editing of conditions is not supported
         TaskList updatedTasks = patientToEdit.getTasks(); // editPatient command does not allow editing tasks
         Set<Tag> updatedTags = editPatientDescriptor.getTags().orElse(patientToEdit.getTags());
 
-        return new Patient(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTasks, updatedTags);
+        return new Patient(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedConditions, updatedTasks,
+                updatedTags);
     }
 
     @Override

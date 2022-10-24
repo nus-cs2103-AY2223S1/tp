@@ -13,6 +13,8 @@ public class ListTaskCommand extends Command {
 
     public static final String MESSAGE_SUCCESS = "Listed all tasks";
 
+    public static final CommandType LIST_TASK_COMMAND_TYPE = CommandType.SCHEDULE;
+
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);
@@ -23,7 +25,7 @@ public class ListTaskCommand extends Command {
         model.getFilteredPersonList().forEach(p -> p.getTasks().showAllTasks());
         ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-        model.updateFilteredPersonListWithTasks(p -> !(p.getTasks().isEmpty()));
-        return new CommandResult(MESSAGE_SUCCESS);
+        model.updateFilteredPersonList(p -> !(p.getTasks().isEmpty()));
+        return new CommandResult(MESSAGE_SUCCESS, LIST_TASK_COMMAND_TYPE);
     }
 }

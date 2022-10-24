@@ -1,0 +1,87 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":UninurseBookParser" as UninurseBookParser LOGIC_COLOR
+participant ":TasksOnCommandParser" as TasksOnCommandParser LOGIC_COLOR
+participant "<<class>>\nDateTime" as DateTimeClass LOGIC_COLOR
+participant ":DateTime" as DateTime LOGIC_COLOR
+participant "t:TasksOnCommand" as TasksOnCommand LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+
+[-> LogicManager : execute("tasksOn 22-10-2022")
+activate LogicManager
+
+LogicManager -> UninurseBookParser : parseCommand("tasksOn 22-10-2022")
+activate UninurseBookParser
+
+create TasksOnCommandParser
+UninurseBookParser -> TasksOnCommandParser
+activate TasksOnCommandParser
+
+TasksOnCommandParser -> DateTimeClass : ofDate("22-10-2022")
+activate DateTimeClass
+
+create DateTime
+DateTimeClass -> DateTime : new DateTime("22-10-2022")
+activate DateTime
+
+DateTime -> DateTimeClass : dt
+deactivate DateTime
+
+DateTimeClass -> TasksOnCommandParser : dt
+deactivate DateTimeClass
+
+TasksOnCommandParser -> TasksOnCommand : dt
+activate TasksOnCommand
+
+TasksOnCommand -> TasksOnCommandParser : t
+deactivate TasksOnCommand
+
+TasksOnCommandParser -> UninurseBookParser : t
+deactivate TasksOnCommandParser
+TasksOnCommandParser -[hidden]-> AddressBookParser
+destroy TasksOnCommandParser
+
+UninurseBookParser -> LogicManager : t
+deactivate UninurseBookParser
+
+LogicManager -> TasksOnCommand : execute()
+activate TasksOnCommand
+
+TasksOnCommand -> Model : updateFilteredPersonList(Model.PREDICATE_SHOW_ALL_PERSONS)
+activate Model
+
+Model -> TasksOnCommand
+deactivate Model
+
+TasksOnCommand -> Model : getFilteredPersonList()
+activate Model
+
+Model -> TasksOnCommand
+deactivate Model
+
+TasksOnCommand -> Model : updateFilteredPersonListWithTasks()
+activate Model
+
+Model -> TasksOnCommand
+deactivate Model
+
+create CommandResult
+TasksOnCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> TasksOnCommand
+deactivate CommandResult
+
+TasksOnCommand --> LogicManager : result
+deactivate TasksOnCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml

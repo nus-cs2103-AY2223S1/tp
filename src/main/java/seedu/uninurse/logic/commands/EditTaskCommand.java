@@ -4,18 +4,12 @@ import static java.util.Objects.requireNonNull;
 import static seedu.uninurse.logic.parser.CliSyntax.PREFIX_TASK_DESCRIPTION;
 
 import java.util.List;
-import java.util.Set;
 
 import seedu.uninurse.commons.core.Messages;
 import seedu.uninurse.commons.core.index.Index;
 import seedu.uninurse.logic.commands.exceptions.CommandException;
 import seedu.uninurse.model.Model;
-import seedu.uninurse.model.person.Address;
-import seedu.uninurse.model.person.Email;
-import seedu.uninurse.model.person.Name;
 import seedu.uninurse.model.person.Patient;
-import seedu.uninurse.model.person.Phone;
-import seedu.uninurse.model.tag.Tag;
 import seedu.uninurse.model.task.Task;
 import seedu.uninurse.model.task.TaskList;
 
@@ -31,8 +25,12 @@ public class EditTaskCommand extends EditGenericCommand {
             + "Example: " + COMMAND_WORD + " 1 " + " 2 "
             + PREFIX_TASK_DESCRIPTION + "change bandage";
 
-    public static final String MESSAGE_EDIT_TASK_SUCCESS = "Edited Task: %1$s";
+    public static final String MESSAGE_EDIT_TASK_SUCCESS = "Edited task %1$d of %2$s:\n"
+            + "Before: %3$s\n"
+            + "After: %4$s";
     public static final String MESSAGE_NOT_EDITED = "Task to edit must be provided.";
+
+    public static final CommandType EDIT_TASK_COMMAND_TYPE = CommandType.TASK;
 
     private final Index patientIndex;
     private final Index taskIndex;
@@ -68,33 +66,17 @@ public class EditTaskCommand extends EditGenericCommand {
             throw new CommandException(Messages.MESSAGE_INVALID_TASK_INDEX);
         }
 
-        Patient editedPatient = createEditedPatient(patientToEdit, taskIndex, updatedTask);
+        Task initialTask = patientToEdit.getTasks().get(taskIndex.getZeroBased());
+        TaskList updatedTaskList = patientToEdit.getTasks().edit(taskIndex.getZeroBased(), updatedTask);
+
+        Patient editedPatient = new Patient(patientToEdit, updatedTaskList);
 
         model.setPerson(patientToEdit, editedPatient);
-        model.updateFilteredPersonList(Model.PREDICATE_SHOW_ALL_PERSONS);
-        return new CommandResult(String.format(MESSAGE_EDIT_TASK_SUCCESS, editedPatient));
-    }
+        model.updateFilteredPersonList(patient -> patient.equals(editedPatient));
+        model.setPatientOfInterest(editedPatient);
 
-    /**
-     * Creates an edited person with the updated Task.
-     *
-     * @param patientToEdit the patient associated with the task to edit.
-     * @param indexOfTask the index of the task to be edited.
-     * @param updatedTask the new task details to be edited with.
-     * @return a person with the updated task details.
-     */
-    private static Patient createEditedPatient(Patient patientToEdit, Index indexOfTask, Task updatedTask) {
-        assert patientToEdit != null;
-
-        Name name = patientToEdit.getName();
-        Phone phone = patientToEdit.getPhone();
-        Email email = patientToEdit.getEmail();
-        Address address = patientToEdit.getAddress();
-        Set<Tag> tags = patientToEdit.getTags();
-
-        TaskList updatedTaskList = patientToEdit.getTasks().edit(indexOfTask.getZeroBased(), updatedTask);
-
-        return new Patient(name, phone, email, address, updatedTaskList, tags);
+        return new CommandResult(String.format(MESSAGE_EDIT_TASK_SUCCESS,
+                taskIndex.getOneBased(), editedPatient.getName(), initialTask, updatedTask), EDIT_TASK_COMMAND_TYPE);
     }
 
     @Override

@@ -24,7 +24,9 @@ public class DeleteTaskCommand extends DeleteGenericCommand {
             + "TASK_INDEX (must be a positive integer)\n"
             + "Example: " + COMMAND_WORD + " 1 2";
 
-    public static final String MESSAGE_DELETE_TASK_SUCCESS = "Deleted task from %1$s: %2$s";
+    public static final String MESSAGE_DELETE_TASK_SUCCESS = "Deleted task %1$d from %2$s: %3$s";
+
+    public static final CommandType DELETE_TASK_COMMAND_TYPE = CommandType.TASK;
 
     private final Index patientIndex;
     private final Index taskIndex;
@@ -52,23 +54,22 @@ public class DeleteTaskCommand extends DeleteGenericCommand {
         }
 
         Patient patientToEdit = lastShownList.get(patientIndex.getZeroBased());
-        TaskList initialTaskList = patientToEdit.getTasks();
 
-        if (taskIndex.getZeroBased() >= initialTaskList.size()) {
+        if (taskIndex.getZeroBased() >= patientToEdit.getTasks().size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_TASK_INDEX);
         }
 
+        Task deletedTask = patientToEdit.getTasks().get(taskIndex.getZeroBased());
         TaskList updatedTaskList = patientToEdit.getTasks().delete(taskIndex.getZeroBased());
-        Task deletedTask = initialTaskList.get(taskIndex.getZeroBased());
 
-        Patient editedPerson = new Patient(
-                patientToEdit.getName(), patientToEdit.getPhone(), patientToEdit.getEmail(),
-                patientToEdit.getAddress(), updatedTaskList, patientToEdit.getTags());
+        Patient editedPerson = new Patient(patientToEdit, updatedTaskList);
 
         model.setPerson(patientToEdit, editedPerson);
-        model.updateFilteredPersonList(Model.PREDICATE_SHOW_ALL_PERSONS);
+        model.updateFilteredPersonList(patient -> patient.equals(editedPerson));
+        model.setPatientOfInterest(editedPerson);
 
-        return new CommandResult(String.format(MESSAGE_DELETE_TASK_SUCCESS, editedPerson.getName(), deletedTask));
+        return new CommandResult(String.format(MESSAGE_DELETE_TASK_SUCCESS,
+                taskIndex.getOneBased(), editedPerson.getName(), deletedTask), DELETE_TASK_COMMAND_TYPE);
     }
 
     @Override

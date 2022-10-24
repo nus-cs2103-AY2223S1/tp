@@ -16,10 +16,10 @@ activate logic LOGIC_COLOR
 logic -[LOGIC_COLOR]> model : deletePerson(p)
 activate model MODEL_COLOR
 
-model -[MODEL_COLOR]-> logic
+model -[MODEL_COLOR]-> logic : result
 deactivate model
 
-logic -[LOGIC_COLOR]> storage : saveAddressBook(addressBook)
+logic -[LOGIC_COLOR]> storage : saveUninurseBook(uninurseBook)
 activate storage STORAGE_COLOR
 
 storage -[STORAGE_COLOR]> storage : Save to file
@@ -29,6 +29,12 @@ deactivate storage
 
 storage --[STORAGE_COLOR]> logic
 deactivate storage
+
+logic -[LOGIC_COLOR]> model : makeSnapshot(result)
+activate model MODEL_COLOR
+
+model -[MODEL_COLOR]-> logic
+deactivate model
 
 logic --[LOGIC_COLOR]> ui
 deactivate logic

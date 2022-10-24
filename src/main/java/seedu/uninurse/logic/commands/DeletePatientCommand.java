@@ -21,13 +21,14 @@ public class DeletePatientCommand extends DeleteGenericCommand {
 
     public static final String MESSAGE_DELETE_PERSON_SUCCESS = "Deleted Patient: %1$s";
 
+    public static final CommandType DELETE_PATIENT_COMMAND_TYPE = CommandType.DELETE_PATIENT;
+
     private final Index targetIndex;
 
     public DeletePatientCommand(Index targetIndex) {
         this.targetIndex = targetIndex;
     }
 
-    // TODO - Update model and patient once they are done
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
@@ -39,7 +40,9 @@ public class DeletePatientCommand extends DeleteGenericCommand {
 
         Patient patientToDelete = lastShownList.get(targetIndex.getZeroBased());
         model.deletePerson(patientToDelete);
-        return new CommandResult(String.format(MESSAGE_DELETE_PERSON_SUCCESS, patientToDelete));
+        model.setPatientOfInterest(patientToDelete);
+        return new CommandResult(String.format(MESSAGE_DELETE_PERSON_SUCCESS, patientToDelete),
+                DELETE_PATIENT_COMMAND_TYPE);
     }
 
     @Override

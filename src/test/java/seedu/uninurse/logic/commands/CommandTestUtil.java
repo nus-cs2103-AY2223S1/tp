@@ -3,6 +3,7 @@ package seedu.uninurse.logic.commands;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.uninurse.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static seedu.uninurse.logic.parser.CliSyntax.PREFIX_CONDITION;
 import static seedu.uninurse.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.uninurse.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.uninurse.logic.parser.CliSyntax.PREFIX_PHONE;
@@ -26,7 +27,6 @@ import seedu.uninurse.testutil.EditPatientDescriptorBuilder;
  * Contains helper methods for testing commands.
  */
 public class CommandTestUtil {
-
     public static final String VALID_NAME_AMY = "Amy Bee";
     public static final String VALID_NAME_BOB = "Bob Choo";
     public static final String VALID_PHONE_AMY = "11111111";
@@ -35,6 +35,7 @@ public class CommandTestUtil {
     public static final String VALID_EMAIL_BOB = "bob@example.com";
     public static final String VALID_ADDRESS_AMY = "Block 312, Amy Street 1";
     public static final String VALID_ADDRESS_BOB = "Block 123, Bobby Street 3";
+    public static final String VALID_CONDITION_BOB = "Alzheimer's disease";
     public static final String VALID_TASK_DESC_FIRST = "Administer 80mg of valsartan";
     public static final String VALID_TASK_DESC_SECOND = "Advise on over-the-counter prescriptions";
     public static final String VALID_TASK_DATE_TIME_FIRST = "16-10-2022 1015";
@@ -57,6 +58,8 @@ public class CommandTestUtil {
     public static final String INVALID_PHONE_DESC = " " + PREFIX_PHONE + "911a"; // 'a' not allowed in phones
     public static final String INVALID_EMAIL_DESC = " " + PREFIX_EMAIL + "bob!yahoo"; // missing '@' symbol
     public static final String INVALID_ADDRESS_DESC = " " + PREFIX_ADDRESS; // empty string not allowed for addresses
+    public static final String INVALID_CONDITION_DESC = " "
+            + PREFIX_CONDITION; // empty string not allowed for conditions
     public static final String INVALID_TASK_DESC = " "
             + PREFIX_TASK_DESCRIPTION; // empty string not allowed for tasks descriptions
     public static final String INVALID_TAG_DESC = " " + PREFIX_TAG + "hubby*"; // '*' not allowed in tags
@@ -97,8 +100,8 @@ public class CommandTestUtil {
      * that takes a string {@code expectedMessage}.
      */
     public static void assertCommandSuccess(Command command, Model actualModel, String expectedMessage,
-            Model expectedModel) {
-        CommandResult expectedCommandResult = new CommandResult(expectedMessage);
+            CommandType expectedCommandType, Model expectedModel) {
+        CommandResult expectedCommandResult = new CommandResult(expectedMessage, expectedCommandType);
         assertCommandSuccess(command, actualModel, expectedCommandResult, expectedModel);
     }
 
@@ -126,7 +129,7 @@ public class CommandTestUtil {
         assertTrue(targetIndex.getZeroBased() < model.getFilteredPersonList().size());
 
         Patient person = model.getFilteredPersonList().get(targetIndex.getZeroBased());
-        final String[] splitName = person.getName().fullName.split("\\s+");
+        final String[] splitName = person.getName().getValue().split("\\s+");
         model.updateFilteredPersonList(new NameContainsKeywordsPredicate(Arrays.asList(splitName[0])));
 
         assertEquals(1, model.getFilteredPersonList().size());

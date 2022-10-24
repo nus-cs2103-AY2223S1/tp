@@ -14,6 +14,8 @@ import java.util.Set;
 import org.junit.jupiter.api.Test;
 
 import seedu.uninurse.logic.parser.exceptions.ParseException;
+import seedu.uninurse.model.condition.Condition;
+import seedu.uninurse.model.condition.ConditionList;
 import seedu.uninurse.model.person.Address;
 import seedu.uninurse.model.person.Email;
 import seedu.uninurse.model.person.Name;
@@ -25,12 +27,15 @@ public class ParserUtilTest {
     private static final String INVALID_PHONE = "+651234";
     private static final String INVALID_ADDRESS = " ";
     private static final String INVALID_EMAIL = "example.com";
+    private static final String INVALID_CONDITION = " ";
     private static final String INVALID_TAG = "#friend";
 
     private static final String VALID_NAME = "Rachel Walker";
     private static final String VALID_PHONE = "123456";
     private static final String VALID_ADDRESS = "123 Main Street #0505";
     private static final String VALID_EMAIL = "rachel@example.com";
+    private static final String VALID_CONDITION_1 = "Wolff-Parkinson-White Syndrome";
+    private static final String VALID_CONDITION_2 = "COVID-19";
     private static final String VALID_TAG_1 = "friend";
     private static final String VALID_TAG_2 = "neighbour";
 
@@ -146,6 +151,55 @@ public class ParserUtilTest {
         String emailWithWhitespace = WHITESPACE + VALID_EMAIL + WHITESPACE;
         Email expectedEmail = new Email(VALID_EMAIL);
         assertEquals(expectedEmail, ParserUtil.parseEmail(emailWithWhitespace));
+    }
+
+    @Test
+    public void parseCondition_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseCondition(null));
+    }
+
+    @Test
+    public void parseCondition_invalidValue_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseCondition(INVALID_CONDITION));
+    }
+
+    @Test
+    public void parseCondition_validValueWithoutWhitespace_returnsCondition() throws Exception {
+        Condition expectedCondition = new Condition(VALID_CONDITION_1);
+        assertEquals(expectedCondition, ParserUtil.parseCondition(VALID_CONDITION_1));
+    }
+
+    @Test
+    public void parseCondition_validValueWithWhitespace_returnsTrimmedCondition() throws Exception {
+        String conditionWithWhitespace = WHITESPACE + VALID_CONDITION_1 + WHITESPACE;
+        Condition expectedCondition = new Condition(VALID_CONDITION_1);
+        assertEquals(expectedCondition, ParserUtil.parseCondition(conditionWithWhitespace));
+    }
+
+    @Test
+    public void parseConditions_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseConditions(null));
+    }
+
+    @Test
+    public void parseConditions_collectionWithInvalidConditions_throwsParseException() {
+        assertThrows(ParseException.class, () ->
+                ParserUtil.parseConditions(Arrays.asList(VALID_CONDITION_1, INVALID_CONDITION)));
+    }
+
+    @Test
+    public void parseConditions_emptyCollection_returnsEmptyList() throws Exception {
+        assertTrue(ParserUtil.parseConditions(Collections.emptyList()).isEmpty());
+    }
+
+    @Test
+    public void parseConditions_collectionWithValidConditions_returnsConditionList() throws Exception {
+        ConditionList actualConditionList = ParserUtil.parseConditions(
+                Arrays.asList(VALID_CONDITION_1, VALID_CONDITION_2));
+        ConditionList expectedConditionList = new ConditionList(
+                Arrays.asList(new Condition(VALID_CONDITION_1), new Condition(VALID_CONDITION_2)));
+
+        assertEquals(expectedConditionList, actualConditionList);
     }
 
     @Test

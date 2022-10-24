@@ -75,7 +75,7 @@ The **API** of this component is specified in [`Ui.java`](https://github.com/se-
 
 The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `PersonListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
 
-The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/resources/view/MainWindow.fxml)
+The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/AY2223S1-CS2103T-T12-4/tp/blob/master/src/main/java/seedu/uninurse/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/AY2223S1-CS2103T-T12-4/tp/blob/master/src/main/resources/view/MainWindow.fxml)
 
 The `UI` component,
 
@@ -121,12 +121,12 @@ How the parsing works:
 
 The `Model` component,
 
-* stores the address book data i.e., all `Person` objects (which are contained in a `UniquePersonList` object).
+* stores the UniNurse book data i.e., all `Person` objects (which are contained in a `UniquePersonList` object) and all of its saved versions.
 * stores the currently 'selected' `Person` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Person>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
 * stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
 * does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `AddressBook`, which `Person` references. This allows `AddressBook` to only require one `Tag` object per unique tag, instead of each `Person` needing their own `Tag` objects.<br>
+* _Diagram to be updated with new `Patient`attributes ..._
+<div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in `UniNurse`, which `Person` references. This allows `UniNurse` to only require one `Tag` object per unique tag, instead of each `Person` needing their own `Tag` objects.<br>
 
 <img src="images/BetterModelClassDiagram.png" width="450" />
 
@@ -141,12 +141,12 @@ The `Model` component,
 
 The `Storage` component,
 * can save both address book data and user preference data in json format, and read them back into corresponding objects.
-* inherits from both `AddressBookStorage` and `UserPrefStorage`, which means it can be treated as either one (if only the functionality of only one is needed).
+* inherits from both `UninurseBookStorage` and `UserPrefStorage`, which means it can be treated as either one (if only the functionality of only one is needed).
 * depends on some classes in the `Model` component (because the `Storage` component's job is to save/retrieve objects that belong to the `Model`)
 
 ### Common classes
 
-Classes used by multiple components are in the `seedu.addressbook.commons` package.
+Classes used by multiple components are in the `seedu.uninurse.commons` package.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -154,42 +154,143 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
+### Task viewing feature
+
+#### Implementation
+
+The viewing of tasks that are associated with patients can be achieved using the following 2 commands.
+
+* `listTask` to list all tasks associated to all patients.
+* `viewTask PATIENT_INDEX` to list task associated to the patient at the specified `PATIENT_INDEX`.
+
+<br>
+
+The `listTask` command is executed when the user enters the command into the UI which is handled by `ListTaskCommand`. Note that the command does not accept any arguments, hence there is no need for a `ListTaskCommandParser` to be created.
+
+The change is reflected in the UI by calling `Model#updateFilteredPersonList()` with the predicate that returns true if a patient in the list has associated tasks. This currently only updates the patient list panel to display patients that have associated tasks and does not update the output panel. (Future implementations would update the output panel to display all tasks associated with all patients.)
+
+The following sequence diagram illustrates the interactions between the `Logic` and `Model` component when the command is being executed.
+
+<img src="images/ListTaskSequenceDiagram.png" width="500" />
+
+<br>
+
+The `viewTask` command is executed when the user enters the command into the UI which is handled by `ViewTaskCommand`. Since the command requires an argument `PATIENT_INDEX`, a `ViewTaskCommandParser` is created to determine the validity of the arguments provided. Given that valid arguments are provided, the command is then executed in the following manner.
+
+1. The `Patient` at the specified `PATIENT_INDEX` is retrieved from the `lastShownList` obtained from the `Model` component.
+1. The `Model` component updates its current list with `Model#updateFilteredPersonList()` to display only the specified `Patient`.
+1. The `UI` component updates its result display by displaying the feedback message from `ViewTaskCommand`.
+1. The `UI` component updates its output panel by displaying a `TaskListPanel`.
+
+Note that `TaskListPanel` only displays the complete list of tasks of the specified patient and essential information such as the patient name and tags.
+
+The following sequence diagrams illustrates the interactions between the `UI`, `Logic` and `Model` component when the command is being executed.
+
+<img src="images/ViewTaskSequenceDiagram1.png" width="900" />
+
+<img src="images/ViewTaskSequenceDiagram2.png" width="500" />
+
+### Viewing tasks on a particular day feature
+
+#### Implementation
+
+The `tasksOn` command parses the user input and generates a `DateTime` object, however the time fields are default values since we only care about the particular Date, the it filters each patient by whether they have a 
+task on the given Date. Each patient themselves filter their TaskList to arrive at the conclusion on whether they have a task on the given Date. Then the Model is set to show the filtered Patients, each with their own TaskList to also 
+only the Tasks on the given Date.
+
+The Sequence diagram below shows the execution of a tasksOn command
+
+![tasksOnSequenceDiagram](images/TasksOnSequenceDiagram.png)
+
 ### \[Proposed\] Undo/redo feature
+### Add/delete medical conditions from patients
 
-#### Proposed Implementation
+Users can add a medical condition to a particular patient by providing the following details:
+1. The patient's index number shown in the displayed patient list.
+2. The condition to be added.
 
-The proposed undo/redo mechanism is facilitated by `VersionedAddressBook`. It extends `AddressBook` with an undo/redo history, stored internally as an `addressBookStateList` and `currentStatePointer`. Additionally, it implements the following operations:
+There are two ways a user can add a medical condition:
+1. Add multiple medical conditions at one go when the user first creates a patient.
+2. Add one condition at a time to an existing patient.
 
-* `VersionedAddressBook#commit()` — Saves the current address book state in its history.
-* `VersionedAddressBook#undo()` — Restores the previous address book state from its history.
-* `VersionedAddressBook#redo()` — Restores a previously undone address book state from its history.
+#### Implementation
 
-These operations are exposed in the `Model` interface as `Model#commitAddressBook()`, `Model#undoAddressBook()` and `Model#redoAddressBook()` respectively.
+A medical condition is represented by `Condition`, and multiple conditions are stored internally as a `ConditionList`.
+`ConditionList` facilitates the add/delete condition mechanism, and each patient only has one associated `ConditionList`.
+`ConditionList` mainly implements the following operations:
+* `ConditionList#add()`: adds a condition to the patient's list of conditions.
+* `ConditionList#delete()`: removes a condition from the patient's list of conditions.
+
+Figure 1 below summarises what happens when a user executes an add condition command on a specified patient:
+<figure>
+    <img src="images/AddConditionActivityDiagram.png" alt="add_condition_activity_diagram"/>
+    <figcaption>
+        <em>Figure 1: Activity diagram showing the flow of events when a user executes an add condition command</em>
+    </figcaption>
+</figure>
+
+#### Interactions 
+
+Given below is an example usage scenario and how the add condition mechanism behaves at each step.
+
+1. The user executes the `addCondition 1 c/Diabetes` command to add a condition to the first patient in the
+displayed patient list.
+
+2. `UninurseBookParser#parseCommand()` parses the command word `addCondition`, and then creates a corresponding `AddConditionCommandParser` object.
+
+3. `AddConditionCommandParser#parse()` parses the patient index `1` and the condition `Diabetes` provided, and then creates an `AddConditionCommand` object.
+
+4. The `AddConditionCommand` object interacts with the `Model` to add a condition to the specified patient's condition list.
+
+5. `Logic` returns a `CommandResult` object, which encapsulates the result of the execution of the add condition command.
+
+Figure 2 below shows how `Logic` executes the add condition operation:
+<figure>
+    <img src="images/AddConditionSequenceDiagram.png" alt="add_condition_sequence_diagram"/>
+    <figcaption>
+        <em>Figure 2: Sequence diagram showing interactions within the Logic component when a user executes an add condition command</em>
+    </figcaption>
+</figure>
+
+_To be updated with details of delete condition feature ..._
+
+### Undo/redo feature
+
+The undo/redo mechanism is facilitated by `PersistentUninurseBook`. It consists of a list of `UninurseBookSnapshot`, which itself consists of a `UninurseBook` and a `CommandResult`. `PersistentUninurseBook` stores the saved versions of all `UninurseBook`s, stored internally as:
+* `workingCopy`, which is the current (possibly unsaved) version of `UninurseBook`.
+* `uninurseBookVersions` and `currentVersion`, which are the saved versions of `UninurseBook`s and which version we last replaced `workingCopy` with.
+
+Additionally, it implements the following operations:
+
+* `PersistentUninurseBook#makeSnapshot(CommandResult)` — Saves the current address book state (i.e. `workingCopy`) in its history, along with the command result message.
+* `PersistentUninurseBook#undo()` — Restores the previous address book state from its history.
+* `PersistentUninurseBook#redo()` — Restores a previously undone address book state from its history.
+
+These operations are exposed in the `Model` interface as `Model#makeSnapshot(CommandResult)`, `Model#undo()` and `Model#redo()` respectively.
 
 Given below is an example usage scenario and how the undo/redo mechanism behaves at each step.
 
-Step 1. The user launches the application for the first time. The `VersionedAddressBook` will be initialized with the initial address book state, and the `currentStatePointer` pointing to that single address book state.
+Step 1. The user launches the application for the first time. The `PersistentUninurseBook` will be initialized with the initial address book state, and the `currentVersion` pointing to that single address book state.
 
 ![UndoRedoState0](images/UndoRedoState0.png)
 
-Step 2. The user executes `delete 5` command to delete the 5th person in the address book. The `delete` command calls `Model#commitAddressBook()`, causing the modified state of the address book after the `delete 5` command executes to be saved in the `addressBookStateList`, and the `currentStatePointer` is shifted to the newly inserted address book state.
+Step 2. The user executes `delete -p 5` command to delete the 5th person in the address book. The `delete` command calls `Model#makeSnapshot(CommandResult)`, causing the modified state of the address book after the `delete -p 5` command executes to be saved in the `uninurseBookVersions` along with the `CommandResult` of the `delete` command, and the `currentVersion` is shifted to the newly inserted address book state.
 
 ![UndoRedoState1](images/UndoRedoState1.png)
 
-Step 3. The user executes `add n/David …` to add a new person. The `add` command also calls `Model#commitAddressBook()`, causing another modified address book state to be saved into the `addressBookStateList`.
+Step 3. The user executes `add n/David …` to add a new person. The `add` command also calls `Model#makeSnapshot(CommandResult)`, causing another modified address book state and the `CommandResult` of the `add` command to be saved into the `uninurseBookVersions`.
 
 ![UndoRedoState2](images/UndoRedoState2.png)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If a command fails its execution, it will not call `Model#commitAddressBook()`, so the address book state will not be saved into the `addressBookStateList`.
+<div markdown="span" class="alert alert-info">:information_source: **Note:** If a command fails its execution, it will not call `Model#makeSnapshot(CommandResult)`, so the address book state will not be saved into the `uninurseBookVersions`.
 
 </div>
 
-Step 4. The user now decides that adding the person was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `Model#undoAddressBook()`, which will shift the `currentStatePointer` once to the left, pointing it to the previous address book state, and restores the address book to that state.
+Step 4. The user now decides that adding the person was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `Model#undo()`, which will shift the `currentVersion` once to the left, pointing it to the previous address book state, and restores the address book to that state.
 
 ![UndoRedoState3](images/UndoRedoState3.png)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index 0, pointing to the initial AddressBook state, then there are no previous AddressBook states to restore. The `undo` command uses `Model#canUndoAddressBook()` to check if this is the case. If so, it will return an error to the user rather
-than attempting to perform the undo.
+<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentVersion` is at index 0, pointing to the initial AddressBook state, then there are no previous AddressBook states to restore. The `undo` command uses `Model#canundo()` to check if this is the case.
 
 </div>
 
@@ -201,17 +302,17 @@ The following sequence diagram shows how the undo operation works:
 
 </div>
 
-The `redo` command does the opposite — it calls `Model#redoAddressBook()`, which shifts the `currentStatePointer` once to the right, pointing to the previously undone state, and restores the address book to that state.
+The `redo` command does the opposite — it calls `Model#redo()`, which shifts the `currentVersion` once to the right, pointing to the previously undone state, and restores the address book to that state.
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index `addressBookStateList.size() - 1`, pointing to the latest address book state, then there are no undone AddressBook states to restore. The `redo` command uses `Model#canRedoAddressBook()` to check if this is the case. If so, it will return an error to the user rather than attempting to perform the redo.
+<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentVersion` is at index `uninurseBookVersions.size() - 1`, pointing to the latest address book state, then there are no undone AddressBook states to restore. The `redo` command uses `Model#canredo()` to check if this is the case.
 
 </div>
 
-Step 5. The user then decides to execute the command `list`. Commands that do not modify the address book, such as `list`, will usually not call `Model#commitAddressBook()`, `Model#undoAddressBook()` or `Model#redoAddressBook()`. Thus, the `addressBookStateList` remains unchanged.
+Step 5. The user then decides to execute the command `list`. Commands that do not modify the address book, such as `list`, will usually not call `Model#makeSnapshot(CommandResult)`, `Model#undo()` or `Model#redo()`. Thus, the `uninurseBookVersions` remains unchanged.
 
 ![UndoRedoState4](images/UndoRedoState4.png)
 
-Step 6. The user executes `clear`, which calls `Model#commitAddressBook()`. Since the `currentStatePointer` is not pointing at the end of the `addressBookStateList`, all address book states after the `currentStatePointer` will be purged. Reason: It no longer makes sense to redo the `add n/David …` command. This is the behavior that most modern desktop applications follow.
+Step 6. The user executes `clear`, which calls `Model#makeSnapshot(CommandResult)`. Since the `currentVersion` is not pointing at the end of the `uninurseBookVersions`, all address book states after the `currentVersion` will be purged. Reason: It no longer makes sense to redo the `add n/David …` command. This is the behavior that most modern desktop applications follow.
 
 ![UndoRedoState5](images/UndoRedoState5.png)
 
@@ -238,7 +339,25 @@ _{more aspects and alternatives to be added}_
 
 _{Explain here how the data archiving feature will be implemented}_
 
+### Feature: UpdatedPersonCard for UI
+#### Implementation:
+Adding/editing/deleting a patient would have a `UpdatedPersonCard` with the patient’s details appear in the `OutputPanel` of the `UI`. The possible commands to achieve this are:
+1. add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [d/TASK_DESCRIPTION]… [t/TAG]…
+2. edit -p PATIENT_INDEX
+3. delete -p PATIENT_INDEX 
 
+When the user enters any of the above 3 inputs, `UninurseBookParser` parses the inputs and returns the appropriate `Command` (i.e. `AddPatientCommand`, `EditPatientCommand`, or `DeletePatientCommand`) to `LogicManager`. Once the `Command` is executed, the patient is then set as the `patientOfInterest` in the `Model` by calling the `Model#setPatientOfInterest()` method. 
+
+Below is a sequence diagram to show the interaction between the `Logic` and `Model` components for **adding a patient** (sequence is similar for editing and deleting a patient):
+
+
+
+<img src="images/AddPatientSequenceDiagram3.png"  />
+
+After that, `MainWindow` would call `LogicManager#getPatientOfInterest()` to retrieve the required patient. Thereafter, assuming a patient is added, `MainWindow` calls `OutputPanel#handleAddPatient()` with the patient as a parameter, which would then create a `UpdatedPersonCard` with the patient’s details which appears in the `OutputPanel`.
+
+Below is the sequence diagram which shows the entire interaction between the `UI`, `Logic`, and `Model` components for **adding a patient** (sequence is similar for editing and deleting a patient):
+<img src="images/AddPatientSequenceDiagram2.png"  />
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Documentation, logging, testing, configuration, dev-ops**
@@ -591,6 +710,50 @@ unless specified otherwise)
 * 2a. The list is empty.
 
   Use case ends.
+
+---
+
+**Use case: UC13 - Undo a modification command**
+
+**MSS**
+
+1. User requests to undo the last command which modifies the patient or task list, excluding undo or redo commands.
+2. UniNurse reverts the patient and task list to the version before the last modification command.
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. There are no more commands to undo.
+
+    * 1a1. UniNurse shows an error message.
+
+      Use case ends.
+
+* 1b. The undo limit has been reached.
+    * 1b1. UniNurse shows an error message.
+
+      Use case ends.
+
+
+---
+
+**Use case: UC14 - Reverse an undo command**
+
+**MSS**
+
+1. User requests to reverse the last undo command.
+2. UniNurse reverts the patient and task list to the version before the last undo command.
+
+   Use case ends.
+
+**Extensions**
+
+* 1a. The previous command is not an undo command.
+
+    * 1a1. UniNurse shows an error message.
+
+      Use case ends.
 
 *{More to be added}*
 
