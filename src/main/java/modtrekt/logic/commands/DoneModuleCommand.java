@@ -18,7 +18,6 @@ import modtrekt.model.module.Module;
 @Parameters(commandDescription = "Marks a module as done.")
 public class DoneModuleCommand extends Command {
     public static final String COMMAND_WORD = "done";
-    private static int totalCredits;
 
     @Parameter(names = "-c", description = "Module code of the module to mark done",
             required = true, converter = ModCodeConverter.class)
@@ -64,29 +63,6 @@ public class DoneModuleCommand extends Command {
 
         // Done the module.
         model.setModule(target, target.done());
-        // Sum up credits.
-        ObservableList<Module> modules = model.getModuleList().getModuleList();
-        refresh(modules);
         return new CommandResult("Marked module as done.");
-    }
-
-    /**
-     * Counting the number of MC Completed.
-     * @param modules module list.
-     */
-    public static void refresh(ObservableList<Module> modules) {
-        // Sum up credits.
-        totalCredits = modules.stream()
-                .filter(Module::isDone)
-                .mapToInt(mod -> mod.getCredits().getIntValue())
-                .sum();
-    }
-
-    /**
-     * Getter method for totalCredits.
-     * @return totalCredits.
-     */
-    public static int getTotalCredits() {
-        return totalCredits;
     }
 }

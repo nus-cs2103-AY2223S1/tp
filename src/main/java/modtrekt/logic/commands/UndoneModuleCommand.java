@@ -5,7 +5,6 @@ import static java.util.Objects.requireNonNull;
 import com.beust.jcommander.Parameter;
 import com.beust.jcommander.Parameters;
 
-import javafx.collections.ObservableList;
 import modtrekt.logic.commands.exceptions.CommandException;
 import modtrekt.logic.parser.converters.ModCodeConverter;
 import modtrekt.model.Model;
@@ -63,9 +62,6 @@ public class UndoneModuleCommand extends Command {
 
         // Undone the module.
         model.setModule(target, target.undone());
-        // Sum up credits.
-        ObservableList<Module> modules = model.getModuleList().getModuleList();
-        DoneModuleCommand.refresh(modules);
         return new CommandResult("Marked module as undone.");
     }
 }
