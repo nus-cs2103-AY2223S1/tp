@@ -230,6 +230,49 @@ Clears all reminders from the displayed reminder list.
 
 Format: `reminder clear`
 
+### Creating a message template : `message create`
+
+Creates a message template, which can then be used to generate personalized messages for clients. 
+
+Format: `message create MESSAGE`
+
+:bulb: **Tip:**
+All instances of `{name}` will be replaced with the client's name.
+
+Examples:
+
+- `message create Hello {name}, would you like to meet up with me for coffee tomorrow?` 
+- `message create Long time no see {name}! I have something exciting to share with you! ` 
+
+### Listing message templates: `message list`
+
+Lists your message templates. 
+
+Format: `message list`
+
+### Generating messages : `message generate`
+
+Generates a message using the message template and the person's name.
+
+- All instances of `{name}` in the message template will be replaced with the person's name.
+- The person and message indicated by `PERSON_INDEX` and `MESSAGE_INDEX` must exist.
+
+Format: `message generate PERSON_INDEX MESSAGE_INDEX`
+
+Example:
+
+- `message generate 1 4` Assigns the `potential` tag to the client entry at index 5.
+
+### Deleting message templates : `message delete`
+
+Delete a message template
+
+Format: `message delete INDEX`
+
+Example:
+
+- `message delete 1`
+
 ### Return home
 
 Resets the view back to the homepage.
