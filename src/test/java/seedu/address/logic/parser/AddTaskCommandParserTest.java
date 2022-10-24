@@ -18,18 +18,21 @@ import seedu.address.logic.commands.AddTaskCommand;
  */
 public class AddTaskCommandParserTest {
 
+    String[] assignees = {};
+    private static final String PLACEHOLDER_TASK = "-n \"Test task\"";
     private static final String PLACEHOLDER_TASK_NAME = "Test task";
 
     private AddTaskCommandParser parser = new AddTaskCommandParser();
 
     @Test
     public void parse_validArgs_returnsAddTaskCommand() {
-        assertParseSuccess(parser, PLACEHOLDER_TASK_NAME, new AddTaskCommand(PLACEHOLDER_TASK_NAME, null, null));
+        assertParseSuccess(parser, PLACEHOLDER_TASK,
+                new AddTaskCommand(PLACEHOLDER_TASK_NAME, assignees, null));
     }
 
     @Test
     public void parse_invalidArgs_throwsParseException() {
         assertParseFailure(parser, " ", String.format(MESSAGE_INVALID_COMMAND_FORMAT,
-            AddTaskCommand.MESSAGE_TASK_NAME_FORMAT_ERROR));
+            AddTaskCommand.MESSAGE_USAGE));
     }
 }

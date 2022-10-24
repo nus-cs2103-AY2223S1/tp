@@ -6,6 +6,8 @@ import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
 
 import org.junit.jupiter.api.Test;
 
+import java.util.List;
+
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
 import seedu.address.model.UserPrefs;
@@ -17,8 +19,9 @@ class AddTaskCommandTest {
 
     @Test
     public void equals() {
-        AddTaskCommand addTaskFirstCommand = new AddTaskCommand(PLACEHOLDER_TASK_NAME, null, null);
-        AddTaskCommand addTaskSecondCommand = new AddTaskCommand(PLACEHOLDER_TASK_NAME, null, null);
+        String[] assignees = {"Alex", "Bernice"};
+        AddTaskCommand addTaskFirstCommand = new AddTaskCommand(PLACEHOLDER_TASK_NAME, assignees, null);
+        AddTaskCommand addTaskSecondCommand = new AddTaskCommand(PLACEHOLDER_TASK_NAME, assignees, null);
 
         // Same Add Task Commands should be equal.
         assertTrue(addTaskFirstCommand.equals(addTaskFirstCommand));
