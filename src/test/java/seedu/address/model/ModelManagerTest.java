@@ -9,6 +9,8 @@ import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalPersons.ALICE;
 import static seedu.address.testutil.TypicalPersons.BENSON;
+import static seedu.address.testutil.TypicalPersons.JOLENE;
+import static seedu.address.testutil.TypicalPersons.KALEY;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -19,6 +21,8 @@ import org.junit.jupiter.api.Test;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.person.Person;
+import seedu.address.model.util.NextSessionUtil;
+import seedu.address.model.util.NextSessionUtilTest;
 import seedu.address.testutil.AddressBookBuilder;
 import seedu.address.testutil.PersonBuilder;
 
@@ -95,22 +99,6 @@ public class ModelManagerTest {
     @Test
     public void getFilteredPersonList_modifyList_throwsUnsupportedOperationException() {
         assertThrows(UnsupportedOperationException.class, () -> modelManager.getFilteredPersonList().remove(0));
-    }
-
-    @Test
-    public void getNextSession_success() {
-        //One Session in Pupilist.
-        Person testPerson = new PersonBuilder().withName(VALID_NAME_BOB).withSession(VALID_SESSION_BOB).build();
-        AddressBook addressBook = new AddressBookBuilder().withPerson(testPerson).build();
-        UserPrefs userPrefs = new UserPrefs();
-        modelManager = new ModelManager(addressBook, userPrefs);
-        assertEquals(modelManager.getNextSession(), "Next Session: " + testPerson.getName() + " "
-                        + testPerson.getSessionList().sessionList.get(0));
-
-        //No Session in Pupilist.
-        AddressBook emptyAddressBook = new AddressBook();
-        modelManager = new ModelManager(emptyAddressBook, userPrefs);
-        assertEquals(modelManager.getNextSession(), ModelManager.MESSAGE_NO_NEXT_SESSION_FOUND);
     }
 
     @Test

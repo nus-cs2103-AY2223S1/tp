@@ -55,6 +55,10 @@ public class TypicalPersons {
             .withLessonPlan("Python").build();
     public static final Person IDA = new PersonBuilder().withName("Ida Mueller").withPhone("8482131")
             .withLessonPlan("Geography chapter 1-5").build();
+    public static final Person JOLENE = new PersonBuilder().withName("Jolene Goons").withPhone("93458732")
+            .withLessonPlan("CSS").withSession("Sun 01:00", "Tue 08:30", "Wed 07:00").build();
+    public static final Person KALEY = new PersonBuilder().withName("Kaley Huang").withPhone("93452109")
+            .withLessonPlan("HTML").withSession("Sun 03:00", "Tue 07:00").build();
 
     // Manually added - Person's details found in {@code CommandTestUtil}
     public static final Person AMY = new PersonBuilder().withName(VALID_NAME_AMY).withPhone(VALID_PHONE_AMY)

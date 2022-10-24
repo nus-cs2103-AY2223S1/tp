@@ -25,7 +25,6 @@ import seedu.address.model.util.NextSessionUtil;
 public class ModelManager implements Model {
     public static final String MESSAGE_NO_NEXT_SESSION_FOUND = "No next Session timing!";
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
-
     private final AddressBook addressBook;
     private final UserPrefs userPrefs;
     private final FilteredList<Person> filteredPersons;
@@ -213,17 +212,8 @@ public class ModelManager implements Model {
 
     @Override
     public String getNextSession() {
-        updateFilteredPersonList(Model.PREDICATE_SHOW_ALL_PERSONS);
-        if (getFilteredPersonList().isEmpty()) {
-            return MESSAGE_NO_NEXT_SESSION_FOUND;
-        }
-        NextSessionUtil nextSessionUtil = new NextSessionUtil();
-        this.getFilteredPersonList().forEach(nextSessionUtil.getToSortListAdder());
-        if (nextSessionUtil.getToSortList().isEmpty()) {
-            return MESSAGE_NO_NEXT_SESSION_FOUND;
-        }
-        String res = nextSessionUtil.nextSessionFeedback();
-        return res;
+        NextSessionUtil nextSessionUtil = new NextSessionUtil(addressBook.getPersonList());
+        return nextSessionUtil.nextSessionFeedback();
     }
 
 }
