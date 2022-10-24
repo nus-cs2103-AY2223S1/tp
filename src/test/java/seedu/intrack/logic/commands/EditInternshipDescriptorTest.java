@@ -4,12 +4,12 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.intrack.logic.commands.CommandTestUtil.DESC_AAPL;
 import static seedu.intrack.logic.commands.CommandTestUtil.DESC_MSFT;
-import static seedu.intrack.logic.commands.CommandTestUtil.VALID_ADDRESS_MSFT;
 import static seedu.intrack.logic.commands.CommandTestUtil.VALID_EMAIL_MSFT;
 import static seedu.intrack.logic.commands.CommandTestUtil.VALID_NAME_MSFT;
 import static seedu.intrack.logic.commands.CommandTestUtil.VALID_PHONE_MSFT;
 import static seedu.intrack.logic.commands.CommandTestUtil.VALID_POSITION_MSFT;
 import static seedu.intrack.logic.commands.CommandTestUtil.VALID_TAG_URGENT;
+import static seedu.intrack.logic.commands.CommandTestUtil.VALID_WEBSITE_MSFT;
 
 import org.junit.jupiter.api.Test;
 
@@ -58,7 +58,7 @@ public class EditInternshipDescriptorTest {
         // assertFalse(DESC_AAPL.equals(editedAapl));
 
         // different address -> returns false
-        editedAapl = new EditInternshipDescriptorBuilder(DESC_AAPL).withAddress(VALID_ADDRESS_MSFT).build();
+        editedAapl = new EditInternshipDescriptorBuilder(DESC_AAPL).withWebsite(VALID_WEBSITE_MSFT).build();
         assertFalse(DESC_AAPL.equals(editedAapl));
 
         // different tags -> returns false

@@ -1,0 +1,69 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":InTrackParser" as InTrackParser LOGIC_COLOR
+participant ":FindNameCommandParser" as FindNameCommandParser LOGIC_COLOR
+participant "d:FindNameCommand" as FindNameCommand LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+
+[-> LogicManager : execute("findn google")
+activate LogicManager
+
+LogicManager -> InTrackParser : parseCommand("findn google")
+activate InTrackParser
+
+create FindNameCommandParser
+InTrackParser -> FindNameCommandParser
+activate FindNameCommandParser
+
+FindNameCommandParser --> InTrackParser
+deactivate FindNameCommandParser
+
+InTrackParser -> FindNameCommandParser : parse("google")
+activate FindNameCommandParser
+
+create FindNameCommand
+FindNameCommandParser -> FindNameCommand
+activate FindNameCommand
+
+FindNameCommand --> FindNameCommandParser : d
+deactivate FindNameCommand
+
+FindNameCommandParser --> InTrackParser : d
+deactivate FindNameCommandParser
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+FindNameCommandParser -[hidden]-> InTrackParser
+destroy FindNameCommandParser
+
+InTrackParser --> LogicManager : d
+deactivate InTrackParser
+
+LogicManager -> FindNameCommand : execute()
+activate FindNameCommand
+
+FindNameCommand -> Model : updateFilteredInternshipList(predicate)
+activate Model
+
+Model --> FindNameCommand
+deactivate Model
+
+create CommandResult
+FindNameCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> FindNameCommand : result
+deactivate CommandResult
+
+FindNameCommand --> LogicManager : result
+deactivate FindNameCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml

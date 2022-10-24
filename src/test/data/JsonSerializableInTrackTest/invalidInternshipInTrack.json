@@ -2,9 +2,9 @@
   "internships": [ {
     "name": "Hans Muster",
     "position": "Software Engineer",
+    "status" : "Progress",
     "phone": "9482424",
     "email": "invalid@email!3e",
-    "status" : "Oof",
-    "address": "4th street"
+    "website": "4th street"
   } ]
 }

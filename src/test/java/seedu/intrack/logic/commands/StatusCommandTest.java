@@ -26,7 +26,7 @@ import seedu.intrack.testutil.InternshipBuilder;
  */
 class StatusCommandTest {
 
-    private static final String STATUS_STUB = "PROGRESS";
+    private static final String STATUS_STUB = "Progress";
 
     private Model model = new ModelManager(getTypicalInTrack(), new UserPrefs());
 

@@ -3,11 +3,10 @@
   "internships" : [ {
     "name" : "Alice Pauline",
     "position": "Software Engineer",
+    "status" : "Progress",
     "phone" : "94351253",
     "email" : "alice@example.com",
-    "status" : "Progress",
-    "address" : "123, Jurong West Ave 6, #08-111",
-
+    "website" : "https://careers.google.com/",
     "taskFilled" : [ {
       "taskName" : "Application submitted",
       "taskTime" : "19-10-2022 11:38"
@@ -17,10 +16,10 @@
   }, {
     "name" : "Benson Meier",
     "position": "Data Analyst",
+    "status" : "Progress",
     "phone" : "98765432",
     "email" : "johnd@example.com",
-    "status" : "Offered",
-    "address" : "311, Clementi Ave 2, #02-25",
+    "website" : "https://careers.google.com/",
     "taskFilled" : [ {
       "taskName" : "Application submitted",
       "taskTime" : "20-10-2022 12:00"
@@ -30,10 +29,10 @@
   }, {
     "name" : "Carl Kurz",
     "position": "Frontend Engineer",
+    "status" : "Offered",
     "phone" : "95352563",
     "email" : "heinz@example.com",
-    "status" : "Offered",
-    "address" : "wall street",
+    "website" : "https://careers.google.com/",
     "taskFilled" : [ {
       "taskName" : "Application submitted",
       "taskTime" : "19-10-2022 11:38"
@@ -43,10 +42,10 @@
   }, {
     "name" : "Daniel Meier",
     "position": "Backend Engineer",
+    "status" : "Progress",
     "phone" : "87652533",
     "email" : "cornelia@example.com",
-    "status" : "Offered",
-    "address" : "10th street",
+    "website" : "https://careers.google.com/",
     "taskFilled" : [ {
       "taskName" : "Application submitted",
       "taskTime" : "19-10-2022 11:38"
@@ -59,10 +58,10 @@
   }, {
     "name" : "Elle Meyer",
     "position": "Full Stack Engineer",
+    "status" : "Offered",
     "phone" : "9482224",
     "email" : "werner@example.com",
-    "status" : "Offered",
-    "address" : "michegan ave",
+    "website" : "https://careers.google.com/",
     "taskFilled" : [ {
       "taskName" : "Application submitted",
       "taskTime" : "25-10-2022 08:30"
@@ -75,10 +74,10 @@
   }, {
     "name" : "Fiona Kunz",
     "position": "Cyber Security Analyst",
+    "status" : "Offered",
     "phone" : "9482427",
     "email" : "lydia@example.com",
-    "status" : "Offered",
-    "address" : "little tokyo",
+    "website" : "https://careers.google.com/",
     "taskFilled" : [ {
       "taskName" : "Application submitted",
       "taskTime" : "19-10-2022 11:38"
@@ -91,10 +90,10 @@
   }, {
     "name" : "George Best",
     "position": "Algorithm Engineer",
+    "status" : "Progress",
     "phone" : "9482442",
     "email" : "anna@example.com",
-    "status" : "Offered",
-    "address" : "4th street",
+    "website" : "https://careers.google.com/",
     "taskFilled" : [ {
       "taskName" : "Application submitted",
       "taskTime" : "19-10-2022 11:38"

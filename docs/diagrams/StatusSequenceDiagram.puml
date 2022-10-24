@@ -1,0 +1,75 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":InTrackParser" as InTrackParser LOGIC_COLOR
+participant ":StatusCommandParser" as StatusCommandParser LOGIC_COLOR
+participant "d:StatusCommand" as StatusCommand LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+
+[-> LogicManager : execute("status 1 o")
+activate LogicManager
+
+LogicManager -> InTrackParser : parseCommand("status 1 o")
+activate InTrackParser
+
+create StatusCommandParser
+InTrackParser -> StatusCommandParser
+activate StatusCommandParser
+
+StatusCommandParser --> InTrackParser
+deactivate StatusCommandParser
+
+InTrackParser -> StatusCommandParser : parse("1 o")
+activate StatusCommandParser
+
+create StatusCommand
+StatusCommandParser -> StatusCommand
+activate StatusCommand
+
+StatusCommand --> StatusCommandParser : d
+deactivate StatusCommand
+
+StatusCommandParser --> InTrackParser : d
+deactivate StatusCommandParser
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+StatusCommandParser -[hidden]-> InTrackParser
+destroy StatusCommandParser
+
+InTrackParser --> LogicManager : d
+deactivate InTrackParser
+
+LogicManager -> StatusCommand : execute()
+activate StatusCommand
+
+StatusCommand -> Model : getFilteredInternshipList()
+activate Model
+
+Model --> StatusCommand
+deactivate Model
+
+StatusCommand -> Model : setInternship(target, editedInternship)
+activate Model
+
+Model --> StatusCommand
+deactivate Model
+
+create CommandResult
+StatusCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> StatusCommand : result
+deactivate CommandResult
+
+StatusCommand --> LogicManager : result
+deactivate StatusCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml

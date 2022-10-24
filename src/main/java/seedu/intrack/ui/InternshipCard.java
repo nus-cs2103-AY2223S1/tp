@@ -1,15 +1,18 @@
 package seedu.intrack.ui;
 
+import java.awt.Desktop;
+import java.net.URI;
 import java.util.Comparator;
 
 import javafx.css.PseudoClass;
 import javafx.fxml.FXML;
+import javafx.scene.control.Hyperlink;
 import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
+import javafx.scene.text.TextFlow;
 import seedu.intrack.model.internship.Internship;
-import seedu.intrack.model.internship.Task;
 
 /**
  * An UI component that displays information of a {@code Internship}.
@@ -31,52 +34,49 @@ public class InternshipCard extends UiPart<Region> {
     @FXML
     private HBox cardPane;
     @FXML
+    private Label id;
+    @FXML
     private Label name;
     @FXML
     private Label position;
     @FXML
-    private Label id;
-    @FXML
-    private Label phone;
-    @FXML
-    private Label address;
-    @FXML
-    private Label email;
-    @FXML
-    private FlowPane tags;
-    @FXML
     private FlowPane status;
     @FXML
-    private FlowPane tasks;
+    private TextFlow website;
     @FXML
-    private Label remark;
+    private FlowPane tags;
 
     /**
      * Creates a {@code InternshipCode} with the given {@code Internship} and index to display.
      */
     public InternshipCard(Internship internship, int displayedIndex) {
         super(FXML);
+
+        this.internship = internship;
+        id.setText(displayedIndex + ". ");
+        name.setText(internship.getName().fullName);
+        position.setText(internship.getPosition().positionName);
+
         Label lab = new Label(internship.getStatus().toString());
         PseudoClass rejected = PseudoClass.getPseudoClass("rejected");
         lab.pseudoClassStateChanged(rejected, (internship.getStatus().toString()).equals("Rejected"));
         PseudoClass offered = PseudoClass.getPseudoClass("offered");
         lab.pseudoClassStateChanged(offered, (internship.getStatus().toString()).equals("Offered"));
-        this.internship = internship;
-        id.setText(displayedIndex + ". ");
-        name.setText(internship.getName().fullName);
-        position.setText(internship.getPosition().positionName);
-        phone.setText(internship.getPhone().value);
-        address.setText(internship.getAddress().value);
-        email.setText(internship.getEmail().value);
-        internship.getTasks().stream()
-                .sorted(Comparator.comparing(task -> task.taskTime))
-                .forEach(task -> tasks.getChildren().add(new Label(task.taskName + " at "
-                        + task.taskTime.format(Task.FORMATTER) + "\n")));
         status.getChildren().add(lab);
+
+        Hyperlink hyperlink = new Hyperlink(internship.getWebsite().value);
+        website.getChildren().add(hyperlink);
+        hyperlink.setOnAction(e -> {
+            try {
+                Desktop.getDesktop().browse(new URI(internship.getWebsite().value));
+            } catch (Exception ex) {
+                System.out.println(ex.getMessage());
+            }
+        });
+
         internship.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
-        remark.setText(internship.getRemark().value);
     }
 
     @Override

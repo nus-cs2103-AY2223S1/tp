@@ -1,0 +1,47 @@
+@startuml
+start
+:User executes add command;
+
+'Since the beta syntax does not support placing the condition outside the
+'diamond we place it as the true branch instead.
+
+if () then ([command is in an invalid format])
+    :Show invalid command
+    error message;
+
+else ([else])
+    if () then ([name is invalid])
+    :Show invalid name
+    error message;
+
+    else ([else])
+        if () then ([position is invalid])
+            :Show invalid position
+            error message;
+
+        else ([else])
+            if () then ([phone number is invalid])
+                :Show invalid phone number
+                error message;
+
+            else ([else])
+                if () then ([email is invalid])
+                    :Show invalid email
+                    error message;
+
+                else ([else])
+                    if () then ([address is invalid])
+                        :Show invalid address
+                        error message;
+
+                        else ([else])
+                        :Add new internship to list of
+                        internship applications;
+                    endif
+                endif
+            endif
+        endif
+    endif
+endif
+stop
+@enduml

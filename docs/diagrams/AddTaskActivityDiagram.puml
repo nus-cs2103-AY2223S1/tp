@@ -1,0 +1,29 @@
+@startuml
+start
+:User executes addtask command;
+
+'Since the beta syntax does not support placing the condition outside the
+'diamond we place it as the true branch instead.
+
+if () then ([command is in an invalid format])
+    :Show invalid command
+    error message;
+
+else ([else])
+    if () then ([index is invalid])
+    :Show invalid index
+    error message;
+
+    else ([else])
+        if () then ([taskname or tasktime is invalid])
+        :Show invalid addtask
+        error message;
+
+        else ([else])
+        :Update the list of tasks of the
+        internship application;
+        endif
+    endif
+endif
+stop
+@enduml

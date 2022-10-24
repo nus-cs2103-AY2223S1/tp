@@ -11,12 +11,16 @@ import seedu.intrack.logic.commands.AddTaskCommand;
 import seedu.intrack.logic.commands.ClearCommand;
 import seedu.intrack.logic.commands.Command;
 import seedu.intrack.logic.commands.DeleteCommand;
+import seedu.intrack.logic.commands.DeleteTaskCommand;
 import seedu.intrack.logic.commands.EditCommand;
 import seedu.intrack.logic.commands.ExitCommand;
-import seedu.intrack.logic.commands.FindCommand;
+import seedu.intrack.logic.commands.FilterCommand;
+import seedu.intrack.logic.commands.FindNameCommand;
+import seedu.intrack.logic.commands.FindPositionCommand;
 import seedu.intrack.logic.commands.HelpCommand;
 import seedu.intrack.logic.commands.ListCommand;
 import seedu.intrack.logic.commands.RemarkCommand;
+import seedu.intrack.logic.commands.SelectCommand;
 import seedu.intrack.logic.commands.StatsCommand;
 import seedu.intrack.logic.commands.StatusCommand;
 import seedu.intrack.logic.parser.exceptions.ParseException;
@@ -51,38 +55,50 @@ public class InTrackParser {
         case AddCommand.COMMAND_WORD:
             return new AddCommandParser().parse(arguments);
 
-        case EditCommand.COMMAND_WORD:
-            return new EditCommandParser().parse(arguments);
-
-        case DeleteCommand.COMMAND_WORD:
-            return new DeleteCommandParser().parse(arguments);
+        case AddTaskCommand.COMMAND_WORD:
+            return new AddTaskCommandParser().parse(arguments);
 
         case ClearCommand.COMMAND_WORD:
             return new ClearCommand();
 
-        case FindCommand.COMMAND_WORD:
-            return new FindCommandParser().parse(arguments);
+        case DeleteCommand.COMMAND_WORD:
+            return new DeleteCommandParser().parse(arguments);
 
-        case ListCommand.COMMAND_WORD:
-            return new ListCommand();
+        case DeleteTaskCommand.COMMAND_WORD:
+            return new DeleteTaskCommandParser().parse(arguments);
+
+        case EditCommand.COMMAND_WORD:
+            return new EditCommandParser().parse(arguments);
 
         case ExitCommand.COMMAND_WORD:
             return new ExitCommand();
 
+        case FilterCommand.COMMAND_WORD:
+            return new FilterCommandParser().parse(arguments);
+
+        case FindNameCommand.COMMAND_WORD:
+            return new FindNameCommandParser().parse(arguments);
+
+        case FindPositionCommand.COMMAND_WORD:
+            return new FindPositionCommandParser().parse(arguments);
+
         case HelpCommand.COMMAND_WORD:
             return new HelpCommand();
 
-        case StatusCommand.COMMAND_WORD:
-            return new StatusCommandParser().parse(arguments);
+        case ListCommand.COMMAND_WORD:
+            return new ListCommand();
 
-        case AddTaskCommand.COMMAND_WORD:
-            return new AddTaskCommandParser().parse(arguments);
+        case RemarkCommand.COMMAND_WORD:
+            return new RemarkCommandParser().parse(arguments);
+
+        case SelectCommand.COMMAND_WORD:
+            return new SelectCommandParser().parse(arguments);
 
         case StatsCommand.COMMAND_WORD:
             return new StatsCommand();
 
-        case RemarkCommand.COMMAND_WORD:
-            return new RemarkCommandParser().parse(arguments);
+        case StatusCommand.COMMAND_WORD:
+            return new StatusCommandParser().parse(arguments);
 
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
