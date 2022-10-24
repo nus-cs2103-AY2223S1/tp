@@ -3,15 +3,19 @@ package seedu.address.ui;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.Region;
+import seedu.address.logic.Logic;
 import seedu.address.logic.commands.AddAppointmentCommand;
 import seedu.address.logic.commands.AddCommand;
+import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.DeleteAppointmentCommand;
 import seedu.address.logic.commands.DeleteCommand;
 import seedu.address.logic.commands.EditAppointmentCommand;
 import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.FindCommand;
+import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.commands.SortCommand;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
@@ -32,9 +36,50 @@ public class CommandBox extends UiPart<Region> {
     /**
      * Creates a {@code CommandBox} with the given {@code CommandExecutor}.
      */
-    public CommandBox(CommandExecutor commandExecutor, ResultDisplay resultDisplay) {
+    public CommandBox(CommandExecutor commandExecutor, ResultDisplay resultDisplay, Logic logic) {
         super(FXML);
+
+        setupListener(resultDisplay);
+        setupCommandHistoryNavigation(logic, resultDisplay);
+
         this.commandExecutor = commandExecutor;
+
+    }
+
+    /**
+     * Setup down and up arrow key to show previous and next command in commandTextField
+     * @param logic gets the previous/next command in CommandHistory
+     * @param resultDisplay is cleared when the next command string is empty
+     */
+    private void setupCommandHistoryNavigation(Logic logic, ResultDisplay resultDisplay) {
+        commandTextField.addEventFilter(KeyEvent.KEY_PRESSED, event -> {
+            switch (event.getCode()) {
+            case UP:
+                String prevCommand = logic.getPrevInCommandHistory();
+                commandTextField.setText(prevCommand);
+                event.consume();
+                break;
+            case DOWN:
+                String nextCommand = logic.getNextInCommandHistory();
+                commandTextField.setText(nextCommand);
+                if (nextCommand.equals("")) {
+                    resultDisplay.setFeedbackToUser("");
+                }
+                event.consume();
+                break;
+            default:
+                break;
+            }
+        });
+    }
+
+    /**
+     * Add listener to commandTextField to set text style to default when typing
+     * and to display the command's message usage to the ResultDisplay when
+     * a valid command word is typed.
+     * @param resultDisplay displays the command's message usage
+     */
+    private void setupListener(ResultDisplay resultDisplay) {
         // calls #setStyleToDefault() whenever there is a change to the text of the command box.
         // displays command parameters in ResultDisplay when a COMMAND_WORD is typed.
         // clears ResultDisplay when a single character is in the CommandBox
@@ -43,7 +88,9 @@ public class CommandBox extends UiPart<Region> {
             if (newValue.length() == 1) {
                 resultDisplay.setFeedbackToUser("");
             }
-            switch (newValue) {
+            String trimmedText = newValue.trim();
+            String commandWord = trimmedText.contains(" ") ? trimmedText.split(" ")[0] : trimmedText;
+            switch (commandWord) {
             case AddCommand.COMMAND_WORD:
                 resultDisplay.setFeedbackToUser(AddCommand.MESSAGE_USAGE);
                 break;
@@ -55,6 +102,12 @@ public class CommandBox extends UiPart<Region> {
                 break;
             case FindCommand.COMMAND_WORD:
                 resultDisplay.setFeedbackToUser(FindCommand.MESSAGE_USAGE);
+                break;
+            case ListCommand.COMMAND_WORD:
+                resultDisplay.setFeedbackToUser(ListCommand.MESSAGE_USAGE);
+                break;
+            case ClearCommand.COMMAND_WORD:
+                resultDisplay.setFeedbackToUser(ClearCommand.MESSAGE_USAGE);
                 break;
             case SortCommand.COMMAND_WORD:
                 resultDisplay.setFeedbackToUser(SortCommand.MESSAGE_USAGE);

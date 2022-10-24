@@ -7,6 +7,7 @@ import java.util.function.Predicate;
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.calendar.CalendarEvent;
+import seedu.address.model.person.Appointment;
 import seedu.address.model.person.Person;
 
 /**
@@ -59,6 +60,8 @@ public interface Model {
      */
     boolean hasPerson(Person person);
 
+    boolean hasPersonWithSameAppointmentDateTime(Appointment appointment);
+
     /**
      * Deletes the given person.
      * The person must exist in the address book.
@@ -93,4 +96,12 @@ public interface Model {
 
     ObservableList<CalendarEvent> getFilteredCalendarEventList();
 
+
+    ReadOnlyCommandHistory getCommandHistory();
+
+    void addToCommandHistory(String commandInput);
+
+    String nextCommand();
+
+    String prevCommand();
 }

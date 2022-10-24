@@ -46,6 +46,13 @@ public class LogicManager implements Logic {
         Command command = addressBookParser.parseCommand(commandText);
         commandResult = command.execute(model);
 
+        model.addToCommandHistory(commandText.trim());
+        try {
+            storage.saveCommandHistory(model.getCommandHistory());
+        } catch (IOException e) {
+            logger.warning("Unable to save commandHistory");
+        }
+
         try {
             storage.saveAddressBook(model.getAddressBook());
         } catch (IOException ioe) {
@@ -53,6 +60,14 @@ public class LogicManager implements Logic {
         }
 
         return commandResult;
+    }
+
+    public String getNextInCommandHistory() {
+        return model.nextCommand();
+    }
+
+    public String getPrevInCommandHistory() {
+        return model.prevCommand();
     }
 
     @Override
