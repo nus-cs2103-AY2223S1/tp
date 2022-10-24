@@ -69,6 +69,14 @@ public class InterviewDateTime {
         }
     }
 
+    public static boolean BothNullOrEqual(InterviewDateTime interviewDateTime1, InterviewDateTime interviewDateTime2) {
+        if (interviewDateTime1 == null) {
+            return interviewDateTime1 == interviewDateTime2;
+        } else {
+            return interviewDateTime1.equals(interviewDateTime2);
+        }
+    }
+
     @Override
     public String toString() {
         return value;

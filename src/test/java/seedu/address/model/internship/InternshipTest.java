@@ -5,7 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_APPLIED_DATE_TIKTOK;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_COMPANY_TIKTOK;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_DESCRIPTION_TIKTOK;
-// import static seedu.address.logic.commands.CommandTestUtil.VALID_INTERVIEW_DATE_TIME_TIKTOK;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_INTERVIEW_DATE_TIME_TIKTOK;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_LINK_TIKTOK;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_ECOMMERCE;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_FRONTEND;
@@ -87,11 +87,9 @@ public class InternshipTest {
         editedAlibaba = new InternshipBuilder(ALIBABA).withAppliedDate(VALID_APPLIED_DATE_TIKTOK).build();
         assertFalse(ALIBABA.equals(editedAlibaba));
 
-        /* To fix
         // different interview date -> returns false
         editedAlibaba = new InternshipBuilder(ALIBABA).withInterviewDateTime(VALID_INTERVIEW_DATE_TIME_TIKTOK).build();
         assertFalse(ALIBABA.equals(editedAlibaba));
-         */
 
         // different tags -> returns false
         editedAlibaba = new InternshipBuilder(ALIBABA).withTags(VALID_TAG_FRONTEND).build();
