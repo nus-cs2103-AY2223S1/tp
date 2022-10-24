@@ -1,8 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ListView?>
+<?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.VBox?>
 
 <VBox xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+    <BorderPane prefWidth="250" styleClass="title">
+        <center>
+            <Label fx:id="staffListTitle" accessibleRole="TEXT_AREA" alignment="CENTER" contentDisplay="CENTER"
+                   textAlignment="CENTER" wrapText="true">
+                <padding>
+                    <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                </padding>
+            </Label>
+        </center>
+    </BorderPane>
     <ListView fx:id="staffListView" VBox.vgrow="ALWAYS" />
 </VBox>

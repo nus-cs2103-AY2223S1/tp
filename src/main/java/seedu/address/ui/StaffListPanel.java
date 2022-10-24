@@ -4,6 +4,7 @@ import java.util.logging.Logger;
 
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.Region;
@@ -20,11 +21,15 @@ public class StaffListPanel extends UiPart<Region> {
     @FXML
     private ListView<Staff> staffListView;
 
+    @FXML
+    private Label staffListTitle;
+
     /**
      * Creates a {@code StaffListPanel}.
      */
     public StaffListPanel() {
         super(FXML);
+        staffListTitle.setText("Staff List");
     }
 
     /**
@@ -32,6 +37,7 @@ public class StaffListPanel extends UiPart<Region> {
      */
     public StaffListPanel(ObservableList<Staff> staffList) {
         super(FXML);
+        staffListTitle.setText("Staff List");
         staffListView.setItems(staffList);
         staffListView.setCellFactory(listView -> new StaffListViewCell());
     }
