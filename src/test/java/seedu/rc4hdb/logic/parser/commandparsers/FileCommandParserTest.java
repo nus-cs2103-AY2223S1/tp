@@ -14,6 +14,7 @@ import static seedu.rc4hdb.logic.parser.commandparsers.FileCommandParser.DATA_DI
 
 import org.junit.jupiter.api.Test;
 
+import seedu.rc4hdb.logic.commands.filecommands.csvfilecommands.ImportCommand;
 import seedu.rc4hdb.logic.commands.filecommands.jsonfilecommands.FileCreateCommand;
 import seedu.rc4hdb.logic.commands.filecommands.jsonfilecommands.FileDeleteCommand;
 import seedu.rc4hdb.logic.commands.filecommands.jsonfilecommands.FileSwitchCommand;
@@ -46,6 +47,12 @@ public class FileCommandParserTest {
     public void parse_validFileSwitchCommand() {
         assertParseSuccess(parser, FileSwitchCommand.COMMAND_WORD + " " + VALID_FILE_NAME_STRING,
                 new FileSwitchCommand(DATA_DIR_PATH, VALID_FILE_NAME_STRING));
+    }
+
+    @Test
+    public void parse_validImportCommand() {
+        assertParseSuccess(parser, ImportCommand.COMMAND_WORD + " " + VALID_FILE_NAME_STRING,
+                new ImportCommand(DATA_DIR_PATH, VALID_FILE_NAME_STRING));
     }
 
     @Test

@@ -74,4 +74,9 @@ public class StorageStub implements Storage {
     public void createResidentBookFile(Path filePath) throws IOException {
         throw new AssertionError("This method should not be called.");
     }
+
+    @Override
+    public Optional<ReadOnlyResidentBook> readCsvFile(Path filePath) throws IOException, DataConversionException {
+        throw new AssertionError("This method should not be called.");
+    }
 }

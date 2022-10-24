@@ -22,8 +22,6 @@ import seedu.rc4hdb.storage.residentbook.ResidentBookStorage;
 public class StorageCommandTestUtil {
 
     public static final String VALID_FILE_NAME_STRING = "test";
-    public static final String VALID_FILE_NAME_STRING_JSON = "data/" + VALID_FILE_NAME_STRING + ".json";
-    public static final Path VALID_FILE_NAME_PATH = Path.of(VALID_FILE_NAME_STRING_JSON);
 
     public static final String INVALID_FILE_NAME_FULL_STOP = "test.";
     public static final String INVALID_FILE_NAME_WHITESPACE = "te st";
