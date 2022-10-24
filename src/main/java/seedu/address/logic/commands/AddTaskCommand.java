@@ -1,6 +1,7 @@
 package seedu.address.logic.commands;
 
 
+
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_CATEGORY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DEADLINE;
@@ -16,33 +17,26 @@ import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.task.Task;
 
+
 /**
  * Adds a task to the address book.
  */
 public class AddTaskCommand extends Command {
     public static final String COMMAND_WORD = "addTask";
-    private static final Name NO_PERSON_ASSIGNED = new Name("No person currently assigned");
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a task to the address book. "
+            + "\n" + "Parameters: " + "[" + PREFIX_NAME + "NAME] " + "[" + PREFIX_DESCRIPTION + "DESCRIPTION] " + "["
+            + PREFIX_PRIORITY + "PRIORITY (low/medium/high)] " + "[" + PREFIX_CATEGORY
+            + "CATEGORY (database/frontend/backend/uiux/presentation/others)] "
+            + "[" + PREFIX_DEADLINE + "DEADLINE] " + "[" + PREFIX_PERSON
+            + "PERSON Email Address (must be a valid email)]\n"
+            + "Example: " + COMMAND_WORD + " " + PREFIX_NAME + "Create Initial UIUX Design " + PREFIX_DESCRIPTION
+            + "Use FIGMA to create initial UIUX Design " + PREFIX_PRIORITY + "medium " + PREFIX_CATEGORY + "uiux "
+            + PREFIX_DEADLINE + "2022-01-01 " + PREFIX_PERSON + "1 ";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a task to the address book. \n"
-            + "Parameters: "
-            + "[" + PREFIX_NAME + "NAME] "
-            + "[" + PREFIX_DESCRIPTION + "DESCRIPTION] "
-            + "[" + PREFIX_PRIORITY + "PRIORITY (low/medium/high)] "
-            + "[" + PREFIX_CATEGORY + "CATEGORY (database/frontend/backend/uiux/presentation/others)] "
-            + "[" + PREFIX_DEADLINE + "DEADLINE] "
-            + "[" + PREFIX_PERSON + "PERSON Email Address (must be a valid email)]\n"
-            + "Example: " + COMMAND_WORD + " "
-            + PREFIX_NAME + "Create Initial UIUX Design "
-            + PREFIX_DESCRIPTION + "Use FIGMA to create initial UIUX Design "
-            + PREFIX_PRIORITY + "medium "
-            + PREFIX_CATEGORY + "uiux "
-            + PREFIX_DEADLINE + "2022-01-01 "
-            + PREFIX_PERSON + "1 ";
-
-    public static final String MESSAGE_SUCCESS = "New task added: %1$s";
     public static final String MESSAGE_DUPLICATE_TASK = "This task already exists in the address book";
+    private static final Name NO_PERSON_ASSIGNED = new Name("No person currently assigned");
+    private static final String MESSAGE_SUCCESS = "New task added: %1$s";
     private final Task toAdd;
-
     private final Email personEmailAddress;
 
     /**
@@ -62,7 +56,7 @@ public class AddTaskCommand extends Command {
             throw new CommandException(MESSAGE_DUPLICATE_TASK);
         }
 
-        toAdd.setPerson(new CommandUtil.notFoundPerson(personEmailAddress));
+        toAdd.setPerson(new CommandUtil.NotFoundPerson(personEmailAddress));
         for (Person person : model.getFilteredPersonList()) {
             if (person.getEmail().equals(personEmailAddress)) {
                 toAdd.setPerson(person);

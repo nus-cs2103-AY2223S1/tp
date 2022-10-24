@@ -31,24 +31,19 @@ class JsonAdaptedPerson {
     private final String address;
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
 
-    private final List<JsonAdaptedTask> tasks = new ArrayList<>();
-
     /**
      * Constructs a {@code JsonAdaptedPerson} with the given person details.
      */
     @JsonCreator
     public JsonAdaptedPerson(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
-            @JsonProperty("email") String email, @JsonProperty("address") String address,
-            @JsonProperty("tagged") List<JsonAdaptedTag> tagged, @JsonProperty("tasks") List<JsonAdaptedTask> tasks) {
+                             @JsonProperty("email") String email, @JsonProperty("address") String address,
+                             @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
         if (tagged != null) {
             this.tagged.addAll(tagged);
-        }
-        if (tasks!= null) {
-            this.tasks.addAll(tasks);
         }
     }
 
@@ -112,7 +107,7 @@ class JsonAdaptedPerson {
 
         final Set<Tag> modelTags = new HashSet<>(personTags);
         final List<Task> modelTasks = new ArrayList<>(personTasks);
-        return new Person(modelName, modelPhone, modelEmail, modelAddress, modelTags,modelTasks);
+        return new Person(modelName, modelPhone, modelEmail, modelAddress, modelTags, modelTasks);
     }
 
 }

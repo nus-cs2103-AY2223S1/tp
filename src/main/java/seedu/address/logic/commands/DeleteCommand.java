@@ -3,21 +3,13 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 
-import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.person.Address;
-import seedu.address.model.person.Email;
-import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
-import seedu.address.model.person.Phone;
-import seedu.address.model.tag.Tag;
 import seedu.address.model.task.Task;
 
 
@@ -57,7 +49,7 @@ public class DeleteCommand extends Command {
 
         for (Task task : lastShownTaskList) {
             if (task.getPerson().equals(personToDelete)) {
-                task.setPerson(new deletedPerson());
+                task.setPerson(new CommandUtil.DeletedPerson());
             }
         }
 
@@ -71,19 +63,6 @@ public class DeleteCommand extends Command {
         return other == this // short circuit if same object
                 || (other instanceof DeleteCommand // instanceof handles nulls
                 && targetIndex.equals(((DeleteCommand) other).targetIndex)); // state check
-    }
-
-    private static class deletedPerson extends Person {
-        private static final Name name = new Name("This person has been deleted");
-        private static final Address address = new Address("Deleted address");
-        private static final Email email = new Email("dummyEmail@dummy.com");
-
-        private static final Phone phone = new Phone("00000000");
-        private static final Set<Tag> tags = new HashSet<>();
-        private static final List<Task> tasks = new ArrayList<>();
-        public deletedPerson() {
-            super(name, phone, email, address, tags, tasks);
-        }
     }
 
 }

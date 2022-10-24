@@ -144,8 +144,8 @@ public class ModelManager implements Model {
 
     @Override
     public void update() {
-        List<Person> newPersonList =  new ArrayList<>(addressBook.getPersonList());
-        List<Task> newTaskList =  new ArrayList<>(addressBook.getTaskList());
+        List<Person> newPersonList = new ArrayList<>(addressBook.getPersonList());
+        List<Task> newTaskList = new ArrayList<>(addressBook.getTaskList());
         addressBook.setPersons(newPersonList);
         addressBook.setTasks(newTaskList);
     }

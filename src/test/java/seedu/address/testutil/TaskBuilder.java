@@ -2,7 +2,9 @@ package seedu.address.testutil;
 
 import java.time.LocalDate;
 
+import seedu.address.logic.commands.CommandUtil;
 import seedu.address.model.person.Email;
+import seedu.address.model.person.Person;
 import seedu.address.model.task.Description;
 import seedu.address.model.task.Priority;
 import seedu.address.model.task.PriorityEnum;
@@ -34,6 +36,8 @@ public class TaskBuilder {
     private TaskDeadline taskDeadline;
 
     private Email taskPersonEmailAddress;
+
+    private Person taskPerson;
     private boolean taskStatus;
 
     /**
@@ -46,6 +50,7 @@ public class TaskBuilder {
         taskPriority = new Priority(defaultPriority);
         taskDeadline = new TaskDeadline(defaultLocalDate);
         taskPersonEmailAddress = new Email("test@gmail.com");
+        taskPerson = new CommandUtil.NotFoundPerson(taskPersonEmailAddress);
         taskStatus = defaultStatus;
     }
 
@@ -58,7 +63,7 @@ public class TaskBuilder {
         taskDescription = taskToCopy.getDescription();
         taskPriority = taskToCopy.getPriority();
         taskDeadline = taskToCopy.getDeadline();
-        taskPersonEmailAddress = taskToCopy.getPersonEmailAddress();
+        taskPerson = taskToCopy.getPerson();
         taskStatus = taskToCopy.isDone();
     }
 
@@ -119,6 +124,14 @@ public class TaskBuilder {
     }
 
     /**
+     * Sets the {@code Status} of the {@code Person} that we are building.
+     */
+    public TaskBuilder withPerson(Person person) {
+        this.taskPerson = person;
+        return this;
+    }
+
+    /**
      * Builds a Task
      *
      * @return the task to be builtF
@@ -126,7 +139,7 @@ public class TaskBuilder {
 
     public Task build() {
         return new Task(taskName, taskDescription, taskPriority, taskCategory, taskDeadline,
-                taskPersonEmailAddress, taskStatus);
+                taskPerson, taskStatus);
     }
 
 }

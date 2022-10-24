@@ -1,6 +1,7 @@
 package seedu.address.model;
 
 
+
 import static java.util.Objects.requireNonNull;
 
 import java.util.List;
@@ -10,7 +11,6 @@ import seedu.address.model.person.Person;
 import seedu.address.model.person.UniquePersonList;
 import seedu.address.model.task.Task;
 import seedu.address.model.task.TaskList;
-
 
 
 
@@ -168,10 +168,13 @@ public class AddressBook implements ReadOnlyAddressBook {
         return persons.hashCode();
     }
 
+    /**
+     * A method that forces every person and task to update their values. Used after the addressBook is initalized.
+     */
     public void updatePersonTasks() {
-        for(Person person : persons) {
-            for(Task task : tasks) {
-                if(person.equals(task.getPerson())){
+        for (Person person : persons) {
+            for (Task task : tasks) {
+                if (person.equals(task.getPerson())) {
                     person.addTask(task);
                 }
             }

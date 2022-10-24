@@ -8,7 +8,7 @@ import java.util.Objects;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
-import seedu.address.model.person.Name;
+
 /**
  * Represents a Task in the address book.
  * Guarantees: details are present and not null, field values are validated.

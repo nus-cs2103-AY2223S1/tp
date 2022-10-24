@@ -86,7 +86,7 @@ public class EditCommand extends Command {
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
         List<Task> updatedTask = personToEdit.getTasks();
 
-        return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTags,updatedTask);
+        return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTags, updatedTask);
     }
 
     @Override
@@ -106,7 +106,7 @@ public class EditCommand extends Command {
         }
 
         model.setPerson(personToEdit, editedPerson);
-        for(Task task : editedPerson.getTasks()) {
+        for (Task task : editedPerson.getTasks()) {
             task.setPerson(editedPerson);
         }
 

@@ -63,6 +63,11 @@ public class TaskCard extends UiPart<Region> {
         personName.setText("Assignee: " + task.getPersonName());
     }
 
+    /**
+     * Converts a boolean value to its string representation
+     * @param isDone the boolean value to be converted
+     * @return the string representation of the boolean value
+     */
     public String booleanConvertor(boolean isDone) {
         return isDone ? "Completed" : "Not Completed";
 

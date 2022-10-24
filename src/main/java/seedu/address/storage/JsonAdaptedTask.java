@@ -5,7 +5,6 @@ import java.time.LocalDate;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-import javafx.beans.Observable;
 import javafx.collections.ObservableList;
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.person.Email;
@@ -149,8 +148,8 @@ public class JsonAdaptedTask {
         final Boolean modelIsDone = Task.covertIsDoneFromStringToBoolean(isDone);
 
         Person modelPerson = null;
-        for(Person person : personList) {
-            if(person.getEmail().equals(modelEmail)) {
+        for (Person person : personList) {
+            if (person.getEmail().equals(modelEmail)) {
                 modelPerson = person;
             }
         }
