@@ -1,5 +1,6 @@
 package seedu.address.testutil;
 
+import static seedu.address.logic.commands.CommandTestUtil.VALID_TYPE_INCOME;
 
 import seedu.address.model.entry.Amount;
 import seedu.address.model.entry.Date;
@@ -8,9 +9,6 @@ import seedu.address.model.entry.Entry;
 import seedu.address.model.entry.EntryType;
 import seedu.address.model.entry.Income;
 import seedu.address.model.tag.Tag;
-
-import static seedu.address.logic.commands.CommandTestUtil.*;
-
 
 /**
  * A utility class to help with building Income objects.

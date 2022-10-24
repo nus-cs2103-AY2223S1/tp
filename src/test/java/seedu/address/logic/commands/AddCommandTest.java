@@ -3,8 +3,6 @@ package seedu.address.logic.commands;
 import static java.util.Objects.requireNonNull;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
 
 import java.nio.file.Path;
@@ -26,7 +24,6 @@ import seedu.address.model.ReadOnlyPennyWise;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.entry.Entry;
 import seedu.address.model.entry.EntryType;
-import seedu.address.model.entry.Income;
 import seedu.address.testutil.ExpenditureBuilder;
 import seedu.address.testutil.IncomeBuilder;
 
@@ -38,10 +35,10 @@ public class AddCommandTest {
         assertThrows(NullPointerException.class, () -> new AddCommand(null, new EntryType("e")));
     }
 
-//     @Test
-//     public void constructor_nullEntryType_throwsNullPointerException() {
-//         assertThrows(NullPointerException.class, () -> new AddCommand(new ExpenditureBuilder().build(), null));
-//     }
+    // @Test
+    // public void constructor_nullEntryType_throwsNullPointerException() {
+    //     assertThrows(NullPointerException.class, () -> new AddCommand(new ExpenditureBuilder().build(), null));
+    // }
 
     @Test
     public void execute_expenditureAcceptedByModel_addSuccessful() throws Exception {

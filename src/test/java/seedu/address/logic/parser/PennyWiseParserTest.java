@@ -7,13 +7,15 @@ import static seedu.address.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_ENTRY;
 
-import org.junit.jupiter.api.Test;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import org.junit.jupiter.api.Test;
+
 import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.commands.ClearCommand;
+import seedu.address.logic.commands.CommandTestUtil;
 import seedu.address.logic.commands.DeleteCommand;
 import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.ExitCommand;
@@ -22,15 +24,14 @@ import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.commands.SummaryCommand;
 import seedu.address.logic.commands.ViewCommand;
-import seedu.address.logic.commands.CommandTestUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.entry.Entry;
 import seedu.address.model.entry.EntryType;
 import seedu.address.model.entry.GraphType;
 import seedu.address.model.entry.NameContainsKeywordsPredicate;
 import seedu.address.testutil.EditEntryDescriptorBuilder;
-import seedu.address.testutil.ExpenditureBuilder;
 import seedu.address.testutil.EntryUtil;
+import seedu.address.testutil.ExpenditureBuilder;
 
 public class PennyWiseParserTest {
 
@@ -118,8 +119,8 @@ public class PennyWiseParserTest {
     @Test
     public void parseCommand_unrecognisedInput_throwsParseException() {
         assertThrows(ParseException.class,
-        String.format(MESSAGE_INVALID_COMMAND_FORMAT, HelpCommand.MESSAGE_USAGE), ()
-            -> parser.parseCommand(""));
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, HelpCommand.MESSAGE_USAGE), ()
+                        -> parser.parseCommand(""));
     }
 
     @Test

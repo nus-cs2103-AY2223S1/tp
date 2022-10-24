@@ -53,7 +53,8 @@ public class EntryUtil {
      */
     public static String getEditEntryDescriptorDetails(EditCommand.EditEntryDescriptor descriptor) {
         StringBuilder sb = new StringBuilder();
-        descriptor.getType().ifPresent(type -> sb.append(PREFIX_TYPE).append(type.getEntryType().toString()).append(" "));
+        descriptor.getType().ifPresent(
+                type -> sb.append(PREFIX_TYPE).append(type.getEntryType().toString()).append(" "));
         descriptor.getAmount().ifPresent(amount -> sb.append(PREFIX_AMOUNT).append(amount.getValue()).append(" "));
         descriptor.getDate().ifPresent(date -> sb.append(PREFIX_DATE).append(date).append(" "));
         descriptor.getDescription().ifPresent(description -> sb.append(PREFIX_DESCRIPTION)

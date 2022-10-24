@@ -22,7 +22,6 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_INVESTMENT;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_LUNCH;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_MOVIE;
 
-
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;

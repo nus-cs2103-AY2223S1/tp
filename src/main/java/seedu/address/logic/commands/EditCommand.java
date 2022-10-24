@@ -15,7 +15,13 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.CollectionUtil;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
-import seedu.address.model.entry.*;
+import seedu.address.model.entry.Amount;
+import seedu.address.model.entry.Date;
+import seedu.address.model.entry.Description;
+import seedu.address.model.entry.Entry;
+import seedu.address.model.entry.EntryType;
+import seedu.address.model.entry.Expenditure;
+import seedu.address.model.entry.Income;
 import seedu.address.model.tag.Tag;
 
 /**
