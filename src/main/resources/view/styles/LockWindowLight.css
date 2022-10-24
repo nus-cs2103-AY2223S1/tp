@@ -1,15 +1,15 @@
 * {
-  -main-background: #fafafa;
-  -second-background: #d2d3db;
-  -contrast-background: #484b6a;
-  -text: #484b6a;
+    -main-background: #fafafa;
+    -second-background: #d2d3db;
+    -contrast-background: #484b6a;
+    -text: #484b6a;
 }
 
 #lockWindowBackground {
     -fx-background-color: -main-background;
 }
 
-#headerText, #passwordText {
+#headerText, #passwordText, #error {
     -fx-font-family: "Segoe UI Semibold";
     -fx-text-fill: -text;
     -fx-font-size: 16px;

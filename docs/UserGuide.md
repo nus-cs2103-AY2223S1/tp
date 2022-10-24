@@ -20,6 +20,7 @@ done faster and more securely than traditional GUI apps.
     * [Importing data: `import`](#importing-data--import)
     * [Exporting data: `export`](#exporting-data--export)
     * [Locking the application: `lock`](#locking-the-application--lock)
+    * [Setting or updating the password: `password`](#setting-or-updating-the-password--password)
     * [Changing Light/Dark mode](#changing-lightdark-mode)
 
 - [FAQ](#faq)
@@ -306,10 +307,28 @@ Format: `lock`
 
 ---
 
+### Setting or updating the password : `password`
+
+Sets or updates the FinBook password
+
+Format: `password [old/OLDPASSWORD] new/NEWPASSWORD`
+
+* Sets or updates the password to the specified new password
+* No need to specify old password if setting the password for the first time
+* When updating the password, the specified old password must match the current password
+
+Examples:
+
+* `password new/foobar` sets the password to `foobar`, given that a password has not yet been set
+* `password old/foobar new/barfoo` updates the password to `barfoo`, given that the current password is `foobar`.
+
+---
+
 ### Changing Light/Dark mode
 
-Toggle the theme of FinBook by clicking on the `sun` or `moon` icon on the top right of the application. 
-* If icon is a `sun` FinBook is in Light mode. 
+Toggle the theme of FinBook by clicking on the `sun` or `moon` icon on the top right of the application.
+
+* If icon is a `sun` FinBook is in Light mode.
 * If icon is a `moon` FinBook is in Dark mode.
 
 --------------------------------------------------------------------------------------------------------------------
@@ -318,7 +337,7 @@ Toggle the theme of FinBook by clicking on the `sun` or `moon` icon on the top r
 
 **Q**: How do I transfer my data to another Computer?<br>
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains
-the data of your previous FinBook home folder. Alternatively, you may use the `import` command.
+the data of your previous FinBook home folder. Alternatively, you may use the `export` and `import` commands.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -334,3 +353,4 @@ the data of your previous FinBook home folder. Alternatively, you may use the `i
 | **Import**           | `import PATH`<br> e.g., `import ./data.json`                                                                                                                                                                                                                                              |
 | **Export**           | `export PATH`<br> e.g., `export ./data.csv`                                                                                                                                                                                                                                               |
 | **Lock application** | `lock`                                                                                                                                                                                                                                                                                    |
+| **Password**         | `password [old/OLDPASSWORD] new/NEWPASSWORD`<br> e.g.,`password old/foobar new/barfoo`                                                                                                                                                                                                    |
