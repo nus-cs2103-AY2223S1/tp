@@ -3,11 +3,10 @@ package seedu.uninurse.model.person;
 import static seedu.uninurse.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.util.Objects;
-import java.util.Set;
 
 import seedu.uninurse.model.condition.ConditionList;
 import seedu.uninurse.model.medication.MedicationList;
-import seedu.uninurse.model.tag.Tag;
+import seedu.uninurse.model.tag.TagList;
 import seedu.uninurse.model.task.TaskList;
 
 
@@ -24,10 +23,10 @@ public class Patient extends Person {
     /**
      * Every field must be present and not null.
      */
-    public Patient(Name name, Phone phone, Email email, Address address, ConditionList conditions,
-            MedicationList medications, TaskList tasks, Set<Tag> tags) {
+    public Patient(Name name, Phone phone, Email email, Address address, TagList tags, ConditionList conditions,
+            MedicationList medications, TaskList tasks) {
         super(name, phone, email, address, tags);
-        requireAllNonNull(name, phone, email, address, conditions, tasks, tags);
+        requireAllNonNull(name, phone, email, address, tags, conditions, medications, tasks);
         this.conditions = conditions;
         this.medications = medications;
         this.tasks = tasks;
@@ -35,11 +34,12 @@ public class Patient extends Person {
 
     /**
      * Used to return a new immutable {@code Patient} when {@code ConditionList} is updated.
-     * @param patient the patient to be updated
+     * @param patient the patient to be updated.
      * @param updatedConditions the updated conditions.
      */
     public Patient(Patient patient, ConditionList updatedConditions) {
         super(patient);
+        requireAllNonNull(patient, updatedConditions);
         this.conditions = updatedConditions;
         this.medications = patient.medications;
         this.tasks = patient.tasks;
@@ -52,6 +52,7 @@ public class Patient extends Person {
      */
     public Patient(Patient patient, MedicationList updatedMedications) {
         super(patient);
+        requireAllNonNull(patient, updatedMedications);
         this.conditions = patient.conditions;
         this.medications = updatedMedications;
         this.tasks = patient.tasks;
@@ -60,14 +61,28 @@ public class Patient extends Person {
 
     /**
      * Used to return a new immutable {@code Patient} when {@code TaskList} is updated.
-     * @param patient the patient to be updated
+     * @param patient the patient to be updated.
      * @param updatedTasks the updated tasks.
      */
     public Patient(Patient patient, TaskList updatedTasks) {
         super(patient);
+        requireAllNonNull(patient, updatedTasks);
         this.conditions = patient.conditions;
         this.medications = patient.medications;
         this.tasks = updatedTasks;
+    }
+
+    /**
+     * Used to return a new immutable {@code Patient} when {@code TagList} is updated.
+     * @param patient The patient to be updated.
+     * @param updatedTagList The updated tags.
+     */
+    public Patient(Patient patient, TagList updatedTagList) {
+        super(patient, updatedTagList);
+        requireAllNonNull(patient, updatedTagList);
+        this.conditions = patient.conditions;
+        this.medications = patient.medications;
+        this.tasks = patient.tasks;
     }
 
     public ConditionList getConditions() {
@@ -136,6 +151,12 @@ public class Patient extends Person {
                 .append("\nAddress: ")
                 .append(getAddress());
 
+        TagList tags = getTags();
+        if (!tags.isEmpty()) {
+            builder.append("\nTags: ")
+                    .append(tags);
+        }
+
         ConditionList conditions = getConditions();
         if (!conditions.isEmpty()) {
             builder.append("\nConditions:\n")
@@ -154,11 +175,6 @@ public class Patient extends Person {
                     .append(tasks);
         }
 
-        Set<Tag> tags = getTags();
-        if (!tags.isEmpty()) {
-            builder.append("\nTags: ");
-            tags.forEach(builder::append);
-        }
         return builder.toString();
     }
 }

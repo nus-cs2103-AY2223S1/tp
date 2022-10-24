@@ -1,7 +1,5 @@
 package seedu.uninurse.ui;
 
-import java.util.Comparator;
-
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
@@ -38,8 +36,7 @@ public class TaskListPanel extends UiPart<Region> {
 
         header.setText("Tasks:");
         name.setText(patient.getName().toString());
-        patient.getTags().stream()
-                .sorted(Comparator.comparing(tag -> tag.getValue()))
+        patient.getTags().getInternalList()
                 .forEach(tag -> tags.getChildren().add(new Label(tag.getValue())));
     }
 

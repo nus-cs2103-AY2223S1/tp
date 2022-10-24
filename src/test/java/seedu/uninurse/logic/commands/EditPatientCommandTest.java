@@ -6,7 +6,6 @@ import static seedu.uninurse.logic.commands.CommandTestUtil.DESC_AMY;
 import static seedu.uninurse.logic.commands.CommandTestUtil.DESC_BOB;
 import static seedu.uninurse.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static seedu.uninurse.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
-import static seedu.uninurse.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.uninurse.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.uninurse.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.uninurse.logic.commands.CommandTestUtil.showPersonAtIndex;
@@ -54,11 +53,10 @@ public class EditPatientCommandTest {
         Patient lastPerson = model.getFilteredPersonList().get(indexLastPerson.getZeroBased());
 
         PersonBuilder personInList = new PersonBuilder(lastPerson);
-        Patient editedPerson = personInList.withName(VALID_NAME_BOB).withPhone(VALID_PHONE_BOB)
-                .withTags(VALID_TAG_HUSBAND).build();
+        Patient editedPerson = personInList.withName(VALID_NAME_BOB).withPhone(VALID_PHONE_BOB).build();
 
         EditPatientDescriptor descriptor = new EditPatientDescriptorBuilder().withName(VALID_NAME_BOB)
-                .withPhone(VALID_PHONE_BOB).withTags(VALID_TAG_HUSBAND).build();
+                .withPhone(VALID_PHONE_BOB).build();
         EditPatientCommand editPatientCommand = new EditPatientCommand(indexLastPerson, descriptor);
 
         String expectedMessage = String.format(EditPatientCommand.MESSAGE_EDIT_PATIENT_SUCCESS, editedPerson);

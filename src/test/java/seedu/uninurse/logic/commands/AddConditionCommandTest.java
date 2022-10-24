@@ -79,11 +79,11 @@ public class AddConditionCommandTest {
 
     @Test
     public void execute_invalidDuplicateConditionUnfilteredList_throwsCommandException() {
-        Patient editedPatient = model.getFilteredPersonList().get(INDEX_SECOND_PERSON.getZeroBased());
+        Patient patientToEdit = model.getFilteredPersonList().get(INDEX_SECOND_PERSON.getZeroBased());
         Condition condition = new Condition("H1N1");
         AddConditionCommand addConditionCommand = new AddConditionCommand(INDEX_SECOND_PERSON, condition);
         assertCommandFailure(addConditionCommand, model,
-                String.format(AddConditionCommand.MESSAGE_DUPLICATE_CONDITION, editedPatient.getName()));
+                String.format(AddConditionCommand.MESSAGE_DUPLICATE_CONDITION, patientToEdit.getName()));
     }
 
     @Test
@@ -124,11 +124,11 @@ public class AddConditionCommandTest {
     @Test
     public void execute_invalidDuplicateConditionFilteredList_throwsCommandException() {
         showPersonAtIndex(model, INDEX_SECOND_PERSON);
-        Patient editedPatient = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
+        Patient patientToEdit = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
         Condition condition = new Condition("H1N1");
         AddConditionCommand addConditionCommand = new AddConditionCommand(INDEX_FIRST_PERSON, condition);
         assertCommandFailure(addConditionCommand, model,
-                String.format(AddConditionCommand.MESSAGE_DUPLICATE_CONDITION, editedPatient.getName()));
+                String.format(AddConditionCommand.MESSAGE_DUPLICATE_CONDITION, patientToEdit.getName()));
     }
 
     @Test

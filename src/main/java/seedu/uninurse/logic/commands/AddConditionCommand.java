@@ -62,7 +62,7 @@ public class AddConditionCommand extends AddGenericCommand {
 
         try {
             updatedConditionList = patientToEdit.getConditions().add(condition);
-        } catch (DuplicateConditionException exception) {
+        } catch (DuplicateConditionException dce) {
             throw new CommandException(String.format(MESSAGE_DUPLICATE_CONDITION, patientToEdit.getName()));
         }
 

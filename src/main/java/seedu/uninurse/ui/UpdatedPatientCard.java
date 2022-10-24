@@ -1,7 +1,5 @@
 package seedu.uninurse.ui;
 
-import java.util.Comparator;
-
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
@@ -65,8 +63,7 @@ public class UpdatedPatientCard extends UiPart<Region> {
         phone.setText(patient.getPhone().getValue());
         address.setText(patient.getAddress().getValue());
         email.setText(patient.getEmail().getValue());
-        patient.getTags().stream()
-                .sorted(Comparator.comparing(tag -> tag.getValue()))
+        patient.getTags().getInternalList()
                 .forEach(tag -> tags.getChildren().add(new Label(tag.getValue())));
         header.setText(headerString);
         conditions.setText("Conditions:" + "\n" + patient.getConditions().toString());

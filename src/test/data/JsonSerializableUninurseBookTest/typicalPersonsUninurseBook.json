@@ -8,7 +8,7 @@
     "conditions" : [ ],
     "medications" : [ ],
     "tasks" : [ ],
-    "tagged" : [ "friends" ]
+    "tagged" : [ ]
   }, {
     "name" : "Benson Meier",
     "phone" : "98765432",
@@ -26,7 +26,7 @@
       "taskDescription" : "Check vitals",
       "dateTime" : "16-10-2022 1015"
     } ],
-    "tagged" : [ "owesMoney", "friends" ]
+    "tagged" : [ "high-risk", "2A nursing home" ]
   }, {
     "name" : "Carl Kurz",
     "phone" : "95352563",
@@ -38,7 +38,7 @@
       "taskDescription" : "Update health records",
       "dateTime": "28-10-2022 1730"
     } ],
-    "tagged" : [ ]
+    "tagged" : [ "high-risk" ]
   }, {
     "name" : "Daniel Meier",
     "phone" : "87652533",
