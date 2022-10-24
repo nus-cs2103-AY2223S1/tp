@@ -12,6 +12,8 @@ import seedu.address.model.tag.Tag;
  * Represents a observable Person object when the application is running.
  */
 public class TargetPerson {
+    private static final String EMPTY_STRING = "";
+
     private Optional<Person> targetPerson;
     private SimpleStringProperty name;
     private SimpleStringProperty phone;
@@ -25,11 +27,11 @@ public class TargetPerson {
      */
     public TargetPerson() {
         targetPerson = Optional.empty();
-        name = new SimpleStringProperty("");
-        phone = new SimpleStringProperty("");
-        address = new SimpleStringProperty("");
-        email = new SimpleStringProperty("");
-        remark = new SimpleStringProperty("");
+        name = new SimpleStringProperty(EMPTY_STRING);
+        phone = new SimpleStringProperty(EMPTY_STRING);
+        address = new SimpleStringProperty(EMPTY_STRING);
+        email = new SimpleStringProperty(EMPTY_STRING);
+        remark = new SimpleStringProperty(EMPTY_STRING);
         tags = FXCollections.observableSet();
     }
 
@@ -82,11 +84,11 @@ public class TargetPerson {
      */
     public void clear() {
         targetPerson = Optional.empty();
-        name.set("");
-        phone.set("");
-        address.set("");
-        email.set("");
-        remark.set("");
+        name.set(EMPTY_STRING);
+        phone.set(EMPTY_STRING);
+        address.set(EMPTY_STRING);
+        email.set(EMPTY_STRING);
+        remark.set(EMPTY_STRING);
         tags.clear();
     }
 
