@@ -110,18 +110,23 @@
         </children>
       </HBox>
 
-      <HBox>
+      <HBox fx:id="personGroupContainer" alignment="CENTER_LEFT">
         <padding>
-          <Insets top="3" bottom="3" />
+          <Insets top="2" right="1" bottom="1" left="1" />
         </padding>
-        <FlowPane fx:id="assignments" />
-      </HBox>
-
-      <HBox>
-        <padding>
-          <Insets top="3" bottom="3" />
-        </padding>
-        <FlowPane fx:id="personGroup" />
+        <children>
+          <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+            <image>
+              <Image url="@../images/group.png" />
+            </image>
+          </ImageView>
+          <HBox>
+            <padding>
+              <Insets top="1" right="1" bottom="1" left="3" />
+            </padding>
+            <FlowPane fx:id="personGroup" />
+          </HBox>
+        </children>
       </HBox>
 
     </VBox>
