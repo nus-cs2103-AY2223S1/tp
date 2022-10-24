@@ -18,7 +18,7 @@ class ExitCommandTest {
 
     @Test
     void execute() {
-        CommandResult commandResult = new ExitCommand().execute(model);
+        CommandResult<?> commandResult = new ExitCommand().execute(model);
 
         assertFalse(commandResult.shouldShowHelp());
         assertTrue(commandResult.shouldExit());
