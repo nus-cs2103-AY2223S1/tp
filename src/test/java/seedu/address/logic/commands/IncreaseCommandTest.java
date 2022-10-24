@@ -46,7 +46,6 @@ public class IncreaseCommandTest {
     @Test
     public void execute_emailAllFieldsSpecifiedUnfilteredList_success() {
         Person editedPerson = ALICE_INCREMENT;
-        EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder(editedPerson).build();
         IncreaseCommand increaseCommand = new IncreaseCommand(EMAIL_FIRST_PERSON, "100");
 
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_PERSON_SUCCESS, editedPerson);

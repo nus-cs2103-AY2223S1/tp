@@ -43,6 +43,8 @@ public class IncreaseCommandParser implements Parser<IncreaseCommand> {
             }
         } catch (ParseException pe) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, IncreaseCommand.MESSAGE_USAGE), pe);
+        } catch (NumberFormatException ne) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, IncreaseCommand.MESSAGE_USAGE), ne);
         }
 
         return argMultimap.getPhoneIdentifier()
