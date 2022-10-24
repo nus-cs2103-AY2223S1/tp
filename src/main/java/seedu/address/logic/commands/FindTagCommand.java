@@ -4,7 +4,8 @@ import static java.util.Objects.requireNonNull;
 
 import seedu.address.commons.core.Messages;
 import seedu.address.model.Model;
-import seedu.address.model.person.TagsContainsKeywordsPredicate;
+import seedu.address.model.note.NoteTagsContainsKeywordsPredicate;
+import seedu.address.model.person.PersonTagsContainsKeywordsPredicate;
 
 /**
  * Finds and lists all persons in address book who are tagged with any of the argument tags.
@@ -19,16 +20,26 @@ public class FindTagCommand extends Command {
             + "Parameters: TAG [MORE_TAGS]...\n"
             + "Example: " + COMMAND_WORD + " Finance Tech";
 
-    private final TagsContainsKeywordsPredicate predicate;
+    private final PersonTagsContainsKeywordsPredicate personPredicate;
+    private final NoteTagsContainsKeywordsPredicate notePredicate;
 
-    public FindTagCommand(TagsContainsKeywordsPredicate predicate) {
-        this.predicate = predicate;
+    /**
+     * Constructs a FindTagCommand with the given {@code PersonTagsContainsKeywordsPredicate}
+     * and {@code NoteTagsContainsKeywordsPredicate}
+     */
+    public FindTagCommand(PersonTagsContainsKeywordsPredicate personPredicate,
+                          NoteTagsContainsKeywordsPredicate notePredicate) {
+        this.personPredicate = personPredicate;
+        this.notePredicate = notePredicate;
     }
 
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);
-        model.updateFilteredPersonList(predicate);
+
+        model.updateFilteredPersonList(personPredicate);
+        model.updateFilteredNoteList(notePredicate);
+
         return new CommandResult(
                 String.format(Messages.MESSAGE_PERSONS_LISTED_OVERVIEW, model.getFilteredPersonList().size()));
     }
@@ -37,6 +48,7 @@ public class FindTagCommand extends Command {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof FindTagCommand // instanceof handles nulls
-                && predicate.equals(((FindTagCommand) other).predicate)); // state check
+                && personPredicate.equals(((FindTagCommand) other).personPredicate)
+                && notePredicate.equals(((FindTagCommand) other).notePredicate)); // state check
     }
 }
