@@ -15,7 +15,7 @@ import seedu.address.commons.core.GuiSettings;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.commands.schedule.AddScheduleCommand;
 import seedu.address.model.Model;
-import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.ReadOnlyProfNus;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.module.Module;
 import seedu.address.model.module.ModuleCode;
@@ -86,12 +86,12 @@ public class AddScheduleCommandTest {
         }
 
         @Override
-        public Path getAddressBookFilePath() {
+        public Path getProfNusFilePath() {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void setAddressBookFilePath(Path addressBookFilePath) {
+        public void setProfNusFilePath(Path profNusFilePath) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -117,12 +117,12 @@ public class AddScheduleCommandTest {
         }
 
         @Override
-        public void setAddressBook(ReadOnlyAddressBook newData) {
+        public void setProfNus(ReadOnlyProfNus newData) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public ReadOnlyAddressBook getAddressBook() {
+        public ReadOnlyProfNus getProfNus() {
             throw new AssertionError("This method should not be called.");
         }
 

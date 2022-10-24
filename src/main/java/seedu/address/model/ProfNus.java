@@ -16,10 +16,10 @@ import seedu.address.model.person.UniquePersonList;
 import seedu.address.model.person.UniqueTutorList;
 
 /**
- * Wraps all data at the address-book level
+ * Wraps all data at the profNus level
  * Duplicates are not allowed (by .isSamePerson comparison)
  */
-public class AddressBook implements ReadOnlyAddressBook {
+public class ProfNus implements ReadOnlyProfNus {
 
     private final UniquePersonList persons;
     private final UniqueModuleList modules;
@@ -44,12 +44,12 @@ public class AddressBook implements ReadOnlyAddressBook {
         tutors = new UniqueTutorList();
     }
 
-    public AddressBook() {}
+    public ProfNus() {}
 
     /**
-     * Creates an AddressBook using the Persons in the {@code toBeCopied}
+     * Creates an ProfNus using the Persons in the {@code toBeCopied}
      */
-    public AddressBook(ReadOnlyAddressBook toBeCopied) {
+    public ProfNus(ReadOnlyProfNus toBeCopied) {
         this();
         resetData(toBeCopied);
     }
@@ -81,9 +81,9 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
-     * Resets the existing data of this {@code AddressBook} with {@code newData}.
+     * Resets the existing data of this {@code ProfNus} with {@code newData}.
      */
-    public void resetData(ReadOnlyAddressBook newData) {
+    public void resetData(ReadOnlyProfNus newData) {
         requireNonNull(newData);
 
         setPersons(newData.getPersonList());
@@ -167,7 +167,7 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
-     * Adds a module to the address book.
+     * Adds a module to profNus.
      * The module must not already exist in profNUS.
      */
     public void addModule(Module m) {
@@ -243,7 +243,7 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
-     * Removes {@code key} from this {@code AddressBook}.
+     * Removes {@code key} from this {@code ProfNus}.
      * {@code key} must exist in ProfNUS.
      */
     public void removeSchedule(Schedule key) {
@@ -253,7 +253,7 @@ public class AddressBook implements ReadOnlyAddressBook {
 
 
     /**
-     * Removes all selected schedules from this {@code AddressBook}.
+     * Removes all selected schedules from this {@code ProfNus}.
      */
     public void clearSchedules(ArrayList<ModuleCode> modulesToClear) {
         if (modulesToClear == null) {
@@ -273,7 +273,7 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
-     * Removes {@code key} from this {@code AddressBook}.
+     * Removes {@code key} from this {@code ProfNus}.
      * {@code key} must exist in ProfNUS.
      */
     public void removePerson(Person key) {
@@ -281,7 +281,7 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
-     * Removes {@code key} from this {@code AddressBook}.
+     * Removes {@code key} from this {@code ProfNus}.
      * {@code key} must exist in ProfNUS.
      */
     public void removeTutor(Student key) {
@@ -289,7 +289,7 @@ public class AddressBook implements ReadOnlyAddressBook {
     }
 
     /**
-     * Removes {@code key} from this {@code AddressBook}.
+     * Removes {@code key} from this {@code ProfNus}.
      * {@code key} must exist in ProfNUS.
      */
     public void removeModule(Module key) {
@@ -328,8 +328,8 @@ public class AddressBook implements ReadOnlyAddressBook {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof AddressBook // instanceof handles nulls
-                && persons.equals(((AddressBook) other).persons));
+                || (other instanceof ProfNus // instanceof handles nulls
+                && persons.equals(((ProfNus) other).persons));
     }
 
     @Override

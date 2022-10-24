@@ -1,12 +1,11 @@
 package seedu.address.model.util;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-import seedu.address.model.AddressBook;
-import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.ProfNus;
+import seedu.address.model.ReadOnlyProfNus;
 import seedu.address.model.module.Module;
 import seedu.address.model.module.ModuleCode;
 import seedu.address.model.module.ModuleDescription;
@@ -22,7 +21,7 @@ import seedu.address.model.person.TelegramHandle;
 import seedu.address.model.tag.Tag;
 
 /**
- * Contains utility methods for populating {@code AddressBook} with sample data.
+ * Contains utility methods for populating {@code ProfNus} with sample data.
  */
 public class SampleDataUtil {
     public static Person[] getSampleStudents() {
@@ -63,16 +62,16 @@ public class SampleDataUtil {
     public static Module[] getSampleModules() {
         return new Module[] {
             new Module(new ModuleName("Programming Methodology 1"), new ModuleCode("CS1101S"),
-                    new ModuleDescription("Intro mod"), getTagSet("Fun"), new ArrayList<>()),
+                    new ModuleDescription("Intro mod"), getTagSet("Fun")),
             new Module(new ModuleName("Programming Methodology 2"), new ModuleCode("CS2030S"),
-                    new ModuleDescription("Continued mod"), getTagSet("Fun"), new ArrayList<>()),
+                    new ModuleDescription("Continued mod"), getTagSet("Fun")),
             new Module(new ModuleName("Data Structure and Algos"), new ModuleCode("CS2040S"),
-                    new ModuleDescription("Intro mod"), getTagSet("Fun"), new ArrayList<>()),
+                    new ModuleDescription("Intro mod"), getTagSet("Fun")),
         };
     }
 
-    public static ReadOnlyAddressBook getSampleAddressBook() {
-        AddressBook sampleAb = new AddressBook();
+    public static ReadOnlyProfNus getSampleProfNus() {
+        ProfNus sampleAb = new ProfNus();
         for (Person samplePerson : getSampleStudents()) {
             sampleAb.addPerson(samplePerson);
             if (samplePerson instanceof Student) {

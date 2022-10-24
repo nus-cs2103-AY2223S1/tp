@@ -21,7 +21,7 @@ import seedu.address.model.Model;
 import seedu.address.model.person.Student;
 
 /**
- * Edits the details of an existing student that is a TA in the address book.
+ * Edits the details of an existing student that is a TA in profNus.
  */
 public class EditTeachingAssistantCommand extends EditStuCommand {
 

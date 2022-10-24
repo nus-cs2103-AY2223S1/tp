@@ -155,7 +155,8 @@ public class MainWindow extends UiPart<Stage> {
         allTutorsPanel = new TutorListPanel(logic.getFilteredTutorList());
         allTutorsPanelPlaceholder.getChildren().add(allTutorsPanel.getRoot());
 
-        moduleListPanel = new ModuleListPanel(logic.getFilteredModuleList());
+        moduleListPanel = new ModuleListPanel(logic.getFilteredModuleList(), logic.getFilteredScheduleList());
+
         moduleListPanelPlaceholder.getChildren().add(moduleListPanel.getRoot());
 
         scheduleListPanel = new ScheduleListPanel(logic.getFilteredScheduleList());
@@ -168,7 +169,7 @@ public class MainWindow extends UiPart<Stage> {
         resultDisplay = new ResultDisplay();
         resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
 
-        StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getAddressBookFilePath());
+        StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getProfNusFilePath());
         statusbarPlaceholder.getChildren().add(statusBarFooter.getRoot());
 
         CommandBox commandBox = new CommandBox(this::executeCommand);
@@ -230,7 +231,7 @@ public class MainWindow extends UiPart<Stage> {
      */
     @FXML
     public void handleShowTabModules() {
-        moduleListPanel = new ModuleListPanel(logic.getFilteredModuleList());
+        moduleListPanel = new ModuleListPanel(logic.getFilteredModuleList(), logic.getFilteredScheduleList());
         moduleListPanelPlaceholder.getChildren().add(moduleListPanel.getRoot());
         tabPane.getSelectionModel().select(MODULELIST);
     }
@@ -240,7 +241,7 @@ public class MainWindow extends UiPart<Stage> {
      */
     @FXML
     public void handleShowTabAllModules() {
-        moduleListPanel = new ModuleListPanel(logic.getAllModuleList());
+        moduleListPanel = new ModuleListPanel(logic.getAllModuleList(), logic.getFilteredScheduleList());
         moduleListPanelPlaceholder.getChildren().add(moduleListPanel.getRoot());
         tabPane.getSelectionModel().select(MODULELIST);
         resultDisplay.setFeedbackToUser("Show all modules!");

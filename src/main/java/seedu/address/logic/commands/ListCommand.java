@@ -7,7 +7,7 @@ import static seedu.address.model.Model.PREDICATE_SHOW_ALL_TUTORS;
 import seedu.address.model.Model;
 
 /**
- * Lists all persons in the address book to the user.
+ * Lists all persons in profNus to the user.
  */
 public class ListCommand extends Command {
 

@@ -20,7 +20,7 @@ public class ModuleInfoCard extends UiPart<Region> {
      * As a consequence, UI elements' variable names cannot be set to such keywords
      * or an exception will be thrown by JavaFX during runtime.
      *
-     * @see <a href="https://github.com/se-edu/addressbook-level4/issues/336">The issue on AddressBook level 4</a>
+     * @see <a href="https://github.com/se-edu/addressbook-level4/issues/336">The issue on ProfNus level 4</a>
      */
 
     public final Module module;
@@ -42,9 +42,9 @@ public class ModuleInfoCard extends UiPart<Region> {
     public ModuleInfoCard(Module module) {
         super(FXML);
         this.module = module;
-        moduleName.setText("Module name: " + module.getName().fullName);
-        moduleCode.setText("Module code: " + module.getCode().fullCode);
-        moduleDescription.setText("Description: " + module.getDescription().fullDescription);
+        moduleName.setText(module.getName().fullName);
+        moduleCode.setText(module.getCode().fullCode);
+        moduleDescription.setText(module.getDescription().fullDescription);
         module.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));

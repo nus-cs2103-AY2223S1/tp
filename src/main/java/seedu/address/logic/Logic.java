@@ -7,7 +7,7 @@ import seedu.address.commons.core.GuiSettings;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.ReadOnlyProfNus;
 import seedu.address.model.module.Module;
 import seedu.address.model.module.schedule.Schedule;
 import seedu.address.model.person.Person;
@@ -27,11 +27,11 @@ public interface Logic {
     CommandResult execute(String commandText) throws CommandException, ParseException;
 
     /**
-     * Returns the AddressBook.
+     * Returns the ProfNus.
      *
-     * @see seedu.address.model.Model#getAddressBook()
+     * @see seedu.address.model.Model#getProfNus()
      */
-    ReadOnlyAddressBook getAddressBook();
+    ReadOnlyProfNus getProfNus();
 
     /** Returns an unmodifiable view of the filtered list of persons */
     ObservableList<Person> getFilteredPersonList();
@@ -59,9 +59,9 @@ public interface Logic {
     ObservableList<Schedule> getAllScheduleList();
 
     /**
-     * Returns the user prefs' address book file path.
+     * Returns the user prefs' profNus file path.
      */
-    Path getAddressBookFilePath();
+    Path getProfNusFilePath();
 
     /**
      * Returns the user prefs' GUI settings.

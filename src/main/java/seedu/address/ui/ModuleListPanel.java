@@ -12,6 +12,9 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Region;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.module.Module;
+import seedu.address.model.module.schedule.Schedule;
+import seedu.address.ui.schedule.ScheduleListPanel;
+
 
 /**
  * Panel containing the list of modules.
@@ -24,11 +27,13 @@ public class ModuleListPanel extends UiPart<Region> {
     private ListView<Module> moduleListView;
     @FXML
     private ListView<Module> targetModuleView;
+    @FXML
+    private ListView<Schedule> scheduleListView;
 
     /**
      * Creates a {@code ModuleListPanel} with the given {@code ObservableList}.
      */
-    public ModuleListPanel(ObservableList<Module> moduleList) {
+    public ModuleListPanel(ObservableList<Module> moduleList, ObservableList<Schedule> scheduleList) {
         super(FXML);
         moduleListView.setItems(moduleList);
         moduleListView.setCellFactory(listView -> new ModuleListPanel.ModuleListViewCell());
@@ -36,18 +41,23 @@ public class ModuleListPanel extends UiPart<Region> {
         moduleListView.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
-                Module moduleInterested = moduleListView.getSelectionModel().getSelectedItem();
-                ObservableList<Module> list = FXCollections.observableArrayList();
-                list.add(moduleInterested);
-                targetModuleView.setItems(list);
-                targetModuleView.setCellFactory(listView ->
-                        new ModulePanel.ModuleViewCell());
+                try {
+                    Module moduleInterested = moduleListView.getSelectionModel().getSelectedItem();
+                    ObservableList<Module> list = FXCollections.observableArrayList();
+                    ObservableList<Schedule> schedules = FXCollections.observableArrayList();
+                    list.add(moduleInterested);
+                    moduleInterested.getSchedules().forEach(x -> schedules.add(x));
+                    targetModuleView.setItems(list);
+                    targetModuleView.setCellFactory(listView ->
+                            new ModulePanel.ModuleViewCell());
+                    scheduleListView.setItems(schedules);
+                    scheduleListView.setCellFactory(listView ->
+                            new ScheduleListPanel.ScheduleListViewCell());
+                } catch (NullPointerException e) {
+                    logger.info("=================[Invalid module selected]=================");
+                }
             }
         });
-    }
-
-    @FXML
-    public void handleMouseClick(MouseEvent me) {
     }
 
     /**
@@ -55,15 +65,6 @@ public class ModuleListPanel extends UiPart<Region> {
      */
     class ModuleListViewCell extends ListCell<Module> {
 
-        private EventHandler<MouseEvent> oneClickHandler;
-        public ModuleListViewCell() {
-            oneClickHandler = new EventHandler<MouseEvent>() {
-                // Prevents the list from being updated upon clicking on null area
-                @Override
-                public void handle(MouseEvent event) {
-                }
-            };
-        }
         @Override
         protected void updateItem(Module module, boolean empty) {
             super.updateItem(module, empty);

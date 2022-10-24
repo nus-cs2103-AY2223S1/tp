@@ -6,7 +6,6 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_MODULE_DESCRIPTION;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
-import java.util.ArrayList;
 import java.util.Set;
 import java.util.stream.Stream;
 
@@ -16,7 +15,6 @@ import seedu.address.model.module.Module;
 import seedu.address.model.module.ModuleCode;
 import seedu.address.model.module.ModuleDescription;
 import seedu.address.model.module.ModuleName;
-import seedu.address.model.person.Student;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -46,9 +44,8 @@ public class AddModuleCommandParser implements Parser<AddModuleCommand> {
         ModuleDescription moduleDescription = ParserUtil.parseModuleDescription(argMultimap
                 .getValue(PREFIX_MODULE_DESCRIPTION).get());
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
-        ArrayList<Student> studentList = new ArrayList<>();
 
-        Module module = new Module(moduleName, moduleCode, moduleDescription, tagList, studentList);
+        Module module = new Module(moduleName, moduleCode, moduleDescription, tagList);
 
         return new AddModuleCommand(module);
     }
