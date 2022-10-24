@@ -9,7 +9,10 @@
     "birthdate" : "1998-12-28",
     "race" : "White American",
     "religion" : "Christian",
-    "surveys" : [ "Environment Survey" ],
+    "surveys" : [ {
+      "surveyName" : "Environment Survey",
+      "isDone" : false
+    } ],
     "tagged" : [ "friends" ]
   }, {
     "name" : "Benson Meier",
@@ -20,7 +23,10 @@
     "birthdate" : "1981-1-23",
     "race" : "African American",
     "religion" : "Christian",
-    "surveys" : [ "Shopping Survey" ],
+    "surveys" : [ {
+      "surveyName" : "Shopping Survey",
+      "isDone" : false
+    } ],
     "tagged" : [ "owesMoney", "friends" ]
   }, {
     "name" : "Carl Kurz",
@@ -31,7 +37,10 @@
     "birthdate" : "1991-1-15",
     "race" : "White American",
     "religion" : "Buddhist",
-    "surveys" : [ "Touring Survey" ],
+    "surveys" : [ {
+      "surveyName" : "Touring Survey",
+      "isDone" : false
+    } ],
     "tagged" : [ ]
   }, {
     "name" : "Daniel Meier",
@@ -42,7 +51,10 @@
     "birthdate" : "2001-11-23",
     "race" : "Hispanic",
     "religion" : "Christian",
-    "surveys" : [ "Shopping Survey" ],
+    "surveys" : [ {
+      "surveyName" : "Shopping Survey",
+      "isDone" : false
+    } ],
     "tagged" : [ "friends" ]
   }, {
     "name" : "Elle Meyer",
@@ -53,7 +65,10 @@
     "birthdate" : "1993-11-1",
     "race" : "White American",
     "religion" : "Free Thinker",
-    "surveys" : [ "Touring Survey" ],
+    "surveys" : [ {
+      "surveyName" : "Touring Survey",
+      "isDone" : false
+    } ],
     "tagged" : [ ]
   }, {
     "name" : "Fiona Kunz",
@@ -64,7 +79,10 @@
     "birthdate" : "1991-8-13",
     "race" : "White American",
     "religion" : "Christian",
-    "surveys" : [ "Food Survey" ],
+    "surveys" : [ {
+      "surveyName" : "Food Survey",
+      "isDone" : false
+    } ],
     "tagged" : [ ]
   }, {
     "name" : "George Best",
@@ -75,7 +93,10 @@
     "birthdate" : "1991-12-28",
     "race" : "White American",
     "religion" : "Christian",
-    "surveys" : [ "Environment Survey" ],
+    "surveys" : [ {
+      "surveyName" : "Environment Survey",
+      "isDone" : false
+    } ],
     "tagged" : [ ]
   } ]
 }

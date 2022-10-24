@@ -8,7 +8,10 @@
     "birthdate": "2000-1-1",
     "race": "Chinese",
     "religion" : "Buddhist",
-    "surveys" : [ "Food Survey" ],
+    "surveys" : [ {
+      "surveyName" : "Food Survey",
+      "isDone" : false
+    } ],
     "tagged": [ "friends" ]
   }, {
     "name": "Alice Pauline",
@@ -19,6 +22,9 @@
     "birthdate": "1999-11-28",
     "race": "White American",
     "religion" : "Christian",
-    "surveys" : [ "Food Survey" ]
+    "surveys" : [ {
+      "surveyName" : "Food Survey",
+      "isDone" : false
+    } ]
   } ]
 }
