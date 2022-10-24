@@ -24,7 +24,7 @@ public class ItemView {
     private ItemView() {} // Prevents instantiation
 
     /**
-     * Creates a new view of the given item.
+     * Creates a new detailed view of the given item.
      * @param item the item to be displayed.
      * @return the node to be displayed in the UI.
      */
@@ -33,6 +33,7 @@ public class ItemView {
         name.getStyleClass().add("item-detail-name");
         name.prefWidth(Double.MAX_VALUE);
 
+        // Name and tags at the top left
         final List<Node> tagsList = new ArrayList<>();
         tagsList.add(new Label("Tags: "));
         item.getTagSet().stream().sorted(Comparator.comparing(Tag::getName))
@@ -44,6 +45,7 @@ public class ItemView {
         tags.setAlignment(Pos.CENTER_LEFT);
         tags.setSpacing(SPACING_UNIT);
 
+        // Quantity and unit at the top right
         final Label quantityLabel = new Label("Quantity\nRemaining:");
         quantityLabel.setTextAlignment(TextAlignment.RIGHT);
         final Label quantityAndUnit = new Label(buildItemQuantityAndUnitStringFrom(item));
@@ -51,23 +53,20 @@ public class ItemView {
         final VBox quantityBox = new VBox(quantityLabel, quantityAndUnit);
         quantityBox.setAlignment(Pos.CENTER_RIGHT);
 
+        // Set up top half
         final VBox col1 = new VBox(name, tags);
         col1.setSpacing(SPACING_UNIT);
-        col1.setFillWidth(true);
         final HBox row1 = new HBox(col1, quantityBox);
         HBox.setHgrow(col1, Priority.ALWAYS);
         row1.setSpacing(SPACING_UNIT);
 
-        final String boughtDate = String.valueOf(item.getBoughtDate())
-                .isBlank() ? "Not Set" : item.getBoughtDate().toString();
-        final String expiryDate = String.valueOf(item.getExpiryDate())
-                .isBlank() ? "Not Set" : item.getExpiryDate().toString();
+        // Combine everything
         final VBox itemView = new VBox(
                 row1,
                 new Label("$" + item.getPrice().toString()),
                 new Separator(),
-                new Label("Bought Date: " + boughtDate),
-                new Label("Expiry Date: " + expiryDate),
+                new Label("Bought Date: " + buildBoughtDateStringFrom(item)),
+                new Label("Expiry Date: " + buildExpiryDateStringFrom(item)),
                 new Separator(),
                 new Label("Remarks:"),
                 new Label(String.valueOf(item.getRemarks()).isBlank() ? "-" : item.getRemarks().toString()));
@@ -81,8 +80,18 @@ public class ItemView {
         return label;
     }
 
-    private static String buildItemQuantityAndUnitStringFrom(Item item) {
+    public static String buildItemQuantityAndUnitStringFrom(Item item) {
         final String unit = String.valueOf(item.getUnit()).isBlank() ? "" : " " + item.getUnit().toString();
         return String.format("%s%s", item.getQuantity(), unit);
+    }
+
+    public static String buildBoughtDateStringFrom(Item item) {
+        return String.valueOf(item.getBoughtDate())
+                .isBlank() ? "Not Set" : item.getBoughtDate().toString();
+    }
+
+    public static String buildExpiryDateStringFrom(Item item) {
+        return String.valueOf(item.getExpiryDate())
+                .isBlank() ? "Not Set" : item.getExpiryDate().toString();
     }
 }
