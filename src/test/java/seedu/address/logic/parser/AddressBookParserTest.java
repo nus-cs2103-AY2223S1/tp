@@ -45,7 +45,7 @@ public class AddressBookParserTest {
 
     @Test
     public void parseCommand_add() throws Exception {
-        Person person = new PersonBuilder().buildNoDescriptionAndFilePath();
+        Person person = new PersonBuilder().buildNoFilePath();
         CreateCommand command = (CreateCommand) parser.parseCommand(PersonUtil.getCreateCommand(person));
         assertEquals(new CreateCommand(person), command);
     }

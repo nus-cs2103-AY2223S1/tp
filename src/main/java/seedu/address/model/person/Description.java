@@ -3,7 +3,7 @@ package seedu.address.model.person;
 import static java.util.Objects.requireNonNull;
 
 /**
- * Represents a Person's remark in the address book.
+ * Represents a Person's description in the address book.
  * Guarantees: immutable; is always valid
  */
 public class Description {
@@ -12,11 +12,11 @@ public class Description {
     /**
      * Constructs a {@code Description}.
      *
-     * @param remark A valid remark.
+     * @param description A valid description.
      */
-    public Description(String remark) {
-        requireNonNull(remark);
-        value = remark;
+    public Description(String description) {
+        requireNonNull(description);
+        value = description;
     }
 
     @Override

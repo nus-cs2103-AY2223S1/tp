@@ -25,7 +25,7 @@ public class PersonBuilder {
     public static final String DEFAULT_PHONE = "85355255";
     public static final String DEFAULT_EMAIL = "alice@gmail.com";
     public static final String DEFAULT_ADDRESS = "123, Jurong West Ave 6, #08-111";
-    public static final String DEFAULT_DESCRIPTION = "";
+    public static final String DEFAULT_DESCRIPTION = "Has family health history of diabetes.";
     public static final MeetingTime DEFAULT_MEETING_TIME = new MeetingTime("01-01-2000-12:00");
     public static final String DEFAULT_NETWORTH = "$2000";
     public static final String DEFAULT_FILEPATH = "src/test/data/TestPDFs/Test_PDF.pdf";
@@ -146,7 +146,7 @@ public class PersonBuilder {
         return new Person(name, phone, email, address, description, netWorth, meetingTimes, filePath, tags);
     }
 
-    public Person buildNoDescriptionAndFilePath() {
-        return new Person(name, phone, email, address, netWorth, meetingTimes, tags);
+    public Person buildNoFilePath() {
+        return new Person(name, phone, email, address, description, netWorth, meetingTimes, tags);
     }
 }

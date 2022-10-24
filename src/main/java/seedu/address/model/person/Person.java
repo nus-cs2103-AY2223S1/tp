@@ -46,33 +46,16 @@ public class Person {
     }
 
     /**
-     * Constructor with no description, for CreateCommand only.
+     * Constructor with no filepath, for CreateCommand only.
      */
-    public Person(Name name, Phone phone, Email email, Address address,
-                  NetWorth netWorth, Set<MeetingTime> meetingTimes, FilePath filepath, Set<Tag> tags) {
-        requireAllNonNull(name, phone, email, address, netWorth, meetingTimes, filepath, tags);
-        this.name = name;
-        this.phone = phone;
-        this.email = email;
-        this.address = address;
-        this.description = new Description("");
-        this.netWorth = netWorth;
-        this.meetingTimes.addAll(meetingTimes);
-        this.filePath = filepath;
-        this.tags.addAll(tags);
-    }
-
-    /**
-     * Constructor with no description and no filepath, for CreateCommand only.
-     */
-    public Person(Name name, Phone phone, Email email, Address address,
+    public Person(Name name, Phone phone, Email email, Address address, Description description,
                   NetWorth netWorth, Set<MeetingTime> meetingTimes, Set<Tag> tags) {
-        requireAllNonNull(name, phone, email, address, netWorth, tags);
+        requireAllNonNull(name, phone, email, address, description, netWorth, meetingTimes, tags);
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
-        this.description = new Description("");
+        this.description = description;
         this.netWorth = netWorth;
         this.meetingTimes.addAll(meetingTimes);
         this.filePath = new FilePath("");
