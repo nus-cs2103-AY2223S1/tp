@@ -28,7 +28,7 @@ public class AddTaskCommand extends AddGenericCommand {
 
     public static final String MESSAGE_ADD_TASK_SUCCESS = "New task added to %1$s: %2$s";
 
-    public static final String MESSAGE_DUPLICATE_TASK = "This task already exists for this patient";
+    public static final CommandType ADD_TASK_COMMAND_TYPE = CommandType.TASK;
 
     private final Index index;
     private final Task task;
@@ -56,19 +56,21 @@ public class AddTaskCommand extends AddGenericCommand {
 
         Patient personToEdit = lastShownList.get(index.getZeroBased());
 
+
         if (personToEdit.getTasks().hasTask(task)) {
-            throw new CommandException(MESSAGE_DUPLICATE_TASK);
+            throw new CommandException(Messages.MESSAGE_DUPLICATE_TASK);
         }
 
         TaskList updatedTaskList = personToEdit.getTasks().add(task);
-        Patient editedPerson = new Patient(
-                personToEdit.getName(), personToEdit.getPhone(), personToEdit.getEmail(), personToEdit.getAddress(),
-                personToEdit.getConditions(), updatedTaskList, personToEdit.getTags());
+
+        Patient editedPerson = new Patient(personToEdit, updatedTaskList);
 
         model.setPerson(personToEdit, editedPerson);
-        model.updateFilteredPersonList(Model.PREDICATE_SHOW_ALL_PERSONS);
+        model.updateFilteredPersonList(patient -> patient.equals(editedPerson));
+        model.setPatientOfInterest(editedPerson);
 
-        return new CommandResult(String.format(MESSAGE_ADD_TASK_SUCCESS, editedPerson.getName().toString(), task));
+        return new CommandResult(String.format(MESSAGE_ADD_TASK_SUCCESS, editedPerson.getName().toString(), task),
+                ADD_TASK_COMMAND_TYPE);
     }
 
     @Override

@@ -12,10 +12,10 @@ import seedu.uninurse.model.person.Patient;
  * Clears the uninurse book.
  */
 public class ClearCommand extends UndoableCommand {
-
     public static final String COMMAND_WORD = "clear";
     public static final String MESSAGE_SUCCESS = "Listed patients have been cleared!";
 
+    public static final CommandType CLEAR_COMMAND_TYPE = CommandType.CLEAR;
 
     @Override
     public CommandResult execute(Model model) {
@@ -24,6 +24,6 @@ public class ClearCommand extends UndoableCommand {
         for (Patient patientToDelete : lastShownList) {
             model.deletePerson(patientToDelete);
         }
-        return new CommandResult(MESSAGE_SUCCESS);
+        return new CommandResult(MESSAGE_SUCCESS, CLEAR_COMMAND_TYPE);
     }
 }

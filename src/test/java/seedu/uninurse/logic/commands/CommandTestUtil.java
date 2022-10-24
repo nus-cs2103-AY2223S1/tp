@@ -27,7 +27,6 @@ import seedu.uninurse.testutil.EditPatientDescriptorBuilder;
  * Contains helper methods for testing commands.
  */
 public class CommandTestUtil {
-
     public static final String VALID_NAME_AMY = "Amy Bee";
     public static final String VALID_NAME_BOB = "Bob Choo";
     public static final String VALID_PHONE_AMY = "11111111";
@@ -39,7 +38,8 @@ public class CommandTestUtil {
     public static final String VALID_CONDITION_BOB = "Alzheimer's disease";
     public static final String VALID_TASK_DESC_FIRST = "Administer 80mg of valsartan";
     public static final String VALID_TASK_DESC_SECOND = "Advise on over-the-counter prescriptions";
-    public static final String VALID_TASK_DATE_FIRST = "16-10-2022 1015";
+    public static final String VALID_TASK_DATE_TIME_FIRST = "16-10-2022 1015";
+    public static final String VALID_DATE_FIRST = "22-10-2022";
     public static final String VALID_TAG_HUSBAND = "husband";
     public static final String VALID_TAG_FRIEND = "friend";
 
@@ -100,8 +100,8 @@ public class CommandTestUtil {
      * that takes a string {@code expectedMessage}.
      */
     public static void assertCommandSuccess(Command command, Model actualModel, String expectedMessage,
-            Model expectedModel) {
-        CommandResult expectedCommandResult = new CommandResult(expectedMessage);
+            CommandType expectedCommandType, Model expectedModel) {
+        CommandResult expectedCommandResult = new CommandResult(expectedMessage, expectedCommandType);
         assertCommandSuccess(command, actualModel, expectedCommandResult, expectedModel);
     }
 
@@ -129,7 +129,7 @@ public class CommandTestUtil {
         assertTrue(targetIndex.getZeroBased() < model.getFilteredPersonList().size());
 
         Patient person = model.getFilteredPersonList().get(targetIndex.getZeroBased());
-        final String[] splitName = person.getName().fullName.split("\\s+");
+        final String[] splitName = person.getName().getValue().split("\\s+");
         model.updateFilteredPersonList(new NameContainsKeywordsPredicate(Arrays.asList(splitName[0])));
 
         assertEquals(1, model.getFilteredPersonList().size());

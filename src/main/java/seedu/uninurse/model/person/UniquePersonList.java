@@ -23,7 +23,6 @@ import seedu.uninurse.model.person.exceptions.PersonNotFoundException;
  * @see Patient#isSamePerson(Patient)
  */
 public class UniquePersonList implements Iterable<Patient> {
-
     private final ObservableList<Patient> internalList = FXCollections.observableArrayList();
     private final ObservableList<Patient> internalUnmodifiableList =
             FXCollections.unmodifiableObservableList(internalList);

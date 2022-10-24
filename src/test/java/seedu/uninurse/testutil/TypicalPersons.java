@@ -16,6 +16,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import seedu.uninurse.model.UninurseBook;
+import seedu.uninurse.model.medication.Medication;
 import seedu.uninurse.model.person.Patient;
 import seedu.uninurse.model.task.DateTime;
 import seedu.uninurse.model.task.Task;
@@ -33,6 +34,7 @@ public class TypicalPersons {
             .withAddress("311, Clementi Ave 2, #02-25")
             .withEmail("johnd@example.com").withPhone("98765432")
             .withConditions("Crohn's disease", "H1N1")
+            .withMedications(new Medication("Amoxicillin", "0.5 g every 8 hours"))
             .withTasks(new Task("Insert urinary catheter", new DateTime("16-12-2022 1245")),
                     new Task("Check vitals", new DateTime("16-10-2022 1015")))
             .withTags("owesMoney", "friends").build();

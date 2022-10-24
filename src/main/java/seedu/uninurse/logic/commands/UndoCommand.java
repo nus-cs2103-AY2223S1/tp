@@ -10,11 +10,11 @@ import seedu.uninurse.model.Model;
  * Undo the last command.
  */
 public class UndoCommand extends Command {
-
     public static final String COMMAND_WORD = "undo";
     public static final String MESSAGE_FAILURE = "Maximum undo limit reached! ";
     public static final String MESSAGE_SUCCESS = "Undone previous command!";
 
+    public static final CommandType UNDO_COMMAND_TYPE = CommandType.UNDO;
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
@@ -25,6 +25,6 @@ public class UndoCommand extends Command {
 
         model.undo();
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
-        return new CommandResult(MESSAGE_SUCCESS);
+        return new CommandResult(MESSAGE_SUCCESS, UNDO_COMMAND_TYPE);
     }
 }

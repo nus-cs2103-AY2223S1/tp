@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.layout.FlowPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+
+
+<HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="188.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <StackPane fx:id="taskListPanelContainer" prefHeight="188.0" prefWidth="298.0" />
+      <Separator orientation="VERTICAL" prefHeight="188.0" prefWidth="99.0" />
+      <VBox alignment="CENTER_LEFT" minHeight="105" minWidth="-Infinity" prefHeight="188.0" prefWidth="259.0">
+         <padding>
+            <Insets left="15.0" />
+         </padding>
+         <children>
+            <HBox alignment="CENTER_LEFT" spacing="5">
+               <opaqueInsets>
+                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+               </opaqueInsets>
+               <children>
+                  <Label fx:id="name" styleClass="cell_big_label" text="\$first" />
+               </children>
+            </HBox>
+            <FlowPane fx:id="tags" />
+         </children>
+      </VBox>
+   </children>
+</HBox>

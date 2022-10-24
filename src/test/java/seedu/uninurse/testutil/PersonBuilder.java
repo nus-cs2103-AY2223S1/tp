@@ -4,6 +4,8 @@ import java.util.HashSet;
 import java.util.Set;
 
 import seedu.uninurse.model.condition.ConditionList;
+import seedu.uninurse.model.medication.Medication;
+import seedu.uninurse.model.medication.MedicationList;
 import seedu.uninurse.model.person.Address;
 import seedu.uninurse.model.person.Email;
 import seedu.uninurse.model.person.Name;
@@ -29,6 +31,7 @@ public class PersonBuilder {
     private Email email;
     private Address address;
     private ConditionList conditions;
+    private MedicationList medications;
     private TaskList tasks;
     private Set<Tag> tags;
 
@@ -36,26 +39,28 @@ public class PersonBuilder {
      * Creates a {@code PersonBuilder} with the default details.
      */
     public PersonBuilder() {
-        name = new Name(DEFAULT_NAME);
-        phone = new Phone(DEFAULT_PHONE);
-        email = new Email(DEFAULT_EMAIL);
-        address = new Address(DEFAULT_ADDRESS);
-        conditions = new ConditionList();
-        tasks = new TaskList();
-        tags = new HashSet<>();
+        this.name = new Name(DEFAULT_NAME);
+        this.phone = new Phone(DEFAULT_PHONE);
+        this.email = new Email(DEFAULT_EMAIL);
+        this.address = new Address(DEFAULT_ADDRESS);
+        this.conditions = new ConditionList();
+        this.medications = new MedicationList();
+        this.tasks = new TaskList();
+        this.tags = new HashSet<>();
     }
 
     /**
      * Initializes the PersonBuilder with the data of {@code personToCopy}.
      */
     public PersonBuilder(Patient personToCopy) {
-        name = personToCopy.getName();
-        phone = personToCopy.getPhone();
-        email = personToCopy.getEmail();
-        address = personToCopy.getAddress();
-        conditions = personToCopy.getConditions();
-        tasks = personToCopy.getTasks();
-        tags = new HashSet<>(personToCopy.getTags());
+        this.name = personToCopy.getName();
+        this.phone = personToCopy.getPhone();
+        this.email = personToCopy.getEmail();
+        this.address = personToCopy.getAddress();
+        this.conditions = personToCopy.getConditions();
+        this.medications = personToCopy.getMedications();
+        this.tasks = personToCopy.getTasks();
+        this.tags = new HashSet<>(personToCopy.getTags());
     }
 
     /**
@@ -72,6 +77,15 @@ public class PersonBuilder {
      */
     public PersonBuilder withConditions(String... conditions) {
         this.conditions = SampleDataUtil.getConditionList(conditions);
+        return this;
+    }
+
+    /**
+     * Parses the {@code Medication} into a {@code MedicationList} and
+     * set it to the {@code Patient} that we are building.
+     */
+    public PersonBuilder withMedications(Medication... medications) {
+        this.medications = SampleDataUtil.getMedicationList(medications);
         return this;
     }
 
@@ -116,7 +130,7 @@ public class PersonBuilder {
     }
 
     public Patient build() {
-        return new Patient(name, phone, email, address, conditions, tasks, tags);
+        return new Patient(name, phone, email, address, conditions, medications, tasks, tags);
     }
 
 }

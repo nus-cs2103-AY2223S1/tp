@@ -4,6 +4,7 @@ import java.util.logging.Logger;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Label;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextInputControl;
 import javafx.scene.input.KeyCombination;
@@ -16,6 +17,7 @@ import seedu.uninurse.logic.Logic;
 import seedu.uninurse.logic.commands.CommandResult;
 import seedu.uninurse.logic.commands.exceptions.CommandException;
 import seedu.uninurse.logic.parser.exceptions.ParseException;
+import seedu.uninurse.model.exceptions.PatientOfInterestNotFoundException;
 
 /**
  * The Main Window. Provides the basic application layout containing
@@ -32,23 +34,33 @@ public class MainWindow extends UiPart<Stage> {
 
     // Independent Ui parts residing in this Ui container
     private PersonListPanel personListPanel;
+    private OutputPanel outputPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
-
-    @FXML
-    private StackPane commandBoxPlaceholder;
 
     @FXML
     private MenuItem helpMenuItem;
 
     @FXML
-    private StackPane personListPanelPlaceholder;
+    private Label patientHeader;
 
     @FXML
-    private StackPane resultDisplayPlaceholder;
+    private Label outputHeader;
 
     @FXML
-    private StackPane statusbarPlaceholder;
+    private StackPane personListPanelContainer;
+
+    @FXML
+    private StackPane outputPanelContainer;
+
+    @FXML
+    private StackPane resultDisplayContainer;
+
+    @FXML
+    private StackPane commandBoxContainer;
+
+    @FXML
+    private StackPane statusbarContainer;
 
     /**
      * Creates a {@code MainWindow} with the given {@code Stage} and {@code Logic}.
@@ -107,20 +119,31 @@ public class MainWindow extends UiPart<Stage> {
     }
 
     /**
-     * Fills up all the placeholders of this window.
+     * Fills up all the Containers of this window.
      */
     void fillInnerParts() {
-        personListPanel = new PersonListPanel(logic.getFilteredPersonList(), logic.getTaskListFlagSupplier());
-        personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
+        personListPanel = new PersonListPanel(logic.getFilteredPersonList());
+        personListPanelContainer.getChildren().add(personListPanel.getRoot());
+        personListPanelContainer.prefHeightProperty().bind(this.getRoot().heightProperty());
+
+        outputPanel = new OutputPanel();
+        outputPanel.getRoot().prefWidthProperty().bind(outputPanelContainer.widthProperty());
+        outputPanel.getRoot().prefHeightProperty().bind(outputPanelContainer.heightProperty());
+
+        outputPanelContainer.getChildren().add(outputPanel.getRoot());
+        outputPanelContainer.prefHeightProperty().bind(this.getRoot().heightProperty());
 
         resultDisplay = new ResultDisplay();
-        resultDisplayPlaceholder.getChildren().add(resultDisplay.getRoot());
-
-        StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getUninurseBookFilePath());
-        statusbarPlaceholder.getChildren().add(statusBarFooter.getRoot());
+        resultDisplayContainer.getChildren().add(resultDisplay.getRoot());
 
         CommandBox commandBox = new CommandBox(this::executeCommand);
-        commandBoxPlaceholder.getChildren().add(commandBox.getRoot());
+        commandBoxContainer.getChildren().add(commandBox.getRoot());
+
+        StatusBarFooter statusBarFooter = new StatusBarFooter(logic.getUninurseBookFilePath());
+        statusbarContainer.getChildren().add(statusBarFooter.getRoot());
+
+        patientHeader.setText("Patients");
+        outputHeader.setText("Output");
     }
 
     /**
@@ -175,6 +198,7 @@ public class MainWindow extends UiPart<Stage> {
     private CommandResult executeCommand(String commandText) throws CommandException, ParseException {
         try {
             CommandResult commandResult = logic.execute(commandText);
+            outputPanel.clear();
             logger.info("Result: " + commandResult.getFeedbackToUser());
             resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
 
@@ -186,10 +210,37 @@ public class MainWindow extends UiPart<Stage> {
                 handleExit();
             }
 
+            if (commandResult.isViewPatient()) {
+                outputPanel.handleViewPatient(logic.getPatientOfInterest());
+            }
+
+            if (commandResult.isTaskRelated()) {
+                outputPanel.handleTask(logic.getPatientOfInterest());
+            }
+
+            if (commandResult.isSchedule()) {
+               // schedulePanel.handleSchedule(logic.getPatientTaskPairList); Possible implementation
+            }
+
+            if (commandResult.isAddPatient()) {
+                outputPanel.handleAddPatient(logic.getPatientOfInterest());
+            }
+
+            if (commandResult.isEditPatient()) {
+                outputPanel.handleEditPatient(logic.getPatientOfInterest());
+            }
+
+            if (commandResult.isDeletePatient()) {
+                outputPanel.handleDeletePatient(logic.getPatientOfInterest());
+            }
+
             return commandResult;
         } catch (CommandException | ParseException e) {
             logger.info("Invalid command: " + commandText);
             resultDisplay.setFeedbackToUser(e.getMessage());
+            throw e;
+        } catch (PatientOfInterestNotFoundException e) {
+            logger.info("Patient of interest not found");
             throw e;
         }
     }

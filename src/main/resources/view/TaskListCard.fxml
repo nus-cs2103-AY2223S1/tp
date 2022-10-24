@@ -1,31 +1,29 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.net.URL?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.layout.ColumnConstraints?>
-<?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
-<?import javafx.scene.shape.Rectangle?>
 
-<HBox id="cardPane" fx:id="cardPane" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
-  <GridPane HBox.hgrow="ALWAYS">
-    <columnConstraints>
-      <ColumnConstraints hgrow="SOMETIMES" minWidth="20" prefWidth="20" />
-      <ColumnConstraints hgrow="SOMETIMES" minWidth="20" prefWidth="200" />
-    </columnConstraints>
-    <Rectangle GridPane.columnIndex="0" height="80.0" width="7.5" arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" stroke="DODGERBLUE" strokeType="INSIDE" GridPane.hgrow="NEVER">
-        <GridPane.margin>
-          <Insets bottom="10.0" left="5.0" right="5.0" top="10.0" />
-        </GridPane.margin>
-    </Rectangle>
-    <VBox GridPane.columnIndex="1" alignment="TOP_LEFT" minHeight="105" >
+<HBox id="cardPane" fx:id="cardPane" minHeight="50.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
+ <VBox>
+   <HBox spacing="5">
+     <Label fx:id="id" minWidth="-Infinity" styleClass="cell_big_label" />
+     <Label fx:id="taskname" styleClass="cell_big_label" text="\$task" wrapText="true" />
+         <VBox.margin>
+            <Insets bottom="5.0" />
+         </VBox.margin>
+   </HBox>
+   <Label fx:id="date" styleClass="cell_small_label" text="\$date" wrapText="true" />
+   <Label fx:id="time" styleClass="cell_small_label" text="\$time" wrapText="true" />
       <padding>
-        <Insets bottom="5" left="5" right="5" top="15" />
+         <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
       </padding>
-      <Label fx:id="header" styleClass="cell_big_label" text="\$header" />
-      <Label fx:id="taskList" styleClass="cell_small_label" text="\$taskList" />
-    </VBox>
-  </GridPane>
+ </VBox>
+   <stylesheets>
+      <URL value="@Fonts.css" />
+      <URL value="@Theme.css" />
+      <URL value="@Extensions.css" />
+   </stylesheets>
 </HBox>

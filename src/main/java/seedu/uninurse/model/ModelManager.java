@@ -4,8 +4,8 @@ import static java.util.Objects.requireNonNull;
 import static seedu.uninurse.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
+import java.util.Optional;
 import java.util.function.Predicate;
-import java.util.function.Supplier;
 import java.util.logging.Logger;
 
 import javafx.collections.ObservableList;
@@ -13,6 +13,7 @@ import javafx.collections.transformation.FilteredList;
 import seedu.uninurse.commons.core.GuiSettings;
 import seedu.uninurse.commons.core.LogsCenter;
 import seedu.uninurse.logic.commands.CommandResult;
+import seedu.uninurse.model.exceptions.PatientOfInterestNotFoundException;
 import seedu.uninurse.model.person.Patient;
 
 /**
@@ -26,7 +27,7 @@ public class ModelManager implements Model {
     private final UserPrefs userPrefs;
     private final FilteredList<Patient> filteredPersons;
 
-    private boolean taskListFlag;
+    private Optional<Patient> patientOfInterest;
 
     /**
      * Initializes a ModelManager with the given uninurseBook and userPrefs.
@@ -39,7 +40,7 @@ public class ModelManager implements Model {
         this.userPrefs = new UserPrefs(userPrefs);
         this.persistentUninurseBook = new PersistentUninurseBook(uninurseBook);
         this.filteredPersons = new FilteredList<>(this.persistentUninurseBook.getWorkingCopy().getPersonList());
-        this.taskListFlag = false;
+        this.patientOfInterest = Optional.empty();
     }
 
     public ModelManager() {
@@ -131,15 +132,19 @@ public class ModelManager implements Model {
     @Override
     public void updateFilteredPersonList(Predicate<Patient> predicate) {
         requireNonNull(predicate);
-        taskListFlag = false;
         filteredPersons.setPredicate(predicate);
     }
 
+    //=========== Other Accessors =============================================================
+
     @Override
-    public void updateFilteredPersonListWithTasks(Predicate<Patient> predicate) {
-        requireNonNull(predicate);
-        taskListFlag = true;
-        filteredPersons.setPredicate(predicate);
+    public void setPatientOfInterest(Patient patient) {
+        this.patientOfInterest = Optional.ofNullable(patient);
+    }
+
+    @Override
+    public Patient getPatientOfInterest() throws PatientOfInterestNotFoundException {
+        return this.patientOfInterest.orElseThrow(() -> new PatientOfInterestNotFoundException());
     }
 
     //=========== Undo and Redo =============================================================
@@ -169,13 +174,6 @@ public class ModelManager implements Model {
         persistentUninurseBook.makeSnapshot(commandResult);
     }
 
-    //=========== Other Accessors =============================================================
-
-    @Override
-    public Supplier<Boolean> getTaskListFlagSupplier() {
-        return (() -> taskListFlag);
-    }
-
     @Override
     public boolean equals(Object obj) {
         // short circuit if same object
@@ -194,5 +192,4 @@ public class ModelManager implements Model {
                 && userPrefs.equals(other.userPrefs)
                 && filteredPersons.equals(other.filteredPersons);
     }
-
 }

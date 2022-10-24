@@ -8,6 +8,7 @@ import java.util.regex.Pattern;
 
 import seedu.uninurse.logic.commands.AddConditionCommand;
 import seedu.uninurse.logic.commands.AddGenericCommand;
+import seedu.uninurse.logic.commands.AddMedicationCommand;
 import seedu.uninurse.logic.commands.ClearCommand;
 import seedu.uninurse.logic.commands.Command;
 import seedu.uninurse.logic.commands.DeleteGenericCommand;
@@ -19,7 +20,9 @@ import seedu.uninurse.logic.commands.ListCommand;
 import seedu.uninurse.logic.commands.ListTaskCommand;
 import seedu.uninurse.logic.commands.PatientsTodayCommand;
 import seedu.uninurse.logic.commands.RedoCommand;
+import seedu.uninurse.logic.commands.TasksOnCommand;
 import seedu.uninurse.logic.commands.UndoCommand;
+import seedu.uninurse.logic.commands.ViewPatientCommand;
 import seedu.uninurse.logic.commands.ViewTaskCommand;
 import seedu.uninurse.logic.parser.exceptions.ParseException;
 
@@ -50,6 +53,8 @@ public class UninurseBookParser {
         final String arguments = ParserTranslator.translate(commandWord, matcher.group("arguments"));
 
         switch (commandWord) {
+        case ViewPatientCommand.COMMAND_WORD:
+            return new ViewPatientCommandParser().parse(arguments);
 
         case AddGenericCommand.COMMAND_WORD:
             return new AddGenericCommandParser().parse(arguments);
@@ -63,6 +68,9 @@ public class UninurseBookParser {
         case AddConditionCommand.COMMAND_WORD: // TODO: integrate with AddGenericCommand
             return new AddConditionCommandParser().parse(arguments);
 
+        case AddMedicationCommand.COMMAND_WORD: // TODO: integrate with AddGenericCommand
+            return new AddMedicationCommandParser().parse(arguments);
+
         case ClearCommand.COMMAND_WORD:
             return new ClearCommand();
 
@@ -74,6 +82,9 @@ public class UninurseBookParser {
 
         case PatientsTodayCommand.COMMAND_WORD:
             return new PatientsTodayCommand();
+
+        case TasksOnCommand.COMMAND_WORD:
+            return new TasksOnCommandParser().parse(arguments);
 
         case ViewTaskCommand.COMMAND_WORD:
             return new ViewTaskCommandParser().parse(arguments);

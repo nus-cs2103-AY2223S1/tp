@@ -31,7 +31,6 @@ import seedu.uninurse.testutil.PersonBuilder;
  * Contains integration tests (interaction with the Model) and unit tests for EditPatientCommand.
  */
 public class EditPatientCommandTest {
-
     private Model model = new ModelManager(getTypicalUninurseBook(), new UserPrefs());
 
     @Test
@@ -45,7 +44,8 @@ public class EditPatientCommandTest {
         Model expectedModel = new ModelManager(new UninurseBook(model.getUninurseBook()), new UserPrefs());
         expectedModel.setPerson(model.getFilteredPersonList().get(0), editedPerson);
 
-        assertCommandSuccess(editPatientCommand, model, expectedMessage, expectedModel);
+        assertCommandSuccess(editPatientCommand, model, expectedMessage,
+                EditPatientCommand.EDIT_PATIENT_COMMAND_TYPE, expectedModel);
     }
 
     @Test
@@ -66,7 +66,8 @@ public class EditPatientCommandTest {
         Model expectedModel = new ModelManager(new UninurseBook(model.getUninurseBook()), new UserPrefs());
         expectedModel.setPerson(lastPerson, editedPerson);
 
-        assertCommandSuccess(editPatientCommand, model, expectedMessage, expectedModel);
+        assertCommandSuccess(editPatientCommand, model, expectedMessage,
+                EditPatientCommand.EDIT_PATIENT_COMMAND_TYPE, expectedModel);
     }
 
     @Test
@@ -78,7 +79,8 @@ public class EditPatientCommandTest {
 
         Model expectedModel = new ModelManager(new UninurseBook(model.getUninurseBook()), new UserPrefs());
 
-        assertCommandSuccess(editPatientCommand, model, expectedMessage, expectedModel);
+        assertCommandSuccess(editPatientCommand, model, expectedMessage,
+                EditPatientCommand.EDIT_PATIENT_COMMAND_TYPE, expectedModel);
     }
 
     @Test
@@ -95,7 +97,8 @@ public class EditPatientCommandTest {
         Model expectedModel = new ModelManager(new UninurseBook(model.getUninurseBook()), new UserPrefs());
         expectedModel.setPerson(model.getFilteredPersonList().get(0), editedPerson);
 
-        assertCommandSuccess(editPatientCommand, model, expectedMessage, expectedModel);
+        assertCommandSuccess(editPatientCommand, model, expectedMessage,
+                EditPatientCommand.EDIT_PATIENT_COMMAND_TYPE, expectedModel);
     }
 
     @Test
@@ -169,5 +172,4 @@ public class EditPatientCommandTest {
         // different descriptor -> returns false
         assertFalse(standardCommand.equals(new EditPatientCommand(INDEX_FIRST_PERSON, DESC_BOB)));
     }
-
 }
