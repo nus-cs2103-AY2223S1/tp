@@ -25,13 +25,11 @@ class ViewCommandTest {
     void execute_success() {
         Item expectedItem = model.getCurrentList().get(0);
 
-        String expectedMessage = expectedItem.toString();
-
         ViewCommand viewCommand = new ViewCommand(INDEX_FIRST_ITEM);
 
         Model expectedModel = new ModelManager(new FoodRem(model.getFoodRem()), new UserPrefs());
 
-        assertCommandSuccess(viewCommand, model, expectedMessage, expectedModel);
+        assertCommandSuccess(viewCommand, model, expectedItem, expectedModel);
     }
 
     @Test
