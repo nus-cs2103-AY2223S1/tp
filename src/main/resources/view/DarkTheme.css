@@ -1,5 +1,5 @@
 .background {
-    -fx-background-color: derive(#1d1d1d, 20%);
+    -fx-background-color: #FAFAFA;
     background-color: #FAFAFA; /* Used in the default.html file */
 }
 
@@ -41,9 +41,9 @@
 }
 
 .table-view {
-    -fx-base: #1d1d1d;
+    -fx-base: #FAFAFA;
     -fx-control-inner-background: #1d1d1d;
-    -fx-background-color: #1d1d1d;
+    -fx-background-color: #FAFAFA;
     -fx-table-cell-border-color: transparent;
     -fx-table-header-border-color: transparent;
     -fx-padding: 5;
@@ -85,19 +85,20 @@
 .split-pane {
     -fx-border-radius: 1;
     -fx-border-width: 1;
-    -fx-background-color: derive(#1d1d1d, 20%);
+    -fx-background-color: #FAFAFA;
 }
 
 .list-view {
     -fx-background-insets: 0;
     -fx-padding: 0;
-    -fx-background-color: derive(#E4E4E7, 20%);
+    -fx-background-color: #FAFAFA;
 }
 
 .list-cell {
     -fx-label-padding: 0 0 0 0;
     -fx-graphic-text-gap : 0;
     -fx-padding: 0 0 0 0;
+    -fx-background-color: #FAFAFA;
 }
 
 .list-cell:filled:even {
@@ -118,7 +119,21 @@
     -fx-border-color: #6D28D9;
 }
 
-.list-cell .label {
+.task-side-panel {
+}
+
+.task-side-panel .list-cell:filled {
+    -fx-background-color: #FAFAFA;
+    -fx-padding: 5;
+}
+
+.task-side-panel .list-cell:filled:selected {
+    -fx-border-width: 1px;
+    -fx-border-color: derive(#6D28D9, 20%);
+}
+
+.task-side-panel .list-cell:filled:selected #cardPane {
+    -fx-border-color: #6D28D9;
 }
 
 .cell_big_label {
@@ -177,8 +192,8 @@
 }
 
 .tags_pane .label {
-    -fx-font-fill: #00FFFF;
-    -fx-background-color: #00FFFF;
+    -fx-font-fill: #FFFFFF;
+    -fx-background-color: #FAFAFA;
 }
 
 .stack-pane {
@@ -188,9 +203,15 @@
 }
 
 .pane-with-border {
-    -fx-background-color: derive(#F3F4F6, 20%);
+    -fx-background-color: #FAFAFA;
     -fx-border-color: derive(#F3F4F6, 10%);
-     -fx-border-top-width: 1px;
+    -fx-border-top-width: 1px;
+}
+
+.right-pane-with-border {
+    -fx-background-color: #FAFAFA;
+    -fx-border-color: derive(#F3F4F6, 10%);
+    -fx-border-width: 0px;
 }
 
 .status-bar {
@@ -205,7 +226,22 @@
 }
 
 .result-display .label {
-    -fx-text-fill: black !important;
+    -fx-text-fill: black;
+}
+
+.result_heading {
+    -fx-font-family: "Arial";
+    -fx-font-weight: bold;
+    -fx-font-size: 12px;
+    -fx-text-fill: #A1A1AA;
+    -fx-background-color: transparent;
+}
+
+.result-display-pane {
+    -fx-background-color: transparent;
+    -fx-border-width: 0px, 0px, 0px, 0px;
+    -fx-border-top-width: 2px;
+    -fx-border-color: #F3F4F6
 }
 
 .status-bar .label {
