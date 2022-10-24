@@ -10,7 +10,7 @@ import hobbylist.model.activity.TagMatchesKeywordPredicate;
  * Finds and lists all activities in HobbyList whose tag matches any of the argument keywords.
  * Keyword matching is case insensitive.
  */
-public class FindTagCommand extends Command {
+public class FilterTagCommand extends Command {
 
     public static final String COMMAND_WORD = "filter";
 
@@ -21,7 +21,7 @@ public class FindTagCommand extends Command {
 
     private final TagMatchesKeywordPredicate predicate;
 
-    public FindTagCommand(TagMatchesKeywordPredicate predicate) {
+    public FilterTagCommand(TagMatchesKeywordPredicate predicate) {
         this.predicate = predicate;
     }
 
@@ -36,7 +36,7 @@ public class FindTagCommand extends Command {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof FindTagCommand // instanceof handles nulls
-                && predicate.equals(((FindTagCommand) other).predicate)); // state check
+                || (other instanceof FilterTagCommand // instanceof handles nulls
+                && predicate.equals(((FilterTagCommand) other).predicate)); // state check
     }
 }
