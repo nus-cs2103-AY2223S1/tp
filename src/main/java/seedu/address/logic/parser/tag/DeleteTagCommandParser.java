@@ -29,6 +29,8 @@ import seedu.address.model.tag.Tag;
  */
 public class DeleteTagCommandParser implements Parser<DeleteTagCommand> {
 
+    public static final String MESSAGE_TOO_MANY_CONTACTS_OR_TASKS = "You can only delete a label from a maximum of one contact and one task at a time.";
+
     /**
      * Parses the given {@code String} of arguments in the context of the EditCommand
      * and returns an EditCommand object for execution.
@@ -44,6 +46,10 @@ public class DeleteTagCommandParser implements Parser<DeleteTagCommand> {
 
         boolean deleteTagFromContact = argMultimap.getValue(PREFIX_CONTACT).isPresent();
         boolean deleteTagFromTask = argMultimap.getValue(PREFIX_TASK).isPresent();
+
+        if (argMultimap.getAllValues(PREFIX_CONTACT).size() > 1 || argMultimap.getAllValues(PREFIX_TASK).size() > 1) {
+            throw new ParseException(MESSAGE_TOO_MANY_CONTACTS_OR_TASKS);
+        }
 
         try {
             contactIndex = ParserUtil.parseIndex(argMultimap.getValue(PREFIX_CONTACT).orElse("1"));

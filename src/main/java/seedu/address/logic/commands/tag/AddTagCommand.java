@@ -91,6 +91,10 @@ public class AddTagCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
 
+        if (!addTagToContact && !addTagToTask) {
+            throw new CommandException(MESSAGE_MISSING_INDEX);
+        }
+
         if (addTagToContact) {
             List<Person> lastShownPersonList = model.getFilteredPersonList();
 
@@ -117,9 +121,6 @@ public class AddTagCommand extends Command {
                     model.updateFilteredTagList(PREDICATE_SHOW_ALL_TAGS);
                 }
             }
-
-            return new CommandResult(String.format(MESSAGE_ADD_TAG_SUCCESS,
-                    editPersonDescriptor.getTags().orElse(new HashSet<>())));
         }
         if (addTagToTask) {
             List<Task> lastShownTaskList = model.getFilteredTaskList();
@@ -147,11 +148,10 @@ public class AddTagCommand extends Command {
                     model.updateFilteredTagList(PREDICATE_SHOW_ALL_TAGS);
                 }
             }
-            return new CommandResult(String.format(MESSAGE_ADD_TAG_SUCCESS,
-                    editTaskDescriptor.getTags().orElse(new HashSet<>())));
         }
 
-        throw new CommandException(MESSAGE_MISSING_INDEX);
+        return new CommandResult(String.format(MESSAGE_ADD_TAG_SUCCESS,
+                editPersonDescriptor.getTags().orElse(new HashSet<>())));
     }
 
     /**
