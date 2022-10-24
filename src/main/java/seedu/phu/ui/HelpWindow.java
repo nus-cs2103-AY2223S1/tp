@@ -7,7 +7,6 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.input.Clipboard;
 import javafx.scene.input.ClipboardContent;
-import javafx.scene.text.Font;
 import javafx.stage.Stage;
 import seedu.phu.commons.core.LogsCenter;
 
@@ -16,10 +15,12 @@ import seedu.phu.commons.core.LogsCenter;
  */
 public class HelpWindow extends UiPart<Stage> {
 
-    public static final String WELCOME_MESSAGE = "Welcome to PleaseHireUs!\n"
-            + "Refer to the following table for a quick guide on how to use this app.";
+    public static final String WELCOME_MESSAGE = "Welcome to PleaseHireUs!\n";
     public static final String USERGUIDE_URL = "https://ay2223s1-cs2103t-w17-4.github.io/tp/UserGuide.html";
-    public static final String HELP_MESSAGE = "For more details refer to the user guide: " + USERGUIDE_URL;
+    public static final String USER_GUIDE_MESSAGE = "For more details refer to the user guide: " + USERGUIDE_URL;
+    public static final String COMMAND_SUMMARY_INTRO =
+            "Refer to the following table for a quick guide on how to use this app.";
+
     public static final String COMMAND_SUMMARY =
             "+--------------------------+--------------------------------------------------------------------+\n"
             + "| Action                   | Format                                                             |\n"
@@ -42,9 +43,14 @@ public class HelpWindow extends UiPart<Stage> {
             + "| List all internship(s)   | list [c/CATEGORY [DESCENDING]]                                     |\n"
             + "| in specified order       |                                                                    |\n"
             + "+--------------------------+--------------------------------------------------------------------+\n"
+            + "| Undo previous command    | undo                                                               |\n"
+            + "+--------------------------+--------------------------------------------------------------------+\n"
+            + "| Redo previous            | redo                                                               |\n"
+            + "| undone command           |                                                                    |\n"
+            + "+--------------------------+--------------------------------------------------------------------+\n"
             + "| List available commands  | help                                                               |\n"
             + "| and link to User Guide   |                                                                    |\n"
-            + "+--------------------------+--------------------------------------------------------------------+";
+            + "+--------------------------+--------------------------------------------------------------------+\n";
     private static final Logger logger = LogsCenter.getLogger(HelpWindow.class);
     private static final String FXML = "HelpWindow.fxml";
 
@@ -55,10 +61,12 @@ public class HelpWindow extends UiPart<Stage> {
     private Label welcomeMessage;
 
     @FXML
-    private Label helpMessage;
+    private Label userGuideMessage;
 
     @FXML
     private Label commandSummary;
+    @FXML
+    private Label commandSummaryIntro;
 
     /**
      * Creates a new HelpWindow.
@@ -68,9 +76,9 @@ public class HelpWindow extends UiPart<Stage> {
     public HelpWindow(Stage root) {
         super(FXML, root);
         welcomeMessage.setText(WELCOME_MESSAGE);
-        helpMessage.setText(HELP_MESSAGE);
+        commandSummaryIntro.setText(COMMAND_SUMMARY_INTRO);
+        userGuideMessage.setText(USER_GUIDE_MESSAGE);
         commandSummary.setText(COMMAND_SUMMARY);
-        commandSummary.setFont(Font.font("Monospaced", 12));
     }
 
     /**

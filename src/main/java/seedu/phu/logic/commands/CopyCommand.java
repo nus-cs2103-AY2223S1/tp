@@ -2,6 +2,8 @@ package seedu.phu.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 
+import java.awt.Toolkit;
+import java.awt.datatransfer.StringSelection;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -10,28 +12,27 @@ import seedu.phu.commons.core.index.Indexes;
 import seedu.phu.commons.exceptions.IllegalIndexException;
 import seedu.phu.logic.commands.exceptions.CommandException;
 import seedu.phu.model.Model;
-import seedu.phu.model.internship.ExactMatchPredicate;
 import seedu.phu.model.internship.Internship;
 import seedu.phu.model.internship.UniqueInternshipList;
 
 /**
- * Finds and lists all details of specified internship.
+ * Copies all details of specified internship into system clipboard.
  */
-public class ViewCommand extends Command {
-    public static final String COMMAND_WORD = "view";
+public class CopyCommand extends Command {
+    public static final String COMMAND_WORD = "copy";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all details of specified internship"
-            + " at the given index.\n"
-            + "Parameters: view index\n"
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Copies all details specified internship"
+            + " at the given index into system clipboard.\n"
+            + "Parameters: copy index\n"
             + "Example: " + COMMAND_WORD + " 1";
 
-    public static final String MESSAGE_SUCCESS = "Displaying more details";
+    public static final String MESSAGE_SUCCESS = "Copied details into clipboard";
     private final Indexes targetIndex;
 
     /**
-     * Constructor for ViewCommand
+     * Constructor for CopyCommand
      */
-    public ViewCommand(Indexes targetIndex) {
+    public CopyCommand(Indexes targetIndex) {
         this.targetIndex = targetIndex;
     }
 
@@ -53,14 +54,19 @@ public class ViewCommand extends Command {
         }
         assert (targetInternshipList.size() == 1);
 
-        model.updateViewItem(new ExactMatchPredicate(targetInternshipList));
+        Internship internship = targetInternshipList.get(0);
+        String toCopy = internship.toString();
+        Toolkit.getDefaultToolkit()
+                .getSystemClipboard()
+                .setContents(new StringSelection(toCopy), null);
+
         return new CommandResult(MESSAGE_SUCCESS);
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof ViewCommand // instanceof handles nulls
-                && targetIndex.equals(((ViewCommand) other).targetIndex)); // state check
+                || (other instanceof CopyCommand // instanceof handles nulls
+                && targetIndex.equals(((CopyCommand) other).targetIndex)); // state check
     }
 }

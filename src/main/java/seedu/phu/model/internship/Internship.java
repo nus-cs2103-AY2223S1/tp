@@ -155,25 +155,26 @@ public class Internship {
     @Override
     public String toString() {
         final StringBuilder builder = new StringBuilder();
-        builder.append(getName())
-                .append("; Position: ")
+        builder.append("Company: ")
+                .append(getName())
+                .append("\nPosition: ")
                 .append(getPosition())
-                .append("; Application Process: ")
+                .append("\nApplication Process: ")
                 .append(getApplicationProcess())
-                .append("; Date: ")
+                .append("\nDate: ")
                 .append(getDate())
-                .append("; Phone: ")
+                .append("\nPhone: ")
                 .append(getPhone())
-                .append("; Email: ")
+                .append("\nEmail: ")
                 .append(getEmail())
-                .append("; Website: ")
+                .append("\nWebsite: ")
                 .append(getWebsite())
-                .append("; Remark: ")
+                .append("\nRemark: ")
                 .append(getRemark());
 
         Set<Tag> tags = getTags();
         if (!tags.isEmpty()) {
-            builder.append("; Tags: ");
+            builder.append("\nTags: ");
             tags.forEach(builder::append);
         }
         return builder.toString();

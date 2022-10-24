@@ -18,6 +18,7 @@ import seedu.phu.commons.core.keyword.Keyword;
 import seedu.phu.commons.core.keyword.KeywordList;
 import seedu.phu.logic.commands.AddCommand;
 import seedu.phu.logic.commands.ClearCommand;
+import seedu.phu.logic.commands.CopyCommand;
 import seedu.phu.logic.commands.DeleteCommand;
 import seedu.phu.logic.commands.EditCommand;
 import seedu.phu.logic.commands.EditCommand.EditInternshipDescriptor;
@@ -27,6 +28,7 @@ import seedu.phu.logic.commands.HelpCommand;
 import seedu.phu.logic.commands.ListCommand;
 import seedu.phu.logic.commands.RedoCommand;
 import seedu.phu.logic.commands.UndoCommand;
+import seedu.phu.logic.commands.ViewCommand;
 import seedu.phu.logic.parser.exceptions.ParseException;
 import seedu.phu.model.internship.ContainsKeywordsPredicate;
 import seedu.phu.model.internship.FindableCategory;
@@ -102,6 +104,20 @@ public class InternshipBookParserTest {
     public void parseCommand_list() throws Exception {
         assertTrue(parser.parseCommand(ListCommand.COMMAND_WORD) instanceof ListCommand);
         assertTrue(parser.parseCommand(ListCommand.COMMAND_WORD + " c/n true") instanceof ListCommand);
+    }
+
+    @Test
+    public void parseCommand_view() throws Exception {
+        ViewCommand command = (ViewCommand) parser.parseCommand(
+                ViewCommand.COMMAND_WORD + " " + INDEX_FIRST_INTERNSHIP.getOneBased());
+        assertEquals(new ViewCommand(INDEXES_FIRST_INTERNSHIP), command);
+    }
+
+    @Test
+    public void parseCommand_copy() throws Exception {
+        CopyCommand command = (CopyCommand) parser.parseCommand(
+                CopyCommand.COMMAND_WORD + " " + INDEX_FIRST_INTERNSHIP.getOneBased());
+        assertEquals(new CopyCommand(INDEXES_FIRST_INTERNSHIP), command);
     }
 
     @Test
