@@ -13,6 +13,8 @@ import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.project.Project;
+import seedu.address.model.staff.Staff;
+import seedu.address.model.staff.UniqueStaffList;
 import seedu.address.model.task.Task;
 
 /**
@@ -24,7 +26,7 @@ public class ModelManager implements Model {
     private final AddressBook addressBook;
     private final UserPrefs userPrefs;
     private final FilteredList<Project> filteredProjects;
-    private final ArrayList<Project> targetProject = new ArrayList<>();
+    private final FilteredList<Staff> filteredStaff;
     private final FilteredList<Task> filteredTasks;
     private final ArrayList<Task> targetTask = new ArrayList<>();
 
@@ -39,6 +41,7 @@ public class ModelManager implements Model {
         this.addressBook = new AddressBook(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
         filteredProjects = new FilteredList<>(this.addressBook.getProjectList());
+        filteredStaff = new FilteredList<Staff>(this.addressBook.getStaffList());
         filteredTasks = new FilteredList<>(this.addressBook.getTaskList());
     }
 
@@ -124,19 +127,30 @@ public class ModelManager implements Model {
         addressBook.setProject(target, editedProject);
     }
 
+    //=========== Staff ================================================================================
+
     @Override
-    public void setTargetProject(Project target) {
-        requireNonNull(target);
-        if (this.targetProject.isEmpty()) {
-            this.targetProject.add(target);
-        } else {
-            this.targetProject.set(0, target);
-        }
+    public boolean hasStaff(Staff staff) {
+        requireNonNull(staff);
+        return addressBook.hasStaff(staff);
     }
 
     @Override
-    public ArrayList<Project> getTargetProject() {
-        return targetProject;
+    public void deleteStaff(Staff target) {
+        addressBook.removeStaff(target);
+    }
+
+    @Override
+    public void addStaff(Staff staff) {
+        addressBook.addStaff(staff);
+        updateFilteredStaffList(PREDICATE_SHOW_ALL_STAFF);
+    }
+
+    @Override
+    public void setStaff(Staff target, Staff editedStaff) {
+        requireAllNonNull(target, editedStaff);
+
+        addressBook.setStaff(target, editedStaff);
     }
 
     //=========== Tasks ================================================================================
@@ -198,6 +212,34 @@ public class ModelManager implements Model {
         filteredProjects.setPredicate(predicate);
     }
 
+    //=========== Filtered Staff List Accessors =============================================================
+
+    /**
+     * Returns an unmodifiable view of the list of {@code Project} backed by the internal list of
+     * {@code versionedAddressBook}
+     */
+    @Override
+    public ObservableList<Staff> getFilteredStaffList() {
+        return filteredStaff;
+    }
+
+    @Override
+    public void updateFilteredStaffList(Predicate<Staff> predicate) {
+        requireNonNull(predicate);
+        filteredStaff.setPredicate(predicate);
+    }
+
+    @Override
+    public void setFilteredStaffList(Project project) {
+        if (project == null) {
+            addressBook.setStaffList(new UniqueStaffList());
+        } else {
+            addressBook.setStaffList(project.getStaffList());
+        }
+    }
+
+    //=========== Filtered Task List Accessors =============================================================
+
     /**
      * Returns an unmodifiable view of the list of {@code Task} backed by the internal list of
      * {@code versionedAddressBook}
@@ -231,7 +273,7 @@ public class ModelManager implements Model {
                 && userPrefs.equals(other.userPrefs)
                 && filteredProjects.equals(other.filteredProjects)
                 && filteredTasks.equals(other.filteredTasks)
-                && targetProject.equals(other.targetProject)
+                && filteredStaff.equals(other.filteredStaff)
                 && targetTask.equals(other.targetTask);
     }
 
