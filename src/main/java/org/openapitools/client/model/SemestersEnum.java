@@ -34,7 +34,7 @@ public enum SemestersEnum {
 
     public static SemestersEnum fromValue(String semesterId) {
         for (SemestersEnum b : SemestersEnum.values()) {
-            if (b.name().equals(semesterId)) {
+            if (b.valueStr.equals(semesterId)) {
                 return b;
             }
         }
