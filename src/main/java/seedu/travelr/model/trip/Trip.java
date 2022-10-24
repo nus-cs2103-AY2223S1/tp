@@ -210,4 +210,10 @@ public class Trip {
     public int compareNumberOfEvents(Trip trip) {
         return events.getAmountOfEvents() - trip.events.getAmountOfEvents();
     }
+
+    public int compareCompletion(Trip trip) {
+        int this_completion = done ? 1 : 0;
+        int trip_completion = trip.done ? 1 : 0;
+        return this_completion - trip_completion;
+    }
 }
