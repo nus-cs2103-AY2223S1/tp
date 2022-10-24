@@ -99,13 +99,13 @@ class JsonAdaptedItem {
             throw new IllegalArgumentException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
                     ItemBoughtDate.class.getSimpleName()));
         }
-        final ItemBoughtDate modelItemBoughtDate = new ItemBoughtDate(boughtDate);
+        final ItemBoughtDate modelItemBoughtDate = ItemBoughtDate.of(boughtDate);
 
         if (expiryDate == null) {
             throw new IllegalArgumentException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
                     ItemExpiryDate.class.getSimpleName()));
         }
-        final ItemExpiryDate modelItemExpiryDate = new ItemExpiryDate(expiryDate);
+        final ItemExpiryDate modelItemExpiryDate = ItemExpiryDate.of(expiryDate);
 
         if (price == null) {
             throw new IllegalArgumentException(String.format(MISSING_FIELD_MESSAGE_FORMAT,

@@ -16,22 +16,34 @@ public class ItemExpiryDate {
     public static final String EXPIRY_DATE_PATTERN_REGEX = "dd-MM-uuuu";
     public static final DateTimeFormatter EXPIRY_DATE_FORMATTER = DateTimeFormatter
             .ofPattern(EXPIRY_DATE_PATTERN_REGEX);
+
+    public static final ItemExpiryDate NOT_SET_EXPIRY_DATE = new ItemExpiryDate(LocalDate.MIN);
+
     private final LocalDate expiryDate;
 
     /**
      * Constructs an expiryDate.
      *
-     * @param dateString a string that represents the expiryDate of the
-     *                   format {@link ItemExpiryDate#EXPIRY_DATE_FORMATTER}
+     * @param date a string that represents the expiryDate of the
+     *             format {@link ItemExpiryDate#EXPIRY_DATE_FORMATTER}
      */
-    public ItemExpiryDate(String dateString) {
+    private ItemExpiryDate(LocalDate date) {
+        expiryDate = date;
+    }
+
+    /**
+     * Produces a expiryDate object.
+     *
+     * @param dateString a string that represents the expiryDate of the
+     *                   format in ItemBoughtDateValidator.
+     */
+    public static ItemExpiryDate of(String dateString) {
         requireNonNull(dateString);
         if (dateString.isBlank()) {
-            expiryDate = null;
-            return;
+            return NOT_SET_EXPIRY_DATE;
         }
         ItemExpiryDateValidator.validate(dateString);
-        expiryDate = LocalDate.parse(dateString, EXPIRY_DATE_FORMATTER);
+        return new ItemExpiryDate(LocalDate.parse(dateString, EXPIRY_DATE_FORMATTER));
     }
 
     /**
@@ -82,6 +94,6 @@ public class ItemExpiryDate {
      */
     @Override
     public String toString() {
-        return expiryDate == null ? "" : expiryDate.format(EXPIRY_DATE_FORMATTER);
+        return this == NOT_SET_EXPIRY_DATE ? "" : expiryDate.format(EXPIRY_DATE_FORMATTER);
     }
 }

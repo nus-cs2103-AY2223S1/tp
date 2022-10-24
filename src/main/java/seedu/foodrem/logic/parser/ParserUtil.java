@@ -81,7 +81,7 @@ public class ParserUtil {
     public static ItemBoughtDate parseBoughtDate(String boughtDate) throws IllegalArgumentException {
         requireNonNull(boughtDate);
         String trimmedBoughtDate = boughtDate.trim();
-        return new ItemBoughtDate(trimmedBoughtDate);
+        return ItemBoughtDate.of(trimmedBoughtDate);
     }
 
     /**
@@ -93,7 +93,7 @@ public class ParserUtil {
     public static ItemExpiryDate parseExpiryDate(String expiryDate) throws IllegalArgumentException {
         requireNonNull(expiryDate);
         String trimmedExpiryDate = expiryDate.trim();
-        return new ItemExpiryDate(trimmedExpiryDate);
+        return ItemExpiryDate.of(trimmedExpiryDate);
     }
 
     /**

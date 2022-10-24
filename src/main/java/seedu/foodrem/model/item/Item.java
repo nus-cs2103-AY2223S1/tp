@@ -226,8 +226,8 @@ public class Item {
                 name,
                 quantity,
                 String.valueOf(unit).isBlank() ? "" : " " + unit,
-                String.valueOf(boughtDate).isBlank() ? "Not Set" : boughtDate,
-                String.valueOf(expiryDate).isBlank() ? "Not Set" : expiryDate,
+                boughtDate == ItemBoughtDate.NOT_SET_BOUGHT_DATE ? "Not Set" : boughtDate,
+                expiryDate == ItemExpiryDate.NOT_SET_EXPIRY_DATE ? "Not Set" : expiryDate,
                 "$" + price,
                 String.valueOf(remarks).isBlank() ? "No Remarks" : remarks,
                 tagsString);

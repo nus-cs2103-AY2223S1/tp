@@ -129,14 +129,14 @@ public class ParserUtilTest {
 
     @Test
     public void parseBoughtDate_validValueWithoutWhitespace_returnsBoughtDate() {
-        ItemBoughtDate expectedBoughtDate = new ItemBoughtDate(VALID_ITEM_BOUGHT_DATE);
+        ItemBoughtDate expectedBoughtDate = ItemBoughtDate.of(VALID_ITEM_BOUGHT_DATE);
         assertEquals(expectedBoughtDate, ParserUtil.parseBoughtDate(VALID_ITEM_BOUGHT_DATE));
     }
 
     @Test
     public void parseBoughtDate_validValueWithWhitespace_returnsTrimmedBoughtDate() {
         String boughtDateWithWhitespace = WHITESPACE + VALID_ITEM_BOUGHT_DATE + WHITESPACE;
-        ItemBoughtDate expectedBoughtDate = new ItemBoughtDate(VALID_ITEM_BOUGHT_DATE);
+        ItemBoughtDate expectedBoughtDate = ItemBoughtDate.of(VALID_ITEM_BOUGHT_DATE);
         assertEquals(expectedBoughtDate, ParserUtil.parseBoughtDate(boughtDateWithWhitespace));
     }
 
@@ -152,14 +152,14 @@ public class ParserUtilTest {
 
     @Test
     public void parseExpiryDate_validValueWithoutWhitespace_returnsExpiryDate() {
-        ItemExpiryDate expectedExpiryDate = new ItemExpiryDate(VALID_ITEM_BOUGHT_DATE);
+        ItemExpiryDate expectedExpiryDate = ItemExpiryDate.of(VALID_ITEM_BOUGHT_DATE);
         assertEquals(expectedExpiryDate, ParserUtil.parseExpiryDate(VALID_ITEM_BOUGHT_DATE));
     }
 
     @Test
     public void parseExpiryDate_validValueWithWhitespace_returnsTrimmedExpiryDate() {
         String expireDateWithWhitespace = WHITESPACE + VALID_ITEM_BOUGHT_DATE + WHITESPACE;
-        ItemExpiryDate expectedExpiryDate = new ItemExpiryDate(VALID_ITEM_BOUGHT_DATE);
+        ItemExpiryDate expectedExpiryDate = ItemExpiryDate.of(VALID_ITEM_BOUGHT_DATE);
         assertEquals(expectedExpiryDate, ParserUtil.parseExpiryDate(expireDateWithWhitespace));
     }
 
