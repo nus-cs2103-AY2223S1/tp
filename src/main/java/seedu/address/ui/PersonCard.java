@@ -34,8 +34,6 @@ public class PersonCard extends UiPart<Region> {
     @FXML
     private Label id;
     @FXML
-    private Label workload;
-    @FXML
     private Label phone;
     @FXML
     private Label address;
@@ -60,10 +58,10 @@ public class PersonCard extends UiPart<Region> {
      */
     public PersonCard(Person person, int displayedIndex) {
         super(FXML);
-        this.cardPane.setStyle(String.format("-fx-border-color:%s ; -fx-border-width: 0 0 0 5;", "#123456"));
+        this.cardPane.setStyle(String.format("-fx-border-color:%s ; -fx-border-width: 0 0 0 5;",
+            getColourFromWorkload(person.getWorkloadScore())));
         this.person = person;
         id.setText(displayedIndex + ". ");
-        workload.setText("Workload: " + person.getWorkloadScore());
         name.setText(person.getName().fullName);
         phone.setText(person.getPhone().value);
         address.setText(person.getAddress().value);
@@ -99,5 +97,15 @@ public class PersonCard extends UiPart<Region> {
         PersonCard card = (PersonCard) other;
         return id.getText().equals(card.id.getText())
                 && person.equals(card.person);
+    }
+
+    private String getColourFromWorkload(int score) {
+        if (score < 5) {
+            return "green";
+        } else if (score >= 5 && score < 15) {
+            return "yellow";
+        } else {
+            return "red";
+        }
     }
 }
