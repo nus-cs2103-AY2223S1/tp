@@ -3,6 +3,7 @@ package seedu.workbook.ui;
 import java.util.Comparator;
 
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
@@ -42,6 +43,9 @@ public class InternshipCard extends UiPart<Region> {
     private Label dateTime;
     @FXML
     private FlowPane tags;
+    @FXML
+    private Button tipsButton;
+
 
     /**
      * Creates a {@code InternshipCode} with the given {@code Internship} and index to display.
@@ -76,5 +80,13 @@ public class InternshipCard extends UiPart<Region> {
         InternshipCard card = (InternshipCard) other;
         return id.getText().equals(card.id.getText())
                 && internship.equals(card.internship);
+    }
+
+    /**
+     * Opens the tip window depending on the internship stage.
+     */
+    @FXML
+    private void showTips() {
+        
     }
 }
