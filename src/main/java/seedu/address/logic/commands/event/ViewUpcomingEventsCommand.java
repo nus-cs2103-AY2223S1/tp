@@ -16,6 +16,9 @@ import seedu.address.model.event.StartDateWithinTimeFramePredicate;
 public class ViewUpcomingEventsCommand extends EventCommand {
     public static final String COMMAND_OPTION = "u";
 
+    public static final String MESSAGE_HELP = "Lists upcoming events in NUScheduler for the next specified "
+            + "number of days.\n"
+            + "Format: " + COMMAND_WORD + " " + PREFIX_OPTION + COMMAND_OPTION + " DAYS";
     public static final String MESSAGE_INVALID_EVENT_UPCOMING_DAYS =
             "The days provided is invalid (must be a positive integer)\n%1$s";
     public static final String MESSAGE_MISSING_DAYS = "Days must be specified!\n%1$s";
