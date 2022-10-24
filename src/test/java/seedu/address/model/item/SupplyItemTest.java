@@ -2,8 +2,10 @@ package seedu.address.model.item;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
+import static seedu.address.testutil.TypicalSupplyItems.EGGS;
 
 import java.util.Collections;
 import java.util.HashSet;
@@ -89,6 +91,11 @@ public class SupplyItemTest {
         assertTrue(SupplyItem.isValidSupplyItem("Celery"));
         assertTrue(SupplyItem.isValidSupplyItem("Luncheon Meat")); // two words
         assertTrue(SupplyItem.isValidSupplyItem("Chicken 65 Masala")); // items with numbers in them
+    }
+
+    @Test
+    public void getIncDecAmount() {
+        assertNotNull(EGGS.getIncDecAmount());
     }
 
     @Test

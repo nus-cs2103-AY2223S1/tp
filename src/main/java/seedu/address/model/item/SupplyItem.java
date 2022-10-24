@@ -62,7 +62,7 @@ public class SupplyItem {
         return name;
     }
 
-    public int getCurrentStock() {
+    public Integer getCurrentStock() {
         return currentStock;
     }
 

@@ -29,9 +29,11 @@
                 </Label>
                 <Label fx:id="name" text="\$first" styleClass="cell_big_label" />
                 <Region HBox.hgrow="ALWAYS" />
-                <Button fx:id="decrease" text="-" onAction="#handleDecrease" />
-                <TextField fx:id="amountInput" onAction="#handleAmount" prefHeight="35.0" prefWidth="60.0" />
-                <Button fx:id="increase" text="+" onAction="#handleIncrease" />
+            <HBox spacing="0" alignment="CENTER_LEFT" maxHeight="50">
+                <Button fx:id="decrease" text="-" onAction="#handleDecrease" prefHeight="25.0" styleClass="decrement-btn"/>
+                <TextField fx:id="amountInput"  onMouseExited="#handleAmount" prefHeight="25.0" prefWidth="50.0" styleClass="counter-textField"/>
+                <Button fx:id="increase" text="+" onAction="#handleIncrease" prefHeight="25.0" styleClass="increment-btn"/>
+            </HBox>
                 <Label fx:id="currentStock" styleClass="cell_big_label_stock" text="\$currentStock" />
             </HBox>
             <FlowPane fx:id="tags" />
