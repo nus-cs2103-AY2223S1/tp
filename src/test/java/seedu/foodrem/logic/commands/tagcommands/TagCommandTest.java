@@ -41,62 +41,50 @@ public class TagCommandTest {
 
         Tag tag = new TagBuilder().withTagName(VALID_TAG_NAME_VEGETABLES).build();
 
-        //Creating an expected model to compare to
+        // Creating an expected model to compare to
         Model expectedModel = new ModelManager(new FoodRem(model.getFoodRem()), new UserPrefs());
 
         // Setting expected model's first item to the tagged first item correct
         expectedModel.addTag(tag);
         expectedModel.setItem(expectedModel.getCurrentList().get(0), editedItem);
 
-        //Run  tag command on original model
+        // Run tag command on original model
         model.addTag(tag);
         TagCommand tagItemCommand = new TagCommand(tag.getName(), INDEX_FIRST_ITEM);
 
         assertCommandSuccess(tagItemCommand, model, new ItemWithMessage(editedItem, EXPECTED_SUCCESS_MESSAGE), expectedModel);
         assertTrue(model.getCurrentList().get(0).containsTag(tag));
-
     }
 
     @Test
     public void execute_tagItemWithoutExistingTagInModel_throwsCommandException() {
         final Model model = new ModelManager(getFoodRemWithTypicalItemsWithoutTags(), new UserPrefs());
-
         Tag tag = new TagBuilder().withTagName(VALID_TAG_NAME_VEGETABLES).build();
 
         TagCommand tagItemCommand = new TagCommand(tag.getName(), INDEX_FIRST_ITEM);
-
         assertCommandFailure(tagItemCommand, model, ERROR_NOT_FOUND_TAG);
-
     }
 
     @Test
     public void execute_itemIndexNotFound_throwsCommandException() {
         final Model model = new ModelManager(getFoodRemWithTypicalItemsWithoutTags(), new UserPrefs());
-
         Tag tag = new TagBuilder().withTagName(VALID_TAG_NAME_VEGETABLES).build();
-
         model.addTag(tag);
 
         TagCommand tagItemCommand = new TagCommand(tag.getName(), INDEX_THIRD_ITEM);
-
         assertCommandFailure(tagItemCommand, model, ERROR_NOT_FOUND_ITEM);
-
     }
 
     @Test
     public void execute_duplicateTagInItem_throwsCommandException() {
         final Model model = new ModelManager(getFoodRemWithTypicalItemsWithoutTags(), new UserPrefs());
-
         Tag tag = new TagBuilder().withTagName(VALID_TAG_NAME_VEGETABLES).build();
 
         model.addTag(tag);
-
         model.getCurrentList().get(0).addItemTag(tag);
 
         TagCommand tagItemCommand = new TagCommand(tag.getName(), INDEX_FIRST_ITEM);
-
         assertCommandFailure(tagItemCommand, model, ERROR_DUPLICATE);
-
     }
 
     @Test
@@ -109,18 +97,14 @@ public class TagCommandTest {
 
         // same object -> returns true
         assertEquals(tagItemWithVegetableCommand, tagItemWithVegetableCommand);
-
         // same values -> returns true
         Tag vegetableTagCopy = new TagBuilder().withTagName(VALID_TAG_NAME_VEGETABLES).build();
         TagCommand tagItemWithVegetableCommandCopy = new TagCommand(vegetableTagCopy.getName(), INDEX_FIRST_ITEM);
         assertEquals(tagItemWithVegetableCommand, tagItemWithVegetableCommandCopy);
-
         // different types -> returns false
         assertNotEquals(tagItemWithFruitsCommand, new ResetCommand());
-
         // null -> returns false
         assertNotEquals(tagItemWithFruitsCommand, null);
-
         // different item -> returns false
         assertNotEquals(tagItemWithVegetableCommand, tagItemWithFruitsCommand);
     }
