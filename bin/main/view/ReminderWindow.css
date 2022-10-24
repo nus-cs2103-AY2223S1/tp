@@ -1,0 +1,26 @@
+#copyButton, #reminderMessage {
+    -fx-text-fill: black;
+}
+
+#copyButton {
+    -fx-background-color: dimgray;
+}
+
+#copyButton:hover {
+    -fx-background-color: gray;
+}
+
+#copyButton:armed {
+    -fx-background-color: darkgray;
+}
+
+#reminderMessageContainer {
+    -fx-background-color: derive(#ffffff, 20%);
+}
+
+.reminder-header {
+    -fx-font-size: 14pt;
+    -fx-font-family: "Segoe UI Semibold";
+    -fx-text-fill: white;
+    -fx-opacity: 1;
+}

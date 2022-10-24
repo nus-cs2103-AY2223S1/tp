@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.FlowPane?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.VBox?>
+
+<HBox id="cardPane" fx:id="cardPane" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+  <GridPane HBox.hgrow="ALWAYS">
+    <columnConstraints>
+      <ColumnConstraints hgrow="SOMETIMES" minWidth="10" prefWidth="150" />
+    </columnConstraints>
+    <SplitPane dividerPositions="0.6" mouseTransparent="true" >
+      <items>
+        <VBox alignment="CENTER_LEFT" minHeight="105" prefWidth="250">
+          <padding>
+            <Insets bottom="5.0" left="15.0" right="5.0" top="5.0" />
+          </padding>
+            <HBox alignment="CENTER_LEFT" spacing="5">
+              <Label fx:id="id" styleClass="cell_big_label" textAlignment="RIGHT">
+                <minWidth>
+                  <!-- Ensures that the label text is never truncated -->
+                  <Region fx:constant="USE_PREF_SIZE" />
+                </minWidth>
+              </Label>
+
+              <Label fx:id="name" styleClass="cell_big_label" text="\$first">
+                <minWidth>
+                  <!-- Ensures that the label text is never truncated -->
+                  <Region fx:constant="USE_PREF_SIZE" />
+                </minWidth>
+              </Label>
+
+              <opaqueInsets>
+                <Insets />
+              </opaqueInsets>
+
+            </HBox>
+            <FlowPane fx:id="tags">
+              <padding>
+                <Insets bottom="5.0" top="5.0" />
+              </padding>
+            </FlowPane>
+
+            <Label fx:id="phone" styleClass="cell_small_label" text="\$phone" wrapText="true" />
+            <Label fx:id="address" styleClass="cell_small_label" text="\$address" wrapText="true" />
+            <Label fx:id="email" styleClass="cell_small_label" text="\$email" wrapText="true" />
+            <Label fx:id="birthday" styleClass="cell_small_label" text="\$birthday" wrapText="true" />
+
+        </VBox>
+
+
+
+        <VBox alignment="CENTER_LEFT" minHeight="105">
+          <padding>
+            <Insets bottom="5" left="15" right="5" top="5" />
+          </padding>
+          <children>
+            <HBox alignment="CENTER_LEFT" spacing="5">
+
+              <VBox>
+                <Label styleClass="cell_big_label" text="Insurance">
+                  <minWidth>
+                    <!-- Ensures that the label text is never truncated -->
+                    <Region fx:constant="USE_PREF_SIZE" />
+                  </minWidth>
+                  <padding>
+                    <Insets bottom="15" left="15" right="5" top="0" />
+                  </padding>
+                </Label>
+
+                <Label fx:id="healthInsurance" styleClass="cell_small_label" text="\$healthInsurance" />
+                <Label fx:id="disabilityInsurance" styleClass="cell_small_label" text="\$disabilityInsurance" />
+                <Label fx:id="criticalIllnessInsurance" styleClass="cell_small_label" text="\$criticalIllnessInsurance" />
+                <Label fx:id="lifeInsurance" styleClass="cell_small_label" text="\$lifeInsurance" />
+              </VBox>
+
+
+            </HBox>
+            <FlowPane fx:id="tags1">
+              <padding>
+                <Insets bottom="5.0" />
+              </padding>
+            </FlowPane>
+          </children>
+        </VBox>
+      </items>
+    </SplitPane>
+  </GridPane>
+</HBox>
