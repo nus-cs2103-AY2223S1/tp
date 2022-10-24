@@ -51,7 +51,7 @@ public class DeleteCommand extends Command {
         for (Task task : lastShownTaskList) {
             if (task.getPersonEmailAddress().equals(personToDelete.getEmail())) {
                 Task editedTask = task.copy();
-                editedTask.setPersonName(new Name("The person assigned to this task has been deleted"));
+                editedTask.setPersonName(new Name("No person assigned"));
                 model.deleteTask(task);
                 model.addTask(editedTask);
             }

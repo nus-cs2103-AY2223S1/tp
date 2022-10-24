@@ -39,8 +39,6 @@ public class TaskCard extends UiPart<Region> {
     @FXML
     private Label deadline;
     @FXML
-    private Label email;
-    @FXML
     private Label status;
 
     @FXML
@@ -58,7 +56,6 @@ public class TaskCard extends UiPart<Region> {
         priority.setText("Priority: " + task.getPriority().toString());
         category.setText("Category: " + task.getCategory().toString());
         deadline.setText("Deadline: " + task.getDeadline().toString());
-        email.setText("Email: " + task.getPersonEmailAddress().toString());
         status.setText("Status: " + booleanConvertor(task.getStatus()));
         personName.setText("Assignee: " + task.getPersonName());
     }
