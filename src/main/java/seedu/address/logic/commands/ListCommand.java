@@ -16,7 +16,7 @@ public class ListCommand extends Command {
 
     public static final String MESSAGE_SUCCESS_PATIENTS = "Listed all patients.";
     public static final String MESSAGE_SUCCESS_APPOINTMENTS = "Listed all appointments.";
-    public static final String MESSAGE_SUCCESS_ALL = "Listed all patients and appointments";
+    public static final String MESSAGE_SUCCESS_ALL = "Listed all patients and appointments.";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + " patients: List down all patients.\n"
             + COMMAND_WORD + " appts: List down all appointments.\n"
