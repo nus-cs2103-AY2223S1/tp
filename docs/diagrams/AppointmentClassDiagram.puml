@@ -1,0 +1,32 @@
+@startuml
+!include style.puml
+skinparam arrowThickness 1.1
+skinparam arrowColor MODEL_COLOR
+skinparam classBackgroundColor MODEL_COLOR
+show members
+skinparam classAttributeIconSize 0
+
+package Appointment {
+Class "{abstract}\nAppointment" as Appointment {
+- date: LocalDate
++ getDate(): LocalDate
++ {static} isValidDate(String): boolean
+}
+
+Class UpcomingAppointment
+
+Class PastAppointment {
+- diagnosis: String
++ getMedication(): Set<Medication>
++ getDiagnosis(): String
+}
+}
+
+Class Medication {
+}
+
+UpcomingAppointment -up-|> Appointment
+PastAppointment -up-|> Appointment
+Medication "*\nmedication" -->  PastAppointment
+
+@enduml

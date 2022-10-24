@@ -2,7 +2,9 @@ package seedu.address.model.person;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.time.LocalDate;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Objects;
@@ -56,6 +58,28 @@ public class Person {
         this.upcomingAppointment = Optional.ofNullable(upcomingAppointment);
     }
 
+    /**
+     * Adds input {@code PastAppointment} to stored list of {@code PastAppointment}s.
+     * @param appt the {@code PastAppointment} to be added
+     */
+    public void addPastAppointment(PastAppointment appt) {
+        // TODO optimise
+        int length = pastAppointments.size();
+        LocalDate apptDate = appt.getDate();
+
+        for (int i = 0; i < length; i++) {
+            LocalDate currentApptDate = pastAppointments.get(i).getDate();
+            if (apptDate.compareTo(currentApptDate) > 0) { //apptDate is more recent than currentApptDate
+                pastAppointments.add(i, appt);
+                break;
+            }
+        }
+
+        if (pastAppointments.size() == length) { //an appointment has not been added
+            pastAppointments.add(appt);
+        }
+    }
+
     public Name getName() {
         return name;
     }
@@ -94,6 +118,38 @@ public class Person {
      */
     public Set<Medication> getMedications() {
         return Collections.unmodifiableSet(medications);
+    }
+
+    /**
+     * Returns a string representation of the medications.
+     */
+    public String getMedicationString() {
+        StringBuilder sb = new StringBuilder("Medication: ");
+        getMedications().stream().sorted(Comparator.comparing(medication -> medication.medicationName))
+                .forEach(medication -> sb.append(medication.medicationName).append(", "));
+        // remove trailing comma
+        sb.delete(sb.length() - 2, sb.length());
+        return sb.toString();
+    }
+
+    /**
+     * Returns list of {@code PastAppointment}s tagged to this patient.
+     * @return the list of {@code PastAppointment}s
+     */
+    public List<PastAppointment> getPastAppointments() {
+        return pastAppointments;
+    }
+
+    public Optional<UpcomingAppointment> getUpcomingAppointment() {
+        return upcomingAppointment;
+    }
+
+    /**
+     * Returns count of {@code PastAppointment}s to this patient.
+     * @return the count of {@code PastAppointment}s
+     */
+    public int getPastAppointmentCount() {
+        return pastAppointments.size();
     }
 
     /**
@@ -139,34 +195,6 @@ public class Person {
         return isEqual;
     }
 
-    /**
-     * Adds input {@code PastAppointment} to stored list of {@code PastAppointment}s.
-     * @param appt the {@code PastAppointment} to be added
-     */
-    public void addPastAppointment(PastAppointment appt) {
-        pastAppointments.add(appt);
-    }
-
-    /**
-     * Returns count of {@code PastAppointment}s to this patient.
-     * @return the count of {@code PastAppointment}s
-     */
-    public int getPastAppointmentCount() {
-        return pastAppointments.size();
-    }
-
-    /**
-     * Returns list of {@Code PastAppointment}s tagged to this patient.
-     * @return the list of {@code PastAppointment}s
-     */
-    public List<PastAppointment> getPastAppointments() {
-        return pastAppointments;
-    }
-
-    public Optional<UpcomingAppointment> getUpcomingAppointment() {
-        return upcomingAppointment;
-    }
-
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
@@ -200,7 +228,7 @@ public class Person {
         Set<Medication> tags = getMedications();
         if (!tags.isEmpty()) {
             builder.append("; Medications: ");
-            tags.forEach(builder::append);
+            tags.forEach(tag -> builder.append(tag.medicationName).append(", "));
         }
         builder.append("; Past Appointments: ").append(getPastAppointmentCount());
         builder.append(" Upcoming Appointment: ").append(getUpcomingAppointment());

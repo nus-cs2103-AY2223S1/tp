@@ -14,7 +14,9 @@ import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.logic.Logic;
 import seedu.address.logic.commands.CommandResult;
+import seedu.address.logic.commands.GetCommand;
 import seedu.address.logic.commands.exceptions.CommandException;
+import seedu.address.logic.commands.getcommands.GetNextOfKinCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 
 /**
@@ -110,7 +112,7 @@ public class MainWindow extends UiPart<Stage> {
      * Fills up all the placeholders of this window.
      */
     void fillInnerParts() {
-        personListPanel = new PersonListPanel(logic.getFilteredPersonList());
+        personListPanel = new PersonListPanel(logic.getFilteredPersonList(), false);
         personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
 
         resultDisplay = new ResultDisplay();
@@ -168,6 +170,15 @@ public class MainWindow extends UiPart<Stage> {
     }
 
     /**
+     * Opens the count window or focuses on it if it's already opened.
+     */
+    @FXML
+    public void handleCount() {
+        CountWindow countWindow = new CountWindow(logic.getCensus());
+        countWindow.show();
+    }
+
+    /**
      * Executes the command and returns the result.
      *
      * @see seedu.address.logic.Logic#execute(String)
@@ -178,12 +189,25 @@ public class MainWindow extends UiPart<Stage> {
             logger.info("Result: " + commandResult.getFeedbackToUser());
             resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
 
+            if (commandText.contains(GetCommand.COMMAND_WORD + " "
+                    + GetNextOfKinCommand.NEXT_OF_KIN_PREFIX)) {
+                personListPanel = new PersonListPanel(logic.getFilteredPersonList(), true);
+                personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
+            } else {
+                personListPanel = new PersonListPanel(logic.getFilteredPersonList(), false);
+                personListPanelPlaceholder.getChildren().add(personListPanel.getRoot());
+            }
+
             if (commandResult.isShowHelp()) {
                 handleHelp();
             }
 
             if (commandResult.isExit()) {
                 handleExit();
+            }
+
+            if (commandResult.isShowCount()) {
+                handleCount();
             }
 
             return commandResult;

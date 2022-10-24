@@ -10,6 +10,7 @@ import java.util.Set;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.appointment.Appointment;
 import seedu.address.model.appointment.UpcomingAppointment;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.FloorNumber;
@@ -205,8 +206,8 @@ public class ParserUtil {
     public static UpcomingAppointment parseUpcomingAppointment(String upcomingAppointment) throws ParseException {
         if (upcomingAppointment == null) {
             return new UpcomingAppointment((LocalDate) null);
-        } else if (!UpcomingAppointment.isValidDate(upcomingAppointment)) {
-            throw new ParseException(UpcomingAppointment.MESSAGE_CONSTRAINTS);
+        } else if (!Appointment.isValidDate(upcomingAppointment)) {
+            throw new ParseException(Appointment.MESSAGE_CONSTRAINTS);
         }
         return new UpcomingAppointment(upcomingAppointment);
     }

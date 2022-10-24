@@ -27,10 +27,19 @@ public class GetNextOfKinCommand extends GetCommand {
 
     private final NextOfKinPredicate predicate;
 
+    /**
+     * Constructor for GetNextOfKinCommand
+     * @param predicate next-of-kin command.
+     */
     public GetNextOfKinCommand(NextOfKinPredicate predicate) {
         this.predicate = predicate;
     }
 
+    /**
+     * Executes the command.
+     * @param model {@code Model} which the command should operate on.
+     * @return the result of the command being executed.
+     */
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);
@@ -39,6 +48,11 @@ public class GetNextOfKinCommand extends GetCommand {
                 String.format(Messages.MESSAGE_PERSONS_LISTED_OVERVIEW, model.getFilteredPersonList().size()));
     }
 
+    /**
+     * Compares the similarity of two objects.
+     * @param other the object to be compared
+     * @return true if they are equal objects, otherwise false
+     */
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object

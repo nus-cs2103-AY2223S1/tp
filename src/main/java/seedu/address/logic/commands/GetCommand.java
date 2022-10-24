@@ -1,10 +1,12 @@
 package seedu.address.logic.commands;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.logic.commands.getcommands.GetAppointmentByDateCommand.APPOINTMENT_BY_DATE_PREFIX;
 import static seedu.address.logic.commands.getcommands.GetFloorNumberCommand.FLOOR_NUMBER_PREFIX;
 import static seedu.address.logic.commands.getcommands.GetHospitalWingCommand.HOSPITAL_WING_PREFIX;
 import static seedu.address.logic.commands.getcommands.GetInpatientCommand.INPATIENT_PREFIX;
 import static seedu.address.logic.commands.getcommands.GetNameCommand.NAME_PREFIX;
+import static seedu.address.logic.commands.getcommands.GetNextOfKinCommand.NEXT_OF_KIN_PREFIX;
 import static seedu.address.logic.commands.getcommands.GetOutpatientCommand.OUTPATIENT_PREFIX;
 
 import seedu.address.logic.commands.exceptions.CommandException;
@@ -24,13 +26,17 @@ public class GetCommand extends Command {
             + INPATIENT_PREFIX + ", "
             + FLOOR_NUMBER_PREFIX + " FLOOR NUMBER, "
             + HOSPITAL_WING_PREFIX + " HOSPITAL WING, "
-            + NAME_PREFIX + " NAME\n"
+            + NAME_PREFIX + " NAME"
+            + NEXT_OF_KIN_PREFIX + " PATIENT NAME"
+            + APPOINTMENT_BY_DATE_PREFIX + " DATE\n"
             + "Examples: "
             + COMMAND_WORD + " " + OUTPATIENT_PREFIX + ", "
             + COMMAND_WORD + " " + INPATIENT_PREFIX + ", "
             + COMMAND_WORD + " " + FLOOR_NUMBER_PREFIX + " 3 5 9, "
             + COMMAND_WORD + " " + HOSPITAL_WING_PREFIX + " south"
-            + COMMAND_WORD + " " + NAME_PREFIX + " alice bob charlie";
+            + COMMAND_WORD + " " + NAME_PREFIX + " alice bob charlie"
+            + COMMAND_WORD + " " + NEXT_OF_KIN_PREFIX + "john doe"
+            + COMMAND_WORD + " " + APPOINTMENT_BY_DATE_PREFIX + "01-01-2022";
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
