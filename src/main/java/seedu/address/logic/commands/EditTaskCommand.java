@@ -19,7 +19,7 @@ import seedu.address.model.person.Person;
 import seedu.address.model.team.Task;
 
 /**
- * Edits the details of an existing link in TruthTable.
+ * Edits the details of an existing task in TruthTable.
  */
 public class EditTaskCommand extends Command {
     public static final String COMMAND_WORD = "edit_task";
@@ -39,10 +39,10 @@ public class EditTaskCommand extends Command {
     private final EditTaskDescriptor editTaskDescriptor;
 
     /**
-     * Creates an EditLinkCommand to edit a {@code Link}.
+     * Creates an EditTaskCommand to edit a {@code Task}.
      *
-     * @param index of the link in the filtered link list to edit
-     * @param editTaskDescriptor details to edit the link with
+     * @param index of the task in the task list to edit
+     * @param editTaskDescriptor details to edit the task with
      */
     public EditTaskCommand(Index index, EditTaskDescriptor editTaskDescriptor) {
         requireNonNull(index);
@@ -129,8 +129,8 @@ public class EditTaskCommand extends Command {
     }
 
     /**
-     * Stores the details to edit the link with. Each non-empty field value will replace the
-     * corresponding field value of the link.
+     * Stores the details to edit the task with. Each non-empty field value will replace the
+     * corresponding field value of the task.
      */
     public static class EditTaskDescriptor {
         private String name;
