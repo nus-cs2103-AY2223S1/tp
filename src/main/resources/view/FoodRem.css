@@ -42,7 +42,7 @@
   -fx-padding: 12;
 
   -fx-min-width: 340;
-  -fx-pref-width: 340;
+  -fx-pref-width: 1000;
 }
 
 .command-placeholder {
