@@ -26,8 +26,8 @@ public class UnmarkTaskCommandTest {
 
     // To make things easier to test, task 0 will be marked and task 1 will be unmarked
     public UnmarkTaskCommandTest() {
-        model.setTask(model.getFilteredTaskList().get(0), model.getFilteredTaskList().get(0).withCompletion(true));
-        model.setTask(model.getFilteredTaskList().get(1), model.getFilteredTaskList().get(1).withCompletion(false));
+        model.setTask(model.getFilteredTaskList().get(0), model.getFilteredTaskList().get(0).withStatus(true));
+        model.setTask(model.getFilteredTaskList().get(1), model.getFilteredTaskList().get(1).withStatus(false));
     }
 
     @Test

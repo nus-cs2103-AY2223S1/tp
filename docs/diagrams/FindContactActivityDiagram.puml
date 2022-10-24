@@ -1,0 +1,19 @@
+@startuml
+start
+
+:User enters "findc [prefix] [terms]" command;
+
+if () then ([invalid arguments])
+    :Display error message;
+else ([else])
+    if () then ([module prefix])
+        :Filters contacts containing
+        the given module;
+    else ([name prefix])
+        :Filters contacts containing
+        the specified keywords;
+    endif
+endif
+
+stop
+@enduml

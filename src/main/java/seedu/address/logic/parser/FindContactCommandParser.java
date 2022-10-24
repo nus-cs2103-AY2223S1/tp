@@ -32,10 +32,6 @@ public class FindContactCommandParser implements Parser<FindContactCommand> {
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindContactCommand.MESSAGE_USAGE));
         }
 
-        // John Lim Jacky
-        // n/ Johnathan Sally
-        // m/ Jacob
-
         Scanner argScanner = new Scanner(trimmedArgs);
         Prefix prefix = new Prefix(argScanner.next());
 

@@ -73,7 +73,7 @@ The **API** of this component is specified in [`Ui.java`](https://github.com/se-
 
 ![Structure of the UI Component](images/UiClassDiagram.png)
 
-The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `PersonListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
+The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `PersonListPanel`, `TaskListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
 
 The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/resources/view/MainWindow.fxml)
 
@@ -116,13 +116,13 @@ How the parsing works:
 ### Model component
 **API** : [`Model.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/model/Model.java)
 
-<img src="images/ModelClassDiagram.png" width="450" />
-
+![Model component class diagram](images/ModelClassDiagram.png)
 
 The `Model` component,
 
 * stores the address book data i.e., all `Person` objects (which are contained in a `UniquePersonList` object).
 * stores the currently 'selected' `Person` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Person>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
+* similarly stores the task data (all `Task` objects, contained in a `UniqueTaskList` object) and the 'selected' `Task` objects as a filtered list exposed as an unmodifiable `ObservableList<Task>`.
 * stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
 * does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
 
@@ -140,8 +140,8 @@ The `Model` component,
 <img src="images/StorageClassDiagram.png" width="550" />
 
 The `Storage` component,
-* can save both address book data and user preference data in json format, and read them back into corresponding objects.
-* inherits from both `AddressBookStorage` and `UserPrefStorage`, which means it can be treated as either one (if only the functionality of only one is needed).
+* can save address book data, task list data  and user preference data in json format, and read them back into corresponding objects.
+* inherits from `AddressBookStorage`, `TaskListStorage` and `UserPrefStorage`, which means it can be treated as any one (if only the functionality of only one is needed).
 * depends on some classes in the `Model` component (because the `Storage` component's job is to save/retrieve objects that belong to the `Model`)
 
 ### Common classes
@@ -154,90 +154,142 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
-### \[Proposed\] Undo/redo feature
+### Finding Feature
 
-#### Proposed Implementation
+#### About
 
-The proposed undo/redo mechanism is facilitated by `VersionedAddressBook`. It extends `AddressBook` with an undo/redo history, stored internally as an `addressBookStateList` and `currentStatePointer`. Additionally, it implements the following operations:
+CodeConnect has features that allow you to search for tasks and contacts. The finding features use the following commands:
 
-* `VersionedAddressBook#commit()` — Saves the current address book state in its history.
-* `VersionedAddressBook#undo()` — Restores the previous address book state from its history.
-* `VersionedAddressBook#redo()` — Restores a previously undone address book state from its history.
+* `find n/` —  Finds tasks in the TaskList by their description(name)
+* `find m/` —  Finds tasks in the TaskList by their module
+* `findc n/` —  Finds contacts in the AddressBook by their name
+* `findc m/` —  Finds contacts in the AddressBook by their module
 
-These operations are exposed in the `Model` interface as `Model#commitAddressBook()`, `Model#undoAddressBook()` and `Model#redoAddressBook()` respectively.
+Examples of command use:
+- `find n/ quiz` - Find all tasks containing the word "quiz"
+- `find m/ CS1101S` - Find all tasks belonging to CS1101S
+- `findc n/ Tan` - Find all contacts with names containing "Tan"
+- `findc m/ CS1101S` - Find all contacts taking CS1101S
 
-Given below is an example usage scenario and how the undo/redo mechanism behaves at each step.
+![Sample result of a find command](images/FindContactExample.png)
 
-Step 1. The user launches the application for the first time. The `VersionedAddressBook` will be initialized with the initial address book state, and the `currentStatePointer` pointing to that single address book state.
+#### Implementation Flow
 
-![UndoRedoState0](images/UndoRedoState0.png)
+Outline of how components work together when the user enters a find command:
+1. User enters `findc m/ CS1101S` into the command prompt box
+2. User input `m/ CS1101S` is sent to the `FindContactCommandParser`
+3. `FindContactCommandParser` determines the user's input to be valid
+4. `FindContactCommandParser` creates a `ModuleTakenPredicate`
+   - This `Predicate` is used by the `Model` to filter for contacts that take the queried module
+5. A `FindContactCommand` command created and executed by the `Model`
+6. The result of the find command is displayed to the user
 
-Step 2. The user executes `delete 5` command to delete the 5th person in the address book. The `delete` command calls `Model#commitAddressBook()`, causing the modified state of the address book after the `delete 5` command executes to be saved in the `addressBookStateList`, and the `currentStatePointer` is shifted to the newly inserted address book state.
+![Activity diagram for execution of a findc command](images/FindContactActivityDiagram.png)
+<div style="text-align: center">Activity diagram of findc command execution</div>
 
-![UndoRedoState1](images/UndoRedoState1.png)
+![Interactions Inside the Logic Component for the `find n/ Lab 2` Command](images/FindTasksSequenceDiagram.png)
+<div style="text-align: center">Sequence diagram of find command execution</div>
+<p></p>
+<div style="text-align: center">Note: The implementation flow and the activity and sequence diagrams are similar for both the find and findc commands</div>
 
-Step 3. The user executes `add n/David …​` to add a new person. The `add` command also calls `Model#commitAddressBook()`, causing another modified address book state to be saved into the `addressBookStateList`.
+#### Design Considerations
 
-![UndoRedoState2](images/UndoRedoState2.png)
+One design consideration was if the user should be allowed to find contacts matching more than one module. For example, the input `findc m/ CS1101S MA1521` will return all contacts taking CS1101S, MA1521, or both. The reason why we decided to use additive search condition is as follows:
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If a command fails its execution, it will not call `Model#commitAddressBook()`, so the address book state will not be saved into the `addressBookStateList`.
+Consider the following situation:
+- You have two assignments due tomorrow, from two different modules: MOD_X and MOD_Y.
+- Feeling stuck, you decide to use CodeConnect to search for help, to see if there's anybody you might have forgot.
+- You enter the command `findc m/ MOD_X MOD_Y`
 
-</div>
+As a user in this situation, the last thing you would want is for the app to _exclude_ contacts taking both MOD_X and MOD_Y. Those would be the first people you want to ask for help!
 
-Step 4. The user now decides that adding the person was a mistake, and decides to undo that action by executing the `undo` command. The `undo` command will call `Model#undoAddressBook()`, which will shift the `currentStatePointer` once to the left, pointing it to the previous address book state, and restores the address book to that state.
+Another design consideration was to make both the find commands for task and contacts easy to use and remember. For example, both `find` and `findc` uses the `n/` and `m/` prefixes, when searching by names and modules respectively.
 
-![UndoRedoState3](images/UndoRedoState3.png)
+This was done so that it would be easy for the user to remember what command to use when finding either contacts or tasks.
+- The only difference when finding contacts is that there is a c after the find for contacts
+- Both use the same prefixes
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index 0, pointing to the initial AddressBook state, then there are no previous AddressBook states to restore. The `undo` command uses `Model#canUndoAddressBook()` to check if this is the case. If so, it will return an error to the user rather
-than attempting to perform the undo.
+### Adding tasks
 
-</div>
+#### About
 
-The following sequence diagram shows how the undo operation works:
+CodeConnect has features that allow you to add and track your tasks and annotate them with modules, so that you can search for matching people. The `add` command, implemented in [`AddTaskCommand`](https://github.com/AY2223S1-CS2103T-T14-2/tp/blob/master/src/main/java/seedu/address/logic/commands/AddTaskCommand.java) and [`AddTaskCommandParser`](https://github.com/AY2223S1-CS2103T-T14-2/tp/blob/master/src/main/java/seedu/address/logic/parser/AddTaskCommandParser.java), is how you add new tasks.
 
-![UndoSequenceDiagram](images/UndoSequenceDiagram.png)
+The following describes the implementation planned for v1.3.
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The lifeline for `UndoCommand` should end at the destroy marker (X) but due to a limitation of PlantUML, the lifeline reaches the end of diagram.
+Examples of command use:
+- `add Lab2 by/2022-02-02 23:59 m/CS2030S`
+- `add Add error handling by/next thursday m/CS2103T`
 
-</div>
+#### Implementation flow
 
-The `redo` command does the opposite — it calls `Model#redoAddressBook()`, which shifts the `currentStatePointer` once to the right, pointing to the previously undone state, and restores the address book to that state.
+The `add` command follows the [general command implementation flow](#logic-component). The `AddTaskCommandParser` uses `NaturalDateParser`, a thin wrapper over [`JChronic`](https://github.com/samtingleff/jchronic0), to parse the given deadline.
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** If the `currentStatePointer` is at index `addressBookStateList.size() - 1`, pointing to the latest address book state, then there are no undone AddressBook states to restore. The `redo` command uses `Model#canRedoAddressBook()` to check if this is the case. If so, it will return an error to the user rather than attempting to perform the redo.
+![Interactions Inside the Logic Component for the `add Add error handling by/next thursday m/CS2103T` Command](images/AddTaskCommandSequenceDiagram.png)
+<div style="text-align: center">Sequence diagram of add command execution</div>
 
-</div>
+#### Design Considerations
 
-Step 5. The user then decides to execute the command `list`. Commands that do not modify the address book, such as `list`, will usually not call `Model#commitAddressBook()`, `Model#undoAddressBook()` or `Model#redoAddressBook()`. Thus, the `addressBookStateList` remains unchanged.
+* A natural date parser is used because it gives the most flexibility possible in the type of date formats that can be entered. The risk of confusion between multiple date formats (including `DD/MM/YY` vs `MM/DD/YY`) is alleviated by the fact that the user's locale will in most cases give a correct parsing.
+* The existing architecture requires fields to support separately validating user input and interpreting user input. The deadline input is validated by attempting to parse it and checking for errors, as there is no cheaper method in this case.
+* The natural parser we are using does not support parsing time. We decided that this is an acceptable tradeoff as the benefit of being able to enter the date in the format most intuitive to the user outweighs the small and rarely used benefit of being able to track the time of the deadline.
+* The `add` command shares the `m/` prefix for modules with the other commands.
+  * The `by/` prefix is chosen for the deadline, as it is a good compromise between brevity and comprehensibility ("do this *by* a certain date").
 
-![UndoRedoState4](images/UndoRedoState4.png)
+### Marking and unmarking of tasks
 
-Step 6. The user executes `clear`, which calls `Model#commitAddressBook()`. Since the `currentStatePointer` is not pointing at the end of the `addressBookStateList`, all address book states after the `currentStatePointer` will be purged. Reason: It no longer makes sense to redo the `add n/David …​` command. This is the behavior that most modern desktop applications follow.
+#### About
 
-![UndoRedoState5](images/UndoRedoState5.png)
+CodeConnect has features that allow you to mark and unmark your tasks as complete and incomplete respectively.
 
-The following activity diagram summarizes what happens when a user executes a new command:
+Examples of command use:
+* `mark 1`: marks the task at index 1 as complete
+* `unmark 1`: unmarks the task at index 1 as incomplete
 
-<img src="images/CommitActivityDiagram.png" width="250" />
+#### Implementation flow
+Both the `mark` and `unmark` commands follow [general command implementation flow](#logic-component).
 
-#### Design considerations:
+![Activity diagram for execution of a mark command](images/MarkTaskActivityDiagram.png)
+ <div style="text-align: center">Activity diagram of mark command execution</div>
 
-**Aspect: How undo & redo executes:**
+![Interactions Inside the Logic Component for the `unmark 1` Command](images/UnmarkTaskSequenceDiagram.png)
+<div style="text-align: center">Sequence diagram of unmark command execution</div>
 
-* **Alternative 1 (current choice):** Saves the entire address book.
-  * Pros: Easy to implement.
-  * Cons: May have performance issues in terms of memory usage.
+#### Design considerations
 
-* **Alternative 2:** Individual command knows how to undo/redo by
-  itself.
-  * Pros: Will use less memory (e.g. for `delete`, just save the person being deleted).
-  * Cons: We must ensure that the implementation of each individual command are correct.
+* One design consideration involoved marking/unmarking multiple tasks by adding a space before inputting the index of another task. 
+However, users could forget to input spaces when inputting indexes of multiple tasks, leading to unintended tasks being 
+marked/unmarked. This was considered to be an acceptable trade-off as users would be completing tasks one at a time 
+most of the time, so a mass mark/unmark feature is a nice-to-have one.
 
-_{more aspects and alternatives to be added}_
+### \[Proposed\] Edit task feature
 
-### \[Proposed\] Data archiving
+#### About 
 
-_{Explain here how the data archiving feature will be implemented}_
+CodeConnect will allow the user to edit an existing task in the task list.
 
+Example of command use:
+- `edit 1 m/CS1101S`
+
+#### Proposed Implementation flow
+
+Outline of how components work together when the user enters a `edit` task command:
+1. The user input will be sent to `CodeConnectParser`
+2. `CodeConnectParser` will take note of the command word and argument of the user input and create a `EditTaskComanndParser` instance.
+3. The `EditTaskCommandParser` will call its `parse` method to get the index and create a `EditTaskDescriptor` instance that stores the edited field
+4. A new `EditTaskCommand` will then be created with the parsed index and `EditTaskDescriptor` object
+5. That `EditTaskCommand` object will execute and a new `Task` will be created with the new fields
+6. The `model` will then be updated accordingly with the new Edited Task.
+
+#### Activity Diagram
+
+![Activity Diagram](images/EditTaskActivityDiagram.png)
+
+#### Design Considerations
+
+Initially we felt that being able to edit more than 1 feature per edit task command was not as important, as 
+a task object does not have that many fields to begin with. However, we felt that implementing it will still
+make it a lot easier in the event that a user want to have multiple changes to a task.
 
 --------------------------------------------------------------------------------------------------------------------
 

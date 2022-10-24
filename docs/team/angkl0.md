@@ -16,7 +16,7 @@ Given below are my contributions to the project.
 * **Project management**: to be added soon
 
 * **Enhancements to existing features**: to be added soon
-* 
+
 * **Documentation**:
   * User Guide:
     * Added documentation for the features `addc` and `delc`

@@ -2,7 +2,7 @@ package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DEADLINE;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_MODULE_LONG;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_MODULE;
 
 import java.util.stream.Stream;
 
@@ -26,16 +26,16 @@ public class AddTaskCommandParser implements Parser<AddTaskCommand> {
      */
     public AddTaskCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_DEADLINE, PREFIX_MODULE_LONG);
+                ArgumentTokenizer.tokenize(args, PREFIX_DEADLINE, PREFIX_MODULE);
 
-        if (!arePrefixesPresent(argMultimap, PREFIX_DEADLINE, PREFIX_MODULE_LONG)
+        if (!arePrefixesPresent(argMultimap, PREFIX_DEADLINE, PREFIX_MODULE)
                 || argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddTaskCommand.MESSAGE_USAGE));
         }
 
         TaskName name = ParserUtil.parseTaskName(argMultimap.getPreamble());
         Deadline deadline = ParserUtil.parseDeadline(argMultimap.getValue(PREFIX_DEADLINE).get());
-        Module module = ParserUtil.parseModule(argMultimap.getValue(PREFIX_MODULE_LONG).get());
+        Module module = ParserUtil.parseModule(argMultimap.getValue(PREFIX_MODULE).get());
         Status status = new Status(false);
 
         Task task = new Task(name, module, deadline, status);

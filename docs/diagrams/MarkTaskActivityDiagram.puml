@@ -1,0 +1,19 @@
+@startuml
+start
+:User enters mark [index] command;
+
+if () then ([invalid index])
+    :Display error message;
+else ([Else])
+    if() then ([task to be marked is complete])
+        :Display error message;
+    else ([Else])
+        :A marked copy of the task to be
+        marked is created;
+        :Task to be marked is replaced with
+        created marked copy in the task list;
+    endif
+endif
+
+stop
+@enduml

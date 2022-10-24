@@ -3,8 +3,8 @@ layout: page
 title: User Guide
 ---
 
-CodeConnect is a **desktop app for managing your daily task and your contacts optimized for use via a Command Line Interface** (CLI) 
-while still having the benefits of a Graphical User Interface (GUI). 
+CodeConnect is a **desktop app for managing your daily task and your contacts optimized for use via a Command Line Interface** (CLI)
+while still having the benefits of a Graphical User Interface (GUI).
 If you can type fast, CodeConnect can get your tasks done faster than traditional GUI apps.
 
 * Table of Contents
@@ -28,8 +28,8 @@ If you can type fast, CodeConnect can get your tasks done faster than traditiona
 
    * **`listc`** : Lists all contacts.
 
-   * **`add`**`add Finish homework by/2022-12-12 15:04 mod/CS2040S` : Adds a task named `Finish homework` to the Task Manager.
-   
+   * **`add`**`add Finish homework by/2022-12-12 15:04 m/CS2040S` : Adds a task named `Finish homework` to the Task Manager.
+
    * **`delete`**`1` : Deletes the 1st task shown in the current list.
 
    * **`clear`** : Deletes all contacts.
@@ -184,7 +184,7 @@ Examples:
 
 Finds persons whose names contain any of the given keywords, or find persons who take a particular module.
 
-Format: 
+Format:
 `findc n/ {name}` `findc m/ {module}`
 
 Examples:

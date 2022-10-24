@@ -1,0 +1,84 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
+participant ":UnmarkTaskCommandParser" as UnmarkTaskCommandParser LOGIC_COLOR
+participant ":UnmarkTaskCommand" as UnmarkTaskCommand LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant "toUnmark:Task" as Task MODEL_COLOR
+participant "unmarked:Task" as Task1 MODEL_COLOR
+participant ":Model" as Model MODEL_COLOR
+end box
+
+[-> LogicManager : execute("unmark 1")
+activate LogicManager
+
+LogicManager -> AddressBookParser : parseCommand("unmark 1")
+activate AddressBookParser
+
+create UnmarkTaskCommandParser
+AddressBookParser -> UnmarkTaskCommandParser
+activate UnmarkTaskCommandParser
+
+UnmarkTaskCommandParser --> AddressBookParser
+deactivate UnmarkTaskCommandParser
+
+AddressBookParser -> UnmarkTaskCommandParser : parse("1")
+activate UnmarkTaskCommandParser
+
+create UnmarkTaskCommand
+UnmarkTaskCommandParser -> UnmarkTaskCommand
+activate UnmarkTaskCommand
+
+UnmarkTaskCommand --> UnmarkTaskCommandParser
+deactivate UnmarkTaskCommand
+
+UnmarkTaskCommandParser --> AddressBookParser
+deactivate UnmarkTaskCommandParser
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+UnmarkTaskCommandParser -[hidden]-> AddressBookParser
+destroy UnmarkTaskCommandParser
+
+AddressBookParser --> LogicManager
+deactivate AddressBookParser
+
+LogicManager -> UnmarkTaskCommand : execute()
+activate UnmarkTaskCommand
+
+UnmarkTaskCommand -> Task : withStatus(false)
+activate Task
+
+create Task1
+Task -> Task1
+activate Task1
+
+Task1 --> Task
+deactivate Task1
+
+Task --> UnmarkTaskCommand
+deactivate Task
+
+UnmarkTaskCommand -> Model : setTask(toUnmark, unmarked)
+activate Model
+
+Model --> UnmarkTaskCommand
+deactivate Model
+
+create CommandResult
+UnmarkTaskCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> UnmarkTaskCommand
+deactivate CommandResult
+
+UnmarkTaskCommand --> LogicManager : result
+deactivate UnmarkTaskCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml
