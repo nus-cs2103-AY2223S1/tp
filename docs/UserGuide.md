@@ -198,9 +198,14 @@ Example:
 [Back to top](#table-of-contents)
 
 ---
+
 ### Marking a student: `mark`
 
 Allows the user to mark a student as present for a class.
+
+The application will increase the student's owed amount by the rates per class.
+A cross will be displayed beside the student's name indicating that the student has attended the class.
+The student's next class will be set a week later at the same time, provided if there is a free time slot.
 
 Format: `mark INDEX`
 
@@ -208,8 +213,36 @@ Format: `mark INDEX`
 - The index refers to the index number shown in the Schedule panel (bottom right).
 - The index must be a positive integer. e.g. `1, 2, 3, ...`.
 
-Examples:
+Example:
 - `mark 2` marks the 2nd person in the Schedule panel.
+
+```yaml
+Tip: If you want to charge the student for missing the class, you can do so by the `mark` command. This increases the amount owed but frees up that time slot for another student.
+```
+
+[Back to top](#table-of-contents)
+
+---
+
+### Receiving money from a student: `pay`
+
+Allows the user to indicate that a student has paid a certain amount of money.
+
+The application will reduce the student's owed amount by the amount paid.
+
+Format: `pay INDEX AMOUNT_PAID`
+
+- Marks the person as present at the specified `INDEX`.
+- The index refers to the index number shown in the Schedule panel (bottom right).
+- The index must be a positive integer. e.g. `1, 2, 3, ...`.
+- The amount paid must be an integer and cannot be negative. e.g. `0, 1, 2, ...`.
+
+Example:
+- `pay 2 40` indicates that the 2nd person in the Schedule panel has paid $40.
+
+```yaml
+Note: The student cannot pay more than what he/she owes. There is also a maximum cap of $2147483647 for every payment.
+```
 
 [Back to top](#table-of-contents)
 
