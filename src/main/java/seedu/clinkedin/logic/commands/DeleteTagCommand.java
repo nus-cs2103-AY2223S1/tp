@@ -64,6 +64,7 @@ public class DeleteTagCommand extends Command {
         }
 
         editPersonDescriptor.setNewTagTypeMap(toDelete);
+        UniqueTagTypeMap tagsToBeDeleted = editPersonDescriptor.getNewTagTypeMap().get();
 
         try {
             Person personToEdit = lastShownList.get(targetIndex.getZeroBased());
@@ -75,7 +76,7 @@ public class DeleteTagCommand extends Command {
 
             model.setPerson(personToEdit, editedPerson);
             model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
-            return new CommandResult(String.format(MESSAGE_DELETE_TAGS_SUCCESS, editedPerson));
+            return new CommandResult(String.format(MESSAGE_DELETE_TAGS_SUCCESS, tagsToBeDeleted));
         } catch (TagTypeNotFoundException | TagNotFoundException t) {
             throw new CommandException(t.getMessage());
         }
