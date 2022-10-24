@@ -4,7 +4,6 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_EVENT_DISPLAYED_INDEX;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PERSONS;
-import static seedu.address.model.Model.PREDICATE_SHOW_ALL_EVENTS;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -76,7 +75,6 @@ public class TagEventCommand extends Command {
         // create editedEvent, set event, update event list
         Event taggedEvent = new Event(eventToTag, uids);
         model.setEvent(eventToTag, taggedEvent);
-        // model.updateFilteredEventList(PREDICATE_SHOW_ALL_EVENTS);
         model.updateEventPersonReference();
         return new CommandResult(String.format(MESSAGE_TAG_EVENT_SUCCESS, String.join(", ", personNamesTagged),
                 taggedEvent.getEventTitle()));

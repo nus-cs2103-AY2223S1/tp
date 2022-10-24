@@ -4,7 +4,6 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_EVENT_DISPLAYED_INDEX;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PERSONS;
-import static seedu.address.model.Model.PREDICATE_SHOW_ALL_EVENTS;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -76,7 +75,6 @@ public class UntagEventCommand extends Command {
         // create editedEvent, set event, update event list
         Event untaggedEvent = new Event(eventToUntag, uids);
         model.setEvent(eventToUntag, untaggedEvent);
-        // model.updateFilteredEventList(PREDICATE_SHOW_ALL_EVENTS);
         model.updateEventPersonReference();
         return new CommandResult(String.format(MESSAGE_UNTAG_EVENT_SUCCESS,
                 String.join(", ", personNamesUntagged), untaggedEvent.getEventTitle()));

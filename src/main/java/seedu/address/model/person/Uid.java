@@ -1,8 +1,8 @@
 package seedu.address.model.person;
 
-import java.util.UUID;
-
 import static java.util.Objects.requireNonNull;
+
+import java.util.UUID;
 
 /**
  * Uid that uniquely identifies a person.
