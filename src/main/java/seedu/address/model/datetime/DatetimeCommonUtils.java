@@ -29,6 +29,10 @@ public class DatetimeCommonUtils {
     public static final String TIME_MESSAGE_CONSTRAINTS =
             "Time should be in HH:mm format, e.g. 08:00";
 
+    public static final String TIMERANGE_FORMAT_REGEX = TIME_FORMAT_REGEX + "-" + TIME_FORMAT_REGEX;
+    public static final String TIMERANGE_MESSAGE_CONSTRAINTS =
+            "Time range should be in HH:mm-HH:mm format, e.g. 08:00-09:00";
+
     public static final String DAY_FORMAT = "d";
     public static final String DAY_FORMAT_REGEX = "[1-7]";
     public static final String DAY_MESSAGE_CONSTRAINTS =
@@ -101,12 +105,10 @@ public class DatetimeCommonUtils {
             throw new ParseException(DATE_MESSAGE_CONSTRAINTS);
         }
 
-        String[] times = timeRange.trim().split("-");
-        if (times.length != 2
-                || !times[0].matches(TIME_FORMAT_REGEX)
-                || !times[1].matches(TIME_FORMAT_REGEX)) {
-            throw new ParseException(TIME_MESSAGE_CONSTRAINTS);
+        if (!timeRange.matches(TIMERANGE_FORMAT_REGEX)) {
+            throw new ParseException(TIMERANGE_MESSAGE_CONSTRAINTS);
         }
+        String[] times = timeRange.trim().split("-");
 
         LocalTime startTime = LocalTime.parse(times[0], TIME_FORMATTER);
         LocalTime endTime = LocalTime.parse(times[1], TIME_FORMATTER);
@@ -129,12 +131,10 @@ public class DatetimeCommonUtils {
             throw new ParseException(DAY_MESSAGE_CONSTRAINTS);
         }
 
-        String[] times = timeslot.trim().split("-");
-        if (times.length != 2
-                || !times[0].matches(TIME_FORMAT_REGEX)
-                || !times[1].matches(TIME_FORMAT_REGEX)) {
-            throw new ParseException(TIMESLOT_MESSAGE_CONSTRAINTS);
+        if (!timeslot.matches(TIMERANGE_FORMAT_REGEX)) {
+            throw new ParseException(TIMERANGE_MESSAGE_CONSTRAINTS);
         }
+        String[] times = timeslot.trim().split("-");
 
         LocalTime startTime = LocalTime.parse(times[0], TIME_FORMATTER);
         LocalTime endTime = LocalTime.parse(times[1], TIME_FORMATTER);
