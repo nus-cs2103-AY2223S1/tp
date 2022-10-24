@@ -109,8 +109,8 @@ Extensions:
 
 * 3a. FoodRem detects that the new tag name already exist.
   * 3a1. FoodRem requests for user to rename tag with a new tag name.
-  * 3b2. User re-enters the command to rename the desired tag.
-  * Steps 3b1-3b2 are repeated until the command entered is correct.<br> Use case resumes from step 4.
+  * 3a2. User re-enters the command to rename the desired tag.
+  * Steps 3a1-3a2 are repeated until the command entered is correct.<br> Use case resumes from step 4.
   
 ---
 #### UC8: Removing a tag from an item
