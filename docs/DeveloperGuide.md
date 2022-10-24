@@ -21,7 +21,7 @@ Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
 ## **Design**
 
-<div markdown="span" class="alert alert-primary">
+<div markdown="span" class="alert alert-success">
 
 :bulb: **Tip:** The `.puml` files used to create diagrams in this document can be found in the [diagrams](https://github.com/se-edu/addressbook-level3/tree/master/docs/diagrams/) folder. Refer to the [_PlantUML Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create and edit diagrams.
 </div>

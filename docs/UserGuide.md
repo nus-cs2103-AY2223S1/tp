@@ -62,17 +62,17 @@ This guides aims to:
 ## Navigating the User Guide 
 **Information Box**
 <div markdown="block" class="alert alert-info">
-**:information_source:Info: Provides extra information that is useful**
+**:information_source: Info:** Provides extra information that is useful
 </div>
 
 **Tip Box**
 <div markdown="block" class="alert alert-success">
-**:tip:Tip: Provides pointers to enhance your experience using the application **
+**:bulb: Tip:** Provides pointers to enhance your experience using the application 
 </div>
 
 **Warning Box**
 <div markdown="block" class="alert alert-danger">
-**:exclamation: Warning: **Important messages**
+**:exclamation: Warning: Important messages**
 </div>
 
 **Highlights**
@@ -132,7 +132,7 @@ Format: `add n/COMPANY_NAME p/POSITION [pr/APPLICATION_PROCESS] [d/DATE] [ph/PHO
 * `REMARK` will be empty by default.
 
 <div markdown="block" class="alert alert-success">
-**:tip:Tip: A person can have any number of tags (including 0)**
+**:bulb: Tip:** A person can have any number of tags (including 0)
 </div>
 
 Examples:
