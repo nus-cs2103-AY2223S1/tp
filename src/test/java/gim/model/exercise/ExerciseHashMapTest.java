@@ -4,14 +4,19 @@ import static gim.logic.commands.CommandTestUtil.VALID_DATE;
 import static gim.logic.commands.CommandTestUtil.VALID_REPS_BENCH_PRESS;
 import static gim.testutil.Assert.assertThrows;
 import static gim.testutil.TypicalExercises.ALICE;
+import static gim.testutil.TypicalExercises.BENSON;
+import static gim.testutil.TypicalExercises.CARL;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+
+import java.util.ArrayList;
 
 import org.junit.jupiter.api.Test;
 
 import gim.model.exercise.exceptions.ExerciseNotFoundException;
 import gim.testutil.ExerciseBuilder;
+
 
 public class ExerciseHashMapTest {
 
@@ -62,6 +67,47 @@ public class ExerciseHashMapTest {
         exerciseHashMap.remove(ALICE);
         ExerciseHashMap expectedExerciseHashMap = new ExerciseHashMap();
         assertEquals(expectedExerciseHashMap, exerciseHashMap);
+    }
+
+    @Test
+    public void getAllKeys_emptyHashMap_returnsEmptyArrayListKeys() {
+        ArrayList<String> expectedArrayList = new ArrayList<>();
+        assertEquals(expectedArrayList, exerciseHashMap.getAllKeys());
+    }
+
+    @Test
+    public void getAllKeys_nonEmptyHashMap_returnsSortedArrayListKeysWithAdd() {
+        ArrayList<String> expectedArrayList = new ArrayList<>();
+        expectedArrayList.add("Alice Pauline");
+        expectedArrayList.add("Benson Meier");
+        expectedArrayList.add("Carl Kurz");
+        exerciseHashMap.add(BENSON);
+        exerciseHashMap.add(CARL);
+        exerciseHashMap.add(ALICE);
+        assertEquals(expectedArrayList, exerciseHashMap.getAllKeys());
+    }
+
+    @Test
+    public void getAllKeys_nonEmptyHashMap_returnsSortedArrayListKeysWithAddRemove() {
+        ArrayList<String> expectedArrayList = new ArrayList<>();
+        expectedArrayList.add("Alice Pauline");
+        expectedArrayList.add("Benson Meier");
+        exerciseHashMap.add(BENSON);
+        exerciseHashMap.add(CARL);
+        exerciseHashMap.add(ALICE);
+        exerciseHashMap.remove(CARL);
+        assertEquals(expectedArrayList, exerciseHashMap.getAllKeys());
+    }
+
+    @Test
+    public void numOfValues_emptyHashMap_returnsZero() {
+        assertEquals(0, exerciseHashMap.numOfValues());
+    }
+
+    @Test
+    public void numOfValues_nonEmptyHashMap() {
+        exerciseHashMap.add(BENSON);
+        assertEquals(1, exerciseHashMap.numOfValues());
     }
 
 }

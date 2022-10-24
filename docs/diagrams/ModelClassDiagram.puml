@@ -12,13 +12,14 @@ Class ExerciseTracker
 Class ModelManager
 Class UserPrefs
 
-Class UniqueExerciseList
+Class ExerciseList
+Class ExerciseHashMap
 Class Exercise
-Class Address
-Class Sets
 Class Name
 Class Weight
-Class Tag
+Class Reps
+Class Sets
+Class Date
 
 }
 
@@ -34,17 +35,15 @@ ModelManager -left-> "1" ExerciseTracker
 ModelManager -right-> "1" UserPrefs
 UserPrefs .up.|> ReadOnlyUserPrefs
 
-ExerciseTracker *--> "1" UniqueExerciseList
-UniqueExerciseList --> "~* all" Exercise
+ExerciseTracker *--> "1" ExerciseList
+ExerciseTracker *--> "1" ExerciseHashMap
+ExerciseHashMap ---> "~* all" Exercise
+ExerciseList ---> "~* all" Exercise
 Exercise *--> Name
 Exercise *--> Weight
+Exercise *--> Reps
 Exercise *--> Sets
-Exercise *--> Address
-Exercise *--> "*" Tag
-
-Name -[hidden]right-> Weight
-Weight -[hidden]right-> Address
-Address -[hidden]right-> Sets
+Exercise *--> Date
 
 ModelManager -->"~* filtered" Exercise
 @enduml

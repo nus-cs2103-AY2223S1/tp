@@ -66,4 +66,5 @@ deactivate GenerateCommand
 
 [<--LogicManager
 deactivate LogicManager
+
 @enduml

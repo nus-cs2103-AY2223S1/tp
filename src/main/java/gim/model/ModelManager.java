@@ -10,6 +10,7 @@ import java.util.logging.Logger;
 import gim.commons.core.GuiSettings;
 import gim.commons.core.LogsCenter;
 import gim.model.exercise.Exercise;
+import gim.model.exercise.ExerciseHashMap;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 
@@ -146,6 +147,10 @@ public class ModelManager implements Model {
         return exerciseTracker.equals(other.exerciseTracker)
                 && userPrefs.equals(other.userPrefs)
                 && filteredExercises.equals(other.filteredExercises);
+    }
+
+    public ExerciseHashMap getExerciseHashMap() {
+        return exerciseTracker.getExerciseHashMap();
     }
 
 }
