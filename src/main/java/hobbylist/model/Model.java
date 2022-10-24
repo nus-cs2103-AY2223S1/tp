@@ -85,4 +85,10 @@ public interface Model {
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredActivityList(Predicate<Activity> predicate);
+
+    /**
+     * Selects the given activity
+     * @param target
+     */
+    void selectActivity(Activity target);
 }

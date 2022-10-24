@@ -111,6 +111,11 @@ public class ModelManager implements Model {
         hobbyList.setActivity(target, editedActivity);
     }
 
+    @Override
+    public void selectActivity(Activity target) {
+        hobbyList.selectActivity(target);
+    }
+
     //=========== Filtered Activity List Accessors =============================================================
 
     /**
