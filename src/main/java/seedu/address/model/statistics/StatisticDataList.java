@@ -4,32 +4,34 @@ import static java.util.Objects.requireNonNull;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.scene.chart.PieChart.Data;
 
 public class StatisticDataList {
 
 
     private final ObservableList<StatisticData> chartDataList = FXCollections.observableArrayList();
-    private final ObservableList<StatisticData> unmodifiableChartDataList = FXCollections.unmodifiableObservableList(chartDataList);
+    private final ObservableList<Data> unmodifiableChartDataList =
+            FXCollections.unmodifiableObservableList(this.toPieChartData());
 
 
     public void add(StatisticData toAdd) {
         requireNonNull(toAdd);
-        if (isDuplicateData(toAdd)) {
-            ;
-        }
         this.chartDataList.add(toAdd);
     }
 
-    public boolean isDuplicateData(StatisticData toCheck) {
-        requireNonNull(toCheck);
-        return chartDataList.stream().anyMatch(toCheck::isSameTitle);
-    }
-
-    public ObservableList<StatisticData> asUnmodifiableObservableList() {
+    public ObservableList<Data> asUnmodifiableObservableList() {
         return unmodifiableChartDataList;
     }
 
     public ObservableList<StatisticData> getChartDataList() {
         return this.chartDataList;
+    }
+
+    public ObservableList<Data> toPieChartData() {
+        ObservableList<Data> pieChartData = FXCollections.observableArrayList();
+        for (StatisticData statData : this.chartDataList) {
+            pieChartData.add(statData.getData());
+        }
+        return pieChartData;
     }
 }
