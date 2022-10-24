@@ -321,24 +321,25 @@ Mainly CLI with many shortcuts to benefit people who type fast.
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
 
-| Priority | As a …          | I want to …                       | So that I can…                              |
-|----------|-----------------|-----------------------------------|---------------------------------------------|
-| `* * *`  | user            | add activity                      | track my activities                         |
-| `* * *`  | user            | delete activity                   | make mistakes                               |
-| `* * *`  | user            | view activities                   | look at what I have done                    |
-| `* *`    | busy CS student | quickly write commands            | save time adding entries                    |
-| `* *`    | busy CS student | add date to an activity           | keep the timeline of events in life clear   |
-| `* *`    | new user        | type "help" for help              | try the commands and use the app            |
-| `* *`    | new user        | clear all activities              | quickly clear the sample data               |
-| `* *`    | new user        | see sample data                   | get to know how the app works               |
-| `* *`    | user            | tag an activity with a type       | know what type of activity it is            |
-| `* *`    | user            | change the appearance of the app  | have better experience when looking through |
-| `* *`    | user            | add an activity description       | know what the activity is about             | 
-| `*`      | long time user  | use shortcuts for commands        | enter commands faster                       |
-| `*`      | food enthusiast | review restaurants                | note down my opinions of the restaurant     |
-| `*`      | food enthusiast | rate restaurants                  | note down my opinions of the restaurant     |
-| `*`      | gym user        | keep track of dates of activities | record when I did the activity              |
-| `*`      | long time user  | search activities with keywords   | quickly find certain activity               |
+| Priority | As a …          | I want to …                            | So that I can…                              |
+|----------|-----------------|----------------------------------------|---------------------------------------------|
+| `* * *`  | user            | add activity                           | track my activities                         |
+| `* * *`  | user            | delete activity                        | make mistakes                               |
+| `* * *`  | user            | view activities                        | look at what I have done                    |
+| `* *`    | busy CS student | quickly write commands                 | save time adding entries                    |
+| `* *`    | busy CS student | add date to an activity                | keep the timeline of events in life clear   |
+| `*`      | busy CS student | find activities in certain time period | manage different timeline of activities     |
+| `* *`    | new user        | type "help" for help                   | try the commands and use the app            |
+| `* *`    | new user        | clear all activities                   | quickly clear the sample data               |
+| `* *`    | new user        | see sample data                        | get to know how the app works               |
+| `* *`    | user            | tag an activity with a type            | know what type of activity it is            |
+| `* *`    | user            | change the appearance of the app       | have better experience when looking through |
+| `* *`    | user            | add an activity description            | know what the activity is about             | 
+| `*`      | long time user  | use shortcuts for commands             | enter commands faster                       |
+| `*`      | food enthusiast | review restaurants                     | note down my opinions of the restaurant     |
+| `*`      | food enthusiast | rate restaurants                       | note down my opinions of the restaurant     |
+| `*`      | gym user        | keep track of dates of activities      | record when I did the activity              |
+| `*`      | long time user  | search activities with keywords        | quickly find certain activity               |
 
 
 *{More to be added}*
@@ -402,6 +403,15 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * 3a1. HobbyList shows an error message.
 
       Use case resumes at step 2.
+  
+**Use case: Find activities in a certain time period**
+
+**MSS**
+
+1.  User find activities on a certain date/in a certain month/year.
+2.  HobbyList show all the activities located in the required period.
+
+    Use case ends.
 
 **Use case: Add an activity with a date**
 

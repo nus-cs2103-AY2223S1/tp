@@ -31,6 +31,8 @@ HobbyList is a **desktop app for managing hobby activities, optimized for use vi
 
     * **`delete`**`3` : Deletes the 3rd hobby activity shown in the current list.
 
+    * **`find`**`keyword/1973-03` : Find activities that contain the keyword or located in March of 1973.
+
     * **`exit`** : Exits the app.
 
 6. Click the button located in the top left corner to execute certain task.<br>
@@ -99,14 +101,22 @@ Example:
 ### Finding a command with keywords: `find`
 
 Shows a list of all hobby activities whose names or descriptions contain any of the specified keywords.
+Show alist of all hobby activities that located on a certain date, or in a certain month of a year, or in a certain year.
 
-Format: `find KEYWORD`
+Format: 
+    `find KEYWORD`
+    `find yyyy-mm-dd`
+    `find yyyy-mm`  
+    `find yyyy`
 
 * The keywords are case-insensitive.
 
 Example:
 * `find run`
 * `find mystery novel`
+* `find 1974-02`
+* `find 1999`
+* `find 2001-01-01`
 
 ### Finding activities by tags : `filter`
 
@@ -205,7 +215,7 @@ If your changes to the data file makes its format invalid, HobbyList will discar
 | **Delete** | `delete INDEX`                                                                                                                                     |
 | **Edit**   | `edit INDEX [n/NAME] [d/DESCRIPTION] [t/TAGS]... [date/DATE]`<br/>e.g., `edit 1 n/Bukit Timah Nature Reserve d/3 hour hike t/hike date/2022-08-17` |
 | **Exit**   | `exit`                                                                                                                                             |
-| **Find**   | `find KEYWORDS`                                                                                                                                    |
+| **Find**   | `find KEYWORDS``find yyyy-mm-dd` `find yyyy-mm` `find yyyy`                                                                                        |
 | **Filter** | `filter KEYWORD`                                                                                                                                   |
 | **List**   | `list`                                                                                                                                             |
 | **Help**   | `help`                                                                                                                                             |
