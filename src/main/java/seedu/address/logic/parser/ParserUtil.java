@@ -29,6 +29,7 @@ public class ParserUtil {
         return Index.fromOneBased(Integer.parseInt(trimmedIndex));
     }
 
+
     /**
      * Throws ParseException if any of the prefixes are not present in the given
      * {@code ArgumentMultimap}.

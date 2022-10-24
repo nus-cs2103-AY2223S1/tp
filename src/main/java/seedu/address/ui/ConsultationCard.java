@@ -47,7 +47,7 @@ public class ConsultationCard extends UiPart<Region> {
         name.setText(consultation.getName().fullName);
         module.setText(consultation.getModule().moduleName);
         venue.setText(consultation.getVenue().venue);
-        timeslot.setText(consultation.getTimeslot().timeslot);
+        timeslot.setText(consultation.getTimeslot().toString());
         description.setText(consultation.getDescription().description);
     }
 

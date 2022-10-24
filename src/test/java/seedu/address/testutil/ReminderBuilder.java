@@ -1,7 +1,7 @@
 package seedu.address.testutil;
 
+import seedu.address.model.datetime.Datetime;
 import seedu.address.model.reminder.Reminder;
-import seedu.address.model.reminder.ReminderDeadline;
 import seedu.address.model.reminder.ReminderDescription;
 import seedu.address.model.reminder.ReminderName;
 import seedu.address.model.reminder.ReminderPriority;
@@ -12,12 +12,12 @@ import seedu.address.model.reminder.ReminderPriority;
 public class ReminderBuilder {
 
     public static final String DEFAULT_NAME = "Mark Midterms";
-    public static final String DEFAULT_DEADLINE = "15:00";
+    public static final String DEFAULT_DEADLINE = "2022-10-10 15:00";
     public static final String DEFAULT_PRIORITY = "HIGH";
     public static final String DEFAULT_DESCRIPTION = "300 papers to go";
 
     private ReminderName reminderName;
-    private ReminderDeadline reminderDeadline;
+    private Datetime reminderDeadline;
     private ReminderPriority reminderPriority;
     private ReminderDescription reminderDescription;
 
@@ -26,10 +26,9 @@ public class ReminderBuilder {
      */
     public ReminderBuilder() {
         reminderName = new ReminderName(DEFAULT_NAME);
-        reminderDeadline = new ReminderDeadline(DEFAULT_DEADLINE);
         reminderPriority = new ReminderPriority(DEFAULT_PRIORITY);
         reminderDescription = new ReminderDescription(DEFAULT_DESCRIPTION);
-
+        reminderDeadline = Datetime.fromFormattedString(DEFAULT_DEADLINE);
     }
 
     /**
@@ -54,7 +53,7 @@ public class ReminderBuilder {
      * Sets the {@code ReminderDeadline} of the {@code Reminder} that we are building.
      */
     public ReminderBuilder withDeadline(String deadline) {
-        this.reminderDeadline = new ReminderDeadline(deadline);
+        this.reminderDeadline = Datetime.fromFormattedString(deadline);
         return this;
     }
 

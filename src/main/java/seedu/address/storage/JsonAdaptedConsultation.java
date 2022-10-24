@@ -8,8 +8,9 @@ import seedu.address.model.consultation.Consultation;
 import seedu.address.model.consultation.ConsultationDescription;
 import seedu.address.model.consultation.ConsultationModule;
 import seedu.address.model.consultation.ConsultationName;
-import seedu.address.model.consultation.ConsultationTimeslot;
 import seedu.address.model.consultation.ConsultationVenue;
+import seedu.address.model.datetime.DatetimeRange;
+import seedu.address.storage.datetime.JsonAdaptedDatetimeRange;
 
 /**
  * Jackson-friendly version of {@link Consultation}.
@@ -21,16 +22,17 @@ public class JsonAdaptedConsultation {
     private final String name;
     private final String module;
     private final String venue;
-    private final String timeslot;
     private final String description;
+    private final JsonAdaptedDatetimeRange timeslot;
 
     /**
      * Constructs a {@code JsonAdaptedPerson} with the given Consultation details.
      */
     @JsonCreator
     public JsonAdaptedConsultation(@JsonProperty("name") String name, @JsonProperty("module") String module,
-                               @JsonProperty("venue") String venue, @JsonProperty("timeslot") String timeslot,
-                                   @JsonProperty("description") String description) {
+                               @JsonProperty("venue") String venue,
+                               @JsonProperty("timeslot") JsonAdaptedDatetimeRange timeslot,
+                               @JsonProperty("description") String description) {
         this.name = name;
         this.module = module;
         this.venue = venue;
@@ -45,8 +47,8 @@ public class JsonAdaptedConsultation {
         name = source.getName().fullName;
         module = source.getModule().moduleName;
         venue = source.getVenue().venue;
-        timeslot = source.getTimeslot().timeslot;
         description = source.getDescription().description;
+        timeslot = new JsonAdaptedDatetimeRange(source.getTimeslot());
     }
 
     /**
@@ -83,15 +85,6 @@ public class JsonAdaptedConsultation {
         }
         final ConsultationVenue modelVenue = new ConsultationVenue(venue);
 
-        if (timeslot == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
-                    ConsultationTimeslot.class.getSimpleName()));
-        }
-        if (!ConsultationTimeslot.isValidTimeslot(timeslot)) {
-            throw new IllegalValueException(ConsultationTimeslot.MESSAGE_CONSTRAINTS);
-        }
-        final ConsultationTimeslot modelTimeslot = new ConsultationTimeslot(timeslot);
-
         if (description == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
                     ConsultationDescription.class.getSimpleName()));
@@ -102,7 +95,8 @@ public class JsonAdaptedConsultation {
 
         final ConsultationDescription modelDescription = new ConsultationDescription(description);
 
-        return new Consultation(modelName, modelModule, modelVenue, modelTimeslot, modelDescription);
-    }
+        final DatetimeRange datetimeRange = timeslot.toModelType();
 
+        return new Consultation(modelName, modelModule, modelVenue, datetimeRange, modelDescription);
+    }
 }

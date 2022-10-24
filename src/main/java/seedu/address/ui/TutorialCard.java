@@ -46,7 +46,7 @@ public class TutorialCard extends UiPart<Region> {
         name.setText(tutorial.getName().fullName);
         module.setText(tutorial.getModule().moduleName);
         venue.setText(tutorial.getVenue().venue);
-        timeslot.setText(tutorial.getDay().toString() + " " + tutorial.getTimeslot().timeslot);
+        timeslot.setText(tutorial.getTimeslot().toString());
     }
 
     @Override

@@ -10,10 +10,11 @@ import seedu.address.model.consultation.Consultation;
 import seedu.address.model.consultation.ConsultationDescription;
 import seedu.address.model.consultation.ConsultationModule;
 import seedu.address.model.consultation.ConsultationName;
-import seedu.address.model.consultation.ConsultationTimeslot;
 import seedu.address.model.consultation.ConsultationVenue;
+import seedu.address.model.datetime.Datetime;
+import seedu.address.model.datetime.DatetimeRange;
+import seedu.address.model.datetime.WeeklyTimeslot;
 import seedu.address.model.reminder.Reminder;
-import seedu.address.model.reminder.ReminderDeadline;
 import seedu.address.model.reminder.ReminderDescription;
 import seedu.address.model.reminder.ReminderName;
 import seedu.address.model.reminder.ReminderPriority;
@@ -28,10 +29,8 @@ import seedu.address.model.student.StudentId;
 import seedu.address.model.student.TelegramHandle;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.tutorial.Tutorial;
-import seedu.address.model.tutorial.TutorialDay;
 import seedu.address.model.tutorial.TutorialModule;
 import seedu.address.model.tutorial.TutorialName;
-import seedu.address.model.tutorial.TutorialTimeslot;
 import seedu.address.model.tutorial.TutorialVenue;
 
 /**
@@ -87,11 +86,11 @@ public class SampleDataUtil {
 
     public static Reminder[] getSampleReminders() {
         return new Reminder[] {
-            new Reminder(new ReminderName("Mark Midterms"), new ReminderDeadline("20:00"),
+            new Reminder(new ReminderName("Mark Midterms"), Datetime.fromFormattedString("20:00"),
                     new ReminderPriority("HIGH"), new ReminderDescription("300 papers to mark")),
-            new Reminder(new ReminderName("Send email to TAs"), new ReminderDeadline("21:00"),
+            new Reminder(new ReminderName("Send email to TAs"), Datetime.fromFormattedString("21:00"),
                     new ReminderPriority("MEDIUM"), new ReminderDescription("Erratum in midterms")),
-            new Reminder(new ReminderName("Meeting with Prof Lee"), new ReminderDeadline("22:00"),
+            new Reminder(new ReminderName("Meeting with Prof Lee"), Datetime.fromFormattedString("22:00"),
                     new ReminderPriority("LOW"), new ReminderDescription("Discuss incoming finals for CS2201")),
         };
     }
@@ -99,28 +98,31 @@ public class SampleDataUtil {
     public static Tutorial[] getSampleTutorials() {
         return new Tutorial[] {
             new Tutorial(new TutorialName("W17"), new TutorialModule("CS2103T"),
-                    new TutorialVenue("COM1-0203"), new TutorialTimeslot("16:00-18:00"),
-                    new TutorialDay("1")),
+                    new TutorialVenue("COM1-0203"),
+                    WeeklyTimeslot.fromFormattedString("1", "16:00", "18:00")),
             new Tutorial(new TutorialName("F01"), new TutorialModule("CS2103T"),
-                    new TutorialVenue("COM1-0201"), new TutorialTimeslot("15:00-17:00"),
-                    new TutorialDay("2")),
+                    new TutorialVenue("COM1-0201"),
+                    WeeklyTimeslot.fromFormattedString("2", "15:00", "17:00")),
             new Tutorial(new TutorialName("F02"), new TutorialModule("CS2103T"),
-                    new TutorialVenue("COM1-0202"), new TutorialTimeslot("10:00-11:00"),
-                    new TutorialDay("3")),
+                    new TutorialVenue("COM1-0202"),
+                    WeeklyTimeslot.fromFormattedString("3", "10:00", "11:00")),
         };
     }
 
     public static Consultation[] getSampleConsultations() {
         return new Consultation[] {
             new Consultation(new ConsultationName("Anna"), new ConsultationModule("CS2103T"),
-                        new ConsultationVenue("COM1-0203"), new ConsultationTimeslot("16:00-18:00"),
-                        new ConsultationDescription("Review past year paper")),
+                    new ConsultationVenue("COM1-0203"),
+                    DatetimeRange.fromFormattedString("2022-01-01", "16:00", "18:00"),
+                    new ConsultationDescription("Review past year paper")),
             new Consultation(new ConsultationName("Tom"), new ConsultationModule("CS2103T"),
-                        new ConsultationVenue("COM1-0201"), new ConsultationTimeslot("15:00-17:00"),
-                        new ConsultationDescription("Review IP code quality")),
+                    new ConsultationVenue("COM1-0201"),
+                    DatetimeRange.fromFormattedString("2022-01-01", "15:00", "17:00"),
+                    new ConsultationDescription("Review IP code quality")),
             new Consultation(new ConsultationName("John"), new ConsultationModule("CS2103T"),
-                        new ConsultationVenue("COM1-0202"), new ConsultationTimeslot("10:00-11:00"),
-                        new ConsultationDescription("Clear doubts about lecture")),
+                    new ConsultationVenue("COM1-0202"),
+                    DatetimeRange.fromFormattedString("2022-01-01", "10:00", "11:00"),
+                    new ConsultationDescription("Clear doubts about lecture")),
         };
     }
 
@@ -148,5 +150,4 @@ public class SampleDataUtil {
                 .map(Tag::new)
                 .collect(Collectors.toSet());
     }
-
 }

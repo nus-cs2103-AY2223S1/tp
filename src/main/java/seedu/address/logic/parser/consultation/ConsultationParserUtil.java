@@ -6,7 +6,6 @@ import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.consultation.ConsultationDescription;
 import seedu.address.model.consultation.ConsultationModule;
 import seedu.address.model.consultation.ConsultationName;
-import seedu.address.model.consultation.ConsultationTimeslot;
 import seedu.address.model.consultation.ConsultationVenue;
 
 
@@ -57,24 +56,6 @@ public class ConsultationParserUtil {
             throw new ParseException(ConsultationVenue.MESSAGE_CONSTRAINTS);
         }
         return new ConsultationVenue(trimmedName);
-    }
-
-    /**
-     * Parses a {@code String timeslot} into a {@code ConsultationTimeslot}.
-     * Leading and trailing whitespaces will be trimmed.
-     *
-     * @throws ParseException if the given {@code timeslot} is invalid.
-     */
-    public static ConsultationTimeslot parseConsultationTimeslot(String timeslot) throws ParseException {
-        Objects.requireNonNull(timeslot);
-        String trimmedName = timeslot.trim();
-        if (!ConsultationTimeslot.isValidTimeslot(trimmedName)) {
-            throw new ParseException(ConsultationTimeslot.MESSAGE_CONSTRAINTS);
-        }
-        if (!ConsultationTimeslot.isValidDuration(trimmedName)) {
-            throw new ParseException(ConsultationTimeslot.MESSAGE_INVALID_DURATION);
-        }
-        return new ConsultationTimeslot(trimmedName);
     }
 
     /**

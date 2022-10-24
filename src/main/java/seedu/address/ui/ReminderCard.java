@@ -41,7 +41,7 @@ public class ReminderCard extends UiPart<Region> {
             id.setText("✓" + displayedIndex + ". ");
         }
         name.setText(reminder.getName().fullName);
-        deadline.setText(reminder.getDeadline().deadline);
+        deadline.setText(reminder.getDeadline().toString());
         priority.setText(reminder.getPriority().priority);
         description.setText(reminder.getDescription().description);
     }

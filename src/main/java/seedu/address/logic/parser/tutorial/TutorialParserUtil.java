@@ -3,10 +3,8 @@ package seedu.address.logic.parser.tutorial;
 import java.util.Objects;
 
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.tutorial.TutorialDay;
 import seedu.address.model.tutorial.TutorialModule;
 import seedu.address.model.tutorial.TutorialName;
-import seedu.address.model.tutorial.TutorialTimeslot;
 import seedu.address.model.tutorial.TutorialVenue;
 
 
@@ -57,38 +55,5 @@ public class TutorialParserUtil {
             throw new ParseException(TutorialVenue.MESSAGE_CONSTRAINTS);
         }
         return new TutorialVenue(trimmedName);
-    }
-
-    /**
-     * Parses a {@code String timeslot} into a {@code TutorialTimeslot}.
-     * Leading and trailing whitespaces will be trimmed.
-     *
-     * @throws ParseException if the given {@code timeslot} is invalid.
-     */
-    public static TutorialTimeslot parseTutorialTimeslot(String timeslot) throws ParseException {
-        Objects.requireNonNull(timeslot);
-        String trimmedName = timeslot.trim();
-        if (!TutorialTimeslot.isValidTimeslot(trimmedName)) {
-            throw new ParseException(TutorialTimeslot.MESSAGE_CONSTRAINTS);
-        }
-        if (!TutorialTimeslot.isValidDuration(trimmedName)) {
-            throw new ParseException(TutorialTimeslot.MESSAGE_INVALID_DURATION);
-        }
-        return new TutorialTimeslot(trimmedName);
-    }
-
-    /**
-     * Parses a {@code String day} into a {@code TutorialDay}.
-     * Leading and trailing whitespaces will be trimmed.
-     *
-     * @throws ParseException if the given {@code day} is invalid.
-     */
-    public static TutorialDay parseTutorialDay(String day) throws ParseException {
-        Objects.requireNonNull(day);
-        String trimmedValue = day.trim();
-        if (!TutorialDay.isValidDay(trimmedValue)) {
-            throw new ParseException(TutorialDay.MESSAGE_CONSTRAINTS);
-        }
-        return new TutorialDay(trimmedValue);
     }
 }

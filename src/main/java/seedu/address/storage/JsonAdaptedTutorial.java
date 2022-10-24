@@ -4,12 +4,12 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
+import seedu.address.model.datetime.WeeklyTimeslot;
 import seedu.address.model.tutorial.Tutorial;
-import seedu.address.model.tutorial.TutorialDay;
 import seedu.address.model.tutorial.TutorialModule;
 import seedu.address.model.tutorial.TutorialName;
-import seedu.address.model.tutorial.TutorialTimeslot;
 import seedu.address.model.tutorial.TutorialVenue;
+import seedu.address.storage.datetime.JsonAdaptedWeeklyTimeslot;
 
 /**
  * Jackson-friendly version of {@link Tutorial}.
@@ -21,21 +21,19 @@ class JsonAdaptedTutorial {
     private final String name;
     private final String module;
     private final String venue;
-    private final String timeslot;
-    private final String day;
+    private final JsonAdaptedWeeklyTimeslot timeslot;
 
     /**
      * Constructs a {@code JsonAdaptedPerson} with the given tutorial details.
      */
     @JsonCreator
     public JsonAdaptedTutorial(@JsonProperty("name") String name, @JsonProperty("module") String module,
-                               @JsonProperty("venue") String venue, @JsonProperty("timeslot") String timeslot,
-                               @JsonProperty("day") String day) {
+                               @JsonProperty("venue") String venue,
+                               @JsonProperty("timeslot") JsonAdaptedWeeklyTimeslot timeslot) {
         this.name = name;
         this.module = module;
         this.venue = venue;
         this.timeslot = timeslot;
-        this.day = day;
     }
 
     /**
@@ -45,8 +43,7 @@ class JsonAdaptedTutorial {
         name = source.getName().fullName;
         module = source.getModule().moduleName;
         venue = source.getVenue().venue;
-        timeslot = source.getTimeslot().timeslot;
-        day = source.getDay().toIntString();
+        timeslot = new JsonAdaptedWeeklyTimeslot(source.getTimeslot());
     }
 
     /**
@@ -82,21 +79,9 @@ class JsonAdaptedTutorial {
         }
         final TutorialVenue modelVenue = new TutorialVenue(venue);
 
-        if (timeslot == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
-                    TutorialTimeslot.class.getSimpleName()));
-        }
-        if (!TutorialTimeslot.isValidTimeslot(timeslot)) {
-            throw new IllegalValueException(TutorialTimeslot.MESSAGE_CONSTRAINTS);
-        }
-        final TutorialTimeslot modelTimeslot = new TutorialTimeslot(timeslot);
+        final WeeklyTimeslot weeklyTimeslot = timeslot.toModelType();
 
-        if (!TutorialDay.isValidDay(day)) {
-            throw new IllegalValueException(TutorialDay.MESSAGE_CONSTRAINTS);
-        }
-        final TutorialDay modelDay = new TutorialDay(day);
-
-        return new Tutorial(modelName, modelModule, modelVenue, modelTimeslot, modelDay);
+        return new Tutorial(modelName, modelModule, modelVenue, weeklyTimeslot);
     }
 
 }

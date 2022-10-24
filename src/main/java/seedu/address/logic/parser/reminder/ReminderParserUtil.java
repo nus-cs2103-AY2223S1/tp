@@ -3,7 +3,6 @@ package seedu.address.logic.parser.reminder;
 import java.util.Objects;
 
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.reminder.ReminderDeadline;
 import seedu.address.model.reminder.ReminderDescription;
 import seedu.address.model.reminder.ReminderName;
 import seedu.address.model.reminder.ReminderPriority;
@@ -25,21 +24,6 @@ public class ReminderParserUtil {
             throw new ParseException(ReminderName.MESSAGE_CONSTRAINTS);
         }
         return new ReminderName(trimmedName);
-    }
-
-    /**
-     * Parses a {@code String deadline} into a {@code ReminderDeadline}.
-     * Leading and trailing whitespaces will be trimmed.
-     *
-     * @throws ParseException if the given {@code ReminderDeadline} is invalid.
-     */
-    public static ReminderDeadline parseReminderDeadline(String deadline) throws ParseException {
-        Objects.requireNonNull(deadline);
-        String trimmedDeadline = deadline.trim();
-        if (!ReminderDeadline.isValidTimeslot(trimmedDeadline)) {
-            throw new ParseException(ReminderDeadline.MESSAGE_CONSTRAINTS);
-        }
-        return new ReminderDeadline(trimmedDeadline);
     }
 
     /**
