@@ -18,9 +18,9 @@ public class ConditionContainsKeywordsPredicate implements Predicate<Patient> {
 
     @Override
     public boolean test(Patient person) {
-        return keywords.stream().anyMatch(keyword ->
-                person.getConditions().getInternalList().stream().anyMatch(
-                        condition -> StringUtil.containsWordIgnoreCase(condition.toString(), keyword)));
+        return keywords.stream().anyMatch(keyword -> keyword.isEmpty()
+                || person.getConditions().getInternalList().stream().anyMatch(
+                    condition -> StringUtil.containsIgnoreCase(condition.toString(), keyword)));
     }
 
     @Override

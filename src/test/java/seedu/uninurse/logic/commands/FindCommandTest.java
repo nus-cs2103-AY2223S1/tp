@@ -17,7 +17,7 @@ import org.junit.jupiter.api.Test;
 import seedu.uninurse.model.Model;
 import seedu.uninurse.model.ModelManager;
 import seedu.uninurse.model.UserPrefs;
-import seedu.uninurse.model.person.PatientContainsKeywordsPredicate;
+import seedu.uninurse.model.person.PatientMatchPredicate;
 
 /**
  * Contains integration tests (interaction with the Model) for {@code FindCommand}.
@@ -28,10 +28,10 @@ public class FindCommandTest {
 
     @Test
     public void equals() {
-        PatientContainsKeywordsPredicate firstPredicate =
-                new PatientContainsKeywordsPredicate(Collections.singletonList("first"));
-        PatientContainsKeywordsPredicate secondPredicate =
-                new PatientContainsKeywordsPredicate(Collections.singletonList("second"));
+        PatientMatchPredicate firstPredicate =
+                new PatientMatchPredicate(Collections.singletonList("first"));
+        PatientMatchPredicate secondPredicate =
+                new PatientMatchPredicate(Collections.singletonList("second"));
 
         FindCommand findFirstCommand = new FindCommand(firstPredicate);
         FindCommand findSecondCommand = new FindCommand(secondPredicate);
@@ -56,7 +56,7 @@ public class FindCommandTest {
     @Test
     public void execute_zeroKeywords_noPersonFound() {
         String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 0);
-        PatientContainsKeywordsPredicate predicate = preparePredicate(" ");
+        PatientMatchPredicate predicate = preparePredicate(" ");
         FindCommand command = new FindCommand(predicate);
         expectedModel.updateFilteredPersonList(predicate);
         assertCommandSuccess(command, model, expectedMessage, FindCommand.FIND_COMMAND_TYPE, expectedModel);
@@ -66,7 +66,7 @@ public class FindCommandTest {
     @Test
     public void execute_multipleKeywords_multiplePersonsFound() {
         String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 3);
-        PatientContainsKeywordsPredicate predicate = preparePredicate("Kurz Elle Kunz");
+        PatientMatchPredicate predicate = preparePredicate("Kurz Elle Kunz");
         FindCommand command = new FindCommand(predicate);
         expectedModel.updateFilteredPersonList(predicate);
         assertCommandSuccess(command, model, expectedMessage, FindCommand.FIND_COMMAND_TYPE, expectedModel);
@@ -76,7 +76,7 @@ public class FindCommandTest {
     /**
      * Parses {@code userInput} into a {@code NameContainsKeywordsPredicate}.
      */
-    private PatientContainsKeywordsPredicate preparePredicate(String userInput) {
-        return new PatientContainsKeywordsPredicate(Arrays.asList(userInput.split("\\s+")));
+    private PatientMatchPredicate preparePredicate(String userInput) {
+        return new PatientMatchPredicate(Arrays.asList(userInput.split("\\s+")));
     }
 }

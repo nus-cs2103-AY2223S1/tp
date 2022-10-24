@@ -24,7 +24,7 @@ import seedu.uninurse.logic.commands.HelpCommand;
 import seedu.uninurse.logic.commands.ListCommand;
 import seedu.uninurse.logic.parser.exceptions.ParseException;
 import seedu.uninurse.model.person.Patient;
-import seedu.uninurse.model.person.PatientContainsKeywordsPredicate;
+import seedu.uninurse.model.person.PatientMatchPredicate;
 import seedu.uninurse.testutil.EditPatientDescriptorBuilder;
 import seedu.uninurse.testutil.PersonBuilder;
 import seedu.uninurse.testutil.PersonUtil;
@@ -73,7 +73,7 @@ public class UninurseBookParserTest {
         List<String> keywords = Arrays.asList("foo", "bar", "baz");
         FindCommand command = (FindCommand) parser.parseCommand(
                 FindCommand.COMMAND_WORD + " " + keywords.stream().collect(Collectors.joining(" ")));
-        assertEquals(new FindCommand(new PatientContainsKeywordsPredicate(keywords)), command);
+        assertEquals(new FindCommand(new PatientMatchPredicate(keywords)), command);
     }
 
     @Test
