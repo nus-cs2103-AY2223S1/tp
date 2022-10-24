@@ -11,6 +11,7 @@ import seedu.uninurse.logic.commands.exceptions.CommandException;
 import seedu.uninurse.model.Model;
 import seedu.uninurse.model.medication.Medication;
 import seedu.uninurse.model.medication.MedicationList;
+import seedu.uninurse.model.medication.exceptions.DuplicateMedicationException;
 import seedu.uninurse.model.person.Patient;
 
 /**
@@ -29,6 +30,8 @@ public class AddMedicationCommand extends AddGenericCommand {
             + " 2 " + PREFIX_MEDICATION + "Amoxicillin | 0.5 g every 8 hours";
 
     public static final String MESSAGE_ADD_MEDICATION_SUCCESS = "New medication added to %1$s: %2$s";
+    public static final String MESSAGE_DUPLICATE_MEDICATION =
+            "This medication already exists in %1$s's medication list";
 
     public static final CommandType ADD_MEDICATION_COMMAND_TYPE = CommandType.EDIT_PATIENT;
 
@@ -57,7 +60,14 @@ public class AddMedicationCommand extends AddGenericCommand {
         }
 
         Patient patientToEdit = lastShownList.get(index.getZeroBased());
-        MedicationList updatedMedicationList = patientToEdit.getMedications().add(medication);
+        MedicationList updatedMedicationList;
+
+        try {
+            updatedMedicationList = patientToEdit.getMedications().add(medication);
+        } catch (DuplicateMedicationException exception) {
+            throw new CommandException(String.format(MESSAGE_DUPLICATE_MEDICATION, patientToEdit.getName()));
+        }
+
         Patient editedPatient = new Patient(patientToEdit, updatedMedicationList);
 
         model.setPerson(patientToEdit, editedPatient);

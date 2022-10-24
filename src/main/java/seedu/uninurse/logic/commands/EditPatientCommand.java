@@ -106,7 +106,7 @@ public class EditPatientCommand extends EditGenericCommand {
         ConditionList updatedConditions = patientToEdit.getConditions();
 
         // editPatient command does not allow editing medications
-        MedicationList updatedMedicationList = patientToEdit.getMedications();
+        MedicationList updatedMedications = patientToEdit.getMedications();
 
         // editPatient command does not allow editing tasks
         TaskList updatedTasks = patientToEdit.getTasks();
@@ -114,7 +114,7 @@ public class EditPatientCommand extends EditGenericCommand {
         Set<Tag> updatedTags = editPatientDescriptor.getTags().orElse(patientToEdit.getTags());
 
         return new Patient(updatedName, updatedPhone, updatedEmail, updatedAddress,
-                updatedConditions, updatedMedicationList, updatedTasks, updatedTags);
+                updatedConditions, updatedMedications, updatedTasks, updatedTags);
     }
 
     @Override
