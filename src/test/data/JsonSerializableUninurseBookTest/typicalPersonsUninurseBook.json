@@ -6,6 +6,7 @@
     "email" : "alice@example.com",
     "address" : "123, Jurong West Ave 6, #08-111",
     "conditions" : [ ],
+    "medications" : [ ],
     "tasks" : [ ],
     "tagged" : [ "friends" ]
   }, {
@@ -14,6 +15,10 @@
     "email" : "johnd@example.com",
     "address" : "311, Clementi Ave 2, #02-25",
     "conditions" : [ "Crohn's disease", "H1N1" ],
+    "medications" : [ {
+        "medicationType" : "Amoxicillin",
+        "medicationDosage" : "0.5 g every 8 hours"
+      } ],
     "tasks" : [ {
       "taskDescription" : "Insert urinary catheter",
       "dateTime" : "16-12-2022 1245"
@@ -28,6 +33,7 @@
     "email" : "heinz@example.com",
     "address" : "wall street",
     "conditions" : [ "multiple sclerosis" ],
+    "medications" : [ ],
     "tasks" : [ {
       "taskDescription" : "Update health records",
       "dateTime": "28-10-2022 1730"
@@ -39,6 +45,7 @@
     "email" : "cornelia@example.com",
     "address" : "10th street",
     "conditions" : [ ],
+    "medications" : [ ],
     "tasks" : [ ],
     "tagged" : [ "friends" ]
   }, {
@@ -47,6 +54,7 @@
     "email" : "werner@example.com",
     "address" : "michegan ave",
     "conditions" : [ ],
+    "medications" : [ ],
     "tasks" : [ ],
     "tagged" : [ ]
   }, {
@@ -55,6 +63,7 @@
     "email" : "lydia@example.com",
     "address" : "little tokyo",
     "conditions" : [ ],
+    "medications" : [ ],
     "tasks" : [ ],
     "tagged" : [ ]
   }, {
@@ -63,6 +72,7 @@
     "email" : "anna@example.com",
     "address" : "4th street",
     "conditions" : [ ],
+    "medications" : [ ],
     "tasks" : [ ],
     "tagged" : [ ]
   } ]

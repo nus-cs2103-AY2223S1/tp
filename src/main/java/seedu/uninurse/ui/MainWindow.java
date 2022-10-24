@@ -17,6 +17,7 @@ import seedu.uninurse.logic.Logic;
 import seedu.uninurse.logic.commands.CommandResult;
 import seedu.uninurse.logic.commands.exceptions.CommandException;
 import seedu.uninurse.logic.parser.exceptions.ParseException;
+import seedu.uninurse.model.exceptions.PatientOfInterestNotFoundException;
 
 /**
  * The Main Window. Provides the basic application layout containing
@@ -209,6 +210,10 @@ public class MainWindow extends UiPart<Stage> {
                 handleExit();
             }
 
+            if (commandResult.isViewPatient()) {
+                outputPanel.handleViewPatient(logic.getPatientOfInterest());
+            }
+
             if (commandResult.isTaskRelated()) {
                 outputPanel.handleTask(logic.getPatientOfInterest());
             }
@@ -233,6 +238,9 @@ public class MainWindow extends UiPart<Stage> {
         } catch (CommandException | ParseException e) {
             logger.info("Invalid command: " + commandText);
             resultDisplay.setFeedbackToUser(e.getMessage());
+            throw e;
+        } catch (PatientOfInterestNotFoundException e) {
+            logger.info("Patient of interest not found");
             throw e;
         }
     }
