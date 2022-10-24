@@ -43,6 +43,10 @@ public class Applicant {
         this.tags.addAll(tags);
     }
 
+    /**
+     * Every field must be present and not null.
+     */
+
     public Applicant(Name name, Phone phone, Email email, Scholarship scholarship,
                      ApplicationStatus applicationStatus, Set<Tag> tags) {
         requireAllNonNull(name, phone, email, scholarship, applicationStatus, tags);

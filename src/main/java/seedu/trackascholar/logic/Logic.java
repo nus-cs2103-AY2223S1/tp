@@ -30,8 +30,11 @@ public interface Logic {
      */
     ReadOnlyTrackAScholar getTrackAScholar();
 
-    /** Returns an unmodifiable view of the filtered list of applicantss */
+    /** Returns an unmodifiable view of the filtered list of applicants */
     ObservableList<Applicant> getFilteredApplicantList();
+
+    /** Returns an unmodifiable view of the pinned list of applicants */
+    ObservableList<Applicant> getPinnedApplicantList();
 
     /**
      * Returns the user prefs' TrackAScholar file path.

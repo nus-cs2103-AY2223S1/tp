@@ -159,6 +159,11 @@ public class AddCommandTest {
         }
 
         @Override
+        public ObservableList<Applicant> getPinnedApplicantList() {
+            throw new AssertionError(MESSAGE_RESTRICTED_METHOD);
+        }
+
+        @Override
         public void updateFilteredApplicantList(Predicate<Applicant> predicate) {
             throw new AssertionError(MESSAGE_RESTRICTED_METHOD);
         }

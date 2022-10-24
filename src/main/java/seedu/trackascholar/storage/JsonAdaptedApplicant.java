@@ -129,7 +129,8 @@ class JsonAdaptedApplicant {
 
         final Set<Tag> modelTags = new HashSet<>(applicantTags);
         final Pin modelPin = new Pin(hasPinned);
-        return new Applicant(modelName, modelPhone, modelEmail, modelScholarship, modelApplicationStatus, modelTags, modelPin);
+        return new Applicant(modelName, modelPhone, modelEmail,
+                modelScholarship, modelApplicationStatus, modelTags, modelPin);
 
     }
 

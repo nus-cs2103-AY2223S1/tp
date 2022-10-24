@@ -137,6 +137,13 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public ObservableList<Applicant> getPinnedApplicantList() {
+        FilteredList<Applicant> pinnedList = new FilteredList<>(this.trackAScholar.getApplicantList());
+        pinnedList.setPredicate(PREDICATE_SHOW_PINNED_APPLICANTS);
+        return pinnedList;
+    }
+
+    @Override
     public void updateFilteredApplicantList(Predicate<Applicant> predicate) {
         requireNonNull(predicate);
         filteredApplicants.setPredicate(predicate);
