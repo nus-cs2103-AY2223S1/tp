@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
+import static seedu.address.testutil.TypicalPersons.AMY;
 import static seedu.address.testutil.TypicalPersons.ELLE;
 import static seedu.address.testutil.TypicalPersons.FIONA;
 import static seedu.address.testutil.TypicalPersons.GEORGE;
@@ -32,6 +33,14 @@ public class SortCommandTest {
         }
     }
 
+    @Test
+    public void testCompare() {
+        SortByAppointment sortByAppointment = new SortByAppointment("asc");
+        int result = sortByAppointment.compare(MUSAB_WITH_NO_APPT, ELLE);
+        int result2 = sortByAppointment.compare(MUSAB_WITH_NO_APPT, AMY);
+        assertTrue(result == 1);
+        assertTrue(result2 == 0);
+    }
     @Test
     public void testGetApptThrowsRuntimeException() {
         Throwable exception = assertThrows(RuntimeException.class, () -> MUSAB_WITH_NO_APPT.getAppointments().get(0));
