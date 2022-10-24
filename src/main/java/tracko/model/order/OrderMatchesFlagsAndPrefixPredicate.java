@@ -17,7 +17,9 @@ public class OrderMatchesFlagsAndPrefixPredicate implements Predicate<Order> {
     private final Boolean isPaid;
     private final Boolean isDelivered;
 
-
+    /**
+     * Constructs {@code OrderMatchesFlagsAndPrefixPredicate}.
+     */
     public OrderMatchesFlagsAndPrefixPredicate(List<String> nameKeywords, List<String> addressKeywords,
                                                List<String> itemKeywords, Boolean isFilteringByPaid,
                                                Boolean isFilteringByDelivered, Boolean isPaid, Boolean isDelivered) {
@@ -69,7 +71,6 @@ public class OrderMatchesFlagsAndPrefixPredicate implements Predicate<Order> {
             return isOrderMatchingKeywords;
         }
 
-        assert false;
         return false; // shouldnt reach here because there are only 3 valid cases
     }
 
@@ -194,13 +195,13 @@ public class OrderMatchesFlagsAndPrefixPredicate implements Predicate<Order> {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof OrderMatchesFlagsAndPrefixPredicate // instanceof handles nulls
-                && (nameKeywords.equals(((OrderMatchesFlagsAndPrefixPredicate) other).nameKeywords)
+                && (nameKeywords.equals(((OrderMatchesFlagsAndPrefixPredicate) other).nameKeywords) //state check
                 && addressKeywords.equals(((OrderMatchesFlagsAndPrefixPredicate) other).addressKeywords)
                 && itemKeywords.equals(((OrderMatchesFlagsAndPrefixPredicate) other).itemKeywords)
                 && (isPaid == ((OrderMatchesFlagsAndPrefixPredicate) other).isPaid)
                 && (isDelivered == ((OrderMatchesFlagsAndPrefixPredicate) other).isDelivered)
                 && (isFilteringByPaid == ((OrderMatchesFlagsAndPrefixPredicate) other).isFilteringByPaid)
-                && (isFilteringByDelivered == ((OrderMatchesFlagsAndPrefixPredicate) other).isFilteringByDelivered)));// state check
+                && (isFilteringByDelivered == ((OrderMatchesFlagsAndPrefixPredicate) other).isFilteringByDelivered)));
     }
 
 }

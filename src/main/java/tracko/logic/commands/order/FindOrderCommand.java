@@ -1,7 +1,9 @@
 package tracko.logic.commands.order;
 
 import static java.util.Objects.requireNonNull;
-import static tracko.logic.parser.CliSyntax.*;
+import static tracko.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static tracko.logic.parser.CliSyntax.PREFIX_ITEM;
+import static tracko.logic.parser.CliSyntax.PREFIX_NAME;
 
 import tracko.commons.core.Messages;
 import tracko.logic.commands.Command;
@@ -27,7 +29,7 @@ public class FindOrderCommand extends Command {
             + PREFIX_ADDRESS + "ADDRESS_KEYWORD [MORE_ADDRESS_KEYWORDS]...\n"
             + PREFIX_NAME + "NAME_KEYWORD [MORE_NAME_KEYWORDS]...\n"
             + "Example: " + COMMAND_WORD
-            + " " + PREFIX_ITEM + "keychain " + PREFIX_ADDRESS + "Ang Mo Kio Clementi" ;
+            + " " + PREFIX_ITEM + "keychain " + PREFIX_ADDRESS + "Ang Mo Kio Clementi";
 
     private final OrderMatchesFlagsAndPrefixPredicate predicate;
 

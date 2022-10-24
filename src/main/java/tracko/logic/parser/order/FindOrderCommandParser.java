@@ -1,12 +1,24 @@
 package tracko.logic.parser.order;
 
-import static tracko.logic.parser.CliSyntax.*;
+import static tracko.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static tracko.logic.parser.CliSyntax.FLAG_DELIVERED;
+import static tracko.logic.parser.CliSyntax.FLAG_PAID;
+import static tracko.logic.parser.CliSyntax.FLAG_UNDELIVERED;
+import static tracko.logic.parser.CliSyntax.FLAG_UNPAID;
+import static tracko.logic.parser.CliSyntax.PREFIX_ADDRESS;
+import static tracko.logic.parser.CliSyntax.PREFIX_ITEM;
+import static tracko.logic.parser.CliSyntax.PREFIX_NAME;
 
 import java.util.Arrays;
 import java.util.stream.Stream;
 
 import tracko.logic.commands.order.FindOrderCommand;
-import tracko.logic.parser.*;
+import tracko.logic.parser.ArgumentMultimap;
+import tracko.logic.parser.ArgumentTokenizer;
+import tracko.logic.parser.Flag;
+import tracko.logic.parser.FlagTokenizer;
+import tracko.logic.parser.Parser;
+import tracko.logic.parser.Prefix;
 import tracko.logic.parser.exceptions.ParseException;
 import tracko.model.order.OrderMatchesFlagsAndPrefixPredicate;
 
@@ -24,6 +36,7 @@ public class FindOrderCommandParser implements Parser<FindOrderCommand> {
     public FindOrderCommand parse(String userInput) throws ParseException {
         ArgumentMultimap prefixMultimap = ArgumentTokenizer.tokenize(userInput, PREFIX_NAME, PREFIX_ADDRESS,
                 PREFIX_ITEM);
+
         ArgumentMultimap flagMultimap = FlagTokenizer.tokenize(userInput, FLAG_PAID, FLAG_UNPAID,
                 FLAG_DELIVERED, FLAG_UNDELIVERED);
 
@@ -32,18 +45,18 @@ public class FindOrderCommandParser implements Parser<FindOrderCommand> {
         boolean isAnyFlagPresent = isAnyFlagPresent(flagMultimap, FLAG_PAID, FLAG_UNPAID,
                 FLAG_DELIVERED, FLAG_UNDELIVERED);
         boolean isPrefixMultimapPreambleEmpty = prefixMultimap.getPreamble().isEmpty();
-        boolean isFlagMultimapPreampleEmpty = flagMultimap.getPreamble().isEmpty();
+        boolean isFlagMultimapPreambleEmpty = flagMultimap.getPreamble().isEmpty();
 
         if (!(isAnyPrefixPresent || isAnyFlagPresent)
-                || !(isFlagMultimapPreampleEmpty || isPrefixMultimapPreambleEmpty)) {
-            throw new ParseException(String.format(FindOrderCommand.MESSAGE_USAGE, FindOrderCommand.MESSAGE_USAGE));
+                || !(isFlagMultimapPreambleEmpty || isPrefixMultimapPreambleEmpty)) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindOrderCommand.MESSAGE_USAGE));
         }
 
         String nameKeywordsString = prefixMultimap.getValue(PREFIX_NAME).orElse("").trim();
         String addressKeywordsString = prefixMultimap.getValue(PREFIX_ADDRESS).orElse("").trim();
         String itemKeywordsString = prefixMultimap.getValue(PREFIX_ITEM).orElse("").trim();
 
-        String [] nameKeywords =  splitKeywords(nameKeywordsString);
+        String [] nameKeywords = splitKeywords(nameKeywordsString);
         String[] addressKeywords = splitKeywords(addressKeywordsString);
         String[] itemKeywords = splitKeywords(itemKeywordsString);
 
@@ -55,7 +68,8 @@ public class FindOrderCommandParser implements Parser<FindOrderCommand> {
         boolean isFilteringByPaid = isPaid || isUnpaid;
         boolean isFilterByDelivered = isDelivered || isUndelivered;
 
-        OrderMatchesFlagsAndPrefixPredicate predicate = new OrderMatchesFlagsAndPrefixPredicate(Arrays.asList(nameKeywords),
+        OrderMatchesFlagsAndPrefixPredicate predicate =
+                new OrderMatchesFlagsAndPrefixPredicate(Arrays.asList(nameKeywords),
                 Arrays.asList(addressKeywords),
                 Arrays.asList(itemKeywords), isFilteringByPaid,
                 isFilterByDelivered, isPaid, isDelivered);
