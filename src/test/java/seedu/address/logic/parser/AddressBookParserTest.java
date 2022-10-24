@@ -28,8 +28,6 @@ import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.module.Module;
-import seedu.address.model.module.ModuleCodeContainsKeywordsPredicate;
-import seedu.address.model.person.NameContainsKeywordsPredicate;
 import seedu.address.model.person.Person;
 import seedu.address.testutil.EditPersonDescriptorBuilder;
 import seedu.address.testutil.ModuleBuilder;
@@ -101,8 +99,7 @@ public class AddressBookParserTest {
         List<String> keywords = Arrays.asList("foo", "bar", "baz");
         FindCommand command = (FindCommand) parser.parseCommand(
                 FindCommand.COMMAND_WORD + " " + keywords.stream().collect(Collectors.joining(" ")));
-        assertEquals(new FindCommand(new NameContainsKeywordsPredicate(keywords),
-                new ModuleCodeContainsKeywordsPredicate(keywords)), command);
+        assertEquals(new FindCommand(keywords), command);
     }
 
     @Test
@@ -110,7 +107,7 @@ public class AddressBookParserTest {
         List<String> keywords = Arrays.asList("foo", "bar", "baz");
         FindPersonCommand command = (FindPersonCommand) parser.parseCommand(
             FindPersonCommand.COMMAND_WORD + " " + keywords.stream().collect(Collectors.joining(" ")));
-        assertEquals(new FindPersonCommand(new NameContainsKeywordsPredicate(keywords)), command);
+        assertEquals(new FindPersonCommand(keywords), command);
     }
 
     @Test
@@ -118,7 +115,7 @@ public class AddressBookParserTest {
         List<String> keywords = Arrays.asList("foo", "bar", "baz");
         FindModuleCommand command = (FindModuleCommand) parser.parseCommand(
                 FindModuleCommand.COMMAND_WORD + " " + keywords.stream().collect(Collectors.joining(" ")));
-        assertEquals(new FindModuleCommand(new ModuleCodeContainsKeywordsPredicate(keywords)), command);
+        assertEquals(new FindModuleCommand(keywords), command);
     }
 
     @Test

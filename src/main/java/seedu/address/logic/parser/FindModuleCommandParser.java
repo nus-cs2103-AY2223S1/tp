@@ -6,10 +6,9 @@ import java.util.Arrays;
 
 import seedu.address.logic.commands.FindModuleCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
-import seedu.address.model.module.ModuleCodeContainsKeywordsPredicate;
 
 /**
- * Parses input arguments and creates a new FindPersonCommand object
+ * Parses input arguments and creates a new FindModuleCommand object
  */
 public class FindModuleCommandParser implements Parser<FindModuleCommand> {
 
@@ -25,9 +24,9 @@ public class FindModuleCommandParser implements Parser<FindModuleCommand> {
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindModuleCommand.MESSAGE_USAGE));
         }
 
-        String[] nameKeywords = trimmedArgs.split("\\s+");
+        String[] Keywords = trimmedArgs.split("\\s+");
 
-        return new FindModuleCommand(new ModuleCodeContainsKeywordsPredicate(Arrays.asList(nameKeywords)));
+        return new FindModuleCommand(Arrays.asList(Keywords));
     }
 
 }
