@@ -13,13 +13,13 @@ import seedu.address.model.Model;
 import seedu.address.model.module.Module;
 
 /**
- * Adds a module to the address book.
+ * Adds a module to profNus.
  */
 public class AddModuleCommand extends Command {
 
     public static final String COMMAND_WORD = "madd";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a module to the address book. "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a module to profNus. "
             + "Parameters: "
             + PREFIX_NAME + "MODULE NAME "
             + PREFIX_MODULE_CODE + "MODULE CODE "
@@ -27,7 +27,7 @@ public class AddModuleCommand extends Command {
             + PREFIX_TAG + "MODULE TAG ";
 
     public static final String MESSAGE_SUCCESS = "New module added: %1$s";
-    public static final String MESSAGE_DUPLICATE_MODULE = "The module already exists in the address book. ";
+    public static final String MESSAGE_DUPLICATE_MODULE = "The module already exists in profNus. ";
 
     private final Module toAdd;
 

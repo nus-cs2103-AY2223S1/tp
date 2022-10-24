@@ -21,8 +21,8 @@ import seedu.address.logic.commands.ListCommand;
 import seedu.address.logic.commands.module.AddModuleCommand;
 import seedu.address.logic.commands.module.DeleteModuleCommand;
 import seedu.address.logic.commands.module.EditModuleCommand;
-import seedu.address.logic.commands.module.ModuleListCommand;
-import seedu.address.logic.commands.module.ModuleViewCommand;
+import seedu.address.logic.commands.module.ListModuleCommand;
+import seedu.address.logic.commands.module.ViewModuleCommand;
 import seedu.address.logic.commands.schedule.AddScheduleCommand;
 import seedu.address.logic.commands.schedule.ClearScheduleCommand;
 import seedu.address.logic.commands.schedule.DeleteScheduleCommand;
@@ -34,13 +34,13 @@ import seedu.address.logic.parser.exceptions.ParseException;
 /**
  * Parses user input.
  */
-public class AddressBookParser {
+public class ProfNusParser {
 
     /**
      * Used for initial separation of command word and args.
      */
     private static final Pattern BASIC_COMMAND_FORMAT = Pattern.compile("(?<commandWord>\\S+)(?<arguments>.*)");
-    private static final Logger logger = LogsCenter.getLogger(AddressBookParser.class);
+    private static final Logger logger = LogsCenter.getLogger(ProfNusParser.class);
 
     /**
      * Parses user input into command for execution.
@@ -107,10 +107,10 @@ public class AddressBookParser {
         case ListCommand.COMMAND_WORD:
             return new ListCommand();
 
-        case ModuleListCommand.COMMAND_WORD:
-            return new ModuleListCommand();
+        case ListModuleCommand.COMMAND_WORD:
+            return new ListModuleCommand();
 
-        case ModuleViewCommand.COMMAND_WORD:
+        case ViewModuleCommand.COMMAND_WORD:
             return new ModuleViewCommandParser().parse(arguments);
 
         case ViewTimeTableCommand.COMMAND_WORD:

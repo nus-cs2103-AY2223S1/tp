@@ -29,7 +29,7 @@ import seedu.address.model.person.Student;
 import seedu.address.model.tag.Tag;
 
 /**
- * Edits the details of an existing module in the address book.
+ * Edits the details of an existing module in profNus.
  */
 public class EditModuleCommand extends Command {
 
@@ -116,9 +116,8 @@ public class EditModuleCommand extends Command {
         ModuleDescription updatedDescription = editModuleDescriptor
                 .getDescription().orElse(moduleToEdit.getDescription());
         Set<Tag> updatedTags = editModuleDescriptor.getTags().orElse(moduleToEdit.getTags());
-        ArrayList<Student> students = new ArrayList<>();
 
-        return new Module(updatedName, updatedCode, updatedDescription, updatedTags, students);
+        return new Module(updatedName, updatedCode, updatedDescription, updatedTags);
     }
 
     @Override

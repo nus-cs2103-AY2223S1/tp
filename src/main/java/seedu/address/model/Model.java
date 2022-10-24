@@ -54,20 +54,20 @@ public interface Model {
     /**
      * Returns the user prefs' ProfNUS file path.
      */
-    Path getAddressBookFilePath();
+    Path getProfNusFilePath();
 
     /**
      * Sets the user prefs' ProfNUS file path.
      */
-    void setAddressBookFilePath(Path addressBookFilePath);
+    void setProfNusFilePath(Path addressBookFilePath);
 
     /**
-     * Replaces ProfNUS data with the data in {@code addressBook}.
+     * Replaces ProfNUS data with the data in {@code profNus}.
      */
-    void setAddressBook(ReadOnlyAddressBook addressBook);
+    void setProfNus(ReadOnlyProfNus profNus);
 
-    /** Returns the AddressBook */
-    ReadOnlyAddressBook getAddressBook();
+    /** Returns the ProfNus */
+    ReadOnlyProfNus getProfNus();
 
     /**
      * Returns true if a person with the same identity as {@code person} exists in the ProfNUS.

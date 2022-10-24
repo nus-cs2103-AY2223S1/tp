@@ -7,9 +7,9 @@ import seedu.address.model.person.Person;
 import seedu.address.model.person.Student;
 
 /**
- * Unmodifiable view of an address book
+ * Unmodifiable view of profNus
  */
-public interface ReadOnlyAddressBook {
+public interface ReadOnlyProfNus {
 
     /**
      * Returns an unmodifiable view of the persons list.

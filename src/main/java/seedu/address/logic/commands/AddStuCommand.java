@@ -16,13 +16,13 @@ import seedu.address.model.Model;
 import seedu.address.model.person.Student;
 
 /**
- * Adds a person to the address book.
+ * Adds a person to profNus.
  */
 public class AddStuCommand extends Command {
 
     public static final String COMMAND_WORD = "addstu";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a student to the address book. "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a student to profNus. "
             + "Parameters: "
             + PREFIX_NAME + "NAME "
             + PREFIX_PHONE + "PHONE "
@@ -45,7 +45,7 @@ public class AddStuCommand extends Command {
             + PREFIX_MODULE_CODE + "CS1101S ";
 
     public static final String MESSAGE_SUCCESS = "New student added: %1$s";
-    public static final String MESSAGE_DUPLICATE_STUDENT = "This student already exists in the address book";
+    public static final String MESSAGE_DUPLICATE_STUDENT = "This student already exists in profNus";
 
     private final Student toAdd;
 
