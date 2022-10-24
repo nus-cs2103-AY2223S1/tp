@@ -4,6 +4,7 @@ import javafx.scene.Node;
 import javafx.scene.control.TextArea;
 
 /**
+ * A view of a {@code String}. This can be displayed.
  * @author Richard Dominick
  */
 public final class StringView {

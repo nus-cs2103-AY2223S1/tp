@@ -6,14 +6,27 @@ import seedu.foodrem.model.item.Item;
 import seedu.foodrem.ui.ResultDisplay;
 import seedu.foodrem.viewmodels.ItemWithMessage;
 
+/**
+ * A UI view manager to handle view updates to a result display.
+ * @author Richard Dominick
+ */
 public class UiView {
     private final ResultDisplay display;
 
+    /**
+     * Creates a UI view manager linked to the given display box.
+     * @param display the display box to show the views at.
+     */
     public UiView(ResultDisplay display) {
         this.display = display;
     }
 
     // TODO: Use a less hacky method
+
+    /**
+     * Updates the display with the view generated from the given object.
+     * @param object the object to generate the view for.
+     */
     public void viewFrom(Object object) {
         requireNonNull(object);
         display.clear();

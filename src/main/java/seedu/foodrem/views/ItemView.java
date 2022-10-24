@@ -16,6 +16,7 @@ import seedu.foodrem.model.item.Item;
 import seedu.foodrem.model.tag.Tag;
 
 /**
+ * A view of an {@code Item}. This can be displayed.
  * @author Richard Dominick
  */
 public class ItemView {
@@ -84,16 +85,31 @@ public class ItemView {
         return label;
     }
 
+    /**
+     * Builds the string representation of the item's quantity attached to its units.
+     * @param item the item whose quantity is to be formatted.
+     * @return the string representation of the item's quantity and units.
+     */
     public static String buildItemQuantityAndUnitStringFrom(Item item) {
         final String unit = String.valueOf(item.getUnit()).isBlank() ? "" : " " + item.getUnit().toString();
         return String.format("%s%s", item.getQuantity(), unit);
     }
 
+    /**
+     * Builds the string representation of the item's bought date.
+     * @param item the item whose bought date is to be formatted.
+     * @return the string representation of the item's bought date.
+     */
     public static String buildBoughtDateStringFrom(Item item) {
         return String.valueOf(item.getBoughtDate())
                 .isBlank() ? "Not Set" : item.getBoughtDate().toString();
     }
 
+    /**
+     * Builds the string representation of the item's expiry date.
+     * @param item the item whose expiry date is to be formatted.
+     * @return the string representation of the item's expiry date.
+     */
     public static String buildExpiryDateStringFrom(Item item) {
         return String.valueOf(item.getExpiryDate())
                 .isBlank() ? "Not Set" : item.getExpiryDate().toString();
