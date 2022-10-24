@@ -9,9 +9,11 @@ import java.util.UUID;
  * Represents a Task in the address book.
  */
 public abstract class Task {
-    public final TaskName name;
-
     private final UUID id;
+
+    private final TaskName name;
+
+    private final Description description;
 
     /**
      * Constructs a {@code Task}.
@@ -19,10 +21,11 @@ public abstract class Task {
      * @param id   A unique identifier for the task.
      * @param name A valid task name.
      */
-    public Task(UUID id, TaskName name) {
+    public Task(UUID id, TaskName name, Description description) {
         requireAllNonNull(id, name);
         this.id = id;
         this.name = name;
+        this.description = description;
     }
 
     public UUID getId() {
@@ -31,6 +34,10 @@ public abstract class Task {
 
     public TaskName getName() {
         return name;
+    }
+
+    public Description getDescription() {
+        return description;
     }
 
     @Override
@@ -42,7 +49,7 @@ public abstract class Task {
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, name);
+        return Objects.hash(id, name, description);
     }
 
     /**
