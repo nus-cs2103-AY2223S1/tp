@@ -1,4 +1,4 @@
-package seedu.rc4hdb.logic.commands.filecommands.jsonfilecommands;
+package seedu.rc4hdb.logic.commands.filecommands;
 
 import static seedu.rc4hdb.logic.commands.StorageCommandTestUtil.assertCommandFailure;
 import static seedu.rc4hdb.logic.commands.StorageCommandTestUtil.assertCommandSuccess;
@@ -14,15 +14,12 @@ import org.junit.jupiter.api.io.TempDir;
 
 import seedu.rc4hdb.commons.util.FileUtil;
 import seedu.rc4hdb.logic.commands.exceptions.CommandException;
-import seedu.rc4hdb.logic.commands.filecommands.FileCommand;
-import seedu.rc4hdb.logic.commands.filecommands.FileDeleteCommand;
-import seedu.rc4hdb.storage.userprefs.JsonUserPrefsStorage;
+import seedu.rc4hdb.storage.DataStorageManager;
 import seedu.rc4hdb.storage.Storage;
 import seedu.rc4hdb.storage.StorageManager;
 import seedu.rc4hdb.storage.StorageStub;
+import seedu.rc4hdb.storage.userprefs.JsonUserPrefsStorage;
 import seedu.rc4hdb.storage.userprefs.UserPrefsStorage;
-import seedu.rc4hdb.storage.residentbook.JsonResidentBookStorage;
-import seedu.rc4hdb.storage.residentbook.ResidentBookStorage;
 
 /**
  * Unit tests for {@link FileDeleteCommand}.
@@ -36,9 +33,9 @@ public class FileDeleteCommandTest {
 
     @BeforeEach
     public void setUp() {
-        JsonResidentBookStorage residentBookStorage = new JsonResidentBookStorage(getTempFilePath("test.json"));
+        DataStorageManager dataStorageManager = new DataStorageManager(getTempFilePath("test.json"));
         JsonUserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(getTempFilePath("testPrefs.json"));
-        storage = new StorageManager(residentBookStorage, userPrefsStorage);
+        storage = new StorageManager(dataStorageManager, userPrefsStorage);
     }
 
     private Path getTempFilePath(String fileName) {
@@ -47,10 +44,9 @@ public class FileDeleteCommandTest {
 
     @Test
     public void execute_fileExists_fileDeleted() throws Exception {
-        ResidentBookStorage expectedResidentBookStorage =
-                new JsonResidentBookStorage(storage.getResidentBookFilePath());
+        DataStorageManager expectedDataStorage = new DataStorageManager(storage.getDataStorageFilePath());
         UserPrefsStorage expectedUserPrefsStorage = new JsonUserPrefsStorage(storage.getUserPrefsFilePath());
-        Storage expectedStorage = new StorageManager(expectedResidentBookStorage, expectedUserPrefsStorage);
+        Storage expectedStorage = new StorageManager(expectedDataStorage, expectedUserPrefsStorage);
         String expectedMessage = String.format(FileDeleteCommand.MESSAGE_SUCCESS, "AlreadyExists.json");
 
         Path targetFilePath = getTempFilePath("AlreadyExists.json");
@@ -105,11 +101,6 @@ public class FileDeleteCommandTest {
         @Override
         public void deleteResidentBookFile(Path filePath) throws IOException {
             throw DUMMY_IO_EXCEPTION;
-        }
-
-        @Override
-        public Path getResidentBookFilePath() {
-            return null;
         }
 
         @Override

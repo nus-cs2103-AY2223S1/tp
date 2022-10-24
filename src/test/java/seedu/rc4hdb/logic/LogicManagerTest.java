@@ -251,16 +251,6 @@ public class LogicManagerTest {
         public Optional<ReadOnlyResidentBook> readResidentBook(Path filePath) {
             return Optional.of(new ResidentBook());
         }
-
-        @Override
-        public void setResidentBookFilePath(Path filePath) {
-            // does nothing
-        }
-
-        @Override
-        public Path getResidentBookFilePath() {
-            return DUMMY_PATH;
-        }
     }
 
     /**
@@ -271,11 +261,6 @@ public class LogicManagerTest {
         @Override
         public void createResidentBookFile(Path filePath) throws IOException {
             // does nothing
-        }
-
-        @Override
-        public Path getResidentBookFilePath() {
-            return null;
         }
     }
 }
