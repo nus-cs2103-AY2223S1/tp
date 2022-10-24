@@ -10,7 +10,7 @@ public interface ReadOnlyTaskList {
 
     /**
      * Returns an unmodifiable view of the task list.
-     * This list will not contain any duplicate persons.
+     * This list will not contain any duplicate tasks.
      */
     ObservableList<Task> getTaskList();
 }

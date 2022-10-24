@@ -1,5 +1,6 @@
 package seedu.address.logic.commands;
 
+import static seedu.address.commons.util.DateUtil.getLocalDate;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
@@ -24,7 +25,9 @@ public class MarkTaskCommandTest {
 
     @Test
     public void execute_allFieldsSpecifiedUnfilteredList_success() {
-        Task markedTask = new TaskBuilder().withStatus(true).build();
+        Task markedTask = new TaskBuilder().withTitle("Buy Ginger")
+                .withDeadline(getLocalDate("2029-02-10"))
+                .withStatus(true).build();
         MarkTaskCommand markTaskCommand = new MarkTaskCommand(INDEX_FIRST_PERSON);
 
         String expectedMessage = String.format(MarkTaskCommand.MESSAGE_MARK_TASK_SUCCESS, markedTask);
