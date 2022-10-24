@@ -46,9 +46,21 @@ public class TargetPersonPanel extends UiPart<Region> {
         phone.textProperty().bind(targetPerson.getPhoneProperty());
         address.textProperty().bind(targetPerson.getAddressProperty());
         email.textProperty().bind(targetPerson.getEmailProperty());
-        remark.textProperty().bind(targetPerson.getRemarkProperty());
         targetPerson.getTagsProperty().forEach(tag ->
                 tags.getChildren().add(new Label(tag.tagName)));
+
+        // Special listener to handle Remarks
+        remark.setStyle("-fx-font-style: italic");
+        targetPerson.getRemarkProperty().addListener((observable, oldValue, newValue) -> {
+            if (newValue.equals("")) {
+                remark.setText("No remark");
+                remark.setStyle("-fx-font-style: italic");
+            } else {
+                remark.setText(newValue);
+                remark.setStyle("-fx-font-style: normal");
+            }
+        });
+
         reminderView.setItems(reminderList);
         reminderView.setCellFactory(listView -> new ReminderListViewCell());
     }
