@@ -63,16 +63,18 @@ public class DeleteConditionCommand extends DeleteGenericCommand {
             throw new CommandException(Messages.MESSAGE_INVALID_CONDITION_INDEX);
         }
 
+        // ConditionNotFoundException not caught here since the above handles the same error
         ConditionList updatedConditionList = patientToEdit.getConditions().delete(conditionIndex.getZeroBased());
         Condition deletedCondition = initialConditionList.get(conditionIndex.getZeroBased());
 
-        Patient editedPerson = new Patient(patientToEdit, updatedConditionList);
+        Patient editedPatient = new Patient(patientToEdit, updatedConditionList);
 
-        model.setPerson(patientToEdit, editedPerson);
+        model.setPerson(patientToEdit, editedPatient);
         model.updateFilteredPersonList(Model.PREDICATE_SHOW_ALL_PERSONS);
+        model.setPatientOfInterest(editedPatient);
 
         return new CommandResult(String.format(MESSAGE_DELETE_CONDITION_SUCCESS, conditionIndex.getOneBased(),
-                editedPerson.getName(), deletedCondition), DELETE_CONDITION_COMMAND_TYPE);
+                editedPatient.getName(), deletedCondition), DELETE_CONDITION_COMMAND_TYPE);
     }
 
     @Override

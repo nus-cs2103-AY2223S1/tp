@@ -64,6 +64,7 @@ public class AddConditionCommandTest {
 
         Model expectedModel = new ModelManager(new UninurseBook(model.getUninurseBook()), new UserPrefs());
         expectedModel.setPerson(patientToAddCondition, editedPatient);
+        expectedModel.setPatientOfInterest(editedPatient);
 
         assertCommandSuccess(addConditionCommand, model, expectedMessage, ADD_CONDITION_COMMAND_TYPE, expectedModel);
     }
@@ -74,6 +75,13 @@ public class AddConditionCommandTest {
         AddConditionCommand addConditionCommand = new AddConditionCommand(outOfBoundIndex, CONDITION_DIABETES);
 
         assertCommandFailure(addConditionCommand, model, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+    }
+
+    @Test
+    public void execute_invalidDuplicateConditionUnfilteredList_throwsCommandException() {
+        Condition condition = new Condition("H1N1");
+        AddConditionCommand addConditionCommand = new AddConditionCommand(INDEX_SECOND_PERSON, condition);
+        assertCommandFailure(addConditionCommand, model, AddConditionCommand.MESSAGE_DUPLICATE_CONDITION);
     }
 
     @Test
@@ -93,6 +101,7 @@ public class AddConditionCommandTest {
 
         Model expectedModel = new ModelManager(new UninurseBook(model.getUninurseBook()), new UserPrefs());
         expectedModel.setPerson(patientToAddCondition, editedPatient);
+        expectedModel.setPatientOfInterest(editedPatient);
 
         assertCommandSuccess(addConditionCommand, model, expectedMessage, ADD_CONDITION_COMMAND_TYPE, expectedModel);
     }

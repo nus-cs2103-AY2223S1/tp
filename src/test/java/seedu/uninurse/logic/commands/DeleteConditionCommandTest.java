@@ -68,6 +68,7 @@ public class DeleteConditionCommandTest {
 
         Model expectedModel = new ModelManager(new UninurseBook(model.getUninurseBook()), new UserPrefs());
         expectedModel.setPerson(patientToDeleteCondition, editedPatient);
+        expectedModel.setPatientOfInterest(editedPatient);
 
         assertCommandSuccess(deleteConditionCommand, model, expectedMessage, DELETE_CONDITION_COMMAND_TYPE,
                 expectedModel);
@@ -100,6 +101,7 @@ public class DeleteConditionCommandTest {
 
         Model expectedModel = new ModelManager(new UninurseBook(model.getUninurseBook()), new UserPrefs());
         expectedModel.setPerson(patientToDeleteCondition, editedPatient);
+        expectedModel.setPatientOfInterest(editedPatient);
 
         assertCommandSuccess(deleteConditionCommand, model, expectedMessage, DELETE_CONDITION_COMMAND_TYPE,
                 expectedModel);
