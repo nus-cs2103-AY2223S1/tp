@@ -52,7 +52,7 @@ public class AddOrderCommandTest {
     // public void execute_duplicatePerson_throwsCommandException() {
     //     Person validPerson = new OrderBuilder().build();
     //     AddOrderCommand addOrderCommand = new AddOrderCommand(validPerson);
-    //     ModelStub modelStub = new ModeulStubWithOrder(validPerson);
+    //     ModelStub modelStub = new ModelStubWithOrder(validPerson);
     //     assertThrows(CommandException.class, AddOrderCommand.MESSAGE_DUPLICATE_PERSON,
     //         () -> addOrderCommand.execute(modelStub));
     // }
@@ -127,6 +127,11 @@ public class AddOrderCommandTest {
 
         @Override
         public void setOrder(Order orderToEdit, Order editedOrder) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void markOrder(Order orderToMark, boolean isPaid, boolean isDelivered) {
             throw new AssertionError("This method should not be called.");
         }
 

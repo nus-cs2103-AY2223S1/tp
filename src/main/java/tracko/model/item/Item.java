@@ -53,6 +53,10 @@ public class Item {
         return totalQuantity;
     }
 
+    public Integer getTotalQuantityValue() {
+        return totalQuantity.getQuantity();
+    }
+
     public Set<Tag> getTags() {
         return Collections.unmodifiableSet(tags);
     }
@@ -63,6 +67,15 @@ public class Item {
 
     public Price getCostPrice() {
         return costPrice;
+    }
+
+    /**
+     * Decreases the stock quantity of the item by the delivered amount.
+     * @param deliveredQuantity quantity of the item that has been delivered
+     */
+    public void reduceItem(Integer deliveredQuantity) {
+        Quantity newQuantity = new Quantity(this.totalQuantity.getQuantity() - deliveredQuantity);
+        this.totalQuantity = newQuantity;
     }
 
     /**
