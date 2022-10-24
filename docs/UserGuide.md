@@ -21,10 +21,10 @@ _Details coming soon..._
 
 ## Features
 
-### Add students : `student add n/studentName`
+### Add students : `student add n/studentName p/phoneNumber e/email t/tags(optional)`
 
-- Command `student add n/<studentName>`
-- Adds a student to the list of students
+- Command `student add n/studentName p/phoneNumber e/email t/tags(optional)`
+- Adds a student with the given phone number, email, and tags to the list of students
 
 ### Remove students : `student remove n/studentName`
 
@@ -95,12 +95,12 @@ _Details coming soon..._
 - Command `group remove g/<groupName>`
 - Removes the group named `groupName`
 
-### Enrol a student into a group : `group enrol n/groupName n/studentName`
+### Enroll a student into a group : `student enroll i n/groupName `
 
-- Command `group enrol g/<groupName> n/<studentName>`
-- Enrols a student to the group
+- Command `group enroll i g/<groupName>`
+- Enrolls the student at index i to the group named `groupName`
 
-### Expel a student from a group : `group expel g/groupName n/studentName`
+### Expel a student from a group `To be implemented` : `group expel g/groupName n/studentName`
 
 - Command `group expel g/<groupName> g/<studentName>`
 - Removes the student `studentName` from the group `groupName`.
@@ -115,6 +115,25 @@ _Details coming soon..._
 ---
 
 ## FAQ
+
+#### What if I forgot the command format?
+- A list of commands will be displayed after the launch of the program.
+- You can also click on the help button to view the commands.
+
+#### Why I cannot add a student?
+- Check the format of your add command. You can refer to the pop-up message or the help page for the command format.
+- Check if the name of the new student belongs to another student.
+
+#### Why I cannot enroll a student to a tutorial group? 
+- Check whether the specified student and tutorial group exist.
+- Check if you input the correct student name.
+- 
+#### What if I just want to modify one field of a student? Do I need to type out the rest fields?
+- The student edit command supports any number of field changes. Omit the fields you do not wish to change.
+
+#### How to remove the student filter?
+
+#### 
 
 _Details coming soon..._
 
