@@ -3,9 +3,29 @@
     -fx-text-fill: #d06651 !important; /* The error class should always override the default text-fill style */
 }
 
+.applied {
+    -fx-text-fill: #FF9F09 !important;
+}
+
+.interviewed {
+    -fx-text-fill: #5AC8F6 !important;
+}
+
+.shortlisted {
+    -fx-text-fill: #BE5AF2 !important;
+}
+
+.accepted {
+    -fx-text-fill: #32D84B !important;
+}
+
+.rejected {
+    -fx-text-fill: #FE463A !important;
+}
+
 .list-cell:empty {
-    /* Empty cells will not have alternating colours */
-    -fx-background: #383838;
+    -fx-background-color: transparent;
+    -fx-background-insets: 0;
 }
 
 .tag-selector {
@@ -13,8 +33,4 @@
     -fx-border-color: white;
     -fx-border-radius: 3;
     -fx-background-radius: 3;
-}
-
-.tooltip-text {
-    -fx-text-fill: white;
 }

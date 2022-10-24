@@ -8,7 +8,6 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeFormatterBuilder;
 import java.time.format.DateTimeParseException;
-import java.time.format.FormatStyle;
 import java.time.temporal.ChronoField;
 
 /**
@@ -17,8 +16,10 @@ import java.time.temporal.ChronoField;
  */
 public class InterviewDateTime {
 
-    public static final String MESSAGE_CONSTRAINTS = "Date should be in the format [d MMM HH:mm] or [d/M/yyyy HH:mm].\n"
-            + "Year can be omitted to default to current year.";
+    public static final String MESSAGE_CONSTRAINTS = "Date/time should be one of these formats:\n"
+            + "[d MMM yyyy HH:mm] or [d/M/yyyy HH:mm] or [d MMM yyyy, h:mm a] or [d/M/yyyy, h:mm a]\n"
+            + "Year can be omitted to default to current year.\n"
+            + "When using AM/PM format, include a comma after the date.";
 
     /*
      * The first character of the address must not be a whitespace,
@@ -30,15 +31,20 @@ public class InterviewDateTime {
      * For the dateTime 23/10/2022 09:00, the following formats are accepted:
      * "23/10/2022 09:00", "23 Oct 2022 09:00", "23 Oct 09:00", "23 Oct 2022, 9:00 AM", "23/10 09:00"
      */
-    public static final DateTimeFormatter DATE_FORMAT = new DateTimeFormatterBuilder()
+    public static final DateTimeFormatter INPUT_DATE_FORMAT = new DateTimeFormatterBuilder()
             .parseCaseInsensitive()
-            .appendPattern("[d/M/yyyy HH:mm]")
             .appendPattern("[d MMM yyyy HH:mm]")
             .appendPattern("[d MMM yyyy, h:mm a]")
             .appendPattern("[d MMM HH:mm]")
+            .appendPattern("[d MMM, h:mm a]")
+            .appendPattern("[d/M/yyyy HH:mm]")
+            .appendPattern("[d/M/yyyy, h:mm a]")
             .appendPattern("[d/M HH:mm]")
+            .appendPattern("[d/M, h:mm a]")
             .parseDefaulting(ChronoField.YEAR_OF_ERA, LocalDate.now().getYear())
             .toFormatter();
+
+    public static final DateTimeFormatter DISPLAY_DATE_FORMAT = DateTimeFormatter.ofPattern("d MMM yyyy, h:mm a");
 
     public final String value;
 
@@ -51,9 +57,8 @@ public class InterviewDateTime {
     public InterviewDateTime(String interviewDateTime) {
         requireNonNull(interviewDateTime);
         checkArgument(isValidInterviewDateTime(interviewDateTime), MESSAGE_CONSTRAINTS);
-        this.interviewDateTime = LocalDateTime.parse(interviewDateTime, DATE_FORMAT);
-        value = this.interviewDateTime.format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.MEDIUM,
-                FormatStyle.SHORT));
+        this.interviewDateTime = LocalDateTime.parse(interviewDateTime, INPUT_DATE_FORMAT);
+        value = this.interviewDateTime.format(DISPLAY_DATE_FORMAT);
     }
 
     /**
@@ -61,8 +66,12 @@ public class InterviewDateTime {
      * @return true if it is valid.
      */
     public static boolean isValidInterviewDateTime(String interviewDateTime) {
+        if (interviewDateTime.isEmpty()) {
+            return false;
+        }
+
         try {
-            DATE_FORMAT.parse(interviewDateTime);
+            INPUT_DATE_FORMAT.parse(interviewDateTime);
             return true;
         } catch (DateTimeParseException e) {
             return false;

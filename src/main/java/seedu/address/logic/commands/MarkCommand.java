@@ -28,12 +28,12 @@ public class MarkCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Marks the internship identified by the index number used in the displayed internship list.\n"
-            + "Parameters: INDEX (must be a positive integer) [s/APPLICATIONSTATUS]\n"
+            + "Parameters: INDEX (must be a positive integer) [s/APPLICATION_STATUS]\n"
             + "Example: " + COMMAND_WORD + " 1 s/Rejected";
 
     public static final String MESSAGE_NOT_EDITED = "Please enter an application status to mark the internship with.";
     public static final String MESSAGE_SAME_APPLICATION_STATUS = "This is the current application status.";
-    public static final String MESSAGE_MARK_INTERNSHIP_SUCCESS = "Marked Internship: %1$s";
+    public static final String MESSAGE_MARK_INTERNSHIP_SUCCESS = "Marked internship: %1$s";
 
     private final Index index;
     private final ApplicationStatus applicationStatus;

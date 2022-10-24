@@ -45,7 +45,7 @@ public class EditCommand extends Command {
             + "[" + PREFIX_DESCRIPTION + "DESCRIPTION] "
             + "[" + PREFIX_APPLIED_DATE + "APPLIED_DATE] "
             + "[" + PREFIX_INTERVIEW_DATE_TIME + "INTERVIEW_DATE_TIME] "
-            + "[" + PREFIX_TAG + "TAG]...\n"
+            + "[" + PREFIX_TAG + "TAG]\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_LINK + "https://careers.tiktok.com/position/7132807469026117902/detail "
             + PREFIX_DESCRIPTION + "Global e-Commerce";
