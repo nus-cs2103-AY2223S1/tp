@@ -39,62 +39,50 @@ public class UntagCommandTest {
         Item editedItem = new ItemBuilder(model.getCurrentList().get(0)).build();
         Tag tag = new TagBuilder().withTagName(VALID_TAG_NAME_VEGETABLES).build();
         editedItem.removeItemTag(tag);
-        //The initial model does not have the tag in its UniqueTagList
-        //model.addTag(tag);
 
-        //Creating an expected model to compare to
+        // The initial model does not have the tag in its UniqueTagList
+
+        // Creating an expected model to compare to
         Model expectedModel = new ModelManager(new FoodRem(model.getFoodRem()), new UserPrefs());
 
         // Setting expected model's first item to the tagged first item correct
         expectedModel.setItem(expectedModel.getCurrentList().get(0), editedItem);
 
-        //Run  tag command on original model
+        // Run tag command on original model
         UntagCommand untagItemCommand = new UntagCommand(tag.getName(), INDEX_FIRST_ITEM);
 
         assertCommandSuccess(untagItemCommand, model, new ItemWithMessage(editedItem, EXPECTED_SUCCESS_MESSAGE), expectedModel);
         assertFalse(model.getCurrentList().get(0).containsTag(tag));
-
     }
 
     @Test
     public void execute_untagItemWithoutExistingTagInModel_throwsCommandException() {
         final Model model = new ModelManager(getFoodRemWithTypicalItems(), new UserPrefs());
-
         Tag tag = new TagBuilder().withTagName(VALID_TAG_NAME_VEGETABLES).build();
 
         UntagCommand untagItemCommand = new UntagCommand(tag.getName(), INDEX_FIRST_ITEM);
-
         assertCommandFailure(untagItemCommand, model, ERROR_NOT_FOUND_TAG);
-
     }
 
     @Test
     public void execute_untagItemWithInvalidIndex_throwsCommandException() {
         final Model model = new ModelManager(getTypicalFoodRem(), new UserPrefs());
-
         Tag tag = new TagBuilder().withTagName(VALID_TAG_NAME_VEGETABLES).build();
 
-        //model.addTag(tag);
-
         UntagCommand untagItemCommand = new UntagCommand(tag.getName(), INDEX_THIRD_ITEM);
-
         assertCommandFailure(untagItemCommand, model, ERROR_NOT_FOUND_ITEM);
-
     }
 
     @Test
     public void execute_untagItemWithoutExistingTagInItem_throwsCommandException() {
         final Model model = new ModelManager(getTypicalFoodRem(), new UserPrefs());
-
         Tag tag = new TagBuilder().withTagName(VALID_TAG_NAME_VEGETABLES).build();
 
-        //Manually remove tag from typical FoodRem item
+        // Manually remove tag from typical FoodRem item
         model.getCurrentList().get(0).removeItemTag(tag);
 
         UntagCommand untagItemCommand = new UntagCommand(tag.getName(), INDEX_FIRST_ITEM);
-
         assertCommandFailure(untagItemCommand, model, ERROR_ITEM_DOES_NOT_CONTAIN_TAG);
-
     }
 
     @Test
@@ -107,18 +95,14 @@ public class UntagCommandTest {
 
         // same object -> returns true
         assertEquals(untagItemWithVegetableCommand, untagItemWithVegetableCommand);
-
         // same values -> returns true
         Tag vegetableTagCopy = new TagBuilder().withTagName(VALID_TAG_NAME_VEGETABLES).build();
         UntagCommand untagItemWithVegetableCommandCopy = new UntagCommand(vegetableTagCopy.getName(), INDEX_FIRST_ITEM);
         assertEquals(untagItemWithVegetableCommand, untagItemWithVegetableCommandCopy);
-
         // different types -> returns false
         assertNotEquals(untagItemWithFruitsCommand, new ResetCommand());
-
         // null -> returns false
         assertNotEquals(untagItemWithFruitsCommand, null);
-
         // different item -> returns false
         assertNotEquals(untagItemWithVegetableCommand, untagItemWithFruitsCommand);
     }
