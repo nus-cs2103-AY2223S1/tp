@@ -119,6 +119,10 @@ public class UniqueStudentList implements Iterable<Student> {
         return internalUnmodifiableList;
     }
 
+    public int numStudents() {
+        return internalList.size();
+    }
+
     @Override
     public Iterator<Student> iterator() {
         return internalList.iterator();

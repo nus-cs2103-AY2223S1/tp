@@ -7,6 +7,7 @@ import static java.util.Objects.requireNonNull;
 import jarvis.logic.commands.exceptions.CommandException;
 import jarvis.model.Model;
 import jarvis.model.Student;
+import jarvis.model.exceptions.MaxStudentsExceededException;
 
 /**
  * Adds a student to the student book.
@@ -41,7 +42,11 @@ public class AddStudentCommand extends Command {
             throw new CommandException(MESSAGE_DUPLICATE_STUDENT);
         }
 
-        model.addStudent(studentToAdd);
+        try {
+            model.addStudent(studentToAdd);
+        } catch (MaxStudentsExceededException e) {
+            throw new CommandException(e.getMessage());
+        }
         return new CommandResult(String.format(MESSAGE_SUCCESS, studentToAdd));
     }
 
