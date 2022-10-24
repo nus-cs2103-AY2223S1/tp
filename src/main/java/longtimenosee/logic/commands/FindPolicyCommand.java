@@ -25,7 +25,9 @@ public class FindPolicyCommand extends Command {
             + "[" + PREFIX_TITLE + "TITLE] "
             + "[" + PREFIX_COMPANY + "COMPANY] "
             + "[" + PREFIX_COVERAGES + "COVERAGE]…\n"
-            + "Example: " + COMMAND_WORD + " cov/TRAVEL cmp/AIA";
+            + "Example: " + COMMAND_WORD + " "
+            + PREFIX_COVERAGES + "TRAVEL "
+            + PREFIX_COMPANY + "AIA";
 
     private final List<Predicate<Policy>> predicates;
 
