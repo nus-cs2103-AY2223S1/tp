@@ -77,8 +77,6 @@ public class InternshipCard extends UiPart<Region> {
         internship.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
-        remark.setText(internship.getRemark().value);
-        remark.setWrapText(true);
     }
 
     @Override

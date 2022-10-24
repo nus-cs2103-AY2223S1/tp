@@ -101,9 +101,6 @@ public class InTrackParser {
         case SortCommand.COMMAND_WORD:
             return new SortCommandParser().parse(arguments);
 
-        case FilterCommand.COMMAND_WORD:
-            return new FilterCommandParser().parse(arguments);
-
         case StatusCommand.COMMAND_WORD:
             return new StatusCommandParser().parse(arguments);
 
