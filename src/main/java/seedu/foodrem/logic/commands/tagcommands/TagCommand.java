@@ -13,13 +13,14 @@ import seedu.foodrem.logic.commands.exceptions.CommandException;
 import seedu.foodrem.model.Model;
 import seedu.foodrem.model.item.Item;
 import seedu.foodrem.model.tag.Tag;
+import seedu.foodrem.viewmodels.ItemWithMessage;
 
 /**
  * Tags an item with a Tag.
  */
 public class TagCommand extends Command {
     // TODO: Test this command
-    private static final String MESSAGE_SUCCESS = "Item tagged successfully.\n%1$s";
+    private static final String MESSAGE_SUCCESS = "Item tagged successfully. View updated item below:";
     private static final String ERROR_DUPLICATE = "This item has already been tagged with this tag";
     private static final String ERROR_NOT_FOUND_TAG = "This tag does not exist";
     private static final String ERROR_NOT_FOUND_ITEM = "The item index does not exist";
@@ -58,7 +59,7 @@ public class TagCommand extends Command {
     }
 
     @Override
-    public CommandResult<String> execute(Model model) throws CommandException {
+    public CommandResult<ItemWithMessage> execute(Model model) throws CommandException {
         Item itemToTag = validateAndGetTargetItem(model, tag, index);
         if (itemToTag.containsTag(tag)) {
             throw new CommandException(ERROR_DUPLICATE);
@@ -69,7 +70,7 @@ public class TagCommand extends Command {
         model.setItem(itemToTag, newTagSetItem);
         model.updateFilteredItemList(Model.PREDICATE_SHOW_ALL_ITEMS);
 
-        return CommandResult.from(String.format(MESSAGE_SUCCESS, newTagSetItem));
+        return CommandResult.from(new ItemWithMessage(newTagSetItem, MESSAGE_SUCCESS));
     }
 
     static Item validateAndGetTargetItem(Model model, Tag tag, Index index) throws CommandException {
