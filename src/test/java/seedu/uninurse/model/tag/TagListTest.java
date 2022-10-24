@@ -21,7 +21,8 @@ import seedu.uninurse.model.tag.exceptions.TagNotFoundException;
 public class TagListTest {
     private final TagList emptyTagList = new TagList();
     private final TagList tagListElderly = new TagList(List.of(TAG_ELDERLY));
-    private final TagList tagList = new TagList(Arrays.asList(TAG_ELDERLY, TAG_NURSING_HOME));
+    // TAG_NURSING_HOME is lexicographically < TAG_ELDERLY
+    private final TagList sortedTagList = new TagList(Arrays.asList(TAG_NURSING_HOME, TAG_ELDERLY));
 
     @Test
     public void constructor_null_throwsNullPointerException() {
@@ -31,8 +32,7 @@ public class TagListTest {
     @Test
     public void constructor_unsortedTagList_returnsSortedTagList() {
         TagList tagList = new TagList(Arrays.asList(TAG_ELDERLY, TAG_NURSING_HOME));
-        TagList expectedTagList = new TagList(Arrays.asList(TAG_NURSING_HOME, TAG_ELDERLY));
-        assertEquals(tagList, expectedTagList);
+        assertEquals(tagList, sortedTagList);
     }
 
     @Test
@@ -49,6 +49,12 @@ public class TagListTest {
     public void add_validTag_success() {
         TagList updatedTagList = emptyTagList.add(TAG_ELDERLY);
         assertEquals(updatedTagList, tagListElderly);
+    }
+
+    @Test
+    public void add_returnsSortedTagList() {
+        TagList tagList = tagListElderly.add(TAG_NURSING_HOME);
+        assertEquals(tagList, sortedTagList);
     }
 
     @Test
@@ -104,7 +110,7 @@ public class TagListTest {
 
     @Test
     public void size_nonEmptyList_returnsNonZero() {
-        assertNotEquals(tagList.size(), 0);
+        assertNotEquals(tagListElderly.size(), 0);
     }
 
     @Test
@@ -114,13 +120,13 @@ public class TagListTest {
 
     @Test
     public void isEmpty_nonEmptyList_returnsFalse() {
-        assertFalse(tagList.isEmpty());
+        assertFalse(tagListElderly.isEmpty());
     }
 
     @Test
     public void getInternalList_modifyList_throwsUnsupportedOperationException() {
         assertThrows(UnsupportedOperationException.class, ()
-                -> tagList.getInternalList().remove(0));
+                -> tagListElderly.getInternalList().remove(0));
     }
 
     @Test
@@ -131,7 +137,7 @@ public class TagListTest {
     @Test
     public void toString_nonEmptyList() {
         String expectedString = "[" + TYPICAL_TAG_NURSING_HOME + "][" + TYPICAL_TAG_ELDERLY + "]";
-        assertEquals(tagList.toString(), expectedString);
+        assertEquals(sortedTagList.toString(), expectedString);
     }
 
     @Test
@@ -150,6 +156,6 @@ public class TagListTest {
         assertNotEquals(null, tagListElderly);
 
         // different internal list -> returns false
-        assertNotEquals(tagListElderly, tagList);
+        assertNotEquals(tagListElderly, sortedTagList);
     }
 }
