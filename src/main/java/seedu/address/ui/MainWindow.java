@@ -170,6 +170,15 @@ public class MainWindow extends UiPart<Stage> {
     }
 
     /**
+     * Opens the count window or focuses on it if it's already opened.
+     */
+    @FXML
+    public void handleCount() {
+        CountWindow countWindow = new CountWindow(logic.getCensus());
+        countWindow.show();
+    }
+
+    /**
      * Executes the command and returns the result.
      *
      * @see seedu.address.logic.Logic#execute(String)
@@ -195,6 +204,10 @@ public class MainWindow extends UiPart<Stage> {
 
             if (commandResult.isExit()) {
                 handleExit();
+            }
+
+            if (commandResult.isShowCount()) {
+                handleCount();
             }
 
             return commandResult;

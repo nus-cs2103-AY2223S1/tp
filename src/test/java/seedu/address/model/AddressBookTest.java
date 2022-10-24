@@ -6,6 +6,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_MEDICATION_PARACETAMOL;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NEXT_OF_KIN_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PATIENT_TYPE_BOB;
+import static seedu.address.logic.commands.CountCommand.MESSAGE_COUNT;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalPersons.ALICE;
 import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
@@ -22,6 +23,7 @@ import javafx.collections.ObservableList;
 import seedu.address.model.person.PatientType.PatientTypes;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.exceptions.DuplicatePersonException;
+import seedu.address.model.tag.Medication;
 import seedu.address.testutil.PersonBuilder;
 
 public class AddressBookTest {
@@ -100,6 +102,19 @@ public class AddressBookTest {
         @Override
         public ObservableList<Person> getPersonList() {
             return persons;
+        }
+
+        @Override
+        public String getMedicationMap() {
+            return Medication.getMedicationMap();
+        }
+
+        @Override
+        public String getCensus(Model model) {
+            StringBuilder sb = new StringBuilder();
+            sb.append(String.format(MESSAGE_COUNT, model.getPersonCount()));
+            sb.append(getMedicationMap());
+            return sb.toString();
         }
     }
 

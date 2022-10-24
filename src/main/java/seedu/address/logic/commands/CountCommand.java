@@ -14,12 +14,15 @@ public class CountCommand extends Command {
             + ": Shows count of all patients in the hospital.\n"
             + "Parameters: NONE\n"
             + "Example: count";
-    public static final String MESSAGE_COUNT = "Current patient count: %d";
+    public static final String MESSAGE_COUNT = "Total patients: %d";
+    public static final String MEDICATION_COUNT = "Types of medication: %d";
+    public static final String EACH_MEDICATION_COUNT = "%s: %d";
+    public static final String UI_CONFIRMATION = "Opened count window.";
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        return new CommandResult(String.format(MESSAGE_COUNT, model.getPersonCount()));
+        return new CommandResult(UI_CONFIRMATION, true);
     }
 
     @Override

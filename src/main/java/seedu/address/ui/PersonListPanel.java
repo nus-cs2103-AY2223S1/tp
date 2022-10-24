@@ -28,8 +28,7 @@ public class PersonListPanel extends UiPart<Region> {
         if (!isNextOfKin) {
             personListView.setItems(personList);
             personListView.setCellFactory(listView -> new PersonListViewCell());
-        }
-        else {
+        } else {
             personListView.setItems(personList);
             personListView.setCellFactory(listView -> new ContactListViewCell());
 

@@ -90,5 +90,10 @@ public interface Model {
      * @return count of people stored in the address book
      */
     int getPersonCount();
+
+    /**
+     * Returns a string representation of the address book's census.
+     */
+    String getCensus();
 }
 

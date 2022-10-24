@@ -12,10 +12,9 @@ import seedu.address.model.UserPrefs;
 class CountCommandTest {
 
     @Test
-    void execute_countPersons_success() {
+    void execute_countCommand_success() {
         Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
         Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
-        assertCommandSuccess(new CountCommand(), model, String.format(CountCommand.MESSAGE_COUNT,
-                model.getPersonCount()), expectedModel);
+        assertCommandSuccess(new CountCommand(), model, CountCommand.UI_CONFIRMATION, expectedModel);
     }
 }

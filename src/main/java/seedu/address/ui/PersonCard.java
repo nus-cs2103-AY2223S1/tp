@@ -1,7 +1,5 @@
 package seedu.address.ui;
 
-import java.util.Comparator;
-
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
@@ -71,9 +69,9 @@ public class PersonCard extends UiPart<Region> {
                 floorNumber.setVisible(false));
         person.getWardNumber().ifPresentOrElse(wn -> wardNumber.setText(wn.toString()), () ->
                 wardNumber.setVisible(false));
-        person.getMedications().stream()
-                .sorted(Comparator.comparing(medication -> medication.medicationName))
-                .forEach(medication -> medications.getChildren().add(new Label(medication.medicationName + " ")));
+        if (person.getMedications().size() > 0) {
+            medications.getChildren().add(new Label(person.getMedicationString()));
+        }
         appointments.setText("Past Appointments: " + person.getPastAppointmentCount());
         person.getUpcomingAppointment().ifPresentOrElse(ua -> upcomingAppointment.setText(ua.toString()), () ->
                 upcomingAppointment.setVisible(false));
