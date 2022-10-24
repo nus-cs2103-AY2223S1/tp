@@ -105,6 +105,7 @@ public class AssignTaskCommand extends Command {
                 personToAssignTask.getAddress(), personToAssignTask.getTags(), assignments,
                 personToAssignTask.getPersonGroups());
 
+        editedPerson.setWorkloadScore();
         model.setPerson(personToAssignTask, editedPerson);
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
 

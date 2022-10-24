@@ -42,9 +42,8 @@ public class PersonCard extends UiPart<Region> {
     @FXML
     private FlowPane tags;
     @FXML
-    private FlowPane assignments;
-    @FXML
     private FlowPane personGroup;
+
     @FXML
     private HBox phoneContainer;
     @FXML
@@ -58,6 +57,8 @@ public class PersonCard extends UiPart<Region> {
      */
     public PersonCard(Person person, int displayedIndex) {
         super(FXML);
+        this.cardPane.setStyle(String.format("-fx-border-color:%s ; -fx-border-width: 0 0 0 5;",
+            getColourFromWorkload(person.getWorkloadScore())));
         this.person = person;
         id.setText(displayedIndex + ". ");
         name.setText(person.getName().fullName);
@@ -68,11 +69,7 @@ public class PersonCard extends UiPart<Region> {
         person.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
-        person.getAssignments()
-                .forEach((key, value) -> {
-                    String assignmentString = key + " : " + value;
-                    assignments.getChildren().add(new Label(assignmentString));
-                });
+
         person.getPersonGroups().stream()
                 .sorted(Comparator.comparing(PersonGroup::getGroupName))
                 .forEach(group -> personGroup.getChildren()
@@ -95,5 +92,15 @@ public class PersonCard extends UiPart<Region> {
         PersonCard card = (PersonCard) other;
         return id.getText().equals(card.id.getText())
                 && person.equals(card.person);
+    }
+
+    private String getColourFromWorkload(int score) {
+        if (score < 5) {
+            return "green";
+        } else if (score >= 5 && score < 15) {
+            return "yellow";
+        } else {
+            return "red";
+        }
     }
 }
