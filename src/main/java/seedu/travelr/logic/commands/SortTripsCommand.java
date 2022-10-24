@@ -19,7 +19,7 @@ public class SortTripsCommand extends Command {
             + "Parameters (Optional): "
             + PREFIX_SORTBY + "FACTOR " + PREFIX_REVERSE_ORDER + "\n"
             + "By default this command will sort by titles alphabetically if there's no given factor.\n"
-            + "Available factors: \n" 
+            + "Available factors: \n"
             + "title : sorts by trip titles alphabetically" + "\n"
             + "time : sorts by trip time" + "\n"
             + "location : sorts by trip locations alphabetically" + "\n"
