@@ -1,0 +1,19 @@
+@startuml
+start
+repeat
+:User enters add person command;
+if () then ([gender field is provided])
+  if () then ([gender format is valid])
+    if () then ([person doesn't exist
+   in the contact list])
+      :Person is added with valid gender field;
+      stop
+    else ([else])
+    endif
+  else ([else])
+  endif
+else ([else])
+endif
+backward :System shows error message;
+repeat while;
+@enduml
