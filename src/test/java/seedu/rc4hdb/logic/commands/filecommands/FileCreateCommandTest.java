@@ -47,9 +47,9 @@ public class FileCreateCommandTest {
         DataStorageManager expectedDataStorage = new DataStorageManager(storage.getDataStorageFilePath());
         UserPrefsStorage expectedUserPrefsStorage = new JsonUserPrefsStorage(storage.getUserPrefsFilePath());
         Storage expectedStorage = new StorageManager(expectedDataStorage, expectedUserPrefsStorage);
-        String expectedMessage = String.format(FileCreateCommand.MESSAGE_SUCCESS, "DoesNotExist.json");
+        String expectedMessage = String.format(FileCreateCommand.MESSAGE_SUCCESS, "DoesNotExist");
 
-        Path targetFilePath = getTempFilePath("DoesNotExist.json");
+        Path targetFilePath = getTempFilePath("DoesNotExist");
         String targetFileName = "DoesNotExist";
         FileCreateCommand fileCreateCommand = new FileCreateCommand(testFolder, targetFileName);
 
@@ -94,18 +94,23 @@ public class FileCreateCommandTest {
 
     /**
      * A storage stub class that throws an {@code IOException} when the
-     * @see #createResidentBookFile(Path) method is invoked.
+     * @see #createDataFile(Path) method is invoked.
      */
     private static class StorageStubThrowsIoException extends StorageStub {
         public static final IOException DUMMY_IO_EXCEPTION = new IOException("dummy exception");
 
         @Override
-        public void createResidentBookFile(Path filePath) throws IOException {
+        public void createDataFile(Path filePath) throws IOException {
             throw DUMMY_IO_EXCEPTION;
         }
 
         @Override
         public Path getUserPrefsFilePath() {
+            return null;
+        }
+
+        @Override
+        public Path getDataStorageFilePath() {
             return null;
         }
     }
