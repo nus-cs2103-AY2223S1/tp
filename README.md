@@ -18,20 +18,21 @@ Now you will never miss any internship application deadlines or interviews again
 PleaseHireUs has been optimized for use via a Command Line Interface (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, PleaseHireUs can get your internship management tasks done faster than traditional GUI apps.
 We hope you find PleaseHireUs to be very useful in your internship hunt!
 
-* This is a brownfield project adapted from AddressBook 3(AB3) for **Software Engineering (SE) Students**
+This is a brownfield project adapted from AddressBook 3(AB3) for **Software Engineering (SE) Students**
 
-* The project simulates an ongoing software project for a desktop application used for managing internships details.
+The project simulates an ongoing software project for a desktop application used for managing internships details.
   * It is **written in OOP fashion**. It provides a **reasonably well-written** code base (around 6 KLoC) .
-  * It comes with a **reasonable level of user and developer documentation**.
-* For the detailed documentation of this project, see the **[PleaseHireUs Website](https://ay2223s1-cs2103t-w17-4.github.io/tp/)**.
+  * It comes with a **reasonable level of user and developer documentation**. 
+For the detailed documentation of this project, see the **[PleaseHireUs Website](https://ay2223s1-cs2103t-w17-4.github.io/tp/)**.
 
 ## Features
 - [x] Add internship details
-- [x] Sort internships by categories
+- [x] List and sort internships by categories
 - [x] Filter relevant internships
-- [x] Edit internship details
 - [x] View internship details
+- [x] Edit internship details
 - [x] Copy internship details to your clipboard easily
+- [x] Undo or Redo commands
 - [x] View the overall statistic of the application status of all your internships
 
 ## Quick Start
