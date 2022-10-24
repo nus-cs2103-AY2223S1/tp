@@ -9,27 +9,27 @@ import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.Region;
 import swift.commons.core.LogsCenter;
-import swift.model.task.Task;
+import swift.model.person.Person;
 
 /**
  * Panel containing the list of persons.
  */
-public class PersonTaskListPanel extends UiPart<Region> {
-    private static final String FXML = "PersonTaskListPanel.fxml";
-    private final Logger logger = LogsCenter.getLogger(PersonTaskListPanel.class);
+public class TaskPersonListPanel extends UiPart<Region> {
+    private static final String FXML = "TaskPersonListPanel.fxml";
+    private final Logger logger = LogsCenter.getLogger(TaskPersonListPanel.class);
 
     @FXML
-    private ListView<Task> personTaskListView;
+    private ListView<Person> taskPersonListView;
     @FXML
     private Label heading;
 
     /**
      * Creates a {@code PersonListPanel} with the given {@code ObservableList}.
      */
-    public PersonTaskListPanel(ObservableList<Task> taskList) {
+    public TaskPersonListPanel(ObservableList<Person> personList) {
         super(FXML);
-        personTaskListView.setItems(taskList);
-        personTaskListView.setCellFactory(listView -> new PersonTaskListViewCell());
+        taskPersonListView.setItems(personList);
+        taskPersonListView.setCellFactory(listView -> new TaskPersonListViewCell());
     }
 
     /**
@@ -42,16 +42,16 @@ public class PersonTaskListPanel extends UiPart<Region> {
     /**
      * Custom {@code ListCell} that displays the graphics of a {@code Person} using a {@code PersonCard}.
      */
-    class PersonTaskListViewCell extends ListCell<Task> {
+    class TaskPersonListViewCell extends ListCell<Person> {
         @Override
-        protected void updateItem(Task task, boolean empty) {
-            super.updateItem(task, empty);
+        protected void updateItem(Person person, boolean empty) {
+            super.updateItem(person, empty);
 
-            if (empty || task == null) {
+            if (empty || person == null) {
                 setGraphic(null);
                 setText(null);
             } else {
-                setGraphic(new PersonTaskCard(task, getIndex() + 1).getRoot());
+                setGraphic(new TaskPersonCard(person, getIndex() + 1).getRoot());
             }
         }
     }

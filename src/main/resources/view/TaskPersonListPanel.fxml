@@ -5,11 +5,11 @@
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
-    <Label fx:id="heading" styleClass="sub_heading" text="TASKS">
+<VBox xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" styleClass="task-side-panel">
+    <Label fx:id="heading" styleClass="sub_heading" text="TASK INFORMATION">
         <VBox.margin>
             <Insets bottom="5.0" />
         </VBox.margin>
     </Label>
-    <ListView fx:id="personTaskListView" VBox.vgrow="ALWAYS" />
+    <ListView fx:id="taskPersonListView" VBox.vgrow="ALWAYS" />
 </VBox>

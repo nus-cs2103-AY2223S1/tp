@@ -35,6 +35,7 @@ public class MainWindow extends UiPart<Stage> {
     private TaskListPanel taskListPanel;
     private ResultDisplay resultDisplay;
     private PersonTaskListPanel personTaskListPanel;
+    private TaskPersonListPanel taskPersonListPanel;
     private HelpWindow helpWindow;
 
     @FXML
@@ -174,18 +175,32 @@ public class MainWindow extends UiPart<Stage> {
         primaryStage.hide();
     }
 
+    /**
+     * Switch to tasks tab.
+     */
     @FXML
     private void handleTaskTab() {
         personListPanel.removeHeading();
         taskListPanel = new TaskListPanel(logic.getFilteredTaskList(), logic.getFilteredBridgeList(), logic.getFilteredPersonList());
         listPanelPlaceholder.getChildren().add(taskListPanel.getRoot());
+
+        personTaskListPanel.removeHeading();
+        taskPersonListPanel = new TaskPersonListPanel(logic.getFilteredPersonList());
+        personTaskListPanelPlaceholder.getChildren().add(taskPersonListPanel.getRoot());
     }
 
+    /**
+     * Switch to contacts tab.
+     */
     @FXML
     private void handleContactTab() {
         taskListPanel.removeHeading();
         personListPanel = new PersonListPanel(logic.getFilteredPersonList());
         listPanelPlaceholder.getChildren().add(personListPanel.getRoot());
+
+        taskPersonListPanel.removeHeading();
+        personTaskListPanel = new PersonTaskListPanel(logic.getFilteredTaskList());
+        personTaskListPanelPlaceholder.getChildren().add(personTaskListPanel.getRoot());
     }
 
     public PersonListPanel getPersonListPanel() {

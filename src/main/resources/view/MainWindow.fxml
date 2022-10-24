@@ -3,11 +3,13 @@
 <?import java.net.URL?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.Scene?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.stage.Stage?>
@@ -26,10 +28,10 @@
       <VBox maxWidth="1600.0" prefHeight="66.0" prefWidth="1200.0">
         <MenuBar fx:id="menuBar" translateX="-6.0" VBox.vgrow="NEVER">
           <Menu mnemonicParsing="false" text="CONTACTS">
-            <MenuItem mnemonicParsing="false" onAction="#handleContactTab" text="List Contacts" />
+            <MenuItem mnemonicParsing="false" onAction="#handleContactTab" text="Switch to Contacts tab" />
           </Menu>
           <Menu mnemonicParsing="false" text="TASKS">
-            <MenuItem mnemonicParsing="false" onAction="#handleTaskTab" text="List Tasks" />
+            <MenuItem mnemonicParsing="false" onAction="#handleTaskTab" text="Switch to Tasks tab" />
           </Menu>
           <Menu mnemonicParsing="false" text="HELP">
             <MenuItem fx:id="helpMenuItem" mnemonicParsing="false" onAction="#handleHelp" text="Get Help" />
@@ -41,7 +43,7 @@
 
         <StackPane fx:id="commandBoxPlaceholder" styleClass="pane-with-border" VBox.vgrow="NEVER">
           <padding>
-            <Insets bottom="5" left="10" right="10" top="5" />
+            <Insets bottom="5.0" left="25.0" right="25.0" top="15.0" />
           </padding>
         </StackPane>
 
@@ -52,21 +54,36 @@
                   <padding>
                     <Insets bottom="10" left="10" right="10" top="10" />
                   </padding>
-                  <StackPane fx:id="listPanelPlaceholder" minWidth="600.0" HBox.hgrow="ALWAYS" VBox.vgrow="ALWAYS" />
+                  <StackPane fx:id="listPanelPlaceholder" minWidth="600.0" HBox.hgrow="ALWAYS" VBox.vgrow="ALWAYS">
+                           <padding>
+                              <Insets left="14.0" right="15.0" />
+                           </padding></StackPane>
                 </VBox>
             </HBox>
 
                   <HBox maxWidth="1.7976931348623157E308" minWidth="300.0" prefHeight="22.0" prefWidth="282.0" HBox.hgrow="ALWAYS" VBox.vgrow="ALWAYS">
-              <VBox HBox.hgrow="ALWAYS" VBox.vgrow="ALWAYS">
-                <StackPane fx:id="resultDisplayPlaceholder" styleClass="pane-with-border" VBox.vgrow="ALWAYS">
+              <VBox style="-fx-background-color: #FAFAFA;" styleClass="right-panel-vbox" HBox.hgrow="ALWAYS" VBox.vgrow="ALWAYS">
+                        <Pane maxHeight="25.0" prefHeight="25.0" prefWidth="400.0" styleClass="result-display-pane">
+                           <children>
+                              <Label prefHeight="25.0" styleClass="result_heading" text="SEARCH RESULTS">
+                                 <padding>
+                                    <Insets left="12.0" top="10.0" />
+                                 </padding>
+                                 <opaqueInsets>
+                                    <Insets />
+                                 </opaqueInsets>
+                              </Label>
+                           </children>
+                        </Pane>
+                <StackPane fx:id="resultDisplayPlaceholder" maxHeight="120.0" styleClass="right-pane-with-border" VBox.vgrow="ALWAYS">
                   <padding>
-                    <Insets bottom="5" left="10" right="10" top="5" />
+                    <Insets bottom="5.0" left="10.0" right="25.0" top="5.0" />
                   </padding>
                 </StackPane>
 
-                <StackPane VBox.vgrow="ALWAYS" fx:id="personTaskListPanelPlaceholder" styleClass="pane-with-border">
+                <StackPane fx:id="personTaskListPanelPlaceholder" styleClass="pane-with-border" VBox.vgrow="ALWAYS">
                   <padding>
-                    <Insets top="5" right="10" bottom="5" left="10" />
+                    <Insets bottom="5.0" left="10.0" right="25.0" top="5.0" />
                   </padding>
                 </StackPane>
               </VBox>
