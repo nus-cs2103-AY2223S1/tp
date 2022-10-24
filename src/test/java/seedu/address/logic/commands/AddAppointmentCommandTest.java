@@ -156,8 +156,8 @@ public class AddAppointmentCommandTest {
     @Test
     public void execute_invalidPersonIndexFilteredList_failure() {
         Model testModel = new ModelManager(new AddressBook(), new UserPrefs(), new CommandHistory());
-        testModel.addPerson(ALICE);
-        testModel.addPerson(BOB);
+        testModel.addPerson(new PersonBuilder(ALICE).build());
+        testModel.addPerson(new PersonBuilder(BOB).build());
         showPersonAtIndex(testModel, INDEX_FIRST_PERSON);
         Index outOfBoundIndex = INDEX_SECOND_PERSON;
         // ensures that outOfBoundIndex is still in bounds of address book list

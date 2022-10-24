@@ -49,8 +49,9 @@ public class UniquePersonListTest {
         Appointment aliceAppointment = new AppointmentBuilder()
                                         .withDateTime(VALID_DATETIME_21_JAN_2023)
                                         .withLocation(VALID_LOCATION_NUS).build();
-        ALICE.getAppointments().add(aliceAppointment);
-        testUniquePersonList.add(ALICE);
+        Person testPerson = new PersonBuilder(ALICE).build();
+        testPerson.getAppointments().add(aliceAppointment);
+        testUniquePersonList.add(testPerson);
         Appointment duplicateAppointment = new AppointmentBuilder()
                 .withDateTime(VALID_DATETIME_21_JAN_2023)
                 .withLocation(VALID_LOCATION_WESTMALL).build();
