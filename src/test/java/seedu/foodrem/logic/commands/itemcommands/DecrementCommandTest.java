@@ -22,7 +22,6 @@ import seedu.foodrem.testutil.MessageToUser;
 import seedu.foodrem.viewmodels.ItemWithMessage;
 
 class DecrementCommandTest {
-
     private static final String EXPECTED_SUCCESS_MESSAGE = "Decremented successfully and updated item as follows:";
 
     private final Model model = new ModelManager(getTypicalFoodRem(), new UserPrefs());
@@ -30,10 +29,7 @@ class DecrementCommandTest {
     @Test
     public void execute_success() {
         Item originalItem = model.getCurrentList().get(0);
-
-        Item expectedItem = new ItemBuilder(originalItem)
-                .withItemQuantity("4")
-                .build();
+        Item expectedItem = new ItemBuilder(originalItem).withItemQuantity("4").build();
 
         DecrementCommand decrementCommand = new DecrementCommand(INDEX_FIRST_ITEM,
                 new ItemQuantity("6"));
@@ -51,7 +47,7 @@ class DecrementCommandTest {
         assertCommandFailure(new DecrementCommand(INDEX_FIRST_ITEM,
                 new ItemQuantity("11")), model, MessageToUser.MESSAGE_FOR_FINAL_QUANTITY_IS_NEGATIVE);
 
-        // Index out of bound
+        // Index out of bounds
         assertCommandFailure(new DecrementCommand(Index.fromOneBased(100),
                 new ItemQuantity("11")), model, Messages.MESSAGE_INVALID_ITEMS_DISPLAYED_INDEX);
     }
@@ -80,13 +76,10 @@ class DecrementCommandTest {
 
         // Exactly the same
         assertEquals(decrementCommandSameFirst, decrementCommandSameSecond);
-
         // Same quantity different index
         assertNotEquals(decrementCommandSameQuantityFirst, decrementCommandSameQuantitySecond);
-
         // Same index different quantity
         assertNotEquals(decrementCommandSameIndexFirst, decrementCommandSameIndexSecond);
-
         // Different index different quantity
         assertNotEquals(decrementCommandDifferentFirst, decrementCommandDifferentSecond);
     }
