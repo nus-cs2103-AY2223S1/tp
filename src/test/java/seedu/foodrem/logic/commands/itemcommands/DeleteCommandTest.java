@@ -17,13 +17,14 @@ import seedu.foodrem.model.Model;
 import seedu.foodrem.model.ModelManager;
 import seedu.foodrem.model.UserPrefs;
 import seedu.foodrem.model.item.Item;
+import seedu.foodrem.viewmodels.ItemWithMessage;
 
 /**
  * Contains integration tests (interaction with the Model) and unit tests for
  * {@code DeleteCommand}.
  */
 public class DeleteCommandTest {
-    private static final String EXPECTED_FORMAT_SUCCESS = "Deleted Item:\n%1$s";
+    private static final String EXPECTED_SUCCESS_MESSAGE = "Successfully deleted the following item:";
 
     private final Model model = new ModelManager(getTypicalFoodRem(), new UserPrefs());
 
@@ -32,12 +33,11 @@ public class DeleteCommandTest {
         Item itemToDelete = model.getFilteredItemList().get(INDEX_FIRST_ITEM.getZeroBased());
         DeleteCommand deleteCommand = new DeleteCommand(INDEX_FIRST_ITEM);
 
-        String expectedMessage = String.format(EXPECTED_FORMAT_SUCCESS, itemToDelete);
-
         ModelManager expectedModel = new ModelManager(model.getFoodRem(), new UserPrefs());
         expectedModel.deleteItem(itemToDelete);
 
-        assertCommandSuccess(deleteCommand, model, expectedMessage, expectedModel);
+        assertCommandSuccess(deleteCommand, model,
+                new ItemWithMessage(itemToDelete, EXPECTED_SUCCESS_MESSAGE), expectedModel);
     }
 
     @Test
@@ -55,13 +55,12 @@ public class DeleteCommandTest {
         Item itemToDelete = model.getFilteredItemList().get(INDEX_FIRST_ITEM.getZeroBased());
         DeleteCommand deleteCommand = new DeleteCommand(INDEX_FIRST_ITEM);
 
-        String expectedMessage = String.format(EXPECTED_FORMAT_SUCCESS, itemToDelete);
-
         Model expectedModel = new ModelManager(model.getFoodRem(), new UserPrefs());
         expectedModel.deleteItem(itemToDelete);
         showNoItem(expectedModel);
 
-        assertCommandSuccess(deleteCommand, model, expectedMessage, expectedModel);
+        assertCommandSuccess(deleteCommand, model,
+                new ItemWithMessage(itemToDelete, EXPECTED_SUCCESS_MESSAGE), expectedModel);
     }
 
     @Test
