@@ -163,6 +163,30 @@ A contact can have any number of tags. Add as many as you want.
 Example:
 * `tag add 1 t/friend` adds the friend tag to the first contact shown in the list.
 
+### Delete a Tag: `tag delete`
+
+Deletes a tag.
+
+Format: `tag delete t/TAG`
+
+<div markdown="block" class="alert alert-info">
+**:information_source: Note:** When `TAG` is deleted, `TAG` is removed from all the contacts which previously had it.
+</div>
+
+Example:
+* `tag delete t/family` deletes the `family` tag.
+
+### Remove a Tag to a Contact: `tag remove`
+
+Adds an existing tag to an existing contact.
+
+Format: `tag remove INDEX t/TAG`
+
+* Removes a `TAG` to the contact at the specified `INDEX`. The index refers to the index number shown in the displayed list of contacts. The index **must be a positive integer** 1, 2, 3, …​
+
+Example:
+* `tag remove 1 t/friend` removes the friend tag from the first contact shown in the list.
+
 ###  Search for a Contact: `search`
 
 Search for contacts using partial information.
@@ -365,6 +389,8 @@ _Details coming soon ..._
 | **Create Tag**  | `tag create t/TAG` <br> e.g., `tag create t/friend`                                                                                                                                                       |
 | **Edit Tag**    | `tag edit t/TAG1 t/TAG2`  <br> e.g., `tag edit t/friend t/bestFriend`                                                                                                                                     |
 | **Add Tag**     | `tag add INDEX t/TAG` <br> e.g., `tag add 1 t/friend`                                                                                                                                                     |
+| **Delete Tag**  | `tag delete t/TAG` <br> e.g., `tag delete t/friend`                                                                                                                                                       |
+| **Remove Tag**  | `tag remove INDEX t/TAG` <br> e.g., `tag remove 1 t/friend`                                                                                                                                               |
 | **Add Todo**    | `todo add d/DESCRIPTION priority/PRIORITY [t/TAG]…​` <br> e.g., `todo add d/Revise priority/high`                                                                                                         |
 | **Edit Todo**   | `todo edit INDEX [d/DESCRIPTION] [priority/PRIORITY] [t/TAG]…​` <br> e.g., `todo edit t/CS2101`                                                                                                           |
 | **Delete Todo** | `todo delete INDEX` <br> e.g., `todo delete 3`                                                                                                                                                            |
