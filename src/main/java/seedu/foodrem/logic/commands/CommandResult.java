@@ -18,6 +18,25 @@ public abstract class CommandResult<T> {
             public T getOutput() {
                 return output;
             }
+
+            // TODO: Test this
+            @Override
+            public boolean equals(Object other) {
+                if (other == this) {
+                    return true;
+                }
+                if (!(other instanceof CommandResult)) {
+                    return false;
+                }
+
+                CommandResult<?> asType = (CommandResult<?>) other;
+                try {
+                    return getOutput().equals(asType.getOutput())
+                            && super.equals(asType);
+                } catch (UnsupportedOperationException e) {
+                    return false;
+                }
+            }
         };
     }
 
@@ -31,6 +50,18 @@ public abstract class CommandResult<T> {
         return false;
     }
     public boolean shouldExit() {
+        return false;
+    }
+
+    protected boolean equals(CommandResult<?> other) {
+        // To be called by derived classes
+        return shouldShowHelp() == other.shouldShowHelp()
+                && shouldExit() == other.shouldExit();
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        // To be overridden by derived classes
         return false;
     }
 }

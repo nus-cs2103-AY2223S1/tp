@@ -24,6 +24,20 @@ public class ExitCommand extends Command {
             public boolean shouldExit() {
                 return true;
             }
+
+            // TODO: Test this
+            @Override
+            public boolean equals(Object other) {
+                if (other == this) {
+                    return true;
+                }
+                if (!(other instanceof CommandResult)) {
+                    return false;
+                }
+
+                CommandResult<?> asType = (CommandResult<?>) other;
+                return super.equals(asType);
+            }
         };
     }
 

@@ -65,6 +65,25 @@ public class HelpCommand extends Command {
                 assert message != null;
                 return message;
             }
+
+            // TODO: Test this
+            @Override
+            public boolean equals(Object other) {
+                if (other == this) {
+                    return true;
+                }
+                if (!(other instanceof CommandResult)) {
+                    return false;
+                }
+
+                CommandResult<?> asType = (CommandResult<?>) other;
+                try {
+                    return getHelpText().equals(asType.getHelpText())
+                            && super.equals(asType);
+                } catch (UnsupportedOperationException e) {
+                    return false;
+                }
+            }
         };
     }
 
