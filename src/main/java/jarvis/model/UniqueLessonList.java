@@ -27,6 +27,15 @@ import javafx.collections.ObservableList;
  */
 public class UniqueLessonList implements Iterable<Lesson> {
 
+    private static final Comparator<Lesson> LESSON_COMPARATOR = (l1, l2) -> {
+        if (l1.isCompleted() == l2.isCompleted()) {
+            return l1.isCompleted() ? l2.getTimePeriod().getStart().compareTo(l1.getTimePeriod().getStart())
+                    : l1.getTimePeriod().getStart().compareTo(l2.getTimePeriod().getStart());
+        } else {
+            return l1.isCompleted() ? 1 : -1;
+        }
+    };
+
     private final ObservableList<Lesson> internalList = FXCollections.observableArrayList();
     private final ObservableList<Lesson> internalUnmodifiableList =
             FXCollections.unmodifiableObservableList(internalList);
@@ -64,8 +73,7 @@ public class UniqueLessonList implements Iterable<Lesson> {
         }
 
         internalList.add(toAdd);
-        // Sorts the lesson list in chronological order
-        FXCollections.sort(internalList, Comparator.comparing(l -> l.getTimePeriod().getStart()));
+        FXCollections.sort(internalList, LESSON_COMPARATOR);
     }
 
     /**
@@ -100,6 +108,7 @@ public class UniqueLessonList implements Iterable<Lesson> {
         }
 
         internalList.set(index, editedLesson);
+        FXCollections.sort(internalList, LESSON_COMPARATOR);
     }
 
     /**
@@ -116,6 +125,7 @@ public class UniqueLessonList implements Iterable<Lesson> {
     public void setLessons(UniqueLessonList replacement) {
         requireNonNull(replacement);
         internalList.setAll(replacement.internalList);
+        FXCollections.sort(internalList, LESSON_COMPARATOR);
     }
 
     /**
@@ -129,6 +139,7 @@ public class UniqueLessonList implements Iterable<Lesson> {
         }
 
         internalList.setAll(lessons);
+        FXCollections.sort(internalList, LESSON_COMPARATOR);
     }
 
     /**

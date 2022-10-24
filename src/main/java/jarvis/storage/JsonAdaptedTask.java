@@ -22,7 +22,7 @@ class JsonAdaptedTask {
     private final boolean isDone;
 
     /**
-     * Constructs a {@code JsonAdaptedStudent} with the given person details.
+     * Constructs a {@code JsonAdaptedTask} with the given task details.
      */
     @JsonCreator
     public JsonAdaptedTask(@JsonProperty("taskDesc") String taskDesc,

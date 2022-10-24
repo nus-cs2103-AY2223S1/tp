@@ -14,7 +14,6 @@ import jarvis.model.exceptions.StudentNotFoundException;
 public class LessonAttendance {
 
     private final TreeMap<Student, Boolean> attendance;
-
     /**
      * Creates the attendance list for a lesson.
      * @param students Students who are involved in the lesson.
