@@ -2,7 +2,7 @@ package seedu.address.model.person;
 
 import java.util.UUID;
 /**
- * Uid that uniquely defines a person.
+ * Uid that uniquely identifies a person.
  * Uid is an unmodifiable field that is created every time with the creation of a new Person.
  */
 public class Uid {
