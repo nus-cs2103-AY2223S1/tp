@@ -41,6 +41,7 @@ public class DeleteCommand extends Command {
 
         Trip tripToDelete = lastShownList.get(targetIndex.getZeroBased());
         model.deleteTrip(tripToDelete);
+        model.updateFilteredEventList(model.getBucketPredicate());
         return new CommandResult(String.format(MESSAGE_DELETE_TRIP_SUCCESS, tripToDelete));
     }
 

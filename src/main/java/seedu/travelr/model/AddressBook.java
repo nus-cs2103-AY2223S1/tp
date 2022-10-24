@@ -156,6 +156,9 @@ public class AddressBook implements ReadOnlyAddressBook {
      * {@code key} must exist in the address book.
      */
     public void removeTrip(Trip key) {
+        for (Event event : key.getEvents()) {
+            bucketList.add(event);
+        }
         trips.remove(key);
     }
 
