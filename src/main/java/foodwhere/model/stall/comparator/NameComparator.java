@@ -10,6 +10,6 @@ import foodwhere.model.stall.Stall;
 public class NameComparator implements Comparator<Stall> {
     @Override
     public int compare(Stall s1, Stall s2) {
-        return s1.getName().fullName.compareTo(s2.getName().fullName);
+        return s1.getName().fullName.compareToIgnoreCase(s2.getName().fullName);
     }
 }
