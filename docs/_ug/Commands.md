@@ -5,14 +5,15 @@ Before continuing, ensure you have read the section on [Flags](#flags) and [Plac
 What you should expect to find:
 
 * A description of the command
-* The expected behaviour for the command
+* The format of the command
+* The expected behaviour of the command
 * A few valid and invalid examples of the command
 * Important points to note
 
-**IMPORTANT:**
-
-* Square brackets indicate an optional parameter.
+**Note:**
 * For each command, "Format" indicates the syntax of the command.
+* Square brackets indicates an optional parameter.
+* In most commands, if more parameters are provided, we take the last value provided.
 
 ### General Commands
 
