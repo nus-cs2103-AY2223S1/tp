@@ -3,6 +3,7 @@ package modtrekt.logic.parser;
 import static modtrekt.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static modtrekt.logic.commands.utils.AddCommandMessages.MESSAGE_ADD_COMMAND_PREFIXES;
 
+import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -61,11 +62,22 @@ public class ModtrektParser {
                 .addCommand(UndoneModuleCommand.COMMAND_WORD, new UndoneModuleCommand())
                 .build();
         try {
-            // This takes care of invalid commands, as well as missing or invalid arguments
-            // via the ParameterException.
-            // Arguments with spaces MUST BE SURROUNDED BY QUOTES.
-            String[] args = StringUtil.shellSplit(userInput.strip());
-            jcommander.parse(args);
+            // Get the tokens from the user input.
+            // ARGUMENTS WITH SPACES MUST BE SURROUNDED BY DOUBLE-QUOTES.
+            List<String> tokens = StringUtil.shellSplit(userInput.strip());
+
+            // Since we're treating e.g. "add task" and "add module" as separate commands,
+            // we'll consider "task" or "module" the scope of the command, and add it to the command word.
+            String scope = tokens.size() >= 2 ? tokens.get(1) : null;
+            if ("module".equals(scope) || "task".equals(scope)) {
+                tokens.remove(1);
+                tokens.set(0, tokens.get(0) + " " + scope);
+            }
+
+            // Parse the command tokens with JCommander.
+            // Invalid commands as well as missing, duplicate, or invalid options will throw a ParameterException.
+            jcommander.parse(tokens.toArray(new String[0]));
+
             // This cast is safe since we only pass Command objects to jcommander::addCommand.
             return (Command) jcommander.getCommands().get(jcommander.getParsedCommand()).getObjects().get(0);
         } catch (ParameterException ex) {
