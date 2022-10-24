@@ -1,9 +1,11 @@
 package seedu.uninurse.model.person;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Predicate;
 
 import seedu.uninurse.model.condition.ConditionContainsKeywordsPredicate;
+import seedu.uninurse.model.medication.MedicationContainsKeywordsPredicate;
 import seedu.uninurse.model.task.TaskContainsKeywordsPredicate;
 
 /**
@@ -11,9 +13,7 @@ import seedu.uninurse.model.task.TaskContainsKeywordsPredicate;
  */
 public class PatientContainsKeywordsPredicate implements Predicate<Patient> {
     private final List<String> keywords;
-    private final PersonContainsKeywordsPredicate personContainsKeywordsPredicate;
-    private final ConditionContainsKeywordsPredicate conditionContainsKeywordsPredicate;
-    private final TaskContainsKeywordsPredicate taskContainsKeywordsPredicate;
+    private final List<Predicate<? super Patient>> predicates;
 
 
     /**
@@ -22,16 +22,16 @@ public class PatientContainsKeywordsPredicate implements Predicate<Patient> {
      */
     public PatientContainsKeywordsPredicate(List<String> keywords) {
         this.keywords = keywords;
-        this.personContainsKeywordsPredicate = new PersonContainsKeywordsPredicate(keywords);
-        this.conditionContainsKeywordsPredicate = new ConditionContainsKeywordsPredicate(keywords);
-        this.taskContainsKeywordsPredicate = new TaskContainsKeywordsPredicate(keywords);
+        this.predicates = new ArrayList<>();
+        this.predicates.add(new PersonContainsKeywordsPredicate(keywords));
+        this.predicates.add(new ConditionContainsKeywordsPredicate(keywords));
+        this.predicates.add(new TaskContainsKeywordsPredicate(keywords));
+        this.predicates.add(new MedicationContainsKeywordsPredicate(keywords));
     }
 
     @Override
     public boolean test(Patient person) {
-        return personContainsKeywordsPredicate.test(person)
-                || conditionContainsKeywordsPredicate.test(person)
-                || taskContainsKeywordsPredicate.test(person);
+        return predicates.stream().anyMatch(x -> x.test(person));
     }
 
     @Override
