@@ -13,10 +13,10 @@ box Model MODEL_COLOR_T1
 participant ":Model" as Model MODEL_COLOR
 end box
 
-[-> LogicManager : execute("tag n/tagname id/1")
+[-> LogicManager : execute("tag 1 n/tagname")
 activate LogicManager
 
-LogicManager -> FoodRemParser : parseCommand("tag n/tagname id/1")
+LogicManager -> FoodRemParser : parseCommand("tag 1 n/tagname")
 activate FoodRemParser
 
 create TagCommandParser
@@ -26,7 +26,7 @@ activate TagCommandParser
 TagCommandParser --> FoodRemParser
 deactivate TagCommandParser
 
-FoodRemParser -> TagCommandParser : parse("tag n/tagname id/1")
+FoodRemParser -> TagCommandParser : parse("tag 1 n/tagname")
 activate TagCommandParser
 
 create TagCommand
