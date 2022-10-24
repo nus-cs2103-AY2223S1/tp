@@ -69,6 +69,10 @@ public class MainWindow extends UiPart<Stage> {
         this.primaryStage = primaryStage;
         this.logic = logic;
         this.logic.getObservableFields().addListener(getListChangeListener());
+
+        this.logic.getObservableFields().addListener(updateVisibleFieldsOnChange());
+        this.logic.getObservableFields().addListener(updateHiddenFieldsOnChange());
+
         this.logic.getObservableResidentBookFilePath().addListener(getFileChangeListener());
 
         // Configure the UI
@@ -122,7 +126,8 @@ public class MainWindow extends UiPart<Stage> {
      * Fills up all the placeholders of this window.
      */
     void fillInnerParts() {
-        residentTableView = new ResidentTableView(logic.getFilteredResidentList(), logic.getObservableFields());
+        residentTableView = new ResidentTableView(logic.getFilteredResidentList(), logic.getObservableFields(),
+                logic.getVisibleFields(), logic.getHiddenFields());
         residentTableViewPlaceholder.getChildren().add(residentTableView.getRoot());
 
         resultDisplay = new ResultDisplay();
@@ -217,6 +222,16 @@ public class MainWindow extends UiPart<Stage> {
     private ListChangeListener<String> getListChangeListener() {
         // Update the observable field list within the logic attribute
         return c -> residentTableView.setObservableFields(logic.getObservableFields());
+    }
+
+    private ListChangeListener<String> updateVisibleFieldsOnChange() {
+        // Update the observable field list within the logic attribute
+        return c -> residentTableView.setVisibleFields(logic.getVisibleFields());
+    }
+
+    private ListChangeListener<String> updateHiddenFieldsOnChange() {
+        // Update the observable field list within the logic attribute
+        return c -> residentTableView.setHiddenFields(logic.getHiddenFields());
     }
 
     private ChangeListener<Path> getFileChangeListener() {
