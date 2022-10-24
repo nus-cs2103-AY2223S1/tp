@@ -7,7 +7,6 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_GRADEPROGRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_HOMEWORK;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_SESSION;
 
-import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.RemoveCommand;
 import seedu.address.logic.commands.RemoveCommand.RemovePersonDescriptor;
 import seedu.address.logic.parser.exceptions.ParseException;
@@ -28,12 +27,8 @@ public class RemoveCommandParser implements Parser<RemoveCommand> {
                 ArgumentTokenizer.tokenize(args, PREFIX_HOMEWORK,
                         PREFIX_GRADEPROGRESS, PREFIX_ATTENDANCE, PREFIX_SESSION);
 
-        Index index;
-
-        try {
-            index = ParserUtil.parseIndex(argMultimap.getPreamble());
-        } catch (ParseException pe) {
-            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, RemoveCommand.MESSAGE_USAGE), pe);
+        if (!argMultimap.getPreamble().isEmpty()) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, RemoveCommand.MESSAGE_USAGE));
         }
 
         RemovePersonDescriptor removePersonDescriptor = new RemovePersonDescriptor();
@@ -55,6 +50,6 @@ public class RemoveCommandParser implements Parser<RemoveCommand> {
             removePersonDescriptor.setSessionIndex(ParserUtil.parseIndex(sessionArgs[0]));
         }
 
-        return new RemoveCommand(index, removePersonDescriptor);
+        return new RemoveCommand(removePersonDescriptor);
     }
 }

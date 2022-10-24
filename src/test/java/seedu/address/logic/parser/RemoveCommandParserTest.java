@@ -20,16 +20,14 @@ public class RemoveCommandParserTest {
         // no index specified
         assertParseFailure(parser, VALID_NAME_AMY, MESSAGE_INVALID_FORMAT);
 
-        // no index and no field specified
-        assertParseFailure(parser, "", MESSAGE_INVALID_FORMAT);
     }
 
     @Test
     public void parse_invalidPreamble_failure() {
-        // negative index
+        // negative integer
         assertParseFailure(parser, "-5", MESSAGE_INVALID_FORMAT);
 
-        // zero index
+        // zero integer
         assertParseFailure(parser, "0", MESSAGE_INVALID_FORMAT);
 
         // invalid arguments being parsed as preamble

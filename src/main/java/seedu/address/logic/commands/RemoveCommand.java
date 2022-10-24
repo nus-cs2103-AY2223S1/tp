@@ -40,7 +40,7 @@ public class RemoveCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Removes the details of the person identified "
             + "by the index number used in the displayed person list. "
-            + "Parameters: INDEX (must be a positive integer) "
+            + "Parameters: "
             + "[" + PREFIX_HOMEWORK + "INDEX HOMEWORK]"
             + "[" + PREFIX_ATTENDANCE + "INDEX ATTENDANCE]"
             + "[" + PREFIX_SESSION + "INDEX SESSION]"
@@ -52,23 +52,20 @@ public class RemoveCommand extends Command {
     public static final String MESSAGE_NOT_VIEW_MODE =
             "You need to be in full view mode to remove a person's details.";
 
-    private final Index index;
     private final RemovePersonDescriptor removePersonDescriptor;
 
     /**
-     * @param index of the detail in the person description to remove
      * @param removePersonDescriptor details to remove person details with
      */
-    public RemoveCommand(Index index, RemovePersonDescriptor removePersonDescriptor) {
-        requireNonNull(index);
+    public RemoveCommand(RemovePersonDescriptor removePersonDescriptor) {
         requireNonNull(removePersonDescriptor);
 
-        this.index = index;
         this.removePersonDescriptor = removePersonDescriptor;
     }
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
+        Index index = Index.fromOneBased(1);
         requireNonNull(model);
         if (!model.isFullView() || model.isDayView()) {
             throw new CommandException(MESSAGE_NOT_VIEW_MODE);
