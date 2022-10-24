@@ -22,14 +22,33 @@ public class ClientContainsKeywordsPredicate implements Predicate<Client> {
         this.phoneKeywords = phoneKeywords;
     }
 
+    public boolean testName(Client client) {
+        return nameKeywords.isEmpty() ? true : nameKeywords.stream()
+                .anyMatch(keyword -> StringUtil.containsWordIgnoreCase(client.getClientName().toString(), keyword));
+    }
+
+    public boolean testEmail(Client client) {
+        return emailKeywords.isEmpty() ? true : emailKeywords.stream()
+                .anyMatch(keyword -> StringUtil.containsWordIgnoreCase(client.getClientEmail().toString(), keyword));
+    }
+
+    public boolean testPhone(Client client) {
+        return phoneKeywords.isEmpty() ? true : phoneKeywords.stream()
+                .anyMatch(keyword -> StringUtil.containsWordIgnoreCase(client.getClientPhone().toString(), keyword));
+    }
+
     @Override
     public boolean test(Client client) {
-        return nameKeywords.stream()
-                .anyMatch(keyword -> StringUtil.containsWordIgnoreCase(client.getClientName().toString(), keyword))
-                && emailKeywords.stream()
-                .anyMatch(keyword -> StringUtil.containsWordIgnoreCase(client.getClientEmail().toString(), keyword))
-                && phoneKeywords.stream()
-                .anyMatch(keyword -> StringUtil.containsWordIgnoreCase(client.getClientPhone().toString(), keyword));
+        return testName(client) && testEmail(client) && testPhone(client);
+    }
+
+    @Override
+    public boolean equals(Object other){
+        return other == this // short circuit if same object
+                || (other instanceof ClientContainsKeywordsPredicate // instanceof handles nulls
+                && nameKeywords.equals(((ClientContainsKeywordsPredicate) other).nameKeywords) //state checks
+                && phoneKeywords.equals(((ClientContainsKeywordsPredicate) other).phoneKeywords)
+                && emailKeywords.equals(((ClientContainsKeywordsPredicate) other).emailKeywords));
     }
 
 }
