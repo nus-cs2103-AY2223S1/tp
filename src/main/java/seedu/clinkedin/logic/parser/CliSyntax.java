@@ -30,6 +30,13 @@ public class CliSyntax {
     private static ArrayList<Prefix> prefixes = new ArrayList<>(Arrays.asList(PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL,
             PREFIX_ADDRESS, PREFIX_SKILLTAG, PREFIX_DEGREETAG, PREFIX_JOBTYPETAG, PREFIX_STATUS, PREFIX_NOTE,
             PREFIX_RATING));
+    //    public static final Prefix PREFIX_FILETYPE = new Prefix("ft/");
+    //    public static final Prefix PREFIX_PATH = new Prefix("path/");
+    private static ArrayList<Prefix> prefixTags = new ArrayList<>(Arrays.asList(PREFIX_SKILLTAG, PREFIX_DEGREETAG,
+            PREFIX_JOBTYPETAG));
+    private static ArrayList<Prefix> prefixes = new ArrayList<>(Arrays.asList(PREFIX_NAME, PREFIX_PHONE, PREFIX_EMAIL,
+            PREFIX_ADDRESS, PREFIX_SKILLTAG, PREFIX_DEGREETAG, PREFIX_JOBTYPETAG, PREFIX_STATUS, PREFIX_NOTE));
+    // Will there be PREFIX_NOTE in this?
     private static ArrayList<Prefix> uniquePrefixes = new ArrayList<>(Arrays.asList(PREFIX_NAME, PREFIX_PHONE,
             PREFIX_EMAIL, PREFIX_ADDRESS, PREFIX_STATUS));
 

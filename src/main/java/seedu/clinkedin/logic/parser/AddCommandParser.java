@@ -44,7 +44,7 @@ public class AddCommandParser implements Parser<AddCommand> {
         }
 
         if (!CliSyntax.getUniquePrefixes().stream().allMatch(pref -> argMultimap.getAllValues(pref).size() == 1)) {
-            throw new ParseException("Name, Phone, Email, Address can't have multiple values.");
+            throw new ParseException("Name, Phone, Email, Address, Status, Note can't have multiple values.");
         }
 
         Name name = ParserUtil.parseName(argMultimap.getValue(PREFIX_NAME).get());
