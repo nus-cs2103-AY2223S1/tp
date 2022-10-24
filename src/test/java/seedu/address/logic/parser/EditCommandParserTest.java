@@ -87,9 +87,12 @@ public class EditCommandParserTest {
     public void parse_invalidValue_failure() {
         assertParseFailure(parser, "1" + INVALID_COMPANY_DESC, Company.MESSAGE_CONSTRAINTS); // invalid company
         assertParseFailure(parser, "1" + INVALID_LINK_DESC, Link.MESSAGE_CONSTRAINTS); // invalid link
-        assertParseFailure(parser, "1" + INVALID_DESCRIPTION_DESC, Description.MESSAGE_CONSTRAINTS); // invalid description
-        assertParseFailure(parser, "1" + INVALID_APPLIED_DATE_DESC, AppliedDate.MESSAGE_CONSTRAINTS); // invalid applied date
-        assertParseFailure(parser, "1" + INVALID_INTERVIEW_DATE_TIME_DESC, InterviewDateTime.MESSAGE_CONSTRAINTS); // invalid interview date time
+        assertParseFailure(parser, "1" + INVALID_DESCRIPTION_DESC, Description.MESSAGE_CONSTRAINTS);
+        // invalid description
+        assertParseFailure(parser, "1" + INVALID_APPLIED_DATE_DESC, AppliedDate.MESSAGE_CONSTRAINTS);
+        // invalid applied date
+        assertParseFailure(parser, "1" + INVALID_INTERVIEW_DATE_TIME_DESC, InterviewDateTime.MESSAGE_CONSTRAINTS);
+        // invalid interview date time
         assertParseFailure(parser, "1" + INVALID_TAG_DESC, Tag.MESSAGE_CONSTRAINTS); // invalid tag
 
         // invalid link followed by valid description
@@ -101,7 +104,8 @@ public class EditCommandParserTest {
 
         // while parsing {@code PREFIX_TAG} alone will reset the tags of the {@code Internship} being edited,
         // parsing it together with a valid tag results in error
-        assertParseFailure(parser, "1" + TAG_DESC_FRONTEND + TAG_DESC_BACKEND + TAG_EMPTY, Tag.MESSAGE_CONSTRAINTS);
+        assertParseFailure(parser, "1" + TAG_DESC_FRONTEND + TAG_DESC_BACKEND + TAG_EMPTY,
+                Tag.MESSAGE_CONSTRAINTS);
         assertParseFailure(parser, "1" + TAG_DESC_FRONTEND + TAG_EMPTY + TAG_DESC_BACKEND, Tag.MESSAGE_CONSTRAINTS);
         assertParseFailure(parser, "1" + TAG_EMPTY + TAG_DESC_FRONTEND + TAG_DESC_BACKEND, Tag.MESSAGE_CONSTRAINTS);
 
@@ -169,7 +173,8 @@ public class EditCommandParserTest {
 
         // interview date time
         userInput = targetIndex.getOneBased() + INTERVIEW_DATE_TIME_DESC_GOOGLE;
-        descriptor = new EditInternshipDescriptorBuilder().withInterviewDateTime(VALID_INTERVIEW_DATE_TIME_GOOGLE).build();
+        descriptor = new EditInternshipDescriptorBuilder()
+                .withInterviewDateTime(VALID_INTERVIEW_DATE_TIME_GOOGLE).build();
         expectedCommand = new EditCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
 
@@ -184,7 +189,7 @@ public class EditCommandParserTest {
     public void parse_multipleRepeatedFields_acceptsLast() {
         Index targetIndex = INDEX_FIRST_INTERNSHIP;
         String userInput = targetIndex.getOneBased() + LINK_DESC_GOOGLE + APPLIED_DATE_DESC_GOOGLE
-                + DESCRIPTION_DESC_GOOGLE + TAG_DESC_FRONTEND + LINK_DESC_GOOGLE  + APPLIED_DATE_DESC_GOOGLE
+                + DESCRIPTION_DESC_GOOGLE + TAG_DESC_FRONTEND + LINK_DESC_GOOGLE + APPLIED_DATE_DESC_GOOGLE
                 + DESCRIPTION_DESC_GOOGLE + TAG_DESC_FRONTEND + LINK_DESC_TIKTOK + APPLIED_DATE_DESC_TIKTOK
                 + DESCRIPTION_DESC_TIKTOK + TAG_DESC_BACKEND;
 
