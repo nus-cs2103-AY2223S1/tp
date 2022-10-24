@@ -2,22 +2,13 @@ package seedu.address.model.module;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.address.testutil.Assert.assertThrows;
 
 import org.junit.jupiter.api.Test;
 
 public class ZoomLinkTest {
 
     @Test
-    public void constructor_null_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> new ZoomLink(null));
-    }
-
-
-    @Test
     public void isValidZoomLink() {
-        // null zoom link
-        assertThrows(NullPointerException.class, () -> ZoomLink.isValidUrl(null));
 
         // invalid zoom link
         assertFalse(ZoomLink.isValidUrl("")); // empty string
