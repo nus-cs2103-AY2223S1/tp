@@ -29,6 +29,7 @@
                 </Label>
                 <Label fx:id="patientName" styleClass="cell_big_label" text="\$first" />
             </HBox>
+            <FlowPane fx:id="tags"/>
             <Label fx:id="reason" styleClass="cell_small_label" text="\$reason" />
             <Label fx:id="status" styleClass="cell_small_label" text="\$status" />
             <Label fx:id="dateTime" styleClass="cell_small_label" text="\$date" />

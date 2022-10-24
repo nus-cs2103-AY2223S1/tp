@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.function.Predicate;
 
 import seedu.address.commons.util.StringUtil;
+import seedu.address.model.person.HiddenPredicateSingleton;
 import seedu.address.model.person.Person;
 
 /**
@@ -18,8 +19,12 @@ public class NameContainsKeywordsPredicate implements Predicate<Person> {
 
     @Override
     public boolean test(Person person) {
-        return keywords.stream()
-                .anyMatch(keyword -> StringUtil.containsWordIgnoreCase(person.getName().fullName, keyword));
+        if (keywords.stream()
+                .anyMatch(keyword -> StringUtil.containsWordIgnoreCase(person.getName().fullName, keyword))) {
+            HiddenPredicateSingleton.addToHiddenPersonList(person);
+            return true;
+        }
+        return false;
     }
 
     @Override

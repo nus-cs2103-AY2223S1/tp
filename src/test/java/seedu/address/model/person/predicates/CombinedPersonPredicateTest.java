@@ -22,8 +22,8 @@ class CombinedPersonPredicateTest {
     private final String phone = "12345678";
     private final String email = "john@gmail.com";
     private final String address = "Blk 123 Code Road";
-    private final String tag1 = "Tag1";
-    private final String tag2 = "Tag2";
+    private final String tag1 = "EAR";
+    private final String tag2 = "NOSE";
     private final String combinedTags = tag1 + " " + tag2;
 
     private final String differentName = "Max";
@@ -75,7 +75,7 @@ class CombinedPersonPredicateTest {
     }
 
     @Test
-    public void test_personFufillsPredicateMixedFields_returnsTrue() {
+    public void test_personFulfillsPredicateMixedFields_returnsTrue() {
         Person personToTest = new PersonBuilder().withName(name).withPhone(phone).withEmail(email)
                 .withAddress(address).withTags(tag1, tag2).build();
 
@@ -98,7 +98,7 @@ class CombinedPersonPredicateTest {
     }
 
     @Test
-    public void test_personNotFufillPredicateMixedFields_returnsFalse() {
+    public void test_personNotFulfillPredicateMixedFields_returnsFalse() {
         Person personToTest = new PersonBuilder().withName(name).withPhone(phone).withEmail(email)
                 .withAddress(address).withTags(tag1, tag2).build();
 
@@ -130,7 +130,7 @@ class CombinedPersonPredicateTest {
     }
 
     @Test
-    public void test_personFufillsPredicateNameOnly_returnsTrue() {
+    public void test_personFulfillsPredicateNameOnly_returnsTrue() {
         String nameToTest = "Alice Yeoh";
         Person personToTest = new PersonBuilder().withName(nameToTest).build();
 
@@ -152,7 +152,7 @@ class CombinedPersonPredicateTest {
     }
 
     @Test
-    public void test_personNotFufillPredicateNameOnly_returnsFalse() {
+    public void test_personNotFulfillPredicateNameOnly_returnsFalse() {
         String nameToTest = "John Doe";
         Person personToTest = new PersonBuilder().withName(nameToTest).build();
 
@@ -175,7 +175,7 @@ class CombinedPersonPredicateTest {
     }
 
     @Test
-    public void test_personFufillsPredicatePhoneOnly_returnsTrue() {
+    public void test_personFulfillsPredicatePhoneOnly_returnsTrue() {
         String phoneToTest = "44556677";
         Person personToTest = new PersonBuilder().withPhone(phoneToTest).build();
 
@@ -189,7 +189,7 @@ class CombinedPersonPredicateTest {
     }
 
     @Test
-    public void test_personNotFufillPredicatePhoneOnly_returnsFalse() {
+    public void test_personNotFulfillPredicatePhoneOnly_returnsFalse() {
         String phoneToTest = "12345678";
         Person personToTest = new PersonBuilder().withPhone(phoneToTest).build();
 
@@ -212,7 +212,7 @@ class CombinedPersonPredicateTest {
     }
 
     @Test
-    public void test_personFufillsPredicateEmailOnly_returnsTrue() {
+    public void test_personFulfillsPredicateEmailOnly_returnsTrue() {
         String emailToTest = "Alice@gmail.com";
         Person personToTest = new PersonBuilder().withEmail(emailToTest).build();
 
@@ -234,7 +234,7 @@ class CombinedPersonPredicateTest {
     }
 
     @Test
-    public void test_personNotFufillPredicateEmailOnly_returnsFalse() {
+    public void test_personNotFulfillPredicateEmailOnly_returnsFalse() {
         String emailToTest = "John@gmail.com";
         Person personToTest = new PersonBuilder().withEmail(emailToTest).build();
 
@@ -257,7 +257,7 @@ class CombinedPersonPredicateTest {
     }
 
     @Test
-    public void test_personFufillsPredicateAddressOnly_returnsTrue() {
+    public void test_personFulfillsPredicateAddressOnly_returnsTrue() {
         String addressToTest = "Blk 22 Potato Street 29, #06-40, Singapore 123456";
         Person personToTest = new PersonBuilder().withAddress(addressToTest).build();
 
@@ -276,7 +276,7 @@ class CombinedPersonPredicateTest {
     }
 
     @Test
-    public void test_personNotFufillPredicateAddressOnly_returnsFalse() {
+    public void test_personNotFulfillPredicateAddressOnly_returnsFalse() {
         String addressToTest = "Potato Street, Blk 123 #12-34, Singapore 123456";
         Person personToTest = new PersonBuilder().withAddress(addressToTest).build();
 
@@ -300,8 +300,8 @@ class CombinedPersonPredicateTest {
     }
 
     @Test
-    public void test_personFufillsPredicateTagsOnly_returnsTrue() {
-        String[] tagsToTest = new String[]{"Tag3", "Tag4", "Tag5"};
+    public void test_personFulfillsPredicateTagsOnly_returnsTrue() {
+        String[] tagsToTest = new String[]{"ear", "nose", "throat"};
         Person personToTest = new PersonBuilder().withTags(tagsToTest).build();
 
         // Same tags
@@ -309,17 +309,17 @@ class CombinedPersonPredicateTest {
         assertTrue(predicate.test(personToTest));
 
         // Matches all search tags, mixed-case works
-        predicate = generateCombinedPersonPredicateWithOnlyTags("TAG3", "tAg4");
+        predicate = generateCombinedPersonPredicateWithOnlyTags("EAR", "NoSE");
         assertTrue(predicate.test(personToTest));
     }
 
     @Test
-    public void test_personNotFufillPredicateTagsOnly_returnsFalse() {
-        String[] tagsToTest = new String[]{"Tag6", "Tag7", "Tag8"};
+    public void test_personNotFulfillPredicateTagsOnly_returnsFalse() {
+        String[] tagsToTest = new String[]{"EAR", "NOSE"};
         Person personToTest = new PersonBuilder().withTags(tagsToTest).build();
 
         // Non-matching tag
-        CombinedPersonPredicate predicate = generateCombinedPersonPredicateWithOnlyTags("Hi");
+        CombinedPersonPredicate predicate = generateCombinedPersonPredicateWithOnlyTags("THROAT");
         assertFalse(predicate.test(personToTest));
 
         // Different tag
@@ -327,12 +327,12 @@ class CombinedPersonPredicateTest {
         assertFalse(predicate.test(personToTest));
 
         // Some tags not match
-        predicate = generateCombinedPersonPredicateWithOnlyTags("Tag6", "Wrong", "Tag8");
+        predicate = generateCombinedPersonPredicateWithOnlyTags("EAR", "NOSE", "THROAT");
         assertFalse(predicate.test(personToTest));
 
         // Tags match name and address, but does not match tag
-        predicate = generateCombinedPersonPredicateWithOnlyTags("Tag");
-        assertFalse(predicate.test(new PersonBuilder().withName("Tag").withEmail("Tag@gmail.com")
-                .withAddress("Tag").withTags("SomethingElse").build()));
+        predicate = generateCombinedPersonPredicateWithOnlyTags("EAR");
+        assertFalse(predicate.test(new PersonBuilder().withName("EAR").withEmail("Tag@gmail.com")
+                .withAddress("EAR").withTags("NOSE").build()));
     }
 }

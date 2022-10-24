@@ -122,6 +122,59 @@ public class Person {
     }
 
     /**
+     * Returns -1 if this person appears before the other person, and
+     * returns 0 if this person has the same order as the other person, and
+     * returns 1 if this person appears after the other person.
+     *
+     * @param person The other person to compare with.
+     */
+    public int compareTo(Person person) {
+        return this.getName().compareTo(person.getName()) < 0
+                ? -1
+                : this.getName().compareTo(person.getName()) > 0
+                ? 1
+                : this.getPhone().compareTo(person.getPhone());
+    }
+
+    /**
+     * Returns the group number where this person belongs to, which is determined
+     * by its tags.
+     *
+     */
+    public int getGroupNumber() {
+        Set<Tag> tags = this.getTags();
+        if (tags.isEmpty()) {
+            return 0;
+        }
+        int value = 0;
+        for (Tag tag: tags) {
+            value += tag.ordinal();
+        }
+        if (tags.size() == 1) {
+            return value + 1;
+        }
+        if (tags.size() == 2) {
+            return value + 3;
+        }
+        return value + 4;
+    }
+
+    /**
+     * Returns 10 * group difference -1 if this person appears before the other person, and
+     * returns 10 * group difference if this person has the same order as the other person, and
+     * returns 10 * group difference + 1 if this person appears after the other person. This method
+     * makes sure that people with the same tag group are grouped together.
+     *
+     * @param person The other person to compare with.
+     */
+    public int groupCompareTo(Person person) {
+        int tagWeight = 10;
+        int nameWeight = 1;
+        return tagWeight * (this.getGroupNumber() - person.getGroupNumber())
+            + nameWeight * this.compareTo(person);
+    }
+
+    /**
      * Returns true if both persons have the same identity and data fields.
      * This defines a stronger notion of equality between two persons.
      */

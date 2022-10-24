@@ -11,6 +11,7 @@ import java.util.Set;
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.logic.parser.exceptions.ParseException;
+import seedu.address.model.Key;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Appointment;
 import seedu.address.model.person.Email;
@@ -140,7 +141,22 @@ public class ParserUtil {
         if (!Tag.isValidTagName(trimmedTag)) {
             throw new ParseException(Tag.MESSAGE_CONSTRAINTS);
         }
-        return new Tag(trimmedTag);
+        return Tag.convertToTag(trimmedTag);
+    }
+
+    /**
+     * Parses a {@code String key} into a {@code String}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code tag} is invalid.
+     */
+    public static Key parseKey(String key) throws ParseException {
+        requireNonNull(key);
+        String trimmedKey = key.trim();
+        if (!Key.isValidKey(trimmedKey)) {
+            throw new ParseException(Key.MESSAGE_CONSTRAINTS);
+        }
+        return Key.convertToKey(trimmedKey);
     }
 
     /**
@@ -149,7 +165,8 @@ public class ParserUtil {
      *
      * @throws ParseException if the given {@code reason} or {@code dateTime} is invalid.
      */
-    public static Appointment parseAppointment(String reason, String dateTime, String period) throws ParseException {
+    public static Appointment parseAppointment(String reason, String dateTime, String period, Set<Tag> tags)
+            throws ParseException {
         requireNonNull(dateTime);
         requireNonNull(reason);
         String trimmedReason = reason.trim();
@@ -166,7 +183,8 @@ public class ParserUtil {
         if (!period.isEmpty() && !Appointment.isValidTimePeriod(trimmedPeriod)) {
             throw new ParseException(Appointment.TIME_PERIOD_MESSAGE_CONSTRAINTS);
         }
-        return new Appointment(trimmedReason, trimmedDateTime, trimmedPeriod, false);
+
+        return new Appointment(trimmedReason, trimmedDateTime, trimmedPeriod, tags, false);
     }
 
     /**

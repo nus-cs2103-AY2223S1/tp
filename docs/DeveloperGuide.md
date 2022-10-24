@@ -266,7 +266,7 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 **Aspect: How archive appointment executes:**
 
-* **Current choice:** Create multiple appointment lists according to tags or dates and merge all the lists to show the 
+* **Current choice:** Create multiple appointment lists according to tags or dates and merge all the lists to show the
   merged list on the screen.
 
 _{more aspects and alternatives to be added}_
@@ -341,13 +341,13 @@ and how the mark mechanism behaves at each step.
 ![MarkSequenceDiagram](images/MarkSequenceDiagram.png)
 
 The `unmark` command functions similiarly to `mark`, but with the use of `UnmarkCommandParser` and `UnmarkCommand`
-classes in place of `MarkCommandParser` and `MarkCommand` respectively. 
+classes in place of `MarkCommandParser` and `MarkCommand` respectively.
 It also lacks the logic to add recurring appointments.
 
 #### Design considerations:
 
 **Aspect: How mark & unmark executes:**
-* **Alternative 1 (current choice):** `MarkCommand` and `UnmarkCommand` takes in an `Index` denoting the appointment to 
+* **Alternative 1 (current choice):** `MarkCommand` and `UnmarkCommand` takes in an `Index` denoting the appointment to
 mark/unmark.
     * Pros: Easy to implement.
     * Cons: Will have to compute the actual appointment to mark `MarkCommand`/`UnmarkCommand` itself.
@@ -355,9 +355,9 @@ mark/unmark.
 * **Alternative 2:** `MarkCommand` and `UnmarkCommand` takes in the `Appointment` to be marked as a parameter in its
 constructor directly
     * Pros: Cohesiveness is increased, as it only needs to concern itself with marking/unmarking the appointment.
-    * Cons: The `CommandResult` object generated at the end of the command will not have the `Index` of the appointment 
+    * Cons: The `CommandResult` object generated at the end of the command will not have the `Index` of the appointment
   recorded in it. This makes it harder to debug using `CommandResult` when bugs occur.
-    
+
 ### Find `execute()` implementation
 
 ![MarkSequenceDiagram](images/FindClassDiagram.png)
@@ -366,7 +366,7 @@ The `find` command,
 * Takes in 2 predicates `CombinedPersonPredicate` and `CombinedAppointmentPredicate`.
 * `CombinedPersonPredicate` stores all person related search strings and tests for all patients that satisfies all
 the search terms.
-* `CombinedAppointmentPredicate` stores all appointment related search tags and tests for all appointments that 
+* `CombinedAppointmentPredicate` stores all appointment related search tags and tests for all appointments that
 satisfies all the search terms.
 * These 2 predicates are then used together to create a single predicate that displays all the relevant patient
 and appointments.
@@ -388,7 +388,7 @@ predicate to filter the list with.
 It would also be time-consuming to add in potential new predicates in the future as much more test cases would be needed
 to test each individual class.
 
-* **Alternative 3 (current choice):** Keep the `CombinedPersonPredicate` and `CombinedAppointmentPredicate`, 
+* **Alternative 3 (current choice):** Keep the `CombinedPersonPredicate` and `CombinedAppointmentPredicate`,
 and store the relevant search terms into each predicate. Combine those search terms in the predicate class itself.
     * Pros: Testability of `FindCommand` would be high. Extending the method features in the future would also be
 more efficient than alternative 2.

@@ -211,7 +211,7 @@ public class FindCommandTest {
         // Search for persons with tag "friends" and email containing "li".
         // Should only find Alice and Daniel, and no appointments.
         String searchEmail = "li";
-        String searchTag = "friends";
+        String searchTag = "nose";
         String expectedMessage = String.format(MESSAGE_RESULTS_LISTED_OVERVIEW, 2, 0);
         CombinedPersonPredicate personPredicate =
                 generateCombinedPersonPredicate(EMPTY_STRING, EMPTY_STRING, searchEmail, EMPTY_STRING, searchTag);

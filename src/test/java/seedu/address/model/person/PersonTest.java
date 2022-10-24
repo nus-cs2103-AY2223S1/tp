@@ -1,5 +1,6 @@
 package seedu.address.model.person;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_AMY;
@@ -8,10 +9,15 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_EAR;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalPersons.ALICE;
+import static seedu.address.testutil.TypicalPersons.BENSON;
 import static seedu.address.testutil.TypicalPersons.BOB;
+import static seedu.address.testutil.TypicalPersons.CARL;
+import static seedu.address.testutil.TypicalPersons.DANIEL;
+import static seedu.address.testutil.TypicalPersons.ELLE;
+import static seedu.address.testutil.TypicalPersons.GEORGE;
 
 import org.junit.jupiter.api.Test;
 
@@ -35,7 +41,7 @@ public class PersonTest {
 
         // same name, all other attributes different -> returns false
         Person editedAlice = new PersonBuilder(ALICE).withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB)
-                .withAddress(VALID_ADDRESS_AMY).build();
+                .withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_EAR).build();
         assertFalse(ALICE.isSamePerson(editedAlice));
 
         // different name, all other attributes same -> returns false
@@ -53,7 +59,7 @@ public class PersonTest {
 
         // same name and phone, all other attributes different -> returns true
         editedBob = new PersonBuilder(BOB).withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_AMY)
-                .withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND).build();
+                .withAddress(VALID_ADDRESS_AMY).build();
         assertTrue(BOB.isSamePerson(editedBob));
     }
 
@@ -92,7 +98,42 @@ public class PersonTest {
         assertFalse(ALICE.equals(editedAlice));
 
         // different tags -> returns false
-        editedAlice = new PersonBuilder(ALICE).withTags(VALID_TAG_HUSBAND).build();
+        editedAlice = new PersonBuilder(ALICE).withTags(VALID_TAG_EAR).build();
         assertFalse(ALICE.equals(editedAlice));
+    }
+
+    @Test
+    public void isCompareToCorrect() {
+        // ALICE < BOB
+        assertEquals(ALICE.compareTo(BOB), -1);
+
+        // ALICE == ALICE
+        assertEquals(ALICE.compareTo(ALICE), 0);
+
+        // BOB > ALICE
+        assertEquals(BOB.compareTo(ALICE), 1);
+    }
+
+    @Test
+    public void isGetGroupNumberCorrect() {
+        assertEquals(ALICE.getGroupNumber(), 2);
+        assertEquals(CARL.getGroupNumber(), 0);
+        assertEquals(GEORGE.getGroupNumber(), 4);
+    }
+
+    @Test
+    public void isGroupCompareToCorrect() {
+        // Same tag group
+        assertEquals(ALICE.groupCompareTo(DANIEL), -1);
+        assertEquals(BENSON.groupCompareTo(GEORGE), -1);
+
+        // Single tag vs no tag
+        assertEquals(CARL.groupCompareTo(ELLE), -11);
+
+        // Single tag vs single tag
+        assertEquals(ALICE.groupCompareTo(ELLE), 9);
+
+        // Single tag vs double tag
+        assertEquals(BENSON.groupCompareTo(ELLE), 29);
     }
 }

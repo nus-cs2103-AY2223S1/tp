@@ -54,7 +54,7 @@ public class SampleDataUtil {
      */
     public static Set<Tag> getTagSet(String... strings) {
         return Arrays.stream(strings)
-                .map(Tag::new)
+                .map(Tag::convertToTag)
                 .collect(Collectors.toSet());
     }
 

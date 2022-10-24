@@ -8,7 +8,9 @@ import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeFormatterBuilder;
 import java.time.format.DateTimeParseException;
 import java.util.Arrays;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import java.util.function.Consumer;
 import java.util.function.Function;
 import java.util.regex.Matcher;
@@ -19,6 +21,8 @@ import java.util.stream.Stream;
 import javafx.beans.Observable;
 import javafx.beans.property.SimpleBooleanProperty;
 import javafx.beans.property.SimpleObjectProperty;
+import seedu.address.model.Key;
+import seedu.address.model.tag.Tag;
 
 /**
  * Represents the patient's appointments' details.
@@ -36,14 +40,12 @@ public class Appointment {
             + "(?<month>\\s*([0-9]|1[0-2])M)?(?<day>\\s*([0-9]|[1-2][0-9]|3[0-1])D)?\\s*$");
     private final String reason;
     private final LocalDateTime dateTime;
-
     private final List<Integer> timePeriod;
+    private final Set<Tag> tags = new HashSet<>();
     private final SimpleBooleanProperty isMarked;
     private final SimpleObjectProperty<Person> patient = new SimpleObjectProperty<>();
 
     private final DateTimeFormatter stringFormatter = DateTimeFormatter.ofPattern("MMM d yyyy HH:mm");
-
-
 
     /**
      * Creates an appointment object with the given reason, dateTime, timePeriod string, and status.
@@ -62,6 +64,26 @@ public class Appointment {
         this.isMarked = new SimpleBooleanProperty(isMarked);
     }
 
+
+    /**
+     * Creates an appointment object with the given reason, dateTime, timePeriod string, and status.
+     *
+     * @param reason The given reason for appointment.
+     * @param dateTime The given time to book the appointment.
+     * @param timePeriod The given time period for the next appointment.
+     * @param tags The given tag for the appointment.
+     * @param isMarked Status of the appointment.
+     */
+    public Appointment(String reason, String dateTime, String timePeriod, Set<Tag> tags, boolean isMarked) {
+        checkValidity(reason, dateTime, timePeriod);
+        this.reason = reason;
+        String str = String.join(" ", dateTime.split("\\s+", 2));
+        this.dateTime = LocalDateTime.parse(str, DATE_FORMATTER);
+        this.timePeriod = parseTimePeriod(timePeriod);
+        this.isMarked = new SimpleBooleanProperty(isMarked);
+        this.tags.addAll(tags);
+    }
+
     /**
      * Creates an appointment object with the given reason, dateTime, timePeriod and status.
      *
@@ -78,6 +100,24 @@ public class Appointment {
     }
 
     /**
+     * Creates an appointment object with the given reason, dateTime, timePeriod and status.
+     *
+     * @param reason The given reason for appointment.
+     * @param dateTime The given time to book the appointment.
+     * @param timePeriod The given time period for the next appointment.
+     * @param tags The given tag for the appointment
+     * @param isMarked Status of the appointment.
+     */
+    public Appointment(String reason, LocalDateTime dateTime, List<Integer> timePeriod,
+                       Set<Tag> tags, boolean isMarked) {
+        this.reason = reason;
+        this.dateTime = dateTime;
+        this.timePeriod = timePeriod;
+        this.isMarked = new SimpleBooleanProperty(isMarked);
+        this.tags.addAll(tags);
+    }
+
+    /**
      * Creates an appointment object with a new dateTime using the given timePeriod of the recurring appointment.
      *
      * @param recurringAppointment The appointment given that will occur again.
@@ -86,6 +126,7 @@ public class Appointment {
         this.reason = recurringAppointment.getReason();
         this.dateTime = incrementDateTime(recurringAppointment.getDateTime(), recurringAppointment.getTimePeriod());
         this.timePeriod = recurringAppointment.getTimePeriod();
+        this.tags.addAll(recurringAppointment.tags);
         this.isMarked = new SimpleBooleanProperty(false);
         this.patient.set(recurringAppointment.getPatient());
     }
@@ -180,12 +221,17 @@ public class Appointment {
         return test.isEmpty() || matcher.matches();
     }
 
+
     public LocalDateTime getDateTime() {
         return dateTime;
     }
 
     public List<Integer> getTimePeriod() {
         return timePeriod;
+    }
+
+    public Set<Tag> getTags() {
+        return tags;
     }
 
     public String getFormattedDateTime() {
@@ -232,7 +278,8 @@ public class Appointment {
 
     @Override
     public String toString() {
-        return getStatus() + " " + getFormattedDateTime() + " for " + reason + getRecurringStatus();
+        return getStatus() + " " + getFormattedDateTime() + " for " + reason
+                + getRecurringStatus();
     }
 
     private String getStateIcon() {
@@ -254,6 +301,65 @@ public class Appointment {
             }
         }
         return recurring;
+    }
+
+    /**
+     * Returns the group number where this appointment belongs to, which is determined
+     * by its tags.
+     *
+     */
+    public int getGroupNumber() {
+        Set<Tag> tags = this.getTags();
+        if (tags.isEmpty()) {
+            return 0;
+        }
+        int value = 0;
+        for (Tag tag: tags) {
+            value += tag.ordinal();
+        }
+        if (tags.size() == 1) {
+            return value + 1;
+        }
+        if (tags.size() == 2) {
+            return value + 3;
+        }
+        return value + 4;
+    }
+
+    /**
+     * Returns -1 if this appointment appears before the other appointment, and
+     * returns 0 if this appointment has the same order as the other appointment, and
+     * returns 1 if this appointment appears after the other appointment.
+     *
+     * @param appointment The other appointment to compare with.
+     */
+    public int compareTo(Appointment appointment) {
+        return this.dateTime.isBefore(appointment.dateTime)
+                ? -1
+                : this.dateTime.isAfter(appointment.dateTime)
+                ? 1
+                : 0;
+    }
+
+    /**
+     * Returns 10 * group difference -1 if this appointment appears before the other appointment, and
+     * returns 10 * group difference if this appointment has the same order as the other appointment, and
+     * returns 10 * group difference + 1 if this appointment appears after the other appointment. This method
+     * makes sure that appointments with the same tag group are grouped together.
+     *
+     * @param appointment The other person to compare with.
+     */
+    public int groupCompareTo(Appointment appointment, Key key) {
+        int tagWeight = 10;
+        int personWeight = 10;
+        int dateWeight = 1;
+        if (key.equals(Key.TAG)) {
+            return tagWeight * (this.getGroupNumber() - appointment.getGroupNumber())
+                    + dateWeight * this.compareTo(appointment);
+        } else {
+            return personWeight * this.getPatientName().compareTo(appointment.getPatientName())
+                    + dateWeight + this.compareTo(appointment);
+        }
     }
 
     @Override

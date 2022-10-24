@@ -4,10 +4,14 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
-import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_EAR;
+import static seedu.address.model.Model.COMPARATOR_GROUP_PATIENTS;
+import static seedu.address.model.Model.COMPARATOR_UNGROUP_PATIENTS;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalPersons.ALICE;
 import static seedu.address.testutil.TypicalPersons.BOB;
+import static seedu.address.testutil.TypicalPersons.getGroupedPersons;
+import static seedu.address.testutil.TypicalPersons.getTypicalPersons;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -42,7 +46,7 @@ public class UniquePersonListTest {
     @Test
     public void contains_personWithSameIdentityFieldsInList_returnsTrue() {
         uniquePersonList.add(ALICE);
-        Person editedAlice = new PersonBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
+        Person editedAlice = new PersonBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_EAR)
                 .build();
         assertTrue(uniquePersonList.contains(editedAlice));
     }
@@ -85,7 +89,7 @@ public class UniquePersonListTest {
     @Test
     public void setPerson_editedPersonHasSameIdentity_success() {
         uniquePersonList.add(ALICE);
-        Person editedAlice = new PersonBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
+        Person editedAlice = new PersonBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_EAR)
                 .build();
         uniquePersonList.setPerson(ALICE, editedAlice);
         UniquePersonList expectedUniquePersonList = new UniquePersonList();
@@ -166,5 +170,17 @@ public class UniquePersonListTest {
     public void asUnmodifiableObservableList_modifyList_throwsUnsupportedOperationException() {
         assertThrows(UnsupportedOperationException.class, ()
             -> uniquePersonList.asUnmodifiableObservableList().remove(0));
+    }
+
+    @Test
+    public void patientCompares() {
+        uniquePersonList.setPersons(getTypicalPersons());
+        List<Person> ungrouped = getTypicalPersons();
+        List<Person> grouped = getGroupedPersons();
+        assertEquals(uniquePersonList.asUnmodifiableObservableList(), ungrouped);
+        uniquePersonList.sort(COMPARATOR_GROUP_PATIENTS);
+        assertEquals(uniquePersonList.asUnmodifiableObservableList(), grouped);
+        uniquePersonList.sort(COMPARATOR_UNGROUP_PATIENTS);
+        assertEquals(uniquePersonList.asUnmodifiableObservableList(), ungrouped);
     }
 }
