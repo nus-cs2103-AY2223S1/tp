@@ -6,9 +6,9 @@ import static seedu.foodrem.model.item.itemvalidators.ItemPriceValidator.validat
  * Validation class for item quantities.
  */
 public class ItemQuantityValidator implements Validator {
-    // Validation for quantity precision
+    /** Validation for quantity precision */
     private static final int MAX_DECIMAL_PLACE = 4;
-    // Validation for size of quantity
+    /** Validation for size of quantity */
     private static final int MAX_QUANTITY = 1_000_000;
 
     /**

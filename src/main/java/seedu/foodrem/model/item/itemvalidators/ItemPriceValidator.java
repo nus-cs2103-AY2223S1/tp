@@ -8,9 +8,9 @@ import seedu.foodrem.commons.util.ValidationUtil;
  * Validation class for item quantities.
  */
 public class ItemPriceValidator implements Validator {
-    // Validation for price precision
+    /** Validation for price precision */
     private static final int MAX_DECIMAL_PLACE = 2;
-    // Validation for size of price
+    /** Validation for size of price */
     private static final int MAX_PRICE = 1_000_000;
 
     /**
