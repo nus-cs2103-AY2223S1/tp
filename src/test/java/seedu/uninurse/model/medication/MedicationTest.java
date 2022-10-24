@@ -6,6 +6,8 @@ import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.uninurse.testutil.Assert.assertThrows;
 
+import java.util.Optional;
+
 import org.junit.jupiter.api.Test;
 
 import seedu.uninurse.testutil.TypicalMedications;
@@ -40,7 +42,9 @@ public class MedicationTest {
 
     @Test
     public void isValidMedication_null_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> Medication.isValidMedication(null, null));
+        assertThrows(NullPointerException.class, () -> Medication.isValidMedication((String) null, (String) null));
+        assertThrows(NullPointerException.class, () ->
+                Medication.isValidMedication((Optional<String>) null, (Optional<String>) null));
     }
 
     @Test

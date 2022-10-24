@@ -31,10 +31,12 @@ public class AddConditionCommandParser implements Parser<AddConditionCommand> {
             Condition condition = ParserUtil.parseCondition(argMultimap.getValue(PREFIX_CONDITION).orElseThrow());
             return new AddConditionCommand(index, condition);
             // TODO: display specific error messages
-        } catch (ParseException pe) { // handles invalid indices and conditions
+        } catch (ParseException pe) {
+            // handles invalid indices and conditions
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
                     AddConditionCommand.MESSAGE_USAGE), pe);
-        } catch (NoSuchElementException nse) { // Handles missing prefix
+        } catch (NoSuchElementException nse) {
+            // Handles missing prefix
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddConditionCommand.MESSAGE_USAGE));
         }
     }

@@ -26,12 +26,11 @@ public class AddMedicationCommandParser implements Parser<AddMedicationCommand> 
         requireNonNull(args);
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_MEDICATION);
 
-        Index index;
-        Medication medication;
-
         try {
-            index = ParserUtil.parseIndex(argMultimap.getPreamble());
-            medication = ParserUtil.parseMedication(argMultimap.getValue(PREFIX_MEDICATION).orElseThrow());
+            Index index = ParserUtil.parseIndex(argMultimap.getPreamble());
+            Medication medication = ParserUtil.parseMedication(argMultimap.getValue(PREFIX_MEDICATION).orElseThrow());
+
+            return new AddMedicationCommand(index, medication);
         } catch (ParseException pe) {
             // handles invalid indices and medications
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
@@ -40,7 +39,5 @@ public class AddMedicationCommandParser implements Parser<AddMedicationCommand> 
             // Handles missing prefix
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddMedicationCommand.MESSAGE_USAGE));
         }
-
-        return new AddMedicationCommand(index, medication);
     }
 }

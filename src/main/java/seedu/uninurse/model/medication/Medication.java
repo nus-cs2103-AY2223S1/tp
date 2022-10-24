@@ -3,6 +3,8 @@ package seedu.uninurse.model.medication;
 import static java.util.Objects.requireNonNull;
 import static seedu.uninurse.commons.util.AppUtil.checkArgument;
 
+import java.util.Optional;
+
 /**
  * Represents a Patient's required medication type and dosage
  * Guarantees: immutable; is valid as declared in {@link #isValidMedication(String)}
@@ -42,6 +44,17 @@ public class Medication {
      */
     public static boolean isValidMedication(String medicationType, String medicationDosage) {
         return medicationType.matches(MEDICATION_VALIDATION_REGEX) && medicationDosage.matches(DOSAGE_VALIDATION_REGEX);
+    }
+
+    /**
+     * Returns true if given optional strings make a part of a valid medication.
+     * At least one of the given optional strings cannot be empty.
+     */
+    public static boolean isValidMedication(Optional<String> optionalMedicationType,
+            Optional<String> optionalMedicationDosage) {
+        return (optionalMedicationType.isPresent() || optionalMedicationDosage.isPresent())
+                && optionalMedicationType.map(type -> type.matches(MEDICATION_VALIDATION_REGEX)).orElse(true)
+                && optionalMedicationDosage.map(dosage -> dosage.matches(DOSAGE_VALIDATION_REGEX)).orElse(true);
     }
 
     public String getType() {
