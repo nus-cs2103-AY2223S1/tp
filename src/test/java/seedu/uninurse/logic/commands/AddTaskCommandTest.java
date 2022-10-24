@@ -3,7 +3,7 @@ package seedu.uninurse.logic.commands;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.uninurse.logic.commands.CommandTestUtil.VALID_TASK_DATE_FIRST;
+import static seedu.uninurse.logic.commands.CommandTestUtil.VALID_TASK_DATE_TIME_FIRST;
 import static seedu.uninurse.logic.commands.CommandTestUtil.VALID_TASK_DESC_FIRST;
 import static seedu.uninurse.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.uninurse.logic.commands.CommandTestUtil.assertCommandSuccess;
@@ -54,7 +54,7 @@ public class AddTaskCommandTest {
     public void execute_validIndexUnfilteredList_success() {
         Patient patientToAddTask = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
         Patient editedPatient = new PersonBuilder(patientToAddTask)
-                .withTasks(new Task(VALID_TASK_DESC_FIRST, new DateTime(VALID_TASK_DATE_FIRST))).build();
+                .withTasks(new Task(VALID_TASK_DESC_FIRST, new DateTime(VALID_TASK_DATE_TIME_FIRST))).build();
         int lastTaskIndex = editedPatient.getTasks().size() - 1;
         Task addedTask = editedPatient.getTasks().get(lastTaskIndex);
 
@@ -86,7 +86,7 @@ public class AddTaskCommandTest {
 
         Patient patientToAddTask = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
         Patient editedPatient = new PersonBuilder(model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased()))
-                .withTasks(new Task(VALID_TASK_DESC_FIRST, new DateTime(VALID_TASK_DATE_FIRST))).build();
+                .withTasks(new Task(VALID_TASK_DESC_FIRST, new DateTime(VALID_TASK_DATE_TIME_FIRST))).build();
         int lastTaskIndex = editedPatient.getTasks().size() - 1;
         Task addedTask = editedPatient.getTasks().get(lastTaskIndex);
 
