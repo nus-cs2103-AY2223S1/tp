@@ -14,7 +14,7 @@
     "phone" : "98765432",
     "email" : "johnd@example.com",
     "address" : "311, Clementi Ave 2, #02-25",
-    "riskTag": "LOW",
+    "riskTag": "HIGH",
     "income": "$1000",
     "monthly": "$100",
     "tagged" : [ "owesMoney", "friends" ]
@@ -24,8 +24,8 @@
     "email" : "heinz@example.com",
     "address" : "wall street",
     "riskTag": "MEDIUM",
-    "income": "$100000",
-    "monthly": "$300",
+    "income": "$1000",
+    "monthly": "$200",
     "tagged" : [ ]
   }, {
     "name" : "Daniel Meier",
