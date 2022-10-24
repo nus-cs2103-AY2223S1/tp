@@ -7,6 +7,7 @@ import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
+import friday.model.grades.GradesList;
 import friday.model.tag.Tag;
 
 /**
@@ -24,12 +25,13 @@ public class Student {
     private final Consultation consultation;
     private final Remark remark;
     private final Set<Tag> tags = new HashSet<>();
+    private final GradesList gradesList;
 
     /**
      * Every field must be present and not null.
      */
     public Student(Name name, TelegramHandle telegramHandle, Consultation consultation, MasteryCheck masteryCheck,
-                   Remark remark, Set<Tag> tags) {
+                   Remark remark, Set<Tag> tags, GradesList gradesList) {
         requireAllNonNull(name, telegramHandle, consultation, masteryCheck, tags);
         this.name = name;
         this.telegramHandle = telegramHandle;
@@ -37,6 +39,7 @@ public class Student {
         this.masteryCheck = masteryCheck;
         this.remark = remark;
         this.tags.addAll(tags);
+        this.gradesList = gradesList;
     }
 
     public Name getName() {
@@ -59,6 +62,10 @@ public class Student {
         return remark;
     }
 
+    public GradesList getGradesList() {
+        return gradesList;
+    }
+
     /**
      * Returns an immutable tag set, which throws {@code UnsupportedOperationException}
      * if modification is attempted.
@@ -68,8 +75,8 @@ public class Student {
     }
 
     /**
-     * Returns true if both persons have the same name.
-     * This defines a weaker notion of equality between two persons.
+     * Returns true if both students have the same name.
+     * This defines a weaker notion of equality between two students.
      */
     public boolean isSameStudent(Student otherStudent) {
         if (otherStudent == this) {
@@ -81,8 +88,8 @@ public class Student {
     }
 
     /**
-     * Returns true if both persons have the same identity and data fields.
-     * This defines a stronger notion of equality between two persons.
+     * Returns true if both students have the same identity and data fields.
+     * This defines a stronger notion of equality between two students.
      */
     @Override
     public boolean equals(Object other) {
@@ -135,6 +142,10 @@ public class Student {
             builder.append("; Tags: ");
             tags.forEach(builder::append);
         }
+
+        builder.append("; Grades: ")
+                .append(getGradesList());
+
         return builder.toString();
     }
 

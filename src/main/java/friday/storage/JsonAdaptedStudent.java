@@ -1,5 +1,7 @@
 package friday.storage;
 
+import static friday.model.grades.GradesList.EXAMS_COUNT;
+
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -11,6 +13,7 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import friday.commons.exceptions.IllegalValueException;
+import friday.model.grades.GradesList;
 import friday.model.student.Consultation;
 import friday.model.student.MasteryCheck;
 import friday.model.student.Name;
@@ -22,59 +25,72 @@ import friday.model.tag.Tag;
 /**
  * Jackson-friendly version of {@link Student}.
  */
-class JsonAdaptedPerson {
+class JsonAdaptedStudent {
 
-    public static final String MISSING_FIELD_MESSAGE_FORMAT = "Person's %s field is missing!";
+    public static final String MISSING_FIELD_MESSAGE_FORMAT = "Student's %s field is missing!";
 
     private final String name;
     private final String telegramHandle;
     private final LocalDate masteryCheck;
+    private boolean masteryCheckIsDone;
     private final LocalDate consultation;
     private final String remark;
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
+    private final List<JsonAdaptedGrade> gradesList = new ArrayList<>();
 
     /**
-     * Constructs a {@code JsonAdaptedPerson} with the given person details.
+     * Constructs a {@code JsonAdaptedStudent} with the given student details.
      */
     @JsonCreator
-    public JsonAdaptedPerson(@JsonProperty("name") String name, @JsonProperty("telegramHandle") String telegramHandle,
+    public JsonAdaptedStudent(@JsonProperty("name") String name, @JsonProperty("telegramHandle") String telegramHandle,
                              @JsonProperty("consultation") LocalDate consultation,
                              @JsonProperty("masteryCheck") LocalDate masteryCheck,
-                             @JsonProperty("remark") String remark,
-                             @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
+                             @JsonProperty("masteryCheckIsDone") boolean masteryCheckIsDone,
+                             @JsonProperty("remark") String remark, @JsonProperty("tagged") List<JsonAdaptedTag> tagged,
+                             @JsonProperty("gradesList") List<JsonAdaptedGrade> gradesList) {
         this.name = name;
         this.telegramHandle = telegramHandle;
         this.masteryCheck = masteryCheck;
+        this.masteryCheckIsDone = masteryCheckIsDone;
         this.consultation = consultation;
         this.remark = remark;
         if (tagged != null) {
             this.tagged.addAll(tagged);
         }
+        if (gradesList != null) {
+            this.gradesList.addAll(gradesList);
+        }
     }
 
     /**
-     * Converts a given {@code Person} into this class for Jackson use.
+     * Converts a given {@code Student} into this class for Jackson use.
      */
-    public JsonAdaptedPerson(Student source) {
+    public JsonAdaptedStudent(Student source) {
         name = source.getName().fullName;
         telegramHandle = source.getTelegramHandle().value;
         masteryCheck = source.getMasteryCheck().getValue();
+        masteryCheckIsDone = source.getMasteryCheck().getIsPassed();
         consultation = source.getConsultation().getValue();
         remark = source.getRemark().value;
         tagged.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
+        gradesList.addAll(source.getGradesList()
+                .getGradesArrayList()
+                .stream()
+                .map(JsonAdaptedGrade::new)
+                .collect(Collectors.toList()));
     }
 
     /**
-     * Converts this Jackson-friendly adapted person object into the model's {@code Person} object.
+     * Converts this Jackson-friendly adapted student object into the model's {@code Student} object.
      *
-     * @throws IllegalValueException if there were any data constraints violated in the adapted person.
+     * @throws IllegalValueException if there were any data constraints violated in the adapted student.
      */
     public Student toModelType() throws IllegalValueException {
-        final List<Tag> personTags = new ArrayList<>();
+        final List<Tag> studentTags = new ArrayList<>();
         for (JsonAdaptedTag tag : tagged) {
-            personTags.add(tag.toModelType());
+            studentTags.add(tag.toModelType());
         }
 
         if (name == null) {
@@ -89,7 +105,7 @@ class JsonAdaptedPerson {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
                     TelegramHandle.class.getSimpleName()));
         }
-        if (!TelegramHandle.isValidOrEmpty(telegramHandle)) {
+        if (!TelegramHandle.isValidOrEmptyJson(telegramHandle)) {
             throw new IllegalValueException(TelegramHandle.MESSAGE_CONSTRAINTS);
         }
         final TelegramHandle modelTelegramHandle;
@@ -103,7 +119,7 @@ class JsonAdaptedPerson {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
                     Consultation.class.getSimpleName()));
         }
-        if (!Consultation.isValidOrEmpty(consultation.toString())) {
+        if (!Consultation.isValidOrEmptyJson(consultation.toString())) {
             throw new IllegalValueException(Consultation.MESSAGE_CONSTRAINTS);
         }
         final Consultation modelConsultation;
@@ -117,14 +133,14 @@ class JsonAdaptedPerson {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
                     MasteryCheck.class.getSimpleName()));
         }
-        if (!MasteryCheck.isValidOrEmpty(masteryCheck.toString())) {
+        if (!MasteryCheck.isValidOrEmptyJson(masteryCheck.toString())) {
             throw new IllegalValueException(MasteryCheck.MESSAGE_CONSTRAINTS);
         }
         final MasteryCheck modelMasteryCheck;
         if (masteryCheck.equals(LocalDate.of(0001, 01, 01))) {
             modelMasteryCheck = MasteryCheck.EMPTY_MASTERYCHECK;
         } else {
-            modelMasteryCheck = new MasteryCheck(masteryCheck);
+            modelMasteryCheck = new MasteryCheck(masteryCheck, masteryCheckIsDone);
         }
 
         if (remark == null) {
@@ -133,9 +149,22 @@ class JsonAdaptedPerson {
         }
         final Remark modelRemark = new Remark(remark);
 
-        final Set<Tag> modelTags = new HashSet<>(personTags);
+        final Set<Tag> modelTags = new HashSet<>(studentTags);
+
+        final GradesList modelGradesList = new GradesList();
+
+        if (gradesList == null || gradesList.size() != EXAMS_COUNT) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    GradesList.class.getSimpleName()));
+        }
+
+        for (int i = 0; i < 5; i++) {
+            JsonAdaptedGrade grade = gradesList.get(i);
+            GradesList.editGrade(modelGradesList, grade.toModelType(i));
+        }
+
         return new Student(modelName, modelTelegramHandle, modelConsultation, modelMasteryCheck, modelRemark,
-                modelTags);
+                modelTags, modelGradesList);
     }
 
 }

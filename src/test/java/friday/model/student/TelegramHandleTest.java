@@ -40,4 +40,16 @@ public class TelegramHandleTest {
 
         assertTrue(TelegramHandle.EMPTY_TELEGRAMHANDLE.isEmpty()); // the empty instance
     }
+
+    @Test
+    public void compareTo() {
+        // 89 comes after 80
+        assertTrue(new TelegramHandle("89jimmy").compareTo(new TelegramHandle("80jimmy")) > 0);
+        // Longer handles are larger
+        assertTrue(new Name("Tommyyyy").compareTo(new Name("Tommy")) > 0);
+        // All digits come before all alphabets
+        assertTrue(new TelegramHandle("90000").compareTo(new TelegramHandle("aether")) < 0);
+        // Capital letters are smaller
+        assertTrue(new Name("Candice123").compareTo(new Name("candice123")) < 0);
+    }
 }

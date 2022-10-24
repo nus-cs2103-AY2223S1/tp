@@ -19,6 +19,7 @@ import friday.commons.core.index.Index;
 import friday.commons.util.CollectionUtil;
 import friday.logic.commands.exceptions.CommandException;
 import friday.model.Model;
+import friday.model.grades.GradesList;
 import friday.model.student.Consultation;
 import friday.model.student.MasteryCheck;
 import friday.model.student.Name;
@@ -72,14 +73,14 @@ public class EditCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        List<Student> lastShownList = model.getFilteredStudentList();
+        List<Student> lastShownList = model.getStudentList();
 
         if (index.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+            throw new CommandException(Messages.MESSAGE_INVALID_STUDENT_DISPLAYED_INDEX);
         }
 
         Student studentToEdit = lastShownList.get(index.getZeroBased());
-        Student editedStudent = createEditedPerson(studentToEdit, editStudentDescriptor);
+        Student editedStudent = createEditedStudent(studentToEdit, editStudentDescriptor);
 
         if (!studentToEdit.isSameStudent(editedStudent) && model.hasStudent(editedStudent)) {
             throw new CommandException(MESSAGE_DUPLICATE_STUDENT);
@@ -91,10 +92,10 @@ public class EditCommand extends Command {
     }
 
     /**
-     * Creates and returns a {@code Person} with the details of {@code personToEdit}
+     * Creates and returns a {@code Student} with the details of {@code studentToEdit}
      * edited with {@code editStudentDescriptor}.
      */
-    private static Student createEditedPerson(Student studentToEdit, EditStudentDescriptor editStudentDescriptor) {
+    private static Student createEditedStudent(Student studentToEdit, EditStudentDescriptor editStudentDescriptor) {
         assert studentToEdit != null;
 
         Name updatedName = editStudentDescriptor.getName().orElse(studentToEdit.getName());
@@ -106,9 +107,10 @@ public class EditCommand extends Command {
                 .orElse(studentToEdit.getMasteryCheck());
         Remark updatedRemark = studentToEdit.getRemark(); // edit command does not allow editing remarks
         Set<Tag> updatedTags = editStudentDescriptor.getTags().orElse(studentToEdit.getTags());
+        GradesList updatedGradesList = studentToEdit.getGradesList();
 
         return new Student(updatedName, updatedTelegramHandle, updatedConsultation, updatedMasteryCheck, updatedRemark,
-                updatedTags);
+                updatedTags, updatedGradesList);
     }
 
     @Override
@@ -130,8 +132,8 @@ public class EditCommand extends Command {
     }
 
     /**
-     * Stores the details to edit the person with. Each non-empty field value will replace the
-     * corresponding field value of the person.
+     * Stores the details to edit the student with. Each non-empty field value will replace the
+     * corresponding field value of the student.
      */
     public static class EditStudentDescriptor {
         private Name name;

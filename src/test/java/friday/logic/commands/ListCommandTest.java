@@ -1,8 +1,8 @@
 package friday.logic.commands;
 
 import static friday.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static friday.logic.commands.CommandTestUtil.showPersonAtIndex;
-import static friday.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
+import static friday.logic.commands.CommandTestUtil.showStudentAtIndex;
+import static friday.testutil.TypicalIndexes.INDEX_FIRST_STUDENT;
 import static friday.testutil.TypicalStudents.getTypicalAddressBook;
 
 import org.junit.jupiter.api.BeforeEach;
@@ -33,7 +33,7 @@ public class ListCommandTest {
 
     @Test
     public void execute_listIsFiltered_showsEverything() {
-        showPersonAtIndex(model, INDEX_FIRST_PERSON);
+        showStudentAtIndex(model, INDEX_FIRST_STUDENT);
         assertCommandSuccess(new ListCommand(), model, ListCommand.MESSAGE_SUCCESS, expectedModel);
     }
 }

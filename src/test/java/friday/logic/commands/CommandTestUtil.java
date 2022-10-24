@@ -39,6 +39,8 @@ public class CommandTestUtil {
     public static final String VALID_REMARK_BOB = "Favourite pastime: Eating";
     public static final String VALID_TAG_HUSBAND = "husband";
     public static final String VALID_TAG_FRIEND = "friend";
+    public static final String VALID_GRADE_SCORE_AMY = "69.99";
+    public static final String VALID_GRADE_SCORE_BOB = "90";
 
     public static final String NAME_DESC_AMY = " " + PREFIX_NAME + VALID_NAME_AMY;
     public static final String NAME_DESC_BOB = " " + PREFIX_NAME + VALID_NAME_BOB;
@@ -102,30 +104,30 @@ public class CommandTestUtil {
      * Executes the given {@code command}, confirms that <br>
      * - a {@code CommandException} is thrown <br>
      * - the CommandException message matches {@code expectedMessage} <br>
-     * - the address book, filtered person list and selected person in {@code actualModel} remain unchanged
+     * - the address book, filtered student list and selected student in {@code actualModel} remain unchanged
      */
     public static void assertCommandFailure(Command command, Model actualModel, String expectedMessage) {
         // we are unable to defensively copy the model for comparison later, so we can
         // only do so by copying its components.
         Friday expectedAddressBook = new Friday(actualModel.getFriday());
-        List<Student> expectedFilteredList = new ArrayList<>(actualModel.getFilteredStudentList());
+        List<Student> expectedFilteredList = new ArrayList<>(actualModel.getStudentList());
 
         assertThrows(CommandException.class, expectedMessage, () -> command.execute(actualModel));
         assertEquals(expectedAddressBook, actualModel.getFriday());
-        assertEquals(expectedFilteredList, actualModel.getFilteredStudentList());
+        assertEquals(expectedFilteredList, actualModel.getStudentList());
     }
     /**
-     * Updates {@code model}'s filtered list to show only the person at the given {@code targetIndex} in the
+     * Updates {@code model}'s filtered list to show only the student at the given {@code targetIndex} in the
      * {@code model}'s address book.
      */
-    public static void showPersonAtIndex(Model model, Index targetIndex) {
-        assertTrue(targetIndex.getZeroBased() < model.getFilteredStudentList().size());
+    public static void showStudentAtIndex(Model model, Index targetIndex) {
+        assertTrue(targetIndex.getZeroBased() < model.getStudentList().size());
 
-        Student student = model.getFilteredStudentList().get(targetIndex.getZeroBased());
+        Student student = model.getStudentList().get(targetIndex.getZeroBased());
         final String[] splitName = student.getName().fullName.split("\\s+");
         model.updateFilteredStudentList(new NameContainsKeywordsPredicate(Arrays.asList(splitName[0])));
 
-        assertEquals(1, model.getFilteredStudentList().size());
+        assertEquals(1, model.getStudentList().size());
     }
 
 }

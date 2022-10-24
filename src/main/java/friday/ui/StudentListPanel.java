@@ -11,7 +11,7 @@ import javafx.scene.control.ListView;
 import javafx.scene.layout.Region;
 
 /**
- * Panel containing the list of persons.
+ * Panel containing the list of students.
  */
 public class StudentListPanel extends UiPart<Region> {
     private static final String FXML = "StudentListPanel.fxml";
@@ -30,7 +30,14 @@ public class StudentListPanel extends UiPart<Region> {
     }
 
     /**
-     * Custom {@code ListCell} that displays the graphics of a {@code Person} using a {@code StudentCard}.
+     * Sets the {@code ListView} of this {@code StudentListPanel} to the given {@code ObservableList}.
+     */
+    public void setList(ObservableList<Student> studentList) {
+        studentListView.setItems(studentList);
+    }
+
+    /**
+     * Custom {@code ListCell} that displays the graphics of a {@code Student} using a {@code StudentCard}.
      */
     class StudentListViewCell extends ListCell<Student> {
         @Override

@@ -26,6 +26,7 @@ fast, FRIDAY can get your contact management tasks done faster than traditional 
 3. Find individual student details
 4. View all students
 5. Sort students
+6. Edit grades of students
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -69,7 +70,7 @@ Format: `add n/NAME [t/TELEGRAM_HANDLE] [c/CONSULTATION_DATE] [m/MASTERY_CHECK_D
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 The Telegram handle, consultation date, and Mastery Check date are optional. 
-A person can have any number of tags (including 0).
+A student can have any number of tags (including 0).
 </div>
 
 ### Deleting a student: `delete`
@@ -94,7 +95,7 @@ The name, Telegram handle, consultation, mastery check, and tag(s) are optional,
 A student can have any number of tags (including 0).
 </div>
 
-### Editing a student: `remark`
+### Editing a remark for a student: `remark`
 
 Adds a remark for a specified student.
 
@@ -105,14 +106,29 @@ The index of the student can be seen from the student list.<br>
 The remark is optional. Not including the remark (i.e. `remark INDEX`) will remove any existing remark from the student.<br>
 </div>
 
+### Editing grades for a student: `grade`
+
+Edits the grades of the assessments and examinations for a specified student.
+
+Format: `grade INDEX [ra1/RA1_SCORE] [ra2/RA2_SCORE] [pa/PRACTICAL_SCORE] [mt/MID_TERM_SCORE] [ft/FINALS_SCORE]`
+
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+The index of the student can be seen from the student list.<br>
+The scores of the assessments, Reading Assessment 1 (RA1), Reading Assessment 2 (RA2), Practical Assessment (PA), Mid-Term Test, and Final Examination, are in percentages from 0% to 100% inclusive, with decimals allowed.<br>
+The scores are optional, but there should be at least one parameter.
+</div>
+
+
 ### Finding individual student details: `find`
 
 View a particular student's details.
 
-Format: `find n/STUDENT_NAME`
+Format: `find k/Keywords`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-Use student name as user is looking for details and doesn't have them.
+Use student name/telegram handle/consultation/mastery check date/remark to search up a particular student.
+Note: Multiple keywords can be entered.
+Note: when searching for exam grade use format `find [ra1:RA1_SCORE] [ra2:RA2_SCORE]`
 </div>
 
 ### Viewing all students: `list`
@@ -120,6 +136,16 @@ Use student name as user is looking for details and doesn't have them.
 Lists all students in FRIDAY.
 
 Format: `list`
+
+### Marking a student's Mastery Check as passed: `mark`
+
+Marks the Mastery Check of a specified student as passed.
+
+Format: `mark INDEX`
+
+<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
+The index of the student can be seen from the student list.<br>
+</div>
 
 ### Sorting students: `sort`
 
@@ -155,14 +181,16 @@ Format: `help`
 
 ## Command Summary
 
-| Action                           | Format                                                                                     |
-|----------------------------------|--------------------------------------------------------------------------------------------|
-| **Add a student**                | `add n/NAME [t/TELEGRAM_HANDLE] [c/CONSULTATION_DATE] [m/MASTERY_CHECK_DATE] [tag/TAG]...` |
-| **Delete a student**             | `delete i/INDEX`                                                                           |
-| **Edit a student's details**     | `edit INDEX [n/NAME] [t/TELEGRAM_HANDLE] [c/CONSULTATION] [m/MASTERY_CHECK] [tag/TAG]...`  |
-| **Add remarks for a student**    | `remark INDEX [r/REMARK]`                                                                  |
-| **Find a student's details**     | `find s/STUDENT_NAME`                                                                      |
-| **View all students**            | `list`                                                                                     |
-| **Sort students**                | `sort CRITERIA/ORDER`                                                                      |
-| **Get a link to the User Guide** | `guide`                                                                                    |
-| **Getting Help**                 | `help`                                                                                     |
+| Action                                       | Format                                                                                                   |
+|----------------------------------------------|----------------------------------------------------------------------------------------------------------|
+| **Add a student**                            | `add n/NAME [t/TELEGRAM_HANDLE] [c/CONSULTATION_DATE] [m/MASTERY_CHECK_DATE] [tag/TAG]...`               |
+| **Delete a student**                         | `delete i/INDEX`                                                                                         |
+| **Edit a student's details**                 | `edit INDEX [n/NAME] [t/TELEGRAM_HANDLE] [c/CONSULTATION] [m/MASTERY_CHECK] [tag/TAG]...`                |
+| **Add remarks for a student**                | `remark INDEX [r/REMARK]`                                                                                |
+| **Edit the grades for a student**            | `grade INDEX [ra1/RA1_SCORE] [ra2/RA2_SCORE] [pa/PRACTICAL_SCORE] [mt/MID_TERM_SCORE] [ft/FINALS_SCORE]` |
+| **Find a student's details**                 | `find k/keyword`                                                                                         |
+| **Mark a student's Mastery Check as passed** | `mark INDEX`                                                                                             |
+| **View all students**                        | `list`                                                                                                   |
+| **Sort students**                            | `sort CRITERIA/ORDER`                                                                                    |
+| **Get a link to the User Guide**             | `guide`                                                                                                  |
+| **Getting Help**                             | `help`                                                                                                   |

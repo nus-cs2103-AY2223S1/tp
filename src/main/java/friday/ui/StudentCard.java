@@ -10,7 +10,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 
 /**
- * An UI component that displays information of a {@code Person}.
+ * An UI component that displays information of a {@code Student}.
  */
 public class StudentCard extends UiPart<Region> {
 
@@ -42,9 +42,19 @@ public class StudentCard extends UiPart<Region> {
     private Label remark;
     @FXML
     private FlowPane tags;
+    @FXML
+    private Label ra1;
+    @FXML
+    private Label ra2;
+    @FXML
+    private Label pa;
+    @FXML
+    private Label mt;
+    @FXML
+    private Label ft;
 
     /**
-     * Creates a {@code PersonCode} with the given {@code Person} and index to display.
+     * Creates a {@code StudentCode} with the given {@code Student} and index to display.
      */
     public StudentCard(Student student, int displayedIndex) {
         super(FXML);
@@ -58,6 +68,11 @@ public class StudentCard extends UiPart<Region> {
         student.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
+        ra1.setText(student.getGradesList().getGrade("RA1").score + " %");
+        ra2.setText(student.getGradesList().getGrade("RA2").score + " %");
+        pa.setText(student.getGradesList().getGrade("Practical").score + " %");
+        mt.setText(student.getGradesList().getGrade("Mid-Term").score + " %");
+        ft.setText(student.getGradesList().getGrade("Finals").score + " %");
     }
 
     @Override

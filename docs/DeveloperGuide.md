@@ -122,12 +122,12 @@ How the parsing works:
 
 The `Model` component,
 
-* stores the FRIDAY data i.e., all `Person` objects (which are contained in a `UniquePersonList` object).
-* stores the currently 'selected' `Person` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Person>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
+* stores the FRIDAY data i.e., all `Student` objects (which are contained in a `UniqueStudentList` object).
+* stores the currently 'selected' `Student` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Student>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
 * stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
 * does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `AddressBook`, which `Person` references. This allows `AddressBook` to only require one `Tag` object per unique tag, instead of each `Person` needing their own `Tag` objects.<br>
+<div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `AddressBook`, which `Student` references. This allows `AddressBook` to only require one `Tag` object per unique tag, instead of each `Student` needing their own `Tag` objects.<br>
 
 <img src="images/BetterModelClassDiagram.png" width="450" />
 
@@ -240,9 +240,28 @@ _{more aspects and alternatives to be added}_
 _{Explain here how the data archiving feature will be implemented}_
 
 
-### \[Proposed\] Sort feature
+### Sort feature
 
-#### Proposed Implementation
+#### Implementation
+
+The sort command will be executed by `SortCommand`. `SortCommandParser` uses `Prefix`es and `Order`s in `CliSyntax` to 
+parse the user input and decide what comparator is passed to `SortCommand`. The sorted list is stored as `sortedStudents` 
+in `ModelManager`, and is updated every time `SortCommand` is run. To assist with the sorting, classes `Name`, `TelegramHandle`, 
+`Consultation`, and `MasteryCheck` implement the `Comparable` interface, where the natural ordering of `String` and `LocalDate`
+are used to implement the `compareTo` method. 
+
+Given below is an example usage scenario and how the sort mechanism behaves at each step.
+
+Step 1. The user launches the application. FRIDAY will initialise an `ObservableList` named `students` and a `SortedList` 
+named `sortedStudents` according to the data file. 
+
+Step 2. The user executes `sort n/asc` command to sort the students by name in ascending order. `SortCommandParser` will
+check that the command is valid, and pass a `comparator` that orders the student names alphabetically to `SortCommand`.
+
+Step 3. `SortCommand` will call `Model#updateSortedStudentList(Comparator<Student> comparator)` to update `sortedStudents`
+with the given `comparator`. The list `students` is then set to `sortedStudents`, and 
+`StudentListPanel#setList(ObservableList<Student> studentList)` is called to refresh the UI `ListView` with the new
+`students` list.
 
 _{To add sequence diagram}_
 
@@ -250,9 +269,28 @@ _{To add activity diagram}_
 
 #### Design considerations:
 
-**Aspect: How sort command is implemented:**
+**Aspect: How to display the sorted list**
 
-_{To add other design considerations}_
+* Refreshes the list of students in the UI whenever a command is executed
+    * Pros: Easy to implement.
+    * Cons: May have performance issues with large number of students.
+
+**Aspect: How many criteria should the sort command accept**
+
+* **Alternative 1 (current choice):** Accept only one criterion
+    * Pros: Clear to the user, and easy to implement.
+    * Cons: Unable to further sort details with a secondary criteria when the first criteria of some students match.
+
+* **Alternative 2:** Accept multiple criteria and sort in the order they are given
+    * Pros: More precise sorting when many students have matching details, e.g. same Mastery Check dates.
+    * Cons: Sorting becomes confusing for the user and difficult to implement if many criteria are given.
+
+**Aspect: How to sort empty details**
+
+* Students with empty details are sorted last in ascending order, and first in descending order
+    * Pros: When sorting in ascending order, students with empty details are shown at the bottom to reduce clutter. 
+            Users can sort a detail in descending order to see which students have the detail empty. 
+    * Cons: Top of the list may be cluttered with empty details when sorted in descending order. 
 
 
 ### \[Proposed\] Alias feature
@@ -287,7 +325,26 @@ _{To add activity diagram}_
 
 _{To add other design considerations}_
 
+### \[Proposed\] Find feature
 
+#### Proposed Implementation
+The find command is executed similar to all other commands. It goes through the parser and is interpreted using the
+logic established. However, it is unique in the sense that it will look through all the possible fields and data
+and return matches.
+
+Example of current implementation of find feature
+
+Step 1. The user launches the application for the first time. FRIDAY will initialise a list of all the fields
+and their data into a list of students.
+
+Step 2. When user types in the find command the logic will tell the program to go through all the fields for every 
+student inside the student class and return the student if there is a successful match in any of the fields 
+
+#### Design considerations:
+
+**Aspect: How find command is implemented:**
+
+_{To add other design considerations}_
 --------------------------------------------------------------------------------------------------------------------
 
 ## **Documentation, logging, testing, configuration, dev-ops**
@@ -526,6 +583,35 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
       Use case resumes at step 2.
 
+**Use case: Edit grades for a student**
+
+**MSS**
+
+1. User requests to list students
+2. FRIDAY shows a list of students
+3. User requests to edit grades for a specific student in the list
+4. FRIDAY edits grades for the student
+
+   Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty.
+
+  Use case ends.
+
+* 3a. The given index is invalid.
+
+    * 3a1. FRIDAY shows an error message.
+
+      Use case resumes at step 2.
+
+* 3b. The given score of the grade is empty.
+
+    * 3b1. FRIDAY shows an error message.
+
+      Use case resumes at step 2.
+
 **Use case: Sort students**
 
 **MSS**
@@ -551,9 +637,38 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 * 1c. More than one criterion is given. 
 
-    * 1c1. FRIDAY displays the students according to the first criteria. 
+    * 1c1. FRIDAY shows an error message. 
 
-      Use case ends.
+      Use case resumes at step 1.
+
+**Use case: Mark a student's Mastery Check as passed.**
+
+**MSS**
+
+1. User requests to list students
+2. FRIDAY shows a list of students
+3. User requests to mark the Mastery Check of a specific student as passed
+4. FRIDAY marks the student's Mastery Check as passed
+
+   Use case ends.
+
+**Extensions**
+
+* 2a. The list is empty.
+
+  Use case ends 
+
+* 3a. The given index is invalid.
+
+    * 3a1. FRIDAY shows an error message.
+
+      Use case resumes at step 2.
+
+* 3b. The Mastery Check of the student has already been marked as passed.
+
+    * 3b1. FRIDAY shows an error message.
+
+      Use case resumes at step 2.
 
 *{More to be added}*
 
@@ -570,6 +685,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 * **Mainstream OS**: Windows, Linux, Unix, OS-X
 * **Private contact detail**: A contact detail that is not meant to be shared with others
 * **TA / Avenger**: Teaching assistants, namely CS1101S teaching assistants (also called "Avengers"), who are the target audience of our product FRIDAY. 
+* **Reading Assessment**: Assessments in the form of online quiz with Multiple-Choice Questions (MCQ). There are a total of two reading assessments, namely RA1 and RA2, throughout the semester. Reading Assessments have weightage in the students' final grade for the module.
 * **Mastery Check**: An assessment of the students' understanding of topics conducted by the user (the teaching assistants). 
 There are two Mastery Checks through the semester. Students will be assessed by their knowledge of the topics covered by presenting to their teaching assistant in pairs.
 Since users have to arrange dates to meet with their students to conduct the Mastery Checks, FRIDAY allows users to record the scheduled dates for each student.

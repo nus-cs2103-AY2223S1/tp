@@ -14,7 +14,7 @@ import org.junit.jupiter.api.Test;
 
 import friday.commons.core.GuiSettings;
 import friday.model.student.NameContainsKeywordsPredicate;
-import friday.testutil.AddressBookBuilder;
+import friday.testutil.FridayBuilder;
 import friday.testutil.TypicalStudents;
 
 public class ModelManagerTest {
@@ -36,14 +36,14 @@ public class ModelManagerTest {
     @Test
     public void setUserPrefs_validUserPrefs_copiesUserPrefs() {
         UserPrefs userPrefs = new UserPrefs();
-        userPrefs.setAddressBookFilePath(Paths.get("address/book/file/path"));
+        userPrefs.setFridayFilePath(Paths.get("address/book/file/path"));
         userPrefs.setGuiSettings(new GuiSettings(1, 2, 3, 4));
         modelManager.setUserPrefs(userPrefs);
         assertEquals(userPrefs, modelManager.getUserPrefs());
 
         // Modifying userPrefs should not modify modelManager's userPrefs
         UserPrefs oldUserPrefs = new UserPrefs(userPrefs);
-        userPrefs.setAddressBookFilePath(Paths.get("new/address/book/file/path"));
+        userPrefs.setFridayFilePath(Paths.get("new/address/book/file/path"));
         assertEquals(oldUserPrefs, modelManager.getUserPrefs());
     }
 
@@ -72,30 +72,30 @@ public class ModelManagerTest {
     }
 
     @Test
-    public void hasPerson_nullPerson_throwsNullPointerException() {
+    public void hasStudent_nullStudent_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> modelManager.hasStudent(null));
     }
 
     @Test
-    public void hasPerson_personNotInAddressBook_returnsFalse() {
+    public void hasStudent_studentNotInAddressBook_returnsFalse() {
         assertFalse(modelManager.hasStudent(TypicalStudents.ALICE));
     }
 
     @Test
-    public void hasPerson_personInAddressBook_returnsTrue() {
+    public void hasStudent_studentInAddressBook_returnsTrue() {
         modelManager.addStudent(TypicalStudents.ALICE);
         assertTrue(modelManager.hasStudent(TypicalStudents.ALICE));
     }
 
     @Test
-    public void getFilteredPersonList_modifyList_throwsUnsupportedOperationException() {
-        assertThrows(UnsupportedOperationException.class, () -> modelManager.getFilteredStudentList().remove(0));
+    public void getFilteredStudentList_modifyList_throwsUnsupportedOperationException() {
+        assertThrows(UnsupportedOperationException.class, () -> modelManager.getStudentList().remove(0));
     }
 
     @Test
     public void equals() {
-        Friday addressBook = new AddressBookBuilder().withPerson(TypicalStudents.ALICE)
-                .withPerson(TypicalStudents.BENSON).build();
+        Friday addressBook = new FridayBuilder().withStudent(TypicalStudents.ALICE)
+                .withStudent(TypicalStudents.BENSON).build();
         Friday differentAddressBook = new Friday();
         UserPrefs userPrefs = new UserPrefs();
 
@@ -126,7 +126,7 @@ public class ModelManagerTest {
 
         // different userPrefs -> returns false
         UserPrefs differentUserPrefs = new UserPrefs();
-        differentUserPrefs.setAddressBookFilePath(Paths.get("differentFilePath"));
+        differentUserPrefs.setFridayFilePath(Paths.get("differentFilePath"));
         assertFalse(modelManager.equals(new ModelManager(addressBook, differentUserPrefs)));
     }
 }

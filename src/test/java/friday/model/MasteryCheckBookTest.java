@@ -9,13 +9,15 @@ import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
 import org.junit.jupiter.api.Test;
 
 import friday.logic.commands.CommandTestUtil;
 import friday.model.student.Student;
-import friday.model.student.exceptions.DuplicatePersonException;
-import friday.testutil.PersonBuilder;
+import friday.model.student.exceptions.DuplicateStudentException;
+import friday.testutil.StudentBuilder;
 import friday.testutil.TypicalStudents;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -26,7 +28,7 @@ public class MasteryCheckBookTest {
 
     @Test
     public void constructor() {
-        assertEquals(Collections.emptyList(), addressBook.getPersonList());
+        assertEquals(Collections.emptyList(), addressBook.getStudentList());
     }
 
     @Test
@@ -42,51 +44,51 @@ public class MasteryCheckBookTest {
     }
 
     @Test
-    public void resetData_withDuplicatePersons_throwsDuplicatePersonException() {
-        // Two persons with the same identity fields
-        Student editedAlice = new PersonBuilder(TypicalStudents.ALICE)
+    public void resetData_withDuplicateStudents_throwsDuplicateStudentException() {
+        // Two students with the same identity fields
+        Student editedAlice = new StudentBuilder(TypicalStudents.ALICE)
                 .withMasteryCheck(CommandTestUtil.VALID_MASTERYCHECK_BOB)
                 .withTags(CommandTestUtil.VALID_TAG_HUSBAND)
                 .build();
         List<Student> newStudents = Arrays.asList(TypicalStudents.ALICE, editedAlice);
         AddressBookStub newData = new AddressBookStub(newStudents);
 
-        assertThrows(DuplicatePersonException.class, () -> addressBook.resetData(newData));
+        assertThrows(DuplicateStudentException.class, () -> addressBook.resetData(newData));
     }
 
     @Test
-    public void hasPerson_nullPerson_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> addressBook.hasPerson(null));
+    public void hasStudent_nullStudent_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> addressBook.hasStudent(null));
     }
 
     @Test
-    public void hasPerson_personNotInAddressBook_returnsFalse() {
-        assertFalse(addressBook.hasPerson(TypicalStudents.ALICE));
+    public void hasStudent_studentNotInAddressBook_returnsFalse() {
+        assertFalse(addressBook.hasStudent(TypicalStudents.ALICE));
     }
 
     @Test
-    public void hasPerson_personInAddressBook_returnsTrue() {
-        addressBook.addPerson(TypicalStudents.ALICE);
-        assertTrue(addressBook.hasPerson(TypicalStudents.ALICE));
+    public void hasStudent_studentInAddressBook_returnsTrue() {
+        addressBook.addStudent(TypicalStudents.ALICE);
+        assertTrue(addressBook.hasStudent(TypicalStudents.ALICE));
     }
 
     @Test
-    public void hasPerson_personWithSameIdentityFieldsInAddressBook_returnsTrue() {
-        addressBook.addPerson(TypicalStudents.ALICE);
-        Student editedAlice = new PersonBuilder(TypicalStudents.ALICE)
+    public void hasStudent_studentWithSameIdentityFieldsInAddressBook_returnsTrue() {
+        addressBook.addStudent(TypicalStudents.ALICE);
+        Student editedAlice = new StudentBuilder(TypicalStudents.ALICE)
                 .withMasteryCheck(CommandTestUtil.VALID_MASTERYCHECK_BOB)
                 .withTags(CommandTestUtil.VALID_TAG_HUSBAND)
                 .build();
-        assertTrue(addressBook.hasPerson(editedAlice));
+        assertTrue(addressBook.hasStudent(editedAlice));
     }
 
     @Test
-    public void getPersonList_modifyList_throwsUnsupportedOperationException() {
-        assertThrows(UnsupportedOperationException.class, () -> addressBook.getPersonList().remove(0));
+    public void getStudentList_modifyList_throwsUnsupportedOperationException() {
+        assertThrows(UnsupportedOperationException.class, () -> addressBook.getStudentList().remove(0));
     }
 
     /**
-     * A stub ReadOnlyAddressBook whose persons list can violate interface constraints.
+     * A stub ReadOnlyAddressBook whose students list can violate interface constraints.
      */
     private static class AddressBookStub implements ReadOnlyFriday {
         private final ObservableList<Student> students = FXCollections.observableArrayList();
@@ -96,8 +98,13 @@ public class MasteryCheckBookTest {
         }
 
         @Override
-        public ObservableList<Student> getPersonList() {
+        public ObservableList<Student> getStudentList() {
             return students;
+        }
+
+        @Override
+        public Set<Map.Entry<String, String>> getAliasMap() {
+            throw new AssertionError("This method should not be called.");
         }
     }
 

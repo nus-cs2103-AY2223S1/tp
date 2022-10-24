@@ -45,4 +45,24 @@ public class MasteryCheckTest {
         // the empty instance
         assertTrue(MasteryCheck.EMPTY_MASTERYCHECK.isEmpty());
     }
+
+    @Test
+    public void compareTo() {
+        // 2021 is smaller than 2022
+        assertTrue(new MasteryCheck(LocalDate.of(2021, 01, 01))
+                .compareTo(new MasteryCheck(LocalDate.of(2022, 01, 01))) < 0);
+
+        // May is not smaller than April
+        assertFalse(new MasteryCheck(LocalDate.of(2021, 05, 01))
+                .compareTo(new MasteryCheck(LocalDate.of(2021, 04, 01))) < 0);
+
+        // 20 is not larger than 21
+        assertFalse(new MasteryCheck(LocalDate.of(2021, 11, 20))
+                .compareTo(new MasteryCheck(LocalDate.of(2021, 11, 21))) > 0);
+
+
+        // Same date
+        assertTrue(new MasteryCheck(LocalDate.of(2020, 12, 31))
+                .compareTo(new MasteryCheck(LocalDate.of(2020, 12, 31))) == 0);
+    }
 }

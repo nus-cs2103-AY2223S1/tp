@@ -42,7 +42,7 @@ public class LogicManager implements Logic {
         logger.info("----------------[USER COMMAND][" + commandText + "]");
 
         CommandResult commandResult;
-        Command command = fridayParser.parseCommand(commandText);
+        Command command = fridayParser.parseCommand(commandText, model);
         commandResult = command.execute(model);
 
         try {
@@ -60,8 +60,8 @@ public class LogicManager implements Logic {
     }
 
     @Override
-    public ObservableList<Student> getFilteredPersonList() {
-        return model.getFilteredStudentList();
+    public ObservableList<Student> getStudentList() {
+        return model.getStudentList();
     }
 
     @Override
