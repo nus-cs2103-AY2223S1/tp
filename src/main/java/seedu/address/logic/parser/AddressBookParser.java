@@ -91,7 +91,7 @@ public class AddressBookParser {
             return new FindNoteCommandParser().parse(arguments);
 
         case EditNoteCommand.COMMAND_WORD:
-            return new EditNoteCommandParser().parse(arguments);
+            return new EditNoteCommandParser(model).parse(arguments);
 
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
