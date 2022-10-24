@@ -11,10 +11,14 @@ import static seedu.address.testutil.TypicalAppointments.APPOINTMENT_ELLE;
 import static seedu.address.testutil.TypicalAppointments.APPOINTMENT_GEORGE;
 import static seedu.address.testutil.TypicalAppointments.SECOND_APPOINTMENT_CARL;
 import static seedu.address.testutil.TypicalAppointments.SECOND_APPOINTMENT_GEORGE;
+import static seedu.address.testutil.TypicalPersons.BENSON;
+import static seedu.address.testutil.TypicalPersons.CARL;
+import static seedu.address.testutil.TypicalPersons.GEORGE;
 
 import org.junit.jupiter.api.Test;
 
 import seedu.address.model.Key;
+import seedu.address.testutil.AppointmentBuilder;
 
 public class AppointmentTest {
     @Test
@@ -43,11 +47,14 @@ public class AppointmentTest {
 
     @Test
     public void isYearCompareToCorrect() {
+        APPOINTMENT_BENSON.setPatient(BENSON);
+        APPOINTMENT_CARL.setPatient(CARL);
+
         // 2010-12-31 23:45 < 2019-12-10 16:30
         assertEquals(APPOINTMENT_CARL.compareTo(APPOINTMENT_BENSON), -1);
 
         // 2019-12-10 16:30 = 2019-12-10 16:30
-        assertEquals(APPOINTMENT_BENSON.compareTo(SECOND_APPOINTMENT_CARL), 0);
+        assertEquals(APPOINTMENT_BENSON.compareTo(APPOINTMENT_BENSON), 0);
 
         // 2019-12-10 16:30 > 2010-12-31 23:45
         assertEquals(APPOINTMENT_BENSON.compareTo(APPOINTMENT_CARL), 1);
@@ -55,11 +62,14 @@ public class AppointmentTest {
 
     @Test
     public void isSecondCompareToCorrect() {
+        APPOINTMENT_BENSON.setPatient(BENSON);
+        APPOINTMENT_CARL.setPatient(CARL);
+
         // 2010-12-31 23:45 < 2019-12-10 16:30
         assertEquals(APPOINTMENT_CARL.compareTo(APPOINTMENT_BENSON), -1);
 
         // 2019-12-10 16:30 = 2019-12-10 16:30
-        assertEquals(APPOINTMENT_BENSON.compareTo(SECOND_APPOINTMENT_CARL), 0);
+        assertEquals(APPOINTMENT_BENSON.compareTo(APPOINTMENT_BENSON), 0);
 
         // 2019-12-10 16:30 > 2010-12-31 23:45
         assertEquals(APPOINTMENT_BENSON.compareTo(APPOINTMENT_CARL), 1);
@@ -70,6 +80,9 @@ public class AppointmentTest {
 
     @Test
     public void isCompareToCorrect() {
+        APPOINTMENT_BENSON.setPatient(BENSON);
+        APPOINTMENT_CARL.setPatient(CARL);
+
         // APPOINTMENT_CARL < APPOINTMENT_BENSON
         assertEquals(APPOINTMENT_CARL.compareTo(APPOINTMENT_BENSON), -1);
 
@@ -78,6 +91,12 @@ public class AppointmentTest {
 
         // APPOINTMENT_BENSON > APPOINTMENT_DAVID
         assertEquals(APPOINTMENT_BENSON.compareTo(APPOINTMENT_DANIEL), 1);
+
+        Appointment appointmentWithLowerPatient =
+                new AppointmentBuilder(APPOINTMENT_BENSON).withPatient(BENSON).build();
+        Appointment appointmentWithHigherPatient =
+                new AppointmentBuilder(SECOND_APPOINTMENT_CARL).withPatient(CARL).build();
+        assertEquals(appointmentWithLowerPatient.compareTo(appointmentWithHigherPatient), -1);
     }
 
     @Test
@@ -96,6 +115,7 @@ public class AppointmentTest {
         assertEquals(APPOINTMENT_DANIEL.groupCompareTo(SECOND_APPOINTMENT_GEORGE, Key.TAG), -9);
 
         // Single tag vs single tag
+        SECOND_APPOINTMENT_GEORGE.setPatient(GEORGE);
         assertEquals(SECOND_APPOINTMENT_GEORGE.groupCompareTo(SECOND_APPOINTMENT_GEORGE, Key.TAG), 0);
 
         // Single tag vs double tag
