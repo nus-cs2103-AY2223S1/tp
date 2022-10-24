@@ -109,7 +109,7 @@ Deletes the specified stall from the application at the specified `INDEX`.
 Format: `sdel INDEX`
 
 * The index refers to the index number shown in the displayed stalls list.
-* The index must be a positive integer 1, 2, 3, …​
+* The index **must be a positive integer** 1, 2, 3, …​
 
 Example:
 * `sdel 2` deletes the 2nd stall in the application.
@@ -121,10 +121,51 @@ Deletes a review at the specified `INDEX`.
 Format: `rdel INDEX`
 
 * The index refers to the index number shown in the displayed reviews list.
-* The index must be a positive integer 1, 2, 3, …​
+* The index **must be a positive integer** 1, 2, 3, …​
 
 Example:
 * `rdel 2` deletes the 2nd review in the application.
+
+### Editing a Stall : `sedit`
+
+Edits an existing stall at the specified `INDEX`.
+
+Format: `sedit INDEX [n/NAME] [a/ADDRESS] [t/TAGS]…`
+
+* The index refers to the index number shown in the displayed stalls list.
+* The index **must be a positive integer** 1, 2, 3, …​
+* Editing stalls is flexible in FoodWhere. For example, you can update just the stall name or perhaps just the address and tags of the stall only.
+* At least one of the optional fields must be provided.
+* Existing values will be updated to the input values.
+* When editing tags, the existing tags of the stall will be removed i.e adding of tags is not cumulative.
+* You can remove all the stall’s tags by typing `t/` without specifying any tags after it.
+* All reviews that are associated to the edited stall will be updated to reflect the new changes of the stall.
+* No 2 stalls should have the same name and address.
+
+Examples:
+* `sedit 1 n/John Doe Eatery a/Blk 123 Bedok South` edits the name and address of the 1st stall to be `John Doe Eatery` and `Blk 123 Bedok South` respectively. All reviews that are associated to the 1st stall will be updated to reflect the new changes of the stall.
+* `sedit 2 n/Jane Doe Bakery` edits the name of the 2nd stall to be `Jane Doe Bakery`. All reviews that are associated to the 2nd stall will be updated to reflect the new changes of the stall.
+* `sedit 2 t/` Clears all existing tags of 2nd stall.
+
+### Editing a Review : `redit`
+
+Edits an existing review at the specified `INDEX`.
+
+Format: `redit INDEX [d/DATE] [c/CONTENT] [r/RATING] [t/TAGS]…`
+
+* The index refers to the index number shown in the displayed reviews list.
+* The index **must be a positive integer** 1, 2, 3, …​
+* Editing reviews is flexible in FoodWhere. For example, you can update just the review content or perhaps just the date and rating of the review only.
+* At least one of the optional fields must be provided.
+* Existing values will be updated to the input values.
+* When editing tags, the existing tags of the review will be removed i.e adding of tags is not cumulative.
+* You can remove all the review’s tags by typing `t/` without specifying any tags after it.
+* No 2 reviews should have the same date, content, rating and tags.
+
+Examples:
+* `redit 1 c/Food was decent. r/3` edits the content and rating of the 1st review to be `Food was decent.` and `3` respectively.
+* `redit 2 d/20/09/2022` edits the date of the 2nd review to be `20/09/2022`.
+* `redit 2 t/` Clears all existing tags of 2nd review.
 
 ### Finding a stall: `sfind`
 
@@ -200,17 +241,19 @@ If your changes to the data file make its format invalid, FoodWhere will discard
 
 ## Command summary
 
-| Action    | Format, Examples                                                                                         |
-|-----------|----------------------------------------------------------------------------------------------------------|
-| **exit**  | `exit`                                                                                                   |
-| **help**  | `help`                                                                                                   |
-| **clear** | `clear`                                                                                                  |
-| **radd**  | `radd s/STALL_INDEX d/DATE c/CONTENT r/RATING [t/TAGS]…`<br> e.g., `radd s/3 d/2022-09-20 c/Great food!` |
-| **rdel**  | `rdel INDEX`                                                                                             |
-| **rlist** | `rlist`                                                                                                  |
-| **rfind** | `rfind n/NAME_KEYWORD [MORE_KEYWORDS]… t/TAG_KEYWORD [MORE_KEYWORDS]…`                                                                         |
-| **sadd**  | `sadd n/NAME a/ADDRESS [t/TAGS]…`<br> e.g., `sadd n/John Chicken Rice a/Blk 123 Bedok South t/veryNice`  |
-| **sdel**  | `sdel INDEX`                                                                                             |
-| **slist** | `slist`                                                                                                  |
-| **sfind** | `sfind n/NAME_KEYWORD [MORE_KEYWORDS]… t/TAG_KEYWORD [MORE_KEYWORDS]…`                                                                         |
+| Action    | Format, Examples                                                                                             |
+|-----------|--------------------------------------------------------------------------------------------------------------|
+| **exit**  | `exit`                                                                                                       |
+| **help**  | `help`                                                                                                       |
+| **clear** | `clear`                                                                                                      |
+| **radd**  | `radd s/STALL_INDEX d/DATE c/CONTENT r/RATING [t/TAGS]…`<br> e.g., `radd s/3 d/2022-09-20 c/Great food! r/4` |
+| **rdel**  | `rdel INDEX`                                                                                                 |
+| **redit** | `redit INDEX [d/DATE] [c/CONTENT] [r/RATING] [t/TAGS]…` <br> e.g., `redit d/20/09/2022 c/Great food!`        |
+| **rlist** | `rlist`                                                                                                      |
+| **rfind** | `rfind n/NAME_KEYWORD [MORE_KEYWORDS]… t/TAG_KEYWORD [MORE_KEYWORDS]…`                                       |
+| **sadd**  | `sadd n/NAME a/ADDRESS [t/TAGS]…`<br> e.g., `sadd n/John Chicken Rice a/Blk 123 Bedok South t/veryNice`      |
+| **sdel**  | `sdel INDEX`                                                                                                 |
+| **sedit** | `sedit INDEX [n/NAME] [a/ADDRESS] [t/TAGS]…` <br> e.g., `sedit n/John Chicken Rice a/Blk 123 Bedok South`    |
+| **slist** | `slist`                                                                                                      |
+| **sfind** | `sfind n/NAME_KEYWORD [MORE_KEYWORDS]… t/TAG_KEYWORD [MORE_KEYWORDS]…`                                       |
 
