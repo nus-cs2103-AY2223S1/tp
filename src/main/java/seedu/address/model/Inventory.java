@@ -64,7 +64,15 @@ public class Inventory implements ReadOnlyInventory {
     }
 
     /**
-     * Checks whether {@item} is a duplicate in Inventory.
+     * Gets supply item in Inventory at the specified {@code index}.
+     */
+    public SupplyItem getSupplyItem(Index index) {
+        requireNonNull(index);
+        return this.supplyItems.get(index.getZeroBased());
+    }
+
+    /**
+     * Checks whether {@code item} is a duplicate in Inventory.
      */
     public boolean hasSupplyItem(SupplyItem item) {
         requireNonNull(item);
@@ -72,7 +80,7 @@ public class Inventory implements ReadOnlyInventory {
     }
 
     /**
-     * Checks whether {@item} is a duplicate in Inventory excluding {@excludedItem} from the check.
+     * Checks whether {@code item} is a duplicate in Inventory excluding {@code excludedItem} from the check.
      */
     public boolean hasSupplyItemExcluding(SupplyItem item, SupplyItem excludedItem) {
         requireNonNull(item);
@@ -95,7 +103,7 @@ public class Inventory implements ReadOnlyInventory {
     }
 
     /**
-     * Checks whether {@supplier} is a supplier for any SupplyItem in the inventory.
+     * Checks whether {@code supplier} is a supplier for any SupplyItem in the inventory.
      */
     public boolean hasSupplyItemSuppliedBy(Person supplier) {
         return this.supplyItems.stream()

@@ -118,12 +118,39 @@ public class ModelManager implements Model {
 
     @Override
     public void setSupplyItem(SupplyItem item, Index targetIndex) {
-        inventory.setSupplyItem(item, targetIndex);
+        Index indexInSourceList = Index.fromZeroBased(filteredSupplyItems.getSourceIndex(targetIndex.getZeroBased()));
+        inventory.setSupplyItem(item, indexInSourceList);
     }
 
     @Override
     public void deleteSupplyItem(Index index) {
-        inventory.deleteSupplyItem(index);
+        Index indexInSourceList = Index.fromZeroBased(filteredSupplyItems.getSourceIndex(index.getZeroBased()));
+        inventory.deleteSupplyItem(indexInSourceList);
+    }
+
+    @Override
+    public void increaseSupplyItem(Index targetIndex, int amount) {
+        requireNonNull(targetIndex);
+        SupplyItem item = inventory.getSupplyItem(targetIndex);
+        SupplyItem editedItem = new SupplyItem(item.getName(), Math.max(0, item.getCurrentStock() + amount),
+                item.getMinStock(), item.getSupplier(), item.getTags(), item.getIncDecAmount());
+        Index indexInSourceList = Index.fromZeroBased(filteredSupplyItems.getSourceIndex(targetIndex.getZeroBased()));
+        inventory.setSupplyItem(editedItem, indexInSourceList);
+    }
+
+    @Override
+    public void decreaseSupplyItem(Index targetIndex, int amount) {
+        increaseSupplyItem(targetIndex, -amount);
+    }
+
+    @Override
+    public void changeIncDecAmount(Index targetIndex, int amount) {
+        requireNonNull(targetIndex);
+        SupplyItem item = inventory.getSupplyItem(targetIndex);
+        SupplyItem editedItem = new SupplyItem(item.getName(), item.getCurrentStock(),
+                item.getMinStock(), item.getSupplier(), item.getTags(), amount);
+        Index indexInSourceList = Index.fromZeroBased(filteredSupplyItems.getSourceIndex(targetIndex.getZeroBased()));
+        inventory.setSupplyItem(editedItem, indexInSourceList);
     }
 
     @Override
@@ -145,12 +172,14 @@ public class ModelManager implements Model {
 
     @Override
     public void setTask(Task task, Index targetIndex) {
-        taskList.setTask(task, targetIndex);
+        Index indexInSourceList = Index.fromZeroBased(filteredTasks.getSourceIndex(targetIndex.getZeroBased()));
+        taskList.setTask(task, indexInSourceList);
     }
 
     @Override
     public void deleteTask(Index index) {
-        taskList.deleteTask(index);
+        Index indexInSourceList = Index.fromZeroBased(filteredSupplyItems.getSourceIndex(index.getZeroBased()));
+        taskList.deleteTask(indexInSourceList);
     }
 
     @Override

@@ -209,6 +209,21 @@ public class AddTaskCommandTest {
         }
 
         @Override
+        public void increaseSupplyItem(Index targetIndex, int amount) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void decreaseSupplyItem(Index targetIndex, int amount) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public void changeIncDecAmount(Index targetIndex, int amount) {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
         public void setPerson(Person target, Person editedPerson) {
             throw new AssertionError("This method should not be called.");
         }
@@ -223,9 +238,6 @@ public class AddTaskCommandTest {
             throw new AssertionError("This method should not be called.");
         }
 
-        /**
-         * Returns an unmodifiable view of the filtered supplyItem list
-         */
         @Override
         public ObservableList<SupplyItem> getFilteredSupplyItemList() {
             return null;
@@ -258,17 +270,12 @@ public class AddTaskCommandTest {
 
         @Override
         public void updateFilteredTaskList(Predicate<Task> predicate) {
+            throw new AssertionError("This method should not be called.");
         }
 
-        /**
-         * Updates the filter of the filtered supply item to filter by the given {@code predicate}.
-         *
-         * @param predicate
-         * @throws NullPointerException if (@code predicate) is null.
-         */
         @Override
         public void updateFilteredSupplyItemList(Predicate<SupplyItem> predicate) {
-
+            throw new AssertionError("This method should not be called.");
         }
     }
 

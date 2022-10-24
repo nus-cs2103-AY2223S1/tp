@@ -1,6 +1,7 @@
 package seedu.address.logic;
 
 import java.nio.file.Path;
+import java.util.function.Consumer;
 
 import javafx.collections.ObservableList;
 import seedu.address.commons.core.GuiSettings;
@@ -55,4 +56,19 @@ public interface Logic {
      * Set the user prefs' GUI settings.
      */
     void setGuiSettings(GuiSettings guiSettings);
+
+    /**
+     * Increases the SupplyItem amount.
+     */
+    Consumer<Integer> increaseSupplyItemHandler(int index);
+
+    /**
+     * Decreases the SupplyItem amount.
+     */
+    Consumer<Integer> decreaseSupplyItemHandler(int index);
+
+    /**
+     * Changes the increase/decrease amount of the SupplyItem.
+     */
+    Consumer<Integer> changeIncDecAmountHandler(int index);
 }

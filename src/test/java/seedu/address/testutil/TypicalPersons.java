@@ -25,37 +25,43 @@ import seedu.address.model.person.Person;
  */
 public class TypicalPersons {
 
-    public static final Person ALICE = new PersonBuilder().withName("Alice Pauline")
+    public static final Person ALICE = new PersonBuilder().withName("ABC Pte Ltd")
             .withAddress("123, Jurong West Ave 6, #08-111").withPrice("$1.50")
-            .withItem("Chicken").withPhone("94351253")
-            .withTags("friends").build();
-    public static final Person ALICE_SUPPLIER = new PersonBuilder().withName("Alice Pauline")
+            .withItem("Chicken").withPhone("67089005")
+            .withTags("Supplier").build();
+    public static final Person ALICE_SUPPLIER = new PersonBuilder().withName("ABC Pte Ltd")
             .withAddress("123, Jurong West Ave 6, #08-111").withPrice("$1.50")
-            .withItem("Ginger").withPhone("94351253")
+            .withItem("Ginger").withPhone("67089005")
             .build();
-    public static final Person BENSON = new PersonBuilder().withName("Benson Meier")
+
+    public static final Person BENSON = new PersonBuilder().withName("Ya Shu Egg")
             .withAddress("311, Clementi Ave 2, #02-25")
-            .withPrice("$3.50").withItem("Tuna").withPhone("98765432")
-            .withTags("owesMoney", "friends").build();
-    public static final Person BENSON_SUPPLIER = new PersonBuilder().withName("Benson Meier")
+            .withPrice("$3.50").withItem("Egg").withPhone("63450864")
+            .withTags("Supplier").build();
+    public static final Person BENSON_SUPPLIER = new PersonBuilder().withName("Ya Shu Egg")
             .withAddress("311, Clementi Ave 2, #02-25")
-            .withPrice("$3.50").withItem("Beef").withPhone("98765432")
+            .withPrice("$3.50").withItem("Beef").withPhone("63450864")
             .build();
-    public static final Person CARL = new PersonBuilder().withName("Carl Kurz").withPhone("95352563")
-            .withPrice("$0.90").withItem("Rice").withAddress("wall street").build();
-    public static final Person CARL_SUPPLIER = new PersonBuilder().withName("Carl Kurz").withPhone("95352563")
-            .withPrice("$0.90").withItem("Lamb").withAddress("wall street").build();
-    public static final Person DANIEL = new PersonBuilder().withName("Daniel Meier").withPhone("87652533")
+
+    public static final Person CARL = new PersonBuilder().withName("KyEggs").withPhone("61240985")
+            .withPrice("$0.90").withItem("Egg").withAddress("Blk 11 Ang Mo Kio Street 74, #11-04").build();
+    public static final Person CARL_SUPPLIER = new PersonBuilder().withName("KyEggs").withPhone("61240985")
+            .withPrice("$0.90").withItem("Lamb").withAddress("Blk 11 Ang Mo Kio Street 74, #11-04").build();
+
+    public static final Person DANIEL = new PersonBuilder().withName("Goh Supplies").withPhone("69008045")
             .withPrice("$3.80").withItem("Tonic Water")
-            .withAddress("10th street").withTags("friends").build();
-    public static final Person DANIEL_SUPPLIER = new PersonBuilder().withName("Daniel Meier").withPhone("87652533")
+            .withAddress("10th street").withTags("Supplier").build();
+    public static final Person DANIEL_SUPPLIER = new PersonBuilder().withName("Goh Supplies").withPhone("69008045")
             .withPrice("$3.80").withItem("Spinach")
             .withAddress("10th street").build();
-    public static final Person ELLE = new PersonBuilder().withName("Elle Meyer").withPhone("9482224")
+
+    public static final Person ELLE = new PersonBuilder().withName("Soho Singapore").withPhone("64300567")
             .withPrice("$0.60").withItem("Napkins").withAddress("michegan ave").build();
-    public static final Person FIONA = new PersonBuilder().withName("Fiona Kunz").withPhone("9482427")
+
+    public static final Person FIONA = new PersonBuilder().withName("Balas Market").withPhone("62624417")
             .withPrice("$1.10").withItem("Cups").withAddress("little tokyo").build();
-    public static final Person GEORGE = new PersonBuilder().withName("George Best").withPhone("9482442")
+
+    public static final Person GEORGE = new PersonBuilder().withName("Best Supplies").withPhone("65409876")
             .withPrice("$0.80").withItem("Noodles").withAddress("4th street").build();
 
     // Manually added

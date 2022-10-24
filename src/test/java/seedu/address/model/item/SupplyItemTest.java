@@ -2,8 +2,10 @@ package seedu.address.model.item;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
+import static seedu.address.testutil.TypicalSupplyItems.EGGS;
 
 import java.util.Collections;
 import java.util.HashSet;
@@ -70,9 +72,8 @@ public class SupplyItemTest {
                 new Phone("63450864"), new Price("$1.10"), new Item("Egg"),
                 new Address("Blk 30 Lorong 3 Serangoon Gardens, #07-18"), new HashSet<>()), a.getSupplier());
         assertEquals(Collections.emptySet(), a.getTags());
-        assertEquals("Item: Egg, Supplier: Ya Shu Egg; Phone: 63450864; "
-                + "Price: $1.10; Item: Egg; "
-                + "Address: Blk 30 Lorong 3 Serangoon Gardens, #07-18, Price: $1.10, Stock: 5", a.toString());
+        assertEquals("Item: Egg, Supplier: Ya Shu Egg, "
+                + "Price: $1.10, Current Stock: 5, Minimum Stock: 2", a.toString());
     }
 
     @Test
@@ -90,6 +91,11 @@ public class SupplyItemTest {
         assertTrue(SupplyItem.isValidSupplyItem("Celery"));
         assertTrue(SupplyItem.isValidSupplyItem("Luncheon Meat")); // two words
         assertTrue(SupplyItem.isValidSupplyItem("Chicken 65 Masala")); // items with numbers in them
+    }
+
+    @Test
+    public void getIncDecAmount() {
+        assertNotNull(EGGS.getIncDecAmount());
     }
 
     @Test
