@@ -10,7 +10,7 @@ public class Uid {
     public final String value;
 
     /**
-     * constructor that creates an Uid Object.
+     * Constructor that creates a Uid Object.
      */
     public Uid() {
         this.value = String.valueOf(UUID.randomUUID());
