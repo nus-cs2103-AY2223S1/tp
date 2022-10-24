@@ -16,7 +16,6 @@ import seedu.foodrem.model.UserPrefs;
  * Contains integration tests (interaction with the Model) and unit tests for ListCommand.
  */
 public class ListCommandTest {
-
     private Model model;
     private Model expectedModel;
 

@@ -9,7 +9,6 @@ import seedu.foodrem.model.item.Item;
  * A utility class for Item.
  */
 public class ItemUtil {
-
     /**
      * Returns an add command string for adding the {@code item}.
      */

@@ -16,8 +16,7 @@ import seedu.foodrem.logic.Logic;
  * The manager of the UI component.
  */
 public class UiManager implements Ui {
-
-    public static final String ALERT_DIALOG_PANE_FIELD_ID = "alertDialogPane";
+    private static final String ALERT_DIALOG_PANE_FIELD_ID = "alertDialogPane";
 
     private static final Logger logger = LogsCenter.getLogger(UiManager.class);
     private static final String ICON_APPLICATION = "/images/foodrem.png";
@@ -83,5 +82,4 @@ public class UiManager implements Ui {
         Platform.exit();
         System.exit(1);
     }
-
 }

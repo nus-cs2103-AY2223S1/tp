@@ -7,7 +7,6 @@ import org.junit.jupiter.api.Test;
 import seedu.foodrem.testutil.MessageToUser;
 
 public class ItemQuantityValidatorTest {
-
     @Test
     public void test_quantityInValidRange() {
         ItemQuantityValidator.validate("0");

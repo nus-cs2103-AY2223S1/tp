@@ -8,7 +8,6 @@ import seedu.foodrem.commons.util.ValidationUtil;
  * Validation class for item quantities.
  */
 public class ItemQuantityValidator implements Validator {
-
     // Validation for characters used in quantity
     private static final String MESSAGE_FOR_NOT_A_NUMBER =
             "The item quantity should be a number.";

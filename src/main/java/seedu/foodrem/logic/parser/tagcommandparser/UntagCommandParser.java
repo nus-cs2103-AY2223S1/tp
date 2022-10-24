@@ -17,7 +17,6 @@ import seedu.foodrem.logic.parser.exceptions.ParseException;
  * Parses input arguments and creates a new UntagCommand object
  */
 public class UntagCommandParser implements Parser<UntagCommand> {
-
     /**
      * Parses the given {@code String} of arguments in the context of the UntagCommand
      * and returns an UntagCommand object for execution.
@@ -42,6 +41,4 @@ public class UntagCommandParser implements Parser<UntagCommand> {
 
         return new UntagCommand(name, index);
     }
-
-
 }

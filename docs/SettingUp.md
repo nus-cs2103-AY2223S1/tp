@@ -8,7 +8,7 @@ title: Setting up and getting started
 
 ---
 
-## Setting Up The Project In Your Computer
+## Setting Up The Project in Your Computer
 
 <div markdown="span" class="alert alert-warning">:exclamation: **Caution:**
 

@@ -14,7 +14,7 @@ show-toc: true
 
 ---
 
-## Setting up, Getting Started
+## Setting Up, Getting Started
 
 Refer to the guide [_Setting up and getting started_](SettingUp.md).
 
@@ -177,7 +177,7 @@ ___
 
 **Target user profile**: Purchasing managers who are proficient with typing for small F&B businesses
 
-**Value proposition**: FoodREM empowers small food and beverage (F&B) restaurants to manage inventory and obtain insights from inventory data.
+**Value proposition**: FoodRem empowers small food and beverage (F&B) restaurants to manage inventory and obtain insights from inventory data.
 
 ### User Stories
 

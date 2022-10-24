@@ -24,7 +24,6 @@ import seedu.foodrem.model.item.Item;
 import seedu.foodrem.testutil.EditItemDescriptorBuilder;
 import seedu.foodrem.testutil.ItemBuilder;
 
-
 /**
  * Contains integration tests (interaction with the Model) and unit tests for EditCommand.
  */
@@ -177,5 +176,4 @@ public class EditCommandTest {
         // different descriptor -> returns false
         assertFalse(standardCommand.equals(new EditCommand(INDEX_FIRST_ITEM, CommandTestUtil.DESC_CUCUMBERS)));
     }
-
 }
