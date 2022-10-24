@@ -37,6 +37,8 @@ public class ItemCard extends UiPart<Region> {
     @FXML
     private Label quantityAndUnit;
     @FXML
+    private Label price;
+    @FXML
     private Label bought;
     @FXML
     private Label expiry;
@@ -52,6 +54,7 @@ public class ItemCard extends UiPart<Region> {
         id.setText(displayedIndex + ". ");
         name.setText(String.valueOf(item.getName()));
         quantityAndUnit.setText(item.getQuantity() + " " + item.getUnit());
+        price.setText("$" + item.getPrice());
         bought.setText(String.format("(Bought Date: %s)",
                 item.getBoughtDate() == ItemBoughtDate.NOT_SET_BOUGHT_DATE ? "Not Set" : item.getBoughtDate()));
         expiry.setText(String.format("(Expiry Date: %s)",
