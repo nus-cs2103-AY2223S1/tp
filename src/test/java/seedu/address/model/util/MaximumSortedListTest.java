@@ -11,7 +11,6 @@ import org.junit.jupiter.api.Test;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import seedu.address.model.util.MaximumSortedList;
 import seedu.address.model.util.exceptions.SortedListException;
 
 public class MaximumSortedListTest {

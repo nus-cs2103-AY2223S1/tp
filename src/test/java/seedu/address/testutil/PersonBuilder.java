@@ -5,7 +5,6 @@ import static seedu.address.model.person.Person.MAXIMUM_NUM_OF_APPOINTMENTS;
 import java.util.HashSet;
 import java.util.Set;
 
-import seedu.address.model.util.MaximumSortedList;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Appointment;
 import seedu.address.model.person.Email;
@@ -16,6 +15,7 @@ import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
 import seedu.address.model.tag.RiskTag;
 import seedu.address.model.tag.Tag;
+import seedu.address.model.util.MaximumSortedList;
 import seedu.address.model.util.SampleDataUtil;
 
 /**
