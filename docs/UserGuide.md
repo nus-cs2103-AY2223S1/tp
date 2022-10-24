@@ -88,11 +88,9 @@ Examples:
 
 ### Deleting of a client: `delete`
 
-Deletes a client from Rapportbook.
+Deletes a client within Rapportbook.
 
-* Deletes the person at the specified `INDEX`.
-* The index refers to the index number shown in the displayed person list.
-* The index **must be a positive integer** 1, 2, 3, …​
+* Deletes the client at the specified `INDEX`, the number shown in the displayed client list.
 
 Format: `delete INDEX`
 
@@ -101,7 +99,7 @@ Examples:
 
 ### Viewing the information of a client : `show`
 
-Displays a client's information stored in Rapportbook by index.
+Displays information of a client at the specified `INDEX` in a separate panel. This feature allows faster modification to the client information as other commands such as [edit](#editing-of-client-information--edit), [tag](#tagging-clients--tag) and [reminder](#creating-reminders-reminders) do not have to specify an INDEX.
 
 Format: `show INDEX​`
 
@@ -110,9 +108,11 @@ Examples:
 
 ### Editing of client information : `edit`
 
-Edits the information of a client within Rapportbook.
+Edits the information of a client within Rapportbook. 
+* Edits the client at the specified `INDEX`, the number shown in the displayed client list.
+* The index can be left out if the client to edit is the target client from the [show](#viewing-the-information-of-a-client--show) command.
 
-Format: `edit INDEX [n=NAME] [p=PHONE] [e=EMAIL] [a=ADDRESS] [po=POSTAL_CODE] [dob=DATE_OF_BIRTH] [r=REMARKS]`
+Format: `edit [INDEX] [n=NAME] [p=PHONE] [e=EMAIL] [a=ADDRESS] [po=POSTAL_CODE] [dob=DATE_OF_BIRTH] [r=REMARKS]`
 
 * Edits the person at the specified `INDEX`. The index refers to the index number shown in the displayed person list. The index **must be a positive integer** (i.e. 1, 2, 3, …​)
 * At least one of the optional fields must be provided.
@@ -138,9 +138,12 @@ Examples:
 
 ### Tagging clients : `tag`
 
-Tags a client entry for categorising purposes. The index of hte contact and the tag name must be specified.
-
-Format: `tag INDEX TAG [TAG2] [TAG3] … [TAGN]`
+Tags a client entry for categorising purposes. 
+* Tags the client at the specified `INDEX`, the number shown in the displayed client list.
+* The index can be left out if the client to tag is the target client from the [show](#viewing-the-information-of-a-client--show) command.
+* The tag name must be specified.
+ 
+Format: `tag [INDEX] TAG [TAG2] [TAG3] … [TAGN]`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 You can assign multiple tags to a client at once by separating the different tag names with spaces after the client index.
@@ -154,7 +157,7 @@ Example:
 
 Removes a tag from a client entry if required.
 
-Format: `tag remove INDEX TAG [TAG2] [TAG3] … [TAGN]
+Format: `tag remove [INDEX] TAG [TAG2] [TAG3] … [TAGN]
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 Like assignment of tags, you can also remove multiple tags from a client at once by separating the different tag names with spaces after the client index.
@@ -192,6 +195,41 @@ Example:
 * `filter clear t=potential` Remove the `potential` tag filter.
 * `filter clcear t` Remove all tag filters
 
+### Creating reminders: `reminder`
+
+Creates a reminder for a specific client. The description, date and time of the reminder must be specified. The
+index can be left out if the reminder is meant for the target client from the [show](#viewing-the-information-of-a-client--show) command.
+
+Format: `reminder [INDEX] d=description dt=YY-M-D H:m`
+
+Example:
+* `reminder 5 d=Zoom meeting dt=22-11-20 11:00` Creates a reminder for the client entry at index 5, with a description of `Zoom meeting`, a date of `20 November 2022` and time of `11:00 AM`.
+
+Possible date time formats:
+* Date of `20 November 2022` and time of `3:00 PM`
+  * `dt=2022-11-20 3:00PM`
+  * `dt=22-11-20 15:00`
+  * `dt=2022-Nov-20 3:00 PM`
+* Date of `8 November 2022` and time of `12:00 AM`
+  * `dt=22-11-8 0:00`
+  * `dt=2022-11-8 12:00AM`
+  * `dt=22-nov-08 00:00`
+
+### Deleting reminders: `reminder delete`
+
+Deletes a reminder from the displayed reminder list using the reminder index.
+
+Format: `reminder delete INDEX`
+
+Example:
+* `reminder delete 3` deletes a reminder at index 3 of the reminder list on display.
+
+### Clearing reminders: `reminder clear`
+
+Clears all reminders from the displayed reminder list.
+
+Format: `reminder clear`
+
 ### Return home
 
 Resets the view back to the homepage.
@@ -220,6 +258,35 @@ If your changes to the data file makes its format invalid, Rapportbook will disc
 
 _Details coming soon ..._ -->
 
+### Command aliases
+
+Frequently used commands have aliases that are short so that you can perform actions quickly.
+
+| Action                                                   | Command            | Alias |
+|----------------------------------------------------------|--------------------|-------|
+| **[Home](#return-home)**                                 | `home`             | h     | 
+| **[Show](#viewing-the-information-of-a-client--show)**   | `show`             | s     | 
+| **[Add](#adding-a-client-add)**                          | `add`              | a     |
+| **[Delete](#deleting-of-a-client-delete)**               | `delete`           | d     | 
+| **[Edit](#editing-of-client-information--edit)**         | `edit`             | e     |
+| **[Tag](#tagging-clients--tag)**                         | `tag`              | t     |  
+| **[Tag creation](#creating-a-tag--tag-create)**          | `tag create`       | t c   |
+| **[Untag](#removing-tags-from-clients--tag-remove)**     | `tag remove`       | t r   |  
+| **Tag deletion**                                         | `tag delete `      | t d   |
+| **[Filter](#filtering-client-entries-filter)**           | `filter`           | f     | 
+| **[Filter clear](#clearing-filters)**                    | `filter clear`     | f c   | 
+| **Filter list**                                          | `filter list`      | f l   | 
+| **[Reminder creation](#creating-reminders-reminder)**    | `reminder`         | r     | 
+| **[Reminder deletion](#deleting-of-a-client-delete)**    | `reminder delete`  | r d   | 
+| **[Reminder clear](#clearing-reminders-reminder-clear)** | `reminder clear`   | r c   | 
+| **Message creation**                                     | `message create`   | m c   |
+| **Message list**                                         | `message list`     | m l   |
+| **Message generation**                                   | `message generate` | m g   |
+| **Message deletion**                                     | `message delete`   | m d   |
+
+
+
+
 --------------------------------------------------------------------------------------------------------------------
 
 ## FAQ
@@ -231,16 +298,26 @@ _Details coming soon ..._ -->
 
 ## Command summary
 
-Action | Format, Examples
---------|------------------
-**Show** | `show INDEX`
-**Add** | `add n=NAME p=PHONE_NUMBER e=EMAIL a=ADDRESS po=POSTAL_CODE dob=DATE_OF_BIRTH [r=REMARKS]​`
-**Delete** | `delete INDEX`
-**Edit** | `edit INDEX [n=NAME] [p=PHONE] [e=EMAIL] [a=ADDRESS] [po=POSTAL_CODE] [dob=DATE_OF_BIRTH] [r=REMARKS]`
-**Tag creation** | `tag create TAG [TAG2] [TAG3] … [TAGN]`
-**Tag** | `tag INDEX TAG`
-**Untag** | `tag remove INDEX TAG [TAG2] [TAG3] … [TAGN]`
-**Filter** | `filter [t=TAG] [n=NAME]`<br>`filter clear [t=TAG] [n=NAME]`
-**Home** | `home`
-**Help** | `help`
-**Exit** | `exit`
+| Action                                                   | Format                                                                                                                            |
+|----------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------|
+ | **[Home](#return-home)**                                 | `home`                                                                                                                            |
+| **[Show](#viewing-the-information-of-a-client--show)**   | `show INDEX`                                                                                                                      |
+| **[Add](#adding-a-client-add)**                          | `add n=NAME p=PHONE e=EMAIL a=ADDRESS [r=REMARKS] [t=TAGS]`                                                                       |
+| **[Delete](#deleting-of-a-client-delete)**               | `delete INDEX`                                                                                                                    |
+| **[Edit](#editing-of-client-information--edit)**         | `edit [INDEX] [n=NAME] [p=PHONE] [e=EMAIL] [a=ADDRESS] [r=REMARKS]`                                                               |
+ | **[Tag](#tagging-clients--tag)**                         | `tag [INDEX] TAG`                                                                                                                 |
+| **[Tag creation](#creating-a-tag--tag-create)**          | `tag create TAG1 [TAG2] … [TAGN]`                                                                                                 |
+| **[Untag](#removing-tags-from-clients--tag-remove)**     | `tag remove [INDEX] TAG1 [TAG2] … [TAGN]`                                                                                         |
+| **Tag deletion**                                         | `tag delete TAG1 [TAG2] … [TAGN]`                                                                                                 |
+| **[Filter](#filtering-client-entries-filter)**           | `filter n=NAME1,[NAME2],…,[NAMEN] [t=TAG1,[TAG2],…,[TAGN]]`<br> `filter [n=NAME1,[NAME2],…,[NAMEN]] t=TAG1,[TAG2],…,[TAGN]`       |
+| **[Filter clear](#clearing-filters)**                    | `filter clear n=NAME1,[NAME2],…,[NAMEN] [t=TAG1,[TAG2],…,[TAGN]]`<br> `filter [n=NAME1,[NAME2],…,[NAMEN]] t=TAG1,[TAG2],…,[TAGN]` |
+| **Filter list**                                          | `filter list`                                                                                                                     |
+| **[Reminder creation](#creating-reminders-reminder)**    | `reminder [INDEX] d=DESCRIPTION dt=YY-M-D H:m`                                                                                    |
+| **[Reminder deletion](#deleting-of-a-client-delete)**    | `reminder delete INDEX`                                                                                                           |
+| **[Reminder clear](#clearing-reminders-reminder-clear)** | `reminder clear`                                                                                                                  |
+| **Message creation**                                     |                                                                                                                                   |
+| **Message list**                                         |                                                                                                                                   |
+| **Message generation**                                   |                                                                                                                                   |
+| **Message deletion**                                     |                                                                                                                                   |
+| **[Help](#viewing-help--help)**                          | `help`                                                                                                                            |
+ | **[Exit](#exiting-the-program--exit)**                   | `exit`                                                                                                                            |
