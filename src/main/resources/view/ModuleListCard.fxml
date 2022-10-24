@@ -30,8 +30,13 @@
                     </minWidth>
                 </Label>
                 <Label fx:id="moduleCode" text="\$first" styleClass="cell_big_label"/>
-                <FlowPane fx:id="assignmentDetails"/>
+                <FlowPane fx:id="assignmentDetails">
+                    <padding>
+                        <Insets left="15" bottom="10"/>
+                    </padding>
+                </FlowPane>
             </HBox>
+            <Label fx:id="moduleTitle" styleClass="cell_big_label"/>
             <HBox>
                 <Label id="lectureLabel" styleClass="link_type_label" text="Lecture: "/>
                 <Label fx:id="lectureDetails" styleClass="cell_small_label" text="\$lectureDetails"/>

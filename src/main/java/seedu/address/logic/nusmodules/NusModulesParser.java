@@ -1,4 +1,4 @@
-package seedu.address.logic.NusModules;
+package seedu.address.logic.nusmodules;
 
 import java.io.File;
 import java.io.IOException;
@@ -14,7 +14,6 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 public class NusModulesParser {
     private final File nusModuleJson = new File("src/main/java/seedu/address/logic/NUSModules/NUSModules.json");
     private ObjectMapper mapper = new ObjectMapper();
-    private NusModule[] nusModuleList;
 
     private List<NusModule> nusModuleLists = mapper.readValue(nusModuleJson, new TypeReference<List<NusModule>>() {
     });
@@ -30,7 +29,7 @@ public class NusModulesParser {
      */
     public String getModuleTitle(String moduleCode) {
         for (NusModule nusModule : nusModuleLists) {
-            if (nusModule.getModuleCode().equals(moduleCode)) {
+            if (nusModule.getModuleCode().equalsIgnoreCase(moduleCode)) {
                 return nusModule.getModuleTitle();
             }
         }

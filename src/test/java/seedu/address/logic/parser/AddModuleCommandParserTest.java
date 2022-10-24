@@ -14,14 +14,20 @@ import static seedu.address.logic.commands.CommandTestUtil.TUTORIAL_ZOOM_LINK_CS
 import static seedu.address.logic.commands.CommandTestUtil.VALID_MODULE_CODE_CS2103T;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 
+import java.io.IOException;
+
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.AddModuleCommand;
+import seedu.address.logic.nusmodules.NusModulesParser;
 import seedu.address.model.assignmentdetails.AssignmentDetails;
 import seedu.address.model.module.ModuleCode;
 
 public class AddModuleCommandParserTest {
-    private AddModuleCommandParser parser = new AddModuleCommandParser();
+    private AddModuleCommandParser parser = new AddModuleCommandParser(new NusModulesParser());
+
+    public AddModuleCommandParserTest() throws IOException {
+    }
 
     //@Test
     //public void parse_allFieldsPresent_success() {

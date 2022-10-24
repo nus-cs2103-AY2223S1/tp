@@ -34,6 +34,8 @@ public class ModuleCard extends UiPart<Region> {
     @FXML
     private Label moduleCode;
     @FXML
+    private Label moduleTitle;
+    @FXML
     private Label id;
     @FXML
     private Label lectureDetails;
@@ -54,6 +56,7 @@ public class ModuleCard extends UiPart<Region> {
         this.module = module;
         id.setText(displayedIndex + ". ");
         moduleCode.setText(module.getModuleCode().moduleCode);
+        moduleTitle.setText(module.getModuleCode().getModuleTitle());
         lectureDetails.setText(module.getLectureDetails().value);
         tutorialDetails.setText(module.getTutorialDetails().value);
         lectureZoomLink.setText(module.getLectureZoomLink().zoomLink.orElse(""));
