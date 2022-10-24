@@ -159,7 +159,8 @@ public class UniqueTutorialListTest {
     @Test
     public void setTutorials_listWithDuplicateTutorials_throwsDuplicateTutorialException() {
         List<Tutorial> listWithDuplicateTutorials = Arrays.asList(TUTORIAL1, TUTORIAL1);
-        assertThrows(DuplicateTutorialException.class, () -> uniqueTutorialList.setTutorials(listWithDuplicateTutorials));
+        assertThrows(DuplicateTutorialException.class, () -> uniqueTutorialList
+                .setTutorials(listWithDuplicateTutorials));
     }
 
     @Test
