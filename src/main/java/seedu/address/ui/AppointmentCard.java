@@ -31,6 +31,8 @@ public class AppointmentCard extends UiPart<Region> {
     private Label status;
 
     @FXML
+    private Label recurring;
+    @FXML
     private FlowPane tags;
 
     /**
@@ -42,7 +44,8 @@ public class AppointmentCard extends UiPart<Region> {
         id.setText(displayedIndex + ". ");
         patientName.setText(appointment.getPatientName());
         reason.setText(appointment.getReason());
-        dateTime.setText(appointment.getFormattedDateTime() + appointment.getRecurringStatus());
+        dateTime.setText(appointment.getFormattedDateTime());
+        recurring.setText(appointment.getRecurringStatus());
         status.setText(appointment.getStatus());
         appointment.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.toString()))

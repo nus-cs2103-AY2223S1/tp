@@ -279,7 +279,7 @@ public class Appointment {
     @Override
     public String toString() {
         return getStatus() + " " + getFormattedDateTime() + " for " + reason
-                + getRecurringStatus();
+                + " " + getRecurringStatus();
     }
 
     private String getStateIcon() {
@@ -288,8 +288,8 @@ public class Appointment {
         return isMarked.get() ? markedIcon : unmarkedIcon;
     }
     public String getRecurringStatus() {
-        String nonRecurring = "\nNon-recurring";
-        String recurring = "\nRecurring every ";
+        String nonRecurring = "Non-recurring";
+        String recurring = "Recurring every ";
         List<String> datesList = List.of(" year" , " month", " day");
         if (timePeriod.stream().allMatch(x -> x.equals(0))) {
             return nonRecurring;
