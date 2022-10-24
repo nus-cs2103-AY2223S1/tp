@@ -1,6 +1,9 @@
 package seedu.address.logic.parser;
 
+import static seedu.address.commons.core.Messages.MESSAGE_BOTH_EMAIL_AND_PHONE;
+import static seedu.address.commons.core.Messages.MESSAGE_EMPTY_EMAIL_AND_PHONE;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.commons.core.Messages.MESSAGE_NO_UNIQUE_PREFIX_IDENTIFIER;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 
@@ -37,11 +40,15 @@ public class DeleteCommandParser implements Parser<DeleteCommand> {
                     ? argMultimap.isUniquePrefix(PREFIX_PHONE)
                     : argMultimap.isUniquePrefix(PREFIX_EMAIL);
 
-            if (isBothEmpty
-                    || isBothFilled
-                    || !argMultimap.getPreamble().isEmpty()
-                    || !isPrefixUnique) {
+            if (isBothEmpty) {
+                throw new ParseException(String.format(MESSAGE_EMPTY_EMAIL_AND_PHONE, DeleteCommand.MESSAGE_USAGE));
+            } else if (isBothFilled) {
+                throw new ParseException(String.format(MESSAGE_BOTH_EMAIL_AND_PHONE, DeleteCommand.MESSAGE_USAGE));
+            } else if (!argMultimap.getPreamble().isEmpty()) {
                 throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteCommand.MESSAGE_USAGE));
+            } else if (!isPrefixUnique) {
+                throw new ParseException(String.format(MESSAGE_NO_UNIQUE_PREFIX_IDENTIFIER,
+                        DeleteCommand.MESSAGE_USAGE));
             } else if (arePrefixesPresent(argMultimap, PREFIX_PHONE)) {
                 Phone phone = ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONE).get());
                 deletePersonDescriptor.setPhone(phone);
@@ -55,8 +62,7 @@ public class DeleteCommandParser implements Parser<DeleteCommand> {
             return new DeleteCommand(deletePersonDescriptor);
 
         } catch (ParseException pe) {
-            throw new ParseException(
-                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteCommand.MESSAGE_USAGE), pe);
+            throw new ParseException(pe.getMessage(), pe);
         }
     }
 
