@@ -208,13 +208,12 @@ Sorts the stall list by specified criteria.
 Format: `ssort CRITERIA`
 
 * The criteria must be provided and should not be blank.
-* Criteria are case-insensitive.
 * Below are the supported sorting criteria:
 
-| Criteria       | Notes             |
-|----------------|-------------------|
-| `name`         | Sorts from A to Z |
-| `reversedname` | Sorts from Z to A |
+| Criteria       | Notes                          |
+|----------------|--------------------------------|
+| `name`         | Sorts from 0 to 9, then A to Z |
+| `reversedname` | Sorts from Z to A, then 9 to 0 |
 
 * The command will fail if two or more criteria are provided or any other criteria not listed above is provided. <br>
 Examples: `ssort name reversedname`, `ssort address`
@@ -224,17 +223,16 @@ Examples: `ssort name reversedname`, `ssort address`
 Sorts the review list by specified criteria.
 
 * The criteria must be provided and should not be blank.
-* Criteria are case-insensitive.
 * Below are the supported sorting criteria:
 
-| Criteria         | Notes                        |
-|------------------|------------------------------|
-| `name`           | Sorts from A to Z            |
-| `reversedname`   | Sorts from Z to A            |
-| `date`           | Sorts from Oldest to Newest  |
-| `reverseddate`   | Sorts from Newest to Oldest  |
-| `rating`         | Sorts from Lowest to Highest |
-| `reversedrating` | Sorts from Highest to Lowest |
+| Criteria         | Notes                          |
+|------------------|--------------------------------|
+| `name`           | Sorts from 0 to 9, then A to Z |
+| `reversedname`   | Sorts from Z to A, then 9 to 0 |
+| `date`           | Sorts from oldest to newest    |
+| `reverseddate`   | Sorts from newest to oldest    |
+| `rating`         | Sorts from lowest to highest   |
+| `reversedrating` | Sorts from highest to lowest   |
 
 * The command will fail if two or more criteria are provided or any other criteria not listed above is provided. <br>
 Examples: `rsort name date`, `rsort content`
