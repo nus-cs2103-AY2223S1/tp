@@ -21,7 +21,6 @@ import org.junit.jupiter.api.Test;
 import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.commands.BuyCommand;
 import seedu.address.logic.commands.ClearCommand;
-import seedu.address.logic.commands.CreateCommand;
 import seedu.address.logic.commands.DeleteClientCommand;
 import seedu.address.logic.commands.DeleteCommand;
 import seedu.address.logic.commands.EditCommand;
@@ -30,6 +29,7 @@ import seedu.address.logic.commands.FilterTransCommand;
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
+import seedu.address.logic.commands.RemarkCommand;
 import seedu.address.logic.commands.SellCommand;
 import seedu.address.logic.commands.UserGuideCommand;
 import seedu.address.logic.commands.ViewCommand;
@@ -116,9 +116,9 @@ public class JeeqTrackerParserTest {
 
     @Test
     public void parseCommand_create() throws Exception {
-        CreateCommand command = (CreateCommand) parser.parseCommand(
-                RemarkUtil.getCreateCommand(ALICE, INDEX_FIRST_CLIENT));
-        assertEquals(new CreateCommand(INDEX_FIRST_CLIENT, ALICE), command);
+        RemarkCommand command = (RemarkCommand) parser.parseCommand(
+                RemarkUtil.getRemarkCommand(ALICE, INDEX_FIRST_CLIENT));
+        assertEquals(new RemarkCommand(INDEX_FIRST_CLIENT, ALICE), command);
     }
 
     @Test

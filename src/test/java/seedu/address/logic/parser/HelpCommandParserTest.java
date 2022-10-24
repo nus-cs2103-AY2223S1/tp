@@ -8,13 +8,13 @@ import org.junit.jupiter.api.Test;
 import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.commands.BuyCommand;
 import seedu.address.logic.commands.ClearCommand;
-import seedu.address.logic.commands.CreateCommand;
 import seedu.address.logic.commands.DeleteCommand;
 import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
+import seedu.address.logic.commands.RemarkCommand;
 import seedu.address.logic.commands.SellCommand;
 import seedu.address.logic.commands.UserGuideCommand;
 import seedu.address.logic.commands.ViewCommand;
@@ -96,9 +96,9 @@ public class HelpCommandParserTest {
 
     @Test
     public void parse_createArg_returnsHelpCommandWithCreateMessageUsage() {
-        HelpCommand expectedHelpCommand = new HelpCommand(CreateCommand.MESSAGE_USAGE);
+        HelpCommand expectedHelpCommand = new HelpCommand(RemarkCommand.MESSAGE_USAGE);
 
-        assertParseSuccess(parser, CreateCommand.COMMAND_WORD, expectedHelpCommand);
+        assertParseSuccess(parser, RemarkCommand.COMMAND_WORD, expectedHelpCommand);
     }
 
     @Test

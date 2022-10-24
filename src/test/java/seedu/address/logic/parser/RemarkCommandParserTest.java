@@ -11,16 +11,16 @@ import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailur
 
 import org.junit.jupiter.api.Test;
 
-import seedu.address.logic.commands.CreateCommand;
+import seedu.address.logic.commands.RemarkCommand;
 
-class CreateCommandParserTest {
+class RemarkCommandParserTest {
 
     private static final String TAG_EMPTY = " " + PREFIX_TAG;
 
     private static final String MESSAGE_INVALID_FORMAT =
-            String.format(MESSAGE_INVALID_COMMAND_FORMAT, CreateCommand.MESSAGE_USAGE);
+            String.format(MESSAGE_INVALID_COMMAND_FORMAT, RemarkCommand.MESSAGE_USAGE);
 
-    private CreateCommandParser parser = new CreateCommandParser();
+    private RemarkCommandParser parser = new RemarkCommandParser();
 
     @Test
     public void parse_invalidIndexPreamble_failure() {
@@ -40,15 +40,15 @@ class CreateCommandParserTest {
     @Test
     public void parse_invalidRemarkFields_failure() {
         // name but no address
-        assertParseFailure(parser, "1" + INVALID_NAME_DESC, CreateCommand.MESSAGE_REMARK_INVALID);
+        assertParseFailure(parser, "1" + INVALID_NAME_DESC, RemarkCommand.MESSAGE_REMARK_INVALID);
         // address but no name
-        assertParseFailure(parser, "1" + INVALID_ADDRESS_DESC, CreateCommand.MESSAGE_REMARK_INVALID);
+        assertParseFailure(parser, "1" + INVALID_ADDRESS_DESC, RemarkCommand.MESSAGE_REMARK_INVALID);
         // only address
-        assertParseFailure(parser, "1 a/Bedok Mall", CreateCommand.MESSAGE_REMARK_INVALID);
+        assertParseFailure(parser, "1 a/Bedok Mall", RemarkCommand.MESSAGE_REMARK_INVALID);
         // only name
-        assertParseFailure(parser, "1 n/Alex", CreateCommand.MESSAGE_REMARK_INVALID);
+        assertParseFailure(parser, "1 n/Alex", RemarkCommand.MESSAGE_REMARK_INVALID);
         // invalid tag
-        assertParseFailure(parser, "1" + INVALID_TAG_DESC, CreateCommand.MESSAGE_REMARK_INVALID);
+        assertParseFailure(parser, "1" + INVALID_TAG_DESC, RemarkCommand.MESSAGE_REMARK_INVALID);
     }
 
     @Test

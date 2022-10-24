@@ -25,7 +25,7 @@ import org.junit.jupiter.api.Test;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import seedu.address.logic.commands.CreateCommand;
+import seedu.address.logic.commands.RemarkCommand;
 import seedu.address.model.remark.Remark;
 import seedu.address.model.remark.UniqueRemarkList;
 import seedu.address.model.tag.Tag;
@@ -60,7 +60,7 @@ public class ClientTest {
 
     @Test
     public void constructor_nullIndex_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> new CreateCommand(null, TypicalRemark.ALICE));
+        assertThrows(NullPointerException.class, () -> new RemarkCommand(null, TypicalRemark.ALICE));
     }
 
     @Test

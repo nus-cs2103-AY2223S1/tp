@@ -1,9 +1,6 @@
 package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
 import java.util.List;
 
@@ -17,29 +14,23 @@ import seedu.address.model.remark.Remark;
 /**
  * Creates a new remark to be added to the specified client.
  */
-public class CreateCommand extends Command {
+public class RemarkCommand extends Command {
 
-    public static final String COMMAND_WORD = "create";
+    public static final String COMMAND_WORD = "remark";
 
     //Update here
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Creates a remark and links to Client. "
             + "Parameters: "
             + "INDEX (must be a positive integer) "
-            + PREFIX_NAME + "NAME "
-            + PREFIX_ADDRESS + "ADDRESS "
-            + "[" + PREFIX_TAG + "TAG]...\n"
+            + "REMARK"
             + "Example: " + COMMAND_WORD + " 2 "
-            + PREFIX_NAME + "John Doe "
-            + PREFIX_ADDRESS + "Clem Mall "
-            + PREFIX_TAG + "MainRemark "
-            + PREFIX_TAG + "owesMoney";
+            + "Fast buyer";
 
     public static final String MESSAGE_SUCCESS = "New Remark created: %1$s\nLinked to Client: %2$s";
     public static final String MESSAGE_DUPLICATE_REMARK = "This client already has %1$s as Remark";
     public static final String MESSAGE_REMARK_INVALID = "Remark cannot be created. Enter a valid Remark details:\n"
             + "INDEX "
-            + PREFIX_NAME + "NAME "
-            + PREFIX_ADDRESS + "ADDRESS ";
+            + "REMARK";
 
     private final Index index;
     private final Remark remark;
@@ -48,7 +39,7 @@ public class CreateCommand extends Command {
      * @param index of the client in the client list to add the Remark to
      * @param remark to be added
      */
-    public CreateCommand(Index index, Remark remark) {
+    public RemarkCommand(Index index, Remark remark) {
         requireNonNull(index);
         requireNonNull(remark);
 
@@ -83,9 +74,9 @@ public class CreateCommand extends Command {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof CreateCommand // instanceof handles nulls
-                && index.equals(((CreateCommand) other).index)
-                && remark.equals(((CreateCommand) other).remark));
+                || (other instanceof RemarkCommand // instanceof handles nulls
+                && index.equals(((RemarkCommand) other).index)
+                && remark.equals(((RemarkCommand) other).remark));
     }
 
 }

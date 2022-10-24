@@ -3,13 +3,13 @@ package seedu.address.logic.parser;
 import seedu.address.logic.commands.AddCommand;
 import seedu.address.logic.commands.BuyCommand;
 import seedu.address.logic.commands.ClearCommand;
-import seedu.address.logic.commands.CreateCommand;
 import seedu.address.logic.commands.DeleteCommand;
 import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.FindCommand;
 import seedu.address.logic.commands.HelpCommand;
 import seedu.address.logic.commands.ListCommand;
+import seedu.address.logic.commands.RemarkCommand;
 import seedu.address.logic.commands.SellCommand;
 import seedu.address.logic.commands.UserGuideCommand;
 import seedu.address.logic.commands.ViewCommand;
@@ -36,8 +36,8 @@ public class HelpCommandParser implements Parser<HelpCommand> {
             return new HelpCommand(BuyCommand.MESSAGE_USAGE);
         case "clear":
             return new HelpCommand(ClearCommand.MESSAGE_USAGE);
-        case "create":
-            return new HelpCommand(CreateCommand.MESSAGE_USAGE);
+        case "remark":
+            return new HelpCommand(RemarkCommand.MESSAGE_USAGE);
         case "delete":
             return new HelpCommand(DeleteCommand.MESSAGE_USAGE);
         case "edit":

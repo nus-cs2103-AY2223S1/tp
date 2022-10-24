@@ -5,7 +5,7 @@ import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
 import seedu.address.commons.core.index.Index;
-import seedu.address.logic.commands.CreateCommand;
+import seedu.address.logic.commands.RemarkCommand;
 import seedu.address.model.remark.Remark;
 
 /**
@@ -16,8 +16,8 @@ public class RemarkUtil {
     /**
      * Returns an add command string for adding the {@code remark}.
      */
-    public static String getCreateCommand(Remark remark, Index index) {
-        return CreateCommand.COMMAND_WORD + " " + index.getOneBased() + " " + getRemarkDetails(remark);
+    public static String getRemarkCommand(Remark remark, Index index) {
+        return RemarkCommand.COMMAND_WORD + " " + index.getOneBased() + " " + getRemarkDetails(remark);
     }
 
     /**
