@@ -3,9 +3,9 @@ layout: page
 title: User Guide
 ---
 
-Are you a CS student struggling to keep track of your internship? 
-Do you feel tired of using spreadsheets to keep track of your applications? 
-We have just the right tool for you! 
+Are you a CS student struggling to keep track of your internship?
+Do you feel tired of using spreadsheets to keep track of your applications?
+We have just the right tool for you!
 
 Introducing PleaseHireUs (PHU), the internship tracking application made just for you!
 
