@@ -106,9 +106,8 @@ public interface Model {
      */
     void setTask(Task target, Task editedTask);
 
-
     void update();
-
+    
     /**
      * Returns an unmodifiable view of the filtered person list
      */

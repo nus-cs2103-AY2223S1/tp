@@ -5,10 +5,10 @@ import static java.util.Optional.ofNullable;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_CATEGORY;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DEADLINE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PERSON;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PRIORITY;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_STATUS;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_TASKS;
 
 import java.util.List;
@@ -29,7 +29,6 @@ import seedu.address.model.task.TaskDeadline;
 import seedu.address.model.task.TaskName;
 
 
-
 /**
  * Adds a Task in the address book.
  */
@@ -37,19 +36,19 @@ public class EditTaskCommand extends Command {
     public static final String COMMAND_WORD = "editTask";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the task identified "
-            + "by the index number used in the displayed person list. "
+            + "by the index number used in the displayed task list. "
             + "Existing values will be overwritten by the input values.\n"
             + "Parameters: INDEX (must be a positive integer) "
             + "[" + PREFIX_NAME + "NAME] "
             + "[" + PREFIX_DESCRIPTION + "DESCRIPTION] "
-            + "[" + PREFIX_PRIORITY + "PRIORITY] "
-            + "[" + PREFIX_CATEGORY + "CATEGORY] "
-            + "[" + PREFIX_DEADLINE + "DEADLINE] "
-            + "[" + PREFIX_PERSON + "PERSON] "
-            + "[" + PREFIX_STATUS + "STATUS]...\n"
+            + "[" + PREFIX_PRIORITY + "PRIORITY (low/medium/high)] "
+            + "[" + PREFIX_CATEGORY + "CATEGORY (database/frontend/backend/uiux/presentation/others)] "
+            + "[" + PREFIX_DEADLINE + "DEADLINE (YYYY-MM-DD)] "
+            + "[" + PREFIX_PERSON + "PERSON EMAIL ADDRESS (must be a valid email)] "
+            + "[" + PREFIX_DONE + "DONE (t/f)]...\n"
             + "Example: " + COMMAND_WORD + " 1 "
-            + PREFIX_NAME + "Create Initial UI/UX Design"
-            + PREFIX_DEADLINE + "2022-02-02";
+            + PREFIX_NAME + "Create Initial UIUX Design"
+            + PREFIX_DEADLINE + "2023-01-01";
 
     public static final String MESSAGE_EDIT_TASK_SUCCESS = "Edited Task: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
@@ -214,9 +213,10 @@ public class EditTaskCommand extends Command {
         public void setDeadline(TaskDeadline deadline) {
             this.deadline = deadline;
         }
+
         public void setPerson(Person person) {
             this.person = person;
-        }
+         }
 
         public Optional<Person> getPerson() {
             return ofNullable(person);
