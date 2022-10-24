@@ -15,9 +15,11 @@ import java.util.Arrays;
 import java.util.List;
 
 import seedu.address.commons.core.index.Index;
+//import seedu.address.commons.core.index.UniqueId;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.AddressBook;
 import seedu.address.model.Model;
+//import seedu.address.model.order.Order;
 import seedu.address.model.person.Buyer;
 import seedu.address.model.person.Deliverer;
 import seedu.address.model.person.Supplier;
@@ -176,4 +178,18 @@ public class CommandTestUtil {
         assertEquals(1, model.getFilteredDelivererList().size());
     }
 
+    //    /**
+    //     * Updates {@code model}'s filtered list to show only the order at the given {@code targetIndex} in the
+    //     * {@code model}'s address book.
+    //     */
+    // TODO: for DeleteOrderCommandTest
+    //    public static void showOrderAtIndex(Model model, Index targetIndex) {
+    //        assertTrue(targetIndex.getZeroBased() < model.getFilteredOrderList().size());
+    //
+    //        Order order = model.getFilteredOrderList().get(targetIndex.getZeroBased());
+    //        final UniqueId orderId = order.getId();
+    //        model.updateFilteredOrderList(new OrderContainsKeywordsPredicate(Arrays.asList(orderId)));
+    //
+    //        assertEquals(1, model.getFilteredOrderList().size());
+    //    }
 }

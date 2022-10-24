@@ -9,7 +9,11 @@ import java.util.regex.Pattern;
 import seedu.address.logic.commands.AddPersonCommand;
 import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.Command;
-import seedu.address.logic.commands.DeleteCommand;
+import seedu.address.logic.commands.DeleteBuyerCommand;
+import seedu.address.logic.commands.DeleteDelivererCommand;
+import seedu.address.logic.commands.DeleteOrderCommand;
+import seedu.address.logic.commands.DeletePetCommand;
+import seedu.address.logic.commands.DeleteSupplierCommand;
 import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.ExitCommand;
 import seedu.address.logic.commands.FilterLocCommand;
@@ -54,8 +58,20 @@ public class AddressBookParser {
         case EditCommand.COMMAND_WORD:
             return new EditCommandParser().parse(arguments);
 
-        case DeleteCommand.COMMAND_WORD:
-            return new DeleteCommandParser().parse(arguments);
+        case DeleteBuyerCommand.COMMAND_WORD:
+            return new DeleteBuyerCommandParser().parse(arguments);
+
+        case DeleteDelivererCommand.COMMAND_WORD:
+            return new DeleteDelivererCommandParser().parse(arguments);
+
+        case DeleteSupplierCommand.COMMAND_WORD:
+            return new DeleteSupplierCommandParser().parse(arguments);
+
+        case DeleteOrderCommand.COMMAND_WORD:
+            return new DeleteOrderCommandParser().parse(arguments);
+
+        case DeletePetCommand.COMMAND_WORD:
+            return new DeletePetCommandParser().parse(arguments);
 
         case ClearCommand.COMMAND_WORD:
             return new ClearCommand();
