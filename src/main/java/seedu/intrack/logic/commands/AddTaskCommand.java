@@ -45,8 +45,8 @@ public class AddTaskCommand extends Command {
         }
         Internship internshipToEdit = lastShownList.get(0);
 
-        List<Task> copyTasks = internshipToEdit.getTasks();
-        List<Task> editedTasks = new ArrayList<>(copyTasks);
+        List<Task> copiedTasks = internshipToEdit.getTasks();
+        List<Task> editedTasks = new ArrayList<>(copiedTasks);
         editedTasks.add(task);
         editedTasks.sort(Comparator.comparing(task -> task.taskTime));
 

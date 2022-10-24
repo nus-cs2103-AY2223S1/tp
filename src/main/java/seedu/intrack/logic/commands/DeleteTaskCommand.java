@@ -46,11 +46,11 @@ public class DeleteTaskCommand extends Command {
         }
         Internship internshipToEdit = lastShownList.get(0);
 
-        List<Task> copyTasks = internshipToEdit.getTasks();
-        if (index.getZeroBased() >= copyTasks.size()) {
+        List<Task> copiedTasks = internshipToEdit.getTasks();
+        if (index.getZeroBased() >= copiedTasks.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_INTERNSHIP_DISPLAYED_INDEX);
         }
-        List<Task> editedTasks = new ArrayList<>(copyTasks);
+        List<Task> editedTasks = new ArrayList<>(copiedTasks);
         editedTasks.remove(index.getZeroBased());
 
         Internship editedInternship = new Internship(internshipToEdit.getName(), internshipToEdit.getPosition(),

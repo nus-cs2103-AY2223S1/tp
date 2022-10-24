@@ -22,7 +22,7 @@ public class ModelManager implements Model {
     private final InTrack inTrack;
     private final UserPrefs userPrefs;
     private final FilteredList<Internship> filteredInternships;
-    private final FilteredList<Internship> selectedInternship;
+    private final FilteredList<Internship> selectedInternships;
 
     /**
      * Initializes a ModelManager with the given inTrack and userPrefs.
@@ -35,7 +35,7 @@ public class ModelManager implements Model {
         this.inTrack = new InTrack(inTrack);
         this.userPrefs = new UserPrefs(userPrefs);
         filteredInternships = new FilteredList<>(this.inTrack.getInternshipList());
-        selectedInternship = new FilteredList<>(this.inTrack.getInternshipList());
+        selectedInternships = new FilteredList<>(this.inTrack.getInternshipList());
     }
 
     public ModelManager() {
@@ -139,13 +139,13 @@ public class ModelManager implements Model {
 
     @Override
     public ObservableList<Internship> getSelectedInternship() {
-        return selectedInternship;
+        return selectedInternships;
     }
 
     @Override
     public void updateSelectedInternship(Predicate<Internship> predicate) {
         requireNonNull(predicate);
-        selectedInternship.setPredicate(predicate);
+        selectedInternships.setPredicate(predicate);
     }
 
     @Override

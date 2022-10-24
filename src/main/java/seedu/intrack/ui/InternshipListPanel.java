@@ -34,10 +34,10 @@ public class InternshipListPanel extends UiPart<Region> {
      */
     class InternshipListViewCell extends ListCell<Internship> {
         @Override
-        protected void updateItem(Internship internship, boolean empty) {
-            super.updateItem(internship, empty);
+        protected void updateItem(Internship internship, boolean isEmpty) {
+            super.updateItem(internship, isEmpty);
 
-            if (empty || internship == null) {
+            if (isEmpty || internship == null) {
                 setGraphic(null);
                 setText(null);
             } else {
