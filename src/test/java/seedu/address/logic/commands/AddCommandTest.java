@@ -32,8 +32,12 @@ public class AddCommandTest {
 
     @Test
     public void constructor_nullEntry_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> new AddCommand(null, new EntryType(EntryType.ENTRY_TYPE_EXPENDITURE)));
-        assertThrows(NullPointerException.class, () -> new AddCommand(null, new EntryType(EntryType.ENTRY_TYPE_INCOME)));
+        assertThrows(NullPointerException.class, () -> new AddCommand(
+                null,
+                new EntryType(EntryType.ENTRY_TYPE_EXPENDITURE)));
+        assertThrows(NullPointerException.class, () -> new AddCommand(
+                null,
+                new EntryType(EntryType.ENTRY_TYPE_INCOME)));
 
     }
 
