@@ -195,7 +195,7 @@ public class ParserUtil {
     }
 
     /**
-     * Helper method to parse {@code date} as part of {@code parseClass}.
+     * Helper method to parse {@String date} as part of {@code parseClass}.
      */
     public static LocalDate parseDate(String date) throws ParseException {
         LocalDate result;
@@ -208,7 +208,20 @@ public class ParserUtil {
     }
 
     /**
-     * Helper method to parse {@code time} as part of {@code parseClass}.
+     * Parses a {@String date} and returns LocalDate object.
+     */
+    public static LocalDate parseDateToFind(String date) throws ParseException {
+        String trimmedDate = date.trim();
+        if (Arrays.asList(DAYS_OF_WEEK).contains(trimmedDate.toUpperCase())) {
+            targetDayOfWeek = Arrays.asList(DAYS_OF_WEEK).indexOf(trimmedDate.toUpperCase());
+            return LocalDate.now().with(DATE_ADJUSTER);
+        } else {
+            return parseDate(trimmedDate);
+        }
+    }
+
+    /**
+     * Helper method to parse {@String time} as part of {@code parseClass}.
      */
     private static LocalTime parseTime(String time) throws ParseException {
         Integer hour = Integer.valueOf(time.substring(0, 2));

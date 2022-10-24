@@ -33,7 +33,7 @@ public class Class {
     public final LocalDate date;
     public final LocalTime startTime;
     public final LocalTime endTime;
-    // yyyy-MM-dd eg. 2022-05-05 1200-1500
+    // yyyy-MM-dd 0000-2359 eg. 2022-05-05 1200-1500
     public final String classDateTime;
 
     /**
