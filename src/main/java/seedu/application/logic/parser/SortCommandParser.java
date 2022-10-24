@@ -9,6 +9,7 @@ import java.util.Optional;
 
 import seedu.application.logic.commands.SortByCompanyCommand;
 import seedu.application.logic.commands.SortByDateCommand;
+import seedu.application.logic.commands.SortByInterviewCommand;
 import seedu.application.logic.commands.SortByPositionCommand;
 import seedu.application.logic.commands.SortCommand;
 import seedu.application.logic.parser.exceptions.ParseException;
@@ -44,6 +45,9 @@ public class SortCommandParser implements Parser<SortCommand> {
 
         case SortByDateCommand.ORDER_KEYWORD:
             return new SortByDateCommand(shouldReverse);
+
+        case SortByInterviewCommand.ORDER_KEYWORD:
+            return new SortByInterviewCommand(shouldReverse);
 
         default:
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
