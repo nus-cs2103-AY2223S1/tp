@@ -135,6 +135,13 @@ public class StorageManagerTest {
         assertThrows(FileAlreadyExistsException.class, () -> storageManager.createResidentBookFile(toBeCreated));
     }
 
+    //====================== CsvFileManagerTests =================================
+
+    @Test
+    public void readCsvFile_nullFilePath_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> storageManager.readCsvFile(null));
+    }
+
     @Test
     public void equals() {
         JsonResidentBookStorage residentBookStorage = new JsonResidentBookStorage(getTempFilePath("ab"));
