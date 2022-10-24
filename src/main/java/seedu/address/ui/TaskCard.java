@@ -54,11 +54,8 @@ public class TaskCard extends UiPart<Region> {
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
 
-        //Reused from
-        //https://stackoverflow.com/questions/56104276/javafx-how-can-i-change-a-texts-color-in-a-textfield-depending-on-the-validit
-        //with minor modifications
-        status.textProperty().addListener((ObservableValue<? extends String> st, String old, String curr) ->
-        {
+        //Reused from https://stackoverflow.com/questions/56104276 with minor modifications
+        status.textProperty().addListener((ObservableValue<? extends String> st, String old, String curr) -> {
             if (!isStatusComplete(curr)) {
                 status.setStyle("-fx-text-fill: #D7504D;");
             } else {

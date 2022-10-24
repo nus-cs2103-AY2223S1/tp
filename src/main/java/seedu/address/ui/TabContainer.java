@@ -19,7 +19,7 @@ public class TabContainer extends UiPart<Region> {
     @FXML
     private TabPane tabContainer;
 
-    SingleSelectionModel<Tab> selectionModel = tabContainer.getSelectionModel();
+    private SingleSelectionModel<Tab> selectionModel = tabContainer.getSelectionModel();
 
     /**
      * Creates a {@code TabContainer} with a given {@code Tab}.
