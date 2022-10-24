@@ -3,9 +3,9 @@ package seedu.address.logic.commands;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.address.testutil.TypicalPersons.AMY;
-import static seedu.address.testutil.TypicalPersons.BOB;
 import static seedu.address.testutil.TypicalPersons.ELLE;
+import static seedu.address.testutil.TypicalPersons.IDA;
+import static seedu.address.testutil.TypicalPersons.GEORGE;
 import static seedu.address.testutil.TypicalPersons.MUSAB_WITH_NO_APPT;
 
 import org.junit.jupiter.api.BeforeEach;
@@ -24,7 +24,7 @@ public class SortCommandTest {
     @BeforeEach
     public void setModel() {
         this.model = new ModelManager();
-        Person[] persons = {ELLE, AMY, BOB, MUSAB_WITH_NO_APPT};
+        Person[] persons = {ELLE, IDA, GEORGE, MUSAB_WITH_NO_APPT};
         for (Person p: persons) {
             model.addPerson(p);
         }
@@ -62,7 +62,7 @@ public class SortCommandTest {
     @Test
     public void execute_sortByName_success() {
         this.expectedModel = new ModelManager();
-        Person[] persons = {AMY, BOB, ELLE, MUSAB_WITH_NO_APPT};
+        Person[] persons = {ELLE, GEORGE, IDA, MUSAB_WITH_NO_APPT};
         for (Person p: persons) {
             expectedModel.addPerson(p);
         }
@@ -75,7 +75,7 @@ public class SortCommandTest {
     @Test
     public void execute_sortByNameDesc_success() {
         this.expectedModel = new ModelManager();
-        Person[] persons = {MUSAB_WITH_NO_APPT, ELLE, BOB, AMY};
+        Person[] persons = {MUSAB_WITH_NO_APPT, IDA, GEORGE, ELLE};
         for (Person p: persons) {
             expectedModel.addPerson(p);
         }
@@ -88,7 +88,7 @@ public class SortCommandTest {
     @Test
     public void execute_sortByAppt_success() {
         this.expectedModel = new ModelManager();
-        Person[] persons = {BOB, ELLE, AMY, MUSAB_WITH_NO_APPT};
+        Person[] persons = {GEORGE, ELLE, IDA, MUSAB_WITH_NO_APPT};
         for (Person p: persons) {
             expectedModel.addPerson(p);
         }
@@ -101,7 +101,7 @@ public class SortCommandTest {
     @Test
     public void execute_sortByApptDesc_success() {
         this.expectedModel = new ModelManager();
-        Person[] persons = {AMY, ELLE, BOB, MUSAB_WITH_NO_APPT};
+        Person[] persons = {IDA, ELLE, GEORGE, MUSAB_WITH_NO_APPT};
         for (Person p: persons) {
             expectedModel.addPerson(p);
         }
