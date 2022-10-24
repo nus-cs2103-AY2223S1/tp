@@ -36,7 +36,7 @@ import javafx.stage.Stage;
  */
 public class MainApp extends Application {
 
-    public static final Version VERSION = new Version(1, 2, 0, true);
+    public static final Version VERSION = new Version(1, 3, 0, true);
 
     private static final Logger logger = LogsCenter.getLogger(MainApp.class);
 
@@ -48,7 +48,7 @@ public class MainApp extends Application {
 
     @Override
     public void init() throws Exception {
-        logger.info("=============================[ Initializing AddressBook ]===========================");
+        logger.info("=============================[ Initializing Friday ]===========================");
         super.init();
 
         AppParameters appParameters = AppParameters.parse(getParameters());
@@ -56,7 +56,7 @@ public class MainApp extends Application {
 
         UserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(config.getUserPrefsFilePath());
         UserPrefs userPrefs = initPrefs(userPrefsStorage);
-        FridayStorage fridayStorage = new JsonFridayStorage(userPrefs.getAddressBookFilePath());
+        FridayStorage fridayStorage = new JsonFridayStorage(userPrefs.getFridayFilePath());
         storage = new StorageManager(fridayStorage, userPrefsStorage);
 
         initLogging(config);
@@ -74,14 +74,14 @@ public class MainApp extends Application {
      * or an empty address book will be used instead if errors occur when reading {@code storage}'s address book.
      */
     private Model initModelManager(Storage storage, ReadOnlyUserPrefs userPrefs) {
-        Optional<ReadOnlyFriday> addressBookOptional;
+        Optional<ReadOnlyFriday> fridayOptional;
         ReadOnlyFriday initialData;
         try {
-            addressBookOptional = storage.readFriday();
-            if (!addressBookOptional.isPresent()) {
-                logger.info("Data file not found. Will be starting with a sample AddressBook");
+            fridayOptional = storage.readFriday();
+            if (!fridayOptional.isPresent()) {
+                logger.info("Data file not found. Will be starting with sample Friday data");
             }
-            initialData = addressBookOptional.orElseGet(SampleDataUtil::getSampleAddressBook);
+            initialData = fridayOptional.orElseGet(SampleDataUtil::getSampleFriday);
         } catch (DataConversionException e) {
             logger.warning("Data file not in the correct format. Will be starting with an empty AddressBook");
             initialData = new Friday();
@@ -167,7 +167,7 @@ public class MainApp extends Application {
 
     @Override
     public void start(Stage primaryStage) {
-        logger.info("Starting AddressBook " + MainApp.VERSION);
+        logger.info("Starting Friday " + MainApp.VERSION);
         ui.start(primaryStage);
     }
 

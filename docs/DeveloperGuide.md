@@ -335,10 +335,10 @@ and return matches.
 Example of current implementation of find feature
 
 Step 1. The user launches the application for the first time. FRIDAY will initialise a list of all the fields
-and their data. e.g. mastery check field will have a corresponding list with the dates of all mastery check etc.
+and their data into a list of students.
 
-Step 2. When user types in the find command the logic will tell the program to go through all these lists and display
-all matches
+Step 2. When user types in the find command the logic will tell the program to go through all the fields for every 
+student inside the student class and return the student if there is a successful match in any of the fields 
 
 #### Design considerations:
 

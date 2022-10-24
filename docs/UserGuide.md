@@ -123,10 +123,12 @@ The scores are optional, but there should be at least one parameter.
 
 View a particular student's details.
 
-Format: `find n/STUDENT_NAME`
+Format: `find k/Keywords`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-Use student name as user is looking for details and doesn't have them.
+Use student name/telegram handle/consultation/mastery check date/remark to search up a particular student.
+Note: Multiple keywords can be entered.
+Note: when searching for exam grade use format `find [ra1:RA1_SCORE] [ra2:RA2_SCORE]`
 </div>
 
 ### Viewing all students: `list`
@@ -186,7 +188,7 @@ Format: `help`
 | **Edit a student's details**                 | `edit INDEX [n/NAME] [t/TELEGRAM_HANDLE] [c/CONSULTATION] [m/MASTERY_CHECK] [tag/TAG]...`                |
 | **Add remarks for a student**                | `remark INDEX [r/REMARK]`                                                                                |
 | **Edit the grades for a student**            | `grade INDEX [ra1/RA1_SCORE] [ra2/RA2_SCORE] [pa/PRACTICAL_SCORE] [mt/MID_TERM_SCORE] [ft/FINALS_SCORE]` |
-| **Find a student's details**                 | `find s/STUDENT_NAME`                                                                                    |
+| **Find a student's details**                 | `find k/keyword`                                                                                         |
 | **Mark a student's Mastery Check as passed** | `mark INDEX`                                                                                             |
 | **View all students**                        | `list`                                                                                                   |
 | **Sort students**                            | `sort CRITERIA/ORDER`                                                                                    |
