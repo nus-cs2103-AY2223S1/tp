@@ -12,8 +12,8 @@ import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.logic.commands.CommandTestUtil.showExpenditureAtIndex;
 import static seedu.address.testutil.TypicalEntry.getTypicalPennyWise;
-import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
-import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
+import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_ENTRY;
+import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_ENTRY;
 
 import org.junit.jupiter.api.Test;
 
@@ -40,7 +40,7 @@ public class EditCommandTest {
     public void execute_allFieldsSpecifiedUnfilteredList_success() {
         Entry editedEntry = new ExpenditureBuilder().withDescription("Acai").build();
         EditEntryDescriptor descriptor = new EditEntryDescriptorBuilder(editedEntry, new EntryType("e")).build();
-        EditCommand editCommand = new EditCommand(INDEX_FIRST_PERSON, descriptor);
+        EditCommand editCommand = new EditCommand(INDEX_FIRST_ENTRY, descriptor);
 
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_ENTRY_SUCCESS, editedEntry);
 
@@ -76,8 +76,8 @@ public class EditCommandTest {
         EditEntryDescriptor descriptor = new EditEntryDescriptor();
         descriptor.setTag(null);
         descriptor.setType(new EntryType("e"));
-        EditCommand editCommand = new EditCommand(INDEX_FIRST_PERSON, descriptor);
-        Entry editedEntry = model.getFilteredExpenditureList().get(INDEX_FIRST_PERSON.getZeroBased());
+        EditCommand editCommand = new EditCommand(INDEX_FIRST_ENTRY, descriptor);
+        Entry editedEntry = model.getFilteredExpenditureList().get(INDEX_FIRST_ENTRY.getZeroBased());
 
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_ENTRY_SUCCESS, editedEntry);
 
@@ -88,13 +88,13 @@ public class EditCommandTest {
 
     @Test
     public void execute_filteredList_success() {
-        showExpenditureAtIndex(model, INDEX_FIRST_PERSON);
+        showExpenditureAtIndex(model, INDEX_FIRST_ENTRY);
 
-        Entry entryInFilteredList = model.getFilteredExpenditureList().get(INDEX_FIRST_PERSON.getZeroBased());
+        Entry entryInFilteredList = model.getFilteredExpenditureList().get(INDEX_FIRST_ENTRY.getZeroBased());
         Entry editedEntry = new ExpenditureBuilder(entryInFilteredList)
                 .withDescription(VALID_DESC_TUITION).withTag(VALID_TAG_PERSONAL).build();
 
-        EditCommand editCommand = new EditCommand(INDEX_FIRST_PERSON,
+        EditCommand editCommand = new EditCommand(INDEX_FIRST_ENTRY,
                 new EditEntryDescriptorBuilder().withType(VALID_TYPE_EXPENDITURE)
                         .withDescription(VALID_DESC_TUITION).withTag(VALID_TAG_PERSONAL).build());
 
@@ -108,20 +108,20 @@ public class EditCommandTest {
 
     @Test
     public void execute_duplicatePersonUnfilteredList_failure() {
-        Entry firstEntry = model.getFilteredExpenditureList().get(INDEX_FIRST_PERSON.getZeroBased());
+        Entry firstEntry = model.getFilteredExpenditureList().get(INDEX_FIRST_ENTRY.getZeroBased());
         EditEntryDescriptor descriptor = new EditEntryDescriptorBuilder(firstEntry, new EntryType("e")).build();
-        EditCommand editCommand = new EditCommand(INDEX_SECOND_PERSON, descriptor);
+        EditCommand editCommand = new EditCommand(INDEX_SECOND_ENTRY, descriptor);
 
         assertCommandFailure(editCommand, model, EditCommand.MESSAGE_DUPLICATE_ENTRY);
     }
 
     @Test
     public void execute_duplicatePersonFilteredList_failure() {
-        showExpenditureAtIndex(model, INDEX_FIRST_PERSON);
+        showExpenditureAtIndex(model, INDEX_FIRST_ENTRY);
 
         // edit person in filtered list into a duplicate in address book
-        Entry entryInList = model.getPennyWise().getExpenditureList().get(INDEX_SECOND_PERSON.getZeroBased());
-        EditCommand editCommand = new EditCommand(INDEX_FIRST_PERSON,
+        Entry entryInList = model.getPennyWise().getExpenditureList().get(INDEX_SECOND_ENTRY.getZeroBased());
+        EditCommand editCommand = new EditCommand(INDEX_FIRST_ENTRY,
                 new EditEntryDescriptorBuilder(entryInList, new EntryType("e")).build());
 
         assertCommandFailure(editCommand, model, EditCommand.MESSAGE_DUPLICATE_ENTRY);
@@ -143,8 +143,8 @@ public class EditCommandTest {
      */
     @Test
     public void execute_invalidPersonIndexFilteredList_failure() {
-        showExpenditureAtIndex(model, INDEX_FIRST_PERSON);
-        Index outOfBoundIndex = INDEX_SECOND_PERSON;
+        showExpenditureAtIndex(model, INDEX_FIRST_ENTRY);
+        Index outOfBoundIndex = INDEX_SECOND_ENTRY;
         // ensures that outOfBoundIndex is still in bounds of address book list
         assertTrue(outOfBoundIndex.getZeroBased() < model.getPennyWise().getExpenditureList().size());
 
@@ -157,11 +157,11 @@ public class EditCommandTest {
 
     @Test
     public void equals() {
-        final EditCommand standardCommand = new EditCommand(INDEX_FIRST_PERSON, LUNCH);
+        final EditCommand standardCommand = new EditCommand(INDEX_FIRST_ENTRY, LUNCH);
 
         // same values -> returns true
         EditEntryDescriptor copyDescriptor = new EditEntryDescriptor(LUNCH);
-        EditCommand commandWithSameValues = new EditCommand(INDEX_FIRST_PERSON, copyDescriptor);
+        EditCommand commandWithSameValues = new EditCommand(INDEX_FIRST_ENTRY, copyDescriptor);
         assertTrue(standardCommand.equals(commandWithSameValues));
 
         // same object -> returns true
@@ -174,10 +174,10 @@ public class EditCommandTest {
         assertFalse(standardCommand.equals(new ClearCommand()));
 
         // different index -> returns false
-        assertFalse(standardCommand.equals(new EditCommand(INDEX_SECOND_PERSON, LUNCH)));
+        assertFalse(standardCommand.equals(new EditCommand(INDEX_SECOND_ENTRY, LUNCH)));
 
         // different descriptor -> returns false
-        assertFalse(standardCommand.equals(new EditCommand(INDEX_FIRST_PERSON, DINNER)));
+        assertFalse(standardCommand.equals(new EditCommand(INDEX_FIRST_ENTRY, DINNER)));
     }
 
 }

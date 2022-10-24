@@ -6,7 +6,7 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_TYPE_EXPENDITUR
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TYPE;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
-import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
+import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_ENTRY;
 
 import org.junit.jupiter.api.Test;
 
@@ -28,7 +28,7 @@ public class DeleteCommandParserTest {
     public void parse_validArgs_returnsDeleteCommand() {
         EntryType expenditureType = new EntryType(VALID_TYPE_EXPENDITURE);
         String validUserInput = "1" + TYPE_EXPENDITURE;
-        assertParseSuccess(parser, validUserInput, new DeleteCommand(INDEX_FIRST_PERSON, expenditureType));
+        assertParseSuccess(parser, validUserInput, new DeleteCommand(INDEX_FIRST_ENTRY, expenditureType));
     }
 
     @Test

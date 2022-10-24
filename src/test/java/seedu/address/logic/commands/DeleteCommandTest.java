@@ -8,8 +8,8 @@ import static seedu.address.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.logic.commands.CommandTestUtil.showExpenditureAtIndex;
 import static seedu.address.testutil.TypicalEntry.getTypicalPennyWise;
-import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
-import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
+import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_ENTRY;
+import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_ENTRY;
 
 import org.junit.jupiter.api.Test;
 
@@ -33,8 +33,8 @@ public class DeleteCommandTest {
     // need income version
     @Test
     public void execute_validIndexUnfilteredExpenditureList_success() {
-        Entry expenditureToDelete = model.getFilteredExpenditureList().get(INDEX_FIRST_PERSON.getZeroBased());
-        DeleteCommand deleteCommand = new DeleteCommand(INDEX_FIRST_PERSON, this.expenditureType);
+        Entry expenditureToDelete = model.getFilteredExpenditureList().get(INDEX_FIRST_ENTRY.getZeroBased());
+        DeleteCommand deleteCommand = new DeleteCommand(INDEX_FIRST_ENTRY, this.expenditureType);
 
         String expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_PERSON_SUCCESS, expenditureToDelete);
 
@@ -54,10 +54,10 @@ public class DeleteCommandTest {
 
     @Test
     public void execute_validIndexFilteredExpenditureList_success() {
-        showExpenditureAtIndex(model, INDEX_FIRST_PERSON);
+        showExpenditureAtIndex(model, INDEX_FIRST_ENTRY);
 
-        Entry expenditureToDelete = model.getFilteredExpenditureList().get(INDEX_FIRST_PERSON.getZeroBased());
-        DeleteCommand deleteCommand = new DeleteCommand(INDEX_FIRST_PERSON, this.expenditureType);
+        Entry expenditureToDelete = model.getFilteredExpenditureList().get(INDEX_FIRST_ENTRY.getZeroBased());
+        DeleteCommand deleteCommand = new DeleteCommand(INDEX_FIRST_ENTRY, this.expenditureType);
 
         String expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_PERSON_SUCCESS, expenditureToDelete);
 
@@ -70,9 +70,9 @@ public class DeleteCommandTest {
 
     @Test
     public void execute_invalidIndexFilteredExpenditureList_throwsCommandException() {
-        showExpenditureAtIndex(model, INDEX_FIRST_PERSON);
+        showExpenditureAtIndex(model, INDEX_FIRST_ENTRY);
 
-        Index outOfBoundIndex = INDEX_SECOND_PERSON;
+        Index outOfBoundIndex = INDEX_SECOND_ENTRY;
         // ensures that outOfBoundIndex is still in bounds of address book list
         assertTrue(outOfBoundIndex.getZeroBased() < model.getPennyWise().getExpenditureList().size());
 
@@ -83,14 +83,14 @@ public class DeleteCommandTest {
 
     @Test
     public void equals() {
-        DeleteCommand deleteFirstCommand = new DeleteCommand(INDEX_FIRST_PERSON, expenditureType);
-        DeleteCommand deleteSecondCommand = new DeleteCommand(INDEX_SECOND_PERSON, expenditureType);
+        DeleteCommand deleteFirstCommand = new DeleteCommand(INDEX_FIRST_ENTRY, expenditureType);
+        DeleteCommand deleteSecondCommand = new DeleteCommand(INDEX_SECOND_ENTRY, expenditureType);
 
         // same object -> returns true
         assertTrue(deleteFirstCommand.equals(deleteFirstCommand));
 
         // same values -> returns true
-        DeleteCommand deleteFirstCommandCopy = new DeleteCommand(INDEX_FIRST_PERSON, expenditureType);
+        DeleteCommand deleteFirstCommandCopy = new DeleteCommand(INDEX_FIRST_ENTRY, expenditureType);
         assertTrue(deleteFirstCommand.equals(deleteFirstCommandCopy));
 
         // different types -> returns false

@@ -51,14 +51,16 @@ public class EntryUtil {
     /**
      * Returns the part of command string for the given {@code EditEntryDescriptor}'s details.
      */
-    public static String getEditEntrynDescriptorDetails(EditCommand.EditEntryDescriptor descriptor) {
+    public static String getEditEntryDescriptorDetails(EditCommand.EditEntryDescriptor descriptor) {
         StringBuilder sb = new StringBuilder();
-        descriptor.getType().ifPresent(type -> sb.append(PREFIX_TYPE).append(type.getEntryType()).append(" "));
-        descriptor.getAmount().ifPresent(amount -> sb.append(PREFIX_TYPE).append(amount.getValue()).append(" "));
-        descriptor.getDate().ifPresent(date -> sb.append(PREFIX_TYPE).append(date).append(" "));
-        descriptor.getDescription().ifPresent(description -> sb.append(PREFIX_TYPE)
+        descriptor.getType().ifPresent(type -> sb.append(PREFIX_TYPE).append(type.getEntryType().toString()).append(" "));
+        descriptor.getAmount().ifPresent(amount -> sb.append(PREFIX_AMOUNT).append(amount.getValue()).append(" "));
+        descriptor.getDate().ifPresent(date -> sb.append(PREFIX_DATE).append(date).append(" "));
+        descriptor.getDescription().ifPresent(description -> sb.append(PREFIX_DESCRIPTION)
                 .append(description.fullDescription).append(" "));
         descriptor.getTag().ifPresent(tag -> sb.append(PREFIX_TAG).append(tag.tagName).append(" "));
         return sb.toString();
     }
+
+
 }

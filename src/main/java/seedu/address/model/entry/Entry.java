@@ -10,7 +10,7 @@ import seedu.address.model.tag.Tag;
  * Represents an Entry in the penny wise application.
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
-public class Entry {
+public abstract class Entry {
     // Identity fields
     private final Description description;
     // private final EntryType type;

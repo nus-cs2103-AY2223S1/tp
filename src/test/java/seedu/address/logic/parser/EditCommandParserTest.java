@@ -30,9 +30,9 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_TYPE_EXPENDITUR
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
-import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
-import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
-import static seedu.address.testutil.TypicalIndexes.INDEX_THIRD_PERSON;
+import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_ENTRY;
+import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_ENTRY;
+import static seedu.address.testutil.TypicalIndexes.INDEX_THIRD_ENTRY;
 
 import org.junit.jupiter.api.Test;
 
@@ -117,7 +117,7 @@ public class EditCommandParserTest {
 
     @Test
     public void parse_allFieldsSpecified_success() {
-        Index targetIndex = INDEX_SECOND_PERSON;
+        Index targetIndex = INDEX_SECOND_ENTRY;
         String userInput = targetIndex.getOneBased() + TYPE_EXPENDITURE + TAG_DESC_MEAL
                 + AMT_LUNCH + DATE_LUNCH + DESC_LUNCH + TAG_DESC_MEAL;
 
@@ -131,7 +131,7 @@ public class EditCommandParserTest {
 
     @Test
     public void parse_someFieldsSpecified_success() {
-        Index targetIndex = INDEX_FIRST_PERSON;
+        Index targetIndex = INDEX_FIRST_ENTRY;
         String userInput = targetIndex.getOneBased() + TYPE_EXPENDITURE + DESC_LUNCH + AMT_LUNCH + TAG_LUNCH;
 
         EditEntryDescriptor descriptor = new EditEntryDescriptorBuilder().withType(VALID_TYPE_EXPENDITURE)
@@ -144,7 +144,7 @@ public class EditCommandParserTest {
     @Test
     public void parse_oneFieldSpecified_success() {
         // desc
-        Index targetIndex = INDEX_THIRD_PERSON;
+        Index targetIndex = INDEX_THIRD_ENTRY;
         String userInput = targetIndex.getOneBased() + TYPE_EXPENDITURE + DESC_LUNCH;
         EditEntryDescriptor descriptor = new EditEntryDescriptorBuilder().withType(VALID_TYPE_EXPENDITURE)
                 .withDescription(VALID_DESC_LUNCH).build();
@@ -181,7 +181,7 @@ public class EditCommandParserTest {
 
     @Test
     public void parse_multipleRepeatedFields_acceptsLast() {
-        Index targetIndex = INDEX_FIRST_PERSON;
+        Index targetIndex = INDEX_FIRST_ENTRY;
         String userInput = targetIndex.getOneBased() + TYPE_EXPENDITURE + DATE_LUNCH + AMT_LUNCH
                 + TAG_DESC_MEAL + TYPE_EXPENDITURE + DATE_LUNCH + AMT_LUNCH + TAG_DESC_MEAL
                 + TYPE_EXPENDITURE + DATE_DINNER + AMT_DINNER + TAG_DESC_PERSONAL;
@@ -199,7 +199,7 @@ public class EditCommandParserTest {
     @Test
     public void parse_invalidValueFollowedByValidValue_success() {
         // no other valid values specified
-        Index targetIndex = INDEX_FIRST_PERSON;
+        Index targetIndex = INDEX_FIRST_ENTRY;
         String userInput = targetIndex.getOneBased() + INVALID_TYPE + TYPE_EXPENDITURE + DESC_DINNER;
         EditEntryDescriptor descriptor = new EditEntryDescriptorBuilder()
                 .withType(VALID_TYPE_EXPENDITURE)
