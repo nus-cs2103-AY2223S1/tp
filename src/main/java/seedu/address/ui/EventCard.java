@@ -25,7 +25,7 @@ public class EventCard extends UiPart<Region> {
     @FXML
     private Label id;
     @FXML
-    private Label startDateTime;
+    private Label dateTime;
     @FXML
     private Label endDateTime;
     @FXML
@@ -40,8 +40,10 @@ public class EventCard extends UiPart<Region> {
         this.event = event;
         id.setText(displayedIndex + ". ");
         title.setText(event.getTitle().title);
-        startDateTime.setText(event.getStartDateTime().toString());
-        endDateTime.setText(event.getEndDateTime().toString());
+        String dateString = String.format("%s - %s",
+                event.getStartDateTime().toString(),
+                event.getEndDateTime().toString());
+        dateTime.setText(dateString);
         event.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
