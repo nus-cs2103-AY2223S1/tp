@@ -67,6 +67,9 @@ public class UntagEventCommand extends Command {
                 throw new CommandException(String.format(MESSAGE_INVALID_PERSON, personIndex.getOneBased(),
                         person.getName()));
             }
+        }
+        for (Index personIndex : personIndexes) {
+            Person person = lastShownPersonList.get(personIndex.getZeroBased());
             personNames += String.format("%s, ", person.getName());
             uids.remove(person.getUid());
         }

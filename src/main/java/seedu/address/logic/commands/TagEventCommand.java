@@ -67,6 +67,9 @@ public class TagEventCommand extends Command {
                 throw new CommandException(String.format(MESSAGE_DUPLICATE_PERSON, personIndex.getOneBased(),
                         person.getName()));
             }
+        }
+        for (Index personIndex : personIndexes) {
+            Person person = lastShownPersonList.get(personIndex.getZeroBased());
             personNames += String.format("%s, ", person.getName());
             uids.add(person.getUid());
         }
