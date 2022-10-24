@@ -116,8 +116,15 @@ public class VenueBook implements ReadOnlyVenueBook {
         // TODO: refine later
     }
 
+    //=========== Observable Booking List Accessors =============================================================
+
     public ObservableList<Venue> getVenueList() {
         return venues.asUnmodifiableObservableList();
+    }
+
+    public ObservableList<Booking> getBookings(VenueName venueName) {
+        requireNonNull(venueName);
+        return venues.getBookings(venueName);
     }
 
     @Override

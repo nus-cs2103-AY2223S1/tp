@@ -2,6 +2,7 @@ package seedu.rc4hdb.model.venues;
 
 import static java.util.Objects.requireNonNull;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -24,7 +25,7 @@ public class Venue implements BookingField {
     public static final String MESSAGE_CONSTRAINTS =
             "Venue should only consist of: 'meeting' ";
 
-    private ObservableList<Booking> bookings = FXCollections.observableArrayList();
+    private List<Booking> bookings = new ArrayList<>();
     private final VenueName venueName;
 
     /**
@@ -42,7 +43,7 @@ public class Venue implements BookingField {
      */
     public Venue(List<Booking> bookings, VenueName venueName) {
         this(venueName);
-        this.bookings = FXCollections.observableArrayList(bookings);
+        this.bookings = bookings;
     }
 
     /**
@@ -111,7 +112,8 @@ public class Venue implements BookingField {
 
     public ObservableList<Booking> getObservableBookings() {
         clearExpiredBookings();
-        return this.bookings;
+        return FXCollections.unmodifiableObservableList(
+                FXCollections.observableArrayList(bookings));
     }
 
     public VenueName getVenueName() {

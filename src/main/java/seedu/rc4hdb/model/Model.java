@@ -153,5 +153,6 @@ public interface Model {
 
     ObservableList<Booking> getObservableBookings();
 
-    void setObservableBookings(List<Booking> modifiableBookings);
+    void setObservableBookings(VenueName venueName);
+
 }

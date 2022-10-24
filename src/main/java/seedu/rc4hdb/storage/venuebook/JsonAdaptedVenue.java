@@ -7,8 +7,6 @@ import java.util.stream.Collectors;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import seedu.rc4hdb.commons.exceptions.IllegalValueException;
 import seedu.rc4hdb.model.venues.Venue;
 import seedu.rc4hdb.model.venues.VenueName;
@@ -54,7 +52,7 @@ public class JsonAdaptedVenue {
      * @throws IllegalValueException if there were any data constraints violated in the adapted venue.
      */
     public Venue toModelType() throws IllegalValueException {
-        final ObservableList<Booking> modelBookings = FXCollections.observableArrayList();
+        final List<Booking> modelBookings = new ArrayList<>();
         for (JsonAdaptedBooking booking : bookings) {
             modelBookings.add(booking.toModelType());
         }
