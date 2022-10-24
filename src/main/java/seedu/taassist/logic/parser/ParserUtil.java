@@ -53,7 +53,7 @@ public class ParserUtil {
      */
     public static List<Index> parseIndices(String oneBasedIndices) throws ParseException {
         List<Index> indices = new ArrayList<>();
-        String[] stringIndices = oneBasedIndices.trim().split(" ");
+        String[] stringIndices = oneBasedIndices.trim().split("\\s+");
         for (String stringIndex : stringIndices) {
             if (!StringUtil.isNonZeroUnsignedInteger(stringIndex)) {
                 throw new ParseException(MESSAGE_INVALID_INDEX);

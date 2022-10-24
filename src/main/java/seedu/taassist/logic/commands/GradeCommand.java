@@ -1,13 +1,13 @@
 package seedu.taassist.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.taassist.commons.core.Messages.MESSAGE_INVALID_STUDENT_DISPLAYED_INDEX;
 import static seedu.taassist.commons.core.Messages.MESSAGE_NOT_IN_FOCUS_MODE;
 import static seedu.taassist.commons.util.CollectionUtil.requireAllNonNull;
 import static seedu.taassist.logic.parser.CliSyntax.PREFIX_GRADE;
 import static seedu.taassist.logic.parser.CliSyntax.PREFIX_SESSION;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 import seedu.taassist.commons.core.index.Index;
 import seedu.taassist.logic.commands.exceptions.CommandException;
@@ -34,10 +34,10 @@ public class GradeCommand extends Command {
             + PREFIX_GRADE + "100";
 
 
-    public static final String MESSAGE_SUCCESS = "Grade given to student: %1$s";
+    public static final String MESSAGE_SUCCESS = "Grade(s) given to student(s):\n%1$s";
     public static final String MESSAGE_INVALID_SESSION = "The session %1$s does not exist in class %2$s.";
 
-    private final Index index;
+    private final List<Index> indices;
     private final Session session;
     private final double grade;
 
@@ -45,9 +45,9 @@ public class GradeCommand extends Command {
      * Creates a GradeCommand to give the specified {@code grade} to the student at the specified {@code index}
      * for the specified {@code session}.
      */
-    public GradeCommand(Index index, Session session, double grade) {
-        requireAllNonNull(index, session);
-        this.index = index;
+    public GradeCommand(List<Index> indices, Session session, double grade) {
+        requireAllNonNull(indices, session);
+        this.indices = indices;
         this.session = session;
         this.grade = grade;
     }
@@ -66,24 +66,33 @@ public class GradeCommand extends Command {
         }
 
         List<Student> lastShownList = model.getFilteredStudentList();
-        Student oldStudent;
+        List<Student> oldStudents;
         try {
-            oldStudent = ParserStudentIndexUtil.parseStudentFromIndex(index, lastShownList);
+            oldStudents = ParserStudentIndexUtil.parseStudentsFromIndices(indices, lastShownList);
         } catch (ParseException e) {
-            throw new CommandException(String.format(MESSAGE_INVALID_STUDENT_DISPLAYED_INDEX));
+            throw new CommandException(e.getMessage());
         }
 
-        Student newStudent = Student.getUpdatedStudent(oldStudent, focusedClass, session, grade);
+        for (Student oldStudent : oldStudents) {
+            Student newStudent = Student.getUpdatedStudent(oldStudent, focusedClass, session, grade);
+            model.setStudent(oldStudent, newStudent);
+        }
 
-        model.setStudent(oldStudent, newStudent);
-        return new CommandResult(String.format(MESSAGE_SUCCESS, newStudent));
+        String message = getSuccessMessage(oldStudents);
+
+        return new CommandResult(message);
+    }
+
+    private static String getSuccessMessage(List<Student> students) {
+        return String.format(MESSAGE_SUCCESS, students.stream().map(student ->
+                student.getName().toString()).collect(Collectors.joining("\n")));
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof GradeCommand // instanceof handles nulls
-                && index.equals(((GradeCommand) other).index) // state check
+                && indices.equals(((GradeCommand) other).indices)
                 && grade == ((GradeCommand) other).grade
                 && session.isSame(((GradeCommand) other).session));
     }

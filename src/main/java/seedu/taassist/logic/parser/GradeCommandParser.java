@@ -5,6 +5,8 @@ import static seedu.taassist.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMA
 import static seedu.taassist.logic.parser.CliSyntax.PREFIX_GRADE;
 import static seedu.taassist.logic.parser.CliSyntax.PREFIX_SESSION;
 
+import java.util.List;
+
 import seedu.taassist.commons.core.index.Index;
 import seedu.taassist.logic.commands.GradeCommand;
 import seedu.taassist.logic.parser.exceptions.ParseException;
@@ -28,17 +30,17 @@ public class GradeCommandParser implements Parser<GradeCommand> {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, GradeCommand.MESSAGE_USAGE));
         }
 
-        Index index;
+        List<Index> indices;
         Session session;
         double grade;
 
         try {
-            index = ParserUtil.parseIndex(argMultimap.getPreamble());
+            indices = ParserUtil.parseIndices(argMultimap.getPreamble());
             session = ParserUtil.parseSession(argMultimap.getValue(PREFIX_SESSION).get());
             grade = ParserUtil.parseGrade(argMultimap.getValue(PREFIX_GRADE).get());
         } catch (ParseException pe) {
             throw new ParseException(pe.getMessage());
         }
-        return new GradeCommand(index, session, grade);
+        return new GradeCommand(indices, session, grade);
     }
 }
