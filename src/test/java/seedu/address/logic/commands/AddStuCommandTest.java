@@ -50,7 +50,8 @@ public class AddStuCommandTest {
         AddStuCommand addStuCommand = new AddStuCommand(validStudent);
         ModelStub modelStub = new ModelStubWithStudent(validStudent);
 
-        assertThrows(CommandException.class, AddStuCommand.MESSAGE_DUPLICATE_STUDENT, () -> addStuCommand.execute(modelStub));
+        assertThrows(CommandException.class, AddStuCommand.MESSAGE_DUPLICATE_STUDENT,
+                () -> addStuCommand.execute(modelStub));
     }
 
     @Test
@@ -129,7 +130,7 @@ public class AddStuCommandTest {
 
         @Override
         public boolean hasPerson(Person person) {
-           return false;
+            return false;
         }
 
         @Override
@@ -144,7 +145,7 @@ public class AddStuCommandTest {
 
         @Override
         public ObservableList<Person> getFilteredPersonList() {
-           return null;
+            return null;
         }
 
         @Override
