@@ -3,13 +3,13 @@ package seedu.address.logic.commands.event;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_OPTION;
 
+import java.util.function.Predicate;
+
 import seedu.address.commons.core.Messages;
 import seedu.address.logic.commands.CommandResult;
 import seedu.address.model.Model;
 import seedu.address.model.event.Event;
-import seedu.address.model.event.TitleContainsKeywordsPredicate;
 
-import java.util.function.Predicate;
 
 /**
  * Finds and lists all events in address book whose name contains any of the argument keywords.
