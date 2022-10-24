@@ -15,7 +15,7 @@ public class Department {
         "Customer Service",
         "Finance",
         "General Management",
-        "Human Resources ",
+        "Human Resources",
         "Information Technology",
         "Legal",
         "Marketing",
@@ -27,6 +27,8 @@ public class Department {
         "Sales",
         "Technology"
         };
+
+    private static final String NULL_DEPARTMENT = "N/A";
 
     public static final String MESSAGE_CONSTRAINTS =
             "Input for department (case-insensitive) is invalid if it is not in this list: \n"
@@ -50,7 +52,7 @@ public class Department {
      */
     public static boolean isValidDepartment(String test) {
         String department = findValidDepartment(test);
-        if (department.equals(null)) {
+        if (department.equals(NULL_DEPARTMENT)) {
             return false;
         } else {
             return true;
@@ -65,7 +67,7 @@ public class Department {
             }
         }
 
-        return null;
+        return NULL_DEPARTMENT;
     }
 
     private static String listValidDepartments() {

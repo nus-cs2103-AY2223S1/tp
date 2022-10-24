@@ -36,7 +36,7 @@ public class DepartmentTest {
         assertTrue(Department.isValidDepartment("Customer Service"));
         assertTrue(Department.isValidDepartment("Finance"));
         assertTrue(Department.isValidDepartment("General Management"));
-        assertTrue(Department.isValidDepartment("Human Resources "));
+        assertTrue(Department.isValidDepartment("Human Resources"));
         assertTrue(Department.isValidDepartment("Information Technology"));
         assertTrue(Department.isValidDepartment("Legal"));
         assertTrue(Department.isValidDepartment("Marketing"));
