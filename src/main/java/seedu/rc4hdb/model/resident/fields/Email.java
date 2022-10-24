@@ -2,8 +2,6 @@ package seedu.rc4hdb.model.resident.fields;
 
 import static seedu.rc4hdb.commons.util.AppUtil.checkArgument;
 
-import seedu.rc4hdb.commons.util.StringUtil;
-
 /**
  * Represents a Resident's email in RC4HDB.
  * Guarantees: immutable; is valid as declared in {@link #isValidEmail(String)}
@@ -56,32 +54,6 @@ public class Email extends ResidentField {
      */
     public static boolean isValidEmail(String test) {
         return test.matches(VALIDATION_REGEX);
-    }
-
-    @Override
-    public String toString() {
-        return value;
-    }
-
-    /**
-     * Returns true if given {@code Email} is contained in this email
-     * @param email a substring of an email
-     * @return true if the email is a substring of value
-     */
-    public boolean contains(String email) {
-        return StringUtil.containsWordIgnoreCase(this.value, email);
-    }
-
-    @Override
-    public boolean equals(Object other) {
-        return other == this // short circuit if same object
-                || (other instanceof Email // instanceof handles nulls
-                && value.equals(((Email) other).value)); // state check
-    }
-
-    @Override
-    public int hashCode() {
-        return value.hashCode();
     }
 
 }
