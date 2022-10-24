@@ -67,6 +67,9 @@ public class UntagEventCommand extends Command {
                 throw new CommandException(String.format(MESSAGE_INVALID_PERSON, personIndex.getOneBased(),
                         person.getName()));
             }
+        }
+        for (Index personIndex : personIndexes) {
+            Person person = lastShownPersonList.get(personIndex.getZeroBased());
             personNames += String.format("%s, ", person.getName());
             uids.remove(person.getUid());
         }
@@ -75,9 +78,7 @@ public class UntagEventCommand extends Command {
         model.setEvent(eventToUntag, untaggedEvent);
         model.updateFilteredEventList(PREDICATE_SHOW_ALL_EVENTS);
         model.updateEventPersonReference();
-        personNames = personNames.substring(0, personNames.length() - 2);
-
-        return new CommandResult(String.format(MESSAGE_UNTAG_EVENT_SUCCESS, personNames,
-                untaggedEvent.getEventTitle()));
+        return new CommandResult(String.format(MESSAGE_UNTAG_EVENT_SUCCESS,
+                personNames.substring(0, personNames.length() - 2), untaggedEvent.getEventTitle()));
     }
 }

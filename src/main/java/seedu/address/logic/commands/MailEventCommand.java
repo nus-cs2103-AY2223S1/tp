@@ -4,11 +4,12 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_EVENT_DISPLAYED_INDEX;
 
 import java.io.File;
-import java.io.PrintWriter;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
+
+import com.opencsv.CSVWriter;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.exceptions.CommandException;
@@ -31,6 +32,7 @@ public class MailEventCommand extends Command {
     public static final String MESSAGE_MAIL_EVENT_SUCCESS = " Generated mailing list for event: %s, "
             + "stored %s.csv file in /data folder.";
     public static final String FILE_OPS_ERROR_MESSAGE = "Could not save mailing list to file: %s.csv";
+    public static final String EVENT_EMPTY_ERROR_MESSAGE = "There is no person in the event: %s.";
     private final Index eventIndex;
     /**
      * Constructor of MailEvent Command
@@ -46,18 +48,25 @@ public class MailEventCommand extends Command {
         requireNonNull(model);
         List<Person> lastShownPersonList = model.getFilteredPersonList();
         List<Event> lastShownEventList = model.getFilteredEventList();
+        Event eventToMail = lastShownEventList.get(eventIndex.getZeroBased());
+        String eventTitle = eventToMail.getEventTitle();
         // check if index is valid
         if (eventIndex.getZeroBased() >= lastShownEventList.size()) {
             throw new CommandException(MESSAGE_INVALID_EVENT_DISPLAYED_INDEX);
         }
-        Event eventToMail = lastShownEventList.get(eventIndex.getZeroBased());
-        String eventTitle = eventToMail.getEventTitle();
+        // check if there is any person in the event
+        if (eventToMail.getUids().size() == 0) {
+            throw new CommandException(String.format(EVENT_EMPTY_ERROR_MESSAGE, eventTitle));
+        }
+        // assume eventTitle is alphanumeric
+        File csvFile = new File(String.format("data/%s.csv", eventTitle));
         try {
-            File csvFile = new File(String.format("%s.csv"), eventTitle);
-            PrintWriter pw = new PrintWriter(csvFile);
-            getMailingList(eventToMail, lastShownPersonList).stream()
-                        .map(this::convertToCsv).forEach(pw::println);
-        } catch (Exception ex) {
+            FileWriter fw = new FileWriter(csvFile);
+            CSVWriter writer = new CSVWriter(fw);
+            writer.writeAll(getMailingList(eventToMail, lastShownPersonList));
+            writer.close();
+        } catch (IOException e) {
+            e.printStackTrace();
             throw new CommandException(String.format(FILE_OPS_ERROR_MESSAGE, eventTitle));
         }
         return new CommandResult(String.format(MESSAGE_MAIL_EVENT_SUCCESS, eventTitle, eventTitle));
@@ -66,6 +75,8 @@ public class MailEventCommand extends Command {
     private static List<String[]> getMailingList(Event event, List<Person> personList) {
         UidList uids = event.getUids();
         List<String[]> dataLines = new ArrayList<>();
+        String[] header = {"Name", "Email"};
+        dataLines.add(header);
         for (Person person : personList) {
             if (uids.contains(person.getUid())) {
                 dataLines.add(new String[] {person.getName().toString(), person.getEmail().toString()});
@@ -73,10 +84,4 @@ public class MailEventCommand extends Command {
         }
         return dataLines;
     }
-
-    private String convertToCsv(String[] data) {
-        return Stream.of(data).collect(Collectors.joining(","));
-    }
-
-
 }

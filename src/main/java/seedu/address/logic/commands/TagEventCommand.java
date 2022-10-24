@@ -67,6 +67,9 @@ public class TagEventCommand extends Command {
                 throw new CommandException(String.format(MESSAGE_DUPLICATE_PERSON, personIndex.getOneBased(),
                         person.getName()));
             }
+        }
+        for (Index personIndex : personIndexes) {
+            Person person = lastShownPersonList.get(personIndex.getZeroBased());
             personNames += String.format("%s, ", person.getName());
             uids.add(person.getUid());
         }
@@ -75,8 +78,7 @@ public class TagEventCommand extends Command {
         model.setEvent(eventToTag, taggedEvent);
         model.updateFilteredEventList(PREDICATE_SHOW_ALL_EVENTS);
         model.updateEventPersonReference();
-        personNames = personNames.substring(0, personNames.length() - 2);
-
-        return new CommandResult(String.format(MESSAGE_TAG_EVENT_SUCCESS, personNames, taggedEvent.getEventTitle()));
+        return new CommandResult(String.format(MESSAGE_TAG_EVENT_SUCCESS,
+                personNames.substring(0, personNames.length() - 2), taggedEvent.getEventTitle()));
     }
 }
