@@ -131,9 +131,7 @@ public class Person {
     @Override
     public String toString() {
         final StringBuilder builder = new StringBuilder();
-        builder.append(getName())
-            .append("; Address: ")
-            .append(getAddress());
+        builder.append(getName());
 
         Set<Tag> tags = getTags();
         if (!tags.isEmpty()) {
@@ -149,6 +147,7 @@ public class Person {
             }
         }
 
+        getAddress().ifPresent(a -> builder.append("; Address: " + a));
         getRole().ifPresent(r -> builder.append("; Role: " + r));
         getTimezone().ifPresent(t -> builder.append("; Timezone: " + t));
 
