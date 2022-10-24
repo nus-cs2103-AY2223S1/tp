@@ -31,7 +31,7 @@ public class TaskTest {
         // valid addresses
         assertTrue(Task.isValidTask(new Task("Online Assessment", "10-10-2023 10:00")));
         assertTrue(Task.isValidTask(new Task("-", "05-11-2022 11:00"))); // one character
-        assertTrue(Task.isValidTask(new Task("The quick brown fox jumped over the lazy dog while testing" +
-                "the code in his project that is very very long", "20-10-2022 15:00"))); // long taskName
+        assertTrue(Task.isValidTask(new Task("The quick brown fox jumped over the lazy dog while testing"
+                + "the code in his project that is very very long", "20-10-2022 15:00"))); // long taskName
     }
 }
