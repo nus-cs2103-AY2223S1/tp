@@ -102,6 +102,26 @@ Examples:
 * `edit p/91234567 e/johndoe@example.com r/1000`
 * `edit e/peterparker@example.com r/420`
 
+### Increasing a Customer’s Reward points: `incr`
+
+Increases the Reward points of existing Customer in bobaBot.
+
+Format: `incr INCREMENT_VALUE p/PHONE_NUMBER OR incr INCREMENT_VALUE e/EMAIL`
+
+Examples:
+* `incr 100 p/91234567`
+* `incr 200 e/milesmorales@example.com`
+
+### Decreasing a Customer’s Reward points: `decr`
+
+Decreases the Reward points of existing Customer in bobaBot.
+
+Format: `decr DECREMENT_VALUE p/PHONE_NUMBER OR decr DECREMENT_VALUE e/EMAIL`
+
+Examples:
+* `decr 100 p/91234567`
+* `decr 200 e/gwenstacy@example.com`
+
 ### Listing all customers : `list`
 
 Shows a list of all Customers in bobaBot.
@@ -181,13 +201,15 @@ _Details coming soon ..._
 
 ## Command summary
 
-| Action     | Format, Examples                                                                                                                                          |
-|------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Add**    | `add n/NAME p/PHONE_NUMBER e/EMAIL [r/REWARD] [t/TAG]…` <br> e.g., ` add n/Betsy Crowe p/1234567 e/betsycrowe@example.com r/5000 t/gold`                  |
-| **Edit**   | `edit p/PHONE_NUMBER` or `edit e/EMAIL [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [r/REWARD] [t/TAG]…​`<br> e.g.,`edit p/91234567 e/johndoe@example.com r/1000`  |
-| **Delete** | `delete p/PHONE_NUMBER` or `delete e/EMAIL` <br> e.g., `delete p/87438807`, `delete e/alexyeoh@example.com`                                               |
-| **Find**   | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find alex david`                                                                                                |
-| **Clear**  | `clear`                                                                                                                                                   |
-| **List**   | `list`                                                                                                                                                    |
-| **Help**   | `help`                                                                                                                                                    |
-| **Exit**   | `exit`                                                                                                                                                    |
+| Action       | Format, Examples                                                                                                                                         |
+|--------------|----------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **Add**      | `add n/NAME p/PHONE_NUMBER e/EMAIL [r/REWARD] [t/TAG]…` <br> e.g., ` add n/Betsy Crowe p/1234567 e/betsycrowe@example.com r/5000 t/gold`                 |
+| **Edit**     | `edit p/PHONE_NUMBER` or `edit e/EMAIL [n/NAME] [p/PHONE_NUMBER] [e/EMAIL] [r/REWARD] [t/TAG]…​`<br> e.g.,`edit p/91234567 e/johndoe@example.com r/1000` |
+| **Increase** | `incr 100 p/PHONE_NUMBER` or `incr 100 e/EMAIL` <br> e.g., `incr 100 p/87438807`, `incr 100 e/alexyeoh@example.com`                                      |
+| **Decrease** | `decr 100 p/PHONE_NUMBER` or `decr 100 e/EMAIL` <br> e.g., `decr 100 p/87438807`, `decr 100 e/alexyeoh@example.com`                                      |
+| **Delete**   | `delete p/PHONE_NUMBER` or `delete e/EMAIL` <br> e.g., `delete p/87438807`, `delete e/alexyeoh@example.com`                                              |
+| **Find**     | `find KEYWORD [MORE_KEYWORDS]`<br> e.g., `find alex david`                                                                                               |
+| **Clear**    | `clear`                                                                                                                                                  |
+| **List**     | `list`                                                                                                                                                   |
+| **Help**     | `help`                                                                                                                                                   |
+| **Exit**     | `exit`                                                                                                                                                   |
