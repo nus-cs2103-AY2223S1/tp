@@ -14,6 +14,7 @@ import javafx.collections.transformation.FilteredList;
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.calendar.CalendarEvent;
+import seedu.address.model.person.Appointment;
 import seedu.address.model.person.Person;
 
 /**
@@ -99,6 +100,11 @@ public class ModelManager implements Model {
         return addressBook.hasPerson(person);
     }
 
+    @Override
+    public boolean hasPersonWithSameAppointmentDateTime(Appointment appointment) {
+        requireNonNull(appointment);
+        return addressBook.hasPersonWithSameAppointmentDateTime(appointment);
+    }
     @Override
     public void deletePerson(Person target) {
         addressBook.removePerson(target);
