@@ -21,6 +21,8 @@ import seedu.rc4hdb.commons.util.FileUtil;
 import seedu.rc4hdb.model.ReadOnlyResidentBook;
 import seedu.rc4hdb.model.ResidentBook;
 import seedu.rc4hdb.model.UserPrefs;
+import seedu.rc4hdb.storage.residentbook.JsonResidentBookStorage;
+import seedu.rc4hdb.storage.userprefs.JsonUserPrefsStorage;
 
 /**
  * Unit test for {@link StorageManager}.
@@ -132,6 +134,13 @@ public class StorageManagerTest {
         Path toBeCreated = testFolder.resolve("ToBeCreated.json");
         storageManager.createResidentBookFile(toBeCreated);
         assertThrows(FileAlreadyExistsException.class, () -> storageManager.createResidentBookFile(toBeCreated));
+    }
+
+    //====================== CsvFileManagerTests =================================
+
+    @Test
+    public void readCsvFile_nullFilePath_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> storageManager.readCsvFile(null));
     }
 
     @Test

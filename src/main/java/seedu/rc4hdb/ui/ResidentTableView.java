@@ -2,6 +2,9 @@ package seedu.rc4hdb.ui;
 
 import static seedu.rc4hdb.commons.util.CollectionUtil.requireAllNonNull;
 
+import java.util.Set;
+import java.util.stream.Collectors;
+
 import javafx.collections.FXCollections;
 import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
@@ -37,7 +40,7 @@ public class ResidentTableView extends UiPart<Region> {
     private final TableColumn<Resident, ResidentField> nameColumn = new TableColumn<>(Name.IDENTIFIER);
     private final TableColumn<Resident, ResidentField> phoneColumn = new TableColumn<>(Phone.IDENTIFIER);
     private final TableColumn<Resident, ResidentField> roomColumn = new TableColumn<>(Room.IDENTIFIER);
-    private final TableColumn<Resident, ResidentField> tagColumn = new TableColumn<>(Tag.IDENTIFIER);
+    private final TableColumn<Resident, Set<Tag>> tagColumn = new TableColumn<>(Tag.IDENTIFIER);
 
     @FXML
     private TableView<Resident> residentTableView;
@@ -87,6 +90,27 @@ public class ResidentTableView extends UiPart<Region> {
         houseColumn.setCellValueFactory(new PropertyValueFactory<>(House.IDENTIFIER.toLowerCase()));
         matricColumn.setCellValueFactory(new PropertyValueFactory<>("matricNumber"));
         tagColumn.setCellValueFactory(new PropertyValueFactory<>(Tag.IDENTIFIER.toLowerCase()));
+        tagColumn.setCellFactory(this::populateTagColumn);
+    }
+
+    /**
+     * Code referenced from:
+     * https://stackoverflow.com/questions/31126123/how-to-show-a-list-on-table-column-with-few-fields-of-list-items
+     */
+    private TableCell<Resident, Set<Tag>> populateTagColumn(TableColumn<Resident, Set<Tag>> column) {
+        return new TableCell<>() {
+            @Override
+            public void updateItem(Set<Tag> tags, boolean empty) {
+                super.updateItem(tags, empty);
+                if (empty) {
+                    setText(null);
+                } else {
+                    String tagsString = tags.stream().map(Tag::toString)
+                            .collect(Collectors.joining(", "));
+                    setText(tagsString);
+                }
+            }
+        };
     }
 
     /**

@@ -9,7 +9,7 @@ import seedu.rc4hdb.model.resident.Resident;
 import seedu.rc4hdb.model.resident.UniqueResidentList;
 
 /**
- * Wraps all data at the RC4HDB level
+ * Wraps all resident data at the RC4HDB level
  * Duplicates are not allowed (by .isSameResident comparison)
  */
 public class ResidentBook implements ReadOnlyResidentBook {
@@ -30,7 +30,7 @@ public class ResidentBook implements ReadOnlyResidentBook {
     public ResidentBook() {}
 
     /**
-     * Creates an ResidentBook using the Residents in the {@code toBeCopied}
+     * Creates a ResidentBook using the Residents in the {@code toBeCopied}
      */
     public ResidentBook(ReadOnlyResidentBook toBeCopied) {
         this();

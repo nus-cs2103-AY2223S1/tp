@@ -16,6 +16,7 @@ import seedu.rc4hdb.commons.core.index.Index;
 import seedu.rc4hdb.model.Model;
 import seedu.rc4hdb.model.ModelManager;
 import seedu.rc4hdb.model.UserPrefs;
+import seedu.rc4hdb.model.VenueBook;
 import seedu.rc4hdb.model.resident.Resident;
 
 /**
@@ -24,7 +25,7 @@ import seedu.rc4hdb.model.resident.Resident;
  */
 public class DeleteCommandTest {
 
-    private Model model = new ModelManager(getTypicalResidentBook(), new UserPrefs());
+    private Model model = new ModelManager(getTypicalResidentBook(), new VenueBook(), new UserPrefs());
 
     @Test
     public void execute_validIndexUnfilteredList_success() {
@@ -33,7 +34,7 @@ public class DeleteCommandTest {
 
         String expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_RESIDENT_SUCCESS, residentToDelete);
 
-        ModelManager expectedModel = new ModelManager(model.getResidentBook(), new UserPrefs());
+        ModelManager expectedModel = new ModelManager(model.getResidentBook(), new VenueBook(), new UserPrefs());
         expectedModel.deleteResident(residentToDelete);
 
         assertCommandSuccess(deleteCommand, model, expectedMessage, expectedModel);
@@ -56,7 +57,7 @@ public class DeleteCommandTest {
 
         String expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_RESIDENT_SUCCESS, residentToDelete);
 
-        Model expectedModel = new ModelManager(model.getResidentBook(), new UserPrefs());
+        Model expectedModel = new ModelManager(model.getResidentBook(), new VenueBook(), new UserPrefs());
         expectedModel.deleteResident(residentToDelete);
         showNoResident(expectedModel);
 

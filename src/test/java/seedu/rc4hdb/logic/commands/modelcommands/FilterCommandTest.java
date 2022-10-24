@@ -22,14 +22,15 @@ import org.junit.jupiter.api.Test;
 import seedu.rc4hdb.model.Model;
 import seedu.rc4hdb.model.ModelManager;
 import seedu.rc4hdb.model.UserPrefs;
+import seedu.rc4hdb.model.VenueBook;
 import seedu.rc4hdb.model.resident.ResidentDescriptor;
 import seedu.rc4hdb.model.resident.predicates.AttributesMatchAllKeywordsPredicate;
 import seedu.rc4hdb.model.resident.predicates.AttributesMatchAnyKeywordPredicate;
 import seedu.rc4hdb.testutil.ResidentDescriptorBuilder;
 
 public class FilterCommandTest {
-    private Model model = new ModelManager(getTypicalResidentBook(), new UserPrefs());
-    private Model expectedModel = new ModelManager(getTypicalResidentBook(), new UserPrefs());
+    private Model model = new ModelManager(getTypicalResidentBook(), new VenueBook(), new UserPrefs());
+    private Model expectedModel = new ModelManager(getTypicalResidentBook(), new VenueBook(), new UserPrefs());
 
 
     @Test

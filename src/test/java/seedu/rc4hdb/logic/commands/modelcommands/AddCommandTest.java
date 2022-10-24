@@ -11,9 +11,9 @@ import java.util.Arrays;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.rc4hdb.logic.ModelStub;
 import seedu.rc4hdb.logic.commands.CommandResult;
 import seedu.rc4hdb.logic.commands.exceptions.CommandException;
+import seedu.rc4hdb.model.ModelStub;
 import seedu.rc4hdb.model.ReadOnlyResidentBook;
 import seedu.rc4hdb.model.ResidentBook;
 import seedu.rc4hdb.model.resident.Resident;

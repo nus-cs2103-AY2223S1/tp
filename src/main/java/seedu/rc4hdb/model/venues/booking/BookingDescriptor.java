@@ -4,9 +4,9 @@ import java.util.Optional;
 
 import seedu.rc4hdb.commons.util.CollectionUtil;
 import seedu.rc4hdb.model.resident.Resident;
-import seedu.rc4hdb.model.venues.Venue;
+import seedu.rc4hdb.model.venues.VenueName;
 import seedu.rc4hdb.model.venues.booking.fields.Day;
-import seedu.rc4hdb.model.venues.booking.fields.Hour;
+import seedu.rc4hdb.model.venues.booking.fields.HourPeriod;
 
 /**
  * Stores the details to edit the booking with. Each non-empty field value will replace the
@@ -14,11 +14,10 @@ import seedu.rc4hdb.model.venues.booking.fields.Hour;
  */
 public class BookingDescriptor {
 
+    private VenueName venueName;
     private Resident resident;
-    private Hour startHour;
-    private Hour endHour;
+    private HourPeriod hourPeriod;
     private Day dayOfWeek;
-    private Venue venue;
 
     public BookingDescriptor() {}
 
@@ -26,21 +25,28 @@ public class BookingDescriptor {
      * Copy constructor.
      */
     public BookingDescriptor(BookingDescriptor toCopy) {
+        setVenueName(toCopy.venueName);
         setResident(toCopy.resident);
-        setStartHour(toCopy.startHour);
-        setEndHour(toCopy.endHour);
+        setHourPeriod(toCopy.hourPeriod);
         setDayOfWeek(toCopy.dayOfWeek);
-        setVenue(toCopy.venue);
     }
 
     /**
      * Returns true if at least one field is edited.
      */
     public boolean isAnyFieldNonNull() {
-        return CollectionUtil.isAnyNonNull(resident, startHour, endHour, dayOfWeek);
+        return CollectionUtil.isAnyNonNull(resident, hourPeriod, dayOfWeek);
     }
 
     //=========== Start of Getters and Setters ===============================================================
+
+    public void setVenueName(VenueName venueName) {
+        this.venueName = venueName;
+    }
+
+    public Optional<VenueName> getVenueName() {
+        return Optional.of(venueName);
+    }
 
     public void setResident(Resident resident) {
         this.resident = resident;
@@ -50,36 +56,20 @@ public class BookingDescriptor {
         return Optional.ofNullable(resident);
     }
 
-    public void setStartHour(Hour startHour) {
-        this.startHour = startHour;
+    public void setHourPeriod(HourPeriod hourPeriod) {
+        this.hourPeriod = hourPeriod;
     }
 
-    public Optional<Hour> getStartHour() {
-        return Optional.ofNullable(startHour);
+    public Optional<HourPeriod> getHourPeriod() {
+        return Optional.ofNullable(hourPeriod);
     }
 
-    public void setEndHour(Hour endHour) {
-        this.endHour = endHour;
-    }
-
-    public Optional<Hour> getEndHour() {
-        return Optional.ofNullable(endHour);
-    }
-
-    public void setDayOfWeek(Day dayofWeek) {
-        this.dayOfWeek = dayofWeek;
+    public void setDayOfWeek(Day dayOfWeek) {
+        this.dayOfWeek = dayOfWeek;
     }
 
     public Optional<Day> getDayOfWeek() {
         return Optional.ofNullable(dayOfWeek);
-    }
-
-    public void setVenue(Venue venue) {
-        this.venue = venue;
-    }
-
-    public Optional<Venue> getVenue() {
-        return Optional.ofNullable(this.venue);
     }
 
     //=========== End of Getters and Setters =================================================================
@@ -100,9 +90,7 @@ public class BookingDescriptor {
         BookingDescriptor e = (BookingDescriptor) other;
 
         return getResident().equals(e.getResident())
-                && getStartHour().equals(e.getStartHour())
-                && getEndHour().equals(e.getEndHour())
-                && getDayOfWeek().equals(e.getDayOfWeek())
-                && getVenue().equals(e.getVenue());
+                && getHourPeriod().equals(e.getHourPeriod())
+                && getDayOfWeek().equals(e.getDayOfWeek());
     }
 }

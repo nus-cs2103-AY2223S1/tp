@@ -2,11 +2,15 @@ package seedu.rc4hdb.model.venues.booking.fields;
 
 import static seedu.rc4hdb.commons.util.AppUtil.checkArgument;
 
+import seedu.rc4hdb.model.StringField;
+
 /**
  * Represents a Booking's day in RC4HDB.
  * Guarantees: immutable; is valid as declared in {@link #isValidDay(String)}
  */
-public class Day extends BookingField {
+public class Day extends StringField implements BookingField {
+
+    public static final String IDENTIFIER = "Day";
 
     public static final String MESSAGE_CONSTRAINTS =
             "Day should only contain the first 3 letters of the day of the week. Day is also not case-sensitive";

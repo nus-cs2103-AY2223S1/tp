@@ -17,9 +17,9 @@ import seedu.rc4hdb.model.resident.fields.Name;
 import seedu.rc4hdb.model.resident.fields.Phone;
 import seedu.rc4hdb.model.resident.fields.Room;
 import seedu.rc4hdb.model.resident.fields.Tag;
-import seedu.rc4hdb.model.venues.Venue;
+import seedu.rc4hdb.model.venues.VenueName;
 import seedu.rc4hdb.model.venues.booking.fields.Day;
-import seedu.rc4hdb.model.venues.booking.fields.Hour;
+import seedu.rc4hdb.model.venues.booking.fields.HourPeriod;
 
 /**
  * Contains utility methods used for parsing strings in the various *Parser classes.
@@ -177,28 +177,27 @@ public class ParserUtil {
     }
 
     /**
-     * Parses {@code String venue} into a {@code Venue}.
-     * currently only supports one venue: MEETING_ROOM
+     * Parses {@code String venueName} into a {@code VenueName}.
      */
-    public static Venue parseVenue(String venue) throws ParseException {
-        requireNonNull(venue);
-        String trimmedVenue = venue.trim();
-        if (!Venue.isValidVenue(trimmedVenue)) {
-            throw new ParseException(Venue.MESSAGE_CONSTRAINTS);
+    public static VenueName parseVenueName(String venueName) throws ParseException {
+        requireNonNull(venueName);
+        String trimmedVenueName = venueName.trim();
+        if (!VenueName.isValidVenueName(trimmedVenueName)) {
+            throw new ParseException(VenueName.MESSAGE_CONSTRAINTS);
         }
-        return Venue.MEETING_ROOM;
+        return new VenueName(trimmedVenueName);
     }
 
     /**
-     * Parses {@code String time} into a {@code Time}.
+     * Parses {@code String hourPeriod} into a {@code HourPeriod}.
      */
-    public static Hour parseTime(String time) throws ParseException {
-        requireNonNull(time);
-        String trimmedStartTime = time.trim();
-        if (!Hour.isValidHour(trimmedStartTime)) {
-            throw new ParseException(Hour.MESSAGE_CONSTRAINTS);
+    public static HourPeriod parseHourPeriod(String hourPeriod) throws ParseException {
+        requireNonNull(hourPeriod);
+        String trimmedHourPeriod = hourPeriod.trim();
+        if (!HourPeriod.isValidHourPeriod(trimmedHourPeriod)) {
+            throw new ParseException(HourPeriod.MESSAGE_CONSTRAINTS);
         }
-        return new Hour(time);
+        return new HourPeriod(hourPeriod);
     }
 
     /**

@@ -37,11 +37,6 @@ public interface Logic {
     ObservableList<Resident> getFilteredResidentList();
 
     /**
-     * Returns the user prefs' resident book file path.
-     */
-    Path getUserPrefsResidentBookFilePath();
-
-    /**
      * Returns the user prefs' GUI settings.
      */
     GuiSettings getGuiSettings();
@@ -57,14 +52,14 @@ public interface Logic {
     ObservableList<String> getObservableFields();
 
     /**
-     * Returns the current data file path of the storage's ResidentBookStorage.
-     */
-    ObservableValue<Path> getObservableResidentBookFilePath();
-
-    /**
      * Returns the list of observable venues in the model.
      */
     ObservableList<Venue> getObservableVenues();
+
+    /**
+     * Returns the folder path wrapped by ObservableValue.
+     */
+    ObservableValue<Path> getObservableFolderPath();
 
     ObservableList<Booking> getObservableBookings();
 }

@@ -26,18 +26,20 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.rc4hdb.logic.commands.CommandResult;
 import seedu.rc4hdb.logic.commands.exceptions.CommandException;
+import seedu.rc4hdb.logic.commands.filecommands.FileCommand;
+import seedu.rc4hdb.logic.commands.filecommands.FileCreateCommand;
+import seedu.rc4hdb.logic.commands.filecommands.FileSwitchCommand;
 import seedu.rc4hdb.logic.commands.misccommands.HelpCommand;
 import seedu.rc4hdb.logic.commands.modelcommands.AddCommand;
 import seedu.rc4hdb.logic.commands.modelcommands.ListCommand;
-import seedu.rc4hdb.logic.commands.storagecommands.filecommands.FileCommand;
-import seedu.rc4hdb.logic.commands.storagecommands.filecommands.jsonfilecommands.FileCreateCommand;
-import seedu.rc4hdb.logic.commands.storagecommands.filecommands.jsonfilecommands.FileSwitchCommand;
 import seedu.rc4hdb.logic.parser.exceptions.ParseException;
 import seedu.rc4hdb.model.Model;
+import seedu.rc4hdb.model.ModelStub;
 import seedu.rc4hdb.model.ReadOnlyResidentBook;
 import seedu.rc4hdb.model.ResidentBook;
 import seedu.rc4hdb.model.resident.Resident;
 import seedu.rc4hdb.storage.Storage;
+import seedu.rc4hdb.storage.StorageStub;
 
 public class LogicManagerTest {
 
@@ -157,7 +159,7 @@ public class LogicManagerTest {
         }
 
         @Override
-        public void setResidentBookFilePath(Path filePath) {
+        public void setUserPrefDataFilePath(Path filePath) {
             // does nothing
         }
     }

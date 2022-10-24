@@ -1,14 +1,18 @@
 package seedu.rc4hdb.model.venues.booking.fields;
 
-import seedu.rc4hdb.model.Field;
+import java.util.List;
+
+import seedu.rc4hdb.model.resident.Resident;
+import seedu.rc4hdb.model.venues.Venue;
 
 /**
  * Represents the fields for a booking.
  */
-public class BookingField extends Field {
+public interface BookingField {
 
-    protected BookingField(String value) {
-        super(value);
-    }
+    List<String> FIELDS = List.of(
+            Venue.IDENTIFIER, Resident.IDENTIFIER,
+            HourPeriod.IDENTIFIER, Day.IDENTIFIER
+    );
 
 }
