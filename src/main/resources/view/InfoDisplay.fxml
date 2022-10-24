@@ -44,6 +44,7 @@
             <Insets bottom="0" left="10" right="10" top="5" />
           </padding>
         </Label>
+<!--      <BarChart fx:id="chart"/> Doesn't work :(-->
         <Label fx:id="address" styleClass="label-bright">
           <padding>
             <Insets bottom="0" left="10" right="10" top="20" />

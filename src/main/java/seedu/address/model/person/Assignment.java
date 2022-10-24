@@ -95,6 +95,18 @@ public class Assignment {
         return gradePercentage;
     }
 
+    public String getAssignmentName() {
+        return name;
+    }
+
+    public Integer getScore() {
+        return Integer.valueOf(grade.split("/")[0]);
+    }
+
+    public Integer getMaximumScore() {
+        return Integer.valueOf(grade.split("/")[1]);
+    }
+
     public boolean getIsGradeUpdated() {
         return isGradeUpdated;
     }
