@@ -35,7 +35,7 @@ public class EditTaskCommand extends Command {
             + "Parameters: INDEX (must be a positive integer) "
             + "[" + PREFIX_TASK_TITLE + "TITLE] "
             + "[" + PREFIX_TASK_DESCRIPTION + "DESCRIPTION...] \n"
-            + "One or none of : " + "[" + PREFIX_DEADLINE_DATE + "Date in YYYY-MM-DD] \n"
+            + "One or none of : " + "[" + PREFIX_DEADLINE_DATE + "Date in YYYY-MM-DD], "
             + "[" + PREFIX_ASSIGNMENT_ADD_STUDENTS + "Student names separated by commas] \n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_TASK_TITLE + "Test Title "
@@ -43,7 +43,7 @@ public class EditTaskCommand extends Command {
 
     public static final String MESSAGE_EDIT_TASK_SUCCESS = "Edited Task: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
-    public static final String MESSAGE_WRONG_TASK_TYPE = "You are adding an invalid field to the task."
+    public static final String MESSAGE_WRONG_TASK_TYPE = "You are adding an invalid field to the task. "
             + "Create a task of the correct type to add relevant field";
 
     private final Index index;
@@ -84,18 +84,25 @@ public class EditTaskCommand extends Command {
      * Creates and returns a {@code Task} with the details of {@code taskToEdit}
      * edited with {@code editTaskDescriptor}.
      */
-    private static Task createEditedTask(Task taskToEdit, EditTaskDescriptor editTaskDescriptor) {
+    private static Task createEditedTask(Task taskToEdit,
+                                         EditTaskDescriptor editTaskDescriptor) throws CommandException {
         assert taskToEdit != null;
 
         TaskTitle updatedTitle = editTaskDescriptor.getTitle().orElse(taskToEdit.getTitle());
         TaskDescription updatedDescription = editTaskDescriptor.getDescription().orElse(taskToEdit.getDescription());
-        if (taskToEdit instanceof ToDo) {
+        Optional<FormatDate> inputDate = editTaskDescriptor.getDate();
+        Optional<List<String>> inputStudentsToAdd = editTaskDescriptor.getStudentsToAdd();
+        Optional<List<String>> inputStudentsToDelete = editTaskDescriptor.getStudentsToDelete();
+
+        if (taskToEdit instanceof ToDo && !inputDate.isPresent()
+                && !inputStudentsToAdd.isPresent() && !inputStudentsToDelete.isPresent()) {
             return new ToDo(updatedTitle, updatedDescription);
-        } else if (taskToEdit instanceof Deadline) {
+        } else if (taskToEdit instanceof Deadline
+                && !inputStudentsToAdd.isPresent() && !inputStudentsToDelete.isPresent()) {
             Deadline deadlineTaskToEdit = (Deadline) taskToEdit;
             FormatDate updatedDate = editTaskDescriptor.getDate().orElse(deadlineTaskToEdit.getDate());
             return new Deadline(updatedTitle, updatedDescription, updatedDate);
-        } else {
+        } else if (taskToEdit instanceof Deadline && !inputDate.isPresent()) {
             Assignment assignmentTaskToEdit = (Assignment) taskToEdit;
             if (editTaskDescriptor.getStudentsToAdd().isPresent()) {
                 assignmentTaskToEdit.addStudent(editTaskDescriptor.getStudentsToAdd().get());
@@ -105,6 +112,8 @@ public class EditTaskCommand extends Command {
             }
             List<String> updatedStudents = assignmentTaskToEdit.getStudents();
             return new Assignment(updatedTitle, updatedDescription, updatedStudents);
+        } else {
+            throw new CommandException(MESSAGE_WRONG_TASK_TYPE);
         }
     }
 
