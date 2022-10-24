@@ -2,6 +2,8 @@ package seedu.foodrem.viewmodels;
 
 import seedu.foodrem.model.item.Item;
 
+import java.util.Objects;
+
 /**
  * A view model for generating a view with an item as well as a message.
  * @author Richard Dominick
@@ -26,5 +28,18 @@ public class ItemWithMessage {
 
     public String getMessage() {
         return message;
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        return this == other
+                || (other instanceof ItemWithMessage
+                && item.equals(((ItemWithMessage) other).item)
+                && message.equals(((ItemWithMessage) other).message));
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(item, message);
     }
 }
