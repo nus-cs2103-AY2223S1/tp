@@ -70,7 +70,7 @@ public class PersonCard extends UiPart<Region> {
         criticalIllnessInsurance.setText("\uD83D\uDCDE\t"
                 + (person.getCriticalIllnessInsurance().getHasInsurance() ? "yes" : "no"));
         lifeInsurance.setText("\uD83D\uDCDE\t" + (person.getLifeInsurance().getHasInsurance() ? "yes" : "no"));
-        birthday.setText("\uD83C\uDF82\t" + person.getBirthday().value);
+        birthday.setText("\uD83C\uDF82\t" + person.getBirthday().toString());
         person.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));

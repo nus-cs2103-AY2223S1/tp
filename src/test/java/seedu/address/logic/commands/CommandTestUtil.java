@@ -40,8 +40,8 @@ public class CommandTestUtil {
     public static final String VALID_ADDRESS_BOB = "Block 123, Bobby Street 3";
     public static final String VALID_TAG_HUSBAND = "husband";
     public static final String VALID_TAG_FRIEND = "friend";
-    public static final String VALID_BIRTHDAY_AMY = "1 January 2000";
-    public static final String VALID_BIRTHDAY_BOB = "1 February 2000";
+    public static final String VALID_BIRTHDAY_AMY = "01-01-2000";
+    public static final String VALID_BIRTHDAY_BOB = "01-02-2000";
     public static final String VALID_REMINDER_AMY = "Amy's Reminder";
     public static final String VALID_REMINDER_BOB = "Bob's Reminder";
     public static final String VALID_REMINDER_DATE_AMY = "01-01-2000";
@@ -69,6 +69,8 @@ public class CommandTestUtil {
     public static final String INVALID_EMAIL_DESC = " " + PREFIX_EMAIL + "bob!yahoo"; // missing '@' symbol
     public static final String INVALID_ADDRESS_DESC = " " + PREFIX_ADDRESS; // empty string not allowed for addresses
     public static final String INVALID_TAG_DESC = " " + PREFIX_TAG + "hubby*"; // '*' not allowed in tags
+    public static final String INVALID_BIRTHDAY_DESC = " " + PREFIX_BIRTHDAY
+            + "10 Jan 2021"; // Birthday has to follow "dd-mm-yyyy"
 
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";
     public static final String PREAMBLE_NON_EMPTY = "NonEmptyPreamble";
