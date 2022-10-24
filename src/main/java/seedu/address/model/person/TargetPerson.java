@@ -2,14 +2,14 @@ package seedu.address.model.person;
 
 import java.util.Optional;
 
-import javafx.collections.FXCollections;
 import javafx.beans.property.SimpleSetProperty;
 import javafx.beans.property.SimpleStringProperty;
+import javafx.collections.FXCollections;
 import seedu.address.model.person.exceptions.PersonNotFoundException;
 import seedu.address.model.tag.Tag;
 
 /**
- * Represents a Target Person when the application is running.
+ * Represents a observable Person object when the application is running.
  */
 public class TargetPerson {
     private Optional<Person> targetPerson;
@@ -20,6 +20,9 @@ public class TargetPerson {
     private SimpleStringProperty remark;
     private SimpleSetProperty<Tag> tags;
 
+    /**
+     * Initialises a TargetPerson object.
+     */
     public TargetPerson() {
         targetPerson = Optional.empty();
         name = new SimpleStringProperty("");
