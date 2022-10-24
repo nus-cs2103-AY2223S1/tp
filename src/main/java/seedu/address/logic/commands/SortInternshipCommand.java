@@ -6,7 +6,7 @@ import seedu.address.model.Model;
 import seedu.address.model.internship.Internship;
 
 /**
- * Sorts the person list based on the given prefix.
+ * Sorts the internship list based on the given prefix.
  */
 public class SortInternshipCommand extends Command {
 
