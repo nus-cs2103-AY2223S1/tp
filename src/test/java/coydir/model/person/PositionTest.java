@@ -14,7 +14,7 @@ public class PositionTest {
     }
 
     @Test
-    public void constructor_invalidPhone_throwsIllegalArgumentException() {
+    public void constructor_invalidPosition_throwsIllegalArgumentException() {
         String invalidPosition = "";
         assertThrows(IllegalArgumentException.class, () -> new Position(invalidPosition));
     }

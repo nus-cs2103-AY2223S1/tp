@@ -6,7 +6,11 @@
       "phone": "9482424",
       "email": "hans@example.com",
       "position": "Worker",
-      "address": "4th street"
+      "department": "Operations",
+      "address": "4th street",
+      "leave": "14",
+      "leaveLeft": "14",
+      "leaveTaken": []
     },
     {
       "name": "Person With Invalid Employee ID Field",
@@ -14,7 +18,11 @@
       "phone": "9482424",
       "email": "hans@example.com",
       "position": "Worker",
-      "address": "4th street"
+      "department": "Operations",
+      "address": "4th street",
+      "leave": "14",
+      "leaveLeft": "14",
+      "leaveTaken": []
     },
     {
       "name": "Person With Invalid Phone Field",
@@ -22,7 +30,11 @@
       "phone": "948asdf2424",
       "email": "hans@example.com",
       "position": "Worker",
-      "address": "4th street"
+      "department": "Operations",
+      "address": "4th street",
+      "leave": "14",
+      "leaveLeft": "14",
+      "leaveTaken": []
     },
     {
       "name": "Person With Invalid Email Field",
@@ -30,7 +42,11 @@
       "phone": "948asdf2424",
       "email": "h#ns@ex@mple.com",
       "position": "Worker",
-      "address": "4th street"
+      "department": "Operations",
+      "address": "4th street",
+      "leave": "14",
+      "leaveLeft": "14",
+      "leaveTaken": []
     },
     {
       "name": "Person With Invalid Position Field",
@@ -38,7 +54,23 @@
       "phone": "948asdf2424",
       "email": "hans@example.com",
       "position": "",
-      "address": "4th street"
+      "department": "Operations",
+      "address": "4th street",
+      "leave": "14",
+      "leaveLeft": "14",
+      "leaveTaken": []
+    },
+    {
+      "name": "Person With Invalid Department Field",
+      "employeeId": "5",
+      "phone": "948asdf2424",
+      "email": "hans@example.com",
+      "position": "Worker",
+      "department": "Operate",
+      "address": "4th street",
+      "leave": "14",
+      "leaveLeft": "14",
+      "leaveTaken": []
     },
     {
       "name": "Person With Invalid Address Field",
@@ -46,7 +78,35 @@
       "phone": "948asdf2424",
       "email": "hans@example.com",
       "position": "Worker",
-      "address": ""
+      "department": "Operations",
+      "address": "",
+      "leave": "14",
+      "leaveLeft": "14",
+      "leaveTaken": []
+    },
+    {
+      "name": "Person With Invalid Leave Field",
+      "employeeId": "6",
+      "phone": "948asdf2424",
+      "email": "hans@example.com",
+      "position": "Worker",
+      "department": "Operations",
+      "address": "",
+      "leave": "",
+      "leaveLeft": "14",
+      "leaveTaken": []
+    },
+    {
+      "name": "Person With Invalid Leave Left Field",
+      "employeeId": "6",
+      "phone": "948asdf2424",
+      "email": "hans@example.com",
+      "position": "Worker",
+      "department": "Operations",
+      "address": "",
+      "leave": "14",
+      "leaveLeft": "",
+      "leaveTaken": []
     }
   ]
 }

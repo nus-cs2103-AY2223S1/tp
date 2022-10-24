@@ -21,9 +21,9 @@ public class Position {
     public final String value;
 
     /**
-     * Constructs a {@code Name}.
+     * Constructs a {@code Position}.
      *
-     * @param name A valid name.
+     * @param position A valid position.
      */
     public Position(String position) {
         requireNonNull(position);
@@ -32,7 +32,7 @@ public class Position {
     }
 
     /**
-     * Returns true if a given string is a valid name.
+     * Returns true if a given string is a valid position.
      */
     public static boolean isValidPosition(String test) {
         return test.matches(VALIDATION_REGEX);

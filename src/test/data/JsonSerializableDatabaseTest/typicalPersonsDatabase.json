@@ -7,11 +7,12 @@
       "phone": "94351253",
       "email": "alice@example.com",
       "position": "Software Engineer",
+      "department": "Information Technology",
       "address": "123, Jurong West Ave 6, #08-111",
-      "leave" : "14",
-      "leaveLeft" : "14",
+      "leave": "14",
+      "leaveLeft": "14",
       "tagged": ["friends"],
-      "leaveTaken" : [ ]
+      "leaveTaken": []
     },
     {
       "name": "Benson Meier",
@@ -19,11 +20,12 @@
       "phone": "98765432",
       "email": "johnd@example.com",
       "position": "Product Manager",
+      "department": "Product Management",
       "address": "311, Clementi Ave 2, #02-25",
-      "leave" : "14",
-      "leaveLeft" : "14",
+      "leave": "14",
+      "leaveLeft": "14",
       "tagged": ["owesMoney", "friends"],
-      "leaveTaken" : [ ]
+      "leaveTaken": []
     },
     {
       "name": "Carl Kurz",
@@ -31,11 +33,12 @@
       "phone": "95352563",
       "email": "heinz@example.com",
       "position": "Fire Support Officer",
+      "department": "Operations",
       "address": "wall street",
-      "leave" : "14",
-      "leaveLeft" : "14",
+      "leave": "14",
+      "leaveLeft": "14",
       "tagged": [],
-      "leaveTaken" : [ ]
+      "leaveTaken": []
     },
     {
       "name": "Daniel Meier",
@@ -43,11 +46,12 @@
       "phone": "87652533",
       "email": "cornelia@example.com",
       "position": "Junior Research Analyst",
+      "department": "Research and Development",
       "address": "10th street",
-      "leave" : "14",
-      "leaveLeft" : "14",
+      "leave": "14",
+      "leaveLeft": "14",
       "tagged": ["friends"],
-      "leaveTaken" : [ ]
+      "leaveTaken": []
     },
     {
       "name": "Elle Meyer",
@@ -55,11 +59,12 @@
       "phone": "9482224",
       "email": "werner@example.com",
       "position": "Coffee Maker",
+      "department": "Operations",
       "address": "michegan ave",
-      "leave" : "14",
-      "leaveLeft" : "14",
+      "leave": "14",
+      "leaveLeft": "14",
       "tagged": [],
-      "leaveTaken" : [ ]
+      "leaveTaken": []
     },
     {
       "name": "Fiona Kunz",
@@ -67,11 +72,12 @@
       "phone": "9482427",
       "email": "lydia@example.com",
       "position": "DevOps Lead",
+      "department": "Technology",
       "address": "little tokyo",
-      "leave" : "14",
-      "leaveLeft" : "14",
+      "leave": "14",
+      "leaveLeft": "14",
       "tagged": [],
-      "leaveTaken" : [ ]
+      "leaveTaken": []
     },
     {
       "name": "George Best",
@@ -79,11 +85,12 @@
       "phone": "9482442",
       "email": "anna@example.com",
       "position": "Senior Consultant Specialist",
+      "department": "Customer Service",
       "address": "4th street",
-      "leave" : "14",
-      "leaveLeft" : "14",
+      "leave": "14",
+      "leaveLeft": "14",
       "tagged": [],
-      "leaveTaken" : [ ]
+      "leaveTaken": []
     }
   ]
 }

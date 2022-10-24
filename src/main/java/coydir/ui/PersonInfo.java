@@ -24,13 +24,15 @@ public class PersonInfo extends UiPart<Region> {
     @FXML
     private Label employeeId;
     @FXML
-    private Label position;
-    @FXML
     private Label phone;
     @FXML
-    private Label address;
-    @FXML
     private Label email;
+    @FXML
+    private Label position;
+    @FXML
+    private Label department;
+    @FXML
+    private Label address;
     @FXML
     private Label totalLeave;
     @FXML
@@ -54,10 +56,11 @@ public class PersonInfo extends UiPart<Region> {
         this.person = person;
         name.setText(person.getName().fullName);
         employeeId.setText("Employee ID:  " + String.format("%6s", person.getEmployeeId().value).replace(' ', '0'));
-        position.setText("Position:  " + person.getPosition().value);
         phone.setText("Phone number:  " + person.getPhone().value);
-        address.setText("Address:  " + person.getAddress().value);
         email.setText("Email address:  " + person.getEmail().value);
+        position.setText("Position:  " + person.getPosition().value);
+        department.setText("Department:  " + person.getDepartment().value);
+        address.setText("Address:  " + person.getAddress().value);
         totalLeave.setText("Total Leaves: " + person.getTotalNumberOfLeaves());
         leaveLeft.setText("Leaves Left: " + person.getLeavesLeft());
         tags.getChildren().clear();

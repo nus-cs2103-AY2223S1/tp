@@ -2,6 +2,8 @@ package coydir.testutil;
 
 import static coydir.logic.commands.CommandTestUtil.VALID_ADDRESS_AMY;
 import static coydir.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
+import static coydir.logic.commands.CommandTestUtil.VALID_DEPARTMENT_AMY;
+import static coydir.logic.commands.CommandTestUtil.VALID_DEPARTMENT_BOB;
 import static coydir.logic.commands.CommandTestUtil.VALID_EMAIL_AMY;
 import static coydir.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
 import static coydir.logic.commands.CommandTestUtil.VALID_EMPLOYEE_ID_AMY;
@@ -30,49 +32,49 @@ public class TypicalPersons {
 
     public static final Person ALICE = new PersonBuilder().withName("Alice Pauline")
             .withAddress("123, Jurong West Ave 6, #08-111").withEmail("alice@example.com")
-            .withPosition("Software Engineer")
-            .withPhone("94351253")
-            .withTags("friends").build();
+            .withPosition("Software Engineer").withDepartment("Information Technology")
+            .withPhone("94351253").withTags("friends").build();
     public static final Person BENSON = new PersonBuilder().withName("Benson Meier")
             .withAddress("311, Clementi Ave 2, #02-25")
-            .withEmail("johnd@example.com").withPosition("Product Manager").withPhone("98765432")
-            .withTags("owesMoney", "friends").build();
+            .withEmail("johnd@example.com").withPosition("Product Manager").withDepartment("Product Management")
+            .withPhone("98765432").withTags("owesMoney", "friends").build();
     public static final Person CARL = new PersonBuilder().withName("Carl Kurz").withPhone("95352563")
-            .withEmail("heinz@example.com").withPosition("Fire Support Officer")
+            .withEmail("heinz@example.com").withPosition("Fire Support Officer").withDepartment("Operations")
             .withAddress("wall street").build();
     public static final Person DANIEL = new PersonBuilder().withName("Daniel Meier").withPhone("87652533")
             .withEmail("cornelia@example.com").withPosition("Junior Research Analyst")
-            .withAddress("10th street").withTags("friends").build();
+            .withDepartment("Research and Development").withAddress("10th street").withTags("friends").build();
     public static final Person ELLE = new PersonBuilder().withName("Elle Meyer").withPhone("9482224")
-            .withEmail("werner@example.com").withPosition("Coffee Maker")
+            .withEmail("werner@example.com").withPosition("Coffee Maker").withDepartment("Operations")
             .withAddress("michegan ave").build();
     public static final Person FIONA = new PersonBuilder().withName("Fiona Kunz").withPhone("9482427")
-            .withEmail("lydia@example.com").withPosition("DevOps Lead")
+            .withEmail("lydia@example.com").withPosition("DevOps Lead").withDepartment("Technology")
             .withAddress("little tokyo").build();
     public static final Person GEORGE = new PersonBuilder().withName("George Best").withPhone("9482442")
             .withEmail("anna@example.com").withPosition("Senior Consultant Specialist")
-            .withAddress("4th street").build();
+            .withDepartment("Customer Service").withAddress("4th street").build();
 
     // Manually added
     public static final Person HOON = new PersonBuilder().withName("Hoon Meier").withPhone("8482424")
             .withEmail("stefan@example.com").withPosition("Frontend Engineer")
-            .withAddress("little india").build();
+            .withDepartment("Information Technology").withAddress("little india").build();
     public static final Person IDA = new PersonBuilder().withName("Ida Mueller").withPhone("8482131")
-            .withEmail("hans@example.com").withPosition("Intern")
+            .withEmail("hans@example.com").withPosition("Intern").withDepartment("Marketing")
             .withAddress("chicago ave").build();
     public static final Person PRITTAM = new PersonBuilder().withName("Prittam Kok")
             .withEmployeeId(VALID_EMPLOYEE_ID_PRITTAM).withEmptyPhone()
-            .withEmptyEmail().withPosition("Intern")
+            .withEmptyEmail().withPosition("Intern").withDepartment("Board of Directors")
             .withEmptyAddress().build();
 
 
     // Manually added - Person's details found in {@code CommandTestUtil}
     public static final Person AMY = new PersonBuilder().withName(VALID_NAME_AMY).withEmployeeId(VALID_EMPLOYEE_ID_AMY)
             .withPhone(VALID_PHONE_AMY).withEmail(VALID_EMAIL_AMY).withPosition(VALID_POSITION_AMY)
-            .withAddress(VALID_ADDRESS_AMY).withTags(VALID_TAG_FRIEND).build();
+            .withDepartment(VALID_DEPARTMENT_AMY).withAddress(VALID_ADDRESS_AMY).withTags(VALID_TAG_FRIEND).build();
     public static final Person BOB = new PersonBuilder().withName(VALID_NAME_BOB).withEmployeeId(VALID_EMPLOYEE_ID_BOB)
             .withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB).withPosition(VALID_POSITION_BOB)
-            .withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).build();
+            .withDepartment(VALID_DEPARTMENT_BOB).withAddress(VALID_ADDRESS_BOB)
+            .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).build();
 
     public static final String KEYWORD_MATCHING_MEIER = "Meier"; // A keyword that matches MEIER
 

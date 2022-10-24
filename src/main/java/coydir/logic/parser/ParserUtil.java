@@ -10,6 +10,7 @@ import coydir.commons.core.index.Index;
 import coydir.commons.util.StringUtil;
 import coydir.logic.parser.exceptions.ParseException;
 import coydir.model.person.Address;
+import coydir.model.person.Department;
 import coydir.model.person.Email;
 import coydir.model.person.Name;
 import coydir.model.person.Phone;
@@ -123,6 +124,21 @@ public class ParserUtil {
             throw new ParseException(Position.MESSAGE_CONSTRAINTS);
         }
         return new Position(trimmedPosition);
+    }
+
+    /**
+     * Parses a {@code String department} into an {@code Department}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the  given {@code department} is invalid.
+     */
+    public static Department parseDepartment(String department) throws ParseException {
+        requireNonNull(department);
+        String trimmedDepartment = department.trim();
+        if (!Department.isValidDepartment(trimmedDepartment)) {
+            throw new ParseException(Department.MESSAGE_CONSTRAINTS);
+        }
+        return new Department(trimmedDepartment);
     }
 
     /**

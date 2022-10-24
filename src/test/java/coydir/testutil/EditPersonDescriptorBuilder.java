@@ -6,6 +6,7 @@ import java.util.stream.Stream;
 
 import coydir.logic.commands.EditCommand.EditPersonDescriptor;
 import coydir.model.person.Address;
+import coydir.model.person.Department;
 import coydir.model.person.Email;
 import coydir.model.person.Name;
 import coydir.model.person.Person;
@@ -37,6 +38,7 @@ public class EditPersonDescriptorBuilder {
         descriptor.setPhone(person.getPhone());
         descriptor.setEmail(person.getEmail());
         descriptor.setPosition(person.getPosition());
+        descriptor.setDepartment(person.getDepartment());
         descriptor.setAddress(person.getAddress());
         descriptor.setTags(person.getTags());
     }
@@ -70,6 +72,14 @@ public class EditPersonDescriptorBuilder {
      */
     public EditPersonDescriptorBuilder withPosition(String position) {
         descriptor.setPosition(new Position(position));
+        return this;
+    }
+
+    /**
+     * Sets the {@code Department} of the {@code EditPersonDescriptor} that we are building.
+     */
+    public EditPersonDescriptorBuilder withDepartment(String department) {
+        descriptor.setDepartment(new Department(department));
         return this;
     }
 
