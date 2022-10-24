@@ -1,7 +1,5 @@
 <!-- markdownlint-disable-file first-line-h1 -->
 
-### Layout
-
 <!-- TODO: Update UI Images after UI updates are implemented -->
 Let us look at the layout of the different components of FoodRem.
 

@@ -75,6 +75,7 @@
   | replace: ":inc:", inc
   | replace: ":dec:", dec
   | replace: ":edit:", edit
+  | replace: ":rmk:", rmk
   | replace: ":del:", del
   | replace: ":newexample:", newexample
   | replace: ":listexample:", listexample

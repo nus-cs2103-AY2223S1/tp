@@ -1,6 +1,10 @@
 <!-- markdownlint-disable-file first-line-h1 -->
 Here is an overview of what FoodRem consists of and how you can perform a command.
 
+### Layout
+
+{% include_relative _ug/Layout.md %}
+
 ### Items and Tags
 
 {% include_relative _ug/ItemsTags.md %}
