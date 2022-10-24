@@ -125,9 +125,8 @@ public class EditCommandTest {
 
         Entry entryInFilteredList = model.getFilteredExpenditureList().get(INDEX_FIRST_ENTRY.getZeroBased());
         Entry editedEntry = new ExpenditureBuilder(entryInFilteredList)
-                .withDescription(VALID_DESC_TUITION)
-                .withTag(VALID_TAG_PERSONAL)
-                .build();
+                .withDescription(VALID_DESC_TUITION).withTag(VALID_TAG_PERSONAL).build();
+
 
         EditCommand editCommand = new EditCommand(
                 INDEX_FIRST_ENTRY,
@@ -161,6 +160,7 @@ public class EditCommandTest {
     }
 
     @Test
+
     public void execute_duplicateEntryFilteredList_failure() {
         showExpenditureAtIndex(model, INDEX_FIRST_ENTRY);
 
@@ -214,6 +214,7 @@ public class EditCommandTest {
         // same values -> returns true
         EditEntryDescriptor copyDescriptor = new EditEntryDescriptor(LUNCH);
         EditCommand commandWithSameValues = new EditCommand(INDEX_FIRST_ENTRY, copyDescriptor);
+
         assertEquals(standardCommand, commandWithSameValues);
 
         // same object -> returns true
@@ -230,6 +231,7 @@ public class EditCommandTest {
 
         // different descriptor -> returns false
         assertNotEquals(standardCommand, new EditCommand(INDEX_FIRST_ENTRY, DINNER));
+
     }
 
 }

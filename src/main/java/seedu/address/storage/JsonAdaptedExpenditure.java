@@ -19,6 +19,7 @@ public class JsonAdaptedExpenditure extends JsonAdaptedEntry {
     /**
      * Constructs a {@code JsonAdaptedEntry} with the given person details.
      */
+    protected static EntryType type = new EntryType("e");
     @JsonCreator
     public JsonAdaptedExpenditure(@JsonProperty("description") String description,
                                   @JsonProperty("amount") String amount,
@@ -31,6 +32,18 @@ public class JsonAdaptedExpenditure extends JsonAdaptedEntry {
         super(source);
     }
 
+    /**
+     * Checks the JsonEntry for validity
+     * @throws IllegalValueException if the json entry is not valid
+     */
+    @Override
+    public void checkIsValidJsonEntry() throws IllegalValueException {
+        super.checkIsValidJsonEntry();
+        if (!Tag.isValidTagName(JsonAdaptedExpenditure.type, tagged)) {
+            throw new IllegalValueException(Tag.EXPENDITURE_CONSTRAINTS);
+        }
+    }
+
     @Override
     public Expenditure toModelType() throws IllegalValueException {
         checkIsValidJsonEntry();
@@ -41,7 +54,7 @@ public class JsonAdaptedExpenditure extends JsonAdaptedEntry {
         final Description modelDescription = new Description(description);
         final Amount modelAmount = new Amount(amount);
         final Date modelDate = new Date(date);
-        final Tag modelTag = new Tag(new EntryType("e"), tagged);
+        final Tag modelTag = new Tag(JsonAdaptedExpenditure.type, tagged);
         return new Expenditure(modelDescription, modelDate, modelAmount, modelTag);
     }
 }

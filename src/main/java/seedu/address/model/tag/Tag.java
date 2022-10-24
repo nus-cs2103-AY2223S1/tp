@@ -67,7 +67,7 @@ public class Tag {
             }
             break;
         default:
-            return true;
+            break;
         }
         return true;
 

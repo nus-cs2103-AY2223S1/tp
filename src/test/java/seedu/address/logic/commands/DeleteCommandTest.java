@@ -92,6 +92,7 @@ public class DeleteCommandTest {
 
         // same values -> returns true
         DeleteCommand deleteFirstCommandCopy = new DeleteCommand(INDEX_FIRST_ENTRY, expenditureType);
+
         assertEquals(deleteFirstCommand, deleteFirstCommandCopy);
 
         // different types -> returns false

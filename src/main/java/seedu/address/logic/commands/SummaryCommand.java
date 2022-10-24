@@ -1,4 +1,5 @@
 package seedu.address.logic.commands;
+
 import static seedu.address.logic.parser.CliSyntax.PREFIX_DATE;
 
 import java.util.List;
@@ -58,5 +59,13 @@ public class SummaryCommand extends Command {
                 .sum();
         Double totalBalance = totalIncome - totalExpenditure;
         return new CommandResult(String.format(MESSAGE_SUCCESS, totalExpenditure, totalIncome, totalBalance));
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof SummaryCommand
+                && (this.date == null && ((SummaryCommand) other).date == null)// instanceof handles nulls
+                || this.date.equals(((SummaryCommand) other).date)); // state check
     }
 }

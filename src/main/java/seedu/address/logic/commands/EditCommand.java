@@ -20,6 +20,8 @@ import seedu.address.model.entry.Date;
 import seedu.address.model.entry.Description;
 import seedu.address.model.entry.Entry;
 import seedu.address.model.entry.EntryType;
+import seedu.address.model.entry.Expenditure;
+import seedu.address.model.entry.Income;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -120,16 +122,16 @@ public class EditCommand extends Command {
         Description updatedDescription = editEntryDescriptor.getDescription().orElse(entryToEdit.getDescription());
         Amount updatedAmount = editEntryDescriptor.getAmount().orElse(entryToEdit.getAmount());
         Date updatedDate = editEntryDescriptor.getDate().orElse(entryToEdit.getDate());
-        Tag updatedTag;
+        Tag updatedTag = editEntryDescriptor.getTag().orElse(entryToEdit.getTag());
 
-        if (editEntryDescriptor.getTag().isPresent()) {
-            updatedTag = editEntryDescriptor.getTag().orElse(entryToEdit.getTag());
-        } else {
-            updatedTag = entryToEdit.getTag();
-
+        switch (editEntryDescriptor.getType().get().getEntryType()) {
+        case INCOME:
+            return new Income(updatedDescription, updatedDate, updatedAmount, updatedTag);
+        case EXPENDITURE:
+            return new Expenditure(updatedDescription, updatedDate, updatedAmount, updatedTag);
+        default:
+            return null;
         }
-
-        return new Entry(updatedDescription, updatedDate, updatedAmount, updatedTag);
     }
 
     @Override

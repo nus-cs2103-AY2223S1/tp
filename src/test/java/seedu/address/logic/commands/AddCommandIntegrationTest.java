@@ -13,8 +13,7 @@ import seedu.address.model.UserPrefs;
 import seedu.address.model.entry.Entry;
 import seedu.address.model.entry.EntryType;
 import seedu.address.testutil.ExpenditureBuilder;
-//import seedu.address.model.person.Person;
-//import seedu.address.testutil.PersonBuilder;
+import seedu.address.testutil.IncomeBuilder;
 
 /**
  * Contains integration tests (interaction with the Model) for {@code AddCommand}.
@@ -49,18 +48,25 @@ public class AddCommandIntegrationTest {
                 AddCommand.MESSAGE_DUPLICATE_ENTRY);
     }
 
-    // @Test
-    // public void execute_newPerson_success() {
-    //     Person validPerson = new PersonBuilder().build();
-    //     Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
-    //     expectedModel.addPerson(validPerson);
-    //     assertCommandSuccess(new AddCommand(validPerson), model,
-    //             String.format(AddCommand.MESSAGE_SUCCESS, validPerson), expectedModel);
-    // }
-    // @Test
-    // public void execute_duplicatePerson_throwsCommandException() {
-    //     Person personInList = model.getAddressBook().getPersonList().get(0);
-    //     assertCommandFailure(new AddCommand(personInList), model, AddCommand.MESSAGE_DUPLICATE_PERSON);
-    // }
+    @Test
+    public void execute_newIncome_success() {
+        Entry validIncome = new IncomeBuilder().build();
+        Model expectedModel = new ModelManager(model.getPennyWise(), new UserPrefs());
+        expectedModel.addIncome(validIncome);
+        assertCommandSuccess(
+                new AddCommand(validIncome, new EntryType(EntryType.ENTRY_TYPE_INCOME)),
+                model,
+                String.format(AddCommand.MESSAGE_SUCCESS, validIncome),
+                expectedModel);
+    }
+
+    @Test
+    public void execute_duplicateIncome_throwsCommandException() {
+        Entry incomeInList = model.getPennyWise().getIncomeList().get(0);
+        assertCommandFailure(
+                new AddCommand(incomeInList, new EntryType(EntryType.ENTRY_TYPE_INCOME)),
+                model,
+                AddCommand.MESSAGE_DUPLICATE_ENTRY);
+    }
 
 }

@@ -5,6 +5,9 @@ import static seedu.address.logic.parser.ParserUtil.MESSAGE_INVALID_INDEX;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_ENTRY;
 
+import java.time.YearMonth;
+import java.time.format.DateTimeFormatter;
+
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.parser.exceptions.ParseException;
@@ -26,7 +29,8 @@ public class ParserUtilTest {
     private static final String VALID_ENTRYTYPE = "e";
     private static final String VALID_INCOMETYPE = "i";
     private static final String VALID_DESCRIPTION = "Lunch";
-
+    private static final String INVALID_YEAR_MONTH = "13-2022";
+    private static final String VALID_YEAR_MONTH = "10-2022";
     private static final String VALID_TAG_1 = "Food";
     private static final String VALID_TAG_2 = "Allowance";
 
@@ -52,7 +56,7 @@ public class ParserUtilTest {
         assertEquals(INDEX_FIRST_ENTRY, ParserUtil.parseIndex("  1  "));
     }
 
-
+    @Test
     public void parseDescription_null_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> ParserUtil.parseDescription(null));
     }
@@ -138,18 +142,6 @@ public class ParserUtilTest {
     }
 
     @Test
-    public void parseTag_null_throwsNullPointerException() {
-        EntryType expenditureType = new EntryType(VALID_ENTRYTYPE);
-        assertThrows(NullPointerException.class, () -> ParserUtil.parseTag(expenditureType, null));
-    }
-
-    @Test
-    public void parseTag_invalidValue_throwsParseException() {
-        EntryType expenditureType = new EntryType(VALID_ENTRYTYPE);
-        assertThrows(ParseException.class, () -> ParserUtil.parseTag(expenditureType, INVALID_TAG));
-    }
-
-    @Test
     public void parseExpenditureTag_validValueWithoutWhitespace_returnsTag() throws Exception {
         EntryType expenditureType = new EntryType(VALID_ENTRYTYPE);
         Tag expectedTag = new Tag(expenditureType, VALID_TAG_1);
@@ -172,23 +164,36 @@ public class ParserUtilTest {
     }
 
     @Test
-    public void parseTags_null_throwsNullPointerException() {
+    public void parseTag_null_throwsNullPointerException() {
         EntryType expenditureType = new EntryType(VALID_ENTRYTYPE);
         assertThrows(NullPointerException.class, () -> ParserUtil.parseTag(expenditureType, null));
     }
 
-    // @Test
-    // public void parseTags_collectionWithInvalidTags_throwsParseException() {
-    //     assertThrows(ParseException.class, () -> ParserUtil.parseTags(Arrays.asList(VALID_TAG_1, INVALID_TAG)));
-    //
-    // @Test
-    // public void parseTags_emptyCollection_returnsEmptySet() throws Exception {
-    //     assertTrue(ParserUtil.parseTags(Collections.emptyList()).isEmpty());
-    //
-    // @Test
-    // public void parseTags_collectionWithValidTags_returnsTagSet() throws Exception {
-    //     Set<Tag> actualTagSet = ParserUtil.parseTags(Arrays.asList(VALID_TAG_1, VALID_TAG_2));
-    //     Set<Tag> expectedTagSet = new HashSet<Tag>(Arrays.asList(new Tag(VALID_TAG_1), new Tag(VALID_TAG_2) //
-    //     assertEquals(expectedTagSet, actualTagSet);
-    // }
+    @Test
+    public void parseTag_invalidValue_throwsParseException() {
+        EntryType expenditureType = new EntryType(VALID_ENTRYTYPE);
+        assertThrows(ParseException.class, () -> ParserUtil.parseTag(expenditureType, INVALID_TAG));
+    }
+
+    @Test
+    public void parseYearMonth_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseYearMonth(null));
+    }
+
+    @Test
+    public void parseYearMonth_invalidInput_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseYearMonth(INVALID_YEAR_MONTH));
+    }
+    @Test
+    public void parseYearMonth_validInput_success() throws Exception {
+        YearMonth expectedYearMonth = YearMonth.parse(VALID_YEAR_MONTH, DateTimeFormatter.ofPattern("MM-yyyy"));
+        assertEquals(expectedYearMonth, ParserUtil.parseYearMonth(VALID_YEAR_MONTH));
+    }
+
+    @Test
+    public void parseYearMonth_validInputWithWhiteSpace_success() throws Exception {
+        YearMonth expectedYearMonth = YearMonth.parse(VALID_YEAR_MONTH, DateTimeFormatter.ofPattern("MM-yyyy"));
+        assertEquals(expectedYearMonth, ParserUtil.parseYearMonth(WHITESPACE + VALID_YEAR_MONTH + WHITESPACE));
+    }
+
 }
