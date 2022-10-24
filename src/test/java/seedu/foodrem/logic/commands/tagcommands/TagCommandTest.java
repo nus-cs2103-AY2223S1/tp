@@ -23,9 +23,10 @@ import seedu.foodrem.model.tag.Tag;
 import seedu.foodrem.testutil.ItemBuilder;
 import seedu.foodrem.testutil.TagBuilder;
 import seedu.foodrem.testutil.TypicalTags;
+import seedu.foodrem.viewmodels.ItemWithMessage;
 
 public class TagCommandTest {
-    private static final String MESSAGE_SUCCESS = "Item tagged successfully.\n%1$s";
+    private static final String EXPECTED_SUCCESS_MESSAGE = "Item tagged successfully. View updated item below:";
     private static final String ERROR_DUPLICATE = "This item has already been tagged with this tag";
     private static final String ERROR_NOT_FOUND_TAG = "This tag does not exist";
     private static final String ERROR_NOT_FOUND_ITEM = "The item index does not exist";
@@ -40,8 +41,6 @@ public class TagCommandTest {
 
         Tag tag = new TagBuilder().withTagName(VALID_TAG_NAME_VEGETABLES).build();
 
-        String expectedMessage = String.format(MESSAGE_SUCCESS, editedItem);
-
         //Creating an expected model to compare to
         Model expectedModel = new ModelManager(new FoodRem(model.getFoodRem()), new UserPrefs());
 
@@ -53,7 +52,7 @@ public class TagCommandTest {
         model.addTag(tag);
         TagCommand tagItemCommand = new TagCommand(tag.getName(), INDEX_FIRST_ITEM);
 
-        assertCommandSuccess(tagItemCommand, model, expectedMessage, expectedModel);
+        assertCommandSuccess(tagItemCommand, model, new ItemWithMessage(editedItem, EXPECTED_SUCCESS_MESSAGE), expectedModel);
         assertTrue(model.getCurrentList().get(0).containsTag(tag));
 
     }
