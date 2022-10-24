@@ -66,6 +66,7 @@
     -fx-font-family: "Karla";
     -fx-font-size: 13pt;
     -fx-text-fill: white;
+    -fx-prompt-text-fill: derive(#94A6FF, 30%);
 }
 
 /*
@@ -382,7 +383,7 @@
     -fx-border-width: 2;
     -fx-background-radius: 0;
     -fx-background-color: #060959;
-    -fx-font-family: "Segoe UI", Helvetica, Arial, sans-serif;
+    -fx-font-family: "Karla", Helvetica, Arial, sans-serif;
     -fx-font-size: 11pt;
     -fx-text-fill: #d8d8d8;
     -fx-background-insets: 0 0 0 0, 0, 1, 2;
@@ -394,7 +395,7 @@
 
 .button:pressed, .button:default:hover:pressed {
     -fx-background-color: white;
-    -fx-text-fill: #060959;
+    -fx-text-fill: white;
 }
 
 .button:focused {
