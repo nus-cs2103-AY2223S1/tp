@@ -65,6 +65,7 @@ public class PersonCard extends UiPart<Region> {
 
         // replace birthday and insurance once implemented.
         // insurance.setText("\uD83D\uDCC4\t" + "something something");
+
         healthInsurance.setText("Health               "
                 + (person.getHealthInsurance().getHasInsurance() ? "\u2705" : "\u274e"));
         disabilityInsurance.setText("Disability           "
