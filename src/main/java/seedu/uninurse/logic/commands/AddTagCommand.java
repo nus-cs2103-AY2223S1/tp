@@ -12,6 +12,7 @@ import seedu.uninurse.model.Model;
 import seedu.uninurse.model.person.Patient;
 import seedu.uninurse.model.tag.Tag;
 import seedu.uninurse.model.tag.TagList;
+import seedu.uninurse.model.tag.exceptions.DuplicateTagException;
 
 /**
  * Add a tag to an existing patient in the person list.
@@ -29,6 +30,7 @@ public class AddTagCommand extends AddGenericCommand {
             + " 2 " + PREFIX_TAG + "high-risk";
 
     public static final String MESSAGE_ADD_TAG_SUCCESS = "New tag added to %1$s: %2$s";
+    public static final String MESSAGE_DUPLICATE_TAG = "This tag already exists in %1$s's tag list";
 
     public static final CommandType ADD_TAG_COMMAND_TYPE = CommandType.EDIT_PATIENT;
 
@@ -57,11 +59,19 @@ public class AddTagCommand extends AddGenericCommand {
         }
 
         Patient patientToEdit = lastShownList.get(index.getZeroBased());
-        TagList updatedTagList = patientToEdit.getTags().add(tag);
+        TagList updatedTagList;
+
+        try {
+            updatedTagList = patientToEdit.getTags().add(tag);
+        } catch (DuplicateTagException dte) {
+            throw new CommandException(String.format(MESSAGE_DUPLICATE_TAG, patientToEdit.getName()));
+        }
+
         Patient editedPatient = new Patient(patientToEdit, updatedTagList);
 
         model.setPerson(patientToEdit, editedPatient);
         model.updateFilteredPersonList(Model.PREDICATE_SHOW_ALL_PERSONS);
+        model.setPatientOfInterest(editedPatient);
 
         return new CommandResult(String.format(MESSAGE_ADD_TAG_SUCCESS, editedPatient.getName(), tag),
                 ADD_TAG_COMMAND_TYPE);

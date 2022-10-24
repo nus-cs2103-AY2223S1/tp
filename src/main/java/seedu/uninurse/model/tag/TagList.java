@@ -4,7 +4,9 @@ import static java.util.Objects.requireNonNull;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import seedu.uninurse.model.GenericList;
 import seedu.uninurse.model.tag.exceptions.DuplicateTagException;
@@ -33,7 +35,8 @@ public class TagList implements GenericList<Tag> {
      */
     public TagList(List<Tag> tags) {
         requireNonNull(tags);
-        internalTagList = tags;
+        // sorts the list of tags by lexicographical order
+        internalTagList = tags.stream().sorted(Comparator.comparing(Tag::getValue)).collect(Collectors.toList());
     }
 
     @Override

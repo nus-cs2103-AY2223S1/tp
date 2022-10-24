@@ -29,7 +29,7 @@ class JsonAdaptedTag {
      */
     public JsonAdaptedTag(Tag source) {
         requireNonNull(source);
-        tagName = source.tagName;
+        tagName = source.getValue();
     }
 
     @JsonValue

@@ -62,6 +62,7 @@ public class AddTagCommandTest {
 
         Model expectedModel = new ModelManager(new UninurseBook(model.getUninurseBook()), new UserPrefs());
         expectedModel.setPerson(patientToAddTag, editedPatient);
+        expectedModel.setPatientOfInterest(editedPatient);
 
         assertCommandSuccess(addTagCommand, model, expectedMessage, AddTagCommand.ADD_TAG_COMMAND_TYPE, expectedModel);
     }
@@ -72,6 +73,15 @@ public class AddTagCommandTest {
         AddTagCommand addTagCommand = new AddTagCommand(outOfBoundIndex, TAG_ELDERLY);
 
         assertCommandFailure(addTagCommand, model, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+    }
+
+    @Test
+    public void execute_invalidDuplicateTagUnfilteredList_throwsCommandException() {
+        Patient patientToEdit = model.getFilteredPersonList().get(INDEX_SECOND_PERSON.getZeroBased());
+        Tag tag = new Tag("high-risk");
+        AddTagCommand addTagCommand = new AddTagCommand(INDEX_SECOND_PERSON, tag);
+        assertCommandFailure(addTagCommand, model,
+                String.format(AddTagCommand.MESSAGE_DUPLICATE_TAG, patientToEdit.getName()));
     }
 
     @Test
@@ -91,6 +101,7 @@ public class AddTagCommandTest {
 
         Model expectedModel = new ModelManager(new UninurseBook(model.getUninurseBook()), new UserPrefs());
         expectedModel.setPerson(patientToAddTag, editedPatient);
+        expectedModel.setPatientOfInterest(editedPatient);
 
         assertCommandSuccess(addTagCommand, model, expectedMessage,
                 AddTagCommand.ADD_TAG_COMMAND_TYPE, expectedModel);
@@ -107,6 +118,16 @@ public class AddTagCommandTest {
         AddTagCommand addTagCommand = new AddTagCommand(outOfBoundIndex, TAG_ELDERLY);
 
         assertCommandFailure(addTagCommand, model, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+    }
+
+    @Test
+    public void execute_invalidDuplicateTagFilteredList_throwsCommandException() {
+        showPersonAtIndex(model, INDEX_SECOND_PERSON);
+        Patient patientToEdit = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
+        Tag tag = new Tag("high-risk");
+        AddTagCommand addTagCommand = new AddTagCommand(INDEX_FIRST_PERSON, tag);
+        assertCommandFailure(addTagCommand, model,
+                String.format(AddTagCommand.MESSAGE_DUPLICATE_TAG, patientToEdit.getName()));
     }
 
     @Test

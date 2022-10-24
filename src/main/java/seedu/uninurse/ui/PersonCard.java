@@ -1,7 +1,5 @@
 package seedu.uninurse.ui;
 
-import java.util.Comparator;
-
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
@@ -58,13 +56,12 @@ public class PersonCard extends UiPart<Region> {
 
         this.patient = patient;
         id.setText(displayedIndex + ". ");
-        name.setText(patient.getName().fullName);
-        phone.setText(patient.getPhone().value);
-        address.setText(patient.getAddress().value);
-        email.setText(patient.getEmail().value);
-        patient.getTags().getInternalList().stream()
-                .sorted(Comparator.comparing(tag -> tag.tagName))
-                .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
+        name.setText(patient.getName().getValue());
+        phone.setText(patient.getPhone().getValue());
+        address.setText(patient.getAddress().getValue());
+        email.setText(patient.getEmail().getValue());
+        patient.getTags().getInternalList()
+                .forEach(tag -> tags.getChildren().add(new Label(tag.getValue())));
     }
 
     @Override

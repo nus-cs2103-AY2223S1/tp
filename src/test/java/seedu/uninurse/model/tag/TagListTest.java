@@ -29,6 +29,13 @@ public class TagListTest {
     }
 
     @Test
+    public void constructor_unsortedTagList_returnsSortedTagList() {
+        TagList tagList = new TagList(Arrays.asList(TAG_ELDERLY, TAG_NURSING_HOME));
+        TagList expectedTagList = new TagList(Arrays.asList(TAG_NURSING_HOME, TAG_ELDERLY));
+        assertEquals(tagList, expectedTagList);
+    }
+
+    @Test
     public void add_null_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> emptyTagList.add(null));
     }
@@ -123,7 +130,7 @@ public class TagListTest {
 
     @Test
     public void toString_nonEmptyList() {
-        String expectedString = "[" + TYPICAL_TAG_ELDERLY + "][" + TYPICAL_TAG_NURSING_HOME + "]";
+        String expectedString = "[" + TYPICAL_TAG_NURSING_HOME + "][" + TYPICAL_TAG_ELDERLY + "]";
         assertEquals(tagList.toString(), expectedString);
     }
 

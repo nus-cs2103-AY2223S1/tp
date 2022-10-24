@@ -1,7 +1,5 @@
 package seedu.uninurse.ui;
 
-import java.util.Comparator;
-
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
@@ -39,10 +37,9 @@ public class TruncatedPersonCard extends UiPart<Region> {
                 + "-fx-border-radius: 2;" + "-fx-border-color: black;");
         this.patient = patient;
         id.setText(displayedIndex + ". ");
-        name.setText(patient.getName().fullName);
-        patient.getTags().getInternalList().stream()
-                .sorted(Comparator.comparing(tag -> tag.tagName))
-                .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
+        name.setText(patient.getName().getValue());
+        patient.getTags().getInternalList()
+                .forEach(tag -> tags.getChildren().add(new Label(tag.getValue())));
     }
 
     @Override

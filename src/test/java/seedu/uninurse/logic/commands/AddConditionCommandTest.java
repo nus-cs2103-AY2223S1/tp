@@ -63,6 +63,7 @@ public class AddConditionCommandTest {
 
         Model expectedModel = new ModelManager(new UninurseBook(model.getUninurseBook()), new UserPrefs());
         expectedModel.setPerson(patientToAddCondition, editedPatient);
+        expectedModel.setPatientOfInterest(editedPatient);
 
         assertCommandSuccess(addConditionCommand, model, expectedMessage,
                 AddConditionCommand.ADD_CONDITION_COMMAND_TYPE, expectedModel);
@@ -74,6 +75,15 @@ public class AddConditionCommandTest {
         AddConditionCommand addConditionCommand = new AddConditionCommand(outOfBoundIndex, CONDITION_DIABETES);
 
         assertCommandFailure(addConditionCommand, model, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+    }
+
+    @Test
+    public void execute_invalidDuplicateConditionUnfilteredList_throwsCommandException() {
+        Patient patientToEdit = model.getFilteredPersonList().get(INDEX_SECOND_PERSON.getZeroBased());
+        Condition condition = new Condition("H1N1");
+        AddConditionCommand addConditionCommand = new AddConditionCommand(INDEX_SECOND_PERSON, condition);
+        assertCommandFailure(addConditionCommand, model,
+                String.format(AddConditionCommand.MESSAGE_DUPLICATE_CONDITION, patientToEdit.getName()));
     }
 
     @Test
@@ -93,6 +103,7 @@ public class AddConditionCommandTest {
 
         Model expectedModel = new ModelManager(new UninurseBook(model.getUninurseBook()), new UserPrefs());
         expectedModel.setPerson(patientToAddCondition, editedPatient);
+        expectedModel.setPatientOfInterest(editedPatient);
 
         assertCommandSuccess(addConditionCommand, model, expectedMessage,
                 AddConditionCommand.ADD_CONDITION_COMMAND_TYPE, expectedModel);
@@ -109,6 +120,16 @@ public class AddConditionCommandTest {
         AddConditionCommand addConditionCommand = new AddConditionCommand(outOfBoundIndex, CONDITION_DIABETES);
 
         assertCommandFailure(addConditionCommand, model, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+    }
+
+    @Test
+    public void execute_invalidDuplicateConditionFilteredList_throwsCommandException() {
+        showPersonAtIndex(model, INDEX_SECOND_PERSON);
+        Patient patientToEdit = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
+        Condition condition = new Condition("H1N1");
+        AddConditionCommand addConditionCommand = new AddConditionCommand(INDEX_FIRST_PERSON, condition);
+        assertCommandFailure(addConditionCommand, model,
+                String.format(AddConditionCommand.MESSAGE_DUPLICATE_CONDITION, patientToEdit.getName()));
     }
 
     @Test
