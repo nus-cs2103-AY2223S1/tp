@@ -4,12 +4,12 @@ import java.util.List;
 import java.util.function.Predicate;
 
 import seedu.uninurse.commons.util.StringUtil;
-import seedu.uninurse.model.person.Person;
+import seedu.uninurse.model.person.Patient;
 
 /**
  * Tests that a {@code Patient}'s {@code Medication} matches any of the keywords given.
  */
-public class MedicationContainsKeywordsPredicate implements Predicate<Person> {
+public class MedicationContainsKeywordsPredicate implements Predicate<Patient> {
     private final List<String> keywords;
 
     public MedicationContainsKeywordsPredicate(List<String> keywords) {
@@ -17,9 +17,9 @@ public class MedicationContainsKeywordsPredicate implements Predicate<Person> {
     }
 
     @Override
-    public boolean test(Person person) {
+    public boolean test(Patient person) {
         return keywords.stream().anyMatch(keyword ->
-                person.getTags().stream().anyMatch(
+                person.getMedications().getInternalList().stream().anyMatch(
                     medication -> StringUtil.containsIgnoreCase(medication.toString(), keyword)));
     }
 
