@@ -68,7 +68,7 @@ public class BookCommand extends VenueCommand implements ModelCommand {
             Resident resident = lastShownList.get(residentIndex.getZeroBased());
             Booking toMake = createNewBooking(resident);
             VenueName venueName = bookingDescriptor.getVenueName().get();
-            model.addBookingToVenueWithSameName(venueName, toMake);
+            model.addBooking(venueName, toMake);
             return new CommandResult(String.format(MESSAGE_SUCCESS, toMake));
         } catch (IndexOutOfBoundsException e) {
             throw new CommandException(Messages.MESSAGE_INVALID_RESIDENT_DISPLAYED_INDEX);

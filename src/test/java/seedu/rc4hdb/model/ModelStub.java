@@ -111,12 +111,12 @@ public class ModelStub implements Model {
     }
 
     @Override
-    public void addBookingToVenueWithSameName(VenueName venueName, Booking booking) throws VenueNotFoundException {
+    public void addBooking(VenueName venueName, Booking booking) throws VenueNotFoundException {
         throw new AssertionError("This method should not be called.");
     }
 
     @Override
-    public void removeBookingFromVenueWithSameName(VenueName venueName, HourPeriod bookedPeriod, Day bookedDay)
+    public void removeBooking(VenueName venueName, HourPeriod bookedPeriod, Day bookedDay)
             throws VenueNotFoundException, BookingNotFoundException {
         throw new AssertionError("This method should not be called.");
     }

@@ -68,7 +68,7 @@ public class UniqueVenueList implements Iterable<Venue> {
      * Adds a booking to the venue in the list with the name {@code venueName}.
      * @throws VenueNotFoundException if the venue does not exist in the list.
      */
-    public void addBookingToVenueWithSameName(VenueName otherVenueName, Booking booking)
+    public void addBooking(VenueName otherVenueName, Booking booking)
             throws VenueNotFoundException, BookingClashesException {
         requireAllNonNull(otherVenueName, booking);
         getVenueWithName(otherVenueName).addBooking(booking);
@@ -81,7 +81,7 @@ public class UniqueVenueList implements Iterable<Venue> {
      * @throws VenueNotFoundException if the venue does not exist in the list.
      * @throws BookingNotFoundException if the venue is not booked during the specified period and day.
      */
-    public void removeBookingFromVenueWithSameName(VenueName otherVenueName, HourPeriod bookingPeriod, Day bookedDay)
+    public void removeBooking(VenueName otherVenueName, HourPeriod bookingPeriod, Day bookedDay)
             throws VenueNotFoundException, BookingNotFoundException {
         requireAllNonNull(otherVenueName, bookingPeriod, bookedDay);
         getVenueWithName(otherVenueName).removeBooking(bookingPeriod, bookedDay);

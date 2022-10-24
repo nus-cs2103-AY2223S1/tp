@@ -118,7 +118,7 @@ public interface Model {
      * Adds a booking to the venue in the list with the name {@code venueName}.
      * @throws VenueNotFoundException if the venue does not exist in the list.
      */
-    void addBookingToVenueWithSameName(VenueName venueName, Booking booking) throws VenueNotFoundException;
+    void addBooking(VenueName venueName, Booking booking) throws VenueNotFoundException;
 
     /**
      * Removes a booking corresponding to {@code bookedPeriod} and {@code bookedDay} from the venue in the list with
@@ -126,7 +126,7 @@ public interface Model {
      * @throws VenueNotFoundException if the venue does not exist in the list.
      * @throws BookingNotFoundException if the venue is not booked during the specified period and day.
      */
-    void removeBookingFromVenueWithSameName(VenueName venueName, HourPeriod bookedPeriod, Day bookedDay)
+    void removeBooking(VenueName venueName, HourPeriod bookedPeriod, Day bookedDay)
             throws VenueNotFoundException, BookingNotFoundException;
 
     ObservableList<String> getObservableFields();
