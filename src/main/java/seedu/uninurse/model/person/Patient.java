@@ -30,6 +30,28 @@ public class Patient extends Person {
         this.tasks = tasks;
     }
 
+    /**
+     * Used to return a new immutable {@code Patient} when {@code ConditionList} is updated.
+     * @param patient the patient to be updated
+     * @param updatedConditions the updated conditions.
+     */
+    public Patient(Patient patient, ConditionList updatedConditions) {
+        super(patient);
+        this.conditions = updatedConditions;
+        this.tasks = patient.tasks;
+    }
+
+    /**
+     * Used to return a new immutable {@code Patient} when {@code TaskList} is updated.
+     * @param patient the patient to be updated
+     * @param updatedTasks the updated tasks.
+     */
+    public Patient(Patient patient, TaskList updatedTasks) {
+        super(patient);
+        this.conditions = patient.conditions;
+        this.tasks = updatedTasks;
+    }
+
     public ConditionList getConditions() {
         return conditions;
     }
@@ -111,5 +133,4 @@ public class Patient extends Person {
         }
         return builder.toString();
     }
-
 }

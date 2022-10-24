@@ -5,10 +5,10 @@ import static java.util.Objects.requireNonNull;
 /**
  * Represents a Recurring Task for a Patient.
  */
-public class RecurringTasks extends Task {
+public class RecurringTask extends Task {
 
     /**
-     * TODO
+     * Frequency is a enum which represents the different time frequencies the user can have for a recurring task.
      */
     public enum Frequency {
         DAILY,
@@ -34,25 +34,33 @@ public class RecurringTasks extends Task {
     public final Frequency recurrence;
 
     /**
-     * TODO
+     * Constructs a {@code RecurringTask} from the given description
+     * dateAndTime and frequency.
      */
-    public RecurringTasks(String description, DateTime dateAndTime, Frequency freq) {
+    public RecurringTask(String description, DateTime dateAndTime, Frequency freq) {
         super(description, dateAndTime);
         requireNonNull(freq);
         recurrence = freq;
     }
 
+    /**
+     * Returns whether the task date is past the current date.
+     */
     public boolean pastTaskDate() {
-        return super.dateTime.isPastDate();
-    }
-
-    public RecurringTasks getNextRecurringTask() {
-        return new RecurringTasks(super.taskDescription,
-                super.dateTime.plusDays(Frequency.getDays(recurrence)), recurrence);
+        return super.getDateTime().isPastDate();
     }
 
     /**
-     * TODO
+     * Returns the next {@code RecurringTask} that's going to occur at the
+     * RecurringTask's frequency
+     */
+    public RecurringTask getNextRecurringTask() {
+        return new RecurringTask(super.getTaskDescription(),
+                super.getDateTime().plusDays(Frequency.getDays(recurrence)), recurrence);
+    }
+
+    /**
+     * Returns whether the given frequency string is valid.
      */
     public static boolean isValidFreq(String test) {
         try {
@@ -64,7 +72,7 @@ public class RecurringTasks extends Task {
     }
 
     /**
-     * TODO
+     * Returns {@code Frequency} based on the frequency string passed in.
      */
     public static Frequency parseFreq(String validFreq) {
         assert isValidFreq(validFreq);
@@ -82,14 +90,14 @@ public class RecurringTasks extends Task {
             return true;
         }
 
-        if (!(other instanceof RecurringTasks)) {
+        if (!(other instanceof RecurringTask)) {
             return false;
         }
 
-        RecurringTasks o = (RecurringTasks) other;
+        RecurringTask o = (RecurringTask) other;
 
-        return this.taskDescription.equals(o.taskDescription)
-                && this.dateTime.equals(o.dateTime)
+        return this.getTaskDescription().equals(o.getTaskDescription())
+                && this.getDateTime().equals(o.getDateTime())
                 && this.recurrence.equals(o.recurrence);
     }
 }

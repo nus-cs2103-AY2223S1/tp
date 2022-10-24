@@ -7,6 +7,7 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
+import javafx.scene.layout.VBox;
 import seedu.uninurse.model.person.Patient;
 
 /**
@@ -24,10 +25,12 @@ public class PersonCard extends UiPart<Region> {
      * @see <a href="https://github.com/se-edu/addressbook-level4/issues/336">The issue on UninurseBook level 4</a>
      */
 
-    public final Patient person;
+    public final Patient patient;
 
     @FXML
     private HBox cardPane;
+    @FXML
+    private VBox personDetails;
     @FXML
     private Label name;
     @FXML
@@ -40,32 +43,28 @@ public class PersonCard extends UiPart<Region> {
     private Label email;
     @FXML
     private FlowPane tags;
+    @FXML
+    private Label header;
 
     /**
      * Creates a {@code PersonCode} with the given {@code Patient} and index to display.
      */
-    public PersonCard(Patient person, int displayedIndex) {
-        this(person, displayedIndex, false);
-    }
-
-    /**
-     * Creates a {@code PersonCode} with the given {@code Patient} and its associated task list and index to display.
-     */
-    public PersonCard(Patient person, int displayedIndex, boolean taskListFlag) {
+    public PersonCard(Patient patient, int displayedIndex) {
         super(FXML);
-        this.person = person;
-        id.setText(displayedIndex + ". ");
-        name.setText(person.getName().fullName);
-        phone.setText(person.getPhone().value);
-        address.setText(person.getAddress().value);
-        email.setText(person.getEmail().value);
-        person.getTags().stream()
-                .sorted(Comparator.comparing(tag -> tag.tagName))
-                .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
+        cardPane.setSpacing(1);
+        cardPane.setStyle("-fx-padding: 1;" + "-fx-border-style: solid inside;"
+                + "-fx-border-width: 1;" + "-fx-border-insets: 1;"
+                + "-fx-border-radius: 2;" + "-fx-border-color: black;");
 
-        if (taskListFlag) {
-            cardPane.getChildren().add(new TaskListCard(person.getTasks().toString()).getRoot());
-        }
+        this.patient = patient;
+        id.setText(displayedIndex + ". ");
+        name.setText(patient.getName().getValue());
+        phone.setText(patient.getPhone().getValue());
+        address.setText(patient.getAddress().getValue());
+        email.setText(patient.getEmail().getValue());
+        patient.getTags().stream()
+                .sorted(Comparator.comparing(tag -> tag.getValue()))
+                .forEach(tag -> tags.getChildren().add(new Label(tag.getValue())));
     }
 
     @Override
@@ -83,6 +82,6 @@ public class PersonCard extends UiPart<Region> {
         // state check
         PersonCard card = (PersonCard) other;
         return id.getText().equals(card.id.getText())
-                && person.equals(card.person);
+                && patient.equals(card.patient);
     }
 }

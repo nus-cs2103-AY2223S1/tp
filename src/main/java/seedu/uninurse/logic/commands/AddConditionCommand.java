@@ -11,6 +11,7 @@ import seedu.uninurse.logic.commands.exceptions.CommandException;
 import seedu.uninurse.model.Model;
 import seedu.uninurse.model.condition.Condition;
 import seedu.uninurse.model.condition.ConditionList;
+import seedu.uninurse.model.condition.exceptions.DuplicateConditionException;
 import seedu.uninurse.model.person.Patient;
 
 /**
@@ -29,6 +30,8 @@ public class AddConditionCommand extends AddGenericCommand {
             + " 2 " + PREFIX_CONDITION + "Hypertension";
 
     public static final String MESSAGE_ADD_CONDITION_SUCCESS = "New condition added to %1$s: %2$s";
+
+    public static final CommandType ADD_CONDITION_COMMAND_TYPE = CommandType.EDIT_PATIENT;
 
     private final Index index;
     private final Condition condition;
@@ -55,15 +58,22 @@ public class AddConditionCommand extends AddGenericCommand {
         }
 
         Patient patientToEdit = lastShownList.get(index.getZeroBased());
-        ConditionList updatedConditionList = patientToEdit.getConditions().add(condition);
-        Patient editedPatient = new Patient(
-                patientToEdit.getName(), patientToEdit.getPhone(), patientToEdit.getEmail(),
-                patientToEdit.getAddress(), updatedConditionList, patientToEdit.getTasks(), patientToEdit.getTags());
+        ConditionList updatedConditionList;
+
+        try {
+            updatedConditionList = patientToEdit.getConditions().add(condition);
+        } catch (DuplicateConditionException exception) {
+            throw new CommandException(exception.getMessage());
+        }
+
+        Patient editedPatient = new Patient(patientToEdit, updatedConditionList);
 
         model.setPerson(patientToEdit, editedPatient);
         model.updateFilteredPersonList(Model.PREDICATE_SHOW_ALL_PERSONS);
+        model.setPatientOfInterest(editedPatient);
 
-        return new CommandResult(String.format(MESSAGE_ADD_CONDITION_SUCCESS, editedPatient.getName(), condition));
+        return new CommandResult(String.format(MESSAGE_ADD_CONDITION_SUCCESS, editedPatient.getName(), condition),
+                ADD_CONDITION_COMMAND_TYPE);
     }
 
     @Override

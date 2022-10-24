@@ -119,16 +119,22 @@ public class TaskList implements GenericList<Task> {
     }
 
     /**
-     * TODO
+     * Updates the internaltasklist with all the new tasks generated because of RecurringTasks
+     * and their next RecurringTask once past the task date.
      */
     public void updateRecurringTasks() {
         ArrayList<Task> updatedTasks = new ArrayList<>(internalTaskList);
 
         for (Task task : internalTaskList) {
-            if (task instanceof RecurringTasks && ((RecurringTasks) task).pastTaskDate()) {
-                RecurringTasks nextRecurringTask = ((RecurringTasks) task).getNextRecurringTask();
-                if (!updatedTasks.contains(nextRecurringTask)) {
-                    updatedTasks.add(nextRecurringTask);
+            if (task instanceof RecurringTask && ((RecurringTask) task).pastTaskDate()) {
+                RecurringTask recurringTaskTracker = (RecurringTask) task;
+                // This is to populate all the tasks up till this point in case the user inputs a past date for the task
+                while (recurringTaskTracker.pastTaskDate()) {
+                    RecurringTask nextRecurringTask = recurringTaskTracker.getNextRecurringTask();
+                    if (!updatedTasks.contains(nextRecurringTask)) {
+                        updatedTasks.add(nextRecurringTask);
+                    }
+                    recurringTaskTracker = nextRecurringTask;
                 }
             }
         }

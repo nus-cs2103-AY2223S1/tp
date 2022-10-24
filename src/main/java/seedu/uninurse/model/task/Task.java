@@ -19,9 +19,9 @@ public class Task {
      */
     public static final String VALIDATION_REGEX = "[^\\s].*";
 
-    public final String taskDescription;
+    private final String taskDescription;
 
-    public final DateTime dateTime;
+    private final DateTime dateTime;
 
     /**
      * Constructs a {@code Task} with the given {@code description}.
@@ -53,6 +53,14 @@ public class Task {
 
     public boolean isTaskToday() {
         return dateTime.isToday();
+    }
+
+    public String getTaskDescription() {
+        return taskDescription;
+    }
+
+    public DateTime getDateTime() {
+        return dateTime;
     }
 
     @Override

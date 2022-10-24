@@ -65,8 +65,11 @@ public class AddTaskCommandTest {
 
         Model expectedModel = new ModelManager(new UninurseBook(model.getUninurseBook()), new UserPrefs());
         expectedModel.setPerson(patientToAddTask, editedPatient);
+        expectedModel.updateFilteredPersonList(patient -> patient.equals(editedPatient));
+        expectedModel.setPatientOfInterest(editedPatient);
 
-        assertCommandSuccess(addTaskCommand, model, expectedMessage, expectedModel);
+        assertCommandSuccess(addTaskCommand, model, expectedMessage,
+                AddTaskCommand.ADD_TASK_COMMAND_TYPE, expectedModel);
     }
 
     @Test
@@ -94,8 +97,11 @@ public class AddTaskCommandTest {
 
         Model expectedModel = new ModelManager(new UninurseBook(model.getUninurseBook()), new UserPrefs());
         expectedModel.setPerson(patientToAddTask, editedPatient);
+        expectedModel.updateFilteredPersonList(patient -> patient.equals(editedPatient));
+        expectedModel.setPatientOfInterest(editedPatient);
 
-        assertCommandSuccess(addTaskCommand, model, expectedMessage, expectedModel);
+        assertCommandSuccess(addTaskCommand, model, expectedMessage,
+                AddTaskCommand.ADD_TASK_COMMAND_TYPE, expectedModel);
     }
 
     @Test

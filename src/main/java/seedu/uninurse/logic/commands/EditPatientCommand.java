@@ -49,6 +49,8 @@ public class EditPatientCommand extends EditGenericCommand {
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
     public static final String MESSAGE_DUPLICATE_PATIENT = "This patient already exists in the uninurse book.";
 
+    public static final CommandType EDIT_PATIENT_COMMAND_TYPE = CommandType.EDIT_PATIENT;
+
     private final Index index;
     private final EditPatientDescriptor editPatientDescriptor;
 
@@ -82,7 +84,9 @@ public class EditPatientCommand extends EditGenericCommand {
 
         model.setPerson(patientToEdit, editedPatient);
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
-        return new CommandResult(String.format(MESSAGE_EDIT_PATIENT_SUCCESS, editedPatient));
+        model.setPatientOfInterest(editedPatient);
+        return new CommandResult(String.format(MESSAGE_EDIT_PATIENT_SUCCESS, editedPatient),
+                EDIT_PATIENT_COMMAND_TYPE);
     }
 
     /**

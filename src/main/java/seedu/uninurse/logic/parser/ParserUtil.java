@@ -22,7 +22,7 @@ import seedu.uninurse.model.person.Name;
 import seedu.uninurse.model.person.Phone;
 import seedu.uninurse.model.tag.Tag;
 import seedu.uninurse.model.task.DateTime;
-import seedu.uninurse.model.task.RecurringTasks;
+import seedu.uninurse.model.task.RecurringTask;
 import seedu.uninurse.model.task.Task;
 import seedu.uninurse.model.task.TaskList;
 
@@ -219,12 +219,12 @@ public class ParserUtil {
             throw new ParseException(DateTime.MESSAGE_CONSTRAINTS);
         }
 
-        if (!RecurringTasks.isValidFreq(trimmedFreq)) {
-            throw new ParseException(RecurringTasks.MESSAGE_CONSTRAINTS);
+        if (!RecurringTask.isValidFreq(trimmedFreq)) {
+            throw new ParseException(RecurringTask.MESSAGE_CONSTRAINTS);
         }
 
-        return new RecurringTasks(trimmedTaskDescription, new DateTime(trimmedDateTime),
-                RecurringTasks.parseFreq(trimmedFreq));
+        return new RecurringTask(trimmedTaskDescription, new DateTime(trimmedDateTime),
+                RecurringTask.parseFreq(trimmedFreq));
     }
 
     /**
