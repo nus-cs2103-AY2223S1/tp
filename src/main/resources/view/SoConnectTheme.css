@@ -39,6 +39,7 @@ For example, attribute phone number, tag, priority, etc. get this default stylin
     -fx-font-family: "Karla";
 }
 
+/* This is styling for tab in switch tab mode. For example, when opening new tab in Chrome. */
 .tab-pane {
     -fx-padding: 0 0 0 1;
 }
@@ -49,6 +50,7 @@ For example, attribute phone number, tag, priority, etc. get this default stylin
     -fx-max-height: 0;
 }
 
+/* This is default styling for table, used in listing contacts and todo information. */
 .table-view {
     -fx-base: transparent;
     -fx-control-inner-background: transparent;
@@ -406,7 +408,7 @@ For example, attribute phone number, tag, priority, etc. get this default stylin
 
 .cell_small_label_todo {
     -fx-font-family: "Karla";
-    -fx-font-size: 18px;
+    -fx-font-size: 15px;
     -fx-font-weight: 600;
     -fx-text-fill: #C3E0FF;
 }
