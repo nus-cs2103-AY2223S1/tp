@@ -157,15 +157,29 @@ Example:
 
 Removes a tag from a client entry if required.
 
-Format: `tag remove [INDEX] TAG [TAG2] [TAG3] … [TAGN]
+Format: `tag remove [INDEX] TAG [TAG2] [TAG3] … [TAGN]`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 Like assignment of tags, you can also remove multiple tags from a client at once by separating the different tag names with spaces after the client index.
 </div>
 
 Example:
+
 * `tag remove 5 potential` Removes the `potential` tag from the client entry at index 5.
 * `tag remove 5 potential high-priority` Removes the `potential` and `high-priority` tags from the client entry at index 5.
+
+### Deleting a tag : `tag delete`
+
+Deletes a tag from the address book.
+
+Format: `tag delete TAG [TAG2] [TAG3] … [TAGN]`
+
+:bulb: **Tip:** Again, you can delete multiple tags.
+
+Example:
+
+- `tag delete potential` Deletes the `potential` tag from the address book.
+- `tag delete potential high-priority` Deletes the `potential` and `high-priority` tags from address book.
 
 ### Filtering client entries: `filter`
 
