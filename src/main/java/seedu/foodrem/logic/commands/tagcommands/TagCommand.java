@@ -59,7 +59,7 @@ public class TagCommand extends Command {
 
     @Override
     public CommandResult<String> execute(Model model) throws CommandException {
-        Item itemToTag = validateAndGetTargetItem(model, tag, ERROR_NOT_FOUND_TAG, index, ERROR_NOT_FOUND_ITEM);;
+        Item itemToTag = validateAndGetTargetItem(model, tag, index);
         if (itemToTag.containsTag(tag)) {
             throw new CommandException(ERROR_DUPLICATE);
         }
@@ -72,16 +72,16 @@ public class TagCommand extends Command {
         return CommandResult.from(String.format(MESSAGE_SUCCESS, newTagSetItem));
     }
 
-    static Item validateAndGetTargetItem(Model model, Tag tag, String errorNotFoundTag, Index index, String errorNotFoundItem) throws CommandException {
+    static Item validateAndGetTargetItem(Model model, Tag tag, Index index) throws CommandException {
         requireNonNull(model);
 
         if (!model.hasTag(tag)) {
-            throw new CommandException(errorNotFoundTag);
+            throw new CommandException(ERROR_NOT_FOUND_TAG);
         }
 
         List<Item> lastShownList = model.getFilteredItemList();
         if (index.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(errorNotFoundItem);
+            throw new CommandException(ERROR_NOT_FOUND_ITEM);
         }
 
         return lastShownList.get(index.getZeroBased());
