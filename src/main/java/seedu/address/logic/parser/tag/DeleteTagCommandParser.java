@@ -29,7 +29,8 @@ import seedu.address.model.tag.Tag;
  */
 public class DeleteTagCommandParser implements Parser<DeleteTagCommand> {
 
-    public static final String MESSAGE_TOO_MANY_CONTACTS_OR_TASKS = "You can only delete a label from a maximum of one contact and one task at a time.";
+    public static final String MESSAGE_TOO_MANY_CONTACTS_OR_TASKS = "You can only delete a label from a maximum of "
+        + "one contact and one task at a time.";
 
     /**
      * Parses the given {@code String} of arguments in the context of the EditCommand

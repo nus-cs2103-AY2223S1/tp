@@ -28,7 +28,8 @@ import seedu.address.model.tag.Tag;
  */
 public class AddTagCommandParser implements Parser<AddTagCommand> {
 
-    public static final String MESSAGE_TOO_MANY_CONTACTS_OR_TASKS = "You can only add a label to a maximum of one contact and one task at a time.";
+    public static final String MESSAGE_TOO_MANY_CONTACTS_OR_TASKS = "You can only add a label to a maximum of "
+        + "one contact and one task at a time.";
 
     /**
      * Parses the given {@code String} of arguments in the context of the EditCommand
