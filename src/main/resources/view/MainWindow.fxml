@@ -12,6 +12,7 @@
 <?import javafx.scene.layout.VBox?>
 
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.AnchorPane?>
 <fx:root type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1"
          title="InterNUS" minWidth="450" minHeight="600" onCloseRequest="#handleExit">
   <icons>
@@ -51,7 +52,7 @@
           <StackPane fx:id="personListPanelPlaceholder" VBox.vgrow="ALWAYS" HBox.hgrow="ALWAYS"/>
           <StackPane fx:id="internshipListPanelPlaceholder" VBox.vgrow="ALWAYS" HBox.hgrow="ALWAYS"/>
         </HBox>
-        <StackPane fx:id="statusbarPlaceholder" VBox.vgrow="NEVER" />
+        <AnchorPane fx:id="statusbarPlaceholder" VBox.vgrow="NEVER" AnchorPane.bottomAnchor="41.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0"/>
       </VBox>
     </Scene>
   </scene>
