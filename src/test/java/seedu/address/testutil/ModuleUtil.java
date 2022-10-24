@@ -39,8 +39,8 @@ public class ModuleUtil {
         sb.append(PREFIX_MODULE + module.getModuleCode().moduleCode + " ");
         sb.append(PREFIX_LECTURE + module.getLectureDetails().value + " ");
         sb.append(PREFIX_TUTORIAL + module.getTutorialDetails().value + " ");
-        sb.append(PREFIX_LECTURE_ZOOM + module.getLectureZoomLink().zoomLink.orElse("") + " ");
-        sb.append(PREFIX_TUTORIAL_ZOOM + module.getTutorialZoomLink().zoomLink.orElse("") + " ");
+        sb.append(PREFIX_LECTURE_ZOOM + module.getLectureZoomLink().zoomLink + " ");
+        sb.append(PREFIX_TUTORIAL_ZOOM + module.getTutorialZoomLink().zoomLink + " ");
         module.getAssignmentDetails().stream().forEach(
             s -> sb.append(PREFIX_ADDRESS + s.assignmentDetails + " ")
         );

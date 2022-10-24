@@ -28,18 +28,17 @@ public class ZoomLink {
      * @param zoomLinkUrl A valid URL.
      */
     public ZoomLink(String zoomLinkUrl) {
-        if (zoomLinkUrl == null) {
-            zoomLink = EMPTY_ZOOM_LINK;
-        } else {
-            checkArgument(isValidUrl(zoomLinkUrl), MESSAGE_CONSTRAINTS);
-            zoomLink = zoomLinkUrl;
-        }
+        checkArgument(isValidUrl(zoomLinkUrl), MESSAGE_CONSTRAINTS);
+        zoomLink = zoomLinkUrl;
     }
 
     /**
      * Returns true if a given string is a valid Url.
      */
     public static boolean isValidUrl(String test) {
+        if (test == null) {
+            return true;
+        }
         return Pattern.compile(VALIDATION_REGEX)
                 .matcher(test)
                 .find();
@@ -47,6 +46,9 @@ public class ZoomLink {
 
     @Override
     public String toString() {
+        if (zoomLink == null) {
+            return EMPTY_ZOOM_LINK;
+        }
         return zoomLink;
     }
 

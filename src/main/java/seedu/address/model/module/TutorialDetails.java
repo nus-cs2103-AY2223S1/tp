@@ -1,6 +1,5 @@
 package seedu.address.model.module;
 
-import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
 /**
@@ -26,24 +25,25 @@ public class TutorialDetails {
      * @param tutorialDetails Valid tutorial details.
      */
     public TutorialDetails(String tutorialDetails) {
-        if (tutorialDetails == null) {
-            value = EMPTY_TUTORIAL_DETAILS;
-        } else {
-            checkArgument(areValidTutorialDetails(tutorialDetails));
-            value = tutorialDetails;
-        }
-
+        checkArgument(areValidTutorialDetails(tutorialDetails));
+        value = tutorialDetails;
     }
 
     /**
      * Returns true if a given string is a valid tutorial detail.
      */
     public static boolean areValidTutorialDetails(String test) {
+        if (test == null) {
+            return true;
+        }
         return test.matches(VALIDATION_REGEX);
     }
 
     @Override
     public String toString() {
+        if (value == null) {
+            return EMPTY_TUTORIAL_DETAILS;
+        }
         return value;
     }
 

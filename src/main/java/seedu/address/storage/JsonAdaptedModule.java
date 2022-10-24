@@ -75,19 +75,10 @@ public class JsonAdaptedModule {
             moduleAssignmentDetails.add(assignmentDetails.toModelType());
         }
 
-        if (lectureDetails == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
-                    LectureDetails.class.getSimpleName()));
-        }
         if (!LectureDetails.areValidLectureDetails(lectureDetails)) {
             throw new IllegalValueException(LectureDetails.MESSAGE_CONSTRAINTS);
         }
-        final LectureDetails modelLectureDetails;
-        if (lectureDetails.isEmpty()) {
-            modelLectureDetails = new LectureDetails(null);
-        } else {
-            modelLectureDetails = new LectureDetails(lectureDetails);
-        }
+        final LectureDetails modelLectureDetails = new LectureDetails(lectureDetails);
 
         if (moduleCode == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
@@ -98,47 +89,20 @@ public class JsonAdaptedModule {
         }
         final ModuleCode modelModuleCode = new ModuleCode(moduleCode);
 
-        if (tutorialDetails == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
-                    TutorialDetails.class.getSimpleName()));
-        }
         if (!TutorialDetails.areValidTutorialDetails(tutorialDetails)) {
             throw new IllegalValueException(TutorialDetails.MESSAGE_CONSTRAINTS);
         }
-        final TutorialDetails modelTutorialDetails;
-        if (tutorialDetails.isEmpty()) {
-            modelTutorialDetails = new TutorialDetails(null);
-        } else {
-            modelTutorialDetails = new TutorialDetails(tutorialDetails);
-        }
+        final TutorialDetails modelTutorialDetails = new TutorialDetails(tutorialDetails);
 
-        if (lectureZoomLink == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
-                    ZoomLink.class.getSimpleName()));
-        }
         if (!ZoomLink.isValidUrl(lectureZoomLink)) {
             throw new IllegalValueException(ZoomLink.MESSAGE_CONSTRAINTS);
         }
-        final ZoomLink modelLectureZoomLink;
-        if (lectureZoomLink.isEmpty()) {
-            modelLectureZoomLink = new ZoomLink(null);
-        } else {
-            modelLectureZoomLink = new ZoomLink(lectureZoomLink);
-        }
+        final ZoomLink modelLectureZoomLink = new ZoomLink(lectureZoomLink);
 
-        if (tutorialZoomLink == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
-                    ZoomLink.class.getSimpleName()));
-        }
         if (!ZoomLink.isValidUrl(tutorialZoomLink)) {
             throw new IllegalValueException(ZoomLink.MESSAGE_CONSTRAINTS);
         }
-        final ZoomLink modelTutorialZoomLink;
-        if (tutorialZoomLink.isEmpty()) {
-            modelTutorialZoomLink = new ZoomLink(null);
-        } else {
-            modelTutorialZoomLink = new ZoomLink(tutorialZoomLink);
-        }
+        final ZoomLink modelTutorialZoomLink = new ZoomLink(tutorialZoomLink);
 
         final Set<AssignmentDetails> modelAssignmentDetails = new HashSet<>(moduleAssignmentDetails);
         return new Module(modelModuleCode, modelLectureDetails, modelTutorialDetails, modelLectureZoomLink,
