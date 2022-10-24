@@ -2,6 +2,8 @@ package gim.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 
+import java.time.format.DateTimeParseException;
+
 import gim.commons.core.index.Index;
 import gim.commons.util.StringUtil;
 import gim.logic.parser.exceptions.ParseException;
@@ -93,18 +95,24 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String date} into a {@code Tag}.
+     * Parses a {@code String date} into a {@code Date}.
      * Leading and trailing whitespaces will be trimmed.
      *
      * @throws ParseException if the given {@code date} is invalid.
      */
     public static Date parseDate(String date) throws ParseException {
-        requireNonNull(date);
-        String trimmedTag = date.trim();
-        if (!Date.isValidDate(trimmedTag)) {
+        String trimmedDate = date.trim();
+        if (!Date.isValidDateByRegex(trimmedDate)) {
             throw new ParseException(Date.MESSAGE_CONSTRAINTS);
         }
-        return new Date(trimmedTag);
+        Date parsedDate;
+        // Prevent non-existent dates that follow the format from being added
+        try {
+            parsedDate = new Date(trimmedDate);
+        } catch (DateTimeParseException e) {
+            throw new ParseException(Date.MESSAGE_CONSTRAINTS);
+        }
+        return parsedDate;
     }
 
 }

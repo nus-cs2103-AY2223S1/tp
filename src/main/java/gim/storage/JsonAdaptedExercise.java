@@ -23,7 +23,7 @@ class JsonAdaptedExercise {
     private final String weight;
     private final String sets;
     private final String reps;
-    private final JsonAdaptedTag date;
+    private final JsonAdaptedDate date;
 
     /**
      * Constructs a {@code JsonAdaptedExercise} with the given exercise details.
@@ -31,7 +31,7 @@ class JsonAdaptedExercise {
     @JsonCreator
     public JsonAdaptedExercise(@JsonProperty("name") String name, @JsonProperty("weight") String weight,
             @JsonProperty("sets") String sets, @JsonProperty("reps") String reps,
-            @JsonProperty("date") JsonAdaptedTag date) {
+            @JsonProperty("date") JsonAdaptedDate date) {
         this.name = name;
         this.weight = weight;
         this.sets = sets;
@@ -47,7 +47,7 @@ class JsonAdaptedExercise {
         weight = source.getWeight().value;
         sets = source.getSets().value;
         reps = source.getReps().value;
-        date = new JsonAdaptedTag(source.getDate());
+        date = new JsonAdaptedDate(source.getDate());
     }
 
     /**
@@ -91,7 +91,7 @@ class JsonAdaptedExercise {
         if (date == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Date.class.getSimpleName()));
         }
-        if (!Date.isValidDate(date.toModelType().toString())) {
+        if (!Date.isValidDateByRegex(date.toModelType().toString())) {
             throw new IllegalValueException(Date.MESSAGE_CONSTRAINTS);
         }
         final Date modelDates = date.toModelType();
