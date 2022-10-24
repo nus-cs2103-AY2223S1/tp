@@ -20,6 +20,7 @@ import seedu.uninurse.logic.commands.ListTaskCommand;
 import seedu.uninurse.logic.commands.PatientsTodayCommand;
 import seedu.uninurse.logic.commands.RedoCommand;
 import seedu.uninurse.logic.commands.UndoCommand;
+import seedu.uninurse.logic.commands.ViewPatientCommand;
 import seedu.uninurse.logic.commands.ViewTaskCommand;
 import seedu.uninurse.logic.parser.exceptions.ParseException;
 
@@ -50,6 +51,8 @@ public class UninurseBookParser {
         final String arguments = ParserTranslator.translate(commandWord, matcher.group("arguments"));
 
         switch (commandWord) {
+        case ViewPatientCommand.COMMAND_WORD:
+            return new ViewPatientCommandParser().parse(arguments);
 
         case AddGenericCommand.COMMAND_WORD:
             return new AddGenericCommandParser().parse(arguments);
