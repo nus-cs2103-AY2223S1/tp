@@ -154,13 +154,14 @@ Examples:
 
 Filter display only Orders based on the given attribute(s). There are three possible attributes to filter: Additional requests, Order status, Price range.
 
-For Additional requests, use the prefix 'ar'.
+| Attribute           | Prefix | Format                     | Example         |
+|---------------------|--------|----------------------------|-----------------|
+| Additional requests | ar | ar/KEYWORD                 | ar/non-shedding |
+| Order Status | os | os/KEYWORD                 | os/Negotating   |
+| Price Range | pr | pr/LOWER_PRICE-UPPER_PRICE | pr/100-456      |
 
-For Order status, use the prefix 'os'.
 
-For Price range, use the prefix 'pr' followed by '/' and use '-' to indicate the range.
-
-Format: `filter-o [prefix]/INPUT`
+Format: `filter-o [PREFIX]/INPUT`
 
 Examples:
 * `filter-o os/Pending`
@@ -171,17 +172,15 @@ Examples:
 
 Filter display only Pets based on the given attributes. There are five possible attributes to filter: Color, Name, Price, Species, Vaccination status.
 
-For Color, use the prefix 'c'.
+| Attribute | Prefix | Format             | Example         |
+|-----------|--------|--------------------|-----------------|
+| Color | c | c/KEYWORD          | c/pink          |
+| Name | n | n/KEYWORD          | n/nyanko-sensei |
+| Price | p | p/PRICE            | p/209           |
+| Species | s | s/KEYWORD          | s/ostrich       |
+| Vaccination Status | v | v/KEYWORD |  v/false        |
 
-For Name, use the prefix 'n'.
-
-For Price, use the prefix 'p'.
-
-For Species, use the prefix 's'.
-
-For Vaccination Status, use the prefix 'v'.
-
-Format: `filter-p [prefix]/INPUT`
+Format: `filter-p [PREFIX]/INPUT`
 
 Examples:
 * `filter-p c/white`
@@ -192,17 +191,15 @@ Examples:
 
 Find displays all persons who match ONE on specific attribute. There are five possible attributes to filter: Address, Email, Location, Name, Phone.
 
-For Address, use the prefix 'a'.
+| Attribute | Prefix | Format    | Example                |
+|-----------|--------|-----------|------------------------|
+| Address | a      | a/KEYWORD | a/Wall Street          |
+| Email | e      | e/KEYWORD | e/whereisamy@gmail.com |
+|Location | l      | l/KEYWORD | l/Nova Scotia          |
+| Name | n      | n/KEYWORD | n/Amy Toh              |
+| Phone | p      | p/NUMBER  | p/999                  |
 
-For Email, use the prefix 'e'.
-
-For Location, use the prefix 'l'.
-
-For Name, use the prefix 'n'.
-
-For Phone, use the prefix 'p'.
-
-Format: `find [prefix]/INPUT`
+Format: `find [PREFIX]/INPUT`
 
 Examples:
 * `find a/6th College Ave. West`
@@ -213,17 +210,9 @@ Examples:
 
 Find displays all buyers who match ONE on specific attribute. There are five possible attributes to filter: Address, Email, Location, Name, Phone.
 
-For Address, use the prefix 'a'.
+To find corresponding prefixes to each attribute (ie. Address), please refer to the table in the "Find" Command user guide above.
 
-For Email, use the prefix 'e'.
-
-For Location, use the prefix 'l'.
-
-For Name, use the prefix 'n'.
-
-For Phone, use the prefix 'p'.
-
-Format: `find-b [prefix]/INPUT`
+Format: `find-b [PREFIX]/INPUT`
 
 Examples:
 * `find-b a/6th College Ave. West`
@@ -234,17 +223,9 @@ Examples:
 
 Find displays all deliverers who match ONE on specific attribute. There are five possible attributes to filter: Address, Email, Location, Name, Phone.
 
-For Address, use the prefix 'a'.
+To find corresponding prefixes to each attribute (ie. Address), please refer to the table in the "Find" Command user guide above.
 
-For Email, use the prefix 'e'.
-
-For Location, use the prefix 'l'.
-
-For Name, use the prefix 'n'.
-
-For Phone, use the prefix 'p'.
-
-Format: `find-d [prefix]/INPUT`
+Format: `find-d [PREFIX]/INPUT`
 
 Examples:
 * `find-d a/6th College Ave. West`
@@ -255,17 +236,9 @@ Examples:
 
 Find displays all suppliers who match ONE on specific attribute. There are five possible attributes to filter: Address, Email, Location, Name, Phone.
 
-For Address, use the prefix 'a'.
+To find corresponding prefixes to each attribute (ie. Address), please refer to the table in the "Find" Command user guide above.
 
-For Email, use the prefix 'e'.
-
-For Location, use the prefix 'l'.
-
-For Name, use the prefix 'n'.
-
-For Phone, use the prefix 'p'.
-
-Format: `find-s [prefix]/INPUT`
+Format: `find-s [PREFIX]/INPUT`
 
 Examples:
 * `find-s a/6th College Ave. West`
