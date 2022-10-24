@@ -95,6 +95,10 @@ public class Person {
         return status;
     }
 
+    public int getTagCount() {
+        return tagTypeMap.getTagCount();
+    }
+
     /**
      * Returns an immutable link set, which throws {@code UnsupportedOperationException}
      * if modification is attempted.

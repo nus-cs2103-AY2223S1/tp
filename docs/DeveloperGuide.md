@@ -156,7 +156,7 @@ This section describes some noteworthy details on how certain features are imple
 
 ### Find feature
 
-#### Current Implementation
+#### Implementation
 
 The find mechanism is facilitated by `FindCommandParser` which implements `Parser`. It parses the user input and 
 returns a `FindCommand` object. The `FindCommand` object then calls the `Model#updateFilteredPersonList()` method to 
@@ -247,7 +247,172 @@ that handle prefix-based find e.g. `FindNameCommand`, `FindPhoneCommand`, `FindE
     * Cons: Less user-friendly.
     * Cons: User must remember the different commands for each prefix.
 
+### Add/Edit/Delete Tags Feature
 
+#### Implementation
+
+The addition, modification and deletion of tags are executed through `AddCommand`, `AddTagCommand`, `DeleteTagCommand`, `EditCommand`, and facilated by `Tag`, `TagType`, `UniqueTagTypeMap` and `UniqueTagList`.
+
+Each candidate in the `UniquePersonList` has a `UniqueTagTypeMap`, which represents a map of the tag types and corresponding tags belonging to the person. `UniqueTagTypeMap` implements the following operations:
+
+* `UniqueTagTypeMap#mergeTagTypeMap()` — Merges a `UniqueTagTypeMap` with the existing `UniqueTagTypeMap` of the candidate.
+* `UniqueTagTypeMap#removeTags()` — Removes the tags from the `UniqueTagTypeMap` of the candidate.
+* `UniqueTagTypeMap#mergeTag()` — Adds a tag of the given tag type to the `UniqueTagTypeMap` of the candidate.
+* `UniqueTagTypeMap#setTagTypeMap()` — Replaces the `UniqueTagTypeMap` of the candidate with the given `UniqueTagTypeMap`.
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The `UniqueTagTypeMap` internally uses an `ObservableMap`, backed by a `HashMap`, that maps each tag type of the candidate to a `UniqueTagList` of tags.
+</div>
+
+Given below is an example usage scenario and how the add/edit/delete Tag mechanism behaves at each step:
+
+Step 1. The user executes `addTag 3 st/Java dt/Bachelors` to add a skill tag `Java` and degree tag `Bachelors` to the 3rd candidate in the displayed list of candidates. After being parsed by the `AddTagCommandParser` to an `AddTagCommand`, the `AddTagCommand` initializes a new `UniqueTagTypeMap` with the existing `UniqueTagTypeMap` of candidate `3` by invoking the `UniqueTagTypeMap#setTagTypeMap()`, and merges the new tags by invoking `UniqueTagTypeMap#mergeTagTypeMap()`. After this, a new `Person` is created with the `updatedTags` and all other attributes same as that of the existing `Person`, and the `ModelManager#setPerson` is invoked to modify the addressBook with the updated candidate.
+
+Step 2. The user executes `edit 3 st/Java-JavaScript` to edit the skill tag `Java` to `JavaScript` of the 3rd candidate in the displayed list of candidates. After being parsed by the `EditCommandParser` to an `EditCommand`, the `EditCommand` initializes a new `UniqueTagTypeMap` with the existing `UniqueTagTypeMap` of candidate `3` by invoking the `UniqueTagTypeMap#setTagTypeMap()`, removes the existing tags to be edited by invoking `UniqueTagTypeMap#removeTags()` and adds the edited tags by invoking the `UniqueTagTypeMap#mergeTagTypeMap()`. After this, a new `Person` is created with the `updatedTags` and all other attributes same as that of the existing `Person`, and the `ModelManager#setPerson` is invoked to modify the addressBook with the updated candidate.
+
+Step 3. The user executes `deleteTag 3 st/JavaScript dt/Bachelors` to delete the skill tag `JavaScript` and degree tag `Bachelors` of the 3rd candidate in the displayed list of candidates. After being parsed by the `DeleteTagCommand` to a `DeleteTagCommand`, the `DeleteTagCommand` initializes a new `UniqueTagTypeMap` with the existing `UniqueTagTypeMap` of candidate `3` by invoking the `UniqueTagTypeMap#setTagTypeMap()` and removes the tags to be deleted by invoking `UniqueTagTypeMap#removeTags()`. After this, a new `Person` is created with the `updatedTags` and all other attributes same as that of the existing `Person`, and the `ModelManager#setPerson` is invoked to modify the addressBook with the updated candidate.
+
+#### Design Considerations:
+
+**Aspect: How the addressBook is updated:**
+
+* **Alternative 1 (current choice):** Creates a new person each time a tag is added, edited or deleted.
+    * Pros: Ensures that `Person` and all its attributes are immutable.
+    * Cons: May be inefficient compared to directly updating the attributes of `Person`.
+
+* **Alternative 2:** Modifies the existing `UniqueTagTypeMap` of the candidate each time a tag is added, edited or deleted.
+  itself.
+    * Pros: May be more efficient, as a new `Person` instance is not created every time a tag is added, edited or deleted.
+    * Cons: Allowing `Person` to be mutated may not be safe and defensive.
+
+
+### Create/Edit/Delete Tag Types feature
+
+For the ease of classifying tags and storing candidate information in a more organised way, users can now also create Tag Types and assign tags to the relevant Tag Types.
+
+This feature is facilitated by `UniqueTagTypeMap` class. It implements the `Iterable<TagType>` interface.  
+Additionally, it implements the following operations:
+
+* UniqueTagTypeMap#createTagType()  —  Creates a unique Tag Type and adds it to the prefixMap of available Tag Types.
+* UniqueTagTypeMap#setExistingTagType()  —  Edits the Tag Type name and Tag Type alias of an existing Tag Type.
+* UniqueTagTypeMap#removeExistingTagType()  —  Deletes a Tag Type from the prefixMap and, hence, the Tag Type is no more recognised as a valid Tag Type.
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The `prefixMap` in `UniqueTagTypeMap` is a HashMap that maps all the existing Tag Type alias to their respective Tag Types. For user convenience, we have already provided the user with the three basic Tag Types a recruiter might need: Skills Tag Type (alias: st/), Degree Tag Type (alias: dt/), and Job Type Tag Type (alias: jtt/)<br>
+</div>
+
+Given below is an example usage scenario and how the create/edit/delete Tag Types mechanism behaves at each step:
+
+Step 1. The user launches the application for the first time. The `prefixMap` in the `UniqueTagTypeMap` will be initialised with the initial 3 Key — Value pairs: st/ — Skills, dt/ — Degree, and jtt/ — Job Type.
+
+Step 2. The user executes `createTagType Grade grdt` command to add a Grade Tag Type to the available Tag Types so that the recruiter can now add Tags of Grade Tag Type to candidates using the alias grdt/. The `createTagTYpe` command calls the `UniqueTagTypeMap#createTagType()`, causing the addition of grdt/ — Grade key-value pair to the `prefixMap`.
+
+Step 3. The user executes the 'editTagType Grade-Score grdt-scrt' to edit the existing Tag Type Grade and rename it as Score. The `editTagType` command calls the `UniqueTagTypeMap#setExistingTagType()` to remove the grdt/ — Grade key-value pair from the `prefixMap` and add scrt/ — Score key-value pair to the `prefixMap`. Furthermore, the `editTagType` command also calls 'Model#editTagTypeForAllPerson()' to edit the Grade Tag Type name and rename it as Score Tag Type for all person who had Tags of Grade Tag Type.
+
+Step 4. The user executes the `deleteTagType Score` to delete the Score Tag Type and all Tags of Score Tag Type for all person in CLInkedIn. The `deleteTagType` command calls the `UniqueTagTypeMap#removeExistingTagType()` to remove the scrt/ — Score key-value pair from the `prefixMap`. Furthermore, it also calls the `Model#deleteTagTypeForAllPerson()` to delete the Score Tag Type and the Tags assigned to the Score Tag TYpe for each person having Tags of Score Tag Type.
+
+### Status feature
+
+#### Implementation
+
+The proposed `Status` feature is added as an attribute under the `Person` class.
+
+A `Status` class is created, and is implemented via a `String`. The String can only take in alphanumeric inputs.
+
+The `Status` attribute is mainly implemented by the following methods:
+- `Status` can be added via the `AddCommand`
+- `Status` can be edited via the `EditCommand`.
+
+It is also additionally facilitated by these methods:
+- `AddCommandParser#parse()` - Checks the input for the status prefix, only adds a candidate into CLInkedIn if the entry has a `Status` prefix and a valid `Status` input
+- `AddressBookParser#parseCommand()` - Checks the input for `AddCommand` or `EditCommand`
+
+Here is an example of what happens when the recruiter attempts to add a candidate to CLInkedIn:
+1. Recruiter enters the command `add n/John Doe p/999 e/john@mail/com a/singapore s/Application Received`
+2. The command is first parsed by `AddressBookParser#parseCommand()`, which identifies the command word of every command.
+3. Since this is an `AddCommand`, the remaining arguments are passed into `AddCommandParser#parse()`
+4. Each of the different arguments of a candidate (name, phone, email, address, status) are parsed by `AddCommandParser#parse()`
+5. If any of the compulsory arguments of a candidate (name, phone, email, address, status) are not present, the command will fail its execution and `ParseException` will be thrown.
+6. Next, the `AddCommand#execute()` is called, which triggers the `Model#addPerson(Person)` command and a `CommandResult` is returned
+
+Here is an example of what happens when the recruiter attempts to edit a candidate's status  CLInkedIn:
+1. Recruiter enters the command `edit 1 s/OA In Progress`
+2. The command is first parsed by `AddressBookParser#parseCommand()`, which identifies the command word of every command.
+3. Since this is an `EditCommand`, the remaining arguments are passed into `EditCommandParser#parse()`
+4. Each of the different arguments to be edited are parsed by `EditCommandParser#parse()`.
+5. An `EditPersonDescriptor` is created and modified depending on the arguments to be edited.
+6. An `EditCommand` object is generated.
+7. Next, the `EditCommand#execute()` is called, which triggers the `Model#setPerson(Person)` and `Model#updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS)` commands
+8. A `CommandResult` is returned.
+
+#### Design Considerations
+
+It is designed to be a mandatory feature, as every candidate under the recruiting process must be at an application stage.
+
+### Note feature
+
+#### Implementation
+
+The proposed `Note` feature is added as an optional attribute under the `Person` class.
+
+A `Note` class is created, and is implemented via a `String`. The String can take in any input, including a blank string.
+
+The `Note` attribute is mainly implemented by the following methods:
+- `Note` can be added via the `AddCommand`
+- `Note` can be edited via the `EditCommand`.
+
+It is also additionally facilitated by these methods:
+- `NoteCommandParser#parse()` - Checks the input for the Note prefix, only adds a candidate into CLInkedIn if the entry has a `Note` prefix and a valid `Note` input
+- `AddressBookParser#parseCommand()` - Checks the input for `AddCommand` or `EditCommand`
+
+Here is an example of what happens when the recruiter attempts to add a candidate to CLInkedIn:
+1. Recruiter enters the command `add n/John Doe p/999 e/john@mail/com a/singapore note/Strong in Python.`
+2. The command is first parsed by `AddressBookParser#parseCommand()`, which identifies the command word of every command.
+3. Since this is an `AddCommand`, the remaining arguments are passed into `AddCommandParser#parse()`
+4. Each of the different arguments of a candidate (name, phone, email, address, Status) are parsed by `AddCommandParser#parse()`
+5. If any of the compulsory arguments of a candidate (name, phone, email, address, Status) are not present, the command will fail its execution and `ParseException` will be thrown.
+6. Next, the `AddCommand#execute()` is called, which triggers the `Model#addPerson(Person)` command and a `CommandResult` is returned
+
+Here is an example of what happens when the recruiter attempts to edit a candidate's Note  CLInkedIn:
+1. Recruiter enters the command `edit 1 note/Missed 2 interviews`
+2. The command is first parsed by `AddressBookParser#parseCommand()`, which identifies the command word of every command.
+3. Since this is an `EditCommand`, the remaining arguments are passed into `EditCommandParser#parse()`
+4. Each of the different arguments to be edited are parsed by `EditCommandParser#parse()`.
+5. An `EditPersonDescriptor` is created and modified depending on the arguments to be edited.
+6. An `EditCommand` object is generated.
+7. Next, the `EditCommand#execute()` is called, which triggers the `Model#setPerson(Person)` and `Model#updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS)` commands
+8. A `CommandResult` is returned.
+
+#### Design Considerations
+
+It is designed to be an optional feature, as it is meant to be a supplementary source of notetaking that recruiters can make on candidates saved.
+
+### Rating feature
+
+The proposed `Rating` feature is added as an attribute under the `Person` class.
+
+A `Rating` class is created, and is implemented via a `String`. The String can only take in integers from 1 to 10 inclusive.
+
+The `Rating` attribute is mainly implemented by the following methods:
+- `Rating` can be added via the `RateCommand`
+
+It is also additionally facilitated by these methods:
+- `RateCommandParser#parse()` - Checks the input for the rating prefix, only adds the rating to the candidate if the entry has a `Rating` prefix and a valid `Rating` input
+- `AddressBookParser#parseCommand()` - Checks the input for `RateCommand`.
+
+Here is an example of what happens when the recruiter attempts to add a rating to a candidate on CLInkedIn:
+1. Recruiter enters the command `rate 4 rate/8`
+2. The command is first parsed by `AddressBookParser#parseCommand()`, which identifies the command word of every command.
+3. Since this is a `RateCommand`, the remaining arguments are passed into `RateCommandParser#parse()`
+4. The different arguments (index, rating) are parsed by `RateCommandParser#parse()` and a `RateCommand` object is created.
+5. Next, the `RateCommand#execute()` is called, which triggers the `Model#setPerson(Person)` and `Model#updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS)` commands
+6. A `CommandResult` is returned.
+
+#### Design Considerations
+
+##### Aspect: Compulsory vs Non-compulsory
+It is designed to be a non-compulsory feature, as the recruiter might not be able to rate every candidate at every stage of the recruiting process.
+
+##### Aspect: Argument type of the `Rating` constructor
+It is designed to take in a String, as Commands are parsed as a String. However, the constructor will parse the String and the Rating is stored as an Integer.
 
 ### \[Proposed\] Undo/redo feature
 
@@ -332,173 +497,6 @@ _{more aspects and alternatives to be added}_
 ### \[Proposed\] Data archiving
 
 _{Explain here how the data archiving feature will be implemented}_
-
-### \[Implemented\] Add/Edit/Delete Tags Feature
-
-#### Implementation
-
-The addition, modification and deletion of tags are executed through `AddCommand`, `AddTagCommand`, `DeleteTagCommand`, `EditCommand`, and facilated by `Tag`, `TagType`, `UniqueTagTypeMap` and `UniqueTagList`.
-
-Each candidate in the `UniquePersonList` has a `UniqueTagTypeMap`, which represents a map of the tag types and corresponding tags belonging to the person. `UniqueTagTypeMap` implements the following operations:
-
-* `UniqueTagTypeMap#mergeTagTypeMap()` — Merges a `UniqueTagTypeMap` with the existing `UniqueTagTypeMap` of the candidate.
-* `UniqueTagTypeMap#removeTags()` — Removes the tags from the `UniqueTagTypeMap` of the candidate.
-* `UniqueTagTypeMap#mergeTag()` — Adds a tag of the given tag type to the `UniqueTagTypeMap` of the candidate.
-* `UniqueTagTypeMap#setTagTypeMap()` — Replaces the `UniqueTagTypeMap` of the candidate with the given `UniqueTagTypeMap`.
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The `UniqueTagTypeMap` internally uses an `ObservableMap`, backed by a `HashMap`, that maps each tag type of the candidate to a `UniqueTagList` of tags.
-</div>
-
-Given below is an example usage scenario and how the add/edit/delete Tag mechanism behaves at each step:
-
-Step 1. The user executes `addTag 3 st/Java dt/Bachelors` to add a skill tag `Java` and degree tag `Bachelors` to the 3rd candidate in the displayed list of candidates. After being parsed by the `AddTagCommandParser` to an `AddTagCommand`, the `AddTagCommand` initializes a new `UniqueTagTypeMap` with the existing `UniqueTagTypeMap` of candidate `3` by invoking the `UniqueTagTypeMap#setTagTypeMap()`, and merges the new tags by invoking `UniqueTagTypeMap#mergeTagTypeMap()`. After this, a new `Person` is created with the `updatedTags` and all other attributes same as that of the existing `Person`, and the `ModelManager#setPerson` is invoked to modify the addressBook with the updated candidate.
-
-Step 2. The user executes `edit 3 st/Java-JavaScript` to edit the skill tag `Java` to `JavaScript` of the 3rd candidate in the displayed list of candidates. After being parsed by the `EditCommandParser` to an `EditCommand`, the `EditCommand` initializes a new `UniqueTagTypeMap` with the existing `UniqueTagTypeMap` of candidate `3` by invoking the `UniqueTagTypeMap#setTagTypeMap()`, removes the existing tags to be edited by invoking `UniqueTagTypeMap#removeTags()` and adds the edited tags by invoking the `UniqueTagTypeMap#mergeTagTypeMap()`. After this, a new `Person` is created with the `updatedTags` and all other attributes same as that of the existing `Person`, and the `ModelManager#setPerson` is invoked to modify the addressBook with the updated candidate.
-
-Step 3. The user executes `deleteTag 3 st/JavaScript dt/Bachelors` to delete the skill tag `JavaScript` and degree tag `Bachelors` of the 3rd candidate in the displayed list of candidates. After being parsed by the `DeleteTagCommand` to a `DeleteTagCommand`, the `DeleteTagCommand` initializes a new `UniqueTagTypeMap` with the existing `UniqueTagTypeMap` of candidate `3` by invoking the `UniqueTagTypeMap#setTagTypeMap()` and removes the tags to be deleted by invoking `UniqueTagTypeMap#removeTags()`. After this, a new `Person` is created with the `updatedTags` and all other attributes same as that of the existing `Person`, and the `ModelManager#setPerson` is invoked to modify the addressBook with the updated candidate.
-
-#### Design Considerations:
-
-**Aspect: How the addressBook is updated:**
-
-* **Alternative 1 (current choice):** Creates a new person each time a tag is added, edited or deleted.
-    * Pros: Ensures that `Person` and all its attributes are immutable.
-    * Cons: May be inefficient compared to directly updating the attributes of `Person`.
-
-* **Alternative 2:** Modifies the existing `UniqueTagTypeMap` of the candidate each time a tag is added, edited or deleted.
-  itself.
-    * Pros: May be more efficient, as a new `Person` instance is not created every time a tag is added, edited or deleted.
-    * Cons: Allowing `Person` to be mutated may not be safe and defensive.
-
-
-### \[Implemented\] Create/Edit/Delete Tag Types feature  
-
-For the ease of classifying tags and storing candidate information in a more organised way, users can now also create Tag Types and assign tags to the relevant Tag Types.
-
-This feature is facilitated by `UniqueTagTypeMap` class. It implements the `Iterable<TagType>` interface.  
-Additionally, it implements the following operations:  
-
-* UniqueTagTypeMap#createTagType()  —  Creates a unique Tag Type and adds it to the prefixMap of available Tag Types.
-* UniqueTagTypeMap#setExistingTagType()  —  Edits the Tag Type name and Tag Type alias of an existing Tag Type.
-* UniqueTagTypeMap#removeExistingTagType()  —  Deletes a Tag Type from the prefixMap and, hence, the Tag Type is no more recognised as a valid Tag Type.
-
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The `prefixMap` in `UniqueTagTypeMap` is a HashMap that maps all the existing Tag Type alias to their respective Tag Types. For user convenience, we have already provided the user with the three basic Tag Types a recruiter might need: Skills Tag Type (alias: st/), Degree Tag Type (alias: dt/), and Job Type Tag Type (alias: jtt/)<br>
-</div>
-
-Given below is an example usage scenario and how the create/edit/delete Tag Types mechanism behaves at each step:  
-
-Step 1. The user launches the application for the first time. The `prefixMap` in the `UniqueTagTypeMap` will be initialised with the initial 3 Key — Value pairs: st/ — Skills, dt/ — Degree, and jtt/ — Job Type.
-
-Step 2. The user executes `createTagType Grade grdt` command to add a Grade Tag Type to the available Tag Types so that the recruiter can now add Tags of Grade Tag Type to candidates using the alias grdt/. The `createTagTYpe` command calls the `UniqueTagTypeMap#createTagType()`, causing the addition of grdt/ — Grade key-value pair to the `prefixMap`.
-
-Step 3. The user executes the 'editTagType Grade-Score grdt-scrt' to edit the existing Tag Type Grade and rename it as Score. The `editTagType` command calls the `UniqueTagTypeMap#setExistingTagType()` to remove the grdt/ — Grade key-value pair from the `prefixMap` and add scrt/ — Score key-value pair to the `prefixMap`. Furthermore, the `editTagType` command also calls 'Model#editTagTypeForAllPerson()' to edit the Grade Tag Type name and rename it as Score Tag Type for all person who had Tags of Grade Tag Type.
-
-Step 4. The user executes the `deleteTagType Score` to delete the Score Tag Type and all Tags of Score Tag Type for all person in CLInkedIn. The `deleteTagType` command calls the `UniqueTagTypeMap#removeExistingTagType()` to remove the scrt/ — Score key-value pair from the `prefixMap`. Furthermore, it also calls the `Model#deleteTagTypeForAllPerson()` to delete the Score Tag Type and the Tags assigned to the Score Tag TYpe for each person having Tags of Score Tag Type.
-
-### \[Implemented\] Status feature
-
-#### Implementation 
-
-The proposed `Status` feature is added as an attribute under the `Person` class. 
-
-A `Status` class is created, and is implemented via a `String`. The String can only take in alphanumeric inputs. 
-
-The `Status` attribute is mainly implemented by the following methods: 
-- `Status` can be added via the `AddCommand` 
-- `Status` can be edited via the `EditCommand`.
-
-It is also additionally facilitated by these methods:
-- `AddCommandParser#parse()` - Checks the input for the status prefix, only adds a candidate into CLInkedIn if the entry has a `Status` prefix and a valid `Status` input
-- `AddressBookParser#parseCommand()` - Checks the input for `AddCommand` or `EditCommand`
-
-Here is an example of what happens when the recruiter attempts to add a candidate to CLInkedIn:
-1. Recruiter enters the command `add n/John Doe p/999 e/john@mail/com a/singapore s/Application Received`
-2. The command is first parsed by `AddressBookParser#parseCommand()`, which identifies the command word of every command. 
-3. Since this is an `AddCommand`, the remaining arguments are passed into `AddCommandParser#parse()`
-4. Each of the different arguments of a candidate (name, phone, email, address, status) are parsed by `AddCommandParser#parse()`
-5. If any of the compulsory arguments of a candidate (name, phone, email, address, status) are not present, the command will fail its execution and `ParseException` will be thrown. 
-6. Next, the `AddCommand#execute()` is called, which triggers the `Model#addPerson(Person)` command and a `CommandResult` is returned 
-
-Here is an example of what happens when the recruiter attempts to edit a candidate's status  CLInkedIn:
-1. Recruiter enters the command `edit 1 s/OA In Progress`
-2. The command is first parsed by `AddressBookParser#parseCommand()`, which identifies the command word of every command.
-3. Since this is an `EditCommand`, the remaining arguments are passed into `EditCommandParser#parse()`
-4. Each of the different arguments to be edited are parsed by `EditCommandParser#parse()`.
-5. An `EditPersonDescriptor` is created and modified depending on the arguments to be edited.
-6. An `EditCommand` object is generated. 
-7. Next, the `EditCommand#execute()` is called, which triggers the `Model#setPerson(Person)` and `Model#updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS)` commands 
-8. A `CommandResult` is returned.
-
-#### Design Considerations 
-
-It is designed to be a mandatory feature, as every candidate under the recruiting process must be at an application stage.
-
-### \[Implemented\] Note feature
-
-#### Implementation 
-
-The proposed `Note` feature is added as an optional attribute under the `Person` class. 
-
-A `Note` class is created, and is implemented via a `String`. The String can take in any input, including a blank string. 
-
-The `Note` attribute is mainly implemented by the following methods: 
-- `Note` can be added via the `AddCommand` 
-- `Note` can be edited via the `EditCommand`.
-
-It is also additionally facilitated by these methods:
-- `NoteCommandParser#parse()` - Checks the input for the Note prefix, only adds a candidate into CLInkedIn if the entry has a `Note` prefix and a valid `Note` input
-- `AddressBookParser#parseCommand()` - Checks the input for `AddCommand` or `EditCommand`
-
-Here is an example of what happens when the recruiter attempts to add a candidate to CLInkedIn:
-1. Recruiter enters the command `add n/John Doe p/999 e/john@mail/com a/singapore note/Strong in Python.`
-2. The command is first parsed by `AddressBookParser#parseCommand()`, which identifies the command word of every command. 
-3. Since this is an `AddCommand`, the remaining arguments are passed into `AddCommandParser#parse()`
-4. Each of the different arguments of a candidate (name, phone, email, address, Status) are parsed by `AddCommandParser#parse()`
-5. If any of the compulsory arguments of a candidate (name, phone, email, address, Status) are not present, the command will fail its execution and `ParseException` will be thrown. 
-6. Next, the `AddCommand#execute()` is called, which triggers the `Model#addPerson(Person)` command and a `CommandResult` is returned 
-
-Here is an example of what happens when the recruiter attempts to edit a candidate's Note  CLInkedIn:
-1. Recruiter enters the command `edit 1 note/Missed 2 interviews`
-2. The command is first parsed by `AddressBookParser#parseCommand()`, which identifies the command word of every command.
-3. Since this is an `EditCommand`, the remaining arguments are passed into `EditCommandParser#parse()`
-4. Each of the different arguments to be edited are parsed by `EditCommandParser#parse()`.
-5. An `EditPersonDescriptor` is created and modified depending on the arguments to be edited.
-6. An `EditCommand` object is generated. 
-7. Next, the `EditCommand#execute()` is called, which triggers the `Model#setPerson(Person)` and `Model#updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS)` commands 
-8. A `CommandResult` is returned.
-
-#### Design Considerations 
-
-It is designed to be an optional feature, as it is meant to be a supplementary source of notetaking that recruiters can make on candidates saved.
-
-### \[Implementing\] Rating feature
-
-The proposed `Rating` feature is added as an attribute under the `Person` class.
-
-A `Rating` class is created, and is implemented via a `String`. The String can only take in integers from 1 to 10 inclusive.
-
-The `Rating` attribute is mainly implemented by the following methods:
-- `Rating` can be added via the `RateCommand`
-
-It is also additionally facilitated by these methods:
-- `RateCommandParser#parse()` - Checks the input for the rating prefix, only adds the rating to the candidate if the entry has a `Rating` prefix and a valid `Rating` input
-- `AddressBookParser#parseCommand()` - Checks the input for `RateCommand`.
-
-Here is an example of what happens when the recruiter attempts to add a rating to a candidate on CLInkedIn:
-1. Recruiter enters the command `rate 4 rate/8`
-2. The command is first parsed by `AddressBookParser#parseCommand()`, which identifies the command word of every command.
-3. Since this is a `RateCommand`, the remaining arguments are passed into `RateCommandParser#parse()`
-4. The different arguments (index, rating) are parsed by `RateCommandParser#parse()` and a `RateCommand` object is created.
-5. Next, the `RateCommand#execute()` is called, which triggers the `Model#setPerson(Person)` and `Model#updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS)` commands
-6. A `CommandResult` is returned.
-
-#### Design Considerations 
-
-#### Aspect: Compulsory vs Non-compulsory
-It is designed to be a non-compulsory feature, as the recruiter might not be able to rate every candidate at every stage of the recruiting process.
-
-#### Aspect: Argument type of the `Rating` constructor 
-It is designed to take in a String, as Commands are parsed as a String. However, the constructor will parse the String and the Rating is stored as an Integer. 
 
 --------------------------------------------------------------------------------------------------------------------
 
