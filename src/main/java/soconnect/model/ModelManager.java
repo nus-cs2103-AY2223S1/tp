@@ -4,7 +4,6 @@ import static java.util.Objects.requireNonNull;
 import static soconnect.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
-import java.util.TreeSet;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
@@ -27,7 +26,6 @@ public class ModelManager implements Model {
     private final UserPrefs userPrefs;
     private final FilteredList<Person> filteredPersons;
     private final FilteredList<Todo> filteredTodos;
-    private final ObservableList<Tag> tags;
 
     /**
      * Initializes a ModelManager with the given {@code soConnect}, {@code todoList}, and {@code userPrefs}.
@@ -42,7 +40,6 @@ public class ModelManager implements Model {
         this.userPrefs = new UserPrefs(userPrefs);
         filteredPersons = new FilteredList<>(this.soConnect.getPersonList());
         filteredTodos = new FilteredList<>(this.todoList.getTodoList());
-        this.tags = this.soConnect.getTagList();
     }
 
     public ModelManager() {
@@ -206,11 +203,6 @@ public class ModelManager implements Model {
     @Override
     public void sortByTag(Tag tag, Boolean isReverse) {
         soConnect.sortByTag(tag, isReverse);
-    }
-
-    @Override
-    public TreeSet<String> getUniqueNames() {
-        return soConnect.getUniqueNames();
     }
 
     //=========== TodoList ================================================================================

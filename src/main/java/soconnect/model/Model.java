@@ -1,7 +1,6 @@
 package soconnect.model;
 
 import java.nio.file.Path;
-import java.util.TreeSet;
 import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
@@ -167,12 +166,7 @@ public interface Model {
     void sortByTag(Tag tag, Boolean isReverse);
 
     /**
-     * Returns a set of unique {@code Name} in the SoConnect.
-     */
-    TreeSet<String> getUniqueNames();
-
-    /**
-     * Returns the {@code TodoList}.
+     * Returns the TodoList.
      */
     ReadOnlyTodoList getTodoList();
 
