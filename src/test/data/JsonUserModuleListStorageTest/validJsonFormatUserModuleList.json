@@ -4,19 +4,19 @@
       "moduleCode": "AC5001",
       "tutorial": "Test data",
       "lecture": "Test data",
-      "selectedSemesters": "S1"
+      "selectedSemesters": "Semester 1"
     },
     {
       "moduleCode": "CS2103",
       "tutorial": "Test data",
       "lecture": "Test data",
-      "selectedSemesters": "S1"
+      "selectedSemesters": "Semester 1"
     },
     {
       "moduleCode": "CS2030S",
       "tutorial": "Test data",
       "lecture": "Test data",
-      "selectedSemesters": "S1"
+      "selectedSemesters": "Semester 1"
     }
   ]
 }
