@@ -11,13 +11,13 @@ public class ExerciseKeysTest {
 
     @Test
     public void exerciseKeys_nullCreation() {
-        assertThrows(NullPointerException.class, () -> new ExerciseKeys(null));
+        assertThrows(AssertionError.class, () -> new ExerciseKeys(null));
     }
 
     @Test
     public void getDisplay_emptyArrayList_emptyOutput() {
         ExerciseKeys exerciseKeys = new ExerciseKeys(new ArrayList<>());
-        assertEquals("You have no stored exercises in the system!", exerciseKeys.getDisplay());
+        assertEquals("You have no registered exercise in the system.", exerciseKeys.getDisplay());
     }
 
     @Test
@@ -25,7 +25,9 @@ public class ExerciseKeysTest {
         ArrayList<String> arrL = new ArrayList<>();
         arrL.add("Arm Curl");
         ExerciseKeys exerciseKeys = new ExerciseKeys(arrL);
-        assertEquals("Stored exercises:\n1. Arm Curl\n", exerciseKeys.getDisplay());
+        assertEquals("Unique registered exercise(s):\n"
+                        + "1. Arm Curl\nYou have 1 unique exercise(s) registered with the system.\n",
+                exerciseKeys.getDisplay());
     }
 
 

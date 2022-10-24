@@ -34,7 +34,7 @@ public class SavedExerciseListWindow extends UiPart<Region> implements Observer 
      */
     public void setExerciseHashMap(ExerciseHashMap ehm) {
         exerciseHashMap = ehm;
-        ehm.addUI(this);
+        ehm.addUi(this);
         ehm.notifyObservers();
     }
 
@@ -44,7 +44,8 @@ public class SavedExerciseListWindow extends UiPart<Region> implements Observer 
     @Override
     public void update() {
         exerciseKeys = new ExerciseKeys(exerciseHashMap.getAllKeys());
-        savedExerciseList.setText(exerciseKeys.getDisplay());
+        savedExerciseList.setText(exerciseKeys.getDisplay() + "\n"
+                + "You have done " + exerciseHashMap.numOfValues() + " exercise(s) till date.");
     }
 
 

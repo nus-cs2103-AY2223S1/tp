@@ -70,13 +70,13 @@ public class ExerciseHashMapTest {
     }
 
     @Test
-    public void emptyHashMap_returnsEmptyArrayListKeys() {
+    public void getAllKeys_emptyHashMap_returnsEmptyArrayListKeys() {
         ArrayList<String> expectedArrayList = new ArrayList<>();
         assertEquals(expectedArrayList, exerciseHashMap.getAllKeys());
     }
 
     @Test
-    public void nonEmptyHashMap_returnsSortedArrayListKeysWithAdd() {
+    public void getAllKeys_nonEmptyHashMap_returnsSortedArrayListKeysWithAdd() {
         ArrayList<String> expectedArrayList = new ArrayList<>();
         expectedArrayList.add("Alice Pauline");
         expectedArrayList.add("Benson Meier");
@@ -88,7 +88,7 @@ public class ExerciseHashMapTest {
     }
 
     @Test
-    public void nonEmptyHashMap_returnsSortedArrayListKeysWithAddRemove() {
+    public void getAllKeys_nonEmptyHashMap_returnsSortedArrayListKeysWithAddRemove() {
         ArrayList<String> expectedArrayList = new ArrayList<>();
         expectedArrayList.add("Alice Pauline");
         expectedArrayList.add("Benson Meier");
@@ -97,6 +97,17 @@ public class ExerciseHashMapTest {
         exerciseHashMap.add(ALICE);
         exerciseHashMap.remove(CARL);
         assertEquals(expectedArrayList, exerciseHashMap.getAllKeys());
+    }
+
+    @Test
+    public void numOfValues_emptyHashMap_returnsZero() {
+        assertEquals(0, exerciseHashMap.numOfValues());
+    }
+
+    @Test
+    public void numOfValues_nonEmptyHashMap() {
+        exerciseHashMap.add(BENSON);
+        assertEquals(1, exerciseHashMap.numOfValues());
     }
 
 }

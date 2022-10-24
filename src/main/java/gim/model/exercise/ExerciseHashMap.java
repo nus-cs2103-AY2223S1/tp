@@ -8,7 +8,9 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Set;
+import java.util.logging.Logger;
 
+import gim.commons.core.LogsCenter;
 import gim.model.exercise.exceptions.ExerciseNotFoundException;
 import gim.ui.Observer;
 
@@ -21,6 +23,7 @@ import gim.ui.Observer;
  */
 public class ExerciseHashMap {
 
+    private static final Logger logger = LogsCenter.getLogger(ExerciseHashMap.class);
     private final HashMap<Name, ArrayList<Exercise>> exerciseHashMap;
 
     private final ArrayList<Observer> observerArrayList;
@@ -29,6 +32,7 @@ public class ExerciseHashMap {
      * Constructs a {@code ExerciseHashMap}.
      */
     public ExerciseHashMap() {
+        logger.info("Initialising new Exercise Hashmap");
         exerciseHashMap = new HashMap<>();
         observerArrayList = new ArrayList<Observer>();
     }
@@ -38,6 +42,7 @@ public class ExerciseHashMap {
      * @param arrL
      */
     public ExerciseHashMap(ArrayList<Observer> arrL) {
+        logger.info("Initialising new Exercise Hashmap with given ArrayList");
         this.exerciseHashMap = new HashMap<>();
         this.observerArrayList = arrL;
     }
@@ -55,7 +60,7 @@ public class ExerciseHashMap {
      * Allows an Observer object to 'subscribe' to changes in the state of the ExerciseHashMap.
      * @param o Observer object
      */
-    public void addUI(Observer o) {
+    public void addUi(Observer o) {
         observerArrayList.add(o);
     }
 
@@ -177,6 +182,18 @@ public class ExerciseHashMap {
     public ExerciseHashMap clearExerciseHashMap() {
         this.exerciseHashMap.clear();
         return this;
+    }
+
+    /**
+     * Returns the number of elements in a hashmap
+     * @return integer value
+     */
+    public int numOfValues() {
+        int result = 0;
+        for (ArrayList<Exercise> arrL : exerciseHashMap.values()) {
+            result += arrL.size();
+        }
+        return result;
     }
 
 }

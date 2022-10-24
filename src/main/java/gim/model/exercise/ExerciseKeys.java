@@ -13,9 +13,7 @@ public class ExerciseKeys {
      * Creates a {@code ExerciseKeys}.
      */
     public ExerciseKeys(ArrayList<String> arrL) {
-        if (arrL == null) {
-            throw new NullPointerException("No Observer list found!");
-        }
+        assert arrL != null;
         keyArrayList = arrL;
     }
 
@@ -25,15 +23,16 @@ public class ExerciseKeys {
      */
     public String getDisplay() {
         if (keyArrayList.size() == 0) {
-            return "You have no stored exercises in the system!";
+            return "You have no registered exercise in the system.";
         }
-        StringBuilder sb = new StringBuilder("Stored exercises:\n");
+        StringBuilder sb = new StringBuilder("Unique registered exercise(s):\n");
         for (int i = 1; i < keyArrayList.size() + 1; i++) {
             sb.append(i);
             sb.append(". ");
             sb.append(keyArrayList.get(i - 1));
             sb.append("\n");
         }
+        sb.append("You have " + keyArrayList.size() + " unique exercise(s) registered with the system.\n");
         return sb.toString();
     }
 
