@@ -2,7 +2,6 @@ package seedu.address.model;
 
 import java.nio.file.Path;
 import java.util.Collection;
-import java.util.List;
 import java.util.Set;
 import java.util.function.Predicate;
 
@@ -125,7 +124,7 @@ public interface Model {
     /**
      * Returns an unmodifiable view of messages.
      */
-    List<Message> getMessages();
+    ObservableList<Message> getMessages();
 
     /** Returns an unmodifiable view of the filtered person list */
     ObservableList<Person> getFilteredPersonList();
