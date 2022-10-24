@@ -80,6 +80,16 @@ public class Date {
         return !this.date.isBefore(start.date) && !this.date.isAfter(end.date);
     }
 
+    /**
+     * Computes and returns the Date that is {@code days} days before this Date.
+     * @param days the number of days
+     * @return {@code Date} with date value of {@code days} days before the current date value.
+     */
+    public Date getPreviousDaysDate(int days) {
+        String dateString = this.date.minusDays(days).format(formatter);
+        return new Date(dateString);
+    }
+
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object

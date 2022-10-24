@@ -1,5 +1,7 @@
 package gim.model.exercise;
 
+import static java.time.temporal.ChronoUnit.DAYS;
+
 import java.util.function.Predicate;
 
 import gim.model.date.Date;
@@ -20,6 +22,14 @@ public class DateWithinRangePredicate implements Predicate<Exercise> {
     public DateWithinRangePredicate(Date start, Date end) {
         this.startDate = start;
         this.endDate = end;
+    }
+
+    /**
+     * Computes the number of logical calendar days between startDate and endDate.
+     * @return number of days
+     */
+    public int getRangeSizeInDays() {
+        return (int) DAYS.between(startDate.date, endDate.date);
     }
 
     @Override

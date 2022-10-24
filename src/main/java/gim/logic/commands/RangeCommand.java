@@ -20,16 +20,54 @@ public class RangeCommand extends Command {
             + "Parameters: \nKEYWORD d/START_DATE e/END_DATE\n\n"
             + "Example: \n" + COMMAND_WORD + " d/10/10/2022 e/22/10/2022";
 
-    private final DateWithinRangePredicate predicate;
+    public static final String ADVANCED_MESSAGE_USAGE =
+            "This is an advanced feature of " + COMMAND_WORD
+            + ": displays all exercises within the last VAL days (not including today's exercises).\n\n"
+            + "Parameters: \nKEYWORD l/VAL\n\n"
+            + "Example: \n" + COMMAND_WORD + " l/7";
 
+    private final DateWithinRangePredicate predicate;
+    public final boolean isAdvanced;
+
+    /**
+     * Default constructor for basic version.
+     * @param predicate {@code DateWithinRangePredicate} object to determine the range
+     */
     public RangeCommand(DateWithinRangePredicate predicate) {
         this.predicate = predicate;
+        this.isAdvanced = false;
+    }
+
+    /**
+     * Extra constructor for basic version and advanced version.
+     *
+     * @param predicate {@code DateWithinRangePredicate} object to determine the range
+     * @param isAdvanced value is true for basic version and false for advanced version of the {@code RangeCommand}
+     */
+    public RangeCommand(DateWithinRangePredicate predicate, boolean isAdvanced) {
+        this.predicate = predicate;
+        this.isAdvanced = isAdvanced;
     }
 
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);
         model.updateFilteredExerciseList(predicate);
+        int rangeInDays = predicate.getRangeSizeInDays();
+
+        // Display different message to user when command used is the advanced version
+        if (isAdvanced && rangeInDays == 0) {
+            return new CommandResult(Messages.MESSAGE_RANGE_COMMAND_ADVANCED_TODAY);
+        } else if (isAdvanced && rangeInDays == 1) {
+            return new CommandResult(Messages.MESSAGE_RANGE_COMMAND_ADVANCED_YESTERDAY);
+        } else if (isAdvanced && rangeInDays == 7) {
+            return new CommandResult(Messages.MESSAGE_RANGE_COMMAND_ADVANCED_WEEK);
+        } else if (isAdvanced && rangeInDays > 1) {
+            return new CommandResult(
+                    String.format(Messages.MESSAGE_RANGE_COMMAND_ADVANCED, rangeInDays));
+        }
+
+        // Display different message to user when command used is the basic version
         return new CommandResult(
                 String.format(Messages.MESSAGE_EXERCISES_LISTED_OVERVIEW, model.getFilteredExerciseList().size()));
     }

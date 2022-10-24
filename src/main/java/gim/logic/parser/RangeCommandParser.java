@@ -3,6 +3,7 @@ package gim.logic.parser;
 import static gim.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static gim.logic.parser.CliSyntax.PREFIX_DATE;
 import static gim.logic.parser.CliSyntax.PREFIX_END_DATE;
+import static gim.logic.parser.CliSyntax.PREFIX_RANGE_ADVANCED;
 
 import java.util.stream.Stream;
 
@@ -22,8 +23,26 @@ public class RangeCommandParser implements Parser<RangeCommand> {
      * @throws ParseException if the user input does not conform the expected format
      */
     public RangeCommand parse(String args) throws ParseException {
-        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_DATE, PREFIX_END_DATE);
+        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_DATE, PREFIX_END_DATE,
+                PREFIX_RANGE_ADVANCED);
 
+        // advanced version: when the user does not input any of the dates, but only inputs an integer with prefix l/
+        if (arePrefixesPresent(argMultimap, PREFIX_RANGE_ADVANCED)
+                && !arePrefixesPresent(argMultimap, PREFIX_DATE, PREFIX_END_DATE)) {
+            int days = Integer.parseInt(argMultimap.getValue(PREFIX_RANGE_ADVANCED).get());
+
+            // Only accept non-negative integers for the number of days
+            if (days < 0) {
+                throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                        RangeCommand.ADVANCED_MESSAGE_USAGE));
+            }
+            Date today = new Date();
+            Date startDate = today.getPreviousDaysDate(days);
+            return new RangeCommand(new DateWithinRangePredicate(startDate, today), true);
+        }
+
+        // basic version: the user inputs both start date with prefix d/ and end date with prefix e/
+        // both date inputs are compulsory for the basic version
         if (!arePrefixesPresent(argMultimap, PREFIX_DATE, PREFIX_END_DATE)
                 || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, RangeCommand.MESSAGE_USAGE));
