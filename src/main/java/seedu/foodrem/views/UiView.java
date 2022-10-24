@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 
 import seedu.foodrem.model.item.Item;
 import seedu.foodrem.ui.ResultDisplay;
+import seedu.foodrem.viewmodels.ItemWithMessage;
 
 public class UiView {
     private final ResultDisplay display;
@@ -22,6 +23,10 @@ public class UiView {
         }
         if (object instanceof Item) {
             display.place(ItemView.from((Item) object));
+            return;
+        }
+        if (object instanceof ItemWithMessage) {
+            display.place(ItemWithMessageView.from((ItemWithMessage) object));
             return;
         }
 
