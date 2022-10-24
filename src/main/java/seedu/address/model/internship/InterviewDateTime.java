@@ -12,7 +12,7 @@ import java.time.format.FormatStyle;
 import java.time.temporal.ChronoField;
 
 /**
- * Represents an Internship's interview date in the address book.
+ * Represents an Internship's interview date and time in the address book.
  * Guarantees: immutable; is valid as declared in {@link #isValidInterviewDateTime(String)}
  */
 public class InterviewDateTime {
@@ -28,7 +28,7 @@ public class InterviewDateTime {
 
     /*
      * For the dateTime 23/10/2022 09:00, the following formats are accepted:
-     * 23 Oct 2022 09:00, 23 Oct 09:00, 23/10/2022 09:00, 23/10 09:00
+     * "23/10/2022 09:00", "23 Oct 2022 09:00", "23 Oct 09:00", "23 Oct 2022, 9:00 AM", "23/10 09:00"
      */
     public static final DateTimeFormatter DATE_FORMAT = new DateTimeFormatterBuilder()
             .parseCaseInsensitive()
@@ -36,7 +36,6 @@ public class InterviewDateTime {
             .appendPattern("[d MMM yyyy HH:mm]")
             .appendPattern("[d MMM yyyy, h:mm a]")
             .appendPattern("[d MMM HH:mm]")
-            .appendPattern("[d/M/yyyy HH:mm]")
             .appendPattern("[d/M HH:mm]")
             .parseDefaulting(ChronoField.YEAR_OF_ERA, LocalDate.now().getYear())
             .toFormatter();
@@ -46,8 +45,8 @@ public class InterviewDateTime {
     private final LocalDateTime interviewDateTime;
 
     /**
-     *
-     * @param interviewDateTime
+     * Constructs an {@code InterviewDateTime}.
+     * @param interviewDateTime A valid interviewDateTime.
      */
     public InterviewDateTime(String interviewDateTime) {
         requireNonNull(interviewDateTime);
@@ -55,11 +54,10 @@ public class InterviewDateTime {
         this.interviewDateTime = LocalDateTime.parse(interviewDateTime, DATE_FORMAT);
         value = this.interviewDateTime.format(DateTimeFormatter.ofLocalizedDateTime(FormatStyle.MEDIUM,
                 FormatStyle.SHORT));
-
     }
 
     /**
-     * Check if a given string is a valid interviewDate.
+     * Check if a given string is a valid interviewDateTime.
      * @return true if it is valid.
      */
     public static boolean isValidInterviewDateTime(String interviewDateTime) {

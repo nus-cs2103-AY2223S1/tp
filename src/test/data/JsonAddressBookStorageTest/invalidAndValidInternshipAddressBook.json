@@ -4,12 +4,14 @@
     "link": "https://careers.alibaba.com/positionDetail",
     "description": "Software Engineering Intern",
     "applicationStatus" : "applied",
-    "appliedDate": "30 Oct 2022"
+    "appliedDate": "30 Oct 2022",
+    "interviewDateTime": "8 Nov 2022 09:00"
   }, {
     "company": "Internship With Invalid link Field",
     "link": "948asdf2424",
     "description": "Software Engineering Intern",
     "applicationStatus" : "applied",
-    "appliedDate": "30 Oct 2022"
+    "appliedDate": "30 Oct 2022",
+    "interviewDateTime": "8 Nov 2022 09:00"
   } ]
 }

@@ -44,7 +44,7 @@ public class EditCommand extends Command {
             + "[" + PREFIX_LINK + "LINK] "
             + "[" + PREFIX_DESCRIPTION + "DESCRIPTION] "
             + "[" + PREFIX_APPLIED_DATE + "APPLIED_DATE] "
-            + "[" + PREFIX_INTERVIEW_DATE_TIME + "INTERVIEW_DATE] "
+            + "[" + PREFIX_INTERVIEW_DATE_TIME + "INTERVIEW_DATE_TIME] "
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_LINK + "https://careers.tiktok.com/position/7132807469026117902/detail "
@@ -167,7 +167,7 @@ public class EditCommand extends Command {
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(company, link, description, appliedDate, interviewDateTime,  tags);
+            return CollectionUtil.isAnyNonNull(company, link, description, appliedDate, interviewDateTime, tags);
         }
 
         public void setCompany(Company company) {
