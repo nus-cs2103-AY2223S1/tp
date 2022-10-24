@@ -173,25 +173,29 @@ Examples:
 * `view nm/John` returns the record for the student named `john`
 * `view nm/john alice` returns the records for the students named `John` and the student named `Alice`.
 
-### 3.7 Clearing all student records : `clear`
+### 3.7 Toggling view : `toggleView`
+
+*To be updated*
+
+### 3.8 Clearing all student records : `clear`
 
 Clears all student records from local storage.
 
 Format: `clear`
 
-### 3.8 Help : `help`
+### 3.9 Help : `help`
 
 Shows a summary of all commands available.
 
 Format: `help`
 
-### 3.9 Exiting the application : `exit`
+### 3.10 Exiting the application : `exit`
 
 Exits the application.
 
 Format: `exit`
 
-### 3.10 Saving the data
+### 3.11 Saving the data
 
 Student records are saved locally after any command that changes the data. There is no need to save manually.
 
@@ -223,6 +227,7 @@ Click <a href="#top">here</a> to return to the top.
 |       Edit a student record       | `edit [index] nm/[name] id/[id] class/[class] pn/[name of parent] hp/[mobile number of parent] exam/[name of exam and score]`                             | _edit 1 nm/Alexander Yeoh_                                                   |
 |      Delete a student record      | `delete nm/[name]` or `delete id/[id]`                                                                                                                    | _delete nm/Jonathan Tan or delete id/123A_                                   |
 |       Find a student record       | `find nm/[name]` or `find id/[id]`                                                                                                                        | _find nm/Jonathan Tan or find id/123A_                                       |
+|            Toggle view            | `toggleView`                                                                                                                                              | _toggleView_                                                                 |
 |     Clear all student records     | `clear`                                                                                                                                                   | _clear_                                                                      |
 |    View command summary table     | `help`                                                                                                                                                    | _help_                                                                       |
 |         Exit application          | `exit`                                                                                                                                                    | _exit_                                                                       |
