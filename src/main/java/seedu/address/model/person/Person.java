@@ -7,6 +7,7 @@ import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
+import seedu.address.model.person.subject.Subject;
 import seedu.address.model.person.subject.SubjectHandler;
 import seedu.address.model.tag.Tag;
 
@@ -29,14 +30,14 @@ public class Person {
     private final StudentClass studentClass;
     private final Set<Remark> remarksList;
     private final SubjectHandler subjectHandler;
+    private final Attendance attendance;
 
     /**
      * Every field must be present and not null (except attendance, remark and grade).
      */
     public Person(Name name, Phone phone, Email email, Address address, StudentClass studentClass,
-                  Set<Remark> remarksList,
-                  SubjectHandler subjectsTaken, Set<Tag> tags) {
-        requireAllNonNull(name, phone, email, address, studentClass, remarksList, subjectsTaken, tags);
+        Attendance attendance, Set<Remark> remarksList, Set<Subject> subjectsTaken, Set<Tag> tags) {
+        requireAllNonNull(name, phone, email, address, studentClass, attendance, remarksList, subjectsTaken, tags);
         this.name = name;
         this.phone = phone;
         this.email = email;
@@ -45,8 +46,9 @@ public class Person {
 
         // Added in v1.2
         this.studentClass = studentClass;
+        this.attendance = attendance;
         this.remarksList = remarksList;
-        this.subjectHandler = subjectsTaken;
+        this.subjectHandler = new SubjectHandler(subjectsTaken);
     }
 
     public Name getName() {
@@ -69,12 +71,21 @@ public class Person {
         return studentClass;
     }
 
+    public Attendance getAttendance() {
+        return attendance;
+    }
+
     public Set<Remark> getRemarks() {
         return Collections.unmodifiableSet(remarksList);
     }
 
     public SubjectHandler getSubjectHandler() {
         return subjectHandler;
+    }
+
+
+    public Set<Subject> getSubjectsTaken() {
+        return subjectHandler.getSubjectsTaken();
     }
 
     /**
@@ -125,6 +136,7 @@ public class Person {
                && otherPerson.getAddress().equals(getAddress())
                && otherPerson.getTags().equals(getTags())
                && otherPerson.getStudentClass().equals(getStudentClass())
+               && otherPerson.getAttendance().equals(getAttendance())
                && otherPerson.getRemarks().equals(getRemarks());
     }
 
@@ -140,6 +152,8 @@ public class Person {
                .append(getAddress())
                .append("; Class: ")
                .append(getStudentClass())
+               .append("; Attendance: ")
+               .append(getAttendance())
                .append("; Remarks: ")
                .append(getRemarks())
                .append("; Subject: ")
