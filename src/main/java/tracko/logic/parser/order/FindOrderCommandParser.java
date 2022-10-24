@@ -65,6 +65,10 @@ public class FindOrderCommandParser implements Parser<FindOrderCommand> {
         boolean isUnpaid = flagMultimap.getValue(FLAG_UNPAID).orElse("false").equals("true");
         boolean isUndelivered = flagMultimap.getValue(FLAG_UNDELIVERED).orElse("false").equals("true");
 
+        if ((isPaid && isUnpaid) || (isDelivered && isUndelivered)) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindOrderCommand.INVALID_FLAG_MESSAGE));
+        }
+
         boolean isFilteringByPaid = isPaid || isUnpaid;
         boolean isFilterByDelivered = isDelivered || isUndelivered;
 

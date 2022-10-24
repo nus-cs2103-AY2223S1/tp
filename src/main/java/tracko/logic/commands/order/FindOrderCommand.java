@@ -31,6 +31,8 @@ public class FindOrderCommand extends Command {
             + "Example: " + COMMAND_WORD
             + " " + PREFIX_ITEM + "keychain " + PREFIX_ADDRESS + "Ang Mo Kio Clementi";
 
+    public static final String INVALID_FLAG_MESSAGE = "Please use either -d/p or -D/P";
+
     private final OrderMatchesFlagsAndPrefixPredicate predicate;
 
     public FindOrderCommand(OrderMatchesFlagsAndPrefixPredicate predicate) {
