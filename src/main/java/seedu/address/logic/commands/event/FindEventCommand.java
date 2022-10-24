@@ -10,9 +10,9 @@ import seedu.address.logic.commands.CommandResult;
 import seedu.address.model.Model;
 import seedu.address.model.event.Event;
 
-
 /**
- * Finds and lists all events in address book whose name contains any of the argument keywords.
+ * Finds and lists all events in address book whose title contains any of the argument keywords, or if
+ * inputs are dates, it will match the start dates equal to the input dates.
  * Keyword matching is case-insensitive.
  */
 public class FindEventCommand extends EventCommand {

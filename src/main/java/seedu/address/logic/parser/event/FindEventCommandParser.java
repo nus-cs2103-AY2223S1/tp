@@ -20,7 +20,7 @@ import seedu.address.model.event.TitleContainsKeywordsPredicate;
  */
 public class FindEventCommandParser implements Parser<FindEventCommand> {
 
-    public static final String MESSAGE_MISSING_KEYWORDS = "Provide at least one keyword.\n";
+    public static final String MESSAGE_MISSING_ARGS = "Provide at least one keyword or date.\n";
 
     /**
      * Parses the given {@code String} of arguments in the context of the FindEventCommand
@@ -33,19 +33,19 @@ public class FindEventCommandParser implements Parser<FindEventCommand> {
 
         if (trimmedArgs.isEmpty()) {
             throw new ParseException(
-                    String.format(MESSAGE_MISSING_KEYWORDS + FindEventCommand.MESSAGE_USAGE));
+                    String.format(MESSAGE_MISSING_ARGS + FindEventCommand.MESSAGE_USAGE));
         }
 
-        String[] titleKeywords = trimmedArgs.split("\\s+");
+        String[] inputs = trimmedArgs.split("\\s+");
 
         try {
             ArrayList<DateTime> dateTimes = new ArrayList<>();
-            for (String titleKeyword : titleKeywords) {
-                dateTimes.add(ParserUtil.parseDateTime(titleKeyword));
+            for (String date : inputs) {
+                dateTimes.add(ParserUtil.parseDateTime(date));
             }
             return new FindEventCommand(new StartDateTimeContainsDatePredicate(dateTimes));
         } catch (ParseException e) {
-            return new FindEventCommand(new TitleContainsKeywordsPredicate(Arrays.asList(titleKeywords)));
+            return new FindEventCommand(new TitleContainsKeywordsPredicate(Arrays.asList(inputs)));
         }
     }
 

@@ -2,7 +2,7 @@ package seedu.address.logic.parser.event;
 
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSuccess;
-import static seedu.address.logic.parser.event.FindEventCommandParser.MESSAGE_MISSING_KEYWORDS;
+import static seedu.address.logic.parser.event.FindEventCommandParser.MESSAGE_MISSING_ARGS;
 
 import java.util.Arrays;
 
@@ -17,7 +17,7 @@ public class FindEventCommandParserTest {
     @Test
     public void parse_emptyArg_throwsParseException() {
         assertParseFailure(parser, "      ",
-                String.format(MESSAGE_MISSING_KEYWORDS + FindEventCommand.MESSAGE_USAGE));
+                String.format(MESSAGE_MISSING_ARGS + FindEventCommand.MESSAGE_USAGE));
     }
 
     @Test
