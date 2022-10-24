@@ -7,6 +7,12 @@ import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.note.Content;
 import seedu.address.model.note.Note;
 import seedu.address.model.note.Title;
+import seedu.address.model.tag.Tag;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 /**
  * Jackson-friendly version of {@link Note}.
@@ -17,14 +23,19 @@ public class JsonAdaptedNote {
 
     private final String title;
     private final String content;
+    private final List<JsonAdaptedTag> tagged = new ArrayList<>();
 
     /**
      * Constructs a {@code JsonAdaptedNote} with the given note details.
      */
     @JsonCreator
-    public JsonAdaptedNote(@JsonProperty("title") String title, @JsonProperty("content") String content) {
+    public JsonAdaptedNote(@JsonProperty("title") String title, @JsonProperty("content") String content,
+                           @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
         this.title = title;
         this.content = content;
+        if (tagged != null) {
+            this.tagged.addAll(tagged);
+        }
     }
 
     /**
@@ -33,6 +44,9 @@ public class JsonAdaptedNote {
     public JsonAdaptedNote(Note source) {
         title = source.getTitle().fullTitle;
         content = source.getContent().fullContent;
+        tagged.addAll(source.getTags().stream()
+                .map(JsonAdaptedTag::new)
+                .collect(Collectors.toList()));
     }
 
     /**
@@ -40,7 +54,16 @@ public class JsonAdaptedNote {
      *
      * @throws IllegalValueException if there were any data constraints violated in the adapted note.
      */
-    public Note toModelType() throws IllegalValueException {
+    public Note toModelType(List<Tag> addressBookTagList) throws IllegalValueException {
+        final List<Tag> convertedTags = new ArrayList<>();
+        for (JsonAdaptedTag adaptedTag : tagged) {
+            convertedTags.add(adaptedTag.toModelType());
+        }
+
+        final Set<Tag> modelTags = addressBookTagList.stream()
+                .filter(convertedTags::contains)
+                .collect(Collectors.toSet());
+
         if (title == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Title.class.getSimpleName()));
         }
@@ -57,10 +80,7 @@ public class JsonAdaptedNote {
         }
         final Content modelContent = new Content(content);
 
-        return new Note(modelTitle, modelContent);
-
-
+        return new Note(modelTitle, modelContent, modelTags);
     }
-
-
+    
 }
