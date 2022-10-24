@@ -1,9 +1,7 @@
 package seedu.address.wrapper;
 
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
-import static seedu.address.wrapper.GetReposRoute.getUserReposRoute;
-
-import java.util.Optional;
+import static seedu.address.wrapper.UserReposRoute.getUserReposRoute;
 
 import org.json.JSONArray;
 
@@ -13,15 +11,13 @@ import kong.unirest.UnirestInstance;
 public class UserReposWrapper {
     //@@author arnav-ag
 
-    private final GetReposRoute.GetReposRequest getUserReposRequest;
+    private final UserReposRoute.UserReposRequest getUserReposRequest;
     private JSONArray reposJson;
-
-    private final String NAME_KEY = "name";
 
     public UserReposWrapper(String user) {
         requireAllNonNull(user);
 
-        GetReposRoute getUserInfoGetInfoRoute = getUserReposRoute(user);
+        UserReposRoute getUserInfoGetInfoRoute = getUserReposRoute(user);
         Config config = new Config();
         UnirestInstance unirest = new UnirestInstance(config);
         getUserReposRequest = getUserInfoGetInfoRoute.createRequest(unirest);
@@ -30,12 +26,5 @@ public class UserReposWrapper {
     private void updateReposJson() {
         this.reposJson = getUserReposRequest.getJSON();
         System.out.println(this.reposJson.toString());
-    }
-
-    public Optional<String> getName() {
-        if (reposJson == null) {
-            updateReposJson();
-        }
-        return Optional.ofNullable(null);
     }
 }

@@ -9,46 +9,46 @@ import kong.unirest.UnirestInstance;
 import seedu.address.wrapper.exceptions.JsonParseException;
 import seedu.address.wrapper.exceptions.ResponseInvalidException;
 
-public final class GetInfoRoute {
+public final class UserInfoRoute {
     //@@author arnav-ag
 
     public static final String BASE_GITHUB_URL = "https://api.github.com";
     private static final String SERVER_DOWN_STATUS_MESSAGE = "Unable to get information from API.";
 
     /**
-     * Whether to run status checks on {@link GetInfoRequest#getJSON()} by default.
+     * Whether to run status checks on {@link UserInfoRequest#getJSON()} by default.
      */
     public static boolean defaultRunChecks = true;
 
     private final static String GET_USER_BASE_PATH = "/users/";
     private final String path;
 
-    private GetInfoRoute(String path) {
+    private UserInfoRoute(String path) {
         requireAllNonNull(path);
         this.path = path;
     }
 
-    public static GetInfoRoute getUserInfoRoute(String user) {
+    public static UserInfoRoute getUserInfoRoute(String user) {
         requireAllNonNull(user);
-        return new GetInfoRoute(GET_USER_BASE_PATH + user);
+        return new UserInfoRoute(GET_USER_BASE_PATH + user);
     }
 
-    public GetInfoRequest createRequest(UnirestInstance unirest) {
+    public UserInfoRequest createRequest(UnirestInstance unirest) {
         requireAllNonNull(unirest);
 
-        return new GetInfoRequest(unirest, BASE_GITHUB_URL + this.path);
+        return new UserInfoRequest(unirest, BASE_GITHUB_URL + this.path);
     }
 
     public String getPath() {
         return this.path;
     }
 
-    public static class GetInfoRequest {
+    public static class UserInfoRequest {
 
         private final UnirestInstance unirest;
         private final String url;
 
-        GetInfoRequest(UnirestInstance unirest, String url) {
+        UserInfoRequest(UnirestInstance unirest, String url) {
             requireAllNonNull(unirest, url);
             this.unirest = unirest;
             this.url = url;

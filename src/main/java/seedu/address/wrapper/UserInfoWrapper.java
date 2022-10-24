@@ -9,11 +9,14 @@ import org.json.JSONObject;
 
 import kong.unirest.Config;
 import kong.unirest.UnirestInstance;
+import seedu.address.model.person.Address;
+import seedu.address.model.person.Name;
+import seedu.address.model.person.contact.Email;
 
 public class UserInfoWrapper {
     //@@author arnav-ag
 
-    private final GetInfoRoute.GetInfoRequest getUserInfoGetInfoRequest;
+    private final UserInfoRoute.UserInfoRequest getUserInfoUserInfoRequest;
     private JSONObject userJson;
 
     private final String NAME_KEY = "name";
@@ -25,22 +28,29 @@ public class UserInfoWrapper {
     public UserInfoWrapper(String user) {
         requireAllNonNull(user);
 
-        GetInfoRoute getUserInfoGetInfoRoute = GetInfoRoute.getUserInfoRoute(user);
+        UserInfoRoute getUserInfoUserInfoRoute = UserInfoRoute.getUserInfoRoute(user);
         Config config = new Config();
         UnirestInstance unirest = new UnirestInstance(config);
 
-        getUserInfoGetInfoRequest = getUserInfoGetInfoRoute.createRequest(unirest);
+        getUserInfoUserInfoRequest = getUserInfoUserInfoRoute.createRequest(unirest);
     }
 
     private void getUserJson() {
-        this.userJson = this.getUserInfoGetInfoRequest.getJSON();
+        this.userJson = this.getUserInfoUserInfoRequest.getJSON();
     }
 
-    public Optional<String> getName() {
+    public Optional<Name> getName() {
         if (userJson == null) {
             getUserJson();
         }
-        return Optional.ofNullable(userJson.optString(NAME_KEY, null));
+
+        String result = userJson.optString(NAME_KEY, null);
+
+        if (result == null) {
+            return Optional.empty();
+        }
+
+        return Optional.of(new Name(result));
     }
 
     public Optional<String> getUsername() {
@@ -50,18 +60,32 @@ public class UserInfoWrapper {
         return Optional.ofNullable(userJson.optString(USERNAME_KEY, null));
     }
 
-    public Optional<String> getEmail() {
+    public Optional<Email> getEmail() {
         if (userJson == null) {
             getUserJson();
         }
-        return Optional.ofNullable(userJson.optString(EMAIL_KEY, null));
+
+        String result = userJson.optString(EMAIL_KEY, null);
+
+        if (result == null) {
+            return Optional.empty();
+        }
+
+        return Optional.of(new Email(result));
     }
 
-    public Optional<String> getLocation() {
+    public Optional<Address> getLocation() {
         if (userJson == null) {
             getUserJson();
         }
-        return Optional.ofNullable(userJson.optString(LOCATION_KEY, null));
+
+        String result = userJson.optString(LOCATION_KEY, null);
+
+        if (result == null) {
+            return Optional.empty();
+        }
+
+        return Optional.of(new Address(result));
     }
 
     public Optional<String> getImageLocation() {
