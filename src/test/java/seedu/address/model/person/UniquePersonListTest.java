@@ -3,8 +3,10 @@ package seedu.address.model.person;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_AMY;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalPersons.ALICE;
+import static seedu.address.testutil.TypicalPersons.AMY;
 import static seedu.address.testutil.TypicalPersons.BOB;
 
 import java.util.Arrays;
@@ -156,6 +158,34 @@ public class UniquePersonListTest {
     public void setPersons_listWithDuplicatePersons_throwsDuplicatePersonException() {
         List<Person> listWithDuplicatePersons = Arrays.asList(ALICE, ALICE);
         assertThrows(DuplicatePersonException.class, () -> uniquePersonList.setPersons(listWithDuplicatePersons));
+    }
+
+    @Test
+    public void getPerson_nullPerson_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> uniquePersonList.getPerson(null));
+    }
+
+    @Test
+    public void getPerson_personDoesNotExist_throwsPersonNotFoundException() {
+        assertThrows(PersonNotFoundException.class, () -> uniquePersonList.getPerson(AMY));
+    }
+
+    @Test
+    public void getPerson_existingPersonWithSameExactFields_returnsPerson() {
+        Person expectedPerson = AMY;
+        uniquePersonList.add(expectedPerson);
+        Person retrievedPerson = uniquePersonList.getPerson(expectedPerson);
+        assertEquals(expectedPerson, retrievedPerson);
+    }
+
+    @Test
+    public void getPerson_existingPersonWithSameNameButDifferentFields_returnsPerson() {
+        Person expectedPerson = AMY;
+        uniquePersonList.add(expectedPerson);
+
+        Person personWithSameNameButDifferentFields = new PersonBuilder().withName(VALID_NAME_AMY).build();
+        Person retrievedPerson = uniquePersonList.getPerson(personWithSameNameButDifferentFields);
+        assertEquals(expectedPerson, retrievedPerson);
     }
 
     @Test

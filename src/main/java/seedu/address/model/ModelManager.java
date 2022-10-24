@@ -14,7 +14,9 @@ import seedu.address.commons.core.LogsCenter;
 import seedu.address.model.module.Module;
 import seedu.address.model.module.ModuleCode;
 import seedu.address.model.module.exceptions.ModuleNotFoundException;
+import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
+import seedu.address.model.person.exceptions.PersonNotFoundException;
 
 /**
  * Represents the in-memory model of the address book data.
@@ -100,6 +102,12 @@ public class ModelManager implements Model {
     }
 
     @Override
+    public boolean hasPersonInFilteredList(Person person) {
+        requireNonNull(person);
+        return filteredPersons.stream().anyMatch(person::isSamePerson);
+    }
+
+    @Override
     public void deletePerson(Person target) {
         addressBook.removePerson(target);
     }
@@ -115,6 +123,35 @@ public class ModelManager implements Model {
         requireAllNonNull(target, editedPerson);
 
         addressBook.setPerson(target, editedPerson);
+    }
+
+    @Override
+    public Person getPersonUsingName(Name nameOfPersonToGet, boolean isFiltered) {
+        requireAllNonNull(nameOfPersonToGet, isFiltered);
+        Person personWithProvidedName = new Person(nameOfPersonToGet);
+        boolean isPersonWithSameNameInFilteredList = hasPersonInFilteredList(personWithProvidedName);
+        boolean isPersonWithSameNameInAddressBook = hasPerson(personWithProvidedName);
+
+        if (isFiltered && isPersonWithSameNameInFilteredList) {
+            // There should only be one person in the filtered person list with the same name.
+            assert countOfPersonsInFilteredListWithSameName(personWithProvidedName) == 1;
+            return getPersonInFilteredListWithSameName(personWithProvidedName);
+        } else if (!isFiltered && isPersonWithSameNameInAddressBook) {
+            return addressBook.getPerson(personWithProvidedName);
+        } else {
+            throw new PersonNotFoundException();
+        }
+    }
+
+    private long countOfPersonsInFilteredListWithSameName(Person person) {
+        return filteredPersons.stream()
+                .filter(person::isSamePerson).count();
+    }
+
+    private Person getPersonInFilteredListWithSameName(Person person) {
+        return filteredPersons.stream()
+                .filter(person::isSamePerson)
+                .findFirst().get();
     }
 
     @Override
@@ -154,21 +191,30 @@ public class ModelManager implements Model {
     public Module getModuleUsingModuleCode(ModuleCode moduleCodeOfModuleToGet,
                                            boolean isFiltered) {
         requireAllNonNull(moduleCodeOfModuleToGet, isFiltered);
-        Module moduleToGet = new Module(moduleCodeOfModuleToGet);
-        if (isFiltered && hasModuleInFilteredList(moduleToGet)) {
-            ObservableList<Module> unmodifiableListOfModules =
-                    this.getFilteredModuleList();
-            // There should only be one module in the filtered module list with
-            // the same module code.
-            assert filteredModules.stream().filter(moduleToGet::isSameModule).count() == 1;
-            return filteredModules.stream()
-                                  .filter(moduleToGet::isSameModule)
-                                  .findFirst().get();
-        } else if (!isFiltered && hasModule(moduleToGet)) {
-            return addressBook.getModule(moduleToGet);
+        Module moduleWithProvidedModuleCode = new Module(moduleCodeOfModuleToGet);
+        boolean isModuleWithSameModuleCodeInFilteredList = hasModuleInFilteredList(moduleWithProvidedModuleCode);
+        boolean isModuleWithSameModuleCodeInAddressBook = hasModule(moduleWithProvidedModuleCode);
+
+        if (isFiltered && isModuleWithSameModuleCodeInFilteredList) {
+            // There should only be one module in the filtered module list with the same module code.
+            assert countOfModulesInFilteredListWithSameModuleCode(moduleWithProvidedModuleCode) == 1;
+            return getModuleInFilteredListWithSameModuleCode(moduleWithProvidedModuleCode);
+        } else if (!isFiltered && isModuleWithSameModuleCodeInAddressBook) {
+            return addressBook.getModule(moduleWithProvidedModuleCode);
         } else {
             throw new ModuleNotFoundException();
         }
+    }
+
+    private long countOfModulesInFilteredListWithSameModuleCode(Module module) {
+        return filteredModules.stream()
+                .filter(module::isSameModule).count();
+    }
+
+    private Module getModuleInFilteredListWithSameModuleCode(Module module) {
+        return filteredModules.stream()
+                .filter(module::isSameModule)
+                .findFirst().get();
     }
 
     //=========== Filtered Person List Accessors =============================================================
