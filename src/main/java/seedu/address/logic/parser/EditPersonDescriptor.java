@@ -6,7 +6,9 @@ import java.util.Optional;
 import java.util.Set;
 
 import seedu.address.commons.util.CollectionUtil;
+import seedu.address.logic.util.MaximumSortedList;
 import seedu.address.model.person.Address;
+import seedu.address.model.person.Appointment;
 import seedu.address.model.person.Email;
 import seedu.address.model.person.IncomeLevel;
 import seedu.address.model.person.Monthly;
@@ -138,9 +140,10 @@ public class EditPersonDescriptor {
         Monthly updateMonthly = editPersonDescriptor.getMonthly().orElse(personToEdit.getMonthly());
         RiskTag updatedRiskTag = editPersonDescriptor.getRiskTag().orElse(personToEdit.getRiskTag());
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
+        MaximumSortedList<Appointment> originalAppointments = personToEdit.getAppointments();
 
         return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedIncomeLevel,
-                updateMonthly, updatedRiskTag, updatedTags);
+                updateMonthly, updatedRiskTag, updatedTags, originalAppointments);
     }
     @Override
     public boolean equals(Object other) {

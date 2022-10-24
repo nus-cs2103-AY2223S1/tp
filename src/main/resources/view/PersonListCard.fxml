@@ -79,7 +79,7 @@
          <children>
             <HBox alignment="CENTER_LEFT" prefHeight="19.0" prefWidth="129.0" spacing="5">
                <children>
-                  <Label fx:id="id1" prefHeight="32.0" prefWidth="127.0" styleClass="cell_big_label" text="Appointments" textFill="WHITE">
+                  <Label fx:id="id1" alignment="BOTTOM_LEFT" prefHeight="32.0" prefWidth="127.0" styleClass="cell_big_label" text="Appointments" textFill="WHITE">
                      <minWidth>
                         <Region fx:constant="USE_PREF_SIZE" />
                      </minWidth>
@@ -92,7 +92,7 @@
                   <Insets bottom="10.0" />
                </padding>
             </HBox>
-           <ListView fx:id="appointments" prefHeight="111.0" prefWidth="130.0" />
+           <ListView fx:id="appointments" prefHeight="127.0" prefWidth="129.0" />
          </children>
          <padding>
             <Insets bottom="5.0" left="15.0" right="5.0" top="5.0" />
