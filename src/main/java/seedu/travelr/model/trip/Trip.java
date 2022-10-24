@@ -211,9 +211,12 @@ public class Trip {
         return events.getAmountOfEvents() - trip.events.getAmountOfEvents();
     }
 
+    /**
+     * Compares this trip against another trip based on whether they are completed.
+     */
     public int compareCompletion(Trip trip) {
-        int this_completion = done ? 1 : 0;
-        int trip_completion = trip.done ? 1 : 0;
-        return this_completion - trip_completion;
+        int thisCompletion = done ? 1 : 0;
+        int otherCompletion = trip.done ? 1 : 0;
+        return thisCompletion - otherCompletion;
     }
 }
