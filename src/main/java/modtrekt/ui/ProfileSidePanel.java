@@ -21,6 +21,9 @@ public class ProfileSidePanel extends UiPart<Region> {
     @FXML
     private Label activeTasks;
 
+    @FXML
+    private Label activeTasksText;
+
     /**
      * Creates a {@code ModuleListPanel} with the given {@code ObservableList}.
      * @param logic Logic
@@ -46,5 +49,10 @@ public class ProfileSidePanel extends UiPart<Region> {
         // Update UI
         creditsCount.setText(StringUtil.pluralize(totalCredits, "MC"));
         activeTasks.setText(String.valueOf(totalTasks));
+        if (totalTasks == 1) {
+            activeTasksText.setText("Active Task");
+        } else {
+            activeTasksText.setText("Active Tasks");
+        }
     }
 }
