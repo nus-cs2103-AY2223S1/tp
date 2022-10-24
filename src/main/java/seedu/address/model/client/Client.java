@@ -191,7 +191,7 @@ public class Client implements ReadOnlyClient {
             Remark remark = itr.next();
             builder.append(prefix);
             prefix = ", ";
-            builder.append(remark.getName());
+            builder.append(remark.getText());
         }
 
         TransactionLog transactions = getTransactions();

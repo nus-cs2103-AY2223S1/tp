@@ -29,11 +29,9 @@ public class RemarkCard extends UiPart<Region> {
     @FXML
     private HBox remarkCardPane;
     @FXML
-    private Label name;
-    @FXML
     private Label id;
     @FXML
-    private Label address;
+    private Label text;
     @FXML
     private FlowPane tags;
 
@@ -44,8 +42,7 @@ public class RemarkCard extends UiPart<Region> {
         super(FXML);
         this.remark = remark;
         id.setText(displayedIndex + ". ");
-        name.setText(remark.getName().toString());
-        address.setText("Address: " + remark.getAddress().toString());
+        text.setText(remark.getText().getValue());
         remark.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));

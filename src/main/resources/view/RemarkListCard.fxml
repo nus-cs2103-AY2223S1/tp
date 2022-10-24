@@ -23,10 +23,9 @@
                         <Region fx:constant="USE_PREF_SIZE" />
                     </minWidth>
                 </Label>
-                <Label fx:id="name" styleClass="cell_big_label" text="\$first" />
+                <Label fx:id="text" styleClass="cell_big_label" text="\$first" />
             </HBox>
             <FlowPane fx:id="tags" />
-            <Label fx:id="address" styleClass="cell_small_label" text="\$address" />
          <padding>
             <Insets left="25.0" />
          </padding>

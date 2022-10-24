@@ -61,14 +61,14 @@ public class RemarkCommand extends Command {
         Client clientToEdit = lastShownList.get(index.getZeroBased());
 
         if (clientToEdit.hasRemark(remark)) {
-            throw new CommandException(String.format(MESSAGE_DUPLICATE_REMARK, remark.getName()));
+            throw new CommandException(String.format(MESSAGE_DUPLICATE_REMARK, remark.getText()));
         }
 
         Client editedClient = clientToEdit;
         editedClient.addRemark(remark);
         model.setClient(clientToEdit, editedClient);
 
-        return new CommandResult(String.format(MESSAGE_SUCCESS, remark.getName(), editedClient));
+        return new CommandResult(String.format(MESSAGE_SUCCESS, remark.getText(), editedClient));
     }
 
     @Override

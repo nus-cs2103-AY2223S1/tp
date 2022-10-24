@@ -2,8 +2,6 @@ package seedu.address.logic.parser;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
-import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
 
 import java.util.Set;
@@ -12,8 +10,7 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.RemarkCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.remark.Remark;
-import seedu.address.model.remark.RemarkAddress;
-import seedu.address.model.remark.RemarkName;
+import seedu.address.model.remark.Text;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -28,26 +25,25 @@ public class RemarkCommandParser implements Parser<RemarkCommand> {
      */
     public RemarkCommand parse(String args) throws ParseException {
         requireNonNull(args);
-        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_NAME,
-                PREFIX_ADDRESS, PREFIX_TAG);
+        ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_TAG);
 
         Index index;
+        String [] preambles = argMultimap.getPreamble().split(" ", 2);
 
         try {
-            index = ParserUtil.parseIndex(argMultimap.getPreamble());
+            index = ParserUtil.parseIndex(preambles[0]);
         } catch (ParseException ive) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, RemarkCommand.MESSAGE_USAGE), ive);
         }
 
-        if (argMultimap.getValue(PREFIX_NAME).isEmpty() || argMultimap.getValue(PREFIX_ADDRESS).isEmpty()) {
+        if (preambles.length < 2 || preambles[1].isEmpty()) {
             throw new ParseException(RemarkCommand.MESSAGE_REMARK_INVALID);
         }
 
-        RemarkName name = ParserUtil.parseRemarkName(argMultimap.getValue(PREFIX_NAME).get());
-        RemarkAddress address = ParserUtil.parseRemarkAddress(argMultimap.getValue(PREFIX_ADDRESS).get());
+        Text text = ParserUtil.parseText(preambles[1]);
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
 
-        Remark remark = new Remark(name, address, tagList);
+        Remark remark = new Remark(text, tagList);
 
         return new RemarkCommand(index, remark);
     }

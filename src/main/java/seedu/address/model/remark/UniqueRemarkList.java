@@ -157,7 +157,7 @@ public class UniqueRemarkList implements Iterable<Remark> {
             builder.append(prefix);
             prefix = ", ";
 
-            builder.append(remark.getName());
+            builder.append(remark.getText());
         }
 
         return builder.toString();

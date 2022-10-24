@@ -13,8 +13,8 @@ import seedu.address.model.client.Address;
 import seedu.address.model.client.ClientEmail;
 import seedu.address.model.client.ClientPhone;
 import seedu.address.model.client.Name;
-import seedu.address.model.remark.RemarkAddress;
 import seedu.address.model.remark.RemarkName;
+import seedu.address.model.remark.Text;
 import seedu.address.model.tag.Tag;
 import seedu.address.model.transaction.Date;
 import seedu.address.model.transaction.Goods;
@@ -102,18 +102,18 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String address} into an {@code Address}.
+     * Parses a {@code String text} into a {@code Text}.
      * Leading and trailing whitespaces will be trimmed.
      *
-     * @throws ParseException if the given {@code address} is invalid.
+     * @throws ParseException if the given {@code text} is invalid.
      */
-    public static RemarkAddress parseRemarkAddress(String address) throws ParseException {
-        requireNonNull(address);
-        String trimmedAddress = address.trim();
-        if (!RemarkAddress.isValidRemarkAddress(trimmedAddress)) {
-            throw new ParseException(Address.MESSAGE_CONSTRAINTS);
+    public static Text parseText(String text) throws ParseException {
+        requireNonNull(text);
+        String trimmedText = text.trim();
+        if (!Text.isValidText(trimmedText)) {
+            throw new ParseException(Text.MESSAGE_CONSTRAINTS);
         }
-        return new RemarkAddress(trimmedAddress);
+        return new Text(trimmedText);
     }
 
     /**

@@ -11,8 +11,8 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.remark.Remark;
-import seedu.address.model.remark.RemarkAddress;
 import seedu.address.model.remark.RemarkName;
+import seedu.address.model.remark.Text;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -22,18 +22,16 @@ class JsonAdaptedRemark {
 
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "Remark's %s field is missing!";
 
-    private final String name;
-    private final String address;
+    private final String text;
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
 
     /**
      * Constructs a {@code JsonAdaptedRemark} with the given remark details.
      */
     @JsonCreator
-    public JsonAdaptedRemark(@JsonProperty("name") String name, @JsonProperty("address") String address,
+    public JsonAdaptedRemark(@JsonProperty("text") String text,
                               @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
-        this.name = name;
-        this.address = address;
+        this.text = text;
         if (tagged != null) {
             this.tagged.addAll(tagged);
         }
@@ -43,8 +41,7 @@ class JsonAdaptedRemark {
      * Converts a given {@code Remark} into this class for Jackson use.
      */
     public JsonAdaptedRemark(Remark source) {
-        name = source.getName().fullName;
-        address = source.getAddress().value;
+        text = source.getText().value;
         tagged.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));
@@ -61,26 +58,17 @@ class JsonAdaptedRemark {
             clientTags.add(tag.toModelType());
         }
 
-        if (name == null) {
+        if (text == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
-                    RemarkName.class.getSimpleName()));
+                    Text.class.getSimpleName()));
         }
-        if (!RemarkName.isValidName(name)) {
-            throw new IllegalValueException(RemarkName.MESSAGE_CONSTRAINTS);
+        if (!Text.isValidText(text)) {
+            throw new IllegalValueException(Text.MESSAGE_CONSTRAINTS);
         }
-        final RemarkName modelName = new RemarkName(name);
-
-        if (address == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
-                    RemarkAddress.class.getSimpleName()));
-        }
-        if (!RemarkAddress.isValidRemarkAddress(address)) {
-            throw new IllegalValueException(RemarkAddress.MESSAGE_CONSTRAINTS);
-        }
-        final RemarkAddress modelAddress = new RemarkAddress(address);
+        final Text modelText = new Text(text);
 
         final Set<Tag> modelTags = new HashSet<>(clientTags);
-        return new Remark(modelName, modelAddress, modelTags);
+        return new Remark(modelText, modelTags);
     }
 
 }

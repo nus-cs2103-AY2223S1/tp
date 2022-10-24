@@ -16,8 +16,7 @@ import seedu.address.model.tag.Tag;
 public class Remark {
 
     // Identity fields
-    private final RemarkName name;
-    private final RemarkAddress address;
+    private final Text text;
 
     // Data fields
     private final Set<Tag> tags = new HashSet<>();
@@ -25,20 +24,15 @@ public class Remark {
     /**
      * Every field must be present and not null.
      */
-    public Remark(RemarkName name, RemarkAddress address, Set<Tag> tags) {
-        requireAllNonNull(name, address, tags);
-        this.name = name;
-        this.address = address;
+    public Remark(Text text, Set<Tag> tags) {
+        requireAllNonNull(text, tags);
+        this.text = text;
 
         this.tags.addAll(tags);
     }
 
-    public RemarkName getName() {
-        return name;
-    }
-
-    public RemarkAddress getAddress() {
-        return address;
+    public Text getText() {
+        return text;
     }
 
     /**
@@ -59,7 +53,7 @@ public class Remark {
         }
 
         return otherRemark != null
-                && otherRemark.getName().equals(getName());
+                && otherRemark.getText().value.equals(getText().value);
     }
 
     /**
@@ -77,23 +71,20 @@ public class Remark {
         }
 
         Remark otherRemark = (Remark) other;
-        return otherRemark.getName().equals(getName())
-                && otherRemark.getAddress().equals(getAddress())
+        return otherRemark.getText().value.equals(getText().value)
                 && otherRemark.getTags().equals(getTags());
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, address, tags);
+        return Objects.hash(text, tags);
     }
 
     @Override
     public String toString() {
         final StringBuilder builder = new StringBuilder();
-        builder.append(getName())
-                .append("; Address: ")
-                .append(getAddress());
+        builder.append(getText());
 
         Set<Tag> tags = getTags();
         if (!tags.isEmpty()) {
