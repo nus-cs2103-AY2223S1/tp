@@ -77,8 +77,8 @@ public class CommandTestUtil {
         .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).build();
     }
 
-    public static final String VALID_TASK_NAME_1 = "CS2103T";
-    public static final String VALID_TASK_NAME_2 = "Buy Milk";
+    public static final String VALID_TASK_NAME_1 = "Buy Milk";
+    public static final String VALID_TASK_NAME_2 = "CS2103T";
     public static final String VALID_TASK_NAME_3 = "Finish Assignment";
 
     public static final EditTaskCommand.EditTaskDescriptor DESC_TASK_1;

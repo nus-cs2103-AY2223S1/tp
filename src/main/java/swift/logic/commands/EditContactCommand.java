@@ -7,7 +7,7 @@ import static swift.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static swift.logic.parser.CliSyntax.PREFIX_NAME;
 import static swift.logic.parser.CliSyntax.PREFIX_PHONE;
 import static swift.logic.parser.CliSyntax.PREFIX_TAG;
-import static swift.model.Model.PREDICATE_SHOW_ALL_PERSONS;
+import static swift.model.Model.PREDICATE_SHOW_ALL_PEOPLE;
 
 import java.util.Collections;
 import java.util.HashMap;
@@ -93,7 +93,7 @@ public class EditContactCommand extends Command {
         }
 
         model.setPerson(personToEdit, editedPerson);
-        model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+        model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PEOPLE);
         return new CommandResult(String.format(MESSAGE_EDIT_PERSON_SUCCESS, editedPerson));
     }
 

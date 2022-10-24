@@ -10,7 +10,7 @@ import swift.model.task.TaskName;
  */
 public class TaskBuilder {
 
-    public static final String DEFAULT_ID = "dccb909c-216d-42f8-b1e2-0e5779a1d501";
+    public static final String DEFAULT_ID = "bfbf250c-fd58-49b4-be15-ca12095ca2ee";
     public static final String DEFAULT_TASK_NAME = "Default Task";
 
     private UUID id;
