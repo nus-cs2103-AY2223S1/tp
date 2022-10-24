@@ -17,14 +17,17 @@ public class PersonTagsContainsKeywordsPredicateTest {
         List<String> firstPredicateKeywordList = Collections.singletonList("first");
         List<String> secondPredicateKeywordList = Arrays.asList("first", "second");
 
-        PersonTagsContainsKeywordsPredicate firstPredicate = new PersonTagsContainsKeywordsPredicate(firstPredicateKeywordList);
-        PersonTagsContainsKeywordsPredicate secondPredicate = new PersonTagsContainsKeywordsPredicate(secondPredicateKeywordList);
+        PersonTagsContainsKeywordsPredicate firstPredicate =
+                new PersonTagsContainsKeywordsPredicate(firstPredicateKeywordList);
+        PersonTagsContainsKeywordsPredicate secondPredicate =
+                new PersonTagsContainsKeywordsPredicate(secondPredicateKeywordList);
 
         // same object -> returns true
         assertTrue(firstPredicate.equals(firstPredicate));
 
         // same values -> returns true
-        PersonTagsContainsKeywordsPredicate firstPredicateCopy = new PersonTagsContainsKeywordsPredicate(firstPredicateKeywordList);
+        PersonTagsContainsKeywordsPredicate firstPredicateCopy =
+                new PersonTagsContainsKeywordsPredicate(firstPredicateKeywordList);
         assertTrue(firstPredicate.equals(firstPredicateCopy));
 
         // different types -> returns false
@@ -40,7 +43,8 @@ public class PersonTagsContainsKeywordsPredicateTest {
     @Test
     public void test_tagsContainsKeywords_returnsTrue() {
         // One keyword
-        PersonTagsContainsKeywordsPredicate predicate = new PersonTagsContainsKeywordsPredicate(Collections.singletonList("Tech"));
+        PersonTagsContainsKeywordsPredicate predicate =
+                new PersonTagsContainsKeywordsPredicate(Collections.singletonList("Tech"));
         assertTrue(predicate.test(new PersonBuilder().withTags("Tech").build()));
 
         // Multiple keywords
@@ -63,7 +67,8 @@ public class PersonTagsContainsKeywordsPredicateTest {
     @Test
     public void test_tagsDoesNotContainKeywords_returnsFalse() {
         // Zero keywords
-        PersonTagsContainsKeywordsPredicate predicate = new PersonTagsContainsKeywordsPredicate(Collections.emptyList());
+        PersonTagsContainsKeywordsPredicate predicate =
+                new PersonTagsContainsKeywordsPredicate(Collections.emptyList());
         assertFalse(predicate.test(new PersonBuilder().withTags("Tech").build()));
 
         // Non-matching keyword
@@ -71,7 +76,8 @@ public class PersonTagsContainsKeywordsPredicateTest {
         assertFalse(predicate.test(new PersonBuilder().withTags("Tech").build()));
 
         // Keywords match phone, email and address, but do not match any tags
-        predicate = new PersonTagsContainsKeywordsPredicate(Arrays.asList("12345", "alice@email.com", "Main", "Street"));
+        predicate =
+                new PersonTagsContainsKeywordsPredicate(Arrays.asList("12345", "alice@email.com", "Main", "Street"));
         assertFalse(predicate.test(new PersonBuilder().withName("Alice").withPhone("12345")
                 .withEmail("alice@email.com").withAddress("Main Street").withTags("Tech").build()));
     }

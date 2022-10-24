@@ -9,6 +9,7 @@ import java.util.Arrays;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.logic.commands.FindTagCommand;
+import seedu.address.model.note.NoteTagsContainsKeywordsPredicate;
 import seedu.address.model.person.PersonTagsContainsKeywordsPredicate;
 
 public class FindTagCommandParserTest {
@@ -25,7 +26,8 @@ public class FindTagCommandParserTest {
     public void parse_validArgs_returnsFindTagCommand() {
         // no leading and trailing whitespaces
         FindTagCommand expectedFindTagCommand =
-                new FindTagCommand(new PersonTagsContainsKeywordsPredicate(Arrays.asList("Tech", "Finance")));
+                new FindTagCommand(new PersonTagsContainsKeywordsPredicate(Arrays.asList("Tech", "Finance")),
+                        new NoteTagsContainsKeywordsPredicate(Arrays.asList("Tech", "Finance")));
         assertParseSuccess(parser, "Tech Finance", expectedFindTagCommand);
 
         // multiple whitespaces between keywords
