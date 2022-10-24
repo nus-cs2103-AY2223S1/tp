@@ -4,7 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.AppUtil.checkArgument;
 
 /**
- * Represents a Student's ID in the address book.
+ * Represents a Student's ID in profNus.
  */
 public class StudentId {
 

@@ -16,10 +16,10 @@ import seedu.address.model.person.UniquePersonList;
 import seedu.address.model.person.UniqueTutorList;
 
 /**
- * Wraps all data at the address-book level
+ * Wraps all data at the profNus level
  * Duplicates are not allowed (by .isSamePerson comparison)
  */
-public class ProfNus implements ReadOnlyAddressBook {
+public class ProfNus implements ReadOnlyProfNus {
 
     private final UniquePersonList persons;
     private final UniqueModuleList modules;
@@ -49,7 +49,7 @@ public class ProfNus implements ReadOnlyAddressBook {
     /**
      * Creates an ProfNus using the Persons in the {@code toBeCopied}
      */
-    public ProfNus(ReadOnlyAddressBook toBeCopied) {
+    public ProfNus(ReadOnlyProfNus toBeCopied) {
         this();
         resetData(toBeCopied);
     }
@@ -83,7 +83,7 @@ public class ProfNus implements ReadOnlyAddressBook {
     /**
      * Resets the existing data of this {@code ProfNus} with {@code newData}.
      */
-    public void resetData(ReadOnlyAddressBook newData) {
+    public void resetData(ReadOnlyProfNus newData) {
         requireNonNull(newData);
 
         setPersons(newData.getPersonList());
@@ -167,7 +167,7 @@ public class ProfNus implements ReadOnlyAddressBook {
     }
 
     /**
-     * Adds a module to the address book.
+     * Adds a module to profNus.
      * The module must not already exist in profNUS.
      */
     public void addModule(Module m) {

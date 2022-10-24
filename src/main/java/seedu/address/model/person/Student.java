@@ -10,7 +10,7 @@ import seedu.address.model.module.ModuleCode;
 import seedu.address.model.tag.Tag;
 
 /**
- * Represents a Student in the address book.
+ * Represents a Student in profNus.
  */
 public class Student extends Person {
 

@@ -10,7 +10,7 @@ import seedu.address.model.Model;
 /**
  * Lists all persons in the profNUS to the user.
  */
-public class ModuleListCommand extends Command {
+public class ListModuleCommand extends Command {
 
     public static final String COMMAND_WORD = "mlist";
 

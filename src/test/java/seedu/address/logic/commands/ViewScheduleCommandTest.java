@@ -3,7 +3,7 @@ package seedu.address.logic.commands;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.address.testutil.TypicalSchedules.getTypicalAddressBookWithSchedules;
+import static seedu.address.testutil.TypicalSchedules.getTypicalProfNusWithSchedules;
 
 import java.util.Collections;
 
@@ -27,8 +27,8 @@ public class ViewScheduleCommandTest {
 
     @BeforeEach
     public void setUp() {
-        model = new ModelManager(getTypicalAddressBookWithSchedules(), new UserPrefs());
-        expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
+        model = new ModelManager(getTypicalProfNusWithSchedules(), new UserPrefs());
+        expectedModel = new ModelManager(model.getProfNus(), new UserPrefs());
     }
 
     @Test

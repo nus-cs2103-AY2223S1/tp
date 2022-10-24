@@ -16,7 +16,7 @@ import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.GuiSettings;
 import seedu.address.model.person.NameContainsKeywordsPredicate;
-import seedu.address.testutil.AddressBookBuilder;
+import seedu.address.testutil.ProfNusBuilder;
 
 public class ModelManagerTest {
 
@@ -26,7 +26,7 @@ public class ModelManagerTest {
     public void constructor() {
         assertEquals(new UserPrefs(), modelManager.getUserPrefs());
         assertEquals(new GuiSettings(), modelManager.getGuiSettings());
-        assertEquals(new ProfNus(), new ProfNus(modelManager.getAddressBook()));
+        assertEquals(new ProfNus(), new ProfNus(modelManager.getProfNus()));
     }
 
     @Test
@@ -37,14 +37,14 @@ public class ModelManagerTest {
     @Test
     public void setUserPrefs_validUserPrefs_copiesUserPrefs() {
         UserPrefs userPrefs = new UserPrefs();
-        userPrefs.setAddressBookFilePath(Paths.get("address/book/file/path"));
+        userPrefs.setProfNusFilePath(Paths.get("prof/nus/file/path"));
         userPrefs.setGuiSettings(new GuiSettings(1, 2, 3, 4));
         modelManager.setUserPrefs(userPrefs);
         assertEquals(userPrefs, modelManager.getUserPrefs());
 
         // Modifying userPrefs should not modify modelManager's userPrefs
         UserPrefs oldUserPrefs = new UserPrefs(userPrefs);
-        userPrefs.setAddressBookFilePath(Paths.get("new/address/book/file/path"));
+        userPrefs.setProfNusFilePath(Paths.get("new/prof/nus/file/path"));
         assertEquals(oldUserPrefs, modelManager.getUserPrefs());
     }
 
@@ -61,15 +61,15 @@ public class ModelManagerTest {
     }
 
     @Test
-    public void setAddressBookFilePath_nullPath_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> modelManager.setAddressBookFilePath(null));
+    public void setProfNusFilePath_nullPath_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> modelManager.setProfNusFilePath(null));
     }
 
     @Test
-    public void setAddressBookFilePath_validPath_setsAddressBookFilePath() {
-        Path path = Paths.get("address/book/file/path");
-        modelManager.setAddressBookFilePath(path);
-        assertEquals(path, modelManager.getAddressBookFilePath());
+    public void setProfNusFilePath_validPath_setsProfNusFilePath() {
+        Path path = Paths.get("prof/nus/file/path");
+        modelManager.setProfNusFilePath(path);
+        assertEquals(path, modelManager.getProfNusFilePath());
     }
 
     @Test
@@ -78,12 +78,12 @@ public class ModelManagerTest {
     }
 
     @Test
-    public void hasPerson_personNotInAddressBook_returnsFalse() {
+    public void hasPerson_personNotInProfNus_returnsFalse() {
         assertFalse(modelManager.hasPerson(ALICE));
     }
 
     @Test
-    public void hasPerson_personInAddressBook_returnsTrue() {
+    public void hasPerson_personInProfNus_returnsTrue() {
         modelManager.addPerson(ALICE);
         assertTrue(modelManager.hasPerson(ALICE));
     }
@@ -95,7 +95,7 @@ public class ModelManagerTest {
 
     @Test
     public void equals() {
-        ProfNus profNus = new AddressBookBuilder().withPerson(ALICE).withPerson(BENSON).build();
+        ProfNus profNus = new ProfNusBuilder().withPerson(ALICE).withPerson(BENSON).build();
         ProfNus differentProfNus = new ProfNus();
         UserPrefs userPrefs = new UserPrefs();
 
@@ -126,7 +126,7 @@ public class ModelManagerTest {
 
         // different userPrefs -> returns false
         UserPrefs differentUserPrefs = new UserPrefs();
-        differentUserPrefs.setAddressBookFilePath(Paths.get("differentFilePath"));
+        differentUserPrefs.setProfNusFilePath(Paths.get("differentFilePath"));
         assertFalse(modelManager.equals(new ModelManager(profNus, differentUserPrefs)));
     }
 }

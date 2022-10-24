@@ -45,7 +45,7 @@ public class TypicalModules {
     /**
      * Returns an {@code ProfNus} with all the typical modules.
      */
-    public static ProfNus getTypicalAddressBookWithModules() {
+    public static ProfNus getTypicalProfNusWithModules() {
         ProfNus ab = new ProfNus();
         for (Module module : getTypicalModules()) {
             ab.addModule(module);

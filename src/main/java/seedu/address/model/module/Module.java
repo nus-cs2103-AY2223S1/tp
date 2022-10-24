@@ -8,7 +8,6 @@ import java.util.Objects;
 import java.util.Set;
 
 import seedu.address.model.module.schedule.Schedule;
-import seedu.address.model.person.Student;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -27,20 +26,17 @@ public class Module {
 
     // Data fields
     private final Set<Tag> tags = new HashSet<>();
-    private final ArrayList<Student> students = new ArrayList<>();
 
     private final List<Schedule> schedules;
 
     /**
      * Every field must be present and not null.
      */
-    public Module(ModuleName name, ModuleCode code, ModuleDescription description, Set<Tag> tags,
-                  ArrayList<Student> students) {
+    public Module(ModuleName name, ModuleCode code, ModuleDescription description, Set<Tag> tags) {
         this.name = name;
         this.code = code;
         this.description = description;
         this.tags.addAll(tags);
-        this.students.addAll(students);
         this.schedules = new ArrayList<>();
     }
 
@@ -62,10 +58,6 @@ public class Module {
      */
     public Set<Tag> getTags() {
         return Collections.unmodifiableSet(tags);
-    }
-
-    public ArrayList<Student> getStudents() {
-        return students;
     }
 
     public List<Schedule> getSchedules() {

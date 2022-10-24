@@ -40,7 +40,7 @@ public class TypicalSchedules {
     /**
      * Returns an {@code ProfNus} with all the typical schedules.
      */
-    public static ProfNus getTypicalAddressBookWithSchedules() {
+    public static ProfNus getTypicalProfNusWithSchedules() {
         ProfNus ab = new ProfNus();
         for (Module module: getTypicalModules()) {
             ab.addModule(module);

@@ -4,7 +4,7 @@ import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_SCHEDULE;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_SCHEDULE;
-import static seedu.address.testutil.TypicalSchedules.getTypicalAddressBookWithSchedules;
+import static seedu.address.testutil.TypicalSchedules.getTypicalProfNusWithSchedules;
 
 import java.util.List;
 
@@ -23,7 +23,7 @@ import seedu.address.model.module.schedule.Schedule;
  */
 public class DeleteScheduleCommandTest {
 
-    private Model model = new ModelManager(getTypicalAddressBookWithSchedules(), new UserPrefs());
+    private Model model = new ModelManager(getTypicalProfNusWithSchedules(), new UserPrefs());
 
     @Test
     public void execute_invalidIndex_throwCommandException() {
@@ -42,7 +42,7 @@ public class DeleteScheduleCommandTest {
                 String.format(DeleteScheduleCommand.MESSAGE_DELETE_SCHEDULE_SUCCESS, scheduleToDelete), false, false,
                 false, false, false, true);
 
-        Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
+        Model expectedModel = new ModelManager(model.getProfNus(), new UserPrefs());
         expectedModel.deleteSchedule(scheduleToDelete);
 
         assertCommandSuccess(deleteScheduleCommand, model, expectedMessage, expectedModel);
@@ -57,7 +57,7 @@ public class DeleteScheduleCommandTest {
                 String.format(DeleteScheduleCommand.MESSAGE_DELETE_SCHEDULE_SUCCESS, scheduleToDelete), false, false,
                 false, false, false, true);
 
-        Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
+        Model expectedModel = new ModelManager(model.getProfNus(), new UserPrefs());
         expectedModel.deleteSchedule(scheduleToDelete);
 
         assertCommandSuccess(deleteScheduleCommand, model, expectedMessage, expectedModel);

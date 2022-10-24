@@ -19,7 +19,7 @@ import seedu.address.model.person.TutorContainsModulePredicate;
 /**
  * Shows module details in profNUS to the user.
  */
-public class ModuleViewCommand extends Command {
+public class ViewModuleCommand extends Command {
 
     public static final String COMMAND_WORD = "mview";
 
@@ -35,7 +35,7 @@ public class ModuleViewCommand extends Command {
 
     private boolean isInModuleList = false;
 
-    public ModuleViewCommand(ModuleCode targetModuleCode) {
+    public ViewModuleCommand(ModuleCode targetModuleCode) {
         this.targetModuleCode = targetModuleCode;
     }
 
@@ -70,7 +70,7 @@ public class ModuleViewCommand extends Command {
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof ModuleViewCommand // instanceof handles nulls
-                && targetModuleCode.equals(((ModuleViewCommand) other).targetModuleCode)); // state check
+                || (other instanceof ViewModuleCommand // instanceof handles nulls
+                && targetModuleCode.equals(((ViewModuleCommand) other).targetModuleCode)); // state check
     }
 }

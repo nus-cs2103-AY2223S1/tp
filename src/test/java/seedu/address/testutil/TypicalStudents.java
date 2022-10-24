@@ -110,7 +110,7 @@ public class TypicalStudents {
     /**
      * Returns an {@code ProfNus} with all the typical persons.
      */
-    public static ProfNus getTypicalAddressBook() {
+    public static ProfNus getTypicalProfNus() {
         ProfNus ab = new ProfNus();
         for (Student student : getTypicalStudents()) {
             ab.addPerson(student);

@@ -3,7 +3,7 @@ package seedu.address.logic.commands;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_SCHEDULE;
-import static seedu.address.testutil.TypicalSchedules.getTypicalAddressBookWithSchedules;
+import static seedu.address.testutil.TypicalSchedules.getTypicalProfNusWithSchedules;
 
 import java.nio.file.Path;
 import java.util.ArrayList;
@@ -20,7 +20,7 @@ import seedu.address.logic.commands.schedule.EditScheduleCommand;
 import seedu.address.logic.commands.schedule.EditScheduleCommand.EditScheduleDescriptor;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
-import seedu.address.model.ReadOnlyAddressBook;
+import seedu.address.model.ReadOnlyProfNus;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.module.Module;
@@ -38,7 +38,7 @@ import seedu.address.testutil.ScheduleBuilder;
  */
 public class EditScheduleCommandTest {
 
-    private Model model = new ModelManager(getTypicalAddressBookWithSchedules(), new UserPrefs());
+    private Model model = new ModelManager(getTypicalProfNusWithSchedules(), new UserPrefs());
 
     @Test
     public void constructor_null_throwNullPointerException() {
@@ -100,12 +100,12 @@ public class EditScheduleCommandTest {
         }
 
         @Override
-        public Path getAddressBookFilePath() {
+        public Path getProfNusFilePath() {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void setAddressBookFilePath(Path addressBookFilePath) {
+        public void setProfNusFilePath(Path profNusFilePath) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -131,12 +131,12 @@ public class EditScheduleCommandTest {
         }
 
         @Override
-        public void setAddressBook(ReadOnlyAddressBook newData) {
+        public void setProfNus(ReadOnlyProfNus newData) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public ReadOnlyAddressBook getAddressBook() {
+        public ReadOnlyProfNus getProfNus() {
             throw new AssertionError("This method should not be called.");
         }
 

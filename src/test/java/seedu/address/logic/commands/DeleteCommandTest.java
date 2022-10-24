@@ -7,7 +7,7 @@ import static seedu.address.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.address.logic.commands.CommandTestUtil.showPersonAtIndex;
 import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
-import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
+import static seedu.address.testutil.TypicalPersons.getTypicalProfNus;
 
 import org.junit.jupiter.api.Test;
 
@@ -24,7 +24,7 @@ import seedu.address.model.person.Person;
  */
 public class DeleteCommandTest {
 
-    private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+    private Model model = new ModelManager(getTypicalProfNus(), new UserPrefs());
 
     @Test
     public void execute_validIndexUnfilteredList_success() {
@@ -36,7 +36,7 @@ public class DeleteCommandTest {
                 false, false, false,
                 true, false, false);
 
-        ModelManager expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
+        ModelManager expectedModel = new ModelManager(model.getProfNus(), new UserPrefs());
         expectedModel.deletePerson(personToDelete);
 
         assertCommandSuccess(deleteCommand, model, expectedCommandResult, expectedModel);
@@ -62,7 +62,7 @@ public class DeleteCommandTest {
                 false, false, false,
                 true, false, false);;
 
-        Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
+        Model expectedModel = new ModelManager(model.getProfNus(), new UserPrefs());
         expectedModel.deletePerson(personToDelete);
         showNoPerson(expectedModel);
 
@@ -74,8 +74,8 @@ public class DeleteCommandTest {
         showPersonAtIndex(model, INDEX_FIRST_PERSON);
 
         Index outOfBoundIndex = INDEX_SECOND_PERSON;
-        // ensures that outOfBoundIndex is still in bounds of address book list
-        assertTrue(outOfBoundIndex.getZeroBased() < model.getAddressBook().getPersonList().size());
+        // ensures that outOfBoundIndex is still in bounds of profNus list
+        assertTrue(outOfBoundIndex.getZeroBased() < model.getProfNus().getPersonList().size());
 
         DeleteCommand deleteCommand = new DeleteCommand(outOfBoundIndex);
 

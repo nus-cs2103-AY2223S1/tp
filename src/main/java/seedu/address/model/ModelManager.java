@@ -19,7 +19,7 @@ import seedu.address.model.person.Person;
 import seedu.address.model.person.Student;
 
 /**
- * Represents the in-memory model of the address book data.
+ * Represents the in-memory model of the profNus data.
  */
 public class ModelManager implements Model {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
@@ -33,12 +33,12 @@ public class ModelManager implements Model {
     /**
      * Initializes a ModelManager with the given profNus and userPrefs.
      */
-    public ModelManager(ReadOnlyAddressBook addressBook, ReadOnlyUserPrefs userPrefs) {
-        requireAllNonNull(addressBook, userPrefs);
+    public ModelManager(ReadOnlyProfNus profNus, ReadOnlyUserPrefs userPrefs) {
+        requireAllNonNull(profNus, userPrefs);
 
-        logger.fine("Initializing with address book: " + addressBook + " and user prefs " + userPrefs);
+        logger.fine("Initializing with profNus: " + profNus + " and user prefs " + userPrefs);
 
-        this.profNus = new ProfNus(addressBook);
+        this.profNus = new ProfNus(profNus);
         this.userPrefs = new UserPrefs(userPrefs);
         filteredPersons = new FilteredList<>(this.profNus.getPersonList());
         filteredTutors = new FilteredList<>(this.profNus.getTutorList());
@@ -75,25 +75,25 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public Path getAddressBookFilePath() {
-        return userPrefs.getAddressBookFilePath();
+    public Path getProfNusFilePath() {
+        return userPrefs.getProfNusFilePath();
     }
 
     @Override
-    public void setAddressBookFilePath(Path addressBookFilePath) {
-        requireNonNull(addressBookFilePath);
-        userPrefs.setAddressBookFilePath(addressBookFilePath);
+    public void setProfNusFilePath(Path profNusFilePath) {
+        requireNonNull(profNusFilePath);
+        userPrefs.setProfNusFilePath(profNusFilePath);
     }
 
     //=========== ProfNus ================================================================================
 
     @Override
-    public void setAddressBook(ReadOnlyAddressBook addressBook) {
-        this.profNus.resetData(addressBook);
+    public void setProfNus(ReadOnlyProfNus profNus) {
+        this.profNus.resetData(profNus);
     }
 
     @Override
-    public ReadOnlyAddressBook getAddressBook() {
+    public ReadOnlyProfNus getProfNus() {
         return profNus;
     }
 
@@ -216,7 +216,7 @@ public class ModelManager implements Model {
 
     /**
      * Returns an unmodifiable view of the list of {@code Person} backed by the internal list of
-     * {@code versionedAddressBook}
+     * {@code versionedProfNus}
      */
     @Override
     public ObservableList<Person> getFilteredPersonList() {
@@ -246,7 +246,7 @@ public class ModelManager implements Model {
 
     /**
      * Returns an unmodifiable view of the list of {@code Student} backed by the internal list of
-     * {@code versionedAddressBook}
+     * {@code versionedProfNus}
      */
     @Override
     public ObservableList<Student> getFilteredTutorList() {
@@ -264,7 +264,7 @@ public class ModelManager implements Model {
 
     /**
      * Returns an unmodifiable view of the list of {@code Module} backed by the internal list of
-     * {@code versionedAddressBook}
+     * {@code versionedProfNus}
      */
     @Override
     public ObservableList<Module> getFilteredModuleList() {

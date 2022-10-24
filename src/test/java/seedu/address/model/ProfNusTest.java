@@ -7,7 +7,7 @@ import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.address.testutil.Assert.assertThrows;
 import static seedu.address.testutil.TypicalPersons.ALICE;
-import static seedu.address.testutil.TypicalPersons.getTypicalAddressBook;
+import static seedu.address.testutil.TypicalPersons.getTypicalProfNus;
 
 import java.util.Arrays;
 import java.util.Collection;
@@ -40,8 +40,8 @@ public class ProfNusTest {
     }
 
     @Test
-    public void resetData_withValidReadOnlyAddressBook_replacesData() {
-        ProfNus newData = getTypicalAddressBook();
+    public void resetData_withValidReadOnlyProfNus_replacesData() {
+        ProfNus newData = getTypicalProfNus();
         profNus.resetData(newData);
         assertEquals(newData, profNus);
     }
@@ -52,7 +52,7 @@ public class ProfNusTest {
         Person editedAlice = new PersonBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
                 .build();
         List<Person> newPersons = Arrays.asList(ALICE, editedAlice);
-        AddressBookStub newData = new AddressBookStub(newPersons);
+        ProfNusStub newData = new ProfNusStub(newPersons);
 
         assertThrows(DuplicatePersonException.class, () -> profNus.resetData(newData));
     }
@@ -63,18 +63,18 @@ public class ProfNusTest {
     }
 
     @Test
-    public void hasPerson_personNotInAddressBook_returnsFalse() {
+    public void hasPerson_personNotInProfNus_returnsFalse() {
         assertFalse(profNus.hasPerson(ALICE));
     }
 
     @Test
-    public void hasPerson_personInAddressBook_returnsTrue() {
+    public void hasPerson_personInProfNus_returnsTrue() {
         profNus.addPerson(ALICE);
         assertTrue(profNus.hasPerson(ALICE));
     }
 
     @Test
-    public void hasPerson_personWithSameIdentityFieldsInAddressBook_returnsTrue() {
+    public void hasPerson_personWithSameIdentityFieldsInProfNus_returnsTrue() {
         profNus.addPerson(ALICE);
         Person editedAlice = new PersonBuilder(ALICE).withAddress(VALID_ADDRESS_BOB).withTags(VALID_TAG_HUSBAND)
                 .build();
@@ -87,14 +87,14 @@ public class ProfNusTest {
     }
 
     /**
-     * A stub ReadOnlyAddressBook whose persons list can violate interface constraints.
+     * A stub ReadOnlyProfNus whose persons list can violate interface constraints.
      */
-    private static class AddressBookStub implements ReadOnlyAddressBook {
+    private static class ProfNusStub implements ReadOnlyProfNus {
         private final ObservableList<Person> persons = FXCollections.observableArrayList();
         private final ObservableList<Module> modules = FXCollections.observableArrayList();
         private final ObservableList<Student> tutors = FXCollections.observableArrayList();
 
-        AddressBookStub(Collection<Person> persons) {
+        ProfNusStub(Collection<Person> persons) {
             this.persons.setAll(persons);
         }
 

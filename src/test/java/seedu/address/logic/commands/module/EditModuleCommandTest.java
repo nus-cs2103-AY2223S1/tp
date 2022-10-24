@@ -16,16 +16,16 @@ import static seedu.address.testutil.TypicalIndexes.INDEX_FIRST_MODULE;
 import static seedu.address.testutil.TypicalIndexes.INDEX_SECOND_MODULE;
 import static seedu.address.testutil.TypicalModuleCodes.CODE_FIRST_MODULE;
 import static seedu.address.testutil.TypicalModuleCodes.CODE_SECOND_MODULE;
-import static seedu.address.testutil.TypicalModules.getTypicalAddressBookWithModules;
+import static seedu.address.testutil.TypicalModules.getTypicalProfNusWithModules;
 
 import org.junit.jupiter.api.Test;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.ClearCommand;
 import seedu.address.logic.commands.module.EditModuleCommand.EditModuleDescriptor;
-import seedu.address.model.ProfNus;
 import seedu.address.model.Model;
 import seedu.address.model.ModelManager;
+import seedu.address.model.ProfNus;
 import seedu.address.model.UserPrefs;
 import seedu.address.model.module.Module;
 import seedu.address.model.module.ModuleCode;
@@ -37,7 +37,7 @@ import seedu.address.testutil.ModuleBuilder;
  */
 public class EditModuleCommandTest {
 
-    private Model model = new ModelManager(getTypicalAddressBookWithModules(), new UserPrefs());
+    private Model model = new ModelManager(getTypicalProfNusWithModules(), new UserPrefs());
 
     @Test
     public void execute_allFieldsSpecifiedUnfilteredList_success() {
@@ -47,7 +47,7 @@ public class EditModuleCommandTest {
 
         String expectedMessage = String.format(EditModuleCommand.MESSAGE_EDIT_MODULE_SUCCESS, editedModule);
 
-        Model expectedModel = new ModelManager(new ProfNus(model.getAddressBook()), new UserPrefs());
+        Model expectedModel = new ModelManager(new ProfNus(model.getProfNus()), new UserPrefs());
         expectedModel.setModule(model.getFilteredModuleList().get(0), editedModule);
 
         assertCommandSuccess(editModuleCommand, model, expectedMessage, expectedModel);
@@ -70,7 +70,7 @@ public class EditModuleCommandTest {
 
         String expectedMessage = String.format(EditModuleCommand.MESSAGE_EDIT_MODULE_SUCCESS, editedModule);
 
-        Model expectedModel = new ModelManager(new ProfNus(model.getAddressBook()), new UserPrefs());
+        Model expectedModel = new ModelManager(new ProfNus(model.getProfNus()), new UserPrefs());
         expectedModel.setModule(lastModule, editedModule);
 
         assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
@@ -83,7 +83,7 @@ public class EditModuleCommandTest {
 
         String expectedMessage = String.format(EditModuleCommand.MESSAGE_EDIT_MODULE_SUCCESS, editedModule);
 
-        Model expectedModel = new ModelManager(new ProfNus(model.getAddressBook()), new UserPrefs());
+        Model expectedModel = new ModelManager(new ProfNus(model.getProfNus()), new UserPrefs());
 
         assertCommandSuccess(editModuleCommand, model, expectedMessage, expectedModel);
     }
@@ -100,7 +100,7 @@ public class EditModuleCommandTest {
 
         String expectedMessage = String.format(EditModuleCommand.MESSAGE_EDIT_MODULE_SUCCESS, editedModule);
 
-        Model expectedModel = new ModelManager(new ProfNus(model.getAddressBook()), new UserPrefs());
+        Model expectedModel = new ModelManager(new ProfNus(model.getProfNus()), new UserPrefs());
         expectedModel.setModule(model.getFilteredModuleList().get(0), editedModule);
 
         assertCommandSuccess(editModuleCommand, model, expectedMessage, expectedModel);
@@ -119,8 +119,8 @@ public class EditModuleCommandTest {
     public void execute_duplicateModuleFilteredList_failure() {
         showModuleWithModuleCode(model, INDEX_FIRST_MODULE);
 
-        // edit module in filtered list into a duplicate in address book
-        Module moduleInList = model.getAddressBook().getModuleList().get(INDEX_SECOND_MODULE.getZeroBased());
+        // edit module in filtered list into a duplicate in profNus
+        Module moduleInList = model.getProfNus().getModuleList().get(INDEX_SECOND_MODULE.getZeroBased());
         EditModuleCommand editModuleCommand = new EditModuleCommand(CODE_FIRST_MODULE,
                 new EditModuleDescriptorBuilder(moduleInList).build());
 
