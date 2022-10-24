@@ -23,6 +23,7 @@ public class ListDeadlineCommand extends ListCommand {
     public CommandResult execute(Model model) {
         requireNonNull(model);
         model.updateFilteredPersonList(predicate);
+        model.updateFilterStatus(predicate.toString());
         return new CommandResult(
                 String.format(Messages.MESSAGE_PERSONS_LISTED_OVERVIEW, model.getFilteredPersonList().size()));
     }

@@ -1,8 +1,5 @@
 package seedu.address.model.task;
 
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
@@ -10,6 +7,9 @@ import java.util.List;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.testutil.PersonBuilder;
+
+import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class TagContainsKeywordsPredicateTest {
     @Test
@@ -70,5 +70,15 @@ public class TagContainsKeywordsPredicateTest {
                 Arrays.asList("tp", "2022-10-07", "CS2103T", "highPriority", "false"));
         assertFalse(predicate.test(new PersonBuilder().withName("tp").withModule("CS2103T")
                 .withDeadline("2022-10-07").withTags("lowPriority").withIsDone(false).build()));
+    }
+
+    @Test
+    public void isString_validInputs_correctResult() {
+        // Zero keyword predicate
+        TagContainsKeywordsPredicate predicate = new TagContainsKeywordsPredicate(Collections.emptyList());
+        assertEquals("Tag(s) containing ''", predicate.toString());
+        // Regular test case
+        predicate = new TagContainsKeywordsPredicate(List.of("highPriority"));
+        assertEquals("Tag(s) containing 'highPriority'", predicate.toString());
     }
 }

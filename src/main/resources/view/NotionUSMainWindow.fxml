@@ -9,7 +9,11 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.layout.HBox?>
 
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.Pane?>
 <fx:root type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1"
          title="NotionUS" minWidth="450" minHeight="600" onCloseRequest="#handleExit">
     <icons>
@@ -25,6 +29,7 @@
             </stylesheets>
 
             <VBox>
+                <HBox styleClass="menu-bar">
                 <MenuBar fx:id="menuBar" VBox.vgrow="NEVER">
                     <Menu mnemonicParsing="false" text="File">
                         <MenuItem mnemonicParsing="false" onAction="#handleExit" text="Exit"/>
@@ -32,11 +37,14 @@
                     <Menu mnemonicParsing="false" text="Help">
                         <MenuItem fx:id="helpMenuItem" mnemonicParsing="false" onAction="#handleHelp" text="Help"/>
                     </Menu>
-                    <Menu mnemonicParsing="false" text="Sorted by: ">
-                        <MenuItem fx:id="sortByDueDateItem" mnemonicParsing="false" text="Due Date"/>
-                    </Menu>
                     <!--          onAction="#handleSortDue"-->
                 </MenuBar>
+                    <HBox fx:id="filterStatusDisplayPlaceholder" styleClass="menu-bar">
+                        <padding>
+                            <Insets top="5" left="-10"/>
+                        </padding>
+                    </HBox>
+                </HBox>
 
                 <VBox fx:id="personList" styleClass="pane-with-border" minWidth="340" prefWidth="340"
                       VBox.vgrow="ALWAYS">

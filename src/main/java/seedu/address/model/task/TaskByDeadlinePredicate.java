@@ -29,4 +29,11 @@ public class TaskByDeadlinePredicate implements Predicate<Task> {
                 && dates.equals(((TaskByDeadlinePredicate) other).dates)); // state check
     }
 
+    @Override
+    public String toString() {
+        return this.dates.size() == 1
+                ? "Tasks due on '" + dates.get(0) + "'"
+                : "Tasks due on ''";
+    }
+
 }

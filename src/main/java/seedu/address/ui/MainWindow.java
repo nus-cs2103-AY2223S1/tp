@@ -8,6 +8,8 @@ import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextInputControl;
 import javafx.scene.input.KeyCombination;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 import seedu.address.commons.core.GuiSettings;
@@ -34,15 +36,15 @@ public class MainWindow extends UiPart<Stage> {
     private TaskListPanel taskListPanel;
     private ResultDisplay resultDisplay;
     private HelpWindow helpWindow;
+    private FilterStatusDisplay filterStatusDisplay;
 
     @FXML
     private StackPane commandBoxPlaceholder;
 
     @FXML
     private MenuItem helpMenuItem;
-
     @FXML
-    private MenuItem sortByDueDateItem;
+    private HBox filterStatusDisplayPlaceholder;
 
     @FXML
     private StackPane taskListPanelPlaceholder;
@@ -112,6 +114,9 @@ public class MainWindow extends UiPart<Stage> {
      * Fills up all the placeholders of this window.
      */
     void fillInnerParts() {
+        filterStatusDisplay = new FilterStatusDisplay();
+        filterStatusDisplayPlaceholder.getChildren().add(filterStatusDisplay.getRoot());
+
         taskListPanel = new TaskListPanel(logic.getFilteredPersonList());
         taskListPanelPlaceholder.getChildren().add(taskListPanel.getRoot());
 
@@ -179,6 +184,7 @@ public class MainWindow extends UiPart<Stage> {
             CommandResult commandResult = logic.execute(commandText);
             logger.info("Result: " + commandResult.getFeedbackToUser());
             resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
+            filterStatusDisplay.setFilterStatus("Current View: " + logic.getFilterStatus());
 
             if (commandResult.isShowHelp()) {
                 handleHelp();

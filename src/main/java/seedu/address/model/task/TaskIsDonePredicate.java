@@ -29,4 +29,12 @@ public class TaskIsDonePredicate implements Predicate<Task> {
                 && isDone.equals(((TaskIsDonePredicate) other).isDone)); // state check
     }
 
+    @Override
+    public String toString() {
+        if (isDone.size() == 1) {
+            return isDone.get(0).equals("true") ? "Marked Tasks" : "Unmarked Tasks";
+        } else {
+            return "All tasks";
+        }
+    }
 }

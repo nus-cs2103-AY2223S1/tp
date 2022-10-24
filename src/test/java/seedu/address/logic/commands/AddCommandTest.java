@@ -147,6 +147,18 @@ public class AddCommandTest {
         public void updateFilteredPersonList(Predicate<Task> predicate) {
             throw new AssertionError("This method should not be called.");
         }
+        @Override
+        public String getFilterStatus() {
+            throw new AssertionError("This method should not be called.");
+        }
+        @Override
+        public void updateFilterStatus(String filter) {
+            throw new AssertionError("This method should not be called.");
+        }
+        @Override
+        public void updateFilterStatus(String filter, boolean isNewFilterSet) {
+            throw new AssertionError("This method should not be called.");
+        }
     }
 
     /**

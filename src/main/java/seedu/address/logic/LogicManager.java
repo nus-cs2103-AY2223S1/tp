@@ -65,6 +65,11 @@ public class LogicManager implements Logic {
     }
 
     @Override
+    public String getFilterStatus() {
+        return model.getFilterStatus();
+    }
+
+    @Override
     public Path getAddressBookFilePath() {
         return model.getAddressBookFilePath();
     }

@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.HBox?>
+<HBox fx:id="placeHolder" xmlns="http://javafx.com/javafx/8"
+      xmlns:fx="http://javafx.com/fxml/1" styleClass="filterStatusDisplay">
+    <Label fx:id="filterStatusDisplay" text="Current View: No Filter" styleClass="filterLabel"/>
+</HBox>

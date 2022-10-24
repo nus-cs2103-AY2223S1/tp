@@ -1,13 +1,14 @@
 package seedu.address.model.task;
 
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-
+import java.util.Collections;
 import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
 import seedu.address.testutil.PersonBuilder;
+
+import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class TaskIsDonePredicateTest {
     @Test
@@ -43,5 +44,18 @@ public class TaskIsDonePredicateTest {
         TaskIsDonePredicate predicate = new TaskIsDonePredicate(List.of("false"));
         assertFalse(predicate.test(new PersonBuilder().withIsDone(true).build()));
 
+    }
+
+    @Test
+    public void isString_validInputs_correctResult() {
+        // Zero keyword predicate
+        TaskIsDonePredicate predicate = new TaskIsDonePredicate(Collections.emptyList());
+        assertEquals("All tasks", predicate.toString());
+        // Regular test case for marked tasks
+        predicate = new TaskIsDonePredicate(List.of("true"));
+        assertEquals("Marked Tasks", predicate.toString());
+        // Regular test case for unmarked tasks
+        predicate = new TaskIsDonePredicate(List.of("false"));
+        assertEquals("Unmarked Tasks", predicate.toString());
     }
 }

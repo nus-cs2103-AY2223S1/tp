@@ -18,7 +18,7 @@ public class NameContainsKeywordsPredicate implements Predicate<Task> {
     @Override
     public boolean test(Task task) {
         return keywords.stream()
-                .anyMatch(keyword -> StringUtil.containsWordIgnoreCase(task.getName().fullName, keyword));
+                .anyMatch(keyword -> StringUtil.containsIgnoreCase(task.getName().fullName, keyword));
     }
 
     @Override
@@ -26,6 +26,15 @@ public class NameContainsKeywordsPredicate implements Predicate<Task> {
         return other == this // short circuit if same object
                 || (other instanceof NameContainsKeywordsPredicate // instanceof handles nulls
                 && keywords.equals(((NameContainsKeywordsPredicate) other).keywords)); // state check
+    }
+
+    @Override
+    public String toString() {
+        if (this.keywords.size() != 0) {
+            return "Names containing " + this.keywords;
+        } else {
+            return "Names containing ''";
+        }
     }
 
 }

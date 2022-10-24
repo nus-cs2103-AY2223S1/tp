@@ -1,8 +1,5 @@
 package seedu.address.model.task;
 
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
@@ -10,6 +7,9 @@ import java.util.List;
 import org.junit.jupiter.api.Test;
 
 import seedu.address.testutil.PersonBuilder;
+
+import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class TaskByDeadlinePredicateTest {
     @Test
@@ -76,5 +76,15 @@ public class TaskByDeadlinePredicateTest {
         predicate = new TaskByDeadlinePredicate(Arrays.asList("tp", "2022-10-07", "CS2103T", "highPriority", "false"));
         assertFalse(predicate.test(new PersonBuilder().withName("tp").withModule("CS2103T")
                 .withDeadline("2022-10-05").withTags("highPriority").withIsDone(false).build()));
+    }
+
+    @Test
+    public void isString_validInputs_correctResult() {
+        // Zero keyword predicate
+        TaskByDeadlinePredicate predicate = new TaskByDeadlinePredicate(Collections.emptyList());
+        assertEquals("Tasks due on ''", predicate.toString());
+        // Regular test case
+        predicate = new TaskByDeadlinePredicate(List.of("2022-10-07"));
+        assertEquals("Tasks due on '2022-10-07'", predicate.toString());
     }
 }

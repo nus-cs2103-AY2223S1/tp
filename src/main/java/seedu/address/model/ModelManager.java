@@ -22,6 +22,7 @@ public class ModelManager implements Model {
     private final AddressBook addressBook;
     private final UserPrefs userPrefs;
     private final FilteredList<Task> filteredTasks;
+    private String filterStatus = "";
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
@@ -126,6 +127,30 @@ public class ModelManager implements Model {
     public void updateFilteredPersonList(Predicate<Task> predicate) {
         requireNonNull(predicate);
         filteredTasks.setPredicate(predicate);
+    }
+    @Override
+    public void updateFilterStatus(String filter) {
+        requireNonNull(filter);
+        if (this.filterStatus.equals("Showing all tasks")) {
+            this.filterStatus = filter;
+        } else {
+            this.filterStatus += ", " + filter;
+        }
+    }
+
+    @Override
+    public void updateFilterStatus(String filter, boolean isNewFilterSet) {
+        requireNonNull(filter);
+        if (isNewFilterSet) {
+            this.filterStatus = filter;
+        } else {
+            this.filterStatus += ", " + filter;
+        }
+    }
+
+    @Override
+    public String getFilterStatus() {
+        return this.filterStatus;
     }
 
     @Override
