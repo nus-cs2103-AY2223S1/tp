@@ -45,7 +45,7 @@ public class UidList implements Iterable<Uid> {
         internalList.add(toAdd);
     }
     /**
-     * Removes the equivalent person from the list.
+     * Removes the person associated with the given {@code Uid toRemove} from the list.
      * The person must exist in the list.
      */
     public void remove(Uid toRemove) {
