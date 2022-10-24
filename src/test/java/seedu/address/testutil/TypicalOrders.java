@@ -44,7 +44,7 @@ public class TypicalOrders {
     private TypicalOrders() {}
 
     /**
-     * Returns an {@code AddressBook} with all the typical pets.
+     * Returns an {@code AddressBook} with all the typical orders.
      */
     public static AddressBook getTypicalOrdersAddressBook() {
         AddressBook ab = new AddressBook();
