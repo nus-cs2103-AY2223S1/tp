@@ -20,6 +20,12 @@ public class ModuleCard extends UiPart<Region> {
     private Label moduleCode;
 
     @FXML
+    private Label moduleName;
+
+    @FXML
+    private Label moduleCredit;
+
+    @FXML
     private ProgressBar percentageCompleted;
 
     @FXML
@@ -36,6 +42,8 @@ public class ModuleCard extends UiPart<Region> {
         super(FXML);
         id.setText(position + ". ");
         moduleCode.setText(module.getModuleCode().moduleCode);
+        moduleName.setText("Name: " + module.getModuleName().moduleName);
+        moduleCredit.setText("Module Credit: " + module.getModuleCredit().moduleCredit);
 
         if (!module.hasTasks()) {
             percentageCompleted.setPrefWidth(0);
