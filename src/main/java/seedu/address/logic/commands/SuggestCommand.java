@@ -21,8 +21,8 @@ public class SuggestCommand extends Command {
             + "Provide keywords, and they will be matched against all attributes "
             + "(Minecraft username, social handles etc.) by checking if the attributes "
             + "contain the given keywords. All keywords must be matched.";
-    public static final String PARAMETER = "[" + PREFIX_KEYWORD + "KEYWORD] "
-            + "[" + PREFIX_DAY_TIME_OF_WEEK + "DAY TIME OF WEEK] "
+    public static final String PARAMETER =
+            "[" + PREFIX_DAY_TIME_OF_WEEK + "DAY TIME OF WEEK] "
             + "[" + PREFIX_KEYWORD + "KEYWORD]\n"
             + "All day time of week must come before all keywords";
     public static final String EXAMPLE = COMMAND_WORD + " "
