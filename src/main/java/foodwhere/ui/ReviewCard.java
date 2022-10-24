@@ -41,6 +41,8 @@ public class ReviewCard extends UiPart<Region> {
     @FXML
     private Label id;
     @FXML
+    private Label address;
+    @FXML
     private Label date;
     @FXML
     private Label content;
@@ -60,6 +62,7 @@ public class ReviewCard extends UiPart<Region> {
         super(FXML);
         this.review = review;
         id.setText(displayedIndex + ". ");
+        address.setText(review.getAddress().value);
         name.setText(review.getName().fullName);
         date.setText(review.getDate().value);
         content.setText(review.getContent().value);
@@ -73,7 +76,7 @@ public class ReviewCard extends UiPart<Region> {
                     .collect(Collectors.joining(", "));
 
             tags.setText(assigneesNames);
-            tagsLabel.setText("Tag:");
+            tagsLabel.setText("Tags:");
         } else {
             removeRow(gridPane, GridPane.getRowIndex(tagsLabel));
         }

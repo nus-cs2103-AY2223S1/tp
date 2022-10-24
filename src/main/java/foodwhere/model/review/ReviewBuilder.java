@@ -3,9 +3,9 @@ package foodwhere.model.review;
 import java.util.HashSet;
 import java.util.Set;
 
+import foodwhere.model.commons.Address;
 import foodwhere.model.commons.Name;
 import foodwhere.model.commons.Tag;
-import foodwhere.model.stall.Address;
 import foodwhere.model.util.SampleDataUtil;
 
 /**

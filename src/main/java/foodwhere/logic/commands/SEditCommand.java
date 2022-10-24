@@ -16,11 +16,11 @@ import foodwhere.commons.util.CollectionUtil;
 import foodwhere.logic.commands.exceptions.CommandException;
 import foodwhere.logic.parser.CliSyntax;
 import foodwhere.model.Model;
+import foodwhere.model.commons.Address;
 import foodwhere.model.commons.Name;
 import foodwhere.model.commons.Tag;
 import foodwhere.model.review.Review;
 import foodwhere.model.review.ReviewBuilder;
-import foodwhere.model.stall.Address;
 import foodwhere.model.stall.Stall;
 
 /**

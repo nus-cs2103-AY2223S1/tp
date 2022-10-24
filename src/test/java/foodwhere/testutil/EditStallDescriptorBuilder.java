@@ -5,9 +5,9 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import foodwhere.logic.commands.SEditCommand;
+import foodwhere.model.commons.Address;
 import foodwhere.model.commons.Name;
 import foodwhere.model.commons.Tag;
-import foodwhere.model.stall.Address;
 import foodwhere.model.stall.Stall;
 
 /**
