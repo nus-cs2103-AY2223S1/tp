@@ -7,6 +7,7 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
+import java.time.format.ResolverStyle;
 import java.util.HashSet;
 import java.util.LinkedHashSet;
 import java.util.Optional;
@@ -110,12 +111,18 @@ public class DateTime {
         } else {
             formatter += "M/";
         }
-        formatter += "yyyy";
+        formatter += "uuuu";
         if (year == null) {
-            return LocalDate.parse(day + "/" + month + "/" + LocalDate.now().getYear(),
-                    DateTimeFormatter.ofPattern(formatter));
+            year = String.valueOf(LocalDate.now().getYear());
         }
-        return LocalDate.parse(day + "/" + month + "/" + year, DateTimeFormatter.ofPattern(formatter));
+        if (year.equals("0000")) {
+            // do not parse 0000
+            throw new DateTimeParseException("0000 is not a valid year!", day + month + year,
+                    day.length() + month.length());
+        }
+
+        return LocalDate.parse(day + "/" + month + "/" + year,
+                DateTimeFormatter.ofPattern(formatter).withResolverStyle(ResolverStyle.STRICT));
     }
 
     /**

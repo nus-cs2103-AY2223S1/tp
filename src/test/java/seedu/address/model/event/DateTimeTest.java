@@ -52,8 +52,8 @@ public class DateTimeTest {
         assertEquals(LocalDate.parse("2000-01-12"), DateTime.parseDate("12 1 2000"));
 
         // parses february correctly
-        assertEquals(LocalDate.parse("2022-02-28"), DateTime.parseDate("31/2/2022"));
-        assertEquals(LocalDate.parse("2020-02-29"), DateTime.parseDate("31/2/2020"));
+        assertEquals(LocalDate.parse("2022-02-28"), DateTime.parseDate("28/2/2022"));
+        assertEquals(LocalDate.parse("2020-02-29"), DateTime.parseDate("29/2/2020"));
 
         // parses letters correctly
         assertEquals(LocalDate.parse("2022-10-10"), DateTime.parseDate("10 oct 2022"));
@@ -63,6 +63,11 @@ public class DateTimeTest {
         String year = String.valueOf(LocalDate.now().getYear());
         assertEquals(LocalDate.parse(year + "-10-10"), DateTime.parseDate("10 oCt"));
         assertEquals(LocalDate.parse(year + "-07-04"), DateTime.parseDate("4/7"));
+
+        // valid years
+        assertEquals(LocalDate.parse("0001-10-01"), DateTime.parseDate("01 october 0001"));
+        assertEquals(LocalDate.parse("9999-10-01"), DateTime.parseDate("01 october 9999"));
+
     }
 
     @Test
@@ -76,6 +81,11 @@ public class DateTimeTest {
         // zeroes
         assertThrows(DateTimeParseException.class, () -> DateTime.parseDate("00 october 2022"));
         assertThrows(DateTimeParseException.class, () -> DateTime.parseDate("01 00 2022"));
+
+        // invalid date do not parse
+        assertThrows(DateTimeParseException.class, () -> DateTime.parseDate("31 february 2022"));
+        assertThrows(DateTimeParseException.class, () -> DateTime.parseDate("30 february 2020"));
+
         assertThrows(DateTimeParseException.class, () -> DateTime.parseDate("01 october 0000"));
     }
 
