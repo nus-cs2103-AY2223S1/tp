@@ -46,7 +46,6 @@ public class Person {
 
     /**
      * Every field must be present and not null.
-     * Gender field is added at the end of each method.
      */
     public Person(Name name, Phone phone, Email email, DateOfBirth dob, Address address, Set<Tag> tags, Uid uid) {
         requireAllNonNull(name, phone, email, address, tags);

@@ -71,6 +71,13 @@ public class Event {
         return this.uids;
     }
 
+    /**
+     * Returns true if the person is tagged to the event.
+     */
+    public boolean containsPerson(Person person) {
+        return uids.contains(person.getUid());
+    }
+
     @Override
     public boolean equals(Object other) {
         if (other == this) {
@@ -103,8 +110,4 @@ public class Event {
 
         return builder.toString();
     }
-    public boolean containsPerson(Person person) {
-        return uids.contains(person.getUid());
-    }
-
 }

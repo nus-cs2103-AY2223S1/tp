@@ -6,6 +6,7 @@ import static seedu.address.commons.core.Messages.MESSAGE_INVALID_PERSON_DISPLAY
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PERSONS;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_EVENTS;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import seedu.address.commons.core.index.Index;
@@ -55,7 +56,7 @@ public class TagEventCommand extends Command {
         }
         Event eventToTag = lastShownEventList.get(eventIndex.getZeroBased());
         UidList uids = eventToTag.getUids();
-        String personNames = "";
+        List<String> personNamesTagged = new ArrayList<>();
         // loop through personIndexes, raise exceptions if any (invalid index or duplicated person)
         for (Index personIndex : personIndexes) {
             if (personIndex.getZeroBased() >= lastShownPersonList.size()) { // index is invalid
@@ -69,16 +70,15 @@ public class TagEventCommand extends Command {
         }
         for (Index personIndex : personIndexes) {
             Person person = lastShownPersonList.get(personIndex.getZeroBased());
-            personNames += String.format("%s, ", person.getName());
+            personNamesTagged.add(person.getName().toString());
             uids.add(person.getUid());
         }
         // create editedEvent, set event, update event list
         Event taggedEvent = new Event(eventToTag, uids);
         model.setEvent(eventToTag, taggedEvent);
-        model.updateFilteredEventList(PREDICATE_SHOW_ALL_EVENTS);
+        // model.updateFilteredEventList(PREDICATE_SHOW_ALL_EVENTS);
         model.updateEventPersonReference();
-        personNames = personNames.substring(0, personNames.length() - 2);
-
-        return new CommandResult(String.format(MESSAGE_TAG_EVENT_SUCCESS, personNames, taggedEvent.getEventTitle()));
+        return new CommandResult(String.format(MESSAGE_TAG_EVENT_SUCCESS, String.join(", ", personNamesTagged),
+                taggedEvent.getEventTitle()));
     }
 }
