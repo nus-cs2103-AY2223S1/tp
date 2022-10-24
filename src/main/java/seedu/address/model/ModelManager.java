@@ -155,6 +155,11 @@ public class ModelManager implements Model {
         return addressBook.getTagMapping();
     }
 
+    @Override
+    public boolean notebookContainsTag(Tag tag) {
+        return addressBook.notebookContainsTag(tag);
+    }
+
     //=========== Filtered Person List Accessors =============================================================
 
     /**

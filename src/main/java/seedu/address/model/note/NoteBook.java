@@ -10,6 +10,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.address.model.note.exceptions.DuplicateNoteException;
 import seedu.address.model.note.exceptions.NoteNotFoundException;
+import seedu.address.model.tag.Tag;
 
 /**
  * A list of notes enforces uniqueness between its elements and does not allow nulls.
@@ -34,6 +35,14 @@ public class NoteBook implements Iterable<Note> {
     public boolean contains(Note toCheck) {
         requireNonNull(toCheck);
         return internalList.stream().anyMatch(toCheck::isSameNote);
+    }
+
+    /**
+     * Returns true if at least one Note in the NoteBook contains the given tag.
+     */
+    public boolean containsTag(Tag tag) {
+        requireNonNull(tag);
+        return internalList.stream().anyMatch(note -> note.getTags().contains(tag));
     }
 
     /**

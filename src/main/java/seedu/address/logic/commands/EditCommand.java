@@ -86,7 +86,7 @@ public class EditCommand extends Command {
 
         personToEdit.getTags().forEach(tag -> {
             tag.removePerson(personToEdit);
-            if (tag.isPersonListEmpty()) {
+            if (tag.isPersonListEmpty() && !model.notebookContainsTag(tag)) {
                 model.removeTag(tag);
             }
         });

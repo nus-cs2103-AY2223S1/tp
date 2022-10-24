@@ -76,7 +76,7 @@ public class EditNoteCommand extends Command {
 
         // Remove no longer used tags
         noteToEdit.getTags().forEach(tag -> {
-            if (!editedNote.getTags().contains(tag) && tag.isPersonListEmpty()) {
+            if (tag.isPersonListEmpty() && !model.notebookContainsTag(tag)) {
                 model.removeTag(tag);
             }
         });
