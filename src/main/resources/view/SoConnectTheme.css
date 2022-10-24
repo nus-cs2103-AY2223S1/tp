@@ -50,7 +50,10 @@ For example, attribute phone number, tag, priority, etc. get this default stylin
     -fx-max-height: 0;
 }
 
-/* This is default styling for table, used in listing contacts and todo information. */
+/**
+ This is default styling for table, used in listing contacts and todo information, row by row.
+ For example, one contact consists of 5 rows, since there are name, phone, tag, etc.
+*/
 .table-view {
     -fx-base: transparent;
     -fx-control-inner-background: transparent;
@@ -88,21 +91,27 @@ For example, attribute phone number, tag, priority, etc. get this default stylin
     -fx-background-color: -fx-focus-color;
 }
 
+/* This is the styling for two split container for Contact and Todo. */
 .split-pane:horizontal .split-pane-divider {
-    -fx-background-color: derive(#3b2c72, 20%);
+    -fx-background-color: transparent;
     -fx-border-color: transparent transparent transparent transparent;
 }
 
 .split-pane {
     -fx-border-radius: 1;
     -fx-border-width: 1;
-    -fx-background-color: derive(#3b2c72, 20%);
+    -fx-background-color: transparent;
 }
 
+/**
+This is the styling for each list group in Contact and Todo.
+Contrast this with table-view. One list (contact) consists of 5 rows in table view.
+Equivalent to grouping several rows into one block.
+ */
 .list-view {
     -fx-background-insets: 0;
     -fx-padding: 0;
-    -fx-background-color: #3b2c72;
+    -fx-background-color: transparent;
 }
 
 .list-cell {
@@ -111,6 +120,7 @@ For example, attribute phone number, tag, priority, etc. get this default stylin
     -fx-padding: 0 0 0 0;
 }
 
+/* Handles styling of even, odd and selected block in Contact. */
 .list-cell:filled:even #cardPane {
     -fx-background-color: #341671;
 }
@@ -125,6 +135,7 @@ For example, attribute phone number, tag, priority, etc. get this default stylin
     -fx-border-width: 1;
 }
 
+/* Handles styling of even, odd and selected block in Today. */
 .list-cell:filled:even #todoCardPane {
     -fx-background-color: #161C71;
 }
