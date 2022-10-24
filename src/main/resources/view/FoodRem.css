@@ -103,3 +103,17 @@
   -fx-font-family: "system-ui";
   -fx-font-weight: bold; // TODO
 }
+
+/* ============================ *
+ * ItemCard                     *
+ * ============================ */
+.item-listview-tag {
+  -fx-font-size: 8pt;
+  -fx-background-color: #f3d3b5;
+  -fx-background-radius: 4;
+  -fx-label-padding: 2 3 2 3;
+}
+
+.item-listview-data {
+  -fx-font-size: 9pt;
+}

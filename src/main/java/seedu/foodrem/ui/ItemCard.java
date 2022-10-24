@@ -3,12 +3,14 @@ package seedu.foodrem.ui;
 import java.util.Comparator;
 
 import javafx.fxml.FXML;
+import javafx.scene.Node;
 import javafx.scene.control.Label;
-import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
+import javafx.scene.text.TextAlignment;
 import seedu.foodrem.model.item.Item;
 import seedu.foodrem.model.tag.Tag;
+import seedu.foodrem.views.ItemView;
 
 /**
  * A UI component that displays information of a {@code Item}.
@@ -24,13 +26,12 @@ public class ItemCard extends UiPart<Region> {
 
     public final Item item;
 
-    @FXML private HBox cardPane;
     @FXML private Label name;
     @FXML private Label id;
-    @FXML private Label quantityAndUnit;
+    @FXML private Label quantity;
     @FXML private Label bought;
-    @FXML private Label expiry;
-    @FXML private FlowPane tags;
+    @FXML private Label expires;
+    @FXML private HBox tags;
 
     /**
      * Creates a {@code ItemCode} with the given {@link Item} and index to display.
@@ -38,17 +39,22 @@ public class ItemCard extends UiPart<Region> {
     public ItemCard(Item item, int displayedIndex) {
         super("ItemListCard.fxml");
         this.item = item;
-        id.setText(displayedIndex + ". ");
-        name.setText(String.valueOf(item.getName()));
-        quantityAndUnit.setText(item.getQuantity() + " " + item.getUnit());
-        bought.setText(String.format("(Bought Date: %s)",
-                String.valueOf(item.getBoughtDate()).isBlank() ? "Not Set" : item.getBoughtDate()));
-        expiry.setText(String.format("(Expiry Date: %s)",
-                String.valueOf(item.getExpiryDate()).isBlank() ? "Not Set" : item.getExpiryDate()));
-        item.getTagSet().stream()
-                .sorted(Comparator.comparing(Tag::getName))
-                .forEach(tag -> tags.getChildren().add(new Label(tag.getName())));
+        id.setText(String.valueOf(displayedIndex) + ".");
+        name.setText(item.getName().toString());
+        bought.setText(String.format("Bought: %s", ItemView.buildBoughtDateStringFrom(item)));
+        expires.setText(String.format("Expires: %s", ItemView.buildExpiryDateStringFrom(item)));
 
+        quantity.setText(ItemView.buildItemQuantityAndUnitStringFrom(item));
+        quantity.setTextAlignment(TextAlignment.RIGHT);
+
+        item.getTagSet().stream().sorted(Comparator.comparing(Tag::getName))
+                .forEach(tag -> tags.getChildren().add(buildTagNodeFrom(tag.getName())));
+    }
+
+    private static Node buildTagNodeFrom(String tagName) {
+        final Label label = new Label(tagName);
+        label.getStyleClass().add("item-listview-tag");
+        return label;
     }
 
     @Override
