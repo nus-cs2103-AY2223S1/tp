@@ -99,7 +99,7 @@ public class AddCommandParserTest {
 
         // multiple addresses - last address accepted
         PersonBuilder.setEmployeeId(BOB.getEmployeeId().value); // set employee id to Bob's id
-        assertParseSuccess(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + POSITION_DESC_BOB 
+        assertParseSuccess(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + POSITION_DESC_BOB
                 + DEPARTMENT_DESC_BOB + ADDRESS_DESC_AMY + ADDRESS_DESC_BOB + TAG_DESC_FRIEND,
                 new AddCommand(expectedPerson));
 
@@ -170,9 +170,9 @@ public class AddCommandParserTest {
                 Position.MESSAGE_CONSTRAINTS);
 
         // invalid department
-        assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + INVALID_POSITION_DESC
+        assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + POSITION_DESC_BOB
                 + INVALID_DEPARTMENT_DESC + ADDRESS_DESC_BOB + TAG_DESC_HUSBAND + TAG_DESC_FRIEND,
-                Position.MESSAGE_CONSTRAINTS);
+                Department.MESSAGE_CONSTRAINTS);
 
         // invalid address
         assertParseFailure(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + POSITION_DESC_BOB

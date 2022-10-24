@@ -15,7 +15,6 @@ import static coydir.logic.commands.CommandTestUtil.INVALID_PHONE_DESC;
 import static coydir.logic.commands.CommandTestUtil.INVALID_POSITION_DESC;
 import static coydir.logic.commands.CommandTestUtil.INVALID_TAG_DESC;
 import static coydir.logic.commands.CommandTestUtil.NAME_DESC_AMY;
-import static coydir.logic.commands.CommandTestUtil.NAME_DESC_BOB;
 import static coydir.logic.commands.CommandTestUtil.PHONE_DESC_AMY;
 import static coydir.logic.commands.CommandTestUtil.PHONE_DESC_BOB;
 import static coydir.logic.commands.CommandTestUtil.POSITION_DESC_AMY;

@@ -9,7 +9,7 @@ import static java.util.Objects.requireNonNull;
  */
 public class Department {
 
-    private static final String[] VALID_DEPARTMENTS = {
+    public static final String[] VALID_DEPARTMENTS = {
         "Administration",
         "Board of Directors",
         "Customer Service",
@@ -28,11 +28,11 @@ public class Department {
         "Technology"
         };
 
-    private static final String NULL_DEPARTMENT = "N/A";
-
     public static final String MESSAGE_CONSTRAINTS =
             "Input for department (case-insensitive) is invalid if it is not in this list: \n"
             + Department.listValidDepartments();
+
+    private static final String NULL_DEPARTMENT = "N/A";
 
     public final String value;
 
