@@ -45,7 +45,7 @@ public class ModelManager implements Model {
         filteredEvents = new FilteredList<>(this.addressBook.getAllEventList());
         bucketList = new FilteredList<>(this.addressBook.getEventList());
         selectedTrip = new ObservableTrip();
-        
+
         // Set initial view to Bucket List
         filteredEvents.setPredicate(getBucketPredicate());
     }

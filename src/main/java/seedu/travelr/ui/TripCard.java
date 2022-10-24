@@ -52,7 +52,7 @@ public class TripCard extends UiPart<Region> {
         tripLocation.setText(trip.getLocation().isDefaultValue()
                 ? "No location set"
                 : trip.getLocation().locationName);
-        tripDate.setText(trip.getDateField().isDefaultValue() 
+        tripDate.setText(trip.getDateField().isDefaultValue()
                 ? "No date set"
                 : trip.getDateField().toString());
     }
