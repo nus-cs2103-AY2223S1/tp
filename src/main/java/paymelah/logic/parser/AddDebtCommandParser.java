@@ -8,6 +8,9 @@ import static paymelah.logic.parser.CliSyntax.PREFIX_MONEY;
 import static paymelah.logic.parser.CliSyntax.PREFIX_TIME;
 import static paymelah.model.debt.DebtTime.DEFAULT_TIME;
 
+import java.util.logging.Logger;
+
+import paymelah.commons.core.LogsCenter;
 import paymelah.commons.core.index.Index;
 import paymelah.logic.commands.AddDebtCommand;
 import paymelah.logic.parser.exceptions.ParseException;
@@ -21,6 +24,7 @@ import paymelah.model.debt.Money;
  * Parses input arguments and creates a new AddDebtCommand object
  */
 public class AddDebtCommandParser implements Parser<AddDebtCommand> {
+    private static final Logger logger = LogsCenter.getLogger(AddCommandParser.class);
     /**
      * Parses the given {@code String} of arguments in the context of the AddDebtCommand
      * and returns an AddDebtCommand object for execution.
@@ -33,6 +37,7 @@ public class AddDebtCommandParser implements Parser<AddDebtCommand> {
                 ArgumentTokenizer.tokenize(args, PREFIX_DESCRIPTION, PREFIX_MONEY, PREFIX_DATE, PREFIX_TIME);
 
         if (!ParserUtil.arePrefixesPresent(argMultimap, PREFIX_DESCRIPTION, PREFIX_MONEY)) {
+            logger.warning("Add Debt command missing prefixes: " + PREFIX_DESCRIPTION + " or " + PREFIX_MONEY);
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddDebtCommand.MESSAGE_USAGE));
         }
 

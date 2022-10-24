@@ -41,7 +41,7 @@ public class SplitDebtCommandParser implements Parser<SplitDebtCommand> {
     public SplitDebtCommand parse(String args) throws ParseException {
         requireNonNull(args);
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_DESCRIPTION, PREFIX_MONEY);
+                ArgumentTokenizer.tokenize(args, PREFIX_DESCRIPTION, PREFIX_MONEY, PREFIX_DATE, PREFIX_TIME);
 
         if (!ParserUtil.arePrefixesPresent(argMultimap, PREFIX_DESCRIPTION, PREFIX_MONEY)) {
             logger.warning("Split Debt command missing prefixes: " + PREFIX_DESCRIPTION + " or " + PREFIX_MONEY);
@@ -70,7 +70,6 @@ public class SplitDebtCommandParser implements Parser<SplitDebtCommand> {
 
         Description description = ParserUtil.parseDescription(argMultimap.getValue(PREFIX_DESCRIPTION).get());
         Money money = ParserUtil.parseMoney(argMultimap.getValue(PREFIX_MONEY).get());
-
         DebtDate date;
         DebtTime time;
 
