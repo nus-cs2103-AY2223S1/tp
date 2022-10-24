@@ -11,6 +11,7 @@ import seedu.address.logic.commands.event.AddEventCommand;
 import seedu.address.logic.commands.event.DeleteEventCommand;
 import seedu.address.logic.commands.event.EditEventCommand;
 import seedu.address.logic.commands.event.EventCommand;
+import seedu.address.logic.commands.event.FindEventCommand;
 import seedu.address.logic.commands.event.ViewEventsCommand;
 import seedu.address.logic.commands.event.ViewUpcomingEventsCommand;
 import seedu.address.logic.parser.CliSyntax;
@@ -59,6 +60,8 @@ public class EventCommandParser implements Parser<EventCommand> {
             return new DeleteEventCommandParser().parse(args);
         case EditEventCommand.COMMAND_OPTION:
             return new EditEventCommandParser().parse(args);
+        case FindEventCommand.COMMAND_OPTION:
+            return new FindEventCommandParser().parse(args);
         case ViewUpcomingEventsCommand.COMMAND_OPTION:
             return new ViewUpcomingEventsCommandParser().parse(args);
         case ViewEventsCommand.COMMAND_OPTION:
@@ -80,6 +83,8 @@ public class EventCommandParser implements Parser<EventCommand> {
                         DeleteEventCommand.MESSAGE_HELP);
                 put(EventCommand.COMMAND_WORD + " " + CliSyntax.PREFIX_OPTION + EditEventCommand.COMMAND_OPTION,
                         EditEventCommand.MESSAGE_HELP);
+                put(EventCommand.COMMAND_WORD + " " + CliSyntax.PREFIX_OPTION + FindEventCommand.COMMAND_OPTION,
+                        FindEventCommand.MESSAGE_HELP);
                 put(EventCommand.COMMAND_WORD + " " + CliSyntax.PREFIX_OPTION + ViewEventsCommand.COMMAND_OPTION,
                         ViewEventsCommand.MESSAGE_HELP);
                 put(EventCommand.COMMAND_WORD + " " + CliSyntax.PREFIX_OPTION
