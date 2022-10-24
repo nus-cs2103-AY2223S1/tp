@@ -17,6 +17,7 @@ public class ItemWithMessageView {
         container.setSpacing(SPACING_UNIT);
 
         final Label messageView = new Label(itemWithMessage.getMessage());
+        messageView.setWrapText(true);
         final Separator separator = new Separator();
         separator.getStyleClass().add("lined-separator");
         final Node itemView = ItemView.from(itemWithMessage.getItem());
