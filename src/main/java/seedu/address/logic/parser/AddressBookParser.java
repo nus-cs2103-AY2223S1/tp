@@ -79,7 +79,7 @@ public class AddressBookParser {
             return new HelpCommand();
 
         case AddNoteCommand.COMMAND_WORD:
-            return new AddNoteCommandParser().parse(arguments);
+            return new AddNoteCommandParser(model).parse(arguments);
 
         case ListNoteCommand.COMMAND_WORD:
             return new ListNoteCommand();
