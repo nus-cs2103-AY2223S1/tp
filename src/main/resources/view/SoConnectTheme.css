@@ -9,89 +9,65 @@
     background-color: #3b2c72;
 }
 
-/**
-Any instance of label will get this default styling, unless overridden by specific styling in each instance.
-For example, attribute phone number, tag, priority, etc. get this default styling if not specified.
- */
-.label {
-    -fx-font-size: 11pt;
+/* This is the styling of the main deep blue background behind all the containers. */
+.pane-with-border {
+    -fx-background-color: #060959;
+}
+
+/* This is the styling for light purple box that appears after hovering on "File" or "Help". */
+.menu-bar {
+    -fx-background-color: #3b2c72;
+    -fx-selection-bar: #707BE3;
+}
+
+.menu-bar .label {
+    -fx-font-size: 14pt;
     -fx-font-family: "Karla";
     -fx-text-fill: white;
     -fx-opacity: 0.9;
 }
 
-.label-bright {
-    -fx-font-size: 11pt;
-    -fx-font-family: "Karla";
+.menu .left-container {
+    -fx-background-color: #FFF2E7;
+}
+
+/* This is the styling for popup container that appears after clicking "File" or "Help". */
+.context-menu {
+    -fx-background-color: derive(#3b2c72, 50%);
+}
+
+.context-menu .label {
     -fx-text-fill: white;
-    -fx-opacity: 1;
 }
 
-.label-header {
-    -fx-font-size: 32pt;
-    -fx-font-family: "Karla";
+/* This is the styling of "Enter command here..." box. */
+.stack-pane {
+    -fx-background-color: #250081;
+    -fx-background-radius: 10px;
+    -fx-border-color: #94A6FF;
+    -fx-border-width: 2px;
+    -fx-border-radius: 10px;
+}
+
+/*
+ * This is the styling for the result description after entering command.
+ * It is a placeholder for texts like "Unknown command."
+ */
+.result-display {
+    -fx-background-color: transparent;
+    -fx-background-radius: 10px;
+    -fx-border-color: #94A6FF;
+    -fx-border-width: 2px;
+    -fx-border-radius: 10px;
+    -fx-font-size: 13pt;
     -fx-text-fill: white;
-    -fx-opacity: 1;
 }
 
-.text-field {
-    -fx-font-size: 12pt;
-    -fx-font-family: "Karla";
+.result-display .label {
+    -fx-text-fill: #060959 !important;
 }
 
-/* This is styling for tab in switch tab mode. For example, when opening new tab in Chrome. */
-.tab-pane {
-    -fx-padding: 0 0 0 1;
-}
-
-.tab-pane .tab-header-area {
-    -fx-padding: 0 0 0 0;
-    -fx-min-height: 0;
-    -fx-max-height: 0;
-}
-
-/**
- This is default styling for table, used in listing contacts and todo information, row by row.
- For example, one contact consists of 5 rows, since there are name, phone, tag, etc.
-*/
-.table-view {
-    -fx-base: transparent;
-    -fx-control-inner-background: transparent;
-    -fx-background-color: transparent;
-    -fx-table-cell-border-color: transparent;
-    -fx-table-header-border-color: transparent;
-    -fx-padding: 5;
-}
-
-.table-view .column-header-background {
-    -fx-background-color: transparent;
-}
-
-.table-view .column-header, .table-view .filler {
-    -fx-size: 35;
-    -fx-border-width: 0 0 0 0;
-    -fx-background-color: transparent;
-    -fx-border-color:
-        transparent
-        transparent
-        transparent
-        transparent;
-    -fx-border-insets: 0 10 1 0;
-}
-
-.table-view .column-header .label {
-    -fx-font-size: 20pt;
-    -fx-font-family: "Karla";
-    -fx-text-fill: white;
-    -fx-alignment: center-left;
-    -fx-opacity: 1;
-}
-
-.table-view:focused .table-row-cell:filled:focused:selected {
-    -fx-background-color: -fx-focus-color;
-}
-
-/* This is the styling for two split container for Contact and Todo. */
+/* This is the styling for two equally split containers for Contact and Todo. */
 .split-pane:horizontal .split-pane-divider {
     -fx-background-color: transparent;
     -fx-border-color: transparent transparent transparent transparent;
@@ -104,9 +80,9 @@ For example, attribute phone number, tag, priority, etc. get this default stylin
 }
 
 /**
-This is the styling for each list group in Contact and Todo.
-Contrast this with table-view. One list (contact) consists of 5 rows in table view.
-Equivalent to grouping several rows into one block.
+ * This is the styling for each list group in Contact and Todo.
+ * Contrast this with table-view. One list-view (contact) consists of 5 rows in table-view.
+ * Equivalent to grouping several table-views into one list-view.
  */
 .list-view {
     -fx-background-insets: 0;
@@ -150,163 +126,76 @@ Equivalent to grouping several rows into one block.
     -fx-border-width: 1;
 }
 
-.stack-pane {
-    -fx-background-color: #250081;
-    -fx-background-radius: 10px;
-    -fx-border-color: #94A6FF;
-    -fx-border-width: 2px;
-    -fx-border-radius: 10px;
+/**
+ * This is default styling for table, used in listing contacts and todo information, row by row.
+ * For example, one contact consists of 5 rows, since there are name, phone, tag, etc.
+*/
+.table-view {
+    -fx-base: transparent;
+    -fx-control-inner-background: transparent;
+    -fx-background-color: transparent;
+    -fx-table-cell-border-color: transparent;
+    -fx-table-header-border-color: transparent;
+    -fx-padding: 5;
 }
 
-.pane-with-border {
-    -fx-background-color: #060959;
+.table-view .column-header-background {
+    -fx-background-color: transparent;
 }
 
-.status-bar {
-    -fx-background-color: #3b2c72;
+.table-view .column-header, .table-view .filler {
+    -fx-size: 35;
+    -fx-border-width: 0 0 0 0;
+    -fx-background-color: transparent;
+    -fx-border-color:
+            transparent
+            transparent
+            transparent
+            transparent;
+    -fx-border-insets: 0 10 1 0;
 }
 
-.result-display {
-    -fx-background-color: #000181;
-    -fx-background-radius: 10px;
-    -fx-border-color: #94A6FF;
-    -fx-border-width: 2px;
-    -fx-border-radius: 10px;
-    -fx-font-size: 13pt;
+.table-view .column-header .label {
+    -fx-font-size: 20pt;
+    -fx-font-family: "Karla";
     -fx-text-fill: white;
+    -fx-alignment: center-left;
+    -fx-opacity: 1;
 }
 
-.result-display .label {
-    -fx-text-fill: #060959 !important;
+.table-view:focused .table-row-cell:filled:focused:selected {
+    -fx-background-color: -fx-focus-color;
 }
 
-.status-bar .label {
-    -fx-font-family: "Segoe UI Light";
-    -fx-text-fill: white;
-    -fx-padding: 4px;
-    -fx-pref-height: 30px;
-}
-
-.status-bar-with-border {
-    -fx-background-color: #853ffd;
-    -fx-border-color: transparent;
-    -fx-border-width: 0;
-}
-
-.status-bar-with-border .label {
-    -fx-text-fill: white;
-}
-
-.grid-pane {
-    -fx-background-color: derive(#3b2c72, 30%);
-    -fx-border-color: transparent;
-    -fx-border-width: 1px;
-}
-
-.grid-pane .stack-pane {
-    -fx-background-color: #000181;
-}
-
-.context-menu {
-    -fx-background-color: derive(#3b2c72, 50%);
-}
-
-.context-menu .label {
-    -fx-text-fill: white;
-}
-
-.menu-bar {
-    -fx-background-color: #3b2c72;
-    -fx-selection-bar: #707BE3;
-}
-
-.menu-bar .label {
-    -fx-font-size: 14pt;
+/**
+ * Any instance of label will get this default styling, unless overridden by specific styling in each instance.
+ * For example, attribute phone number, tag, priority, etc. get this default styling if not specified.
+ */
+.label {
+    -fx-font-size: 11pt;
     -fx-font-family: "Karla";
     -fx-text-fill: white;
     -fx-opacity: 0.9;
 }
 
-.menu .left-container {
-    -fx-background-color: #FFF2E7;
-}
-
-/*
- * Metro style Push Button
- * Author: Pedro Duque Vieira
- * http://pixelduke.wordpress.com/2012/10/23/jmetro-windows-8-controls-on-java/
- */
-.button {
-    -fx-padding: 5 22 5 22;
-    -fx-border-color: #e2e2e2;
-    -fx-border-width: 2;
-    -fx-background-radius: 0;
-    -fx-background-color: #060959;
-    -fx-font-family: "Segoe UI", Helvetica, Arial, sans-serif;
+.label-bright {
     -fx-font-size: 11pt;
-    -fx-text-fill: #d8d8d8;
-    -fx-background-insets: 0 0 0 0, 0, 1, 2;
-}
-
-.button:hover {
-    -fx-background-color: #3b2c72;
-}
-
-.button:pressed, .button:default:hover:pressed {
-    -fx-background-color: white;
-    -fx-text-fill: #060959;
-}
-
-.button:focused {
-    -fx-border-color: white, white;
-    -fx-border-width: 1, 1;
-    -fx-border-style: solid, segments(1, 1);
-    -fx-border-radius: 0, 0;
-    -fx-border-insets: 1 1 1 1, 0;
-}
-
-.button:disabled, .button:default:disabled {
-    -fx-opacity: 0.4;
-    -fx-background-color: #060959;
+    -fx-font-family: "Karla";
     -fx-text-fill: white;
+    -fx-opacity: 1;
 }
 
-.button:default {
-    -fx-background-color: -fx-focus-color;
-    -fx-text-fill: #ffffff;
-}
-
-.button:default:hover {
-    -fx-background-color: derive(-fx-focus-color, 30%);
-}
-
-.dialog-pane {
-    -fx-background-color: #060959;
-}
-
-.dialog-pane > *.button-bar > *.container {
-    -fx-background-color: #060959;
-}
-
-.dialog-pane > *.label.content {
-    -fx-font-size: 14px;
-    -fx-font-weight: bold;
+.label-header {
+    -fx-font-size: 32pt;
+    -fx-font-family: "Karla";
     -fx-text-fill: white;
+    -fx-opacity: 1;
 }
 
-.dialog-pane:header *.header-panel {
-    -fx-background-color: derive(#060959, 25%);
-}
-
-.dialog-pane:header *.header-panel *.label {
-    -fx-font-size: 18px;
-    -fx-font-style: italic;
-    -fx-fill: white;
-    -fx-text-fill: white;
-}
-
+/* This is the styling for scrolling vertical bar beside Command Result Display, Contact and Todo. */
 .scroll-bar {
     -fx-background-color: #060959;
+    -fx-border-color: transparent;
 }
 
 .scroll-bar .thumb {
@@ -433,4 +322,132 @@ Equivalent to grouping several rows into one block.
     -fx-min-height: -size;
     -fx-max-width: -size;
     -fx-max-height: -size;
+}
+
+/* ADDITION */
+
+/* This is the default styling for all text fields, unless specifically specified. */
+.text-field {
+    -fx-font-size: 12pt;
+    -fx-font-family: "Karla";
+}
+
+/* This is styling for tab in switch tab mode. For example, when opening new tab in Chrome. */
+.tab-pane {
+    -fx-padding: 0 0 0 1;
+}
+
+.tab-pane .tab-header-area {
+    -fx-padding: 0 0 0 0;
+    -fx-min-height: 0;
+    -fx-max-height: 0;
+}
+
+/* This is the styling of status bar. For example, the loading bar. */
+.status-bar {
+    -fx-background-color: #3b2c72;
+}
+
+.status-bar .label {
+    -fx-font-family: "Karla";
+    -fx-text-fill: white;
+    -fx-padding: 4px;
+    -fx-pref-height: 30px;
+}
+
+.status-bar-with-border {
+    -fx-background-color: #853ffd;
+    -fx-border-color: transparent;
+    -fx-border-width: 0;
+}
+
+.status-bar-with-border .label {
+    -fx-text-fill: white;
+}
+
+/* This is the styling of grid containers. For example, sudoku. */
+.grid-pane {
+    -fx-background-color: derive(#3b2c72, 30%);
+    -fx-border-color: transparent;
+    -fx-border-width: 1px;
+}
+
+.grid-pane .stack-pane {
+    -fx-background-color: #000181;
+}
+
+/*
+ * Metro style Push Button.
+ * Author: Pedro Duque Vieira.
+ * http://pixelduke.wordpress.com/2012/10/23/jmetro-windows-8-controls-on-java/.
+ * Used in Copy URL button in Help Window.
+ */
+.button {
+    -fx-padding: 5 22 5 22;
+    -fx-border-color: #e2e2e2;
+    -fx-border-width: 2;
+    -fx-background-radius: 0;
+    -fx-background-color: #060959;
+    -fx-font-family: "Segoe UI", Helvetica, Arial, sans-serif;
+    -fx-font-size: 11pt;
+    -fx-text-fill: #d8d8d8;
+    -fx-background-insets: 0 0 0 0, 0, 1, 2;
+}
+
+.button:hover {
+    -fx-background-color: #3b2c72;
+}
+
+.button:pressed, .button:default:hover:pressed {
+    -fx-background-color: white;
+    -fx-text-fill: #060959;
+}
+
+.button:focused {
+    -fx-border-color: white, white;
+    -fx-border-width: 1, 1;
+    -fx-border-style: solid, segments(1, 1);
+    -fx-border-radius: 0, 0;
+    -fx-border-insets: 1 1 1 1, 0;
+}
+
+.button:disabled, .button:default:disabled {
+    -fx-opacity: 0.4;
+    -fx-background-color: #060959;
+    -fx-text-fill: white;
+}
+
+.button:default {
+    -fx-background-color: -fx-focus-color;
+    -fx-text-fill: #ffffff;
+}
+
+.button:default:hover {
+    -fx-background-color: derive(-fx-focus-color, 30%);
+}
+
+/* This is the styling for containers like popup alert dialog box. */
+.dialog-pane {
+    -fx-background-color: #060959;
+}
+
+.dialog-pane > *.button-bar > *.container {
+    -fx-background-color: #060959;
+}
+
+.dialog-pane > *.label.content {
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+    -fx-text-fill: white;
+}
+
+.dialog-pane:header *.header-panel {
+    -fx-background-color: derive(#060959, 25%);
+}
+
+.dialog-pane:header *.header-panel *.label {
+    -fx-font-size: 18px;
+    -fx-font-style: italic;
+    -fx-fill: white;
+    -fx-text-fill: white;
 }
