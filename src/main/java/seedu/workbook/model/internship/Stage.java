@@ -1,5 +1,7 @@
 package seedu.workbook.model.internship;
 
+import java.util.Arrays;
+
 import static java.util.Objects.requireNonNull;
 import static seedu.workbook.commons.util.AppUtil.checkArgument;
 
@@ -8,6 +10,15 @@ import static seedu.workbook.commons.util.AppUtil.checkArgument;
  * Guarantees: immutable; is valid as declared in {@link #isValidStage(String)}
  */
 public class Stage {
+
+    private static final String[] stageWithTips = {
+            "Application Sent",
+            "Online Assessment",
+            "Technical Interview",
+            "Behavioral Interview",
+            "Phone Interview",
+            "Rejected"
+    };
 
     // CHECKSTYLE.OFF: LineLength
     public static final String MESSAGE_CONSTRAINTS = "Stage should only contain alphanumeric characters and spaces, and it should not be blank";
@@ -37,6 +48,13 @@ public class Stage {
      */
     public static boolean isValidStage(String test) {
         return test.matches(VALIDATION_REGEX);
+    }
+
+    /**
+     * Returns true if a given stage has curated tips.
+     */
+    public static boolean hasTips(String stage) {
+        return Arrays.asList(stageWithTips).contains(stage);
     }
 
     @Override
