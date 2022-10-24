@@ -23,7 +23,14 @@ import seedu.application.commons.core.GuiSettings;
 import seedu.application.model.application.Application;
 import seedu.application.model.application.CompanyContainsKeywordsPredicate;
 import seedu.application.model.application.PositionContainsKeywordsPredicate;
+import seedu.application.model.application.interview.Interview;
+import seedu.application.model.application.interview.InterviewComparator;
+import seedu.application.model.application.interview.InterviewDate;
+import seedu.application.model.application.interview.InterviewTime;
+import seedu.application.model.application.interview.Location;
+import seedu.application.model.application.interview.Round;
 import seedu.application.testutil.ApplicationBookBuilder;
+import seedu.application.testutil.ApplicationBuilder;
 
 public class ModelManagerTest {
 
@@ -115,11 +122,11 @@ public class ModelManagerTest {
 
         modelManager.sortApplicationListByCompany(false);
         applications.sort(Comparator.comparing(Application::getCompany));
-        assertEquals(modelManager.getFilteredApplicationList(), applications);
+        assertEquals(applications, modelManager.getFilteredApplicationList());
 
         modelManager.sortApplicationListByCompany(true);
         applications.sort(Comparator.comparing(Application::getCompany).reversed());
-        assertEquals(modelManager.getFilteredApplicationList(), applications);
+        assertEquals(applications, modelManager.getFilteredApplicationList());
     }
 
     @Test
@@ -136,11 +143,11 @@ public class ModelManagerTest {
 
         modelManager.sortApplicationListByPosition(false);
         applications.sort(Comparator.comparing(Application::getPosition));
-        assertEquals(modelManager.getFilteredApplicationList(), applications);
+        assertEquals(applications, modelManager.getFilteredApplicationList());
 
         modelManager.sortApplicationListByPosition(true);
         applications.sort(Comparator.comparing(Application::getPosition).reversed());
-        assertEquals(modelManager.getFilteredApplicationList(), applications);
+        assertEquals(applications, modelManager.getFilteredApplicationList());
     }
 
     @Test
@@ -157,11 +164,61 @@ public class ModelManagerTest {
 
         modelManager.sortApplicationListByDate(false);
         applications.sort(Comparator.comparing(Application::getDate));
-        assertEquals(modelManager.getFilteredApplicationList(), applications);
+        assertEquals(applications, modelManager.getFilteredApplicationList());
 
         modelManager.sortApplicationListByDate(true);
         applications.sort(Comparator.comparing(Application::getDate).reversed());
-        assertEquals(modelManager.getFilteredApplicationList(), applications);
+        assertEquals(applications, modelManager.getFilteredApplicationList());
+    }
+
+    @Test
+    public void sortApplicationListByInterview_emptyList_success() {
+        ModelManager modelManager = new ModelManager();
+        modelManager.sortApplicationListByInterview(false);
+        modelManager.sortApplicationListByInterview(true);
+    }
+
+    @Test
+    public void sortApplicationListByInterview_nonemptyList_applicationsCorrectOrder() {
+        // TODO: Uncomment after interviews added to typical applications
+        // ApplicationBook applicationBook = getTypicalApplicationBook();
+        // List<Application> typicalApplications = getTypicalApplications();
+        List<Application> allApplications;
+
+        // TODO: Delete temporary code for adding interviews to the typical applications
+        List<Application> typicalApplications = getTypicalApplications();
+        typicalApplications.replaceAll(application ->
+                new ApplicationBuilder(application)
+                        .withInterview(new Interview(
+                                new Round("1"),
+                                new InterviewDate(application.getDate().toCommandString()),
+                                new InterviewTime("0000"),
+                                new Location("Temp location")))
+                        .build());
+        ApplicationBookBuilder applicationBookBuilder = new ApplicationBookBuilder();
+        for (Application application : typicalApplications) {
+            applicationBookBuilder = applicationBookBuilder.withApplication(application);
+        }
+        ApplicationBook applicationBook = applicationBookBuilder.build();
+
+        // Applications with no interview should always sort after those with interviews
+        Application applicationWithNoInterview = new ApplicationBuilder().build();
+        assert !applicationWithNoInterview.hasInterview();
+        applicationBook.addApplication(applicationWithNoInterview);
+
+        ModelManager modelManager = new ModelManager(applicationBook, new UserPrefs());
+
+        modelManager.sortApplicationListByInterview(false);
+        typicalApplications.sort(new InterviewComparator());
+        allApplications = new ArrayList<>(typicalApplications);
+        allApplications.add(applicationWithNoInterview);
+        assertEquals(allApplications, modelManager.getFilteredApplicationList());
+
+        modelManager.sortApplicationListByInterview(true);
+        typicalApplications.sort(new InterviewComparator().reversed());
+        allApplications = new ArrayList<>(typicalApplications);
+        allApplications.add(applicationWithNoInterview);
+        assertEquals(allApplications, modelManager.getFilteredApplicationList());
     }
 
     @Test
