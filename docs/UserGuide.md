@@ -28,14 +28,13 @@ guest management tasks done faster than traditional GUI apps.
 1. Type the command in the command box and press Enter to execute it. e.g. typing **`help`** and pressing Enter will open the help window.<br>
    Some example commands you can try:
 
-<<<<<<< HEAD
-   * **`list`** : Lists all guests.
-
    * **`add`**`n/John Doe p/98765432 e/johnd@example.com rm/05-73 dr/13/09/22 - 15/09/22 ng/3 rq/Extra towels`: Adds a guest named `John Doe` to the guest book.
 
    * **`edit`** `1` `n/Bob rc/no rq/Room Service`: Edits the first guest shown in the current list.
    
    * **`find`** `James` : Finds all the guests where at least one of the fields contains `James` (case insensitive).
+
+   * **`list`** : Lists all guests.
    
    * **`bill`** `2` `b/+99.99`: Adds 99.99 to the bill of the 2nd guest.
 
