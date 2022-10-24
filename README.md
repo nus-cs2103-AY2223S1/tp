@@ -26,22 +26,22 @@ CodeConnect allows you to quickly manage your tasks and contacts through a text 
 Finds tasks from your task list via keywords, or via module.
 
 Format:
-`find /t {task}`, `find /m {module}`
+`find t/ {task}`, `find m/ {module}`
 
 Examples:
-* `find /t homework` returns `Science homework`, `Math homework`
-* `find /m CS1101S` returns `Problem set 4`, `Reading assignment 2`
+* `find t/ homework` returns `Science homework`, `Math homework`
+* `find m/ CS1101S` returns `Problem set 4`, `Reading assignment 2`
 
 ### Adding a task: `add`
 
 Adds a task to the task manager.
 
 Format:
-`add {task_name} /by {deadline} /mod {module_code}`
+`add {task_name} by/{deadline} m/{module_code}`
 
 Examples:
-* `add finish problem set 5 /by Week 6 Sunday /mod CS2040S`
-* `add finish SEP application /by 2359 today`
+* `add finish problem set 5 by/tomorrow 5pm m/CS2040S`
+* `add finish SEP application by/2022-12-25 23:59 m/SEP`
 
 ### Deleting a task: `del`
 
@@ -117,11 +117,11 @@ Examples:
 Find persons in your contacts via keywords, or via module.
 
 Format:
-`findc /n {name}` `findc /m {module}`
+`findc n/{name}` `findc m/{module}`
 
 Examples:
-* `findc /n John` returns `john`, `John Doe`
-* `findc /m CS1231S` returns `Alex Yeoh`, `David Li`
+* `findc n/John` returns `john`, `John Doe`
+* `findc m/CS1231S` returns `Alex Yeoh`, `David Li`
 
 ### Listing contacts: `listc`
 
