@@ -75,17 +75,17 @@ public class PersonCard extends UiPart<Region> {
         if (flowpanes[0] != null) {
             flowpanes[0].getChildren().add(new Label(person.getAddress().value));
             flowpanes[0].getChildren().forEach(label -> label.setStyle(
-                    "-fx-font-size: 12;-fx-font-family: \"Karla\";"));
+                    "-fx-font-size: 12;-fx-font-family: \"Karla\"; -fx-text-fill: #FFDFEA;"));
         }
         if (flowpanes[1] != null) {
             flowpanes[1].getChildren().add(new Label(person.getEmail().value));
             flowpanes[1].getChildren().forEach(label -> label.setStyle(
-                    "-fx-font-size: 12;-fx-font-family: \"Karla\";"));
+                    "-fx-font-size: 12;-fx-font-family: \"Karla\"; -fx-text-fill: #FFDFEA;"));
         }
         if (flowpanes[2] != null) {
             flowpanes[2].getChildren().add(new Label(person.getPhone().value));
             flowpanes[2].getChildren().forEach(label -> label.setStyle(
-                    "-fx-font-size: 12;-fx-font-family: \"Karla\";"));
+                    "-fx-font-size: 12;-fx-font-family: \"Karla\"; -fx-text-fill: #FFDFEA;"));
         }
         if (flowpanes[3] != null) {
             person.getTags().stream()
@@ -93,7 +93,7 @@ public class PersonCard extends UiPart<Region> {
                     .forEach(tag -> flowpanes[3].getChildren().add((new Label(tag.tagName))));
             flowpanes[3].getChildren().forEach(label -> label.setStyle("-fx-background-color: #3e7b91;"
                     + "-fx-font-size: 12;-fx-background-radius: 2;-fx-font-family: \"Karla\";"
-                    + "-fx-border-radius: 2;-fx-padding: 1 3 1 3;"));
+                    + "-fx-border-radius: 2;-fx-padding: 1 3 1 3; -fx-text-fill: #FFDFEA;"));
         }
     }
 
