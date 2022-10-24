@@ -1,5 +1,9 @@
 package seedu.address.testutil;
 
+import java.util.Set;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
+
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.MarkCommand.MarkPersonDescriptor;
 import seedu.address.model.person.Attendance;
@@ -12,10 +16,9 @@ import seedu.address.model.person.Phone;
 import seedu.address.model.person.Session;
 import seedu.address.model.tag.Tag;
 
-import java.util.Set;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
-
+/**
+ * A utility class to help with building MarkPersonDescriptor objects.
+ */
 public class MarkPersonDescriptorBuilder {
 
     private MarkPersonDescriptor descriptor;
