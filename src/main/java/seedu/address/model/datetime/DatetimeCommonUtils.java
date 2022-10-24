@@ -4,6 +4,7 @@ import java.time.DayOfWeek;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 import java.time.format.TextStyle;
 import java.util.Locale;
 import java.util.Objects;
@@ -22,6 +23,8 @@ public class DatetimeCommonUtils {
     public static final DateTimeFormatter DATE_READABLE_FORMATTER = DateTimeFormatter.ofPattern(DATE_READABLE_FORMAT);
     public static final String DATE_MESSAGE_CONSTRAINTS =
             "Date should be in yyyy-MM-dd format, e.g. 2022-01-01";
+    public static final String DATE_MESSAGE_CONSTRAINTS_NONSENSICAL =
+            "Date should be in yyyy-MM-dd format, and it must be valid!";
 
     public static final String TIME_FORMAT = "HH:mm";
     public static final DateTimeFormatter TIME_FORMATTER = DateTimeFormatter.ofPattern(TIME_FORMAT);
@@ -78,6 +81,36 @@ public class DatetimeCommonUtils {
     }
 
     /**
+     * Checks whether the date string is valid.
+     * The strings must be parsable by LocalTime.
+     *
+     * @param dateString Date string
+     * @throws ParseException If the date is invalid.
+     */
+    public static void assertDateValid(String dateString) throws ParseException {
+        try {
+            LocalTime.parse(dateString, DATE_INPUT_FORMATTER);
+        } catch (DateTimeParseException ex) {
+            throw new ParseException(DATE_MESSAGE_CONSTRAINTS);
+        }
+    }
+
+    /**
+     * Checks whether the datetime string is valid.
+     * The strings must be parsable by LocalDateTime.
+     *
+     * @param datetimeString Datetime string
+     * @throws ParseException If the datetime is invalid.
+     */
+    public static void assertDatetimeValid(String datetimeString) throws ParseException {
+        try {
+            LocalTime.parse(datetimeString, DATETIME_INPUT_FORMATTER);
+        } catch (DateTimeParseException ex) {
+            throw new ParseException(DATETIME_MESSAGE_CONSTRAINTS);
+        }
+    }
+
+    /**
      * Checks whether the time range strings are valid.
      * The strings must be parsable by LocalTime, and the start time must not be after end time.
      *
@@ -90,7 +123,7 @@ public class DatetimeCommonUtils {
         try {
             startTime = LocalTime.parse(startTimeString, TIME_FORMATTER);
             endTime = LocalTime.parse(endTimeString, TIME_FORMATTER);
-        } catch (Exception er) {
+        } catch (DateTimeParseException ex) {
             throw new ParseException(TIMERANGE_MESSAGE_CONSTRAINTS_NONSENSICAL);
         }
         if (!endTime.isAfter(startTime)) {
@@ -113,8 +146,8 @@ public class DatetimeCommonUtils {
             throw new ParseException(DATETIME_MESSAGE_CONSTRAINTS);
         }
 
-        LocalDateTime datetime = LocalDateTime.parse(trimmedDatetime, DATETIME_INPUT_FORMATTER);
-        return new Datetime(datetime);
+        assertDatetimeValid(datetimeString);
+        return Datetime.fromFormattedString(datetimeString);
     }
 
     /**
@@ -131,6 +164,7 @@ public class DatetimeCommonUtils {
             throw new ParseException(DATE_MESSAGE_CONSTRAINTS);
         }
 
+        assertDateValid(date);
         String[] times = splitTimeRangeString(timeRange);
         assertTimeRangeValid(times[0], times[1]);
         return DatetimeRange.fromFormattedString(date, times[0], times[1]);
