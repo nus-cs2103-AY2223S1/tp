@@ -31,17 +31,23 @@ public class DateTest {
     @Test
     public void constructor_invalidDate_throwsIllegalArgumentException() {
         String invalidDateEmptyString = "";
+        String invalidDateWhitespaces = " ";
         String invalidDateFormatOne = "5/5/2022";
         String invalidDateFormatTwo = "05/5/2022";
         String invalidDateFormatThree = "5/05/2022";
         String invalidDateFormatFour = "05/05/22";
         String invalidDateFormatFive = "31-04-2022";
+        String invalidDateFormatSix = "2022/02/02";
+        String invalidDateFormatSeven = "20 October 2022";
         assertThrows(IllegalArgumentException.class, () -> new Date(invalidDateEmptyString));
+        assertThrows(IllegalArgumentException.class, () -> new Date(invalidDateWhitespaces));
         assertThrows(IllegalArgumentException.class, () -> new Date(invalidDateFormatOne));
         assertThrows(IllegalArgumentException.class, () -> new Date(invalidDateFormatTwo));
         assertThrows(IllegalArgumentException.class, () -> new Date(invalidDateFormatThree));
         assertThrows(IllegalArgumentException.class, () -> new Date(invalidDateFormatFour));
         assertThrows(IllegalArgumentException.class, () -> new Date(invalidDateFormatFive));
+        assertThrows(IllegalArgumentException.class, () -> new Date(invalidDateFormatSix));
+        assertThrows(IllegalArgumentException.class, () -> new Date(invalidDateFormatSeven));
     }
 
     /**
