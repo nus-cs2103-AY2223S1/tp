@@ -319,27 +319,27 @@ _Details coming soon ..._ -->
 
 Frequently used commands have aliases that are short so that you can perform actions quickly.
 
-| Action                                                   | Command            | Alias |
-| -------------------------------------------------------- | ------------------ | ----- |
-| **[Home](#return-home)**                                 | `home`             | h     |
-| **[Show](#viewing-the-information-of-a-client--show)**   | `show`             | s     |
-| **[Add](#adding-a-client-add)**                          | `add`              | a     |
-| **[Delete](#deleting-of-a-client-delete)**               | `delete`           | d     |
-| **[Edit](#editing-of-client-information--edit)**         | `edit`             | e     |
-| **[Tag](#tagging-clients--tag)**                         | `tag`              | t     |
-| **[Tag creation](#creating-a-tag--tag-create)**          | `tag create`       | t c   |
-| **[Untag](#removing-tags-from-clients--tag-remove)**     | `tag remove`       | t r   |
-| **Tag deletion**                                         | `tag delete `      | t d   |
-| **[Filter](#filtering-client-entries-filter)**           | `filter`           | f     |
-| **[Filter clear](#clearing-filters)**                    | `filter clear`     | f c   |
-| **Filter list**                                          | `filter list`      | f l   |
-| **[Reminder creation](#creating-reminders-reminder)**    | `reminder`         | r     |
-| **[Reminder deletion](#deleting-of-a-client-delete)**    | `reminder delete`  | r d   |
-| **[Reminder clear](#clearing-reminders-reminder-clear)** | `reminder clear`   | r c   |
-| **Message creation**                                     | `message create`   | m c   |
-| **Message list**                                         | `message list`     | m l   |
-| **Message generation**                                   | `message generate` | m g   |
-| **Message deletion**                                     | `message delete`   | m d   |
+| Action                                                               | Command            | Alias |
+| -------------------------------------------------------------------- | ------------------ | ----- |
+| **[Home](#return-home)**                                             | `home`             | h     |
+| **[Show](#viewing-the-information-of-a-client--show)**               | `show`             | s     |
+| **[Add](#adding-a-client-add)**                                      | `add`              | a     |
+| **[Delete](#deleting-of-a-client-delete)**                           | `delete`           | d     |
+| **[Edit](#editing-of-client-information--edit)**                     | `edit`             | e     |
+| **[Tag](#tagging-clients--tag)**                                     | `tag`              | t     |
+| **[Tag creation](#creating-a-tag--tag-create)**                      | `tag create`       | t c   |
+| **[Untag](#removing-tags-from-clients--tag-remove)**                 | `tag remove`       | t r   |
+| **Tag deletion**                                                     | `tag delete `      | t d   |
+| **[Filter](#filtering-client-entries-filter)**                       | `filter`           | f     |
+| **[Filter clear](#clearing-filters)**                                | `filter clear`     | f c   |
+| **Filter list**                                                      | `filter list`      | f l   |
+| **[Reminder creation](#creating-reminders-reminder)**                | `reminder`         | r     |
+| **[Reminder deletion](#deleting-of-a-client-delete)**                | `reminder delete`  | r d   |
+| **[Reminder clear](#clearing-reminders-reminder-clear)**             | `reminder clear`   | r c   |
+| **[Message creation](#creating-a-message-template--message-create)** | `message create`   | m c   |
+| **[Message list](#listing-message-templates--message list)**         | `message list`     | m l   |
+| **[Message generation](#generating-messages--message-generate)**     | `message generate` | m g   |
+| **[Message deletion](#deleting-message-templates--message-delete)**  | `message delete`   | m d   |
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -352,26 +352,26 @@ Frequently used commands have aliases that are short so that you can perform act
 
 ## Command summary
 
-| Action                                                   | Format                                                                                                                            |
-| -------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------- |
-| **[Home](#return-home)**                                 | `home`                                                                                                                            |
-| **[Show](#viewing-the-information-of-a-client--show)**   | `show INDEX`                                                                                                                      |
-| **[Add](#adding-a-client-add)**                          | `add n=NAME p=PHONE e=EMAIL a=ADDRESS [r=REMARKS] [t=TAGS]`                                                                       |
-| **[Delete](#deleting-of-a-client-delete)**               | `delete INDEX`                                                                                                                    |
-| **[Edit](#editing-of-client-information--edit)**         | `edit [INDEX] [n=NAME] [p=PHONE] [e=EMAIL] [a=ADDRESS] [r=REMARKS]`                                                               |
-| **[Tag](#tagging-clients--tag)**                         | `tag [INDEX] TAG`                                                                                                                 |
-| **[Tag creation](#creating-a-tag--tag-create)**          | `tag create TAG1 [TAG2] … [TAGN]`                                                                                                 |
-| **[Untag](#removing-tags-from-clients--tag-remove)**     | `tag remove [INDEX] TAG1 [TAG2] … [TAGN]`                                                                                         |
-| **Tag deletion**                                         | `tag delete TAG1 [TAG2] … [TAGN]`                                                                                                 |
-| **[Filter](#filtering-client-entries-filter)**           | `filter n=NAME1,[NAME2],…,[NAMEN] [t=TAG1,[TAG2],…,[TAGN]]`<br> `filter [n=NAME1,[NAME2],…,[NAMEN]] t=TAG1,[TAG2],…,[TAGN]`       |
-| **[Filter clear](#clearing-filters)**                    | `filter clear n=NAME1,[NAME2],…,[NAMEN] [t=TAG1,[TAG2],…,[TAGN]]`<br> `filter [n=NAME1,[NAME2],…,[NAMEN]] t=TAG1,[TAG2],…,[TAGN]` |
-| **Filter list**                                          | `filter list`                                                                                                                     |
-| **[Reminder creation](#creating-reminders-reminder)**    | `reminder [INDEX] d=DESCRIPTION dt=YY-M-D H:m`                                                                                    |
-| **[Reminder deletion](#deleting-of-a-client-delete)**    | `reminder delete INDEX`                                                                                                           |
-| **[Reminder clear](#clearing-reminders-reminder-clear)** | `reminder clear`                                                                                                                  |
-| **Message creation**                                     | `message create MESSAGE`                                                                                                          |
-| **Message list**                                         | `message list`                                                                                                                    |
-| **Message generation**                                   | `message generate PERSON_INDEX MESSAGE_INDEX`                                                                                     |
-| **Message deletion**                                     | `message delete INDEX`                                                                                                            |
-| **[Help](#viewing-help--help)**                          | `help`                                                                                                                            |
-| **[Exit](#exiting-the-program--exit)**                   | `exit`                                                                                                                            |
+| Action                                                           | Format                                                                                                                            |
+| ---------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------- |
+| **[Home](#return-home)**                                         | `home`                                                                                                                            |
+| **[Show](#viewing-the-information-of-a-client--show)**           | `show INDEX`                                                                                                                      |
+| **[Add](#adding-a-client-add)**                                  | `add n=NAME p=PHONE e=EMAIL a=ADDRESS [r=REMARKS] [t=TAGS]`                                                                       |
+| **[Delete](#deleting-of-a-client-delete)**                       | `delete INDEX`                                                                                                                    |
+| **[Edit](#editing-of-client-information--edit)**                 | `edit [INDEX] [n=NAME] [p=PHONE] [e=EMAIL] [a=ADDRESS] [r=REMARKS]`                                                               |
+| **[Tag](#tagging-clients--tag)**                                 | `tag [INDEX] TAG`                                                                                                                 |
+| **[Tag creation](#creating-a-tag--tag-create)**                  | `tag create TAG1 [TAG2] … [TAGN]`                                                                                                 |
+| **[Untag](#removing-tags-from-clients--tag-remove)**             | `tag remove [INDEX] TAG1 [TAG2] … [TAGN]`                                                                                         |
+| **Tag deletion**                                                 | `tag delete TAG1 [TAG2] … [TAGN]`                                                                                                 |
+| **[Filter](#filtering-client-entries-filter)**                   | `filter n=NAME1,[NAME2],…,[NAMEN] [t=TAG1,[TAG2],…,[TAGN]]`<br> `filter [n=NAME1,[NAME2],…,[NAMEN]] t=TAG1,[TAG2],…,[TAGN]`       |
+| **[Filter clear](#clearing-filters)**                            | `filter clear n=NAME1,[NAME2],…,[NAMEN] [t=TAG1,[TAG2],…,[TAGN]]`<br> `filter [n=NAME1,[NAME2],…,[NAMEN]] t=TAG1,[TAG2],…,[TAGN]` |
+| **Filter list**                                                  | `filter list`                                                                                                                     |
+| **[Reminder creation](#creating-reminders-reminder)**            | `reminder [INDEX] d=DESCRIPTION dt=YY-M-D H:m`                                                                                    |
+| **[Reminder deletion](#deleting-of-a-client-delete)**            | `reminder delete INDEX`                                                                                                           |
+| **[Reminder clear](#clearing-reminders-reminder-clear)**         | `reminder clear`                                                                                                                  |
+| **[Message creation](#creating-messages-message)**               | `message create MESSAGE`                                                                                                          |
+| **[Message list](#listing-message-templates--message-list)**     | `message list`                                                                                                                    |
+| **[Message generation](#generating-messages--message-generate)** | `message generate PERSON_INDEX MESSAGE_INDEX`                                                                                     |
+| **Message deletion**                                             | `message delete INDEX`                                                                                                            |
+| **[Help](#viewing-help--help)**                                  | `help`                                                                                                                            |
+| **[Exit](#exiting-the-program--exit)**                           | `exit`                                                                                                                            |
