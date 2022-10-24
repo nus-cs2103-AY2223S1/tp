@@ -20,12 +20,12 @@ activate LogicManager
 LogicManager -> AddressBookParser : parseCommand("aa 1 d/21-Jan-2023 12:30 PM l/Starbucks")
 activate AddressBookParser
 
-create AddAppointmentCommandParser 
-AddressBookParser -> AddAppointmentCommandParser 
-activate AddAppointmentCommandParser 
+create AddAppointmentCommandParser
+AddressBookParser -> AddAppointmentCommandParser
+activate AddAppointmentCommandParser
 
 AddAppointmentCommandParser  --> AddressBookParser
-deactivate AddAppointmentCommandParser 
+deactivate AddAppointmentCommandParser
 
 AddressBookParser -> AddAppointmentCommandParser  : parse("1 d/21-Jan-2023 12:30 PM l/Starbucks")
 activate AddAppointmentCommandParser
@@ -45,10 +45,10 @@ AddAppointmentCommand --> AddAppointmentCommandParser  : a
 deactivate AddAppointmentCommand
 
 AddAppointmentCommandParser  --> AddressBookParser : a
-deactivate AddAppointmentCommandParser 
+deactivate AddAppointmentCommandParser
 'Hidden arrow to position the destroy marker below the end of the activation bar.
 AddAppointmentCommandParser  -[hidden]-> AddressBookParser
-destroy AddAppointmentCommandParser 
+destroy AddAppointmentCommandParser
 
 AddressBookParser --> LogicManager : a
 deactivate AddressBookParser
