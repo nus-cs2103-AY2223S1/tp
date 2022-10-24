@@ -93,9 +93,9 @@ public interface Model {
 
     public ObservableList<String> getVisibleFields();
 
-    public void setVisibleFields(ObservableList<String> fieldsToShow);
+    public void setVisibleFields(List<String> fieldsToShow);
 
-    public void setHiddenFields(ObservableList<String> fieldsToHide);
+    public void setHiddenFields(List<String> fieldsToHide);
 
     public ObservableList<String> getHiddenFields();
 }

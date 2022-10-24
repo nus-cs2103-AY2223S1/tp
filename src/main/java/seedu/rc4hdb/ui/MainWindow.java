@@ -70,8 +70,8 @@ public class MainWindow extends UiPart<Stage> {
         this.logic = logic;
         this.logic.getObservableFields().addListener(getListChangeListener());
 
-        this.logic.getObservableFields().addListener(updateVisibleFieldsOnChange());
-        this.logic.getObservableFields().addListener(updateHiddenFieldsOnChange());
+        this.logic.getVisibleFields().addListener(updateVisibleFieldsOnChange());
+        this.logic.getHiddenFields().addListener(updateHiddenFieldsOnChange());
 
         this.logic.getObservableResidentBookFilePath().addListener(getFileChangeListener());
 

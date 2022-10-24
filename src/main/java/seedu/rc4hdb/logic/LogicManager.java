@@ -127,16 +127,6 @@ public class LogicManager implements Logic {
     }
 
     @Override
-    public void setVisibleFields(ObservableList<String> fieldsToShow) {
-        model.setVisibleFields(fieldsToShow);
-    }
-
-    @Override
-    public void setHiddenFields(ObservableList<String> fieldsToHide) {
-        model.setHiddenFields(fieldsToHide);
-    }
-
-    @Override
     public ObservableList<String> getHiddenFields() {
         return model.getHiddenFields();
     }

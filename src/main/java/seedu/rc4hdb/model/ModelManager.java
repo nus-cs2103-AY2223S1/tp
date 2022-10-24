@@ -173,12 +173,12 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void setVisibleFields(ObservableList<String> fieldsToShow) {
+    public void setVisibleFields(List<String> fieldsToShow) {
         this.visibleFields.setAll(fieldsToShow);
     }
 
     @Override
-    public void setHiddenFields(ObservableList<String> fieldsToHide) {
+    public void setHiddenFields(List<String> fieldsToHide) {
         this.hiddenFields.setAll(fieldsToHide);
     }
 
