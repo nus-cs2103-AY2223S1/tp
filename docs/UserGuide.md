@@ -128,33 +128,37 @@ Example:
 
 ### Finding a stall: `sfind`
 
-Finds stalls whose names contain any of the given keywords.
+Finds stalls whose names or tags contain any of the given keywords.
 
-Format: `sfind KEYWORD [MORE_KEYWORDS]…`
+Format: `sfind n/NAME_KEYWORD [MORE_KEYWORDS]… t/TAG_KEYWORD [MORE_KEYWORDS]…`
 
 * The search is case-insensitive. e.g. `eatery` will match `Eatery`
 * The order of the keywords does not matter. e.g. `John's Eatery` will match `Eatery John's`
-* Only the name is searched
+* Using n/ and t/ will search name and tag fields of stall respectively
 * Only full words will be matched e.g. `Joh` will not match `John`
-* Stalls matching at least one keyword will be returned (i.e. OR search) e.g. `John Doe` will return `John Eatery`, `Doe Restaurant`
+* Stalls matching at least one keyword in each respective field will be returned (i.e. OR search) e.g. `n/ John Doe` will return `John Eatery`, `Doe Restaurant`
 
 Example:
-* `sfind eatery` returns `John's eatery` and `Doe eatery`
+* `sfind n/eatery` returns `John's eatery` and `Doe eatery`
+* `sfind t/opensDaily veryNice` returns all stalls that has the tag `opensDaily` OR `veryNice`
+* `sfind n/eatery t/opensDaily` returns all stalls where name includes `eatery` OR has the tag `opensDaily` 
 
 ### Finding a review: `rfind`
 
-Finds reviews whose names contain any of the given keywords.
+Finds reviews whose names or tags contain any of the given keywords.
 
-Format: `rfind KEYWORD [MORE_KEYWORDS]…`
+Format: `rfind n/NAME_KEYWORD [MORE_KEYWORDS]… t/TAG_KEYWORD [MORE_KEYWORDS]…`
 
 * The search is case-insensitive. e.g. `eatery` will match `Eatery`
 * The order of the keywords does not matter. e.g. `John's Eatery` will match `Eatery John's`
-* Only the name is searched
+* Using n/ and t/ will search name and tag fields of stall respectively
 * Only full words will be matched e.g. `Joh` will not match `John`
-* Reviews matching at least one keyword will be returned (i.e. OR search) e.g. `John Doe` will return `John Eatery`, `Doe Restaurant`
+* Stalls matching at least one keyword in each respective field will be returned (i.e. OR search) e.g. `n/ John Doe` will return `John Eatery`, `Doe Restaurant`
 
 Example:
-* `rfind eatery` returns `John's eatery` and `Doe eatery`
+* `rfind n/eatery` returns reviews `John's eatery` and `Doe eatery`
+* `rfind t/opensDaily veryNice` returns all reviews that has the tag `opensDaily` OR `veryNice`
+* `rfind n/eatery t/opensDaily` returns all reviews where name includes `eatery` OR has the tag `opensDaily`
 
 ### Clearing all entries : `clear`
 
@@ -191,16 +195,16 @@ If your changes to the data file make its format invalid, FoodWhere will discard
 
 ## Command summary
 
-| Action    | Format, Examples                                                                                        |
-|-----------|---------------------------------------------------------------------------------------------------------|
-| **Exit**  | `exit`                                                                                                  |
-| **Help**  | `help`                                                                                                  |
-| **Clear** | `clear`                                                                                                 |
+| Action    | Format, Examples                                                                                         |
+|-----------|----------------------------------------------------------------------------------------------------------|
+| **Exit**  | `exit`                                                                                                   |
+| **Help**  | `help`                                                                                                   |
+| **Clear** | `clear`                                                                                                  |
 | **rAdd**  | `radd s/STALL_INDEX d/DATE c/CONTENT r/RATING [t/TAGS]…`<br> e.g., `radd s/3 d/2022-09-20 c/Great food!` |
-| **rDel**  | `rdel INDEX`                                                                                            |
-| **rList** | `rlist`                                                                                                 |
-| **rFind** | `rfind KEYWORD [MORE_KEYWORDS]…`                                                                         |
-| **sAdd**  | `sadd n/NAME a/ADDRESS [t/TAGS]…`<br> e.g., `sadd n/John Chicken Rice a/Blk 123 Bedok South t/veryNice` |
-| **sDel**  | `sdel INDEX`                                                                                            |
-| **sList** | `slist`                                                                                                 |
-| **sFind** | `sfind KEYWORD [MORE_KEYWORDS]…`                                                                         |
+| **rDel**  | `rdel INDEX`                                                                                             |
+| **rList** | `rlist`                                                                                                  |
+| **rFind** | `rfind n/NAME_KEYWORD [MORE_KEYWORDS]… t/TAG_KEYWORD [MORE_KEYWORDS]…`                                   |
+| **sAdd**  | `sadd n/NAME a/ADDRESS [t/TAGS]…`<br> e.g., `sadd n/John Chicken Rice a/Blk 123 Bedok South t/veryNice`  |
+| **sDel**  | `sdel INDEX`                                                                                             |
+| **sList** | `slist`                                                                                                  |
+| **sFind** | `sfind n/NAME_KEYWORD [MORE_KEYWORDS]… t/TAG_KEYWORD [MORE_KEYWORDS]…`                                   |
