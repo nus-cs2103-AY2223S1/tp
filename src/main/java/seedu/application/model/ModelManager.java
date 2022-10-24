@@ -42,9 +42,9 @@ public class ModelManager implements Model {
         versionedApplicationBook = new VersionedApplicationBook(applicationBook);
         this.userPrefs = new UserPrefs(userPrefs);
         filteredApplications = initialiseFilteredList(this.versionedApplicationBook);
-        filteredApplicationsWithUpcomingInterviews = initialiseFilteredList(this.versionedApplicationBook);
         sortedFilteredApplications = new SortedList<>(filteredApplications);
         applicationsWithInterview = filterApplicationsWithInterview();
+        filteredApplicationsWithUpcomingInterviews = new FilteredList<>(applicationsWithInterview);
     }
 
     public ModelManager() {
@@ -189,7 +189,7 @@ public class ModelManager implements Model {
 
     @Override
     public ObservableList<Application> getFilteredApplicationsWithUpcomingInterviewList() {
-        return filteredApplicationsWithUpcomingInterviews;
+        return filteredApplicationsWithUpcomingInterviews.sorted(new InterviewComparator());
     }
 
     @Override

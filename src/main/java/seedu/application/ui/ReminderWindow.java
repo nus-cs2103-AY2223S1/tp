@@ -2,46 +2,44 @@ package seedu.application.ui;
 
 import java.util.logging.Logger;
 
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.input.Clipboard;
-import javafx.scene.input.ClipboardContent;
+import javafx.scene.control.ListView;
 import javafx.stage.Stage;
 import seedu.application.commons.core.LogsCenter;
+import seedu.application.model.application.Application;
 
 /**
  * Controller for a reminder page
  */
 public class ReminderWindow extends UiPart<Stage> {
 
-    public static final String USERGUIDE_URL = "https://ay2223s1-cs2103-f14-3.github.io/tp/UserGuide.html";
-    public static final String HELP_MESSAGE = "Refer to the user guide: " + USERGUIDE_URL;
-
     private static final Logger logger = LogsCenter.getLogger(ReminderWindow.class);
     private static final String FXML = "ReminderWindow.fxml";
 
     @FXML
-    private Button copyButton;
-
-    @FXML
-    private Label helpMessage;
+    private ListView<Application> upcomingInterviewListView;
 
     /**
      * Creates a new ReminderWindow.
      *
      * @param root Stage to use as the root of the ReminderWindow.
      */
-    public ReminderWindow(Stage root) {
+    public ReminderWindow(Stage root, ObservableList<Application> applicationListWithUpcomingInterview) {
         super(FXML, root);
-        helpMessage.setText(HELP_MESSAGE);
+
+        root.setHeight(400);
+        root.setWidth(400);
+
+        upcomingInterviewListView.setItems(applicationListWithUpcomingInterview);
+        upcomingInterviewListView.setCellFactory(listView -> new InterviewListPanel.InterviewListViewCell());
     }
 
     /**
-     * Creates a new ReminderWindow.
+     * Creates a {@code ReminderWindow} with the given {@code ObservableList}.
      */
-    public ReminderWindow() {
-        this(new Stage());
+    public ReminderWindow(ObservableList<Application> applicationListWithUpcomingInterview) {
+        this(new Stage(), applicationListWithUpcomingInterview);
     }
 
     /**
@@ -87,16 +85,5 @@ public class ReminderWindow extends UiPart<Stage> {
      */
     public void focus() {
         getRoot().requestFocus();
-    }
-
-    /**
-     * Copies the URL to the user guide to the clipboard.
-     */
-    @FXML
-    private void copyUrl() {
-        final Clipboard clipboard = Clipboard.getSystemClipboard();
-        final ClipboardContent url = new ClipboardContent();
-        url.putString(USERGUIDE_URL);
-        clipboard.setContent(url);
     }
 }

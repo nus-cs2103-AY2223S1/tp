@@ -16,7 +16,7 @@ public class UpcomingInterviewPredicate implements Predicate<Application> {
     public static boolean isWithinOneWeekFromNow(LocalDateTime interviewDateTime) {
         LocalDateTime now = LocalDateTime.now();
         LocalDateTime oneWeekFromNow = now.plusWeeks(1);
-        return interviewDateTime.compareTo(oneWeekFromNow) <= 0;
+        return interviewDateTime.compareTo(now) >= 0 && interviewDateTime.compareTo(oneWeekFromNow) <= 0;
     }
 
     @Override

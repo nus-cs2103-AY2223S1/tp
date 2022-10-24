@@ -4,7 +4,6 @@ import java.nio.file.Path;
 import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
-import javafx.collections.transformation.FilteredList;
 import seedu.application.commons.core.GuiSettings;
 import seedu.application.model.application.Application;
 import seedu.application.model.application.interview.Interview;
