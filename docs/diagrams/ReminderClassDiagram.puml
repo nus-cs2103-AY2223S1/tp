@@ -1,0 +1,17 @@
+@startuml
+!include style.puml
+show Reminder attributes
+skinparam arrowThickness 1.1
+skinparam arrowColor MODEL_COLOR
+skinparam classBackgroundColor MODEL_COLOR
+
+Class Reminder {
+    String description
+}
+
+ModelManager *-right-> "1" ReminderList
+ReminderList -down-> Reminder
+Reminder *-down-> "1" Name
+Reminder *-down-> "1" Phone
+Reminder *-down-> "1" DateTime
+@enduml

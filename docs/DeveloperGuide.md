@@ -69,20 +69,20 @@ The sections below give more details of each component.
 
 ### UI component
 
-The **API** of this component is specified in [`Ui.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/Ui.java)
+The **API** of this component is specified in [`Ui.java`](https://github.com/AY2223S1-CS2103T-T13-2/tp/blob/master/src/main/java/seedu/address/ui/Ui.java)
 
 ![Structure of the UI Component](images/UiClassDiagram.png)
 
 The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `PersonListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class which captures the commonalities between classes that represent parts of the visible GUI.
 
-The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/resources/view/MainWindow.fxml)
+The `UI` component uses the JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/AY2223S1-CS2103T-T13-2/tp/blob/master/src/main/java/seedu/address/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/AY2223S1-CS2103T-T13-2/tp/blob/master/src/main/resources/view/MainWindow.fxml)
 
 The `UI` component,
 
-* executes user commands using the `Logic` component.
-* listens for changes to `Model` data so that the UI can be updated with the modified data.
-* keeps a reference to the `Logic` component, because the `UI` relies on the `Logic` to execute commands.
-* depends on some classes in the `Model` component, as it displays `Person` object residing in the `Model`.
+* take user commands from `CommandBox` and executes user commands via the `Logic` component.
+  * The `UI` component therefore keeps a reference to the `Logic` component, because the `UI` relies on the `Logic` to execute commands.
+* listens for changes to the data within the `Model` component and updates the UI with any modified data.
+  * This means that the `UI` component depends on some classes in the `Model` component (for example, `PersonCard` and `ReminderCard` displays information that is set in the `Model` component).
 
 ### Logic component
 
@@ -121,14 +121,24 @@ How the parsing works:
 
 The `Model` component,
 
-* stores the address book data i.e., all `Person` objects (which are contained in a `UniquePersonList` object).
-* stores the currently 'selected' `Person` objects (e.g., results of a search query) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Person>` that can be 'observed' e.g. the UI can be bound to this list so that the UI automatically updates when the data in the list change.
+* stores the address book data, which includes:
+  * all `Person` objects (which are contained in a `UniquePersonList` object).
+  * all `Tag` objects in a set (which are contained in a `TagSet` object).
+  * all `Message` objects in a List that represents the message templates (which are contained in a `MessageList` object).
+* stores the currently _filtered_ `Person` objects (i.e. results of a `filter` command) as a separate _filtered_ list which is exposed to outsiders as an unmodifiable `ObservableList<Person>`.
+  * The `UI` component updates the `PersonListPanel` JavaFx component to match the components in the `ObservableList` whenever the data in the filtered list change.
+* stores the currently _selected_ `Person` object (i.e. result of a `show` command) as a `TargetPerson` which is exposed as an unmodifiable `ObservableList<Person>`.
+  * Similarly, the `UI` component updates the `TargetPersonPanel` JavaFx component ot match the data that is in the `ObservableList` whenever the `TargetPerson` is changed.
 * stores a `UserPref` object that represents the user’s preferences. This is exposed to the outside as a `ReadOnlyUserPref` objects.
-* does not depend on any of the other three components (as the `Model` represents data entities of the domain, they should make sense on their own without depending on other components)
+* does not depend on any of the other three components (as the `Model` component acts as a "database" which represents data entities, and the data entities should work on their own without depending on other components)
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `AddressBook`, which `Person` references. This allows `AddressBook` to only require one `Tag` object per unique tag, instead of each `Person` needing their own `Tag` objects.<br>
+As the `Person` and `Reminder` models are more complex, below are the Class Diagrams for both models.
 
-<img src="images/BetterModelClassDiagram.png" width="450" />
+<img src="images/PersonClassDiagram.png" width="450" />
+
+<img src="images/ReminderClassDiagram.png" width="300">
+
+<div markdown="span" class="alert alert-info">:information_source: **Note:** As of now, each `Reminder` object contains the `Name` and `Phone` objects which are used as foreign keys to identify which `Person` object the `Reminder` belongs to. This is a workaround and we may implement unique primary keys for `Person` in the future.<br>
 
 </div>
 
@@ -140,8 +150,8 @@ The `Model` component,
 <img src="images/StorageClassDiagram.png" width="550" />
 
 The `Storage` component,
-* can save both address book data and user preference data in json format, and read them back into corresponding objects.
-* inherits from both `AddressBookStorage` and `UserPrefStorage`, which means it can be treated as either one (if only the functionality of only one is needed).
+* can save both address book data, user preference data and reminder data in json format, and read them back into corresponding objects.
+* inherits from `AddressBookStorage`, `UserPrefStorage` and `ReminderListStorage`, which means it can be treated as any of them (if only the functionality of only one is needed).
 * depends on some classes in the `Model` component (because the `Storage` component's job is to save/retrieve objects that belong to the `Model`)
 
 ### Common classes
@@ -234,11 +244,34 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 _{more aspects and alternatives to be added}_
 
-### \[Proposed\] Personalising the UI
+### UI Design
 
 #### Proposed Implementation
 
+The proposed design for the UI is to follow the [Material Design system](https://m2.material.io/design/) as much as possible.
+However due to limitations of JavaFx, we will only be mainly focusing on adhering the color system
+and typography, with the other foundations serving more of a guide for future component designs.
+
+The main stylesheet can be found under `resources/view/LightTheme.css`. The primary colour chosen is `#9837d9`, with the full colour palette shown below.
+
+![colorpalette](images/colorpalette.jpg)
+
 #### Design considerations:
+
+- **Aspect: The application only supports a light theme**
+
+* **Alternative 1 (current choice):** Only implement a light theme.
+    * Pros:
+        * Most applications are light themed by default, thus only support light theme for consistency.
+        * Only need to maintain one stylesheet.
+    * Cons:
+        * User may have enable system-wide dark mode, so the light theme of Rapportbook may not blend in with other applications nicely.
+* **Alternative 2:** Implement both light theme and dark theme and follow user's system light/dark mode setting.
+    * Pros:
+        * Current theme will blend in with other applications on the system nicely.
+    * Cons:
+        * Extra manpower is required to maintain two different stylesheets.
+        * [There is still no official way to detect system-wide light/dark mode setting in Java yet without the use of a third-party library.](https://stackoverflow.com/a/60323132)
 
 ### Remark field for entries
 
@@ -382,40 +415,31 @@ We can also remove tags from a user using the `tag remove` command. For example,
         * Not user-friendly. The user will be forced to re-type all the current tags the client possesses if they
           wish to add or edit one of the many tags the client possesses.
 
-### \[Proposed\] Filter command
-=======
 ### Filter Command
-**Aspect: How tags can be implemented:**
->>>>>>> ad384bb8de0efdc505c9ded5adb05374915a7164
-
-* **Alternative 1 (current choice):** Using a separate set of commands labelled `tag`.
-    * Pros:
-        * A cleaner design as tags, unlike remarks are elements of a set, rather than a String.
-    * Cons:
-        * Forces the creation of a few unique commands. Not user-friendly as the user is expected
-          to memorise all commands.
-
-* **Alternative 2:** Building on top of the `add` and `edit` commands.
-    * Pros:
-        * It allows a more concise set of operations.
-    * Cons:
-        * `add` and `edit` commands will be slightly messier and may contain ambiguities.
-        * Not user-friendly. The user will be forced to re-type all the current tags the client possesses if they
-          wish to add or edit one of the many tags the client possesses.
-
 #### Implementation
 
 The `filter`command provides a way for users to search for clients in Rapportbook. It extends from the `Command` class and results in an update of the `FilteredList<Person>` filtered list of the model.
 
 The following commands are provided:
 
+* `filter list` — Lists all applied filters
+
 * `filter [n=NAME,...] [t=TAG,...]`  — Filter for clients with the specified names and tags
 
 * `filter clear [n=NAME,...] [t=TAG,...]`  — Removes filters that were previously applied with the specified names or tags
 
+The command utilises the  `FilterCommandPredicate` class to aggregate the filters specified and handle the filtering. `FilterCommandPredicate` is created during parsing when `filter` commands are executed. The following is the sequence diagram for parsing of the `filter` command.
+![FilterParseSequenceDiagram](images/command-filter/FilterParseSequenceDiagram.svg)
+
 Adding and removing filters are exposed in the `Model` through the `Model#addNewFilterToFilteredPersonList` and `Model#removeFilterFromFilteredPersonList` methods. Addtionally, there is also the `Model#clearFiltersInFilteredPersonList` method to clear all filters.
 
+![FilterClassDiagram](images/command-filter/FilterClassDiagram.svg)
+
 Predicates of each type of filter (name and tags) are stored in separate sets in the `ModelManager` class. Adding a filter will add predicates to the sets and removing filters will remove them from the sets. To update the `FilteredList` with the updated filters, each set of predicate will be reduced with an `OR` operation, and the resulting predicate from each set will be reduced with an `AND` operation.
+
+The following is a sequence diagram of a `filter` command. `filter clear` is similiar except that `Model#clearFiltersInFilteredPersonList` is called instead while `filter list` does not change the `FilteredList` of the model.
+
+![FilterSequenceDiagram](images/command-filter/FilterParseSequenceDiagram.svg)
 
 **Given below is an example usage scenario of filtering**
 
@@ -647,29 +671,43 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
     * Rapportbook shows an error message.
     * Use case resumes at step 2.
 
-#### Use case: Filter contacts
+#### Use case: List filters applied
 
 **MSS**
 
-1. User requests to filter contacts of a certain tag and/or name.
-2. Rapportbook shows a list of contacts that contains the tag **and** name specified in the filter query.
+1. User requests to show a list of filters already applied.
+2. Rapporbook displays a list of filters applied.
+
+    Use case ends
+**Extensions**
+
+* 1a. No filters are applied.
+* 2a1. Rapportbook shows a message to indicate there are no filters applied.
+#### Use case: Filter clients
+
+**MSS**
+
+1. User requests to filter clients of a certain tag and/or name.
+2. Rapportbook shows a list of clients that contains the tag **and** name specified in the filter query.
 
    Use case ends.
 
 
-#### Use case: Clearing filters
+#### Use case: Clear filters
 
 **MSS**
 
-1. User requests to clear filters that were originally applied.
-2. Rapportbook shows a list of contacts that without the filters applied.
+1. User requests to show a [list of filters already applied](#use-case-list-filters-applied).
+2. Rapporbook displays a list of filters applied.
+3. User requests to clear filters that were originally applied.
+4. Rapportbook shows a list of contacts without the filters applied.
 
    Use case ends.
 
 **Extensions**
 
-* 1a. Some filters specified were not previously applied.
-* 1a1. Rapportbook only clears the filters that were applied.
+* 3a. Some filters specified were not previously applied.
+* 3a1. Rapportbook only clears the filters that were applied.
 
 
 #### Use case: Show contact
