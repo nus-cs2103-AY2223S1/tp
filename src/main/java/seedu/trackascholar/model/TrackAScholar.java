@@ -84,7 +84,6 @@ public class TrackAScholar implements ReadOnlyTrackAScholar {
      */
     public void setApplicant(Applicant target, Applicant editedApplicant) {
         requireNonNull(editedApplicant);
-
         applicants.setApplicant(target, editedApplicant);
     }
 

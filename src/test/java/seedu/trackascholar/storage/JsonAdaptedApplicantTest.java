@@ -32,6 +32,8 @@ public class JsonAdaptedApplicantTest {
     private static final String VALID_EMAIL = BENSON.getEmail().toString();
     private static final String VALID_SCHOLARSHIP = BENSON.getScholarship().toString();
     private static final String VALID_APPLICATION_STATUS = BENSON.getApplicationStatus().toString();
+
+    private static final boolean VALID_HAS_PINNED = BENSON.getPin().getHasPinned();
     private static final List<JsonAdaptedTag> VALID_TAGS = BENSON.getTags().stream()
             .map(JsonAdaptedTag::new)
             .collect(Collectors.toList());
@@ -45,7 +47,7 @@ public class JsonAdaptedApplicantTest {
     @Test
     public void toModelType_invalidName_throwsIllegalValueException() {
         JsonAdaptedApplicant applicant = new JsonAdaptedApplicant(INVALID_NAME,
-                VALID_PHONE, VALID_EMAIL, VALID_SCHOLARSHIP, VALID_APPLICATION_STATUS, VALID_TAGS);
+                VALID_PHONE, VALID_EMAIL, VALID_SCHOLARSHIP, VALID_APPLICATION_STATUS, VALID_TAGS, VALID_HAS_PINNED);
         String expectedMessage = Name.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, applicant::toModelType);
     }
@@ -53,7 +55,7 @@ public class JsonAdaptedApplicantTest {
     @Test
     public void toModelType_nullName_throwsIllegalValueException() {
         JsonAdaptedApplicant applicant = new JsonAdaptedApplicant(null,
-                VALID_PHONE, VALID_EMAIL, VALID_SCHOLARSHIP, VALID_APPLICATION_STATUS, VALID_TAGS);
+                VALID_PHONE, VALID_EMAIL, VALID_SCHOLARSHIP, VALID_APPLICATION_STATUS, VALID_TAGS,VALID_HAS_PINNED);
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Name.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, applicant::toModelType);
     }
@@ -61,7 +63,7 @@ public class JsonAdaptedApplicantTest {
     @Test
     public void toModelType_invalidPhone_throwsIllegalValueException() {
         JsonAdaptedApplicant applicant = new JsonAdaptedApplicant(VALID_NAME,
-                INVALID_PHONE, VALID_EMAIL, VALID_SCHOLARSHIP, VALID_APPLICATION_STATUS, VALID_TAGS);
+                INVALID_PHONE, VALID_EMAIL, VALID_SCHOLARSHIP, VALID_APPLICATION_STATUS, VALID_TAGS, VALID_HAS_PINNED );
         String expectedMessage = Phone.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, applicant::toModelType);
     }
@@ -69,7 +71,7 @@ public class JsonAdaptedApplicantTest {
     @Test
     public void toModelType_nullPhone_throwsIllegalValueException() {
         JsonAdaptedApplicant applicant = new JsonAdaptedApplicant(VALID_NAME,
-                null, VALID_EMAIL, VALID_SCHOLARSHIP, VALID_APPLICATION_STATUS, VALID_TAGS);
+                null, VALID_EMAIL, VALID_SCHOLARSHIP, VALID_APPLICATION_STATUS, VALID_TAGS, VALID_HAS_PINNED);
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Phone.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, applicant::toModelType);
     }
@@ -77,7 +79,7 @@ public class JsonAdaptedApplicantTest {
     @Test
     public void toModelType_invalidEmail_throwsIllegalValueException() {
         JsonAdaptedApplicant applicant = new JsonAdaptedApplicant(VALID_NAME,
-                VALID_PHONE, INVALID_EMAIL, VALID_SCHOLARSHIP, VALID_APPLICATION_STATUS, VALID_TAGS);
+                VALID_PHONE, INVALID_EMAIL, VALID_SCHOLARSHIP, VALID_APPLICATION_STATUS, VALID_TAGS, VALID_HAS_PINNED);
         String expectedMessage = Email.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, applicant::toModelType);
     }
@@ -85,7 +87,7 @@ public class JsonAdaptedApplicantTest {
     @Test
     public void toModelType_nullEmail_throwsIllegalValueException() {
         JsonAdaptedApplicant applicant = new JsonAdaptedApplicant(VALID_NAME,
-                VALID_PHONE, null, VALID_SCHOLARSHIP, VALID_APPLICATION_STATUS, VALID_TAGS);
+                VALID_PHONE, null, VALID_SCHOLARSHIP, VALID_APPLICATION_STATUS, VALID_TAGS, VALID_HAS_PINNED);
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Email.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, applicant::toModelType);
     }
@@ -93,7 +95,7 @@ public class JsonAdaptedApplicantTest {
     @Test
     public void toModelType_invalidScholarship_throwsIllegalValueException() {
         JsonAdaptedApplicant applicant = new JsonAdaptedApplicant(VALID_NAME,
-                VALID_PHONE, VALID_EMAIL, INVALID_SCHOLARSHIP, VALID_APPLICATION_STATUS, VALID_TAGS);
+                VALID_PHONE, VALID_EMAIL, INVALID_SCHOLARSHIP, VALID_APPLICATION_STATUS, VALID_TAGS, VALID_HAS_PINNED);
         String expectedMessage = Scholarship.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, applicant::toModelType);
     }
@@ -101,7 +103,7 @@ public class JsonAdaptedApplicantTest {
     @Test
     public void toModelType_nullScholarship_throwsIllegalValueException() {
         JsonAdaptedApplicant applicant = new JsonAdaptedApplicant(VALID_NAME,
-                VALID_PHONE, VALID_EMAIL, null, VALID_APPLICATION_STATUS, VALID_TAGS);
+                VALID_PHONE, VALID_EMAIL, null, VALID_APPLICATION_STATUS, VALID_TAGS, VALID_HAS_PINNED);
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Scholarship.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, applicant::toModelType);
     }
@@ -109,7 +111,7 @@ public class JsonAdaptedApplicantTest {
     @Test
     public void toModelType_invalidApplicationStatus_throwsIllegalValueException() {
         JsonAdaptedApplicant applicant = new JsonAdaptedApplicant(VALID_NAME,
-                VALID_PHONE, VALID_EMAIL, VALID_SCHOLARSHIP, INVALID_APPLICATION_STATUS, VALID_TAGS);
+                VALID_PHONE, VALID_EMAIL, VALID_SCHOLARSHIP, INVALID_APPLICATION_STATUS, VALID_TAGS, VALID_HAS_PINNED);
         String expectedMessage = ApplicationStatus.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, applicant::toModelType);
     }
@@ -117,7 +119,7 @@ public class JsonAdaptedApplicantTest {
     @Test
     public void toModelType_nullApplicationStatus_throwsIllegalValueException() {
         JsonAdaptedApplicant applicant = new JsonAdaptedApplicant(VALID_NAME,
-                VALID_PHONE, VALID_EMAIL, null, VALID_APPLICATION_STATUS, VALID_TAGS);
+                VALID_PHONE, VALID_EMAIL, null, VALID_APPLICATION_STATUS, VALID_TAGS, VALID_HAS_PINNED);
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Scholarship.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, applicant::toModelType);
     }
@@ -127,7 +129,7 @@ public class JsonAdaptedApplicantTest {
         List<JsonAdaptedTag> invalidTags = new ArrayList<>(VALID_TAGS);
         invalidTags.add(new JsonAdaptedTag(INVALID_TAG));
         JsonAdaptedApplicant applicant = new JsonAdaptedApplicant(VALID_NAME,
-                VALID_PHONE, VALID_EMAIL, VALID_SCHOLARSHIP, VALID_APPLICATION_STATUS, invalidTags);
+                VALID_PHONE, VALID_EMAIL, VALID_SCHOLARSHIP, VALID_APPLICATION_STATUS, invalidTags, VALID_HAS_PINNED);
         assertThrows(IllegalValueException.class, applicant::toModelType);
     }
 
