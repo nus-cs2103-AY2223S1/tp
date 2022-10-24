@@ -12,6 +12,7 @@ import static seedu.address.logic.parser.CliSyntax.FLAG_PHONE_STR_LONG;
 import static seedu.address.logic.parser.CliSyntax.FLAG_TAG_STR;
 import static seedu.address.logic.parser.CliSyntax.FLAG_TAG_STR_LONG;
 
+import java.util.HashSet;
 import java.util.Set;
 
 import picocli.CommandLine;
@@ -30,7 +31,7 @@ import seedu.address.model.tag.Tag;
  */
 @CommandLine.Command(name = "person")
 public class AddPersonCommand extends Command {
-    public static final String COMMAND_WORD = "add";
+    public static final String COMMAND_WORD = "add person";
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a person to the address book. "
             + "Parameters: "
             + FLAG_NAME_STR + " NAME "
@@ -65,7 +66,7 @@ public class AddPersonCommand extends Command {
 
     @CommandLine.Option(names = {FLAG_TAG_STR, FLAG_TAG_STR_LONG}, description = "Tags of person",
             parameterConsumer = TagsConverter.class, arity = "*")
-    private Set<Tag> tagList;
+    private Set<Tag> tags = new HashSet<>();
 
     @CommandLine.Spec
     private CommandLine.Model.CommandSpec spec;
@@ -85,10 +86,6 @@ public class AddPersonCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
 
-        Set<Tag> tags = Set.of();
-        if (tagList != null) {
-            tags = tagList;
-        }
         Person toAdd = new Person(name, phone, email, address, tags);
 
         if (model.hasPerson(toAdd)) {

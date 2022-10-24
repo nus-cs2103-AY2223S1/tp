@@ -60,6 +60,7 @@ public class EditPersonCommand extends Command {
 
     @CommandLine.Parameters(arity = "1")
     private Index index;
+
     @CommandLine.ArgGroup(exclusive = false, multiplicity = "1")
     private Arguments arguments;
 

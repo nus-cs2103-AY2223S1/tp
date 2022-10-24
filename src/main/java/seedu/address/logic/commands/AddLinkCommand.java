@@ -18,7 +18,7 @@ import seedu.address.model.team.Url;
  */
 @CommandLine.Command(name = "link")
 public class AddLinkCommand extends Command {
-    public static final String COMMAND_WORD = "add_link";
+    public static final String COMMAND_WORD = "add link";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
             + ": Adds a new link \n"
@@ -27,7 +27,7 @@ public class AddLinkCommand extends Command {
             + "-" + FLAG_URL_STR + " PHONE \n"
             + "Example: " + COMMAND_WORD + " "
             + "-" + FLAG_NAME_STR + " \"Google\" "
-            + "-" + FLAG_URL_STR + " https://google.com ";
+            + "-" + FLAG_URL_STR + " https://google.com";
 
     public static final String MESSAGE_SUCCESS = "New link added: %1$s";
 

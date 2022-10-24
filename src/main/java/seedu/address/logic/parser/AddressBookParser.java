@@ -20,6 +20,16 @@ import seedu.address.model.team.Url;
  * Parses user input.
  */
 public class AddressBookParser {
+    private final CommandLine commandLine = new CommandLine(new MainCommand())
+            .registerConverter(Name.class, new NameConverter())
+            .registerConverter(Email.class, new EmailConverter())
+            .registerConverter(Phone.class, new PhoneConverter())
+            .registerConverter(Address.class, new AddressConverter())
+            .registerConverter(Index.class, new IndexConverter())
+            .registerConverter(Url.class, new UrlConverter())
+            .registerConverter(Task.class, new TaskConverter())
+            .registerConverter(NameContainsKeywordsPredicate.class, new NameContainsKeywordsPredicateConverter());
+
     /**
      * Parses user input into command for execution.
      *
@@ -30,23 +40,15 @@ public class AddressBookParser {
     public Command parseCommand(String userInput) throws ParseException {
         try {
             String[] args = ArgumentTokenizer.tokenize(userInput.trim());
-            CommandLine commandLine = new CommandLine(new MainCommand())
-                    .registerConverter(Name.class, new NameConverter())
-                    .registerConverter(Email.class, new EmailConverter())
-                    .registerConverter(Phone.class, new PhoneConverter())
-                    .registerConverter(Address.class, new AddressConverter())
-                    .registerConverter(Index.class, new IndexConverter())
-                    .registerConverter(Url.class, new UrlConverter())
-                    .registerConverter(Task.class, new TaskConverter())
-                    .registerConverter(NameContainsKeywordsPredicate.class,
-                            new NameContainsKeywordsPredicateConverter());
+
             CommandLine.ParseResult parseResult = commandLine.parseArgs(args);
             CommandLine.ParseResult commandExecuted = parseResult.subcommand();
 
-            if (commandExecuted == null) {
-                throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
-            }
+            // Since all commands are defined to be subcommands of MainCommand, there will always be a non-null
+            // subcommand inside the parsed result
+            assert commandExecuted != null;
 
+            // Deepest subcommand is the actual command executed
             while (commandExecuted.subcommand() != null) {
                 commandExecuted = commandExecuted.subcommand();
             }
