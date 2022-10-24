@@ -16,6 +16,7 @@ import seedu.uninurse.commons.util.CollectionUtil;
 import seedu.uninurse.logic.commands.exceptions.CommandException;
 import seedu.uninurse.model.Model;
 import seedu.uninurse.model.condition.ConditionList;
+import seedu.uninurse.model.medication.MedicationList;
 import seedu.uninurse.model.person.Address;
 import seedu.uninurse.model.person.Email;
 import seedu.uninurse.model.person.Name;
@@ -95,12 +96,22 @@ public class EditPatientCommand extends EditGenericCommand {
         Phone updatedPhone = editPatientDescriptor.getPhone().orElse(patientToEdit.getPhone());
         Email updatedEmail = editPatientDescriptor.getEmail().orElse(patientToEdit.getEmail());
         Address updatedAddress = editPatientDescriptor.getAddress().orElse(patientToEdit.getAddress());
-        ConditionList updatedConditions = patientToEdit.getConditions(); // editing of conditions is not supported
-        TaskList updatedTasks = patientToEdit.getTasks(); // editPatient command does not allow editing of tasks
-        TagList updatedTags = patientToEdit.getTags(); // editPatient command does not allow editing of tags
 
-        return new Patient(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedConditions, updatedTasks,
-                updatedTags);
+        // editPatient command does not allow editing of tags
+        TagList updatedTags = patientToEdit.getTags();
+
+        // editing of conditions is not supported
+        ConditionList updatedConditions = patientToEdit.getConditions();
+
+        // editPatient command does not allow editing medications
+        MedicationList updatedMedications = patientToEdit.getMedications();
+
+        // editPatient command does not allow editing tasks
+        TaskList updatedTasks = patientToEdit.getTasks();
+
+
+        return new Patient(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTags, updatedConditions,
+                updatedMedications, updatedTasks);
     }
 
     @Override

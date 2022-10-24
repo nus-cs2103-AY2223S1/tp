@@ -8,6 +8,7 @@ import java.util.regex.Pattern;
 
 import seedu.uninurse.logic.commands.AddConditionCommand;
 import seedu.uninurse.logic.commands.AddGenericCommand;
+import seedu.uninurse.logic.commands.AddMedicationCommand;
 import seedu.uninurse.logic.commands.AddTagCommand;
 import seedu.uninurse.logic.commands.ClearCommand;
 import seedu.uninurse.logic.commands.Command;
@@ -21,6 +22,7 @@ import seedu.uninurse.logic.commands.ListTaskCommand;
 import seedu.uninurse.logic.commands.PatientsTodayCommand;
 import seedu.uninurse.logic.commands.RedoCommand;
 import seedu.uninurse.logic.commands.UndoCommand;
+import seedu.uninurse.logic.commands.ViewPatientCommand;
 import seedu.uninurse.logic.commands.ViewTaskCommand;
 import seedu.uninurse.logic.parser.exceptions.ParseException;
 
@@ -51,6 +53,8 @@ public class UninurseBookParser {
         final String arguments = ParserTranslator.translate(commandWord, matcher.group("arguments"));
 
         switch (commandWord) {
+        case ViewPatientCommand.COMMAND_WORD:
+            return new ViewPatientCommandParser().parse(arguments);
 
         case AddGenericCommand.COMMAND_WORD:
             return new AddGenericCommandParser().parse(arguments);
@@ -61,11 +65,14 @@ public class UninurseBookParser {
         case DeleteGenericCommand.COMMAND_WORD:
             return new DeleteGenericCommandParser().parse(arguments);
 
+        case AddTagCommand.COMMAND_WORD: // TODO: integrate with AddGenericCommand
+            return new AddTagCommandParser().parse(arguments);
+
         case AddConditionCommand.COMMAND_WORD: // TODO: integrate with AddGenericCommand
             return new AddConditionCommandParser().parse(arguments);
 
-        case AddTagCommand.COMMAND_WORD: // TODO: integrate with AddGenericCommand
-            return new AddTagCommandParser().parse(arguments);
+        case AddMedicationCommand.COMMAND_WORD: // TODO: integrate with AddGenericCommand
+            return new AddMedicationCommandParser().parse(arguments);
 
         case ClearCommand.COMMAND_WORD:
             return new ClearCommand();

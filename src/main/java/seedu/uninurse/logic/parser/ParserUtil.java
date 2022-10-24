@@ -14,6 +14,8 @@ import seedu.uninurse.commons.util.StringUtil;
 import seedu.uninurse.logic.parser.exceptions.ParseException;
 import seedu.uninurse.model.condition.Condition;
 import seedu.uninurse.model.condition.ConditionList;
+import seedu.uninurse.model.medication.Medication;
+import seedu.uninurse.model.medication.MedicationList;
 import seedu.uninurse.model.person.Address;
 import seedu.uninurse.model.person.Email;
 import seedu.uninurse.model.person.Name;
@@ -156,6 +158,42 @@ public class ParserUtil {
             conditionList.add(parseCondition(condition));
         }
         return new ConditionList(conditionList);
+    }
+
+    /**
+     * Parses a {@code String medication} into a {@code Medication}.
+     * Leading and trailing whitespaces will be trimmed.
+     *
+     * @throws ParseException if the given {@code String medication} is invalid.
+     */
+    public static Medication parseMedication(String medication) throws ParseException {
+        requireNonNull(medication);
+        String[] medicationTypeAndDosage = medication.split("\\|");
+
+        if (medicationTypeAndDosage.length != 2) {
+            throw new ParseException(Medication.MESSAGE_CONSTRAINTS);
+        }
+
+        String trimmedMedicationType = medicationTypeAndDosage[0].trim();
+        String trimmedMedicationDosage = medicationTypeAndDosage[1].trim();
+
+        if (!Medication.isValidMedication(trimmedMedicationType, trimmedMedicationDosage)) {
+            throw new ParseException(Medication.MESSAGE_CONSTRAINTS);
+        }
+
+        return new Medication(trimmedMedicationType, trimmedMedicationDosage);
+    }
+
+    /**
+     * Parses {@code Collection<String> medications} into a {@code MedicationList}.
+     */
+    public static MedicationList parseMedications(Collection<String> medications) throws ParseException {
+        requireNonNull(medications);
+        final List<Medication> medicationList = new ArrayList<>();
+        for (String medication : medications) {
+            medicationList.add(parseMedication(medication));
+        }
+        return new MedicationList(medicationList);
     }
 
     /**

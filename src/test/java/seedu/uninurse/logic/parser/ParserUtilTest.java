@@ -14,6 +14,8 @@ import org.junit.jupiter.api.Test;
 import seedu.uninurse.logic.parser.exceptions.ParseException;
 import seedu.uninurse.model.condition.Condition;
 import seedu.uninurse.model.condition.ConditionList;
+import seedu.uninurse.model.medication.Medication;
+import seedu.uninurse.model.medication.MedicationList;
 import seedu.uninurse.model.person.Address;
 import seedu.uninurse.model.person.Email;
 import seedu.uninurse.model.person.Name;
@@ -28,15 +30,26 @@ public class ParserUtilTest {
     private static final String INVALID_EMAIL = "example.com";
     private static final String INVALID_CONDITION = " ";
     private static final String INVALID_TAG = " ";
+    private static final String INVALID_MEDICATION_1 = " | ";
+    private static final String INVALID_MEDICATION_2 = "medication| ";
+    private static final String INVALID_MEDICATION_3 = " |dosage";
 
     private static final String VALID_NAME = "Rachel Walker";
     private static final String VALID_PHONE = "123456";
     private static final String VALID_ADDRESS = "123 Main Street #0505";
     private static final String VALID_EMAIL = "rachel@example.com";
+
     private static final String VALID_CONDITION_1 = "Wolff-Parkinson-White Syndrome";
     private static final String VALID_CONDITION_2 = "COVID-19";
     private static final String VALID_TAG_1 = "high-risk";
     private static final String VALID_TAG_2 = "A20 Nursing Home";
+
+    private static final String VALID_MEDICATION_1 = "Amoxicillin | 0.5 g every 8 hours";
+    private static final String VALID_MEDICATION_2 = "Ampicillin | 0.5 IV every 6 hours";
+    private static final String VALID_MEDICATION_DOSAGE_1 = "0.5 g every 8 hours";
+    private static final String VALID_MEDICATION_DOSAGE_2 = "0.5 IV every 6 hours";
+    private static final String VALID_MEDICATION_TYPE_1 = "Amoxicillin";
+    private static final String VALID_MEDICATION_TYPE_2 = "Ampicillin";
 
     private static final String WHITESPACE = " \t\r\n";
 
@@ -199,6 +212,58 @@ public class ParserUtilTest {
                 Arrays.asList(new Condition(VALID_CONDITION_1), new Condition(VALID_CONDITION_2)));
 
         assertEquals(expectedConditionList, actualConditionList);
+    }
+
+    @Test
+    public void parseMedication_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseMedication(null));
+    }
+
+    @Test
+    public void parseMedication_invalidValue_throwsParseException() {
+        assertThrows(ParseException.class, () -> ParserUtil.parseMedication(INVALID_MEDICATION_1));
+        assertThrows(ParseException.class, () -> ParserUtil.parseMedication(INVALID_MEDICATION_2));
+        assertThrows(ParseException.class, () -> ParserUtil.parseMedication(INVALID_MEDICATION_3));
+    }
+
+    @Test
+    public void parseMedication_validValueWithoutWhitespace_returnsMedication() throws Exception {
+        Medication expectedMedication = new Medication(VALID_MEDICATION_TYPE_1, VALID_MEDICATION_DOSAGE_1);
+        assertEquals(expectedMedication, ParserUtil.parseMedication(VALID_MEDICATION_1));
+    }
+
+    @Test
+    public void parseMedication_validValueWithWhitespace_returnsTrimmedMedication() throws Exception {
+        String medicationWithWhitespace = WHITESPACE + VALID_MEDICATION_1 + WHITESPACE;
+        Medication expectedMedication = new Medication(VALID_MEDICATION_TYPE_1, VALID_MEDICATION_DOSAGE_1);
+        assertEquals(expectedMedication, ParserUtil.parseMedication(medicationWithWhitespace));
+    }
+
+    @Test
+    public void parseMedications_null_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> ParserUtil.parseMedications(null));
+    }
+
+    @Test
+    public void parseMedications_collectionWithInvalidMedications_throwsParseException() {
+        assertThrows(ParseException.class, () ->
+                ParserUtil.parseMedications(Arrays.asList(VALID_MEDICATION_1, INVALID_MEDICATION_1)));
+    }
+
+    @Test
+    public void parseMedications_emptyCollection_returnsEmptyList() throws Exception {
+        assertTrue(ParserUtil.parseMedications(Collections.emptyList()).isEmpty());
+    }
+
+    @Test
+    public void parseMedications_collectionWithValidMedications_returnsMedicationList() throws Exception {
+        MedicationList actualMedicationList = ParserUtil.parseMedications(
+                Arrays.asList(VALID_MEDICATION_1, VALID_MEDICATION_2));
+        MedicationList expectedMedicationList = new MedicationList(
+                Arrays.asList(new Medication(VALID_MEDICATION_TYPE_1, VALID_MEDICATION_DOSAGE_1),
+                    new Medication(VALID_MEDICATION_TYPE_2, VALID_MEDICATION_DOSAGE_2)));
+
+        assertEquals(expectedMedicationList, actualMedicationList);
     }
 
     @Test
