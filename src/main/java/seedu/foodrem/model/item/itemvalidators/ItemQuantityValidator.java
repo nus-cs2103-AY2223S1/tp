@@ -1,8 +1,6 @@
 package seedu.foodrem.model.item.itemvalidators;
 
-import static seedu.foodrem.commons.util.AppUtil.checkArgument;
-
-import seedu.foodrem.commons.util.ValidationUtil;
+import static seedu.foodrem.model.item.itemvalidators.ItemPriceValidator.validateNumericString;
 
 /**
  * Validation class for item quantities.
@@ -30,19 +28,8 @@ public class ItemQuantityValidator implements Validator {
      * @param itemQuantityString String representation of item quantity to validate against.
      */
     public static Void validate(String itemQuantityString) {
-        boolean isQuantityStringParsable = ValidationUtil.isParsableDouble(itemQuantityString);
-        boolean isQuantityTooPrecise = ValidationUtil.isDoubleTooPrecise(itemQuantityString, MAX_DECIMAL_PLACE);
-
-        checkArgument(isQuantityStringParsable, MESSAGE_FOR_NOT_A_NUMBER);
-        checkArgument(!isQuantityTooPrecise, MESSAGE_FOR_PRECISION_TOO_HIGH);
-
-        double price = Double.parseDouble(itemQuantityString);
-
-        boolean isQuantityLessThanEqualMaxQuantity = price <= MAX_QUANTITY;
-        boolean isQuantityNonNegative = ValidationUtil.isNonNegative(price);
-
-        checkArgument(isQuantityLessThanEqualMaxQuantity, MESSAGE_FOR_QUANTITY_TOO_LARGE);
-        checkArgument(isQuantityNonNegative, MESSAGE_FOR_QUANTITY_IS_NEGATIVE);
-        return null;
+        return validateNumericString(itemQuantityString, MAX_DECIMAL_PLACE, MESSAGE_FOR_NOT_A_NUMBER,
+                MESSAGE_FOR_PRECISION_TOO_HIGH, MAX_QUANTITY, MESSAGE_FOR_QUANTITY_TOO_LARGE,
+                MESSAGE_FOR_QUANTITY_IS_NEGATIVE);
     }
 }

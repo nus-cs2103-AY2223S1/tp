@@ -30,19 +30,26 @@ public class ItemPriceValidator implements Validator {
      * @param itemPriceString String representation of item price to validate against.
      */
     public static Void validate(String itemPriceString) {
-        boolean isPriceStringParsable = ValidationUtil.isParsableDouble(itemPriceString);
-        boolean isPriceTooPrecise = ValidationUtil.isDoubleTooPrecise(itemPriceString, MAX_DECIMAL_PLACE);
+        return validateNumericString(itemPriceString, MAX_DECIMAL_PLACE, MESSAGE_FOR_NOT_A_NUMBER,
+                MESSAGE_FOR_PRECISION_TOO_HIGH, MAX_PRICE, MESSAGE_FOR_PRICE_TOO_LARGE, MESSAGE_FOR_PRICE_IS_NEGATIVE);
+    }
 
-        checkArgument(isPriceStringParsable, MESSAGE_FOR_NOT_A_NUMBER);
-        checkArgument(!isPriceTooPrecise, MESSAGE_FOR_PRECISION_TOO_HIGH);
+    static Void validateNumericString(String numericString, int maxDecimalPlace, String messageNotANumber,
+                                      String messageTooPrecise, int maximum, String messageTooLarge,
+                                      String messageIsNegative) {
+        boolean isParsable = ValidationUtil.isParsableDouble(numericString);
+        boolean isTooPrecise = ValidationUtil.isDoubleTooPrecise(numericString, maxDecimalPlace);
 
-        double price = Double.parseDouble(itemPriceString);
+        checkArgument(isParsable, messageNotANumber);
+        checkArgument(!isTooPrecise, messageTooPrecise);
 
-        boolean isPriceLessThanEqualMaxPrice = price <= MAX_PRICE;
-        boolean isPriceNonNegative = ValidationUtil.isNonNegative(price);
+        double number = Double.parseDouble(numericString);
 
-        checkArgument(isPriceLessThanEqualMaxPrice, MESSAGE_FOR_PRICE_TOO_LARGE);
-        checkArgument(isPriceNonNegative, MESSAGE_FOR_PRICE_IS_NEGATIVE);
+        boolean isWithinMaximum = number <= maximum;
+        boolean isNonNegative = ValidationUtil.isNonNegative(number);
+
+        checkArgument(isWithinMaximum, messageTooLarge);
+        checkArgument(isNonNegative, messageIsNegative);
         return null;
     }
 }
