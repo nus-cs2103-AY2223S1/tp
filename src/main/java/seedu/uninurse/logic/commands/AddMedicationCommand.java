@@ -71,7 +71,6 @@ public class AddMedicationCommand extends AddGenericCommand {
         Patient editedPatient = new Patient(patientToEdit, updatedMedicationList);
 
         model.setPerson(patientToEdit, editedPatient);
-        model.updateFilteredPersonList(Model.PREDICATE_SHOW_ALL_PERSONS);
         model.setPatientOfInterest(editedPatient);
 
         return new CommandResult(String.format(MESSAGE_ADD_MEDICATION_SUCCESS, editedPatient.getName(), medication),
@@ -91,7 +90,7 @@ public class AddMedicationCommand extends AddGenericCommand {
         }
 
         // state check
-        AddMedicationCommand e = (AddMedicationCommand) other;
-        return index.equals(e.index) && medication.equals((e.medication));
+        AddMedicationCommand command = (AddMedicationCommand) other;
+        return index.equals(command.index) && medication.equals((command.medication));
     }
 }

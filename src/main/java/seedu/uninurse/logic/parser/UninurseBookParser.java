@@ -12,7 +12,9 @@ import seedu.uninurse.logic.commands.AddMedicationCommand;
 import seedu.uninurse.logic.commands.AddTagCommand;
 import seedu.uninurse.logic.commands.ClearCommand;
 import seedu.uninurse.logic.commands.Command;
+import seedu.uninurse.logic.commands.DeleteConditionCommand;
 import seedu.uninurse.logic.commands.DeleteGenericCommand;
+import seedu.uninurse.logic.commands.DeleteMedicationCommand;
 import seedu.uninurse.logic.commands.EditGenericCommand;
 import seedu.uninurse.logic.commands.ExitCommand;
 import seedu.uninurse.logic.commands.FindCommand;
@@ -72,8 +74,14 @@ public class UninurseBookParser {
         case AddConditionCommand.COMMAND_WORD: // TODO: integrate with AddGenericCommand
             return new AddConditionCommandParser().parse(arguments);
 
+        case DeleteConditionCommand.COMMAND_WORD: // TODO: integrate with DeleteGenericCommand
+            return new DeleteConditionCommandParser().parse(arguments);
+
         case AddMedicationCommand.COMMAND_WORD: // TODO: integrate with AddGenericCommand
             return new AddMedicationCommandParser().parse(arguments);
+
+        case DeleteMedicationCommand.COMMAND_WORD: // TODO: integrate with DeleteGenericCommand
+            return new DeleteMedicationCommandParser().parse(arguments);
 
         case ClearCommand.COMMAND_WORD:
             return new ClearCommand();

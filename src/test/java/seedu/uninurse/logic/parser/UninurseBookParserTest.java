@@ -33,6 +33,8 @@ public class UninurseBookParserTest {
 
     private final UninurseBookParser parser = new UninurseBookParser();
 
+    // TODO: update tests for add/delete/edit task and conditions
+
     @Test
     public void parseCommand_add() throws Exception {
         Patient person = new PersonBuilder().build();
