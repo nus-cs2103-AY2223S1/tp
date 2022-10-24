@@ -11,7 +11,7 @@ public class TagUtilTest {
         assertEquals(TagUtil.retrieveTagString("assm"), "assignment");
         assertEquals(TagUtil.retrieveTagString("tut"), "tutorial");
         assertEquals(TagUtil.retrieveTagString("lec"), "lecture");
-        
+
         // case insensitive check
         assertEquals(TagUtil.retrieveTagString("LEC"), "lecture");
         assertEquals(TagUtil.retrieveTagString("tuT"), "tutorial");
