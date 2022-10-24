@@ -64,7 +64,7 @@ public class PersonCard extends UiPart<Region> {
         StringBuilder tasks = new StringBuilder("Assigned : ");
 
         for(Task task : person.getTasks()) {
-            tasks.append(task.getName().toString()).append(",");
+            tasks.append(task.getName().toString()).append(", ");
         }
         taskAssigned.setText(tasks.substring(0,tasks.length()-2));
     }
