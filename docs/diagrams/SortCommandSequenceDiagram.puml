@@ -1,0 +1,71 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":StudMapParser" as StudMapParser LOGIC_COLOR
+participant ":SortCommandParser" as SortCommandParser LOGIC_COLOR
+participant ":SortCommand" as SortCommand LOGIC_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+participant ":StudMap" as StudMap MODEL_COLOR
+participant ":UniqueStudentList" as UniqueStudentList MODEL_COLOR
+participant ":ObservableList" as ObservableList MODEL_COLOR
+end box
+
+[-> LogicManager : execute("sort asc a/name")
+activate LogicManager
+
+LogicManager -> StudMapParser : parseCommand("sort asc a/name")
+activate StudMapParser
+
+StudMapParser -> SortCommandParser ** : parse(args)
+activate SortCommandParser
+
+SortCommandParser -> SortCommand **
+activate SortCommand
+
+SortCommand --> SortCommandParser
+deactivate SortCommand
+
+SortCommandParser --> StudMapParser
+deactivate SortCommandParser
+
+StudMapParser --> LogicManager
+deactivate StudMapParser
+
+LogicManager -> SortCommand : execute(model)
+activate SortCommand
+
+SortCommand -> Model : sortFilteredStudentList(comparator, sortOrder)
+activate Model
+
+Model -> StudMap : sort(comparator, order)
+activate StudMap
+
+StudMap -> UniqueStudentList : sort(comparator, isDescending)
+activate UniqueStudentList
+
+UniqueStudentList -> ObservableList : sort(comparator)
+activate ObservableList
+
+ObservableList --> UniqueStudentList
+deactivate ObservableList
+
+UniqueStudentList --> StudMap
+deactivate UniqueStudentList
+
+StudMap --> Model
+deactivate StudMap
+
+Model --> SortCommand
+deactivate Model
+
+SortCommand --> LogicManager
+deactivate SortCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml
