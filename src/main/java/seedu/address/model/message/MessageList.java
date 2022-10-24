@@ -7,12 +7,15 @@ import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+
 
 /**
  * A list of messages that do not allow null.
  */
 public class MessageList implements Iterable<Message> {
-    private final List<Message> internalList = new ArrayList<>();
+    private final ObservableList<Message> internalList = FXCollections.observableArrayList();
 
     /**
      * Adds a message to the list.
@@ -48,8 +51,8 @@ public class MessageList implements Iterable<Message> {
     /**
      * Returns the backing list as an unmodifiable {@code UnmodifiableList}.
      */
-    public List<Message> asUnmodifiableList() {
-        return Collections.unmodifiableList(internalList);
+    public ObservableList<Message> asUnmodifiableList() {
+        return FXCollections.unmodifiableObservableList(internalList);
     }
 
     @Override
