@@ -2,10 +2,14 @@ package seedu.address.testutil;
 
 import java.time.LocalDateTime;
 import java.util.Arrays;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import seedu.address.model.person.Appointment;
 import seedu.address.model.person.Person;
+import seedu.address.model.tag.Tag;
+import seedu.address.model.util.SampleDataUtil;
 
 /**
  * A utility class to help with building Appointment objects.
@@ -22,6 +26,8 @@ public class AppointmentBuilder {
     private List<Integer> timePeriod;
     private boolean isMarked;
     private Person patient;
+
+    private Set<Tag> tags = new HashSet<>();
 
     /**
      * Creates a {@code AppointmentBuilder} with the default details.
@@ -43,7 +49,9 @@ public class AppointmentBuilder {
         isMarked = appointmentToCopy.isMarked();
         timePeriod = appointmentToCopy.getTimePeriod();
         patient = new PersonBuilder(appointmentToCopy.getPatient()).build();
+        tags.addAll(appointmentToCopy.getTags());
     }
+
 
     /**
      * Sets the {@code reason} of the {@code Appointment} that we are building.
@@ -86,12 +94,20 @@ public class AppointmentBuilder {
     }
 
     /**
+     * Sets the {@code tags} into a {@code Set<Tag>} and set it to the {@code Appointment} that we are building.
+     */
+    public AppointmentBuilder withTags(String ... tags) {
+        this.tags = SampleDataUtil.getTagSet(tags);
+        return this;
+    }
+
+    /**
      * Builds an {@code Appointment} object based on the info we have.
      *
      * @return An {@code Appointment}
      */
     public Appointment build() {
-        Appointment appointment = new Appointment(reason, dateTime, timePeriod, isMarked);
+        Appointment appointment = new Appointment(reason, dateTime, timePeriod, tags, isMarked);
         appointment.setPatient(patient);
         return appointment;
     }
