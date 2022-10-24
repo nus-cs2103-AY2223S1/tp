@@ -19,8 +19,6 @@ import seedu.foodrem.viewmodels.ItemWithMessage;
  * Tags an item with a Tag.
  */
 public class TagCommand extends Command {
-    // TODO: Test this command
-    private static final String MESSAGE_SUCCESS = "Item tagged successfully. View updated item below:";
     private static final String ERROR_DUPLICATE = "This item has already been tagged with this tag";
     private static final String ERROR_NOT_FOUND_TAG = "This tag does not exist";
     private static final String ERROR_NOT_FOUND_ITEM = "The item index does not exist";
@@ -66,10 +64,10 @@ public class TagCommand extends Command {
         }
 
         Item newTagSetItem = createTaggedItem(itemToTag, tag);
-
         model.setItem(itemToTag, newTagSetItem);
 
-        return CommandResult.from(new ItemWithMessage(newTagSetItem, MESSAGE_SUCCESS));
+        return CommandResult.from(
+                new ItemWithMessage(newTagSetItem, "Item tagged successfully. View updated item below:"));
     }
 
     static Item validateAndGetTargetItem(Model model, Tag tag, Index index) throws CommandException {
