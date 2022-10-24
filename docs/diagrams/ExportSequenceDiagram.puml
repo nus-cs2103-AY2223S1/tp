@@ -1,0 +1,53 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":AddressBookParser" as AddressBookParser LOGIC_COLOR
+participant ":ExportCommand" as ExportCommand LOGIC_COLOR
+participant ":CommandResult" as CommandResult LOGIC_COLOR
+end box
+
+box Storage STORAGE_COLOR_T1
+participant "<<class>>\nStorage" as Storage STORAGE_COLOR
+end box
+
+[-> LogicManager : execute("export")
+activate LogicManager
+
+LogicManager -> AddressBookParser : parseCommand("export")
+activate AddressBookParser
+
+create ExportCommand
+AddressBookParser -> ExportCommand
+activate ExportCommand
+
+ExportCommand --> AddressBookParser :
+deactivate ExportCommand
+
+AddressBookParser --> LogicManager :
+deactivate AddressBookParser
+
+LogicManager -> ExportCommand : execute()
+activate ExportCommand
+
+ExportCommand -> Storage : saveDisplayedList()
+activate Storage
+
+Storage --> ExportCommand
+deactivate Storage
+
+
+create CommandResult
+ExportCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> ExportCommand
+deactivate CommandResult
+
+ExportCommand --> LogicManager : result
+deactivate ExportCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml

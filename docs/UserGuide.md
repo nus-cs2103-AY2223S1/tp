@@ -36,6 +36,18 @@ InternConnect is a **desktop app for managing internship applicants, optimized f
 
 --------------------------------------------------------------------------------------------------------------------
 
+## Fields
+
+1. Name
+   
+   Constraints: 
+   
+   Length Limit: 
+   
+1. ...
+
+--------------------------------------------------------------------------------------------------------------------
+
 ## Features
 
 <div markdown="block" class="alert alert-info">
