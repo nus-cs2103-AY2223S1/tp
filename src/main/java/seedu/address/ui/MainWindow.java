@@ -189,7 +189,7 @@ public class MainWindow extends UiPart<Stage> {
 
     /**
      * Sets the welcome message within welcomePanel.
-     * @param message
+     * @param message Message to be displayed.
      */
     public void setWelcomeMessage(String message) {
         requireAllNonNull(welcomePanel, message);
@@ -198,7 +198,7 @@ public class MainWindow extends UiPart<Stage> {
 
     /**
      * Sets the motivational quote within welcomePanel
-     * @param quote
+     * @param quote quote to be displayed.
      */
     public void setMotivationalQuote(Quote quote) {
         requireAllNonNull(welcomePanel, quote);
@@ -207,7 +207,7 @@ public class MainWindow extends UiPart<Stage> {
 
     /**
      * Sets the secondary pane to specified pane.
-     * @param secondaryPaneState
+     * @param secondaryPaneState Secondary Pane to be set.
      */
     public void setSecondaryPaneState(SecondaryPaneState secondaryPaneState) {
         requireNonNull(mainPane);
