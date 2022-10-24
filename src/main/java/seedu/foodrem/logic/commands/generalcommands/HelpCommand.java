@@ -48,8 +48,8 @@ public class HelpCommand extends Command {
     }
 
     @Override
-    public CommandResult execute(Model model) {
-        return new CommandResult() {
+    public CommandResult<String> execute(Model model) {
+        return new CommandResult<>() {
             @Override
             public String getOutput() {
                 return SHOWING_HELP_MESSAGE;

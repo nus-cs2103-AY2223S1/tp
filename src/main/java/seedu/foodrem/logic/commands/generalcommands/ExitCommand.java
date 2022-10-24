@@ -13,8 +13,8 @@ public class ExitCommand extends Command {
     private static final String MESSAGE_SUCCESS = "Exiting Address Book as requested ...";
 
     @Override
-    public CommandResult execute(Model model) {
-        return new CommandResult() {
+    public CommandResult<String> execute(Model model) {
+        return new CommandResult<>() {
             @Override
             public String getOutput() {
                 return MESSAGE_SUCCESS;

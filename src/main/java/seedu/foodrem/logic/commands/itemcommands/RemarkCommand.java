@@ -53,7 +53,7 @@ public class RemarkCommand extends Command {
     }
 
     @Override
-    public CommandResult execute(Model model) throws CommandException {
+    public CommandResult<String> execute(Model model) throws CommandException {
         requireNonNull(model);
         List<Item> lastShownList = model.getFilteredItemList();
 
