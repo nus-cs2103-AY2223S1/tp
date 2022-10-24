@@ -151,4 +151,14 @@ public class ModelManager implements Model {
     public int getPersonCount() {
         return addressBook.getPersonList().size();
     }
+
+    @Override
+    public String getMedicationMap() {
+        return addressBook.getMedicationMap(this);
+    }
+
+    @Override
+    public String getCensus() {
+        return addressBook.getCensus(this);
+    }
 }

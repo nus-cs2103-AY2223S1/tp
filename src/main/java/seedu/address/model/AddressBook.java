@@ -1,12 +1,14 @@
 package seedu.address.model;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.address.logic.commands.CountCommand.MESSAGE_COUNT;
 
 import java.util.List;
 
 import javafx.collections.ObservableList;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.UniquePersonList;
+import seedu.address.model.tag.Medication;
 
 /**
  * Wraps all data at the address-book level
@@ -104,6 +106,19 @@ public class AddressBook implements ReadOnlyAddressBook {
     @Override
     public ObservableList<Person> getPersonList() {
         return persons.asUnmodifiableObservableList();
+    }
+
+    @Override
+    public String getMedicationMap(Model model) {
+        return Medication.getMedicationMap(model);
+    }
+
+    @Override
+    public String getCensus(Model model) {
+        StringBuilder sb = new StringBuilder();
+        sb.append(String.format(MESSAGE_COUNT, model.getPersonCount()));
+        sb.append(getMedicationMap(model));
+        return sb.toString();
     }
 
     @Override

@@ -152,6 +152,16 @@ public class AddCommandTest {
         public int getPersonCount() {
             throw new AssertionError("This method should not be called.");
         }
+
+        @Override
+        public String getMedicationMap() {
+            throw new AssertionError("This method should not be called.");
+        }
+
+        @Override
+        public String getCensus() {
+            throw new AssertionError("This method should not be called.");
+        }
     }
 
     /**
