@@ -17,6 +17,7 @@ public final class StringView {
     public static Node from(String message) {
         final TextArea textArea = new TextArea(message);
         textArea.setEditable(false);
+        textArea.setWrapText(true);
         return textArea;
     }
 }
