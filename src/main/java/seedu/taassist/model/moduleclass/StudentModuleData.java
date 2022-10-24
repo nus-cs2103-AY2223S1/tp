@@ -11,6 +11,7 @@ import seedu.taassist.model.session.Session;
 import seedu.taassist.model.session.SessionData;
 import seedu.taassist.model.uniquelist.Identity;
 import seedu.taassist.model.uniquelist.UniqueList;
+import seedu.taassist.model.uniquelist.exceptions.ElementNotFoundException;
 
 /**
  * Represents a student's data for a module.
@@ -46,6 +47,13 @@ public class StudentModuleData implements Identity<StudentModuleData> {
      */
     public List<SessionData> getSessionDataList() {
         return sessionDataList.asUnmodifiableObservableList();
+    }
+
+    /**
+     * Returns the {@code SessionData} within the module data for the given {@code Session}.
+     */
+    public SessionData findSessionData(Session target) {
+        return sessionDataList.findElement(new SessionData(target, 0.0));
     }
 
     /**

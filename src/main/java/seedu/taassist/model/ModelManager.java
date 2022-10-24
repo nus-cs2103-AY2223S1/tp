@@ -9,13 +9,17 @@ import java.util.function.Predicate;
 import java.util.logging.Logger;
 
 import javafx.beans.property.SimpleStringProperty;
+import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.taassist.commons.core.GuiSettings;
 import seedu.taassist.commons.core.LogsCenter;
 import seedu.taassist.model.moduleclass.ModuleClass;
+import seedu.taassist.model.session.Session;
 import seedu.taassist.model.student.IsPartOfClassPredicate;
+import seedu.taassist.model.student.MappedStudentViewList;
 import seedu.taassist.model.student.Student;
+import seedu.taassist.model.student.StudentView;
 
 /**
  * Represents the in-memory model of TA-Assist data.
@@ -28,7 +32,10 @@ public class ModelManager implements Model {
 
     private final TaAssist taAssist;
     private final UserPrefs userPrefs;
+
     private final FilteredList<Student> filteredStudents;
+    private final MappedStudentViewList studentViewList;
+
     private final SimpleStringProperty focusLabelProperty;
 
     // N.B. must guarantee focusedClass is equivalent to the entry in the UniqueModuleClassList.
@@ -45,7 +52,12 @@ public class ModelManager implements Model {
         this.taAssist = new TaAssist(taAssist);
         this.userPrefs = new UserPrefs(userPrefs);
         filteredStudents = new FilteredList<>(this.taAssist.getStudentList());
+        studentViewList = new MappedStudentViewList(filteredStudents);
         focusLabelProperty = new SimpleStringProperty(DEFAULT_FOCUS_LABEL);
+
+        studentViewList.addListener((ListChangeListener.Change<? extends StudentView> change) -> {
+            logger.info("ListChange called: " + change.getList());
+        });
     }
 
     public ModelManager() {
@@ -180,11 +192,16 @@ public class ModelManager implements Model {
 
     /**
      * Returns an unmodifiable view of the list of {@code Student} backed by the internal list of
-     * {@code versionedTaAssist}
+     * {@code TaAssist}
      */
     @Override
     public ObservableList<Student> getFilteredStudentList() {
         return filteredStudents;
+    }
+
+    @Override
+    public ObservableList<StudentView> getStudentViewList() {
+        return studentViewList;
     }
 
     @Override
@@ -219,7 +236,7 @@ public class ModelManager implements Model {
 
     //=========== Handles focus mode state ==================================================================
 
-    // TODO: Should guarantee classToFocus's equivalent identity module class must exist in TaAssist.
+    // IMPORTANT: Must guarantee classToFocus's equivalent identity module class must exist in TaAssist.
     @Override
     public void enterFocusMode(ModuleClass classToFocus) {
         requireNonNull(classToFocus);
@@ -231,6 +248,7 @@ public class ModelManager implements Model {
 
         focusLabelProperty.set(String.format(FOCUS_LABEL_FORMAT, focusedClass));
         IsPartOfClassPredicate predicate = new IsPartOfClassPredicate(focusedClass);
+        resetQueriedSessionData();
         updateFilteredStudentList(predicate);
     }
 
@@ -238,6 +256,7 @@ public class ModelManager implements Model {
     public void exitFocusMode() {
         focusedClass = null;
         focusLabelProperty.set(DEFAULT_FOCUS_LABEL);
+        resetQueriedSessionData();
         updateFilteredStudentList(PREDICATE_SHOW_ALL_STUDENTS);
     }
 
@@ -254,5 +273,19 @@ public class ModelManager implements Model {
     @Override
     public SimpleStringProperty getFocusLabelProperty() {
         return focusLabelProperty;
+    }
+
+    //=========== Handles queried session state ==================================================================
+    @Override
+    public void querySessionData(Session targetSession) {
+        requireAllNonNull(focusedClass, targetSession);
+        // Should only be called when Model is in focus mode and focused class definitely contains the session.
+        assert(focusedClass.hasSession(targetSession));
+        studentViewList.setTarget(focusedClass, targetSession);
+    }
+
+    @Override
+    public void resetQueriedSessionData() {
+        studentViewList.setTarget(null, null);
     }
 }

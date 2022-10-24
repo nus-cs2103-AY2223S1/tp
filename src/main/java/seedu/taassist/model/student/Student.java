@@ -9,8 +9,10 @@ import java.util.stream.Collectors;
 import seedu.taassist.model.moduleclass.ModuleClass;
 import seedu.taassist.model.moduleclass.StudentModuleData;
 import seedu.taassist.model.session.Session;
+import seedu.taassist.model.session.SessionData;
 import seedu.taassist.model.uniquelist.Identity;
 import seedu.taassist.model.uniquelist.UniqueList;
+import seedu.taassist.model.uniquelist.exceptions.ElementNotFoundException;
 
 /**
  * Represents a Student in TA-Assist.
@@ -83,6 +85,18 @@ public class Student implements Identity<Student> {
      */
     public StudentModuleData findStudentModuleData(ModuleClass targetClass) {
         return moduleDataList.findElement(new StudentModuleData(targetClass));
+    }
+
+    /**
+     * Returns the {@code SessionData} of a student for the given {@code ModuleClass} and {@code Session}.
+     * Returns null if ModuleClass or Session doesn't exist in Student.
+     */
+    public SessionData findNullableSessionData(ModuleClass targetClass, Session targetSession) {
+        try {
+            return findStudentModuleData(targetClass).findSessionData(targetSession);
+        } catch (ElementNotFoundException e) {
+            return null;
+        }
     }
 
     /**

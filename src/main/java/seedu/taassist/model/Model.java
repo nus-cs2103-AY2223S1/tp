@@ -8,7 +8,9 @@ import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.ObservableList;
 import seedu.taassist.commons.core.GuiSettings;
 import seedu.taassist.model.moduleclass.ModuleClass;
+import seedu.taassist.model.session.Session;
 import seedu.taassist.model.student.Student;
+import seedu.taassist.model.student.StudentView;
 
 /**
  * The API of the Model component.
@@ -83,6 +85,8 @@ public interface Model {
     /** Returns an unmodifiable view of the filtered student list. */
     ObservableList<Student> getFilteredStudentList();
 
+    ObservableList<StudentView> getStudentViewList();
+
     /** Returns an unmodifiable view of the student list. */
     ObservableList<Student> getStudentList();
 
@@ -141,4 +145,8 @@ public interface Model {
     ModuleClass getFocusedClass();
 
     SimpleStringProperty getFocusLabelProperty();
+
+    public void querySessionData(Session targetSession);
+
+    public void resetQueriedSessionData();
 }
