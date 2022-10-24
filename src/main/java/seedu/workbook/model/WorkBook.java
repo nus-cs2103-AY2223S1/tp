@@ -1,12 +1,13 @@
 package seedu.workbook.model;
 
-import static java.util.Objects.requireNonNull;
+import javafx.collections.ObservableList;
+import seedu.workbook.model.internship.Internship;
+import seedu.workbook.model.internship.Stage;
+import seedu.workbook.model.internship.UniqueInternshipList;
 
 import java.util.List;
 
-import javafx.collections.ObservableList;
-import seedu.workbook.model.internship.Internship;
-import seedu.workbook.model.internship.UniqueInternshipList;
+import static java.util.Objects.requireNonNull;
 
 /**
  * Wraps all data at the WorkBook level
@@ -99,6 +100,10 @@ public class WorkBook implements ReadOnlyWorkBook {
     }
 
     //// util methods
+
+    public boolean internshipStageHasNoTips(Internship internship) {
+        return !Stage.hasTips(internship.getStage());
+    }
 
     @Override
     public String toString() {

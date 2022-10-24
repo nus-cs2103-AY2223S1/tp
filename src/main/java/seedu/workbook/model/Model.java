@@ -1,11 +1,11 @@
 package seedu.workbook.model;
 
-import java.nio.file.Path;
-import java.util.function.Predicate;
-
 import javafx.collections.ObservableList;
 import seedu.workbook.commons.core.GuiSettings;
 import seedu.workbook.model.internship.Internship;
+
+import java.nio.file.Path;
+import java.util.function.Predicate;
 
 /**
  * The API of the Model component.
@@ -43,6 +43,11 @@ public interface Model {
      * exists in WorkBook.
      */
     boolean hasInternship(Internship internship);
+
+    /**
+     * Returns true if an Internship stage has no tips.
+     */
+    boolean internshipStageHasNoTips(Internship internship);
 
     /**
      * Deletes the given Internship.

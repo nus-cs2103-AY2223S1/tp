@@ -1,5 +1,8 @@
 package seedu.workbook.model;
 
+import seedu.workbook.model.internship.Internship;
+import seedu.workbook.model.internship.Stage;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -90,6 +93,10 @@ public class VersionedWorkBook extends WorkBook {
         return super.equals(otherVersionedAddressBook)
                 && workBookStateList.equals(otherVersionedAddressBook.workBookStateList)
                 && currentStatePointer == otherVersionedAddressBook.currentStatePointer;
+    }
+
+    public boolean internshipHasNoTips(Internship internship) {
+        return !Stage.hasTips(internship.getStage());
     }
 
     /**
