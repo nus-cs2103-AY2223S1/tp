@@ -33,7 +33,7 @@ public class RecordList {
      */
     public boolean contains(Record toCheck) {
         requireNonNull(toCheck);
-        return recordList.stream().anyMatch(toCheck::equals);
+        return recordList.stream().anyMatch(toCheck::isSameRecord);
     }
 
     /**

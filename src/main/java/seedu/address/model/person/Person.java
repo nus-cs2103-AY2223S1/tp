@@ -99,8 +99,12 @@ public class Person {
             return true;
         }
 
-        return otherPerson != null
+        boolean isSameName = otherPerson != null
                 && otherPerson.getName().equals(getName());
+        boolean isSameAddress = otherPerson != null
+                && otherPerson.getAddress().equals(getAddress());
+
+        return isSameName && isSameAddress;
     }
 
     /**
