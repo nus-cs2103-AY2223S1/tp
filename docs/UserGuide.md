@@ -284,6 +284,59 @@ Examples:
 * `list mod plan `followed by  `delete plan 1` deletes the first plan in the list of all plans the user has added.
 
 
+### Adding lessons
+
+Add lessons to the user profile or contacts.
+
+Format for user: `lesson user l/[type] m/[module] day/[day number] start/[start time] end/[end time]`
+
+Format for contact: `lesson INDEX l/[type] m/[module] day/[day number] start/[start time] end/[end time]`
+
+* Adds the lesson to the user or specified `INDEX`.
+  * The index refers to the index number shown in the displayed contact list.
+  * The index **must be a positive integer** 1, 2, 3, …​
+* `type` is the type of lesson
+  * `tut` for Tutorial, `lec` for Lecture, `rec` for Recitation and `lab` for Lab.
+* Day is a **positive integer between 1 to 7**, where 1 is for Monday and 7 is for Sunday.
+* Start and End time in HH:mm format.
+
+Examples:
+
+`lesson user l/tut m/CS2103T d/1 start/12:00 end/13:00`
+
+`lesson 2 l/lec m/CS2101 d/5 start/09:00 end/11:00`
+
+### Listing lessons / Viewing timetable
+
+Shows the list of lessons in a separate window, sorted by day and time.
+
+Format for user: `timetable user`
+
+Format for contact: `timetable INDEX`
+
+* Shows the timetable of the user or specified `INDEX`.
+  * The index refers to the index number shown in the displayed contact list.
+  * The index **must be a positive integer** 1, 2, 3, …​
+* Must have at least one lesson added for the week.
+
+### Deleting lessons
+
+Deletes a lesson from the user or a contact.
+
+Format for user: `remove user l/[type] m/[module] day/[day number] start/[start time] end/[end time]`
+
+Format for contact: `remove INDEX l/[type] m/[module] day/[day number] start/[start time] end/[end time]`
+
+* Deletes the lesson from the user or specified `INDEX`.
+  * The index refers to the index number shown in the displayed contact list.
+  * The index **must be a positive integer** 1, 2, 3, …​
+* `type` is the type of lesson
+  * `tut` for Tutorial, `lec` for Lecture, `rec` for Recitation and `lab` for Lab.
+* Day is a **positive integer between 1 to 7**, where 1 is for Monday and 7 is for Sunday.
+* Start and End time in HH:mm format.
+* All fields must match lesson previously added.
+
+
 ### Exiting the program : `exit`
 
 Exits the program.
@@ -398,6 +451,47 @@ Format: `exit`
 <code>Eg. delete plan 2</code>
    </td>
   </tr>
+
+  <tr>
+    <td><strong>Add Lesson</strong>
+    </td>
+    <td>
+      <code>lesson user l/[type] m/[module] day/[day number] start/[start time] end/[end time]</code>
+      <p>
+      <code>Eg. lesson user l/tut m/CS2103T d/1 start/12:00 end/13:00</code>
+      <p>
+      <code>lesson INDEX l/[type] m/[module] day/[day number] start/[start time] end/[end time]</code>
+      <p>
+      <code>Eg. lesson 1 l/tut m/CS2103T d/1 start/12:00 end/13:00</code>
+     </td>
+  </tr>
+
+  <tr>
+    <td><strong>View Lessons / Timetable</strong>
+    </td>
+    <td>
+      <code>timetable user</code>
+      <p>
+      <code>timetable INDEX</code>
+      <p>
+      <code>Eg. timetable 2</code>
+     </td>
+  </tr>
+
+  <tr>
+    <td><strong>Delete lesson</strong>
+    </td>
+    <td>
+      <code>remove user l/[type] m/[module] day/[day number] start/[start time] end/[end time]</code>
+      <p>
+      <code>Eg. remove user l/tut m/CS2103T d/1 start/12:00 end/13:00</code>
+      <p>
+      <code>remove INDEX l/[type] m/[module] day/[day number] start/[start time] end/[end time]</code>
+      <p>
+      <code>Eg. remove 1 l/tut m/CS2103T d/1 start/12:00 end/13:00</code>
+     </td>
+  </tr>
+
 </table>
 
 
