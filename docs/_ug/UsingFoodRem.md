@@ -38,6 +38,6 @@ Placeholders are words in UPPER_CASE to show you what parameters you can supply 
 
 {% include_relative _ug/Placeholders.md %}
 
-### Trying your First Command
+### Trying your first command
 
 {% include_relative _ug/TryingFirstCommand.md %}

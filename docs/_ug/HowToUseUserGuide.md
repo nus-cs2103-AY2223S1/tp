@@ -16,6 +16,7 @@ If you are an experienced user, you can refer to the [Command Summary](#command-
 
 Here are some icons you may encounter in FoodRem and what they mean:
 
+<!-- TODO: Change to Admonishments -->
 * ℹ️ : Additional Information
 * ❗ : Warning
 
