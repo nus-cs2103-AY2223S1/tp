@@ -10,7 +10,7 @@ import seedu.address.model.profile.UniqueProfileList;
 
 /**
  * Wraps all data at the address-book level
- * Similar Profiles are not allowed (by .isSameName and .isSameEmail comparison)
+ * Similar Profiles are not allowed (by .isSameEmail, .isSamePhone and .isSameTelegram comparison)
  */
 public class AddressBook implements ReadOnlyAddressBook {
 
@@ -59,19 +59,27 @@ public class AddressBook implements ReadOnlyAddressBook {
     //// profile-level operations
 
     /**
-     * Returns true if a profile with the same name as {@code profile} exists in the address book.
-     */
-    public boolean hasName(Profile profile) {
-        requireNonNull(profile);
-        return profiles.containsName(profile);
-    }
-
-    /**
      * Returns true if a profile with the same email as {@code profile} exists in the address book.
      */
     public boolean hasEmail(Profile profile) {
         requireNonNull(profile);
         return profiles.containsEmail(profile);
+    }
+
+    /**
+     * Returns true if a profile with the same phone as {@code profile} exists in the address book.
+     */
+    public boolean hasPhone(Profile profile) {
+        requireNonNull(profile);
+        return profiles.containsPhone(profile);
+    }
+
+    /**
+     * Returns true if a profile with the same telegram as {@code profile} exists in the address book.
+     */
+    public boolean hasTelegram(Profile profile) {
+        requireNonNull(profile);
+        return profiles.containsTelegram(profile);
     }
 
     /**

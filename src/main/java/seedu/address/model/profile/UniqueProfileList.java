@@ -13,15 +13,19 @@ import seedu.address.model.profile.exceptions.SimilarProfileException;
 
 /**
  * A list of profiles that enforces uniqueness between its elements and does not allow nulls.
- * A profile is unique by comparing using {@code Profile#isSameName(Profile)} and {@code Profile#isSameEmail(Profile)}.
- * As such, adding and updating of profiles uses Profile#isSameName(Profile) and Profile#isSameEmail(Profile) for
- * equality so as to ensure that the profile being added or updated is unique in terms of identity in the
- * UniqueProfileList. However, removal of a profile uses Profile#equals(Object) so as to ensure that the profile
- * with exactly the same fields will be removed.
+ * A profile is unique by comparing using {@code Profile#isSameEmail(Profile)}, {@code Profile#isSamePhone(Profile)}
+ * and {@code Profile#isSameTelegram(Profile)}.
+ * As such, adding and updating of profiles uses {@code Profile#isSameEmail(Profile)},
+ * {@code Profile#isSamePhone(Profile)} and {@code Profile#isSameTelegram(Profile)} for equality so as to ensure
+ * that the profile being added or updated is unique in terms of identity in the UniqueProfileList. However,
+ * removal of a profile uses Profile#equals(Object) so as to ensure that the profile with exactly the same
+ * fields will be removed.
  *
  * Supports a minimal set of list operations.
  *
- * @see Profile#isSameName(Profile)
+ * @see Profile#isSameEmail(Profile)
+ * @see Profile#isSamePhone(Profile)
+ * @see Profile#isSameTelegram(Profile)
  */
 public class UniqueProfileList implements Iterable<Profile> {
 
@@ -38,20 +42,28 @@ public class UniqueProfileList implements Iterable<Profile> {
     }
 
     /**
-     * Returns true if the list contains a profile with an equivalent name as the given argument.
+     * Returns true if the list contains a profile with an equivalent phone as the given argument.
      */
-    public boolean containsName(Profile toCheck) {
+    public boolean containsPhone(Profile toCheck) {
         requireNonNull(toCheck);
-        return internalList.stream().anyMatch(toCheck::isSameName);
+        return internalList.stream().anyMatch(toCheck::isSamePhone);
+    }
+
+    /**
+     * Returns true if the list contains a profile with an equivalent telegram as the given argument.
+     */
+    public boolean containsTelegram(Profile toCheck) {
+        requireNonNull(toCheck);
+        return internalList.stream().anyMatch(toCheck::isSameTelegram);
     }
 
     /**
      * Adds a profile to the list.
-     * The profile must not already exist in the list.
+     * The profile must not already exist in the list. The email, phone and telegram must also not exist in the list.
      */
     public void add(Profile toAdd) {
         requireNonNull(toAdd);
-        if (containsName(toAdd) || containsEmail(toAdd)) {
+        if (containsEmail(toAdd) || containsPhone(toAdd) || containsTelegram(toAdd)) {
             throw new SimilarProfileException();
         }
         internalList.add(toAdd);
@@ -60,7 +72,8 @@ public class UniqueProfileList implements Iterable<Profile> {
     /**
      * Replaces the profile {@code target} in the list with {@code editedProfile}.
      * {@code target} must exist in the list.
-     * The profile identity of {@code editedProfile} must not be the same as another existing profile in the list.
+     * The profile email, phone and telegram of {@code editedProfile} must not be the same as another existing
+     * profile in the list.
      */
     public void setProfile(Profile target, Profile editedProfile) {
         requireAllNonNull(target, editedProfile);
@@ -70,8 +83,9 @@ public class UniqueProfileList implements Iterable<Profile> {
             throw new ProfileNotFoundException();
         }
 
-        if ((!target.isSameName(editedProfile) && containsName(editedProfile))
-                || (!target.isSameEmail(editedProfile) && containsEmail(editedProfile))) {
+        if ((!target.isSameEmail(editedProfile) && containsEmail(editedProfile))
+                || (!target.isSamePhone(editedProfile) && containsPhone(editedProfile))
+                || (!target.isSameTelegram(editedProfile) && containsTelegram(editedProfile))) {
             throw new SimilarProfileException();
         }
 
@@ -136,9 +150,12 @@ public class UniqueProfileList implements Iterable<Profile> {
      */
     private boolean profilesAreUnique(List<Profile> profiles) {
         for (int i = 0; i < profiles.size() - 1; i++) {
+            Profile currentProfile = profiles.get(i);
             for (int j = i + 1; j < profiles.size(); j++) {
-                if ((profiles.get(i).isSameName(profiles.get(j)))
-                        || (profiles.get(i).isSameEmail(profiles.get(j)))) {
+                Profile otherProfile = profiles.get(j);
+                if (currentProfile.isSameEmail(otherProfile)
+                        || currentProfile.isSamePhone(otherProfile)
+                        || currentProfile.isSameTelegram(otherProfile)) {
                     return false;
                 }
 

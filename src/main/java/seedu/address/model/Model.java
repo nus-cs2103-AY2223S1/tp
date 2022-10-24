@@ -58,11 +58,6 @@ public interface Model {
     boolean hasEmail(Profile profile);
 
     /**
-     * Returns true if a profile with the same name as {@code profile} exists in the address book.
-     */
-    boolean hasName(Profile profile);
-
-    /**
      * Returns true if a profile with the same phone as {@code profile} exists in the address book.
      */
     boolean hasPhone(Profile profile);
