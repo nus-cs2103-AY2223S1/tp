@@ -2,6 +2,7 @@ package taskbook.model.task;
 
 import static java.util.Objects.requireNonNull;
 
+import java.time.LocalDate;
 import java.util.Objects;
 
 import taskbook.commons.util.CollectionUtil;
@@ -59,6 +60,14 @@ public abstract class Task {
         return isDone;
     }
 
+    public LocalDate getDate() {
+        return null;
+    }
+
+    public boolean hasDate() {
+        return false;
+    }
+
     /**
      * Returns the string representation of the completion status of the task.
      * @return [X] if the task is done. Otherwise, return [ ].
@@ -111,6 +120,16 @@ public abstract class Task {
         return Objects.hash(name, assignment, description, isDone);
     }
 
+    /**
+     * Gets a String to represent all itmes related to the task's description.
+     * @return
+     */
+    public String toUiString() {
+        final StringBuilder builder = new StringBuilder();
+        builder.append(getDescription());
+        return builder.toString();
+    }
+
     @Override
     public String toString() {
         final StringBuilder builder = new StringBuilder();
@@ -150,6 +169,47 @@ public abstract class Task {
      */
     public int compareByDescriptionAlphabeticalTo(Task other) {
         return this.description.compareByAlphabeticalTo(other.description);
+    }
+
+    /**
+     * Compares this task and the input task to decide description alphabetical reverse order.
+     * @param other input task.
+     * @return -1 if this task's description is alphabetically first, 1 otherwise.
+     */
+    public int compareByDescriptionReverseAlphabeticalTo(Task other) {
+        return -1 * this.description.compareByAlphabeticalTo(other.description);
+    }
+
+    /**
+     * Compares this task and the input task to decide chronological date reverse order.
+     * @param other input task.
+     * @return an int.
+     */
+    public int compareByChronologicalDateTo(Task other) {
+        if (this.hasDate() && other.hasDate()) {
+            return this.getDate().compareTo(other.getDate());
+        } else if (this.hasDate()) {
+            return this.getDate().compareTo(LocalDate.MAX);
+        } else if (other.hasDate()) {
+            return LocalDate.MAX.compareTo(other.getDate());
+        }
+        return 0;
+    }
+
+    /**
+     * Compares this task and the input task to decide chronological date reverse order.
+     * @param other input task.
+     * @return an int.
+     */
+    public int compareByReverseChronologicalDateTo(Task other) {
+        if (this.hasDate() && other.hasDate()) {
+            return -1 * this.getDate().compareTo(other.getDate());
+        } else if (this.hasDate()) {
+            return this.getDate().compareTo(LocalDate.MAX);
+        } else if (other.hasDate()) {
+            return LocalDate.MAX.compareTo(other.getDate());
+        }
+        return 0;
     }
 }
 

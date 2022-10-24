@@ -59,6 +59,15 @@ public class Name {
         return this.fullName.compareTo(other.fullName);
     }
 
+    /**
+     * Compares this person's name and the other person's name to decide name reverse alphabetical order.
+     * @param other input person.
+     * @return -1 if this person's name is alphabetically first, 1 otherwise.
+     */
+    public int compareByReverseAlphabeticalTo(Name other) {
+        return -1 * this.fullName.compareTo(other.fullName);
+    }
+
     @Override
     public String toString() {
         return fullName;

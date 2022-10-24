@@ -15,13 +15,24 @@ public abstract class TaskSortCommand extends Command {
             TaskCategoryParser.CATEGORY_WORD + " " + COMMAND_WORD
                     + ": Sorts list of tasks in some order.\n"
                     + "Available sorting commands:\n"
-                    + "a: sorts description of tasks in alphabetical order"
-                    + "ca: chronologically, by time tasks were added";
+                    + "a: sorts description of tasks in alphabetical order.\n"
+                    + "ra: sorts description of tasks in reverse alphabetical order.\n"
+                    + "ca: sorts chronologically, by time tasks were added.\n"
+                    + "cd: sorts chronologically, by dates associated with tasks. Tasks with no dates at end of list.\n"
+                    + "rcd: sorts reverse chronologically, by dates associated with tasks. "
+                    + "Tasks with no dates at end of list";
     public static final String MESSAGE_SORT_TASK_SUCCESS = "Tasks sorted";
+    public final String messageSortType;
     private final Comparator<Task> comparator;
 
-    public TaskSortCommand(Comparator<Task> comparator) {
+    /**
+     * Creates a tasks sorting command.
+     * @param comparator
+     * @param sortType
+     */
+    public TaskSortCommand(Comparator<Task> comparator, String sortType) {
         this.comparator = comparator;
+        this.messageSortType = sortType;
     }
 
     public Comparator<Task> getComparator() {

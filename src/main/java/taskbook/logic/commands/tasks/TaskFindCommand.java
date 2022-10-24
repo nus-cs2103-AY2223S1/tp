@@ -49,11 +49,26 @@ public class TaskFindCommand extends Command {
         this.done = done;
     }
 
+    public String getFilters() {
+        StringBuilder builder = new StringBuilder();
+        if (query != null) {
+            builder.append("Query: " + query + "\n");
+        }
+        if (assignment != null) {
+            builder.append("Assignment: " + assignment + "\n");
+        }
+        if (done != null) {
+            builder.append(done.equalsIgnoreCase("x") ? "Tasks are done." : "Task are not done.");
+        }
+        return builder.toString();
+    }
+
     @Override
     public CommandResult execute(Model model) throws CommandException {
         model.updateFilteredTaskListPredicate(predicate);
         return new CommandResult(String.format(MESSAGE_SUCCESS + "\n"
-                                + model.getFilteredTaskList().size() + " tasks listed."));
+                                + model.getFilteredTaskList().size() + " tasks listed.\n"
+                                + getFilters()));
     }
 
     @Override

@@ -25,7 +25,19 @@ public class ContactFindCommandTest {
         Model model = new ModelManager(TypicalTaskBook.getTypicalTaskBook(), new UserPrefs());
         ContactFindCommand command = new ContactFindCommand(pred, "pa");
         assertCommandSuccess(command, model, String.format(ContactFindCommand.MESSAGE_SUCCESS + "\n"
-                + expectedModel.getFilteredPersonList().size() + " persons listed."), expectedModel);
+                + expectedModel.getFilteredPersonList().size() + " persons listed.\nQuery: pa"), expectedModel);
+    }
+
+    @Test
+    public void execute_allFieldsPresentNoMatches_success() {
+        Predicate<Person> pred = (p -> p.isQueryInPerson("x"));
+
+        Model expectedModel = new ModelManager(TypicalTaskBook.getTypicalTaskBook(), new UserPrefs());
+        expectedModel.updateFilteredPersonListPredicate(pred);
+        Model model = new ModelManager(TypicalTaskBook.getTypicalTaskBook(), new UserPrefs());
+        ContactFindCommand command = new ContactFindCommand(pred, "x");
+        assertCommandSuccess(command, model, String.format(ContactFindCommand.MESSAGE_SUCCESS + "\n"
+                + expectedModel.getFilteredPersonList().size() + " persons listed.\nQuery: x"), expectedModel);
     }
 
     @Test

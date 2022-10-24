@@ -8,7 +8,10 @@ import org.junit.jupiter.api.Test;
 import taskbook.commons.core.Messages;
 import taskbook.logic.commands.tasks.TaskSortAddedChronologicalCommand;
 import taskbook.logic.commands.tasks.TaskSortCommand;
+import taskbook.logic.commands.tasks.TaskSortDateChronologicalCommand;
+import taskbook.logic.commands.tasks.TaskSortDateReverseChronologicalCommand;
 import taskbook.logic.commands.tasks.TaskSortDescriptionAlphabeticalCommand;
+import taskbook.logic.commands.tasks.TaskSortDescriptionReverseAlphabeticalCommand;
 import taskbook.logic.parser.tasks.TaskSortCommandParser;
 
 public class TaskSortCommandParserTest {
@@ -21,9 +24,27 @@ public class TaskSortCommandParserTest {
     }
 
     @Test
+    public void parse_validArgs_returnsTaskSortDescriptionReverseAlphabeticalCommand() {
+        // Note: the space at the start of the userInput is necessary due to ArgumentTokenizer behavior.
+        assertParseSuccess(parser, " s/ra", new TaskSortDescriptionReverseAlphabeticalCommand());
+    }
+
+    @Test
     public void parse_validArgs_returnsTaskSortAddedChronologicalCommand() {
         // Note: the space at the start of the userInput is necessary due to ArgumentTokenizer behavior.
         assertParseSuccess(parser, " s/ca", new TaskSortAddedChronologicalCommand());
+    }
+
+    @Test
+    public void parse_validArgs_returnsTaskSortDateChronologicalCommand() {
+        // Note: the space at the start of the userInput is necessary due to ArgumentTokenizer behavior.
+        assertParseSuccess(parser, " s/cd", new TaskSortDateChronologicalCommand());
+    }
+
+    @Test
+    public void parse_validArgs_returnsTaskSortDateReverseChronologicalCommand() {
+        // Note: the space at the start of the userInput is necessary due to ArgumentTokenizer behavior.
+        assertParseSuccess(parser, " s/rcd", new TaskSortDateReverseChronologicalCommand());
     }
 
     @Test

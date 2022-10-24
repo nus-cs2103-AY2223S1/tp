@@ -4,8 +4,11 @@ package taskbook.logic.parser.contacts.enums;
  * Represents the different types of sorts that TaskBook supports for its task list
  */
 public enum SortTypes {
-    DESC_ALPHABETICAL("a"),
-    DESC_CHRONOLOGICAL_ADDED("ca"),
+    NAME_ALPHABETICAL("a"),
+    NAME_REVERSE_ALPHABETICAL("ra"),
+    CHRONOLOGICAL_ADDED("ca"),
+    PHONE_ASCENDING("p"),
+    PHONE_DESCENDING("rp"),
     INVALID("INVALID_SORT_TYPE");
 
     public final String flag;
@@ -25,9 +28,15 @@ public enum SortTypes {
     public static SortTypes parse(String str) {
         switch (str) {
         case "a":
-            return DESC_ALPHABETICAL;
+            return NAME_ALPHABETICAL;
+        case "ra":
+            return NAME_REVERSE_ALPHABETICAL;
         case "ca":
-            return DESC_CHRONOLOGICAL_ADDED;
+            return CHRONOLOGICAL_ADDED;
+        case "p":
+            return PHONE_ASCENDING;
+        case "rp":
+            return PHONE_DESCENDING;
         default:
             return INVALID;
         }

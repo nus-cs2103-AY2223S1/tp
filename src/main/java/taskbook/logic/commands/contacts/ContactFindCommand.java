@@ -45,7 +45,8 @@ public class ContactFindCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         model.updateFilteredPersonListPredicate(predicate);
         return new CommandResult(String.format(MESSAGE_SUCCESS + "\n"
-                + model.getFilteredPersonList().size() + " persons listed."));
+                + model.getFilteredPersonList().size() + " persons listed.\n"
+                + "Query: " + query));
     }
 
     @Override
