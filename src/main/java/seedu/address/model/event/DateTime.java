@@ -193,6 +193,10 @@ public class DateTime {
                 : !this.date.isAfter(other.date);
     }
 
+    public boolean hasTime() {
+        return this.time.isPresent();
+    }
+
     @Override
     public String toString() {
         return date.format(DateTimeFormatter.ofPattern(RECOMMENDED_DATE_FORMAT))

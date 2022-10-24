@@ -65,6 +65,10 @@ public class AddEventCommand extends EventCommand {
             throw new CommandException(Messages.MESSAGE_EVENTS_INVALID_START_END);
         }
 
+        if (!toAdd.isHasTimeEqual()) {
+            throw new CommandException(Messages.MESSAGE_EVENTS_HAS_TIME);
+        }
+
         model.addEvent(toAdd);
         return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
     }

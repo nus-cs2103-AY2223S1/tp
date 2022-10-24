@@ -69,8 +69,19 @@ public class Event {
                 && otherEvent.getEndDateTime().equals(getEndDateTime());
     }
 
+    /**
+     * Returns true if start date is before or equal the end date.
+     */
     public boolean isValidStartEnd() {
         return startDateTime.isBeforeOrEqual(endDateTime);
+    }
+
+    /**
+     * Returns true if start date and end dates either both have time
+     * or both do not have time.
+     */
+    public boolean isHasTimeEqual() {
+        return startDateTime.hasTime() == endDateTime.hasTime();
     }
 
     /**

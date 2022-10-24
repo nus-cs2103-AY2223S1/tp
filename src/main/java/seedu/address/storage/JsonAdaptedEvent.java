@@ -98,6 +98,10 @@ class JsonAdaptedEvent {
             throw new IllegalValueException(Messages.MESSAGE_EVENTS_INVALID_START_END);
         }
 
+        if (modelStart.hasTime() != modelEnd.hasTime()) {
+            throw new IllegalValueException(Messages.MESSAGE_EVENTS_HAS_TIME);
+        }
+
         return new Event(modelTitle, modelStart, modelEnd, modelTags);
     }
 
