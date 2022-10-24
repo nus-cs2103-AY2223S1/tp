@@ -13,9 +13,9 @@ import seedu.address.model.internship.InternshipHasApplicationStatusPredicate;
 public class FilterCommand extends Command {
 
     public static final String COMMAND_WORD = "filter";
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Filter applications based on status.\n"
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Filter internships based on status.\n"
             + "Parameters: [STATUS]\n"
-            + "Valid filters: \"accepted\" \"applied\" \"interviewed\" \"rejected\"\n"
+            + "Valid filters: \"accepted\" \"applied\" \"interviewed\" \"shortlisted\" \"rejected\"\n"
             + "Example: " + COMMAND_WORD + " accepted";
 
     private final InternshipHasApplicationStatusPredicate predicate;

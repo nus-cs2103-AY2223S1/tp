@@ -3,10 +3,16 @@ package seedu.address.ui;
 import java.util.Comparator;
 
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.layout.FlowPane;
+import javafx.scene.control.Tooltip;
+import javafx.scene.input.Clipboard;
+import javafx.scene.input.ClipboardContent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
+import javafx.scene.layout.VBox;
+import javafx.scene.text.Text;
+import seedu.address.model.internship.ApplicationStatus;
 import seedu.address.model.internship.Internship;
 
 /**
@@ -29,13 +35,17 @@ public class InternshipCard extends UiPart<Region> {
     @FXML
     private HBox cardPane;
     @FXML
-    private Label company;
+    private Text company;
     @FXML
     private Label id;
     @FXML
-    private Label link;
+    private Button linkButton;
+    @FXML
+    private Label appliedDateLabel;
     @FXML
     private Label appliedDate;
+    @FXML
+    private Label interviewDateTimeLabel;
     @FXML
     private Label interviewDateTime;
     @FXML
@@ -43,7 +53,7 @@ public class InternshipCard extends UiPart<Region> {
     @FXML
     private Label description;
     @FXML
-    private FlowPane tags;
+    private VBox tags;
 
     /**
      * Creates a {@code InternshipCard} with the given {@code Internship} and index to display.
@@ -51,22 +61,48 @@ public class InternshipCard extends UiPart<Region> {
     public InternshipCard(Internship internship, int displayedIndex) {
         super(FXML);
         this.internship = internship;
+        String applicationStatusString = internship.getApplicationStatus().toString();
+
         id.setText(displayedIndex + ". ");
         company.setText(internship.getCompany().value);
-        link.setText(internship.getLink().value);
+        linkButton.setText(internship.getLink().value);
+        appliedDateLabel.setText("Applied:");
+
+        interviewDateTimeLabel.setText("Interview date/time:");
+        interviewDateTimeLabel.setMinWidth(Region.USE_PREF_SIZE);
         if (internship.getInterviewDateTime() == null) {
             interviewDateTime.setText("");
         } else {
-            interviewDateTime.setText("Interview date and time: " + internship.getInterviewDateTime().value);
+            interviewDateTime.setText(internship.getInterviewDateTime().value);
         }
+        interviewDateTime.setMinWidth(Region.USE_PREF_SIZE);
 
         appliedDate.setText(internship.getAppliedDate().value);
-
-        applicationStatus.setText(internship.getApplicationStatus().toString());
+        applicationStatus.setText(applicationStatusString);
         description.setText(internship.getDescription().value);
+
         internship.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
+
+        linkButton.setTooltip(new Tooltip("Copy link"));
+
+        applicationStatus.getStyleClass().add(applicationStatusString.toLowerCase());
+        applicationStatus.setMinWidth(Region.USE_PREF_SIZE);
+        if (internship.getApplicationStatus() == ApplicationStatus.Shortlisted) {
+            applicationStatus.setTooltip(new Tooltip("Shortlisted for interview"));
+        }
+    }
+
+    /**
+     * Copies URL of internship to the clipboard. Repurposed from HelpWindow class.
+     */
+    @FXML
+    private void copyInternshipUrl() {
+        final Clipboard clipboard = Clipboard.getSystemClipboard();
+        final ClipboardContent url = new ClipboardContent();
+        url.putString(linkButton.getText());
+        clipboard.setContent(url);
     }
 
     @Override

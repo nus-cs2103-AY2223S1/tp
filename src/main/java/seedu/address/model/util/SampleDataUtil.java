@@ -24,23 +24,32 @@ public class SampleDataUtil {
     public static Internship[] getSampleInternships() {
         return new Internship[] {
             new Internship(new Company("Google"), new Link("https://careers.google.com/students"),
-                new Description("Software Engineering Intern"), ApplicationStatus.Applied,
-                new AppliedDate("03/09/2022"), null, getTagSet("Backend")),
-            new Internship(new Company("Tiktok"), new Link("https://careers.tiktok.com"),
-                new Description("Software Engineering Intern"), ApplicationStatus.Applied,
-                new AppliedDate("11/12/2022"), null, getTagSet("Frontend")),
+                new Description("Software engineering internship, "
+                        + "work on projects related to mobile development, distributed and parallel systems"),
+                    ApplicationStatus.Interviewed, new AppliedDate("03/09/2022"),
+                    new InterviewDateTime("29/09/2022 13:30"), getTagSet("Backend")),
+            new Internship(new Company("TikTok"), new Link("https://careers.tiktok.com"),
+                new Description("Mobile software engineering internship, "
+                        + "design and implement new user features of mobile application"),
+                    ApplicationStatus.Rejected, new AppliedDate("11/09/2022"),
+                    new InterviewDateTime("23/09/2022 14:00"), getTagSet("Frontend")),
             new Internship(new Company("Stripe"), new Link("https://stripe.com/en-sg/jobs/university"),
-                new Description("Software Engineering Intern"), ApplicationStatus.Shortlisted,
-                new AppliedDate("03/10/2022"), new InterviewDateTime("03/10/2022 09:30"), getTagSet("Backend")),
+                new Description("Software engineering internship, write software for production, "
+                        + "requires knowledge on how to handle HTTP requests"), ApplicationStatus.Accepted,
+                new AppliedDate("26/09/2022"), new InterviewDateTime("15/10/2022 10:30"), getTagSet("Backend")),
             new Internship(new Company("Meta"), new Link("https://metacareers.com/careerprograms/students"),
-                new Description("Software Engineering Intern"), ApplicationStatus.Shortlisted,
-                new AppliedDate("05/10/2022"), new InterviewDateTime("03/10/2022 09:30"), getTagSet("Frontend")),
+                new Description("Software engineering internship, work on assigned codebase, "
+                        + "product area, and/or system"), ApplicationStatus.Shortlisted,
+                new AppliedDate("05/10/2022"), new InterviewDateTime("23/10/2022 15:00"), getTagSet("Backend")),
             new Internship(new Company("Jane Street"), new Link("https://janestreet.com/join-jane-street"),
-                new Description("Software Engineering Intern"), ApplicationStatus.Rejected,
-                new AppliedDate("11/11/2022"), null, getTagSet("Quant")),
-            new Internship(new Company("Amazon"), new Link("https://amazon.jobs/en/business_categories"),
-                new Description("Software Engineering Intern"), ApplicationStatus.Rejected,
-                new AppliedDate("22/07/2022"), new InterviewDateTime("03/10/2022 09:30"), getTagSet("Data"))
+                new Description("Software engineering internship, work on two projects, learn OCaml, "
+                        + "gain exposure to libraries and tools used in internal systems"),
+                    ApplicationStatus.Applied, new AppliedDate("11/10/2022"),
+                    null, getTagSet("Quant")),
+            new Internship(new Company("Visa"), new Link("https://www.visa.com.sg/careers.html"),
+                new Description("Software engineering internship, get executive exposure, "
+                        + "engage in out-of-the-box problem solving"), ApplicationStatus.Shortlisted,
+                new AppliedDate("23/10/2022"), new InterviewDateTime("15/11/2022 16:15"), getTagSet("Backend"))
         };
     }
 

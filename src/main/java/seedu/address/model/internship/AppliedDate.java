@@ -16,14 +16,15 @@ import java.util.Comparator;
  */
 public class AppliedDate {
 
-    public static final String MESSAGE_CONSTRAINTS = "Date should be in the format [d MM yyyy] or [d/M/yyyy].\n"
+    public static final String MESSAGE_CONSTRAINTS = "Date should be one of these formats:\n"
+            + "[d MMM yyyy] or [d/M/yyyy]\n"
             + "Year can be omitted to default to current year.";
 
     /*
      * For the date 23/10/2022, the following formats are accepted:
      * 23 Oct 2022, 23 Oct, 23/10/2022, 23/10
      */
-    public static final DateTimeFormatter DATE_FORMAT = new DateTimeFormatterBuilder()
+    public static final DateTimeFormatter INPUT_DATE_FORMAT = new DateTimeFormatterBuilder()
             .parseCaseInsensitive()
             .appendPattern("[d MMM yyyy]")
             .appendPattern("[d MMM]")
@@ -31,6 +32,8 @@ public class AppliedDate {
             .appendPattern("[d/M]")
             .parseDefaulting(ChronoField.YEAR_OF_ERA, LocalDate.now().getYear())
             .toFormatter();
+
+    public static final DateTimeFormatter DISPLAY_DATE_FORMAT = DateTimeFormatter.ofPattern("d MMM yyyy");
 
     public final String value;
 
@@ -44,16 +47,20 @@ public class AppliedDate {
     public AppliedDate(String appliedDate) {
         requireNonNull(appliedDate);
         checkArgument(isValidAppliedDate(appliedDate), MESSAGE_CONSTRAINTS);
-        this.appliedDate = LocalDate.parse(appliedDate, DATE_FORMAT);
-        value = this.appliedDate.format(DateTimeFormatter.ofPattern("d MMM yyyy"));
+        this.appliedDate = LocalDate.parse(appliedDate, INPUT_DATE_FORMAT);
+        value = this.appliedDate.format(DISPLAY_DATE_FORMAT);
     }
 
     /**
      * Returns true if a given string is a valid appliedDate.
      */
     public static boolean isValidAppliedDate(String appliedDate) {
+        if (appliedDate.isEmpty()) {
+            return false;
+        }
+
         try {
-            DATE_FORMAT.parse(appliedDate);
+            INPUT_DATE_FORMAT.parse(appliedDate);
             return true;
         } catch (DateTimeParseException e) {
             return false;
