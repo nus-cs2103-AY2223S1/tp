@@ -1,13 +1,11 @@
 package seedu.foodrem.logic.commands.itemcommands;
 
-import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.foodrem.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.foodrem.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.foodrem.logic.commands.CommandTestUtil.showItemAtIndex;
-import static seedu.foodrem.testutil.TypicalFoodRem.getTypicalFoodRem;
-import static seedu.foodrem.testutil.TypicalIndexes.INDEX_FIRST_ITEM;
-import static seedu.foodrem.testutil.TypicalIndexes.INDEX_SECOND_ITEM;
 
 import org.junit.jupiter.api.Test;
 
@@ -17,6 +15,8 @@ import seedu.foodrem.model.Model;
 import seedu.foodrem.model.ModelManager;
 import seedu.foodrem.model.UserPrefs;
 import seedu.foodrem.model.item.Item;
+import seedu.foodrem.testutil.TypicalFoodRem;
+import seedu.foodrem.testutil.TypicalIndexes;
 
 /**
  * Contains integration tests (interaction with the Model) and unit tests for
@@ -25,12 +25,12 @@ import seedu.foodrem.model.item.Item;
 public class DeleteCommandTest {
     private static final String EXPECTED_FORMAT_SUCCESS = "Deleted Item:\n%1$s";
 
-    private final Model model = new ModelManager(getTypicalFoodRem(), new UserPrefs());
+    private final Model model = new ModelManager(TypicalFoodRem.getTypicalFoodRem(), new UserPrefs());
 
     @Test
     public void execute_validIndexUnfilteredList_success() {
-        Item itemToDelete = model.getFilteredItemList().get(INDEX_FIRST_ITEM.getZeroBased());
-        DeleteCommand deleteCommand = new DeleteCommand(INDEX_FIRST_ITEM);
+        Item itemToDelete = model.getCurrentList().get(TypicalIndexes.INDEX_FIRST_ITEM.getZeroBased());
+        DeleteCommand deleteCommand = new DeleteCommand(TypicalIndexes.INDEX_FIRST_ITEM);
 
         String expectedMessage = String.format(EXPECTED_FORMAT_SUCCESS, itemToDelete);
 
@@ -42,7 +42,7 @@ public class DeleteCommandTest {
 
     @Test
     public void execute_invalidIndexUnfilteredList_throwsCommandException() {
-        Index outOfBoundIndex = Index.fromOneBased(model.getFilteredItemList().size() + 1);
+        Index outOfBoundIndex = Index.fromOneBased(model.getCurrentList().size() + 1);
         DeleteCommand deleteCommand = new DeleteCommand(outOfBoundIndex);
 
         assertCommandFailure(deleteCommand, model, Messages.MESSAGE_INVALID_ITEMS_DISPLAYED_INDEX);
@@ -50,10 +50,10 @@ public class DeleteCommandTest {
 
     @Test
     public void execute_validIndexFilteredList_success() {
-        showItemAtIndex(model, INDEX_FIRST_ITEM);
+        showItemAtIndex(model, TypicalIndexes.INDEX_FIRST_ITEM);
 
-        Item itemToDelete = model.getFilteredItemList().get(INDEX_FIRST_ITEM.getZeroBased());
-        DeleteCommand deleteCommand = new DeleteCommand(INDEX_FIRST_ITEM);
+        Item itemToDelete = model.getCurrentList().get(TypicalIndexes.INDEX_FIRST_ITEM.getZeroBased());
+        DeleteCommand deleteCommand = new DeleteCommand(TypicalIndexes.INDEX_FIRST_ITEM);
 
         String expectedMessage = String.format(EXPECTED_FORMAT_SUCCESS, itemToDelete);
 
@@ -66,9 +66,9 @@ public class DeleteCommandTest {
 
     @Test
     public void execute_invalidIndexFilteredList_throwsCommandException() {
-        showItemAtIndex(model, INDEX_FIRST_ITEM);
+        showItemAtIndex(model, TypicalIndexes.INDEX_FIRST_ITEM);
 
-        Index outOfBoundIndex = INDEX_SECOND_ITEM;
+        Index outOfBoundIndex = TypicalIndexes.INDEX_SECOND_ITEM;
         // ensures that outOfBoundIndex is still in bounds of foodRem list
         assertTrue(outOfBoundIndex.getZeroBased() < model.getFoodRem().getItemList().size());
 
@@ -79,24 +79,24 @@ public class DeleteCommandTest {
 
     @Test
     public void equals() {
-        DeleteCommand deleteFirstCommand = new DeleteCommand(INDEX_FIRST_ITEM);
-        DeleteCommand deleteSecondCommand = new DeleteCommand(INDEX_SECOND_ITEM);
+        DeleteCommand deleteFirstCommand = new DeleteCommand(TypicalIndexes.INDEX_FIRST_ITEM);
+        DeleteCommand deleteSecondCommand = new DeleteCommand(TypicalIndexes.INDEX_SECOND_ITEM);
 
         // same object -> returns true
-        assertTrue(deleteFirstCommand.equals(deleteFirstCommand));
+        assertEquals(deleteFirstCommand, deleteFirstCommand);
 
         // same values -> returns true
-        DeleteCommand deleteFirstCommandCopy = new DeleteCommand(INDEX_FIRST_ITEM);
-        assertTrue(deleteFirstCommand.equals(deleteFirstCommandCopy));
+        DeleteCommand deleteFirstCommandCopy = new DeleteCommand(TypicalIndexes.INDEX_FIRST_ITEM);
+        assertEquals(deleteFirstCommand, deleteFirstCommandCopy);
 
         // different types -> returns false
-        assertFalse(deleteFirstCommand.equals(1));
+        assertNotEquals(1, deleteFirstCommand);
 
         // null -> returns false
-        assertFalse(deleteFirstCommand.equals(null));
+        assertNotEquals(null, deleteFirstCommand);
 
         // different item -> returns false
-        assertFalse(deleteFirstCommand.equals(deleteSecondCommand));
+        assertNotEquals(deleteFirstCommand, deleteSecondCommand);
     }
 
     /**
@@ -105,6 +105,6 @@ public class DeleteCommandTest {
     private void showNoItem(Model model) {
         model.updateFilteredItemList(p -> false);
 
-        assertTrue(model.getFilteredItemList().isEmpty());
+        assertTrue(model.getCurrentList().isEmpty());
     }
 }

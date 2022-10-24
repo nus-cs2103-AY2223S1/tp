@@ -2,7 +2,6 @@ package seedu.foodrem.logic.commands.itemcommands;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.foodrem.commons.enums.CommandType.LIST_COMMAND;
-import static seedu.foodrem.model.Model.PREDICATE_SHOW_ALL_ITEMS;
 
 import seedu.foodrem.logic.commands.Command;
 import seedu.foodrem.logic.commands.CommandResult;
@@ -17,7 +16,7 @@ public class ListCommand extends Command {
     @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);
-        model.updateFilteredItemList(PREDICATE_SHOW_ALL_ITEMS);
+        model.updateFilteredItemList(Model.PREDICATE_SHOW_ALL_ITEMS);
         return new CommandResult(MESSAGE_SUCCESS);
     }
 

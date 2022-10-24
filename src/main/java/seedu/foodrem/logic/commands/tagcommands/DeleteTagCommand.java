@@ -2,7 +2,6 @@ package seedu.foodrem.logic.commands.tagcommands;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.foodrem.commons.enums.CommandType.DELETE_TAG_COMMAND;
-import static seedu.foodrem.model.Model.PREDICATE_SHOW_ALL_ITEMS;
 
 import seedu.foodrem.logic.commands.Command;
 import seedu.foodrem.logic.commands.CommandResult;
@@ -36,7 +35,6 @@ public class DeleteTagCommand extends Command {
         }
 
         model.deleteTag(toDelete);
-        model.updateFilteredItemList(PREDICATE_SHOW_ALL_ITEMS);
         return new CommandResult(String.format(MESSAGE_SUCCESS, toDelete));
     }
 
