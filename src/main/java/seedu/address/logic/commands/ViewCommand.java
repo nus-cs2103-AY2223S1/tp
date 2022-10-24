@@ -7,6 +7,9 @@ import seedu.address.commons.core.index.Index;
 import seedu.address.model.Model;
 import seedu.address.model.person.Person;
 
+/**
+ * View a person portfolio in the FinBook to the user.
+ */
 public class ViewCommand extends Command {
 
     public static final String COMMAND_WORD = "view";
@@ -16,7 +19,11 @@ public class ViewCommand extends Command {
     private final Index index;
     private final Person person;
 
-    public ViewCommand (Index index, Person person) {
+    /**
+     * @param index
+     * @param person
+     */
+    public ViewCommand(Index index, Person person) {
         this.index = index;
         this.person = person;
     }

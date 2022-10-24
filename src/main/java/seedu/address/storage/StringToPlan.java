@@ -2,9 +2,7 @@ package seedu.address.storage;
 
 import com.opencsv.bean.AbstractCsvConverter;
 
-import seedu.address.commons.exceptions.IllegalValueException;
 import seedu.address.model.portfolio.Plan;
-import seedu.address.model.tag.Tag;
 
 /**
  * Converts a given {@code String} into {@code Tag} for OpenCSV use.
