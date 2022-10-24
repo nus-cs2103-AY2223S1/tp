@@ -34,9 +34,11 @@ public class SortTaskDeadlineParser implements Parser<SortTaskDeadlineCommand> {
         Comparator<Task> comparator = new SortByDeadline();
 
         if (argMultimap.getValue(PREFIX_ORDER).isPresent()) {
-            switch (argMultimap.getValue(PREFIX_ORDER).get()) {
+            switch (argMultimap.getValue(PREFIX_ORDER).get().toLowerCase()) {
+            case "a":
             case "asc":
                 break;
+            case "d":
             case "desc":
                 comparator = comparator.reversed();
                 break;
