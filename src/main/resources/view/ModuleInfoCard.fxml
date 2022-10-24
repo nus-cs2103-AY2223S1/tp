@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.Region?>
 <?import javafx.scene.layout.VBox?>
 
-<HBox id="modulePane" fx:id="modulePane" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1">
+<HBox id="targetModulePane" fx:id="targetModulePane" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1">
     <HBox HBox.hgrow="SOMETIMES" prefWidth ="300">
         <VBox alignment="CENTER_LEFT" minHeight="50" >
             <HBox alignment="CENTER_LEFT" spacing="5">

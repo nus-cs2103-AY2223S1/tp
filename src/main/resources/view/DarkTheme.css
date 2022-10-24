@@ -325,8 +325,16 @@
     -fx-border-width: 0;
 }
 
-#modulePane {
-    -fx-background-color: transparent;
+#moduleListPane {
+    -fx-background-color:
+    linear-gradient(from 10px 42px to 52px 52px, #d2691e, #ffa500);
+    -fx-border-width: 0;
+}
+
+#targetModulePane {
+    -fx-background-color:
+    linear-gradient(#4568DC, #B06AB3),
+    radial-gradient(center 50% 50%, radius 50%, #FFFFFF33, #00000033);
     -fx-border-width: 0;
     -fx-font: 16px "Serif";
 }
