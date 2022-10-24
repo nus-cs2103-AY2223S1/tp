@@ -101,7 +101,7 @@ Examples:
 *  `edit student 1 p/91234567 e/johndoe@example.com` Edits the phone number and email address of the 1st student to be `91234567` and `johndoe@example.com` respectively.
 *  `edit student 2 n/Betsy Crower t/` Edits the name of the 2nd student to be `Betsy Crower` and clears all existing tags.
 
-### Locating students by name and other attributes: `find student`
+### Locating students by name and other attributes : `find student`
 
 Finds students by names, student ID, module or tutorial. by checking if respective attribute contains any of the given keywords.
 
@@ -136,7 +136,7 @@ Examples:
 
 Adds a tutorial to the tutorial database.
 
-Format: `add tutorial m/MODULE t/TIMESLOT v/VENUE n/NAME`
+Format: `add tutorial n/NAME m/MODULE v/VENUE T/TIMESLOT D/DAY`
 
 ### Deleting a tutorial : `delete tutorial`
 
@@ -180,7 +180,7 @@ Format: `clear consultation`
 
 Adds a reminder to the list of reminders.
 
-Format: `add reminder r/DESCRIPTION [d/DEADLINE]`
+Format: `add reminder n/NAME T/DEADLINE p/PRIORITY d/DESCRIPTION`
 
 ### Deleting a reminder : `delete reminder`
 
@@ -192,17 +192,23 @@ Format: `delete reminder INDEX`
 * The index refers to the index number shown in the displayed reminder list.
 * The index **must be a positive integer** 1, 2, 3, …
 
-### Mark reminder : `mark reminder`
+### Mark a reminder : `mark reminder`
 
 Marks a reminder as completed.
 
 Format: `mark reminder INDEX`
 
-### Unmark reminder : `unmark reminder`
+### Unmark a reminder : `unmark reminder`
 
 Unmarks a reminder as not completed.
 
 Format: `unmark reminder INDEX`
+
+### Sort reminders by priority : `sort reminder`
+
+Sort reminders by their priority.
+
+Format: `sort reminder`
 
 ### Clearing all reminders: `clear reminder`
 
