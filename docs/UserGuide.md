@@ -176,7 +176,9 @@ the same convention as [adding a student](#adding-a-student-add).
     - Formats: `dt/` must be followed by either one of the below options.
         1. `yyyy-MM-dd 0000-2359`
         2. `Day-of-Week 0000-2359`
-    - Examples: `2022-10-29 1100-1230`, `MON 1100-1230`, `Mon 1100-1230`
+    - End time must be after the start time.
+    - Examples: `2022-10-09 1100-1230`, `MON 1100-1230`, `Mon 1100-1230`
+    - Invalid inputs: `2022-10-9 1100-1230`, `2022-10-09 1100-1000`
    
 ```yaml
 ❗Caution: If a chosen date is occupied by another student, a class conflict error will arise.
