@@ -77,6 +77,10 @@ public class PersonCard extends UiPart<Region> {
     @FXML
     private Label specialisation;
     @FXML
+    private HBox officeHourPanel;
+    @FXML
+    private ImageView officeHourImage;
+    @FXML
     private Label officeHour;
 
     /**
@@ -94,7 +98,7 @@ public class PersonCard extends UiPart<Region> {
         email.setText(person.getEmail().value);
         emailImage.setImage(new Image(this.getClass().getResourceAsStream("/images/email.png")));
         locationAt.setText(person.getLocation().value);
-        locationImage.setImage(new Image(this.getClass().getResourceAsStream("/images/locationbig.png"),
+        locationImage.setImage(new Image(this.getClass().getResourceAsStream("/images/locationbig2.png"),
                 16, 16, true, true));
 
         person.getTags().stream()
@@ -116,7 +120,7 @@ public class PersonCard extends UiPart<Region> {
             renderRating(ta.getRating());
             year.setManaged(false);
             specialisation.setManaged(false);
-            officeHour.setManaged(false);
+            officeHourPanel.setManaged(false);
         }
         if (person instanceof Student) {
             Student student = (Student) person;
@@ -125,7 +129,7 @@ public class PersonCard extends UiPart<Region> {
             title.setText("Student");
             setYear(student);
             specialisation.setManaged(false);
-            officeHour.setManaged(false);
+            officeHourPanel.setManaged(false);
         }
     }
 
@@ -163,10 +167,11 @@ public class PersonCard extends UiPart<Region> {
     private void setOfficeHour(Professor professor) {
         String profOfficeHour = professor.getOfficeHour().value;
         if (!profOfficeHour.equals(OfficeHour.EMPTY_OFFICE_HOUR)) {
-            officeHour.setManaged(true);
+            officeHourPanel.setManaged(true);
+            officeHourImage.setImage(new Image(this.getClass().getResourceAsStream("/images/clock.png")));
             officeHour.setText(profOfficeHour);
         } else {
-            officeHour.setManaged(false);
+            officeHourPanel.setManaged(false);
         }
     }
 

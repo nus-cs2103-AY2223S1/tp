@@ -72,11 +72,14 @@
             <Label fx:id="locationAt" styleClass="cell_small_label" text="\$location" />
             </children>
          </HBox>
-         <HBox fx:id="officeHourpanel" alignment="CENTER_LEFT" layoutX="25.0" layoutY="146.0" spacing="5">
+         <HBox fx:id="officeHourPanel" alignment="CENTER_LEFT" layoutX="25.0" layoutY="146.0" spacing="5">
             <children>
                <ImageView fx:id="officeHourImage" fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true" />
               <Label fx:id="officeHour" styleClass="cell_small_label" />
             </children>
+            <padding>
+               <Insets top="5.0" />
+            </padding>
          </HBox>
     </VBox>
       <rowConstraints>
