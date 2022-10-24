@@ -6,7 +6,6 @@ import static seedu.rc4hdb.model.Model.PREDICATE_SHOW_ALL_RESIDENTS;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 import seedu.rc4hdb.logic.commands.CommandResult;
 import seedu.rc4hdb.model.Model;

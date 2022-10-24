@@ -4,7 +4,6 @@ import static java.util.Objects.requireNonNull;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 import seedu.rc4hdb.logic.commands.modelcommands.ListCommand;
 import seedu.rc4hdb.logic.parser.Parser;
@@ -84,12 +83,16 @@ public class ListCommandParser implements Parser<ListCommand> {
         return getSpecifiedFields(args).length == 0;
     }
 
-    private void populateFieldLists(String args, List<String> fieldsToInclude, List<String> fieldsToExclude) {
+    private void populateFieldLists(String args,
+                                    List<String> fieldsToInclude,
+                                    List<String> fieldsToExclude) throws ParseException {
         String[] specifiedFields = getSpecifiedFields(args);
         for (String field : specifiedFields) {
             if (ResidentFields.LOWERCASE_FIELDS.contains(field)) {
                 fieldsToInclude.add(field);
                 fieldsToExclude.remove(field);
+            } else {
+                throw new ParseException(INTENDED_USAGE);
             }
         }
     }
