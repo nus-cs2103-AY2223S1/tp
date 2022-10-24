@@ -3,6 +3,8 @@ package seedu.address.logic.parser.predicates;
 import seedu.address.commons.util.StringUtil;
 import seedu.address.model.client.Client;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.function.Predicate;
 
@@ -22,19 +24,44 @@ public class ClientContainsKeywordsPredicate implements Predicate<Client> {
         this.phoneKeywords = phoneKeywords;
     }
 
+    public boolean testName(String namePresent, String nameGiven) {
+        return Arrays.stream(namePresent.trim().split("\\s+"))
+                .anyMatch(words -> StringUtil.containsWordIgnoreCase(nameGiven, words));
+    }
+
+    public boolean testPhone(String phonePresent, String phoneGiven) {
+        return Arrays.stream(phonePresent.trim().split("\\s+"))
+                .anyMatch(words -> StringUtil.containsWordIgnoreCase(phoneGiven, words));
+    }
+
+    public boolean testEmail(String emailPresent, String emailGiven) {
+        return Arrays.stream(emailPresent.trim().split("\\s+"))
+                .anyMatch(words -> StringUtil.containsWordIgnoreCase(emailGiven, words));
+    }
+
+
     public boolean testName(Client client) {
-        return nameKeywords.isEmpty() ? true : nameKeywords.stream()
-                .anyMatch(keyword -> StringUtil.containsWordIgnoreCase(client.getClientName().toString(), keyword));
+        if (nameKeywords.isEmpty()) {
+            return true;
+        } else {
+           return nameKeywords.stream().anyMatch(name -> testName(name, client.getClientName().toString()));
+        }
     }
 
     public boolean testEmail(Client client) {
-        return emailKeywords.isEmpty() ? true : emailKeywords.stream()
-                .anyMatch(keyword -> StringUtil.containsWordIgnoreCase(client.getClientEmail().toString(), keyword));
+        if (emailKeywords.isEmpty()) {
+            return true;
+        } else {
+            return emailKeywords.stream().anyMatch(email -> testEmail(email, client.getClientEmail().toString()));
+        }
     }
 
     public boolean testPhone(Client client) {
-        return phoneKeywords.isEmpty() ? true : phoneKeywords.stream()
-                .anyMatch(keyword -> StringUtil.containsWordIgnoreCase(client.getClientPhone().toString(), keyword));
+        if (phoneKeywords.isEmpty()) {
+            return true;
+        } else {
+            return phoneKeywords.stream().anyMatch(phone -> testPhone(phone, client.getClientPhone().toString()));
+        }
     }
 
     @Override
