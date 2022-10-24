@@ -35,7 +35,7 @@ public class ViewCommand extends Command {
         requireNonNull(model);
 
         List<Item> lastShownList = model.getCurrentList();
-        if (index.getZeroBased() > lastShownList.size()) {
+        if (index.getZeroBased() >= lastShownList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_ITEMS_DISPLAYED_INDEX);
         }
         Item itemToDisplayInformation = lastShownList.get(index.getZeroBased());
