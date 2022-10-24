@@ -88,8 +88,9 @@ public class TypicalEntry {
             ab.addExpenditure(expenditure);
         }
 
-        // add for loop for income
-
+        for (Income income: getTypicalIncome()) {
+            ab.addIncome(income);
+        }
         return ab;
     }
 
@@ -97,5 +98,7 @@ public class TypicalEntry {
         return new ArrayList<>(Arrays.asList(LUNCH, DINNER, MOVIE));
     }
 
-    //add getTypicalIncome
+    public static List<Income> getTypicalIncome() {
+        return new ArrayList<>(Arrays.asList(ALLOWANCE, INVESTMENT));
+    }
 }

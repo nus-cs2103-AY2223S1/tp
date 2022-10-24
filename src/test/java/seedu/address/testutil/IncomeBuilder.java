@@ -17,9 +17,10 @@ import static seedu.address.logic.commands.CommandTestUtil.*;
  */
 public class IncomeBuilder {
 
-    public static final String DEFAULT_DESC = VALID_DESC_ALLOWANCE;
-    public static final String DEFAULT_AMT = VALID_AMT_ALLOWANCE;
-    public static final String DEFAULT_DATE = VALID_DATE_ALLOWANCE;
+    public static final String DEFAULT_DESC = "Sell Clothes";
+    public static final String DEFAULT_AMT = "10.80";
+    public static final String DEFAULT_DATE = "08-10-2022";
+    public static final String DEFAULT_TAG = "Profit";
     public static final String DEFAULT_TYPE = VALID_TYPE_INCOME;
 
     private Description description;
@@ -34,7 +35,7 @@ public class IncomeBuilder {
         this.description = new Description(DEFAULT_DESC);
         this.amount = new Amount(DEFAULT_AMT);
         this.date = new Date(DEFAULT_DATE);
-        this.tag = new Tag(new EntryType(DEFAULT_TYPE), VALID_TAG_ALLOWANCE);
+        this.tag = new Tag(new EntryType(DEFAULT_TYPE), DEFAULT_TAG);
     }
 
     /**

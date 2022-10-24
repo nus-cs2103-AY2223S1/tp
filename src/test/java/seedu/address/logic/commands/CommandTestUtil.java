@@ -171,11 +171,12 @@ public class CommandTestUtil {
         // we are unable to defensively copy the model for comparison later, so we can
         // only do so by copying its components.
         PennyWise expectedPennyWise = new PennyWise(actualModel.getPennyWise());
-        List<Entry> expectedFilteredList = new ArrayList<>(actualModel.getFilteredExpenditureList());
-
+        List<Entry> expectedFilteredExpenditureList = new ArrayList<>(actualModel.getFilteredExpenditureList());
+        List<Entry> expectedFilteredIncomeList = new ArrayList<>(actualModel.getFilteredIncomeList());
         assertThrows(CommandException.class, expectedMessage, () -> command.execute(actualModel));
         assertEquals(expectedPennyWise, actualModel.getPennyWise());
-        assertEquals(expectedFilteredList, actualModel.getFilteredExpenditureList());
+        assertEquals(expectedFilteredExpenditureList, actualModel.getFilteredExpenditureList());
+        assertEquals(expectedFilteredIncomeList, actualModel.getFilteredIncomeList());
     }
     /**
      * Updates {@code model}'s filtered list to show only the expenditure at the given {@code targetIndex} in the

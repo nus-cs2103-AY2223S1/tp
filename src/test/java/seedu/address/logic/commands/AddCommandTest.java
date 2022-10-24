@@ -2,6 +2,7 @@ package seedu.address.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.address.testutil.Assert.assertThrows;
@@ -25,7 +26,10 @@ import seedu.address.model.ReadOnlyPennyWise;
 import seedu.address.model.ReadOnlyUserPrefs;
 import seedu.address.model.entry.Entry;
 import seedu.address.model.entry.EntryType;
+import seedu.address.model.entry.Income;
 import seedu.address.testutil.ExpenditureBuilder;
+import seedu.address.testutil.IncomeBuilder;
+
 
 public class AddCommandTest {
 
@@ -34,14 +38,14 @@ public class AddCommandTest {
         assertThrows(NullPointerException.class, () -> new AddCommand(null, new EntryType("e")));
     }
 
-    // @Test
-    // public void constructor_nullEntryType_throwsNullPointerException() {
-    //     assertThrows(NullPointerException.class, () -> new AddCommand(new ExpenditureBuilder().build(), null));
-    // }
+//     @Test
+//     public void constructor_nullEntryType_throwsNullPointerException() {
+//         assertThrows(NullPointerException.class, () -> new AddCommand(new ExpenditureBuilder().build(), null));
+//     }
 
     @Test
     public void execute_expenditureAcceptedByModel_addSuccessful() throws Exception {
-        ModelStubAcceptingExpenditureAdded modelStub = new ModelStubAcceptingExpenditureAdded();
+        ModelStubAcceptingEntriesAdded modelStub = new ModelStubAcceptingEntriesAdded();
         Entry validExpenditure = new ExpenditureBuilder().build();
         EntryType validEntryType = new EntryType("e");
         CommandResult commandResult = new AddCommand(validExpenditure, validEntryType).execute(modelStub);
@@ -51,39 +55,71 @@ public class AddCommandTest {
     }
 
     @Test
-    public void execute_duplicatePerson_throwsCommandException() {
+    public void execute_duplicateExpenditure_throwsCommandException() {
         Entry validExpenditure = new ExpenditureBuilder().build();
-        EntryType validEntryType = new EntryType("e");
+        EntryType validEntryType = new EntryType(EntryType.ENTRY_TYPE_EXPENDITURE);
         AddCommand addCommand = new AddCommand(validExpenditure, validEntryType);
         ModelStub modelStub = new ModelStubWithExpenditure(validExpenditure);
 
         assertThrows(CommandException.class, AddCommand.MESSAGE_DUPLICATE_ENTRY, () -> addCommand.execute(modelStub));
     }
+    @Test
+    public void execute_incomeAcceptedByModel_addSuccessful() throws Exception {
+        ModelStubAcceptingEntriesAdded modelStub = new ModelStubAcceptingEntriesAdded();
+        Entry validIncome = new IncomeBuilder().build();
+        EntryType validEntryType = new EntryType(EntryType.ENTRY_TYPE_INCOME);
+        CommandResult commandResult = new AddCommand(validIncome, validEntryType).execute(modelStub);
+
+        assertEquals(String.format(AddCommand.MESSAGE_SUCCESS, validIncome), commandResult.getFeedbackToUser());
+        assertEquals(Arrays.asList(validIncome), modelStub.incomeAdded);
+    }
+
+    @Test
+    public void execute_duplicateIncome_throwsCommandException() {
+        Entry validIncome = new IncomeBuilder().build();
+        EntryType validEntryType = new EntryType("e");
+        AddCommand addCommand = new AddCommand(validIncome, validEntryType);
+        ModelStub modelStub = new ModelStubWithExpenditure(validIncome);
+
+        assertThrows(CommandException.class, AddCommand.MESSAGE_DUPLICATE_ENTRY, () -> addCommand.execute(modelStub));
+    }
+
 
     @Test
     public void equals() {
-        EntryType expenditureType = new EntryType("e");
+        EntryType expenditureType = new EntryType(EntryType.ENTRY_TYPE_EXPENDITURE);
+        EntryType incomeType = new EntryType(EntryType.ENTRY_TYPE_INCOME);
         Entry expenditureLunch = new ExpenditureBuilder().withDescription("Lunch").build();
         Entry expenditureDinner = new ExpenditureBuilder().withDescription("Dinner").build();
+        Entry incomeAllowance = new IncomeBuilder().withDescription("Allowance").build();
+        Entry incomeInvestment = new IncomeBuilder().withDescription("Investment").build();
 
         AddCommand addExpenditureLunchCommand = new AddCommand(expenditureLunch, expenditureType);
         AddCommand addExpenditureDinnerCommand = new AddCommand(expenditureDinner, expenditureType);
+        AddCommand addIncomeAllowanceCommand = new AddCommand(incomeAllowance, incomeType);
+        AddCommand addIncomeInvestmentCommand = new AddCommand(incomeInvestment, incomeType);
 
         // same object -> returns true
-        assertTrue(addExpenditureLunchCommand.equals(addExpenditureLunchCommand));
+        assertEquals(addExpenditureLunchCommand, addExpenditureLunchCommand);
+        assertEquals(addIncomeAllowanceCommand, addIncomeAllowanceCommand);
 
         // same values -> returns true
         AddCommand addExpenditureLunchCommandCopy = new AddCommand(expenditureLunch, expenditureType);
-        assertTrue(addExpenditureLunchCommand.equals(addExpenditureLunchCommandCopy));
+        assertEquals(addExpenditureLunchCommand, addExpenditureLunchCommandCopy);
+        AddCommand addIncomeAllowanceCommandCopy = new AddCommand(incomeAllowance, incomeType);
+        assertEquals(addIncomeAllowanceCommand, addIncomeAllowanceCommandCopy);
 
         // different types -> returns false
-        assertFalse(addExpenditureLunchCommandCopy.equals(1));
+        assertNotEquals(addExpenditureLunchCommandCopy, 1);
+        assertNotEquals(addIncomeAllowanceCommandCopy, 1);
 
         // null -> returns false
-        assertFalse(addExpenditureDinnerCommand.equals(null));
+        assertNotEquals(addExpenditureDinnerCommand, null);
+        assertNotEquals(addIncomeInvestmentCommand, null);
 
-        // different person -> returns false
-        assertFalse(addExpenditureLunchCommand.equals(addExpenditureDinnerCommand));
+        // different entry -> returns false
+        assertNotEquals(addExpenditureLunchCommand, addExpenditureDinnerCommand);
+        assertNotEquals(addIncomeAllowanceCommand, addIncomeInvestmentCommand);
     }
 
     /**
@@ -260,9 +296,21 @@ public class AddCommandTest {
     /**
      * A Model stub that always accept the expenditure being added.
      */
-    private class ModelStubAcceptingExpenditureAdded extends ModelStub {
+    private class ModelStubAcceptingEntriesAdded extends ModelStub {
         final ArrayList<Entry> expenditureAdded = new ArrayList<>();
+        final ArrayList<Entry> incomeAdded = new ArrayList<>();
 
+        @Override
+        public boolean hasIncome(Entry income) {
+            requireNonNull(income);
+            return incomeAdded.stream().anyMatch(income::isSameEntry);
+        }
+
+        @Override
+        public void addIncome(Entry income) {
+            requireNonNull(income);
+            incomeAdded.add(income);
+        }
         @Override
         public boolean hasExpenditure(Entry expenditure) {
             requireNonNull(expenditure);
@@ -273,30 +321,6 @@ public class AddCommandTest {
         public void addExpenditure(Entry expenditure) {
             requireNonNull(expenditure);
             expenditureAdded.add(expenditure);
-        }
-
-        @Override
-        public ReadOnlyPennyWise getPennyWise() {
-            return new PennyWise();
-        }
-    }
-
-    /**
-     * A Model stub that always accept the income being added.
-     */
-    private class ModelStubAcceptingIncomeAdded extends ModelStub {
-        final ArrayList<Entry> incomeAdded = new ArrayList<>();
-
-        @Override
-        public boolean hasExpenditure(Entry income) {
-            requireNonNull(income);
-            return incomeAdded.stream().anyMatch(income::isSameEntry);
-        }
-
-        @Override
-        public void addExpenditure(Entry income) {
-            requireNonNull(income);
-            incomeAdded.add(income);
         }
 
         @Override
