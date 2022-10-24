@@ -5,7 +5,6 @@ import static seedu.address.logic.commands.PersonCommandTestUtil.COMPANY_DESC_AM
 import static seedu.address.logic.commands.PersonCommandTestUtil.COMPANY_DESC_BOB;
 import static seedu.address.logic.commands.PersonCommandTestUtil.EMAIL_DESC_AMY;
 import static seedu.address.logic.commands.PersonCommandTestUtil.EMAIL_DESC_BOB;
-import static seedu.address.logic.commands.PersonCommandTestUtil.INVALID_ADDRESS_DESC;
 import static seedu.address.logic.commands.PersonCommandTestUtil.INVALID_EMAIL_DESC;
 import static seedu.address.logic.commands.PersonCommandTestUtil.INVALID_NAME_DESC;
 import static seedu.address.logic.commands.PersonCommandTestUtil.INVALID_PHONE_DESC;
@@ -129,7 +128,7 @@ public class AddPersonCommandParserTest {
                 + INVALID_TAG_DESC + VALID_TAG_FRIEND, Tag.MESSAGE_CONSTRAINTS);
 
         // two invalid values, only first invalid value reported
-        assertParseFailure(parser, INVALID_NAME_DESC + PHONE_DESC_BOB + EMAIL_DESC_BOB + INVALID_ADDRESS_DESC,
+        assertParseFailure(parser, INVALID_NAME_DESC + PHONE_DESC_BOB + INVALID_EMAIL_DESC,
                 Name.MESSAGE_CONSTRAINTS);
 
         // non-empty preamble
