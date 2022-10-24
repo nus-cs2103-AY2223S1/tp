@@ -9,6 +9,7 @@ import static seedu.uninurse.logic.commands.CommandTestUtil.assertCommandFailure
 import static seedu.uninurse.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.uninurse.logic.commands.CommandTestUtil.showPersonAtIndex;
 import static seedu.uninurse.testutil.Assert.assertThrows;
+import static seedu.uninurse.testutil.TypicalDateTime.DATE_TIME_STRING;
 import static seedu.uninurse.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static seedu.uninurse.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
 import static seedu.uninurse.testutil.TypicalPersons.getTypicalUninurseBook;
@@ -26,6 +27,7 @@ import seedu.uninurse.model.UserPrefs;
 import seedu.uninurse.model.person.Patient;
 import seedu.uninurse.model.task.DateTime;
 import seedu.uninurse.model.task.Task;
+import seedu.uninurse.model.task.TaskList;
 import seedu.uninurse.testutil.PersonBuilder;
 
 /**
@@ -115,6 +117,20 @@ public class AddTaskCommandTest {
         AddTaskCommand addTaskCommand = new AddTaskCommand(outOfBoundIndex, TASK_INSULIN);
 
         assertCommandFailure(addTaskCommand, model, Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+    }
+
+    @Test
+    public void execute_addDuplicateTask_throwsCommandException() {
+        showPersonAtIndex(model, INDEX_FIRST_PERSON);
+
+        Patient patient = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
+        Task duplicateTask = new Task(VALID_TASK_DESC_FIRST, new DateTime(DATE_TIME_STRING));
+        TaskList updatedTaskList = patient.getTasks().add(duplicateTask);
+        Patient patientWithTask = new Patient(patient, updatedTaskList);
+        model.setPerson(patient, patientWithTask);
+
+        AddTaskCommand addTaskCommand = new AddTaskCommand(INDEX_FIRST_PERSON, duplicateTask);
+        assertCommandFailure(addTaskCommand, model, Messages.MESSAGE_DUPLICATE_TASK);
     }
 
     @Test

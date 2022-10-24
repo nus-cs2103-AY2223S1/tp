@@ -13,4 +13,6 @@ public class Messages {
     public static final String MESSAGE_INVALID_CONDITION_INDEX = "The condition index provided is invalid";
     public static final String MESSAGE_PERSONS_LISTED_OVERVIEW = "%1$d persons listed!";
 
+    public static final String MESSAGE_DUPLICATE_TASK = "This task already exists for this patient";
+
 }

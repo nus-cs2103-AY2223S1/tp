@@ -7,6 +7,7 @@ import static seedu.uninurse.logic.commands.CommandTestUtil.assertCommandFailure
 import static seedu.uninurse.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.uninurse.logic.commands.CommandTestUtil.showPersonAtIndex;
 import static seedu.uninurse.testutil.Assert.assertThrows;
+import static seedu.uninurse.testutil.TypicalDateTime.DATE_TIME_ONE;
 import static seedu.uninurse.testutil.TypicalIndexes.INDEX_FIRST_ATTRIBUTE;
 import static seedu.uninurse.testutil.TypicalIndexes.INDEX_FIRST_PERSON;
 import static seedu.uninurse.testutil.TypicalIndexes.INDEX_SECOND_PERSON;
@@ -119,13 +120,27 @@ class EditTaskCommandTest {
     }
 
     @Test
+    public void execute_duplicateTask_throwsCommandException() {
+        Patient secondPatient = model.getFilteredPersonList().get(INDEX_SECOND_PERSON.getZeroBased());
+
+        Task initialTask = secondPatient.getTasks().get(INDEX_FIRST_TASK.getZeroBased());
+
+        Task duplicateTask = new Task(initialTask.getTaskDescription(), initialTask.getDateTime());
+
+        EditTaskCommand editTaskCommand = new EditTaskCommand(INDEX_SECOND_PERSON, INDEX_FIRST_TASK, duplicateTask);
+
+        assertCommandFailure(editTaskCommand, model, Messages.MESSAGE_DUPLICATE_TASK);
+    }
+
+    @Test
     public void equals() {
         final EditTaskCommand standardCommand = new EditTaskCommand(INDEX_FIRST_PERSON, INDEX_FIRST_ATTRIBUTE,
-                new Task(TASK_STUB));
+                new Task(TASK_STUB, DATE_TIME_ONE));
 
         // same values -> returns true
         EditTaskCommand commandWithSameValues = new EditTaskCommand(INDEX_FIRST_PERSON, INDEX_FIRST_ATTRIBUTE,
-                new Task(TASK_STUB));
+                new Task(TASK_STUB, DATE_TIME_ONE));
+
         assertEquals(standardCommand, commandWithSameValues);
 
         // same object -> returns true

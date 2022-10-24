@@ -102,8 +102,19 @@ public class DateTime {
 
     @Override
     public boolean equals(Object other) {
-        return other == this // short circuit if same object
-                || (other instanceof DateTime
-                && dateTime.equals(((DateTime) other).dateTime));
+        if (other == this) {
+            return true;
+        }
+
+        if (!(other instanceof DateTime)) {
+            return false;
+        }
+
+        DateTime o = (DateTime) other;
+
+        return this.dateTime.getYear() == o.dateTime.getYear()
+                && this.dateTime.getDayOfYear() == o.dateTime.getDayOfYear()
+                && this.dateTime.getHour() == o.dateTime.getHour()
+                && this.dateTime.getMinute() == o.dateTime.getMinute();
     }
 }

@@ -76,7 +76,8 @@ public class Task {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof Task // instanceof handles nulls
-                && taskDescription.equals(((Task) other).taskDescription)); // state check
+                && taskDescription.equals(((Task) other).taskDescription)
+                && dateTime.equals(((Task) other).dateTime)); // state check
     }
 
     @Override

@@ -56,6 +56,11 @@ public class AddTaskCommand extends AddGenericCommand {
 
         Patient personToEdit = lastShownList.get(index.getZeroBased());
 
+
+        if (personToEdit.getTasks().hasTask(task)) {
+            throw new CommandException(Messages.MESSAGE_DUPLICATE_TASK);
+        }
+
         TaskList updatedTaskList = personToEdit.getTasks().add(task);
 
         Patient editedPerson = new Patient(personToEdit, updatedTaskList);
