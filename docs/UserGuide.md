@@ -26,7 +26,7 @@ ModQuik is a desktop app for NUS CS Professors, optimised for use via a Command 
 
    * **`list student`** : Lists all students.
 
-   * **`add student`**`n/John Doe r/student m/CS2105 p/98765432 e/johnd@example.com` : Adds a student named `John Doe` to CS2103T module.
+   * **`add student`**`n/John Doe i/A0232123X p/98765432 e/johnd@example.com h/john_fu m/CS2103 l/T23` : Adds a student named `John Doe` to CS2103T module.
 
    * **`delete student`**`3` : Deletes the 3rd student shown in the current list.
 
@@ -238,12 +238,12 @@ Action | Format, Examples
 **Edit Student** | `edit student INDEX [n/NAME] [m/MODULE] [p/PHONE_NUMBER] [e/EMAIL] [t/TAG]…`<br> e.g.,`edit 2 n/James Lee e/jameslee@example.com`
 **Find Student** | `find [n/NAME] [i/STUDENTID] [m/MODULE] [l/TUTORIAL]`<br> e.g., `find student n/john m/CS2103T`
 **Delete Student** | `delete student INDEX [m/MODULE] [r/ROLE]`<br> e.g., `delete student 2 m/CS2103T r/ta`
-**Add Tutorial** | `add tutorial m/MODULE t/TIMESLOT v/VENUE n/NAME` <br> e.g., `add tutorial m/CS2103T t/1800-2000 v/COM1-0205 n/JohnFoo`
+**Add Tutorial** | `add tutorial n/NAME m/MODULE v/VENUE T/TIMESLOT D/DAY` <br> e.g., `add tutorial n/T23 m/CS2103T T/1800-2000 v/COM1-0205 D/1`
 **Delete Tutorial** | `delete tutorial INDEX` <br> e.g., `delete tutorial 3`
 **Clear Tutorial** | `clear tutorial [m/MODULE]` <br> e.g., `clear tutorial m/CS2105`
-**Add Consultations** | `add consultation n/NAME m/MODULE v/VENUE D/DATE T/TIMESLOT [d/DESCRIPTION]` <br> e.g., `add consultation t/18:00-20:00 v/COM1-0205 m/CS2103T n/JakeKim d/testing`
-**Delete Consultations** | `delete consultation INDEX` <br> e.g., `delete consult 3`
-**Clear Consultations** | `clear consult` <br> e.g., `clear consult`
+**Add Consultation** | `add consultation n/NAME m/MODULE v/VENUE D/DATE T/TIMESLOT [d/DESCRIPTION]` <br> e.g., `add consultation t/18:00-20:00 v/COM1-0205 m/CS2103T n/JakeKim d/testing`
+**Delete Consultation** | `delete consultation INDEX` <br> e.g., `delete consult 3`
+**Clear Consultation** | `clear consult` <br> e.g., `clear consult`
 **Add Reminder** | `add reminder n/NAME T/DEADLINE p/PRIORITY d/DESCRIPTION` <br> e.g., `add reminder n/mark assignment 1 T/2000-03-21 p/HIGH d/ 300 papers to mark`
 **Delete Reminder** | `delete reminder INDEX` <br> e.g., `delete reminder 3`
 **Mark Reminder** | `mark reminder INDEX` <br> e.g., `mark reminder 3`
