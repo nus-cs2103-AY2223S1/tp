@@ -132,18 +132,6 @@ public class EditCommandTest {
     }
 
     @Test
-    public void execute_duplicatePersonUnfilteredList_failure() {
-        Person firstPerson = model.getFilteredPersonList().get(INDEX_FIRST_PERSON.getZeroBased());
-        EditPersonDescriptor descriptor = new EditPersonDescriptorBuilder(firstPerson).build();
-
-        // edit the second person
-        setFullView(INDEX_SECOND_PERSON);
-        EditCommand editCommand = new EditCommand(descriptor);
-
-        assertCommandFailure(editCommand, model, EditCommand.MESSAGE_DUPLICATE_PERSON);
-    }
-
-    @Test
     public void execute_duplicatePersonFilteredList_failure() {
         setFullView(INDEX_FIRST_PERSON);
 

@@ -1,21 +1,31 @@
 package seedu.address.logic.parser;
 
 import static seedu.address.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.logic.commands.CommandTestUtil.ATTENDANCE_DESC_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.GRADE_PROGRESS_DESC_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.HOMEWORK_DESC_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.INVALID_ATTENDANCE_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_NAME_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_PHONE_DESC;
+import static seedu.address.logic.commands.CommandTestUtil.INVALID_SESSION_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_TAG_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.LESSON_PLAN_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.LESSON_PLAN_DESC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.NAME_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.PHONE_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.PHONE_DESC_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.SESSION_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.TAG_DESC_FRIEND;
 import static seedu.address.logic.commands.CommandTestUtil.TAG_DESC_HUSBAND;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_ATTENDANCE_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_GRADE_PROGRESS_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_HOMEWORK_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_LESSON_PLAN_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_LESSON_PLAN_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_NAME_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.VALID_SESSION_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_FRIEND;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.address.logic.commands.EditCommand.MESSAGE_NOT_EDITED;
@@ -25,10 +35,13 @@ import static seedu.address.logic.parser.CommandParserTestUtil.assertParseSucces
 
 import org.junit.jupiter.api.Test;
 
+import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.commands.EditCommand.EditPersonDescriptor;
+import seedu.address.model.person.Attendance;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Phone;
+import seedu.address.model.person.Session;
 import seedu.address.model.tag.Tag;
 import seedu.address.testutil.EditPersonDescriptorBuilder;
 
@@ -38,6 +51,8 @@ public class EditCommandParserTest {
 
     private static final String MESSAGE_INVALID_FORMAT =
             String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditCommand.MESSAGE_USAGE);
+
+    private static final Index INDEX_FIRST_ITEM = Index.fromOneBased(1);
 
     private EditCommandParser parser = new EditCommandParser();
 
@@ -66,6 +81,8 @@ public class EditCommandParserTest {
     public void parse_invalidValue_failure() {
         assertParseFailure(parser, INVALID_NAME_DESC, Name.MESSAGE_CONSTRAINTS); // invalid name
         assertParseFailure(parser, INVALID_PHONE_DESC, Phone.MESSAGE_CONSTRAINTS); // invalid phone
+        assertParseFailure(parser, INVALID_ATTENDANCE_DESC, Attendance.MESSAGE_CONSTRAINTS); // invalid attendance
+        assertParseFailure(parser, INVALID_SESSION_DESC, Session.MESSAGE_CONSTRAINTS); // invalid session
         assertParseFailure(parser, INVALID_TAG_DESC, Tag.MESSAGE_CONSTRAINTS); // invalid tag
 
         // valid phone followed by invalid phone. The test case for invalid phone followed by valid phone
@@ -126,6 +143,34 @@ public class EditCommandParserTest {
         // lesson plan
         userInput = LESSON_PLAN_DESC_AMY;
         descriptor = new EditPersonDescriptorBuilder().withLessonPlan(VALID_LESSON_PLAN_AMY).build();
+        expectedCommand = new EditCommand(descriptor);
+        assertParseSuccess(parser, userInput, expectedCommand);
+
+        // homework
+        userInput = HOMEWORK_DESC_AMY;
+        descriptor = new EditPersonDescriptorBuilder().withHomeworkIndex(INDEX_FIRST_ITEM)
+                .withHomework(VALID_HOMEWORK_AMY).build();
+        expectedCommand = new EditCommand(descriptor);
+        assertParseSuccess(parser, userInput, expectedCommand);
+
+        // grade progress
+        userInput = GRADE_PROGRESS_DESC_AMY;
+        descriptor = new EditPersonDescriptorBuilder().withHomeworkIndex(INDEX_FIRST_ITEM)
+                .withHomework(VALID_GRADE_PROGRESS_AMY).build();
+        expectedCommand = new EditCommand(descriptor);
+        assertParseSuccess(parser, userInput, expectedCommand);
+
+        // attendance
+        userInput = ATTENDANCE_DESC_AMY;
+        descriptor = new EditPersonDescriptorBuilder().withHomeworkIndex(INDEX_FIRST_ITEM)
+                .withHomework(VALID_ATTENDANCE_AMY).build();
+        expectedCommand = new EditCommand(descriptor);
+        assertParseSuccess(parser, userInput, expectedCommand);
+
+        // session
+        userInput = SESSION_DESC_AMY;
+        descriptor = new EditPersonDescriptorBuilder().withHomeworkIndex(INDEX_FIRST_ITEM)
+                .withHomework(VALID_SESSION_AMY).build();
         expectedCommand = new EditCommand(descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
 
