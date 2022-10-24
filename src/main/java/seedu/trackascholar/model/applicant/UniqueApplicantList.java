@@ -39,7 +39,9 @@ public class UniqueApplicantList implements Iterable<Applicant> {
     }
 
     /**
-     * Returns true if the list contains an equivalent applicant as the given argument.
+     * Checks if the list contains an applicant with the same name as the given one.
+     * @param toCheck the applicant to be compared with the rest of the list
+     * @return applicant from the list with the same name
      */
     public Applicant findSimilarApplicant(Applicant toCheck) {
         requireNonNull(toCheck);
