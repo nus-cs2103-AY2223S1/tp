@@ -12,7 +12,7 @@ public class Tag {
     public static final String MESSAGE_CONSTRAINTS = "Tags name should be either: SECURED OR POTENTIAL";
 
     public final String tagName;
-    private enum customerStatus {
+    private enum CustomerStatus {
         POTENTIAL,
         SECURED
     }
@@ -32,8 +32,8 @@ public class Tag {
      * Returns true if a given string is a valid tag name.
      */
     public static boolean isValidTagName(String test) {
-        return test.equals(customerStatus.SECURED.toString())
-                || test.equals(customerStatus.POTENTIAL.toString());
+        return test.equals(CustomerStatus.SECURED.toString())
+                || test.equals(CustomerStatus.POTENTIAL.toString());
     }
 
     @Override
