@@ -44,4 +44,5 @@ public class ListCommand extends Command {
         }
         return new CommandResult(String.format(MESSAGE_SUCCESS, listType), false, false, true, listType);
     }
+
 }
