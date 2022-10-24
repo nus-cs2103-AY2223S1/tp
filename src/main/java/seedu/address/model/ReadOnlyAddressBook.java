@@ -18,7 +18,7 @@ public interface ReadOnlyAddressBook {
      * Returns an unmodifiable view of the medications list.
      * This list will not contain any duplicate medications.
      */
-    String getMedicationMap(Model model);
+    String getMedicationMap();
 
     /**
      * Returns a string representation of the address book's census.

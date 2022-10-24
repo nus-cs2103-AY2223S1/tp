@@ -9,7 +9,6 @@ import java.util.Locale;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableMap;
-import seedu.address.model.Model;
 
 /**
  * Represents a Medication of a patient in the database.
@@ -47,18 +46,15 @@ public class Medication {
     /**
      * Returns all the medications in the database, and the number of times they have been used.
      */
-    public static String getMedicationMap(Model model) {
+    public static String getMedicationMap() {
         StringBuilder sb = new StringBuilder();
         sb.append("\n").append(String.format(MEDICATION_COUNT, medicationMap.size()));
         sb.append("\n").append(COUNT_BY_MEDICATION);
-        medicationMap
-                .keySet()
-                .stream()
-                .sorted()
-                .forEach(medication -> sb
-                        .append("\n   ")
-                        .append(String.format(EACH_MEDICATION_COUNT, medication,
-                                medicationMap.get(medication))));
+        medicationMap.keySet().stream().sorted()
+                .forEach(medication ->
+                        sb.append("\n   ")
+                                .append(String.format(EACH_MEDICATION_COUNT,
+                                        medication, medicationMap.get(medication))));
         return sb.toString();
     }
 

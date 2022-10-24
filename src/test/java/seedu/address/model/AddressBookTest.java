@@ -105,15 +105,15 @@ public class AddressBookTest {
         }
 
         @Override
-        public String getMedicationMap(Model model) {
-            return Medication.getMedicationMap(model);
+        public String getMedicationMap() {
+            return Medication.getMedicationMap();
         }
 
         @Override
         public String getCensus(Model model) {
             StringBuilder sb = new StringBuilder();
             sb.append(String.format(MESSAGE_COUNT, model.getPersonCount()));
-            sb.append(getMedicationMap(model));
+            sb.append(getMedicationMap());
             return sb.toString();
         }
     }
