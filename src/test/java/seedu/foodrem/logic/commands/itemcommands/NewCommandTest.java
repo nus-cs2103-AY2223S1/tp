@@ -25,8 +25,10 @@ import seedu.foodrem.model.ReadOnlyUserPrefs;
 import seedu.foodrem.model.item.Item;
 import seedu.foodrem.model.tag.Tag;
 import seedu.foodrem.testutil.ItemBuilder;
+import seedu.foodrem.viewmodels.ItemWithMessage;
 
 public class NewCommandTest {
+    private static final String EXPECTED_SUCCESS_MESSAGE = "New item added as follows:";
     @Test
     public void constructor_nullItem_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> new NewCommand(null));
@@ -37,9 +39,8 @@ public class NewCommandTest {
         ModelStubAcceptingItemAdded modelStub = new ModelStubAcceptingItemAdded();
         Item validItem = new ItemBuilder().build();
 
-        CommandResult commandResult = new NewCommand(validItem).execute(modelStub);
-
-        assertEquals(String.format(NewCommand.MESSAGE_SUCCESS, validItem), commandResult.getOutput());
+        CommandResult<ItemWithMessage> commandResult = new NewCommand(validItem).execute(modelStub);
+        assertEquals(new ItemWithMessage(validItem, EXPECTED_SUCCESS_MESSAGE), commandResult.getOutput());
         assertEquals(List.of(validItem), modelStub.itemsAdded);
     }
 
