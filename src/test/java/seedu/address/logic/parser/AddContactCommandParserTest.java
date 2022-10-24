@@ -5,6 +5,8 @@ import static seedu.address.logic.commands.CommandTestUtil.ADDRESS_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.ADDRESS_DESC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.EMAIL_DESC_AMY;
 import static seedu.address.logic.commands.CommandTestUtil.EMAIL_DESC_BOB;
+import static seedu.address.logic.commands.CommandTestUtil.GITHUB_DESC_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.GITHUB_DESC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_ADDRESS_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_EMAIL_DESC;
 import static seedu.address.logic.commands.CommandTestUtil.INVALID_MODS_DESC;
@@ -21,6 +23,8 @@ import static seedu.address.logic.commands.CommandTestUtil.PREAMBLE_NON_EMPTY;
 import static seedu.address.logic.commands.CommandTestUtil.PREAMBLE_WHITESPACE;
 import static seedu.address.logic.commands.CommandTestUtil.TAG_DESC_FRIEND;
 import static seedu.address.logic.commands.CommandTestUtil.TAG_DESC_HUSBAND;
+import static seedu.address.logic.commands.CommandTestUtil.TELEGRAM_DESC_AMY;
+import static seedu.address.logic.commands.CommandTestUtil.TELEGRAM_DESC_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_ADDRESS_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
 import static seedu.address.logic.commands.CommandTestUtil.VALID_MODULE_CS1101;
@@ -56,36 +60,54 @@ public class AddContactCommandParserTest {
 
         // whitespace only preamble
         assertParseSuccess(parser, PREAMBLE_WHITESPACE + NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
-                + ADDRESS_DESC_BOB + TAG_DESC_FRIEND + MODULE_DESC_CS2030S, new AddContactCommand(expectedPerson));
+                + ADDRESS_DESC_BOB + TAG_DESC_FRIEND + MODULE_DESC_CS2030S + GITHUB_DESC_BOB + TELEGRAM_DESC_BOB,
+                new AddContactCommand(expectedPerson));
 
         // multiple names - last name accepted
         assertParseSuccess(parser, NAME_DESC_AMY + NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
-                + ADDRESS_DESC_BOB + TAG_DESC_FRIEND + MODULE_DESC_CS2030S, new AddContactCommand(expectedPerson));
+                + ADDRESS_DESC_BOB + TAG_DESC_FRIEND + MODULE_DESC_CS2030S + GITHUB_DESC_BOB + TELEGRAM_DESC_BOB,
+                new AddContactCommand(expectedPerson));
 
         // multiple phones - last phone accepted
         assertParseSuccess(parser, NAME_DESC_BOB + PHONE_DESC_AMY + PHONE_DESC_BOB + EMAIL_DESC_BOB
-                + ADDRESS_DESC_BOB + TAG_DESC_FRIEND + MODULE_DESC_CS2030S, new AddContactCommand(expectedPerson));
+                + ADDRESS_DESC_BOB + TAG_DESC_FRIEND + MODULE_DESC_CS2030S + GITHUB_DESC_BOB + TELEGRAM_DESC_BOB,
+                new AddContactCommand(expectedPerson));
 
         // multiple emails - last email accepted
         assertParseSuccess(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_AMY + EMAIL_DESC_BOB
-                + ADDRESS_DESC_BOB + TAG_DESC_FRIEND + MODULE_DESC_CS2030S, new AddContactCommand(expectedPerson));
+                + ADDRESS_DESC_BOB + TAG_DESC_FRIEND + MODULE_DESC_CS2030S + GITHUB_DESC_BOB + TELEGRAM_DESC_BOB,
+                new AddContactCommand(expectedPerson));
 
         // multiple addresses - last address accepted
         assertParseSuccess(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_AMY
-                + ADDRESS_DESC_BOB + TAG_DESC_FRIEND + MODULE_DESC_CS2030S, new AddContactCommand(expectedPerson));
+                + ADDRESS_DESC_BOB + TAG_DESC_FRIEND + MODULE_DESC_CS2030S + GITHUB_DESC_BOB + TELEGRAM_DESC_BOB,
+                new AddContactCommand(expectedPerson));
 
         // multiple tags - all accepted
         Person expectedPersonMultipleTags = new PersonBuilder(BOB).withTags(VALID_TAG_FRIEND, VALID_TAG_HUSBAND)
                 .withModules(VALID_MODULE_CS2030S).build();
         assertParseSuccess(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_BOB
-                + TAG_DESC_HUSBAND + TAG_DESC_FRIEND + MODULE_DESC_CS2030S,
+                + TAG_DESC_HUSBAND + TAG_DESC_FRIEND + MODULE_DESC_CS2030S + GITHUB_DESC_BOB + TELEGRAM_DESC_BOB,
                 new AddContactCommand(expectedPersonMultipleTags));
 
         Person expectedPersonMultipleModules = new PersonBuilder(BOB).withTags(VALID_TAG_HUSBAND)
                 .withModules(VALID_MODULE_CS2030S, VALID_MODULE_CS1101).build();
         assertParseSuccess(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + ADDRESS_DESC_BOB
-                        + TAG_DESC_HUSBAND + MODULE_DESC_CS1101 + MODULE_DESC_CS2030S,
+                + TAG_DESC_HUSBAND + MODULE_DESC_CS1101 + MODULE_DESC_CS2030S
+                + GITHUB_DESC_BOB + TELEGRAM_DESC_BOB,
                 new AddContactCommand(expectedPersonMultipleModules));
+
+        // multiple githubs - last github accepted
+        assertParseSuccess(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
+                        + ADDRESS_DESC_BOB + TAG_DESC_FRIEND + MODULE_DESC_CS2030S
+                        + GITHUB_DESC_AMY + GITHUB_DESC_BOB + TELEGRAM_DESC_BOB,
+                new AddContactCommand(expectedPerson));
+
+        // multiple telegrams - last telegram accepted
+        assertParseSuccess(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
+                        + ADDRESS_DESC_BOB + TAG_DESC_FRIEND + MODULE_DESC_CS2030S
+                        + GITHUB_DESC_BOB + TELEGRAM_DESC_AMY + TELEGRAM_DESC_BOB,
+                new AddContactCommand(expectedPerson));
     }
 
     @Test
@@ -93,7 +115,8 @@ public class AddContactCommandParserTest {
         // zero tags
         Person expectedPerson = new PersonBuilder(AMY).withTags().build();
         assertParseSuccess(parser, NAME_DESC_AMY + PHONE_DESC_AMY + EMAIL_DESC_AMY + ADDRESS_DESC_AMY
-                        + MODULE_DESC_CS1101, new AddContactCommand(expectedPerson));
+                        + MODULE_DESC_CS1101 + GITHUB_DESC_AMY + TELEGRAM_DESC_AMY,
+                        new AddContactCommand(expectedPerson));
     }
 
     @Test

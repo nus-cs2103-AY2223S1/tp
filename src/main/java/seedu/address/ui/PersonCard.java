@@ -42,6 +42,10 @@ public class PersonCard extends UiPart<Region> {
     private FlowPane tags;
     @FXML
     private FlowPane modules;
+    @FXML
+    private Label github;
+    @FXML
+    private Label telegram;
 
     /**
      * Creates a {@code PersonCode} with the given {@code Person} and index to display.
@@ -51,15 +55,17 @@ public class PersonCard extends UiPart<Region> {
         this.person = person;
         id.setText(displayedIndex + ". ");
         name.setText(person.getName().fullName);
-        phone.setText(person.getPhone().value);
-        address.setText(person.getAddress().value);
-        email.setText(person.getEmail().value);
+        phone.setText("Phone: " + person.getPhone().value);
+        address.setText("Address: " + person.getAddress().value);
+        email.setText("Email: " + person.getEmail().value);
         person.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
         person.getModules().stream()
                 .sorted(Comparator.comparing(tag -> tag.moduleName))
                 .forEach(module -> modules.getChildren().add(new Label(module.moduleName)));
+        github.setText("Github Profile: " + person.getGithub().value);
+        telegram.setText("Telegram Username: " + person.getTelegram().telehandle);
     }
 
     @Override

@@ -3,10 +3,12 @@ package seedu.address.logic.commands;
 import static java.util.Objects.requireNonNull;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_ADDRESS;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_EMAIL;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_GITHUB;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_MODULE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.address.logic.parser.CliSyntax.PREFIX_TAG;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_TELEGRAM;
 import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 
 import java.util.Collections;
@@ -23,9 +25,11 @@ import seedu.address.model.Model;
 import seedu.address.model.module.Module;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
+import seedu.address.model.person.Github;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
+import seedu.address.model.person.Telegram;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -44,7 +48,9 @@ public class EditContactCommand extends Command {
             + "[" + PREFIX_EMAIL + "EMAIL] "
             + "[" + PREFIX_ADDRESS + "ADDRESS] "
             + "[" + PREFIX_MODULE + "MODS] "
-            + "[" + PREFIX_TAG + "TAG]...\n"
+            + "[" + PREFIX_TAG + "TAG] "
+            + "[" + PREFIX_GITHUB + "GITHUB] "
+            + "[" + PREFIX_TELEGRAM + "TELEGRAM]...\n"
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_PHONE + "91234567 "
             + PREFIX_EMAIL + "johndoe@example.com";
@@ -102,8 +108,11 @@ public class EditContactCommand extends Command {
         Address updatedAddress = editPersonDescriptor.getAddress().orElse(personToEdit.getAddress());
         Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
         Set<Module> updatedModules = editPersonDescriptor.getMods().orElse(personToEdit.getModules());
+        Github updatedGithub = editPersonDescriptor.getGithub().orElse(personToEdit.getGithub());
+        Telegram updatedTelegram = editPersonDescriptor.getTelegram().orElse(personToEdit.getTelegram());
 
-        return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTags, updatedModules);
+        return new Person(updatedName, updatedPhone, updatedEmail, updatedAddress, updatedTags,
+                updatedModules, updatedGithub, updatedTelegram);
     }
 
     @Override
@@ -135,6 +144,8 @@ public class EditContactCommand extends Command {
         private Address address;
         private Set<Tag> tags;
         private Set<Module> modules;
+        private Github github;
+        private Telegram telegram;
 
         public EditPersonDescriptor() {}
 
@@ -149,13 +160,15 @@ public class EditContactCommand extends Command {
             setAddress(toCopy.address);
             setTags(toCopy.tags);
             setMods(toCopy.modules);
+            setGithub(toCopy.github);
+            setTelegram(toCopy.telegram);
         }
 
         /**
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, phone, email, address, tags, modules);
+            return CollectionUtil.isAnyNonNull(name, phone, email, address, tags, modules, github, telegram);
         }
 
         public void setName(Name name) {
@@ -216,6 +229,21 @@ public class EditContactCommand extends Command {
             return Optional.ofNullable(modules);
         }
 
+        public void setGithub(Github gh) {
+            this.github = gh;
+        }
+
+        public Optional<Github> getGithub() {
+            return Optional.ofNullable(github);
+        }
+
+        public void setTelegram(Telegram telegram) {
+            this.telegram = telegram;
+        }
+
+        public Optional<Telegram> getTelegram() {
+            return Optional.ofNullable(telegram);
+        }
 
         @Override
         public boolean equals(Object other) {
@@ -237,7 +265,9 @@ public class EditContactCommand extends Command {
                     && getEmail().equals(e.getEmail())
                     && getAddress().equals(e.getAddress())
                     && getMods().equals(e.getMods())
-                    && getTags().equals(e.getTags());
+                    && getTags().equals(e.getTags())
+                    && getGithub().equals(e.getGithub())
+                    && getTelegram().equals(e.getTelegram());
         }
     }
 }

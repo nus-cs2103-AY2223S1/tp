@@ -8,9 +8,11 @@ import seedu.address.logic.commands.EditContactCommand.EditPersonDescriptor;
 import seedu.address.model.module.Module;
 import seedu.address.model.person.Address;
 import seedu.address.model.person.Email;
+import seedu.address.model.person.Github;
 import seedu.address.model.person.Name;
 import seedu.address.model.person.Person;
 import seedu.address.model.person.Phone;
+import seedu.address.model.person.Telegram;
 import seedu.address.model.tag.Tag;
 
 /**
@@ -39,6 +41,8 @@ public class EditPersonDescriptorBuilder {
         descriptor.setAddress(person.getAddress());
         descriptor.setTags(person.getTags());
         descriptor.setMods(person.getModules());
+        descriptor.setGithub(person.getGithub());
+        descriptor.setTelegram(person.getTelegram());
     }
 
     /**
@@ -89,6 +93,22 @@ public class EditPersonDescriptorBuilder {
     public EditPersonDescriptorBuilder withModules(String... mods) {
         Set<Module> moduleSet = Stream.of(mods).map(Module::new).collect(Collectors.toSet());
         descriptor.setMods(moduleSet);
+        return this;
+    }
+
+    /**
+     * Sets the {@code Github} of the {@code EditPersonDescriptor} that we are building.
+     */
+    public EditPersonDescriptorBuilder withGithub(String gh) {
+        descriptor.setGithub(new Github(gh));
+        return this;
+    }
+
+    /**
+     * Sets the {@code Telegram} of the {@code EditPersonDescriptor} that we are building.
+     */
+    public EditPersonDescriptorBuilder withTelegram(String tele) {
+        descriptor.setTelegram(new Telegram(tele));
         return this;
     }
 

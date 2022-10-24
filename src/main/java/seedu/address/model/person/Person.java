@@ -25,18 +25,23 @@ public class Person {
     private final Address address;
     private final Set<Tag> tags = new HashSet<>();
     private final Set<Module> modules = new HashSet<>();
+    private final Github githubProfile;
+    private final Telegram telegramUsername;
 
     /**
      * Every field must be present and not null.
      */
-    public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags, Set<Module> modules) {
-        requireAllNonNull(name, phone, email, address, tags, modules);
+    public Person(Name name, Phone phone, Email email, Address address, Set<Tag> tags, Set<Module> modules,
+                  Github githubProfile, Telegram telegramUsername) {
+        requireAllNonNull(name, phone, email, address, tags, modules, githubProfile, telegramUsername);
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
         this.modules.addAll(modules);
         this.tags.addAll(tags);
+        this.githubProfile = githubProfile;
+        this.telegramUsername = telegramUsername;
     }
 
     public Name getName() {
@@ -65,6 +70,14 @@ public class Person {
 
     public Set<Module> getModules() {
         return Collections.unmodifiableSet(modules);
+    }
+
+    public Github getGithub() {
+        return githubProfile;
+    }
+
+    public Telegram getTelegram() {
+        return telegramUsername;
     }
 
     /**
@@ -100,36 +113,44 @@ public class Person {
                 && otherPerson.getEmail().equals(getEmail())
                 && otherPerson.getAddress().equals(getAddress())
                 && otherPerson.getModules().equals(getModules())
-                && otherPerson.getTags().equals(getTags());
+                && otherPerson.getTags().equals(getTags())
+                && otherPerson.getGithub().equals(getGithub())
+                && otherPerson.getTelegram().equals(getTelegram());
     }
 
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(name, phone, email, address, tags, modules);
+        return Objects.hash(name, phone, email, address, tags, modules, githubProfile, telegramUsername);
     }
 
     @Override
     public String toString() {
         final StringBuilder builder = new StringBuilder();
         builder.append(getName())
-                .append("; Phone: ")
+                .append("\nPhone: ")
                 .append(getPhone())
-                .append("; Email: ")
+                .append("\nEmail: ")
                 .append(getEmail())
-                .append("; Address: ")
+                .append("\nAddress: ")
                 .append(getAddress());
 
         Set<Tag> tags = getTags();
         if (!tags.isEmpty()) {
-            builder.append("; Tags: ");
+            builder.append("\nTags: ");
             tags.forEach(builder::append);
         }
         Set<Module> modules = getModules();
         if (!modules.isEmpty()) {
-            builder.append("; Modules: ");
+            builder.append("\nModules: ");
             modules.forEach(builder::append);
         }
+
+        builder.append("\nGithub profile: ")
+                .append(getGithub())
+                .append("\nTelegram Username: @")
+                .append(getTelegram());
+
         return builder.toString();
     }
 
