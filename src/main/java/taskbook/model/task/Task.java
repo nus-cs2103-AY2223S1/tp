@@ -70,10 +70,11 @@ public abstract class Task {
 
     /**
      * Returns the string representation of the completion status of the task.
-     * @return [X] if the task is done. Otherwise, return [ ].
+     * 2 whitespaces needed to match width of 'X' in the GUI.
+     * @return [X] if the task is done. Otherwise, return [  ].
      */
     public String getStatus() {
-        return isDone() ? "[X]" : "[ ]";
+        return isDone() ? "[X]" : "[  ]";
     }
 
     /**
