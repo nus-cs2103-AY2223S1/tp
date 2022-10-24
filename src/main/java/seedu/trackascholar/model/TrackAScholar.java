@@ -113,6 +113,21 @@ public class TrackAScholar implements ReadOnlyTrackAScholar {
         applicants.sort(comparator);
     }
 
+
+    /**
+     * Returns a similar applicant in the model that is given to the method.
+     * Used for importing and merging 2 files.
+     * The applicant must exist in the list.
+     *
+     * @param applicant to find the applicant in the model that is similar to this
+     * @return the applicant in the model that is similar to the applicant given
+     */
+    public Applicant findSimilarApplicant(Applicant applicant) {
+        requireNonNull(applicant);
+
+        return applicants.findSimilarApplicant(applicant);
+    }
+
     //// util methods
 
     @Override

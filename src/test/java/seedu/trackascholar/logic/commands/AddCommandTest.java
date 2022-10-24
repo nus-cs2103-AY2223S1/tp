@@ -162,6 +162,21 @@ public class AddCommandTest {
         public void updateFilteredApplicantList(Predicate<Applicant> predicate) {
             throw new AssertionError(MESSAGE_RESTRICTED_METHOD);
         }
+
+        @Override
+        public Applicant findSimilarApplicant(Applicant applicant) {
+            throw new AssertionError(MESSAGE_RESTRICTED_METHOD);
+        }
+
+        @Override
+        public void importWithReplace(ObservableList<Applicant> applicantList) {
+            throw new AssertionError(MESSAGE_RESTRICTED_METHOD);
+        }
+
+        @Override
+        public void importWithoutReplace(ObservableList<Applicant> applicantList) {
+            throw new AssertionError(MESSAGE_RESTRICTED_METHOD);
+        }
     }
 
     /**

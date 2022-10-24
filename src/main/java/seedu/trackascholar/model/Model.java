@@ -59,6 +59,10 @@ public interface Model {
      */
     boolean hasApplicant(Applicant applicant);
 
+    void importWithReplace(ObservableList<Applicant> applicantList);
+
+    void importWithoutReplace(ObservableList<Applicant> applicantList);
+
     /**
      * Deletes the given applicant.
      * The applicant must exist in TrackAScholar.
@@ -94,4 +98,6 @@ public interface Model {
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredApplicantList(Predicate<Applicant> predicate);
+
+    Applicant findSimilarApplicant(Applicant a);
 }
