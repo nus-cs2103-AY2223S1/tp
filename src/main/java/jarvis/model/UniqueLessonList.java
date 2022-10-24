@@ -120,6 +120,7 @@ public class UniqueLessonList implements Iterable<Lesson> {
         if (!internalList.remove(toRemove)) {
             throw new LessonNotFoundException();
         }
+        FXCollections.sort(internalList, LESSON_COMPARATOR);
     }
 
     public void setLessons(UniqueLessonList replacement) {
