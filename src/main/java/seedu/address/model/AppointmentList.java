@@ -7,11 +7,13 @@ import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 import seedu.address.logic.commands.EditAppointmentCommand;
 import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.person.Appointment;
 import seedu.address.model.person.Person;
+import seedu.address.model.tag.Tag;
 
 /**
  * Facilitator for operations involving {@code appointments}.
@@ -84,14 +86,14 @@ public class AppointmentList {
     }
 
     private static Appointment createEditedAppointment(Appointment appointmentToEdit,
-            EditAppointmentCommand.EditAppointmentDescriptor descriptor) {
+            EditAppointmentCommand.EditAppointmentDescriptor editAppointmentDescriptor) {
         assert appointmentToEdit != null;
 
-        String reason = descriptor.getReason().orElse(appointmentToEdit.getReason());
-        LocalDateTime dateTime = descriptor.getDateTime().orElse(appointmentToEdit.getDateTime());
-        List<Integer> period = descriptor.getTimePeriod().orElse(appointmentToEdit.getTimePeriod());
-
-        Appointment editedAppointment = new Appointment(reason, dateTime, period,
+        String reason = editAppointmentDescriptor.getReason().orElse(appointmentToEdit.getReason());
+        LocalDateTime dateTime = editAppointmentDescriptor.getDateTime().orElse(appointmentToEdit.getDateTime());
+        List<Integer> period = editAppointmentDescriptor.getTimePeriod().orElse(appointmentToEdit.getTimePeriod());
+        Set<Tag> tags = editAppointmentDescriptor.getTags().orElse(appointmentToEdit.getTags());
+        Appointment editedAppointment = new Appointment(reason, dateTime, period, tags,
                 appointmentToEdit.isMarked());
         editedAppointment.setPatient(appointmentToEdit.getPatient());
         return editedAppointment;

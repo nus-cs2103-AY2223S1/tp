@@ -43,7 +43,6 @@ public class CancelCommand extends SelectAppointmentCommand {
 
         int index = patientToCancelAppt.getAppointments().indexOf(toBeCancelledAppt) + 1;
         AppointmentList.cancelAppointment(model, patientToCancelAppt, toBeCancelledAppt);
-
         return new CommandResult(String.format(MESSAGE_CANCEL_APPOINTMENT_SUCCESS, index)
                 + patientToCancelAppt.getName());
     }
