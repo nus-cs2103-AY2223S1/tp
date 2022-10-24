@@ -1,19 +1,31 @@
-#copyButton, #helpMessage {
-    -fx-text-fill: white;
+@import "Font.css";
+
+#userGuideUrl {
+    -fx-background-color: transparent;
+    -fx-font-family: 'IBM Plex Sans Text';
+    -fx-text-fill: #0F8FFF;
+    -fx-padding: 0;
 }
 
-#copyButton {
-    -fx-background-color: dimgray;
+#userGuideUrl:hover {
+    -fx-text-fill: #59CDFB;
 }
 
-#copyButton:hover {
-    -fx-background-color: gray;
-}
-
-#copyButton:armed {
-    -fx-background-color: darkgray;
+#userGuideUrl:armed {
+    -fx-effect: dropshadow(gaussian, rgba(255,255,255,0.6), 10, 0, 0, 0);
 }
 
 #helpMessageContainer {
-    -fx-background-color: derive(#1d1d1d, 20%);
+    -fx-background-color: #363636;
+    -fx-font-family: 'IBM Plex Sans Text';
+}
+
+.help-label {
+    -fx-font-family: 'IBM Plex Sans SemiBold';
+    -fx-text-fill: #AFAFAF !important;
+    -fx-padding: 0 5 0 0;
+}
+
+#saveLocationStatus {
+    -fx-text-fill: white;
 }
