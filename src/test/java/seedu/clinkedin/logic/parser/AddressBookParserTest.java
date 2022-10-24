@@ -22,6 +22,8 @@ import seedu.clinkedin.logic.commands.ExitCommand;
 import seedu.clinkedin.logic.commands.FindCommand;
 import seedu.clinkedin.logic.commands.HelpCommand;
 import seedu.clinkedin.logic.commands.ListCommand;
+import seedu.clinkedin.logic.commands.RedoCommand;
+import seedu.clinkedin.logic.commands.UndoCommand;
 import seedu.clinkedin.logic.parser.exceptions.ParseException;
 import seedu.clinkedin.model.person.DetailsContainKeywordsPredicate;
 import seedu.clinkedin.model.person.Person;
@@ -81,6 +83,18 @@ public class AddressBookParserTest {
     public void parseCommand_help() throws Exception {
         assertTrue(parser.parseCommand(HelpCommand.COMMAND_WORD) instanceof HelpCommand);
         assertTrue(parser.parseCommand(HelpCommand.COMMAND_WORD + " 3") instanceof HelpCommand);
+    }
+
+    @Test
+    public void parseCommand_undo() throws Exception {
+        assertTrue(parser.parseCommand(UndoCommand.COMMAND_WORD) instanceof UndoCommand);
+        assertTrue(parser.parseCommand(UndoCommand.COMMAND_WORD + " 3") instanceof UndoCommand);
+    }
+
+    @Test
+    public void parseCommand_redo() throws Exception {
+        assertTrue(parser.parseCommand(RedoCommand.COMMAND_WORD) instanceof RedoCommand);
+        assertTrue(parser.parseCommand(RedoCommand.COMMAND_WORD + " 3") instanceof RedoCommand);
     }
 
     @Test

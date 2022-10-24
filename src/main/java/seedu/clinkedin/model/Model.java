@@ -53,6 +53,21 @@ public interface Model {
     /** Returns the AddressBook */
     ReadOnlyAddressBook getAddressBook();
 
+    /** Saves the current address book state for undo/redo. */
+    void commitAddressBook();
+
+    /** Restores the address book to its previous state. */
+    void undoAddressBook();
+
+    /** Restores the address book to its previously undone state. */
+    void redoAddressBook();
+
+    /** Returns true if the model has previous CLInkedIn states to restore. */
+    boolean canUndoAddressBook();
+
+    /** Returns true if the model has undone ClInkedIn states to restore. */
+    boolean canRedoAddressBook();
+
     /**
      * Returns true if a person with the same identity as {@code person} exists in
      * the clinkedin book.

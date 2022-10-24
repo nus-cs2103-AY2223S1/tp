@@ -21,6 +21,8 @@ import seedu.clinkedin.logic.commands.FindCommand;
 import seedu.clinkedin.logic.commands.HelpCommand;
 import seedu.clinkedin.logic.commands.ListCommand;
 import seedu.clinkedin.logic.commands.NoteCommand;
+import seedu.clinkedin.logic.commands.RedoCommand;
+import seedu.clinkedin.logic.commands.UndoCommand;
 import seedu.clinkedin.logic.parser.exceptions.ParseException;
 
 /**
@@ -70,6 +72,12 @@ public class AddressBookParser {
 
         case ListCommand.COMMAND_WORD:
             return new ListCommand();
+
+        case UndoCommand.COMMAND_WORD:
+            return new UndoCommand();
+
+        case RedoCommand.COMMAND_WORD:
+            return new RedoCommand();
 
         case ExitCommand.COMMAND_WORD:
             return new ExitCommand();
