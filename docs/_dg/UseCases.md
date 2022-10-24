@@ -33,8 +33,7 @@ MSS:
 1. User deletes an item from inventory.
    @@ -45,10 +48,11 @@ Extensions:
 * 1a. Item does not exist in inventory.
-  * 1a1. FoodRem displays error to user that item does not exist in inventory.
-    Use case resumes from step 1.
+  * 1a1. FoodRem displays error to user that item does not exist in inventory. Use case resumes from step 1.
 ---
 #### UC4: Create Tag
 
@@ -79,9 +78,7 @@ Extensions:
 * 3a. FoodRem detects that there is an issue with the command entered.
   * 3a1. FoodRem requests for the command to be entered again.
   * 3a2. User re-enters the command.
-  * Steps 3a1-3a2 are repeated until the command entered is correct.
-
-    Use case resumes from step 4.
+  * Steps 3a1-3a2 are repeated until the command entered is correct. <br> Use case resumes from step 4.
 ---
 #### UC7: Rename a tag
 
@@ -103,8 +100,7 @@ Extensions:
 * 3a. FoodRem detects that the new tag name already exist.
   @@ -117,52 +127,59 @@ Extensions:
   * 3b2. User re-enters the command to rename the desired tag.
-  * Steps 3b1-3b2 are repeated until the command entered is correct.
-    Use case resumes from step 4.
+  * Steps 3b1-3b2 are repeated until the command entered is correct.<br> Use case resumes from step 4.
 ---
 #### UC8: Removing a tag from an item
 
@@ -126,8 +122,7 @@ Extensions:
 * 3a. FoodRem detects that there is an issue with the command entered.
   * 3a1. FoodRem requests for the command to be entered again.
   * 3a2. User re-enters the command.
-  * Steps 3a1-3a2 are repeated until the command entered is correct.
-    Use case resumes from step 4.
+  * Steps 3a1-3a2 are repeated until the command entered is correct. <br>Use case resumes from step 4.
 ---
 #### UC9: Increment/Decrement Quantity of Item
 
