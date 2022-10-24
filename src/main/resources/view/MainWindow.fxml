@@ -13,7 +13,7 @@
 
 <!--This line here deals with the titla and icons of the app -->
 <fx:root type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1"
-         title="Friendnancial" minWidth="450" minHeight="600" onCloseRequest="#handleExit">
+         title="Friendnancial" minWidth="1200" minHeight="700" onCloseRequest="#handleExit">
 
   <icons>
     <Image url="@/images/friendnancial1.png" />
@@ -21,7 +21,6 @@
   <scene>
     <Scene>
       <stylesheets>
-<!--          consider using a @LightTheme.css by renaming and editing the css-->
         <URL value="@LightTheme2.css" />
         <URL value="@Extensions.css" />
       </stylesheets>
@@ -35,7 +34,7 @@
 
         <VBox fx:id="centerPanel" styleClass="pane-with-border" minWidth="340" prefWidth="340" VBox.vgrow="ALWAYS">
             <padding>
-                <Insets top="10" right="10" bottom="10" left="10" />
+                <Insets top="0" right="10" bottom="10" left="10" />
             </padding>
             <StackPane fx:id="centerPanelPlaceholder" VBox.vgrow="ALWAYS"/>
 
