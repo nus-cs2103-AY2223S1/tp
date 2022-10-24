@@ -7,7 +7,7 @@ participant ":LogicManager" as LogicManager LOGIC_COLOR
 participant ":SoConnectParser" as SoConnectParser LOGIC_COLOR
 participant ":CustomiseCommandParser" as CustomiseCommandParser LOGIC_COLOR
 participant ":CustomiseOrderCommandParser" as CustomiseOrderCommandParser LOGIC_COLOR
-participant "u:CustomiseOrderCommand" as CustomiseOrderCommand LOGIC_COLOR
+participant "c:CustomiseOrderCommand" as CustomiseOrderCommand LOGIC_COLOR
 participant ":CommandResult" as CommandResult LOGIC_COLOR
 end box
 

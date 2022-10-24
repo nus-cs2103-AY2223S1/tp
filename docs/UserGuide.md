@@ -247,7 +247,7 @@ Format: `customise order [t/] [p/] [e/] [a/]`
 
 * Name of contact will always be at the top of each contact and cannot have its order changed.
 * Information that can have its order changed: Tags, Phone Number, Email, Address.
-* Information that are not specified will be ordered last in default order. (Tags > Phone Number > Email > Address)
+* Information that are not specified will be ordered last and follow the default order. (Tags > Phone Number > Email > Address)
 
 Example:
 

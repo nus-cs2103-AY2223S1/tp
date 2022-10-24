@@ -54,7 +54,7 @@ The rest of the App consists of four components:
 
 The *Sequence Diagram* below shows how the components interact with each other for the scenario where the user issues the command `delete 1`.
 
-<img src="images/ArchitectureSequenceDiagram.png" width="574" />
+<img src="images/ArchitectureSequenceDiagram.png"/>
 
 Each of the four main components will:
 
@@ -63,7 +63,7 @@ Each of the four main components will:
 
 For example, the `Logic` component defines its API in the `Logic.java` interface and implements its functionality using the `LogicManager.java` class which follows the `Logic` interface. Other components interact with a given component through its interface rather than the concrete class. This is to prevent the outside component being coupled to the implementation of a component, as illustrated in the partial class diagram below.
 
-<img src="images/ComponentManagers.png" width="300" />
+<img src="images/ComponentManagers.png"/>
 
 The sections below give more details of each component.
 
@@ -90,7 +90,7 @@ The `UI` component does the following:
 
 Below is a partial class diagram of the `Logic` component.
 
-<img src="images/LogicClassDiagram.png" width="550"/>
+<img src="images/LogicClassDiagram.png"/>
 
 How the `Logic` component works:
 1. When `Logic` is called upon to execute a command, it uses the `SoConnectParser` class to parse the user command.
@@ -107,7 +107,7 @@ The Sequence Diagram below illustrates the interactions within the `Logic` compo
 
 Here are the other classes in `Logic` (omitted from the class diagram above) that are used for parsing a user command:
 
-<img src="images/ParserClasses.png" width="600"/>
+<img src="images/ParserClasses.png"/>
 
 How the parsing works:
 
@@ -117,7 +117,7 @@ How the parsing works:
 ### Model component
 **API** : [`Model.java`](https://github.com/AY2223S1-CS2103T-W15-1/tp/blob/master/src/main/java/soconnect/model/Model.java)
 
-<img src="images/ModelClassDiagram.png" width="450" />
+<img src="images/ModelClassDiagram.png"/>
 
 
 The `Model` component does the following:
@@ -129,7 +129,7 @@ The `Model` component does the following:
 
 <div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `SoConnect`, which `Person` references. This allows `SoConnect` to only require one `Tag` object per unique tag, instead of each `Person` needing their own `Tag` objects. <br>
 
-<img src="images/BetterModelClassDiagram.png" width="450" />
+<img src="images/BetterModelClassDiagram.png"/>
 
 </div>
 
@@ -138,7 +138,7 @@ The `Model` component does the following:
 
 **API** : [`Storage.java`](https://github.com/AY2223S1-CS2103T-W15-1/tp/blob/master/src/main/java/soconnect/storage/Storage.java)
 
-<img src="images/StorageClassDiagram.png" width="550" />
+<img src="images/StorageClassDiagram.png"/>
 
 The `Storage` component does the following:
 * Saves both SoConnect data and user preference data in `json` format, and read them back into corresponding objects.
