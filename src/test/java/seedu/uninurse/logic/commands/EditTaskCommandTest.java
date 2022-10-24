@@ -68,7 +68,7 @@ class EditTaskCommandTest {
 
         Patient editedPatient = new PersonBuilder(secondPatient)
                 .withTasks(secondPatient.getTasks().edit(INDEX_FIRST_ATTRIBUTE.getZeroBased(), editedTask)
-                        .getTasks().toArray(Task[]::new))
+                        .getInternalList().toArray(Task[]::new))
                 // to convert the TaskList into an array of string representation of tasks
                 .build();
 
