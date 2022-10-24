@@ -6,7 +6,6 @@ import java.util.List;
  * Represents an Assignment in the task book.
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
-
 public class Assignment implements Task {
     private final TaskDescription taskDescription;
     private final TaskTitle taskTitle;
@@ -32,6 +31,7 @@ public class Assignment implements Task {
 
     /**
      * Get the List of students assigned to this assignment.
+     *
      * @return List of students assigned.
      */
     public List<String> getStudents() {
@@ -42,11 +42,6 @@ public class Assignment implements Task {
         this.students.addAll(studentsToAdd);
     }
 
-    /**
-     * Deletes
-     *
-     * @param studentsToDelete
-     */
     public void deleteStudent(List<String> studentsToDelete) {
         this.students.removeAll(studentsToDelete);
     }

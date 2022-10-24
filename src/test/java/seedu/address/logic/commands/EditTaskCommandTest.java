@@ -23,6 +23,9 @@ import seedu.address.testutil.DeadlineBuilder;
 import seedu.address.testutil.EditTaskDescriptorBuilder;
 import seedu.address.testutil.ToDoBuilder;
 
+/**
+ * Contains integration tests (interaction with the Model) and unit tests for EditTaskCommand.
+ */
 class EditTaskCommandTest {
 
     @Test
