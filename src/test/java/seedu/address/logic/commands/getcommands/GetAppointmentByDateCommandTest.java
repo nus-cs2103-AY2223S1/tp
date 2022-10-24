@@ -44,8 +44,8 @@ public class GetAppointmentByDateCommandTest {
         assertTrue(getFirstAppointmentByDateCommand.equals(getFirstAppointmentByDateCommand));
 
         // same values -> returns true
-        GetAppointmentByDateCommand getFirstAppointmentByDateCommandCopy
-                = new GetAppointmentByDateCommand(firstPredicate);
+        GetAppointmentByDateCommand getFirstAppointmentByDateCommandCopy =
+                new GetAppointmentByDateCommand(firstPredicate);
         assertTrue(getFirstAppointmentByDateCommand.equals(getFirstAppointmentByDateCommandCopy));
 
         // different types -> returns false
