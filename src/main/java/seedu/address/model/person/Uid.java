@@ -25,7 +25,7 @@ public class Uid {
         return value;
     }
     /**
-     * Returns true if both uids have the same name. This method should always return false value.
+     * Returns true if both uids have the same value. This method should always return false value.
      */
     public boolean isSameUid(Uid otherUid) {
         if (otherUid == this) {
