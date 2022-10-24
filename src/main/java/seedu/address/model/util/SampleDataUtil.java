@@ -30,7 +30,7 @@ public class SampleDataUtil {
                 getTagSet("friends"), new Gender("male"), new Uid()),
             new Person(new Name("Bernice Yu"), new Phone("99272758"), new Email("berniceyu@example.com"),
                 new DateOfBirth("11/5/1968"), new Address("Blk 30 Lorong 3 Serangoon Gardens, #07-18"),
-                getTagSet("colleagues", "friends"), new Gender("male"), new Uid()),
+                getTagSet("colleagues", "friends"), new Gender("female"), new Uid()),
             new Person(new Name("Charlotte Oliveiro"), new Phone("93210283"), new Email("charlotte@example.com"),
                 new DateOfBirth("4/12/2002"), new Address("Blk 11 Ang Mo Kio Street 74, #11-04"),
                 getTagSet("neighbours"), new Gender("male"), new Uid()),
