@@ -538,12 +538,12 @@ Manage contacts and schedule of students faster than a typical mouse/GUI driven 
 
 ### Glossary
 
-| Terms         | Definition                                           |
-|---------------|------------------------------------------------------|
-| Mainstream OS | Windows, Linux, Unix, OS-X                           |
-| CLI           | Command Line Interface                               |
-| Class         | The 1-1 tutoring time slot of a student              |
-| Day-of-Week   | 3-letter Abbreviation; case-insensitive eg. Mon, MON |
+| Terms         | Definition                                             |
+|---------------|--------------------------------------------------------|
+| Mainstream OS | Windows, Linux, Unix, OS-X                             |
+| CLI           | Command Line Interface                                 |
+| Class         | The 1-1 tutoring time slot of a student                |
+| Day-of-Week   | 3-letter Abbreviation; case-insensitive e.g., Mon, MON |
 
 Note:
 - Command Line Interface: Text based user interface for the user to interact with, by passing in single line commands.

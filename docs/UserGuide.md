@@ -2,9 +2,15 @@
 layout: page
 title: User Guide
 ---
-Teacher’s Pet is a desktop application for managing contacts of students and classes, optimised for use via a
+**Teacher’s Pet** is a desktop application for managing contacts of students and classes, optimised for use via a
 Command Line Interface (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast,
 Teacher’s Pet can get your contact and class management tasks done faster than traditional GUI apps.
+
+**Teacher’s Pet** allows you to manage your schedule and keep track of your students.
+The app stores basic information about your students, such as `Name`, `Contact Number`, `Money Owed`, `Class Date` and more.
+
+To get started with using our application, jump straight to the [Quick Start](#quick-start) section.
+For a full list of commands and detailed instructions, head to the [Features](#features) section.
 
 ## Table of contents
 * [Quick Start](#quick-start)
@@ -12,9 +18,9 @@ Teacher’s Pet can get your contact and class management tasks done faster than
 * [Features](#features)
     * [Viewing help: `help`](#viewing-help-help)
     * [Adding a student: `add`](#adding-a-student-add)
-    * [Editing student details: `edit`](#editing-student-details-edit)
+    * [Editing a student's details: `edit`](#editing-student-details-edit)
     * [Viewing all students: `list`](#viewing-all-students-list)
-    * [Finding a student: `find`](#finding-a-student-find)
+    * [Finding one or more students: `find`](#finding-one-or-more-students-find)
     * [Deleting a student: `delete`](#deleting-a-student-delete)
     * [Clearing all student: `clear`](#clearing-all-student-clear)
     * [Exiting the program : `exit`](#exiting-the-program-exit)
@@ -54,7 +60,7 @@ Basic Instructions:
 1. Type the command in the command box and press Enter to execute it. e.g. typing `help` and pressing Enter will open
    the help window. Some example commands you can try:
     - `list`: Lists all students.
-    - `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`: Adds a student named
+    - `add n/John Doe p/98765432 np/81239090 e/johnd@example.com a/John street, block 123, #01-01`: Adds a student named
       `John Doe` to the student list.
     - `delete 3`: Deletes the 3rd student shown in the current list.
     - `clear`: Deletes all students.
@@ -153,45 +159,65 @@ Note: Amount paid, Amount owed, Additional notes fields are to be updated via `e
 Edits an existing student in the list.
 
 - Student’s Name
-- Phone number
-- Next of Kin’s phone number
+- Student's Contact Number
+- Next of Kin’s Number
 - Address
+- Email
 - Class Date
-- Amount paid
-- Amount owed
-- Additional notes
+- Amount Paid
+- Amount Owed
+- Additional Notes
 
-1. Student's Name, Phone number, Next of Kin’s phone number, Email, Address, and Class Date follow
+1. Student's Name, Student's Contact Number, Next of Kin’s Number, Address, and Email follow
 the same convention as [adding a student](#adding-a-student-add).
 
-2. Amount paid:
+2. Class Date:
+    - Class date can be left empty.
+    - Formats: `dt` must be followed by either one of the below options.
+        1. `yyyy-MM-dd 0000-2359`
+        2. `Day-of-Week 0000-2359`
+    - Examples: `2022-10-29 1100-1230`, `MON 1100-1230`, `Mon 1100-1230`
+   
+```yaml
+Caution: If a chosen date is occupied by another student, a class conflict error will arise.
+```
+
+4. Amount Paid:
     - Amount paid can be an integer or a double.
     - Amount paid must be non-negative.
 
-3. Amount owed:
+5. Amount Owed:
     - Amount owed can be an integer or a double.
     - Amount owed must be non-negative.
-    - Amount owed and Amount paid are modified independent of each other.
-
 ```yaml
-Note: Amount paid, Amount owed can only be between $0 and $2147483647.
+Note: Amount Owed and Amount Paid can only be between $0 and $2147483647.
+      They are modified independent of each other.
 ```
 
-4. Additional notes:
+6. Additional notes:
     - Additional notes can be left empty.
     - Additional notes can take in any types of character.
+    - Use `nt/` to set the additional notes.
+    - Use `nt-a/` to append the additional notes.
+```yaml
+Note: Using both nt/ and nt-a/ in a single command will set the content
+      of Additional Notes to the content behind both nt/ and nt-a/ prefixes.
+```
+
 ```yaml
 Important: Note **at least one** of these fields must exist in order to make the `edit` command valid.
 ```
 
 Format: `edit INDEX [n/NAME] [p/CONTACT_NUMBER] [np/NEXT_OF_KIN_CONTACT_NUMBER] [e/EMAIL] [dt/CLASS_DATE] [a/ADDRESS]
-[paid/AMOUNT_PAID] [owed/AMOUNT_OWED] [nt/ADDITIONAL_NOTES]`
+[paid/AMOUNT_PAID] [owed/AMOUNT_OWED] [nt/ADDITIONAL_NOTES] [nt-a/ADDITIONAL_NOTES_APPEND]`
 
-Example:
+Examples:
 
 - `edit 1 e/Ben2022@gmail.com`
 
 ![UiEdit](images/UG-screenshots/UiEdit.png)
+
+- `edit 1 dt/tue 1100-1200`
 
 [Back to top](#table-of-contents)
 
@@ -201,14 +227,14 @@ Example:
 
 Allows the user to view students and their information which includes:
 
-- Phone number
-- Next of Kin’s number
+- Contact Number
+- Next of Kin’s Number
 - Address
 - Email
 - Class Date
-- Amount paid
-- Amount owed
-- Additional notes
+- Amount Paid
+- Amount Owed
+- Additional Notes
 
 Format: `list`
 
@@ -218,11 +244,14 @@ Format: `list`
 
 ---
 
-### Finding a student: `find`
+### Finding one or more students: `find`
 
-Finds students whose names contain any of the given keywords.
+#### Find by Name
 
-Format: `find KEYWORD [MORE_KEYWORDS]`
+---
+Finds one or more students whose names contain any of the given keywords.
+
+Format: `find n/KEYWORD [MORE_KEYWORDS]`
 
 - The search is case-insensitive. e.g. `alex` will match `Alex`.
 - The order of the keywords does not matter. e.g. `Yeoh Alex` will match `Alex Yeoh`.
@@ -232,13 +261,27 @@ Format: `find KEYWORD [MORE_KEYWORDS]`
 
 Example:
 
-`find tan` returns `Tan Xiao Ming` and `John Tan`.
+`find n/tan` returns `Tan Xiao Ming` and `John Tan`.
 
 ![UiFind](images/UG-screenshots/UiFind.png)
 
 [Back to top](#table-of-contents)
 
+#### Find by Class Date
+
 ---
+Finds all students with classes on a particular date.
+
+Format: `find dt/yyyy-MM-dd`
+
+- Only the date is searched.
+- Anything that comes after `yyyy-MM-dd` will be ignored.
+e.g. `find dt/2022-10-15 1000-1100` will be interpreted as `find dt/2022-10-15`
+
+Example:
+
+`find dt/2022-10-15` returns all students with classes on 15 October 2022.
+
 
 ### Deleting a student: 'delete'
 
@@ -315,12 +358,19 @@ A: Install the app in the other computer and overwrite the empty data file it cr
 [Back to top](#table-of-contents)
 
 ---
+## Glossary
 
-## Command summary
+| Terms       | Definition                                             |
+|-------------|--------------------------------------------------------|
+| Class Date  | The 1-1 tutoring time slot of a student                |
+| Day-of-Week | 3-letter Abbreviation; case-insensitive e.g., Mon, MON |
+
+
+## Command Summary
 
 | Action               | Format, Examples                                                                                                                                                                                   |
 |----------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| Add a student        | add n/NAME p/CONTACT_NUMBER np/NEXT_OF_KIN_CONTACT_NUMBER a/ADDRESS e/EMAIL dt/CLASS_DATE `e.g., add n/John Doe p/98765432 np/90123291 a/Street ABC e/johnd@example.com dt/2022-09-20 1800-2000`   |
+| Add a student        | add n/NAME p/CONTACT_NUMBER np/NEXT_OF_KIN_CONTACT_NUMBER a/ADDRESS e/EMAIL `e.g., add n/John Doe p/98765432 np/90123291 a/Street ABC e/johnd@example.com`                                         |
 | Edit a student       | edit INDEX [n/NAME] [p/CONTACT_NUMBER] [np/NEXT_OF_KIN_CONTACT_NUMBER] [e/EMAIL] [dt/CLASS_DATE] [a/ADDRESS] [paid/AMOUNT_PAID] [owed/AMOUNT_OWED] [nt/ADDITIONAL_NOTES] `e.g., edit 2 p/98765431` |
 | Get help             | `help`                                                                                                                                                                                             |
 | List all students    | `list`                                                                                                                                                                                             |
